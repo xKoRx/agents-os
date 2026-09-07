@@ -9,11 +9,12 @@ related:
   - "[[Cursor]]"
   - "[[Antigravity]]"
   - "[[Copilot CLI]]"
+  - "[[ZCode]]"
 aliases: []
 tags:
   - kind/doc
 created: 2026-08-10
-updated: 2026-09-01
+updated: 2026-09-07
 ---
 
 # Registro de la Tripulación (Crew Dashboard)
@@ -29,7 +30,7 @@ Este directorio centraliza las superficies autorizadas para generar código en e
 
 ### Contrato de identidad
 
-- **Superficies registradas:** [[Codex]], [[Claude Code]], [[Cursor]], [[Antigravity]] y [[Copilot CLI]].
+- **Superficies registradas:** [[Codex]], [[Claude Code]], [[Cursor]], [[Antigravity]], [[Copilot CLI]] y [[ZCode]].
 - **Registro de ejecución:** `80-agents/journal/agent-runs/` mediante [[agents-os-agent-run-register]].
 - **Clave de comparación:** `agent_surface × agent_model`; un cambio de cualquiera crea otro run atribuible.
 - **Modelo:** identificador exacto reportado por el host o usuario; `unknown` si no existe evidencia, nunca inferido.
