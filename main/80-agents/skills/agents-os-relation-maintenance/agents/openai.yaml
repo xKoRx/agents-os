@@ -1,0 +1,3 @@
+interface:
+  display_name: "AGENTS OS Relation Maintenance"
+  short_description: "Repair and validate canonical links, backlinks, related fields, aliases, and Graphify paths"

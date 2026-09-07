@@ -1,0 +1,3 @@
+interface:
+  display_name: "Agent Memory System Bootstrap"
+  short_description: "Mandatory startup: load memory prompt, profile, constitution, internal memory, and Graphify context"

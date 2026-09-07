@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BIN_DIR="$HOME/bin"
+WRAPPER_DST="$BIN_DIR/echo-forge-worker"
+CREDENTIALS_FILE="$SCRIPT_DIR/credentials.env"
+
+command -v sshpass >/dev/null || { printf '%s\n' 'ERROR: sshpass no está disponible. Instala con: brew install hudochenkov/sshpass/sshpass' >&2; exit 42; }
+[[ -f "$CREDENTIALS_FILE" ]] || { printf 'ERROR: falta %s\n' "$CREDENTIALS_FILE" >&2; exit 43; }
+
+mkdir -p "$BIN_DIR"
+chmod 0700 "$SCRIPT_DIR/echo-forge-worker"
+chmod 0600 "$CREDENTIALS_FILE"
+ln -sfn "$SCRIPT_DIR/echo-forge-worker" "$WRAPPER_DST"
+
+printf '%s\n' "Wrapper enlazado: $WRAPPER_DST -> $SCRIPT_DIR/echo-forge-worker" "Credencial canónica: $CREDENTIALS_FILE"
+"$WRAPPER_DST" status

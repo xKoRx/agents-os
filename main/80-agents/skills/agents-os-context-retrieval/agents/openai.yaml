@@ -1,0 +1,3 @@
+interface:
+  display_name: "Agent Memory System Context Retrieval"
+  short_description: "Retrieve Agent Memory System context via Graphify"

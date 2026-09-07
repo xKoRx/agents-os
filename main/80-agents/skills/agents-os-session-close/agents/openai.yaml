@@ -1,0 +1,3 @@
+interface:
+  display_name: "Agent Memory System Session Close"
+  short_description: "Close sessions into Agent Memory System memory"

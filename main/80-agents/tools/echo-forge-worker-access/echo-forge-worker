@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_PATH="${BASH_SOURCE[0]}"
+while [[ -L "$SOURCE_PATH" ]]; do
+  SOURCE_DIR="$(cd "$(dirname "$SOURCE_PATH")" && pwd)"
+  SOURCE_PATH="$(readlink "$SOURCE_PATH")"
+  [[ "$SOURCE_PATH" == /* ]] || SOURCE_PATH="$SOURCE_DIR/$SOURCE_PATH"
+done
+SCRIPT_DIR="$(cd "$(dirname "$SOURCE_PATH")" && pwd)"
+CREDENTIALS_FILE="${ECHO_FORGE_CREDENTIALS_FILE:-$SCRIPT_DIR/credentials.env}"
+SSH_OPTS=(-o ConnectTimeout=8 -o StrictHostKeyChecking=accept-new)
+
+[[ -r "$CREDENTIALS_FILE" ]] || { printf 'ERROR: no se puede leer el archivo canónico: %s\n' "$CREDENTIALS_FILE" >&2; exit 3; }
+unset ECHO_FORGE_WORKER_USER ECHO_FORGE_WORKER_PASSWORD
+source "$CREDENTIALS_FILE"
+ACCOUNT="${ECHO_FORGE_WORKER_USER:?Falta ECHO_FORGE_WORKER_USER en credentials.env}"
+
+usage() {
+  printf '%s\n' \
+    'Uso: echo-forge-worker <comando> [args]' \
+    '' \
+    'Comandos:' \
+    '  status                            Verifica el archivo canónico sin mostrar la clave.' \
+    '  workers                           Lista aliases, IPs y usuario.' \
+    '  ssh <worker> [comando...]         Abre SSH o ejecuta un comando remoto.' \
+    '  sudo <worker> <comando...>        Ejecuta sudo remoto sin imprimir la clave.' \
+    '  scp-to <archivo> <worker> <path>  Copia un archivo hacia el worker.' \
+    '  scp-from <worker> <path> <dest>   Copia un archivo desde el worker.' \
+    '  setup-projects <worker> [repo]    Ejecuta setup_echoforge_projects.sh desde Symphony.' \
+    '' \
+    'Workers: zeus|.101|192.168.31.101, hera|.111|192.168.31.111, kronos|.121|192.168.31.121'
+}
+
+resolve_worker() {
+  case "${1:-}" in
+    zeus|.101|101|192.168.31.101) printf '%s' '192.168.31.101' ;;
+    hera|.111|111|192.168.31.111) printf '%s' '192.168.31.111' ;;
+    kronos|.121|121|192.168.31.121) printf '%s' '192.168.31.121' ;;
+    *) printf 'Worker inválido: %s\n' "${1:-<vacío>}" >&2; usage >&2; return 2 ;;
+  esac
+}
+
+require_secret() {
+  [[ -n "${ECHO_FORGE_WORKER_PASSWORD:-}" ]] || { printf '%s\n' 'ERROR: falta ECHO_FORGE_WORKER_PASSWORD en credentials.env.' >&2; return 3; }
+  printf '%s' "$ECHO_FORGE_WORKER_PASSWORD"
+}
+
+quote_remote_args() {
+  local arg quoted=''
+  for arg in "$@"; do printf -v arg '%q' "$arg"; quoted+="${arg} "; done
+  printf '%s' "$quoted"
+}
+
+command_name="${1:-help}"
+if [[ $# -gt 0 ]]; then shift; fi
+
+case "$command_name" in
+  status)
+    [[ -n "${ECHO_FORGE_WORKER_PASSWORD:-}" ]] || { printf '%s\n' 'Credentials: missing'; exit 3; }
+    printf '%s\n' 'Credentials: configured' "Source: $CREDENTIALS_FILE" "Account: $ACCOUNT" 'Storage: plaintext vault file (owner-approved temporary debt)'
+    ;;
+  workers)
+    printf '%s\n' 'zeus   kor@192.168.31.101' 'hera   kor@192.168.31.111' 'kronos kor@192.168.31.121'
+    ;;
+  ssh)
+    [[ $# -ge 1 ]] || { usage >&2; exit 2; }
+    host="$(resolve_worker "$1")"; shift
+    secret="$(require_secret)"; export SSHPASS="$secret"
+    if [[ $# -eq 0 ]]; then exec sshpass -e ssh "${SSH_OPTS[@]}" "$ACCOUNT@$host"; fi
+    exec sshpass -e ssh "${SSH_OPTS[@]}" "$ACCOUNT@$host" "$@"
+    ;;
+  sudo)
+    [[ $# -ge 2 ]] || { usage >&2; exit 2; }
+    host="$(resolve_worker "$1")"; shift
+    secret="$(require_secret)"; export SSHPASS="$secret"
+    remote_args="$(quote_remote_args "$@")"
+    printf '%s\n' "$secret" | sshpass -e ssh -tt "${SSH_OPTS[@]}" "$ACCOUNT@$host" "sudo -S -p '' -- ${remote_args}"
+    ;;
+  scp-to)
+    [[ $# -eq 3 ]] || { usage >&2; exit 2; }
+    source_path="$1"; host="$(resolve_worker "$2")"; remote_path="$3"
+    secret="$(require_secret)"; export SSHPASS="$secret"
+    exec sshpass -e scp "${SSH_OPTS[@]}" "$source_path" "$ACCOUNT@$host:$remote_path"
+    ;;
+  scp-from)
+    [[ $# -eq 3 ]] || { usage >&2; exit 2; }
+    host="$(resolve_worker "$1")"; remote_path="$2"; destination="$3"
+    secret="$(require_secret)"; export SSHPASS="$secret"
+    exec sshpass -e scp "${SSH_OPTS[@]}" "$ACCOUNT@$host:$remote_path" "$destination"
+    ;;
+  setup-projects)
+    [[ $# -ge 1 && $# -le 2 ]] || { usage >&2; exit 2; }
+    host="$(resolve_worker "$1")"; repo_path="${2:-${SYMPHONY_REPO:-}}"
+    if [[ -z "$repo_path" ]]; then repo_path="$(git rev-parse --show-toplevel 2>/dev/null || true)"; fi
+    [[ -n "$repo_path" ]] || { printf '%s\n' 'No se pudo resolver Symphony. Ejecuta desde el repo, pasa el path o define SYMPHONY_REPO.' >&2; exit 4; }
+    setup_script="$repo_path/sqx/scripts/setup_echoforge_projects.sh"
+    [[ -f "$setup_script" ]] || { printf 'No existe: %s\n' "$setup_script" >&2; exit 4; }
+    secret="$(require_secret)"
+    exec bash "$setup_script" "$host" "$ACCOUNT" "$secret"
+    ;;
+  help|-h|--help) usage ;;
+  *) printf 'Comando inválido: %s\n' "$command_name" >&2; usage >&2; exit 2 ;;
+esac

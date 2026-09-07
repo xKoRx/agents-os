@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sincronizar ramas locales"
+  short_description: "Fusiona ramas locales con guardrails Git"
+  default_prompt: "Usa $sync-local-branch para sincronizar una rama local con otra siguiendo el flujo seguro definido."

@@ -1,0 +1,3 @@
+interface:
+  display_name: "AGENTS OS Vault Refactor"
+  short_description: "Move, rename, reorganize, and batch-normalize vault files with safety checks and Graphify validation"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Agent Memory System Memory Distillation"
+  short_description: "Distill reusable Agent Memory System memories"

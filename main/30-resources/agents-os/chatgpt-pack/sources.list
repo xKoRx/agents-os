@@ -1,0 +1,41 @@
+# mode|category|vault-relative path
+# file: include one exact file.
+# tree: include every file below an exact directory.
+# globtree: expand a directory glob, then include every file below each match.
+
+file|core|30-resources/agents-os/README.md
+file|core|.graphifyignore
+file|core|80-agents/agents-os/agents-os.md
+file|core|80-agents/agents-os/context-router.md
+file|core|80-agents/agents-os/agent-constitution.md
+file|core|80-agents/memory/public/user-preference/rjara-agent-profile.md
+file|core|30-resources/00-RESOURCE-WIKI.md
+file|core|30-resources/LLM Wiki.md
+file|core|30-resources/tools/00-index.md
+file|core|30-resources/tools/graphify.md
+file|core|90-system/convenciones.md
+
+file|contracts|80-agents/skills/_shared/metadata-schema.md
+file|contracts|80-agents/skills/_shared/note-types.md
+file|contracts|80-agents/skills/_shared/skill-contract.md
+file|contracts|80-agents/skills/_shared/graphify-contract.md
+file|contracts|80-agents/skills/_shared/schema-contract.md
+
+file|skills|80-agents/skills/INDEX.md
+globtree|skills|80-agents/skills/agents-os-*
+tree|skills|30-resources/agents
+
+tree|templates|80-agents/templates
+tree|templates|70-templates
+
+tree|public-memory|80-agents/memory/public/decision/agents-os
+tree|public-memory|80-agents/memory/public/known-error/agents-os
+tree|public-memory|80-agents/memory/public/learning/agents-os
+file|public-memory|80-agents/memory/public/runbook/graphify-obsidian-install.md
+file|public-memory|80-agents/memory/public/runbook/resource-wiki-lint-reindex.md
+
+file|project-state|10-projects/Personal/AGENTS OS/AGENTS OS.md
+file|project-state|10-projects/Personal/AGENTS OS/agentes/AGENTS OS - Fase 2.md
+file|project-state|10-projects/Personal/AGENTS OS/agentes/AGENTS OS - Fase 3.md
+file|project-state|10-projects/Economía de Tokens/Economía de Tokens.md
+tree|project-evidence|10-projects/Economía de Tokens/agentes/AGENTS OS - Evaluación y Adopción

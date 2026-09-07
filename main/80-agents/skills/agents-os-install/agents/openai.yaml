@@ -1,0 +1,4 @@
+interface:
+  display_name: "Instalar AGENTS OS"
+  short_description: "Instalación guiada y perfil local de AGENTS OS"
+  default_prompt: "Usa $agents-os-install para instalar y personalizar AGENTS OS en esta máquina."

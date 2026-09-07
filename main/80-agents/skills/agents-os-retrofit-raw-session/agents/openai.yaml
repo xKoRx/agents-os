@@ -1,0 +1,3 @@
+interface:
+  display_name: "Agent Memory System Retrofit Raw Session"
+  short_description: "Retrofit raw sessions into memory"

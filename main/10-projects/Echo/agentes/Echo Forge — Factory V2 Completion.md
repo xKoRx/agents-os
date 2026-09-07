@@ -1,0 +1,242 @@
+---
+type: project
+schema_version: 1
+owner: agent
+root: false
+status: active
+priority: P1
+area: "[[Echo]]"
+parent: "[[Echo — Producto Integrado]]"
+sprint:
+start: 2026-09-07
+due:
+progress: 0
+repo: xKoRx/symphony
+jira:
+prs:
+aliases:
+  - Factory V2 Completion
+  - Echo Forge Factory V2
+  - F0 F1 D F2 Forge
+tags:
+  - kind/project
+  - area/echo
+  - agent/owner
+created: "2026-09-07"
+updated: "2026-09-07"
+---
+
+# Echo Forge — Factory V2 Completion
+
+%% Naming: Echo Forge — Factory V2 Completion es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
+
+> [!info]+ Echo Forge — Factory V2 Completion
+> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. SPECs de implementación las crea un TOP posterior.
+
+> [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
+> Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
+
+## 🎯 Objetivo
+
+Completar la factory V2: crear supply, evaluar con robustez, validar físicamente, producir finalistas estructurales, reponer, sellar versiones exactas, emitir handoffs canónicos, recuperar bien, correr cómputos largos SQX, pasar FULL golden real y exponer result surfaces.
+
+Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** calcula eligibility/capital/activation, **no** recalcula membership en Echo.
+
+## 📊 Estado actual
+
+- **PREPARADO.** Roadmap congelado; implementación no iniciada. Progress 0.
+- **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
+- **Abierto exactamente una vez:** F-01 (F0 HOST_KEY/canonicalizer), F-02 (F1 = C1+C2 Finalist V2), F-03 (D SQX long-running), F-04 (F2 magic/seal/handoff tras pin S0), F-05 (release cohesivo + cert física + FULL golden).
+- **Base observada:** Symphony `db8a022`. Revalidar HEAD/working tree en la SPEC; dirty ajeno preservado. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
+- **Dependencia Echo:** F-01/F-02/F-03 independientes de S0. F-04 consume pin [[Echo — Live Platform V1]] E-01. Catálogo CC owner antes de allocation real.
+
+## 🧱 Entrega de desarrollo
+
+| Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
+|---|---|---|---|---|---|
+| xKoRx/symphony | Fijar por fase en SPEC TOP | Revalidar HEAD; observado `db8a022` | Por Agent Task, no este padre | Por Agent Task | PREPARADO |
+
+## 🧩 Subproyectos
+
+Sin hijos. C1/C2 son milestones internos de F-02, no proyectos.
+
+## ✅ Tareas
+
+> [!note]+ Ownership y tarea puente
+> Este board muestra `#owner/agent`. El humano sigue el curro desde [[Echo — Producto Integrado]].
+
+> [!example]- Fuente de tareas — editar / mover de estado aquí
+> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
+> - [ ] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
+> - [ ] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
+> - [ ] F-03 SQX long-running #owner/agent #type/dev #area/echo
+> - [ ] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
+> - [ ] F-05 Cohesive release, physical cert and FULL golden #owner/agent #type/dev #area/echo
+
+```dataviewjs
+const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
+function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
+function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
+function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
+function board(tasks){const cols=[[" ","🟦 To Do"],["/","🟡 WIP"],["r","🔵 Review"]];let any=false;for(const[st,label]of cols){const c=tasks.filter(t=>t.status===st);if(c.length){any=true;dv.el('h4',label);render(c);}}const done=tasks.filter(t=>t.status==="x"||t.status==="X");if(done.length){any=true;dv.el('h4',"✅ Done");render(done);}if(!any)dv.paragraph("_Sin tareas._");}
+const owner=((dv.current().owner)==="agent")?"agent":"me";
+const all=dv.current().file.tasks.array();
+const primary=all.filter(t=>has(t,`owner/${owner}`));
+const loose=all.filter(t=>!has(t,"owner/me")&&!has(t,"owner/agent"));
+dv.header(3, owner==="agent"?"🤖 Tareas del agente":"🧍 Mis tareas");
+board(primary);
+if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
+```
+
+## 🗺️ Roadmap — Agent Tasks
+
+Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fijar baseline, allowed files, tests y stop conditions. Size: S/M/L relativo a este track.
+
+### F-01 Canonical generation concurrency
+
+- **ID / status / size:** F-01 · To Do · MEDIUM
+- **Objective:** Hacer `CanonicalStrategyID` puro **después** de probar un discriminador durable de output de productores concurrentes intra-wave. HOST_KEY resolvió colisiones reales de Builder; no borrarlo a ciegas.
+- **Capability unlocked:** generación paralela sin colisión de identidad; IDs adoptados intactos.
+- **Product value:** supply concurrente correcto; desbloquea retiro futuro del sufijo host.
+- **Why this phase exists:** sin proof intra-wave, “pureza” de ID recrea el bug que HOST_KEY tapó.
+- **Frozen input contracts:** [[2026-09-04-echo-forge-campaign-builder-supply-identity]]; identity V2 GENERATED_STRATEGY; [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §3 identidades. No reabrir StrategyRef UUID.
+- **In scope:** proof de unicidad concurrente multiworker/crash; wrapper conocidos; discriminador durable si el proof lo exige; G34.
+- **Out of scope:** retirar sufijos adoptados antes del proof; magic allocation; Finalist V2; S0 wire; B1/B2.
+- **Dependencies:** ninguna de Echo. Independiente de F-02/F-03.
+- **Cross-project:** none.
+- **Parallel with:** F-02, F-03, E-01, E-02.
+- **Hypotheses:** HOST_KEY no es identidad de negocio; un discriminador de output durable basta para CanonicalStrategyID puro.
+- **Risks:** colisión intra-wave no reproducida en test débil; retirar sufijo rompe IDs adoptados.
+- **Output authority:** CanonicalStrategyID + proof G34. Adopted IDs intactos.
+- **Certification:** SOURCE PASS + CONTRACT/concurrency PASS (G34 unit + registry multiworker/crash). No PHYSICAL de flota salvo que la SPEC toque runtime de generación.
+- **Done when:** proof intra-wave PASS; no se eliminó HOST_KEY/sufijo sin esa evidencia; IDs históricos no renombrados.
+- **Unlocks next:** F-04 puede sellar versiones sobre IDs estables; F-05 golden no depende de retirar sufijo.
+- **Accepted debt:** host-suffixed adopted IDs hasta proof.
+- **Planning:** TOP (SPEC acotada). **Implementation:** NORMAL. **GOD REQUIRED NOW:** NONE.
+
+### F-02 Finalist Model V2 (C1+C2)
+
+- **ID / status / size:** F-02 · To Do · LARGE (una capacidad; milestones internos C1/C2, no tres fases)
+- **Objective:** Membresía estructural V2, Promotion V2, warnings, gates estructurales, Campaign BWC, Result Surface V2, finalists nullable/no-rank, compatibilidad historia V1.
+- **Capability unlocked:** Finalist ≠ Top N; NOT_COMPARABLE válido puede seguir finalista; mismatch requested symbol/TF bloquea; ranking/warnings aparte.
+- **Product value:** supply estructuralmente honesto; UI/result inspectable; no perder candidatos físicos por score.
+- **Why:** V1 copia TopProjection; es la semántica WRONG del target. Histórico C1+C2 es **un** modelo.
+- **Frozen input:** [[2026-09-06-echo-forge-finalist-model-v2]]; SDK §§ membership/ranking; checkpoint B2. No reabrir B1/B2.
+- **In scope:** C1 core/gates/warnings/promotion; C2 Campaign BWC, result v2, nullable rank, V1 replay. Recert física acotada al cambio.
+- **Out of scope:** handoff/magic/S0; eligibility Echo; ranking como admisión; nuevo modelo de score.
+- **Dependencies:** B2 CLOSED. No S0.
+- **Parallel with:** F-01, F-03, E-01.
+- **Hypotheses:** membership estructural + result v2 cubre BWC sin reescribir Decisions V1.
+- **Risks:** romper Result V1 replay; mezclar rank 0 con no-rank.
+- **Output authority:** Decision/Result V2 + replay V1 intacto.
+- **Certification:** SOURCE + CONTRACT (G01–03/G11–12/G22) + PHYSICAL recert del path de promotion tocado, no nueva auditoría de ownership.
+- **Done when:** V2 estructural PASS; V1 history readable; zero finalists honesto; NOT_COMPARABLE no expulsa por sí solo.
+- **Unlocks:** F-04 membership exacta en handoff; F-05 golden nonempty estructural.
+- **Accepted debt:** policy 1.0.0 histórica inmutable.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+
+### F-03 SQX long-running
+
+- **ID / status / size:** F-03 · To Do · MEDIUM
+- **Objective:** Elapsed wall-clock ≠ failure en Builder/Optimizer/WFM/etc. Quitar deadlines de negocio arbitrarios preservando liveness/recovery. SQX sigue serial por máquina/databank; no hereda allocator MT5.
+- **Capability unlocked:** jobs SQX largos terminan; cancel explícito sigue siendo la muerte cooperativa.
+- **Product value:** factory no aborta cómputo sano; simétrico al freeze MT5 B1B.
+- **Why:** D sigue pendiente; no debe desaparecer detrás de Finalist V2.
+- **Frozen input:** mismo principio B1B; [[2026-09-06-echo-forge-mt5-execution-model-v2]] no se copia a SQX slots.
+- **In scope:** timeouts de negocio SQX/Temporal de esas etapas; heartbeat/liveness; recovery. Medir duration.
+- **Out of scope:** slots MT5; takeover; Finalist; S0; budget de admisión owner (separado).
+- **Dependencies:** ninguna Echo. Independiente de F-01/F-02.
+- **Parallel with:** F-01, F-02, E-01.
+- **Hypotheses:** techo técnico Temporal + heartbeat basta; el budget de capacidad no debe matar el job.
+- **Risks:** confundir liveness con deadline de campaña; tocar databanks SQX con semántica de pool MT5.
+- **Output authority:** contratos de activity SQX sin kill por wall-clock de negocio.
+- **Certification:** SOURCE + PHYSICAL SQX (job largo sobre el límite viejo termina; cancel explícito mata sólo su árbol).
+- **Done when:** no existe deadline de negocio que mate Builder/Optimizer/WFM sano; liveness real conservada.
+- **Unlocks:** F-05 puede incluir cómputos largos en golden.
+- **Accepted debt:** serialización SQX one-job-per-machine.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+
+### F-04 Magic allocation, version seal and handoff
+
+- **ID / status / size:** F-04 · To Do · LARGE (pipeline único; sub-SPECs allocation→stamp→seal→adapter)
+- **Objective:** Tras pin S0: allocation durable de magic, stamp/readback, effective inputs exactos, seal de StrategyVersion, productor `HandoffManifestV1`, adapter de aplicación Forge→Echo.
+- **Capability unlocked:** paquete exportable que Echo puede ingerir sin latest/folder query.
+- **Product value:** puente real Forge→Echo; Forge sigue dueño de magic y membership.
+- **Why:** sin seal/handoff, Finalist V2 no sale del recinto Forge.
+- **Frozen input:** SDK §§9–13 y FR-1…FR-5 ya en pin S0; live authority §3 StrategyVersion; O2 catálogo CC. HashIdentity legacy newline **distinto** de `H()`.
+- **In scope:** registry allocation CAS/no recycle; stamp; compile/readback bytes; seal; manifest write-once; thin client adapter. Fixtures G04–10/G19–25. G22 cero POST indelegable.
+- **Out of scope:** escribir DB Echo; eligibility; catálogo CC inventado; retirar HOST_KEY si F-01 no pasó; B1/B2.
+- **Dependencies:** **E-01 S0 pin**; F-01 antes de retirar discriminador host; F-02 para membership V2 nueva (V1 smoke posible con fixtures). **Owner CC antes de allocation física.**
+- **Parallel with:** E-03, E-04, E-05 tras pin.
+- **Hypotheses:** allocation-before-Apply + seal-after-bytes es implementable sin nuevo agregado; adapter no hace POST profundo de workflow.
+- **Risks:** allocation sin CC; seal antes de bytes; adapter que active Echo.
+- **Output authority:** StrategyVersion sealed + HandoffManifest write-once + delivery status.
+- **Certification:** SOURCE + CONTRACT (unique/CAS, replay magic, readback, corpus compartido). PHYSICAL de stamping cuando haya catálogo. INTEGRATION con E-04: mismo pin/digest.
+- **Done when:** manifest fixture idéntico lo acepta el consumer del mismo release; no side-effects Echo; CC bloquea allocation real si falta.
+- **Unlocks:** F-05 golden de handoff; E-04 puede dejar fakes.
+- **Accepted debt:** HashIdentity legacy; attach Echo no es de esta fase.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+
+### F-05 Cohesive release, physical cert and FULL golden
+
+- **ID / status / size:** F-05 · To Do · MEDIUM
+- **Objective:** Un release cohesivo de lo implementado, matriz determinística, certificación física MT5 de superficies tocadas, conformidad de handoff, BWC, FULL golden **real** y result surfaces inspectables. Source merge ≠ product completion.
+- **Capability unlocked:** factory V2 operable: supply queryable, costo/latencia observables, al menos un finalista estructural con artifacts verificados cuando el cómputo lo permita.
+- **Product value:** owner lanza campaign, deja calcular, inspecciona funnel/warnings y obtiene/razona finalistas (H2).
+- **Why:** cert física y golden no caben dentro de cada slice sin crear releases-por-fix ni un catch-all de implementación.
+- **Frozen input:** cert V2 mínima del master arquitectura §5; C3 0.2.96 no se extiende a V2; no tercer FULL bajo timeout viejo.
+- **In scope:** release único del burn-down F-01…F-04 (o el subconjunto mergeado); three-slot/cancel/retry/drain recert **de lo cambiado** (B1/B2 no se reimplementan); FULL real; result read surface; handoff conformance contra pin S0.
+- **Out of scope:** reabrir ownership; yield económico; eligibility Echo; recertificar Slot Pool desde cero sin delta.
+- **Dependencies:** F-01, F-02, F-03; F-04 para golden de handoff. E-04 para smoke ingestión real (fixtures primero).
+- **Parallel with:** cadena live Echo post E-04.
+- **Hypotheses:** un release + matriz física cierra V2 factory; zero-supply sigue siendo resultado válido.
+- **Risks:** declarar PRODUCT PASS con mocks; mezclar deploy viejo con HEAD nuevo.
+- **Output authority:** release pin + cert manifest + golden refs.
+- **Certification:** RELEASE + PHYSICAL + PRODUCT CAPABILITY (factory usable). INTEGRATION PASS handoff→receipt si E-04 listo; si no, CONTRACT PASS de fixtures y PHYSICAL factory igual.
+- **Done when:** criterios de completion abajo. Zero finalists honesto no falla el software.
+- **Unlocks:** Echo enrollment con candidata real; no bloquea diseño Echo previo.
+- **Accepted debt:** cert singleton Windows residual documentada si sigue pendiente de Kronos, explicitada en el manifest, no escondida.
+- **Planning:** TOP (plan de cert/release). **Implementation:** NORMAL. **GOD:** NONE.
+
+## Definition of Done — Factory V2
+
+Factory puede crear supply, evaluar robusto, validar físicamente, producir finalistas estructurales, replenish, sellar versiones exactas, emitir handoffs canónicos, recuperar, correr cómputos largos, pasar FULL golden real y exponer result surfaces. No promete yield rentable ni eligibility Echo.
+
+## 📆 Bitácora
+
+- **2026-09-07** — Reparentado a [[Echo — Producto Integrado]], `owner: agent`, roadmap F-01…F-05. Tareas `#owner/me` de 4 ítems supersedidas. B1A/B1B/B2 historial, no backlog. C1/C2 fusionados en F-02.
+
+## 🧭 Decisiones
+
+- No crear fases C1, C2 y F1 separadas.
+- D es fase propia.
+- F2 espera pin S0; F0/F1 no.
+
+## 🔗 Docs / Links
+
+- [[Echo — Producto Integrado]]
+- [[Echo — Live Platform V1]]
+- [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
+- [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]
+- [[Echo Forge]]
+- [[Echo Forge - Arquitectura de Datos y Migración de Persistencia]]
+- [[2026-09-06-echo-forge-finalist-model-v2]]
+- [[2026-09-06-echo-forge-mt5-fencing-and-cancellation-v3]]
+- [[2026-09-06-echo-forge-mt5-global-physical-ownership-v2]]
+
+## 💡 Ideas
+
+### Backlog de ideas
+
+- Viewer SQX: SHOULD del padre, no fase Forge V2.
+
+### Motivos / principios
+
+- Elapsed wall-clock ≠ failure. Membership ≠ rank.
+
+### Memoria pública / interna
+
+- **Memoria pública:** Decisions MT5/Finalist enlazadas.
+- **Memoria interna:** no duplicar checkpoint B2 aquí.
+- **Motivo:** control histórico sigue en el proyecto de persistencia.

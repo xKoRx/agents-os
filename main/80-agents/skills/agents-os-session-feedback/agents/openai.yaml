@@ -1,0 +1,3 @@
+interface:
+  display_name: "AGENTS OS Session Feedback"
+  short_description: "Capture agent feedback and pain points at session close"

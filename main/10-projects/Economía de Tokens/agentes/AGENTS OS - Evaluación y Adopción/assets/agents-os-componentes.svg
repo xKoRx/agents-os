@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AGENTS OS — mapa de componentes y flujo de aprendizaje</title>
+  <desc id="desc">La Constitución gobierna el sistema. Una tarea entra al Context Router, que recupera contexto mínimo desde Sistema 1 y Sistema 2 mediante cuatro capas. Sistema 1 contiene memorias, skills y feedback. Sistema 2 usa el patrón LLM Wiki para integrar fuentes en páginas canónicas e índices curados; su implementación actual tiene cobertura parcial. Graphify indexa relaciones sin reemplazar la fuente de verdad Markdown. El resultado alimenta un ciclo de feedback que mejora la siguiente sesión.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1117"/>
+      <stop offset="1" stop-color="#151a29"/>
+    </linearGradient>
+    <linearGradient id="constitution" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22335f"/>
+      <stop offset="1" stop-color="#1b284b"/>
+    </linearGradient>
+    <linearGradient id="promise" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#123729"/>
+      <stop offset="1" stop-color="#172c36"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#05060a" flood-opacity=".42"/>
+    </filter>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#7b82b0"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#00a650"/>
+    </marker>
+    <style>
+      .t{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#e8eaf6}
+      .muted{fill:#9aa1c8}
+      .tiny{font-size:15px;letter-spacing:.03em}
+      .small{font-size:17px}
+      .body{font-size:19px}
+      .label{font-size:20px;font-weight:700}
+      .title{font-size:30px;font-weight:750}
+      .edge{fill:none;stroke:#7b82b0;stroke-width:2.2;marker-end:url(#arrow)}
+      .edge-soft{fill:none;stroke:#596181;stroke-width:1.8;stroke-dasharray:7 8;marker-end:url(#arrow)}
+      .edge-green{fill:none;stroke:#00a650;stroke-width:2.6;marker-end:url(#arrowGreen)}
+      .node{fill:#1a1d27;stroke:#343a59;stroke-width:1.5}
+      .subnode{fill:#22263a;stroke:#343a59;stroke-width:1.2}
+      .pill{fill:#202943;stroke:#3b4d7c;stroke-width:1}
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".23" stroke="#343a59" stroke-width="1">
+    <path d="M0 150H1600M0 300H1600M0 450H1600M0 600H1600M0 750H1600"/>
+    <path d="M200 0V900M400 0V900M600 0V900M800 0V900M1000 0V900M1200 0V900M1400 0V900"/>
+  </g>
+
+  <!-- Governance -->
+  <g filter="url(#shadow)">
+    <rect x="210" y="36" width="1180" height="104" rx="18" fill="url(#constitution)" stroke="#536dfe" stroke-width="1.5"/>
+    <text class="t title" x="250" y="81">CONSTITUCIÓN</text>
+    <text class="t body" x="250" y="113">Gobierna identidad, autoridad, preferencias, seguridad y reglas de escritura</text>
+    <rect x="1102" y="65" width="244" height="46" rx="23" fill="#536dfe" fill-opacity=".18" stroke="#7387ff"/>
+    <text class="t small" x="1224" y="94" text-anchor="middle">guardrails compartidos</text>
+  </g>
+
+  <path class="edge-soft" d="M460 140V172"/>
+  <path class="edge-soft" d="M870 140V172"/>
+  <path class="edge-soft" d="M1270 140V172"/>
+
+  <!-- Entry -->
+  <g filter="url(#shadow)">
+    <rect class="node" x="50" y="210" width="245" height="218" rx="18"/>
+    <text class="t tiny muted" x="78" y="244">ENTRADA</text>
+    <text class="t label" x="78" y="280">Nueva tarea</text>
+    <text class="t body" x="78" y="312">+ intención del usuario</text>
+    <line x1="78" y1="336" x2="267" y2="336" stroke="#343a59"/>
+    <text class="t small" x="78" y="369">Puede llegar un</text>
+    <text class="t small" x="78" y="394">agente fresco, sin</text>
+    <text class="t small" x="78" y="419">historial de chat.</text>
+  </g>
+  <path class="edge-green" d="M295 318H340"/>
+
+  <!-- Context router -->
+  <g filter="url(#shadow)">
+    <rect x="340" y="176" width="330" height="380" rx="20" fill="#191e2d" stroke="#00a650" stroke-width="2"/>
+    <text class="t tiny" x="372" y="212" fill="#5bd88d">RECUPERACIÓN</text>
+    <text class="t title" x="372" y="252">Context Router</text>
+    <text class="t small muted" x="372" y="281">Carga lo mínimo suficiente</text>
+
+    <rect class="subnode" x="372" y="309" width="266" height="48" rx="10"/>
+    <text class="t small" x="393" y="340">0 · tags + frontmatter</text>
+    <rect class="subnode" x="372" y="367" width="266" height="48" rx="10"/>
+    <text class="t small" x="393" y="398">1 · LLM Wiki / índice curado</text>
+    <rect class="subnode" x="372" y="425" width="266" height="48" rx="10"/>
+    <text class="t small" x="393" y="456">2 · grafo de relaciones</text>
+    <rect class="subnode" x="372" y="483" width="266" height="48" rx="10"/>
+    <text class="t small" x="393" y="514">3 · cuerpo seleccionado</text>
+  </g>
+
+  <!-- System 1 -->
+  <g filter="url(#shadow)">
+    <rect x="720" y="176" width="350" height="500" rx="20" fill="#191e2d" stroke="#536dfe" stroke-width="2"/>
+    <text class="t tiny" x="752" y="212" fill="#8796ff">SISTEMA 1 · CÓMO OPERA Y APRENDE</text>
+    <text class="t title" x="752" y="252">Memoria operativa</text>
+
+    <rect class="subnode" x="752" y="286" width="286" height="170" rx="12"/>
+    <text class="t label" x="774" y="320">Capas de memoria</text>
+    <text class="t small muted" x="774" y="350">L0 · raw / auditoría</text>
+    <text class="t small muted" x="774" y="379">L1 · continuidad / resumen</text>
+    <text class="t small muted" x="774" y="408">L3 · learning / ADR / runbook</text>
+    <text class="t small muted" x="774" y="437">Interna · agente → agente</text>
+
+    <rect x="752" y="474" width="136" height="92" rx="12" fill="#242b48" stroke="#536dfe"/>
+    <text class="t label" x="773" y="510">Skills</text>
+    <text class="t small muted" x="773" y="538">aprendizaje</text>
+    <text class="t small muted" x="773" y="559">ejecutable</text>
+
+    <rect x="902" y="474" width="136" height="92" rx="12" fill="#24362d" stroke="#00a650"/>
+    <text class="t label" x="923" y="510">Feedback</text>
+    <text class="t small muted" x="923" y="538">señal real</text>
+    <text class="t small muted" x="923" y="559">+ Kaizen</text>
+
+    <path class="edge-green" d="M970 566V607H820V574"/>
+    <text class="t tiny muted" x="895" y="636" text-anchor="middle">destila patrones → memoria + skills</text>
+  </g>
+
+  <!-- System 2 -->
+  <g filter="url(#shadow)">
+    <rect x="1120" y="176" width="430" height="380" rx="20" fill="#191e2d" stroke="#ff9d66" stroke-width="2"/>
+    <text class="t tiny" x="1152" y="212" fill="#ffad7f">SISTEMA 2 · QUÉ ES REAL</text>
+    <text class="t title" x="1152" y="252">LLM Wiki canónica</text>
+    <text class="t small muted" x="1152" y="280">Compila fuentes en conocimiento mantenido</text>
+
+    <rect x="1152" y="302" width="104" height="42" rx="10" fill="#22263a" stroke="#596181"/>
+    <text class="t tiny" x="1204" y="328" text-anchor="middle">Fuentes</text>
+    <path d="M1264 323H1280" class="edge"/>
+    <rect x="1288" y="302" width="104" height="42" rx="10" fill="#3a2b24" stroke="#ff9d66"/>
+    <text class="t tiny" x="1340" y="328" text-anchor="middle">LLM integra</text>
+    <path d="M1400 323H1416" class="edge"/>
+    <rect x="1424" y="302" width="94" height="42" rx="10" fill="#202943" stroke="#536dfe"/>
+    <text class="t tiny" x="1471" y="328" text-anchor="middle">Wiki</text>
+
+    <rect class="pill" x="1152" y="362" width="176" height="44" rx="11"/>
+    <text class="t small" x="1240" y="390" text-anchor="middle">Proyectos</text>
+    <rect class="pill" x="1342" y="362" width="176" height="44" rx="11"/>
+    <text class="t small" x="1430" y="390" text-anchor="middle">Aplicaciones</text>
+    <rect class="pill" x="1152" y="416" width="176" height="44" rx="11"/>
+    <text class="t small" x="1240" y="444" text-anchor="middle">Servicios</text>
+    <rect class="pill" x="1342" y="416" width="176" height="44" rx="11"/>
+    <text class="t small" x="1430" y="444" text-anchor="middle">Workflows</text>
+    <rect class="pill" x="1152" y="470" width="176" height="44" rx="11"/>
+    <text class="t small" x="1240" y="498" text-anchor="middle">Tools</text>
+    <rect class="pill" x="1342" y="470" width="176" height="44" rx="11"/>
+    <text class="t small" x="1430" y="498" text-anchor="middle">Conceptos</text>
+    <text class="t tiny muted" x="1335" y="538" text-anchor="middle">Markdown + 00-index.md = verdad recuperable</text>
+  </g>
+
+  <!-- Retrieval relationships -->
+  <path class="edge" d="M670 300C690 300 698 300 720 300"/>
+  <text class="t tiny muted" x="695" y="286" text-anchor="middle">lee</text>
+  <path class="edge" d="M1120 300C1096 300 1090 300 1070 300"/>
+  <text class="t tiny muted" x="1095" y="286" text-anchor="middle">lee</text>
+
+  <!-- Graphify -->
+  <g filter="url(#shadow)">
+    <rect x="1120" y="590" width="430" height="102" rx="18" fill="#211e2f" stroke="#9b7cff" stroke-width="1.6"/>
+    <text class="t label" x="1152" y="628">Graphify Obsidian</text>
+    <text class="t small muted" x="1152" y="657">Índice derivado: relaciona, orienta y hace lint</text>
+    <text class="t tiny" x="1152" y="681" fill="#bdabff">No crea verdad · tiene fallback exacto</text>
+  </g>
+  <path class="edge-soft" d="M1260 556V590"/>
+  <path class="edge-soft" d="M1070 608H1120"/>
+  <path class="edge-soft" d="M1120 669C930 714 625 674 560 556"/>
+
+  <!-- Promise / outcome -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="744" width="1500" height="116" rx="22" fill="url(#promise)" stroke="#00a650" stroke-width="1.6"/>
+    <text class="t tiny" x="82" y="779" fill="#5bd88d">PROMESA CUANDO EL SISTEMA ESTÁ COMPLETO</text>
+    <text class="t" x="82" y="815" font-size="25" font-weight="750">Cada sesión entiende más, repite menos</text>
+    <text class="t" x="82" y="846" font-size="25" font-weight="750">y deja conocimiento reusable.</text>
+    <rect x="1027" y="788" width="125" height="46" rx="23" fill="#00a650" fill-opacity=".15" stroke="#00a650"/>
+    <text class="t small" x="1089" y="817" text-anchor="middle">menos ruido</text>
+    <rect x="1165" y="788" width="149" height="46" rx="23" fill="#00a650" fill-opacity=".15" stroke="#00a650"/>
+    <text class="t small" x="1240" y="817" text-anchor="middle">menos tokens</text>
+    <rect x="1327" y="788" width="185" height="46" rx="23" fill="#00a650" fill-opacity=".15" stroke="#00a650"/>
+    <text class="t small" x="1420" y="817" text-anchor="middle">más consistencia</text>
+  </g>
+
+  <path class="edge-green" d="M505 556V708C505 728 492 738 472 744"/>
+  <text class="t tiny muted" x="520" y="698">respuesta con contexto suficiente</text>
+  <path class="edge-green" d="M950 744V708C950 694 950 689 950 676"/>
+  <text class="t tiny muted" x="968" y="720">resultado → feedback</text>
+</svg>

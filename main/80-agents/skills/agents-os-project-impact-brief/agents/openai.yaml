@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Impact Brief"
+  short_description: "Explica el 20% crítico de un proyecto"
+  default_prompt: "Usa $agents-os-project-impact-brief para validar este proyecto contra la realidad y explicarme su impacto crítico."

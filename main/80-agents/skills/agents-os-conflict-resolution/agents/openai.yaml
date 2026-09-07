@@ -1,0 +1,3 @@
+interface:
+  display_name: "Agent Memory System Conflict Resolution"
+  short_description: "Resolve Agent Memory System memory conflicts"

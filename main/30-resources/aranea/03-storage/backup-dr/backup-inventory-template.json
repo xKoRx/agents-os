@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "aranea.backup-inventory-template.v1",
+  "title": "Aranea Backup Inventory Template",
+  "description": "Template de inventario para sistema de backup Aranea. Snapshot del estado real. Generado por skill aranea_agent_ro_inventory_refresh + scripts ap-01/03.",
+  "type": "object",
+  "required": ["generated_at", "nodes", "vms", "services", "datasets", "destinations", "jobs", "secrets_refs", "owners"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp de generación"
+    },
+    "schema_version": {
+      "type": "string",
+      "default": "1.0"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "ip_lan", "ip_ceph", "role", "cpu", "ram_gb", "storage"],
+        "properties": {
+          "id": { "type": "string", "enum": ["athena", "zeus", "hera", "kronos", "hades", "truenas"] },
+          "ip_lan": { "type": "string" },
+          "ip_ceph": { "type": ["string", "null"] },
+          "role": { "type": "string" },
+          "cpu": { "type": "string" },
+          "ram_gb": { "type": "integer" },
+          "storage": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "device": { "type": "string" },
+                "type": { "type": "string", "enum": ["lvm", "zfs", "ceph", "raw"] },
+                "size_gb": { "type": "integer" },
+                "model": { "type": "string" },
+                "assignment": { "type": "string" },
+                "sagrado": { "type": "boolean", "default": false }
+              }
+            }
+          }
+        }
+      }
+    },
+    "vms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["vmid", "name", "node", "status", "tier", "backup_method"],
+        "properties": {
+          "vmid": { "type": "integer" },
+          "name": { "type": "string" },
+          "node": { "type": "string", "enum": ["athena", "zeus", "hera", "kronos", "hades", "truenas"] },
+          "status": { "type": "string", "enum": ["running", "stopped"] },
+          "tier": { "type": "integer", "enum": [0, 1, 2, 3] },
+          "backup_method": { "type": "string", "enum": ["vzdump_pbs", "app_dump", "none"] },
+          "backup_frequency": { "type": ["string", "null"] },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "sagrado": { "type": "boolean", "default": false },
+          "sqx_related": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "host", "backup_method", "frequency"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["postgres", "mongo", "couchdb", "minio", "etcd", "traefik", "step-ca", "opnsense", "ceph", "zfs_pool"] },
+          "host": { "type": "string" },
+          "backup_method": { "type": "string" },
+          "frequency": { "type": "string", "enum": ["hourly", "daily", "weekly", "monthly"] },
+          "retention_local": { "type": "string" },
+          "destination": { "type": "string" }
+        }
+      }
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pool", "name", "size_gb", "used_gb", "backup_method"],
+        "properties": {
+          "pool": { "type": "string", "enum": ["pool0", "pool2"] },
+          "name": { "type": "string" },
+          "size_gb": { "type": "integer" },
+          "used_gb": { "type": "integer" },
+          "backup_method": { "type": "string", "enum": ["sanoid", "none", "manual"] },
+          "sanoid_template": { "type": ["string", "null"], "enum": ["critical", "production", "backup", null] },
+          "destination": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "destinations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "capacity_gb", "encryption"],
+        "properties": {
+          "id": { "type": "string", "enum": ["pbs_main", "pcloud-crit", "gdrive-bulk", "staging_local"] },
+          "type": { "type": "string", "enum": ["pbs", "restic", "rclone_crypt", "local"] },
+          "location": { "type": "string" },
+          "capacity_gb": { "type": "integer" },
+          "used_gb": { "type": ["integer", "null"] },
+          "encryption": { "type": "string", "enum": ["aes256_native", "aes256_rclone_crypt", "none"] },
+          "versioned": { "type": "boolean" },
+          "check_command": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "jobs": {
+      "type": "array",
+      "description": "Lista de jobs configurados. Source of truth: backup-policy.yaml jobs section.",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "frequency", "enabled"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "frequency": { "type": "string" },
+          "time": { "type": "string" },
+          "enabled": { "type": "boolean" },
+          "last_run": { "type": ["string", "null"], "format": "date-time" },
+          "last_status": { "type": ["string", "null"], "enum": ["pass", "fail", null] }
+        }
+      }
+    },
+    "secrets_refs": {
+      "type": "array",
+      "description": "Referencias a secretos. NUNCA incluir el secreto mismo. Solo dónde se registra la referencia.",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "storage_ref"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["passphrase", "oauth_token", "ssh_key", "tls_cert", "api_token"] },
+          "storage_ref": { "type": "string", "description": "Dónde está guardado (bitwarden entry, USB path, etc.)" },
+          "rotation_interval_months": { "type": "integer" },
+          "last_rotated": { "type": ["string", "null"], "format": "date-time" }
+        }
+      }
+    },
+    "owners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["resource", "owner"],
+        "properties": {
+          "resource": { "type": "string" },
+          "owner": { "type": "string" },
+          "backup_method": { "type": "string" }
+        }
+      }
+    },
+    "protected_resources": {
+      "type": "array",
+      "description": "Source of truth: backup-policy.yaml protected_resources section.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "frozen_decisions": {
+      "type": "array",
+      "description": "Source of truth: backup-policy.yaml frozen_decisions section.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "description": { "type": "string" },
+          "frozen": { "type": "boolean", "default": true }
+        }
+      }
+    }
+  },
+  "example": {
+    "generated_at": "2026-07-01T20:30:00Z",
+    "schema_version": "1.0",
+    "nodes": [
+      {
+        "id": "kronos",
+        "ip_lan": "192.168.31.120",
+        "ip_ceph": "10.10.10.120",
+        "role": "storage powerhouse + PBS host",
+        "cpu": "2x Xeon E5-2698 v4 (80t)",
+        "ram_gb": 251,
+        "storage": [
+          { "device": "sda", "type": "lvm", "size_gb": 931, "model": "WD Green SATA", "assignment": "local-sqx-kronos", "sagrado": true },
+          { "device": "sdb", "type": "lvm", "size_gb": 931, "model": "Samsung 870 QVO", "assignment": "local-kronos", "sagrado": false },
+          { "device": "sdc", "type": "lvm", "size_gb": 954, "model": "Crucial P3", "assignment": "pool-kronos", "sagrado": false }
+        ]
+      }
+    ],
+    "vms": [
+      { "vmid": 108, "name": "sqx-ulab-zeus-0", "node": "zeus", "status": "running", "tier": 1, "backup_method": "vzdump_pbs", "backup_frequency": "daily", "tags": ["tier1", "sqx"], "sagrado": true, "sqx_related": true },
+      { "vmid": 152, "name": "postgresql", "node": "hades", "status": "running", "tier": 0, "backup_method": "vzdump_pbs", "backup_frequency": "daily", "tags": ["tier0", "db"], "sagrado": false, "sqx_related": false }
+    ],
+    "services": [
+      { "id": "postgresql-main", "type": "postgres", "host": "vm-152", "backup_method": "pg_dumpall", "frequency": "daily", "retention_local": "7d", "destination": "pbs_main" }
+    ],
+    "datasets": [
+      { "pool": "pool0", "name": "aranea_storage", "size_gb": 998, "used_gb": 600, "backup_method": "sanoid", "sanoid_template": "production", "destination": "gdrive-bulk" }
+    ],
+    "destinations": [
+      { "id": "pbs_main", "type": "pbs", "location": "kronos local-kronos", "capacity_gb": 680, "used_gb": null, "encryption": "none", "versioned": true, "check_command": "proxmox-backup-manager verify" },
+      { "id": "pcloud-crit", "type": "restic", "location": "pcloud /aranea-restic", "capacity_gb": 1000, "used_gb": null, "encryption": "aes256_native", "versioned": true, "check_command": "restic check" },
+      { "id": "gdrive-bulk", "type": "rclone_crypt", "location": "gdrive /aranea-archive-crypt", "capacity_gb": 2000, "used_gb": null, "encryption": "aes256_rclone_crypt", "versioned": false, "check_command": "rclone check subset" }
+    ],
+    "jobs": [
+      { "id": "vzdump_tier_0", "type": "vzdump", "frequency": "daily", "time": "02:00", "enabled": true, "last_run": null, "last_status": null }
+    ],
+    "secrets_refs": [
+      { "id": "restic_repo_passphrase", "type": "passphrase", "storage_ref": "bitwarden entry: aranea/restic-repo", "rotation_interval_months": 12, "last_rotated": null }
+    ],
+    "owners": [
+      { "resource": "postgresql-backup", "owner": "agent-via-ap-03", "backup_method": "pg_dumpall" }
+    ],
+    "protected_resources": [
+      { "id": "local-sqx-kronos", "type": "lvm_vg", "reason": "sagrado SQX vm 111" }
+    ],
+    "frozen_decisions": [
+      { "id": "F-04", "description": "local-sqx-* son sagrados", "frozen": true }
+    ]
+  }
+}

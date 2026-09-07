@@ -1,0 +1,3 @@
+- [ ] nueva tarea #owner/me #type/dev #area/meli 📅 {{date:YYYY-MM-DD}}
+- [ ] tarea delegada a agente #owner/agent #type/dev #area/meli 📅 {{date:YYYY-MM-DD}}
+- [ ] [[Proyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/meli 📅 {{date:YYYY-MM-DD}}

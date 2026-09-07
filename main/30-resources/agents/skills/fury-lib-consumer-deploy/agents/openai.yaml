@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fury Lib Consumer Deploy"
+  short_description: "Deploy test libs into Fury consumers"
+  default_prompt: "Use $fury-lib-consumer-deploy to publish a test library version, import it into the consumer app, and deploy the app to the requested test scope."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDD Workflow"
+  short_description: "Run a traceable spec-driven workflow"
+  default_prompt: "Use $sdd-workflow to classify this change and execute the right SDD phase."

@@ -1,0 +1,9 @@
+# estado local del sistema de sync (no es contenido del repo)
+.sync/
+
+# configuración y estado de Obsidian: ruido de sync constante, no contenido
+main/.obsidian/
+
+# basura de SO
+.DS_Store
+Thumbs.db

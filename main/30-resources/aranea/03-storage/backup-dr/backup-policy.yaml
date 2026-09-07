@@ -1,0 +1,436 @@
+# backup-policy.yaml — Política ejecutable de backup Aranea
+# Cargado por scripts de backup (ap-01..05) y por validación (ap-08).
+# Cambios requieren Request Change (REQUEST-CHANGES.md) + owner approval.
+# NO modificar directamente. NO editar in-place.
+
+version: "1.0"
+status: design-frozen
+supersedes: []
+
+# Decisiones congeladas relevantes (no cambiar sin Request Change)
+frozen_decisions:
+  capex_zero: true                       # F-01
+  no_migrate_truenas: true               # F-02
+  no_server_count_change: true           # F-03
+  sqx_local_ssd_sagrado: true            # F-04 — local-sqx-{zeus,hera,kronos} NO TOCAR
+  sdf_not_spare: true                    # F-05 — sdf está en pool0 mirror-0
+  pbs_datastore: "local-kronos"          # F-06
+  pbs_ram_gb: 8                          # F-07
+  cloud_segregated: true                 # F-08 — pcloud=critical, gdrive=bulk
+  pool0_backup_no_migrate: true          # F-09
+  ceph_no_external_backup: true          # F-10
+  optimization_option: "A"               # F-11 — PBS dedup + ZFS raw/compressed + exclude caches
+  zfs_recv_on_cluster_descartado: true   # F-12
+  hades_spof_aceptado: true              # F-13
+  pool2_single_disk_aceptado: true       # F-14
+
+# Recursos protegidos — el agente NUNCA debe tocar
+protected_resources:
+  - id: local-sqx-zeus
+    type: lvm_vg
+    node: zeus
+    device: sda
+    size_gb: 931
+    reason: sagrado SQX vm 108
+  - id: local-sqx-hera
+    type: lvm_vg
+    node: hera
+    device: sda
+    size_gb: 931
+    reason: sagrado SQX vm 123 (stopped)
+  - id: local-sqx-kronos
+    type: lvm_vg
+    node: kronos
+    device: sda
+    size_gb: 931
+    reason: sagrado SQX vm 111 (stopped)
+  - id: pool0-mirror-vdevs
+    type: zfs_pool
+    pool: pool0
+    node: truenas
+    reason: producción
+  - id: pool0-special-mirror
+    type: zfs_pool
+    pool: pool0
+    vdev: special
+    node: truenas
+    reason: producción metadata
+  - id: ceph-osd-0
+    type: ceph_osd
+    node: hera
+    reason: Ceph producción
+  - id: ceph-osd-1
+    type: ceph_osd
+    node: kronos
+    reason: Ceph producción
+  - id: ceph-osd-2
+    type: ceph_osd
+    node: zeus
+    reason: Ceph producción
+  - id: ceph-osd-3
+    type: ceph_osd
+    node: kronos
+    reason: Ceph producción
+
+# Tiers de backup
+tiers:
+  tier_0:
+    description: crítico/acceso/red/control plane
+    backup_frequency: daily
+    backup_method: vzdump_pbs
+    retention_local_d: 7
+    retention_local_w: 4
+    retention_local_m: 12
+    retention_offsite_critical_d: 90
+    retention_offsite_bulk_m: null
+    exclude: []
+    restore_drill: monthly
+    candidates_pending_owner:
+      - step-ca
+      - opnsense_vm_if_exists
+      - postgresql
+      - mongodb
+      - mt4-real
+      - mt5-real
+      - obsidian-sync
+
+  tier_1:
+    description: productivo
+    backup_frequency: daily_or_2days
+    backup_method: vzdump_pbs
+    retention_local_d: 7
+    retention_local_w: 4
+    retention_local_m: 6
+    retention_offsite_critical_d: 30
+    retention_offsite_bulk_m: 6
+    exclude:
+      - caches
+      - logs
+    restore_drill: monthly_rotativo
+
+  tier_2:
+    description: importante/reconstruible
+    backup_frequency: weekly
+    backup_method: vzdump_pbs
+    retention_local_w: 4
+    retention_local_m: 6
+    retention_offsite_critical_d: null
+    retention_offsite_bulk_m: null
+    exclude:
+      - caches
+    restore_drill: trimestral
+
+  tier_3:
+    description: pesado/lab/reproducible
+    backup_frequency: manual_selectivo
+    backup_method: vzdump_pbs
+    retention_local_w: 4
+    retention_offsite_critical_d: null
+    retention_offsite_bulk_m: null
+    exclude:
+      - media
+      - caches
+      - isos
+    restore_drill: según_necesidad
+
+# Jobs y frecuencias
+jobs:
+  couchdb_dump:
+    type: app_dump
+    target: lxc-116
+    frequency: daily
+    time: "00:00"
+    retention_local_d: 7
+    destination: pbs_main
+
+  pg_dump:
+    type: app_dump
+    target: vm-152
+    frequency: daily
+    time: "01:00"
+    retention_local_d: 7
+    destination: pbs_main
+
+  mongo_dump:
+    type: app_dump
+    target: vm-153
+    frequency: daily
+    time: "01:30"
+    retention_local_d: 7
+    destination: pbs_main
+
+  vzdump_tier_0:
+    type: vzdump
+    target_filter: "tag=tier0"
+    frequency: daily
+    time: "02:00"
+    destination: pbs_main
+
+  zfs_snap_pool0_hourly:
+    type: zfs_snapshot
+    pool: pool0
+    template: critical
+    frequency: hourly
+    time: ":30"
+    retention_h: 48
+
+  ceph_rbd_snap:
+    type: ceph_snapshot
+    pool: pool1
+    frequency: daily
+    time: "02:00"
+    retention_d: 7
+
+  zfs_snap_pool0_daily:
+    type: zfs_snapshot
+    pool: pool0
+    template: critical
+    frequency: daily
+    time: "03:30"
+    retention_d: 90
+
+  minio_mirror:
+    type: object_mirror
+    target: vm-157
+    bucket: critical
+    frequency: daily
+    time: "03:00"
+
+  traefik_config_backup:
+    type: config_backup
+    target: /etc/traefik/
+    frequency: daily
+    time: "04:00"
+
+  stepca_backup:
+    type: app_backup
+    target: ca-aranea
+    frequency: daily
+    time: "04:30"
+    encryption: required
+
+  etcd_snapshot:
+    type: etcd_snapshot
+    target: cluster_proxmox
+    frequency: daily
+    time: "05:00"
+
+  inventory_commit:
+    type: config_backup
+    target: backup-inventory-template.json
+    frequency: daily
+    time: "06:00"
+
+  vzdump_tier_1_2:
+    type: vzdump
+    target_filter: "tag=tier1|tier2"
+    frequency: weekly
+    day: sat
+    time: "02:00"
+
+  opnsense_export:
+    type: config_backup
+    target: opnsense_xml
+    frequency: weekly
+    day: sat
+    time: "08:00"
+    owner_required: true
+    note: "owner ejecuta export desde UI, agente recoge archivo"
+
+  etc_pve_backup:
+    type: config_backup
+    target: /etc/pve/
+    frequency: weekly
+    day: sat
+    time: "08:30"
+
+  restic_push_pcloud:
+    type: cloud_push
+    target: pcloud-crit
+    method: restic
+    frequency: weekly
+    day: sun
+    time: "03:00"
+
+  rclone_push_gdrive:
+    type: cloud_push
+    target: gdrive-bulk
+    method: rclone_crypt_chunked
+    frequency: monthly
+    day_of_month: 1
+    time: "04:00"
+
+  scrub_pool0:
+    type: zfs_scrub
+    pool: pool0
+    frequency: monthly
+    day_of_month: 1
+    time: "02:00"
+
+  scrub_pool2:
+    type: zfs_scrub
+    pool: pool2
+    frequency: monthly
+    day_of_month: 2
+    time: "02:00"
+
+  restore_drill_tier_0:
+    type: drill
+    target: 1 vm tier 0
+    frequency: monthly
+    day_of_month: 15
+    time: "04:00"
+
+# Exclusiones globales para vzdump
+vzdump_exclude:
+  - /var/log
+  - /tmp
+  - /var/cache
+  - /var/lib/ceph   # en compute VMs, no OSD nodes
+  - swap partitions
+
+# Tier cloud
+cloud_tiers:
+  critical:
+    provider: pcloud
+    capacity_tb: 1
+    method: restic
+    encryption: restic_native_aes256
+    versioned: true
+    check_command: "restic check"
+    check_frequency: weekly
+    contents:
+      - configs Capa A
+      - dumps DB Capa B (subset pequeño)
+      - manifests
+      - inventories
+      - runbooks
+      - secrets cifrados (step-ca backup)
+
+  bulk:
+    provider: gdrive
+    capacity_tb: varios
+    method: rclone_crypt
+    encryption: aes256
+    chunk_max_gb: 8
+    manifest_format: json
+    checksum: sha256
+    check_command: "rclone check subset"
+    check_frequency: monthly
+    contents:
+      - snapshots ZFS pool0 chunked
+      - datasets grandes
+      - backups históricos VMs
+
+# Restore drills
+restore_drills:
+  drill_1_vm_pbs:
+    frequency: monthly
+    scope: 1 VM tier 0 desde PBS
+    pass_criteria: VM arranca + servicios responden
+  drill_2_pg:
+    frequency: monthly
+    scope: dump PG completo
+    pass_criteria: row count match + checksum
+  drill_3_mongo:
+    frequency: monthly
+    scope: dump Mongo completo
+    pass_criteria: collection count match + checksum
+  drill_4_restic_pcloud:
+    frequency: trimestral
+    scope: subset configs
+    pass_criteria: configs idénticas a producción
+  drill_5_zfs_gdrive:
+    frequency: trimestral
+    scope: 1 chunk random
+    pass_criteria: zfs recv success + dataset monta
+  drill_6_stepca:
+    frequency: semestral
+    scope: backup encriptado → CA recovery
+    owner_required: true
+    pass_criteria: CA firma certs nuevos
+
+# Alertas mínimas
+alerts_minimum:
+  - id: backup_critical_stale
+    severity: critical
+    threshold: ">26h sin backup crítico"
+    action: notificar_owner_page
+  - id: pbs_datastore_full
+    severity: critical
+    threshold: ">80% uso"
+    action: expandir_o_prune
+  - id: pbs_verify_failed
+    severity: critical
+    threshold: "exit != 0"
+    action: investigar_reintentar
+  - id: pbs_prune_gc_failed
+    severity: warning
+    threshold: "exit != 0"
+    action: investigar_reintentar
+  - id: restic_check_failed
+    severity: critical
+    threshold: "exit != 0"
+    action: investigar_corrupcion
+  - id: rclone_sync_failed
+    severity: warning
+    threshold: "exit != 0"
+    action: reintentar_si_persiste_notificar
+  - id: cloud_sync_stale
+    severity: warning
+    threshold: ">8d sin sync"
+    action: forzar_reintentar
+  - id: zfs_scrub_errors
+    severity: critical
+    threshold: "errors > 0"
+    action: aislar_disco_restaurar
+  - id: smart_pending_sectors
+    severity: warning
+    threshold: ">0"
+    action: reemplazo_programado
+  - id: smart_reallocated_sectors
+    severity: critical
+    threshold: ">0"
+    action: reemplazo_urgente
+  - id: pool_health_warning
+    severity: warning
+    threshold: "!= ONLINE"
+    action: diagnosticar
+  - id: ceph_health_warning
+    severity: warning
+    threshold: "!= HEALTH_OK"
+    action: diagnosticar
+  - id: db_dump_failed
+    severity: critical
+    threshold: "exit != 0"
+    action: investigar_reintentar
+  - id: etcd_snapshot_failed
+    severity: warning
+    threshold: "exit != 0"
+    action: investigar
+  - id: staging_disk_full
+    severity: warning
+    threshold: ">85% uso staging"
+    action: liberar_staging_viejo
+  - id: restore_drill_overdue
+    severity: warning
+    threshold: ">35d sin drill PASS"
+    action: programar_drill_urgente
+
+# Comandos marcados como DANGEROUS (requieren owner approval)
+dangerous_commands:
+  - qm_destroy
+  - qm_create
+  - zpool_attach
+  - zpool_detach
+  - zpool_remove
+  - vgremove
+  - lvremove
+  - rm_rf_pool_paths
+  - rclone_purge_crypt_remote
+  - restic_forget_prune_cloud_repo
+  - dd_zero_sdX
+  - any_command_on_local_sqx_ssds
+
+# Cambiar este archivo requiere Request Change (REQUEST-CHANGES.md)
+change_policy: request_change_only

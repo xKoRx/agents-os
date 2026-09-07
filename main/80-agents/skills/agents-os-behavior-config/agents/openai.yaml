@@ -1,0 +1,3 @@
+interface:
+  display_name: "Agent Memory System Behavior Config"
+  short_description: "Configure Agent Memory System behavior through conversation"

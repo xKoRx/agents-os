@@ -1,0 +1,3 @@
+interface:
+  display_name: "AGENTS OS Entity Lifecycle"
+  short_description: "Create, rename, merge, split, archive, or restore Sistema 2 entities with template enforcement"

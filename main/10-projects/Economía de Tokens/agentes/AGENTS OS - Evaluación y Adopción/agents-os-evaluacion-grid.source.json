@@ -1,0 +1,402 @@
+{
+  "title": "AGENTS OS — evaluación crítica para adopción en equipo",
+  "subtitle": "Estado verificado del sistema completo · scaffolding, instalación, skills, memoria, higiene y Graphify Obsidian · 14 julio 2026",
+  "badge": {
+    "text": "RECOMENDACIÓN: PILOTO CONTROLADO",
+    "color": "orange"
+  },
+  "score": {
+    "value": 7.0,
+    "max": 10,
+    "label": "Madurez para adopción de equipo"
+  },
+  "metrics": [
+    {
+      "label": "Skills operativas",
+      "value": "26",
+      "color": "blue"
+    },
+    {
+      "label": "Feedbacks acumulados",
+      "value": "122",
+      "color": "green"
+    },
+    {
+      "label": "Retrieval útil · baseline reciente",
+      "value": "4,36/5",
+      "color": "green"
+    },
+    {
+      "label": "Fricción de cierre · baseline reciente",
+      "value": "3,60/5",
+      "color": "orange"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. Veredicto ejecutivo",
+      "score": 7.0,
+      "content": "AGENTS OS ya no es solo una arquitectura personal: existe un scaffolding compartible, instalación guiada, Graphify portable, higiene periódica y reglas para Codex/Claude. El núcleo es piloto-ready, pero todavía no es estándar de equipo porque faltan la beta comparativa, el benchmark económico y la validación completa por superficie.",
+      "findings": [
+        {
+          "type": "pass",
+          "title": "Conservar el núcleo",
+          "detail": "Markdown como fuente de verdad, entidades canónicas, templates, skills explícitas, Context Router y logs auditables forman una base sólida."
+        },
+        {
+          "type": "warn",
+          "title": "No estandarizar todavía",
+          "detail": "La beta E2E comparativa sigue pendiente; no hay evidencia propia suficiente de ahorro neto, continuidad entre superficies ni reducción de reexplicación."
+        },
+        {
+          "type": "fail",
+          "title": "Riesgo vigente: costo operativo no medido",
+          "detail": "El cierre explícito y el modo táctico reducen rituales innecesarios, pero arranque, retrieval, memoria, feedback, logs e higiene todavía deben demostrar ahorro neto en tareas comparables."
+        }
+      ]
+    },
+    {
+      "title": "2. Qué es realmente el sistema",
+      "score": 8.4,
+      "content": "No es un único prompt ni una base vectorial. Es un sistema operativo documental con gobierno, memoria, recuperación, aprendizaje y una LLM Wiki que compila fuentes en conocimiento canónico mantenido.",
+      "items": [
+        "Memoria: pública auditable, interna privada, journal y entidades canónicas del vault.",
+        "Comportamiento: constitución, perfil del usuario y 26 skills canónicas bajo 80-agents/skills/.",
+        "LLM Wiki: fuentes crudas → páginas canónicas mantenidas → 00-index.md curado; es la capa de contenido de Sistema 2.",
+        "Retrieval: tags/frontmatter → LLM Wiki/índices curados → Graphify AST → cuerpo seleccionado.",
+        "Aprendizaje: feedback de sesión, feedback de Graphify, Kaizen, destilación, higiene y reindex.",
+        "Instalación: prompt maestro, entrevista de personalización, descubrimiento de workspaces, reconciliación de aplicaciones y reglas de superficie."
+      ],
+      "findings": [
+        {
+          "type": "pass",
+          "title": "La separación Sistema 1 / Sistema 2 evita mezclar verdad actual con diario de sesión",
+          "detail": "Es una frontera útil para mantener entidades limpias y conservar trazabilidad."
+        },
+        {
+          "type": "pass",
+          "title": "LLM Wiki es el mecanismo que hace compuesto el conocimiento",
+          "detail": "En vez de rederivar siempre desde fuentes crudas, el agente integra una vez, actualiza páginas canónicas y mantiene índices curados para recuperación futura."
+        },
+        {
+          "type": "pass",
+          "title": "Ya existe una distribución instalable para el equipo",
+          "detail": "El scaffolding limpio incluye onboarding, perfil seed, aplicaciones, templates, Graphify portable y un proyecto de instalación completamente abierto para cada integrante."
+        },
+        {
+          "type": "warn",
+          "title": "El mensaje comercial debe cambiar",
+          "detail": "La frase “todas las skills usan Graphify” simplifica demasiado: el sistema real es híbrido y depende también de índices curados, búsqueda exacta y lectura quirúrgica."
+        }
+      ]
+    },
+    {
+      "title": "3. Ventajas que sí aportan valor",
+      "score": 8.4,
+      "findings": [
+        {
+          "type": "pass",
+          "title": "Continuidad explícita entre agentes",
+          "detail": "El contexto deja de depender exclusivamente del historial de chat; proyectos, decisiones, errores y runbooks quedan retomables."
+        },
+        {
+          "type": "pass",
+          "title": "Retrieval disciplinado y barato",
+          "detail": "El Context Router define intención, capas y suficiencia; evita leer el vault completo y trata el presupuesto como techo blando."
+        },
+        {
+          "type": "pass",
+          "title": "Gobernanza auditable",
+          "detail": "Los cambios públicos y canónicos requieren evidencia y change log; Graphify es índice derivado, no autoridad."
+        },
+        {
+          "type": "pass",
+          "title": "Aprendizaje sobre operación real",
+          "detail": "122 feedbacks acumulados entregan una señal poco común: el sistema observa su propia fricción y ya produjo mejoras como cierre táctico, higiene periódica y manejo de ruido."
+        },
+        {
+          "type": "pass",
+          "title": "Diseño extensible sin depender de una UI",
+          "detail": "Markdown, frontmatter, enlaces y skills son inspeccionables, versionables y migrables."
+        }
+      ]
+    },
+    {
+      "title": "4. Casos de uso concretos con AGENTS OS",
+      "score": 7.6,
+      "content": "AGENTS OS aporta más cuando la tarea cruza sesiones, repositorios o agentes y deja conocimiento que vale la pena recuperar. Estos ejemplos muestran el flujo completo y también su límite.",
+      "findings": [
+        {
+          "type": "pass",
+          "title": "Caso 1 · Retomar un proyecto con un agente fresco",
+          "detail": "<b>Escenario:</b> cambia el agente durante una implementación de Search Middleware o VPP.<br><b>Flujo:</b> bootstrap → resolver la entidad canónica → recuperar proyecto, continuidad, decisiones y known errors → abrir solo las fuentes necesarias.<br><b>Valor:</b> se retoma ramas, dependencias y decisiones sin reconstruir todo desde el chat.<br><b>Límite:</b> la reducción de reexplicación aún no fue medida en la beta formal."
+        },
+        {
+          "type": "pass",
+          "title": "Caso 2 · Diagnóstico cross-repo de una falla",
+          "detail": "<b>Escenario real:</b> la pill “Bajó de Precio” no aparece y el comportamiento cruza vpp-backend, vis-octopus-lib, search-middleware y SDKs.<br><b>Flujo:</b> Context Router clasifica impacto → Graphify path/affected ubica relaciones → notas canónicas y código verifican cada salto → el hallazgo reusable se destila.<br><b>Valor:</b> evita investigar cada repositorio como una isla.<br><b>Límite:</b> Graphify orienta; git, rg, tests y código siguen siendo la evidencia final."
+        },
+        {
+          "type": "pass",
+          "title": "Caso 3 · Aplicar un guardrail estable sin repetirlo",
+          "detail": "<b>Escenario:</b> en repos Meli nunca se deben usar versiones productivas para probar un PR no mergeado.<br><b>Flujo:</b> behavior-config clasifica la instrucción → se persiste como preferencia global auditada → futuros agentes la cargan antes de modificar Gradle o consumidores.<br><b>Valor:</b> convierte una corrección del usuario en prevención transversal.<br><b>Límite:</b> requiere alcance, precedencia y mecanismo de revocación claros."
+        },
+        {
+          "type": "pass",
+          "title": "Caso 4 · Resolver más rápido un error recurrente",
+          "detail": "<b>Escenario:</b> Graphify devuelve ruido de templates, un CLI cambia o Symphony repite un fallo ya diagnosticado.<br><b>Flujo:</b> retrieval por entidad + known_error → síntoma, causa, detección y mitigación → runbook solo si existe una secuencia mecánica validada.<br><b>Valor:</b> evita repetir debugging costoso.<br><b>Límite:</b> una memoria obsoleta puede acelerar la respuesta equivocada; siempre debe validarse contra la fuente viva."
+        },
+        {
+          "type": "pass",
+          "title": "Caso 5 · Delegar un proyecto retomable a agentes",
+          "detail": "<b>Escenario real:</b> iniciativas de Aranea se dividen en proyectos owner: agent.<br><b>Flujo:</b> proyecto hijo bajo agentes/ → tareas internas del agente → una sola tarea puente visible para el humano → bitácora y estados permiten retomar después de un corte.<br><b>Valor:</b> separa supervisión humana de ejecución detallada.<br><b>Límite:</b> si la nota no se mantiene honesta, se convierte en otro backlog duplicado."
+        },
+        {
+          "type": "pass",
+          "title": "Caso 6 · Mejorar el propio sistema a partir de fricción repetida",
+          "detail": "<b>Escenario real:</b> varios feedbacks detectan que el cierre completo es demasiado pesado para debug o code review.<br><b>Flujo:</b> feedback de sesión → Kaizen agrega patrones → cambio aprobado en la skill → aparece el tactical close.<br><b>Valor:</b> la operación real modifica el sistema, no solo la opinión de diseño.<br><b>Límite:</b> los scores son escritos por los mismos agentes; hace falta evaluación externa y control."
+        },
+        {
+          "type": "warn",
+          "title": "Cuándo no usar el circuito completo",
+          "detail": "Una consulta aislada, un cambio trivial o una tarea sin continuidad no justifican full close, nuevas memorias, feedback y reindex. En esos casos basta retrieval mínimo —o incluso búsqueda exacta— y salida compacta."
+        }
+      ]
+    },
+    {
+      "title": "5. Desventajas y costos de adopción",
+      "score": 6.3,
+      "findings": [
+        {
+          "type": "fail",
+          "title": "Complejidad normativa alta",
+          "detail": "Guía, constitución, perfil, contratos compartidos, 26 skills, templates y memorias crean una superficie grande de reglas que puede competir con la tarea real."
+        },
+        {
+          "type": "fail",
+          "title": "Persistencia obligatoria, aunque no haya valor reusable",
+          "detail": "La constitución exige tocar memoria interna en toda sesión. Eso favorece crecimiento, sesgo acumulado y escrituras inesperadas en trabajos menores."
+        },
+        {
+          "type": "warn",
+          "title": "La memoria privada carece de gobernanza de equipo",
+          "detail": "Faltan política de retención, clasificación de datos, revisión, exportación, borrado y controles contra modelos del usuario que se auto-refuercen."
+        },
+        {
+          "type": "warn",
+          "title": "Portabilidad implementada, todavía no forward-tested en máquinas limpias",
+          "detail": "Ya existen wheel, wrapper, instalador, prompt maestro y configuración por ruta; faltan instalaciones E2E de integrantes y resolver los warnings de versión del runtime de Graphify."
+        },
+        {
+          "type": "warn",
+          "title": "Cierre mitigado, ahorro todavía no medido",
+          "detail": "El baseline de 25 feedbacks deja closeout friction en 3,60/5. Full close ahora exige pedido explícito y existe tactical close, pero falta medir el efecto de esas correcciones."
+        }
+      ]
+    },
+    {
+      "title": "6. Graphify Obsidian: útil, pero no debe ser el centro",
+      "score": 6.6,
+      "content": "Reindex local del 14-07-2026: 349 archivos, 3.904 nodos, 4.500 edges, 366 comunidades, 100% EXTRACTED y costo LLM cero. La capa de wikilinks vault-aware funciona, el instalador portable existe y las consultas exactas de entidad son útiles.",
+      "findings": [
+        {
+          "type": "pass",
+          "title": "Excelente para estructura y relaciones conocidas",
+          "detail": "explain, path y affected agregan valor cuando la entidad y la relación están bien definidas."
+        },
+        {
+          "type": "warn",
+          "title": "Baja precisión en síntesis amplia",
+          "detail": "Una query amplia de arquitectura de AGENTS OS recorrió 311 nodos y se truncó. El reporte vigente confirma 25 comunidades delgadas omitidas y ruido de placeholders, pero ya no respalda la cifra histórica de 2.840 nodos débilmente conectados."
+        },
+        {
+          "type": "fail",
+          "title": "Templates y placeholders siguen dentro del grafo",
+          "detail": "El reporte actual contiene hubs como {{title}} y las queries todavía pueden arrancar desde plantillas. La mitigación documental no elimina el costo ni el riesgo."
+        },
+        {
+          "type": "warn",
+          "title": "Operación demasiado específica",
+          "detail": "Sufijo .md, --relation explícita, wrappers distintos, warnings de versión y rutas conocidas son detalles que un usuario de equipo no debería memorizar."
+        }
+      ],
+      "items": [
+        "Rol recomendado: índice estructural derivado por defecto cuando está disponible; reemplazable y nunca autoridad final.",
+        "Fallback recomendado: índices curados + búsqueda exacta como modo first-class, probado y medido.",
+        "Mejora inmediata: excluir templates o marcarlos como no recuperables, compactar output y agregar un wrapper único por intención."
+      ]
+    },
+    {
+      "title": "7. Pack de prompts y reglas: hoy es material de referencia, no producto",
+      "score": 4.5,
+      "content": "El pack Vibe Coding/SDD aparece conectado a AGENTS OS a través de la Resource Wiki, a cuatro o cinco saltos en el grafo. No existe una skill o flujo canónico que lo seleccione, valide y ejecute de punta a punta.",
+      "findings": [
+        {
+          "type": "fail",
+          "title": "El pack anuncia seis prompts, pero tres están vacíos",
+          "detail": "verify-spec, verify-plan-tasks y verify-implementation solo contienen el encabezado; parte de su lógica está embebida dentro de otros prompts con delimitadores duplicados."
+        },
+        {
+          "type": "fail",
+          "title": "No es realmente agnóstico",
+          "detail": "Hay rutas, roles, Symphony, Go, scripts y RFCs hardcodeados. Son playbooks de un repositorio específico presentados como pack general."
+        },
+        {
+          "type": "fail",
+          "title": "Reglas que deben retirarse",
+          "detail": "“Declarar explícitamente Chain-of-Thought” y “proponer siempre Mermaid” agregan exposición y ruido; deben reemplazarse por conclusiones verificables y visuales solo cuando aporten."
+        },
+        {
+          "type": "warn",
+          "title": "Contradicción de estrategia de contexto",
+          "detail": "CONTEXT_V2 exige whole-document loading, mientras AGENTS OS exige progressive disclosure y body-only. No existe una regla de precedencia por tipo de artefacto."
+        },
+        {
+          "type": "warn",
+          "title": "TOON todavía es una propuesta no operacionalizada",
+          "detail": "config.toon deja campos incompletos, fija un stack concreto y usa un benchmark teórico de ahorro sin prueba local reproducible."
+        }
+      ]
+    },
+    {
+      "title": "8. Qué dicen los feedbacks",
+      "score": 7.1,
+      "content": "La señal acumulada es positiva, pero no equivale a demostrar la tesis completa. Hay 122 feedbacks registrados y una muestra scored útil; muestran continuidad y aprendizaje operativo, pero siguen siendo evaluación producida principalmente por los mismos agentes que usan el sistema.",
+      "items": [
+        "Corpus acumulado: 87 feedbacks de Sistema 1 + 35 de Graphify; baseline scored: 25 feedbacks del 05 al 09 de julio.",
+        "Startup clarity 4,36/5 · Retrieval usefulness 4,36/5 · Skill fit 4,44/5.",
+        "Template fit 4,42/5 · Overall confidence 4,58/5 · Closeout friction 3,60/5.",
+        "El Kaizen previo estimó Graphify en ~3,8/5: alto en código/entidades, bajo en Markdown genérico."
+      ],
+      "findings": [
+        {
+          "type": "pass",
+          "title": "El loop de feedback sí produce aprendizaje",
+          "detail": "Cierre táctico, naming de sesiones, caveats de wikilinks y reglas de fallback nacieron de problemas observados."
+        },
+        {
+          "type": "warn",
+          "title": "Falta independencia de la medición",
+          "detail": "Los mismos agentes que usan y evolucionan el sistema escriben los scores; faltan control, tareas comparables y evaluación por usuarios nuevos."
+        }
+      ]
+    },
+    {
+      "title": "9. Gaps contra la idea principal",
+      "score": 5.7,
+      "findings": [
+        {
+          "type": "fail",
+          "title": "“Entender mejor al usuario en todos sus ámbitos” no está demostrado",
+          "detail": "La evidencia dominante está en proyectos técnicos Meli/Echo. No hay prueba cross-domain ni evaluación de sesgo o corrección del modelo del usuario."
+        },
+        {
+          "type": "fail",
+          "title": "La beta formal no ocurrió",
+          "detail": "AGENTS OS - Beta y Hardening mantiene abiertas la sesión 1, sesión 2 con agente fresco, comparación multi-superficie y decisión go/no-go; los smoke tests no sustituyen esa evidencia."
+        },
+        {
+          "type": "fail",
+          "title": "No existe benchmark propio de economía total",
+          "detail": "Hay métricas definidas y claims externos, pero no un experimento local que sume tokens, latencia, tiempo humano, closeout, mantenimiento y reindex."
+        },
+        {
+          "type": "warn",
+          "title": "LLM Wiki está implementada, pero no de forma homogénea",
+          "detail": "Existe constitución, schema, skill y pilotos vivos en 30-resources; falta medir cobertura, frescura y calidad de integración en todos los dominios antes de presentarla como capacidad completa."
+        },
+        {
+          "type": "warn",
+          "title": "La fuente canónica mejoró, pero falta enforcement automático",
+          "detail": "Las skills viven sólo en 80-agents/skills/ y las superficies apuntan allí sin adapters. Falta lint de autoridad y drift entre constitución, guía, perfiles, índices y clientes."
+        },
+        {
+          "type": "warn",
+          "title": "La promesa de agnosticismo no está validada",
+          "detail": "Codex y Claude pasaron smoke tests read-only por nombre contra la fuente canónica. Falta ejecución real, discovery nativo, benchmark y evidencia equivalente para Cursor y Antigravity."
+        }
+      ]
+    },
+    {
+      "title": "10. Recomendaciones priorizadas",
+      "score": 8.8,
+      "findings": [
+        {
+          "type": "fail",
+          "title": "P0 · Ejecutar la beta que el proyecto ya definió",
+          "detail": "Dos apps, dos sesiones, agente fresco, al menos dos superficies y un control sin AGENTS OS. Publicar resultados y decisión go/no-go."
+        },
+        {
+          "type": "fail",
+          "title": "P0 · Definir gobernanza de memoria interna para equipo",
+          "detail": "Definir hotset, retención, clasificación personal/empresa, auditoría bajo demanda, expiración y cómo evitar que modelos privados del usuario se auto-refuercen."
+        },
+        {
+          "type": "warn",
+          "title": "P1 · Forward-test del onboarding y las superficies",
+          "detail": "Instalar desde cero con el prompt maestro, validar aplicaciones y Graphify, y comparar rule-routing, path explícito y discovery nativo sin duplicar skills."
+        },
+        {
+          "type": "warn",
+          "title": "P1 · Automatizar la matriz de autoridad",
+          "detail": "Generar índices derivados desde contratos canónicos y agregar lint para contradicciones entre constitución, guía, skills, perfiles y catálogos."
+        },
+        {
+          "type": "warn",
+          "title": "P1 · Reposicionar Graphify",
+          "detail": "Mantenerlo para path/affected/lint; wrapper único, salida silenciosa, templates fuera del retrieval y fallback equivalente probado."
+        },
+        {
+          "type": "warn",
+          "title": "P1 · Convertir prompts/reglas en paquetes ejecutables y testeados",
+          "detail": "Separar core agnóstico de adapters por repo, completar los seis prompts, remover CoT explícito, validar placeholders/rutas y agregar casos golden."
+        },
+        {
+          "type": "pass",
+          "title": "Mitigación implementada · ahora medir el costo del cierre",
+          "detail": "Tactical close ya existe y full close requiere pedido explícito. Mantenerlos y medir tiempo/tokens antes de volver a rediseñar el flujo."
+        },
+        {
+          "type": "warn",
+          "title": "P2 · Convertir el onboarding empaquetado en onboarding medido",
+          "detail": "El prompt maestro y el proyecto de instalación ya existen. Falta medir tiempo, errores, soporte requerido y tasa de éxito en integrantes nuevos."
+        }
+      ]
+    },
+    {
+      "title": "11. Plan de adopción propuesto",
+      "score": 8.5,
+      "content": "La base instalable ya existe; la siguiente fase debe probar valor antes de estandarizar rituales. Los umbrales siguientes son metas propuestas, no resultados actuales.",
+      "items": [
+        "Estado actual — Base compartible: scaffolding, prompt maestro, instalación, Graphify portable, higiene y skills canónicas listos para piloto.",
+        "Semanas 1–2 — Piloto: 2 aplicaciones, tareas repetibles, integrantes nuevos, AGENTS OS vs control y al menos Codex + Claude.",
+        "Semana 3 — Hardening: matriz cross-surface, quiet output/fallback de Graphify, lints de autoridad y data governance.",
+        "Gate de adopción: ≥70% de retrieval útil; ≥30% menos reexplicación; startup ≤90 s; cierre táctico ≤3 min; cero secretos y cero drift crítico.",
+        "Decisión: adoptar solo el núcleo que supere el gate; lo demás queda experimental y opt-in."
+      ],
+      "findings": [
+        {
+          "type": "pass",
+          "title": "Qué estandarizar primero",
+          "detail": "Fuente de verdad Markdown, naming canónico, templates, Context Router, logs de cambios y memoria pública reusable."
+        },
+        {
+          "type": "warn",
+          "title": "Qué mantener opt-in",
+          "detail": "Discovery nativo, memoria interna privada, cierre completo, prompt packs por repositorio y autoevolución de skills hasta que tengan evidencia."
+        }
+      ]
+    },
+    {
+      "title": "12. Base de evidencia y límites",
+      "content": "Evaluación actualizada solo con evidencia local del vault al 14-07-2026; no se usó investigación externa. Su publicación en Grid distribuye este análisis, pero no convierte el score en una métrica observada: 7,0/10 es una evaluación ponderada de preparación para piloto de equipo.",
+      "items": [
+        "Fuentes canónicas: guía operativa, proyecto AGENTS OS, Beta y Hardening, constitución, perfil, Context Router, ADR de indexación y ADR de ubicación canónica de skills.",
+        "Operación: 26 skills, 14 templates, 38 memorias públicas, 48 memorias internas y Graphify con 349 archivos / 3.904 nodos / 4.500 edges.",
+        "Distribución: README del scaffolding, INSTALL-PROMPT, proyecto Instalación de AGENTS OS, wheel/wrapper de Graphify y reglas Codex/Claude.",
+        "Feedback: 87 notas Sistema 1 + 35 notas Graphify; Kaizen 04-07-2026 y baseline scored 05–09 de julio.",
+        "Prompts/reglas: AGENTS_V2, CONTEXT_V2, PROMPTS_V2, RULES_TOON, config.toon y SDD Prompts Pack v4."
+      ]
+    }
+  ]
+}

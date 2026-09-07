@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ciclo de higiene de AGENTS OS"
+  short_description: "Regulariza notas y convierte feedbacks en mejoras trazables"
+  default_prompt: "Usa $agents-os-hygiene-cycle para ejecutar la higiene periódica de AGENTS OS desde el último review."

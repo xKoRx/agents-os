@@ -1,0 +1,213 @@
+#!/usr/bin/env bash
+# Vault-aware Graphify wrapper for AGENTS OS.
+# Generated state is machine-local; the Obsidian vault remains source-only.
+set -euo pipefail
+
+REAL_BIN="${AGENTS_OS_GRAPHIFY_BIN:-$HOME/.local/share/graphify-obsidian/venv/bin/graphify}"
+if [[ ! -x "$REAL_BIN" ]]; then
+    echo "ERROR: graphify-obsidian no está instalado en $REAL_BIN" >&2
+    echo "Ejecuta la skill agents-os-graphify-install en esta máquina." >&2
+    exit 42
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+VAULT_PATH="${AGENTS_OS_VAULT:-}"
+VAULT_POINTER="$HOME/.config/agents-os/vault-root"
+
+if [[ -z "$VAULT_PATH" && -f "$PWD/80-agents/agents-os/agents-os.md" ]]; then
+    VAULT_PATH="$PWD"
+elif [[ -z "$VAULT_PATH" && -f "$VAULT_POINTER" ]]; then
+    IFS= read -r VAULT_PATH < "$VAULT_POINTER"
+elif [[ -z "$VAULT_PATH" && -f "$SCRIPT_DIR/../../../../80-agents/agents-os/agents-os.md" ]]; then
+    VAULT_PATH="$(cd "$SCRIPT_DIR/../../../.." && pwd -P)"
+fi
+
+if [[ -z "$VAULT_PATH" || ! -f "$VAULT_PATH/80-agents/agents-os/agents-os.md" ]]; then
+    echo "ERROR: no se pudo resolver VAULT_ROOT." >&2
+    echo "Ejecuta desde la raíz del vault, define AGENTS_OS_VAULT o configura $VAULT_POINTER." >&2
+    exit 43
+fi
+VAULT_PATH="$(cd "$VAULT_PATH" && pwd -P)"
+
+if [[ -n "${XDG_CACHE_HOME:-}" ]]; then
+    CACHE_BASE="$XDG_CACHE_HOME"
+elif [[ "$(uname -s)" == "Darwin" ]]; then
+    CACHE_BASE="$HOME/Library/Caches"
+else
+    CACHE_BASE="$HOME/.cache"
+fi
+
+if command -v shasum >/dev/null 2>&1; then
+    VAULT_ID="$(printf '%s' "$VAULT_PATH" | shasum -a 256 | awk '{print substr($1,1,16)}')"
+elif command -v sha256sum >/dev/null 2>&1; then
+    VAULT_ID="$(printf '%s' "$VAULT_PATH" | sha256sum | awk '{print substr($1,1,16)}')"
+else
+    VAULT_ID="$(printf '%s' "$VAULT_PATH" | cksum | awk '{print $1}')"
+fi
+
+STATE_DIR="$CACHE_BASE/agents-os/graphify-obsidian/$VAULT_ID"
+GRAPH_PATH="$STATE_DIR/graph.json"
+REPORT_PATH="$STATE_DIR/GRAPH_REPORT.md"
+STAMP_PATH="$STATE_DIR/source.stamp"
+ATTEMPT_STAMP_PATH="$STATE_DIR/refresh-attempt.stamp"
+LOG_DIR="$HOME/.config/graphify-obsidian"
+mkdir -p "$STATE_DIR" "$LOG_DIR"
+export GRAPHIFY_QUERY_LOG="$LOG_DIR/query-log.jsonl"
+
+print_help() {
+    cat <<'EOF'
+Uso: graphify-obsidian [subcomando] [opciones]
+
+El índice y los reportes viven en caché local fuera del vault. Las consultas
+comprueban freshness y reconstruyen automáticamente sólo cuando cambió el corpus.
+
+Subcomandos del wrapper:
+  update              Fuerza un rebuild local del índice
+  status              Muestra ubicación y freshness sin reconstruir
+  cache-path          Imprime la carpeta local del índice
+
+Consultas con auto-refresh:
+  query, filter, path, explain, affected, shortest_path
+EOF
+    "$REAL_BIN" --help
+}
+
+has_newer_source_than() {
+    local marker="$1"
+    [[ -f "$marker" ]] || return 0
+    local changed
+    changed="$(find "$VAULT_PATH" \
+        \( -path "$VAULT_PATH/.obsidian" \
+           -o -path "$VAULT_PATH/.trash" \
+           -o -path "$VAULT_PATH/00-inbox" \
+           -o -path "$VAULT_PATH/40-archive" \
+           -o -path "$VAULT_PATH/80-agents/journal" \
+           -o -path "$VAULT_PATH/90-system" \
+           -o -path "$VAULT_PATH/95-graphify" \
+           -o -name graphify-out \
+           -o -name 'graphify-out-*' \) -prune \
+        -o -type f -newer "$marker" -print -quit)"
+    [[ -n "$changed" ]]
+}
+
+is_stale() {
+    [[ ! -s "$GRAPH_PATH" ]] || has_newer_source_than "$STAMP_PATH"
+}
+
+should_attempt_refresh() {
+    [[ ! -s "$GRAPH_PATH" ]] || has_newer_source_than "$ATTEMPT_STAMP_PATH"
+}
+
+run_update() {
+    local gate_mode="${1:-strict}"
+    shift || true
+    local tmp_dir result_file staged_file lint_script status lint_log build_log lint_summary
+    tmp_dir="$(mktemp -d "${TMPDIR:-/tmp}/graphify-obsidian.XXXXXX")"
+    lint_log="$STATE_DIR/.lint.$$.log"
+    build_log="$STATE_DIR/.update.$$.log"
+    touch "$ATTEMPT_STAMP_PATH"
+
+    echo "graphify-obsidian: reconstruyendo índice local..." >&2
+    if command -v rsync >/dev/null 2>&1; then
+        rsync -a \
+            --exclude=".obsidian/" --exclude=".trash/" \
+            --exclude="00-inbox/" --exclude="40-archive/" \
+            --exclude="80-agents/journal/" --exclude="90-system/" \
+            --exclude="95-graphify/" \
+            --exclude="graphify-out/" --exclude="graphify-out-*/" \
+            "$VAULT_PATH/" "$tmp_dir/"
+    else
+        echo "ERROR: rsync es obligatorio para copiar el corpus sin outputs ni estado de Obsidian." >&2
+        rm -rf -- "$tmp_dir" "$lint_log" "$build_log"
+        return 45
+    fi
+
+    lint_script="$VAULT_PATH/80-agents/skills/agents-os-entity-lifecycle/scripts/lint.py"
+    if ! command -v python3 >/dev/null 2>&1 || [[ ! -f "$lint_script" ]]; then
+        echo "ERROR: gate de frontmatter no disponible." >&2
+        rm -rf -- "$tmp_dir" "$lint_log" "$build_log"
+        return 44
+    fi
+    if ! python3 "$lint_script" --gate >"$lint_log" 2>&1; then
+        if [[ "$gate_mode" == "strict" ]]; then
+            sed -n '1,80p' "$lint_log" >&2
+            echo "ERROR: rebuild manual bloqueado por deuda de frontmatter; se conserva el último índice válido." >&2
+            rm -rf -- "$tmp_dir" "$lint_log" "$build_log"
+            return 44
+        fi
+        lint_summary="$(sed -n '1p' "$lint_log")"
+        echo "WARN: lint global con deuda; el auto-refresh local continúa en modo derivado ($lint_summary)." >&2
+    fi
+
+    export GRAPHIFY_MD_VAULT_ROOT="$tmp_dir"
+    if (cd "$tmp_dir" && "$REAL_BIN" update . "$@") >"$build_log" 2>&1; then
+        status=0
+    else
+        status=$?
+        tail -n 40 "$build_log" >&2
+        rm -rf -- "$tmp_dir" "$lint_log" "$build_log"
+        return "$status"
+    fi
+
+    for result_file in graph.json GRAPH_REPORT.md; do
+        if [[ -f "$tmp_dir/graphify-out/$result_file" ]]; then
+            staged_file="$STATE_DIR/.$result_file.new.$$"
+            cp "$tmp_dir/graphify-out/$result_file" "$staged_file"
+            mv -f "$staged_file" "$STATE_DIR/$result_file"
+        fi
+    done
+    if [[ ! -s "$GRAPH_PATH" ]]; then
+        echo "ERROR: Graphify no produjo graph.json." >&2
+        rm -rf -- "$tmp_dir" "$lint_log" "$build_log"
+        return 46
+    fi
+
+    touch "$STAMP_PATH"
+    rm -rf -- "$tmp_dir" "$lint_log" "$build_log"
+    echo "graphify-obsidian: índice local actualizado en $STATE_DIR" >&2
+}
+
+ensure_index() {
+    if is_stale; then
+        if should_attempt_refresh && ! run_update soft; then
+            if [[ -s "$GRAPH_PATH" ]]; then
+                echo "WARN: refresh falló; consulta continúa con el último índice local válido." >&2
+                return 0
+            fi
+            echo "ERROR: no existe un índice local válido para consultar." >&2
+            return 47
+        elif is_stale; then
+            echo "WARN: índice stale; el refresh ya falló y no se reintentará hasta que cambie el corpus." >&2
+        fi
+    fi
+}
+
+case "${1:-update}" in
+    --help|-h)
+        print_help
+        ;;
+    --version|version|-v)
+        exec "$REAL_BIN" "$@"
+        ;;
+    cache-path)
+        printf '%s\n' "$STATE_DIR"
+        ;;
+    status)
+        if is_stale; then freshness="stale"; else freshness="fresh"; fi
+        printf 'vault=%s\ncache=%s\ngraph=%s\nfreshness=%s\n' \
+            "$VAULT_PATH" "$STATE_DIR" "$GRAPH_PATH" "$freshness"
+        ;;
+    query|filter|path|explain|affected|shortest_path)
+        ensure_index
+        exec "$REAL_BIN" "$@" --graph "$GRAPH_PATH"
+        ;;
+    update)
+        shift || true
+        run_update strict "$@"
+        ;;
+    *)
+        echo "ERROR: subcomando no soportado por el wrapper: ${1:-}" >&2
+        echo "Usa graphify-obsidian --help." >&2
+        exit 2
+        ;;
+esac
