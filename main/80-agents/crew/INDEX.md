@@ -10,6 +10,7 @@ related:
   - "[[Antigravity]]"
   - "[[Copilot CLI]]"
   - "[[ZCode]]"
+  - "[[ChatGPT]]"
 aliases: []
 tags:
   - kind/doc
@@ -21,16 +22,16 @@ updated: 2026-09-07
 
 ## Propósito
 
-Registro canónico de superficies de generación de código y dashboard de performance por superficie×modelo.
+Registro canónico de superficies de agente y dashboard de performance por superficie×modelo.
 
 ## Contenido
 
-
-Este directorio centraliza las superficies autorizadas para generar código en el Second Brain. La superficie es una entidad estable; el modelo es un atributo exacto y mutable de cada ejecución, no una entidad ni un valor base del perfil.
+Este directorio centraliza las superficies autorizadas para trabajar sobre el Second Brain. La superficie es una entidad estable; el modelo es un atributo exacto y mutable de cada ejecución, no una entidad ni un valor base del perfil.
 
 ### Contrato de identidad
 
-- **Superficies registradas:** [[Codex]], [[Claude Code]], [[Cursor]], [[Antigravity]], [[Copilot CLI]] y [[ZCode]].
+- **Superficies registradas:** [[Codex]], [[Claude Code]], [[Cursor]], [[Antigravity]], [[Copilot CLI]], [[ZCode]] y [[ChatGPT]].
+- **Identidad atribuible:** cuando un schema admita `agent_surface`/`agent_model`, debe usar el perfil canónico de la superficie y el modelo exacto reportado para ese trabajo; no agregar esos campos a tipos que no los soportan.
 - **Registro de ejecución:** `80-agents/journal/agent-runs/` mediante [[agents-os-agent-run-register]].
 - **Clave de comparación:** `agent_surface × agent_model`; un cambio de cualquiera crea otro run atribuible.
 - **Modelo:** identificador exacto reportado por el host o usuario; `unknown` si no existe evidencia, nunca inferido.
