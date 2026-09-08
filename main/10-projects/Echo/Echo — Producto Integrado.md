@@ -98,7 +98,7 @@ IDENTITY ≠ EXECUTION ≠ EVALUATION ≠ METRICS ≠ TRADES ≠ ARTIFACTS ≠ S
 
 ## Ciclo de producto
 
-Cadena congelada, no arquitectura nueva. Semántica exacta en Resources:
+Reference path integrado. **Forge sigue siendo un pipeline secuencial, pero su topología es dinámica y no está congelada**: cada run compone stages desacoplados por contratos; puede omitir/repetir stages y usar outputs previos como input de nuevas generaciones. Cada generación produce estrategias/artefactos nuevos con identidad y lineage propios; nunca muta la estrategia/template origen. Lo frozen son contratos, invariantes, semántica de artefactos y boundary Forge→Echo. `FINALIST` sólo se emite cuando satisface su contrato canónico, independientemente del camino recorrido.
 
 GENERATION → CLASSIFICATION / EARLY REDUCTION → RETESTER → OPTIMIZER → WFM → ROBUST SELECTION → FINAL RETEST → MT5 CONVERSION → PHYSICAL MT5 VALIDATION → FORGE FIDELITY → FINALIST → HANDOFF → ECHO INGESTION → REFERENCE ENROLLMENT → REFERENCE OBSERVATION → EXECUTION → STRATEGY QUALITY + EXECUTION FIDELITY → ELIGIBILITY → PORTFOLIO → RISK → CAPITAL ALLOCATION → APPLY → MONITORING → REBALANCE / REPLACEMENT / RETIREMENT.
 
@@ -205,7 +205,7 @@ flowchart LR
 
 ## Gobernanza
 
-Metodología: **TOP planea → crea SPEC(s) → NORMAL implementa.** NORMAL no rediseña arquitectura congelada; si aparece contradicción material, STOP / escalate.
+Metodología: **TOP planea → crea SPEC(s) → NORMAL implementa.** NORMAL no rediseña contratos/decisiones frozen; si aparece contradicción material, STOP / escalate.
 
 Clases de modelo: NORMAL (Luna / GLM 5.3 Flash) implementa SPECs congeladas. TOP (Grok 4.5 / GLM 5.3) planifica fases, SPECs y RCA acotada. GOD (Fable 5.1 / Astra) sólo decisiones estructurales caras de revertir. RESERVE: DeepSeek V4. Escalation por riesgo de decisión, no por tamaño de codebase ni incertidumbre del agente previo.
 
@@ -244,7 +244,7 @@ B1A global fleet ownership / durable MT5 reuse. B1B long-running MT5 (elapsed wa
 
 ## Balance de fases
 
-Forge: 5 Agent Tasks, mayoría MEDIUM; F-02 y F-04 LARGE-acotados con sub-SPECs internos (C1/C2 y allocation→seal→adapter), no mega-fases distintas. Echo: E2 histórico se partió en E-06…E-09; E-02 extraído de “live” porque H1/P0 es capacidad propia; E-11/E-12 separan shadow vs effects. Ninguna micro-fase. GOD no asignado a ninguna fase.
+Forge: 5 Agent Tasks, mayoría MEDIUM; F-02 y F-04 LARGE-acotados con sub-SPECs internos (C1/C2 y allocation→seal→adapter), no mega-fases distintas. Echo: el antiguo bloque live/E2 se descompuso en E-06…E-13; E-02 extraído de “live” porque H1/P0 es capacidad propia; E-11/E-12 separan shadow vs effects. Ninguna micro-fase. GOD no asignado a ninguna fase.
 
 ## ✅ Tareas
 
@@ -258,69 +258,3 @@ Forge: 5 Agent Tasks, mayoría MEDIUM; F-02 y F-04 LARGE-acotados con sub-SPECs 
 > - [ ] [[Echo — Live Platform V1]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [ ] Ratificar catálogo magic CC antes de allocation física F-04 #owner/me #type/admin #area/echo
 > - [ ] Confirmar O-01/O-02/O-03 de mandato 2026 cuando el track live lo necesite #owner/me #type/admin #area/echo
-
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-function board(tasks){const cols=[[" ","🟦 To Do"],["/","🟡 WIP"],["r","🔵 Review"]];let any=false;for(const[st,label]of cols){const c=tasks.filter(t=>t.status===st);if(c.length){any=true;dv.el('h4',label);render(c);}}const done=tasks.filter(t=>t.status==="x"||t.status==="X");if(done.length){any=true;dv.el('h4',"✅ Done");render(done);}if(!any)dv.paragraph("_Sin tareas._");}
-const owner=((dv.current().owner)==="agent")?"agent":"me";
-const all=dv.current().file.tasks.array();
-const primary=all.filter(t=>has(t,`owner/${owner}`));
-const loose=all.filter(t=>!has(t,"owner/me")&&!has(t,"owner/agent"));
-dv.header(3, owner==="agent"?"🤖 Tareas del agente":"🧍 Mis tareas");
-board(primary);
-if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
-```
-
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-const ord={" ":0,"/":1,"r":2,"x":3,"X":3,"-":4};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-const pages=dv.pages('"10-projects/Echo"');
-for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x=>has(x,"owner/me")&&x.status!=="x"&&x.status!=="X").sort((a,b)=>(ord[a.status]??9)-(ord[b.status]??9));if(t.length){dv.el('h4',p.file.link);render(t);}}
-```
-
-## 📆 Bitácora
-
-- **2026-09-07** — Materializado este padre y normalizados los dos tracks existentes a `owner: agent` con roadmaps F-01…F-05 y E-01…E-13. Roadmaps anteriores de 4 ítems `#owner/me` supersedidos. Contrato SDK no reabierto. B1A/B1B/B2 no reabiertos. Sin código ni SPECs de implementación.
-
-## 🧭 Decisiones
-
-- Un padre de producto, exactamente dos subproyectos. Echo SDK es autoridad transversal, no producto aparte.
-- Cada fase del roadmap = una Agent Task `#owner/agent` en su subproyecto. SPECs las crea un TOP posterior.
-- FR-1…FR-5 se implementan en S0; no se reabre el freeze.
-- O1/O3 del live authority son default técnico según Fable durability; O2 sigue siendo catálogo CC owner.
-
-## 🔗 Docs / Links
-
-- [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
-- [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]
-- [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]
-- [[Echo + Echo Forge — Architecture Durability and Contract Review — Fable 5.1]]
-- [[Echo + Echo Forge — Arquitectura de producto, gaps y roadmap de cierre 2026]]
-- [[Echo + Echo Forge — Independent Reality Check and Time-to-Value Plan]]
-- [[Echo — Fuentes de arquitectura y producto 2026-09-06]]
-- [[Echo Forge — Fuentes de arquitectura y producto 2026-09-06]]
-- [[Echo + Echo Forge — Evidencia de revisión independiente 2026-09-06]]
-- [[Echo Forge]] · [[Echo - Discovery y Estado]] · [[echo-core]] · [[echo-forge]]
-
-## 💡 Ideas
-
-### Backlog de ideas
-
-- Viewer SQX en VM dedicada (SHOULD, no blocker V1).
-- Recuperación histórica de Reference como timebox paralelo, no como fase de factory.
-
-### Motivos / principios
-
-- TIME_TO_USABLE_TRADING_SYSTEM. Deuda acotada permitida. No resucitar problemas cerrados.
-
-### Memoria pública / interna
-
-- **Memoria pública:** contratos y Decisions enlazados arriba.
-- **Memoria interna:** continuidad de ejecución en las notas de los subproyectos, no en un checkpoint paralelo de producto.
-- **Motivo:** una fuente por hecho; el padre no duplica arquitectura.
