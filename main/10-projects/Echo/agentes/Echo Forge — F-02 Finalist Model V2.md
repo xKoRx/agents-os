@@ -10,7 +10,7 @@ parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-08
 due:
-progress: 10
+progress: 100
 repo: xKoRx/symphony
 jira:
 prs:
@@ -43,7 +43,7 @@ Reemplazar membresía V1 (copia de `TopProjection`) por membership estructural V
 
 ## 📊 Estado actual
 
-- **PREPARADO / SPEC FROZEN (2026-09-08).** TOP persistió SPEC + TASKS. `NORMAL` no autorizado.
+- **IMPLEMENTADO / GATE G1 REVIEW (2026-09-08).** T1.1→T1.6 completadas. `NORMAL` autorizado por manager; branch publicada, sin merge.
 - Baseline source: `xKoRx/symphony@0509342439cfbaa048839088787458dde1ed1b05` == `origin/master` (fetch verificado). Foreign dirty symphony preservado.
 - `DATABASE MIGRATION: 014_finalist_promotion_v2` (policy 2.0.0 + first_rank/first_score_ref nullable). `GOD REQUIRED: NONE`.
 - Agents OS live fetch de `origin/master` no disponible aquí (vault sin git, `gh` unauth). Último SHA durable en vault: `f1070bec27db3ca415fe24f3c3576139674b7e09`.
@@ -52,7 +52,7 @@ Reemplazar membresía V1 (copia de `TopProjection`) por membership estructural V
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f02-finalist-model-v2` | `0509342439cfbaa048839088787458dde1ed1b05` | [[Echo Forge — Factory V2 Completion]] F-02 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | **WIP: NORMAL autorizado por manager; baseline/origin verificados sin avance.** |
+| xKoRx/symphony | `feature/f02-finalist-model-v2` | `0509342439cfbaa048839088787458dde1ed1b05` | [[Echo Forge — Factory V2 Completion]] F-02 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | **REVIEW: `c3b7ede` pushed; baseline/origin verificados sin avance; no merge.** |
 
 ## Parent / SPEC / baselines
 
@@ -125,12 +125,12 @@ B2 CLOSED freeze. Independiente de F-01/F-03/E-01. No S0.
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [/] T1.1 Domain Decision/output V2 y Validate dual #owner/agent #type/dev #area/echo
-> - [ ] T1.2 Reconcile requested vs HTM + drop per-candidate #owner/agent #type/dev #area/echo
-> - [ ] T1.3 Promotion V2 membership y warnings #owner/agent #type/dev #area/echo
-> - [ ] T1.4 Result Surface v2 sin igualdad TopProjection #owner/agent #type/dev #area/echo
-> - [ ] T1.5 Config/workflow 2.0.0 sin exigir top_n #owner/agent #type/dev #area/echo
-> - [ ] T1.6 Campaign nullable rank/score y migration 014 #owner/agent #type/dev #area/echo
+> - [x] T1.1 Domain Decision/output V2 y Validate dual #owner/agent #type/dev #area/echo
+> - [x] T1.2 Reconcile requested vs HTM + drop per-candidate #owner/agent #type/dev #area/echo
+> - [x] T1.3 Promotion V2 membership y warnings #owner/agent #type/dev #area/echo
+> - [x] T1.4 Result Surface v2 sin igualdad TopProjection #owner/agent #type/dev #area/echo
+> - [x] T1.5 Config/workflow 2.0.0 sin exigir top_n #owner/agent #type/dev #area/echo
+> - [x] T1.6 Campaign nullable rank/score y migration 014 #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -233,7 +233,7 @@ Contrato de cada TASK: objetivo, archivos, entrada, cambio, invariantes, tests, 
 
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
-| G1 | open | T1.1–T1.6 según SPEC; diff acotado + tests G01–03/G11–12/G22 + 014 | Manager review; no auto-merge | F-02 implementation review; no F-03/F-04 |
+| G1 | review | T1.1–T1.6 según SPEC; diff acotado + tests G01–03/G11–12/G22 + 014 | Manager review; no auto-merge | F-02 implementation review; no F-03/F-04 |
 
 ## Tests / certification
 
@@ -321,7 +321,8 @@ El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 
 ## 📆 Bitácora
 
-- **2026-09-08** — TOP diseñó F-02 contra symphony `0509342`. SPEC + TASKS persistidas. Migration 014 cerrada. NORMAL no autorizado.
+- **2026-09-08** — TOP diseñó F-02 contra symphony `0509342`. SPEC + TASKS persistidas. Migration 014 cerrada. NORMAL autorizado por manager.
+- **2026-09-08** — Codex completó T1.1→T1.6 en `feature/f02-finalist-model-v2`, commit `c3b7ede`, push para manager review. Gates F-02 y migration brownfield PASS; sweep completo conserva fallos preexistentes fuera de scope (`sqx/tools`, workflow harness y algunos registry tests).
 
 ## 🧭 Decisiones
 

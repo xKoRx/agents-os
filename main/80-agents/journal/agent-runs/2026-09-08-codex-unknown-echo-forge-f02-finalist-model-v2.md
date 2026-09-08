@@ -18,8 +18,8 @@ agent_model: unknown
 model_source: unknown
 task_type: coding
 task_complexity: unknown
-outcome: complete
-verification: targeted F-02 suites green; migration brownfield green; compile sweep green excluding pre-existing sqx/tools
+outcome: success
+verification: partial
 evaluator: agent
 user_rework: unknown
 source_session: ECHO-FORGE-F02-FINALIST-MODEL-V2-CODEX

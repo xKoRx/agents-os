@@ -69,7 +69,7 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
 > - [x] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
-> - [/] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
+> - [r] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
 > - [ ] F-03 SQX long-running #owner/agent #type/dev #area/echo
 > - [ ] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
 > - [ ] F-05 Cohesive release, physical cert and FULL golden #owner/agent #type/dev #area/echo
