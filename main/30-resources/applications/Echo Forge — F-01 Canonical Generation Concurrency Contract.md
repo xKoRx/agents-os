@@ -32,46 +32,133 @@ updated: "2026-09-07"
 
 Esta Resource es el contrato técnico de `F-01 — Canonical generation concurrency`. Define qué debe quedar cierto. La ejecución vive en [[Echo Forge — F-01 Canonical generation concurrency]]. No es un tutorial de implementación.
 
-Baseline de source: `xKoRx/symphony@db8a022703082fd7ee9d1e15243c5d1b2feaf578`. Agents OS origin/master al diseñar: `83506a14f0b850402fbb61d50e90790662fe19f0`.
+Baseline de source: `xKoRx/symphony@db8a022703082fd7ee9d1e15243c5d1b2feaf578`. Agents OS origin/master al diseñar: `83506a14f0b850402fbb61d50e90790662fe19f0`. Corrección in-place sobre el commit Agents OS `419c64084459c9c903061cad0ecf900f33313b09`.
 
 ## Síntesis vigente
 
 ### Problema
 
-`CanonicalStrategyID` no es puro: lee `$HOST_KEY` y recorta sufijos alfanuméricos 3–16 según el entorno. La misma entrada puede producir IDs distintos en Zeus versus Hera. El comentario del helper afirma que no consulta el environment; el código sí lo hace.
+`CanonicalStrategyID` no es puro: lee `$HOST_KEY` y recorta sufijos alfanuméricos 3–16 según el entorno. La misma entrada puede producir IDs distintos en Zeus versus Hera.
 
-`HOST_KEY` no es identidad de negocio. En publication, `legacySQXFileName` aún anexa `.hostKey` cuando el basename local no trae la convención instrumento/estrategia (`TestPublishedSQXFileName_LegacyGenericBasenameCollidesByHost`). Eso evitó colisiones físicas de object key entre workers, y también hace que un retry/recovery en otro host publique otra identity.
+`HOST_KEY` no es identidad de negocio. En publication, `legacySQXFileName` aún anexa `.hostKey` cuando el basename local no trae la convención instrumento/estrategia (`TestPublishedSQXFileName_LegacyGenericBasenameCollidesByHost`). Eso evitó colisiones físicas entre workers y también hace que un retry/recovery en otro host publique otra identity.
 
-F-01 debe retirar `HOST_KEY` de Strategy identity y de publication de outputs GENERATED nuevos, sin reintroducir esa colisión y sin renombrar historia.
+Retirar `HOST_KEY` sin un discriminator durable de **logical producer** recrea colisión intra-wave: `BuildMinIOPath` no incluye producer; `BuilderSupplyBatchRef` namespacía la wave, no el producer; el basename SQX local puede repetirse.
 
-### Veredicto central — discriminador durable
+### Qué no es el discriminador
 
-No se agrega tabla, UUID ni migration. Las authorities existentes cubren el contrato.
+La decisión anterior (`OutputNamespaceOwnership` / FlowRun dueño del namespace = discriminator intra-wave) queda **retirada**. Es falsa contra source.
 
-| Rol | Authority existente | Qué discrimina | Puede entrar en CanonicalStrategyID |
-|---|---|---|---|
-| Productor lógico intra-wave | `StageExecutionRef` + claim `OutputNamespaceOwnership` (FlowRun dueño del namespace MinIO sin filename) | Dos FlowRuns distintos no publican el mismo path; retry del mismo FlowRun ACK sin mutar | No. Es execution/ownership, no business identity |
-| Generación Campaign | `BuilderSupplyBatchRef` = `{CampaignRef}:g{NNNNNN}` proyectado al basename publicado | Dos olas/campaigns no colapsan el mismo ResultsGroup SQX | Sí, ya está en el published basename antes de `CanonicalStrategyID` |
-| Output dentro del productor | ResultsGroup/cohort token `Strategy_X.Y.Z.zN` del archivo SQX | Varios .sqx del mismo Builder job | Sí, como parte del stem publicado. No es GUID nativo |
-| Artifact 1:1 | `ExactOutputName` / `StrategyRef` | Addressing de Retester/Optimizer/FinalReretester | No. Addressing, no identity |
-| Bytes / crash | `StageProducerOutput` (singleton 1:1) y `PutObjectIfAbsent` + unique v2 | Replay vs conflicto de contenido | No. Recovery authority |
-| Infra | `HOST_KEY` / hostname / PID / attempt | Worker físico | No |
+`OutputNamespaceOwnership` unique es `(bucket, namespaceKey)` owned by **FlowRun**. El `StageExecutionRef` de la claim es provenance del initial claimant, no producer ownership (`OutputNamespaceOwnershipStore`, `output_namespace_ownership.go`). Test PostgreSQL `T7 concurrent same flow sibling claims`: StageExecution C y D, mismo FlowRun, mismo bucket, mismo namespace → **ambas claims ACKNOWLEDGED**. Protege `FlowRun A vs FlowRun B`. No discrimina `producer A vs producer B` dentro del mismo FlowRun.
 
-Pregunta G34: el discriminador durable de productores concurrentes intra-wave es el **FlowRun dueño del output namespace**, persistido en `sqx.output_namespace_ownership`, no el host. El discriminador durable de strategies GENERATED distintas es el **published basename** ya namespaced por `BuilderSupplyBatchRef` (Campaign) más el ResultsGroup local. Retry del mismo productor reusa `StageExecutionRef` (generation preservada) y el mismo claim; sin sufijo host, object key y canonical id convergen.
+`BuilderSupplyBatchRef` = `{CampaignRef}:g{NNNNNN}` se deriva de Campaign + wave. Todos los producers de esa supply wave comparten el batch. Su `FilenameToken` namespacía la wave, no el producer.
+
+Campaign Builder publica con `UploadFromDiskExactWithBatchPreflight(..., beforeBatch=cap, beforePut=nil)`. Singleton stages sí sellan `StageProducerOutput` antes del PUT. **No existe hoy** el enlace `logical producer → durable producer authority → publication naming/address → retry/recovery` en el path Builder. F-01 debe construirlo sobre authorities ya persistidas, sin tabla nueva.
+
+### Veredicto central — logical producer y discriminator durable
+
+No se agrega tabla, UUID por attempt, ni migration.
+
+**Logical producer (Builder GENERATED):** exactamente una `StageExecution` de Builder. Un slot durable `(FlowRunRef, TaskPath, StageKey, Subject, CanonicalInputs, Generation)` identificado por `ExecutionIntentKey`.
+
+No es FlowRun. No es wave. No es host. No es worker. No es proceso SQX. No es Temporal Activity attempt. No es `StageExecutionRef` UUID (surrogate PK asignado al INSERT).
+
+**Durable discriminator:** `ExecutionIntentKey` (`hashIdentity("stage-execution.v1", FlowRunID, StageInstanceKey, Generation)`). Cardinalidad: **exactamente una vez por logical Builder producer**.
+
+**Producer filename token:** representación determinista filename-safe de esa authority: `p` + hex de 64 de `ExecutionIntentKey` (sin prefijo `sha256:`). No es un token aleatorio. No es HOST_KEY. No es Temporal ID.
+
+Retry técnico (mismo slot, misma generation, otro host, otro attempt Temporal, crash recovery) → mismo `ExecutionIntentKey` → mismo token → mismos Strategy IDs → mismas artifact keys.
+
+Dos logical producers intra-wave (mismo FlowRun, misma Campaign, misma wave, mismo `BuilderSupplyBatchRef`, mismo basename SQX local) → `TaskPath` (o inputs de template) distintos → `StageInstanceKey` distintos → `ExecutionIntentKey` distintos → tokens, IDs y keys distintos. Ambos válidos.
 
 `HOST_KEY` permanece operacional fuera de identity/publication GENERATED: boot del worker, ProActiva `maintenance/state/{host_key}`, telemetría. No se elimina globalmente.
 
-### Identity model
+## Definición: logical producer
 
-**GENERATED.** Strategy nueva de Builder. Identity = `CanonicalStrategyID(published_basename)` con `identity_model_version=2`, unique global. `StrategyRef` lo minta `AdoptStrategy`. No depende de host, PID, Temporal attempt, WorkflowID, RunID ni WaveKey. Campaign: el basename incorpora `BuilderSupplyBatchRef.FilenameToken()` antes del canonicalizer. Generic Builder: sin batch token; unicidad la da el stem publicado más el unique v2; dos FlowRuns del mismo namespace físico fallan en el claim, no mintando un segundo ID.
+F-01 permitirá ejecutar concurrentemente **dos StageExecutions de Builder** que pertenecen a la misma Campaign/wave/FlowRun y publican strategies GENERATED.
 
-**ADOPTED.** Strategy histórica ya persistida. Su `canonical_strategy_id` queda byte-for-byte. F-01 no recanonicaliza registry ni objetos. Un filename histórico que ya trae `.zeus`/`.hera`/`.kronos` se conserva opaco si se vuelve a pasar al helper; no se strippea por entorno.
+Esa unidad ya existe en source. `runtime.StructuralTaskPath(indexes...)` identifica el TaskSpec por índice estructural (`root/0`, `root/1`, …), nunca por display name. `NewStageIntent` / `NewStageExecutionIdentity` materializan un slot por `TaskPath`. Dos tasks Builder en el mismo spec obtienen StageExecutions distintas. Un retry del mismo `TaskPath` reconverge.
 
-**RE-GENERATED FROM EXISTING STRATEGY/TEMPLATE.** El origen es input/lineage (`StrategyArtifact` con `StrategyRef` + `CanonicalStrategyID` del template). El origen no se renombra ni se muta. Las nuevas strategies son entidades nuevas: nuevo published basename, nuevo canonical id, nuevo artifact, lineage explícito al origen. `rejectBuilderTemplateCanonicalCollisions` ya fail-closed si el output reusa un canonical del cohort template. Stages siguen desacoplados: identity no hardcodea `stage X → stage Y`.
+El modelo actual es `1 Builder StageExecution → N strategies` (N archivos SQX del mismo job). F-01 no inventa topología fija ni exige N hosts. El modelo concurrente futuro/legítimo es `N logical producers = N StageExecutions` (típicamente N `TaskPath` en el mismo FlowRun). Cada producer sigue pudiendo emitir N strategies; el token de producer es constante para esos N archivos; el stem SQX local (`Strategy_X.Y.Z.zN`) distingue archivos dentro del producer.
 
-Downstream (Retester/Optimizer/FinalReretester) adopta el `CanonicalStrategyID` del upstream carrier; no reminta identity por filename físico. `ExactOutputName` permanece addressing.
+F-01 no asume `producer == host` ni `producer == Temporal attempt`. `StageExecutionTemporalCorrelation` (WorkflowID/RunID/ActivityID) es provenance y **no participa** en identity (`StageExecutionIntent.Temporal`).
 
-### CanonicalStrategyID — contrato puro
+Si el source futuro introduce varios Builders paralelos **dentro de una sola StageExecution**, esta SPEC queda corta: STOP, no ampliar en NORMAL.
+
+## Evaluación de candidatos
+
+| Candidate | Cardinality | Stable across retry | Distinguishes sibling producers | Survives new host | Durable before physical production | Business/operational meaning |
+| --- | --- | --- | --- | --- | --- | --- |
+| `FlowRunRef` | 1 por invocación de negocio | sí | no (siblings comparten FlowRun) | sí | sí | invocación de flow; demasiado grueso |
+| `OutputNamespaceOwnership` | 1 por `(bucket, namespaceKey)` owned by FlowRun | sí (ACK same FlowRun) | **no** (T7: siblings ACK) | sí | sí, claim pre-SQX | mutex de namespace físico entre FlowRuns |
+| `BuilderSupplyBatchRef` | 1 por Campaign+wave | sí | **no** (todos los producers de la wave lo comparten) | sí | sí | namespace de generación de negocio |
+| `TaskPath` | 1 por índice estructural del spec | sí | sí intra-spec; no único cross-FlowRun | sí | sí | posición del task; incompleto solo |
+| `StageKey` | 1 por `taskType@contractVersion` | sí | no (todos los Builder del mismo tipo) | sí | sí | contrato de stage |
+| `Generation` | N reevaluaciones deliberadas del slot | retry técnico la preserva; reevaluación la incrementa | no solo | sí | sí | versión del intento durable del slot |
+| `StageInstanceKey` | 1 por slot `(TaskPath, StageKey, Subject, inputs)` | sí | sí intra-FlowRun; excluye Generation | sí | sí | slot estable; reevaluación deliberada reusa slot y cambia execution |
+| `ExecutionIntentKey` | **1 por logical producer** `(FlowRun + slot + Generation)` | sí (lookup unique; retry preserva Generation) | sí (TaskPath/inputs/Generation) | sí | sí (computable antes del INSERT y del PUT) | identidad durable del producer |
+| `StageExecutionRef` UUID | 1:1 con `ExecutionIntentKey` **después** del resolve | sí post-insert (`uuid.NewString` una vez; unique por intent key) | sí, pero es surrogate | sí post-insert | no antes del INSERT; sí antes del PUT | PK de recovery; no fórmula de identity |
+| `ProducerContextDigest` | 1 por contexto de bytes/replay | sí si el contexto es el mismo | no es identity | sí | en record-before-put, no nombra archivos | replay de bytes/contexto |
+| `StageProducerOutput` | 1 por `(StageExecutionRef, object_key)` | sí (insert-once; ACK identical) | no nombra; convalida address+digest | sí | **antes del PUT si se cablea**; hoy Builder `beforePut=nil` | recovery authority de publicación |
+| `HOST_KEY` / hostname / PID / Temporal attempt / UUID random | por worker/attempt | **no** cross-host | accidentalmente sí, rompe retry | **no** | n/a | infra; prohibido en F-01 |
+
+Pregunta clave: ¿qué durable identity existe exactamente una vez por logical Builder producer? **`ExecutionIntentKey`.**
+
+## StageExecution — respuestas
+
+1. ¿Una StageExecution corresponde exactamente a un logical producer? **Sí** en Builder durable actual y en el modelo concurrente que F-01 habilita.
+2. ¿Dos producers intra-wave legítimos obtienen StageExecutions distintas? **Sí**, vía `TaskPath` estructural distinto (o `CanonicalInputs` de template distintos → `StageInstanceKey` distinto). No hace falta topología hardcodeada.
+3. ¿Retry/recovery obtiene la misma StageExecution? **Sí.** `ResolveStageExecution` lookup por `ExecutionIntentKey`; unique en PostgreSQL; `convergeStageExecution` ACK si la fila coincide. Retry técnico preserva `Generation`. Reevaluación deliberada incrementa `Generation` → nuevo producer generation (nuevo token, nuevas strategies).
+4. ¿El ref/key está disponible antes de publication? **Sí.** Pipeline durable: `resolve_stage_execution` → `claim_output_namespace` → `execute_sqx` → upload. `ExecutionIntentKey` es computable incluso antes del INSERT.
+5. ¿Puede producir un producer token determinista sin identity de infraestructura? **Sí:** `p` + hex de `ExecutionIntentKey`. No UUID, no host, no Temporal.
+
+`StageExecutionIdentityView` hoy **omite** `ExecutionIntentKey` y `TaskPath`. Publication no debe depender de ampliar esa vista: recomputar el mismo `NewStageIntent` / `NewStageIntentWithInputs` ya usado en resolve (mismos `FlowRunRef`, `TaskPath`, task, inputs). El UUID `StageExecutionRef` queda como FK de `StageProducerOutput`, no como filename token.
+
+## Cuatro conceptos separados
+
+### Producer identity
+
+`ExecutionIntentKey` del Builder StageExecution. Distingue dos producers legítimos intra-wave. No es Strategy ID.
+
+### Campaign wave namespace
+
+`BuilderSupplyBatchRef` / `FilenameToken()`. Aporta separación de olas/campaigns en el published basename. No discrimina siblings. F-01 no reabre su fórmula ([[2026-09-04-echo-forge-campaign-builder-supply-identity]]).
+
+### SQX strategy-local identity
+
+Stem local del archivo SQX (ResultsGroup / `Strategy_X.Y.Z.zN` / convención instrumento). Distingue N outputs **dentro** de un producer. No es GUID nativo. No es único intra-wave entre producers.
+
+### Strategy identity y artifact addressing
+
+**GENERATED Strategy ID** = `CanonicalStrategyID(published_basename)` con `identity_model_version=2`, unique global. `StrategyRef` lo minta `AdoptStrategy`.
+
+**Artifact address** = `BuildMinIOPath(wave, instrument, direction, timeframe, strategy, version, taskFolder, published_basename)`. Wave en PATH es routing, no identity.
+
+### Fórmula conceptual (demostrada por source)
+
+```text
+published_basename =
+  namespace_producer(
+    namespace_campaign?(legacy_stem_without_host),
+    producer_filename_token(ExecutionIntentKey)
+  )
+
+CanonicalStrategyID(published_basename)     → generated Strategy identity
+BuildMinIOPath(..., published_basename)     → artifact object key
+```
+
+`namespace_campaign?` aplica sólo si hay `BuilderSupplyBatchRef` (Campaign), con el insertion point vigente (`namespaceCampaignBuilderFilename`: token antes de `_Strategy`, o sufijo si no hay marker). `namespace_producer` usa el mismo insertion point con `producer_filename_token`. Durable Builder GENERATED **siempre** lleva producer token, haya o no Campaign.
+
+`ExactOutputName` (Retester/Optimizer/FinalReretester) es addressing singleton por `StrategyRef`. Fuera de identity GENERATED. F-01 no lo reabre salvo regresión.
+
+Esto no mete WaveKey en identity. No mete Temporal IDs. Proyectar `ExecutionIntentKey` al published basename es análogo a proyectar `BuilderSupplyBatchRef.FilenameToken`: una durable authority de negocio/slot, no un host.
+
+**ADOPTED.** `canonical_strategy_id` histórico byte-for-byte. F-01 no recanonicaliza registry ni objetos. Un filename con `.zeus`/`.hera` opaco se re-lee igual; el helper ya no strippea por entorno.
+
+**RE-GENERATED FROM EXISTING STRATEGY/TEMPLATE.** El origen es input/lineage. No se renombra. Template mode incluye inputs en `StageInstanceKey` (`NewStageIntentWithInputs`). Cohort distinto → producer nuevo → token nuevo → Strategies nuevas → IDs nuevos → artifacts nuevos → lineage al source. `rejectBuilderTemplateCanonicalCollisions` fail-closed si el output reusa un canonical del template.
+
+Downstream adopta el `CanonicalStrategyID` del upstream carrier. No reminta identity por filename físico.
+
+## CanonicalStrategyID — contrato puro
 
 El helper sólo normaliza wrappers documentados sobre un basename:
 
@@ -80,54 +167,85 @@ El helper sólo normaliza wrappers documentados sobre un basename:
 3. Quitar prefijos WF (`WF_Matrix_-_`, `WF_Matrix-`, `WF_-_`, `WF-`, `WF Matrix - `) hasta idempotencia.
 4. Recortar `_robust` sólo si el nombre contiene `Strategy_`.
 5. Recortar sufijos `(N)` de 0 a 9.
-6. Devolver el resto intacto.
+6. Devolver el resto intacto (incluye producer token y batch token ya presentes en el published name).
 
-Prohibido: `os.Getenv("HOST_KEY")`; heurística `isLikelyHostKey` que puede mutilar `Strategy_X.Y.Z.z10`; anexar host; resolver colisiones con `(1)`/`(2)`, sufijo host nuevo o UUID random.
+Prohibido: `os.Getenv("HOST_KEY")`; heurística `isLikelyHostKey` (puede mutilar `Strategy_X.Y.Z.z10`); anexar host; resolver colisiones con `(1)`/`(2)`, sufijo host nuevo o UUID random.
 
-### Publication / addressing
+## Publication / addressing / producer-output
 
 `publishedSQXFileName`:
 
-- Si `ExactOutputName` está seteado: usarlo y ignorar host. Sin cambio de contrato.
-- Si hay `BuilderSupplyBatchRef`: namespacing Campaign vigente (`namespaceCampaignBuilderFilename`) sobre el stem legacy **sin** anexar host.
-- Legacy generic basename: **dejar de anexar** `.hostKey`. El mismo basename local produce el mismo object key en cualquier worker.
-- Path MinIO (`BuildMinIOPath`) sigue siendo routing; Wave en PATH no es identity.
+- Si `ExactOutputName` está seteado: usarlo y ignorar host y producer token. Sin cambio de contrato.
+- Durable Builder GENERATED: `legacySQXFileName` **sin** anexar host; namespacing Campaign vigente si aplica; namespacing **obligatorio** con `producer_filename_token(ExecutionIntentKey)`.
+- Path MinIO sigue siendo routing.
 
-Colisión contractual verdadera (dos productores lógicos, mismo published identity, contenido o intent incompatible) → `CONTRACT_CONFLICT`. No rename.
+`StrategyMeta` debe transportar el producer filename token (campo nuevo de meta de publication, no entidad SDK, no tabla). Lo popula el step de upload recomputando el mismo intent de resolve. Publicar Builder durable sin token resoluble → `CONTRACT_CONFLICT`.
 
-### Concurrency / retry / recovery
+**Por qué `beforePut=nil` hoy:** Campaign usa batch-preflight sólo para cap de candidatos. El comentario de `SingletonStageProducerOutputStore` explica que object keys host-dependent impedían serializar producers competidores con el store genérico `(stage_execution_id, object_key)`. Tras F-01 las keys son host-independent y stage-scoped; el store genérico `RecordStageProducerOutput` (PK ya existente, migration 008) cubre Builder N-output. No se usa el store singleton (ese es 1:1). No hay tabla nueva.
 
-Un Builder durable resuelve `StageExecutionRef` (retry/continue-as-new preservan generation). `claim_output_namespace` reserva `(bucket, namespaceKey)` para un FlowRun; retry del mismo FlowRun ACK; otro FlowRun → conflicto y no ejecuta SQX.
+F-01 cablea Builder (Campaign y generic durable) a `UploadFromDiskExactWithBatchPreflight` / pre-put: `beforePut = RecordStageProducerOutput`. Campaign conserva `beforeBatch` cap. Durable Builder fail-closed si `Control` no implementa `StageProducerOutputStore` (mismo patrón que singletons con su port). `ProducerContextDigest` de Builder se deriva de `ExecutionIntentKey` + identidad SQX-local del candidato; excluye host, Temporal, PID y reloj.
 
-Publication GENERATED nueva es host-independent, así que recovery en otro worker reusa object keys. Campaign cap sigue en batch-preflight antes de PUT.
+Colisión contractual (mismo logical producer/address, bytes o contexto incompatibles) → `CONTRACT_CONFLICT`. Nunca otro filename.
 
-Builder N-output hoy no usa `RecordStageProducerOutput` (`beforePut=nil`). F-01 no agrega producer-output ni migration para Builder: unique v2 + PutIfAbsent + namespace claim + StageExecution recovery de COMPLETED cubren A–F. Si G34 demuestra un crash window no cubierto, STOP y manager; no inventar token nuevo.
+`claim_output_namespace` **permanece** como mutex FlowRun sobre el path sin filename (inputs históricos / `LoadOutputNamespaceOwner`). No es uniqueness de producer. P3 prohíbe usar `same FlowRun sibling OutputNamespaceOwnership ACK` como supuesto de uniqueness.
 
-Singleton 1:1 (Retester/Optimizer/FinalReretester) ya tiene record-before-put y `ExactOutputName` host-independent. F-01 no los reabre.
+## Proofs P1–P8
 
-### Crash / retry matrix
+### P1 — SAME FLOW / DISTINCT PRODUCERS
 
-Notación: SE = StageExecutionRef, NS = OutputNamespaceOwnership, ID = CanonicalStrategyID, KEY = object key MinIO.
+Dos logical producers: mismo FlowRun, misma Campaign, misma wave, mismo `BuilderSupplyBatchRef`, mismo SQX basename local. Distinct `TaskPath` (p.ej. `root/0` vs `root/1`). Expected: distinct `ExecutionIntentKey`, distinct producer token, distinct generated identity, distinct artifact key. Ambos válidos. NS sibling claims pueden ser ambas ACK (T7); eso no los colapsa.
 
-**A — Dos producers distintos, misma wave, mismo basename local.** Estado inicial: dos FlowRuns/SE. Authority: NS unique por path de wave/task. Acción: segundo claim. Retry: no aplica al perdedor. Identity/KEY: no se mintan dos. Outcome: `CONTRACT_CONFLICT`. Error: durable contract conflict / duplicate logical producer.
+### P2 — SAME PRODUCER / DIFFERENT HOST
 
-**B — Replay idéntico del mismo producer.** Estado: mismo SE, mismo NS owner, mismos files locales. Authority: NS ACK; Adopt unique ACK; PutIfAbsent ACK. Acción: retry. Identity/KEY: iguales. Outcome: convergencia. Error: none (valid replay).
+Mismo logical producer en host A, recuperado/reintentado en host B. Expected: same `ExecutionIntentKey`, same token, same Strategy identity, same artifact key. Cero dependencia de `HOST_KEY`.
 
-**C — Crash antes de durable authority.** Estado: SE puede existir; NS/objects/adopt ausentes. Acción: recovery re-ejecuta claim+publish. Identity: se minta una vez al adoptar. Outcome: una strategy. Si SE no se persistió, el resolve recrea la misma identity de slot+generation.
+### P3 — CONCURRENT CLAIM
 
-**D — Authority persistida, crash antes de PUT.** Estado: NS claimed; Builder sin producer-output row; objects ausentes. Acción: retry PUT. Identity: aún no adoptada o adopt se reintenta. KEY: misma. Outcome: PutIfAbsent escribe una vez. No mintar otra identity.
+Dos producers P1/P2 concurrentes materializan outputs sin depender de la semántica `same FlowRun sibling OutputNamespaceOwnership ACK` como uniqueness. Uniqueness = token en published name + unique v2 + `StageProducerOutput` por `(stage, object_key)` + PutIfAbsent.
 
-**E — PUT exitoso, respuesta perdida.** Estado: object presente; caller no vio ACK. Acción: PutIfAbsent reconcile; Adopt unique. Identity/KEY: iguales. Outcome: ACK. Unknown commit exige recovery read, no segundo mint.
+### P4 — CRASH BEFORE PUBLICATION
 
-**F — Recovery en otro worker/host.** Estado: mismo SE/NS. Acción: publication sin host. Identity/KEY: idénticos al primer host. Outcome: replay B. Prohibido divergir por `HOST_KEY`.
+`ExecutionIntentKey` durable (y StageExecution resuelta) antes de PUT. Crash. Recovery recomputa el mismo token y la misma address. No mint another producer identity. Si `StageProducerOutput` ya se persistió, retry ACK identical / CONFLICT distinct; PUT usa la misma key.
 
-**G — Authority existente con contenido incompatible.** Estado: unique v2 o PutIfAbsent ve bytes/atributos distintos. Acción: fail-closed. Identity: no se renombra. Outcome: `CONTRACT_CONFLICT`.
+### P5 — LOST PUT RESPONSE
 
-**H — Adopted histórica.** Estado: fila v2 con canonical existente, posiblemente con sufijo host opaco. Acción: F-01 no escribe esa fila. Identity: byte-for-byte. Outcome: intacta.
+PUT pudo ocurrir. Recovery reconcilia exact same address/digest (`PutIfAbsent`, producer-output ACK, Adopt unique). Nunca mint another producer identity ni otro filename.
 
-**I — Builder alimentado desde Finalist/template.** Estado: DurableInputs con canonicales origen. Acción: publish nuevas; `rejectBuilderTemplateCanonicalCollisions`. Identity origen intacta; nuevas IDs. Outcome: si colisiona con template → conflicto antes de Adopt.
+### P6 — CONTENT CONFLICT
 
-### Errors / retries
+Mismo logical producer/address, bytes o `ProducerContextDigest` incompatibles. Expected: `CONTRACT_CONFLICT`. Nunca otro filename.
+
+### P7 — ADOPTED
+
+Sin cambio de ID. Filas v2 e objetos históricos intactos, incluidos sufijos host opacos.
+
+### P8 — REGENERATION
+
+Existing strategy/template como input. Producer nuevo cuando el contrato lo exige (inputs de template en identity → nuevo `ExecutionIntentKey`). Strategies nuevas, IDs nuevos, artifacts nuevos, lineage al source, source immutable.
+
+## Crash / retry matrix
+
+Notación: EIK = ExecutionIntentKey; TOK = producer filename token; ID = CanonicalStrategyID; KEY = object key; NS = OutputNamespaceOwnership; SPO = StageProducerOutput.
+
+**A — P1 distinct producers, same wave, same local basename.** Dos EIK. TOK distintos. ID/KEY distintos. NS puede ACK ambos. Outcome: ambos válidos.
+
+**B — P2 replay mismo producer, otro host/attempt.** Mismo EIK/TOK/ID/KEY. SPO ACK. PutIfAbsent ACK. Outcome: convergencia.
+
+**C — Crash antes de durable StageExecution.** Resolve recrea el mismo EIK. Outcome: una identity.
+
+**D — P4 authority resuelta, crash antes de PUT.** EIK estable; SPO puede estar ausente o persistido. Retry misma KEY. Outcome: una publicación.
+
+**E — P5 PUT, respuesta perdida.** Reconcile same KEY/digest. Outcome: ACK. Unknown commit → recovery read, no segundo mint.
+
+**F — Recovery en otro worker.** Igual a B. Prohibido divergir por HOST_KEY.
+
+**G — P6 contenido incompatible.** SPO o PutIfAbsent o unique v2. Outcome: `CONTRACT_CONFLICT`.
+
+**H — P7 adopted.** F-01 no escribe esa fila. Outcome: intacta.
+
+**I — P8 template/regeneration.** Nuevo EIK cuando inputs cambian. `rejectBuilderTemplateCanonicalCollisions`. Origen intacto.
+
+## Errors / retries
 
 | Clase | Señales | Retry | Mint identity |
 |---|---|---|---|
@@ -136,59 +254,64 @@ Notación: SE = StageExecutionRef, NS = OutputNamespaceOwnership, ID = Canonical
 | unknown commit | PersistenceUnknownCommit / ErrUnknownCommit | recovery read | no |
 | durable contract conflict | PersistenceContractConflict / ErrContractConflict | no | no |
 | malformed durable state | fila inválida al load | no | no |
-| physical object missing after authority | NS/adopt sí, probe no | republicar misma KEY | no |
-| duplicate logical producer | NS claim de otro FlowRun | no | no |
+| physical object missing after authority | SPO/adopt sí, probe no | republicar misma KEY | no |
+| duplicate FlowRun namespace | NS claim de otro FlowRun | no | no |
 | duplicate physical basename | mismo KEY, distinto digest | no | no |
+| sibling producers same basename local | TOK distintos | n/a | sí, dos IDs válidos |
 | cancellation | cancel del FlowRun/stage | no continuar el árbol | no |
 
-### BWC
+## BWC
 
-IDs adoptados intactos. Objetos históricos legibles. Wrappers WF/`_robust`/`(N)` siguen tolerados en el helper. No rename masivo. No migration. `BuilderSupplyBatchRef` y unique v2 no se reabren. Identity v2 cutover permanece: `AdoptStrategy` → `upsertStrategyV2`.
+IDs adoptados intactos. Objetos históricos legibles. Wrappers WF/`_robust`/`(N)` siguen tolerados. No rename masivo. `DATABASE MIGRATION: NONE`. `BuilderSupplyBatchRef` y unique v2 no se reabren. Identity v2 cutover permanece: `AdoptStrategy` → `upsertStrategyV2`. Archivos nuevos GENERATED llevan producer token; historia sin token no se recanonicaliza.
 
-### Certification
+## Certification
 
-G34 `concurrent-builder-identity` (SDK §13): workers distintos, misma campaign/wave/grupo/ordinal local; retry/crash/recover; producciones distintas no colisionan; replay mismo token; identidad idéntica al variar `HOST_KEY`.
+G34 `concurrent-builder-identity` (SDK §13) más P1–P8. Nivel: SOURCE PASS + CONTRACT/concurrency PASS. Tests: purity; publication con dos `ExecutionIntentKey` y mismo basename local → names distintos; mismo EIK × hosts distintos → names iguales; `go test -race` sobre Adopt v2 y producer-output; NS T7 se cita como prueba de que ownership **no** es uniqueness de producer. Registry real cuando el harness exista; si Maven/DNS blocked, DEGRADED explícito, no fingir PASS.
 
-Nivel: SOURCE PASS + CONTRACT/concurrency PASS. Tests unitarios de purity + publication + `go test -race` sobre `ClaimOutputNamespace` concurrente y Adopt v2. Registry real (`output_namespace_ownership_test`, `adopt_strategy` integration) es la prueba de authority durable; concatenar strings no basta.
+No recertificación global MT5. No reabrir B1/B2. Cert física adicional: sólo publication MinIO write-once de GENERATED nuevos. No flota MT5.
 
-No recertificación global MT5. No reabrir B1/B2. Cert física adicional: sólo publication MinIO write-once de GENERATED nuevos (object keys host-independent). No flota MT5.
-
-### Acceptance
+## Acceptance
 
 - `CanonicalStrategyID` determina el mismo valor con `HOST_KEY` zeus/hera/kronos/vacío.
-- Dos producers distintos mismo namespace → un owner, conflicto, no dos IDs.
-- Mismo producer replay → mismo ID y misma KEY.
-- Recovery cross-host → mismo ID/KEY.
-- Adopted IDs relevantes byte-for-byte.
-- Regeneración: origen inmutable; output nuevo + lineage; colisión con template fail-closed.
+- P1: same FlowRun + distinct producers + same basename → distinct ID/KEY, ambos válidos.
+- P2: same producer + different host → same ID/KEY.
+- P3: publicación concurrente no usa sibling NS ACK como uniqueness.
+- P4–P5: crash/lost PUT reconcilian la misma address; no segundo producer.
+- P6: conflicto de contenido → `CONTRACT_CONFLICT`, no rename.
+- P7: adopted byte-for-byte.
+- P8: regeneración con lineage; origen inmutable.
 - Historia no renombrada.
 - `DATABASE MIGRATION: NONE`.
 
-### Out of scope
+## Out of scope
 
-Finalist Model V2 / F-02. Promotion V2. Result Surface V2. membership/ranking. F-03 SQX long-running. magic. version seal. handoff. Echo S0. eligibility Echo. nuevo score model. Slot Pool / fencing / takeover / business timeout MT5. Reabrir B1A/B1B/B2. Producer-output token nuevo. Topology fija de pipeline como identity. Retiro global de `HOST_KEY` operacional.
+Finalist Model V2 / F-02. Promotion V2. Result Surface V2. membership/ranking. F-03 SQX long-running. magic. version seal. handoff. Echo S0. eligibility Echo. nuevo score model. Slot Pool / fencing / takeover / business timeout MT5. Reabrir B1A/B1B/B2. Tabla o token UUID nuevo. Topology fija de pipeline como identity. Reabrir fórmula `BuilderSupplyBatchRef`. Retiro global de `HOST_KEY` operacional. Ampliar `StageExecutionIdentityView` salvo que NORMAL demuestre que recompute del intent es insuficiente (entonces STOP, no improvisar).
 
 ## Evidencia y provenance
 
 Inspección read-only `xKoRx/symphony@db8a022703082fd7ee9d1e15243c5d1b2feaf578`.
 
-- `sqx/core/domain/canonical_strategy_id.go` `CanonicalStrategyID` L86–150: `os.Getenv("HOST_KEY")` y strip `isLikelyHostKey`.
-- `sqx/adapters/storage-minio/minio_storage.go` `publishedSQXFileName` / `legacySQXFileName`: ExactOutputName ignora host; batch token Campaign; legacy anexa host en basename genérico. Tests `TestPublishedSQXFileName_LegacyGenericBasenameCollidesByHost` y `TestPublishedSQXFileName_ExactOutputNameIgnoresHostAndLocalBasename`.
-- `sqx/core/domain/forge_campaign.go` `BuilderSupplyBatchRef` / `FilenameToken`.
-- `sqx/core/capabilities/storage.go` `StrategyMeta.BuilderSupplyBatchRef` / `ExactOutputName`.
-- `sqx/core/capabilities/persistence.go` `OutputNamespaceOwnershipStore`, `StageProducerOutput`, `SingletonStageProducerOutputStore` (comenta object keys host-dependent).
-- `sqx/adapters/registry-postgres/output_namespace_ownership.go` claim atómico FlowRun-owned; `output_namespace_ownership_test.go` concurrent claims.
-- `sqx/activities/worker/steps/steps.go` `claim_output_namespace`, Campaign upload `beforePut=nil`, `dbRegister` `CanonicalStrategyID(filename)`, `rejectBuilderTemplateCanonicalCollisions`.
-- `sqx/core/domain/persistence_identity.go` `NewStageExecutionIdentity`: retries preservan generation.
-- `sqx/adapters/registry-postgres/adopt_strategy.go` unique v2 `ON CONFLICT (canonical_strategy_id)`.
-- Frozen: [[2026-09-04-echo-forge-campaign-builder-supply-identity]] (wikilink resuelto; no reconstruido). [[2026-08-23-durable-strategy-identity-v2-cutover]] no toca CanonicalStrategyID/HOST_KEY. SDK F01/G34 en [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]].
+- `sqx/core/domain/persistence_identity.go` `NewStageExecutionIdentity`: `StageInstanceKey = hash("stage-instance.v1", TaskPath, StageKey, subject, inputsDigest)`; `ExecutionIntentKey = hash("stage-execution.v1", FlowRunID, slot, Generation)`.
+- `sqx/core/runtime/task_path.go` `StructuralTaskPath`: identidad por índices, no nombres.
+- `sqx/adapters/overview/binding/subject.go` `NewStageIntent` / `NewStageIntentWithInputs`: Builder generation=1; template mete inputs en identity.
+- `sqx/adapters/registry-postgres/stage_execution.go` `ResolveStageExecution` lookup por `execution_intent_key`; INSERT `id := uuid.NewString()`; `convergeStageExecution`. Unique `001_durable_persistence_foundation.up.sql`.
+- `sqx/activities/worker/project_activity.go` inserta `resolve_stage_execution` y `claim_output_namespace` antes de `execute_sqx`.
+- `sqx/activities/worker/steps/steps.go` resolve Builder; Campaign upload `beforePut=nil`; `dbRegister` `CanonicalStrategyID(filename)`; `rejectBuilderTemplateCanonicalCollisions`.
+- `sqx/core/capabilities/persistence.go` `OutputNamespaceOwnershipStore` (owner FlowRun; stage = initial claimant provenance); `StageProducerOutputStore` PK `(stage_execution_id, object_key)`; `SingletonStageProducerOutputStore` comenta keys host-dependent.
+- `sqx/adapters/registry-postgres/output_namespace_ownership_test.go` T3/T4/T7 sibling ACK; T8 cross-flow conflict.
+- `sqx/adapters/registry-postgres/stage_producer_output.go` insert-once genérico; migration 008 ya existe.
+- `sqx/core/domain/canonical_strategy_id.go` `os.Getenv("HOST_KEY")` + `isLikelyHostKey`.
+- `sqx/adapters/storage-minio/minio_storage.go` `publishedSQXFileName` / `legacySQXFileName` / `namespaceCampaignBuilderFilename`; `BuildMinIOPath` sin producer.
+- `sqx/core/domain/forge_campaign.go` `BuilderSupplyBatchRef`.
+- `sqx/core/capabilities/storage.go` `StrategyMeta` hoy: batch + ExactOutputName; sin producer token.
+- Frozen: [[2026-09-04-echo-forge-campaign-builder-supply-identity]]. [[2026-08-23-durable-strategy-identity-v2-cutover]]. SDK F01/G34 en [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]].
 
-Wikilink esperado del prompt: `[[2026-09-04-echo-forge-campaign-builder-supply-identity]]` resuelve a `80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-builder-supply-identity.md`.
+Wikilink `[[2026-09-04-echo-forge-campaign-builder-supply-identity]]` resuelve a `80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-builder-supply-identity.md`.
 
 ## Límites y contradicciones
 
-El SDK F01 sugiere un `producer_output_token` si un StageExecution contiene varios Builders paralelos. Source en este baseline: un Builder durable = un StageExecution = N archivos. YAGNI: no hay paralelismo intra-SE que exija token nuevo. Si el source futuro introduce varios Builders por SE, F-01 queda corta y hay que STOP, no ampliar en NORMAL.
-
-Campaign `BuilderSupplyBatchRef` prueba separación entre generaciones, no por sí sola intra-wave (ya dicho en el SDK). Intra-wave lo cubre NS ownership + uniqueness del published stem. No contradice el frozen supply-identity: el batch token sigue en identity Campaign; F-01 no lo sustituye por host ni por WaveKey.
+Meter FlowRun dentro de `ExecutionIntentKey` no viola el freeze de WaveKey: WaveKey sigue fuera de identity; el token proyectado es el slot durable del producer, no la ola. Si el manager considera que hashear FlowRun en el published basename es OPTION A (execution en identity) prohibida, F-01 queda `BLOCKED — MANAGER DECISION REQUIRED` sin inventar tabla.
 
 `FormatStrategyName` en `sqx/core/utils` y `pkg/sqxutils` aún anexa host en copies locales legacy. F-01 no los toma como authority de Adopt/MinIO durable; no-touch salvo que un caller productivo de publication los use. Si aparece en el hot path, PLAN_CONFLICT.
+
+Builder N-output no usa hoy skip-SQX recovery de singleton (`ExpectedProducerOutput`). F-01 no lo inventa: retry RUNNING re-ejecuta SQX; convergencia la dan EIK + token + SPO + PutIfAbsent. Bytes distintos → P6.
