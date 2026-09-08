@@ -80,3 +80,7 @@ Creado [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] y subpr
 ## [2026-09-07] ingest | Echo Forge F-01 correction — ExecutionIntentKey discriminator
 
 Corrección in-place de [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] e hijo [[Echo Forge — F-01 Canonical generation concurrency]]: logical producer = Builder StageExecution; discriminator = `ExecutionIntentKey`; `OutputNamespaceOwnership` insuficiente (T7). Change log [[2026-09-07-echo-forge-f01-canonical-generation-concurrency-correction]]. Graphify externo no se refresca.
+
+## [2026-09-07] ingest | Echo Forge F-01 correction 02 — filename budget
+
+Corrección in-place: published GENERATED compacto 91 chars (`Base64URL` EIK + stem); Campaign `FilenameToken` no se proyecta en nombres nuevos. Change log [[2026-09-07-echo-forge-f01-filename-budget-correction]]. Graphify externo no se refresca.

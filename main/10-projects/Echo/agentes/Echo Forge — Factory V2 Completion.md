@@ -210,6 +210,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - **2026-09-07** — Reparentado a [[Echo — Producto Integrado]], `owner: agent`, roadmap F-01…F-05. Tareas `#owner/me` de 4 ítems supersedidas. B1A/B1B/B2 historial, no backlog. C1/C2 fusionados en F-02.
 - **2026-09-07** — TOP F-01 persistió SPEC [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] e hijo [[Echo Forge — F-01 Canonical generation concurrency]]. NORMAL no autorizado.
 - **2026-09-07** — Corrección F-01 in-place: discriminator = `ExecutionIntentKey`; FlowRun/NS ownership insuficiente. NORMAL no autorizado.
+- **2026-09-07** — F-01 corrección 02: filename budget; Campaign `FilenameToken` no se proyecta en GENERATED nuevos. NORMAL no autorizado.
 
 ## 🧭 Decisiones
 

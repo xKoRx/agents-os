@@ -206,7 +206,7 @@ Suite por task arriba. Suite final: purity + token + publication P1/P2 + Builder
 
 ## Definition of Done
 
-SPEC cumplida. `DATABASE MIGRATION: NONE`. HOST_KEY fuera de CanonicalStrategyID y de publication GENERATED. Producer token derivado de `ExecutionIntentKey` en published GENERATED nuevos. Builder record-before-put sobre store existente. HOST_KEY operacional intacto. Adopted intactos. P1–P8 PASS o DEGRADED infra explícito. Foreign dirty symphony intacto. Sin prompt NORMAL ejecutado antes del re-review.
+SPEC cumplida. `DATABASE MIGRATION: NONE`. HOST_KEY fuera de CanonicalStrategyID y de publication GENERATED. Published GENERATED nuevo = fórmula compacta 91 chars (EIK+stem, sin Campaign FilenameToken). Builder record-before-put sobre store existente. HOST_KEY operacional intacto. Adopted intactos. P1–P8 PASS o DEGRADED infra explícito. Foreign dirty symphony intacto. Sin prompt NORMAL ejecutado antes del re-review.
 
 ## Unlocks
 
