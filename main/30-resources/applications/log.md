@@ -84,3 +84,7 @@ Corrección in-place de [[Echo Forge — F-01 Canonical Generation Concurrency C
 ## [2026-09-07] ingest | Echo Forge F-01 correction 02 — filename budget
 
 Corrección in-place: published GENERATED compacto 91 chars (`Base64URL` EIK + stem); Campaign `FilenameToken` no se proyecta en nombres nuevos. Change log [[2026-09-07-echo-forge-f01-filename-budget-correction]]. Graphify externo no se refresca.
+
+## [2026-09-08] ingest | Echo Forge F-02 Finalist Model V2 contract
+
+Creado [[Echo Forge — F-02 Finalist Model V2 Contract]] y subproyecto [[Echo Forge — F-02 Finalist Model V2]] hijo de [[Echo Forge — Factory V2 Completion]]. Change log [[2026-09-08-echo-forge-f02-finalist-model-v2-spec]]. Graphify externo no se refresca.

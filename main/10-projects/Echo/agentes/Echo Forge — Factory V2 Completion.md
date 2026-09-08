@@ -120,7 +120,9 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### F-02 Finalist Model V2 (C1+C2)
 
-- **ID / status / size:** F-02 · To Do · LARGE (una capacidad; milestones internos C1/C2, no tres fases)
+- **ID / status / size:** F-02 · WIP (SPEC) · LARGE (una capacidad; milestones internos C1/C2, no tres fases)
+- **Implementation project:** [[Echo Forge — F-02 Finalist Model V2]]
+- **SPEC:** [[Echo Forge — F-02 Finalist Model V2 Contract]]
 - **Objective:** Membresía estructural V2, Promotion V2, warnings, gates estructurales, Campaign BWC, Result Surface V2, finalists nullable/no-rank, compatibilidad historia V1.
 - **Capability unlocked:** Finalist ≠ Top N; NOT_COMPARABLE válido puede seguir finalista; mismatch requested symbol/TF bloquea; ranking/warnings aparte.
 - **Product value:** supply estructuralmente honesto; UI/result inspectable; no perder candidatos físicos por score.
@@ -137,7 +139,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Done when:** V2 estructural PASS; V1 history readable; zero finalists honesto; NOT_COMPARABLE no expulsa por sí solo.
 - **Unlocks:** F-04 membership exacta en handoff; F-05 golden nonempty estructural.
 - **Accepted debt:** policy 1.0.0 histórica inmutable.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning:** TOP persistió SPEC + TASKS 2026-09-08. **Implementation:** NORMAL no autorizado. **GOD:** NONE.
 
 ### F-03 SQX long-running
 
@@ -213,6 +215,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - **2026-09-07** — Corrección F-01 in-place: discriminator = `ExecutionIntentKey`; FlowRun/NS ownership insuficiente. NORMAL no autorizado.
 - **2026-09-07** — F-01 corrección 02: filename budget; Campaign `FilenameToken` no se proyecta en GENERATED nuevos. NORMAL no autorizado.
 - **2026-09-08** — **F-01 PASS/CLOSED.** Implementación ZCode `0509342` integrada a `master` por fast-forward only y pushed; gate G1 cerrado por orden del manager. G34 P1–P8 PASS; registry-postgres DEGRADED por entorno (preexistente). F-02–F-05 siguen To Do, no despachados.
+- **2026-09-08** — TOP F-02 persistió SPEC [[Echo Forge — F-02 Finalist Model V2 Contract]] e hijo [[Echo Forge — F-02 Finalist Model V2]]. Baseline symphony `0509342`. Migration `014_finalist_promotion_v2`. NORMAL no autorizado.
 
 ## 🧭 Decisiones
 
@@ -225,6 +228,8 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - [[Echo — Producto Integrado]]
 - [[Echo Forge — F-01 Canonical generation concurrency]]
 - [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]
+- [[Echo Forge — F-02 Finalist Model V2]]
+- [[Echo Forge — F-02 Finalist Model V2 Contract]]
 - [[Echo — Live Platform V1]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
 - [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]
