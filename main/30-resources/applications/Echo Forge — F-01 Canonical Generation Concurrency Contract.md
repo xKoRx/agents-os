@@ -64,7 +64,7 @@ No es FlowRun. No es wave. No es host. No es worker. No es proceso SQX. No es Te
 
 **Durable discriminator:** `ExecutionIntentKey` (`hashIdentity("stage-execution.v1", FlowRunID, StageInstanceKey, Generation)`). Cardinalidad: **exactamente una vez por logical Builder producer**.
 
-**Producer filename token:** representación determinista filename-safe de esa authority: `p` + hex de 64 de `ExecutionIntentKey` (sin prefijo `sha256:`). No es un token aleatorio. No es HOST_KEY. No es Temporal ID.
+**Producer filename token:** representación determinista, filename-safe y **biyectiva** del digest de 32 bytes de `ExecutionIntentKey`: `base64.RawURLEncoding` (43 chars, charset `A-Za-z0-9-_`, permitido por `sanitizeFileName`). No es `p`+hex(64). No es truncación. No es HOST_KEY. No es Temporal ID.
 
 Retry técnico (mismo slot, misma generation, otro host, otro attempt Temporal, crash recovery) → mismo `ExecutionIntentKey` → mismo token → mismos Strategy IDs → mismas artifact keys.
 
@@ -109,7 +109,7 @@ Pregunta clave: ¿qué durable identity existe exactamente una vez por logical B
 2. ¿Dos producers intra-wave legítimos obtienen StageExecutions distintas? **Sí**, vía `TaskPath` estructural distinto (o `CanonicalInputs` de template distintos → `StageInstanceKey` distinto). No hace falta topología hardcodeada.
 3. ¿Retry/recovery obtiene la misma StageExecution? **Sí.** `ResolveStageExecution` lookup por `ExecutionIntentKey`; unique en PostgreSQL; `convergeStageExecution` ACK si la fila coincide. Retry técnico preserva `Generation`. Reevaluación deliberada incrementa `Generation` → nuevo producer generation (nuevo token, nuevas strategies).
 4. ¿El ref/key está disponible antes de publication? **Sí.** Pipeline durable: `resolve_stage_execution` → `claim_output_namespace` → `execute_sqx` → upload. `ExecutionIntentKey` es computable incluso antes del INSERT.
-5. ¿Puede producir un producer token determinista sin identity de infraestructura? **Sí:** `p` + hex de `ExecutionIntentKey`. No UUID, no host, no Temporal.
+5. ¿Puede producir un producer token determinista sin identity de infraestructura? **Sí:** `Base64URLNoPad` del digest completo de `ExecutionIntentKey` (43 chars). No UUID, no host, no Temporal, no truncación.
 
 `StageExecutionIdentityView` hoy **omite** `ExecutionIntentKey` y `TaskPath`. Publication no debe depender de ampliar esa vista: recomputar el mismo `NewStageIntent` / `NewStageIntentWithInputs` ya usado en resolve (mismos `FlowRunRef`, `TaskPath`, task, inputs). El UUID `StageExecutionRef` queda como FK de `StageProducerOutput`, no como filename token.
 
@@ -121,11 +121,13 @@ Pregunta clave: ¿qué durable identity existe exactamente una vez por logical B
 
 ### Campaign wave namespace
 
-`BuilderSupplyBatchRef` / `FilenameToken()`. Aporta separación de olas/campaigns en el published basename. No discrimina siblings. F-01 no reabre su fórmula ([[2026-09-04-echo-forge-campaign-builder-supply-identity]]).
+`BuilderSupplyBatchRef` sigue siendo la identity de negocio de la ola (`{CampaignRef}:g{NNNNNN}`). F-01 **no** cambia su fórmula ni `FilenameToken()` ([[2026-09-04-echo-forge-campaign-builder-supply-identity]]). Sigue en `StrategyMeta` para cap/replenishment.
+
+**Nuevos durable GENERATED:** no se proyecta `FilenameToken()` al published basename. Es redundante: `ExecutionIntentKey` ya incorpora `FlowRunRef`, y cada ola Campaign materializa un FlowRun hijo distinto. Apilar `FilenameToken` (~45 chars) + producer token revienta el presupuesto de 128 (`sanitizeFileName`). Historia que ya trae batch token no se renombra.
 
 ### SQX strategy-local identity
 
-Stem local del archivo SQX (ResultsGroup / `Strategy_X.Y.Z.zN` / convención instrumento). Distingue N outputs **dentro** de un producer. No es GUID nativo. No es único intra-wave entre producers.
+Stem canónico local = `CanonicalStrategyFilename(local_sqx_basename)`. Distingue N outputs **dentro** de un producer. No es único intra-wave entre producers. En el filename físico se publica su digest completo (no el stem humano), para caber siempre en 128.
 
 ### Strategy identity y artifact addressing
 
@@ -133,24 +135,21 @@ Stem local del archivo SQX (ResultsGroup / `Strategy_X.Y.Z.zN` / convención ins
 
 **Artifact address** = `BuildMinIOPath(wave, instrument, direction, timeframe, strategy, version, taskFolder, published_basename)`. Wave en PATH es routing, no identity.
 
-### Fórmula conceptual (demostrada por source)
+### Fórmula conceptual (nuevos durable GENERATED)
 
 ```text
-published_basename =
-  namespace_producer(
-    namespace_campaign?(legacy_stem_without_host),
-    producer_filename_token(ExecutionIntentKey)
-  )
+producerTok = Base64URLNoPad( bytes(ExecutionIntentKey.digest) )     // 43, biyectivo
+localTok    = Base64URLNoPad( SHA256( CanonicalStrategyFilename(local_basename) ) )  // 43, biyectivo
 
-CanonicalStrategyID(published_basename)     → generated Strategy identity
-BuildMinIOPath(..., published_basename)     → artifact object key
+published_basename = producerTok + "_" + localTok + ".sqx"          // 91 ≤ 128 siempre
+
+CanonicalStrategyID(published_basename)  → generated Strategy identity
+BuildMinIOPath(..., published_basename)  → artifact object key
 ```
 
-`namespace_campaign?` aplica sólo si hay `BuilderSupplyBatchRef` (Campaign), con el insertion point vigente (`namespaceCampaignBuilderFilename`: token antes de `_Strategy`, o sufijo si no hay marker). `namespace_producer` usa el mismo insertion point con `producer_filename_token`. Durable Builder GENERATED **siempre** lleva producer token, haya o no Campaign.
+No se concatena `BuilderSupplyBatchRef.FilenameToken`, `HOST_KEY`, convención `legacySQXFileName` ni `p`+hex. `ExactOutputName` sigue ganando (singletons). Si `ExecutionIntentKey` no es canónico → `CONTRACT_CONFLICT`. Si `len(published_basename) > 128` → `CONTRACT_CONFLICT` (no truncar). El encoding fijo de 91 chars hace ese branch inalcanzable salvo bug.
 
-`ExactOutputName` (Retester/Optimizer/FinalReretester) es addressing singleton por `StrategyRef`. Fuera de identity GENERATED. F-01 no lo reabre salvo regresión.
-
-Esto no mete WaveKey en identity. No mete Temporal IDs. Proyectar `ExecutionIntentKey` al published basename es análogo a proyectar `BuilderSupplyBatchRef.FilenameToken`: una durable authority de negocio/slot, no un host.
+Presupuesto (source `sanitizeFileName`, máximo 128): Campaign `FilenameToken` ≈ 45; `p`+64 hex = 65; juntos no dejan stem real. Truncar el digest está prohibido. Compactar el digest **entero** a Base64URL no es truncación.
 
 **ADOPTED.** `canonical_strategy_id` histórico byte-for-byte. F-01 no recanonicaliza registry ni objetos. Un filename con `.zeus`/`.hera` opaco se re-lee igual; el helper ya no strippea por entorno.
 
@@ -167,7 +166,7 @@ El helper sólo normaliza wrappers documentados sobre un basename:
 3. Quitar prefijos WF (`WF_Matrix_-_`, `WF_Matrix-`, `WF_-_`, `WF-`, `WF Matrix - `) hasta idempotencia.
 4. Recortar `_robust` sólo si el nombre contiene `Strategy_`.
 5. Recortar sufijos `(N)` de 0 a 9.
-6. Devolver el resto intacto (incluye producer token y batch token ya presentes en el published name).
+6. Devolver el resto intacto (incluye tokens compactos nuevos y batch/host históricos ya presentes; no strippear encoding Base64URL).
 
 Prohibido: `os.Getenv("HOST_KEY")`; heurística `isLikelyHostKey` (puede mutilar `Strategy_X.Y.Z.z10`); anexar host; resolver colisiones con `(1)`/`(2)`, sufijo host nuevo o UUID random.
 
@@ -175,11 +174,11 @@ Prohibido: `os.Getenv("HOST_KEY")`; heurística `isLikelyHostKey` (puede mutilar
 
 `publishedSQXFileName`:
 
-- Si `ExactOutputName` está seteado: usarlo y ignorar host y producer token. Sin cambio de contrato.
-- Durable Builder GENERATED: `legacySQXFileName` **sin** anexar host; namespacing Campaign vigente si aplica; namespacing **obligatorio** con `producer_filename_token(ExecutionIntentKey)`.
-- Path MinIO sigue siendo routing.
+- Si `ExactOutputName` está seteado: usarlo y ignorar host, batch token y producer encoding. Sin cambio de contrato.
+- Durable Builder GENERATED: **no** `legacySQXFileName`+host; **no** `namespaceCampaignBuilderFilename`. Usar la fórmula compacta de 91 chars. `BuilderSupplyBatchRef` en meta sigue alimentando sólo el cap `beforeBatch`.
+- Path MinIO sigue siendo routing (instrument/wave/taskFolder).
 
-`StrategyMeta` debe transportar el producer filename token (campo nuevo de meta de publication, no entidad SDK, no tabla). Lo popula el step de upload recomputando el mismo intent de resolve. Publicar Builder durable sin token resoluble → `CONTRACT_CONFLICT`.
+`StrategyMeta` transporta el producer filename token ya compacto (o el `ExecutionIntentKey` para derivarlo en el adapter). Publicar Builder durable sin EIK canónico → `CONTRACT_CONFLICT`.
 
 **Por qué `beforePut=nil` hoy:** Campaign usa batch-preflight sólo para cap de candidatos. El comentario de `SingletonStageProducerOutputStore` explica que object keys host-dependent impedían serializar producers competidores con el store genérico `(stage_execution_id, object_key)`. Tras F-01 las keys son host-independent y stage-scoped; el store genérico `RecordStageProducerOutput` (PK ya existente, migration 008) cubre Builder N-output. No se usa el store singleton (ese es 1:1). No hay tabla nueva.
 
