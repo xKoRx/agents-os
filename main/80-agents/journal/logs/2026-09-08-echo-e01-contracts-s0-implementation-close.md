@@ -61,7 +61,7 @@ tags:
 
 ## Journal
 
-- Agent run: [[2026-09-08-zcode-glm-5.3-flash-echo-e01-contracts-s0]]
-- Feedback: [[2026-09-08-echo-e01-contracts-s0-session-feedback]]
+- Agent runs: [[2026-09-08-zcode-glm-5.3-flash-echo-e01-contracts-s0]], [[2026-09-08-zcode-glm-5.3-flash-echo-e01-s0-serialization-boundary]]
+- Feedback: [[2026-09-08-echo-e01-contracts-s0-session-feedback]], [[2026-09-08-echo-e01-s0-serialization-boundary-feedback]]
 - L0/L1: no creados (sin transcript; cierre por delta solicitado).
 - Graphify: sin reindex (sólo notas journal no indexables + una nota de proyecto ya indexada; refresh pendiente al cierre de fase si procede).
