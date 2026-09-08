@@ -32,7 +32,7 @@ updated: "2026-09-08"
 
 > [!info]+ Echo Forge — Factory V2 Completion
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
-> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]].
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 TOP: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]].
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
 > Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
@@ -45,7 +45,7 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 ## 📊 Estado actual
 
-- **F-01 CLOSED. F-02 CLOSED.** Roadmap congelado. F-01 PASS/CLOSED (2026-09-08): `master` = `0509342`. F-02 PASS/CLOSED (2026-09-08): commit final `c3b7ede4da5caa5f3294533b0dcf5e8570369c38` mergeado ff-only a `master` y pushed; tras el rescate documental del manifest `0.2.96`, `master` = `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` con worktree limpio. F-03–F-05 pendientes de despacho TOP.
+- **F-01 CLOSED. F-02 CLOSED. F-03 TOP persistido.** Roadmap congelado. F-01 PASS/CLOSED (2026-09-08): `master` = `0509342`. F-02 PASS/CLOSED (2026-09-08): commit final `c3b7ede4da5caa5f3294533b0dcf5e8570369c38` mergeado ff-only a `master` y pushed; tras el rescate documental del manifest `0.2.96`, `master` = `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` con worktree limpio. F-03 SPEC+TASKS persistidos 2026-09-08; NORMAL no autorizado. F-04–F-05 pendientes de despacho TOP.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
 - **Abierto exactamente una vez:** F-01 (F0 HOST_KEY/canonicalizer), F-02 (F1 = C1+C2 Finalist V2), F-03 (D SQX long-running), F-04 (F2 magic/seal/handoff tras pin S0), F-05 (release cohesivo + cert física + FULL golden).
 - **Base observada:** Symphony `db8a022`. Revalidar HEAD/working tree en la SPEC; dirty ajeno preservado. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
