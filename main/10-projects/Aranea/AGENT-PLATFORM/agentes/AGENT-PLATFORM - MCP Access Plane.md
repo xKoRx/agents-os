@@ -10,7 +10,7 @@ parent: "[[AGENT-PLATFORM-OWNER-PROJECT]]"
 sprint:
 start: 2026-09-07
 due:
-progress: 0
+progress: 5
 repo:
 jira:
 prs:
@@ -39,9 +39,11 @@ updated: "2026-09-07"
 
 ## 📊 Estado actual
 
-- Existe un host/contenedor MCP en Aranea, pero su inventario exacto, configuración, transporte, autenticación, almacenamiento de secretos y MCPs desplegados debe verificarse antes de cambiar nada.
+- T0 está WIP. El host MCP existente tiene sólo PostgreSQL MCP; no existe aún un access plane multi-capability.
+- La implementación actual usa Docker Compose con `crystaldba/postgres-mcp:latest` para SSE y una imagen local `local/postgres-mcp-streamable:latest` para Streamable HTTP. Hay tres perfiles lógicos (`echo` prod RO, `echo-develop` RO y `echo_mcp` RW sandbox) duplicados entre ambos transportes y tres proxies Nginx adicionales para compatibilidad con Antigravity.
+- La configuración muestra hardening de contenedor útil (`read_only`, `/tmp` tmpfs, `no-new-privileges`, `cap_drop: ALL`, límites de PID/memoria), pero también deuda de diseño: tags `latest`, imagen local no versionada, duplicación 3×2 de backends, proxies de compatibilidad, credenciales por variables de entorno y ninguna autenticación cliente→MCP visible en el Compose entregado.
+- La implementación está actualmente sin uso y el owner autoriza retirarla si conviene. No se reutilizará como arquitectura objetivo por defecto; primero se completa T0 y luego se decide entre migración mínima o reemplazo limpio.
 - La arquitectura [[AGENT-PLATFORM-ARCHITECTURE]] ya define MCP como denominador común del Capability Plane y registra que existen servicios MCP en Aranea; este proyecto materializa esa capacidad de forma incremental.
-- Hipótesis de diseño inicial: un host dedicado y centralizado es adecuado para esta escala si actúa como frontera de credenciales y cada capability mantiene identidad, permisos y aislamiento propios. Se reutiliza el host existente por defecto; una VM nueva sólo se evalúa si el inventario demuestra que el host actual no satisface los gates.
 
 ## 🧱 Entrega de desarrollo
 
@@ -58,7 +60,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 > [!example]- Roadmap incremental
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [ ] T0 Inventariar el host MCP existente: runtime, MCPs instalados, versiones, transporte, puertos, autenticación, persistencia, secretos, usuarios de servicio, red, logs y forma de despliegue #owner/agent #type/research #area/aranea
+> - [/] T0 Inventariar el host MCP existente: runtime, MCPs instalados, versiones, transporte, puertos, autenticación, persistencia, secretos, usuarios de servicio, red, logs y forma de despliegue #owner/agent #type/research #area/aranea
 > - [ ] T1 Definir y congelar el contrato mínimo de acceso: consumidores, aliases/profiles, least privilege, ubicación de secretos, autenticación cliente→MCP, auditoría, política de red y separación entre credenciales del MCP y credenciales del servicio destino #owner/agent #type/research #area/aranea
 > - [ ] T2 Seleccionar y validar SSH MCP con un solo host de laboratorio: sesión persistente, host-key verification, perfiles read/operator, timeout, auditoría y cero private keys entregadas al agente #owner/agent #type/admin #area/aranea
 > - [ ] T3 Seleccionar y validar PostgreSQL MCP con una sola base de desarrollo: perfiles RO/RW, credencial centralizada, límites de query/timeout y convivencia con `psql` nativo #owner/agent #type/admin #area/aranea
@@ -68,12 +70,13 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
+- **2026-09-07** — T0 iniciado con inventario real del Compose existente. Sólo hay PostgreSQL MCP. La solución rápida actual materializa 9 contenedores para 3 perfiles lógicos: 3 SSE con `crystaldba/postgres-mcp:latest`, 3 Streamable HTTP desde una imagen local y 3 Nginx para compatibilidad de Host/Antigravity. La implementación está sin uso; se preserva sólo hasta completar el inventario y no se toma como arquitectura objetivo.
 - **2026-09-07** — Proyecto creado para materializar incrementalmente el Capability Plane ya definido en [[AGENT-PLATFORM-ARCHITECTURE]]. Scope inicial congelado a SSH, PostgreSQL, MongoDB y Temporal; MinIO, Kafka y observabilidad quedan fuera hasta estabilizar este patrón. No se crea una VM nueva ni se migra el host MCP existente antes de completar T0-T1.
 
 ## 🧭 Decisiones
 
 - D1: centralizar credenciales y sesiones MCP en un host dedicado es la dirección preferida; los agentes consumen capabilities y perfiles, no secretos de los servicios destino.
-- D2: el host/contenedor MCP existente es el baseline. Una VM nueva requiere evidencia material de que no cumple aislamiento, mantenimiento, red o disponibilidad.
+- D2: el host/contenedor MCP existente es el baseline de discovery, no una arquitectura a preservar. Reutilizarlo, limpiarlo o reemplazarlo se decide después de T0-T1; una VM nueva requiere evidencia material de que el host actual no cumple aislamiento, mantenimiento, red o disponibilidad.
 - D3: un host central no implica una identidad omnipotente. Cada MCP/perfil debe usar credenciales finales separadas y least-privilege en SSH, PostgreSQL, MongoDB y Temporal.
 - D4: mantener clientes nativos (`ssh`, `psql`, `mongosh`, Temporal CLI) donde aporten valor; MCP es la capa reusable para agentes, no una prohibición del acceso nativo.
 
