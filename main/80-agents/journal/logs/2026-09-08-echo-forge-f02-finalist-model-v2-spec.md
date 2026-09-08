@@ -16,7 +16,8 @@ related:
 aliases: []
 confidence: verified
 source_session: ECHO-FORGE-F02-FINALIST-MODEL-V2-TOP
-source_feedbacks: []
+source_feedbacks:
+  - "[[2026-09-08-echo-forge-f02-finalist-model-v2-session-feedback]]"
 share_scope: local
 load_policy: manual
 indexable: false
@@ -60,8 +61,8 @@ tags:
 
 ## Validación
 
-- `python3 80-agents/skills/agents-os-implementation-planning/scripts/validate_plan.py` sobre el subproyecto.
-- `python3 scripts/lint.py --strict` sobre notas nuevas/modificadas.
+- `python3 80-agents/skills/agents-os-implementation-planning/scripts/validate_plan.py` sobre el subproyecto (0 errors).
+- `python3 80-agents/skills/agents-os-entity-lifecycle/scripts/lint.py --strict` sobre notas nuevas/modificadas (ERROR=0).
 
 ## Compartibilidad
 
