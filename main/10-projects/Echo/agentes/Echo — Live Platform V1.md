@@ -53,16 +53,30 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | Fijar por fase en SPEC TOP | Revalidar HEAD; observado `e25165ba` | Por Agent Task | Por Agent Task | PREPARADO |
+| xKoRx/echo | `master` | Revalidar por fase. E-01: `04c16bd2bd7b69725560873950a5d6b067fd3a4f` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` | E-01 TOP listo |
 
 ## 🧩 Subproyectos
 
-Sin hijos. S0 no se extrae a un tercer proyecto.
+```base
+filters:
+  and:
+    - 'type == "project"'
+    - 'file.hasLink(this.file)'
+views:
+  - type: cards
+    name: Subproyectos
+    order:
+      - file.name
+      - note.status
+      - note.priority
+```
+
+Hijo de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]]. S0 permanece ownership de este track.
 
 ## ✅ Tareas
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> - [ ] E-01 Canonical SDK foundation S0 #owner/agent #type/dev #area/echo
+> - [ ] [[Echo — E-01 Canonical SDK Foundation S0]] E-01 Canonical SDK foundation S0 #owner/agent #type/dev #area/echo
 > - [ ] E-02 Control safety auth and journal recovery #owner/agent #type/dev #area/echo
 > - [ ] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
 > - [ ] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
