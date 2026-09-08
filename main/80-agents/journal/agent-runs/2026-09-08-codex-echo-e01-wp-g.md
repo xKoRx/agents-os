@@ -18,7 +18,7 @@ model_source: unknown
 task_type: coding
 task_complexity: high
 outcome: success
-verification: verified
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
