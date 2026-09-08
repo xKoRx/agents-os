@@ -212,6 +212,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - **2026-09-07** — TOP F-01 persistió SPEC [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] e hijo [[Echo Forge — F-01 Canonical generation concurrency]]. NORMAL no autorizado.
 - **2026-09-07** — Corrección F-01 in-place: discriminator = `ExecutionIntentKey`; FlowRun/NS ownership insuficiente. NORMAL no autorizado.
 - **2026-09-07** — F-01 corrección 02: filename budget; Campaign `FilenameToken` no se proyecta en GENERATED nuevos. NORMAL no autorizado.
+- **2026-09-08** — **F-01 PASS/CLOSED.** Implementación ZCode `0509342` integrada a `master` por fast-forward only y pushed; gate G1 cerrado por orden del manager. G34 P1–P8 PASS; registry-postgres DEGRADED por entorno (preexistente). F-02–F-05 siguen To Do, no despachados.
 
 ## 🧭 Decisiones
 
