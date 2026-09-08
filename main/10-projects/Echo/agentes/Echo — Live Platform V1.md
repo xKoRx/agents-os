@@ -76,7 +76,7 @@ Hijo de implementación (no Integration, no tercer producto): [[Echo — E-01 Ca
 ## ✅ Tareas
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> - [/] [[Echo — E-01 Canonical SDK Foundation S0]] E-01 Canonical SDK foundation S0 #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-01 Canonical SDK Foundation S0]] E-01 Canonical SDK foundation S0 #owner/agent #type/dev #area/echo
 > - [ ] E-02 Control safety auth and journal recovery #owner/agent #type/dev #area/echo
 > - [ ] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
 > - [ ] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
