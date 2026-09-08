@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Páginas:** 16 aplicaciones
-- **Última ingesta:** 2026-09-08 (F-02 Finalist Model V2).
+- **Última ingesta:** 2026-09-08 (F-03 SQX Long-Running Contract).
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -68,6 +68,7 @@ tags:
 | [[Echo Forge — Fuentes de arquitectura y producto 2026-09-06]] | Provenance Symphony a10c26c, SDK, contratos y evidencia física; source ledger del recurso. |
 | [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | Contrato técnico F-01: CanonicalStrategyID puro, publication GENERATED con discriminator `ExecutionIntentKey`, sin HOST_KEY; sin migration. |
 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | Contrato técnico F-02: membership estructural ≠ Top N; Promotion 2.0.0; identity requested-vs-HTM; Campaign nullable rank; migration 014. |
+| [[Echo Forge — F-03 SQX Long-Running Contract]] | Contrato técnico F-03: elapsed ≠ failure en SQX largo; retirar 10d/20d/30d/10m; heartbeat 2m KEEP; cancel ≠ timeout; migration NONE. |
 
 ## 🚨 Salud (del último lint)
 

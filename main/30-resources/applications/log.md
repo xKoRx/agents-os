@@ -88,3 +88,7 @@ Corrección in-place: published GENERATED compacto 91 chars (`Base64URL` EIK + s
 ## [2026-09-08] ingest | Echo Forge F-02 Finalist Model V2 contract
 
 Creado [[Echo Forge — F-02 Finalist Model V2 Contract]] y subproyecto [[Echo Forge — F-02 Finalist Model V2]] hijo de [[Echo Forge — Factory V2 Completion]]. Change log [[2026-09-08-echo-forge-f02-finalist-model-v2-spec]]. Graphify externo no se refresca.
+
+## [2026-09-08] ingest | Echo Forge F-03 SQX Long-Running Contract
+
+Creado [[Echo Forge — F-03 SQX Long-Running Contract]] y subproyecto [[Echo Forge — F-03 SQX long-running]] hijo de [[Echo Forge — Factory V2 Completion]]. Change log [[2026-09-08-echo-forge-f03-sqx-long-running-spec]]. Graphify externo no se refresca.

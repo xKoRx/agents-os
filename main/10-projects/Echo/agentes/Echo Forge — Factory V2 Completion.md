@@ -55,11 +55,11 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | Fijar por fase en SPEC TOP | `0509342439cfbaa048839088787458dde1ed1b05` | F-02: este padre | F-02: [[Echo Forge — F-02 Finalist Model V2 Contract]] | **F-01 CLOSED `0509342`**; **F-02 CLOSED `c3b7ede` (ff-only) → `master` `e50cb7e`**; F-03–F-05 PREPARADO |
+| xKoRx/symphony | Fijar por fase en SPEC TOP | `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` | F-03: este padre | F-03: [[Echo Forge — F-03 SQX Long-Running Contract]] | **F-01 CLOSED `0509342`**; **F-02 CLOSED `c3b7ede` (ff-only) → `master` `e50cb7e`**; **F-03 TOP** (NORMAL no autorizado); F-04–F-05 PREPARADO |
 
 ## 🧩 Subproyectos
 
-Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
+Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (TOP; NORMAL no autorizado). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
 
 ## ✅ Tareas
 
@@ -70,7 +70,7 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
 > - [x] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
-> - [ ] F-03 SQX long-running #owner/agent #type/dev #area/echo
+> - [/] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
 > - [ ] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
 > - [ ] F-05 Cohesive release, physical cert and FULL golden #owner/agent #type/dev #area/echo
 
@@ -144,7 +144,10 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### F-03 SQX long-running
 
-- **ID / status / size:** F-03 · To Do · MEDIUM
+- **ID / status / size:** F-03 · Planning persisted · MEDIUM
+- **Implementation project:** [[Echo Forge — F-03 SQX long-running]]
+- **SPEC:** [[Echo Forge — F-03 SQX Long-Running Contract]]
+- **Planning (2026-09-08):** TOP persistió SPEC + TASKS T1.1–T1.8. Baseline `e50cb7e`. `DATABASE MIGRATION: NONE`. **Implementation:** NORMAL no autorizado. **GOD:** NONE.
 - **Objective:** Elapsed wall-clock ≠ failure en Builder/Optimizer/WFM/etc. Quitar deadlines de negocio arbitrarios preservando liveness/recovery. SQX sigue serial por máquina/databank; no hereda allocator MT5.
 - **Capability unlocked:** jobs SQX largos terminan; cancel explícito sigue siendo la muerte cooperativa.
 - **Product value:** factory no aborta cómputo sano; simétrico al freeze MT5 B1B.
@@ -161,7 +164,6 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Done when:** no existe deadline de negocio que mate Builder/Optimizer/WFM sano; liveness real conservada.
 - **Unlocks:** F-05 puede incluir cómputos largos en golden.
 - **Accepted debt:** serialización SQX one-job-per-machine.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
 
 ### F-04 Magic allocation, version seal and handoff
 
@@ -218,6 +220,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - **2026-09-08** — **F-01 PASS/CLOSED.** Implementación ZCode `0509342` integrada a `master` por fast-forward only y pushed; gate G1 cerrado por orden del manager. G34 P1–P8 PASS; registry-postgres DEGRADED por entorno (preexistente). F-02–F-05 siguen To Do, no despachados.
 - **2026-09-08** — TOP F-02 persistió SPEC [[Echo Forge — F-02 Finalist Model V2 Contract]] e hijo [[Echo Forge — F-02 Finalist Model V2]]. Baseline symphony `0509342`. Migration `014_finalist_promotion_v2`. NORMAL no autorizado.
 - **2026-09-08** — **F-02 PASS/CLOSED.** Implementación Codex `c3b7ede` integrada a `master` por fast-forward only y pushed; G1 cerrado por orden del manager. Limpieza del dirty tree local: 5 archivos restaurados (config ejemplo, fixtures regenerables de specs cerradas, índice SPECS.md, workspace editorial), 4 RCA/CHANGE de la campaña C3 eliminados (materializados en Agents OS/source o superseded por frozen V2: registro Adaptive ya removido, `ParseCFXConfiguredPeriod` en source, orphan MT5 en B2/V3, execution model V1 superseded por Slot Pool V2), y `deploy/manifest.json 0.2.96` rescatado como commit separado `e50cb7e`. Backup safety temporal en `/tmp`, no autoridad. F-03–F-05 siguen To Do, no despachados.
+- **2026-09-08** — TOP F-03 persistió SPEC [[Echo Forge — F-03 SQX Long-Running Contract]] e hijo [[Echo Forge — F-03 SQX long-running]]. Baseline symphony `e50cb7e`. `DATABASE MIGRATION: NONE`. NORMAL no autorizado.
 
 ## 🧭 Decisiones
 
@@ -232,6 +235,8 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]
 - [[Echo Forge — F-02 Finalist Model V2]]
 - [[Echo Forge — F-02 Finalist Model V2 Contract]]
+- [[Echo Forge — F-03 SQX long-running]]
+- [[Echo Forge — F-03 SQX Long-Running Contract]]
 - [[Echo — Live Platform V1]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
 - [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]
