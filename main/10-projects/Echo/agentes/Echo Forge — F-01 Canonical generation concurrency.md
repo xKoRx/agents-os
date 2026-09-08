@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: done
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-07
 due:
-progress: 0
+progress: 100
 repo: xKoRx/symphony
 jira:
 prs:
@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-07"
-updated: "2026-09-07"
+updated: "2026-09-08"
 ---
 
 # Echo Forge — F-01 Canonical generation concurrency
@@ -42,16 +42,16 @@ Hacer `CanonicalStrategyID` puro y la publication GENERATED con **durable produc
 
 ## 📊 Estado actual
 
-- **PLAN READY FOR MANAGER RE-REVIEW.** SPEC corregida in-place (retirado FlowRun/NS como discriminator). TASKS T1.1–T1.4 ajustadas, no duplicadas. Implementación NORMAL **no autorizada**.
-- Baseline source: `xKoRx/symphony@db8a022703082fd7ee9d1e15243c5d1b2feaf578` = HEAD = origin/master al diseñar. Foreign dirty de symphony preservado, no tocado.
-- Agents OS origin/master analizado: `83506a14f0b850402fbb61d50e90790662fe19f0`. Corrección encima de `419c64084459c9c903061cad0ecf900f33313b09`.
-- `DATABASE MIGRATION: NONE`. `GOD REQUIRED: NONE`. Modelo por task: NORMAL.
+- **PASS / CLOSED (2026-09-08).** Manager aceptó e integró: `xKoRx/symphony@master` = `0509342439cfbaa048839088787458dde1ed1b05` (ff-only desde `db8a022`). Gate G1 cerrado. Desbloquea F-04 (sellado sobre IDs estables) y F-05 (golden) sin reabrir B1/B2.
+- Baseline source: `xKoRx/symphony@db8a022703082fd7ee9d1e15243c5d1b2feaf578`. Branch `feature/f01-canonical-generation-concurrency` integrada. Foreign dirty preservado.
+- G34: P1–P8 SOURCE/CONTRACT PASS; `registry-postgres` DEGRADED por entorno (`initdb` shared memory, preexistente en baseline) — ver [[symphony-sqx-global-verification-non-hermetic]].
+- `DATABASE MIGRATION: NONE`. `GOD REQUIRED: NONE`. F-02/F-03 no abiertos.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f01-canonical-generation-concurrency` | `db8a022703082fd7ee9d1e15243c5d1b2feaf578` | [[Echo Forge — Factory V2 Completion]] F-01 | [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | Implementado `0509342`; G34 registry DEGRADED (infra); en review |
+| xKoRx/symphony | `feature/f01-canonical-generation-concurrency` (integrada) | `db8a022703082fd7ee9d1e15243c5d1b2feaf578` | [[Echo Forge — Factory V2 Completion]] F-01 | [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | **PASS / CLOSED** — `master` = `0509342439cfbaa048839088787458dde1ed1b05` (ff-only, pushed) |
 
 ## Parent / SPEC / baselines
 
@@ -111,10 +111,10 @@ Ninguna fase Echo/Forge posterior. Independiente de F-02/F-03/E-01. Reusa B2 CLO
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [r] T1.1 CanonicalStrategyID puro y filename tokens compactos #owner/agent #type/dev #area/echo
-> - [r] T1.2 Publication GENERATED con durable producer discrimination #owner/agent #type/dev #area/echo
-> - [r] T1.3 Adopted BWC y regeneración template #owner/agent #type/dev #area/echo
-> - [r] T1.4 G34 P1–P8 concurrency/crash certification #owner/agent #type/dev #area/echo
+> - [x] T1.1 CanonicalStrategyID puro y filename tokens compactos #owner/agent #type/dev #area/echo
+> - [x] T1.2 Publication GENERATED con durable producer discrimination #owner/agent #type/dev #area/echo
+> - [x] T1.3 Adopted BWC y regeneración template #owner/agent #type/dev #area/echo
+> - [x] T1.4 G34 P1–P8 concurrency/crash certification #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -191,7 +191,7 @@ Contrato de cada TASK: objetivo, archivos, entrada, cambio, invariantes, tests, 
 
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
-| G1 | pending | Ejecutar T1.1–T1.4 según SPEC; dejar review | Manager acepta SPEC+diff+tests G34/P1–P8 | F-01 DONE; desbloquea sellado F-04 sobre IDs estables |
+| G1 | closed (PASS) | T1.1–T1.4 ejecutadas según SPEC; diff `0509342` + tests G34/P1–P8 entregados a review | Manager ordenó INTEGRATE/CLOSE: ff-only a `master` y push (2026-09-08) | F-01 DONE; desbloquea sellado F-04 sobre IDs estables |
 
 ## Tests / certification
 
@@ -282,6 +282,7 @@ El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 - **2026-09-07** — Corrección 02 filename budget: `p`+hex(64) rechazado. Encoding Base64URL 91 chars. Campaign `FilenameToken` no se proyecta en GENERATED nuevos. NORMAL no autorizado.
 - **2026-09-08** — NORMAL autorizado por manager (prompt). T1.1–T1.4 implementadas en symphony `feature/f01-canonical-generation-concurrency` desde `db8a022`, commit `0509342`. Purity, tokens 91 chars, record-before-put genérico, bridge overview local→publicado, fail-closed sin store/token. Suites domain/capabilities/storage-minio/pipeline/steps/worker PASS; `go test -race` PASS. G34 registry-postgres **DEGRADED**: harness Postgres embebido falla `initdb` (shared memory) — verificado preexistente en baseline limpio. Foreign dirty intacto. Estado: review (gate G1 pendiente de aceptación manager).
 - **2026-09-08** — Push autorizado ejecutado: `origin/feature/f01-canonical-generation-concurrency` = `0509342` (tracking set). Sin merge/rebase/amend/commits nuevos; `master` intacto en `db8a022`.
+- **2026-09-08** — **INTEGRATE/CLOSE autorizado y ejecutado.** Precondiciones verificadas (origin/master `db8a022`, F-01 `0509342`, 1 ahead/0 behind, foreign dirty intacto). `master` integrado vía **fast-forward only** a `0509342` y pushed; sin commits nuevos ni source adicional. **F-01 PASS / CLOSED.** G34: P1–P8 SOURCE/CONTRACT PASS; registry-postgres DEGRADED por entorno (preexistente). Gate G1 cerrado por orden del manager. F-02 no se abre.
 
 ## 🧭 Decisiones
 
