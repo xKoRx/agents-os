@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-07
 due:
-progress: 0
+progress: 100
 repo: xKoRx/echo
 jira:
 prs:
@@ -46,7 +46,7 @@ Llevar E-01 desde el baseline Echo autorizado hasta **CONTRACT PASS** del módul
 
 ## 📊 Estado actual
 
-- **TOP SPEC+PLAN/TASKS listos para MANAGER REVIEW → NORMAL.** Progress 0 de implementación.
+- **IMPLEMENTACIÓN COMPLETA (NORMAL):** T01–T25 `[x]`; gates PASS; commit `f1070bec` sobre `18261429`. CONTRACT PASS formal lo declara el Verifier en VERIFICATION.md (fuera de este TOP).
 - **Baseline Echo:** `04c16bd2bd7b69725560873950a5d6b067fd3a4f` (`origin/master`).
 - **Físico:** módulo parent `github.com/xKoRx/echo/v3/sdk` existe; `v3/sdk/contracts` **no existe**.
 - **Contrato WHAT:** repo `xKoRx/echo` path `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` (no duplicar FR aquí).
@@ -195,12 +195,12 @@ _No aplica — este es el hijo de implementación de E-01; no crea Integration n
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-SDK-CANONICAL-CONTRACT/TASKS.md`. Aquí sólo work packages.
-> - [ ] WP-A Wire C/H/D + validator + desigualdad HashIdentity #owner/agent #type/dev #area/echo
-> - [ ] WP-B Identity FR-1/FR-2/FR-3 + conflicto write-once #owner/agent #type/dev #area/echo
-> - [ ] WP-C Operations FR-5 + unknown fields #owner/agent #type/dev #area/echo
-> - [ ] WP-D Handoff/Score/Runtime types puros #owner/agent #type/dev #area/echo
-> - [ ] WP-E Corpus G01–G36 + fake consumer #owner/agent #type/dev #area/echo
-> - [ ] WP-F Certification GOWORK=off #owner/agent #type/dev #area/echo
+> - [x] WP-A Wire C/H/D + validator + desigualdad HashIdentity #owner/agent #type/dev #area/echo
+> - [x] WP-B Identity FR-1/FR-2/FR-3 + conflicto write-once #owner/agent #type/dev #area/echo
+> - [x] WP-C Operations FR-5 + unknown fields #owner/agent #type/dev #area/echo
+> - [x] WP-D Handoff/Score/Runtime types puros #owner/agent #type/dev #area/echo
+> - [x] WP-E Corpus G01–G36 + fake consumer #owner/agent #type/dev #area/echo
+> - [x] WP-F Certification GOWORK=off #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -219,6 +219,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-08** — Implementación NORMAL completada: commit `f1070bec` (152 archivos, sólo `v3/sdk/contracts/**`) sobre `18261429`. Gates: `GOWORK=off go test/-race -cover/vet` PASS; coverage recetas 95.1% / wire 97.0% / fakeconsumer 95.5%; corpus G01–G36 + write-once fixture; schema regenera sin drift; stdlib-only verificado por test. Sin push/tag; dirty foráneo inexistente. Pendiente: Verifier (VERIFICATION.md) y decisión manager (pin/corpus publicable).
 - **2026-09-07** — Materializado desde template `project`. Parent [[Echo — Live Platform V1]]. SPEC/TASKS/PLAN puente en `xKoRx/echo` feature `FEAT-SDK-CANONICAL-CONTRACT` commit `18261429`. Baseline `04c16bd2`. No source Go.
 
 ## 🧭 Decisiones (ejecución, no semántica)

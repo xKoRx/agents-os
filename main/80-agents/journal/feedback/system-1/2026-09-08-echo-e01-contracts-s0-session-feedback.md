@@ -2,18 +2,19 @@
 type: feedback
 schema_version: 1
 scope: session
-created: 2026-09-08
-updated: 2026-09-08
-area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+created: "2026-09-08"
+updated: "2026-09-08"
+area: "[[Echo]]"
+project: "[[Echo — E-01 Canonical SDK Foundation S0]]"
 entities:
-  - "[[AGENTS OS]]"
-related: []
+  - "[[Echo — Live Platform V1]]"
+related:
+  - "[[Echo — E-01 Canonical SDK Foundation S0]]"
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash
+agent_run: "[[2026-09-08-zcode-glm-5.3-flash-echo-e01-contracts-s0]]"
+session_goal: "Implementar T01–T25 del contrato canónico S0 en xKoRx/echo (E-01/S0, NORMAL)"
 source_session:
 confidence: high
 load_policy: manual
@@ -22,93 +23,38 @@ index_priority: low
 tags:
   - kind/feedback
   - scope/session
-  - project/agents-os
+  - project/echo
   - agent/system1
 ---
 
-# Session Feedback - 2026-09-08 - short-topic
+# Session Feedback - 2026-09-08 - echo e01 contracts s0
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Agent surface: [[ZCode]]
+- Agent model: GLM-5.3-Flash (host)
+- Agent run: [[2026-09-08-zcode-glm-5.3-flash-echo-e01-contracts-s0]]
+- Session goal: implementación mecánica T01–T25 del contrato S0 (módulo anidado stdlib-only, wire FR-4, recetas FR-1…FR-5, corpus G01–G36, schema, fake consumer, certificación).
+- Main entity: [[Echo — E-01 Canonical SDK Foundation S0]]
+- Skills used: agents-os-bootstrap; agentes-os-agent-project-workflow implícito vía subproyecto; agents-os-session-close; agents-os-agent-run-register; agents-os-session-feedback.
+- Retrieval mode: lectura directa de SPEC/TASKS/PLAN en repo + resources frozen enlazados desde el subproyecto; sin Graphify (tarea de ejecución con fuentes ya resueltas).
+- Artifacts changed: subproyecto E-01 actualizado; agent_run; este feedback; change_log en `80-agents/journal/logs/2026-09-08-echo-e01-contracts-s0-implementation-close.md`.
 
 ## Scores
 
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+- Startup clarity: 5
+- Retrieval usefulness: 5
+- Skill fit: 5
+- Template fit: 4
+- Closeout friction: 4
+- Overall confidence: 5
 
 ## What Complicated The Session Most
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+- Observation: el gate de coverage ≥95% exigió dos rondas extra sobre defensivos y ramas opcionales de encoders/decoders; la heurística "rama no alcanzable se borra" resolvió la mayoría (dead code en `emitCanonical`, `typeSchema`, `SetString`).
+- Why it was hard: los encoders via mapas hacían que ramas de presencia (`omitempty`-like) sólo se cubran construyendo fixtures con cada opcional poblado.
+- Proposed improvement: ninguno material — la regla existente funcionó; registrar que los fixtures de corpus reutilizables (Gxx) aceleran la cobertura de validation branches.
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+- SPEC/TASKS/SUBPROYECTO con un solo hecho por artefacto: implementación sin ambigüedad semántica; golden independent verification (receta reimplementada en Python) cerró la confianza sobre `C()`/`H()` sin discusión.
