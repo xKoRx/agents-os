@@ -44,6 +44,10 @@ tags:
 
 - Commit `c2472ca953b54954431b476df9b65ce1b5aa9631` (parent `f1070bec`), publicado fast-forward: `Canonicalize` rechaza UTF-8 inválido en raw JSON y en Go values (walk reflexivo pre-encode, sin reemplazo U+FFFD); `Validate` lo marca `INVALID_WIRE`. Tests nuevos: string value, object key, no-ASCII válido preservado. Gates PASS; wire 96.9%.
 
+## Corrección 2: prevalidación UTF-8 cycle-safe
+
+- Commit `6cf39edfbd1f16eca82753f42527b170b50b66f0` (parent `c2472ca9`), publicado fast-forward: walk UTF-8 con ciclo-detección por camino activo y field set idéntico a encoding/json; tests de ciclos ptr/map/slice, referencias compartidas y campos no serializados.
+
 ## No tocado
 
 - Resources frozen, SPEC/PLAN/TASKS, Symphony, Lab, `v3/sdk/go.mod`, `go.work`. Verifier (VERIFICATION.md) y pin/corpus publicable quedan para manager/verificador.
