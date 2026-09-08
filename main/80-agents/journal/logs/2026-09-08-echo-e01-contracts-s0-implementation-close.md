@@ -36,6 +36,10 @@ tags:
 - Corpus `testdata/v1/manifest.json` G01–G36 + `write-once-conflict/`; goldens verificados contra receta reimplementada en Python; schema `schema/echo-contracts-v1.schema.json` regenera sin drift (`SCHEMA_REGEN=1`).
 - Sin push, sin tag, sin cambios fuera de `v3/sdk/contracts/**`.
 
+## Corrección operativa (publicación)
+
+- Push `HEAD:master` sin force tras gate completo (`origin/master == 04c16bd2`, cadena exacta `18261429`+`f1070bec`, ancestro OK, árbol limpio). Remoto verificado: `origin/master == f1070bec27db3ca415fe24f3c3576139674b7e09`.
+
 ## No tocado
 
 - Resources frozen, SPEC/PLAN/TASKS, Symphony, Lab, `v3/sdk/go.mod`, `go.work`. Verifier (VERIFICATION.md) y pin/corpus publicable quedan para manager/verificador.
