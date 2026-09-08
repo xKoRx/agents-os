@@ -57,7 +57,7 @@ Llevar E-01 desde el baseline Echo autorizado hasta **CONTRACT PASS** del módul
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` (fase E-01) | `04c16bd2bd7b69725560873950a5d6b067fd3a4f` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] + freeze [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]] | `xKoRx/echo` `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` | TOP READY_FOR_NORMAL |
+| xKoRx/echo | `master` (fase E-01) | `04c16bd2bd7b69725560873950a5d6b067fd3a4f` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] + freeze [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]] | `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` @ `182614297138c8c6fa0f02cd6aa8a5decf151479` | TOP READY_FOR_NORMAL |
 
 ## 🗺️ Source map (baseline)
 
@@ -219,7 +219,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-07** — Materializado desde template `project`. Parent [[Echo — Live Platform V1]]. SPEC/TASKS/PLAN puente en `xKoRx/echo` feature `FEAT-SDK-CANONICAL-CONTRACT`. Baseline `04c16bd2`. No source Go.
+- **2026-09-07** — Materializado desde template `project`. Parent [[Echo — Live Platform V1]]. SPEC/TASKS/PLAN puente en `xKoRx/echo` feature `FEAT-SDK-CANONICAL-CONTRACT` commit `18261429`. Baseline `04c16bd2`. No source Go.
 
 ## 🧭 Decisiones (ejecución, no semántica)
 

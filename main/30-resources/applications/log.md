@@ -72,3 +72,7 @@ Creado [[Echo + Echo Forge — Architecture Durability and Contract Review — F
 ## [2026-09-07] ingest | Freeze review final del contrato Echo SDK (Fable 5.1)
 
 Creado [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]; enlazado desde el contrato Astra, la revisión de durabilidad Fable y ambos proyectos. Decisión B: cinco correcciones FR-1…FR-5 incorporables en S0, ningún TOP. Hallazgo S: `HashIdentity` vigente en Forge es newline-join, distinto del `H()` JSON array del contrato; refs S de MetricSet/TradeSet ya derivan identidad de inputs, no de payload. Change log [[2026-09-07-echo-sdk-contract-freeze-review]]. Graphify externo no se refresca (read-only fuera del vault).
+
+## [2026-09-07] ingest | Echo Forge F-01 Canonical generation concurrency contract
+
+Creado [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] y subproyecto [[Echo Forge — F-01 Canonical generation concurrency]] hijo de [[Echo Forge — Factory V2 Completion]]. Change log [[2026-09-07-echo-forge-f01-canonical-generation-concurrency-spec]]. Graphify externo no se refresca.

@@ -96,6 +96,8 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 ### F-01 Canonical generation concurrency
 
 - **ID / status / size:** F-01 · To Do · MEDIUM
+- **Implementation project:** [[Echo Forge — F-01 Canonical generation concurrency]]
+- **SPEC:** [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]
 - **Objective:** Hacer `CanonicalStrategyID` puro **después** de probar un discriminador durable de output de productores concurrentes intra-wave. HOST_KEY resolvió colisiones reales de Builder; no borrarlo a ciegas.
 - **Capability unlocked:** generación paralela sin colisión de identidad; IDs adoptados intactos.
 - **Product value:** supply concurrente correcto; desbloquea retiro futuro del sufijo host.
@@ -113,7 +115,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Done when:** proof intra-wave PASS; no se eliminó HOST_KEY/sufijo sin esa evidencia; IDs históricos no renombrados.
 - **Unlocks next:** F-04 puede sellar versiones sobre IDs estables; F-05 golden no depende de retirar sufijo.
 - **Accepted debt:** host-suffixed adopted IDs hasta proof.
-- **Planning:** TOP (SPEC acotada). **Implementation:** NORMAL. **GOD REQUIRED NOW:** NONE.
+- **Planning:** TOP cerrado 2026-09-07, pendiente manager review. **Implementation:** NORMAL no autorizado aún. **GOD REQUIRED NOW:** NONE.
 
 ### F-02 Finalist Model V2 (C1+C2)
 
@@ -206,6 +208,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 ## 📆 Bitácora
 
 - **2026-09-07** — Reparentado a [[Echo — Producto Integrado]], `owner: agent`, roadmap F-01…F-05. Tareas `#owner/me` de 4 ítems supersedidas. B1A/B1B/B2 historial, no backlog. C1/C2 fusionados en F-02.
+- **2026-09-07** — TOP F-01 persistió SPEC [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] e hijo [[Echo Forge — F-01 Canonical generation concurrency]]. NORMAL no autorizado.
 
 ## 🧭 Decisiones
 
@@ -216,6 +219,8 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 ## 🔗 Docs / Links
 
 - [[Echo — Producto Integrado]]
+- [[Echo Forge — F-01 Canonical generation concurrency]]
+- [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]
 - [[Echo — Live Platform V1]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
 - [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]
