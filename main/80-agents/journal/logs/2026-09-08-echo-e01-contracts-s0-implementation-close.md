@@ -12,7 +12,7 @@ related: ["[[Echo SDK — Canonical Forge Integration and Analytics Contract V1]
 aliases: []
 confidence: verified
 source_session:
-source_feedbacks: ["[[2026-09-08-echo-e01-contracts-s0-session-feedback]]"]
+source_feedbacks: ["[[2026-09-08-echo-e01-contracts-s0-session-feedback]]", "[[2026-09-08-echo-e01-s0-mapkey-field-selection-feedback]]"]
 share_scope: local
 load_policy: manual
 indexable: false
@@ -54,6 +54,11 @@ tags:
 - Evidencia stdlib: probes físicos contra go1.25.5 (`GOROOT/src/encoding/json/encode.go`): struct con `MarshalJSON` en `*T` desciende a campos cuando no es addressable (top-level por valor, valores de map, interfaces); `typeFields` promociona embebidos no exportados; `appendCompact` valida sintaxis pero no UTF-8; `appendString` escapa bytes inválidos a `\ufffd`.
 - Tests: 13 nominales nuevos en `canonicalize_test.go` con `MarshalJSON`/`MarshalText` reales (value/pointer receiver, nil pointer, salida JSON inválida, salida UTF-8 inválida, TextMarshaler con map keys y `time.Time`, embebidos, arrays, `[]byte`, `RawMessage`); se eliminó el bloque "Marshaler" tautológico del test anterior. Gates PASS; coverage contracts 95.1% / wire 97.0% / fakeconsumer 95.5%; sólo `v3/sdk/contracts/wire/{canonicalize,canonicalize_test}.go` modificados.
 - Limitación registrada: resolución de sombras/ambigüedad de `typeFields` (BFS por profundidad) no espejada; sobre-recorrido patológico falla del lado seguro.
+
+## Corrección 4: paridad final map keys + field selection
+
+- Commit `2be12e23` (parent `aafa2f62`), publicado fast-forward a `origin/master`: cierra la limitación registrada en corrección 3. Map keys del precheck siguen la precedencia exacta de `resolveKeyName` (go1.25.5): string kind primero — un named string con `MarshalText` como key se observa como el string real y su UTF-8 inválido se rechaza (antes se saltaba por TextMarshaler); después TextMarshaler y enteros. La selección de struct fields es una reducción fiel de `typeFields`/`dominantField` (BFS con visited/nextCount y duplicación por instancias múltiples, promoción por profundidad, tagged domina, aniquilación de conflictos, embed no exportado struct/no-struct, pointer anónimo nil omite el subárbol sin error, `json:"-,"` observado bajo el nombre "-"), cacheada por tipo con `sync.Map`; sin reimplementar serializer (sólo la lógica que decide qué valores observa encoding/json).
+- Tests: 8 nominales nuevos en `canonicalize_test.go`, cada caso de dominancia con premisa física `json.Marshal` antes de la aserción de `Canonicalize`. Nota: `go vet` structtag impide declarar el caso "ambos tagged mismo nombre" como struct con embeds; cubierto por las variantes untagged y embebido duplicado. Gates PASS: `go test ./...`, `-race -cover` (wire 97.5% / contracts 95.1% / fakeconsumer 95.5%), `go vet`, gofmt limpio; sólo `v3/sdk/contracts/wire/{canonicalize,canonicalize_test}.go` modificados.
 
 ## No tocado
 
