@@ -60,8 +60,8 @@ tags:
 
 ## Validación
 
-- `python3 80-agents/skills/agents-os-implementation-planning/scripts/validate_plan.py` sobre el subproyecto.
-- `python3 80-agents/skills/agents-os-entity-lifecycle/scripts/lint.py --strict` sobre notas nuevas/modificadas.
+- `python3 80-agents/skills/agents-os-implementation-planning/scripts/validate_plan.py` sobre el subproyecto: `errors=0 warnings=0`.
+- `python3 80-agents/skills/agents-os-entity-lifecycle/scripts/lint.py --strict` sobre notas tipadas nuevas/modificadas: `ERROR=0 WARN=0`. `log.md` del dominio applications no tiene frontmatter (bitácora wiki); no se lintó como nota canónica.
 
 ## Compartibilidad
 
