@@ -219,6 +219,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-08 (corrección acotada)** — `fix(sdk): reject invalid UTF-8 in canonical wire` commit `c2472ca9` (parent `f1070bec`): `Canonicalize` y `Validate` rechazan UTF-8 inválido (`INVALID_WIRE`), sin reemplazo U+FFFD; BOM sigue rechazado; no-ASCII válido preservado byte-exacto. Gates PASS, coverage wire 96.9% (piso ≥95 mantenido). Publicado fast-forward a `origin/master`. Estado S0: implementation complete / verification pending (NO certified).
 - **2026-09-08 (publicación)** — Cadena `18261429` + `f1070bec` publicada a `origin/master` (fast-forward `04c16bd2..f1070bec`, sin force); remoto verificado `origin/master == HEAD`; árbol limpio. Pendiente: Verifier (VERIFICATION.md) y decisión manager (pin/corpus publicable).
 - **2026-09-08** — Implementación NORMAL completada: commit `f1070bec` (152 archivos, sólo `v3/sdk/contracts/**`) sobre `18261429`. Gates: `GOWORK=off go test/-race -cover/vet` PASS; coverage recetas 95.1% / wire 97.0% / fakeconsumer 95.5%; corpus G01–G36 + write-once fixture; schema regenera sin drift; stdlib-only verificado por test. Dirty foráneo inexistente.
 - **2026-09-07** — Materializado desde template `project`. Parent [[Echo — Live Platform V1]]. SPEC/TASKS/PLAN puente en `xKoRx/echo` feature `FEAT-SDK-CANONICAL-CONTRACT` commit `18261429`. Baseline `04c16bd2`. No source Go.

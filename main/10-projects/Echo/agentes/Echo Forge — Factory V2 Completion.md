@@ -32,7 +32,7 @@ updated: "2026-09-08"
 
 > [!info]+ Echo Forge — Factory V2 Completion
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
-> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 tiene hijo de implementación [[Echo Forge — F-01 Canonical generation concurrency]] y SPEC [[Echo Forge — F-01 Canonical Generation Concurrency Contract]].
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 en planificación: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]].
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
 > Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
@@ -45,7 +45,7 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 ## 📊 Estado actual
 
-- **PREPARADO con F-01 CLOSED.** Roadmap congelado. F-01 PASS/CLOSED (2026-09-08): `master` = `0509342` (ff-only desde `db8a022`), gate G1 cerrado. F-02–F-05 pendientes de despacho TOP.
+- **F-01 CLOSED. F-02 SPEC READY, NORMAL no autorizado.** Roadmap congelado. F-01 PASS/CLOSED (2026-09-08): `master` = `0509342`. F-02 TOP persistió SPEC [[Echo Forge — F-02 Finalist Model V2 Contract]] e hijo [[Echo Forge — F-02 Finalist Model V2]]. F-03–F-05 pendientes de despacho TOP.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
 - **Abierto exactamente una vez:** F-01 (F0 HOST_KEY/canonicalizer), F-02 (F1 = C1+C2 Finalist V2), F-03 (D SQX long-running), F-04 (F2 magic/seal/handoff tras pin S0), F-05 (release cohesivo + cert física + FULL golden).
 - **Base observada:** Symphony `db8a022`. Revalidar HEAD/working tree en la SPEC; dirty ajeno preservado. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
@@ -55,11 +55,11 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | Fijar por fase en SPEC TOP | `db8a022703082fd7ee9d1e15243c5d1b2feaf578` revalidado F-01 | F-01: este padre | F-01: [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | **F-01 PASS/CLOSED `0509342` en `master`**; F-02–F-05 PREPARADO |
+| xKoRx/symphony | Fijar por fase en SPEC TOP | `0509342439cfbaa048839088787458dde1ed1b05` | F-02: este padre | F-02: [[Echo Forge — F-02 Finalist Model V2 Contract]] | **F-01 CLOSED `0509342`**; **F-02 SPEC READY, NORMAL no autorizado**; F-03–F-05 PREPARADO |
 
 ## 🧩 Subproyectos
 
-Hijo de implementación: [[Echo Forge — F-01 Canonical generation concurrency]]. C1/C2 siguen siendo milestones internos de F-02, no proyectos.
+Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (SPEC READY). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
 
 ## ✅ Tareas
 
@@ -69,7 +69,7 @@ Hijo de implementación: [[Echo Forge — F-01 Canonical generation concurrency]
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
 > - [x] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
-> - [ ] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
+> - [/] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
 > - [ ] F-03 SQX long-running #owner/agent #type/dev #area/echo
 > - [ ] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
 > - [ ] F-05 Cohesive release, physical cert and FULL golden #owner/agent #type/dev #area/echo

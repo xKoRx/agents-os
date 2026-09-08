@@ -40,6 +40,10 @@ tags:
 
 - Push `HEAD:master` sin force tras gate completo (`origin/master == 04c16bd2`, cadena exacta `18261429`+`f1070bec`, ancestro OK, árbol limpio). Remoto verificado: `origin/master == f1070bec27db3ca415fe24f3c3576139674b7e09`.
 
+## Corrección acotada UTF-8
+
+- Commit `c2472ca953b54954431b476df9b65ce1b5aa9631` (parent `f1070bec`), publicado fast-forward: `Canonicalize` rechaza UTF-8 inválido en raw JSON y en Go values (walk reflexivo pre-encode, sin reemplazo U+FFFD); `Validate` lo marca `INVALID_WIRE`. Tests nuevos: string value, object key, no-ASCII válido preservado. Gates PASS; wire 96.9%.
+
 ## No tocado
 
 - Resources frozen, SPEC/PLAN/TASKS, Symphony, Lab, `v3/sdk/go.mod`, `go.work`. Verifier (VERIFICATION.md) y pin/corpus publicable quedan para manager/verificador.
