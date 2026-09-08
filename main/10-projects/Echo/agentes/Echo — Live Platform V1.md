@@ -21,8 +21,10 @@ tags:
   - kind/project
   - area/echo
   - agent/owner
-created: "2026-09-07"
-updated: "2026-09-07"
+created: 2026-09-07
+updated: 2026-09-07
+cssclasses:
+  - wide
 ---
 
 # Echo — Live Platform V1
