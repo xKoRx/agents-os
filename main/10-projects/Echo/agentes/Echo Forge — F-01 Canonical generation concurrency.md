@@ -73,7 +73,7 @@ Modificar:
 
 - `sqx/core/domain/canonical_strategy_id.go`
 - `sqx/core/domain/canonical_strategy_id_test.go`
-- `sqx/core/domain/persistence_identity.go` (helper puro `ProducerFilenameToken` desde `ExecutionIntentKey`; no nueva entity)
+- `sqx/core/domain/persistence_identity.go` (helpers puros: `Base64URLNoPad` del digest EIK + token del stem local; no `p`+hex; no nueva entity)
 - `sqx/core/domain/persistence_identity_test.go` (dos TaskPaths → EIK distintos; retry same EIK; token determinista)
 - `sqx/core/capabilities/storage.go` (`StrategyMeta` producer filename token)
 - `sqx/adapters/storage-minio/minio_storage.go`
@@ -111,7 +111,7 @@ Ninguna fase Echo/Forge posterior. Independiente de F-02/F-03/E-01. Reusa B2 CLO
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [ ] T1.1 CanonicalStrategyID puro y ProducerFilenameToken #owner/agent #type/dev #area/echo
+> - [ ] T1.1 CanonicalStrategyID puro y filename tokens compactos #owner/agent #type/dev #area/echo
 > - [ ] T1.2 Publication GENERATED con durable producer discrimination #owner/agent #type/dev #area/echo
 > - [ ] T1.3 Adopted BWC y regeneración template #owner/agent #type/dev #area/echo
 > - [ ] T1.4 G34 P1–P8 concurrency/crash certification #owner/agent #type/dev #area/echo
@@ -135,31 +135,31 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 Contrato de cada TASK: objetivo, archivos, entrada, cambio, invariantes, tests, DONE, deps, stop. Decisiones de diseño: solo la SPEC. Se conservan cuatro tasks: T1.2 deja de ser «quitar HOST_KEY» y pasa a implementar publication con discrimination; T1.4 certifica P1 sibling producers, no sólo cross-host.
 
-### T1.1 CanonicalStrategyID puro y ProducerFilenameToken
+### T1.1 CanonicalStrategyID puro y filename tokens compactos
 
 - **Modelo:** NORMAL
-- **Objetivo:** `CanonicalStrategyID` / `CanonicalStrategyFilename` deterministas e independientes de `$HOST_KEY`; helper puro que deriva el producer filename token de `ExecutionIntentKey`.
-- **Archivos/símbolos:** `sqx/core/domain/canonical_strategy_id.go` (`CanonicalStrategyID`, `isLikelyHostKey`); `canonical_strategy_id_test.go`; `sqx/core/domain/persistence_identity.go` (`ProducerFilenameToken` o nombre equivalente junto a `ExecutionIntentKey`); `persistence_identity_test.go`.
-- **Entrada:** helper actual env-dependiente; `ExecutionIntentKey` ya durable; wrappers WF/`_robust`/`(N)` vigentes.
-- **Cambio:** eliminar lectura de environment y el strip heurístico de host. Conservar wrappers documentados. Preservar el resto del basename, incluidos sufijos históricos. Añadir token `p`+hex(64) desde `ExecutionIntentKey` canónico; rechazar keys no canónicas. No I/O.
-- **Invariantes:** idempotencia; no anexar host; no mutilar `Strategy_X.Y.Z.z10`; adopted filenames con `.zeus` opaco se re-leen iguales; dos `TaskPath` → EIK/token distintos; mismo slot+generation → mismo token.
-- **Tests:** misma entrada con HOST_KEY zeus/hera/empty/otro → mismo ID; z0 vs z10; WF/_robust/(N); path completo; empty; dos TaskPaths same FlowRun; retry same generation.
-- **DONE:** tests del paquete `sqx/core/domain` verdes; cero `os.Getenv` en `canonical_strategy_id.go`; token puro cubierto.
+- **Objetivo:** `CanonicalStrategyID` / `CanonicalStrategyFilename` deterministas e independientes de `$HOST_KEY`; helpers puros de encoding filename (EIK + stem local) que caben en 128.
+- **Archivos/símbolos:** `sqx/core/domain/canonical_strategy_id.go` (`CanonicalStrategyID`, `isLikelyHostKey`); `canonical_strategy_id_test.go`; `sqx/core/domain/persistence_identity.go` (token EIK + token stem); tests del paquete.
+- **Entrada:** helper actual env-dependiente; `ExecutionIntentKey` ya durable; `sanitizeFileName` máximo 128.
+- **Cambio:** eliminar `os.Getenv` y `isLikelyHostKey`. Conservar wrappers. Token EIK = `base64.RawURLEncoding` del digest de 32 bytes (43 chars, biyectivo). Token local = mismo encoding de `SHA256(CanonicalStrategyFilename(local))`. Composición `{eikTok}_{localTok}.sqx` = 91 chars. Rechazar EIK no canónico. No I/O. No `p`+hex(64). No truncar.
+- **Invariantes:** idempotencia; adopted `.zeus` opaco se re-lee igual; dos TaskPaths → EIK/tokens distintos; mismo slot+generation → mismo token; round-trip digest↔Base64URL; `len==91`.
+- **Tests:** HOST_KEY zeus/hera/empty → mismo ID; z0 vs z10; WF/_robust/(N); dos TaskPaths; retry same generation; encoding 43 chars; composición 91≤128.
+- **DONE:** tests `sqx/core/domain` verdes; cero `os.Getenv` en `canonical_strategy_id.go`; tokens compactos cubiertos.
 - **Deps:** ninguna.
-- **Stop:** si se necesita persistir un UUID/tabla para el token → BLOCKED manager.
+- **Stop:** si el encoding exige truncar el digest o tabla nueva → BLOCKED manager.
 
 ### T1.2 Publication GENERATED con durable producer discrimination
 
 - **Modelo:** NORMAL
-- **Objetivo:** publication GENERATED usa el producer token de T1.1; deja de anexar HOST_KEY; cablea Builder a `StageProducerOutputStore` existente antes del PUT.
-- **Archivos/símbolos:** `sqx/core/capabilities/storage.go` (`StrategyMeta`); `sqx/adapters/storage-minio/minio_storage.go`; `minio_storage_test.go`; `sqx/activities/worker/steps/steps.go` (`uploadStrategyResults`, meta population); `project_activity.go`; `pipeline/step.go`; tests de steps de upload/Builder.
-- **Entrada:** T1.1 DONE. `TestPublishedSQXFileName_LegacyGenericBasenameCollidesByHost` hoy exige KEY distintas por host. Campaign `beforePut=nil`. Generic durable Builder usa `UploadFromDiskExact` sin pre-put.
-- **Cambio:** poblar producer token recomputando el mismo `NewStageIntent`/`NewStageIntentWithInputs` del resolve. Namespacing producer en `publishedSQXFileName` (mismo insertion point que batch). Dejar de anexar `.hostKey`. Durable Builder (Campaign y generic): `beforePut=RecordStageProducerOutput` genérico, no singleton. Campaign conserva `beforeBatch` cap. Fail-closed sin store. `ProducerContextDigest` según SPEC. ExactOutputName intacto.
-- **Invariantes:** `BuilderSupplyBatchRef` sigue namespacing Campaign; PutIfAbsent write-once; no `(N)` como resolver de retry; mismo EIK × hosts → mismo published name; distinct EIK × same local basename → names distintos; sin token resoluble → `CONTRACT_CONFLICT`.
-- **Tests:** table-driven hosts h0/z0/k0 convergentes; dos tokens + mismo basename; batch token diferencia olas y convive con producer token; ExactOutputName sigue ignorando host y token; beforePut llamado por candidato Builder; replay SPO ACK / conflicto de digest.
-- **DONE:** publication GENERATED host-independent y producer-discriminated; Builder record-before-put verde; tests MinIO+steps verdes.
+- **Objetivo:** publication GENERATED usa la fórmula compacta de 91 chars; no HOST_KEY; no Campaign `FilenameToken` en el basename nuevo; cablea Builder a `StageProducerOutputStore` antes del PUT.
+- **Archivos/símbolos:** `sqx/core/capabilities/storage.go` (`StrategyMeta`); `sqx/adapters/storage-minio/minio_storage.go`; `minio_storage_test.go`; `sqx/activities/worker/steps/steps.go`; `project_activity.go`; `pipeline/step.go`; tests de upload/Builder.
+- **Entrada:** T1.1 DONE. `sanitizeFileName` 128. Campaign hoy `namespaceCampaignBuilderFilename` + `beforePut=nil`.
+- **Cambio:** durable Builder GENERATED: published name = fórmula SPEC (ignorar host y `namespaceCampaignBuilderFilename`). `BuilderSupplyBatchRef` en meta **sólo** para cap `beforeBatch`. `beforePut=RecordStageProducerOutput` genérico. Fail-closed sin store o sin EIK. ExactOutputName intacto. Fórmula `BuilderSupplyBatchRef` no-touch.
+- **Invariantes:** `len(published)≤128` siempre (91); mismo EIK × hosts → mismo name; distinct EIK × same local basename → names distintos; sin EIK → `CONTRACT_CONFLICT`; nunca truncar; historia con batch token no se reescribe.
+- **Tests:** hosts h0/z0/k0 convergentes; dos EIK + mismo stem; stem local largo sigue ≤128; Campaign meta presente **no** inserta FilenameToken; ExactOutputName ignora encoding; beforePut por candidato; replay SPO ACK / conflicto digest.
+- **DONE:** publication compacta + record-before-put verde.
 - **Deps:** T1.1.
-- **Stop:** si publication productiva aún sale de `FormatStrategyName` → PLAN_CONFLICT. Si el enlace exige tabla nueva → BLOCKED.
+- **Stop:** si publication productiva aún sale de `FormatStrategyName` → PLAN_CONFLICT. Si hace falta Campaign token en el filename nuevo para unicidad → STOP/manager (SPEC dice que no). Si exige tabla nueva → BLOCKED.
 
 ### T1.3 Adopted BWC y regeneración template
 
@@ -180,7 +180,7 @@ Contrato de cada TASK: objetivo, archivos, entrada, cambio, invariantes, tests, 
 - **Objetivo:** certificar P1–P8 de la SPEC contra authorities reales. P1 (`same FlowRun + distinct producers + same basename`) es obligatorio; cross-host (P2) no basta.
 - **Archivos/símbolos:** tests T1.1–T1.3; `output_namespace_ownership_test.go` T7 como evidencia negativa (NS no es uniqueness); `stage_producer_output_test.go`; Adopt concurrency; `go test -race` en esos paquetes.
 - **Entrada:** T1.3 DONE.
-- **Cambio:** tests/cert only salvo bug de T1.1–T1.3. Ejercitar: P1 two TaskPaths same FlowRun same basename; P2 same EIK different HOST_KEY; P3 no usa sibling NS ACK como unique; P4–P5 same address after crash/lost PUT; P6 conflict; P7 adopted; P8 regeneration. Batch refs distintos → IDs distintos (wave namespace).
+- **Cambio:** tests/cert only salvo bug de T1.1–T1.3. Ejercitar: P1 two TaskPaths same FlowRun same basename; published 91 chars sin Campaign FilenameToken; P2 same EIK different HOST_KEY; P3 no usa sibling NS ACK; P4–P5 same address; P6 conflict; P7 adopted (historia con batch token intacta); P8 regeneration; `len≤128` con stem local largo.
 - **Invariantes:** no skip/masking; no recert MT5; no tocar B1/B2; no “arreglar” T7 para que siblings CONFLICT.
 - **Tests:** `go test -race` `./sqx/adapters/registry-postgres` (ownership + producer-output + adopt) y `./sqx/adapters/storage-minio` / `./sqx/core/domain` / steps filtrados a estas superficies. Registry embebido cuando el harness exista; si Maven/DNS blocked, documentar DEGRADED como el cutover v2, no fingir PASS.
 - **DONE:** G34 CONTRACT/concurrency PASS o evidencia DEGRADED infra explícita. SOURCE PASS de T1.1–T1.3. P1 explícito.
@@ -232,7 +232,7 @@ SPEC frozen [[2026-09-04-echo-forge-campaign-builder-supply-identity]]. Source m
 
 **Decisiones cerradas**
 
-Logical producer = Builder StageExecution. Discriminador durable = `ExecutionIntentKey`. Token filename = `p`+hex. Identity GENERATED = `CanonicalStrategyID(published basename)` con batch Campaign + producer token. HOST_KEY no es identity. Builder publication cablea `StageProducerOutputStore` existente. Sin migration. Sin UUID/tabla nueva. Sin topology en identity. Ver SPEC.
+Logical producer = Builder StageExecution. Discriminador durable = `ExecutionIntentKey`. Filename nuevo = `Base64URL(EIK) + "_" + Base64URL(SHA256(canonical local stem)) + ".sqx"` (91 chars). **No** proyectar Campaign `FilenameToken` en GENERATED nuevos. `BuilderSupplyBatchRef` fórmula intacta (cap only). HOST_KEY no es identity. Builder `StageProducerOutputStore` existente. Sin migration. Ver SPEC.
 
 **Implementación paso a paso**
 
@@ -279,6 +279,7 @@ El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 
 - **2026-09-07** — TOP diseñó F-01 contra symphony `db8a022` y Agents OS `83506a14`. SPEC + TASKS persistidas. Discriminador entonces: OutputNamespaceOwnership. NORMAL no autorizado.
 - **2026-09-07** — Corrección TOP in-place tras manager `CORRECTION REQUIRED`. Discriminador = `ExecutionIntentKey`. FlowRun/NS ownership insuficiente (T7). T1.2/T1.4 reabiertos. Planned diff ampliado a publication path. NORMAL no autorizado.
+- **2026-09-07** — Corrección 02 filename budget: `p`+hex(64) rechazado. Encoding Base64URL 91 chars. Campaign `FilenameToken` no se proyecta en GENERATED nuevos. NORMAL no autorizado.
 
 ## 🧭 Decisiones
 

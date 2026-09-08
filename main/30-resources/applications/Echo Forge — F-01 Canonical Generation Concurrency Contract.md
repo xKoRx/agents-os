@@ -192,7 +192,7 @@ Colisión contractual (mismo logical producer/address, bytes o contexto incompat
 
 ### P1 — SAME FLOW / DISTINCT PRODUCERS
 
-Dos logical producers: mismo FlowRun, misma Campaign, misma wave, mismo `BuilderSupplyBatchRef`, mismo SQX basename local. Distinct `TaskPath` (p.ej. `root/0` vs `root/1`). Expected: distinct `ExecutionIntentKey`, distinct producer token, distinct generated identity, distinct artifact key. Ambos válidos. NS sibling claims pueden ser ambas ACK (T7); eso no los colapsa.
+Dos logical producers: mismo FlowRun, misma Campaign, misma wave, mismo `BuilderSupplyBatchRef`, mismo SQX basename local. Distinct `TaskPath` (p.ej. `root/0` vs `root/1`). Expected: distinct `ExecutionIntentKey`, distinct producerTok, distinct generated identity, distinct artifact key, `len(published_basename)=91≤128`, **sin** Campaign `FilenameToken` en el nombre nuevo. Ambos válidos.
 
 ### P2 — SAME PRODUCER / DIFFERENT HOST
 
@@ -261,18 +261,19 @@ Notación: EIK = ExecutionIntentKey; TOK = producer filename token; ID = Canonic
 
 ## BWC
 
-IDs adoptados intactos. Objetos históricos legibles. Wrappers WF/`_robust`/`(N)` siguen tolerados. No rename masivo. `DATABASE MIGRATION: NONE`. `BuilderSupplyBatchRef` y unique v2 no se reabren. Identity v2 cutover permanece: `AdoptStrategy` → `upsertStrategyV2`. Archivos nuevos GENERATED llevan producer token; historia sin token no se recanonicaliza.
+IDs adoptados intactos. Objetos históricos legibles (incluidos los que ya traen `FilenameToken` de Campaign o sufijo host). Wrappers WF/`_robust`/`(N)` siguen tolerados. No rename masivo. `DATABASE MIGRATION: NONE`. `BuilderSupplyBatchRef` y unique v2 no se reabren. Identity v2 cutover permanece: `AdoptStrategy` → `upsertStrategyV2`. Archivos **nuevos** GENERATED usan la fórmula compacta de 91 chars **sin** batch token en el basename; historia no se recanonicaliza.
 
 ## Certification
 
-G34 `concurrent-builder-identity` (SDK §13) más P1–P8. Nivel: SOURCE PASS + CONTRACT/concurrency PASS. Tests: purity; publication con dos `ExecutionIntentKey` y mismo basename local → names distintos; mismo EIK × hosts distintos → names iguales; `go test -race` sobre Adopt v2 y producer-output; NS T7 se cita como prueba de que ownership **no** es uniqueness de producer. Registry real cuando el harness exista; si Maven/DNS blocked, DEGRADED explícito, no fingir PASS.
+G34 `concurrent-builder-identity` (SDK §13) más P1–P8. Nivel: SOURCE PASS + CONTRACT/concurrency PASS. Tests: purity; encoding Base64URL biyectivo (43 chars, no truncación); publication P1 dos EIK + mismo local stem → names distintos de 91 chars **sin** Campaign FilenameToken; P2 mismo EIK × hosts → mismo name; stem local largo (≥80 chars humanos) sigue ≤128; `go test -race` sobre Adopt v2 y producer-output; NS T7 como evidencia negativa.
 
 No recertificación global MT5. No reabrir B1/B2. Cert física adicional: sólo publication MinIO write-once de GENERATED nuevos. No flota MT5.
 
 ## Acceptance
 
 - `CanonicalStrategyID` determina el mismo valor con `HOST_KEY` zeus/hera/kronos/vacío.
-- P1: same FlowRun + distinct producers + same basename → distinct ID/KEY, ambos válidos.
+- P1: same FlowRun + distinct producers + same basename → distinct ID/KEY de 91 chars, sin Campaign FilenameToken, ambos válidos.
+- Published GENERATED nuevo siempre `len≤128`; nunca truncar.
 - P2: same producer + different host → same ID/KEY.
 - P3: publicación concurrente no usa sibling NS ACK como uniqueness.
 - P4–P5: crash/lost PUT reconcilian la misma address; no segundo producer.
