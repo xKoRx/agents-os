@@ -48,6 +48,13 @@ tags:
 
 - Commit `6cf39edfbd1f16eca82753f42527b170b50b66f0` (parent `c2472ca9`), publicado fast-forward: walk UTF-8 con ciclo-detección por camino activo y field set idéntico a encoding/json; tests de ciclos ptr/map/slice, referencias compartidas y campos no serializados.
 
+## Corrección 3: boundary de serialización (Marshaler/TextMarshaler)
+
+- Commit `aafa2f62` (parent `6cf39edfbd1f16eca82753f42527b170b50b66f0`), publicado fast-forward: el pre-walk UTF-8 de `Canonicalize` ahora decide por valor si encoding/json lo reemplaza con salida de `json.Marshaler`/`encoding.TextMarshaler` (value receiver) o de sus variantes pointer-receiver exactamente donde el valor es addressable (`CanAddr()`, espejo de `condAddrEncoder`); method sets promovidos de embebidos reemplazan el valor completo; keys de map con TextMarshaler saltan internals; campos exportados promovidos de structs embebidos no exportados se observan; elementos de array se prevalidan. `[]byte` (base64), `json.RawMessage` (verbatim + validación del pipeline) y ciclos/referencias compartidas sin cambios de contrato.
+- Evidencia stdlib: probes físicos contra go1.25.5 (`GOROOT/src/encoding/json/encode.go`): struct con `MarshalJSON` en `*T` desciende a campos cuando no es addressable (top-level por valor, valores de map, interfaces); `typeFields` promociona embebidos no exportados; `appendCompact` valida sintaxis pero no UTF-8; `appendString` escapa bytes inválidos a `\ufffd`.
+- Tests: 13 nominales nuevos en `canonicalize_test.go` con `MarshalJSON`/`MarshalText` reales (value/pointer receiver, nil pointer, salida JSON inválida, salida UTF-8 inválida, TextMarshaler con map keys y `time.Time`, embebidos, arrays, `[]byte`, `RawMessage`); se eliminó el bloque "Marshaler" tautológico del test anterior. Gates PASS; coverage contracts 95.1% / wire 97.0% / fakeconsumer 95.5%; sólo `v3/sdk/contracts/wire/{canonicalize,canonicalize_test}.go` modificados.
+- Limitación registrada: resolución de sombras/ambigüedad de `typeFields` (BFS por profundidad) no espejada; sobre-recorrido patológico falla del lado seguro.
+
 ## No tocado
 
 - Resources frozen, SPEC/PLAN/TASKS, Symphony, Lab, `v3/sdk/go.mod`, `go.work`. Verifier (VERIFICATION.md) y pin/corpus publicable quedan para manager/verificador.
