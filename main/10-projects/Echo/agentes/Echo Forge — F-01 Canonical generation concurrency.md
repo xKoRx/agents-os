@@ -51,7 +51,7 @@ Hacer `CanonicalStrategyID` puro y la publication GENERATED con **durable produc
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | feature a fijar por NORMAL desde `master` | `db8a022703082fd7ee9d1e15243c5d1b2feaf578` | [[Echo Forge — Factory V2 Completion]] F-01 | [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | SPEC corregida; implementación bloqueada a re-review |
+| xKoRx/symphony | `feature/f01-canonical-generation-concurrency` | `db8a022703082fd7ee9d1e15243c5d1b2feaf578` | [[Echo Forge — Factory V2 Completion]] F-01 | [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | Implementado `0509342`; G34 registry DEGRADED (infra); en review |
 
 ## Parent / SPEC / baselines
 
@@ -111,10 +111,10 @@ Ninguna fase Echo/Forge posterior. Independiente de F-02/F-03/E-01. Reusa B2 CLO
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [ ] T1.1 CanonicalStrategyID puro y filename tokens compactos #owner/agent #type/dev #area/echo
-> - [ ] T1.2 Publication GENERATED con durable producer discrimination #owner/agent #type/dev #area/echo
-> - [ ] T1.3 Adopted BWC y regeneración template #owner/agent #type/dev #area/echo
-> - [ ] T1.4 G34 P1–P8 concurrency/crash certification #owner/agent #type/dev #area/echo
+> - [r] T1.1 CanonicalStrategyID puro y filename tokens compactos #owner/agent #type/dev #area/echo
+> - [r] T1.2 Publication GENERATED con durable producer discrimination #owner/agent #type/dev #area/echo
+> - [r] T1.3 Adopted BWC y regeneración template #owner/agent #type/dev #area/echo
+> - [r] T1.4 G34 P1–P8 concurrency/crash certification #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -280,6 +280,7 @@ El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 - **2026-09-07** — TOP diseñó F-01 contra symphony `db8a022` y Agents OS `83506a14`. SPEC + TASKS persistidas. Discriminador entonces: OutputNamespaceOwnership. NORMAL no autorizado.
 - **2026-09-07** — Corrección TOP in-place tras manager `CORRECTION REQUIRED`. Discriminador = `ExecutionIntentKey`. FlowRun/NS ownership insuficiente (T7). T1.2/T1.4 reabiertos. Planned diff ampliado a publication path. NORMAL no autorizado.
 - **2026-09-07** — Corrección 02 filename budget: `p`+hex(64) rechazado. Encoding Base64URL 91 chars. Campaign `FilenameToken` no se proyecta en GENERATED nuevos. NORMAL no autorizado.
+- **2026-09-08** — NORMAL autorizado por manager (prompt). T1.1–T1.4 implementadas en symphony `feature/f01-canonical-generation-concurrency` desde `db8a022`, commit `0509342`. Purity, tokens 91 chars, record-before-put genérico, bridge overview local→publicado, fail-closed sin store/token. Suites domain/capabilities/storage-minio/pipeline/steps/worker PASS; `go test -race` PASS. G34 registry-postgres **DEGRADED**: harness Postgres embebido falla `initdb` (shared memory) — verificado preexistente en baseline limpio. Foreign dirty intacto. Estado: review (gate G1 pendiente de aceptación manager).
 
 ## 🧭 Decisiones
 
