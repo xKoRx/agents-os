@@ -309,3 +309,42 @@ G1 review. `DATABASE MIGRATION: NONE`. `NO NORMAL IMPLEMENTATION AUTHORIZED YET`
 **Handoff**
 
 Ver comentario de cierre TOP. Próximo: autorización NORMAL.
+
+**Despacho Fase 1**
+
+```text
+FASE_ASIGNADA=1
+PAQUETE_CANONICO=Paquete autónomo Fase 1 — SQX Long-Running Contract
+GATE_REQUERIDO=none
+TAREAS=T1.1-T1.8
+SALIDA=source diff F-03 + grep SOURCE + tests cancel/liveness + nota en review
+STOP=NO NORMAL IMPLEMENTATION AUTHORIZED YET
+```
+
+El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
+
+## 📆 Bitácora
+
+- **2026-09-08** — TOP diseñó F-03 contra symphony `e50cb7e`. SPEC + TASKS persistidas. `DATABASE MIGRATION: NONE`. NORMAL no autorizado.
+
+## 🧭 Decisiones
+
+- Ver [[Echo Forge — F-03 SQX Long-Running Contract]]. Esta nota no duplica la matriz de kill paths.
+
+## 🔗 Docs / Links
+
+- [[Echo Forge — Factory V2 Completion]]
+- [[Echo Forge — F-03 SQX Long-Running Contract]]
+- [[Echo — Producto Integrado]]
+- [[2026-09-06-echo-forge-mt5-execution-model-v2]]
+
+## 💡 Ideas
+
+### Backlog de ideas
+
+- Ninguna dentro de F-03.
+
+### Motivos / principios
+
+- Elapsed sano ≠ FAILED. Heartbeat = liveness. Cancel cooperativo árbol-scoped. No copiar MT5 slots.
+
