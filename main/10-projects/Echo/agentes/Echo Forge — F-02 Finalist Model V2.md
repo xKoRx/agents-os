@@ -10,7 +10,7 @@ parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-08
 due:
-progress: 0
+progress: 10
 repo: xKoRx/symphony
 jira:
 prs:
@@ -52,7 +52,7 @@ Reemplazar membresía V1 (copia de `TopProjection`) por membership estructural V
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f02-finalist-model-v2` (aún no creada) | `0509342439cfbaa048839088787458dde1ed1b05` | [[Echo Forge — Factory V2 Completion]] F-02 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | **SPEC READY. NORMAL no autorizado.** |
+| xKoRx/symphony | `feature/f02-finalist-model-v2` | `0509342439cfbaa048839088787458dde1ed1b05` | [[Echo Forge — Factory V2 Completion]] F-02 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | **WIP: NORMAL autorizado por manager; baseline/origin verificados sin avance.** |
 
 ## Parent / SPEC / baselines
 
@@ -125,7 +125,7 @@ B2 CLOSED freeze. Independiente de F-01/F-03/E-01. No S0.
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [ ] T1.1 Domain Decision/output V2 y Validate dual #owner/agent #type/dev #area/echo
+> - [/] T1.1 Domain Decision/output V2 y Validate dual #owner/agent #type/dev #area/echo
 > - [ ] T1.2 Reconcile requested vs HTM + drop per-candidate #owner/agent #type/dev #area/echo
 > - [ ] T1.3 Promotion V2 membership y warnings #owner/agent #type/dev #area/echo
 > - [ ] T1.4 Result Surface v2 sin igualdad TopProjection #owner/agent #type/dev #area/echo
