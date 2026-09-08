@@ -17,7 +17,7 @@ tags:
   - area/meli
   - project/presentacion-deployments-rio
 created: "2026-09-01"
-updated: "2026-09-07"
+updated: "2026-09-08"
 ---
 
 # Deployments en RIO — flujo completo
@@ -27,6 +27,10 @@ updated: "2026-09-07"
 Explicar el deployment de pipeline en RIO en dos pasadas. La primera construye el modelo completo tal como funciona hoy, nombrando en cada etapa el servicio, transporte y almacenamiento involucrado. La segunda vuelve sobre las fronteras críticas para explicar por qué pueden perder progreso, qué recuperación existe, qué falta y cómo convertir el gap en deuda técnica accionable.
 
 La audiencia asumida es técnica y conoce servicios, APIs y eventos, pero no necesita conocer previamente las clases internas de RIO.
+
+## Contenido
+
+La primera parte describe el flujo vigente, sus tecnologías y su modelo de datos. La segunda analiza las fronteras en que puede perderse la siguiente acción y documenta mecanismos de recuperación y deuda técnica posible.
 
 ## Idea central para abrir la presentación
 
@@ -103,32 +107,84 @@ El diagrama tiene dos caminos de ejecución, pero un único modelo de cierre: to
 | Observability CP | Suscripción BigQueue, BigQuery, OpenTelemetry; KVS para capacidades laterales | Governance y telemetría; no posee el resultado terminal del deployment |
 | Materializer | Java/Spring, REST, Fury NoSQL, Fury WorkQueues, Terraform, Cloud Controller y buckets de estado | Materializaciones, stacks y sagas del camino legacy/storage |
 
-## 3. Entrada: la intención llega a Playmaker
+## 3. Entrada y delta: qué decide Playmaker
 
 El frontend o BFF invoca `POST /data-products/{name}/environments/{envName}/pipeline/deploy`. Playmaker autentica con Tiger, valida data product, environment, pipeline y freezes, calcula el delta contra el estado vigente y obtiene un `desired_state_hash`.
 
 El hash cumple dos funciones: devolver una execution ya `COMPLETED` cuando el estado deseado es idéntico y bloquear otra execution `PENDING` o `RUNNING` con el mismo estado. `force=true` omite la reutilización de una execution completada, pero no permite dos ejecuciones equivalentes en vuelo.
 
-## 4. Persistencia inicial en MySQL
+La clase que implementa esta decisión es `DeltaComputationServiceImpl`. Recorre los componentes activos y compara la definición deseada con el estado desplegado en el `Service` del environment:
 
-Dentro de una transacción de Playmaker se construye la jerarquía de orquestación:
+- Si todavía no existe `Service`, devuelve `DEPLOY`.
+- Si cambió la `ComponentDefinition`, devuelve `DEPLOY`.
+- Si el `Service` está `PENDING_REMOVAL`, devuelve `UNDEPLOY`.
+- Si el último `ComponentRun` falló o terminó, puede devolver `DEPLOY` para reconciliar.
+- Si el estado activo ya coincide con lo deseado, devuelve `SKIP`.
 
-```text
-PipelineExecution
-    └── DeploymentGroup
-            └── ComponentRun, uno por componente materializable
-                    └── Deployment, un intento concreto
-                            └── DeploymentLog, historial de resultados
+Para cada entrada cuyo action no es `SKIP` se crea después un `ComponentRun`. El `desired_state_hash` se calcula a partir de las parejas `componentId:configId` de estas entradas. El servicio de delta también consulta el `Service` por component y environment: ese slot conserva la definición pendiente o activa que corresponde a ese ambiente, no sólo la última definición global del componente.
+
+## 4. Modelo de datos de Playmaker
+
+El modelo combina configuración, estado por environment y ejecución:
+
+```mermaid
+flowchart LR
+    DP[DataProduct<br/>unidad lógica] -->|1:1| P[Pipeline<br/>grafo versionado]
+    DP -->|1:N| E[Environment<br/>ambiente nombrado]
+    DP -->|1:N| C[Component<br/>nodo lógico]
+    C -->|1:N| CD[ComponentDefinition<br/>configuración versionada]
+    C -->|por environment| S[Service<br/>slot de estado y outputs]
+    E --> S
+    P --> PE[PipelineExecution<br/>una reconciliación]
+    E --> PE
+    PE --> CR[ComponentRun<br/>componente en la execution]
+    PE --> DG[DeploymentGroup<br/>batch y criticidad]
+    DG --> D[Deployment<br/>registro del dispatch]
+    S --> D
+    CD --> D
+    D --> DL[DeploymentLog<br/>historia de resultados]
 ```
 
-Las identidades importantes son:
+| Entidad | Qué representa |
+|---|---|
+| `DataProduct` | Unidad lógica propietaria del pipeline y los componentes. Conserva además un campo `environment` legacy. |
+| `Environment` | Ambiente nombrado relacionado con el DP. La unicidad es `(name, data_product)`, por lo que un DP puede tener varias filas Environment. |
+| `Pipeline` | Grafo versionado; el modelo impone una relación efectiva 1:1 con el DataProduct. |
+| `Component` | Nodo lógico o tipo de recurso dentro del DP. |
+| `ComponentDefinition` | Versión concreta de la configuración del componente: estado, parámetros, SLOs y versión. |
+| `Service` | Slot `component × environment`. Conserva la definición activa o pendiente, el estado y un JSON `values` con los outputs técnicos observados. |
+| `PipelineExecution` | Una reconciliación completa del pipeline para un environment; conserva tipo, status y `desiredStateHash`. |
+| `ComponentRun` | Estado de un componente lógico dentro de una `PipelineExecution`. Se crea uno por entrada de delta distinta de `SKIP`. |
+| `DeploymentGroup` | Batch, orden y política de criticidad asociados a la execution. |
+| `Deployment` | Registro del dispatch de un `Service` y una `ComponentDefinition` dentro de un group. Conserva action, status, values, IDs de correlación, timeout y retry count. |
+| `DeploymentLog` | Historial de resultados de ese deployment: status, outputs y mensaje técnico. No corresponde a los logs generales de la aplicación. |
 
-| Identidad | Responde qué pregunta |
+### ComponentRun versus Deployment
+
+`ComponentRun` representa **el componente dentro de una execution**. `Deployment` representa **el dispatch de ese componente hacia un Service y una definición concreta dentro de un group**. En el primer envío normal existe un `ComponentRun` por componente cambiado y se crea un `Deployment` cuando el batch de ese componente se despacha.
+
+No hay una foreign key directa entre ambos. Cuando vuelve un resultado, Playmaker resuelve el `ComponentRun` a través de `DeploymentGroup.pipelineExecution` y `Deployment.service.componentId`.
+
+Tampoco conviene definir `Deployment` como “un intento de transporte” de manera estricta: el retry automático de un `REQUESTED` reutiliza la fila, incrementa `retryCount` y puede publicar un nuevo trigger UUID. Una nueva `PipelineExecution`, en cambio, crea un nuevo `ComponentRun` y otro `Deployment`.
+
+### Identidades y datos de resultado
+
+| Identidad o campo | Responde qué pregunta |
 |---|---|
 | `execution_id` | ¿Cómo terminó la reconciliación completa del pipeline? |
-| `deployment_group_id` | ¿Qué fan-out y política de orden se están ejecutando? |
+| `deployment_group_id` | ¿Qué batch y política de orden se están ejecutando? |
 | `component_run` | ¿Cómo terminó este componente dentro de la execution? |
-| `deployment_id` o correlation UUID | ¿Qué ocurrió con este intento concreto entre Playmaker y el CP? |
+| `deployment_correlation_id` | ¿Qué trigger o resultado asíncrono corresponde a este Deployment? |
+| `DeploymentLog` | ¿Qué estados, outputs y mensajes fueron recibidos para el Deployment? |
+| `Service.values` | ¿Cuáles son los últimos outputs técnicos acumulados del componente en ese environment? |
+
+Cuando llega `result.output`, Playmaker agrega una entrada a `DeploymentLog` si es nueva y mezcla el mapa tanto en `Deployment.values` como en `Service.values`. Esos values pueden contener identificadores de recursos, endpoints u otros datos que el CP devuelve y que luego se usan para observabilidad o resolución de parámetros posteriores.
+
+### Deuda de abstracción visible
+
+- `DataProduct` conserva un `environment` escalar legacy al mismo tiempo que existe la relación 1:N con `Environment`. La posibilidad histórica de asociar un DP a más de un environment sigue visible en el modelo aunque la regla operativa haya cambiado.
+- `ComponentRun` y `Deployment` viven en niveles distintos, pero su relación se reconstruye indirectamente.
+- `Service.values` concentra outputs técnicos heterogéneos en JSON y no los tipa como entidades de recurso.
 
 En MySQL queda persistida la intención. Lo que todavía no queda persistido es la obligación de publicar el trigger: esa continuación se representa después mediante un evento Spring en memoria.
 
@@ -141,11 +197,11 @@ Playmaker calcula batches antes de despachar. El algoritmo topológico existe, p
 
 Este hotfix reduce algunos problemas de precedencia, pero no garantiza el orden causal del grafo dentro de cada grupo. Dos componentes del mismo batch pueden ejecutarse en paralelo aunque uno dependa realmente del output del otro.
 
-## 6. Creación del intento y handoff posterior al commit
+## 6. Creación del Deployment y handoff posterior al commit
 
-Por cada componente del batch, `BatchDispatchServiceImpl` crea un `Deployment` con estado `REQUESTED`, correlation UUID, `retry_count = 0` y `timeout_at = null`. Luego publica `DeploymentDispatchRequestedEvent` en el `ApplicationEventPublisher` de Spring.
+Por cada componente del batch, `BatchDispatchServiceImpl` resuelve parámetros, construye el `DispatchRequest`, crea un `Deployment` con estado `REQUESTED`, genera y persiste la correlation UUID, deja `retry_count = 0` y `timeout_at = null`, y publica `DeploymentDispatchRequestedEvent` en el `ApplicationEventPublisher` de Spring.
 
-El listener corre con `AFTER_COMMIT` y `@Async`. La razón es válida: el resultado podría volver muy rápido y debe encontrar el deployment ya visible en MySQL. La consecuencia es que aparece una frontera no durable entre el commit y la ejecución del listener.
+El listener corre con `AFTER_COMMIT` y `@Async`. `AFTER_COMMIT` significa que la transacción que creó el Deployment ya se confirmó; el listener no continúa dentro de esa misma transacción. Si el adapter o el manejo del listener escribe en MySQL, lo hace mediante otra transacción. La razón del orden es válida: el resultado podría volver muy rápido y debe encontrar el deployment ya visible. La consecuencia es que aparece una frontera no durable entre el primer commit y la ejecución del listener.
 
 Cuando el listener efectivamente comienza, resuelve el transporte por `component_type` y versión.
 
@@ -153,13 +209,17 @@ Cuando el listener efectivamente comienza, resuelve el transporte por `component
 
 ### Ruta BigQueue
 
-`BigQueueDispatchAdapter` persiste el correlation UUID y `timeout_at` en MySQL y luego publica un `DeploymentTriggerMessage` en `rio-deployment-trigger`.
+`BigQueueDispatchAdapter` toma el request interno, completa la forma final de `DeploymentTriggerMessage` definida por `rio-sdk-events`, persiste el correlation/materialization ID de fallback y `timeout_at` en MySQL y luego publica el mensaje en `rio-deployment-trigger`. BigQueue transporta el envelope; no estructura el contenido de negocio.
 
 El mensaje contiene `deployment_id`, `deployment_group_id`, `component_type`, `operation`, identidades del componente, data product y environment, `criticality`, `params`, `context`, `schema_version` y `published_at`. `params`, `context` y outputs pueden contener información sensible y no deben loguearse completos.
 
 ### Ruta Materializer REST
 
-`MaterializerRestAdapter` invoca `doMaterialize` por REST. Materializer persiste materialization, stack y sagas en Fury NoSQL, usa Fury WorkQueues para ejecutar tareas y llega a Terraform/Cloud Controller para materializar infraestructura. Sus callbacks legacy vuelven a Playmaker, que los normaliza y publica en `rio-deployment-result` para reutilizar la máquina de estados nueva.
+`MaterializerRestAdapter` invoca `doMaterialize` por REST e incluye la callback URL de Playmaker. Materializer persiste materialization, stack y sagas como `PENDING` en Fury NoSQL, encola una Fury WorkQueue y responde HTTP 201 con el `materializationId`; no espera a que termine la infraestructura dentro del request original.
+
+La WorkQueue llama después a `/workqueues/materialization-request`. El worker ejecuta Terraform o Cloud Controller y Materializer envía otro request HTTP a Playmaker, mediante el callback `POST /deployments/{id}/logs`. `LegacyCallbackResultAdapter` normaliza el callback como `DeploymentResultMessage` y lo publica en `rio-deployment-result` para reutilizar la máquina de estados nueva.
+
+Hay una precisión importante para analizar recuperación: el endpoint actual de WorkQueue desprende `CompletableFuture.runAsync(...)` y devuelve 200. La cola hace durable la entrega hasta ese ACK, pero el trabajo vuelve a quedar en memoria local después de la aceptación. Por lo tanto, “usar WorkQueue” sólo cierra el gap si el job queda durable antes del 2xx y un worker puede retomarlo tras perder la instancia.
 
 ### Precisión sobre “Materializer sólo maneja storages”
 
@@ -231,7 +291,7 @@ El Fury Lock evita que dos callbacks avancen el mismo batch simultáneamente. No
 
 ## 13. Timeout y retries de Playmaker
 
-Un job de Playmaker revisa cada tres minutos deployments `REQUESTED` o `STARTED` con `timeout_at` vencido.
+`timeout_at` es el deadline absoluto con que Playmaker decide que un Deployment lleva demasiado tiempo sin resultado. El adapter lo calcula y persiste antes de publicar. Un job de Playmaker revisa cada tres minutos deployments `REQUESTED` o `STARTED` cuyo `timeout_at` ya venció.
 
 - Un `REQUESTED` con intentos disponibles se vuelve a publicar por BigQueue, se incrementa `retry_count` y se renueva el deadline.
 - Un `REQUESTED` sin intentos disponibles queda `FAILED` y el fallo se propaga al `ComponentRun`.

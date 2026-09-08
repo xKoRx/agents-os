@@ -12,10 +12,12 @@ related:
   - "[[Deployments en RIO — flujo completo]]"
   - "[[Guion presentación — Deployments en RIO]]"
   - "[[RIO]]"
+  - "[[Agent Run — 2026-09-08 — Codex — unknown — RIO deployments presentation]]"
 aliases: []
 confidence: verified
 source_session:
-source_feedbacks: []
+source_feedbacks:
+  - "[[Session Feedback - 2026-09-08 - rio-deployments-presentation]]"
 share_scope: local
 load_policy: manual
 indexable: false
@@ -49,11 +51,22 @@ tags:
 
 ## Resolución aplicada
 
-- Se creó un Grid HTML autocontenido de ocho slides: flujo y tecnologías, matriz de durabilidad, muerte súbita de un CP, fallas menos obvias, routing de Materializer, cuatro deudas P0 y contrato de recuperación. El guion incluye speech de 10 a 12 minutos, transiciones, preguntas probables y métricas operacionales pendientes.
+- La versión vigente del Grid tiene seis slides y tono de revisión técnica entre pares. Explica primero el flujo, el modelo de datos y el camino asíncrono de Materializer; luego revisa cuatro fronteras de recuperación y los estados inconsistentes posibles ante la muerte súbita de Playmaker o de un CP.
+- Se eliminaron las slides separadas de “trampas” y “deudas P0”. La tabla de gaps conserva sólo frontera, causa y evaluación; Fury CP queda como referencia del patrón `reported/published`.
+- Se documentaron los seis CPs sin KMS y el rol de KVS en cada uno, la construcción del trigger dentro de Playmaker, `DeltaComputationService`, la diferencia entre `ComponentRun` y `Deployment`, y el significado de `DeploymentLog` y `Service.values`.
+- `gcp-kafka-topic` se presenta como routing pendiente de verificar en configuración viva y no como afirmación cerrada de tráfico productivo.
+- La segunda revisión aclara que el Deployment se crea durante el dispatch del batch, antes del listener `AFTER_COMMIT`; elimina las etiquetas A–D y agrupa los cortes en tres familias coherentes con la slide final.
+- El modelo visual se reemplaza por un diagrama entidad–relación con cardinalidades y descriptores. Materializer muestra el callback como un POST HTTP separado y la slide de gaps elimina las cuatro cajas de alternativas para explicar directamente `timeout_at` y el reconciler de Fury CP.
 
 ## Validación
 
-- HTML abierto en navegador local y revisado visualmente slide por slide a 1280 × 720. Navegación, scroll snap y marcadores verificados; no se observaron errores de consola. Se mantuvieron explícitos los límites sobre incidencia y configuración viva.
+- La versión final de seis slides se revisó en navegador local a 1280 × 720. Se inspeccionaron el flujo, el modelo de datos, Materializer, la tabla de gaps y los escenarios de caída; no se observó clipping ni overflow de contenido. El servidor respondió HTTP 200 y los dos bloques de script pasaron validación sintáctica; el Grid contiene exactamente seis secciones navegables.
+
+## Cierre AGENTS OS
+
+- Se registró la ejecución atribuible de Codex con modelo `unknown`, resultado `success`, verificación `passed` y `user_rework: major`.
+- Se dejó feedback de Sistema 1 sobre QA semántico de presentaciones técnicas; la posible promoción a L3 queda diferida hasta observar repetición.
+- Los artefactos de cierre y las notas modificadas pasaron lint estricto sin errores ni warnings. Graphify autoactualizó el índice y resolvió el proyecto por su título canónico; el refresh reportó deuda global ajena a estos archivos, pero terminó con freshness `fresh`.
 
 ## Compartibilidad
 

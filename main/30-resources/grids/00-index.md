@@ -27,7 +27,7 @@ Carpeta para grids/tableros HTML autocontenidos que se ven de un vistazo y se co
 | Grid | Tema | Estado |
 |---|---|---|
 | `rio-scope-inventory.html` | Inventario Fury actualizado por aplicación y contrato funcional de SIG-599: catálogo acotado, adopción según necesidad, scopes frontend/backend y continuidad del ambiente. No propone topología física ni migración. | generado · schema v4 · corte Fury 2026-09-03 · publicado en Grid |
-| `rio-deployments-critical-flow.html` | Presentación corta del flujo de deployments en RIO, tecnologías, ventanas de pérdida, muerte súbita de un CP y deuda técnica priorizada. | manual · schema v1 · verificado contra refs locales 2026-09-07 · sólo local |
+| `rio-deployments-critical-flow.html` | Presentación técnica de seis slides sobre el flujo completo de deployments en RIO, modelo de datos, Materializer y fronteras de recuperación. | manual · schema v2 · verificado contra código y documentación local · sólo local |
 
 ## Convención
 
