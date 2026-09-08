@@ -46,9 +46,10 @@ Llevar E-01 desde el baseline Echo autorizado hasta **CONTRACT PASS** del módul
 
 ## 📊 Estado actual
 
-- **IMPLEMENTACIÓN COMPLETA (NORMAL):** T01–T25 `[x]`; gates PASS; commit `f1070bec` sobre `18261429`. CONTRACT PASS formal lo declara el Verifier en VERIFICATION.md (fuera de este TOP).
+- **IMPLEMENTACIÓN COMPLETA (NORMAL):** T01–T25 `[x]`; gates PASS; commit `f1070bec` sobre `18261429`. La certificación independiente queda pendiente de correcciones contractuales; `VERIFICATION.md` registra `CORRECTION_REQUIRED`.
 - **Corrección de frontera decidida (TOP 2026-09-08):** `IMPLEMENTATION_CORRECTION` — la autoridad canónica `C()` opera sobre bytes JSON válidos (opción B); el mirror de internals de `encoding/json` en `wire/canonicalize.go` se elimina vía WP-G (T26–T29), pendiente manager + NORMAL nuevo. Sin cambio de contrato público/frozen; corpus y digests intactos. Estado S0 sigue `implementation complete / verification pending`.
 - **WP-G implementado (NORMAL 2026-09-08):** T26–T29 completados en commit `f403e6d7` sobre `2be12e23`, publicado fast-forward a `origin/master`; byte-gate raw estricto, Go-value delegado a `encoding/json`, regresiones de frontera y gates requeridos PASS. Estado S0 sigue `implementation complete / verification pending`.
+- **Verificación independiente (2026-09-08):** `CORRECTION_REQUIRED` contra implementation `f403e6d76cf1c2777458cbfcd82ded3c26b7a01d`; verification commit `bd681814`; `origin/master` y árbol limpio verificados. Delta: recipe incorrecta de `requested_keys_digest`, orden canónico de capabilities no impuesto, `record_digest` opcional/no verificado, gramática de metric keys no impuesta y `supersedes_evidence_refs` sin validación. E-01 permanece abierto.
 - **Baseline Echo:** `04c16bd2bd7b69725560873950a5d6b067fd3a4f` (`origin/master`).
 - **Físico:** módulo parent `github.com/xKoRx/echo/v3/sdk` existe; `v3/sdk/contracts` **no existe**.
 - **Contrato WHAT:** repo `xKoRx/echo` path `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` (no duplicar FR aquí).
@@ -188,7 +189,7 @@ NORMAL trabaja contra baseline `04c16bd2` + SPEC + TASKS. Dirty foráneo se pres
 
 ## Closure conditions
 
-T01–T25 `[x]`; gates T25 PASS; allowed files respetados; SPEC AC cubiertos por tests listados; corpus G01–G36 + write-once presente; `CONTRACT PASS` declarado por Verifier en `VERIFICATION.md` (fuera de este TOP).
+T01–T25 `[x]`; gates T25 PASS; allowed files respetados; SPEC AC cubiertos por tests listados; corpus G01–G36 + write-once presente; certificación independiente registrada en `VERIFICATION.md` (fuera de este TOP), actualmente `CORRECTION_REQUIRED`.
 
 ## 🧩 Subproyectos
 
