@@ -10,7 +10,7 @@ parent:
 sprint:
 start: 2026-09-01
 due: 2026-09-08
-progress: 90
+progress: 95
 repo: ads-signals-knowledge-library
 jira:
 prs:
@@ -22,7 +22,7 @@ tags:
   - area/meli
   - project/presentacion-deployments-rio
 created: "2026-09-01"
-updated: "2026-09-07"
+updated: "2026-09-08"
 ---
 
 # Presentación deployments en RIO
@@ -41,6 +41,8 @@ updated: "2026-09-07"
 - Knowledge del vault reemplazada: `ads-signals-knowledge-library` es el puntero canónico y `signals-knowledge` quedó deprecada.
 - Flujo revalidado contra los `origin/master` locales de Playmaker, SDK Events, Materializer y los control planes Kafka, Flink, ClickHouse, Fury, Signals y Observability.
 - Documento principal reestructurado en tres partes: funcionamiento vigente y tecnologías; zoom causal sobre nueve puntos críticos; backlog priorizado de deuda técnica.
+- Grid local de ocho slides creado con flujo, matriz de durabilidad, escenario de muerte súbita de un CP, hallazgos no obvios y cuatro deudas P0.
+- Speech de 10 a 12 minutos documentado con transición por slide, preguntas probables y datos operacionales que conviene medir.
 - Pendiente ensayar el relato y confirmar configuración viva de producción para las afirmaciones de routing que dependan de scopes u overrides.
 
 ## 🧱 Entrega de desarrollo
@@ -59,11 +61,13 @@ _Sin subproyectos._
 - [x] Crear [[Deployments en RIO — flujo completo]] #owner/me #type/research #area/meli
 - [x] Crear [[Revisión de ads-signals-knowledge-library]] #owner/me #type/research #area/meli
 - [x] Reestructurar [[Deployments en RIO — flujo completo]] como guion técnico con tecnologías, puntos críticos, recuperación y deuda #owner/me #type/research #area/meli
+- [x] Crear [[Guion presentación — Deployments en RIO]] y Grid visual local #owner/me #type/research #area/meli
 - [ ] Ensayar el relato final y ajustar profundidad al tiempo disponible #owner/me #type/research #area/meli
 - [ ] Confirmar configuración viva de routing y suscripciones para distinguir código base de tráfico real #owner/me #type/research #area/meli #waiting
 
 ## 📆 Bitácora
 
+- **2026-09-08** — Se creó un Grid local de ocho slides y un speech de 10 a 12 minutos. El relato muestra primero el flujo completo y luego las fronteras críticas, incluyendo la muerte súbita de un CP después del ACK, el timeout inicial inexistente, locks sin replay, terminales KVS que pueden bloquear recuperación y routing legacy de Materializer.
 - **2026-09-07** — Se revalidó el flujo con refs locales más recientes y se reestructuró la guía para presentar en dos pasadas. Se corrigió la lectura de Materializer: es owner explícito de `s3-bucket` y `gcs-bucket`, pero el catch-all de Playmaker también absorbe tipos no migrados; `gcp-kafka-topic` es el caso verificado. Se documentaron nueve puntos críticos y nueve deudas técnicas con criterio de aceptación.
 - **2026-09-01** — Proyecto creado. Se reemplazó la knowledge anterior, se auditó íntegramente la librería nueva y se contrastó el deployment flow con el código actual de los repos. La librería es estructuralmente buena, pero su validación falla con 17 errores y varias afirmaciones materiales quedaron atrás de `master`; la documentación para mañana usa el código como autoridad.
 
@@ -78,6 +82,8 @@ _Sin subproyectos._
 ## 🔗 Docs / Links
 
 - [[Deployments en RIO — flujo completo]] — documento principal para la presentación.
+- [[Guion presentación — Deployments en RIO]] — speech, transiciones, preguntas probables y datos a pedir.
+- `30-resources/grids/rio-deployments-critical-flow.html` — presentación Grid local autocontenida.
 - [[Revisión de ads-signals-knowledge-library]] — auditoría de cobertura, integridad y frescura.
 - [[ads-signals-knowledge-library]] · [[RIO]] · [[rio-playmaker]] · [[rio-sdk-events]]
 

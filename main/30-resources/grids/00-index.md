@@ -9,7 +9,7 @@ aliases:
 tags:
   - kind/index
 created: 2026-08-12
-updated: 2026-09-03
+updated: 2026-09-08
 ---
 
 # 📊 Grids locales
@@ -18,7 +18,7 @@ Carpeta para grids/tableros HTML autocontenidos que se ven de un vistazo y se co
 
 ## 📊 De un vistazo
 
-- **Grids activos:** 1.
+- **Grids activos:** 2.
 - **Fuentes de verdad:** `~/fuentes/rio-inspector/rio-scopes.json` para el estado Fury y [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599) para el contrato funcional; la nota y el HTML son vistas derivadas.
 - **Reproducibilidad actual:** activa mediante `~/fuentes/rio-inspector/scope_inventory.py`; la vista narrativa sale directamente del generador.
 
@@ -27,6 +27,7 @@ Carpeta para grids/tableros HTML autocontenidos que se ven de un vistazo y se co
 | Grid | Tema | Estado |
 |---|---|---|
 | `rio-scope-inventory.html` | Inventario Fury actualizado por aplicación y contrato funcional de SIG-599: catálogo acotado, adopción según necesidad, scopes frontend/backend y continuidad del ambiente. No propone topología física ni migración. | generado · schema v4 · corte Fury 2026-09-03 · publicado en Grid |
+| `rio-deployments-critical-flow.html` | Presentación corta del flujo de deployments en RIO, tecnologías, ventanas de pérdida, muerte súbita de un CP y deuda técnica priorizada. | manual · schema v1 · verificado contra refs locales 2026-09-07 · sólo local |
 
 ## Convención
 
