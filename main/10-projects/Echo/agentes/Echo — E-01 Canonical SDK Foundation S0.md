@@ -47,6 +47,7 @@ Llevar E-01 desde el baseline Echo autorizado hasta **CONTRACT PASS** del módul
 ## 📊 Estado actual
 
 - **IMPLEMENTACIÓN COMPLETA (NORMAL):** T01–T25 `[x]`; gates PASS; commit `f1070bec` sobre `18261429`. CONTRACT PASS formal lo declara el Verifier en VERIFICATION.md (fuera de este TOP).
+- **Corrección de frontera decidida (TOP 2026-09-08):** `IMPLEMENTATION_CORRECTION` — la autoridad canónica `C()` opera sobre bytes JSON válidos (opción B); el mirror de internals de `encoding/json` en `wire/canonicalize.go` se elimina vía WP-G (T26–T29), pendiente manager + NORMAL nuevo. Sin cambio de contrato público/frozen; corpus y digests intactos. Estado S0 sigue `implementation complete / verification pending`.
 - **Baseline Echo:** `04c16bd2bd7b69725560873950a5d6b067fd3a4f` (`origin/master`).
 - **Físico:** módulo parent `github.com/xKoRx/echo/v3/sdk` existe; `v3/sdk/contracts` **no existe**.
 - **Contrato WHAT:** repo `xKoRx/echo` path `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` (no duplicar FR aquí).
