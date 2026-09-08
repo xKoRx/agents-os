@@ -10,7 +10,7 @@ parent: "[[AGENT-PLATFORM-OWNER-PROJECT]]"
 sprint:
 start: 2026-09-07
 due:
-progress: 5
+progress: 15
 repo:
 jira:
 prs:
@@ -39,11 +39,12 @@ updated: "2026-09-07"
 
 ## 📊 Estado actual
 
-- T0 está WIP. El host MCP existente tiene sólo PostgreSQL MCP; no existe aún un access plane multi-capability.
-- La implementación actual usa Docker Compose con `crystaldba/postgres-mcp:latest` para SSE y una imagen local `local/postgres-mcp-streamable:latest` para Streamable HTTP. Hay tres perfiles lógicos (`echo` prod RO, `echo-develop` RO y `echo_mcp` RW sandbox) duplicados entre ambos transportes y tres proxies Nginx adicionales para compatibilidad con Antigravity.
-- La configuración muestra hardening de contenedor útil (`read_only`, `/tmp` tmpfs, `no-new-privileges`, `cap_drop: ALL`, límites de PID/memoria), pero también deuda de diseño: tags `latest`, imagen local no versionada, duplicación 3×2 de backends, proxies de compatibilidad, credenciales por variables de entorno y ninguna autenticación cliente→MCP visible en el Compose entregado.
-- La implementación está actualmente sin uso y el owner autoriza retirarla si conviene. No se reutilizará como arquitectura objetivo por defecto; primero se completa T0 y luego se decide entre migración mínima o reemplazo limpio.
-- La arquitectura [[AGENT-PLATFORM-ARCHITECTURE]] ya define MCP como denominador común del Capability Plane y registra que existen servicios MCP en Aranea; este proyecto materializa esa capacidad de forma incremental.
+- T0 cerrado. `mcps` es un LXC dedicado con Docker + Portainer; IP actual `192.168.31.219`, considerada mutable y no parte del contrato estable.
+- El stack PostgreSQL MCP anterior fue retirado completamente. La evidencia final mostró 9 contenedores para 3 perfiles lógicos, imágenes `latest`, una imagen local sin provenance, secretos en `stack.env` y ninguna autenticación cliente→MCP visible. Sólo `portainer` queda ejecutándose.
+- La implementación anterior queda descartada como arquitectura objetivo; se conserva el LXC y Portainer porque son suficientes para reconstruir el access plane de forma limpia.
+- T1 está WIP: el contrato mínimo se definirá primero sobre SSH, porque es el capability prioritario para desbloquear Hermes/Daedalus sin distribuir private keys a los agentes.
+- Primer candidato a validar en T2: `tufantunc/ssh-mcp`, por soportar sesiones persistentes, perfiles/roles, host-key verification, approval policy, auditoría y transporte HTTP autenticado además de stdio. La selección queda sujeta a la validación práctica de T2.
+- La arquitectura [[AGENT-PLATFORM-ARCHITECTURE]] define MCP como denominador común del Capability Plane; este proyecto materializa esa capacidad incrementalmente.
 
 ## 🧱 Entrega de desarrollo
 
@@ -60,8 +61,8 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 > [!example]- Roadmap incremental
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [/] T0 Inventariar el host MCP existente: runtime, MCPs instalados, versiones, transporte, puertos, autenticación, persistencia, secretos, usuarios de servicio, red, logs y forma de despliegue #owner/agent #type/research #area/aranea
-> - [ ] T1 Definir y congelar el contrato mínimo de acceso: consumidores, aliases/profiles, least privilege, ubicación de secretos, autenticación cliente→MCP, auditoría, política de red y separación entre credenciales del MCP y credenciales del servicio destino #owner/agent #type/research #area/aranea
+> - [x] T0 Inventariar el host MCP existente: runtime, MCPs instalados, versiones, transporte, puertos, autenticación, persistencia, secretos, usuarios de servicio, red, logs y forma de despliegue #owner/agent #type/research #area/aranea
+> - [/] T1 Definir y congelar el contrato mínimo de acceso: consumidores, aliases/profiles, least privilege, ubicación de secretos, autenticación cliente→MCP, auditoría, política de red y separación entre credenciales del MCP y credenciales del servicio destino #owner/agent #type/research #area/aranea
 > - [ ] T2 Seleccionar y validar SSH MCP con un solo host de laboratorio: sesión persistente, host-key verification, perfiles read/operator, timeout, auditoría y cero private keys entregadas al agente #owner/agent #type/admin #area/aranea
 > - [ ] T3 Seleccionar y validar PostgreSQL MCP con una sola base de desarrollo: perfiles RO/RW, credencial centralizada, límites de query/timeout y convivencia con `psql` nativo #owner/agent #type/admin #area/aranea
 > - [ ] T4 Seleccionar y validar MongoDB MCP con una sola base de desarrollo: perfiles RO/RW, `readOnly`/protecciones equivalentes, límites de consulta y convivencia con `mongosh` nativo #owner/agent #type/admin #area/aranea
@@ -70,15 +71,18 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
-- **2026-09-07** — T0 iniciado con inventario real del Compose existente. Sólo hay PostgreSQL MCP. La solución rápida actual materializa 9 contenedores para 3 perfiles lógicos: 3 SSE con `crystaldba/postgres-mcp:latest`, 3 Streamable HTTP desde una imagen local y 3 Nginx para compatibilidad de Host/Antigravity. La implementación está sin uso; se preserva sólo hasta completar el inventario y no se toma como arquitectura objetivo.
-- **2026-09-07** — Proyecto creado para materializar incrementalmente el Capability Plane ya definido en [[AGENT-PLATFORM-ARCHITECTURE]]. Scope inicial congelado a SSH, PostgreSQL, MongoDB y Temporal; MinIO, Kafka y observabilidad quedan fuera hasta estabilizar este patrón. No se crea una VM nueva ni se migra el host MCP existente antes de completar T0-T1.
+- **2026-09-07** — T0 cerrado. Se confirmó `mcps` como LXC dedicado con Docker + Portainer, IP actual `192.168.31.219`. El stack PostgreSQL anterior se bajó con `docker compose down`; fueron removidos sus 9 contenedores y la red `postgres_mcp_net`. Verificación posterior: sólo `portainer` permanece activo. Se decide conservar el LXC/Portainer y reconstruir limpio.
+- **2026-09-07** — T0 iniciado con inventario real del Compose existente. Sólo había PostgreSQL MCP. La solución rápida materializaba 9 contenedores para 3 perfiles lógicos: 3 SSE con `crystaldba/postgres-mcp:latest`, 3 Streamable HTTP desde una imagen local y 3 Nginx para compatibilidad de Host/Antigravity.
+- **2026-09-07** — Proyecto creado para materializar incrementalmente el Capability Plane ya definido en [[AGENT-PLATFORM-ARCHITECTURE]]. Scope inicial congelado a SSH, PostgreSQL, MongoDB y Temporal; MinIO, Kafka y observabilidad quedan fuera hasta estabilizar este patrón.
 
 ## 🧭 Decisiones
 
 - D1: centralizar credenciales y sesiones MCP en un host dedicado es la dirección preferida; los agentes consumen capabilities y perfiles, no secretos de los servicios destino.
-- D2: el host/contenedor MCP existente es el baseline de discovery, no una arquitectura a preservar. Reutilizarlo, limpiarlo o reemplazarlo se decide después de T0-T1; una VM nueva requiere evidencia material de que el host actual no cumple aislamiento, mantenimiento, red o disponibilidad.
+- D2: se conserva el LXC `mcps` y Portainer como baseline operativo; la implementación PostgreSQL anterior fue retirada y no se preserva como arquitectura objetivo. Una VM nueva sólo se justifica con evidencia material de aislamiento, mantenimiento, red o disponibilidad insuficientes.
 - D3: un host central no implica una identidad omnipotente. Cada MCP/perfil debe usar credenciales finales separadas y least-privilege en SSH, PostgreSQL, MongoDB y Temporal.
 - D4: mantener clientes nativos (`ssh`, `psql`, `mongosh`, Temporal CLI) donde aporten valor; MCP es la capa reusable para agentes, no una prohibición del acceso nativo.
+- D5: la IP `192.168.31.219` es ubicación actual, no identidad estable. Los consumidores deberán resolver el access plane por alias/DNS para permitir cambio de IP sin reconfiguración distribuida.
+- D6: SSH es el primer capability a implementar porque desbloquea el mayor gap operativo inmediato para Hermes y Daedalus. La private key y la identidad SSH permanecen en el access plane; los agentes no reciben las credenciales finales.
 
 ## 🔗 Docs / Links
 
