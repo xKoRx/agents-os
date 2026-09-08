@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: done
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Forge — Factory V2 Completion]]"
@@ -43,16 +43,17 @@ Reemplazar membresía V1 (copia de `TopProjection`) por membership estructural V
 
 ## 📊 Estado actual
 
-- **IMPLEMENTADO / GATE G1 REVIEW (2026-09-08).** T1.1→T1.6 completadas. `NORMAL` autorizado por manager; branch publicada, sin merge.
-- Baseline source: `xKoRx/symphony@0509342439cfbaa048839088787458dde1ed1b05` == `origin/master` (fetch verificado). Foreign dirty symphony preservado.
+- **PASS / CLOSED (2026-09-08).** Manager ordenó integración: `feature/f02-finalist-model-v2` mergeada ff-only a `master`; F-02 commit final `c3b7ede4da5caa5f3294533b0dcf5e8570369c38` == `origin/master` en el momento del merge, pushed. Gate G1 cerrado. T1.1→T1.6 DONE.
+- Tras la integración, `master` avanzó a `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` con un commit separado `chore(deploy)` que registra el manifest de release `0.2.96` publicado (rescate del dirty tree local, sin mezclar con `c3b7ede`).
+- Verificación de integración: `go test -count=1` `sqx/core/domain` + `sqx/core/forge` PASS; build `./sqx/...` OK excluyendo baseline preexistente (`sqx/tools` multi-main, zmq4 sin libzmq del entorno).
+- Baseline source: `xKoRx/symphony@0509342439cfbaa048839088787458dde1ed1b05` == `origin/master` (fetch verificado pre-merge). Dirty foráneo clasificado y limpiado en la misma sesión de integración.
 - `DATABASE MIGRATION: 014_finalist_promotion_v2` (policy 2.0.0 + first_rank/first_score_ref nullable). `GOD REQUIRED: NONE`.
-- Agents OS live fetch de `origin/master` no disponible aquí (vault sin git, `gh` unauth). Último SHA durable en vault: `f1070bec27db3ca415fe24f3c3576139674b7e09`.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f02-finalist-model-v2` | `0509342439cfbaa048839088787458dde1ed1b05` | [[Echo Forge — Factory V2 Completion]] F-02 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | **REVIEW: `c3b7ede` pushed; baseline/origin verificados sin avance; no merge.** |
+| xKoRx/symphony | `feature/f02-finalist-model-v2` (integrada) | `0509342439cfbaa048839088787458dde1ed1b05` | [[Echo Forge — Factory V2 Completion]] F-02 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | **PASS / CLOSED** — F-02 commit `c3b7ede4da5caa5f3294533b0dcf5e8570369c38` mergeado ff-only y pushed |
 
 ## Parent / SPEC / baselines
 
@@ -323,6 +324,7 @@ El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 
 - **2026-09-08** — TOP diseñó F-02 contra symphony `0509342`. SPEC + TASKS persistidas. Migration 014 cerrada. NORMAL autorizado por manager.
 - **2026-09-08** — Codex completó T1.1→T1.6 en `feature/f02-finalist-model-v2`, commit `c3b7ede`, push para manager review. Gates F-02 y migration brownfield PASS; sweep completo conserva fallos preexistentes fuera de scope (`sqx/tools`, workflow harness y algunos registry tests).
+- **2026-09-08** — **PASS/CLOSED.** Manager ordenó integración: merge ff-only a `master` (`c3b7ede`) y push; worktree de symphony quedó limpio tras clasificar el dirty foráneo (5 restaurados, 4 RCA/CHANGE de la campaña C3 eliminados ya materializados/superseded en Agents OS, manifest `0.2.96` rescatado como commit separado `e50cb7e`). Desbloquea F-04 (membership exacta en handoff) y F-05 (golden nonempty estructural).
 
 ## 🧭 Decisiones
 
