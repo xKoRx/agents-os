@@ -10,7 +10,7 @@ parent: "[[AGENT-PLATFORM-OWNER-PROJECT]]"
 sprint:
 start: 2026-09-07
 due:
-progress: 15
+progress: 25
 repo:
 jira:
 prs:
@@ -24,7 +24,7 @@ tags:
   - project/aranea-agent-platform
   - tech/mcp
 created: "2026-09-07"
-updated: "2026-09-07"
+updated: "2026-09-08"
 ---
 
 # AGENT-PLATFORM - MCP Access Plane
@@ -40,11 +40,12 @@ updated: "2026-09-07"
 ## 📊 Estado actual
 
 - T0 cerrado. `mcps` es un LXC dedicado con Docker + Portainer; IP actual `192.168.31.219`, considerada mutable y no parte del contrato estable.
-- El stack PostgreSQL MCP anterior fue retirado completamente. La evidencia final mostró 9 contenedores para 3 perfiles lógicos, imágenes `latest`, una imagen local sin provenance, secretos en `stack.env` y ninguna autenticación cliente→MCP visible. Sólo `portainer` queda ejecutándose.
-- La implementación anterior queda descartada como arquitectura objetivo; se conserva el LXC y Portainer porque son suficientes para reconstruir el access plane de forma limpia.
-- T1 está WIP: el contrato mínimo se definirá primero sobre SSH, porque es el capability prioritario para desbloquear Hermes/Daedalus sin distribuir private keys a los agentes.
-- Primer candidato a validar en T2: `tufantunc/ssh-mcp`, por soportar sesiones persistentes, perfiles/roles, host-key verification, approval policy, auditoría y transporte HTTP autenticado además de stdio. La selección queda sujeta a la validación práctica de T2.
-- La arquitectura [[AGENT-PLATFORM-ARCHITECTURE]] define MCP como denominador común del Capability Plane; este proyecto materializa esa capacidad incrementalmente.
+- El stack PostgreSQL MCP anterior fue retirado completamente. Sólo `portainer` queda ejecutándose.
+- DNS de `mcps` fue corregido para usar Pi-hole `192.168.31.31` y search domain `lab.aranea.cl`; nombres FQDN y cortos vuelven a resolver.
+- T1 sigue WIP y T2 ya está WIP con `sqx-zeus.lab.aranea.cl` como primer target POC para el perfil `sqx-dev` consumido por agentes de Daedalus.
+- Se validó la host key ED25519 de Daedalus y `sqx-zeus` desde ambos extremos y ambas quedaron pinneadas en `/opt/mcp/ssh/known_hosts`.
+- Se creó una identidad SSH dedicada `sqx-dev@mcps` en `/opt/mcp/ssh/keys/sqx-dev`; todavía no ha sido autorizada en ningún host. La key genérica `mcp-access@mcps` queda fuera del diseño y no debe autorizarse.
+- Primer candidato a validar en T2: `tufantunc/ssh-mcp`. La selección definitiva sigue sujeta a validación práctica y revisión de versión/advisories antes del deployment.
 
 ## 🧱 Entrega de desarrollo
 
@@ -63,7 +64,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
 > - [x] T0 Inventariar el host MCP existente: runtime, MCPs instalados, versiones, transporte, puertos, autenticación, persistencia, secretos, usuarios de servicio, red, logs y forma de despliegue #owner/agent #type/research #area/aranea
 > - [/] T1 Definir y congelar el contrato mínimo de acceso: consumidores, aliases/profiles, least privilege, ubicación de secretos, autenticación cliente→MCP, auditoría, política de red y separación entre credenciales del MCP y credenciales del servicio destino #owner/agent #type/research #area/aranea
-> - [ ] T2 Seleccionar y validar SSH MCP con un solo host de laboratorio: sesión persistente, host-key verification, perfiles read/operator, timeout, auditoría y cero private keys entregadas al agente #owner/agent #type/admin #area/aranea
+> - [/] T2 Seleccionar y validar SSH MCP con un solo host de laboratorio: sesión persistente, host-key verification, perfiles read/operator, timeout, auditoría y cero private keys entregadas al agente #owner/agent #type/admin #area/aranea
 > - [ ] T3 Seleccionar y validar PostgreSQL MCP con una sola base de desarrollo: perfiles RO/RW, credencial centralizada, límites de query/timeout y convivencia con `psql` nativo #owner/agent #type/admin #area/aranea
 > - [ ] T4 Seleccionar y validar MongoDB MCP con una sola base de desarrollo: perfiles RO/RW, `readOnly`/protecciones equivalentes, límites de consulta y convivencia con `mongosh` nativo #owner/agent #type/admin #area/aranea
 > - [ ] T5 Seleccionar y validar Temporal MCP: comenzar read-only con allowlist de namespaces; evaluar `signal/start/cancel` sólo después de demostrar la necesidad y el modelo de policy correspondiente #owner/agent #type/admin #area/aranea
@@ -71,18 +72,20 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
+- **2026-09-08** — T2 iniciado con `sqx-zeus.lab.aranea.cl` (`192.168.31.101`) como primer target. Host key ED25519 validada local/remotamente y agregada al trust store dedicado. Se creó identidad `sqx-dev@mcps` con fingerprint `SHA256:2Qv9f2AREQyse50bGYaTLc1PHK43gvuf3xgv5TTJ+I0`; aún no autorizada. El POC se centra primero en acceso dev/diagnóstico desde agentes Daedalus a SQX; `hermes-admin` se implementará después como perfil separado de mayor privilegio.
+- **2026-09-08** — DNS de `mcps` corregido: resolver directo Pi-hole `192.168.31.31`, search domain `lab.aranea.cl`. Se comprobó resolución de `daedalus` y `sqx-zeus`.
 - **2026-09-07** — T0 cerrado. Se confirmó `mcps` como LXC dedicado con Docker + Portainer, IP actual `192.168.31.219`. El stack PostgreSQL anterior se bajó con `docker compose down`; fueron removidos sus 9 contenedores y la red `postgres_mcp_net`. Verificación posterior: sólo `portainer` permanece activo. Se decide conservar el LXC/Portainer y reconstruir limpio.
-- **2026-09-07** — T0 iniciado con inventario real del Compose existente. Sólo había PostgreSQL MCP. La solución rápida materializaba 9 contenedores para 3 perfiles lógicos: 3 SSE con `crystaldba/postgres-mcp:latest`, 3 Streamable HTTP desde una imagen local y 3 Nginx para compatibilidad de Host/Antigravity.
 - **2026-09-07** — Proyecto creado para materializar incrementalmente el Capability Plane ya definido en [[AGENT-PLATFORM-ARCHITECTURE]]. Scope inicial congelado a SSH, PostgreSQL, MongoDB y Temporal; MinIO, Kafka y observabilidad quedan fuera hasta estabilizar este patrón.
 
 ## 🧭 Decisiones
 
 - D1: centralizar credenciales y sesiones MCP en un host dedicado es la dirección preferida; los agentes consumen capabilities y perfiles, no secretos de los servicios destino.
-- D2: se conserva el LXC `mcps` y Portainer como baseline operativo; la implementación PostgreSQL anterior fue retirada y no se preserva como arquitectura objetivo. Una VM nueva sólo se justifica con evidencia material de aislamiento, mantenimiento, red o disponibilidad insuficientes.
-- D3: un host central no implica una identidad omnipotente. Cada MCP/perfil debe usar credenciales finales separadas y least-privilege en SSH, PostgreSQL, MongoDB y Temporal.
+- D2: se conserva el LXC `mcps` y Portainer como baseline operativo; una VM nueva sólo se justifica con evidencia material de aislamiento, mantenimiento, red o disponibilidad insuficientes.
+- D3: un host central no implica una identidad omnipotente. Cada MCP/perfil usa credenciales finales separadas y least-privilege.
 - D4: mantener clientes nativos (`ssh`, `psql`, `mongosh`, Temporal CLI) donde aporten valor; MCP es la capa reusable para agentes, no una prohibición del acceso nativo.
-- D5: la IP `192.168.31.219` es ubicación actual, no identidad estable. Los consumidores deberán resolver el access plane por alias/DNS para permitir cambio de IP sin reconfiguración distribuida.
-- D6: SSH es el primer capability a implementar porque desbloquea el mayor gap operativo inmediato para Hermes y Daedalus. La private key y la identidad SSH permanecen en el access plane; los agentes no reciben las credenciales finales.
+- D5: la IP `192.168.31.219` es ubicación actual, no identidad estable. Los consumidores deberán resolver el access plane por alias/DNS.
+- D6: SSH es el primer capability a implementar porque desbloquea el mayor gap operativo inmediato para Hermes y Daedalus. Las private keys permanecen en el access plane; los agentes no reciben las credenciales finales.
+- D7: identidades SSH separadas por perfil de capacidad. `sqx-dev` será la identidad limitada para agentes Daedalus sobre hosts SQX; `hermes-admin` se diseñará y desplegará aparte, con mayor privilegio sólo donde sea necesario.
 
 ## 🔗 Docs / Links
 
