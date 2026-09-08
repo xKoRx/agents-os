@@ -45,7 +45,7 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 ## 📊 Estado actual
 
-- **PREPARADO.** Roadmap congelado. F-01 SPEC+TASKS listas para manager review; implementación NORMAL no autorizada. Progress 0.
+- **PREPARADO.** Roadmap congelado. F-01 SPEC+TASKS corregidas in-place pendientes de manager re-review; implementación NORMAL no autorizada. Progress 0.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
 - **Abierto exactamente una vez:** F-01 (F0 HOST_KEY/canonicalizer), F-02 (F1 = C1+C2 Finalist V2), F-03 (D SQX long-running), F-04 (F2 magic/seal/handoff tras pin S0), F-05 (release cohesivo + cert física + FULL golden).
 - **Base observada:** Symphony `db8a022`. Revalidar HEAD/working tree en la SPEC; dirty ajeno preservado. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
@@ -55,7 +55,7 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | Fijar por fase en SPEC TOP | `db8a022703082fd7ee9d1e15243c5d1b2feaf578` revalidado F-01 | F-01: este padre | F-01: [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | F-01 SPEC review; resto PREPARADO |
+| xKoRx/symphony | Fijar por fase en SPEC TOP | `db8a022703082fd7ee9d1e15243c5d1b2feaf578` revalidado F-01 | F-01: este padre | F-01: [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | F-01 SPEC re-review; resto PREPARADO |
 
 ## 🧩 Subproyectos
 
@@ -108,14 +108,14 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Dependencies:** ninguna de Echo. Independiente de F-02/F-03.
 - **Cross-project:** none.
 - **Parallel with:** F-02, F-03, E-01, E-02.
-- **Hypotheses:** HOST_KEY no es identidad de negocio; un discriminador de output durable basta para CanonicalStrategyID puro.
+- **Hypotheses:** HOST_KEY no es identidad de negocio; el discriminador durable de logical producer es `ExecutionIntentKey`, no `OutputNamespaceOwnership`.
 - **Risks:** colisión intra-wave no reproducida en test débil; retirar sufijo rompe IDs adoptados.
 - **Output authority:** CanonicalStrategyID + proof G34. Adopted IDs intactos.
 - **Certification:** SOURCE PASS + CONTRACT/concurrency PASS (G34 unit + registry multiworker/crash). No PHYSICAL de flota salvo que la SPEC toque runtime de generación.
 - **Done when:** proof intra-wave PASS; no se eliminó HOST_KEY/sufijo sin esa evidencia; IDs históricos no renombrados.
 - **Unlocks next:** F-04 puede sellar versiones sobre IDs estables; F-05 golden no depende de retirar sufijo.
 - **Accepted debt:** host-suffixed adopted IDs hasta proof.
-- **Planning:** TOP cerrado 2026-09-07, pendiente manager review. **Implementation:** NORMAL no autorizado aún. **GOD REQUIRED NOW:** NONE.
+- **Planning:** TOP corregido in-place 2026-09-07, pendiente manager re-review. **Implementation:** NORMAL no autorizado aún. **GOD REQUIRED NOW:** NONE.
 
 ### F-02 Finalist Model V2 (C1+C2)
 
@@ -209,6 +209,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 
 - **2026-09-07** — Reparentado a [[Echo — Producto Integrado]], `owner: agent`, roadmap F-01…F-05. Tareas `#owner/me` de 4 ítems supersedidas. B1A/B1B/B2 historial, no backlog. C1/C2 fusionados en F-02.
 - **2026-09-07** — TOP F-01 persistió SPEC [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] e hijo [[Echo Forge — F-01 Canonical generation concurrency]]. NORMAL no autorizado.
+- **2026-09-07** — Corrección F-01 in-place: discriminator = `ExecutionIntentKey`; FlowRun/NS ownership insuficiente. NORMAL no autorizado.
 
 ## 🧭 Decisiones
 

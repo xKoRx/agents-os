@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Páginas:** 16 aplicaciones
-- **Última ingesta:** 2026-09-07 (SPEC F-01 Canonical generation concurrency).
+- **Última ingesta:** 2026-09-07 (corrección F-01 Canonical generation concurrency).
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -66,7 +66,7 @@ tags:
 | [[Echo + Echo Forge — Evidencia de revisión independiente 2026-09-06]] | Source y evidencia actual sanitizada: binarios/DB/front, cohortes desde junio y archivo anterior, límites de provenance. |
 | [[Echo — Fuentes de arquitectura y producto 2026-09-06]] | Provenance Echo master 04c16bd y decisiones owner; source ledger del recurso. |
 | [[Echo Forge — Fuentes de arquitectura y producto 2026-09-06]] | Provenance Symphony a10c26c, SDK, contratos y evidencia física; source ledger del recurso. |
-| [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | Contrato técnico F-01: CanonicalStrategyID puro, publication GENERATED sin HOST_KEY, discriminador intra-wave = OutputNamespaceOwnership; sin migration. |
+| [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | Contrato técnico F-01: CanonicalStrategyID puro, publication GENERATED con discriminator `ExecutionIntentKey`, sin HOST_KEY; sin migration. |
 
 ## 🚨 Salud (del último lint)
 

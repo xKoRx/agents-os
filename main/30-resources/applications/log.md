@@ -76,3 +76,7 @@ Creado [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]; en
 ## [2026-09-07] ingest | Echo Forge F-01 Canonical generation concurrency contract
 
 Creado [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] y subproyecto [[Echo Forge — F-01 Canonical generation concurrency]] hijo de [[Echo Forge — Factory V2 Completion]]. Change log [[2026-09-07-echo-forge-f01-canonical-generation-concurrency-spec]]. Graphify externo no se refresca.
+
+## [2026-09-07] ingest | Echo Forge F-01 correction — ExecutionIntentKey discriminator
+
+Corrección in-place de [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] e hijo [[Echo Forge — F-01 Canonical generation concurrency]]: logical producer = Builder StageExecution; discriminator = `ExecutionIntentKey`; `OutputNamespaceOwnership` insuficiente (T7). Change log [[2026-09-07-echo-forge-f01-canonical-generation-concurrency-correction]]. Graphify externo no se refresca.
