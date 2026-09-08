@@ -32,7 +32,7 @@ updated: "2026-09-07"
 
 > [!info]+ Echo Forge — Factory V2 Completion
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
-> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. SPECs de implementación las crea un TOP posterior.
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 tiene hijo de implementación [[Echo Forge — F-01 Canonical generation concurrency]] y SPEC [[Echo Forge — F-01 Canonical Generation Concurrency Contract]].
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
 > Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
@@ -45,7 +45,7 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 ## 📊 Estado actual
 
-- **PREPARADO.** Roadmap congelado; implementación no iniciada. Progress 0.
+- **PREPARADO.** Roadmap congelado. F-01 SPEC+TASKS listas para manager review; implementación NORMAL no autorizada. Progress 0.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
 - **Abierto exactamente una vez:** F-01 (F0 HOST_KEY/canonicalizer), F-02 (F1 = C1+C2 Finalist V2), F-03 (D SQX long-running), F-04 (F2 magic/seal/handoff tras pin S0), F-05 (release cohesivo + cert física + FULL golden).
 - **Base observada:** Symphony `db8a022`. Revalidar HEAD/working tree en la SPEC; dirty ajeno preservado. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
@@ -55,11 +55,11 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | Fijar por fase en SPEC TOP | Revalidar HEAD; observado `db8a022` | Por Agent Task, no este padre | Por Agent Task | PREPARADO |
+| xKoRx/symphony | Fijar por fase en SPEC TOP | `db8a022703082fd7ee9d1e15243c5d1b2feaf578` revalidado F-01 | F-01: este padre | F-01: [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | F-01 SPEC review; resto PREPARADO |
 
 ## 🧩 Subproyectos
 
-Sin hijos. C1/C2 son milestones internos de F-02, no proyectos.
+Hijo de implementación: [[Echo Forge — F-01 Canonical generation concurrency]]. C1/C2 siguen siendo milestones internos de F-02, no proyectos.
 
 ## ✅ Tareas
 
@@ -68,7 +68,7 @@ Sin hijos. C1/C2 son milestones internos de F-02, no proyectos.
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [ ] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
+> - [ ] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
 > - [ ] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
 > - [ ] F-03 SQX long-running #owner/agent #type/dev #area/echo
 > - [ ] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
