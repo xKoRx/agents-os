@@ -281,6 +281,7 @@ El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 - **2026-09-07** — Corrección TOP in-place tras manager `CORRECTION REQUIRED`. Discriminador = `ExecutionIntentKey`. FlowRun/NS ownership insuficiente (T7). T1.2/T1.4 reabiertos. Planned diff ampliado a publication path. NORMAL no autorizado.
 - **2026-09-07** — Corrección 02 filename budget: `p`+hex(64) rechazado. Encoding Base64URL 91 chars. Campaign `FilenameToken` no se proyecta en GENERATED nuevos. NORMAL no autorizado.
 - **2026-09-08** — NORMAL autorizado por manager (prompt). T1.1–T1.4 implementadas en symphony `feature/f01-canonical-generation-concurrency` desde `db8a022`, commit `0509342`. Purity, tokens 91 chars, record-before-put genérico, bridge overview local→publicado, fail-closed sin store/token. Suites domain/capabilities/storage-minio/pipeline/steps/worker PASS; `go test -race` PASS. G34 registry-postgres **DEGRADED**: harness Postgres embebido falla `initdb` (shared memory) — verificado preexistente en baseline limpio. Foreign dirty intacto. Estado: review (gate G1 pendiente de aceptación manager).
+- **2026-09-08** — Push autorizado ejecutado: `origin/feature/f01-canonical-generation-concurrency` = `0509342` (tracking set). Sin merge/rebase/amend/commits nuevos; `master` intacto en `db8a022`.
 
 ## 🧭 Decisiones
 
