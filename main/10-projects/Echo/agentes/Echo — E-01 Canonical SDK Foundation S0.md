@@ -51,6 +51,7 @@ Llevar E-01 desde el baseline Echo autorizado hasta **CONTRACT PASS** del módul
 - **WP-G implementado (NORMAL 2026-09-08):** T26–T29 completados en commit `f403e6d7` sobre `2be12e23`, publicado fast-forward a `origin/master`; byte-gate raw estricto, Go-value delegado a `encoding/json`, regresiones de frontera y gates requeridos PASS. Estado S0 sigue `implementation complete / verification pending`.
 - **Verificación independiente (2026-09-08):** `CORRECTION_REQUIRED` contra implementation `f403e6d76cf1c2777458cbfcd82ded3c26b7a01d`; verification commit `bd681814b9ec697837360b840d55f659f195ca13`; `origin/master` y árbol limpio verificados. Delta: recipe incorrecta de `requested_keys_digest`, orden canónico de capabilities no impuesto, `record_digest` opcional/no verificado, gramática de metric keys no impuesta y `supersedes_evidence_refs` sin validación. E-01 permanece abierto.
 - **Corrección NORMAL (2026-09-09):** contra verification commit `bd681814b9ec697837360b840d55f659f195ca13`, los cinco findings fueron implementados en worktree limpio y publicados en commit `08a0eb9a83813cda2acbd7be5232e9e0370e12ab` (parent exacto, fast-forward a `origin/master`). Gates completos, schema drift NONE, derivación independiente y scope gate PASS; corpus limitado a G27/G28/G30/G32. Estado técnico: `implementation complete / verification pending`; no verified/closed.
+- **Re-verificación independiente bloqueada (2026-09-09):** el baseline gate no pudo certificarse: checkout local `HEAD=bd681814b9ec697837360b840d55f659f195ca13`, `origin/master=08a0eb9a83813cda2acbd7be5232e9e0370e12ab` tras fetch, y el árbol contiene cambios locales no commiteados en source/tests/corpus más `verification_findings_test.go`; `git pull --ff-only` se detuvo para no sobrescribirlos. No se ejecutaron gates ni se modificó el repo. E-01 permanece abierto como `verification pending`.
 - **Baseline Echo:** `04c16bd2bd7b69725560873950a5d6b067fd3a4f` (`origin/master`).
 - **Físico:** módulo parent `github.com/xKoRx/echo/v3/sdk` existe; `v3/sdk/contracts` **no existe**.
 - **Contrato WHAT:** repo `xKoRx/echo` path `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` (no duplicar FR aquí).
@@ -224,6 +225,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-09 (VERIFIER INDEPENDIENTE — re-verificación):** `BLOCKED` antes de source review y gates. El baseline requerido no era reproducible: `HEAD` quedó en `bd681814b9ec697837360b840d55f659f195ca13`, `origin/master` resolvió a `08a0eb9a83813cda2acbd7be5232e9e0370e12ab` y el worktree estaba dirty con cambios productivos posteriores. Se preservaron todos los cambios; no hubo commit/push de verificación. E-01 queda abierto.
 
 - **2026-09-09 (NORMAL — cierre de findings):** requested keys, gramática de metric keys, capabilities canónicas, `record_digest` requerido/verificado y `supersedes_evidence_refs` estructural quedaron PASS. G27/G28/G30/G32 fueron reparados sólo en derivados autorizados; G01–G36 y write-once PASS. Commit `08a0eb9a83813cda2acbd7be5232e9e0370e12ab` publicado y árbol limpio. E-01 sigue `implementation complete / verification pending`.
 
