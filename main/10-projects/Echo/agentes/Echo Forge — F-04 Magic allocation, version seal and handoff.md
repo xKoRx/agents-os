@@ -133,11 +133,11 @@ F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [ ] T1.1 go.mod pin S0 contracts + test HashIdentity ≠ H() #owner/agent #type/dev #area/echo
-> - [ ] T1.2 migration 015 strategy_magic + versions + manifests + deliveries #owner/agent #type/dev #area/echo
-> - [ ] T1.3 allocator CAS/replay/reserved 11111+888111 #owner/agent #type/dev #area/echo
-> - [ ] T1.4 CC_MISSING_OWNER_GATE + fixture MagicCandidateSource #owner/agent #type/dev #area/echo
-> - [ ] T1.5 Apply stamp usa allocated; requested must match #owner/agent #type/dev #area/echo
+> - [x] T1.1 go.mod pin S0 contracts + test HashIdentity ≠ H() #owner/agent #type/dev #area/echo
+> - [x] T1.2 migration 015 strategy_magic + versions + manifests + deliveries #owner/agent #type/dev #area/echo
+> - [x] T1.3 allocator CAS/replay/reserved 11111+888111 #owner/agent #type/dev #area/echo
+> - [x] T1.4 CC_MISSING_OWNER_GATE + fixture MagicCandidateSource #owner/agent #type/dev #area/echo
+> - [/] T1.5 Apply stamp usa allocated; requested must match #owner/agent #type/dev #area/echo
 > - [ ] T1.6 readback XML MagicNumber del .sqx #owner/agent #type/dev #area/echo
 > - [ ] T1.7 readback MQ5 MagicNumber #owner/agent #type/dev #area/echo
 > - [ ] T1.8 mismatch FAIL CLOSED no seal/handoff #owner/agent #type/dev #area/echo
@@ -365,6 +365,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 ## 📆 Bitácora
 
 - **2026-09-10** — TOP persistió SPEC y este subproyecto. Baseline `382f4ba`. S0 `91671f6f`. CC_MISSING_OWNER_GATE. Migration 015. NORMAL no autorizado.
+- **2026-09-10 (sesión NORMAL)** — Branch `feature/f04-magic-version-handoff` (nombre del briefing; difiere del registrado arriba). T1.1–T1.4 committeados: pin S0 resuelto por SSH directo (`v0.0.0-20260910031519-91671f6f46ff`), migración 015 + runner + tests fresh/brownfield/down/restart, allocator CAS SELECT-then-INSERT con replay/colisión/reservados/exhaustión N=32, `GateMagicCandidateSource` = producción (`CC_MISSING_OWNER_GATE`), concurrencia same/distinct con `-race` verde. Nota: 4 tests pre-existentes fallan en baseline (`TestUpsertStrategyV2_V0V1V2Coexistence`, `TestControlPlane_AdoptStrategyV1ConcurrentFilenameVariantsConverge`, `TestRegisterStrategy_LegacyRollbackTargetsOnlyV0`, `TestControlPlane_AdoptStrategyV1UnexpectedUniqueFailsWithoutPoisonedRead`) — set idéntico en baseline y branch, sin regresión F-04. Delegación MiniMax bloqueada por plan limit; NORMAL ejecutó directo.
 
 ## 🧭 Decisiones
 
