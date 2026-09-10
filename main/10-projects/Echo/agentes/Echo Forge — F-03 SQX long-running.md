@@ -43,6 +43,7 @@ Elapsed wall-clock ≠ failure de negocio en cómputos SQX largos (Builder / Opt
 
 ## 📊 Estado actual
 
+- **IMPLEMENTACIÓN T1.1–T1.8 EXECUTED 2026-09-09.** Branch `feature/f03-sqx-long-running` commit `a382470` pusheado desde baseline `e50cb7e`. Tests/race/vet verdes; SOURCE LIVE-scoped sin business deadlines; PHYSICAL BLOCKED (sin lab SQX). Pendiente: manager review G1.
 - **TOP CORRECTION 2026-09-08 (C1–C3).** Ceiling fijado `MaxInt64ns−1s`. Adaptive `INACTIVE/DEPRECATED — NO CHANGE`. Process-tree obligatorio. NORMAL **no autorizado**. `GOD REQUIRED: NONE`.
 - Baseline symphony `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` == `origin/master`, worktree CLEAN al abrir y al cerrar TOP.
 - `DATABASE MIGRATION: NONE`.
@@ -52,7 +53,7 @@ Elapsed wall-clock ≠ failure de negocio en cómputos SQX largos (Builder / Opt
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | _no abierta_ | `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` | [[Echo Forge — Factory V2 Completion]] F-03 | [[Echo Forge — F-03 SQX Long-Running Contract]] | TOP correction C1–C3; NORMAL no autorizado |
+| xKoRx/symphony | `feature/f03-sqx-long-running` (`a382470`, pushed) | `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` | [[Echo Forge — Factory V2 Completion]] F-03 | [[Echo Forge — F-03 SQX Long-Running Contract]] | T1.1–T1.8 executed; G1 review pendiente; PHYSICAL BLOCKED |
 
 ## Parent / SPEC / baselines
 
