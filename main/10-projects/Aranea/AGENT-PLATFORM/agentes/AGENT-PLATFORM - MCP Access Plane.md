@@ -10,7 +10,7 @@ parent: "[[AGENT-PLATFORM-OWNER-PROJECT]]"
 sprint:
 start: 2026-09-07
 due:
-progress: 45
+progress: 55
 repo:
 jira:
 prs:
@@ -42,15 +42,16 @@ updated: "2026-09-10"
 - T0 cerrado. `mcps` es un LXC dedicado con Docker + Portainer; IP actual `192.168.31.219`, considerada mutable y no parte del contrato estable.
 - El stack PostgreSQL MCP anterior fue retirado completamente. Sólo `portainer` queda ejecutándose.
 - DNS de `mcps` fue corregido para usar Pi-hole `192.168.31.31` y search domain `lab.aranea.cl`; `mcps.lab.aranea.cl` es el endpoint estable usado por consumidores.
-- T1 sigue WIP y T2 está WIP con `sqx-zeus.lab.aranea.cl` como primer target POC para el perfil `echo-dev` consumido por agentes de Daedalus.
-- Se validó la host key ED25519 de Daedalus y `sqx-zeus` desde ambos extremos y ambas quedaron pinneadas en el trust store dedicado del access plane.
-- Se creó la identidad SSH dedicada `echo-dev@mcps`, fingerprint `SHA256:2Qv9f2AREQyse50bGYaTLc1PHK43gvuf3xgv5TTJ+I0`. La key genérica `mcp-access@mcps` queda fuera del diseño y no debe autorizarse.
-- En `sqx-zeus` existe usuario remoto dedicado `echo-dev`, password bloqueado, sin grupos extra ni sudo. Su `authorized_keys` contiene sólo la public key `echo-dev@mcps`.
-- Acceso SSH directo validado end-to-end desde `mcps` usando key dedicada + host-key strict: `whoami` devolvió `echo-dev` y `hostname` devolvió `sqx-ulab-zeus-0`.
+- T1 sigue WIP y T2 está WIP, pero el SSH MCP ya está operacionalmente usable desde Cursor/Daedalus con cuatro perfiles read-only: `sqx-zeus`, `sqx-hera`, `sqx-kronos` y `mt5-kronos`.
+- Las host keys ED25519 de todos los targets están pinneadas y validadas. Hera y Kronos regeneraron keys únicas porque las VMs clonadas compartían originalmente la misma identidad SSH que Zeus.
+- La identidad SSH dedicada `echo-dev@mcps`, fingerprint `SHA256:2Qv9f2AREQyse50bGYaTLc1PHK43gvuf3xgv5TTJ+I0`, se reutiliza para los cuatro targets. La key genérica `mcp-access@mcps` queda fuera del diseño y no debe autorizarse.
+- En los Linux SQX existe usuario remoto dedicado `echo-dev`, password bloqueado, sin sudo ni grupos extra. En `mt5-kronos` existe `echo-dev` como usuario local no-admin con autenticación OpenSSH por public key.
 - `tufantunc/ssh-mcp` quedó validado preliminarmente en v2.8.0, source tag `v2.8.0` / commit `d2d769684701e0939c1d8e56cbdde3d77fed53ef`, imagen local `local/ssh-mcp:2.8.0-d2d7696`, ejecutando como usuario no-root.
-- El servidor MCP HTTP está activo en `mcps`, con bearer obligatorio, rate limit, protección de Host, `hostKeyMode=strict`, perfil `echo-dev` `group=dev` + `role=viewer` + `readOnly=true`, key runtime montada read-only y endpoint estable `http://mcps.lab.aranea.cl:3000/`.
-- Gate cliente cerrado desde Daedalus: resolución DNS + `/health` + `/status` autenticado + handshake MCP `initialize` + `tools/call read-command("whoami")`; el resultado remoto fue `echo-dev`. Daedalus posee sólo su bearer de consumidor, no la private key SSH del target.
-- T2 aún no se cierra: faltan validar acceso diagnóstico útil, sesión persistente/background, timeout, auditoría y el perfil operator/least-privilege antes de declarar el SSH MCP aprobado.
+- El servidor MCP HTTP está activo en `mcps`, con bearer obligatorio, rate limit, protección de Host y `hostKeyMode=strict`; endpoint estable actual `http://mcps.lab.aranea.cl:3000/`.
+- Gate cliente cerrado desde Daedalus: resolución DNS + `/health` + `/status` autenticado + handshake MCP + `tools/call read-command`; Cursor consume el MCP como herramienta real sin recibir private keys SSH.
+- Diagnóstico útil validado en Zeus: `echo-dev` puede leer `/home/kor/sqx/user/log/...` mediante ACL mínima de traversal en `/home/kor`, sin poder enumerar el home completo.
+- Validación multi-target desde Cursor PASS: `read-command` devolvió `echo-dev`/`sqx-ulab-zeus-0`, `echo-dev`/`sqx-ulab-hera-0`, `echo-dev`/`sqx-ulab-kron-0` y `worker-kronos\\echo-dev`/`worker-kronos` respectivamente. `run-command` fue rechazado por diseño al estar todos los perfiles en `viewer` + `readOnly=true`.
+- T2 aún no se cierra formalmente: faltan validar sesión persistente/background, timeout, auditoría y el perfil operator/least-privilege antes de declarar el SSH MCP completamente aprobado.
 
 ## 🧱 Entrega de desarrollo
 
@@ -77,8 +78,10 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
-- **2026-09-10** — Primer circuito MCP completo validado: Daedalus resuelve y alcanza `mcps.lab.aranea.cl`, autentica con un bearer propio, inicializa una sesión MCP Streamable HTTP y ejecuta `read-command("whoami")` sobre el perfil `echo-dev`; `ssh-mcp` conecta a `sqx-zeus` mediante la private key centralizada y retorna `echo-dev`. La private key SSH nunca se entrega a Daedalus.
-- **2026-09-10** — `ssh-mcp` v2.8.0 se construyó desde source pinneado (`v2.8.0`, commit `d2d769684701e0939c1d8e56cbdde3d77fed53ef`) como `local/ssh-mcp:2.8.0-d2d7696`. Smoke test stdio PASS; luego transporte HTTP PASS con health, bearer auth, allowed Host, rate limit y host-key strict. El perfil POC queda `echo-dev`, `group=dev`, `role=viewer`, `readOnly=true`.
+- **2026-09-10** — SSH MCP expandido a cuatro targets en una sola instancia/puerto: `sqx-zeus`, `sqx-hera`, `sqx-kronos` y `mt5-kronos`. Cursor/Daedalus ejecutó `read-command` sobre los cuatro perfiles y obtuvo las identidades/hostnames esperados. Todos permanecen `viewer` + `readOnly=true`; `run-command` es rechazado por diseño.
+- **2026-09-10** — En Hera y Kronos se regeneraron host keys ED25519 únicas porque las VMs clonadas compartían la misma key de Zeus. `mt5-kronos` quedó autenticando por public key con usuario local no-admin `echo-dev`; se corrigió `AuthorizedKeysFile` porque OpenSSH Windows resolvía erróneamente la ruta relativa bajo `C:\\WINDOWS`.
+- **2026-09-10** — Primer circuito MCP completo validado: Daedalus resuelve y alcanza `mcps.lab.aranea.cl`, autentica con bearer, inicializa una sesión MCP Streamable HTTP y ejecuta `read-command("whoami")` sobre el target SQX; `ssh-mcp` conecta mediante la private key centralizada y retorna `echo-dev`. La private key SSH nunca se entrega a Daedalus.
+- **2026-09-10** — `ssh-mcp` v2.8.0 se construyó desde source pinneado (`v2.8.0`, commit `d2d769684701e0939c1d8e56cbdde3d77fed53ef`) como `local/ssh-mcp:2.8.0-d2d7696`. Smoke test stdio PASS; luego transporte HTTP PASS con health, bearer auth, allowed Host, rate limit y host-key strict.
 - **2026-09-08** — Primer acceso SSH real validado para `echo-dev`: `mcps` conecta a `sqx-zeus.lab.aranea.cl` mediante identidad dedicada, trust store dedicado y host-key strict; la sesión remota ejecuta como `echo-dev` en `sqx-ulab-zeus-0`. El usuario remoto no tiene sudo ni grupos adicionales.
 - **2026-09-08** — El perfil inicialmente llamado `sqx-dev` se renombra a `echo-dev` porque representa capacidad de desarrollo/diagnóstico de Echo/Echo Forge y no debe quedar acoplado al runtime SQX. La key mantiene la misma fingerprint y cambia su comentario a `echo-dev@mcps`.
 - **2026-09-08** — T2 iniciado con `sqx-zeus.lab.aranea.cl` (`192.168.31.101`) como primer target. Host key ED25519 validada local/remotamente y agregada al trust store dedicado. El POC se centra primero en acceso dev/diagnóstico desde agentes Daedalus; `hermes-admin` se implementará después como perfil separado de mayor privilegio.
@@ -96,7 +99,8 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - D6: SSH es el primer capability a implementar porque desbloquea el mayor gap operativo inmediato para Hermes y Daedalus. Las private keys permanecen en el access plane; los agentes no reciben las credenciales finales.
 - D7: identidades SSH separadas por perfil de capacidad. `echo-dev` es la identidad limitada para agentes de desarrollo sobre infraestructura Echo/Echo Forge; `hermes-admin` se diseñará y desplegará aparte, con mayor privilegio sólo donde sea necesario.
 - D8: el perfil remoto se prueba primero sin sudo ni grupos adicionales. Los permisos operativos se agregan sólo cuando una necesidad concreta de diagnóstico falle y pueda expresarse con least privilege.
-- D9: el acceso remoto de consumidores al SSH MCP usa Streamable HTTP autenticado con bearer por consumidor sobre DNS estable; el bearer identifica/autentica el acceso al capability plane y es independiente de la identidad SSH final mantenida en `mcps`.
+- D9: el acceso remoto de consumidores al SSH MCP usa Streamable HTTP autenticado con bearer sobre DNS estable; el bearer autentica el acceso al capability plane y es independiente de la identidad SSH final mantenida en `mcps`.
+- D10: múltiples targets SSH se concentran en una sola instancia/puerto de `ssh-mcp`; la separación se realiza mediante perfiles, no mediante servicios o puertos por máquina.
 
 ## 🔗 Docs / Links
 
