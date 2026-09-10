@@ -58,13 +58,14 @@ Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wid
 |---|---|---|---|---|---|
 | xKoRx/echo | `master` (fase E-03) | `c22fe218127c7e97fb40951ddcafc13d80ede152` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.0 @ `45a59fca1058203df6baf20c3cfe1d000251159d` | TOP READY_FOR_MANAGER_REVIEW |
 
-## 🗺️ Source map (baseline `91671f6f`)
+## 🗺️ Source map (baseline planning `c22fe218`; source físico = E-01 certified `91671f6f`)
 
-- `echo.strategy_definitions.id varchar(64)` — techo canónico actual.
-- `trade_journal`/`lab_*` `strategy_id varchar(64)`; `account_strategy_risk_policy.strategy_id` ya `text`.
+- `echo.strategy_definitions.id varchar(64)` — V2_CANONICAL; 061 → text.
+- `trade_journal`/`lab_*`/`lab_api_*` `strategy_id varchar(64)` — V2_CANONICAL; 061 → text. Policy `strategy_id` ya `text`.
+- `echo.active_positions.strategy_id varchar(50)` — **DEFERRED** E-06; 061 no ALTER. Gate: identity repos no escriben posiciones.
 - `magic_number` journal canónico `bigint`; leftover `magic_number_override int4`.
-- `ReferenceTicket int32` en `v3/sdk/domain/reference_event.go`; `MagicNumber int64` JSON number en pipe.
-- EA `TradeMapRecord` sin header: MT5 `ulong ticket` + `uchar[64]` + `int magic`; MT4 `int ticket` + mismos 64/`int`. Comentario “append BWC” es falso.
+- Tickets PG ya `int8`/`bigint`. `ReferenceTicket int32` → `int64` **acotado** `1..MaxInt64` (no uint64). MT5 `ulong > MaxInt64` → UNSUPPORTED.
+- EA `TradeMapRecord` sin header: MT5 `ulong ticket` + `uchar[64]` + `int magic`; MT4 `int ticket`. v1 cookie **9** bytes `ECHO-TMAP` + CRC-32/IEEE LE.
 - `ensureJournalParentRows` autoprovisiona descriptor; no mapping V2.
 - S0: `contracts.StrategyVersionRef`, `MagicAllocation.magic_decimal` string, G19–G21 corpus. **No editar contracts.**
 - Migrator golang-migrate; última `060`; siguiente **061**.
@@ -82,7 +83,7 @@ v3/sdk/eapersist/**          # codec v0/v1 medido
 v3/clients/mt{4,5}/EchoPersistence.mqh
 v3/clients/mt{4,5}/testdata/trademap/**
 v3/bridge/internal/pipe_handler.go   # echo-identity-wire.v1
-v3/sdk/domain/reference_event.go     # ReferenceTicket int64
+v3/sdk/domain/reference_event.go     # ReferenceTicket int64 (1..MaxInt64)
 ```
 
 Ningún HTTP Forge. Ningún cambio a `v3/sdk/contracts/**`.
@@ -99,11 +100,11 @@ Exacto PLAN.md. Prohibido contracts S0, Gateway ingestion, Symphony, allocator, 
 
 ## 📦 Work packages
 
-- **WP-A Layout EA** T01–T07. Implicación: v0 medido físicamente; v1 variable-length; MT4 no int64.
-- **WP-B Schema 061** T08–T10, T18, T19, T21. Widen + tablas + backup + fail-closed down.
-- **WP-C Stores** T11–T15, T22. Mapping/Version/Promotion/aliases write-once.
-- **WP-D Wire** T16–T17, T14. String decimal; ticket int64; G20/G21.
-- **WP-E Cert** T20, T23. No allocator; AC nombrados.
+- **WP-A Layout EA** T01–T07. v0 medido; v1 SPEC §10.6 (cookie 9, LE, CRC IEEE, framing); MT4 no int64.
+- **WP-B Schema 061** T08–T10, T18, T19, T21. Widen V2_CANONICAL techo 64; no `active_positions`; down umbral 64; FKs compuestas.
+- **WP-C Stores** T11–T15, T22. Mapping PK `(ns, canonical)`; Version PK `(ns, version_ref)`.
+- **WP-D Wire** T16–T17, T14. String decimal; ticket 1..MaxInt64; G20/G21.
+- **WP-E Cert** T20, T23. No allocator; AC-01…AC-17.
 
 ## TOP / NORMAL boundaries
 
@@ -113,7 +114,7 @@ Exacto PLAN.md. Prohibido contracts S0, Gateway ingestion, Symphony, allocator, 
 
 ## Migrations
 
-**061** obligatoria. Motor golang-migrate. Transacción única + backup `*__backup061`. Interrupt = ROLLBACK. Down aborta si hay filas >64 / magic >int32. Mock SQL ≠ PASS.
+**061** obligatoria. Motor golang-migrate. Transacción única + backup de relaciones modificadas (no `active_positions`). Interrupt = ROLLBACK. Down aborta si `octet_length > 64` en columnas ex-64 o magic >int32. No umbral 50. Mock SQL ≠ PASS.
 
 ## Dependency delta
 
@@ -125,7 +126,7 @@ Paths nuevos para identity/version/promotion. Dual-read TradeMap y pipe. Legacy 
 
 ## Test strategy
 
-SPEC AC-01…AC-14 mapeados 1:1 a TASKS. G19–G21 S0 se reusan como inputs de persistencia, no se regeneran. PHYSICAL: binarios `FileWriteStruct` + PG real. INTEGRATION: repos. SOURCE: codec/grep.
+SPEC AC-01…AC-17 mapeados 1:1 a TASKS. G19–G21 S0 se reusan como inputs de persistencia, no se regeneran. PHYSICAL: binarios `FileWriteStruct` + PG real. INTEGRATION: repos. SOURCE: codec/grep.
 
 ## Certification gates (NORMAL)
 
@@ -135,7 +136,7 @@ go test ./v3/sdk/eapersist ./v3/sdk/postgres ./v3/sdk/domain
 go vet ./v3/sdk/eapersist ./v3/sdk/postgres ./v3/sdk/domain
 
 # MIGRATION + PHYSICAL PG (harness existente de postgres tests)
-# aplicar 061 sobre clone de schema 060; 10_migrate_up.sql; 11_migrate_idempotent.sql; 12_migrate_interrupt.sql
+# aplicar 061 sobre clone de schema 060; 10_migrate_up.sql; 11_migrate_idempotent.sql; 12_migrate_interrupt.sql; 14_width_classification.sql
 
 # INTEGRATION
 go test ./v3/sdk/postgres -run 'Identity|Version|Promotion|Magic|Alias|Pipe'
@@ -160,11 +161,11 @@ Ninguno material para arrancar NORMAL tras aceptación manager. Graphify del rep
 
 ## Handoff requirements
 
-NORMAL trabaja contra baseline `91671f6f` + SPEC + TASKS. Dirty foráneo del checkout habitual se preserva (worktree). Un commit de implementación aparte del commit SDD TOP.
+NORMAL trabaja contra `45a59fca` + SPEC v1.1.0 + TASKS **después** de aceptación manager. Dirty foráneo del checkout habitual se preserva (worktree). Un commit de implementación aparte de los commits SDD TOP.
 
 ## Closure conditions
 
-T01–T23 `[x]`; gates T23 PASS; allowed files respetados; AC cubiertos; no allocator; layouts v0 addressable; 061 idempotente; certificación en `VERIFICATION.md` (fuera de este TOP).
+T01–T23 `[x]`; gates T23 PASS; allowed files respetados; AC-01…AC-17 cubiertos; no allocator; layouts v0 addressable; 061 idempotente; certificación en `VERIFICATION.md` (fuera de este TOP).
 
 ## 🧩 Subproyectos
 
@@ -177,8 +178,8 @@ _No aplica — hijo de implementación de E-03; no crea Integration ni más hijo
 > - [ ] WP-A Layout EA v0/v1 + MT4 legacy #owner/agent #type/dev #area/echo
 > - [ ] WP-B Schema 061 widen/protection/migration gates #owner/agent #type/dev #area/echo
 > - [ ] WP-C Stores identity/version/promotion/aliases #owner/agent #type/dev #area/echo
-> - [ ] WP-D Wire string magic + ticket int64 #owner/agent #type/dev #area/echo
-> - [ ] WP-E Certification AC-01…AC-14 + no allocator #owner/agent #type/dev #area/echo
+> - [ ] WP-D Wire string magic + ticket 1..MaxInt64 #owner/agent #type/dev #area/echo
+> - [ ] WP-E Certification AC-01…AC-17 + no allocator #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -198,14 +199,18 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ## 📆 Bitácora
 
 - **2026-09-10 (TOP)** — Discovery en worktree limpio `origin/master`=`91671f6f`. SPEC/PLAN/TASKS `FEAT-CROSS-IDENTITY-BWC-E0`. Decisiones: mapping V2 separado del descriptor Lab; 1024 bytes freeze; magic bigint + string wire; TradeMap v0 medido/v1 header; 061 transaccional; MT4 no int64; RuntimeBinding table diferida a E-06. Planning SHA `c22fe218127c7e97fb40951ddcafc13d80ede152` publicado FF a `origin/master`.
+- **2026-09-10 (TOP correction)** — Gaps A–D cerrados en SPEC v1.1.0. Cookie `ECHO-TMAP` = 9 bytes; v1 §10.6 LE+CRC-32/IEEE; ticket Option 2 `1..MaxInt64`; Version PK `(registry_namespace, version_ref)` + FK mapping; `active_positions.strategy_id` DEFERRED. SHA `45a59fca1058203df6baf20c3cfe1d000251159d`. Estado `READY_FOR_MANAGER_REVIEW`. No NORMAL.
 
 ## 🧭 Decisiones (ejecución, no semántica nueva)
 
 - Hijo de implementación de E-03; ownership sigue en [[Echo — Live Platform V1]], no Integration.
 - `v3/sdk/contracts` es autoridad de recetas, no de schema PG.
-- Cookie v1 `ECHO-TMAP`; v0 = ausencia de cookie + múltiplo de sizeof medido.
+- Cookie v1 `ECHO-TMAP` **9 bytes** (`45 43 48 4F 2D 54 4D 41 50`); header 32; CRC-32/IEEE LE sobre Header\|\|Records; v0 = ausencia de cookie + múltiplo de sizeof medido.
+- Ticket Echo: `1..MaxInt64`; no full MT5 `ulong`; PG `bigint`; Go `int64`.
+- Mapping PK `(registry_namespace, canonical_strategy_id)`; Version PK `(registry_namespace, version_ref)`; Promotion FKs a ambas. `StrategyVersionRef` S0 sin namespace.
+- `active_positions.strategy_id varchar(50)` DEFERRED a E-06.
 - SQL eager; EA lazy-on-open con backup.
-- Down 061 fail-closed si ya hay IDs anchos.
+- Down 061 fail-closed si `octet_length > 64` en columnas ensanchadas desde 64.
 
 ## 🔗 Docs / Links
 

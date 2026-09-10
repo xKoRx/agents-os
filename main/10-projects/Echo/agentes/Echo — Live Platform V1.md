@@ -44,17 +44,17 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 ## 📊 Estado actual
 
-- **PREPARADO + E-01 CLOSED + E-03 TOP listo.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1.
+- **PREPARADO + E-01 CLOSED + E-03 TOP READY_FOR_MANAGER_REVIEW (correction).** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1.
 - **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC.
-- **Base observada:** `origin/master` revalidado `91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Lab/journal/copia existen; ingestión Gateway ausente; P0 auth (admin secret en bundle) y journal ACK.
+- **Base observada:** `origin/master` `45a59fca1058203df6baf20c3cfe1d000251159d` (E-03 planning correction; parent `c22fe218`). E-01 certified S0 permanece `91671f6f`.
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
-- **E-03:** planning TOP en [[Echo — E-03 Identity and BWC Foundation E0]]; SPEC repo `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md`.
+- **E-03:** planning correction TOP en [[Echo — E-03 Identity and BWC Foundation E0]]; SPEC v1.1.0 `45a59fca`. READY_FOR_MANAGER_REVIEW. No implementación.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` | E-01 CLOSED · E-03 TOP listo |
+| xKoRx/echo | `master` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 planning: `45a59fca1058203df6baf20c3cfe1d000251159d` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.0 | E-01 CLOSED · E-03 TOP READY_FOR_MANAGER_REVIEW |
 
 ## 🧩 Subproyectos
 
@@ -79,7 +79,7 @@ Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 C
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > - [r] [[Echo — E-01 Canonical SDK Foundation S0]] E-01 Canonical SDK foundation S0 #owner/agent #type/dev #area/echo
 > - [ ] E-02 Control safety auth and journal recovery #owner/agent #type/dev #area/echo
-> - [/] [[Echo — E-03 Identity and BWC Foundation E0]] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-03 Identity and BWC Foundation E0]] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
 > - [ ] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
 > - [ ] E-05 Analytics convergence A0 #owner/agent #type/dev #area/echo
 > - [ ] E-06 Reference enrollment and binding #owner/agent #type/dev #area/echo
@@ -373,6 +373,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 ## 📆 Bitácora
 
 - **2026-09-10** — Enlace mínimo al subproyecto de implementación [[Echo — E-03 Identity and BWC Foundation E0]]. Baseline E-03 = E-01 certified `91671f6f`. No se reescribió el roadmap.
+- **2026-09-10** — E-03 planning correction `45a59fca` (parent `c22fe218`) listo para revisión manager. Puente a Review. Sin implementación.
 - **2026-09-07** — Reparentado a [[Echo — Producto Integrado]], `owner: agent`. E2 partido en E-06…E-09. E-02 extraído como H1. Tareas `#owner/me` de 4 ítems supersedidas. S0 permanece aquí.
 - **2026-09-07** — Enlace mínimo al subproyecto de implementación [[Echo — E-01 Canonical SDK Foundation S0]]. Baseline E-01 fijado `04c16bd2`. No se reescribió el roadmap.
 
