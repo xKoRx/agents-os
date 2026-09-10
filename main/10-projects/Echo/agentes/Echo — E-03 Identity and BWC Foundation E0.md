@@ -47,6 +47,7 @@ Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wid
 ## 📊 Estado actual
 
 - **NORMAL 2026-09-10 (sesión E-03, verdict BLOCKED parcial):** implementación T01–T23 realizada en worktree temporal `/tmp/echo-e03-normal-hy8uJD` (baseline `576bf1f4`, dirty, **sin commit**: §32 prohíbe commit con gates PHYSICAL abiertos). Gates PASS: migración 061 up/down/up en PG 16 real (harness `tests/identity_bwc/run.sh`: interrupt/idempotencia/typmods/FK identidad por INSERT directo/write-once/revoke/down fail-closed umbral 64), repos identity/version/promotion/aliases INTEGRATION PASS, wire pipe + ticket int64 PASS, no-allocator PASS, cert pack AC-01…AC-18 PASS con skips físicos. **PHYSICAL MT5 completo**: sizeof=148 + offsets medidos en MetaEditor real (build 6190/Wine 9), fixture `v0.bin` (444=3×148) por `FileWriteStruct`, fixture `v1.bin` escrito por el EA + conversión v0→v1 validada contra codec Go (el runtime físico atrapó 2 bugs reales del writer MQL). **PHYSICAL MT4 bloqueado**: setup MT4 rechazado por MetaQuotes de forma persistente ("something went wrong") — T01/T02/T07(compile) quedan abiertos. Desviación de scope documentada: `v3/sdk/go.mod` require+replace del módulo S0 `contracts` (exigido por T12 "consumir S0, no copiar receta"). FAIL preexistentes no-gate: `TestScratch_QueryKafka*` (§27). Reintentar MT4 físico desde otro entorno (Windows/MetaQuotes habilitado) para cerrar y commitir.
+- **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10 S0 module consumption):** parent `576bf1f49f116826a8141126fbb520b80a7d1a3c`. Correction SHA `233ec89ce3868b414d63856c683a1fdd469c58bb` (FF `origin/master`). Edge certificado: `require github.com/xKoRx/echo/v3/sdk/contracts v0.0.0` + `replace => ./contracts` en `v3/sdk/go.mod`. `go.sum` no delta. `go.work` intocado. `GOWORK=off` resolution PASS. Sin source Go/SQL en este TOP. Candidate previo no commiteado. MT4 PHYSICAL sigue blocker. Implementación todavía NO committed/certified.
 - **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10 relational integrity):** SPEC v1.1.1 cierra UNIQUE + FK compuestos Mapping→Version→Promotion. Parent `45a59fca1058203df6baf20c3cfe1d000251159d`. Correction SHA `576bf1f49f116826a8141126fbb520b80a7d1a3c` (FF `origin/master`). Sin source Go/SQL en TOP. No implementation complete. No closed.
 - **E-01:** certified S0; no reabrir.
 - **Contrato WHAT:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1.
@@ -57,7 +58,7 @@ Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wid
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` (fase E-03) | `c22fe218127c7e97fb40951ddcafc13d80ede152` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 @ `576bf1f49f116826a8141126fbb520b80a7d1a3c` | TOP READY_FOR_MANAGER_REVIEW |
+| xKoRx/echo | `master` (fase E-03) | `c22fe218127c7e97fb40951ddcafc13d80ede152` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 @ `233ec89ce3868b414d63856c683a1fdd469c58bb` | TOP READY_FOR_MANAGER_REVIEW · implementation blocked partial |
 
 ## 🗺️ Source map (baseline planning `c22fe218`; source físico = E-01 certified `91671f6f`)
 
@@ -97,7 +98,7 @@ No ejecutar E-02/E-04/E-05/F-04 aquí.
 
 ## Allowed scope NORMAL
 
-Exacto PLAN.md. Prohibido contracts S0, Gateway ingestion, Symphony, allocator, tests ajenos sin `TEST_CHANGE_REQUEST`.
+Exacto PLAN.md. Incluye `v3/sdk/go.mod` (edge S0). Prohibido `v3/sdk/go.sum`, root `go.work`, contracts S0 source, Gateway ingestion, Symphony, allocator, tests ajenos sin `TEST_CHANGE_REQUEST`.
 
 ## 📦 Work packages
 
@@ -119,7 +120,7 @@ Exacto PLAN.md. Prohibido contracts S0, Gateway ingestion, Symphony, allocator, 
 
 ## Dependency delta
 
-Parent SDK puede seguir igual. `eapersist` es paquete nuevo bajo `v3/sdk`. No pin de terceros salvo el migrator ya usado. Stdlib para codec.
+Parent SDK declara consumo in-repo de S0: `require github.com/xKoRx/echo/v3/sdk/contracts v0.0.0` + `replace github.com/xKoRx/echo/v3/sdk/contracts => ./contracts` en `v3/sdk/go.mod`. No es tag/release ni pin Forge. `go.sum` no se toca. `go.work` no se modifica y no es autoridad. `eapersist` es paquete nuevo bajo `v3/sdk`. No pin de terceros. Stdlib para codec.
 
 ## Compatibility strategy
 
@@ -148,6 +149,16 @@ go test ./v3/sdk/postgres -run 'Identity|Version|Promotion|Magic|Alias|Pipe'
 
 Parent `go test ./...` de etcd/Kafka/Jaeger **no** es gate (fallos preexistentes E-01).
 
+```bash
+# S0 nested-module consumption (GOWORK=off)
+cd v3/sdk
+GOWORK=off go list -m all
+GOWORK=off go test ./postgres
+GOWORK=off go list -m github.com/xKoRx/echo/v3/sdk/contracts
+```
+
+El `go list -m` de contracts debe resolver `v0.0.0 => ./contracts`. `go list -m all` y `go test ./postgres` con `GOWORK=off` pueden fallar únicamente por el hueco preexistente `go-sqlmock` `/go.mod` hash en `go.sum`; no rellenar `go.sum` en E-03.
+
 ## Baseline tests (registrados, no ampliar)
 
 Mismos FAIL de infra que E-01 (etcd/Kafka/Jaeger). No “arreglarlos” en E-03.
@@ -158,11 +169,11 @@ Manager acepta planning. NORMAL implementa. Verifier independiente escribe `VERI
 
 ## Blockers
 
-Ninguno material para arrancar NORMAL tras aceptación manager. Graphify del repo Echo está stale (v1): no bloquear. MCP Agents OS no autenticado en esta sesión: vault escrito por filesystem.
+PHYSICAL MT4 sigue ABIERTO (setup MetaQuotes persistente). T01/T02/T05/T06/T07/T23 no se cierran por la corrección de consumo S0. Graphify del repo Echo está stale (v1): no bloquear. MCP Agents OS no autenticado en esta sesión: vault escrito por filesystem.
 
 ## Handoff requirements
 
-NORMAL trabaja contra `576bf1f4` + SPEC v1.1.1 + TASKS **después** de aceptación manager. Dirty foráneo del checkout habitual se preserva (worktree). Un commit de implementación aparte de los commits SDD TOP.
+Próxima sesión NORMAL/physical trabaja contra `233ec89c` + SPEC v1.1.1 + T12 con edge S0 autorizado. El candidate `/tmp/echo-e03-normal-hy8uJD` (dirty sobre `576bf1f4`) no se modifica en este TOP; NORMAL decide cómo trasladarlo. Dirty foráneo del checkout habitual se preserva (worktree). Un commit de implementación aparte de los commits SDD TOP.
 
 ## Closure conditions
 
@@ -207,7 +218,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ## 🧭 Decisiones (ejecución, no semántica nueva)
 
 - Hijo de implementación de E-03; ownership sigue en [[Echo — Live Platform V1]], no Integration.
-- `v3/sdk/contracts` es autoridad de recetas, no de schema PG.
+- `v3/sdk/contracts` es autoridad de recetas, no de schema PG. Consumo in-repo E-03: `require v0.0.0` + `replace => ./contracts` en `v3/sdk/go.mod`; no tag; no `go.work` como autoridad; no `go.sum` por este edge.
 - Cookie v1 `ECHO-TMAP` **9 bytes** (`45 43 48 4F 2D 54 4D 41 50`); header 32; CRC-32/IEEE LE sobre Header\|\|Records; v0 = ausencia de cookie + múltiplo de sizeof medido.
 - Ticket Echo: `1..MaxInt64`; no full MT5 `ulong`; PG `bigint`; Go `int64`.
 - Mapping PK `(registry_namespace, canonical_strategy_id)`; UNIQUEs `(ns, strategy_ref)`, `(ns, magic)`, `uq_strategy_identity_mappings_identity_tuple`. Version PK `(registry_namespace, version_ref)`; FK `fk_strategy_versions_identity_tuple`; UNIQUE `uq_strategy_versions_identity_tuple`. Promotion FK `fk_promotion_records_version_identity` + FK mapping identity. `StrategyVersionRef` S0 sin namespace. Repository no es la única autoridad.
