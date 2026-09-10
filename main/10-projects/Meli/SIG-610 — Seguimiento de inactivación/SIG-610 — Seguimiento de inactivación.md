@@ -3,17 +3,17 @@ type: project
 schema_version: 1
 owner: me
 root: true
-status: active
+status: review
 priority: P1
 area: "[[Meli]]"
 parent:
 sprint:
 start: 2026-09-08
 due:
-progress: 0
+progress: 95
 repo: https://github.com/melisource/fury_rio-playmaker
 jira: SIG-610
-prs:
+prs: https://github.com/melisource/fury_rio-playmaker/pull/1144
 aliases:
   - SIG-610
   - Undeployment tracking
@@ -32,7 +32,7 @@ cssclasses:
 # SIG-610 — Seguimiento de inactivación
 
 > [!info]+ Iniciativa humana
-> **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P1 · **Aplicación:** [[rio-playmaker]]
+> **Área:** [[Meli]] · **Estado:** review · **Prioridad:** P1 · **Aplicación:** [[rio-playmaker]]
 
 ## 🎯 Objetivo
 
@@ -40,15 +40,16 @@ cssclasses:
 
 ## 📊 Estado actual
 
-- La implementación está delegada al proyecto [[SIG-610 — ComponentRun de inactivación en Playmaker]]. `D9`–`D13` quedaron cerradas y el plan está listo para iniciar Fase 0.
-- El endpoint de inactivación ya crea una `PipelineExecution` `INACTIVATE` y publica un único `DEPROVISION`, pero la crea sin `ComponentRun`.
-- No existe duplicación ni acoplamiento con el botón/flujo de deploy: ambos usan infraestructura persistente y eventos comunes, pero se gatillan por separado.
+- La implementación delegada está terminada y validada en runtime; el PR #1144 queda en review humana con workflow verde.
+- El endpoint crea una `PipelineExecution INACTIVATE` y exactamente un `ComponentRun`; ambos recorrieron `PENDING → RUNNING → COMPLETED` con resultados reales del Control Plane.
+- La causa del estado inconsistente observado fue el despliegue de artefactos distintos en `test3` y `bq-consumer-test-nonprod`. La configuración BigQueue y el contrato `snake_case` del SDK fueron validados.
+- El fallback especulativo que seleccionaba el único run ante una correlación fallida fue revertido; la rama original usa nuevamente la correlación exacta.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-playmaker]] | `feature/sig-610-inactivate-component-run` | `develop` sincronizado con `origin/develop` al crear la rama | [SIG-610 — Undeployment Functional Specification](https://spellbook.adminml.com/projects/SIG/specs/SIG-610) | [Undeploy execution proposal](https://grid.adminml.com/d/01M14Z9X9XDHWY9C8RNHMAD6QQ/view) + proyecto delegado | `ready_for_phase_0`; código no iniciado |
+| [[rio-playmaker]] | `feature/sig-610-inactivate-component-run` | `develop` sincronizado con `origin/develop` al crear la rama | [SIG-610 — Undeployment Functional Specification](https://spellbook.adminml.com/projects/SIG/specs/SIG-610) | [Undeploy execution proposal](https://grid.adminml.com/d/01M14Z9X9XDHWY9C8RNHMAD6QQ/view) + proyecto delegado | PR #1144 en review; HEAD `888b014e5`; workflow verde |
 
 ## 🧩 Subproyectos
 
@@ -57,12 +58,14 @@ cssclasses:
 ## ✅ Tareas
 
 - [x] Cerrar las decisiones abiertas `D9`–`D13` del proyecto delegado antes de habilitar `G0` #owner/me #type/decision #area/meli
-- [/] [[SIG-610 — ComponentRun de inactivación en Playmaker]] implementar, validar y entregar para revisión #owner/me #type/supervision #area/meli
+- [r] [[SIG-610 — ComponentRun de inactivación en Playmaker]] implementar, validar y entregar para revisión #owner/me #type/supervision #area/meli
 - [ ] Revisar la entrega final y aceptar o rechazar el gate `G2` #owner/me #type/pr-review #area/meli
 - [ ] Tras aceptación humana, cerrar y archivar el proyecto delegado y esta iniciativa #owner/me #type/admin #area/meli
 
 ## 📆 Bitácora
 
+- **2026-09-09** — Runtime validado con el mismo artefacto diagnóstico en web y consumer: execution y ComponentRun recorrieron estados consistentes y terminaron `COMPLETED`. Se confirmó version skew como causa anterior, se revirtió el fallback especulativo en la rama original y se publicó el PR #1144 en `888b014e5` con descripción técnica y workflow verde. Queda pendiente la aceptación humana de G2; no se archiva todavía.
+- **2026-09-09** — Feedback de validación: una prueba contra `test3` no valida el consumo del resultado BigQueue. El `POST /inactivate` entra por el scope web `test3`, pero `rio-deployment-result` entra por `bq-consumer-test-nonprod`. Al momento de la revisión, `test3` seguía en `0.0.3-test-sig-610-dev-0` y el consumer en `202609.7.0-rc-2`; por tanto, la versión diagnóstica no podía emitir sus logs ni ejecutar su handler. El CP Kafka fue inspeccionado: emite el SDK `DeploymentResultMessage` con envelope BQ `msg`, campos `snake_case`, mismo UUID como `deployment_id`, `component_type=aws-msk-topic` y estados `STARTED`/`COMPLETED`. La rama diagnóstica `feature/sig-610-inactivate-component-run-test` quedó en `2c265277e`; añade trazas de ingress/routing/lookup y un test HTTP que deserializa el contrato real. Versión `0.0.5-test-sig-610-dev-0` solicitada; falta desplegarla en ambos scopes y repetir el probe. **Feedback:** la evidencia de runtime debe siempre registrar versión activa por scope y separar productor web de consumer BigQueue; el test anterior verificaba sólo que se delegaba un objeto, no sus campos deserializados, y dejó pasar el error de contrato camelCase/snake_case.
 - **2026-09-09** — Owner cerró `D9`–`D13`; el proyecto delegado quedó `ready_for_phase_0`. La implementación usará la configuración del service, reutilizará el `422` de estado inválido, filtrará las dos consultas activas por `DEPLOY` y eliminará la consulta muerta; no agrega reaper.
 - **2026-09-09** — Plan revisado contra `develop`. La superficie del alcance sigue vigente, pero la base congelada se reemplaza por sincronización de `develop`, y quedan cinco decisiones abiertas en el proyecto delegado antes de escribir código.
 - **2026-09-08** — Iniciativa creada después de revisar SIG-610, el proposal de Grid, documentación RIO y el código efectivo de Playmaker. El alcance backend se redujo a crear y mantener consistente un `ComponentRun` para `INACTIVATE`, más aislarlo de la regla de retry del deploy.
