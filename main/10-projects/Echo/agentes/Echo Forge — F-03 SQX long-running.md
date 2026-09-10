@@ -46,7 +46,7 @@ Elapsed wall-clock ≠ failure de negocio en cómputos SQX largos (Builder / Opt
 - **PASS / CLOSED (2026-09-10).** F-03 quedó integrado por fast-forward-only a `master` y pushed en `382f4ba5d417371f778e21619ed9eb72624a23f4`; `origin/master`, local `master` y HEAD coinciden, worktree CLEAN. SOURCE/CONTRACT PASS; T1.1–T1.8 finalizadas y T1.2-adaptive cancelada según la SPEC. PHYSICAL PASS: long-running real `14m51.98s`, `COMPLETED`, 3000/3000 y 0 errores; T+10m `RUNNING` con heartbeat; cancel Temporal attempt 1; `sqcli` target gone; worker y sibling intactos; sin takeover, reattach ni partial publish. `DATABASE MIGRATION: NONE`.
 - **INTEGRACIÓN CERTIFICADA 2026-09-10.** Branch `feature/f03-sqx-long-running` integrada sin squash, rebase ni amend desde baseline `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48`; commit final exacto `382f4ba5d417371f778e21619ed9eb72624a23f4`. Tests/race/vet y SOURCE LIVE-scoped quedaron PASS antes de integrar; G1 y PHYSICAL quedan cerrados.
 - **TOP CORRECTION 2026-09-08 (C1–C3).** Ceiling fijado `MaxInt64ns−1s`. Adaptive `INACTIVE/DEPRECATED — NO CHANGE`. Process-tree obligatorio. NORMAL **no autorizado**. `GOD REQUIRED: NONE`.
-- Baseline symphony `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` == `origin/master`, worktree CLEAN al abrir y al cerrar TOP.
+- Baseline de implementación `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48`; fuente final `master`=`origin/master`=`382f4ba5d417371f778e21619ed9eb72624a23f4`, worktree CLEAN.
 - `DATABASE MIGRATION: NONE`.
 - Agents OS vault sin `.git` (degraded); última SHA durable de journal `f1070bec27db3ca415fe24f3c3576139674b7e09`.
 
@@ -255,7 +255,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → tests/certificaci
 
 ## Tests / certification
 
-Suite por task. Final: options ceiling exacto + ScheduleToClose 0; WFM/apply sin 10m; cancel≠timeout; process-tree parent+child+grandchild; heartbeat analog; recovery tests existentes. Cert: SOURCE LIVE-scoped + CONTRACT ahora; PHYSICAL en lab post-merge. No flota MT5. Adaptive fuera.
+Suite por task. Final: options ceiling exacto + ScheduleToClose 0; WFM/apply sin 10m; cancel≠timeout; process-tree parent+child+grandchild; heartbeat analog; recovery tests existentes. Cert: SOURCE LIVE-scoped + CONTRACT + PHYSICAL PASS post-merge. No flota MT5. Adaptive fuera.
 
 ## Risks
 
@@ -268,7 +268,7 @@ Suite por task. Final: options ceiling exacto + ScheduleToClose 0; WFM/apply sin
 
 ## Definition of Done
 
-SPEC cumplida. Sin business deadline en Builder/Optimizer/WFM/apply. Heartbeat/recovery intactos. Cancel árbol-scoped. Migration NONE. Duration observable. Sin NORMAL antes de autorización. PHYSICAL según procedimiento, no en TOP.
+SPEC cumplida. Sin business deadline en Builder/Optimizer/WFM/apply. Heartbeat/recovery intactos. Cancel árbol-scoped. Migration NONE. Duration observable. NORMAL ejecutado bajo autorización del manager. PHYSICAL PASS según procedimiento.
 
 ## Unlocks
 
@@ -282,7 +282,7 @@ Implementar T1.1–T1.8 contra [[Echo Forge — F-03 SQX Long-Running Contract]]
 
 **Precondiciones verificables**
 
-Manager aceptó esta nota + SPEC. Symphony `origin/master` revalidado = baseline o STOP. Worktree CLEAN salvo el diff F-03. NORMAL autorizado explícitamente. Hoy: **no autorizado**.
+Manager aceptó esta nota + SPEC. Symphony `origin/master` revalidado = baseline antes de implementar; worktree CLEAN salvo el diff F-03. NORMAL autorizado explícitamente y ejecución cerrada.
 
 **Lectura obligatoria**
 
