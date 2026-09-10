@@ -21,10 +21,9 @@ tags: ["kind/agent-memory", "scope/project", "agent/internal", "area/echo"]
 
 ## Continuidad
 
-- Commit certificado físicamente: `382f4ba5d417371f778e21619ed9eb72624a23f4`; `origin/master` esperado `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48`; repo CLEAN.
-- P1 PASS: workflow `sqx-main-v1-715b8c07-5441-4bad-b51a-2fb468ce77e4`, run `01a08c03-c858-781c-bf6d-01023c50ee98`, COMPLETED en `14m51.98s`, export complete 3000/3000 y 0 errores.
-- P2 PASS: workflow `sqx-main-v1-1a83bde0-a1f9-4960-a277-73265be002f3`, run `01a08c12-6e77-75e3-b73a-9d56df24bc81`, cancelado sólo vía Temporal; `sqcli` terminó, worker/watcher sobrevivieron y no hubo retry del job.
+- F-03 cerrado: commit `382f4ba5d417371f778e21619ed9eb72624a23f4` integrado por ff-only; `origin/master`, local `master` y HEAD coinciden; repo CLEAN.
+- PHYSICAL PASS: long-running real `14m51.98s`, COMPLETED, 3000/3000 y 0 errores; a T+10m seguía RUNNING con heartbeat; cancel Temporal attempt 1 dejó el `sqcli` target gone y preservó worker/sibling, sin takeover, reattach ni partial publish.
 
 ## Próxima acción
 
-- No mergear todavía; esperar manager integration gate. Preservar `/tmp/f03-cert/` y evidencia del lab para retry/auditoría.
+- No reabrir F-03 ni materializar SPEC F-04 en este cierre; el siguiente paso de roadmap es F-04 bajo autorización separada.

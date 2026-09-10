@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: completed
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-08
 due:
-progress: 0
+progress: 100
 repo: xKoRx/symphony
 jira:
 prs:
@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-08"
-updated: "2026-09-08"
+updated: "2026-09-10"
 ---
 
 # Echo Forge — F-03 SQX long-running
@@ -31,7 +31,7 @@ updated: "2026-09-08"
 %% Naming: Echo Forge — F-03 SQX long-running es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo Forge — F-03 SQX long-running
-> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo Forge — Factory V2 Completion]] · **Repo:** `xKoRx/symphony`
+> **Área:** [[Echo]] · **Estado:** completed · **Prioridad:** P1 · **Parent:** [[Echo Forge — Factory V2 Completion]] · **Repo:** `xKoRx/symphony`
 > Subproyecto de implementación de la fase F-03. Contrato: [[Echo Forge — F-03 SQX Long-Running Contract]].
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
@@ -43,8 +43,8 @@ Elapsed wall-clock ≠ failure de negocio en cómputos SQX largos (Builder / Opt
 
 ## 📊 Estado actual
 
-- **PHYSICAL CERT ATTEMPT 2026-09-10 → `BLOCKED` (licencia SQX expirada).** Lab aprovisionado y tibio en Hera: binarios `sqx-worker`+`sqx-watcher` construidos desde tree limpio `382f4ba` (sha256 worker `410040b1…`, watcher `04cdac76…`), scopes ETCD aislados `/sqx-{worker,watcher}/f03cert/` con cola dedicada `f03-cert-queue` (ns `sqx-prop`), worker corriendo como proceso ad-hoc `/tmp/f03-cert/` (sin tocar flota `0.2.96` ni manifests). Job real despachado (`sqx-main-v1-d917aa11…`); `sqcli` murió en el license check (`Trial license expired`, exit 1) en Hera y Zeus; claves históricas 869A77/5F89F5/71CE83 rechazadas. Cancel por CLI verificado (`CANCELED`, sin reanudación). P1/P2/P3 no ejecutables → veredicto `BLOCKED / CLOSED`. Requiere: owner restaura licencia SQX → relanzar con `request_id` nuevo. Ver [[2026-09-10-symphony-sqx-trial-license-fleet-expired]].
-- **IMPLEMENTACIÓN T1.1–T1.8 EXECUTED 2026-09-09.** Branch `feature/f03-sqx-long-running` commit `a382470` pusheado desde baseline `e50cb7e`. Tests/race/vet verdes; SOURCE LIVE-scoped sin business deadlines; PHYSICAL BLOCKED (sin lab SQX). Pendiente: manager review G1.
+- **PASS / CLOSED (2026-09-10).** F-03 quedó integrado por fast-forward-only a `master` y pushed en `382f4ba5d417371f778e21619ed9eb72624a23f4`; `origin/master`, local `master` y HEAD coinciden, worktree CLEAN. SOURCE/CONTRACT PASS; T1.1–T1.8 finalizadas y T1.2-adaptive cancelada según la SPEC. PHYSICAL PASS: long-running real `14m51.98s`, `COMPLETED`, 3000/3000 y 0 errores; T+10m `RUNNING` con heartbeat; cancel Temporal attempt 1; `sqcli` target gone; worker y sibling intactos; sin takeover, reattach ni partial publish. `DATABASE MIGRATION: NONE`.
+- **INTEGRACIÓN CERTIFICADA 2026-09-10.** Branch `feature/f03-sqx-long-running` integrada sin squash, rebase ni amend desde baseline `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48`; commit final exacto `382f4ba5d417371f778e21619ed9eb72624a23f4`. Tests/race/vet y SOURCE LIVE-scoped quedaron PASS antes de integrar; G1 y PHYSICAL quedan cerrados.
 - **TOP CORRECTION 2026-09-08 (C1–C3).** Ceiling fijado `MaxInt64ns−1s`. Adaptive `INACTIVE/DEPRECATED — NO CHANGE`. Process-tree obligatorio. NORMAL **no autorizado**. `GOD REQUIRED: NONE`.
 - Baseline symphony `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` == `origin/master`, worktree CLEAN al abrir y al cerrar TOP.
 - `DATABASE MIGRATION: NONE`.
@@ -54,7 +54,7 @@ Elapsed wall-clock ≠ failure de negocio en cómputos SQX largos (Builder / Opt
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f03-sqx-long-running` (`a382470`, pushed; HEAD local `382f4ba` bajo certificación) | `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` | [[Echo Forge — Factory V2 Completion]] F-03 | [[Echo Forge — F-03 SQX Long-Running Contract]] | T1.1–T1.8 executed; G1 review pendiente; PHYSICAL `BLOCKED` por licencia SQX (lab aprovisionado) |
+| xKoRx/symphony | `feature/f03-sqx-long-running` (integrada) | `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` | [[Echo Forge — Factory V2 Completion]] F-03 | [[Echo Forge — F-03 SQX Long-Running Contract]] | **PASS / CLOSED** — `master` = `origin/master` = `382f4ba5d417371f778e21619ed9eb72624a23f4` (ff-only, pushed) |
 
 ## Parent / SPEC / baselines
 
@@ -70,14 +70,14 @@ Temporal compute LIVE: `sqx/workflows/generic_workflow.go` (`genericActivityOpti
 
 | Req | State | Evidence |
 |---|---|---|
-| Elapsed ≠ FAILED Generic/Group | missing | StartToClose 10d + ScheduleToClose 20d |
-| Elapsed ≠ FAILED WFM físico | missing | WithTimeout 10m |
-| Elapsed ≠ FAILED apply SQX | missing | ensureApplyDeadline 10m |
+| Elapsed ≠ FAILED Generic/Group | PASS | Ceiling técnico `MaxInt64ns−1s`, ScheduleToClose 0; PHYSICAL real `14m51.98s` COMPLETED |
+| Elapsed ≠ FAILED WFM físico | PASS | T+10m RUNNING + heartbeat; long-running real COMPLETED |
+| Elapsed ≠ FAILED apply SQX | PASS | Sin deadline de negocio de 10m en el hot path; SOURCE PASS |
 | Heartbeat liveness 2m | done | HeartbeatTimeout + StartHeartbeat 6s |
-| Cancel ≠ timeout retry | missing | classifyError Canceled→ErrorTypeTimeout |
-| Cancel mata sólo árbol | partial | WaitForCancellation true; Group child sin REQUEST_CANCEL; terminate sólo PID sqcli |
+| Cancel ≠ timeout retry | PASS | Temporal cancel attempt 1; cancel sin retry/reanudación |
+| Cancel mata sólo árbol | PASS | `sqcli` target gone; worker/sibling intactos; process-tree y cancel cooperativo verificados |
 | Recovery independiente de duration | done | StageExecution sealed skip |
-| Duration observable sin gate | partial | histogram en utils legado; project heartbeat string estático |
+| Duration observable sin gate | PASS | `14m51.98s` observable; `duration_ms`/heartbeat presentes sin gate por elapsed |
 | Campaign budget ≠ kill | done | 30s activities; stop policy aparte |
 | Migration | done | NONE — no hay timeout en SQL |
 
@@ -250,8 +250,8 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → tests/certificaci
 
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
-| G1 | planned | T1.1–T1.8 según SPEC; diff acotado + tests + grep SOURCE | Manager review; no auto-merge | F-03 implementation review; no F-04 |
-| PHYSICAL | deferred | procedimiento SPEC §Certification #5 | Lab SQX job >10m COMPLETED + cancel árbol | F-05 cómputos largos |
+| G1 | closed (PASS) | T1.1–T1.8 según SPEC; diff acotado + tests + grep SOURCE | Integración manager: ff-only a `master`, commit `382f4ba` | F-03 cerrado; no F-04 en esta sesión |
+| PHYSICAL | closed (PASS) | procedimiento SPEC §Certification #5 | Job real `14m51.98s` COMPLETED, 3000/3000, 0 errores; cancel árbol aislado | F-05 puede incluir cómputos largos |
 
 ## Tests / certification
 
@@ -320,11 +320,11 @@ Los de T1.1–T1.8. Anti-test-masking. PHYSICAL no se finge.
 
 **Entregables/Gate**
 
-G1 review. `DATABASE MIGRATION: NONE`. `NO NORMAL IMPLEMENTATION AUTHORIZED YET` hasta orden del manager.
+G1 `closed (PASS)`. PHYSICAL `closed (PASS)`. `DATABASE MIGRATION: NONE`. Commit final `382f4ba5d417371f778e21619ed9eb72624a23f4`.
 
 **Handoff**
 
-Ver comentario de cierre TOP. Próximo: autorización NORMAL.
+F-03 cerrado canónicamente. Próximo paso del padre: F-04 como siguiente fase; no materializar ni implementar SPEC F-04 en este cierre.
 
 **Despacho Fase 1**
 
@@ -334,12 +334,14 @@ PAQUETE_CANONICO=Paquete autónomo Fase 1 — SQX Long-Running Contract
 GATE_REQUERIDO=none
 TAREAS=T1.1,T1.2-legado,T1.3-T1.8 (T1.2-adaptive NO CHANGE)
 SALIDA=source diff F-03 + grep SOURCE + tests cancel/liveness + nota en review
-STOP=NO NORMAL IMPLEMENTATION AUTHORIZED YET
+STOP=NO F-04 IMPLEMENTATION; F-03 CLOSED
 ```
 
 El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 
 ## 📆 Bitácora
+
+- **2026-09-10** — **PASS / CLOSED.** Gates Git PASS (`origin/master`=`e50cb7e` antes de integrar; feature remota=`382f4ba`; merge-base exacto; CLEAN). `master` actualizado a `origin/master`, merge `--ff-only feature/f03-sqx-long-running`, HEAD exacto `382f4ba5d417371f778e21619ed9eb72624a23f4` y push exitoso. SOURCE/CONTRACT PASS; PHYSICAL PASS con long-running real `14m51.98s` COMPLETED, 3000/3000, 0 errores, T+10m RUNNING + heartbeat, cancel Temporal attempt 1, `sqcli` target gone, worker/sibling intactos y sin takeover/reattach/partial publish. F-04 queda como siguiente fase; no se materializa su SPEC.
 
 - **2026-09-10** — PHYSICAL CERT attempt sobre HEAD `382f4ba` (tree CLEAN, 2 ahead/0 behind de master): `BLOCKED` por licencia SQX trial expirada en Hera y Zeus (`C0CCF0856B2C`; 869A77/5F89F5/71CE83 rechazadas; última aplicación vigente z0 2026-08-24). Lab aprovisionado sin tocar flota ni manifests: binarios linux/amd64 del commit (worker `410040b1…` / watcher `04cdac76…`) en Hera `/tmp/f03-cert/`, scopes ETCD `/sqx-{worker,watcher}/f03cert/` espejo de producción salvo cola `f03-cert-queue` y `version=f03-cert-382f4ba`; worker+watcher candidatos vivos (worker registrado en `f03-cert-queue`, ns `sqx-prop`, WorkerID `1155192@sqx-ulab-hera-0@`). Job real: watcher V1 despachó `sqx-main-v1-d917aa11-ad27-49a5-bebd-cfd142c2e6ad` (builder XAUUSD H1); el CommandExecutor del worker candidato lanzó `sqcli -project action=start name=custom` → exit 1 en 3.2 s en el license check; retry transiente infinito (diseño F-03) detenido con `temporal workflow cancel` → `CANCELED`, run único, sin reanudación (semántica cancel≠timeout observada a nivel workflow). Efecto de laboratorio a nota: el arranque del worker aplicó la migración pre-existente `014_finalist_promotion_v2` (F-02, ya en master) sobre la DB de test `trading_systems_test`. Veredicto `BLOCKED / CLOSED`: P1 requiere sqcli compute >10m real — imposible sin licencia; no mocks. Reintento: owner restaura licencia → reusar lab tibio, `request_id` nuevo. Detalles: [[2026-09-10-symphony-sqx-trial-license-fleet-expired]] · run: [[2026-09-10-zcode-glm-5.3-flash-f03-physical-cert]].
 
@@ -367,4 +369,3 @@ El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 ### Motivos / principios
 
 - Elapsed sano ≠ FAILED. Heartbeat = liveness. Cancel cooperativo árbol-scoped. No copiar MT5 slots.
-

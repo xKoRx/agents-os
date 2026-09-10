@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-07"
-updated: "2026-09-08"
+updated: "2026-09-10"
 ---
 
 # Echo Forge — Factory V2 Completion
@@ -32,7 +32,7 @@ updated: "2026-09-08"
 
 > [!info]+ Echo Forge — Factory V2 Completion
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
-> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 TOP: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]].
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 es la siguiente fase; F-05 queda pendiente.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
 > Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
@@ -45,21 +45,21 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 ## 📊 Estado actual
 
-- **F-01 CLOSED. F-02 CLOSED. F-03 TOP persistido.** Roadmap congelado. F-01 PASS/CLOSED (2026-09-08): `master` = `0509342`. F-02 PASS/CLOSED (2026-09-08): commit final `c3b7ede4da5caa5f3294533b0dcf5e8570369c38` mergeado ff-only a `master` y pushed; tras el rescate documental del manifest `0.2.96`, `master` = `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` con worktree limpio. F-03 SPEC+TASKS persistidos 2026-09-08; NORMAL no autorizado. F-04–F-05 pendientes de despacho TOP.
+- **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED.** F-03 PASS/CLOSED (2026-09-10): commit final `382f4ba5d417371f778e21619ed9eb72624a23f4` integrado por ff-only a `master` y pushed; SOURCE/CONTRACT y PHYSICAL PASS. F-04 es la siguiente fase; F-05 queda pendiente. No materializar todavía SPEC F-04.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
-- **Abierto exactamente una vez:** F-01 (F0 HOST_KEY/canonicalizer), F-02 (F1 = C1+C2 Finalist V2), F-03 (D SQX long-running), F-04 (F2 magic/seal/handoff tras pin S0), F-05 (release cohesivo + cert física + FULL golden).
-- **Base observada:** Symphony `db8a022`. Revalidar HEAD/working tree en la SPEC; dirty ajeno preservado. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
+- **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 siguiente fase (sin SPEC materializada todavía); F-05 pendiente.
+- **Base observada:** Symphony `master`=`origin/master`=`382f4ba5d417371f778e21619ed9eb72624a23f4`; merge-base previo F-03=`e50cb7e`; worktree CLEAN. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
 - **Dependencia Echo:** F-01/F-02/F-03 independientes de S0. F-04 consume pin [[Echo — Live Platform V1]] E-01. Catálogo CC owner antes de allocation real.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | Fijar por fase en SPEC TOP | `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` | F-03: este padre | F-03: [[Echo Forge — F-03 SQX Long-Running Contract]] | **F-01 CLOSED `0509342`**; **F-02 CLOSED `c3b7ede` (ff-only) → `master` `e50cb7e`**; **F-03 TOP** (NORMAL no autorizado); F-04–F-05 PREPARADO |
+| xKoRx/symphony | `master` (F-03 integrada) | `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` | F-03: este padre | F-03: [[Echo Forge — F-03 SQX Long-Running Contract]] | **F-01 CLOSED**; **F-02 CLOSED**; **F-03 PASS / CLOSED `382f4ba5d417371f778e21619ed9eb72624a23f4` (ff-only, pushed)**; F-04 siguiente; F-05 pendiente |
 
 ## 🧩 Subproyectos
 
-Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (TOP; NORMAL no autorizado). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
+Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
 
 ## ✅ Tareas
 
@@ -70,7 +70,7 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
 > - [x] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
-> - [/] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
+> - [x] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
 > - [ ] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
 > - [ ] F-05 Cohesive release, physical cert and FULL golden #owner/agent #type/dev #area/echo
 
@@ -144,14 +144,14 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### F-03 SQX long-running
 
-- **ID / status / size:** F-03 · Planning persisted · MEDIUM
+- **ID / status / size:** F-03 · CLOSED · MEDIUM
 - **Implementation project:** [[Echo Forge — F-03 SQX long-running]]
 - **SPEC:** [[Echo Forge — F-03 SQX Long-Running Contract]]
-- **Planning (2026-09-08):** TOP + CORRECTION C1–C3. Ceiling `MaxInt64ns−1s`. Adaptive NO CHANGE. Process-tree obligatorio. Baseline `e50cb7e`. `DATABASE MIGRATION: NONE`. **Implementation:** NORMAL no autorizado. **GOD:** NONE.
+- **Outcome (2026-09-10):** PASS/CLOSED — commit `382f4ba5d417371f778e21619ed9eb72624a23f4` integrado por ff-only a `master` y pushed; SOURCE/CONTRACT PASS y PHYSICAL PASS con job real `14m51.98s` COMPLETED, 3000/3000, 0 errores, heartbeat vivo a T+10m y cancel árbol aislado. `DATABASE MIGRATION: NONE`.
 - **Objective:** Elapsed wall-clock ≠ failure en Builder/Optimizer/WFM/etc. Quitar deadlines de negocio arbitrarios preservando liveness/recovery. SQX sigue serial por máquina/databank; no hereda allocator MT5.
 - **Capability unlocked:** jobs SQX largos terminan; cancel explícito sigue siendo la muerte cooperativa.
 - **Product value:** factory no aborta cómputo sano; simétrico al freeze MT5 B1B.
-- **Why:** D sigue pendiente; no debe desaparecer detrás de Finalist V2.
+- **Why:** D quedó cerrado sin confundir elapsed sano con failure de negocio.
 - **Frozen input:** mismo principio B1B; [[2026-09-06-echo-forge-mt5-execution-model-v2]] no se copia a SQX slots.
 - **In scope:** timeouts de negocio SQX/Temporal de esas etapas; heartbeat/liveness; recovery. Medir duration.
 - **Out of scope:** slots MT5; takeover; Finalist; S0; budget de admisión owner (separado); Adaptive DEPRECATED.
@@ -160,7 +160,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Hypotheses:** techo técnico Temporal + heartbeat basta; el budget de capacidad no debe matar el job.
 - **Risks:** confundir liveness con deadline de campaña; tocar databanks SQX con semántica de pool MT5.
 - **Output authority:** contratos de activity SQX sin kill por wall-clock de negocio.
-- **Certification:** SOURCE + PHYSICAL SQX (job largo sobre el límite viejo termina; cancel explícito mata sólo su árbol).
+- **Certification:** SOURCE/CONTRACT + PHYSICAL SQX PASS (job largo sobre el límite viejo termina; cancel explícito mata sólo su árbol).
 - **Done when:** no existe deadline de negocio que mate Builder/Optimizer/WFM sano; liveness real conservada.
 - **Unlocks:** F-05 puede incluir cómputos largos en golden.
 - **Accepted debt:** serialización SQX one-job-per-machine.
@@ -184,7 +184,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Done when:** manifest fixture idéntico lo acepta el consumer del mismo release; no side-effects Echo; CC bloquea allocation real si falta.
 - **Unlocks:** F-05 golden de handoff; E-04 puede dejar fakes.
 - **Accepted debt:** HashIdentity legacy; attach Echo no es de esta fase.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Status:** CLOSED. **Next:** F-04 es la siguiente fase; no materializar su SPEC en este cierre.
 
 ### F-05 Cohesive release, physical cert and FULL golden
 
