@@ -137,20 +137,20 @@ F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E
 > - [x] T1.2 migration 015 strategy_magic + versions + manifests + deliveries #owner/agent #type/dev #area/echo
 > - [x] T1.3 allocator CAS/replay/reserved 11111+888111 #owner/agent #type/dev #area/echo
 > - [x] T1.4 CC_MISSING_OWNER_GATE + fixture MagicCandidateSource #owner/agent #type/dev #area/echo
-> - [/] T1.5 Apply stamp usa allocated; requested must match #owner/agent #type/dev #area/echo
-> - [ ] T1.6 readback XML MagicNumber del .sqx #owner/agent #type/dev #area/echo
-> - [ ] T1.7 readback MQ5 MagicNumber #owner/agent #type/dev #area/echo
-> - [ ] T1.8 mismatch FAIL CLOSED no seal/handoff #owner/agent #type/dev #area/echo
-> - [ ] T1.9 compile verify size/sha/0-errors/source sha #owner/agent #type/dev #area/echo
-> - [ ] T1.10 StrategyVersion seal S0 write-once #owner/agent #type/dev #area/echo
-> - [ ] T1.11 HandoffManifestV1 producer S0 + MemberProof V2 #owner/agent #type/dev #area/echo
-> - [ ] T1.12 handoff_manifests write-once DetectSealedConflict #owner/agent #type/dev #area/echo
-> - [ ] T1.13 HandoffIngress + fakeconsumer CONTRACT #owner/agent #type/dev #area/echo
-> - [ ] T1.14 delivery states; no re-POST post-commit #owner/agent #type/dev #area/echo
-> - [ ] T1.15 corpus G04–G10 G19–G25 G22 #owner/agent #type/dev #area/echo
-> - [ ] T1.16 concurrent allocation same/different identity #owner/agent #type/dev #area/echo
-> - [ ] T1.17 BWC no backfill 888111; brownfield sin fila magic #owner/agent #type/dev #area/echo
-> - [ ] T1.18 SOURCE greps ownership/latest/ranking/HashIdentity-on-S0 #owner/agent #type/dev #area/echo
+> - [x] T1.5 Apply stamp usa allocated; requested must match #owner/agent #type/dev #area/echo
+> - [x] T1.6 readback XML MagicNumber del .sqx #owner/agent #type/dev #area/echo
+> - [x] T1.7 readback MQ5 MagicNumber #owner/agent #type/dev #area/echo
+> - [x] T1.8 mismatch FAIL CLOSED no seal/handoff #owner/agent #type/dev #area/echo
+> - [x] T1.9 compile verify size/sha/0-errors/source sha #owner/agent #type/dev #area/echo
+> - [x] T1.10 StrategyVersion seal S0 write-once #owner/agent #type/dev #area/echo
+> - [x] T1.11 HandoffManifestV1 producer S0 + MemberProof V2 #owner/agent #type/dev #area/echo
+> - [x] T1.12 handoff_manifests write-once DetectSealedConflict #owner/agent #type/dev #area/echo
+> - [x] T1.13 HandoffIngress + fakeconsumer CONTRACT #owner/agent #type/dev #area/echo
+> - [x] T1.14 delivery states; no re-POST post-commit #owner/agent #type/dev #area/echo
+> - [x] T1.15 corpus G04–G10 G19–G25 G22 #owner/agent #type/dev #area/echo
+> - [/] T1.16 concurrent allocation same/different identity #owner/agent #type/dev #area/echo
+> - [/] T1.17 BWC no backfill 888111; brownfield sin fila magic #owner/agent #type/dev #area/echo
+> - [/] T1.18 SOURCE greps ownership/latest/ranking/HashIdentity-on-S0 #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
