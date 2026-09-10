@@ -3,7 +3,8 @@ type: agent_memory
 schema_version: 1
 scope: project
 created: 2026-08-22
-updated: 2026-08-22
+updated: 2026-09-09
+memory_state: archived
 area: "[[Aranea]]"
 project: "[[Echo Forge - Arquitectura de Datos y Migración de Persistencia]]"
 entities:

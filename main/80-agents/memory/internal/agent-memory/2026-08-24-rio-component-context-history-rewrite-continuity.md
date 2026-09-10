@@ -3,7 +3,8 @@ type: agent_memory
 schema_version: 1
 scope: project
 created: "2026-08-24"
-updated: "2026-08-24"
+updated: 2026-09-09
+memory_state: archived
 area: "[[Meli]]"
 project: "[[Crear Context]]"
 application: "[[rio-sdk-events]]"
@@ -15,9 +16,9 @@ related:
   - "[[AGENTS OS]]"
 aliases: []
 confidence: high
-load_policy: when_project_loaded
-indexable: true
-index_priority: high
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - kind/agent-memory
   - scope/project

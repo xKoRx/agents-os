@@ -20,7 +20,7 @@ indexable: true
 index_priority: high
 tags:
   - area/personal
-  - kind/knownerror
+  - kind/known-error
   - priority/high
   - project/agents-os
   - project/agentsos

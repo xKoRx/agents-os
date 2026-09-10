@@ -23,13 +23,37 @@ class Finding:
 
 ROOT = Path(__file__).resolve().parents[4]
 AGENTS = ROOT / "80-agents"
-ALWAYS_ALLOWED = {
+PROFILE_DIR = "80-agents/memory/public/user-preference"
+FIXED_ALWAYS_ALLOWED = {
     "80-agents/agents-os/agent-constitution.md",
-    "80-agents/memory/public/user-preference/rjara-agent-profile.md",
     "80-agents/skills/agents-os-bootstrap/SKILL.md",
     "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
 }
-STARTUP_FILES = [ROOT / path for path in sorted(ALWAYS_ALLOWED)]
+
+
+def _always_profiles() -> list[str]:
+    """The global profile is named by whoever installs; resolve it, don't hardcode it.
+
+    Exactly one note under the profile directory may be always-load. Returning
+    every candidate lets check_always report a second one as a club violation.
+    """
+    directory = ROOT / PROFILE_DIR
+    if not directory.is_dir():
+        return []
+    return sorted(
+        f"{PROFILE_DIR}/{path.name}"
+        for path in directory.glob("*.md")
+        if frontmatter_value(path, "load_policy") == "always"
+    )
+
+
+def always_allowed() -> set[str]:
+    profiles = _always_profiles()
+    return FIXED_ALWAYS_ALLOWED | set(profiles[:1])
+
+
+def startup_files() -> list[Path]:
+    return [ROOT / path for path in sorted(always_allowed())]
 GLOBAL_INTERNAL_MEMORY = ROOT / "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md"
 GLOBAL_INTERNAL_TOKEN_LIMIT = 1000
 MEMORY_STATES = {"active", "superseded", "archived"}
@@ -110,15 +134,22 @@ def check_paths(findings: list[Finding]) -> None:
 
 
 def check_always(findings: list[Finding]) -> None:
+    allowed = always_allowed()
+    profiles = _always_profiles()
+    if not profiles:
+        findings.append(
+            Finding("HIGH", "always", PROFILE_DIR,
+                    "no always-load global profile found; install is incomplete")
+        )
     actual: set[str] = set()
     for path in AGENTS.rglob("*.md"):
         if frontmatter_value(path, "load_policy") == "always":
             actual.add(relative(path))
-    for path in sorted(actual - ALWAYS_ALLOWED):
+    for path in sorted(actual - allowed):
         findings.append(
             Finding("HIGH", "always", path, "outside the always-load closed club")
         )
-    for path in sorted(ALWAYS_ALLOWED - actual):
+    for path in sorted(allowed - actual):
         findings.append(
             Finding("HIGH", "always", path, "required always-load member is missing")
         )
@@ -130,9 +161,10 @@ def check_graphifyignore(findings: list[Finding]) -> None:
         findings.append(Finding("HIGH", "graphifyignore", ".graphifyignore", "missing"))
         return
     text = path.read_text(encoding="utf-8")
+    # Generic exclusions only: a fresh install has no packaging subdirectories
+    # yet, and 30-resources/agents-os/ covers every one of them by prefix.
     required = (".obsidian/", "00-inbox/", "40-archive/", "80-agents/journal/",
-                "95-graphify/", "trash/", "30-resources/agents-os/chatgpt-pack/",
-                "30-resources/agents-os/distribution/")
+                "95-graphify/", "trash/", "30-resources/agents-os/")
     for entry in required:
         if entry not in text:
             findings.append(
@@ -168,6 +200,25 @@ def check_skill_index(findings: list[Finding]) -> None:
                                     f"federated skill target missing on disk: {target}"))
 
 
+def check_skill_frontmatter(findings: list[Finding]) -> None:
+    """Every skill must carry the fields the schema contract requires.
+
+    Without them the corpus lint skips the file entirely and retrieval has
+    nothing to decide load timing or ranking with.
+    """
+    required = ("type", "schema_version", "name", "description",
+                "scope", "load_policy", "indexable", "index_priority")
+    for path in sorted((AGENTS / "skills").glob("*/SKILL.md")):
+        missing = [key for key in required if frontmatter_value(path, key) in (None, "")]
+        if missing:
+            findings.append(Finding("MEDIUM", "skill-frontmatter", relative(path),
+                                    f"missing required frontmatter: {', '.join(missing)}"))
+        name = frontmatter_value(path, "name")
+        if name and name != path.parent.name:
+            findings.append(Finding("HIGH", "skill-frontmatter", relative(path),
+                                    f"name {name!r} does not match folder {path.parent.name!r}"))
+
+
 def check_skill_refs(findings: list[Finding]) -> None:
     pattern = re.compile(r"`((?:\.\.?/)+[^`\n]+?\.md)`")
     for path in (AGENTS / "skills").glob("*/SKILL.md"):
@@ -198,10 +249,11 @@ def check_secrets(findings: list[Finding]) -> None:
 
 
 def check_startup(findings: list[Finding]) -> int:
-    missing = [path for path in STARTUP_FILES if not path.is_file()]
+    files = startup_files()
+    missing = [path for path in files if not path.is_file()]
     for path in missing:
         findings.append(Finding("HIGH", "startup", relative(path), "missing startup file"))
-    chars = sum(len(path.read_text(encoding="utf-8")) for path in STARTUP_FILES if path.is_file())
+    chars = sum(len(path.read_text(encoding="utf-8")) for path in files if path.is_file())
     tokens = round(chars / 4)
     if tokens > 6000:
         findings.append(
@@ -324,6 +376,7 @@ def main() -> int:
     check_always(findings)
     check_graphifyignore(findings)
     check_skill_index(findings)
+    check_skill_frontmatter(findings)
     check_skill_refs(findings)
     check_secrets(findings)
     check_global_internal_memory(findings)

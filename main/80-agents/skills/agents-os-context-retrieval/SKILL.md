@@ -6,6 +6,8 @@ scope: global
 created: 2026-07-04
 updated: 2026-09-03
 description: Retrieve focused context for the Agent Memory System using Graphify or an equivalent index. Use when an agent needs project/application/entity context, learnings, ADRs, known errors, runbooks, integrations, or related notes before working, while keeping context/token usage low.
+aliases:
+  - agents-os-context-retrieval
 entities:
   - "[[AGENTS OS]]"
   - "[[agents-os]]"
@@ -16,7 +18,6 @@ index_priority: critical
 tags:
   - kind/skill
   - scope/global
-  - agent/alwaysload
   - action/retrieval
   - tech/agents-os
 ---

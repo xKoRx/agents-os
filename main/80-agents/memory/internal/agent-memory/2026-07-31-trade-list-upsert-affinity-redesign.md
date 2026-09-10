@@ -2,7 +2,8 @@
 type: agent_memory
 scope: internal
 created: 2026-07-31
-updated: 2026-07-31
+updated: 2026-09-09
+memory_state: archived
 area: "[[Echo]]"
 project: "[[Echo Forge - Trade List Export Contrato Remoto]]"
 entities:
@@ -12,7 +13,7 @@ related:
   - "[[trade-list-exporter-local-path-cross-worker]]"
   - "[[2026-07-31-temporal-activity-contract-remote-only]]"
 confidence: high
-load_policy: when_entity_loaded
+load_policy: manual
 indexable: false
 index_priority: never
 tags:

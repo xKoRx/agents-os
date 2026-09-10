@@ -16,7 +16,7 @@ aliases:
   - SUPPORTED_FORMAT_UNCERTIFIED_BUILD 6180
 confidence: verified
 source_session: ECHO-FORGE-MT5-BUILD-6180-PARSER-CERTIFICATION-TOP
-load_policy: when_relevant
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

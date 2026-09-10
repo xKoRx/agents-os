@@ -22,8 +22,9 @@ index_priority: high
 tags:
   - app/echo-forge
   - area/symphony
-  - kind/knownerror
+  - kind/known-error
   - project/echo-forge
+  - scope/application
 ---
 
 # `apply_selected_run` falla por metadata de otro `run_id` en la misma wave

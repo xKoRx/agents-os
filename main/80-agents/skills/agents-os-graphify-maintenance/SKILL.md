@@ -4,12 +4,19 @@ name: agents-os-graphify-maintenance
 scope: global
 created: 2026-07-04
 updated: 2026-09-03
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Maintain the local Agent Memory System Graphify index contract. Use when configuring what Graphify indexes, repairing auto-refresh, validating that generated state and raw sessions stay outside the vault, checking graph health, or documenting a model/IDE-agnostic retrieval interface.
+aliases:
+  - agents-os-graphify-maintenance
 tags:
   - kind/skill
   - action/graphify-maintenance
   - tech/agents-os
   - tech/graphify
+  - scope/global
 ---
 
 # Agent Memory System Graphify Maintenance
@@ -44,7 +51,7 @@ Treat the index as stale when any of these are true:
 - `explain` or focused `query` cannot find a newly created indexable memory after a successful update.
 - The local graph predates relevant indexable memory work.
 
-In Codex-style sandboxes, `graphify-obsidian update` may need host escalation because the CLI creates a temporary cache under `~/.cache`.
+In a sandbox without write access to `~/.cache`, `graphify-obsidian update` may need host escalation because the CLI creates its temporary cache there.
 
 Use `graphify-obsidian status` as the freshness interface. If file inspection is
 needed, resolve the machine-local directory with `graphify-obsidian cache-path`.
@@ -52,15 +59,13 @@ No Graphify output directory inside the vault is valid.
 
 ## Validation Examples
 
-```bash
-graphify-obsidian explain "<active-entity>"
-graphify-obsidian query "<active-entity> learning critical <topic>" --budget 1200
-graphify-obsidian query "<active-entity> known_error <symptom>" --budget 1200
-graphify-obsidian query "<active-entity> runbook <operation>" --budget 1200
-graphify-obsidian explain "<exact-known-node-title>"
-```
+Run the canonical query set from `../_shared/graphify-contract.md` — that
+contract owns the recipe and its budget semantics. Then add one existence check
+for whatever this run created:
 
-The `--budget` value is a soft starting ceiling per query, not a hard cap: if a result looks truncated, re-query with a higher ceiling. See `../_shared/graphify-contract.md` "Budget semantics".
+```bash
+graphify-obsidian explain "<exact-title-created-or-changed-in-this-run>"
+```
 
 Expected result: focused queries should return source notes relevant to the active entity. Raw sessions and journal logs should not appear in normal retrieval.
 When alias hygiene changed, validate both the canonical title and one common

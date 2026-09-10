@@ -2,7 +2,10 @@
 type: agent_memory
 scope: continuity
 created: "2026-07-21"
-updated: "2026-07-21"
+updated: 2026-09-09
+index_priority: never
+indexable: false
+memory_state: archived
 area: symphony
 project: "[[Symphony]]"
 application: "[[Echo Forge]]"
@@ -12,7 +15,7 @@ related:
   - "[[2026-07-20-sqx-requestid-traceid-alignment-continuity]]"
 aliases: []
 confidence: verified
-load_policy: active
+load_policy: manual
 tags:
   - kind/continuity
   - scope/session

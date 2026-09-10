@@ -2,7 +2,11 @@
 type: agent_memory
 scope: project
 created: 2026-08-10
-updated: 2026-08-10
+updated: 2026-09-09
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 project: "[[Echo Forge]]"
 entities:
   - "[[Echo Forge]]"

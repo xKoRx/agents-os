@@ -1,11 +1,25 @@
 {
   "contract_version": 1,
   "counts": {
-    "ERROR": 0,
-    "WARN": 0
+    "ERROR": 9,
+    "WARN": 4
   },
   "fingerprint_algorithm": "sha256",
-  "fingerprints": [],
+  "fingerprints": [
+    "0b1bb0975da3898a6458272cca1ff7a5d659db9edec2d04ccd37f53bd70e7f66",
+    "188b57c3286fa4a97b04da2de7196f9d2dad82b48bd2e9e8ac03319be5c8193e",
+    "3eb9a634710a722f8265f4d5c626ab5adc6faeb9b46a44d3106d781f0ff54737",
+    "46c4426e926c98f0468b5296a67cbdec5ca9c6c266f49d361bbeae0881c808d3",
+    "4dc2ef8aedbac0de3732fc529d4fd33b04610267c83bb01e35e5d07f8245187e",
+    "53ad4f60a0612b74699e8bbb68f38b61f7b22803ad4850054ef9688b37bf4620",
+    "637ab018404141002f633334a2c3d5f54e9f86cd16eaa1a669ea40fece80857b",
+    "875a996da075e509ef93c55a434237b03739a4f10b2280925dcf6bdc33ec62ff",
+    "916f2741a9a7a11385b5ccbbcdb5adcecf586eb3e45fbe6c4ab480084bf1af25",
+    "ca427f441dd0b3a20732e540add2f17c66d9071d5a87c96709193a60f1b307e0",
+    "dae263b8c7e17a8bcb5833fb2d20e15c6c86f792c00213e80e5de0f26298d3eb",
+    "f86b58ea704903c6ac4ede8b023b2806faead959042e0ea826959dd07db909b8",
+    "fe858a6558e58ebc7d343d2ab2f0003aa90dc1480bd9173b553c41381aabf004"
+  ],
   "format_version": 1,
   "schema_version": 1,
   "scope_paths": []

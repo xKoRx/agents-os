@@ -1,6 +1,6 @@
 ---
 type: known_error
-scope: agent
+scope: project
 created: "2026-06-30"
 updated: "2026-06-30"
 resolved: "2026-06-30"

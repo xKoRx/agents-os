@@ -1,6 +1,6 @@
 ---
 type: learning
-scope: agent
+scope: project
 created: "2026-06-30"
 updated: "2026-06-30"
 area: "[[Meli]]"
@@ -15,12 +15,13 @@ aliases:
   - evitar PRs sucios por merge
 confidence: verified
 source_session: "2026-06-30-search-middleware-bajo-de-precio-merge"
-load_policy: contextual
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:
   - kind/learning
   - workflow/git
+  - scope/agent
 ---
 
 # Reconstruir Ramas De PR Sin Arrastrar Commits Ajenos

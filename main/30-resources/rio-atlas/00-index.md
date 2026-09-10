@@ -7,7 +7,7 @@ slug: "rio-atlas-index"
 area: "[[Meli]]"
 project: "[[Onboarding Signals]]"
 created: 2026-08-10
-updated: 2026-08-19
+updated: 2026-09-09
 reviewed: 2026-08-12
 aliases:
   - RIO Atlas

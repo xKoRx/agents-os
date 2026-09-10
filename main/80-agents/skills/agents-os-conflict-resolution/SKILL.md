@@ -6,6 +6,8 @@ scope: global
 created: 2026-06-27
 updated: 2026-08-10
 description: Detect and handle contradictions in Agent Memory System knowledge. Use when new information conflicts with existing Sistema 2 documentation, Sistema 1 memory, ADRs, known errors, user preferences, or Graphify-retrieved context, and the agent must resolve the contradiction and leave an auditable log.
+aliases:
+  - agents-os-conflict-resolution
 load_policy: manual
 indexable: true
 index_priority: high

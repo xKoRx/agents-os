@@ -3,7 +3,8 @@ type: agent_memory
 schema_version: 1
 scope: project
 created: "2026-09-02"
-updated: "2026-09-02"
+updated: 2026-09-09
+memory_state: archived
 area: "[[Personal]]"
 project: "[[Echo Forge]]"
 application:
@@ -12,8 +13,8 @@ related: []
 aliases: []
 confidence: high
 load_policy: manual
-indexable: true
-index_priority: high
+indexable: false
+index_priority: never
 tags:
   - kind/agent-memory
   - scope/project

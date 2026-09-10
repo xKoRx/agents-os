@@ -27,6 +27,7 @@ tags:
   - workflow/code-review
   - workflow/git
   - area/meli
+  - scope/global
 ---
 
 # Confundir finding heredado con regresión de la branch

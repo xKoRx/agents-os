@@ -6,6 +6,8 @@ scope: global
 created: 2026-07-03
 updated: 2026-08-10
 description: Author or refine an AGENTS OS skill so it follows the skill contract and the token-economy principles. Use when creating a new skill, refactoring an existing one, or deciding whether something should be a skill, a runbook, or a memory. Enforces lean agent-facing SKILL.md, single-source-per-fact, and separation of executable behavior from rich human explanation.
+aliases:
+  - agents-os-skill-authoring
 load_policy: manual
 indexable: true
 index_priority: high
@@ -42,8 +44,7 @@ No repetir aquí el contenido de esos archivos: son la fuente canónica; esta sk
    y usar el flujo correcto (runbook → `memory/public/runbook/`; memoria → `agents-os-memory-distillation`).
 2. **Materializar `type: skill` con `materialize_schema_note.py`** y completar
    `name`/`description` gatillables y tags correctos.
-3. **Mantener el SKILL.md agent-facing y lean** (contrato): procedure, hard rules, output,
-   finish tasks. **Sin rationale ni "por qué importa".** Cada línea cambia una decisión.
+3. **Mantener el SKILL.md agent-facing y lean** (contrato): procedure, hard rules, output. **Sin rationale ni "por qué importa".** Cada línea cambia una decisión.
 4. **Separar la explicación rica** (por qué/valor/evangelización) en un doc humano aparte que
    **enlaza** a la skill; no restatear. Una fuente por hecho (regla de constitución).
 5. **Enlazar skills/runbooks/contratos relacionados** en vez de copiar su contenido.

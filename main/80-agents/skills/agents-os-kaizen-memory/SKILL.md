@@ -4,11 +4,18 @@ name: agents-os-kaizen-memory
 scope: global
 created: 2026-06-27
 updated: 2026-08-08
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Analyze new session and Graphify feedbacks since the last Kaizen watermark, detect recurring pain patterns, promote reusable value, and trace system improvements. Use when agents-os-hygiene-cycle runs, when evaluating AGENTS OS health, or when the user asks to process feedback notes.
+aliases:
+  - agents-os-kaizen-memory
 tags:
   - kind/skill
   - action/kaizen
   - tech/agents-os
+  - scope/global
 ---
 
 # agents-os-kaizen-memory - Kaizen Memory System Audit

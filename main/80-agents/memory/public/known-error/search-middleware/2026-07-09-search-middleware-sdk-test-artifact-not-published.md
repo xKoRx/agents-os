@@ -22,6 +22,7 @@ tags:
   - app/search-middleware
   - integration/maven
   - error/sdk-artifact-missing
+  - scope/integration
 ---
 
 # Search Middleware no puede resolver SDK de prueba no publicada

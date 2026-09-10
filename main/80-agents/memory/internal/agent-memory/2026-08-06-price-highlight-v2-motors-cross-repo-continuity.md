@@ -3,7 +3,8 @@ type: agent_memory
 schema_version: 1
 scope: session
 created: 2026-08-10
-updated: 2026-08-10
+updated: 2026-09-09
+memory_state: archived
 area: "[[Personal]]"
 project:
 application:
@@ -12,7 +13,7 @@ related: []
 confidence: medium
 load_policy: manual
 indexable: false
-index_priority: low
+index_priority: never
 tags:
   - kind/agent-memory
   - scope/session

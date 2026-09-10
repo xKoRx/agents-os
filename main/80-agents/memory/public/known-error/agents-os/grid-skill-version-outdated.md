@@ -22,6 +22,7 @@ tags:
   - kind/known-error
   - project/agents-os
   - integration/grid
+  - scope/integration
 ---
 
 # Grid upload rechazado por skill desactualizada

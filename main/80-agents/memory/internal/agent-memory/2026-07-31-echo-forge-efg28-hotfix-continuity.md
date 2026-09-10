@@ -3,13 +3,14 @@ type: agent_memory
 scope: project
 project: "[[Echo Forge]]"
 created: 2026-07-31
-updated: 2026-07-31
+updated: 2026-09-09
+memory_state: archived
 entities:
   - "[[Echo Forge]]"
   - "[[Symphony]]"
-load_policy: scoped
-indexable: true
-index_priority: high
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - kind/memory
   - kind/continuity

@@ -1,7 +1,7 @@
 ---
 type: known_error
 schema_version: 1
-scope:
+scope: tool
 created: "2026-08-24"
 updated: "2026-08-24"
 area:
@@ -10,14 +10,15 @@ application:
 entities: []
 related: []
 aliases: []
-confidence:
+confidence: verified
 source_session:
 load_policy: when_error_matches
 indexable: true
 index_priority: high
 tags:
   - kind/known-error
-  - scope/replace-me
+  - scope/tool
+  - scope/tool
 ---
 
 # zsh-modifier-breaks-git-show-sha-path

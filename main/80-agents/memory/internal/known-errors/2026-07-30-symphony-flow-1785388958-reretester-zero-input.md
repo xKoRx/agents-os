@@ -1,5 +1,9 @@
 ---
 type: known_error
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 scope: session
 tags:
   - kind/doc
@@ -9,7 +13,7 @@ tags:
   - severity/high
   - status/diagnosed
 created: 2026-07-30
-updated: 2026-07-30
+updated: 2026-09-09
 aliases:
   - 1785388958
   - flow_46 reretester zero

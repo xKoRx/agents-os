@@ -2,7 +2,8 @@
 type: agent_memory
 scope: internal
 created: 2026-07-31
-updated: 2026-07-31
+updated: 2026-09-09
+memory_state: archived
 area: "[[Echo]]"
 project: "[[Echo Forge - Cierre de Etapa 4]]"
 entities:
@@ -11,7 +12,7 @@ entities:
 related:
   - "[[2026-07-29-sqx-trade-list-exporter-source-order-count-zero]]"
 confidence: high
-load_policy: when_entity_loaded
+load_policy: manual
 indexable: false
 index_priority: never
 tags:

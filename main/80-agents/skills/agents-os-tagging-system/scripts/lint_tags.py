@@ -51,8 +51,8 @@ def slugify(text):
     if '|' in text:
         text = text.split('|')[0]
     text = text.lower().strip()
-    text = re.sub(r'[^a-z0-9\s-]', '', text)
     text = re.sub(r'[\s_]+', '-', text)
+    text = re.sub(r'[^a-z0-9-]', '', text)
     return text
 
 def lint_file(filepath):

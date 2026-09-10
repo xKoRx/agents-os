@@ -18,7 +18,7 @@ aliases:
   - DrainWait OccupiedDrain
 confidence: verified
 source_session: b0ed3608-24c7-460f-85e5-9415cc34d06a
-load_policy: when_relevant
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

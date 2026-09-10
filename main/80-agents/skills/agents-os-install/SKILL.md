@@ -6,6 +6,8 @@ scope: global
 created: 2026-07-14
 updated: 2026-08-10
 description: Install, explain, personalize, and validate a local AGENTS OS vault. Use for first-time onboarding, setting up another machine, completing a pending user profile, discovering a person's workspace and active repositories, reconciling application resources, routing agents to canonical AGENTS OS skills, installing Graphify, or repairing an incomplete installation.
+aliases:
+  - agents-os-install
 load_policy: manual
 indexable: true
 index_priority: high
@@ -31,10 +33,10 @@ Canonical create: use `materialize_schema_note.py` per `note-types.md`; never ha
 1. `../../agents-os/agents-os.md`
 2. `../../agents-os/agent-constitution.md`
 3. El perfil always-load resuelto bajo `../../memory/public/user-preference/`
-4. Proyecto de instalación resuelto: usar
-   `../../../10-projects/Personal/AGENTS OS/AGENTS OS.md` en este vault. En una
-   distribución nueva, usar un proyecto dedicado de instalación solo si
-   existe; no asumir una ruta inexistente.
+4. Proyecto de instalación resuelto por búsqueda, no por ruta fija: el proyecto
+   con `action/install` bajo `10-projects/`. Una distribución nueva trae
+   `Instalación de AGENTS OS`; un vault ya instalado usa su proyecto controlador.
+   No asumir una ruta inexistente ni persistir la de otra máquina.
 5. `../../../70-templates/application.md`
 6. `../../../30-resources/applications/00-index.md`
 7. `../agents-os-resource-wiki/SKILL.md`

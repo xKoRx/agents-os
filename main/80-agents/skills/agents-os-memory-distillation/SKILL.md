@@ -6,6 +6,8 @@ scope: global
 created: 2026-06-27
 updated: 2026-09-03
 description: Distill reusable Agent Memory System memory from a session, note, PR, incident, or implementation. Use when extracting learnings, ADRs, known errors, runbooks, patterns, anti-patterns, preferences, or other operational knowledge that should affect future agent behavior.
+aliases:
+  - agents-os-memory-distillation
 load_policy: manual
 indexable: true
 index_priority: high

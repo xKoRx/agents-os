@@ -22,6 +22,7 @@ related:
   - "[[signals-tech-spec-authoring]]"
 aliases:
   - spec funcional signals
+  - signals-func-spec-authoring
   - escribir spec SIG
   - spellbook SIG spec
 load_policy: manual
@@ -31,6 +32,7 @@ tags:
   - kind/skill
   - action/authoring
   - project/signals
+  - scope/project
 ---
 
 # Authoring Functional Specs for Signals (Spellbook / SIG)

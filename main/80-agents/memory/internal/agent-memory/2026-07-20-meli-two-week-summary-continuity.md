@@ -2,7 +2,9 @@
 type: agent_memory
 scope: agent
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-09-09
+index_priority: never
+memory_state: archived
 load_policy: manual
 indexable: false
 tags:

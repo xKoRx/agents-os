@@ -36,6 +36,7 @@ tags:
   - kind/learning
   - priority/high
   - project/agents-os
+  - scope/project
 ---
 
 # Hermes Dashboard — Systemd unit como única fuente de verdad

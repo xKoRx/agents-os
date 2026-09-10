@@ -6,6 +6,8 @@ scope: global
 created: 2026-07-04
 updated: 2026-09-03
 description: Mandatory AGENTS OS startup skill. Run once at cold start when a new session begins or the user explicitly asks to load AGENTS OS. Its loaded contract governs warm turns and entity swaps without rereading the skill or base stack. Loads the minimum operating stack and routes entity-specific context lazily.
+aliases:
+  - agents-os-bootstrap
 entities:
   - "[[AGENTS OS]]"
   - "[[agents-os]]"
@@ -59,7 +61,9 @@ changed on disk. Do NOT re-run the full ritual on every message.
 
 1. Load always-load public invariants:
    - `80-agents/agents-os/agent-constitution.md`
-   - `80-agents/memory/public/user-preference/rjara-agent-profile.md`
+   - the single always-load note under
+     `80-agents/memory/public/user-preference/` — the global profile. Resolve it
+     by that directory; its filename belongs to the vault owner.
 2. Load exactly ONE global internal note:
    `80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md`.
    Do not scan `memory/internal/` for `always` notes; the contract below

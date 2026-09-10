@@ -92,3 +92,7 @@ Creado [[Echo Forge — F-02 Finalist Model V2 Contract]] y subproyecto [[Echo F
 ## [2026-09-08] ingest | Echo Forge F-03 SQX Long-Running Contract
 
 Creado [[Echo Forge — F-03 SQX Long-Running Contract]] y subproyecto [[Echo Forge — F-03 SQX long-running]] hijo de [[Echo Forge — Factory V2 Completion]]. Change log [[2026-09-08-echo-forge-f03-sqx-long-running-spec]]. Graphify externo no se refresca.
+
+## [2026-09-08] ingest | Echo Forge F-03 TOP correction C1–C3
+
+Corrección in-place: ceiling `MaxInt64ns−1s` como platform safety; Adaptive `INACTIVE/DEPRECATED — NO CHANGE`; process-tree parent+child+grandchild y `Canceled`≠Timeout. Change log [[2026-09-08-echo-forge-f03-top-correction]]. Graphify externo no se refresca.

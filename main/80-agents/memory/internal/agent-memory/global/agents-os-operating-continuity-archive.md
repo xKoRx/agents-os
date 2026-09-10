@@ -14,11 +14,11 @@ aliases:
   - agents os operating continuity archive
   - agents os history
 confidence: high
-memory_state: archived
+memory_state: superseded
 continuity_key: global/agents-os-operating-continuity
 superseded_by: "[[agents-os-operating-continuity]]"
 load_policy: manual
-indexable: true
+indexable: false
 index_priority: low
 tags:
   - agent/internal

@@ -19,7 +19,8 @@ indexable: true
 index_priority: high
 tags:
   - kind/decision
-  - scope/replace-me
+  - scope/project
+  - scope/project
 ---
 
 # 2026-09-03-forge-campaign-telemetry-replay-fix

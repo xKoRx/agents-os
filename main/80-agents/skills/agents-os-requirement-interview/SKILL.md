@@ -4,12 +4,19 @@ name: agents-os-requirement-interview
 scope: global
 created: 2026-08-06
 updated: 2026-08-08
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Interview the user to close the context gap before executing a non-trivial task. Use when the request is ambiguous, has multiple valid designs, touches irreversible decisions, or the user asks for an interview / "pregúntame lo que no entiendas" / "hazme una entrevista" / "levantemos requerimientos". Produces high-value, request-specific questions derived from evidence — never a generic questionnaire — plus an explicit assumption ledger.
+aliases:
+  - agents-os-requirement-interview
 tags:
   - kind/skill
   - action/requirement-interview
   - action/planning
   - tech/agents-os
+  - scope/global
 ---
 
 # AGENTS OS Requirement Interview

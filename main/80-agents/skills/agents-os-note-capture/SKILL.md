@@ -6,6 +6,8 @@ scope: global
 created: 2026-06-27
 updated: 2026-08-10
 description: Create or normalize vault notes without loading the whole vault. Use when the user asks to create a note, capture an idea, add meeting/action/tool/project/application/area documentation, choose or create the correct template, place a note in the right vault location, or convert loose content into a canonical Obsidian note while preserving AGENTS OS metadata, Graphify retrieval, aliases, and Sistema 1/Sistema 2 boundaries. For Sistema 2 real-entity documents, always use an existing template or create the missing template before creating the document.
+aliases:
+  - agents-os-note-capture
 load_policy: manual
 indexable: true
 index_priority: high

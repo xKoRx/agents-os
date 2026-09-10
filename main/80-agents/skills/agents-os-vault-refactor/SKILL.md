@@ -4,11 +4,18 @@ name: agents-os-vault-refactor
 scope: global
 created: 2026-06-27
 updated: 2026-08-08
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Plan and execute safe structural changes in the Obsidian vault. Use when the user asks to move notes, reorganize folders, rename many files, normalize templates, clean duplicate structures, migrate note classes, update backlinks after moves, or perform batch vault maintenance while preserving canonical entities, Graphify behavior, auditability, and AGENTS OS boundaries.
+aliases:
+  - agents-os-vault-refactor
 tags:
   - kind/skill
   - action/vault-refactor
   - tech/agents-os
+  - scope/global
 ---
 
 # AGENTS OS Vault Refactor

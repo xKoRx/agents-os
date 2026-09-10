@@ -9,7 +9,6 @@ project: "[[Echo Forge - Arquitectura de Datos y Migración de Persistencia]]"
 application: "[[echo-forge]]"
 entities: []
 related: []
-aliases: []
 aliases:
   - flowrun lifecycle telemetry carrier mismatch
   - flow_run_start TelemetryCarrier rejection

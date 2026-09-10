@@ -2,16 +2,17 @@
 type: agent_memory
 scope: agent-internal
 created: "2026-07-22"
-updated: "2026-07-25"
+updated: 2026-09-09
+memory_state: archived
 area: "[[Symphony Portal]]"
 project: "[[Symphony]]"
 application: "[[StrategyQuant X]]"
 entities:
   - "[[sqx-instrument-sync]]"
 related: []
-load_policy: when_project_loaded
+load_policy: manual
 indexable: false
-index_priority: high
+index_priority: never
 tags:
   - kind/internal
   - scope/agent

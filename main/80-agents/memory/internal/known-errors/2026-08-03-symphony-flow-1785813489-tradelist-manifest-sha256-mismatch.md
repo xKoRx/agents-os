@@ -1,5 +1,9 @@
 ---
 type: known_error
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 scope: session
 tags:
   - kind/doc
@@ -10,7 +14,7 @@ tags:
   - severity/medium
   - status/diagnosed
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-09-09
 aliases:
   - 1785813489 sha256
   - tradelist manifest sha

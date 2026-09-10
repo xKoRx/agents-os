@@ -15,7 +15,7 @@ related:
 aliases: []
 confidence: verified
 source_session: ECHO-FORGE-C3-FINAL-RERETESTER-SINGLE-ARTIFACT-RCA-V1-TOP
-load_policy: when_relevant
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

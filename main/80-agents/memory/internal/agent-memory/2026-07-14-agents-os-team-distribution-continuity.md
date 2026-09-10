@@ -2,7 +2,8 @@
 type: agent_memory
 scope: project
 created: 2026-07-14
-updated: 2026-07-14
+updated: 2026-09-09
+memory_state: archived
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 entities:
@@ -12,9 +13,9 @@ related:
   - "[[Skills de AGENTS OS viven en una única fuente canónica]]"
 aliases: []
 confidence: high
-load_policy: when_project_loaded
-indexable: true
-index_priority: high
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - agent/internal
   - kind/agentmemory

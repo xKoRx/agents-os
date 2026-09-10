@@ -2,13 +2,14 @@
 type: agent_memory
 scope: project
 created: 2026-07-10
-updated: 2026-07-10
+updated: 2026-09-09
+memory_state: archived
 entities:
   - "[[Tests de Contrato Polycard Search Motors]]"
   - "[[Refactor Polycard]]"
   - "[[search-middleware]]"
 confidence: verified
-load_policy: when_project_loaded
+load_policy: manual
 indexable: false
 index_priority: never
 tags:

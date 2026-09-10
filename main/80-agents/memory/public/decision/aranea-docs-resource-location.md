@@ -1,6 +1,6 @@
 ---
 type: decision
-scope: agent
+scope: project
 created: "2026-06-30"
 updated: "2026-06-30"
 area: "[[Personal]]"
@@ -41,7 +41,7 @@ Esa instrucción **contradice** el patrón canónico de AGENTS OS, que sugiere `
 
 ## Decisión
 
-La documentación oficial canónica del homelab Aranea vive en `/home/hermes/obsidian/SecondBrain/main/30-resources/aranea/`, no en `10-projects/`.
+La documentación oficial canónica del homelab Aranea vive en `30-resources/aranea/` (relativo a `VAULT_ROOT`), no en `10-projects/`.
 
 ## Fundamento
 

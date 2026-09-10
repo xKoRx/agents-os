@@ -4,12 +4,19 @@ name: agents-os-graphify-install
 scope: global
 created: 2026-07-05
 updated: 2026-09-03
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Install or repair graphify-obsidian on one machine. Use when the command is missing, fails with exit 42, the isolated venv is broken, or a fresh machine needs a local retrieval index. Installs from a machine-local wheel or source checkout and keeps all generated state outside the vault.
+aliases:
+  - agents-os-graphify-install
 tags:
   - kind/skill
   - action/install
   - tech/agents-os
   - tech/graphify
+  - scope/global
 ---
 
 # AGENTS OS Graphify Install

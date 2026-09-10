@@ -4,11 +4,18 @@ name: agents-os-tagging-system
 scope: global
 created: 2026-06-30
 updated: 2026-08-08
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Standardized procedure for consistently tagging and linking tasks and notes (System 1 and System 2) across the Second Brain. Defines tag namespaces, naming rules, task tags, and Kanban query consistency.
+aliases:
+  - agents-os-tagging-system
 tags:
   - kind/skill
   - action/tagging
   - tech/agents-os
+  - scope/global
 ---
 
 # agents-os-tagging-system - Consistent Task & Note Tagging
@@ -20,7 +27,8 @@ This skill establishes, defines, and enforces a precise, scalable, and robust ta
 ## Minimal Read
 
 Read only:
-1. `90-system/convenciones.md` (rules for metadata, tags, and naming)
+1. `80-agents/skills/_shared/schema-contract.md` (controlled tag vocabulary; authority)
+2. `90-system/convenciones.md` (task tags, flags and naming conventions)
 2. `80-agents/agents-os/agents-os.md` (overall memory-system contract)
 3. `80-agents/skills/_shared/metadata-schema.md` (metadata schema details)
 
@@ -106,7 +114,7 @@ Human cockpits (Home, Hoy, area/sprint/quarter, and human project boards) must s
 
 ---
 
-## Operational Procedure
+## Procedure
 
 1. **Tag Note Content:**
    - When creating or updating any note, verify its frontmatter tags against the **Note Tagging** rules.

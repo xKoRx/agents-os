@@ -2,7 +2,8 @@
 type: agent_memory
 scope: agent
 created: 2026-07-25
-updated: 2026-07-25
+updated: 2026-09-09
+memory_state: archived
 area: "[[Echo Forge]]"
 project: "[[Echo Forge - Cierre de Etapa 4]]"
 entities:
@@ -14,9 +15,9 @@ aliases:
   - rjara-validation-method
 confidence: observed
 source_session: 2026-07-25-fix-pack-g2-review
-load_policy: when_project_active
+load_policy: manual
 indexable: false
-index_priority: low
+index_priority: never
 tags:
   - kind/internal-memory
   - scope/agent

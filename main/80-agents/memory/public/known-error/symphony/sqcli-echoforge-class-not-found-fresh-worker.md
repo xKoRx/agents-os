@@ -24,7 +24,7 @@ tags:
   - app/echo-forge
   - app/echoforge
   - area/echo
-  - kind/knownerror
+  - kind/known-error
   - project/echo-forge
   - project/echoforge
   - scope/application

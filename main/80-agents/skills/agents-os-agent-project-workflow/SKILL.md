@@ -6,6 +6,8 @@ scope: global
 created: 2026-07-01
 updated: 2026-08-24
 description: Defines how an agent must operate an agent project (owner:agent) end to end — using the project's own note as the single planner, keeping its tasks/state/bitácora honest as work advances, and managing the parent's bridge task lifecycle (WIP -> Review -> human Done, or WIP <- Review on rejection). Use whenever an agent starts, resumes, advances, or closes work on an owner:agent project, or when creating one for the first time.
+aliases:
+  - agents-os-agent-project-workflow
 load_policy: manual
 indexable: true
 index_priority: high

@@ -1,5 +1,9 @@
 ---
 type: doc
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 status: active
 tags:
   - kind/known-error
@@ -7,7 +11,7 @@ tags:
   - tech/temporal
   - tech/sqx
 created: 2026-07-30
-updated: 2026-07-30
+updated: 2026-09-09
 source_session: sqx-main-00_configs-v1-NDX-H1-L-1785388958
 project: "[[Symphony]]"
 entities:

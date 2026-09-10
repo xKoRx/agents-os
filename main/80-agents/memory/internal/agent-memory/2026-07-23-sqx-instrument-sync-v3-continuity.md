@@ -2,13 +2,15 @@
 type: agent_memory
 scope: session
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-09-09
+index_priority: never
+memory_state: archived
 project: "[[Symphony]]"
 entities:
   - "[[Symphony]]"
   - "[[sqx-instrument-sync]]"
 related: []
-load_policy: agent
+load_policy: manual
 indexable: false
 tags:
   - kind/internal-memory

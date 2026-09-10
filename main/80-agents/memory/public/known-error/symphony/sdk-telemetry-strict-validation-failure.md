@@ -24,6 +24,7 @@ tags:
   - project/symphony
   - tech/telemetry
   - error/telemetry-init
+  - scope/project
 ---
 
 # SDK Telemetry Strict Validation Failure in Integration Tests

@@ -19,7 +19,8 @@ indexable: true
 index_priority: high
 tags:
   - kind/decision
-  - scope/replace-me
+  - scope/project
+  - scope/project
 ---
 
 # Durable FlowRun lifecycle writeback

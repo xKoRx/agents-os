@@ -6,7 +6,11 @@ tags:
   - project/echo
   - area/trading
 created: 2026-08-14
-updated: 2026-08-14
+updated: 2026-09-09
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 ---
 
 # Continuidad Cognitiva: Ubicación del repo Echo y fix Daily Ops nativas (2026-08-14)

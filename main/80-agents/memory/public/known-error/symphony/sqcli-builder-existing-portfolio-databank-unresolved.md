@@ -4,7 +4,6 @@ scope: application
 created: "2026-07-22"
 updated: "2026-07-22"
 confidence: low
-supersedes: false
 area: "[[Echo]]"
 project: "[[Echo Forge]]"
 application: "[[echo-forge]]"
@@ -18,16 +17,15 @@ aliases:
   - Project has unresolved resources en SQX
   - Builder CFX missing Existing portfolio databank
   - Mismatch config.xml vs Build-Task1.xml en EchoForge
-confidence: high
 source_session: "2026-07-22-symphony-kronos-builder-failures"
-load_policy: when_error_matches
+load_policy: manual
 indexable: true
-index_priority: high
+index_priority: low
 tags:
   - app/echo-forge
   - app/echoforge
   - area/echo
-  - kind/knownerror
+  - kind/known-error
   - project/echo-forge
   - project/echoforge
   - scope/application

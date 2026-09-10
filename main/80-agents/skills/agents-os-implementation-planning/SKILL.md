@@ -6,6 +6,8 @@ scope: global
 created: 2026-07-23
 updated: 2026-08-10
 description: Produce a repository-evidenced, phase-gated implementation plan inside an owner:agent project so lower-cost or lower-capability executor agents can implement one phase at a time without rediscovering architecture or making implicit decisions. Use when planning a complex implementation, converting research into autonomous phase packages, preparing handoffs between planner and executor agents, or auditing whether a plan is safe to delegate.
+aliases:
+  - agents-os-implementation-planning
 entities:
   - "[[AGENTS OS]]"
 related:

@@ -147,14 +147,14 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **ID / status / size:** F-03 · Planning persisted · MEDIUM
 - **Implementation project:** [[Echo Forge — F-03 SQX long-running]]
 - **SPEC:** [[Echo Forge — F-03 SQX Long-Running Contract]]
-- **Planning (2026-09-08):** TOP persistió SPEC + TASKS T1.1–T1.8. Baseline `e50cb7e`. `DATABASE MIGRATION: NONE`. **Implementation:** NORMAL no autorizado. **GOD:** NONE.
+- **Planning (2026-09-08):** TOP + CORRECTION C1–C3. Ceiling `MaxInt64ns−1s`. Adaptive NO CHANGE. Process-tree obligatorio. Baseline `e50cb7e`. `DATABASE MIGRATION: NONE`. **Implementation:** NORMAL no autorizado. **GOD:** NONE.
 - **Objective:** Elapsed wall-clock ≠ failure en Builder/Optimizer/WFM/etc. Quitar deadlines de negocio arbitrarios preservando liveness/recovery. SQX sigue serial por máquina/databank; no hereda allocator MT5.
 - **Capability unlocked:** jobs SQX largos terminan; cancel explícito sigue siendo la muerte cooperativa.
 - **Product value:** factory no aborta cómputo sano; simétrico al freeze MT5 B1B.
 - **Why:** D sigue pendiente; no debe desaparecer detrás de Finalist V2.
 - **Frozen input:** mismo principio B1B; [[2026-09-06-echo-forge-mt5-execution-model-v2]] no se copia a SQX slots.
 - **In scope:** timeouts de negocio SQX/Temporal de esas etapas; heartbeat/liveness; recovery. Medir duration.
-- **Out of scope:** slots MT5; takeover; Finalist; S0; budget de admisión owner (separado).
+- **Out of scope:** slots MT5; takeover; Finalist; S0; budget de admisión owner (separado); Adaptive DEPRECATED.
 - **Dependencies:** ninguna Echo. Independiente de F-01/F-02.
 - **Parallel with:** F-01, F-02, E-01.
 - **Hypotheses:** techo técnico Temporal + heartbeat basta; el budget de capacidad no debe matar el job.
@@ -221,6 +221,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - **2026-09-08** — TOP F-02 persistió SPEC [[Echo Forge — F-02 Finalist Model V2 Contract]] e hijo [[Echo Forge — F-02 Finalist Model V2]]. Baseline symphony `0509342`. Migration `014_finalist_promotion_v2`. NORMAL no autorizado.
 - **2026-09-08** — **F-02 PASS/CLOSED.** Implementación Codex `c3b7ede` integrada a `master` por fast-forward only y pushed; G1 cerrado por orden del manager. Limpieza del dirty tree local: 5 archivos restaurados (config ejemplo, fixtures regenerables de specs cerradas, índice SPECS.md, workspace editorial), 4 RCA/CHANGE de la campaña C3 eliminados (materializados en Agents OS/source o superseded por frozen V2: registro Adaptive ya removido, `ParseCFXConfiguredPeriod` en source, orphan MT5 en B2/V3, execution model V1 superseded por Slot Pool V2), y `deploy/manifest.json 0.2.96` rescatado como commit separado `e50cb7e`. Backup safety temporal en `/tmp`, no autoridad. F-03–F-05 siguen To Do, no despachados.
 - **2026-09-08** — TOP F-03 persistió SPEC [[Echo Forge — F-03 SQX Long-Running Contract]] e hijo [[Echo Forge — F-03 SQX long-running]]. Baseline symphony `e50cb7e`. `DATABASE MIGRATION: NONE`. NORMAL no autorizado.
+- **2026-09-08** — TOP CORRECTION F-03 C1–C3: ceiling `MaxInt64ns−1s`; Adaptive DEPRECATED no-touch; process-tree obligatorio. NORMAL sigue no autorizado.
 
 ## 🧭 Decisiones
 

@@ -1,6 +1,6 @@
 ---
 type: learning
-scope: agent
+scope: project
 created: "2026-07-01"
 updated: "2026-07-01"
 area: "[[Meli]]"
@@ -16,13 +16,14 @@ aliases:
   - no relajar reglas historicas de otra vertical
 confidence: high
 source_session: "2026-07-01-search-middleware-re-price-drop-regression-closeout"
-load_policy: contextual
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:
   - kind/learning
   - workflow/code-review
   - application/search-middleware
+  - scope/agent
 ---
 
 # Preservar Semantica Legacy Al Extender Features Multi-Verticales

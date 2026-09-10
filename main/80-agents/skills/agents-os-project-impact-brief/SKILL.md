@@ -13,6 +13,7 @@ related:
   - "[[agents-os-implementation-planning]]"
 aliases:
   - critical project brief
+  - agents-os-project-impact-brief
   - project impact audit
 load_policy: manual
 indexable: true

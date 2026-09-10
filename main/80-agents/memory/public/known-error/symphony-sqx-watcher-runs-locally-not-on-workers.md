@@ -26,6 +26,7 @@ tags:
   - kind/known-error
   - project/symphony
   - application/sqx-worker
+  - scope/project
 ---
 
 # sqx-watcher corre SOLO en local, NO en los workers remotos

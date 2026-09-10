@@ -26,8 +26,9 @@ AGENTS OS convierte trabajo con agentes en conocimiento Markdown recuperable con
 |---|---|
 | Startup cold/warm/cambio de entidad | `80-agents/skills/agents-os-bootstrap/SKILL.md` |
 | Invariantes | `80-agents/agents-os/agent-constitution.md` |
-| Preferencias globales | `80-agents/memory/public/user-preference/rjara-agent-profile.md` |
+| Preferencias globales | la única nota always-load bajo `80-agents/memory/public/user-preference/` |
 | Retrieval | `80-agents/skills/agents-os-context-retrieval/SKILL.md` |
+| Modelo conceptual de retrieval (no ejecutable) | `80-agents/agents-os/context-router.md` |
 | Cierre explícito | `80-agents/skills/agents-os-session-close/SKILL.md` |
 | Metadata y tipos | `80-agents/skills/_shared/` |
 | Estado y roadmap | `10-projects/Personal/AGENTS OS/AGENTS OS.md` |

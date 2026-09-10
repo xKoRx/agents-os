@@ -10,7 +10,7 @@ entities:
   - "[[AGENTS OS]]"
 related:
   - "[[agent-constitution]]"
-  - "[[rjara-agent-profile]]"
+  - "[[agent-constitution]]"
   - "[[agents-os-behavior-config]]"
 aliases:
   - memoria publica vs memoria interna

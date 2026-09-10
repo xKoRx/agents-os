@@ -26,6 +26,7 @@ tags:
   - project/echo-forge
   - tech/mt5
   - tech/temporal
+  - scope/project
 ---
 
 # 2026-09-03-orphan-mt5-after-cancel

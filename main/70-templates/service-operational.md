@@ -154,9 +154,11 @@ curl -fsS http://192.168.31.X:<port>/health || echo "DOWN"
 
 ## 📝 Source files
 
-- `/home/hermes/aranea/topology/inventory_2026-07-02.json` — VMID/nodo/status
-- `/home/hermes/aranea/topology/services.md` — descripción de categoría
-- `/home/hermes/aranea/topology/discovery/<host>_2026MMDD_HHMMSS.txt` — discovery raw
+- `<host>:<ruta-de-inventario>/inventory_YYYY-MM-DD.json` — VMID/nodo/status
+- `<host>:<ruta-de-inventario>/services.md` — descripción de categoría
+- `<host>:<ruta-de-inventario>/discovery/<host>_YYYYMMDD_HHMMSS.txt` — discovery raw
+
+Se registra host + ruta relativa a esa raíz, nunca la ruta absoluta de una máquina.
 
 ## ✅ Validation checklist (antes de marcar `status: active`)
 

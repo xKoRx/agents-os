@@ -23,6 +23,7 @@ tags:
   - kind/decision
   - action/implementation-planning
   - project/agents-os
+  - scope/global
 ---
 
 # Planner-Executor Implementation Standard

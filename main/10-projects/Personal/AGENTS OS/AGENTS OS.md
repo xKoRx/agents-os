@@ -24,7 +24,7 @@ tags:
   - kind/project
   - project/agents-os
 created: 2026-06-27
-updated: 2026-09-03
+updated: 2026-09-09
 ---
 
 # AGENTS OS
@@ -47,7 +47,7 @@ updated: 2026-09-03
 - **Estado exacto vigente:** sistema operativo y baseline maduro conservado en 100%; [[AGENTS OS - Fase 4]] está activa únicamente como backlog canónico con progreso 0%, todas sus tareas en To Do y ninguna ejecución WIP/Review iniciada.
 - **Registro de performance activo:** las superficies canónicas [[Codex]], [[Claude Code]], [[Cursor]] y [[Antigravity]] registran cada segmento material de trabajo de código como `agent_run`, separado por superficie×modelo exacto y con outcome, verificación, rework y scores opcionales con evaluator.
 - **Iteración activa:** [[AGENTS OS - Fase 4]], backlog-only y sin tarea iniciada. [[AGENTS OS - Relaciones Tipadas de Graphify]] permanece `completed`, entrega aceptada y `graphify-obsidian 0.9.6.post2` activo.
-- **Salud verificada:** schema `45 tipos / 44 templates / 5 fixtures / 0 errores`; strict del fix `0/0`; Doctor `HIGH=0 / MEDIUM=0 / LOW=0`, startup≈4724; Context Router `14/14`, 0 misses y precision proxy 100%. El reindex Graphify quedó bloqueado por deuda fuera de este fix (`26 ERROR / 6 WARN`) y conserva el índice anterior hasta regularizarla.
+- **Salud verificada al 2026-09-09:** schema `45 tipos / 44 templates / 5 fixtures / 0 errores`; Doctor `HIGH=0 / MEDIUM=0 / LOW=0`, startup≈5033; lint del corpus `32 → 9 ERROR` con el gate en `GO` y `new=0`; Graphify `fresh` tras el primer reindex verde en seis sesiones. Los 9 errores residuales quedaron declarados en el baseline: cinco son secciones de las dos skills de specs de Signals y cuatro son secciones faltantes en tres notas de proyecto o recurso.
 - [[AGENTS OS - Fase 2]] quedó `completed` con G7 accepted. Su deuda residual
   se transfirió sin retrabajo a Fase 3: templates/schema versionados, lint
   preventivo, Resources/agents, Graphify metadata-aware, Context Router local,
@@ -139,6 +139,8 @@ hide task count
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-09** — Ciclo de higiene `full-system-1` con el segundo reporte Kaizen del sistema (340 feedbacks, 67 días de backlog). Se desbloqueó el reindex poblando el baseline del lint después de bajar la deuda de 32 a 9 errores; se corrigió un bug de una línea en el linter de tags que generaba 104 errores fantasma; se cerraron cinco contradicciones define≠implement en fuentes canónicas, incluida una que hacía nacer toda skill nueva violando el contrato de leanness y otra que dejaba ciego al gate del club cerrado de `always`. La continuidad interna pasó de 112 notas per-sesión a 5 slots activos. Cinco patrones se promovieron a L3 y diez propuestas estructurales quedaron abiertas, entre ellas la descubribilidad de skills y el diagnóstico de capacidades por superficie. Se regeneró el core compartible como build declarativo con verificación SHA-256, corrigiendo en el camino cuatro defectos de portabilidad que sólo se ven al instalar en otra máquina. El entregable remoto pasó de evaluación con score a contraste promesa vs. evidencia, versión 4 verificada.
 
 - **2026-09-03** — Se saneó el hot path de memoria: startup `≈24492→≈4724` tokens; la continuidad global quedó reducida a comportamientos transferibles; cuatro decisiones/patrones de Echo Forge pasaron de `always` a `when_project_loaded`; cinco memorias internas mal marcadas `scope: global` quedaron scoped; Context Retrieval pasó a lazy `when_entity_loaded`; la regla global de Codex, el hook local y su generador ahora ejecutan bootstrap una vez por nueva sesión y nunca por mensaje. Se incorporó lifecycle de continuidad con un slot mutable por `continuity_key`, estados `active/superseded/archived` y retiro atómico; Doctor impide project ledgers, scopes globales de dominio, transiciones inválidas y más de un checkpoint activo por clave. Doctor, schema, strict del fix, probes y Context Router quedaron verdes; reindex bloqueado por `26/6` findings ajenos al fix.
 

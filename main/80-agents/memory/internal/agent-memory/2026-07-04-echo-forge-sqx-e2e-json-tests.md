@@ -2,7 +2,11 @@
 type: agent_memory
 scope: internal
 created: 2026-07-04
-updated: 2026-07-04
+updated: 2026-09-09
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 tags:
   - kind/agent_memory
   - tech/go

@@ -17,7 +17,7 @@ aliases:
   - routing de VPN
   - conectividad GlobalProtect Aranea
 confidence: verified
-load_policy: contextual
+load_policy: when_area_loaded
 indexable: true
 index_priority: high
 tags:

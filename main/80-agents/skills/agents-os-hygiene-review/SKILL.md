@@ -4,11 +4,18 @@ name: agents-os-hygiene-review
 scope: global
 created: 2026-07-04
 updated: 2026-08-08
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Validate AND regularize the whole of System 1 (skills, public memory, System-1 docs, wiki indexes) against the canonical principles, as a manual or scheduled maintenance pass. Use at end of day, after several sessions, or on demand to find and fix missing metadata/logs, duplicate or competing procedures, bloated/non-compact memories, hard token caps, client-coupled procedures, misclassified skill/runbook/memory artifacts, stale indexes, broken links/aliases, Graphify indexing issues, and define-vs-implement drift.
+aliases:
+  - agents-os-hygiene-review
 tags:
   - kind/skill
   - action/hygiene-review
   - tech/agents-os
+  - scope/global
 ---
 
 # Agent Memory System Hygiene Review
@@ -81,8 +88,6 @@ Automatic fixes, no public log needed:
 - Create the hygiene report.
 - Correct obvious formatting in the report itself.
 - Add missing non-public report metadata before publishing the report.
-- Mark checklist/progress state inside the hygiene skill after a successful
-  forward-test.
 
 Direct edits allowed only with journal log when they affect public memory or
 canonical Sistema 2 notes:
@@ -164,7 +169,7 @@ Canonical naming check:
 ## System 1 Alignment Checks
 
 The full principle set enforced across System 1. These protect the retrieval economy (the 4
-layers of [[context-router]]) and the constitution's discipline. Mechanical items are
+layers of `agents-os-context-retrieval`) and the constitution's discipline. Mechanical items are
 auto-fixable; structural ones are proposal-only (see Fix Policy).
 
 Index health (Layer 1):
@@ -180,12 +185,14 @@ Index health (Layer 1):
 Tag health (Layer 0):
 
 4. **Tag compliance:** frontmatter tags must be slugs from the controlled vocabulary in
-   `90-system/convenciones.md`. Flag unknown tags and, critically, **inline tags in
+   `../_shared/schema-contract.md`. Flag unknown tags and, critically, **inline tags in
    bodies used for indexing** (they pollute the graph and enter context) — Layer 0 must
    stay in frontmatter.
-4b. **Skill frontmatter validity:** for each `SKILL.md` under `80-agents/skills/`, verify
-   required frontmatter (`type: skill`, `name`, `description`, `tags`) is present and the
-   `name` matches its folder. Flag missing/malformed frontmatter (mechanical fix if trivial).
+4b. **Skill frontmatter validity:** for each `SKILL.md` under `80-agents/skills/`, verify the
+   required set from `../_shared/schema-contract.md` (`type`, `schema_version`, `name`,
+   `description`, `scope`, `load_policy`, `indexable`, `index_priority`, `tags`) is present
+   and `name` matches its folder. `agents-os-doctor` enforces this mechanically; a skill
+   missing any field is invisible to the corpus lint.
 4c. **Canonical skill location:** AGENTS OS skills must exist physically only under
    `80-agents/skills/`. Flag copies, symlinks or generated adapters under
    `.agents/skills/`, `.claude/skills/` or user-global client folders. Generated

@@ -14,7 +14,7 @@ related:
 aliases: []
 confidence: verified
 source_session: ECHO-FORGE-RELEASE-0.2.89-CONTAIN-BLOCKED-CAMPAIGN-AND-C3-LEAN-RECERT-NORMAL
-load_policy: when_relevant
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

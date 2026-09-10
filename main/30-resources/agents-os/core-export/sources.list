@@ -1,0 +1,51 @@
+# mode|category|vault-relative path
+# file:     include one exact file.
+# tree:     include every file below an exact directory.
+# globtree: expand a directory glob, then include every file below each match.
+#
+# What is deliberately absent: the personal profile (the distribution ships a
+# standard one), 80-agents/memory/internal/, the journal's own contents, the
+# Meli/Signals-specific skills, real application pages, and the AGENTS OS
+# project note with its local roadmap and state.
+
+# --- Conceptual map, invariants, conventions ---
+file|core|80-agents/agents-os/agents-os.md
+file|core|80-agents/agents-os/agent-constitution.md
+file|core|80-agents/agents-os/context-router.md
+file|core|90-system/convenciones.md
+file|core|30-resources/00-RESOURCE-WIKI.md
+file|core|30-resources/LLM Wiki.md
+
+# --- Executable contracts (schema, note types, skills, Graphify) ---
+tree|contracts|80-agents/skills/_shared
+
+# --- Core AGENTS OS skills ---
+file|skills|80-agents/skills/INDEX.md
+globtree|skills|80-agents/skills/agents-os-*
+
+# --- Portable, domain-agnostic skills ---
+tree|skills|80-agents/skills/human-first-technical-writing
+tree|skills|80-agents/skills/operational-healthcheck-policy
+tree|skills|80-agents/skills/e2e-gated-validation
+tree|skills|80-agents/skills/release-certification
+tree|skills|80-agents/skills/deployment-proof
+tree|skills|80-agents/skills/readonly-production-probe
+tree|skills|80-agents/skills/distributed-incident-triage
+tree|skills|80-agents/skills/evidence-channel-discovery
+tree|skills|80-agents/skills/write-once-conflict-triage
+
+# --- Templates: System 1 and System 2 ---
+tree|templates|80-agents/templates
+tree|templates|70-templates
+
+# --- Public memory about the system itself ---
+tree|public-memory|80-agents/memory/public/decision/agents-os
+tree|public-memory|80-agents/memory/public/known-error/agents-os
+tree|public-memory|80-agents/memory/public/learning/agents-os
+file|public-memory|80-agents/memory/public/runbook/graphify-obsidian-install.md
+file|public-memory|80-agents/memory/public/runbook/resource-wiki-lint-reindex.md
+file|public-memory|80-agents/memory/public/runbook/reindex-bloqueado-por-deuda-global.md
+file|public-memory|80-agents/memory/public/runbook/delegacion-a-subagentes.md
+
+# The agent surface registry ships as an empty authored contract in dist-files:
+# which surfaces someone uses, and their performance history, is not core.

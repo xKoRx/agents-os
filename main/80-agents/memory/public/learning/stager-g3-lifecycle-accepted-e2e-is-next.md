@@ -19,7 +19,7 @@ aliases:
   - un publish no despliega ambas flotas
 confidence: verified
 source_session: 11f6babe-3522-40c1-bb09-f29b5012c34d
-load_policy: when_relevant
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

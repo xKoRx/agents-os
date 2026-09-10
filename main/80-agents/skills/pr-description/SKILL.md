@@ -12,6 +12,7 @@ related:
   - "[[signals-code-review]]"
 aliases:
   - descripción de PR
+  - pr-description
   - descripcion pr
   - pull request description
   - armar descripción del PR

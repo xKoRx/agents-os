@@ -6,6 +6,8 @@ scope: global
 created: 2026-08-07
 updated: 2026-08-24
 description: Manage the lifecycle of canonical Sistema 2 vault entities. Use when the user asks to create, rename, merge, split, archive, deprecate, restore, or classify projects, areas, applications, services, technologies, workflows, integrations, concepts, or other real entities in the Obsidian vault, while preserving canonical titles, aliases, slugs, backlinks, Graphify retrieval, templates, and audit logs. For new Sistema 2 documents, always use or create the matching template.
+aliases:
+  - agents-os-entity-lifecycle
 load_policy: manual
 indexable: true
 index_priority: high

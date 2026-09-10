@@ -4,12 +4,19 @@ name: agents-os-hygiene-cycle
 scope: global
 created: 2026-07-14
 updated: 2026-08-08
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Orchestrate periodic AGENTS OS maintenance by regularizing misaligned notes, processing accumulated System 1 and Graphify feedback through Kaizen, promoting reusable value, writing shareable change logs for system changes, and reindexing Graphify. Use for scheduled weekly/monthly hygiene, before sharing improvements with the team, after repeated feedback, or when the user asks to clean, align, compact, or improve AGENTS OS.
+aliases:
+  - agents-os-hygiene-cycle
 tags:
   - kind/skill
   - action/hygiene
   - action/kaizen
   - tech/agents-os
+  - scope/global
 ---
 
 # agents-os-hygiene-cycle

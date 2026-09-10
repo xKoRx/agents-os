@@ -20,7 +20,8 @@ indexable: true
 index_priority: high
 tags:
   - kind/known-error
-  - scope/replace-me
+  - scope/project
+  - scope/project
 ---
 
 # 2026-08-28-embedded-postgres-shm-init-failure

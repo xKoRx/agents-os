@@ -12,6 +12,7 @@ related:
   - "[[distributed-incident-triage]]"
 aliases:
   - triage de conflicto write-once
+  - write-once-conflict-triage
   - conflicto de idempotencia
   - checksum mismatch
 load_policy: manual

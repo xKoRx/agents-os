@@ -8,7 +8,7 @@ aliases: []
 tags:
   - kind/doc
 created: 2026-08-10
-updated: 2026-09-03
+updated: 2026-09-09
 ---
 
 # 🧠 AGENTS OS y estructura del vault
@@ -42,6 +42,27 @@ Este puerto se rige por un modelo cognitivo de doble capa, separando el pensamie
 El perfil personal, la memoria interna y las sesiones no forman parte de la
 distribución compartible. Las mejoras agnósticas se trazan con
 `share_scope: team`; los ajustes personales usan `share_scope: local`.
+
+---
+
+## 📦 Core compartible
+
+El vault genera un core standalone de AGENTS OS: reglas, contratos ejecutables,
+skills, templates y un perfil estándar, sin el contenido de nadie.
+
+- [Guía del build](core-export/README.md)
+- Selección: [`core-export/sources.list`](core-export/sources.list)
+- Archivos que la distribución escribe: `core-export/dist-files/`
+
+Regenerar desde la raíz del vault:
+
+```bash
+python3 30-resources/agents-os/core-export/build-core.py
+```
+
+El destino por defecto es la carpeta `agents-os/` hermana de `VAULT_ROOT`. Cada
+copia se verifica por SHA-256 y el build aborta si material privado alcanza la
+salida.
 
 ---
 

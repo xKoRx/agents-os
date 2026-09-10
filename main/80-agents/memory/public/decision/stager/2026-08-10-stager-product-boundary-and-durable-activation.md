@@ -26,6 +26,7 @@ tags:
   - area/echo
   - app/stager
   - tech/deployment
+  - scope/application
 ---
 
 # Stager product boundary and durable activation

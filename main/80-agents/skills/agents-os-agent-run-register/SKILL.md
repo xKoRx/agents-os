@@ -13,7 +13,8 @@ related:
   - "[[Claude Code]]"
   - "[[Cursor]]"
   - "[[Antigravity]]"
-aliases: []
+aliases:
+  - agents-os-agent-run-register
 load_policy: manual
 indexable: true
 index_priority: high

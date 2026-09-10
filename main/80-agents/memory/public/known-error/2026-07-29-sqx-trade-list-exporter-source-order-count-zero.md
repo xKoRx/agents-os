@@ -1,6 +1,6 @@
 ---
 type: known_error
-scope: public
+scope: project
 created: 2026-07-29
 updated: 2026-07-31
 area: "[[Echo Forge]]"

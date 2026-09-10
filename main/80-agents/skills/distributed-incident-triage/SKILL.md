@@ -13,6 +13,7 @@ related:
   - "[[evidence-channel-discovery]]"
 aliases:
   - triage de incidente distribuido
+  - distributed-incident-triage
   - timeline forense
   - clasificación causa raíz
 load_policy: manual

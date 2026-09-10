@@ -1,6 +1,6 @@
 ---
 type: known_error
-scope: public
+scope: project
 created: 2026-07-28
 updated: 2026-08-06
 area: "[[Echo Forge]]"
@@ -19,7 +19,7 @@ load_policy: manual
 indexable: true
 index_priority: high
 tags:
-  - kind/knownerror
+  - kind/known-error
   - area/echoforge
   - tech/sqx
   - tech/echo-forge

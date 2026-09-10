@@ -22,6 +22,7 @@ tags:
   - kind/known-error
   - area/meli
   - application/vis-items-loader-tagging
+  - scope/area
 ---
 
 # Template Processing — servicio huérfano después de 500

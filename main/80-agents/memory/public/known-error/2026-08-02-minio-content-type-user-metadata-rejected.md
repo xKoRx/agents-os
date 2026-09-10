@@ -24,6 +24,7 @@ tags:
   - project/echo-forge
   - area/echo
   - tech/minio
+  - scope/project
 ---
 
 # MinIO rechaza Content-Type en UserMetadata

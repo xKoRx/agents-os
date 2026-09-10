@@ -1,3 +1,3 @@
 interface:
-  display_name: "Agent Memory System Bootstrap"
-  short_description: "Mandatory startup: load memory prompt, profile, constitution, internal memory, and Graphify context"
+  display_name: "AGENTS OS Bootstrap"
+  short_description: "Mandatory startup: load constitution, global profile and one compact global internal note, then route entity context lazily"

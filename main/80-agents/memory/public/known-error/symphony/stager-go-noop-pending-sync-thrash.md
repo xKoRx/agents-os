@@ -25,10 +25,11 @@ index_priority: high
 tags:
   - app/echo-forge
   - area/symphony
-  - kind/knownerror
+  - kind/known-error
   - project/echo-forge
   - tech/stager
   - host/zeus
+  - scope/application
 ---
 
 # Stager Go escribe PENDING en noop y reinicia el worker en loop

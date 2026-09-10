@@ -15,6 +15,7 @@ related:
   - "[[distributed-incident-triage]]"
 aliases:
   - validación E2E gated
+  - e2e-gated-validation
   - gates de certificación
   - golden run validation
 load_policy: manual

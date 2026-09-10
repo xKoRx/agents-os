@@ -25,7 +25,7 @@ tags:
   - area/meli
   - project/crear-context
 created: 2026-08-10
-updated: 2026-09-07
+updated: 2026-09-09
 cssclasses:
   - wide
 ---
@@ -33,7 +33,7 @@ cssclasses:
 # Crear Context
 
 > [!info] Estado
-> **Las dos copias SDD estaban alineadas con el challenge del 2026-08-25; la iteración 1.5 aún debe reflejarse en ellas.** El funcional remoto es [SIG-573](https://spellbook.adminml.com/projects/SIG/specs/SIG-573) y la técnica [SIG-590](https://spellbook.adminml.com/projects/SIG/specs/SIG-590); su sincronización en Spellbook sigue pendiente. El trabajo vive en `feature/new-component-context` para Playmaker y `feature/component-version-identity` para el SDK.
+> **Context ya está desplegado en producción en Playmaker (confirmado por el owner el 2026-09-09).** La fase activa deja de ser implementación y pasa a seguimiento del runtime: validar salud y costo con las métricas existentes, y comprobar en una versión de test de Flink que el consumidor recibe el Context completo. El funcional remoto es [SIG-573](https://spellbook.adminml.com/projects/SIG/specs/SIG-573) y la técnica [SIG-590](https://spellbook.adminml.com/projects/SIG/specs/SIG-590); su sincronización en Spellbook sigue pendiente.
 >
 > **Los valores de `outputs` viajan siempre (decisión del owner, 2026-08-25).** El flag `rio.context.outputs.enabled` lo había introducido un agente, no el equipo: se eliminó. Los valores sensibles los cifra el **control plane** antes de persistirlos en `_values`, así que Playmaker sólo reenvía material ya protegido — `ControlPlaneClient.encrypt` es código muerto acá porque el cifrado no es su responsabilidad. Esto **deroga DT-27 y T-18 de SIG-590 y cierra PT-1**, que ya no bloquea ningún paso. No se truncan mapas: desde 2026-09-03 hay un safety limit de 200 KiB sobre el mensaje completo; si lo excede, se omite el Context entero y el deploy continúa.
 >
@@ -131,7 +131,73 @@ Crear un Context efímero por componente, publicarlo como campo opcional de `Dep
 
 ## 📊 Estado actual
 
-`rio-sdk-events:1.5.0` ya está publicado y Playmaker lo consume en `feature/new-component-context @ bd5536205`. El [PR #1068](https://github.com/melisource/fury_rio-playmaker/pull/1068) está sincronizado con `develop @ b45eb328e`, sin conflictos y mergeable; terminó con 5 checks exitosos, 1 omitido y ninguno pendiente o fallando. La suite completa posterior al merge reportó 3597 tests, 0 fallas, 0 errores y 2 skipped; `./gradlew check` pasó. El gate restante es review humana. Pendientes externos: validación en preproducción y sincronización de SIG-573/SIG-590 en Spellbook.
+`rio-sdk-events:1.5.0` está publicado y Context está desplegado en producción en Playmaker. La entrega funcional terminó; queda abierta la etapa de observabilidad y validación runtime descrita abajo, además de la sincronización documental de SIG-573/SIG-590 en Spellbook. La rama de prueba de Flink `feature/test-deployment-context` y la versión Fury `0.0.1-test-deployment-context` ya están listas; falta desplegarla en test, ejecutar el canary y retirar el logger al terminar.
+
+## 🔭 Última etapa — seguimiento y validación de Context
+
+> [!important] Necesidad
+> Validar que Context se deriva y publica de forma estable en producción, que su costo y tamaño permanecen dentro de un rango operativo sano y que un consumidor real lo recibe con el shape y los valores esperados. Las métricas son la evidencia continua; el log completo en Flink es una prueba temporal y exclusiva de test.
+
+### Mecanismos de seguimiento
+
+| Mecanismo | Señal | Lectura y uso |
+|---|---|---|
+| Salud de derivación | `rio.playmaker.context.derivation{status:success|failed}` | Calcular `success / (success + failed)`. `failed` significa que el deployment continuó sin Context; no significa que el deployment haya fallado. |
+| Latencia | `rio.playmaker.context.derivation.duration_ms{status:success|failed}` | Seguir p50, p95 y p99 por ambiente y comparar contra el baseline posterior al deploy; sirve para decidir si hace falta el snapshot/DataLoader por batch. |
+| Completitud aproximada | `rio.playmaker.context.outputs.suppressed{reason:no_slot|unresolved}` | Detectar topología sin slot o datos no interpretables. Es un contador de omisiones, no de deployments: normalizar contra `context.derivation` y revisar cambios respecto del baseline. |
+| Tamaño | `rio.playmaker.context.size` | Seguir p50, p95, p99 y máximo del trigger candidato completo, antes del guard de 200 KiB. |
+| Context descartado | `rio.playmaker.context.discarded{reason:too_large|measurement_failed}` | Debe investigarse por razón: el dispatch continúa, pero el mensaje sale sin Context. Correlacionar con los warnings de Playmaker. |
+| Correlación por logs | `deploymentId`, `componentId` y `environmentId` | Seguir el mismo deployment desde Playmaker hasta el consumidor Flink y contrastarlo con el resultado del deployment. No usar el payload completo como telemetría permanente. |
+| Canary funcional | Deployment controlado con topología y valores conocidos | Comparar el Context observado con la definición en vuelo, la última versión desplegada y los outputs persistidos; incluir al menos un source/destination, una llave presente en `inputs` y `outputs` con valores distintos y, si aplica, una copia importada. |
+
+No fijar alertas numéricas antes de levantar el baseline real. Crear dashboard y monitores una vez observada una ventana representativa, separando ambiente y `status`/`reason`; alertar sobre aparición sostenida de `failed`, cualquier descarte, crecimiento anormal de p95/p99 y cambios bruscos en omisiones por derivación.
+
+### Notebook de Datadog — celdas recomendadas
+
+1. **Volumen y success rate:** timeseries de `rio.playmaker.context.derivation` separada por `status`, más fórmula `success / (success + failed) * 100`. Usar `.as_count()` para que la razón opere sobre eventos del intervalo y no sobre una tasa promediada.
+2. **Fallos de derivación:** query value de `rio.playmaker.context.derivation{status:failed}` y log stream de Playmaker con `"Component context unresolved"`; agrupar o revisar por clase de error cuando el log la exponga.
+3. **Costo de derivación:** timeseries p50, p95 y p99 de `rio.playmaker.context.derivation.duration_ms{status:success}`; agregar una serie separada para `status:failed` porque una falla rápida o lenta cambia el diagnóstico.
+4. **Tamaño del trigger:** timeseries p50, p95, p99 y máximo de `rio.playmaker.context.size`; agregar marcador en `204800` bytes y mostrar el headroom `204800 - p99`.
+5. **Descartes:** query value y timeseries de `rio.playmaker.context.discarded` agrupadas por `reason`; mantener `too_large` y `measurement_failed` separados y correlacionar con los warnings `"Component context discarded"`.
+6. **Omisiones internas:** timeseries de `rio.playmaker.context.outputs.suppressed` agrupada por `reason`, más fórmula `suppressed / derivation.success`. Leerla como omisiones promedio por Context exitoso, no como porcentaje de Context incompletos, porque una derivación puede incrementar el contador más de una vez.
+7. **Validación del consumidor Flink:** log stream restringido al scope test y al marcador `[CONTEXT-VALIDATION]`, mostrando `deploymentId`, `componentId` y el JSON de `context`; usar el mismo `deploymentId` para enlazar el evento de Playmaker, el ingreso a Flink y el resultado del deployment.
+8. **Resumen de decisión:** nota manual con baseline observado, anomalías explicadas, umbrales propuestos y decisión sobre el DataLoader/snapshot por batch. No convertir una cifra exploratoria en SLO hasta completar la ventana representativa.
+
+Aplicar en todas las celdas los tags de infraestructura disponibles para separar producción de test y la instancia de Playmaker; los únicos tags propios emitidos por `ContextMetrics` son `status` y `reason`, por lo que no se debe asumir que `componentType`, `dataProduct` o `environment` existen como tags de estas métricas.
+
+### Validación en Flink con log completo — sólo test
+
+**Boundary correcto:** registrar lo que llega en `rio-controlplane-flink`, no lo que Playmaker intenta publicar. El punto exacto es `rio-controlplane-flink` → `src/main/java/com/mercadolibre/rio/controlplaneflink/controller/DeploymentTriggerController.java`, dentro de `handleDeploymentTrigger`, después de validar payload, tipo, schema y `deploymentId`, y antes de `CompletableFuture.runAsync(...)`. Así la evidencia demuestra deserialización efectiva en el consumidor antes de que `DeploymentTriggerMapper` ignore el campo.
+
+**Precondición SDK resuelta:** la branch de validación parte de `develop @ c612fd29` y actualiza `rio-sdk-events` de `1.3.1` a `1.5.0`, que expone `trigger.context()`.
+
+**Implementación aplicada:** `ContextValidationLogger` registra el JSON completo de `trigger.context()` con el marcador `[CONTEXT-VALIDATION]`, `deploymentId` y `componentId`. Se invoca desde `DeploymentTriggerController#handleDeploymentTrigger` después de validar payload, tipo, schema y `deploymentId`, y antes del dispatch asíncrono. La prueba queda doblemente protegida: sólo existe con el perfil `nonprod & !prod` y requiere `rio.context.validation.full-logging-enabled=true`; el valor general por defecto es `false` y `application-nonprod.yml` lo habilita para la versión de test.
+
+```java
+private void logContextForValidation(final DeploymentTriggerMessage trigger) {
+  try {
+    log.info(
+        "[CONTEXT-VALIDATION] deploymentId={} componentId={} context={}",
+        trigger.deploymentId(),
+        trigger.componentId(),
+        objectMapper.writeValueAsString(trigger.context()));
+  } catch (JsonProcessingException | RuntimeException e) {
+    log.warn(
+        "[CONTEXT-VALIDATION] context serialization failed deploymentId={} componentId={} error={}",
+        trigger.deploymentId(),
+        trigger.componentId(),
+        e.getClass().getSimpleName());
+  }
+}
+```
+
+El logger usa el `ObjectMapper` compartido, JSON compacto de una línea para evitar fragmentación y registra también `context=null` porque esa ausencia es evidencia. Los errores de serialización quedan acotados a un warning con el nombre de la clase de error y no interrumpen el procesamiento.
+
+**Entrega de prueba:** branch remota `feature/test-deployment-context` @ `1d2ff18c4bab`, versión Fury `0.0.1-test-deployment-context` con build exitoso. La suite completa de Flink pasó con 1.918 tests, sin fallas, errores ni skips; JaCoCo dejó `ContextValidationLogger` y `DeploymentTriggerController` en 100% de instrucciones y líneas, y el controller también en 100% de branches.
+
+**Controles de la prueba:** desplegar sólo en scope test; usar datos controlados; restringir acceso y retención de logs; no copiar el payload al vault ni a tickets; correlacionar por `deploymentId`; validar identidad, `component.version`, `latestVersion.inputs`, `latestVersion.outputs`, `sources` y `destinations`; confirmar que una llave compartida conserva valores distintos y que `outputs` sigue siendo la autoridad; retirar el logger y cerrar la versión de test al terminar.
+
+**Criterio de cierre:** dashboard y monitores definidos desde el baseline; derivación, latencia, tamaño, omisiones y descartes revisados sin anomalías no explicadas; al menos un deployment Flink de test correlacionado extremo a extremo con Context completo; evidencia sensible eliminada o expirada; logger temporal removido.
 
 ## Resumen de findings (histórico)
 
@@ -199,10 +265,19 @@ Crear un Context efímero por componente, publicarlo como campo opcional de `Dep
 - [x] **PR Playmaker listo para review:** body de [#1068](https://github.com/melisource/fury_rio-playmaker/pull/1068) reemplazado por [[Descripción PR — rio-playmaker]], 12/12 threads de David respondidos, C01 propio corregido y cinco checks verdes sobre `0a23579e9`.
 - [ ] Antes del merge de Playmaker: publicar `rio-sdk-events 1.5.0` desde `master`, cambiar el pin de `0.0.2-component-version-identity` al semver definitivo y sincronizar SIG-573/SIG-590 en Spellbook.
 - [ ] Antes del merge de Playmaker: validar la branch en preproducción.
+- [x] **Context desplegado en producción en Playmaker** (confirmado por el owner el 2026-09-09).
+- [ ] **Levantar el baseline productivo y crear dashboard/monitores** para derivación, duración, omisiones, tamaño y descartes; definir umbrales sólo después de observar una ventana representativa.
+- [x] **Crear una branch y versión de test de `rio-controlplane-flink`:** `feature/test-deployment-context` @ `1d2ff18c4bab`, con `rio-sdk-events:1.5.0`, logger temporal protegido por perfil/propiedad y versión Fury `0.0.1-test-deployment-context` con build exitoso.
+- [ ] **Ejecutar y correlacionar un canary Flink extremo a extremo** por `deploymentId`, contrastando el Context recibido con la definición, la última versión y los outputs persistidos.
+- [ ] **Retirar el logger completo y cerrar la versión de test** después de capturar la evidencia; confirmar expiración o eliminación de los logs sensibles.
 - [r] [[Crear Context - Code Review Remediation]] arrancar + seguimiento #owner/me #type/supervision #area/meli
 - [/] [[Crear Context - Discovery de Params en CPs]] arrancar + seguimiento #owner/me #type/supervision #area/meli
 
 ## 📆 Bitácora
+
+- **2026-09-09 — Versión Flink de prueba lista:** `feature/test-deployment-context` parte de `develop @ c612fd29`, consume `rio-sdk-events:1.5.0` y agrega `ContextValidationLogger` antes del dispatch asíncrono. El log contiene el Context completo y sólo se activa con `nonprod & !prod` más `rio.context.validation.full-logging-enabled=true`; producción queda excluida y el default es `false`. Commit `1d2ff18c4bab` pusheado, versión Fury `0.0.1-test-deployment-context` creada con build exitoso. Gate local: 1.918 tests, 0 fallas, 0 errores, 0 skips; JaCoCo 100% en el logger y en el controller. Próximo paso: desplegar en test y ejecutar el canary correlacionado por `deploymentId`.
+
+- **2026-09-09 — Context en producción y apertura de seguimiento:** el owner confirmó que Context ya está desplegado en producción en Playmaker. Se abrió la última etapa del proyecto para observar derivación, duración, omisiones, tamaño y descartes con las métricas existentes, levantar un baseline antes de definir umbrales y validar el payload recibido por un consumidor real mediante un logger temporal en una versión de test de `rio-controlplane-flink`.
 
 - **2026-09-07 — SDK productivo, soft-delete y sincronización final:** Playmaker pasó de la dependencia temporal a `rio-sdk-events:1.5.0` en `7eaf93ab7`. El comentario de David se resolvió en `20f34308c` filtrando ambientes eliminados desde la query `findByDataProductIdInAndDeletedAtIsNull`; se agregaron pruebas para la coincidencia exacta y el fallback normalizado con un ambiente eliminado y otro activo. La branch se sincronizó con `develop @ b45eb328e`; el único conflicto fue aditivo en `CHANGELOG.md` y se conservaron ambas entradas. El merge quedó en `bd5536205`, pusheado y verificado contra origin. Suite completa: 3597 tests, 0 fallas, 0 errores, 2 skipped; `./gradlew check` PASS. GitHub reporta #1068 mergeable, con 5 checks exitosos, 1 omitido y ninguno pendiente o fallando; el estado BLOCKED corresponde únicamente al review requerido.
 

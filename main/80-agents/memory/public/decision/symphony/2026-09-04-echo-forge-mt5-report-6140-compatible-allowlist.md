@@ -16,7 +16,7 @@ aliases:
   - MT5 report 6140 compatible con mt5-report.v1
 confidence: verified
 source_session: ECHO-FORGE-MT5-REPORT-BUILD-COMPATIBILITY-AND-ALLOWLIST-RCA-V1-TOP
-load_policy: when_relevant
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

@@ -2,9 +2,12 @@
 type: agent_memory
 scope: internal
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-09-09
+index_priority: never
+indexable: false
+memory_state: archived
 confidence: observed
-load_policy: on_demand
+load_policy: manual
 tags:
   - agent/internal
   - repo/search-middleware

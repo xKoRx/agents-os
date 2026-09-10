@@ -25,6 +25,7 @@ tags:
   - app/vis-items-loader-tagging
   - feature/destaques-de-precio
   - phase/2
+  - scope/project
 ---
 
 # Regularización periódica de góndola usa runs durables por site

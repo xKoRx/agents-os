@@ -16,7 +16,7 @@ aliases:
   - owner authorized cutover
 confidence: verified
 source_session: a896f77f-7e50-4c60-b186-a027e8f81792
-load_policy: when loading Stager F3/G3
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

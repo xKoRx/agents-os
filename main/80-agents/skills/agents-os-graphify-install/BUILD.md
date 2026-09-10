@@ -10,6 +10,7 @@ tags:
   - kind/doc
   - tech/graphify
   - project/agents-os
+  - scope/tool
 ---
 
 # Graphify-Obsidian — build local

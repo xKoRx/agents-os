@@ -13,6 +13,7 @@ related:
   - "[[e2e-gated-validation]]"
 aliases:
   - prueba de deploy
+  - deployment-proof
   - runtime version proof
   - rollout proof
 load_policy: manual

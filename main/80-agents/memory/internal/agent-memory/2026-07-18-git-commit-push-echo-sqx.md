@@ -6,7 +6,11 @@ tags:
   - project/echo
   - project/symphony
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-09-09
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 ---
 
 # Continuidad Cognitiva: Commit y Push de Cambios en Echo y SQX (Symphony)

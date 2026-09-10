@@ -2,7 +2,9 @@
 type: agent_memory
 scope: internal
 created: 2026-07-06
-updated: 2026-07-06
+updated: 2026-09-09
+index_priority: never
+memory_state: archived
 entities:
   - "[[Implementación Hito 2 - Destaques de Precio]]"
   - "[[RFC Destaques de Precio - Hito 2]]"

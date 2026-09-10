@@ -1,7 +1,7 @@
 ---
 type: decision
 schema_version: 1
-scope: public
+scope: project
 created: "2026-08-27"
 updated: "2026-08-27"
 area: "[[Echo]]"
@@ -15,7 +15,7 @@ related:
 aliases: []
 confidence: verified
 source_session: SQX-CROSS-FLOWRUN-HISTORICAL-SOURCE-FANOUT-CORRECTION-NORMAL
-load_policy:
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:
@@ -24,6 +24,7 @@ tags:
   - tech/temporal
   - tech/idempotency
   - scope/public
+  - scope/project
 ---
 
 # Resolución histórica durable en el boundary del grupo

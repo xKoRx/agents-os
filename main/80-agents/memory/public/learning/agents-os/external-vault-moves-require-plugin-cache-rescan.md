@@ -20,6 +20,7 @@ tags:
   - kind/learning
   - project/agents-os
   - action/vault-refactor
+  - scope/project
 ---
 
 # Moves externos del vault requieren rescan de caches de plugins

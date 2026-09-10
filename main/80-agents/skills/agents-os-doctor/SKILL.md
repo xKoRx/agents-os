@@ -6,6 +6,8 @@ scope: global
 created: 2026-07-25
 updated: 2026-09-03
 description: Lint the AGENTS OS installation and propose minimal repairs. Use when the user says "agents-os-doctor", "doctor", "health check AGENTS OS", or when retrieval/skills/bootstrap behave unexpectedly. Apply repairs only after explicit authorization.
+aliases:
+  - agents-os-doctor
 entities:
   - "[[AGENTS OS]]"
   - "[[agents-os]]"
@@ -80,9 +82,12 @@ Run all checks. For each finding, emit severity + minimal fix.
 Only these may use `load_policy: always`:
 
 - `80-agents/agents-os/agent-constitution.md`
-- `80-agents/memory/public/user-preference/rjara-agent-profile.md`
 - `80-agents/skills/agents-os-bootstrap/SKILL.md`
 - `80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md`
+- exactly ONE note under `80-agents/memory/public/user-preference/` — the global
+  profile. Its filename belongs to whoever installs the vault, so the check
+  resolves it by looking for the single always-load note in that directory; a
+  second one is a club violation and zero means the install is incomplete.
 
 Anything else with `load_policy: always` is a violation. Flag with the
 matching `when_*_loaded` policy. If a domain memory truly needs always-load,
@@ -100,11 +105,16 @@ Flag any procedural startup steps found in:
 
 ### 5. Skill frontmatter sanity
 
-- Every `80-agents/skills/*/SKILL.md` has `type: skill`, `name`, and
-  `description`.
-- No `status: draft` left on skills that are in active use (forward-tested).
+- Every `80-agents/skills/*/SKILL.md` carries the full set the schema contract
+  requires: `type`, `schema_version`, `name`, `description`, `scope`,
+  `load_policy`, `indexable`, `index_priority`. A skill missing any of them is
+  skipped by the corpus lint and unrankable by retrieval.
+- `name` matches its folder.
+- S1 notes never use `status`; there is no `draft` state to clear.
 - `load_policy` matches reality (e.g. `session-close` is `manual`, not
   `always`).
+
+The executable check enforces this section; `--strict` fails on it.
 
 ### 6. SKILL.md leanness
 

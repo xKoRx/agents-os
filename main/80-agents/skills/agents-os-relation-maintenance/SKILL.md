@@ -4,11 +4,18 @@ name: agents-os-relation-maintenance
 scope: global
 created: 2026-06-27
 updated: 2026-08-08
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 description: Maintain relationships between vault notes and entities. Use when the user asks to add, repair, audit, validate, or explain links, backlinks, aliases, related fields, entity relationships, project/application/area connections, orphan notes, duplicate relationships, Graphify paths, or relationship maps in the Obsidian vault.
+aliases:
+  - agents-os-relation-maintenance
 tags:
   - kind/skill
   - action/relation-maintenance
   - tech/agents-os
+  - scope/global
 ---
 
 # AGENTS OS Relation Maintenance

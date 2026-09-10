@@ -6,15 +6,16 @@ project: "[[Echo Forge]]"
 area: "[[Echo]]"
 application: "[[echo-forge]]"
 created: 2026-08-02
-updated: 2026-08-11
+updated: 2026-09-09
+memory_state: archived
 entities:
   - "[[Echo Forge]]"
   - "[[Symphony]]"
 related:
   - "[[echo-forge-workers-shared-access]]"
-load_policy: scoped
-indexable: true
-index_priority: high
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - kind/agent-memory
   - kind/continuity

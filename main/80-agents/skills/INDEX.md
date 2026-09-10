@@ -72,6 +72,7 @@ Este índice detalla las habilidades configuradas para los agentes en el Agent M
 | [[80-agents/skills/distributed-incident-triage/SKILL.md|distributed-incident-triage]] | Triage forense multi-subsistema: timeline común, side effects, primer punto de divergencia y clasificación causal producto/infra/skew. | Ante fallos que cruzan orquestador/object store/DBs/logs. |
 | [[80-agents/skills/evidence-channel-discovery/SKILL.md|evidence-channel-discovery]] | Descubre y persiste qué canales de evidencia existen realmente por pregunta, con autoridad y limitaciones. | Al empezar en un sistema desconocido o tras encontrar canales muertos. |
 | [[80-agents/skills/write-once-conflict-triage/SKILL.md|write-once-conflict-triage]] | Investiga conflictos de inmutabilidad identificando writers/bytes/timeline y clasificando duplicate/race/stale/contract-defect. | Ante CONTRACT_CONFLICT, checksum mismatch o violaciones de idempotencia. |
+| [[80-agents/skills/operational-healthcheck-policy/SKILL.md|operational-healthcheck-policy]] | Diferencia cuándo validar manualmente componentes vigilables del vault (sync, backups, servicios) y cuándo confiar en la automatización. | Ante una señal concreta de problema o antes de una acción masiva sobre el vault. |
 
 ## 🌐 Registro federado (fuentes fuera del core)
 
@@ -96,4 +97,3 @@ Ownership real = repo de la app. `xKoRx/symphony` usa `.agents/skills/` como hom
 | `xKoRx/symphony` → `.agents/skills/sqx-plugin-lifecycle/SKILL.md` | Modifica, compila, despliega y valida plugins Java de SQX con classpath efectivo, build contra SDK real, backup, canary y rollback. | ✅ **migrada** (piloto, 2026-08-07) al repo owner; ya no vive en el vault |
 | `xKoRx/symphony` → `.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` | Troubleshooting de validación de robustez Walk-Forward (WFM). | ✅ migrada al repo owner; fuente única |
 | `xKoRx/symphony` → `.agents/skills/sqx-temporal-failure-audit/SKILL.md` | Audita una ejecución fallida de un workflow Temporal del SQX Worker recabando evidencia agnóstica sin proponer fix. | ✅ migrada al repo owner; fuente única junto a su README humana |
-| [[80-agents/skills/operational-healthcheck-policy/SKILL.md|operational-healthcheck-policy]] | Diferencia cuando validar manualmente componentes vs. confiar en automatización. | core vault-ops (**no** app-owned); vive en `80-agents/skills/` |

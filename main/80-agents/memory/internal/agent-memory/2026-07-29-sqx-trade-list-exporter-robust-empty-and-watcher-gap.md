@@ -2,14 +2,17 @@
 type: doc
 status: active
 created: 2026-07-29
-updated: 2026-07-29
+updated: 2026-09-09
+index_priority: never
+indexable: false
+memory_state: archived
 project: "[[Echo Forge]]"
 application: "[[EchoForgeTradeListExporter]]"
 entities:
   - "[[EchoForgeTradeListExporter]]"
   - "[[sqx-watcher]]"
   - "[[deployer-screen]]"
-load_policy: when_error_matches
+load_policy: manual
 tags:
   - kind/continuity
   - tech/sqx

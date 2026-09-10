@@ -19,6 +19,7 @@ tags:
   - kind/learning
   - area/meli
   - app/java-polycard-sdk
+  - scope/application
 ---
 
 # Polycard: el título/subtítulo de motors depende del atributo SHORT_VERSION, ausente en casi todos los mocks de test

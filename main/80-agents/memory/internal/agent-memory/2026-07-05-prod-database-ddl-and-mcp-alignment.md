@@ -3,7 +3,8 @@ type: agent_memory
 schema_version: 1
 scope: project
 created: 2026-07-05
-updated: 2026-08-11
+updated: 2026-09-09
+memory_state: archived
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 entities:
@@ -15,7 +16,7 @@ aliases:
 confidence: verified
 load_policy: manual
 indexable: false
-index_priority: low
+index_priority: never
 tags:
   - agent/internal
   - kind/agent-memory

@@ -1,6 +1,6 @@
 ---
 type: learning
-scope: agent
+scope: project
 created: "2026-07-01"
 updated: "2026-07-01"
 area: "[[Meli]]"
@@ -16,13 +16,14 @@ aliases:
   - detectar leftover diagnostics con git log -S
 confidence: verified
 source_session: "2026-07-01-search-middleware-diagnostic-leftover-cleanup"
-load_policy: contextual
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:
   - kind/learning
   - workflow/git
   - workflow/code-review
+  - scope/agent
 ---
 
 # Auditar Diff Por Código De Diagnóstico Ajeno Antes De Cerrar Un PR

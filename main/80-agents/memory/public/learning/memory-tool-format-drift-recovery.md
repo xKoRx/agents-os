@@ -1,6 +1,6 @@
 ---
 type: learning
-scope: agent
+scope: project
 created: "2026-06-30"
 updated: "2026-06-30"
 area: "[[Personal]]"

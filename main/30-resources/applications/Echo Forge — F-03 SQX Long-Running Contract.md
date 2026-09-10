@@ -7,6 +7,7 @@ sources:
   - "[[Echo Forge — Factory V2 Completion]]"
   - "[[2026-09-06-echo-forge-mt5-execution-model-v2]]"
   - "[[2026-09-03-mt5-artifact-timeout-authority]]"
+  - "[[2026-09-06-echo-forge-temporal-activity-ceiling-clamp]]"
   - "[[Echo Forge — F-01 Canonical Generation Concurrency Contract]]"
   - "[[Echo Forge — F-02 Finalist Model V2 Contract]]"
 last_verified: "2026-09-08"
@@ -50,7 +51,7 @@ El kill no es un solo número de Temporal. Hay al menos tres capas: options de a
 
 Quitar deadlines de negocio que convierten duración en FAILED. Conservar heartbeat como liveness real, retry/recovery existentes, cancel explícito cooperativo acotado al árbol del job, y serialización SQX por máquina/databank (contrato actual: un CLI físico sobre el databank del proyecto; no paralelizar).
 
-Techo Temporal finito: **PLATFORM_CEILING** local `sqxActivityTechnicalCeiling = time.Duration(1<<63-1) - time.Second` (mismo hecho de representación ya usado en B1B como `mt5ActivityTechnicalCeiling`). Se reusa el hecho de API, **no** se importan paquetes ni semántica MT5. `ScheduleToCloseTimeout` de cómputo SQX queda **cero** (no derivado de días de negocio).
+`sqxActivityTechnicalCeiling` queda fijado (no conceptual) en la sección PLATFORM_CEILING: `time.Duration(1<<63-1) - time.Second`. Autoridad = SDK Temporal + representación Go/`durationpb`, no un número de negocio y no un import MT5. `ScheduleToCloseTimeout` de cómputo SQX = `0`. Adaptive está **INACTIVE/DEPRECATED — NO CHANGE**.
 
 ## Mapa de kill paths (source @ e50cb7e)
 
@@ -62,7 +63,7 @@ Cada límite tiene exactamente una categoría.
 |---|---|---|---|
 | `StartToCloseTimeout: 10 * 24 * time.Hour` | `genericActivityOptions`, `runGenericSQXWorkflow` ActivityOptions duplicadas, `GroupSQXWorkflow` ActivityOptions | Activity de proyecto/compute sana a los 10d | Reemplazar por `sqxActivityTechnicalCeiling` |
 | `ScheduleToCloseTimeout: 20 * 24 * time.Hour` | mismos tres sitios Generic/Group | Suma de attempts (retry infinito) a los 20d | Poner `0` (unset) |
-| `StartToCloseTimeout: 5 * 24 * time.Hour` + `ScheduleToCloseTimeout: 10 * 24 * time.Hour` | `mainActivityOptions` en `adaptive_workflow.go` | Adaptive compute a 5d / 10d total | Misma regla Generic (ceiling + ScheduleToClose 0) si el archivo permanece; Adaptive **no** está registrado en `sqx/cmd/sqx-worker` |
+| `StartToCloseTimeout: 5d` + `ScheduleToCloseTimeout: 10d` | `mainActivityOptions` en `adaptive_workflow.go` | Residual en código **no registrado** | **INACTIVE/DEPRECATED — NO CHANGE.** No es superficie ejecutable de F-03. No alinear por simetría. |
 | `WorkflowRunTimeout: 30 * 24 * time.Hour` | child `GroupSQXWorkflow` (lote secuencial y fan-in early ranking) | Child group sano a 30d | Omitir / `0` (unlimited run) |
 | `context.WithTimeout(ctx, 10*time.Minute)` si el ctx no trae deadline | `WFMDurableExportActivity.Execute` | Export WFM físico sano a 10m pese a heartbeat 6s | Eliminar el timeout; el ctx de Temporal (heartbeat + cancel) basta |
 | `ensureApplyDeadline` → `10*time.Minute` | `durable_apply_selected_run.go` | Apply selected run (incluye `ExecuteAndWait` SQX) a 10m | Eliminar el deadline sintético |
@@ -74,19 +75,54 @@ Cada límite tiene exactamente una categoría.
 
 | Límite | Autoridad | Evento que prueba pérdida | Retry/recovery | UNKNOWN / ambiguous |
 |---|---|---|---|---|
-| `HeartbeatTimeout: 2 * time.Minute` | Temporal ActivityOptions Generic/Group/Adaptive | Ausencia de heartbeat >2m (worker muerto, activity stuck sin `RecordHeartbeat`) | `RetryPolicy.MaximumAttempts=0` (infinito, transiente); recovery durable existente | Un heartbeat timeout **no** es elapsed sano. Retry nuevo attempt. No reattach de proceso SQX (no hay takeover). Si hay Evaluation/producer sellados → skip físico; si StageExecution RUNNING sin sello → reiniciar físico |
+| `HeartbeatTimeout: 2 * time.Minute` | Temporal ActivityOptions Generic/Group (LIVE). Adaptive no aplica | Ausencia de heartbeat >2m (worker muerto, activity stuck sin `RecordHeartbeat`) | `RetryPolicy.MaximumAttempts=0` (infinito, transiente); recovery durable existente | Un heartbeat timeout **no** es elapsed sano. Retry nuevo attempt. No reattach de proceso SQX (no hay takeover). Si hay Evaluation/producer sellados → skip físico; si StageExecution RUNNING sin sello → reiniciar físico |
 | Intervalo heartbeat 6s (`sqx/activity/heartbeat_seconds`) | ETCD + `instrumentation.StartHeartbeat` / `StartHeartbeatWithDetails` | Primer heartbeat inmediato; ticker 6s | N/A (emisión) | Si ETCD ausente: default 6s. Debe permanecer ≪ 2m |
 | `WaitForCancellation: true` | ActivityOptions compute | Cancel de workflow/activity | Temporal no reintenta CanceledError **si** se propaga como cancel, no como timeout de aplicación | Hoy `cmd_executor.classifyError` mapea `context.Canceled` a `ErrorTypeTimeout` — **ADJUST**: cancel explícito ≠ timeout |
-| `DefaultTerminationPolicy` SIGTERM luego SIGKILL 5s | `cmd-executor` sobre el PID de `sqcli` | Cancel/deadline del ctx de Execute | N/A | ADJUST: matar el **árbol** (process group Unix del `sqcli` de **este** Execute). No Job Object MT5. No `taskkill` global. Hijos Java de otro job / worker / sibling no se tocan |
+| `DefaultTerminationPolicy` SIGTERM luego SIGKILL 5s | `cmd-executor` sobre el **process group** del `sqcli` de este Execute | Cancel explícito o deadline técnico del ctx de Execute | N/A | ADJUST: ver contrato process-tree. No Job Object MT5. No `taskkill` global. No matar el process-group del worker |
 | `exec.CommandContext(ctx)` | `process_nonwindows.go` / utils | Mismo ctx de activity | Igual | El ctx de compute **no** debe llevar deadline de negocio |
 
 ### PLATFORM_CEILING — JUSTIFY
 
-Temporal exige `StartToCloseTimeout` finito y >0. El techo de representación usado en este repo es `time.Duration(1<<63-1) - time.Second`. F-03 fija `sqxActivityTechnicalCeiling` a ese valor en `sqx/workflows` **sin importar** `mt5_artifact_workflow.go`. Semantics: no es timeout de negocio; un job sano no debe terminar por este techo. Tests: igualdad exacta al techo; `ScheduleToCloseTimeout==0`; ningún test de compute pinnea 10d/20d/5d/30d/10m como éxito.
+Valor exacto (constante local en `sqx/workflows`, no importar `mt5ActivityTechnicalCeiling`):
 
-`WorkflowExecutionTimeout` / `WorkflowRunTimeout` de Generic: hoy no se setean en el parent Generic (0). Conservar 0. Child group: quitar 30d.
+```text
+sqxActivityTechnicalCeiling = time.Duration(1<<63-1) - time.Second
+```
 
-No dejar `365d` ni otro número arbitrario de NORMAL.
+Eso es `MaxInt64` nanosegundos menos un segundo: el máximo `time.Duration` de Go con holgura de 1s. NORMAL **no** elige ni sustituye este número. Prohibido 365d, 10y, o cualquier cifra de negocio.
+
+Por qué es **platform safety ceiling** y no business deadline:
+
+- El SDK Temporal Go exige `StartToCloseTimeout` finito y `> 0` cuando `ScheduleToCloseTimeout` está unset/`0`. Omitir ambos es inválido: el SDK rechaza el StartActivity. No hay diseño legal “sin StartToClose”.
+- El único techo finito que no es un SLA de SQX es el máximo representable. `durationpb` redondea a segundos; `MaxInt64` ns puro desborda ese redondeo. La holgura de 1s es el techo seguro de representación (autoridad: [[2026-09-06-echo-forge-temporal-activity-ceiling-clamp]]; el comentario de `mt5ActivityTechnicalCeiling` es evidencia del **mismo** hecho Temporal/Go, no licencia para importar MT5).
+- Ningún owner, ETCD, task JSON ni duración de Builder/Optimizer/WFM justifica un número menor. Por eso no se inventa un techo “razonable”.
+
+Qué ocurre si alguna vez se alcanza (evento de plataforma, no esperado en operación):
+
+1. Temporal cierra el attempt con timeout `StartToClose` (`TimeoutTypeStartToClose`).
+2. El ctx de la activity se cancela → el process-group del `sqcli` de ese Execute termina (padre + hijos Java + nietos).
+3. No es `LifecycleCancelled` de operador. No es FAILED de negocio por elapsed.
+4. Retry: `RetryPolicy.MaximumAttempts=0` (infinito, transiente). StartToClose de plataforma es retryable, igual que HeartbeatTimeout. Temporal programa un attempt nuevo.
+5. Recovery: idéntica a liveness loss — no reattach; sellado skip; RUNNING sin sello = nuevo `ExecuteAndWait`.
+6. Un job sano no debe llegar aquí; el techo existe solo porque Temporal exige un finito.
+
+`ScheduleToCloseTimeout = 0` (unset):
+
+- `0` es la única forma de no imponer un presupuesto calendario a la **suma** de attempts. El 20d actual es BUSINESS_DEADLINE sobre el retry infinito.
+- Con `MaximumAttempts=0`, un ScheduleToClose finito reintroduce elapsed-as-failure a escala de campaña de retries.
+- Temporal: `0` = no set; el bound por attempt es `StartToClose` (este techo) y el bound de liveness es Heartbeat 2m.
+- No se copia la semántica de slots/Job Object MT5. Que B1B también deje ScheduleToClose en cero es coincidencia de API Temporal, no un import.
+
+Tests que fijan el contrato (NORMAL; nombres ilustrativos, asserts no):
+
+- Options Generic/Group (incluidos duplicados en `runGenericSQXWorkflow` y `GroupSQXWorkflow`): `StartToCloseTimeout == sqxActivityTechnicalCeiling` igualdad exacta; `ScheduleToCloseTimeout == 0`; `HeartbeatTimeout == 2*time.Minute`; `WaitForCancellation == true`; `RetryPolicy.MaximumAttempts == 0`.
+- `activity.Info.StartToCloseTimeout`: `> 0` y `<= sqxActivityTechnicalCeiling`. Prohibido asertar igualdad a `87600h` (clamp de testsuite SDK; ver patrón). Igualdad entre configs que no deben diferir por duración de negocio.
+- SOURCE scoped a superficies LIVE: cero literales 10d/20d/30d/10m de compute en `generic_workflow.go`, WFM export, apply, `sqx-worker` `New()`, legado `internal/workflows/main.go` si T1.2 aplica. **No** fallar SOURCE por `adaptive_workflow.go`.
+- Ningún test de compute pinnea 10d/20d/30d/10m como éxito.
+
+`WorkflowExecutionTimeout` / `WorkflowRunTimeout` del parent Generic: hoy 0. Conservar 0. Child group: quitar 30d.
+
+Si el SDK rechazara este techo en runtime: PLAN_CONFLICT. No bajar a un número de negocio.
 
 ### KEEP (fuera del kill de compute largo; no confundir)
 
@@ -96,8 +132,18 @@ No dejar `365d` ni otro número arbitrario de NORMAL.
 | `context.WithTimeout(..., 30s)` FlowRun start/seal, ForgeCampaign activities, watcher intake | I/O corto |
 | `WithTimeout(..., 2*time.Minute)` rank/reconcile/score/seal WFM/select/classify | Activities cortas de persistencia/score, no CLI Builder/Optimizer/WFM físico |
 | `maintenance/timeout_ms` + `cmdexecutor.WithTimeout` | Maintenance executor, no compute SQX |
-| MT5 `mt5ActivityTechnicalCeiling` / Slot Pool / `tasks[].mt5.timeout` ignorado | B1B/B2 CLOSED. No-touch |
+| MT5 `mt5ActivityTechnicalCeiling` / Slot Pool / `tasks[].mt5.timeout` ignorado | B1B/B2 CLOSED. No-touch. El techo SQX se declara local; no se importa |
 | Cleanup databanks hook | Determinismo de retry, no timeout |
+
+## Superficies ejecutables vs INACTIVE
+
+F-03 certifica runtime actual. Docs/SPECs históricas no prueban ejecución.
+
+**LIVE (in scope):** `sqx/cmd/sqx-worker/main.go` registra `GenericSQXWorkflow`, `GroupSQXWorkflow`, `MT5CompileArtifactWorkflow`, `MT5BacktestArtifactWorkflow`, `ForgeCampaignWorkflow`. Compute SQX: Generic/Group activities, WFM durable export, apply selected run, `cmd-executor`, project heartbeat. Legado aún ejecutable: `cmd/symphony sqx-worker-minio` (`internal/tasks/sqx_worker_refactored.go`) registra `SQXJobWorkflow` / `SQXGroupWorkflow`.
+
+**INACTIVE/DEPRECATED — NO CHANGE:** `AdaptiveSQXWorkflow` y `AdaptiveTypeWorkflow` en `sqx/workflows/adaptive_workflow.go`. Evidencia de runtime: comentarios `DEPRECATED` (prototipo; producción = Generic); `sqx-worker` **no** los registra; el único `RegisterWorkflow(AdaptiveSQXWorkflow)` está en tests (`adaptive_workflow_test.go`). FEAT-SQX-ADAPTIVE-WORKFLOW T8.1 (registro planificado) no está en source actual. `adaptive_workflow.go` **fuera** de implementation scope. Los 5d/10d residuales no se tocan y no fallan SOURCE.
+
+MT5 workflows se registran en el mismo worker pero son no-touch de F-03 (B1B/B2 CLOSED).
 
 ## Cancel contract
 
@@ -112,17 +158,23 @@ No se rediseña B2.
 **Cómo llega a Activity / proceso**
 
 1. Cancel del workflow → activities con `WaitForCancellation=true` reciben ctx canceled.
-2. `execute_sqx` / `ExecuteAndWait` → `CommandExecutor.Execute` → `effectiveCtx.Done()` → `process.terminate`.
-3. ADJUST: process **group** del `sqcli` de esa invocación (padre + descendientes Java de ese start). SIGTERM entonces SIGKILL acotado a ese grupo.
+2. `execute_sqx` / `ExecuteAndWait` → `CommandExecutor.Execute` → `effectiveCtx.Done()` → terminate del **process group** de ese Execute.
+3. ADJUST process-tree (non-Windows, obligación F-03; no copiar Job Object / `taskkill` / slots MT5):
+   - `startManagedProcess` del `sqcli` de **este** Execute usa `Setpgid=true` (líder = el `sqcli` hijo). El worker **no** cambia de process-group; jamás `kill(0, …)` ni el pgid del worker.
+   - Cancel explícito **o** deadline técnico del ctx de Execute: SIGTERM al grupo (`-pgid`) y luego SIGKILL a los 5s de la policy existente, acotado a ese grupo.
+   - Debe morir el árbol completo: padre `sqcli` + hijos Java + nietos de **esa** invocación.
+   - No debe morir: worker, Temporal, sibling Execute, otro job, process-group global.
+4. `context.Canceled` se conserva como cancel. Prohibido `classifyError` → `ErrorTypeTimeout` (hoy L379–380). `ErrorTypeTimeout` es transiente y con `MaximumAttempts=0` **reanuda** un job cancelado. Si `domain.ErrorType` no tiene cancel: propagar `context.Canceled` (o `temporal.CanceledError` del SDK) sin pasar por `NewError(ErrorTypeTimeout)`. Añadir `ErrorTypeCanceled` no-transiente en `sqx/core/domain` está permitido. No importar helpers de `mt5_ownership.go`.
+5. Tests CANCEL deben demostrar: tras cancel, PID padre + PID hijo + PID nieto gone; PID del worker vivo; sibling Execute vivo; `errors.Is(err, context.Canceled)` (o `temporal.IsCanceledError`) true y tipo ≠ `ErrorTypeTimeout`.
 
 **Qué debe morir**
 
-- Árbol del job objetivo: Generic cancelado, sus Group children, activities `project` / WFM export / apply de ese árbol, proceso `sqcli` y descendientes de **esa** ejecución.
+- Árbol del job objetivo: Generic cancelado, sus Group children, activities `project` / WFM export / apply de ese árbol, proceso `sqcli` y **todo** descendiente (Java hijos y nietos) de **esa** ejecución, vía process-group propio.
 
 **Qué NO debe morir**
 
 - Otros Generic/Campaign en el mismo worker o cluster.
-- Worker `sqx-worker`, Temporal, ETCD, Postgres, MinIO.
+- Worker `sqx-worker`, su process-group, Temporal, ETCD, Postgres, MinIO.
 - Databank/proceso de un job distinto.
 - Slot Pool / procesos MT5 (no-touch).
 - Control-plane Campaign salvo el child cuyo padre canceló.
@@ -135,8 +187,8 @@ No se rediseña B2.
 
 **Retry / no-retry**
 
-- Cancel explícito: **no retry**. Prohibido reetiquetar `context.Canceled` como `ErrorTypeTimeout` (hoy sí ocurre en `classifyError`).
-- Heartbeat timeout / crash de worker: retry técnico según policy existente (`MaximumAttempts=0`).
+- Cancel explícito: **no retry**. `context.Canceled` permanece cancel.
+- Heartbeat timeout / crash de worker / StartToClose de plataforma (si el techo se alcanzara): retry técnico según policy existente (`MaximumAttempts=0`).
 
 **Cleanup databank/workspace**
 
@@ -209,9 +261,9 @@ Bundles: `telemetry.SQX` ya usado. Prohibido métrica con nombre dinámico por R
 
 ## Certification gates
 
-1. **SOURCE:** grep/assert: ningún `StartToCloseTimeout` de 5d/10d, ningún `ScheduleToCloseTimeout` 10d/20d, ningún `WorkflowRunTimeout` 30d, ningún `WithTimeout(10*time.Minute)` en WFM export ni `ensureApplyDeadline` 10m, ningún `WithTimeout` en `cmdexecutor.New` de `sqx/cmd/sqx-worker`. Builder/Optimizer/WFM sano no tiene business deadline restante.
+1. **SOURCE:** grep/assert **scoped a LIVE**: ningún `StartToCloseTimeout` 10d, ningún `ScheduleToCloseTimeout` 20d, ningún `WorkflowRunTimeout` 30d en `generic_workflow.go`; ningún `WithTimeout(10*time.Minute)` en WFM export ni `ensureApplyDeadline` 10m; ningún `WithTimeout` en `cmdexecutor.New` de `sqx/cmd/sqx-worker`; legado `internal/workflows/main.go` sin 10d/20d tras T1.2. Builder/Optimizer/WFM sano no tiene business deadline restante. **Excluir** `adaptive_workflow.go` del fail de SOURCE (INACTIVE). No exigir ausencia de 5d Adaptive.
 2. **CONTRACT:** retry/recovery no cambia por duración. Tests: heartbeat timeout sigue retryable; StageExecutionRef estable; sealed output no se republica; elapsed no produce `ErrorTypeTimeout` de negocio. Dual: recovery tests existentes verdes.
-3. **CANCEL:** cancel explícito de un Generic mata sólo su árbol (children group REQUEST_CANCEL, sqcli process group). Sibling workflow / worker / otro databank viven. `Canceled` ≠ `ErrorTypeTimeout`. Cleanup no borra workspace ajeno.
+3. **CANCEL:** cancel explícito de un Generic mata sólo su árbol (children group REQUEST_CANCEL; process-group propio del `sqcli` de ese Execute, incluidos hijos/nietos Java). Tests: parent+child+grandchild gone; worker vivo; sibling vivo. `context.Canceled` ≠ `ErrorTypeTimeout`. Cleanup no borra workspace ajeno. No semántica MT5.
 4. **LIVENESS:** stop heartbeat → activity falla por HeartbeatTimeout → retry/recovery. Analogía ya existente en `wfm_durable_export_activity_test.go` (2s vs 2m).
 5. **PHYSICAL:** procedimiento (ejecuta implementación/cert, no TOP):
    - Worker SQX de lab (Hera o Zeus) con binario del commit F-03.
@@ -234,33 +286,36 @@ Bundles: `telemetry.SQX` ya usado. Prohibido métrica con nombre dinámico por R
 
 ## Out of scope
 
-Finalist V2 (F-02). F-01 identity. S0 Echo. Magic/seal/handoff (F-04). F-05 release/golden. MT5 ownership/slots/takeover. Capacity/admission budget del owner. Paralelizar SQX. Reescribir B2. Números arbitrarios de NORMAL. Reattach a proceso huérfano como lease MT5.
+Finalist V2 (F-02). F-01 identity. S0 Echo. Magic/seal/handoff (F-04). F-05 release/golden. MT5 ownership/slots/takeover. Capacity/admission budget del owner. Paralelizar SQX. Reescribir B2. Números arbitrarios de NORMAL. Reattach a proceso huérfano como lease MT5. `adaptive_workflow.go` (INACTIVE/DEPRECATED — NO CHANGE).
 
 ## Planned source diff (NORMAL, no ahora)
 
-Modificar: `sqx/workflows/generic_workflow.go` (`genericActivityOptions`, ActivityOptions duplicadas Generic/Group, child `WorkflowRunTimeout` + ParentClosePolicy); `sqx/workflows/adaptive_workflow.go` (`mainActivityOptions`); `internal/workflows/main.go` (legado 10d/20d); `sqx/activities/worker/wfm_durable_export_activity.go` (quitar 10m); `sqx/activities/worker/durable_apply_selected_run.go` (`ensureApplyDeadline`); `sqx/adapters/cmd-executor/cmd_executor.go` + `process_nonwindows.go` (Canceled ≠ Timeout; process group); `sqx/activities/worker/project_activity.go` (heartbeat details); `sqx/adapters/executor-sqx/sqx_executor.go` (duration observable en hot path si falta). Tests espejo en esos paquetes. `pkg/sqxutils/executor.go` sólo si el path legado sigue invocado.
+Modificar: `sqx/workflows/generic_workflow.go` (`genericActivityOptions`, ActivityOptions duplicadas Generic/Group, child `WorkflowRunTimeout` + ParentClosePolicy, constante `sqxActivityTechnicalCeiling`); `internal/workflows/main.go` (legado 10d/20d del binario `sqx-worker-minio`); `sqx/activities/worker/wfm_durable_export_activity.go` (quitar 10m); `sqx/activities/worker/durable_apply_selected_run.go` (`ensureApplyDeadline`); `sqx/adapters/cmd-executor/cmd_executor.go` + `process_nonwindows.go` (Canceled ≠ Timeout; Setpgid del hijo; terminate `-pgid`); `sqx/core/domain` sólo si hace falta `ErrorTypeCanceled` no-transiente; `sqx/activities/worker/project_activity.go` (heartbeat details); `sqx/adapters/executor-sqx/sqx_executor.go` (duration observable en hot path si falta). Tests espejo en esos paquetes. `pkg/sqxutils/executor.go` sólo si el path legado sigue invocado.
 
-Crear: tests SOURCE de options (ceiling, ScheduleToClose 0, Heartbeat 2m); tests cancel vs timeout; no SQL nuevo.
+**No modificar:** `sqx/workflows/adaptive_workflow.go` (INACTIVE/DEPRECATED).
+
+Crear: tests SOURCE de options (ceiling exacto, ScheduleToClose 0, Heartbeat 2m, MaximumAttempts 0); tests cancel vs timeout; test process-tree parent+child+grandchild; no SQL nuevo.
 
 ## Evidencia y provenance
 
 Inspección read-only `xKoRx/symphony@e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48`.
 
 - `sqx/workflows/generic_workflow.go` L138–164, L1830–1842, L1338–1343, L1535: 2m / 10d / 20d; child 30d; `WaitForCancellation`; retry infinito.
-- `sqx/workflows/adaptive_workflow.go` L550–563: 2m / 5d / 10d. No registrado en `sqx/cmd/sqx-worker`.
+- `sqx/workflows/adaptive_workflow.go` L21–23, L103, L550–563: DEPRECATED; 5d/10d residuales. No registrado en `sqx/cmd/sqx-worker` L329–333. Tests sí lo registran. **NO CHANGE.**
+- `sqx/cmd/sqx-worker/main.go` L329–333: Generic, Group, MT5 compile/backtest, Campaign. Sin Adaptive.
 - `sqx/workflows/forge_campaign_workflow.go` L80, L109–110: child REQUEST_CANCEL; activities 30s.
 - `sqx/cmd/sqx-worker/main.go` L119–160, L324–326: `cmdexecutor.New` sin timeout; worker Options sin MaxConcurrent.
 - `sqx/activities/worker/wfm_durable_export_activity.go` L86–89: 10m sintético; heartbeat details L116.
 - `sqx/activities/worker/durable_apply_selected_run.go` L142–147: 10m.
 - `sqx/adapters/cmd-executor/cmd_executor.go` L151–157, L306–320, L372–381: timeout opcional; Canceled→Timeout.
-- `sqx/adapters/cmd-executor/process_nonwindows.go`: `CommandContext`, sin Setpgid.
+- `sqx/adapters/cmd-executor/process_nonwindows.go`: `CommandContext`, sin `Setpgid` (hoy el terminate no cubre hijos Java).
 - `sqx/core/instrumentation/heartbeat.go`: 6s ETCD; `ElapsedMs`.
 - `sqx/activities/worker/steps/project_stage_recovery.go`: autoridad recovery.
 - `sqx/activities/worker/steps/steps.go` `executeSQX`: un `ExecuteAndWait`, heartbeat estático.
 - `internal/workflows/main.go` + `internal/tasks/sqx_worker_refactored.go`: legado 10d/20d.
 - `pkg/sqxutils/executor.go` L154–159: `Timeout reached`.
-- B1B freeze: [[2026-09-06-echo-forge-mt5-execution-model-v2]] principio elapsed; `mt5ActivityTechnicalCeiling` como hecho Temporal, no como modelo SQX.
+- B1B freeze: [[2026-09-06-echo-forge-mt5-execution-model-v2]] principio elapsed. Techo: [[2026-09-06-echo-forge-temporal-activity-ceiling-clamp]] (hecho Temporal/Go). No modelo SQX de slots.
 
 ## Límites y contradicciones
 
-Si NORMAL cablea `sqcli/timeout_ms` al compute, reintroduce BUSINESS_DEADLINE: prohibido. Si se copia Slot Pool a SQX: fuera de contrato. Si `classifyError` sigue mapeando cancel a timeout, el retry infinito **reanuda** un job cancelado: debe corregirse. Adaptive no está en el worker productivo; igual se alinea para no dejar un killer latente. PHYSICAL de 10d no se exige; el límite viejo ejercible es 10m WFM/apply. Huérfanos Java sin process group quedan gap operativo, no B2.
+Si NORMAL cablea `sqcli/timeout_ms` al compute, reintroduce BUSINESS_DEADLINE: prohibido. Si se copia Slot Pool a SQX: fuera de contrato. Si `classifyError` sigue mapeando cancel a timeout, el retry infinito **reanuda** un job cancelado: debe corregirse. Adaptive **no** se alinea: está DEPRECATED y no registrado; tocarlo por simetría está fuera de alcance. PHYSICAL de 10d no se exige; el límite viejo ejercible es 10m WFM/apply. Huérfanos Java fuera del process-group del Execute cancelado quedan gap operativo, no B2. Si el process-group se aplica al worker (pgid 0 / Setpgid del proceso padre): PLAN_CONFLICT.

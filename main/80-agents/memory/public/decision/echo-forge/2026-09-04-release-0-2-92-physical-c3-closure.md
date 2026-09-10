@@ -14,7 +14,7 @@ related:
 aliases: []
 confidence: verified
 source_session: "[[2026-09-04-echo-forge-c3-final-recert-summary]]"
-load_policy: always
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

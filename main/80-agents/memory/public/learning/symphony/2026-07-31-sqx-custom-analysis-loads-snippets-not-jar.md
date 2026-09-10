@@ -9,13 +9,14 @@ source_session: efg28-hotfix
 entities:
   - "[[Symphony]]"
   - "[[Echo Forge]]"
-load_policy: scoped
+load_policy: when_application_loaded
 indexable: true
 index_priority: high
 tags:
   - kind/learning
   - tech/sqx
   - project/echo-forge
+  - scope/application
 ---
 
 # SQX Custom Analysis carga Snippets, no el JAR

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AGENTS OS — lo que promete y lo que hay</title>
+<style>:root{
+  --bg:#0e1117; --panel:#151a24; --panel-2:#1b2130; --border:#262d3d;
+  --text:#e7ebf3; --muted:#98a2b8; --faint:#6b7488;
+  --green:#3fb950; --amber:#d29922; --red:#f85149; --blue:#58a6ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--border);background:linear-gradient(160deg,#121722,#0e1117)}
+header .wrap{padding:40px 20px 34px}
+.kicker{color:var(--green);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:31px;line-height:1.15;margin:10px 0 12px;letter-spacing:-.02em}
+.lede{color:var(--muted);font-size:15px;max-width:720px;margin:0}
+.stamp{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid var(--border);background:var(--panel);color:var(--muted);
+  border-radius:999px;padding:4px 12px;font-size:12px}
+.basis{margin:16px 0 0;color:var(--faint);font-size:12.5px;max-width:720px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0 0}
+.metric{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 14px;min-width:0}
+.metric b{display:block;font-size:26px;line-height:1.1;letter-spacing:-.02em}
+.metric span{display:block;color:var(--muted);font-size:12.5px;margin-top:5px}
+.metric em{display:block;color:var(--faint);font-size:11.5px;font-style:normal;margin-top:3px}
+section{padding:36px 0 0}
+h2{font-size:19px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:740px}
+.claim{background:var(--panel-2);border:1px solid var(--border);border-left:3px solid var(--green);
+  border-radius:10px;padding:16px 18px;margin:0 0 14px}
+.claim p{margin:0;font-size:16px}
+.claim p+p{margin-top:9px;color:var(--muted);font-size:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:15px 16px;min-width:0}
+.card h3{margin:0 0 5px;font-size:14px}
+.card p{margin:0;color:var(--muted);font-size:13.5px}
+.row{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:11px}
+.row-top{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.row-top h3{margin:0;font-size:15.5px;flex:1 1 380px;min-width:0}
+.pill{border-radius:999px;padding:3px 11px;font-size:11px;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;white-space:nowrap;flex:none}
+.pill.cumplida{background:rgba(63,185,80,.16);color:var(--green);border:1px solid rgba(63,185,80,.35)}
+.pill.parcial{background:rgba(210,153,34,.16);color:var(--amber);border:1px solid rgba(210,153,34,.35)}
+.pill.no-cumplida{background:rgba(248,81,73,.14);color:var(--red);border:1px solid rgba(248,81,73,.32)}
+.verdict{margin:9px 0 0;font-size:14px;color:var(--text)}
+.ev{margin:9px 0 0;color:var(--muted);font-size:13.5px}
+.cav{margin:9px 0 0;padding-left:12px;border-left:2px solid var(--border);color:var(--faint);font-size:13px}
+.scores{display:flex;flex-direction:column;gap:9px}
+.score{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;padding:12px 16px;flex-wrap:wrap}
+.score .n{flex:1 1 200px;min-width:0;font-size:14px}
+.score .bar{flex:1 1 200px;height:7px;border-radius:999px;background:var(--panel-2);overflow:hidden;min-width:120px}
+.score .bar i{display:block;height:100%;border-radius:999px}
+.score .v{font-variant-numeric:tabular-nums;font-weight:700;font-size:15px;width:44px;text-align:right;flex:none}
+.score .t{color:var(--faint);font-size:12px;width:132px;text-align:right;flex:none}
+.good i{background:var(--green)} .ok i{background:var(--amber)} .bad i{background:var(--red)}
+.good .v{color:var(--green)} .ok .v{color:var(--amber)} .bad .v{color:var(--red)}
+.list{list-style:none;padding:0;margin:0}
+.list li{background:var(--panel);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;margin-bottom:10px}
+.list li b{display:block;font-size:14.5px;margin-bottom:4px}
+.list li span{color:var(--muted);font-size:13.5px}
+.list.done li{border-left:3px solid var(--green)}
+.list.todo li{border-left:3px solid var(--amber)}
+.list.lim li{border-left:3px solid var(--faint)}
+footer{margin-top:44px;border-top:1px solid var(--border)}
+footer .wrap{padding:20px;color:var(--faint);font-size:12.5px;text-align:center}
+@media (max-width:820px){
+  h1{font-size:26px}
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid2{grid-template-columns:1fr}
+  .score .t{width:100%;text-align:left}
+}
+@media (max-width:520px){
+  header .wrap{padding:28px 16px 24px}
+  .wrap{padding:0 16px}
+  .metrics{grid-template-columns:1fr}
+}</style>
+</head>
+<body>
+<script type="application/json" id="data">{"meta":{"title":"AGENTS OS — lo que promete y lo que hay","subtitle":"Sistema de memoria y contexto para trabajar con agentes de código sobre un vault Markdown. Este documento no vende nada: contrasta la promesa del diseño con lo que la evidencia operativa muestra hoy.","snapshot":"Snapshot 2026-09-09","basis":"Agregado de 340 feedbacks de sesión del período 2026-07-05 → 2026-09-09, escritos por los propios agentes al cerrar trabajo, más los gates ejecutables corridos sobre el vault.","footer":"AGENTS OS · core compartible · 9 de septiembre de 2026"},"headline":[{"value":"340","label":"feedbacks agregados","note":"en 67 días, ~3,7 por día"},{"value":"40","label":"skills canónicas","note":"4 con entrada nativa en el cliente"},{"value":"4,67","label":"confianza general","note":"sobre 5, en ~240 sesiones con score"},{"value":"3,38","label":"fricción de cierre","note":"el peor score del sistema"}],"thesis":{"claim":"Un agente rinde según el contexto que recibe, y el contexto caro no es el que falta sino el que sobra.","body":"La apuesta es que si el conocimiento vive en Markdown gobernado —una fuente por hecho, metadata que enruta, procedimientos ejecutables separados del estado— un agente nuevo puede retomar trabajo real sin que la persona reexplique su entorno, y sin leer el vault entero para lograrlo.","pillars":[{"title":"Markdown es la fuente de verdad","text":"Cualquier índice, grafo o export es derivado y reconstruible. Si el índice se cae, el conocimiento sigue ahí."},{"title":"Una fuente canónica por hecho","text":"Procedimientos en skills, secuencias mecánicas en runbooks, criterio reusable en memoria, estado en entidades. Se enlaza en vez de repetir."},{"title":"Dos sistemas separados","text":"Sistema 1 es cómo opera el agente. Sistema 2 son las entidades reales del trabajo. No se mezclan."},{"title":"El presupuesto es un techo blando","text":"Escala ante insuficiencia. Nunca se corta contexto relevante para cumplir un número."}]},"reality":[{"promise":"Memoria persistente que evita reexplicar contexto entre sesiones","status":"cumplida","verdict":"Funciona, y el contrafáctico lo confirma","evidence":"Claridad de arranque 4,62/5. La memoria interna se consultó en 201 sesiones con utilidad declarada 4,39/5. La única sesión del período que re-derivó una auditoría de siete repos desde cero fue justamente la que no cargó el sistema: la información estaba a un hop de distancia y nadie la abrió.","caveat":"La promesa se cumple cuando el arranque corre. En 4 sesiones no se disparó, y en ninguna el sistema se dio cuenta solo. Ese es el punto único de falla de toda la memoria."},{"promise":"Retrieval por capas que gasta el mínimo contexto suficiente","status":"parcial","verdict":"La práctica sigue el modelo; la medición no existe","evidence":"Utilidad de retrieval 4,36/5 y el orden de acceso real —índice curado y títulos exactos primero, búsqueda dirigida después— es el que el diseño predice.","caveat":"No hay una sola medición de tokens en el corpus. El campo de consumo máximo está instrumentado desde el 2026-09-06 y vale «unknown» en todas las notas que lo traen. Todo lo que el sistema afirma sobre economía de contexto es cualitativo."},{"promise":"Skills como procedimientos canónicos reusables","status":"parcial","verdict":"El contenido sirve; el envase no","evidence":"Encaje de skill 4,52/5, plano en tres meses. Las skills que se invocan funcionan y se citan como lo que salvó la sesión.","caveat":"36 de 40 skills no son invocables nativamente por ninguna superficie: hay que abrirlas por ruta. Cuatro sesiones lo reportaron y una pidió literalmente «un fallback de ejecución por ruta» como contrato, que es el workaround de julio propuesto de nuevo."},{"promise":"Una fuente canónica por hecho","status":"parcial","verdict":"Sólido en dominio, débil en el sistema mismo","evidence":"Sólo 7 casos de duplicación o contradicción real de un hecho de dominio en 340 sesiones. Los agentes citan la regla como razón para NO escribir, que es la señal de que está internalizada.","caveat":"Para skills y taxonomía falló. Una skill llegó a existir en dos lugares con contenido distinto —y la copia del vault era la vieja, sin ninguna señal de conflicto—. Y coexistieron dos directorios para el mismo tipo de nota: quien buscaba en el plural no encontraba el 95% del corpus."},{"promise":"Higiene y Kaizen como bucle de mejora que corre","status":"no-cumplida","verdict":"El bucle escribe con disciplina y no lee","evidence":"La captura es de primer nivel: 340 notas estructuradas, con severidad, propuesta y evidencia citable. Dos tercios declaran explícitamente si el dolor va a repetirse.","caveat":"Cero reportes Kaizen en 67 días acumulando 7 veces el umbral que el propio sistema fijó. El 61% de esos feedbacks no es citado por ningún artefacto. Los ciclos de higiene corren cuando una persona los pide, nunca por umbral."},{"promise":"Portabilidad entre superficies","status":"parcial","verdict":"El contrato viaja; las capacidades no","evidence":"Ocho superficies distintas produjeron feedback bajo el mismo contrato de cierre y el mismo template. Eso es portabilidad real, no declarativa.","caveat":"Cada superficie rompe algo distinto: sandbox que no deja escribir la caché del índice, selector que no expone las skills, entorno sin runtime local que no puede materializar ni validar. El sistema no tiene forma declarativa de saber qué le falta a la superficie donde está corriendo."},{"promise":"Delegación a subagentes","status":"no-cumplida","verdict":"Sin contrato hasta ahora","evidence":"El patrón se detectó en julio de 2026 y quedó anotado como propuesta.","caveat":"Acumuló tres modos de falla nuevos y distintos: reporte final vacío con la evidencia recuperable sólo al retomar el subagente, muerte por inactividad a los 600 segundos en prompts multi-parte, y ejecución sin heartbeat ni resultado atribuible. Una de las notas predijo su propia promoción «si reaparece»; reapareció catorce días después."}],"scores":{"caption":"Scores declarados por los agentes al cerrar sesión, escala 1–5, sobre ~240 sesiones. La tendencia compara julio, agosto y septiembre de 2026.","rows":[{"name":"Confianza general","value":4.67,"trend":"4,60 → 4,73 → 4,65","state":"good"},{"name":"Claridad de arranque","value":4.62,"trend":"4,45 → 4,76 → 4,60","state":"good"},{"name":"Encaje de la skill","value":4.52,"trend":"plano","state":"good"},{"name":"Utilidad del retrieval","value":4.36,"trend":"4,32 → 4,34 → 4,41","state":"ok"},{"name":"Encaje del template","value":4.19,"trend":"4,35 → 4,06 → 4,20","state":"ok"},{"name":"Fricción de cierre","value":3.38,"trend":"3,53 → 3,32 → 3,34","state":"bad"}]},"closed":{"caption":"Corrida de higiene del 2026-09-09. Cada línea tiene un gate que la verifica.","items":[{"title":"El reindex volvió a pasar","text":"El gate de lint era all-or-nothing y bloqueaba publicar un delta ya válido por deuda ajena. La deuda bloqueante creció 10 → 12 → 26 → 31 → 32 → 136 findings en seis sesiones. El mecanismo de baseline existía desde el 2026-08-11 y estaba vacío: herramienta correcta, nunca adoptada. Se bajó la deuda de 32 a 9 errores y recién entonces se congeló el resto. Gate en GO, índice fresco."},{"title":"104 errores fantasma eran un bug de una línea","text":"El linter derivaba el tag canónico quitando el guión bajo en vez de convertirlo, así que exigía «kind/userpreference» contra un contrato que pide «kind/user-preference». Corregido en el linter, no en las 104 notas."},{"title":"El hot path tenía un agujero ciego","text":"Una skill lazy llevaba el facet de carga permanente mientras su campo decía lo contrario. El gate sólo miraba el campo, así que un quinto miembro de un club cerrado de cuatro pasaba inadvertido."},{"title":"La autoría de skills contradecía su propio contrato","text":"La skill que enseña a escribir skills pedía incluir una sección que el contrato prohíbe explícitamente. Toda skill nueva nacía violando la regla."},{"title":"341 wikilinks muertos hacia skills","text":"El archivo de una skill siempre es SKILL.md dentro de su carpeta, así que ningún enlace por nombre resolvía. Se agregó el alias canónico a las 40."},{"title":"106 checkpoints de continuidad retirados del retrieval","text":"Eran notas per-sesión de trabajo cerrado, acumuladas contra la regla de un solo slot activo por clave. Quedaron archivadas y fuera del índice; sobreviven 5 slots activos."},{"title":"Cinco patrones promovidos a conocimiento reusable","text":"El runbook para desbloquear el reindex, el contrato de delegación a subagentes con su error conocido, la regla de que un checkpoint acumulativo no declara vigencia, y que un PASS declarado no es un PASS verificado."}]},"open":{"caption":"Lo que sigue abierto, sin adornos. Los tres primeros exigen una decisión de diseño, no más trabajo.","items":[{"title":"Descubribilidad de skills","text":"Generar un router por skill, o declarar oficialmente el fallback por ruta con verificación de disponibilidad al arrancar. Son caminos excluyentes y hoy la decisión está tomada por omisión."},{"title":"Diagnóstico de capacidades por superficie","text":"Pedido tres veces en términos casi idénticos. Debe registrar qué exige el contrato, qué expone la superficie y qué control compensatorio se aplicó, para no afirmar que un gate corrió cuando no corrió."},{"title":"Modo reducido del cierre","text":"El clasificador de delta resolvió si cerrar; no resolvió cuánto del template llenar. Ocho sesiones de septiembre reportaron secciones vacías o scores sin evidencia."},{"title":"El índice derivado sigue frágil","text":"Su utilidad medida cayó de ~3,8 a 3,19 sobre 5. Sirve para resolver una entidad por título exacto; para búsqueda temática amplia, la búsqueda dirigida sobre Markdown gana. En varias sesiones quedó stale porque el sandbox del cliente no pudo escribir la caché."},{"title":"El bucle de mejora necesita a un humano","text":"Corre por pedido. Si nadie lo pide, los feedbacks se acumulan y la deuda crece en silencio, que es exactamente lo que pasó estos 67 días."}]},"limits":{"caption":"Dónde no llega, y cuándo no conviene.","items":[{"title":"Requiere un runtime local","text":"Una superficie que sólo lea y escriba archivos remotos no puede materializar notas canónicas, correr el lint ni indexar. El vault sigue siendo legible; el contrato ejecutable no corre."},{"title":"La disciplina no es gratis","text":"Los gates son fail-closed a propósito: bloquean cuando el corpus está sucio. Eso es lo que evita que la memoria se degrade, y también lo que se siente como fricción cuando llegas apurado."},{"title":"No arregla un proyecto desordenado","text":"Ordena cómo un agente accede al conocimiento. No genera el conocimiento que nadie escribió."},{"title":"No conviene en sesiones cortas y desechables","text":"Sobre un repo que ya conocés de memoria, el costo de arranque y cierre no se paga. Rinde cuando el contexto es grande, se cruza entre repos y hay que retomarlo semanas después."}]}}</script>
+
+<header>
+  <div class="wrap">
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="stamp">
+      <span class="chip">Promesa vs. evidencia</span>
+      <span class="chip">Sin cifras estimadas</span>
+      <span class="chip">Markdown como fuente de verdad</span>
+    </div>
+    <p class="basis" id="basis"></p>
+    <div class="metrics" id="metrics"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section>
+    <h2>La tesis</h2>
+    <div class="claim" id="claim"></div>
+    <div class="grid2" id="pillars"></div>
+  </section>
+
+  <section>
+    <h2>Promesa vs. estado real</h2>
+    <p class="sub">Cada fila declara el veredicto, la evidencia que lo sostiene y la salvedad que lo limita. Ninguna cifra es estimada: sale del agregado de feedbacks o de un gate ejecutable.</p>
+    <div id="reality"></div>
+  </section>
+
+  <section>
+    <h2>Los números</h2>
+    <p class="sub" id="scores-caption"></p>
+    <div class="scores" id="scores"></div>
+  </section>
+
+  <section>
+    <h2>Lo que se cerró en esta corrida</h2>
+    <p class="sub" id="closed-caption"></p>
+    <ul class="list done" id="closed"></ul>
+  </section>
+
+  <section>
+    <h2>Lo que sigue abierto</h2>
+    <p class="sub" id="open-caption"></p>
+    <ul class="list todo" id="open"></ul>
+  </section>
+
+  <section>
+    <h2>Límites honestos</h2>
+    <p class="sub" id="limits-caption"></p>
+    <ul class="list lim" id="limits"></ul>
+  </section>
+</div>
+
+<footer><div class="wrap" id="foot"></div></footer>
+<script>const data = JSON.parse(document.getElementById('data').textContent);
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const el = (sel, html) => { document.querySelector(sel).innerHTML = html; };
+
+el('#kicker', esc(data.meta.snapshot));
+el('#title', esc(data.meta.title));
+el('#lede', esc(data.meta.subtitle));
+el('#basis', esc(data.meta.basis));
+el('#foot', esc(data.meta.footer));
+
+el('#metrics', data.headline.map(m =>
+  `<div class="metric"><b>${esc(m.value)}</b><span>${esc(m.label)}</span><em>${esc(m.note)}</em></div>`
+).join(''));
+
+el('#claim', `<p>${esc(data.thesis.claim)}</p><p>${esc(data.thesis.body)}</p>`);
+el('#pillars', data.thesis.pillars.map(p =>
+  `<div class="card"><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p></div>`
+).join(''));
+
+el('#reality', data.reality.map(r => `
+  <div class="row">
+    <div class="row-top">
+      <h3>${esc(r.promise)}</h3>
+      <span class="pill ${esc(r.status)}">${esc(r.status.replace('-', ' '))}</span>
+    </div>
+    <p class="verdict">${esc(r.verdict)}</p>
+    <p class="ev">${esc(r.evidence)}</p>
+    <p class="cav">${esc(r.caveat)}</p>
+  </div>`).join(''));
+
+el('#scores-caption', esc(data.scores.caption));
+el('#scores', data.scores.rows.map(s => `
+  <div class="score ${esc(s.state)}">
+    <div class="n">${esc(s.name)}</div>
+    <div class="bar"><i style="width:${(s.value / 5 * 100).toFixed(1)}%"></i></div>
+    <div class="v">${s.value.toFixed(2).replace('.', ',')}</div>
+    <div class="t">${esc(s.trend)}</div>
+  </div>`).join(''));
+
+const listOf = (block, cls) => block.items.map(i =>
+  `<li><b>${esc(i.title)}</b><span>${esc(i.text)}</span></li>`).join('');
+
+el('#closed-caption', esc(data.closed.caption));
+el('#closed', listOf(data.closed));
+el('#open-caption', esc(data.open.caption));
+el('#open', listOf(data.open));
+el('#limits-caption', esc(data.limits.caption));
+el('#limits', listOf(data.limits));</script>
+</body>
+</html>

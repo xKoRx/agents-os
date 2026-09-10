@@ -24,7 +24,7 @@ tags:
   - app/strategyquantx
   - area/symphony-portal
   - area/symphonyportal
-  - kind/knownerror
+  - kind/known-error
   - project/symphony
   - scope/application
 ---

@@ -12,6 +12,7 @@ related:
   - "[[evidence-channel-discovery]]"
 aliases:
   - probe read-only
+  - readonly-production-probe
   - inspección de producción
   - herramienta de diagnóstico temporal
 load_policy: manual

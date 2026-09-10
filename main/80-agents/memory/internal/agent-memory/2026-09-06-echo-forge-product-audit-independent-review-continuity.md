@@ -11,8 +11,8 @@ aliases: []
 confidence: "high"
 memory_state: "active"
 continuity_key: "echo-forge/product-audit-independent-review"
-load_policy: "manual"
-indexable: true
+load_policy: "when_project_loaded"
+indexable: false
 index_priority: "high"
 tags: ["kind/agent-memory", "scope/project", "agent/internal", "area/echo"]
 ---

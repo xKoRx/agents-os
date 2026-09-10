@@ -12,6 +12,7 @@ related:
   - "[[readonly-production-probe]]"
 aliases:
   - descubrimiento de canales
+  - evidence-channel-discovery
   - matriz de evidencia
   - canales de observabilidad
 load_policy: manual

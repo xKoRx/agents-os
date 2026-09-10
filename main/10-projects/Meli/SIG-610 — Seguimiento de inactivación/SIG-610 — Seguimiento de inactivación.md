@@ -8,7 +8,7 @@ priority: P1
 area: "[[Meli]]"
 parent:
 sprint:
-start: "2026-09-08"
+start: 2026-09-08
 due:
 progress: 0
 repo: https://github.com/melisource/fury_rio-playmaker
@@ -23,8 +23,10 @@ tags:
   - area/meli
   - application/rio-playmaker
   - ticket/sig-610
-created: "2026-09-08"
-updated: "2026-09-08"
+created: 2026-09-08
+updated: 2026-09-09
+cssclasses:
+  - wide
 ---
 
 # SIG-610 — Seguimiento de inactivación
@@ -38,7 +40,7 @@ updated: "2026-09-08"
 
 ## 📊 Estado actual
 
-- Discovery y decisiones cerradas. La implementación queda delegada al proyecto [[SIG-610 — ComponentRun de inactivación en Playmaker]].
+- La implementación está delegada al proyecto [[SIG-610 — ComponentRun de inactivación en Playmaker]]. `D9`–`D13` quedaron cerradas y el plan está listo para iniciar Fase 0.
 - El endpoint de inactivación ya crea una `PipelineExecution` `INACTIVATE` y publica un único `DEPROVISION`, pero la crea sin `ComponentRun`.
 - No existe duplicación ni acoplamiento con el botón/flujo de deploy: ambos usan infraestructura persistente y eventos comunes, pero se gatillan por separado.
 
@@ -46,7 +48,7 @@ updated: "2026-09-08"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-playmaker]] | `feature/sig-610-inactivate-component-run` | `release/202609.1.0` @ `3982cc1dee8e253d9b484b43b85a78cdc861babe` | [SIG-610 — Undeployment Functional Specification](https://spellbook.adminml.com/projects/SIG/specs/SIG-610) | [Undeploy execution proposal](https://grid.adminml.com/d/01M14Z9X9XDHWY9C8RNHMAD6QQ/view) + proyecto delegado | Plan listo; código no iniciado |
+| [[rio-playmaker]] | `feature/sig-610-inactivate-component-run` | `develop` sincronizado con `origin/develop` al crear la rama | [SIG-610 — Undeployment Functional Specification](https://spellbook.adminml.com/projects/SIG/specs/SIG-610) | [Undeploy execution proposal](https://grid.adminml.com/d/01M14Z9X9XDHWY9C8RNHMAD6QQ/view) + proyecto delegado | `ready_for_phase_0`; código no iniciado |
 
 ## 🧩 Subproyectos
 
@@ -54,20 +56,28 @@ updated: "2026-09-08"
 
 ## ✅ Tareas
 
+- [x] Cerrar las decisiones abiertas `D9`–`D13` del proyecto delegado antes de habilitar `G0` #owner/me #type/decision #area/meli
 - [/] [[SIG-610 — ComponentRun de inactivación en Playmaker]] implementar, validar y entregar para revisión #owner/me #type/supervision #area/meli
 - [ ] Revisar la entrega final y aceptar o rechazar el gate `G2` #owner/me #type/pr-review #area/meli
 - [ ] Tras aceptación humana, cerrar y archivar el proyecto delegado y esta iniciativa #owner/me #type/admin #area/meli
 
 ## 📆 Bitácora
 
+- **2026-09-09** — Owner cerró `D9`–`D13`; el proyecto delegado quedó `ready_for_phase_0`. La implementación usará la configuración del service, reutilizará el `422` de estado inválido, filtrará las dos consultas activas por `DEPLOY` y eliminará la consulta muerta; no agrega reaper.
+- **2026-09-09** — Plan revisado contra `develop`. La superficie del alcance sigue vigente, pero la base congelada se reemplaza por sincronización de `develop`, y quedan cinco decisiones abiertas en el proyecto delegado antes de escribir código.
 - **2026-09-08** — Iniciativa creada después de revisar SIG-610, el proposal de Grid, documentación RIO y el código efectivo de Playmaker. El alcance backend se redujo a crear y mantener consistente un `ComponentRun` para `INACTIVATE`, más aislarlo de la regla de retry del deploy.
 
 ## 🧭 Decisiones
 
 - Deploy e inactivate son acciones explícitas y separadas; agregar el run no dispara orquestación ni una segunda publicación.
+- La rama de trabajo se crea desde `develop` sincronizado con el remoto, nunca desde una `release/*` ni desde un SHA congelado en la documentación.
 - El run debe alcanzar un estado terminal y no quedar `PENDING` después de que la ejecución termine.
 - La validación existente de relaciones activas gobierna la posibilidad de inactivar y queda fuera del cambio.
 - La historia ya obtiene los runs por `pipelineExecutionId`; no se crea ni modifica un endpoint de history en esta entrega.
+- `ServiceModel.componentDefinition` es la fuente única del `configId` del run y de los params actuales del `DEPROVISION`.
+- Un service ausente o sin `componentDefinition` resoluble se rechaza con el `422 INVALID_COMPONENT_STATUS` existente; no corresponde `400`.
+- Las consultas de retry y guard de runs filtran positivamente por `DEPLOY`; el guard de infraestructura activa sigue impidiendo borrar durante un undeploy en curso.
+- `findFirstByComponentIdOrderByIdDesc` y su Javadoc obsoleto se eliminan; no se agrega timeout/reaper para `INACTIVATE`.
 - El proyecto sólo se archiva después de que la implementación quede verificada y el owner acepte la entrega en Review.
 
 ## 🔗 Docs / Links

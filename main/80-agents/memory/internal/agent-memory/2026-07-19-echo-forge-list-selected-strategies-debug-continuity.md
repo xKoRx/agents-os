@@ -2,7 +2,11 @@
 type: agent_memory
 scope: session
 created: 2026-07-19
-updated: 2026-07-19
+updated: 2026-09-09
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 area: "[[Symphony]]"
 project: "[[Echo Forge]]"
 application: "[[SQX Worker]]"

@@ -6,6 +6,8 @@ scope: global
 created: 2026-06-27
 updated: 2026-08-10
 description: Propose safe updates to Sistema 2 canonical entity notes. Use when a session changes what is currently true about a project, application, service, workflow, technology, integration, or concept, or when Sistema 1 memory artifacts must be linked back to canonical documentation without mixing history into the entity. For newly created or substantially repaired Sistema 2 documents, require the matching template or create it first.
+aliases:
+  - agents-os-entity-update
 load_policy: manual
 indexable: true
 index_priority: high

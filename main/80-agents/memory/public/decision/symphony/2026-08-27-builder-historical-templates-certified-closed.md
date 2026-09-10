@@ -1,7 +1,7 @@
 ---
 type: decision
 schema_version: 1
-scope: public
+scope: project
 created: "2026-08-27"
 updated: "2026-08-27"
 area: "[[Echo Forge]]"
@@ -15,7 +15,7 @@ related:
 aliases: []
 confidence: verified
 source_session: SQX-CROSS-FLOWRUN-BUILDER-TEMPLATES-E2E-NORMAL
-load_policy:
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:
@@ -23,6 +23,7 @@ tags:
   - tech/sqx
   - tech/temporal
   - scope/public
+  - scope/project
 ---
 
 # Builder histórico cross-FlowRun certificado

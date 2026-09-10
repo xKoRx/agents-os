@@ -1,6 +1,6 @@
 ---
 type: index
-scope: agent
+scope: project
 created: 2026-07-04
 updated: 2026-07-04
 area: "[[Personal]]"
@@ -16,7 +16,7 @@ aliases:
   - hermes dashboard recovery
   - recuperar dashboard hermes
 confidence: verified
-load_policy: contextual
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:
@@ -25,6 +25,7 @@ tags:
   - action/recovery
   - area/personal
   - project/agents-os
+  - scope/agent
 ---
 
 # Hermes Dashboard Recovery — puente (no es skill ni runbook canónico)

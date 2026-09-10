@@ -16,6 +16,8 @@ tags:
   - kind/benchmark
   - tech/agents-os
   - project/agents-os
+  - kind/doc
+  - scope/vault
 ---
 
 # AGENTS OS Hot Path — End-to-End Benchmark Gate

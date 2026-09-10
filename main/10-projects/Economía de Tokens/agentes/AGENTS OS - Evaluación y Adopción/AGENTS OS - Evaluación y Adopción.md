@@ -1,5 +1,6 @@
 ---
 type: project
+schema_version: 1
 owner: agent
 root: false
 status: active
@@ -17,12 +18,12 @@ aliases:
   - AGENTS OS Evaluación y Adopción
   - AGENTS OS team adoption review
 tags:
-  - project
+  - kind/project
   - area/personal
   - project/agents-os
   - project/economia-de-tokens
 created: 2026-07-10
-updated: 2026-07-14
+updated: 2026-09-09
 ---
 
 # AGENTS OS - Evaluación y Adopción
@@ -41,12 +42,12 @@ updated: 2026-07-14
 
 ## 📊 Estado actual
 
-- **Review:** versión 2 reconciliada con el estado real del 2026-07-14,
-  verificada en desktop/móvil y publicada en Grid.
-- Portada arquitectónica en SVG editable integrada antes del bloque de estado real.
-- Veredicto vigente: **piloto controlado; no estandarizar todavía**.
-- Grid remoto privado en versión 2; el HTML servido se verificó con score 7,0,
-  26 skills, 122 feedbacks y sin recurso ZIP embebido.
+- **Review:** versión 4 publicada y verificada en Grid remoto privado, reconciliada con el estado real del 2026-09-09.
+- El entregable dejó de ser una evaluación con score y pasó a ser un contraste **promesa vs. evidencia**: siete promesas con veredicto cumplida/parcial/no cumplida, cada una con su evidencia y su salvedad. No hay cifra estimada; todo sale del agregado de 340 feedbacks de sesión (2026-07-05 → 2026-09-09) o de un gate ejecutable.
+- Veredicto vigente: **el arranque y la memoria cumplen; el bucle de mejora y la delegación a subagentes no.** Sigue siendo piloto controlado.
+- El generador es autocontenido: `build-grid.py` renderiza desde `agents-os-grid.source.json` sin depender de ningún generador externo. Los datos viajan embebidos como JSON y el layout se construye desde ahí, así que reordenar el reporte no puede cambiar un número.
+- Verificación remota: el payload JSON descargado desde Grid es idéntico al local; la diferencia de bytes es sólo la inyección estándar del runtime de Grid.
+- **El documento está compartido con una persona además del owner.** Cualquier publicación cambia lo que esa persona ve.
 
 ## ✅ Tareas
 
@@ -61,9 +62,12 @@ updated: 2026-07-14
 > - [x] Verificar visualmente el Grid y el diagrama en local #owner/agent #type/dev #area/personal
 > - [x] Publicar evaluación en Grid de Meli #owner/agent #type/admin #area/personal — doc_id `01KXGAY6QKSZWEBR5SCY5JSWCE`, versión 1, privado.
 > - [x] Revisar, corregir, verificar y publicar la versión 2 con el estado real del 2026-07-14 #owner/agent #type/research #area/personal — Grid v2 verificado.
+> - [x] Rehacer el entregable como contraste promesa vs. evidencia y publicar la versión 4 #owner/agent #type/research #area/personal — Grid v4 verificado contra el payload local.
+> - [x] Reemplazar el builder por uno autocontenido, sin generador externo #owner/agent #type/dev #area/personal
 
 ## 📆 Bitácora
 
+- **2026-09-09** — Versión 4 publicada y verificada. El entregable se rehízo como contraste promesa vs. evidencia con el agregado de 340 feedbacks del período; el score global y el conteo de skills de julio salieron porque ya no representaban nada verificable. El builder anterior dependía de un generador externo que no existe en el vault, así que era irreproducible: se reemplazó por uno autocontenido con los datos embebidos como JSON. Los dos artefactos generados de julio se eliminaron.
 - **2026-07-14** — Versión 2 publicada y verificada en Grid: score 7,0,
   scaffolding/onboarding/higiene/skills canónicas incorporados, evidencia
   Graphify actualizada y cifra histórica no vigente retirada. Se descartó el
@@ -80,6 +84,9 @@ updated: 2026-07-14
 
 ## 🧭 Decisiones
 
+- El entregable contrasta promesa contra evidencia, no asigna un score global: un número agregado ocultaba que dos promesas están cumplidas y dos no lo están.
+- Ninguna cifra del reporte es estimada. Si algo no se puede medir con el corpus, el reporte dice que no se puede medir.
+- El builder no depende de un generador externo. Un entregable que no se puede regenerar en la máquina donde vive no es reproducible.
 - Vivir bajo [[Economía de Tokens]] porque el Context Router y la recuperación progresiva nacen de esa iniciativa, y el destino declarado es evangelización técnica.
 - Separar narrativa en dos actos: **promesa/venta** primero; **estado real, evidencia y gaps** después.
 - Usar SVG vectorial editable para que componentes, relaciones y wording puedan iterarse sin regenerar una imagen raster.
@@ -92,10 +99,11 @@ updated: 2026-07-14
 - [[AGENTS OS]] — proyecto/sistema evaluado.
 - [[context-router]] — protocolo de recuperación por capas.
 - [[token-economy-indexing-architecture]] — arquitectura de indexación.
-- [Grid local](agents-os-evaluacion-grid.html)
-- [Fuente del Grid](agents-os-evaluacion-grid.source.json)
-- [Builder reproducible](build-grid.py)
-- [Diagrama editable](assets/agents-os-componentes.svg)
+- [Grid local](agents-os-grid.html) — vista generada, autocontenida.
+- [Fuente del Grid](agents-os-grid.source.json) — única fuente de los datos del reporte.
+- [Builder](build-grid.py) — `python3 build-grid.py`, sin dependencias externas.
+- [Diagrama editable](assets/agents-os-componentes.svg) — portada arquitectónica de julio; no se embebe en la versión 4.
+- [Grid remoto privado](https://grid.adminml.com/d/01KXGAY6QKSZWEBR5SCY5JSWCE/view) — versión 4.
 
 ## 💡 Ideas
 

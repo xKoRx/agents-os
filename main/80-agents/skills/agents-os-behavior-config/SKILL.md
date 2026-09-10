@@ -6,6 +6,8 @@ scope: global
 created: 2026-06-27
 updated: 2026-08-10
 description: Configure Agent Memory System behavior through conversation. Use when the user changes how agents should behave, asks the agent to remember a preference, updates constitution rules, adjusts user profile, promotes internal memory to public memory, or gives session-scoped operating instructions that must be classified as temporary or persistent.
+aliases:
+  - agents-os-behavior-config
 load_policy: manual
 indexable: true
 index_priority: high
@@ -32,7 +34,7 @@ Read only when needed:
 - `../_shared/note-types.md` for Sistema 1/Sistema 2 boundaries and internal memory rules.
 - Existing target notes before editing:
   - `80-agents/agents-os/agent-constitution.md`;
-  - `80-agents/memory/public/user-preference/rjara-agent-profile.md`;
+  - the always-load global profile under `80-agents/memory/public/user-preference/`;
   - relevant notes under `80-agents/memory/internal/`.
 
 ## Inputs
@@ -53,7 +55,7 @@ Read only when needed:
    - Sistema 2 entity update.
 3. Apply the narrowest durable layer:
    - session-only directives are obeyed now and not persisted;
-   - user preferences go to `rjara-agent-profile.md`;
+   - user preferences go to the always-load global profile;
    - global rules go to `agent-constitution.md`;
    - reusable operational facts go through `agents-os-memory-distillation`;
    - canonical current facts go through `agents-os-entity-update`;

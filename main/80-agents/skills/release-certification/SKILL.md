@@ -12,6 +12,7 @@ related:
   - "[[e2e-gated-validation]]"
 aliases:
   - certificación de release
+  - release-certification
   - baseline gate
   - source integrity gate
 load_policy: manual

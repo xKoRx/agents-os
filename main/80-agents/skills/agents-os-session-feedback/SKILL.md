@@ -6,6 +6,8 @@ scope: global
 created: 2026-06-27
 updated: 2026-08-11
 description: Capture compact feedback only when AGENTS OS had real friction, degraded retrieval, an uncovered Sistema 1 gap, periodic sampling, or an explicit feedback request. A normal clean close does not invoke this skill.
+aliases:
+  - agents-os-session-feedback
 load_policy: manual
 indexable: true
 index_priority: high

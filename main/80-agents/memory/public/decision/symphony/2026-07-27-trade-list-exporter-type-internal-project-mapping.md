@@ -1,6 +1,6 @@
 ---
 type: decision
-scope: public
+scope: project
 created: "2026-07-27"
 updated: "2026-07-27"
 area: "[[Echo Forge]]"

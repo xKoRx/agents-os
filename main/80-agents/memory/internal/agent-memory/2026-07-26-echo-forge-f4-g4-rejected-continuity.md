@@ -2,7 +2,8 @@
 type: agent_memory
 scope: continuity
 created: 2026-07-26
-updated: 2026-07-26
+updated: 2026-09-09
+memory_state: archived
 area: "[[Echo Forge]]"
 project: "[[AGENTS OS]]"
 entities:
@@ -17,7 +18,7 @@ source_session: "83e221f6-1dce-4af8-84f2-35cd6cf35cb2"
 confidence: high
 load_policy: manual
 indexable: false
-index_priority: low
+index_priority: never
 tags:
   - kind/agent-memory
   - scope/continuity

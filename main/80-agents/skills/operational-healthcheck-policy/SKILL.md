@@ -3,20 +3,26 @@ type: skill
 name: operational-healthcheck-policy
 scope: global
 description: Decide cuándo validar manualmente el estado de componentes vigilables (sync, backups, servicios) del Second Brain vs. confiar en el sistema automático. Usar ante una señal concreta de problema (conflicto, corrupción, falla de escritura, archivos ausentes) o antes de una acción masiva/crítica sobre el vault; evita el anti-pattern de validaciones manuales recurrentes en cada flujo.
+aliases:
+  - operational-healthcheck-policy
 created: 2026-06-30
 updated: 2026-08-08
+index_priority: high
+indexable: true
+load_policy: manual
+schema_version: 1
 tags:
   - kind/skill
   - tech/observability
   - tech/healthchecks
   - tech/obsidian
   - tech/livesync
-  - scope/project
+  - scope/global
 ---
 
 # operational-healthcheck-policy
 
-## Para Que Sirve
+## Purpose
 
 Diferenciar cuando Ariadna debe validar manualmente el estado de
 componentes vigilables (sync, backups, servicios) vs. cuando debe
@@ -53,7 +59,7 @@ Cargarla cuando Ariadna esté por:
   aprendizaje, sesión, cierre) — eso es trabajo de Ariadna sin
   pedir OK
 
-## Procedimiento
+## Procedure
 
 ### 1. Detectar Trigger
 
@@ -114,7 +120,7 @@ validacion manual como referencia historica.
   `manual-validation-vs-automated-healthcheck-policy`
   en `80-agents/memory/public/learning/agents-os/`
 
-## Anti-Pattern
+## Hard Rules
 
 - Validar el sync antes de cada escritura
 - Repetir el mismo check de salud en cada flujo

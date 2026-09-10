@@ -20,7 +20,8 @@ indexable: true
 index_priority: high
 tags:
   - kind/decision
-  - scope/replace-me
+  - scope/project
+  - scope/project
 ---
 
 # 2026-08-28-durable-artifact-verified-reads-apply-correction

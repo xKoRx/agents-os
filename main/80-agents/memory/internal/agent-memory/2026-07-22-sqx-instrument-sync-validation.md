@@ -2,15 +2,16 @@
 type: agent_memory
 scope: project
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-09-09
+memory_state: archived
 project: "[[Symphony]]"
 entities:
   - "[[StrategyQuant X]]"
   - "[[Symphony]]"
 confidence: verified
-load_policy: on_demand
-indexable: true
-index_priority: high
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - agent/internal
   - kind/agentmemory

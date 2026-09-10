@@ -24,6 +24,7 @@ tags:
   - scope/symphony
   - project/echo-forge
   - tech/durable-pipeline
+  - scope/project
 ---
 
 # 2026-08-27-durable-artifact-verified-reads-rca

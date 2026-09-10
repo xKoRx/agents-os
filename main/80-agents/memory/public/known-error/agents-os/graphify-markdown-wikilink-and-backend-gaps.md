@@ -1,8 +1,9 @@
 ---
 type: known_error
+schema_version: 1
 scope: project
 created: 2026-07-03
-updated: 2026-07-04
+updated: 2026-09-09
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 application:
@@ -18,6 +19,7 @@ aliases:
   - graphify backend pitfalls
   - graphify cli inventado
   - no borrar graph.json
+  - graphify filter subcomando no existe
 confidence: verified
 source_session:
 load_policy: when_error_matches
@@ -41,14 +43,14 @@ tags:
 > **pitfall operacional** de más abajo (no inventar CLI / no borrar `graph.json`) **sigue
 > vigente**. El extract semántico (LLM) sigue parqueado.
 
-## Síntoma (histórico)
+## Síntoma
 
 - `affected "<entidad>"` / `explain`/`path` vacíos entre notas markdown **pese a existir
   `[[links]]`** en los cuerpos. `_origin` del grafo 100% `ast`.
 - `extract --mode deep` falla: con ollama **deepseek-r1** → "LLM returned invalid JSON";
   con Gemini free tier → 429 (`gemini-3-flash` 5 rpm) o quota 0 (`gemini-2.0-flash`).
 
-## Causa (matizada 2026-07-04)
+## Causa
 
 - **El diagnóstico original era parcial.** graphify **sí** parsea `[[wikilinks]]` vía
   `extract_markdown` (PR #1376); el gap real era que upstream los resolvía **relativo a la
@@ -59,7 +61,7 @@ tags:
   (esto aplica al extract semántico, que sigue parqueado).
 - El **free tier** de Gemini no alcanza para el extract del vault (varios chunks).
 
-## Impacto (resuelto para el link-graph)
+## Impacto
 
 - **Antes:** el grafo del vault no tenía relaciones entre notas → `path`/`affected` inútiles.
 - **Ahora:** con `graphify-obsidian` el link-graph funciona (852/852 edges `references`
@@ -72,7 +74,7 @@ tags:
 - Hoy, si un backlink esperado sale vacío, sospechar primero del **caveat de query** (ver
   abajo) o de caché AST stale, **no** de un gap de captura.
 
-## Mitigación / Resolución
+## Mitigación
 
 - **RESUELTO — Vía A (fork `graphify-obsidian`):** resolver **vault-aware** en
   `graphify/extract.py` (índice stem + alias de frontmatter), gated por
@@ -107,6 +109,17 @@ incluida la fase de código.
      `graphify-obsidian update`; nunca crear salidas `95-graphify/` en el vault.
   3. `update` = solo AST (gratis). La semántica (`extract`) queda parqueada (ver arriba).
 
+## Pitfall operacional: drift de versión entre contrato/skill y CLI instalada
+
+- **Síntoma:** el contrato o la skill documenta un subcomando (`filter`) y la CLI instalada
+  responde que no existe, o emite `skill is from graphify X, package is Y`.
+- **Causa raíz:** drift de versión, no ausencia de la capacidad. La misma invocación
+  (`graphify-obsidian filter --title`) funciona en una máquina con el paquete al día.
+- **Mitigación:** verificar paridad `skill/contrato ↔ paquete` antes de tratar la ausencia
+  como límite del producto; si la versión local está atrás, reinstalar por
+  `agents-os-graphify-install` y reintentar. Un subcomando faltante por versión no autoriza
+  reescribir el contrato.
+
 ## Evidencia
 
 - Diagnóstico inicial: sesión 2026-07-03, repo local del fork de Graphify.
@@ -115,3 +128,4 @@ incluida la fase de código.
   search-middleware 14, vpp-backend 9, vis-octopus-lib 7). Log:
   `journal/logs/2026-07-04-graphify-obsidian-wikilinks.md`.
 - Pitfall operacional: feedbacks `2026-07-03-token-economy-*` (comando inventado + `rm graph.json`).
+- Drift contrato↔CLI, cuatro sesiones: [[2026-08-28-symphony-durable-artifact-verified-reads-pg-integration-session-feedback]], [[2026-09-02-echo-forge-release-wrapper-inflight-preflight-fix-normal-session-feedback]], [[2026-09-02-echo-forge-config-source-wave-provenance-fix-graphify-feedback]]; contra-evidencia de que es versión y no ausencia en [[2026-09-04-crear-context-session-feedback]].

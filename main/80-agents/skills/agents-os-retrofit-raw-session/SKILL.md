@@ -6,6 +6,8 @@ scope: global
 created: 2026-06-27
 updated: 2026-08-10
 description: Reprocess old raw sessions into newer memory structures. Use when schemas evolve, missing learnings/ADRs/known errors/runbooks must be extracted from archived L0 sessions, or historical sessions need to be backfilled without making raw sessions part of normal retrieval.
+aliases:
+  - agents-os-retrofit-raw-session
 load_policy: manual
 indexable: true
 index_priority: high

@@ -3,13 +3,14 @@ type: agent_memory
 schema_version: 1
 scope: project
 created: 2026-07-15
-updated: 2026-09-03
+updated: 2026-09-09
+memory_state: archived
 area: "[[Personal]]"
 project: "[[Ejercicios]]"
 confidence: high
-load_policy: when_project_loaded
-indexable: true
-index_priority: medium
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - agent/internal
   - kind/agent-memory

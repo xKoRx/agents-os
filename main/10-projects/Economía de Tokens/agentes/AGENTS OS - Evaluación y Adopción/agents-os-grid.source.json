@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "title": "AGENTS OS — lo que promete y lo que hay",
+    "subtitle": "Sistema de memoria y contexto para trabajar con agentes de código sobre un vault Markdown. Este documento no vende nada: contrasta la promesa del diseño con lo que la evidencia operativa muestra hoy.",
+    "snapshot": "Snapshot 2026-09-09",
+    "basis": "Agregado de 340 feedbacks de sesión del período 2026-07-05 → 2026-09-09, escritos por los propios agentes al cerrar trabajo, más los gates ejecutables corridos sobre el vault.",
+    "footer": "AGENTS OS · core compartible · 9 de septiembre de 2026"
+  },
+  "headline": [
+    { "value": "340", "label": "feedbacks agregados", "note": "en 67 días, ~3,7 por día" },
+    { "value": "40", "label": "skills canónicas", "note": "4 con entrada nativa en el cliente" },
+    { "value": "4,67", "label": "confianza general", "note": "sobre 5, en ~240 sesiones con score" },
+    { "value": "3,38", "label": "fricción de cierre", "note": "el peor score del sistema" }
+  ],
+  "thesis": {
+    "claim": "Un agente rinde según el contexto que recibe, y el contexto caro no es el que falta sino el que sobra.",
+    "body": "La apuesta es que si el conocimiento vive en Markdown gobernado —una fuente por hecho, metadata que enruta, procedimientos ejecutables separados del estado— un agente nuevo puede retomar trabajo real sin que la persona reexplique su entorno, y sin leer el vault entero para lograrlo.",
+    "pillars": [
+      { "title": "Markdown es la fuente de verdad", "text": "Cualquier índice, grafo o export es derivado y reconstruible. Si el índice se cae, el conocimiento sigue ahí." },
+      { "title": "Una fuente canónica por hecho", "text": "Procedimientos en skills, secuencias mecánicas en runbooks, criterio reusable en memoria, estado en entidades. Se enlaza en vez de repetir." },
+      { "title": "Dos sistemas separados", "text": "Sistema 1 es cómo opera el agente. Sistema 2 son las entidades reales del trabajo. No se mezclan." },
+      { "title": "El presupuesto es un techo blando", "text": "Escala ante insuficiencia. Nunca se corta contexto relevante para cumplir un número." }
+    ]
+  },
+  "reality": [
+    {
+      "promise": "Memoria persistente que evita reexplicar contexto entre sesiones",
+      "status": "cumplida",
+      "verdict": "Funciona, y el contrafáctico lo confirma",
+      "evidence": "Claridad de arranque 4,62/5. La memoria interna se consultó en 201 sesiones con utilidad declarada 4,39/5. La única sesión del período que re-derivó una auditoría de siete repos desde cero fue justamente la que no cargó el sistema: la información estaba a un hop de distancia y nadie la abrió.",
+      "caveat": "La promesa se cumple cuando el arranque corre. En 4 sesiones no se disparó, y en ninguna el sistema se dio cuenta solo. Ese es el punto único de falla de toda la memoria."
+    },
+    {
+      "promise": "Retrieval por capas que gasta el mínimo contexto suficiente",
+      "status": "parcial",
+      "verdict": "La práctica sigue el modelo; la medición no existe",
+      "evidence": "Utilidad de retrieval 4,36/5 y el orden de acceso real —índice curado y títulos exactos primero, búsqueda dirigida después— es el que el diseño predice.",
+      "caveat": "No hay una sola medición de tokens en el corpus. El campo de consumo máximo está instrumentado desde el 2026-09-06 y vale «unknown» en todas las notas que lo traen. Todo lo que el sistema afirma sobre economía de contexto es cualitativo."
+    },
+    {
+      "promise": "Skills como procedimientos canónicos reusables",
+      "status": "parcial",
+      "verdict": "El contenido sirve; el envase no",
+      "evidence": "Encaje de skill 4,52/5, plano en tres meses. Las skills que se invocan funcionan y se citan como lo que salvó la sesión.",
+      "caveat": "36 de 40 skills no son invocables nativamente por ninguna superficie: hay que abrirlas por ruta. Cuatro sesiones lo reportaron y una pidió literalmente «un fallback de ejecución por ruta» como contrato, que es el workaround de julio propuesto de nuevo."
+    },
+    {
+      "promise": "Una fuente canónica por hecho",
+      "status": "parcial",
+      "verdict": "Sólido en dominio, débil en el sistema mismo",
+      "evidence": "Sólo 7 casos de duplicación o contradicción real de un hecho de dominio en 340 sesiones. Los agentes citan la regla como razón para NO escribir, que es la señal de que está internalizada.",
+      "caveat": "Para skills y taxonomía falló. Una skill llegó a existir en dos lugares con contenido distinto —y la copia del vault era la vieja, sin ninguna señal de conflicto—. Y coexistieron dos directorios para el mismo tipo de nota: quien buscaba en el plural no encontraba el 95% del corpus."
+    },
+    {
+      "promise": "Higiene y Kaizen como bucle de mejora que corre",
+      "status": "no-cumplida",
+      "verdict": "El bucle escribe con disciplina y no lee",
+      "evidence": "La captura es de primer nivel: 340 notas estructuradas, con severidad, propuesta y evidencia citable. Dos tercios declaran explícitamente si el dolor va a repetirse.",
+      "caveat": "Cero reportes Kaizen en 67 días acumulando 7 veces el umbral que el propio sistema fijó. El 61% de esos feedbacks no es citado por ningún artefacto. Los ciclos de higiene corren cuando una persona los pide, nunca por umbral."
+    },
+    {
+      "promise": "Portabilidad entre superficies",
+      "status": "parcial",
+      "verdict": "El contrato viaja; las capacidades no",
+      "evidence": "Ocho superficies distintas produjeron feedback bajo el mismo contrato de cierre y el mismo template. Eso es portabilidad real, no declarativa.",
+      "caveat": "Cada superficie rompe algo distinto: sandbox que no deja escribir la caché del índice, selector que no expone las skills, entorno sin runtime local que no puede materializar ni validar. El sistema no tiene forma declarativa de saber qué le falta a la superficie donde está corriendo."
+    },
+    {
+      "promise": "Delegación a subagentes",
+      "status": "no-cumplida",
+      "verdict": "Sin contrato hasta ahora",
+      "evidence": "El patrón se detectó en julio de 2026 y quedó anotado como propuesta.",
+      "caveat": "Acumuló tres modos de falla nuevos y distintos: reporte final vacío con la evidencia recuperable sólo al retomar el subagente, muerte por inactividad a los 600 segundos en prompts multi-parte, y ejecución sin heartbeat ni resultado atribuible. Una de las notas predijo su propia promoción «si reaparece»; reapareció catorce días después."
+    }
+  ],
+  "scores": {
+    "caption": "Scores declarados por los agentes al cerrar sesión, escala 1–5, sobre ~240 sesiones. La tendencia compara julio, agosto y septiembre de 2026.",
+    "rows": [
+      { "name": "Confianza general", "value": 4.67, "trend": "4,60 → 4,73 → 4,65", "state": "good" },
+      { "name": "Claridad de arranque", "value": 4.62, "trend": "4,45 → 4,76 → 4,60", "state": "good" },
+      { "name": "Encaje de la skill", "value": 4.52, "trend": "plano", "state": "good" },
+      { "name": "Utilidad del retrieval", "value": 4.36, "trend": "4,32 → 4,34 → 4,41", "state": "ok" },
+      { "name": "Encaje del template", "value": 4.19, "trend": "4,35 → 4,06 → 4,20", "state": "ok" },
+      { "name": "Fricción de cierre", "value": 3.38, "trend": "3,53 → 3,32 → 3,34", "state": "bad" }
+    ]
+  },
+  "closed": {
+    "caption": "Corrida de higiene del 2026-09-09. Cada línea tiene un gate que la verifica.",
+    "items": [
+      { "title": "El reindex volvió a pasar", "text": "El gate de lint era all-or-nothing y bloqueaba publicar un delta ya válido por deuda ajena. La deuda bloqueante creció 10 → 12 → 26 → 31 → 32 → 136 findings en seis sesiones. El mecanismo de baseline existía desde el 2026-08-11 y estaba vacío: herramienta correcta, nunca adoptada. Se bajó la deuda de 32 a 9 errores y recién entonces se congeló el resto. Gate en GO, índice fresco." },
+      { "title": "104 errores fantasma eran un bug de una línea", "text": "El linter derivaba el tag canónico quitando el guión bajo en vez de convertirlo, así que exigía «kind/userpreference» contra un contrato que pide «kind/user-preference». Corregido en el linter, no en las 104 notas." },
+      { "title": "El hot path tenía un agujero ciego", "text": "Una skill lazy llevaba el facet de carga permanente mientras su campo decía lo contrario. El gate sólo miraba el campo, así que un quinto miembro de un club cerrado de cuatro pasaba inadvertido." },
+      { "title": "La autoría de skills contradecía su propio contrato", "text": "La skill que enseña a escribir skills pedía incluir una sección que el contrato prohíbe explícitamente. Toda skill nueva nacía violando la regla." },
+      { "title": "341 wikilinks muertos hacia skills", "text": "El archivo de una skill siempre es SKILL.md dentro de su carpeta, así que ningún enlace por nombre resolvía. Se agregó el alias canónico a las 40." },
+      { "title": "106 checkpoints de continuidad retirados del retrieval", "text": "Eran notas per-sesión de trabajo cerrado, acumuladas contra la regla de un solo slot activo por clave. Quedaron archivadas y fuera del índice; sobreviven 5 slots activos." },
+      { "title": "Cinco patrones promovidos a conocimiento reusable", "text": "El runbook para desbloquear el reindex, el contrato de delegación a subagentes con su error conocido, la regla de que un checkpoint acumulativo no declara vigencia, y que un PASS declarado no es un PASS verificado." }
+    ]
+  },
+  "open": {
+    "caption": "Lo que sigue abierto, sin adornos. Los tres primeros exigen una decisión de diseño, no más trabajo.",
+    "items": [
+      { "title": "Descubribilidad de skills", "text": "Generar un router por skill, o declarar oficialmente el fallback por ruta con verificación de disponibilidad al arrancar. Son caminos excluyentes y hoy la decisión está tomada por omisión." },
+      { "title": "Diagnóstico de capacidades por superficie", "text": "Pedido tres veces en términos casi idénticos. Debe registrar qué exige el contrato, qué expone la superficie y qué control compensatorio se aplicó, para no afirmar que un gate corrió cuando no corrió." },
+      { "title": "Modo reducido del cierre", "text": "El clasificador de delta resolvió si cerrar; no resolvió cuánto del template llenar. Ocho sesiones de septiembre reportaron secciones vacías o scores sin evidencia." },
+      { "title": "El índice derivado sigue frágil", "text": "Su utilidad medida cayó de ~3,8 a 3,19 sobre 5. Sirve para resolver una entidad por título exacto; para búsqueda temática amplia, la búsqueda dirigida sobre Markdown gana. En varias sesiones quedó stale porque el sandbox del cliente no pudo escribir la caché." },
+      { "title": "El bucle de mejora necesita a un humano", "text": "Corre por pedido. Si nadie lo pide, los feedbacks se acumulan y la deuda crece en silencio, que es exactamente lo que pasó estos 67 días." }
+    ]
+  },
+  "limits": {
+    "caption": "Dónde no llega, y cuándo no conviene.",
+    "items": [
+      { "title": "Requiere un runtime local", "text": "Una superficie que sólo lea y escriba archivos remotos no puede materializar notas canónicas, correr el lint ni indexar. El vault sigue siendo legible; el contrato ejecutable no corre." },
+      { "title": "La disciplina no es gratis", "text": "Los gates son fail-closed a propósito: bloquean cuando el corpus está sucio. Eso es lo que evita que la memoria se degrade, y también lo que se siente como fricción cuando llegas apurado." },
+      { "title": "No arregla un proyecto desordenado", "text": "Ordena cómo un agente accede al conocimiento. No genera el conocimiento que nadie escribió." },
+      { "title": "No conviene en sesiones cortas y desechables", "text": "Sobre un repo que ya conocés de memoria, el costo de arranque y cierre no se paga. Rinde cuando el contexto es grande, se cruza entre repos y hay que retomarlo semanas después." }
+    ]
+  }
+}

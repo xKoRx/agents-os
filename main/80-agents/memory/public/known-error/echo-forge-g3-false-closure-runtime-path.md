@@ -22,6 +22,7 @@ tags:
   - kind/known-error
   - project/echo-forge
   - area/echo
+  - scope/project
 ---
 
 # Echo Forge G3 — cierre falso sin path runtime

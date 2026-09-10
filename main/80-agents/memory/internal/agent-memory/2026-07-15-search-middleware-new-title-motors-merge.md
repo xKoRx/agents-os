@@ -2,7 +2,8 @@
 type: known_error
 scope: agent
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-09-09
+memory_state: archived
 area: "[[Meli]]"
 project: "[[Single View Layout — Migración al Polycard SDK]]"
 application: "[[search-middleware]]"
@@ -15,9 +16,9 @@ aliases:
   - legacy overlay label incompatibility
 confidence: verified
 source_session:
-load_policy: when_error_matches
+load_policy: manual
 indexable: false
-index_priority: high
+index_priority: never
 tags:
   - agent/internal
   - app/search-middleware

@@ -2,7 +2,8 @@
 type: agent_memory
 scope: project
 created: 2026-07-25
-updated: 2026-07-25
+updated: 2026-09-09
+memory_state: archived
 area: "[[Personal]]"
 project: "[[AGENTS OS - Hot Path y Cierre Silencioso]]"
 entities:
@@ -11,9 +12,9 @@ entities:
 related: []
 aliases: []
 confidence: verified
-load_policy: when_project_loaded
-indexable: true
-index_priority: high
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - agent/internal
   - area/personal

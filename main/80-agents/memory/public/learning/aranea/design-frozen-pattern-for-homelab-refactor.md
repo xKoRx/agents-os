@@ -36,6 +36,7 @@ tags:
   - kind/learning
   - priority/high
   - project/agents-os
+  - scope/project
 ---
 
 # 🎓 Design-Frozen Pattern for Homelab Refactors

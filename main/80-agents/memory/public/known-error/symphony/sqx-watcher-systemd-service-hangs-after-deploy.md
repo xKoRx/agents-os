@@ -25,7 +25,7 @@ index_priority: high
 tags:
   - app/sqx-watcher
   - area/echo
-  - kind/knownerror
+  - kind/known-error
   - project/echo-forge
   - scope/application
   - tool/strategyquant

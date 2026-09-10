@@ -7,7 +7,11 @@ tags:
   - project/echo-forge
   - topic/sqx-exporter
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-09-09
+index_priority: never
+indexable: false
+load_policy: manual
+memory_state: archived
 aliases:
   - sqx etapa 4 compilation and integration success
 ---

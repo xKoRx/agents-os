@@ -12,6 +12,7 @@ related:
   - "[[agents-os-skill-authoring]]"
 aliases:
   - human-first-document-authoring
+  - human-first-technical-writing
   - escritura para humanos
   - human-readable document authoring
   - cognitive technical writing

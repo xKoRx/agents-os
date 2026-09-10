@@ -24,6 +24,7 @@ tags:
   - area/echo
   - app/stager
   - tech/deployment
+  - scope/application
 ---
 
 # Stager Go no alimenta solo al worker Bash/systemd

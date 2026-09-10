@@ -3,7 +3,8 @@ type: agent_memory
 schema_version: 1
 scope: project
 created: "2026-09-01"
-updated: "2026-09-01"
+updated: 2026-09-09
+memory_state: archived
 area: "[[Echo]]"
 project: "[[Echo Forge - Arquitectura de Datos y Migración de Persistencia]]"
 application: "[[Symphony]]"
@@ -13,7 +14,7 @@ related:
   - "[[2026-09-01-release-version-authority]]"
 aliases: []
 confidence: high
-load_policy: when_echo_forge_loaded
+load_policy: manual
 indexable: false
 index_priority: never
 tags:

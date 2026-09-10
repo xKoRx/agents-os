@@ -12,6 +12,7 @@ related:
   - "[[signals-func-spec-authoring]]"
 aliases:
   - spec tecnica signals
+  - signals-tech-spec-authoring
   - spec técnica SIG
   - technical spec signals
 load_policy: manual
@@ -21,6 +22,7 @@ tags:
   - kind/skill
   - action/authoring
   - project/signals
+  - scope/project
 ---
 
 # signals-tech-spec-authoring — Specs técnicas del equipo Signals (SIG)

@@ -2,13 +2,14 @@
 type: agent_memory
 scope: project
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-09-09
+memory_state: archived
 project: "[[Echo Forge - Cierre de Etapa 4]]"
 entities:
   - "[[Echo Forge]]"
-load_policy: when_project_loaded
-indexable: true
-index_priority: high
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - kind/agent-memory
   - scope/project

@@ -6,6 +6,8 @@ scope: global
 created: 2026-07-02
 updated: 2026-08-10
 description: Maintain 30-resources/ as a compiled, incrementally-maintained LLM Wiki. Use when ingesting a source into resources, answering a question against the resources wiki, keeping a domain's 00-index.md and log.md current, filing a good answer back as a page, or running a wiki lint/health pass. Pages are canonical Sistema 2 docs created from templates; Graphify remains a derived index. Do not confuse the curated wiki (source of truth in 30-resources/) with Graphify's throwaway --wiki output.
+aliases:
+  - agents-os-resource-wiki
 load_policy: manual
 indexable: true
 index_priority: high
