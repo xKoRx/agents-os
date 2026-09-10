@@ -46,17 +46,17 @@ Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wid
 
 ## 📊 Estado actual
 
-- **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10):** SPEC/PLAN/TASKS en repo `specs/FEAT-CROSS-IDENTITY-BWC-E0/`. Baseline `91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Planning commit `c22fe218127c7e97fb40951ddcafc13d80ede152` (FF a `origin/master`). Sin source Go/SQL.
+- **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10 correction):** SPEC v1.1.0 cierra gaps A–D. Parent planning `c22fe218127c7e97fb40951ddcafc13d80ede152`. Correction SHA `45a59fca1058203df6baf20c3cfe1d000251159d` (FF `origin/master`). Sin source Go/SQL. No implementation complete.
 - **E-01:** certified S0; no reabrir.
-- **Contrato WHAT:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md`.
-- **Checklist:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md` (T01–T23).
+- **Contrato WHAT:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.0.
+- **Checklist:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md` (T01–T23; ACs AC-01…AC-17).
 - **PLAN.md local Echo:** puente de gobernanza; no copia esta nota.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` (fase E-03) | `91671f6f46ffa889a79aed0979cb3b4e5821ed33` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` @ `c22fe218127c7e97fb40951ddcafc13d80ede152` | TOP READY_FOR_MANAGER_REVIEW |
+| xKoRx/echo | `master` (fase E-03) | `c22fe218127c7e97fb40951ddcafc13d80ede152` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.0 @ `45a59fca1058203df6baf20c3cfe1d000251159d` | TOP READY_FOR_MANAGER_REVIEW |
 
 ## 🗺️ Source map (baseline `91671f6f`)
 
