@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: closed
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo — Live Platform V1]]"
@@ -24,7 +24,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-07
-updated: 2026-09-09
+updated: 2026-09-10
 cssclasses:
   - wide
 ---
@@ -34,7 +34,7 @@ cssclasses:
 %% Naming: Echo — E-01 Canonical SDK Foundation S0 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo — E-01 Canonical SDK Foundation S0
-> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Live Platform V1]] · **Repo:** `xKoRx/echo`
+> **Área:** [[Echo]] · **Estado:** closed · **Prioridad:** P1 · **Parent:** [[Echo — Live Platform V1]] · **Repo:** `xKoRx/echo`
 > Subproyecto de **implementación** de la fase E-01 / S0. No extrae ownership de S0 a un tercer producto. No es Integration. El contrato WHAT vive en el SPEC de Echo; esta nota es HOW / ORDER / GATES.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
@@ -46,6 +46,7 @@ Llevar E-01 desde el baseline Echo autorizado hasta **CONTRACT PASS** del módul
 
 ## 📊 Estado actual
 
+- **VERIFIED / CLOSED (2026-09-10):** E-01 S0 obtuvo `CONTRACT_PASS` mediante re-verificación independiente desde `08a0eb9a83813cda2acbd7be5232e9e0370e12ab`. Verification commit `91671f6f46ffa889a79aed0979cb3b4e5821ed33`, publicado fast-forward; `origin/master` coincide. Corpus G01–G36 y write-once PASS; gates test/race-cover/vet/gofmt PASS; coverage contracts `95.1%`, wire `95.6%`, fakeconsumer `95.5%`.
 - **IMPLEMENTACIÓN COMPLETA (NORMAL):** T01–T25 `[x]`; gates PASS; commit `f1070bec` sobre `18261429`. La certificación independiente queda pendiente de correcciones contractuales; `VERIFICATION.md` registra `CORRECTION_REQUIRED`.
 - **Corrección de frontera decidida (TOP 2026-09-08):** `IMPLEMENTATION_CORRECTION` — la autoridad canónica `C()` opera sobre bytes JSON válidos (opción B); el mirror de internals de `encoding/json` en `wire/canonicalize.go` se elimina vía WP-G (T26–T29), pendiente manager + NORMAL nuevo. Sin cambio de contrato público/frozen; corpus y digests intactos. Estado S0 sigue `implementation complete / verification pending`.
 - **WP-G implementado (NORMAL 2026-09-08):** T26–T29 completados en commit `f403e6d7` sobre `2be12e23`, publicado fast-forward a `origin/master`; byte-gate raw estricto, Go-value delegado a `encoding/json`, regresiones de frontera y gates requeridos PASS. Estado S0 sigue `implementation complete / verification pending`.
@@ -225,6 +226,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-10 (VERIFIER INDEPENDIENTE — cierre):** `CONTRACT_PASS`. Implementation `08a0eb9a83813cda2acbd7be5232e9e0370e12ab`; verification `91671f6f46ffa889a79aed0979cb3b4e5821ed33`; `origin/master` coincide y el worktree de verificación quedó limpio. Findings requested keys, metric grammar, capabilities, record digest y supersession PASS; FR-1…FR-5 PASS; G01–G36, G27/G28/G30/G32, write-once y schema drift PASS/NONE. E-01 queda `verified / closed`.
 
 - **2026-09-09 (VERIFIER INDEPENDIENTE — re-verificación):** `BLOCKED` antes de source review y gates. El baseline requerido no era reproducible: `HEAD` quedó en `bd681814b9ec697837360b840d55f659f195ca13`, `origin/master` resolvió a `08a0eb9a83813cda2acbd7be5232e9e0370e12ab` y el worktree estaba dirty con cambios productivos posteriores. Se preservaron todos los cambios; no hubo commit/push de verificación. E-01 queda abierto.
 
