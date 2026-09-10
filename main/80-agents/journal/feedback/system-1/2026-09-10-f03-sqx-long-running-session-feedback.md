@@ -8,12 +8,13 @@ area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 entities:
   - "[[AGENTS OS]]"
-related: []
+related:
+  - "[[Echo Forge — F-03 SQX long-running]]"
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_surface: "[[ZCode]]"
+agent_model: builtin:zai-coding-plan/GLM-5.3-Flash
+agent_run: "[[2026-09-10-zcode-glm-5.3-flash-f03-sqx-long-running]]"
+session_goal: "Implementar T1.1–T1.8 de F-03 SQX long-running en symphony y cerrar sesión."
 source_session:
 confidence: high
 load_policy: manual
