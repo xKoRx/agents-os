@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: review
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-10
 due:
-progress: 0
+progress: 100
 repo: xKoRx/symphony
 jira:
 prs:
@@ -31,7 +31,7 @@ updated: "2026-09-10"
 %% Naming: Echo Forge — F-04 Magic allocation, version seal and handoff es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo Forge — F-04 Magic allocation, version seal and handoff
-> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo Forge — Factory V2 Completion]] · **Repo:** `xKoRx/symphony`
+> **Área:** [[Echo]] · **Estado:** review · **Prioridad:** P1 · **Parent:** [[Echo Forge — Factory V2 Completion]] · **Repo:** `xKoRx/symphony`
 > Subproyecto de implementación de la fase F-04. Contrato: [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]].
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
@@ -43,7 +43,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 ## 📊 Estado actual
 
-- **TOP READY (2026-09-10).** SPEC persistida. TASKS T1.1–T1.18 atómicas. **NORMAL no autorizado.**
+- **READY FOR MANAGER REVIEW (2026-09-10).** T1.1–T1.18 implementadas y committeadas en `feature/f04-magic-version-handoff` (5 commits, HEAD `24b807f`, base `382f4ba`, pusheada). SOURCE+CONTRACT+CONCURRENCY+MIGRATION PASS. `PHYSICAL: BLOCKED — CC_MISSING_OWNER_GATE` (no bloquea implementación). INTEGRATION espera E-04. Worktree CLEAN.
 - Baseline Symphony `382f4ba5d417371f778e21619ed9eb72624a23f4` = `origin/master`, worktree CLEAN.
 - S0 `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33` (impl `08a0eb9a`).
 - CC: **`CC_MISSING_OWNER_GATE`**. E-04: To Do (CONTRACT con `fakeconsumer`).
@@ -148,9 +148,9 @@ F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E
 > - [x] T1.13 HandoffIngress + fakeconsumer CONTRACT #owner/agent #type/dev #area/echo
 > - [x] T1.14 delivery states; no re-POST post-commit #owner/agent #type/dev #area/echo
 > - [x] T1.15 corpus G04–G10 G19–G25 G22 #owner/agent #type/dev #area/echo
-> - [/] T1.16 concurrent allocation same/different identity #owner/agent #type/dev #area/echo
-> - [/] T1.17 BWC no backfill 888111; brownfield sin fila magic #owner/agent #type/dev #area/echo
-> - [/] T1.18 SOURCE greps ownership/latest/ranking/HashIdentity-on-S0 #owner/agent #type/dev #area/echo
+> - [x] T1.16 concurrent allocation same/different identity #owner/agent #type/dev #area/echo
+> - [x] T1.17 BWC no backfill 888111; brownfield sin fila magic #owner/agent #type/dev #area/echo
+> - [x] T1.18 SOURCE greps ownership/latest/ranking/HashIdentity-on-S0 #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -365,6 +365,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 ## 📆 Bitácora
 
 - **2026-09-10** — TOP persistió SPEC y este subproyecto. Baseline `382f4ba`. S0 `91671f6f`. CC_MISSING_OWNER_GATE. Migration 015. NORMAL no autorizado.
+- **2026-09-10 (cierre NORMAL)** — Sello/readback/seal/handoff implementados: `sqx/adapters/magic-readback` (XML+MQ5 parsers fail-closed), `capabilities.VerifyMagicReadback`+`VerifyCompiledArtifactForSeal` (bytes reales, 0-errors), `domain` recetas S0 (EffectiveInputs/RuntimeContext/ExecutionManifest/DependenciesDigest vía `ExactInputRefsDigest`, StrategyVersionRef por recompute), store `SealStrategyVersion` write-once (replay/conflict), `core/forge` producer `BuildHandoffManifest` (Validate S0 PASS, membership estructural, G22 `HandoffMembersForDecision`), migration 015 con UNIQUE(decision_ref,version_ref) G24, stores handoff_manifests/handoff_deliveries, `capabilities.DeliverHandoff` (estados + UNKNOWN_RECEIPT sin re-POST + attempts), `adapters/echo-handoff` fakeconsumer CONTRACT (201/200/409/G24/non-effects/corpus G06-G07-G20-G21). Race verde en todos los paquetes F-04. Fixture de benchmark `specs/.../phase4_performance.json` lo reescriben tests ajenos — restaurado, worktree CLEAN.
 - **2026-09-10 (sesión NORMAL)** — Branch `feature/f04-magic-version-handoff` (nombre del briefing; difiere del registrado arriba). T1.1–T1.4 committeados: pin S0 resuelto por SSH directo (`v0.0.0-20260910031519-91671f6f46ff`), migración 015 + runner + tests fresh/brownfield/down/restart, allocator CAS SELECT-then-INSERT con replay/colisión/reservados/exhaustión N=32, `GateMagicCandidateSource` = producción (`CC_MISSING_OWNER_GATE`), concurrencia same/distinct con `-race` verde. Nota: 4 tests pre-existentes fallan en baseline (`TestUpsertStrategyV2_V0V1V2Coexistence`, `TestControlPlane_AdoptStrategyV1ConcurrentFilenameVariantsConverge`, `TestRegisterStrategy_LegacyRollbackTargetsOnlyV0`, `TestControlPlane_AdoptStrategyV1UnexpectedUniqueFailsWithoutPoisonedRead`) — set idéntico en baseline y branch, sin regresión F-04. Delegación MiniMax bloqueada por plan limit; NORMAL ejecutó directo.
 
 ## 🧭 Decisiones
