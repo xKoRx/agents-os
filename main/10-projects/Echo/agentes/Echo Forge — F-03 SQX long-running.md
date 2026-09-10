@@ -118,15 +118,15 @@ B1B/B2 CLOSED freeze (principio only). Independiente de F-01/F-02/E-01. No S0.
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
-> - [ ] T1.1 genericActivityOptions + duplicados Generic/Group → ceiling MaxInt64ns−1s + ScheduleToClose 0 #owner/agent #type/dev #area/echo
+> - [x] T1.1 genericActivityOptions + duplicados Generic/Group → ceiling MaxInt64ns−1s + ScheduleToClose 0 #owner/agent #type/dev #area/echo
 > - [-] T1.2-adaptive AdaptiveSQXWorkflow INACTIVE/DEPRECATED — NO CHANGE #owner/agent #type/dev #area/echo
-> - [ ] T1.2 legado SQXJobWorkflow/SQXGroupWorkflow 10d/20d (`sqx-worker-minio`) → misma regla T1.1 #owner/agent #type/dev #area/echo
-> - [ ] T1.3 Group child WorkflowRunTimeout 30d → 0; ParentClosePolicy REQUEST_CANCEL #owner/agent #type/dev #area/echo
-> - [ ] T1.4 WFMDurableExportActivity WithTimeout 10m → eliminar #owner/agent #type/dev #area/echo
-> - [ ] T1.5 ensureApplyDeadline 10m → eliminar #owner/agent #type/dev #area/echo
-> - [ ] T1.6 cmd-executor Canceled≠Timeout + process-tree propio (padre+hijo+nieto); New() sin WithTimeout #owner/agent #type/dev #area/echo
-> - [ ] T1.7 HeartbeatDetails elapsed en project + duration_ms hot path executor-sqx #owner/agent #type/dev #area/echo
-> - [ ] T1.8 Tests SOURCE/CONTRACT/CANCEL/LIVENESS + no-regresión F-01/F-02/B1/B2 #owner/agent #type/dev #area/echo
+> - [x] T1.2 legado SQXJobWorkflow/SQXGroupWorkflow 10d/20d (`sqx-worker-minio`) → misma regla T1.1 #owner/agent #type/dev #area/echo
+> - [x] T1.3 Group child WorkflowRunTimeout 30d → 0; ParentClosePolicy REQUEST_CANCEL #owner/agent #type/dev #area/echo
+> - [x] T1.4 WFMDurableExportActivity WithTimeout 10m → eliminar #owner/agent #type/dev #area/echo
+> - [x] T1.5 ensureApplyDeadline 10m → eliminar #owner/agent #type/dev #area/echo
+> - [x] T1.6 cmd-executor Canceled≠Timeout + process-tree propio (padre+hijo+nieto); New() sin WithTimeout #owner/agent #type/dev #area/echo
+> - [x] T1.7 HeartbeatDetails elapsed en project + duration_ms hot path executor-sqx #owner/agent #type/dev #area/echo
+> - [x] T1.8 Tests SOURCE/CONTRACT/CANCEL/LIVENESS + no-regresión F-01/F-02/B1/B2 #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -340,6 +340,7 @@ El bloque de despacho no sustituye la SPEC ni autoriza ejecución.
 
 ## 📆 Bitácora
 
+- **2026-09-09** — T1.1–T1.8 ejecutados en `feature/f03-sqx-long-running` (`a382470`, pushed). Ceiling local en `sqx/workflows` + duplicado legado; duplicados Generic/Group consolidados en `genericActivityOptions()`; child Group con helper `groupChildWorkflowOptions` (REQUEST_CANCEL + sin run timeout); WFM/apply sin 10m; `classifyError` Canceled→`ErrorTypeCanceled` no-transiente (nuevo en domain); process-group Setpgid + SIGTERM/SIGKILL `-pgid` en `process_nonwindows.go` (Windows intacto); project heartbeat details; histograma `duration_ms` en executor-sqx. Tests: options ceiling exacto, SOURCE certification LIVE-scoped (Adaptive excluido), cancel≠timeout, process-tree parent+child+grandchild + sibling vivo, heartbeat details. `go test`/`-race`/`vet` verdes en paquetes tocados; fallos pre-existentes de entorno idénticos a baseline (verificados por diff de sets). PHYSICAL BLOCKED: sin lab SQX (Hera/Zeus) en este host → `READY FOR MANAGER REVIEW — PHYSICAL BLOCKED`. Delegación a subagentes no disponible (límite Token Plan): ejecutado por agente primario, sin desviaciones del contrato frozen salvo actualización del test que pineaba heartbeat string estático (contrato T1.7 lo reemplaza).
 - **2026-09-08** — TOP diseñó F-03 contra symphony `e50cb7e`. SPEC + TASKS persistidas. `DATABASE MIGRATION: NONE`. NORMAL no autorizado.
 - **2026-09-08** — TOP CORRECTION C1–C3: ceiling = `MaxInt64ns−1s` (platform safety, no SLA); Adaptive `INACTIVE/DEPRECATED — NO CHANGE`; process-tree parent+child+grandchild + `Canceled`≠Timeout. TASKS: T1.2-adaptive `[-]`; T1.2 legado only; T1.6 process-tree. `NO NORMAL IMPLEMENTATION AUTHORIZED YET`.
 
