@@ -47,14 +47,14 @@ tags:
 
 %% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
 
-- **Correctness:**
-- **Autonomy:**
-- **Efficiency:**
-- **Tool use:**
-- **Overall:**
+- **Correctness:** 5/5 — los cinco findings y sus gates quedaron PASS, con derivación independiente de goldens.
+- **Autonomy:** 5/5 — se preservó el árbol dirty previo y se trabajó desde un worktree limpio del baseline exigido.
+- **Efficiency:** 4/5 — hubo una corrección mecánica adicional del corpus detectada por la derivación independiente.
+- **Tool use:** 5/5 — scope gate, schema drift y verificación post-push quedaron evidenciados.
+- **Overall:** 5/5 — corrección publicada sin ampliar alcance.
 
 ## Resultado
 
-- **Outcome:** Corrección completada, commit único y publicada en `master`.
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+- **Outcome:** Corrección completada, commit único y publicada en `master`; estado técnico sigue `implementation complete / verification pending`.
+- **Rework posterior:** Ninguno requerido por el usuario; la verificación independiente siguiente queda fuera de esta sesión.
+- **Aprendizaje para comparar herramientas:** La derivación independiente detectó un error mecánico de fixture antes del commit, por lo que debe conservarse como gate de corpus.
