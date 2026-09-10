@@ -4,11 +4,13 @@ schema_version: 1
 scope: session
 created: "2026-09-10"
 updated: "2026-09-10"
-area:
-project:
-application:
-entities: []
-related: []
+area: "[[Echo]]"
+project: "[[Echo Forge — F-03 SQX long-running]]"
+application: "[[xKoRx/symphony]]"
+entities:
+  - "[[Echo Forge — F-03 SQX long-running]]"
+related:
+  - "[[2026-09-10-f03-sqx-long-running-summary]]"
 aliases: []
 confidence: verified
 source_session:
