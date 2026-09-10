@@ -47,7 +47,7 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 - **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED. F-04 TOP READY.** F-03 PASS/CLOSED (2026-09-10): commit final `382f4ba5d417371f778e21619ed9eb72624a23f4`. F-04 SPEC+TASKS persistidas 2026-09-10; CC=`CC_MISSING_OWNER_GATE`; S0 pin `91671f6f`; **NORMAL no autorizado.** F-05 pendiente.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
-- **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 siguiente fase (sin SPEC materializada todavía); F-05 pendiente.
+- **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 TOP READY (NORMAL no autorizado); F-05 pendiente.
 - **Base observada:** Symphony `master`=`origin/master`=`382f4ba5d417371f778e21619ed9eb72624a23f4`; merge-base previo F-03=`e50cb7e`; worktree CLEAN. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
 - **Dependencia Echo:** F-01/F-02/F-03 independientes de S0. F-04 consume pin [[Echo — Live Platform V1]] E-01. Catálogo CC owner antes de allocation real.
 
@@ -55,11 +55,11 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `master` (F-03 integrada) | `e50cb7ea47e03ff0cff1930f09f2e0c0fba00b48` | F-03: este padre | F-03: [[Echo Forge — F-03 SQX Long-Running Contract]] | **F-01 CLOSED**; **F-02 CLOSED**; **F-03 PASS / CLOSED `382f4ba5d417371f778e21619ed9eb72624a23f4` (ff-only, pushed)**; F-04 siguiente; F-05 pendiente |
+| xKoRx/symphony | `master` (F-03 integrada); F-04 branch planeada `feature/f04-magic-allocation-seal-handoff` | `382f4ba5d417371f778e21619ed9eb72624a23f4` | F-04: este padre | F-04: [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **F-01 CLOSED**; **F-02 CLOSED**; **F-03 PASS / CLOSED `382f4ba`**; **F-04 TOP READY / NORMAL no autorizado**; F-05 pendiente |
 
 ## 🧩 Subproyectos
 
-Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
+Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). [[Echo Forge — F-04 Magic allocation, version seal and handoff]] (TOP READY). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
 
 ## ✅ Tareas
 
@@ -71,7 +71,7 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > - [x] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
-> - [ ] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
+> - [/] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
 > - [ ] F-05 Cohesive release, physical cert and FULL golden #owner/agent #type/dev #area/echo
 
 ```dataviewjs
@@ -167,7 +167,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### F-04 Magic allocation, version seal and handoff
 
-- **ID / status / size:** F-04 · To Do · LARGE (pipeline único; sub-SPECs allocation→stamp→seal→adapter)
+- **ID / status / size:** F-04 · TOP READY · LARGE (pipeline único; milestones internos allocation→stamp→seal→adapter; no F-04A/F-04B)
 - **Objective:** Tras pin S0: allocation durable de magic, stamp/readback, effective inputs exactos, seal de StrategyVersion, productor `HandoffManifestV1`, adapter de aplicación Forge→Echo.
 - **Capability unlocked:** paquete exportable que Echo puede ingerir sin latest/folder query.
 - **Product value:** puente real Forge→Echo; Forge sigue dueño de magic y membership.
@@ -184,7 +184,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Done when:** manifest fixture idéntico lo acepta el consumer del mismo release; no side-effects Echo; CC bloquea allocation real si falta.
 - **Unlocks:** F-05 golden de handoff; E-04 puede dejar fakes.
 - **Accepted debt:** HashIdentity legacy; attach Echo no es de esta fase.
-- **Status:** CLOSED. **Next:** F-04 es la siguiente fase; no materializar su SPEC en este cierre.
+- **Status:** TOP READY. SPEC [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]. Hijo [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. CC=`CC_MISSING_OWNER_GATE`. Migration 015. **NORMAL no autorizado.**
 
 ### F-05 Cohesive release, physical cert and FULL golden
 
@@ -222,6 +222,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - **2026-09-08** — **F-02 PASS/CLOSED.** Implementación Codex `c3b7ede` integrada a `master` por fast-forward only y pushed; G1 cerrado por orden del manager. Limpieza del dirty tree local: 5 archivos restaurados (config ejemplo, fixtures regenerables de specs cerradas, índice SPECS.md, workspace editorial), 4 RCA/CHANGE de la campaña C3 eliminados (materializados en Agents OS/source o superseded por frozen V2: registro Adaptive ya removido, `ParseCFXConfiguredPeriod` en source, orphan MT5 en B2/V3, execution model V1 superseded por Slot Pool V2), y `deploy/manifest.json 0.2.96` rescatado como commit separado `e50cb7e`. Backup safety temporal en `/tmp`, no autoridad. F-03–F-05 siguen To Do, no despachados.
 - **2026-09-08** — TOP F-03 persistió SPEC [[Echo Forge — F-03 SQX Long-Running Contract]] e hijo [[Echo Forge — F-03 SQX long-running]]. Baseline symphony `e50cb7e`. `DATABASE MIGRATION: NONE`. NORMAL no autorizado.
 - **2026-09-08** — TOP CORRECTION F-03 C1–C3: ceiling `MaxInt64ns−1s`; Adaptive DEPRECATED no-touch; process-tree obligatorio. NORMAL sigue no autorizado.
+- **2026-09-10** — TOP F-04 persistió SPEC [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] e hijo [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. Baseline `382f4ba`. S0 `91671f6f`. CC_MISSING_OWNER_GATE. Migration 015. NORMAL no autorizado.
 
 ## 🧭 Decisiones
 
@@ -238,6 +239,8 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - [[Echo Forge — F-02 Finalist Model V2 Contract]]
 - [[Echo Forge — F-03 SQX long-running]]
 - [[Echo Forge — F-03 SQX Long-Running Contract]]
+- [[Echo Forge — F-04 Magic allocation, version seal and handoff]]
+- [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]
 - [[Echo — Live Platform V1]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
 - [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]

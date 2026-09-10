@@ -96,3 +96,7 @@ Creado [[Echo Forge — F-03 SQX Long-Running Contract]] y subproyecto [[Echo Fo
 ## [2026-09-08] ingest | Echo Forge F-03 TOP correction C1–C3
 
 Corrección in-place: ceiling `MaxInt64ns−1s` como platform safety; Adaptive `INACTIVE/DEPRECATED — NO CHANGE`; process-tree parent+child+grandchild y `Canceled`≠Timeout. Change log [[2026-09-08-echo-forge-f03-top-correction]]. Graphify externo no se refresca.
+
+## [2026-09-10] ingest | Echo Forge F-04 Magic allocation, version seal and handoff
+
+Creado [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] y subproyecto [[Echo Forge — F-04 Magic allocation, version seal and handoff]] hijo de [[Echo Forge — Factory V2 Completion]]. Change log [[2026-09-10-echo-forge-f04-magic-seal-handoff-spec]]. Graphify externo no se refresca.
