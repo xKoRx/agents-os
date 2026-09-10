@@ -46,17 +46,17 @@ Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wid
 
 ## 📊 Estado actual
 
-- **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10 correction):** SPEC v1.1.0 cierra gaps A–D. Parent planning `c22fe218127c7e97fb40951ddcafc13d80ede152`. Correction SHA `45a59fca1058203df6baf20c3cfe1d000251159d` (FF `origin/master`). Sin source Go/SQL. No implementation complete.
+- **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10 relational integrity):** SPEC v1.1.1 cierra UNIQUE + FK compuestos Mapping→Version→Promotion. Parent `45a59fca1058203df6baf20c3cfe1d000251159d`. Correction SHA `576bf1f49f116826a8141126fbb520b80a7d1a3c` (FF `origin/master`). Sin source Go/SQL. No implementation complete. No closed.
 - **E-01:** certified S0; no reabrir.
-- **Contrato WHAT:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.0.
-- **Checklist:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md` (T01–T23; ACs AC-01…AC-17).
+- **Contrato WHAT:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1.
+- **Checklist:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md` (T01–T23; ACs AC-01…AC-18). T08/T10/T12/T13 cierran constraints y INSERT SQL directo.
 - **PLAN.md local Echo:** puente de gobernanza; no copia esta nota.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` (fase E-03) | `c22fe218127c7e97fb40951ddcafc13d80ede152` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.0 @ `45a59fca1058203df6baf20c3cfe1d000251159d` | TOP READY_FOR_MANAGER_REVIEW |
+| xKoRx/echo | `master` (fase E-03) | `c22fe218127c7e97fb40951ddcafc13d80ede152` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 @ `576bf1f49f116826a8141126fbb520b80a7d1a3c` | TOP READY_FOR_MANAGER_REVIEW |
 
 ## 🗺️ Source map (baseline planning `c22fe218`; source físico = E-01 certified `91671f6f`)
 
@@ -101,8 +101,8 @@ Exacto PLAN.md. Prohibido contracts S0, Gateway ingestion, Symphony, allocator, 
 ## 📦 Work packages
 
 - **WP-A Layout EA** T01–T07. v0 medido; v1 SPEC §10.6 (cookie 9, LE, CRC IEEE, framing); MT4 no int64.
-- **WP-B Schema 061** T08–T10, T18, T19, T21. Widen V2_CANONICAL techo 64; no `active_positions`; down umbral 64; FKs compuestas.
-- **WP-C Stores** T11–T15, T22. Mapping PK `(ns, canonical)`; Version PK `(ns, version_ref)`.
+- **WP-B Schema 061** T08–T10, T18, T19, T21. Widen V2_CANONICAL techo 64; no `active_positions`; down umbral 64; UNIQUE identity tuple + FK compuestos; `15_identity_tuple_fk.sql` INSERT directo.
+- **WP-C Stores** T11–T15, T22. Mapping PK `(ns, canonical)` + UNIQUE identity tuple; Version PK `(ns, version_ref)` + FK 3-col; Promotion FK 4-col. Repository no es la única autoridad.
 - **WP-D Wire** T16–T17, T14. String decimal; ticket 1..MaxInt64; G20/G21.
 - **WP-E Cert** T20, T23. No allocator; AC-01…AC-17.
 
@@ -126,7 +126,7 @@ Paths nuevos para identity/version/promotion. Dual-read TradeMap y pipe. Legacy 
 
 ## Test strategy
 
-SPEC AC-01…AC-17 mapeados 1:1 a TASKS. G19–G21 S0 se reusan como inputs de persistencia, no se regeneran. PHYSICAL: binarios `FileWriteStruct` + PG real. INTEGRATION: repos. SOURCE: codec/grep.
+SPEC AC-01…AC-18 mapeados 1:1 a TASKS. G19–G21 S0 se reusan como inputs de persistencia, no se regeneran. PHYSICAL: binarios `FileWriteStruct` + PG real + INSERT SQL directo de identidad. INTEGRATION: repos. SOURCE: codec/grep. Schema, no mock.
 
 ## Certification gates (NORMAL)
 
@@ -161,11 +161,11 @@ Ninguno material para arrancar NORMAL tras aceptación manager. Graphify del rep
 
 ## Handoff requirements
 
-NORMAL trabaja contra `45a59fca` + SPEC v1.1.0 + TASKS **después** de aceptación manager. Dirty foráneo del checkout habitual se preserva (worktree). Un commit de implementación aparte de los commits SDD TOP.
+NORMAL trabaja contra `576bf1f4` + SPEC v1.1.1 + TASKS **después** de aceptación manager. Dirty foráneo del checkout habitual se preserva (worktree). Un commit de implementación aparte de los commits SDD TOP.
 
 ## Closure conditions
 
-T01–T23 `[x]`; gates T23 PASS; allowed files respetados; AC-01…AC-17 cubiertos; no allocator; layouts v0 addressable; 061 idempotente; certificación en `VERIFICATION.md` (fuera de este TOP).
+T01–T23 `[x]`; gates T23 PASS; allowed files respetados; AC-01…AC-18 cubiertos; no allocator; layouts v0 addressable; 061 idempotente; FKs de identidad DB-enforced; certificación en `VERIFICATION.md` (fuera de este TOP).
 
 ## 🧩 Subproyectos
 
