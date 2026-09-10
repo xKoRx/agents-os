@@ -46,15 +46,15 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 - **PREPARADO + E-01 CLOSED + E-03 TOP READY_FOR_MANAGER_REVIEW (correction).** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1.
 - **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC.
-- **Base observada:** `origin/master` `45a59fca1058203df6baf20c3cfe1d000251159d` (E-03 planning correction; parent `c22fe218`). E-01 certified S0 permanece `91671f6f`.
+- **Base observada:** `origin/master` `576bf1f49f116826a8141126fbb520b80a7d1a3c` (E-03 relational integrity; parent `45a59fca`). E-01 certified S0 permanece `91671f6f`.
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
-- **E-03:** planning correction TOP en [[Echo — E-03 Identity and BWC Foundation E0]]; SPEC v1.1.0 `45a59fca`. READY_FOR_MANAGER_REVIEW. No implementación.
+- **E-03:** planning correction TOP en [[Echo — E-03 Identity and BWC Foundation E0]]; SPEC v1.1.1 `576bf1f4`. READY_FOR_MANAGER_REVIEW. No implementación.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 planning: `45a59fca1058203df6baf20c3cfe1d000251159d` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.0 | E-01 CLOSED · E-03 TOP READY_FOR_MANAGER_REVIEW |
+| xKoRx/echo | `master` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 planning: `576bf1f49f116826a8141126fbb520b80a7d1a3c` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 | E-01 CLOSED · E-03 TOP READY_FOR_MANAGER_REVIEW |
 
 ## 🧩 Subproyectos
 
@@ -373,7 +373,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 ## 📆 Bitácora
 
 - **2026-09-10** — Enlace mínimo al subproyecto de implementación [[Echo — E-03 Identity and BWC Foundation E0]]. Baseline E-03 = E-01 certified `91671f6f`. No se reescribió el roadmap.
-- **2026-09-10** — E-03 planning correction `45a59fca` (parent `c22fe218`) listo para revisión manager. Puente a Review. Sin implementación.
+- **2026-09-10** — E-03 relational integrity `576bf1f4` (parent `45a59fca`) listo para revisión manager. UNIQUE + composite FK Mapping→Version→Promotion. Puente permanece Review. Sin implementación.
 - **2026-09-07** — Reparentado a [[Echo — Producto Integrado]], `owner: agent`. E2 partido en E-06…E-09. E-02 extraído como H1. Tareas `#owner/me` de 4 ítems supersedidas. S0 permanece aquí.
 - **2026-09-07** — Enlace mínimo al subproyecto de implementación [[Echo — E-01 Canonical SDK Foundation S0]]. Baseline E-01 fijado `04c16bd2`. No se reescribió el roadmap.
 

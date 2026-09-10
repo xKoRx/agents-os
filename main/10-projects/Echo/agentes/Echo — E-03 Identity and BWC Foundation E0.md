@@ -104,7 +104,7 @@ Exacto PLAN.md. Prohibido contracts S0, Gateway ingestion, Symphony, allocator, 
 - **WP-B Schema 061** T08–T10, T18, T19, T21. Widen V2_CANONICAL techo 64; no `active_positions`; down umbral 64; UNIQUE identity tuple + FK compuestos; `15_identity_tuple_fk.sql` INSERT directo.
 - **WP-C Stores** T11–T15, T22. Mapping PK `(ns, canonical)` + UNIQUE identity tuple; Version PK `(ns, version_ref)` + FK 3-col; Promotion FK 4-col. Repository no es la única autoridad.
 - **WP-D Wire** T16–T17, T14. String decimal; ticket 1..MaxInt64; G20/G21.
-- **WP-E Cert** T20, T23. No allocator; AC-01…AC-17.
+- **WP-E Cert** T20, T23. No allocator; AC-01…AC-18.
 
 ## TOP / NORMAL boundaries
 
@@ -179,7 +179,7 @@ _No aplica — hijo de implementación de E-03; no crea Integration ni más hijo
 > - [ ] WP-B Schema 061 widen/protection/migration gates #owner/agent #type/dev #area/echo
 > - [ ] WP-C Stores identity/version/promotion/aliases #owner/agent #type/dev #area/echo
 > - [ ] WP-D Wire string magic + ticket 1..MaxInt64 #owner/agent #type/dev #area/echo
-> - [ ] WP-E Certification AC-01…AC-17 + no allocator #owner/agent #type/dev #area/echo
+> - [ ] WP-E Certification AC-01…AC-18 + no allocator #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -200,6 +200,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 - **2026-09-10 (TOP)** — Discovery en worktree limpio `origin/master`=`91671f6f`. SPEC/PLAN/TASKS `FEAT-CROSS-IDENTITY-BWC-E0`. Decisiones: mapping V2 separado del descriptor Lab; 1024 bytes freeze; magic bigint + string wire; TradeMap v0 medido/v1 header; 061 transaccional; MT4 no int64; RuntimeBinding table diferida a E-06. Planning SHA `c22fe218127c7e97fb40951ddcafc13d80ede152` publicado FF a `origin/master`.
 - **2026-09-10 (TOP correction)** — Gaps A–D cerrados en SPEC v1.1.0. Cookie `ECHO-TMAP` = 9 bytes; v1 §10.6 LE+CRC-32/IEEE; ticket Option 2 `1..MaxInt64`; Version PK `(registry_namespace, version_ref)` + FK mapping; `active_positions.strategy_id` DEFERRED. SHA `45a59fca1058203df6baf20c3cfe1d000251159d`. Estado `READY_FOR_MANAGER_REVIEW`. No NORMAL.
+- **2026-09-10 (TOP relational integrity)** — CHECK cross-table reemplazado por UNIQUE + FK compuestos. Mapping UNIQUE identity tuple; Version FK 3-col + UNIQUE 4-col; Promotion FK Version 4-col + FK mapping 3-col. T08/T10/T12/T13. SHA `576bf1f49f116826a8141126fbb520b80a7d1a3c`. Estado `READY_FOR_MANAGER_REVIEW`. No implementation complete. No closed. No NORMAL.
 
 ## 🧭 Decisiones (ejecución, no semántica nueva)
 
@@ -207,7 +208,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - `v3/sdk/contracts` es autoridad de recetas, no de schema PG.
 - Cookie v1 `ECHO-TMAP` **9 bytes** (`45 43 48 4F 2D 54 4D 41 50`); header 32; CRC-32/IEEE LE sobre Header\|\|Records; v0 = ausencia de cookie + múltiplo de sizeof medido.
 - Ticket Echo: `1..MaxInt64`; no full MT5 `ulong`; PG `bigint`; Go `int64`.
-- Mapping PK `(registry_namespace, canonical_strategy_id)`; Version PK `(registry_namespace, version_ref)`; Promotion FKs a ambas. `StrategyVersionRef` S0 sin namespace.
+- Mapping PK `(registry_namespace, canonical_strategy_id)`; UNIQUEs `(ns, strategy_ref)`, `(ns, magic)`, `uq_strategy_identity_mappings_identity_tuple`. Version PK `(registry_namespace, version_ref)`; FK `fk_strategy_versions_identity_tuple`; UNIQUE `uq_strategy_versions_identity_tuple`. Promotion FK `fk_promotion_records_version_identity` + FK mapping identity. `StrategyVersionRef` S0 sin namespace. Repository no es la única autoridad.
 - `active_positions.strategy_id varchar(50)` DEFERRED a E-06.
 - SQL eager; EA lazy-on-open con backup.
 - Down 061 fail-closed si `octet_length > 64` en columnas ensanchadas desde 64.
