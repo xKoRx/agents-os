@@ -16,12 +16,14 @@ related:
   - "[[2026-09-10-f03-sqx-long-running-summary]]"
   - "[[2026-09-10-echo-forge-f03-physical-certification-session-feedback]]"
   - "[[2026-09-10-f03-sqx-long-running-session-feedback]]"
+  - "[[2026-09-10-echo-forge-f03-integrate-close-session-feedback]]"
 aliases: []
 confidence: verified
 source_session:
 source_feedbacks:
   - "[[2026-09-10-echo-forge-f03-physical-certification-session-feedback]]"
   - "[[2026-09-10-f03-sqx-long-running-session-feedback]]"
+  - "[[2026-09-10-echo-forge-f03-integrate-close-session-feedback]]"
 share_scope: local
 load_policy: manual
 indexable: false
@@ -56,6 +58,7 @@ tags:
 ## Resolución aplicada
 
 - `master` fue actualizado exactamente a `origin/master`, integrado con `git merge --ff-only feature/f03-sqx-long-running`, verificado en HEAD exacto `382f4ba5d417371f778e21619ed9eb72624a23f4` y pushed. Agents OS quedó en `PASS / CLOSED`; F-04 se mantiene como siguiente fase sin SPEC materializada.
+- Graphify rebuild intentado tras los updates; quedó `degraded` por deuda de lint y drift de versión, preservando el último índice válido. Se registró feedback separado; no bloquea F-03 ni el estado Git.
 
 ## Validación
 
