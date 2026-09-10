@@ -10,7 +10,7 @@ parent: "[[SIG-610 — Seguimiento de inactivación]]"
 sprint:
 start: 2026-09-08
 due: 2026-09-10
-progress: 98
+progress: 99
 repo: https://github.com/melisource/fury_rio-playmaker
 jira: SIG-610
 prs: https://github.com/melisource/fury_rio-playmaker/pull/1144
@@ -24,7 +24,7 @@ tags:
   - application/rio-playmaker
   - ticket/sig-610
 created: 2026-09-08
-updated: 2026-09-09
+updated: 2026-09-10
 ---
 
 # SIG-610 — ComponentRun de inactivación en Playmaker
@@ -40,14 +40,16 @@ El cambio es deliberadamente backend-only y pequeño: no mezcla los flujos `DEPL
 
 ## 📊 Estado actual
 
-- **Estado del plan:** `ready_for_owner_review`; la validación runtime cerró correctamente con el mismo artefacto en los scopes web y consumer. El PR #1144 está abierto, con workflow verde y pendiente de aceptación humana.
-- **Código:** rama `feature/sig-610-inactivate-component-run` publicada en `888b014e5`; el fallback especulativo de “usar el único run” fue revertido y la correlación vuelve a ser estricta por `executionId + componentId`. History productivo no se modifica.
+- **Estado del plan:** `ready_for_owner_review`; la validación runtime cerró correctamente con el mismo artefacto en los scopes web y consumer. El PR #1144 está abierto, con CI, coverage, dependencias, análisis estático y workflow verdes, pendiente de aceptación humana.
+- **Código:** rama `feature/sig-610-inactivate-component-run` publicada en `1c2601f96`; el fallback especulativo de “usar el único run” fue revertido y la correlación vuelve a ser estricta por `executionId + componentId`. History productivo no se modifica.
+- **Versión de prueba actual:** [`0.0.7-test-sig-610-dev-0`](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.7-test-sig-610-dev-0) terminó `FINISHED` desde `feature/sig-610-inactivate-component-run`; el tag remoto apunta exactamente a `1c2601f96d582fa5058b5f84c41395e10113d412`.
 - **Base de trabajo:** `feature/sig-610-inactivate-component-run`, creada desde `develop` sincronizado con `origin/develop` en `2f7f572a9545feb1a4f5742dfc38ef963847e2d3`.
 - **Superficie verificada:** Fase 2 añadió sólo el filtro positivo por `DEPLOY` en `ComponentRunRepository` y sus callers, la eliminación de la consulta muerta y las pruebas correspondientes; history, contratos, schema, frontend, SDK y control planes siguen sin cambios.
-- **Working tree actual:** once archivos de implementación/prueba modificados por Fases 1–2 y `graphify-out/` untracked, preexistente; preservarlo y no incluirlo en commits. El repo tiene además dos entradas de índice que colisionan por mayúsculas, `CLAUDE.md` y `Claude.md`; en un filesystem case-insensitive una de las dos aparece siempre como modificada aunque nadie la haya tocado. No es un cambio real y no se resuelve con `git checkout`: sólo cambia cuál de las dos aparece sucia.
+- **Working tree actual:** sin cambios tracked; `graphify-out/` y `scripts/inactivate-probe/` permanecen untracked y fuera de los commits. El repo conserva la colisión conocida entre `CLAUDE.md` y `Claude.md` en filesystems case-insensitive.
 - **Problema resuelto:** `ComponentInactivationServiceImpl.dispatch` resuelve service y `componentDefinition` antes del lifecycle, rechaza configuración no resoluble con `422 INVALID_COMPONENT_STATUS` y entrega exactamente un `DeltaEntry(UNDEPLOY)`.
 - **Resultado actual:** `PipelineHistoryServiceImpl.getExecution` conserva su query y mapeo; una prueba con ejecución `INACTIVATE` confirma que expone automáticamente el run persistido.
-- **Gap de consistencia resuelto:** `InactivationResultHandlerImpl` actualiza execution y run a `RUNNING`, `COMPLETED` o `FAILED` en una transacción, conserva `startedAt` idempotente, persiste error seguro y tolera legacy sin run.
+- **Gap de consistencia resuelto:** `InactivationResultHandlerImpl` bloquea la `PipelineExecution` con `PESSIMISTIC_WRITE` antes de los guards y actualiza execution/run/component/service en la misma transacción; resultados simultáneos del mismo executionId se serializan y el segundo terminal queda como no-op.
+- **Exposición de error resuelta:** el handler no registra ni persiste el payload crudo del CP; conserva sólo un code con allowlist y máximo de 100 caracteres más un mensaje genérico propio, omitiendo el message/details upstream.
 - **Acoplamiento resuelto:** `DeltaComputationServiceImpl` y el guard de delete consultan runs sólo con `PipelineExecutionType.DEPLOY`; un `INACTIVATE` no contamina retries ni bloquea por sí solo el delete. `findFirstByComponentIdOrderByIdDesc` y su Javadoc obsoleto fueron eliminados.
 - **Ausencia de reaper para `INACTIVATE`:** el handler terminaliza run y ejecución cuando llega el resultado del control plane. Si el control plane nunca responde, `DeploymentTimeoutJob` no alcanza esta ejecución porque recorre exclusivamente filas de `DeploymentModel`; el lock de data product se recupera por TTL, pero el run queda no terminal. No se agrega un reaper en esta entrega.
 - **Delete durante undeploy:** el guard de runs filtra por `DEPLOY`, pero `PipelineComponentDeleteServiceImpl` todavía bloquea por infraestructura activa mientras el service no sea terminal. La cobertura confirma ambas condiciones.
@@ -58,7 +60,7 @@ El cambio es deliberadamente backend-only y pequeño: no mezcla los flujos `DEPL
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-playmaker]] | `feature/sig-610-inactivate-component-run` | `develop` sincronizado con `origin/develop`, `2f7f572a9545feb1a4f5742dfc38ef963847e2d3` | [SIG-610 — Undeployment Functional Specification](https://spellbook.adminml.com/projects/SIG/specs/SIG-610) | [SIG-614 — ComponentRun de inactivación en Playmaker](https://spellbook.adminml.com/projects/SIG/specs/SIG-614) y este plan | `phase_2_g2_review` |
+| [[rio-playmaker]] | `feature/sig-610-inactivate-component-run` | `develop` sincronizado con `origin/develop`, `2f7f572a9545feb1a4f5742dfc38ef963847e2d3` | [SIG-610 — Undeployment Functional Specification](https://spellbook.adminml.com/projects/SIG/specs/SIG-610) | [SIG-614 — ComponentRun de inactivación en Playmaker](https://spellbook.adminml.com/projects/SIG/specs/SIG-614) y este plan | `phase_2_g2_review`; HEAD `1c2601f96` |
 
 > [!warning]+ Gate de repositorio — sincronización y creación de rama
 > Antes de tocar código, en este orden exacto:
@@ -90,7 +92,7 @@ El cambio es deliberadamente backend-only y pequeño: no mezcla los flujos `DEPL
 | R5 | History devuelve el run | `done` | Test de `PipelineHistoryServiceImpl` con execution `INACTIVATE` y un run target; cero cambios productivos en history | Conservar |
 | R6 | Estado activo observable | `done` | `InactivationResultHandlerImpl` mueve execution/run a `RUNNING` y asigna `ComponentRun.startedAt` una sola vez | Conservar |
 | R7 | Estado terminal consistente | `done` | Handler mueve ambos a `COMPLETED`/`FAILED`, asigna `completedAt` al run y error seguro cuando corresponde | Conservar |
-| R8 | Duplicados/out-of-order no regresan terminales | `done` | Guardas de execution/run terminal y test de duplicado activo/terminal sin save ni release adicional | Conservar |
+| R8 | Duplicados/out-of-order no regresan terminales | `done` | Lookup `PESSIMISTIC_WRITE` por executionId antes de los guards; test cubre un `FAILED` contradictorio posterior a `COMPLETED` sin saves ni side effects | Conservar |
 | R9 | Inactivate no contamina el retry del deploy | `done` | `findLastRunsByComponentIds` filtra positivamente por `PipelineExecutionType.DEPLOY` dentro del max-id subquery; test JPA cubre INACTIVATE más reciente | Conservar |
 | R12 | Un run de inactivación no bloquea de forma permanente el delete lógico del componente | `done` | `existsByComponentIdAndPipelineExecutionTypeAndStatusIn` recibe `DEPLOY`; test unitario/JPA cubre aislamiento y el guard posterior de infraestructura activa sigue vigente | Conservar |
 | R13 | El contrato de `POST /inactivate` queda declarado cuando la configuración no es resoluble | `done` | Tests cubren service ausente y `componentDefinition` ausente antes de lifecycle, lock o publish, con `422 INVALID_COMPONENT_STATUS` | Conservar |
@@ -260,11 +262,13 @@ La actualización del run, la ejecución, el componente/servicio y la programaci
 - [x] **T1.2 · Mantener estados consistentes** — objetivo: actualizar execution + run en todos los resultados; archivos: `InactivationResultHandlerImpl` y test; precondición: T1.1; implementación: repository/object mapper, helpers de transición y error; tests: STARTED, IN_PROGRESS, COMPLETED, FAILED, duplicados, terminal tardío, legacy sin run, serialización fallida; evidencia: `InactivationResultHandlerImplTest` verde, 18 tests, con timestamps/asserts #owner/agent #type/dev #area/meli
 - [x] **T1.3 · Probar visibilidad en history sin modificarlo** — objetivo: demostrar que el run persistido es consumible por el query actual; archivos: test de history existente; precondición: T1.1–T1.2; implementación: aserción con fixture `INACTIVATE` y run target; tests: detail contiene un run target y tipo `INACTIVATE`; evidencia: `PipelineHistoryServiceImplTest` verde, 10 tests y cero cambios productivos en history #owner/agent #type/dev #area/meli
 - [x] **T2.1 · Aislar los runs de inactivación** — objetivo: que un run de inactivación no se lea como run de deploy ni bloquee el delete después de que la infraestructura ya está terminal; archivos: repository, delta service, servicio de delete y tests; precondición: G1 accepted; implementación: filtrar positivamente por `DEPLOY` `findLastRunsByComponentIds` y `existsByComponentIdAndPipelineExecutionTypeAndStatusIn`, conservar el guard de infraestructura activa y eliminar `findFirstByComponentIdOrderByIdDesc` más su Javadoc; tests: último `INACTIVATE FAILED` ignorado por delta, último `DEPLOY FAILED` conservado, combinación elige último deploy, run `INACTIVATE` no bloquea por sí solo, infraestructura activa y run `DEPLOY` sí bloquean; evidencia: tests unitarios y 2 tests JPA verdes #owner/agent #type/dev #area/meli
-- [x] **T2.2 · Regresión y cobertura** — objetivo: validar el conjunto; archivos: sólo tests/ajustes estrictamente derivados; precondición: T2.1; implementación: ejecutar suites focalizadas y suite completa; tests: funcionalidad crítica primero, luego cobertura reportada; evidencia: `./gradlew clean test jacocoTestReport --no-daemon` verde, 3.639 tests, 2 skipped, 0 failures/errors; Fase 2: Delta 97,4% líneas/100% branches y Delete 100%/100% #owner/agent #type/dev #area/meli
+- [x] **T2.2 · Regresión y cobertura** — objetivo: validar el conjunto; archivos: sólo tests/ajustes estrictamente derivados; precondición: T2.1; implementación: ejecutar suites focalizadas y suite completa; tests: funcionalidad crítica primero, luego cobertura reportada; evidencia: `./gradlew clean test jacocoTestReport` verde, 3.650 tests, 2 skipped, 0 failures/errors; Melicov remoto reportó 100,00% de PR coverage #owner/agent #type/dev #area/meli
 - [x] **T2.3 · Entrega y cierre técnico** — objetivo: dejar diff revisable y proyecto honesto; archivos: esta nota y repo; precondición: T2.2; implementación: revisar diff/stat/status, confirmar no-touch, actualizar progreso/bitácora y mover G2 a review; tests: no adicionales; evidencia: `git diff --check` verde, contracts/history/schema/frontend/SDK/CPs sin cambios, `graphify-out/` preservado #owner/agent #type/admin #area/meli
 - [x] **T2.4 · Exponer tipo canónico al iniciar inactivate** — objetivo: hacer que el `202 Accepted` entregue `type: INACTIVATE` junto al `execution_id` para que el frontend pueda rastrear y renderizar la inactivación sin inferirla; archivos: `InactivateComponentResponseDTO`, `ComponentInactivationServiceImpl` y sus tests; precondición: corrección explícitamente solicitada por el owner tras G2; implementación: agregar el campo público `type`, poblarlo desde la ejecución creada y verificarlo en las pruebas de servicio/controlador; tests: 25 pruebas focalizadas verdes y `git diff --check`; evidencia: commit `423cb38d5` publicado y versión Fury de prueba `0.0.2-test-sig-610-dev-0` pendiente #owner/agent #type/dev #area/meli
 - [x] **T2.5 · Revertir fallback especulativo** — objetivo: impedir que una correlación rota actualice un run arbitrario; archivos: `InactivationResultHandlerImpl` y pruebas; precondición: revisión crítica del workaround `20b16fe91`; implementación: eliminar la selección del único run y conservar exclusivamente el lookup por `executionId + componentId`; tests: suites focalizadas y `./gradlew check` verdes; evidencia: revert `67d0b1430` publicado en la rama original #owner/agent #type/dev #area/meli
 - [x] **T2.6 · Validar ruta runtime del resultado** — objetivo: observar la ruta real de `DEPROVISION` de punta a punta; archivos: rama diagnóstica y probe; precondición: desplegar un mismo artefacto en web y consumer; implementación: trazas de envelope, routing, correlación y transiciones; tests: el consumer recibió `STARTED → COMPLETED`, encontró el run exacto y dejó execution/run `COMPLETED`; evidencia: `0.0.6-test-sig-610-dev-0` desplegada en `test3` y `bq-consumer-test-nonprod` #owner/agent #type/dev #area/meli
+- [x] **T2.7 · Resolver findings del PR** — objetivo: cerrar la carrera entre resultados y evitar persistencia/exposición del error crudo del CP; archivos: `PipelineExecutionRepository`, `InactivationResultHandlerImpl` y tests; implementación: lock pesimista por executionId, guards posteriores al lock y error seguro; tests: suites focalizadas más `./gradlew test` verde, 2 skipped; evidencia: `6c0acae0c` publicado y ambos comentarios respondidos #owner/agent #type/dev #area/meli
+- [x] **T2.8 · Recuperar coverage del PR** — objetivo: superar el piso interno de 95% bajo la semántica estricta de Melicov; archivos: `InactivationResultHandlerImpl` y tests de handler/servicio; implementación: cubrir ramas legacy, datos inconsistentes, liberación de lock y sanitización, y reemplazar switches exhaustivos que JaCoCo marcaba parciales por decisiones equivalentes comprobables; tests: suite completa verde; evidencia: commit `1c2601f96`, PR coverage remoto 100,00%, minimum coverage 94,66% y todos los checks verdes #owner/agent #type/dev #area/meli
 
 ## Roadmap y gates
 
@@ -272,7 +276,7 @@ La actualización del run, la ejecución, el componente/servicio y la programaci
 |---|---|---|---|---|
 | G0 | accepted | Sincronizar `develop`, crear la rama y entregar tests críticos rojos para las decisiones ya cerradas | Owner aceptó el 2026-09-09: rama desde `develop`, tests rojos y alcance verificados | F1 |
 | G1 | accepted | Crear run y completar su state machine con compatibilidad | Owner aceptó el 2026-09-09; tests focalizados verdes, history ve un run y existe exactamente un publish | F2 |
-| G2 | review | Aislar los runs de inactivación con los dos filtros `DEPLOY`, eliminar la consulta muerta y entregar estado consistente de execution/run | Runtime E2E verde con scopes alineados; fallback especulativo revertido en `67d0b1430`; PR #1144 en `888b014e5`, workflow verde y descripción actualizada | Aceptación humana y posterior archivo |
+| G2 | review | Aislar los runs de inactivación con los dos filtros `DEPLOY`, eliminar la consulta muerta y entregar estado consistente de execution/run | Runtime E2E verde con scopes alineados; fallback especulativo revertido; findings corregidos; HEAD `1c2601f96`, PR coverage 100,00% y todos los checks verdes | Aceptación humana y posterior archivo |
 
 El executor sólo puede dejar el gate de su fase en `review`. El owner lo cambia a `accepted`; no comenzar la siguiente fase antes de eso.
 
@@ -589,6 +593,9 @@ STOP=G2 review; prohibido autoaceptar o archivar antes del owner
 
 ## 📆 Bitácora
 
+- **2026-09-10** — Findings del PR resueltos en la rama canónica `feature/sig-610-inactivate-component-run`: `PESSIMISTIC_WRITE` por `PipelineExecution` antes de los guards, resultado terminal contradictorio como no-op y persistencia segura del error sin payload upstream. Suites focalizadas y suite completa verdes; commit/push `6c0acae0c`. Respuestas publicadas a Ale y al bot; G2 sigue en review humana.
+- **2026-09-10** — La primera publicación dejó PR coverage en 89,24% porque no se midió con la regla de Melicov que trata ramas parciales como no cubiertas. Se agregaron tests de comportamiento para todas las ramas nuevas y se reemplazaron dos switches exhaustivos con ramas sintéticas inalcanzables por decisiones equivalentes medibles. `./gradlew clean test jacocoTestReport` cerró con 3.650 tests, 2 skipped y cero fallos; Melicov remoto confirmó PR coverage 100,00% y todos los checks verdes en `1c2601f96`.
+- **2026-09-10** — Fury creó [`0.0.7-test-sig-610-dev-0`](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.7-test-sig-610-dev-0) desde la rama canónica y completó el build `1635` correctamente. `fury list-versions` confirmó estado `FINISHED` y el tag remoto resolvió al head esperado `1c2601f96d58`.
 - **2026-09-09** — Fase 0 iniciada: `develop` quedó idéntico a `origin/develop`, SHA `2f7f572a9545feb1a4f5742dfc38ef963847e2d3`; se creó `feature/sig-610-inactivate-component-run`. El working tree sólo contiene el `graphify-out/` untracked esperado. El SPEC técnico SIG-614 fue contrastado con el plan y confirma el mismo alcance.
 - **2026-09-09** — G0 pasado a `review`: `./gradlew test --tests ComponentInactivationServiceImplTest --tests InactivationResultHandlerImplTest --no-daemon` compiló y dejó cuatro rojos esperados, todos por gaps de producción: (1) lifecycle recibe `[]`, no un `DeltaEntry(UNDEPLOY)`; (2) service ausente permite publicar, no responde `422 INVALID_COMPONENT_STATUS` sin efectos; (3) `IN_PROGRESS` deja la execution `PENDING`; (4) `STARTED` deja la execution `PENDING`. La rama no contiene producción modificada. Se detectó que `PipelineExecutionModel` no tiene `startedAt`; el timestamp activo requerido se implementará sólo sobre `ComponentRun`, como prescribe SIG-614.
 - **2026-09-09** — Owner aceptó G0. Se habilita Fase 1; mantener el scope de SIG-614, conservar los tests rojos como contrato y no iniciar Fase 2 hasta que G1 quede aceptado.
@@ -615,6 +622,8 @@ STOP=G2 review; prohibido autoaceptar o archivar antes del owner
 
 ## 🧭 Decisiones
 
+- Serializar los resultados por la fila de `PipelineExecution`, no por Data Product, componente ni run; el primer terminal aceptado queda persistido y los posteriores son no-op.
+- Tratar `DeploymentErrorPayload` como dato no confiable para history: no guardar ni loguear `message/details` upstream; aceptar sólo un code sintácticamente validado y un mensaje genérico propio.
 - El registro completo está en “Registro de decisiones”; no crear decisiones paralelas aquí.
 
 ## 🔗 Docs / Links
