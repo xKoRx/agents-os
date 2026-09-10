@@ -1,25 +1,32 @@
 ---
 type: project
 schema_version: 1
-owner: me
+owner: agent
 root: false
 status: active
-priority: P2
-area: "[[Meli]]"
-parent:
+priority: P1
+area: "[[Echo]]"
+parent: "[[Echo — Live Platform V1]]"
 sprint:
-start:
+start: 2026-09-10
 due:
 progress: 0
-repo:
+repo: xKoRx/echo
 jira:
 prs:
-aliases: []
+aliases:
+  - Echo E-03
+  - Identity and BWC foundation E0
+  - E-03 E0
+  - FEAT-CROSS-IDENTITY-BWC-E0
 tags:
   - kind/project
-  - area/meli
-created: "2026-09-10"
-updated: "2026-09-10"
+  - area/echo
+  - agent/owner
+created: 2026-09-10
+updated: 2026-09-10
+cssclasses:
+  - wide
 ---
 
 # Echo — E-03 Identity and BWC Foundation E0
@@ -27,62 +34,151 @@ updated: "2026-09-10"
 %% Naming: Echo — E-03 Identity and BWC Foundation E0 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo — E-03 Identity and BWC Foundation E0
-> **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
-> _parent / sprint / repo / jira / prs son opcionales._
+> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Live Platform V1]] · **Repo:** `xKoRx/echo`
+> Subproyecto de **implementación** de la fase E-03 / E0. No es Integration. El contrato WHAT vive en el SPEC de Echo; esta nota es HOW / ORDER / GATES.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
-> `owner: me` → **proyecto humano**: la iniciativa/esfuerzo que conduces tú.
-> `owner: agent` → **proyecto de agente**: un curro delegado, con detalle pesado que escribe y sigue un agente. Casi siempre es subproyecto de uno humano y vive en la subcarpeta `agentes/` de su iniciativa.
-> `root: true` solo en **iniciativas raíz** (sin `parent`). Todo subproyecto debe setear `parent`; si no, aparece como huérfano en [[Panel de Proyectos]].
->
-> **Tarea puente:** cuando este proyecto es `owner: agent`, en su proyecto **padre** debe existir UNA sola tarea humana que lo representa (arrancar + seguimiento). Así tu cockpit ve una línea por curro delegado, no las tareas internas del agente. Ejemplo, en el padre:
-> `- [ ] [[Echo — E-03 Identity and BWC Foundation E0]] arrancar + seguimiento #owner/me #type/supervision #area/meli`
+> Este proyecto es `owner: agent`. El padre [[Echo — Live Platform V1]] enlaza aquí. La supervisión humana del track live sigue en [[Echo — Producto Integrado]].
 
 ## 🎯 Objetivo
 
-- 
+Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wide IDs, magic int64, legacy dispatch, inmutabilidad, schema protection y BWC, sin decisiones críticas pendientes para NORMAL.
 
 ## 📊 Estado actual
 
-- 
+- **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10):** SPEC/PLAN/TASKS en repo `specs/FEAT-CROSS-IDENTITY-BWC-E0/`. Baseline revalidado `origin/master` = `91671f6f46ffa889a79aed0979cb3b4e5821ed33` (E-01 `CONTRACT_PASS`). Planning commit se registra en bitácora al publicar. Sin source Go/SQL.
+- **E-01:** certified S0; no reabrir.
+- **Contrato WHAT:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md`.
+- **Checklist:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md` (T01–T23).
+- **PLAN.md local Echo:** puente de gobernanza; no copia esta nota.
 
 ## 🧱 Entrega de desarrollo
 
-%% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
-
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
+| xKoRx/echo | `master` (fase E-03) | `91671f6f46ffa889a79aed0979cb3b4e5821ed33` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` | TOP READY_FOR_MANAGER_REVIEW |
+
+## 🗺️ Source map (baseline `91671f6f`)
+
+- `echo.strategy_definitions.id varchar(64)` — techo canónico actual.
+- `trade_journal`/`lab_*` `strategy_id varchar(64)`; `account_strategy_risk_policy.strategy_id` ya `text`.
+- `magic_number` journal canónico `bigint`; leftover `magic_number_override int4`.
+- `ReferenceTicket int32` en `v3/sdk/domain/reference_event.go`; `MagicNumber int64` JSON number en pipe.
+- EA `TradeMapRecord` sin header: MT5 `ulong ticket` + `uchar[64]` + `int magic`; MT4 `int ticket` + mismos 64/`int`. Comentario “append BWC” es falso.
+- `ensureJournalParentRows` autoprovisiona descriptor; no mapping V2.
+- S0: `contracts.StrategyVersionRef`, `MagicAllocation.magic_decimal` string, G19–G21 corpus. **No editar contracts.**
+- Migrator golang-migrate; última `060`; siguiente **061**.
+- Hasura yaml **no** trackea `strategy_definitions`; protección = REVOKE/trigger SQL.
+- **No** existe `strategy_versions` / `promotion_records` / allocator Echo.
+
+## 🎯 Target physical state
+
+```text
+v3/sdk/postgres/migrations/061_identity_bwc_foundation.{up,down}.sql
+v3/sdk/postgres/strategy_{identity,version}_repository.go
+v3/sdk/postgres/promotion_record_repository.go
+v3/sdk/postgres/tests/identity_bwc/**
+v3/sdk/eapersist/**          # codec v0/v1 medido
+v3/clients/mt{4,5}/EchoPersistence.mqh
+v3/clients/mt{4,5}/testdata/trademap/**
+v3/bridge/internal/pipe_handler.go   # echo-identity-wire.v1
+v3/sdk/domain/reference_event.go     # ReferenceTicket int64
+```
+
+Ningún HTTP Forge. Ningún cambio a `v3/sdk/contracts/**`.
+
+## 🕸️ Dependency graph
+
+Ver `TASKS.md`. Paralelo inicial: T01–T07 (EA) ∥ T08–T10 (SQL). T11–T13 repos. T16–T17 wire. T23 cert.
+
+No ejecutar E-02/E-04/E-05/F-04 aquí.
+
+## Allowed scope NORMAL
+
+Exacto PLAN.md. Prohibido contracts S0, Gateway ingestion, Symphony, allocator, tests ajenos sin `TEST_CHANGE_REQUEST`.
+
+## 📦 Work packages
+
+- **WP-A Layout EA** T01–T07. Implicación: v0 medido físicamente; v1 variable-length; MT4 no int64.
+- **WP-B Schema 061** T08–T10, T18, T19, T21. Widen + tablas + backup + fail-closed down.
+- **WP-C Stores** T11–T15, T22. Mapping/Version/Promotion/aliases write-once.
+- **WP-D Wire** T16–T17, T14. String decimal; ticket int64; G20/G21.
+- **WP-E Cert** T20, T23. No allocator; AC nombrados.
+
+## TOP / NORMAL boundaries
+
+- TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padre. No source Go/SQL.
+- NORMAL: T01–T23 mecánicamente. No elegir semántica de identidad, política de migración, ni “arreglar” S0.
+- GOD: NONE.
+
+## Migrations
+
+**061** obligatoria. Motor golang-migrate. Transacción única + backup `*__backup061`. Interrupt = ROLLBACK. Down aborta si hay filas >64 / magic >int32. Mock SQL ≠ PASS.
+
+## Dependency delta
+
+Parent SDK puede seguir igual. `eapersist` es paquete nuevo bajo `v3/sdk`. No pin de terceros salvo el migrator ya usado. Stdlib para codec.
+
+## Compatibility strategy
+
+Paths nuevos para identity/version/promotion. Dual-read TradeMap y pipe. Legacy `magic_*` scoped. No recanonicalizar. No backfill Version sobre journal.
+
+## Test strategy
+
+SPEC AC-01…AC-14 mapeados 1:1 a TASKS. G19–G21 S0 se reusan como inputs de persistencia, no se regeneran. PHYSICAL: binarios `FileWriteStruct` + PG real. INTEGRATION: repos. SOURCE: codec/grep.
+
+## Certification gates (NORMAL)
+
+```bash
+# SOURCE
+go test ./v3/sdk/eapersist ./v3/sdk/postgres ./v3/sdk/domain
+go vet ./v3/sdk/eapersist ./v3/sdk/postgres ./v3/sdk/domain
+
+# MIGRATION + PHYSICAL PG (harness existente de postgres tests)
+# aplicar 061 sobre clone de schema 060; 10_migrate_up.sql; 11_migrate_idempotent.sql; 12_migrate_interrupt.sql
+
+# INTEGRATION
+go test ./v3/sdk/postgres -run 'Identity|Version|Promotion|Magic|Alias|Pipe'
+
+# PHYSICAL EA
+# fixtures v0.bin deben coincidir con sizeof frozen; convert interrupt restore
+```
+
+Parent `go test ./...` de etcd/Kafka/Jaeger **no** es gate (fallos preexistentes E-01).
+
+## Baseline tests (registrados, no ampliar)
+
+Mismos FAIL de infra que E-01 (etcd/Kafka/Jaeger). No “arreglarlos” en E-03.
+
+## Release / pin expectations
+
+Manager acepta planning. NORMAL implementa. Verifier independiente escribe `VERIFICATION.md`. No tag. Push de implementación sólo si el manager lo pide; este TOP sí publica planning FF a `master`.
+
+## Blockers
+
+Ninguno material para arrancar NORMAL tras aceptación manager. Graphify del repo Echo está stale (v1): no bloquear. MCP Agents OS no autenticado en esta sesión: vault escrito por filesystem.
+
+## Handoff requirements
+
+NORMAL trabaja contra baseline `91671f6f` + SPEC + TASKS. Dirty foráneo del checkout habitual se preserva (worktree). Un commit de implementación aparte del commit SDD TOP.
+
+## Closure conditions
+
+T01–T23 `[x]`; gates T23 PASS; allowed files respetados; AC cubiertos; no allocator; layouts v0 addressable; 061 idempotente; certificación en `VERIFICATION.md` (fuera de este TOP).
 
 ## 🧩 Subproyectos
 
-```base
-filters:
-  and:
-    - 'type == "project"'
-    - 'file.hasLink(this.file)'
-views:
-  - type: cards
-    name: Subproyectos
-    order:
-      - file.name
-      - note.status
-      - note.priority
-```
+_No aplica — hijo de implementación de E-03; no crea Integration ni más hijos._
 
 ## ✅ Tareas
 
-> [!note]+ Ownership y tarea puente
-> `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala.
-> El board es **adaptativo según `owner` del frontmatter**:
-> - **Proyecto humano** (`owner: me`): muestra tus tareas y las **tareas puente** (`#type/supervision`) que representan proyectos de agente. Las tareas de agente **no** aparecen acá; viven en su propio proyecto.
-> - **Proyecto de agente** (`owner: agent`): muestra las tareas del agente.
-
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/meli
-> - [ ] tarea delegada #owner/agent #type/dev #area/meli
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+> Checklist atómico en `xKoRx/echo` `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md`. Aquí sólo work packages.
+> - [ ] WP-A Layout EA v0/v1 + MT4 legacy #owner/agent #type/dev #area/echo
+> - [ ] WP-B Schema 061 widen/protection/migration gates #owner/agent #type/dev #area/echo
+> - [ ] WP-C Stores identity/version/promotion/aliases #owner/agent #type/dev #area/echo
+> - [ ] WP-D Wire string magic + ticket int64 #owner/agent #type/dev #area/echo
+> - [ ] WP-E Certification AC-01…AC-14 + no allocator #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -99,46 +195,40 @@ board(primary);
 if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
-%% Rollup de iniciativa — descomentar solo en proyectos padre para ver las tareas #owner/me (incluye puentes) de todos los subproyectos, agrupadas por nota. Cambiar la ruta por la carpeta de esta iniciativa. Nunca muestra tareas de agente.
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-const ord={" ":0,"/":1,"r":2,"x":3,"X":3,"-":4};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-const pages=dv.pages('"10-projects/CARPETA-DE-LA-INICIATIVA"');
-for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x=>has(x,"owner/me")&&x.status!=="x"&&x.status!=="X").sort((a,b)=>(ord[a.status]??9)-(ord[b.status]??9));if(t.length){dv.el('h4',p.file.link);render(t);}}
-```
-%%
-
 ## 📆 Bitácora
 
-%% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-10** — 
+- **2026-09-10 (TOP)** — Discovery en worktree limpio `origin/master`=`91671f6f`. SPEC/PLAN/TASKS `FEAT-CROSS-IDENTITY-BWC-E0`. Decisiones: mapping V2 separado del descriptor Lab; 1024 bytes freeze; magic bigint + string wire; TradeMap v0 medido/v1 header; 061 transaccional; MT4 no int64; RuntimeBinding table diferida a E-06. Planning SHA se anota tras push FF.
 
-## 🧭 Decisiones
+## 🧭 Decisiones (ejecución, no semántica nueva)
 
-- 
+- Hijo de implementación de E-03; ownership sigue en [[Echo — Live Platform V1]], no Integration.
+- `v3/sdk/contracts` es autoridad de recetas, no de schema PG.
+- Cookie v1 `ECHO-TMAP`; v0 = ausencia de cookie + múltiplo de sizeof medido.
+- SQL eager; EA lazy-on-open con backup.
+- Down 061 fail-closed si ya hay IDs anchos.
 
 ## 🔗 Docs / Links
 
-- 
+- [[Echo — Live Platform V1]]
+- [[Echo — Producto Integrado]]
+- [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
+- [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]
+- SPEC: `xKoRx/echo` `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md`
+- TASKS: `xKoRx/echo` `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md`
+- PLAN puente: `xKoRx/echo` `specs/FEAT-CROSS-IDENTITY-BWC-E0/PLAN.md`
 
 ## 💡 Ideas
 
-%% Captura ideas sueltas del proyecto al final. Si maduran, promover a tarea o a nota de idea (70-templates/idea.md). %%
-
 ### Backlog de ideas
 
-- 
+- Hasura tracking de las tablas nuevas: E-04/E-13, no aquí (REVOKE basta).
 
 ### Motivos / principios
 
-- 
+- Una fuente por hecho: SPEC = contrato; esta nota = ejecución; TASKS = checklist.
 
 ### Memoria pública / interna
 
-%% Opcional para proyectos de agentes o conocimiento: definir qué memoria gobierna el sistema y cuál gobierna el agente, y por qué existe cada una. %%
-- **Memoria pública:** 
-- **Memoria interna:** 
-- **Motivo:** 
+- **Memoria pública:** Resources frozen enlazadas.
+- **Memoria interna:** continuidad en esta nota.
+- **Motivo:** no duplicar FR-1…FR-5 ni el roadmap E-04.
