@@ -17,7 +17,7 @@ model_source: unknown
 task_type: review
 task_complexity: high
 outcome: blocked
-verification: baseline_gate_failed
+verification: not_run
 evaluator: agent
 user_rework: unknown
 source_session:
