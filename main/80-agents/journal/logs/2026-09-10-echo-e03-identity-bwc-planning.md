@@ -18,7 +18,8 @@ related:
 aliases: []
 confidence: verified
 source_session:
-source_feedbacks: []
+source_feedbacks:
+  - "[[2026-09-10-echo-e03-planning-session-feedback]]"
 share_scope: local
 load_policy: manual
 indexable: false
@@ -38,7 +39,7 @@ tags:
 - **Archivo(s):**
   - `10-projects/Echo/agentes/Echo — E-03 Identity and BWC Foundation E0.md` (created) — subproyecto de implementación E-03, parent [[Echo — Live Platform V1]].
   - `10-projects/Echo/agentes/Echo — Live Platform V1.md` (updated) — vínculo mínimo, tarea E-03 WIP, baseline certified S0, bitácora. No se reescribió el roadmap.
-  - Repo `xKoRx/echo` `specs/FEAT-CROSS-IDENTITY-BWC-E0/**` + catálogo `specs/SPECS.md` (planning only).
+  - Repo `xKoRx/echo` `specs/FEAT-CROSS-IDENTITY-BWC-E0/**` + catálogo `specs/SPECS.md` (planning commit `c22fe218127c7e97fb40951ddcafc13d80ede152`).
   - Resource frozen: no modificadas.
 
 ## Motivo

@@ -46,7 +46,7 @@ Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wid
 
 ## 📊 Estado actual
 
-- **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10):** SPEC/PLAN/TASKS en repo `specs/FEAT-CROSS-IDENTITY-BWC-E0/`. Baseline revalidado `origin/master` = `91671f6f46ffa889a79aed0979cb3b4e5821ed33` (E-01 `CONTRACT_PASS`). Planning commit se registra en bitácora al publicar. Sin source Go/SQL.
+- **TOP PLANNING READY_FOR_MANAGER_REVIEW (2026-09-10):** SPEC/PLAN/TASKS en repo `specs/FEAT-CROSS-IDENTITY-BWC-E0/`. Baseline `91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Planning commit `c22fe218127c7e97fb40951ddcafc13d80ede152` (FF a `origin/master`). Sin source Go/SQL.
 - **E-01:** certified S0; no reabrir.
 - **Contrato WHAT:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md`.
 - **Checklist:** `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md` (T01–T23).
@@ -56,7 +56,7 @@ Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wid
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` (fase E-03) | `91671f6f46ffa889a79aed0979cb3b4e5821ed33` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` | TOP READY_FOR_MANAGER_REVIEW |
+| xKoRx/echo | `master` (fase E-03) | `91671f6f46ffa889a79aed0979cb3b4e5821ed33` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§2–3, 9 + SDK Canonical V1 (S0 certified) | `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` @ `c22fe218127c7e97fb40951ddcafc13d80ede152` | TOP READY_FOR_MANAGER_REVIEW |
 
 ## 🗺️ Source map (baseline `91671f6f`)
 
@@ -197,7 +197,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-10 (TOP)** — Discovery en worktree limpio `origin/master`=`91671f6f`. SPEC/PLAN/TASKS `FEAT-CROSS-IDENTITY-BWC-E0`. Decisiones: mapping V2 separado del descriptor Lab; 1024 bytes freeze; magic bigint + string wire; TradeMap v0 medido/v1 header; 061 transaccional; MT4 no int64; RuntimeBinding table diferida a E-06. Planning SHA se anota tras push FF.
+- **2026-09-10 (TOP)** — Discovery en worktree limpio `origin/master`=`91671f6f`. SPEC/PLAN/TASKS `FEAT-CROSS-IDENTITY-BWC-E0`. Decisiones: mapping V2 separado del descriptor Lab; 1024 bytes freeze; magic bigint + string wire; TradeMap v0 medido/v1 header; 061 transaccional; MT4 no int64; RuntimeBinding table diferida a E-06. Planning SHA `c22fe218127c7e97fb40951ddcafc13d80ede152` publicado FF a `origin/master`.
 
 ## 🧭 Decisiones (ejecución, no semántica nueva)
 
