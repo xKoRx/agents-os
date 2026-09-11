@@ -258,3 +258,8 @@ Forge: 5 Agent Tasks, mayoría MEDIUM; F-02 y F-04 LARGE-acotados con sub-SPECs 
 > - [ ] [[Echo — Live Platform V1]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [ ] Ratificar catálogo magic CC antes de allocation física F-04 #owner/me #type/admin #area/echo
 > - [ ] Confirmar O-01/O-02/O-03 de mandato 2026 cuando el track live lo necesite #owner/me #type/admin #area/echo
+
+## 📆 Bitácora
+
+- **2026-09-11** — E-04 TOP: hijo [[Echo — E-04 Forge Ingestion E1]]. Development E-04 puede partir en paralelo con verification E-03; integration/merge gated por E-03 CONTRACT_PASS. `origin/master` no se mueve. Join Forge no closed.
+- **2026-09-07** — Roadmaps operativos congelados. Dos subproyectos de agente. Sin implementación en esta nota.
