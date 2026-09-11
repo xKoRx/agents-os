@@ -38,6 +38,8 @@ tags:
   - `80-agents/memory/public/runbook/signals-code-review-runbook.md` — runbook mecánico creado.
   - `80-agents/skills/INDEX.md` — registro de la skill actualizado.
   - `80-agents/memory/public/user-preference/rjara-meli-work-preferences.md` — referencia legacy a la copia Claude reemplazada por las skills canónicas.
+  - `30-resources/tools/local-agents-pipeline-cli.md` — reviewer personal RIO y reglas de activación registrados.
+  - `~/.config/zords/agents/rjara-rio-impact.md` — Zord global local, manual y deshabilitado por defecto creado.
 
 ## Motivo
 
@@ -59,6 +61,9 @@ tags:
 - La validación de tests parte por una matriz de comportamientos críticos del PR y sus resultados observables; coverage sigue permitido como complemento, pero no acredita por sí solo los comportamientos materiales.
 - Zord se resuelve exclusivamente como la tool canónica [[local-agents-pipeline-cli]], primero por binario y luego por su checkout owner registrado; queda prohibido hacer discovery abierto, recrearlo o usar `zord add` durante un review.
 - El workflow quedó semiautomático con un único gate humano: el agente investiga, verifica y presenta comentarios Human First con su porqué; Rodrigo aprueba todos, algunos IDs o ninguno; tras aceptación se publica una sola review breve y se verifica por read-back.
+- Se agregó un gate fail-closed: la skill sólo opera cuando la pertenencia a Meli está demostrada. En proyectos no Meli o de identidad incierta devuelve `NOT_APPLICABLE` antes de invocar Zord y no cae a un review genérico.
+- Para todo proyecto Meli, Zord es obligatorio. Los proyectos Meli fuera de Signals/RIO usan el set estándar; Signals/RIO agrega `rjara-rio-impact` con `--include`, manteniéndolo global, manual y disabled para que nunca se active accidentalmente.
+- `rjara-rio-impact` revisa el diff y fuentes oficiales por separado. El coordinador no le entrega briefs, prioridades, sospechas ni findings anteriores; sólo activa el revisor y proporciona el diff o diffs relacionados, evitando sesgar su foco.
 
 ## Validación
 
@@ -72,6 +77,7 @@ tags:
 - Draft→Ready: PASS; skill/runbook separados, fuentes canónicas enlazadas, output explícito y failure modes de base incorrecta, documentación stale, falsos positivos de Zord, búsquedas negativas parciales y scope creep cubiertos.
 - `graphify-obsidian update` intentado: bloqueado por dos findings nuevos fuera de este delta (`Sin título.md` sin frontmatter y un proyecto Echo con `status: closed`); el wrapper conservó el último índice válido. Los cinco archivos de esta operación mantienen lint estricto `0/0`.
 - Refinamiento solicitado por el owner: validación comportamiento→test, resolución canónica de Zord y ciclo preview→aprobación→publicación agregados. Revalidación posterior: lint estricto `ERROR=0 WARN=0`, schemas `skill|runbook|change_log` con `errors=0`, YAML PASS y forward checks `behavior-over-coverage`, `canonical-zord-resolution`, `owner-gated-publication` y `human-first-comments` en PASS.
+- Segundo refinamiento solicitado por el owner: piloto local de reviewer RIO independiente y exclusión absoluta de proyectos no Meli. Pendiente registrar aquí los resultados del check, list, dry-run, lint y schemas posteriores al cambio.
 
 ## Compartibilidad
 
@@ -80,4 +86,4 @@ tags:
 
 ## Rollback
 
-- Eliminar los dos artefactos nuevos, retirar la entrada del índice y restaurar la referencia previa en preferencias Meli. La copia legacy bajo Claude no fue modificada.
+- Eliminar los dos artefactos canónicos nuevos, retirar la entrada del índice, restaurar la referencia previa en preferencias Meli, quitar la sección personal de [[local-agents-pipeline-cli]] y mover a respaldo o eliminar `~/.config/zords/agents/rjara-rio-impact.md`. La copia legacy bajo Claude no fue modificada.

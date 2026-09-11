@@ -34,7 +34,7 @@ tags:
   - scope/tool
   - priority/high
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-09-11
 ---
 
 # local-agents-pipeline-cli
@@ -123,6 +123,14 @@ La herramienta es un orquestador local de procesos, no un modelo de IA ni un ser
 | PR externo | `zord assemble --pr owner/repo#123 --verbose` | Diff descargado por `gh`, progreso y output de proveedores sanitizado. |
 | Contratos entre repos | `gh pr diff owner/backend#89 > /tmp/backend.diff` + `--extra-diffs /tmp/backend.diff` | Contexto adicional para `io-boundaries`/`cross-repo-validation`; coordinación manual. |
 | Reparación controlada | `zord fix --from review.json --items ZORD-SECURITY-001 --dry-run` y luego sin `--dry-run` | Preview del agente y posterior modificación selectiva del workspace. |
+
+### Reviewer personal RIO
+
+- `rjara-rio-impact` vive en `~/.config/zords/agents/rjara-rio-impact.md`; es una extensión personal, manual y `enabled: false`, por lo que no entra en revisiones normales ni hooks.
+- Su único consumidor previsto es [[signals-code-review]] en cambios Meli de Signals/RIO, mediante `--include rjara-rio-impact`. La skill no aplica y no invoca Zord en proyectos no Meli.
+- El revisor recibe el diff y diffs relacionados como evidencia, pero ningún brief, prioridad, sospecha o finding del coordinador. Investiga por separado contratos y afectaciones cross-app usando código owner, [[ads-signals-knowledge-library]] y RIO Atlas.
+- Antes de cada uso, `zord list` debe mostrar source efectivo `global`; una definición `.zords/agents/rjara-rio-impact.md` dentro del repo tiene precedencia y obliga a bloquear la revisión hasta resolver el shadowing.
+- La salida es JSON conciso en español y limita los findings a riesgos transversales materiales o gaps de tests sobre comportamientos críticos; la reconciliación y publicación continúan bajo el gate humano de la skill.
 
 Configuración mínima útil para repartir providers sin tocar prompts: `{"execution":{"strategy":"weighted_round_robin","show_assignments":true,"agents":[{"name":"codex","provider":"codex","weight":2,"enabled":true},{"name":"claude","provider":"claude","weight":1,"enabled":true}]}}`.
 
