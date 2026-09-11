@@ -11,11 +11,13 @@ entities:
   - "[[RIO Playmaker]]"
 related:
   - "[[RIO Playmaker]]"
+  - "[[Reconstruir Ramas De PR Sin Arrastrar Commits Ajenos]]"
+  - "[[2026-09-10-sig-610-reindex-gate-graphify-feedback]]"
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: GPT-5
 agent_run: "[[2026-09-10-codex-gpt-5-inactivation-concurrency-review]]"
-session_goal: "Explicar y comparar alternativas de concurrencia para resultados de inactivación."
+session_goal: "Analizar, implementar y publicar las correcciones de concurrencia y exposición de errores del PR #1144."
 source_session:
 confidence: high
 load_policy: manual
@@ -35,11 +37,11 @@ tags:
 - Agent surface: [[Codex]]
 - Agent model: GPT-5
 - Agent run: [[2026-09-10-codex-gpt-5-inactivation-concurrency-review]]
-- Session goal: Explicar y comparar alternativas de concurrencia para resultados de inactivación.
+- Session goal: Analizar, implementar y publicar las correcciones de concurrencia y exposición de errores del PR #1144.
 - Main entity: [[RIO Playmaker]]
 - Skills used: [[agents-os-bootstrap]], [[agents-os-session-close]], [[agents-os-session-feedback]], [[agents-os-agent-run-register]]
 - Retrieval mode: inspección focalizada del repositorio local; sin Graphify.
-- Artifacts changed: feedback y agent run de cierre.
+- Artifacts changed: tres archivos Java/test en `rio-playmaker`, dos notas de proyecto, este feedback, agent run y change log.
 
 ## Scores
 
@@ -47,48 +49,48 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 - Startup clarity: 4
 - Retrieval usefulness: 5
-- Skill fit: 5
+- Skill fit: 4
 - Template fit: 4
-- Closeout friction: 4
-- Overall confidence: 4
+- Closeout friction: 3
+- Overall confidence: 3
 
 ## What Complicated The Session Most
 
-- Observation: La exclusión visual por Data Product podía confundirse con la serialización de resultados de una misma ejecución.
-- Why it was hard: El contrato funcional de UI y el patrón de concurrencia del consumidor viven en capas distintas; hizo falta inspeccionar ambos y compararlos con el handler de deployments normal.
-- Proposed improvement: Mantener una referencia explícita entre reglas de mutex de acciones y el patrón de transición terminal por ejecución cuando se documenten flujos asíncronos nuevos.
+- Observation: La primera publicación tuvo dos fallas de control: se empujó inicialmente a la rama diagnóstica y, tras corregir la rama, se cerró la sesión con PR coverage 89,24% sin haber medido el umbral interno de 95%.
+- Why it was hard: Suite verde, push exitoso y coverage global 94,55% dieron señales insuficientes; sólo `headRefName/headRefOid` y la regla Melicov por línea/branch del diff revelaron ambos problemas.
+- Proposed improvement: Antes de cerrar una entrega, verificar el SHA remoto exacto y calcular coverage del diff tratando toda línea con rama parcial como no cubierta; después confirmar el porcentaje en el check remoto.
 
 ## Most Useful Part Of Sistema 1
 
-- What helped: El bootstrap permitió respetar el routing del vault sin cargar contexto de entidad innecesario.
-- Why it helped: El problema se resolvió principalmente con evidencia de código local y no requirió ampliar retrieval.
-- Keep/change: Mantener el enfoque de contexto mínimo para revisiones puntuales.
+- What helped: La continuidad existente de SIG-610 y [[Reconstruir Ramas De PR Sin Arrastrar Commits Ajenos]] permitieron corregir la publicación sin llevar las trazas diagnósticas al PR.
+- Why it helped: Se aplicó sólo el commit funcional mediante cherry-pick y se verificó el nuevo head remoto.
+- Keep/change: Cargar explícitamente ese learning antes de cualquier publicación desde ramas `*-test`.
 
 ## Least Useful Or Noisy Part
 
-- What did not help: No hubo una fuente canónica única que conectara la UX de bloqueo global con la semántica de resultados asíncronos.
-- Why it was weak/noisy: La intención de cada capa sólo fue evidente al leer implementaciones separadas.
-- Proposed cleanup: Deferir; una sola observación no justifica crear memoria pública.
+- What did not help: Una búsqueda demasiado amplia incluyó `graphify-out/` y produjo megabytes de salida irrelevante.
+- Why it was weak/noisy: El comando no excluyó derivados antes de buscar referencias de error/concurrencia.
+- Proposed cleanup: Aplicar siempre `--glob '!graphify-out/**' --glob '!build/**'` en búsquedas de repositorio.
 
 ## Missing Support
 
-- Problem not solved by Sistema 1: Mapear automáticamente reglas de concurrencia entre frontend, KVS y persistencia de un servicio externo al vault.
-- How Sistema 1 could help next time: Una nota de aplicación que resuma garantías de entrega y scopes de locks si el equipo las confirma.
-- Suggested artifact type: decision o learning, sólo con evidencia repetida y validada.
+- Problem not solved by Sistema 1: La skill `release-process` enrutó a un MCP que no estaba disponible en la sesión; también faltaron los MCP de seguridad exigidos por las reglas locales.
+- How Sistema 1 could help next time: Detectar disponibilidad real del servidor antes de enrutar y declarar un fallback local canónico para Gradle/security review.
+- Suggested artifact type: ajuste de skill o known error si la ausencia se repite.
 
 ## Retrieval Feedback
 
 - Useful query or source: Búsqueda de `PESSIMISTIC_WRITE` y `storeCorrelationIdIfNull` en [[RIO Playmaker]].
-- Missing context: Garantías explícitas de BigQueue sobre orden, duplicidad y concurrencia.
+- Missing context: Garantías explícitas de BigQueue sobre orden, duplicidad y concurrencia; no fueron necesarias para justificar idempotencia defensiva.
 - Duplicate/noisy result: Una búsqueda amplia inicial produjo salida excesiva; se redujo a repositorios y handlers relevantes.
 - Better future query: Buscar primero el `executionId`/correlation ID y después los métodos de lookup bloqueado.
 
 ## Skill Feedback
 
-- Skill that worked well: [[agents-os-bootstrap]] para aplicar el arranque mínimo requerido.
-- Skill that was confusing: Ninguna.
-- Trigger/routing gap: No se detectó.
-- Suggested contract change: Ninguno.
+- Skill that worked well: [[agents-os-session-close]] para separar continuidad, feedback y evidencia del agent run.
+- Skill that was confusing: `release-process`, porque su servidor MCP no estaba instalado/disponible.
+- Trigger/routing gap: El fallback cuando el MCP de release o seguridad no existe no está explicitado.
+- Suggested contract change: Añadir fallback directo al build del repo y registrar la ausencia sin bloquear el trabajo.
 
 ## Template Feedback
 
@@ -101,16 +103,16 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 - ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? sí, la nota global requerida por bootstrap.
 - ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)? Recordó confirmar estado durable antes de concluir sobre una carrera.
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna? no; no hubo continuidad durable adicional.
+- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna? no; la continuidad durable quedó en las notas canónicas del proyecto.
 - ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad? 4; fue compacto y no introdujo ruido.
 
 ## Pain Pattern Candidate
 
-- Is this likely to repeat? unknown
-- Suggested severity: low
+- Is this likely to repeat? yes
+- Suggested severity: high
 - Candidate owner: [[RIO Playmaker]]
-- Promote to L3 memory? defer
+- Promote to L3 memory? no; ya existe [[Reconstruir Ramas De PR Sin Arrastrar Commits Ajenos]].
 
 ## One Next Improvement
 
-- Validar las garantías del transporte y agregar una prueba de concurrencia antes de implementar el mecanismo elegido.
+- Convertir el gate de entrega en una comprobación explícita: rama/SHA correctos, suite completa verde, PR coverage ≥95% bajo semántica Melicov y check remoto exitoso antes del cierre.
