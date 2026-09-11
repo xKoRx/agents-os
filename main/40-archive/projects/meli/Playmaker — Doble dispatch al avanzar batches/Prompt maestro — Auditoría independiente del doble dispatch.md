@@ -43,7 +43,7 @@ El mecanismo anti-sesgo principal no es una declaración de “sé objetivo”: 
 
 - `REPO_PATH`: ruta local del repositorio `rio-playmaker`. Default: `/Users/rjara/fuentes/rio-playmaker`.
 - `INCIDENT_EVIDENCE`: datos entregados en el prompt o archivos externos de logs/DB. Puede estar incompleto.
-- `CONTRAST_NOTE`: diagnóstico previo que no debe abrirse durante la fase independiente. Default: `VAULT_ROOT/archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Playmaker — Doble dispatch al avanzar batches.md`.
+- `CONTRAST_NOTE`: diagnóstico previo que no debe abrirse durante la fase independiente. Default: `VAULT_ROOT/40-archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Playmaker — Doble dispatch al avanzar batches.md`.
 - `PHASE1_REPORT`: archivo fuera del repo donde congelar la investigación independiente. Default sugerido: `/tmp/playmaker-double-dispatch-phase1.md`.
 - Acceso opcional a logs, DB y refs remotas. No asumir que están disponibles; declarar limitaciones.
 
@@ -69,7 +69,7 @@ Tu obligación principal es evitar sesgo de anclaje. Existe un diagnóstico prev
 VARIABLES
 
 REPO_PATH=/Users/rjara/fuentes/rio-playmaker
-CONTRAST_NOTE=VAULT_ROOT/archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Playmaker — Doble dispatch al avanzar batches.md
+CONTRAST_NOTE=VAULT_ROOT/40-archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Playmaker — Doble dispatch al avanzar batches.md
 PHASE1_REPORT=/tmp/playmaker-double-dispatch-phase1.md
 
 Si una ruta no existe, localízala o informa el bloqueo. No sustituyas evidencia faltante con suposiciones silenciosas.

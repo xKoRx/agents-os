@@ -31,7 +31,7 @@ tags:
 
 - **Tipo:** updated
 - **Archivo(s):**
-  - `archive/projects/meli/Vulnerabilidades WebSec — RIO Foundation/Vulnerabilidades WebSec — RIO Foundation.md`
+  - `40-archive/projects/meli/Vulnerabilidades WebSec — RIO Foundation/Vulnerabilidades WebSec — RIO Foundation.md`
 
 ## Motivo
 
@@ -43,7 +43,7 @@ tags:
 
 ## Resolución aplicada
 
-- Proyecto trasladado a `archive/projects/meli/` y su estado canónico actualizado de `active` a `archived`.
+- Proyecto trasladado a `40-archive/projects/meli/` y su estado canónico actualizado de `active` a `archived`.
 
 ## Validación
 

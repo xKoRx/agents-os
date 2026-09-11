@@ -31,7 +31,7 @@ tags:
 
 - **Tipo:** updated
 - **Archivo(s):**
-  - `archive/projects/meli/SIG-610 — Seguimiento de inactivación/SIG-610 — Seguimiento de inactivación.md`
+  - `40-archive/projects/meli/SIG-610 — Seguimiento de inactivación/SIG-610 — Seguimiento de inactivación.md`
 
 ## Motivo
 
@@ -43,7 +43,7 @@ tags:
 
 ## Resolución aplicada
 
-- Proyecto trasladado a `archive/projects/meli/` y su estado canónico actualizado de `review` a `archived`.
+- Proyecto trasladado a `40-archive/projects/meli/` y su estado canónico actualizado de `review` a `archived`.
 
 ## Validación
 

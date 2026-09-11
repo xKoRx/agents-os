@@ -292,7 +292,7 @@ Congelar la base real y convertir las decisiones cerradas en tests rojos, sin mo
 
 - `D9`–`D13` cerradas por el owner en Registro de decisiones.
 - Repo disponible y `origin/develop` alcanzable.
-- Leer `VAULT_ROOT/archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md`, secciones Estado, Decisiones, Contratos y Tareas.
+- Leer `VAULT_ROOT/40-archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md`, secciones Estado, Decisiones, Contratos y Tareas.
 - Ningún gate previo; `G0=pending`.
 
 **Lectura obligatoria**
@@ -358,7 +358,7 @@ Crear exactamente un run por inactivación y actualizarlo atómicamente hasta te
 
 - `G0=accepted` por el owner.
 - Tests críticos de F0 presentes y fallando por causas documentadas.
-- Leer `VAULT_ROOT/archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md`, especialmente D5, D7, D10, D11 y la tabla de estados.
+- Leer `VAULT_ROOT/40-archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md`, especialmente D5, D7, D10, D11 y la tabla de estados.
 
 **Lectura obligatoria**
 
@@ -430,7 +430,7 @@ Evitar que un run `INACTIVATE` se lea como run de deploy o bloquee por sí solo 
 
 - `G1=accepted` por el owner.
 - Creación y transiciones del run verdes.
-- Leer `VAULT_ROOT/archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md`, D6, D9, D12, D13, riesgos y Definition of Done.
+- Leer `VAULT_ROOT/40-archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md`, D6, D9, D12, D13, riesgos y Definition of Done.
 
 **Lectura obligatoria**
 

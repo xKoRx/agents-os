@@ -31,7 +31,7 @@ tags:
 
 - **Tipo:** updated
 - **Archivo(s):**
-  - `archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Playmaker — Doble dispatch al avanzar batches.md`
+  - `40-archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Playmaker — Doble dispatch al avanzar batches.md`
 
 ## Motivo
 
@@ -43,7 +43,7 @@ tags:
 
 ## Resolución aplicada
 
-- Proyecto trasladado a `archive/projects/meli/` y su estado canónico actualizado de `active` a `archived`.
+- Proyecto trasladado a `40-archive/projects/meli/` y su estado canónico actualizado de `active` a `archived`.
 
 ## Validación
 
