@@ -16,8 +16,10 @@ tags:
   - kind/doc
   - area/meli
   - project/presentacion-deployments-rio
-created: "2026-09-01"
-updated: "2026-09-08"
+created: 2026-09-01
+updated: 2026-09-08
+cssclasses:
+  - wide
 ---
 
 # Deployments en RIO — flujo completo
