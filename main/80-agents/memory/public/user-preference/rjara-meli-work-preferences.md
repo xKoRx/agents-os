@@ -3,7 +3,7 @@ type: user_preference
 schema_version: 1
 scope: area
 created: 2026-07-27
-updated: 2026-09-03
+updated: 2026-09-11
 area: "[[Meli]]"
 entities:
   - "[[Meli]]"
@@ -45,4 +45,4 @@ tags:
   `graphify-out/`) salvo instrucción contraria.
 - Para pruebas o PRs no mergeados usar versión explícita de test (`0.0.x-<descripcion>`), nunca una versión productiva. Una versión limpia `X.Y.Z` sólo se crea, fija y publica desde `master` después del merge; jamás desde una feature.
 - Agregar comentarios en código solo cuando sean necesarios y profesionales.
-- **Descripción de PR: recurso del proyecto en el vault, nunca archivo en la raíz del repo.** Se crea junto a la nota del proyecto, con la estructura del template `.github` del repo destino (uno por repo cuando el cambio es cross-repo) y **siempre nombrando la branch y su base**. Queda prohibido `descripcion_pr.md` en root: se cuela en el diff del PR que describe, se pierde al cambiar de branch y queda fuera del grafo. Procedimiento y checklist en la skill de usuario `signals-code-review` (`references/pr-description.md`).
+- **Descripción de PR: recurso del proyecto en el vault, nunca archivo en la raíz del repo.** Se crea junto a la nota del proyecto, con la estructura del template `.github` del repo destino (uno por repo cuando el cambio es cross-repo) y **siempre nombrando la branch y su base**. Queda prohibido `descripcion_pr.md` en root: se cuela en el diff del PR que describe, se pierde al cambiar de branch y queda fuera del grafo. El code review usa [[signals-code-review]] y la descripción se delega a [[pr-description]].

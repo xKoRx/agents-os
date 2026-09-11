@@ -42,13 +42,13 @@ Trigger boundary:
 
 - **Sí:** code review de una branch o PR de Meli/Signals, validación de una implementación, evaluación de calidad o búsqueda de afectaciones cross-app en RIO.
 - **No:** revisión genérica fuera de Meli/Signals, escritura de código, aplicación de fixes, creación/publicación de PR o redacción de su descripción.
-- **Handoff:** descripción de PR → [[pr-description]]; correcciones → workflow de implementación autorizado; ejecución mecánica → `../../memory/public/runbook/signals-code-review.md`.
+- **Handoff:** descripción de PR → [[pr-description]]; correcciones → workflow de implementación autorizado; ejecución mecánica → `../../memory/public/runbook/signals-code-review-runbook.md`.
 
 ## Minimal Read
 
 Leer sólo:
 
-1. `../../memory/public/runbook/signals-code-review.md` al ejecutar una revisión.
+1. `../../memory/public/runbook/signals-code-review-runbook.md` al ejecutar una revisión.
 2. `../../memory/public/user-preference/rjara-meli-work-preferences.md` si el contexto Meli no está cargado.
 3. La skill [[pr-description]] únicamente si el usuario también solicita la descripción del PR.
 
