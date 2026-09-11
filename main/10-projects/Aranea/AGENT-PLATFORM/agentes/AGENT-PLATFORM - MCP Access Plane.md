@@ -10,7 +10,7 @@ parent: "[[AGENT-PLATFORM-OWNER-PROJECT]]"
 sprint:
 start: 2026-09-07
 due:
-progress: 70
+progress: 80
 repo:
 jira:
 prs:
@@ -39,7 +39,7 @@ updated: "2026-09-11"
 
 ## 📊 Estado actual
 
-- T0 y T2 cerrados. T1 continúa WIP como contrato transversal; T3 PostgreSQL sigue WIP con POC autenticada de desarrollo ya funcional.
+- T0, T2 y T3 cerrados. T1 continúa WIP como contrato transversal; el siguiente carril funcional es T4 MongoDB.
 - `mcps` es un LXC dedicado con Docker + Portainer; IP actual `192.168.31.219`, considerada mutable y no parte del contrato estable. `mcps.lab.aranea.cl` es el endpoint estable usado por consumidores.
 - SSH MCP operativo en una sola instancia/puerto con cinco perfiles: read-only `sqx-zeus`, `sqx-hera`, `sqx-kronos`, `mt5-kronos`; writable/operator `mt5-kronos-operator`.
 - Las host keys ED25519 de todos los targets están pinneadas y validadas. Hera y Kronos regeneraron keys únicas porque las VMs clonadas compartían originalmente la identidad SSH de Zeus.
@@ -50,9 +50,13 @@ updated: "2026-09-11"
 - Cursor/Daedalus consume `aranea-ssh` de forma persistente: bearer cargado automáticamente por el entorno de KDE, sin `export` manual ni lanzamiento de Cursor desde consola.
 - Multi-target PASS desde Cursor: `read-command` validado en los cuatro perfiles viewer; `run-command` rechazado por diseño en viewer y validado en `mt5-kronos-operator` como `worker-kronos\\echo-dev`.
 - Golden path MT4 PASS vía MCP: transferencia/copia de fuentes, compilación con MetaEditor en `master_test_001`, resolución del mirror de includes bajo el AppData de `echo-dev` y generación de `reference_v3.ex4` con 0 errors / 0 warnings.
-- PostgreSQL MCP POC: `crystaldba/postgres-mcp` pinneado a commit `15c8e33353546148acc2d8bd784551cf3905d1e2`, imagen local `local/postgres-mcp:0.3.0-15c8e33`, runtime no-root `999:999`, Streamable HTTP funcional contra `echo-develop` con identidad `mcp_echo_rw`.
-- El PostgreSQL MCP no trae bearer auth nativo; se validó un proxy Nginx 1.29.8 pinneado por digest, en red Docker privada, con bearer separado del SSH MCP. Sin token devuelve `401`; con token inicializa MCP, preserva `Mcp-Session-Id` y ejecuta `execute_sql` a través del proxy.
-- El camino PostgreSQL validado hasta ahora es RW/dev: discovery de schemas/objetos, `current_user=mcp_echo_rw`, `current_database=echo-develop`, SELECT y permiso DELETE comprobado mediante `EXPLAIN ... WHERE false` sin mutar datos. T3 no se cierra aún: falta perfil RO sobre la misma base de desarrollo, límites/timeout y materializar el despliegue persistente/consumo real sin reemplazar `psql` nativo.
+- PostgreSQL MCP cerrado sobre `echo-develop`: `crystaldba/postgres-mcp` pinneado a commit `15c8e33353546148acc2d8bd784551cf3905d1e2`, imagen local `local/postgres-mcp:0.3.0-15c8e33`, runtime no-root `999:999`, con backends separados RO/RW detrás de proxies Nginx autenticados por bearer.
+- Endpoints estables PostgreSQL: `http://mcps.lab.aranea.cl:3001/mcp` → `mcp_echo_ro` / restricted y `http://mcps.lab.aranea.cl:3002/mcp` → `mcp_echo_rw` / unrestricted. Los backends MCP no publican puertos al host; sólo los proxies exponen `3001` y `3002`.
+- Cursor/Daedalus consume `aranea-postgres-ro` y `aranea-postgres-rw` de forma persistente mediante variables cargadas por KDE; ambos capabilities fueron validados desde el agente real contra `echo-develop`.
+- `mcp_echo_ro` tiene CONNECT + USAGE + SELECT sólo sobre schema `echo`; no ve `hdb_catalog` y no posee permisos de escritura. `mcp_echo_rw` conserva RW sobre `echo` sin elevar privilegios globales.
+- Los roles MCP tienen límites scoped a `echo-develop`: `statement_timeout=60s`, `lock_timeout=5s`, `idle_in_transaction_session_timeout=60s`. Un `psql` nativo como `postgres` permanece en `0/0/0`, demostrando convivencia sin alterar clientes normales.
+- El upstream no ofrece límite genérico de filas ni timeout CLI para `execute_sql`; no se forkea por anticipación. La restricción temporal se aplica en PostgreSQL por rol/database. En restricted mode, un rechazo de policy puede volver como texto de error con `isError=false`, por lo que consumidores no deben interpretar ese flag como única señal de éxito.
+- Los cuatro contenedores POC y la red `mcp-postgres-poc` fueron eliminados tras validar los despliegues finales; permanecen sólo backend+proxy RO y backend+proxy RW.
 - La skill canónica `xKoRx/symphony/.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` quedó actualizada con profiles MCP, reglas de transferencia, PowerShell/Windows, golden path MT4 y guards explícitos para impedir servidores HTTP ad-hoc o cambios de ACL no autorizados.
 - Hardening genérico no necesario para desbloquear el uso actual — validación explícita de sesiones background, timeout extremo y revisión operativa de audit trail — se difiere a T6, donde se consolidarán health/logs/rotación/rollback y runbook transversal.
 
@@ -74,14 +78,15 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 > - [x] T0 Inventariar el host MCP existente: runtime, MCPs instalados, versiones, transporte, puertos, autenticación, persistencia, secretos, usuarios de servicio, red, logs y forma de despliegue #owner/agent #type/research #area/aranea
 > - [/] T1 Definir y congelar el contrato mínimo de acceso: consumidores, aliases/profiles, least privilege, ubicación de secretos, autenticación cliente→MCP, auditoría, política de red y separación entre credenciales del MCP y credenciales del servicio destino #owner/agent #type/research #area/aranea
 > - [x] T2 Seleccionar y validar SSH MCP para uso real de agentes: host-key strict, perfiles read/operator, bearer cliente→MCP, least privilege por target, acceso multi-host, transferencia de archivos, ejecución controlada y cero private keys entregadas al agente. Hardening transversal de background/timeout/audit pasa a T6 #owner/agent #type/admin #area/aranea
-> - [/] T3 Seleccionar y validar PostgreSQL MCP con una sola base de desarrollo: perfiles RO/RW, credencial centralizada, límites de query/timeout y convivencia con `psql` nativo #owner/agent #type/admin #area/aranea
+> - [x] T3 Seleccionar y validar PostgreSQL MCP con una sola base de desarrollo: perfiles RO/RW, credencial centralizada, límites de query/timeout y convivencia con `psql` nativo #owner/agent #type/admin #area/aranea
 > - [ ] T4 Seleccionar y validar MongoDB MCP con una sola base de desarrollo: perfiles RO/RW, `readOnly`/protecciones equivalentes, límites de consulta y convivencia con `mongosh` nativo #owner/agent #type/admin #area/aranea
 > - [ ] T5 Seleccionar y validar Temporal MCP: comenzar read-only con allowlist de namespaces; evaluar `signal/start/cancel` sólo después de demostrar la necesidad y el modelo de policy correspondiente #owner/agent #type/admin #area/aranea
 > - [ ] T6 Consolidar los cuatro MCP aprobados en el host central, integrar al menos Hermes y Daedalus, demostrar que ambos consumen capabilities sin recibir credenciales reales de los servicios destino, y dejar health checks, logs/audit, background/timeout si aportan valor, rotación/rollback y runbook operativo mínimo #owner/agent #type/admin #area/aranea
 
 ## 📆 Bitácora
 
-- **2026-09-11** — PostgreSQL MCP POC autenticada PASS en `mcps`: source `crystaldba/postgres-mcp` pinneado a `15c8e33353546148acc2d8bd784551cf3905d1e2`, imagen local no-root `local/postgres-mcp:0.3.0-15c8e33`, Streamable HTTP conectado como `mcp_echo_rw` a `echo-develop`. Discovery, sesión MCP y RW se validaron sin mutación real. Como el upstream no aporta bearer auth, se validó Nginx 1.29.8 pinneado por digest como proxy en red privada: `401` sin bearer y `200 + Mcp-Session-Id + tools/call` con bearer dedicado. T3 permanece WIP hasta completar RO sobre la misma DB de desarrollo, límites/timeout y despliegue persistente/consumo real.
+- **2026-09-11** — T3 PostgreSQL MCP cerrado end-to-end. Deployment persistente en `mcps` con backend+proxy separados para RO (`:3001/mcp`, `mcp_echo_ro`, restricted) y RW (`:3002/mcp`, `mcp_echo_rw`, unrestricted), bearer dedicado por capability y backends sin host port. Cursor/Daedalus carga ambos bearer automáticamente vía KDE y validó identidad/base real desde los dos MCP. RO sólo expone schema `echo` y excluye `hdb_catalog`; RW mantiene permisos acotados a `echo-develop`. Ambos roles heredan `statement_timeout=60s`, `lock_timeout=5s`, `idle_in_transaction_session_timeout=60s`; `psql` nativo como `postgres` sigue `0/0/0`. El upstream no ofrece timeout/límite genérico para `execute_sql`, por lo que no se forkea: el hard limit temporal vive en PostgreSQL. POCs y red temporal eliminados tras el gate final.
+- **2026-09-11** — PostgreSQL MCP POC autenticada PASS en `mcps`: source `crystaldba/postgres-mcp` pinneado a `15c8e33353546148acc2d8bd784551cf3905d1e2`, imagen local no-root `local/postgres-mcp:0.3.0-15c8e33`, Streamable HTTP conectado como `mcp_echo_rw` a `echo-develop`. Discovery, sesión MCP y RW se validaron sin mutación real. Como el upstream no aporta bearer auth, se validó Nginx 1.29.8 pinneado por digest como proxy en red privada: `401` sin bearer y `200 + Mcp-Session-Id + tools/call` con bearer dedicado.
 - **2026-09-10** — T2 SSH MCP cerrado para uso real de agentes. Se validó `mt5-kronos-operator` con `run-command` como usuario Windows no-admin y el golden path MT4 `upload/copy → compile` sobre `master_test_001`; `reference_v3.mq4` compiló a `.ex4` con 0 errors / 0 warnings. La resolución de `#include` de MetaEditor ejecutado como `echo-dev` usa el AppData de ese usuario y requiere mirror del mismo hash de terminal. La skill Echo Forge WFM Troubleshooting documenta este contrato y prohíbe servidores HTTP ad-hoc para mover texto cuando `sftp-upload` es suficiente.
 - **2026-09-10** — Cursor/Daedalus quedó con autoload persistente de `ARANEA_SSH_MCP_BEARER` mediante entorno de usuario/KDE; `aranea-ssh` conecta verde al abrir Cursor normalmente, sin launcher de consola.
 - **2026-09-10** — SSH MCP expandido a cuatro targets read-only en una sola instancia/puerto: `sqx-zeus`, `sqx-hera`, `sqx-kronos` y `mt5-kronos`; se añadió `mt5-kronos-operator` para mutación/ejecución controlada.
@@ -111,6 +116,8 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - D12: T2 se considera cerrado cuando el camino real de agentes queda validado con perfiles RO/operator, strict host keys, auth MCP, least privilege, transferencia y ejecución. Hardening transversal no bloqueante (background/timeout/audit operacional) se concentra en T6 para evitar sobrediseñar cada capability.
 - D13: PostgreSQL MCP se adopta desde `crystaldba/postgres-mcp` pinneado por commit e imagen local; las credenciales DB permanecen sólo en `mcps` y el runtime usa identidad PostgreSQL dedicada least-privilege.
 - D14: como PostgreSQL MCP no ofrece bearer auth nativo, el endpoint remoto se protege mediante proxy Nginx pinneado, bearer dedicado y red Docker privada; el backend MCP no se publica directamente a consumidores.
+- D15: PostgreSQL RO y RW se publican como capabilities separados, cada uno con bearer e identidad DB propia; los límites temporales se aplican mediante settings `ALTER ROLE ... IN DATABASE echo-develop`, evitando modificar clientes nativos o forkear el MCP sin necesidad demostrada.
+- D16: en `postgres-mcp` restricted, `isError` no es autoridad suficiente para decidir éxito de `execute_sql`; un rechazo de policy puede representarse como contenido textual de error con `isError=false`.
 
 ## 🔗 Docs / Links
 
