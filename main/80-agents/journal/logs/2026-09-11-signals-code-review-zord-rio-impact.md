@@ -49,12 +49,16 @@ tags:
 - Criterio previo: copia legacy `~/.claude/skills/signals-code-review/SKILL.md`, [[rjara-agent-profile]], [[rjara-meli-work-preferences]] y learnings de review enlazados.
 - RIO: [[ads-signals-knowledge-library]], su `AGENTS.md`, startup, context packs, source manifest y ledger bilateral; [[RIO Atlas]], [[integration-map]], [[Fuentes — Workspace de repositorios]] y fichas de aplicaciones.
 - Zord: [[local-agents-pipeline-cli]], sus prompts `io-boundaries`/`cross-repo-validation` y README del checkout documentado.
+- Redacción y publicación: [[human-first-technical-writing]] y documentación oficial de GitHub para crear una Pull Request review con comentarios inline mediante `line`/`side`.
 
 ## Resolución aplicada
 
 - La skill conserva decisiones contextuales: alcance, frontera transversal, priorización, criterios personales, reconciliación de evidencia y veredicto. El runbook posee baseline Git, recuperación progressive-disclosure, comandos Zord, evidencia cross-repo, validación, estados degradados y recuperación.
 - Se fijó la jerarquía código owner > knowledge library > Atlas/fichas, con chequeo de frescura y prohibición de convertir documentación stale o findings de Zord en verdad sin contraste.
 - La revisión permanece read-only; descripción de PR y fixes tienen handoffs separados.
+- La validación de tests parte por una matriz de comportamientos críticos del PR y sus resultados observables; coverage sigue permitido como complemento, pero no acredita por sí solo los comportamientos materiales.
+- Zord se resuelve exclusivamente como la tool canónica [[local-agents-pipeline-cli]], primero por binario y luego por su checkout owner registrado; queda prohibido hacer discovery abierto, recrearlo o usar `zord add` durante un review.
+- El workflow quedó semiautomático con un único gate humano: el agente investiga, verifica y presenta comentarios Human First con su porqué; Rodrigo aprueba todos, algunos IDs o ninguno; tras aceptación se publica una sola review breve y se verifica por read-back.
 
 ## Validación
 
@@ -66,6 +70,8 @@ tags:
 - Activación adyacente: “arma la descripción del PR de rio-playmaker” → PASS, handoff a [[pr-description]].
 - Forward-test sobre el checkout actual de `rio-playmaker`: el baseline detectó `scripts/inactivate-probe/` funcional sin trackear y por contrato la revisión completa debe quedar `BLOCKED` hasta resolver su ownership; smoke independiente de Zord listó 8 reviewers, seleccionó 7 habilitados y completó `assemble --scope branch --dry-run` sin ejecutar agentes ni cambiar el working tree. Resultado del forward-test: PASS.
 - Draft→Ready: PASS; skill/runbook separados, fuentes canónicas enlazadas, output explícito y failure modes de base incorrecta, documentación stale, falsos positivos de Zord, búsquedas negativas parciales y scope creep cubiertos.
+- `graphify-obsidian update` intentado: bloqueado por dos findings nuevos fuera de este delta (`Sin título.md` sin frontmatter y un proyecto Echo con `status: closed`); el wrapper conservó el último índice válido. Los cinco archivos de esta operación mantienen lint estricto `0/0`.
+- Refinamiento solicitado por el owner: validación comportamiento→test, resolución canónica de Zord y ciclo preview→aprobación→publicación agregados. Revalidación posterior: lint estricto `ERROR=0 WARN=0`, schemas `skill|runbook|change_log` con `errors=0`, YAML PASS y forward checks `behavior-over-coverage`, `canonical-zord-resolution`, `owner-gated-publication` y `human-first-comments` en PASS.
 
 ## Compartibilidad
 
