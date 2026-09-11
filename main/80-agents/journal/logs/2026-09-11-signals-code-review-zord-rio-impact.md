@@ -58,7 +58,14 @@ tags:
 
 ## Validación
 
-- Pendiente de completar tras lint de schema/frontmatter, Draft→Ready, tres casos de activación y forward-test realista.
+- `validate_schema_contract.py --type skill|runbook|change_log|user_preference`: `errors=0` en los cuatro slices.
+- `lint.py --strict` sobre los cinco archivos canónicos creados/modificados: `ERROR=0 WARN=0`; parse YAML estricto: PASS.
+- `quick_validate.py` se ejecutó como diagnóstico portable y rechazó, según lo esperado por `skill-contract.md`, las keys locales `aliases`, `created`, `entities`, `index_priority`, `indexable`, `load_policy`, `related`, `schema_version`, `scope`, `tags`, `type` y `updated`; no se alteró el contrato AGENTS OS para fabricar un PASS.
+- Activación positiva: “revisa la branch de rio-playmaker y sus impactos en RIO” → PASS, aplica `signals-code-review`.
+- Activación negativa: “revisa un PR de Echo Forge” → PASS, no aplica esta skill scoped a Meli/Signals.
+- Activación adyacente: “arma la descripción del PR de rio-playmaker” → PASS, handoff a [[pr-description]].
+- Forward-test sobre el checkout actual de `rio-playmaker`: el baseline detectó `scripts/inactivate-probe/` funcional sin trackear y por contrato la revisión completa debe quedar `BLOCKED` hasta resolver su ownership; smoke independiente de Zord listó 8 reviewers, seleccionó 7 habilitados y completó `assemble --scope branch --dry-run` sin ejecutar agentes ni cambiar el working tree. Resultado del forward-test: PASS.
+- Draft→Ready: PASS; skill/runbook separados, fuentes canónicas enlazadas, output explícito y failure modes de base incorrecta, documentación stale, falsos positivos de Zord, búsquedas negativas parciales y scope creep cubiertos.
 
 ## Compartibilidad
 

@@ -15,6 +15,7 @@ related:
   - "[[rjara-agent-profile]]"
   - "[[rjara-meli-work-preferences]]"
   - "[[pr-description]]"
+  - "[[signals-code-review-runbook]]"
 aliases:
   - review de código Signals
   - RIO code review
