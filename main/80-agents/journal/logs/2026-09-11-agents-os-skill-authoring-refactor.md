@@ -64,6 +64,10 @@ tags:
 - Trigger negativo: ejecutar un runbook operacional ya definido sin cambiar el contrato de una skill → PASS; no carga esta skill.
 - Trigger adyacente: capturar memoria → PASS; handoff a `agents-os-memory-distillation`.
 - Separación skill/runbook: PASS.
+- Read-back/validación estructural contra fuentes canónicas: PASS.
+- `validate_schema_contract.py`: **NOT RUN** — la superficie ChatGPT + GitHub no expone ejecución del runtime del repositorio.
+- Graphify targeted reindex: **NOT RUN** — Graphify es estado local y no está expuesto en esta superficie.
+- No se declara validación ejecutable ni reindex como realizados; quedan como próximo gate al operar desde el vault local.
 - No se modificaron contratos ni templates canónicos fuera del scope.
 
 ## Compartibilidad
