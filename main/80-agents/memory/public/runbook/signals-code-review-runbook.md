@@ -39,14 +39,16 @@ tags:
 
 ## Propósito
 
-Ejecutar una revisión `signals-code-review`: fijar el diff, recuperar intención y contexto RIO con progressive disclosure, correr la tool canónica Zord, verificar impacto cross-app y comportamientos críticos, reunir evidencia, preparar comentarios Human First y detenerse en un único gate de Rodrigo. Sólo después de su aprobación explícita, publicar los puntos seleccionados y un resumen corto. El criterio y el veredicto pertenecen a la skill [[signals-code-review]].
+Ejecutar una revisión `signals-code-review` exclusivamente para proyectos Meli: demostrar scope, fijar el diff, recuperar intención, correr la tool canónica Zord, verificar comportamientos críticos y preparar comentarios Human First antes del único gate de Rodrigo. En Signals/RIO se suma el Zord global independiente `rjara-rio-impact` y contexto oficial RIO con progressive disclosure. Sólo después de aprobación explícita se publican los puntos seleccionados y un resumen corto. El criterio y el veredicto pertenecen a la skill [[signals-code-review]].
 
 ## Precondiciones
 
 - Existe un repo local o referencia de PR resoluble y se conoce o puede demostrar la base real.
+- La pertenencia a Meli debe poder demostrarse mediante el remoto/owner, metadata corporativa o una relación canónica del vault. Un path local, nombre parecido o afirmación aislada no bastan. Si la identidad es no Meli o incierta, terminar `NOT_APPLICABLE` antes de invocar Zord.
 - `VAULT_ROOT` resuelve el marker `80-agents/agents-os/agents-os.md`; [[Fuentes — Workspace de repositorios]] resuelve el workspace externo sin persistir paths absolutos.
 - La revisión es read-only. Si hay conflicto, cambios funcionales locales ambiguos o archivos trackeados no atribuibles, detenerse y pedir decisión.
-- Zord está registrado como [[local-agents-pipeline-cli]]. Resolver el ejecutable desde esa nota: preferir `zord` del `PATH` y, si no está expuesto, usar el checkout owner `local-agents-pipeline-cli` bajo [[Fuentes — Workspace de repositorios]] mediante su `node lib/cli.js` documentado. Si ninguna ruta registrada funciona, marcar `DEGRADED`; no buscar otra herramienta, instalar paquetes, crear prompts ni ejecutar `zord add`.
+- Zord está registrado como [[local-agents-pipeline-cli]]. Resolver el ejecutable desde esa nota: preferir `zord` del `PATH` y, si no está expuesto, usar el checkout owner `local-agents-pipeline-cli` bajo [[Fuentes — Workspace de repositorios]] mediante su `node lib/cli.js` documentado. Si ninguna ruta registrada funciona, marcar `DEGRADED`; no buscar otra herramienta, instalar paquetes, crear prompts ni ejecutar `zord add` durante el review.
+- Para Signals/RIO debe existir `~/.config/zords/agents/rjara-rio-impact.md`, con `enabled: false`, hook `manual` y source efectivo `global`. Si falta, no valida o una definición repo-local lo sombrea, bloquear ese review en vez de continuar sin el control transversal.
 - Para publicar, debe existir un PR con head SHA y diff vigentes, una sesión GitHub autenticada y aprobación explícita de Rodrigo sobre IDs concretos o sobre todos los puntos presentados.
 
 ## Procedimiento
