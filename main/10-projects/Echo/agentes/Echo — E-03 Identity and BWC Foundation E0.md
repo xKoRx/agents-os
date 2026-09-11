@@ -213,7 +213,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-10 (TOP)** — Discovery en worktree limpio `origin/master`=`91671f6f`. SPEC/PLAN/TASKS `FEAT-CROSS-IDENTITY-BWC-E0`. Decisiones: mapping V2 separado del descriptor Lab; 1024 bytes freeze; magic bigint + string wire; TradeMap v0 medido/v1 header; 061 transaccional; MT4 no int64; RuntimeBinding table diferida a E-06. Planning SHA `c22fe218127c7e97fb40951ddcafc13d80ede152` publicado FF a `origin/master`.
+- **2026-09-11 (TOP E-04 interlock)** — E-04 planning autoriza **development** paralelo sobre `c408a12f` (`feature/e04-forge-ingestion-e1`) mientras este proyecto sigue `IMPLEMENTATION CLOSED / VERIFICATION PENDING`. E-04 **no** se integra ni declara CLOSED hasta CONTRACT_PASS de E-03. Este proyecto no se marca closed. `origin/master` no se mueve desde aquí.
 - **2026-09-10 (TOP correction)** — Gaps A–D cerrados en SPEC v1.1.0. Cookie `ECHO-TMAP` = 9 bytes; v1 §10.6 LE+CRC-32/IEEE; ticket Option 2 `1..MaxInt64`; Version PK `(registry_namespace, version_ref)` + FK mapping; `active_positions.strategy_id` DEFERRED. SHA `45a59fca1058203df6baf20c3cfe1d000251159d`. Estado `READY_FOR_MANAGER_REVIEW`. No NORMAL.
 - **2026-09-10 (TOP relational integrity)** — CHECK cross-table reemplazado por UNIQUE + FK compuestos. Mapping UNIQUE identity tuple; Version FK 3-col + UNIQUE 4-col; Promotion FK Version 4-col + FK mapping 3-col. T08/T10/T12/T13. SHA `576bf1f49f116826a8141126fbb520b80a7d1a3c`. Estado `READY_FOR_MANAGER_REVIEW`. No implementation complete. No closed. No NORMAL.
 - **2026-09-10 (NORMAL, BLOCKED parcial)** — One-shot NORMAL sobre worktree limpio `576bf1f4` (`/tmp/echo-e03-normal-hy8uJD`, sin commit). Implementado: 061 up/down (backup §7.1, widen 13 columnas + override bigint, tablas §6 con UNIQUE/FK compuestos exactos, triggers write-once, REVOKE, vistas recreadas sin typmod), harness SQL `tests/identity_bwc/` PASS íntegro en PG 16.15 real, repos identity/version/promotion/aliases write-once con IDENTITY_CONFLICT/CONTRACT_CONFLICT (tests INTEGRATION PASS contra PG), pipe `echo-identity-wire.v1` dual encode + `ReferenceTicket int64` (1..MaxInt64), T18 width gate, T20 no-allocator, T23 cert pack. PHYSICAL MT5: MetaEditor real compiló la .mqh reescrita (0 errores tras corregir 52 del primer intento), sizeof=148 sin padding, fixtures `v0.bin`/`v1.bin` + conversión validados contra codec Go. PHYSICAL MT4: setup rechazado por MetaQuotes (persistente) → T01/T02/T07-compile abiertos → BLOCKED, sin commit por §32. Desviación scope: `v3/sdk/go.mod` (contracts require+replace, exigido T12). Tooling creado: PG16 local (brew), colima VM + Wine + MetaTrader 5 con cuenta demo sintética (login 112457778) para evidencia MQL headless.
@@ -233,6 +233,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ## 🔗 Docs / Links
 
 - [[Echo — Live Platform V1]]
+- [[Echo — E-04 Forge Ingestion E1]]
 - [[Echo — Producto Integrado]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
 - [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]

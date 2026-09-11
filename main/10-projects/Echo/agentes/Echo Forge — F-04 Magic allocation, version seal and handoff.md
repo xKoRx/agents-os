@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-10"
-updated: "2026-09-10"
+updated: "2026-09-11"
 ---
 
 # Echo Forge — F-04 Magic allocation, version seal and handoff
@@ -46,7 +46,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 - **READY FOR MANAGER REVIEW (2026-09-11).** Owner gate resuelto: Magic Number V1 (`YYMMIIIDSSS`, 11 dígitos) implementado sobre `1999da1` en commit `ea8be76` (pushed). `CC_MISSING_OWNER_GATE`/`GateMagicCandidateSource` eliminados de producción; allocation V1 con catálogo/contador durables (migration 016), wiring productivo desde el control plane. SOURCE+CONTRACT+CONCURRENCY+MIGRATION PASS (`-race`; sweep paquete registry-postgres = mismos 4 fallos pre-existentes baseline). `PHYSICAL: BLOCKED — entorno`: mt5-kronos (Windows) tiene MetaEditor64 pero no SQX/sqcli para el stamp .sqx→.mq5 y los hosts Linux del stack son viewer/read-only esta sesión; no se finge PHYSICAL. INTEGRATION espera E-04. Worktree CLEAN.
 - Baseline Symphony `382f4ba5d417371f778e21619ed9eb72624a23f4` = `origin/master`, worktree CLEAN.
 - S0 `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33` (impl `08a0eb9a`).
-- CC: **resuelto — Magic Number V1 frozen** (owner decision 2026-09-11; `YYMMIIIDSSS`, XAUUSD=001). E-04: To Do (CONTRACT con `fakeconsumer`).
+- CC: **resuelto — Magic Number V1 frozen** (owner decision 2026-09-11; `YYMMIIIDSSS`, XAUUSD=001). E-04: TOP READY_FOR_MANAGER_REVIEW ([[Echo — E-04 Forge Ingestion E1]]); CONTRACT Forge sigue en `fakeconsumer`; INTEGRATION espera endpoint E-04 **y** E-03 CONTRACT_PASS.
 - `DATABASE MIGRATION: 015_strategy_magic_version_seal_handoff` + `016_magic_number_v1_allocator` (catálogo inmutable + contador mensual).
 - Agents OS vault sin `.git` (degraded); última SHA durable de journal `f1070bec27db3ca415fe24f3c3576139674b7e09`.
 - `GOD REQUIRED: NONE`.
@@ -124,7 +124,7 @@ T1.6∥T1.7 after T1.5. T1.11 needs T1.10. T1.15 after T1.13. No T1.18 without T
 
 ## Dependencies
 
-F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E-01 S0 pin. E-04 optional for INTEGRATION. CC owner for PHYSICAL allocation.
+F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E-01 S0 pin. E-04 optional for INTEGRATION (development E-04 may run now; integrate/CROSS_LANE gated by E-03 CONTRACT_PASS). CC owner for PHYSICAL allocation.
 
 ## ✅ Tareas
 
@@ -364,7 +364,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 
 ## 📆 Bitácora
 
-- **2026-09-10** — TOP persistió SPEC y este subproyecto. Baseline `382f4ba`. S0 `91671f6f`. CC_MISSING_OWNER_GATE. Migration 015. NORMAL no autorizado.
+- **2026-09-11** — Join E-04: planning [[Echo — E-04 Forge Ingestion E1]] congela `POST /api/v1/forge/promotions` + GET by-key + envelope S0. F-04 CONTRACT `fakeconsumer` no se reabre. INTEGRATION real sigue esperando implementación E-04 **y** E-03 CONTRACT_PASS. No se inventa URL provisional distinta.
 - **2026-09-10 (cierre NORMAL)** — Sello/readback/seal/handoff implementados: `sqx/adapters/magic-readback` (XML+MQ5 parsers fail-closed), `capabilities.VerifyMagicReadback`+`VerifyCompiledArtifactForSeal` (bytes reales, 0-errors), `domain` recetas S0 (EffectiveInputs/RuntimeContext/ExecutionManifest/DependenciesDigest vía `ExactInputRefsDigest`, StrategyVersionRef por recompute), store `SealStrategyVersion` write-once (replay/conflict), `core/forge` producer `BuildHandoffManifest` (Validate S0 PASS, membership estructural, G22 `HandoffMembersForDecision`), migration 015 con UNIQUE(decision_ref,version_ref) G24, stores handoff_manifests/handoff_deliveries, `capabilities.DeliverHandoff` (estados + UNKNOWN_RECEIPT sin re-POST + attempts), `adapters/echo-handoff` fakeconsumer CONTRACT (201/200/409/G24/non-effects/corpus G06-G07-G20-G21). Race verde en todos los paquetes F-04. Fixture de benchmark `specs/.../phase4_performance.json` lo reescriben tests ajenos — restaurado, worktree CLEAN.
 - **2026-09-10 (sesión NORMAL)** — Branch `feature/f04-magic-version-handoff` (nombre del briefing; difiere del registrado arriba). T1.1–T1.4 committeados: pin S0 resuelto por SSH directo (`v0.0.0-20260910031519-91671f6f46ff`), migración 015 + runner + tests fresh/brownfield/down/restart, allocator CAS SELECT-then-INSERT con replay/colisión/reservados/exhaustión N=32, `GateMagicCandidateSource` = producción (`CC_MISSING_OWNER_GATE`), concurrencia same/distinct con `-race` verde. Nota: 4 tests pre-existentes fallan en baseline (`TestUpsertStrategyV2_V0V1V2Coexistence`, `TestControlPlane_AdoptStrategyV1ConcurrentFilenameVariantsConverge`, `TestRegisterStrategy_LegacyRollbackTargetsOnlyV0`, `TestControlPlane_AdoptStrategyV1UnexpectedUniqueFailsWithoutPoisonedRead`) — set idéntico en baseline y branch, sin regresión F-04. Delegación MiniMax bloqueada por plan limit; NORMAL ejecutó directo.
 - **2026-09-11 (owner gate Magic V1, NORMAL)** — Sobre `1999da1`, commit `ea8be76`: codec `domain/magic_v1.go` (Encode/Decode/Validate, round-trip obligatorio, dirección L/S parseada estricta del canonical id, BOTH reservado D=3 sin inventar flow), migration `016_magic_number_v1_allocator` (`sqx.magic_instruments` con UNIQUE instrument/code + CHECK 001..999 + trigger inmutable; `sqx.magic_monthly_counters (period YYMM, instrument_code) → last_sequence` CHECK 0..999; seed XAUUSD=001 y AUDUSD/EURUSD/GBPUSD/NZDUSD/USDCAD/USDCHF/USDJPY=002..008 lexicográfico una vez), `ControlPlane.AllocateMagicV1` (upsert atómico initialize-or-increment RETURNING, guard <999 → `MAGIC_MONTHLY_CAPACITY_EXHAUSTED` sin wrap/reset, `INSTRUMENT_CODE_MISSING`, clock UTC determinista `cp.now`, replay-first reusa motor CAS/UNKNOWN_COMMIT), wiring productivo: `NewDurableApplySelectedRunActivity` deriva `MagicAllocatorV1` del control plane (gate fake sólo en tests). Correctivo: `assigned_at`/`sealed_at` truncados a µs → replay byte-equal (3 tests que fallaban por precisión en esta máquina quedan verdes; baseline queda en los 4 documentados). Tests: codec completo, concurrencia XAUUSD L/S/BOTH → {001,002,003} compartiendo contador, replay sin consumir ordinal y conservando magic septiembre en octubre, capacity #999 PASS/#1000 exhaust, catálogo exacto+inmutable+SILVER=009, PG fresh/brownfield 015→016/constraints/down/restart, todos `-race`. Físico: sondeo mt5-kronos vía SSH (MetaEditor64 en `C:\MT5\*`, worker desplegado; sin SQX/sqcli ni PG registry alcanzable; hosts Linux viewer) → PHYSICAL BLOCKED entorno, no se finge. Módulos privados Go resueltos por SSH (git insteadOf + GOPRIVATE). Fixture `phase4_performance.json` re-escrito por tests ajenos — restaurado, worktree CLEAN.

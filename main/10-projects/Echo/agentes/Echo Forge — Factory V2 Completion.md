@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-07"
-updated: "2026-09-10"
+updated: "2026-09-11"
 ---
 
 # Echo Forge — Factory V2 Completion
@@ -176,7 +176,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **In scope:** registry allocation CAS/no recycle; stamp; compile/readback bytes; seal; manifest write-once; thin client adapter. Fixtures G04–10/G19–25. G22 cero POST indelegable.
 - **Out of scope:** escribir DB Echo; eligibility; catálogo CC inventado; retirar HOST_KEY si F-01 no pasó; B1/B2.
 - **Dependencies:** **E-01 S0 pin**; F-01 antes de retirar discriminador host; F-02 para membership V2 nueva (V1 smoke posible con fixtures). **Owner CC antes de allocation física.**
-- **Parallel with:** E-03, E-04, E-05 tras pin.
+- **Parallel with:** E-03 verification, E-04 development (no E-04 master merge), E-05 tras pin.
 - **Hypotheses:** allocation-before-Apply + seal-after-bytes es implementable sin nuevo agregado; adapter no hace POST profundo de workflow.
 - **Risks:** allocation sin CC; seal antes de bytes; adapter que active Echo.
 - **Output authority:** StrategyVersion sealed + HandoffManifest write-once + delivery status.
@@ -213,7 +213,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 
 ## 📆 Bitácora
 
-- **2026-09-07** — Reparentado a [[Echo — Producto Integrado]], `owner: agent`, roadmap F-01…F-05. Tareas `#owner/me` de 4 ítems supersedidas. B1A/B1B/B2 historial, no backlog. C1/C2 fusionados en F-02.
+- **2026-09-11** — E-04 TOP: [[Echo — E-04 Forge Ingestion E1]] congela HTTP/S0/receipt para que F-04/F-05 avancen contra contrato estable. INTEGRATION/CROSS_LANE de handoff sigue gated por E-03 CONTRACT_PASS; development E-04 paralelo autorizado. Join Forge no se marca closed.
 - **2026-09-07** — TOP F-01 persistió SPEC [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] e hijo [[Echo Forge — F-01 Canonical generation concurrency]]. NORMAL no autorizado.
 - **2026-09-07** — Corrección F-01 in-place: discriminator = `ExecutionIntentKey`; FlowRun/NS ownership insuficiente. NORMAL no autorizado.
 - **2026-09-07** — F-01 corrección 02: filename budget; Campaign `FilenameToken` no se proyecta en GENERATED nuevos. NORMAL no autorizado.
