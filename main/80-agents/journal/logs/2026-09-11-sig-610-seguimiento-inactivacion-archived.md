@@ -4,10 +4,11 @@ schema_version: 1
 scope: session
 created: "2026-09-11"
 updated: "2026-09-11"
-area:
-project:
+area: "[[Meli]]"
+project: "[[SIG-610 — Seguimiento de inactivación]]"
 application:
-entities: []
+entities:
+  - "[[SIG-610 — Seguimiento de inactivación]]"
 related: []
 aliases: []
 confidence: verified
@@ -28,25 +29,25 @@ tags:
 
 ## Cambio
 
-- **Tipo:** created / updated / deleted / conflict-resolution
+- **Tipo:** updated
 - **Archivo(s):**
-  - 
+  - `archive/projects/meli/SIG-610 — Seguimiento de inactivación/SIG-610 — Seguimiento de inactivación.md`
 
 ## Motivo
 
-- 
+- Solicitud explícita del owner de retirar este proyecto de la cartera activa y conservar su historial.
 
 ## Fuentes usadas
 
-- 
+- Solicitud del owner del 2026-09-11 y nota canónica del proyecto.
 
 ## Resolución aplicada
 
-- 
+- Proyecto trasladado a `archive/projects/meli/` y su estado canónico actualizado de `review` a `archived`.
 
 ## Validación
 
-- 
+- Verificada la existencia del destino, la ausencia de la carpeta origen y el estado `archived` de la nota canónica.
 
 ## Compartibilidad
 
@@ -55,4 +56,4 @@ tags:
 
 ## Rollback
 
-- 
+- Mover la carpeta de vuelta a `10-projects/Meli/` y restaurar `status: review` si se retoma.
