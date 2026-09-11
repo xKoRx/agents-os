@@ -23,7 +23,7 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: 2026-09-07
+updated: 2026-09-11
 cssclasses:
   - wide
 ---
@@ -196,8 +196,8 @@ flowchart LR
 |---|---|---|---|
 | E-01 S0 SDK | ninguna | F-01, F-02, F-03, E-02 | pin publicado; Forge F-04 lo consume |
 | E-02 Control safety | ninguna | E-01 y todo Forge interno | antes de confiar captura live |
-| E-03 Identity/BWC | E-01 | F-04, E-05 | habilita E-04 |
-| E-04 Ingestion | E-01+E-03; producer fake basta | F-04 tras pin | INTEGRATION PASS handoff↔receipt |
+| E-03 Identity/BWC | E-01 | F-04, E-05 | implementation closed habilita **development** E-04; CONTRACT_PASS habilita **integration** E-04 |
+| E-04 Ingestion | E-01 + E-03 implementation (dev); E-03 CONTRACT_PASS (integrate); producer fake basta | F-04 tras pin | INTEGRATION PASS handoff↔receipt gated; development paralelo permitido |
 | E-05 Analytics A0 | E-01 | E-03/E-04 | alimenta E-10 |
 | E-06…E-13 live | E-04; supply físico Forge ayuda pero fixtures permiten diseño | según DAG interno | PHYSICAL PASS no se certifica con mocks |
 

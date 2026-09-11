@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-07
-updated: 2026-09-10
+updated: 2026-09-11
 cssclasses:
   - wide
 ---
@@ -44,17 +44,18 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 ## 📊 Estado actual
 
-- **PREPARADO + E-01 CLOSED + E-03 TOP READY_FOR_MANAGER_REVIEW (S0 consumption) · implementation blocked partial.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1.
-- **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC.
-- **Base observada:** `origin/master` `233ec89ce3868b414d63856c683a1fdd469c58bb` (E-03 S0 module consumption; parent `576bf1f4`). E-01 certified S0 permanece `91671f6f`.
+- **PREPARADO + E-01 CLOSED + E-03 IMPLEMENTATION CLOSED / VERIFICATION PENDING + E-04 TOP READY_FOR_MANAGER_REVIEW.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1.
+- **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC (F-04 Magic Number V1 ya owner-gated).
+- **Base observada:** `origin/master` `c408a12fe36643129a2ae3c3dfa69727b593ba76` (E-03 identity/BWC implementation; parent `233ec89c`). E-01 certified S0 permanece `91671f6f`. **No mover master** mientras el Verifier E-03 corre.
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
-- **E-03:** planning correction TOP en [[Echo — E-03 Identity and BWC Foundation E0]]; SPEC v1.1.1; edge S0 @ `233ec89c`. READY_FOR_MANAGER_REVIEW. Implementación dirty no committed. MT4 PHYSICAL blocker.
+- **E-03:** implementación física en [[Echo — E-03 Identity and BWC Foundation E0]] @ `c408a12f`. Verifier independiente PENDING/BLOCKED (host sin MT). No CONTRACT_PASS. No FINAL CLOSED.
+- **E-04:** planning en [[Echo — E-04 Forge Ingestion E1]]. Development may start en `feature/e04-forge-ingestion-e1` desde `c408a12f`. Integration gated by E-03 CONTRACT_PASS.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 planning: `233ec89ce3868b414d63856c683a1fdd469c58bb` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 | E-01 CLOSED · E-03 TOP READY_FOR_MANAGER_REVIEW · implementation blocked partial |
+| xKoRx/echo | `master` + `feature/e04-forge-ingestion-e1` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 implementation: `c408a12fe36643129a2ae3c3dfa69727b593ba76` · E-04 development base: el mismo SHA (no master push) | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.0 | E-01 CLOSED · E-03 IMPLEMENTATION CLOSED / VERIFICATION PENDING · E-04 TOP READY_FOR_MANAGER_REVIEW |
 
 ## 🧩 Subproyectos
 
@@ -72,7 +73,7 @@ views:
       - note.priority
 ```
 
-Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]]. S0 permanece ownership de este track.
+Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]]. S0 permanece ownership de este track.
 
 ## ✅ Tareas
 
@@ -80,7 +81,7 @@ Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 C
 > - [r] [[Echo — E-01 Canonical SDK Foundation S0]] E-01 Canonical SDK foundation S0 #owner/agent #type/dev #area/echo
 > - [ ] E-02 Control safety auth and journal recovery #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-03 Identity and BWC Foundation E0]] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
-> - [ ] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-04 Forge Ingestion E1]] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
 > - [ ] E-05 Analytics convergence A0 #owner/agent #type/dev #area/echo
 > - [ ] E-06 Reference enrollment and binding #owner/agent #type/dev #area/echo
 > - [ ] E-07 Raw facts DEAL coverage and trade lifecycle #owner/agent #type/dev #area/echo
@@ -165,29 +166,30 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Output authority:** schema protegido + adapters BWC.
 - **Certification:** SOURCE + MIGRATION (backup/atomic/restart; >int32; >2^53 wire).
 - **Done when:** no truncate; old maps preserved; no magic Echo competidor.
-- **Unlocks:** E-04.
+- **Unlocks:** E-04 development (implementation closed); E-04 integration espera CONTRACT_PASS.
 - **Accepted debt:** aliases `magic_*` por scope.
 - **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
 
 ### E-04 Forge ingestion E1
 
-- **ID / status / size:** E-04 · To Do · MEDIUM
+- **ID / status / size:** E-04 · Review (TOP planning) · MEDIUM
 - **Objective:** Gateway individual autenticado; validación; copia verificada de artefacto operativo; tx identity/version/promotion; replay/idempotency; **cero** provision/activation/capital.
 - **Capability unlocked:** INGESTED = receipt, no live.
 - **Why:** D-13; puente H3.
-- **Frozen input:** SDK §12; live authority §4. IngestionReceipt = respuesta del PromotionRecord.
+- **Frozen input:** SDK §12; live authority §4. IngestionReceipt = respuesta del PromotionRecord. Join: [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]].
 - **In scope:** endpoint; auth; verified copy; G01–25/G31/G35; race/crash/restore; producer fake suficiente.
 - **Out of scope:** batch; attach EA; eligibility; escribir Forge DB; latest lookup.
-- **Dependencies:** E-01+E-03. F-04 real opcional; fixtures primero.
-- **Parallel:** F-04 tras pin.
+- **Development dependency:** E-01 + E-03 IMPLEMENTATION CLOSED @ `c408a12f`. F-04 real opcional; fixtures primero.
+- **Integration dependency:** E-03 CONTRACT_PASS (`E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION`). No merge/release/CLOSED sin ese gate.
+- **Parallel:** F-04 tras pin; verification E-03 (development only).
 - **Hypotheses:** key+digest idempotente; conflicto write-once.
 - **Risks:** timeout post-commit; side effects.
 - **Output authority:** PromotionRecord INGESTED.
-- **Certification:** SOURCE + INTEGRATION (replay mismo resultado; copy fail no commit; zero non-effects). PHYSICAL después, no mocks como live.
-- **Done when:** matriz duplicate/conflict/partial PASS.
-- **Unlocks:** E-06; join con F-04/F-05.
+- **Certification:** SOURCE + INTEGRATION (replay mismo resultado; copy fail no commit; zero non-effects). PHYSICAL = PG+HTTP, no MT. CROSS_LANE gated.
+- **Done when:** matriz duplicate/conflict/partial PASS **y** integrate gate met.
+- **Unlocks:** E-06; join con F-04/F-05 (tras CONTRACT_PASS E-03).
 - **Accepted debt:** artefactos grandes quedan en Forge por refs.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning:** TOP listo ([[Echo — E-04 Forge Ingestion E1]]). **Implementation:** NORMAL tras manager review. **GOD:** NONE.
 
 ### E-05 Analytics convergence A0
 
@@ -372,6 +374,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-11** — Enlace al subproyecto [[Echo — E-04 Forge Ingestion E1]]. Development may start en `feature/e04-forge-ingestion-e1` desde `c408a12f` en paralelo con verification E-03. Integration gated by E-03 CONTRACT_PASS. Master no se toca. Puente E-04 → Review.
 - **2026-09-10** — Enlace mínimo al subproyecto de implementación [[Echo — E-03 Identity and BWC Foundation E0]]. Baseline E-03 = E-01 certified `91671f6f`. No se reescribió el roadmap.
 - **2026-09-10** — E-03 relational integrity `576bf1f4` (parent `45a59fca`) listo para revisión manager. UNIQUE + composite FK Mapping→Version→Promotion. Puente permanece Review. Sin implementación.
 - **2026-09-10** — E-03 S0 module consumption `233ec89c` (parent `576bf1f4`) FF a `origin/master`. `require v0.0.0` + `replace => ./contracts`. `go.sum` no delta. Puente permanece Review. Implementación dirty no committed. MT4 PHYSICAL blocker.
@@ -388,6 +391,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 - [[Echo — E-01 Canonical SDK Foundation S0]]
 - [[Echo — E-03 Identity and BWC Foundation E0]]
+- [[Echo — E-04 Forge Ingestion E1]]
 - [[Echo — Producto Integrado]]
 - [[Echo Forge — Factory V2 Completion]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
