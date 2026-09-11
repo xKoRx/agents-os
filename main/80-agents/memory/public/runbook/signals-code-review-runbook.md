@@ -47,7 +47,7 @@ Ejecutar una revisión `signals-code-review` exclusivamente para proyectos Meli:
 - La pertenencia a Meli debe poder demostrarse mediante el remoto/owner, metadata corporativa o una relación canónica del vault. Un path local, nombre parecido o afirmación aislada no bastan. Si la identidad es no Meli o incierta, terminar `NOT_APPLICABLE` antes de invocar Zord.
 - `VAULT_ROOT` resuelve el marker `80-agents/agents-os/agents-os.md`; [[Fuentes — Workspace de repositorios]] resuelve el workspace externo sin persistir paths absolutos.
 - La revisión es read-only. Si hay conflicto, cambios funcionales locales ambiguos o archivos trackeados no atribuibles, detenerse y pedir decisión.
-- Zord está registrado como [[local-agents-pipeline-cli]]. Resolver el ejecutable desde esa nota: preferir `zord` del `PATH` y, si no está expuesto, usar el checkout owner `local-agents-pipeline-cli` bajo [[Fuentes — Workspace de repositorios]] mediante su `node lib/cli.js` documentado. Si ninguna ruta registrada funciona, marcar `DEGRADED`; no buscar otra herramienta, instalar paquetes, crear prompts ni ejecutar `zord add` durante el review.
+- Zord está registrado como [[local-agents-pipeline-cli]]. Resolver el ejecutable desde esa nota: preferir `zord` del `PATH` y, si no está expuesto, usar el checkout owner `local-agents-pipeline-cli` bajo [[Fuentes — Workspace de repositorios]] mediante su `node lib/cli.js` documentado. Si ninguna ruta registrada funciona, marcar `BLOCKED`; no buscar otra herramienta, instalar paquetes, crear prompts ni ejecutar `zord add` durante el review.
 - Para Signals/RIO debe existir `~/.config/zords/agents/rjara-rio-impact.md`, con `enabled: false`, hook `manual` y source efectivo `global`. Si falta, no valida o una definición repo-local lo sombrea, bloquear ese review en vez de continuar sin el control transversal.
 - Para publicar, debe existir un PR con head SHA y diff vigentes, una sesión GitHub autenticada y aprobación explícita de Rodrigo sobre IDs concretos o sobre todos los puntos presentados.
 
@@ -88,7 +88,7 @@ Fuente oficial RIO:          PASS | NO APLICA
 Frescura/provenance:         PASS | DRIFT declarado | NO APLICA
 Impact frontier:             PASS | NO APLICA
 Zord preflight:              PASS
-Zord execution:              PASS | DEGRADED declarado
+Zord execution:              PASS | BLOCKED
 RIO Zord identity:           GLOBAL/DISABLED/MANUAL | NO APLICA
 RIO Zord execution:          PASS | NO APLICA
 Findings reconciliados:      PASS
@@ -103,7 +103,7 @@ Resultado:                   COMPLETE | DEGRADED | BLOCKED | NOT_APPLICABLE
 ```
 
 - `COMPLETE` exige scope Meli demostrado, Zord ejecutado, findings refutados, comportamientos críticos mapeados y working tree sin mutaciones atribuibles al review. En Signals/RIO exige además `rjara-rio-impact` global ejecutado y fuentes RIO navegadas con progressive disclosure; en Meli estándar ambos quedan `NO APLICA`. La publicación puede quedar `NOT AUTHORIZED` mientras espera el único gate humano.
-- `DEGRADED` permite entregar evidencia útil cuando falta Zord, una fuente o una verificación, pero el límite debe aparecer en el encabezado y en `No verificado`.
+- `DEGRADED` permite entregar evidencia útil cuando falta una fuente secundaria o una verificación no crítica, pero el límite debe aparecer en el encabezado y en `No verificado`; Zord faltante no admite degradación.
 - `BLOCKED` aplica si no se puede fijar la base, el diff mezcla cambios funcionales ambiguos, falta prueba efectiva de un comportamiento crítico con riesgo material, o en Signals/RIO falta o está sombreado `rjara-rio-impact`.
 - `NOT_APPLICABLE` es la única salida permitida para un proyecto no Meli o cuya identidad Meli no puede demostrarse. No incluye análisis parcial ni ejecución de Zord.
 

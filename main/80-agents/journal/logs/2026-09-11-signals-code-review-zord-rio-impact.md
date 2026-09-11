@@ -63,6 +63,7 @@ tags:
 - El workflow quedó semiautomático con un único gate humano: el agente investiga, verifica y presenta comentarios Human First con su porqué; Rodrigo aprueba todos, algunos IDs o ninguno; tras aceptación se publica una sola review breve y se verifica por read-back.
 - Se agregó un gate fail-closed: la skill sólo opera cuando la pertenencia a Meli está demostrada. En proyectos no Meli o de identidad incierta devuelve `NOT_APPLICABLE` antes de invocar Zord y no cae a un review genérico.
 - Para todo proyecto Meli, Zord es obligatorio. Los proyectos Meli fuera de Signals/RIO usan el set estándar; Signals/RIO agrega `rjara-rio-impact` con `--include`, manteniéndolo global, manual y disabled para que nunca se active accidentalmente.
+- La ausencia de Zord bloquea la revisión Meli; no existe fallback degradado a una opinión única.
 - `rjara-rio-impact` revisa el diff y fuentes oficiales por separado. El coordinador no le entrega briefs, prioridades, sospechas ni findings anteriores; sólo activa el revisor y proporciona el diff o diffs relacionados, evitando sesgar su foco.
 
 ## Validación
