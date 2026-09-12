@@ -74,13 +74,13 @@ views:
       - note.priority
 ```
 
-Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]]. S0 permanece ownership de este track.
+Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]]. S0 permanece ownership de este track.
 
 ## ✅ Tareas
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > - [r] [[Echo — E-01 Canonical SDK Foundation S0]] E-01 Canonical SDK foundation S0 #owner/agent #type/dev #area/echo
-> - [ ] E-02 Control safety auth and journal recovery #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-02 Control Safety, Auth and Journal Recovery]] E-02 Control safety auth and journal recovery #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-03 Identity and BWC Foundation E0]] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-04 Forge Ingestion E1]] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
 > - [ ] E-05 Analytics convergence A0 #owner/agent #type/dev #area/echo
@@ -134,7 +134,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-02 Control safety auth and journal recovery
 
-- **ID / status / size:** E-02 · To Do · MEDIUM
+- **ID / status / size:** E-02 · READY FOR MANAGER REVIEW (TOP planning v1.0.0) · MEDIUM
 - **Objective:** Cerrar exposición de control (admin secret fuera del cliente; auth proxy+roles) y journal ACK/recovery (hechos no se pierden ni se doble-efectúan). H1 del Reality Check; D-04/D-01.
 - **Capability unlocked:** el owner puede confiar que una falla se ve y se recupera; control no queda abierto en red.
 - **Product value:** TIME_TO_USABLE sin capturar meses sobre un journal que traga errores.
@@ -151,6 +151,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Unlocks:** E-06 captura confiable; E-13 ops.
 - **Accepted debt:** journal mínimo no es ledger institucional.
 - **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning vivo:** SPEC/PLAN/TASKS/VERIFICATION v1.0.0 en `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/` @ `ac7b4e14` ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): auth = roles Gateway/Hasura fail-closed (A03-A, sin BFF); journal = transientes al retry Flink + cuarentena 062 + `journalctl` PG→PG (A01-A); replay facts ≠ commands vía command_id UUIDv5 determinístico fact-triggered; migración única additive; PHYSICAL con compose StateFun + outage PG real.
 
 ### E-03 Identity and BWC foundation E0
 
@@ -376,6 +377,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-12** — E-02 TOP planning one-shot ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): subproyecto materializado; SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `ac7b4e14` pusheados a `origin/feature/e02-control-safety-journal-recovery` desde `a99f9a63` (docs-only; master intacto). Source D-04/D-01 revalidado en el baseline; arquitectura frozen sin authority conflicts; NORMAL gateado a manager review. Puente E-02 → Review.
 - **2026-09-12** — E-04 CONTROLLED INTEGRATION one-shot PASS: fetch/race y ancestry confirmados; gates mínimos PASS; `master` avanzó por fast-forward desde `fac48051` hasta el boundary E-04 `2f8db345`, sin reescritura ni force-push. Push normal verificado: `origin/master` final=`a99f9a63354bbe72219d1e590bb93757ed08e45e`; feature intacta=`2f8db345`. E-04 INTEGRATED=YES, READY consumido, T21/AC-37 PENDING POST-INTEGRATION y FINAL CLOSED=NO. Evidencia en E-04 `VERIFICATION.md`; F-04 no tocado.
 - **2026-09-12** — E-04 TOP CORRECTION 1.0.2 ([[Echo — E-04 Forge Ingestion E1]]): circular golden gate roto. T21/AC-37 ya no bloquea READY_FOR_INTEGRATION/merge; pasa a POST-INTEGRATION. READY_FOR_INTEGRATION=YES. FINAL CLOSED espera T21 PASS. Merge no ejecutado. Master intacto `fac48051`.
 - **2026-09-12** — E-03 CONTRACT_PASS / FINAL CLOSED ([[Echo — E-03 Identity and BWC Foundation E0]]): manager certificó en `fac48051` y se integró FF a `origin/master` (`c408a12f..fac48051`, sin merge commit/rebase/force). Gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION` de E-04 queda satisfecho; E-04 y Forge no tocados en esta integración. Puente E-03 permanece Review.
@@ -396,6 +398,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 ## 🔗 Docs / Links
 
 - [[Echo — E-01 Canonical SDK Foundation S0]]
+- [[Echo — E-02 Control Safety, Auth and Journal Recovery]]
 - [[Echo — E-03 Identity and BWC Foundation E0]]
 - [[Echo — E-04 Forge Ingestion E1]]
 - [[Echo — Producto Integrado]]
