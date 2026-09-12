@@ -2,7 +2,7 @@
 type: skill
 schema_version: 1
 name: aranea-mcps-expert
-description: Selecciona y gobierna el uso de las capabilities MCP del homelab Aranea. Cargar antes de usar cualquier MCP aranea-* para elegir capability, autoridad mínima y runbook correcto; nunca aplica a MELI ni a sistemas corporativos.
+description: Selecciona y gobierna el uso de las capabilities MCP del homelab Aranea. Cargar antes de usar cualquier MCP aranea-* para elegir ambiente, capability, autoridad y runbook correctos; nunca aplica a MELI ni a sistemas corporativos.
 scope: area
 created: "2026-09-11"
 updated: "2026-09-11"
@@ -37,50 +37,50 @@ tags:
 
 ## Purpose
 
-Seleccionar **cómo acceder** a infraestructura y datos de Aranea mediante su capability plane MCP sin repartir credenciales finales ni elevar autoridad innecesariamente.
+Seleccionar cómo acceder a infraestructura y datos de Aranea mediante su capability plane MCP sin repartir credenciales finales ni mezclar ambientes.
 
-Activar antes de usar cualquier capability `aranea-*`, o cuando una skill de dominio determine que necesita acceso MCP a un host, PostgreSQL o MongoDB de Aranea.
+Activar antes de usar cualquier capability `aranea-*`, o cuando una skill de dominio determine que necesita acceso MCP a un host, PostgreSQL o MongoDB de Aranea. No activar para trabajo local que no requiere MCP. **MUST NOT activate for Mercado Libre / MELI infrastructure, databases, repositories, hosts, credentials or corporate systems.**
 
-No activar para trabajo local que no requiere MCP. **MUST NOT activate for Mercado Libre / MELI infrastructure, databases, repositories, hosts, credentials or corporate systems.**
+## Canonical Authority
 
-Esta skill no vive en `80-agents/skills/`; ese catálogo es sólo core AGENTS OS. Los procedimientos mecánicos están en los runbooks enlazados.
+Esta skill es el router agent-facing. Los procedimientos mecánicos viven exclusivamente en `VAULT_ROOT/80-agents/memory/public/runbook/`:
+
+- `80-agents/memory/public/runbook/aranea-ssh-mcp.md` → [[aranea-ssh-mcp]]
+- `80-agents/memory/public/runbook/aranea-postgres-mcp.md` → [[aranea-postgres-mcp]]
+- `80-agents/memory/public/runbook/aranea-mongodb-mcp.md` → [[aranea-mongodb-mcp]]
+- `80-agents/memory/public/runbook/aranea-mcp-capability-plane.md` → [[aranea-mcp-capability-plane]]
+
+No copiar procedimientos desde esos runbooks a esta skill.
 
 ## Minimal Read
 
-Read only:
-
-1. Esta skill para seleccionar capability y autoridad.
-2. Después, sólo el runbook de la familia seleccionada:
-   - [[aranea-ssh-mcp]]
-   - [[aranea-postgres-mcp]]
-   - [[aranea-mongodb-mcp]]
-3. [[aranea-mcp-capability-plane]] sólo si el problema es el capability plane MCP mismo.
-
-No cargar los tres runbooks por defecto.
+1. Leer esta skill para elegir ambiente y capability.
+2. Cargar sólo el runbook de la familia elegida.
+3. Cargar [[aranea-mcp-capability-plane]] sólo cuando el problema sea discovery/auth/transporte/policy del plano MCP mismo.
 
 ## Procedure
 
 ### 1. Confirmar boundary Aranea
 
-Si el target es MELI/corporativo, detener esta skill y usar la autoridad/herramientas corporativas correspondientes. No extrapolar endpoints, perfiles, policies ni secretos de Aranea.
+Si el target es MELI/corporativo, detener esta skill y usar las autoridades corporativas correspondientes.
 
-### 2. Clasificar el recurso
+### 2. Elegir primero el ambiente
 
-| Necesidad | Capability default | Authority |
-|---|---|---|
-| runtime, logs, archivos u operación remota en workers Aranea | `aranea-ssh` | perfil viewer; operator sólo si la tarea exige mutación |
-| PostgreSQL `echo-develop` | `aranea-postgres-ro` | read-only |
-| mutación explícita en PostgreSQL `echo-develop` | `aranea-postgres-rw` | read/write |
-| MongoDB `forge` evidence/result plane | `aranea-mongo-forge-ro` | read-only |
-| mutación explícita en MongoDB `forge` | `aranea-mongo-forge-rw` | read/write |
+Para data MCPs el ambiente determina la capability; RO y RW no son dos niveles intercambiables sobre el mismo ambiente.
 
-Endpoints y detalles operativos viven en los runbooks; no inferirlos de memoria si el runbook está disponible.
+| Sistema / necesidad | Ambiente | Capability | Authority |
+|---|---|---|---|
+| Echo PostgreSQL consulta productiva | PROD | `aranea-postgres-ro` | read-only |
+| Echo PostgreSQL lectura o mutación de desarrollo | DEV | `aranea-postgres-rw` | read/write; puede usarse para lecturas DEV sin mutar |
+| Echo Forge MongoDB consulta productiva | PROD | `aranea-mongo-forge-ro` | read-only |
+| Echo Forge MongoDB lectura o mutación de desarrollo | DEV | `aranea-mongo-forge-rw` | read/write; puede usarse para lecturas DEV sin mutar |
+| runtime/logs/archivos workers | según perfil | `aranea-ssh` | viewer para evidencia; operator cuando la operación necesita escritura/ejecución |
 
-### 3. Elegir autoridad mínima
+**Invariante:** no usar PROD RO para verificar una mutación DEV y no cambiar de ambiente para conseguir más o menos autoridad.
 
-Default: viewer/RO.
+### 3. Elegir autoridad mínima dentro del ambiente correcto
 
-Cambiar a operator/RW sólo si la tarea requiere realmente una mutación. Complejidad, comodidad, volumen de resultados o una policy incómoda no justifican elevar autoridad.
+En SSH, viewer es default para evidencia y operator sólo si la operación exige mutación/ejecución. En data MCPs no existe una capability DEV RO separada: una lectura DEV usa el endpoint RW sin convertir la lectura en mutación.
 
 ### 4. Cargar el runbook de la familia
 
@@ -88,50 +88,39 @@ Cambiar a operator/RW sólo si la tarea requiere realmente una mutación. Comple
 - PostgreSQL → [[aranea-postgres-mcp]]
 - MongoDB → [[aranea-mongodb-mcp]]
 
-La skill de dominio decide **qué plano posee el hecho**; esta skill decide **cómo acceder**. No redefinir ownership de dominio aquí.
-
 ### 5. Acotar y ejecutar
 
-Antes de invocar el MCP, fijar el target mínimo: perfil/host, database/schema/table o database/collection/identificador.
+Fijar host/perfil o database/schema/table/collection/identificador. Ejecutar sólo la operación necesaria. Para mutaciones, identificar primero el target en el mismo ambiente, fijar blast radius, declarar post-condición, ejecutar y verificar en ese mismo ambiente.
 
-Ejecutar sólo la operación necesaria para responder la pregunta actual. Si aparece necesidad de otro backend/host, exigir una pregunta concreta derivada de la evidencia previa.
+### 6. Tratar boundaries como evidencia
 
-### 6. Gate de mutación
-
-Antes de una mutación:
-
-1. demostrar el target con viewer/RO cuando sea posible;
-2. fijar cardinalidad/blast radius;
-3. declarar post-condición esperada;
-4. usar la capability writable más estrecha;
-5. verificar después con viewer/RO cuando sea posible.
-
-### 7. Tratar boundaries como evidencia
-
-- `401` → diagnosticar auth/config del cliente; no pedir el bearer al usuario.
-- `POLICY_DENIED` / permission denied → revisar el boundary del runbook; no crear bypass automático.
-- timeout → reducir scope/optimizar antes de ampliar policy.
+- capability ausente del inventario → revisar discovery/config/env del cliente antes de culpar al backend;
+- `401` → diagnosticar bearer/config del cliente sin pedir ni imprimir el secreto;
+- `POLICY_DENIED` / permission denied → revisar el boundary del runbook, no crear bypass;
+- timeout → reducir scope/optimizar antes de ampliar policy;
+- una capability configurada pero sin tools expuestas no prueba fallo de PostgreSQL/MongoDB: primero aislar cliente/auth/handshake.
 
 ## Output
 
 ```text
+Environment: <PROD|DEV|runtime>
 Capability: <aranea-*>
 Authority: <viewer|operator|RO|RW>
 Target: <host/profile/database/collection/schema>
 Operation: <acción ejecutada>
 Evidence: <resultado material>
-Mutation: <none | target + post-condition + verification>
+Mutation: <none | target + post-condition + same-environment verification>
 Boundary: <none | policy/error relevante>
 ```
 
 ## Hard Rules
 
 - Esta skill es **Aranea-only**; nunca usarla para MELI o sistemas corporativos.
-- Antes de usar `aranea-*`, cargar esta skill y el runbook de la familia seleccionada.
-- Default viewer/RO; no elevar por comodidad.
+- Elegir ambiente antes que capability/autoridad.
+- PROD de datos es RO; DEV de datos es RW. No inventar sandbox, profiles dinámicos ni nuevos ambientes como workaround.
+- `SUPERUSER`, `CREATEDB` y `CREATEROLE` no son requisitos del PostgreSQL MCP DEV salvo que un contrato explícito distinto los exija; su ausencia no es blocker por defecto.
 - Nunca pedir, imprimir, copiar, persistir ni registrar bearer tokens, passwords o private keys.
 - No saltar el proxy MCP ni usar acceso directo agent-first cuando existe capability canónica que cubre la acción.
 - No cambiar ACLs/privilegios, publicar backends internos ni crear side channels como workaround automático.
-- Que una tool exista no amplía la autoridad declarada por el runbook; por ejemplo, MongoDB `connect` no autoriza URIs arbitrarias.
 - Skills consumidoras deben referenciar esta skill en vez de duplicar endpoints, permisos o semántica MCP.
 - No copiar esta skill a `80-agents/skills/` ni duplicar los runbooks fuera de `80-agents/memory/public/runbook/`.
