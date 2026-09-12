@@ -88,6 +88,7 @@ El registry **enlaza, no copia** (D6/D14). El core AGENTS OS vive arriba en
 | [[30-resources/agents/skills/sync-local-branch/SKILL.md|sync-local-branch]] | Sincroniza ramas Git exclusivamente locales con pull literal, merge, resolución conservadora, commit y push. | Dev-workflow genérico: sincronizar una rama con develop/master u otra local. |
 | [[30-resources/agents/skills/fury-lib-consumer-deploy/SKILL.md|fury-lib-consumer-deploy]] | Publica versiones test de librerías Java con Fury e importa esas versiones en apps consumidoras. | Metodología Fury cross-app: `java-polycard-sdk -> search-middleware`, `vis-octopus-lib -> vpp-backend`. |
 | [[30-resources/agents/skills/sdd-workflow/SKILL.md|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclar specification, plan, tasks, implementation y verification. | Features/cambios no triviales, backfill brownfield, artefactos SDD y handoffs. Metodología en `30-resources/methodologies/sdd/`. |
+| [[30-resources/agents/skills/aranea-mcps-expert/SKILL.md|aranea-mcps-expert]] | Selecciona y gobierna capabilities MCP exclusivas del homelab Aranea; obliga autoridad mínima y delega detalles a [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]]. | Antes de usar cualquier MCP `aranea-*`. **MUST NOT** usarse para MELI/corporativo. |
 
 ### App-owned — repo `xKoRx/symphony` (Echo Forge / SQX)
 
@@ -95,7 +96,6 @@ Ownership real = repo de la app. `xKoRx/symphony` usa `.agents/skills/` como hom
 
 | Carpeta / ID | Descripción | Estado / ubicación |
 |---|---|---|
-| `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md` | Selecciona y gobierna capabilities MCP exclusivas del homelab Aranea; obliga autoridad mínima y delega detalles a los runbooks AGENTS OS [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]]. | ✅ fuente canónica app-owned; **MUST NOT** usarse para MELI/corporativo; runbooks en `80-agents/memory/public/runbook/` |
 | `xKoRx/symphony` → `.agents/skills/sqx-plugin-lifecycle/SKILL.md` | Modifica, compila, despliega y valida plugins Java de SQX con classpath efectivo, build contra SDK real, backup, canary y rollback. | ✅ **migrada** (piloto, 2026-08-07) al repo owner; ya no vive en el vault |
 | `xKoRx/symphony` → `.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` | Troubleshooting de Echo Forge/WFM: selecciona la fuente autoritativa de evidencia y delega el acceso MCP a `aranea-mcps-expert`. | ✅ repo owner; fuente única de routing de dominio |
 | `xKoRx/symphony` → `.agents/skills/sqx-temporal-failure-audit/SKILL.md` | Audita una ejecución fallida de un workflow Temporal del SQX Worker recabando evidencia agnóstica sin proponer fix. | ✅ migrada al repo owner; fuente única junto a su README humana |
