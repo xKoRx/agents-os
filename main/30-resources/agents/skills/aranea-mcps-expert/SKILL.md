@@ -79,7 +79,7 @@ Si el target es MELI/corporativo, detener esta skill y usar las autoridades corp
 | Echo PostgreSQL lectura o mutación de desarrollo | DEV | `aranea-postgres-rw` | read/write; puede usarse para lecturas DEV sin mutar |
 | Echo Forge MongoDB consulta productiva | PROD | `aranea-mongo-forge-ro` | read-only |
 | Echo Forge MongoDB lectura o mutación de desarrollo | DEV | `aranea-mongo-forge-rw` | read/write; puede usarse para lecturas DEV sin mutar |
-| Hasura inspección administrativa productiva | PROD | `aranea-hasura-prod-ro` | read-only estricto; usar sólo cuando esté certificado |
+| Hasura inspección administrativa productiva | PROD | `aranea-hasura-prod-ro` | read-only estricto; exactamente 4 tools Hasura server-side |
 | Hasura administración de desarrollo | DEV | `aranea-hasura-dev-admin` | admin Hasura; mutaciones sólo con scope/post-condición explícitos |
 | runtime/logs/archivos workers | según perfil | `aranea-ssh` | viewer para evidencia; operator cuando la operación necesita escritura/ejecución |
 
@@ -87,7 +87,18 @@ Si el target es MELI/corporativo, detener esta skill y usar las autoridades corp
 
 ### 3. Elegir autoridad mínima dentro del ambiente correcto
 
-En SSH, viewer es default para evidencia y operator sólo si la operación exige mutación/ejecución. En data MCPs no inventar capabilities nuevas como workaround. En Hasura, PROD y DEV son contratos distintos: PROD es inspección; DEV puede administrar metadata/DDL cuando la tarea lo requiere.
+En SSH, viewer es default para evidencia y operator sólo si la operación exige mutación/ejecución. En data MCPs no inventar capabilities nuevas como workaround. En Hasura, PROD y DEV son contratos distintos: PROD es inspección estricta; DEV puede administrar metadata/DDL cuando la tarea lo requiere.
+
+Para Hasura PROD, la superficie certificada es exclusivamente:
+
+```text
+export_metadata
+get_inconsistent_metadata
+get_schema
+get_version
+```
+
+`run_sql`, `reload_metadata` y mutadores de metadata no existen en la capability PROD. No ampliar esta superficie para resolver una tarea puntual.
 
 ### 4. Cargar el runbook de la familia
 
@@ -109,7 +120,8 @@ Fijar host/perfil o database/schema/table/collection/metadata object. Ejecutar s
 - `POLICY_DENIED` / permission denied → revisar el boundary del runbook, no crear bypass;
 - timeout → reducir scope/optimizar antes de ampliar policy;
 - una capability configurada pero sin tools expuestas no prueba fallo del servicio destino: primero aislar cliente/auth/handshake;
-- en Hasura, `tools/list` es evidencia de autoridad: no asumir que `--read-only` o el nombre del container hacen segura una capability PROD.
+- en Hasura, `tools/list` server-side es evidencia de autoridad: no asumir que `--read-only` o el nombre del container hacen segura una capability PROD;
+- `mcp_auth` visible en un cliente no cuenta como tool Hasura mientras no aparezca en `tools/list` server-side del backend.
 
 ## Output
 
@@ -134,5 +146,6 @@ Boundary: <none | policy/error relevante>
 - Nunca pedir, imprimir, copiar a documentación ni registrar bearer tokens, passwords, admin secrets o private keys.
 - No saltar el proxy MCP ni usar acceso directo agent-first cuando existe capability canónica que cubre la acción.
 - No cambiar ACLs/privilegios, publicar backends internos ni crear side channels como workaround automático.
+- Hasura PROD no expone SQL ni mutación de metadata; cualquier tarea que los requiera debe detenerse o moverse al ambiente/flujo correcto, no ampliar la capability dinámicamente.
 - Skills consumidoras deben referenciar esta skill en vez de duplicar endpoints, permisos o semántica MCP.
 - No copiar esta skill a `80-agents/skills/` ni duplicar los runbooks fuera de `80-agents/memory/public/runbook/`.
