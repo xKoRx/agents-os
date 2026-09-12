@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-10"
-updated: "2026-09-12"
+updated: "2026-09-13"
 ---
 
 # Echo Forge — F-04 Magic allocation, version seal and handoff
@@ -43,21 +43,18 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 ## 📊 Estado actual
 
-- **T2.1–T2.10 IMPLEMENTED (2026-09-12).** NORMAL ejecutó el plan TOP congelado sobre worktree aislado limpio. Compile Evaluation `mt5_compiler@mt5-compile.v1` producida por `mt5_compile_persist_v1` (sqx-worker), carrier `CompileEvaluationRef` exacto, `UseDurableMagicAllocation: true` en el caller productivo, `forge_seal_handoff_v1` (seal+handoff tras Finalist V2, G22 incluido), HTTP ingress E-04 real + GET-by-key + fail-closed sin config. SOURCE+CONTRACT+CONCURRENCY (`-race`)+MIGRATION PASS. Sets de fallos pre-existentes verificados equivalentes a baseline `9fad768` (workflows 21, worker 16, registry-postgres 4). **PHYSICAL: STOP — MANAGER REVIEW (defecto de contrato Magic V1 ↔ F-01, ver bitácora 2026-09-12 T2.12 deployment plane).** T2.11–T2.13 requieren run físico → pendientes. HEAD `d645ed6c2f438995d636a8213b1e4a3f5f26cbea` pushed fast-forward.
-- **TOP READY (2026-09-12).** El STOP de NORMAL queda resuelto: la autoridad de `compile_evaluation_ref` es un `domain.EvaluationRef` real sellado por StageExecution `mt5_compiler@mt5-compile.v1` en el plano Durable Foundation existente. **MIGRATION 017 = NO.** PHYSICAL sigue operacionalmente pending (host compile/SQX); eso no bloquea el plan. E-04 consumer READY `@ a99f9a6`; T21/AC-37 espera golden auténtico tras T2.
-- **READY FOR MANAGER REVIEW (2026-09-11).** Owner gate resuelto: Magic Number V1 (`YYMMIIIDSSS`, 11 dígitos) implementado sobre `1999da1` en commit `ea8be76` (pushed). `CC_MISSING_OWNER_GATE`/`GateMagicCandidateSource` eliminados de producción; allocation V1 con catálogo/contador durables (migration 016), wiring productivo desde el control plane. SOURCE+CONTRACT+CONCURRENCY+MIGRATION PASS (`-race`; sweep paquete registry-postgres = mismos 4 fallos pre-existentes baseline). `PHYSICAL: BLOCKED — entorno`: mt5-kronos (Windows) tiene MetaEditor64 pero no SQX/sqcli para el stamp .sqx→.mq5 y los hosts Linux del stack son viewer/read-only esta sesión; no se finge PHYSICAL. INTEGRATION espera E-04. Worktree CLEAN.
-- HEAD Symphony `9fad768ccd1f9d25ebb535a2d26edb3d74556c10` (merge autorizado `origin/master` y pushed a la feature); `origin/master` real `0b9742b09019526a8119f086199d15d1f0d42cb1`; merge-base actual `0b9742b09019526a8119f086199d15d1f0d42cb1`; `ea8be76` y `origin/master` son ancestros. Worktree: dirty foráneo preservado en `specs/FEAT-SQX-STRATEGY-EVALUATION/fixtures/phase4_performance.json`, reescrito por suite ajena; no restaurado ni borrado.
+- **TOP C4 CONTRACT CLOSED (2026-09-13).** One-shot TOP resolvió el defecto físico Magic V1 ↔ F-01: instrument/direction salen de `sqx.strategies`, no de `CanonicalStrategyID`. F-01 permanece CLOSED. TaskSpec `magic_number` no es requested. Multi-strategy soportado. `DATABASE MIGRATION: NONE`. Listo para NORMAL C4 sobre `feature/f04-magic-version-handoff` @ `d645ed6`. T2.11/T2.12/T2.13 permanecen OPEN. E-04 runtime/join es one-shot separado tras golden Forge.
+- **T2.1–T2.10 IMPLEMENTED (2026-09-12).** NORMAL ejecutó el plan TOP congelado sobre worktree aislado limpio. Compile Evaluation `mt5_compiler@mt5-compile.v1` producida por `mt5_compile_persist_v1` (sqx-worker), carrier `CompileEvaluationRef` exacto, `UseDurableMagicAllocation: true` en el caller productivo, `forge_seal_handoff_v1` (seal+handoff tras Finalist V2, G22 incluido), HTTP ingress E-04 real + GET-by-key + fail-closed sin config. SOURCE+CONTRACT+CONCURRENCY (`-race`)+MIGRATION PASS. **PHYSICAL: STOP — C4 (Magic V1 parseaba CanonicalStrategyID opaco).** HEAD `d645ed6c2f438995d636a8213b1e4a3f5f26cbea` pushed fast-forward.
 - S0 pin ya certificado por F-04; no se reabre ni se copian tipos desde Echo.
-- CC: **resuelto — Magic Number V1 frozen** (owner decision 2026-09-11; `YYMMIIIDSSS`, XAUUSD=001). E-04 authority real: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`; boundary integrado, T21/AC-37 espera el golden auténtico de Forge.
-- `DATABASE MIGRATION: 015_strategy_magic_version_seal_handoff` + `016_magic_number_v1_allocator` (catálogo inmutable + contador mensual).
-- Agents OS vault sin `.git` (degraded); última SHA durable de journal `f1070bec27db3ca415fe24f3c3576139674b7e09`.
+- CC: **resuelto — Magic Number V1 frozen** (owner decision 2026-09-11; `YYMMIIIDSSS`, XAUUSD=001). E-04 authority real: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`; T2.13 espera golden auténtico **y** runtime E-04 aparte.
+- `DATABASE MIGRATION: 015_strategy_magic_version_seal_handoff` + `016_magic_number_v1_allocator`. C4 no agrega migración.
 - `GOD REQUIRED: NONE`.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f04-magic-version-handoff` | `0b9742b09019526a8119f086199d15d1f0d42cb1` reconciliado | [[Echo Forge — Factory V2 Completion]] F-04 | [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **T2.1–T2.10 DONE; rollout 0.2.97 PASS vía Symphony Stager; T2.12 STOP — MANAGER REVIEW (Magic V1 ↔ F-01)** |
+| xKoRx/symphony | `feature/f04-magic-version-handoff` | `0b9742b09019526a8119f086199d15d1f0d42cb1` reconciliado | [[Echo Forge — Factory V2 Completion]] F-04 | [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **T2.1–T2.10 DONE; C4 CONTRACT CLOSED — READY FOR NORMAL; T2.11–T2.13 OPEN** |
 
 ## Parent / SPEC / baselines
 
@@ -99,7 +96,7 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 | D6 reserved | TECHNICAL_RESOLUTION | `11111` y `888111` no allocatable | source defaults | 1 |
 | D7 CC | TECHNICAL_RESOLUTION | `CC_MISSING_OWNER_GATE`; production physical Allocate fail-closed; tests inject MagicCandidateSource | O2 owner | 1 |
 | D8 readback | TECHNICAL_RESOLUTION | XML `.sqx` + MQ5; mismatch FAIL CLOSED; no EX5 parse | source gap | 1 |
-| D9 requested | TECHNICAL_RESOLUTION | TaskSpec magic si presente debe == allocated; else use allocated | D12 Apply TaskSpec | 1 |
+| D9 requested | TECHNICAL_RESOLUTION | **C4 corrected:** TaskSpec `magic_number` is legacy Apply stamp, not F-04 requested authority. F-04 stamps allocated and overwrites it. No dedicated requested field exists; do not invent one in C4. Reserved `888111`/`11111` in TaskSpec are historical defaults. | source `AllocatedEffectiveConfig` + `ValidateWorkflowSpec`; PHYSICAL `888111` | 3 |
 | D10 seal recipe | TECHNICAL_RESOLUTION | S0 `StrategyVersionRef`; effective_inputs via `C()`/`H()` not HashIdentity | S0 evidence.go | 1 |
 | D11 handoff | TECHNICAL_RESOLUTION | S0 `HandoffManifestV1` + IdempotencyKey + PayloadDigest; G22 0 POST | S0 promotion.go | 1 |
 | D12 adapter | TECHNICAL_RESOLUTION | Port `HandoffIngress`; CONTRACT fakeconsumer; no provisional E-04 URL | E-04 To Do | 1 |
@@ -107,6 +104,7 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 | D14 migration | TECHNICAL_RESOLUTION | `015_strategy_magic_version_seal_handoff` | last 014 | 1 |
 | D15 hashes | TECHNICAL_RESOLUTION | keep HashIdentity on Apply Evaluation internals; S0 recipes only on seal/handoff/allocation_ref | FR-4 | 1 |
 | D16 compile_evaluation_ref | TECHNICAL_RESOLUTION | Autoridad = `domain.EvaluationRef` de un compile StageExecution `mt5_compiler@mt5-compile.v1` persistido en Mongo EvaluationEvidence + `sqx.stage_execution_results`. Produce sólo tras compile físico success verificado. Cardinalidad 1. Recovery por ref exacta / `LoadEvaluation`, nunca latest. MIGRATION 017 NO. | Durable Foundation; `persistMT5ReconcileV1` analog; this TOP 2026-09-12 | 2 |
+| D17 C4 allocation inputs | TECHNICAL_RESOLUTION | Instrument = `sqx.strategies.instrument`; direction = `sqx.strategies.direction`; mapper `MagicV1DirectionFromStrategy`; catalog `sqx.magic_instruments`; CanonicalStrategyID opaque never parsed; replay conflict via `DecodeMagicV1` III+D; no new migration. | PHYSICAL `d645ed6` / F-01 `0509342`; this TOP 2026-09-13 | 3 |
 
 ## Technical resolution — compile Evaluation (frozen 2026-09-12)
 
@@ -264,6 +262,12 @@ F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E
 > - [x] T2.8 handoff assembler after Finalist V2 #owner/agent #type/dev #area/echo
 > - [x] T2.9 Echo HTTP `HandoffIngress` POST+GET by-key #owner/agent #type/dev #area/echo
 > - [x] T2.10 Echo ingest auth/config #owner/agent #type/dev #area/echo
+> - [ ] C4.1 retire CanonicalStrategyID parser; add MagicV1DirectionFromStrategy #owner/agent #type/dev #area/echo
+> - [ ] C4.2 AllocateMagicV1 loads instrument/direction from sqx.strategies #owner/agent #type/dev #area/echo
+> - [ ] C4.3 replay/conflict DecodeMagicV1 III+D without new migration #owner/agent #type/dev #area/echo
+> - [ ] C4.4 AllocatedEffectiveConfig: TaskSpec magic_number is not requested #owner/agent #type/dev #area/echo
+> - [ ] C4.5 C4 contract/concurrency tests including opaque ID and cohort N `-race` #owner/agent #type/dev #area/echo
+> - [ ] C4.6 SOURCE grep: no parse of CanonicalStrategyID for magic semantics #owner/agent #type/dev #area/echo
 > - [ ] T2.11 authentic Forge golden capture #owner/agent #type/dev #area/echo
 > - [ ] T2.12 PHYSICAL certification host capabilities #owner/agent #type/dev #area/echo
 > - [ ] T2.13 cross-lane smoke Echo T21/AC-37 #owner/agent #type/dev #area/echo
