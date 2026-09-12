@@ -375,6 +375,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-12** — E-04 TOP CORRECTION 1.0.2 ([[Echo — E-04 Forge Ingestion E1]]): circular golden gate roto. T21/AC-37 ya no bloquea READY_FOR_INTEGRATION/merge; pasa a POST-INTEGRATION. READY_FOR_INTEGRATION=YES. FINAL CLOSED espera T21 PASS. Merge no ejecutado. Master intacto `fac48051`.
 - **2026-09-12** — E-03 CONTRACT_PASS / FINAL CLOSED ([[Echo — E-03 Identity and BWC Foundation E0]]): manager certificó en `fac48051` y se integró FF a `origin/master` (`c408a12f..fac48051`, sin merge commit/rebase/force). Gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION` de E-04 queda satisfecho; E-04 y Forge no tocados en esta integración. Puente E-03 permanece Review.
 - **2026-09-11** — E-04 planning v1.0.1 ([[Echo — E-04 Forge Ingestion E1]] @ `c8e68538`): CROSS_LANE GOLDEN exige fixture Forge auténtica (`FORGE_GOLDEN_FIXTURE_PENDING`); synthetic S0 ≠ golden; CROSS_LANE development no espera E-03 CONTRACT_PASS; merge/close sí. Master no se toca. Puente E-04 permanece Review.
 - **2026-09-11** — Enlace al subproyecto [[Echo — E-04 Forge Ingestion E1]]. Development may start en `feature/e04-forge-ingestion-e1` desde `c408a12f` en paralelo con verification E-03. Integration gated by E-03 CONTRACT_PASS. Master no se toca. Puente E-04 → Review.
