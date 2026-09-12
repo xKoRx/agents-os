@@ -33,75 +33,47 @@ tags:
 
 # aranea-mcp-capability-plane
 
-%% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
-
 ## Propósito
 
-Validar y diagnosticar el capability plane MCP de Aranea cuando el fallo es del cliente, el proxy o la capability misma, no del backend de datos. La fuente agent-facing de selección/autoridad es [[aranea-mcps-expert]]. Los procedimientos por familia viven en [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]]. No mantener un segundo catálogo de endpoints aquí.
+Validar y diagnosticar el capability plane MCP de Aranea cuando el fallo está en discovery, configuración del cliente, environment, auth, proxy, transporte o policy, antes de culpar al backend de datos. El routing agent-facing vive en [[aranea-mcps-expert]] y la mecánica de cada familia en [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]].
 
-## Precondiciones
+## Estado normal
 
-- El target es infraestructura Aranea; si es MELI/corporativo, abortar y no usar este runbook.
-- Ya se confirmó que el síntoma no se explica por un backend concreto, o la capability esperada falta/desconecta/`401`/transporte inválido.
-- `VAULT_ROOT` resuelve el marker `80-agents/agents-os/agents-os.md`.
-- El agente no pide, imprime, copia ni persiste bearers, passwords ni private keys.
+Un cliente Aranea correctamente iniciado debe poder descubrir las capabilities configuradas: `aranea-ssh`, `aranea-postgres-ro`, `aranea-postgres-rw`, `aranea-mongo-forge-ro` y `aranea-mongo-forge-rw`. La mera presencia de un bloque en `config.toml` no demuestra que la capability esté conectada: el proceso cliente también debe heredar las env vars requeridas y completar el handshake MCP.
 
 ## Procedimiento
 
-1. **Confirmar el estado normal del cliente.** Un cliente de desarrollo Aranea correctamente configurado expone: `aranea-ssh`, `aranea-postgres-ro`, `aranea-postgres-rw`, `aranea-mongo-forge-ro` y `aranea-mongo-forge-rw`. Los detalles de endpoint/autoridad son canónicos en la skill y en el runbook de familia; no duplicarlos aquí.
-2. **Preflight antes de culpar al backend.** Confirmar que la capability `aranea-*` esperada aparece conectada; confirmar que la acción pedida calza con su autoridad; cargar el runbook de la familia; probar la operación read-only más pequeña primero; distinguir fallo de cliente/auth frente a fallo de backend/aplicación.
-3. **Enrutar capability missing/disconnected.** Verificar la configuración MCP del cliente y recargar/reconectar. No pedir que el usuario pegue bearers en el chat. No publicar puertos de backend como workaround.
-4. **Enrutar `401`.** Tratarlo como fallo de bearer/entorno del cliente en el boundary del proxy autenticado. No rotar, imprimir ni pedir secretos hasta que haya evidencia de que la rotación es necesaria.
-5. **Enrutar `POLICY_DENIED` / permission denied.** Tratarlo primero como boundary de autoridad. En viewer/RO, reducir la operación a la lectura mínima permitida. Si la mutación es genuina, seleccionar la capability RW/operator existente. No alterar ACLs ni crear un bypass sólo para facilitar el diagnóstico.
-6. **Enrutar timeout.** Estrechar query/comando antes de proponer expansión de policy. Para PostgreSQL, consultar [[aranea-postgres-mcp]] por timeouts de rol. Para MongoDB, acotar tamaño de resultado/filtro. Para SSH, partir lecturas viewer compuestas cuando la policy o la semántica del shell sea el problema.
-7. **Enrutar MCP HTTP `invalid request`.** En smokes de transporte manual, validar headers/sesión de protocolo antes de diagnosticar el backend de datos. Ver [[aranea-mongodb-mcp]] o [[aranea-postgres-mcp]] según aplique.
-8. **Disciplina de cambio.** Al agregar o cambiar una capability MCP Aranea: actualizar primero [[aranea-mcps-expert]]; actualizar el runbook de familia correspondiente en `80-agents/memory/public/runbook/`; actualizar skills consumidoras de dominio sólo si cambió su routing/ownership; nunca persistir material bearer/password/private-key en docs; validar conectividad del cliente y least-privilege end-to-end.
+1. **Inventariar antes de probar backend.** Listar capabilities/tools realmente expuestas por el cliente. Si una capability esperada no aparece, clasificar primero como `MCP discovery/client`.
+2. **Verificar configuración sin secretos.** Confirmar URL, nombre de la env var y policy de aprobación esperada; nunca imprimir el valor bearer. Para Mongo Forge, los nombres vigentes son `ARANEA_MONGO_FORGE_MCP_RO_BEARER` y `ARANEA_MONGO_FORGE_MCP_RW_BEARER`.
+3. **Verificar environment del proceso.** Comprobar sólo `SET/NOT_SET`. Una env var presente en una shell no implica que un proceso ya iniciado la haya heredado. Si se agregó después, cerrar/reabrir el cliente desde un environment correcto.
+4. **Distinguir configured vs exposed.** Si el bloque MCP existe pero no hay tools, no probar Mongo/PostgreSQL por acceso directo como sustituto: aislar env/auth/handshake primero.
+5. **Enrutar `401`.** Tratarlo como bearer/config del cliente o boundary del proxy autenticado. No rotar ni pedir secretos sin evidencia de necesidad.
+6. **Enrutar `POLICY_DENIED` / permission denied.** Tratarlo como boundary de autoridad. En SSH viewer, `run-command` puede estar denegado por diseño; usar operator sólo cuando la operación realmente requiere ejecución/escritura. En data MCPs, respetar PROD=RO y DEV=RW según [[aranea-mcps-expert]].
+7. **Enrutar `invalid request` / HTTP 400.** Un `GET /mcp` manual puede ser inválido para Streamable HTTP y no prueba caída del backend. Validar handshake/sesión/headers del protocolo o hacer una llamada MCP real antes de diagnosticar el servicio.
+8. **Enrutar timeout.** Estrechar query/comando/filtro antes de ampliar policy. Delegar a runbook de familia cuando discovery/auth/transporte ya estén descartados.
+9. **Disciplina de cambio.** Al cambiar capability: actualizar [[aranea-mcps-expert]], el runbook de familia en `80-agents/memory/public/runbook/` y la documentación estable de Aranea; nunca persistir bearer/password/private-key.
+
+## Caso conocido — Mongo Forge 2026-09-11
+
+`aranea-mongo-forge-ro/rw` estaban correctamente declarados en el cliente pero no aparecían en el inventario. Se comprobó que `ARANEA_MONGO_FORGE_MCP_RO_BEARER` y `ARANEA_MONGO_FORGE_MCP_RW_BEARER` estaban `NOT_SET`. Los bearer ya existían en los proxies del host `mcps`; se instalaron como archivos `0600` en `daedalus`, se cargaron persistentemente como env vars y ambas quedaron `SET`. La lección operacional es diagnosticar discovery/env antes de atribuir este síntoma a MongoDB.
 
 ## Validación
 
-Success requiere:
-
 ```text
 Plane symptom:       missing|401|POLICY_DENIED|timeout|invalid request
+Config present:      yes|no
+Required env:        SET|NOT_SET (value never shown)
+Capability exposed:  yes|no
 Client vs backend:   distinguished
-Family runbook:      loaded only after plane/auth is discarded or scoped
+Family runbook:      loaded only after plane/auth is scoped
 Bypass:              none
-Secrets:             none persisted
+Secrets persisted in docs: no
 ```
-
-Checklist:
-
-- [ ] El síntoma se clasificó como plano MCP/cliente y no se abrió un dump de backend por default.
-- [ ] Se cargó sólo el runbook de familia necesario, o ninguno si el fallo es puramente de cliente/auth.
-- [ ] No se pidieron ni persistieron secretos.
-- [ ] No se publicaron backends internos ni se crearon side channels.
-
-Cualquier bypass o persistencia de secreto deja la operación `ABORTED`.
 
 ## Rollback / recuperación
 
-Abortar sin mutar cuando:
-
-- falta la capability y el único workaround sería publicar un backend;
-- `401` no se puede resolver sin que el usuario pegue el bearer;
-- resolver el conflicto exigiría cambiar policy o ACLs fuera de scope.
-
-Ante fallo:
-
-1. registrar capability afectada y el boundary cliente/backend;
-2. no rotar secretos preventivamente;
-3. handoff al runbook de familia sólo cuando el plano MCP ya no es el sospechoso;
-4. no emitir éxito para un diagnóstico que no distingue cliente de backend.
+No publicar backends, no abrir nuevos puertos y no pedir secretos como workaround. Si una modificación de config/env empeora discovery, restaurar la configuración anterior y reiniciar el cliente; el backend se toca sólo con evidencia que lo incrimine.
 
 ## Evidencia
 
-Registrar al cerrar:
-
-- capability afectada;
-- boundary cliente/backend que falló;
-- evidencia recolectada;
-- acción correctiva;
-- resultado de validación;
-- riesgo residual.
-
-Los secretos nunca forman parte del closeout.
+Registrar capability afectada, estado de discovery, nombres de env vars sin valores, boundary cliente/proxy/backend, acción correctiva y resultado material.
