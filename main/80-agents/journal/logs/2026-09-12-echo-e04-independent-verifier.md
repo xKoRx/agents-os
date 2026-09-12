@@ -37,7 +37,7 @@ tags:
   - `10-projects/Echo/agentes/Echo — E-04 Forge Ingestion E1.md` (estado + bitácora: NORMAL CORRECTION COMPLETE → INDEPENDENT VERIFIER PASS @ `4aef2958`; T21/AC-37 PENDING intacto).
   - `80-agents/journal/agent-runs/2026-09-12-zcode-glm-5.3-flash-e04-independent-verifier.md` (nuevo; evidencia detallada del verifier).
   - `80-agents/journal/feedback/system-1/2026-09-12-echo-e04-independent-verifier-session-feedback.md` (nuevo).
-- Repo `xKoRx/echo` **sin cambios** (verificación read-only; worktree detached creado en `/tmp/e04-verify/wt` y removido; ni commit ni push; `origin/master` intacto `c408a12f`).
+- Repo `xKoRx/echo` **sin cambios por el verifier** (verificación read-only; worktree detached creado en `/tmp/e04-verify/wt` y removido; ni commit ni push). Hecho concurrente registrado: durante la sesión `origin/master` avanzó `c408a12f`→`fac48051` por push de otro carril (10:56 -03, FF; fix `wire` UTF-8 + fixes identity); `4aef2958` NO está en master.
 
 ## Motivo
 
