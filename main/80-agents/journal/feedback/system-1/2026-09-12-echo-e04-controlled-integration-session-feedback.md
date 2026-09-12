@@ -13,7 +13,7 @@ aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
 agent_run:
-session_goal:
+session_goal: "Integrar E-04 a master de forma controlada y cerrar la sesión con evidencia"
 source_session:
 confidence: high
 load_policy: manual
@@ -26,41 +26,41 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-09-12 - short-topic
+# Session Feedback - 2026-09-12 - echo-e04-controlled-integration
 
 ## Context
 
-- Agent surface:
+- Agent surface: Codex desktop
 - Agent model:
 - Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Session goal: Integrar E-04 a `master` sin reescritura y documentar el estado post-integración.
+- Main entity: `[[Echo — E-04 Forge Ingestion E1]]`
+- Skills used: `agents-os-bootstrap`, `agents-os-context-retrieval`, `agents-os-session-close`
+- Retrieval mode: focused Markdown retrieval; repo `VERIFICATION.md` as gate authority.
+- Artifacts changed: repo `VERIFICATION.md`; E-04 and parent Echo notes; change log.
 
 ## Scores
 
 Use 1-5, where 1 is poor and 5 is excellent.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+- Startup clarity: 5
+- Retrieval usefulness: 5
+- Skill fit: 5
+- Template fit: 4
+- Closeout friction: 3
+- Overall confidence: 5
 
 ## What Complicated The Session Most
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+- Observation: El gate físico requirió preparar manualmente un PostgreSQL portátil porque `psql` no estaba en PATH.
+- Why it was hard: la receta existente documenta variables y librerías, pero no un bootstrap/cleanup único y portable.
+- Proposed improvement: agregar un runbook de harness PG temporal que exponga `psql`, cree DB, ejecute gates serialmente y deje cleanup seguro.
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
+- What helped: `VERIFICATION.md` con gates y SHAs explícitos.
+- Why it helped: permitió separar evidencia histórica de estado vigente y verificar fail-closed antes del FF.
+- Keep/change: mantener la matriz y agregar una receta ejecutable del harness.
 
 ## Least Useful Or Noisy Part
 
@@ -70,16 +70,16 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 ## Missing Support
 
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
+- Problem not solved by Sistema 1: no hay runbook dedicado para inicializar el PG descartable E-04 ni para cleanup temporal bajo esta superficie.
+- How Sistema 1 could help next time: enrutar automáticamente a un runbook de integración física cuando `VERIFICATION.md` exige PG real.
+- Suggested artifact type: runbook operativo bajo `80-agents/skills/` o `80-agents/runbooks/`.
 
 ## Retrieval Feedback
 
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
+- Useful query or source: búsqueda enfocada de `E-04`, `READY_FOR_INTEGRATION`, `T21`, `AC-37` y `VERIFICATION.md`.
+- Missing context: comando canónico para el harness PG.
+- Duplicate/noisy result: historial amplio de E-04; los bloques fechados fueron útiles pero requieren distinguir estado vigente.
+- Better future query: exact entity + `VERIFICATION.md` + `CONTROLLED INTEGRATION`.
 
 ## Skill Feedback
 
