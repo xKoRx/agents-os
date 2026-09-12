@@ -46,6 +46,7 @@ Dejar el boundary Forge → Echo listo para aceptar un `HandoffManifestV1` auten
 
 ## 📊 Estado actual
 
+- **IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW (2026-09-12).** NORMAL completó T01–T20 `[x]` (T21 `[ ]`): 3 commits (`03b20abd` ingestion core, `fc590b31` gateway boundary, `bfc0bc4b` SDD evidence) pusheados FF a `origin/feature/e04-forge-ingestion-e1` tras race gate (`6beac29f` ancestro exacto; master `c408a12f` intacto). Gates: MIGRATION (identity_bwc PASS, 061 diff 0), E-03 regression 34 PASS (DBTX mecánico, sin editar tests), CONTRACT/PG REAL/PHYSICAL HTTP+PG/CONCURRENCY `-race` PASS (PG 17.5 local port 5561), SOURCE greps vacíos, contracts diff 0. AC-01…AC-36 cubiertos (detalle en VERIFICATION.md); AC-37/T21 **PENDING** (`FORGE_GOLDEN_FIXTURE_PENDING=YES`). Coverage: gateway 92%, sdk ingestion ~77% (delta documentado: plumbing defensivo + fault-injection). **Gap registrado para Manager:** el corpus S0 no embarca los bytes de artefacto que sus refs declaran (sólo G10 trae bytes; shas de G01 sin preimage) → los AC de aceptación se demostraron con builders sintéticos S0-API autorizados (SPEC §4.1) + corpus literal en rechazos y matriz G10; `TestCorpus_G01_ArtifactPreimages` documenta el 422 honesto. `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION=NOT_MET`. NO READY_FOR_INTEGRATION. NO CLOSED.
 - **NORMAL IMPLEMENTING (2026-09-12).** Manager aprobó el planning → NORMAL ejecuta T01–T20 mecánicamente contra TASKS/PLAN/SPEC v1.0.1. Worktree de ejecución `/tmp/echo-e04-normal-impl`, branch local `impl/e04-forge-ingestion-e1-normal` anclada exactamente a `origin/feature/e04-forge-ingestion-e1` @ `6beac29f` (push final FF a la feature; jamás master). `FORGE_GOLDEN_FIXTURE_PENDING` intacto; T21 fail-closed; E-03 no tocado (`IMPLEMENTATION CLOSED / CONTRACT_PASS NOT ESTABLISHED`); no Integration; no E-04 CLOSED. PG real: harness local descartable PG 17.5 port 5561 (`e04_ingestion`), `tests/identity_bwc/run.sh` PASS en el branch (061 intacto) y suite E-03 `Identity|Version|Promotion|Magic|Alias` PASS baseline.
 - **TOP PLANNING READY FOR MANAGER REVIEW (2026-09-11, corrección T17).** TASKS T17 alineado a `Deliver(ctx, ns, *HandoffManifestV1, payloadDigest) (PromotionRecord, httpStatus, error)` @ `6beac29f`. SPEC v1.0.1 §6.1 intacto. `payloadDigest` no es segunda autoridad HTTP. Gates 1.0.1 intactos (`FORGE_GOLDEN_FIXTURE_PENDING`; CROSS_LANE development no espera E-03 CONTRACT_PASS). No implementing. No CLOSED.
 - **Development MAY START** (T01–T20) en paralelo con verification E-03. **CROSS_LANE GOLDEN** puede correr antes de E-03 CONTRACT_PASS **si** existiera fixture Forge auténtica; hoy pending. **Integration/merge/close NO:** gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION`.
@@ -166,11 +167,11 @@ _No aplica — hijo de implementación de E-04; no crea Integration ni más hijo
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-FORGE-INGESTION-E1/TASKS.md`. Aquí sólo work packages. NORMAL no arranca hasta manager review.
-> - [ ] WP-A DBTX adapter sobre repos E-03 #owner/agent #type/dev #area/echo
-> - [ ] WP-B Ingestion service + artifacts + tx + non-effects #owner/agent #type/dev #area/echo
-> - [ ] WP-C Gateway POST/GET + auth + timeout/concurrency #owner/agent #type/dev #area/echo
-> - [ ] WP-D Corpus S0 HTTP + SQL-direct + HandoffIngress test client (SYNTHETIC; no golden) #owner/agent #type/dev #area/echo
-> - [ ] WP-E SOURCE/coverage/governance cert pack #owner/agent #type/dev #area/echo
+> - [x] WP-A DBTX adapter sobre repos E-03 #owner/agent #type/dev #area/echo
+> - [x] WP-B Ingestion service + artifacts + tx + non-effects #owner/agent #type/dev #area/echo
+> - [x] WP-C Gateway POST/GET + auth + timeout/concurrency #owner/agent #type/dev #area/echo
+> - [x] WP-D Corpus S0 HTTP + SQL-direct + HandoffIngress test client (SYNTHETIC; no golden) #owner/agent #type/dev #area/echo
+> - [x] WP-E SOURCE/coverage/governance cert pack #owner/agent #type/dev #area/echo
 > - [ ] WP-F CROSS_LANE GOLDEN authentic Forge fixture (T21; FORGE_GOLDEN_FIXTURE_PENDING) #owner/agent #type/dev #area/echo
 
 ```dataviewjs
@@ -189,6 +190,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-12 (NORMAL done → READY FOR MANAGER SOURCE REVIEW)** — T01–T20 `[x]`, T21 `[ ]`. Commits `03b20abd`/`fc590b31`/`bfc0bc4b` pushed FF `6beac29f..bfc0bc4b` a `feature/e04-forge-ingestion-e1` tras pre-push race OK; `origin/master` intacto `c408a12f`. Gates: MIGRATION PASS (061 diff 0, identity_bwc PASS), E-03 regression 34 PASS, E-04 `-race` PASS contra PG 17.5 (5561), SOURCE greps vacíos, contracts diff 0. Coverage gateway 92% / sdk ingestion ~77% (delta documentado en VERIFICATION). Gap registrado: corpus S0 sin bytes de artefacto para sus propios refs (sólo G10); AC de aceptación demostrados con builders sintéticos S0-API + matriz G10 literal; `TestCorpus_G01_ArtifactPreimages` documenta el 422 físico; authority pin de bytes = decisión Manager. MCPs Aranea aplicados vía [[aranea-mcps-expert]] (DEV `echo-develop` sin tablas 061; Forge Mongo sin manifest handoff dedicado → `FORGE_GOLDEN_FIXTURE_PENDING` sin cambio). Estado `IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW`. No verifier lanzado. No integrado. No E-04 CLOSED.
 
 - **2026-09-12 (NORMAL start)** — Manager review superado; NORMAL arranca T01–T20. Verificación git fail-closed: `origin/feature/e04-forge-ingestion-e1` = `6beac29f`, `origin/master` = `c408a12f`, ancestros `c8e68538 <- 618607f8 <- c408a12f` OK, S0 `91671f6f` presente. Worktree exclusivo `impl/e04-forge-ingestion-e1-normal` @ `6beac29f` (la feature estaba checkout en `/tmp/echo-e04-forge-ingestion-e1`; no se reutiliza ni destruye). PG real: cluster portátil 17.5 (5561, DB `e04_ingestion`), harness identity_bwc PASS, baseline E-03 PASS. MCPs Aranea verificados vía [[aranea-mcps-expert]]: DEV `echo-develop` SIN tablas 061 (contexto, no mutado); Forge Mongo PROD plano F-02/F-04 sin manifest handoff dedicado → `FORGE_GOLDEN_FIXTURE_PENDING` sin cambio. Estado `IMPLEMENTING`. No master push. No E-03 touched.
 
