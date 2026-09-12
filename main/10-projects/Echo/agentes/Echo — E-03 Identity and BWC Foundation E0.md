@@ -173,11 +173,11 @@ Manager acepta planning. NORMAL implementa. Verifier independiente escribe `VERI
 
 ## Blockers
 
-PHYSICAL MT4 sigue ABIERTO (setup MetaQuotes persistente). T01/T02/T05/T06/T07/T23 no se cierran por la corrección de consumo S0. Graphify del repo Echo está stale (v1): no bloquear. MCP Agents OS no autenticado en esta sesión: vault escrito por filesystem.
+No hay blocker vigente de E-03. MT4 queda fuera de alcance de certificación por decisión del manager. Graphify stale y autenticación MCP de Agents OS no afectan este cierre; el vault se actualizó por filesystem.
 
 ## Handoff requirements
 
-Próxima sesión NORMAL/physical trabaja contra `233ec89c` + SPEC v1.1.1 + T12 con edge S0 autorizado. El candidate `/tmp/echo-e03-normal-hy8uJD` (dirty sobre `576bf1f4`) no se modifica en este TOP; NORMAL decide cómo trasladarlo. Dirty foráneo del checkout habitual se preserva (worktree). Un commit de implementación aparte de los commits SDD TOP.
+Handoff final sobre `fix/e03-verification-correction-1`: revisión del manager contra `VERIFICATION.md`, sin marcar FINAL CLOSED desde este agente.
 
 ## Closure conditions
 
@@ -191,11 +191,11 @@ _No aplica — hijo de implementación de E-03; no crea Integration ni más hijo
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-CROSS-IDENTITY-BWC-E0/TASKS.md`. Aquí sólo work packages.
-> - [ ] WP-A Layout EA v0/v1 + MT4 legacy #owner/agent #type/dev #area/echo
-> - [ ] WP-B Schema 061 widen/protection/migration gates #owner/agent #type/dev #area/echo
-> - [ ] WP-C Stores identity/version/promotion/aliases #owner/agent #type/dev #area/echo
-> - [ ] WP-D Wire string magic + ticket 1..MaxInt64 #owner/agent #type/dev #area/echo
-> - [ ] WP-E Certification AC-01…AC-18 + no allocator #owner/agent #type/dev #area/echo
+> - [x] WP-A Layout EA v0/v1 + MT4 legacy #owner/agent #type/dev #area/echo
+> - [x] WP-B Schema 061 widen/protection/migration gates #owner/agent #type/dev #area/echo
+> - [x] WP-C Stores identity/version/promotion/aliases #owner/agent #type/dev #area/echo
+> - [x] WP-D Wire string magic + ticket 1..MaxInt64 #owner/agent #type/dev #area/echo
+> - [x] WP-E Certification AC-01…AC-18 + no allocator #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -214,6 +214,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-12 (ONE-SHOT CORRECTION COMPLETE):** baseline `5c126e5c` verificado sin merge/rebase; se resolvió el finding S0 real de expectativa stale frente a `encoding/json` Go 1.27. S0 FULL PASS, T01–T23/AC-01…AC-18 PASS, harness PostgreSQL efímero PASS, PostgreSQL MCP real no destructivo PASS y MT5 PHYSICAL PASS en build/tester 6182 con artifact `e03_mt5_correction_map.bin` (207 bytes, SHA256 `FA7A0A949DAE054A618AD9D144C6B828145191B8B902A016CAC6892D4367D007`). MT4 N/A por decisión del manager. Branch `fix/e03-verification-correction-1`; estado `review`, `progress: 100`, no FINAL CLOSED.
 - **2026-09-11 (VERIFIER INDEPENDIENTE, FAIL):** exact SHA `c408a12f` re-audit completed with MCP-first discovery and fresh worktrees. Source FAILs: MT4 V1 fail-closed missing from `AddWithOrigin`; REVOKE harness skips missing roles; bridge clean test setup is not baseline-identical. MT4/MT5 runtime artifact and disposable PostgreSQL gates remain individually `BLOCKED` after documented MCP attempts. No product fix, certification commit, push, or E-04 transition.
 - **2026-09-11 (TOP E-04 interlock)** — E-04 planning autoriza **development** paralelo sobre `c408a12f` (`feature/e04-forge-ingestion-e1`) mientras este proyecto sigue `IMPLEMENTATION CLOSED / VERIFICATION PENDING`. E-04 **no** se integra ni declara CLOSED hasta CONTRACT_PASS de E-03. Este proyecto no se marca closed. `origin/master` no se mueve desde aquí.
 - **2026-09-10 (TOP correction)** — Gaps A–D cerrados en SPEC v1.1.0. Cookie `ECHO-TMAP` = 9 bytes; v1 §10.6 LE+CRC-32/IEEE; ticket Option 2 `1..MaxInt64`; Version PK `(registry_namespace, version_ref)` + FK mapping; `active_positions.strategy_id` DEFERRED. SHA `45a59fca1058203df6baf20c3cfe1d000251159d`. Estado `READY_FOR_MANAGER_REVIEW`. No NORMAL.
