@@ -46,19 +46,19 @@ Dejar el boundary Forge → Echo listo para aceptar un `HandoffManifestV1` auten
 
 ## 📊 Estado actual
 
-- **TOP PLANNING READY FOR MANAGER REVIEW (2026-09-11).** Planning ejecutable creado desde cero: no existía proyecto Agents OS E-04 ni SPEC/PLAN/TASKS; sólo la Agent Task To Do en [[Echo — Live Platform V1]] y el join F-04 esperando endpoint. Feature ID canónico: `FEAT-FORGE-INGESTION-E1`.
-- **Development MAY START** en paralelo con la verification independiente de E-03. **Integration NO:** gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION`.
-- E-03 permanece `IMPLEMENTATION CLOSED / VERIFICATION PENDING` en `c408a12fe36643129a2ae3c3dfa69727b593ba76`. No se marca E-03 closed. No se marca E-04 implementing. No se marca Forge join closed.
-- Baseline de development: `origin/master` = `c408a12f` (parent `233ec89c`). Branch `feature/e04-forge-ingestion-e1` worktree separado. Push a master prohibido.
-- Contrato WHAT: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.0. TASKS T01–T20. AC-01…AC-36.
-- S0 certified READ ONLY @ `91671f6f`. Stores E-03 (mapping/version/promotion) se consumen, no se rediseñan.
-- Carril Forge bloqueado en INTEGRATION: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] (CONTRACT con `fakeconsumer`; no URL provisional). F-05 smoke de ingestión real espera este endpoint certificado.
+- **TOP PLANNING READY FOR MANAGER REVIEW (2026-09-11, corrección 1.0.1).** Gates CROSS_LANE corregidos: synthetic S0/fakeconsumer ≠ golden Forge; `FORGE_GOLDEN_FIXTURE_PENDING`; CROSS_LANE development no espera E-03 CONTRACT_PASS. Arquitectura 1.0.0 frozen. No implementing. No CLOSED.
+- **Development MAY START** (T01–T20) en paralelo con verification E-03. **CROSS_LANE GOLDEN** puede correr antes de E-03 CONTRACT_PASS **si** existiera fixture Forge auténtica; hoy pending. **Integration/merge/close NO:** gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION`.
+- E-03 permanece `IMPLEMENTATION CLOSED / CONTRACT_PASS NOT ESTABLISHED` @ `c408a12fe36643129a2ae3c3dfa69727b593ba76`. No se marca E-03 closed/PASS/FAIL. No se marca E-04 implementing. No se marca Forge join closed.
+- Baseline de development: `origin/master` = `c408a12f` (parent `233ec89c`). Branch `feature/e04-forge-ingestion-e1` @ `c8e6853804e55e71aad5adcbc432f378b57efc46` (parent planning `618607f8`). Push a master prohibido.
+- Contrato WHAT: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.1. TASKS T01–T20 NORMAL; T21 golden (blocked). AC-01…AC-37.
+- S0 certified READ ONLY @ `91671f6f`. Stores E-03 se consumen, no se rediseñan.
+- Búsqueda física Symphony: golden Forge **NOT FOUND**. `echo-handoff` testdata = copia S0. `ea8be76` no es authority de master. Dependency `FORGE_GOLDEN_FIXTURE_PENDING`.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e04-forge-ingestion-e1` | `c408a12fe36643129a2ae3c3dfa69727b593ba76` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §4 + [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] (join) | `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.0 @ `618607f81a42c5234f5df31c69978489a6a0d764` | TOP READY_FOR_MANAGER_REVIEW · NORMAL no autorizado |
+| xKoRx/echo | `feature/e04-forge-ingestion-e1` | `c408a12fe36643129a2ae3c3dfa69727b593ba76` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §4 + [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] (join) | `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.1 @ `c8e6853804e55e71aad5adcbc432f378b57efc46` | TOP READY_FOR_MANAGER_REVIEW · NORMAL no autorizado |
 
 ## 🗺️ Source map (baseline `c408a12f`)
 
@@ -86,7 +86,7 @@ Ningún cambio a `v3/sdk/contracts/**`. Ningún MQL. Ningún merge a master.
 
 ## 🕸️ Dependency graph
 
-Ver TASKS.md. Paralelo inicial: T01 DBTX ∥ T02 artifacts ∥ T09 auth. T03 service. T10–T11 HTTP. T12–T15 gates. T20 cert.
+Ver TASKS.md. Paralelo inicial: T01 DBTX ∥ T02 artifacts ∥ T09 auth. T03 service. T10–T11 HTTP. T12–T15 gates. T20 cert. T21 CROSS_LANE GOLDEN blocked by `FORGE_GOLDEN_FIXTURE_PENDING`.
 
 No ejecutar E-02/E-05/E-06/F-05 aquí. No alterar E-03 para acomodar semántica.
 
@@ -99,13 +99,14 @@ Exacto PLAN.md. Development en feature branch desde `c408a12f`. Prohibido `origi
 - **WP-A Stores adapter** T01 (AC-33). DBTX.
 - **WP-B Ingestion core** T02–T08. Service + artifacts + mapping/version/promotion tx + non-effects.
 - **WP-C Gateway HTTP** T09–T13, T16. Auth, POST, GET, timeout, concurrency.
-- **WP-D Corpus / SQL** T14–T15, T17. Golden S0 + SQL-direct + HandoffIngress test client.
+- **WP-D Corpus / SQL** T14–T15, T17. Synthetic S0 HTTP + SQL-direct + HandoffIngress test client. No es CROSS_LANE GOLDEN.
 - **WP-E Cert** T18–T20. SOURCE greps, coverage, governance interlock.
+- **WP-F Golden** T21. Authentic Forge fixture. Pending. No bloquea NORMAL.
 
 ## TOP / NORMAL boundaries
 
-- TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padres, gobernanza de paralelismo. No source Go/SQL/HTTP productivo.
-- NORMAL: T01–T20 mecánicamente. No elegir URL, codes, recetas S0, ni “arreglar” E-03/S0.
+- TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padres, gobernanza de paralelismo y golden. No source Go/SQL/HTTP productivo.
+- NORMAL: T01–T20 mecánicamente. T21 fail-closed mientras `FORGE_GOLDEN_FIXTURE_PENDING`. No elegir URL, codes, recetas S0, ni “arreglar” E-03/S0, ni inventar fixture Forge.
 - GOD: NONE.
 
 ## Migrations
@@ -115,23 +116,24 @@ Exacto PLAN.md. Development en feature branch desde `c408a12f`. Prohibido `origi
 ## Dependency delta
 
 ```text
-development dependency:  E-03 IMPLEMENTATION CLOSED @ c408a12f  (satisfecha)
-integration dependency:  E-03 CONTRACT_PASS                     (NO satisfecha)
+development dependency:     E-03 IMPLEMENTATION CLOSED @ c408a12f  (satisfecha)
+golden dependency:          FORGE_GOLDEN_FIXTURE_PENDING          (NO satisfecha; no bloquea NORMAL)
+integration dependency:     E-03 CONTRACT_PASS                    (NO satisfecha; merge/close only)
 ```
 
-F-04 real opcional para tests; fixtures S0 primero. CROSS_LANE con Symphony espera integrate gate.
+Corpus S0 / fakeconsumer / builders = CONTRACT/SYNTHETIC. CROSS_LANE GOLDEN exige fixture Forge auténtica; hoy pending. CROSS_LANE development **no** espera E-03 CONTRACT_PASS.
 
 ## Compatibility strategy
 
-HTTP nuevo. Stores E-03 write-once. Webhooks Gateway intactos. Forge CONTRACT permanece en fakeconsumer hasta CROSS_LANE.
+HTTP nuevo. Stores E-03 write-once. Webhooks Gateway intactos. Forge CONTRACT permanece en fakeconsumer. Echo SYNTHETIC usa S0. CROSS_LANE GOLDEN espera fixture auténtica, no E-03 CONTRACT_PASS.
 
 ## Test strategy
 
-AC-01…AC-36 ↔ TASKS. Corpus G01–G25/G31/G35 reusado. PG real obligatorio para CONTRACT/INTEGRATION/PHYSICAL. PHYSICAL E-04 = PG+HTTP+filesystem, no MetaTrader.
+AC-01…AC-37 ↔ TASKS. Corpus G01–G25/G31/G35 = SYNTHETIC/CONTRACT. PG real obligatorio para CONTRACT/PG/PHYSICAL HTTP+PG. PHYSICAL E-04 = PG+HTTP+filesystem, no MetaTrader. CROSS_LANE GOLDEN = T21/AC-37.
 
 ## Certification gates (NORMAL)
 
-Ver PLAN.md. Clases: SOURCE, CONTRACT, INTEGRATION, PHYSICAL, MIGRATION=N/A, CROSS_LANE (gated), GOVERNANCE (`E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION`).
+Ver PLAN.md. Clases: SOURCE, CONTRACT, PG REAL, PHYSICAL HTTP+PG, SYNTHETIC CONTRACT INTEGRATION, MIGRATION=N/A, CROSS_LANE GOLDEN (`FORGE_GOLDEN_FIXTURE_PENDING`), GOVERNANCE (`E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION`), CONTROLLED INTEGRATION (no esta fase).
 
 ## Branch strategy
 
@@ -145,7 +147,7 @@ Si Verifier E-03 FAIL: `BLOCKED_PENDING_E03_CORRECTION`.
 
 ## Blockers
 
-Ninguno para **development**. Integrate/CLOSED bloqueado por E-03 verification. F-04 PHYSICAL/CC no bloquea E-04 CONTRACT.
+Ninguno para **development** T01–T20. `FORGE_GOLDEN_FIXTURE_PENDING` bloquea T21 / CROSS_LANE GOLDEN PASS / Verifier golden / READY_FOR_INTEGRATION. Integrate/merge/CLOSED bloqueado por E-03 CONTRACT_PASS. F-04 PHYSICAL/CC no bloquea E-04 CONTRACT.
 
 ## Handoff requirements
 
@@ -153,7 +155,7 @@ Manager aprueba planning → NORMAL implementa T01–T20 en el worktree de esta 
 
 ## Closure conditions
 
-T01–T20 `[x]`; AC-01…AC-36; allowed files; 061 intacto; non-effects; E-03 identity tests PASS; `VERIFICATION.md` con evidencia; **y** `E-03 CONTRACT_PASS` antes de merge/CLOSED. Este TOP no cierra E-04.
+T01–T20 `[x]`; AC-01…AC-36; allowed files; 061 intacto; non-effects; E-03 identity tests PASS. READY_FOR_INTEGRATION exige además AC-37/T21 (hoy pending). Merge/CLOSED exige `E-03 CONTRACT_PASS`. Este TOP no cierra E-04.
 
 ## 🧩 Subproyectos
 
@@ -166,8 +168,9 @@ _No aplica — hijo de implementación de E-04; no crea Integration ni más hijo
 > - [ ] WP-A DBTX adapter sobre repos E-03 #owner/agent #type/dev #area/echo
 > - [ ] WP-B Ingestion service + artifacts + tx + non-effects #owner/agent #type/dev #area/echo
 > - [ ] WP-C Gateway POST/GET + auth + timeout/concurrency #owner/agent #type/dev #area/echo
-> - [ ] WP-D Corpus S0 HTTP + SQL-direct + HandoffIngress test client #owner/agent #type/dev #area/echo
+> - [ ] WP-D Corpus S0 HTTP + SQL-direct + HandoffIngress test client (SYNTHETIC; no golden) #owner/agent #type/dev #area/echo
 > - [ ] WP-E SOURCE/coverage/governance cert pack #owner/agent #type/dev #area/echo
+> - [ ] WP-F CROSS_LANE GOLDEN authentic Forge fixture (T21; FORGE_GOLDEN_FIXTURE_PENDING) #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -186,12 +189,13 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-11 (TOP corrección 1.0.1)** — Manager findings: (1) S0/fakeconsumer no es CROSS_LANE GOLDEN; inspección Symphony → `FORGE_GOLDEN_FIXTURE_PENDING`; (2) CROSS_LANE development desacoplado de E-03 CONTRACT_PASS; integrate/close sigue gated. SPEC v1.0.1 @ `c8e68538` pushed a `feature/e04-forge-ingestion-e1`. T21/AC-37 añadidos. E-03 no tocado. Symphony no tocado. Master intacto. Estado `READY FOR MANAGER REVIEW`. No NORMAL.
 - **2026-09-11 (TOP)** — Recovery: no había proyecto E-04 ni SPEC ejecutable. Se materializa este hijo, SPEC/PLAN/TASKS `FEAT-FORGE-INGESTION-E1` en branch `feature/e04-forge-ingestion-e1` desde `c408a12f` (planning SHA `618607f8`, pushed; `origin/master` intacto). Gobernanza: development paralelo a verification E-03; integrate gated por CONTRACT_PASS. Join F-04 congelado (HTTP + S0 + receipt). Estado `READY FOR MANAGER REVIEW`. No NORMAL. No master push. No session close.
 
 ## 🧭 Decisiones (ejecución, no semántica nueva)
 
 - Hijo de implementación de E-04; ownership sigue en [[Echo — Live Platform V1]], no Integration.
-- `development dependency` ≠ `integration dependency`.
+- `development dependency` ≠ `golden dependency` ≠ `integration dependency`.
 - Conflicting replay usa code S0 `CONTRACT_CONFLICT`; no se añade code rival en `v3/sdk/contracts/wire`.
 - Filesystem artifact store V1; corpus `minio` se resuelve por fixture allowlisted.
 - DBTX es el único retoque mecánico permitido a repos E-03.
