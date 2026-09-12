@@ -215,13 +215,13 @@ Migrations `015_strategy_magic_version_seal_handoff` y `016_magic_number_v1_allo
 
 ## No-touch
 
-F-01 CanonicalStrategyID/publication. F-02 policy `finalist_promotion@2.0.0`. F-03 timeouts. F-05. B1A/B1B/B2 Slot Pool/fencing/takeover. Echo source. S0 types (consume, don't fork). `adaptive_workflow.go`. Foreign dirty symphony. Invented CC ranges. Provisional Echo HTTP distinto de E-04. Magic V1 codec/catálogo. HashIdentity newline como `H()`.
+F-01 CanonicalStrategyID/publication. F-02 policy `finalist_promotion@2.0.0`. F-03 timeouts. F-05. B1A/B1B/B2 Slot Pool/fencing/takeover. Echo source. S0 types (consume, don't fork). `adaptive_workflow.go`. Foreign dirty symphony. Invented CC ranges. Provisional Echo HTTP distinto de E-04. Magic V1 codec layout `YYMMIIIDSSS` / catálogo 016. HashIdentity newline como `H()`. Product cardinality restricted to selection=1. Migration 017. Data repair of the cancelled physical run.
 
 ## Execution sequence
 
-T1.1–T1.18 **done**. T2.1 binding → T2.2 persist activity → T2.3 wire `executeMT5ArtifactTask` → T2.4 carrier `CompileEvaluationRef` → T2.5 recovery/UNKNOWN_COMMIT/cardinality tests. T2.6 `UseDurableMagicAllocation` caller. T2.7 seal assembler. T2.8 handoff assembler after Finalist V2. T2.9 HTTP ingress. T2.10 auth/config. T2.11 golden capture. T2.12 PHYSICAL. T2.13 cross-lane T21/AC-37.
+T1.1–T1.18 **done**. T2.1–T2.10 **done**. **C4.1–C4.6 To Do (NORMAL, before T2.11).** T2.11 golden capture. T2.12 PHYSICAL. T2.13 cross-lane T21/AC-37 (E-04 runtime one-shot separado).
 
-T2.3 after T2.2. T2.4 with T2.3. T2.5 after T2.2. T2.6 ∥ T2.1–T2.5. T2.7 needs T2.3+T2.6. T2.8 needs T2.7. T2.9 after T2.8 CONTRACT. T2.11 after T2.8. T2.12/T2.13 PHYSICAL/INTEGRATION.
+C4.3 after C4.2 after C4.1. C4.4 ∥ C4.1. C4.5 after C4.1–C4.4. C4.6 after C4.5. T2.11 after C4 + physical-capable host. T2.13 after T2.11 golden **and** separate E-04 runtime one-shot.
 
 ## Dependencies
 
@@ -583,12 +583,71 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 - **DONE:** no secret en repo.
 - **Deps:** T2.9.
 
+### C4.1 retire CanonicalStrategyID parser
+
+- **Modelo:** NORMAL
+- **Archivos/símbolos:** `sqx/core/domain/magic_v1.go` delete or unexport `ParseMagicV1AllocationIdentity`; add `MagicV1DirectionFromStrategy(string) (MagicV1Direction, error)` mapping `L|LONG→1`, `S|SHORT→2`, `B|BOTH→3`, else fail closed; `MagicV1DirectionCode` debe delegar o unificarse. Tests `magic_v1_test.go`.
+- **Cambio:** CanonicalStrategyID opaco F-01 no se parsea. Keep Encode/Decode/Validate `YYMMIIIDSSS`.
+- **Authority:** D17; F-01 CLOSED.
+- **Failure/retry:** unknown token → `ErrInvalidMagicNumber`, no default LONG.
+- **Tests:** opaque id is not parsed; L/S/B and LONG/SHORT/BOTH; unknown fail closed.
+- **DONE:** production path has zero `ParseMagicV1AllocationIdentity`.
+- **Stop:** make CanonicalStrategyID parseable or change F-01 format → PLAN_CONFLICT.
+
+### C4.2 AllocateMagicV1 loads strategies row
+
+- **Modelo:** NORMAL
+- **Archivos:** `sqx/adapters/registry-postgres/magic_v1.go` `AllocateMagicV1`; SQL `SELECT canonical_strategy_id, instrument, direction FROM sqx.strategies WHERE id = $1`. Do **not** extend `StrategyIdentityView` (F-01 identity stays Ref+CanonicalStrategyID).
+- **Cambio:** missing row / empty instrument|direction / canonical argument ≠ row → `ErrContractConflict` or `ErrInvalidArguments`. `InstrumentCode` exact catalog. Then existing `allocateMagicV1`.
+- **Authority:** D17; `AdoptStrategy` producer.
+- **Tests:** f04Strategy helper must persist the instrument/direction under test (today it always inserts XAUUSD/L — fix that). Opaque canonical + XAUUSD/L → 001/D=1. EURUSD row → code 003. Unknown instrument → `ErrInstrumentCodeMissing`. GOLD/xauusd alias → fail closed.
+- **DONE:** public `AllocateMagicV1` never splits CanonicalStrategyID on `_`.
+- **Deps:** C4.1.
+
+### C4.3 replay/conflict without new migration
+
+- **Modelo:** NORMAL
+- **Archivos:** `AllocateMagicV1` replay path **before** returning `LoadMagicAllocation` hit and after identity-race reread. `DecodeMagicV1(existing.Magic)` vs current catalog code + direction digit.
+- **Cambio:** mismatch III or D → `ErrContractConflict`, no `Next`, no UPDATE. Canonical mismatch → same error. Month-boundary replay still returns prior magic without incrementing October counter.
+- **Authority:** D17; schema 015 `magic_decimal` + 016 catalog immutability.
+- **Tests:** same ref replay no sequence increment; instrument change conflict; direction change conflict; UNKNOWN_COMMIT matrix untouched in `AllocateMagic`.
+- **DONE:** no migration 017; 015/016 files byte-untouched.
+- **Stop:** adding columns to `strategy_magic` is forbidden; 015 is sufficient.
+- **Deps:** C4.2.
+
+### C4.4 requested vs legacy vs allocated
+
+- **Modelo:** NORMAL
+- **Archivos:** `sqx/adapters/apply-selected-run/binding/contract.go` `AllocatedEffectiveConfig`; tests `contract_test.go`; `sqx/activities/worker/durable_apply_selected_run_magic_test.go` (today asserts 888111 mismatch is conflict — invert for F-04 path).
+- **Cambio:** TaskSpec `MagicNumber` is never requested on F-04. Always stamp allocated. nil, `888111`, `11111`, or any other TaskSpec value does not fail the allocation stamp. Legacy `EffectiveConfig` unchanged and still requires MagicNumber. `ValidateWorkflowSpec` magic_number required stays (BWC); do not invent `requested_magic`.
+- **Authority:** D9 C4-corrected.
+- **Tests:** allocated proceeds with TaskSpec 888111; reserved never written as allocated; SQX/MQ5 readback still vs allocated.
+- **DONE:** grep F-04 path: no `requested != allocated` against TaskSpec.MagicNumber.
+- **Deps:** none (parallel C4.1).
+- **Stop:** treat template XML MagicNumber or filename as requested → PLAN_CONFLICT.
+
+### C4.5 C4 tests including cohort N
+
+- **Modelo:** NORMAL
+- **Archivos:** `magic_v1_test.go` domain+postgres; replace `f04V1Canonical("XAUUSD", 'L', ...)` as identity authority with opaque ids plus explicit strategy.instrument/direction.
+- **Cambio:** cover the SPEC C4 gates: opaque ID; instrument/direction; replay; conflict; concurrency `-race`; cohort N distinct refs; shared `(YYMM,instrument)` counter; direction does not partition; Apply/readback regression still exact.
+- **Authority:** SPEC C4 gates.
+- **DONE:** `go test -race` on `./sqx/core/domain` `./sqx/adapters/registry-postgres` `./sqx/adapters/apply-selected-run/binding` plus worker magic tests green for new cases; pre-existing 4 registry-postgres failures remain the documented baseline set.
+- **Deps:** C4.1–C4.4.
+
+### C4.6 SOURCE grep C4
+
+- **Modelo:** NORMAL
+- **Cambio:** grep F-04 allocation path: no `ParseMagicV1AllocationIdentity`; no Split CanonicalStrategyID for L/S; no latest; no MAX+1; no hostname; no Echo SQL; no selection=1 architecture limit.
+- **DONE:** SOURCE PASS documented.
+- **Deps:** C4.5.
+
 ### T2.11 authentic golden capture
 
 - **Modelo:** NORMAL
 - **Cambio:** exportar preimages reales (Decision V2, StrategyVersion, allocation, MQ5/EX5/log, manifest bytes+digest) versionados. No corpus S0. No builder sintético.
 - **DONE:** registro golden con hashes; `FORGE_GOLDEN_FIXTURE_PENDING=NO` sólo con bytes reales.
-- **Deps:** T2.8. PHYSICAL may gate this.
+- **Deps:** C4 + T2.8. PHYSICAL may gate this.
 
 ### T2.12 PHYSICAL
 
@@ -606,6 +665,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 
 ## 📆 Bitácora
 
+- **2026-09-13 (TOP F-04 C4 CONTRACT CLOSED).** Inspección dirigida `d645ed6` + F-01 `0509342` + Magic V1 `ea8be76`. Root cause: `ParseMagicV1AllocationIdentity` + `AllocateMagicV1` parsean CanonicalStrategyID; F-01 ID es opaco; `sqx.strategies.instrument/direction` ya son durables (AdoptStrategy ← WorkflowSpec). D9 corregido: TaskSpec `magic_number` es stamp legado, no requested. Replay conflict via DecodeMagicV1 sin migration nueva. Multi-strategy soportado; robust selection=1 sólo receta de cert. E-04 T2.13 registrado como one-shot separado. Veredicto `READY FOR NORMAL — F-04 C4 CONTRACT CLOSED`. SESSION CLOSE esta sesión.
 - **2026-09-12 (TOP F-04 C4 — sesión abierta).** One-shot independiente TOP CONTRACT/PLANNING. Alcance: resolver el defecto físico `ParseMagicV1AllocationIdentity` vs CanonicalStrategyID opaco F-01; congelar autoridades explícitas de instrument/direction/requested vs allocated; NO implementar source, NO deploy, NO physical, NO merge, NO tocar Echo. Baseline inspeccionado: Symphony `d645ed6c2f438995d636a8213b1e4a3f5f26cbea`. T2.11/T2.12/T2.13 permanecen OPEN.
 - **2026-09-12 (T2.12 vía deployment plane — rollout PASS, defecto de contrato Magic V1 ↔ F-01 → STOP — MANAGER REVIEW).** El manager rechazó el bloqueo previo "ARANEA MCP": Symphony ya posee deployment plane canónico y la autoridad de despliegue es el Stager, no se requiere capability operator en hosts. Ejecutado desde worktree exacto `d645ed6` (`symphony-f04-t2`, CLEAN): (1) **Release `0.2.97`** asignado por `release-authority` (AUTO, published `0.2.96` CONSISTENTE), publicado con `./deploy_release.sh --release-only "" 60` → build linux worker+watcher+windows `sqx-mt5-worker.exe` desde `d645ed6`, manifest confirmado en MinIO (`worker/sqx/manifest.json` v0.2.97); rollout Stager verificado por Host MCP read-only: zeus/hera/kronos `CURRENT=0.2.97` + `ACTIVATION.json phase=committed` (0.2.96→0.2.97 22:09–22:11Z), workers reiniciados y binario 0.2.97 contiene `mt5_compile_persist_v1`/`forge_seal_handoff_v1`; pollers Temporal vivos 3 en `sqx-main-queue` + 1 en `sqx-mt5-queue` (`19880@worker-kronos`); en mt5-kronos `C:\ProgramData\Stager` es ACL-bloqueado para echo-dev incluso vía perfil operator (no elevado) — evidencia Windows = `sqx-mt5-worker` (PID 19880) + `stager-runtime` vivos y poller activo post-publicación. **El bloqueo previo "deployment imposible vía Host MCP" quedó refutado.** (2) **Flujo XAUUSD F-04 real** vía mecanismo canónico input/watcher (`example_flow_80`, config corregido: promotion `2.0.0`, sin requested-magic legacy 888111 — el path durable con confirmación estricta requested==allocated lo hace fail-closed). FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516`, workflow `sqx-main-v1-6c30394a` (Temporal `sqx-prop`): builder→retester (18 StageExecutions)→optimizer (12)→evaluate_wfm (12)→select_robust_run (4) todos COMPLETED con evidence inmutable insertada y 4 decisiones `OPTIMIZER_SELECTION/SELECTED/ENFORCE`. (3) **Fallo físico determinístico en durable apply (×4):** `ParseMagicV1AllocationIdentity` (`sqx/core/domain/magic_v1.go:183`, frozen T1) espera F-01 canonical id `<INSTRUMENT>_<D>_<timeframe>_...` pero el registro productivo F-01 emite `<43-char-key>_<43-char-hash>` (p.ej. `Z5h4dKXha7...LUQ_rjjX7Kcl...`, columnas separadas instrument/direction/timeframe sí existen) → `unknown direction token: invalid magic number` fail-closed ANTES de cualquier INSERT: 0 filas `strategy_magic`, contador mensual intacto (0), 0 sellos/manifests — estado limpio, sin bypass. Workflow cancelado por el agente (run propio, retry determinístico sin salida). **Sección 16: STOP — MANAGER REVIEW** — defecto de contrato entre dos piezas frozen (formato F-01 vs parser Magic V1); los tests CONTRACT pasaron porque los fixtures usaban el formato imaginado, gap de fixture no cubierto por el corpus. Hallazgos operativos adicionales: (a) el flujo ejemplo commitado NO es candidato F-04 (requested 888111 reservado → CONTRACT_CONFLICT pre-stamp; promotion 1.0.0 no encadena seal/handoff); (b) cohortes multi-estrategia son incompatibles con confirmación estricta requested==allocated (un solo requested constante por flow) → el run físico F-04 requiere cohorte de selección robusta = 1; (c) **E-04 sin operar en ambos lados**: sin ETCD `/sqx-worker/production/echo/ingest/*` (worker arranca fail-closed 0 POST) y sin ETCD `/echo/production/gateway/forge_ingest/*` (gateway desplegado además anterior a authority `a99f9a6`) → T2.13 requiere aprovisionamiento de config + despliegue Echo, fuera del alcance Symphony. SOURCE T2.1–T2.10 sigue PASS; T2.11/T2.12/T2.13 requieren resolución del manager.
 - **2026-09-12 (T2.12 vía Host MCP — corrección de método y evidencia).** El manager rechazó el bloqueo por DNS/SSH directo y exigió usar las superficies MCP de Aranea. Verificación vía `mcp__aranea-ssh` (Host MCP): todos los hosts son alcanzables — (a) `mt5-kronos` (perfil operator): MetaEditor64 en `C:\MT5\Darwinex master3\MetaEditor64.exe`, worker físico `sqx-mt5-worker` corriendo (PID 42572, servicio elevado, path no legible sin admin), sin sqcli en el host (no requerido ahí: compile-only); (b) `sqx-zeus` (viewer): worker padre `symphony` corriendo como `kor` desde `/opt/stager/releases/0.2.96/bin/symphony` con log `/var/log/symphony/symphony-worker.log`, SQX instalado (`/home/kor/sqx/sqcli` ejecutable 0755 + `internal/license.db`); (c) `sqx-hera`/`sqx-kronos` (viewer): deployments watcher `/opt/symphony/current/bin` (sqx-watcher + symphony). **Bloqueo real = capability de ejecución:** los perfiles MCP de los hosts Linux son viewer read-only (`open-session`/`run-command` → POLICY_DENIED; `read-command` sólo allowlist ls/cat/grep/find/stat/df), por lo que NO es expresable vía MCP: desplegar el build F-04 `d645ed6` (el fleet corre 0.2.96, pre-F-04, sin allocation caller/compile persist/seal/handoff/HTTP ingress), reiniciar workers, ejecutar `sqcli` (stamp + verificación de licencia) ni operar el control plane (Temporal/PG/ETCD/MinIO, host no expuesto en perfiles MCP). En `mt5-kronos` hay operator, pero un compile aislado manual no produce evidencia durable contractual (StageExecution/EvaluationRef/StrategyVersion/manifest) y tocar el worker Windows sin el build F-04 sería cambiar el fleet sin autorización de deploy. Veredicto: **PHYSICAL: BLOCKED — ARANEA MCP** (condición "Host MCP no dispone de la capability necesaria para ejecutar los procesos requeridos"); SOURCE T2.1–T2.10 sigue PASS; sin bypass directo. Desbloqueo pedido al manager: perfil operator (o MCP de deploy/ejecución) para sqx-zeus + host del control plane, o autorización de deployment F-04 al fleet.
@@ -624,7 +684,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 
 ## 🧭 Decisiones
 
-Ver Decision register. D16 compile Evaluation **frozen**. Manager autoriza NORMAL T2.1–T2.13.
+Ver Decision register. D16 compile Evaluation **frozen**. D17 C4 allocation inputs **frozen**. D9 corrected. Manager autoriza NORMAL C4.1–C4.6; T2.11–T2.13 siguen OPEN.
 
 ### Acceptance gates T2
 
