@@ -55,8 +55,8 @@ Use 1-5, where 1 is poor and 5 is excellent.
 ## What Complicated The Session Most
 
 - Observation: La autenticidad no puede demostrarse desde el producer unitario porque no existe caller productivo y los workers sólo conservan salidas históricas.
-- Why it was hard: Había que separar contrato S0, tests sintéticos y preimages físicos causalmente ligados a un flujo F-04 real, además de resolver una dependencia de acceso sin alterar el wrapper canónico.
-- Proposed improvement: Incorporar un comando/harness de certificación que ejecute el flujo F-04 real y exporte manifest canónico, digest y todos los preimages con authority pin.
+- Why it was hard: Había que separar contrato S0, tests sintéticos y preimages físicos causalmente ligados a un flujo F-04 real, además de resolver una dependencia de acceso sin alterar el wrapper canónico; el validador global también reportó un error preexistente en `agents-os-skill-authoring/SKILL.md`.
+- Proposed improvement: Incorporar un comando/harness de certificación que ejecute el flujo F-04 real y exporte manifest canónico, digest y todos los preimages con authority pin; corregir por separado el bypass del materializer reportado por el validador.
 
 ## Most Useful Part Of Sistema 1
 
