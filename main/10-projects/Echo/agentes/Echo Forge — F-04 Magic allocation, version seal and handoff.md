@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: review
+status: blocked
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Forge — Factory V2 Completion]]"
@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-10"
-updated: "2026-09-11"
+updated: "2026-09-12"
 ---
 
 # Echo Forge — F-04 Magic allocation, version seal and handoff
@@ -43,6 +43,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 ## 📊 Estado actual
 
+- **BLOCKED — FORGE GOLDEN FIXTURE NOT AUTHENTIC (2026-09-12).** T21/AC-37 no puede cerrarse: el producer real `BuildHandoffManifest` existe en `sqx/core/forge/handoff_producer.go`, pero su único uso está en `handoff_producer_test.go`; no hay caller productivo, workflow, CLI ni ejecución F-04 que entregue inputs sellados y bytes reales. Los tests F-04 pasan, pero usan `f04ProducerInput` sintético y no son autoridad de fixture. No se materializaron manifest, digest ni preimages.
 - **READY FOR MANAGER REVIEW (2026-09-11).** Owner gate resuelto: Magic Number V1 (`YYMMIIIDSSS`, 11 dígitos) implementado sobre `1999da1` en commit `ea8be76` (pushed). `CC_MISSING_OWNER_GATE`/`GateMagicCandidateSource` eliminados de producción; allocation V1 con catálogo/contador durables (migration 016), wiring productivo desde el control plane. SOURCE+CONTRACT+CONCURRENCY+MIGRATION PASS (`-race`; sweep paquete registry-postgres = mismos 4 fallos pre-existentes baseline). `PHYSICAL: BLOCKED — entorno`: mt5-kronos (Windows) tiene MetaEditor64 pero no SQX/sqcli para el stamp .sqx→.mq5 y los hosts Linux del stack son viewer/read-only esta sesión; no se finge PHYSICAL. INTEGRATION espera E-04. Worktree CLEAN.
 - Baseline Symphony `382f4ba5d417371f778e21619ed9eb72624a23f4` = `origin/master`, worktree CLEAN.
 - S0 `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33` (impl `08a0eb9a`).
@@ -364,6 +365,10 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 
 ## 📆 Bitácora
 
+- **2026-09-12 (E-04 DEPENDENCY — FORGE GOLDEN FIXTURE).** Fetch completo y revisión de `master`/`origin/master` @ `0b9742b09019526a8119f086199d15d1f0d42cb1` y `feature/f04-magic-version-handoff`/`origin/feature/f04-magic-version-handoff` @ `ea8be76c4587b2d00e4cad8cf2a67c4fd8e6680f`; worktree limpio y `git diff --check` PASS. La feature no es descendiente del master actual (`merge-base --is-ancestor` devuelve 1), por lo que ambos pins quedan explícitos y no se mezclan.
+- **2026-09-12 (producer audit).** `rg` sobre `sqx/core`, `sqx/adapters`, `sqx/activities` y `sqx/workflows` encontró `BuildHandoffManifest` únicamente en la definición productiva y cuatro llamadas de `handoff_producer_test.go`; no existe caller no-test que lo alimente desde Decision V2, StrategyVersion sellada, MagicAllocation persistida y artefactos verificados. `go test -count=1 -race ./sqx/core/forge ./sqx/adapters/echo-handoff` PASS sólo certifica el contrato sintético.
+- **2026-09-12 (physical evidence audit).** El módulo S0 resuelto es `github.com/xKoRx/echo/v3/sdk/contracts@91671f6f46ff`; su corpus G04/G05/G12 contiene payloads de contrato, no preimages físicos de F-04. La feature no trackea `.mq5`, `.ex5` ni `compile.log`; su `testdata/v1` sólo contiene G06/G07/G20/G21/G22. En Zeus, Hera y Kronos, las búsquedas read-only no encontraron `handoff`, `StrategyVersion` o magic allocation; sólo aparecieron `.sqx` históricos y `.mq5` antiguos, sin `.ex5`/compile evidence del flujo F-04 actual.
+- **2026-09-12 (decision).** No se copió S0, no se reutilizó corpus como golden, no se construyó payload a mano, no se calculó digest esperado y no se tocaron semántica F-04/Echo ni repos externos. Estado final: `BLOCKED / FORGE_GOLDEN_FIXTURE_PENDING`; Manager debe proporcionar o habilitar una ejecución F-04 real que produzca Decision V2 + StrategyVersion + allocation + readback/compile bytes y permita exportar todos los preimages referenciados.
 - **2026-09-11** — Join E-04: planning [[Echo — E-04 Forge Ingestion E1]] congela `POST /api/v1/forge/promotions` + GET by-key + envelope S0. F-04 CONTRACT `fakeconsumer` no se reabre. INTEGRATION real sigue esperando implementación E-04 **y** E-03 CONTRACT_PASS. No se inventa URL provisional distinta.
 - **2026-09-10 (cierre NORMAL)** — Sello/readback/seal/handoff implementados: `sqx/adapters/magic-readback` (XML+MQ5 parsers fail-closed), `capabilities.VerifyMagicReadback`+`VerifyCompiledArtifactForSeal` (bytes reales, 0-errors), `domain` recetas S0 (EffectiveInputs/RuntimeContext/ExecutionManifest/DependenciesDigest vía `ExactInputRefsDigest`, StrategyVersionRef por recompute), store `SealStrategyVersion` write-once (replay/conflict), `core/forge` producer `BuildHandoffManifest` (Validate S0 PASS, membership estructural, G22 `HandoffMembersForDecision`), migration 015 con UNIQUE(decision_ref,version_ref) G24, stores handoff_manifests/handoff_deliveries, `capabilities.DeliverHandoff` (estados + UNKNOWN_RECEIPT sin re-POST + attempts), `adapters/echo-handoff` fakeconsumer CONTRACT (201/200/409/G24/non-effects/corpus G06-G07-G20-G21). Race verde en todos los paquetes F-04. Fixture de benchmark `specs/.../phase4_performance.json` lo reescriben tests ajenos — restaurado, worktree CLEAN.
 - **2026-09-10 (sesión NORMAL)** — Branch `feature/f04-magic-version-handoff` (nombre del briefing; difiere del registrado arriba). T1.1–T1.4 committeados: pin S0 resuelto por SSH directo (`v0.0.0-20260910031519-91671f6f46ff`), migración 015 + runner + tests fresh/brownfield/down/restart, allocator CAS SELECT-then-INSERT con replay/colisión/reservados/exhaustión N=32, `GateMagicCandidateSource` = producción (`CC_MISSING_OWNER_GATE`), concurrencia same/distinct con `-race` verde. Nota: 4 tests pre-existentes fallan en baseline (`TestUpsertStrategyV2_V0V1V2Coexistence`, `TestControlPlane_AdoptStrategyV1ConcurrentFilenameVariantsConverge`, `TestRegisterStrategy_LegacyRollbackTargetsOnlyV0`, `TestControlPlane_AdoptStrategyV1UnexpectedUniqueFailsWithoutPoisonedRead`) — set idéntico en baseline y branch, sin regresión F-04. Delegación MiniMax bloqueada por plan limit; NORMAL ejecutó directo.
