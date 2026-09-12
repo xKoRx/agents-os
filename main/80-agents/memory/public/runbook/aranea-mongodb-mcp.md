@@ -36,91 +36,66 @@ tags:
 
 # aranea-mongodb-mcp
 
-%% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
-
 ## Propósito
 
-Inspeccionar y, cuando esté explícitamente autorizado, mutar MongoDB a través del capability plane MCP de Aranea. Este runbook posee hechos operativos de MongoDB MCP. La selección de capability y autoridad mínima pertenece a [[aranea-mcps-expert]]. Las skills de dominio deciden cuándo MongoDB es la fuente correcta.
+Operar MongoDB de Echo Forge mediante dos capabilities separadas por ambiente. La selección de ambiente/capability pertenece a [[aranea-mcps-expert]]; este runbook posee la mecánica y los hechos operativos de MongoDB MCP.
+
+## Contrato de ambientes
+
+| Capability | Endpoint | Ambiente | Authority |
+|---|---|---|---|
+| `aranea-mongo-forge-ro` | `http://mcps.lab.aranea.cl:3003/mcp` | PROD | read-only |
+| `aranea-mongo-forge-rw` | `http://mcps.lab.aranea.cl:3004/mcp` | DEV | read/write |
+
+El nombre exacto de las databases productiva/development no se infiere aquí si la capability no lo expone; usar el target preconfigurado y observarlo en runtime. Una lectura DEV usa `aranea-mongo-forge-rw` sin necesidad de mutar. No usar PROD RO para verificar una mutación DEV.
 
 ## Precondiciones
 
-- El target es infraestructura Aranea; si es MELI/corporativo, abortar y no usar este runbook.
-- `aranea-mcps-expert` ya eligió `aranea-mongo-forge-ro` o, con mutación explícita, `aranea-mongo-forge-rw`.
-- La capability elegida aparece conectada en el cliente.
-- `VAULT_ROOT` resuelve el marker `80-agents/agents-os/agents-os.md`.
-- El agente no pide, imprime, copia ni persiste credenciales MongoDB ni valores bearer.
-- MongoDB es el **evidence/result plane** de la Durable Foundation: salidas de ejecución y evidencia como matrices/runs WFM, evidencia de export/import y otros documentos Forge/SQX. No usar PostgreSQL como sustituto de este plano.
-- Baseline validado: MongoDB MCP Server `2.1.1`.
+- El target es Aranea, no MELI/corporativo.
+- Elegir ambiente antes de capability: PROD→RO, DEV→RW.
+- Usar la conexión preconfigurada del servidor (`connectionId="preconfigured"` cuando la tool lo requiera); no abrir URIs arbitrarias con `connect` como workaround.
+- No pedir, imprimir ni persistir credenciales/bearers.
+- MongoDB es el evidence/result plane de Echo Forge; PostgreSQL sigue siendo el control plane relacional.
+- Baseline de servidor documentado: MongoDB MCP Server `2.1.1`.
 
 ## Procedimiento
 
-1. **Usar la conexión preconfigurada.** El server está preconfigurado para el path Forge. Usar `connectionId = "preconfigured"`. No llamar la tool MCP `connect` para abrir una URI MongoDB arbitraria salvo que el usuario pida explícitamente otra conexión y autorice ese scope. Aunque `connect` sea visible incluso en RO, eso no convierte conexiones arbitrarias en autoridad normal de troubleshooting.
+1. **Fijar ambiente.** Evidencia productiva → `aranea-mongo-forge-ro`. Lectura o mutación de desarrollo → `aranea-mongo-forge-rw`.
+2. **Acotar lecturas.** Usar filtros/projections targeted, `limit` cuando corresponda, `count` para cardinalidad y aggregations acotadas. Correlacionar por identificadores estables de workflow/wave/run/strategy.
+3. **Gate de mutación DEV.** Identificar documentos/colección exactos en DEV, fijar cardinalidad/blast radius y post-condición, ejecutar sólo la mutación requerida y verificar nuevamente en DEV. Para probes de acceso, usar documento/colección temporal identificable y eliminarlo al terminar.
+4. **Boundary PROD.** La ausencia de mutadores en `aranea-mongo-forge-ro` es comportamiento esperado. No intentar writes en PROD para demostrar que son rechazados cuando la superficie/metadata ya acredita read-only.
+5. **Autorización interna Mongo.** Si el endpoint DEV apunta a una instancia donde `security.authorization` está desactivada por diseño operacional, no habilitarla durante troubleshooting MCP. El control agent-facing sigue estando en bearer + separación RO/RW del plano MCP. No extrapolar esta condición a PROD sin evidencia runtime.
+6. **Discovery antes de backend.** Si `aranea-mongo-forge-ro/rw` están declarados en el cliente pero no aparecen tools, no culpar a MongoDB: verificar primero env vars, reinicio del proceso cliente y handshake/auth del MCP.
+7. **Enrutar fallos.** `401` → bearer/config cliente; capability ausente → [[aranea-mcp-capability-plane]]; mutador ausente en PROD RO → boundary esperado; error de transporte/`invalid request` → revisar protocolo/sesión antes de MongoDB; evidencia relacional/control → [[aranea-postgres-mcp]].
+8. **Fallback humano.** `mongosh` puede usarse por un operador humano, pero no sustituye el MCP agent-first cuando la capability canónica cubre la acción.
 
-| Capability | Endpoint | Authority | Scope |
-|---|---|---|---|
-| `aranea-mongo-forge-ro` | `http://mcps.lab.aranea.cl:3003/mcp` | read-only | MongoDB `forge` |
-| `aranea-mongo-forge-rw` | `http://mcps.lab.aranea.cl:3004/mcp` | read/write | MongoDB `forge` |
+## Discovery y secrets
 
-2. **Partir en RO.** `aranea-mongo-forge-ro` es el default. Su superficie validada excluye mutadores: `insert-many`, `update-many`, `delete-many`, `create-collection`, `create-index`, `drop-collection`, `drop-database`, `drop-index`, `rename-collection`. Usar RO para discovery, `find`, `count`, inspección de schema/índices, aggregations acotadas y correlación de evidencia.
-3. **Acotar lecturas.** Usar filtros y projections targeted; fijar `limit` en `find` cuando no se requiera el set completo; acotar aggregations con stages selectivos y `$limit` cuando sea semánticamente válido; preferir `count` si sólo se necesita cardinalidad; no exportar ni devolver result sets grandes sin necesidad clara; correlacionar por identificadores de workflow/wave/run/strategy en vez de recorrer colecciones a lo ancho. Colecciones WFM habituales: `wfm_matrices`, `wfm_runs`, `export_runs`. Tratar esos nombres como detalle del evidence plane, no como permiso para dumpear colecciones enteras.
-4. **Gate de mutación RW.** `aranea-mongo-forge-rw` expone los mutadores anteriores además de lecturas. Usarlo sólo cuando el troubleshooting/remediación necesite realmente una mutación. Antes de update/delete/drop/rename: identificar documentos/colección exactos con RO; registrar identificadores estables y cardinalidad esperada; mantener blast radius mínimo; ejecutar sólo la mutación autorizada; verificar la post-condición con RO; borrar cualquier documento/colección temporal creado sólo para validar. `drop-database`, `drop-collection`, operaciones destructivas de índices y `delete-many` amplios nunca quedan implícitos en un permiso genérico de troubleshooting.
-5. **No endurecer autorización del server Mongo como parte del diagnóstico.** En desarrollo, `security.authorization` está deliberadamente desactivada mientras Forge sigue activo. No habilitarla como parte de troubleshooting: los workers Symphony/SQX dependen de esa postura de desarrollo y cambiarla es una migración de hardening productiva aparte. Los endpoints MCP siguen protegidos por bearer y separados en RO/RW.
-6. **Enrutar fallos sin bypass.** `401` → problema de bearer/config del cliente; no pedir que el usuario pegue el bearer. `invalid request` en smoke HTTP manual → verificar handshake/session headers y `Accept` antes de culpar a MongoDB. Tool mutadora ausente en RO → boundary esperado; pasar a RW sólo si la mutación es explícitamente requerida. Evidencia ausente en Mongo → decidir si es resultado descartado/faltante legítimo, import/export incompleto o identificador incorrecto antes de mutar. Necesidad de estado relacional/control → ir a [[aranea-postgres-mcp]] en vez de buscar en Mongo a ciegas.
-7. **Reservar `mongosh` nativo como fallback humano.** `mongosh` sigue válido para un operador humano, pero no es el camino default del agente mientras existan `aranea-mongo-forge-ro/rw`. No reemplazar un diagnóstico MCP por acceso directo de red sólo porque sea más fácil.
-8. **Smoke de transporte sólo si el plano MCP es el sospechoso.** Path externo esperado: `/mcp` a través del proxy autenticado. En un smoke HTTP manual: un request sin auth debe devolver `401`; `initialize` debe devolver `200` y un `mcp-session-id`; los clientes deben enviar `Accept: application/json, text/event-stream`; usar la sesión emitida en llamadas posteriores; el backend desplegado está configurado para respuestas JSON HTTP para mantener el smoke finito. No exponer puertos de contenedor backend para saltarse problemas de proxy/cliente. Si el problema es el plano MCP mismo, handoff a [[aranea-mcp-capability-plane]].
+En clientes Codex/CLI, las capabilities usan las variables `ARANEA_MONGO_FORGE_MCP_RO_BEARER` y `ARANEA_MONGO_FORGE_MCP_RW_BEARER`. Los nombres son documentación; los valores nunca se registran.
+
+En `daedalus`, los archivos de secret del cliente están bajo `~/.config/aranea/secrets/ARANEA_MONGO_FORGE_MCP_RO_BEARER` y `~/.config/aranea/secrets/ARANEA_MONGO_FORGE_MCP_RW_BEARER`, con permisos `0600`; la shell los carga como variables de ambiente. Un proceso Codex ya iniciado no absorbe variables agregadas después: reiniciar/reabrir el cliente desde un environment que las haya cargado.
+
+En host `mcps`, los bearer del proxy Mongo viven bajo `/opt/mcp/mongo-forge/runtime/proxy-secrets/`; documentar paths, jamás contenido. Los proxies observados son `mongo-forge-auth-ro` y `mongo-forge-auth-rw`.
+
+**Estado 2026-09-11:** se confirmó que la ausencia inicial de tools Mongo en el cliente coincidía con ambas env vars `NOT_SET`; luego quedaron `SET` y persistidas en `daedalus`. La certificación funcional end-to-end posterior al restart del cliente queda pendiente de evidencia en esta fuente y no debe inventarse como PASS.
 
 ## Validación
 
-Success requiere:
-
 ```text
-Capability:          aranea-mongo-forge-ro | aranea-mongo-forge-rw
-connectionId:        preconfigured
-Authority match:     PASS
-Scope:               forge + collections/identificadores acotados
-Mutation:            none | target + cardinality + post-condition + RO verification
-Boundary:            none | 401/RO-missing-mutator/transport registrado sin bypass
-Secrets:             none persisted
-Authorization:       security.authorization no alterada
+Environment:          PROD | DEV
+Capability:           aranea-mongo-forge-ro | aranea-mongo-forge-rw
+connectionId:         preconfigured (si aplica)
+Authority match:      PASS
+Target observed:      <database/collection runtime>
+Mutation:             none | DEV target + cardinality + post-condition + DEV verification
+Secrets exposed:      no
+Discovery/auth:       PASS before backend diagnosis
 ```
-
-Checklist:
-
-- [ ] El target es Aranea y no MELI/corporativo.
-- [ ] Se usó `connectionId="preconfigured"` salvo otra conexión explícitamente autorizada.
-- [ ] Se partió en RO, o RW quedó justificado por una mutación explícita.
-- [ ] No se usó MongoDB para estado relacional/control que pertenece a PostgreSQL.
-- [ ] No se habilitó `security.authorization` como workaround.
-- [ ] No se pidieron, imprimieron ni persistieron credenciales/bearers.
-
-Cualquier URI arbitraria no autorizada, drop amplio o persistencia de secreto deja la operación `ABORTED`.
 
 ## Rollback / recuperación
 
-Abortar sin mutar cuando:
-
-- la capability RO/RW requerida no está conectada;
-- la tool mutadora falta en RO y no hay autorización RW;
-- el único workaround sería publicar backends, llamar `connect` a una URI arbitraria o pedir el bearer;
-- el hecho pertenece a otro plano.
-
-Ante fallo:
-
-1. conservar `connectionId`, colección, filtros e identificadores;
-2. no rotar ni pedir secretos salvo evidencia de que la rotación es necesaria;
-3. no degradar a `mongosh` agent-first si la capability canónica cubre la acción;
-4. revertir documentos/colecciones temporales creados sólo para validar;
-5. si el problema es el plano MCP mismo, handoff a [[aranea-mcp-capability-plane]].
+Si una capability desaparece del inventario, no publicar backends ni pedir bearer al usuario. Verificar config/env/restart/handshake y escalar a [[aranea-mcp-capability-plane]]. Si una mutación DEV deja un probe temporal, eliminarlo y comprobar ausencia. No cambiar autorización Mongo ni ACLs como bypass automático.
 
 ## Evidencia
 
-Reportar:
-
-- capability RO o RW usada;
-- `connectionId` usado (`preconfigured` esperado);
-- database/collections inspeccionadas;
-- filtros/identificadores usados;
-- resultado material;
-- mutación, si hubo;
-- verificación de post-condición;
-- boundary de policy/transporte si apareció.
+Reportar ambiente, capability, `connectionId` si aplica, database/collections observadas, filtros/identificadores, resultado material, mutación/post-check y boundary de discovery/auth/policy si apareció.
