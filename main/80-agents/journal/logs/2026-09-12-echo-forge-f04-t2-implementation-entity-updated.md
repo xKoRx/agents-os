@@ -40,7 +40,7 @@ tags:
 
 ## Motivo
 
-- **Sistema 2 update:** NORMAL ejecutó T2.1–T2.10 del plan TOP congelado sobre baseline `9fad768` (commits `01dca16`→`d645ed6`, pushed fast-forward). Contract/concurrency/migration PASS con sets de fallos pre-existentes idénticos a baseline; PHYSICAL BLOCKED — entorno (mt5-kronos DNS no resuelve); T2.11–T2.13 abiertos esperando físico/integración real.
+- **Sistema 2 update:** NORMAL ejecutó T2.1–T2.10 del plan TOP congelado sobre baseline `9fad768` (commits `01dca16`→`d645ed6`, pushed fast-forward). Contract/concurrency/migration PASS con sets de fallos pre-existentes idénticos a baseline; T2.11–T2.13 abiertos esperando físico/integración real. Corrección posterior del manager: el bloqueo por DNS/SSH directo no fue aceptado; el re-intento vía Host MCP (`mcp__aranea-ssh`) dejó evidencia por host y el estado quedó **PHYSICAL BLOCKED — ARANEA MCP** (capability de ejecución ausente en hosts Linux viewer; fleet 0.2.96 pre-F-04). Bitácora del proyecto y feedback `[[2026-09-12-aranea-mcp-execution-gap-session-feedback]]` capturan el detalle.
 
 ## Fuentes usadas
 
