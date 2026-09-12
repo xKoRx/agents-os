@@ -9,7 +9,7 @@ project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
 entities:
   - "[[Aranea]]"
-  - "[[Echo Forge]]"
+  - "[[Echo]]"
 related:
   - "[[aranea-mcps-expert]]"
   - "[[aranea-mcp-capability-plane]]"
@@ -35,86 +35,57 @@ tags:
 
 # aranea-postgres-mcp
 
-%% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
-
 ## Propósito
 
-Inspeccionar y, cuando esté explícitamente autorizado, mutar PostgreSQL a través del capability plane MCP de Aranea. Este runbook posee hechos operativos de PostgreSQL MCP. La selección de capability y autoridad mínima pertenece a [[aranea-mcps-expert]]. Las skills de dominio deciden cuándo PostgreSQL es la fuente correcta. El contrato detallado de acceso Echo dev vive en `xKoRx/symphony` → `docs/prd/echo-forge/POSTGRES-MCP-ACCESS.md`.
+Operar PostgreSQL de Echo mediante dos capabilities con ambientes distintos. La selección de ambiente/capability pertenece a [[aranea-mcps-expert]]; este runbook posee la mecánica y los hechos operativos de PostgreSQL MCP.
+
+## Contrato verificado
+
+| Capability | Endpoint | Ambiente | Database | Rol observado | Authority |
+|---|---|---|---|---|---|
+| `aranea-postgres-ro` | `http://mcps.lab.aranea.cl:3001/mcp` | PROD | `echo` | `mcp_echo_prod_ro` | read-only |
+| `aranea-postgres-rw` | `http://mcps.lab.aranea.cl:3002/mcp` | DEV | `echo-develop` | `mcp_echo_dev_rw` | read/write |
+
+Verificado físicamente el 2026-09-11: PROD puede leer tablas `echo.*` y no posee INSERT/UPDATE/DELETE/TRUNCATE; DEV ejecutó lectura y un probe DDL/DML temporal con rollback. `SUPERUSER`, `CREATEDB` y `CREATEROLE` no forman parte del contrato normal del MCP DEV.
 
 ## Precondiciones
 
-- El target es infraestructura Aranea; si es MELI/corporativo, abortar y no usar este runbook.
-- `aranea-mcps-expert` ya eligió `aranea-postgres-ro` o, con mutación explícita, `aranea-postgres-rw`.
-- La capability elegida aparece conectada en el cliente.
-- `VAULT_ROOT` resuelve el marker `80-agents/agents-os/agents-os.md`.
-- El agente no pide, imprime, copia ni persiste credenciales PostgreSQL ni valores bearer.
-- PostgreSQL es el **control plane** de la Durable Foundation: estado relacional de workflow/dominio, lifecycle/control y metadata relacional durable. No sustituye evidencia/resultados de MongoDB ni artefactos de MinIO.
+- El target es Aranea, no MELI/corporativo.
+- Elegir ambiente antes de capability: PROD→RO, DEV→RW.
+- La capability aparece conectada en el cliente.
+- No pedir, imprimir ni persistir passwords/bearers.
 
 ## Procedimiento
 
-1. **Partir siempre en RO.** Usar `aranea-postgres-ro` para descubrir el conjunto relacional mínimo que responde la pregunta. Preferir columnas, predicados, counts y agregados acotados frente a dumps amplios. Usar `LIMIT` en exploraciones cuando no cambie la semántica pedida. Correlacionar con identificadores estables de workflow/run/strategy al cruzar planos.
+1. **Fijar ambiente.** Para evidencia productiva usar `aranea-postgres-ro`. Para cualquier lectura o mutación de `echo-develop` usar `aranea-postgres-rw`; usar RW para una lectura DEV no obliga a mutar.
+2. **Validar identidad cuando haya duda de routing.** Ejecutar `SELECT current_user, current_database(), current_setting('server_version');`. PROD esperado: `mcp_echo_prod_ro / echo`. DEV esperado: `mcp_echo_dev_rw / echo-develop`.
+3. **Acotar queries.** Preferir columnas/predicados/counts/agregados específicos; usar `LIMIT` en exploración cuando no cambie la semántica. Preferir `EXPLAIN` a `EXPLAIN ANALYZE` salvo ejecución real intencionada y segura.
+4. **Gate de mutación DEV.** Identificar target exacto en DEV, fijar blast radius y post-condición, ejecutar con `aranea-postgres-rw` y verificar nuevamente en DEV. No verificar una mutación DEV consultando PROD.
+5. **Pruebas reversibles.** Para certificar RW usar transacción/tabla temporal/rollback cuando sea posible. No crear databases/roles ni exigir privilegios de cluster como smoke normal.
+6. **No inferir éxito por envelope.** Si el contenido devuelve `Error validating query`, `permission denied`, timeout u otro error textual, tratarlo como fallo aunque MCP reporte `isError=false`.
+7. **Enrutar fallos.** Capability ausente/`401`/handshake → [[aranea-mcp-capability-plane]]. Permission denied en PROD para escritura es boundary esperado. Timeout → estrechar/optimizar. No degradar a `psql` agent-first si MCP cubre la acción.
 
-| Capability | Endpoint | Authority | Scope |
-|---|---|---|---|
-| `aranea-postgres-ro` | `http://mcps.lab.aranea.cl:3001/mcp` | read-only | `echo-develop` |
-| `aranea-postgres-rw` | `http://mcps.lab.aranea.cl:3002/mcp` | read/write | `echo-develop` |
+## Runtime desplegado
 
-2. **Aplicar guards de query.** Preferir `EXPLAIN` sobre `EXPLAIN ANALYZE` en diagnóstico, salvo que la ejecución real esté intencionada y sea segura. No usar `EXPLAIN ANALYZE` como dry-run de DML destructivo. Respetar los timeouts de rol/database del contrato canónico; no deshabilitarlos ni subirlos automáticamente. Si una query hace timeout, reducir scope u optimizarla antes de proponer cambios de policy. El upstream no tiene guard genérico de filas para `execute_sql`; mantener resultados exploratorios acotados cuando la semántica lo permita.
-3. **No inferir éxito por `isError`.** El upstream validado puede devolver un rechazo de policy/query como texto mientras el envelope MCP reporta `isError=false`. Tratar `Error validating query`, `permission denied`, timeout textual o contenido de error equivalente como fallo.
-4. **Gate de mutación.** RW no se justifica por complejidad de query. Antes de `INSERT`, `UPDATE` o `DELETE`: la mutación debe ser explícita; identificar primero filas/keys exactas con RO; mantener blast radius mínimo; no ejecutar DDL destructivo salvo pedido/autorización explícitos; registrar la mutación y la evidencia de post-check. Después de mutar, verificar la post-condición con RO cuando sea posible.
-5. **Enrutar fallos sin bypass.** `401` → problema de bearer/entorno del cliente; no pedir que el usuario pegue el bearer en el chat. Permission denied en RO → boundary esperado hasta demostrar misconfiguración. Mutación requerida pero RW no disponible → detener y reportar la capability faltante. Timeout → estrechar/optimizar primero. El hecho buscado es evidencia/resultado → ir a [[aranea-mongodb-mcp]] en vez de ampliar PostgreSQL a ciegas.
-6. **Reservar `psql` nativo como fallback humano.** `psql` sigue válido para un operador humano, pero no es el camino default del agente mientras existan las capabilities MCP.
+En host `mcps`, el backend PostgreSQL MCP usa `local/postgres-mcp:0.3.0-15c8e33` y una conexión fija por proceso. No asumir selección dinámica de database por llamada. Los proxies autenticados externos permanecen en 3001/3002; no crear profiles/sandboxes/endpoints adicionales como workaround automático.
+
+La configuración de secrets/runtime del host vive bajo `/opt/mcp/postgres/runtime/`; documentar paths y nombres, nunca contenido secreto.
 
 ## Validación
 
-Success requiere:
-
 ```text
-Capability:          aranea-postgres-ro | aranea-postgres-rw
-Authority match:     PASS
-Scope:               echo-develop
-Query:               predicados/keys acotados
-isError caveat:      contenido de error tratado como fallo
-Mutation:            none | target + post-condition + RO verification
-Boundary:            none | 401/permission/timeout registrado sin bypass
-Secrets:             none persisted
+PROD RO: current_user=mcp_echo_prod_ro current_database=echo
+DEV RW:  current_user=mcp_echo_dev_rw  current_database=echo-develop
+Environment match: PASS
+Mutation verification: same environment
+Cluster-admin privileges required: no
+Secrets exposed: no
 ```
-
-Checklist:
-
-- [ ] El target es Aranea y no MELI/corporativo.
-- [ ] Se partió en RO, o RW quedó justificado por una mutación explícita.
-- [ ] No se usó PostgreSQL para evidencia/resultados que pertenecen a MongoDB.
-- [ ] No se interpretó `isError=false` como éxito si el contenido indica error.
-- [ ] Timeouts y denegaciones se trataron como boundary, no como licencia para ampliar policy.
-- [ ] No se pidieron, imprimieron ni persistieron credenciales/bearers.
-
-Cualquier bypass del proxy, DDL no autorizado o persistencia de secreto deja la operación `ABORTED`.
 
 ## Rollback / recuperación
 
-Abortar sin mutar cuando:
-
-- la capability RO/RW requerida no está conectada;
-- el rechazo es de policy y no hay autorización RW;
-- el único workaround sería publicar backends, desactivar timeouts o pedir el bearer;
-- el hecho pertenece a otro plano.
-
-Ante fallo:
-
-1. conservar query, predicados y el texto de error;
-2. no rotar ni pedir secretos salvo evidencia de que la rotación es necesaria;
-3. no degradar a `psql` agent-first si la capability canónica cubre la acción;
-4. si el problema es el plano MCP mismo, handoff a [[aranea-mcp-capability-plane]].
+Ante routing incorrecto, no mutar. Confirmar `current_user/current_database`, aislar si el fallo es cliente/proxy/backend y corregir el plano MCP. No ampliar privilegios ni crear infraestructura auxiliar para satisfacer un test que contradice este contrato.
 
 ## Evidencia
 
-Reportar:
-
-- capability RO o RW usada;
-- database/scope;
-- propósito de la query y predicados/keys relevantes;
-- resultado material;
-- mutación, si hubo;
-- verificación de post-condición;
-- timeout o boundary de policy si apareció.
+Reportar capability, ambiente, database, identidad observada, operación, resultado material, mutación/post-check y boundary si aplica.
