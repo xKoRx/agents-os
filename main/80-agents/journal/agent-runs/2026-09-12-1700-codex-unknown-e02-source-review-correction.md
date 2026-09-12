@@ -1,0 +1,59 @@
+---
+type: agent_run
+schema_version: 1
+scope: session
+created: "2026-09-12"
+updated: "2026-09-12"
+area:
+project:
+application:
+entities: []
+related: []
+aliases: []
+agent_surface: "[[Codex]]"
+agent_model: unknown
+model_source: unknown
+task_type: coding
+task_complexity: unknown
+outcome: partial
+verification: not_run
+evaluator: agent
+user_rework: unknown
+source_session:
+load_policy: manual
+indexable: false
+index_priority: never
+tags:
+  - kind/agent-run
+  - scope/session
+---
+
+# Agent Run — 2026-09-12-1700-codex-unknown-e02-source-review-correction
+
+## Trabajo
+
+- **Objetivo:**
+- **Alcance atribuible a esta combinación superficie×modelo:**
+- **Artefactos afectados:**
+
+## Evidencia
+
+- **Validaciones ejecutadas:**
+- **Resultado observable:**
+- **Limitaciones de la evidencia:**
+
+## Evaluación
+
+%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
+
+- **Correctness:**
+- **Autonomy:**
+- **Efficiency:**
+- **Tool use:**
+- **Overall:**
+
+## Resultado
+
+- **Outcome:**
+- **Rework posterior:**
+- **Aprendizaje para comparar herramientas:**
