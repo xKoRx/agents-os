@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-07
-updated: 2026-09-11
+updated: 2026-09-12
 cssclasses:
   - wide
 ---
@@ -375,6 +375,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-12** — E-03 CONTRACT_PASS / FINAL CLOSED ([[Echo — E-03 Identity and BWC Foundation E0]]): manager certificó en `fac48051` y se integró FF a `origin/master` (`c408a12f..fac48051`, sin merge commit/rebase/force). Gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION` de E-04 queda satisfecho; E-04 y Forge no tocados en esta integración. Puente E-03 permanece Review.
 - **2026-09-11** — E-04 planning v1.0.1 ([[Echo — E-04 Forge Ingestion E1]] @ `c8e68538`): CROSS_LANE GOLDEN exige fixture Forge auténtica (`FORGE_GOLDEN_FIXTURE_PENDING`); synthetic S0 ≠ golden; CROSS_LANE development no espera E-03 CONTRACT_PASS; merge/close sí. Master no se toca. Puente E-04 permanece Review.
 - **2026-09-11** — Enlace al subproyecto [[Echo — E-04 Forge Ingestion E1]]. Development may start en `feature/e04-forge-ingestion-e1` desde `c408a12f` en paralelo con verification E-03. Integration gated by E-03 CONTRACT_PASS. Master no se toca. Puente E-04 → Review.
 - **2026-09-10** — Enlace mínimo al subproyecto de implementación [[Echo — E-03 Identity and BWC Foundation E0]]. Baseline E-03 = E-01 certified `91671f6f`. No se reescribió el roadmap.
