@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: review
+status: closed
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo — Live Platform V1]]"
