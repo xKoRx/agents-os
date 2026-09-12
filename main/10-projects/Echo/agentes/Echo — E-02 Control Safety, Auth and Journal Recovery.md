@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-12
 due:
-progress: 65
+progress: 70
 repo: xKoRx/echo
 jira:
 prs:
@@ -46,7 +46,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 ## 📊 Estado actual
 
-- **IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW (2026-09-12).** T01–T15 implementados dentro de Allowed Files, con T11 `[-]`; HEAD final `df99084b` en `origin/feature/e02-control-safety-journal-recovery`, master intacto. CONTRACT/unit y build front demostrados; PG/Kafka/Flink/Hasura físico `PHYSICAL_PARTIAL` por infraestructura ausente. No verifier, no E-02 CLOSED.
+- **IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW — FOCUSED CORRECTION (2026-09-12).** Commit final `f7ddea18` en `origin/feature/e02-control-safety-journal-recovery`, master intacto. Hasura auth hook corregido a JSON de session variables; `AuthConfig` rechaza tokens duplicados entre READ/CONFIG/CONTROL/webhook con 503 fail-closed; 17 paths históricos autorizados fueron limpiados sin imprimir valores. Gateway `-race`, front tests/build/bundle scan, SOURCE y regresión E-04 relevantes PASS; PG/Kafka/Flink/Hasura físico `PHYSICAL_PARTIAL`. No verifier, no E-02 CLOSED.
 - **Baseline verificado:** `origin/master` = `a99f9a63354bbe72219d1e590bb93757ed08e45e` (E-04 integrado), igual al esperado al inicio de la sesión. E-04 T21/AC-37 POST-INTEGRATION **no** bloquea E-02; F-04 y E-05 tampoco. E-02 no depende de código nuevo de otro carril.
 - **Source revalidado en `a99f9a63`** (no sólo heredado del Reality Check): gateway sin auth en control/webhooks tras CORS `*`; `close-positions` publica CloseCommands físicos sin credencial; admin secret en `v3/front/.env*` + `client.js` + `v3/hasura/config.yaml` (literal); metadata Hasura sólo con rol `admin`; `TradeJournalFn.Invoke` retorna `nil` siempre (fallos de persistencia y conflictos absorbidos); sin cuarentena/DLQ/replay tools; Flink AT_LEAST_ONCE 60s + restart fixed-delay 5×10s (el retry runtime existe y está sin usar). Fan-out Kafka: journal **independiente** del planner/close_handler (consumer groups distintos; `TradeJournalFn` sink). `CommandID` UUIDv7 observado en fábricas de dominio llamadas por MM/close_handler: **no es defecto D-01 de E-02**. Detalle: SPEC §3.
 - **Autoridades:** Reality Check D-01/D-04 (certificación requerida y alternativas A01-A/A03-A), master §14, evidencia R02/R03/R06/R09. Ningún AUTHORITY_CONFLICT encontrado: el defecto observado en source coincide con el frozen input.
@@ -55,7 +55,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` (origin/master) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.1 @ `151e0bc5`; TASKS T01–T10, T12–T15 with contract evidence and physical partials; T11 `[-]` E-08 | IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW · no verifier · no CLOSED |
+| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` (origin/master) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 @ `f7ddea18`; TASKS T01–T10, T12–T15 with focused source-review correction evidence and physical partials; T11 `[-]` E-08 | IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW · no verifier · no CLOSED |
 
 ## 🗺️ Arquitectura frozen (resumen; contrato completo en SPEC)
 
@@ -75,7 +75,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 ## TOP / NORMAL boundaries
 
 - TOP: SPEC/PLAN/TASKS/VERIFICATION, esta nota, linkage padre, gobernanza. Sin source Go/SQL/JS productivo (cumplido: commit docs-only).
-- NORMAL: T01–T10 y T12–T15 mecánicamente contra SPEC/PLAN v1.0.1. T11 permanece `[-]`. No inventa actores, clases de auth ni semántica de cuarentena. No reabre CommandID. Stop conditions: PLAN §8 (schema no-additive ⇒ AUTHORITY_CONFLICT; reabrir CommandID/planner/MM ⇒ SCOPE_CONFLICT; compose indisponible ⇒ PHYSICAL_PARTIAL documentado, jamás mock como PASS).
+- NORMAL: T01–T10 y T12–T15 mecánicamente contra SPEC/PLAN v1.0.2. T11 permanece `[-]`. No inventa actores, clases de auth ni semántica de cuarentena. No reabre CommandID. Stop conditions: PLAN §8 (schema no-additive ⇒ AUTHORITY_CONFLICT; reabrir CommandID/planner/MM ⇒ SCOPE_CONFLICT; compose indisponible ⇒ PHYSICAL_PARTIAL documentado, jamás mock como PASS).
 - GOD: NONE.
 
 ## Migrations
@@ -89,12 +89,13 @@ Ver VERIFICATION.md. Clases: SOURCE (greps secret/auth/messaging, contracts + do
 ## Branch strategy
 
 - Branch única `feature/e02-control-safety-journal-recovery` desde `a99f9a63` (planning v1.0.0 `ac7b4e14`; corrección v1.0.1 `151e0bc5` pusheada).
+- Branch única `feature/e02-control-safety-journal-recovery` desde `a99f9a63` (planning v1.0.0 `ac7b4e14`; TOP correction v1.0.1 `151e0bc5`; focused source-review correction v1.0.2 `f7ddea18` pusheada).
 - Master push prohibido para NORMAL. Integración controlada posterior (ancestry demostrado, sin force-push).
 - Ramas ajenas (E-04/F-04/E-05/E-03) intocables.
 
 ## Blockers
 
-`PHYSICAL_PARTIAL`: no hay psql, Kafka, compose Flink/StateFun ni sesión Hasura develop en esta ejecución. `cascada123` persiste en archivos históricos fuera de Allowed Files; requiere decisión del manager porque limpiarlo excede PLAN §6. `NOT_OBSERVED`: etcd/tokens reales de prod, deploy Hasura prod, bundle servido y rotación AC-18.
+`PHYSICAL_PARTIAL`: no hay psql, Kafka, compose Flink/StateFun ni sesión Hasura develop en esta ejecución. `NOT_OBSERVED`: etcd/tokens reales de prod, deploy Hasura prod, bundle servido y rotación AC-18.
 
 ## Closure conditions
 
