@@ -68,6 +68,14 @@ updated: "2026-09-12"
 - La fuente canónica agent-facing del capability plane es [[aranea-mcps-expert]] (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`), exclusiva de Aranea y explícitamente prohibida para MELI/corporativo. Los runbooks mecánicos viven en AGENTS OS: [[aranea-ssh-mcp]], [[aranea-postgres-mcp]], [[aranea-mongodb-mcp]], [[aranea-hasura-mcp]] y [[aranea-mcp-capability-plane]]. Las skills de dominio sólo deciden qué evidencia necesitan.
 - `echo-forge-wfm-troubleshooting` fue refactorizada para conservar routing/conocimiento de dominio y delegar cualquier operación `aranea-*` a `aranea-mcps-expert`, eliminando duplicación de endpoints/permisos/transport semantics.
 - Hardening genérico no necesario para desbloquear el uso actual — validación explícita de sesiones background, timeout extremo y revisión operativa de audit trail — se difiere a T6, donde se consolidarán health/logs/rotación/rollback y runbook transversal.
+- Workstream `Kafka MCP / aranea-kafka-ro` abierto como **EXTEND** del proyecto existente:
+  - objetivo: inspección y diagnóstico read-only del Kafka real de Aranea;
+  - scope: RO;
+  - estado: `discovery / in-progress`;
+  - dependencia: Kafka real de Aranea;
+  - deployment target: `mcps`;
+  - client target inicial: `Daedalus`;
+  - endpoint/puerto, implementación y credenciales quedan sin congelar hasta discovery.
 
 ### ARGUS / Observability — baseline registrado 2026-09-12
 
@@ -102,6 +110,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 > - [x] T4 Seleccionar y validar MongoDB MCP con una sola base de desarrollo: perfiles RO/RW, `readOnly`/protecciones equivalentes, límites de consulta y convivencia con `mongosh` nativo #owner/agent #type/admin #area/aranea
 > - [ ] T5 **DEFERRED** — Seleccionar y validar Temporal MCP: comenzar read-only con allowlist de namespaces; evaluar `signal/start/cancel` sólo después de demostrar la necesidad y el modelo de policy correspondiente #owner/agent #type/admin #area/aranea
 > - [ ] T6 Consolidar las capabilities aprobadas en el host central, integrar al menos Hermes y Daedalus, demostrar que ambos consumen capabilities sin recibir credenciales reales de los servicios destino, y dejar health checks, logs/audit, background/timeout si aportan valor, rotación/rollback y runbook operativo mínimo #owner/agent #type/admin #area/aranea
+> - [/] KAFKA0 Descubrir el Kafka real de Aranea y validar boundary `aranea-kafka-ro`: bootstrap/security/listeners, network path desde `mcps`, implementación MCP y tool surface estrictamente RO antes de cualquier deployment #owner/agent #type/research #area/aranea
 > - [/] OBS0 Verificar baseline ARGUS sin mutaciones: sampling Jaeger real, servicios Jaeger reales, policy ISM `jaeger-30d-delete` y aplicación efectiva sobre índices Jaeger #owner/agent #type/research #area/aranea
 > - [ ] OBS1 Comparar Forge telemetry contra Echo golden baseline y demostrar E2E con acción real → trace real → Jaeger → spans esperados → logs correlacionables #owner/agent #type/research #area/aranea
 > - [ ] OBS2 Cerrar correlación operacional `logs ↔ trace_id ↔ Jaeger` y semántica mínima de errores sin promover IDs de alta cardinalidad a labels Prometheus #owner/agent #type/research #area/aranea
@@ -111,6 +120,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
+- **2026-09-12** — Abierto `Kafka MCP / aranea-kafka-ro` como EXTEND del MCP Access Plane. Scope inicial RO, estado `discovery / in-progress`, dependencia Kafka real de Aranea, deployment target `mcps` y client target inicial `Daedalus`. No se congelan puerto, endpoint, implementación ni credenciales hasta completar discovery.
 - **2026-09-12** — Hasura MCP workstream `PASS / CLOSED`. Se desplegaron y certificaron `aranea-hasura-dev-admin` (`:3006`) y `aranea-hasura-prod-ro` (`:3005`) contra Hasura CE `v2.38.0`. DEV expone 9 tools admin. PROD no confía sólo en upstream `--read-only`: usa variante strict-RO desde commit `9ba59f273daf42205919e6d43e27d2876a6e0b32`, sin `run_sql`/reload/mutadores y con exactamente 4 tools server-side. Ambos fueron validados desde Cursor con metadata consistente; secretos upstream permanecen server-side en `mcps`.
 - **2026-09-12** — Proyecto existente **EXTEND**, no CREATE: ARGUS/Observability pasa a ser el workstream inmediato del MCP Access Plane. Se registra el baseline de pipelines separados Jaeger vs OTel Collector, Echo como golden baseline, targets MCP RO futuros y gates OBS0–OBS5. T5 Temporal queda diferido. No se modifica runtime ARGUS ni se declara sampling/retención cerrados sin evidencia actual.
 - **2026-09-11** — `aranea-mcps-expert` quedó canónica en el vault (`30-resources/agents/skills/`) y los runbooks en AGENTS OS. Symphony conserva sólo un pointer de discovery.
