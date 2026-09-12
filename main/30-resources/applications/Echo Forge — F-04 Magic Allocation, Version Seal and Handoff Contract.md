@@ -11,7 +11,7 @@ sources:
   - "[[Echo Forge — F-01 Canonical Generation Concurrency Contract]]"
   - "[[Echo Forge — F-02 Finalist Model V2 Contract]]"
   - "[[Echo Forge — F-03 SQX Long-Running Contract]]"
-last_verified: "2026-09-13"
+last_verified: "2026-09-12"
 confidence: verified
 aliases:
   - F-04 SPEC
@@ -31,7 +31,7 @@ tags:
   - area/echo
   - project/echo-forge
 created: "2026-09-10"
-updated: "2026-09-13"
+updated: "2026-09-12"
 ---
 
 # Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract
@@ -46,7 +46,7 @@ Baseline de source F-04: `xKoRx/symphony@d645ed6c2f438995d636a8213b1e4a3f5f26cbe
 
 ### Problema
 
-T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. T2 cerró compile EvaluationRef, caller Magic durable y HTTP E-04. **C4 (2026-09-13):** el PHYSICAL `0.2.97` / FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516` falló las 4 Apply attempts en `ParseMagicV1AllocationIdentity` porque Magic V1 parseaba `CanonicalStrategyID` como `<INSTRUMENT>_<D>_...` y F-01 emite una identidad opaca. Cero filas `strategy_magic`, cero seals, cero manifests — sin data repair. C4 congela autoridades explícitas de instrument/direction y separa Magic legado de allocated. T2.11–T2.13 siguen OPEN. E-04 runtime/deploy/join es one-shot separado después del golden Forge.
+T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. T2 cerró compile EvaluationRef, caller Magic durable y HTTP E-04. **C4 (2026-09-12):** el PHYSICAL `0.2.97` / FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516` falló las 4 Apply attempts en `ParseMagicV1AllocationIdentity` porque Magic V1 parseaba `CanonicalStrategyID` como `<INSTRUMENT>_<D>_...` y F-01 emite una identidad opaca. Cero filas `strategy_magic`, cero seals, cero manifests — sin data repair. C4 congela autoridades explícitas de instrument/direction y separa Magic legado de allocated. T2.11–T2.13 siguen OPEN. E-04 runtime/deploy/join es one-shot separado después del golden Forge.
 
 ### Veredicto central
 
@@ -508,7 +508,7 @@ NORMAL no decide architecture. STOP/PLAN_CONFLICT si: se pretende que Echo posea
 - Symphony C4 baseline `d645ed6c2f438995d636a8213b1e4a3f5f26cbea`; F-01 `0509342`; Magic V1 `ea8be76`; `origin/master` `0b9742b` ancestro; dirty foráneo `phase4_performance.json` preservado.
 - PHYSICAL trigger: release `0.2.97`, FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516`, workflow `sqx-main-v1-6c30394a`, 4 Apply fail `ParseMagicV1AllocationIdentity`, 0 allocations/seals/manifests.
 - S0 `91671f6f`; E-04 consumer `a99f9a6` (T2.13 blocked by runtime/config, out of C4).
-- D16 compile Evaluation frozen 2026-09-12; D17 C4 explicit allocation inputs frozen 2026-09-13; MIGRATION 017 NO; C4 migration NONE.
+- D16 compile Evaluation frozen 2026-09-12; D17 C4 explicit allocation inputs frozen 2026-09-12; MIGRATION 017 NO; C4 migration NONE.
 
 ## Límites y contradicciones
 

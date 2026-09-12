@@ -100,3 +100,7 @@ Corrección in-place: ceiling `MaxInt64ns−1s` como platform safety; Adaptive `
 ## [2026-09-10] ingest | Echo Forge F-04 Magic allocation, version seal and handoff
 
 Creado [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] y subproyecto [[Echo Forge — F-04 Magic allocation, version seal and handoff]] hijo de [[Echo Forge — Factory V2 Completion]]. Change log [[2026-09-10-echo-forge-f04-magic-seal-handoff-spec]]. Graphify externo no se refresca.
+
+## [2026-09-12] ingest | Echo Forge F-04 C4 Explicit Magic Allocation Semantics
+
+Corrección in-place del contrato F-04: instrument/direction durables en `sqx.strategies`; CanonicalStrategyID opaco F-01; TaskSpec `magic_number` no es requested; sin migration nueva. Change log [[2026-09-12-echo-forge-f04-c4-explicit-magic-allocation]]. Graphify externo no se refresca.

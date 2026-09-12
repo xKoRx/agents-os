@@ -7,7 +7,7 @@ slug: applications-index
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-02
-updated: 2026-09-10
+updated: 2026-09-12
 reviewed: 2026-07-04
 aliases:
   - applications index
@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Páginas:** 16 aplicaciones
-- **Última ingesta:** 2026-09-10 (F-04 Magic Allocation, Version Seal and Handoff Contract).
+- **Última ingesta:** 2026-09-12 (F-04 C4 Explicit Magic Allocation Semantics).
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -69,7 +69,7 @@ tags:
 | [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | Contrato técnico F-01: CanonicalStrategyID puro, publication GENERATED con discriminator `ExecutionIntentKey`, sin HOST_KEY; sin migration. |
 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | Contrato técnico F-02: membership estructural ≠ Top N; Promotion 2.0.0; identity requested-vs-HTM; Campaign nullable rank; migration 014. |
 | [[Echo Forge — F-03 SQX Long-Running Contract]] | Contrato F-03: elapsed ≠ failure; ceiling `MaxInt64ns−1s`; ScheduleToClose 0; Adaptive DEPRECATED no-touch; process-tree cancel; migration NONE. |
-| [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | Contrato F-04: allocation CAS 1:1 StrategyRef↔magic; stamp/readback fail-closed; StrategyVersion S0; HandoffManifestV1 write-once; CC_MISSING_OWNER_GATE; migration 015. |
+| [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | Contrato F-04 C4: instrument/direction desde `sqx.strategies`; CanonicalStrategyID opaco; TaskSpec magic no es requested; migration 015/016 no-touch. |
 
 ## 🚨 Salud (del último lint)
 
