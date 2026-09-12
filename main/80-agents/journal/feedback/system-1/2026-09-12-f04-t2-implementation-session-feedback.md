@@ -12,10 +12,10 @@ related:
   - "[[AGENTS OS]]"
   - "[[2026-09-12-zcode-glm-5.3-flash-f04-t2-implementation]]"
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_surface: "[[ZCode]]"
+agent_model: builtin:zai-coding-plan/GLM-5.3-Flash
+agent_run: "[[2026-09-12-zcode-glm-5.3-flash-f04-t2-implementation]]"
+session_goal: Implementar F-04 T2.1–T2.13 (compile Evaluation durable, Magic caller, seal/handoff, HTTP E-04)
 source_session:
 confidence: high
 load_policy: manual
@@ -27,8 +27,6 @@ tags:
   - project/agents-os
   - agent/system1
 ---
-
-# Session Feedback - 2026-09-12 - short-topic
 
 # Session Feedback - 2026-09-12 - f04-t2-implementation
 
