@@ -5,11 +5,12 @@ name: aranea-mcps-expert
 description: Selecciona y gobierna el uso de las capabilities MCP del homelab Aranea. Cargar antes de usar cualquier MCP aranea-* para elegir ambiente, capability, autoridad y runbook correctos; nunca aplica a MELI ni a sistemas corporativos.
 scope: area
 created: "2026-09-11"
-updated: "2026-09-11"
+updated: "2026-09-12"
 area: "[[Aranea]]"
 entities:
   - "[[Aranea]]"
 related:
+  - "[[AGENT-PLATFORM - MCP Access Plane - Architecture]]"
   - "[[aranea-ssh-mcp]]"
   - "[[aranea-postgres-mcp]]"
   - "[[aranea-mongodb-mcp]]"
@@ -50,13 +51,16 @@ Esta skill es el router agent-facing. Los procedimientos mecánicos viven exclus
 - `80-agents/memory/public/runbook/aranea-mongodb-mcp.md` → [[aranea-mongodb-mcp]]
 - `80-agents/memory/public/runbook/aranea-mcp-capability-plane.md` → [[aranea-mcp-capability-plane]]
 
+La arquitectura/deployment común para **agregar o reemplazar capabilities** vive en [[AGENT-PLATFORM - MCP Access Plane - Architecture]]. No redescubrirla desde cero salvo evidencia material de drift.
+
 No copiar procedimientos desde esos runbooks a esta skill.
 
 ## Minimal Read
 
 1. Leer esta skill para elegir ambiente y capability.
-2. Cargar sólo el runbook de la familia elegida.
-3. Cargar [[aranea-mcp-capability-plane]] sólo cuando el problema sea discovery/auth/transporte/policy del plano MCP mismo.
+2. Si la tarea **agrega, reemplaza o reinstala** una capability MCP, cargar obligatoriamente [[AGENT-PLATFORM - MCP Access Plane - Architecture]].
+3. Cargar sólo el runbook de la familia elegida.
+4. Cargar [[aranea-mcp-capability-plane]] sólo cuando el problema sea discovery/auth/transporte/policy del plano MCP mismo.
 
 ## Procedure
 
@@ -88,6 +92,8 @@ En SSH, viewer es default para evidencia y operator sólo si la operación exige
 - PostgreSQL → [[aranea-postgres-mcp]]
 - MongoDB → [[aranea-mongodb-mcp]]
 
+Si se está incorporando una familia nueva, la arquitectura común se toma de [[AGENT-PLATFORM - MCP Access Plane - Architecture]] y sólo se documenta aparte lo específico del servicio.
+
 ### 5. Acotar y ejecutar
 
 Fijar host/perfil o database/schema/table/collection/identificador. Ejecutar sólo la operación necesaria. Para mutaciones, identificar primero el target en el mismo ambiente, fijar blast radius, declarar post-condición, ejecutar y verificar en ese mismo ambiente.
@@ -118,6 +124,7 @@ Boundary: <none | policy/error relevante>
 - Esta skill es **Aranea-only**; nunca usarla para MELI o sistemas corporativos.
 - Elegir ambiente antes que capability/autoridad.
 - PROD de datos es RO; DEV de datos es RW. No inventar sandbox, profiles dinámicos ni nuevos ambientes como workaround.
+- Toda capability nueva debe respetar [[AGENT-PLATFORM - MCP Access Plane - Architecture]]: proxy bearer separado, backend interno sin host port, secretos upstream separados y pinning reproducible, salvo excepción explícitamente aprobada.
 - `SUPERUSER`, `CREATEDB` y `CREATEROLE` no son requisitos del PostgreSQL MCP DEV salvo que un contrato explícito distinto los exija; su ausencia no es blocker por defecto.
 - Nunca pedir, imprimir, copiar, persistir ni registrar bearer tokens, passwords o private keys.
 - No saltar el proxy MCP ni usar acceso directo agent-first cuando existe capability canónica que cubre la acción.
