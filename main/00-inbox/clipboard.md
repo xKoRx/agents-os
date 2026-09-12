@@ -4,7 +4,7 @@
 
 **SPEC / PLANNING ONLY. NO SOURCE IMPLEMENTATION.**
 
-Repo producto:
+Repo producto:s
 
 `xKoRx/symphony`
 
