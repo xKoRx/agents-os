@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: review
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-10
 due:
-progress: 0
+progress: 100
 repo: xKoRx/echo
 jira:
 prs:
@@ -24,7 +24,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-10
-updated: 2026-09-11
+updated: 2026-09-12
 cssclasses:
   - wide
 ---
@@ -34,7 +34,7 @@ cssclasses:
 %% Naming: Echo — E-03 Identity and BWC Foundation E0 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo — E-03 Identity and BWC Foundation E0
-> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Live Platform V1]] · **Repo:** `xKoRx/echo`
+> **Área:** [[Echo]] · **Estado:** review · **Prioridad:** P1 · **Parent:** [[Echo — Live Platform V1]] · **Repo:** `xKoRx/echo`
 > Subproyecto de **implementación** de la fase E-03 / E0. No es Integration. El contrato WHAT vive en el SPEC de Echo; esta nota es HOW / ORDER / GATES.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
@@ -46,6 +46,7 @@ Dejar persistence/protocol groundwork para StrategyVersion, PromotionRecord, wid
 
 ## 📊 Estado actual
 
+- **CORRECTION COMPLETE / READY FOR MANAGER FINAL REVIEW (2026-09-12):** sobre baseline `5c126e5c16a17b14d57b062907d4ccacdc7143a9`, se corrigió mínimamente la expectativa stale de `encoding/json` para U+FFFD. S0 FULL PASS (incluye `GOWORK=off`, corpus, race/vet y resolución `contracts v0.0.0 => ./contracts`); T01–T23 y AC-01…AC-18 PASS; harness PostgreSQL local/efímero PASS; verificación MCP PostgreSQL real no destructiva PASS (pre-061, `active_positions.strategy_id` intacto); MT5 físico PASS en tester frozen 6182 con ejecución de `OnInit` y artifact v1 verificable. MT4 `N/A — OUT OF SCOPE`. Branch `fix/e03-verification-correction-1`, pendiente sólo revisión final del manager.
 - **VERIFIER INDEPENDIENTE 2026-09-11 (FAIL):** ejecución nueva y aislada sobre `c408a12fe36643129a2ae3c3dfa69727b593ba76` confirmó `origin/master` exacto, parent `233ec89ce3868b414d63856c683a1fdd469c58bb`, worktree limpio y scope sin rutas prohibidas. MCP Aranea SSH fue descubierto y usado: compilación real MT4/MetaEditor 5.0.0.2418 y MT5/MetaEditor 5.0.0.6090 produjo 0 errores, pero los testers no devolvieron artefactos runtime nuevos; no hubo PostgreSQL MCP ni cluster descartable disponible. Razones materiales de `FAIL`: `v3/clients/mt4/EchoPersistence.mqh` no aplica `IsUnsupportedFile()` en `AddWithOrigin` y puede reinterpretar/escribir sobre V1; 061/`21_revoke.sql` omiten roles ausentes pese al hard gate de `mcp_echo_dev_ro`; `go test` bridge limpio falla por el módulo `contracts`/go-sqlmock y baseline bridge pasa. No se modificó product source, no se hizo commit/push ni se actualizó `VERIFICATION.md`; no se marca closed ni se inicia E-04.
 - **NORMAL 2026-09-11 (implementation complete / verification pending):** baseline `233ec89ce3868b414d63856c683a1fdd469c58bb` validado; rescue `origin/rescue/e03-uncommitted-20260911-175842` (`ce9ee11d`, parent == baseline) inspeccionado, clasificado scope-correct y aplicado con `cherry-pick -n` sin commit sobre worktree limpio `/tmp/echo-e03-daedalus-4woBaW` (TASKS state-only excluido). Commit canónico único `c408a12fe36643129a2ae3c3dfa69727b593ba76` (`feat(identity): implement E-03 identity and BWC foundation`, parent `233ec89c`) pusheado FF a `origin/master` tras pre-push race check. T01–T23 `[x]` revalidados en sesión; AC-01…AC-18 PASS (AC-14 vía gate dedicado `TestNoEchoMagicAllocator` PASS; el skip del subtest del pack es by-design). **MT4 PHYSICAL cerrado en Windows nativo** (host Aranea `mt5-kronos`, Windows 10 IoT Enterprise LTSC 2024 x64; MT4 Darwinex terminal build 4.0.0.1470 con MetaEditor 5.0.0.2418; instancia dedicada `C:\MT4\e03-evidence` copia de `reference_001` en `/portable`, sin tocar agents existentes; transferencias por HTTP con SHA256 verificado ambos lados): **T01** `sizeof(TradeMapRecord)=144` packed (EA MQL4 real sobre `EchoPersistence.mqh` productivo), offsets 0/4/44/52/56/120/124/132/140 derivados por markers (coinciden con `LayoutV0MT4` frozen; sin corrección de decoder); **T02** fixture `v3/clients/mt4/testdata/trademap/v0.bin` 432 bytes = 3×144 por `FileWriteStruct` real, sha256 `13cb5e6216c507913fd6065c59bafae732f95389f9b949ea6ef989b1f0fa6ba8`, ejecutado como EA sobre chart EURUSD M1 (ini `[Tester]` relativo consumido; `metaeditor /compile` 0 errors); **T07** compile productivo con MetaEditor 4 real: el compile físico atrapó un bug real del candidate (`SlaveCommandJournal::Add` invocaba `IsUnsupportedFile` indefinido en su scope, error 168) — corregido mecánicamente añadiendo el guard fail-closed v1-cookie propio de esa clase sobre su archivo (mqh sha256 `3e4d331ff89c1494ab7f47d7c474a4d387b8b3abce93f17f7dd7a9855bca8e0a`); ticket/magic `int` frozen, v0-only (sin writes v1), canonical >64 rechazado sin truncar. **T03** cross-check Go PASS con fixture físico MT4 (`TestDecodeV0_PhysicalFixtureMT4`). **T06/MT5**: fixtures revalidados por hash (`v0.bin` 444=3×148 `d3496bfa…63dea9e`; `v1.bin` `b0e03e31…06aa3a4c`) + recompile productivo del mqh MT5 (`d5a6669b…`) en MetaEditor 5 nativo Windows (6182): 0 errors, 1 warning preexistente benigno. **PG real 17.5 local** (cluster portátil descartable port 5561, DBs `e03_harness`/`e03_integration`): harness `tests/identity_bwc/run.sh` PASS íntegro (rebuild 060 → interrupt → up → idempotencia → typmods → FK tuple INSERT directo → write-once → REVOKE → down fail-closed umbral 64/magic int32 → re-up); **T21 REVOKE PASS con roles productivos reales**: `echo_user` (app role, migration 048) y `mcp_echo_dev_ro` (049) creados pre-061 con default privileges DML amplios, REVOKE de 061 los strippea, `21_revoke.sql` ejecuta asserts con roles presentes y UPDATE vivo como `echo_user` → `permission denied` (la sesión previa lo omitió por roles ausentes — ya no). **T14** cerrado reusando corpus S0 autorizado `contracts/testdata/v1/G21/g21-unsafe-number-token.json` (sin fixture nuevo fuera de scope; la copia local rechazada fue eliminada del candidate). S0 edge PASS (`GOWORK=off` → `v0.0.0 => ./contracts`; `go.sum`/`go.work` intactos). Race acotado PASS (eapersist, postgres E-03, bridge `Identity|Pipe` y paquete bridge completo `-race` en 1.8s con timeout 400s — el hang previo §21 no reproduce; sin skip/masking). Non-gates preexistentes demostrados contra baseline probe: `TestScratch_QueryKafka/QueryKafkaCloseResults` (infra externa), gap `go-sqlmock` en `go.sum` con `GOWORK=off` (falla idéntico en baseline), gofmt `v3/sdk/domain/trade_journal.go` (preexistente). Rescue NO eliminado (provenance hasta cierre E-03). Pendiente: **Verifier independiente** (CONTRACT_PASS); no verified, no closed.
 - **NORMAL 2026-09-10 (fresh finalization attempt, BLOCKED):** baseline `233ec89ce3868b414d63856c683a1fdd469c58bb` y candidate HEAD `576bf1f49f116826a8141126fbb520b80a7d1a3c` revalidados; candidate inspeccionado y dejado intacto; worktree final limpio creado y sólo deltas productivos autorizados trasladados, sin importar TASKS state-only. MT5 físico revalidado por hashes (`v0.bin` 444 bytes = 3×148; `v1.bin` 343 bytes), codec Go PASS y S0 `GOWORK=off` PASS (`v0.0.0 => ./contracts`, importer `contracts.StrategyVersionRef`). PG real SQL PASS para up/idempotencia/rollback/typmods/FK directos/write-once/down; el assertion REVOKE quedó omitido porque `mcp_echo_dev_ro` no existe en la base. Blockers exactos: no hay Windows + MetaEditor 4 funcional en esta sesión; candidate carece de `mt4/testdata/trademap/*`, por lo que T01/T02/T07 y certificación física MT4 no pueden PASS; además candidate contiene `v3/sdk/postgres/testdata/identity_bwc_g21_unsafe_number.json` fuera de Allowed Files y al rechazarlo falla el test final que lo referencia. No commit/push; estado permanece `active / blocked partial`, abierto para una sesión con Windows/MT4 y resolución de scope.
