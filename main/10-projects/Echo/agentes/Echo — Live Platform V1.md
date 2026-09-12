@@ -45,7 +45,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 ## 📊 Estado actual
 
 - **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2).** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION.
-- **E-02 TOP PLANNING READY FOR MANAGER REVIEW (2026-09-12):** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] con SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `ac7b4e14` en `origin/feature/e02-control-safety-journal-recovery` (base `origin/master` `a99f9a63` reconfirmada en sesión). D-04/D-01 revalidados en source vigente; arquitectura frozen (roles Gateway/Hasura fail-closed; journal transientes-al-retry + cuarentena 062 + replay facts ≠ commands). No implementing; master intacto.
+- **E-02 TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12):** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] con SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc5` en `origin/feature/e02-control-safety-journal-recovery` (parent `ac7b4e14`; base `origin/master` `a99f9a63`). Auth = actores READ/CONFIG/CONTROL/webhook con Bearer presentado (no runtime-config); journal = transientes al retry del ingress journal + cuarentena 062 + `journalctl` PG→PG; CommandID UUIDv5 diferido a E-08. No implementing; master intacto.
 - **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC (F-04 Magic Number V1 ya owner-gated).
 - **Base observada:** `origin/master` `fac4805185eb586bb73c3df0c0ccc20d1377099c` (E-03 CONTRACT_PASS / FINAL CLOSED; FF desde `c408a12fe36643129a2ae3c3dfa69727b593ba76`, 2026-09-12). E-01 certified S0 permanece `91671f6f`.
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
@@ -56,7 +56,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 planning `ac7b4e14` sobre `a99f9a63` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.0 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO · E-02 TOP planning READY FOR MANAGER REVIEW |
+| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 planning `151e0bc5` sobre `a99f9a63` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.1 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO · E-02 TOP correction READY FOR MANAGER REVIEW |
 
 ## 🧩 Subproyectos
 
@@ -134,14 +134,14 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-02 Control safety auth and journal recovery
 
-- **ID / status / size:** E-02 · READY FOR MANAGER REVIEW (TOP planning v1.0.0) · MEDIUM
+- **ID / status / size:** E-02 · READY FOR MANAGER REVIEW (TOP correction v1.0.1) · MEDIUM
 - **Objective:** Cerrar exposición de control (admin secret fuera del cliente; auth proxy+roles) y journal ACK/recovery (hechos no se pierden ni se doble-efectúan). H1 del Reality Check; D-04/D-01.
 - **Capability unlocked:** el owner puede confiar que una falla se ve y se recupera; control no queda abierto en red.
 - **Product value:** TIME_TO_USABLE sin capturar meses sobre un journal que traga errores.
 - **Why:** P0 actual; no esperar portfolio.
 - **Frozen input:** Reality Check §3 D-01/D-04; master security §14. No nuevo control-plane genérico.
 - **In scope:** retirar admin del bundle; auth de mutaciones; persistencia/ack journal; cuarentena de conflictos; replay de facts ≠ replay de órdenes.
-- **Out of scope:** rewrite UI; tenancy; DR multi-región; eligibility.
+- **Out of scope:** rewrite UI; tenancy; DR multi-región; eligibility; CommandID determinístico / EconomicCommand (E-08).
 - **Dependencies:** none. **Parallel:** E-01 y Forge interno. Debe anteceder captura canónica E-06.
 - **Hypotheses:** Gateway endurecido basta vs servicio nuevo.
 - **Risks:** rotación incompleta de secret; ack que dispara órdenes.

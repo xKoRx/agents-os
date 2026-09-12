@@ -48,7 +48,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 - **TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12).** SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc53e90d244aba39ab502b928195f14c625` (parent planning `ac7b4e14`; base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Tres correcciones only: (1) auth por actor con Bearer **presentado**, no `front_read` auto-servido; (2) CommandID UUIDv5 **fuera** (E-08) tras fan-out Kafka físico; (3) Allowed Files = paths `v3/...`. Docs-only; master intacto; sin source productivo. NORMAL no arranca hasta manager review.
 - **Baseline verificado:** `origin/master` = `a99f9a63354bbe72219d1e590bb93757ed08e45e` (E-04 integrado), igual al esperado al inicio de la sesión. E-04 T21/AC-37 POST-INTEGRATION **no** bloquea E-02; F-04 y E-05 tampoco. E-02 no depende de código nuevo de otro carril.
-- **Source revalidado en `a99f9a63`** (no sólo heredado del Reality Check): gateway sin auth en control/webhooks tras CORS `*`; `close-positions` publica CloseCommands físicos sin credencial; admin secret en `front/.env*` + `client.js` + `v3/hasura/config.yaml` (literal); metadata Hasura sólo con rol `admin`; `TradeJournalFn.Invoke` retorna `nil` siempre (fallos de persistencia y conflictos absorbidos); sin cuarentena/DLQ/replay tools; `CommandID` UUIDv7 aleatorio por invocación (replay de fact puede duplicar orden); Flink AT_LEAST_ONCE 60s + restart fixed-delay 5×10s (el retry runtime existe y está sin usar). Detalle: SPEC §3.
+- **Source revalidado en `a99f9a63`** (no sólo heredado del Reality Check): gateway sin auth en control/webhooks tras CORS `*`; `close-positions` publica CloseCommands físicos sin credencial; admin secret en `v3/front/.env*` + `client.js` + `v3/hasura/config.yaml` (literal); metadata Hasura sólo con rol `admin`; `TradeJournalFn.Invoke` retorna `nil` siempre (fallos de persistencia y conflictos absorbidos); sin cuarentena/DLQ/replay tools; Flink AT_LEAST_ONCE 60s + restart fixed-delay 5×10s (el retry runtime existe y está sin usar). Fan-out Kafka: journal **independiente** del planner/close_handler (consumer groups distintos; `TradeJournalFn` sink). `CommandID` UUIDv7 observado en fábricas de dominio llamadas por MM/close_handler: **no es defecto D-01 de E-02**. Detalle: SPEC §3.
 - **Autoridades:** Reality Check D-01/D-04 (certificación requerida y alternativas A01-A/A03-A), master §14, evidencia R02/R03/R06/R09. Ningún AUTHORITY_CONFLICT encontrado: el defecto observado en source coincide con el frozen input.
 
 ## 🧱 Entrega de desarrollo
@@ -109,9 +109,9 @@ _No aplica — hijo de implementación de E-02; no crea hijos._
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/TASKS.md`. Aquí sólo work packages. NORMAL no arranca hasta manager review.
 > - [ ] WP-A Gateway auth (T01–T04) #owner/agent #type/dev #area/echo
-> - [ ] WP-B Front sin admin secret + limpieza repo (T05–T06) #owner/agent #type/dev #area/echo
+> - [ ] WP-B Front sin admin secret + tokens presentados + limpieza repo (T05–T06) #owner/agent #type/dev #area/echo
 > - [ ] WP-C Journal recovery: 062 + quarantine + taxonomía + journalctl (T07–T10) #owner/agent #type/dev #area/echo
-> - [ ] WP-D Fact replay safety: command_id determinístico + bridge sync (T11–T12) #owner/agent #type/dev #area/echo
+> - [ ] WP-D Bridge trade-facts PublishSync (T12); T11 CommandID diferido E-08 #owner/agent #type/dev #area/echo
 > - [ ] WP-E Hasura roles metadata (T13) #owner/agent #type/dev #area/echo
 > - [ ] WP-F Pack físico + SOURCE + runbook rotación (T14–T15) #owner/agent #type/dev #area/echo
 
@@ -132,15 +132,17 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-12 (TOP one-shot)** — Recovery de estado y planning completo E-02. Baseline confirmado `origin/master` `a99f9a63` (igual al esperado; E-04 integrado encima). Source revalidado físicamente en el baseline: defectos D-04 (CORS `*` sin auth en control/webhooks; secret admin en `.env`/`client.js`/`hasura/config.yaml`; metadata sólo rol `admin`) y D-01 (`Invoke` retorna `nil` siempre; sin cuarentena/replay; CommandID UUIDv7 no replay-stable; Flink restart existe sin usarse). Decisiones frozen en SPEC v1.0.0: A03-A (roles Gateway/Hasura fail-closed, sin BFF) + A01-A (transientes al retry runtime + cuarentena durable) + command_id UUIDv5 determinístico fact-triggered + `journalctl` PG→PG (replay facts ≠ commands) + PublishSync para facts/webhooks. SPEC/PLAN/TASKS/VERIFICATION @ `ac7b4e14` pusheados a la feature; catálogo SPECS.md actualizado; master intacto. Sin implementación; no NORMAL; no CLOSED. Detalle de fricción en feedback de sesión.
+- **2026-09-12 (TOP correction)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc5`. Auth: READ/CONFIG/CONTROL/webhook son credenciales distintas; el humano presenta tokens (prompt/sessionStorage); webhook solo server-side; prohibido runtime-config de Bearers. CommandID: traza física fact→Kafka fan-out paralelo (journal sink vs planner/close_handler); journal/retry no duplica efecto económico ⇒ UUIDv5 **fuera** (E-08); T11 `[-]`; planner/MM/MQL intocables. Paths: Allowed Files exactos `v3/...` (no existe `sdk/` raíz). Sin source productivo. Puente sigue Review.
+- **2026-09-12 (TOP one-shot)** — Recovery de estado y planning completo E-02. Baseline confirmado `origin/master` `a99f9a63` (igual al esperado; E-04 integrado encima). Source revalidado físicamente en el baseline: defectos D-04 (CORS `*` sin auth en control/webhooks; secret admin en `.env`/`client.js`/`hasura/config.yaml`; metadata sólo rol `admin`) y D-01 (`Invoke` retorna `nil` siempre; sin cuarentena/replay; Flink restart existe sin usarse). Decisiones frozen en SPEC v1.0.0 (superseded en auth-discovery y CommandID por v1.0.1). SPEC/PLAN/TASKS/VERIFICATION @ `ac7b4e14` pusheados a la feature; catálogo SPECS.md actualizado; master intacto. Sin implementación; no NORMAL; no CLOSED.
 
 ## 🧭 Decisiones
 
 - Extender Gateway existente; no BFF ni reverse-proxy auth nuevo (A03-A por etapas).
-- Retry owner del journal = restart-strategy Flink existente (retornar error en transientes); nada de colas nuevas.
+- Auth humana = Bearer **presentado** por actor (READ ≠ CONFIG ≠ CONTROL); webhook = servicio Hasura server-side. No admin secret en cliente. No OAuth/IAM. No LAN-as-auth. No Bearer compartido auto-descubrible.
+- Retry owner del journal = restart-strategy Flink del **ingress journal** (retornar error en transientes); nada de colas nuevas.
 - Cuarentena durable en tabla nueva 062; conflicto ≠ duplicado; resolución operatoria, no automática.
-- CommandID fact-triggered determinístico (UUIDv5); operator close sigue UUIDv7; E-08 lo sustituye por EconomicCommand.
-- Replay de facts PG→PG sólo (`journalctl`); replay de commands explícitamente fuera (E-08).
+- CommandID fact-triggered UUIDv5 **no** entra en E-02: el journal no re-planifica (fan-out paralelo). E-08 EconomicCommand/outbox.
+- Replay de facts PG→PG sólo (`v3/tools/journalctl`); replay de commands explícitamente fuera (E-08).
 - Rotación del secret expuesto: código + runbook en E-02; ejecución prod = gate del owner (AC-18).
 
 ## 🔗 Docs / Links
@@ -151,7 +153,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - [[Echo + Echo Forge — Arquitectura de producto, gaps y roadmap de cierre 2026]] (§14)
 - [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]
 - SPEC: `xKoRx/echo` `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` (PLAN/TASKS/VERIFICATION en la misma carpeta)
-- Branch: `feature/e02-control-safety-journal-recovery` @ `ac7b4e14`
+- Branch: `feature/e02-control-safety-journal-recovery` @ `151e0bc5` (v1.0.1; parent `ac7b4e14`)
 
 ## 💡 Ideas
 
