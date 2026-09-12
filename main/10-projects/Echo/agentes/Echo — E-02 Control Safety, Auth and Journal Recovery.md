@@ -46,7 +46,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 ## 📊 Estado actual
 
-- **TOP PLANNING READY FOR MANAGER REVIEW (2026-09-12).** SPEC/PLAN/TASKS/VERIFICATION v1.0.0 de `FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2` @ `ac7b4e14fa971738b4a6cbb88fc8f672bbd57d40` pusheados a `origin/feature/e02-control-safety-journal-recovery` (un commit docs sobre `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`; master intacto; sin source productivo). NORMAL no arranca hasta manager review.
+- **TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12).** SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc53e90d244aba39ab502b928195f14c625` (parent planning `ac7b4e14`; base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Tres correcciones only: (1) auth por actor con Bearer **presentado**, no `front_read` auto-servido; (2) CommandID UUIDv5 **fuera** (E-08) tras fan-out Kafka físico; (3) Allowed Files = paths `v3/...`. Docs-only; master intacto; sin source productivo. NORMAL no arranca hasta manager review.
 - **Baseline verificado:** `origin/master` = `a99f9a63354bbe72219d1e590bb93757ed08e45e` (E-04 integrado), igual al esperado al inicio de la sesión. E-04 T21/AC-37 POST-INTEGRATION **no** bloquea E-02; F-04 y E-05 tampoco. E-02 no depende de código nuevo de otro carril.
 - **Source revalidado en `a99f9a63`** (no sólo heredado del Reality Check): gateway sin auth en control/webhooks tras CORS `*`; `close-positions` publica CloseCommands físicos sin credencial; admin secret en `front/.env*` + `client.js` + `v3/hasura/config.yaml` (literal); metadata Hasura sólo con rol `admin`; `TradeJournalFn.Invoke` retorna `nil` siempre (fallos de persistencia y conflictos absorbidos); sin cuarentena/DLQ/replay tools; `CommandID` UUIDv7 aleatorio por invocación (replay de fact puede duplicar orden); Flink AT_LEAST_ONCE 60s + restart fixed-delay 5×10s (el retry runtime existe y está sin usar). Detalle: SPEC §3.
 - **Autoridades:** Reality Check D-01/D-04 (certificación requerida y alternativas A01-A/A03-A), master §14, evidencia R02/R03/R06/R09. Ningún AUTHORITY_CONFLICT encontrado: el defecto observado en source coincide con el frozen input.
@@ -55,27 +55,27 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` (origin/master) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.0 @ `ac7b4e14`; TASKS T01–T15 `[ ]` | TOP planning READY FOR MANAGER REVIEW · No implementing · No CLOSED |
+| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` (origin/master) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.1 @ `151e0bc5`; TASKS T01–T10, T12–T15 `[ ]`; T11 `[-]` E-08 | TOP correction READY FOR MANAGER REVIEW · No implementing · No CLOSED |
 
 ## 🗺️ Arquitectura frozen (resumen; contrato completo en SPEC)
 
-- **Auth:** middleware Gateway por clase (`control_operator`, `service_hasura_webhook`, `forge_ingest` existente, auth hook Hasura) con Bearer opaco constant-time; 401/403/503 fail-closed. Hasura: roles `readonly` (select) y `config_operator` (config writes, sin delete ni identity/journal) vía auth hook `/api/v1/auth/hasura`; admin secret queda server-side y se rota (runbook). Front sin secret en bundle; tokens runtime. Tokens en etcd/env. CORS allowlist complementa, no sustituye.
-- **Journal:** taxonomía TRANSIENT (error ⇒ retry Flink existente ⇒ convergencia o fallo visible) / DETERMINISTIC_REJECT (cuarentena durable `echo.journal_quarantine`, migración 062 additive) / DUPLICATE (merge no-op). CLOSE-before-OPEN ⇒ cuarentena + replay PG→PG vía `tools/journalctl` (sin Kafka, sin commands). Síntesis NATIVE (BWC) intacta. Webhooks y trade-facts del bridge a `PublishSync` (`WaitForAll`).
-- **Replay:** FACTS = `journalctl replay-facts` (PG→PG, guard estructural sin messaging); COMMANDS = no existe en E-02 (E-08). Fact replay no duplica efecto: `CommandID` fact-triggered pasa a UUIDv5 determinístico sobre `kind|trade_id|accountID`; operator emergency close sigue UUIDv7; EA sin cambios MQL.
+- **Auth (KISS, sin OAuth/IAM, sin LAN-as-auth, sin admin secret en cliente):** cuatro Bearers opacos distintos, patrón E-04, fail-closed 401/403/503. **usuario READ** (`front_read` → Hasura `readonly`): el humano pega el token; `sessionStorage`; SELECT-only. **operador CONFIG** (`config_operator`): token distinto; SELECT + writes de config; nunca CONTROL/webhook. **operador CONTROL** (`control_operator`): token distinto; solo Gateway close/republish; nunca auth hook Hasura. **servicio Hasura webhook** (`service_hasura_webhook`): header del event trigger, solo server-side. Prohibido servir `front_read` (ni ningún Bearer) vía runtime config/nginx/VITE: eso no es autenticación. CORS/LAN complementan, no sustituyen. Admin secret server-side + runbook de rotación.
+- **Journal:** taxonomía TRANSIENT (error ⇒ retry Flink del **ingress journal** ⇒ convergencia o fallo visible) / DETERMINISTIC_REJECT (cuarentena durable `echo.journal_quarantine`, migración `v3/sdk/postgres/migrations/062_*` additive) / DUPLICATE (merge no-op). CLOSE-before-OPEN ⇒ cuarentena + replay PG→PG vía `v3/tools/journalctl` (sin Kafka, sin commands). Síntesis NATIVE (BWC) intacta. Webhooks y trade-facts del bridge a `PublishSync` (`WaitForAll`).
+- **Replay:** FACTS = `journalctl replay-facts` (PG→PG, guard sin `github.com/xKoRx/echo/v3/sdk/messaging`); COMMANDS = no existe en E-02 (E-08). Fan-out Kafka físico: journal y planner/close_handler son consumer groups independientes; `TradeJournalFn` es sink (0 `ctx.Send`). Retry/replay de journal **no** re-planifica. `CommandID` UUIDv7 intacto; UUIDv5 diferido a E-08. Planner/MM/MQL intocables.
 
 ## 📦 Work packages (TASKS T01–T15)
 
-- **WP-A Gateway auth** T01–T04: middleware core, CONTROL, WEBHOOK+PublishSync, auth hook Hasura.
-- **WP-B Front/secrets** T05–T06: bundle sin admin secret, runtime tokens, CORS allowlist, limpieza repo (`hasura/config.yaml`).
-- **WP-C Journal recovery** T07–T10: migración 062, quarantine repo, taxonomía+cuarentena en `TradeJournalFn`, `tools/journalctl`.
-- **WP-D Fact replay safety** T11–T12: command identity UUIDv5, bridge trade-facts sync.
-- **WP-E Hasura roles** T13: metadata readonly/config_operator (enumeración mecánica del front).
-- **WP-F Cert** T14–T15: pack físico (compose StateFun kill/restart, replay doble con spy topic, outage PG real, bundle real, Hasura develop), SOURCE greps, runbook rotación.
+- **WP-A Gateway auth** T01–T04: middleware core, CONTROL, WEBHOOK+PublishSync, auth hook Hasura (READ/CONFIG presentados; CONTROL/webhook 403 en el hook).
+- **WP-B Front/secrets** T05–T06: bundle sin admin secret ni tokens; `session_tokens.js` (prompt + sessionStorage por actor); CORS allowlist; limpieza `v3/hasura/config.yaml`.
+- **WP-C Journal recovery** T07–T10: migración 062, quarantine repo, taxonomía+cuarentena en `TradeJournalFn`, `v3/tools/journalctl`.
+- **WP-D Bridge fact durability** T12: trade-facts `PublishSync`. T11 `[-]` CommandID → E-08.
+- **WP-E Hasura roles** T13: metadata readonly/config_operator (enumeración mecánica de `v3/front/src/services/graphql/*.js`).
+- **WP-F Cert** T14–T15: pack físico (compose StateFun kill/restart **journal**, 0 publishes a `echo.commands.*` desde journalctl/retry, outage PG real, bundle real, Hasura develop con token presentado), SOURCE greps, runbook rotación.
 
 ## TOP / NORMAL boundaries
 
 - TOP: SPEC/PLAN/TASKS/VERIFICATION, esta nota, linkage padre, gobernanza. Sin source Go/SQL/JS productivo (cumplido: commit docs-only).
-- NORMAL: T01–T15 mecánicamente contra SPEC/PLAN. No inventa roles, clases de auth, semántica de cuarentena ni formato de command_id. Stop conditions: PLAN §8 (schema no-additive ⇒ AUTHORITY_CONFLICT; dedupe EA insuficiente ⇒ BWC_GAP; compose indisponible ⇒ PHYSICAL_PARTIAL documentado, jamás mock como PASS).
+- NORMAL: T01–T10 y T12–T15 mecánicamente contra SPEC/PLAN v1.0.1. T11 permanece `[-]`. No inventa actores, clases de auth ni semántica de cuarentena. No reabre CommandID. Stop conditions: PLAN §8 (schema no-additive ⇒ AUTHORITY_CONFLICT; reabrir CommandID/planner/MM ⇒ SCOPE_CONFLICT; compose indisponible ⇒ PHYSICAL_PARTIAL documentado, jamás mock como PASS).
 - GOD: NONE.
 
 ## Migrations
@@ -84,11 +84,11 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 ## Certification gates (NORMAL)
 
-Ver VERIFICATION.md. Clases: SOURCE (greps secret/auth/messaging, contracts diff 0), CONTRACT (matriz auth + matriz journal contra PG 17 real), MIGRATION (062 up/down), PHYSICAL (compose StateFun kill/restart, replay doble sin doble efecto con spy topic, outage PG real, `vite build` + bundle grep, HTTP real Gateway, Hasura develop roles/hook). DoD E-02 (roadmap): admin secret fuera del cliente; control fail-closed; outage no pierde facts; retries convergen; conflictos visibles; CLOSE-before-OPEN recuperable; restart no pierde durable; fact replay sin ejecución; BWC preservada; verifier PASS; integración controlada. AC-18 (rotación en prod) es gate ops del owner.
+Ver VERIFICATION.md. Clases: SOURCE (greps secret/auth/messaging, contracts + domain CommandID diff 0), CONTRACT (matriz auth **por actor** + matriz journal contra PG 17 real), MIGRATION (062 up/down), PHYSICAL (compose StateFun kill/restart journal, 0 commands desde journalctl/retry, outage PG real, `vite build` + bundle grep, HTTP real Gateway, Hasura develop roles/hook con token presentado). DoD E-02 (roadmap): admin secret fuera del cliente; control fail-closed; outage no pierde facts; retries convergen; conflictos visibles; CLOSE-before-OPEN recuperable; restart no pierde durable journal; fact replay sin ejecución; BWC preservada; verifier PASS; integración controlada. AC-18 (rotación en prod) es gate ops del owner.
 
 ## Branch strategy
 
-- Branch única `feature/e02-control-safety-journal-recovery` desde `a99f9a63` (ya creada, planning `ac7b4e14` pusheado).
+- Branch única `feature/e02-control-safety-journal-recovery` desde `a99f9a63` (planning v1.0.0 `ac7b4e14`; corrección v1.0.1 `151e0bc5` pusheada).
 - Master push prohibido para NORMAL. Integración controlada posterior (ancestry demostrado, sin force-push).
 - Ramas ajenas (E-04/F-04/E-05/E-03) intocables.
 
@@ -98,7 +98,7 @@ Ninguno para planning ni para NORMAL tras manager review. `NOT_OBSERVED` declara
 
 ## Closure conditions
 
-T01–T15 `[x]`; AC-01…AC-17 PASS con evidencia física; verifier independiente PASS; integración controlada a master; E-06 desbloqueado. E-02 no se declara CLOSED en planning.
+T01–T10 y T12–T15 `[x]`; T11 `[-]` (E-08); AC-01…AC-17 PASS con evidencia física; verifier independiente PASS; integración controlada a master; E-06 desbloqueado. E-02 no se declara CLOSED en planning.
 
 ## 🧩 Subproyectos
 
