@@ -7,8 +7,8 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-08-10"
-reviewed: "2026-08-10"
+updated: "2026-09-11"
+reviewed: "2026-09-11"
 aliases:
   - "00-index index"
 cssclasses:
@@ -20,14 +20,12 @@ tags:
 # 🗂️ Agents — Índice
 
 > [!info] Wiki compilada de recursos
-> Este índice es el **catálogo curado** de este dominio de la wiki de recursos.
-> El agente lo actualiza en cada *ingest*. Ver reglas en
-> [[30-resources/00-RESOURCE-WIKI|Reglas de la Resource Wiki]] y bitácora en `log.md`.
+> Este índice es el catálogo curado del dominio `30-resources/agents/`. Ver [[30-resources/00-RESOURCE-WIKI|Reglas de la Resource Wiki]] y `log.md`.
 
 ## 📊 De un vistazo
 
-- **Páginas:** 2
-- **Última ingesta:** 2026-08-10
+- **Páginas curadas:** 3
+- **Última ingesta:** 2026-09-11
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -36,12 +34,11 @@ tags:
 |---|---|---|
 | [[agent-executor]] | Prompt reusable para encargar una fase acotada sin sustituir el planificador canónico. | target: agent · v1 |
 | [[f3-skill-migration]] | Inventario, checksums y rollback del movimiento de skills de Fase 3. | migration record |
+| [[skills/aranea-mcps-expert/SKILL|aranea-mcps-expert]] | Router agent-facing para elegir ambiente/capability MCP de Aranea y cargar el runbook canónico correcto. | skill · Aranea-only |
 
-## 🚨 Salud (del último lint)
+## 🔗 MCP Aranea
 
-- Huérfanos: 0 al crear el dominio; revalidar tras reindex.
-- Contradicciones: ninguna conocida.
-- Conceptos sin página: ninguno en el alcance de F3.
+La skill `aranea-mcps-expert` vive en `30-resources/agents/skills/aranea-mcps-expert/SKILL.md`. Sus runbooks mecánicos viven en `80-agents/memory/public/runbook/`: `aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md` y `aranea-mcp-capability-plane.md`.
 
 ## 🔗 Links
 
