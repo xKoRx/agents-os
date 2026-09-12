@@ -17,8 +17,8 @@ agent_model: unknown
 model_source: unknown
 task_type: testing
 task_complexity: high
-outcome: complete
-verification: physical-gate-reproduced
+outcome: success
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
