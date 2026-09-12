@@ -32,7 +32,7 @@ updated: "2026-09-11"
 
 > [!info]+ Echo Forge — Factory V2 Completion
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
-> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 REVIEW: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] / [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] — NORMAL entregó; `READY FOR MANAGER REVIEW — PHYSICAL/INTEGRATION GATED`. F-05 pendiente.
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 TOP READY: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] / [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] — compile Evaluation authority frozen; NORMAL T2 pending. F-05 pendiente.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
 > Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
@@ -45,7 +45,7 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 ## 📊 Estado actual
 
-- **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED. F-04 REVIEW.** F-03 PASS/CLOSED (2026-09-10): commit final `382f4ba5d417371f778e21619ed9eb72624a23f4`. F-04 REVIEW (2026-09-10): NORMAL implementó T1.1–T1.18 en `feature/f04-magic-version-handoff` (HEAD `24b807f` sobre `382f4ba`, pusheada); SOURCE/CONTRACT/CONCURRENCY/MIGRATION PASS; CC=`CC_MISSING_OWNER_GATE` → `PHYSICAL: BLOCKED`; INTEGRATION gated por E-04. F-05 pendiente.
+- **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED. F-04 TOP READY (compile Evaluation frozen).** F-03 PASS/CLOSED (2026-09-10): commit final `382f4ba5d417371f778e21619ed9eb72624a23f4`. F-04 feature `9fad768` (merge `ea8be76`+`origin/master` `0b9742b`). T1.1–T1.18 implemented; T2.1–T2.13 pending (compile Evaluation persist + caller + Echo HTTP). PHYSICAL operationally pending. E-04 consumer READY `@ a99f9a6`. F-05 pendiente.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
 - **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 REVIEW (esperando manager); F-05 pendiente.
 - **Base observada:** Symphony `master`=`origin/master`=`382f4ba5d417371f778e21619ed9eb72624a23f4`; merge-base previo F-03=`e50cb7e`; worktree CLEAN. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.

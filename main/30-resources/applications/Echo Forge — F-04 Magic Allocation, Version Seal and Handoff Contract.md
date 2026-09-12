@@ -31,7 +31,7 @@ tags:
   - area/echo
   - project/echo-forge
 created: "2026-09-10"
-updated: "2026-09-10"
+updated: "2026-09-12"
 ---
 
 # Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract
@@ -111,7 +111,7 @@ Constantes históricas: template SQX `11111`; convención Symphony `888111`; stu
 
 ### Artefactos / compile
 
-Apply output: `durable/apply-selected-run/v1/{flow}/{strategy}/{stage}/strategy.sqx` + SHA-256. Compile: `.mq5` → `.ex5` + `.compile.log` (`artifact_compiler.go`). `DurableArtifactRef` existe. **`StrategyVersion` / `HandoffManifestV1` no existen.**
+Apply output: `durable/apply-selected-run/v1/{flow}/{strategy}/{stage}/strategy.sqx` + SHA-256. Compile: `.mq5` → `.ex5` + `.compile.log` (`artifact_compiler.go`). `DurableArtifactRef` existe. **Compile EvaluationRef no existe todavía en runtime** (T2); el producer S0 ya exige el campo.
 
 `CanonicalConfig` hoy usa `domain.HashIdentity` (newline). Eso **no** entra al seal S0.
 
@@ -119,7 +119,7 @@ Apply output: `durable/apply-selected-run/v1/{flow}/{strategy}/{stage}/strategy.
 
 `adapters/echo-api` ausente. `ActEchoIngest` stub sin artefactos. FEAT-SQX-ECHO-INGESTION BLOQ. Durable paths ya prohíben latest; legacy Apply elige último `.sqx` por mtime — F-04 no usa ese path.
 
-E-04 ([[Echo — Live Platform V1]]): **To Do**. No hay endpoint certificado. NORMAL implementa producer + port; CONTRACT PASS con `fakeconsumer` S0. INTEGRATION real espera join E-04. **No inventar endpoint provisional.**
+E-04 ([[Echo — E-04 Forge Ingestion E1]]): **INTEGRATED** `@ a99f9a63354bbe72219d1e590bb93757ed08e45e`. T21/AC-37 POST-INTEGRATION espera golden auténtico de Forge. CONTRACT Forge permanece en `fakeconsumer`. HTTP client real es T2.9; no inventar path distinto de `POST /api/v1/forge/promotions` + GET by-key.
 
 ## Contratos S0 (consumo, no copia)
 
@@ -222,6 +222,31 @@ ALLOCATE → (requested present ∧ requested ≠ allocated → FAIL CLOSED)
 Mismatch readback ≠ allocated: **FAIL CLOSED. NO SEAL. NO HANDOFF.** No crear StrategyVersion sobre valores sólo solicitados.
 
 Retry stamp: solo recovery Apply ya existente (RUNNING sin producer sellado). Tras producer sellado con mismatch: `CONTRACT_CONFLICT` terminal. No reseal.
+
+## Compile Evaluation contract (frozen 2026-09-12)
+
+`compile_evaluation_ref` **no** es SHA de EX5, key de log, request/workflow ID, `ExecutionIntentKey` ni HashIdentity. Es un `domain.EvaluationRef` producido por Durable Foundation.
+
+Fuente: compile físico (`ArtifactCompiler.Compile` / `mt5_compile_artifact` en `sqx-mt5-queue`) ya publica EX5+log durables pero **no** abre StageExecution ni `PutEvaluation`. El patrón vivo a reusar es `persistMT5ReconcileV1` en el worker padre.
+
+| Campo | Frozen |
+|---|---|
+| StageKey | `mt5_compiler@mt5-compile.v1` (`CanonicalStageKey` sobre TaskSpec.Type vivo) |
+| Subject | STRATEGY / StrategyRef UUID; digest de `{schema:mt5-compile-strategy-subject.v1, strategy_ref}` — artifact SHA no entra |
+| InputEvaluationRefs | role `source_evaluation` = carrier `EvaluationRef` exacto (Evaluation SQX que el exporter ya cargó). Compile persist no busca Apply. El assembler F-04 exige `Stage.Key=apply_selected_run` |
+| Scope | `{schema:mt5-compile-scope.v1, platform:MetaTrader5, compiler:"MetaEditor64 /portable"}` |
+| Producer | component `sqx-mt5-compile`; contract_version y build_ref `mt5-compile.v1` |
+| Artifacts | INPUT `STRATEGY_MQ5`; OUTPUT `EX5`; EVIDENCE `LOG` |
+| Payload | `{schema:mt5-compile-payload.v1, result:success, error_count:0}` |
+| EvaluationRef | `domain.NewEvaluationRef(stageRef, subject.Digest, scopeDigest, "mt5-compile.v1")` |
+| Cardinality | 1 success StageExecution → 1 EvaluationRef; 0 → no seal; >1 → CONTRACT_CONFLICT |
+| Persist seam | `executeMT5ArtifactTask` after V1 compile success → `mt5_compile_persist_v1` on **sqx-worker**, never mt5-queue |
+| Consume seam | `runFinalistPromotion` → `forge_seal_handoff_v1` with exact refs |
+| MIGRATION 017 | **NO** |
+
+Success: `VerifyCompiledArtifactForSeal` before `ResolveStageExecution`. Functional failure: no StageExecution, no success Evaluation. Infra/cancel: retry, no fake success. UNKNOWN_COMMIT: exact `LoadEvaluation` recovery. Temporal retry no crea otro compile semántico.
+
+`UseDurableMagicAllocation` debe activarse en `runDurableApplySelectedRun`; el flag existe y el caller productivo hoy lo deja false.
 
 ## StrategyVersion seal
 
