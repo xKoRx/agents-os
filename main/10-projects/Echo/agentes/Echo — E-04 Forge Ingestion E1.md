@@ -46,10 +46,10 @@ Dejar el boundary Forge → Echo listo para aceptar un `HandoffManifestV1` auten
 
 ## 📊 Estado actual
 
-- **TOP PLANNING READY FOR MANAGER REVIEW (2026-09-11, corrección 1.0.1).** Gates CROSS_LANE corregidos: synthetic S0/fakeconsumer ≠ golden Forge; `FORGE_GOLDEN_FIXTURE_PENDING`; CROSS_LANE development no espera E-03 CONTRACT_PASS. Arquitectura 1.0.0 frozen. No implementing. No CLOSED.
+- **TOP PLANNING READY FOR MANAGER REVIEW (2026-09-11, corrección T17).** TASKS T17 alineado a `Deliver(ctx, ns, *HandoffManifestV1, payloadDigest) (PromotionRecord, httpStatus, error)` @ `6beac29f`. SPEC v1.0.1 §6.1 intacto. `payloadDigest` no es segunda autoridad HTTP. Gates 1.0.1 intactos (`FORGE_GOLDEN_FIXTURE_PENDING`; CROSS_LANE development no espera E-03 CONTRACT_PASS). No implementing. No CLOSED.
 - **Development MAY START** (T01–T20) en paralelo con verification E-03. **CROSS_LANE GOLDEN** puede correr antes de E-03 CONTRACT_PASS **si** existiera fixture Forge auténtica; hoy pending. **Integration/merge/close NO:** gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION`.
 - E-03 permanece `IMPLEMENTATION CLOSED / CONTRACT_PASS NOT ESTABLISHED` @ `c408a12fe36643129a2ae3c3dfa69727b593ba76`. No se marca E-03 closed/PASS/FAIL. No se marca E-04 implementing. No se marca Forge join closed.
-- Baseline de development: `origin/master` = `c408a12f` (parent `233ec89c`). Branch `feature/e04-forge-ingestion-e1` @ `c8e6853804e55e71aad5adcbc432f378b57efc46` (parent planning `618607f8`). Push a master prohibido.
+- Baseline de development: `origin/master` = `c408a12f` (parent `233ec89c`). Branch `feature/e04-forge-ingestion-e1` @ `6beac29f9b6daa5a3d935b7074de3bb2b2098014` (parent `c8e68538`). Push a master prohibido.
 - Contrato WHAT: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.1. TASKS T01–T20 NORMAL; T21 golden (blocked). AC-01…AC-37.
 - S0 certified READ ONLY @ `91671f6f`. Stores E-03 se consumen, no se rediseñan.
 - Búsqueda física Symphony: golden Forge **NOT FOUND**. `echo-handoff` testdata = copia S0. `ea8be76` no es authority de master. Dependency `FORGE_GOLDEN_FIXTURE_PENDING`.
@@ -58,7 +58,7 @@ Dejar el boundary Forge → Echo listo para aceptar un `HandoffManifestV1` auten
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e04-forge-ingestion-e1` | `c408a12fe36643129a2ae3c3dfa69727b593ba76` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §4 + [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] (join) | `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.1 @ `c8e6853804e55e71aad5adcbc432f378b57efc46` | TOP READY_FOR_MANAGER_REVIEW · NORMAL no autorizado |
+| xKoRx/echo | `feature/e04-forge-ingestion-e1` | `c408a12fe36643129a2ae3c3dfa69727b593ba76` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §4 + [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] (join) | `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.1 @ `c8e68538`; TASKS T17 @ `6beac29f9b6daa5a3d935b7074de3bb2b2098014` | TOP READY_FOR_MANAGER_REVIEW · NORMAL no autorizado |
 
 ## 🗺️ Source map (baseline `c408a12f`)
 
@@ -189,6 +189,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-11 (TOP corrección T17)** — TASKS T17 alineado a `Deliver(ctx, ns, *HandoffManifestV1, payloadDigest)`. `payloadDigest` no es segunda autoridad HTTP (Echo sigue computando digest server-side). SPEC/PLAN/VERIFICATION no tocados. AC-34 sigue SYNTHETIC CONTRACT INTEGRATION. T21/`FORGE_GOLDEN_FIXTURE_PENDING` y E-03 interlock intactos. `6beac29f` pushed a `feature/e04-forge-ingestion-e1`. Master intacto. Estado `READY FOR MANAGER REVIEW`. No NORMAL.
 - **2026-09-11 (TOP corrección 1.0.1)** — Manager findings: (1) S0/fakeconsumer no es CROSS_LANE GOLDEN; inspección Symphony → `FORGE_GOLDEN_FIXTURE_PENDING`; (2) CROSS_LANE development desacoplado de E-03 CONTRACT_PASS; integrate/close sigue gated. SPEC v1.0.1 @ `c8e68538` pushed a `feature/e04-forge-ingestion-e1`. T21/AC-37 añadidos. E-03 no tocado. Symphony no tocado. Master intacto. Estado `READY FOR MANAGER REVIEW`. No NORMAL.
 - **2026-09-11 (TOP)** — Recovery: no había proyecto E-04 ni SPEC ejecutable. Se materializa este hijo, SPEC/PLAN/TASKS `FEAT-FORGE-INGESTION-E1` en branch `feature/e04-forge-ingestion-e1` desde `c408a12f` (planning SHA `618607f8`, pushed; `origin/master` intacto). Gobernanza: development paralelo a verification E-03; integrate gated por CONTRACT_PASS. Join F-04 congelado (HTTP + S0 + receipt). Estado `READY FOR MANAGER REVIEW`. No NORMAL. No master push. No session close.
 
