@@ -83,32 +83,32 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 ## Skill Feedback
 
-- Skill that worked well:
+- Skill that worked well: `agents-os-bootstrap` y `agents-os-session-close` mantuvieron el routing y el cierre por delta.
 - Skill that was confusing:
 - Trigger/routing gap:
 - Suggested contract change:
 
 ## Template Feedback
 
-- Template used:
+- Template used: `session-feedback.md`.
 - Field that helped:
 - Field that felt redundant:
 - Missing field:
 
 ## Memoria Interna (Internal Memory)
 
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
+- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? sí
 - ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
 - ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
 - ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
 
 ## Pain Pattern Candidate
 
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
+- Is this likely to repeat? yes
+- Suggested severity: medium
+- Candidate owner: Agents OS / Echo verification runbook
+- Promote to L3 memory? defer; crear runbook primero
 
 ## One Next Improvement
 
--
+- Añadir receta única para PG temporal + `psql` + cleanup seguro y gates seriales.
