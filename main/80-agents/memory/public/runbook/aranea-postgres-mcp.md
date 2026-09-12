@@ -11,6 +11,7 @@ entities:
   - "[[Aranea]]"
   - "[[Echo Forge]]"
 related:
+  - "[[aranea-mcps-expert]]"
   - "[[aranea-mcp-capability-plane]]"
   - "[[aranea-ssh-mcp]]"
   - "[[aranea-mongodb-mcp]]"
@@ -38,7 +39,7 @@ tags:
 
 ## Propósito
 
-Inspeccionar y, cuando esté explícitamente autorizado, mutar PostgreSQL a través del capability plane MCP de Aranea. Este runbook posee hechos operativos de PostgreSQL MCP. La selección de capability y autoridad mínima pertenece a `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md`. Las skills de dominio deciden cuándo PostgreSQL es la fuente correcta. El contrato detallado de acceso Echo dev vive en `xKoRx/symphony` → `docs/prd/echo-forge/POSTGRES-MCP-ACCESS.md`.
+Inspeccionar y, cuando esté explícitamente autorizado, mutar PostgreSQL a través del capability plane MCP de Aranea. Este runbook posee hechos operativos de PostgreSQL MCP. La selección de capability y autoridad mínima pertenece a [[aranea-mcps-expert]]. Las skills de dominio deciden cuándo PostgreSQL es la fuente correcta. El contrato detallado de acceso Echo dev vive en `xKoRx/symphony` → `docs/prd/echo-forge/POSTGRES-MCP-ACCESS.md`.
 
 ## Precondiciones
 

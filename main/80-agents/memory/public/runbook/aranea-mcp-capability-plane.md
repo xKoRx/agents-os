@@ -10,6 +10,7 @@ application:
 entities:
   - "[[Aranea]]"
 related:
+  - "[[aranea-mcps-expert]]"
   - "[[aranea-ssh-mcp]]"
   - "[[aranea-postgres-mcp]]"
   - "[[aranea-mongodb-mcp]]"
@@ -36,7 +37,7 @@ tags:
 
 ## Propósito
 
-Validar y diagnosticar el capability plane MCP de Aranea cuando el fallo es del cliente, el proxy o la capability misma, no del backend de datos. La fuente agent-facing de selección/autoridad es `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md`. Los procedimientos por familia viven en [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]]. No mantener un segundo catálogo de endpoints aquí.
+Validar y diagnosticar el capability plane MCP de Aranea cuando el fallo es del cliente, el proxy o la capability misma, no del backend de datos. La fuente agent-facing de selección/autoridad es [[aranea-mcps-expert]]. Los procedimientos por familia viven en [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]]. No mantener un segundo catálogo de endpoints aquí.
 
 ## Precondiciones
 
@@ -54,7 +55,7 @@ Validar y diagnosticar el capability plane MCP de Aranea cuando el fallo es del 
 5. **Enrutar `POLICY_DENIED` / permission denied.** Tratarlo primero como boundary de autoridad. En viewer/RO, reducir la operación a la lectura mínima permitida. Si la mutación es genuina, seleccionar la capability RW/operator existente. No alterar ACLs ni crear un bypass sólo para facilitar el diagnóstico.
 6. **Enrutar timeout.** Estrechar query/comando antes de proponer expansión de policy. Para PostgreSQL, consultar [[aranea-postgres-mcp]] por timeouts de rol. Para MongoDB, acotar tamaño de resultado/filtro. Para SSH, partir lecturas viewer compuestas cuando la policy o la semántica del shell sea el problema.
 7. **Enrutar MCP HTTP `invalid request`.** En smokes de transporte manual, validar headers/sesión de protocolo antes de diagnosticar el backend de datos. Ver [[aranea-mongodb-mcp]] o [[aranea-postgres-mcp]] según aplique.
-8. **Disciplina de cambio.** Al agregar o cambiar una capability MCP Aranea: actualizar primero `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md`; actualizar el runbook de familia correspondiente en `80-agents/memory/public/runbook/`; actualizar skills consumidoras de dominio sólo si cambió su routing/ownership; nunca persistir material bearer/password/private-key en docs; validar conectividad del cliente y least-privilege end-to-end.
+8. **Disciplina de cambio.** Al agregar o cambiar una capability MCP Aranea: actualizar primero [[aranea-mcps-expert]]; actualizar el runbook de familia correspondiente en `80-agents/memory/public/runbook/`; actualizar skills consumidoras de dominio sólo si cambió su routing/ownership; nunca persistir material bearer/password/private-key en docs; validar conectividad del cliente y least-privilege end-to-end.
 
 ## Validación
 

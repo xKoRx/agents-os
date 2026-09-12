@@ -11,6 +11,7 @@ entities:
   - "[[Aranea]]"
   - "[[Echo Forge]]"
 related:
+  - "[[aranea-mcps-expert]]"
   - "[[aranea-mcp-capability-plane]]"
   - "[[aranea-postgres-mcp]]"
   - "[[aranea-mongodb-mcp]]"
@@ -39,7 +40,7 @@ tags:
 
 ## Propósito
 
-Ejecutar inspección y operación remota sobre workers autorizados de Aranea mediante la capability canónica `aranea-ssh`. Este runbook posee hechos operativos de SSH MCP. La selección de capability y autoridad mínima pertenece a `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md`. Las skills de dominio deciden cuándo se necesita evidencia de host/runtime.
+Ejecutar inspección y operación remota sobre workers autorizados de Aranea mediante la capability canónica `aranea-ssh`. Este runbook posee hechos operativos de SSH MCP. La selección de capability y autoridad mínima pertenece a [[aranea-mcps-expert]]. Las skills de dominio deciden cuándo se necesita evidencia de host/runtime.
 
 ## Precondiciones
 

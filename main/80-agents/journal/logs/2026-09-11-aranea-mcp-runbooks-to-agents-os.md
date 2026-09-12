@@ -10,6 +10,7 @@ application:
 entities:
   - "[[Aranea]]"
 related:
+  - "[[aranea-mcps-expert]]"
   - "[[aranea-ssh-mcp]]"
   - "[[aranea-postgres-mcp]]"
   - "[[aranea-mongodb-mcp]]"
@@ -37,19 +38,20 @@ tags:
 
 - **Tipo:** created / updated / deleted
 - **Archivo(s):**
+  - `30-resources/agents/skills/aranea-mcps-expert/SKILL.md` — skill canónica promovida al vault (no al core `80-agents/skills/`).
   - `80-agents/memory/public/runbook/aranea-ssh-mcp.md` — creado; procedimiento SSH MCP extraído de Symphony.
   - `80-agents/memory/public/runbook/aranea-postgres-mcp.md` — creado; procedimiento PostgreSQL MCP extraído de Symphony.
   - `80-agents/memory/public/runbook/aranea-mongodb-mcp.md` — creado; procedimiento MongoDB MCP extraído de Symphony.
   - `80-agents/memory/public/runbook/aranea-mcp-capability-plane.md` — creado; troubleshooting del plano MCP extraído de Symphony.
-  - `80-agents/skills/INDEX.md` — registry federado actualizado para apuntar a los runbooks de AGENTS OS.
+  - `80-agents/skills/INDEX.md` — skill registrada en transversales; quitada de app-owned Symphony.
   - `10-projects/Aranea/AGENT-PLATFORM/agentes/AGENT-PLATFORM - MCP Access Plane.md` — D20, estado, links y bitácora sincronizados.
-  - `xKoRx/symphony/.agents/skills/aranea-mcps-expert/SKILL.md` — Minimal Read y handoff apuntan a `VAULT_ROOT`; se prohibió duplicar runbooks en el repo.
+  - `xKoRx/symphony/.agents/skills/aranea-mcps-expert/SKILL.md` — reducido a pointer de discovery hacia el vault.
   - `xKoRx/symphony/.agents/skills/aranea-mcps-expert/RUNBOOK.md` y `runbooks/{SSH,POSTGRES,MONGODB}.md` — eliminados tras la promoción.
-  - `xKoRx/symphony/docs/prd/echo-forge/POSTGRES-MCP-ACCESS.md` — puntero del runbook PostgreSQL actualizado.
+  - `xKoRx/symphony/.agents/skills/echo-forge-wfm-troubleshooting/{SKILL.md,RUNBOOK.md}` y `docs/prd/echo-forge/POSTGRES-MCP-ACCESS.md` — handoff actualizado al vault.
 
 ## Motivo
 
-- `aranea-mcps-expert` es skill app-owned, pero sus procedimientos mecánicos pertenecen a Sistema 1. Dejarlos en Symphony duplicaba autoridad y los sacaba del retrieval canónico de AGENTS OS.
+- `aranea-mcps-expert` es transversal de Aranea, no core AGENTS OS ni skill de una sola app. Debía vivir en el vault bajo `30-resources/agents/skills/`, con runbooks en Sistema 1.
 
 ## Fuentes usadas
 

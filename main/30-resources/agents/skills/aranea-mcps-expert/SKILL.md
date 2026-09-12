@@ -15,6 +15,7 @@ related:
   - "[[aranea-mongodb-mcp]]"
   - "[[aranea-mcp-capability-plane]]"
 aliases:
+  - aranea-mcps-expert
   - aranea mcp
   - mcp access plane
   - usar mcp

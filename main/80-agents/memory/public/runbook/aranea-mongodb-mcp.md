@@ -11,6 +11,7 @@ entities:
   - "[[Aranea]]"
   - "[[Echo Forge]]"
 related:
+  - "[[aranea-mcps-expert]]"
   - "[[aranea-mcp-capability-plane]]"
   - "[[aranea-ssh-mcp]]"
   - "[[aranea-postgres-mcp]]"
@@ -39,7 +40,7 @@ tags:
 
 ## Propósito
 
-Inspeccionar y, cuando esté explícitamente autorizado, mutar MongoDB a través del capability plane MCP de Aranea. Este runbook posee hechos operativos de MongoDB MCP. La selección de capability y autoridad mínima pertenece a `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md`. Las skills de dominio deciden cuándo MongoDB es la fuente correcta.
+Inspeccionar y, cuando esté explícitamente autorizado, mutar MongoDB a través del capability plane MCP de Aranea. Este runbook posee hechos operativos de MongoDB MCP. La selección de capability y autoridad mínima pertenece a [[aranea-mcps-expert]]. Las skills de dominio deciden cuándo MongoDB es la fuente correcta.
 
 ## Precondiciones
 
