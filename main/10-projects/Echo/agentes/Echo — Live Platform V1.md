@@ -45,7 +45,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 ## 📊 Estado actual
 
 - **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2).** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION.
-- **E-02 TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12):** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] con SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc5` en `origin/feature/e02-control-safety-journal-recovery` (parent `ac7b4e14`; base `origin/master` `a99f9a63`). Auth = actores READ/CONFIG/CONTROL/webhook con Bearer presentado (no runtime-config); journal = transientes al retry del ingress journal + cuarentena 062 + `journalctl` PG→PG; CommandID UUIDv5 diferido a E-08. No implementing; master intacto.
+- **E-02 IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW — FOCUSED CORRECTION (2026-09-12):** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] con SPEC/PLAN/TASKS/VERIFICATION v1.0.2 @ `f7ddea18` en `origin/feature/e02-control-safety-journal-recovery` (base `origin/master` `a99f9a63`). Auth hook Hasura = JSON de session variables; READ/CONFIG/CONTROL/webhook requieren tokens distintos y duplicados fallan cerrado 503; literales históricos registrados fueron eliminados en los 17 paths autorizados. Gateway/front/SOURCE/E-04 relevant regression PASS; PHYSICAL_PARTIAL. No verifier, no merge master.
 - **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC (F-04 Magic Number V1 ya owner-gated).
 - **Base observada:** `origin/master` `fac4805185eb586bb73c3df0c0ccc20d1377099c` (E-03 CONTRACT_PASS / FINAL CLOSED; FF desde `c408a12fe36643129a2ae3c3dfa69727b593ba76`, 2026-09-12). E-01 certified S0 permanece `91671f6f`.
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
@@ -56,7 +56,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 planning `151e0bc5` sobre `a99f9a63` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.1 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO · E-02 TOP correction READY FOR MANAGER REVIEW |
+| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 focused correction `f7ddea18` sobre `a99f9a63` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO · E-02 READY FOR MANAGER SOURCE REVIEW · PHYSICAL_PARTIAL |
 
 ## 🧩 Subproyectos
 
@@ -134,7 +134,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-02 Control safety auth and journal recovery
 
-- **ID / status / size:** E-02 · READY FOR MANAGER REVIEW (TOP correction v1.0.1) · MEDIUM
+- **ID / status / size:** E-02 · IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW (focused correction v1.0.2; PHYSICAL_PARTIAL) · MEDIUM
 - **Objective:** Cerrar exposición de control (admin secret fuera del cliente; auth proxy+roles) y journal ACK/recovery (hechos no se pierden ni se doble-efectúan). H1 del Reality Check; D-04/D-01.
 - **Capability unlocked:** el owner puede confiar que una falla se ve y se recupera; control no queda abierto en red.
 - **Product value:** TIME_TO_USABLE sin capturar meses sobre un journal que traga errores.
@@ -151,7 +151,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Unlocks:** E-06 captura confiable; E-13 ops.
 - **Accepted debt:** journal mínimo no es ledger institucional.
 - **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
-- **Planning vivo:** SPEC/PLAN/TASKS/VERIFICATION v1.0.1 en `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/` @ `151e0bc5` ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): auth = actores READ/CONFIG/CONTROL/webhook con Bearer presentado (A03-A, sin BFF, sin runtime-config de tokens); journal = transientes al retry del ingress journal + cuarentena 062 + `v3/tools/journalctl` PG→PG (A01-A); CommandID UUIDv5 diferido a E-08 (fan-out Kafka paralelo); migración única additive; PHYSICAL con compose StateFun journal + outage PG real.
+- **Planning vivo:** SPEC/PLAN/TASKS/VERIFICATION v1.0.2 en `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/` @ `f7ddea18` ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): auth = actores READ/CONFIG/CONTROL/webhook con Bearer presentado y hook Hasura por JSON de session variables (A03-A, sin BFF, sin runtime-config de tokens); unicidad de tokens fail-closed; journal = transientes al retry del ingress journal + cuarentena 062 + `v3/tools/journalctl` PG→PG (A01-A); CommandID UUIDv5 diferido a E-08 (fan-out Kafka paralelo); migración única additive; PHYSICAL_PARTIAL por infraestructura ausente.
 
 ### E-03 Identity and BWC foundation E0
 
@@ -377,7 +377,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
-- **2026-09-12** — E-02 TOP correction v1.0.1 ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): SPEC/PLAN/TASKS/VERIFICATION @ `151e0bc5` (parent `ac7b4e14`) en `origin/feature/e02-control-safety-journal-recovery`. Auth por actor con token presentado (no Bearer READ auto-servido); CommandID UUIDv5 sacado a E-08 (journal ≠ planner); Allowed Files `v3/...`. Docs-only; master intacto. Puente E-02 permanece Review.
+- **2026-09-12** — E-02 focused source-review correction v1.0.2 ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): SPEC/PLAN/TASKS/VERIFICATION @ `f7ddea18` sobre HEAD inicial `df99084b`. Auth hook entrega JSON Hasura, tokens duplicados fallan cerrado, 17 paths históricos autorizados limpiados; Gateway/front/SOURCE y regresión E-04 relevante PASS; PHYSICAL_PARTIAL, no verifier, master intacto. Puente E-02 permanece Review.
 - **2026-09-12** — E-02 TOP planning one-shot ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): subproyecto materializado; SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `ac7b4e14` pusheados a `origin/feature/e02-control-safety-journal-recovery` desde `a99f9a63` (docs-only; master intacto). Source D-04/D-01 revalidado en el baseline. Corregido el mismo día en v1.0.1.
 - **2026-09-12** — E-04 CONTROLLED INTEGRATION one-shot PASS: fetch/race y ancestry confirmados; gates mínimos PASS; `master` avanzó por fast-forward desde `fac48051` hasta el boundary E-04 `2f8db345`, sin reescritura ni force-push. Push normal verificado: `origin/master` final=`a99f9a63354bbe72219d1e590bb93757ed08e45e`; feature intacta=`2f8db345`. E-04 INTEGRATED=YES, READY consumido, T21/AC-37 PENDING POST-INTEGRATION y FINAL CLOSED=NO. Evidencia en E-04 `VERIFICATION.md`; F-04 no tocado.
 - **2026-09-12** — E-04 TOP CORRECTION 1.0.2 ([[Echo — E-04 Forge Ingestion E1]]): circular golden gate roto. T21/AC-37 ya no bloquea READY_FOR_INTEGRATION/merge; pasa a POST-INTEGRATION. READY_FOR_INTEGRATION=YES. FINAL CLOSED espera T21 PASS. Merge no ejecutado. Master intacto `fac48051`.

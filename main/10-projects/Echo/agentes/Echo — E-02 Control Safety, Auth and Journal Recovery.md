@@ -88,7 +88,6 @@ Ver VERIFICATION.md. Clases: SOURCE (greps secret/auth/messaging, contracts + do
 
 ## Branch strategy
 
-- Branch única `feature/e02-control-safety-journal-recovery` desde `a99f9a63` (planning v1.0.0 `ac7b4e14`; corrección v1.0.1 `151e0bc5` pusheada).
 - Branch única `feature/e02-control-safety-journal-recovery` desde `a99f9a63` (planning v1.0.0 `ac7b4e14`; TOP correction v1.0.1 `151e0bc5`; focused source-review correction v1.0.2 `f7ddea18` pusheada).
 - Master push prohibido para NORMAL. Integración controlada posterior (ancestry demostrado, sin force-push).
 - Ramas ajenas (E-04/F-04/E-05/E-03) intocables.
@@ -109,12 +108,12 @@ _No aplica — hijo de implementación de E-02; no crea hijos._
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/TASKS.md`. Aquí sólo work packages. NORMAL no arranca hasta manager review.
-> - [ ] WP-A Gateway auth (T01–T04) #owner/agent #type/dev #area/echo
-> - [ ] WP-B Front sin admin secret + tokens presentados + limpieza repo (T05–T06) #owner/agent #type/dev #area/echo
-> - [ ] WP-C Journal recovery: 062 + quarantine + taxonomía + journalctl (T07–T10) #owner/agent #type/dev #area/echo
-> - [ ] WP-D Bridge trade-facts PublishSync (T12); T11 CommandID diferido E-08 #owner/agent #type/dev #area/echo
-> - [ ] WP-E Hasura roles metadata (T13) #owner/agent #type/dev #area/echo
-> - [ ] WP-F Pack físico + SOURCE + runbook rotación (T14–T15) #owner/agent #type/dev #area/echo
+> - [x] WP-A Gateway auth (T01–T04) #owner/agent #type/dev #area/echo
+> - [x] WP-B Front sin admin secret + tokens presentados + limpieza repo (T05–T06) #owner/agent #type/dev #area/echo
+> - [x] WP-C Journal recovery: 062 + quarantine + taxonomía + journalctl (T07–T10) #owner/agent #type/dev #area/echo
+> - [x] WP-D Bridge trade-facts PublishSync (T12); T11 CommandID diferido E-08 #owner/agent #type/dev #area/echo
+> - [x] WP-E Hasura roles metadata (T13) #owner/agent #type/dev #area/echo
+> - [r] WP-F Pack físico + SOURCE + runbook rotación (T14–T15) #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -132,6 +131,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-12 (focused source-review correction)** — Sobre HEAD inicial `df99084b`, se corrigió el contrato Hasura a JSON de session variables y se añadió validación explícita de unicidad entre tokens READ/CONFIG/CONTROL/webhook con 503 fail-closed. Se registraron primero y limpiaron después los 17 paths históricos autorizados. Gateway `-race`, front tests/build/bundle scan, SOURCE, tooling compile y regresión E-04 relevantes PASS; PHYSICAL sigue parcial. Commit final `f7ddea18`, push sólo a feature; master intacto. Puente permanece Review.
 
 - **2026-09-12 (TOP correction)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc5`. Auth: READ/CONFIG/CONTROL/webhook son credenciales distintas; el humano presenta tokens (prompt/sessionStorage); webhook solo server-side; prohibido runtime-config de Bearers. CommandID: traza física fact→Kafka fan-out paralelo (journal sink vs planner/close_handler); journal/retry no duplica efecto económico ⇒ UUIDv5 **fuera** (E-08); T11 `[-]`; planner/MM/MQL intocables. Paths: Allowed Files exactos `v3/...` (no existe `sdk/` raíz). Sin source productivo. Puente sigue Review.
 - **2026-09-12 (TOP one-shot)** — Recovery de estado y planning completo E-02. Baseline confirmado `origin/master` `a99f9a63` (igual al esperado; E-04 integrado encima). Source revalidado físicamente en el baseline: defectos D-04 (CORS `*` sin auth en control/webhooks; secret admin en `.env`/`client.js`/`hasura/config.yaml`; metadata sólo rol `admin`) y D-01 (`Invoke` retorna `nil` siempre; sin cuarentena/replay; Flink restart existe sin usarse). Decisiones frozen en SPEC v1.0.0 (superseded en auth-discovery y CommandID por v1.0.1). SPEC/PLAN/TASKS/VERIFICATION @ `ac7b4e14` pusheados a la feature; catálogo SPECS.md actualizado; master intacto. Sin implementación; no NORMAL; no CLOSED.
@@ -155,7 +156,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - [[Echo + Echo Forge — Arquitectura de producto, gaps y roadmap de cierre 2026]] (§14)
 - [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]
 - SPEC: `xKoRx/echo` `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` (PLAN/TASKS/VERIFICATION en la misma carpeta)
-- Branch: `feature/e02-control-safety-journal-recovery` @ `151e0bc5` (v1.0.1; parent `ac7b4e14`)
+- Branch: `feature/e02-control-safety-journal-recovery` @ `f7ddea18` (v1.0.2 focused source-review correction; parent histórico `ac7b4e14`)
 
 ## 💡 Ideas
 
