@@ -45,6 +45,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 ## 📊 Estado actual
 
 - **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2).** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION.
+- **E-02 TOP PLANNING READY FOR MANAGER REVIEW (2026-09-12):** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] con SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `ac7b4e14` en `origin/feature/e02-control-safety-journal-recovery` (base `origin/master` `a99f9a63` reconfirmada en sesión). D-04/D-01 revalidados en source vigente; arquitectura frozen (roles Gateway/Hasura fail-closed; journal transientes-al-retry + cuarentena 062 + replay facts ≠ commands). No implementing; master intacto.
 - **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC (F-04 Magic Number V1 ya owner-gated).
 - **Base observada:** `origin/master` `fac4805185eb586bb73c3df0c0ccc20d1377099c` (E-03 CONTRACT_PASS / FINAL CLOSED; FF desde `c408a12fe36643129a2ae3c3dfa69727b593ba76`, 2026-09-12). E-01 certified S0 permanece `91671f6f`.
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
@@ -55,7 +56,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO |
+| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 planning `ac7b4e14` sobre `a99f9a63` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.0 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO · E-02 TOP planning READY FOR MANAGER REVIEW |
 
 ## 🧩 Subproyectos
 
