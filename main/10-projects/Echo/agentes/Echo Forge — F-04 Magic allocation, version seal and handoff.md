@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: review
+status: active
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-10
 due:
-progress: 100
+progress: 70
 repo: xKoRx/symphony
 jira:
 prs:
@@ -43,7 +43,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 ## 📊 Estado actual
 
-- **BLOCKED — MANAGER REVIEW (2026-09-12).** La reconciliación dejó `origin/master` integrado sin conflictos en `feature/f04-magic-version-handoff`, con `ea8be76c4587b2d00e4cad8cf2a67c4fd8e6680f` y `0b9742b09019526a8119f086199d15d1f0d42cb1` como ancestros. El seam productivo conserva EX5 y compile log como artefactos, pero no conserva un `compile_evaluation_ref` durable; formarlo desde una key o digest sería fabricar autoridad. El host físico `mt5-kronos` tampoco es accesible por SSH en esta sesión y la evidencia previa confirma ausencia de SQX/sqcli utilizable. No se puede producir el golden auténtico ni ejecutar PHYSICAL/cross-lane sin inventar evidencia.
+- **TOP READY (2026-09-12).** El STOP de NORMAL queda resuelto: la autoridad de `compile_evaluation_ref` es un `domain.EvaluationRef` real sellado por StageExecution `mt5_compiler@mt5-compile.v1` en el plano Durable Foundation existente. **MIGRATION 017 = NO.** PHYSICAL sigue operacionalmente pending (host compile/SQX); eso no bloquea el plan. E-04 consumer READY `@ a99f9a6`; T21/AC-37 espera golden auténtico tras T2.
 - **READY FOR MANAGER REVIEW (2026-09-11).** Owner gate resuelto: Magic Number V1 (`YYMMIIIDSSS`, 11 dígitos) implementado sobre `1999da1` en commit `ea8be76` (pushed). `CC_MISSING_OWNER_GATE`/`GateMagicCandidateSource` eliminados de producción; allocation V1 con catálogo/contador durables (migration 016), wiring productivo desde el control plane. SOURCE+CONTRACT+CONCURRENCY+MIGRATION PASS (`-race`; sweep paquete registry-postgres = mismos 4 fallos pre-existentes baseline). `PHYSICAL: BLOCKED — entorno`: mt5-kronos (Windows) tiene MetaEditor64 pero no SQX/sqcli para el stamp .sqx→.mq5 y los hosts Linux del stack son viewer/read-only esta sesión; no se finge PHYSICAL. INTEGRATION espera E-04. Worktree CLEAN.
 - HEAD Symphony `9fad768ccd1f9d25ebb535a2d26edb3d74556c10` (merge autorizado `origin/master` y pushed a la feature); `origin/master` real `0b9742b09019526a8119f086199d15d1f0d42cb1`; merge-base actual `0b9742b09019526a8119f086199d15d1f0d42cb1`; `ea8be76` y `origin/master` son ancestros. Worktree: dirty foráneo preservado en `specs/FEAT-SQX-STRATEGY-EVALUATION/fixtures/phase4_performance.json`, reescrito por suite ajena; no restaurado ni borrado.
 - S0 pin ya certificado por F-04; no se reabre ni se copian tipos desde Echo.
@@ -56,7 +56,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f04-magic-version-handoff` | `0b9742b09019526a8119f086199d15d1f0d42cb1` reconciliado | [[Echo Forge — Factory V2 Completion]] F-04 | [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **BLOCKED — MANAGER REVIEW** |
+| xKoRx/symphony | `feature/f04-magic-version-handoff` | `0b9742b09019526a8119f086199d15d1f0d42cb1` reconciliado | [[Echo Forge — Factory V2 Completion]] F-04 | [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **TOP READY — compile Evaluation authority frozen; NORMAL T2 pending manager** |
 
 ## Parent / SPEC / baselines
 
@@ -66,7 +66,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 ## Source map
 
-Magic TaskSpec: `sqx/core/runtime/config.go` `ApplySelectedRunTaskConfig.MagicNumber`; validate `mt5_task_config.go`. Apply: `sqx/adapters/apply-selected-run/binding/contract.go` `ApplicationConfig` + `HashIdentity`; physical `durable_apply_selected_run_physical.go` `writeApplySelectedRunProperties`; Java `EchoForgeRobustRunExporter`. Compiler `sqx/adapters/mt5/artifact_compiler.go`. Identity `persistence_identity.go` `hashIdentity` newline. Finalist V2: `rank_snapshot_activity.go` / `decision.go` policy `2.0.0`. F-04 actual: `sqx/core/forge/handoff_producer.go`, `sqx/core/capabilities/handoff.go`, StrategyVersion stores y migration 015/016; falta caller productivo que reúna las authorities y no existe `adapters/echo-api` HTTP real.
+Magic TaskSpec: `sqx/core/runtime/config.go` `ApplySelectedRunTaskConfig.MagicNumber`; validate `mt5_task_config.go`. Apply: `sqx/adapters/apply-selected-run/binding/contract.go` `ApplicationConfig` + `HashIdentity`; physical `durable_apply_selected_run_physical.go` `writeApplySelectedRunProperties`; Java `EchoForgeRobustRunExporter`. Compiler físico `sqx/adapters/mt5/artifact_compiler.go` `ArtifactCompiler.Compile` via `MT5ArtifactActivities.CompileArtifact` (`mt5_compile_artifact` en `sqx-mt5-queue`). Caller compile: `generic_workflow.go` `executeMT5CompilerTask` → `executeMT5ArtifactTask` → child `MT5CompileArtifactWorkflow`. Identity `persistence_identity.go` `NewEvaluationRef` / `NewStageExecutionIdentity`. Finalist V2: `runFinalistPromotion` / `decision.go` policy `2.0.0`. F-04 actual: `sqx/core/forge/handoff_producer.go`, `sqx/core/capabilities/handoff.go`, StrategyVersion stores y migration 015/016. **Gap cerrado en planning:** compile no llama `ResolveStageExecution`/`PutEvaluation`/`CompleteStageExecution`; el patrón vivo a reusar es `persistMT5ReconcileV1` + `durable_apply_selected_run.go` recover/complete. `UseDurableMagicAllocation` existe pero el caller `runDurableApplySelectedRun` nunca lo setea. No existe HTTP E-04 en Symphony (`FakeConsumerIngress` only).
 
 ## Requirement-to-evidence
 
