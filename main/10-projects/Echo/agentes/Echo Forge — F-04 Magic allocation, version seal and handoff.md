@@ -189,9 +189,16 @@ Host mínimo para NORMAL cert: (1) SQX/sqcli con licencia válida para exporter 
 
 ## Planned diff
 
-Fase 1 (T1.x) **done** en `ea8be76`. Fase 2 (T2.x) implementa compile Evaluation + caller F-04 + HTTP E-04.
+Fase 1 (T1.x) **done** en `ea8be76`. Fase 2 (T2.x) **done** en `d645ed6` salvo PHYSICAL/golden. **C4 MUST (NORMAL):**
 
-### MUST
+- modify `sqx/core/domain/magic_v1.go` — retire `ParseMagicV1AllocationIdentity`; add `MagicV1DirectionFromStrategy`
+- modify `sqx/adapters/registry-postgres/magic_v1.go` — `AllocateMagicV1` SELECT instrument/direction from `sqx.strategies`; replay conflict via `DecodeMagicV1`
+- modify `sqx/adapters/registry-postgres/magic_allocation_test.go` `f04Strategy` — persist instrument/direction under test
+- modify `sqx/adapters/apply-selected-run/binding/contract.go` `AllocatedEffectiveConfig` — TaskSpec magic is not requested
+- modify tests listed in C4.5; SOURCE grep C4.6
+- no new migration; do not modify `015_*.sql` / `016_*.sql`
+
+### MUST (T2, already done)
 
 - create `sqx/adapters/mt5-compile/binding/` (`contract.go`, `evidence.go`, `subject.go`) — no reusar `adapters/mt5/binding` (ese paquete es `mt5_backtesting@mt5-backtest.v1`)
 - create `sqx/activities/worker/mt5_compile_persist_activity.go` activity name `mt5_compile_persist_v1`
@@ -651,17 +658,17 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 
 ### T2.12 PHYSICAL
 
-- **Modelo:** NORMAL
-- **Cambio:** none architecture. Host: sqcli licencia válida + MetaEditor64 `/portable` + PG/Mongo/object store. License expired → STOP owner. No viewers-as-workers.
-- **DONE:** evidencia física de stamp+compile+persist EvaluationRef. Sin host: `PHYSICAL: BLOCKED — entorno`, no fingir PASS.
-- **Deps:** T2.3.
+- **Modelo:** NORMAL (one-shot physical **después** de C4, no esta sesión)
+- **Cambio:** none architecture. Host: sqcli licencia válida + MetaEditor64 `/portable` + PG/Mongo/object store. Candidato mínimo XAUUSD dirección única, promotion 2.0.0, robust selection=1 (cert only). License expired → STOP owner. No viewers-as-workers.
+- **DONE:** evidencia física de allocation V1 + stamp+compile+persist EvaluationRef + seal/handoff. Sin host: `PHYSICAL: BLOCKED — entorno`, no fingir PASS.
+- **Deps:** C4.1–C4.6 + T2.3.
 
 ### T2.13 cross-lane T21/AC-37
 
-- **Modelo:** NORMAL
-- **Cambio:** POST golden auténtico a Echo `a99f9a6` → INGESTED → GET by-key. Cero activation. No modificar Echo source.
-- **DONE:** AC-37 PASS o explícito pending si PHYSICAL blocked.
-- **Deps:** T2.9+T2.11.
+- **Modelo:** NORMAL (one-shot **separado** Echo E-04 runtime/deploy/join, después del golden Forge)
+- **Cambio:** POST golden auténtico a Echo `a99f9a6` → INGESTED → GET by-key. Cero activation. No modificar Echo source en C4 ni en el NORMAL C4.
+- **DONE:** AC-37 PASS o explícito pending si PHYSICAL blocked o E-04 runtime ausente.
+- **Deps:** T2.9+T2.11 + E-04 runtime config/deploy.
 
 ## 📆 Bitácora
 

@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-07"
-updated: "2026-09-12"
+updated: "2026-09-13"
 ---
 
 # Echo Forge — Factory V2 Completion
@@ -32,7 +32,7 @@ updated: "2026-09-12"
 
 > [!info]+ Echo Forge — Factory V2 Completion
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
-> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 TOP READY: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] / [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] — compile Evaluation authority frozen; NORMAL T2 pending. F-05 pendiente.
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 C4 CONTRACT CLOSED: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] / [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] — READY FOR NORMAL C4; T2.11–T2.13 OPEN. F-05 pendiente.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
 > Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
@@ -45,9 +45,9 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 ## 📊 Estado actual
 
-- **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED. F-04 T2.1–T2.10 DONE (2026-09-12, HEAD `d645ed6`); PHYSICAL/INTEGRATION blocked — entorno; T2.11–T2.13 abiertos.** F-03 PASS/CLOSED (2026-09-10): commit final `382f4ba5d417371f778e21619ed9eb72624a23f4`. F-04 feature `9fad768` (merge `ea8be76`+`origin/master` `0b9742b`). Compile Evaluation + magic caller productivo + seal/handoff + HTTP E-04 implementados; SOURCE/CONTRACT/CONCURRENCY/MIGRATION PASS; mt5-kronos inaccesible → sin PHYSICAL. E-04 consumer READY `@ a99f9a6`. F-05 pendiente.
+- **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED. F-04 C4 CONTRACT CLOSED (2026-09-13) — READY FOR NORMAL C4 sobre `d645ed6`; T2.11–T2.13 OPEN.** PHYSICAL 0.2.97 reveló parse de CanonicalStrategyID; F-01 no se reabre. E-04 join sigue one-shot separado. F-05 pendiente.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
-- **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 REVIEW (esperando manager); F-05 pendiente.
+- **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 WIP (NORMAL C4); F-05 pendiente.
 - **Base observada:** Symphony `master`=`origin/master`=`382f4ba5d417371f778e21619ed9eb72624a23f4`; merge-base previo F-03=`e50cb7e`; worktree CLEAN. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
 - **Dependencia Echo:** F-01/F-02/F-03 independientes de S0. F-04 consume pin [[Echo — Live Platform V1]] E-01. Catálogo CC owner antes de allocation real.
 
@@ -55,11 +55,11 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `master` (F-03 integrada); F-04 branch `feature/f04-magic-version-handoff` (pusheada, HEAD `24b807f`) | `382f4ba5d417371f778e21619ed9eb72624a23f4` | F-04: este padre | F-04: [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **F-01 CLOSED**; **F-02 CLOSED**; **F-03 PASS / CLOSED `382f4ba`**; **F-04 REVIEW — READY FOR MANAGER REVIEW (PHYSICAL/INTEGRATION gated)**; F-05 pendiente |
+| xKoRx/symphony | `master` (F-03 integrada); F-04 branch `feature/f04-magic-version-handoff` (HEAD `d645ed6`) | `0b9742b09019526a8119f086199d15d1f0d42cb1` | F-04: este padre | F-04: [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **F-01 CLOSED**; **F-02 CLOSED**; **F-03 PASS / CLOSED `382f4ba`**; **F-04 C4 READY FOR NORMAL**; F-05 pendiente |
 
 ## 🧩 Subproyectos
 
-Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). [[Echo Forge — F-04 Magic allocation, version seal and handoff]] (REVIEW). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
+Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). [[Echo Forge — F-04 Magic allocation, version seal and handoff]] (WIP C4). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
 
 ## ✅ Tareas
 
@@ -71,7 +71,7 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > - [x] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
-> - [r] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
+> - [/] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
 > - [ ] F-05 Cohesive release, physical cert and FULL golden #owner/agent #type/dev #area/echo
 
 ```dataviewjs
@@ -167,7 +167,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### F-04 Magic allocation, version seal and handoff
 
-- **ID / status / size:** F-04 · REVIEW · LARGE (pipeline único; milestones internos allocation→stamp→seal→adapter; no F-04A/F-04B)
+- **ID / status / size:** F-04 · WIP (C4 READY FOR NORMAL) · LARGE (pipeline único; milestones internos allocation→stamp→seal→adapter; no F-04A/F-04B)
 - **Objective:** Tras pin S0: allocation durable de magic, stamp/readback, effective inputs exactos, seal de StrategyVersion, productor `HandoffManifestV1`, adapter de aplicación Forge→Echo.
 - **Capability unlocked:** paquete exportable que Echo puede ingerir sin latest/folder query.
 - **Product value:** puente real Forge→Echo; Forge sigue dueño de magic y membership.
@@ -184,7 +184,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Done when:** manifest fixture idéntico lo acepta el consumer del mismo release; no side-effects Echo; CC bloquea allocation real si falta.
 - **Unlocks:** F-05 golden de handoff; E-04 puede dejar fakes.
 - **Accepted debt:** HashIdentity legacy; attach Echo no es de esta fase.
-- **Status:** REVIEW. SPEC [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]. Hijo [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. CC=`CC_MISSING_OWNER_GATE` (`PHYSICAL: BLOCKED`). Migration 015. Implementación NORMAL completa (2026-09-10).
+- **Status:** WIP. C4 CONTRACT CLOSED 2026-09-13 — READY FOR NORMAL. SPEC [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]. Hijo [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. T2.11–T2.13 OPEN. Migration 015/016; C4 migration NONE.
 
 ### F-05 Cohesive release, physical cert and FULL golden
 
@@ -213,6 +213,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 
 ## 📆 Bitácora
 
+- **2026-09-13** — TOP F-04 C4 CONTRACT CLOSED: Magic V1 no parsea CanonicalStrategyID; instrument/direction = `sqx.strategies`; TaskSpec `magic_number` no es requested. NORMAL C4 pendiente. Tarea puente F-04 `[r]→[/]`. T2.13 E-04 runtime queda one-shot separado.
 - **2026-09-11** — E-04 TOP: [[Echo — E-04 Forge Ingestion E1]] congela HTTP/S0/receipt para que F-04/F-05 avancen contra contrato estable. INTEGRATION/CROSS_LANE de handoff sigue gated por E-03 CONTRACT_PASS; development E-04 paralelo autorizado. Join Forge no se marca closed.
 - **2026-09-07** — TOP F-01 persistió SPEC [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] e hijo [[Echo Forge — F-01 Canonical generation concurrency]]. NORMAL no autorizado.
 - **2026-09-07** — Corrección F-01 in-place: discriminator = `ExecutionIntentKey`; FlowRun/NS ownership insuficiente. NORMAL no autorizado.
