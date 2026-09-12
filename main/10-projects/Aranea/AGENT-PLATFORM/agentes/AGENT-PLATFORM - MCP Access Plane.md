@@ -151,6 +151,6 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ### Memoria pública / interna
 
-- **Memoria pública:** este proyecto conserva decisiones y estado durable; los contratos operativos estables podrán promoverse a runbook/documentación cuando queden verificados.
+- **Memoria pública:** este proyecto conserva decisiones y estado durable; los contratos operativos de SSH/PostgreSQL/MongoDB ya viven en los runbooks AGENTS OS enlazados.
 - **Memoria interna:** no se crea memoria adicional mientras el planificador contenga todo el estado necesario.
 - **Motivo:** evitar duplicar el roadmap o la autoridad de acceso fuera del proyecto.
