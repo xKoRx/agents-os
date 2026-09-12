@@ -3,25 +3,25 @@ type: doc
 schema_version: 1
 status: active
 area: "[[Aranea]]"
-related: []
+related:
+  - "[[aranea-mcps-expert]]"
 aliases: []
 tags:
   - kind/doc
 created: 2026-08-10
-updated: 2026-08-10
+updated: 2026-09-11
 ---
 
 # ML / IA / Workflow
 
 ## Propósito
 
-Documentación canónica legacy de [[Aranea]]; se conserva el contenido histórico y su estado requiere verificación antes de uso operativo.
+Documentación canónica legacy de [[Aranea]]; se conserva el contenido histórico y su estado requiere verificación antes de uso operativo. El subsection `mcps` contiene además un estado operativo verificado el 2026-09-11.
 
 ## Contenido
 
-
 > **Capturado**: 2026-06-28
-> **Actualizado**: 2026-07-01 (enlaces Echo Forge + estado VMs SQX)
+> **Actualizado**: 2026-09-11 (capability plane MCP)
 
 ## sqx-ulab (5 VMs, 3 nodos)
 
@@ -50,7 +50,7 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 - **[[Echo Forge]]** (proyecto en `10-projects/Echo Forge/`) — programa de software que orquesta SQX.
 - **[[echo-forge]]** (application en `30-resources/applications/echo-forge.md`) — repo `xKoRx/symphony`, módulo `sqx`.
 - SSDs sagrados: ver [[../01-topologia/nodo-zeus]], [[../01-topologia/nodo-hera]], [[../01-topologia/nodo-kronos]] § Almacenamiento local.
-- Stack Echo más amplio: ver [[../02-servicios/trading]] (MT4/MT5) y [[../02-servicios/red]] (Echo API endpoints).
+- Stack Echo más amplio: ver [[../02-servicios/trading]] y [[../02-servicios/red]].
 
 ## echo (qemu/140)
 
@@ -63,8 +63,6 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 | **vCPUs** | 4 |
 | **RAM** | 8 GB |
 | **Disco** | 20 GB |
-| **NetIn** | 247 GB |
-| **NetOut** | 360 GB |
 | **Estado** | ✅ Running |
 
 ## docker-echo-dev (lxc/141)
@@ -78,41 +76,53 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 | **vCPUs** | 12 |
 | **RAM** | 4 GB |
 | **Disco** | 20 GB |
-| **Tags** | `community-script`, `docker` |
 | **Estado** | ✅ Running |
 
 ## argus (qemu/160)
 
 | Item | Valor |
 |---|---|
-| **Propósito** | (¿monitoreo IA?) |
+| **Propósito** | observabilidad Aranea |
 | **VMID** | 160 |
 | **Tipo** | qemu VM |
 | **Nodo** | hades |
 | **vCPUs** | 8 |
 | **RAM** | 16 GB |
 | **Disco** | 32 GB |
-| **NetIn** | 598 GB |
-| **NetOut** | 23 GB |
 | **Estado** | ✅ Running |
 
 ## mcps (lxc/113)
 
 | Item | Valor |
 |---|---|
-| **Propósito** | Servidores MCP (Model Context Protocol) |
+| **Propósito** | Capability plane MCP de Aranea para agentes externos |
 | **VMID** | 113 |
-| **Tipo** | lxc container |
+| **Tipo** | lxc container con Docker |
 | **Nodo** | hades |
 | **vCPUs** | 2 |
 | **RAM** | 4 GB |
 | **Disco** | 8 GB |
-| **Tags** | `community-script`, `docker` |
-| **NetIn** | 90 MB |
 | **Estado** | ✅ Running |
+| **Last verified** | 2026-09-11 |
 
-> [!note] mcps
-> MCP servers permiten que LLMs externos interactúen con herramientas/datos locales. Comunidad scripts.
+### Contrato MCP vigente
+
+| Capability | Endpoint | Target contractual |
+|---|---|---|
+| `aranea-ssh` | `http://mcps.lab.aranea.cl:3000/` | workers Aranea; viewer/operator según perfil |
+| `aranea-postgres-ro` | `http://mcps.lab.aranea.cl:3001/mcp` | Echo PROD `echo`, rol `mcp_echo_prod_ro`, solo lectura |
+| `aranea-postgres-rw` | `http://mcps.lab.aranea.cl:3002/mcp` | Echo DEV `echo-develop`, rol `mcp_echo_dev_rw`, lectura/escritura |
+| `aranea-mongo-forge-ro` | `http://mcps.lab.aranea.cl:3003/mcp` | Echo Forge PROD, solo lectura |
+| `aranea-mongo-forge-rw` | `http://mcps.lab.aranea.cl:3004/mcp` | Echo Forge DEV, lectura/escritura |
+
+PostgreSQL PROD/DEV y SSH fueron certificados end-to-end el 2026-09-11. Mongo Forge tuvo un problema de discovery del cliente porque sus bearer env vars no estaban heredadas; las env vars quedaron persistidas en `daedalus`, pero el smoke funcional posterior al restart del cliente debe quedar como pendiente hasta observar evidencia nueva.
+
+### Autoridad documental MCP
+
+- Router agent-facing: `30-resources/agents/skills/aranea-mcps-expert/SKILL.md` → [[aranea-mcps-expert]].
+- Runbooks operativos: `80-agents/memory/public/runbook/aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md` y `aranea-mcp-capability-plane.md`.
+- Invariante de datos: **PROD=RO; DEV=RW**. Una lectura DEV usa la capability DEV/RW sin necesidad de mutar. No crear sandboxes/profiles/ambientes auxiliares como workaround automático.
+- Secrets nunca se documentan por valor. Runtime PostgreSQL bajo `/opt/mcp/postgres/runtime/`; runtime Mongo Forge bajo `/opt/mcp/mongo-forge/runtime/`.
 
 ## temporal (qemu/158)
 
@@ -125,26 +135,20 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 | **vCPUs** | 4 |
 | **RAM** | 8 GB |
 | **Disco** | 32 GB |
-| **NetIn** | 159 GB |
-| **NetOut** | 222 GB |
 | **Estado** | ✅ Running |
 
 ## ubuntu-dev (qemu/159)
 
 | Item | Valor |
 |---|---|
-| **Propósito** | Dev workstation (probablemente de Rodrigo) |
+| **Propósito** | Dev workstation |
 | **VMID** | 159 |
 | **Tipo** | qemu VM |
 | **Nodo** | hades |
 | **vCPUs** | **24** |
 | **RAM** | **64 GB** |
 | **Disco** | 100 GB |
-| **NetIn** | 13 GB |
-| **NetOut** | 4 GB |
 | **Estado** | ✅ Running |
-
-> Una VM workstation pesada (24 vCPU, 64 GB RAM). Si Rodrigo la usa como dev environment, justifica la concentración en hades pero también es SPOF si hades cae.
 
 ## Resumen IA/ML
 
@@ -160,16 +164,6 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 | temporal | hades | 8 GB | running |
 | ubuntu-dev | hades | 64 GB | running |
 
-## Alertas
-
-| # | Severidad | Alerta |
-|---|---|---|
-| 1 | 🟡 | 4 VMs sqx-ulab detenidas (290 GB RAM asignados pero apagados) |
-| 2 | 🟡 | La mayoría de servicios IA/ML en hades (5 de 9) |
-| 3 | 🟡 | `argus` nombre sugiere "monitoreo" pero no queda claro qué hace exactamente |
-
 ---
 
-**Source files**: `/home/hermes/aranea/topology/services.md`, `/home/hermes/aranea/topology/discovery/{zeus,kronos,hera,hades}_20260628_211812.txt`
-
-**Captured**: 2026-06-28 21:18 UTC. Doc generado 2026-06-30.
+**Source files históricos**: `/home/hermes/aranea/topology/services.md`, `/home/hermes/aranea/topology/discovery/{zeus,kronos,hera,hades}_20260628_211812.txt`. **MCP last verified**: 2026-09-11 por evidencia runtime y smokes agent-facing.
