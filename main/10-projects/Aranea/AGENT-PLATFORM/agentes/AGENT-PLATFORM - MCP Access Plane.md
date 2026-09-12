@@ -61,7 +61,7 @@ updated: "2026-09-11"
 - Mongo RO fue certificado con 18 tools sin mutadores; Mongo RW con 27 tools, incluyendo `insert-many`, `update-many`, `delete-many`, `create-*`, `drop-*` y `rename-collection`. El path normal usa `connectionId="preconfigured"`.
 - El MongoDB de desarrollo mantiene `security.authorization` desactivado por decisión owner mientras Forge está en desarrollo; no se hardenea como parte de T4. La separación agent-facing sigue protegida por bearer + split RO/RW MCP. `mongosh` nativo permanece válido para operación humana.
 - Cursor/Daedalus muestra conectados los cinco MCP actuales: `aranea-ssh`, PostgreSQL RO/RW y Mongo Forge RO/RW.
-- La fuente canónica agent-facing del capability plane es ahora `xKoRx/symphony/.agents/skills/aranea-mcps-expert/SKILL.md`, exclusiva de Aranea y explícitamente prohibida para MELI/corporativo. Sus runbooks poseen SSH, PostgreSQL y MongoDB; las skills de dominio sólo deciden qué evidencia necesitan.
+- La fuente canónica agent-facing del capability plane es `xKoRx/symphony/.agents/skills/aranea-mcps-expert/SKILL.md`, exclusiva de Aranea y explícitamente prohibida para MELI/corporativo. Los runbooks mecánicos viven en AGENTS OS: [[aranea-ssh-mcp]], [[aranea-postgres-mcp]], [[aranea-mongodb-mcp]] y [[aranea-mcp-capability-plane]]. Las skills de dominio sólo deciden qué evidencia necesitan.
 - `echo-forge-wfm-troubleshooting` fue refactorizada para conservar routing/conocimiento de dominio y delegar cualquier operación `aranea-*` a `aranea-mcps-expert`, eliminando duplicación de endpoints/permisos/transport semantics.
 - Hardening genérico no necesario para desbloquear el uso actual — validación explícita de sesiones background, timeout extremo y revisión operativa de audit trail — se difiere a T6, donde se consolidarán health/logs/rotación/rollback y runbook transversal.
 
@@ -90,6 +90,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
+- **2026-09-11** — Los runbooks MCP de `aranea-mcps-expert` se movieron a AGENTS OS. La skill permanece en `xKoRx/symphony`; SSH/PostgreSQL/MongoDB y el plane troubleshooting viven ahora en `80-agents/memory/public/runbook/`.
 - **2026-09-11** — T4 MongoDB MCP cerrado end-to-end. Se adoptó `mongodb-js/mongodb-mcp-server` v2.1.1 pinneado a `2e8eae98d1301ca48f1e81273a3f3d5c5820f216`, imagen `local/mongodb-mcp:2.1.1-2e8eae9`. Deployment final separa backend+proxy RO (`:3003/mcp`) y RW (`:3004/mcp`), con bearer obligatorio y backends sin host port. RO expone 18 tools sin mutadores; RW 27 tools con mutación. Cursor/Daedalus muestra ambos capabilities conectados junto con SSH y PostgreSQL. Mongo `security.authorization` queda deliberadamente OFF durante desarrollo por decisión owner; hardening DB se pospone al freeze productivo. Se creó `aranea-mcps-expert` como única fuente agent-facing de capabilities Aranea y `echo-forge-wfm-troubleshooting` quedó reducida a routing de dominio.
 - **2026-09-11** — T3 PostgreSQL MCP cerrado end-to-end. Deployment persistente en `mcps` con backend+proxy separados para RO (`:3001/mcp`, `mcp_echo_ro`, restricted) y RW (`:3002/mcp`, `mcp_echo_rw`, unrestricted), bearer dedicado por capability y backends sin host port. Cursor/Daedalus carga ambos bearer automáticamente vía KDE y validó identidad/base real desde los dos MCP. RO sólo expone schema `echo` y excluye `hdb_catalog`; RW mantiene permisos acotados a `echo-develop`. Ambos roles heredan `statement_timeout=60s`, `lock_timeout=5s`, `idle_in_transaction_session_timeout=60s`; `psql` nativo como `postgres` sigue `0/0/0`. El upstream no ofrece timeout/límite genérico para `execute_sql`, por lo que no se forkea: el hard limit temporal vive en PostgreSQL. POCs y red temporal eliminados tras el gate final.
 - **2026-09-11** — PostgreSQL MCP POC autenticada PASS en `mcps`: source `crystaldba/postgres-mcp` pinneado a `15c8e33353546148acc2d8bd784551cf3905d1e2`, imagen local no-root `local/postgres-mcp:0.3.0-15c8e33`, Streamable HTTP conectado como `mcp_echo_rw` a `echo-develop`. Discovery, sesión MCP y RW se validaron sin mutación real. Como el upstream no aporta bearer auth, se validó Nginx 1.29.8 pinneado por digest como proxy en red privada: `401` sin bearer y `200 + Mcp-Session-Id + tools/call` con bearer dedicado.
@@ -127,6 +128,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - D17: MongoDB MCP se adopta desde `mongodb-js/mongodb-mcp-server` v2.1.1 pinneado por commit; RO y RW se publican como capabilities separados detrás de bearer proxy y los backends no se exponen al host.
 - D18: el path normal Mongo para agentes usa `connectionId="preconfigured"`; la presencia de `connect` no autoriza URIs arbitrarias. En desarrollo se conserva `security.authorization` OFF por decisión owner y el hardening del servidor queda fuera de T4.
 - D19: `aranea-mcps-expert` es la única fuente agent-facing para seleccionar/usar capabilities MCP Aranea. Las skills de dominio deben referenciarla y no duplicar endpoints, permisos, profiles o transport semantics. La skill MUST NOT activarse para MELI/corporativo.
+- D20: los runbooks mecánicos de SSH/PostgreSQL/MongoDB y del capability plane viven en AGENTS OS (`80-agents/memory/public/runbook/`); la skill permanece app-owned en `xKoRx/symphony`. No duplicar esos procedimientos en el repo.
 
 ## 🔗 Docs / Links
 
@@ -134,6 +136,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - [[AGENT-PLATFORM-OWNER-PROJECT]] — cockpit humano padre.
 - `xKoRx/symphony/.agents/skills/aranea-mcps-expert/SKILL.md` — contrato canónico de selección/uso de capabilities MCP Aranea.
 - `xKoRx/symphony/.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` — routing de dominio Echo Forge/WFM; delega acceso MCP a `aranea-mcps-expert`.
+- [[aranea-ssh-mcp]] · [[aranea-postgres-mcp]] · [[aranea-mongodb-mcp]] · [[aranea-mcp-capability-plane]] — runbooks mecánicos en AGENTS OS.
 
 ## 💡 Ideas
 

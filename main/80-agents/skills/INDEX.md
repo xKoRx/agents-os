@@ -95,7 +95,7 @@ Ownership real = repo de la app. `xKoRx/symphony` usa `.agents/skills/` como hom
 
 | Carpeta / ID | Descripción | Estado / ubicación |
 |---|---|---|
-| `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md` | Selecciona y gobierna capabilities MCP exclusivas del homelab Aranea; obliga autoridad mínima y delega detalles a runbooks SSH/PostgreSQL/MongoDB. | ✅ fuente canónica app-owned; **MUST NOT** usarse para MELI/corporativo |
+| `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md` | Selecciona y gobierna capabilities MCP exclusivas del homelab Aranea; obliga autoridad mínima y delega detalles a los runbooks AGENTS OS [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]]. | ✅ fuente canónica app-owned; **MUST NOT** usarse para MELI/corporativo; runbooks en `80-agents/memory/public/runbook/` |
 | `xKoRx/symphony` → `.agents/skills/sqx-plugin-lifecycle/SKILL.md` | Modifica, compila, despliega y valida plugins Java de SQX con classpath efectivo, build contra SDK real, backup, canary y rollback. | ✅ **migrada** (piloto, 2026-08-07) al repo owner; ya no vive en el vault |
 | `xKoRx/symphony` → `.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` | Troubleshooting de Echo Forge/WFM: selecciona la fuente autoritativa de evidencia y delega el acceso MCP a `aranea-mcps-expert`. | ✅ repo owner; fuente única de routing de dominio |
 | `xKoRx/symphony` → `.agents/skills/sqx-temporal-failure-audit/SKILL.md` | Audita una ejecución fallida de un workflow Temporal del SQX Worker recabando evidencia agnóstica sin proponer fix. | ✅ migrada al repo owner; fuente única junto a su README humana |
