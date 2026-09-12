@@ -109,12 +109,12 @@ Exacto PLAN.md. Development en feature branch desde `c408a12f`. Prohibido `origi
 - **WP-C Gateway HTTP** T09–T13, T16. Auth, POST, GET, timeout, concurrency.
 - **WP-D Corpus / SQL** T14–T15, T17. Synthetic S0 HTTP + SQL-direct + HandoffIngress test client. No es CROSS_LANE GOLDEN.
 - **WP-E Cert** T18–T20. SOURCE greps, coverage, governance interlock.
-- **WP-F Golden** T21. Authentic Forge fixture. Pending. No bloquea NORMAL.
+- **WP-F Golden** T21. Authentic Forge fixture. Pending. Gate POST-INTEGRATION. No bloquea NORMAL ni READY_FOR_INTEGRATION ni merge. Bloquea E-04 FINAL CLOSED.
 
 ## TOP / NORMAL boundaries
 
 - TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padres, gobernanza de paralelismo y golden. No source Go/SQL/HTTP productivo.
-- NORMAL: T01–T20 mecánicamente. T21 fail-closed mientras `FORGE_GOLDEN_FIXTURE_PENDING`. No elegir URL, codes, recetas S0, ni “arreglar” E-03/S0, ni inventar fixture Forge.
+- NORMAL: T01–T20 mecánicamente. T21 fail-closed mientras `FORGE_GOLDEN_FIXTURE_PENDING` (POST-INTEGRATION; no bloquea READY/merge). No elegir URL, codes, recetas S0, ni “arreglar” E-03/S0, ni inventar fixture Forge, ni usar T21 para bloquear merge.
 - GOD: NONE.
 
 ## Migrations
@@ -125,15 +125,16 @@ Exacto PLAN.md. Development en feature branch desde `c408a12f`. Prohibido `origi
 
 ```text
 development dependency:     E-03 IMPLEMENTATION CLOSED @ c408a12f  (satisfecha)
-golden dependency:          FORGE_GOLDEN_FIXTURE_PENDING          (NO satisfecha; no bloquea NORMAL)
-integration dependency:     E-03 CONTRACT_PASS                    (SATISFECHA 2026-09-12 @ fac48051; merge/close sigue sin ejecutarse)
+golden dependency:          FORGE_GOLDEN_FIXTURE_PENDING          (NO satisfecha; POST-INTEGRATION; no bloquea NORMAL ni READY ni merge)
+integration dependency:     E-03 CONTRACT_PASS + implementation PASS + independent verifier PASS + base fac48051 reconciliada gates PASS  (SATISFECHA; merge habilitado, no ejecutado)
+final-close dependency:     T21/AC-37 CROSS_LANE GOLDEN PASS       (NO satisfecha)
 ```
 
-Corpus S0 / fakeconsumer / builders = CONTRACT/SYNTHETIC. CROSS_LANE GOLDEN exige fixture Forge auténtica; hoy pending. CROSS_LANE development **no** espera E-03 CONTRACT_PASS.
+Corpus S0 / fakeconsumer / builders = CONTRACT/SYNTHETIC. CROSS_LANE GOLDEN exige fixture Forge auténtica; hoy pending. CROSS_LANE development **no** espera E-03 CONTRACT_PASS. READY_FOR_INTEGRATION **no** espera T21.
 
 ## Compatibility strategy
 
-HTTP nuevo. Stores E-03 write-once. Webhooks Gateway intactos. Forge CONTRACT permanece en fakeconsumer. Echo SYNTHETIC usa S0. CROSS_LANE GOLDEN espera fixture auténtica, no E-03 CONTRACT_PASS.
+HTTP nuevo. Stores E-03 write-once. Webhooks Gateway intactos. Forge CONTRACT permanece en fakeconsumer. Echo SYNTHETIC usa S0. CROSS_LANE GOLDEN espera fixture auténtica POST-INTEGRATION, no E-03 CONTRACT_PASS ni como prerrequisito de merge.
 
 ## Test strategy
 
@@ -141,7 +142,7 @@ AC-01…AC-37 ↔ TASKS. Corpus G01–G25/G31/G35 = SYNTHETIC/CONTRACT. PG real 
 
 ## Certification gates (NORMAL)
 
-Ver PLAN.md. Clases: SOURCE, CONTRACT, PG REAL, PHYSICAL HTTP+PG, SYNTHETIC CONTRACT INTEGRATION, MIGRATION=N/A, CROSS_LANE GOLDEN (`FORGE_GOLDEN_FIXTURE_PENDING`), GOVERNANCE (`E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION`), CONTROLLED INTEGRATION (no esta fase).
+Ver PLAN.md. Clases: SOURCE, CONTRACT, PG REAL, PHYSICAL HTTP+PG, SYNTHETIC CONTRACT INTEGRATION, MIGRATION=N/A, CROSS_LANE GOLDEN (`FORGE_GOLDEN_FIXTURE_PENDING`, POST-INTEGRATION), GOVERNANCE (`E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION` SATISFIED), CONTROLLED INTEGRATION (habilitada, no ejecutada), FINAL JOIN / CLOSED (`T21_POST_INTEGRATION_REQUIRED_FOR_FINAL_CLOSE`).
 
 ## Branch strategy
 
@@ -155,15 +156,15 @@ Si Verifier E-03 FAIL: `BLOCKED_PENDING_E03_CORRECTION`.
 
 ## Blockers
 
-Ninguno para **development** T01–T20. `FORGE_GOLDEN_FIXTURE_PENDING` bloquea T21 / CROSS_LANE GOLDEN PASS / Verifier golden / READY_FOR_INTEGRATION. Integrate/merge/CLOSED ya no está bloqueado por E-03 CONTRACT_PASS (SATISFECHO 2026-09-12 @ `fac48051`), pero sigue sin ejecutarse: reservado a CONTROLLED INTEGRATION con manager review. F-04 PHYSICAL/CC no bloquea E-04 CONTRACT.
+Ninguno para **development** T01–T20. `FORGE_GOLDEN_FIXTURE_PENDING` bloquea T21 / CROSS_LANE GOLDEN PASS / Verifier golden / E-04 FINAL CLOSED (POST-INTEGRATION). **No** bloquea READY_FOR_INTEGRATION ni merge. Integrate/merge está habilitado por E-03 CONTRACT_PASS SATISFECHO 2026-09-12 @ `fac48051` + implementation/verifier/base PASS; la ejecución sigue reservada a CONTROLLED INTEGRATION con manager review y no ha ocurrido. F-04 PHYSICAL/CC no bloquea E-04 CONTRACT.
 
 ## Handoff requirements
 
-Manager aprueba planning → NORMAL implementa T01–T20 en el worktree de esta branch. No usar el checkout `master` local behind. No cerrar E-03. No declarar join Forge CLOSED.
+Manager aprueba planning → NORMAL implementa T01–T20 en el worktree de esta branch. No usar el checkout `master` local behind. No cerrar E-03. No declarar join Forge CLOSED ni E-04 FINAL CLOSED sin T21 PASS. Este TOP no ejecuta el merge.
 
 ## Closure conditions
 
-T01–T20 `[x]`; AC-01…AC-36; allowed files; 061 intacto; non-effects; E-03 identity tests PASS. READY_FOR_INTEGRATION exige además AC-37/T21 (hoy pending). Merge/CLOSED exige `E-03 CONTRACT_PASS` (SATISFECHO 2026-09-12 @ `fac48051`); la ejecución sigue reservada a CONTROLLED INTEGRATION y no ha ocurrido. Este TOP no cierra E-04.
+T01–T20 `[x]`; AC-01…AC-36; allowed files; 061 intacto; non-effects; E-03 identity tests PASS; independent verifier PASS; E-03 CONTRACT_PASS MET; base `fac48051` reconciliada gates PASS. READY_FOR_INTEGRATION **no** exige AC-37/T21. Merge habilitado, no ejecutado. E-04 FINAL CLOSED exige AC-37/T21 PASS (hoy pending, POST-INTEGRATION). Este TOP no cierra E-04.
 
 ## 🧩 Subproyectos
 
@@ -178,7 +179,7 @@ _No aplica — hijo de implementación de E-04; no crea Integration ni más hijo
 > - [x] WP-C Gateway POST/GET + auth + timeout/concurrency #owner/agent #type/dev #area/echo
 > - [x] WP-D Corpus S0 HTTP + SQL-direct + HandoffIngress test client (SYNTHETIC; no golden) #owner/agent #type/dev #area/echo
 > - [x] WP-E SOURCE/coverage/governance cert pack #owner/agent #type/dev #area/echo
-> - [ ] WP-F CROSS_LANE GOLDEN authentic Forge fixture (T21; FORGE_GOLDEN_FIXTURE_PENDING) #owner/agent #type/dev #area/echo
+> - [ ] WP-F CROSS_LANE GOLDEN authentic Forge fixture (T21 POST-INTEGRATION; FORGE_GOLDEN_FIXTURE_PENDING; blocks FINAL CLOSED only) #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -197,7 +198,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-12 (GOVERNANCE SYNC one-shot)** — Sincronización documental E-04 ([[2026-09-12-echo-e04-governance-sync]]): reflejar la certificación E-03 `CONTRACT_PASS` / FINAL CLOSED @ `fac48051` (emitida por el proyecto E-03/manager, [[2026-09-12-echo-e03-final-integration]]) en `VERIFICATION.md` de FEAT-FORGE-INGESTION-E1. Verificación previa física: rama local behind 12 commits → `merge --ff-only` a `origin/feature/e04-forge-ingestion-e1` @ `88e713bf` (HEAD esperado exacto); `git ls-remote` confirma `origin/master == fac4805185eb586bb73c3df0c0ccc20d1377099c`; ancestry `fac48051` ancestro de `88e713bf` OK (`merge-base --is-ancestor`). Cambios: bloque interlock del repo (`E-03 CONTRACT_PASS = MET`, `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION = SATISFIED`, con valores previos anotados como históricos), AC-35 anotado, bloque known gates actualizado y sección nueva "GOVERNANCE SYNC" con evidencia y estado vigente. Commit docs-only `8f5233f5e0c78a1a939f71bcb36a1b6c2ff819ec` (+43/−13, sólo VERIFICATION.md) pusheado FF a la feature; `origin/master` intacto. Sin source productivo, sin tests nuevos, sin verifier. Estado sin cambio: T21/AC-37 PENDING (`FORGE_GOLDEN_FIXTURE_PENDING=YES`), no READY_FOR_INTEGRATION, no E-04 CLOSED, sin merge a master.
+- **2026-09-12 (TOP CORRECTION 1.0.2 — break circular golden gate)** — Docs-only: SPEC/PLAN/TASKS/VERIFICATION v1.0.2 + esta nota + padre [[Echo — Live Platform V1]]. T21/AC-37 deja de bloquear READY_FOR_INTEGRATION/merge y pasa a gate POST-INTEGRATION de certificación cross-lane/final join. READY_FOR_INTEGRATION=YES por implementation PASS + independent verifier PASS @ `4aef2958` + E-03 CONTRACT_PASS MET @ `fac48051` + base reconciliada gates PASS. E-04 FINAL CLOSED=NO hasta T21 PASS. Merge no ejecutado; `origin/master` intacto `fac48051`; 0 source. Circularity roturada: F-04 espera endpoint E-04; E-04 ya no espera fixture F-04 para integrar.
+- **2026-09-12 (GOVERNANCE SYNC one-shot)** — Sincronización documental E-04 ([[2026-09-12-echo-e04-governance-sync]]): reflejar la certificación E-03 `CONTRACT_PASS` / FINAL CLOSED @ `fac48051` (emitida por el proyecto E-03/manager, [[2026-09-12-echo-e03-final-integration]]) en `VERIFICATION.md` de FEAT-FORGE-INGESTION-E1. Verificación previa física: rama local behind 12 commits → `merge --ff-only` a `origin/feature/e04-forge-ingestion-e1` @ `88e713bf` (HEAD esperado exacto); `git ls-remote` confirma `origin/master == fac4805185eb586bb73c3df0c0ccc20d1377099c`; ancestry `fac48051` ancestro de `88e713bf` OK (`merge-base --is-ancestor`). Cambios: bloque interlock del repo (`E-03 CONTRACT_PASS = MET`, `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION = SATISFIED`, con valores previos anotados como históricos), AC-35 anotado, bloque known gates actualizado y sección nueva "GOVERNANCE SYNC" con evidencia y estado vigente. Commit docs-only `8f5233f5e0c78a1a939f71bcb36a1b6c2ff819ec` (+43/−13, sólo VERIFICATION.md) pusheado FF a la feature; `origin/master` intacto. Sin source productivo, sin tests nuevos, sin verifier. Clasificación READY/T21 de este sync superseded por TOP CORRECTION 1.0.2.
 - **2026-09-12 (BASE RECONCILIATION one-shot)** — Incorporación controlada del master certificado E-03 `fac48051` a la feature ([[2026-09-12-zcode-glm-5.3-flash-e04-base-reconciliation]]): merge `a984dcfa` sin conflictos (deltas disjuntos), ajuste test-only del pin SOURCE a `fac48051`, push FF `4aef2958..88e713bf` a `origin/feature/e04-forge-ingestion-e1`; `origin/master` intacto. Gates completos PASS sobre la base fusionada: identity_bwc (down/up 061), E-03 34 PASS, E-04 SDK 44 + gateway 29 con `-race` en serie, contracts S0 con `wire` ya verde (fix UTF-8 de master), SOURCE greps vacíos, contracts/migrations diff 0, coverage exacto 82.2/76.7/100/92.0, AC-10/replay/conflictos/concurrencia/dependency-artifacts re-demostrados. Fricción 4ª sesión consecutiva: receta LD_LIBRARY_PATH del harness PG (libxml2 vía `/tmp/e03-libs`) sigue sin runbook. T21/AC-37 PENDING; `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION=NOT_MET`; no READY_FOR_INTEGRATION; no CLOSED; sin merge a master.
 - **2026-09-12 (Independent verifier PASS)** — Verifier one-shot ([[2026-09-12-zcode-glm-5.3-flash-e04-independent-verifier]]) sobre `4aef2958` exacto: git/ancestry/allowed-files/contracts/migrations íntegros; gates reproducidos con PG 17.5 propio (identity_bwc PASS, E-03 34 PASS, SDK 44 + gateway 27 con `-race`, PHYSICAL HTTP+PG, coverage exacto 82.2/76.7/92.0/100); AC-10 rollback demostrado físicamente (23505 en INSERT promotion + ausencia de las 3 filas); auth/failure-mapping/non-effects/replay/conflicto/concurrencia/dependency-artifacts verificados en source y en PG. T21/AC-37 PENDING fail-closed; sin fixture inventada; E03_CONTRACT_PASS NOT_MET; no READY_FOR_INTEGRATION; no CLOSED. Observación material: durante la sesión `origin/master` avanzó `c408a12f`→`fac48051` por push concurrente (10:56 -03, FF limpio; trae el fix del test `wire` UTF-8 y fixes identity del carril E-03; `4aef2958` NO mergeado); el verifier no ejecutó push/commit alguno; veredicto inalterado y incorporación de base queda para review Manager (SPEC §13). Fricción registrada en feedback: receta LD_LIBRARY_PATH del harness PG sigue sin runbook (3ª sesión consecutiva).
 - **2026-09-12 (NORMAL correction complete)** — Desde la base exacta del Source Review `bfc0bc4b`, NORMAL corrigió sólo tests/evidencia y pusheó `4aef2958` a la branch feature. AC-10 alcanza el INSERT de promotion con SQLSTATE `23505` y verifica rollback de mapping/version/promotion; también quedaron cubiertos dependency artifacts (copy + integrity), strategy_ref conflict y assigned_at inválido. Reejecución real: identity_bwc PASS, E-03 34 PASS, SDK/gateway `-race` serial PASS, HTTP+PG PASS y coverage svc 82.2% / artifact 76.7% / handler 92% / auth 100%. Se documentó fricción del harness por DB compartida/TRUNCATE concurrente y el fallo preexistente de `contracts/wire` bajo Go 1.25.5. T21/AC-37 PENDING; sesión cerrada, sin verifier/merge/close.
