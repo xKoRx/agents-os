@@ -11,7 +11,7 @@ sources:
   - "[[Echo Forge — F-01 Canonical Generation Concurrency Contract]]"
   - "[[Echo Forge — F-02 Finalist Model V2 Contract]]"
   - "[[Echo Forge — F-03 SQX Long-Running Contract]]"
-last_verified: "2026-09-12"
+last_verified: "2026-09-13"
 confidence: verified
 aliases:
   - F-04 SPEC
@@ -31,14 +31,14 @@ tags:
   - area/echo
   - project/echo-forge
 created: "2026-09-10"
-updated: "2026-09-12"
+updated: "2026-09-13"
 ---
 
 # Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract
 
 Esta Resource es el contrato técnico de `F-04 — Magic Allocation, Version Seal and Handoff`. Define qué debe quedar cierto. La ejecución vive en [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. No es un tutorial. No crea un tercer dominio Integration.
 
-Baseline de source F-04: `xKoRx/symphony@d645ed6c2f438995d636a8213b1e4a3f5f26cbea` (`feature/f04-magic-version-handoff`; T2.1–T2.10 implementados sobre `9fad768`, pushed fast-forward 2026-09-12). Dirty foráneo `phase4_performance.json` preservado. S0 certificado: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Consumer E-04: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`. Agents OS: vault local **sin** `.git`; lookup de SHA live **degraded**; última authority durable de journal: `f1070bec27db3ca415fe24f3c3576139674b7e09`. No se inventa SHA de vault.
+Baseline de source F-04: `xKoRx/symphony@d645ed6c2f438995d636a8213b1e4a3f5f26cbea` (`feature/f04-magic-version-handoff`; T2.1–T2.10 implementados; PHYSICAL 0.2.97 reveló C4). F-01 implementation authority: `0509342439cfbaa048839088787458dde1ed1b05`. Magic V1 ancestor: `ea8be76c4587b2d00e4cad8cf2a67c4fd8e6680f`. Dirty foráneo `phase4_performance.json` preservado. S0 certificado: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Consumer E-04: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`. Agents OS: vault local **sin** `.git`; lookup de SHA live **degraded**; última authority durable de journal: `f1070bec27db3ca415fe24f3c3576139674b7e09`. No se inventa SHA de vault.
 
 `DATABASE MIGRATION: 015_strategy_magic_version_seal_handoff`. Tablas nuevas write-once; cero reescritura destructiva de historia. No backfill de magic `888111`/`11111`.
 
@@ -46,7 +46,7 @@ Baseline de source F-04: `xKoRx/symphony@d645ed6c2f438995d636a8213b1e4a3f5f26cbe
 
 ### Problema
 
-T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. El gap T2 era que el compile físico dejaba EX5/log durables **sin** `compile_evaluation_ref` (`domain.EvaluationRef`) para `BuildLineage`, el caller productivo no activaba Magic durable y no existía HTTP Echo real. **Cerrado en source (2026-09-12):** `mt5_compile_persist_v1` produce el compile EvaluationRef exacto, el carrier lo transporta, `forge_seal_handoff_v1` sella/entrega tras Finalist V2 y `http_ingress.go` implementa el boundary E-04 con fail-closed sin credenciales. Quedan PHYSICAL (host SQX/MetaEditor) e INTEGRATION (golden auténtico + T21/AC-37), gated por entorno.
+T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. T2 cerró compile EvaluationRef, caller Magic durable y HTTP E-04. **C4 (2026-09-13):** el PHYSICAL `0.2.97` / FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516` falló las 4 Apply attempts en `ParseMagicV1AllocationIdentity` porque Magic V1 parseaba `CanonicalStrategyID` como `<INSTRUMENT>_<D>_...` y F-01 emite una identidad opaca. Cero filas `strategy_magic`, cero seals, cero manifests — sin data repair. C4 congela autoridades explícitas de instrument/direction y separa Magic legado de allocated. T2.11–T2.13 siguen OPEN. E-04 runtime/deploy/join es one-shot separado después del golden Forge.
 
 ### Veredicto central
 
@@ -171,14 +171,20 @@ Reserved non-allocatable (históricos compartidos, no únicos): `11111`, `888111
 ### Transacción / CAS / replay
 
 ```text
-Allocate(ns, strategy_ref, canonical):
-  1. SELECT existing by (ns, strategy_ref). If found → return (replay; ignore candidate).
-  2. If production && CC not READY → CC_MISSING_OWNER_GATE (no INSERT).
-  3. candidate = MagicCandidateSource.Next(...)  // CC when READY; tests inject
+AllocateMagicV1(ns, strategy_ref, canonical):
+  0. SELECT canonical_strategy_id, instrument, direction FROM sqx.strategies WHERE id = strategy_ref.
+     Missing/empty → FAIL CLOSED. canonical row ≠ argument → CONTRACT_CONFLICT.
+     Never parse CanonicalStrategyID for instrument/direction.
+  1. Map instrument via sqx.magic_instruments (exact instrument_id). Unknown → INSTRUMENT_CODE_MISSING.
+     Map direction via MagicV1DirectionFromStrategy. Unknown/ambiguous → FAIL CLOSED.
+  2. SELECT existing by (ns, strategy_ref).
+     If found: DecodeMagicV1(existing.magic); if III or D ≠ current inputs → CONTRACT_CONFLICT;
+     if existing.canonical ≠ argument → CONTRACT_CONFLICT; else return existing (no counter increment).
+  3. candidate = Magic V1 Next(YYMM UTC, instrument_code, D, shared sequence). Never reserved 11111/888111.
   4. INSERT row. allocation_ref = H("forge-magic-allocation.v1",[ns,canonical,magic])
-  5. ON CONFLICT (ns, strategy_ref) → return existing (same identity won the race).
+  5. ON CONFLICT (ns, strategy_ref) → reread winner and apply step 2 conflict checks.
   6. ON CONFLICT (ns, magic) → next candidate, bounded retries (N=32) then MAGIC_EXHAUSTED.
-  7. Never random. Never MAX+1 without UNIQUE. Never hostname/worker identity.
+  7. Never random. Never MAX+1. Never hostname/worker identity. Never wrap/recycle.
 ```
 
 | Crash | Authority | Retry |
