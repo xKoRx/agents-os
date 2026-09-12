@@ -3,13 +3,14 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-09-11"
+updated: "2026-09-12"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
 entities:
   - "[[Aranea]]"
 related:
+  - "[[AGENT-PLATFORM - MCP Access Plane - Architecture]]"
   - "[[aranea-mcps-expert]]"
   - "[[aranea-ssh-mcp]]"
   - "[[aranea-postgres-mcp]]"
@@ -35,11 +36,13 @@ tags:
 
 ## Propósito
 
-Validar y diagnosticar el capability plane MCP de Aranea cuando el fallo está en discovery, configuración del cliente, environment, auth, proxy, transporte o policy, antes de culpar al backend de datos. El routing agent-facing vive en [[aranea-mcps-expert]] y la mecánica de cada familia en [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]].
+Validar y diagnosticar el capability plane MCP de Aranea cuando el fallo está en discovery, configuración del cliente, environment, auth, proxy, transporte o policy, antes de culpar al backend de datos. El routing agent-facing vive en [[aranea-mcps-expert]], la arquitectura común en [[AGENT-PLATFORM - MCP Access Plane - Architecture]] y la mecánica de cada familia en [[aranea-ssh-mcp]], [[aranea-postgres-mcp]] y [[aranea-mongodb-mcp]].
 
 ## Estado normal
 
 Un cliente Aranea correctamente iniciado debe poder descubrir las capabilities configuradas: `aranea-ssh`, `aranea-postgres-ro`, `aranea-postgres-rw`, `aranea-mongo-forge-ro` y `aranea-mongo-forge-rw`. La mera presencia de un bloque en `config.toml` no demuestra que la capability esté conectada: el proceso cliente también debe heredar las env vars requeridas y completar el handshake MCP.
+
+Para cualquier capability nueva o reinstalada, el estado normal de deployment es el definido en [[AGENT-PLATFORM - MCP Access Plane - Architecture]]: proxy bearer publicado, backend MCP interno sin host port y credencial upstream separada del bearer del cliente.
 
 ## Procedimiento
 
@@ -51,7 +54,8 @@ Un cliente Aranea correctamente iniciado debe poder descubrir las capabilities c
 6. **Enrutar `POLICY_DENIED` / permission denied.** Tratarlo como boundary de autoridad. En SSH viewer, `run-command` puede estar denegado por diseño; usar operator sólo cuando la operación realmente requiere ejecución/escritura. En data MCPs, respetar PROD=RO y DEV=RW según [[aranea-mcps-expert]].
 7. **Enrutar `invalid request` / HTTP 400.** Un `GET /mcp` manual puede ser inválido para Streamable HTTP y no prueba caída del backend. Validar handshake/sesión/headers del protocolo o hacer una llamada MCP real antes de diagnosticar el servicio.
 8. **Enrutar timeout.** Estrechar query/comando/filtro antes de ampliar policy. Delegar a runbook de familia cuando discovery/auth/transporte ya estén descartados.
-9. **Disciplina de cambio.** Al cambiar capability: actualizar [[aranea-mcps-expert]], el runbook de familia en `80-agents/memory/public/runbook/` y la documentación estable de Aranea; nunca persistir bearer/password/private-key.
+9. **Disciplina de cambio.** Al agregar, reemplazar o reinstalar una capability: cargar primero [[AGENT-PLATFORM - MCP Access Plane - Architecture]], reutilizar su blueprint y actualizar [[aranea-mcps-expert]], el runbook de familia y la documentación estable de Aranea. No introducir otra topología sin evidencia material y decisión explícita. Nunca persistir bearer/password/private-key.
+10. **Drift check mínimo.** No repetir la auditoría completa del host. Si se sospecha drift, comparar primero `docker ps`, redes y binds con el baseline de arquitectura; inspeccionar mounts/commands sólo si la diferencia material lo exige.
 
 ## Caso conocido — Mongo Forge 2026-09-11
 
@@ -65,6 +69,7 @@ Config present:      yes|no
 Required env:        SET|NOT_SET (value never shown)
 Capability exposed:  yes|no
 Client vs backend:   distinguished
+Architecture drift:  none|material
 Family runbook:      loaded only after plane/auth is scoped
 Bypass:              none
 Secrets persisted in docs: no
@@ -76,4 +81,4 @@ No publicar backends, no abrir nuevos puertos y no pedir secretos como workaroun
 
 ## Evidencia
 
-Registrar capability afectada, estado de discovery, nombres de env vars sin valores, boundary cliente/proxy/backend, acción correctiva y resultado material.
+Registrar capability afectada, estado de discovery, nombres de env vars sin valores, boundary cliente/proxy/backend, drift respecto de [[AGENT-PLATFORM - MCP Access Plane - Architecture]], acción correctiva y resultado material.
