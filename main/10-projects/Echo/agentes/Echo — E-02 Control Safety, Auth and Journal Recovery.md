@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-12
 due:
-progress: 10
+progress: 65
 repo: xKoRx/echo
 jira:
 prs:
@@ -46,7 +46,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 ## 📊 Estado actual
 
-- **TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12).** SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc53e90d244aba39ab502b928195f14c625` (parent planning `ac7b4e14`; base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Tres correcciones only: (1) auth por actor con Bearer **presentado**, no `front_read` auto-servido; (2) CommandID UUIDv5 **fuera** (E-08) tras fan-out Kafka físico; (3) Allowed Files = paths `v3/...`. Docs-only; master intacto; sin source productivo. NORMAL no arranca hasta manager review.
+- **IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW (2026-09-12).** T01–T15 implementados dentro de Allowed Files, con T11 `[-]`; HEAD final `df99084b` en `origin/feature/e02-control-safety-journal-recovery`, master intacto. CONTRACT/unit y build front demostrados; PG/Kafka/Flink/Hasura físico `PHYSICAL_PARTIAL` por infraestructura ausente. No verifier, no E-02 CLOSED.
 - **Baseline verificado:** `origin/master` = `a99f9a63354bbe72219d1e590bb93757ed08e45e` (E-04 integrado), igual al esperado al inicio de la sesión. E-04 T21/AC-37 POST-INTEGRATION **no** bloquea E-02; F-04 y E-05 tampoco. E-02 no depende de código nuevo de otro carril.
 - **Source revalidado en `a99f9a63`** (no sólo heredado del Reality Check): gateway sin auth en control/webhooks tras CORS `*`; `close-positions` publica CloseCommands físicos sin credencial; admin secret en `v3/front/.env*` + `client.js` + `v3/hasura/config.yaml` (literal); metadata Hasura sólo con rol `admin`; `TradeJournalFn.Invoke` retorna `nil` siempre (fallos de persistencia y conflictos absorbidos); sin cuarentena/DLQ/replay tools; Flink AT_LEAST_ONCE 60s + restart fixed-delay 5×10s (el retry runtime existe y está sin usar). Fan-out Kafka: journal **independiente** del planner/close_handler (consumer groups distintos; `TradeJournalFn` sink). `CommandID` UUIDv7 observado en fábricas de dominio llamadas por MM/close_handler: **no es defecto D-01 de E-02**. Detalle: SPEC §3.
 - **Autoridades:** Reality Check D-01/D-04 (certificación requerida y alternativas A01-A/A03-A), master §14, evidencia R02/R03/R06/R09. Ningún AUTHORITY_CONFLICT encontrado: el defecto observado en source coincide con el frozen input.
@@ -55,7 +55,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` (origin/master) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.1 @ `151e0bc5`; TASKS T01–T10, T12–T15 `[ ]`; T11 `[-]` E-08 | TOP correction READY FOR MANAGER REVIEW · No implementing · No CLOSED |
+| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` (origin/master) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.1 @ `151e0bc5`; TASKS T01–T10, T12–T15 with contract evidence and physical partials; T11 `[-]` E-08 | IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW · no verifier · no CLOSED |
 
 ## 🗺️ Arquitectura frozen (resumen; contrato completo en SPEC)
 
@@ -94,7 +94,7 @@ Ver VERIFICATION.md. Clases: SOURCE (greps secret/auth/messaging, contracts + do
 
 ## Blockers
 
-Ninguno para planning ni para NORMAL tras manager review. `NOT_OBSERVED` declarado (no bloquea implement, se verifica en VERIFY/owner): etcd/tokens reales de prod, deploy Hasura prod (auth hook env), bundle actualmente servido (evidencia vigente = R03 @ 2026-09-06).
+`PHYSICAL_PARTIAL`: no hay psql, Kafka, compose Flink/StateFun ni sesión Hasura develop en esta ejecución. `cascada123` persiste en archivos históricos fuera de Allowed Files; requiere decisión del manager porque limpiarlo excede PLAN §6. `NOT_OBSERVED`: etcd/tokens reales de prod, deploy Hasura prod, bundle servido y rotación AC-18.
 
 ## Closure conditions
 
@@ -134,6 +134,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 - **2026-09-12 (TOP correction)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc5`. Auth: READ/CONFIG/CONTROL/webhook son credenciales distintas; el humano presenta tokens (prompt/sessionStorage); webhook solo server-side; prohibido runtime-config de Bearers. CommandID: traza física fact→Kafka fan-out paralelo (journal sink vs planner/close_handler); journal/retry no duplica efecto económico ⇒ UUIDv5 **fuera** (E-08); T11 `[-]`; planner/MM/MQL intocables. Paths: Allowed Files exactos `v3/...` (no existe `sdk/` raíz). Sin source productivo. Puente sigue Review.
 - **2026-09-12 (TOP one-shot)** — Recovery de estado y planning completo E-02. Baseline confirmado `origin/master` `a99f9a63` (igual al esperado; E-04 integrado encima). Source revalidado físicamente en el baseline: defectos D-04 (CORS `*` sin auth en control/webhooks; secret admin en `.env`/`client.js`/`hasura/config.yaml`; metadata sólo rol `admin`) y D-01 (`Invoke` retorna `nil` siempre; sin cuarentena/replay; Flink restart existe sin usarse). Decisiones frozen en SPEC v1.0.0 (superseded en auth-discovery y CommandID por v1.0.1). SPEC/PLAN/TASKS/VERIFICATION @ `ac7b4e14` pusheados a la feature; catálogo SPECS.md actualizado; master intacto. Sin implementación; no NORMAL; no CLOSED.
+- **2026-09-12 (NORMAL implementation)** — Implementados auth por actor + Hasura hook + CORS allowlist, front sin admin secret, metadata mínima, quarantine 062/repository/journalctl, taxonomía retry/quarantine y facts bridge/webhooks con `PublishSync`. Cinco commits funcionales más cierre de evidencia; HEAD `df99084b` pusheado sólo a feature. Unit/contract y `-race` pasan; build/scan front pasan; physical gates quedan parciales por servicios no disponibles. Recomendación: manager source review y luego repetir pack físico antes de verifier.
 
 ## 🧭 Decisiones
 
