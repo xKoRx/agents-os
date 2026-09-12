@@ -38,7 +38,7 @@ updated: "2026-09-12"
 
 Esta Resource es el contrato técnico de `F-04 — Magic Allocation, Version Seal and Handoff`. Define qué debe quedar cierto. La ejecución vive en [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. No es un tutorial. No crea un tercer dominio Integration.
 
-Baseline de source F-04: `xKoRx/symphony@9fad768ccd1f9d25ebb535a2d26edb3d74556c10` (`feature/f04-magic-version-handoff`; merge `ea8be76` + `origin/master` `0b9742b`; verificado 2026-09-12). Dirty foráneo `phase4_performance.json` preservado. S0 certificado: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Consumer E-04: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`. Agents OS: vault local **sin** `.git`; lookup de SHA live **degraded**; última authority durable de journal: `f1070bec27db3ca415fe24f3c3576139674b7e09`. No se inventa SHA de vault.
+Baseline de source F-04: `xKoRx/symphony@d645ed6c2f438995d636a8213b1e4a3f5f26cbea` (`feature/f04-magic-version-handoff`; T2.1–T2.10 implementados sobre `9fad768`, pushed fast-forward 2026-09-12). Dirty foráneo `phase4_performance.json` preservado. S0 certificado: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Consumer E-04: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`. Agents OS: vault local **sin** `.git`; lookup de SHA live **degraded**; última authority durable de journal: `f1070bec27db3ca415fe24f3c3576139674b7e09`. No se inventa SHA de vault.
 
 `DATABASE MIGRATION: 015_strategy_magic_version_seal_handoff`. Tablas nuevas write-once; cero reescritura destructiva de historia. No backfill de magic `888111`/`11111`.
 
@@ -46,7 +46,7 @@ Baseline de source F-04: `xKoRx/symphony@9fad768ccd1f9d25ebb535a2d26edb3d74556c1
 
 ### Problema
 
-T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. El gap T2 es que el compile físico deja EX5/log durables **sin** `compile_evaluation_ref` (`domain.EvaluationRef`) para `BuildLineage`. No latest, no SHA-as-ref. HTTP Echo real y PHYSICAL host siguen pendientes de NORMAL.
+T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. El gap T2 era que el compile físico dejaba EX5/log durables **sin** `compile_evaluation_ref` (`domain.EvaluationRef`) para `BuildLineage`, el caller productivo no activaba Magic durable y no existía HTTP Echo real. **Cerrado en source (2026-09-12):** `mt5_compile_persist_v1` produce el compile EvaluationRef exacto, el carrier lo transporta, `forge_seal_handoff_v1` sella/entrega tras Finalist V2 y `http_ingress.go` implementa el boundary E-04 con fail-closed sin credenciales. Quedan PHYSICAL (host SQX/MetaEditor) e INTEGRATION (golden auténtico + T21/AC-37), gated por entorno.
 
 ### Veredicto central
 
