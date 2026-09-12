@@ -61,8 +61,11 @@ updated: "2026-09-12"
 - Endpoints MongoDB estables: `http://mcps.lab.aranea.cl:3003/mcp` (`aranea-mongo-forge-ro`) y `http://mcps.lab.aranea.cl:3004/mcp` (`aranea-mongo-forge-rw`). Los backends no publican host ports.
 - Mongo RO fue certificado con 18 tools sin mutadores; Mongo RW con 27 tools, incluyendo `insert-many`, `update-many`, `delete-many`, `create-*`, `drop-*` y `rename-collection`. El path normal usa `connectionId="preconfigured"`.
 - El MongoDB de desarrollo mantiene `security.authorization` desactivado por decisión owner mientras Forge está en desarrollo; no se hardenea como parte de T4. La separación agent-facing sigue protegida por bearer + split RO/RW MCP. `mongosh` nativo permanece válido para operación humana.
-- Cursor/Daedalus muestra conectados los cinco MCP actuales: `aranea-ssh`, PostgreSQL RO/RW y Mongo Forge RO/RW.
-- La fuente canónica agent-facing del capability plane es [[aranea-mcps-expert]] (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`), exclusiva de Aranea y explícitamente prohibida para MELI/corporativo. Los runbooks mecánicos viven en AGENTS OS: [[aranea-ssh-mcp]], [[aranea-postgres-mcp]], [[aranea-mongodb-mcp]] y [[aranea-mcp-capability-plane]]. Las skills de dominio sólo deciden qué evidencia necesitan.
+- Hasura MCP quedó cerrado end-to-end con dos capabilities: `aranea-hasura-prod-ro` en `http://mcps.lab.aranea.cl:3005/mcp` y `aranea-hasura-dev-admin` en `http://mcps.lab.aranea.cl:3006/mcp`. Ambos backends son internos y sólo Nginx publica host ports.
+- Hasura DEV administra el control plane con 9 tools (`apply_metadata`, `clear_metadata`, `drop_inconsistent_metadata`, `export_metadata`, `get_inconsistent_metadata`, `get_schema`, `get_version`, `reload_metadata`, `run_sql`). Hasura PROD usa una variante strict-RO construida desde source pinneado y expone exactamente 4 tools server-side: `export_metadata`, `get_inconsistent_metadata`, `get_schema`, `get_version`; no existe `run_sql`, reload ni mutadores de metadata.
+- Cursor real certificó ambos Hasura MCP contra GraphQL Engine CE `v2.38.0` con metadata consistente. El `mcp_auth` mostrado por Cursor en PROD no apareció en `tools/list` server-side y no se considera parte de la superficie Hasura ni ampliación de autoridad.
+- Cursor/Daedalus tiene actualmente siete capabilities MCP certificadas: `aranea-ssh`, PostgreSQL RO/RW, Mongo Forge RO/RW y Hasura PROD RO/DEV admin.
+- La fuente canónica agent-facing del capability plane es [[aranea-mcps-expert]] (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`), exclusiva de Aranea y explícitamente prohibida para MELI/corporativo. Los runbooks mecánicos viven en AGENTS OS: [[aranea-ssh-mcp]], [[aranea-postgres-mcp]], [[aranea-mongodb-mcp]], [[aranea-hasura-mcp]] y [[aranea-mcp-capability-plane]]. Las skills de dominio sólo deciden qué evidencia necesitan.
 - `echo-forge-wfm-troubleshooting` fue refactorizada para conservar routing/conocimiento de dominio y delegar cualquier operación `aranea-*` a `aranea-mcps-expert`, eliminando duplicación de endpoints/permisos/transport semantics.
 - Hardening genérico no necesario para desbloquear el uso actual — validación explícita de sesiones background, timeout extremo y revisión operativa de audit trail — se difiere a T6, donde se consolidarán health/logs/rotación/rollback y runbook transversal.
 
@@ -98,7 +101,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 > - [x] T3 Seleccionar y validar PostgreSQL MCP con una sola base de desarrollo: perfiles RO/RW, credencial centralizada, límites de query/timeout y convivencia con `psql` nativo #owner/agent #type/admin #area/aranea
 > - [x] T4 Seleccionar y validar MongoDB MCP con una sola base de desarrollo: perfiles RO/RW, `readOnly`/protecciones equivalentes, límites de consulta y convivencia con `mongosh` nativo #owner/agent #type/admin #area/aranea
 > - [ ] T5 **DEFERRED** — Seleccionar y validar Temporal MCP: comenzar read-only con allowlist de namespaces; evaluar `signal/start/cancel` sólo después de demostrar la necesidad y el modelo de policy correspondiente #owner/agent #type/admin #area/aranea
-> - [ ] T6 Consolidar los cuatro MCP aprobados en el host central, integrar al menos Hermes y Daedalus, demostrar que ambos consumen capabilities sin recibir credenciales reales de los servicios destino, y dejar health checks, logs/audit, background/timeout si aportan valor, rotación/rollback y runbook operativo mínimo #owner/agent #type/admin #area/aranea
+> - [ ] T6 Consolidar las capabilities aprobadas en el host central, integrar al menos Hermes y Daedalus, demostrar que ambos consumen capabilities sin recibir credenciales reales de los servicios destino, y dejar health checks, logs/audit, background/timeout si aportan valor, rotación/rollback y runbook operativo mínimo #owner/agent #type/admin #area/aranea
 > - [/] OBS0 Verificar baseline ARGUS sin mutaciones: sampling Jaeger real, servicios Jaeger reales, policy ISM `jaeger-30d-delete` y aplicación efectiva sobre índices Jaeger #owner/agent #type/research #area/aranea
 > - [ ] OBS1 Comparar Forge telemetry contra Echo golden baseline y demostrar E2E con acción real → trace real → Jaeger → spans esperados → logs correlacionables #owner/agent #type/research #area/aranea
 > - [ ] OBS2 Cerrar correlación operacional `logs ↔ trace_id ↔ Jaeger` y semántica mínima de errores sin promover IDs de alta cardinalidad a labels Prometheus #owner/agent #type/research #area/aranea
@@ -108,6 +111,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
+- **2026-09-12** — Hasura MCP workstream `PASS / CLOSED`. Se desplegaron y certificaron `aranea-hasura-dev-admin` (`:3006`) y `aranea-hasura-prod-ro` (`:3005`) contra Hasura CE `v2.38.0`. DEV expone 9 tools admin. PROD no confía sólo en upstream `--read-only`: usa variante strict-RO desde commit `9ba59f273daf42205919e6d43e27d2876a6e0b32`, sin `run_sql`/reload/mutadores y con exactamente 4 tools server-side. Ambos fueron validados desde Cursor con metadata consistente; secretos upstream permanecen server-side en `mcps`.
 - **2026-09-12** — Proyecto existente **EXTEND**, no CREATE: ARGUS/Observability pasa a ser el workstream inmediato del MCP Access Plane. Se registra el baseline de pipelines separados Jaeger vs OTel Collector, Echo como golden baseline, targets MCP RO futuros y gates OBS0–OBS5. T5 Temporal queda diferido. No se modifica runtime ARGUS ni se declara sampling/retención cerrados sin evidencia actual.
 - **2026-09-11** — `aranea-mcps-expert` quedó canónica en el vault (`30-resources/agents/skills/`) y los runbooks en AGENTS OS. Symphony conserva sólo un pointer de discovery.
 - **2026-09-11** — T4 MongoDB MCP cerrado end-to-end. Se adoptó `mongodb-js/mongodb-mcp-server` v2.1.1 pinneado a `2e8eae98d1301ca48f1e81273a3f3d5c5820f216`, imagen `local/mongodb-mcp:2.1.1-2e8eae9`. Deployment final separa backend+proxy RO (`:3003/mcp`) y RW (`:3004/mcp`), con bearer obligatorio y backends sin host port. RO expone 18 tools sin mutadores; RW 27 tools con mutación. Cursor/Daedalus muestra ambos capabilities conectados junto con SSH y PostgreSQL. Mongo `security.authorization` queda deliberadamente OFF durante desarrollo por decisión owner; hardening DB se pospone al freeze productivo. Se creó `aranea-mcps-expert` como única fuente agent-facing de capabilities Aranea y `echo-forge-wfm-troubleshooting` quedó reducida a routing de dominio.
@@ -150,6 +154,8 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - D20: la skill canónica `aranea-mcps-expert` vive en el vault bajo `30-resources/agents/skills/`; los runbooks mecánicos viven en `80-agents/memory/public/runbook/`. `80-agents/skills/` queda reservado al core AGENTS OS. Symphony puede conservar un pointer de discovery, no una segunda autoridad.
 - D21: ARGUS/Observability se incorpora como workstream principal del MCP Access Plane. Jaeger se conserva; Echo es golden baseline; sampling/retención se verifican antes de mutar; accesos agent-facing nuevos parten read-only.
 - D22: observabilidad no reutiliza por defecto identidades o privilegios existentes sólo por conveniencia. `aranea-observability-ro` y `aranea-jaeger-ro` deben demostrar boundaries read-only propios antes de considerarse cerrados.
+- D23: Hasura se integra como admin/control-plane MCP, no como GraphQL data-plane. DEV usa `aranea-hasura-dev-admin`; PROD usa `aranea-hasura-prod-ro`; CRUD genérico de datos sigue prefiriendo PostgreSQL MCP.
+- D24: Hasura PROD exige tool surface strict-RO verificable. El upstream `--read-only` no basta si conserva tools administrativas; la variante certificada elimina `run_sql`, `reload_metadata` y mutadores, dejando exactamente cuatro tools de inspección server-side.
 
 ## 🔗 Docs / Links
 
@@ -157,7 +163,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - [[AGENT-PLATFORM-OWNER-PROJECT]] — cockpit humano padre.
 - [[aranea-mcps-expert]] (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`) — contrato canónico de selección/uso de capabilities MCP Aranea.
 - `xKoRx/symphony/.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` — routing de dominio Echo Forge/WFM; delega acceso MCP a `aranea-mcps-expert`.
-- [[aranea-ssh-mcp]] · [[aranea-postgres-mcp]] · [[aranea-mongodb-mcp]] · [[aranea-mcp-capability-plane]] — runbooks mecánicos en AGENTS OS.
+- [[aranea-ssh-mcp]] · [[aranea-postgres-mcp]] · [[aranea-mongodb-mcp]] · [[aranea-hasura-mcp]] · [[aranea-mcp-capability-plane]] — runbooks mecánicos en AGENTS OS.
 
 ## 💡 Ideas
 
@@ -172,6 +178,6 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ### Memoria pública / interna
 
-- **Memoria pública:** este proyecto conserva decisiones y estado durable; los contratos operativos de SSH/PostgreSQL/MongoDB ya viven en los runbooks AGENTS OS enlazados.
+- **Memoria pública:** este proyecto conserva decisiones y estado durable; los contratos operativos de SSH/PostgreSQL/MongoDB/Hasura viven en los runbooks AGENTS OS enlazados.
 - **Memoria interna:** no se crea memoria adicional mientras el planificador contenga todo el estado necesario.
 - **Motivo:** evitar duplicar el roadmap o la autoridad de acceso fuera del proyecto.
