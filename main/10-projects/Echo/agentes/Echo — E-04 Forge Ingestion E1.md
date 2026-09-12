@@ -90,7 +90,7 @@ echo.strategy_identity_mappings + strategy_versions + promotion_records  # E-03,
 artifact_root/sha256/<hex>   # copias operativas
 ```
 
-Ningún cambio a `v3/sdk/contracts/**`. Ningún MQL. Ningún merge a master.
+Ningún cambio a `v3/sdk/contracts/**`. Ningún MQL. Este TOP no ejecuta merge a master (CONTROLLED INTEGRATION habilitada, no corrida).
 
 ## 🕸️ Dependency graph
 
