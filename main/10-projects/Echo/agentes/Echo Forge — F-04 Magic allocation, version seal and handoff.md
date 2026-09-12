@@ -31,7 +31,7 @@ updated: "2026-09-12"
 %% Naming: Echo Forge — F-04 Magic allocation, version seal and handoff es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo Forge — F-04 Magic allocation, version seal and handoff
-> **Área:** [[Echo]] · **Estado:** review · **Prioridad:** P1 · **Parent:** [[Echo Forge — Factory V2 Completion]] · **Repo:** `xKoRx/symphony`
+> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo Forge — Factory V2 Completion]] · **Repo:** `xKoRx/symphony`
 > Subproyecto de implementación de la fase F-04. Contrato: [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]].
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente

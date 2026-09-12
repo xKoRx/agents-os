@@ -38,7 +38,7 @@ updated: "2026-09-12"
 
 Esta Resource es el contrato técnico de `F-04 — Magic Allocation, Version Seal and Handoff`. Define qué debe quedar cierto. La ejecución vive en [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. No es un tutorial. No crea un tercer dominio Integration.
 
-Baseline de source: `xKoRx/symphony@382f4ba5d417371f778e21619ed9eb72624a23f4` (`origin/master` verificado 2026-09-10, worktree CLEAN). S0 certificado: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33` (CONTRACT_PASS; implementación E-01 `08a0eb9a83813cda2acbd7be5232e9e0370e12ab`). Agents OS: vault local **sin** `.git`; lookup de SHA live **degraded**; última authority durable registrada en journal: `f1070bec27db3ca415fe24f3c3576139674b7e09` (E-01 S0, citada por TOP F-02/F-03). No se inventa SHA de vault.
+Baseline de source F-04: `xKoRx/symphony@9fad768ccd1f9d25ebb535a2d26edb3d74556c10` (`feature/f04-magic-version-handoff`; merge `ea8be76` + `origin/master` `0b9742b`; verificado 2026-09-12). Dirty foráneo `phase4_performance.json` preservado. S0 certificado: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Consumer E-04: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`. Agents OS: vault local **sin** `.git`; lookup de SHA live **degraded**; última authority durable de journal: `f1070bec27db3ca415fe24f3c3576139674b7e09`. No se inventa SHA de vault.
 
 `DATABASE MIGRATION: 015_strategy_magic_version_seal_handoff`. Tablas nuevas write-once; cero reescritura destructiva de historia. No backfill de magic `888111`/`11111`.
 
@@ -46,7 +46,7 @@ Baseline de source: `xKoRx/symphony@382f4ba5d417371f778e21619ed9eb72624a23f4` (`
 
 ### Problema
 
-Finalist V2 ya es membership estructural, pero Forge no produce un paquete exportable que Echo pueda ingerir. Hoy el magic es un entero de TaskSpec/ETCD (casi siempre `888111`), se asume requested==applied sin readback, no hay allocator durable ni UNIQUE, no existe `StrategyVersion` ni `HandoffManifestV1`, y no hay adapter Forge→Echo. Un “latest folder” o un POST profundo no es autoridad.
+T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. El gap T2 es que el compile físico deja EX5/log durables **sin** `compile_evaluation_ref` (`domain.EvaluationRef`) para `BuildLineage`. No latest, no SHA-as-ref. HTTP Echo real y PHYSICAL host siguen pendientes de NORMAL.
 
 ### Veredicto central
 
@@ -238,6 +238,8 @@ Fuente: compile físico (`ArtifactCompiler.Compile` / `mt5_compile_artifact` en 
 | Producer | component `sqx-mt5-compile`; contract_version y build_ref `mt5-compile.v1` |
 | Artifacts | INPUT `STRATEGY_MQ5`; OUTPUT `EX5`; EVIDENCE `LOG` |
 | Payload | `{schema:mt5-compile-payload.v1, result:success, error_count:0}` |
+| ConfigurationSnapshot | `{schema:mt5-compile-config.v1, compiler:"MetaEditor64 /portable", platform:MetaTrader5}` — no `{}` |
+| Variant | `{schema:mt5-compile-variant.v1, operation:compile}` |
 | EvaluationRef | `domain.NewEvaluationRef(stageRef, subject.Digest, scopeDigest, "mt5-compile.v1")` |
 | Cardinality | 1 success StageExecution → 1 EvaluationRef; 0 → no seal; >1 → CONTRACT_CONFLICT |
 | Persist seam | `executeMT5ArtifactTask` after V1 compile success → `mt5_compile_persist_v1` on **sqx-worker**, never mt5-queue |
@@ -388,11 +390,13 @@ Brownfield test: strategies preexistentes **sin** fila magic; Apply legacy sigue
 
 ### PHYSICAL
 
-Cuando CC = `CC_READY`: allocation real, stamp, compile, readback, artifact bytes, seal. Sin CC, PHYSICAL de allocation de producción **no se finge**. Stamp/readback/compile pueden usarse en lab con magic fixture **sin** declararlo PHYSICAL PASS de catálogo.
+Host mínimo para cert T2 (operacional, no planning STOP): (1) SQX/sqcli con licencia válida — expired → STOP owner, sin trial-key; (2) MetaEditor64 `/portable` en worker `sqx-mt5-queue`; (3) PG control plane + Mongo evidence + object store; (4) HTTP Echo promotions reachable. No convertir viewers read-only en workers. `mt5-kronos` inaccesible es blocker de ejecución NORMAL, no de este contrato.
+
+Magic V1 catálogo ya existe. PHYSICAL de allocation de producción no se finge si el host no puede stamp+compile. Lab con magic fixture no es PHYSICAL PASS.
 
 ### INTEGRATION
 
-Con E-04 certificado: mismo S0 pin, mismos bytes/digest, handoff aceptado, receipt convergente. **No fingir INTEGRATION PASS con mock.** Hasta entonces: CONTRACT PASS con fakeconsumer.
+E-04 consumer READY `@ a99f9a6`. T21/AC-37 espera golden auténtico: Finalist real → manifest canónico → `POST /api/v1/forge/promotions` → receipt `INGESTED` → GET by-key. **No fingir INTEGRATION PASS con mock.** CONTRACT puede seguir usando `fakeconsumer` hasta T2.9.
 
 ## Invariantes / STOP
 
@@ -402,14 +406,14 @@ NORMAL no decide architecture. STOP/PLAN_CONFLICT si: se pretende que Echo posea
 
 ## Evidencia y provenance
 
-- Symphony `382f4ba5d417371f778e21619ed9eb72624a23f4` CLEAN; `origin/master` coincidente.
-- S0 `91671f6f46ffa889a79aed0979cb3b4e5821ed33`; impl `08a0eb9a`.
-- Graphify + source: Apply/Java stamp, compiler, registry 001–014 sin magic, no StrategyVersion.
-- Live Authority §3 StrategyVersion + `sqx.strategy_magic`; SDK §§9–13 FR-1…FR-5; Factory V2 F-04 hypothesis allocation-before-Apply.
+- Symphony `9fad768ccd1f9d25ebb535a2d26edb3d74556c10`; `origin/master` `0b9742b` ancestro; dirty foráneo `phase4_performance.json` preservado.
+- S0 `91671f6f`; E-04 consumer `a99f9a6`.
+- Source: compile físico sin EvaluationRef; persist analog `persistMT5ReconcileV1`; producer `BuildHandoffManifest` ya copia `CompileEvaluationRef`.
+- Live Authority §3; D16 compile Evaluation frozen 2026-09-12; MIGRATION 017 NO.
 
 ## Límites y contradicciones
 
 - El one-liner de producto `FINALIST → ALLOCATE → STAMP` se interpreta como **capacidad de entrega** (solo un Finalist sale hacia Echo). La secuencia técnica frozen es allocation-before-Apply. No contradice S0.
 - CC ausente no bloquea CONTRACT; bloquea PHYSICAL de allocation de producción.
-- E-04 To Do: CONTRACT ≠ INTEGRATION.
-- Echo local checkout puede no estar en `91671f6f`; el pin se lee por `git show` sin modificar echo.
+- E-04 INTEGRATED `@ a99f9a6`: CONTRACT ≠ INTEGRATION. T21 espera golden auténtico de Forge.
+- Echo local checkout puede no estar en el pin S0; el pin se lee por `git show` sin modificar echo.

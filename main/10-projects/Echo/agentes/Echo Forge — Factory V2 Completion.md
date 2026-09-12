@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-07"
-updated: "2026-09-11"
+updated: "2026-09-12"
 ---
 
 # Echo Forge — Factory V2 Completion
