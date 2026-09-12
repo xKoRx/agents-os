@@ -102,26 +102,124 @@ Magic TaskSpec: `sqx/core/runtime/config.go` `ApplySelectedRunTaskConfig.MagicNu
 | D13 post-commit | TECHNICAL_RESOLUTION | timeout post-commit → `UNKNOWN_RECEIPT`; no re-POST | S0 G35; this SPEC | 1 |
 | D14 migration | TECHNICAL_RESOLUTION | `015_strategy_magic_version_seal_handoff` | last 014 | 1 |
 | D15 hashes | TECHNICAL_RESOLUTION | keep HashIdentity on Apply Evaluation internals; S0 recipes only on seal/handoff/allocation_ref | FR-4 | 1 |
+| D16 compile_evaluation_ref | TECHNICAL_RESOLUTION | Autoridad = `domain.EvaluationRef` de un compile StageExecution `mt5_compiler@mt5-compile.v1` persistido en Mongo EvaluationEvidence + `sqx.stage_execution_results`. Produce sólo tras compile físico success verificado. Cardinalidad 1. Recovery por ref exacta / `LoadEvaluation`, nunca latest. MIGRATION 017 NO. | Durable Foundation; `persistMT5ReconcileV1` analog; this TOP 2026-09-12 | 2 |
+
+## Technical resolution — compile Evaluation (frozen 2026-09-12)
+
+Hipótesis preferida **aceptada con prueba de source**. `EvaluationEvidence` existente representa compile; `ResolveStageExecution` / `PutEvaluation` / `CompleteStageExecution` / `LoadStageExecutionResults` / `LoadEvaluation` ya sellan refs inmutables. No hay stage contract compile hoy (`mt5_compiler@` ausente); se congela uno nuevo con la fórmula canónica `CanonicalStageKey(taskType, producerContractVersion)`, no un identity system nuevo.
+
+### Source trace (authority → símbolo → identidad durable → replay)
+
+1. **Caller ArtifactTaskRequest:** `generic_workflow.go` `executeMT5CompilerTask` → `executeMT5ArtifactTask` → `startMT5ArtifactChildren`. Identidad de routing: `RequestID` + `SourceKey`; durable: `FlowIntentToken`+`FlowRunRef`+`TaskPath`+`StrategyRef`+`SourceArtifact`. Replay Temporal: child workflow ID `MT5ArtifactChildWorkflowID`; no es EvaluationRef.
+2. **StageExecution compile (hoy ausente):** debe crearse como Apply/MT5 reconcile, no existe en compile. Identidad futura: `NewStageExecutionIdentity` `TaskType=mt5_compiler` `ProducerContractVersion=mt5-compile.v1` subject STRATEGY `Generation=1`. Replay: `ResolveStageExecution` converge por `execution_intent_key`; retry Temporal no crea otro slot.
+3. **Child workflow:** `MT5CompileArtifactWorkflow` → `ExecuteMT5CompileArtifactActivity`. Identidad Temporal only. Replay: MaximumAttempts ilimitado; contract/source_not_found non-retryable.
+4. **Compile activity:** `MT5ArtifactActivities.CompileArtifact` (`mt5_compile_artifact`) en `sqx-mt5-queue`. Resultado `ArtifactTaskResult` (EX5/log/source). Retry infra; functional fail retorna `Status=failed` error nil — **no Evaluation**.
+5. **Compiler físico:** `mt5.ArtifactCompiler.Compile` / `evaluateCompileArtifacts`. Bytes EX5+log en MinIO. SHA/size son integridad de artifact, no EvaluationRef.
+6. **Evidence writer comparable:** `apply-selected-run/binding.BuildEvidence` + `DurableApplySelectedRunActivity.persistApplyEvidenceAndComplete`; MT5 analog `adapters/mt5/binding.PersistEvidence` llamado desde `persistMT5ReconcileV1` en **parent queue** (`sqx-worker`), no en Windows.
+7. **Helpers Evaluation:** `domain.NewEvaluationRef(stageExecutionRef, subject.Digest, scopeDigest, producerContractVersion)`; Apply `BuildEvidence`; MT5 `binding.BuildSubject`/`BuildScope`.
+8. **PutEvaluation:** `capabilities.ImmutableEvidenceStore.PutEvaluation` → `adapters/metadata-mongo/evidence_store.go`. Same digest ACK; distinct digest CONTRACT_CONFLICT.
+9. **CompleteStageExecution:** `ControlPlane.CompleteStageExecution` inserta `sqx.stage_execution_results` y sella COMPLETED. Replay same ref set ACK; distinct set CONTRACT_CONFLICT. Empty set sólo si no hay producer-output.
+10. **Exact readback:** `LoadStageExecutionResults(exact StageExecutionRef)` + `LoadEvaluation(exact EvaluationRef)`. Apply `recoverCompleted` exige `len(EvaluationRefs)==1`.
+11. **Finalist V2:** `generic_workflow.go` `runFinalistPromotion` → `FinalistPromotionActivityName`. Decision write-once. Membership estructural; rank no entra.
+12. **StrategyVersion seal:** `ControlPlane.SealStrategyVersion` / `domain.StrategyVersionIdentity.Ref` receta S0. Capacidades `VerifyMagicReadback` + `VerifyCompiledArtifactForSeal` existen **sin caller productivo**.
+13. **Handoff producer:** `forge.BuildHandoffManifest` copia `HandoffArtifacts.CompileEvaluationRef` a S0 `BuildLineage`. Callers productivos: **ninguno** (sólo tests). Delivery: `capabilities.DeliverHandoff` + `echo-handoff.FakeConsumerIngress`.
+
+### Compile Evaluation contract
+
+| Campo | Valor frozen |
+|---|---|
+| `stage.key` | `mt5_compiler` (TaskSpec.Type vivo) |
+| `stage.contract_version` | `mt5-compile.v1` |
+| StageKey | `mt5_compiler@mt5-compile.v1` |
+| Subject | `STRATEGY` / StrategyRef UUID / digest `HashIdentity("mt5-compile-strategy-subject.v1", JSON {schema,strategy_ref})` — artefact SHA no entra al subject |
+| InputEvaluationRefs | exactamente uno: role `source_evaluation` = `StrategyArtifact.EvaluationRef` del carrier (la Evaluation SQX que `mt5_exporter` ya `LoadEvaluation`). Compile persist **no** busca Apply por latest. Assembler F-04 exige que esa Evaluation tenga `Stage.Key=apply_selected_run` y `ContractVersion=sqx-apply-selected-run.v1`; si no, no seal/handoff |
+| Scope JSON | `{"schema":"mt5-compile-scope.v1","platform":"MetaTrader5","compiler":"MetaEditor64 /portable"}`. Prohibido: host, worker, Temporal IDs, timestamps, request ID, artifact SHA |
+| ScopeDigest | `HashIdentity("mt5-compile-scope.v1", canonical JSON)` |
+| Producer.component | `sqx-mt5-compile` |
+| Producer.contract_version | `mt5-compile.v1` (identidad semántica; participa en EvaluationRef) |
+| Producer.build_ref | `mt5-compile.v1` (provenance de contrato, no git SHA; igual convención Apply) |
+| Artifacts | INPUT `STRATEGY_MQ5` = source MQ5 durable; OUTPUT `EX5` = PrimaryDurable; EVIDENCE `LOG` = compile log durable. SQX es dependencia upstream vía `source_evaluation`, no INPUT directo del compile |
+| Payload | `{"schema":"mt5-compile-payload.v1","result":"success","error_count":0}` — no duplicar bytes ya en ArtifactRef |
+| ConfigurationSnapshot | `{"schema":"mt5-compile-config.v1","compiler":"MetaEditor64 /portable","platform":"MetaTrader5"}` — no `{}` |
+| Variant | `{"schema":"mt5-compile-variant.v1","operation":"compile"}` |
+| EvaluationRef | `domain.NewEvaluationRef(stageRef, subject.Digest, scopeDigest, "mt5-compile.v1")` |
+| CreatedAt | metadata only; no identidad (igual MT5 evidence) |
+
+### Success / failure
+
+- **Success:** EX5 non-empty + SHA/size match + compile log `Result: 0 errors` + source MQ5 SHA == expected `SourceArtifact` (`VerifyCompiledArtifactForSeal` **antes** de `ResolveStageExecution`). Entonces Persist: Resolve → PutEvaluation → CompleteStageExecution(`[exactly 1 ref]`).
+- **Functional failure:** no Evaluation de éxito; no Complete con ref usable. No crear fila StageExecution (parser-before-write como `mt5_reconcile_v1`). No es candidato de seal/handoff.
+- **Infra / cancel:** error retryable; sin fake success; StageExecution no se abre. Cancel Temporal nativa del compile activity.
+
+### Replay / UNKNOWN_COMMIT / cardinality
+
+- Mismo StageExecution + mismos bytes/evidence → mismo EvaluationRef (PutEvaluation ACK; Complete ACK).
+- Mismo slot + contenido inmutable distinto → PutEvaluation / Complete `CONTRACT_CONFLICT` (payload digest o result set).
+- Evidence ACK perdido: retry recomputa el mismo ref y `LoadEvaluation(exact)`; no latest.
+- UNKNOWN_COMMIT: retryable; `ResolveStageExecution` reconcilia UUID existente; un solo EvaluationRef.
+- Retry Temporal / Run ID distinto: no cambia `ExecutionIntentKey` ni EvaluationRef.
+- **Cardinalidad:** 1 StageExecution success → exactamente 1 EvaluationRef. 0 → no seal/handoff. >1 → `CONTRACT_CONFLICT`. Nunca first/latest.
+
+### Caller seam (no topología global)
+
+No se declara “compile always followed by seal”. Dos seams existentes y opt-in:
+
+1. **Produce (MUST):** `executeMT5ArtifactTask` tras compile `PersistenceModelV1` + `ArtifactStatusSuccess` → nueva activity `mt5_compile_persist_v1` en queue padre (`sqx-worker`), espejo de `persistMT5ReconcileV1`. El persist **no** corre en `sqx-mt5-queue`. Devuelve StageExecutionRef+EvaluationRef; el parent escribe `StrategyArtifact.CompileEvaluationRef` **sin** pisar `EvaluationRef` (Apply/source).
+2. **Consume (MUST):** `runFinalistPromotion` tras Decision V2 completed → activity `forge_seal_handoff_v1`. Por cada member: exact Finalist Decision + StrategyRef + MagicAllocation + Apply EvaluationRef (carrier `EvaluationRef` validado como Apply) + Compile EvaluationRef (carrier o `LoadStageExecutionResults` de la StageExecution re-resoluble por intent) + bytes verificados → `SealStrategyVersion` → `BuildHandoffManifest` → persist write-once → `DeliverHandoff`. G22: membership vacío → 0 manifests.
+
+`UseDurableMagicAllocation` debe setearse en `runDurableApplySelectedRun` para el path F-04; hoy el flag existe y el caller productivo lo deja false.
+
+### Migration
+
+**MIGRATION 017 REQUIRED: NO.** Mongo EvaluationEvidence + PG `stage_executions` + `stage_execution_results` expresan el hecho. 015/016 no-touch. Un reader `LoadStageExecutionIdentityByIntent` sería MAY sobre índice UNIQUE existente, no migración.
+
+### E-04 join (plan, no HTTP client en este TOP)
+
+Tras T2 compile+seal+handoff: Finalist real → manifest canónico → `POST /api/v1/forge/promotions` → receipt `INGESTED` → GET by-key → golden T21/AC-37. Consumer Echo `@ a99f9a63354bbe72219d1e590bb93757ed08e45e`. Puerto `HandoffIngress.Deliver(ctx, ns, *HandoffManifestV1, payloadDigest)`.
+
+### PHYSICAL (operacional, no planning blocker)
+
+Host mínimo para NORMAL cert: (1) SQX/sqcli con licencia válida para exporter MQ5 — si SQX reporta expired: STOP owner, sin trial-key; (2) MetaEditor64 `/portable` en worker `sqx-mt5-queue`; (3) PG control plane + Mongo evidence + object store; (4) reachability HTTP Echo promotions. No convertir viewers read-only en workers. `mt5-kronos` inaccesible es blocker de ejecución, no de este plan.
+
+### Dirty worktree
+
+`specs/FEAT-SQX-STRATEGY-EVALUATION/fixtures/phase4_performance.json` es dirty foráneo. NORMAL trabaja en worktree aislado o lo preserva. No restaurar/borrar/commitear en F-04.
 
 ## Planned diff
 
-Milestones internos (una sola fase F-04): allocation → stamp/readback → seal → handoff/adapter.
+Fase 1 (T1.x) **done** en `ea8be76`. Fase 2 (T2.x) implementa compile Evaluation + caller F-04 + HTTP E-04.
 
-**New:** `sqx/adapters/registry-postgres/migrations/015_strategy_magic_version_seal_handoff.{up,down}.sql`; `sqx/core/domain` magic allocation + StrategyVersion seal types wrapping S0; `sqx/core/capabilities` allocator + readback + seal + HandoffIngress ports; `sqx/adapters/magic-xml` / mq5 readback; `sqx/adapters/echo-handoff` port+fakeconsumer client; tests.
+### MUST
 
-**Mod:** `go.mod` require `github.com/xKoRx/echo/v3/sdk/contracts` pin `91671f6f` (nested module; GOWORK según módulo); Apply physical usa allocated magic; durable apply validate requested vs allocated; Finalist path llama producer sólo para members V2.
+- create `sqx/adapters/mt5-compile/binding/` (`contract.go`, `evidence.go`, `subject.go`) — no reusar `adapters/mt5/binding` (ese paquete es `mt5_backtesting@mt5-backtest.v1`)
+- create `sqx/activities/worker/mt5_compile_persist_activity.go` activity name `mt5_compile_persist_v1`
+- modify `sqx/cmd/sqx-worker/main.go` register persist (parent worker, **not** mt5-worker)
+- modify `sqx/workflows/generic_workflow.go` `executeMT5ArtifactTask`: tras compile V1 success llamar persist (espejo `persistMT5ReconcileV1`); `runFinalistPromotion` tras V2 → seal/handoff
+- modify `sqx/core/runtime/config.go` `StrategyArtifact.CompileEvaluationRef` omitempty; no pisar `EvaluationRef`
+- modify `sqx/workflows/durable_apply_selected_run_workflow.go` set `UseDurableMagicAllocation: true` en el path F-04
+- create `sqx/activities/worker/forge_seal_handoff.go` (`forge_seal_handoff_v1`) using existing `VerifyMagicReadback` / `VerifyCompiledArtifactForSeal` / `SealStrategyVersion` / `BuildHandoffManifest` / `DeliverHandoff`
+- create `sqx/adapters/echo-handoff/http_ingress.go` implementing `HandoffIngress` over Echo POST `/api/v1/forge/promotions` + GET by-key
+- tests: persist identity/replay/conflict/UNKNOWN_COMMIT/cardinality; assembler fail-closed sin compile eval; SOURCE greps no latest
 
-NORMAL no toca F-01 identity, F-02 promotion policy, B1/B2, F-03 timeouts, Adaptive, Slot Pool, Echo repo, SDK xKoRx/sdk.
+### MAY
+
+- `StageExecutionReader.LoadStageExecutionIdentityByIntent` sobre UNIQUE `execution_intent_key` (no migración)
+- `StageProducerOutput` para EX5 compile (Apply lo usa; compile locator no depende de StageExecution UUID)
+- campo `EvaluationRef` en `ArtifactTaskResult` (el persist result basta)
+
+### NO-TOUCH
+
+Migrations `015_strategy_magic_version_seal_handoff` y `016_magic_number_v1_allocator`. Magic V1 `YYMMIIIDSSS` / XAUUSD=001. F-01 CanonicalStrategyID. F-02 membership. F-03 SQX lifetime. B1/B2 ownership/takeover/Slot Pool. StrategyVersion S0 recipe. S0 `BuildLineage` fields. Echo source/DB. ranking-as-membership. delivery terminal semantics / `UNKNOWN_RECEIPT`. F-05. `adaptive_workflow.go`. `adapters/mt5/binding` backtest contracts. Foreign dirty `phase4_performance.json`. Invented EvaluationRef from SHA/key/workflow ID.
 
 ## No-touch
 
-F-01 CanonicalStrategyID/publication. F-02 policy `finalist_promotion@2.0.0`. F-03 timeouts. F-05. B1A/B1B/B2 Slot Pool/fencing/takeover. Echo source. S0 types (consume, don't fork). `adaptive_workflow.go`. Foreign dirty symphony. Invented CC ranges. Provisional Echo HTTP.
+F-01 CanonicalStrategyID/publication. F-02 policy `finalist_promotion@2.0.0`. F-03 timeouts. F-05. B1A/B1B/B2 Slot Pool/fencing/takeover. Echo source. S0 types (consume, don't fork). `adaptive_workflow.go`. Foreign dirty symphony. Invented CC ranges. Provisional Echo HTTP distinto de E-04. Magic V1 codec/catálogo. HashIdentity newline como `H()`.
 
 ## Execution sequence
 
-T1.1 pin S0 + inequality HashIdentity≠H() → T1.2 migration 015 → T1.3 allocator CAS → T1.4 CC gate/fixture source → T1.5 Apply uses allocated → T1.6 XML readback → T1.7 MQ5 readback → T1.8 mismatch fail-closed → T1.9 compile byte verify → T1.10 seal → T1.11 manifest producer → T1.12 handoff store write-once → T1.13 adapter+fakeconsumer → T1.14 delivery states → T1.15 corpus G04–10/G19–25/G22 → T1.16 concurrency → T1.17 BWC no backfill → T1.18 SOURCE greps.
+T1.1–T1.18 **done**. T2.1 binding → T2.2 persist activity → T2.3 wire `executeMT5ArtifactTask` → T2.4 carrier `CompileEvaluationRef` → T2.5 recovery/UNKNOWN_COMMIT/cardinality tests. T2.6 `UseDurableMagicAllocation` caller. T2.7 seal assembler. T2.8 handoff assembler after Finalist V2. T2.9 HTTP ingress. T2.10 auth/config. T2.11 golden capture. T2.12 PHYSICAL. T2.13 cross-lane T21/AC-37.
 
-T1.6∥T1.7 after T1.5. T1.11 needs T1.10. T1.15 after T1.13. No T1.18 without T1.3+T1.8+T1.10+T1.13.
+T2.3 after T2.2. T2.4 with T2.3. T2.5 after T2.2. T2.6 ∥ T2.1–T2.5. T2.7 needs T2.3+T2.6. T2.8 needs T2.7. T2.9 after T2.8 CONTRACT. T2.11 after T2.8. T2.12/T2.13 PHYSICAL/INTEGRATION.
 
 ## Dependencies
 
@@ -152,6 +250,19 @@ F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E
 > - [x] T1.16 concurrent allocation same/different identity #owner/agent #type/dev #area/echo
 > - [x] T1.17 BWC no backfill 888111; brownfield sin fila magic #owner/agent #type/dev #area/echo
 > - [x] T1.18 SOURCE greps ownership/latest/ranking/HashIdentity-on-S0 #owner/agent #type/dev #area/echo
+> - [ ] T2.1 compile Evaluation binding contract `mt5-compile.v1` #owner/agent #type/dev #area/echo
+> - [ ] T2.2 `mt5_compile_persist_v1` activity + PutEvaluation/CompleteStageExecution #owner/agent #type/dev #area/echo
+> - [ ] T2.3 wire persist after durable compile success in `executeMT5ArtifactTask` #owner/agent #type/dev #area/echo
+> - [ ] T2.4 carrier `CompileEvaluationRef` exact pointer #owner/agent #type/dev #area/echo
+> - [ ] T2.5 exact recovery UNKNOWN_COMMIT cardinality CONTRACT_CONFLICT #owner/agent #type/dev #area/echo
+> - [ ] T2.6 `UseDurableMagicAllocation` productive caller #owner/agent #type/dev #area/echo
+> - [ ] T2.7 seal assembler exact Apply+Compile+readback+verify #owner/agent #type/dev #area/echo
+> - [ ] T2.8 handoff assembler after Finalist V2 #owner/agent #type/dev #area/echo
+> - [ ] T2.9 Echo HTTP `HandoffIngress` POST+GET by-key #owner/agent #type/dev #area/echo
+> - [ ] T2.10 Echo ingest auth/config #owner/agent #type/dev #area/echo
+> - [ ] T2.11 authentic Forge golden capture #owner/agent #type/dev #area/echo
+> - [ ] T2.12 PHYSICAL certification host capabilities #owner/agent #type/dev #area/echo
+> - [ ] T2.13 cross-lane smoke Echo T21/AC-37 #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
