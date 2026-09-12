@@ -56,6 +56,21 @@ Servicio destino
 
 **No introducir un patrón distinto sólo porque un nuevo MCP lo haga más fácil.** Una desviación requiere evidencia material y decisión explícita en [[AGENT-PLATFORM - MCP Access Plane]].
 
+## Boundary del host `mcps` — appliance de servicios MCP
+
+`mcps` es un **LXC dedicado a alojar servicios MCP containerizados mediante Docker/Portainer**. No es un workstation, jump host ni host de administración general.
+
+Hard rules:
+
+- No instalar clientes de servicios destino en el host (`psql`, `mongosh`, Hasura CLI, clientes Redis, etc.) para discovery, troubleshooting o convenience.
+- No depender de herramientas de administración del servicio destino instaladas en el LXC.
+- No convertir `mcps` en punto de acceso directo a PostgreSQL, MongoDB, Hasura u otros backends.
+- Discovery y administración se hacen desde el consumidor autorizado — por ejemplo Daedalus — usando capabilities MCP existentes, o desde la autoridad operativa propia del servicio cuando el MCP aún no existe.
+- Docker/Portainer, herramientas base del host y comandos de inspección de runtime (`docker`, `ss`, `find`, `cat`/`sed` sobre configuración propia del MCP) sí pertenecen al boundary del appliance.
+- Si una instalación exige tooling auxiliar, debe vivir en un container/artefacto explícito y descartable o en el host de administración correspondiente; no ensuciar el LXC por conveniencia.
+
+**Invariante:** `mcps` aloja y expone capabilities MCP; no se usa como cliente ad-hoc de los servicios que esas capabilities administran.
+
 ## Boundaries de seguridad
 
 ### 1. Dos secretos distintos
@@ -229,7 +244,7 @@ No introducir Compose como requisito implícito para una capability nueva. Adopt
 
 ### Gate A — discovery
 
-1. Identificar servicio destino real: host, puerto, versión, ambiente y auth.
+1. Identificar servicio destino real: host, puerto, versión, ambiente y auth **desde Daedalus/capabilities existentes o desde la autoridad operativa del servicio; no instalando clientes en `mcps`**.
 2. Definir capability y autoridad exactas antes de instalar.
 3. Seleccionar upstream MCP existente; pinnear release/commit/image. No `latest`.
 4. Verificar transporte. El access plane expone HTTP MCP; un upstream sólo-stdio requiere resolver ese gap **sin romper esta arquitectura**.
@@ -276,6 +291,8 @@ No cerrar una capability sólo porque `curl` responda o el container esté `Up`.
 
 No hacer:
 
+- instalar `psql`, `mongosh`, Hasura CLI u otros clientes del servicio destino en el host `mcps` para discovery/troubleshooting;
+- usar `mcps` como jump host o workstation de administración;
 - backend MCP publicado directamente al host por comodidad;
 - admin secret/password del servicio destino en Cursor o en un prompt;
 - bearer cliente→MCP reutilizado como credencial upstream;
@@ -287,7 +304,7 @@ No hacer:
 
 ## Discovery mínimo ante sospecha de drift
 
-No repetir auditoría completa. Verificar sólo:
+No repetir auditoría completa. Verificar sólo runtime del appliance:
 
 ```bash
 docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}'
