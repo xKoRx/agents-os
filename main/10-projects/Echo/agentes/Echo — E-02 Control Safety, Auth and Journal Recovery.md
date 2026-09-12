@@ -74,7 +74,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 ## TOP / NORMAL boundaries
 
-- TOP: SPEC/PLAN/TASKS/VERIFICATION, esta nota, linkage padre, gobernanza. Sin source Go/SQL/JS productivo (cumplido: commit docs-only).
+- TOP: SPEC/PLAN/TASKS/VERIFICATION, esta nota, linkage padre y gobernanza; la focused correction conserva el diseño E-02 y no agrega scope de producto.
 - NORMAL: T01–T10 y T12–T15 mecánicamente contra SPEC/PLAN v1.0.2. T11 permanece `[-]`. No inventa actores, clases de auth ni semántica de cuarentena. No reabre CommandID. Stop conditions: PLAN §8 (schema no-additive ⇒ AUTHORITY_CONFLICT; reabrir CommandID/planner/MM ⇒ SCOPE_CONFLICT; compose indisponible ⇒ PHYSICAL_PARTIAL documentado, jamás mock como PASS).
 - GOD: NONE.
 
