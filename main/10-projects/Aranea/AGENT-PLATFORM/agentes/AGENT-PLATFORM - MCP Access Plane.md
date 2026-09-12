@@ -68,14 +68,13 @@ updated: "2026-09-12"
 - La fuente canónica agent-facing del capability plane es [[aranea-mcps-expert]] (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`), exclusiva de Aranea y explícitamente prohibida para MELI/corporativo. Los runbooks mecánicos viven en AGENTS OS: [[aranea-ssh-mcp]], [[aranea-postgres-mcp]], [[aranea-mongodb-mcp]], [[aranea-hasura-mcp]] y [[aranea-mcp-capability-plane]]. Las skills de dominio sólo deciden qué evidencia necesitan.
 - `echo-forge-wfm-troubleshooting` fue refactorizada para conservar routing/conocimiento de dominio y delegar cualquier operación `aranea-*` a `aranea-mcps-expert`, eliminando duplicación de endpoints/permisos/transport semantics.
 - Hardening genérico no necesario para desbloquear el uso actual — validación explícita de sesiones background, timeout extremo y revisión operativa de audit trail — se difiere a T6, donde se consolidarán health/logs/rotación/rollback y runbook transversal.
-- Workstream `Kafka MCP / aranea-kafka-ro` abierto como **EXTEND** del proyecto existente:
-  - objetivo: inspección y diagnóstico read-only del Kafka real de Aranea;
-  - scope: RO;
-  - estado: `discovery / in-progress`;
-  - dependencia: Kafka real de Aranea;
+- Workstream Kafka MCP corregido a un rollout por entorno:
+  - **fase 1 / DEV:** Kafka real en LXC con ZooKeeper; capability objetivo `aranea-kafka-dev-admin`; agentes deben poder inspeccionar y administrar el cluster de desarrollo, incluyendo topics, configs, produce/consume, consumer groups y offsets;
+  - **fase 2 / PROD:** cluster Kafka KRaft de tres VMs distribuidas entre Zeus, Hera y Kronos; capabilities futuras separadas `aranea-kafka-prod-ro` y `aranea-kafka-prod-ops`;
+  - estado actual: `discovery / in-progress` exclusivamente sobre DEV;
   - deployment target: `mcps`;
   - client target inicial: `Daedalus`;
-  - endpoint/puerto, implementación y credenciales quedan sin congelar hasta discovery.
+  - endpoints/puertos, implementación y credenciales quedan sin congelar hasta discovery.
 
 ### ARGUS / Observability — baseline registrado 2026-09-12
 
@@ -110,7 +109,9 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 > - [x] T4 Seleccionar y validar MongoDB MCP con una sola base de desarrollo: perfiles RO/RW, `readOnly`/protecciones equivalentes, límites de consulta y convivencia con `mongosh` nativo #owner/agent #type/admin #area/aranea
 > - [ ] T5 **DEFERRED** — Seleccionar y validar Temporal MCP: comenzar read-only con allowlist de namespaces; evaluar `signal/start/cancel` sólo después de demostrar la necesidad y el modelo de policy correspondiente #owner/agent #type/admin #area/aranea
 > - [ ] T6 Consolidar las capabilities aprobadas en el host central, integrar al menos Hermes y Daedalus, demostrar que ambos consumen capabilities sin recibir credenciales reales de los servicios destino, y dejar health checks, logs/audit, background/timeout si aportan valor, rotación/rollback y runbook operativo mínimo #owner/agent #type/admin #area/aranea
-> - [/] KAFKA0 Descubrir el Kafka real de Aranea y validar boundary `aranea-kafka-ro`: bootstrap/security/listeners, network path desde `mcps`, implementación MCP y tool surface estrictamente RO antes de cualquier deployment #owner/agent #type/research #area/aranea
+> - [/] KAFKA0-DEV Descubrir el Kafka DEV real (LXC + ZooKeeper), validar bootstrap/security/listeners y network path desde `mcps`, seleccionar implementación MCP y certificar tool surface administrativa requerida para `aranea-kafka-dev-admin` antes del deployment #owner/agent #type/research #area/aranea
+> - [ ] KAFKA1-DEV Desplegar y validar `aranea-kafka-dev-admin` en `mcps`, con bearer independiente, secretos fuera de repo, backend no expuesto directamente, integración Daedalus/Cursor y smoke real de administración sobre DEV #owner/agent #type/admin #area/aranea
+> - [ ] KAFKA2-PROD **DEFERRED hasta cerrar DEV** — descubrir y diseñar boundaries `aranea-kafka-prod-ro` / `aranea-kafka-prod-ops` sobre el cluster KRaft de tres VMs Zeus/Hera/Kronos #owner/agent #type/research #area/aranea
 > - [/] OBS0 Verificar baseline ARGUS sin mutaciones: sampling Jaeger real, servicios Jaeger reales, policy ISM `jaeger-30d-delete` y aplicación efectiva sobre índices Jaeger #owner/agent #type/research #area/aranea
 > - [ ] OBS1 Comparar Forge telemetry contra Echo golden baseline y demostrar E2E con acción real → trace real → Jaeger → spans esperados → logs correlacionables #owner/agent #type/research #area/aranea
 > - [ ] OBS2 Cerrar correlación operacional `logs ↔ trace_id ↔ Jaeger` y semántica mínima de errores sin promover IDs de alta cardinalidad a labels Prometheus #owner/agent #type/research #area/aranea
@@ -120,7 +121,8 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
-- **2026-09-12** — Abierto `Kafka MCP / aranea-kafka-ro` como EXTEND del MCP Access Plane. Scope inicial RO, estado `discovery / in-progress`, dependencia Kafka real de Aranea, deployment target `mcps` y client target inicial `Daedalus`. No se congelan puerto, endpoint, implementación ni credenciales hasta completar discovery.
+- **2026-09-12** — Corrección de boundary Kafka: el rollout queda environment-first. DEV se implementa primero sobre el cluster LXC/ZooKeeper con capability administrativa `aranea-kafka-dev-admin`; debe permitir creación/eliminación de topics, cambios de configuración, produce/consume y administración/inspección de consumer groups/offsets. PROD queda diferido hasta cerrar DEV y se modelará sobre el cluster KRaft de tres VMs como capabilities separadas `aranea-kafka-prod-ro` y `aranea-kafka-prod-ops`. La entrada previa `aranea-kafka-ro` queda supersedida.
+- **2026-09-12** — Abierto inicialmente `Kafka MCP / aranea-kafka-ro` como EXTEND del MCP Access Plane; supersedido por la corrección de boundary del mismo día antes de cualquier cambio de infraestructura.
 - **2026-09-12** — Hasura MCP workstream `PASS / CLOSED`. Se desplegaron y certificaron `aranea-hasura-dev-admin` (`:3006`) y `aranea-hasura-prod-ro` (`:3005`) contra Hasura CE `v2.38.0`. DEV expone 9 tools admin. PROD no confía sólo en upstream `--read-only`: usa variante strict-RO desde commit `9ba59f273daf42205919e6d43e27d2876a6e0b32`, sin `run_sql`/reload/mutadores y con exactamente 4 tools server-side. Ambos fueron validados desde Cursor con metadata consistente; secretos upstream permanecen server-side en `mcps`.
 - **2026-09-12** — Proyecto existente **EXTEND**, no CREATE: ARGUS/Observability pasa a ser el workstream inmediato del MCP Access Plane. Se registra el baseline de pipelines separados Jaeger vs OTel Collector, Echo como golden baseline, targets MCP RO futuros y gates OBS0–OBS5. T5 Temporal queda diferido. No se modifica runtime ARGUS ni se declara sampling/retención cerrados sin evidencia actual.
 - **2026-09-11** — `aranea-mcps-expert` quedó canónica en el vault (`30-resources/agents/skills/`) y los runbooks en AGENTS OS. Symphony conserva sólo un pointer de discovery.
@@ -134,7 +136,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - **2026-09-10** — Primer circuito MCP completo validado: Daedalus resuelve y alcanza `mcps.lab.aranea.cl`, autentica con bearer, inicializa MCP Streamable HTTP y ejecuta `read-command("whoami")`; la private key SSH nunca se entrega a Daedalus.
 - **2026-09-10** — `ssh-mcp` v2.8.0 se construyó desde source pinneado (`v2.8.0`, commit `d2d769684701e0939c1d8e56cbdde3d77fed53ef`) como `local/ssh-mcp:2.8.0-d2d7696`. Smoke test stdio PASS; transporte HTTP PASS con health, bearer auth, allowed Host, rate limit y host-key strict.
 - **2026-09-08** — Primer acceso SSH real validado para `echo-dev`: `mcps` conecta a `sqx-zeus.lab.aranea.cl` mediante identidad dedicada, trust store dedicado y host-key strict; la sesión remota ejecuta como `echo-dev` en `sqx-ulab-zeus-0`.
-- **2026-09-08** — El perfil inicialmente llamado `sqx-dev` se renombra a `echo-dev` porque representa capacidad de desarrollo/diagnóstico de Echo/Echo Forge y no debe quedar acoplado al runtime SQX.
+- **2026-09-08** — El perfil inicialmente llamado `sqx-dev` se renombra a `echo-dev` porque representa capacidad de desarrollo/diagnóstico Echo/Echo Forge y no debe quedar acoplado al runtime SQX.
 - **2026-09-08** — T2 iniciado con `sqx-zeus.lab.aranea.cl` (`192.168.31.101`) como primer target. Host key ED25519 validada local/remotamente y agregada al trust store dedicado.
 - **2026-09-08** — DNS de `mcps` corregido: resolver directo Pi-hole `192.168.31.31`, search domain `lab.aranea.cl`.
 - **2026-09-07** — T0 cerrado. Se confirmó `mcps` como LXC dedicado con Docker + Portainer, IP actual `192.168.31.219`. El stack PostgreSQL anterior se bajó con `docker compose down`; fueron removidos sus 9 contenedores y la red `postgres_mcp_net`. Verificación posterior: sólo `portainer` permanecía activo.
@@ -166,6 +168,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - D22: observabilidad no reutiliza por defecto identidades o privilegios existentes sólo por conveniencia. `aranea-observability-ro` y `aranea-jaeger-ro` deben demostrar boundaries read-only propios antes de considerarse cerrados.
 - D23: Hasura se integra como admin/control-plane MCP, no como GraphQL data-plane. DEV usa `aranea-hasura-dev-admin`; PROD usa `aranea-hasura-prod-ro`; CRUD genérico de datos sigue prefiriendo PostgreSQL MCP.
 - D24: Hasura PROD exige tool surface strict-RO verificable. El upstream `--read-only` no basta si conserva tools administrativas; la variante certificada elimina `run_sql`, `reload_metadata` y mutadores, dejando exactamente cuatro tools de inspección server-side.
+- D25: Kafka se despliega por entorno y DEV va primero. `aranea-kafka-dev-admin` debe exponer la autoridad administrativa necesaria sobre el cluster DEV LXC/ZooKeeper. PROD se diseña después sobre KRaft como `aranea-kafka-prod-ro` y `aranea-kafka-prod-ops`, sin reutilizar por comodidad la autoridad de DEV.
 
 ## 🔗 Docs / Links
 
@@ -179,7 +182,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ### Backlog de ideas
 
-- Extender el access plane a MinIO/S3 y Kafka sólo después de demostrar que los workstreams activos reducen credenciales distribuidas y fricción operacional.
+- MinIO/S3 permanece como candidato futuro; Kafka ya está promovido a workstream activo con rollout DEV-first.
 
 ### Motivos / principios
 
