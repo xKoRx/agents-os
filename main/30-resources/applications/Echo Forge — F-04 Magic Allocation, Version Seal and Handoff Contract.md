@@ -11,7 +11,7 @@ sources:
   - "[[Echo Forge — F-01 Canonical Generation Concurrency Contract]]"
   - "[[Echo Forge — F-02 Finalist Model V2 Contract]]"
   - "[[Echo Forge — F-03 SQX Long-Running Contract]]"
-last_verified: "2026-09-10"
+last_verified: "2026-09-12"
 confidence: verified
 aliases:
   - F-04 SPEC

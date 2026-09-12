@@ -474,8 +474,131 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 - **DONE:** SOURCE scoped PASS.
 - **Deps:** T1.3+T1.8+T1.10+T1.13.
 
+### T2.1 compile Evaluation binding
+
+- **Modelo:** NORMAL
+- **Archivos:** create `sqx/adapters/mt5-compile/binding/{contract,evidence,subject}.go`
+- **Cambio:** constantes y `BuildEvidence`/`BuildStrategySubject`/`BuildEvaluationRef` exactos de D16. `CanonicalStageKey("mt5_compiler","mt5-compile.v1")`. No tocar `adapters/mt5/binding`.
+- **Authority:** D16; `domain.NewEvaluationRef`.
+- **Failure/retry:** Validate() fail = no persist.
+- **Tests:** same inputs same ref; subject ignores artifact SHA; scope excludes host/temporal.
+- **DONE:** `go test` del paquete binding; StageKey exacto.
+- **Stop:** inventar identity hash distinto de `NewEvaluationRef`.
+
+### T2.2 mt5_compile_persist_v1
+
+- **Modelo:** NORMAL
+- **Archivos:** create `sqx/activities/worker/mt5_compile_persist_activity.go`; register `sqx/cmd/sqx-worker/main.go`
+- **Cambio:** FetchDurable MQ5/EX5/log; `VerifyCompiledArtifactForSeal` **antes** de ResolveStageExecution; Resolve → PutEvaluation → CompleteStageExecution(`[one]`). Queue padre, no `sqx-mt5-queue`.
+- **Authority:** D16; analog `MT5ReconcileActivity.Execute` + Apply persist.
+- **Failure/retry:** functional fail no llama persist (T2.3). Infra/UNKNOWN_COMMIT retryable. CONTRACT_CONFLICT non-retryable.
+- **Tests:** success seals one ref; missing EX5/0-errors no abre StageExecution; replay ACK; distinct payload conflict.
+- **DONE:** activity registrada en sqx-worker; tests verdes `-race`.
+- **Stop:** persistir Evaluation desde SHA de EX5 o workflow ID.
+
+### T2.3 wire executeMT5ArtifactTask
+
+- **Modelo:** NORMAL
+- **Archivos:** `sqx/workflows/generic_workflow.go` `executeMT5ArtifactTask`
+- **Cambio:** si operation compile && PersistenceModelV1 && success, llamar persist (espejo `persistMT5ReconcileV1`). No persistir failed compiles. No asumir backtest después.
+- **Authority:** D16 caller produce seam.
+- **Tests:** workflow test V1 success invokes persist; failed compile does not; legacy model does not.
+- **DONE:** grep único caller productivo del persist.
+- **Deps:** T2.2.
+
+### T2.4 carrier CompileEvaluationRef
+
+- **Modelo:** NORMAL
+- **Archivos:** `sqx/core/runtime/config.go` `StrategyArtifact`; update en `executeMT5ArtifactTask` post-persist
+- **Cambio:** campo omitempty `CompileEvaluationRef`. No pisar `EvaluationRef` (source/Apply).
+- **Authority:** D16; carrier comment "exact upstream Evaluation".
+- **Tests:** apply eval preserved; compile ref set only on persist success.
+- **DONE:** JSON roundtrip carrier.
+- **Deps:** T2.3.
+
+### T2.5 recovery / UNKNOWN_COMMIT / cardinality
+
+- **Modelo:** NORMAL
+- **Archivos:** tests persist + control_plane pattern
+- **Cambio:** none production beyond T2.2 recoverCompleted analog.
+- **Tests:** LoadEvaluation exact after lost ACK; Complete replay same set; second distinct ref CONTRACT_CONFLICT; len!=1 fail-closed; Temporal attempt/run ID no cambia ref.
+- **DONE:** `-race` en persist tests.
+- **Deps:** T2.2.
+
+### T2.6 UseDurableMagicAllocation caller
+
+- **Modelo:** NORMAL
+- **Archivos:** `sqx/workflows/durable_apply_selected_run_workflow.go`
+- **Cambio:** set `UseDurableMagicAllocation: true` en el request productivo F-04. No rediseñar Magic V1.
+- **Authority:** existing flag in `DurableApplySelectedRunRequest`.
+- **Tests:** request flag true; mismatch requested≠allocated still fail-closed.
+- **DONE:** grep productivo del flag = 1 caller no-test.
+- **Stop:** dejar el flag false y sellar igual.
+
+### T2.7 seal assembler
+
+- **Modelo:** NORMAL
+- **Archivos:** create `sqx/activities/worker/forge_seal_handoff.go` (seal path)
+- **Cambio:** exact Apply+Compile evals; fetch SQX/MQ5/EX5/log; `VerifyMagicReadback` + `VerifyCompiledArtifactForSeal`; `SealStrategyVersion`. Sin compile eval o Apply stage mismatch → no seal.
+- **Authority:** existing `capabilities/strategy_version.go`; S0 recipe.
+- **Tests:** mismatch magic no seal; compile leftover failed no seal; same inputs same version ref.
+- **DONE:** seal write-once tests.
+- **Deps:** T2.3+T2.6.
+
+### T2.8 handoff assembler after Finalist V2
+
+- **Modelo:** NORMAL
+- **Archivos:** `forge_seal_handoff.go` + `generic_workflow.go` `runFinalistPromotion`
+- **Cambio:** tras Decision V2, por member `BuildHandoffManifest` con `CompileEvaluationRef=string(eval.Ref)` real; persist+`DeliverHandoff`. G22 cero members → 0 POST. Si el flow no tiene compile eval exacta, fail-closed para F-04 members.
+- **Authority:** `BuildHandoffManifest`; F-02 membership.
+- **Tests:** G22; non-member skip; missing compile eval no inventa ref.
+- **DONE:** producer llamado desde no-test.
+- **Deps:** T2.7.
+
+### T2.9 Echo HTTP HandoffIngress
+
+- **Modelo:** NORMAL
+- **Archivos:** create `sqx/adapters/echo-handoff/http_ingress.go`
+- **Cambio:** POST `/api/v1/forge/promotions` + GET by-key. Misma firma `HandoffIngress`. No fork S0. No escribir DB Echo.
+- **Authority:** E-04 SPEC v1.0.2 @ consumer `a99f9a6`.
+- **Tests:** CONTRACT sigue fakeconsumer; HTTP client tests no cuentan como CROSS_LANE GOLDEN.
+- **DONE:** adapter implementa el port; fakeconsumer intacto.
+- **Stop:** URL/path inventado distinto de E-04.
+
+### T2.10 auth/config
+
+- **Modelo:** NORMAL
+- **Archivos:** config/ETCD del HTTP ingress según contrato E-04 auth
+- **Cambio:** wiring de credenciales/base URL. Fail-closed si ausente. No secret en repo.
+- **Authority:** E-04 ingest auth.
+- **Tests:** missing auth no POST.
+- **DONE:** no secret en repo.
+- **Deps:** T2.9.
+
+### T2.11 authentic golden capture
+
+- **Modelo:** NORMAL
+- **Cambio:** exportar preimages reales (Decision V2, StrategyVersion, allocation, MQ5/EX5/log, manifest bytes+digest) versionados. No corpus S0. No builder sintético.
+- **DONE:** registro golden con hashes; `FORGE_GOLDEN_FIXTURE_PENDING=NO` sólo con bytes reales.
+- **Deps:** T2.8. PHYSICAL may gate this.
+
+### T2.12 PHYSICAL
+
+- **Modelo:** NORMAL
+- **Cambio:** none architecture. Host: sqcli licencia válida + MetaEditor64 `/portable` + PG/Mongo/object store. License expired → STOP owner. No viewers-as-workers.
+- **DONE:** evidencia física de stamp+compile+persist EvaluationRef. Sin host: `PHYSICAL: BLOCKED — entorno`, no fingir PASS.
+- **Deps:** T2.3.
+
+### T2.13 cross-lane T21/AC-37
+
+- **Modelo:** NORMAL
+- **Cambio:** POST golden auténtico a Echo `a99f9a6` → INGESTED → GET by-key. Cero activation. No modificar Echo source.
+- **DONE:** AC-37 PASS o explícito pending si PHYSICAL blocked.
+- **Deps:** T2.9+T2.11.
+
 ## 📆 Bitácora
 
+- **2026-09-12 (TOP compile Evaluation authority).** Baseline verificado: HEAD `9fad768` merge de `ea8be76`+`0b9742b`; `origin/master` ancestro; feature ahead 9. Dirty foráneo `phase4_performance.json` preservado. Source prueba: compile físico produce EX5/log durables pero **cero** StageExecution/Evaluation; Apply y `mt5_reconcile_v1` sí sellan EvaluationRef. D16 frozen: `mt5_compiler@mt5-compile.v1` + `NewEvaluationRef`; persist en sqx-worker analog reconcile; MIGRATION 017 NO. Caller: `executeMT5ArtifactTask` produce, `runFinalistPromotion` consume. T2.1–T2.13 To Do. PHYSICAL operacionalmente pending. E-04 consumer READY `@ a99f9a6`. Veredicto TOP READY.
 - **2026-09-12 (E-04 DEPENDENCY — FORGE GOLDEN FIXTURE).** Fetch completo y revisión de `master`/`origin/master` @ `0b9742b09019526a8119f086199d15d1f0d42cb1` y `feature/f04-magic-version-handoff`/`origin/feature/f04-magic-version-handoff` @ `ea8be76c4587b2d00e4cad8cf2a67c4fd8e6680f`; worktree limpio y `git diff --check` PASS. La feature no es descendiente del master actual (`merge-base --is-ancestor` devuelve 1), por lo que ambos pins quedan explícitos y no se mezclan.
 - **2026-09-12 (producer audit).** `rg` sobre `sqx/core`, `sqx/adapters`, `sqx/activities` y `sqx/workflows` encontró `BuildHandoffManifest` únicamente en la definición productiva y cuatro llamadas de `handoff_producer_test.go`; no existe caller no-test que lo alimente desde Decision V2, StrategyVersion sellada, MagicAllocation persistida y artefactos verificados. `go test -count=1 -race ./sqx/core/forge ./sqx/adapters/echo-handoff` PASS sólo certifica el contrato sintético.
 - **2026-09-12 (physical evidence audit).** El módulo S0 resuelto es `github.com/xKoRx/echo/v3/sdk/contracts@91671f6f46ff`; su corpus G04/G05/G12 contiene payloads de contrato, no preimages físicos de F-04. La feature no trackea `.mq5`, `.ex5` ni `compile.log`; su `testdata/v1` sólo contiene G06/G07/G20/G21/G22. En Zeus, Hera y Kronos, las búsquedas read-only no encontraron `handoff`, `StrategyVersion` o magic allocation; sólo aparecieron `.sqx` históricos y `.mq5` antiguos, sin `.ex5`/compile evidence del flujo F-04 actual.
@@ -489,7 +612,18 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 
 ## 🧭 Decisiones
 
-Ver Decision register. Manager debe autorizar NORMAL.
+Ver Decision register. D16 compile Evaluation **frozen**. Manager autoriza NORMAL T2.1–T2.13.
+
+### Acceptance gates T2
+
+| Gate | Owner | Pass when |
+|---|---|---|
+| SOURCE | NORMAL | grep F-04: no latest, no SHA-as-EvaluationRef, no Echo SQL, no HashIdentity on S0 recipes, persist not on mt5-queue |
+| CONTRACT | NORMAL | compile Evaluation identity/replay/conflict; Complete cardinality 1; assembler sin eval no sella; G22; fakeconsumer intacto |
+| CONCURRENCY | NORMAL | same StageExecution concurrent persist converges; distinct content CONTRACT_CONFLICT; `-race` |
+| MIGRATION | NORMAL | 017 absent; 015/016 untouched |
+| PHYSICAL | NORMAL | stamp+compile+persist EvaluationRef en host con sqcli+MetaEditor; license expired → STOP owner; sin host = BLOCKED entorno |
+| INTEGRATION | NORMAL | POST golden auténtico → Echo INGESTED + GET by-key (T21/AC-37); no mock PASS |
 
 ## 🔗 Docs / Links
 
@@ -505,7 +639,7 @@ Ver Decision register. Manager debe autorizar NORMAL.
 
 ### Backlog de ideas
 
-- Join INTEGRATION cuando E-04 certifique endpoint del mismo pin.
+- Join INTEGRATION T2.9–T2.13 contra Echo `@ a99f9a6` cuando Manager autorice NORMAL.
 
 ### Motivos / principios
 
