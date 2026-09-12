@@ -8,7 +8,8 @@ area: "[[Personal]]"
 project: "[[Echo Forge — F-04 Magic allocation, version seal and handoff]]"
 application:
 entities: []
-related: []
+related:
+  - "[[2026-09-12-f04-correction-session-feedback]]"
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
@@ -16,7 +17,7 @@ model_source: unknown
 task_type: coding
 task_complexity: high
 outcome: partial
-verification: not_run
+verification: partial
 evaluator: agent
 user_rework: unknown
 source_session:
