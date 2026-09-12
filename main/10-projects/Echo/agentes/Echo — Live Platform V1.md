@@ -44,18 +44,18 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 ## 📊 Estado actual
 
-- **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 READY_FOR_INTEGRATION (SPEC 1.0.2).** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION.
+- **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2).** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION.
 - **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC (F-04 Magic Number V1 ya owner-gated).
 - **Base observada:** `origin/master` `fac4805185eb586bb73c3df0c0ccc20d1377099c` (E-03 CONTRACT_PASS / FINAL CLOSED; FF desde `c408a12fe36643129a2ae3c3dfa69727b593ba76`, 2026-09-12). E-01 certified S0 permanece `91671f6f`.
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
 - **E-03:** CONTRACT_PASS / FINAL CLOSED en [[Echo — E-03 Identity and BWC Foundation E0]] @ `fac48051` (integrado FF a `origin/master` 2026-09-12; evidencia en esa nota y en `specs/FEAT-CROSS-IDENTITY-BWC-E0/VERIFICATION.md`).
-- **E-04:** SPEC v1.0.2 en [[Echo — E-04 Forge Ingestion E1]]. READY_FOR_INTEGRATION=YES (implementation PASS + independent verifier PASS + E-03 CONTRACT_PASS MET @ `fac48051` + base reconciliada gates PASS). T21/AC-37 PENDING como gate POST-INTEGRATION; no bloquea merge. E-04 FINAL CLOSED=NO. Merge no ejecutado.
+- **E-04:** SPEC v1.0.2 en [[Echo — E-04 Forge Ingestion E1]]. **INTEGRATED=YES** por fast-forward desde `2f8db345` tras implementation/verifier/E-03/base gates PASS. READY_FOR_INTEGRATION consumido. T21/AC-37 PENDING como gate POST-INTEGRATION; E-04 FINAL CLOSED=NO. Golden no inventado; F-04 no tocado.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` + `feature/e04-forge-ingestion-e1` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` (`origin/master`) · E-04 development base: `c408a12fe36643129a2ae3c3dfa69727b593ba76` · E-04 reconciled: `fac48051` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 READY_FOR_INTEGRATION · T21 POST-INTEGRATION PENDING · no FINAL CLOSED |
+| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO |
 
 ## 🧩 Subproyectos
 
@@ -181,13 +181,13 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Out of scope:** batch; attach EA; eligibility; escribir Forge DB; latest lookup.
 - **Development dependency:** E-01 + E-03 IMPLEMENTATION CLOSED @ `c408a12f`. `FORGE_GOLDEN_FIXTURE_PENDING` no bloquea development.
 - **Golden dependency:** fixture Forge auténtica versionada. Hoy pending. Bloquea CROSS_LANE GOLDEN PASS / E-04 FINAL CLOSED (gate POST-INTEGRATION). No bloquea READY_FOR_INTEGRATION ni merge. No espera E-03 CONTRACT_PASS.
-- **Integration dependency:** E-03 CONTRACT_PASS MET @ `fac48051` + implementation PASS + independent verifier PASS + base reconciliada gates PASS. T21/AC-37 no es prerrequisito del merge. Merge habilitado, no ejecutado.
+- **Integration dependency:** E-03 CONTRACT_PASS MET @ `fac48051` + implementation PASS + independent verifier PASS + base reconciliada gates PASS. T21/AC-37 no era prerrequisito del merge; E-04 ya está integrado por FF.
 - **Parallel:** F-04 tras pin; verification E-03 (development only).
 - **Hypotheses:** key+digest idempotente; conflicto write-once.
 - **Risks:** timeout post-commit; side effects.
 - **Output authority:** PromotionRecord INGESTED.
 - **Certification:** SOURCE + CONTRACT + PG + PHYSICAL HTTP+PG. SYNTHETIC ≠ CROSS_LANE GOLDEN. CROSS_LANE GOLDEN pending authentic Forge fixture (POST-INTEGRATION). CONTROLLED INTEGRATION habilitada por E-03 CONTRACT_PASS + implementation/verifier/base; T21 no bloquea merge. FINAL CLOSED espera T21 PASS.
-- **Done when:** matriz duplicate/conflict/partial PASS **y** integrate gate met (merge); FINAL CLOSED adicionalmente T21 PASS.
+- **Done when:** matriz duplicate/conflict/partial PASS **e** integración FF ejecutada; FINAL CLOSED adicionalmente T21 PASS.
 - **Unlocks:** E-06; join con F-04/F-05 (tras merge E-04; T21 certifica el join).
 - **Accepted debt:** artefactos grandes quedan en Forge por refs.
 - **Planning:** TOP v1.0.2 ([[Echo — E-04 Forge Ingestion E1]]). **Implementation:** T01–T20 `[x]`. **GOD:** NONE.
@@ -375,6 +375,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-12** — E-04 CONTROLLED INTEGRATION one-shot PASS: fetch/race y ancestry confirmados; gates mínimos PASS; `master` avanzó por fast-forward desde `fac48051` hasta el boundary E-04 `2f8db345`, sin reescritura ni force-push. E-04 INTEGRATED=YES, READY consumido, T21/AC-37 PENDING POST-INTEGRATION y FINAL CLOSED=NO. Evidencia en E-04 `VERIFICATION.md`; F-04 no tocado.
 - **2026-09-12** — E-04 TOP CORRECTION 1.0.2 ([[Echo — E-04 Forge Ingestion E1]]): circular golden gate roto. T21/AC-37 ya no bloquea READY_FOR_INTEGRATION/merge; pasa a POST-INTEGRATION. READY_FOR_INTEGRATION=YES. FINAL CLOSED espera T21 PASS. Merge no ejecutado. Master intacto `fac48051`.
 - **2026-09-12** — E-03 CONTRACT_PASS / FINAL CLOSED ([[Echo — E-03 Identity and BWC Foundation E0]]): manager certificó en `fac48051` y se integró FF a `origin/master` (`c408a12f..fac48051`, sin merge commit/rebase/force). Gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION` de E-04 queda satisfecho; E-04 y Forge no tocados en esta integración. Puente E-03 permanece Review.
 - **2026-09-11** — E-04 planning v1.0.1 ([[Echo — E-04 Forge Ingestion E1]] @ `c8e68538`): CROSS_LANE GOLDEN exige fixture Forge auténtica (`FORGE_GOLDEN_FIXTURE_PENDING`); synthetic S0 ≠ golden; CROSS_LANE development no espera E-03 CONTRACT_PASS; merge/close sí. Master no se toca. Puente E-04 permanece Review.
