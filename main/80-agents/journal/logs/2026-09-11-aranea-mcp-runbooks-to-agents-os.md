@@ -64,17 +64,17 @@ tags:
 
 ## Resolución aplicada
 
-- La skill permanece en `xKoRx/symphony` y sigue decidiendo capability, least privilege y boundary Aranea-only.
+- La skill canónica vive en `30-resources/agents/skills/aranea-mcps-expert/SKILL.md` y decide capability, least privilege y boundary Aranea-only.
 - Cada familia MCP tiene un runbook canónico en `80-agents/memory/public/runbook/`.
 - El troubleshooting del plano MCP (cliente/proxy/auth) quedó separado de los runbooks de backend.
-- D20 fija que no se vuelven a copiar esos procedimientos en el repo owner.
+- D20 reserva `80-agents/skills/` al core AGENTS OS; Symphony no es autoridad de esta skill.
 
 ## Validación
 
-- `materialize_schema_note.py` creó las cinco notas canónicas (4 runbooks + change_log) sin overwrite.
-- `validate_schema_contract.py --type runbook|change_log` y `lint.py --strict` sobre el delta de AGENTS OS se ejecutan en el mismo cambio.
-- En el worktree Symphony `chore/aranea-mcp-runbooks-to-agents-os` (base `origin/master`, sin mezclar F-04) no quedan referencias a `aranea-mcps-expert/runbooks/` ni a `aranea-mcps-expert/RUNBOOK.md`.
-- Activación: skill app-owned en Symphony; runbooks Sistema 1 en AGENTS OS.
+- `materialize_schema_note.py` creó la skill en `30-resources/agents/skills/` y los cuatro runbooks + change_log.
+- `validate_schema_contract.py --type skill|runbook|change_log` y `lint.py --strict` sobre el delta de vault se ejecutan en el mismo cambio.
+- En el worktree Symphony `chore/aranea-mcp-runbooks-to-agents-os` (base `origin/master`, sin mezclar F-04) la skill local es un pointer; no quedan runbooks locales.
+- Activación: skill transversal en el vault; runbooks Sistema 1 en AGENTS OS; core `80-agents/skills/` intacto.
 
 ## Compartibilidad
 
@@ -83,4 +83,4 @@ tags:
 
 ## Rollback
 
-- Restaurar los cuatro archivos de runbook en `xKoRx/symphony/.agents/skills/aranea-mcps-expert/` y revertir el handoff de la skill, el PRD PostgreSQL, el INDEX y D20 del proyecto MCP Access Plane. Borrar las cuatro notas nuevas de `80-agents/memory/public/runbook/` si se revierte la promoción.
+- Restaurar los cuatro archivos de runbook y la skill completa en `xKoRx/symphony/.agents/skills/aranea-mcps-expert/`; revertir INDEX, D20 y borrar `30-resources/agents/skills/aranea-mcps-expert/SKILL.md` más las cuatro notas de `80-agents/memory/public/runbook/` si se revierte la promoción.
