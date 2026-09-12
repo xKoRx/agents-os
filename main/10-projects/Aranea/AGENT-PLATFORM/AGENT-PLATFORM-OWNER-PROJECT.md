@@ -20,7 +20,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-08-23"
-updated: "2026-08-23"
+updated: "2026-09-12"
 ---
 
 # AGENT-PLATFORM-OWNER-PROJECT
@@ -76,6 +76,7 @@ views:
 > - [ ] primera tarea #owner/me #type/dev #area/meli
 > - [ ] tarea delegada #owner/agent #type/dev #area/meli
 > - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+> - [/] [[AGENT-PLATFORM - MCP Access Plane]] arrancar + seguimiento #owner/me #type/supervision #area/aranea
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -107,6 +108,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
+- **2026-09-12** — Se agregó la tarea puente de supervisión para [[AGENT-PLATFORM - MCP Access Plane]]; no se reestructura el resto del cockpit en este carril.
 - **2026-08-23** — 
 
 ## 🧭 Decisiones
