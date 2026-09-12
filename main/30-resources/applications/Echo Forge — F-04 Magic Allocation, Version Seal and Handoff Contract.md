@@ -195,7 +195,97 @@ AllocateMagicV1(ns, strategy_ref, canonical):
 
 Dos identidades distintas **nunca** reciben el mismo magic en el namespace. El mismo `(ns, strategy_ref)` converge al mismo magic.
 
-`MagicCandidateSource` de producción **es** el catálogo CC. Sin CC no hay generador opaco silencioso (Live Authority: “no se sustituye silenciosamente por secuencia opaca”). Tests inyectan enteros fixture (p.ej. corpus G20/G21).
+`MagicCandidateSource` de producción **es** el catálogo Magic V1 (`sqx.magic_instruments` + counter mensual). Tests inyectan enteros fixture sólo en el allocator genérico pre-V1. El path F-04 productivo es `AllocateMagicV1`.
+
+## F-04 C4 — Explicit Magic Allocation Semantics
+
+Defecto: `ParseMagicV1AllocationIdentity` en `sqx/core/domain/magic_v1.go` extrae instrument/direction desde `CanonicalStrategyID` como `<INSTRUMENT>_<D>_...`. F-01 CLOSED mantiene ese ID opaco (`<token>_<token>` Base64URL). PHYSICAL `0.2.97` → `unknown direction token` → fail closed antes de INSERT. F-01 no se reabre. El layout Magic V1 `YYMMIIIDSSS` no cambia. PostgreSQL sigue siendo la única autoridad de concurrencia.
+
+`DATABASE MIGRATION: NONE` para C4. 015 ya tiene `strategy_ref` FK + `canonical_strategy_id` + `magic_decimal` (encodes III+D). 016 ya tiene catálogo + counter `(YYMM, instrument_code)`. Instrument/direction durables ya viven en `sqx.strategies`. No hay `CC_MISSING_PERSISTENCE_AUTHORITY`. No inventar migration 017.
+
+### Q1 — Instrument authority
+
+| Slot | Frozen |
+|---|---|
+| Type | `text` NOT NULL en `sqx.strategies.instrument`; domain `domain.Instrument` |
+| Field | `sqx.strategies.instrument` |
+| Producer | `AdoptStrategy` ← `StrategyIntent.Instrument` ← `WorkflowSpec.Instrument` (`json:"instrument"`) en `steps.go` db_register |
+| Persistence | PostgreSQL `sqx.strategies`; inmutable en replay: `strategyV2AttributeConflict` si cambia |
+| Consumer | `ControlPlane.AllocateMagicV1` via SELECT by `strategy_ref`; luego `InstrumentCode` → `sqx.magic_instruments.instrument_id` exacto |
+| Normalization | `TrimSpace` only; catalog lookup exacto; sin case-fold, sin alias GOLD/XAU, sin regex de filename |
+| Errors | empty/missing row → FAIL CLOSED (`ErrInvalidArguments` / `ErrContractConflict`); unknown id → `ErrInstrumentCodeMissing`; XAUUSD → code `001` |
+
+No usar FlowRun intent, EvaluationEvidence scope, Apply input ni MemberProof como autoridad de allocation. Esas superficies copian el mismo `WorkflowSpec.Instrument` pero no son el store 1:1 StrategyRef.
+
+### Q2 — Direction authority
+
+| Slot | Frozen |
+|---|---|
+| Source | `sqx.strategies.direction` (`text` NOT NULL), mismo producer que instrument (`WorkflowSpec.Direction` json `"direction"`, productively `L`/`S`) |
+| Representation | token de estrategia, no digit Magic V1, no `CanonicalStrategyID`, no `contracts.OperationSide` (S0 sólo LONG/SHORT; BOTH no es wire S0) |
+| Mapper | `domain.MagicV1DirectionFromStrategy(string)` after TrimSpace+ToUpper: `L`\|`LONG` → 1; `S`\|`SHORT` → 2; `B`\|`BOTH` → 3 |
+| Unknown | empty, `LS`, `LONG/SHORT`, lowercase leftovers, any other token → FAIL CLOSED `ErrInvalidMagicNumber`; never default LONG |
+| BOTH | codec V1 digit 3 reserved; tests may persist `B`; no productive flow is required to emit BOTH |
+
+`MagicV1DirectionCode` (LONG/SHORT/BOTH only) se unifica o delega al mapper; no se deja un segundo vocabulario productivo.
+
+### Q3 — Allocation API
+
+Signature vigente se conserva:
+
+```text
+MagicAllocatorV1.AllocateMagicV1(ctx, registryNamespace, strategyRef, canonicalStrategyID) (MagicAllocationRecord, error)
+```
+
+| Slot | Frozen |
+|---|---|
+| Producer | `DurableApplySelectedRunActivity.resolveEffectiveConfig` cuando `UseDurableMagicAllocation=true`; caller `runDurableApplySelectedRun` ya setea el flag |
+| Consumer | `ControlPlane.AllocateMagicV1` (`sqx/adapters/registry-postgres/magic_v1.go`) |
+| Boundary | activity `apply_selected_run`; request actual `DurableApplySelectedRunRequest` (StrategyRef + CanonicalStrategyID; **no** se agregan instrument/direction al request para no duplicar la fila durable) |
+| Fields used | ns `forge-live`; `strategy_ref`; `canonical_strategy_id` (allocation_ref recipe + conflict vs row, **never parsed**); instrument/direction from `sqx.strategies` |
+| Persistence | INSERT `sqx.strategy_magic` (015); counter `sqx.magic_monthly_counters` (016) only on first commit |
+| Errors | `ErrInvalidArguments`, `ErrInstrumentCodeMissing`, `ErrMagicMonthlyCapacityExhausted`, `ErrReservedMagic`, `ErrMagicExhausted`, `ErrContractConflict` (canonical/instrument/direction mismatch on replay), `ErrUnknownCommit` unchanged |
+| Retry | UNKNOWN_COMMIT: SELECT only, no second Next/INSERT in the same invocation (G1 C1 frozen) |
+| Card | N StrategyRefs → N allocations; shared counter `(YYMM, instrument_code)`; direction does not partition sequence |
+
+Retirar `ParseMagicV1AllocationIdentity` del path productivo. Tests que fabrican canonical `XAUUSD_L_H1_...` dejan de ser authority.
+
+### Q4 — Replay / conflict
+
+same StrategyRef + same instrument/direction (row) → same magic, no sequence increment, month-boundary replay preserves prior magic.
+
+same StrategyRef + existing row + different instrument and/or direction vs `DecodeMagicV1(existing.magic)` III/D → `CONTRACT_CONFLICT` terminal, no Next, no UPDATE of `magic_decimal`.
+
+Verificación en `AllocateMagicV1` **antes** de devolver replay y tras identity-race reread. 015 no guarda instrument/direction en `strategy_magic`; III+D del magic + catálogo inmutable 016 bastan. No nueva columna.
+
+Canonical argument ≠ row `canonical_strategy_id` o ≠ existing allocation canonical → `CONTRACT_CONFLICT`.
+
+### Requested vs legacy vs allocated
+
+Tres conceptos, nunca colapsados:
+
+| Nombre | Campo | Rol F-04 |
+|---|---|---|
+| Allocated | `sqx.strategy_magic.magic_decimal` | única autoridad de stamp F-04 |
+| Legacy/template TaskSpec | `ApplySelectedRunTaskConfig.MagicNumber` (`json:"magic_number"`) | input de stamp del path **legacy** (`EffectiveConfig`); `ValidateWorkflowSpec` lo exige hoy; valores históricos `888111`/`11111` son defaults compartidos **no unique** |
+| Source SQX XML MagicNumber | bytes del artefacto/template | sobrescrito por Apply; nunca requested; nunca allocated |
+| Requested contractual | **no existe** como campo distinto en source actual | D9 se corrige: no promover `magic_number` a request |
+
+`AllocatedEffectiveConfig` **deja de comparar** TaskSpec.MagicNumber contra allocated. Stamp = allocated siempre en path F-04. `888111` en el example flow se sobrescribe; no es `CONTRACT_CONFLICT` de request. El guard `requested ≠ allocated → FAIL CLOSED` permanece como invariante **si** un owner introduce después un campo explícito distinto; C4 no inventa ese campo.
+
+Legacy `EffectiveConfig` (flag off) no se toca.
+
+### Multi-strategy
+
+Producto: N StrategyRefs en la misma Apply cohort reciben N allocations independientes. Un `magic_number` compartido en el TaskSpec del flow **no** fuerza el mismo allocated. Robust selection = 1 es **solo** receta de certificación física futura, no límite de arquitectura.
+
+### Example flow / physical fixture (no se arregla en esta sesión)
+
+`input/example/config.json` con `magic_number: 888111` no es candidato F-04 por sí solo (también puede traer promotion 1.0.0). Futuro PHYSICAL: XAUUSD, dirección única conocida (`L` o `S`), promotion `2.0.0`, robust selection = 1, sin requested contractual. No fabricar golden en C4/NORMAL.
+
+### E-04 (bloque aparte)
+
+T2.13 OPEN. Tras golden Forge auténtico: one-shot separado Echo E-04 runtime config/deploy + join real. No mezclar con C4. No modificar Echo ahora.
 
 ## Stamp + readback contract
 
@@ -203,16 +293,16 @@ Cuatro valores, nunca colapsados:
 
 | Nombre | Fuente |
 |---|---|
-| requested | TaskSpec `magic_number` si presente; else absent |
+| requested | **ausente en C4**; no es TaskSpec `magic_number` |
 | allocated | `sqx.strategy_magic.magic_decimal` |
-| applied/effective | **solo** readback, nunca requested |
+| legacy TaskSpec magic | `ApplySelectedRunTaskConfig.MagicNumber` — stamp del path legacy; en F-04 se ignora como request y se sobrescribe |
+| applied/effective | **solo** readback, nunca TaskSpec ni requested |
 | readback sources | (1) XML `MagicNumber` del `.sqx` de output Apply; (2) `input … MagicNumber` del `.mq5` exportado |
 
 Secuencia:
 
 ```text
-ALLOCATE → (requested present ∧ requested ≠ allocated → FAIL CLOSED)
-→ APPLY/STAMP allocated
+ALLOCATE → APPLY/STAMP allocated (TaskSpec magic_number is not a request gate)
 → READBACK SQX XML
 → VERIFY == allocated
 → EXPORT MQ5
@@ -341,7 +431,7 @@ Retry: `UNAVAILABLE` / timeout **pre-commit** sí. Timeout **post-commit**: **no
 | F-02 V1 history | readable; handoff **nuevo** solo membership V2 |
 | Old Apply outputs | SHA Apply sigue authority de stage; no se reinterpreta como StrategyVersion |
 
-Dual path: Apply legacy (TaskSpec magic, sin unique) permanece ejecutable hasta que el flow F-04 esté cableado. El path F-04 **no** sella ni entrega magics compartidos. Campaigns nuevas en F-04 no ponen `888111` como requested.
+Dual path: Apply legacy (TaskSpec magic, sin unique) permanece ejecutable hasta que el flow F-04 esté cableado. El path F-04 **no** sella ni entrega magics compartidos. Campaigns nuevas en F-04 no tratan `888111` como requested. El path F-04 **sobrescribe** `magic_number` legado con allocated.
 
 ## DATABASE MIGRATION: `015_strategy_magic_version_seal_handoff`
 
@@ -365,7 +455,7 @@ PK `idempotency_key TEXT`. payload_digest, canonical_body JSONB, wave_key, strat
 
 PK `idempotency_key` FK. state CHECK (`HANDOFF_CREATED|INGESTED|CONTRACT_CONFLICT|SOURCE_BINDING_CONFLICT|UNAVAILABLE|UNKNOWN_RECEIPT`), receipt JSONB, last_error, updated_at.
 
-Brownfield test: strategies preexistentes **sin** fila magic; Apply legacy sigue; F-04 Allocate sobre ellas crea fila nueva **distinta** de `888111`. Rollback: down.sql. Restart: UNIQUE hace el replay.
+Brownfield test: strategies preexistentes **sin** fila magic; Apply legacy sigue; F-04 Allocate sobre ellas crea fila nueva **distinta** de `888111`. Rollback: down.sql. Restart: UNIQUE hace el replay. **C4: ninguna migration nueva.** 015/016 no-touch.
 
 ## Certificación
 
@@ -376,6 +466,7 @@ Brownfield test: strategies preexistentes **sin** fila magic; Apply legacy sigue
 - Cero ranking-as-membership (F-02).
 - Cero `HashIdentity` en recetas S0 (`H`/`D`/`StrategyVersionRef`/`allocation_ref`/`payload_digest`).
 - Test de desigualdad: mismo payload `HashIdentity` ≠ `H()`.
+- C4: cero parse de `CanonicalStrategyID` para instrument/direction; `ParseMagicV1AllocationIdentity` ausente del path productivo.
 
 ### CONTRACT
 
@@ -386,6 +477,7 @@ Brownfield test: strategies preexistentes **sin** fila magic; Apply legacy sigue
 - Corpus S0 G04–G10 y G19–G25. **G22:** producer 0 POST / 0 manifests si membership vacío (indelegable).
 - `fakeconsumer` pin `91671f6f`: G06 201→200, G07 409, G24 SOURCE_BINDING_CONFLICT, G35 crash replay.
 - Non-effects: provisioning/activation/capital = false.
+- **C4 gates** (NORMAL, `-race` where allocation/concurrency): opaque F-01 CanonicalStrategyID does not parse and still allocates; XAUUSD→001; unknown instrument fail closed; alias GOLD/xauusd fail closed; L→1 S→2 B→3; unknown direction fail closed; same StrategyRef replay same magic without sequence increment; month-boundary replay preserves magic; changed instrument → CONTRACT_CONFLICT; changed direction → CONTRACT_CONFLICT; concurrent distinct refs unique magics sharing `(YYMM,instrument)` counter; TaskSpec nil/888111/11111 does not become requested and allocated proceeds; reserved never allocated; N StrategyRefs → N allocations; Apply/readback SQX+MQ5 exact; UNKNOWN_COMMIT semantics preserved.
 
 ### CONCURRENCY
 
@@ -393,33 +485,34 @@ Brownfield test: strategies preexistentes **sin** fila magic; Apply legacy sigue
 - Concurrent Allocate same StrategyRef → mismo magic.
 - Crash/unknown commit: SELECT-then-INSERT.
 - G34 identity tuples del corpus donde aplique a refs S0 (no reabrir F-01).
+- C4: direction does not partition the monthly sequence; N concurrent distinct refs share `(YYMM, instrument_code)`.
 
 ### PHYSICAL
 
-Host mínimo para cert T2 (operacional, no planning STOP): (1) SQX/sqcli con licencia válida — expired → STOP owner, sin trial-key; (2) MetaEditor64 `/portable` en worker `sqx-mt5-queue`; (3) PG control plane + Mongo evidence + object store; (4) HTTP Echo promotions reachable. No convertir viewers read-only en workers. `mt5-kronos` inaccesible es blocker de ejecución NORMAL, no de este contrato.
+Tras NORMAL C4 + review de source, un one-shot physical **nuevo** publica release Symphony por `release-authority → deploy_release.sh --release-only → deployer-watcher → MinIO → Stager`. Candidato mínimo: XAUUSD, dirección única conocida, promotion `2.0.0`, robust selection = 1 (receta de certificación, no límite de producto), sin requested contractual. Probar Magic allocation → Apply → SQX/MQ5 readback → compile → EvaluationRef → StrategyVersion → Finalist V2 → HandoffManifest. Materializar golden auténtico. **No ejecutar PHYSICAL en C4.** E-04 runtime/deploy/join es one-shot posterior (T2.13).
 
-Magic V1 catálogo ya existe. PHYSICAL de allocation de producción no se finge si el host no puede stamp+compile. Lab con magic fixture no es PHYSICAL PASS.
+Host mínimo: (1) SQX/sqcli con licencia válida — expired → STOP owner, sin trial-key; (2) MetaEditor64 `/portable` en worker `sqx-mt5-queue`; (3) PG control plane + Mongo evidence + object store. No convertir viewers read-only en workers. Lab con magic fixture no es PHYSICAL PASS.
 
 ### INTEGRATION
 
-E-04 consumer READY `@ a99f9a6`. T21/AC-37 espera golden auténtico: Finalist real → manifest canónico → `POST /api/v1/forge/promotions` → receipt `INGESTED` → GET by-key. **No fingir INTEGRATION PASS con mock.** CONTRACT puede seguir usando `fakeconsumer` hasta T2.9.
+E-04 consumer READY `@ a99f9a6`. T21/AC-37 y T2.13 esperan golden auténtico **después** de C4+PHYSICAL Forge. No mezclar E-04 runtime config/ETCD/gateway con C4. **No fingir INTEGRATION PASS con mock.**
 
 ## Invariantes / STOP
 
-NORMAL no decide architecture. STOP/PLAN_CONFLICT si: se pretende que Echo posea magic; se cambie S0; se invente endpoint incompatible con S0; se reabran F-01/F-02/B1/B2; se use MAX+1/random/hostname; se selle sin readback; se use HashIdentity como `H()`.
+NORMAL no decide architecture. STOP/PLAN_CONFLICT si: se pretende que Echo posea magic; se cambie S0; se invente endpoint incompatible con S0; se reabran F-01/F-02/B1/B2; se use MAX+1/random/hostname; se selle sin readback; se use HashIdentity como `H()`; se parseé CanonicalStrategyID para instrument/direction; se vuelva el ID parseable; se limite cardinality de selection a 1; se cree migration 017; se debilite UNKNOWN_COMMIT o readback.
 
 `GOD REQUIRED: NONE`.
 
 ## Evidencia y provenance
 
-- Symphony `9fad768ccd1f9d25ebb535a2d26edb3d74556c10`; `origin/master` `0b9742b` ancestro; dirty foráneo `phase4_performance.json` preservado.
-- S0 `91671f6f`; E-04 consumer `a99f9a6`.
-- Source: compile físico sin EvaluationRef; persist analog `persistMT5ReconcileV1`; producer `BuildHandoffManifest` ya copia `CompileEvaluationRef`.
-- Live Authority §3; D16 compile Evaluation frozen 2026-09-12; MIGRATION 017 NO.
+- Symphony C4 baseline `d645ed6c2f438995d636a8213b1e4a3f5f26cbea`; F-01 `0509342`; Magic V1 `ea8be76`; `origin/master` `0b9742b` ancestro; dirty foráneo `phase4_performance.json` preservado.
+- PHYSICAL trigger: release `0.2.97`, FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516`, workflow `sqx-main-v1-6c30394a`, 4 Apply fail `ParseMagicV1AllocationIdentity`, 0 allocations/seals/manifests.
+- S0 `91671f6f`; E-04 consumer `a99f9a6` (T2.13 blocked by runtime/config, out of C4).
+- D16 compile Evaluation frozen 2026-09-12; D17 C4 explicit allocation inputs frozen 2026-09-13; MIGRATION 017 NO; C4 migration NONE.
 
 ## Límites y contradicciones
 
 - El one-liner de producto `FINALIST → ALLOCATE → STAMP` se interpreta como **capacidad de entrega** (solo un Finalist sale hacia Echo). La secuencia técnica frozen es allocation-before-Apply. No contradice S0.
 - CC ausente no bloquea CONTRACT; bloquea PHYSICAL de allocation de producción.
-- E-04 INTEGRATED `@ a99f9a6`: CONTRACT ≠ INTEGRATION. T21 espera golden auténtico de Forge.
+- E-04 INTEGRATED `@ a99f9a6`: CONTRACT ≠ INTEGRATION. T21 espera golden auténtico de Forge **después** de C4. Runtime ETCD/gateway E-04 es blocker separado (T2.13).
 - Echo local checkout puede no estar en el pin S0; el pin se lee por `git show` sin modificar echo.
