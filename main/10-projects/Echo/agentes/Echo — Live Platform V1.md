@@ -44,18 +44,18 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 ## 📊 Estado actual
 
-- **PREPARADO + E-01 CLOSED + E-03 IMPLEMENTATION CLOSED / VERIFICATION PENDING + E-04 TOP READY_FOR_MANAGER_REVIEW.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1.
+- **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 TOP READY_FOR_MANAGER_REVIEW.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1.
 - **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC (F-04 Magic Number V1 ya owner-gated).
-- **Base observada:** `origin/master` `c408a12fe36643129a2ae3c3dfa69727b593ba76` (E-03 identity/BWC implementation; parent `233ec89c`). E-01 certified S0 permanece `91671f6f`. **No mover master** mientras el Verifier E-03 corre.
+- **Base observada:** `origin/master` `fac4805185eb586bb73c3df0c0ccc20d1377099c` (E-03 CONTRACT_PASS / FINAL CLOSED; FF desde `c408a12fe36643129a2ae3c3dfa69727b593ba76`, 2026-09-12). E-01 certified S0 permanece `91671f6f`.
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
-- **E-03:** implementación física en [[Echo — E-03 Identity and BWC Foundation E0]] @ `c408a12f`. Verifier independiente PENDING/BLOCKED (host sin MT). No CONTRACT_PASS. No FINAL CLOSED.
+- **E-03:** CONTRACT_PASS / FINAL CLOSED en [[Echo — E-03 Identity and BWC Foundation E0]] @ `fac48051` (integrado FF a `origin/master` 2026-09-12; evidencia en esa nota y en `specs/FEAT-CROSS-IDENTITY-BWC-E0/VERIFICATION.md`).
 - **E-04:** planning v1.0.1 en [[Echo — E-04 Forge Ingestion E1]] @ `c8e68538`. Development may start en `feature/e04-forge-ingestion-e1` desde `c408a12f`. CROSS_LANE GOLDEN pending fixture Forge (`FORGE_GOLDEN_FIXTURE_PENDING`); no espera E-03 CONTRACT_PASS. Integration/merge gated by E-03 CONTRACT_PASS.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` + `feature/e04-forge-ingestion-e1` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 implementation: `c408a12fe36643129a2ae3c3dfa69727b593ba76` · E-04 development base: el mismo SHA (no master push) · E-04 planning: `c8e6853804e55e71aad5adcbc432f378b57efc46` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.1 | E-01 CLOSED · E-03 IMPLEMENTATION CLOSED / VERIFICATION PENDING · E-04 TOP READY_FOR_MANAGER_REVIEW |
+| xKoRx/echo | `master` + `feature/e04-forge-ingestion-e1` | Revalidar por fase. E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` (`origin/master`) · E-04 development base: `c408a12fe36643129a2ae3c3dfa69727b593ba76` · E-04 planning: `c8e6853804e55e71aad5adcbc432f378b57efc46` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.1 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 TOP READY_FOR_MANAGER_REVIEW |
 
 ## 🧩 Subproyectos
 
