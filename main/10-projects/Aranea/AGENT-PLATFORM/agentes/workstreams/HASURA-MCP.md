@@ -14,68 +14,161 @@ tags:
 # HASURA MCP — workstream del MCP Access Plane
 
 > Componente del proyecto [[AGENT-PLATFORM - MCP Access Plane]]. **No es un proyecto paralelo.**
+>
+> Deployment obligatorio: [[AGENT-PLATFORM - MCP Access Plane - Architecture]]. No inventar una topología específica para Hasura.
 
-## Objetivo
+## Objetivo actualizado
 
-Materializar dos capabilities MCP separados sobre Hasura, manteniendo monotonicidad de autoridad en cada capa:
+Materializar dos capabilities MCP sobre el **admin/control plane de Hasura**, no un wrapper GraphQL de data-plane:
 
-- `aranea-hasura-prod-ro`: PROD estrictamente read-only.
-- `aranea-hasura-dev-rw`: DEV read/write limitado al GraphQL data-plane.
+- `aranea-hasura-prod-ro`: PROD estrictamente read-only para inspección administrativa.
+- `aranea-hasura-dev-admin`: DEV con autoridad administrativa Hasura.
 
-Fuera de scope: metadata management, migrations, DDL, `run_sql`, administración Hasura, Actions/Remote Schemas/Event Triggers y cambios de permisos.
+Necesidad owner explícita para DEV:
 
-## Estado — discovery 2026-09-12
+- crear/reemplazar vistas mediante SQL y trackearlas en Hasura;
+- crear/actualizar relationships;
+- administrar permissions;
+- administrar Event Triggers/hooks;
+- administrar Actions;
+- administrar Remote Schemas;
+- trackear/untrackear tables/views/functions;
+- inspeccionar y resolver metadata inconsistente;
+- ejecutar `run_sql` cuando la operación administrativa lo requiera.
 
-- El access plane existente corre en el LXC dedicado `mcps`; `mcps.lab.aranea.cl` es el endpoint estable. Los capabilities actuales ocupan `3000`–`3004`. **No se reservan 3005/3006 hasta inspeccionar binds/runtime reales.**
-- Echo versiona metadata Hasura bajo `xKoRx/echo/v2/hasura`.
-- `v2/hasura/config.yaml` apunta a `http://hasura.lab.aranea.cl:8080`; se trata como pista de PROD hasta verificar runtime vivo.
-- El mismo archivo contiene un `admin_secret` en texto plano. Valor deliberadamente no registrado aquí. Debe considerarse comprometido, rotarse y eliminarse del repo/historial operativo antes de usar este carril como authority source.
-- Metadata inspeccionada muestra roles `admin` y `user` en tablas trackeadas; no se encontró un rol MCP dedicado. `admin` es demasiado amplio y `user` no demuestra el scope requerido.
-- DEV no tiene todavía host/port/GraphQL endpoint/version/auth mode demostrado desde source disponible. La existencia conocida de `hasura_dev_metadata` no autoriza inferir esos datos.
-- Auth runtime PROD/DEV (JWT, webhook, unauthorized role u otro) sigue sin evidencia suficiente. El admin secret no será usado como credencial upstream del agente.
+**Apollo MCP queda descartado para este workstream**: sirve para GraphQL data-plane, pero no administra metadata ni DDL/`run_sql`. Para CRUD de datos ya existe acceso PostgreSQL directo y no se justifica introducir otra capability sólo para eso.
 
-## Decisión candidata — pendiente de gate runtime
+## Arquitectura obligatoria
 
-Preferir un MCP GraphQL genérico/GraphQL-native sobre un MCP administrativo de Hasura.
+Hasura debe reutilizar el blueprint canónico:
 
-Candidato principal: **Apollo MCP Server**, pinneado por release/artefacto después de verificar el target Linux y digest. Motivos:
+```text
+Daedalus / agente
+  -> bearer por capability
+  -> mcps.lab.aranea.cl:<puerto>
+  -> Nginx auth proxy
+  -> backend Hasura MCP interno SIN host port
+  -> Hasura destino
+```
 
-- Streamable HTTP.
-- Queries/introspection GraphQL sin exponer metadata API ni `run_sql`.
-- PROD puede usar `mutation_mode: none` como barrera estructural adicional.
-- DEV puede usar `mutation_mode: explicit` para exponer sólo mutations predefinidas, evitando ad-hoc mutations por defecto.
-- La seguridad efectiva sigue descansando en una credencial upstream no-admin + permisos Hasura del rol dedicado.
+Secretos separados:
 
-Descartado como default para este workstream: `sanjay3290/hasura-mcp-server`, porque su superficie incluye metadata management y `run_sql`; su `--read-only` documentado no reduce suficientemente el boundary requerido.
+1. bearer cliente→MCP, montado sólo en el proxy;
+2. Hasura admin secret/credencial upstream, montado sólo en el backend MCP.
+
+El admin secret **nunca** va a Cursor, env del cliente, prompt ni documentación.
+
+Puertos `3005` y `3006` estaban libres en discovery real del 2026-09-12, pero deben volver a verificarse antes de bindear. No se consideran reservados por documentación.
+
+## Estado de discovery — 2026-09-12
+
+### Access plane
+
+- `mcps` confirmado como LXC Docker + Portainer.
+- `3000`–`3004` ocupados por SSH, PostgreSQL RO/RW y Mongo Forge RO/RW.
+- PostgreSQL y Mongo confirman el patrón proxy Nginx + backend interno + bearer separado.
+- `docker compose ls` estaba vacío: el runtime actual usa containers standalone/Portainer con `restart=unless-stopped`.
+- Arquitectura congelada en [[AGENT-PLATFORM - MCP Access Plane - Architecture]].
+
+### Hasura runtime
+
+- `hasura.lab.aranea.cl` **no resuelve actualmente** desde `mcps`; no usar ese hostname como autoridad viva.
+- El checkout local consultado de Echo no entregó referencias runtime actuales útiles para PROD/DEV.
+- La existencia histórica de `xKoRx/echo/v2/hasura` y de metadata DBs conocidas (`hasura_metadata`, `hasura_dev_metadata`) sirve sólo como pista; no autoriza inferir endpoints vivos.
+- PROD y DEV siguen sin host/port/version/deployment demostrado.
+
+### Credenciales históricas
+
+- Existe un hallazgo previo de `admin_secret` versionado en configuración Hasura histórica de Echo. Su valor no se registra aquí.
+- Antes de usar ese material como authority source hay que verificar si sigue vigente; si sigue siendo válido, debe rotarse y eliminarse del source operativo correspondiente.
+
+## Candidato MCP administrativo
+
+Candidato actual: implementación comunitaria `sanjay3290/hasura-mcp` / source mantenido en `sanjay3290/graphql-engine`, `cli/cmd/mcp-server/`.
+
+Superficie documentada relevante:
+
+- `export_metadata`
+- `apply_metadata`
+- `reload_metadata`
+- `clear_metadata`
+- `get_inconsistent_metadata`
+- `drop_inconsistent_metadata`
+- `run_sql`
+- `get_version`
+- `get_schema`
+
+Modo `--read-only` documentado:
+
+- deshabilita operaciones de metadata mutantes relevantes;
+- fuerza `run_sql` a lectura.
+
+Esto lo hace conceptualmente apto para `aranea-hasura-prod-ro`, **pero no se congela hasta auditar source y probar el boundary real**.
+
+### Gap de transporte
+
+El candidato está documentado como **stdio-only**. El MCP Access Plane de Aranea expone HTTP detrás de Nginx.
+
+Por tanto, antes de instalar hay que resolver uno de estos caminos sin romper [[AGENT-PLATFORM - MCP Access Plane - Architecture]]:
+
+1. demostrar que una versión actual soporta HTTP aunque la documentación inspeccionada no lo refleje;
+2. usar un bridge stdio→Streamable HTTP mantenido y pinneable;
+3. como último recurso, build/fork mínimo y reproducible que agregue transporte HTTP.
+
+No usar stdio local en cada cliente ni repartir el Hasura admin secret a Daedalus como workaround.
 
 ## Boundary target
 
-### PROD
+### PROD — `aranea-hasura-prod-ro`
 
-- Client → MCP: bearer exclusivo `ARANEA_HASURA_MCP_PROD_RO_BEARER` (nombre candidato, pendiente de freeze final).
-- MCP → Hasura: token/credencial de servicio no-admin que resuelva exclusivamente a `mcp_prod_ro`.
-- Hasura role `mcp_prod_ro`: `select` explícito sólo sobre tablas/vistas necesarias; sin insert/update/delete.
-- MCP: query/introspection; mutations estructuralmente disabled.
-- Metadata API, `run_sql`, DDL, migrations y admin tools: inexistentes en tool surface.
+Debe permitir:
 
-### DEV
+- exportar/inspeccionar metadata;
+- inspeccionar schema/version/inconsistencias;
+- SQL diagnóstico estrictamente read-only;
+- comprobar objetos/relationships/permissions/triggers/actions/remotes existentes.
 
-- Client → MCP: bearer exclusivo `ARANEA_HASURA_MCP_DEV_RW_BEARER` (nombre candidato, pendiente de freeze final).
-- MCP → Hasura: token/credencial de servicio no-admin que resuelva exclusivamente a `mcp_dev_rw`.
-- Hasura role `mcp_dev_rw`: CRUD explícito sólo sobre entidades aprobadas.
-- MCP: queries/introspection + mutations predefinidas (`explicit`) como default inicial; ampliar sólo con evidencia de necesidad.
-- Metadata API, `run_sql`, DDL, migrations y admin tools: inexistentes en tool surface.
+Debe rechazar:
+
+- `apply_metadata` mutante;
+- clear/drop metadata;
+- DDL;
+- DML;
+- creación/modificación de views/functions;
+- cambios de relationships/permissions/triggers/actions/remotes.
+
+La certificación exige negative tests reales; no basta confiar en `--read-only` o en el README.
+
+### DEV — `aranea-hasura-dev-admin`
+
+Debe permitir administración Hasura completa necesaria por el owner:
+
+- `run_sql` para DDL/DML administrativas;
+- `CREATE OR REPLACE VIEW` y funciones cuando proceda;
+- track/untrack metadata;
+- relationships;
+- permissions;
+- Event Triggers/hooks;
+- Actions;
+- Remote Schemas;
+- resolución de metadata inconsistente.
+
+El backend puede requerir Hasura admin secret upstream, pero éste queda server-side en `mcps` y separado del bearer de la capability.
 
 ## Gates antes de instalar
 
-1. Verificar runtime vivo de Hasura PROD y DEV: host, port, version, `/v1/graphql`, metadata DB y ubicación del deployment.
-2. Verificar auth real de ambas instancias y demostrar cómo emitir/obtener una credencial de servicio no-admin con rol fijo.
-3. Inventariar schema/tablas/vistas/functions expuestos y congelar permisos mínimos de `mcp_prod_ro` / `mcp_dev_rw`.
-4. Inspeccionar binds/compose efectivos en `mcps` y sólo entonces reservar puertos nuevos.
-5. Verificar Apollo MCP Server release/artefacto exacto, config efectiva, tool surface y digest; no `latest`.
-6. Diseñar fixtures seguros para los gates PROD query/mutation-denied y DEV controlled-mutation.
-7. Rotar/eliminar la credencial Hasura expuesta en `xKoRx/echo/v2/hasura/config.yaml` sin registrar el valor en Agents-OS.
+1. Identificar **runtime vivo** de Hasura PROD y DEV: host, port, version, endpoint y ubicación del deployment.
+2. Identificar auth real y credenciales administrativas de ambas instancias sin imprimir valores.
+3. Auditar source del candidato MCP: `--read-only`, `run_sql`, metadata writes, secret handling, HTTP client, timeouts/logging.
+4. Resolver y pinnear el transporte HTTP compatible con el access plane.
+5. Elegir artefacto reproducible: image digest confiable o build local desde commit upstream pinneado. No `latest`.
+6. Volver a verificar binds `3005/3006` antes de usarlos.
+7. Materializar proxy/backend/secrets según [[AGENT-PLATFORM - MCP Access Plane - Architecture]].
+8. Certificar PROD negative tests y DEV admin positive tests desde cliente real.
+9. Sólo después agregar las capabilities a Daedalus/Cursor y actualizar [[aranea-mcps-expert]].
 
 ## Veredicto actual
 
-`BLOCKED` para instalación. El diseño de boundary es viable, pero faltan autoridad upstream y runtime DEV/PROD demostrados. No avanzar a deployment ni Cursor config hasta cerrar esos gates.
+`BLOCKED` para deployment, **no por diseño** sino por runtime Hasura aún no identificado y por el gap de transporte/auditoría del MCP candidato.
+
+La arquitectura de access plane ya está congelada y **no debe volver a auditarse completa** durante este workstream salvo drift material.
