@@ -49,10 +49,16 @@ aranea-postgres-ro
 aranea-postgres-rw
 aranea-mongo-forge-ro
 aranea-mongo-forge-rw
+aranea-hasura-prod-ro
 aranea-hasura-dev-admin
 ```
 
-`aranea-hasura-prod-ro` está definido como target pero no se considera disponible hasta completar su certificación RO.
+Hasura endpoints certificados:
+
+```text
+PROD RO   http://mcps.lab.aranea.cl:3005/mcp
+DEV admin http://mcps.lab.aranea.cl:3006/mcp
+```
 
 La mera presencia de un bloque en config no demuestra que la capability esté conectada: el proceso cliente también debe heredar las env vars requeridas y completar handshake MCP.
 
@@ -70,7 +76,8 @@ Para cualquier capability nueva o reinstalada, el deployment normal es el defini
 8. **Enrutar timeout.** Estrechar query/comando/filtro antes de ampliar policy.
 9. **Disciplina de cambio.** Al agregar/reemplazar/reinstalar capability: cargar [[AGENT-PLATFORM - MCP Access Plane - Architecture]], reutilizar blueprint y actualizar skill + runbook de familia. No introducir otra topología sin evidencia material.
 10. **Drift check mínimo.** No repetir auditoría completa. Comparar primero containers/red/binds; inspeccionar mounts/commands sólo si el drift material lo exige.
-11. **Hasura authority check.** Para Hasura, `tools/list` forma parte de la certificación de autoridad. No aceptar `--read-only`, nombre del container o README como prueba suficiente de PROD RO.
+11. **Hasura authority check.** Para Hasura, `tools/list` server-side forma parte de la certificación de autoridad. No aceptar `--read-only`, nombre del container o README como prueba suficiente de PROD RO.
+12. **Distinguir tool backend vs helper cliente.** Una entrada como `mcp_auth` reportada por Cursor no amplía el authority boundary si no aparece en `tools/list` server-side del MCP correspondiente.
 
 ## Casos conocidos
 
@@ -92,6 +99,27 @@ Cursor -> get_version/get_inconsistent_metadata -> PASS
 
 El Hasura admin secret nunca fue entregado al cliente; queda server-side en `mcps`.
 
+### Hasura PROD RO — 2026-09-12
+
+El upstream `--read-only` conservaba `reload_metadata` y `run_sql`, por lo que no se aceptó como boundary suficiente. Se construyó una variante strict-RO que elimina ambas tools y mantiene `--read-only` para no registrar mutadores de metadata.
+
+Certificación:
+
+```text
+unauthenticated :3005/mcp -> 401
+authenticated initialize -> 200 + session id
+tools/list server-side -> exactamente 4 tools
+  export_metadata
+  get_inconsistent_metadata
+  get_schema
+  get_version
+backend host port -> none
+Cursor -> get_version/get_inconsistent_metadata -> PASS
+metadata -> consistent
+```
+
+Cursor además mostró `mcp_auth`, pero esa entrada no apareció en `tools/list` server-side y no se considera tool Hasura ni ampliación del authority boundary.
+
 ## Validación
 
 ```text
@@ -101,7 +129,7 @@ Required env:        SET|NOT_SET (value never shown)
 Capability exposed:  yes|no
 Client vs backend:   distinguished
 Architecture drift:  none|material
-Tool surface:        expected|unexpected
+Tool surface:        expected exact set|unexpected
 Family runbook:      loaded only after plane/auth is scoped
 Bypass:              none
 Secrets persisted in docs: no
@@ -111,6 +139,8 @@ Secrets persisted in docs: no
 
 No publicar backends, no abrir nuevos puertos y no pedir secretos como workaround. Si una modificación de config/env empeora discovery, restaurar configuración anterior y reiniciar cliente; tocar backend sólo con evidencia que lo incrimine.
 
+Para Hasura PROD, si un upgrade vuelve a exponer `run_sql`, `reload_metadata` o cualquier mutador, considerar la capability fuera de contrato y restaurar el artefacto strict-RO certificado antes de continuar.
+
 ## Evidencia
 
-Registrar capability afectada, estado de discovery, nombres de env vars sin valores, boundary cliente/proxy/backend, tool surface cuando aplique, drift respecto de arquitectura, acción correctiva y resultado material.
+Registrar capability afectada, estado de discovery, nombres de env vars sin valores, boundary cliente/proxy/backend, tool surface server-side cuando aplique, drift respecto de arquitectura, acción correctiva y resultado material.
