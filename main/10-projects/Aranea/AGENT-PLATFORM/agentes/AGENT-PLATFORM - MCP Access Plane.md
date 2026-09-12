@@ -24,7 +24,7 @@ tags:
   - project/aranea-agent-platform
   - tech/mcp
 created: "2026-09-07"
-updated: "2026-09-11"
+updated: "2026-09-12"
 ---
 
 # AGENT-PLATFORM - MCP Access Plane
@@ -39,7 +39,8 @@ updated: "2026-09-11"
 
 ## 📊 Estado actual
 
-- T0, T2, T3 y T4 cerrados. T1 continúa WIP como contrato transversal; el siguiente carril funcional es T5 Temporal MCP.
+- T0, T2, T3 y T4 cerrados. T1 continúa WIP como contrato transversal. El carril funcional inmediato pasa a **ARGUS / Observability**; T5 Temporal queda diferido, no cancelado, hasta cerrar el baseline y access path de observabilidad.
+- `progress: 85` conserva el avance histórico del scope previo a ARGUS; no se recalcula hasta dimensionar el workstream de observabilidad con evidencia real.
 - `mcps` es un LXC dedicado con Docker + Portainer; IP actual `192.168.31.219`, considerada mutable y no parte del contrato estable. `mcps.lab.aranea.cl` es el endpoint estable usado por consumidores.
 - SSH MCP operativo en una sola instancia/puerto con cinco perfiles: read-only `sqx-zeus`, `sqx-hera`, `sqx-kronos`, `mt5-kronos`; writable/operator `mt5-kronos-operator`.
 - Las host keys ED25519 de todos los targets están pinneadas y validadas. Hera y Kronos regeneraron keys únicas porque las VMs clonadas compartían originalmente la identidad SSH de Zeus.
@@ -65,6 +66,17 @@ updated: "2026-09-11"
 - `echo-forge-wfm-troubleshooting` fue refactorizada para conservar routing/conocimiento de dominio y delegar cualquier operación `aranea-*` a `aranea-mcps-expert`, eliminando duplicación de endpoints/permisos/transport semantics.
 - Hardening genérico no necesario para desbloquear el uso actual — validación explícita de sesiones background, timeout extremo y revisión operativa de audit trail — se difiere a T6, donde se consolidarán health/logs/rotación/rollback y runbook transversal.
 
+### ARGUS / Observability — baseline registrado 2026-09-12
+
+- ARGUS conserva **Jaeger v2.9.0** como backend/query de traces; no se migra a Tempo sin evidencia material.
+- Pipeline real de traces: `Echo / Forge → OTLP :4317/:4318 → Jaeger → OpenSearch`.
+- Pipeline real de metrics/logs: `Echo / Forge → OTLP :14317/:14318 → OTel Collector → Prometheus/Loki`.
+- El OTel Collector actual no tiene pipeline `traces`; esa separación es parte del baseline y no debe colapsarse por conveniencia.
+- Echo es el golden baseline de telemetría. Forge se corrige sólo después de comparar configuración y evidencia E2E contra Echo; no se toca Echo para arreglar Forge.
+- OpenSearch permanece loopback-only (`127.0.0.1:9200`). El estado `yellow` single-node observado corresponde principalmente a réplicas internas y queda fuera del P1 inmediato.
+- Sampling objetivo `100%` y retención objetivo `30 días` están **pendientes de verificación contra estado actual**; documentación histórica no se considera autoridad suficiente.
+- Targets MCP planeados, aún no desplegados: `aranea-observability-ro` y `aranea-jaeger-ro`, ambos read-only.
+
 ## 🧱 Entrega de desarrollo
 
 _No aplica por ahora — la primera etapa es discovery y configuración operativa sobre infraestructura existente. Si una tarea requiere cambiar código, configuración versionada, schemas o infraestructura mediante repositorio, se registrarán repo/branch/base y SPECs antes de implementar ese cambio._
@@ -85,11 +97,18 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 > - [x] T2 Seleccionar y validar SSH MCP para uso real de agentes: host-key strict, perfiles read/operator, bearer cliente→MCP, least privilege por target, acceso multi-host, transferencia de archivos, ejecución controlada y cero private keys entregadas al agente. Hardening transversal de background/timeout/audit pasa a T6 #owner/agent #type/admin #area/aranea
 > - [x] T3 Seleccionar y validar PostgreSQL MCP con una sola base de desarrollo: perfiles RO/RW, credencial centralizada, límites de query/timeout y convivencia con `psql` nativo #owner/agent #type/admin #area/aranea
 > - [x] T4 Seleccionar y validar MongoDB MCP con una sola base de desarrollo: perfiles RO/RW, `readOnly`/protecciones equivalentes, límites de consulta y convivencia con `mongosh` nativo #owner/agent #type/admin #area/aranea
-> - [ ] T5 Seleccionar y validar Temporal MCP: comenzar read-only con allowlist de namespaces; evaluar `signal/start/cancel` sólo después de demostrar la necesidad y el modelo de policy correspondiente #owner/agent #type/admin #area/aranea
+> - [ ] T5 **DEFERRED** — Seleccionar y validar Temporal MCP: comenzar read-only con allowlist de namespaces; evaluar `signal/start/cancel` sólo después de demostrar la necesidad y el modelo de policy correspondiente #owner/agent #type/admin #area/aranea
 > - [ ] T6 Consolidar los cuatro MCP aprobados en el host central, integrar al menos Hermes y Daedalus, demostrar que ambos consumen capabilities sin recibir credenciales reales de los servicios destino, y dejar health checks, logs/audit, background/timeout si aportan valor, rotación/rollback y runbook operativo mínimo #owner/agent #type/admin #area/aranea
+> - [/] OBS0 Verificar baseline ARGUS sin mutaciones: sampling Jaeger real, servicios Jaeger reales, policy ISM `jaeger-30d-delete` y aplicación efectiva sobre índices Jaeger #owner/agent #type/research #area/aranea
+> - [ ] OBS1 Comparar Forge telemetry contra Echo golden baseline y demostrar E2E con acción real → trace real → Jaeger → spans esperados → logs correlacionables #owner/agent #type/research #area/aranea
+> - [ ] OBS2 Cerrar correlación operacional `logs ↔ trace_id ↔ Jaeger` y semántica mínima de errores sin promover IDs de alta cardinalidad a labels Prometheus #owner/agent #type/research #area/aranea
+> - [ ] OBS3 Seleccionar y validar acceso read-only para `aranea-observability-ro` y `aranea-jaeger-ro`; preferir MCPs existentes y crear/forkear sólo ante gap demostrado #owner/agent #type/admin #area/aranea
+> - [ ] OBS4 Materializar como máximo los dashboards operacionales `Echo — Runtime`, `Forge — Pipeline` y `ARGUS — Platform Health`, sólo con preguntas operacionales concretas #owner/agent #type/admin #area/aranea
+> - [ ] OBS5 **DEFERRED** — Saneamiento secundario: OpenSearch yellow single-node, capacidad/cardinalidad Prometheus, Promtail → Alloy y upgrades; no mezclar con OBS0–OBS4 sin necesidad material #owner/agent #type/admin #area/aranea
 
 ## 📆 Bitácora
 
+- **2026-09-12** — Proyecto existente **EXTEND**, no CREATE: ARGUS/Observability pasa a ser el workstream inmediato del MCP Access Plane. Se registra el baseline de pipelines separados Jaeger vs OTel Collector, Echo como golden baseline, targets MCP RO futuros y gates OBS0–OBS5. T5 Temporal queda diferido. No se modifica runtime ARGUS ni se declara sampling/retención cerrados sin evidencia actual.
 - **2026-09-11** — `aranea-mcps-expert` quedó canónica en el vault (`30-resources/agents/skills/`) y los runbooks en AGENTS OS. Symphony conserva sólo un pointer de discovery.
 - **2026-09-11** — T4 MongoDB MCP cerrado end-to-end. Se adoptó `mongodb-js/mongodb-mcp-server` v2.1.1 pinneado a `2e8eae98d1301ca48f1e81273a3f3d5c5820f216`, imagen `local/mongodb-mcp:2.1.1-2e8eae9`. Deployment final separa backend+proxy RO (`:3003/mcp`) y RW (`:3004/mcp`), con bearer obligatorio y backends sin host port. RO expone 18 tools sin mutadores; RW 27 tools con mutación. Cursor/Daedalus muestra ambos capabilities conectados junto con SSH y PostgreSQL. Mongo `security.authorization` queda deliberadamente OFF durante desarrollo por decisión owner; hardening DB se pospone al freeze productivo. Se creó `aranea-mcps-expert` como única fuente agent-facing de capabilities Aranea y `echo-forge-wfm-troubleshooting` quedó reducida a routing de dominio.
 - **2026-09-11** — T3 PostgreSQL MCP cerrado end-to-end. Deployment persistente en `mcps` con backend+proxy separados para RO (`:3001/mcp`, `mcp_echo_ro`, restricted) y RW (`:3002/mcp`, `mcp_echo_rw`, unrestricted), bearer dedicado por capability y backends sin host port. Cursor/Daedalus carga ambos bearer automáticamente vía KDE y validó identidad/base real desde los dos MCP. RO sólo expone schema `echo` y excluye `hdb_catalog`; RW mantiene permisos acotados a `echo-develop`. Ambos roles heredan `statement_timeout=60s`, `lock_timeout=5s`, `idle_in_transaction_session_timeout=60s`; `psql` nativo como `postgres` sigue `0/0/0`. El upstream no ofrece timeout/límite genérico para `execute_sql`, por lo que no se forkea: el hard limit temporal vive en PostgreSQL. POCs y red temporal eliminados tras el gate final.
@@ -129,6 +148,8 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - D18: el path normal Mongo para agentes usa `connectionId="preconfigured"`; la presencia de `connect` no autoriza URIs arbitrarias. En desarrollo se conserva `security.authorization` OFF por decisión owner y el hardening del servidor queda fuera de T4.
 - D19: `aranea-mcps-expert` es la única fuente agent-facing para seleccionar/usar capabilities MCP Aranea. Las skills de dominio deben referenciarla y no duplicar endpoints, permisos, profiles o transport semantics. La skill MUST NOT activarse para MELI/corporativo.
 - D20: la skill canónica `aranea-mcps-expert` vive en el vault bajo `30-resources/agents/skills/`; los runbooks mecánicos viven en `80-agents/memory/public/runbook/`. `80-agents/skills/` queda reservado al core AGENTS OS. Symphony puede conservar un pointer de discovery, no una segunda autoridad.
+- D21: ARGUS/Observability se incorpora como workstream principal del MCP Access Plane. Jaeger se conserva; Echo es golden baseline; sampling/retención se verifican antes de mutar; accesos agent-facing nuevos parten read-only.
+- D22: observabilidad no reutiliza por defecto identidades o privilegios existentes sólo por conveniencia. `aranea-observability-ro` y `aranea-jaeger-ro` deben demostrar boundaries read-only propios antes de considerarse cerrados.
 
 ## 🔗 Docs / Links
 
@@ -142,7 +163,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ### Backlog de ideas
 
-- Extender el access plane a MinIO/S3, Kafka y observabilidad sólo después de cerrar T6 y demostrar que el patrón reduce credenciales distribuidas y fricción operacional.
+- Extender el access plane a MinIO/S3 y Kafka sólo después de demostrar que los workstreams activos reducen credenciales distribuidas y fricción operacional.
 
 ### Motivos / principios
 
