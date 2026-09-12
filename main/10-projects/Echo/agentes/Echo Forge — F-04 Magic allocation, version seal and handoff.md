@@ -10,7 +10,7 @@ parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-10
 due:
-progress: 70
+progress: 85
 repo: xKoRx/symphony
 jira:
 prs:
@@ -43,6 +43,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 ## 📊 Estado actual
 
+- **T2.1–T2.10 IMPLEMENTED (2026-09-12).** NORMAL ejecutó el plan TOP congelado sobre worktree aislado limpio. Compile Evaluation `mt5_compiler@mt5-compile.v1` producida por `mt5_compile_persist_v1` (sqx-worker), carrier `CompileEvaluationRef` exacto, `UseDurableMagicAllocation: true` en el caller productivo, `forge_seal_handoff_v1` (seal+handoff tras Finalist V2, G22 incluido), HTTP ingress E-04 real + GET-by-key + fail-closed sin config. SOURCE+CONTRACT+CONCURRENCY (`-race`)+MIGRATION PASS. Sets de fallos pre-existentes verificados equivalentes a baseline `9fad768` (workflows 21, worker 16, registry-postgres 4). **PHYSICAL: BLOCKED — entorno** (mt5-kronos DNS no resuelve; hosts Linux viewer). T2.11–T2.13 requieren físico/integración → pendientes. HEAD `d645ed6c2f438995d636a8213b1e4a3f5f26cbea` pushed fast-forward.
 - **TOP READY (2026-09-12).** El STOP de NORMAL queda resuelto: la autoridad de `compile_evaluation_ref` es un `domain.EvaluationRef` real sellado por StageExecution `mt5_compiler@mt5-compile.v1` en el plano Durable Foundation existente. **MIGRATION 017 = NO.** PHYSICAL sigue operacionalmente pending (host compile/SQX); eso no bloquea el plan. E-04 consumer READY `@ a99f9a6`; T21/AC-37 espera golden auténtico tras T2.
 - **READY FOR MANAGER REVIEW (2026-09-11).** Owner gate resuelto: Magic Number V1 (`YYMMIIIDSSS`, 11 dígitos) implementado sobre `1999da1` en commit `ea8be76` (pushed). `CC_MISSING_OWNER_GATE`/`GateMagicCandidateSource` eliminados de producción; allocation V1 con catálogo/contador durables (migration 016), wiring productivo desde el control plane. SOURCE+CONTRACT+CONCURRENCY+MIGRATION PASS (`-race`; sweep paquete registry-postgres = mismos 4 fallos pre-existentes baseline). `PHYSICAL: BLOCKED — entorno`: mt5-kronos (Windows) tiene MetaEditor64 pero no SQX/sqcli para el stamp .sqx→.mq5 y los hosts Linux del stack son viewer/read-only esta sesión; no se finge PHYSICAL. INTEGRATION espera E-04. Worktree CLEAN.
 - HEAD Symphony `9fad768ccd1f9d25ebb535a2d26edb3d74556c10` (merge autorizado `origin/master` y pushed a la feature); `origin/master` real `0b9742b09019526a8119f086199d15d1f0d42cb1`; merge-base actual `0b9742b09019526a8119f086199d15d1f0d42cb1`; `ea8be76` y `origin/master` son ancestros. Worktree: dirty foráneo preservado en `specs/FEAT-SQX-STRATEGY-EVALUATION/fixtures/phase4_performance.json`, reescrito por suite ajena; no restaurado ni borrado.
@@ -56,7 +57,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f04-magic-version-handoff` | `0b9742b09019526a8119f086199d15d1f0d42cb1` reconciliado | [[Echo Forge — Factory V2 Completion]] F-04 | [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **TOP READY — compile Evaluation authority frozen; NORMAL T2 pending manager** |
+| xKoRx/symphony | `feature/f04-magic-version-handoff` | `0b9742b09019526a8119f086199d15d1f0d42cb1` reconciliado | [[Echo Forge — Factory V2 Completion]] F-04 | [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **T2.1–T2.10 DONE — READY FOR MANAGER REVIEW; PHYSICAL BLOCKED — entorno** |
 
 ## Parent / SPEC / baselines
 
@@ -70,18 +71,21 @@ Magic TaskSpec: `sqx/core/runtime/config.go` `ApplySelectedRunTaskConfig.MagicNu
 
 ## Requirement-to-evidence
 
+Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo missing" quedó obsoleta; se corrige in-place sin reescribir historia (el detalle por tarea vive en Atomic tasks y bitácora).
+
 | Req | State | Evidence |
 |---|---|---|
-| Durable unique magic CAS | missing | no table; 888111 shared |
-| Same identity replay | missing | no allocator |
-| Stamp readback == allocated | missing | assumed requested==applied |
-| Seal S0 StrategyVersionRef | missing | no type |
-| HandoffManifestV1 write-once | missing | no producer |
-| Thin adapter + fakeconsumer | missing | no port |
-| G22 zero POST | missing | no producer |
-| CC gate | documented | `CC_MISSING_OWNER_GATE` |
-| No Echo DB writes | keep | no echo-api |
-| HashIdentity ≠ H() | missing as F-04 test | recipes coexist; no inequality gate in Forge |
+| Durable unique magic CAS | **done (T1/T2.6)** | migration 015 `sqx.strategy_magic` + allocator CAS; caller productivo con `UseDurableMagicAllocation: true` |
+| Same identity replay | **done (T1)** | Allocate replay-first reusa motor CAS/UNKNOWN_COMMIT (`magic_v1.go`, tests `-race`) |
+| Stamp readback == allocated | **done (T1/T2.7)** | `magic-readback` XML+MQ5 + `VerifyMagicReadback` en assembler; mismatch fail closed sin seal |
+| Seal S0 StrategyVersionRef | **done (T1/T2.7)** | `SealStrategyVersion` write-once + `forge_seal_handoff_v1` (receta S0, recompute) |
+| HandoffManifestV1 write-once | **done (T1/T2.7/T2.8)** | `BuildHandoffManifest` con caller productivo tras Finalist V2; persist write-once |
+| Thin adapter + fakeconsumer | **done (T1/T2.9)** | port `HandoffIngress`: fakeconsumer CONTRACT + HTTP E-04 real (`http_ingress.go`) |
+| G22 zero POST | **done (T1/T2.8)** | `HandoffMembersForDecision` membership vacía → 0 manifests/0 deliveries/0 POST (tests assembler) |
+| CC gate | **resuelto (T1)** | Magic Number V1 owner allocator; `CC_MISSING_OWNER_GATE` eliminado de producción |
+| No Echo DB writes | **done (T2.9)** | HTTP client sin SQL; grep SOURCE sin writes Echo |
+| HashIdentity ≠ H() | **done (T1/T2)** | test desigualdad persistente; compile digest usa receta D16 MT5 (schema+JSON), seal usa recetas S0 |
+| Compile EvaluationRef | **done (T2.1–T2.5)** | binding `mt5-compile.v1` + `mt5_compile_persist_v1`; cardinalidad 1, recovery exacto |
 
 ## Decision register
 
@@ -250,16 +254,16 @@ F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E
 > - [x] T1.16 concurrent allocation same/different identity #owner/agent #type/dev #area/echo
 > - [x] T1.17 BWC no backfill 888111; brownfield sin fila magic #owner/agent #type/dev #area/echo
 > - [x] T1.18 SOURCE greps ownership/latest/ranking/HashIdentity-on-S0 #owner/agent #type/dev #area/echo
-> - [ ] T2.1 compile Evaluation binding contract `mt5-compile.v1` #owner/agent #type/dev #area/echo
-> - [ ] T2.2 `mt5_compile_persist_v1` activity + PutEvaluation/CompleteStageExecution #owner/agent #type/dev #area/echo
-> - [ ] T2.3 wire persist after durable compile success in `executeMT5ArtifactTask` #owner/agent #type/dev #area/echo
-> - [ ] T2.4 carrier `CompileEvaluationRef` exact pointer #owner/agent #type/dev #area/echo
-> - [ ] T2.5 exact recovery UNKNOWN_COMMIT cardinality CONTRACT_CONFLICT #owner/agent #type/dev #area/echo
-> - [ ] T2.6 `UseDurableMagicAllocation` productive caller #owner/agent #type/dev #area/echo
-> - [ ] T2.7 seal assembler exact Apply+Compile+readback+verify #owner/agent #type/dev #area/echo
-> - [ ] T2.8 handoff assembler after Finalist V2 #owner/agent #type/dev #area/echo
-> - [ ] T2.9 Echo HTTP `HandoffIngress` POST+GET by-key #owner/agent #type/dev #area/echo
-> - [ ] T2.10 Echo ingest auth/config #owner/agent #type/dev #area/echo
+> - [x] T2.1 compile Evaluation binding contract `mt5-compile.v1` #owner/agent #type/dev #area/echo
+> - [x] T2.2 `mt5_compile_persist_v1` activity + PutEvaluation/CompleteStageExecution #owner/agent #type/dev #area/echo
+> - [x] T2.3 wire persist after durable compile success in `executeMT5ArtifactTask` #owner/agent #type/dev #area/echo
+> - [x] T2.4 carrier `CompileEvaluationRef` exact pointer #owner/agent #type/dev #area/echo
+> - [x] T2.5 exact recovery UNKNOWN_COMMIT cardinality CONTRACT_CONFLICT #owner/agent #type/dev #area/echo
+> - [x] T2.6 `UseDurableMagicAllocation` productive caller #owner/agent #type/dev #area/echo
+> - [x] T2.7 seal assembler exact Apply+Compile+readback+verify #owner/agent #type/dev #area/echo
+> - [x] T2.8 handoff assembler after Finalist V2 #owner/agent #type/dev #area/echo
+> - [x] T2.9 Echo HTTP `HandoffIngress` POST+GET by-key #owner/agent #type/dev #area/echo
+> - [x] T2.10 Echo ingest auth/config #owner/agent #type/dev #area/echo
 > - [ ] T2.11 authentic Forge golden capture #owner/agent #type/dev #area/echo
 > - [ ] T2.12 PHYSICAL certification host capabilities #owner/agent #type/dev #area/echo
 > - [ ] T2.13 cross-lane smoke Echo T21/AC-37 #owner/agent #type/dev #area/echo
