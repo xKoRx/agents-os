@@ -115,3 +115,10 @@ Corrección in-place del contrato F-04: identidad del HandoffManifestV1 desde `s
 - Reescritas [[echo-core]] (evidencia `xKoRx/echo@f7ddea18`) y [[echo-forge]] (evidencia `xKoRx/symphony@9fad768c`): corte estable/volátil, eliminado el claim falso "Forge entrega finalistas a Echo Core vía API" (ver [[echo-forge-integration-boundary]]).
 - Creada [[echo-forge-integration-boundary]] (estado implementado + gaps G1–G7) y 2 notas source por baseline (f7ddea18 / 9fad768c).
 - Índice raíz: filas Echo reemplazadas por puntero único al sub-índice; `00-RESOURCE-WIKI` declara `applications/echo/` como subdominio activo. Cambio canónico: [[2026-09-13-kbc-echo-subdomain-publication]]. Supersede de las 5 históricas diferido hasta verificar cobertura de sus claims únicos. Graphify externo no se refresca (reindex pendiente).
+
+## [2026-09-13] ingest | Echo/Echo Forge — protocolo de mantenimiento incremental
+
+- `applications/echo/00-index.md` incorpora checkpoints `documented_sha` para `xKoRx/echo@f7ddea18` y `xKoRx/symphony@9fad768c` como cursores documentales verificables.
+- Refresh futuro = verificar ancestry → inspeccionar sólo `documented_sha..target` (o merge-base si diverge) → clasificar impacto → tocar sólo páginas afectadas → verificar → avanzar cursor únicamente con PASS.
+- Se distingue `NO_DOC_IMPACT`, `IMPLEMENTATION_DOC_IMPACT`, `CONTRACT_IMPACT` y `BOUNDARY_IMPACT`; contratos frozen no se reescriben para esconder divergencias de implementación.
+- El mecanismo especializa [[30-resources/00-RESOURCE-WIKI|Resource Wiki]] sin crear README/runbook paralelo; KBC queda como snapshot full inicial y el mantenimiento posterior es incremental.
