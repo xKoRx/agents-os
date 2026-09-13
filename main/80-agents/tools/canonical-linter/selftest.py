@@ -654,6 +654,54 @@ def test_positivos_por_check() -> None:
                 "CL-20: memory_state fuera de agent_memory -> WARN: %s" % f20)
 
 
+def test_d1_fila_indice_multilink() -> None:
+    """D1 (verificación adversarial P3-C): `_index_rows` debe verificar TODOS
+    los wikilinks de cada fila de índice, no sólo el primero. Una fila con dos
+    links rotos produce 2 findings; una fila cuyo primer link resuelve y cuyo
+    segundo está roto produce 1 finding (el falso negativo del repro
+    `30-resources/aranea/00-index.md:125` -> agent-project-08)."""
+    r = new_vault()
+    write_note(r, "Destino.md", """---
+type: doc
+schema_version: 1
+status: active
+tags:
+  - kind/doc
+---
+
+Destino vigente.
+""")
+    write_note(r, "30-resources/multi/00-index.md", """---
+type: index
+schema_version: 1
+status: active
+tags:
+  - kind/index
+---
+
+# Multi
+
+| Página | Nota |
+|---|---|
+| [[Destino]] | Fila vigente. |
+| [[roto-d1-b]] a [[roto-d1-c]] | Fila con DOS links rotos. |
+| [[Destino]] y [[roto-d1-a]] | Fila cuyo primer link resuelve y el segundo no. |
+""")
+    doc = run(r)
+    f14 = [f for f in findings_of(doc, "CL-14") if f["status"] == "FAIL"]
+    obs14 = " | ".join(f["observed"] for f in f14)
+    assert_true(len(f14) == 3, "CL-14: 3 links rotos en total (2 + 1): %s" % f14)
+    assert_true("roto-d1-b" in obs14 and "roto-d1-c" in obs14,
+                "D1: la fila con dos links rotos produce 2 findings: %s" % f14)
+    assert_true("roto-d1-a" in obs14,
+                "D1: el segundo link de una fila cuyo primero resuelve también se reporta: %s" % f14)
+    misma_fila = [f for f in f14 if "roto-d1-b" in f["observed"] or "roto-d1-c" in f["observed"]]
+    assert_true(len(misma_fila) == 2 and misma_fila[0]["line"] == misma_fila[1]["line"],
+                "D1: los dos findings de la misma fila comparten línea: %s" % misma_fila)
+    assert_true(not findings_of(doc, "CL-15"),
+                "CL-15: las filas inexistentes son territorio de CL-14: %s" % findings_of(doc, "CL-15"))
+
+
 def test_negativos_vault_limpio() -> None:
     r = build_clean_vault()
     doc = run(r)
@@ -758,6 +806,7 @@ def test_git_head_y_schema_record() -> None:
 
 TESTS = [
     ("positivos_por_check (CL-01..CL-20 con FAIL/WARN demos)", test_positivos_por_check),
+    ("d1_fila_indice_multilink (D1: todos los links de una fila de índice)", test_d1_fila_indice_multilink),
     ("negativos_vault_limpio (20 PASS)", test_negativos_vault_limpio),
     ("exclusion_fixtures (A8)", test_exclusion_fixtures),
     ("determinismo (dos runs idénticos)", test_determinismo),
