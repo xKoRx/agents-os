@@ -1,9 +1,11 @@
 ---
 type: runbook
 schema_version: 1
+status: superseded
+superseded_by: "[[signals-code-review-runbook]]"
 scope: user
 created: "2026-09-11"
-updated: "2026-09-11"
+updated: "2026-09-12"
 area: "[[Meli]]"
 project:
 application:
