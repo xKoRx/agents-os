@@ -11,36 +11,57 @@ tags:
   - tech/flink
 ---
 
-# Flink MCP / aranea-flink-ro — workstream del MCP Access Plane
+# Flink MCP — workstream del MCP Access Plane
 
 > Componente del proyecto [[AGENT-PLATFORM - MCP Access Plane]]. **No es un proyecto paralelo.**
 >
-> Deployment target: `mcps.lab.aranea.cl`. Cliente inicial: Daedalus.
+> Deployment target MCP: `mcps.lab.aranea.cl`. Cliente inicial: Daedalus. Ambiente DEV a descubrir/administrar inicialmente: `docker-echo-dev`.
 
 ## Objetivo
 
-Materializar `aranea-flink-ro` como capability MCP centralizada para diagnóstico estructurado de Apache Flink desde agentes, evitando depender de SSH como primer mecanismo de inspección.
+Materializar dos capabilities MCP separadas por ambiente para Apache Flink:
 
-## Scope inicial
+- `aranea-flink-dev-admin`: administración operacional completa de Flink DEV, incluyendo inspección, jobs, configuración y lifecycle/restarts cuando la implementación real lo permita de forma explícita y verificable.
+- `aranea-flink-prod-ro`: inspección estrictamente read-only de Flink PROD, a implementar después de cerrar DEV.
 
-- Autoridad estrictamente read-only.
-- Inspección objetivo: cluster, JobManager, TaskManagers, jobs, estado, vertices/operators, parallelism, exceptions, checkpoints, metrics, backpressure, watermarks cuando la API real lo permita y configuración observable.
-- Operaciones fuera de scope y prohibidas en esta capability: submit/cancel/stop/restart jobs, rescale, trigger/dispose savepoints, upload/delete/run JARs y cualquier mutación de configuración o cluster.
+La fase activa es exclusivamente DEV. PROD queda diferido y no debe bloquear ni ampliar el rollout inicial.
+
+## Scope DEV activo
+
+`aranea-flink-dev-admin` debe permitir administrar Flink DEV sin depender de SSH como primer mecanismo normal. La superficie objetivo incluye, según el deployment/version real:
+
+- cluster, JobManager, TaskManagers y health;
+- jobs, status, plan, vertices/operators, parallelism, exceptions;
+- checkpoints, savepoints, metrics, backpressure y watermarks cuando la API real lo permita;
+- submit/cancel/stop/restart/rescale jobs cuando Flink soporte la operación;
+- upload/run/delete JARs si forman parte del deployment real;
+- cambios de configuración con scope y post-condición explícitos;
+- lifecycle operacional del servicio Flink DEV, incluyendo restart cuando el runtime real lo requiera y exista un boundary controlable.
+
+DEV tiene autoridad administrativa real. Antes de una mutación se fija target, blast radius y post-condición y se verifica el resultado en el mismo ambiente.
+
+## Scope PROD diferido
+
+`aranea-flink-prod-ro` será una capability separada con bearer propio y tool surface estrictamente de lectura. No reutilizará la autoridad DEV ni expondrá submit/cancel/savepoint/JAR/config/lifecycle mutations. Su diseño se abrirá sólo después de cerrar DEV.
 
 ## Estado
 
-`DISCOVERY / IN-PROGRESS`.
+`DISCOVERY / IN-PROGRESS — DEV FIRST`.
 
-Aún no están congelados ni registrados como hechos: deployment real de Flink, versión, JobManager/REST endpoint, puertos, auth, TLS, deployment mode, HA, credenciales, implementación MCP, puerto de `mcps` ni transport/path cliente. Esos datos se incorporarán sólo después de discovery read-only y evidencia material.
-
-## Targets confirmados del workstream
+Confirmado por el owner para este workstream:
 
 ```text
-server: mcps.lab.aranea.cl
-capability: aranea-flink-ro
+MCP server host: mcps.lab.aranea.cl
+DEV target host a inspeccionar: docker-echo-dev
 initial client: Daedalus
+phase 1: aranea-flink-dev-admin
+phase 2: aranea-flink-prod-ro
 ```
 
-## Boundary RO congelado
+Aún no están congelados como hechos: deployment real de Flink en DEV, versión, containers/services, JobManager/REST endpoint, puertos, auth/TLS, deployment mode, HA, paths/config, implementación MCP, puerto de `mcps`, transport/path MCP y mecanismo exacto de lifecycle. Esos datos se incorporarán sólo después de discovery read-only y evidencia material.
 
-La capability debe aplicar defense in depth: bearer propio cliente→MCP, tool surface MCP exclusivamente de lectura y upstream Flink REST mantenido dentro del boundary privado existente. Si un MCP candidato mezcla mutadores con lectura y no permite eliminarlos o denegarlos de forma verificable antes de alcanzar Flink, no es apto para `aranea-flink-ro`.
+## Arquitectura heredada
+
+Ambas capabilities deben reutilizar [[AGENT-PLATFORM - MCP Access Plane - Architecture]]: backend MCP interno sin host port, Nginx bearer proxy por capability como listener host-facing, bearer cliente→MCP independiente de cualquier credencial upstream, source/release/dependencies pinneados y secretos fuera de repos/config de Cursor.
+
+Para DEV, la autoridad administrativa debe existir en la tool surface certificada y no depender de prompts de buena conducta. Para PROD, la ausencia de mutadores en `tools/list` server-side será parte del contrato strict-RO.
