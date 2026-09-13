@@ -779,10 +779,9 @@ def sc_cold_default(ctx: Ctx) -> Tuple[str, str, List[str]]:
         surface = "; configs de maquina observadas: %s" % ", ".join(
             "%s aranea=%d meli=%d" % (c["surface"], c["aranea"], c["meli"]) for c in ctx.machine_surface)
     state = "FAIL" if problems else "WARN"  # WARN declarado por diseno (spec section 5)
-    return state, (
-        "cold start DEFAULT sin router (contrato literal del paso 6)"
-        if not problems else "cold start DEFAULT violo el contrato",
-    ), evidence + problems + ["WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente%s una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (COLD-DEFAULT observable_evidence)." % surface]
+    details = "cold start DEFAULT sin router (contrato literal del paso 6)" if not problems else "cold start DEFAULT violo el contrato"
+    evidence += problems + ["WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente%s una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (COLD-DEFAULT observable_evidence)." % surface]
+    return state, details, evidence
 
 
 def sc_cold_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
@@ -855,11 +854,10 @@ def sc_cold_aranea(ctx: Ctx) -> Tuple[str, str, List[str]]:
     evidence.append("estado: active_entity=%s active_domain=%s pack=%s" % (
         ent.get("title") if ent else None, s.active_domain, s.pack_files))
     state = "FAIL" if problems else "WARN"  # WARN declarado por diseno (Hallazgo 7)
-    return state, (
-        "cold start Aranea via area [[Echo]]: router aranea-agent-dev + aranea ops prefs" if not problems
-        else "cold start Aranea violo el contrato (C10)",
-        evidence + problems + [
-            "WARN declarado (Hallazgo 7): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area y el router Aranea no la lista en su Minimal Read; su carga on-demand via el enlace del perfil no se afirma ni se prohíbe (C11)."])
+    details = "cold start Aranea via area [[Echo]]: router aranea-agent-dev + aranea ops prefs" if not problems else "cold start Aranea violo el contrato (C10)"
+    evidence += problems + [
+        "WARN declarado (Hallazgo 7): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area y el router Aranea no la lista en su Minimal Read; su carga on-demand via el enlace del perfil no se afirma ni se prohíbe (C11)."]
+    return state, details, evidence
 
 
 def sc_cold_conflicting(ctx: Ctx) -> Tuple[str, str, List[str]]:
@@ -1129,10 +1127,8 @@ def _switch_from_default(ctx: Ctx, title: str, expected_domain: str, pack: List[
     state = "FAIL" if problems else "WARN"  # WARN de clasificacion de modo, por diseno
     warn = ("WARN declarado (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap "
             "('switches to a different entity') convergen en el mismo observable; ninguna autoridad fija la clasificacion del modo.")
-    return state, (
-        "resolucion tardia %s: gate aplicado, base intacta, sin re-ejecutar bootstrap" % title if not problems
-        else "resolucion tardia desde DEFAULT violo el contrato",
-        evidence + problems + [warn])
+    details = "resolucion tardia %s: gate aplicado, base intacta, sin re-ejecutar bootstrap" % title if not problems else "resolucion tardia desde DEFAULT violo el contrato"
+    return state, details, evidence + problems + [warn]
 
 
 def sc_switch_default_to_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
