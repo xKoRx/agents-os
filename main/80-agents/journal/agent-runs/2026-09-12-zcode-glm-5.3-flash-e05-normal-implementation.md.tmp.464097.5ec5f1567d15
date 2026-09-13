@@ -1,0 +1,60 @@
+---
+type: agent_run
+schema_version: 1
+scope: session
+created: "2026-09-12"
+updated: "2026-09-12"
+area: "[[Echo]]"
+project: "[[Echo — E-05 Analytics Convergence A0]]"
+application: "[[echo-core]]"
+entities:
+  - "[[Echo — E-05 Analytics Convergence A0]]"
+related:
+  - "[[Echo — Live Platform V1]]"
+  - "[[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]"
+aliases: []
+agent_surface: "[[ZCode]]"
+agent_model: builtin:zai-start-plan/GLM-5.3-Flash
+model_source: system-reported
+task_type: coding
+task_complexity: large
+outcome: pass
+verification: tests-and-source-gates
+evaluator: agent
+user_rework: unknown
+source_session:
+load_policy: manual
+indexable: false
+index_priority: never
+tags:
+  - kind/agent-run
+  - scope/session
+---
+
+# Agent Run — 2026-09-12-zcode-glm-5.3-flash-e05-normal-implementation
+
+## Trabajo
+
+- **Objetivo:** ejecutar el carril NORMAL E-05 T01–T21 contra planning v1.0.1 (`dd1f2da9`, base `a99f9a63`): migración 063 write-once, stores canónicos, package `v3/sdk/analytics` (adapters Lab/journal/snapshot, registry de fórmulas frozen, calculator fail-closed), writer idempotente, job `lab-canonical-a0`, Hasura metadata SELECT, harness SQL up/down/up, BWC y evidencia para manager source review. Sin tocar contracts/061/062/E-02/E-04/front; sin merge a `master`.
+- **Alcance atribuible a esta combinación superficie×modelo:** worktree `/tmp/echo-e05-analytics-a0`; 9 commits `b873a6be`→`69eec0b9` (migración 063 + harness SQL; stores scope/tradeset/metricset con replay/conflicto vía `DetectSealedConflict`; adapters + registry con definition digests golden + calculator big.Rat half-even 12 dígitos; writer transaccional con pre-check replay; CLI `lab-canonical-a0` dual-run; `canonical_analytics.yaml` SELECT-only; `TEST_CHANGE_REQUEST.md`; TASKS `[x]` y VERIFICATION llena). Push fast-forward `dd1f2da9..69eec0b9` a `origin/feature/e05-analytics-convergence-a0`; `origin/master` intacto `a99f9a63`.
+- **Artefactos afectados:** repo `xKoRx/echo` branch `feature/e05-analytics-convergence-a0`; vault: nota E-05 (estado/WPs/bitácora), padre Live Platform V1 (bitácora), agent-run, feedback.
+
+## Evidencia
+
+- **Validaciones ejecutadas:** harness SQL `tests/analytics_a0/run.sh` exit 0 en PG 17.11 descartable (up/idempotencia/write-once/REVOKE/constraints/down fail-closed/down forzado/re-up); suite Go final: analytics 3 paquetes PASS, lab-worker builders+repo PASS, sdk/lab 7 paquetes PASS (BWC), 15 tests E-05 en `./postgres/` PASS con PG real (los 2 gates SOURCE de E-04 fallan — clasificados en TEST_CHANGE_REQUEST.md, uno preexistente en planning HEAD); coverage `v3/sdk/analytics` 95.6% con `-coverpkg` (stores nuevos 79.7%, resto guards de infra); SOURCE greps en cero (contracts/062/064+/front/INNER JOIN/scores/go.mod); Hasura DEV READ (`export_metadata`, mutation canónica ausente), `HASURA_DEV_APPLY=NOT_RUN` con sustituto yaml+PG local según gate matrix.
+- **Resultado observable:** `IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW` (no verifier, no merge, no CLOSED). Interlock vigente: 063 sin merge/deploy hasta 062 de E-02 en `master`.
+- **Limitaciones de la evidencia:** apply de 063 a Aranea DEV pendiente (deuda ops post-verifier con owner); `return.total R_PIPS` INSUFFICIENT por wire S0 v1 sin profit_pips; sin fixture Lab real (fixtures sintéticos — CONTRACT no analiza profit histórico).
+
+## Evaluación
+
+- **Correctness:** 5 — AC-01…AC-23 demostrados con evidencia, cero ALLOWED FILES fuera de scope.
+- **Autonomy:** 5 — bootstrap→planning→implementación→gates→push sin bloqueos al owner.
+- **Efficiency:** 4 — PG portable armado en caliente (sin psql local); un fixture decimal y una aserción G32 corregidos en el camino.
+- **Tool use:** 4 — MCP Postgres/Hasura usados READ ONLY; harness propio para PG REAL.
+- **Overall:** 4.5
+
+## Resultado
+
+- **Outcome:** pass (implementation ready; decisión de merge/verifier es del manager).
+- **Rework posterior:** unknown (pendiente manager source review).
+- **Aprendizaje para comparar herramientas:** ver feedback de sesión (tooling PG ausente en host).
