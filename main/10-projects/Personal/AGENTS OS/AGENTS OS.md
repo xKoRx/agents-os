@@ -78,6 +78,7 @@ updated: 2026-09-09
 > - [x] [[AGENTS OS - Fase 3]] ejecutar F6 y revisar G6 — retrofit, segundo piloto y decisión strict #owner/me #type/supervision #area/personal
 > - [x] [[AGENTS OS - Relaciones Tipadas de Graphify]] desarrollar y revisar preservación lossless de relaciones tipadas #owner/me #type/supervision #area/personal
 > - [ ] [[AGENTS OS - Fase 4]] priorizar y supervisar la próxima mejora desde el backlog auditado #owner/me #type/supervision #area/personal
+> - [/] [[AGENTS OS - Conformance Harness]] arrancar + seguimiento #owner/me #type/supervision #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};

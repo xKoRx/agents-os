@@ -43,19 +43,17 @@ updated: "2026-09-12"
 
 ## 🎯 Objetivo
 
-- 
+- Construir un **conformance harness** ejecutable localmente que demuestre automáticamente que Agents-OS cumple sus contratos actuales (bootstrap, cold/warm, entity switch, domain gates MELI/ARANEA/DEFAULT, skills routing, exclusión de deprecated/superseded, minimal context loading, ausencia de leakage entre scopes) con evidencia reproducible, sin rediseñar el sistema.
 
 ## 📊 Estado actual
 
-- 
+- **Baseline:** commit `a6a503f` (2026-09-12). Bootstrap vigente ejecutado en la sesión; club cerrado `always` verificado limpio (1 pública + 1 interna global).
+- **Fase:** auditorías A/B/C en curso (Contract Auditor, Domain Isolation Auditor, Conformance Scenario Designer en paralelo).
+- Artifacts en `40-archive/agents-os-conformance-harness/artifacts/` hasta definir ubicación canónica del harness.
 
 ## 🧱 Entrega de desarrollo
 
-%% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
-
-| Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
-|---|---|---|---|---|---|
-|  |  |  |  |  |  |
+_No aplica — el harness vive como scripts/tests dentro del vault bajo `40-archive/agents-os-conformance-harness/`; no toca repos de aplicaciones._
 
 ## 🧩 Subproyectos
 
@@ -83,9 +81,12 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/meli
-> - [ ] tarea delegada #owner/agent #type/dev #area/meli
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+> - [ ] T1 — Auditorías A/B/C en paralelo: contract-audit, domain-isolation-audit, conformance-scenarios #owner/agent #type/research #area/personal
+> - [ ] T2 — Reconciliación parent → conformance-spec-v1 (test model V1) #owner/agent #type/research #area/personal
+> - [ ] T3 — Harness Implementer subagent → entrypoint doctor L0/L1/L2 #owner/agent #type/dev #area/personal
+> - [ ] T4 — Ejecutar suite completa; fix loop sólo bugs del harness (máx 2 ciclos) #owner/agent #type/dev #area/personal
+> - [ ] T5 — Adversarial Verifier fresco + correcciones derivadas #owner/agent #type/research #area/personal
+> - [ ] T6 — Documentación mínima, findings registry, entrega final y cierre con feedback #owner/agent #type/admin #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -116,12 +117,12 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 ## 📆 Bitácora
 
-%% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-12** — 
+- **2026-09-12** — Proyecto creado como único planificador durable. Baseline `a6a503f`. Bootstrap ejecutado; se arrancan auditorías A/B/C como subagents paralelos con artifacts en `40-archive/agents-os-conformance-harness/artifacts/`.
 
 ## 🧭 Decisiones
 
-- 
+- El harness no rediseña Agents-OS: cualquier defecto real detectado se registra como finding, no se auto-corrige.
+- Artifacts del proyecto viven bajo `40-archive/agents-os-conformance-harness/` (proyecto de agente, detalle pesado fuera del hot path).
 
 ## 🔗 Docs / Links
 
