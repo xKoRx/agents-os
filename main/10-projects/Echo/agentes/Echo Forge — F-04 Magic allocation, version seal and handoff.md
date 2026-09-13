@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-10"
-updated: "2026-09-12"
+updated: "2026-09-13"
 ---
 
 # Echo Forge — F-04 Magic allocation, version seal and handoff
@@ -94,7 +94,7 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 - `PRE_RELEASE: PASS` — grep de `strategyIdentityFromCanonicalID|ParseMagicV1AllocationIdentity` en `sqx/` = 0; focos C4/C5 con `-race`, build y vet PASS.
 - `RELEASE: PASS` — `release-authority` AUTO asignó `0.2.98` (`published=0.2.97`, consistente); `deploy_release.sh --release-only "" 60` compiló Linux/Windows, publicó `worker/sqx/manifest.json` en MinIO y dejó hashes/tamaños coincidentes para seis artefactos. `vcs.revision=b57bfb2c...`; `vcs.modified=true` de watcher/Windows explicado por artefactos operacionales ignorados.
 - `ROLLOUT: INCONCLUSIVE` — la espera de 60 s no es prueba de runtime; no existe MCP SSH/runtime para observar `CURRENT`, `ACTIVATION`, rotación PID/pollers y MetaEditor/licencia en Zeus, Hera, Kronos Linux y Windows MT5. No se usó SSH directo.
-- `PHYSICAL: NOT_EXECUTED` — no se modificó input ni se disparó WorkflowID/RunID; no se produjo StrategyRef, Magic, EvaluationRef, StrategyVersion, DecisionRef o HandoffManifest auténtico.
+- `PHYSICAL BLOCKED — ENVIRONMENT` — no se modificó input ni se disparó WorkflowID/RunID; no se produjo StrategyRef, Magic, EvaluationRef, StrategyVersion, DecisionRef o HandoffManifest auténtico. La causa exacta es ausencia de capability MCP SSH/runtime para el gate de rollout/licencia, con SSH directo fuera de autoridad.
 - `T2.12: OPEN`; `T2.11: OPEN`; `T2.13: OPEN`. Primer bloqueo: capability de observación runtime ausente; no hay evidencia de defecto de producto.
 - Evidencia durable: repo `xKoRx/symphony`, worktree `symphony-f04-cert-20260913`, `deploy/0.2.98/` y `deployer_screen.log`; registro de agente en `80-agents/journal/agent-runs/2026-09-13-codex-unknown-f04-physical-certification.md`.
 
