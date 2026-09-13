@@ -33,7 +33,7 @@ Auditar la economía de contexto tras la publicación del subdominio `30-resourc
 - Acción segura: fase K marca `indexable: false` + `load_policy: manual` en los dist-files (o mueve el pack fuera de `30-resources/`); verificar con `agents-os-doctor`. No borrar (pertenecen al pipeline de distribución).
 
 ### F2 — Credenciales en claro repetidas en 4 superficies (incluye private key SSH en el vault)
-- Evidencia: `xKoRx/symphony: AGENTS.md:47` (password `cascada123` + inventario workers) · `xKoRx/symphony: .agents/skills/worker-troubleshooting/SKILL.md:21-41` (mismo password repetido ~10 veces) · `80-agents/tools/echo-forge-worker-access/credentials.env` (1,132 bytes) + `echo-forge-worker` (4,691 bytes, private key SSH) · `30-resources/APIs.md` (API keys z.ai y minimax en claro).
+- Evidencia: `xKoRx/symphony: AGENTS.md:47` (password `<REDACTED>` + inventario workers) · `xKoRx/symphony: .agents/skills/worker-troubleshooting/SKILL.md:21-41` (mismo password repetido ~10 veces) · `80-agents/tools/echo-forge-worker-access/credentials.env` (1,132 bytes) + `echo-forge-worker` (4,691 bytes, private key SSH) · `30-resources/APIs.md` (API keys z.ai y minimax en claro).
 - Impacto: el password viaja como always-on en toda sesión de symphony (53 líneas de AGENTS.md) y queda expuesto en git history; la private key y las API keys viven dentro del vault sincronizado. Mayor blast radius de la auditoría (seguridad + economía: credenciales no aportan contexto, lo contaminan).
 - Autoridad: constitución invariante 9 (no persistir secretos); planner ya lo flagueó al owner en fase I.
 - Consolidación recomendada: secret store único; AGENTS.md y skills referencian "resolver credencial desde el gestor autorizado", nunca el valor.
