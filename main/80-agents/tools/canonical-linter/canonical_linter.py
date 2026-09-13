@@ -1215,9 +1215,9 @@ def cl_16(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
     sections = ctx.harness._parse_index_tables(text)
     row_targets: List[str] = []
     for row in sections.get("core", []) + sections.get("federated", []):
-        m = re.search(r"\[\[((?:80-agents/skills|30-resources/agents/skills)/[^\]|#]+?)(?:\.md)?[^\]]*\]\]", row)
+        m = re.search(r"\[\[((?:80-agents/skills|30-resources/agents/skills)/[^/\]|#]+)/SKILL(?:\.md)?[^\]]*\]\]", row)
         if m:
-            row_targets.append(m.group(1) + "/SKILL.md" if not m.group(1).endswith("SKILL") else m.group(1) + ".md")
+            row_targets.append(m.group(1) + "/SKILL.md")
     seen: set = set()
     missing_existence = 0
     for target in row_targets:
@@ -1362,7 +1362,6 @@ def cl_18(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
                 destinations.append((p, "path citado en cold step", rel))
     checked = 0
     skipped_m16 = 0
-    skipped_rows = 0
     seen: set = set()
     for dest, mechanism, origin in destinations:
         key = (dest, mechanism)
@@ -1372,9 +1371,6 @@ def cl_18(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
         if dest in m16:
             skipped_m16 += 1  # frontmatter ya barrido por CTX-12/M16
             continue
-        if mechanism.startswith("path citado en cold step") and \
-                (dest == ctx.rules.SKILLS_INDEX or os.path.basename(dest) == "SKILL.md"):
-            pass  # igual se verifica: un cold step puede citar un destino nuevo
         checked += 1
         tstate = ctx.life_state(dest)
         archived_by_path = ctx.physical.get(dest, "") == "archive_path"
@@ -1504,29 +1500,16 @@ def build_ctx(vault_root: str) -> Tuple[Optional[LintCtx], Dict[str, str]]:
     try:
         rules_mod, harness_mod = load_harness(vault_root)
     except Exception as exc:
-        failures["harness"] = "harness/rules no importables (%s: %s)" % (type(exc).__name__, exc)
-        harness_mod = rules_mod = None
-        # reintento parcial: harness sin rules
-        try:
-            harness_dir = os.path.join(vault_root, HARNESS_REL)
-            if harness_dir not in sys.path:
-                sys.path.insert(0, harness_dir)
-            import agents_os_conformance as harness_mod  # noqa: E402
-            globals()["harness"] = harness_mod
-            failures.pop("harness", None)
-            failures["rules"] = "rules.py no importable (%s: %s)" % (type(exc).__name__, exc)
-        except Exception as exc2:
-            failures["harness"] = "harness/rules no importables (%s)" % exc2
-            harness_mod = None
-    if harness_mod is not None:
-        try:
-            vsc = load_contract_module(vault_root)
-            contract = vsc.load_contract()
-        except Exception as exc:
-            failures["contract"] = "schema-contract no cargable (%s: %s)" % (type(exc).__name__, exc)
-            contract = None
-    if harness_mod is None:
+        failures["harness"] = "harness no importable (%s: %s)" % (type(exc).__name__, exc)
         return None, failures
+    if rules_mod is None:
+        failures["rules"] = "rules.py no importable bajo %s" % HARNESS_REL
+    try:
+        vsc = load_contract_module(vault_root)
+        contract = vsc.load_contract()
+    except Exception as exc:
+        failures["contract"] = "schema-contract no cargable (%s: %s)" % (type(exc).__name__, exc)
+        contract = None
     try:
         ctx = LintCtx(vault_root, harness_mod, rules_mod, contract or {})
     except Exception as exc:
