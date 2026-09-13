@@ -120,7 +120,7 @@ PostgreSQL PROD/DEV y SSH fueron certificados end-to-end el 2026-09-11. Mongo Fo
 ### Autoridad documental MCP
 
 - Router agent-facing: `30-resources/agents/skills/aranea-mcps-expert/SKILL.md` → [[aranea-mcps-expert]].
-- Runbooks operativos: `80-agents/memory/public/runbook/aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md` y `aranea-mcp-capability-plane.md`.
+- Runbooks operativos: `30-resources/runbooks/aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md` y `aranea-mcp-capability-plane.md` (índice: `30-resources/runbooks/00-index.md`).
 - Invariante de datos: **PROD=RO; DEV=RW**. Una lectura DEV usa la capability DEV/RW sin necesidad de mutar. No crear sandboxes/profiles/ambientes auxiliares como workaround automático.
 - Secrets nunca se documentan por valor. Runtime PostgreSQL bajo `/opt/mcp/postgres/runtime/`; runtime Mongo Forge bajo `/opt/mcp/mongo-forge/runtime/`.
 
