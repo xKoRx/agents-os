@@ -1,0 +1,247 @@
+{
+  "run": "2026-09-13T04:24:59",
+  "tool": "context-budget",
+  "git_head": null,
+  "fidelity_gate": "FAIL",
+  "scenarios": [
+    {
+      "id": "CTX-15",
+      "reuses": [
+        "context_baseline"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-01",
+      "reuses": [
+        "COLD-DEFAULT"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-02",
+      "reuses": [
+        "COLD-MELI"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-03",
+      "reuses": [
+        "COLD-ARANEA"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-04",
+      "reuses": [
+        "WARM-DEFAULT"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-05",
+      "reuses": [
+        "WARM-MELI",
+        "BOOTSTRAP-NOT-RERUN-ON-WARM"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-06",
+      "reuses": [
+        "WARM-ARANEA"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-07",
+      "reuses": [
+        "SWITCH-MELI-TO-ARANEA"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-08",
+      "reuses": [
+        "SWITCH-ARANEA-TO-MELI"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-09",
+      "reuses": [
+        "SWITCH-DEFAULT-TO-MELI"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-10",
+      "reuses": [
+        "SWITCH-DEFAULT-TO-ARANEA"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-11",
+      "reuses": [
+        "UNRELATED-DOMAIN-NOT-LOADED"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-12",
+      "reuses": [
+        "DEPRECATED-DOC-NOT-DEFAULT-LOAD"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-13",
+      "reuses": [
+        "regla 5 constitución",
+        "DUAL-REGISTRY-DOMAIN-SYNC"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    },
+    {
+      "id": "CTX-14",
+      "reuses": [
+        "SESSION-SURFACE-EXPOSURE"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)",
+      "details": "no ejecutable: gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"
+    }
+  ],
+  "totals": {},
+  "counts": {
+    "pass": 0,
+    "fail": 0,
+    "warn": 0,
+    "skip": 15
+  },
+  "ambiguities": [
+    "Hallazgo 6 (A2): la clausula de evidencia de superficie del bootstrap paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (ADR pendiente).",
+    "Hallazgo 7 (A3): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area; autorizada en el pack meli (Minimal Read 3 del router); en escenarios aranea su aparicion seria WARN (clasificacion ambigua, INFERRED).",
+    "C09: vocabulario load_policy ad-hoc (when_echo_forge_loaded, etc.) y la semantica exacta de 'error matching' no tienen autoridad; heredado del harness como WARN y no invalida escenarios.",
+    "Hallazgo 11: areas drift [[Echo Forge]]/[[Personal]] en memoria de dominio no mapean a ningun dominio del gate (WARN declarado del harness ACTIVE-MEMORY-DOMAIN-PURITY).",
+    "DUAL-REGISTRY-DOMAIN-SYNC (Hallazgo 16): clausula dual de pr-description entre INDEX.md ('Vía meli-agent-dev u obra propia') y 30-resources/agents/00-index.md; semantica de la columna no definida por autoridad.",
+    "Modo ambiguo DEFAULT->dominio (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap convergen al mismo observable; ninguna autoridad fija la clasificacion (CTX-09/CTX-10 WARN por diseno).",
+    "C04: estimated_tokens es chars/4 sin tokenizador de autoridad; vale para comparar escenarios y detectar drift entre runs, jamas para tokens reales ni como criterio de FAIL.",
+    "Hallazgo 3: domain gate, warm reuse y swap son prompt-discipline sin enforcement mecanico; el medidor mide la decision transcrita (rules.py), no la obediencia de una sesion viva.",
+    "Hallazgo 4 / Hallazgo 17: la presencia de tools en superficie no es violacion; la config MCP vive a nivel maquina fuera del vault (CTX-14 registra el dato, nunca es criterio de FAIL).",
+    "Hallazgo 8: 'drop the previous domain pack' es instruccion al modelo sin mecanismo de unload; el residuo real post-swap en la ventana del modelo es UNOBSERVABLE (solo potential_residual INFERRED).",
+    "Hallazgo 10: hoy no existe memoria interna activa Meli (estado observado, no invariante).",
+    "A8: skills transversales nunca cuentan como unrelated-domain aunque un registro diga 'Vía meli-agent-dev' (la fila es una puerta, no una exclusividad)."
+  ],
+  "thresholds": {
+    "duplication": {
+      "min_consecutive_lines": 3,
+      "min_chars": 120,
+      "min_run_tokens": 5,
+      "version": 1,
+      "max_verdict": "WARN",
+      "strip_frontmatter": true,
+      "scope": "texto normalizado sin frontmatter (metadatos estructurales del schema-contract, no contenido de la regla 5)"
+    },
+    "soft_ceilings": {
+      "cold_base_estimated_tokens": [
+        3000,
+        6000
+      ],
+      "warm_delta_estimated_tokens": [
+        0,
+        1000
+      ],
+      "swap_estimated_tokens": [
+        1000,
+        3000
+      ]
+    }
+  },
+  "fidelity_details": "la transcripcion de rules.py no coincide con el texto vigente de las autoridades (D2)",
+  "fidelity_evidence": [
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [gate-meli] `[[Meli]]` → load `meli-agent-dev`. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [gate-echo-aranea] `[[Echo]]` or `[[Aranea]]` → load `aranea-agent-dev`. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [gate-other-no-router] Any other area, or no resolvable entity → no domain router. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [gate-surface-evidence] If no entity resolves but the surface shows domain evidence (MCP tool prefixes `mcp__aranea-*`, or corporate tooling such as Zord/Fury/Spellbook), use that instead. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [gate-fail-closed] Ambiguous or conflicting evidence fails closed: no router. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [gate-never-both-routers] Never load both routers; the router loads at most ONE specialized skill and owns the scoped preferences of its domain. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [cold-paso1-constitution] `80-agents/agents-os/agent-constitution.md` — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [cold-paso1-profile-dir] `80-agents/memory/public/user-preference/` — the global profile. Resolve it by that directory — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [cold-paso2-global-internal] `80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md` — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [cold-paso3-registry] Load the skills registry `80-agents/skills/INDEX.md` (core catalog + federated rows) — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [cold-paso3-no-federated-index] Do not read the federated domain index unless routing needs detail beyond the registry rows. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [cold-paso4-map-no-ritual] Read `agents-os.md` only if the task needs the conceptual map; do not add it to the base stack by ritual. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [cold-paso5-resolve-aliases] Resolve aliases/slugs to the canonical Obsidian title. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [warm-reuse-delta-only] Reuse what is already in context. Fetch only the delta needed. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [warm-never-reread] Never re-read constitution/profile/bootstrap. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [warm-no-bootstrap-rerun] Do not invoke or reread bootstrap merely because the user sent another message. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [swap-skip-global-internal-reload] skip global internal reload if already loaded this session. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [swap-keep-invariants] Keep the invariants and global internal note from cold start. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [swap-drop-pack] drop the previous domain pack (router + scoped preferences) and load the new router. Never hold two domain packs at once. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [hard-superseded-not-loaded] Never load `superseded` or `archived` continuity during normal startup or entity retrieval. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "ancla de fidelidad ausente en 80-agents/skills/agents-os-bootstrap/SKILL.md: [hard-only-startup-procedure] This skill is the only startup procedure. Do not duplicate it in `agents-os.md`, `AGENTS.md`, adapters, or project notes. — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables",
+    "80-agents/skills/agents-os-bootstrap/SKILL.md: 21 anclas verificadas (gate-meli, gate-echo-aranea, gate-other-no-router, gate-surface-evidence, gate-fail-closed, gate-never-both-routers, cold-paso1-constitution, cold-paso1-profile-dir, cold-paso2-global-internal, cold-paso3-registry, cold-paso3-no-federated-index, cold-paso4-map-no-ritual, cold-paso5-resolve-aliases, warm-reuse-delta-only, warm-never-reread, warm-no-bootstrap-rerun, swap-skip-global-internal-reload, swap-keep-invariants, swap-drop-pack, hard-superseded-not-loaded, hard-only-startup-procedure); 21 ausente(s)",
+    "80-agents/skills/agents-os-doctor/SKILL.md: 5 anclas verificadas (doctor-club-constitution, doctor-club-bootstrap, doctor-club-global-internal, doctor-club-one-profile, doctor-club-second-is-violation)"
+  ]
+}
