@@ -338,6 +338,188 @@ def t7_exit_codes() -> None:
         shutil.rmtree(tmp_results, ignore_errors=True)
 
 
+# ---------------------------------------------------------------------------
+# T8 — D1 (verificación adversarial): nota VPN inyectada en aranea -> SOLO WARN
+# ---------------------------------------------------------------------------
+def t8_vpn_injection_aranea() -> None:
+    rules, harness, ctx = _ctx_for(build_temp_vault("full"))
+    vpn = rules.ROUTER_PREFS["meli"][1]
+    original = cb._session_for
+
+    class VpnSession(rules.Session):
+        """Sesión que trae la nota VPN via el enlace del perfil en cold aranea
+        (repro D1 del verifier, reconstruido aquí en tempdir): la nota entra al
+        set cargado de un escenario aranea sin estar en el pack."""
+
+        def cold_start(self, request):
+            missing = super().cold_start(request)
+            if self.active_domain == "aranea":
+                self.open(vpn, "inyeccion selftest D1: nota VPN via enlace del perfil")
+            return missing
+
+    try:
+        cb._session_for = lambda c: VpnSession(c.vault)
+        r3 = cb.ctx_03_aranea_cold(ctx, rules, harness)
+        unrel3 = [m["value"] for m in r3["metrics"] if m["name"] == "unrelated_domain_files"][0]
+        joined3 = json.dumps(r3, ensure_ascii=False)
+        ok3 = (r3["verdict"] == "WARN" and vpn not in unrel3
+               and "nota VPN" in joined3 and "Hallazgo 7" in joined3 and "A3" in joined3)
+        report("T8a.vpn-aranea-ctx03-warn-no-fail", ok3,
+               "CTX-03 con VPN inyectada -> %s (unrelated=%s; ambigua citando A3/Hallazgo 7: %s)" % (
+                   r3["verdict"], unrel3, any("nota VPN" in e for e in r3["evidence"])))
+        r11 = cb.ctx_11_leak_unrelated(ctx, rules, harness)
+        vpn_amb11 = any("nota VPN" in e and "aranea" in e for e in r11["evidence"])
+        ok11 = r11["verdict"] != "FAIL" and vpn_amb11 and not any(
+            "archivo del dominio ajeno" in e and vpn in e for e in r11["evidence"])
+        report("T8b.vpn-aranea-ctx11-warn-no-fail", ok11,
+               "CTX-11 (rama aranea) con VPN inyectada -> %s; VPN solo como ambigua: %s" % (r11["verdict"], vpn_amb11))
+    finally:
+        cb._session_for = original  # restauración: el vault canónico nunca se toca
+    control = cb.ctx_03_aranea_cold(ctx, rules, harness)
+    report("T8c.restauracion-ctx03-sin-ineccion", control["verdict"] in ("PASS", "WARN"),
+           "tras restaurar _session_for, CTX-03 vuelve a %s (sin residuo de la inyección)" % control["verdict"])
+
+
+# ---------------------------------------------------------------------------
+# T9 — D3 (verificación adversarial): asserts heredados restituidos, demostrados
+# por mutación en tempdir (los mismos repros del verifier)
+# ---------------------------------------------------------------------------
+def t9_restored_inherited_asserts() -> None:
+    original = cb._session_for
+    try:
+        # (a) CTX-01: entidad activa en DEFAULT (heredado COLD-DEFAULT).
+        root = build_temp_vault("full")
+        try:
+            _write(root, "30-resources/applications/entidad-fantasma-xyz.md",
+                   "---\ntype: project\nstatus: active\narea: \"[[Personal]]\"\n---\n\nLa entidad fantasma ahora existe (repro D3a).\n")
+            rules, harness, ctx = _ctx_for(root)
+            r1 = cb.ctx_01_default_cold(ctx, rules, harness)
+            ok = r1["verdict"] == "FAIL" and any("entidad activa inesperada" in e for e in r1["evidence"])
+            report("T9a.ctx01-entidad-activa-en-DEFAULT", ok,
+                   "entidad real 'entidad-fantasma-xyz' inyectada -> CTX-01 %s (heredado COLD-DEFAULT)" % r1["verdict"])
+        finally:
+            shutil.rmtree(root, ignore_errors=True)
+
+        # (b) CTX-02: skill de dominio alcanzada sin router (heredado COLD-MELI);
+        # el listado del problema NO incluye al router legítimo (filtro S1).
+        root = build_temp_vault("full")
+        try:
+            rules, harness, ctx = _ctx_for(root)
+
+            class NoRouterSpecialist(rules.Session):
+                def cold_start(self, request):
+                    missing = super().cold_start(request)
+                    if self.active_domain == "meli":
+                        self.open(SIGNALS_REL, "inyeccion selftest D3b: especialista sin router")
+                    return missing
+
+            cb._session_for = lambda c: NoRouterSpecialist(c.vault)
+            r2 = cb.ctx_02_meli_cold(ctx, rules, harness)
+            hit = [e for e in r2["evidence"] if "skill de dominio alcanzada sin router" in e]
+            ok = (r2["verdict"] == "FAIL" and hit
+                  and "signals-code-review" in hit[0] and "meli-agent-dev" not in hit[0])
+            report("T9b.ctx02-skill-sin-router", ok,
+                   "signals-code-review inyectada sin router -> CTX-02 %s; listado filtrado (S1 no copiado): %s" % (
+                       r2["verdict"], bool(hit) and "meli-agent-dev" not in hit[0]))
+        finally:
+            shutil.rmtree(root, ignore_errors=True)
+            cb._session_for = original
+
+        # (c) CTX-03: not_load heredado del índice federado (COLD-ARANEA).
+        root = build_temp_vault("full")
+        try:
+            rules, harness, ctx = _ctx_for(root)
+
+            class FederatedIndexOpen(rules.Session):
+                def cold_start(self, request):
+                    missing = super().cold_start(request)
+                    if self.active_domain == "aranea":
+                        self.open(WIKI_INDEX_REL, "inyeccion selftest D3c: indice federado")
+                    return missing
+
+            cb._session_for = lambda c: FederatedIndexOpen(c.vault)
+            r3 = cb.ctx_03_aranea_cold(ctx, rules, harness)
+            ok = r3["verdict"] == "FAIL" and any(
+                "carga prohibida detectada: 30-resources/agents/00-index.md" in e for e in r3["evidence"])
+            report("T9c.ctx03-indice-federado-not_load", ok,
+                   "apertura del índice federado inyectada -> CTX-03 %s (heredado COLD-ARANEA)" % r3["verdict"])
+        finally:
+            shutil.rmtree(root, ignore_errors=True)
+            cb._session_for = original
+
+        # (d) CTX-07: título de la entidad activa post-swap (heredado
+        # SWITCH-MELI-TO-ARANEA).
+        root = build_temp_vault("full")
+        try:
+            rules, harness, ctx = _ctx_for(root)
+
+            class CorruptSwapTitle(rules.Session):
+                def swap_entity(self, title):
+                    old = super().swap_entity(title)
+                    if self.active_entity is not None:
+                        self.active_entity = dict(self.active_entity, title="Echo Forge Corrupta")
+                    return old
+
+            cb._session_for = lambda c: CorruptSwapTitle(c.vault)
+            r7 = cb.ctx_07_switch_meli_aranea(ctx, rules, harness)
+            ok = r7["verdict"] == "FAIL" and any("active_entity post-swap != Echo Forge" in e for e in r7["evidence"])
+            report("T9d.ctx07-entidad-post-swap", ok,
+                   "título post-swap corrompido -> CTX-07 %s (heredado SWITCH-MELI-TO-ARANEA)" % r7["verdict"])
+        finally:
+            shutil.rmtree(root, ignore_errors=True)
+            cb._session_for = original
+
+        # (e) CTX-08: exactamente UNA especialista (heredado
+        # SWITCH-ARANEA-TO-MELI).
+        root = build_temp_vault("full")
+        try:
+            rules, harness, ctx = _ctx_for(root)
+            _write(root, "30-resources/agents/skills/fury-lib-consumer-deploy/SKILL.md",
+                   "---\ntype: skill\n---\n\nSkill extra de prueba.\n")
+
+            class DoubleSpecialist(rules.Session):
+                def route_specialist(self, domain, task):
+                    spec = super().route_specialist(domain, task)
+                    if spec and self.active_domain == "meli":
+                        extra = "30-resources/agents/skills/fury-lib-consumer-deploy/SKILL.md"
+                        if self.open(extra, "inyeccion selftest D3e: segunda especialista") is None:
+                            self.specialist_skills.append(extra)
+                    return spec
+
+            cb._session_for = lambda c: DoubleSpecialist(c.vault)
+            r8 = cb.ctx_08_switch_aranea_meli(ctx, rules, harness)
+            ok = r8["verdict"] == "FAIL" and any("mas de una skill especializada" in e for e in r8["evidence"])
+            report("T9e.ctx08-una-sola-especialista", ok,
+                   "segunda especialista inyectada -> CTX-08 %s (heredado SWITCH-ARANEA-TO-MELI)" % r8["verdict"])
+        finally:
+            shutil.rmtree(root, ignore_errors=True)
+            cb._session_for = original
+    finally:
+        cb._session_for = original
+
+
+# ---------------------------------------------------------------------------
+# T10 — D2 (verificación adversarial): especialista deprecated en hot path
+# ---------------------------------------------------------------------------
+def t10_deprecated_specialist_hot_path() -> None:
+    root = build_temp_vault("full")
+    try:
+        _write(root, SIGNALS_REL,
+               "---\ntype: skill\nstatus: deprecated\n---\n\n# signals-code-review\nSkill de prueba (deprecada, repro D2).\n")
+        rules, harness, ctx = _ctx_for(root)
+        r12 = cb.ctx_12_deprecated_hot_path(ctx, rules, harness)
+        ok12 = r12["verdict"] == "FAIL" and any("signals-code-review" in e and "deprecated" in e for e in r12["evidence"])
+        report("T10a.ctx12-especialista-deprecated-FAIL", ok12,
+               "signals-code-review con status: deprecated -> CTX-12 %s (barrido M16 incluye especialistas)" % r12["verdict"])
+        r08 = cb.ctx_08_switch_aranea_meli(ctx, rules, harness)
+        ok08 = r08["verdict"] == "FAIL" and any(
+            "signals-code-review" in e and "ciclo de vida" in e for e in r08["evidence"])
+        report("T10b.ctx08-registra-ciclo-de-vida-especialista", ok08,
+               "CTX-08 %s: registra el frontmatter de vida de la especialista que abre (diseño 8.2)" % r08["verdict"])
+    finally:
+        shutil.rmtree(root, ignore_errors=True)
+
+
 def main() -> int:
     print("selftest context-budget (fixtures temporales; vault canónico: %s)" % VAULT)
     t1_injection_cross_pack()
@@ -347,6 +529,9 @@ def main() -> int:
     t5_determinism()
     t6_labeling()
     t7_exit_codes()
+    t8_vpn_injection_aranea()
+    t9_restored_inherited_asserts()
+    t10_deprecated_specialist_hot_path()
     failures = [name for name, ok, _ in RESULTS if not ok]
     print("-" * 72)
     print("selftest: %d/%d PASS%s" % (len(RESULTS) - len(failures), len(RESULTS),
