@@ -504,12 +504,15 @@ def ctx_01_default_cold(ctx, rules, harness) -> Dict[str, Any]:
     rec["metrics"].append(metric("gate_decision_trace", s.gate_note or "", "text", "EXACT (transcripción)",
                                  "bootstrap paso 6 via rules.domain_gate"))
     _m15_leak_check(rules, harness, ctx, rec, s.all_opens(), [], s.active_domain, problems)
+    soft_warns = []
+    if _soft_target(rec, "cold_base", agg["estimated_tokens"], 3000, 6000, "3-6k"):
+        soft_warns.append("cold_base")
     evidence.append("estado: session_mode=%s active_entity=%s active_domain=%s bootstrap_runs=%d pack=%s" % (
         s.session_mode, s.active_entity, s.active_domain, s.bootstrap_runs, s.pack_files))
     evidence.append("WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (ADR pendiente).")
     return _finish(rec, problems, "WARN",
                    "cold start DEFAULT sin router: set = exactamente los 4 always; presupuesto base medido (chars/4, C04)",
-                   "cold start DEFAULT violó el contrato de carga o registró unrelated-domain")
+                   "cold start DEFAULT violó el contrato de carga o registró unrelated-domain", warns=soft_warns)
 
 
 # ---------------------------------------------------------------------------
@@ -564,9 +567,13 @@ def ctx_02_meli_cold(ctx, rules, harness) -> Dict[str, Any]:
     evidence.append("Hallazgo 10 (estado observado): continuidad interna activa meli hoy = %s; el delta esperado de retrieval es vacío" % (active_meli or "ninguna"))
     evidence.append("estado: active_entity=%s active_domain=%s pack=%s" % (
         ent.get("title") if ent else None, s.active_domain, s.pack_files))
+    base_agg = weight_of(harness, ctx.vault, [rules.CONSTITUTION, s.profile_note or "", rules.GLOBAL_INTERNAL, rules.SKILLS_INDEX])
+    soft_warns = []
+    if _soft_target(rec, "cold_base", base_agg["estimated_tokens"], 3000, 6000, "3-6k"):
+        soft_warns.append("cold_base")
     return _finish(rec, problems, "PASS",
                    "cold start Meli: base 4 + router meli-agent-dev + 2 prefs scoped; presupuesto ≈ base + pack meli (chars/4)",
-                   "cold start Meli violó el contrato (C10/C11) o registró unrelated-domain")
+                   "cold start Meli violó el contrato (C10/C11) o registró unrelated-domain", warns=soft_warns)
 
 
 # ---------------------------------------------------------------------------
