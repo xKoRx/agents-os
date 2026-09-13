@@ -32,10 +32,12 @@ Al iniciar una nueva sesión que use AGENTS OS {scope}, ejecuta bootstrap una so
 
 1. {root_resolution} Invoca
    `80-agents/skills/agents-os-bootstrap/SKILL.md` desde esa raíz y léelo completo sólo en cold start. No vuelvas a invocarlo por cada mensaje. En turnos warm reutiliza la base; si cambia la entidad, ejecuta únicamente el routing de cambio de entidad y recupera su delta.
-2. Las únicas skills canónicas viven en `80-agents/skills/`, relativo a
-   `VAULT_ROOT`. Cuando bootstrap seleccione una skill, lee completamente su
-   `SKILL.md` y ejecútala desde ahí. No copies, enlaces ni generes skills bajo
-   carpetas de Codex o Claude.
+2. Las skills canónicas viven en `80-agents/skills/` (core AGENTS OS) y en
+   `30-resources/agents/skills/` (curadas en el vault), relativo a
+   `VAULT_ROOT`; el índice `80-agents/skills/INDEX.md` es el registro único.
+   Cuando bootstrap seleccione una skill, lee completamente su `SKILL.md` y
+   ejecútala desde ahí. No copies, enlaces ni generes skills bajo carpetas de
+   Codex o Claude.
 3. Trata Markdown como fuente de verdad y Graphify como índice derivado.
 4. No cierres una sesión de AGENTS OS salvo pedido explícito del usuario.
 

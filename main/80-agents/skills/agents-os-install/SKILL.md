@@ -4,7 +4,7 @@ schema_version: 1
 name: agents-os-install
 scope: global
 created: 2026-07-14
-updated: 2026-08-10
+updated: 2026-09-12
 description: Install, explain, personalize, and validate a local AGENTS OS vault. Use for first-time onboarding, setting up another machine, completing a pending user profile, discovering a person's workspace and active repositories, reconciling application resources, routing agents to canonical AGENTS OS skills, installing Graphify, or repairing an incomplete installation.
 aliases:
   - agents-os-install
@@ -111,7 +111,7 @@ Canonical create: use `materialize_schema_note.py` per `note-types.md`; never ha
     - en scope global, el instalador guarda la raíz en el pointer local
       `~/.config/agents-os/vault-root`; `AGENTS_OS_VAULT` puede sobrescribirlo
       por máquina. La regla compartida nunca contiene el valor absoluto;
-    - `80-agents/skills/*/SKILL.md` es la única ubicación física de skills;
+    - `80-agents/skills/*/SKILL.md` (core) y `30-resources/agents/skills/*/SKILL.md` (federadas curadas) son las únicas ubicaciones físicas de skills en el vault; las app-owned viven en su repo dueño;
     - eliminar únicamente adapters antiguos generados por AGENTS OS;
     - no copiar, enlazar ni generar skills bajo `.agents/skills/`,
       `.claude/skills/` o carpetas globales de las superficies.
