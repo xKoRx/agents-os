@@ -54,10 +54,13 @@ La función de optimización es **TIME_TO_USABLE_TRADING_SYSTEM**, sujeta a corr
 ## 📊 Estado actual
 
 - **Roadmaps operativos congelados 2026-09-07.** Este padre es la visión de producto. La ejecución vive en los dos subproyectos de agente. No hay implementación, SPEC de fase ni mutación de source en esta sesión.
+- **Decisión de continuidad 2026-09-13:** desarrollo continúa; certificación física/de infraestructura se difiere, no se waiva, mientras termina [[AGENT-PLATFORM - MCP Access Plane]]. `IMPLEMENTED != CERTIFIED`. Backlog único: [[Echo + Echo Forge — Deferred Certification Backlog]].
+- **Taxonomía de estado:** `PLANNED → IMPLEMENTED → SOURCE VERIFIED → RELEASED → DEPLOYED → PHYSICALLY CERTIFIED → CROSS-LANE CERTIFIED → CLOSED`; no se marca un estado de certificación sin evidencia de su propia capa.
 - **Contrato compartido:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] con freeze review [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]] en disposición **B — FREEZE AFTER BOUNDED CORRECTIONS**. FR-1…FR-5 entran en E-01/S0. **GOD REQUIRED NOW: NONE.** No queda TOP de arquitectura para este contrato.
 - **Forge checkpoint:** B1A `185825c`, B1B `ef65dd1`, B2 `db8a022` son **PASS / CLOSED**. No reabrir ownership global, wall-clock MT5 ni lifetime Temporal. Siguiente Forge: F-01/F-02 en paralelo con Echo S0. Control histórico: [[Echo Forge - Arquitectura de Datos y Migración de Persistencia]] y [[Echo Forge]].
 - **Echo checkpoint:** core productivo reportado `e25165ba`; ingestión canónica ausente; Lab/journal/copia existen con deuda P0 de auth/journal. Discovery histórico: [[Echo - Discovery y Estado]].
 - **Usable V1 ≠ cartera financiada.** Software puede completar con CASH/INSUFFICIENT_EVIDENCE. Dinero real es gate owner aparte (O-01).
+- **F-04 resultante:** implementación y source/contract verification DONE en `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`, release `0.2.98` publicada, Linux rollout PASS; Windows physical certification, authentic golden y Echo join quedan deferred. Overall `IMPLEMENTED / NOT CERTIFIED`; T2.11/T2.12/T2.13 y E-04 T21 no se cierran.
 
 ## 🧱 Entrega de desarrollo
 
@@ -190,7 +193,8 @@ flowchart LR
 | F-02 Finalist V2 | ninguna | E-01, E-02, F-01, F-03 | ninguna |
 | F-03 SQX long-running | ninguna | F-01, F-02, E-01 | entra a F-05 |
 | F-04 Magic/seal/handoff | **pin S0 (E-01)**; catálogo CC owner antes allocation real | E-03, E-04, E-05 | Integration: mismo corpus/pin; manifest fixture aceptado por E-04 |
-| F-05 Release + FULL golden | pin S0; smoke real de ingestión espera E-04 certificado | cadena live Echo posterior a E-04 | Physical integration / PRODUCT CAPABILITY cuando ambos tracks certifican handoff→receipt |
+| F-05-I Release/read-surface preparation | F-04 implementación disponible; no requiere evidencia física | E-05/E-06… con contratos/fixtures | puede avanzar sin certification PASS |
+| F-05-C Release + FULL golden certification | pin S0, F-04 golden y E-04 T21 | cadena live Echo posterior a E-04 | Physical integration / PRODUCT CAPABILITY cuando ambos tracks certifican handoff→receipt |
 
 | Fase Echo | Dependencia Forge | Puede correr en paralelo con | Join gate |
 |---|---|---|---|
@@ -199,9 +203,9 @@ flowchart LR
 | E-03 Identity/BWC | E-01 | F-04, E-05 | implementation closed habilita **development** E-04; CONTRACT_PASS habilita **integration** E-04 |
 | E-04 Ingestion | E-01 + E-03 implementation (dev); E-03 CONTRACT_PASS (integrate); producer fake basta | F-04 tras pin | INTEGRATION PASS handoff↔receipt gated; development paralelo permitido |
 | E-05 Analytics A0 | E-01 | E-03/E-04 | planning v1.0.1 @ `dd1f2da9`; alimenta E-10; no espera E-02 PHYSICAL para development/implementation/verification; merge/deploy 063 espera 062 E-02 en master |
-| E-06…E-13 live | E-04; supply físico Forge ayuda pero fixtures permiten diseño | según DAG interno | PHYSICAL PASS no se certifica con mocks |
+| E-06…E-13 live | E-04 integrado; supply físico Forge ayuda, fixtures permiten implementación/shadow | según DAG interno | implementación puede avanzar; PHYSICAL/PRODUCT CAPABILITY no se certifica con mocks |
 
-**Arranque inmediato recomendado (no lanzar implementación aquí):** Forge **F-01 + F-02** en paralelo con Echo **E-01**. E-02 y F-03 también pueden partir sin esperar S0.
+**Continuidad recomendada:** ejecutar sólo el F-05-I definido en [[Echo Forge — Factory V2 Completion]]; no lanzar implementación desde esta sesión. E-04 T21 y T2.11–T2.13 permanecen en el backlog de certificación.
 
 ## Gobernanza
 

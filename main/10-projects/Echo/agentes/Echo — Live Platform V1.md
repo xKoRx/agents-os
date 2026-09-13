@@ -53,6 +53,8 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
 - **E-03:** CONTRACT_PASS / FINAL CLOSED en [[Echo — E-03 Identity and BWC Foundation E0]] @ `fac48051` (integrado FF a `origin/master` 2026-09-12; evidencia en esa nota y en `specs/FEAT-CROSS-IDENTITY-BWC-E0/VERIFICATION.md`).
 - **E-04:** SPEC v1.0.2 en [[Echo — E-04 Forge Ingestion E1]]. **INTEGRATED=YES** por fast-forward desde `2f8db345` tras implementation/verifier/E-03/base gates PASS. READY_FOR_INTEGRATION consumido. T21/AC-37 PENDING como gate POST-INTEGRATION; E-04 FINAL CLOSED=NO. Golden no inventado; F-04 no tocado.
+- **Continuidad frente a F-04:** la certificación física Forge no bloquea el desarrollo Echo que no la requiere. E-04 T01–T20 queda integrado y no se reabre; T21/AC-37 sigue `HARD BLOCKED` hasta golden Forge auténtico + join real. E-06…E-13 pueden avanzar por su DAG con fixtures/shadow cuando su propia SPEC lo permita, pero sus gates físicos/product-capability permanecen separados.
+- **Taxonomía compartida:** `PLANNED → IMPLEMENTED → SOURCE VERIFIED → RELEASED → DEPLOYED → PHYSICALLY CERTIFIED → CROSS-LANE CERTIFIED → CLOSED`; `IMPLEMENTED` no equivale a `CERTIFIED`. La campaña se mantiene en [[Echo + Echo Forge — Deferred Certification Backlog]].
 
 ## 🧱 Entrega de desarrollo
 

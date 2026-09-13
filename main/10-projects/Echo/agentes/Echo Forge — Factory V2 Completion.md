@@ -282,6 +282,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - [[Echo Forge — F-04 Magic allocation, version seal and handoff]]
 - [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]
 - [[Echo — Live Platform V1]]
+- [[Echo + Echo Forge — Deferred Certification Backlog]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
 - [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]
 - [[Echo Forge]]

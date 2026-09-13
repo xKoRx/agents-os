@@ -53,6 +53,12 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 - `DATABASE MIGRATION: 015_strategy_magic_version_seal_handoff` + `016_magic_number_v1_allocator`. C4 no agrega migración.
 - `GOD REQUIRED: NONE`.
 
+### Estado de lifecycle y desacoplamiento de certificación
+
+F-04 está `IMPLEMENTED` y `SOURCE VERIFIED` en `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`, con release `0.2.98` publicada; no está `PHYSICALLY CERTIFIED`, `CROSS-LANE CERTIFIED` ni `CLOSED`. Linux rollout PASS; Windows runtime certification está bloqueada por policy del viewer MCP. Authentic golden/T2.11, Forge physical chain/T2.12 y Echo join/T2.13 se difieren en [[Echo + Echo Forge — Deferred Certification Backlog]], no se waivan ni se ejecutan aquí.
+
+La continuidad de desarrollo no reabre C4/C5 ni cambia contratos frozen. La siguiente tarea NORMAL está fuera de F-04: F-05-I sobre `xKoRx/symphony`, rama `codex/f05-release-prep`, baseline exacto `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`, limitada a preparación de matriz release/read-surface/conformance.
+
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
@@ -852,6 +858,7 @@ Ver Decision register. D16 compile Evaluation **frozen**. D17 C4 allocation inpu
 - [[Echo Forge — F-02 Finalist Model V2 Contract]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
 - [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]
+- [[Echo + Echo Forge — Deferred Certification Backlog]]
 
 ## 💡 Ideas
 
