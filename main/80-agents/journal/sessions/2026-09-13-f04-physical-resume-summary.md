@@ -58,3 +58,11 @@ tags:
 ## Pendiente
 
 - Owner action: recuperar el límite de sesiones/salud del servidor `aranea-ssh`, repetir discovery y rollout proof por los cuatro runtimes; sólo después verificar licencia e iniciar un único workflow físico.
+
+## SESSION CLOSE
+
+- Cierre persistido y verificado; siguiente acción exacta: recuperar `aranea-ssh` y repetir el preflight desde la release existente `0.2.98`.
+
+## FEEDBACK
+
+- Feedback event-driven persistido en `80-agents/journal/feedback/system-1/2026-09-13-f04-physical-resume-session-feedback.md` por handshake MCP unhealthy y falta de superficie runtime.
