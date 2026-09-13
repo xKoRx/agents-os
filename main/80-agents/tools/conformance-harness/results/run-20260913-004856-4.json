@@ -1,0 +1,62 @@
+{
+  "run": {
+    "timestamp": "2026-09-13T00:48:56",
+    "python": "3.14.4",
+    "vault_root_arg": "/tmp",
+    "layer_arg": "all",
+    "scenario_arg": "COLD-MELI",
+    "no_live": false
+  },
+  "baseline": null,
+  "levels": {
+    "L0": [
+      "SCHEMA-VALIDATOR-GREEN",
+      "STARTUP-DUPLICATION",
+      "CLOSED-CLUB-ALWAYS",
+      "LOAD-POLICY-VOCABULARY",
+      "REGISTRY-DISK-PARITY",
+      "DUAL-REGISTRY-DOMAIN-SYNC",
+      "NO-SECRETS-IN-MARKDOWN",
+      "ACTIVE-MEMORY-DOMAIN-PURITY"
+    ],
+    "L1": [
+      "COLD-DEFAULT",
+      "COLD-MELI",
+      "COLD-ARANEA",
+      "COLD-CONFLICTING-EVIDENCE-FAILS-CLOSED",
+      "WARM-DEFAULT",
+      "WARM-MELI",
+      "WARM-ARANEA",
+      "BOOTSTRAP-NOT-RERUN-ON-WARM",
+      "SWITCH-MELI-TO-ARANEA",
+      "SWITCH-ARANEA-TO-MELI",
+      "SWITCH-DEFAULT-TO-MELI",
+      "SWITCH-DEFAULT-TO-ARANEA",
+      "MELI-NEGATIVE-ARANEA-TOOL",
+      "ARANEA-NEGATIVE-MELI-TOOL",
+      "DEPRECATED-DOC-NOT-DEFAULT-LOAD",
+      "UNRELATED-DOMAIN-NOT-LOADED"
+    ],
+    "L2": [
+      "SESSION-SURFACE-EXPOSURE"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "COLD-MELI",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "marker 80-agents/agents-os/agents-os.md ausente bajo la raiz indicada: las reglas de AGENTS OS no aplican (AGENTS.md / spec section 6)",
+      "evidence": []
+    }
+  ],
+  "counts": {
+    "PASS": 0,
+    "FAIL": 0,
+    "WARN": 0,
+    "SKIP": 1
+  },
+  "context_baseline": {
+    "note": "no capturado: marker ausente"
+  }
+}
