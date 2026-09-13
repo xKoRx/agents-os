@@ -1344,7 +1344,7 @@ def run_suite(vault_root: str, live: bool = False, scenario: Optional[str] = Non
     if not marker_ok:
         reason = "marker %s ausente bajo la raiz indicada: las reglas de AGENTS OS no aplican (AGENTS.md / spec sección 6)" % MARKER
         for sid in requested:
-            rec = _new_record(sid, dict(SCENARIOS[[s[0] for s in SCENARIOS].index(sid)][2]))
+            rec = _new_record(sid, list(SCENARIOS[[s[0] for s in SCENARIOS].index(sid)][2]))
             doc["scenarios"].append(_skip(rec, reason))
     else:
         try:
@@ -1352,7 +1352,7 @@ def run_suite(vault_root: str, live: bool = False, scenario: Optional[str] = Non
         except Exception as exc:
             reason = "harness no disponible (%s: %s): los escenarios que dependen del modelo de sesión van a SKIP" % (type(exc).__name__, exc)
             for sid in requested:
-                rec = _new_record(sid, dict(SCENARIOS[[s[0] for s in SCENARIOS].index(sid)][2]))
+                rec = _new_record(sid, list(SCENARIOS[[s[0] for s in SCENARIOS].index(sid)][2]))
                 doc["scenarios"].append(_skip(rec, reason))
             _finalize(doc, vault_root, write)
             return doc
