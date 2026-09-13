@@ -115,7 +115,20 @@ THRESHOLDS = {
     "resolution_scope": "corpus vivo + 40-archive; journal/packaging/derivados no son "
                         "destino canónico (agents-os.md; relation-maintenance)",
     "fixtures_excluded": list(FIXTURE_REL_PREFIXES),
+    "cl11_cl12_zone_annotation": "un destino inexistente en el índice de resolución pero "
+                                 "presente físicamente en zona no canónica (journal/"
+                                 "packaging/derivados) se anota como 'existe en zona no "
+                                 "canónica; no es destino canónico' y no como 'no resuelve' "
+                                 "(verificación adversarial N2/R2); el veredicto no cambia",
 }
+
+# Zonas físicas no canónicas (clase no_corpus del mapa físico) distinguibles en
+# la evidencia de CL-11/CL-12 (N2/R2).
+NO_CORPUS_ZONES = (
+    ("80-agents/journal/", "journal"),
+    ("30-resources/agents-os/", "packaging"),
+    ("80-agents/tools/conformance-harness/results/", "resultados derivados"),
+)
 
 DECLARED_AMBIGUITIES: List[str] = [
     "A5 (ratificado): clase unificada no_vigente = memory_state {superseded, archived} U "
@@ -244,6 +257,14 @@ def strip_md(name: str) -> str:
     return name[:-3] if name.endswith(".md") else name
 
 
+def zone_label(rel: str) -> str:
+    """Etiqueta de zona no canónica para la evidencia de CL-11/CL-12 (N2/R2)."""
+    for prefix, label in NO_CORPUS_ZONES:
+        if rel.startswith(prefix):
+            return label
+    return "zona excluida del corpus"
+
+
 def parse_links_with_lines(text: str) -> List[Tuple[int, str, str]]:
     """Wikilinks de CUERPO con número de línea 1-based. Omite el bloque de
     frontmatter, los fenced code blocks y los inline code spans (Obsidian no
@@ -332,6 +353,7 @@ class LintCtx(object):
         self._alias_map: Dict[str, List[str]] = {}
         self._alias_built = False
         self._resolvable_set: set = set()
+        self._no_corpus_base: Optional[Dict[str, List[str]]] = None
         self._type_index: Optional[Dict[str, Tuple[str, dict]]] = None
 
     # -- walks ---------------------------------------------------------------
@@ -526,6 +548,30 @@ class LintCtx(object):
             if item not in out:
                 out.append(item)
         return out
+
+    def no_corpus_hits(self, target: str, src_rel: str) -> List[str]:
+        """Rels en zonas NO canónicas (journal/packaging/derivados; clase
+        no_corpus del mapa físico) donde `target` existe físicamente, por path
+        (relativo al origen o VAULT_ROOT-relativo) o por basename exacto.
+        Sirve para distinguir 'existe en zona excluida' de 'inexistente' en la
+        evidencia de CL-11/CL-12 (verificación N2/R2); no cambia veredictos."""
+        if self._no_corpus_base is None:
+            self._no_corpus_base = {}
+            for rel, cls in self.physical.items():
+                if cls == "no_corpus":
+                    base = os.path.splitext(os.path.basename(rel))[0]
+                    self._no_corpus_base.setdefault(base, []).append(rel)
+        hits: set = set()
+        cands = [os.path.normpath(os.path.join(os.path.dirname(src_rel), target)).replace(os.sep, "/")]
+        if "/" in target:
+            cands.append(os.path.normpath(target).replace(os.sep, "/"))
+        for cand in cands:
+            if self.physical.get(cand) == "no_corpus":
+                hits.add(cand)
+            if self.physical.get(cand + ".md") == "no_corpus":
+                hits.add(cand + ".md")
+        hits.update(self._no_corpus_base.get(os.path.basename(strip_md(target)), []))
+        return sorted(hits)
 
 
 # ---------------------------------------------------------------------------
@@ -1128,10 +1174,12 @@ def _index_rows(ctx: LintCtx, rel: str) -> List[Tuple[int, str]]:
 
 def cl_14(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]]:
     """Filas de 00-index.md de dominio activo wiki apuntando a archivo
-    inexistente. MACHINE -> FAIL (ambiguo -> WARN). Los 00-index de la wiki
-    no tienen cobertura mecánica previa (REGISTRY-DISK-PARITY es sólo INDEX de
-    skills) -> net-new. Tras fallar la resolución a nota (A9) se verifica
-    existencia física de cualquier archivo (assets no-.md como config.toon)."""
+    inexistente. MACHINE -> FAIL (ambiguo -> WARN). Cada wikilink de la fila
+    se verifica ("fila o link" del spec; D1: antes sólo el primero). Los
+    00-index de la wiki no tienen cobertura mecánica previa
+    (REGISTRY-DISK-PARITY es sólo INDEX de skills) -> net-new. Tras fallar la
+    resolución a nota (A9) se verifica existencia física de cualquier archivo
+    (assets no-.md como config.toon)."""
     findings: List[Dict[str, Any]] = []
     indexes = _wiki_index_files(ctx)
     checked = 0
@@ -1165,7 +1213,7 @@ def cl_14(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
         "L0:REGISTRY-DISK-PARITY + doctor:check_skill_index (cubren SÓLO el INDEX.md de skills; este check es el de los 00-index de la wiki)",
         "L0:DUAL-REGISTRY-DOMAIN-SYNC (A10: la dualidad INDEX<->00-index no se convierte en FAIL)",
     ]
-    return ("00-index de dominios wiki activos escaneados: %d; filas con link verificadas: %d" % (len(indexes), checked),
+    return ("00-index de dominios wiki activos escaneados: %d; links de fila verificados: %d" % (len(indexes), checked),
             findings, dedup, ["00-index activos: %s" % ", ".join(indexes)])
 
 
@@ -1222,7 +1270,7 @@ def cl_15(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
         "L0:DUAL-REGISTRY-DOMAIN-SYNC (A10)",
     ]
     dedup.extend(sorted(extra_cites))
-    return ("00-index de dominios wiki activos: filas con destino resuelto verificadas: %d" % checked,
+    return ("00-index de dominios wiki activos: links de fila con destino resuelto verificados: %d" % checked,
             findings, dedup, [])
 
 
