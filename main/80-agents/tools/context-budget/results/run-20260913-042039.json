@@ -1,7 +1,7 @@
 {
-  "run": "2026-09-13T04:12:10",
+  "run": "2026-09-13T04:20:39",
   "tool": "context-budget",
-  "git_head": "f9c520320aa4f9aab1bf6ef7c1eca96f55bf26d0",
+  "git_head": "3757ca0b592dc6dcf03513af446821f5278c534e",
   "fidelity_gate": "PASS",
   "scenarios": [
     {
@@ -204,12 +204,27 @@
           "unit": "files",
           "confidence": "EXACT",
           "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_cold_base",
+          "value": 7025,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_cold_base",
+          "value": false,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 3-6k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         }
       ],
       "evidence": [
         "entidad fantasma 'entidad-fantasma-xyz' no resuelve: True (fixture)",
         "stack base cargado: 80-agents/agents-os/agent-constitution.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/skills/INDEX.md",
         "expected_not_load verificado (9 paths): ninguno abierto",
+        "WARN (A1/M18): cold_base = 7025 estimated_tokens (chars/4) fuera del techo blando 3-6k; desviación registrada, nunca FAIL (C04)",
         "estado: session_mode=cold active_entity=None active_domain=None bootstrap_runs=1 pack=[]",
         "WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (ADR pendiente)."
       ],
@@ -221,7 +236,7 @@
       "reuses": [
         "COLD-MELI"
       ],
-      "verdict": "PASS",
+      "verdict": "WARN",
       "metrics": [
         {
           "name": "always_load_file_list",
@@ -339,13 +354,28 @@
           "unit": "files",
           "confidence": "EXACT",
           "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_cold_base",
+          "value": 7025,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_cold_base",
+          "value": false,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 3-6k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         }
       ],
       "evidence": [
         "stack base cargado: 80-agents/agents-os/agent-constitution.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/skills/INDEX.md",
         "expected_not_load verificado (8 paths): ninguno abierto",
         "Hallazgo 10 (estado observado): continuidad interna activa meli hoy = ninguna; el delta esperado de retrieval es vacío",
-        "estado: active_entity=RIO active_domain=meli pack=['30-resources/agents/skills/meli-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-meli-work-preferences.md', '80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md']"
+        "estado: active_entity=RIO active_domain=meli pack=['30-resources/agents/skills/meli-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-meli-work-preferences.md', '80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md']",
+        "WARN (A1/M18): cold_base = 7025 estimated_tokens (chars/4) fuera del techo blando 3-6k; desviación registrada, nunca FAIL (C04)"
       ],
       "skip_reason": null,
       "details": "cold start Meli: base 4 + router meli-agent-dev + 2 prefs scoped; presupuesto ≈ base + pack meli (chars/4)"
@@ -471,6 +501,20 @@
           "unit": "files",
           "confidence": "EXACT",
           "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_cold_base",
+          "value": 7025,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_cold_base",
+          "value": false,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 3-6k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         }
       ],
       "evidence": [
@@ -478,7 +522,8 @@
         "fixture real: area=[[Echo]] -> mapeo [[Echo]]->aranea-agent-dev verificado (bootstrap paso 6)",
         "expected_not_load verificado (4 paths): ninguno abierto",
         "estado: active_entity=Echo Forge active_domain=aranea pack=['30-resources/agents/skills/aranea-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md']",
-        "WARN declarado (Hallazgo 7): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area y el router Aranea no la lista en su Minimal Read; su carga on-demand via el enlace del perfil no se afirma ni se prohíbe (C11). M15 la clasifica ambigua (A3)."
+        "WARN declarado (Hallazgo 7): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area y el router Aranea no la lista en su Minimal Read; su carga on-demand via el enlace del perfil no se afirma ni se prohíbe (C11). M15 la clasifica ambigua (A3).",
+        "WARN (A1/M18): cold_base = 7025 estimated_tokens (chars/4) fuera del techo blando 3-6k; desviación registrada, nunca FAIL (C04)"
       ],
       "skip_reason": null,
       "details": "cold start Aranea via area [[Echo]]: base 4 + router aranea-agent-dev + aranea ops prefs; expert no cobrada (chars/4)"
@@ -535,14 +580,14 @@
           "value": 0,
           "unit": "estimated_tokens",
           "confidence": "ESTIMATED",
-          "authority": "bootstrap Token Targets + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
         },
         {
-          "name": "soft_target_in_range",
+          "name": "soft_target_in_range_warm_delta",
           "value": true,
           "unit": "bool",
           "confidence": "ESTIMATED",
-          "authority": "techo blando 0-1000 estimated_tokens (A1: WARN-only)"
+          "authority": "techo blando declarado: <1k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         }
       ],
       "evidence": [
@@ -634,14 +679,14 @@
           "value": 634,
           "unit": "estimated_tokens",
           "confidence": "ESTIMATED",
-          "authority": "bootstrap Token Targets + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
         },
         {
-          "name": "soft_target_in_range",
+          "name": "soft_target_in_range_warm_delta",
           "value": true,
           "unit": "bool",
           "confidence": "ESTIMATED",
-          "authority": "techo blando 0-1000 (A1: WARN-only)"
+          "authority": "techo blando declarado: <1k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         }
       ],
       "evidence": [
@@ -840,14 +885,14 @@
           "value": 829,
           "unit": "estimated_tokens",
           "confidence": "ESTIMATED",
-          "authority": "bootstrap Token Targets + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
         },
         {
-          "name": "soft_target_in_range",
+          "name": "soft_target_in_range_warm_delta",
           "value": true,
           "unit": "bool",
           "confidence": "ESTIMATED",
-          "authority": "techo blando 0-1000 (A1: WARN-only)"
+          "authority": "techo blando declarado: <1k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         }
       ],
       "evidence": [
@@ -966,6 +1011,20 @@
           "unit": "files",
           "confidence": "EXACT",
           "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_swap",
+          "value": 1197,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_swap",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 1-3k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         }
       ],
       "evidence": [
@@ -982,7 +1041,7 @@
       "reuses": [
         "SWITCH-ARANEA-TO-MELI"
       ],
-      "verdict": "PASS",
+      "verdict": "WARN",
       "metrics": [
         {
           "name": "session_loaded_set",
@@ -1095,6 +1154,20 @@
           "unit": "files",
           "confidence": "EXACT",
           "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_swap",
+          "value": 4820,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_swap",
+          "value": false,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 1-3k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         }
       ],
       "evidence": [
@@ -1102,7 +1175,7 @@
         "VPN por rjara-vpn-routing-preferences.md antes del primer acceso corporativo (router Procedure 4): incluida en pack (autorizada en meli; A3)",
         "despues: domain=meli pack=['30-resources/agents/skills/meli-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-meli-work-preferences.md', '80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md'] especialista=['30-resources/agents/skills/signals-code-review/SKILL.md']",
         "residuo real post-swap: UNOBSERVABLE (Hallazgo 8); potential_residual = peso del pack aranea saliente en disco",
-        "WARN (A1): swap 4820 estimated_tokens fuera del techo blando 1000-3000 (chars/4, C04)"
+        "WARN (A1/M18): swap = 4820 estimated_tokens (chars/4) fuera del techo blando 1-3k; desviación registrada, nunca FAIL (C04)"
       ],
       "skip_reason": null,
       "details": "swap Aranea->Meli: router + 2 prefs + signals-code-review solo via tabla del router; expert ausente"
@@ -1173,7 +1246,14 @@
           "value": 2017,
           "unit": "estimated_tokens",
           "confidence": "ESTIMATED",
-          "authority": "bootstrap Token Targets + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_swap",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 1-3k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         },
         {
           "name": "gate_decision_trace",
@@ -1262,7 +1342,14 @@
           "value": 1197,
           "unit": "estimated_tokens",
           "confidence": "ESTIMATED",
-          "authority": "bootstrap Token Targets + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_swap",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 1-3k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
         },
         {
           "name": "gate_decision_trace",
@@ -1544,9 +1631,9 @@
     }
   },
   "counts": {
-    "pass": 9,
+    "pass": 7,
     "fail": 0,
-    "warn": 5,
+    "warn": 7,
     "skip": 1
   },
   "ambiguities": [

@@ -163,10 +163,12 @@ def _ctx_for(root: str):
 # ---------------------------------------------------------------------------
 def t1_injection_cross_pack() -> None:
     rules, harness, ctx = _ctx_for(build_temp_vault("full"))
-    # Control: sin inyección, CTX-02 pasa.
+    # Control: sin inyección, CTX-02 no registra FAIL (puede ser WARN sólo por
+    # techo blando A1/M18 sobre el fixture mínimo, jamás por carga prohibida).
     control = cb.ctx_02_meli_cold(ctx, rules, harness)
-    report("T1a.control-ctx02-sin-inyeccion", control["verdict"] == "PASS",
-           "CTX-02 sobre fixture temporal sin inyección -> %s" % control["verdict"])
+    clean = not any("carga prohibida" in e or "unrelated" in e for e in control["evidence"])
+    report("T1a.control-ctx02-sin-inyeccion", control["verdict"] in ("PASS", "WARN") and clean,
+           "CTX-02 sobre fixture temporal sin inyección -> %s (sin problemas de carga prohibida: %s)" % (control["verdict"], clean))
     original = cb._session_for
 
     class CrossPackSession(rules.Session):
@@ -191,7 +193,7 @@ def t1_injection_cross_pack() -> None:
     finally:
         cb._session_for = original  # restauración: el vault real nunca se toca
     control2 = cb.ctx_02_meli_cold(ctx, rules, harness)
-    report("T1c.restauracion-sin-efecto-residual", control2["verdict"] == "PASS",
+    report("T1c.restauracion-sin-efecto-residual", control2["verdict"] in ("PASS", "WARN"),
            "tras restaurar _session_for, CTX-02 vuelve a %s (sin residuo de la inyección)" % control2["verdict"])
 
 
