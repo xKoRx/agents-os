@@ -67,10 +67,10 @@ Reglas de repos: INPUTS READ ONLY. Sin reset/clean/stash/rebase/checkout destruc
 > - [x] D — echo-forge-integration-cartographer: frontera contractual/implementada → `04-echo-forge-boundary.md` #owner/agent #area/echo
 > - [x] E — legacy-doc-curator: clasificación CANONICAL/MERGE/SUPERSEDED/ARCHIVE/DELETE + manifest → `05-legacy-doc-audit.md` #owner/agent #area/echo
 > - [x] F — llm-wiki-documentarian: propuesta wiki canónica → `06-wiki-draft-plan.md` #owner/agent #area/echo
-> - [/] G — documentation-verifier (MAX): refutación adversarial; máx 2 ciclos globales de corrección → `09-verification.md` #owner/agent #area/echo
-> - [ ] H — vault-publisher-reconciler (MAX): reconciliación baseline→HEAD + publication manifest → `10-publication-plan.md` #owner/agent #area/echo
-> - [ ] P — Parent ejecuta publicación canonical en `30-resources/` (sólo con verification PASS) #owner/agent #area/echo
-> - [ ] I — agents-md-gardener: AGENTS.md Echo + Forge minimalistas → `07-agents-md-plan.md`; luego documentation-verifier scope AGENTS.md; parent aplica #owner/agent #area/echo
+> - [x] G — documentation-verifier (MAX): refutación adversarial; máx 2 ciclos globales de corrección → `09-verification.md` #owner/agent #area/echo
+> - [x] H — vault-publisher-reconciler (MAX): reconciliación baseline→HEAD + publication manifest → `10-publication-plan.md` #owner/agent #area/echo
+> - [x] P — Parent ejecuta publicación canonical en `30-resources/` (sólo con verification PASS) #owner/agent #area/echo
+> - [/] I — agents-md-gardener: AGENTS.md Echo + Forge minimalistas → `07-agents-md-plan.md`; luego documentation-verifier scope AGENTS.md; parent aplica #owner/agent #area/echo
 > - [ ] J — context-budget-auditor: duplicación, staleness, leakage MELI/ARANEA/DEFAULT → `08-context-budget.md` #owner/agent #area/echo
 > - [ ] K — Agents-OS hygiene pass acotado (KISS) desde findings J; conformance check conceptual (no inventar PASS; NOT_VERIFIABLE si no demostrable) #owner/agent #area/echo
 > - [ ] L — Informe final + cierre de sesión con feedback (Agents-OS session-close) #owner/agent #area/echo
