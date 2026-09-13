@@ -13,6 +13,8 @@ related:
   - "[[aranea-mcps-expert]]"
   - "[[rjara-aranea-operations-preferences]]"
   - "[[meli-agent-dev]]"
+  - "[[Echo]]"
+  - "[[Echo Forge]]"
 aliases:
   - aranea agent dev
   - dominio aranea

@@ -57,7 +57,7 @@ La analogía: si las cuatro capas de indexación de [[token-economy-indexing-arc
 
 ## Idea central
 
-Enruta **de barato a caro** según la intención (hecho · relación · síntesis · código · procedimiento) y se detiene cuando el contexto alcanza. El pipeline local objetivo es metadata/facets exactos → índice curado cuando aporte dominio → edges tipados o `references` → cuerpo Markdown seleccionado. El presupuesto es un techo blando por tier, nunca una guillotina; la skill `agents-os-context-retrieval` contiene el algoritmo ejecutable y este documento no lo duplica.
+Enruta **de barato a caro** según la intención (hecho · relación · síntesis · código · procedimiento) y se detiene cuando el contexto alcanza. El pipeline local objetivo es metadata/facets exactos → índice curado cuando aporte dominio → edges tipados o `references` → cuerpo Markdown seleccionado. El presupuesto es un techo blando por tier, nunca una guillotina; la skill `agents-os-context-retrieval` contiene el algoritmo ejecutable y este documento no lo duplica. La selección de **dominio** (Meli, Aranea/Echo, ninguno) ocurre antes, en el startup: es el domain gate de `agents-os-bootstrap` a partir del `area` de la entidad activa; este router decide la profundidad dentro de ese dominio.
 
 ## Ejemplo
 

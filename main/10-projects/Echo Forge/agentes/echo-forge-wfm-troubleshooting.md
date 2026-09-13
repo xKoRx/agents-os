@@ -4,7 +4,7 @@ owner: agent
 root: false
 status: active
 priority: P1
-area: "[[Symphony]]"
+area: "[[Echo]]"
 parent: "[[Echo Forge]]"
 sprint:
 start: 2026-06-28

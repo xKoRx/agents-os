@@ -77,11 +77,22 @@ changed on disk. Do NOT re-run the full ritual on every message.
 5. Identify the active entity from the user's request. If not explicit,
    infer candidates with a focused search and declare the assumed entity.
    Resolve aliases/slugs to the canonical Obsidian title.
-6. If the request needs vault state or domain context, route to `agents-os-context-retrieval` for the active entity (cheapest layer first; stop when sufficient). For casual or general requests that do not depend on a vault entity, skip entity retrieval.
-7. Open source Markdown only for notes that affect a persistent decision,
+6. Apply the domain gate from the entity's `area` frontmatter (resolve it via
+   Graphify metadata/facets or the entity note; do not scan folders):
+   - `[[Meli]]` → load `meli-agent-dev`.
+   - `[[Echo]]` or `[[Aranea]]` → load `aranea-agent-dev`.
+   - Any other area, or no resolvable entity → no domain router.
+   If no entity resolves but the surface shows domain evidence (MCP tool
+   prefixes `mcp__aranea-*`, or corporate tooling such as Zord/Fury/Spellbook),
+   use that instead. Ambiguous or conflicting evidence fails closed: no
+   router. Never load both routers; the router loads at most ONE specialized
+   skill and owns the scoped preferences of its domain.
+7. If the request needs vault state or domain context, route to `agents-os-context-retrieval` for the active entity (cheapest layer first; stop when sufficient). For casual or general requests that do not depend on a vault entity, skip entity retrieval.
+8. Open source Markdown only for notes that affect a persistent decision,
    edit, or answer that must be verified.
-8. Select at most ONE specialized skill (lazy-load) only if the task needs it.
-9. Skip the orientation note unless retrieval was degraded. If degraded,
+9. Select at most ONE additional specialized skill (lazy-load) only if the
+   task needs it and the domain router (if loaded) does not already route it.
+10. Skip the orientation note unless retrieval was degraded. If degraded,
    emit the minimal `Entity / Goal / Skills / Open questions` note and flag
    the gap.
 
@@ -96,7 +107,10 @@ changed on disk. Do NOT re-run the full ritual on every message.
 
 1. Keep the invariants and global internal note from cold start.
 2. Resolve the new entity and route to `agents-os-context-retrieval` for it.
-3. Drop the previous entity pack from active reasoning.
+3. Re-apply the domain gate with the new entity's `area`; if the domain
+   changed, drop the previous domain pack (router + scoped preferences) and
+   load the new router. Never hold two domain packs at once.
+4. Drop the previous entity pack from active reasoning.
 
 ## Lazy Skill Routing
 
@@ -109,10 +123,11 @@ AGENTS OS → `agents-os-doctor`, project execution →
 `agents-os-entity-lifecycle`, index stale or blocked update →
 `agents-os-graphify-maintenance`.
 
-Domain-gated skills route through their domain router, never directly:
-Meli corporate work → `meli-agent-dev`; homelab Aranea work and any MCP
-`aranea-*` access → `aranea-agent-dev`. The two domains are mutually
-exclusive; swap explicitly instead of mixing.
+Domain-gated skills route through their domain router, never directly. The
+domain comes from the active entity's `area` (domain gate, cold start step 6):
+`[[Meli]]` → `meli-agent-dev`; `[[Echo]]`/`[[Aranea]]` → `aranea-agent-dev`;
+any other area → no router. The two domains are mutually exclusive; a domain
+swap replaces the pack explicitly instead of mixing.
 
 Do not load Nexus, MELI, or external project skills unless the request
 explicitly asks for them.
