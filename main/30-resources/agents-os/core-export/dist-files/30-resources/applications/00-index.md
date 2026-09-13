@@ -11,6 +11,8 @@ tags:
 created: 2026-09-09
 updated: 2026-09-09
 ---
+indexable: false
+index_priority: never
 
 # 📦 Aplicaciones
 

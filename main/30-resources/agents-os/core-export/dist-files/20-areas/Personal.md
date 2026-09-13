@@ -15,6 +15,8 @@ updated: "2026-09-09"
 aliases:
   - personal
 ---
+indexable: false
+index_priority: never
 
 %% Naming: el título de la nota es el link canónico; slug es solo identificador técnico para tags/paths; aliases contiene variantes humanas. %%
 

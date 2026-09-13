@@ -13,8 +13,8 @@ aliases:
   - preferencias del usuario
 confidence: verified
 load_policy: always
-indexable: true
-index_priority: critical
+indexable: false
+index_priority: never
 tags:
   - kind/user-preference
   - scope/user
