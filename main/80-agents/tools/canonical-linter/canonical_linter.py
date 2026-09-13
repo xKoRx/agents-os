@@ -1542,7 +1542,8 @@ def run_checks(ctx: Optional[LintCtx], failures: Dict[str, str],
         rec["details"] = details
         rec["dedup_cites"] = dedup
         rec["evidence"] = evidence
-        out.append(finish_check(rec, findings))
+        out.append(finish_check(rec, findings, pass_details=details,
+                                fail_details=details, warn_details=details))
     return out
 
 
