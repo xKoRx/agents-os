@@ -172,7 +172,9 @@ def _ctx_for(root: str):
 # T1 — inyección: pack cruzado dispara FAIL (spec sección 6.2)
 # ---------------------------------------------------------------------------
 def t1_injection_cross_pack() -> None:
-    rules, harness, ctx = _ctx_for(build_temp_vault("full"))
+    root = build_temp_vault("full")
+    try:
+        rules, harness, ctx = _ctx_for(root)
     # Control: sin inyección, CTX-02 no registra FAIL (puede ser WARN sólo por
     # techo blando A1/M18 sobre el fixture mínimo, jamás por carga prohibida).
     control = cb.ctx_02_meli_cold(ctx, rules, harness)
@@ -342,42 +344,46 @@ def t7_exit_codes() -> None:
 # T8 — D1 (verificación adversarial): nota VPN inyectada en aranea -> SOLO WARN
 # ---------------------------------------------------------------------------
 def t8_vpn_injection_aranea() -> None:
-    rules, harness, ctx = _ctx_for(build_temp_vault("full"))
-    vpn = rules.ROUTER_PREFS["meli"][1]
-    original = cb._session_for
-
-    class VpnSession(rules.Session):
-        """Sesión que trae la nota VPN via el enlace del perfil en cold aranea
-        (repro D1 del verifier, reconstruido aquí en tempdir): la nota entra al
-        set cargado de un escenario aranea sin estar en el pack."""
-
-        def cold_start(self, request):
-            missing = super().cold_start(request)
-            if self.active_domain == "aranea":
-                self.open(vpn, "inyeccion selftest D1: nota VPN via enlace del perfil")
-            return missing
-
+    root = build_temp_vault("full")
     try:
-        cb._session_for = lambda c: VpnSession(c.vault)
-        r3 = cb.ctx_03_aranea_cold(ctx, rules, harness)
-        unrel3 = [m["value"] for m in r3["metrics"] if m["name"] == "unrelated_domain_files"][0]
-        joined3 = json.dumps(r3, ensure_ascii=False)
-        ok3 = (r3["verdict"] == "WARN" and vpn not in unrel3
-               and "nota VPN" in joined3 and "Hallazgo 7" in joined3 and "A3" in joined3)
-        report("T8a.vpn-aranea-ctx03-warn-no-fail", ok3,
-               "CTX-03 con VPN inyectada -> %s (unrelated=%s; ambigua citando A3/Hallazgo 7: %s)" % (
-                   r3["verdict"], unrel3, any("nota VPN" in e for e in r3["evidence"])))
-        r11 = cb.ctx_11_leak_unrelated(ctx, rules, harness)
-        vpn_amb11 = any("nota VPN" in e and "aranea" in e for e in r11["evidence"])
-        ok11 = r11["verdict"] != "FAIL" and vpn_amb11 and not any(
-            "archivo del dominio ajeno" in e and vpn in e for e in r11["evidence"])
-        report("T8b.vpn-aranea-ctx11-warn-no-fail", ok11,
-               "CTX-11 (rama aranea) con VPN inyectada -> %s; VPN solo como ambigua: %s" % (r11["verdict"], vpn_amb11))
+        rules, harness, ctx = _ctx_for(root)
+        vpn = rules.ROUTER_PREFS["meli"][1]
+        original = cb._session_for
+
+        class VpnSession(rules.Session):
+            """Sesión que trae la nota VPN via el enlace del perfil en cold aranea
+            (repro D1 del verifier, reconstruido aquí en tempdir): la nota entra al
+            set cargado de un escenario aranea sin estar en el pack."""
+
+            def cold_start(self, request):
+                missing = super().cold_start(request)
+                if self.active_domain == "aranea":
+                    self.open(vpn, "inyeccion selftest D1: nota VPN via enlace del perfil")
+                return missing
+
+        try:
+            cb._session_for = lambda c: VpnSession(c.vault)
+            r3 = cb.ctx_03_aranea_cold(ctx, rules, harness)
+            unrel3 = [m["value"] for m in r3["metrics"] if m["name"] == "unrelated_domain_files"][0]
+            joined3 = json.dumps(r3, ensure_ascii=False)
+            ok3 = (r3["verdict"] == "WARN" and vpn not in unrel3
+                   and "nota VPN" in joined3 and "Hallazgo 7" in joined3 and "A3" in joined3)
+            report("T8a.vpn-aranea-ctx03-warn-no-fail", ok3,
+                   "CTX-03 con VPN inyectada -> %s (unrelated=%s; ambigua citando A3/Hallazgo 7: %s)" % (
+                       r3["verdict"], unrel3, any("nota VPN" in e for e in r3["evidence"])))
+            r11 = cb.ctx_11_leak_unrelated(ctx, rules, harness)
+            vpn_amb11 = any("nota VPN" in e and "aranea" in e for e in r11["evidence"])
+            ok11 = r11["verdict"] != "FAIL" and vpn_amb11 and not any(
+                "archivo del dominio ajeno" in e and vpn in e for e in r11["evidence"])
+            report("T8b.vpn-aranea-ctx11-warn-no-fail", ok11,
+                   "CTX-11 (rama aranea) con VPN inyectada -> %s; VPN solo como ambigua: %s" % (r11["verdict"], vpn_amb11))
+        finally:
+            cb._session_for = original  # restauración: el vault canónico nunca se toca
+        control = cb.ctx_03_aranea_cold(ctx, rules, harness)
+        report("T8c.restauracion-ctx03-sin-ineccion", control["verdict"] in ("PASS", "WARN"),
+               "tras restaurar _session_for, CTX-03 vuelve a %s (sin residuo de la inyección)" % control["verdict"])
     finally:
-        cb._session_for = original  # restauración: el vault canónico nunca se toca
-    control = cb.ctx_03_aranea_cold(ctx, rules, harness)
-    report("T8c.restauracion-ctx03-sin-ineccion", control["verdict"] in ("PASS", "WARN"),
-           "tras restaurar _session_for, CTX-03 vuelve a %s (sin residuo de la inyección)" % control["verdict"])
+        shutil.rmtree(root, ignore_errors=True)
 
 
 # ---------------------------------------------------------------------------
