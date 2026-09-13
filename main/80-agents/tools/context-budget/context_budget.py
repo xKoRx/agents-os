@@ -657,18 +657,13 @@ def ctx_04_default_warm(ctx, rules, harness) -> Dict[str, Any]:
     rec["metrics"].append(metric("session_loaded_set", s.all_opens(), "files", "EXACT", "rules.Session.all_opens"))
     rec["metrics"].append(metric("warm_delta_files", len(delta_turn), "files", "EXACT", "rules.Session.opens_in_turn(2) (fix D1)"))
     _weight_metrics(rec, "warm_delta", delta, "EXACT", "ESTIMATED", "_size del harness sobre opens_in_turn(2)")
-    rec["metrics"].append(metric("soft_target_warm_delta", delta["estimated_tokens"], "estimated_tokens", "ESTIMATED",
-                                 "bootstrap Token Targets + doctor Check 11 + " + TOKENS_NOTE))
-    lo, hi = SOFT_CEILINGS["warm_delta_estimated_tokens"]
-    in_range = lo <= delta["estimated_tokens"] < hi
-    rec["metrics"].append(metric("soft_target_in_range", in_range, "bool", "ESTIMATED",
-                                 "techo blando %d-%d estimated_tokens (A1: WARN-only)" % (lo, hi)))
-    if not in_range:
-        rec["evidence"].append("WARN (A1): warm delta %d estimated_tokens fuera del techo blando %d-%d (chars/4, C04); desviación registrada, nunca FAIL" % (delta["estimated_tokens"], lo, hi))
+    soft_warns = []
+    if _soft_target(rec, "warm_delta", delta["estimated_tokens"], 0, 1000, "<1k", compare="lt"):
+        soft_warns.append("warm_delta")
     evidence.append("estado: session_mode=%s active_entity=%s active_domain=%s" % (s.session_mode, s.active_entity, s.active_domain))
     return _finish(rec, problems, "PASS",
                    "turno warm sin dominio: cero opens obligatorios; presupuesto del turno = delta puro (%d archivos)" % len(delta_turn),
-                   "turno warm re-leo base o cargó router (C06)")
+                   "turno warm re-leo base o cargó router (C06)", warns=soft_warns)
 
 
 # ---------------------------------------------------------------------------
@@ -717,20 +712,16 @@ def ctx_05_meli_warm(ctx, rules, harness) -> Dict[str, Any]:
     _weight_metrics(rec, "warm_delta", delta, "EXACT", "ESTIMATED", "_size del harness sobre opens_in_turn(2)")
     rec["metrics"].append(metric("resources_selected", {"candidates": candidates, "opened": [harness.FURY_NOTE]},
                                  "files", "EXACT (modelo)", "rules.Session.retrieve + open_delta (C09: matching declarado por el harness)"))
-    rec["metrics"].append(metric("soft_target_warm_delta", delta["estimated_tokens"], "estimated_tokens", "ESTIMATED",
-                                 "bootstrap Token Targets + doctor Check 11 + " + TOKENS_NOTE))
-    lo, hi = SOFT_CEILINGS["warm_delta_estimated_tokens"]
-    in_range = lo <= delta["estimated_tokens"] < hi
-    rec["metrics"].append(metric("soft_target_in_range", in_range, "bool", "ESTIMATED", "techo blando %d-%d (A1: WARN-only)" % (lo, hi)))
-    if not in_range:
-        rec["evidence"].append("WARN (A1): warm delta %d estimated_tokens fuera del techo blando %d-%d (chars/4, C04)" % (delta["estimated_tokens"], lo, hi))
+    soft_warns = []
+    if _soft_target(rec, "warm_delta", delta["estimated_tokens"], 0, 1000, "<1k", compare="lt"):
+        soft_warns.append("warm_delta")
     evidence.append("candidatos del filtro (%d): %s" % (len(candidates), ", ".join(candidates) or "-"))
     evidence.append("cuerpo abierto (delta único del turno 2): %s" % harness.FURY_NOTE)
     evidence.append("estado: session_mode=%s active_entity=%s active_domain=%s" % (
         s.session_mode, s.active_entity.get("title") if s.active_entity else None, s.active_domain))
     return _finish(rec, problems, "PASS",
                    "turno warm Meli: delta = known-error RIO (1 archivo, peso chars/4); base y pack intactos en turnos 2..5",
-                   "turno warm Meli violó el contrato (C06/C11)")
+                   "turno warm Meli violó el contrato (C06/C11)", warns=soft_warns)
 
 
 # ---------------------------------------------------------------------------
@@ -767,20 +758,16 @@ def ctx_06_aranea_warm(ctx, rules, harness) -> Dict[str, Any]:
     _weight_metrics(rec, "warm_delta", delta, "EXACT", "ESTIMATED", "_size del harness sobre opens_in_turn(2)")
     rec["metrics"].append(metric("resources_selected", {"candidates": candidates, "opened": [harness.MT5_NOTE]},
                                  "files", "EXACT (modelo)", "rules.Session.retrieve + open_delta"))
-    rec["metrics"].append(metric("soft_target_warm_delta", delta["estimated_tokens"], "estimated_tokens", "ESTIMATED",
-                                 "bootstrap Token Targets + doctor Check 11 + " + TOKENS_NOTE))
-    lo, hi = SOFT_CEILINGS["warm_delta_estimated_tokens"]
-    in_range = lo <= delta["estimated_tokens"] < hi
-    rec["metrics"].append(metric("soft_target_in_range", in_range, "bool", "ESTIMATED", "techo blando %d-%d (A1: WARN-only)" % (lo, hi)))
-    if not in_range:
-        rec["evidence"].append("WARN (A1): warm delta %d estimated_tokens fuera del techo blando %d-%d (chars/4, C04)" % (delta["estimated_tokens"], lo, hi))
+    soft_warns = []
+    if _soft_target(rec, "warm_delta", delta["estimated_tokens"], 0, 1000, "<1k", compare="lt"):
+        soft_warns.append("warm_delta")
     evidence.append("trigger del fixture: %s (vocabulario no canónico = WARN de LOAD-POLICY-VOCABULARY/C09, no invalida el escenario)" %
                     ctx.vault.frontmatter(harness.MT5_NOTE).get("load_policy"))
     evidence.append("candidatos del filtro (%d): %s" % (len(candidates), ", ".join(candidates) or "-"))
     evidence.append("cuerpo abierto (delta único del turno 2): %s" % harness.MT5_NOTE)
     return _finish(rec, problems, "PASS",
                    "turno warm Aranea: delta = continuidad MT5 parser cert; base intacta; delta acotado a memoria aranea",
-                   "turno warm Aranea violó el contrato (C06)")
+                   "turno warm Aranea violó el contrato (C06)", warns=soft_warns)
 
 
 # ---------------------------------------------------------------------------
@@ -839,12 +826,12 @@ def ctx_07_switch_meli_aranea(ctx, rules, harness) -> Dict[str, Any]:
     evidence.append("despues: domain=%s pack=%s entity=%s" % (s.active_domain, s.pack_files, s.active_entity.get("title") if s.active_entity else None))
     evidence.append(s.swap_note or "")
     evidence.append("residuo real post-swap en la ventana del modelo: UNOBSERVABLE (Hallazgo 8); a nivel modelo el pack meli salió de pack_files (EXACT) y no fue re-abierto tras el swap")
-    lo, hi = SOFT_CEILINGS["swap_estimated_tokens"]
-    if not (lo <= swap_agg["estimated_tokens"] < hi):
-        rec["evidence"].append("WARN (A1): swap %d estimated_tokens fuera del techo blando %d-%d (chars/4, C04)" % (swap_agg["estimated_tokens"], lo, hi))
+    soft_warns = []
+    if _soft_target(rec, "swap", swap_agg["estimated_tokens"], 1000, 3000, "1-3k"):
+        soft_warns.append("swap")
     return _finish(rec, problems, "PASS",
                    "swap Meli->Aranea: un solo pack, base persistente; swap_turn = pack aranea (%d estimated_tokens, chars/4)" % swap_agg["estimated_tokens"],
-                   "swap Meli->Aranea violó el contrato (C07) o registró unrelated-domain")
+                   "swap Meli->Aranea violó el contrato (C07) o registró unrelated-domain", warns=soft_warns)
 
 
 # ---------------------------------------------------------------------------
@@ -911,12 +898,12 @@ def ctx_08_switch_aranea_meli(ctx, rules, harness) -> Dict[str, Any]:
     evidence.append("VPN por rjara-vpn-routing-preferences.md antes del primer acceso corporativo (router Procedure 4): incluida en pack (autorizada en meli; A3)")
     evidence.append("despues: domain=%s pack=%s especialista=%s" % (s.active_domain, s.pack_files, s.specialist_skills))
     evidence.append("residuo real post-swap: UNOBSERVABLE (Hallazgo 8); potential_residual = peso del pack aranea saliente en disco")
-    lo, hi = SOFT_CEILINGS["swap_estimated_tokens"]
-    if not (lo <= swap_agg["estimated_tokens"] < hi):
-        rec["evidence"].append("WARN (A1): swap %d estimated_tokens fuera del techo blando %d-%d (chars/4, C04)" % (swap_agg["estimated_tokens"], lo, hi))
+    soft_warns = []
+    if _soft_target(rec, "swap", swap_agg["estimated_tokens"], 1000, 3000, "1-3k"):
+        soft_warns.append("swap")
     return _finish(rec, problems, "PASS",
                    "swap Aranea->Meli: router + 2 prefs + signals-code-review solo via tabla del router; expert ausente",
-                   "swap Aranea->Meli violó el contrato (C07/C12/C13) o registró unrelated-domain")
+                   "swap Aranea->Meli violó el contrato (C07/C12/C13) o registró unrelated-domain", warns=soft_warns)
 
 
 # ---------------------------------------------------------------------------
@@ -957,16 +944,14 @@ def _switch_from_default(rec: Dict[str, Any], ctx, rules, harness, title: str,
     routers_in_pack = [p for p in s.pack_files if p in set(rules.ROUTERS.values())]
     rec["metrics"].append(metric("active_pack_count_post_swap", len(routers_in_pack), "count", "EXACT",
                                  "rules.Session.holds_two_packs + pack_files"))
-    rec["metrics"].append(metric("soft_target_swap", swap_agg["estimated_tokens"], "estimated_tokens", "ESTIMATED",
-                                 "bootstrap Token Targets + doctor Check 11 + " + TOKENS_NOTE))
+    soft_warns = []
+    if _soft_target(rec, "swap", swap_agg["estimated_tokens"], 1000, 3000, "1-3k"):
+        soft_warns.append("swap")
     rec["metrics"].append(metric("gate_decision_trace", s.gate_note or "", "text", "EXACT (transcripción)", "bootstrap swap pasos 1-4 via rules.domain_gate"))
     # M15 sobre el estado POST-swap (el pack de DEFAULT es vacío; paridad con CTX-07/08).
     _m15_leak_check(rules, harness, ctx, rec, list(s.opens_in_turn(2)) + list(s.pack_files), [], s.active_domain, problems)
     evidence.append("transicion: active_entity none->%s; active_domain none->%s" % (title, s.active_domain))
     evidence.append("gate: %s" % s.gate_note)
-    lo, hi = SOFT_CEILINGS["swap_estimated_tokens"]
-    if not (lo <= swap_agg["estimated_tokens"] < hi):
-        rec["evidence"].append("WARN (A1): swap %d estimated_tokens fuera del techo blando %d-%d (chars/4, C04)" % (swap_agg["estimated_tokens"], lo, hi))
     warn = ("WARN declarado (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap "
             "('switches to a different entity') convergen en el mismo observable; ninguna autoridad fija la clasificacion del modo.")
     if problems:
