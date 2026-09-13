@@ -274,6 +274,19 @@ def _tokens_and_line_map(normed: List[List[str]]) -> Tuple[List[str], List[int]]
     return toks, line_of
 
 
+def _strip_frontmatter(text: str) -> str:
+    """Excluye el frontmatter del barrido M14: los campos del schema-contract
+    (created/updated/load_policy/tags/...) son metadatos estructurales
+    compartidos por diseño, no contenido duplicado de la regla 5
+    ('Una fuente canónica por hecho'); se declara en thresholds."""
+    lines = text.split("\n")
+    if lines and lines[0].strip() == "---":
+        for i in range(1, len(lines)):
+            if lines[i].rstrip() == "---":
+                return "\n".join(lines[i + 1:])
+    return text
+
+
 def find_duplication(text_a: str, text_b: str) -> Dict[str, Any]:
     """Runs contiguos comunes (greedy, no solapados) entre dos textos
     normalizados. Devuelve {runs: [{chars, lines_a, lines_b, snippet}],
@@ -625,7 +638,7 @@ def ctx_04_default_warm(ctx, rules, harness) -> Dict[str, Any]:
         rec["evidence"].append("WARN (A1): warm delta %d estimated_tokens fuera del techo blando %d-%d (chars/4, C04); desviación registrada, nunca FAIL" % (delta["estimated_tokens"], lo, hi))
     evidence.append("estado: session_mode=%s active_entity=%s active_domain=%s" % (s.session_mode, s.active_entity, s.active_domain))
     return _finish(rec, problems, "PASS",
-                   "turno warm sin dominio: cero opens obligatorios; presupuesto del turno = delta puro (%d archivos)" % len(delta),
+                   "turno warm sin dominio: cero opens obligatorios; presupuesto del turno = delta puro (%d archivos)" % len(delta_turn),
                    "turno warm re-leo base o cargó router (C06)")
 
 
@@ -1129,7 +1142,7 @@ def ctx_13_dup_content(ctx, rules, harness) -> Dict[str, Any]:
                 if key in pairs_done:
                     continue
                 pairs_done.add(key)
-                report = find_duplication(texts[a], texts[b])
+                report = find_duplication(_strip_frontmatter(texts[a]), _strip_frontmatter(texts[b]))
                 if duplication_hit(report):
                     hits.append({"set": set_name, "a": a, "b": b,
                                  "total_chars": report["total_chars"],
@@ -1314,7 +1327,9 @@ def run_suite(vault_root: str, live: bool = False, scenario: Optional[str] = Non
         "totals": {},
         "counts": {"pass": 0, "fail": 0, "warn": 0, "skip": 0},
         "ambiguities": list(DECLARED_AMBIGUITIES),
-        "thresholds": {"duplication": dict(DUP_THRESHOLD), "soft_ceilings": {k: list(v) for k, v in SOFT_CEILINGS.items()}},
+        "thresholds": {"duplication": dict(DUP_THRESHOLD, strip_frontmatter=True,
+                                          scope="texto normalizado sin frontmatter (metadatos estructurales del schema-contract, no contenido de la regla 5)"),
+                       "soft_ceilings": {k: list(v) for k, v in SOFT_CEILINGS.items()}},
     }
     requested = [sid for sid, _, _ in SCENARIOS]
     if scenario:
