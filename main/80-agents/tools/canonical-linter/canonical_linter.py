@@ -1125,7 +1125,8 @@ def cl_14(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
     """Filas de 00-index.md de dominio activo wiki apuntando a archivo
     inexistente. MACHINE -> FAIL (ambiguo -> WARN). Los 00-index de la wiki
     no tienen cobertura mecánica previa (REGISTRY-DISK-PARITY es sólo INDEX de
-    skills) -> net-new."""
+    skills) -> net-new. Tras fallar la resolución a nota (A9) se verifica
+    existencia física de cualquier archivo (assets no-.md como config.toon)."""
     findings: List[Dict[str, Any]] = []
     indexes = _wiki_index_files(ctx)
     checked = 0
@@ -1135,12 +1136,14 @@ def cl_14(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
             res = ctx.resolve(target, idx_rel)
             if res["status"] == "ok":
                 continue
+            if res["status"] == "missing" and _non_md_asset_exists(ctx, target, idx_rel):
+                continue  # asset del vault no indexable como nota: fila válida
             if res["status"] == "missing":
                 findings.append(finding(
                     "CL-14", "ROUTING", "FAIL", "FAIL", idx_rel,
                     "fila del índice -> [[%s]] no resuelve a ninguna nota" % target,
                     "una fila por página vigente: el link del catálogo resuelve (00-RESOURCE-WIKI: un índice desactualizado es deuda)",
-                    "target %r; línea %d; resolución A9: sin candidatos" % (target, line_no),
+                    "target %r; línea %d; resolución A9: sin candidatos (ni asset en disco)" % (target, line_no),
                     AUTH_WIKI + " (00-index catálogo curado, Layer 1 del context-retrieval)",
                     "proponer al owner corregir la fila o restaurar la página; nunca auto-corregido",
                     line=line_no))
@@ -1159,6 +1162,20 @@ def cl_14(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
     ]
     return ("00-index de dominios wiki activos escaneados: %d; filas con link verificadas: %d" % (len(indexes), checked),
             findings, dedup, ["00-index activos: %s" % ", ".join(indexes)])
+
+
+def _non_md_asset_exists(ctx: LintCtx, target: str, src_rel: str) -> bool:
+    """True si target existe como archivo (cualquier extensión) vía path
+    relativo al origen o VAULT_ROOT-relativo (regla 11). Sólo para filas de
+    índices que enlazan assets no-.md."""
+    cands = [
+        os.path.normpath(os.path.join(os.path.dirname(src_rel), target)).replace(os.sep, "/"),
+        target,
+    ]
+    for cand in cands:
+        if os.path.isfile(os.path.join(ctx.root, cand)):
+            return True
+    return False
 
 
 def cl_15(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]]:
