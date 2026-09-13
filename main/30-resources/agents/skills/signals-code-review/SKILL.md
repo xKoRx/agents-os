@@ -44,13 +44,13 @@ Trigger boundary:
 
 - **Sí:** code review de una branch o PR cuya pertenencia a Meli puede demostrarse. Todo proyecto Meli usa Zord; Signals/RIO agrega revisión cross-app oficial.
 - **No:** cualquier proyecto no Meli o cuya identidad Meli no pueda demostrarse, escritura de código, aplicación de fixes, creación/publicación de PR o redacción de su descripción. Fuera de Meli esta skill termina como `NOT_APPLICABLE` antes de invocar Zord y no cae a una revisión genérica.
-- **Handoff:** descripción de PR → [[pr-description]]; correcciones → workflow de implementación autorizado; ejecución mecánica → `../../runbooks/signals-code-review-runbook.md`.
+- **Handoff:** descripción de PR → [[pr-description]]; correcciones → workflow de implementación autorizado; ejecución mecánica → `../../../runbooks/signals-code-review-runbook.md`.
 
 ## Minimal Read
 
 Leer sólo:
 
-1. `../../runbooks/signals-code-review-runbook.md` al ejecutar una revisión.
+1. `../../../runbooks/signals-code-review-runbook.md` al ejecutar una revisión.
 2. `../../../../80-agents/memory/public/user-preference/rjara-meli-work-preferences.md` si el contexto Meli no está cargado.
 3. `../../../tools/local-agents-pipeline-cli.md` antes de resolver o ejecutar Zord.
 4. La skill [[human-first-technical-writing]] al explicar findings o redactar comentarios para el autor del PR.
