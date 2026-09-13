@@ -1422,7 +1422,9 @@ def _finalize(doc: Dict[str, Any], vault_root: str, write: bool) -> None:
             out_path = os.path.join(RESULTS_DIR, "run-%s-%d.json" % (ts, n))
         with open(out_path, "w", encoding="utf-8") as fh:
             json.dump(doc, fh, indent=2, ensure_ascii=False)
-        doc["results_file"] = os.path.relpath(out_path, vault_root).replace(os.sep, "/")
+        # Ruta canónica relativa a VAULT_ROOT (regla 11): nunca paths absolutos
+        # ni relativos al cwd del operador.
+        doc["results_file"] = "80-agents/tools/context-budget/results/" + os.path.basename(out_path)
 
 
 # ---------------------------------------------------------------------------
