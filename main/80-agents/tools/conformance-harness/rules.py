@@ -587,3 +587,49 @@ def trigger_fires(fm: Dict[str, object], entity: Entity, intent: str) -> bool:
         key = lp[len("when_"):-len("_loaded")].replace("_", "-")
         return intent in ("context", "continuity", "error") and slugify(str(entity.get("title", ""))) == key
     return False  # unknown trigger: fails closed (spec section 5 semantics)
+
+
+# ---------------------------------------------------------------------------
+# Fidelity anchors (adversarial-verification D2: guard against silent
+# transcription drift). Each entry is (anchor_id, authority_rel_path, quote):
+# the EXACT quote of the authority text that a rule of this module claims to
+# transcribe. The harness pre-flight check RULES-FIDELITY-ANCHORS asserts that
+# every quote still exists verbatim in the authority file (matching collapses
+# whitespace runs only — the words must be exact). If an anchor disappears the
+# transcription is stale and the results of gate-dependent scenarios are not
+# trustworthy. When transcribing a NEW authority rule here, add its anchor.
+# ---------------------------------------------------------------------------
+AUTH_BOOTSTRAP = "80-agents/skills/agents-os-bootstrap/SKILL.md"
+AUTH_DOCTOR = "80-agents/skills/agents-os-doctor/SKILL.md"
+
+FIDELITY_ANCHORS: List[Tuple[str, str, str]] = [
+    # Domain gate (bootstrap cold start paso 6) — cited at domain_gate().
+    ("gate-meli", AUTH_BOOTSTRAP, "`[[Meli]]` → load `meli-agent-dev`."),
+    ("gate-echo-aranea", AUTH_BOOTSTRAP, "`[[Echo]]` or `[[Aranea]]` → load `aranea-agent-dev`."),
+    ("gate-other-no-router", AUTH_BOOTSTRAP, "Any other area, or no resolvable entity → no domain router."),
+    ("gate-fail-closed", AUTH_BOOTSTRAP, "Ambiguous or conflicting evidence fails closed: no router."),
+    ("gate-never-both-routers", AUTH_BOOTSTRAP, "Never load both routers; the router loads at most ONE specialized skill and owns the scoped preferences of its domain."),
+    # Cold set (bootstrap cold start pasos 1-3) — cited at Session.cold_start().
+    ("cold-paso1-constitution", AUTH_BOOTSTRAP, "`80-agents/agents-os/agent-constitution.md`"),
+    ("cold-paso1-profile-dir", AUTH_BOOTSTRAP, "`80-agents/memory/public/user-preference/` — the global profile. Resolve it by that directory"),
+    ("cold-paso2-global-internal", AUTH_BOOTSTRAP, "`80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md`"),
+    ("cold-paso3-registry", AUTH_BOOTSTRAP, "Load the skills registry `80-agents/skills/INDEX.md` (core catalog + federated rows)"),
+    ("cold-paso3-no-federated-index", AUTH_BOOTSTRAP, "Do not read the federated domain index unless routing needs detail beyond the registry rows."),
+    # Warm turn (bootstrap warm pasos 1-4) — cited at Session.warm_turn().
+    ("warm-never-reread", AUTH_BOOTSTRAP, "Never re-read constitution/profile/bootstrap."),
+    ("warm-no-bootstrap-rerun", AUTH_BOOTSTRAP, "Do not invoke or reread bootstrap merely because the user sent another message."),
+    # Entity swap (bootstrap swap pasos 1-4) — cited at Session.swap_entity().
+    ("swap-keep-invariants", AUTH_BOOTSTRAP, "Keep the invariants and global internal note from cold start."),
+    ("swap-drop-pack", AUTH_BOOTSTRAP, "drop the previous domain pack (router + scoped preferences) and load the new router. Never hold two domain packs at once."),
+    # Superseded/archived exclusion — cited at Session.retrieve().
+    ("hard-superseded-not-loaded", AUTH_BOOTSTRAP, "Never load `superseded` or `archived` continuity during normal startup or entity retrieval."),
+    # Only startup procedure — cited by the L0 STARTUP-DUPLICATION contract.
+    ("hard-only-startup-procedure", AUTH_BOOTSTRAP, "This skill is the only startup procedure. Do not duplicate it in `agents-os.md`, `AGENTS.md`, adapters, or project notes."),
+    # doctor Check 3: closed club lines — cited at resolve_profile_note() and
+    # the L0 CLOSED-CLUB-ALWAYS check.
+    ("doctor-club-constitution", AUTH_DOCTOR, "`80-agents/agents-os/agent-constitution.md`"),
+    ("doctor-club-bootstrap", AUTH_DOCTOR, "`80-agents/skills/agents-os-bootstrap/SKILL.md`"),
+    ("doctor-club-global-internal", AUTH_DOCTOR, "`80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md`"),
+    ("doctor-club-one-profile", AUTH_DOCTOR, "exactly ONE note under `80-agents/memory/public/user-preference/` — the global profile."),
+    ("doctor-club-second-is-violation", AUTH_DOCTOR, "a second one is a club violation and zero means the install is incomplete."),
+]
