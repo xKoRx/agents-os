@@ -35,11 +35,11 @@ tags:
 - Agent surface: [[Codex]]
 - Agent model: unknown
 - Agent run: [[2026-09-13-codex-unknown-e05-full-adversarial-verification-3]]
-- Session goal: Pre-flight y certificación adversarial E-05.
+- Session goal: Certificación adversarial independiente completa E-05 contra `e917e25ad4b1ce4a7148229f1da3bf804c3a1cff`.
 - Main entity: [[Echo — E-05 Analytics Convergence A0]]
 - Skills used: Agents OS bootstrap, aranea-agent-dev, aranea-mcps-expert, session-close, session-feedback, entity-update y agent-run-register.
-- Retrieval mode: Búsqueda focalizada y lectura de fuentes de bootstrap; la auditoría del repo quedó bloqueada antes de cargar SPEC/PLAN/TASKS/VERIFICATION del target.
-- Artifacts changed: Nota de proyecto E-05, agent run, feedback y change log; ningún artefacto de producto o checkout fue modificado.
+- Retrieval mode: Bootstrap dirigido; lectura completa SPEC/PLAN/TASKS/VERIFICATION y auditoría source/PG/tests sobre el worktree confirmado.
+- Artifacts changed: `VERIFICATION.md`, nota E-05, agent run, feedback, change log y log de entity update; ningún product source o checkout de producto fue modificado.
 
 ## Scores
 
@@ -50,13 +50,20 @@ Use 1-5, where 1 is poor and 5 is excellent.
 - Skill fit: 5
 - Template fit: 4
 - Closeout friction: 4
-- Overall confidence: 5
+- Overall confidence: 4
 
 ## What Complicated The Session Most
 
 - Observation: El checkout por defecto estaba en E-02, pero el worktree E-05 documentado en `/tmp/echo-e05-analytics-a0` sí estaba disponible y coincidía exactamente con el target.
 - Why it was hard: El repo compartido tiene varios worktrees/checkouts y el primer path encontrado no era el target; la evidencia sólo se volvió válida tras resolver el worktree correcto.
 - Proposed improvement: Añadir al arranque del verifier una selección/validación explícita del worktree por branch y SHA antes de cualquier lectura de fuente.
+
+## Final audit delta
+
+- Resultado: `VERIFICATION_FAIL` con once findings materiales (`V3-001`…`V3-011`); la política de continuar de forma read-only permitió completar la auditoría sin ocultar el primer fallo.
+- Fricción adicional: no hubo MCP callable para Hasura DEV, por lo que AC-21 quedó BLOCKED; T19 se cubrió con YAML + PG local. El comando root multi-module de contracts requirió rerun en su módulo correcto.
+- Gap de calidad: coverage analytics alcanzó 95.6%, pero el umbral no cubre por sí solo identidad semántica, redondeo de aggregates ni todas las ramas de ambigüedad legacy; AC-22 falla por critical-case quality.
+- Recomendación de tooling: mantener resolución previa de worktree/target y añadir campos estándar `target`, `actual_head`, `selected_worktree`, `stop_gate` en agent-run de verifiers.
 
 ## Most Useful Part Of Sistema 1
 
