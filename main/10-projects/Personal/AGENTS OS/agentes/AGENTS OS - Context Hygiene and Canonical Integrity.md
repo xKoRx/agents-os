@@ -43,19 +43,15 @@ updated: "2026-09-13"
 
 ## 🎯 Objetivo
 
-- 
+- Dotar a Agents-OS de dos mecanismos reproducibles que complementen (sin duplicar) al Conformance Harness: **PHASE 2 — Context Budget + Domain Leak Auditor** (medir el contexto que carga el sistema por scope DEFAULT/MELI/ARANEA, detectar contexto innecesario, contaminación entre dominios y cambios de contexto al cambiar de dominio) y **PHASE 3 — Canonical / Deprecation Linter** (linter determinista de higiene documental: canonicalidad, deprecación, archive, links, routing, metadata, hot-path). Ambos con diseño → spec parent → implementación → verificación adversarial, máximo 2 ciclos de corrección, sin auto-corregir el sistema bajo prueba, y exponiendo records compatibles con una futura integración `agents-os doctor` (fuera de alcance).
 
 ## 📊 Estado actual
 
-- 
+- **2026-09-13 — Ejecución en curso.** Baseline: Conformance Harness entregado (PASS 4 · FAIL 1 [F1] · WARN 4 · SKIP 17), Agents-OS revision `a6a503f` como ancestro del HEAD vivo. Proyecto creado como único planificador de PHASE 2 + PHASE 3. Paso actual: P2-A (Context Budget Auditor/Designer).
 
 ## 🧱 Entrega de desarrollo
 
-%% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
-
-| Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
-|---|---|---|---|---|---|
-|  |  |  |  |  |  |
+_No aplica — el tooling vive como scripts/tests dentro del vault bajo `80-agents/tools/`; no toca repos de aplicaciones._
 
 ## 🧩 Subproyectos
 
@@ -83,9 +79,18 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/meli
-> - [ ] tarea delegada #owner/agent #type/dev #area/meli
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+> - [ ] P2-A — Context Budget Auditor/Designer: analizar bootstrap, packs MELI/ARANEA, DEFAULT, harness y filesystem; clasificar EXACT/ESTIMATED/INFERRED/UNOBSERVABLE; diseñar métricas y escenarios → `80-agents/tools/context-budget/artifacts/p2-context-budget-design.md` #owner/agent #type/research #area/personal
+> - [ ] PARENT GATE P2 — reconciliar design contra harness, definir spec (métricas, métodos, escenarios, semántica PASS/WARN/FAIL/SKIP, schema) → `80-agents/tools/context-budget/artifacts/p2-context-budget-spec.md` #owner/agent #type/admin #area/personal
+> - [ ] P2-B — Context Budget Implementer: tool en `80-agents/tools/context-budget/`, reutilizando contratos del harness, ejecución DEFAULT/MELI/ARANEA cold/warm/switch #owner/agent #type/dev #area/personal
+> - [ ] P2-C — Context Budget Adversarial Verifier → `80-agents/tools/context-budget/artifacts/p2-adversarial-verification.md` #owner/agent #type/research #area/personal
+> - [ ] P2-D — Context Budget Fixer (sólo si hay defectos materiales del auditor; máx 2 ciclos) #owner/agent #type/dev #area/personal
+> - [ ] PHASE 2 acceptance gate + cierre de fase en esta nota #owner/agent #type/admin #area/personal
+> - [ ] P3-A — Canonical Integrity Designer: extraer modelo canonical/deprecation de autoridades vigentes, clasificar MACHINE-DETERMINISTIC/HEURISTIC/HUMAN-REVIEW → `80-agents/tools/canonical-linter/artifacts/p3-canonical-model.md` #owner/agent #type/research #area/personal
+> - [ ] PARENT GATE P3 — spec del linter (check IDs, severidad, determinismo, evidencia, exclusiones, formato) → `80-agents/tools/canonical-linter/artifacts/p3-canonical-linter-spec.md` #owner/agent #type/admin #area/personal
+> - [ ] P3-B — Canonical Linter Implementer: linter determinista en `80-agents/tools/canonical-linter/` reutilizando tooling de schema existente #owner/agent #type/dev #area/personal
+> - [ ] P3-C — Canonical Linter Adversarial Verifier → `80-agents/tools/canonical-linter/artifacts/p3-adversarial-verification.md` #owner/agent #type/research #area/personal
+> - [ ] P3-D — Canonical Linter Fixer (sólo si hay defectos materiales; máx 2 ciclos) #owner/agent #type/dev #area/personal
+> - [ ] PHASE 3 acceptance gate + estado final del proyecto (IMPLEMENTATION COMPLETE / OWNER REVIEW) #owner/agent #type/admin #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
