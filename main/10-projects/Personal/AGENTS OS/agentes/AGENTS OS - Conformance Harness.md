@@ -49,7 +49,7 @@ updated: "2026-09-12"
 
 - **Baseline:** commit `a6a503f` (2026-09-12). Bootstrap vigente ejecutado en la sesión; club cerrado `always` verificado limpio (1 pública + 1 interna global).
 - **Fase:** auditorías A/B/C en curso (Contract Auditor, Domain Isolation Auditor, Conformance Scenario Designer en paralelo).
-- Artifacts en `40-archive/agents-os-conformance-harness/artifacts/` hasta definir ubicación canónica del harness.
+- Artifacts y código del harness en `80-agents/tools/conformance-harness/` (audits, scenarios, spec, resultados de runs).
 
 ## 🧱 Entrega de desarrollo
 
@@ -122,7 +122,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 🧭 Decisiones
 
 - El harness no rediseña Agents-OS: cualquier defecto real detectado se registra como finding, no se auto-corrige.
-- Artifacts del proyecto viven bajo `40-archive/agents-os-conformance-harness/` (proyecto de agente, detalle pesado fuera del hot path).
+- El harness vive en `80-agents/tools/conformance-harness/`: es tooling del sistema (como el materializador), no una skill de comportamiento del agente.
 
 ## 🔗 Docs / Links
 
