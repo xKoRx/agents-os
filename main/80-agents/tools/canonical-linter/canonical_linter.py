@@ -1033,14 +1033,29 @@ def cl_11(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
                 continue
             line = fm_key_line(text, field)
             if res["status"] == "missing":
-                findings.append(finding(
-                    "CL-11", "REFERENCES", "FAIL", "FAIL", rel,
-                    "campo %s -> [[%s]] no resuelve a ninguna nota" % (field, target),
-                    "area/project/application/entities/related usan links canónicos que resuelven (convenciones)",
-                    "campo %s; target %r; resolución A9: sin candidatos" % (field, target),
-                    "90-system/convenciones.md (area, project, application, entities y related deben usar links canónicos); %s; %s" % (AUTH_DOCTOR, AUTH_HYGIENE),
-                    "proponer al owner corregir el target al nombre canónico; nunca auto-corregido",
-                    line=line))
+                zone_hits = ctx.no_corpus_hits(target, rel)
+                if zone_hits:
+                    # N2/R2: el destino existe en zona no canónica; el veredicto
+                    # FAIL se mantiene (relación-maintenance: no enlazar journal).
+                    zonas = sorted({zone_label(h) for h in zone_hits})
+                    muestra = ", ".join(zone_hits[:2]) + ("..." if len(zone_hits) > 2 else "")
+                    findings.append(finding(
+                        "CL-11", "REFERENCES", "FAIL", "FAIL", rel,
+                        "campo %s -> [[%s]] existe en zona no canónica (%s); no es destino canónico" % (field, target, ", ".join(zonas)),
+                        "area/project/application/entities/related usan links canónicos que resuelven (convenciones)",
+                        "campo %s; target %r; existe en: %s (%d archivo(s) en zona excluida); no es destino canónico (agents-os.md: 'auditoría o distribución, nunca autoridad vigente'; relation-maintenance: no enlazar sessions/logs)" % (field, target, muestra, len(zone_hits)),
+                        "90-system/convenciones.md (area, project, application, entities y related deben usar links canónicos); %s; %s" % (AUTH_DOCTOR, AUTH_HYGIENE),
+                        "proponer al owner corregir el target al nombre canónico (el destino existe pero en zona excluida); nunca auto-corregido",
+                        line=line))
+                else:
+                    findings.append(finding(
+                        "CL-11", "REFERENCES", "FAIL", "FAIL", rel,
+                        "campo %s -> [[%s]] no resuelve a ninguna nota" % (field, target),
+                        "area/project/application/entities/related usan links canónicos que resuelven (convenciones)",
+                        "campo %s; target %r; resolución A9: sin candidatos" % (field, target),
+                        "90-system/convenciones.md (area, project, application, entities y related deben usar links canónicos); %s; %s" % (AUTH_DOCTOR, AUTH_HYGIENE),
+                        "proponer al owner corregir el target al nombre canónico; nunca auto-corregido",
+                        line=line))
             else:
                 findings.append(finding(
                     "CL-11", "REFERENCES", "WARN", "FAIL", rel,
@@ -1068,14 +1083,29 @@ def cl_12(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
             if res["status"] == "ok":
                 continue
             if res["status"] == "missing":
-                findings.append(finding(
-                    "CL-12", "BROKEN LINKS", "WARN", "WARN", rel,
-                    "%s no resuelve a ninguna nota" % raw,
-                    "el link de cuerpo resuelve por basename/path/alias (A9); no se auto-crea la nota faltante",
-                    "target %r; línea %d; resolución A9: sin candidatos" % (target, line_no),
-                    AUTH_HYGIENE + " (Report unresolved links; Do not auto-create missing notes); " + AUTH_RELMAINT,
-                    "proponer al owner corregir el link o crear la nota canónica (decisión humana); nunca auto-corregido",
-                    line=line_no))
+                zone_hits = ctx.no_corpus_hits(target, rel)
+                if zone_hits:
+                    # N2/R2: distinguir 'existe en zona no canónica' de
+                    # 'inexistente'; el veredicto WARN no cambia.
+                    zonas = sorted({zone_label(h) for h in zone_hits})
+                    muestra = ", ".join(zone_hits[:2]) + ("..." if len(zone_hits) > 2 else "")
+                    findings.append(finding(
+                        "CL-12", "BROKEN LINKS", "WARN", "WARN", rel,
+                        "%s existe en zona no canónica (%s); no es destino canónico" % (raw, ", ".join(zonas)),
+                        "el link de cuerpo resuelve por basename/path/alias (A9); no se auto-crea la nota faltante",
+                        "target %r; línea %d; existe en: %s (%d archivo(s) en zona excluida); no es destino canónico (agents-os.md; relation-maintenance)" % (target, line_no, muestra, len(zone_hits)),
+                        AUTH_HYGIENE + " (Report unresolved links; Do not auto-create missing notes); " + AUTH_RELMAINT,
+                        "proponer al owner corregir el link al destino canónico (existe en zona excluida); nunca auto-corregido",
+                        line=line_no))
+                else:
+                    findings.append(finding(
+                        "CL-12", "BROKEN LINKS", "WARN", "WARN", rel,
+                        "%s no resuelve a ninguna nota" % raw,
+                        "el link de cuerpo resuelve por basename/path/alias (A9); no se auto-crea la nota faltante",
+                        "target %r; línea %d; resolución A9: sin candidatos" % (target, line_no),
+                        AUTH_HYGIENE + " (Report unresolved links; Do not auto-create missing notes); " + AUTH_RELMAINT,
+                        "proponer al owner corregir el link o crear la nota canónica (decisión humana); nunca auto-corregido",
+                        line=line_no))
             else:
                 findings.append(finding(
                     "CL-12", "BROKEN LINKS", "WARN", "WARN", rel,
