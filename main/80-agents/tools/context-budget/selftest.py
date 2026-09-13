@@ -25,6 +25,8 @@ Python 3.9+ stdlib only. Imprime PASS/FAIL por test y exit code.
 """
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import os
 import shutil
@@ -93,12 +95,18 @@ def _copy_from_vault(rel: str, root: str) -> None:
 def build_temp_vault(variant: str = "full") -> str:
     """Construye un vault mínimo temporal. Variantes: full (preflight verde),
     corrupt (perfil binario), missing-profile, red (bootstrap truncado),
-    empty (solo basura, sin marker)."""
+    empty (sin marker). Para las variantes con marker, el harness se enlaza
+    por symlink (resolve relativo a VAULT_ROOT en runtime: el vault temporal
+    finge ser un VAULT_ROOT y trae su harness instalado, como el real)."""
     root = tempfile.mkdtemp(prefix="ctx-budget-selftest-")
+    if variant == "empty":
+        os.makedirs(os.path.join(root, "80-agents/agents-os"), exist_ok=True)
+        return root  # sin marker: las reglas de AGENTS OS no aplican
     os.makedirs(os.path.join(root, "80-agents/agents-os"), exist_ok=True)
     _write(root, "80-agents/agents-os/agents-os.md", "# map\n")
-    if variant == "empty":
-        return root
+    harness_target = os.path.join(root, "80-agents/tools/conformance-harness")
+    os.makedirs(os.path.dirname(harness_target), exist_ok=True)
+    os.symlink(os.path.join(VAULT, "80-agents/tools/conformance-harness"), harness_target)
     _copy_from_vault(BOOTSTRAP_AUTH, root)
     _copy_from_vault(DOCTOR_AUTH, root)
     _write(root, "80-agents/agents-os/agent-constitution.md",
@@ -303,8 +311,10 @@ def t7_exit_codes() -> None:
         report("T7a.escenario-desconocido-exit-2", code_unknown == 2, "exit=%d" % code_unknown)
         root = build_temp_vault("full")
         try:
-            code_clean = cb.main(["--vault-root", root, "--json"])
-            report("T7b.suite-temporal-sin-FAIL-exit-0", code_clean == 0, "exit=%d (suite sobre fixture temporal)" % code_clean)
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(io.StringIO()):
+                code_clean = cb.main(["--vault-root", root, "--json"])
+            report("T7b.suite-temporal-sin-FAIL-exit-0", code_clean == 0, "exit=%d (suite completa sobre fixture temporal con harness enlazado)" % code_clean)
         finally:
             shutil.rmtree(root, ignore_errors=True)
     finally:
