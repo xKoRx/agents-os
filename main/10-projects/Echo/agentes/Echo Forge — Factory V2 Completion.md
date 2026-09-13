@@ -32,7 +32,7 @@ updated: "2026-09-13"
 
 > [!info]+ Echo Forge — Factory V2 Completion
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
-> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 C5.1–C5.6 IMPLEMENTED @ `b57bfb2`: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] / [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] — READY FOR MANAGER REVIEW; C4 CLOSED @ `bba833d`; T2.11–T2.13 OPEN; not physical-ready and F-04 not closed. F-05-I queda habilitado para desarrollo; F-05-C queda diferido a certificación.
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 C5.1–C5.6 IMPLEMENTED @ `b57bfb2`: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] / [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] — READY FOR MANAGER REVIEW; C4 CLOSED @ `bba833d`; T2.11–T2.13 OPEN; not physical-ready and F-04 not closed. F-05-I PLANNED (SPEC + tareas frozen): [[Echo Forge — F-05-I Cohesive release and read surfaces]] / [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]; F-05-C queda diferido a certificación.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
 > Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
@@ -80,7 +80,7 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > - [x] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
 > - [/] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 implementation complete; physical/cross-lane certification deferred #owner/agent #type/dev #area/echo
-> - [ ] F-05-I Cohesive release/read-surface preparation #owner/agent #type/dev #area/echo
+> - [ ] [[Echo Forge — F-05-I Cohesive release and read surfaces]] F-05-I Cohesive release/read-surface preparation #owner/agent #type/dev #area/echo
 > - [ ] F-05-C Release/physical/FULL golden certification campaign #owner/agent #type/admin #area/echo #blocked
 
 ```dataviewjs
