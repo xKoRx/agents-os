@@ -256,11 +256,12 @@ Forge: 5 Agent Tasks, mayoría MEDIUM; F-02 y F-04 LARGE-acotados con sub-SPECs 
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [ ] [[Echo Forge — Factory V2 Completion]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [ ] [[Echo — Live Platform V1]] arrancar + seguimiento #owner/me #type/supervision #area/echo
-> - [/] [[Echo — Knowledge Base Consolidation]] campaña documental: cartografía Echo/Forge, wiki canónica, AGENTS.md routers, higiene context budget #owner/me #type/supervision #area/echo
+> - [r] [[Echo — Knowledge Base Consolidation]] campaña documental: cartografía Echo/Forge, wiki canónica, AGENTS.md routers, higiene context budget #owner/me #type/supervision #area/echo
 > - [ ] Ratificar catálogo magic CC antes de allocation física F-04 #owner/me #type/admin #area/echo
 > - [ ] Confirmar O-01/O-02/O-03 de mandato 2026 cuando el track live lo necesite #owner/me #type/admin #area/echo
 
 ## 📆 Bitácora
 
+- **2026-09-13** — Campaña [[Echo — Knowledge Base Consolidation]] COMPLETE (fases A–K): subdominio `30-resources/applications/echo/` publicado y verificado adversarialmente (frontera Forge→Echo rota en producción documentada con gaps G1–G7); AGENTS.md de repos como patches propuestos; 2 hallazgos de seguridad escalados al owner (credenciales `30-resources/APIs.md` y contraseña SSH en symphony tracked). Puente → Review.
 - **2026-09-11** — E-04 TOP: hijo [[Echo — E-04 Forge Ingestion E1]]. Development E-04 puede partir en paralelo con verification E-03; integration/merge gated por E-03 CONTRACT_PASS. `origin/master` no se mueve. Join Forge no closed.
 - **2026-09-07** — Roadmaps operativos congelados. Dos subproyectos de agente. Sin implementación en esta nota.
