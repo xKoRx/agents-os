@@ -364,11 +364,14 @@ def _skip(rec: Dict[str, Any], reason: str) -> Dict[str, Any]:
     return rec
 
 
-def _finish(rec: Dict[str, Any], problems: List[str], pass_state: str, pass_details: str, fail_details: str) -> Dict[str, Any]:
+def _finish(rec: Dict[str, Any], problems: List[str], pass_state: str, pass_details: str, fail_details: str, warns: Optional[List[str]] = None) -> Dict[str, Any]:
     if problems:
         rec["verdict"] = "FAIL"
         rec["details"] = fail_details
         rec["evidence"] = rec["evidence"] + problems
+    elif warns:
+        rec["verdict"] = "WARN"  # desviación de techo blando (A1/M18): nunca FAIL
+        rec["details"] = pass_details
     else:
         rec["verdict"] = pass_state
         rec["details"] = pass_details
@@ -413,6 +416,21 @@ def _weight_metrics(rec: Dict[str, Any], label: str, agg: Dict[str, Any], conf_b
     rec["metrics"].append(metric("%s_chars" % label, agg["chars"], "chars", conf_bytes, authority))
     rec["metrics"].append(metric("%s_estimated_tokens" % label, agg["estimated_tokens"], "estimated_tokens",
                                  conf_est, authority + " + " + TOKENS_NOTE))
+
+
+def _soft_target(rec: Dict[str, Any], label: str, value: int, lo: int, hi: int, range_text: str, compare: str = "range") -> bool:
+    """M18 (A1: WARN-only): comparación contra los Token Targets (soft) del
+    bootstrap ("Cold base 3–6k tokens; warm delta <1k; entity swap 1-3k") y
+    doctor Check 11. Devuelve True cuando hay desviación (degrada PASS->WARN,
+    jamás a FAIL: no existe autoridad para techo duro, C04)."""
+    rec["metrics"].append(metric("soft_target_%s" % label, value, "estimated_tokens", "ESTIMATED",
+                                 "bootstrap Token Targets (soft) + doctor Check 11 + " + TOKENS_NOTE))
+    in_range = (lo <= value < hi) if compare == "lt" else (lo <= value <= hi)
+    rec["metrics"].append(metric("soft_target_in_range_%s" % label, in_range, "bool", "ESTIMATED",
+                                 "techo blando declarado: %s estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)" % range_text))
+    if not in_range:
+        rec["evidence"].append("WARN (A1/M18): %s = %d estimated_tokens (chars/4) fuera del techo blando %s; desviación registrada, nunca FAIL (C04)" % (label, value, range_text))
+    return not in_range
 
 
 # ---------------------------------------------------------------------------
