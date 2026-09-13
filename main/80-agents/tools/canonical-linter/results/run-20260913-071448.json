@@ -1,8 +1,8 @@
 {
-  "run": "2026-09-13T07:02:37",
+  "run": "2026-09-13T07:14:48",
   "tool": "canonical-linter",
-  "git_head": "073c87cb011adb461a51d253e00a05567707bde8",
-  "vault_root_arg": "/home/kor/secondbrain/main",
+  "git_head": "c94d99483db5533697ea7e593f11378403301988",
+  "vault_root_arg": "auto",
   "model": {
     "no_vigente": {
       "memory_state": [
@@ -38,7 +38,7 @@
       ],
       "evidence": [
         "notas active con supersedes (sucesión canónica, sin hallazgo): 3",
-        "escaneo sobre 852 archivos del corpus; estrechamiento documentado: supersedes+active es cumplimiento de 00-RESOURCE-WIKI"
+        "escaneo sobre 853 archivos del corpus; estrechamiento documentado: supersedes+active es cumplimiento de 00-RESOURCE-WIKI"
       ]
     },
     {
@@ -342,9 +342,9 @@
           "severity": "FAIL",
           "path": "10-projects/Aranea/README.md",
           "line": null,
-          "observed": "basename 'readme' compartido por 11 notas vivas (colisión casefold)",
+          "observed": "basename 'readme' compartido por 12 notas vivas (colisión casefold)",
           "expected": "un basename canónico único por identidad (convenciones: evitar duplicados por mayúsculas/acento/singular-plural)",
-          "evidence": "paths colisionantes: 10-projects/Aranea/README.md | 30-resources/aranea/01-topologia/README.md | 30-resources/aranea/02-servicios/README.md | 30-resources/aranea/03-storage/README.md | 30-resources/aranea/04-backups/README.md | 30-resources/aranea/05-tickets/README.md | 30-resources/aranea/06-diagramas/README.md | 30-resources/tools/README.md | 80-agents/tools/conformance-harness/README.md | 80-agents/tools/context-budget/README.md | 80-agents/tools/echo-forge-worker-access/README.md; nota: colisión estructural mandada por autoridad (documentación por directorio): el nombre es por-directorio, no de identidad",
+          "evidence": "paths colisionantes: 10-projects/Aranea/README.md | 30-resources/aranea/01-topologia/README.md | 30-resources/aranea/02-servicios/README.md | 30-resources/aranea/03-storage/README.md | 30-resources/aranea/04-backups/README.md | 30-resources/aranea/05-tickets/README.md | 30-resources/aranea/06-diagramas/README.md | 30-resources/tools/README.md | 80-agents/tools/canonical-linter/README.md | 80-agents/tools/conformance-harness/README.md | 80-agents/tools/context-budget/README.md | 80-agents/tools/echo-forge-worker-access/README.md; nota: colisión estructural mandada por autoridad (documentación por directorio): el nombre es por-directorio, no de identidad",
           "confidence": "EXACT",
           "recommended_action": "proponer al owner nombre canónico único o redirect para las colisiones de identidad; las colisiones estructurales (per-directory) requieren decisión de autoridad; nunca auto-corregido",
           "authority": "90-system/convenciones.md; 80-agents/skills/agents-os-hygiene-review/SKILL.md (Link And Alias Checks); 80-agents/skills/agents-os-context-retrieval/SKILL.md (Do not create or trust duplicate entity targets)"
@@ -452,7 +452,7 @@
       "skip_reason": null,
       "dedup_cites": [],
       "evidence": [
-        "grupos con colisión casefold: 22 sobre 852 notas del corpus",
+        "grupos con colisión casefold: 22 sobre 853 notas del corpus",
         "00-index: 30-resources/agents/00-index.md, 30-resources/applications/00-index.md, 30-resources/applications/echo/00-index.md, 30-resources/aranea/00-index.md, 30-resources/aranea/03-storage/backup-dr/00-index.md, 30-resources/grids/00-index.md, 30-resources/knowledges/00-index.md, 30-resources/methodologies/00-index.md, 30-resources/methodologies/sdd/00-index.md, 30-resources/rio-atlas/00-index.md, 30-resources/runbooks/00-index.md, 30-resources/tools/00-index.md, 30-resources/vibe-coding/00-index.md",
         "2026-09-06-echo-forge-finalist-model-v2: 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-finalist-model-v2.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-finalist-model-v2.md",
         "auditoría independiente — informe del doble dispatch: 10-projects/Meli/Playmaker — Doble dispatch al avanzar batches/Auditoría independiente — Informe del doble dispatch.md, archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Auditoría independiente — Informe del doble dispatch.md",
@@ -467,7 +467,7 @@
         "prompt maestro — auditoría independiente del doble dispatch: 10-projects/Meli/Playmaker — Doble dispatch al avanzar batches/Prompt maestro — Auditoría independiente del doble dispatch.md, archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Prompt maestro — Auditoría independiente del doble dispatch.md",
         "prompt maestro — reemplazo de pessimistic_write por fury lock — pr 1079: 10-projects/Meli/Playmaker — Doble dispatch al avanzar batches/Prompt maestro — Reemplazo de PESSIMISTIC_WRITE por Fury Lock — PR 1079.md, archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Prompt maestro — Reemplazo de PESSIMISTIC_WRITE por Fury Lock — PR 1079.md",
         "qkvs-save-version-zero-no-garantiza-create-only: 80-agents/memory/public/known-error/rio/qkvs-save-version-zero-no-garantiza-create-only.md, 80-agents/memory/public/known-errors/qkvs-save-version-zero-no-garantiza-create-only.md",
-        "readme: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
+        "readme: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/canonical-linter/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
         "red: 30-resources/aranea/01-topologia/red.md, 30-resources/aranea/02-servicios/red.md",
         "runbook: 30-resources/agents/skills/signals-func-spec-authoring/runbook.md, 80-agents/templates/runbook.md",
         "sig-610 — componentrun de inactivación en playmaker: 10-projects/Meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md, archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md",
@@ -3938,9 +3938,9 @@
           "severity": "FAIL",
           "path": "80-agents/memory/public/known-error/aranea-agent-ro-sudo-nopasswd-blocked.md",
           "line": 13,
-          "observed": "campo related -> [[~/aranea/topology/nodes/README]] ambiguo: 11 candidatos",
+          "observed": "campo related -> [[~/aranea/topology/nodes/README]] ambiguo: 12 candidatos",
           "expected": "el link de routing debe apuntar a una única nota canónica",
-          "evidence": "campo related; target '~/aranea/topology/nodes/README'; candidatos: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
+          "evidence": "campo related; target '~/aranea/topology/nodes/README'; candidatos: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/canonical-linter/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
           "confidence": "EXACT",
           "recommended_action": "proponer al owner desambiguar con path completo; nunca auto-corregido",
           "authority": "90-system/convenciones.md; 80-agents/skills/agents-os-hygiene-review/SKILL.md (Link And Alias Checks)"
@@ -9916,9 +9916,9 @@
           "severity": "WARN",
           "path": "30-resources/aranea/01-topologia/fechas-captura.md",
           "line": 29,
-          "observed": "[[01-topologia/README]] ambiguo: 11 candidatos",
+          "observed": "[[01-topologia/README]] ambiguo: 12 candidatos",
           "expected": "un link de cuerpo debe resolver a una única nota",
-          "evidence": "target '01-topologia/README'; línea 29; candidatos: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
+          "evidence": "target '01-topologia/README'; línea 29; candidatos: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/canonical-linter/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
           "confidence": "EXACT",
           "recommended_action": "proponer al owner desambiguar (path completo o renombrar); nunca auto-corregido",
           "authority": "80-agents/skills/agents-os-hygiene-review/SKILL.md (Link And Alias Checks) (ambiguous basename matches)"
@@ -9958,9 +9958,9 @@
           "severity": "WARN",
           "path": "30-resources/aranea/01-topologia/fechas-captura.md",
           "line": 33,
-          "observed": "[[01-topologia/README]] ambiguo: 11 candidatos",
+          "observed": "[[01-topologia/README]] ambiguo: 12 candidatos",
           "expected": "un link de cuerpo debe resolver a una única nota",
-          "evidence": "target '01-topologia/README'; línea 33; candidatos: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
+          "evidence": "target '01-topologia/README'; línea 33; candidatos: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/canonical-linter/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
           "confidence": "EXACT",
           "recommended_action": "proponer al owner desambiguar (path completo o renombrar); nunca auto-corregido",
           "authority": "80-agents/skills/agents-os-hygiene-review/SKILL.md (Link And Alias Checks) (ambiguous basename matches)"
@@ -10252,9 +10252,9 @@
           "severity": "WARN",
           "path": "30-resources/aranea/05-tickets/2026-06-30-012-unlock-agent-ro-nopasswd.md",
           "line": 50,
-          "observed": "[[~/aranea/topology/nodes/README]] ambiguo: 11 candidatos",
+          "observed": "[[~/aranea/topology/nodes/README]] ambiguo: 12 candidatos",
           "expected": "un link de cuerpo debe resolver a una única nota",
-          "evidence": "target '~/aranea/topology/nodes/README'; línea 50; candidatos: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
+          "evidence": "target '~/aranea/topology/nodes/README'; línea 50; candidatos: 10-projects/Aranea/README.md, 30-resources/aranea/01-topologia/README.md, 30-resources/aranea/02-servicios/README.md, 30-resources/aranea/03-storage/README.md, 30-resources/aranea/04-backups/README.md, 30-resources/aranea/05-tickets/README.md, 30-resources/aranea/06-diagramas/README.md, 30-resources/tools/README.md, 80-agents/tools/canonical-linter/README.md, 80-agents/tools/conformance-harness/README.md, 80-agents/tools/context-budget/README.md, 80-agents/tools/echo-forge-worker-access/README.md",
           "confidence": "EXACT",
           "recommended_action": "proponer al owner desambiguar (path completo o renombrar); nunca auto-corregido",
           "authority": "80-agents/skills/agents-os-hygiene-review/SKILL.md (Link And Alias Checks) (ambiguous basename matches)"
@@ -14396,7 +14396,7 @@
   "observations": [
     "A8: fixtures sintéticas excluidas explícitamente del corpus (80-agents/skills/_shared/fixtures/, 80-agents/skills/agents-os-entity-lifecycle/scripts/fixtures/); iter_vault_md del harness no las excluye y .graphifyignore tampoco -> diferencia registrada (hallazgo de sistema, no auto-correctible)",
     "política de side-effects: los findings se registran; las correcciones canónicas son propuestas (recommended_action) para el owner; el motor no muta nada fuera de results/",
-    "corpus vivo: 852 notas (iter_vault_md - fixtures); mapa físico: 2792 notas .md",
+    "corpus vivo: 853 notas (iter_vault_md - fixtures); mapa físico: 2793 notas .md",
     "clase A5 en vigor: no_vigente = memory_state {superseded, archived} U status {archived, superseded} dentro del enum por tipo; en retiro = status {deprecated, deprecating}"
   ],
   "ambiguities": [
