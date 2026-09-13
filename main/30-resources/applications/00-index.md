@@ -7,7 +7,7 @@ slug: applications-index
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-02
-updated: 2026-09-12
+updated: 2026-09-13
 reviewed: 2026-07-04
 aliases:
   - applications index

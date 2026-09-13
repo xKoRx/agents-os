@@ -110,6 +110,13 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 - `T2.12: OPEN`; `T2.11: OPEN`; `T2.13: OPEN`. Se conserva el intento anterior como historia (`release PASS`, `rollout INCONCLUSIVE`, `physical not started`); esta reanudación corrige la clasificación operacional a MCP unhealthy sin reescribirla.
 - Evidencia nueva: `80-agents/journal/sessions/2026-09-13-f04-physical-resume-summary.md`, `80-agents/journal/agent-runs/2026-09-13-codex-unknown-f04-physical-resume.md`, `80-agents/journal/feedback/system-1/2026-09-13-f04-physical-resume-session-feedback.md` y `80-agents/journal/change-logs/2026-09-13-f04-physical-resume-project-update.md`.
 
+## Registro de sesión física — 2026-09-13 01:58 America/Santiago
+
+- Nueva conversación/agente NORMAL — PHYSICAL CERTIFICATION / EVIDENCE AGENT.
+- Objetivo: certificar `0.2.98` sobre `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`, probar rollout y continuar T2.12/T2.11 sólo con evidencia física auténtica; T2.13 queda fuera de alcance.
+- Precondición inicial: `aranea-ssh` visible en MCP y listo para revalidación; no se ha creado WorkflowID/RunID/FlowRunRef.
+- Registro temprano: baseline remoto y release se verificarán antes de cualquier acción writable; dirty extranjero del checkout local queda preservado.
+
 | ID | status | resolution | source | phase |
 |---|---|---|---|---|
 | D1 sequence | TECHNICAL_RESOLUTION | Allocation **before Apply** for Apply cohort; Finalist V2 admits seal/handoff only | Live Authority §3; padre F-04 hypothesis | 1 |
