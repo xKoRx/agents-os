@@ -657,7 +657,13 @@ def ctx_03_aranea_cold(ctx, rules, harness) -> Dict[str, Any]:
     if sorted(s.pack_files) != sorted(expected_pack):
         problems.append("pack aranea != {router + aranea ops prefs}: %s" % s.pack_files)
     not_load = ([rules.ROUTERS["meli"], "30-resources/aranea/00-index.md"]
-                + rules.ROUTER_PREFS["meli"][:1] + [harness.FURY_NOTE])
+                + rules.ROUTER_PREFS["meli"][:1] + [harness.FURY_NOTE]
+                # Not_load heredado de COLD-ARANEA (restaurado, D3c): índice
+                # federado y skills signals-* / fury-lib no se cargan en aranea.
+                + [rules.FEDERATED_DOMAIN_INDEX,
+                   "30-resources/agents/skills/signals-code-review/SKILL.md",
+                   "30-resources/agents/skills/signals-func-spec-authoring/SKILL.md",
+                   "30-resources/agents/skills/fury-lib-consumer-deploy/SKILL.md"])
     problems += harness._assert_absent(not_load, s.all_opens(), evidence)
     if rules.ARANEA_MCPS_EXPERT in s.all_opens():
         problems.append("aranea-mcps-expert cobrado sin necesidad MCP declarada (Minimal Read 4 exige tarea MCP; FAIL si aparece)")
@@ -747,6 +753,13 @@ def ctx_05_meli_warm(ctx, rules, harness) -> Dict[str, Any]:
         problems.append("recarga del pack de dominio en turno que pide un hecho (C06/C11)")
     if any(p in candidates or p in s.opens_in_turn(2) for p in (rules.ROUTERS["aranea"], rules.ROUTER_PREFS["aranea"][0])):
         problems.append("pieza Aranea en turno Meli")
+    # M16 sobre el cuerpo abierto (diseño 8.2: los cuerpos de retrieval M13 son
+    # hot path; D2 de la verificación adversarial).
+    life_fury = _deprecated_frontmatter_hit(ctx, harness.FURY_NOTE)
+    if life_fury:
+        problems.append("cuerpo abierto por retrieval con ciclo de vida retirado (diseño 8.2, M16): %s" % life_fury)
+    evidence.append("ciclo de vida del cuerpo abierto (diseño 8.2): %s -> %s" % (
+        harness.FURY_NOTE, life_fury or "sin memory_state/status retirado"))
     # BOOTSTRAP-NOT-RERUN-ON-WARM heredado: turnos 3..5 sin releer base ni re-invocar.
     base = [rules.CONSTITUTION, rules.GLOBAL_INTERNAL, rules.SKILLS_INDEX,
             "80-agents/skills/agents-os-bootstrap/SKILL.md"] + ([s.profile_note] if s.profile_note else [])
@@ -805,6 +818,13 @@ def ctx_06_aranea_warm(ctx, rules, harness) -> Dict[str, Any]:
             problems.append("memoria del dominio Meli en turno Aranea: %s" % p)
     if any(p in candidates or p in s.opens_in_turn(2) for p in (rules.ROUTERS["meli"], rules.ROUTER_PREFS["meli"][0])):
         problems.append("pieza Meli en turno Aranea")
+    # M16 sobre el cuerpo abierto (diseño 8.2: los cuerpos de retrieval M13 son
+    # hot path; D2 de la verificación adversarial).
+    life_mt5 = _deprecated_frontmatter_hit(ctx, harness.MT5_NOTE)
+    if life_mt5:
+        problems.append("cuerpo abierto por retrieval con ciclo de vida retirado (diseño 8.2, M16): %s" % life_mt5)
+    evidence.append("ciclo de vida del cuerpo abierto (diseño 8.2): %s -> %s" % (
+        harness.MT5_NOTE, life_mt5 or "sin memory_state/status retirado"))
     # Métricas: M07, M09, M13, M18.
     delta_turn = s.opens_in_turn(2)
     delta = weight_of(harness, ctx.vault, delta_turn)
@@ -859,6 +879,10 @@ def ctx_07_switch_meli_aranea(ctx, rules, harness) -> Dict[str, Any]:
         problems.append("pack post-swap != pack aranea: %s" % s.pack_files)
     if any(p in s.pack_files for p in pack_meli):
         problems.append("pack Meli persiste tras el swap (swap paso 3): %s" % [p for p in pack_meli if p in s.pack_files])
+    # Assert heredado de SWITCH-MELI-TO-ARANEA (restaurado, D3d de la
+    # verificación adversarial): la entidad activa post-swap es la nueva.
+    if s.active_entity is None or s.active_entity.get("title") != "Echo Forge":
+        problems.append("active_entity post-swap != Echo Forge (heredado SWITCH-MELI-TO-ARANEA): %s" % s.active_entity)
     # Métricas: M07, M10, M11, M15, M19 (+ residuo potencial 8.3).
     swap_agg = weight_of(harness, ctx.vault, s.opens_in_turn(2))
     rec["metrics"].append(metric("session_loaded_set", s.all_opens(), "files", "EXACT", "rules.Session.all_opens"))
