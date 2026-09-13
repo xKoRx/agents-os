@@ -1,0 +1,138 @@
+{
+  "run": {
+    "timestamp": "2026-09-13T01:54:03",
+    "python": "3.14.4",
+    "vault_root_arg": "auto",
+    "layer_arg": "all",
+    "scenario_arg": "SWITCH-MELI-TO-ARANEA",
+    "no_live": false
+  },
+  "baseline": "f4c336832d2c9837064b1f8b28d14e89510ab0c8",
+  "levels": {
+    "L0": [
+      "RULES-FIDELITY-ANCHORS",
+      "SCHEMA-VALIDATOR-GREEN",
+      "STARTUP-DUPLICATION",
+      "CLOSED-CLUB-ALWAYS",
+      "LOAD-POLICY-VOCABULARY",
+      "REGISTRY-DISK-PARITY",
+      "DUAL-REGISTRY-DOMAIN-SYNC",
+      "NO-SECRETS-IN-MARKDOWN",
+      "ACTIVE-MEMORY-DOMAIN-PURITY"
+    ],
+    "L1": [
+      "COLD-DEFAULT",
+      "COLD-MELI",
+      "COLD-ARANEA",
+      "COLD-CONFLICTING-EVIDENCE-FAILS-CLOSED",
+      "WARM-DEFAULT",
+      "WARM-MELI",
+      "WARM-ARANEA",
+      "BOOTSTRAP-NOT-RERUN-ON-WARM",
+      "SWITCH-MELI-TO-ARANEA",
+      "SWITCH-ARANEA-TO-MELI",
+      "SWITCH-DEFAULT-TO-MELI",
+      "SWITCH-DEFAULT-TO-ARANEA",
+      "MELI-NEGATIVE-ARANEA-TOOL",
+      "ARANEA-NEGATIVE-MELI-TOOL",
+      "DEPRECATED-DOC-NOT-DEFAULT-LOAD",
+      "UNRELATED-DOMAIN-NOT-LOADED"
+    ],
+    "L2": [
+      "SESSION-SURFACE-EXPOSURE"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "RULES-FIDELITY-ANCHORS",
+      "level": "L0",
+      "state": "PASS",
+      "details": "todas las anclas de fidelidad de rules.py (21) existen en el texto vigente de las autoridades",
+      "evidence": [
+        "80-agents/skills/agents-os-bootstrap/SKILL.md: 16 anclas verificadas (gate-meli, gate-echo-aranea, gate-other-no-router, gate-fail-closed, gate-never-both-routers, cold-paso1-constitution, cold-paso1-profile-dir, cold-paso2-global-internal, cold-paso3-registry, cold-paso3-no-federated-index, warm-never-reread, warm-no-bootstrap-rerun, swap-keep-invariants, swap-drop-pack, hard-superseded-not-loaded, hard-only-startup-procedure)",
+        "80-agents/skills/agents-os-doctor/SKILL.md: 5 anclas verificadas (doctor-club-constitution, doctor-club-bootstrap, doctor-club-global-internal, doctor-club-one-profile, doctor-club-second-is-violation)"
+      ]
+    },
+    {
+      "id": "SWITCH-MELI-TO-ARANEA",
+      "level": "L1",
+      "state": "PASS",
+      "details": "swap Meli->Aranea: pack reemplazado explicitamente, un solo pack, base persistente",
+      "evidence": [
+        "antes: domain=meli pack=['30-resources/agents/skills/meli-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-meli-work-preferences.md', '80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md']",
+        "despues: domain=aranea pack=['30-resources/agents/skills/aranea-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md'] entity=Echo Forge",
+        "pack anterior (meli) descartado; pack nuevo (aranea) cargado; base sin relectura (bootstrap swap pasos 1-4)"
+      ]
+    }
+  ],
+  "counts": {
+    "PASS": 2,
+    "FAIL": 0,
+    "WARN": 0,
+    "SKIP": 0
+  },
+  "context_baseline": {
+    "label": "context_baseline",
+    "note": "baseline-only: tokens aproximados = chars/4 (metrica declarada sin autoridad de tokenizador, C04); sin optimizacion ni gates (spec section 9)",
+    "always_load": {
+      "80-agents/agents-os/agent-constitution.md": {
+        "bytes": 6234,
+        "chars": 6161,
+        "approx_tokens_chars_over_4": 1540
+      },
+      "80-agents/memory/public/user-preference/rjara-agent-profile.md": {
+        "bytes": 5610,
+        "chars": 5536,
+        "approx_tokens_chars_over_4": 1384
+      },
+      "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md": {
+        "bytes": 2052,
+        "chars": 2034,
+        "approx_tokens_chars_over_4": 508
+      },
+      "80-agents/skills/INDEX.md": {
+        "bytes": 13935,
+        "chars": 13786,
+        "approx_tokens_chars_over_4": 3446
+      }
+    },
+    "scope_packs": {
+      "meli": {
+        "files": {
+          "30-resources/agents/skills/meli-agent-dev/SKILL.md": {
+            "bytes": 3973,
+            "chars": 3938,
+            "approx_tokens_chars_over_4": 984
+          },
+          "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md": {
+            "bytes": 2447,
+            "chars": 2423,
+            "approx_tokens_chars_over_4": 605
+          },
+          "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md": {
+            "bytes": 1728,
+            "chars": 1715,
+            "approx_tokens_chars_over_4": 428
+          }
+        },
+        "total_approx_tokens": 2017
+      },
+      "aranea": {
+        "files": {
+          "30-resources/agents/skills/aranea-agent-dev/SKILL.md": {
+            "bytes": 3845,
+            "chars": 3816,
+            "approx_tokens_chars_over_4": 954
+          },
+          "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md": {
+            "bytes": 976,
+            "chars": 972,
+            "approx_tokens_chars_over_4": 243
+          }
+        },
+        "total_approx_tokens": 1197
+      }
+    },
+    "always_load_total_approx_tokens": 6878
+  }
+}
