@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: completed
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo — Producto Integrado]]"
 sprint:
 start: 2026-09-12
 due:
-progress: 90
+progress: 100
 repo: xKoRx/echo
 jira:
 prs:
@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-12
-updated: 2026-09-12
+updated: 2026-09-13
 cssclasses:
   - wide
 ---
@@ -43,6 +43,7 @@ Dejar Echo y Echo Forge documentados según su realidad implementada actual, la 
 ## 📊 Estado actual
 
 - **PUBLICACIÓN CANONICAL COMPLETE (parent, fases H+P):** subdominio `30-resources/applications/echo/` publicado — 16 MOVEs identidad-preservada + `echo/00-index.md` (nuevo) + `echo-core.md`/`echo-forge.md` reescritas (claim falso de entrega eliminado) + `echo-forge-integration-boundary.md` (nueva, G7=unknown declarado) + 2 notas source por baseline + índice raíz (puntero único, 14 apps, 13 filas Echo fuera) + `00-RESOURCE-WIKI` declara subdominio + log/change_log. Validación PASS. Desviación registrada: sync externo capturó los cambios en commits automáticos (01:56–02:08) en vez de 1 commit atómico; contenido íntegro verificado post-hoc. Graphify reindex pendiente (CLI no disponible).
+- **CAMPAÑA COMPLETE — cierre reconciliado por corrección final (KBC-CORR-1, 2026-09-13):** A–K PASS sin cambios; fase L verificada como ejecutada (feedback + change_logs en disco, no sólo claim); planner reconciliado (`status: completed`, progress 100); puente humana permanece en Review. **P0 seguridad ampliado** tras manager review: credencial SSH expuesta en **16 archivos current-tree de symphony** (scripts/tools/skills/runbooks/tests, ~61 ocurrencias) + `credentials.env` de `echo-forge-worker-access` + `APIs.md` en el vault — inventario completo con acciones por archivo en `artifacts/11-final-correction-p0-security.md`. El valor literal citado por esta campaña en planner/artifacts fue redactado a `<REDACTED>`. Rotación, limpieza de current-tree y secret-scan formal: OWNER ACTION REQUIRED. Deferred documentales siguen no bloqueantes.
 - **FASE J+K COMPLETE — CONFORMANCE CHECK EJECUTADO (2026-09-13):**
   - **CASE 1 (DEFAULT/Echo):** PASS — Echo disponible vía domain gate (verificado en esta sesión); contexto MELI no cargado sin routing explícito. Enforcement técnico de bloqueo: NOT_VERIFIABLE.
   - **CASE 2 (MELI):** PASS conceptual — router `meli-agent-dev` excluye MCPs `aranea-*` por diseño. Runtime no probado (sin sesión MELI): NOT_VERIFIABLE.
@@ -82,10 +83,11 @@ Reglas de repos: INPUTS READ ONLY. Sin reset/clean/stash/rebase/checkout destruc
 > - [x] I — agents-md-gardener: AGENTS.md Echo + Forge minimalistas → `07-agents-md-plan.md`; luego documentation-verifier scope AGENTS.md; parent aplica #owner/agent #area/echo
 > - [x] J — context-budget-auditor: duplicación, staleness, leakage MELI/ARANEA/DEFAULT → `08-context-budget.md` #owner/agent #area/echo
 > - [x] K — Agents-OS hygiene pass acotado (KISS) desde findings J; conformance check conceptual (no inventar PASS; NOT_VERIFIABLE si no demostrable) #owner/agent #area/echo
-> - [ ] L — Informe final + cierre de sesión con feedback (Agents-OS session-close) #owner/agent #area/echo
+> - [x] L — Informe final + cierre de sesión con feedback (Agents-OS session-close) — ejecutada y verificada en corrección final: feedback materializada (`80-agents/journal/feedback/system-1/2026-09-13-echo-kbc-session-feedback.md`), change_logs en `80-agents/journal/logs/`, puente en Review #owner/agent #area/echo
 
 ## 📆 Bitácora
 
+- **2026-09-13** — KBC-CORR-1 (final correction pass, manager review): fase L verificada como ejecutada y persistida (no era sólo claim — defecto era el planner sin cerrar); planner → `status: completed` / progress 100; puente intacta en Review. P0 seguridad ampliado: 16 superficies en symphony + `credentials.env` + `APIs.md`; valor literal redactado en planner y artifacts 07/08/09. Inventario y acciones: `artifacts/11-final-correction-p0-security.md`. Symphony y Echo: sin cambios.
 - **2026-09-13** — Fases J y K COMPLETE. Auditoría context budget (9 findings; wiki publicada sana; P0 credenciales → owner). Hygiene pass KISS: dist-files no-indexables, skills INDEX corregido (21 app-owned + divergencia aranea-mcps-expert marcada), link de estado real en proyecto Echo Forge. Conformance check: CASE 1/3/4 PASS, CASE 2 PASS conceptual, CASE 2 runtime + CASE 5 NOT_VERIFIABLE (documentado, no inventado). Puente → Review.
 - **2026-09-13** — Publicación canonical ejecutada por el parent (H+P): subdominio `applications/echo/` con 16 MOVEs + 4 páginas nuevas + índices reconciliados. Validación post-publicación PASS. Desviación: sync externo del vault conmutó los cambios en commits automáticos; contenido verificado íntegro pieza por pieza.
 - **2026-09-12** — Interrupción infra: primer lanzamiento de forge-functional-cartographer (KBC-C) falló con "user concurrency limit exceeded" antes de iniciar. Verificado: sin hijos activos. Reintento único de la misma task en curso.
