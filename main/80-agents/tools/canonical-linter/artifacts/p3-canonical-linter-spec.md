@@ -79,4 +79,5 @@ Se ratifican CL-01..CL-20 del modelo con su categoría, autoridad, clasificació
 }
 ```
 
+- Enmienda del parent (2026-09-13, post-P3-B, ratificada): CL-01 se aplica sólo a `superseded_by` no vacío + estado active (FAIL). Un valor no vacío de `supersedes` junto a `active` es sucesión canónica legítima (00-RESOURCE-WIKI: "la nueva puede enlazar supersedes") y NO es hallazgo; los pares `supersedes`/`superseded_by` siguen verificándose como links en CL-04.
 - Los valores de `model` son ilustrativos: la clase unificada y el algoritmo de resolución se declaran en cada record (A5/A9). Compatibilidad futura `agents-os doctor`: campos `check_id/category/verdict/severity/confidence/authority` suficientes para agregación sin abstracción compartida (YAGNI).
