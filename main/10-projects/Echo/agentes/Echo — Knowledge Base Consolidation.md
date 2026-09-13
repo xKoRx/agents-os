@@ -42,7 +42,8 @@ Dejar Echo y Echo Forge documentados según su realidad implementada actual, la 
 
 ## 📊 Estado actual
 
-- **FASE B EN CURSO** — echo-functional-cartographer lanzado. Fase A COMPLETE: topología aprobada = subdominio `30-resources/applications/echo/` con `00-index.md` propio; páginas objetivo `echo-core.md`, `echo-forge.md`, frontera `Echo — Forge Integration Boundary` (compartida), contratos F-01…F-04 + V1 se mueven intactos como source-of-record; 5 auditorías datadas → superseded tras verification PASS. Detalle y handoff: `agentes/kb-consolidation/artifacts/01-knowledge-architecture.md`.
+- **FASE C EN CURSO** — forge-functional-cartographer lanzado. Fase B COMPLETE: cartografía Echo @ `f7ddea18` en `artifacts/02-echo-cartography.md`. Hallazgos cargantes: orquestación = **Flink StateFun, NO Temporal** (cero deps en go.mod); E-02 implementado en branch (auth 4 actores, Hasura hook, PublishSync durable, cuarentena `echo.journal_quarantine`, journalctl replay PG→PG) pero PHYSICAL_PARTIAL (T14 físico sin ejecutar); E-01/E-04 receptor completo con replay idempotente/409 + 30+ tests CONTRACT, status Spec-Active, sin cliente emisor en Symphony (F-04 usa FakeConsumer); source remoto de artefactos fail-closed transiente; único feature Completed del catálogo = FEAT-CLIENTS-NATIVE-ORDER-DETECTION.
+- Fase A COMPLETE: topología = subdominio `30-resources/applications/echo/` con `00-index.md` propio; páginas `echo-core.md`, `echo-forge.md`, frontera `Echo — Forge Integration Boundary` (compartida), contratos F-01…F-04 + V1 se mueven intactos como source-of-record; 5 auditorías datadas → superseded tras verification PASS. Detalle: `artifacts/01-knowledge-architecture.md`.
 - Riesgos registrados en artifact: vault HEAD real `09746b3` (sync commits ajenos, reconcilia fase H); movimiento ~17 páginas exige actualizar índice raíz en el mismo cambio; symphony dirty → sólo lectura; skills INDEX declara 3 app-owned vs 21 reales en symphony (fases I/J); Graphify CLI no disponible (inventario por búsqueda enfocada).
 - `MAX_ACTIVE_SUBAGENTS = 1` — ejecución estrictamente secuencial. El planner (esta nota) es single-writer del parent orchestrator.
 - Artefacts de especialistas: `10-projects/Echo/agentes/kb-consolidation/artifacts/` (READ MANY / WRITE ONE por especialista; `filesystem_enforcement: PROMPT_ONLY`).
@@ -61,8 +62,8 @@ Reglas de repos: INPUTS READ ONLY. Sin reset/clean/stash/rebase/checkout destruc
 
 > [!example]- Fuente de tareas — pipeline secuencial
 > - [x] A — knowledge-architect: topología documental → artifact `01-knowledge-architecture.md` #owner/agent #area/echo
-> - [/] B — echo-functional-cartographer: cartografía Echo @ baseline → `02-echo-cartography.md` #owner/agent #area/echo
-> - [ ] C — forge-functional-cartographer: cartografía Forge @ baseline → `03-forge-cartography.md` #owner/agent #area/echo
+> - [x] B — echo-functional-cartographer: cartografía Echo @ baseline → `02-echo-cartography.md` #owner/agent #area/echo
+> - [/] C — forge-functional-cartographer: cartografía Forge @ baseline → `03-forge-cartography.md` #owner/agent #area/echo
 > - [ ] D — echo-forge-integration-cartographer: frontera contractual/implementada → `04-echo-forge-boundary.md` #owner/agent #area/echo
 > - [ ] E — legacy-doc-curator: clasificación CANONICAL/MERGE/SUPERSEDED/ARCHIVE/DELETE + manifest → `05-legacy-doc-audit.md` #owner/agent #area/echo
 > - [ ] F — llm-wiki-documentarian: propuesta wiki canónica → `06-wiki-draft-plan.md` #owner/agent #area/echo

@@ -16,7 +16,7 @@ model_source: unknown
 task_type: coding
 task_complexity: unknown
 outcome: success
-verification: pass_with_known_baseline_failures_and_registry_timeout
+verification: partial
 evaluator: agent
 user_rework: unknown
 source_session:
