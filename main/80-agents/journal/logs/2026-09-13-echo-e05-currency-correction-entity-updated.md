@@ -14,7 +14,8 @@ related:
 aliases: []
 confidence: verified
 source_session:
-source_feedbacks: []
+source_feedbacks:
+  - "[[2026-09-13-echo-e05-currency-correction-session-feedback]]"
 share_scope: local
 load_policy: manual
 indexable: false

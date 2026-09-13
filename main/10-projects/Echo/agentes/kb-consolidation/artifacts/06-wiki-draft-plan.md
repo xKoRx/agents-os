@@ -103,7 +103,7 @@ updated: 2026-09-13
 ## 🔌 Contratos e interacciones (semi-estable)
 
 - **Expone:** Gateway HTTP (puerto 8082): `/health`, auth hook Hasura, webhooks de config (account-config, symbol-mapping, automation-profiles, execution-policy), `POST /api/v1/close-positions`, `POST /api/v1/admin/republish`, boundary Forge (`POST /api/v1/forge/promotions` + 2 GET de reconciliación).
-- **Consume/produce:** 18 topics Kafka canónicos declarados en `xKoRx/echo: v3/sdk/domain/snapshots.go` + topic por cuenta `echo.commands.<account>.v1`; productor durable `PublishSync` para facts de trading.
+- **Consume/produce:** 17 topics Kafka canónicos declarados en `xKoRx/echo: v3/sdk/domain/snapshots.go` + topic por cuenta `echo.commands.<account>.v1`; productor durable `PublishSync` para facts de trading.
 - **Persistencia:** PostgreSQL único esquema de app `echo` (migraciones 001..062: núcleo, identidad BWC 061, cuarentena 062); etcd para config por servicio+env; Hasura como único GraphQL del front.
 - **Forge:** receptor del boundary — detalles, matriz de errores y gaps en [[echo-forge-integration-boundary]]; contrato vigente en [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] y contratos F-0x.
 - **Observabilidad:** OpenTelemetry OTLP (logs/metrics/traces) con semconv por servicio.
@@ -199,7 +199,7 @@ updated: 2026-09-13
 
 ## 🔌 Contratos e interacciones (semi-estable)
 
-- **Temporal:** motor confirmado de workflows de Forge (`sqx/go.mod` SDK v1.44.1; 5 workflows + ~40 activities en `sqx-worker`); el módulo root de symphony (Zeebe/Camunda/goka, feeds) es el sistema legacy de feeds, NO Forge.
+- **Temporal:** motor confirmado de workflows de Forge (`sqx/go.mod` SDK v1.35.0; 5 workflows + ~40 activities en `sqx-worker`); el módulo root de symphony (Zeebe/Camunda/goka, feeds) es el sistema legacy de feeds, NO Forge.
 - **SQX:** ejecución local vía etcd + CommandExecutor con markers de fin; plugin Java de exporters dentro de SQX (`EchoForge*Exporter.java`) que escriben outputs que el watcher sube a MinIO.
 - **Persistencia:** PostgreSQL autoridad durable (migraciones 001–016 con runner propio), MongoDB evidencia/metadata, MinIO bucket `sqx-strategies` artefactos, etcd coordinación de campaña.
 - **Echo:** única dependencia cruzada de código = pin `github.com/xKoRx/echo/v3/sdk/contracts v0.0.0-20260910031519-91671f6f46ff` en `sqx/go.mod` (superficie idéntica al baseline Echo `f7ddea18`); ver [[echo-forge-integration-boundary]].
@@ -406,7 +406,7 @@ Todos los MOVE son renames de path dentro del mismo commit de publicación (link
 ### `30-resources/applications/00-index.md` (mismo cambio que los MOVE)
 
 - Sección "📂 Catálogo": eliminar las filas `[[echo-core]]` y `[[echo-forge]]`; insertar UNA fila puntero: `| [[30-resources/applications/echo/00-index|Echo (subdominio)]] | Plataforma de ejecución + fábrica cuantitativa + frontera: ver sub-índice. | [[Echo]] | Go, Java |`. `[[stager-app]]` permanece.
-- Sección "Arquitectura de producto": mover TODAS las filas Echo (2 contratos V1, 3 auditorías, 2 Fuentes, F-01…F-04, 2 Fable reviews = 11 filas) al sub-índice (secciones Contratos vigentes / Provenance / Histórico); la sección raíz queda sin filas Echo.
+- Sección "Arquitectura de producto": mover TODAS las filas Echo (2 contratos V1, 3 auditorías, 2 Fuentes, F-01…F-04, 2 Fable reviews = 13 filas) al sub-índice (secciones Contratos vigentes / Provenance / Histórico); la sección raíz queda sin filas Echo.
 - Contadores: "Páginas: 16 aplicaciones" → actualizar (14 apps en catálogo raíz + subdominio echo); "Última ingesta" → fecha de publicación con nota "consolidación KBC → subdominio echo/".
 - Sección "🔗 Links": la línea de `echo-core-changelog` puede quedarse (resuelve por nombre) pero se recomienda moverla al sub-índice y dejar el puntero.
 - Fila corregida por la contradicción E: la frase "entrega finalistas a Echo Core" desaparece con la fila de echo-forge (cubierta por el puntero).
