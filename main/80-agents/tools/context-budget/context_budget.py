@@ -668,9 +668,10 @@ def ctx_05_meli_warm(ctx, rules, harness) -> Dict[str, Any]:
         problems.append("bootstrap re-ejecutado en turnos warm: %d runs" % s.bootstrap_runs)
     evidence.append("turnos 3..5 warm sin aperturas de base: verificado (BOOTSTRAP-NOT-RERUN-ON-WARM heredado)")
     # Métricas: M07, M09, M13, M18.
-    delta = weight_of(harness, ctx.vault, s.opens_in_turn(2))
+    delta_turn = s.opens_in_turn(2)
+    delta = weight_of(harness, ctx.vault, delta_turn)
     rec["metrics"].append(metric("session_loaded_set", s.all_opens(), "files", "EXACT", "rules.Session.all_opens"))
-    rec["metrics"].append(metric("warm_delta_files", len(delta), "files", "EXACT", "rules.Session.opens_in_turn(2) (fix D1)"))
+    rec["metrics"].append(metric("warm_delta_files", len(delta_turn), "files", "EXACT", "rules.Session.opens_in_turn(2) (fix D1)"))
     _weight_metrics(rec, "warm_delta", delta, "EXACT", "ESTIMATED", "_size del harness sobre opens_in_turn(2)")
     rec["metrics"].append(metric("resources_selected", {"candidates": candidates, "opened": [harness.FURY_NOTE]},
                                  "files", "EXACT (modelo)", "rules.Session.retrieve + open_delta (C09: matching declarado por el harness)"))
@@ -717,9 +718,10 @@ def ctx_06_aranea_warm(ctx, rules, harness) -> Dict[str, Any]:
     if any(p in candidates or p in s.opens_in_turn(2) for p in (rules.ROUTERS["meli"], rules.ROUTER_PREFS["meli"][0])):
         problems.append("pieza Meli en turno Aranea")
     # Métricas: M07, M09, M13, M18.
-    delta = weight_of(harness, ctx.vault, s.opens_in_turn(2))
+    delta_turn = s.opens_in_turn(2)
+    delta = weight_of(harness, ctx.vault, delta_turn)
     rec["metrics"].append(metric("session_loaded_set", s.all_opens(), "files", "EXACT", "rules.Session.all_opens"))
-    rec["metrics"].append(metric("warm_delta_files", len(delta), "files", "EXACT", "rules.Session.opens_in_turn(2) (fix D1)"))
+    rec["metrics"].append(metric("warm_delta_files", len(delta_turn), "files", "EXACT", "rules.Session.opens_in_turn(2) (fix D1)"))
     _weight_metrics(rec, "warm_delta", delta, "EXACT", "ESTIMATED", "_size del harness sobre opens_in_turn(2)")
     rec["metrics"].append(metric("resources_selected", {"candidates": candidates, "opened": [harness.MT5_NOTE]},
                                  "files", "EXACT (modelo)", "rules.Session.retrieve + open_delta"))
@@ -787,7 +789,10 @@ def ctx_07_switch_meli_aranea(ctx, rules, harness) -> Dict[str, Any]:
                     "peso en disco del pack saliente (meli); INFERRED como residuo (Hallazgo 8: sin mecanismo de unload)")
     rec["metrics"].append(metric("potential_residual_files", pack_meli, "files", "INFERRED",
                                  "Hallazgo 8: los archivos del pack saliente siguen en disco; su presencia en la ventana real es UNOBSERVABLE"))
-    _m15_leak_check(rules, harness, ctx, rec, s.all_opens(), [], s.active_domain, problems)
+    # M15 sobre el estado POST-swap (opens del turno del swap + pack activo): el
+    # pack saliente se cargó legítimamente cuando su dominio estaba activo y su
+    # peso histórico se reporta como potential_residual (8.3), no como leak.
+    _m15_leak_check(rules, harness, ctx, rec, list(s.opens_in_turn(2)) + list(s.pack_files), [], s.active_domain, problems)
     evidence.append("antes: domain=meli pack=%s" % pack_meli)
     evidence.append("despues: domain=%s pack=%s entity=%s" % (s.active_domain, s.pack_files, s.active_entity.get("title") if s.active_entity else None))
     evidence.append(s.swap_note or "")
@@ -857,7 +862,9 @@ def ctx_08_switch_aranea_meli(ctx, rules, harness) -> Dict[str, Any]:
                     "peso en disco del pack saliente (aranea); INFERRED como residuo (Hallazgo 8)")
     rec["metrics"].append(metric("potential_residual_files", pack_aranea, "files", "INFERRED",
                                  "Hallazgo 8: residuo real en la ventana del modelo UNOBSERVABLE"))
-    _m15_leak_check(rules, harness, ctx, rec, s.all_opens(), [], s.active_domain, problems)
+    # M15 sobre el estado POST-swap (opens del turno del swap + pack activo): el
+    # pack saliente se cargó legítimamente cuando su dominio estaba activo (8.3).
+    _m15_leak_check(rules, harness, ctx, rec, list(s.opens_in_turn(2)) + list(s.pack_files), [], s.active_domain, problems)
     evidence.append("routing: %s via tabla del router meli-agent-dev (Procedure 3), no directo desde INDEX" % (spec or "-"))
     evidence.append("VPN por rjara-vpn-routing-preferences.md antes del primer acceso corporativo (router Procedure 4): incluida en pack (autorizada en meli; A3)")
     evidence.append("despues: domain=%s pack=%s especialista=%s" % (s.active_domain, s.pack_files, s.specialist_skills))
@@ -911,7 +918,8 @@ def _switch_from_default(rec: Dict[str, Any], ctx, rules, harness, title: str,
     rec["metrics"].append(metric("soft_target_swap", swap_agg["estimated_tokens"], "estimated_tokens", "ESTIMATED",
                                  "bootstrap Token Targets + doctor Check 11 + " + TOKENS_NOTE))
     rec["metrics"].append(metric("gate_decision_trace", s.gate_note or "", "text", "EXACT (transcripción)", "bootstrap swap pasos 1-4 via rules.domain_gate"))
-    _m15_leak_check(rules, harness, ctx, rec, s.all_opens(), [], s.active_domain, problems)
+    # M15 sobre el estado POST-swap (el pack de DEFAULT es vacío; paridad con CTX-07/08).
+    _m15_leak_check(rules, harness, ctx, rec, list(s.opens_in_turn(2)) + list(s.pack_files), [], s.active_domain, problems)
     evidence.append("transicion: active_entity none->%s; active_domain none->%s" % (title, s.active_domain))
     evidence.append("gate: %s" % s.gate_note)
     lo, hi = SOFT_CEILINGS["swap_estimated_tokens"]
