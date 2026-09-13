@@ -67,7 +67,7 @@ La backlog ordenada y no ejecutada vive en [[Echo + Echo Forge — Deferred Cert
 
 ## 🧩 Subproyectos
 
-Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). [[Echo Forge — F-04 Magic allocation, version seal and handoff]] (WIP C5; C5.1–C5.6 IMPLEMENTED, manager review pending). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
+Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). [[Echo Forge — F-04 Magic allocation, version seal and handoff]] (WIP C5; C5.1–C5.6 IMPLEMENTED, manager review pending). [[Echo Forge — F-05-I Cohesive release and read surfaces]] (PLANNED; SPEC+tareas frozen). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
 
 ## ✅ Tareas
 
@@ -197,7 +197,9 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### F-05 Cohesive release, physical cert and FULL golden
 
-- **ID / status / size:** F-05 · split: implementation `PLANNED`; certification `DEFERRED / BLOCKED BY INFRASTRUCTURE` · MEDIUM
+- **ID / status / size:** F-05 · split: implementation `PLANNED (SPEC frozen)`; certification `DEFERRED / BLOCKED BY INFRASTRUCTURE` · MEDIUM
+- **Implementation project:** [[Echo Forge — F-05-I Cohesive release and read surfaces]]
+- **SPEC:** [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]
 - **Objective:** Un release cohesivo de lo implementado, matriz determinística, certificación física MT5 de superficies tocadas, conformidad de handoff, BWC, FULL golden **real** y result surfaces inspectables. Source merge ≠ product completion.
 - **Capability unlocked:** factory V2 operable: supply queryable, costo/latencia observables, al menos un finalista estructural con artifacts verificados cuando el cómputo lo permita.
 - **Product value:** owner lanza campaign, deja calcular, inspecciona funnel/warnings y obtiene/razona finalistas (H2).
@@ -215,7 +217,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Done when:** criterios de completion abajo. Zero finalists honesto no falla el software.
 - **Unlocks:** Echo enrollment con candidata real; no bloquea diseño Echo previo.
 - **Accepted debt:** cert singleton Windows residual documentada si sigue pendiente de Kronos, explicitada en el manifest, no escondida.
-- **Planning:** TOP (plan de cert/release). **Implementation:** NORMAL para F-05-I; **certification:** diferida hasta trigger de infraestructura. **GOD:** NONE.
+- **Planning:** TOP F-05-I cerró SPEC + tareas F05I-T1…T7 el 2026-09-13 (README del proyecto hijo). **Implementation:** NORMAL para F-05-I tras manager review; **certification:** diferida hasta trigger de infraestructura. **GOD:** NONE.
 
 #### F-05 split operativo
 
@@ -235,13 +237,15 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### Next development task
 
-**F-05-I — Cohesive release/read-surface preparation.** `xKoRx/symphony`, nueva rama `codex/f05-release-prep`, baseline `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`. Completion: matriz determinística y provenance reproducibles, result/read surfaces inspectables, tests/source checks del scope PASS, cero cambios a F-01…F-04/S0 frozen, cero publicación productiva desde la rama y ningún T2.11/T2.12/T2.13 marcado PASS.
+**F-05-I — Cohesive release/read-surface preparation.** `xKoRx/symphony`, nueva rama `codex/f05-release-prep`, baseline `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`. SPEC: [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]; proyecto con tareas atómicas/allowed files/test matrix: [[Echo Forge — F-05-I Cohesive release and read surfaces]]. Completion: matriz determinística y provenance reproducibles, result/read surfaces inspectables, tests/source checks del scope PASS, cero cambios a F-01…F-04/S0 frozen, cero publicación productiva desde la rama y ningún T2.11/T2.12/T2.13 marcado PASS.
 
 ## Definition of Done — Factory V2
 
 Factory puede crear supply, evaluar robusto, validar físicamente, producir finalistas estructurales, replenish, sellar versiones exactas, emitir handoffs canónicos, recuperar, correr cómputos largos, pasar FULL golden real y exponer result surfaces. No promete yield rentable ni eligibility Echo.
 
 ## 📆 Bitácora
+
+- **2026-09-13 — TOP F-05-I PLANNING COMPLETE.** Recon read-only @ `b57bfb2` confirmó: read models V2 sin callers productivos (`forge.Service`, `LoadForgeCampaignResult`), cero HTTP/API/GraphQL, inspección vía `sqx/tools` informales. SPEC frozen [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]: read surface CLI JSON determinística sobre ports narrow + release matrix declarativa (`deploy/release-matrix.json` + validador `sqx/core/releasematrix`) + funnel proyección pura por `stage_key`; `DATABASE MIGRATION: NONE`; sin HTTP; sin writes; `fixture != authentic physical golden`. Proyecto hijo con F05I-T1…T7, allowed files exactos y matriz de tests congelada. NORMAL pendiente manager review. Ningún gate físico marcado.
 
 - **2026-09-13 — NORMAL F-04 Windows viewer policy proof.** `mt5-kronos` admitió `hostname` y `whoami`; las formas mínimas únicas para `StagerRuntime`, `sqx-mt5-worker`, `C:\\ProgramData\\Stager`, executable y poller fueron rechazadas con `POLICY_DENIED`. Se confirma `PHYSICAL BLOCKED — ARANEA MCP POLICY GAP — MT5 VIEWER`; no operator, no IDs, no LICENSE/T2.12/T2.11. Evidencia detallada en [[2026-09-13-f04-mt5-viewer-policy-gap-summary]].
 
@@ -281,6 +285,8 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - [[Echo Forge — F-03 SQX Long-Running Contract]]
 - [[Echo Forge — F-04 Magic allocation, version seal and handoff]]
 - [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]
+- [[Echo Forge — F-05-I Cohesive release and read surfaces]]
+- [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]
 - [[Echo — Live Platform V1]]
 - [[Echo + Echo Forge — Deferred Certification Backlog]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
