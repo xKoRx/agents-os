@@ -40,6 +40,7 @@ tags:
 - Skills used: agents-os-bootstrap, aranea-agent-dev, agents-os-context-retrieval, e2e-gated-validation, agents-os-agent-run-register, agents-os-session-feedback, agents-os-session-close.
 - Retrieval mode: focused Markdown retrieval; no Graphify query was needed after exact source selection.
 - Artifacts changed: E-05 `VERIFICATION.md`, E-05/Live Platform entity notes, agent run, feedback and change log; no product source.
+- MCPs: none invoked; Hasura DEV/PROD physical access was intentionally not reached after the independent product defect, and PROD remained untouched.
 
 ## Scores
 
@@ -79,7 +80,7 @@ Use 1-5, where 1 is poor and 5 is excellent.
 ## Retrieval Feedback
 
 - Useful query or source: Focused reads of E-05 SPEC/PLAN/TASKS followed by direct source inspection of `closed_ops.go`.
-- Missing context: A canonical verifier command map for the repository's multi-module Go layout.
+- Missing context: A canonical verifier command map for the repository's multi-module Go layout and an explicit MCP preflight/status contract.
 - Duplicate/noisy result: Broad Echo search returned unrelated Echo Forge history before the exact E-05 note was selected.
 - Better future query: Resolve exact project note and repo path first, then search only the named target and authority paths.
 
@@ -88,7 +89,7 @@ Use 1-5, where 1 is poor and 5 is excellent.
 - Skill that worked well: e2e-gated-validation enforced evidence contracts and fail-closed stop behavior.
 - Skill that was confusing: None materially; the required distinction between verifier evidence and handoff claims was clear.
 - Trigger/routing gap: The verifier workflow is not a single named skill in the registry, so it must be composed from the E2E gate skill and project contract.
-- Suggested contract change: Add a dedicated Echo verification runbook covering module-aware Go commands and independent numeric oracles.
+- Suggested contract change: Add a dedicated Echo verification runbook covering module-aware Go commands, MCP preflight/status, and independent numeric oracles.
 
 ## Template Feedback
 
