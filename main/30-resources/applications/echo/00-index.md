@@ -27,7 +27,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Páginas:** 14 (2 apps + frontera + changelog + 6 contratos + 4 provenance) + 5 históricas en retención
-- **Última ingesta:** 2026-09-13 (consolidación KBC → subdominio `applications/echo/`)
+- **Última ingesta:** 2026-09-13 (protocolo de mantenimiento incremental + checkpoints de código documentado)
 - **Estado:** active
 
 ## Aplicaciones
@@ -36,6 +36,50 @@ tags:
 |---|---|---|
 | [[echo-core]] | Plataforma de ejecución y Trade Journal de Echo (Bridge/Core Flink StateFun/Gateway); receptor de la frontera Forge. | echo `f7ddea18` |
 | [[echo-forge]] | Fábrica cuantitativa sobre SQX (Temporal): campaña multi-wave → WFM → ranking → FinalistPromotion V2 + Apply; handoff NO cableado. | symphony `9fad768c` |
+
+## 🔄 Mantenimiento incremental
+
+La consolidación KBC es el **snapshot completo inicial**. Desde este punto la documentación se mantiene por **delta de Git**, no repitiendo una auditoría global de Echo/Echo Forge.
+
+### Checkpoints de código documentado
+
+| Fuente | Superficie cubierta | `documented_sha` | Ref al verificar | Verificado | Páginas principales afectadas |
+|---|---|---|---|---|---|
+| `xKoRx/echo` | `v3/` + contratos compartidos relevantes | `f7ddea18cab51db72c9765aa74381328134d7ce7` | `feature/e02-control-safety-journal-recovery` | 2026-09-13 | [[echo-core]], [[echo-forge-integration-boundary]] |
+| `xKoRx/symphony` | `sqx/` + contracts/specs Forge relevantes | `9fad768ccd1f9d25ebb535a2d26edb3d74556c10` | `feature/f04-magic-version-handoff` | 2026-09-13 | [[echo-forge]], [[echo-forge-integration-boundary]] |
+
+`documented_sha` es un **cursor documental**, no un release pointer ni “último commit del repo”. Sólo avanza cuando el delta hasta el target fue inspeccionado y toda página afectada quedó reconciliada y verificada. El nombre de branch/ref es contexto; la autoridad del cursor es el SHA exacto.
+
+### Protocolo de refresh
+
+1. Resolver el `documented_sha` de cada repo desde esta tabla y el target a documentar (normalmente el HEAD/merge/release que corresponda).
+2. Verificar ancestry. Si `documented_sha` es ancestro del target, revisar únicamente `documented_sha..target`. Si hubo rebase/divergencia, usar el merge-base y **no fingir** un delta lineal.
+3. Clasificar los cambios antes de abrir documentación:
+   - `NO_DOC_IMPACT`: refactor/tests/tooling/formato sin cambio durable observable.
+   - `IMPLEMENTATION_DOC_IMPACT`: runtime, lifecycle, persistence, API, wiring, failure/retry, observability, dependencias relevantes.
+   - `CONTRACT_IMPACT`: contratos, wire schema, identidad, ownership o semántica frozen.
+   - `BOUNDARY_IMPACT`: Forge↔Echo, handoff, ingestion, artifacts, magic/version y ownership cruzado.
+4. Abrir **sólo** las páginas canónicas afectadas. No releer el subdominio completo por defecto.
+5. Contrastar los claims modificados contra source/tests/config/contratos. Los contratos frozen no se reescriben para hacerlos coincidir con una implementación divergente: la divergencia se documenta como gap hasta una decisión explícita de contrato.
+6. Actualizar páginas afectadas y su provenance. `last_verified` sólo cambia para superficies realmente verificadas; editar formato o backlinks no cuenta.
+7. Actualizar este índice si cambió routing/resumen/checkpoint y append a `../log.md` con la operación `ingest`.
+8. Avanzar `documented_sha` al target **sólo después de PASS**. Si la reconciliación queda parcial o bloqueada, mantener el cursor anterior y registrar el gap.
+
+### Resultado esperado de un refresh
+
+```text
+repo: <echo|symphony>
+from: <documented_sha>
+to: <target_sha>
+ancestry: LINEAR | DIVERGED
+changed_paths: <n>
+doc_impact: NONE | IMPLEMENTATION | CONTRACT | BOUNDARY | MIXED
+pages_touched: <wikilinks>
+verification: PASS | PARTIAL | BLOCKED
+new_documented_sha: <sha anterior si no PASS; target si PASS>
+```
+
+Este protocolo es la especialización Echo/Echo Forge del contrato general [[30-resources/00-RESOURCE-WIKI|Resource Wiki]]: índice primero, evidencia dirigida, freshness event-driven y una fuente canónica por hecho.
 
 ## Frontera
 
