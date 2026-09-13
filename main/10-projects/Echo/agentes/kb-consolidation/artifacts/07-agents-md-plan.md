@@ -45,7 +45,7 @@ updated_at: 2026-09-12
 
 ### Comandos verificados (evidencia)
 
-- echo: `.agents/rules/01-stack-and-tooling.md` §2.1 manda por módulo Go `cd v3/<modulo> && go vet ./... && go test -race -cover ./...` (módulos en `go.work`: v3/bridge, v3/core, v3/e2e, v3/gateway, v3/lab-worker, v3/sdk, v3/toolkit) y §2.2 manda `cd v3/front && npm run test:unit | build | lint`. Makefile raíz existe (`make build|test|lint|proto|tidy|mocks`) pero todos sus targets apuntan a v1 (legacy): NO proponerlo como comando activo, marcarlo legacy.
+- echo: `.agents/rules/01-stack-and-tooling.md` §2.1 manda por módulo Go `cd v3/<modulo> && go vet ./... && go test -race -cover ./...` (§2.1 enumera 5 módulos: bridge, core, gateway, lab-worker, sdk — L30); los 7 módulos v3 activos provienen de `go.work` (verificado: v3/bridge, v3/core, v3/e2e, v3/gateway, v3/lab-worker, v3/sdk, v3/toolkit), que es la fuente citada por el draft para el catálogo; §2.2 manda `cd v3/front && npm run test:unit | build | lint`. Makefile raíz existe (`make build|test|lint|proto|tidy|mocks`) pero todos sus targets apuntan a v1 (legacy): NO proponerlo como comando activo, marcarlo legacy.
 - symphony: `sqx/README.md` §"Build" `go build -o bin/sqx-worker ./cmd/sqx-worker` (+ sqx-watcher, sqx-flowkit, sqx-mt5-worker; binarios verificados en `sqx/cmd/`) y §"Testing" `go test ./... -cover` desde `sqx/`. Root `README.md` línea 68 `go build -o symphony cmd/symphony/main.go` (módulo feeds legacy). No existe Makefile en el repo.
 
 ## Proposed: xKoRx/echo AGENTS.md
@@ -126,6 +126,7 @@ Sesión bajo Agents-OS: resolver VAULT_ROOT y ejecutar `80-agents/skills/agents-
 - **El handoff Forge→Echo NO está cableado.** No existe transporte Forge→Echo en producción; `SealStrategyVersion`, `BuildHandoffManifest` y `DeliverHandoff` no tienen caller de producción (capacidad librería, branch F-04). No "completar" el cableado sin decisión de producto explícita.
 - La FinalistPromotion V2 es membership estructural (≠ Top N); ranking global congelado `score_descending.v1`.
 - Única dependencia cruzada de código: pin `github.com/xKoRx/echo/v3/sdk/contracts` en `sqx/go.mod` — no actualizarlo sin contrato formal.
+- En task SDD activa, respeta tu rol asignado: coordinator (sólo specs/planes/checklists, nunca código), implementor (código sólo en `Allowed Files`, no tocar tests existentes), verifier (audita y ejecuta lints/tests, nunca edita código de producción). Mapa completo: `.agents/rules/08-sdd-governance.md` y `09-sdd-phase-permissions.md`.
 
 ## Commands (autoritativos)
 
@@ -145,6 +146,8 @@ Sesión bajo Agents-OS: resolver VAULT_ROOT y ejecutar `80-agents/skills/agents-
 ## Authority order
 
 Contratos frozen (F-0x, SDK contracts) > specs SDD (`specs/`, `specs/SPECS.md`; PRD `docs/prd/SQX_Adaptive_E2E_Pipeline_PRD.md`) > código > documentación (`sqx/README.md`). AGENTS.md es router, no wiki.
+
+Gobierno vivo (no-regresión): `CONSTITUTION.md` y el catálogo `.agents/rules/00-14` también existen en symphony y permanecen vigentes (reglas `alwaysApply: true`, única fuente de verdad para CI); este router no los reemplaza.
 
 ## Canonical wiki (vault)
 
