@@ -74,7 +74,7 @@ Sesión bajo Agents-OS: resolver VAULT_ROOT y ejecutar `80-agents/skills/agents-
 
 ## Commands (autoritativos)
 
-- Go (por módulo, en `v3/bridge|core|e2e|gateway|lab-worker|sdk|toolkit`): `go vet ./...` y `go test -race -cover ./...` (fuente: `.agents/rules/01-stack-and-tooling.md` §2.1).
+- Go (por módulo, en los 7 módulos v3 de `go.work`: `bridge|core|e2e|gateway|lab-worker|sdk|toolkit`): `go vet ./...` y `go test -race -cover ./...` (comandos: `.agents/rules/01-stack-and-tooling.md` §2.1; catálogo de módulos: `go.work` — §2.1 enumera sólo 5, sin `e2e` ni `toolkit`).
 - Front (`v3/front`): `npm run test:unit` · `npm run build` · `npm run lint` (fuente: `.agents/rules/01-stack-and-tooling.md` §2.2).
 - Makefile raíz apunta a v1 (legacy): no usar para desarrollo v3.
 
@@ -88,6 +88,8 @@ Sesión bajo Agents-OS: resolver VAULT_ROOT y ejecutar `80-agents/skills/agents-
 ## Authority order
 
 Contratos frozen (`v3/sdk/contracts`) > specs SDD (`specs/`, `specs/SPECS.md`) > código > documentación del repo (`v3/docs/`, `docs/adr/`). AGENTS.md es router, no wiki.
+
+Gobierno vivo (no-regresión): `CONSTITUTION.md` y el catálogo `.agents/rules/00-14` permanecen vigentes y no son reemplazados por este router — las reglas 00-14 son `alwaysApply: true` y única fuente de verdad para CI; la verificación obligatoria `sdd-feature-verification` se rige por `CONSTITUTION.md` y `.agents/rules/`.
 
 ## Canonical wiki (vault)
 

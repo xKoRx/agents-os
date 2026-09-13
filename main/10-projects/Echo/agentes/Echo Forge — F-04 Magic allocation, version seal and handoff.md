@@ -89,6 +89,14 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 
 ## Decision register
 
+## Resultado de esta sesión — 2026-09-13
+
+- `BASELINE_GATE: PASS` — `git ls-remote origin refs/heads/feature/f04-magic-version-handoff == b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`; no se tocó el checkout local dirty ni se hizo republish.
+- `WINDOWS VIEWER POLICY PROOF: FAIL` — `mt5-kronos` viewer admitió sólo `hostname` → `worker-kronos` y `whoami` → `worker-kronos\\echo-dev`; `Get-Service -Name StagerRuntime`, `sc.exe query StagerRuntime`, `ver`, `tasklist.exe /FI \"IMAGENAME eq sqx-mt5-worker.exe\"`, `Get-Process -Name sqx-mt5-worker`, `Get-ChildItem C:\\ProgramData\\Stager` y `where.exe sqx-mt5-worker.exe` fueron operaciones únicas rechazadas con `POLICY_DENIED: Profile \"mt5-kronos\" is read-only, so \"safe\" commands are refused. Clear readOnly on the profile to allow them.`
+- La evidencia requerida de servicio, proceso, path, release y poller es read-only; `mt5-kronos` es el perfil contractual viewer; las formas mínimas admisibles intentadas quedaron policy-denied. Resultado: `PHYSICAL BLOCKED — ARANEA MCP POLICY GAP — MT5 VIEWER`.
+- No se obtuvo Windows effective path/release; no se declara `worker-kronos` en `0.2.98`, no se usó operator, no se generaron WorkflowID/RunID/FlowRunRef, no se ejecutó LICENSE, T2.12 ni T2.11; T2.13 permanece OPEN y fuera de scope.
+- Próximo paso exacto: corregir la allowlist viewer Windows o exponer un probe read-only equivalente; repetir sólo rollout proof sobre la release existente, sin republish.
+
 ## Corrección de autoridad runtime — 2026-09-13 02:17
 
 - **Corrección histórica obligatoria:** el intento anterior observó los marcadores legacy `/opt/symphony/CURRENT` y `/opt/symphony/current`; esos marcadores son **LEGACY / NON-AUTHORITATIVE**. Por tanto, la conclusión anterior `0.2.98 absent` **no fue probada** y se conserva sólo como historia, no como estado vigente.
