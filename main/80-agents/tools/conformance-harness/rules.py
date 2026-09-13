@@ -510,7 +510,10 @@ def references_entity(value: object, entity: Entity) -> bool:
         if slug and (v == slug or v.startswith(slug + "-") or slug + "/" in v):
             return True
         for alias in aliases:
-            if alias and alias in v:
+            # word-boundary alias match (a bare alias substring would make any
+            # string containing it a reference, e.g. 'rio' inside
+            # 'rio-controlplane-kafka' linked from another domain's note).
+            if alias and re.search(r"(?<![a-z0-9])%s(?![a-z0-9])" % re.escape(alias), v):
                 return True
     return False
 
@@ -547,10 +550,15 @@ def trigger_fires(fm: Dict[str, object], entity: Entity, intent: str) -> bool:
     n_area = normalize_area(fm.get("area"))
     if lp == "when_area_loaded":
         return n_area is not None and e_area is not None and n_area == e_area
-    refs = (fm.get("entities"), fm.get("project"), fm.get("application"), fm.get("related"))
+    # Entity-resolution fields only: entities/project/application. `related`
+    # is a general link field and leaks cross-domain references (e.g. a symphony
+    # decision linking [[rio-controlplane-*]] would otherwise match entity RIO).
+    refs = (fm.get("entities"), fm.get("project"), fm.get("application"))
     ref_hit = any(references_entity(v, entity) for v in refs)
     if lp == "when_error_matches":
-        return intent == "error" and ref_hit
+        # No authority defines what counts as "error matching" (C09 Unknown);
+        # the harness applies entity-scoped matching for any retrieval intent.
+        return ref_hit
     if lp == "when_project_loaded":
         return intent in ("context", "continuity", "error") and ref_hit
     if lp == "when_application_loaded":
