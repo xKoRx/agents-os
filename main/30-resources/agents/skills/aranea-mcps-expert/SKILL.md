@@ -46,13 +46,13 @@ Activar bajo el dominio [[aranea-agent-dev]] —su única puerta de entrada— a
 
 ## Canonical Authority
 
-Esta skill es el router agent-facing. Los procedimientos mecánicos viven exclusivamente en `VAULT_ROOT/80-agents/memory/public/runbook/`:
+Esta skill es el router agent-facing. Los procedimientos mecánicos viven exclusivamente en `VAULT_ROOT/30-resources/runbooks/`:
 
-- `80-agents/memory/public/runbook/aranea-ssh-mcp.md` → [[aranea-ssh-mcp]]
-- `80-agents/memory/public/runbook/aranea-postgres-mcp.md` → [[aranea-postgres-mcp]]
-- `80-agents/memory/public/runbook/aranea-mongodb-mcp.md` → [[aranea-mongodb-mcp]]
-- `80-agents/memory/public/runbook/aranea-hasura-mcp.md` → [[aranea-hasura-mcp]]
-- `80-agents/memory/public/runbook/aranea-mcp-capability-plane.md` → [[aranea-mcp-capability-plane]]
+- `30-resources/runbooks/aranea-ssh-mcp.md` → [[aranea-ssh-mcp]]
+- `30-resources/runbooks/aranea-postgres-mcp.md` → [[aranea-postgres-mcp]]
+- `30-resources/runbooks/aranea-mongodb-mcp.md` → [[aranea-mongodb-mcp]]
+- `30-resources/runbooks/aranea-hasura-mcp.md` → [[aranea-hasura-mcp]]
+- `30-resources/runbooks/aranea-mcp-capability-plane.md` → [[aranea-mcp-capability-plane]]
 
 La arquitectura/deployment común para **agregar o reemplazar capabilities** vive en [[AGENT-PLATFORM - MCP Access Plane - Architecture]]. No redescubrirla desde cero salvo evidencia material de drift.
 
@@ -148,4 +148,4 @@ Boundary: <none | policy/error relevante>
 - No cambiar ACLs/privilegios, publicar backends internos ni crear side channels como workaround automático.
 - Hasura PROD no expone SQL ni mutación de metadata; cualquier tarea que los requiera debe detenerse o moverse al ambiente/flujo correcto, no ampliar la capability dinámicamente.
 - Skills consumidoras deben referenciar esta skill en vez de duplicar endpoints, permisos o semántica MCP.
-- No copiar esta skill a `80-agents/skills/` ni duplicar los runbooks fuera de `80-agents/memory/public/runbook/`.
+- No copiar esta skill a `80-agents/skills/` ni duplicar los runbooks fuera de `30-resources/runbooks/`.
