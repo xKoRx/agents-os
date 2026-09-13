@@ -7,7 +7,7 @@ baseline: echo f7ddea18 · symphony 9fad768c (1 dirty file) · vault 82852b3 (cy
 inputs: artifacts 01-06, repos RO, contratos frozen
 scope: refutación adversarial de la propuesta wiki
 started_at: 2026-09-13T00:55:00-03:00
-updated_at: 2026-09-13T01:36:00-03:00
+updated_at: 2026-09-13T05:30:14-03:00
 ---
 
 # KBC-G — Adversarial Verification
@@ -152,3 +152,50 @@ Tarea focalizada (planner, fase G ciclo 2): re-verificar las 3 correcciones cont
 
 - **A orchestrator/parent:** gate otorgado; liberar fase H (vault-publisher-reconciler → `10-publication-plan.md`) con las 4 condiciones de arriba; agenda después la micro-tarea de cobertura de deudas/hitos pre-supersede.
 - **A vault-publisher-reconciler (fase H):** los claims C1-C51 de la tabla del ciclo 1 quedan como checklist ya verificada a baseline de repos (f7ddea18 / 9fad768c); sólo el vault requiere revalidación de volátiles contra HEAD al publicar.
+
+## KBC-I-VERIFY (AGENTS.md scope)
+
+- task_id: KBC-I-VERIFY · status: COMPLETE · started/updated: 2026-09-13T05:30-03:00 · objeto: refutación adversarial de los drafts AGENTS.md propuestos en artifact 07 (echo + symphony), repos READ-ONLY estrictos.
+- Baseline reconfirmado en esta tarea: echo `f7ddea18` clean (branch feature/e02-control-safety-journal-recovery); symphony `9fad768c` con exactamente el mismo 1 dirty file (fixture JSON, intocado); vault HEAD avanzó 82852b3 → `b2e44072` (drift forward; los 4 archivos de wiki citados por los drafts existen en HEAD — verificado con ls y git log 82852b3..b2e44072, la publicación del subdominio aterrizó en ese rango).
+- AGENTS.md actuales leídos en fuente: echo 33 líneas (topografía con `file:///Users/rjara/...`, guía SDD, puntero boot-up a `.agents/rules/01-stack-and-tooling.md`, sin comandos/invariants); symphony 53 líneas (idem + bloque "Inventario de Workers" con FQDNs/IPs y CONTRASEÑA en claro en L47) — el diagnóstico de 07 es exacto.
+
+### Claims verificados (KBC-I-VERIFY)
+
+| # | Claim (draft 07) | Veredicto | Evidencia (repo:file:line @ baseline) |
+|---|---|---|---|
+| V1 | Echo: orquestación Flink StateFun, NUNCA `go.temporal` | PASS | echo: `grep go.temporal --include=go.mod` = 0 matches en todo el repo; go.work v3 = bridge/core/e2e/gateway/lab-worker/sdk/toolkit (cicle 1 C1 consistente) |
+| V2 | Echo: receptor produce sólo receipt `INGESTED`, jamás activación | PASS | `v3/sdk/contracts/promotion.go:519-521,536` ("is never an activation"); `v3/sdk/postgres/ingestion_noneffects_test.go` existe; `v3/gateway/internal/forge_ingest_handler_test.go` existe |
+| V3 | Echo NUNCA asigna/recicla magic; ownership Forge; contratos frozen en `v3/sdk/contracts` | PASS | `promotion.go:38-40` ("unique positive int64, stable and never recycled"); `grep "MagicAllocation{"` en v3/gateway + v3/sdk/postgres (no-test) = 0; pin/cycle-1 C29/C41 |
+| V4 | Migraciones PostgreSQL append-only: no editar ya aplicadas | PASS (caveat) | `v3/docs/rfcs/renaming/PLAN-IMPLEMENTACION.md:116,307,522` ("No editar migraciones historicas si la base ya fue aplicada... agregar nuevas"); NO existe `migrations/README` — la convención vive en un RFC, no en un doc canónico (recomendación R-2) |
+| V5 | Gateway FUERA del hot path (webhooks/control/boundary Forge) | PASS | `v3/gateway/internal/server.go:112-218`: rutas = 4 webhooks + close-positions + admin/republish + forge POST/2 GET + /health; cero consumers de promotion_records en v3/core|lab-worker|bridge (grep = 0) → "post-INGESTED no hay consumidores" también PASS |
+| V6 | Forge: 1 VM = 1 worker = 1 task | PASS | Nota de decisión `80-agents/memory/public/decision/symphony/2026-08-14-echo-forge-one-vm-one-worker-one-task.md` existe; `sqx/cmd/sqx-mt5-worker/main.go:259` capacity=1 default; `sqx-worker` sin MaxConcurrentActivityExecutionSize (cicle 1 C50) |
+| V7 | Forge: handoff NO cableado; Seal/BuildManifest/Deliver sin caller de producción | PASS | grep no-test sqx/ = sólo 3 definiciones (`capabilities/handoff.go:87`, `forge/handoff_producer.go:69`, `registry-postgres/strategy_version.go:25`); cicle-1 C2/C4/C5 |
+| V8 | Forge: Magic V1 ownership Forge; ranking congelado `score_descending.v1`; FinalistPromotion V2 membership | PASS | `sqx/core/domain/ranking_snapshot.go:16`; `sqx/core/capabilities/magic_allocation.go` (forge-live, cicle-1 C29); migration 014 (cicle-1 C27) |
+| V9 | Forge: pin `github.com/xKoRx/echo/v3/sdk/contracts` en `sqx/go.mod` | PASS | `sqx/go.mod:9` = `v0.0.0-20260910031519-91671f6f46ff` |
+| V10 | Echo cmd: `go vet ./...` + `go test -race -cover ./...` por módulo citando §2.1 | **FAIL (menor)** | Comandos exactos en `.agents/rules/01-stack-and-tooling.md:38-43`, PERO §2.1 enumera sólo 5 módulos (`bridge`, `core`, `gateway`, `lab-worker`, `sdk` — L30); el draft lista 7 (añade `e2e` y `toolkit`, que están en go.work pero NO en la fuente citada). Corrección A-1 |
+| V11 | Echo cmd: front `npm run test:unit|build|lint` citando §2.2 | PASS | `01-stack-and-tooling.md:46-58` exacto |
+| V12 | Echo cmd: Makefile raíz apunta a v1 (legacy) | PASS | `Makefile:22,27,32,39-40` todos `cd v1/...` |
+| V13 | Forge cmd: `go build -o bin/sqx-worker ./cmd/sqx-worker` · watcher · flowkit (sqx/README.md) | PASS | `sqx/README.md:429-431` verbatim |
+| V14 | Forge cmd: `go test ./... -cover` desde `sqx/` (§Testing) | PASS | `sqx/README.md:894` en §14 "Testing y cobertura" (L884) |
+| V15 | Forge cmd: `run_watcher.sh`, `run_deployer.sh` en raíz; "No hay Makefile" | PASS | ambos scripts existen; `ls Makefile` = no existe |
+| V16 | No-regresión echo: lo eliminado es historia/machine-paths/duplicación | **FAIL (menor)** | Topografía (machine-paths) y detalle SDD sí son eliminables (rol SDD conservado como one-liner; boot-up reemplazado por Commands). PERO el draft suelta los punteros vivos a `CONSTITUTION.md` (gobierno, mandatory verification `sdd-feature-verification`) y al catálogo `.agents/rules/00-14` (`alwaysApply: true`, "única fuente de verdad para CI") — cita 3 reglas sueltas pero pierde el mapa. Corrección A-2 |
+| V17 | No-regresión symphony: idem + bloque workers reemplazado sin credencial | **FAIL (menor)** | Bloque workers: eliminación LIMPIA — es duplicado exacto de `.agents/skills/worker-ssh/SKILL.md:23,35` y `worker-troubleshooting/SKILL.md:26,222-233` (FQDN-vs-IP, run-as-kor-no-SYSTEM/.htm); sin pérdida. PERO el draft elimina la guía de roles SDD (L22-27 del AGENTS.md actual) SIN reemplazo (el draft echo sí la conserva) y suelta el puntero a `.agents/rules/` (00-14 existen en symphony). Corrección A-3 |
+| V18 | Credencial SSH: draft la reemplaza SIN replicarla y señala dónde debe vivir | **PARTIAL** | `cascada123` NO aparece en ninguno de los dos drafts (grep); Forbidden añade "credenciales NUNCA en archivos tracked". PERO el draft no señala dónde SÍ debe vivir (secret store/config untracked) y no advierte que `.agents/skills/worker-ssh/SKILL.md:40,45-67` y `worker-troubleshooting/SKILL.md:19,116` siguen llevando la contraseña en archivos tracked — el propio Forbidden del draft queda contradicho por el estado vigente del repo. Corrección A-4 |
+| V19 | Routing: links al vault resuelven; freshness/do-not-load coherentes con wiki publicada | PASS | `30-resources/applications/echo/00-index.md`, `echo-core.md`, `echo-forge.md`, `echo-forge-integration-boundary.md` existen en HEAD b2e44072; el índice cita los mismos baselines (echo f7ddea18, symphony 9fad768c); boundary contiene G1–G7 (L49-L55); la regla de freshness del draft replica la convención stable/volatile + last_verified de la wiki |
+| V20 | Sin machine-paths (`/Users/`, `/home/`, `file://`) en los drafts | PASS | grep en artifact 07: todas las ocurrencias (L21,28,30,35,37,42,176) están en PROSA del planner; los bloques draft (L55-103, L109-158) están limpios. Nota: la prosa del artifact 07 sí persiste `/home/kor/...` (L176 paths de patch) — violación de regla 11 de constitución en el planner, fuera de mi scope, registrada en Recommendations |
+| V21 | Solvencia de excluir `vibe-coding/docs/cursor/AGENTS.md` (503 líneas) del retrieval | PASS | echo: 503 líneas exactas; muestreo L1-30 y L240-255 = ensayo genérico "Arquitectura de Sistemas Multi-Agente Agnósticos" (Cursor/n8n/Antigravity, regex parsers, citas web) — cero contenido operativo del repo; exclusión justificada. Do-not-load restante: todos los archivos listados existen en ambos repos (echo: 8/8; symphony: 7/7 incl. junk `-h`) — sin entradas fantasma |
+
+### Conteo y veredicto
+
+- **Veredicto global: PARTIAL (aplicable con 4 correcciones menores A-1..A-4; ninguna invalida la sustancia de los drafts).** Invariants 9/9 PASS · Comandos 5/6 (1 FAIL menor de atribución) · No-regresión 2 FAIL menores · Credencial PARTIAL · Routing/machine-paths/solvencia PASS.
+- Los drafts son factualmente sólidos: cada invariante es verdad implementada al baseline y ningún comando citado está inventado. Los FAIL son de precisión de cita y de punteros vivos omitidos, corregibles editando sólo el texto del draft.
+
+### Gate AGENTS.md
+
+- **El parent PUEDE aplicar los drafts como patches propuestos (reemplazo completo de archivo, sin markers managed que romper) DESPUÉS de aplicar A-1..A-4; sin ellas, NO procede verbatim.**
+- A-1 (echo Commands): atribuir la lista de módulos a `go.work` (7 módulos) o recortar a los 5 de §2.1; no citar §2.1 como fuente de los 7. Opcional: mencionar `go fmt`/`staticcheck` (§2.1 también los manda).
+- A-2 (echo, Authority order): añadir una línea con `CONSTITUTION.md` y `.agents/rules/00-14` como capa de gobierno always-on (hoy el draft sólo cita 3 reglas sueltas).
+- A-3 (symphony): añadir el one-liner de roles SDD que el draft echo sí tiene (según `specs/SPECS.md` + `.agents/rules/08-sdd-governance.md`/`09-sdd-phase-permissions.md`, que existen en symphony) y el puntero a `.agents/rules/`.
+- A-4 (symphony, credencial): state dónde debe vivir la credencial (secret store o config local untracked, nunca tracked), añadir puntero a `.agents/skills/worker-ssh/` + `worker-troubleshooting/` como detalle operativo, y escalar al parent la remediación del secreto ya commiteado en esas skills (rotación incluida) — hoy el Forbidden del draft contradice el estado tracked del repo.
+- Condiciones de aplicación heredadas: repos READ-ONLY en campaña (los patches los aplica el owner fuera de campaña o en fase autorizada); no replicar la contraseña en ningún archivo nuevo; el AGENTS.md del vault no requiere cambio (07 Vault Routing Impact: correcto, verificado — router mínimo ya cubre el routing vía bootstrap).
+- Sin cambios de baseline de repos desde el ciclo 2; el drift de vault (→ b2e44072) no toca los claims de esta tarea (las 4 páginas de wiki existen en HEAD).

@@ -607,6 +607,7 @@ FIDELITY_ANCHORS: List[Tuple[str, str, str]] = [
     ("gate-meli", AUTH_BOOTSTRAP, "`[[Meli]]` → load `meli-agent-dev`."),
     ("gate-echo-aranea", AUTH_BOOTSTRAP, "`[[Echo]]` or `[[Aranea]]` → load `aranea-agent-dev`."),
     ("gate-other-no-router", AUTH_BOOTSTRAP, "Any other area, or no resolvable entity → no domain router."),
+    ("gate-surface-evidence", AUTH_BOOTSTRAP, "If no entity resolves but the surface shows domain evidence (MCP tool prefixes `mcp__aranea-*`, or corporate tooling such as Zord/Fury/Spellbook), use that instead."),
     ("gate-fail-closed", AUTH_BOOTSTRAP, "Ambiguous or conflicting evidence fails closed: no router."),
     ("gate-never-both-routers", AUTH_BOOTSTRAP, "Never load both routers; the router loads at most ONE specialized skill and owns the scoped preferences of its domain."),
     # Cold set (bootstrap cold start pasos 1-3) — cited at Session.cold_start().
@@ -615,10 +616,14 @@ FIDELITY_ANCHORS: List[Tuple[str, str, str]] = [
     ("cold-paso2-global-internal", AUTH_BOOTSTRAP, "`80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md`"),
     ("cold-paso3-registry", AUTH_BOOTSTRAP, "Load the skills registry `80-agents/skills/INDEX.md` (core catalog + federated rows)"),
     ("cold-paso3-no-federated-index", AUTH_BOOTSTRAP, "Do not read the federated domain index unless routing needs detail beyond the registry rows."),
-    # Warm turn (bootstrap warm pasos 1-4) — cited at Session.warm_turn().
+    ("cold-paso4-map-no-ritual", AUTH_BOOTSTRAP, "Read `agents-os.md` only if the task needs the conceptual map; do not add it to the base stack by ritual."),
+    ("cold-paso5-resolve-aliases", AUTH_BOOTSTRAP, "Resolve aliases/slugs to the canonical Obsidian title."),
+    # Warm turn (Session Modes + bootstrap warm pasos 1-4) — cited at Session.warm_turn().
+    ("warm-reuse-delta-only", AUTH_BOOTSTRAP, "Reuse what is already in context. Fetch only the delta needed."),
     ("warm-never-reread", AUTH_BOOTSTRAP, "Never re-read constitution/profile/bootstrap."),
     ("warm-no-bootstrap-rerun", AUTH_BOOTSTRAP, "Do not invoke or reread bootstrap merely because the user sent another message."),
-    # Entity swap (bootstrap swap pasos 1-4) — cited at Session.swap_entity().
+    # Entity swap (Session Modes + bootstrap swap pasos 1-4) — cited at Session.swap_entity().
+    ("swap-skip-global-internal-reload", AUTH_BOOTSTRAP, "skip global internal reload if already loaded this session."),
     ("swap-keep-invariants", AUTH_BOOTSTRAP, "Keep the invariants and global internal note from cold start."),
     ("swap-drop-pack", AUTH_BOOTSTRAP, "drop the previous domain pack (router + scoped preferences) and load the new router. Never hold two domain packs at once."),
     # Superseded/archived exclusion — cited at Session.retrieve().
