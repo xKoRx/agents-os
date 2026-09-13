@@ -134,7 +134,7 @@ Clasificación: **ENTITY** (identidad propia durable) · **VO** (value object, s
 cmd/lens            main: config, wiring, flags, embed
 internal/vault      DOMINIO puro y genérico del Markdown: Note, Frontmatter, Link, Task (símbolos→5 estados), Tag, Heading, Diagnostic. Cero deps externas, cero IO, cero semántica Agents-OS (no conoce owner/parent/progress ni tipos de entidad).
 internal/parse      ADAPTER determinístico: goldmark+YAML → tipos de internal/vault. Único touchpoint de EXTRACCIÓN hacia el dominio; extrae tags/tasks raw sin interpretar convenciones del vault.
-internal/index      APPLICATION: scanner (walk fs), build snapshot, proyecciones tipadas (Project/Area = semántica Agents-OS: owner/root/parent/progress/rollups/child_of), interpretación de tags (owner/type → facets), query surface (GetNote, Projects, Tasks, Backlinks, Search), rebuild invariante. Único IO read-only del vault. Aquí vive TODO lo que sabe de Agents-OS.
+internal/index      APPLICATION con DOS capas conceptuales (sin paquetes nuevos): (a) capa GENÉRICA: snapshot inmutable de estructuras raw de vault + scanner best-effort (walk fs) + query surface (GetNote, Notes, Backlinks, Search); (b) capa AGENTS-OS: EntityEnvelope proyectado del frontmatter crudo, Project/Area, Task projection (owner/type/state interpretados), typed relations, facets. Único IO read-only del vault. Publicación: snapshot inmutable + swap atómico del snapshot completo. Aquí vive TODO lo que sabe de Agents-OS.
 internal/serve      TRANSPORT: HTTP JSON /api/v1, bind 127.0.0.1, render HTML (goldmark sólo como presentador), sin lógica de negocio.
 internal/web        PRESENTATION: SPA Vue 3 compilada + go:embed; habla SOLO HTTP.
 ```
@@ -158,11 +158,13 @@ internal/web        PRESENTATION: SPA Vue 3 compilada + go:embed; habla SOLO HTT
 
 ## API contract v0.1 (congelado; JSON, read-only, sin auth — loopback only)
 
+- **Identity rule:** toda referencia autoritativa a proyecto o nota en la API es el **path del vault** (DocumentID = source Note path); `name`/`alias` existen SOLO como convenience de routing/search y resuelven a path (shortest-path, fail-closed ante ambigüedad). Los parámetros que referencian proyectos (p. ej. `tasks?project=`) toman el path.
 - `GET /api/v1/meta` — vault root (relativo), counts (notas/projects/tasks/diagnostics), build info, last scan timestamp.
-- `GET /api/v1/projects?status=&area=&owner=&include=archived` — cards de proyectos: name, path, envelope (owner/root/parent/area/status/priority/progress), rollup de tasks, has-children.
-- `GET /api/v1/projects/{name}` — detail: envelope completo, tasks agrupadas por estado, subproyectos, parent, links de la nota.
+- `GET /api/v1/projects?status=&area=&owner=&include=archived` — cards de proyectos: `path` (identidad), `name` (convenience), envelope (owner/root/parent/area/status/priority/progress), rollup de tasks, has-children.
+- `GET /api/v1/projects/{path...}` — detail por path: envelope completo, tasks agrupadas por estado, subproyectos, parent, links de la nota.
+- `GET /api/v1/projects/resolve?name=&alias=` — convenience lookup name/alias → `{path}` (o `AMBIGUOUS`/`NOT_FOUND`); nunca sustituye el addressing por path.
 - `GET /api/v1/areas` — áreas con conteos de proyectos/notas.
-- `GET /api/v1/tasks?owner=&state=&area=&type=&project=` — índice global de tareas con note origen y línea.
+- `GET /api/v1/tasks?owner=&state=&area=&type=&project=<path>` — índice global de tareas con note origen y línea.
 - `GET /api/v1/notes/{path...}` — detail: envelope, tasks, links (raw + resolved + unresolved), attachments, backlinks, headings.
 - `GET /api/v1/notes/{path...}/render` — HTML server-side (goldmark) con wikilinks → hrefs internos `/app/note/...`, callouts renderizados, bloques dinámicos como `<pre class="lens-raw-block">`.
 - `GET /api/v1/search?q=&scope=titles|content&limit=` — matches con snippet y score simple.
@@ -173,7 +175,7 @@ internal/web        PRESENTATION: SPA Vue 3 compilada + go:embed; habla SOLO HTT
 ## Frontend (congelado)
 
 - Vue 3 + Vite + TypeScript strict. **Sin React, sin Electron, sin dependency zoo.**
-- vue-router: `/` (Home cockpit), `/project/:name`, `/note/*` (viewer), `/search`, `/diagnostics`.
+- vue-router: `/` (Home cockpit), `/project/*path` (identity = path codificado; el nombre nunca es clave de ruta), `/note/*path` (viewer), `/search`, `/diagnostics`.
 - Estado: composables module-scope + `fetch`; **sin Pinia en v0.1** (estado compartido mínimo: meta + cache de project list; si crece, se evalúa entonces).
 - Render Markdown: server-side (goldmark, § API); la SPA inserta HTML sanitizado, intercepta links internos y resalta el heading ancla. Sin parser markdown en el cliente.
 - Graph visualization: **deferred a F6** (los datos de links ya existen desde F1; nada se bloquea). Candidatos a evaluar entonces: canvas propio ligero vs librería force-graph; decisión en su momento.
@@ -184,7 +186,7 @@ internal/web        PRESENTATION: SPA Vue 3 compilada + go:embed; habla SOLO HTT
 - **Frontmatter malformado o incompleto:** nota sirve con body raw, sin proyección (no aparece en boards), diagnostic registrada. Nunca crash, nunca se oculta.
 - **Wikilink roto:** link renderizado como unresolved (estilo distinto), contado en diagnostics.
 - **Target ambiguo (nombres duplicados):** resolver shortest path (comportamiento Obsidian) y flag de ambigüedad en diagnostics.
-- **Nota cambia/desaparece durante indexación:** consistencia por snapshot — el index construye desde un walk atómico y sirve el snapshot anterior hasta el swap; el watcher hace debounce y re-scan incremental post-swap.
+- **Nota cambia/desaparece durante indexación:** el walk del filesystem **NO es atómico** — la semántica congelada es **best-effort scan + immutable snapshot + atomic publication/swap**: el scan puede observar el vault en distintos instantes, el snapshot se construye en memoria y se publica por swap completo (el punto de consistencia es la publicación, no el walk); los requests siempre ven un snapshot completo coherente, nunca estados intermedios. Sin locking ni infraestructura adicional; el watcher hace debounce y re-scan post-swap.
 - **Vault inaccesible al arranque:** el proceso falla con error claro (sin vault no hay producto). Vault inaccesible en runtime (unmount temporal): mantener último snapshot + health flag en `/meta` + retry en próximo trigger; degradación visible, no muerte silenciosa.
 - **Valores de enum desconocidos (status/owner/type legacy):** preservados raw, sin proyección parcial inventada, diagnostic.
 - **Identidad duplicada:** dos notas mismo nombre = ambigüedad documentada (ver arriba); nunca merge silencioso.
@@ -236,7 +238,7 @@ Formato de task: objetivo · allowed files · AC · tests · deps · non-goals. 
 
 **WP-B Parse core (T03–T05)** — R1.
 - **T05 fixtures primero:** objetivo = corpus sanitizado en `internal/parse/testdata/` (project con dataviewjs, area, resource con callouts, skill, agent_memory superseded, legacy malformada, embeds + heading links + alias links, nota con `#owner/*` tasks y estados 5). Allowed: `internal/parse/testdata/**`. AC: fixture vault reproduce los 8 casos de evidencia del muestreo. Deps: T01. Non-goals: parser.
-- **T03 Frontmatter parser:** objetivo = YAML front matter → map + envelope tipado, tolerante (malformado → raw + diagnostic, sin panic). Allowed: `internal/parse/**`, `internal/vault/**`. AC: 100% del corpus parsea sin panic; malformada produce diagnostic y body raw; NFC normalización de paths. Tests: fixtures golden. Deps: T05. Non-goals: YAML completo con anchors/aliases exóticos (fail-closed tolerante).
+- **T03 Frontmatter parser:** objetivo = YAML front matter → **map crudo con acceso tipado** (genérico, sin semántica Agents-OS), tolerante (malformado → raw + diagnostic, sin panic). El EntityEnvelope se proyecta en index (T07), no aquí. Allowed: `internal/parse/**`, `internal/vault/**`. AC: 100% del corpus parsea sin panic; malformada produce diagnostic y body raw; NFC normalización de paths. Tests: fixtures golden. Deps: T05. Non-goals: YAML completo con anchors/aliases exóticos (fail-closed tolerante).
 - **T04 Body extraction:** objetivo = goldmark AST → headings, tasks (5 estados + tags owner/type/flags + 📅), wikilinks (plain/alias/heading/embed), inline tags, callouts detectados, bloques de código (dinámicos marcados RAW). Allowed: `internal/parse/**`. AC: todas las estructuras del corpus extraídas con línea correcta; block refs → ignorados sin error (0 en vault). Tests: fixtures. Deps: T05, T03. Non-goals: render HTML (va con T11 render), math/mermaid (raw).
 
 **WP-C Index (T06–T09)** — R1.
