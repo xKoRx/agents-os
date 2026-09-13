@@ -55,6 +55,6 @@ tags:
 
 ## Resultado
 
-- **Outcome:** Corrección focalizada completada y commit/push pendientes hasta el cierre de la sesión.
+- **Outcome:** Corrección focalizada completada en commit `baa2e305` y push fast-forward verificado en la branch E-05.
 - **Rework posterior:** unknown
 - **Aprendizaje para comparar herramientas:** Un gate de lane histórico debe fijar explícitamente ambos extremos del rango; comparar contra HEAD convierte features futuras en falsos fallos.

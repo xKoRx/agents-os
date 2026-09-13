@@ -44,7 +44,7 @@ tags:
 
 ## Resolución aplicada
 
-- Evidencia repo `xKoRx/echo`, branch `feature/e05-analytics-convergence-a0`, tests SOURCE y regresión Go ejecutados el 2026-09-13.
+- Evidencia repo `xKoRx/echo`, branch `feature/e05-analytics-convergence-a0`, commit `baa2e305`, tests SOURCE y regresión Go ejecutados el 2026-09-13.
 
 ## Validación
 

@@ -47,7 +47,7 @@ Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scop
 ## 📊 Estado actual
 
 - **MANAGER SOURCE REVIEW PASS FUNCIONAL (2026-09-13).** No se detectó defecto material en analytics, migration 063, writer transaccional, stores, adapters/BWC ni Hasura gate; `HASURA_DEV_APPLY=NOT_RUN` sigue cubierto por la variante yaml+PG local de T19.
-- **IMPLEMENTATION READY FOR INDEPENDENT VERIFIER (2026-09-13, corrección pre-verifier).** Implementación completa @ `69eec0b9` en `origin/feature/e05-analytics-convergence-a0`; gates E-04 SOURCE corregidos por scoping histórico E-03 `fac48051` → E-04 `a99f9a63`, sin ampliar allowlist ni tocar semántica productiva. SOURCE E-05 y regresión Go relevantes PASS; `identity_bwc/run.sh` no ejecutable por ausencia de `psql` en PATH; no verifier lanzado, no merge, no CLOSED. Interlock: 063 sin merge/deploy hasta 062 de E-02 en `master`. Detalle en `specs/FEAT-ANALYTICS-CONVERGENCE-A0/VERIFICATION.md`.
+- **IMPLEMENTATION READY FOR INDEPENDENT VERIFIER (2026-09-13, corrección pre-verifier).** Implementación completa @ `baa2e305` en `origin/feature/e05-analytics-convergence-a0`; gates E-04 SOURCE corregidos por scoping histórico E-03 `fac48051` → E-04 `a99f9a63`, sin ampliar allowlist ni tocar semántica productiva. SOURCE E-05 y regresión Go relevantes PASS; `identity_bwc/run.sh` no ejecutable por ausencia de `psql` en PATH; no verifier lanzado, no merge, no CLOSED. Interlock: 063 sin merge/deploy hasta 062 de E-02 en `master`. Detalle en `specs/FEAT-ANALYTICS-CONVERGENCE-A0/VERIFICATION.md`.
 - **TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12, docs-only, v1.0.1).** SPEC/PLAN/TASKS/VERIFICATION @ `dd1f2da9a630bb3b6f49e585b7b433f05c841ef9` en `origin/feature/e05-analytics-convergence-a0` (base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Cero líneas en `v3/**`. Master intacto. NORMAL no lanzado.
 - **Reserva de migración:** E-02 owner de `062_journal_quarantine`. E-05 owner exclusivo de `063_analytics_convergence_a0`. 062 prohibida para E-05. 064+ fuera de scope. E-02 **no** bloquea development/implementation/verification. Merge/deploy de 063 espera 062 integrado en `master`.
 - **Baseline verificado:** `origin/master` no avanzó respecto a `a99f9a63`. S0 READ ONLY @ `91671f6f`. E-03 CONTRACT_PASS en master; tablas 061 **NOT_APPLIED** en Aranea PG. E-04 INTEGRATED; T21 no bloquea E-05.
@@ -59,7 +59,7 @@ Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scop
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 @ `dd1f2da9` | IMPLEMENTATION READY FOR INDEPENDENT VERIFIER @ `69eec0b9` · no verifier · no merge |
+| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 @ `dd1f2da9` | IMPLEMENTATION READY FOR INDEPENDENT VERIFIER @ `baa2e305` · no verifier · no merge |
 
 ## 🗺️ Source map (baseline `a99f9a63` + PG/Hasura)
 
