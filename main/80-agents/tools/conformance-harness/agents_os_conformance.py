@@ -775,7 +775,8 @@ def sc_cold_default(ctx: Ctx) -> Tuple[str, str, List[str]]:
     if ctx.machine_surface:
         surface = "; configs de maquina observadas: %s" % ", ".join(
             "%s aranea=%d meli=%d" % (c["surface"], c["aranea"], c["meli"]) for c in ctx.machine_surface)
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    state = "FAIL" if problems else "WARN"  # WARN declarado por diseno (spec section 5)
+    return state, (
         "cold start DEFAULT sin router (contrato literal del paso 6)"
         if not problems else "cold start DEFAULT violo el contrato",
         evidence + problems + ["WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente%s una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (COLD-DEFAULT observable_evidence)." % surface])
@@ -850,7 +851,8 @@ def sc_cold_aranea(ctx: Ctx) -> Tuple[str, str, List[str]]:
     problems += _assert_absent(not_load, s.all_opens(), evidence)
     evidence.append("estado: active_entity=%s active_domain=%s pack=%s" % (
         ent.get("title") if ent else None, s.active_domain, s.pack_files))
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    state = "FAIL" if problems else "WARN"  # WARN declarado por diseno (Hallazgo 7)
+    return state, (
         "cold start Aranea via area [[Echo]]: router aranea-agent-dev + aranea ops prefs" if not problems
         else "cold start Aranea violo el contrato (C10)",
         evidence + problems + [
@@ -930,15 +932,19 @@ def sc_warm_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
     pack_t1 = list(s.pack_files)
     s.turn = 2
     s.warm_turn({})
-    delta = s.retrieve("error")
+    candidates = s.retrieve("error")
     problems = _warm_no_base_reopen(s, 2, evidence)
-    if FURY_NOTE not in delta:
-        problems.append("el known-error del fury segment suffix no fue seleccionado como delta: %s" % delta)
-    if any(p in delta or p in s.opens_in_turn(2) for p in pack_t1):
+    if FURY_NOTE not in candidates:
+        problems.append("el known-error del fury segment suffix no fue seleccionado por el filtro de retrieval: %s" % candidates)
+    miss = s.open_delta(FURY_NOTE)  # cuerpo del delta declarado por el turno
+    if miss:
+        problems.append("delta declarado inexistente en disco: %s" % miss)
+    if any(p in candidates or p in s.opens_in_turn(2) for p in pack_t1):
         problems.append("recarga del pack de dominio en turno que pide un hecho (C06/C11)")
-    if any(p in delta or p in s.opens_in_turn(2) for p in (rules.ROUTERS["aranea"], rules.ROUTER_PREFS["aranea"][0])):
+    if any(p in candidates or p in s.opens_in_turn(2) for p in (rules.ROUTERS["aranea"], rules.ROUTER_PREFS["aranea"][0])):
         problems.append("pieza Aranea en turno Meli")
-    evidence.append("delta seleccionado (%d notas): %s" % (len(delta), ", ".join(delta) or "-"))
+    evidence.append("candidatos del filtro (%d): %s" % (len(candidates), ", ".join(candidates) or "-"))
+    evidence.append("cuerpo abierto (delta unico del turno): %s" % FURY_NOTE)
     evidence.append("estado: session_mode=%s active_entity=%s active_domain=%s sin cambio" % (
         s.session_mode, s.active_entity.get("title"), s.active_domain))
     return state_worst(["PASS"] if not problems else ["FAIL"]), (
@@ -958,16 +964,20 @@ def sc_warm_aranea(ctx: Ctx) -> Tuple[str, str, List[str]]:
     s.cold_start({"entity_title": "Echo Forge"})
     s.turn = 2
     s.warm_turn({})
-    delta = s.retrieve("continuity")
+    candidates = s.retrieve("continuity")
     problems = _warm_no_base_reopen(s, 2, evidence)
-    if MT5_NOTE not in delta:
-        problems.append("la continuidad activa del MT5 parser cert no fue seleccionada: %s" % delta)
-    for p in delta:
+    if MT5_NOTE not in candidates:
+        problems.append("la continuidad activa del MT5 parser cert no fue seleccionada por el filtro: %s" % candidates)
+    miss = s.open_delta(MT5_NOTE)  # cuerpo del delta declarado por el turno
+    if miss:
+        problems.append("delta declarado inexistente en disco: %s" % miss)
+    for p in candidates:
         if "rio" in p or "meli" in p.lower():
             problems.append("memoria Meli/RIO en turno Aranea: %s" % p)
-    if any(p in delta or p in s.opens_in_turn(2) for p in (rules.ROUTERS["meli"], rules.ROUTER_PREFS["meli"][0])):
+    if any(p in candidates or p in s.opens_in_turn(2) for p in (rules.ROUTERS["meli"], rules.ROUTER_PREFS["meli"][0])):
         problems.append("pieza Meli en turno Aranea")
-    evidence.append("delta seleccionado (%d notas): %s" % (len(delta), ", ".join(delta) or "-"))
+    evidence.append("candidatos del filtro (%d): %s" % (len(candidates), ", ".join(candidates) or "-"))
+    evidence.append("cuerpo abierto (delta unico del turno): %s" % MT5_NOTE)
     evidence.append("trigger del fixture: %s (vocabulario no canonico = WARN de LOAD-POLICY-VOCABULARY, no invalida este escenario)" % _load_policy_note(ctx.vault.frontmatter(MT5_NOTE)))
     return state_worst(["PASS"] if not problems else ["FAIL"]), (
         "turno warm Aranea: delta = continuidad activa Echo Forge; base intacta" if not problems
@@ -1113,9 +1123,10 @@ def _switch_from_default(ctx: Ctx, title: str, expected_domain: str, pack: List[
         problems.append("pack del dominio ajeno (%s) cargado" % other)
     evidence.append("transicion: active_entity none->%s; active_domain none->%s" % (title, s.active_domain))
     evidence.append("gate: %s" % s.gate_note)
+    state = "FAIL" if problems else "WARN"  # WARN de clasificacion de modo, por diseno
     warn = ("WARN declarado (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap "
             "('switches to a different entity') convergen en el mismo observable; ninguna autoridad fija la clasificacion del modo.")
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return state, (
         "resolucion tardia %s: gate aplicado, base intacta, sin re-ejecutar bootstrap" % title if not problems
         else "resolucion tardia desde DEFAULT violo el contrato",
         evidence + problems + [warn])

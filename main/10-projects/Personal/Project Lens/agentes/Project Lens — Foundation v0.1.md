@@ -70,7 +70,7 @@ cssclasses:
 ## V0.1 committed scope
 
 - F1 walking skeleton: scan+parse+index del vault real → API meta/notes/render → SPA mínima renderizando una nota real con links y backlinks end-to-end.
-- F2 cockpit de proyectos: `/projects` + `/project/{name}` con rollup por área/owner/estado/prioridad, detección de huérfanos, detail con task board (5 estados: todo/wip/review/done/canceled) y subproyectos.
+- F2 cockpit de proyectos: `/projects` + `/project/*path` con rollup por área/owner/estado/prioridad, detección de huérfanos, detail con task board (5 estados: todo/wip/review/done/canceled) y subproyectos.
 - F3 índice global de tareas (filtros owner/state/area/type/project) + panel de backlinks + áreas.
 - F4 búsqueda (títulos + substring de contenido en memoria) + página de diagnósticos.
 - F5 hardening: watcher incremental (fsnotify, debounce; scan completo sigue siendo el baseline de correctness), endpoint de rebuild, aristas visibles (links ambiguos/rotos), empaquetado `make build` binario único.
