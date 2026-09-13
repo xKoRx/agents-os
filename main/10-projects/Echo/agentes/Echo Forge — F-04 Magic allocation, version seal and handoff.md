@@ -107,6 +107,7 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 | D15 hashes | TECHNICAL_RESOLUTION | keep HashIdentity on Apply Evaluation internals; S0 recipes only on seal/handoff/allocation_ref | FR-4 | 1 |
 | D16 compile_evaluation_ref | TECHNICAL_RESOLUTION | Autoridad = `domain.EvaluationRef` de un compile StageExecution `mt5_compiler@mt5-compile.v1` persistido en Mongo EvaluationEvidence + `sqx.stage_execution_results`. Produce sólo tras compile físico success verificado. Cardinalidad 1. Recovery por ref exacta / `LoadEvaluation`, nunca latest. MIGRATION 017 NO. | Durable Foundation; `persistMT5ReconcileV1` analog; this TOP 2026-09-12 | 2 |
 | D17 C4 allocation inputs | TECHNICAL_RESOLUTION | Instrument = `sqx.strategies.instrument`; direction = `sqx.strategies.direction`; mapper `MagicV1DirectionFromStrategy`; catalog `sqx.magic_instruments`; CanonicalStrategyID opaque never parsed; replay conflict via `DecodeMagicV1` III+D; no new migration. | PHYSICAL `d645ed6` / F-01 `0509342`; this TOP 2026-09-12 | 3 |
+| D18 C5 manifest identity | TECHNICAL_RESOLUTION | HandoffStrategy + MemberProof instrument/timeframe/direction from `sqx.strategies` by StrategyRef; CanonicalStrategyID opaque; OperationSide LONG/SHORT via C4 mapper; BOTH fail closed (S0 has no BOTH; Echo unchanged); requested/observed = same durable row; WorkflowSpec is exact-match gate not authority; no SQX/MQ5 instrument/TF readback; StrategyIdentityView not extended; migration NONE. | `forge_seal_handoff.go` @ `bba833d`; S0 `91671f6f` trading.go/promotion.go; this TOP 2026-09-12 | 4 |
 
 ## Technical resolution — compile Evaluation (frozen 2026-09-12)
 
@@ -191,7 +192,14 @@ Host mínimo para NORMAL cert: (1) SQX/sqcli con licencia válida para exporter 
 
 ## Planned diff
 
-Fase 1 (T1.x) **done** en `ea8be76`. Fase 2 (T2.x) **done** en `d645ed6` salvo PHYSICAL/golden. **C4 MUST (NORMAL): DONE en `bba833d` (2026-09-12):**
+Fase 1 (T1.x) **done** en `ea8be76`. Fase 2 (T2.x) **done** en `d645ed6` salvo PHYSICAL/golden. **C4 MUST (NORMAL): DONE en `bba833d` (2026-09-12).** **C5 MUST (NORMAL):**
+
+- create `StrategyManifestIdentityReader` on control plane: `SELECT canonical_strategy_id, instrument, direction, timeframe FROM sqx.strategies WHERE id = $1`; do **not** extend `StrategyIdentityView`
+- modify `forge_seal_handoff.go` — delete `strategyIdentityFromCanonicalID`; load durable row; map OperationSide; spec exact-match gate; requested/observed from row
+- modify `generic_workflow.go` — pass `spec.Direction` as request gate only
+- delete `ParseMagicV1AllocationIdentity` / `isInstrumentShapedToken` once zero consumers
+- tests C5.5; SOURCE grep C5.6
+- no new migration; do not modify `015_*.sql` / `016_*.sql`; do not change Echo S0; do not reopen C4 allocation
 
 - modify `sqx/core/domain/magic_v1.go` — retire `ParseMagicV1AllocationIdentity`; add `MagicV1DirectionFromStrategy` ✅ (parser retirado del allocation path; función preservada sólo para el consumer de seal documentado en C4.6)
 - modify `sqx/adapters/registry-postgres/magic_v1.go` — `AllocateMagicV1` SELECT instrument/direction from `sqx.strategies`; replay conflict via `DecodeMagicV1` ✅
@@ -228,9 +236,9 @@ F-01 CanonicalStrategyID/publication. F-02 policy `finalist_promotion@2.0.0`. F-
 
 ## Execution sequence
 
-T1.1–T1.18 **done**. T2.1–T2.10 **done**. **C4.1–C4.6 DONE (2026-09-12, `bba833d`).** Siguiente: **manager source review of C4 implementation.** T2.11 golden capture. T2.12 PHYSICAL. T2.13 cross-lane T21/AC-37 (E-04 runtime one-shot separado).
+T1.1–T1.18 **done**. T2.1–T2.10 **done**. **C4.1–C4.6 DONE (2026-09-12, `bba833d`) CLOSED.** Siguiente: **NORMAL C5.1–C5.6.** T2.11 golden capture. T2.12 PHYSICAL. T2.13 cross-lane T21/AC-37 (E-04 runtime one-shot separado).
 
-C4.3 after C4.2 after C4.1. C4.4 ∥ C4.1. C4.5 after C4.1–C4.4. C4.6 after C4.5. T2.11 after C4 + physical-capable host. T2.13 after T2.11 golden **and** separate E-04 runtime one-shot.
+C5.2 after C5.1. C5.3 after C5.2. C5.4 after C5.2. C5.5 after C5.1–C5.4. C5.6 after C5.5. T2.11 after C5 + physical-capable host. T2.13 after T2.11 golden **and** separate E-04 runtime one-shot.
 
 ## Dependencies
 
@@ -277,6 +285,12 @@ F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E
 > - [x] C4.4 AllocatedEffectiveConfig: TaskSpec magic_number is not requested #owner/agent #type/dev #area/echo
 > - [x] C4.5 C4 contract/concurrency tests including opaque ID and cohort N `-race` #owner/agent #type/dev #area/echo
 > - [x] C4.6 SOURCE grep: no parse of CanonicalStrategyID for magic semantics #owner/agent #type/dev #area/echo
+> - [ ] C5.1 LoadStrategyManifestIdentity from sqx.strategies by StrategyRef #owner/agent #type/dev #area/echo
+> - [ ] C5.2 replace strategyIdentityFromCanonicalID; OperationSide from durable direction; BOTH fail closed #owner/agent #type/dev #area/echo
+> - [ ] C5.3 requested/observed from durable row; WorkflowSpec exact-match gate #owner/agent #type/dev #area/echo
+> - [ ] C5.4 retire ParseMagicV1AllocationIdentity (zero consumers) #owner/agent #type/dev #area/echo
+> - [ ] C5.5 C5 contract tests including opaque ID, decoy string, LONG/SHORT/BOTH `-race` #owner/agent #type/dev #area/echo
+> - [ ] C5.6 SOURCE grep: no CanonicalStrategyID business-token parser on handoff path #owner/agent #type/dev #area/echo
 > - [ ] T2.11 authentic Forge golden capture #owner/agent #type/dev #area/echo
 > - [ ] T2.12 PHYSICAL certification host capabilities #owner/agent #type/dev #area/echo
 > - [ ] T2.13 cross-lane smoke Echo T21/AC-37 #owner/agent #type/dev #area/echo
@@ -651,19 +665,77 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 - **DONE:** SOURCE PASS documented.
 - **Deps:** C4.5.
 
+### C5.1 LoadStrategyManifestIdentity
+
+- **Modelo:** NORMAL
+- **Archivos/símbolos:** nueva capability `StrategyManifestIdentityReader.LoadStrategyManifestIdentity(ctx, StrategyRef)` en `sqx/core/capabilities`; impl `sqx/adapters/registry-postgres` `SELECT canonical_strategy_id, instrument, direction, timeframe FROM sqx.strategies WHERE id = $1`. **No** extender `StrategyIdentityView`.
+- **Cambio:** missing row → not found / `ErrInvalidArguments`; empty instrument|direction|timeframe → `ErrContractConflict`; canonical row ≠ member carrier → `ErrContractConflict`. TrimSpace only.
+- **Authority:** D18; same row as C4 `magicV1StrategySemantics` plus timeframe.
+- **Failure/retry:** fail closed non-retryable; no manifest.
+- **Tests:** opaque canonical + explicit row XAUUSD/L/H1 loads those values; missing row fails; empty timeframe fails.
+- **DONE:** public handoff path never splits CanonicalStrategyID.
+- **Stop:** new column/migration → PLAN_CONFLICT. Extending StrategyIdentityView → PLAN_CONFLICT.
+
+### C5.2 OperationSide from durable direction
+
+- **Modelo:** NORMAL
+- **Archivos:** `sqx/activities/worker/forge_seal_handoff.go` delete `strategyIdentityFromCanonicalID`; type-assert the new reader; map via `MagicV1DirectionFromStrategy` then 1→`contracts.SideLong`, 2→`contracts.SideShort`, 3→ conflict. Never default LONG.
+- **Cambio:** BOTH/unknown fail closed before `BuildHandoffManifest`.
+- **Authority:** D18; S0 `OperationSide` @ `91671f6f`.
+- **Tests:** L and LONG → LONG; S and SHORT → SHORT; B and BOTH → no manifest/no POST; empty/X → conflict.
+- **DONE:** grep `strategyIdentityFromCanonicalID` = 0.
+- **Deps:** C5.1.
+- **Stop:** map BOTH to LONG/SHORT or change Echo → PLAN_CONFLICT.
+
+### C5.3 requested/observed + spec gate
+
+- **Modelo:** NORMAL
+- **Archivos:** `forge_seal_handoff.go`; `sqx/workflows/generic_workflow.go` `runForgeSealHandoff` pass `spec.Direction` as `RequestedDirection` (gate only).
+- **Cambio:** wire requested/observed/strategy identity = durable row values after TrimSpace. Request fields must equal the row exactly (no EqualFold). Empty spec fields fail closed.
+- **Authority:** S0 G11/G12 exact equality; D18.
+- **Tests:** spec XAUUSD/H1/L + row EURUSD/M15/S → conflict; matching spec emits row values on all three surfaces; decoy canonical does not change observed.
+- **DONE:** G11/G12 still enforced by `manifest.Validate`; producer does not hide drift.
+- **Deps:** C5.2.
+
+### C5.4 retire ParseMagicV1AllocationIdentity
+
+- **Modelo:** NORMAL
+- **Archivos:** `sqx/core/domain/magic_v1.go` delete `ParseMagicV1AllocationIdentity` and `isInstrumentShapedToken`; update tests that still call them.
+- **Cambio:** zero remaining consumers including handoff.
+- **Authority:** D17 leftover + D18.
+- **DONE:** `rg ParseMagicV1AllocationIdentity` = 0 in `sqx/`.
+- **Deps:** C5.2.
+- **Stop:** keep the parser “just in case” → PLAN_CONFLICT.
+
+### C5.5 C5 tests
+
+- **Modelo:** NORMAL
+- **Archivos:** `forge_seal_handoff_test.go` (replace `sealTestCanonicalID = "XAUUSD_L_H1_..."` with opaque F-01-shape id + durable row fixture); registry-postgres identity reader tests; keep G22 assembler tests.
+- **Cambio:** cover SPEC C5 gates. `go test -race` on `./sqx/activities/worker` focused C5 + `./sqx/core/forge` + `./sqx/adapters/registry-postgres` new cases. Pre-existing red sets must stay identical to `bba833d`.
+- **Authority:** SPEC C5 gates.
+- **DONE:** opaque success; decoy override fails; LONG/SHORT/BOTH; mismatch fail closed; Encode() body; G22/G24 intact.
+- **Deps:** C5.1–C5.4.
+
+### C5.6 SOURCE grep C5
+
+- **Modelo:** NORMAL
+- **Cambio:** grep F-04 handoff/seal path: no `strategyIdentityFromCanonicalID`; no `ParseMagicV1AllocationIdentity`; no `strings.Split` of CanonicalStrategyID for instrument/direction/timeframe; no latest; no Echo SQL writes.
+- **DONE:** SOURCE PASS documented.
+- **Deps:** C5.5.
+
 ### T2.11 authentic golden capture
 
 - **Modelo:** NORMAL
 - **Cambio:** exportar preimages reales (Decision V2, StrategyVersion, allocation, MQ5/EX5/log, manifest bytes+digest) versionados. No corpus S0. No builder sintético.
 - **DONE:** registro golden con hashes; `FORGE_GOLDEN_FIXTURE_PENDING=NO` sólo con bytes reales.
-- **Deps:** C4 + T2.8. PHYSICAL may gate this.
+- **Deps:** C5 + T2.8. PHYSICAL may gate this.
 
 ### T2.12 PHYSICAL
 
 - **Modelo:** NORMAL (one-shot physical **después** de C4, no esta sesión)
 - **Cambio:** none architecture. Host: sqcli licencia válida + MetaEditor64 `/portable` + PG/Mongo/object store. Candidato mínimo XAUUSD dirección única, promotion 2.0.0, robust selection=1 (cert only). License expired → STOP owner. No viewers-as-workers.
 - **DONE:** evidencia física de allocation V1 + stamp+compile+persist EvaluationRef + seal/handoff. Sin host: `PHYSICAL: BLOCKED — entorno`, no fingir PASS.
-- **Deps:** C4.1–C4.6 + T2.3.
+- **Deps:** C5.1–C5.6 + T2.3.
 
 ### T2.13 cross-lane T21/AC-37
 
@@ -674,6 +746,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 
 ## 📆 Bitácora
 
+- **2026-09-12 (TOP F-04 C5 MANIFEST IDENTITY CONTRACT CLOSED).** Manager review post-C4: `forge_seal_handoff.go` todavía parsea CanonicalStrategyID (`strategyIdentityFromCanonicalID` → `ParseMagicV1AllocationIdentity` + Split timeframe). C4.1–C4.6 permanecen CLOSED @ `bba833d`. D18: instrument/timeframe/direction del manifiesto = `sqx.strategies` por StrategyRef; S0 OperationSide LONG/SHORT; BOTH fail closed sin cambiar Echo y sin mapear a LONG/SHORT; requested/observed = misma fila; WorkflowSpec gate exacto (no EqualFold); no readback SQX/MQ5 de instrument/TF; StrategyIdentityView no se extiende; `MIGRATION: NONE`. Tareas C5.1–C5.6 To Do. T2.11–T2.13 OPEN. F-04 no physical-ready. Veredicto `READY FOR NORMAL — F-04 MANIFEST IDENTITY CONTRACT CLOSED`. SESSION CLOSE esta sesión.
 - **2026-09-12 (NORMAL C4.1–C4.6, implementación).** Baseline verificado: `origin/feature/f04-magic-version-handoff` = `d645ed6` exacto (baseline frozen pre-C4; branch local `9fad768` simplemente behind, sin commits post-baseline en ningún lado); dirty foráneo documentado (`phase4_performance.json` en checkout principal; `deploy/manifest.json`+`input/example/config.json` en worktree físico `symphony-f04-t2`) preservado sin tocar; worktree aislado nuevo `symphony-f04-c4` detached @ `d645ed6` CLEAN. Implementado (commit único `bba833d7b57c767d6ce5ebfeae7a7b71b5785782`, pushed fast-forward `d645ed6..bba833d`): (C4.1) `domain/magic_v1.go` — `MagicV1DirectionFromStrategy` (TrimSpace+ToUpper; L|LONG→1, S|SHORT→2, B|BOTH→3; resto fail closed `ErrInvalidMagicNumber`, nunca default LONG), `MagicV1DirectionCode` delega al mapper (un solo vocabulario); `ParseMagicV1AllocationIdentity` retirado del allocation path con doc de residual. (C4.2) `registry-postgres/magic_v1.go` — `AllocateMagicV1` nuevo step 0 `SELECT canonical_strategy_id, instrument, direction FROM sqx.strategies WHERE id = $1`: missing row → `ErrInvalidArguments`; instrument vacío → `ErrContractConflict`; canonical row ≠ argumento → `ErrContractConflict`; direction → mapper fail closed; instrument → `InstrumentCode` catálogo exacto TrimSpace-only (alias/lowercase no se reparan → `ErrInstrumentCodeMissing`); `magicV1CandidateSource` lleva code pre-resuelto; entry unexported `allocateMagicV1` eliminada. (C4.3) replay/conflict gate post-`AllocateMagic` cubre replay-first, identity-race y UNKNOWN_COMMIT reconciliation: `DecodeMagicV1(record.Magic)` vs code+direction corrientes y `record.CanonicalStrategyID` vs argumento → `ErrContractConflict` terminal (no Next, no UPDATE); C1 UNKNOWN_COMMIT/identity-race/(ns,magic)-collision intactos. (C4.4) `binding/contract.go` `AllocatedEffectiveConfig` — eliminado el gate `requested != allocated`; TaskSpec magic (nil, 888111, 11111, cualquiera) se sobrescribe con allocated; legacy `EffectiveConfig` byte-exact intacto; `ValidateWorkflowSpec` sin cambios. Tests (C4.5): fixtures `f04Strategy(instrument, direction)` explicitan la fila; `f04V1Canonical` retirado como authority (ids opacos F-01-shape `<token>_<hash>`); decoy test `XAUUSD_L_H1_decoy` + fila EURUSD/S → magic `26090032001` (la fila gana sobre el string); replay sin incremento; month-boundary conserva magic; instrument drift y direction drift → `ErrContractConflict` sin reasignar ni consumir ordinal; missing row/canonical drift/direction X o vacía/instrument vacío fail closed sin filas ni contadores; cohort N=5 multi-instrumento multi-dirección → 5 magics distintos, contador compartido `(YYMM,instrument)`, direcciones no particionan; concurrentes 3 direcciones → secuencias {1,2,3} y 8 workers únicos (`-race`); worker: TaskSpec 888111/11111/42/nil → stamp allocated; reserved nunca asignado. **Comandos y resultados:** `go build ./sqx/{core,adapters,activities,workflows,cmd}/...` + `go vet` (4 paquetes) OK; `go test -count=1 -race ./sqx/core/domain ./sqx/adapters/apply-selected-run/binding` PASS (1.2s); `go test -count=1 -race -run TestMagicV1 ./sqx/adapters/registry-postgres` PASS (448s); `go test -count=1 -race -run 'TestAllocatedEffectiveConfig|TestResolveEffectiveConfig' ./sqx/activities/worker` PASS; paquete completo registry-postgres: 4 fallos = set histórico documentado; activities/worker: 16 fallos idénticos a baseline `d645ed6` (diff vacío); workflows: 21=21 idéntico (solo timing); gates `-race` F-04 (forge, echo-handoff, mt5-compile, capabilities, runtime, magic-readback, migrations) PASS. **C4.6 negative proof:** grep productivo `ParseMagicV1AllocationIdentity` → sólo definición domain + `forge_seal_handoff.go:544` (`strategyIdentityFromCanonicalID`, bloque de identidad del manifest, NO allocation); allocation path (registry magic_v1.go, magic_allocation.go, binding contract.go, durable_apply_selected_run.go) con cero referencias y cero Split semántico del canonical; sin latest/MAX+1/hostname/Echo-SQL/selection=1 en el path. **RESIDUAL FLAGGEADO para manager:** el parser sobrevive con ese único consumer no-allocation porque `forge_seal_handoff.go` está fuera del scope C4 autorizado y su corrección exige decisiones no frozen (fuente de observed timeframe/side del manifest); con ID F-01 opaco el seal falla cerrado (fail-closed, sin datos falsos), no corrompe. MIGRATION: NONE — 015/016 byte-untouched, 017 inexistente. F-01/F-02/F-03/Echo/adaptive/mt5-binding untouched. Sin rollout, sin release, sin deploy, sin physical, sin golden, sin merge a master. Veredicto: **READY FOR MANAGER REVIEW — F-04 C4 IMPLEMENTED**; siguiente acción: manager source review of C4 implementation.
 - **2026-09-12 (TOP F-04 C4 CONTRACT CLOSED).** Inspección dirigida `d645ed6` + F-01 `0509342` + Magic V1 `ea8be76`. Root cause: `ParseMagicV1AllocationIdentity` + `AllocateMagicV1` parsean CanonicalStrategyID; F-01 ID es opaco; `sqx.strategies.instrument/direction` ya son durables (AdoptStrategy ← WorkflowSpec). D9 corregido: TaskSpec `magic_number` es stamp legado, no requested. Replay conflict via DecodeMagicV1 sin migration nueva. Multi-strategy soportado; robust selection=1 sólo receta de cert. E-04 T2.13 registrado como one-shot separado. Veredicto `READY FOR NORMAL — F-04 C4 CONTRACT CLOSED`. SESSION CLOSE esta sesión.
 - **2026-09-12 (TOP F-04 C4 — sesión abierta).** One-shot independiente TOP CONTRACT/PLANNING. Alcance: resolver el defecto físico `ParseMagicV1AllocationIdentity` vs CanonicalStrategyID opaco F-01; congelar autoridades explícitas de instrument/direction/requested vs allocated; NO implementar source, NO deploy, NO physical, NO merge, NO tocar Echo. Baseline inspeccionado: Symphony `d645ed6c2f438995d636a8213b1e4a3f5f26cbea`. T2.11/T2.12/T2.13 permanecen OPEN.
@@ -694,14 +767,14 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 
 ## 🧭 Decisiones
 
-Ver Decision register. D16 compile Evaluation **frozen**. D17 C4 allocation inputs **frozen**. D9 corrected. **C4.1–C4.6 implementados (`bba833d`) — pendiente manager source review;** T2.11–T2.13 siguen OPEN.
+Ver Decision register. D16 compile Evaluation **frozen**. D17 C4 allocation inputs **frozen**. D18 C5 manifest identity **frozen**. **C4.1–C4.6 CLOSED (`bba833d`). C5 CONTRACT CLOSED — READY FOR NORMAL;** T2.11–T2.13 siguen OPEN; F-04 no physical-ready.
 
 ### Acceptance gates T2
 
 | Gate | Owner | Pass when |
 |---|---|---|
-| SOURCE | NORMAL | grep F-04: no latest, no SHA-as-EvaluationRef, no Echo SQL, no HashIdentity on S0 recipes, persist not on mt5-queue |
-| CONTRACT | NORMAL | compile Evaluation identity/replay/conflict; Complete cardinality 1; assembler sin eval no sella; G22; fakeconsumer intacto |
+| SOURCE | NORMAL | grep F-04: no latest, no SHA-as-EvaluationRef, no Echo SQL, no HashIdentity on S0 recipes, persist not on mt5-queue; C5: no CanonicalStrategyID business-token parser on handoff path |
+| CONTRACT | NORMAL | compile Evaluation identity/replay/conflict; Complete cardinality 1; assembler sin eval no sella; G22; fakeconsumer intacto; C5 identity from durable row |
 | CONCURRENCY | NORMAL | same StageExecution concurrent persist converges; distinct content CONTRACT_CONFLICT; `-race` |
 | MIGRATION | NORMAL | 017 absent; 015/016 untouched |
 | PHYSICAL | NORMAL | stamp+compile+persist EvaluationRef en host con sqcli+MetaEditor; license expired → STOP owner; sin host = BLOCKED entorno |
