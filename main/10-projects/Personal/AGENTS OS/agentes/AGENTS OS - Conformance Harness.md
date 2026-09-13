@@ -117,7 +117,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 ## 📆 Bitácora
 
-- **2026-09-12** — Proyecto creado como único planificador durable. Baseline `a6a503f`. Bootstrap ejecutado; se arrancan auditorías A/B/C como subagents paralelos con artifacts en `40-archive/agents-os-conformance-harness/artifacts/`.
+- **2026-09-12** — B (Domain Isolation Auditor) completó: 17 hallazgos con evidencia en `80-agents/tools/conformance-harness/artifacts/domain-isolation-audit.md`. Claves: gate es prompt-discipline sin enforcement mecánica; MCPs `aranea-*` visibles en toda sesión (config a nivel máquina, fuera del vault); DEFAULT no neutral por cláusula de evidencia de superficie; sin mecanismo de unload; nota VPN cross-domain sin `area` resoluble; `when_echo_forge_loaded` no canónico; drift de `area` en memoria activa. A relanzado tras límite de concurrencia del entorno (1 subagent a la vez); C en cola.
+- **2026-09-12** — Proyecto creado como único planificador durable. Baseline `a6a503f`. Bootstrap ejecutado; auditorías A/B/C como subagents con artifacts en `80-agents/tools/conformance-harness/artifacts/`.
 
 ## 🧭 Decisiones
 
