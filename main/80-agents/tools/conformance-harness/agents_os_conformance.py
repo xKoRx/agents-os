@@ -1572,7 +1572,6 @@ def run(args: argparse.Namespace) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]
     # Nota: un run --scenario <ID> es un run dirigido por el operador (spec
     # section 8) y no aplica el corte por FAIL-L0; los runs full y --layer
     # siempre aplican el gate de la spec section 3.
-    gate_failed: List[str] = []
 
     results: List[Dict[str, Any]] = []
     if not marker_ok:
@@ -1637,6 +1636,8 @@ def run(args: argparse.Namespace) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]
         "git_head": git_head(root),
         "label": "baseline-only (spec sections 1 y 9); sin optimizacion ni gates",
     }
+    levels = {lvl: [s[0] for s in SCENARIOS if s[1] == lvl] for lvl in ("L0", "L1", "L2")}
+    levels["L0"] = [ANCHOR_CHECK_ID] + levels["L0"]
     doc = {
         "run": {
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -1647,8 +1648,7 @@ def run(args: argparse.Namespace) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]
             "no_live": bool(args.no_live),
         },
         "baseline": baseline["git_head"],
-        "levels": {lvl: [s[0] for s in SCENARIOS if s[1] == lvl] for lvl in ("L0", "L1", "L2")},
-        "scenarios": results,
+        "levels": levels,        "scenarios": results,
         "counts": counts,
         "context_baseline": baseline["context_baseline"],
     }
