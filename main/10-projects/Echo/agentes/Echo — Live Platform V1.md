@@ -196,7 +196,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-05 Analytics convergence A0
 
-- **ID / status / size:** E-05 · TOP PLANNING READY FOR MANAGER REVIEW · MEDIUM
+- **ID / status / size:** E-05 · TOP CORRECTION READY FOR MANAGER REVIEW · MEDIUM
 - **Objective:** Operaciones/scopes/sets/metrics canónicos en **paths nuevos**. Lab legacy vía adapters/proyecciones. No big bang.
 - **Capability unlocked:** métricas nuevas con key+basis+unit+formula.
 - **Why:** mismo nombre ≠ misma semántica.
@@ -204,7 +204,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **In scope:** MetricSet/Scope/R explícito; G16–18/G26–29/G32–33/G36 por borde; adapters Forge/Echo.
 - **Out of scope:** recompute histórico masivo; UI nueva como autoridad; ML.
 - **Dependencies:** E-01. No exige E-01+E-04 para todos los bordes.
-- **Parallel:** E-03/E-04.
+- **Parallel:** E-03/E-04; E-02 development/implementation/verification en paralelo. Merge/deploy de 063 serial tras 062 en `master`.
 - **Hypotheses:** projections legacy identificadas bastan.
 - **Risks:** win_rate % vs ratio; R pips vs money silencioso.
 - **Output authority:** writers nuevos canónicos; readers legacy adaptados.
