@@ -74,7 +74,7 @@ Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scop
 v3/sdk/analytics/{adapter,calculator,formulas}
 v3/sdk/postgres/canonical_{scope,tradeset,metricset}_store.go
 v3/sdk/postgres/canonical_writer.go
-v3/sdk/postgres/migrations/062_analytics_convergence_a0.{up,down}.sql
+v3/sdk/postgres/migrations/063_analytics_convergence_a0.{up,down}.sql
 echo.canonical_scopes + canonical_trade_sets + canonical_metric_sets
 echo.v_canonical_{trade,metric}_sets
 v3/lab-worker/cmd/lab-canonical-a0
@@ -87,15 +87,15 @@ Ningún cambio a `v3/sdk/contracts/**`. Ningún rewrite Lab. Ningún score/ranki
 
 Ver TASKS.md. Paralelo: T01 ∥ T05 ∥ T06. Writer T13 tras stores+calculator. T21 cert.
 
-No ejecutar E-02/E-04/E-06/E-09/E-10 aquí.
+No ejecutar E-02/E-04/E-06/E-09/E-10 aquí. E-02 no bloquea development/implementation/verification. Merge/deploy de 063 espera 062 de E-02 en `master`.
 
 ## Allowed scope NORMAL
 
-Exacto PLAN.md. Development en `feature/e05-analytics-convergence-a0` desde `a99f9a63`. Worktree `/tmp/echo-e05-analytics-a0` (no el checkout E-02). Prohibido `origin/master` push/merge. Prohibido `v3/sdk/contracts/**`. Prohibido 061. Prohibido Aranea PROD como DB de test.
+Exacto PLAN.md. Development en `feature/e05-analytics-convergence-a0` desde `a99f9a63`. Worktree `/tmp/echo-e05-analytics-a0` (no el checkout E-02). Prohibido `origin/master` push/merge de 063 mientras 062 de E-02 no esté en `master`. Prohibido `v3/sdk/contracts/**`. Prohibido 061. Prohibido 062 (reserva E-02). 063 exclusiva E-05. 064+ fuera de scope. Prohibido Aranea PROD como DB de test.
 
 ## 📦 Work packages
 
-- **WP-A Persistencia** T01–T04, T16. Migración 062 + stores write-once.
+- **WP-A Persistencia** T01–T04, T16. Migración 063 + stores write-once.
 - **WP-B Adapters** T05, T11, T12. Lab operations/snapshots + journal provenance.
 - **WP-C Calculator** T06–T10, T20. Fórmulas §9; E-09 keys fail-closed.
 - **WP-D Writer/job** T13–T14. Dual-run; no ReplaceByScope.
@@ -110,7 +110,7 @@ Exacto PLAN.md. Development en `feature/e05-analytics-convergence-a0` desde `a99
 
 ## Migrations
 
-Una: `062_analytics_convergence_a0`. Independiente de 061. Gate up/down/up en PG descartable. No apply PROD.
+Una: `063_analytics_convergence_a0` (exclusiva E-05). Independiente de 061. `062_journal_quarantine` es owner/reserva de E-02; E-05 no la toca. 064+ fuera de scope. Gate up/down/up en PG descartable. No apply PROD. Merge/deploy de 063 espera 062 de E-02 en `master`.
 
 ## Dependency delta
 
@@ -126,11 +126,11 @@ SPEC AC-01…AC-23. SOURCE + CONTRACT + PG REAL + HASURA DEV + BWC. Ver VERIFICA
 
 ## Blockers
 
-Ninguno para development. E-02 PARKED no bloquea. E-04 T21 no bloquea. 061 NOT_APPLIED en Aranea no bloquea (A0 sin FK). Kafka NOT_OBSERVED no bloquea. Apply 062 a Aranea es deuda ops, no gate CONTRACT.
+Ninguno para development, implementation ni verification. E-02 no bloquea esos tres. E-04 T21 no bloquea. 061 NOT_APPLIED en Aranea no bloquea (A0 sin FK). Kafka NOT_OBSERVED no bloquea. Apply 063 a Aranea es deuda ops, no gate CONTRACT. **Integration/deploy interlock:** no mergear/deployar 063 mientras 062 de E-02 no esté integrado en `master`.
 
 ## Handoff requirements
 
-Manager aprueba planning → NORMAL implementa T01–T21 en worktree de esta branch desde `a99f9a63`. No usar checkout `feature/e02-control-safety-journal-recovery`. No merge master. No E-06.
+Manager aprueba planning v1.0.1 → NORMAL implementa T01–T21 en worktree de esta branch desde `a99f9a63`. No usar checkout `feature/e02-control-safety-journal-recovery`. Development no espera E-02. No merge/deploy 063 sin 062 de E-02 en `master`. No E-06.
 
 ## Closure conditions
 
@@ -144,8 +144,8 @@ _No aplica — hijo de implementación de E-05; no crea Integration ni más hijo
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-ANALYTICS-CONVERGENCE-A0/TASKS.md`. Aquí sólo work packages. NORMAL no arranca hasta manager review.
-> - [r] WP-TOP SPEC/PLAN/TASKS/VERIFICATION v1.0.0 + branch docs-only #owner/agent #type/dev #area/echo
-> - [ ] WP-A Persistencia 062 + stores write-once #owner/agent #type/dev #area/echo
+> - [r] WP-TOP SPEC/PLAN/TASKS/VERIFICATION v1.0.1 + branch docs-only (reserva 063) #owner/agent #type/dev #area/echo
+> - [ ] WP-A Persistencia 063 + stores write-once #owner/agent #type/dev #area/echo
 > - [ ] WP-B Adapters Lab/journal #owner/agent #type/dev #area/echo
 > - [ ] WP-C Calculator fórmulas A0 #owner/agent #type/dev #area/echo
 > - [ ] WP-D Writer + lab-canonical-a0 #owner/agent #type/dev #area/echo
@@ -169,12 +169,13 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-12** — TOP CORRECTION v1.0.1 reserva de migración @ `dd1f2da9`: E-02 owner de `062_journal_quarantine`; E-05 cambia a `063_analytics_convergence_a0` exclusiva; 064+ fuera de scope. E-02 no bloquea development/implementation/verification. Merge/deploy de 063 serializa tras 062 en `master`. Semántica analítica 1.0.0 intacta. Docs-only; master intacto `a99f9a63`. Puente E-05 permanece Review.
 - **2026-09-12** — TOP planning one-shot: subproyecto materializado; SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `be87f11e` pusheados a `origin/feature/e05-analytics-convergence-a0` desde `a99f9a63` (docs-only; master intacto). Source Lab + S0 + Hasura/PG Aranea READ reconciliados. A0 = paths nuevos + adapters; no big bang; no SQ/EF. Puente E-05 → Review. No NORMAL.
 
 ## 🧭 Decisiones (ejecución, no semántica nueva)
 
 - Hijo de implementación de E-05; ownership sigue en [[Echo — Live Platform V1]], no Integration.
-- Persistencia mínima: 3 tablas + 2 vistas; Metric no es entidad global.
+- Persistencia mínima: 3 tablas + 2 vistas; Metric no es entidad global. Migración `063_analytics_convergence_a0` exclusiva E-05; `062_journal_quarantine` reserva E-02; 064+ fuera de scope.
 - Sin FK a 061; refs S0 en JSON.
 - Calculator Go; no SQL como autoridad de fórmula; no frontend.
 - R AUTO / edge_score / INNER JOIN / version NULL → adapter-only.
@@ -193,7 +194,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ### Backlog de ideas
 
-- Apply 062 a Aranea DEV es deuda ops post-verifier, no gate de merge.
+- Apply 063 a Aranea DEV es deuda ops post-verifier, no gate de CONTRACT; el apply/deploy real espera 062 de E-02 en `master`.
 
 ### Motivos / principios
 
