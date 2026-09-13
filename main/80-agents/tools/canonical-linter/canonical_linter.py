@@ -1106,7 +1106,10 @@ def _wiki_index_files(ctx: LintCtx) -> List[str]:
 
 def _index_rows(ctx: LintCtx, rel: str) -> List[Tuple[int, str]]:
     """Filas de tabla del índice (líneas que empiezan con '|' y no son
-    separadores) -> (línea, primer target de wikilink)."""
+    separadores) -> (línea, target) para CADA wikilink de la fila: el spec
+    dice "fila **o link**" de un 00-index, así que todos los links de la fila
+    se verifican, no sólo el primero (D1, verificación adversarial P3-C;
+    targets repetidos dentro de una fila se deduplican)."""
     text = ctx.text(rel) or ""
     rows: List[Tuple[int, str]] = []
     for i, line in enumerate(text.split("\n")):
@@ -1114,12 +1117,12 @@ def _index_rows(ctx: LintCtx, rel: str) -> List[Tuple[int, str]]:
             continue
         if re.match(r"^\|[\s:|-]+\|?\s*$", line):
             continue  # separador
-        m = WIKILINK_RE.search(line)
-        if not m:
-            continue
-        target = clean_link_target(m.group(1))
-        if target:
-            rows.append((i + 1, target))
+        seen: set = set()
+        for m in WIKILINK_RE.finditer(line):
+            target = clean_link_target(m.group(1))
+            if target and target not in seen:
+                seen.add(target)
+                rows.append((i + 1, target))
     return rows
 
 
