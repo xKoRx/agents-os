@@ -69,7 +69,7 @@ Corpus vivo: 853 notas (`iter_vault_md` = 877 − 5 `_shared/fixtures` − 19 fi
 | CL-16 | PASS | 0 | INDEX.md sin destinos archive ni estados de vida; existencia deduplicada (REGISTRY-DISK-PARITY/doctor). |
 | CL-17 | PASS | 0 | Todos los paths citados por bootstrap/constitución/continuidad/INDEX/perfil resuelven a disco. |
 | CL-18 | FAIL | 1 | `30-resources/runbooks/signals-code-review.md` — destino del Minimal Read del router meli (`[[signals-code-review]]` en el cuerpo del router) en estado superseded: el mecanismo de routing enlaza la página retirada en lugar de `signals-code-review-runbook`. 8 destinos omitidos por dedup M16. |
-| CL-19 | WARN | 7 | `30-resources/methodologies/data-mesh.md`, `30-resources/vibe-coding/{agents-v2,context-v2,prompts-v2,rules-toon,sdd-prompts-pack-v4}.md`, `30-resources/knowledges/claude-skills.md` — activos sin `last_verified` (dato de freshness). |
+| CL-19 | WARN | 7 | `30-resources/methodologies/data-mesh.md`, `30-resources/vibe-coding/{agents-v2,context-v2,prompts-v2,rules-toon,sdd-prompts-pack-v4}.md`, `70-templates/resource.md` (template) — activos sin `last_verified` (dato de freshness). |
 | CL-20 | WARN | 5 | `memory_state: archived` en notas `known_error`/`doc` bajo `80-agents/memory/internal/{agent-memory,known-errors}/` — uso informal del campo fuera de agent_memory. |
 
 ## 4. Hallazgos de sistema (sólo registrar; decisión del owner)
@@ -85,7 +85,7 @@ Corpus vivo: 853 notas (`iter_vault_md` = 877 − 5 `_shared/fixtures` − 19 fi
 
 ## 5. Verificación y estado git
 
-- `git status --porcelain` inicial: limpio (sin salida). Final: sólo los paths del write scope (`80-agents/tools/canonical-linter/{canonical_linter.py,selftest.py,README.md,results/run-20260913-071448.json,artifacts/p3-implementation-notes.md}`).
+- `git status --porcelain` inicial: limpio (sin salida). Durante la sesión el orchestrador ejecuta auto-commits (`sync`); al cierre, `git status --porcelain` vuelve a estar limpio y los 5 entregables quedan en HEAD (`git ls-files 80-agents/tools/canonical-linter/`). Nota: el repo rastrea los `.pyc` de `__pycache__` como convención; los caches stale generados por ejecuciones de verificación quedaron sincronizados por el auto-commit del orchestrador.
 - Selftest: 8/8 PASS con cleanup `rmtree` en `finally` (tempdirs fuera del vault).
 - Determinismo verificado; sin mutación del vault; sin red/DB/daemon; sin `__pycache__` fuera del write scope.
 
