@@ -72,7 +72,7 @@ P2-B debe demostrar con evidencia registrada en `p2-implementation-notes.md`: (1
   "run": "<timestamp>",
   "tool": "context-budget",
   "git_head": "<sha en VAULT_ROOT>",
-  "fidelity_gate": "PASS|FAIL",
+  "fidelity_gate": "PASS|FAIL|SKIP",
   "scenarios": [
     {"id": "CTX-01", "reuses": ["COLD-DEFAULT"], "verdict": "PASS|FAIL|WARN|SKIP",
      "metrics": [{"name": "always_load_estimated_tokens", "value": 7108, "unit": "estimated_tokens",
