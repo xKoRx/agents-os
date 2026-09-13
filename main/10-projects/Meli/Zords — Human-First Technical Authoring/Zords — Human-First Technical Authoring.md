@@ -495,7 +495,7 @@ F0 Reconciliar WIP + seam Codex ──G0──> F1 Authoring genérico stdout �
 
 **Precondiciones verificables:** G0 accepted; no diff inesperado en no-touch; package layout `zords/` confirmado; command registration convention conocida.
 
-**Lectura obligatoria:** Gate G0; secciones “Definición del producto”, “Arquitectura”, “Secuencia de control” y “Contratos” de `VAULT_ROOT/10-projects/Meli/Zords — Human-First Technical Authoring/Zords — Human-First Technical Authoring.md`; `VAULT_ROOT/80-agents/skills/human-first-technical-writing/SKILL.md`; `src/cli.ts`, `src/core/paths.ts`, adapter Codex aprobado y package files.
+**Lectura obligatoria:** Gate G0; secciones “Definición del producto”, “Arquitectura”, “Secuencia de control” y “Contratos” de `VAULT_ROOT/10-projects/Meli/Zords — Human-First Technical Authoring/Zords — Human-First Technical Authoring.md`; `VAULT_ROOT/30-resources/agents/skills/human-first-technical-writing/SKILL.md`; `src/cli.ts`, `src/core/paths.ts`, adapter Codex aprobado y package files.
 
 **Decisiones cerradas:** Subcomando hermano; recipe `document`; no `task` en legacy metadata; writer en `zords/writers`; Codex Terra high; stdout documento, stderr diagnóstico; buffer completo; no writes; sources `label=path` explícitos; contracts limitados al árbol `author`; internal types no exportados.
 
@@ -718,7 +718,7 @@ STOP=marcar G3 review; prohibido mergear o ampliar scope
 
 ## 🔗 Docs / Links
 
-- Skill canónica: `VAULT_ROOT/80-agents/skills/human-first-technical-writing/SKILL.md`.
+- Skill canónica: `VAULT_ROOT/30-resources/agents/skills/human-first-technical-writing/SKILL.md`.
 - Repo: `local-agents-pipeline-cli`.
 - Marketplace: [[ads-signals-skills-marketplace]] · [PR #1](https://github.com/melisource/fury_ads-signals-skills-marketplace/pull/1).
 - PR Zords: [#29](https://github.com/melisource/fury_local-agents-pipeline-cli/pull/29).
