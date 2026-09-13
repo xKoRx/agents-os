@@ -108,3 +108,10 @@ Corrección in-place del contrato F-04: instrument/direction durables en `sqx.st
 ## [2026-09-12] ingest | Echo Forge F-04 C5 Manifest Identity Semantics
 
 Corrección in-place del contrato F-04: identidad del HandoffManifestV1 desde `sqx.strategies` por StrategyRef; CanonicalStrategyID opaco; OperationSide LONG/SHORT; BOTH fail closed; requested/observed = misma fila; sin migration nueva. Change log [[2026-09-12-echo-forge-f04-c5-manifest-identity]]. Graphify externo no se refresca.
+
+## [2026-09-13] ingest | KBC — consolidación del subdominio applications/echo/
+
+- Creado `applications/echo/00-index.md`; MOVE de 16 páginas desde `applications/` (identidad preservada) en el mismo cambio.
+- Reescritas [[echo-core]] (evidencia `xKoRx/echo@f7ddea18`) y [[echo-forge]] (evidencia `xKoRx/symphony@9fad768c`): corte estable/volátil, eliminado el claim falso "Forge entrega finalistas a Echo Core vía API" (ver [[echo-forge-integration-boundary]]).
+- Creada [[echo-forge-integration-boundary]] (estado implementado + gaps G1–G7) y 2 notas source por baseline (f7ddea18 / 9fad768c).
+- Índice raíz: filas Echo reemplazadas por puntero único al sub-índice; `00-RESOURCE-WIKI` declara `applications/echo/` como subdominio activo. Cambio canónico: [[2026-09-13-kbc-echo-subdomain-publication]]. Supersede de las 5 históricas diferido hasta verificar cobertura de sus claims únicos. Graphify externo no se refresca (reindex pendiente).
