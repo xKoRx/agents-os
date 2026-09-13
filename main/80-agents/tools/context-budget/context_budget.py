@@ -248,31 +248,24 @@ def classify_file(rules, harness, root: str, rel: str, fm: Optional[Dict[str, An
 # contiguos de tokens ≥ min_run_tokens; condición: suma de chars
 # normalizados ≥ min_chars O un bloque que abarque ≥ min_consecutive_lines.
 # ---------------------------------------------------------------------------
-def _norm_text(text: str) -> List[Tuple[str, List[int]]]:
-    """[(línea normalizada, [índice de token global])] por línea no vacía."""
-    out: List[Tuple[str, List[int]]] = []
-    idx = 0
+def _norm_text(text: str) -> List[List[str]]:
+    """Tokens normalizados por línea no vacía (whitespace/puntuación/minúsculas)."""
+    out: List[List[str]] = []
     for line in text.splitlines():
         norm = re.sub(r"[^\w]+", " ", line.lower(), flags=re.UNICODE).strip()
         toks = norm.split()
-        if not toks:
-            continue
-        out.append((norm, list(range(idx, idx + len(toks)))))
-        idx += len(toks)
+        if toks:
+            out.append(toks)
     return out
 
 
-def _tokens_and_line_map(normed: List[Tuple[str, List[int]]]) -> Tuple[List[str], List[int]]:
+def _tokens_and_line_map(normed: List[List[str]]) -> Tuple[List[str], List[int]]:
     toks: List[str] = []
     line_of: List[int] = []
-    for li, (_, span) in enumerate(normed):
-        toks.extend(_line_tokens(normed, li))
-        line_of.extend([li] * len(_line_tokens(normed, li)))
+    for li, line_toks in enumerate(normed):
+        toks.extend(line_toks)
+        line_of.extend([li] * len(line_toks))
     return toks, line_of
-
-
-def _line_tokens(normed: List[Tuple[str, List[int]]], li: int) -> List[str]:
-    return normed[li][0].split()
 
 
 def find_duplication(text_a: str, text_b: str) -> Dict[str, Any]:
@@ -872,7 +865,7 @@ def ctx_08_switch_aranea_meli(ctx, rules, harness) -> Dict[str, Any]:
 # ---------------------------------------------------------------------------
 def _switch_from_default(rec: Dict[str, Any], ctx, rules, harness, title: str,
                          expected_domain: str, pack: List[str]) -> Dict[str, Any]:
-    missing = harness.require_files(ctx.vault, pack + ([title and _fixture_of(title)] if title else []))
+    missing = harness.require_files(ctx.vault, pack + [_fixture_of(title)])
     if missing:
         return _skip(rec, "fixtures no disponibles en el vault actual: %s" % missing)
     s = _session_for(ctx)
