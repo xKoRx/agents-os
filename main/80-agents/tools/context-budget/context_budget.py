@@ -115,6 +115,10 @@ def load_harness(vault_root: str):
         sys.path.insert(0, harness_dir)
     import rules  # noqa: E402  (transcripción única; NUNCA se copia ni se fork-a)
     import agents_os_conformance as harness  # noqa: E402
+    # Bind como globales del módulo: _session_for y los helpers clasificadores
+    # consumen siempre EL MISMO módulo de reglas (sin segunda transcripción).
+    globals()["rules"] = rules
+    globals()["harness"] = harness
     return rules, harness
 
 
@@ -421,7 +425,10 @@ def ctx_15_baseline(ctx, rules, harness) -> Dict[str, Any]:
     _weight_metrics(rec, "always_load", agg_always, "EXACT", "ESTIMATED", "_size del harness")
     for domain, files in packs.items():
         agg = weight_of(harness, ctx.vault, files)
-        _weight_metrics(rec, "scope_pack_%s" % domain, agg, "EXACT", "ESTIMATED", "_size del harness")
+        rec["metrics"].append(metric("scope_pack_bytes_%s" % domain, agg["bytes"], "bytes", "EXACT", "_size del harness"))
+        rec["metrics"].append(metric("scope_pack_chars_%s" % domain, agg["chars"], "chars", "EXACT", "_size del harness"))
+        rec["metrics"].append(metric("scope_pack_estimated_tokens_%s" % domain, agg["estimated_tokens"], "estimated_tokens",
+                                     "ESTIMATED", "_size del harness + " + TOKENS_NOTE))
     for rel in always + packs["meli"] + packs["aranea"]:
         w = file_weight(harness, ctx.vault, rel)
         rec["evidence"].append("%s: bytes=%d chars=%d estimated_tokens=%d" % (
