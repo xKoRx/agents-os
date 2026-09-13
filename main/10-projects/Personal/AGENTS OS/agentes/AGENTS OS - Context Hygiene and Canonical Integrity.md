@@ -47,7 +47,7 @@ updated: "2026-09-13"
 
 ## 📊 Estado actual
 
-- **2026-09-13 — Ejecución en curso.** Baseline: Conformance Harness entregado (PASS 4 · FAIL 1 [F1] · WARN 4 · SKIP 17), Agents-OS revision `a6a503f` como ancestro del HEAD vivo. Proyecto creado como único planificador de PHASE 2 + PHASE 3. P2-A completado (19 métricas M01-M19, 15 escenarios CTX-01..15, reuso del harness como librería); PARENT GATE P2 completado (spec binding con decisiones A1-A9); paso actual: P2-B (Implementer).
+- **2026-09-13 — Ejecución en curso.** Baseline: Conformance Harness entregado (PASS 4 · FAIL 1 [F1] · WARN 4 · SKIP 17), Agents-OS revision `a6a503f` como ancestro del HEAD vivo. Proyecto creado como único planificador de PHASE 2 + PHASE 3. P2-A completado (19 métricas M01-M19, 15 escenarios CTX-01..15, reuso del harness como librería); PARENT GATE P2 completado (spec binding con decisiones A1-A9); P2-B completado (context_budget.py + selftest 11/11 + README + notes; suite PASS 7 · FAIL 0 · WARN 7 · SKIP 1, reproducida por el parent); paso actual: P2-C (Adversarial Verifier).
 
 ## 🧱 Entrega de desarrollo
 
@@ -81,8 +81,8 @@ views:
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [x] P2-A — Context Budget Auditor/Designer: analizar bootstrap, packs MELI/ARANEA, DEFAULT, harness y filesystem; clasificar EXACT/ESTIMATED/INFERRED/UNOBSERVABLE; diseñar métricas y escenarios → `80-agents/tools/context-budget/artifacts/p2-context-budget-design.md` #owner/agent #type/research #area/personal
 > - [x] PARENT GATE P2 — reconciliar design contra harness, definir spec (métricas, métodos, escenarios, semántica PASS/WARN/FAIL/SKIP, schema) → `80-agents/tools/context-budget/artifacts/p2-context-budget-spec.md` #owner/agent #type/admin #area/personal
-> - [/] P2-B — Context Budget Implementer: tool en `80-agents/tools/context-budget/`, reutilizando contratos del harness, ejecución DEFAULT/MELI/ARANEA cold/warm/switch #owner/agent #type/dev #area/personal
-> - [ ] P2-C — Context Budget Adversarial Verifier → `80-agents/tools/context-budget/artifacts/p2-adversarial-verification.md` #owner/agent #type/research #area/personal
+> - [x] P2-B — Context Budget Implementer: tool en `80-agents/tools/context-budget/`, reutilizando contratos del harness, ejecución DEFAULT/MELI/ARANEA cold/warm/switch #owner/agent #type/dev #area/personal
+> - [/] P2-C — Context Budget Adversarial Verifier → `80-agents/tools/context-budget/artifacts/p2-adversarial-verification.md` #owner/agent #type/research #area/personal
 > - [ ] P2-D — Context Budget Fixer (sólo si hay defectos materiales del auditor; máx 2 ciclos) #owner/agent #type/dev #area/personal
 > - [ ] PHASE 2 acceptance gate + cierre de fase en esta nota #owner/agent #type/admin #area/personal
 > - [ ] P3-A — Canonical Integrity Designer: extraer modelo canonical/deprecation de autoridades vigentes, clasificar MACHINE-DETERMINISTIC/HEURISTIC/HUMAN-REVIEW → `80-agents/tools/canonical-linter/artifacts/p3-canonical-model.md` #owner/agent #type/research #area/personal
