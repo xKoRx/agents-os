@@ -5,7 +5,7 @@ name: signals-code-review
 description: Revisar branches o Pull Requests de Rodrigo exclusivamente en proyectos Meli con evidencia del diff real, comportamiento crítico, specs y descripción del PR mediante la tool canónica Zord. En cambios de Signals/RIO agrega el Zord independiente rjara-rio-impact y contrasta posibles afectaciones transversales con la documentación oficial de RIO. Entrega findings breves con explicación, solicita una única validación humana y, sólo tras aprobación explícita, publica los puntos seleccionados y un resumen corto. No usar ni ejecutar Zord desde esta skill en proyectos no Meli o de identidad no demostrable.
 scope: user
 created: "2026-09-11"
-updated: "2026-09-11"
+updated: "2026-09-12"
 entities:
   - "[[Meli]]"
   - "[[RIO]]"
@@ -44,15 +44,15 @@ Trigger boundary:
 
 - **Sí:** code review de una branch o PR cuya pertenencia a Meli puede demostrarse. Todo proyecto Meli usa Zord; Signals/RIO agrega revisión cross-app oficial.
 - **No:** cualquier proyecto no Meli o cuya identidad Meli no pueda demostrarse, escritura de código, aplicación de fixes, creación/publicación de PR o redacción de su descripción. Fuera de Meli esta skill termina como `NOT_APPLICABLE` antes de invocar Zord y no cae a una revisión genérica.
-- **Handoff:** descripción de PR → [[pr-description]]; correcciones → workflow de implementación autorizado; ejecución mecánica → `../../memory/public/runbook/signals-code-review-runbook.md`.
+- **Handoff:** descripción de PR → [[pr-description]]; correcciones → workflow de implementación autorizado; ejecución mecánica → `../../../../80-agents/memory/public/runbook/signals-code-review-runbook.md`.
 
 ## Minimal Read
 
 Leer sólo:
 
-1. `../../memory/public/runbook/signals-code-review-runbook.md` al ejecutar una revisión.
-2. `../../memory/public/user-preference/rjara-meli-work-preferences.md` si el contexto Meli no está cargado.
-3. `../../../30-resources/tools/local-agents-pipeline-cli.md` antes de resolver o ejecutar Zord.
+1. `../../../../80-agents/memory/public/runbook/signals-code-review-runbook.md` al ejecutar una revisión.
+2. `../../../../80-agents/memory/public/user-preference/rjara-meli-work-preferences.md` si el contexto Meli no está cargado.
+3. `../../../tools/local-agents-pipeline-cli.md` antes de resolver o ejecutar Zord.
 4. La skill [[human-first-technical-writing]] al explicar findings o redactar comentarios para el autor del PR.
 5. La skill [[pr-description]] únicamente si el usuario también solicita la descripción del PR.
 6. Las fuentes oficiales de RIO indicadas por el runbook únicamente cuando el scope demostrado sea Signals/RIO.

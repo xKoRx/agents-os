@@ -269,7 +269,7 @@ SORT created DESC
 - Guía operativa: `80-agents/agents-os/agents-os.md`
 - Política healthcheck:
   `80-agents/memory/public/learning/agents-os/manual-validation-vs-automated-healthcheck-policy.md`
-- Skill healthcheck: `80-agents/skills/operational-healthcheck-policy/SKILL.md`
+- Skill healthcheck: `30-resources/agents/skills/operational-healthcheck-policy/SKILL.md`
 - Template usado: `70-templates/agent-profile.md`
 - Sesión origen: `80-agents/journal/sessions/2026-06-30-ariadna-profile-iteration-summary.md`
 

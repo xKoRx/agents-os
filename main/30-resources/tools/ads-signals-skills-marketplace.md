@@ -71,5 +71,5 @@ updated: "2026-09-01"
 
 - [[ads-signals-skills-marketplace-source]] — provenance del repo y del checkout verificado.
 - [[Zords — Human-First Technical Authoring]] — proyecto que llevó `human-first-technical-writing` a esta superficie de distribución.
-- `80-agents/skills/human-first-technical-writing/SKILL.md` — skill canónica del vault.
+- `30-resources/agents/skills/human-first-technical-writing/SKILL.md` — skill canónica curada en el vault.
 - [[30-resources/tools/00-index|Tools — Índice]] — catálogo curado del dominio.
