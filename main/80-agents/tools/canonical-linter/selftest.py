@@ -642,7 +642,8 @@ def test_positivos_por_check() -> None:
     f18 = findings_of(doc, "CL-18")
     assert_true(any("retirada" in f["observed"] and f["status"] == "FAIL" for f in f18),
                 "CL-18: destino de router en retiro -> FAIL: %s" % f18)
-    assert_true(not any("vigente" in f["observed"] for f in f18), "CL-18: destino vigente sin hallazgo")
+    assert_true(not any("vigente.md" in (f["observed"] + f["evidence"]) for f in f18),
+                "CL-18: destino vigente sin hallazgo: %s" % f18)
 
     f19 = findings_of(doc, "CL-19")
     assert_true([f["path"] for f in f19] == ["cl19-sin.md"] and all(f["status"] == "WARN" for f in f19),
