@@ -2,7 +2,7 @@
 type: skill
 schema_version: 1
 name: aranea-mcps-expert
-description: Selecciona y gobierna el uso de las capabilities MCP del homelab Aranea. Cargar antes de usar cualquier MCP aranea-* para elegir ambiente, capability, autoridad y runbook correctos; nunca aplica a MELI ni a sistemas corporativos.
+description: Selecciona y gobierna el uso de las capabilities MCP del homelab Aranea bajo el dominio aranea-agent-dev, que es su única puerta de activación. Cargar antes de usar cualquier MCP aranea-* para elegir ambiente, capability, autoridad y runbook correctos; nunca aplica a MELI ni a sistemas corporativos.
 scope: area
 created: "2026-09-11"
 updated: "2026-09-12"
@@ -42,7 +42,7 @@ tags:
 
 Seleccionar cómo acceder a infraestructura y datos de Aranea mediante su capability plane MCP sin repartir credenciales finales ni mezclar ambientes.
 
-Activar antes de usar cualquier capability `aranea-*`, o cuando una skill de dominio determine que necesita acceso MCP a un host, PostgreSQL, MongoDB o Hasura de Aranea. No activar para trabajo local que no requiere MCP. **MUST NOT activate for Mercado Libre / MELI infrastructure, databases, repositories, hosts, credentials or corporate systems.**
+Activar bajo el dominio [[aranea-agent-dev]] —su única puerta de entrada— antes de usar cualquier capability `aranea-*`, o cuando una skill de dominio determine que necesita acceso MCP a un host, PostgreSQL, MongoDB o Hasura de Aranea. No activar para trabajo local que no requiere MCP. **MUST NOT activate for Mercado Libre / MELI infrastructure, databases, repositories, hosts, credentials or corporate systems** (dominio de [[meli-agent-dev]]).
 
 ## Canonical Authority
 
@@ -138,7 +138,7 @@ Boundary: <none | policy/error relevante>
 
 ## Hard Rules
 
-- Esta skill es **Aranea-only**; nunca usarla para MELI o sistemas corporativos.
+- Esta skill es **Aranea-only** y se activa sólo bajo [[aranea-agent-dev]]; nunca usarla para MELI o sistemas corporativos.
 - Elegir ambiente antes que capability/autoridad.
 - PROD de datos/control plane es RO; DEV puede tener mayor autoridad sólo dentro de su capability explícita.
 - Toda capability nueva debe respetar [[AGENT-PLATFORM - MCP Access Plane - Architecture]]: proxy bearer separado, backend interno sin host port, secretos upstream separados y pinning reproducible, salvo excepción explícitamente aprobada.
