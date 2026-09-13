@@ -610,7 +610,7 @@ FIDELITY_ANCHORS: List[Tuple[str, str, str]] = [
     ("gate-surface-evidence", AUTH_BOOTSTRAP, "If no entity resolves but the surface shows domain evidence (MCP tool prefixes `mcp__aranea-*`, or corporate tooling such as Zord/Fury/Spellbook), use that instead."),
     ("gate-fail-closed", AUTH_BOOTSTRAP, "Ambiguous or conflicting evidence fails closed: no router."),
     ("gate-never-both-routers", AUTH_BOOTSTRAP, "Never load both routers; the router loads at most ONE specialized skill and owns the scoped preferences of its domain."),
-    # Cold set (bootstrap cold start pasos 1-3) — cited at Session.cold_start().
+    # Cold set (bootstrap cold start pasos 1-5) — cited at Session.cold_start().
     ("cold-paso1-constitution", AUTH_BOOTSTRAP, "`80-agents/agents-os/agent-constitution.md`"),
     ("cold-paso1-profile-dir", AUTH_BOOTSTRAP, "`80-agents/memory/public/user-preference/` — the global profile. Resolve it by that directory"),
     ("cold-paso2-global-internal", AUTH_BOOTSTRAP, "`80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md`"),

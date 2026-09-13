@@ -456,7 +456,7 @@ def sc_registry_disk_parity(ctx: Ctx) -> Tuple[str, str, List[str]]:
         if os.path.isfile(os.path.join(ctx.root, "30-resources/agents/skills", d, "SKILL.md")))
     problems: List[str] = []
     evidence = [
-        "INDEX core=%d federadas=%d app-owned=%d (callout declara 28/19/3)" % (len(core_index), len(fed_index), len(sections["app-owned"])),
+        "INDEX core=%d federadas=%d app-owned=%d" % (len(core_index), len(fed_index), len(sections["app-owned"])),
         "disco core=%d federadas=%d" % (len(core_disk), len(fed_disk)),
     ]
     # Callout counts: what INDEX.md DECLARES vs what the tables actually
@@ -1116,6 +1116,10 @@ def sc_switch_meli_to_aranea(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("piezas del pack anterior (meli) usadas o re-abiertas en el turno del swap (swap paso 4: el pack anterior sale del razonamiento activo): %s" % old_pack_used)
     if s.holds_two_packs():
         problems.append("dos packs de dominio activos tras el swap (Hard Rule)")
+    # N2 (adversarial-verification-r2): el router nuevo se abre exactamente una
+    # vez en el turno del swap; cubre la re-apertura "bare" (solo telemetria).
+    if s.opens_in_turn(2).count(rules.ROUTERS["aranea"]) != 1:
+        problems.append("el router nuevo (aranea) se abre %d veces en el turno del swap (debe ser exactamente una)" % s.opens_in_turn(2).count(rules.ROUTERS["aranea"]))
     if s.active_domain != "aranea":
         problems.append("dominio post-swap != aranea: %s (%s)" % (s.active_domain, s.gate_note))
     if sorted(s.pack_files) != sorted([rules.ROUTERS["aranea"]] + rules.ROUTER_PREFS["aranea"]):
@@ -1155,6 +1159,10 @@ def sc_switch_aranea_to_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("swap re-leo archivos base: %s" % reopened_base)
     if s.holds_two_packs():
         problems.append("dos packs activos tras el swap")
+    # N2 (adversarial-verification-r2): el router nuevo se abre exactamente una
+    # vez en el turno del swap; cubre la re-apertura "bare" (solo telemetria).
+    if s.opens_in_turn(2).count(rules.ROUTERS["meli"]) != 1:
+        problems.append("el router nuevo (meli) se abre %d veces en el turno del swap (debe ser exactamente una)" % s.opens_in_turn(2).count(rules.ROUTERS["meli"]))
     if s.active_domain != "meli":
         problems.append("dominio post-swap != meli: %s" % s.active_domain)
     if sorted(s.pack_files) != sorted([rules.ROUTERS["meli"]] + rules.ROUTER_PREFS["meli"]):
@@ -1200,6 +1208,10 @@ def _switch_from_default(ctx: Ctx, title: str, expected_domain: str, pack: List[
     reopened_base = [p for p in s.opens_in_turn(2) if p in base_before]
     if reopened_base:
         problems.append("resolucion tardia re-leo la base (warm paso 3 / AGENTS.md): %s" % reopened_base)
+    # N2 (adversarial-verification-r2): el router nuevo se abre exactamente una
+    # vez en el turno del swap; cubre la re-apertura "bare" (solo telemetria).
+    if s.opens_in_turn(2).count(rules.ROUTERS[expected_domain]) != 1:
+        problems.append("el router nuevo (%s) se abre %d veces en el turno del swap (debe ser exactamente una)" % (expected_domain, s.opens_in_turn(2).count(rules.ROUTERS[expected_domain])))
     if s.bootstrap_runs != 1:
         problems.append("bootstrap re-ejecutado al resolver la entidad")
     if s.active_domain != expected_domain:
