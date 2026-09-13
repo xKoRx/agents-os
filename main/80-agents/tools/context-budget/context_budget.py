@@ -1303,6 +1303,17 @@ def ctx_14_surface(ctx, rules, harness, conformance_json: Optional[Dict[str, Any
     observations: List[Dict[str, Any]] = []
     deviations: List[str] = []
     for cfg in configs:
+        if cfg.get("servers") is None:
+            # N6 (verificación adversarial): read_surface_configs devuelve
+            # servers=None + error ante una config ilegible — dato distinto de
+            # "sin servers": se propaga a la evidence y a la desviación (WARN,
+            # A5: CTX-14 jamás es criterio de FAIL).
+            observations.append({"surface": cfg["surface"], "path": cfg["path"], "servers": None,
+                                 "error": cfg.get("error") or "ilegible", "aranea": 0, "meli": 0})
+            rec["evidence"].append("%s (%s): config ilegible (%s); aranea/meli no computables (dato distinto de 'sin servers')" % (
+                cfg["surface"], cfg["path"], cfg.get("error") or "ilegible"))
+            deviations.append("%s: config ilegible (%s)" % (cfg["surface"], cfg.get("error") or "ilegible"))
+            continue
         observations.append({"surface": cfg["surface"], "aranea": cfg["aranea"], "meli": cfg["meli"]})
         rec["evidence"].append("%s (%s): aranea=%d meli=%d (nombres only, nunca credenciales)" % (
             cfg["surface"], cfg["path"], cfg["aranea"], cfg["meli"]))
@@ -1409,8 +1420,14 @@ def _aggregate_totals(results: List[Dict[str, Any]]) -> Dict[str, Any]:
     l = by_id.get("CTX-11")
     if l and l["verdict"] != "SKIP":
         m = {mm["name"]: mm["value"] for mm in l["metrics"]}
-        totals["unrelated_domain"] = {"files": len(m.get("unrelated_domain_files", [])), "chars": 0,
-                                      "bytes": 0, "estimated_tokens": 0, "confidence": "EXACT"}
+        # N5 (verificación adversarial): propagar los pesos reales del leak
+        # (chars/bytes/estimated_tokens de las métricas unrelated_domain_*),
+        # jamás hardcodear 0: con un leak real files>0 debe venir con peso.
+        totals["unrelated_domain"] = {"files": len(m.get("unrelated_domain_files", [])),
+                                      "chars": m.get("unrelated_domain_chars", 0),
+                                      "bytes": m.get("unrelated_domain_bytes", 0),
+                                      "estimated_tokens": m.get("unrelated_domain_estimated_tokens", 0),
+                                      "confidence": "EXACT"}
     d = by_id.get("CTX-12")
     if d and d["verdict"] != "SKIP":
         m = {mm["name"]: mm["value"] for mm in d["metrics"]}
