@@ -23,7 +23,7 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: 2026-09-12
+updated: 2026-09-13
 cssclasses:
   - wide
 ---
@@ -219,49 +219,21 @@ Roadmaps **secuencian trabajo**; no redefinen verdad de dominio. No promover seq
 
 ## Deuda aceptada
 
-Deuda acotada es herramienta. No convertirla en blocker sin impacto material. Cleanup sólo cuando desbloquea capacidad o corrige correctness.
-
-Puede vivir: legacy Lab projections; legacy journal rows; legacy MT4 cohort; legacy Forge HashIdentity (newline, nombre distinto de `H()`); old MetricSets/Scope JSON; host-suffixed adopted IDs hasta proof F-01; external SDK adapters; algunos read models mutables; attach Reference manual verificado donde V1 lo permite.
-
-## Cerrado — no reabrir en backlog
-
-B1A global fleet ownership / durable MT5 reuse. B1B long-running MT5 (elapsed wall-clock ≠ failure; campaign count ≠ physical concurrency). B2 Temporal activity lifetime ≠ physical MT5 lifetime; cancel explícito mata Job Object propio. Arquitectura global de ownership / fencing V3. Slot Pool V2 local. Finalist Factory V1 contractual (no V2). Modelo semántico StrategyVersion (no implementación). Arquitectura del contrato SDK (FR-1…FR-5 se **implementan** en S0, no se rediseñan). Identity graph Forge. Three purposes SQ/EF/Forge fidelity. Membership ≠ rank. Ingestion ≠ activation/capital.
-
-## Riesgos / unresolved reales
-
-| Ítem | Clase |
-|---|---|
-| Catálogo magic `CC` / `YYMMCCQQQQ` antes de allocation física | PRODUCT DECISION |
-| O-01 aceptación 2026 plataforma vs cartera financiada | PRODUCT DECISION |
-| O-02 mandato V1 cuentas/moneda/capital | PRODUCT DECISION |
-| Evidence Gate por cohorte (O-03) | PRODUCT DECISION |
-| Discriminador durable intra-wave antes de retirar HOST_KEY | TOP BEFORE PHASE F-01 |
-| Pin S0 publicado antes de F-04/E-03 | DEPENDENCY |
-| Certificación física singleton Windows / drain Kronos | PHYSICAL CERTIFICATION |
-| Attach/enrollment físico y clocks broker | PHYSICAL CERTIFICATION |
-| Recuperación histórica Reference (ahorro calendario, no blocker de captura nueva) | DEFERRED / timebox |
-| Netting, Futures, ML, editor UI, batch ingestion | DEFERRED |
-
-## Balance de fases
-
-Forge: 5 Agent Tasks, mayoría MEDIUM; F-02 y F-04 LARGE-acotados con sub-SPECs internos (C1/C2 y allocation→seal→adapter), no mega-fases distintas. Echo: el antiguo bloque live/E2 se descompuso en E-06…E-13; E-02 extraído de “live” porque H1/P0 es capacidad propia; E-11/E-12 separan shadow vs effects. Ninguna micro-fase. GOD no asignado a ninguna fase.
+Deuda acotada es herramienta. No convertirla en blocker sin impacto material. Cleanup sólo cuando desbloquea capacidad o corrige una regresión material.
 
 ## ✅ Tareas
-
-> [!note]+ Ownership y tarea puente
-> `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala.
-> Este proyecto humano muestra sólo puentes de supervisión. Las fases `#owner/agent` viven en los subproyectos.
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [ ] [[Echo Forge — Factory V2 Completion]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [ ] [[Echo — Live Platform V1]] arrancar + seguimiento #owner/me #type/supervision #area/echo
-> - [r] [[Echo — Knowledge Base Consolidation]] campaña documental: cartografía Echo/Forge, wiki canónica, AGENTS.md routers, higiene context budget #owner/me #type/supervision #area/echo
+> - [x] [[Echo — Knowledge Base Consolidation]] campaña documental: cartografía Echo/Forge, wiki canónica, AGENTS.md routers, higiene context budget #owner/me #type/supervision #area/echo
 > - [ ] Ratificar catálogo magic CC antes de allocation física F-04 #owner/me #type/admin #area/echo
 > - [ ] Confirmar O-01/O-02/O-03 de mandato 2026 cuando el track live lo necesite #owner/me #type/admin #area/echo
 
 ## 📆 Bitácora
 
+- **2026-09-13** — Owner acepta [[Echo — Knowledge Base Consolidation]] tras revisión final: bridge `[r]→[x]`. Campaña documental cerrada; remediación P0 de secretos queda como trabajo operacional separado y no reabre KBC.
 - **2026-09-13** — Campaña [[Echo — Knowledge Base Consolidation]] COMPLETE (fases A–K): subdominio `30-resources/applications/echo/` publicado y verificado adversarialmente (frontera Forge→Echo rota en producción documentada con gaps G1–G7); AGENTS.md de repos como patches propuestos; 2 hallazgos de seguridad escalados al owner (credenciales `30-resources/APIs.md` y contraseña SSH en symphony tracked). Puente → Review.
 - **2026-09-11** — E-04 TOP: hijo [[Echo — E-04 Forge Ingestion E1]]. Development E-04 puede partir en paralelo con verification E-03; integration/merge gated por E-03 CONTRACT_PASS. `origin/master` no se mueve. Join Forge no closed.
 - **2026-09-07** — Roadmaps operativos congelados. Dos subproyectos de agente. Sin implementación en esta nota.
