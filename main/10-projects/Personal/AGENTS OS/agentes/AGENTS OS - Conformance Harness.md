@@ -83,9 +83,9 @@ views:
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [x] T1 — Auditorías A/B/C: contract-audit (C01-C17), domain-isolation-audit (17 hallazgos), conformance-scenarios (25 escenarios) #owner/agent #type/research #area/personal
 > - [x] T2 — Reconciliación parent → conformance-spec-v1 (test model V1) #owner/agent #type/research #area/personal
-> - [/] T3 — Harness Implementer subagent → entrypoint L0/L1/L2 #owner/agent #type/dev #area/personal
-> - [ ] T4 — Ejecutar suite completa; fix loop sólo bugs del harness (máx 2 ciclos) #owner/agent #type/dev #area/personal
-> - [ ] T5 — Adversarial Verifier fresco + correcciones derivadas #owner/agent #type/research #area/personal
+> - [x] T3 — Harness Implementer subagent → entrypoint L0/L1/L2 #owner/agent #type/dev #area/personal
+> - [x] T4 — Suite ejecutada y reproducible: full-run gated (PASS 3/FAIL 1/WARN 4/SKIP 17) + matriz individual (16 PASS/1 FAIL/8 WARN) #owner/agent #type/dev #area/personal
+> - [/] T5 — Adversarial Verifier fresco + correcciones derivadas #owner/agent #type/research #area/personal
 > - [ ] T6 — Documentación mínima, findings registry, entrega final y cierre con feedback #owner/agent #type/admin #area/personal
 
 ```dataviewjs

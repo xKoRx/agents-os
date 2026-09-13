@@ -1,0 +1,127 @@
+{
+  "run": {
+    "timestamp": "2026-09-13T00:56:36",
+    "python": "3.14.4",
+    "vault_root_arg": "auto",
+    "layer_arg": "all",
+    "scenario_arg": "UNRELATED-DOMAIN-NOT-LOADED",
+    "no_live": false
+  },
+  "baseline": "eb452239c9c132ab6364f8f62a96bbb40c145d9a",
+  "levels": {
+    "L0": [
+      "SCHEMA-VALIDATOR-GREEN",
+      "STARTUP-DUPLICATION",
+      "CLOSED-CLUB-ALWAYS",
+      "LOAD-POLICY-VOCABULARY",
+      "REGISTRY-DISK-PARITY",
+      "DUAL-REGISTRY-DOMAIN-SYNC",
+      "NO-SECRETS-IN-MARKDOWN",
+      "ACTIVE-MEMORY-DOMAIN-PURITY"
+    ],
+    "L1": [
+      "COLD-DEFAULT",
+      "COLD-MELI",
+      "COLD-ARANEA",
+      "COLD-CONFLICTING-EVIDENCE-FAILS-CLOSED",
+      "WARM-DEFAULT",
+      "WARM-MELI",
+      "WARM-ARANEA",
+      "BOOTSTRAP-NOT-RERUN-ON-WARM",
+      "SWITCH-MELI-TO-ARANEA",
+      "SWITCH-ARANEA-TO-MELI",
+      "SWITCH-DEFAULT-TO-MELI",
+      "SWITCH-DEFAULT-TO-ARANEA",
+      "MELI-NEGATIVE-ARANEA-TOOL",
+      "ARANEA-NEGATIVE-MELI-TOOL",
+      "DEPRECATED-DOC-NOT-DEFAULT-LOAD",
+      "UNRELATED-DOMAIN-NOT-LOADED"
+    ],
+    "L2": [
+      "SESSION-SURFACE-EXPOSURE"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "UNRELATED-DOMAIN-NOT-LOADED",
+      "level": "L1",
+      "state": "PASS",
+      "details": "retrieval meli: solo memoria del dominio/entidad activa; cero piezas Echo/Aranea",
+      "evidence": [
+        "candidatos del filtro (12, todos area [[Meli]] o referenciando RIO): 80-agents/memory/public/decision/2026-08-19-crear-context-ephemeral-create-only.md, 80-agents/memory/public/decision/rio/2026-08-25-playmaker-cp-idempotency-boundary.md, 80-agents/memory/public/known-error/2026-09-03-vulnes-signals-no-salen-por-fury-cli.md, 80-agents/memory/public/known-error/2026-09-09-git-case-collision-claude-md-macos.md, 80-agents/memory/public/known-error/clickhouse-controlpl",
+        "continuidad interna meli activa: ninguna hoy (Hallazgo 10: toda la continuidad Meli esta archived/manual — estado observado, no invariante)",
+        "semantica: las preferencias Meli y Aranea son scoped (perfil); el router ya cargo las de meli en cold start; retrieval no trae prefs"
+      ]
+    }
+  ],
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "WARN": 0,
+    "SKIP": 0
+  },
+  "context_baseline": {
+    "label": "context_baseline",
+    "note": "baseline-only: tokens aproximados = chars/4 (metrica declarada sin autoridad de tokenizador, C04); sin optimizacion ni gates (spec section 9)",
+    "always_load": {
+      "80-agents/agents-os/agent-constitution.md": {
+        "bytes": 6234,
+        "chars": 6161,
+        "approx_tokens_chars_over_4": 1540
+      },
+      "80-agents/memory/public/user-preference/rjara-agent-profile.md": {
+        "bytes": 5610,
+        "chars": 5536,
+        "approx_tokens_chars_over_4": 1384
+      },
+      "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md": {
+        "bytes": 2052,
+        "chars": 2034,
+        "approx_tokens_chars_over_4": 508
+      },
+      "80-agents/skills/INDEX.md": {
+        "bytes": 13935,
+        "chars": 13786,
+        "approx_tokens_chars_over_4": 3446
+      }
+    },
+    "scope_packs": {
+      "meli": {
+        "files": {
+          "30-resources/agents/skills/meli-agent-dev/SKILL.md": {
+            "bytes": 3973,
+            "chars": 3938,
+            "approx_tokens_chars_over_4": 984
+          },
+          "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md": {
+            "bytes": 2447,
+            "chars": 2423,
+            "approx_tokens_chars_over_4": 605
+          },
+          "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md": {
+            "bytes": 1728,
+            "chars": 1715,
+            "approx_tokens_chars_over_4": 428
+          }
+        },
+        "total_approx_tokens": 2017
+      },
+      "aranea": {
+        "files": {
+          "30-resources/agents/skills/aranea-agent-dev/SKILL.md": {
+            "bytes": 3845,
+            "chars": 3816,
+            "approx_tokens_chars_over_4": 954
+          },
+          "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md": {
+            "bytes": 976,
+            "chars": 972,
+            "approx_tokens_chars_over_4": 243
+          }
+        },
+        "total_approx_tokens": 1197
+      }
+    },
+    "always_load_total_approx_tokens": 6878
+  }
+}

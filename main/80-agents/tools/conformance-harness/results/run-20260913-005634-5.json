@@ -1,0 +1,128 @@
+{
+  "run": {
+    "timestamp": "2026-09-13T00:56:34",
+    "python": "3.14.4",
+    "vault_root_arg": "auto",
+    "layer_arg": "all",
+    "scenario_arg": "WARM-ARANEA",
+    "no_live": false
+  },
+  "baseline": "eb452239c9c132ab6364f8f62a96bbb40c145d9a",
+  "levels": {
+    "L0": [
+      "SCHEMA-VALIDATOR-GREEN",
+      "STARTUP-DUPLICATION",
+      "CLOSED-CLUB-ALWAYS",
+      "LOAD-POLICY-VOCABULARY",
+      "REGISTRY-DISK-PARITY",
+      "DUAL-REGISTRY-DOMAIN-SYNC",
+      "NO-SECRETS-IN-MARKDOWN",
+      "ACTIVE-MEMORY-DOMAIN-PURITY"
+    ],
+    "L1": [
+      "COLD-DEFAULT",
+      "COLD-MELI",
+      "COLD-ARANEA",
+      "COLD-CONFLICTING-EVIDENCE-FAILS-CLOSED",
+      "WARM-DEFAULT",
+      "WARM-MELI",
+      "WARM-ARANEA",
+      "BOOTSTRAP-NOT-RERUN-ON-WARM",
+      "SWITCH-MELI-TO-ARANEA",
+      "SWITCH-ARANEA-TO-MELI",
+      "SWITCH-DEFAULT-TO-MELI",
+      "SWITCH-DEFAULT-TO-ARANEA",
+      "MELI-NEGATIVE-ARANEA-TOOL",
+      "ARANEA-NEGATIVE-MELI-TOOL",
+      "DEPRECATED-DOC-NOT-DEFAULT-LOAD",
+      "UNRELATED-DOMAIN-NOT-LOADED"
+    ],
+    "L2": [
+      "SESSION-SURFACE-EXPOSURE"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "WARM-ARANEA",
+      "level": "L1",
+      "state": "PASS",
+      "details": "turno warm Aranea: delta = continuidad activa Echo Forge; base intacta",
+      "evidence": [
+        "turno 2: file-opens = - (cero aperturas de base)",
+        "candidatos del filtro (118): 80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-05-echo-forge-full-golden-flow-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-finalist-model-v2.md, 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-mt5-slot-pool-long-running-v2.md, 80-agents/memory/internal/agent-memory/2026-09-10-echo-forge-f03-physical-certification-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-12-zcode-docs-agent-factory-continuity.md, 80-agents/memory/internal/known-errors/2026-09-10-symphony-sqx-trial-license-fleet-expired.md, 80-agents/memory/public/decision/2026-07-25-atomic-artifact-writer-single-call.md, 80-agents/memory/public/decision/2026-07-26-trade-list-package-complete-and-nonretryable.md, 80-agents/memory/public/decision/2026-08-27-durable-sdk-minio-atomic-create.md, 80-agents/memory/public/decision/echo-forge/2026-09-04-release-0-2-92-physical-c3-closure.md, 80-agents/memory/public/decision/sqx-historical-builder-templates-fd9.md, 80-agents/memory/public/decision/stager/2026-08-10-stager-product-boundary-and-durable-activation.md, 80-agents/memory/public/decision/symphony/2026-07-27-trade-list-exporter-type-internal-project-mapping.md, 80-agents/memory/public/decision/symphony/2026-07-31-storage-path-deterministic-by-logical-identity.md, 80-agents/memory/public/decision/symphony/2026-07-31-task-local-dirs-input-output-only.md, 80-agents/memory/public/decision/symphony/2026-07-31-temporal-activity-contract-remote-only.md, 80-agents/memory/public/decision/symphony/2026-08-14-echo-forge-one-vm-one-worker-one-task.md, 80-agents/memory/public/decision/symphony/2026-08-15-echo-forge-g0l-owner-amendments.md, 80-agents/memory/public/decision/symphony/2026-08-16-echo-forge-g0p-mvp-physical-design.md, 80-agents/memory/public/decision/symphony/2026-08-16-echo-forge-mt5-comparability-taxonomy.md, 80-agents/memory/public/decision/symphony/2026-08-18-echo-forge-mt5-fidelity-scope-bypass.md, 80-agents/memory/public/decision/symphony/2026-08-19-echo-forge-a6-big-bang-supersedes-a5.md, 80-agents/memory/public/decision/symphony/2026-08-23-durable-strategy-identity-v2-cutover.md, 80-agents/memory/public/decision/symphony/2026-08-23-durable-strategy-identity-v2-storage-support.md, 80-agents/memory/public/decision/symphony/2026-08-26-sqx-output-namespace-ownership-pre-sqx-guard.md, 80-agents/memory/public/decision/symphony/2026-08-27-builder-historical-templates-certified-closed.md, 80-agents/memory/public/decision/symphony/2026-08-27-historical-cohort-resolution-at-group-boundary.md, 80-agents/memory/public/decision/symphony/2026-08-27-sqx-cross-flowrun-reuse-certified-closed-frozen.md, 80-agents/memory/public/decision/symphony/2026-08-30-echo-forge-finalist-promotion-v1.md, 80-agents/memory/public/decision/symphony/2026-09-02-config-source-wave-identity.md, 80-agents/memory/public/decision/symphony/2026-09-02-echo-forge-c3-cert-a-supply-via-aligned-mt5-window.md, 80-agents/memory/public/decision/symphony/2026-09-03-deploy-release-only.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-c3-lean-recert-plan.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-release-0288-cancel-smoke-certified.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-worker-execution-model-v1.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-worker-lifecycle-mt5-orphan-plan.md, 80-agents/memory/public/decision/symphony/2026-09-03-forge-campaign-telemetry-replay-fix.md, 80-agents/memory/public/decision/symphony/2026-09-03-mt5-artifact-timeout-authority.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-0289-blocked-reretester.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-0290-blocked-mt5-build.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-recert-blocked.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-zero-supply-closure.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-builder-supply-identity.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-replenishment-resume-policy-v1.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-mt5-report-6140-compatible-allowlist.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-mt5-report-6180-compatible-allowlist.md, 80-agents/memory/public/decision/symphony/2026-09-04-final-reretester-empty-fanin-rca.md, 80-agents/memory/public/decision/symphony/2026-09-04-forge-campaign-stop-policy-schema-ownership.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-finalist-model-v2.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-execution-model-v2.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-fencing-and-cancellation-v3.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-global-physical-ownership-v2.md, 80-agents/memory/public/known-error/2026-07-25-success-sentinel-after-manifest-rewrite.md, 80-agents/memory/public/known-error/2026-07-29-sqx-trade-list-exporter-source-order-count-zero.md, 80-agents/memory/public/known-error/2026-07-29-sqx-watcher-missing-on-hera-kronos.md, 80-agents/memory/public/known-error/2026-08-02-minio-content-type-user-metadata-rejected.md, 80-agents/memory/public/known-error/2026-08-02-minio-nosuchkey-misclassified-as-transient.md, 80-agents/memory/public/known-error/echo-forge-g3-false-closure-runtime-path.md, 80-agents/memory/public/known-error/echo-forge/2026-09-04-cfg-id-length-intake-harness.md, 80-agents/memory/public/known-error/optimizer-wf-matrix-second-sqx-output.md, 80-agents/memory/public/known-error/sqx-custom-analysis-loads-snippets-jar.md, 80-agents/memory/public/known-error/stager-state-0600-runtime-kor.md, 80-agents/memory/public/known-error/symphony-config-source-wave-legacy-cfg.md, 80-agents/memory/public/known-error/symphony-deploy-release-go-stager-cutover-gap.md, 80-agents/memory/public/known-error/symphony-mt5-backtest-report-htm-absent.md, 80-agents/memory/public/known-error/symphony-mt5-compile-ex5-absent.md, 80-agents/memory/public/known-error/symphony-mt5-compile-ex5-key-source-folder-substring.md, 80-agents/memory/public/known-error/symphony-mt5-utf16-journal-sanitizer-bypass.md, 80-agents/memory/public/known-error/symphony/2026-08-15-mt5-html-parser-fail-open-signed-costs.md, 80-agents/memory/public/known-error/symphony/2026-08-18-sqx-mt5-scope-identity-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-08-26-flowrun-lifecycle-telemetry-carrier-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-08-28-embedded-postgres-shm-init-failure.md, 80-agents/memory/public/known-error/symphony/2026-09-01-echo-forge-c3-release-authority-sdk-stdout-contamination.md, 80-agents/memory/public/known-error/symphony/2026-09-01-release-authority-stale-manifest-rollback.md, 80-agents/memory/public/known-error/symphony/2026-09-01-stager-version-collision-release-not-converged.md, 80-agents/memory/public/known-error/symphony/2026-09-02-echo-forge-c3-adaptive-workflow-registration.md, 80-agents/memory/public/known-error/symphony/2026-09-02-echo-forge-c3-mt5-fidelity-period-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-02-release-wrapper-inflight-manifest-preflight-race.md, 80-agents/memory/public/known-error/symphony/2026-09-02-sqx-watcher-stager-current-link-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-03-mt5-artifact-timeout-retry-loop.md, 80-agents/memory/public/known-error/symphony/2026-09-03-orphan-mt5-after-cancel.md, 80-agents/memory/public/known-error/symphony/2026-09-04-campaign-generic-mt5-backtest-cap.md, 80-agents/memory/public/known-error/symphony/2026-09-04-cert-a-no-final-reretester-survivor.md, 80-agents/memory/public/known-error/symphony/2026-09-04-echo-forge-c3-zero-supply-control-flow.md, 80-agents/memory/public/known-error/symphony/2026-09-04-forge-campaign-orchestration-contract-broken.md, 80-agents/memory/public/known-error/symphony/2026-09-04-forge-campaign-v2-stop-policy-schema-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-04-mt5-terminal-build-unsupported.md, 80-agents/memory/public/known-error/symphony/2026-09-04-reretester-single-artifact-contract.md, 80-agents/memory/public/known-error/symphony/apply-selected-run-metadata-run-id-mismatch.md, 80-agents/memory/public/known-error/symphony/deployer-manifest-publication-race.md, 80-agents/memory/public/known-error/symphony/durable-builder-retry-reemits-evaluations-under-same-stage.md, 80-agents/memory/public/known-error/symphony/durable-retester-contract-conflict-on-reset.md, 80-agents/memory/public/known-error/symphony/embedded-postgres-maven-dns-timeout.md, 80-agents/memory/public/known-error/symphony/final-reretester-missing-strategy-artifact-return.md, 80-agents/memory/public/known-error/symphony/mongodb-index-specs-conflict.md, 80-agents/memory/public/known-error/symphony/sqcli-databanks-not-found.md, 80-agents/memory/public/known-error/symphony/sqcli-echoforge-class-not-found-fresh-worker.md, 80-agents/memory/public/known-error/symphony/sqcli-retester-config-errors.md, 80-agents/memory/public/known-error/symphony/sqx-import-metadata-silent-fallback.md, 80-agents/memory/public/known-error/symphony/sqx-watcher-systemd-service-hangs-after-deploy.md, 80-agents/memory/public/known-error/symphony/sqx-watcher-validate-configs-ignores-config-folder.md, 80-agents/memory/public/known-error/symphony/sqx-wfm-durable-export-heartbeat-timeout-while-sqcli-running.md, 80-agents/memory/public/known-error/symphony/stager-go-noop-pending-sync-thrash.md, 80-agents/memory/public/known-error/symphony/symphony-sqx-global-verification-non-hermetic.md, 80-agents/memory/public/known-error/symphony/trade-list-exporter-local-path-cross-worker.md, 80-agents/memory/public/known-error/symphony/trade-list-exporter-minio-prefix-mismatch-robust-sqx.md, 80-agents/memory/public/known-error/symphony/wfm-runs-duplicate-key-on-rerun-example-flow-41.md, 80-agents/memory/public/known-errors/durable-retester-contract-conflict-on-reset.md, 80-agents/memory/public/learning/stager-g3-lifecycle-accepted-e2e-is-next.md, 80-agents/memory/public/learning/symphony/2026-07-31-minio-storage-path-must-be-deterministic-by-logical-identity.md, 80-agents/memory/public/learning/symphony/2026-07-31-sqx-custom-analysis-loads-snippets-not-jar.md, 80-agents/memory/public/learning/symphony/2026-09-03-temporal-activity-started-deferred.md, 80-agents/memory/public/learning/symphony/2026-09-04-echo-forge-c3-static-blocker-burndown.md, 80-agents/memory/public/learning/symphony/2026-09-04-nested-domain-schema-authority.md, 80-agents/memory/public/pattern/symphony/2026-09-03-echo-forge-cancel-drain-lifecycle.md, 80-agents/memory/public/pattern/symphony/2026-09-03-echo-forge-one-job-per-worker.md, 80-agents/memory/public/pattern/symphony/2026-09-06-echo-forge-temporal-activity-ceiling-clamp.md",
+        "cuerpo abierto (delta unico del turno): 80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md",
+        "trigger del fixture: when_echo_forge_loaded (vocabulario no canonico = WARN de LOAD-POLICY-VOCABULARY, no invalida este escenario)"
+      ]
+    }
+  ],
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "WARN": 0,
+    "SKIP": 0
+  },
+  "context_baseline": {
+    "label": "context_baseline",
+    "note": "baseline-only: tokens aproximados = chars/4 (metrica declarada sin autoridad de tokenizador, C04); sin optimizacion ni gates (spec section 9)",
+    "always_load": {
+      "80-agents/agents-os/agent-constitution.md": {
+        "bytes": 6234,
+        "chars": 6161,
+        "approx_tokens_chars_over_4": 1540
+      },
+      "80-agents/memory/public/user-preference/rjara-agent-profile.md": {
+        "bytes": 5610,
+        "chars": 5536,
+        "approx_tokens_chars_over_4": 1384
+      },
+      "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md": {
+        "bytes": 2052,
+        "chars": 2034,
+        "approx_tokens_chars_over_4": 508
+      },
+      "80-agents/skills/INDEX.md": {
+        "bytes": 13935,
+        "chars": 13786,
+        "approx_tokens_chars_over_4": 3446
+      }
+    },
+    "scope_packs": {
+      "meli": {
+        "files": {
+          "30-resources/agents/skills/meli-agent-dev/SKILL.md": {
+            "bytes": 3973,
+            "chars": 3938,
+            "approx_tokens_chars_over_4": 984
+          },
+          "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md": {
+            "bytes": 2447,
+            "chars": 2423,
+            "approx_tokens_chars_over_4": 605
+          },
+          "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md": {
+            "bytes": 1728,
+            "chars": 1715,
+            "approx_tokens_chars_over_4": 428
+          }
+        },
+        "total_approx_tokens": 2017
+      },
+      "aranea": {
+        "files": {
+          "30-resources/agents/skills/aranea-agent-dev/SKILL.md": {
+            "bytes": 3845,
+            "chars": 3816,
+            "approx_tokens_chars_over_4": 954
+          },
+          "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md": {
+            "bytes": 976,
+            "chars": 972,
+            "approx_tokens_chars_over_4": 243
+          }
+        },
+        "total_approx_tokens": 1197
+      }
+    },
+    "always_load_total_approx_tokens": 6878
+  }
+}
