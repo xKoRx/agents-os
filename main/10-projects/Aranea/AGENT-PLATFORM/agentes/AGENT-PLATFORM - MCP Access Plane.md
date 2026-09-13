@@ -24,7 +24,7 @@ tags:
   - project/aranea-agent-platform
   - tech/mcp
 created: "2026-09-07"
-updated: "2026-09-12"
+updated: "2026-09-13"
 ---
 
 # AGENT-PLATFORM - MCP Access Plane
@@ -68,6 +68,7 @@ updated: "2026-09-12"
 - La fuente canónica agent-facing del capability plane es [[aranea-mcps-expert]] (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`), exclusiva de Aranea y explícitamente prohibida para MELI/corporativo. Los runbooks mecánicos viven en AGENTS OS: [[aranea-ssh-mcp]], [[aranea-postgres-mcp]], [[aranea-mongodb-mcp]], [[aranea-hasura-mcp]] y [[aranea-mcp-capability-plane]]. Las skills de dominio sólo deciden qué evidencia necesitan.
 - `echo-forge-wfm-troubleshooting` fue refactorizada para conservar routing/conocimiento de dominio y delegar cualquier operación `aranea-*` a `aranea-mcps-expert`, eliminando duplicación de endpoints/permisos/transport semantics.
 - Hardening genérico no necesario para desbloquear el uso actual — validación explícita de sesiones background, timeout extremo y revisión operativa de audit trail — se difiere a T6, donde se consolidarán health/logs/rotación/rollback y runbook transversal.
+- Incidente 2026-09-13: `aranea-ssh` alcanzable en `http://mcps.lab.aranea.cl:3000/`, `/health` devuelve `200 healthy=true configured=true`, pero `initialize` autenticado devuelve `503` por límite de 64 sesiones. La observación server-side y el reinicio acotado no pudieron ejecutarse porque la autoridad administrativa existente para `mcps`/hades no está disponible en esta sesión; causa material permanece `UNKNOWN` y T6 sigue abierto.
 - Workstream Kafka MCP corregido a un rollout por entorno:
   - **fase 1 / DEV:** Kafka real en LXC con ZooKeeper; capability objetivo `aranea-kafka-dev-admin`; agentes deben poder inspeccionar y administrar el cluster de desarrollo, incluyendo topics, configs, produce/consume, consumer groups y offsets;
   - **fase 2 / PROD:** cluster Kafka KRaft de tres VMs distribuidas entre Zeus, Hera y Kronos; capabilities futuras separadas `aranea-kafka-prod-ro` y `aranea-kafka-prod-ops`;
@@ -121,6 +122,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 
 ## 📆 Bitácora
 
+- **2026-09-13** — Incident recovery de `aranea-ssh`: baseline de cliente confirmó bearer `SET`, endpoint alcanzable, request sin auth `401` esperado, `/health` `200`, y dos intentos autenticados de `initialize` con `503` `Server is at its session limit (64)`. No se observaron sesiones MCP/HTTP, registry, edades, TCP, FDs, logs ni config efectiva porque no hubo autoridad administrativa para inspeccionar el LXC 113; SSH con la identidad local disponible fue rechazado por `root@mcps` y `root`/`agent_ro` en hades. No se reinició ningún servicio, no se cambió límite/auth/profile/bearer/network y no se ejecutaron profile smokes ni lifecycle test. Clasificación: `UNKNOWN` con handoff `BLOCKED — MCP RECOVERY FAILED`; requiere retomar con autoridad administrativa del runtime propio de `mcps` antes de decidir recovery o root cause.
 - **2026-09-12** — Corrección de boundary Kafka: el rollout queda environment-first. DEV se implementa primero sobre el cluster LXC/ZooKeeper con capability administrativa `aranea-kafka-dev-admin`; debe permitir creación/eliminación de topics, cambios de configuración, produce/consume y administración/inspección de consumer groups/offsets. PROD queda diferido hasta cerrar DEV y se modelará sobre el cluster KRaft de tres VMs como capabilities separadas `aranea-kafka-prod-ro` y `aranea-kafka-prod-ops`. La entrada previa `aranea-kafka-ro` queda supersedida.
 - **2026-09-12** — Abierto inicialmente `Kafka MCP / aranea-kafka-ro` como EXTEND del MCP Access Plane; supersedido por la corrección de boundary del mismo día antes de cualquier cambio de infraestructura.
 - **2026-09-12** — Hasura MCP workstream `PASS / CLOSED`. Se desplegaron y certificaron `aranea-hasura-dev-admin` (`:3006`) y `aranea-hasura-prod-ro` (`:3005`) contra Hasura CE `v2.38.0`. DEV expone 9 tools admin. PROD no confía sólo en upstream `--read-only`: usa variante strict-RO desde commit `9ba59f273daf42205919e6d43e27d2876a6e0b32`, sin `run_sql`/reload/mutadores y con exactamente 4 tools server-side. Ambos fueron validados desde Cursor con metadata consistente; secretos upstream permanecen server-side en `mcps`.
