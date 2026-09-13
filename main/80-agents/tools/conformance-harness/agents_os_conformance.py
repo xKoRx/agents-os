@@ -428,6 +428,19 @@ def _row_name(row: str) -> str:
     return m.group(1) if m else ""
 
 
+def _parse_index_declared_counts(text: str) -> Dict[str, int]:
+    """Counts declared by the INDEX.md callout (Core/Federadas/App-owned)."""
+    declared: Dict[str, int] = {}
+    for key, pat in (
+            ("core", r"\*\*Core AGENTS OS:\*\*\s*(\d+)"),
+            ("federated", r"\*\*Federadas \(vault\):\*\*\s*(\d+)"),
+            ("app-owned", r"\*\*App-owned:\*\*\s*(\d+)")):
+        m = re.search(pat, text)
+        if m:
+            declared[key] = int(m.group(1))
+    return declared
+
+
 def sc_registry_disk_parity(ctx: Ctx) -> Tuple[str, str, List[str]]:
     """Authority: doctor Check 8, bootstrap paso 3 + Lazy Skill Routing, C12
     (scenario REGISTRY-DISK-PARITY). Bidirectional parity INDEX.md <-> disk."""
@@ -446,6 +459,19 @@ def sc_registry_disk_parity(ctx: Ctx) -> Tuple[str, str, List[str]]:
         "INDEX core=%d federadas=%d app-owned=%d (callout declara 28/19/3)" % (len(core_index), len(fed_index), len(sections["app-owned"])),
         "disco core=%d federadas=%d" % (len(core_disk), len(fed_disk)),
     ]
+    # Callout counts: what INDEX.md DECLARES vs what the tables actually
+    # contain (mismatch is a registry integrity drift -> WARN, not FAIL).
+    declared = _parse_index_declared_counts(text)
+    parsed_counts = {"core": len(core_index), "federated": len(fed_index),
+                     "app-owned": len(sections["app-owned"])}
+    count_mismatch: List[str] = []
+    if declared:
+        evidence.append("conteos declarados por el callout de INDEX: %s" % json.dumps(declared, sort_keys=True))
+        for key in sorted(declared):
+            if declared[key] != parsed_counts[key]:
+                count_mismatch.append("callout de INDEX declara %s=%d pero el registro parseado tiene %d filas" % (key, declared[key], parsed_counts[key]))
+    else:
+        evidence.append("callout de conteos declarado no encontrado en INDEX.md: sub-check de conteos declarados no ejecutable")
     for name in sorted(set(core_disk) - set(core_index)):
         problems.append("skill en disco ausente de INDEX (core): %s" % name)
     for name in sorted(set(core_index) - set(core_disk)):
@@ -489,7 +515,11 @@ def sc_registry_disk_parity(ctx: Ctx) -> Tuple[str, str, List[str]]:
         evidence.append("SKIP sub-check: workspace del repo owner (%s) no alcanzable desde esta maquina" % (parsed_app[0][0] if parsed_app else "xKoRx/symphony"))
     if problems:
         return "FAIL", "paridad INDEX.md <-> disco violada", evidence + problems[:20]
-    return "PASS", "paridad exacta en ambas direcciones (core y federadas); filas app-owned por repo+path relativo", evidence
+    if count_mismatch:
+        return ("WARN",
+                "paridad bidireccional OK; el callout de conteos declarado por INDEX.md no coincide con las filas parseadas",
+                evidence + count_mismatch)
+    return "PASS", "paridad exacta en ambas direcciones (core y federadas); conteos del callout verificados contra las filas parseadas; filas app-owned por repo+path relativo", evidence
 
 
 def _classify_index_use(use: str, name: str) -> str:
@@ -1546,11 +1576,29 @@ def run(args: argparse.Namespace) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]
 
     results: List[Dict[str, Any]] = []
     if not marker_ok:
+        results.append({"id": ANCHOR_CHECK_ID, "level": "L0", "state": "SKIP",
+                        "details": "marker %s ausente bajo la raiz indicada: las reglas de AGENTS OS no aplican (AGENTS.md / spec section 6)" % MARKER,
+                        "evidence": []})
         for sid, level, _fn in requested:
             results.append({"id": sid, "level": level, "state": "SKIP",
                             "details": "marker %s ausente bajo la raiz indicada: las reglas de AGENTS OS no aplican (AGENTS.md / spec section 6)" % MARKER,
                             "evidence": []})
     else:
+        # Pre-flight RULES-FIDELITY-ANCHORS: corre en TODA capa antes de los
+        # escenarios (adversarial-verification D2). Si falla, la transcripcion
+        # de rules.py quedo obsoleta respecto del texto vigente de las
+        # autoridades y los resultados de los escenarios dependientes del gate
+        # no son interpretables: el FAIL entra al gate L0 (corta L1/L2 en runs
+        # full/--layer; los runs --scenario son dirigidos por el operador).
+        gate_failed: List[str] = []
+        try:
+            a_state, a_details, a_evidence = sc_rules_fidelity_anchors(ctx)
+        except Exception as exc:  # pragma: no cover — defensive; the check itself fails closed
+            a_state, a_details, a_evidence = "SKIP", "no ejecutable: %s: %s" % (type(exc).__name__, exc), []
+        results.append({"id": ANCHOR_CHECK_ID, "level": "L0", "state": a_state,
+                        "details": a_details, "evidence": a_evidence})
+        if a_state == "FAIL":
+            gate_failed.append(ANCHOR_CHECK_ID)
         # L0 gate: si se piden escenarios L1/L2, L0 corre completo primero
         # (spec section 3: cualquier FAIL en L0 detiene L1/L2).
         l0_all = [s for s in SCENARIOS if s[1] == "L0"]
@@ -1558,7 +1606,10 @@ def run(args: argparse.Namespace) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]
         run_l0 = l0_all if need_gate else l0_requested
         done_ids = set()
         for sid, level, fn in run_l0:
-            state, details, evidence = fn(ctx)
+            try:
+                state, details, evidence = fn(ctx)
+            except Exception as exc:  # D3: fixture L0 ausente u otro error inesperado -> SKIP con motivo (spec section 5), nunca traceback ni UNKNOWN->PASS
+                state, details, evidence = "SKIP", "no ejecutable: %s: %s" % (type(exc).__name__, exc), []
             results.append({"id": sid, "level": level, "state": state, "details": details, "evidence": evidence})
             done_ids.add(sid)
             if state == "FAIL":
