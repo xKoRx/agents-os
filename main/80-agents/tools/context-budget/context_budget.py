@@ -524,6 +524,10 @@ def ctx_01_default_cold(ctx, rules, harness) -> Dict[str, Any]:
     problems += harness._assert_absent(harness.NOT_LOAD_DEFAULT, s.all_opens(), evidence)
     if s.active_domain is not None:
         problems.append("router activo sin entidad resoluble: %s (bootstrap paso 6)" % s.active_domain)
+    # Assert heredado de COLD-DEFAULT (restaurado, D3a de la verificación
+    # adversarial): DEFAULT no debe terminar con entidad activa.
+    if s.active_entity is not None:
+        problems.append("entidad activa inesperada (heredado COLD-DEFAULT): %s" % s.active_entity.get("title"))
     if s.pack_files:
         problems.append("pack de dominio cargado en DEFAULT: %s" % s.pack_files)
     # Métricas de presupuesto: M01-M03, M07, M08, M15, M19 (diseño sección 6).
@@ -569,11 +573,25 @@ def ctx_02_meli_cold(ctx, rules, harness) -> Dict[str, Any]:
     ent = s.active_entity
     if not ent or ent.get("path") != "30-resources/applications/RIO.md":
         problems.append("entidad resuelta no es el fixture RIO.md: %s" % (ent,))
+    else:
+        # Assert heredado de COLD-MELI (restaurado, D3b): el fixture RIO debe
+        # seguir declarando area [[Meli]] (bootstrap paso 6).
+        fm_rio = ctx.vault.frontmatter("30-resources/applications/RIO.md")
+        evidence.append("fixture real 30-resources/applications/RIO.md: area=%s (frontmatter leído, sin escanear carpetas; heredado COLD-MELI)" % fm_rio.get("area"))
+        if rules.normalize_area(fm_rio.get("area")) != "meli":
+            problems.append("fixture RIO ya no declara area [[Meli]] (heredado COLD-MELI): %s" % fm_rio.get("area"))
     if s.active_domain != "meli":
         problems.append("gate no activó meli: %s (%s)" % (s.active_domain, s.gate_note))
     expected_pack = [rules.ROUTERS["meli"]] + rules.ROUTER_PREFS["meli"]
     if sorted(s.pack_files) != sorted(expected_pack):
         problems.append("pack meli != {router + 2 preferencias scoped}: %s" % s.pack_files)
+    # Guard heredado de COLD-MELI (restaurado, D3b): ninguna skill de dominio se
+    # alcanza sin pasar por el router. Hallazgo de sistema S1 (NO corregible
+    # aquí): el mensaje del heredado lista dentro del problema al router
+    # legítimo; este filtro del guard se aplica también al listado.
+    if any(p.startswith("30-resources/agents/skills/") and p != rules.ROUTERS["meli"] for p in s.all_opens()):
+        problems.append("skill de dominio alcanzada sin router (heredado COLD-MELI): %s" % [
+            p for p in s.all_opens() if p.startswith("30-resources/agents/skills/") and p != rules.ROUTERS["meli"]])
     not_load = ([rules.ROUTERS["aranea"], rules.ARANEA_MCPS_EXPERT,
                  "30-resources/aranea/00-index.md"] + rules.ROUTER_PREFS["aranea"]
                 + harness.MELI_ECHO_ACTIVE_NOTES)
