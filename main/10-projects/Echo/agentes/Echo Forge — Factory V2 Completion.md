@@ -47,9 +47,17 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 - **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED. F-04 C5.1–C5.6 IMPLEMENTED (2026-09-12) @ `b57bfb2` — release `0.2.98` publicada desde el SHA certificado el 2026-09-13. Corrección de autoridad: Zeus/Hera/Kronos sí ejecutan `/opt/stager/releases/0.2.98/bin/symphony` bajo `stager-runtime.service`; los marcadores `/opt/symphony/*` observados históricamente son legacy/no-authoritative. Windows `mt5-kronos` tiene un **MCP viewer policy gap confirmado tras probes mínimos allowlisted**: sólo identidad de host fue legible; servicio/proceso/path/release/poller siguen sin evidencia, por lo que el rollout global sigue bloqueado; T2.11–T2.13 OPEN; not physical-ready and F-04 not closed.** Manifest identity must not parse CanonicalStrategyID. E-04 join sigue one-shot separado. F-05 pendiente.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
-- **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 WIP (NORMAL C5; not physical-ready); F-05 pendiente.
+- **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 `IMPLEMENTED / SOURCE VERIFIED / RELEASED`, no físicamente certificado; F-05 se divide en preparación de implementación y campaña de certificación.
 - **Base observada:** Symphony `master`=`origin/master`=`382f4ba5d417371f778e21619ed9eb72624a23f4`; merge-base previo F-03=`e50cb7e`; worktree CLEAN. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
 - **Dependencia Echo:** F-01/F-02/F-03 independientes de S0. F-04 consume pin [[Echo — Live Platform V1]] E-01. Catálogo CC owner antes de allocation real.
+
+### Decisión de continuidad y taxonomía de estado
+
+La certificación física/de infraestructura se retira temporalmente del critical path de desarrollo mientras termina el [[AGENT-PLATFORM - MCP Access Plane]]; se difiere, no se waiva. `IMPLEMENTED != CERTIFIED`. Estados válidos: `PLANNED → IMPLEMENTED → SOURCE VERIFIED → RELEASED → DEPLOYED → PHYSICALLY CERTIFIED → CROSS-LANE CERTIFIED → CLOSED`; un estado posterior no se infiere por el anterior y se conserva la evidencia histórica.
+
+F-04 truth: implementation DONE; contract/source verification DONE; release `0.2.98` publicada desde `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`; Linux rollout PASS; Windows runtime certification BLOCKED by Aranea MCP viewer policy; authentic golden and Echo join deferred. Overall: `IMPLEMENTED / NOT CERTIFIED`.
+
+La backlog ordenada y no ejecutada vive en [[Echo + Echo Forge — Deferred Certification Backlog]]. El trigger es capability MCP operacional/certificada más runtimes objetivo observables/operables; no se usa fecha calendario.
 
 ## 🧱 Entrega de desarrollo
 
@@ -71,8 +79,9 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > - [x] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
-> - [/] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 Magic allocation, version seal and handoff #owner/agent #type/dev #area/echo
-> - [ ] F-05 Cohesive release, physical cert and FULL golden #owner/agent #type/dev #area/echo
+> - [/] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 implementation complete; physical/cross-lane certification deferred #owner/agent #type/dev #area/echo
+> - [ ] F-05-I Cohesive release/read-surface preparation #owner/agent #type/dev #area/echo
+> - [ ] F-05-C Release/physical/FULL golden certification campaign #owner/agent #type/admin #area/echo #blocked
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -188,24 +197,45 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### F-05 Cohesive release, physical cert and FULL golden
 
-- **ID / status / size:** F-05 · To Do · MEDIUM
+- **ID / status / size:** F-05 · split: implementation `PLANNED`; certification `DEFERRED / BLOCKED BY INFRASTRUCTURE` · MEDIUM
 - **Objective:** Un release cohesivo de lo implementado, matriz determinística, certificación física MT5 de superficies tocadas, conformidad de handoff, BWC, FULL golden **real** y result surfaces inspectables. Source merge ≠ product completion.
 - **Capability unlocked:** factory V2 operable: supply queryable, costo/latencia observables, al menos un finalista estructural con artifacts verificados cuando el cómputo lo permita.
 - **Product value:** owner lanza campaign, deja calcular, inspecciona funnel/warnings y obtiene/razona finalistas (H2).
 - **Why:** cert física y golden no caben dentro de cada slice sin crear releases-por-fix ni un catch-all de implementación.
 - **Frozen input:** cert V2 mínima del master arquitectura §5; C3 0.2.96 no se extiende a V2; no tercer FULL bajo timeout viejo.
-- **In scope:** release único del burn-down F-01…F-04 (o el subconjunto mergeado); three-slot/cancel/retry/drain recert **de lo cambiado** (B1/B2 no se reimplementan); FULL real; result read surface; handoff conformance contra pin S0.
+- **In scope implementation:** matriz determinística del release, preparación de result/read surfaces y conformance checklist para outputs ya existentes, sin nuevo contrato ni sustitución de golden.
+- **In scope certification:** release único del burn-down F-01…F-04 (o el subconjunto mergeado); three-slot/cancel/retry/drain recert **de lo cambiado** (B1/B2 no se reimplementan); FULL real; handoff conformance contra pin S0.
 - **Out of scope:** reabrir ownership; yield económico; eligibility Echo; recertificar Slot Pool desde cero sin delta.
 - **Dependencies:** F-01, F-02, F-03; F-04 para golden de handoff. E-04 para smoke ingestión real (fixtures primero).
 - **Parallel with:** cadena live Echo post E-04.
 - **Hypotheses:** un release + matriz física cierra V2 factory; zero-supply sigue siendo resultado válido.
 - **Risks:** declarar PRODUCT PASS con mocks; mezclar deploy viejo con HEAD nuevo.
 - **Output authority:** release pin + cert manifest + golden refs.
-- **Certification:** RELEASE + PHYSICAL + PRODUCT CAPABILITY (factory usable). INTEGRATION PASS handoff→receipt si E-04 listo; si no, CONTRACT PASS de fixtures y PHYSICAL factory igual.
+- **Certification:** la preparación puede avanzar ahora; RELEASE + PHYSICAL + PRODUCT CAPABILITY requieren la campaña [[Echo + Echo Forge — Deferred Certification Backlog]]. INTEGRATION PASS handoff→receipt requiere E-04/T21 y golden auténtico.
 - **Done when:** criterios de completion abajo. Zero finalists honesto no falla el software.
 - **Unlocks:** Echo enrollment con candidata real; no bloquea diseño Echo previo.
 - **Accepted debt:** cert singleton Windows residual documentada si sigue pendiente de Kronos, explicitada en el manifest, no escondida.
-- **Planning:** TOP (plan de cert/release). **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning:** TOP (plan de cert/release). **Implementation:** NORMAL para F-05-I; **certification:** diferida hasta trigger de infraestructura. **GOD:** NONE.
+
+#### F-05 split operativo
+
+- **F-05-I — CAN CONTINUE NOW:** preparar release matrix, result/read surface y checklist de conformance usando sólo outputs/fixtures existentes; no marca ningún gate físico.
+- **F-05-C — DEFERRED:** ejecutar CERT-F05-01…03 sólo después de CERT-F04-01…03 y de que el Access Plane habilite observación/operación real.
+
+### Dependency classification
+
+| Task | Class | Current truth |
+|---|---|---|
+| F-04 T2.11/T2.12/T2.13 | C — HARD BLOCKED | Requiere físico, golden auténtico y/o join real; OPEN, no waived. |
+| F-05-I | A — CAN CONTINUE NOW | Preparación de release/read-surface sin dependencia semántica de evidencia física. |
+| F-05-C | B — CAN IMPLEMENT BUT CANNOT CERTIFY | La preparación documental/tooling puede avanzar; PASS/CLOSED depende de campaña física. |
+| E-04 T21/AC-37 | C — HARD BLOCKED | Requiere golden auténtico de Forge y runtime Echo real; synthetic ≠ PASS. |
+| E-05 | B — CAN IMPLEMENT BUT CANNOT CERTIFY | No depende de T2.11–T2.13; conserva sus blockers propios de S0/Hasura/verificación. |
+| E-06…E-13 | A/B según task | El DAG permite trabajo con fixtures/shadow; las certificaciones físicas/product capability quedan posteriores. |
+
+### Next development task
+
+**F-05-I — Cohesive release/read-surface preparation.** `xKoRx/symphony`, nueva rama `codex/f05-release-prep`, baseline `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`. Completion: matriz determinística y provenance reproducibles, result/read surfaces inspectables, tests/source checks del scope PASS, cero cambios a F-01…F-04/S0 frozen, cero publicación productiva desde la rama y ningún T2.11/T2.12/T2.13 marcado PASS.
 
 ## Definition of Done — Factory V2
 
