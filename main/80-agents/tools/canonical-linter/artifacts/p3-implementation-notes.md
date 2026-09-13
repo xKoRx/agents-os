@@ -89,6 +89,14 @@ Corpus vivo: 853 notas (`iter_vault_md` = 877 − 5 `_shared/fixtures` − 19 fi
 - Selftest: 8/8 PASS con cleanup `rmtree` en `finally` (tempdirs fuera del vault).
 - Determinismo verificado; sin mutación del vault; sin red/DB/daemon; sin `__pycache__` fuera del write scope.
 
+## 5bis. Ciclo de corrección 1 (P3-D, 2026-09-13)
+
+- **D1 (defecto material de P3-C, corregido):** `_index_rows` de CL-14 verificaba sólo el PRIMER wikilink de cada fila de índice (repro del verifier: `30-resources/aranea/00-index.md:125` con dos links rotos, uno perdido). Ahora extrae TODOS los wikilinks de la fila (`finditer`), deduplicando targets repetidos dentro de la fila; `cl_15` reutiliza el mismo walker. Evidencia del fix en el run real: CL-14 pasó de 3 a 4 FAIL (el falso negativo `agent-project-08` ahora se reporta) y de 160 a 184 links de fila verificados.
+- **N2 (redacción de evidencia, recomendada por P3-C, veredicto-preservante):** CL-11/CL-12 distinguen en la evidencia "existe en zona no canónica (journal/packaging/derivados); no es destino canónico" de "no resuelve" (`NO_CORPUS_ZONES` + `no_corpus_hits`); veredictos, counts y severidades sin cambio (CL-11 sigue 337, CL-12 sigue 465). README actualizado en la misma línea.
+- **Test nuevo (selftest T9 `test_d1_fila_indice_multilink`):** fila con DOS links rotos → 2 findings en la misma línea; fila cuyo primer link resuelve y el segundo no → el segundo se reporta; múltiples wikilinks válidos → sin falso positivo. Selftest: 9/9 PASS (antes 8/8).
+- **Verificación del parent (post-corrección):** selftest 9/9; run completo real reproducido (counts PASS 6 · FAIL 5 · WARN 9 · SKIP 0 · findings 1004 — el +1 es el link antes perdido; ningún otro check degradado ni "arreglado" alterando el detector); selftest ejecutado de forma independiente; diff confinado a `canonical_linter.py` + `selftest.py` + `README.md` + resultados. No se corrigió ningún finding del sistema (S1-S7 intactos).
+- Nota de ejecución: la primera pasada del fixer P3-D aplicó el cambio y agotó cuota antes del handoff; la verificación y este registro los completó el parent. La corrección quedó confinada a CL-14 + la anotación de evidencia N2 (sin cambio semántico fuera de CL-14).
+
 ## 6. Limitaciones y riesgos
 
 - **Parser de frontmatter** (harness, regex simple): soporta listas multilínea y quoting básico; YAML avanzado (claves anidadas, bloque `|`) no se interpreta. Campos con wikilink fuera de ROUTING_FIELDS (p.ej. `sources`) no los verifica CL-11 (limitación declarada; CL-12 sólo cubre cuerpo).
