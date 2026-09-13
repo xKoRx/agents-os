@@ -56,7 +56,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 focused correction `f7ddea18` sobre `a99f9a63` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO · E-02 READY FOR MANAGER SOURCE REVIEW · PHYSICAL_PARTIAL |
+| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` + feature `feature/e05-analytics-convergence-a0` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 focused correction `f7ddea18` sobre `a99f9a63` · E-05 planning `be87f11e` sobre `a99f9a63` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 · E-05: `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.0 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · READY consumido · T21 POST-INTEGRATION PENDING · FINAL CLOSED=NO · E-02 READY FOR MANAGER SOURCE REVIEW · PHYSICAL_PARTIAL · E-05 TOP READY FOR MANAGER REVIEW |
 
 ## 🧩 Subproyectos
 
@@ -196,7 +196,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-05 Analytics convergence A0
 
-- **ID / status / size:** E-05 · To Do · MEDIUM
+- **ID / status / size:** E-05 · TOP PLANNING READY FOR MANAGER REVIEW · MEDIUM
 - **Objective:** Operaciones/scopes/sets/metrics canónicos en **paths nuevos**. Lab legacy vía adapters/proyecciones. No big bang.
 - **Capability unlocked:** métricas nuevas con key+basis+unit+formula.
 - **Why:** mismo nombre ≠ misma semántica.
@@ -212,7 +212,8 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Done when:** new writes canónicos; legacy no se presenta como autoridad.
 - **Unlocks:** E-10.
 - **Accepted debt:** snapshots Lab como read model.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning:** TOP v1.0.0 ([[Echo — E-05 Analytics Convergence A0]]). **Implementation:** NORMAL (no lanzado). **GOD:** NONE.
+- **Planning vivo:** SPEC/PLAN/TASKS/VERIFICATION v1.0.0 en `specs/FEAT-ANALYTICS-CONVERGENCE-A0/` @ `be87f11e` sobre `a99f9a63`. Persistencia 062 additive; calculator Go; Lab dual-run; Hasura SELECT; sin FK a 061; sin SQ/EF.
 
 ### E-06 Reference enrollment and binding
 
@@ -377,6 +378,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-12** — E-05 TOP planning one-shot ([[Echo — E-05 Analytics Convergence A0]]): SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `be87f11e` pusheados a `origin/feature/e05-analytics-convergence-a0` desde `a99f9a63` (docs-only; master intacto). Persistencia mínima 062; adapters Lab; calculator Go; Hasura SELECT. E-02/E-04/F-04 no tocados. Puente E-05 → Review.
 - **2026-09-12** — E-02 focused source-review correction v1.0.2 ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): SPEC/PLAN/TASKS/VERIFICATION @ `f7ddea18` sobre HEAD inicial `df99084b`. Auth hook entrega JSON Hasura, tokens duplicados fallan cerrado, 17 paths históricos autorizados limpiados; Gateway/front/SOURCE y regresión E-04 relevante PASS; PHYSICAL_PARTIAL, no verifier, master intacto. Puente E-02 permanece Review.
 - **2026-09-12** — E-02 TOP planning one-shot ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): subproyecto materializado; SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `ac7b4e14` pusheados a `origin/feature/e02-control-safety-journal-recovery` desde `a99f9a63` (docs-only; master intacto). Source D-04/D-01 revalidado en el baseline. Corregido el mismo día en v1.0.1.
 - **2026-09-12** — E-04 CONTROLLED INTEGRATION one-shot PASS: fetch/race y ancestry confirmados; gates mínimos PASS; `master` avanzó por fast-forward desde `fac48051` hasta el boundary E-04 `2f8db345`, sin reescritura ni force-push. Push normal verificado: `origin/master` final=`a99f9a63354bbe72219d1e590bb93757ed08e45e`; feature intacta=`2f8db345`. E-04 INTEGRATED=YES, READY consumido, T21/AC-37 PENDING POST-INTEGRATION y FINAL CLOSED=NO. Evidencia en E-04 `VERIFICATION.md`; F-04 no tocado.
@@ -402,6 +404,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 - [[Echo — E-02 Control Safety, Auth and Journal Recovery]]
 - [[Echo — E-03 Identity and BWC Foundation E0]]
 - [[Echo — E-04 Forge Ingestion E1]]
+- [[Echo — E-05 Analytics Convergence A0]]
 - [[Echo — Producto Integrado]]
 - [[Echo Forge — Factory V2 Completion]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
