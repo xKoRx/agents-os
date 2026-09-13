@@ -1,7 +1,7 @@
 {
-  "run": "2026-09-13T04:27:08",
+  "run": "2026-09-13T04:29:45",
   "tool": "context-budget",
-  "git_head": "4e4df22bbcbce8fba9d95216fcd15dafbb2c1768",
+  "git_head": "3a841154056a3fe802cf863d02dc99f08d1f67c3",
   "fidelity_gate": "PASS",
   "scenarios": [
     {
@@ -118,6 +118,7 @@
         "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md: bytes=1728 chars=1715 estimated_tokens=428",
         "30-resources/agents/skills/aranea-agent-dev/SKILL.md: bytes=3845 chars=3816 estimated_tokens=954",
         "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md: bytes=976 chars=972 estimated_tokens=243",
+        "cross-check context_baseline del harness (misma fuente _size): always=7025 meli=2017 aranea=1197; coincidencia con los agregados del medidor: True",
         "estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
       ],
       "skip_reason": null,

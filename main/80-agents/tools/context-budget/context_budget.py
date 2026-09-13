@@ -466,10 +466,26 @@ def ctx_15_baseline(ctx, rules, harness) -> Dict[str, Any]:
         w = file_weight(harness, ctx.vault, rel)
         rec["evidence"].append("%s: bytes=%d chars=%d estimated_tokens=%d" % (
             rel, w["bytes"], w["chars"], w["estimated_tokens"]))
+    # Cross-check de reuso contra context_baseline del harness (misma fuente _size):
+    # los agregados deben coincidir exactamente; una divergencia sería un bug
+    # de agregación propio y se reporta como FAIL.
+    cb_baseline = harness.context_baseline(ctx)
+    h_always = cb_baseline.get("always_load_total_approx_tokens")
+    h_packs = {dom: cb_baseline.get("scope_packs", {}).get(dom, {}).get("total_approx_tokens")
+               for dom in ("meli", "aranea")}
+    consistent = (h_always == agg_always["estimated_tokens"]
+                  and h_packs["meli"] == weight_of(harness, ctx.vault, packs["meli"])["estimated_tokens"]
+                  and h_packs["aranea"] == weight_of(harness, ctx.vault, packs["aranea"])["estimated_tokens"])
+    rec["evidence"].append("cross-check context_baseline del harness (misma fuente _size): always=%s meli=%s aranea=%s; coincidencia con los agregados del medidor: %s" % (
+        h_always, h_packs["meli"], h_packs["aranea"], consistent))
     rec["evidence"].append(TOKENS_NOTE)
-    return _finish(rec, [], "PASS",
+    problems = [] if consistent else ["context_baseline del harness no coincide con los agregados del medidor (bug de agregación): always %s vs %s, meli %s vs %s, aranea %s vs %s" % (
+        h_always, agg_always["estimated_tokens"], h_packs["meli"],
+        weight_of(harness, ctx.vault, packs["meli"])["estimated_tokens"], h_packs["aranea"],
+        weight_of(harness, ctx.vault, packs["aranea"])["estimated_tokens"])]
+    return _finish(rec, problems, "PASS",
                    "baseline-only (chars/4, C04): always-load y packs meli/aranea medidos con _size en el run; nunca criterio de fallo",
-                   "")
+                   "inconsistencia interna del baseline")
 
 
 # ---------------------------------------------------------------------------
