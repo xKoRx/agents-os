@@ -81,9 +81,9 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [/] T1 — Auditorías A/B/C en paralelo: contract-audit, domain-isolation-audit, conformance-scenarios #owner/agent #type/research #area/personal
-> - [ ] T2 — Reconciliación parent → conformance-spec-v1 (test model V1) #owner/agent #type/research #area/personal
-> - [ ] T3 — Harness Implementer subagent → entrypoint doctor L0/L1/L2 #owner/agent #type/dev #area/personal
+> - [x] T1 — Auditorías A/B/C: contract-audit (C01-C17), domain-isolation-audit (17 hallazgos), conformance-scenarios (25 escenarios) #owner/agent #type/research #area/personal
+> - [x] T2 — Reconciliación parent → conformance-spec-v1 (test model V1) #owner/agent #type/research #area/personal
+> - [/] T3 — Harness Implementer subagent → entrypoint L0/L1/L2 #owner/agent #type/dev #area/personal
 > - [ ] T4 — Ejecutar suite completa; fix loop sólo bugs del harness (máx 2 ciclos) #owner/agent #type/dev #area/personal
 > - [ ] T5 — Adversarial Verifier fresco + correcciones derivadas #owner/agent #type/research #area/personal
 > - [ ] T6 — Documentación mínima, findings registry, entrega final y cierre con feedback #owner/agent #type/admin #area/personal
@@ -117,7 +117,9 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 ## 📆 Bitácora
 
-- **2026-09-12** — B (Domain Isolation Auditor) completó: 17 hallazgos con evidencia en `80-agents/tools/conformance-harness/artifacts/domain-isolation-audit.md`. Claves: gate es prompt-discipline sin enforcement mecánica; MCPs `aranea-*` visibles en toda sesión (config a nivel máquina, fuera del vault); DEFAULT no neutral por cláusula de evidencia de superficie; sin mecanismo de unload; nota VPN cross-domain sin `area` resoluble; `when_echo_forge_loaded` no canónico; drift de `area` en memoria activa. A relanzado tras límite de concurrencia del entorno (1 subagent a la vez); C en cola.
+- **2026-09-12** — Reconciliación parent completada: los tres artifacts son consistentes (sin contradicciones factuales); las tensiones reales (cláusula de evidencia de superficie de DEFAULT, vocabulario `load_policy` con 3 enumeraciones sin árbitro, nota VPN cross-domain sin `area`, MCPs a nivel máquina fuera del vault, sin unload) quedan como WARN de diseño. `conformance-spec-v1.md` publicado: L0 estático (8), L1 simulado (16), L2 live-exposure (1 + baseline de contexto), stdlib Python, side-effect policy read-only.
+- **2026-09-12** — A (Contract Auditor) completó en modo síncrono: 17 contratos C01-C17; club cerrado 4/4 sin terceros vivos; ambiguities: vocabulario load_policy, INDEX.md fuera del club declarativo, nota VPN, MCP host-level NOT-TESTABLE desde vault. Entorno: límite de concurrencia de subagents (1 a la vez) forzó ejecución secuencial A/B/C.
+- **2026-09-12** — B (Domain Isolation Auditor) completó: 17 hallazgos con evidencia en `80-agents/tools/conformance-harness/artifacts/domain-isolation-audit.md`. Claves: gate es prompt-discipline sin enforcement mecánica; MCPs `aranea-*` visibles en toda sesión (config a nivel máquina, fuera del vault); DEFAULT no neutral por cláusula de evidencia de superficie; sin mecanismo de unload; nota VPN cross-domain sin `area` resoluble; `when_echo_forge_loaded` no canónico; drift de `area` en memoria activa.
 - **2026-09-12** — Proyecto creado como único planificador durable. Baseline `a6a503f`. Bootstrap ejecutado; auditorías A/B/C como subagents con artifacts en `80-agents/tools/conformance-harness/artifacts/`.
 
 ## 🧭 Decisiones
