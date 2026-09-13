@@ -175,38 +175,40 @@ def t1_injection_cross_pack() -> None:
     root = build_temp_vault("full")
     try:
         rules, harness, ctx = _ctx_for(root)
-    # Control: sin inyección, CTX-02 no registra FAIL (puede ser WARN sólo por
-    # techo blando A1/M18 sobre el fixture mínimo, jamás por carga prohibida).
-    control = cb.ctx_02_meli_cold(ctx, rules, harness)
-    clean = not any("carga prohibida" in e or "unrelated" in e for e in control["evidence"])
-    report("T1a.control-ctx02-sin-inyeccion", control["verdict"] in ("PASS", "WARN") and clean,
-           "CTX-02 sobre fixture temporal sin inyección -> %s (sin problemas de carga prohibida: %s)" % (control["verdict"], clean))
-    original = cb._session_for
+        # Control: sin inyección, CTX-02 no registra FAIL (puede ser WARN sólo por
+        # techo blando A1/M18 sobre el fixture mínimo, jamás por carga prohibida).
+        control = cb.ctx_02_meli_cold(ctx, rules, harness)
+        clean = not any("carga prohibida" in e or "unrelated" in e for e in control["evidence"])
+        report("T1a.control-ctx02-sin-inyeccion", control["verdict"] in ("PASS", "WARN") and clean,
+               "CTX-02 sobre fixture temporal sin inyección -> %s (sin problemas de carga prohibida: %s)" % (control["verdict"], clean))
+        original = cb._session_for
 
-    class CrossPackSession(rules.Session):
-        """Agente saboteador: tras el cold start meli carga además el pack
-        aranea (violación del Hard Rule 'Never load both routers')."""
+        class CrossPackSession(rules.Session):
+            """Agente saboteador: tras el cold start meli carga además el pack
+            aranea (violación del Hard Rule 'Never load both routers')."""
 
-        def cold_start(self, request):
-            missing = super().cold_start(request)
-            if self.active_domain == "meli":
-                for rel in [rules.ROUTERS["aranea"]] + rules.ROUTER_PREFS["aranea"]:
-                    self.open(rel, "inyeccion selftest: pack cruzado")
-                    self.pack_files.append(rel)
-            return missing
+            def cold_start(self, request):
+                missing = super().cold_start(request)
+                if self.active_domain == "meli":
+                    for rel in [rules.ROUTERS["aranea"]] + rules.ROUTER_PREFS["aranea"]:
+                        self.open(rel, "inyeccion selftest: pack cruzado")
+                        self.pack_files.append(rel)
+                return missing
 
-    try:
-        cb._session_for = lambda c: CrossPackSession(c.vault)
-        sabotaged = cb.ctx_02_meli_cold(ctx, rules, harness)
-        joined = json.dumps(sabotaged, ensure_ascii=False)
-        ok = sabotaged["verdict"] == "FAIL" and "aranea-agent-dev" in joined and "carga prohibida" in joined
-        report("T1b.inyeccion-pack-cruzado-dispara-FAIL", ok,
-               "sesión saboteada -> %s con evidencia del pack cruzado" % sabotaged["verdict"])
+        try:
+            cb._session_for = lambda c: CrossPackSession(c.vault)
+            sabotaged = cb.ctx_02_meli_cold(ctx, rules, harness)
+            joined = json.dumps(sabotaged, ensure_ascii=False)
+            ok = sabotaged["verdict"] == "FAIL" and "aranea-agent-dev" in joined and "carga prohibida" in joined
+            report("T1b.inyeccion-pack-cruzado-dispara-FAIL", ok,
+                   "sesión saboteada -> %s con evidencia del pack cruzado" % sabotaged["verdict"])
+        finally:
+            cb._session_for = original  # restauración: el vault canónico nunca se toca
+        control2 = cb.ctx_02_meli_cold(ctx, rules, harness)
+        report("T1c.restauracion-sin-efecto-residual", control2["verdict"] in ("PASS", "WARN"),
+               "tras restaurar _session_for, CTX-02 vuelve a %s (sin residuo de la inyección)" % control2["verdict"])
     finally:
-        cb._session_for = original  # restauración: el vault real nunca se toca
-    control2 = cb.ctx_02_meli_cold(ctx, rules, harness)
-    report("T1c.restauracion-sin-efecto-residual", control2["verdict"] in ("PASS", "WARN"),
-           "tras restaurar _session_for, CTX-02 vuelve a %s (sin residuo de la inyección)" % control2["verdict"])
+        shutil.rmtree(root, ignore_errors=True)
 
 
 # ---------------------------------------------------------------------------
