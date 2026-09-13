@@ -1184,32 +1184,34 @@ def ctx_12_deprecated_hot_path(ctx, rules, harness) -> Dict[str, Any]:
         problems.append("escenario heredado DEPRECATED-DOC-NOT-DEFAULT-LOAD en FAIL: %s" % h_details)
     if h_state == "SKIP":
         return _skip(rec, "escenario harness heredado no ejecutable: %s" % h_details)
-    # Parte estática M16: barrido sobre los sets fijos (always + packs + expert)
-    # detecta el drift inverso: que la ruta fija del hot path apunte a una nota
-    # retirada (bootstrap Hard Rules: "Never load superseded or archived...").
+    # Parte estática M16: barrido sobre los sets fijos (always + packs +
+    # especialistas) detecta el drift inverso: que la ruta fija del hot path
+    # apunte a una nota retirada (bootstrap Hard Rules: "Never load superseded
+    # or archived..."). D2 (verificación adversarial): el barrido cubre el set
+    # COMPLETO de especialistas (rules.DOMAIN_GATED_SKILLS de ambos dominios),
+    # no sólo la expert aranea — diseño 8.2: las especialistas (M12) son hot
+    # path (demostrado con una especialista status: deprecated que el barrido
+    # anterior no detectaba).
     profile = ctx.vault.resolve_profile_note()
     hot = [rules.CONSTITUTION, profile or "", rules.GLOBAL_INTERNAL, rules.SKILLS_INDEX,
            rules.ROUTERS["meli"], rules.ROUTERS["aranea"], rules.ARANEA_MCPS_EXPERT] \
         + rules.ROUTER_PREFS["meli"] + rules.ROUTER_PREFS["aranea"]
-    hot = [h for h in hot if h]
+    hot += ["30-resources/agents/skills/%s/SKILL.md" % name
+            for names in rules.DOMAIN_GATED_SKILLS.values() for name in sorted(names)]
+    hot = list(dict.fromkeys(h for h in hot if h))  # dedup preservando orden (expert == DOMAIN_GATED_SKILLS aranea)
     hits: List[str] = []
     hit_rels: List[str] = []
     for rel in hot:
-        fm = ctx.vault.frontmatter(rel)
-        state = str(fm.get("memory_state", "")).strip().strip("\"'").lower()
-        status = str(fm.get("status", "")).strip().strip("\"'").lower()
-        if state in ("superseded", "archived"):
-            hits.append("%s (memory_state=%s en hot path: FAIL inmediato, bootstrap Hard Rules 'Never load superseded or archived')" % (rel, state))
-            hit_rels.append(rel)
-        if status in ("deprecated", "deprecating"):
-            hits.append("%s (status=%s en hot path: FAIL, schema-contract)" % (rel, status))
+        hit = _deprecated_frontmatter_hit(ctx, rel)
+        if hit:
+            hits.append(hit)
             hit_rels.append(rel)
     weight_hits = weight_of(harness, ctx.vault, hit_rels)
     rec["metrics"].append(metric("deprecated_hot_path_files", hits, "files", "EXACT",
-                                 "frontmatter parseado de los sets fijos del hot path (bootstrap Hard Rules superseded + schema-contract status)"))
+                                 "frontmatter parseado de los sets fijos del hot path (always + packs + especialistas rules.DOMAIN_GATED_SKILLS; diseño 8.2; bootstrap Hard Rules superseded + schema-contract status)"))
     rec["metrics"].append(metric("deprecated_hot_path_estimated_tokens", weight_hits["estimated_tokens"], "estimated_tokens",
                                  "ESTIMATED", "_size del harness + " + TOKENS_NOTE))
-    evidence.append("barrido M16 estático sobre %d archivos del hot path (always + packs + expert): %d hits" % (len(hot), len(hits)))
+    evidence.append("barrido M16 estático sobre %d archivos del hot path (always + packs + especialistas DOMAIN_GATED_SKILLS): %d hits" % (len(hot), len(hits)))
     problems.extend(hits)
     return _finish(rec, problems, "PASS",
                    "ni el archive superseded ni contenido deprecated en el hot path (simulado + barrido estático M16: 0 hits esperados)",
@@ -1269,7 +1271,7 @@ def ctx_13_dup_content(ctx, rules, harness) -> Dict[str, Any]:
         evidence.append("ningún par co-cargable supera el umbral declarado (A4): total_chars < %d y ningún bloque de >= %d líneas consecutivas" % (
             DUP_THRESHOLD["min_chars"], DUP_THRESHOLD["min_consecutive_lines"]))
     rec["metrics"].append(metric("duplicate_hot_path_pairs", len(hits), "count", "INFERRED",
-                                 "heurística self-declared M14 v1 (umbral A4 ratificado): runs contiguos normalizados >= %d tokens; condición chars >= %d o >= %d líneas" % (
+                                 "heurística self-declared M14 v1 (umbral A4 ratificado): runs contiguos normalizados >= %d (normalized runs, detector M14; unidad interna del detector, no estimated_tokens); condición chars >= %d o >= %d líneas" % (
                                      DUP_THRESHOLD["min_run_tokens"], DUP_THRESHOLD["min_chars"], DUP_THRESHOLD["min_consecutive_lines"])))
     rec["metrics"].append(metric("duplicate_hot_path_chars", total_dup_chars, "chars", "EXACT",
                                  "suma de chars normalizados de los runs detectados (dado el detector declarado)"))
