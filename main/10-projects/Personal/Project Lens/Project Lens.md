@@ -115,7 +115,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ### Backlog de ideas
 
-- Exponer el Core Vault como servidor MCP: agentes consultando proyectos, tareas y backlinks del vault directamente (deferred F8 en el subproyecto; hoy Graphify cubre retrieval de agentes).
+- Exponer el Core Vault como servidor MCP: agentes consultando proyectos, tareas y backlinks del vault directamente (deferred F8 en el subproyecto; reopen trigger: necesidad demostrada de query/retrieval programático sobre Lens — Graphify es un índice derivado independiente, no sustituto de esa API).
 - Graph view ligero (solo entidades proyecto/app/área) más adelante (F6).
 - Snapshot HTML estático exportable como plan B si la política corporativa no permite binarios propios (F9).
 
