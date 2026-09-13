@@ -62,9 +62,11 @@ VPN_REL = "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences
 ARANEA_PREF_REL = "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
 GLOBAL_REL = "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md"
 ARCHIVE_REL = GLOBAL_REL.replace(".md", "-archive.md")
-FURY_REL = "80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-note.md"
-PLAYMAKER_REL = "80-agents/memory/public/decision/rio/2026-08-25-playmaker-note.md"
-MT5_REL = "80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-note.md"
+FURY_REL = "80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md"
+PLAYMAKER_REL = "80-agents/memory/public/decision/rio/2026-08-25-playmaker-cp-idempotency-boundary.md"
+MT5_REL = "80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md"
+WIKI_INDEX_REL = "30-resources/agents/00-index.md"
+EXPERT_REL = "30-resources/agents/skills/aranea-mcps-expert/SKILL.md"
 RIO_REL = "30-resources/applications/RIO.md"
 ECHO_REL = "10-projects/Echo Forge/Echo Forge.md"
 MELI_ROUTER_REL = "30-resources/agents/skills/meli-agent-dev/SKILL.md"
@@ -138,7 +140,9 @@ def build_temp_vault(variant: str = "full") -> str:
            "---\ntype: project\nstatus: active\narea: \"[[Echo]]\"\n---\n\nEcho Forge de prueba.\n")
     _write(root, MELI_ROUTER_REL, "---\ntype: skill\n---\n\n# meli-agent-dev\nRouter de prueba.\n")
     _write(root, ARANEA_ROUTER_REL, "---\ntype: skill\n---\n\n# aranea-agent-dev\nRouter de prueba.\n")
+    _write(root, EXPERT_REL, "---\ntype: skill\n---\n\n# aranea-mcps-expert\nExpert de prueba.\n")
     _write(root, SIGNALS_REL, "---\ntype: skill\n---\n\n# signals-code-review\nSkill de prueba.\n")
+    _write(root, WIKI_INDEX_REL, "# Wiki de dominio\n\n| Skill | Meta | Dominio |\n|---|---|---|\n")
     _write(root, FURY_REL,
            "---\ntype: known_error\narea: \"[[Meli]]\"\nload_policy: when_error_matches\nentities:\n  - \"[[RIO]]\"\n---\n\nKnown error de prueba.\n")
     _write(root, PLAYMAKER_REL,
