@@ -1445,14 +1445,20 @@ def _aggregate_totals(results: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def run_suite(vault_root: str, live: bool = False, scenario: Optional[str] = None,
-              write: bool = True, conformance_json: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+              write: bool = True, conformance_json: Optional[Dict[str, Any]] = None,
+              vault_root_arg: Optional[str] = None) -> Dict[str, Any]:
     """Corre la suite CTX y devuelve el record machine-readable (spec sección 7).
-    `write=True` es la única escritura permitida: results/run-<timestamp>.json."""
+    `write=True` es la única escritura permitida: results/run-<timestamp>.json.
+    N7 (verificación adversarial): `vault_root_arg` se computa ANTES de
+    `_finalize` para que el record en disco lo contenga (paridad disco/stdout);
+    `results_file` sigue siendo la única key exclusiva del stdout porque el
+    archivo no puede autoreferenciarse."""
     doc: Dict[str, Any] = {
         "run": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "tool": TOOL,
         "git_head": None,
         "fidelity_gate": "SKIP",
+        "vault_root_arg": vault_root_arg,
         "scenarios": [],
         "totals": {},
         "counts": {"pass": 0, "fail": 0, "warn": 0, "skip": 0},
@@ -1552,7 +1558,7 @@ def human_summary(doc: Dict[str, Any]) -> str:
     lines.append("AGENTS-OS CONTEXT BUDGET (P2)")
     lines.append("=" * 72)
     lines.append("run %s · vault: %s · git %s · fidelity_gate %s" % (
-        doc["run"], doc.get("vault_root_arg", "auto"), (doc.get("git_head") or "?")[:9], doc["fidelity_gate"]))
+        doc["run"], doc.get("vault_root_arg") or "auto", (doc.get("git_head") or "?")[:9], doc["fidelity_gate"]))
     if doc.get("fidelity_details"):
         lines.append("pre-flight RULES-FIDELITY-ANCHORS %s: %s" % (doc["fidelity_gate"], doc["fidelity_details"]))
     for r in doc["scenarios"]:
@@ -1600,8 +1606,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.scenario and args.scenario not in valid_ids:
         print("ERROR: escenario desconocido: %s (validos: %s, RULES-FIDELITY-ANCHORS)" % (args.scenario, ", ".join(sid for sid, _, _ in SCENARIOS)), file=sys.stderr)
         return 2
-    doc = run_suite(root, live=args.live, scenario=args.scenario, write=True, conformance_json=conformance_json)
-    doc["vault_root_arg"] = args.vault_root or "auto"
+    doc = run_suite(root, live=args.live, scenario=args.scenario, write=True, conformance_json=conformance_json,
+                    vault_root_arg=args.vault_root or "auto")
     if args.json:
         json.dump(doc, sys.stdout, indent=2, ensure_ascii=False)
         print()
