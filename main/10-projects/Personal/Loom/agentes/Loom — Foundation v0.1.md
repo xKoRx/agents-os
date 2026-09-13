@@ -80,7 +80,7 @@ _No aplica — este es el subproyecto de fundación/implementación de Loom; no 
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Estado atómico T01–T17: repo `specs/FEAT-LOOM-V01/TASKS.md`. %%
 > - [x] WP-A Scaffold: T01 Go scaffold (module github.com/xKoRx/loom, binario loom) + T02 Web scaffold #owner/agent #type/dev #area/personal ✅ 2026-09-13
 > - [x] WP-B Parse core: T05 fixtures → T03 frontmatter → T04 body #owner/agent #type/dev #area/personal ✅ 2026-09-13
-> - [ ] WP-C Index + live refresh: T06 scanner/snapshot/watcher/generation → T07 projections → T08 links/backlinks → T09 rebuild invariance #owner/agent #type/dev #area/personal
+> - [x] WP-C Index + live refresh: T06 scanner/snapshot/watcher/generation → T07 projections → T08 links/backlinks → T09 rebuild invariance #owner/agent #type/dev #area/personal ✅ 2026-09-13
 > - [ ] WP-D API: T10 meta/projects/areas + security boundary → T11 notes/render/search/tasks → T12 diagnostics #owner/agent #type/dev #area/personal
 > - [ ] WP-E Frontend (secuencial): T13 shell + generation polling → T14 viewer → T15 cockpit → T16 search/diagnostics #owner/agent #type/dev #area/personal
 > - [ ] WP-F Gates: T17 e2e + hardening live refresh + build binario único #owner/agent #type/dev #area/personal
