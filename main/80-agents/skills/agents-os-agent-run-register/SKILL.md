@@ -5,7 +5,7 @@ name: agents-os-agent-run-register
 description: Register one auditable code-generation execution by canonical agent surface and exact model. Use after a material coding, debugging, review, testing or code-related work segment completes or pauses, when the user asks to compare IDEs/models, or during explicit session close if that execution has not yet been recorded.
 scope: global
 created: "2026-08-11"
-updated: "2026-08-11"
+updated: "2026-09-12"
 entities:
   - "[[AGENTS OS]]"
 related:

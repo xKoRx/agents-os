@@ -4,7 +4,7 @@ schema_version: 1
 name: agents-os-session-close
 scope: global
 created: 2026-07-05
-updated: 2026-08-11
+updated: 2026-09-12
 description: Close an AGENTS OS session into reusable memory artifacts by delta. Use when the user says "cierra sesión", asks to persist session learnings, or invokes this skill by name. Decides what (if anything) to persist based on the session delta; default report is one or two lines.
 aliases:
   - agents-os-session-close

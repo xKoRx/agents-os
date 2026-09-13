@@ -3,7 +3,7 @@ type: doc
 schema_version: 1
 status: active
 created: 2026-07-04
-updated: 2026-09-03
+updated: 2026-09-12
 tags:
   - kind/doc
   - kind/system

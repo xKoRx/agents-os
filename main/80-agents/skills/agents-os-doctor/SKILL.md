@@ -4,7 +4,7 @@ schema_version: 1
 name: agents-os-doctor
 scope: global
 created: 2026-07-25
-updated: 2026-09-03
+updated: 2026-09-12
 description: Lint the AGENTS OS installation and propose minimal repairs. Use when the user says "agents-os-doctor", "doctor", "health check AGENTS OS", or when retrieval/skills/bootstrap behave unexpectedly. Apply repairs only after explicit authorization.
 aliases:
   - agents-os-doctor
@@ -200,7 +200,7 @@ LOW findings:
 
 Approved fixes applied: <count>
 Change log: <path or "none">
-Graphify reindex: <recommended | not needed>
+Graphify freshness: <ok | recommend agents-os-graphify-maintenance>
 ```
 
 ## Hard Rules
