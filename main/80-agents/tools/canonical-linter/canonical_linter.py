@@ -153,17 +153,21 @@ def resolve_vault_root(explicit: Optional[str] = None) -> Optional[str]:
 
 def load_harness(vault_root: str):
     """Importa el harness resolviendo su ruta relativa a VAULT_ROOT en runtime
-    (sys.path insert; jamás paths absolutos persistidos). PROHIBIDO fork."""
+    (sys.path insert; jamás paths absolutos persistidos). PROHIBIDO fork.
+    Devuelve (rules|None, harness): rules puede faltar sin invalidar harness."""
     harness_dir = os.path.join(vault_root, HARNESS_REL)
     if not os.path.isdir(harness_dir):
         raise ImportError("harness no disponible bajo %s" % HARNESS_REL)
     if harness_dir not in sys.path:
         sys.path.insert(0, harness_dir)
-    import rules  # noqa: E402  (transcripción única del hot path; NUNCA se copia)
     import agents_os_conformance as harness  # noqa: E402
-    globals()["rules"] = rules
     globals()["harness"] = harness
-    return rules, harness
+    try:
+        import rules  # noqa: E402  (transcripción única del hot path; NUNCA se copia)
+        globals()["rules"] = rules
+        return rules, harness
+    except Exception:
+        return None, harness
 
 
 def load_contract_module(vault_root: str):
