@@ -579,15 +579,6 @@ AUTH_META = "80-agents/skills/_shared/metadata-schema.md"
 AUTH_NOTETYPES = "80-agents/skills/_shared/note-types.md"
 
 
-def _pointer_fields_nonempty(ctx: LintCtx, rel: str) -> List[str]:
-    fm = ctx.fm(rel)
-    out = []
-    for field in SUCCESSION_FIELDS:
-        if as_list(fm.get(field)):
-            out.append(field)
-    return out
-
-
 def cl_01(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]]:
     """Notas active con superseded_by no vacío: se declaran reemplazadas y
     siguen como autoridad activa. MACHINE -> FAIL.
