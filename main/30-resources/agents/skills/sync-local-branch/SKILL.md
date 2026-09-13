@@ -2,8 +2,12 @@
 type: skill
 name: sync-local-branch
 scope: global
+schema_version: 1
+load_policy: manual
+indexable: true
+index_priority: high
 created: 2026-07-15
-updated: 2026-08-08
+updated: 2026-09-12
 description: Sincroniza una rama Git local con otra rama Git local mediante pull literal de la base, merge local, resolución conservadora de conflictos, commit y push. Usar cuando el usuario pida sincronizar, actualizar o mergear una rama con develop, master o una rama específica.
 tags:
   - kind/skill

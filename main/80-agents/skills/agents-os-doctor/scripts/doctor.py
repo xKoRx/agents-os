@@ -200,6 +200,13 @@ def check_skill_index(findings: list[Finding]) -> None:
                                     f"federated skill target missing on disk: {target}"))
 
 
+def all_skill_files() -> list[Path]:
+    """Core and vault-curated federated skills share one frontmatter contract."""
+    core = sorted((AGENTS / "skills").glob("*/SKILL.md"))
+    federated = sorted((ROOT / "30-resources/agents/skills").glob("*/SKILL.md"))
+    return core + federated
+
+
 def check_skill_frontmatter(findings: list[Finding]) -> None:
     """Every skill must carry the fields the schema contract requires.
 
@@ -208,7 +215,7 @@ def check_skill_frontmatter(findings: list[Finding]) -> None:
     """
     required = ("type", "schema_version", "name", "description",
                 "scope", "load_policy", "indexable", "index_priority")
-    for path in sorted((AGENTS / "skills").glob("*/SKILL.md")):
+    for path in all_skill_files():
         missing = [key for key in required if frontmatter_value(path, key) in (None, "")]
         if missing:
             findings.append(Finding("MEDIUM", "skill-frontmatter", relative(path),
@@ -221,7 +228,7 @@ def check_skill_frontmatter(findings: list[Finding]) -> None:
 
 def check_skill_refs(findings: list[Finding]) -> None:
     pattern = re.compile(r"`((?:\.\.?/)+[^`\n]+?\.md)`")
-    for path in (AGENTS / "skills").glob("*/SKILL.md"):
+    for path in all_skill_files():
         text = path.read_text(encoding="utf-8", errors="ignore")
         for reference in pattern.findall(text):
             if not (path.parent / reference).resolve().is_file():

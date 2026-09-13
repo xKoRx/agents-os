@@ -3,8 +3,12 @@ type: skill
 name: sdd-workflow
 description: Clasifica y ejecuta trabajo de software mediante Spec-Driven Development, manteniendo separadas specification, plan, tasks, implementation y verification. Usar al crear o cambiar una feature no trivial, hacer backfill brownfield, producir/revisar artefactos SDD, retomar una fase, generar un handoff o corregir gaps de trazabilidad. No usar para consultas aisladas ni para imponer SDD completo a cambios triviales que el repo autorice por fast path.
 scope: transversal
+schema_version: 1
+load_policy: manual
+indexable: true
+index_priority: high
 created: 2026-08-08
-updated: 2026-08-08
+updated: 2026-09-12
 tags:
   - kind/skill
   - action/sdd
