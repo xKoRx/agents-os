@@ -408,9 +408,16 @@ class Session(object):
                 if not trigger_fires(fm, entity, intent):
                     continue
                 selected.append(rel)
-        for rel in sorted(selected):
-            self.open(rel, "retrieval delta (%s)" % intent)
-        return selected
+        # NOTE: candidates are returned, NOT opened as bodies. context-
+        # retrieval Hard Rules: "Do not load a note body without a prior
+        # selection"; the scenario opens exactly the delta its turn declares
+        # via open_delta().
+        return sorted(selected)
+
+    def open_delta(self, rel: str) -> Optional[str]:
+        """Load the body of ONE previously selected candidate (the turn's
+        declared delta). Returns the rel when the file is missing."""
+        return self.open(rel, "cuerpo del delta seleccionado por retrieval")
 
     # -- entity swap (bootstrap entity swap pasos 1-4) ------------------------
     def swap_entity(self, title: str) -> Tuple[Optional[Entity], Optional[str]]:
@@ -526,15 +533,20 @@ def trigger_fires(fm: Dict[str, object], entity: Entity, intent: str) -> bool:
     lp = str(fm.get("load_policy", "")).strip().strip("\"'").lower()
     if not lp or lp == "manual" or lp == "never":
         return False  # manual requires explicit invocation; never excludes runtime
-    # Domain scoping: a candidate whose declared area mismatches the active
-    # entity's area never fires (UNRELATED-DOMAIN-NOT-LOADED: the harness
-    # compares each candidate against the area of the active entity).
+    # Domain scoping (UNRELATED-DOMAIN-NOT-LOADED: the harness compares each
+    # candidate against the DOMAIN of the active entity's area). Drift values
+    # like [[Echo Forge]] map to no gate domain: the guard does not fire on
+    # them (entity-reference matching decides) and the drift itself is
+    # registered by L0 ACTIVE-MEMORY-DOMAIN-PURITY (Hallazgo 11), not silently
+    # resolved here.
+    e_dom = domain_from_area(entity.get("area"))
+    n_dom = domain_from_area(fm.get("area"))
+    if e_dom and n_dom and n_dom != e_dom:
+        return False
     e_area = normalize_area(entity.get("area"))
     n_area = normalize_area(fm.get("area"))
-    if e_area and n_area and n_area != e_area:
-        return False
     if lp == "when_area_loaded":
-        return n_area is not None and n_area == e_area
+        return n_area is not None and e_area is not None and n_area == e_area
     refs = (fm.get("entities"), fm.get("project"), fm.get("application"), fm.get("related"))
     ref_hit = any(references_entity(v, entity) for v in refs)
     if lp == "when_error_matches":

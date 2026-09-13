@@ -273,7 +273,6 @@ def sc_closed_club_always(ctx: Ctx) -> Tuple[str, str, List[str]]:
             if rel.startswith("80-agents/memory/public/user-preference/"):
                 pref_always.append(rel)
     evidence = ["always encontrados (%d): %s" % (len(found), ", ".join(found) or "-")]
-    expected = CLUB_MEMBERS | ({found_single} if False else set())
     profile = [f for f in found if f.startswith("80-agents/memory/public/user-preference/")]
     problems: List[str] = []
     for member in sorted(CLUB_MEMBERS):
@@ -806,8 +805,7 @@ def sc_cold_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
     if sorted(s.pack_files) != sorted(expected_pack):
         problems.append("pack meli != {router + 2 preferencias scoped}: %s" % s.pack_files)
     not_load = [rules.ROUTERS["aranea"], rules.ARANEA_MCPS_EXPERT,
-                rules.ROUTER_PREFS["aranea"][0], rules.FEDERATED_DOMAIN_INDEX.replace("00-index", "aranea/00-index")] + MELI_ECHO_ACTIVE_NOTES
-    not_load = [p for p in not_load if p]
+                rules.ROUTER_PREFS["aranea"][0], "30-resources/aranea/00-index.md"] + MELI_ECHO_ACTIVE_NOTES
     problems += _assert_absent(not_load, s.all_opens(), evidence)
     opens = s.all_opens()
     if any(p.startswith("30-resources/agents/skills/") and p != rules.ROUTERS["meli"] for p in opens):
@@ -1352,8 +1350,6 @@ def sc_session_surface_exposure(ctx: Ctx) -> Tuple[str, str, List[str]]:
             problems.append("%s: servers Meli configurados (deben ser cero): %s" % (cfg["surface"], meli))
     evidence.append("assert por config: aranea-* presente y habilitado; cero servers Meli (zord/fury/spellbook/melisource)")
     evidence.append("SKIP permanente: sonda manual de auto-reporte de sesion real (documentada en README; el orchestrator la ejecuta y registra a mano; el router auto-declarado queda como dato WARN, Hallazgo 6)")
-    if ctx.machine_surface and ctx.no_live is False:
-        pass
     return state_worst(["PASS"] if not problems else ["FAIL"]), (
         "superficie observada: aranea-* configurados y cero servers Meli en todas las configs presentes" if not problems
         else "superficie de exposicion desviada del estado declarado",
@@ -1467,7 +1463,10 @@ def run(args: argparse.Namespace) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]
         if not requested:
             print("ERROR: escenario desconocido: %s" % args.scenario, file=sys.stderr)
             sys.exit(2)
-    need_gate = any(s[1] != "L0" for s in requested) and not args.scenario_only_gate_bypass
+    need_gate = any(s[1] != "L0" for s in requested) and args.scenario is None
+    # Nota: un run --scenario <ID> es un run dirigido por el operador (spec
+    # section 8) y no aplica el corte por FAIL-L0; los runs full y --layer
+    # siempre aplican el gate de la spec section 3.
     gate_failed: List[str] = []
 
     results: List[Dict[str, Any]] = []
@@ -1566,8 +1565,6 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--json", action="store_true", help="salida machine-readable a stdout y results/run-<timestamp>.json")
     ap.add_argument("--vault-root", help="ruta del vault (default: autodeteccion por marker)")
     ap.add_argument("--no-live", action="store_true", help="omite la parte de configs de maquina de L2 (para correr fuera de la maquina del owner)")
-    # internal flag (no en la superficie documentada)
-    ap.add_argument("--scenario-only-gate-bypass", action="store_true", help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
 
     results, doc = run(args)
