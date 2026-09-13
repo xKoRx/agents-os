@@ -178,7 +178,7 @@ Post-verificación (artifact 09, tabla V1–V21; veredicto PARTIAL con V10/V16/V
 
 ## Conflicts / Unknowns
 
-- Secreto en claro: la contraseña SSH del cluster (`cascada123`) está hardcodeada en el AGENTS.md de symphony (y en skills referenciados). Fuera de mi scope; se reporta al parent para decisión (rotación + mover a secret store).
+- Secreto en claro: la contraseña SSH del cluster (`cascada123`) está hardcodeada en el AGENTS.md de symphony y SIGUE en archivos tracked en `.agents/skills/worker-ssh/SKILL.md:40,45-67` y `.agents/skills/worker-troubleshooting/SKILL.md:19-24,116,193` (verificado por grep). Fuera de mi scope; ver nota de remediación en `## Corrections (A-1..A-4)`: mover a secret store/env fuera del repo y ROTAR la credencial (owner).
 - El Makefile raíz de echo apunta a v1: verificar con el owner si se desea actualizarlo a v3 (fuera de scope de este artifact).
 - `make` no verificado por ejecución (build read-only de módulos Go consumiría tiempo; las fuentes de comando son README/rules del propio repo, marcadas como tales).
 - Los drafts proponen reemplazo completo de los AGENTS.md de repo (no tienen bloque managed `AGENTS_OS_MANAGED`, así que no se rompe ningún marker).
