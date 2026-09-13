@@ -90,8 +90,12 @@ CL10_NAME_RE = re.compile(r"archiv", re.I)
 CL10_MIN_NOTES = 2
 CL10_MIN_RATIO = 0.5
 # Scope excluido del content-rule de CL-10: el lifecycle de memory/internal es
-# territorio del doctor (Check 7), no un directorio de archivo.
+# territorio del doctor (Check 7), no un directorio de archivo; los directorios
+# `sources/` son la capa de provenance de la wiki, donde `status: superseded`
+# es el lifecycle NORMAL de una fuente reemplazada (00-RESOURCE-WIKI), no
+# retención.
 CL10_EXCLUDED_PREFIXES = ("80-agents/memory/internal/",)
+CL10_EXCLUDED_DIR_NAMES = {"sources"}
 
 # Umbrales declarados en el record (comparabilidad entre runs).
 THRESHOLDS = {
@@ -934,6 +938,8 @@ def cl_10(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
         dirs.setdefault(d, []).append(rel)
     for d in sorted(dirs):
         rels = sorted(dirs[d])
+        if os.path.basename(d) in CL10_EXCLUDED_DIR_NAMES:
+            continue  # provenance de la wiki: superseded es lifecycle normal allí
         retired = [r for r in rels if (lambda s: s["no_vigente"] or s["en_retiro"])(ctx.life_state(r))]
         name_hit = bool(CL10_NAME_RE.search(os.path.basename(d)))
         ratio_hit = len(rels) >= CL10_MIN_NOTES and (len(retired) / len(rels)) >= CL10_MIN_RATIO
