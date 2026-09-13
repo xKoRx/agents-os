@@ -62,11 +62,9 @@ SOFT_CEILINGS = {
     "swap_estimated_tokens": (1000, 3000),
 }
 
-CTX_ORDER: List[str] = [
-    "CTX-15", "CTX-01", "CTX-02", "CTX-03", "CTX-04", "CTX-05", "CTX-06",
-    "CTX-07", "CTX-08", "CTX-09", "CTX-10", "CTX-11", "CTX-12", "CTX-13",
-    "CTX-14",
-]
+# N3 (verificación adversarial): la constante CTX_ORDER fue eliminada — el
+# orden obligatorio del spec sección 3 vive en UNA sola fuente: SCENARIOS
+# (abajo), de la que deriva tanto el orden de ejecución como los `reuses`.
 
 # WARN declarados por los audits del harness, heredados por diseño (spec
 # sección 4): se registran en `ambiguities` del record y no degradan veredictos.
@@ -381,11 +379,19 @@ def _finish(rec: Dict[str, Any], problems: List[str], pass_state: str, pass_deta
 def _m15_leak_check(rules, harness, ctx, rec: Dict[str, Any], opens: List[str], extra: List[str],
                     active_domain: Optional[str], problems: List[str]) -> List[str]:
     """M15 sobre el set cargado (opens + extra): archivos de dominio ajeno con
-    prohibición explícita -> FAIL (diseño 8.1); ambiguos -> WARN (nunca FAIL)."""
+    prohibición explícita -> FAIL (diseño 8.1); ambiguos -> WARN (nunca FAIL).
+    D1 (verificación adversarial): la nota VPN se evalúa ANTES de la membresía
+    de clasificación cuando el dominio activo es aranea — es ambigua por A3/
+    Hallazgo 7 (ni afirmada ni prohibida en Aranea), se excluye de `unrelated`
+    y se emite SOLO como ambigua (nunca FAIL ni doble emisión FAIL+WARN del
+    mismo archivo)."""
     loaded = list(dict.fromkeys(list(opens) + list(extra)))
     unrelated: List[str] = []
     ambiguous: List[str] = []
     for rel in loaded:
+        if active_domain == "aranea" and rel == rules.ROUTER_PREFS["meli"][1]:
+            ambiguous.append("%s: nota VPN (Hallazgo 7) presente en escenario aranea; ni afirmada ni prohibida en Aranea (WARN, A3): excluida de unrelated-domain" % rel)
+            continue
         dom, conf, note = classify_file(rules, harness, ctx.root, rel)
         if dom is not None and active_domain is not None and dom != active_domain:
             if conf == "EXACT":
@@ -399,9 +405,6 @@ def _m15_leak_check(rules, harness, ctx, rec: Dict[str, Any], opens: List[str], 
                 ambiguous.append("%s: %s" % (rel, note))
         elif dom is None and conf == "INFERRED":
             ambiguous.append("%s: %s" % (rel, note))
-        # Nota VPN en sesión aranea (Hallazgo 7): WARN declarado.
-        if active_domain == "aranea" and rel == rules.ROUTER_PREFS["meli"][1]:
-            ambiguous.append("%s: nota VPN (Hallazgo 7) presente en escenario aranea; ni afirmada ni prohibida (WARN, A3)" % rel)
     if unrelated:
         problems.append("M15 unrelated-domain en el set cargado (diseño 8.1, FAIL): %s — autoridades: meli-agent-dev/aranea-agent-dev Hard Rules de exclusividad; perfil ('Las preferencias Meli y Aranea son scoped'); bootstrap paso 6 ('Never load both routers', fail-closed)" % unrelated)
     rec["metrics"].append(metric("unrelated_domain_files", unrelated, "files", "EXACT",
@@ -431,6 +434,24 @@ def _soft_target(rec: Dict[str, Any], label: str, value: int, lo: int, hi: int, 
     if not in_range:
         rec["evidence"].append("WARN (A1/M18): %s = %d estimated_tokens (chars/4) fuera del techo blando %s; desviación registrada, nunca FAIL (C04)" % (label, value, range_text))
     return not in_range
+
+
+def _deprecated_frontmatter_hit(ctx, rel: str) -> Optional[str]:
+    """M16 (diseño 8.2) sobre un archivo concreto del hot path: hit EXACT si su
+    frontmatter declara memory_state superseded/archived (bootstrap Hard Rules
+    "Never load superseded or archived") o status deprecated/deprecating
+    (schema-contract). None si no declara retiro. Compartido por el barrido
+    estático de CTX-12 (D2) y por los escenarios que abren cuerpos de retrieval
+    o especialistas (CTX-05/06/08, diseño 8.2: los cuerpos M13 y las
+    especialistas M12 son hot path)."""
+    fm = ctx.vault.frontmatter(rel)
+    state = str(fm.get("memory_state", "")).strip().strip("\"'").lower()
+    status = str(fm.get("status", "")).strip().strip("\"'").lower()
+    if state in ("superseded", "archived"):
+        return "%s (memory_state=%s en hot path: FAIL inmediato, bootstrap Hard Rules 'Never load superseded or archived')" % (rel, state)
+    if status in ("deprecated", "deprecating"):
+        return "%s (status=%s en hot path: FAIL, schema-contract)" % (rel, status)
+    return None
 
 
 # ---------------------------------------------------------------------------
