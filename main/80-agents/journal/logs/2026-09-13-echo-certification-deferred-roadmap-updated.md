@@ -63,7 +63,7 @@ tags:
 ## Validación
 
 - Materialización canónica de doc y change_log PASS; schema contract existente conserva un error previo no relacionado en `agents-os-skill-authoring`.
-- Lint estricto, revisión de diff y búsqueda de estados confirmarán que no se tocó product code ni ningún contrato frozen.
+- Lint estricto de las 8 notas modificadas: `ERROR=0`, `WARN=0`; `git diff --check` PASS; no se tocó product code ni ningún contrato frozen. E2E retrieval quedó degradado porque falta `graphify-obsidian`; el schema contract global conserva un error previo ajeno.
 
 ## Compartibilidad
 
