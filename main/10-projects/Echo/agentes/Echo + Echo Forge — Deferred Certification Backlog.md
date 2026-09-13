@@ -125,11 +125,16 @@ F-04: `IMPLEMENTED` y `SOURCE VERIFIED` en product SHA `b57bfb2c3d2c4e0a96d2b3fa
 | F-05 release/physical/FULL golden/cierre | B — CAN IMPLEMENT BUT CANNOT CERTIFY | La preparación y el tooling avanzan; el veredicto necesita CERT-F05-01…03. |
 | E-04 T01–T20 | A — CAN CONTINUE NOW | Ya está integrado; no se reabre. |
 | E-04 T21/AC-37 | C — HARD BLOCKED | Exige golden Forge auténtico y join real; synthetic S0/fakeconsumer no satisfacen el gate. |
+| E-02 implementation/verification | B — CAN IMPLEMENT BUT CANNOT CERTIFY | No depende de T2.11–T2.13; conserva su PHYSICAL_PARTIAL y gates propios. |
 | E-05 implementation/corrections | B — CAN IMPLEMENT BUT CANNOT CERTIFY | No depende de T2.11–T2.13; su cierre actual depende de S0 erratum/control-plane evidence y su propia verificación. |
-| E-06/E-07/E-08/E-09 | B — CAN IMPLEMENT BUT CANNOT CERTIFY | El DAG permite diseño/implementación con fixtures; observación/cobertura física queda posterior. |
-| E-10/E-11 | A — CAN CONTINUE NOW | Quality/eligibility y portfolio shadow pueden avanzar con fixtures y abstención explícita. |
-| E-12 | B — CAN IMPLEMENT BUT CANNOT CERTIFY | La implementación DEMO puede avanzar; PHYSICAL DEMO requiere runtime real. |
-| E-13 | B — CAN IMPLEMENT BUT CANNOT CERTIFY | Read/ops surfaces pueden avanzar; PRODUCT CAPABILITY/restore requiere evidencia física. |
+| E-06 Reference enrollment and binding | B — CAN IMPLEMENT BUT CANNOT CERTIFY | El diseño/implementación puede avanzar; read-back y primera observación requieren runtime físico. |
+| E-07 Raw facts, DEAL and coverage | B — CAN IMPLEMENT BUT CANNOT CERTIFY | Puede avanzar con fixtures; offline/restart/partial/late-cost certification requiere observación real. |
+| E-08 Routing, EconomicCommand and risk reservation | B — CAN IMPLEMENT BUT CANNOT CERTIFY | Source/shadow puede avanzar; crash/UNKNOWN/reservation certification requiere runtime. |
+| E-09 Execution copy and reconciliation | B — CAN IMPLEMENT BUT CANNOT CERTIFY | Puede implementarse; Execution Fidelity PHYSICAL requiere Reference/Execution real. |
+| E-10 Strategy Quality and eligibility | A — CAN CONTINUE NOW | Quality/eligibility puede avanzar con fixtures, coverage explícita y abstención; no depende de golden Forge físico. |
+| E-11 PortfolioVersion shadow | A — CAN CONTINUE NOW | Selection/allocation shadow determinista puede avanzar con fixtures y CASH; no toca dinero real. |
+| E-12 Apply/rebalance/replacement/retirement | B — CAN IMPLEMENT BUT CANNOT CERTIFY | La implementación DEMO puede avanzar; PHYSICAL DEMO requiere runtime real y ACK/recovery. |
+| E-13 Front/read/ops and V1 closure | B — CAN IMPLEMENT BUT CANNOT CERTIFY | Read/ops surfaces pueden avanzar; PRODUCT CAPABILITY/restore requiere evidencia física. |
 
 ### Próxima tarea única recomendada para NORMAL
 
