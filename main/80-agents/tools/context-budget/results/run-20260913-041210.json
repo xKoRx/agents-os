@@ -1,7 +1,7 @@
 {
-  "run": "2026-09-13T04:03:20",
+  "run": "2026-09-13T04:12:09",
   "tool": "context-budget",
-  "git_head": "40f295f33f718a9a56720e11c1af6e8b7bdbe302",
+  "git_head": "f9c520320aa4f9aab1bf6ef7c1eca96f55bf26d0",
   "fidelity_gate": "PASS",
   "scenarios": [
     {

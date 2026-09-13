@@ -1,7 +1,7 @@
 {
-  "run": "2026-09-13T04:00:59",
+  "run": "2026-09-13T04:12:10",
   "tool": "context-budget",
-  "git_head": "471b34a93aef4ebf8bca71cf3998384e34bd20c9",
+  "git_head": "f9c520320aa4f9aab1bf6ef7c1eca96f55bf26d0",
   "fidelity_gate": "PASS",
   "scenarios": [
     {
@@ -550,7 +550,7 @@
         "estado: session_mode=warm active_entity=None active_domain=None"
       ],
       "skip_reason": null,
-      "details": "turno warm sin dominio: cero opens obligatorios; presupuesto del turno = delta puro (5 archivos)"
+      "details": "turno warm sin dominio: cero opens obligatorios; presupuesto del turno = delta puro (0 archivos)"
     },
     {
       "id": "CTX-05",
@@ -1390,70 +1390,32 @@
       "metrics": [
         {
           "name": "duplicate_hot_path_pairs",
-          "value": 12,
+          "value": 2,
           "unit": "count",
           "confidence": "INFERRED",
           "authority": "heurística self-declared M14 v1 (umbral A4 ratificado): runs contiguos normalizados >= 5 tokens; condición chars >= 120 o >= 3 líneas"
         },
         {
           "name": "duplicate_hot_path_chars",
-          "value": 3849,
+          "value": 2500,
           "unit": "chars",
           "confidence": "EXACT",
           "authority": "suma de chars normalizados de los runs detectados (dado el detector declarado)"
         },
         {
           "name": "duplicate_hot_path_estimated_tokens",
-          "value": 962,
+          "value": 625,
           "unit": "estimated_tokens",
           "confidence": "ESTIMATED",
           "authority": "estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
         }
       ],
       "evidence": [
-        "par duplicado [base]: 80-agents/agents-os/agent-constitution.md <-> 80-agents/memory/public/user-preference/rjara-agent-profile.md (total 352 chars normalizados, max 7 líneas consecutivas)",
-        "  bloque (64 chars, 5/5 líneas): \"created 2026 06 27 updated 2026 09 03 entities agents os related\"",
-        "  bloque (104 chars, 7/7 líneas): \"confidence verified load_policy always indexable true index_priority critical tags agent alwaysload kind\"",
-        "  bloque (40 chars, 3/3 líneas): \"priority critical project agentsos scope\"",
+        "par duplicado [base]: 80-agents/agents-os/agent-constitution.md <-> 80-agents/memory/public/user-preference/rjara-agent-profile.md (total 144 chars normalizados, max 1 líneas consecutivas)",
         "  bloque (35 chars, 1/1 líneas): \"una versión productiva limpia x y z\"",
         "  bloque (22 chars, 1/1 líneas): \"de prueba con sufijo y\"",
         "  bloque (87 chars, 1/1 líneas): \"exclusivamente desde la rama principal autorizada después del merge master en meli fury\"",
-        "par duplicado [base]: 80-agents/agents-os/agent-constitution.md <-> 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md (total 146 chars normalizados, max 5 líneas consecutivas)",
-        "  bloque (67 chars, 4/4 líneas): \"schema_version 1 scope global created 2026 06 27 updated 2026 09 03\"",
-        "  bloque (79 chars, 5/5 líneas): \"load_policy always indexable true index_priority critical tags agent alwaysload\"",
-        "par duplicado [base]: 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md <-> 80-agents/memory/public/user-preference/rjara-agent-profile.md (total 161 chars normalizados, max 5 líneas consecutivas)",
-        "  bloque (37 chars, 2/2 líneas): \"created 2026 06 27 updated 2026 09 03\"",
-        "  bloque (45 chars, 4/4 líneas): \"entities agents os related agent constitution\"",
-        "  bloque (79 chars, 5/5 líneas): \"load_policy always indexable true index_priority critical tags agent alwaysload\"",
-        "par duplicado [base+meli]: 80-agents/memory/public/user-preference/rjara-agent-profile.md <-> 80-agents/memory/public/user-preference/rjara-meli-work-preferences.md (total 43 chars normalizados, max 3 líneas consecutivas)",
-        "  bloque (43 chars, 3/3 líneas): \"type user_preference schema_version 1 scope\"",
-        "par duplicado [base+meli]: 80-agents/memory/public/user-preference/rjara-agent-profile.md <-> 80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md (total 151 chars normalizados, max 4 líneas consecutivas)",
-        "  bloque (61 chars, 4/4 líneas): \"type user_preference schema_version 1 scope user created 2026\"",
-        "  bloque (27 chars, 2/2 líneas): \"updated 2026 09 03 entities\"",
-        "  bloque (63 chars, 2/2 líneas): \"rjara meli work preferences rjara aranea operations preferences\"",
-        "par duplicado [base+meli]: 30-resources/agents/skills/meli-agent-dev/SKILL.md <-> 80-agents/memory/public/user-preference/rjara-meli-work-preferences.md (total 76 chars normalizados, max 5 líneas consecutivas)",
-        "  bloque (37 chars, 5/5 líneas): \"area meli entities meli related rjara\"",
-        "  bloque (39 chars, 3/3 líneas): \"indexable true index_priority high tags\"",
-        "par duplicado [base+meli]: 30-resources/agents/skills/meli-agent-dev/SKILL.md <-> 80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md (total 77 chars normalizados, max 4 líneas consecutivas)",
-        "  bloque (33 chars, 2/2 líneas): \"rjara meli work preferences rjara\"",
-        "  bloque (44 chars, 4/4 líneas): \"indexable true index_priority high tags kind\"",
-        "par duplicado [base+meli]: 80-agents/memory/public/user-preference/rjara-meli-work-preferences.md <-> 80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md (total 164 chars normalizados, max 5 líneas consecutivas)",
-        "  bloque (43 chars, 3/3 líneas): \"type user_preference schema_version 1 scope\"",
-        "  bloque (33 chars, 3/3 líneas): \"related rjara agent profile rjara\"",
-        "  bloque (88 chars, 5/5 líneas): \"confidence verified load_policy when_area_loaded indexable true index_priority high tags\"",
-        "par duplicado [base+aranea]: 80-agents/memory/public/user-preference/rjara-agent-profile.md <-> 80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md (total 64 chars normalizados, max 3 líneas consecutivas)",
-        "  bloque (43 chars, 3/3 líneas): \"type user_preference schema_version 1 scope\"",
-        "  bloque (21 chars, 2/2 líneas): \"27 updated 2026 09 03\"",
-        "par duplicado [base+aranea]: 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md <-> 80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md (total 26 chars normalizados, max 3 líneas consecutivas)",
-        "  bloque (26 chars, 3/3 líneas): \"27 updated 2026 09 03 area\"",
-        "par duplicado [base+aranea]: 30-resources/agents/skills/aranea-agent-dev/SKILL.md <-> 80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md (total 74 chars normalizados, max 4 líneas consecutivas)",
-        "  bloque (35 chars, 4/4 líneas): \"area aranea entities aranea related\"",
-        "  bloque (39 chars, 3/3 líneas): \"indexable true index_priority high tags\"",
-        "par duplicado [registros]: 30-resources/agents/00-index.md <-> 80-agents/skills/INDEX.md (total 2515 chars normalizados, max 5 líneas consecutivas)",
-        "  bloque (51 chars, 5/5 líneas): \"type index schema_version 1 status active icon slug\"",
-        "  bloque (50 chars, 4/4 líneas): \"index area personal project agents os created 2026\"",
-        "  bloque (27 chars, 2/2 líneas): \"reviewed 2026 09 12 aliases\"",
-        "  bloque (31 chars, 4/4 líneas): \"cssclasses wide tags kind index\"",
+        "par duplicado [registros]: 30-resources/agents/00-index.md <-> 80-agents/skills/INDEX.md (total 2356 chars normalizados, max 1 líneas consecutivas)",
         "  bloque (33 chars, 1/1 líneas): \"este índice es el catálogo curado\"",
         "  bloque (29 chars, 1/1 líneas): \"30 resources 00 resource wiki\"",
         "  bloque (47 chars, 1/1 líneas): \"30 resources agents skills meli agent dev skill\"",
@@ -1503,7 +1465,7 @@
         "veredicto máximo WARN (A4): la duplicación con umbral propio nunca sostiene FAIL hasta que el parent ratifique otro umbral; no detecta paráfrasis semántica"
       ],
       "skip_reason": null,
-      "details": "duplicación textual en el hot path detectada (WARN; umbral A4 declarado): 12 pares"
+      "details": "duplicación textual en el hot path detectada (WARN; umbral A4 declarado): 2 pares"
     },
     {
       "id": "CTX-14",
@@ -1575,9 +1537,9 @@
       "confidence": "EXACT"
     },
     "duplicate_hot_path": {
-      "pairs": 12,
-      "chars": 3849,
-      "estimated_tokens": 962,
+      "pairs": 2,
+      "chars": 2500,
+      "estimated_tokens": 625,
       "confidence": "INFERRED"
     }
   },
@@ -1607,7 +1569,9 @@
       "min_chars": 120,
       "min_run_tokens": 5,
       "version": 1,
-      "max_verdict": "WARN"
+      "max_verdict": "WARN",
+      "strip_frontmatter": true,
+      "scope": "texto normalizado sin frontmatter (metadatos estructurales del schema-contract, no contenido de la regla 5)"
     },
     "soft_ceilings": {
       "cold_base_estimated_tokens": [
