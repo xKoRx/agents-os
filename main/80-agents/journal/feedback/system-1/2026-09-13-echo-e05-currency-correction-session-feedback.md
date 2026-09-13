@@ -62,6 +62,10 @@ Use 1-5, where 1 is poor and 5 is excellent.
 - Why it was hard: el harness SQL y los tests Go tienen precondiciones de conexión distintas.
 - Proposed improvement: un preflight compartido que descubra `psql` bundled y derive un DSN local no-SSL para el cluster descartable.
 
+- Observation: la validación global de schema reportó un bypass preexistente en `agents-os-skill-authoring/SKILL.md`.
+- Why it was hard: el gate mezcla deuda de otra skill con los artefactos nuevos de esta sesión.
+- Proposed improvement: permitir validación dirigida del delta, manteniendo visible el fallo global sin atribuirlo al cambio de E-05.
+
 ## Most Useful Part Of Sistema 1
 
 - What helped: la separación de SPEC/PLAN/TASKS/VERIFICATION y el checkpoint E-05 de Agents OS.

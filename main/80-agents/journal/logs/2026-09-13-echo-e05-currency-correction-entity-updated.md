@@ -57,6 +57,9 @@ tags:
 
 - Validado por lectura focalizada de la nota y por los tests/gates reportados en
   `VERIFICATION.md`; no se ejecutó el verifier ni se hizo merge.
+- El validador global de schema quedó con un error preexistente en
+  `agents-os-skill-authoring/SKILL.md`; no pertenece al delta E-05 y no se
+  modificó.
 
 ## Compartibilidad
 

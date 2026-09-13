@@ -7,7 +7,7 @@ baseline: echo f7ddea18 · symphony 9fad768c · vault 12d250a
 inputs: artifacts 01-05, resource-wiki contract
 scope: propuesta completa de documentación canonical (draft-only)
 started_at: 2026-09-13T01:35:00-03:00
-updated_at: 2026-09-13T02:20:00-03:00
+updated_at: 2026-09-13T03:05:00-03:00
 ---
 
 # KBC-F — Wiki Draft Plan
@@ -440,6 +440,14 @@ Pares bidireccionales; se aplican SÓLO tras Fase G PASS (paso 9 del manifest E)
 | Echo + Echo Forge — Evidencia de revisión independiente 2026-09-06 | sin supersede (ARCHIVE-histórico: fotografía física datada; sólo `status: archived` si el tipo lo permite, sino fila histórica) |
 
 Notas sin cambio de estado: los 2 specs repo-side superseded de facto (`FEAT-SQX-ECHO-INGESTION`, `FEAT-SQX-ECHO-DEPLOYMENT-LINK`) NO se tocan (cero escritura en repos); quedan documentados como deuda repo-side para fase posterior. `GUIA_WORKER_TEMPORAL_MT5.md` y `30-resources/sqx/` + `Diagrama visual…` (archive/MERGE) quedan FUERA de este draft: su gate es la verificación G del manifest E (pasos 7–8), no de esta tarea.
+
+## Corrections (cycle 1)
+
+Correcciones F-1/F-2/F-3 del ciclo de verificación (artifact 09) aplicadas verbatim a este draft; los artifacts fuente ya estaban corregidos (KBC-G). Sin cascada: los conteos "16 MOVEs/16 páginas" (log, Recommendations, tabla Moves) y "16 apps / 16−2=14" del índice raíz son independientes de estos 3 datos y ya pasaron verificación (C45).
+
+1. **F-1 (Temporal SDK en Forge):** P3 §Contratos e interacciones — "SDK v1.44.1" → **SDK v1.35.0** (`sqx/go.mod:24`). v1.44.1 vive sólo en el go.mod root de symphony (módulo legacy feeds, no Forge). Coincide con `03-forge-cartography.md` §8 + `## Corrections` (fix F-1, 2026-09-13T01:22:57-03:00).
+2. **F-2 (topics Kafka de Echo):** P2 §Contratos e interacciones — "18 topics canónicos" → **17 topics** (struct `Topics`, `v3/sdk/domain/snapshots.go` L254-270, incluye 2 DEPRECATED). Coincide con `02-echo-cartography.md` Findings Kafka + Evidence + `## Corrections` (fix F-2, ciclo 2).
+3. **F-3 (filas Echo en "Arquitectura de producto" del índice raíz):** Index & Log Updates — "= 11 filas" → **= 13 filas** (2 contratos V1 + 3 auditorías + 2 Fuentes + F-01…F-04 + 2 Fable reviews; cuenta verificada una a una en `applications/00-index.md` por el verifier, C51).
 
 ## Conflicts / Unknowns
 
