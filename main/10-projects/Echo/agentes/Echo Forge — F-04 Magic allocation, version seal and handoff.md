@@ -190,14 +190,14 @@ Host mínimo para NORMAL cert: (1) SQX/sqcli con licencia válida para exporter 
 
 ## Planned diff
 
-Fase 1 (T1.x) **done** en `ea8be76`. Fase 2 (T2.x) **done** en `d645ed6` salvo PHYSICAL/golden. **C4 MUST (NORMAL):**
+Fase 1 (T1.x) **done** en `ea8be76`. Fase 2 (T2.x) **done** en `d645ed6` salvo PHYSICAL/golden. **C4 MUST (NORMAL): DONE en `bba833d` (2026-09-12):**
 
-- modify `sqx/core/domain/magic_v1.go` — retire `ParseMagicV1AllocationIdentity`; add `MagicV1DirectionFromStrategy`
-- modify `sqx/adapters/registry-postgres/magic_v1.go` — `AllocateMagicV1` SELECT instrument/direction from `sqx.strategies`; replay conflict via `DecodeMagicV1`
-- modify `sqx/adapters/registry-postgres/magic_allocation_test.go` `f04Strategy` — persist instrument/direction under test
-- modify `sqx/adapters/apply-selected-run/binding/contract.go` `AllocatedEffectiveConfig` — TaskSpec magic is not requested
-- modify tests listed in C4.5; SOURCE grep C4.6
-- no new migration; do not modify `015_*.sql` / `016_*.sql`
+- modify `sqx/core/domain/magic_v1.go` — retire `ParseMagicV1AllocationIdentity`; add `MagicV1DirectionFromStrategy` ✅ (parser retirado del allocation path; función preservada sólo para el consumer de seal documentado en C4.6)
+- modify `sqx/adapters/registry-postgres/magic_v1.go` — `AllocateMagicV1` SELECT instrument/direction from `sqx.strategies`; replay conflict via `DecodeMagicV1` ✅
+- modify `sqx/adapters/registry-postgres/magic_allocation_test.go` `f04Strategy` — persist instrument/direction under test ✅
+- modify `sqx/adapters/apply-selected-run/binding/contract.go` `AllocatedEffectiveConfig` — TaskSpec magic is not requested ✅
+- modify tests listed in C4.5; SOURCE grep C4.6 ✅
+- no new migration; do not modify `015_*.sql` / `016_*.sql` ✅ (015/016 byte-untouched, 017 inexistente)
 
 ### MUST (T2, already done)
 
@@ -227,7 +227,7 @@ F-01 CanonicalStrategyID/publication. F-02 policy `finalist_promotion@2.0.0`. F-
 
 ## Execution sequence
 
-T1.1–T1.18 **done**. T2.1–T2.10 **done**. **C4.1–C4.6 To Do (NORMAL, before T2.11).** T2.11 golden capture. T2.12 PHYSICAL. T2.13 cross-lane T21/AC-37 (E-04 runtime one-shot separado).
+T1.1–T1.18 **done**. T2.1–T2.10 **done**. **C4.1–C4.6 DONE (2026-09-12, `bba833d`).** Siguiente: **manager source review of C4 implementation.** T2.11 golden capture. T2.12 PHYSICAL. T2.13 cross-lane T21/AC-37 (E-04 runtime one-shot separado).
 
 C4.3 after C4.2 after C4.1. C4.4 ∥ C4.1. C4.5 after C4.1–C4.4. C4.6 after C4.5. T2.11 after C4 + physical-capable host. T2.13 after T2.11 golden **and** separate E-04 runtime one-shot.
 

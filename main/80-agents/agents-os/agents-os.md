@@ -7,7 +7,7 @@ tags:
   - kind/system
   - tech/agents-os
 created: 2026-06-27
-updated: 2026-09-03
+updated: 2026-09-12
 aliases:
   - Agent Memory System
 ---
@@ -58,7 +58,7 @@ capa más barata relevante para la intención y escala solo ante insuficiencia:
 metadata/tags → índice curado → grafo → cuerpo seleccionado
 ```
 
-Core always-load: constitución, perfil global, bootstrap y una sola memoria interna global compacta. Context Retrieval y toda memoria de dominio son lazy/scoped y entran sólo cuando la pregunta requiere una entidad del vault. La continuidad usa un slot activo por `continuity_key`, actualizado en lugar de acumular checkpoints; memorias superseded/archived quedan fuera del retrieval normal. El catálogo está en `80-agents/skills/INDEX.md`; bootstrap decide qué skill principal cargar.
+Core always-load: constitución, perfil global, bootstrap, el índice de skills y una sola memoria interna global compacta. Context Retrieval y toda memoria de dominio son lazy/scoped y entran sólo cuando la pregunta requiere una entidad del vault. La continuidad usa un slot activo por `continuity_key`, actualizado en lugar de acumular checkpoints; memorias superseded/archived quedan fuera del retrieval normal. El catálogo `80-agents/skills/INDEX.md` se carga en cold start; bootstrap decide qué skill principal cargar.
 
 ## Estructura
 

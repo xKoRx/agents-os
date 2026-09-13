@@ -4,7 +4,7 @@ schema_version: 1
 name: agents-os-bootstrap
 scope: global
 created: 2026-07-04
-updated: 2026-09-03
+updated: 2026-09-12
 description: Mandatory AGENTS OS startup skill. Run once at cold start when a new session begins or the user explicitly asks to load AGENTS OS. Its loaded contract governs warm turns and entity swaps without rereading the skill or base stack. Loads the minimum operating stack and routes entity-specific context lazily.
 aliases:
   - agents-os-bootstrap
