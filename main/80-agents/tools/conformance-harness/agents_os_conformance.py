@@ -973,8 +973,9 @@ def sc_warm_aranea(ctx: Ctx) -> Tuple[str, str, List[str]]:
     if miss:
         problems.append("delta declarado inexistente en disco: %s" % miss)
     for p in candidates:
-        if "rio" in p or "meli" in p.lower():
-            problems.append("memoria Meli/RIO en turno Aranea: %s" % p)
+        fm_p = ctx.vault.frontmatter(p)
+        if rules.domain_from_area(fm_p.get("area")) == "meli":
+            problems.append("memoria del dominio Meli en turno Aranea: %s" % p)
     if any(p in candidates or p in s.opens_in_turn(2) for p in (rules.ROUTERS["meli"], rules.ROUTER_PREFS["meli"][0])):
         problems.append("pieza Meli en turno Aranea")
     evidence.append("candidatos del filtro (%d): %s" % (len(candidates), ", ".join(candidates) or "-"))
