@@ -30,7 +30,7 @@ tags:
 
 - **Core AGENTS OS:** 28 skills de comportamiento del sistema.
 - **Federadas (vault):** 19 skills curadas en `30-resources/agents/skills/`.
-- **App-owned:** 3 skills en repos dueño.
+- **App-owned:** 21 skills en `xKoRx/symphony/.agents/skills/` (3 con routing cross-dominio listadas abajo; resto se descubre en el repo owner).
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
 ## 🛠️ Catálogo core — comportamientos de AGENTS OS
@@ -97,13 +97,14 @@ Las skills de dominio y transversales viven curadas en el vault bajo
 
 ### App-owned — repo `xKoRx/symphony` (Echo Forge / SQX)
 
-Ownership real = repo de la app. `xKoRx/symphony` usa `.agents/skills/` como home canónica. El registry enlaza por `repo + path relativo`; nunca copia ni persiste un path absoluto de máquina (constitución, invariante 11).
+Ownership real = repo de la app. `xKoRx/symphony` usa `.agents/skills/` como home canónica (21 skills al 2026-09-13; catálogo completo en el repo: `xKoRx/symphony` → `.agents/skills/`). El registry enlaza por `repo + path relativo`; nunca copia ni persiste un path absoluto de máquina (constitución, invariante 11). Sólo se listan aquí las skills con routing cross-dominio; el resto se descubre en el repo owner.
 
 | Skill | Una línea | Estado / ubicación |
 |---|---|---|
 | `xKoRx/symphony` → `.agents/skills/sqx-plugin-lifecycle/SKILL.md` | Modifica, compila, despliega y valida plugins Java de SQX con build contra SDK real, backup, canary y rollback. | ✅ migrada (piloto, 2026-08-07) al repo owner. |
 | `xKoRx/symphony` → `.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` | Troubleshooting de Echo Forge/WFM; delega el acceso MCP a [[aranea-mcps-expert]]. | ✅ repo owner; fuente única de routing de dominio. |
 | `xKoRx/symphony` → `.agents/skills/sqx-temporal-failure-audit/SKILL.md` | Audita una ejecución fallida de un workflow Temporal del SQX Worker sin proponer fix. | ✅ migrada al repo owner. |
+| `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md` | Copia repo-side del router MCP de Aranea (⚠️ divergencia conocida auditada 2026-09-13: la canónica vive en `30-resources/agents/skills/`); delegar acceso MCP siempre a la canónica. | ⚠️ duplicada en repo; canónica en vault. |
 
 ## 🔗 Links
 
