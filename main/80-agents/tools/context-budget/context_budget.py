@@ -1051,15 +1051,18 @@ def ctx_12_deprecated_hot_path(ctx, rules, harness) -> Dict[str, Any]:
         + rules.ROUTER_PREFS["meli"] + rules.ROUTER_PREFS["aranea"]
     hot = [h for h in hot if h]
     hits: List[str] = []
+    hit_rels: List[str] = []
     for rel in hot:
         fm = ctx.vault.frontmatter(rel)
         state = str(fm.get("memory_state", "")).strip().strip("\"'").lower()
         status = str(fm.get("status", "")).strip().strip("\"'").lower()
         if state in ("superseded", "archived"):
-            hits.append("%s (memory_state=%s en hot path: FAIL inmediato, bootstrap Hard Rules)" % (rel, state))
+            hits.append("%s (memory_state=%s en hot path: FAIL inmediato, bootstrap Hard Rules 'Never load superseded or archived')" % (rel, state))
+            hit_rels.append(rel)
         if status in ("deprecated", "deprecating"):
             hits.append("%s (status=%s en hot path: FAIL, schema-contract)" % (rel, status))
-    weight_hits = weight_of(harness, ctx.vault, [h.split(" ")[0] for h in hits])
+            hit_rels.append(rel)
+    weight_hits = weight_of(harness, ctx.vault, hit_rels)
     rec["metrics"].append(metric("deprecated_hot_path_files", hits, "files", "EXACT",
                                  "frontmatter parseado de los sets fijos del hot path (bootstrap Hard Rules superseded + schema-contract status)"))
     rec["metrics"].append(metric("deprecated_hot_path_estimated_tokens", weight_hits["estimated_tokens"], "estimated_tokens",
@@ -1215,14 +1218,6 @@ _FUNCS = {
 def _aggregate_totals(results: List[Dict[str, Any]]) -> Dict[str, Any]:
     by_id = {r["id"]: r for r in results}
 
-    def w_of(rec, prefix, conf):
-        m = {mm["name"]: mm for mm in rec["metrics"] if mm["name"].startswith(prefix)}
-        if not m:
-            return None
-        return {"files": None, "chars": None, "bytes": None, "estimated_tokens": None,
-                "confidence": conf,
-                "detail": {k: v["value"] for k, v in m.items()}}
-
     totals: Dict[str, Any] = {}
     b = by_id.get("CTX-15")
     if b and b["verdict"] != "SKIP":
@@ -1365,10 +1360,6 @@ def _finalize(doc: Dict[str, Any], vault_root: str, write: bool) -> None:
         counts[r["verdict"].lower()] = counts.get(r["verdict"].lower(), 0) + 1
     doc["counts"] = counts
     doc["totals"] = _aggregate_totals(doc["scenarios"])
-    try:
-        sys.path_insert_guard = None  # noqa: F841 (documentado: sin efecto)
-    except Exception:
-        pass
     try:
         rules, harness = load_harness(vault_root)
         doc["git_head"] = harness.git_head(vault_root)
