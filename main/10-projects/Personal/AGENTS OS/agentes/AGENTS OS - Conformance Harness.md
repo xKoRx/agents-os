@@ -10,7 +10,7 @@ parent: "[[AGENTS OS]]"
 sprint:
 start: 2026-09-12
 due:
-progress: 0
+progress: 100
 repo:
 jira:
 prs:
@@ -22,7 +22,7 @@ tags:
   - area/personal
   - project/agents-os
 created: "2026-09-12"
-updated: "2026-09-12"
+updated: "2026-09-13"
 ---
 
 # AGENTS OS - Conformance Harness
@@ -128,6 +128,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 ## 📆 Bitácora
 
+- **2026-09-13** — Entrega completa: harness implementado (stdlib Python, entrypoint + rules + README), suite ejecutada y reproducible; adversarial verification ronda 1 (D1 telemetría off-by-one → falsos positivos WARM/SWITCH; D2 sin guarda de fidelidad; D3 crash en vez de SKIP) corregida en ciclo 1 con pruebas de inyección; ronda 2 confirmó D1/D2/D3 y halló N1 (cláusula de evidencia de superficie sin ancla) corregido en ciclo 2 (26 anclas) junto a N2/N3; límite de 2 ciclos respetado; residuos documentados como limitaciones en README. Hallazgo real del sistema F1 (validador schema en rojo) registrado sin auto-corrección. Tarea puente pasa a Review.
 - **2026-09-12** — Reconciliación parent completada: los tres artifacts son consistentes (sin contradicciones factuales); las tensiones reales (cláusula de evidencia de superficie de DEFAULT, vocabulario `load_policy` con 3 enumeraciones sin árbitro, nota VPN cross-domain sin `area`, MCPs a nivel máquina fuera del vault, sin unload) quedan como WARN de diseño. `conformance-spec-v1.md` publicado: L0 estático (8), L1 simulado (16), L2 live-exposure (1 + baseline de contexto), stdlib Python, side-effect policy read-only.
 - **2026-09-12** — A (Contract Auditor) completó en modo síncrono: 17 contratos C01-C17; club cerrado 4/4 sin terceros vivos; ambiguities: vocabulario load_policy, INDEX.md fuera del club declarativo, nota VPN, MCP host-level NOT-TESTABLE desde vault. Entorno: límite de concurrencia de subagents (1 a la vez) forzó ejecución secuencial A/B/C.
 - **2026-09-12** — B (Domain Isolation Auditor) completó: 17 hallazgos con evidencia en `80-agents/tools/conformance-harness/artifacts/domain-isolation-audit.md`. Claves: gate es prompt-discipline sin enforcement mecánica; MCPs `aranea-*` visibles en toda sesión (config a nivel máquina, fuera del vault); DEFAULT no neutral por cláusula de evidencia de superficie; sin mecanismo de unload; nota VPN cross-domain sin `area` resoluble; `when_echo_forge_loaded` no canónico; drift de `area` en memoria activa.
