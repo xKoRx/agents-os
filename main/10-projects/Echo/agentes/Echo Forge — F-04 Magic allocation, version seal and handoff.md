@@ -124,6 +124,7 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 - `ROLLOUT_PROOF: FAIL` — Zeus/Hera/Kronos: `/opt/symphony/releases/0.2.98` no existe, `/opt/symphony/PENDING=0.2.40`, `/opt/symphony/current -> /opt/symphony/releases/0.2.40`; el log Stager no contiene `0.2.98`. Además, `/opt/symphony/CURRENT` contiene `9.9.11`, inconsistente con symlink/PENDING. `mt5-kronos` viewer rechazó lecturas PowerShell con `POLICY_DENIED`; no se elevó por comodidad.
 - `PHYSICAL BLOCKED — ENVIRONMENT`: último stage probado = release publicada por Stager; primer stage fallido = materialización/activación runtime `0.2.98`. No se creó WorkflowID/RunID/FlowRunRef, no se evaluó licencia y no se ejecutó candidato. T2.12/T2.11/T2.13 permanecen OPEN.
 - Próximo paso exacto: Manager/owner debe recuperar el Stager/deployer canónico para materializar `0.2.98` en Zeus, Hera, Kronos y MT5; luego repetir rollout proof desde esta release sin republish. Esta sesión no autoriza symlink manual, copia host-by-host ni una release nueva.
+- Evidencia de cierre: `80-agents/journal/sessions/2026-09-13-f04-physical-certification-blocked-summary.md`, `80-agents/journal/agent-runs/2026-09-13-0205-codex-unknown-f04-physical-certification-blocked.md`, `80-agents/journal/feedback/system-1/2026-09-13-f04-physical-certification-blocked-session-feedback.md` y `80-agents/journal/change-logs/2026-09-13-f04-physical-certification-blocked.md`. Golden evidence: `NONE`.
 
 | ID | status | resolution | source | phase |
 |---|---|---|---|---|

@@ -14,7 +14,8 @@ related: []
 aliases: []
 confidence: verified
 source_session: 2026-09-13-f04-physical-certification-blocked
-source_feedbacks: []
+source_feedbacks:
+  - "[[2026-09-13-f04-physical-certification-blocked-session-feedback]]"
 share_scope: local
 load_policy: manual
 indexable: false
@@ -33,6 +34,7 @@ tags:
 - **Tipo:** updated
 - **Archivo(s):**
   - `10-projects/Echo/agentes/Echo Forge — F-04 Magic allocation, version seal and handoff.md`
+  - `10-projects/Echo/agentes/Echo Forge — Factory V2 Completion.md`
   - `80-agents/journal/sessions/2026-09-13-f04-physical-certification-blocked-summary.md`
   - `80-agents/journal/feedback/system-1/2026-09-13-f04-physical-certification-blocked-session-feedback.md`
   - `80-agents/journal/agent-runs/2026-09-13-0205-codex-unknown-f04-physical-certification-blocked.md`
