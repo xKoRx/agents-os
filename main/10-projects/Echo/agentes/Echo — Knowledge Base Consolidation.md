@@ -10,7 +10,7 @@ parent: "[[Echo — Producto Integrado]]"
 sprint:
 start: 2026-09-12
 due:
-progress: 0
+progress: 90
 repo: xKoRx/echo
 jira:
 prs:
@@ -51,7 +51,7 @@ Dejar Echo y Echo Forge documentados según su realidad implementada actual, la 
   - **CASE 5 (scope switch):** NOT_VERIFIABLE — sin prueba real de swap en esta sesión; contrato de bootstrap define reemplazo explícito de paquete.
 - **Fase J COMPLETE:** 9 findings (1 P0, 4 P1, 2 P2, 1 P3, 1 positivo) en `artifacts/08-context-budget.md`. Wiki publicada sana (sin duplicación cross-boundary, deprecated fuera de índices). P0 = credenciales en 4 superficies (→ owner). Leakage: DEFAULT limpio (club always cerrado, cold base ~5k), routers excluyentes.
 - **Fase K COMPLETE (hygiene pass acotado, parent):** (1) dist-files de core-export marcados `indexable: false / index_priority: never` (elimina duplicación always del perfil; chatgpt-pack sin risk); (2) skills INDEX corregido: app-owned 3→21 con pointer al repo owner + fila de divergencia `aranea-mcps-expert` duplicada marcada ⚠️; (3) link de estado real a `echo-forge-integration-boundary` añadido en proyecto `Echo Forge.md` (corrige claim legacy "vía API" con nota); (4) flags de seguridad re-elevados al owner (informe final). Sin tocar skills/runbooks/contratos/memoria histórica (KISS).
-- **FASE J EN CURSO** — context-budget-auditor lanzado. **FASE I COMPLETE:** drafts AGENTS.md Echo/Forge (~40 líneas c/u) en `artifacts/07-agents-md-plan.md`, verificados (PARTIAL→corregido A-1..A-4: go.work para lista módulos, gobierno CONSTITUTION/rules conservado en ambos, remediación credencial documentada). Veredicto: invariants 9/9 PASS, comandos 5/6→corregido, routing/machine-paths PASS. **Cambios de repo quedan como PATCHES para el owner** (repos READ-ONLY en campaña). Vault: sin cambio de routing (bootstrap puro correcto). ⚠️ **Flags seguridad al owner (2):** (1) `30-resources/APIs.md` credenciales en claro; (2) contraseña SSH `cascada123` hardcodeada en AGENTS.md de symphony Y en skills tracked (`worker-ssh/SKILL.md`, `worker-troubleshooting/SKILL.md`) — requiere mover a secret store + ROTAR (expuesta en git history).
+- **FASE I COMPLETE:** drafts AGENTS.md Echo/Forge (~40 líneas c/u) en `artifacts/07-agents-md-plan.md`, verificados (PARTIAL→corregido A-1..A-4: go.work para lista módulos, gobierno CONSTITUTION/rules conservado en ambos, remediación credencial documentada). Veredicto: invariants 9/9 PASS, comandos 5/6→corregido, routing/machine-paths PASS. **Cambios de repo quedan como PATCHES para el owner** (repos READ-ONLY en campaña). Vault: sin cambio de routing (bootstrap puro correcto). ⚠️ **Flags seguridad al owner (2):** (1) `30-resources/APIs.md` credenciales en claro; (2) contraseña SSH `cascada123` hardcodeada en AGENTS.md de symphony Y en skills tracked (`worker-ssh/SKILL.md`, `worker-troubleshooting/SKILL.md`) — requiere mover a secret store + ROTAR (expuesta en git history).
 - **FASE H COMPLETE** — manifest en `artifacts/10-publication-plan.md` (PASS): reconciliación vault `9a5299f1→a05d2e29` (82 commits, cero toques a superficies de publicación; única línea relevante pre-baseline y cubierta por G) y repos delta 0. Deferred: supersedes de 5 históricos (bloqueado por cobertura de 32 deudas/hitos), MERGE GUIA_WORKER, archive moves de `sqx/`, escrituras repo-side (fase I/K), `APIs.md` (decisión humana).
 - Riesgos registrados en artifact: vault HEAD real `09746b3` (sync commits ajenos, reconcilia fase H); movimiento ~17 páginas exige actualizar índice raíz en el mismo cambio; symphony dirty → sólo lectura; skills INDEX declara 3 app-owned vs 21 reales en symphony (fases I/J); Graphify CLI no disponible (inventario por búsqueda enfocada).
 - `MAX_ACTIVE_SUBAGENTS = 1` — ejecución estrictamente secuencial. El planner (esta nota) es single-writer del parent orchestrator.
@@ -80,11 +80,13 @@ Reglas de repos: INPUTS READ ONLY. Sin reset/clean/stash/rebase/checkout destruc
 > - [x] H — vault-publisher-reconciler (MAX): reconciliación baseline→HEAD + publication manifest → `10-publication-plan.md` #owner/agent #area/echo
 > - [x] P — Parent ejecuta publicación canonical en `30-resources/` (sólo con verification PASS) #owner/agent #area/echo
 > - [x] I — agents-md-gardener: AGENTS.md Echo + Forge minimalistas → `07-agents-md-plan.md`; luego documentation-verifier scope AGENTS.md; parent aplica #owner/agent #area/echo
-> - [/] J — context-budget-auditor: duplicación, staleness, leakage MELI/ARANEA/DEFAULT → `08-context-budget.md` #owner/agent #area/echo
-> - [ ] K — Agents-OS hygiene pass acotado (KISS) desde findings J; conformance check conceptual (no inventar PASS; NOT_VERIFIABLE si no demostrable) #owner/agent #area/echo
+> - [x] J — context-budget-auditor: duplicación, staleness, leakage MELI/ARANEA/DEFAULT → `08-context-budget.md` #owner/agent #area/echo
+> - [x] K — Agents-OS hygiene pass acotado (KISS) desde findings J; conformance check conceptual (no inventar PASS; NOT_VERIFIABLE si no demostrable) #owner/agent #area/echo
 > - [ ] L — Informe final + cierre de sesión con feedback (Agents-OS session-close) #owner/agent #area/echo
 
 ## 📆 Bitácora
 
+- **2026-09-13** — Fases J y K COMPLETE. Auditoría context budget (9 findings; wiki publicada sana; P0 credenciales → owner). Hygiene pass KISS: dist-files no-indexables, skills INDEX corregido (21 app-owned + divergencia aranea-mcps-expert marcada), link de estado real en proyecto Echo Forge. Conformance check: CASE 1/3/4 PASS, CASE 2 PASS conceptual, CASE 2 runtime + CASE 5 NOT_VERIFIABLE (documentado, no inventado). Puente → Review.
+- **2026-09-13** — Publicación canonical ejecutada por el parent (H+P): subdominio `applications/echo/` con 16 MOVEs + 4 páginas nuevas + índices reconciliados. Validación post-publicación PASS. Desviación: sync externo del vault conmutó los cambios en commits automáticos; contenido verificado íntegro pieza por pieza.
 - **2026-09-12** — Interrupción infra: primer lanzamiento de forge-functional-cartographer (KBC-C) falló con "user concurrency limit exceeded" antes de iniciar. Verificado: sin hijos activos. Reintento único de la misma task en curso.
 - **2026-09-12** — Campaña iniciada (NEW). Bootstrap Agents-OS ejecutado; dominio aranea, entity Echo. Baselines capturados (tabla 🧱). Proyecto creado como planner único; artifacts en `agentes/kb-consolidation/artifacts/`. Tarea puente creada en [[Echo — Producto Integrado]]. Fase A lanzada.
