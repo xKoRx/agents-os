@@ -49,7 +49,7 @@ tags:
 
 ## Resolución aplicada
 
-- La implementación `5751940e7a8ce92d94d8d8a4f14ecedc2890681d` unifica duplicate detection y ResultsDigest ordering sobre los seis campos frozen. Se registró BWC literal, corpus G01–G36, race, coverage, vet y el non-effect E-04/F-04. E-05 quedó referenciado como `BLOCKED_BY_S0_ERRATUM` con la branch/SHA y no se marcó VERIFIED.
+- La implementación `8a979fb5bf218abed5f5c352896b727303dbf65f` unifica duplicate detection y ResultsDigest ordering sobre los seis campos frozen. Se registró BWC literal, corpus G01–G36, race, coverage, vet y el non-effect E-04/F-04. E-05 quedó referenciado como `BLOCKED_BY_S0_ERRATUM` con la branch/SHA y no se marcó VERIFIED.
 
 ## Validación
 

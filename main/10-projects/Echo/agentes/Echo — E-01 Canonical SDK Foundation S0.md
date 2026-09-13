@@ -65,7 +65,7 @@ Llevar E-01 desde el baseline Echo autorizado hasta **CONTRACT PASS** del módul
 - Trigger: E-05 Independent Verifier #3 `V3-006 — METRIC_FORMULA_IDENTITY_TRUNCATED`, clasificado como `AUTHORITY_CONFLICT` porque la corrección requerida pertenecía al source S0 certificado.
 - Sesión: `E-01 / S0 IMPLEMENTATION ERRATUM`, con ownership en E-01 y trigger externo de E-05; SPEC frozen intacto.
 - Branch: `fix/s0-metric-formula-identity-erratum` desde `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`.
-- Implementación: commit `5751940e7a8ce92d94d8d8a4f14ecedc2890681d` en `v3/sdk/contracts/analytics.go`; Validate y SortMetrics comparten una primitive interna con `key, basis, unit, formula.id, formula.version, formula.definition_digest`.
+- Implementación: commit `8a979fb5bf218abed5f5c352896b727303dbf65f` en `v3/sdk/contracts/analytics.go`; Validate y SortMetrics comparten una primitive interna con `key, basis, unit, formula.id, formula.version, formula.definition_digest`.
 - Regresiones: exact duplicate fail-closed; versiones y definition digests distintos pasan como identidades distintas; permutaciones de dos y tres métricas convergen; corpus G01–G36, race, coverage y vet PASS; no se actualizaron goldens.
 - Estado máximo de esta lane: `S0 ERRATUM IMPLEMENTED — READY FOR INDEPENDENT VERIFIER`; no es `E-01 CLOSED AGAIN`, `CONTRACT RE-FROZEN` ni integrado.
 
@@ -237,7 +237,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-13** — Erratum de implementación post-certificación V3-006: el source certificado truncaba la identidad de fórmula a `key+basis+formula.ID` en duplicate detection y SortMetrics. Branch `fix/s0-metric-formula-identity-erratum`, commit `5751940e7a8ce92d94d8d8a4f14ecedc2890681d`; BWC literal, corpus G01–G36, race, coverage y vet PASS. READY FOR INDEPENDENT VERIFIER; no cambio al SPEC frozen, no merge/master push.
+- **2026-09-13** — Erratum de implementación post-certificación V3-006: el source certificado truncaba la identidad de fórmula a `key+basis+formula.ID` en duplicate detection y SortMetrics. Branch `fix/s0-metric-formula-identity-erratum`, commit `8a979fb5bf218abed5f5c352896b727303dbf65f`; BWC literal, corpus G01–G36, race, coverage y vet PASS. READY FOR INDEPENDENT VERIFIER; no cambio al SPEC frozen, no merge/master push.
 - **2026-09-10 (VERIFIER INDEPENDIENTE — cierre):** `CONTRACT_PASS`. Implementation `08a0eb9a83813cda2acbd7be5232e9e0370e12ab`; verification `91671f6f46ffa889a79aed0979cb3b4e5821ed33`; `origin/master` coincide y el worktree de verificación quedó limpio. Findings requested keys, metric grammar, capabilities, record digest y supersession PASS; FR-1…FR-5 PASS; G01–G36, G27/G28/G30/G32, write-once y schema drift PASS/NONE. E-01 queda `verified / closed`.
 
 - **2026-09-09 (VERIFIER INDEPENDIENTE — re-verificación):** `BLOCKED` antes de source review y gates. El baseline requerido no era reproducible: `HEAD` quedó en `bd681814b9ec697837360b840d55f659f195ca13`, `origin/master` resolvió a `08a0eb9a83813cda2acbd7be5232e9e0370e12ab` y el worktree estaba dirty con cambios productivos posteriores. Se preservaron todos los cambios; no hubo commit/push de verificación. E-01 queda abierto.
