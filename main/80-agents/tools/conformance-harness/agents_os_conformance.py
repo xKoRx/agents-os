@@ -170,6 +170,48 @@ class Ctx(object):
 # ---------------------------------------------------------------------------
 # L0 — STATIC CONFORMANCE
 # ---------------------------------------------------------------------------
+ANCHOR_CHECK_ID = "RULES-FIDELITY-ANCHORS"
+
+
+def sc_rules_fidelity_anchors(ctx: Ctx) -> Tuple[str, str, List[str]]:
+    """Adversarial-verification D2: static pre-flight guard (runs in every
+    layer BEFORE the scenarios) asserting that the exact authority quotes the
+    transcription module claims to transcribe (rules.FIDELITY_ANCHORS) still
+    exist verbatim in the authority files: bootstrap SKILL.md domain gate
+    lines, cold set lines, warm turn lines, entity swap lines and superseded
+    rule; doctor Check 3 club lines. A missing anchor means rules.py went
+    stale: the harness results for gate-dependent scenarios are not
+    trustworthy (FAIL; in full/--layer runs the L0 gate then cuts L1/L2).
+    A missing authority file FAILS (never crashes). Matching collapses
+    whitespace runs only (line wraps): the words must be exact."""
+    problems: List[str] = []
+    evidence: List[str] = []
+    by_authority: Dict[str, List[Tuple[str, str]]] = {}
+    for aid, authority, quote in rules.FIDELITY_ANCHORS:
+        by_authority.setdefault(authority, []).append((aid, quote))
+    for authority in sorted(by_authority):
+        entries = by_authority[authority]
+        try:
+            text = read_text(os.path.join(ctx.root, authority))
+        except OSError:
+            problems.append("archivo de autoridad ausente o ilegible: %s — la transcripcion de rules.py no es verificable contra el texto vigente" % authority)
+            continue
+        flat = " ".join(text.split())
+        missing = ["[%s] %s" % (aid, quote) for aid, quote in entries
+                   if " ".join(quote.split()) not in flat]
+        evidence.append("%s: %d anclas verificadas (%s)%s" % (
+            authority, len(entries), ", ".join(aid for aid, _ in entries),
+            ("; %d ausente(s)" % len(missing)) if missing else ""))
+        problems.extend(
+            "ancla de fidelidad ausente en %s: %s — la transcripcion quedo obsoleta y los resultados de los escenarios dependientes del gate no son confiables" % (authority, m)
+            for m in missing)
+    if problems:
+        return "FAIL", "la transcripcion de rules.py no coincide con el texto vigente de las autoridades (D2)", problems + evidence
+    return ("PASS",
+            "todas las anclas de fidelidad de rules.py (%d) existen en el texto vigente de las autoridades" % len(rules.FIDELITY_ANCHORS),
+            evidence)
+
+
 def sc_schema_validator_green(ctx: Ctx) -> Tuple[str, str, List[str]]:
     """Authority: 80-agents/skills/_shared/metadata-schema.md ("Este gate debe
     quedar verde..."), 90-system/convenciones.md, C17, scenario
@@ -1039,6 +1081,9 @@ def sc_switch_meli_to_aranea(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("swap re-leo archivos base (deben persistir sin relectura): %s" % reopened_base)
     if rules.GLOBAL_INTERNAL in s.opens_in_turn(2):
         problems.append("nota interna global re-cargada en swap (Session Modes: skip global internal reload)")
+    old_pack_used = [p for p in pack_meli if p in s.opens_in_turn(2)]
+    if old_pack_used:
+        problems.append("piezas del pack anterior (meli) usadas o re-abiertas en el turno del swap (swap paso 4: el pack anterior sale del razonamiento activo): %s" % old_pack_used)
     if s.holds_two_packs():
         problems.append("dos packs de dominio activos tras el swap (Hard Rule)")
     if s.active_domain != "aranea":
@@ -1069,6 +1114,7 @@ def sc_switch_aranea_to_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
     s = Session(ctx.vault)
     s.turn = 1
     s.cold_start({"entity_title": "Echo Forge"})
+    pack_aranea = list(s.pack_files)
     base_before = set(s.opens_in_turn(1))
     s.turn = 2
     s.swap_entity("RIO")
@@ -1085,6 +1131,9 @@ def sc_switch_aranea_to_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("pack post-swap != {meli router + meli prefs + vpn prefs}: %s" % s.pack_files)
     if rules.ROUTERS["aranea"] in s.pack_files or rules.ROUTER_PREFS["aranea"][0] in s.pack_files:
         problems.append("pack Aranea persiste tras el swap")
+    old_pack_used = [p for p in pack_aranea if p in s.opens_in_turn(2)]
+    if old_pack_used:
+        problems.append("piezas del pack anterior (aranea) usadas o re-abiertas en el turno del swap (swap paso 4: el pack anterior sale del razonamiento activo): %s" % old_pack_used)
     if rules.ARANEA_MCPS_EXPERT in s.all_opens():
         problems.append("aranea-mcps-expert activado en turno meli (MUST NOT, C13)")
     opens = s.all_opens()
