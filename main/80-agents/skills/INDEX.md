@@ -7,7 +7,7 @@ slug: "skills-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-06-28
-updated: 2026-09-12
+updated: 2026-09-13
 reviewed: 2026-09-12
 aliases:
   - "skills index"

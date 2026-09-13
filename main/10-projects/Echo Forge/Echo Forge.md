@@ -321,6 +321,7 @@ STOP/REDELIVERY: Campaign `COMPLETED`, `TARGET_REACHED`, target=1, max_waves=1, 
 VERDICT: `ECHO_FORGE_CAMPAIGN_STOP_POLICY_V1 PHYSICALLY CERTIFIED / FROZEN`; `ZERO_SUPPLY_CONTROL_FLOW_CLOSURE PHYSICALLY CERTIFIED / CLOSED`; `C3 PASS / CLOSED`. Graphify stale and historical Campaigns remain documented, not repaired or reused. Evidence: [[2026-09-04-echo-forge-c3-final-recert-summary]] · [[2026-09-04-release-0-2-92-physical-c3-closure]]. NEXT EXACT: `RETURN_TO_LEAD_AFTER_C3`; do not start Builder Budget, Campaign Replenishment or A0 Live Validation.
 
 - **Frontera API-First**: Echo Forge nunca escribe en la base de datos de Echo Core. Toda la comunicación es unidireccional vía API.
+  - ⚠️ Estado real 2026-09-13 (campaña [[Echo — Knowledge Base Consolidation]]): la entrega vía API NO está cableada hoy — el pipeline termina en FinalistPromotion V2 + Apply y no existe transporte Forge→Echo. Estado implementado y gaps: [[echo-forge-integration-boundary]].
 - **Mock-First**: Ante bloqueos de APIs externas (Echo API, MT5), se desarrollan simuladores contractuales.
 - **Registro dinámico de proyectos fijos SQX**: `EchoForgeOverviewExporter`, `EchoForgeWFMExporter`, `EchoForgeTradeListExporter`, `EchoForgeMT5Exporter` y `EchoForgeRobustRunExporter`. Cada uno es una unidad desplegable/ejecutable independiente elegida por la definición del flujo. `EchoForgeAutomator` es legado deprecado.
 
