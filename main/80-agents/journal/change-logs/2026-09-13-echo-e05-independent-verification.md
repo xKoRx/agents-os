@@ -47,7 +47,7 @@ tags:
 
 ## Validación
 
-- Verificado que no se modificó product source, contratos, migraciones ni el worktree objetivo; los artefactos canónicos del vault fueron materializados por schema contract.
+- Verificado que no se modificó product source, contratos ni migraciones; el target worktree sólo recibió la sección documental de `VERIFICATION.md` y los artefactos canónicos del vault fueron materializados por schema contract.
 
 ## Compartibilidad
 
