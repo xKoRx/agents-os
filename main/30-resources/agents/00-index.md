@@ -7,8 +7,8 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-09-11"
-reviewed: "2026-09-11"
+updated: "2026-09-12"
+reviewed: "2026-09-12"
 aliases:
   - "00-index index"
 cssclasses:
@@ -24,7 +24,7 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas curadas:** 18
+- **Páginas curadas:** 21
 - **Última ingesta:** 2026-09-12
 - **Estado:** active
 
@@ -54,9 +54,11 @@ tags:
 | [[30-resources/agents/skills/write-once-conflict-triage/SKILL|write-once-conflict-triage]] | Triage de conflictos write-once: duplicate/race/stale/contract-defect. | skill · transversal |
 | [[30-resources/agents/skills/operational-healthcheck-policy/SKILL|operational-healthcheck-policy]] | Cuándo validar manualmente componentes vigilables y cuándo confiar en la automatización. | skill · transversal |
 
-## 🔗 MCP Aranea
+## 🔗 MCP Aranea y dominios de agente
 
-La skill `aranea-mcps-expert` vive en `30-resources/agents/skills/aranea-mcps-expert/SKILL.md`. Sus runbooks mecánicos viven en `80-agents/memory/public/runbook/`: `aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md` y `aranea-mcp-capability-plane.md`.
+El acceso MCP de Aranea es exclusivo del dominio [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]], cuya única puerta MCP es `aranea-mcps-expert` (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`). Sus runbooks mecánicos viven en `80-agents/memory/public/runbook/`: `aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md`, `aranea-hasura-mcp.md` y `aranea-mcp-capability-plane.md`. El dominio corporativo equivalente es [[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]]; los dos routers se excluyen mutuamente.
+
+Desde 2026-09-12 las skills de dominio y transversales viven aquí (migradas desde `80-agents/skills/`, que quedó reservado a comportamientos de AGENTS OS); el catálogo operativo completo vive en `80-agents/skills/INDEX.md`.
 
 ## 🔗 Links
 

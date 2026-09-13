@@ -68,16 +68,20 @@ changed on disk. Do NOT re-run the full ritual on every message.
    `80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md`.
    Do not scan `memory/internal/` for `always` notes; the contract below
    forbids any other `always` outside this single global note.
-3. Read `agents-os.md` only if the task needs the conceptual map; do not add it
+3. Load the skills registry `80-agents/skills/INDEX.md` (core catalog +
+   federated rows). This is how the agent knows which skills exist and where
+   they live without scanning folders. Do not read the federated domain index
+   unless routing needs detail beyond the registry rows.
+4. Read `agents-os.md` only if the task needs the conceptual map; do not add it
    to the base stack by ritual.
-4. Identify the active entity from the user's request. If not explicit,
+5. Identify the active entity from the user's request. If not explicit,
    infer candidates with a focused search and declare the assumed entity.
    Resolve aliases/slugs to the canonical Obsidian title.
-5. If the request needs vault state or domain context, route to `agents-os-context-retrieval` for the active entity (cheapest layer first; stop when sufficient). For casual or general requests that do not depend on a vault entity, skip entity retrieval.
-6. Open source Markdown only for notes that affect a persistent decision,
+6. If the request needs vault state or domain context, route to `agents-os-context-retrieval` for the active entity (cheapest layer first; stop when sufficient). For casual or general requests that do not depend on a vault entity, skip entity retrieval.
+7. Open source Markdown only for notes that affect a persistent decision,
    edit, or answer that must be verified.
-7. Select at most ONE specialized skill (lazy-load) only if the task needs it.
-8. Skip the orientation note unless retrieval was degraded. If degraded,
+8. Select at most ONE specialized skill (lazy-load) only if the task needs it.
+9. Skip the orientation note unless retrieval was degraded. If degraded,
    emit the minimal `Entity / Goal / Skills / Open questions` note and flag
    the gap.
 
@@ -96,12 +100,19 @@ changed on disk. Do NOT re-run the full ritual on every message.
 
 ## Lazy Skill Routing
 
-Use `80-agents/skills/INDEX.md` as the registry. Match the task to one primary
+The registry `80-agents/skills/INDEX.md` is already in context from cold
+start; route from it instead of scanning folders. Match the task to one primary
 skill and load that `SKILL.md`; load a dependency only if its procedure
 requires it. Common direct routes: close → `agents-os-session-close`, repair
 AGENTS OS → `agents-os-doctor`, project execution →
 `agents-os-agent-project-workflow`, entity merge →
-`agents-os-entity-lifecycle`, reindex → `agents-os-graphify-maintenance`.
+`agents-os-entity-lifecycle`, index stale or blocked update →
+`agents-os-graphify-maintenance`.
+
+Domain-gated skills route through their domain router, never directly:
+Meli corporate work → `meli-agent-dev`; homelab Aranea work and any MCP
+`aranea-*` access → `aranea-agent-dev`. The two domains are mutually
+exclusive; swap explicitly instead of mixing.
 
 Do not load Nexus, MELI, or external project skills unless the request
 explicitly asks for them.

@@ -43,6 +43,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 ## 📊 Estado actual
 
+- **C4.1–C4.6 IMPLEMENTED (2026-09-12).** NORMAL ejecutó C4 sobre worktree aislado limpio @ `d645ed6`; commit `bba833d7b57c767d6ce5ebfeae7a7b71b5785782` pushed fast-forward. `AllocateMagicV1` resuelve instrument/direction desde `sqx.strategies` (SELECT por StrategyRef), mapper `MagicV1DirectionFromStrategy` (L|LONG→1, S|SHORT→2, B|BOTH→3, fail closed), replay/conflict vía `DecodeMagicV1` III+D sin migration, `AllocatedEffectiveConfig` sin gate requested (D9), `ParseMagicV1AllocationIdentity` fuera del allocation path. SOURCE+CONTRACT+CONCURRENCY (`-race`)+MIGRATION PASS; sets rojos pre-existentes idénticos a baseline (registry-postgres 4, activities/worker 16, workflows 21). Residual flaggeado: el parser queda con un único consumer NO-allocation (`forge_seal_handoff.go` `strategyIdentityFromCanonicalID`, bloque de identidad del manifest — falla cerrada con ID opaco); requiere decisión de manager. **Veredicto: READY FOR MANAGER REVIEW — F-04 C4 IMPLEMENTED.** Siguiente acción: manager source review of C4 implementation. T2.11/T2.12/T2.13 permanecen OPEN; no rollout, no physical, no golden.
 - **TOP C4 CONTRACT CLOSED (2026-09-12).** One-shot TOP resolvió el defecto físico Magic V1 ↔ F-01: instrument/direction salen de `sqx.strategies`, no de `CanonicalStrategyID`. F-01 permanece CLOSED. TaskSpec `magic_number` no es requested. Multi-strategy soportado. `DATABASE MIGRATION: NONE`. Listo para NORMAL C4 sobre `feature/f04-magic-version-handoff` @ `d645ed6`. T2.11/T2.12/T2.13 permanecen OPEN. E-04 runtime/join es one-shot separado tras golden Forge.
 - **T2.1–T2.10 IMPLEMENTED (2026-09-12).** NORMAL ejecutó el plan TOP congelado sobre worktree aislado limpio. Compile Evaluation `mt5_compiler@mt5-compile.v1` producida por `mt5_compile_persist_v1` (sqx-worker), carrier `CompileEvaluationRef` exacto, `UseDurableMagicAllocation: true` en el caller productivo, `forge_seal_handoff_v1` (seal+handoff tras Finalist V2, G22 incluido), HTTP ingress E-04 real + GET-by-key + fail-closed sin config. SOURCE+CONTRACT+CONCURRENCY (`-race`)+MIGRATION PASS. **PHYSICAL: STOP — C4 (Magic V1 parseaba CanonicalStrategyID opaco).** HEAD `d645ed6c2f438995d636a8213b1e4a3f5f26cbea` pushed fast-forward.
 - S0 pin ya certificado por F-04; no se reabre ni se copian tipos desde Echo.
@@ -269,12 +270,12 @@ F-01 CLOSED (stable IDs). F-02 CLOSED (V2 membership). F-03 CLOSED (no-touch). E
 > - [x] T2.8 handoff assembler after Finalist V2 #owner/agent #type/dev #area/echo
 > - [x] T2.9 Echo HTTP `HandoffIngress` POST+GET by-key #owner/agent #type/dev #area/echo
 > - [x] T2.10 Echo ingest auth/config #owner/agent #type/dev #area/echo
-> - [ ] C4.1 retire CanonicalStrategyID parser; add MagicV1DirectionFromStrategy #owner/agent #type/dev #area/echo
-> - [ ] C4.2 AllocateMagicV1 loads instrument/direction from sqx.strategies #owner/agent #type/dev #area/echo
-> - [ ] C4.3 replay/conflict DecodeMagicV1 III+D without new migration #owner/agent #type/dev #area/echo
-> - [ ] C4.4 AllocatedEffectiveConfig: TaskSpec magic_number is not requested #owner/agent #type/dev #area/echo
-> - [ ] C4.5 C4 contract/concurrency tests including opaque ID and cohort N `-race` #owner/agent #type/dev #area/echo
-> - [ ] C4.6 SOURCE grep: no parse of CanonicalStrategyID for magic semantics #owner/agent #type/dev #area/echo
+> - [x] C4.1 retire CanonicalStrategyID parser; add MagicV1DirectionFromStrategy #owner/agent #type/dev #area/echo
+> - [x] C4.2 AllocateMagicV1 loads instrument/direction from sqx.strategies #owner/agent #type/dev #area/echo
+> - [x] C4.3 replay/conflict DecodeMagicV1 III+D without new migration #owner/agent #type/dev #area/echo
+> - [x] C4.4 AllocatedEffectiveConfig: TaskSpec magic_number is not requested #owner/agent #type/dev #area/echo
+> - [x] C4.5 C4 contract/concurrency tests including opaque ID and cohort N `-race` #owner/agent #type/dev #area/echo
+> - [x] C4.6 SOURCE grep: no parse of CanonicalStrategyID for magic semantics #owner/agent #type/dev #area/echo
 > - [ ] T2.11 authentic Forge golden capture #owner/agent #type/dev #area/echo
 > - [ ] T2.12 PHYSICAL certification host capabilities #owner/agent #type/dev #area/echo
 > - [ ] T2.13 cross-lane smoke Echo T21/AC-37 #owner/agent #type/dev #area/echo
