@@ -17,8 +17,8 @@ agent_model: unknown
 model_source: unknown
 task_type: testing
 task_complexity: high
-outcome: blocked
-verification: target_drift
+outcome: partial
+verification: preflight_pass
 evaluator: agent
 user_rework: unknown
 source_session: 2026-09-13-echo-e05-full-adversarial-verification-3
@@ -35,14 +35,14 @@ tags:
 ## Trabajo
 
 - **Objetivo:** Ejecutar la certificación adversarial independiente completa E-05 contra `e917e25ad4b1ce4a7148229f1da3bf804c3a1cff`.
-- **Alcance atribuible a esta combinación superficie×modelo:** Bootstrap Agents OS, routing Echo/Aranea y pre-flight Git; la auditoría de producto quedó sin iniciar por target drift.
+- **Alcance atribuible a esta combinación superficie×modelo:** Bootstrap Agents OS, routing Echo/Aranea, resolución de worktree y pre-flight Git; la certificación de producto queda en curso.
 - **Artefactos afectados:** Sólo notas de evidencia/cierre en el vault; ningún source, checkout E-05, host, base de datos o runtime fue modificado.
 
 ## Evidencia
 
 - **Validaciones ejecutadas:** `git fetch`; lectura de `HEAD`, `origin/feature/e05-analytics-convergence-a0`, branch, worktree, ancestry desde `a99f9a63`, `master`/`origin/master` y metadata del target.
-- **Resultado observable:** `HEAD=f7ddea18cab51db72c9765aa74381328134d7ce7` en `feature/e02-control-safety-journal-recovery`; origin feature=`e917e25ad4b1ce4a7148229f1da3bf804c3a1cff`; worktree limpio; master/origin-master=`a99f9a63354bbe72219d1e590bb93757ed08e45e`.
-- **Limitaciones de la evidencia:** El pre-flight exige `HEAD == target`; por target drift se detuvo conforme al contrato antes de leer SPEC/PLAN/TASKS/VERIFICATION del checkout, ejecutar Go/PG/Hasura/BWC o emitir una matriz AC.
+- **Resultado observable:** El checkout inicial E-02 fue descartado; `/tmp/echo-e05-analytics-a0` está en `feature/e05-analytics-convergence-a0` con `HEAD=origin/feature=e917e25ad4b1ce4a7148229f1da3bf804c3a1cff`, limpio; master/origin-master=`a99f9a63354bbe72219d1e590bb93757ed08e45e`.
+- **Limitaciones de la evidencia:** El pre-flight del target canónico pasó; la certificación completa continúa y aún no tiene verdict final.
 
 ## Evaluación
 
@@ -56,6 +56,6 @@ tags:
 
 ## Resultado
 
-- **Outcome:** `VERIFICATION_BLOCKED — TARGET_DRIFT`; verdict de producto no emitido.
-- **Rework posterior:** Reanudar sólo desde un checkout limpio cuyo `HEAD` sea exactamente `e917e25ad4b1ce4a7148229f1da3bf804c3a1cff`; no usar el checkout E-02 actual ni hacer reset destructivo.
-- **Aprendizaje para comparar herramientas:** El pre-flight detectó correctamente que el branch remoto objetivo está disponible, pero la sesión local estaba en otro branch; la identidad del checkout debe bloquear cualquier evidencia posterior.
+- **Outcome:** `PREFLIGHT PASS`; auditoría de producto en curso.
+- **Rework posterior:** No aplica todavía; mantener `/tmp/echo-e05-analytics-a0` como único checkout de evidencia y no usar el checkout E-02.
+- **Aprendizaje para comparar herramientas:** La resolución explícita de worktree evitó confundir un checkout E-02 limpio con el target E-05; la identidad del checkout debe verificarse antes de cualquier evidencia.

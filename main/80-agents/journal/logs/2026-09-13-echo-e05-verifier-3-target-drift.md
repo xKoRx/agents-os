@@ -24,7 +24,7 @@ tags:
   - scope/session
 ---
 
-# Echo E-05 verifier #3 — target drift
+# Echo E-05 verifier #3 — worktree resolution
 
 %% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
 
@@ -36,7 +36,7 @@ tags:
 
 ## Motivo
 
-- Registrar que la certificación #3 quedó bloqueada en pre-flight y que el checkout E-02 no debe usarse como sustituto del target E-05.
+- Registrar que el primer checkout localizado era E-02 y fue descartado; el worktree canónico E-05 fue validado y la certificación continuó allí.
 
 ## Fuentes usadas
 
@@ -44,11 +44,11 @@ tags:
 
 ## Resolución aplicada
 
-- Se actualizó la bitácora/estado de la entidad E-05 con `VERIFICATION_BLOCKED — TARGET_DRIFT`; no se modificó `VERIFICATION.md` del repo ni ningún source.
+- Se actualizó la bitácora/estado de la entidad E-05 con `PREFLIGHT PASS`; no se modificó el checkout E-02 ni ningún source.
 
 ## Validación
 
-- `git fetch` exitoso; `origin/feature/e05-analytics-convergence-a0=e917e25ad4b1ce4a7148229f1da3bf804c3a1cff`; `HEAD=f7ddea18cab51db72c9765aa74381328134d7ce7`; branch local E-02; worktree limpio; master/origin-master=`a99f9a63354bbe72219d1e590bb93757ed08e45e`.
+- `git fetch` exitoso; checkout inicial E-02 descartado; `/tmp/echo-e05-analytics-a0` limpio con `HEAD=origin/feature/e05-analytics-convergence-a0=e917e25ad4b1ce4a7148229f1da3bf804c3a1cff`; master/origin-master=`a99f9a63354bbe72219d1e590bb93757ed08e45e`.
 
 ## Compartibilidad
 

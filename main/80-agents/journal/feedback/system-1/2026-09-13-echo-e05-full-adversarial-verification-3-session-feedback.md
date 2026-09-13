@@ -54,14 +54,14 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 ## What Complicated The Session Most
 
-- Observation: El checkout local limpio estaba en `feature/e02-control-safety-journal-recovery` con `HEAD=f7ddea18`, no en el target E-05.
-- Why it was hard: El repo compartido conserva un checkout de otra iniciativa mientras la branch objetivo existe sólo como ref remoto; continuar habría invalidado toda evidencia.
+- Observation: El checkout por defecto estaba en E-02, pero el worktree E-05 documentado en `/tmp/echo-e05-analytics-a0` sí estaba disponible y coincidía exactamente con el target.
+- Why it was hard: El repo compartido tiene varios worktrees/checkouts y el primer path encontrado no era el target; la evidencia sólo se volvió válida tras resolver el worktree correcto.
 - Proposed improvement: Añadir al arranque del verifier una selección/validación explícita del worktree por branch y SHA antes de cualquier lectura de fuente.
 
 ## Most Useful Part Of Sistema 1
 
-- What helped: El pre-flight exacto de Git y la continuidad global de Agents OS.
-- Why it helped: Permitieron detectar target drift y preservar el checkout E-02 sin reset, rebase ni stash.
+- What helped: El pre-flight exacto de Git y la ruta de worktree documentada en la nota E-05.
+- Why it helped: Permitieron descartar el checkout E-02 y validar el target real sin reset, rebase ni stash.
 - Keep/change: Mantener el gate; hacer visible la ruta del checkout seleccionado en el handoff.
 
 ## Least Useful Or Noisy Part
@@ -72,7 +72,7 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 ## Missing Support
 
-- Problem not solved by Sistema 1: No hay una guardia automática que impida iniciar la auditoría desde el checkout de otra iniciativa en un repo compartido.
+- Problem not solved by Sistema 1: No hay una guardia automática que seleccione el worktree correcto antes de iniciar la auditoría en un repo compartido.
 - How Sistema 1 could help next time: Registrar la ruta física elegida y exigir su concordancia con target/baseline en el handoff.
 - Suggested artifact type: Runbook de selección y pre-flight de worktree para verifiers.
 
