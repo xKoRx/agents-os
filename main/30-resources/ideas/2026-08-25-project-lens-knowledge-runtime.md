@@ -4,7 +4,7 @@ schema_version: 1
 status: promoted
 priority: P3
 area: "[[Personal]]"
-project: "[[Project Lens]]"
+project: "[[Loom]]"
 application:
 entities:
   - "[[AGENTS OS]]"
@@ -29,7 +29,7 @@ updated: "2026-09-13"
 # 💡 Project Lens — Knowledge Runtime del vault
 
 > [!tip]+ De viewer a knowledge runtime
-> **PROMOVIDA (2026-09-13):** el owner decidió ejecutar la fundación formal. El proyecto canónico es [[Project Lens]] y el planner ejecutable [[Project Lens — Foundation v0.1]]. Esta idea sobrevive como insumo histórico; su SQLite day-1 y MCP quedaron como future drivers F7/F8 del proyecto (no como v0.1) y su capa VaultID/EntityID fue rechazada por falta de evidencia (identidad path-based).
+> **PROMOVIDA (2026-09-13):** el owner decidió ejecutar la fundación formal. El proyecto canónico es [[Loom]] (renombrado desde Project Lens el 2026-09-13) y el planner ejecutable [[Loom — Foundation v0.1]]. Esta idea sobrevive como insumo histórico; su SQLite day-1 y MCP quedaron como future drivers F7/F8 del proyecto (no como v0.1) y su capa VaultID/EntityID fue rechazada por falta de evidencia (identidad path-based).
 
 ## 🧠 La idea
 
@@ -101,4 +101,4 @@ No promover sólo porque "podría ser útil".
 
 ## 🌱 Próximo paso
 
-- [x] Decidir promoción a proyecto y, si procede, abrir ciclo F0 (redactar ADR-001…ADR-010 y estructura de repo) #owner/me #type/research #area/personal — promovida 2026-09-13; F0 congelada en [[Project Lens — Foundation v0.1]] con ADRs L1–L10 (equivalentes corregidos de ADR-001…ADR-010).
+- [x] Decidir promoción a proyecto y, si procede, abrir ciclo F0 (redactar ADR-001…ADR-010 y estructura de repo) #owner/me #type/research #area/personal — promovida 2026-09-13; F0 congelada en [[Loom — Foundation v0.1]] con ADRs L1–L10 (equivalentes corregidos de ADR-001…ADR-010).
