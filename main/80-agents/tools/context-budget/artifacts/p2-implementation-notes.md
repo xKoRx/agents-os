@@ -88,7 +88,7 @@ tags:
 ## 6. Ciclo de corrección 1 (P2-D) (2026-09-13)
 
 - Alcance: corregir EXACTAMENTE los defectos demostrados por [[80-agents/tools/context-budget/artifacts/p2-adversarial-verification.md|p2-adversarial-verification]] (D1-D3, N1-N8) sin tocar el sistema bajo prueba. PROHIBIDOS respetados: sin cambios al harness (`rules.py`, `agents_os_conformance.py`), autoridades, skills, memorias, AGENTS.md o artifacts de otros agents. Hallazgos de sistema S1 (falso positivo de listado del heredado COLD-MELI) y S2 (commits "sync" externos varían `git_head`) se REGISTRAN, no se corrigen: S1 se evita por vía propia filtrando el listado del guard restituido (no copiando el mensaje del heredado). N4 (schema del spec) quedó resuelto del lado del spec: `fidelity_gate` admite SKIP (ajuste del parent).
-- `git status --porcelain` INICIAL del ciclo: vacío (0 líneas). FINAL: sólo el write scope de esta tool (`context_budget.py`, `selftest.py`, `README.md`, esta nota, y los subproductos `results/run-*.json`).
+- `git status --porcelain` INICIAL del ciclo: vacío (0 líneas). FINAL: los archivos del write scope de esta tool (`context_budget.py`, `selftest.py`, `README.md`, esta nota, y los subproductos `results/run-*.json`) más la entrada `__pycache__/` de la tool (incidente de trazabilidad resuelto, ver 6.4).
 
 ### 6.1 Correcciones aplicadas
 
@@ -112,6 +112,11 @@ tags:
 - (5) Repro D3 (los mismos repros del verifier por mutación en tempdir; se demostraron 5/5, el mínimo exigido era 3): T9a entidad real `entidad-fantasma-xyz` -> CTX-01 FAIL ("entidad activa inesperada"); T9b `signals-code-review` sin router -> CTX-02 FAIL con listado filtrado (sin `meli-agent-dev`, S1 no copiado); T9c apertura del índice federado -> CTX-03 FAIL ("carga prohibida detectada: 30-resources/agents/00-index.md"); T9d título post-swap corrompido -> CTX-07 FAIL; T9e segunda especialista -> CTX-08 FAIL ("mas de una skill especializada").
 - (6) Determinismo: dos runs CLI completos (`--json`) idénticos salvo `run`/timestamp y `results_file` (comparación JSON con ambas keys removidas: True); `vault_root_arg` idéntico y presente en el record en disco (N7). Par de evidencia: `run-20260913-052354.json` / `run-20260913-052706.json`. Runs intermedios creados durante el ciclo (051643, 052705) fueron eliminados; los runs previos al ciclo (042945..044540) se conservan.
 - (7) No mutación canónica: sin cambios fuera del write scope (git status del cierre en la cabecera de esta sección); los fixtures de todos los repros vivieron en tempdir del sistema y fueron eliminados; los commits "sync" externos siguen cambiando `git_head` entre corridas (S2, registrado).
+- (8) Higiene del selftest (colateral del ciclo, 2 líneas): T1 y T8 construían su tempdir sin guardarlo y no lo eliminaban al cierre (cada corrida dejaba un fixture en /tmp del sistema); ahora ambos lo rastrean y hacen `rmtree` en `finally` — verificado: tras la corrección, una corrida completa del selftest deja 0 directorios `ctx-budget-selftest-*`. Todos los tests siguen en PASS sin cambios semánticos.
+
+### 6.4 Incidente de trazabilidad resuelto (transparencia)
+
+- Al limpiar subproductos intermedios, un `rm -rf` sobre `__pycache__/` de la tool borró dos archivos `.pyc` que el proceso externo de sync tenía trackeados en git (mismo fenómeno que el incidente documentado en la sección 8 de la verificación adversarial); el commit externo "sync 05:35" absorbió la eliminación antes de que pudiera restaurarse del índice. Los bytes previos al ciclo se restauraron EXACTOS desde el historial git (`git show <sync-05:35>^:...`), de modo que el vault conserva los dos `.pyc` tal como estaban antes del ciclo; en `git status` aparecen como no-trackeados (`?? 80-agents/tools/context-budget/__pycache__/`) hasta que el próximo commit externo de sync los re-absorba. Es el único efecto fuera del write scope y quedó revertido byte a byte; las herramientas no escriben bytecode (`sys.dont_write_bytecode` desde P2-B).
 
 ### 6.3 Riesgos residuales
 
