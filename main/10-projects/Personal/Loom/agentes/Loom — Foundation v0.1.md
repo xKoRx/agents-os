@@ -10,7 +10,7 @@ parent: "[[Loom]]"
 sprint:
 start: 2026-09-13
 due:
-progress: 29
+progress: 53
 repo: xKoRx/loom
 jira:
 prs:
@@ -47,7 +47,7 @@ cssclasses:
 
 ## 📊 Estado actual
 
-- **EJECUCIÓN EN CURSO (2026-09-13, sesión de implementación):** WP-A ✅ (T01 `422be60` scaffold Go + T02 `57e5316` scaffold web/npm+embed) · WP-B ✅ (T05 `b33be34` fixtures 8 casos + T03 `d8b16fc` frontmatter parser (vault 100%/parse 93.1%) + T04 `1059251` body extraction (vault 100%/parse 95.3%)) · WP-C [/] (T06 en curso). Coverage en piso ≥95% ya cumplido en parse; hallazgo de performance: extracción ≈1.4s single-thread sobre vault real (2816 notas, 2172 tasks, 7075 links, 274 bloques dinámicos) → T06 paralelizará el parseo por archivo para cumplir el AC <1s. Contratos migrados al repo (SPEC/TASKS/PLAN @ `b031006`); T-tasks y su estado atómico viven en repo `specs/FEAT-LOOM-V01/TASKS.md`.
+- **EJECUCIÓN EN CURSO (2026-09-13, sesión de implementación):** WP-A ✅ (T01 `422be60` + T02 `57e5316`) · WP-B ✅ (T05 `b33be34` + T03 `d8b16fc` + T04 `1059251`) · WP-C ✅ (T06 `1350ed2` scanner/snapshot/watcher ≈300ms vault real + T07 `c949bb3` projections 126 projects/2172 tasks + T08 `0d3c798` links shortest-path/backlinks 6575 resueltos + T09 `88f272d` invariancia PASS — mutación→revert→firma idéntica entre generaciones) · WP-D [/] (T10 en curso, rol R2). Coverage: vault 100%, parse 95.3%, index 95.7%.
 - **FOUNDATION FINALIZATION (2026-09-13):** decisiones owner aplicadas — rename canónico **Project Lens → Loom** (aliases históricos preservados), repo `xKoRx/loom` + workspace `~/go/src/github.com/xKoRx/loom` + módulo `github.com/xKoRx/loom` + binario `loom` + branch `master` declarados; live refresh promovido a comportamiento CORE de F1 (backend dueño exclusivo del fs: watch fsnotify → debounce → rebuild → snapshot inmutable → swap atómico → generation++; Vue observa generation por polling y refetch); **MAX_CONCURRENT_LOOM_SUBAGENTS = 1** (secuencia estricta, sin R2∥R3, sin delegación recursiva); invariante de seguridad HTTP DocumentID registrada.
 - **F0 FOUNDATION COMPLETA (2026-09-13):** sesión de rebase/arquitectura produjo el planner original — dominio, identidad, matriz canonical/derived, boundaries, storage (sin SQLite), decisión Graphify (sin dependencia), API v0.1, roadmap vertical F1–F5, work packages atómicos T01–T17, modelo de subagents y gates. Cero product code en fundación.
 - **FOUNDATION REVIEW (2026-09-13):** arquitectura y roadmap **ACCEPTED** por el owner con 4 correcciones load-bearing aplicadas: (1) identity/API por path, (2) separación conceptual genérico↔Agents-OS dentro de `internal/index`, (3) scan best-effort + snapshot inmutable + swap atómico, (4) rationale MCP corregido.
