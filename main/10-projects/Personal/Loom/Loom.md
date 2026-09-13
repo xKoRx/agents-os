@@ -33,7 +33,7 @@ updated: "2026-09-13"
 %% Naming: Loom es el link canónico del proyecto (renombrado desde Project Lens el 2026-09-13); aliases guarda variantes humanas e históricas; tags/slugs son solo automatización. %%
 
 > [!info]+ Loom
-> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** — · **Repo:** `xKoRx/loom` (declarado; por crear/verificar)
+> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** — · **Repo:** `xKoRx/loom` (**VERIFIED** 2026-09-13; baseline `5afd63e`)
 > Viewer local read-only del vault para usar en la pega, dado que MELI vetó Obsidian y con eso perdí la visibilidad de mis proyectos durante el día. La fundación/arquitectura v0.1 quedó congelada y la ejecución vive en [[Loom — Foundation v0.1]] (subproyecto de agente).
 
 ## 🎯 Objetivo
@@ -44,14 +44,14 @@ updated: "2026-09-13"
 
 ## 📊 Estado actual
 
-- **FOUNDATION FINALIZATION (2026-09-13):** decisiones owner aplicadas — proyecto renombrado **Project Lens → Loom** (canonical; aliases históricos preservados: Project Lens, Vault Viewer, Obsidian viewer, project-lens); repo `xKoRx/loom` + workspace `~/go/src/github.com/xKoRx/loom` + módulo `github.com/xKoRx/loom` + binario `loom` + branch `master` declarados (**existencia del repo NO verificada: no existe en GitHub ni en workspace — acción física pendiente**); live refresh promovido a core de F1; concurrencia de subagents limitada a 1; security invariant DocumentID registrada. Detalle completo en [[Loom — Foundation v0.1]].
+- **EJECUCIÓN INICIADA (2026-09-13):** repo `xKoRx/loom` VERIFICADO (workspace local, branch `master`, worktree clean, baseline `5afd63e468e7a2104a175a727a961e4f678c09ea`); B1 resuelto; contratos congelados migrados al repo (`specs/FEAT-LOOM-V01/`); implementación T01–T17 en curso bajo el límite MAX_CONCURRENT_LOOM_SUBAGENTS=1. Detalle de estado en [[Loom — Foundation v0.1]].
+- **FOUNDATION FINALIZATION (2026-09-13):** decisiones owner aplicadas — proyecto renombrado **Project Lens → Loom** (canonical; aliases históricos preservados: Project Lens, Vault Viewer, Obsidian viewer, project-lens); repo `xKoRx/loom` + workspace `~/go/src/github.com/xKoRx/loom` + módulo `github.com/xKoRx/loom` + binario `loom` + branch `master` declarados; live refresh promovido a core de F1; concurrencia de subagents limitada a 1; security invariant DocumentID registrada.
 - **F0 Foundation + review congelados (2026-09-13):** el plan completo (dominio con identidad path-based, matriz canonical/derived, boundaries, storage sin SQLite, decisión Graphify, API v0.1, roadmap F1–F5, tasks T01–T17, subagents y gates) vive en [[Loom — Foundation v0.1]] — esta nota queda como capa del owner: decisiones, riesgos y supervisión.
 - **Pendiente del owner:** (1) validar política corporativa MELI, (2) crear el repo `xKoRx/loom` (branch `master`) y dejarlo en el workspace local — acción exacta registrada en los Blockers del subproyecto. Ningún código arranca hasta (2).
 
 ### Decisiones pendientes del owner
 
-- ¿Qué prohíbe exactamente MELI: instalar software no aprobado en general, ejecutar extensiones/plugins, o algo más acotado? ¿Existe canal aprobado equivalente (web interna, navegador, contenedor)? Gate antes de uso diario en la máquina corporativa.
-- Crear repo GitHub `xKoRx/loom` (default branch `master`) + workspace local `~/go/src/github.com/xKoRx/loom`. Decisión de nombre/repo/workspace ya tomada (2026-09-13); falta la acción física. Desbloquea WP-A del subproyecto.
+- ¿Qué prohíbe exactamente MELI: instalar software no aprobado en general, ejecutar extensiones/plugins, o algo más acotado? ¿Existe canal aprobado equivalente (web interna, navegador, contenedor)? Gate antes de uso diario en la máquina corporativa (no bloquea el desarrollo en máquina personal).
 
 ## 🧩 Subproyectos
 
@@ -77,7 +77,7 @@ views:
 > `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala. Las tareas de desarrollo delegadas viven en [[Loom — Foundation v0.1]] (WP-A…WP-F); aquí solo quedan tus decisiones y el puente de supervisión.
 
 - [ ] Validar política corporativa MELI: qué está vetado exactamente y qué canales alternos existen #owner/me #type/research #area/personal
-- [ ] Crear repo GitHub `xKoRx/loom` (branch `master`) + workspace local `~/go/src/github.com/xKoRx/loom` #owner/me #type/admin #area/personal
+- [x] Crear repo GitHub `xKoRx/loom` (branch `master`) + workspace local `~/go/src/github.com/xKoRx/loom` #owner/me #type/admin #area/personal ✅ 2026-09-13
 - [ ] [[Loom — Foundation v0.1]] arrancar + seguimiento #owner/me #type/supervision #area/personal
 
 ```dataviewjs
@@ -97,6 +97,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-13** — EXECUTION START: repo `xKoRx/loom` verificado (owner lo creó físicamente: workspace + GitHub, branch `master`, worktree clean, baseline `5afd63e468e7a2104a175a727a961e4f678c09ea`); B1 cerrado; tarea de creación de repo marcada Done. Contratos congelados migrados del planner al repo `specs/FEAT-LOOM-V01/` (SPEC/TASKS/PLAN @ `b031006`) según patrón Echo E-01 — el repo es autoridad del contrato, el subproyecto conserva estado/routing. Sesión de implementación iniciada (T01–T17, 1 subagente a la vez).
 - **2026-09-13** — FOUNDATION FINALIZATION: proyecto renombrado **Loom** (git mv con historial; alias Project Lens preservado); decisiones de repo/workspace/módulo/binario/branch registradas (repo aún sin crear — verificado con gh/ls-remote/local, sin SHA inventado); live refresh promovido a core de F1 (backend dueño exclusivo del fs, generation en `/meta`, polling en la SPA, F5 queda como hardening); límite duro `MAX_CONCURRENT_LOOM_SUBAGENTS = 1` (secuencia estricta, sin delegación recursiva); security invariant DocumentID registrada con tests en T10/T11. ADRs L11–L13 añadidos en el subproyecto. Tareas actualizadas: decisión de nombre cerrada, queda la acción física del repo.
 - **2026-09-13** — Rebase del proyecto sobre el Agents-OS vigente (sesión de fundación): creado subproyecto de agente (entonces llamado Project Lens — Foundation v0.1, hoy [[Loom — Foundation v0.1]]) con la arquitectura congelada (ADRs L1–L10), dominio con identidad path-based, matriz canonical/derived, boundaries, API v0.1, roadmap vertical F1–F5 y tasks atómicas T01–T17. Las tareas de desarrollo de esta nota (diseño v0, MVP v0.1, dashboard, search) migraron a los WP del subproyecto — una fuente por hecho. Idea de agosto ([[2026-08-25-project-lens-knowledge-runtime]]) promovida: su SQLite-day-1 y MCP quedan como future drivers F7/F8, no como v0.1. Bloqueos owner registrados: política MELI + nombre/repo/workspace.
 - **2026-08-23** — Creación del proyecto. Evaluada propuesta inicial de arquitectura (IA externa): Go + HTTP localhost + SPA embebida, sin plugins/editor en v1, markdown como base de datos. Aporte propio principal: el valor real está en replicar server-side el subset de Dataview/Bases que ya uso (tableros, rollups, backlinks), no en el render de markdown. Gate previo a desarrollar en serio: validar qué prohíbe la política de MELI.
