@@ -524,6 +524,13 @@ P_PLACEHOLDER = re.compile(
 P_UUID = re.compile(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 
 
+def _bearer_is_value(tok: str) -> bool:
+    """A bearer VALUE looks like a credential: contains a digit or is long
+    (>=20). Prose after the word 'Bearer' (p. ej. 'Bearer constant-time') is
+    not a value."""
+    return any(c.isdigit() for c in tok) or len(tok) >= 20
+
+
 def _scan_secret_line(line: str) -> List[str]:
     """Returns pattern ids whose VALUE class is: 'hard' (credential-shaped) or
     'soft' (ambiguo, p.ej. UUID de identidad). Never returns the value."""
@@ -533,7 +540,7 @@ def _scan_secret_line(line: str) -> List[str]:
     if P_AKIA.search(line):
         out.append("hard:akia")
     m = P_BEARER.search(line)
-    if m and not P_PLACEHOLDER.search(m.group(1)):
+    if m and not P_PLACEHOLDER.search(m.group(1)) and _bearer_is_value(m.group(1)):
         out.append("hard:bearer")
     m = P_ASSIGN.search(line)
     if m and not P_PLACEHOLDER.search(m.group(1)):
