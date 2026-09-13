@@ -104,8 +104,10 @@ THRESHOLDS = {
              "min_retired_ratio": CL10_MIN_RATIO,
              "excluded_prefixes": list(CL10_EXCLUDED_PREFIXES),
              "max_verdict": "WARN"},
-    "cl12_code_fences": "los wikilinks dentro de fenced code blocks no se "
-                        "cuentan como enlaces de cuerpo",
+    "cl12_code": "los wikilinks dentro de fenced code blocks e inline code spans no se "
+                 "cuentan como enlaces de cuerpo (Obsidian no los renderiza)",
+    "resolution_scope": "corpus vivo + 40-archive; journal/packaging/derivados no son "
+                        "destino canónico (agents-os.md; relation-maintenance)",
     "fixtures_excluded": list(FIXTURE_REL_PREFIXES),
 }
 
@@ -130,6 +132,15 @@ DECLARED_AMBIGUITIES: List[str] = [
     "en FAIL.",
     "A2: archivos sueltos en la raíz del vault SIN check (ninguna autoridad fija el layout "
     "de raíz); limitación declarada.",
+    "CL-01 (estrechamiento declarado con autoridad): supersedes en nota active es sucesión "
+    "canónica (00-RESOURCE-WIKI: 'la nueva puede enlazar supersedes'); sólo superseded_by en "
+    "nota active contradice 'no se conserva como una segunda autoridad activa' (metadata-schema).",
+    "Resolución de destinos: el índice de resolución cubre corpus vivo + 40-archive; journal, "
+    "packaging (30-resources/agents-os/) y resultados derivados NO son destino canónico "
+    "(agents-os.md: 'auditoría o distribución, nunca autoridad vigente'; relation-maintenance: "
+    "no enlazar sessions/logs). Un link hacia ese material se reporta como no resuelto (CL-12).",
+    "Extracción de links de cuerpo: se excluyen fenced code blocks e inline code spans "
+    "(Obsidian no renderiza wikilinks dentro de código).",
 ]
 
 
