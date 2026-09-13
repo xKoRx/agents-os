@@ -74,7 +74,7 @@ on those rows.
 |---|---|
 | No new knowledge or state | No artifacts. Report `Continuidad lista. Próximo paso: X.` |
 | Operational continuity only | Update project/control note OR internal memory checkpoint, not both. No L0/L1. |
-| Reusable knowledge (rule/decision/error/runbook/entity fact) | L3 + `change_log` + targeted Graphify reindex |
+| Reusable knowledge (rule/decision/error/runbook/entity fact) | L3 + `change_log`; validate retrieval with one focused query (auto-refresh) |
 | Transcript available or explicitly requested | L0; L1 only if it adds navigation beyond the project note |
 | Real friction / degradation / gap detected | Brief feedback note (event-driven, see below) |
 | Material code-generation/evaluation segment | Ensure one `agent_run` per attributable surface×model via `agents-os-agent-run-register`; this is independent from feedback and creates no L0/L1. |
@@ -143,7 +143,7 @@ applies when **all** hold:
 In that case: keep the floor, skip the expensive tail. Optionally update
 internal memory if there is real continuity delta (mandamiento 16 is
 delta-based now, not mandatory per session). Skip feedback unless friction
-was real. Skip L1/L3/entity/reindex unless real knowledge emerged.
+was real. Skip L1/L3/entity unless real knowledge emerged.
 
 When evidence is insufficient to classify knowledge as reusable, do not
 inflate the close. Preserve only operational continuity and leave the
@@ -209,14 +209,21 @@ When feedback is warranted:
 - Keep answers short: 1-3 bullets per section. One Pain Pattern Candidate
   at most.
 
-## Graphify Reindex
+## Graphify Freshness
 
-Recommend reindex via `agents-os-graphify-maintenance` only when:
+Query commands auto-refresh the local index, so a session that wrote canonical
+notes normally needs no explicit rebuild. Validate with one focused query or
+`explain "<exact title>"` for what this close created.
 
-- L3 memory or entity updates were created this session.
-- Source files changed on disk in ways that affect the index.
+Recommend `agents-os-graphify-maintenance` only when:
 
-Tactical/no-artifact closes do not require reindex.
+- A query reports the index stale or auto-refresh failed.
+- An explicit rebuild is justified (maintenance cadence, `.graphifyignore`
+  change, mass move).
+- An `update` blocked on findings outside this session's delta: classify
+  delta-vs-global there; do not sanitize unrelated notes at close.
+
+Tactical/no-artifact closes require no Graphify action.
 
 ## Agent Run Registration
 

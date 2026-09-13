@@ -45,7 +45,7 @@ Echo SDK gobierna el lenguaje compartido. Forge **no** escribe DB Echo, **no** c
 
 ## 📊 Estado actual
 
-- **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED. F-04 C4 CONTRACT CLOSED (2026-09-12) — READY FOR NORMAL C4 sobre `d645ed6`; T2.11–T2.13 OPEN.** PHYSICAL 0.2.97 reveló parse de CanonicalStrategyID; F-01 no se reabre. E-04 join sigue one-shot separado. F-05 pendiente.
+- **F-01 CLOSED. F-02 CLOSED. F-03 CLOSED. F-04 C4 IMPLEMENTED (2026-09-12, `bba833d`) — READY FOR MANAGER REVIEW; T2.11–T2.13 OPEN.** Allocation resuelve instrument/direction desde `sqx.strategies`; TaskSpec magic no es requested; migration NONE; sin rollout/physical/golden. PHYSICAL 0.2.97 reveló parse de CanonicalStrategyID; F-01 no se reabre. E-04 join sigue one-shot separado. F-05 pendiente.
 - **Cerrado y no reabrir:** B1A PASS/CLOSED `185825c` (ownership global ETCD CAS, reuse durable EX5/HTM). B1B PASS/CLOSED `ef65dd1` (sin wall-clock de negocio; cap Campaign=4 eliminado). B2 PASS/CLOSED `db8a022` (Temporal cancel ≠ pérdida de attempt; singleton/drain/recovery). Slot Pool V2 y fencing V3 frozen. Factory V1 contractual cerrado; **no** equivale a V2.
 - **Roadmap vigente:** F-01 CLOSED, F-02 CLOSED, F-03 CLOSED; F-04 WIP (NORMAL C4); F-05 pendiente.
 - **Base observada:** Symphony `master`=`origin/master`=`382f4ba5d417371f778e21619ed9eb72624a23f4`; merge-base previo F-03=`e50cb7e`; worktree CLEAN. SDK Temporal declarado v1.35.0 vs workspace v1.44.1: no confundir pin/build/binario.
