@@ -1,7 +1,7 @@
 {
-  "run": "2026-09-13T06:55:27",
+  "run": "2026-09-13T07:01:47",
   "tool": "canonical-linter",
-  "git_head": "a446eb46f3cc3b7a6459d33e2d93c89d471791bd",
+  "git_head": "bf0b45e78f2fcd20b56cfd9c4ce0d9e316452d72",
   "vault_root_arg": "/home/kor/secondbrain/main",
   "model": {
     "no_vigente": {
@@ -1124,30 +1124,13 @@
     {
       "check_id": "CL-10",
       "category": "ARCHIVE",
-      "verdict": "WARN",
+      "verdict": "PASS",
       "severity": "WARN",
-      "findings": [
-        {
-          "check_id": "CL-10",
-          "category": "ARCHIVE",
-          "status": "WARN",
-          "severity": "WARN",
-          "path": "30-resources/knowledges/sources/",
-          "line": null,
-          "observed": "directorio con forma de archive fuera de 40-archive/ (2 nota(s); estados {\"active\": 1, \"superseded\": 1})",
-          "expected": "la retención histórica vive en 40-archive/ (o raíz declarada por autoridad); hoy entra al corpus Graphify como notas vivas",
-          "evidence": "disparador: contenido; notas: 30-resources/knowledges/sources/ads-signals-knowledge-library-repo.md, 30-resources/knowledges/sources/signals-knowledge-repo.md",
-          "confidence": "INFERRED",
-          "recommended_action": "A1: registrar como hallazgo de sistema; el owner decide migrar a 40-archive/, declarar la raíz o excluirla; nunca auto-corregido",
-          "authority": "80-agents/agents-os/agents-os.md (estructura informativa, sin 40-archive); .graphifyignore (no excluye esta raíz); materialize_schema_note.py (sólo conoce 40-archive)"
-        }
-      ],
+      "findings": [],
       "details": "inventario de directorios con forma de archive fuera de 40-archive/ (A1: report-only, sin FAIL posible)",
       "skip_reason": null,
       "dedup_cites": [],
-      "evidence": [
-        "30-resources/knowledges/sources: 2 nota(s); estados: {\"active\": 1, \"superseded\": 1}; disparador: proporción de notas en retiro/no-vigente"
-      ]
+      "evidence": []
     },
     {
       "check_id": "CL-11",
@@ -13947,7 +13930,7 @@
           "line": 125,
           "observed": "fila del índice -> [[../../10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/agentes/agent-project-00]] no resuelve a ninguna nota",
           "expected": "una fila por página vigente: el link del catálogo resuelve (00-RESOURCE-WIKI: un índice desactualizado es deuda)",
-          "evidence": "target '../../10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/agentes/agent-project-00'; línea 125; resolución A9: sin candidatos",
+          "evidence": "target '../../10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/agentes/agent-project-00'; línea 125; resolución A9: sin candidatos (ni asset en disco)",
           "confidence": "EXACT",
           "recommended_action": "proponer al owner corregir la fila o restaurar la página; nunca auto-corregido",
           "authority": "30-resources/00-RESOURCE-WIKI.md (00-index catálogo curado, Layer 1 del context-retrieval)"
@@ -13961,7 +13944,7 @@
           "line": 128,
           "observed": "fila del índice -> [[03-storage/backup-dr/backup-policy]] no resuelve a ninguna nota",
           "expected": "una fila por página vigente: el link del catálogo resuelve (00-RESOURCE-WIKI: un índice desactualizado es deuda)",
-          "evidence": "target '03-storage/backup-dr/backup-policy'; línea 128; resolución A9: sin candidatos",
+          "evidence": "target '03-storage/backup-dr/backup-policy'; línea 128; resolución A9: sin candidatos (ni asset en disco)",
           "confidence": "EXACT",
           "recommended_action": "proponer al owner corregir la fila o restaurar la página; nunca auto-corregido",
           "authority": "30-resources/00-RESOURCE-WIKI.md (00-index catálogo curado, Layer 1 del context-retrieval)"
@@ -13975,21 +13958,7 @@
           "line": 129,
           "observed": "fila del índice -> [[03-storage/backup-dr/backup-inventory-template]] no resuelve a ninguna nota",
           "expected": "una fila por página vigente: el link del catálogo resuelve (00-RESOURCE-WIKI: un índice desactualizado es deuda)",
-          "evidence": "target '03-storage/backup-dr/backup-inventory-template'; línea 129; resolución A9: sin candidatos",
-          "confidence": "EXACT",
-          "recommended_action": "proponer al owner corregir la fila o restaurar la página; nunca auto-corregido",
-          "authority": "30-resources/00-RESOURCE-WIKI.md (00-index catálogo curado, Layer 1 del context-retrieval)"
-        },
-        {
-          "check_id": "CL-14",
-          "category": "ROUTING",
-          "status": "FAIL",
-          "severity": "FAIL",
-          "path": "30-resources/vibe-coding/00-index.md",
-          "line": 45,
-          "observed": "fila del índice -> [[config.toon]] no resuelve a ninguna nota",
-          "expected": "una fila por página vigente: el link del catálogo resuelve (00-RESOURCE-WIKI: un índice desactualizado es deuda)",
-          "evidence": "target 'config.toon'; línea 45; resolución A9: sin candidatos",
+          "evidence": "target '03-storage/backup-dr/backup-inventory-template'; línea 129; resolución A9: sin candidatos (ni asset en disco)",
           "confidence": "EXACT",
           "recommended_action": "proponer al owner corregir la fila o restaurar la página; nunca auto-corregido",
           "authority": "30-resources/00-RESOURCE-WIKI.md (00-index catálogo curado, Layer 1 del context-retrieval)"
@@ -14341,11 +14310,11 @@
     }
   ],
   "counts": {
-    "pass": 6,
+    "pass": 7,
     "fail": 5,
-    "warn": 9,
+    "warn": 8,
     "skip": 0,
-    "findings": 1000
+    "findings": 998
   },
   "observations": [
     "A8: fixtures sintéticas excluidas explícitamente del corpus (80-agents/skills/_shared/fixtures/, 80-agents/skills/agents-os-entity-lifecycle/scripts/fixtures/); iter_vault_md del harness no las excluye y .graphifyignore tampoco -> diferencia registrada (hallazgo de sistema, no auto-correctible)",
@@ -14377,6 +14346,9 @@
       "min_retired_ratio": 0.5,
       "excluded_prefixes": [
         "80-agents/memory/internal/"
+      ],
+      "excluded_dir_names": [
+        "sources"
       ],
       "max_verdict": "WARN"
     },

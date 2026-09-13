@@ -107,6 +107,7 @@ THRESHOLDS = {
     "cl10": {"name_regex": "archiv (case-insensitive)", "min_notes": CL10_MIN_NOTES,
              "min_retired_ratio": CL10_MIN_RATIO,
              "excluded_prefixes": list(CL10_EXCLUDED_PREFIXES),
+             "excluded_dir_names": sorted(CL10_EXCLUDED_DIR_NAMES),
              "max_verdict": "WARN"},
     "cl12_code": "los wikilinks dentro de fenced code blocks e inline code spans no se "
                  "cuentan como enlaces de cuerpo (Obsidian no los renderiza)",
