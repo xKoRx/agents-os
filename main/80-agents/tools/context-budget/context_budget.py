@@ -33,6 +33,8 @@ import sys
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
+sys.dont_write_bytecode = True  # sin __pycache__ fuera del write scope
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 MARKER = "80-agents/agents-os/agents-os.md"
 HARNESS_REL = "80-agents/tools/conformance-harness"
@@ -607,10 +609,11 @@ def ctx_04_default_warm(ctx, rules, harness) -> Dict[str, Any]:
         problems.append("router cargado en turno warm casual")
     if s.session_mode != "warm" or s.bootstrap_runs != 1:
         problems.append("modo/ritual incorrecto: mode=%s runs=%d" % (s.session_mode, s.bootstrap_runs))
-    delta = weight_of(harness, ctx.vault, s.opens_in_turn(2))
+    delta_turn = s.opens_in_turn(2)
+    delta = weight_of(harness, ctx.vault, delta_turn)
     # Métricas: M07, M09, M18.
     rec["metrics"].append(metric("session_loaded_set", s.all_opens(), "files", "EXACT", "rules.Session.all_opens"))
-    rec["metrics"].append(metric("warm_delta_files", len(delta), "files", "EXACT", "rules.Session.opens_in_turn(2) (fix D1)"))
+    rec["metrics"].append(metric("warm_delta_files", len(delta_turn), "files", "EXACT", "rules.Session.opens_in_turn(2) (fix D1)"))
     _weight_metrics(rec, "warm_delta", delta, "EXACT", "ESTIMATED", "_size del harness sobre opens_in_turn(2)")
     rec["metrics"].append(metric("soft_target_warm_delta", delta["estimated_tokens"], "estimated_tokens", "ESTIMATED",
                                  "bootstrap Token Targets + doctor Check 11 + " + TOKENS_NOTE))
