@@ -10,7 +10,7 @@ parent: "[[AGENTS OS]]"
 sprint:
 start:
 due:
-progress: 100
+progress: 75
 repo:
 jira:
 prs:
@@ -30,127 +30,223 @@ updated: "2026-09-13"
 %% Naming: AGENTS OS - Context Hygiene and Canonical Integrity es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ AGENTS OS - Context Hygiene and Canonical Integrity
-> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P1 · **Sprint:** —
-> _parent / sprint / repo / jira / prs son opcionales._
-
-> [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
-> `owner: me` → **proyecto humano**: la iniciativa/esfuerzo que conduces tú.
-> `owner: agent` → **proyecto de agente**: un curro delegado, con detalle pesado que escribe y sigue un agente. Casi siempre es subproyecto de uno humano y vive en la subcarpeta `agentes/` de su iniciativa.
-> `root: true` solo en **iniciativas raíz** (sin `parent`). Todo subproyecto debe setear `parent`; si no, aparece como huérfano en [[Panel de Proyectos]].
->
-> **Tarea puente:** cuando este proyecto es `owner: agent`, en su proyecto **padre** debe existir UNA sola tarea humana que lo representa (arrancar + seguimiento). Así tu cockpit ve una línea por curro delegado, no las tareas internas del agente. Ejemplo, en el padre:
-> `- [ ] [[AGENTS OS - Context Hygiene and Canonical Integrity]] arrancar + seguimiento #owner/me #type/supervision #area/meli`
+> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P1
+> Proyecto `owner: agent`: esta nota es el planificador durable; la evidencia pesada vive en los artifacts de cada tool. Link > copy.
 
 ## 🎯 Objetivo
 
-- Dotar a Agents-OS de dos mecanismos reproducibles que complementen (sin duplicar) al Conformance Harness: **PHASE 2 — Context Budget + Domain Leak Auditor** (medir el contexto que carga el sistema por scope DEFAULT/MELI/ARANEA, detectar contexto innecesario, contaminación entre dominios y cambios de contexto al cambiar de dominio) y **PHASE 3 — Canonical / Deprecation Linter** (linter determinista de higiene documental: canonicalidad, deprecación, archive, links, routing, metadata, hot-path). Ambos con diseño → spec parent → implementación → verificación adversarial, máximo 2 ciclos de corrección, sin auto-corregir el sistema bajo prueba, y exponiendo records compatibles con una futura integración `agents-os doctor` (fuera de alcance).
+Convertir la salud de Agents-OS en una superficie verificable y barata de operar, manteniendo una sola autoridad por comportamiento:
+
+1. **Conformance Harness** — correctness / contratos observables.
+2. **PHASE 2 — Context Budget + Domain Leak Auditor** — eficiencia de contexto, aislamiento DEFAULT/MELI/ARANEA y leakage.
+3. **PHASE 3 — Canonical / Deprecation Linter** — higiene documental, canonicalidad, deprecación, archive, routing y hot-path.
+4. **PHASE 4 — Unified `agents-os doctor`** — agregación delgada de los tres instrumentos anteriores más el Doctor estructural existente, sin duplicar business logic ni auto-corregir el sistema.
+
+La meta final de PHASE 4 es que un operador o agente pueda ejecutar **un solo health check read-only** y obtener una fotografía honesta, acotada y machine-readable de:
+
+```text
+STRUCTURAL
+CONFORMANCE
+CONTEXT / DOMAIN ISOLATION
+CANONICAL / DEPRECATION
+```
 
 ## 📊 Estado actual
 
-- **2026-09-13 — Implementación completa (OWNER REVIEW).** Baseline: Conformance Harness entregado (PASS 4 · FAIL 1 [F1] · WARN 4 · SKIP 17), Agents-OS revision `a6a503f` como ancestro del HEAD vivo. Proyecto creado como único planificador de PHASE 2 + PHASE 3. P2-A completado (19 métricas M01-M19, 15 escenarios CTX-01..15, reuso del harness como librería); PARENT GATE P2 completado (spec binding con decisiones A1-A9); P2-B completado (context_budget.py + selftest 11/11 + README + notes; suite PASS 7 · FAIL 0 · WARN 7 · SKIP 1, reproducida por el parent); P2-C completado: 19 ataques, 3 FAIL materiales de la tool (D1 VPN-FAIL-vs-WARN contradice A3; D2 barrido M16 sin especialistas; D3 5 asserts heredados perdidos), 8 notas menores (N1-N8), hallazgos de sistema S1 (mensaje cosmético del harness) y S2 (sync commits variando git_head); P2-D completado en ciclo 1/2 (D1-D3 + N1-N3/N5-N8 corregidos; selftest 11→21/21; suite estable PASS 7 · FAIL 0 · WARN 7 · SKIP 1; re-verificación focalizada del parent OK). PHASE 2 DONE: entrada `python3 80-agents/tools/context-budget/context_budget.py`; DEFAULT cold ≈7025 est (WARN Hallazgo 6 + techo blando), MELI cold ≈9042, ARANEA cold ≈8222 (estimated_tokens chars/4 C04); warm deltas medidos; swaps cubiertos ambos sentidos; 0 domain leaks; 0 deprecated hot-path; 2 pares de duplicación (WARN); MCP surface SKIP salvo --live. P3-A completado (modelo vigente: memory_state/status/superseded_by/load_policy con evidencia real del corpus; 20 checks CL-01..CL-20 en 9 categorías, 8 FAIL-capables; hot path en 4 clases DEFAULT-LOADED/ROUTABLE/REFERENCED/ARCHIVED; desduplicación dura contra lint.py/doctor/L0/M16; ambiguities A1-A10). PARENT GATE P3 completado (spec binding: A1-A10 decididos, clase no-vigente ratificada, algoritmo de resolución de wikilinks ratificado, fixtures excluidos). P3-B completado (canonical_linter.py con 20 checks + selftest 8/8 + README + notes; primera ejecución real: PASS 6 · FAIL 5 · WARN 9 · 1003 findings sobre corpus vivo de 853 notas; reproducido por el parent; spec enmendado: CL-01 acotado a superseded_by+active). P3-C completado: 1 defecto material (D1: CL-14 verifica sólo el primer wikilink por fila de índice), censos de los FAIL masivos 100% reales (CL-11: 0 falsos positivos de resolución; 92% inexistentes en todo el vault), 16/16 comportamientos falsos-negativo conformes, selftest 8/8 reproducido; hallazgos de sistema S1-S7 (identidad Symphony, réplicas Meli, memorias duplicadas, router→runbook superseded, deuda de índices). P3-D completado en ciclo 1/2: D1 corregido (CL-14 verifica todos los wikilinks por fila; 3→4 FAIL, 160→184 links de fila verificados; el falso negativo `agent-project-08` ahora detectado) + anotación de evidencia N2 en CL-11/12 (veredicto-preservante: CL-11 sigue 337, CL-12 sigue 465); selftest 9/9; verificación del parent OK (run completo: PASS 6 · FAIL 5 · WARN 9 · SKIP 0 · findings 1004; ningún check degradado ni finding del sistema "arreglado"). **PHASE 3 DONE — estado: IMPLEMENTATION COMPLETE / OWNER REVIEW.**
+- **Conformance Harness — DONE / OWNER REVIEW.** Autoridad para cold/warm/switch/isolation y contracts observables. Sigue registrando defectos reales del sistema sin auto-corregirlos; su F1 conocido no debe ocultar diagnósticos independientes de otras herramientas.
+- **PHASE 2 — DONE.** `python3 80-agents/tools/context-budget/context_budget.py`; selftest 21/21; suite estable PASS 7 · FAIL 0 · WARN 7 · SKIP 1. Baseline cold: DEFAULT ≈7025, MELI ≈9042, ARANEA ≈8222 `estimated_tokens` (`chars/4`, nunca precisión falsa). Warm deltas y ambos swaps cubiertos; 0 domain leaks; 0 deprecated hot-path; MCP surface SKIP salvo `--live`.
+- **PHASE 3 — DONE.** `python3 80-agents/tools/canonical-linter/canonical_linter.py`; 20 checks CL-01..CL-20; selftest 9/9; real-vault PASS 6 · FAIL 5 · WARN 9 · SKIP 0 · 1004 findings. D1 de CL-14 corregido y verificado; findings reales preservados.
+- **PHASE 4 — PLANNED / NOT IMPLEMENTED.** La arquitectura está congelada en `80-agents/skills/agents-os-doctor/PHASE-4-AGGREGATION-SPEC.md`. No existe todavía un Doctor unificado: el `agents-os-doctor` executable actual sigue siendo el Doctor estructural existente.
 
-## 🧱 Entrega de desarrollo
+## 🧭 Arquitectura PHASE 4
 
-_No aplica — el tooling vive como scripts/tests dentro del vault bajo `80-agents/tools/`; no toca repos de aplicaciones._
+El Doctor unificado será **aggregation only**:
 
-## 🧩 Subproyectos
-
-```base
-filters:
-  and:
-    - 'type == "project"'
-    - 'file.hasLink(this.file)'
-views:
-  - type: cards
-    name: Subproyectos
-    order:
-      - file.name
-      - note.status
-      - note.priority
+```text
+                     agents-os doctor
+                            │
+                            ▼
+                    thin orchestrator
+                            │
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
+          ▼                 ▼                 ▼
+      structural       conformance          context
+          │                                   │
+          └─────────────────┬─────────────────┘
+                            ▼
+                        canonical
+                            │
+                            ▼
+                   normalized envelope
+                            │
+                 ┌──────────┴──────────┐
+                 ▼                     ▼
+             human summary           --json
 ```
+
+### Providers y ownership
+
+| Provider | Entrypoint actual | Ownership |
+|---|---|---|
+| Structural | `80-agents/skills/agents-os-doctor/scripts/doctor.py` | instalación/core hygiene existente |
+| Conformance | `80-agents/tools/conformance-harness/agents_os_conformance.py` | correctness/contracts |
+| Context | `80-agents/tools/context-budget/context_budget.py` | context footprint/domain leakage |
+| Canonical | `80-agents/tools/canonical-linter/canonical_linter.py` | canonical/deprecation/routing hygiene |
+
+Regla principal:
+
+> **Provider owns semantics; Doctor aggregates.**
+
+PHASE 4 no copia checks, no transcribe reglas, no inventa un segundo routing model y no reinterpreta findings para hacerlos calzar.
+
+### Invariantes
+
+- Un único entrypoint canónico de Doctor; preferir conservar `80-agents/skills/agents-os-doctor/scripts/doctor.py` si P4-A confirma que es seguro evolucionarlo.
+- Ejecución secuencial por defecto; no consumir concurrencia por comodidad.
+- Un `FAIL` de un provider **no corta** providers independientes posteriores.
+- Separar `execution_status: OK|ERROR` de `verdict: PASS|FAIL|WARN|SKIP`.
+- `UNKNOWN` o no observable jamás se convierte en `PASS`.
+- `--strict` afecta exit policy; no muta records ni severidades.
+- `estimated_tokens` sigue siendo estimado.
+- El output humano es acotado; 1000+ findings no se imprimen completos.
+- JSON conserva provenance (`provider`, `check_id`, evidence/confidence cuando exista).
+- `--live` sólo habilita observación segura; jamás side effects.
+- Doctor es read-only y no repara findings automáticamente.
+- Capturar baseline Git al inicio/fin cuando exista Git; auto-sync no debe ocultarse.
+- No fuzzy/LLM semantic dedup en V1; preservar provenance antes que “limpiar” demasiado el reporte.
+
+### CLI objetivo
+
+P4-A debe validar los contratos reales antes de implementar. El target mínimo, sólo si las interfaces actuales lo soportan legítimamente, es:
+
+```text
+--component structural|conformance|context|canonical|all
+--json
+--strict
+--live
+--vault-root PATH
+```
+
+No crear daemon, DB, dashboard, MCP, scheduler, framework de plugins ni CI remoto dentro de PHASE 4.
+
+### Resultado objetivo
+
+```text
+AGENTS-OS DOCTOR
+baseline: <start> → <end> (stable|moved)
+mode: read-only / non-live
+
+STRUCTURAL   PASS   ...
+CONFORMANCE  FAIL   ...
+CONTEXT      WARN   DEFAULT≈7.0k · MELI≈9.0k · ARANEA≈8.2k est
+CANONICAL    FAIL   5 failing checks · 1004 findings
+
+OVERALL      FAIL
+```
+
+Un provider que **ejecuta correctamente y encuentra un bug real** es `execution_status=OK, verdict=FAIL`. Un provider que se rompe es `execution_status=ERROR`; eso no se debe maquillar como un defecto demostrado de Agents-OS.
 
 ## ✅ Tareas
 
-> [!note]+ Ownership y tarea puente
-> `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala.
-> El board es **adaptativo según `owner` del frontmatter**:
-> - **Proyecto humano** (`owner: me`): muestra tus tareas y las **tareas puente** (`#type/supervision`) que representan proyectos de agente. Las tareas de agente **no** aparecen acá; viven en su propio proyecto.
-> - **Proyecto de agente** (`owner: agent`): muestra las tareas del agente.
+> [!note]+ Estado
+> `[ ]` To Do · `[/]` WIP · `[r]` Review · `[x]` Done. El parent/orchestrator es el single writer del planning global; artifacts grandes viven junto a las tools.
 
-> [!example]- Fuente de tareas — editar / mover de estado aquí
-> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [x] P2-A — Context Budget Auditor/Designer: analizar bootstrap, packs MELI/ARANEA, DEFAULT, harness y filesystem; clasificar EXACT/ESTIMATED/INFERRED/UNOBSERVABLE; diseñar métricas y escenarios → `80-agents/tools/context-budget/artifacts/p2-context-budget-design.md` #owner/agent #type/research #area/personal
-> - [x] PARENT GATE P2 — reconciliar design contra harness, definir spec (métricas, métodos, escenarios, semántica PASS/WARN/FAIL/SKIP, schema) → `80-agents/tools/context-budget/artifacts/p2-context-budget-spec.md` #owner/agent #type/admin #area/personal
-> - [x] P2-B — Context Budget Implementer: tool en `80-agents/tools/context-budget/`, reutilizando contratos del harness, ejecución DEFAULT/MELI/ARANEA cold/warm/switch #owner/agent #type/dev #area/personal
-> - [x] P2-C — Context Budget Adversarial Verifier → `80-agents/tools/context-budget/artifacts/p2-adversarial-verification.md` #owner/agent #type/research #area/personal
-> - [x] P2-D — Context Budget Fixer (sólo si hay defectos materiales del auditor; máx 2 ciclos) #owner/agent #type/dev #area/personal
-> - [x] PHASE 2 acceptance gate + cierre de fase en esta nota #owner/agent #type/admin #area/personal
-> - [x] P3-A — Canonical Integrity Designer: extraer modelo canonical/deprecation de autoridades vigentes, clasificar MACHINE-DETERMINISTIC/HEURISTIC/HUMAN-REVIEW → `80-agents/tools/canonical-linter/artifacts/p3-canonical-model.md` #owner/agent #type/research #area/personal
-> - [x] PARENT GATE P3 — spec del linter (check IDs, severidad, determinismo, evidencia, exclusiones, formato) → `80-agents/tools/canonical-linter/artifacts/p3-canonical-linter-spec.md` #owner/agent #type/admin #area/personal
-> - [x] P3-B — Canonical Linter Implementer: linter determinista en `80-agents/tools/canonical-linter/` reutilizando tooling de schema existente #owner/agent #type/dev #area/personal
-> - [x] P3-C — Canonical Linter Adversarial Verifier → `80-agents/tools/canonical-linter/artifacts/p3-adversarial-verification.md` #owner/agent #type/research #area/personal
-> - [x] P3-D — Canonical Linter Fixer (sólo si hay defectos materiales; máx 2 ciclos) #owner/agent #type/dev #area/personal
-> - [x] PHASE 3 acceptance gate + estado final del proyecto (IMPLEMENTATION COMPLETE / OWNER REVIEW) #owner/agent #type/admin #area/personal
+### PHASE 2 — Context Budget + Domain Leak
 
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-function board(tasks){const cols=[[" ","🟦 To Do"],["/","🟡 WIP"],["r","🔵 Review"]];let any=false;for(const[st,label]of cols){const c=tasks.filter(t=>t.status===st);if(c.length){any=true;dv.el('h4',label);render(c);}}const done=tasks.filter(t=>t.status==="x"||t.status==="X");if(done.length){any=true;dv.el('h4',"✅ Done");render(done);}if(!any)dv.paragraph("_Sin tareas._");}
-const owner=((dv.current().owner)==="agent")?"agent":"me";
-const all=dv.current().file.tasks.array();
-const primary=all.filter(t=>has(t,`owner/${owner}`));
-const loose=all.filter(t=>!has(t,"owner/me")&&!has(t,"owner/agent"));
-dv.header(3, owner==="agent"?"🤖 Tareas del agente":"🧍 Mis tareas");
-board(primary);
-if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
+- [x] P2-A — Context Budget Auditor/Designer → `80-agents/tools/context-budget/artifacts/p2-context-budget-design.md` #owner/agent #type/research #area/personal
+- [x] PARENT GATE P2 — spec binding → `80-agents/tools/context-budget/artifacts/p2-context-budget-spec.md` #owner/agent #type/admin #area/personal
+- [x] P2-B — Context Budget Implementer #owner/agent #type/dev #area/personal
+- [x] P2-C — Adversarial Verifier → `80-agents/tools/context-budget/artifacts/p2-adversarial-verification.md` #owner/agent #type/research #area/personal
+- [x] P2-D — Fixer ciclo 1/2; selftest 21/21 #owner/agent #type/dev #area/personal
+- [x] PHASE 2 acceptance gate #owner/agent #type/admin #area/personal
+
+### PHASE 3 — Canonical / Deprecation Linter
+
+- [x] P3-A — Canonical Integrity Designer → `80-agents/tools/canonical-linter/artifacts/p3-canonical-model.md` #owner/agent #type/research #area/personal
+- [x] PARENT GATE P3 — spec binding → `80-agents/tools/canonical-linter/artifacts/p3-canonical-linter-spec.md` #owner/agent #type/admin #area/personal
+- [x] P3-B — Canonical Linter Implementer #owner/agent #type/dev #area/personal
+- [x] P3-C — Adversarial Verifier → `80-agents/tools/canonical-linter/artifacts/p3-adversarial-verification.md` #owner/agent #type/research #area/personal
+- [x] P3-D — Fixer D1/CL-14; selftest 9/9 #owner/agent #type/dev #area/personal
+- [x] PHASE 3 acceptance gate #owner/agent #type/admin #area/personal
+
+### PHASE 4 — Unified Agents-OS Doctor
+
+- [x] P4-0 — Freeze de arquitectura/spec → `80-agents/skills/agents-os-doctor/PHASE-4-AGGREGATION-SPEC.md` #owner/agent #type/admin #area/personal
+- [ ] P4-A — **Provider Contract Audit**: inspeccionar los cuatro providers reales; fijar flags, JSON disponible, exit codes, runtime requirements, timeouts, overlaps y adapters mínimos. NO implementar antes de este gate. #owner/agent #type/research #area/personal
+- [ ] P4-B — **Thin Aggregator**: ejecución secuencial, failure isolation, normalized envelope, concise human renderer + JSON; cero business logic duplicado. #owner/agent #type/dev #area/personal
+- [ ] P4-C — **Integration Selftests**: PASS/WARN/SKIP/FAIL, provider ERROR, strict sin mutación de verdict, component filtering, JSON envelope, moving baseline, no canonical mutation. #owner/agent #type/dev #area/personal
+- [ ] P4-D — **Fresh Adversarial Verification**: intentar demostrar lógica duplicada, fail-fast indebido, false PASS, ERROR→FAIL, precisión falsa, output flooding, side effects, pérdida de structural checks o exit codes inconsistentes. #owner/agent #type/research #area/personal
+- [ ] P4-E — **Skill/Docs/Acceptance**: actualizar `agents-os-doctor/SKILL.md` sólo después de que runtime exista, ejecutar selftests de todos los providers + real-vault smoke, actualizar proyecto/handoff. #owner/agent #type/admin #area/personal
+- [ ] PHASE 4 acceptance gate — Doctor unificado read-only, truthful y reproducible; luego OWNER REVIEW. #owner/agent #type/admin #area/personal
+
+## 🚦 Acceptance gate PHASE 4
+
+No declarar DONE hasta demostrar:
+
+```text
+[ ] provider contracts reales auditados
+[ ] zero duplicated provider business logic
+[ ] structural Doctor existente preservado o ownership re-asignado explícitamente
+[ ] un solo Doctor entrypoint
+[ ] ejecución secuencial demostrada
+[ ] provider FAIL no suprime providers independientes
+[ ] provider ERROR distinguible de Agents-OS FAIL
+[ ] PASS/FAIL/WARN/SKIP preservados
+[ ] concise human summary
+[ ] machine-readable JSON
+[ ] DEFAULT/MELI/ARANEA visibles sin precisión falsa
+[ ] grandes finding sets acotados en output humano
+[ ] --strict verificado
+[ ] component filtering verificado
+[ ] --live sigue read-only
+[ ] baseline start/end capturado cuando Git está disponible
+[ ] no canonical mutation
+[ ] integration tests green
+[ ] provider selftests siguen green
+[ ] real-vault smoke
+[ ] fresh adversarial verifier
+[ ] SKILL.md describe implementación real, no intención futura
 ```
 
-%% Rollup de iniciativa — descomentar solo en proyectos padre para ver las tareas #owner/me (incluye puentes) de todos los subproyectos, agrupadas por nota. Cambiar la ruta por la carpeta de esta iniciativa. Nunca muestra tareas de agente.
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-const ord={" ":0,"/":1,"r":2,"x":3,"X":3,"-":4};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-const pages=dv.pages('"10-projects/CARPETA-DE-LA-INICIATIVA"');
-for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x=>has(x,"owner/me")&&x.status!=="x"&&x.status!=="X").sort((a,b)=>(ord[a.status]??9)-(ord[b.status]??9));if(t.length){dv.el('h4',p.file.link);render(t);}}
-```
-%%
+## ⛔ Non-goals PHASE 4
+
+PHASE 4 NO:
+
+- corrige F1 del Conformance Harness;
+- limpia los 1004 findings del corpus;
+- optimiza automáticamente los budgets de contexto;
+- redefine DEFAULT/MELI/ARANEA;
+- auto-repara documentación;
+- crea dashboard/daemon/MCP/scheduler;
+- rediseña Agents-OS.
+
+La remediación de findings es un carril posterior. Primero se construye una superficie única y confiable para medir antes/después.
 
 ## 📆 Bitácora
 
-%% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-13** — PHASE 3 entregada y verificada. Primera ejecución real del linter (post-D1): PASS 6 · FAIL 5 · WARN 9 · SKIP 0 · findings 1004 — todos hallazgos REALES del corpus, registrados sin auto-corrección: identidad duplicada por réplicas Meli (CL-06 22), wikilinks de routing a entidades/repos sin página (CL-11 337; censo 100%, 0 falsos positivos), deuda de índices wiki (CL-14 4 + CL-15 4), router meli → runbook superseded (CL-18 1), colisiones de alias (CL-08 42), links a archivadas (CL-13 108), cuerpo roto/ambiguo (CL-12 465), `archive/` raíz no declarado (CL-10 5), freshness (CL-19 7), memory_state informal (CL-20 5), CL-03/05/09 el resto. Limitaciones declaradas en el README del linter. Integración futura bajo `agents-os doctor` queda fuera de alcance (preparada vía records con check_id/category/verdict/severity/confidence/authority).
-- **2026-09-13** — P2-A entregó diseño completo con handoff adversarial-ready (ambiguities A1-A9). Parent reconcilió contra harness (sin contradicciones factuales) y publicó spec binding: soft ceilings WARN-only, umbral duplicación ratificado (WARN-only), MCP surface SKIP salvo --live reusando código del harness, transversales neutrales.
-- **2026-09-13** — Proyecto creado como único planificador de PHASE 2 (Context Budget + Domain Leak Auditor) y PHASE 3 (Canonical / Deprecation Linter). Conformance Harness tratado como INPUT (no se rehace, F1 no se corrige). Restricción operacional: MAX_ACTIVE_SUBAGENTS=1, ejecución estrictamente secuencial. Baseline Agents-OS `a6a503f` (ancestro del HEAD vivo durante la ejecución).
+- **2026-09-13 — PHASE 4 preparada.** Se confirmó que ya existe un `agents-os-doctor` estructural y que la integración correcta es evolucionarlo a **thin aggregator**, no crear un segundo Doctor. Se congeló `PHASE-4-AGGREGATION-SPEC.md`: providers, status dual execution/verdict, failure isolation, JSON envelope, exit policy, output bounded, baseline stability, safety, P4-A..P4-E y acceptance gate. Runtime PHASE 4 todavía NO implementado.
+- **2026-09-13 — PHASE 3 DONE.** Real-vault post-D1: PASS 6 · FAIL 5 · WARN 9 · SKIP 0 · 1004 findings. CL-14 revisa todos los wikilinks por fila; selftest 9/9; ningún finding real maquillado.
+- **2026-09-13 — PHASE 2 DONE.** Auditor de contexto estabilizado tras verificación adversarial; selftest 21/21; 0 domain leaks y 0 deprecated hot-path observados en su baseline.
+- **2026-09-13 — Proyecto creado.** Conformance Harness se trató como input y autoridad de contracts, no como trabajo a rehacer. Restricción operativa de la campaña original: máximo un subagent activo a la vez.
 
 ## 🧭 Decisiones
 
-- Un solo proyecto para PHASE 2 + PHASE 3; artifacts viven junto a cada tool (`80-agents/tools/context-budget/artifacts/`, `80-agents/tools/canonical-linter/artifacts/`) y esta nota solo mantiene estado compacto con links (link > copy).
-- El Conformance Harness define el contrato observable vigente (cold/warm/switch/isolation/expected-not-expected): las nuevas herramientas reutilizan sus contratos, no crean un segundo modelo.
-- Los findings sobre Agents-OS se registran, nunca se auto-corrijen; los fixes de subagents alcanzan sólo a las herramientas nuevas.
+- Una fuente por hecho: providers poseen checks; Doctor sólo agrega.
+- Conformance Harness sigue siendo autoridad para cold/warm/switch/isolation.
+- El Doctor estructural existente no se elimina por reflejo; P4-A debe revisar overlaps y preservar capacidades sin duplicarlas.
+- Findings de Agents-OS se registran y priorizan; diagnóstico ≠ remediación.
+- Phase 4 usa KISS/YAGNI: thin orchestration, bounded output, JSON y nada más.
+- Cuando el vault auto-sync mueva HEAD durante un run, reportar baseline moved en vez de congelar Git destructivamente.
 
 ## 🔗 Docs / Links
 
-- 
+- `80-agents/skills/agents-os-doctor/PHASE-4-AGGREGATION-SPEC.md` — contrato de implementación PHASE 4.
+- `80-agents/skills/agents-os-doctor/SKILL.md` — Doctor estructural actual; no afirmar que ya es el unificado.
+- `80-agents/tools/conformance-harness/` — provider de correctness/contracts.
+- `80-agents/tools/context-budget/` — provider de context budget/domain leakage.
+- `80-agents/tools/canonical-linter/` — provider de canonical/deprecation.
 
-## 💡 Ideas
+## ➡️ Next exact
 
-%% Captura ideas sueltas del proyecto al final. Si maduran, promover a tarea o a nota de idea (70-templates/idea.md). %%
-
-### Backlog de ideas
-
-- 
-
-### Motivos / principios
-
-- 
-
-### Memoria pública / interna
-
-%% Opcional para proyectos de agentes o conocimiento: definir qué memoria gobierna el sistema y cuál gobierna el agente, y por qué existe cada una. %%
-- **Memoria pública:** 
-- **Memoria interna:** 
-- **Motivo:** 
+**P4-A — Provider Contract Audit.** Agente fresco, read-only para discovery; fijar el contrato REAL de los cuatro providers y recién después autorizar P4-B.
