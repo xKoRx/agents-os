@@ -19,8 +19,8 @@ agent_model: unknown
 model_source: unknown
 task_type: debugging
 task_complexity: medium
-outcome: blocked
-verification: partial
+outcome: partial
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session: 2026-09-13-aranea-ssh-session-limit-incident
@@ -43,8 +43,8 @@ tags:
 ## Evidencia
 
 - **Validaciones ejecutadas:** `/health` sin auth `200`; request sin bearer `401`; `initialize` con bearer presente `503 session limit (64)`; resolución DNS y TCP `:22/:3000`; SSH administrativo rechazado.
-- **Resultado observable:** Servicio alcanzable pero no utilizable; recovery no ejecutado.
-- **Limitaciones de la evidencia:** No hubo autoridad para `docker ps/inspect/logs/restart`, sesión registry, TCP/FD/memory/config efectiva ni smokes de perfiles/lifecycle.
+- **Resultado observable:** Recheck posterior mostró servicio utilizable; `initialize`, `tools/list`, `resources/list`, cuatro smokes viewer y 5/5 ciclos de lifecycle con `DELETE` pasaron; recovery no ejecutado por el agente.
+- **Limitaciones de la evidencia:** No hubo autoridad para `docker ps/inspect/logs/restart`, sesión registry, TCP/FD/memory/config efectiva ni atribución retrospectiva del clear del límite 64; root cause permanece UNKNOWN.
 
 ## Evaluación
 
@@ -58,6 +58,6 @@ tags:
 
 ## Resultado
 
-- **Outcome:** BLOCKED — MCP recovery failed.
-- **Rework posterior:** Reanudar con autoridad administrativa existente para `mcps`/LXC 113.
+- **Outcome:** PASS / CLOSED — ARANEA SSH MCP HEALTH RESTORED, con root cause histórico UNKNOWN.
+- **Rework posterior:** Mantener T6 abierto para observabilidad server-side del lifecycle/reaper; F-04 queda desbloqueado para retomar T2.12, sin ejecutarlo aquí.
 - **Aprendizaje para comparar herramientas:** El endpoint `/health` no expone la causa; la certificación requiere observabilidad server-side del lifecycle y un path administrativo explícito.

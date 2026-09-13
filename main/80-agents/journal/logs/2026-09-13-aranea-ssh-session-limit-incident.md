@@ -49,11 +49,11 @@ tags:
 
 ## Resolución aplicada
 
-- Se confirmó endpoint DNS/IP alcanzable, bearer presente sin revelar valor, `401` sin auth, `/health` `200 healthy=true configured=true` y `initialize` autenticado `503` con `session limit (64)`. La inspección LXC/Docker y recovery no fueron posibles: SSH administrativo rechazado y Portainer sólo expuesto detrás de login sin credencial disponible. No hubo restart, cambio de config, rotación de bearer, cambio de perfiles, uso de targets ni workflow.
+- Se confirmó endpoint DNS/IP alcanzable, bearer presente sin revelar valor, `401` sin auth, `/health` `200 healthy=true configured=true` y `initialize` autenticado `503` con `session limit (64)`. La inspección LXC/Docker y recovery no fueron posibles: SSH administrativo rechazado y Portainer sólo expuesto detrás de login sin credencial disponible. No hubo restart, cambio de config, rotación de bearer, cambio de perfiles, uso de targets ni workflow. En la reanudación posterior el servicio ya estaba liberado; `initialize`, `tools/list`, `resources/list`, cuatro smokes viewer y 5/5 ciclos con `DELETE` pasaron. La causa histórica se mantiene `UNKNOWN` porque no existe evidencia retrospectiva para atribuir el clear a reaper, restart o cierre de cliente.
 
 ## Validación
 
-- Requests HTTP ejecutados el 2026-09-13 a las 04:21–04:26 America/Santiago; la primera falla exacta fue `HTTP/1.1 503 Service Unavailable` con `Server is at its session limit (64). Close an existing session and retry.`. Root cause: `UNKNOWN` — session registry/reaper/client-leak no observables sin autoridad server-side.
+- Requests HTTP ejecutados el 2026-09-13 a las 04:21–04:40 America/Santiago; la primera falla exacta fue `HTTP/1.1 503 Service Unavailable` con `Server is at its session limit (64). Close an existing session and retry.`. Recheck posterior: `initialize=200`, `tools/list=200`, `resources/list=200`, perfiles viewer PASS y lifecycle `5/5 initialize=200 + DELETE=200`. Root cause: `UNKNOWN` — session registry/reaper/client-leak no observables sin autoridad server-side retrospectiva.
 
 ## Compartibilidad
 
@@ -62,4 +62,4 @@ tags:
 
 ## Rollback
 
-- No aplica: no se mutó el runtime. Retomar con autoridad existente para LXC 113/hades; si se demuestra saturación no legítima, reiniciar únicamente `aranea-ssh` y certificar server/client/lifecycle antes de desbloquear F-04.
+- No se mutó el runtime ni se necesitó restart: el servicio se recuperó antes del recheck. El incidente queda operativo `PASS / CLOSED`, con T6 pendiente para health/session lifecycle/reaper y observabilidad que permita atribuir futuras saturaciones.

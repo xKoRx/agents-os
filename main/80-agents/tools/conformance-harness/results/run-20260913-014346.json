@@ -1,0 +1,343 @@
+{
+  "run": {
+    "timestamp": "2026-09-13T01:43:46",
+    "python": "3.14.4",
+    "vault_root_arg": "auto",
+    "layer_arg": "L1",
+    "scenario_arg": null,
+    "no_live": false
+  },
+  "baseline": "e6f83b20091beb4c6cf605a66c6de7f991ac3cdd",
+  "levels": {
+    "L0": [
+      "RULES-FIDELITY-ANCHORS",
+      "SCHEMA-VALIDATOR-GREEN",
+      "STARTUP-DUPLICATION",
+      "CLOSED-CLUB-ALWAYS",
+      "LOAD-POLICY-VOCABULARY",
+      "REGISTRY-DISK-PARITY",
+      "DUAL-REGISTRY-DOMAIN-SYNC",
+      "NO-SECRETS-IN-MARKDOWN",
+      "ACTIVE-MEMORY-DOMAIN-PURITY"
+    ],
+    "L1": [
+      "COLD-DEFAULT",
+      "COLD-MELI",
+      "COLD-ARANEA",
+      "COLD-CONFLICTING-EVIDENCE-FAILS-CLOSED",
+      "WARM-DEFAULT",
+      "WARM-MELI",
+      "WARM-ARANEA",
+      "BOOTSTRAP-NOT-RERUN-ON-WARM",
+      "SWITCH-MELI-TO-ARANEA",
+      "SWITCH-ARANEA-TO-MELI",
+      "SWITCH-DEFAULT-TO-MELI",
+      "SWITCH-DEFAULT-TO-ARANEA",
+      "MELI-NEGATIVE-ARANEA-TOOL",
+      "ARANEA-NEGATIVE-MELI-TOOL",
+      "DEPRECATED-DOC-NOT-DEFAULT-LOAD",
+      "UNRELATED-DOMAIN-NOT-LOADED"
+    ],
+    "L2": [
+      "SESSION-SURFACE-EXPOSURE"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "RULES-FIDELITY-ANCHORS",
+      "level": "L0",
+      "state": "PASS",
+      "details": "todas las anclas de fidelidad de rules.py (21) existen en el texto vigente de las autoridades",
+      "evidence": [
+        "80-agents/skills/agents-os-bootstrap/SKILL.md: 16 anclas verificadas (gate-meli, gate-echo-aranea, gate-other-no-router, gate-fail-closed, gate-never-both-routers, cold-paso1-constitution, cold-paso1-profile-dir, cold-paso2-global-internal, cold-paso3-registry, cold-paso3-no-federated-index, warm-never-reread, warm-no-bootstrap-rerun, swap-keep-invariants, swap-drop-pack, hard-superseded-not-loaded, hard-only-startup-procedure)",
+        "80-agents/skills/agents-os-doctor/SKILL.md: 5 anclas verificadas (doctor-club-constitution, doctor-club-bootstrap, doctor-club-global-internal, doctor-club-one-profile, doctor-club-second-is-violation)"
+      ]
+    },
+    {
+      "id": "SCHEMA-VALIDATOR-GREEN",
+      "level": "L0",
+      "state": "FAIL",
+      "details": "validador del schema-contract en rojo (exit 1); contrato exige exit 0 (C17: estado observado verde al 2026-09-09 — drift del corpus)",
+      "evidence": [
+        "AGENTS OS schema contract: version=1 types=45 canonical_templates=44 derived=2 fragments=1 fixtures=5 creation_entrypoints=13 errors=1",
+        "ERROR creation entrypoint bypasses materializer: 80-agents/skills/agents-os-skill-authoring/SKILL.md"
+      ]
+    },
+    {
+      "id": "STARTUP-DUPLICATION",
+      "level": "L0",
+      "state": "PASS",
+      "details": "el unico texto procedimental de startup vive en agents-os-bootstrap/SKILL.md (AGENTS.md solo lo invoca; agents-os.md es mapa+routing; heuristicas D1/D2/D3 sin hits)",
+      "evidence": []
+    },
+    {
+      "id": "CLOSED-CLUB-ALWAYS",
+      "level": "L0",
+      "state": "PASS",
+      "details": "closed club exacto: constitucion + bootstrap + perfil global (rjara-agent-profile.md) + continuidad interna global; 0 terceros",
+      "evidence": [
+        "always encontrados (4): 80-agents/agents-os/agent-constitution.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md, 80-agents/skills/agents-os-bootstrap/SKILL.md"
+      ]
+    },
+    {
+      "id": "LOAD-POLICY-VOCABULARY",
+      "level": "L0",
+      "state": "WARN",
+      "details": "extras de vocabulario documentados (C09/Hallazgos 7+12) sin autoridad que fije precedencia entre enumeraciones; sin FAILs",
+      "evidence": [
+        "notas con load_policy escaneadas: 390",
+        "distribucion: {\"always\": 3, \"manual\": 196, \"never\": 3, \"when_application_loaded\": 16, \"when_area_loaded\": 3, \"when_echo_forge_loaded\": 2, \"when_entity_loaded\": 1, \"when_error_matches\": 89, \"when_installing_graphify_obsidian\": 1, \"when_project_loaded\": 76}",
+        "Hallazgo 7: 80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md usa when_area_loaded con scope=user sin campo area (trigger no resoluble por area; cross-domain sin arbitro)",
+        "trigger when_*_loaded fuera de la enumeracion literal de bootstrap (C09 WARN): 80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md -> when_echo_forge_loaded",
+        "trigger when_*_loaded fuera de la enumeracion literal de bootstrap (C09 WARN): 80-agents/memory/internal/agent-memory/2026-09-05-echo-forge-full-golden-flow-continuity.md -> when_echo_forge_loaded",
+        "trigger when_*_loaded fuera de la enumeracion literal de bootstrap (C09 WARN): 80-agents/memory/public/runbook/graphify-obsidian-install.md -> when_installing_graphify_obsidian",
+        "trigger when_*_loaded fuera de la enumeracion literal de bootstrap (C09 WARN): 80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md -> when_area_loaded",
+        "trigger when_*_loaded fuera de la enumeracion literal de bootstrap (C09 WARN): 80-agents/memory/public/user-preference/rjara-meli-work-preferences.md -> when_area_loaded",
+        "trigger when_*_loaded fuera de la enumeracion literal de bootstrap (C09 WARN): 80-agents/skills/agents-os-context-retrieval/SKILL.md -> when_entity_loaded"
+      ]
+    },
+    {
+      "id": "REGISTRY-DISK-PARITY",
+      "level": "L0",
+      "state": "PASS",
+      "details": "paridad exacta en ambas direcciones (core y federadas); conteos del callout verificados contra las filas parseadas; filas app-owned por repo+path relativo",
+      "evidence": [
+        "INDEX core=28 federadas=19 app-owned=3 (callout declara 28/19/3)",
+        "disco core=28 federadas=19",
+        "conteos declarados por el callout de INDEX: {\"app-owned\": 3, \"core\": 28, \"federated\": 19}",
+        "repo owner alcanzable en disco: verificacion fisica de 3 filas app-owned"
+      ]
+    },
+    {
+      "id": "DUAL-REGISTRY-DOMAIN-SYNC",
+      "level": "L0",
+      "state": "WARN",
+      "details": "sincronia de dominio OK; divergencia dual pr-description registrada como WARN documentado",
+      "evidence": [
+        "skills comparadas skill a skill: 19/19",
+        "pr-description: INDEX declara clausula dual ('Vía meli-agent-dev u obra propia del vault') y 00-index la clasifica transversal; ninguna autoridad define la semantica exacta de la columna (WARN de escenario)"
+      ]
+    },
+    {
+      "id": "NO-SECRETS-IN-MARKDOWN",
+      "level": "L0",
+      "state": "WARN",
+      "details": "0 valores credenciales; 1 patron(es) ambiguo(s) keyword+UUID registrados como riesgo verificable (identidad vs token)",
+      "evidence": [
+        "scope (a) internal/**: 1 linea(s) con patron de valor",
+        "scope (b) frontmatter+code de todo md vivo: 0 linea(s)",
+        "valores jamas impresos; clases: soft:uuid",
+        "soft (posible identificador, no credencial demostrada): 80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-c3-0290-mt5-build-blocked.md:38 soft:uuid"
+      ]
+    },
+    {
+      "id": "ACTIVE-MEMORY-DOMAIN-PURITY",
+      "level": "L0",
+      "state": "WARN",
+      "details": "unicidad de continuity_key OK; drift de areas [[Echo Forge]]/[[Personal]] documentado (Hallazgo 11) registrado como WARN",
+      "evidence": [
+        "activas internas por dominio: {\"meli\": 0, \"aranea\": 4, \"global\": 1, \"otro\": 3} (conteo = estado observado, no invariante)",
+        "continuity_keys activos: 8; notas public scoped comparadas: 118",
+        "fixture C14: 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity-archive.md",
+        "activa con area no canonica del gate (Hallazgo 11): 80-agents/memory/internal/agent-memory/2026-09-05-echo-forge-full-golden-flow-continuity.md -> [[Echo Forge]] no es valor del gate (solo Meli/Echo/Aranea)",
+        "activa con area no canonica del gate (Hallazgo 11): 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-finalist-model-v2.md -> [[Echo Forge]] no es valor del gate (solo Meli/Echo/Aranea)",
+        "activa con area no canonica del gate (Hallazgo 11): 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-mt5-slot-pool-long-running-v2.md -> [[Echo Forge]] no es valor del gate (solo Meli/Echo/Aranea)",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/echo-forge/2026-08-27-durable-artifact-plane-write-once-integration-slice2.md -> [[echo forge]] en carpeta de dominio echo-forge",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-07-27-trade-list-exporter-type-internal-project-mapping.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-26-sqx-output-namespace-ownership-pre-sqx-guard.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-27-builder-historical-templates-certified-closed.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-27-durable-artifact-verified-reads-rca.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-27-sqx-cross-flowrun-reuse-certified-closed-frozen.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-28-durable-artifact-verified-reads-apply-correction.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-28-durable-artifact-verified-reads-slice1b.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-28-durable-artifact-verified-reads-slice2.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-28-durable-verified-reads-apply-reconciliation-rca.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-29-exporter-double-execution-root-cause.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-30-durable-artifact-verified-reads-final-e2e-rerun.md -> [[echo forge]] en carpeta de dominio symphony",
+        "public scoped con area no canonica (Hallazgo 11): 80-agents/memory/public/decision/symphony/2026-08-30-durable-optimizer-output-cardinality-correction.md -> [[echo forge]] en carpeta de dominio symphony"
+      ]
+    },
+    {
+      "id": "COLD-DEFAULT",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "COLD-MELI",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "COLD-ARANEA",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "COLD-CONFLICTING-EVIDENCE-FAILS-CLOSED",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "WARM-DEFAULT",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "WARM-MELI",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "WARM-ARANEA",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "BOOTSTRAP-NOT-RERUN-ON-WARM",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "SWITCH-MELI-TO-ARANEA",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "SWITCH-ARANEA-TO-MELI",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "SWITCH-DEFAULT-TO-MELI",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "SWITCH-DEFAULT-TO-ARANEA",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "MELI-NEGATIVE-ARANEA-TOOL",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "ARANEA-NEGATIVE-MELI-TOOL",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "DEPRECATED-DOC-NOT-DEFAULT-LOAD",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    },
+    {
+      "id": "UNRELATED-DOMAIN-NOT-LOADED",
+      "level": "L1",
+      "state": "SKIP",
+      "details": "gate L0: FAIL en SCHEMA-VALIDATOR-GREEN; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)",
+      "evidence": []
+    }
+  ],
+  "counts": {
+    "PASS": 4,
+    "FAIL": 1,
+    "WARN": 4,
+    "SKIP": 16
+  },
+  "context_baseline": {
+    "label": "context_baseline",
+    "note": "baseline-only: tokens aproximados = chars/4 (metrica declarada sin autoridad de tokenizador, C04); sin optimizacion ni gates (spec section 9)",
+    "always_load": {
+      "80-agents/agents-os/agent-constitution.md": {
+        "bytes": 6234,
+        "chars": 6161,
+        "approx_tokens_chars_over_4": 1540
+      },
+      "80-agents/memory/public/user-preference/rjara-agent-profile.md": {
+        "bytes": 5610,
+        "chars": 5536,
+        "approx_tokens_chars_over_4": 1384
+      },
+      "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md": {
+        "bytes": 2052,
+        "chars": 2034,
+        "approx_tokens_chars_over_4": 508
+      },
+      "80-agents/skills/INDEX.md": {
+        "bytes": 13935,
+        "chars": 13786,
+        "approx_tokens_chars_over_4": 3446
+      }
+    },
+    "scope_packs": {
+      "meli": {
+        "files": {
+          "30-resources/agents/skills/meli-agent-dev/SKILL.md": {
+            "bytes": 3973,
+            "chars": 3938,
+            "approx_tokens_chars_over_4": 984
+          },
+          "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md": {
+            "bytes": 2447,
+            "chars": 2423,
+            "approx_tokens_chars_over_4": 605
+          },
+          "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md": {
+            "bytes": 1728,
+            "chars": 1715,
+            "approx_tokens_chars_over_4": 428
+          }
+        },
+        "total_approx_tokens": 2017
+      },
+      "aranea": {
+        "files": {
+          "30-resources/agents/skills/aranea-agent-dev/SKILL.md": {
+            "bytes": 3845,
+            "chars": 3816,
+            "approx_tokens_chars_over_4": 954
+          },
+          "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md": {
+            "bytes": 976,
+            "chars": 972,
+            "approx_tokens_chars_over_4": 243
+          }
+        },
+        "total_approx_tokens": 1197
+      }
+    },
+    "always_load_total_approx_tokens": 6878
+  }
+}

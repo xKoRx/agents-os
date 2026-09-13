@@ -1564,10 +1564,13 @@ def run(args: argparse.Namespace) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]
     if args.layer:
         requested = [s for s in SCENARIOS if s[1] == args.layer]
     if args.scenario:
-        requested = [s for s in SCENARIOS if s[0] == args.scenario]
-        if not requested:
-            print("ERROR: escenario desconocido: %s" % args.scenario, file=sys.stderr)
-            sys.exit(2)
+        if args.scenario == ANCHOR_CHECK_ID:
+            requested = []  # run dirigido: solo el guard de fidelidad (pre-flight)
+        else:
+            requested = [s for s in SCENARIOS if s[0] == args.scenario]
+            if not requested:
+                print("ERROR: escenario desconocido: %s" % args.scenario, file=sys.stderr)
+                sys.exit(2)
     need_gate = any(s[1] != "L0" for s in requested) and args.scenario is None
     # Nota: un run --scenario <ID> es un run dirigido por el operador (spec
     # section 8) y no aplica el corte por FAIL-L0; los runs full y --layer
