@@ -81,7 +81,7 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] T1 — Auditorías A/B/C en paralelo: contract-audit, domain-isolation-audit, conformance-scenarios #owner/agent #type/research #area/personal
+> - [/] T1 — Auditorías A/B/C en paralelo: contract-audit, domain-isolation-audit, conformance-scenarios #owner/agent #type/research #area/personal
 > - [ ] T2 — Reconciliación parent → conformance-spec-v1 (test model V1) #owner/agent #type/research #area/personal
 > - [ ] T3 — Harness Implementer subagent → entrypoint doctor L0/L1/L2 #owner/agent #type/dev #area/personal
 > - [ ] T4 — Ejecutar suite completa; fix loop sólo bugs del harness (máx 2 ciclos) #owner/agent #type/dev #area/personal
