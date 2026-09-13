@@ -17,6 +17,7 @@ related:
   - "[[aranea-mongodb-mcp]]"
   - "[[aranea-hasura-mcp]]"
   - "[[aranea-kafka-mcp]]"
+  - "[[aranea-flink-mcp]]"
 aliases:
   - runbook capability plane MCP Aranea
   - aranea mcp plane
@@ -53,14 +54,16 @@ aranea-mongo-forge-rw
 aranea-hasura-prod-ro
 aranea-hasura-dev-admin
 aranea-kafka-dev-admin
+aranea-flink-dev-admin
 ```
 
 Endpoints certificados adicionales:
 
 ```text
-Hasura PROD RO   http://mcps.lab.aranea.cl:3005/mcp
-Hasura DEV admin http://mcps.lab.aranea.cl:3006/mcp
-Kafka DEV admin  http://mcps.lab.aranea.cl:3007/mcp
+Hasura PROD RO    http://mcps.lab.aranea.cl:3005/mcp
+Hasura DEV admin  http://mcps.lab.aranea.cl:3006/mcp
+Kafka DEV admin   http://mcps.lab.aranea.cl:3007/mcp
+Flink DEV admin   http://mcps.lab.aranea.cl:3008/mcp
 ```
 
 La mera presencia de un bloque en config no demuestra que la capability esté conectada: el proceso cliente también debe heredar las env vars requeridas y completar handshake MCP.
@@ -81,7 +84,8 @@ Para cualquier capability nueva o reinstalada, el deployment normal es el defini
 10. **Drift check mínimo.** No repetir auditoría completa. Comparar primero containers/red/binds; inspeccionar mounts/commands sólo si el drift material lo exige.
 11. **Hasura authority check.** Para Hasura, `tools/list` server-side forma parte de la certificación de autoridad. No aceptar `--read-only`, nombre del container o README como prueba suficiente de PROD RO.
 12. **Kafka authority check.** Para Kafka DEV, `tools/list` debe exponer la superficie administrativa certificada y `alter_configs` debe conservar semántica incremental. Si una config no objetivo cambia, detener mutaciones y tratar la capability como fuera de contrato.
-13. **Distinguir tool backend vs helper cliente.** Una entrada como `mcp_auth` reportada por Cursor no amplía el authority boundary si no aparece en `tools/list` server-side del MCP correspondiente.
+13. **Flink authority check.** Para Flink DEV, `tools/list` debe exponer exactamente 22 tools y ninguna tool SQL. Lifecycle/filesystem/Docker no pertenecen a la superficie Flink MCP: deben ir por `aranea-ssh` + `docker-echo-dev-operator` según [[aranea-flink-mcp]].
+14. **Distinguir tool backend vs helper cliente.** Una entrada como `mcp_auth` reportada por Cursor no amplía el authority boundary si no aparece en `tools/list` server-side del MCP correspondiente.
 
 ## Casos conocidos
 
@@ -151,7 +155,41 @@ delete temp topic -> PASS
 
 El backend upstream fue patchado para usar `incremental_alter_configs`; el `alter_configs` legacy podía revertir a defaults propiedades no incluidas. Ver [[aranea-kafka-mcp]] para la autoridad técnica y referencias oficiales.
 
-Daedalus carga `ARANEA_KAFKA_MCP_DEV_ADMIN_BEARER` mediante el mismo chain KDE usado por el resto de capabilities (`~/.config/plasma-workspace/env/aranea-mcp.sh` → `~/.config/mcp/aranea-env.sh`). Un proceso Cursor ya iniciado no absorbe automáticamente una variable agregada a mitad de sesión.
+Daedalus carga `ARANEA_KAFKA_MCP_DEV_ADMIN_BEARER` mediante el mismo chain KDE usado por el resto de capabilities (`~/.config/plasma-workspace/env/aranea-mcp.sh` -> `~/.config/mcp/aranea-env.sh`). Un proceso Cursor ya iniciado no absorbe automáticamente una variable agregada a mitad de sesión.
+
+### Flink DEV admin + host operator — 2026-09-13
+
+`aranea-flink-dev-admin` quedó certificado por capas:
+
+```text
+unauthenticated :3008/mcp -> 401
+wrong bearer -> 401
+authenticated initialize -> 200 + Mcp-Session-Id
+protocol -> 2024-11-05
+tools/list -> exactamente 22 tools
+SQL tools -> none
+backend host port -> none
+get_cluster_info -> PASS
+list_jobs -> PASS
+Daedalus -> PASS
+Cursor -> cluster/job read -> PASS
+```
+
+Target observado:
+
+```text
+Flink 1.14.3 / commit 98997ea
+TaskManagers=1
+slots=2 total / 0 available
+job StatefulFunctions RUNNING
+job id=974f0479256bc8ffe71fe962750e9c90
+```
+
+El backend Java entrega `tools/call` como `text/event-stream`; un parser que espere JSON plano puede fallar aunque la operación haya sido exitosa. Para probes manuales, parsear eventos `data:`.
+
+El host/runtime plane quedó separado y certificado mediante `aranea-ssh` profile `docker-echo-dev-operator`, con identidad `root@192.168.31.75`. La separación es contractual: Flink MCP administra REST/control plane; SSH operator administra filesystem/Docker/lifecycle.
+
+El stack declarativo real vive en Portainer stack `1`. El path interno `/data/compose/1/docker-compose.yml` corresponde en el host a `/var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml`. Ver [[aranea-flink-mcp]] antes de cualquier redeploy.
 
 ## Validación
 
@@ -175,6 +213,8 @@ No publicar backends, no abrir nuevos puertos y no pedir secretos como workaroun
 Para Hasura PROD, si un upgrade vuelve a exponer `run_sql`, `reload_metadata` o cualquier mutador, considerar la capability fuera de contrato y restaurar el artefacto strict-RO certificado antes de continuar.
 
 Para Kafka DEV, si un rebuild cambia versiones pinneadas, pierde el patch incremental o `tools/list` deja de coincidir con la superficie certificada, restaurar `local/kafka-mcp:2.0.0-0b3bf47-inc1-fm3.0.1` y no ejecutar mutaciones hasta recertificar.
+
+Para Flink DEV, si un rebuild pierde el pin/patch compatible con Flink 1.14.3, `tools/list` deja de ser exactamente 22, aparecen SQL tools inesperadas o el backend se publica al host, considerar la capability fuera de contrato y restaurar `local/flink-mcp:0.3.1-981bbef-aranea2-flink1.14` antes de continuar. Si la operación requerida es host/runtime, no ampliar el MCP Flink: usar el profile SSH dedicado.
 
 ## Evidencia
 
