@@ -24,7 +24,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-12"
-updated: "2026-09-12"
+updated: "2026-09-13"
 cssclasses:
   - wide
 ---
@@ -46,7 +46,8 @@ Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scop
 
 ## 📊 Estado actual
 
-- **IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW (2026-09-12, NORMAL T01–T21).** Implementación completa @ `69eec0b9` en `origin/feature/e05-analytics-convergence-a0` (9 commits sobre planning `dd1f2da9`; master intacto `a99f9a63`). PG REAL 17.11 descartable PASS (up/down/up, write-once, REVOKE, constraints); analytics 95.6% coverage; BWC Lab PASS; Hasura `HASURA_DEV_APPLY=NOT_RUN` (063 NOT_APPLIED en Aranea; sustituto yaml+PG local según gate matrix). No verifier, no merge, no CLOSED. Interlock: 063 sin merge/deploy hasta 062 de E-02 en `master`. Detalle completo en `specs/FEAT-ANALYTICS-CONVERGENCE-A0/VERIFICATION.md`.
+- **MANAGER SOURCE REVIEW PASS FUNCIONAL (2026-09-13).** No se detectó defecto material en analytics, migration 063, writer transaccional, stores, adapters/BWC ni Hasura gate; `HASURA_DEV_APPLY=NOT_RUN` sigue cubierto por la variante yaml+PG local de T19.
+- **IMPLEMENTATION READY FOR INDEPENDENT VERIFIER (2026-09-13, corrección pre-verifier).** Implementación completa @ `69eec0b9` en `origin/feature/e05-analytics-convergence-a0`; gates E-04 SOURCE corregidos por scoping histórico E-03 `fac48051` → E-04 `a99f9a63`, sin ampliar allowlist ni tocar semántica productiva. SOURCE E-05 y regresión Go relevantes PASS; `identity_bwc/run.sh` no ejecutable por ausencia de `psql` en PATH; no verifier lanzado, no merge, no CLOSED. Interlock: 063 sin merge/deploy hasta 062 de E-02 en `master`. Detalle en `specs/FEAT-ANALYTICS-CONVERGENCE-A0/VERIFICATION.md`.
 - **TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12, docs-only, v1.0.1).** SPEC/PLAN/TASKS/VERIFICATION @ `dd1f2da9a630bb3b6f49e585b7b433f05c841ef9` en `origin/feature/e05-analytics-convergence-a0` (base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Cero líneas en `v3/**`. Master intacto. NORMAL no lanzado.
 - **Reserva de migración:** E-02 owner de `062_journal_quarantine`. E-05 owner exclusivo de `063_analytics_convergence_a0`. 062 prohibida para E-05. 064+ fuera de scope. E-02 **no** bloquea development/implementation/verification. Merge/deploy de 063 espera 062 integrado en `master`.
 - **Baseline verificado:** `origin/master` no avanzó respecto a `a99f9a63`. S0 READ ONLY @ `91671f6f`. E-03 CONTRACT_PASS en master; tablas 061 **NOT_APPLIED** en Aranea PG. E-04 INTEGRATED; T21 no bloquea E-05.
@@ -170,7 +171,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-12** — NORMAL T01–T21 IMPLEMENTATION PASS @ `69eec0b9` (push FF, sin race): migración 063 write-once + harness SQL (up/down/up en PG 17.11 descartable), stores canónicos replay/conflicto, package `v3/sdk/analytics` (registry digests golden, calculator fail-closed big.Rat), writer transaccional, `lab-canonical-a0` dual-run, Hasura yaml SELECT-only, VERIFICATION llena (AC-01…AC-23), coverage 95.6%. Nota frozen: R_PIPS INSUFFICIENT (wire S0 v1 sin profit_pips). 2 gates SOURCE E-04 fallan → `TEST_CHANGE_REQUEST.md` (AllowedFilesOnly preexistente; NoMigrationDelta por 063 autorizada). `HASURA_DEV_APPLY=NOT_RUN`. Puente E-05 permanece Review; no verifier; interlock 062 vigente.
+- **2026-09-13** — Manager source review PASS funcional; se encontró stale E-04 SOURCE gate medido contra HEAD actual. Corrección focalizada: `e03DevelopmentBaseline` `fac48051` → `e04IntegratedBaseline` `a99f9a63` en `ingestion_noneffects_test.go`; `NoContractsDelta`, `NoMigrationDelta` y `AllowedFilesOnly` auditan E-03→E-04. Los dos gates originalmente fallidos PASS, anti-masking PASS y allowlist histórico sin paths E-05. Regresión Go E-04 PASS; SQL BWC no ejecutable por falta de `psql`; Hasura sin apply 063. Estado: IMPLEMENTATION READY FOR INDEPENDENT VERIFIER; E-04 no se reabre como desarrollo activo.
 - **2026-09-12** — TOP CORRECTION v1.0.1 reserva de migración @ `dd1f2da9`: E-02 owner de `062_journal_quarantine`; E-05 cambia a `063_analytics_convergence_a0` exclusiva; 064+ fuera de scope. E-02 no bloquea development/implementation/verification. Merge/deploy de 063 serializa tras 062 en `master`. Semántica analítica 1.0.0 intacta. Docs-only; master intacto `a99f9a63`. Puente E-05 permanece Review.
 - **2026-09-12** — TOP planning one-shot: subproyecto materializado; SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `be87f11e` pusheados a `origin/feature/e05-analytics-convergence-a0` desde `a99f9a63` (docs-only; master intacto). Source Lab + S0 + Hasura/PG Aranea READ reconciliados. A0 = paths nuevos + adapters; no big bang; no SQ/EF. Puente E-05 → Review. No NORMAL.
 
