@@ -117,6 +117,14 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 - Precondición inicial: `aranea-ssh` visible en MCP y listo para revalidación; no se ha creado WorkflowID/RunID/FlowRunRef.
 - Registro temprano: baseline remoto y release se verificarán antes de cualquier acción writable; dirty extranjero del checkout local queda preservado.
 
+## Resultado sesión física — 2026-09-13 02:05 America/Santiago
+
+- `BASELINE_GATE: PASS` — `git ls-remote origin refs/heads/feature/f04-magic-version-handoff == b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`; el checkout de certificación está detached en ese SHA. Dirty operacional `deploy/manifest.json` del worktree de certificación y dirty extranjero del checkout principal se preservan sin stage/commit.
+- `RELEASE_INTEGRITY: PASS` — manifest operativo declara `0.2.98`; los seis artefactos locales coinciden en SHA256/tamaño; `deployer_screen.log` registra 6 uploads, manifest recuperado/publicado y `release_version=0.2.98`. No se volvió a publicar.
+- `ROLLOUT_PROOF: FAIL` — Zeus/Hera/Kronos: `/opt/symphony/releases/0.2.98` no existe, `/opt/symphony/PENDING=0.2.40`, `/opt/symphony/current -> /opt/symphony/releases/0.2.40`; el log Stager no contiene `0.2.98`. Además, `/opt/symphony/CURRENT` contiene `9.9.11`, inconsistente con symlink/PENDING. `mt5-kronos` viewer rechazó lecturas PowerShell con `POLICY_DENIED`; no se elevó por comodidad.
+- `PHYSICAL BLOCKED — ENVIRONMENT`: último stage probado = release publicada por Stager; primer stage fallido = materialización/activación runtime `0.2.98`. No se creó WorkflowID/RunID/FlowRunRef, no se evaluó licencia y no se ejecutó candidato. T2.12/T2.11/T2.13 permanecen OPEN.
+- Próximo paso exacto: Manager/owner debe recuperar el Stager/deployer canónico para materializar `0.2.98` en Zeus, Hera, Kronos y MT5; luego repetir rollout proof desde esta release sin republish. Esta sesión no autoriza symlink manual, copia host-by-host ni una release nueva.
+
 | ID | status | resolution | source | phase |
 |---|---|---|---|---|
 | D1 sequence | TECHNICAL_RESOLUTION | Allocation **before Apply** for Apply cohort; Finalist V2 admits seal/handoff only | Live Authority §3; padre F-04 hypothesis | 1 |
