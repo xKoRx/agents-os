@@ -1,0 +1,43 @@
+# Obsidian app state and trash.
+.obsidian/
+.trash/
+trash/
+
+# Journal is audit/continuity material, not normal retrieval corpus.
+80-agents/journal/
+80-agents/journal/**
+
+# Raw sessions are always excluded.
+80-agents/journal/sessions/raw/
+80-agents/journal/sessions/raw/**
+
+# Scratch/inbox/attachments and heavy operational evidence.
+00-inbox/
+00-inbox/**
+40-archive/
+40-archive/**
+**/*scratch*.md
+**/*.log
+**/*.tmp
+**/*.zip
+**/*.tar
+**/*.gz
+
+# Derived Graphify state never re-enters the corpus.
+95-graphify/
+95-graphify/**
+graphify-out/
+graphify-out/**
+**/GRAPH_REPORT.md
+**/graph.json
+**/graph.html
+
+# Immutable source captures are provenance, not retrieval corpus.
+**/_sources/
+**/_sources/**
+
+# AGENTS OS packaging output.
+30-resources/agents-os/
+
+# JSON schemas polluted the graph with generic god-nodes (auditoría 2026-07-02).
+**/*.json
