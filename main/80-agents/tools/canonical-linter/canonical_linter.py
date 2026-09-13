@@ -326,7 +326,7 @@ class LintCtx(object):
             dirnames[:] = sorted(
                 d for d in dirnames
                 if d not in ex_dirs and not d.startswith(".")
-                and not any((rel_dir + "/" + d).startswith(FIXTURE_REL_PREFIXES)))
+                and not any((rel_dir + "/" + d).startswith(p) for p in FIXTURE_REL_PREFIXES))
             full_rel_dir = (rel_dir + "/") if rel_dir else ""
             if any(full_rel_dir.startswith(p) for p in FIXTURE_REL_PREFIXES):
                 continue
