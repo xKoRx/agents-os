@@ -89,6 +89,17 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 
 ## Decision register
 
+## Corrección de autoridad runtime — 2026-09-13 02:17
+
+- **Corrección histórica obligatoria:** el intento anterior observó los marcadores legacy `/opt/symphony/CURRENT` y `/opt/symphony/current`; esos marcadores son **LEGACY / NON-AUTHORITATIVE**. Por tanto, la conclusión anterior `0.2.98 absent` **no fue probada** y se conserva sólo como historia, no como estado vigente.
+- `BASELINE_GATE: PASS` — `origin/feature/f04-magic-version-handoff == b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`; worktree de certificación detached en ese SHA; cambios dirty ajenos preservados.
+- `RELEASE_INTEGRITY: PASS` — la release ya publicada `0.2.98` conserva `vcs.revision=b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`; los seis artefactos locales coinciden en tamaño/SHA256 con `deploy/manifest.json`. No se hizo build ni republish.
+- **Autoridad Linux real observada vía `stager-runtime.service`:** Zeus `MainPID=2633846`, worker `2633855`, `/opt/stager/releases/0.2.98/bin/symphony`, activation `fedae05f396c3c3331fe6874f94c827a`, `phase=committed`, `CURRENT/PENDING=0.2.98`, poller `sqx-main-queue`; Hera `MainPID=1231833`, worker `1231842`, mismo executable/release, activation `06c12ff55d4685f2dbbfc339367499be`, `phase=committed`, `CURRENT/PENDING=0.2.98`, poller `sqx-main-queue`; Kronos `MainPID=1203611`, worker `1203622`, mismo executable/release, activation `09de2d65259a9ebd5e613a16cebfd727`, `phase=committed`, `CURRENT/PENDING=0.2.98`, poller `sqx-main-queue`. Los tres servicios están `active (running)` y sus logs registran worker registrado/Started Worker.
+- **Legacy separado:** en los tres hosts `/opt/symphony/CURRENT=9.9.11`, `/opt/symphony/current→/opt/symphony/releases/0.2.40`; `/var/lib/symphony/PENDING` no existe donde fue consultado. Se registra explícitamente como **LEGACY / NON-AUTHORITATIVE** y no se modificó.
+- **Windows no probado:** el perfil viewer `mt5-kronos` rechazó las lecturas necesarias de `StagerRuntime`, proceso `sqx-mt5-worker`, path, start y poller con `POLICY_DENIED`; no se elevó a operator sólo para inspección. No existe evidencia admisible para afirmar `C:\ProgramData\Stager\releases\0.2.98` activo.
+- `ROLLOUT_PROOF: INCONCLUSIVE`; último stage probado: release publicada y materialización/activación Linux por Stager; primer stage no probado: autoridad runtime Windows. `PHYSICAL BLOCKED — ENVIRONMENT — RUNTIME_AUTHORITY_GAP`; no es evidencia de release mixta ni defecto de producto.
+- No se generó WorkflowID/RunID/FlowRunRef; LICENSE, T2.12 físico y T2.11 golden siguen `OPEN`; T2.13 sigue `OPEN` y fuera de scope. Próxima acción exacta: habilitar una lectura viewer admisible para `mt5-kronos` y repetir rollout proof sin publicar otra release.
+
 ## Certificación física — 2026-09-13
 
 - `BASELINE_GATE: PASS` — `origin/feature/f04-magic-version-handoff == b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`; dirty extranjero preservado; worktree aislado `symphony-f04-cert-20260913` detached en el SHA certificado.
