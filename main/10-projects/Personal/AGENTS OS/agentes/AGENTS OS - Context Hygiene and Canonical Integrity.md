@@ -122,11 +122,13 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-13** — 
+- **2026-09-13** — Proyecto creado como único planificador de PHASE 2 (Context Budget + Domain Leak Auditor) y PHASE 3 (Canonical / Deprecation Linter). Conformance Harness tratado como INPUT (no se rehace, F1 no se corrige). Restricción operacional: MAX_ACTIVE_SUBAGENTS=1, ejecución estrictamente secuencial. Baseline Agents-OS `a6a503f` (ancestro del HEAD vivo durante la ejecución).
 
 ## 🧭 Decisiones
 
-- 
+- Un solo proyecto para PHASE 2 + PHASE 3; artifacts viven junto a cada tool (`80-agents/tools/context-budget/artifacts/`, `80-agents/tools/canonical-linter/artifacts/`) y esta nota solo mantiene estado compacto con links (link > copy).
+- El Conformance Harness define el contrato observable vigente (cold/warm/switch/isolation/expected-not-expected): las nuevas herramientas reutilizan sus contratos, no crean un segundo modelo.
+- Los findings sobre Agents-OS se registran, nunca se auto-corrijen; los fixes de subagents alcanzan sólo a las herramientas nuevas.
 
 ## 🔗 Docs / Links
 
