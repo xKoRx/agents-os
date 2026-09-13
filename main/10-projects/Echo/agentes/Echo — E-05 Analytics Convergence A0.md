@@ -1,25 +1,32 @@
 ---
 type: project
 schema_version: 1
-owner: me
+owner: agent
 root: false
 status: active
-priority: P2
-area: "[[Meli]]"
-parent:
+priority: P1
+area: "[[Echo]]"
+parent: "[[Echo — Live Platform V1]]"
 sprint:
-start:
+start: 2026-09-12
 due:
-progress: 0
-repo:
+progress: 15
+repo: xKoRx/echo
 jira:
 prs:
-aliases: []
+aliases:
+  - Echo E-05
+  - Analytics convergence A0
+  - E-05 A0
+  - FEAT-ANALYTICS-CONVERGENCE-A0
 tags:
   - kind/project
-  - area/meli
+  - area/echo
+  - agent/owner
 created: "2026-09-12"
 updated: "2026-09-12"
+cssclasses:
+  - wide
 ---
 
 # Echo — E-05 Analytics Convergence A0
@@ -27,62 +34,122 @@ updated: "2026-09-12"
 %% Naming: Echo — E-05 Analytics Convergence A0 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo — E-05 Analytics Convergence A0
-> **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
-> _parent / sprint / repo / jira / prs son opcionales._
+> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Live Platform V1]] · **Repo:** `xKoRx/echo`
+> Subproyecto de **implementación** de la fase E-05 / Analytics convergence A0. No es Integration. El contrato WHAT vive en el SPEC de Echo; esta nota es HOW / ORDER / GATES.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
-> `owner: me` → **proyecto humano**: la iniciativa/esfuerzo que conduces tú.
-> `owner: agent` → **proyecto de agente**: un curro delegado, con detalle pesado que escribe y sigue un agente. Casi siempre es subproyecto de uno humano y vive en la subcarpeta `agentes/` de su iniciativa.
-> `root: true` solo en **iniciativas raíz** (sin `parent`). Todo subproyecto debe setear `parent`; si no, aparece como huérfano en [[Panel de Proyectos]].
->
-> **Tarea puente:** cuando este proyecto es `owner: agent`, en su proyecto **padre** debe existir UNA sola tarea humana que lo representa (arrancar + seguimiento). Así tu cockpit ve una línea por curro delegado, no las tareas internas del agente. Ejemplo, en el padre:
-> `- [ ] [[Echo — E-05 Analytics Convergence A0]] arrancar + seguimiento #owner/me #type/supervision #area/meli`
+> Este proyecto es `owner: agent`. El padre [[Echo — Live Platform V1]] enlaza aquí. La supervisión humana del track live sigue en [[Echo — Producto Integrado]].
 
 ## 🎯 Objetivo
 
-- 
+Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scope/TradeSet/MetricSet, adapters Lab, calculator Go con `key+basis+unit+formula`, persistencia PG write-once 062 y Hasura SELECT, sin big-bang Lab, sin Strategy Quality y sin Execution Fidelity.
 
 ## 📊 Estado actual
 
-- 
+- **TOP PLANNING READY FOR MANAGER REVIEW (2026-09-12, docs-only).** SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `be87f11e906c9bc7565bed30fff0990b45c78f87` en `origin/feature/e05-analytics-convergence-a0` (base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Cero líneas en `v3/**`. Master intacto. NORMAL no lanzado.
+- **Baseline verificado:** `origin/master` no avanzó respecto a `a99f9a63`. S0 READ ONLY @ `91671f6f`. E-03 CONTRACT_PASS en master; tablas 061 **NOT_APPLIED** en Aranea PG. E-04 INTEGRATED; T21 no bloquea E-05. E-02 PARKED; no bloquea E-05.
+- **Autoridad física Lab:** PG 17.6 PROD `echo` + DEV `echo-develop`. Snapshots 10932, win_rate RATIO 0..1, version NULL, outcomes REFERENCE-only, `v_trade_execution_delta` INNER JOIN, R AUTO en source. Hasura DEV/PROD v2.38.0 consistent.
+- **Contrato WHAT:** `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.0. TASKS T01–T21. AC-01…AC-23.
+- **AUTHORITY_CONFLICT:** ninguno. S0 ya tiene tipos/catálogo/recetas; Lab es proyección mutable; A0 persiste sets nuevos sin duplicar S0.
 
 ## 🧱 Entrega de desarrollo
 
-%% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
-
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
+| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.0 @ `be87f11e` | TOP READY FOR MANAGER REVIEW · no NORMAL · no merge |
+
+## 🗺️ Source map (baseline `a99f9a63` + PG/Hasura)
+
+- S0: `v3/sdk/contracts/{analytics,catalog,scope,trading,conflict}.go` — READ ONLY.
+- Lab: `v3/sdk/lab/{domain,formulas,metrics}` + `lab-worker` recompute/materialize — BWC, no autoridad A0.
+- PG: `lab_canonical_trades` / `lab_strategy_outcomes` / `lab_strategy_metric_snapshots` / `trade_journal` / `v_lab_strategy_screener` / `v_trade_execution_delta`.
+- Identity 061: source sí, Aranea no. A0 sin FK SQL.
+- Front GraphQL Lab: display only; win_rate RATIO mostrado a veces con `%`.
+- Kafka/Flink/GitHub MCP: NOT_OBSERVED.
+
+## 🎯 Target physical state
+
+```text
+v3/sdk/analytics/{adapter,calculator,formulas}
+v3/sdk/postgres/canonical_{scope,tradeset,metricset}_store.go
+v3/sdk/postgres/canonical_writer.go
+v3/sdk/postgres/migrations/062_analytics_convergence_a0.{up,down}.sql
+echo.canonical_scopes + canonical_trade_sets + canonical_metric_sets
+echo.v_canonical_{trade,metric}_sets
+v3/lab-worker/cmd/lab-canonical-a0
+v3/hasura/metadata/tables/canonical_analytics.yaml   # SELECT only
+```
+
+Ningún cambio a `v3/sdk/contracts/**`. Ningún rewrite Lab. Ningún score/ranking.
+
+## 🕸️ Dependency graph
+
+Ver TASKS.md. Paralelo: T01 ∥ T05 ∥ T06. Writer T13 tras stores+calculator. T21 cert.
+
+No ejecutar E-02/E-04/E-06/E-09/E-10 aquí.
+
+## Allowed scope NORMAL
+
+Exacto PLAN.md. Development en `feature/e05-analytics-convergence-a0` desde `a99f9a63`. Worktree `/tmp/echo-e05-analytics-a0` (no el checkout E-02). Prohibido `origin/master` push/merge. Prohibido `v3/sdk/contracts/**`. Prohibido 061. Prohibido Aranea PROD como DB de test.
+
+## 📦 Work packages
+
+- **WP-A Persistencia** T01–T04, T16. Migración 062 + stores write-once.
+- **WP-B Adapters** T05, T11, T12. Lab operations/snapshots + journal provenance.
+- **WP-C Calculator** T06–T10, T20. Fórmulas §9; E-09 keys fail-closed.
+- **WP-D Writer/job** T13–T14. Dual-run; no ReplaceByScope.
+- **WP-E Hasura READ** T15, T19. SELECT vistas. No PROD apply.
+- **WP-F Cert** T17, T18, T21. SOURCE/BWC/coverage.
+
+## TOP / NORMAL boundaries
+
+- TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padre. No source Go/SQL productivo (cumplido).
+- NORMAL: T01–T21 mecánicamente. No elegir catálogo, AUTO, ni backfill masivo. No SQ/EF.
+- GOD: NONE.
+
+## Migrations
+
+Una: `062_analytics_convergence_a0`. Independiente de 061. Gate up/down/up en PG descartable. No apply PROD.
+
+## Dependency delta
+
+NONE de terceros. `v3/sdk/analytics` importa contracts (mismo parent module).
+
+## Compatibility strategy
+
+Paths y tablas nuevas. Lab jobs/vistas/Hasura legacy intactos. Dual-run. UI E-13.
+
+## Testing / gates
+
+SPEC AC-01…AC-23. SOURCE + CONTRACT + PG REAL + HASURA DEV + BWC. Ver VERIFICATION.md stub.
+
+## Blockers
+
+Ninguno para development. E-02 PARKED no bloquea. E-04 T21 no bloquea. 061 NOT_APPLIED en Aranea no bloquea (A0 sin FK). Kafka NOT_OBSERVED no bloquea. Apply 062 a Aranea es deuda ops, no gate CONTRACT.
+
+## Handoff requirements
+
+Manager aprueba planning → NORMAL implementa T01–T21 en worktree de esta branch desde `a99f9a63`. No usar checkout `feature/e02-control-safety-journal-recovery`. No merge master. No E-06.
+
+## Closure conditions
+
+T01–T21 `[x]`; AC-01…AC-23; independent verifier PASS; S0 intacto; Lab BWC; no SQ/EF. E-05 CLOSED es sesión posterior al verifier. Este TOP no cierra E-05 ni lanza NORMAL.
 
 ## 🧩 Subproyectos
 
-```base
-filters:
-  and:
-    - 'type == "project"'
-    - 'file.hasLink(this.file)'
-views:
-  - type: cards
-    name: Subproyectos
-    order:
-      - file.name
-      - note.status
-      - note.priority
-```
+_No aplica — hijo de implementación de E-05; no crea Integration ni más hijos._
 
 ## ✅ Tareas
 
-> [!note]+ Ownership y tarea puente
-> `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala.
-> El board es **adaptativo según `owner` del frontmatter**:
-> - **Proyecto humano** (`owner: me`): muestra tus tareas y las **tareas puente** (`#type/supervision`) que representan proyectos de agente. Las tareas de agente **no** aparecen acá; viven en su propio proyecto.
-> - **Proyecto de agente** (`owner: agent`): muestra las tareas del agente.
-
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/meli
-> - [ ] tarea delegada #owner/agent #type/dev #area/meli
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+> Checklist atómico en `xKoRx/echo` `specs/FEAT-ANALYTICS-CONVERGENCE-A0/TASKS.md`. Aquí sólo work packages. NORMAL no arranca hasta manager review.
+> - [r] WP-TOP SPEC/PLAN/TASKS/VERIFICATION v1.0.0 + branch docs-only #owner/agent #type/dev #area/echo
+> - [ ] WP-A Persistencia 062 + stores write-once #owner/agent #type/dev #area/echo
+> - [ ] WP-B Adapters Lab/journal #owner/agent #type/dev #area/echo
+> - [ ] WP-C Calculator fórmulas A0 #owner/agent #type/dev #area/echo
+> - [ ] WP-D Writer + lab-canonical-a0 #owner/agent #type/dev #area/echo
+> - [ ] WP-E Hasura SELECT #owner/agent #type/dev #area/echo
+> - [ ] WP-F SOURCE/BWC/coverage cert #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -99,46 +166,40 @@ board(primary);
 if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
-%% Rollup de iniciativa — descomentar solo en proyectos padre para ver las tareas #owner/me (incluye puentes) de todos los subproyectos, agrupadas por nota. Cambiar la ruta por la carpeta de esta iniciativa. Nunca muestra tareas de agente.
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-const ord={" ":0,"/":1,"r":2,"x":3,"X":3,"-":4};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-const pages=dv.pages('"10-projects/CARPETA-DE-LA-INICIATIVA"');
-for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x=>has(x,"owner/me")&&x.status!=="x"&&x.status!=="X").sort((a,b)=>(ord[a.status]??9)-(ord[b.status]??9));if(t.length){dv.el('h4',p.file.link);render(t);}}
-```
-%%
-
 ## 📆 Bitácora
 
-%% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-12** — 
+- **2026-09-12** — TOP planning one-shot: subproyecto materializado; SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `be87f11e` pusheados a `origin/feature/e05-analytics-convergence-a0` desde `a99f9a63` (docs-only; master intacto). Source Lab + S0 + Hasura/PG Aranea READ reconciliados. A0 = paths nuevos + adapters; no big bang; no SQ/EF. Puente E-05 → Review. No NORMAL.
 
-## 🧭 Decisiones
+## 🧭 Decisiones (ejecución, no semántica nueva)
 
-- 
+- Hijo de implementación de E-05; ownership sigue en [[Echo — Live Platform V1]], no Integration.
+- Persistencia mínima: 3 tablas + 2 vistas; Metric no es entidad global.
+- Sin FK a 061; refs S0 en JSON.
+- Calculator Go; no SQL como autoridad de fórmula; no frontend.
+- R AUTO / edge_score / INNER JOIN / version NULL → adapter-only.
+- `execution.missing_ratio` COMPUTED es E-09.
 
 ## 🔗 Docs / Links
 
-- 
+- [[Echo — Live Platform V1]]
+- [[Echo — Producto Integrado]]
+- [[Echo — E-01 Canonical SDK Foundation S0]]
+- [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
+- [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]
+- [[echo-core]]
 
 ## 💡 Ideas
 
-%% Captura ideas sueltas del proyecto al final. Si maduran, promover a tarea o a nota de idea (70-templates/idea.md). %%
-
 ### Backlog de ideas
 
-- 
+- Apply 062 a Aranea DEV es deuda ops post-verifier, no gate de merge.
 
 ### Motivos / principios
 
-- 
+- Mismo nombre ≠ misma métrica. Lab se proyecta; no se canoniza por intuición.
 
 ### Memoria pública / interna
 
-%% Opcional para proyectos de agentes o conocimiento: definir qué memoria gobierna el sistema y cuál gobierna el agente, y por qué existe cada una. %%
-- **Memoria pública:** 
-- **Memoria interna:** 
-- **Motivo:** 
+- **Memoria pública:** contratos enlazados + SPEC del repo.
+- **Memoria interna:** continuidad en esta nota.
+- **Motivo:** Discovery conserva historia; este hijo es HOW/ORDER/GATES.

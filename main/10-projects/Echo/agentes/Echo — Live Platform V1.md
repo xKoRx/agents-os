@@ -44,7 +44,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 ## 📊 Estado actual
 
-- **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2).** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION.
+- **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2) + E-05 TOP PLANNING READY.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION. E-05 planning v1.0.0 @ `be87f11e` en `feature/e05-analytics-convergence-a0`; no NORMAL; master intacto `a99f9a63`.
 - **E-02 IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW — FOCUSED CORRECTION (2026-09-12):** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] con SPEC/PLAN/TASKS/VERIFICATION v1.0.2 @ `f7ddea18` en `origin/feature/e02-control-safety-journal-recovery` (base `origin/master` `a99f9a63`). Auth hook Hasura = JSON de session variables; READ/CONFIG/CONTROL/webhook requieren tokens distintos y duplicados fallan cerrado 503; literales históricos registrados fueron eliminados en los 17 paths autorizados. Gateway/front/SOURCE/E-04 relevant regression PASS; PHYSICAL_PARTIAL. No verifier, no merge master.
 - **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC (F-04 Magic Number V1 ya owner-gated).
 - **Base observada:** `origin/master` `fac4805185eb586bb73c3df0c0ccc20d1377099c` (E-03 CONTRACT_PASS / FINAL CLOSED; FF desde `c408a12fe36643129a2ae3c3dfa69727b593ba76`, 2026-09-12). E-01 certified S0 permanece `91671f6f`.
@@ -74,7 +74,7 @@ views:
       - note.priority
 ```
 
-Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]]. S0 permanece ownership de este track.
+Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]], [[Echo — E-05 Analytics Convergence A0]]. S0 permanece ownership de este track.
 
 ## ✅ Tareas
 
@@ -83,7 +83,7 @@ Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 C
 > - [r] [[Echo — E-02 Control Safety, Auth and Journal Recovery]] E-02 Control safety auth and journal recovery #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-03 Identity and BWC Foundation E0]] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-04 Forge Ingestion E1]] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
-> - [ ] E-05 Analytics convergence A0 #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-05 Analytics Convergence A0]] E-05 Analytics convergence A0 #owner/agent #type/dev #area/echo
 > - [ ] E-06 Reference enrollment and binding #owner/agent #type/dev #area/echo
 > - [ ] E-07 Raw facts DEAL coverage and trade lifecycle #owner/agent #type/dev #area/echo
 > - [ ] E-08 Routing EconomicCommand and risk reservation #owner/agent #type/dev #area/echo
