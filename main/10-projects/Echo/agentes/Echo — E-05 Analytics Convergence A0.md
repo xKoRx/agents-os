@@ -42,21 +42,22 @@ cssclasses:
 
 ## 🎯 Objetivo
 
-Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scope/TradeSet/MetricSet, adapters Lab, calculator Go con `key+basis+unit+formula`, persistencia PG write-once 062 y Hasura SELECT, sin big-bang Lab, sin Strategy Quality y sin Execution Fidelity.
+Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scope/TradeSet/MetricSet, adapters Lab, calculator Go con `key+basis+unit+formula`, persistencia PG write-once 063 y Hasura SELECT, sin big-bang Lab, sin Strategy Quality y sin Execution Fidelity.
 
 ## 📊 Estado actual
 
-- **TOP PLANNING READY FOR MANAGER REVIEW (2026-09-12, docs-only).** SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `be87f11e906c9bc7565bed30fff0990b45c78f87` en `origin/feature/e05-analytics-convergence-a0` (base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Cero líneas en `v3/**`. Master intacto. NORMAL no lanzado.
-- **Baseline verificado:** `origin/master` no avanzó respecto a `a99f9a63`. S0 READ ONLY @ `91671f6f`. E-03 CONTRACT_PASS en master; tablas 061 **NOT_APPLIED** en Aranea PG. E-04 INTEGRATED; T21 no bloquea E-05. E-02 PARKED; no bloquea E-05.
+- **TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12, docs-only, v1.0.1).** SPEC/PLAN/TASKS/VERIFICATION @ `dd1f2da9a630bb3b6f49e585b7b433f05c841ef9` en `origin/feature/e05-analytics-convergence-a0` (base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Cero líneas en `v3/**`. Master intacto. NORMAL no lanzado.
+- **Reserva de migración:** E-02 owner de `062_journal_quarantine`. E-05 owner exclusivo de `063_analytics_convergence_a0`. 062 prohibida para E-05. 064+ fuera de scope. E-02 **no** bloquea development/implementation/verification. Merge/deploy de 063 espera 062 integrado en `master`.
+- **Baseline verificado:** `origin/master` no avanzó respecto a `a99f9a63`. S0 READ ONLY @ `91671f6f`. E-03 CONTRACT_PASS en master; tablas 061 **NOT_APPLIED** en Aranea PG. E-04 INTEGRATED; T21 no bloquea E-05.
 - **Autoridad física Lab:** PG 17.6 PROD `echo` + DEV `echo-develop`. Snapshots 10932, win_rate RATIO 0..1, version NULL, outcomes REFERENCE-only, `v_trade_execution_delta` INNER JOIN, R AUTO en source. Hasura DEV/PROD v2.38.0 consistent.
-- **Contrato WHAT:** `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.0. TASKS T01–T21. AC-01…AC-23.
-- **AUTHORITY_CONFLICT:** ninguno. S0 ya tiene tipos/catálogo/recetas; Lab es proyección mutable; A0 persiste sets nuevos sin duplicar S0.
+- **Contrato WHAT:** `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1. TASKS T01–T21. AC-01…AC-23.
+- **AUTHORITY_CONFLICT:** ninguno. S0 ya tiene tipos/catálogo/recetas; Lab es proyección mutable; A0 persiste sets nuevos sin duplicar S0. Semántica analítica 1.0.0 intacta.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.0 @ `be87f11e` | TOP READY FOR MANAGER REVIEW · no NORMAL · no merge |
+| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 @ `dd1f2da9` | TOP CORRECTION READY FOR MANAGER REVIEW · no NORMAL · no merge |
 
 ## 🗺️ Source map (baseline `a99f9a63` + PG/Hasura)
 
