@@ -1421,6 +1421,8 @@ def human_summary(doc: Dict[str, Any]) -> str:
     lines.append("=" * 72)
     lines.append("run %s · vault: %s · git %s · fidelity_gate %s" % (
         doc["run"], doc.get("vault_root_arg", "auto"), (doc.get("git_head") or "?")[:9], doc["fidelity_gate"]))
+    if doc.get("fidelity_details"):
+        lines.append("pre-flight RULES-FIDELITY-ANCHORS %s: %s" % (doc["fidelity_gate"], doc["fidelity_details"]))
     for r in doc["scenarios"]:
         lines.append("%s %s %s" % (r["id"].ljust(8, "."), r["verdict"].ljust(5), r["details"]))
     c = doc["counts"]
@@ -1462,6 +1464,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         except (OSError, ValueError) as exc:
             print("ERROR: --conformance-json ilegible: %s" % exc, file=sys.stderr)
             return 2
+    valid_ids = [sid for sid, _, _ in SCENARIOS] + ["RULES-FIDELITY-ANCHORS"]
+    if args.scenario and args.scenario not in valid_ids:
+        print("ERROR: escenario desconocido: %s (validos: %s, RULES-FIDELITY-ANCHORS)" % (args.scenario, ", ".join(sid for sid, _, _ in SCENARIOS)), file=sys.stderr)
+        return 2
     doc = run_suite(root, live=args.live, scenario=args.scenario, write=True, conformance_json=conformance_json)
     doc["vault_root_arg"] = args.vault_root or "auto"
     if args.json:
