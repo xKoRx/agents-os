@@ -39,7 +39,7 @@ tags:
 - Session goal: Recover and certify aranea-ssh without touching Echo Forge T2.12.
 - Main entity: [[AGENT-PLATFORM - MCP Access Plane]]
 - Skills used: agents-os-bootstrap, aranea-agent-dev, aranea-mcps-expert, aranea-mcp-capability-plane, aranea-ssh-mcp, agents-os-session-close, agents-os-session-feedback.
-- Retrieval mode: focused Markdown retrieval; Graphify query not required because exact canonical files were resolved directly.
+- Retrieval mode: focused Markdown fallback; `context_router_e2e.py --json` could not run because `graphify-obsidian` was unavailable, so exact canonical files were resolved with `rg`.
 - Artifacts changed: MCP Access Plane project, F-04 dependency note, change log, agent run and feedback; no runtime/product code.
 
 ## Scores
@@ -80,7 +80,7 @@ Use 1-5, where 1 is poor and 5 is excellent.
 ## Retrieval Feedback
 
 - Useful query or source: Exact project, architecture, capability-plane and SSH runbooks.
-- Missing context: Live server-side session registry/reaper/config output.
+- Missing context: Live server-side session registry/reaper/config output; Graphify validation was unavailable in this environment.
 - Duplicate/noisy result: Historical F-04 records were large but were limited to the required dependency note.
 - Better future query: Filter the project for `session lifecycle`, `health`, `runtime admin` and `aranea-ssh` before touching the endpoint.
 
