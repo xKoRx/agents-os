@@ -10,7 +10,7 @@ parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-10
 due:
-progress: 85
+progress: 95
 repo: xKoRx/symphony
 jira:
 prs:
@@ -43,7 +43,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 ## 📊 Estado actual
 
-- **C5 CONTRACT CLOSED (2026-09-12).** TOP one-shot: manager review confirmó parse de CanonicalStrategyID en `forge_seal_handoff.go` `strategyIdentityFromCanonicalID`. C4.1–C4.6 permanecen CLOSED @ `bba833d7b57c767d6ce5ebfeae7a7b71b5785782`. D18: identidad del manifiesto = `sqx.strategies` por StrategyRef; OperationSide LONG/SHORT desde mapper C4; BOTH fail closed (S0 no tiene BOTH; no se cambia Echo); requested/observed = misma fila; WorkflowSpec es gate exacto; `DATABASE MIGRATION: NONE`. **Veredicto: READY FOR NORMAL — F-04 MANIFEST IDENTITY CONTRACT CLOSED.** T2.11/T2.12/T2.13 permanecen OPEN; F-04 no está physical-ready.
+- **C5.1–C5.6 IMPLEMENTED (2026-09-12) — READY FOR MANAGER REVIEW.** Commit `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`, parent C4 `bba833d7b57c767d6ce5ebfeae7a7b71b5785782`, pushed fast-forward en `feature/f04-magic-version-handoff`. `StrategyManifestIdentityReader` lee la fila exacta `sqx.strategies` por StrategyRef; instrument/timeframe/direction/canonical durable son authority; CanonicalStrategyID permanece opaco y sólo se compara exacto contra el carrier; OperationSide `L|LONG→LONG`, `S|SHORT→SHORT`, `B|BOTH/empty/unknown→CONTRACT_CONFLICT` antes de manifest/POST; requested instrument/timeframe/direction son gates WorkflowSpec tras TrimSpace exacto case-sensitive; observed/requested instrument/timeframe salen de la fila durable; parser legacy retirado. Tests C5 `-race` PASS, negative proofs 0 referencias; registry full sweep quedó limitado por timeout 10m de embedded-postgres y su subconjunto histórico no mostró fallas nuevas; migration NONE. C4.1–C4.6 permanecen CLOSED @ `bba833d7b57c767d6ce5ebfeae7a7b71b5785782`. **F-04 overall permanece NOT CLOSED / no physical-ready.** T2.11/T2.12/T2.13 permanecen OPEN.
 - **C4.1–C4.6 IMPLEMENTED (2026-09-12).** CLOSED @ `bba833d7b57c767d6ce5ebfeae7a7b71b5785782`. Allocation desde `sqx.strategies`; mapper `MagicV1DirectionFromStrategy`; TaskSpec magic no requested; migration NONE. El residual de seal/handoff lo posee C5 (arriba), no se reabre C4.
 - **TOP C4 CONTRACT CLOSED (2026-09-12).** One-shot TOP resolvió el defecto físico Magic V1 ↔ F-01: instrument/direction salen de `sqx.strategies`, no de `CanonicalStrategyID`. F-01 permanece CLOSED. TaskSpec `magic_number` no es requested. Multi-strategy soportado. `DATABASE MIGRATION: NONE`. Listo para NORMAL C4 sobre `feature/f04-magic-version-handoff` @ `d645ed6`. T2.11/T2.12/T2.13 permanecen OPEN. E-04 runtime/join es one-shot separado tras golden Forge.
 - **T2.1–T2.10 IMPLEMENTED (2026-09-12).** NORMAL ejecutó el plan TOP congelado sobre worktree aislado limpio. Compile Evaluation `mt5_compiler@mt5-compile.v1` producida por `mt5_compile_persist_v1` (sqx-worker), carrier `CompileEvaluationRef` exacto, `UseDurableMagicAllocation: true` en el caller productivo, `forge_seal_handoff_v1` (seal+handoff tras Finalist V2, G22 incluido), HTTP ingress E-04 real + GET-by-key + fail-closed sin config. SOURCE+CONTRACT+CONCURRENCY (`-race`)+MIGRATION PASS. **PHYSICAL: STOP — C4 (Magic V1 parseaba CanonicalStrategyID opaco).** HEAD `d645ed6c2f438995d636a8213b1e4a3f5f26cbea` pushed fast-forward.
@@ -56,7 +56,7 @@ Materializar el pipeline contractual Forge: allocation durable de magic → stam
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/f04-magic-version-handoff` | `0b9742b09019526a8119f086199d15d1f0d42cb1` reconciliado | [[Echo Forge — Factory V2 Completion]] F-04 | [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **T1+T2.1–T2.10+C4.1–C4.6 DONE @ `bba833d`; C5 CONTRACT CLOSED — READY FOR NORMAL; T2.11–T2.13 OPEN; not physical-ready** |
+| xKoRx/symphony | `feature/f04-magic-version-handoff` | `bba833d7b57c767d6ce5ebfeae7a7b71b5785782` | [[Echo Forge — Factory V2 Completion]] F-04 | [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | **T1+T2.1–T2.10+C4.1–C4.6+C5.1–C5.6 DONE @ `b57bfb2`; READY FOR MANAGER REVIEW; T2.11–T2.13 OPEN; F-04 not closed/physical-ready** |
 
 ## Parent / SPEC / baselines
 
