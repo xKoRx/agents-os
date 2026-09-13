@@ -952,6 +952,18 @@ def ctx_08_switch_aranea_meli(ctx, rules, harness) -> Dict[str, Any]:
         problems.append("signals-code-review no rut-eada por la tabla del router para code_review (C12)")
     elif s.all_opens().index(rules.ROUTERS["meli"]) > s.all_opens().index(spec):
         problems.append("skill especializada cargada antes que el router (debe rutear via tabla del router, C12)")
+    elif len(s.specialist_skills) != 1:
+        # Assert heredado de SWITCH-ARANEA-TO-MELI (restaurado, D3e de la
+        # verificación adversarial): exactamente UNA especialista por turno.
+        problems.append("mas de una skill especializada (heredado SWITCH-ARANEA-TO-MELI): %s" % s.specialist_skills)
+    if spec:
+        # M16 sobre la especialista rut-eada (diseño 8.2: las especialistas M12
+        # son hot path; D2 de la verificación adversarial).
+        life_spec = _deprecated_frontmatter_hit(ctx, spec)
+        if life_spec:
+            problems.append("especialista en hot path con ciclo de vida retirado (diseño 8.2, M16): %s" % life_spec)
+        evidence.append("ciclo de vida de la especialista abierta (diseño 8.2): %s -> %s" % (
+            spec, life_spec or "sin memory_state/status retirado"))
     if rules.SKILLS_INDEX in s.opens_in_turn(2):
         problems.append("INDEX.md re-cargado en el swap (registry ya en contexto)")
     # Métricas: M07, M10, M11, M12, M15, M19 (+ residuo potencial 8.3).
@@ -1088,6 +1100,13 @@ def ctx_11_leak_unrelated(ctx, rules, harness) -> Dict[str, Any]:
         other = "aranea" if domain == "meli" else "meli"
         evidence.append("[%s] set cargado (%d archivos, opens+candidatos): %s" % (domain, len(loaded), ", ".join(loaded)))
         for rel in loaded:
+            # D1 (verificación adversarial / A3-Hallazgo 7): la nota VPN se
+            # evalúa ANTES de la membresía de clasificación en la rama aranea —
+            # es ambigua (ni afirmada ni prohibida), se excluye de unrelated y
+            # se emite SOLO como ambigua (nunca FAIL ni doble emisión).
+            if domain == "aranea" and rel == rules.ROUTER_PREFS["meli"][1]:
+                ambiguous.append("[%s] %s: nota VPN (Hallazgo 7) en escenario aranea; ni afirmada ni prohibida en Aranea (WARN, A3): excluida de unrelated-domain" % (domain, rel))
+                continue
             dom, conf, note = classify_file(rules, harness, ctx.root, rel)
             if dom == other and conf == "EXACT":
                 if rel not in all_unrelated:
@@ -1097,8 +1116,6 @@ def ctx_11_leak_unrelated(ctx, rules, harness) -> Dict[str, Any]:
                 ambiguous.append("[%s] %s: %s" % (domain, rel, note))
             elif dom is None and conf == "INFERRED":
                 ambiguous.append("[%s] %s: %s" % (domain, rel, note))
-            if domain == "aranea" and rel == rules.ROUTER_PREFS["meli"][1]:
-                ambiguous.append("[%s] %s: nota VPN (Hallazgo 7) en escenario aranea; ni afirmada ni prohibida (WARN, A3)" % (domain, rel))
         # Counterfactual (leak evitado): notas de memoria bloqueadas SOLO por el
         # chequeo de dominio de trigger_fires y que referencian a la entidad
         # activa por entities/project/application (reutiliza rules.references_entity):
@@ -1135,6 +1152,7 @@ def ctx_11_leak_unrelated(ctx, rules, harness) -> Dict[str, Any]:
     rec["metrics"].append(metric("unrelated_domain_files", sorted(all_unrelated), "files", "EXACT",
                                  "diseño 8.1: clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS) sobre opens+candidatos"))
     rec["metrics"].append(metric("unrelated_domain_chars", unrelated_agg["chars"], "chars", "EXACT", "_size del harness"))
+    rec["metrics"].append(metric("unrelated_domain_bytes", unrelated_agg["bytes"], "bytes", "EXACT", "_size del harness"))
     rec["metrics"].append(metric("unrelated_domain_estimated_tokens", unrelated_agg["estimated_tokens"], "estimated_tokens",
                                  "ESTIMATED", "_size del harness + " + TOKENS_NOTE))
     rec["metrics"].append(metric("leak_avoided_pool_files", avoided["files"], "files", "INFERRED",
