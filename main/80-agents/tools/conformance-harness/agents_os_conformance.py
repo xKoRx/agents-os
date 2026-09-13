@@ -1306,24 +1306,32 @@ def read_surface_configs() -> List[Dict[str, Any]]:
     headers or credentials). Returns [] when none exist."""
     home = os.path.expanduser("~")
     out: List[Dict[str, Any]] = []
+
+    def summarize(surface: str, path: str, servers: Optional[Dict[str, bool]], error: Optional[str] = None) -> Dict[str, Any]:
+        if servers is None:
+            return {"surface": surface, "path": path, "servers": None, "error": error or "ilegible",
+                    "aranea": 0, "meli": 0}
+        aranea = [n for n in servers if "aranea" in n.lower() and servers[n]]
+        meli = [n for n in servers if any(m in n.lower() for m in MELI_SERVER_MARKERS)]
+        return {"surface": surface, "path": path, "servers": servers,
+                "aranea": len(aranea), "meli": len(meli)}
+
     zc = os.path.join(home, ".zcode/cli/config.json")
     if os.path.isfile(zc):
         try:
             cfg = json.loads(read_text(zc))
             servers = cfg.get("mcp", {}).get("servers", {})
-            out.append({"surface": "zcode", "path": "~/.zcode/cli/config.json",
-                        "servers": {name: bool(srv.get("enabled", True)) for name, srv in servers.items()}})
+            out.append(summarize("zcode", "~/.zcode/cli/config.json",
+                                 {name: bool(srv.get("enabled", True)) for name, srv in servers.items()}))
         except (ValueError, AttributeError):
-            out.append({"surface": "zcode", "path": "~/.zcode/cli/config.json", "servers": None, "error": "json invalido"})
+            out.append(summarize("zcode", "~/.zcode/cli/config.json", None, "json invalido"))
     cu = os.path.join(home, ".cursor/mcp.json")
     if os.path.isfile(cu):
         try:
             cfg = json.loads(read_text(cu))
-            servers = cfg.get("mcpServers", {})
-            out.append({"surface": "cursor", "path": "~/.cursor/mcp.json",
-                        "servers": {name: True for name in servers}})
+            out.append(summarize("cursor", "~/.cursor/mcp.json", {name: True for name in cfg.get("mcpServers", {})}))
         except (ValueError, AttributeError):
-            out.append({"surface": "cursor", "path": "~/.cursor/mcp.json", "servers": None, "error": "json invalido"})
+            out.append(summarize("cursor", "~/.cursor/mcp.json", None, "json invalido"))
     cx = os.path.join(home, ".codex/config.toml")
     if os.path.isfile(cx):
         servers: Dict[str, bool] = {}
@@ -1331,7 +1339,7 @@ def read_surface_configs() -> List[Dict[str, Any]]:
             m = re.match(r"^\s*\[mcp_servers\.([A-Za-z0-9_.-]+)\]\s*$", line)
             if m:
                 servers[m.group(1)] = True
-        out.append({"surface": "codex", "path": "~/.codex/config.toml", "servers": servers})
+        out.append(summarize("codex", "~/.codex/config.toml", servers))
     return out
 
 
