@@ -1,12 +1,12 @@
 ---
 type: project
 schema_version: 1
-owner: me
+owner: agent
 root: false
 status: active
-priority: P2
-area: "[[Meli]]"
-parent:
+priority: P1
+area: "[[Personal]]"
+parent: "[[AGENTS OS]]"
 sprint:
 start:
 due:
@@ -14,10 +14,13 @@ progress: 0
 repo:
 jira:
 prs:
-aliases: []
+aliases:
+  - Agents OS Context Hygiene
+  - Context Hygiene and Canonical Integrity
 tags:
   - kind/project
-  - area/meli
+  - area/personal
+  - project/agents-os
 created: "2026-09-13"
 updated: "2026-09-13"
 ---
@@ -27,7 +30,7 @@ updated: "2026-09-13"
 %% Naming: AGENTS OS - Context Hygiene and Canonical Integrity es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ AGENTS OS - Context Hygiene and Canonical Integrity
-> **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
+> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P1 · **Sprint:** —
 > _parent / sprint / repo / jira / prs son opcionales._
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
