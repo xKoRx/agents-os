@@ -98,6 +98,17 @@ Estado vigente tras T1 (`ea8be76`) y T2 (`d645ed6`). La tabla histórica "todo m
 - `T2.12: OPEN`; `T2.11: OPEN`; `T2.13: OPEN`. Primer bloqueo: capability de observación runtime ausente; no hay evidencia de defecto de producto.
 - Evidencia durable: repo `xKoRx/symphony`, worktree `symphony-f04-cert-20260913`, `deploy/0.2.98/` y `deployer_screen.log`; registro de agente en `80-agents/journal/agent-runs/2026-09-13-codex-unknown-f04-physical-certification.md`.
 
+## Reanudación física — 2026-09-13
+
+- `MCP DISCOVERY: PARTIAL` — el cliente expone `aranea_mongo_forge_ro/rw` y `aranea_postgres_ro/rw`, ambos probados; `aranea-ssh` está declarado en la configuración con bearer `SET`, pero no expone tools en esta sesión.
+- `ARANEA SSH: UNHEALTHY` — dos handshakes MCP contra `aranea-ssh` fallaron con HTTP 503: `Server is at its session limit (64). Close an existing session and retry.`; no se pudo ejecutar `read-command`/`run-command` ni leer hosts.
+- `RELEASE 0.2.98: PASS` — authority local y branch remoto permanecen en `0.2.98`/`b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`; seis artefactos coinciden en tamaño/SHA256 y `deployer_screen.log` registra seis uploads más manifest recuperado y publicado en MinIO.
+- `ROLLOUT: INCONCLUSIVE` — sin `aranea-ssh` sano no hay prueba por Zeus, Hera, Kronos o `worker-kronos` de `CURRENT`, symlink activo, ACTIVATION/PENDING, rotación de PID, pollers, MetaEditor/SQX o licencia.
+- `PHYSICAL BLOCKED — ARANEA MCP UNHEALTHY` — host/runtime requerido: Zeus, Hera, Kronos y Windows `worker-kronos`; capability requerida: `aranea-ssh` viewer `read-command` y operator sólo para acciones explícitamente autorizadas; operación intentada: handshake MCP `resources/list` contra `http://mcps.lab.aranea.cl:3000/`; error exacto: HTTP 503 por límite de 64 sesiones. Stager/control-plane sólo demuestra publicación/manifest y no puede responder el estado físico de hosts, procesos o licencia.
+- No se modificó product code, input, release, binaries ni configuración remota; no se generó WorkflowID/RunID/FlowRunRef y T2.12/T2.11 no iniciaron.
+- `T2.12: OPEN`; `T2.11: OPEN`; `T2.13: OPEN`. Se conserva el intento anterior como historia (`release PASS`, `rollout INCONCLUSIVE`, `physical not started`); esta reanudación corrige la clasificación operacional a MCP unhealthy sin reescribirla.
+- Evidencia nueva: `80-agents/journal/sessions/2026-09-13-f04-physical-resume-summary.md`, `80-agents/journal/agent-runs/2026-09-13-codex-unknown-f04-physical-resume.md`, `80-agents/journal/feedback/system-1/2026-09-13-f04-physical-resume-session-feedback.md` y `80-agents/journal/change-logs/2026-09-13-f04-physical-resume-project-update.md`.
+
 | ID | status | resolution | source | phase |
 |---|---|---|---|---|
 | D1 sequence | TECHNICAL_RESOLUTION | Allocation **before Apply** for Apply cohort; Finalist V2 admits seal/handoff only | Live Authority §3; padre F-04 hypothesis | 1 |
