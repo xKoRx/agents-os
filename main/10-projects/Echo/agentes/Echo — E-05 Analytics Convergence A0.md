@@ -25,7 +25,6 @@ tags:
   - agent/owner
 created: "2026-09-12"
 updated: "2026-09-12"
-progress: 70
 cssclasses:
   - wide
 ---
