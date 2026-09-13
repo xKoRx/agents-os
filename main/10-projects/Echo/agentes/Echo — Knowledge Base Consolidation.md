@@ -42,10 +42,11 @@ Dejar Echo y Echo Forge documentados según su realidad implementada actual, la 
 
 ## 📊 Estado actual
 
-- **FASE E EN CURSO** — legacy-doc-curator lanzado. Fase D COMPLETE: frontera Echo↔Forge en `artifacts/04-echo-forge-boundary.md`. Hallazgo central: **la cadena Forge→Echo está rota en producción** — la única frontera real es el pin del módulo frozen `echo/v3/sdk/contracts` (`91671f6f46ff`); emisor Forge sin cablear (cero callers de `BuildHandoffManifest`/`DeliverHandoff`/`SealStrategyVersion`, único ingress `FakeConsumerIngress`), receptor Echo completo e integrado en `origin/master` pero ocioso. Gaps: G1 sin transporte real (F-04 branch-only en symphony); G2 seal sin caller; G3 bloqueante E2E — Echo V1 `unavailableArtifactSource` (503 fail-closed), sin integración MinIO; G4 reconciliación `UNKNOWN_RECEIPT` sin consumidor Forge; G5 golden fixture pending (testdata = copia byte-equal del corpus S0, producer tag ≠, T21/AC-37 pending); G6 SPEC conceptual Forge diverge del frozen. No-gap: codec magic BOTH imposible en V1. Unknowns: punto futuro de cableado seal→manifest→deliver; correlación observability; namespace runtime; entorno vivo.
-- Fase C COMPLETE: Forge @ `9fad768c` — pipeline `GenericSQXWorkflow` + `ForgeCampaignWorkflow` sobre Temporal SDK v1.44.1; magic V1 cableado (gated); PG autoridad (001–016), Mongo evidencia, MinIO `sqx-strategies`, etcd.
-- Fase B COMPLETE: Echo @ `f7ddea18` — orquestación **Flink StateFun, NO Temporal**; E-02 implementado (PHYSICAL_PARTIAL); E-01/E-04 receptor completo (replay idempotente/409), Spec-Active.
-- Fase A COMPLETE: topología = subdominio `30-resources/applications/echo/` + `00-index.md`; `echo-core.md`, `echo-forge.md`, frontera compartida; contratos intactos como source-of-record; 5 auditorías → superseded tras PASS. Detalle: `artifacts/01-knowledge-architecture.md`.
+- **FASE F EN CURSO** — llm-wiki-documentarian lanzado. Fase E COMPLETE: auditoría legacy en `artifacts/05-legacy-doc-audit.md` (vault @ `a87aa62`). Clasificación: 27 CANONICAL, 3 MERGE (echo-core.md, echo-forge.md, GUIA_WORKER_TEMPORAL_MT5→runbooks/symphony), 5 SUPERSEDED vault (3 auditorías 2026-09-06 + 2 Fable reviews; gate: verification PASS) + 3 repo-side de facto, ARCHIVE (diagrama Forge, sqx/ deep-research, grupos legacy repos), 0 DELETE_CANDIDATE. Contradicción mayor corregible en manifest: `echo-forge.md` + índice afirman que Forge "entrega finalistas a Echo Core vía API" — falso hoy (G1/G3). ⚠️ **Flag seguridad al owner:** `30-resources/APIs.md` contiene credenciales vivas en texto plano — fuera del scope de la campaña, sin tocar; decisión del humano.
+- Fase D COMPLETE: frontera rota en producción (pin SDK única frontera real; emisor sin cablear, receptor ocioso; G1–G6 en `artifacts/04-echo-forge-boundary.md`).
+- Fase C COMPLETE: Forge @ `9fad768c` — GenericSQXWorkflow + ForgeCampaignWorkflow (Temporal SDK); magic V1 cableado; PG/Mongo/MinIO/etcd.
+- Fase B COMPLETE: Echo @ `f7ddea18` — **Flink StateFun, NO Temporal**; E-02 implementado (PHYSICAL_PARTIAL); receptor E-04 completo, Spec-Active.
+- Fase A COMPLETE: subdominio `30-resources/applications/echo/` + `00-index.md`; contratos intactos; 5 auditorías → superseded tras PASS (`artifacts/01-knowledge-architecture.md`).
 - Riesgos registrados en artifact: vault HEAD real `09746b3` (sync commits ajenos, reconcilia fase H); movimiento ~17 páginas exige actualizar índice raíz en el mismo cambio; symphony dirty → sólo lectura; skills INDEX declara 3 app-owned vs 21 reales en symphony (fases I/J); Graphify CLI no disponible (inventario por búsqueda enfocada).
 - `MAX_ACTIVE_SUBAGENTS = 1` — ejecución estrictamente secuencial. El planner (esta nota) es single-writer del parent orchestrator.
 - Artefacts de especialistas: `10-projects/Echo/agentes/kb-consolidation/artifacts/` (READ MANY / WRITE ONE por especialista; `filesystem_enforcement: PROMPT_ONLY`).
@@ -67,8 +68,8 @@ Reglas de repos: INPUTS READ ONLY. Sin reset/clean/stash/rebase/checkout destruc
 > - [x] B — echo-functional-cartographer: cartografía Echo @ baseline → `02-echo-cartography.md` #owner/agent #area/echo
 > - [x] C — forge-functional-cartographer: cartografía Forge @ baseline → `03-forge-cartography.md` #owner/agent #area/echo
 > - [x] D — echo-forge-integration-cartographer: frontera contractual/implementada → `04-echo-forge-boundary.md` #owner/agent #area/echo
-> - [/] E — legacy-doc-curator: clasificación CANONICAL/MERGE/SUPERSEDED/ARCHIVE/DELETE + manifest → `05-legacy-doc-audit.md` #owner/agent #area/echo
-> - [ ] F — llm-wiki-documentarian: propuesta wiki canónica → `06-wiki-draft-plan.md` #owner/agent #area/echo
+> - [x] E — legacy-doc-curator: clasificación CANONICAL/MERGE/SUPERSEDED/ARCHIVE/DELETE + manifest → `05-legacy-doc-audit.md` #owner/agent #area/echo
+> - [/] F — llm-wiki-documentarian: propuesta wiki canónica → `06-wiki-draft-plan.md` #owner/agent #area/echo
 > - [ ] G — documentation-verifier (MAX): refutación adversarial; máx 2 ciclos globales de corrección → `09-verification.md` #owner/agent #area/echo
 > - [ ] H — vault-publisher-reconciler (MAX): reconciliación baseline→HEAD + publication manifest → `10-publication-plan.md` #owner/agent #area/echo
 > - [ ] P — Parent ejecuta publicación canonical en `30-resources/` (sólo con verification PASS) #owner/agent #area/echo

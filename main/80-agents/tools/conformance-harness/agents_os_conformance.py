@@ -782,7 +782,7 @@ def sc_cold_default(ctx: Ctx) -> Tuple[str, str, List[str]]:
     return state, (
         "cold start DEFAULT sin router (contrato literal del paso 6)"
         if not problems else "cold start DEFAULT violo el contrato",
-        evidence + problems + ["WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente%s una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (COLD-DEFAULT observable_evidence)." % surface])
+    ), evidence + problems + ["WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente%s una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (COLD-DEFAULT observable_evidence)." % surface]
 
 
 def sc_cold_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
