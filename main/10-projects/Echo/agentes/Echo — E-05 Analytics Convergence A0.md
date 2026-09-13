@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-12
 due:
-progress: 15
+progress: 70
 repo: xKoRx/echo
 jira:
 prs:
@@ -25,6 +25,7 @@ tags:
   - agent/owner
 created: "2026-09-12"
 updated: "2026-09-12"
+progress: 70
 cssclasses:
   - wide
 ---
@@ -46,6 +47,7 @@ Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scop
 
 ## 📊 Estado actual
 
+- **IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW (2026-09-12, NORMAL T01–T21).** Implementación completa @ `69eec0b9` en `origin/feature/e05-analytics-convergence-a0` (9 commits sobre planning `dd1f2da9`; master intacto `a99f9a63`). PG REAL 17.11 descartable PASS (up/down/up, write-once, REVOKE, constraints); analytics 95.6% coverage; BWC Lab PASS; Hasura `HASURA_DEV_APPLY=NOT_RUN` (063 NOT_APPLIED en Aranea; sustituto yaml+PG local según gate matrix). No verifier, no merge, no CLOSED. Interlock: 063 sin merge/deploy hasta 062 de E-02 en `master`. Detalle completo en `specs/FEAT-ANALYTICS-CONVERGENCE-A0/VERIFICATION.md`.
 - **TOP CORRECTION READY FOR MANAGER REVIEW (2026-09-12, docs-only, v1.0.1).** SPEC/PLAN/TASKS/VERIFICATION @ `dd1f2da9a630bb3b6f49e585b7b433f05c841ef9` en `origin/feature/e05-analytics-convergence-a0` (base `origin/master` `a99f9a63354bbe72219d1e590bb93757ed08e45e`). Cero líneas en `v3/**`. Master intacto. NORMAL no lanzado.
 - **Reserva de migración:** E-02 owner de `062_journal_quarantine`. E-05 owner exclusivo de `063_analytics_convergence_a0`. 062 prohibida para E-05. 064+ fuera de scope. E-02 **no** bloquea development/implementation/verification. Merge/deploy de 063 espera 062 integrado en `master`.
 - **Baseline verificado:** `origin/master` no avanzó respecto a `a99f9a63`. S0 READ ONLY @ `91671f6f`. E-03 CONTRACT_PASS en master; tablas 061 **NOT_APPLIED** en Aranea PG. E-04 INTEGRATED; T21 no bloquea E-05.
@@ -57,7 +59,7 @@ Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scop
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 @ `dd1f2da9` | TOP CORRECTION READY FOR MANAGER REVIEW · no NORMAL · no merge |
+| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 @ `dd1f2da9` | IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW @ `69eec0b9` · no verifier · no merge |
 
 ## 🗺️ Source map (baseline `a99f9a63` + PG/Hasura)
 
@@ -145,12 +147,12 @@ _No aplica — hijo de implementación de E-05; no crea Integration ni más hijo
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-ANALYTICS-CONVERGENCE-A0/TASKS.md`. Aquí sólo work packages. NORMAL no arranca hasta manager review.
 > - [r] WP-TOP SPEC/PLAN/TASKS/VERIFICATION v1.0.1 + branch docs-only (reserva 063) #owner/agent #type/dev #area/echo
-> - [ ] WP-A Persistencia 063 + stores write-once #owner/agent #type/dev #area/echo
-> - [ ] WP-B Adapters Lab/journal #owner/agent #type/dev #area/echo
-> - [ ] WP-C Calculator fórmulas A0 #owner/agent #type/dev #area/echo
-> - [ ] WP-D Writer + lab-canonical-a0 #owner/agent #type/dev #area/echo
-> - [ ] WP-E Hasura SELECT #owner/agent #type/dev #area/echo
-> - [ ] WP-F SOURCE/BWC/coverage cert #owner/agent #type/dev #area/echo
+> - [x] WP-A Persistencia 063 + stores write-once (T01-T04, T16 PASS) #owner/agent #type/dev #area/echo
+> - [x] WP-B Adapters Lab/journal (T05, T11, T12 PASS) #owner/agent #type/dev #area/echo
+> - [x] WP-C Calculator fórmulas A0 (T06-T10, T20 PASS; 95.6% cov) #owner/agent #type/dev #area/echo
+> - [x] WP-D Writer + lab-canonical-a0 (T13-T14 PASS PG real) #owner/agent #type/dev #area/echo
+> - [x] WP-E Hasura SELECT (T15, T19; apply NOT_RUN flag) #owner/agent #type/dev #area/echo
+> - [x] WP-F SOURCE/BWC/coverage cert (T17-T18, T21; 2 gates E-04 en TCR) #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -169,6 +171,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-12** — NORMAL T01–T21 IMPLEMENTATION PASS @ `69eec0b9` (push FF, sin race): migración 063 write-once + harness SQL (up/down/up en PG 17.11 descartable), stores canónicos replay/conflicto, package `v3/sdk/analytics` (registry digests golden, calculator fail-closed big.Rat), writer transaccional, `lab-canonical-a0` dual-run, Hasura yaml SELECT-only, VERIFICATION llena (AC-01…AC-23), coverage 95.6%. Nota frozen: R_PIPS INSUFFICIENT (wire S0 v1 sin profit_pips). 2 gates SOURCE E-04 fallan → `TEST_CHANGE_REQUEST.md` (AllowedFilesOnly preexistente; NoMigrationDelta por 063 autorizada). `HASURA_DEV_APPLY=NOT_RUN`. Puente E-05 permanece Review; no verifier; interlock 062 vigente.
 - **2026-09-12** — TOP CORRECTION v1.0.1 reserva de migración @ `dd1f2da9`: E-02 owner de `062_journal_quarantine`; E-05 cambia a `063_analytics_convergence_a0` exclusiva; 064+ fuera de scope. E-02 no bloquea development/implementation/verification. Merge/deploy de 063 serializa tras 062 en `master`. Semántica analítica 1.0.0 intacta. Docs-only; master intacto `a99f9a63`. Puente E-05 permanece Review.
 - **2026-09-12** — TOP planning one-shot: subproyecto materializado; SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `be87f11e` pusheados a `origin/feature/e05-analytics-convergence-a0` desde `a99f9a63` (docs-only; master intacto). Source Lab + S0 + Hasura/PG Aranea READ reconciliados. A0 = paths nuevos + adapters; no big bang; no SQ/EF. Puente E-05 → Review. No NORMAL.
 
