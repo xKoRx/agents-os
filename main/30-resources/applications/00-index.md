@@ -28,16 +28,15 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas:** 16 aplicaciones
-- **Última ingesta:** 2026-09-12 (F-04 C5 Manifest Identity Semantics).
+- **Páginas:** 14 aplicaciones (catálogo raíz) + subdominio `echo/`
+- **Última ingesta:** 2026-09-13 (consolidación KBC → subdominio `echo/`).
 - **Estado:** active
 
 ## 📂 Catálogo
 
 | App | Una línea | Área | Lang |
 |---|---|---|---|
-| [[echo-core]] | Motor principal, base de datos y diario de operaciones (Trade Journal) de Echo. | [[Echo]] | Go |
-| [[echo-forge]] | Fábrica y admisor cuantitativo E2E de estrategias de trading; orquesta SQX y entrega finalistas a Echo Core. | [[Echo]] | Go, Java |
+| [[30-resources/applications/echo/00-index|Echo (subdominio)]] | Plataforma de ejecución + fábrica cuantitativa + frontera: ver sub-índice. | [[Echo]] | Go, Java |
 | [[stager-app]] | Reconciliador one-shot de releases locales verificadas; MinIO y Linux/Windows, independiente del consumer. | [[Echo]] | Go |
 | [[rio-playmaker]] | Orquestador central de RIO: gestiona data products, componentes y despliegues, y coordina los control planes vía BigQueue. | [[Meli]] | Java |
 | [[ads-signals-frontend]] | UI moderna (RIO Frontend v3, FSD): canvas drag-and-drop de pipelines, lifecycle deploy/stop, catálogo de entidades y observabilidad. | [[Meli]] | TypeScript |
@@ -55,21 +54,7 @@ tags:
 
 ## Arquitectura de producto
 
-| Recurso | Alcance / vigencia |
-|---|---|
-| [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] | Contrato compartido propuesto: Echo SDK puro, convergencia Analytics/Scope/TradeSet/MetricSet, handoff/ingestion, B con gates acotados; sin otro TOP. |
-| [[Echo + Echo Forge — Architecture Durability and Contract Review — Fable 5.1]] | Revisión de durabilidad V1 2026-09-07: decisión B (freeze con correcciones acotadas C-1…C-7), freeze matrix, O1–O3 reclasificadas, 20 leave-ugly, sin TOP; source db8a022/e25165ba. |
-| [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]] | Freeze review final del contrato Echo SDK 2026-09-07: B con FR-1…FR-5 (identidad por inputs, regla key/basis/unit/formula, Scope sin valuation, wire agnóstico, record_digest), matriz de identidad, freeze matrix, áreas cerradas; sin TOP. |
-| [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] | Contrato V1 propuesto: identidad/versión, ingestión, enrollment, raw/time/coverage y routing/policy; O1/O3 defaults técnicos Fable; catálogo CC pendiente. Body/SDK refinados por contrato canónico SDK; source Symphony db8a022. |
-| [[Echo + Echo Forge — Arquitectura de producto, gaps y roadmap de cierre 2026]] | Auditoría master de source remoto al 2026-09-06: contratos frozen, gaps, 32 deudas, analytics/portfolios, calendario y roadmap ejecutable; evidencia física reportada separada de source. |
-| [[Echo + Echo Forge — Independent Reality Check and Time-to-Value Plan]] | Deltas independientes, triage por reachability, mínimo V1, alternativas y siete hitos; ningún nuevo freeze. |
-| [[Echo + Echo Forge — Evidencia de revisión independiente 2026-09-06]] | Source y evidencia actual sanitizada: binarios/DB/front, cohortes desde junio y archivo anterior, límites de provenance. |
-| [[Echo — Fuentes de arquitectura y producto 2026-09-06]] | Provenance Echo master 04c16bd y decisiones owner; source ledger del recurso. |
-| [[Echo Forge — Fuentes de arquitectura y producto 2026-09-06]] | Provenance Symphony a10c26c, SDK, contratos y evidencia física; source ledger del recurso. |
-| [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | Contrato técnico F-01: CanonicalStrategyID puro, publication GENERATED con discriminator `ExecutionIntentKey`, sin HOST_KEY; sin migration. |
-| [[Echo Forge — F-02 Finalist Model V2 Contract]] | Contrato técnico F-02: membership estructural ≠ Top N; Promotion 2.0.0; identity requested-vs-HTM; Campaign nullable rank; migration 014. |
-| [[Echo Forge — F-03 SQX Long-Running Contract]] | Contrato F-03: elapsed ≠ failure; ceiling `MaxInt64ns−1s`; ScheduleToClose 0; Adaptive DEPRECATED no-touch; process-tree cancel; migration NONE. |
-| [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | Contrato F-04 C5: identidad del manifiesto desde `sqx.strategies`; CanonicalStrategyID opaco; C4 allocation CLOSED; migration 015/016 no-touch. |
+→ Los contratos vigentes, provenance e histórico de Echo/Echo Forge viven en [[30-resources/applications/echo/00-index|Echo — Índice]] (subdominio `echo/`).
 
 ## 🚨 Salud (del último lint)
 
