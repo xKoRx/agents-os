@@ -314,6 +314,7 @@ class LintCtx(object):
         self._by_base_cf: Dict[str, List[str]] = {}
         self._alias_map: Dict[str, List[str]] = {}
         self._alias_built = False
+        self._resolvable_set: set = set()
         self._type_index: Optional[Dict[str, Tuple[str, dict]]] = None
 
     # -- walks ---------------------------------------------------------------
@@ -422,14 +423,20 @@ class LintCtx(object):
                 "cites": cites}
 
     # -- índices de identidad -----------------------------------------------------
+    def resolvable(self) -> List[str]:
+        """Rels que pueden ser destino canónico de un link: corpus vivo +
+        retención 40-archive (CL-13 necesita resolver hacia el archive)."""
+        return [r for r, cls in self.physical.items() if cls in ("live", "archive_path")]
+
     def _ensure_indexes(self) -> None:
         if self._alias_built:
             return
+        self._resolvable_set = set(self.resolvable())
         # Índices de resolución sobre corpus vivo + 40-archive: journal,
         # packaging (30-resources/agents-os/) y resultados derivados no son
         # destino canónico (agents-os.md: "auditoría o distribución, nunca
         # autoridad vigente"; relation-maintenance: no enlazar sessions/logs).
-        for rel in sorted(self.resolvable()):
+        for rel in sorted(self._resolvable_set):
             base = os.path.splitext(os.path.basename(rel))[0]
             self._by_base.setdefault(base, []).append(rel)
             self._by_base_cf.setdefault(base.casefold(), []).append(rel)
@@ -439,11 +446,6 @@ class LintCtx(object):
                 if a:
                     self._alias_map.setdefault(a, []).append(rel)
         self._alias_built = True
-
-    def resolvable(self) -> List[str]:
-        """Rels que pueden ser destino canónico de un link: corpus vivo +
-        retención 40-archive (CL-13 necesita resolver hacia el archive)."""
-        return [r for r, cls in self.physical.items() if cls in ("live", "archive_path")]
 
     def by_base(self) -> Dict[str, List[str]]:
         self._ensure_indexes()
@@ -587,34 +589,45 @@ def _pointer_fields_nonempty(ctx: LintCtx, rel: str) -> List[str]:
 
 
 def cl_01(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]]:
-    """Notas active con superseded_by/supersedes no vacío (segunda autoridad
-    activa). MACHINE -> FAIL. metadata-schema + 00-RESOURCE-WIKI + note-types."""
+    """Notas active con superseded_by no vacío: se declaran reemplazadas y
+    siguen como autoridad activa. MACHINE -> FAIL.
+
+    Estrechamiento declarado respecto del texto ratificado ("superseded_by o
+    supersedes"): `supersedes` en una nota active es sucesión CANÓNICA
+    (00-RESOURCE-WIKI: "la nueva puede enlazar supersedes"), así que no
+    contradice la autoridad citada y no produce finding. Sólo `superseded_by`
+    ("yo fui reemplazado por X") es incompatible con active ("no se conserva
+    como una segunda autoridad activa", metadata-schema)."""
     findings: List[Dict[str, Any]] = []
     evidence: List[str] = []
+    superseding_active = 0
     for rel in ctx.corpus:
         fm = ctx.fm(rel)
         ms = str(fm.get("memory_state") or "").strip().lower()
         st = str(fm.get("status") or "").strip().lower()
-        pointers = _pointer_fields_nonempty(ctx, rel)
-        if not pointers:
-            continue
         if "active" not in (ms, st):
             continue
-        line = None
+        if as_list(fm.get("supersedes")):
+            superseding_active += 1  # sucesión canónica: la nueva enlaza supersedes
+        if not as_list(fm.get("superseded_by")):
+            continue
         text = ctx.text(rel) or ""
-        line = fm_key_line(text, pointers[0]) or fm_key_line(text, "status") or fm_key_line(text, "memory_state")
+        line = fm_key_line(text, "superseded_by") or fm_key_line(text, "status") or fm_key_line(text, "memory_state")
         findings.append(finding(
             "CL-01", "STATUS", "FAIL", "FAIL", rel,
-            "estado %s con %s no vacío" % ("memory_state: active" if ms == "active" else "status: active", "+".join(pointers)),
-            "una nota que declara un sucesor no debe permanecer active (no se conserva como segunda autoridad activa)",
-            "campos: %s; estado: memory_state=%s status=%s" % (", ".join(pointers), ms or "-", st or "-"),
-            "%s; %s (%s); %s" % (AUTH_META, AUTH_WIKI, "fuente reemplazada pasa a superseded", AUTH_NOTETYPES),
+            "estado %s con superseded_by no vacío" % ("memory_state: active" if ms == "active" else "status: active"),
+            "una nota que declara ser reemplazada (superseded_by) no puede seguir como autoridad activa",
+            "campos: superseded_by; estado: memory_state=%s status=%s%s" % (
+                ms or "-", st or "-",
+                ("; supersedes=%s (sucesión canónica, no es hallazgo)" % ", ".join(as_list(fm.get("supersedes")))) if as_list(fm.get("supersedes")) else ""),
+            "%s; %s (%s); %s" % (AUTH_META, AUTH_WIKI, "fuente reemplazada pasa a superseded y enlaza superseded_by", AUTH_NOTETYPES),
             "retirar la nota o su estado active: proposed fix para el owner (p.ej. memory_state/status -> superseded + load_policy manual); nunca auto-corregido",
             line=line))
     dedup = ["doctor:check_internal_memory_lifecycle (slice continuity bajo memory/internal: "
              "el doctor no emite esta regla cross-campo; se cita el scope adyacente)"]
-    evidence.append("notas active con puntero de sucesión escaneadas sobre %d archivos del corpus" % len(ctx.corpus))
-    return ("notas active con puntero de sucesión: segunda autoridad activa (metadata-schema)", findings, dedup, evidence)
+    evidence.append("notas active con supersedes (sucesión canónica, sin hallazgo): %d" % superseding_active)
+    evidence.append("escaneo sobre %d archivos del corpus; estrechamiento documentado: supersedes+active es cumplimiento de 00-RESOURCE-WIKI" % len(ctx.corpus))
+    return ("notas active con superseded_by: segunda autoridad activa (metadata-schema); supersedes+active es sucesión canónica (estrechamiento declarado)", findings, dedup, evidence)
 
 
 def cl_02(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]]:
