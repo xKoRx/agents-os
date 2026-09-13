@@ -38,7 +38,7 @@ updated: "2026-09-12"
 
 Esta Resource es el contrato técnico de `F-04 — Magic Allocation, Version Seal and Handoff`. Define qué debe quedar cierto. La ejecución vive en [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. No es un tutorial. No crea un tercer dominio Integration.
 
-Baseline de source F-04: `xKoRx/symphony@d645ed6c2f438995d636a8213b1e4a3f5f26cbea` (`feature/f04-magic-version-handoff`; T2.1–T2.10 implementados; PHYSICAL 0.2.97 reveló C4). F-01 implementation authority: `0509342439cfbaa048839088787458dde1ed1b05`. Magic V1 ancestor: `ea8be76c4587b2d00e4cad8cf2a67c4fd8e6680f`. Dirty foráneo `phase4_performance.json` preservado. S0 certificado: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Consumer E-04: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`. Agents OS: vault local **sin** `.git`; lookup de SHA live **degraded**; última authority durable de journal: `f1070bec27db3ca415fe24f3c3576139674b7e09`. No se inventa SHA de vault.
+Baseline de source F-04: `xKoRx/symphony@bba833d7b57c767d6ce5ebfeae7a7b71b5785782` (`feature/f04-magic-version-handoff`; T2.1–T2.10 + C4.1–C4.6 implementados; manager review reveló C5). Pre-C4: `d645ed6c2f438995d636a8213b1e4a3f5f26cbea`. F-01 implementation authority: `0509342439cfbaa048839088787458dde1ed1b05`. Magic V1 ancestor: `ea8be76c4587b2d00e4cad8cf2a67c4fd8e6680f`. Dirty foráneo `phase4_performance.json` preservado. S0 certificado: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33`. Consumer E-04: `xKoRx/echo@a99f9a63354bbe72219d1e590bb93757ed08e45e`. Agents OS: vault local **sin** `.git`; lookup de SHA live **degraded**; última authority durable de journal: `f1070bec27db3ca415fe24f3c3576139674b7e09`. No se inventa SHA de vault.
 
 `DATABASE MIGRATION: 015_strategy_magic_version_seal_handoff`. Tablas nuevas write-once; cero reescritura destructiva de historia. No backfill de magic `888111`/`11111`.
 
@@ -46,7 +46,7 @@ Baseline de source F-04: `xKoRx/symphony@d645ed6c2f438995d636a8213b1e4a3f5f26cbe
 
 ### Problema
 
-T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. T2 cerró compile EvaluationRef, caller Magic durable y HTTP E-04. **C4 (2026-09-12):** el PHYSICAL `0.2.97` / FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516` falló las 4 Apply attempts en `ParseMagicV1AllocationIdentity` porque Magic V1 parseaba `CanonicalStrategyID` como `<INSTRUMENT>_<D>_...` y F-01 emite una identidad opaca. Cero filas `strategy_magic`, cero seals, cero manifests — sin data repair. C4 congela autoridades explícitas de instrument/direction y separa Magic legado de allocated. T2.11–T2.13 siguen OPEN. E-04 runtime/deploy/join es one-shot separado después del golden Forge.
+T1 entregó allocator Magic V1, StrategyVersion, `HandoffManifestV1` producer y fakeconsumer. T2 cerró compile EvaluationRef, caller Magic durable y HTTP E-04. **C4 (2026-09-12):** el PHYSICAL `0.2.97` / FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516` falló las 4 Apply attempts en `ParseMagicV1AllocationIdentity` porque Magic V1 parseaba `CanonicalStrategyID` como `<INSTRUMENT>_<D>_...` y F-01 emite una identidad opaca. C4.1–C4.6 CLOSED @ `bba833d`. **C5 (2026-09-12):** manager review confirmó que el golden path de handoff sigue llamando `strategyIdentityFromCanonicalID` y parsea el ID opaco para instrument/direction/timeframe del manifiesto. C5 congela esas fields desde `sqx.strategies` por StrategyRef. T2.11–T2.13 siguen OPEN. E-04 runtime/deploy/join es one-shot separado después del golden Forge. F-04 no está physical-ready hasta C5+review.
 
 ### Veredicto central
 
@@ -251,7 +251,7 @@ MagicAllocatorV1.AllocateMagicV1(ctx, registryNamespace, strategyRef, canonicalS
 Retirar `ParseMagicV1AllocationIdentity` del path productivo. Tests que fabrican canonical `XAUUSD_L_H1_...` dejan de ser authority.
 
 > [!note]+ Implementation evidence (NORMAL C4, 2026-09-12)
-> Implementado en `xKoRx/symphony@bba833d` sobre `d645ed6` (pushed fast-forward). Q1–Q4 implementados tal cual se congelaron: step 0 SELECT `sqx.strategies` por StrategyRef (missing row → `ErrInvalidArguments`; canonical ≠ argumento → `ErrContractConflict`), mapper `MagicV1DirectionFromStrategy`, catálogo exacto TrimSpace-only, replay/conflict gate `DecodeMagicV1` III+D tras `AllocateMagic` (cubre replay, identity-race y UNKNOWN_COMMIT reconciliation), sin migration. **Residual flaggeado al manager:** el parser retirado del allocation path conserva un único consumer no-allocation — `forge_seal_handoff.go` `strategyIdentityFromCanonicalID` (bloque de identidad del manifest, fuera del scope C4 autorizado); con un ID F-01 opaco ese bloque falla cerrado en seal time, sin corromper datos; su corrección exige decidir la fuente durable del observed timeframe/side del manifest.
+> Implementado en `xKoRx/symphony@bba833d` sobre `d645ed6` (pushed fast-forward). Q1–Q4 implementados tal cual se congelaron. **C4.1–C4.6 CLOSED.** El residual de `forge_seal_handoff.go` `strategyIdentityFromCanonicalID` ya no es deuda abierta: lo posee **C5** (abajo). No reabrir allocation.
 
 ### Q4 — Replay / conflict
 
@@ -288,7 +288,100 @@ Producto: N StrategyRefs en la misma Apply cohort reciben N allocations independ
 
 ### E-04 (bloque aparte)
 
-T2.13 OPEN. Tras golden Forge auténtico: one-shot separado Echo E-04 runtime config/deploy + join real. No mezclar con C4. No modificar Echo ahora.
+T2.13 OPEN. Tras golden Forge auténtico: one-shot separado Echo E-04 runtime config/deploy + join real. No mezclar con C4 ni C5. No modificar Echo ahora.
+
+## F-04 C5 — Manifest Identity Semantics
+
+Defecto confirmado por manager review sobre `bba833d`: el path productivo `forge_seal_handoff_v1` todavía llama `strategyIdentityFromCanonicalID`, que usa `ParseMagicV1AllocationIdentity` y `strings.Split(canonical, "_")` para inferir instrument, direction y timeframe. Eso viola F-01 (CanonicalStrategyID opaco). C4 no se reabre. Magic V1 no cambia. Echo S0 no cambia.
+
+`DATABASE MIGRATION: NONE` para C5. `sqx.strategies` ya persiste `instrument`, `direction` y `timeframe` (brownfield + `AdoptStrategy` ← `StrategyIntent` ← `WorkflowSpec`). `strategyV2AttributeConflict` las trata como atributos inmutables. No hay `PERSISTENCE_AUTHORITY_GAP`. No inventar migration 017 ni columnas nuevas.
+
+C5 **no** extiende `StrategyIdentityView` (F-01 identity permanece Ref + CanonicalStrategyID).
+
+### S0 pin (consumo, no copia)
+
+Autoridad: `xKoRx/echo@91671f6f46ffa889a79aed0979cb3b4e5821ed33` `v3/sdk/contracts`. Forge importa `github.com/xKoRx/echo/v3/sdk/contracts`. No fork.
+
+| Wire | Frozen @ 91671f6f |
+|---|---|
+| `HandoffStrategy.InstrumentID` | `CheckSemanticKey` (non-empty, ≤128 bytes, sin NUL/controls) |
+| `HandoffStrategy.Timeframe` | required non-empty; **no** enum S0 |
+| `HandoffStrategy.Direction` | `OperationSide` = `LONG` \| `SHORT` only. Empty/`BOTH`/`SIDEWAYS`/cualquier otro → `INVALID_INPUT` `strategy.direction` |
+| `HandoffStrategy.CanonicalStrategyID` | opaco UTF-8 ≤1024; **no** se parsea |
+| `MemberProof` G11 | `requested_instrument == observed_instrument == strategy.instrument_id` (igualdad exacta, no EqualFold) |
+| `MemberProof` G12 | `requested_timeframe == observed_timeframe == strategy.timeframe` (igualdad exacta) |
+| `MemberProof` tested | `tested_executable_sha256` / `tested_inputs_sha256` == version sealed (G09); no identidad de instrumento |
+| Canonical body | `manifest.Encode()`; `PayloadDigest` distinto de `IdempotencyKey` |
+
+No existe `OperationSide=BOTH` ni representación alternativa (omitir direction, dual-manifest, map a LONG/SHORT).
+
+### Field → authority
+
+| Campo manifiesto | Autoridad | No es autoridad |
+|---|---|---|
+| `Strategy.CanonicalStrategyID` | fila `sqx.strategies.canonical_strategy_id` keyed by `StrategyRef`; debe igualar el carrier exacto | parse del ID, filename, object key, Temporal IDs |
+| `Strategy.InstrumentID` | `sqx.strategies.instrument` TrimSpace only | CanonicalStrategyID, catalog alias, TaskSpec Magic, WorkflowSpec (el spec es gate, no source) |
+| `Strategy.Timeframe` | `sqx.strategies.timeframe` TrimSpace only | CanonicalStrategyID token, path, filename, SQX/MQ5 parse (no existe readback de TF en F-04 handoff) |
+| `Strategy.Direction` | `sqx.strategies.direction` → `MagicV1DirectionFromStrategy` → wire `LONG`/`SHORT` | default LONG, CanonicalStrategyID, Magic digit as wire |
+| `MemberProof.RequestedInstrument` / `ObservedInstrument` | **la misma** fila `instrument` (byte-exact tras TrimSpace) | WorkflowSpec como valor de wire; HTM/SQX observed |
+| `MemberProof.RequestedTimeframe` / `ObservedTimeframe` | **la misma** fila `timeframe` | WorkflowSpec como valor de wire; HTM/SQX observed |
+| `MemberProof.Tested*` | StrategyVersion sealed (C2/C3 intactos) | ranking, latest |
+
+Lookup: `SELECT canonical_strategy_id, instrument, direction, timeframe FROM sqx.strategies WHERE id = $1`. Misma fila que C4 `magicV1StrategySemantics`, más `timeframe`. Interfaz nueva `StrategyManifestIdentityReader` (type-assert en `forge_seal_handoff_v1`, mismo patrón que `MagicAllocatorV1`). **No** mezclar con `LoadStrategyIdentity`.
+
+### OperationSide
+
+El helper vigente **no** asigna `LONG` incondicional: mapea digit 1→`LONG`, 2→`SHORT`, else fail. C5 congela el mismo comportamiento contra la fila durable:
+
+```text
+MagicV1DirectionFromStrategy(row.direction):
+  L|LONG → wire LONG
+  S|SHORT → wire SHORT
+  B|BOTH → FAIL CLOSED (no manifiesto, no POST)
+  empty / unknown / compound → FAIL CLOSED
+  never default LONG
+```
+
+### BOTH
+
+S0 no puede representar BOTH. C5 **no** cambia Echo. C5 **no** mapea BOTH a LONG ni SHORT.
+
+Un StrategyRef con `sqx.strategies.direction` ∈ {`B`,`BOTH`} **no** puede emitir un `HandoffManifestV1` válido. Fail closed terminal (`CONTRACT_CONFLICT`) **antes** de `Validate`/`Encode`/`PersistHandoffManifest`/`DeliverHandoff`. Allocation Magic V1 D=3 permanece (C4). PHYSICAL/golden de F-04 sigue exigiendo dirección única `L` o `S`. No es `STOP — S0_DIRECTION_MODEL_GAP`: el producto no exige ingestión BOTH bajo el pin S0 vigente; si un owner futuro quiere BOTH en Echo, eso es un cambio de contrato Echo aparte.
+
+### Requested vs observed
+
+S0 G11/G12 exigen igualdad exacta requested == observed == strategy identity. F-04 **no** tiene readback SQX/MQ5 de instrument/timeframe (el readback F-04 es MagicNumber). El requested/observed de MT5 HTM (`requestedObservedStructuralIdentity`) es F-02/reconcile, no MemberProof S0.
+
+Congelado:
+
+1. Identidad de wire (strategy + requested + observed) = fila durable.
+2. `ForgeSealHandoffRequest.RequestedInstrument` / `RequestedTimeframe` / `RequestedDirection` (este último se agrega desde `WorkflowSpec.Direction`) son **gate de campaña**, no autoridad. Tras TrimSpace deben igualar exactamente instrument/timeframe de la fila; direction del spec y de la fila deben mapear al mismo `MagicV1Direction`. Mismatch o vacío → `CONTRACT_CONFLICT`. Prohibido `EqualFold` (S0 es case-sensitive).
+3. No normalizar GOLD/xauusd, no ToUpper del timeframe al emitir (se emite el valor durable TrimSpace).
+4. Drift de negocio no se oculta con fallback.
+
+### Failure classes
+
+| Caso | Error | Manifest/POST |
+|---|---|---|
+| Missing strategy row | `ErrInvalidArguments` (igual C4) | cero |
+| Empty instrument/direction/timeframe | `ErrContractConflict` | cero |
+| Carrier canonical ≠ row canonical | `ErrContractConflict` | cero |
+| Spec instrument/timeframe/direction ≠ row | `ErrContractConflict` | cero |
+| BOTH | `ErrContractConflict` | cero |
+| Unknown direction | `ErrInvalidMagicNumber` wrapped conflict | cero |
+| S0 Validate fail | conflict vía `BuildHandoffManifest` | cero |
+| G22 empty membership | unchanged | cero manifests / cero POST |
+| G24 source-binding | unchanged | fail closed |
+
+### Replay / encoding
+
+Mismos inputs durables → mismos fields → `manifest.Encode()` byte-exact. IdempotencyKey ≠ PayloadDigest. INGESTED terminal. UNKNOWN_RECEIPT parked. Forge no escribe Echo DB.
+
+### Implementation scope (NORMAL)
+
+MUST files: `sqx/core/capabilities` (nueva reader, **no** extender `StrategyIdentityView`); `sqx/adapters/registry-postgres` SELECT + tests; `sqx/activities/worker/forge_seal_handoff.go` + `_test.go`; `sqx/core/domain/magic_v1.go` retirar `ParseMagicV1AllocationIdentity` / `isInstrumentShapedToken` cuando el consumer sea cero; `sqx/workflows/generic_workflow.go` sólo para pasar `spec.Direction` al request.
+
+NO-TOUCH: algoritmo C4 `AllocateMagicV1`; Magic V1 codec/mapper; F-01/F-02/F-03; Echo S0; migrations 015/016; `handoff_producer.go` field mapping S0 (cambia el input, no el envelope); B1/B2; T2.11/T2.12/T2.13.
 
 ## Stamp + readback contract
 
