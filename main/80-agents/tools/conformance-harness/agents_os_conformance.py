@@ -372,7 +372,7 @@ def _parse_index_tables(text: str) -> Dict[str, List[str]]:
                 if m:
                     sections["app-owned"].append(line.strip())
             else:
-                m = re.search(r"\[\[((?:80-agents|30-resources)/agents/skills)/([^/#|\]]+)/SKILL", line)
+                m = re.search(r"\[\[(?:80-agents/skills|30-resources/agents/skills)/([^/#|\]]+)/SKILL", line)
                 if m:
                     sections[current].append(line.strip())
     return sections
@@ -511,13 +511,16 @@ def sc_dual_registry_domain_sync(ctx: Ctx) -> Tuple[str, str, List[str]]:
     return "PASS", "clasificacion de dominio coincide skill a skill en ambos registros", evidence
 
 
-SECRET_KW = r"(?i)\b(password|passwd|pgpassword|secret|api[_-]?key|apikey|access[_-]?key|token|pwd|bearer)\b"
+SECRET_KW = r"(?i)\b(?:password|passwd|pgpassword|secret|api[_-]?key|apikey|access[_-]?key|token|pwd|bearer)\b"
 P_ASSIGN = re.compile(SECRET_KW + r"\s*[:=]\s*[\"']?([^\s\"'`]{6,})")
 P_BEARER = re.compile(r"(?i)\bBearer\s+([A-Za-z0-9_\-.=+/]{12,})")
 P_AKIA = re.compile(r"\bAKIA[0-9A-Z]{16}\b")
 P_QUOTED = re.compile(SECRET_KW + r"[^:=\n]{0,24}[\"'`]([A-Za-z0-9][A-Za-z0-9_\-.:/]{11,})[\"'`]")
 P_PRIVKEY = re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")
-P_PLACEHOLDER = re.compile(r"(^\s*<|\{\{|\$\(|\}\}|secret-ref|example|changeme|your[-_]|xxxx|\.\.\.|^\s*\{)")
+# Placeholders/templates that are never values: angle-bracket refs, templating,
+# secret-refs, examples, code fragments (trailing ')'), version templates.
+P_PLACEHOLDER = re.compile(
+    r"(^\s*<|\{\{|\$\(|\}\}|secret-ref|example|changeme|your[-_]|xxxx|\.\.\.|^\s*\{|\)$|[Xx]\.[Yy]\.[Zz]\b)")
 P_UUID = re.compile(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 
 
