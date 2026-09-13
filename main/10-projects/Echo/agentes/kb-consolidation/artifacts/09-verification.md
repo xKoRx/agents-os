@@ -1,13 +1,13 @@
 ---
 agent: documentation-verifier
-role: Adversarial Verification (cycle 1/2)
-task_id: KBC-G
-status: PARTIAL
-baseline: echo f7ddea18 · symphony 9fad768c · vault ca473eeb
+role: Adversarial Verification (cycle 2/2, final gate)
+task_id: KBC-G2
+status: PASS (with documented unknowns)
+baseline: echo f7ddea18 · symphony 9fad768c (1 dirty file) · vault 82852b3 (cycle 2; cycle 1 = ca473eeb)
 inputs: artifacts 01-06, repos RO, contratos frozen
 scope: refutación adversarial de la propuesta wiki
 started_at: 2026-09-13T00:55:00-03:00
-updated_at: 2026-09-13T01:16:00-03:00
+updated_at: 2026-09-13T01:36:00-03:00
 ---
 
 # KBC-G — Adversarial Verification
@@ -114,3 +114,41 @@ Intentar refutar claim por claim la propuesta wiki de KBC-F (`06-wiki-draft-plan
 - **A forge cartographer:** corregir artifact 03 (v1.44.1→v1.35.0 en sqx/go.mod; 1.44.1 es root/legacy).
 - **A orchestrator:** los 2 unknowns de supersede (32 deudas/hitos; GUIA_WORKER) requieren una micro-tarea propia después de publicar páginas, antes del paso 9 del manifest E; el hallazgo de seguridad `APIs.md` de la fase E sigue pendiente de decisión humana, fuera de KBC.
 - Verificación ejecutada 100% read-only sobre baselines limpios/reconciliados; dirty file de symphony intocado; única escritura: este artifact.
+
+## Cycle 2 (final gate)
+
+Tarea focalizada (planner, fase G ciclo 2): re-verificar las 3 correcciones contra source, chequear que no se introdujeron contradicciones nuevas, confirmar estado de los 4 UNKNOWNs del ciclo 1 y emitir el gate de publicación. No se re-verificó el resto (registro ciclo 1 intacto).
+
+### Re-verificación de las 3 correcciones (contra source)
+
+| Fix | Corrección aplicada | Veredicto | Evidencia source re-verificada en este ciclo |
+|---|---|---|---|
+| F-1 | Temporal SDK Forge = v1.35.0 (no v1.44.1) | **PASS** | symphony @ 9fad768c, dirty file = sólo fixture JSON (no go.mod): `git show HEAD:sqx/go.mod` línea 24 = `go.temporal.io/sdk v1.35.0`; root `go.mod:24` = v1.44.1 (módulo legacy feeds, no Forge). Corregido en 03 L70 (§8) + L130 (Evidence) + L175 (`## Corrections`) y en 06 L202 + L448 |
+| F-2 | Topics canónicos = 17 (no 18) | **PASS** | echo @ f7ddea18: `v3/sdk/domain/snapshots.go` struct `Topics` contiene EXACTAMENTE 17 entradas en L254-270 (grep único 1:1 con ese rango; 2 DEPRECATED: account-snapshots, instrument-snapshots); L314 = comentario "Publicado en el tópico: echo.system-events.v1" (confirma spot-check del cartographer). Corregido en 02 L74 + L125 + L153 y en 06 L106 + L449 |
+| F-3 | Filas Echo en §Arquitectura de producto = 13 (no 11) | **PASS** | `30-resources/applications/00-index.md` §Arquitectura de producto contada una a una en HEAD vault: 2 contratos V1 + 2 Fable reviews + 3 auditorías + 2 Fuentes + F-01…F-04 = 13 filas (coincide con la suma de categorías del propio draft). Corregido en 06 L409 + L450 |
+
+### Chequeo de contradicciones nuevas
+
+- **Resultado: NO hay contradicciones nuevas.** Grep exhaustivo de datos viejos en 02/03/06: "v1.44.1" aparece sólo con valor explicativo correcto (03 L70) o dentro de registros de corrección (03 L175, 06 L448); "18 topics" sólo en registros de corrección (02 L153, 06 L449); "11 filas" sólo en registro de corrección (06 L450). Ninguna afirmación vigente conserva el dato viejo.
+- Coherencia interna draft↔artifacts verificada: v1.35.0 (03 §8/Evidence = 06 P3 L202), 17 topics (02 Findings/Evidence = 06 P2 L106), 13 filas (06 Index & Log Updates L409 = conteo real del índice).
+- Nota de cascada del draft (`## Corrections (cycle 1)`, 06 ~L451): correcta — los conteos "16 MOVEs/16 páginas" y "16 apps / 16−2=14" son independientes de los 3 datos corregidos y ya pasaron verificación en ciclo 1 (C44/C45); no requieren re-edición.
+- Menor, no bloqueante: los fix-logs de 02 L153 y 06 L449 etiquetan el fix F-2 como "ciclo 2"; corresponde al momento de aplicación (tras el reporte del ciclo 1), no a un ciclo de verificación adicional. Trazabilidad intacta, no corregir.
+- Drift de vault re-chequeado para el gate: HEAD avanzó ca473eeb → 82852b3 ("sync 01:30"); `git log/diff ca473eeb..82852b3 -- 30-resources/applications/` = 0 commits, orígenes de MOVEs intactos (spot-check echo-core.md/echo-forge.md presentes). Working tree del vault limpio; los artifacts corregidos están commiteados.
+
+### Estado de los 4 UNKNOWNs del ciclo 1
+
+- Los 4 SIGUEN UNKNOWN, documentados y no resueltos en este ciclo (ni en el draft): (1) cobertura de los 32 deudas/hitos de la auditoría maestra pre-supersede — el draft los mantiene como gate de supersede (06 ~L470), no de publicación; (2) exactitud de `GUIA_WORKER_TEMPORAL_MT5.md` — el draft la mantiene fuera de alcance (pasos 7-8 del manifest E, gate G/H); (3) número exacto de inbound links de `echo-forge.md` (grep sin Graphify) — el draft mantiene el reconto con Graphify al publicar; (4) G7 observability cross-boundary — sigue "(unknown)" en 06 L302. Ninguno fue "cerrado" por aserción sin evidencia: correcto.
+
+## Publication Gate
+
+- **Veredicto global final: PASS con unknowns documentados.** Las 3 correcciones del ciclo 1 verifican PASS contra source y los artifacts corregidos no introdujeron contradicciones nuevas. **La publicación PROCEDE** (fase H), sujeta a las condiciones vigentes:
+- **Condición 1 — revalidar volátiles contra HEAD al publicar:** HEAD vault ya avanzó (ca473eeb → 82852b3, drift forward); a este HEAD nada tocó `30-resources/applications/` (verificado), pero la fase H debe revalidar las secciones DOCUMENTATION_RELEVANT contra el HEAD vigente al ejecutar la publicación y fijar `last_verified` sólo con verificación real (regla del draft).
+- **Condición 2 — supersedes sólo tras cobertura de claims únicos:** los supersedes de las 5 históricas requieren PASS de esta verificación (otorgado) MÁS la cobertura claim-por-claim de los 32 deudas/hitos (UNKNOWN vigente); publicar páginas no requiere ese chequeo, marcar superseded sí.
+- **Condición 3 — movimiento de índice raíz en el mismo cambio:** catálogo raíz (filas echo-core/echo-forge → puntero), §Arquitectura de producto (13 filas Echo → subdominio), contadores (16 apps → 14 + subdominio), log.md y los MOVEs deben ejecutarse en un único cambio atómico, como establece el draft (06 Index & Log Updates).
+- **Condición 4 (heredada):** G7 y los 2 unknowns de supersede quedan documentados como unknowns legítimos en las páginas publicadas (no inventar cierre); `GUIA_WORKER_TEMPORAL_MT5` sigue gated a verificación contra `sqx/cmd/sqx-mt5-worker` real (pasos 7-8 del manifest E).
+- Baselines de repos sin cambios desde ciclo 1 (echo f7ddea18 clean; symphony 9fad768c con el mismo 1 dirty file, intocado); ninguna afirmación de esta verificación depende de working tree dirty.
+
+## Handoff (cycle 2)
+
+- **A orchestrator/parent:** gate otorgado; liberar fase H (vault-publisher-reconciler → `10-publication-plan.md`) con las 4 condiciones de arriba; agenda después la micro-tarea de cobertura de deudas/hitos pre-supersede.
+- **A vault-publisher-reconciler (fase H):** los claims C1-C51 de la tabla del ciclo 1 quedan como checklist ya verificada a baseline de repos (f7ddea18 / 9fad768c); sólo el vault requiere revalidación de volátiles contra HEAD al publicar.
