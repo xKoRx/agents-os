@@ -42,7 +42,8 @@ Dejar Echo y Echo Forge documentados según su realidad implementada actual, la 
 
 ## 📊 Estado actual
 
-- **FASE A EN CURSO** — knowledge-architect lanzado (primer especialista). Campaña NEW (sin trabajo previo).
+- **FASE B EN CURSO** — echo-functional-cartographer lanzado. Fase A COMPLETE: topología aprobada = subdominio `30-resources/applications/echo/` con `00-index.md` propio; páginas objetivo `echo-core.md`, `echo-forge.md`, frontera `Echo — Forge Integration Boundary` (compartida), contratos F-01…F-04 + V1 se mueven intactos como source-of-record; 5 auditorías datadas → superseded tras verification PASS. Detalle y handoff: `agentes/kb-consolidation/artifacts/01-knowledge-architecture.md`.
+- Riesgos registrados en artifact: vault HEAD real `09746b3` (sync commits ajenos, reconcilia fase H); movimiento ~17 páginas exige actualizar índice raíz en el mismo cambio; symphony dirty → sólo lectura; skills INDEX declara 3 app-owned vs 21 reales en symphony (fases I/J); Graphify CLI no disponible (inventario por búsqueda enfocada).
 - `MAX_ACTIVE_SUBAGENTS = 1` — ejecución estrictamente secuencial. El planner (esta nota) es single-writer del parent orchestrator.
 - Artefacts de especialistas: `10-projects/Echo/agentes/kb-consolidation/artifacts/` (READ MANY / WRITE ONE por especialista; `filesystem_enforcement: PROMPT_ONLY`).
 
@@ -59,8 +60,8 @@ Reglas de repos: INPUTS READ ONLY. Sin reset/clean/stash/rebase/checkout destruc
 ## ✅ Tareas
 
 > [!example]- Fuente de tareas — pipeline secuencial
-> - [/] A — knowledge-architect: topología documental → artifact `01-knowledge-architecture.md` #owner/agent #area/echo
-> - [ ] B — echo-functional-cartographer: cartografía Echo @ baseline → `02-echo-cartography.md` #owner/agent #area/echo
+> - [x] A — knowledge-architect: topología documental → artifact `01-knowledge-architecture.md` #owner/agent #area/echo
+> - [/] B — echo-functional-cartographer: cartografía Echo @ baseline → `02-echo-cartography.md` #owner/agent #area/echo
 > - [ ] C — forge-functional-cartographer: cartografía Forge @ baseline → `03-forge-cartography.md` #owner/agent #area/echo
 > - [ ] D — echo-forge-integration-cartographer: frontera contractual/implementada → `04-echo-forge-boundary.md` #owner/agent #area/echo
 > - [ ] E — legacy-doc-curator: clasificación CANONICAL/MERGE/SUPERSEDED/ARCHIVE/DELETE + manifest → `05-legacy-doc-audit.md` #owner/agent #area/echo
