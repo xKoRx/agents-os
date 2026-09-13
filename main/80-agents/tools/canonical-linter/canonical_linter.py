@@ -104,7 +104,8 @@ THRESHOLDS = {
                       "estructurales (SKILL/00-index/log/...) se anotan como "
                       "mandados por autoridad en la evidencia",
     "cl08_alias_match": "exacto (string), sobre S2 y 80-agents/memory/public",
-    "cl10": {"name_regex": "archiv (case-insensitive)", "min_notes": CL10_MIN_NOTES,
+    "cl10": {"name_regex": "archiv (case-insensitive) sobre cualquier componente del path",
+             "min_notes": CL10_MIN_NOTES,
              "min_retired_ratio": CL10_MIN_RATIO,
              "excluded_prefixes": list(CL10_EXCLUDED_PREFIXES),
              "excluded_dir_names": sorted(CL10_EXCLUDED_DIR_NAMES),
@@ -942,7 +943,7 @@ def cl_10(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
         if os.path.basename(d) in CL10_EXCLUDED_DIR_NAMES:
             continue  # provenance de la wiki: superseded es lifecycle normal allí
         retired = [r for r in rels if (lambda s: s["no_vigente"] or s["en_retiro"])(ctx.life_state(r))]
-        name_hit = bool(CL10_NAME_RE.search(os.path.basename(d)))
+        name_hit = any(CL10_NAME_RE.search(part) for part in d.split("/"))
         ratio_hit = len(rels) >= CL10_MIN_NOTES and (len(retired) / len(rels)) >= CL10_MIN_RATIO
         if not (name_hit or ratio_hit):
             continue

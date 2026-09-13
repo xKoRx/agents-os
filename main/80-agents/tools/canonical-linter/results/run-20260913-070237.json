@@ -1,7 +1,7 @@
 {
-  "run": "2026-09-13T07:01:47",
+  "run": "2026-09-13T07:02:37",
   "tool": "canonical-linter",
-  "git_head": "bf0b45e78f2fcd20b56cfd9c4ce0d9e316452d72",
+  "git_head": "073c87cb011adb461a51d253e00a05567707bde8",
   "vault_root_arg": "/home/kor/secondbrain/main",
   "model": {
     "no_vigente": {
@@ -1124,13 +1124,90 @@
     {
       "check_id": "CL-10",
       "category": "ARCHIVE",
-      "verdict": "PASS",
+      "verdict": "WARN",
       "severity": "WARN",
-      "findings": [],
+      "findings": [
+        {
+          "check_id": "CL-10",
+          "category": "ARCHIVE",
+          "status": "WARN",
+          "severity": "WARN",
+          "path": "archive/projects/meli/Onboarding Signals/",
+          "line": null,
+          "observed": "directorio con forma de archive fuera de 40-archive/ (1 nota(s); estados {\"archived\": 1})",
+          "expected": "la retención histórica vive en 40-archive/ (o raíz declarada por autoridad); hoy entra al corpus Graphify como notas vivas",
+          "evidence": "disparador: nombre; notas: archive/projects/meli/Onboarding Signals/Onboarding Signals.md",
+          "confidence": "EXACT",
+          "recommended_action": "A1: registrar como hallazgo de sistema; el owner decide migrar a 40-archive/, declarar la raíz o excluirla; nunca auto-corregido",
+          "authority": "80-agents/agents-os/agents-os.md (estructura informativa, sin 40-archive); .graphifyignore (no excluye esta raíz); materialize_schema_note.py (sólo conoce 40-archive)"
+        },
+        {
+          "check_id": "CL-10",
+          "category": "ARCHIVE",
+          "status": "WARN",
+          "severity": "WARN",
+          "path": "archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/",
+          "line": null,
+          "observed": "directorio con forma de archive fuera de 40-archive/ (6 nota(s); estados {\"active\": 5, \"archived\": 1})",
+          "expected": "la retención histórica vive en 40-archive/ (o raíz declarada por autoridad); hoy entra al corpus Graphify como notas vivas",
+          "evidence": "disparador: nombre; notas: archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Auditoría independiente — Informe del doble dispatch.md, archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Descripción PR — rio-playmaker — Hotfix doble dispatch (entrega descartada).md, archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Descripción PR — rio-playmaker — Serialización Fury Lock.md, archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Playmaker — Doble dispatch al avanzar batches.md, archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Prompt maestro — Auditoría independiente del doble dispatch.md, archive/projects/meli/Playmaker — Doble dispatch al avanzar batches/Prompt maestro — Reemplazo de PESSIMISTIC_WRITE por Fury Lock — PR 1079.md",
+          "confidence": "EXACT",
+          "recommended_action": "A1: registrar como hallazgo de sistema; el owner decide migrar a 40-archive/, declarar la raíz o excluirla; nunca auto-corregido",
+          "authority": "80-agents/agents-os/agents-os.md (estructura informativa, sin 40-archive); .graphifyignore (no excluye esta raíz); materialize_schema_note.py (sólo conoce 40-archive)"
+        },
+        {
+          "check_id": "CL-10",
+          "category": "ARCHIVE",
+          "status": "WARN",
+          "severity": "WARN",
+          "path": "archive/projects/meli/SIG-610 — Seguimiento de inactivación/",
+          "line": null,
+          "observed": "directorio con forma de archive fuera de 40-archive/ (1 nota(s); estados {\"archived\": 1})",
+          "expected": "la retención histórica vive en 40-archive/ (o raíz declarada por autoridad); hoy entra al corpus Graphify como notas vivas",
+          "evidence": "disparador: nombre; notas: archive/projects/meli/SIG-610 — Seguimiento de inactivación/SIG-610 — Seguimiento de inactivación.md",
+          "confidence": "EXACT",
+          "recommended_action": "A1: registrar como hallazgo de sistema; el owner decide migrar a 40-archive/, declarar la raíz o excluirla; nunca auto-corregido",
+          "authority": "80-agents/agents-os/agents-os.md (estructura informativa, sin 40-archive); .graphifyignore (no excluye esta raíz); materialize_schema_note.py (sólo conoce 40-archive)"
+        },
+        {
+          "check_id": "CL-10",
+          "category": "ARCHIVE",
+          "status": "WARN",
+          "severity": "WARN",
+          "path": "archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/",
+          "line": null,
+          "observed": "directorio con forma de archive fuera de 40-archive/ (1 nota(s); estados {\"review\": 1})",
+          "expected": "la retención histórica vive en 40-archive/ (o raíz declarada por autoridad); hoy entra al corpus Graphify como notas vivas",
+          "evidence": "disparador: nombre; notas: archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes/SIG-610 — ComponentRun de inactivación en Playmaker.md",
+          "confidence": "EXACT",
+          "recommended_action": "A1: registrar como hallazgo de sistema; el owner decide migrar a 40-archive/, declarar la raíz o excluirla; nunca auto-corregido",
+          "authority": "80-agents/agents-os/agents-os.md (estructura informativa, sin 40-archive); .graphifyignore (no excluye esta raíz); materialize_schema_note.py (sólo conoce 40-archive)"
+        },
+        {
+          "check_id": "CL-10",
+          "category": "ARCHIVE",
+          "status": "WARN",
+          "severity": "WARN",
+          "path": "archive/projects/meli/Vulnerabilidades WebSec — RIO Foundation/",
+          "line": null,
+          "observed": "directorio con forma de archive fuera de 40-archive/ (1 nota(s); estados {\"archived\": 1})",
+          "expected": "la retención histórica vive en 40-archive/ (o raíz declarada por autoridad); hoy entra al corpus Graphify como notas vivas",
+          "evidence": "disparador: nombre; notas: archive/projects/meli/Vulnerabilidades WebSec — RIO Foundation/Vulnerabilidades WebSec — RIO Foundation.md",
+          "confidence": "EXACT",
+          "recommended_action": "A1: registrar como hallazgo de sistema; el owner decide migrar a 40-archive/, declarar la raíz o excluirla; nunca auto-corregido",
+          "authority": "80-agents/agents-os/agents-os.md (estructura informativa, sin 40-archive); .graphifyignore (no excluye esta raíz); materialize_schema_note.py (sólo conoce 40-archive)"
+        }
+      ],
       "details": "inventario de directorios con forma de archive fuera de 40-archive/ (A1: report-only, sin FAIL posible)",
       "skip_reason": null,
       "dedup_cites": [],
-      "evidence": []
+      "evidence": [
+        "archive/projects/meli/Onboarding Signals: 1 nota(s); estados: {\"archived\": 1}; disparador: nombre del directorio",
+        "archive/projects/meli/Playmaker — Doble dispatch al avanzar batches: 6 nota(s); estados: {\"active\": 5, \"archived\": 1}; disparador: nombre del directorio",
+        "archive/projects/meli/SIG-610 — Seguimiento de inactivación: 1 nota(s); estados: {\"archived\": 1}; disparador: nombre del directorio",
+        "archive/projects/meli/SIG-610 — Seguimiento de inactivación/agentes: 1 nota(s); estados: {\"review\": 1}; disparador: nombre del directorio",
+        "archive/projects/meli/Vulnerabilidades WebSec — RIO Foundation: 1 nota(s); estados: {\"archived\": 1}; disparador: nombre del directorio"
+      ]
     },
     {
       "check_id": "CL-11",
@@ -14310,11 +14387,11 @@
     }
   ],
   "counts": {
-    "pass": 7,
+    "pass": 6,
     "fail": 5,
-    "warn": 8,
+    "warn": 9,
     "skip": 0,
-    "findings": 998
+    "findings": 1003
   },
   "observations": [
     "A8: fixtures sintéticas excluidas explícitamente del corpus (80-agents/skills/_shared/fixtures/, 80-agents/skills/agents-os-entity-lifecycle/scripts/fixtures/); iter_vault_md del harness no las excluye y .graphifyignore tampoco -> diferencia registrada (hallazgo de sistema, no auto-correctible)",
@@ -14341,7 +14418,7 @@
     "cl06_whitelist": "ninguna: toda colisión casefold se reporta; los grupos estructurales (SKILL/00-index/log/...) se anotan como mandados por autoridad en la evidencia",
     "cl08_alias_match": "exacto (string), sobre S2 y 80-agents/memory/public",
     "cl10": {
-      "name_regex": "archiv (case-insensitive)",
+      "name_regex": "archiv (case-insensitive) sobre cualquier componente del path",
       "min_notes": 2,
       "min_retired_ratio": 0.5,
       "excluded_prefixes": [
