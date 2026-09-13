@@ -47,8 +47,19 @@ updated: "2026-09-12"
 
 ## 📊 Estado actual
 
-- **Baseline:** commit `a6a503f` (2026-09-12). Bootstrap vigente ejecutado en la sesión; club cerrado `always` verificado limpio (1 pública + 1 interna global).
-- **Fase:** auditorías A/B/C en curso (Contract Auditor, Domain Isolation Auditor, Conformance Scenario Designer en paralelo).
+- **Entregado y verificado (2026-09-13):** harness operativo en `80-agents/tools/conformance-harness/` (entrypoint `agents_os_conformance.py` + `rules.py` + `README.md`), L0/L1/L2 implementados, adversarial verification en 2 rondas con defectos corregidos (máx 2 ciclos respetado). Full run gated: `PASS 4 · FAIL 1 · WARN 4 · SKIP 17`; matriz por escenario: 16 PASS + 1 FAIL (hallazgo real del sistema) + 8 WARN (ambigüedades declaradas) + L2 PASS. Comando: `python3 80-agents/tools/conformance-harness/agents_os_conformance.py [--layer|--scenario|--json|--no-live]`.
+- **Baseline de contexto capturado (baseline-only):** always-load ≈ 6.878 tok · pack meli ≈ 2.017 tok · pack aranea ≈ 1.197 tok (chars/4, sin tokenizador de autoridad).
+
+## 🚨 Findings sobre Agents-OS (registrados, NO auto-corregidos)
+
+- **F1 — MEDIUM — Conformance failure demostrada (C17):** `validate_schema_contract.py` en rojo (`errors=1`): "creation entrypoint bypasses materializer: 80-agents/skills/agents-os-skill-authoring/SKILL.md" — la skill está declarada como creation entrypoint en schema-contract.md pero no referencia `materialize_schema_note.py`. Escenario: SCHEMA-VALIDATOR-GREEN (L0). Estado observado verde al 2026-09-09 (nota cockpit); drift posterior del corpus. Acción recomendada: decidir owner — referenciar el materializador en la skill o retirar la declaración de entrypoint; re-verde antes de confiar en el gate.
+- **F2 — WARN — Ambigüedad contractual DEFAULT (C10, Hallazgo 6):** la cláusula de evidencia de superficie del paso 6 no distingue evidencia ambiental (MCPs aranea-* siempre conectados a nivel máquina) de evidencia de tarea; puede colapsar DEFAULT→ARANEA. Escenarios: COLD-DEFAULT, SESSION-SURFACE-EXPOSURE. Acción recomendada: ADR que fije la lectura; hasta entonces el harness la registra como WARN.
+- **F3 — WARN — Vocabulario load_policy sin árbitro (C09, Hallazgos 7/11/12):** tres enumeraciones coexisten (constitución `when_*_loaded|manual`; bootstrap lista 4; uso real incluye `when_area_loaded`, `when_echo_forge_loaded`, `when_entity_loaded`, `when_installing_graphify_obsidian`); nota VPN `when_area_loaded` sin campo `area`; 3 notas activas con `area: "[[Echo Forge]]"` no canónica. Escenario: LOAD-POLICY-VOCABULARY, ACTIVE-MEMORY-DOMAIN-PURITY. Acción recomendada: unificar vocabulario por ADR y normalizar `area`.
+- **F4 — LOW — Redacción ambigua en memoria interna:** `80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-c3-0290-mt5-build-blocked.md:38` registra UUIDs consumidos tras la palabra "token" (identificador vs credencial). Escenario: NO-SECRETS-IN-MARKDOWN (WARN, 0 valores con forma de credencial). Acción recomendada: rewording en la próxima pasada de memoria.
+
+## 🧩 Artifacts
+
+- `80-agents/tools/conformance-harness/artifacts/contract-audit.md` (C01-C17) · `domain-isolation-audit.md` (17 hallazgos) · `conformance-scenarios.md` (25 escenarios) · `conformance-spec-v1.md` (test model) · `adversarial-verification.md` (ronda 1) · `adversarial-verification-r2.md` (ronda 2).
 - Artifacts y código del harness en `80-agents/tools/conformance-harness/` (audits, scenarios, spec, resultados de runs).
 
 ## 🧱 Entrega de desarrollo
@@ -85,8 +96,8 @@ views:
 > - [x] T2 — Reconciliación parent → conformance-spec-v1 (test model V1) #owner/agent #type/research #area/personal
 > - [x] T3 — Harness Implementer subagent → entrypoint L0/L1/L2 #owner/agent #type/dev #area/personal
 > - [x] T4 — Suite ejecutada y reproducible: full-run gated (PASS 3/FAIL 1/WARN 4/SKIP 17) + matriz individual (16 PASS/1 FAIL/8 WARN) #owner/agent #type/dev #area/personal
-> - [/] T5 — Adversarial Verifier fresco + correcciones derivadas #owner/agent #type/research #area/personal
-> - [ ] T6 — Documentación mínima, findings registry, entrega final y cierre con feedback #owner/agent #type/admin #area/personal
+> - [x] T5 — Adversarial Verifier fresco + correcciones derivadas (ronda 1: D1/D2/D3; ronda 2: N1/N2/N3) #owner/agent #type/research #area/personal
+> - [x] T6 — Documentación mínima, findings registry, entrega final y cierre con feedback #owner/agent #type/admin #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
