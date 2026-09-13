@@ -5,7 +5,7 @@ name: aranea-mcps-expert
 description: Selecciona y gobierna el uso de las capabilities MCP del homelab Aranea bajo el dominio aranea-agent-dev, que es su única puerta de activación. Cargar antes de usar cualquier MCP aranea-* para elegir ambiente, capability, autoridad y runbook correctos; nunca aplica a MELI ni a sistemas corporativos.
 scope: area
 created: "2026-09-11"
-updated: "2026-09-12"
+updated: "2026-09-13"
 area: "[[Aranea]]"
 entities:
   - "[[Aranea]]"
@@ -15,6 +15,7 @@ related:
   - "[[aranea-postgres-mcp]]"
   - "[[aranea-mongodb-mcp]]"
   - "[[aranea-hasura-mcp]]"
+  - "[[aranea-kafka-mcp]]"
   - "[[aranea-mcp-capability-plane]]"
 aliases:
   - aranea-mcps-expert
@@ -25,6 +26,7 @@ aliases:
   - mcp postgres
   - mcp mongo
   - mcp hasura
+  - mcp kafka
 load_policy: manual
 indexable: true
 index_priority: high
@@ -42,7 +44,7 @@ tags:
 
 Seleccionar cómo acceder a infraestructura y datos de Aranea mediante su capability plane MCP sin repartir credenciales finales ni mezclar ambientes.
 
-Activar bajo el dominio [[aranea-agent-dev]] —su única puerta de entrada— antes de usar cualquier capability `aranea-*`, o cuando una skill de dominio determine que necesita acceso MCP a un host, PostgreSQL, MongoDB o Hasura de Aranea. No activar para trabajo local que no requiere MCP. **MUST NOT activate for Mercado Libre / MELI infrastructure, databases, repositories, hosts, credentials or corporate systems** (dominio de [[meli-agent-dev]]).
+Activar bajo el dominio [[aranea-agent-dev]] —su única puerta de entrada— antes de usar cualquier capability `aranea-*`, o cuando una skill de dominio determine que necesita acceso MCP a un host, PostgreSQL, MongoDB, Hasura o Kafka de Aranea. No activar para trabajo local que no requiere MCP. **MUST NOT activate for Mercado Libre / MELI infrastructure, databases, repositories, hosts, credentials or corporate systems** (dominio de [[meli-agent-dev]]).
 
 ## Canonical Authority
 
@@ -52,6 +54,7 @@ Esta skill es el router agent-facing. Los procedimientos mecánicos viven exclus
 - `30-resources/runbooks/aranea-postgres-mcp.md` → [[aranea-postgres-mcp]]
 - `30-resources/runbooks/aranea-mongodb-mcp.md` → [[aranea-mongodb-mcp]]
 - `30-resources/runbooks/aranea-hasura-mcp.md` → [[aranea-hasura-mcp]]
+- `30-resources/runbooks/aranea-kafka-mcp.md` → [[aranea-kafka-mcp]]
 - `30-resources/runbooks/aranea-mcp-capability-plane.md` → [[aranea-mcp-capability-plane]]
 
 La arquitectura/deployment común para **agregar o reemplazar capabilities** vive en [[AGENT-PLATFORM - MCP Access Plane - Architecture]]. No redescubrirla desde cero salvo evidencia material de drift.
@@ -81,13 +84,16 @@ Si el target es MELI/corporativo, detener esta skill y usar las autoridades corp
 | Echo Forge MongoDB lectura o mutación de desarrollo | DEV | `aranea-mongo-forge-rw` | read/write; puede usarse para lecturas DEV sin mutar |
 | Hasura inspección administrativa productiva | PROD | `aranea-hasura-prod-ro` | read-only estricto; exactamente 4 tools Hasura server-side |
 | Hasura administración de desarrollo | DEV | `aranea-hasura-dev-admin` | admin Hasura; mutaciones sólo con scope/post-condición explícitos |
+| Kafka inspección o administración de desarrollo | DEV | `aranea-kafka-dev-admin` | admin Kafka DEV; topics/configs/partitions/produce-consume/groups/offsets |
 | runtime/logs/archivos workers | según perfil | `aranea-ssh` | viewer para evidencia; operator cuando la operación necesita escritura/ejecución |
 
 **Invariante:** elegir ambiente antes que autoridad. No cambiar de ambiente para conseguir más permisos ni usar una capability DEV para verificar estado PROD.
 
+Kafka PROD todavía no tiene capability certificada. `aranea-kafka-prod-ro` y `aranea-kafka-prod-ops` son nombres reservados para el workstream PROD diferido; no asumir que existen ni usar DEV como sustituto.
+
 ### 3. Elegir autoridad mínima dentro del ambiente correcto
 
-En SSH, viewer es default para evidencia y operator sólo si la operación exige mutación/ejecución. En data MCPs no inventar capabilities nuevas como workaround. En Hasura, PROD y DEV son contratos distintos: PROD es inspección estricta; DEV puede administrar metadata/DDL cuando la tarea lo requiere.
+En SSH, viewer es default para evidencia y operator sólo si la operación exige mutación/ejecución. En data MCPs no inventar capabilities nuevas como workaround. En Hasura, PROD y DEV son contratos distintos: PROD es inspección estricta; DEV puede administrar metadata/DDL cuando la tarea lo requiere. En Kafka, la capability certificada actual es DEV admin: usar lecturas cuando basten y reservar mutaciones para targets explícitos, con blast radius y post-condición definidos.
 
 Para Hasura PROD, la superficie certificada es exclusivamente:
 
@@ -106,12 +112,13 @@ get_version
 - PostgreSQL → [[aranea-postgres-mcp]]
 - MongoDB → [[aranea-mongodb-mcp]]
 - Hasura → [[aranea-hasura-mcp]]
+- Kafka → [[aranea-kafka-mcp]]
 
 Si se está incorporando una familia nueva, la arquitectura común se toma de [[AGENT-PLATFORM - MCP Access Plane - Architecture]] y sólo se documenta aparte lo específico del servicio.
 
 ### 5. Acotar y ejecutar
 
-Fijar host/perfil o database/schema/table/collection/metadata object. Ejecutar sólo la operación necesaria. Para mutaciones, identificar primero el target en el mismo ambiente, fijar blast radius, declarar post-condición, ejecutar y verificar en ese mismo ambiente.
+Fijar host/perfil o database/schema/table/collection/metadata object/cluster/topic/group. Ejecutar sólo la operación necesaria. Para mutaciones, identificar primero el target en el mismo ambiente, fijar blast radius, declarar post-condición, ejecutar y verificar en ese mismo ambiente.
 
 ### 6. Tratar boundaries como evidencia
 
@@ -121,7 +128,8 @@ Fijar host/perfil o database/schema/table/collection/metadata object. Ejecutar s
 - timeout → reducir scope/optimizar antes de ampliar policy;
 - una capability configurada pero sin tools expuestas no prueba fallo del servicio destino: primero aislar cliente/auth/handshake;
 - en Hasura, `tools/list` server-side es evidencia de autoridad: no asumir que `--read-only` o el nombre del container hacen segura una capability PROD;
-- `mcp_auth` visible en un cliente no cuenta como tool Hasura mientras no aparezca en `tools/list` server-side del backend.
+- `mcp_auth` visible en un cliente no cuenta como tool Hasura mientras no aparezca en `tools/list` server-side del backend;
+- en Kafka, `alter_configs` debe conservar semántica incremental certificada; si cambia configs no objetivo, detener mutaciones y tratar la capability como fuera de contrato.
 
 ## Output
 
@@ -129,7 +137,7 @@ Fijar host/perfil o database/schema/table/collection/metadata object. Ejecutar s
 Environment: <PROD|DEV|runtime>
 Capability: <aranea-*>
 Authority: <viewer|operator|RO|RW|admin>
-Target: <host/profile/database/collection/schema/metadata-object>
+Target: <host/profile/database/collection/schema/metadata-object/cluster/topic/group>
 Operation: <acción ejecutada>
 Evidence: <resultado material>
 Mutation: <none | target + post-condition + same-environment verification>
@@ -147,5 +155,6 @@ Boundary: <none | policy/error relevante>
 - No saltar el proxy MCP ni usar acceso directo agent-first cuando existe capability canónica que cubre la acción.
 - No cambiar ACLs/privilegios, publicar backends internos ni crear side channels como workaround automático.
 - Hasura PROD no expone SQL ni mutación de metadata; cualquier tarea que los requiera debe detenerse o moverse al ambiente/flujo correcto, no ampliar la capability dinámicamente.
+- Kafka DEV admin no autoriza operaciones sobre Kafka PROD. No usar brokers/listeners PROD hasta que existan capabilities PROD certificadas.
 - Skills consumidoras deben referenciar esta skill en vez de duplicar endpoints, permisos o semántica MCP.
 - No copiar esta skill a `80-agents/skills/` ni duplicar los runbooks fuera de `30-resources/runbooks/`.
