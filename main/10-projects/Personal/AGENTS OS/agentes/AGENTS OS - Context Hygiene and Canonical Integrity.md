@@ -47,7 +47,7 @@ updated: "2026-09-13"
 
 ## 📊 Estado actual
 
-- **2026-09-13 — Ejecución en curso.** Baseline: Conformance Harness entregado (PASS 4 · FAIL 1 [F1] · WARN 4 · SKIP 17), Agents-OS revision `a6a503f` como ancestro del HEAD vivo. Proyecto creado como único planificador de PHASE 2 + PHASE 3. Paso actual: P2-A (Context Budget Auditor/Designer).
+- **2026-09-13 — Ejecución en curso.** Baseline: Conformance Harness entregado (PASS 4 · FAIL 1 [F1] · WARN 4 · SKIP 17), Agents-OS revision `a6a503f` como ancestro del HEAD vivo. Proyecto creado como único planificador de PHASE 2 + PHASE 3. P2-A completado (19 métricas M01-M19, 15 escenarios CTX-01..15, reuso del harness como librería); PARENT GATE P2 completado (spec binding con decisiones A1-A9); paso actual: P2-B (Implementer).
 
 ## 🧱 Entrega de desarrollo
 
@@ -79,9 +79,9 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] P2-A — Context Budget Auditor/Designer: analizar bootstrap, packs MELI/ARANEA, DEFAULT, harness y filesystem; clasificar EXACT/ESTIMATED/INFERRED/UNOBSERVABLE; diseñar métricas y escenarios → `80-agents/tools/context-budget/artifacts/p2-context-budget-design.md` #owner/agent #type/research #area/personal
-> - [ ] PARENT GATE P2 — reconciliar design contra harness, definir spec (métricas, métodos, escenarios, semántica PASS/WARN/FAIL/SKIP, schema) → `80-agents/tools/context-budget/artifacts/p2-context-budget-spec.md` #owner/agent #type/admin #area/personal
-> - [ ] P2-B — Context Budget Implementer: tool en `80-agents/tools/context-budget/`, reutilizando contratos del harness, ejecución DEFAULT/MELI/ARANEA cold/warm/switch #owner/agent #type/dev #area/personal
+> - [x] P2-A — Context Budget Auditor/Designer: analizar bootstrap, packs MELI/ARANEA, DEFAULT, harness y filesystem; clasificar EXACT/ESTIMATED/INFERRED/UNOBSERVABLE; diseñar métricas y escenarios → `80-agents/tools/context-budget/artifacts/p2-context-budget-design.md` #owner/agent #type/research #area/personal
+> - [x] PARENT GATE P2 — reconciliar design contra harness, definir spec (métricas, métodos, escenarios, semántica PASS/WARN/FAIL/SKIP, schema) → `80-agents/tools/context-budget/artifacts/p2-context-budget-spec.md` #owner/agent #type/admin #area/personal
+> - [/] P2-B — Context Budget Implementer: tool en `80-agents/tools/context-budget/`, reutilizando contratos del harness, ejecución DEFAULT/MELI/ARANEA cold/warm/switch #owner/agent #type/dev #area/personal
 > - [ ] P2-C — Context Budget Adversarial Verifier → `80-agents/tools/context-budget/artifacts/p2-adversarial-verification.md` #owner/agent #type/research #area/personal
 > - [ ] P2-D — Context Budget Fixer (sólo si hay defectos materiales del auditor; máx 2 ciclos) #owner/agent #type/dev #area/personal
 > - [ ] PHASE 2 acceptance gate + cierre de fase en esta nota #owner/agent #type/admin #area/personal
@@ -122,6 +122,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
+- **2026-09-13** — P2-A entregó diseño completo con handoff adversarial-ready (ambiguities A1-A9). Parent reconcilió contra harness (sin contradicciones factuales) y publicó spec binding: soft ceilings WARN-only, umbral duplicación ratificado (WARN-only), MCP surface SKIP salvo --live reusando código del harness, transversales neutrales.
 - **2026-09-13** — Proyecto creado como único planificador de PHASE 2 (Context Budget + Domain Leak Auditor) y PHASE 3 (Canonical / Deprecation Linter). Conformance Harness tratado como INPUT (no se rehace, F1 no se corrige). Restricción operacional: MAX_ACTIVE_SUBAGENTS=1, ejecución estrictamente secuencial. Baseline Agents-OS `a6a503f` (ancestro del HEAD vivo durante la ejecución).
 
 ## 🧭 Decisiones
