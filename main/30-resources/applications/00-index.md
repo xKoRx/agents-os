@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Páginas:** 16 aplicaciones
-- **Última ingesta:** 2026-09-12 (F-04 C4 Explicit Magic Allocation Semantics).
+- **Última ingesta:** 2026-09-12 (F-04 C5 Manifest Identity Semantics).
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -69,7 +69,7 @@ tags:
 | [[Echo Forge — F-01 Canonical Generation Concurrency Contract]] | Contrato técnico F-01: CanonicalStrategyID puro, publication GENERATED con discriminator `ExecutionIntentKey`, sin HOST_KEY; sin migration. |
 | [[Echo Forge — F-02 Finalist Model V2 Contract]] | Contrato técnico F-02: membership estructural ≠ Top N; Promotion 2.0.0; identity requested-vs-HTM; Campaign nullable rank; migration 014. |
 | [[Echo Forge — F-03 SQX Long-Running Contract]] | Contrato F-03: elapsed ≠ failure; ceiling `MaxInt64ns−1s`; ScheduleToClose 0; Adaptive DEPRECATED no-touch; process-tree cancel; migration NONE. |
-| [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | Contrato F-04 C4: instrument/direction desde `sqx.strategies`; CanonicalStrategyID opaco; TaskSpec magic no es requested; migration 015/016 no-touch. |
+| [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] | Contrato F-04 C5: identidad del manifiesto desde `sqx.strategies`; CanonicalStrategyID opaco; C4 allocation CLOSED; migration 015/016 no-touch. |
 
 ## 🚨 Salud (del último lint)
 

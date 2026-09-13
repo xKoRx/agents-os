@@ -201,7 +201,9 @@ Fase 1 (T1.x) **done** en `ea8be76`. Fase 2 (T2.x) **done** en `d645ed6` salvo P
 - tests C5.5; SOURCE grep C5.6
 - no new migration; do not modify `015_*.sql` / `016_*.sql`; do not change Echo S0; do not reopen C4 allocation
 
-- modify `sqx/core/domain/magic_v1.go` — retire `ParseMagicV1AllocationIdentity`; add `MagicV1DirectionFromStrategy` ✅ (parser retirado del allocation path; función preservada sólo para el consumer de seal documentado en C4.6)
+C4 DONE @ `bba833d` (do not reopen):
+
+- modify `sqx/core/domain/magic_v1.go` — retire `ParseMagicV1AllocationIdentity`; add `MagicV1DirectionFromStrategy` ✅ (parser retirado del allocation path; C5 retira el consumer de seal)
 - modify `sqx/adapters/registry-postgres/magic_v1.go` — `AllocateMagicV1` SELECT instrument/direction from `sqx.strategies`; replay conflict via `DecodeMagicV1` ✅
 - modify `sqx/adapters/registry-postgres/magic_allocation_test.go` `f04Strategy` — persist instrument/direction under test ✅
 - modify `sqx/adapters/apply-selected-run/binding/contract.go` `AllocatedEffectiveConfig` — TaskSpec magic is not requested ✅
@@ -232,7 +234,7 @@ Migrations `015_strategy_magic_version_seal_handoff` y `016_magic_number_v1_allo
 
 ## No-touch
 
-F-01 CanonicalStrategyID/publication. F-02 policy `finalist_promotion@2.0.0`. F-03 timeouts. F-05. B1A/B1B/B2 Slot Pool/fencing/takeover. Echo source. S0 types (consume, don't fork). `adaptive_workflow.go`. Foreign dirty symphony. Invented CC ranges. Provisional Echo HTTP distinto de E-04. Magic V1 codec layout `YYMMIIIDSSS` / catálogo 016. HashIdentity newline como `H()`. Product cardinality restricted to selection=1. Migration 017. Data repair of the cancelled physical run.
+F-01 CanonicalStrategyID/publication. F-02 policy `finalist_promotion@2.0.0`. F-03 timeouts. F-05. B1A/B1B/B2 Slot Pool/fencing/takeover. Echo source. S0 types (consume, don't fork). `adaptive_workflow.go`. Foreign dirty symphony. Invented CC ranges. Provisional Echo HTTP distinto de E-04. Magic V1 codec layout `YYMMIIIDSSS` / catálogo 016. HashIdentity newline como `H()`. Product cardinality restricted to selection=1. Migration 017. Data repair of the cancelled physical run. C4 allocation algorithm. BOTH→LONG/SHORT mapping.
 
 ## Execution sequence
 

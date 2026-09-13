@@ -104,3 +104,7 @@ Creado [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract
 ## [2026-09-12] ingest | Echo Forge F-04 C4 Explicit Magic Allocation Semantics
 
 Corrección in-place del contrato F-04: instrument/direction durables en `sqx.strategies`; CanonicalStrategyID opaco F-01; TaskSpec `magic_number` no es requested; sin migration nueva. Change log [[2026-09-12-echo-forge-f04-c4-explicit-magic-allocation]]. Graphify externo no se refresca.
+
+## [2026-09-12] ingest | Echo Forge F-04 C5 Manifest Identity Semantics
+
+Corrección in-place del contrato F-04: identidad del HandoffManifestV1 desde `sqx.strategies` por StrategyRef; CanonicalStrategyID opaco; OperationSide LONG/SHORT; BOTH fail closed; requested/observed = misma fila; sin migration nueva. Change log [[2026-09-12-echo-forge-f04-c5-manifest-identity]]. Graphify externo no se refresca.
