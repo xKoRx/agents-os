@@ -271,9 +271,13 @@ last-known-good graph without retrying on every query. It never publishes
 partial output. The build uses a unique temporary directory and atomically
 promotes only `graph.json` and `GRAPH_REPORT.md` into the machine-local cache.
 
-`95-graphify/graphify-out/` may be legacy output from older experiments. Do not
-use it as the current freshness marker unless a migration explicitly changes
-the live output path.
+A blocked `update` is never a blocker for retrieval: the strict gate is
+all-vault, so findings outside the current delta are global debt. Attribute
+before acting — lint the delta, fix its own findings, and route debt outside
+the delta to `agents-os-graphify-maintenance` (Delta vs Global Debt) instead of
+sanitizing unrelated notes inline. `95-graphify/graphify-out/` may be legacy
+output from older experiments. Do not use it as the current freshness marker
+unless a migration explicitly changes the live output path.
 
 ## Canonical Link Hygiene
 

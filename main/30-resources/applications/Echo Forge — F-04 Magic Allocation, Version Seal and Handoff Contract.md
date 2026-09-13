@@ -250,6 +250,9 @@ MagicAllocatorV1.AllocateMagicV1(ctx, registryNamespace, strategyRef, canonicalS
 
 Retirar `ParseMagicV1AllocationIdentity` del path productivo. Tests que fabrican canonical `XAUUSD_L_H1_...` dejan de ser authority.
 
+> [!note]+ Implementation evidence (NORMAL C4, 2026-09-12)
+> Implementado en `xKoRx/symphony@bba833d` sobre `d645ed6` (pushed fast-forward). Q1–Q4 implementados tal cual se congelaron: step 0 SELECT `sqx.strategies` por StrategyRef (missing row → `ErrInvalidArguments`; canonical ≠ argumento → `ErrContractConflict`), mapper `MagicV1DirectionFromStrategy`, catálogo exacto TrimSpace-only, replay/conflict gate `DecodeMagicV1` III+D tras `AllocateMagic` (cubre replay, identity-race y UNKNOWN_COMMIT reconciliation), sin migration. **Residual flaggeado al manager:** el parser retirado del allocation path conserva un único consumer no-allocation — `forge_seal_handoff.go` `strategyIdentityFromCanonicalID` (bloque de identidad del manifest, fuera del scope C4 autorizado); con un ID F-01 opaco ese bloque falla cerrado en seal time, sin corromper datos; su corrección exige decidir la fuente durable del observed timeframe/side del manifest.
+
 ### Q4 — Replay / conflict
 
 same StrategyRef + same instrument/direction (row) → same magic, no sequence increment, month-boundary replay preserves prior magic.
@@ -505,7 +508,7 @@ NORMAL no decide architecture. STOP/PLAN_CONFLICT si: se pretende que Echo posea
 
 ## Evidencia y provenance
 
-- Symphony C4 baseline `d645ed6c2f438995d636a8213b1e4a3f5f26cbea`; F-01 `0509342`; Magic V1 `ea8be76`; `origin/master` `0b9742b` ancestro; dirty foráneo `phase4_performance.json` preservado.
+- Symphony C4 baseline `d645ed6c2f438995d636a8213b1e4a3f5f26cbea`; **C4 implementation `bba833d7b57c767d6ce5ebfeae7a7b71b5785782` (2026-09-12, pushed, `-race` PASS, sets rojos idénticos a baseline)**; F-01 `0509342`; Magic V1 `ea8be76`; `origin/master` `0b9742b` ancestro; dirty foráneo `phase4_performance.json` preservado.
 - PHYSICAL trigger: release `0.2.97`, FlowRun `eb2ebaa0-3056-445a-9d46-0953c25b2516`, workflow `sqx-main-v1-6c30394a`, 4 Apply fail `ParseMagicV1AllocationIdentity`, 0 allocations/seals/manifests.
 - S0 `91671f6f`; E-04 consumer `a99f9a6` (T2.13 blocked by runtime/config, out of C4).
 - D16 compile Evaluation frozen 2026-09-12; D17 C4 explicit allocation inputs frozen 2026-09-12; MIGRATION 017 NO; C4 migration NONE.

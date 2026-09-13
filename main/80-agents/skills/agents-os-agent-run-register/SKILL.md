@@ -49,7 +49,7 @@ Read only:
 6. Fill task type, complexity, outcome, verification, evaluator and user rework from observed state. `user_rework: unknown` is correct until later user feedback provides evidence.
 7. Add 1–5 score fields only when evidence supports them. Self-scoring uses `evaluator: agent`; owner corrections change it to `owner` or `mixed`. Preserve objective evidence in the body.
 8. Link related feedback to the run. A run is performance evidence and does not trigger feedback; feedback remains event-driven.
-9. Do not reindex Graphify for the run alone because journal paths are excluded. Reindex only if a canonical surface profile or another indexable source changed.
+9. Do not trigger Graphify work for the run alone because journal paths are excluded; queries auto-refresh. Explicit `update` only if a canonical surface profile or another indexable source changed (maintenance path).
 
 ## Output
 
