@@ -675,7 +675,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 - **Authority:** D18; same row as C4 `magicV1StrategySemantics` plus timeframe.
 - **Failure/retry:** fail closed non-retryable; no manifest.
 - **Tests:** opaque canonical + explicit row XAUUSD/L/H1 loads those values; missing row fails; empty timeframe fails.
-- **DONE:** public handoff path never splits CanonicalStrategyID.
+- **DONE @ `b57bfb2`:** public handoff path never splits CanonicalStrategyID; SQL reader and sqlmock fail-closed tests pass with `-race`.
 - **Stop:** new column/migration → PLAN_CONFLICT. Extending StrategyIdentityView → PLAN_CONFLICT.
 
 ### C5.2 OperationSide from durable direction
@@ -685,7 +685,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 - **Cambio:** BOTH/unknown fail closed before `BuildHandoffManifest`.
 - **Authority:** D18; S0 `OperationSide` @ `91671f6f`.
 - **Tests:** L and LONG → LONG; S and SHORT → SHORT; B and BOTH → no manifest/no POST; empty/X → conflict.
-- **DONE:** grep `strategyIdentityFromCanonicalID` = 0.
+- **DONE @ `b57bfb2`:** grep `strategyIdentityFromCanonicalID` = 0; focused LONG/SHORT/BOTH/unknown tests pass with no-effects assertions.
 - **Deps:** C5.1.
 - **Stop:** map BOTH to LONG/SHORT or change Echo → PLAN_CONFLICT.
 
@@ -696,7 +696,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 - **Cambio:** wire requested/observed/strategy identity = durable row values after TrimSpace. Request fields must equal the row exactly (no EqualFold). Empty spec fields fail closed.
 - **Authority:** S0 G11/G12 exact equality; D18.
 - **Tests:** spec XAUUSD/H1/L + row EURUSD/M15/S → conflict; matching spec emits row values on all three surfaces; decoy canonical does not change observed.
-- **DONE:** G11/G12 still enforced by `manifest.Validate`; producer does not hide drift.
+- **DONE @ `b57bfb2`:** G11/G12 still enforced by `manifest.Validate`; producer does not hide drift; exact case-sensitive gate and `RequestedDirection` are tested.
 - **Deps:** C5.2.
 
 ### C5.4 retire ParseMagicV1AllocationIdentity
@@ -705,7 +705,7 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 - **Archivos:** `sqx/core/domain/magic_v1.go` delete `ParseMagicV1AllocationIdentity` and `isInstrumentShapedToken`; update tests that still call them.
 - **Cambio:** zero remaining consumers including handoff.
 - **Authority:** D17 leftover + D18.
-- **DONE:** `rg ParseMagicV1AllocationIdentity` = 0 in `sqx/`.
+- **DONE @ `b57bfb2`:** `rg ParseMagicV1AllocationIdentity` = 0 in `sqx/`; parser/helper and direct residuals removed.
 - **Deps:** C5.2.
 - **Stop:** keep the parser “just in case” → PLAN_CONFLICT.
 
@@ -715,14 +715,14 @@ Contrato de cada TASK: `archivo/símbolo → cambio exacto → authority → fai
 - **Archivos:** `forge_seal_handoff_test.go` (replace `sealTestCanonicalID = "XAUUSD_L_H1_..."` with opaque F-01-shape id + durable row fixture); registry-postgres identity reader tests; keep G22 assembler tests.
 - **Cambio:** cover SPEC C5 gates. `go test -race` on `./sqx/activities/worker` focused C5 + `./sqx/core/forge` + `./sqx/adapters/registry-postgres` new cases. Pre-existing red sets must stay identical to `bba833d`.
 - **Authority:** SPEC C5 gates.
-- **DONE:** opaque success; decoy override fails; LONG/SHORT/BOTH; mismatch fail closed; Encode() body; G22/G24 intact.
+- **DONE @ `b57bfb2`:** opaque success; decoy override fails; LONG/SHORT/BOTH/unknown; missing/incomplete row; canonical mismatch; exact instrument/timeframe/direction gates; Encode() body; G22/G24 intact, all focused with `-race`.
 - **Deps:** C5.1–C5.4.
 
 ### C5.6 SOURCE grep C5
 
 - **Modelo:** NORMAL
 - **Cambio:** grep F-04 handoff/seal path: no `strategyIdentityFromCanonicalID`; no `ParseMagicV1AllocationIdentity`; no `strings.Split` of CanonicalStrategyID for instrument/direction/timeframe; no latest; no Echo SQL writes.
-- **DONE:** SOURCE PASS documented.
+- **DONE @ `b57bfb2`:** SOURCE PASS documented; parser references and semantic canonical parsing/equalfold are absent from `sqx/`/handoff path.
 - **Deps:** C5.5.
 
 ### T2.11 authentic golden capture

@@ -184,7 +184,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 - **Done when:** manifest fixture idéntico lo acepta el consumer del mismo release; no side-effects Echo; CC bloquea allocation real si falta.
 - **Unlocks:** F-05 golden de handoff; E-04 puede dejar fakes.
 - **Accepted debt:** HashIdentity legacy; attach Echo no es de esta fase.
-- **Status:** WIP. C5 CONTRACT CLOSED 2026-09-12 — READY FOR NORMAL. C4.1–C4.6 CLOSED @ `bba833d`. SPEC [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]. Hijo [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. T2.11–T2.13 OPEN. Not physical-ready. Migration 015/016; C4/C5 migration NONE.
+- **Status:** WIP. C5.1–C5.6 IMPLEMENTED 2026-09-12 @ `b57bfb2` — READY FOR MANAGER REVIEW. C4.1–C4.6 CLOSED @ `bba833d`. SPEC [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]. Hijo [[Echo Forge — F-04 Magic allocation, version seal and handoff]]. Parent bridge remains `[/]`; T2.11–T2.13 OPEN. F-04 not physical-ready/not closed. Migration 015/016; C4/C5 migration NONE.
 
 ### F-05 Cohesive release, physical cert and FULL golden
 
@@ -213,6 +213,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 
 ## 📆 Bitácora
 
+- **2026-09-12** — NORMAL F-04 C5.1–C5.6 implemented @ `b57bfb2` from exact baseline `bba833d` and pushed fast-forward. Durable `sqx.strategies` row is manifest identity authority; canonical carrier is opaque consistency-only; LONG/SHORT map through Magic V1 and BOTH/unknown/empty fail closed; WorkflowSpec direction is an exact case-sensitive gate; legacy parser removed. Focused race/build/vet pass; worker red set matches baseline; registry full suite timed out in embedded-postgres with no new targeted failure. Parent bridge remains `[/]`; F-04 NOT CLOSED; T2.11–T2.13 OPEN.
 - **2026-09-12** — TOP F-04 C5 CONTRACT CLOSED: identidad del HandoffManifestV1 desde `sqx.strategies`; CanonicalStrategyID opaco; BOTH fail closed; migration NONE. C4 permanece CLOSED @ `bba833d`. Tarea puente F-04 sigue `[/]` (not physical-ready). T2.11–T2.13 OPEN.
 - **2026-09-12** — NORMAL C4.1–C4.6 implementados sobre `d645ed6` → commit `bba833d` pushed a `feature/f04-magic-version-handoff`: allocation desde `sqx.strategies`, `MagicV1DirectionFromStrategy`, replay/conflict vía `DecodeMagicV1`, TaskSpec magic no requested, migration NONE. Sets rojos pre-existentes idénticos a baseline. Residual de seal/handoff lo posee C5. **C4 CLOSED.**
 - **2026-09-12** — TOP F-04 C4 CONTRACT CLOSED: Magic V1 no parsea CanonicalStrategyID; instrument/direction = `sqx.strategies`; TaskSpec `magic_number` no es requested. NORMAL C4 pendiente. Tarea puente F-04 `[r]→[/]`. T2.13 E-04 runtime queda one-shot separado.
