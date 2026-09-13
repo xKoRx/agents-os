@@ -1,0 +1,99 @@
+{
+  "run": "2026-09-13T04:45:40",
+  "tool": "context-budget",
+  "git_head": "f7337182cf852a49f181a25630e51a3da3d50316",
+  "fidelity_gate": "PASS",
+  "scenarios": [
+    {
+      "id": "CTX-14",
+      "reuses": [
+        "SESSION-SURFACE-EXPOSURE (L2)"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "mcp_surface_config_observed",
+          "value": [
+            {
+              "surface": "zcode",
+              "aranea": 5,
+              "meli": 0
+            },
+            {
+              "surface": "cursor",
+              "aranea": 7,
+              "meli": 0
+            },
+            {
+              "surface": "codex",
+              "aranea": 5,
+              "meli": 0
+            }
+          ],
+          "unit": "count",
+          "confidence": "EXACT",
+          "authority": "harness.read_surface_configs (misma función, nombres only); SKIP si no existen configs"
+        }
+      ],
+      "evidence": [
+        "zcode (~/.zcode/cli/config.json): aranea=5 meli=0 (nombres only, nunca credenciales)",
+        "cursor (~/.cursor/mcp.json): aranea=7 meli=0 (nombres only, nunca credenciales)",
+        "codex (~/.codex/config.toml): aranea=5 meli=0 (nombres only, nunca credenciales)",
+        "presencia de aranea-* registrada como dato (Hallazgo 4); la exposición de una sesión viva sigue UNOBSERVABLE (Hallazgo 17); nunca criterio de FAIL de presupuesto (A5)"
+      ],
+      "skip_reason": null,
+      "details": "superficie observada: aranea-* presentes y cero servers Meli en las configs presentes (dato; no certifica sesión viva)"
+    }
+  ],
+  "totals": {},
+  "counts": {
+    "pass": 1,
+    "fail": 0,
+    "warn": 0,
+    "skip": 0
+  },
+  "ambiguities": [
+    "Hallazgo 6 (A2): la clausula de evidencia de superficie del bootstrap paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (ADR pendiente).",
+    "Hallazgo 7 (A3): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area; autorizada en el pack meli (Minimal Read 3 del router); en escenarios aranea su aparicion seria WARN (clasificacion ambigua, INFERRED).",
+    "C09: vocabulario load_policy ad-hoc (when_echo_forge_loaded, etc.) y la semantica exacta de 'error matching' no tienen autoridad; heredado del harness como WARN y no invalida escenarios.",
+    "Hallazgo 11: areas drift [[Echo Forge]]/[[Personal]] en memoria de dominio no mapean a ningun dominio del gate (WARN declarado del harness ACTIVE-MEMORY-DOMAIN-PURITY).",
+    "DUAL-REGISTRY-DOMAIN-SYNC (Hallazgo 16): clausula dual de pr-description entre INDEX.md ('Vía meli-agent-dev u obra propia') y 30-resources/agents/00-index.md; semantica de la columna no definida por autoridad.",
+    "Modo ambiguo DEFAULT->dominio (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap convergen al mismo observable; ninguna autoridad fija la clasificacion (CTX-09/CTX-10 WARN por diseno).",
+    "C04: estimated_tokens es chars/4 sin tokenizador de autoridad; vale para comparar escenarios y detectar drift entre runs, jamas para tokens reales ni como criterio de FAIL.",
+    "Hallazgo 3: domain gate, warm reuse y swap son prompt-discipline sin enforcement mecanico; el medidor mide la decision transcrita (rules.py), no la obediencia de una sesion viva.",
+    "Hallazgo 4 / Hallazgo 17: la presencia de tools en superficie no es violacion; la config MCP vive a nivel maquina fuera del vault (CTX-14 registra el dato, nunca es criterio de FAIL).",
+    "Hallazgo 8: 'drop the previous domain pack' es instruccion al modelo sin mecanismo de unload; el residuo real post-swap en la ventana del modelo es UNOBSERVABLE (solo potential_residual INFERRED).",
+    "Hallazgo 10: hoy no existe memoria interna activa Meli (estado observado, no invariante).",
+    "A8: skills transversales nunca cuentan como unrelated-domain aunque un registro diga 'Vía meli-agent-dev' (la fila es una puerta, no una exclusividad)."
+  ],
+  "thresholds": {
+    "duplication": {
+      "min_consecutive_lines": 3,
+      "min_chars": 120,
+      "min_run_tokens": 5,
+      "version": 1,
+      "max_verdict": "WARN",
+      "strip_frontmatter": true,
+      "scope": "texto normalizado sin frontmatter (metadatos estructurales del schema-contract, no contenido de la regla 5)"
+    },
+    "soft_ceilings": {
+      "cold_base_estimated_tokens": [
+        3000,
+        6000
+      ],
+      "warm_delta_estimated_tokens": [
+        0,
+        1000
+      ],
+      "swap_estimated_tokens": [
+        1000,
+        3000
+      ]
+    }
+  },
+  "fidelity_details": "todas las anclas de fidelidad de rules.py (26) existen en el texto vigente de las autoridades",
+  "fidelity_evidence": [
+    "80-agents/skills/agents-os-bootstrap/SKILL.md: 21 anclas verificadas (gate-meli, gate-echo-aranea, gate-other-no-router, gate-surface-evidence, gate-fail-closed, gate-never-both-routers, cold-paso1-constitution, cold-paso1-profile-dir, cold-paso2-global-internal, cold-paso3-registry, cold-paso3-no-federated-index, cold-paso4-map-no-ritual, cold-paso5-resolve-aliases, warm-reuse-delta-only, warm-never-reread, warm-no-bootstrap-rerun, swap-skip-global-internal-reload, swap-keep-invariants, swap-drop-pack, hard-superseded-not-loaded, hard-only-startup-procedure)",
+    "80-agents/skills/agents-os-doctor/SKILL.md: 5 anclas verificadas (doctor-club-constitution, doctor-club-bootstrap, doctor-club-global-internal, doctor-club-one-profile, doctor-club-second-is-violation)"
+  ]
+}
