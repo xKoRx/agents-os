@@ -6,6 +6,8 @@ Cubre los requisitos de verificación del spec (sección 5) y del modelo
 - cada check CL-01..CL-20 con caso positivo y negativo;
 - demos FAIL obligatorias (CL-01, CL-06, CL-14, CL-18) y demos WARN
   obligatorias (CL-08, CL-10, CL-12, CL-19);
+- D1 (verificación adversarial): filas de índice con varios wikilinks —
+  todos los links de la fila se verifican, no sólo el primero;
 - links con heading/bloque/alias/ambigüedad;
 - frontmatter multilínea, quoting y campos vacíos;
 - exclusión de fixtures sintéticas (A8);
