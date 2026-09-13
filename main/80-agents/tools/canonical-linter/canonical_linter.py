@@ -1289,7 +1289,6 @@ def cl_17(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
                 raw = m.group(1).strip()
                 if "<" in raw:
                     continue  # placeholder (misma regla del doctor)
-                p = raw.rstrip("/") if not raw.endswith("/") else raw
                 abspath = os.path.join(ctx.root, raw)
                 if raw.endswith("/"):
                     ok = os.path.isdir(abspath)
@@ -1389,7 +1388,6 @@ def cl_18(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
             AUTH_BOOT + " (Hard Rules); 80-agents/agents-os/agent-constitution.md (regla 10)",
             "proponer al owner retirar el destino del mecanismo de routing o revisar su estado; nunca auto-corregido",
             line=None))
-    skipped_rows = 2  # INDEX rows (CL-16) y 00-index rows (CL-15): scopes propios
     evidence.append("destinos únicos verificados: %d; omitidos por dedup M16: %d; scopes de filas delegados: CL-15/CL-16" % (checked, skipped_m16))
     dedup = [
         "context-budget:CTX-12/M16 (frontmatter de los ARCHIVOS del set fijo: always + packs + especialistas; %d destinos omitidos)" % skipped_m16,
