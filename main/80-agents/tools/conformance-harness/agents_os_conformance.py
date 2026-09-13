@@ -1231,7 +1231,7 @@ def sc_deprecated_doc_not_default_load(ctx: Ctx) -> Tuple[str, str, List[str]]:
     s = Session(ctx.vault)
     s.turn = 1
     s.cold_start({"casual": True})
-    delta = s.retrieve("context")  # sin pedido historico
+    delta = s.retrieve("context")  # sin pedido historico: solo candidatos del filtro
     problems: List[str] = []
     if rules.CONTINUITY_ARCHIVE in s.all_opens() or rules.CONTINUITY_ARCHIVE in delta:
         problems.append("la nota superseded entero al stack o al retrieval normal (Hard Rule bootstrap / context-retrieval paso 5)")
@@ -1243,7 +1243,7 @@ def sc_deprecated_doc_not_default_load(ctx: Ctx) -> Tuple[str, str, List[str]]:
     active_count = sum(1 for p in s.all_opens() if p == rules.GLOBAL_INTERNAL)
     if active_count != 1:
         problems.append("el stack debe contener exactamente UNA nota interna global: %d" % active_count)
-    evidence.append("SIMULATED: retrieval normal (sin historico) selecciono %d notas; archive ausente" % len(delta))
+    evidence.append("SIMULATED: candidatos del filtro retrieval normal (sin historico): %d; archive ausente" % len(delta))
     evidence.append("stack: exactamente una nota interna global (%s)" % rules.GLOBAL_INTERNAL)
     return state_worst(["PASS"] if not problems else ["FAIL"]), (
         "la continuidad superseded queda fuera de startup y retrieval normal (mismo continuity_key)" if not problems
@@ -1262,7 +1262,7 @@ def sc_unrelated_domain_not_loaded(ctx: Ctx) -> Tuple[str, str, List[str]]:
     s = Session(ctx.vault)
     s.turn = 1
     s.cold_start({"entity_title": "RIO"})
-    delta = s.retrieve("context")
+    delta = s.retrieve("context")  # candidatos del filtro por entidad/area activa
     problems: List[str] = []
     if FURY_NOTE not in delta:
         problems.append("known-error RIO (when_error_matches) no seleccionado: %s" % FURY_NOTE)
@@ -1277,13 +1277,13 @@ def sc_unrelated_domain_not_loaded(ctx: Ctx) -> Tuple[str, str, List[str]]:
         if n_area and n_area != "meli":
             problems.append("candidato con area != [[Meli]] seleccionado en turno meli: %s (%s)" % (p, fm.get("area")))
     if rules.ROUTER_PREFS["aranea"][0] in delta or rules.ROUTER_PREFS["aranea"][0] in s.all_opens():
-        problems.append("preferencia aranea cargada en dominio meli")
+        problems.append("preferencia aranea seleccionada/cargada en dominio meli")
     if rules.FEDERATED_DOMAIN_INDEX in s.all_opens():
         problems.append("indice federado aranea abierto en dominio meli")
     if any(p in s.all_opens() for p in MELI_ECHO_ACTIVE_NOTES):
         problems.append("memoria interna Echo/Echo Forge activa en turno meli")
     meli_internal_active = [p for p in delta if p.startswith("80-agents/memory/internal/")]
-    evidence.append("delta (%d notas, todas area [[Meli]] o de carpetas rio/): %s" % (len(delta), ", ".join(sorted(delta))[:400] or "-"))
+    evidence.append("candidatos del filtro (%d, todos area [[Meli]] o referenciando RIO): %s" % (len(delta), ", ".join(sorted(delta))[:400] or "-"))
     evidence.append("continuidad interna meli activa: %s (Hallazgo 10: toda la continuidad Meli esta archived/manual — estado observado, no invariante)" % (meli_internal_active or "ninguna hoy"))
     evidence.append("semantica: las preferencias Meli y Aranea son scoped (perfil); el router ya cargo las de meli en cold start; retrieval no trae prefs")
     return state_worst(["PASS"] if not problems else ["FAIL"]), (
