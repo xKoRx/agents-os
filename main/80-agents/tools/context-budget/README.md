@@ -1,0 +1,79 @@
+---
+type: doc
+schema_version: 1
+status: active
+scope: project
+project: "[[AGENTS OS]]"
+area: "[[Personal]]"
+created: 2026-09-13
+updated: 2026-09-13
+description: Context Budget + Domain Leak Auditor de AGENTS OS (P2) — qué mide, cómo correrlo, qué NO mide, semántica de resultados y cómo extenderlo; consume el modelo de sesión del Conformance Harness como librería.
+aliases:
+  - context-budget
+  - agents-os-context-budget
+tags:
+  - kind/doc
+  - project/agentsos
+  - tech/agents-os
+---
+
+# AGENTS OS Context Budget + Domain Leak Auditor (P2)
+
+Medidor reproducible y determinista del presupuesto de contexto que AGENTS OS carga por scope (DEFAULT / MELI / ARANEA) a lo largo del ciclo de sesión (cold / warm / entity swap), más un detector mecánico de domain leaks (carga de dominio ajeno, contenido deprecated/superseded en hot path, duplicación textual co-cargada). Implementación: Python 3.9+ stdlib only, determinista, read-only sobre todo el vault salvo `results/`. Autoridad de diseño binding: [[80-agents/tools/context-budget/artifacts/p2-context-budget-design.md|p2-context-budget-design]] (P2-A) y [[80-agents/tools/context-budget/artifacts/p2-context-budget-spec.md|p2-context-budget-spec]] (spec del parent, decisiones A1-A9). El medidor es un CONSUMIDOR del modelo de sesión del [[80-agents/tools/conformance-harness/README.md|Conformance Harness]] (`rules.py`): importa `rules` y los helpers de `agents_os_conformance.py` resolviendo la ruta del harness relativa a VAULT_ROOT en runtime; no existe aquí un segundo modelo de cold/warm/switch (fork prohibido).
+
+## Qué mide
+
+- **Pre-flight — RULES-FIDELITY-ANCHORS (corre primero; FAIL ⇒ todos los CTX en SKIP motivado):** reutiliza sin re-implementar el guard anti-deriva del harness: si la transcripción `rules.py` dejó de coincidir con el texto vigente de las autoridades, ninguna cifra presupuestaria dependiente del gate es interpretable (diseño sección 3). Con `--scenario RULES-FIDELITY-ANCHORS` corre solo; con `--scenario <CTX-ID>` el run es dirigido por el operador y no aplica gate.
+- **CTX-15 — baseline (siempre corre primero):** snapshot por run del always-load (constitución + perfil always resuelto por directorio + continuidad global + INDEX; bootstrap pasos 1-3, C02) y de los packs meli/aranea (routers + preferencias scoped de `rules.ROUTER_PREFS`) con `bytes`/`chars` (EXACT, vía `_size` del harness) y `estimated_tokens` (chars//4, ESTIMATED). Es el record de series temporables entre runs (drift del presupuesto); nota fija: "baseline-only, chars/4, sin tokenizador de autoridad (C04); nunca criterio de fallo".
+- **CTX-01..03 — cold (DEFAULT / MELI / ARANEA):** ejecutan `rules.Session.cold_start` sobre los fixtures reales (entidad fantasma, RIO, Echo Forge) y miden el set cargado por turno (telemetría `opens_in_turn`, fix D1): lista de archivos, peso por archivo y agregado del turno, skills especializadas seleccionadas (M12), trace del gate (M19), clasificación de dominio de todo lo cargado (M15, diseño 8.1) y comparación contra el techo blando del cold base 3-6k (M18). CTX-02 reporta además el estado observado de la memoria interna activa Meli (Hallazgo 10); CTX-03 verifica que `aranea-mcps-expert` no se cobra sin necesidad MCP declarada (Minimal Read 4) y hereda el WARN de la nota VPN (Hallazgo 7, A3).
+- **CTX-04..06 — warm:** turnos 2+ con reuse + delta-only (C06): `warm_delta_files` y su peso (M09), recursos de retrieval y cuerpo abierto (M13, CTX-05/06 con los fixtures fijos fury-segment-suffix y MT5-parser-cert), comparación contra el techo blando <1k (M18) y, en CTX-05, el check heredado BOOTSTRAP-NOT-RERUN-ON-WARM (turnos 2..5 sin releer base ni re-invocar bootstrap).
+- **CTX-07..10 — entity swap:** snapshot before/after del pack (M10: opens del turno del swap), `active_pack_count_post_swap` ≤1 vía `rules.Session.holds_two_packs` (M11), especialista sólo por la tabla del router (M12, CTX-08), clasificación M15 sobre el estado POST-swap y trace del gate (M19). El residuo potencial del pack saliente se reporta como `potential_residual_files/_estimated_tokens` (INFERRED, diseño 8.3): los archivos siguen en disco, pero el residuo real en la ventana del modelo es UNOBSERVABLE (Hallazgo 8). CTX-09/10 heredan el WARN de modo ambiguo DEFAULT→dominio (C02/C07).
+- **CTX-11 — unrelated-domain (M15):** dos ejecuciones (meli con retrieval de RIO; aranea con retrieval de Echo Forge) clasifican opens + candidatos de retrieval: 0 archivos del dominio ajeno esperados; cualquier archivo de dominio ajeno con prohibición inequívoca (Hard Rules de los routers, perfil scoped, bootstrap paso 6) es FAIL; clasificaciones ambiguas son WARN y nunca FAIL. Cuantifica además el "leak evitado": notas de memoria del dominio ajeno que referencian a la entidad activa (vía `rules.references_entity`) y fueron bloqueadas sólo por el chequeo de dominio del filtro — la cota superior de lo que habría entrado sin el gate (INFERRED, se declara la regla de interpretación).
+- **CTX-12 — deprecated-hot-path (M16):** parte simulada reutilizando el escenario del harness DEPRECATED-DOC-NOT-DEFAULT-LOAD (la archive superseded no entra al stack ni al retrieval normal) + barrido estático sobre los sets fijos del hot path (always + packs + expert): `memory_state: superseded|archived` o `status: deprecated|deprecating` en hot path es FAIL inmediato (bootstrap Hard Rules; schema-contract). Hoy: 0 hits esperados.
+- **CTX-13 — duplicación (M14):** detector propio declarado (heurística self-declared, umbral A4 ratificado: bloques de texto normalizado — minúsculas, whitespace y puntuación colapsados — con runs contiguos ≥5 tokens; condición: ≥120 chars acumulados o un bloque que abarque ≥3 líneas consecutivas; frontmatter excluido por ser metadatos estructurales del schema-contract) sobre los sets co-cargables (base 4; base+meli; base+aranea; y la pareja de registros INDEX.md ↔ 30-resources/agents/00-index.md). Veredicto máximo WARN (A4); el umbral y su versión se registran en `thresholds` del record.
+- **CTX-14 — superficie MCP (M17), opcional:** SKIP por defecto (A5). Con `--live` reutiliza la MISMA función de lectura de configs del harness (`read_surface_configs`, nombres only, jamás credenciales) y registra servers `aranea-*` presentes y servers Meli (zord/fury/spellbook/melisource) como dato; nunca criterio de FAIL (Hallazgos 4 y 17). Con `--conformance-json <path>` adjunta el veredicto del harness sin re-ejecutarlo.
+- **M19 (transversal):** `gate_decision_trace` por escenario: la decisión literal del domain gate con su motivo (`rules.Session.gate_note`), citada de bootstrap paso 6.
+
+## Cómo correrlo
+
+- Run completo (pre-flight → CTX-15 → CTX-01..14): `python3 80-agents/tools/context-budget/context_budget.py`
+- Salida machine-readable: `--json` (JSON a stdout + `results/run-<timestamp>.json`; el resumen humano va a stderr, paridad con el harness).
+- Un escenario puntual (run dirigido por el operador, sin gate): `python3 80-agents/tools/context-budget/context_budget.py --scenario CTX-05` (ídem `RULES-FIDELITY-ANCHORS`).
+- Opciones: `--vault-root <path>` (default: autodetección subiendo desde la carpeta de la tool hasta la carpeta que contiene `80-agents/agents-os/agents-os.md`), `--live` (habilita CTX-14; sin él, SKIP), `--conformance-json <path>` (evidencia cruzada del harness para CTX-14, sin re-ejecutar).
+- Selftest (fixtures temporales fuera del vault; inyección de pack cruzado, input malformado, pre-flight en rojo, determinismo, etiquetado, exit codes): `python3 80-agents/tools/context-budget/selftest.py`
+- Exit code: 0 si no hay FAIL, 1 si hay algún FAIL (o el pre-flight está en rojo), 2 si no se pudo resolver VAULT_ROOT o el `--scenario` es desconocido.
+- Corte por gate: FAIL del pre-flight ⇒ todos los CTX reportan SKIP con motivo ("transcripción obsoleta"); un FAIL de un CTX no corta los demás (misma semántica que un FAIL L1 del harness). Marker de VAULT_ROOT ausente ⇒ todos los CTX en SKIP con motivo. Harness no disponible bajo VAULT_ROOT ⇒ todos los CTX en SKIP con motivo (los escenarios dependen del modelo de sesión).
+- Los records (`results/run-<timestamp>.json`) siguen el schema del spec sección 7: `{run, tool, git_head, fidelity_gate, scenarios: [{id, reuses, verdict, metrics: [{name, value, unit, confidence, authority}], evidence, skip_reason}], totals, counts, ambiguities, thresholds}` — orientado a consumo futuro por `agents-os doctor` sin re-parsear Markdown.
+
+## Qué NO mide
+
+- Tokens exactos de cualquier set: no existe tokenizador de autoridad (C04). Sólo `estimated_tokens` (chars//4) bajo ese nombre; jamás un campo `tokens`. `estimated_tokens` vale para comparar escenarios y detectar drift entre runs, nunca para facturar tokens ni como criterio de FAIL.
+- Obediencia real de un modelo en sesión viva: el domain gate, el warm reuse y el swap son prompt-discipline sin enforcement (Hallazgo 3); los CTX miden la decisión transcrita (`rules.py`) sobre fixtures reales, no la obediencia de un agente vivo.
+- Qué archivos abrió un agente real en una sesión pasada: no existe log runtime de cargas (OBSERVABILITY GAPS del harness); el presupuesto CTX cubre exactamente el contexto que AGENTS OS ordena cargar desde el vault, no la ventana completa de una sesión (prompts de sistema, tools del host, historial y subagentes quedan fuera).
+- Residuo real post-swap dentro de la ventana del modelo: "drop from active reasoning" es estado mental (C07); sólo se reporta `potential_residual` (peso en disco del pack saliente, INFERRED) y la no-reapertura a nivel modelo (EXACT).
+- Exposición MCP de una sesión viva: la config vive a nivel máquina, fuera del vault (Hallazgos 4 y 17); CTX-14 registra el estado de las configs como dato y nunca es criterio de FAIL.
+- Duplicación semántica (paráfrasis, misma regla redactada distinto): M14 sólo detecta duplicación textual mecánica bajo su umbral declarado; la equivalencia de sentido requiere juicio.
+- Contenido efectivamente leído de un archivo abierto en vivo: la unidad de cuenta es el archivo completo (A6, paridad con el harness); body-only como granularidad de peso queda fuera (YAGNI).
+- Contratos sin criterio determinista: nota de orientación por degradación (C05), umbral de invalidación warm ("intent clearly shifts"), certificación `tools/list` server-side (C13).
+
+## Semántica de resultados
+
+- `PASS`: contrato demostrado cumplido con autoridad inequívoca.
+- `FAIL`: violación demostrada con autoridad inequívoca citada (ejemplos CTX: cargar router ajeno, re-leer base en warm, dos packs simultáneos, deprecated en hot path, unrelated-domain en el set cargado). Todo FAIL exige métrica sustentante EXACT (o INFERRED cuando la prohibición es inequívoca y la única inferencia es la clasificación, dejando la duda como WARN separada); ESTIMATED jamás sostiene un FAIL.
+- `WARN`: riesgo o ambigüedad verificable, no violación demostrada. Todos los WARN declarados por los audits del harness (Hallazgos 3, 4, 6, 7, 8, 9, 10, 11, 16, 17; C04, C09; DUAL-REGISTRY-DOMAIN-SYNC; modo ambiguo DEFAULT→dominio) se heredan por diseño y no degradan la suite: se listan en `ambiguities` del record. La desviación de los techos blandos (A1/M18: cold base 3-6k, warm delta <1k, swap 1-3k — bootstrap "Token Targets (soft)"; doctor Check 11) produce WARN con cifras `estimated_tokens`, nunca FAIL; la duplicación M14 tiene veredicto máximo WARN (A4).
+- `SKIP`: no ejecutable en el entorno actual, siempre con motivo (marker ausente, harness ausente, pre-flight en rojo, fixtures ausentes, perfil always no resuelto, `--live` ausente para CTX-14, configs de superficie ausentes, o error inesperado al ejecutar un escenario — SKIP con el resumen de la excepción, nunca traceback abortando el run).
+- `UNKNOWN` nunca se convierte en `PASS`: un check que no puede determinar su condición termina SKIP o WARN con motivo explícito; UNOBSERVABLE nunca se convierte en medición.
+
+## Cómo agregar un escenario nuevo
+
+1. Verificar que la autoridad existe: un CTX nuevo hereda id, fixtures, expected/expected-not y WARN declarados de un escenario del harness (o de una regla de autoridad citada); el medidor no inventa comportamiento sin autoridad.
+2. Escribir la función `ctx_<id>(ctx, rules, harness) -> record` en `context_budget.py` reutilizando el modelo de sesión (`rules.Session` vía `_session_for`, la convención de turno fix D1: fijar `s.turn` ANTES de invocar `cold_start`/`warm_turn`/`swap_entity`) y los helpers existentes (`harness.require_files`, `harness._base_assertions`, `harness._assert_absent`, `harness._warm_no_base_reopen`, `weight_of`, `file_weight`, `classify_file`, `_m15_leak_check`, `_soft_target`, `find_duplication`); devolver el record con `metrics` (name/value/unit/confidence/authority) y `evidence`.
+3. Registrarla en `SCENARIOS` (id, familia, reuses) y en `_FUNCS`, respetando el orden obligatorio del spec sección 3 (pre-flight → CTX-15 → cold → warm → switch → leaks → duplicación → superficie). Si la métrica nueva replicara una DECISIÓN de agente, el camino correcto es extender `rules.py` del harness en un ciclo propio del harness (con su ancla en `rules.FIDELITY_ANCHORS`), nunca fork local.
+4. Documentar el escenario en `artifacts/` (diseño o nota de implementación) y actualizar este README: toda ambigüedad nueva se registra como WARN/referencia, nunca se resuelve en código.
+
+## Notas de operación
+
+- Determinista y sin red/DB/CI/daemon; cada run escribe `results/run-<timestamp>.json` (única escritura permitida, spec sección 5) con `{run, tool, git_head (resuelto en VAULT_ROOT), fidelity_gate, scenarios, totals, counts, ambiguities, thresholds}`. Dos runs consecutivos sobre el mismo estado del vault producen records idénticos salvo `run`/timestamp.
+- Los findings sobre AGENTS OS se registran en la salida, nunca se auto-corrigen (política de side-effects del harness, spec sección 7).
+- El selftest (`selftest.py`) usa fixtures temporales del sistema (tempfile) y enlaza el harness por symlink dentro del fixture: nunca toca el vault canónico; sus escrituras de `main()` se redirigen a un results/ temporal.
+- Limitaciones conocidas (declaradas, no silenciosas): (1) `estimated_tokens` (chars/4) puede desviararse sustancialmente por idioma, frontmatter y código; los techos blandos de bootstrap ("3-6k tokens") se comparan contra chars/4, de modo que una desviación WARN puede reflejar la métrica aproximada y no un exceso real — por eso A1 la mantiene sin capacidad de FAIL. (2) El detector M14 compara texto normalizado sin frontmatter con runs ≥5 tokens: no detecta paráfrasis y su lista de pares depende del umbral declarado (cambiar el umbral rompe la comparabilidad entre versiones; la versión vive en `thresholds`). (3) La clasificación de dominio (M15) cubre lo declarado: frontmatter `area`, membresía en routers/prefs/skills domain-gated, ambos registros de skills y la carpeta `30-resources/aranea/`; contenido de dominio sin marcador (prosa Meli en una nota neutral, p. ej. el rol Signals del perfil global — Hallazgo 9) NO es leak detectable mecánicamente y se respeta como identidad declarada. (4) CTX-12 hereda el veredicto del escenario del harness que reutiliza; su barrido estático M16 cubre los sets fijos (always + packs + expert) pero no el corpus completo de memoria (eso vive en los checks L0 del harness y en el doctor). (5) CTX-14 sin `--live` es SKIP: la exposición de una sesión viva sigue siendo UNOBSERVABLE (Hallazgo 17); la parte automatizada sólo describe configs de máquina names-only. (6) El conteo por archivo asume que un archivo abierto entra completo al contexto (simplificación declarada del modelo del harness, limitación 2 de su README).
