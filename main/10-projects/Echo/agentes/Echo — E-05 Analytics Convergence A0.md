@@ -59,7 +59,7 @@ Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scop
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 @ `dd1f2da9` | IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW @ `69eec0b9` · no verifier · no merge |
+| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 @ `dd1f2da9` | IMPLEMENTATION READY FOR INDEPENDENT VERIFIER @ `69eec0b9` · no verifier · no merge |
 
 ## 🗺️ Source map (baseline `a99f9a63` + PG/Hasura)
 
