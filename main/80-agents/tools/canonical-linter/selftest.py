@@ -59,7 +59,15 @@ def new_vault(with_infra: bool = True) -> str:
             src = os.path.join(REAL_ROOT, rel)
             dst = os.path.join(tmp, rel)
             os.makedirs(os.path.dirname(dst), exist_ok=True)
-            shutil.copyfile(src, dst)
+            if rel.endswith(".md"):
+                # stub sin wikilinks: el modulo del contract se precalienta
+                # desde el vault REAL (contenido estable); la copia en el
+                # tempdir solo existe por fidelidad estructural y para no
+                # meter enlaces reales al corpus del fixture.
+                with open(dst, "w", encoding="utf-8") as fh:
+                    fh.write("# schema-contract (stub de selftest, sin wikilinks)\n")
+            else:
+                shutil.copyfile(src, dst)
     return tmp
 
 
@@ -373,7 +381,7 @@ Ilustrativo en código: `[[ilustracion]]`.
     write_note(r, "vieja.md", """---
 type: doc
 schema_version: 1
-status: superseded
+status: archived
 superseded_by: "[[Destino]]"
 tags:
   - kind/doc
@@ -681,7 +689,6 @@ Fixture sintética: nunca debe reportarse.
     for cid in ("CL-02", "CL-03", "CL-20"):
         for f in findings_of(doc, cid):
             assert_true("fixtures/" not in f["path"], "%s reportó una fixture: %s" % (cid, f))
-    assert_true(True)
 
 
 def test_determinismo() -> None:
