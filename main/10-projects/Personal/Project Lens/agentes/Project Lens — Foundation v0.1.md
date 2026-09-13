@@ -287,7 +287,7 @@ T14+T15+T16 → T17
 
 - [x] Project Lens existente cargado.
 - [x] Agents-OS actual inspeccionado (convenciones, schema contract, templates, patrón parent/agentes, Echo E-01 como referencia).
-- [x] Muestra real del vault inspeccionada (tipos, links, tasks, lifecycle, attachmeents, identidad, bloques dinámicos).
+- [x] Muestra real del vault inspeccionada (tipos, links, tasks, lifecycle, attachments, identidad, bloques dinámicos).
 - [x] Graphify inspeccionado (contrato + estado real: binario ausente en esta máquina).
 - [x] Vue 3 congelado como frontend.
 - [x] Domain entities definidas con clasificación ENTITY/VO/PROJECTION/INDEX RECORD/INFRA.
