@@ -39,7 +39,6 @@ while not os.path.isfile(os.path.join(REAL_ROOT, "80-agents/agents-os/agents-os.
 
 import canonical_linter as cl  # noqa: E402
 
-VAULTS: List_temp = []  # type: ignore[name-defined]  (se asigna abajo)
 VAULTS = []
 INFRA_FILES = [
     ("80-agents/tools/conformance-harness/rules.py", "rules.py"),
@@ -201,6 +200,8 @@ status: deprecated
 indexable: true
 index_priority: high
 area: "[[Personal]]"
+related:
+  - "[[Destino]]"
 tags:
   - kind/application
 ---
@@ -214,6 +215,8 @@ status: deprecated
 indexable: true
 index_priority: low
 area: "[[Personal]]"
+related:
+  - "[[Destino]]"
 tags:
   - kind/application
 ---
@@ -393,6 +396,8 @@ Enlaza [[archivada]] y [[vieja]] y [[Destino]].
 type: application
 schema_version: 1
 status: deprecated
+related:
+  - "[[Destino]]"
 tags:
   - kind/application
 ---
@@ -608,8 +613,8 @@ def test_positivos_por_check() -> None:
     src13 = [f for f in f13 if f["path"] == "cl13-origen.md"]
     assert_true(len(src13) == 2, "CL-13: link a archivada (path) y a vieja (estado): %s" % f13)
 
-    f14 = findings_of(doc, "CL-14")
-    assert_true(len([f for f in f14 if f["status"] == "FAIL"]) == 1 and "no-existe-cl14" in f14[0]["observed"],
+    f14 = [f for f in findings_of(doc, "CL-14") if f["status"] == "FAIL"]
+    assert_true(len(f14) == 1 and "no-existe-cl14" in f14[0]["observed"],
                 "CL-14: una fila rota -> FAIL (el asset csv no cuenta): %s" % f14)
 
     f15 = findings_of(doc, "CL-15")
