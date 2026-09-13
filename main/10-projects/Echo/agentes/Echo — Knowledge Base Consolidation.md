@@ -42,12 +42,12 @@ Dejar Echo y Echo Forge documentados según su realidad implementada actual, la 
 
 ## 📊 Estado actual
 
-- **FASE G ciclo 2 EN CURSO** — verifier focalizado en correcciones. Correcciones ciclo 1 aplicadas: F-1 en `03-forge-cartography.md` (v1.35.0, sqx/go.mod:24; spot-check adyacente sin más errores de versión), F-2 en `02-echo-cartography.md` (17 topics, snapshots.go L254-270; spot-check migraciones/Hasura OK), F-1/F-2/F-3 en `06-wiki-draft-plan.md` (L202, L106, L409; cascada no aplica, conteos 16 MOVEs y 16 apps ya verificados C45).
-- **FASE G ciclo 1 COMPLETE** — verdicto y evidencia en `artifacts/09-verification.md`. Unknowns documentados sin inventar: cobertura de deudas/hitos pre-supersede, exactitud GUIA_WORKER_TEMPORAL_MT5, inbound links exactos (grep sin Graphify), G7 observability (unknown por diseño).
+- **FASE H EN CURSO** — vault-publisher-reconciler (MAX) para publication manifest. **Fase G ciclo 2: PASS con unknowns documentados** (`artifacts/09-verification.md`): F-1/F-2/F-3 re-verificados PASS contra source, sin contradicciones nuevas, los 4 UNKNOWNs persisten declarados. Gate: procede con 4 condiciones — (1) revalidar volátiles contra HEAD al publicar (vault drift ca473eeb→82852b3, nada tocó `30-resources/applications/`), (2) supersedes sólo tras cobertura de los 32 deudas/hitos, (3) índice raíz + MOVEs + log en un cambio atómico, (4) unknowns G7/supersede declarados en las páginas.
+- Correcciones ciclo 1 aplicadas y verificadas: `03-forge-cartography.md` (Temporal v1.35.0), `02-echo-cartography.md` (17 topics), `06-wiki-draft-plan.md` (3 fixes, L106/L202/L409).
 - Fase E COMPLETE (vault `a87aa62`): 27 CANONICAL / 3 MERGE / 5+3 SUPERSEDED / ARCHIVE resto / 0 DELETE. ⚠️ Flag seguridad al owner: `30-resources/APIs.md` con credenciales vivas en texto plano — sin tocar, decisión del humano.
 - Fase D COMPLETE: frontera rota en producción (pin SDK única frontera real; G1–G7 en `artifacts/04-echo-forge-boundary.md`).
-- Fase C COMPLETE: Forge @ `9fad768c` — GenericSQXWorkflow + ForgeCampaignWorkflow (Temporal SDK); magic V1 cableado; PG/Mongo/MinIO/etcd.
-- Fase B COMPLETE: Echo @ `f7ddea18` — **Flink StateFun, NO Temporal**; E-02 implementado (PHYSICAL_PARTIAL); receptor E-04 completo, Spec-Active.
+- Fase C COMPLETE: Forge @ `9fad768c` — GenericSQXWorkflow + ForgeCampaignWorkflow (**Temporal SDK v1.35.0**); magic V1 cableado; PG/Mongo/MinIO/etcd.
+- Fase B COMPLETE: Echo @ `f7ddea18` — **Flink StateFun, NO Temporal**; 17 topics Kafka; E-02 implementado (PHYSICAL_PARTIAL); receptor E-04 completo, Spec-Active.
 - Fase A COMPLETE: subdominio `30-resources/applications/echo/` + `00-index.md` (`artifacts/01-knowledge-architecture.md`).
 - Riesgos registrados en artifact: vault HEAD real `09746b3` (sync commits ajenos, reconcilia fase H); movimiento ~17 páginas exige actualizar índice raíz en el mismo cambio; symphony dirty → sólo lectura; skills INDEX declara 3 app-owned vs 21 reales en symphony (fases I/J); Graphify CLI no disponible (inventario por búsqueda enfocada).
 - `MAX_ACTIVE_SUBAGENTS = 1` — ejecución estrictamente secuencial. El planner (esta nota) es single-writer del parent orchestrator.

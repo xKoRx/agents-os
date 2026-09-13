@@ -249,7 +249,15 @@ class Session(object):
     """Session state model per bootstrap Session Modes: pick exactly one per
     turn; states session_mode / active_entity / active_domain; warm reuses the
     stack, swap replaces the domain pack explicitly (Session Modes; entity swap
-    pasos 1-4: "Never hold two domain packs at once")."""
+    pasos 1-4: "Never hold two domain packs at once").
+
+    Turn convention: the CALLER fixes `self.turn` to the turn being executed
+    before invoking cold_start/warm_turn/swap_entity; the model attributes
+    every file open to the current turn and never advances it, so
+    opens_in_turn(N) always describes exactly the turn the caller declared
+    (adversarial-verification D1: the previous model advanced the turn inside
+    warm_turn/swap_entity, which made the scenarios' per-turn assertions
+    inspect an always-empty turn)."""
 
     def __init__(self, vault: Vault):
         self.vault = vault
@@ -367,10 +375,17 @@ class Session(object):
         constitution/profile/bootstrap (Session Modes: "Warm turn, same entity
         ... Never re-read constitution/profile/bootstrap"; warm paso 4: "Do not
         invoke or reread bootstrap merely because the user sent another
-        message"). The delta is retrieved lazily by the caller via retrieve()."""
-        self.turn += 1
+        message"). The delta is retrieved lazily by the caller via retrieve()
+        and open_delta().
+
+        The return value is the REAL telemetry of this call — the file opens
+        recorded during it (zero in the faithful transcription), not a
+        constant: a warm turn that re-read a base file would be visible both
+        here and in opens_in_turn() of the calling scenario (adversarial-
+        verification D1)."""
+        before = len(self.opens)
         self.session_mode = "warm"
-        return []  # zero base re-opens; delta handled by retrieve()
+        return [e.rel for e in self.opens[before:]]
 
     def retrieve(self, intent: str, explicit_history: bool = False) -> List[str]:
         """Lazy retrieval over the real memory corpus (agents-os-context-
@@ -430,8 +445,11 @@ class Session(object):
            changed, DROP the previous domain pack (router + scoped preferences)
            and load the new router. "Never hold two domain packs at once."
         4. Drop the previous entity pack from active reasoning (specialist
-           skills go with the pack)."""
-        self.turn += 1
+           skills go with the pack).
+
+        Turn convention: does NOT advance the turn; every open performed here
+        (new pack) is attributed to the turn the caller declared, so the
+        scenario's per-turn assertions observe the actual swap turn."""
         prev_domain = self.active_domain
         prev_pack = list(self.pack_files)
         prev_specialists = list(self.specialist_skills)
