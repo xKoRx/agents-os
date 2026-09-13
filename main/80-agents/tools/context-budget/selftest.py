@@ -16,10 +16,20 @@ Cobertura:
 - T3 pre-flight en rojo (autoridad truncada) -> todos los CTX en SKIP motivado.
 - T4 marker ausente -> todos los CTX en SKIP con motivo.
 - T5 determinismo: dos runs completos sobre el vault real (read-only, sin
-  escribir resultados) producen records idénticos salvo `run`/timestamp.
+  escribir resultados) producen records idénticos salvo `run`/timestamp y
+  `results_file` (que no puede autoreferenciarse).
 - T6 etiquetado: prohibido un campo llamado `tokens`; la nota chars/4 es
   visible; `estimated_tokens` presente.
 - T7 exit codes: escenario desconocido -> 2; suite sin FAIL -> 0.
+- T8 (D1 de la verificación adversarial) negativa: la nota VPN inyectada en
+  escenarios aranea (CTX-03 y rama aranea de CTX-11) produce SOLO WARN (A3/
+  Hallazgo 7), nunca FAIL ni doble emisión FAIL+WARN.
+- T9 (D3) mutaciones en tempdir con los repros del verifier: los asserts
+  heredados restituidos disparan FAIL (CTX-01 entidad activa, CTX-02 skill sin
+  router con listado filtrado S1, CTX-03 índice federado not_load, CTX-07
+  título post-swap, CTX-08 una sola especialista).
+- T10 (D2) especialista con `status: deprecated` en tempdir: CTX-12 la detecta
+  (FAIL) y CTX-08 registra el ciclo de vida de la especialista que abre.
 
 Python 3.9+ stdlib only. Imprime PASS/FAIL por test y exit code.
 """
@@ -269,7 +279,7 @@ def t5_determinism() -> None:
     doc2 = cb.run_suite(VAULT, write=False)
     same = _normalize(doc1) == _normalize(doc2)
     report("T5.determinismo-dos-runs", same,
-           "dos runs completos sobre el vault real: records %s salvo run/timestamp" % ("idénticos" if same else "DIFERENTES"))
+           "dos runs completos sobre el vault real: records %s salvo run/timestamp y results_file" % ("idénticos" if same else "DIFERENTES"))
     if not same:
         n1, n2 = _normalize(doc1), _normalize(doc2)
         for sid in n1["scenarios"]:
