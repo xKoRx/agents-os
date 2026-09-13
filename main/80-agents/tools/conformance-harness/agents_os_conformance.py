@@ -816,7 +816,7 @@ def sc_cold_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
     evidence.append("estado: active_entity=%s active_domain=%s pack=%s" % (
         ent.get("title") if ent else None, s.active_domain, s.pack_files))
     evidence.append("gate: %s" % s.gate_note)
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "cold start Meli: router meli-agent-dev + preferencias scoped (meli work + vpn routing)" if not problems
         else "cold start Meli violo el contrato (C10/C11)",
         evidence + problems)
@@ -883,7 +883,7 @@ def sc_cold_conflicting(ctx: Ctx) -> Tuple[str, str, List[str]]:
     evidence.append("entrada del gate: {entity_area=[[Meli]], surface=mcp__aranea-*, task_mentions=aranea} -> salida: %s" % s.gate_note)
     evidence.append("estado: active_entity=%s active_domain=%s (fail closed, sin router)" % (
         s.active_entity.get("title") if s.active_entity else None, s.active_domain))
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "evidencia conflictiva fallo cerrado: ningun router (bootstrap paso 6)" if not problems
         else "el gate no fallo cerrado ante evidencia conflictiva (C10)",
         evidence + problems)
@@ -914,7 +914,7 @@ def sc_warm_default(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("modo/ritual incorrecto: mode=%s runs=%d" % (s.session_mode, s.bootstrap_runs))
     evidence.append("estado: session_mode=%s active_entity=%s active_domain=%s (sin output ritual, bootstrap Output)" % (
         s.session_mode, s.active_entity, s.active_domain))
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "turno warm sin dominio: cero relecturas, delta vacio para turno casual" if not problems
         else "turno warm re-leo base (C06)",
         evidence + problems)
@@ -948,7 +948,7 @@ def sc_warm_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
     evidence.append("cuerpo abierto (delta unico del turno): %s" % FURY_NOTE)
     evidence.append("estado: session_mode=%s active_entity=%s active_domain=%s sin cambio" % (
         s.session_mode, s.active_entity.get("title"), s.active_domain))
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "turno warm Meli: delta = known-error RIO (when_error_matches); base y pack intactos" if not problems
         else "turno warm Meli violo el contrato (C06/C11)",
         evidence + problems)
@@ -980,7 +980,7 @@ def sc_warm_aranea(ctx: Ctx) -> Tuple[str, str, List[str]]:
     evidence.append("candidatos del filtro (%d): %s" % (len(candidates), ", ".join(candidates) or "-"))
     evidence.append("cuerpo abierto (delta unico del turno): %s" % MT5_NOTE)
     evidence.append("trigger del fixture: %s (vocabulario no canonico = WARN de LOAD-POLICY-VOCABULARY, no invalida este escenario)" % _load_policy_note(ctx.vault.frontmatter(MT5_NOTE)))
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "turno warm Aranea: delta = continuidad activa Echo Forge; base intacta" if not problems
         else "turno warm Aranea violo el contrato (C06)",
         evidence + problems)
@@ -1006,7 +1006,7 @@ def sc_bootstrap_not_rerun(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("bootstrap re-ejecutado en turnos 2..N: %d runs" % s.bootstrap_runs)
     evidence.append("turnos 2..5 sin aperturas de base/bootstrap: %s" % (["[]" if not s.opens_in_turn(t) else s.opens_in_turn(t) for t in range(2, 6)]))
     evidence.append("bootstrap_runs=%d; session_mode estable=%s" % (s.bootstrap_runs, s.session_mode))
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "4 turnos warm consecutivos sin releer base ni re-invocar bootstrap" if not problems
         else "bootstrap re-emitido o base re-leida en turnos warm (C01/C06)",
         evidence + problems)
@@ -1044,7 +1044,7 @@ def sc_switch_meli_to_aranea(ctx: Ctx) -> Tuple[str, str, List[str]]:
     evidence.append("antes: domain=%s pack=%s" % ("meli", pack_meli))
     evidence.append("despues: domain=%s pack=%s entity=%s" % (s.active_domain, s.pack_files, s.active_entity.get("title") if s.active_entity else None))
     evidence.append(s.swap_note or "")
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "swap Meli->Aranea: pack reemplazado explicitamente, un solo pack, base persistente" if not problems
         else "swap Meli->Aranea violo el contrato (C07)",
         evidence + problems)
@@ -1092,7 +1092,7 @@ def sc_switch_aranea_to_meli(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("INDEX.md re-cargado en el swap (registry ya en contexto)")
     evidence.append("despues: domain=%s pack=%s especialista=%s" % (s.active_domain, s.pack_files, s.specialist_skills))
     evidence.append("VPN por rjara-vpn-routing-preferences.md antes del primer acceso corporativo (router Procedure 4): incluida en pack")
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "swap Aranea->Meli: router + preferencias, signals-code-review solo via tabla del router" if not problems
         else "swap Aranea->Meli violo el contrato (C07/C12)",
         evidence + problems)
@@ -1169,7 +1169,7 @@ def sc_meli_negative_aranea_tool(ctx: Ctx) -> Tuple[str, str, List[str]]:
     if ctx.machine_surface:
         evidence.append("estado observado de configs (nombres only): %s" % ", ".join(
             "%s aranea=%d meli=%d" % (c["surface"], c["aranea"], c["meli"]) for c in ctx.machine_surface))
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "en dominio meli las capabilities mcp__aranea-* no se invocan aunque esten expuestas" if not problems
         else "frontera de tools violada en dominio meli (C13)",
         evidence + problems)
@@ -1201,7 +1201,7 @@ def sc_aranea_negative_meli_tool(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("dominio cambio indebidamente: %s" % s.active_domain)
     evidence.append("cadena replicada: gate (domain-gated never directly) -> aranea-agent-dev Procedure 1 (rechazo y deriva a meli-agent-dev antes de leer documentacion o abrir conexiones) -> gate propio de signals-code-review ('Fuera de Meli termina como NOT_APPLICABLE antes de invocar Zord', Hallazgo 2)")
     evidence.append("resultado: %s (%s); tarea rechazada/derivada con motivo declarado; zord/fury no existen como MCP ni estan instalados (Hallazgo 5)" % (decision, reason))
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "tarea meli sin identidad demostrable: rechazada sin fuentes ni tools corporativas" if not problems
         else "defensa en profundidad violada desde aranea (C12/C13)",
         evidence + problems)
@@ -1244,7 +1244,7 @@ def sc_deprecated_doc_not_default_load(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("el stack debe contener exactamente UNA nota interna global: %d" % active_count)
     evidence.append("SIMULATED: candidatos del filtro retrieval normal (sin historico): %d; archive ausente" % len(delta))
     evidence.append("stack: exactamente una nota interna global (%s)" % rules.GLOBAL_INTERNAL)
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "la continuidad superseded queda fuera de startup y retrieval normal (mismo continuity_key)" if not problems
         else "memoria superseded entro al startup o retrieval (C14)",
         evidence + problems)
@@ -1285,7 +1285,7 @@ def sc_unrelated_domain_not_loaded(ctx: Ctx) -> Tuple[str, str, List[str]]:
     evidence.append("candidatos del filtro (%d, todos area [[Meli]] o referenciando RIO): %s" % (len(delta), ", ".join(sorted(delta))[:400] or "-"))
     evidence.append("continuidad interna meli activa: %s (Hallazgo 10: toda la continuidad Meli esta archived/manual — estado observado, no invariante)" % (meli_internal_active or "ninguna hoy"))
     evidence.append("semantica: las preferencias Meli y Aranea son scoped (perfil); el router ya cargo las de meli en cold start; retrieval no trae prefs")
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "retrieval meli: solo memoria del dominio/entidad activa; cero piezas Echo/Aranea" if not problems
         else "retrieval trajo memoria del dominio ajeno (C11)",
         evidence + problems)
@@ -1368,7 +1368,7 @@ def sc_session_surface_exposure(ctx: Ctx) -> Tuple[str, str, List[str]]:
             problems.append("%s: servers Meli configurados (deben ser cero): %s" % (cfg["surface"], meli))
     evidence.append("assert por config: aranea-* presente y habilitado; cero servers Meli (zord/fury/spellbook/melisource)")
     evidence.append("SKIP permanente: sonda manual de auto-reporte de sesion real (documentada en README; el orchestrator la ejecuta y registra a mano; el router auto-declarado queda como dato WARN, Hallazgo 6)")
-    return state_worst(["PASS"] if not problems else ["FAIL"]), (
+    return (state_worst(["PASS"] if not problems else ["FAIL"]), 
         "superficie observada: aranea-* configurados y cero servers Meli en todas las configs presentes" if not problems
         else "superficie de exposicion desviada del estado declarado",
         evidence + problems)
