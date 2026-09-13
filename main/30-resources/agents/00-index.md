@@ -56,7 +56,7 @@ tags:
 
 ## 🔗 MCP Aranea y dominios de agente
 
-El acceso MCP de Aranea es exclusivo del dominio [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]], cuya única puerta MCP es `aranea-mcps-expert` (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`). Sus runbooks mecánicos viven en `80-agents/memory/public/runbook/`: `aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md`, `aranea-hasura-mcp.md` y `aranea-mcp-capability-plane.md`. El dominio corporativo equivalente es [[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]]; los dos routers se excluyen mutuamente.
+El acceso MCP de Aranea es exclusivo del dominio [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]], cuya única puerta MCP es `aranea-mcps-expert` (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`). Sus runbooks mecánicos viven en `30-resources/runbooks/` (dominio Runbooks): `aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md`, `aranea-hasura-mcp.md` y `aranea-mcp-capability-plane.md`. El dominio corporativo equivalente es [[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]]; los dos routers se excluyen mutuamente.
 
 Desde 2026-09-12 las skills de dominio y transversales viven aquí (migradas desde `80-agents/skills/`, que quedó reservado a comportamientos de AGENTS OS); el catálogo operativo completo vive en `80-agents/skills/INDEX.md`.
 

@@ -104,7 +104,7 @@ su raíz cumple este contrato:
 - El índice raíz declara `type: index` y `status: active`; `log.md` existe desde
   la activación. Un directorio sin ese par sigue siendo una colección, no un
   dominio activo, y el doctor no debe exigirle lifecycle de wiki.
-- Dominios activos al 2026-09-09: `agents/`, `applications/`, `aranea/`, `grids/`, `knowledges/`, `methodologies/` (con `methodologies/sdd/` como subdominio activo), `rio-atlas/`, `tools/` y `vibe-coding/`. `runbooks/`, `ideas/`, `meetings/`, `sqx/`, `storage/`, `dashboards/` y `agents-os/` mantienen su función propia; no se promueven implícitamente.
+- Dominios activos al 2026-09-12: `agents/`, `applications/`, `aranea/`, `grids/`, `knowledges/`, `methodologies/` (con `methodologies/sdd/` como subdominio activo), `rio-atlas/`, `runbooks/` (activado explícitamente 2026-09-12; los runbooks de AGENTS OS viven en `80-agents/memory/public/runbook/`), `tools/` y `vibe-coding/`. `ideas/`, `meetings/`, `sqx/`, `storage/`, `dashboards/` y `agents-os/` mantienen su función propia; no se promueven implícitamente.
 
 ## Convenciones de páginas
 
