@@ -952,6 +952,7 @@ def ctx_11_leak_unrelated(ctx, rules, harness) -> Dict[str, Any]:
     evidence = rec["evidence"]
     problems: List[str] = []
     all_unrelated: List[str] = []
+    ambiguous: List[str] = []
     avoided = {"files": 0, "bytes": 0, "chars": 0, "estimated_tokens": 0}
     runs = [("meli", "RIO", "context"), ("aranea", "Echo Forge", "continuity")]
     for domain, title, intent in runs:
@@ -963,10 +964,17 @@ def ctx_11_leak_unrelated(ctx, rules, harness) -> Dict[str, Any]:
         other = "aranea" if domain == "meli" else "meli"
         evidence.append("[%s] set cargado (%d archivos, opens+candidatos): %s" % (domain, len(loaded), ", ".join(loaded)))
         for rel in loaded:
-            fm = ctx.vault.frontmatter(rel)
-            e_dom = rules.domain_from_area(fm.get("area"))
-            if e_dom == other:
-                problems.append("[%s] archivo del dominio ajeno %s en el set cargado: %s (diseño 8.1; Hard Rules de exclusividad + perfil scoped)" % (domain, other, rel))
+            dom, conf, note = classify_file(rules, harness, ctx.root, rel)
+            if dom == other and conf == "EXACT":
+                if rel not in all_unrelated:
+                    all_unrelated.append(rel)
+                problems.append("[%s] archivo del dominio ajeno %s en el set cargado: %s (diseño 8.1; Hard Rules de exclusividad de los routers + perfil 'Las preferencias Meli y Aranea son scoped' + bootstrap paso 6 fail-closed)" % (domain, other, rel))
+            elif dom == other and conf == "INFERRED":
+                ambiguous.append("[%s] %s: %s" % (domain, rel, note))
+            elif dom is None and conf == "INFERRED":
+                ambiguous.append("[%s] %s: %s" % (domain, rel, note))
+            if domain == "aranea" and rel == rules.ROUTER_PREFS["meli"][1]:
+                ambiguous.append("[%s] %s: nota VPN (Hallazgo 7) en escenario aranea; ni afirmada ni prohibida (WARN, A3)" % (domain, rel))
         # Counterfactual (leak evitado): notas de memoria bloqueadas SOLO por el
         # chequeo de dominio de trigger_fires y que referencian a la entidad
         # activa por entities/project/application (reutiliza rules.references_entity):
@@ -997,21 +1005,20 @@ def ctx_11_leak_unrelated(ctx, rules, harness) -> Dict[str, Any]:
             domain, pool_agg["files"], other, pool_agg["chars"], pool_agg["estimated_tokens"]))
         if pool:
             evidence.append("[%s] pool del leak evitado: %s" % (domain, ", ".join(pool)))
-        all_unrelated.extend(problems and [] or [])
-        # M15 por corrida vía clasificación compartida.
-        _m15_leak_check(rules, harness, ctx, rec, s.all_opens(), candidates, s.active_domain, problems)
-    rec["metrics"].append(metric("unrelated_domain_files", sorted(set(all_unrelated)), "files", "EXACT",
-                                 "diseño 8.1: clasificación estática + filtro de retrieval de rules.trigger_fires"))
-    rec["metrics"].append(metric("unrelated_domain_chars", 0 if not all_unrelated else -1, "chars", "EXACT",
-                                 "0 archivos unrelated -> 0 chars; si hubiera hits, el FAIL ya se emite con el listado"))
-    rec["metrics"].append(metric("unrelated_domain_estimated_tokens", 0 if not all_unrelated else -1, "estimated_tokens",
-                                 "ESTIMATED", TOKENS_NOTE))
+    if ambiguous:
+        evidence.append("M15 clasificaciones ambiguas (WARN, nunca FAIL): %s" % ambiguous)
+    unrelated_agg = weight_of(harness, ctx.vault, all_unrelated)
+    rec["metrics"].append(metric("unrelated_domain_files", sorted(all_unrelated), "files", "EXACT",
+                                 "diseño 8.1: clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS) sobre opens+candidatos"))
+    rec["metrics"].append(metric("unrelated_domain_chars", unrelated_agg["chars"], "chars", "EXACT", "_size del harness"))
+    rec["metrics"].append(metric("unrelated_domain_estimated_tokens", unrelated_agg["estimated_tokens"], "estimated_tokens",
+                                 "ESTIMATED", "_size del harness + " + TOKENS_NOTE))
     rec["metrics"].append(metric("leak_avoided_pool_files", avoided["files"], "files", "INFERRED",
                                  "cota superior del leak evitado: notas bloqueadas solo por el chequeo de dominio y referenciando a la entidad activa (rules.references_entity)"))
     rec["metrics"].append(metric("leak_avoided_pool_chars", avoided["chars"], "chars", "EXACT", "_size del harness"))
     rec["metrics"].append(metric("leak_avoided_pool_estimated_tokens", avoided["estimated_tokens"], "estimated_tokens",
                                  "ESTIMATED", "_size del harness + " + TOKENS_NOTE))
-    evidence.append("semántica: sin el chequeo de dominio, las notas del pool habrían entrado por when_error_matches/when_project_loaded/when_application_loaded (ref_hit); las when_area_loaded cruzadas siguen excluidas por desigualdad de área")
+    evidence.append("semántica del counterfactual: sin el chequeo de dominio, las notas del pool habrían entrado por when_error_matches/when_project_loaded/when_application_loaded (ref_hit); las when_area_loaded cruzadas siguen excluidas por desigualdad de área")
     return _finish(rec, problems, "PASS",
                    "retrieval en ambos dominios: 0 archivos del dominio ajeno en el set cargado (M15 EXACT); pool de leak evitado cuantificado (INFERRED)",
                    "el retrieval o el set cargado trajo memoria del dominio ajeno (C11)")
