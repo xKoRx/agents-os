@@ -7,7 +7,7 @@ baseline: symphony 9fad768ccd1f9d25ebb535a2d26edb3d74556c10 (feature/f04-magic-v
 inputs: ~/go/src/github.com/xKoRx/symphony (sqx/ module, internal/, cmd/, specs/); echo SDK pinned module github.com/xKoRx/echo/v3/sdk/contracts v0.0.0-20260910031519 (leído vía imports/código, no checkout)
 scope: cartografía funcional Echo Forge read-only
 started_at: 2026-09-13T00:05:16-03:00
-updated_at: 2026-09-13T00:05:16-03:00
+updated_at: 2026-09-13T01:22:57-03:00
 ---
 
 ## Assignment
@@ -67,7 +67,7 @@ Task KBC-C (Fase C, reintento único tras fallo de infraestructura): mapear READ
 - Parseo de reportes: `sqx/adapters/mt5/report/` (decode/parse/results/crosscheck). Reconciliación: `MT5ReconcileActivity` (`mt5_reconcile_activity.go`) compara identidad estructural requested vs observed y métricas SQX vs MT5 (`core/evaluation/reconcile.go:BuildReconciliation` con tolerancia); persiste `persistMT5ReconcileV1` (generic_workflow.go:3006). Scoring/shadow: `MT5ScoreShadowActivity` (`mt5_score_shadow_activity.go`), fidelidad en `core/evaluation/mt5_fidelity.go` + matriz (`mt5_fidelity_matrix_test.go`), scoring puro en `sqx/adapters/mt5/scoring/score.go` con golden tests. Confidence HIGH.
 
 ### 8. Temporal (confirmación)
-- Temporal CONFIRMADO como motor de workflows de Forge: `go.temporal.io/sdk v1.44.1` en `sqx/go.mod`/root go.mod; 5 workflows registrados (`GenericSQXWorkflow`, `GroupSQXWorkflow`, `MT5CompileArtifactWorkflow`, `MT5BacktestArtifactWorkflow`, `ForgeCampaignWorkflow`) + workflows durable auxiliares (`durable_select_workflow.go`, `durable_apply_selected_run_workflow.go`, `wfm_durable.go` como funciones, `durable_trade_list_workflow.go`, `durable_mt5_exporter.go`, `adaptive_workflow.go`); ~40 activities en `sqx-worker`. Zeebe/Camunda (`zeebe clients v8`, `internal/services/camunda`, `internal/tasks/*`) pertenece SOLO al módulo root legacy (feeds/symphony), no a Forge. Confidence HIGH.
+- Temporal CONFIRMADO como motor de workflows de Forge: `go.temporal.io/sdk v1.35.0` en `sqx/go.mod:24` (v1.44.1 existe sólo en el go.mod root `github.com/xKoRx/symphony`, módulo legacy de feeds, no Forge); 5 workflows registrados (`GenericSQXWorkflow`, `GroupSQXWorkflow`, `MT5CompileArtifactWorkflow`, `MT5BacktestArtifactWorkflow`, `ForgeCampaignWorkflow`) + workflows durable auxiliares (`durable_select_workflow.go`, `durable_apply_selected_run_workflow.go`, `wfm_durable.go` como funciones, `durable_trade_list_workflow.go`, `durable_mt5_exporter.go`, `adaptive_workflow.go`); ~40 activities en `sqx-worker`. Zeebe/Camunda (`zeebe clients v8`, `internal/services/camunda`, `internal/tasks/*`) pertenece SOLO al módulo root legacy (feeds/symphony), no a Forge. Confidence HIGH.
 
 ### 9. Artefactos y materialización
 - Artefactos producidos: overview metadata (builder durable), WFM runs/evaluations exportadas y selladas, robust selection outputs, MT5 reports parseados, trade lists (JSON con manifest, plugin Java), clasificaciones, ranking snapshots, decisiones (Decisions), estrategias `.sqx` y EAs MT5 compilados. Almacenamiento: MinIO bucket `sqx-strategies` (`sqx/adapters/uploader-minio/minio_uploader.go:39`, `minio.BucketStrategies`) vía SDK `xKoRx/sdk`; metadata/evidencia en MongoDB; durabilidad/autoridad en PostgreSQL. Confidence HIGH.
@@ -127,7 +127,7 @@ Task KBC-C (Fase C, reintento único tras fallo de infraestructura): mapear READ
 | Plugin Java exporters dentro de SQX | sqx/exporter-plugin/src/SQ/CustomAnalysis/ | EchoForge*Exporter.java | exporter-plugin/test-* | MEDIUM (nombres/existencia HIGH, lifecycle MEDIUM) |
 | SQX se ejecuta vía etcd+CommandExecutor con markers | sqx/adapters/executor-sqx/sqx_executor.go | SQXExecutor.ExecuteAndWait, validateMarkers | sqx_executor_test.go | HIGH |
 | Worker Temporal registra 5 workflows + ~40 activities | sqx/cmd/sqx-worker/main.go | L329-390 | lifecycle_test.go, proactiva_e2e_test.go | HIGH |
-| Temporal SDK v1.44.1 en sqx module | sqx/go.mod | require temporal | — | HIGH |
+| Temporal SDK v1.35.0 en sqx module (go.mod:24) | sqx/go.mod | require temporal | — | HIGH |
 | Campaña: waves con child ID determinista y stop policy | sqx/workflows/forge_campaign_workflow.go | ForgeCampaignWorkflow (L51) | forge_campaign_workflow_test.go | HIGH |
 | Dispatcher Temporal con convergencia de starts duplicados | sqx/adapters/dispatcher-temporal/temporal_dispatcher.go | StartV1, StartForgeCampaign, ConvergeAlreadyStarted | temporal_dispatcher_v1_test.go, forge_campaign_dispatch_test.go | HIGH |
 | Watcher fsnotify → MinIO → dispatch Temporal | sqx/cmd/sqx-watcher/main.go | runWatcherLoop, processFileEvent | watcher tests (intake_test.go) | HIGH |
@@ -169,3 +169,7 @@ Task KBC-C (Fase C, reintento único tras fallo de infraestructura): mapear READ
 - Artefactos hermanos: `10-projects/Echo/agentes/kb-consolidation/artifacts/02-echo-cartography.md` (lado Echo) — contrastar su observación de "no existe cliente HTTP emisor en Symphony / F-04 usa FakeConsumer": CONFIRMADA por este cartografiado con evidencia file/símbolo.
 - Gaps recomendados para decisiones del planner (no ejecutados por mí): decidir owner del cableado del handoff (dónde en el pipeline), y definir la reconciliación UNKNOWN_RECEIPT con el read idempotente E-04.
 - Lectura de repo estrictamente read-only; ningún archivo fuera de este artifact fue modificado; sin checkout/reset/stash; el dirty file quedó intacto.
+
+## Corrections
+
+- Corrección (KBC-G fix F-1, 2026-09-13T01:22:57-03:00): el claim "Temporal SDK v1.44.1 en sqx/go.mod" era erróneo. Evidencia verificada: `sqx/go.mod:24` declara `go.temporal.io/sdk v1.35.0`; `go.temporal.io/sdk v1.44.1` está sólo en el go.mod root (`github.com/xKoRx/symphony`, módulo legacy de feeds, línea 24), que no es Forge. Líneas corregidas: sección "### 8. Temporal (confirmación)" y fila correspondiente de la tabla Evidence. Spot-check de demás versiones citadas (echo contracts pin v0.0.0-20260910031519, xKoRx/sdk, otel, zeebe v8 sólo root): coinciden con los go.mod reales; sin más errores adyacentes de este tipo. Baseline: 9fad768ccd1f9d25ebb535a2d26edb3d74556c10.
