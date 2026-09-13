@@ -77,4 +77,5 @@ Reglas de repos: INPUTS READ ONLY. Sin reset/clean/stash/rebase/checkout destruc
 
 ## 📆 Bitácora
 
+- **2026-09-12** — Interrupción infra: primer lanzamiento de forge-functional-cartographer (KBC-C) falló con "user concurrency limit exceeded" antes de iniciar. Verificado: sin hijos activos. Reintento único de la misma task en curso.
 - **2026-09-12** — Campaña iniciada (NEW). Bootstrap Agents-OS ejecutado; dominio aranea, entity Echo. Baselines capturados (tabla 🧱). Proyecto creado como planner único; artifacts en `agentes/kb-consolidation/artifacts/`. Tarea puente creada en [[Echo — Producto Integrado]]. Fase A lanzada.
