@@ -7,7 +7,7 @@ baseline: echo f7ddea18cab51db72c9765aa74381328134d7ce7 (feature/e02-control-saf
 inputs: xKoRx/echo (todo el tree, lectura committed); specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2, specs/FEAT-FORGE-INGESTION-E1, specs/SPECS.md; artifact 01-knowledge-architecture.md (handoff)
 scope: cartografía funcional Echo read-only (WHAT IS, no WHAT SHOULD BE); distinción explícita IMPLEMENTADO vs EN PROGRESO vs SOLO-SPEC
 started_at: 2026-09-12T23:30:00-03:00
-updated_at: 2026-09-12T23:55:00-03:00
+updated_at: 2026-09-13T00:20:00-03:00
 ---
 
 # KBC-B — Echo Functional Cartography
@@ -71,7 +71,7 @@ Mapear cómo funciona Echo HOY en el baseline `f7ddea18` (branch `feature/e02-co
 ### 6. Integraciones (IMPLEMENTADO / PARCIAL)
 
 - MT5/MT4: EAs MQL ↔ Bridge por named pipes (`v3/bridge/internal/pipe_manager.go`, `pipe_handler.go`, `reference_pipe_handler.go`, `client_config_pipe.go`, `telemetry_pipe_handler.go`); detección de órdenes nativas `EchoOrderDetection.mqh` (Completed según SPECS.md). Confidence HIGH.
-- Kafka: 18 topics canónicos declarados en `v3/sdk/domain/snapshots.go` (`echo.reference-events.v1`, `echo.core-commands.v1`, `echo.execution-results.v1`, `echo.trade-closes.v1`, `echo.close-commands.v1`, `echo.close-results.v1`, `echo.snapshot-batches.v1`, `echo.account-snapshots.v1` DEPRECATED, `echo.instrument-snapshots.v1` DEPRECATED, `echo.execution-policies.v1`, `echo.system-events.v1`, `echo.native-opens.v1`, `echo.position-snapshots.v1`, `echo.account-configs.v1`, `echo.symbol-mappings.v1`, `echo.automation-profiles.v1`, `echo.automation-actions.v1`) + topic por cuenta `echo.commands.<account>.v1` en `bridge/internal/session/command_consumer.go`. Consumer groups Sarama (V2_8_0_0, autocommit 1s, offsets Newest). Confidence HIGH.
+- Kafka: 17 topics canónicos declarados en `v3/sdk/domain/snapshots.go` (`echo.reference-events.v1`, `echo.core-commands.v1`, `echo.execution-results.v1`, `echo.trade-closes.v1`, `echo.close-commands.v1`, `echo.close-results.v1`, `echo.snapshot-batches.v1`, `echo.account-snapshots.v1` DEPRECATED, `echo.instrument-snapshots.v1` DEPRECATED, `echo.execution-policies.v1`, `echo.system-events.v1`, `echo.native-opens.v1`, `echo.position-snapshots.v1`, `echo.account-configs.v1`, `echo.symbol-mappings.v1`, `echo.automation-profiles.v1`, `echo.automation-actions.v1`) + topic por cuenta `echo.commands.<account>.v1` en `bridge/internal/session/command_consumer.go`. Consumer groups Sarama (V2_8_0_0, autocommit 1s, offsets Newest). Confidence HIGH.
 - Forge ingestion (boundary receptor, E-04/E-01): `POST /api/v1/forge/promotions` → `ForgeIngestHandler` (`v3/gateway/internal/forge_ingest_handler.go`) con bearer propio (`forge_ingest_auth.go`), límite de body, clasificación de errores (`classifyIngestError`, wire errors con retryable) y modo misconfig 503 fail-closed. Service: `v3/sdk/postgres/ingestion_service.go` `Ingest()` — valida manifest, version de autoridad, copia artefactos operativos (`FilesystemStore` en `artifact_root` con allowlist, `NewFilesystemStore`), mapea tx strategy_version/mapping/promotion, receipt INGESTED, replay idempotente (200 exact-replay sin re-fetch de artefactos), 409 en conflictos. `ArtifactSource` de producción es `unavailableArtifactSource` fail-closed (no hay store remoto allowlisteado en V1). Confidence HIGH.
 - No hay integración SQX en este repo (SQX/Forge vive en `xKoRx/symphony`, fuera de este baseline). Confidence HIGH.
 - Flink StateFun vía HTTP (h2c) — ver sección 4. No se encontraron otras integraciones externas (sin Slack/email/etc.). Confidence MEDIUM (ausencia verificada por grep, no exhaustiva).
@@ -122,7 +122,7 @@ Mapear cómo funciona Echo HOY en el baseline `f7ddea18` (branch `feature/e02-co
 | Bridge Windows named pipes | v3/bridge/cmd/echo-bridge/main.go | main (`//go:build windows`) | build_v3.sh (bridge targets Windows) | HIGH |
 | PublishSync para trading facts | v3/sdk/messaging/kafka_producer.go; bridge pipe handlers | KafkaProducer.PublishSync | commit 38eda71b; gateway handler tests | HIGH |
 | Topic por cuenta echo.commands.<account>.v1 | v3/bridge/internal/session/command_consumer.go | CommandConsumer | command_consumer_test.go | HIGH |
-| 18 topics canónicos | v3/sdk/domain/snapshots.go | Topics | v3/kafka/README.md | HIGH |
+| 17 topics canónicos | v3/sdk/domain/snapshots.go | Topics | v3/kafka/README.md | HIGH |
 | Boundary Forge misconfig 503 fail-closed | v3/gateway/internal/forge_ingest_handler.go; server.go | ForgeIngestHandler.ServeHTTP, Misconfigured | forge_ingest_handler_test.go; TestServer_MountsForgeIngest | HIGH |
 | Artifact store filesystem + allowlist; source remoto fail-closed | v3/sdk/postgres/ingestion_artifact.go | FilesystemStore, ArtifactSource, unavailableArtifactSource | ingestion_artifact_test.go | HIGH |
 | Scheduler 1-min + news blackout RFC-007 | v3/gateway/internal/scheduler/scheduler.go; automation/news_blackout_evaluator.go | JobScheduler, NewsBlackoutEvaluator | scheduler_test.go; news_blackout_evaluator_test.go | HIGH |
@@ -147,6 +147,10 @@ Mapear cómo funciona Echo HOY en el baseline `f7ddea18` (branch `feature/e02-co
 - Unknown 3: `v1/` y `v2/` quedan cartografiados sólo como legacy (existencia y rol en go.work); su comportamiento interno no fue mapeado (fuera de prioridad para la wiki; el activo es v3).
 - Unknown 4: composición exacta de tablas Hasura en `the_lab.yaml`/`lab_clean.yaml` no enumerada tabla-por-tabla (se verificó que existen y el patrón de tracking).
 - Nota: el working tree estaba clean; no fue necesario leer vía `git show`.
+
+## Corrections
+
+- [KBC-G fix F-2, ciclo 2] Corregido conteo de topics: "18 topics canónicos" → "17 topics canónicos" (Findings Kafka y Evidence). Evidencia: `xKoRx/echo` `v3/sdk/domain/snapshots.go` L254-270, struct `Topics` contiene exactamente 17 entradas (2 marcadas DEPRECATED: `echo.account-snapshots.v1`, `echo.instrument-snapshots.v1`); la única otra ocurrencia de un string `echo.*.v1` en el archivo (L314) es un comentario, no una declaración. Confidence HIGH.
 
 ## Handoff
 
