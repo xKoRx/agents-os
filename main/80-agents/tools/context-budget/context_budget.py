@@ -626,9 +626,13 @@ def ctx_03_aranea_cold(ctx, rules, harness) -> Dict[str, Any]:
     evidence.append("estado: active_entity=%s active_domain=%s pack=%s" % (
         ent.get("title") if ent else None, s.active_domain, s.pack_files))
     evidence.append("WARN declarado (Hallazgo 7): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area y el router Aranea no la lista en su Minimal Read; su carga on-demand via el enlace del perfil no se afirma ni se prohíbe (C11). M15 la clasifica ambigua (A3).")
+    base_agg = weight_of(harness, ctx.vault, [rules.CONSTITUTION, s.profile_note or "", rules.GLOBAL_INTERNAL, rules.SKILLS_INDEX])
+    soft_warns = []
+    if _soft_target(rec, "cold_base", base_agg["estimated_tokens"], 3000, 6000, "3-6k"):
+        soft_warns.append("cold_base")
     return _finish(rec, problems, "WARN",
                    "cold start Aranea via area [[Echo]]: base 4 + router aranea-agent-dev + aranea ops prefs; expert no cobrada (chars/4)",
-                   "cold start Aranea violó el contrato (C10) o registró unrelated-domain")
+                   "cold start Aranea violó el contrato (C10) o registró unrelated-domain", warns=soft_warns)
 
 
 # ---------------------------------------------------------------------------
