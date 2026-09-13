@@ -229,7 +229,8 @@ def strip_md(name: str) -> str:
 
 def parse_links_with_lines(text: str) -> List[Tuple[int, str, str]]:
     """Wikilinks de CUERPO con número de línea 1-based. Omite el bloque de
-    frontmatter y los fenced code blocks (umbral declarado en THRESHOLDS)."""
+    frontmatter, los fenced code blocks y los inline code spans (Obsidian no
+    renderiza wikilinks dentro de código; umbral declarado en THRESHOLDS)."""
     lines = text.split("\n")
     fm_end = -1
     if text.startswith("---"):
@@ -239,6 +240,7 @@ def parse_links_with_lines(text: str) -> List[Tuple[int, str, str]]:
                 break
     out: List[Tuple[int, str, str]] = []
     in_code = False
+    inline_code = re.compile(r"`[^`]*`")
     for i, line in enumerate(lines):
         if i <= fm_end:
             continue
@@ -247,7 +249,7 @@ def parse_links_with_lines(text: str) -> List[Tuple[int, str, str]]:
             continue
         if in_code:
             continue
-        for m in WIKILINK_RE.finditer(line):
+        for m in WIKILINK_RE.finditer(inline_code.sub(" ", line)):
             target = clean_link_target(m.group(1))
             if target:
                 out.append((i + 1, m.group(0), target))
@@ -423,7 +425,11 @@ class LintCtx(object):
     def _ensure_indexes(self) -> None:
         if self._alias_built:
             return
-        for rel in sorted(self.physical):
+        # Índices de resolución sobre corpus vivo + 40-archive: journal,
+        # packaging (30-resources/agents-os/) y resultados derivados no son
+        # destino canónico (agents-os.md: "auditoría o distribución, nunca
+        # autoridad vigente"; relation-maintenance: no enlazar sessions/logs).
+        for rel in sorted(self.resolvable()):
             base = os.path.splitext(os.path.basename(rel))[0]
             self._by_base.setdefault(base, []).append(rel)
             self._by_base_cf.setdefault(base.casefold(), []).append(rel)
@@ -433,6 +439,11 @@ class LintCtx(object):
                 if a:
                     self._alias_map.setdefault(a, []).append(rel)
         self._alias_built = True
+
+    def resolvable(self) -> List[str]:
+        """Rels que pueden ser destino canónico de un link: corpus vivo +
+        retención 40-archive (CL-13 necesita resolver hacia el archive)."""
+        return [r for r, cls in self.physical.items() if cls in ("live", "archive_path")]
 
     def by_base(self) -> Dict[str, List[str]]:
         self._ensure_indexes()
@@ -454,17 +465,18 @@ class LintCtx(object):
         casefold único; (4) alias declarado exacto. Sin match único en ningún
         paso pero con candidatos -> ambiguous."""
         self._ensure_indexes()
+        resolvable = self._resolvable_set
         cands: List[str] = []
         # 1a: relativo al directorio del archivo origen.
         p = os.path.normpath(os.path.join(os.path.dirname(src_rel), target)).replace(os.sep, "/")
         for cand in (p, p + ".md"):
-            if cand in self.physical and cand not in cands:
+            if cand in resolvable and cand not in cands:
                 cands.append(cand)
         # 1b: VAULT_ROOT-relativo (constitución regla 11) para targets con '/'.
         if "/" in target:
             for cand in (target, target + ".md"):
                 cand = os.path.normpath(cand).replace(os.sep, "/")
-                if cand in self.physical and cand not in cands:
+                if cand in resolvable and cand not in cands:
                     cands.append(cand)
         if len(cands) == 1:
             return {"status": "ok", "candidates": cands, "step": "path"}
