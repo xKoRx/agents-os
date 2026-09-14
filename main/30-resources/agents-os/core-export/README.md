@@ -39,6 +39,11 @@ El destino por defecto es la carpeta `agents-os/` hermana de `VAULT_ROOT`. Acept
 |---|---|
 | `sources.list` | Qué se copia verbatim desde el vault, por categoría. Modos `file`, `tree`, `globtree` |
 | `dist-files/` | Lo que la distribución **escribe**, no copia: README, entrypoints de superficie, prompt de instalación, perfil estándar, área por defecto, proyecto de instalación, registro de superficies vacío, catálogo de aplicaciones vacío, semilla de continuidad global, `.gitignore` y `.graphifyignore` |
+
+Las skills portables conservan su autoridad en `30-resources/agents/skills/`.
+El builder proyecta sus filas en el `INDEX.md` distribuido y entrega un
+`domain-router-registry.md` vacío: cada instalación registra sus dominios sin
+modificar el core compartido.
 | `build-core.py` | Ensamblado, verificación de hashes, scaffolding vacío, filtrado del índice de skills y `MANIFEST.md` |
 
 ### Garantías del build

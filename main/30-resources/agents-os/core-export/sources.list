@@ -43,6 +43,7 @@ tree|public-memory|80-agents/memory/public/decision/agents-os
 tree|public-memory|80-agents/memory/public/known-error/agents-os
 tree|public-memory|80-agents/memory/public/learning/agents-os
 file|public-memory|80-agents/memory/public/runbook/graphify-obsidian-install.md
+file|public-memory|80-agents/memory/public/runbook/agents-os-skill-authoring.md
 file|public-memory|80-agents/memory/public/runbook/resource-wiki-lint-reindex.md
 file|public-memory|80-agents/memory/public/runbook/reindex-bloqueado-por-deuda-global.md
 file|public-memory|80-agents/memory/public/runbook/delegacion-a-subagentes.md
