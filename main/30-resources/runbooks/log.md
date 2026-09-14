@@ -1,5 +1,13 @@
 # Runbooks resource log
 
+## [2026-09-13] update | MCP Aranea — Kafka/Flink + host operator
+
+- Se incorporó `aranea-kafka-mcp` al catálogo canónico de runbooks de Aranea para la capability `aranea-kafka-dev-admin`; PROD queda diferido.
+- Se creó `aranea-flink-mcp` como runbook canónico de Flink/StateFun DEV: `aranea-flink-dev-admin` para control plane y `aranea-ssh` + `docker-echo-dev-operator` para filesystem/Docker/lifecycle.
+- `aranea-ssh-mcp` quedó alineado con el nuevo profile root-equivalent `docker-echo-dev-operator` y con el source-of-truth real del stack Flink en Portainer stack `1`.
+- `aranea-mcp-capability-plane`, `aranea-mcps-expert`, el workstream FLINK y el proyecto padre MCP Access Plane quedaron sincronizados con `:3008`, 22 tools Flink, ausencia de SQL y el split control-plane/host-runtime.
+- `00-index.md` se actualizó para incluir Kafka/Flink y reflejar la ingesta 2026-09-13.
+
 ## [2026-09-12] ingest | Activación del dominio y mudanza desde AGENTS OS
 
 - Dominio activado explícitamente con `00-index.md` + `log.md`.
