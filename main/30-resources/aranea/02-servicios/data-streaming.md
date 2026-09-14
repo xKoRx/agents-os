@@ -5,11 +5,13 @@ status: active
 area: "[[Aranea]]"
 related:
   - "[[aranea-kafka-mcp]]"
+  - "[[aranea-flink-mcp]]"
   - "[[AGENT-PLATFORM - MCP Access Plane]]"
 aliases: []
 tags:
   - kind/doc
   - tech/kafka
+  - tech/flink
   - tech/streaming
 created: 2026-08-10
 updated: 2026-09-13
@@ -19,7 +21,7 @@ updated: 2026-09-13
 
 ## Propósito
 
-Mapa de alto nivel de los servicios de streaming de [[Aranea]]. El baseline Kafka DEV fue reverificado el 2026-09-13; los bloques marcados como snapshot histórico conservan evidencia de 2026-06-28 y no deben usarse como autoridad operativa sin revalidación.
+Mapa de alto nivel de los servicios de streaming de [[Aranea]]. Kafka DEV y Flink/StateFun DEV fueron reverificados el 2026-09-13; los bloques marcados como snapshot histórico conservan evidencia previa y no deben usarse como autoridad operativa sin revalidación.
 
 ## Kafka — estado vigente
 
@@ -109,11 +111,88 @@ Tráfico capturado en el snapshot:
 
 No inferir listeners, seguridad, quorum mode ni autoridad PROD desde este snapshot; KAFKA2-PROD exige discovery propio.
 
-## docker-flink (LXC 126) — snapshot histórico 2026-06-28
+## Flink / Stateful Functions — DEV vigente
+
+El runtime Flink DEV actualmente certificado **no es el antiguo `docker-flink` del snapshot 2026-06-28**. El path operativo vigente está en `docker-echo-dev`.
 
 | Item | Valor |
 |---|---|
-| **Propósito** | Apache Flink — stream processing consumer Kafka |
+| **Host/LXC** | `docker-echo-dev` |
+| **VMID** | 141 |
+| **LAN IP** | `192.168.31.75` |
+| **Runtime** | Docker / Portainer |
+| **Compose project** | `flink` |
+| **Containers** | `statefun-master`, `statefun-worker` |
+| **Image** | `apache/flink-statefun:3.2.0-java11` |
+| **Flink** | `1.14.3` commit `98997ea` |
+| **StateFun** | `3.2.0` |
+| **JobManager REST** | `http://192.168.31.75:8082` → container `:8081` |
+| **JobManager RPC** | host `:6123` |
+| **HA** | none |
+| **TaskManagers** | 1 |
+| **Slots** | 2 total / 0 free al certificar |
+| **Estado** | PASS / verificado 2026-09-13 |
+
+Job observado durante la certificación:
+
+```text
+name:        StatefulFunctions
+job id:      974f0479256bc8ffe71fe962750e9c90
+state:       RUNNING
+vertices:    14/14 RUNNING
+subtasks:    28/28 RUNNING
+parallelism: 2
+```
+
+Configuración persistente relevante:
+
+```text
+/root/statefun/conf/flink-conf.yaml
+/root/statefun/modules/
+```
+
+Persistencia runtime del stack Portainer:
+
+```text
+/var/lib/docker/volumes/portainer_data/_data/compose/1/statefun/checkpoints/
+/var/lib/docker/volumes/portainer_data/_data/compose/1/statefun/savepoints/
+```
+
+Source-of-truth declarativo recuperado:
+
+```text
+Portainer stack id: 1
+host path: /var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml
+Portainer-internal path: /data/compose/1/docker-compose.yml
+```
+
+No reconstruir un `compose.yaml` paralelo como autoridad. Para cambios de config bind-mounted que no alteran topología, editar el source persistente autorizado y reiniciar controladamente. Para cambios de topology/ports/env/volumes, operar sobre el stack canónico Portainer y verificar el redeploy.
+
+Acceso agent-first certificado:
+
+```text
+control plane:
+  capability: aranea-flink-dev-admin
+  endpoint:   http://mcps.lab.aranea.cl:3008/mcp
+  surface:    22 tools exactas, sin SQL
+
+host/runtime:
+  capability: aranea-ssh
+  profile:    docker-echo-dev-operator
+  authority:  root operator DEV
+
+runbook: [[aranea-flink-mcp]]
+```
+
+`aranea-flink-dev-admin` cubre cluster/jobs/savepoints/rescale/JAR/metrics/config observable; filesystem, Docker, logs, exec y lifecycle pertenecen a `docker-echo-dev-operator`. PROD `aranea-flink-prod-ro` queda diferido y no reutiliza autoridad DEV.
+
+### `docker-flink` (LXC 126) — snapshot histórico 2026-06-28
+
+Este bloque se conserva sólo como evidencia histórica; **no es autoridad para Flink DEV vigente**.
+
+| Item | Valor |
+|---|---|
+| **Propósito histórico** | Apache Flink — stream processing consumer Kafka |
 | **VMID** | 126 |
 | **Tipo** | lxc container |
 | **Nodo** | hades |
@@ -121,22 +200,11 @@ No inferir listeners, seguridad, quorum mode ni autoridad PROD desde este snapsh
 | **RAM** | **32 GB** |
 | **Disco** | 50 GB |
 | **Tags** | `community-script`, `docker` |
-| **NetIn** | 233 GB |
-| **NetOut** | 320 GB |
+| **NetIn snapshot** | 233 GB |
+| **NetOut snapshot** | 320 GB |
 | **Estado snapshot** | Running |
 
-Patrón histórico:
-
-```text
-Kafka
-  ↓ consume
-[docker-flink en hades]
-  ↓ output
-[postgresql o mongodb]
-```
-
-> [!warning] Snapshot legacy
-> La concentración de Flink en hades y sus dependencias deben revalidarse antes de decisiones operativas actuales.
+No usar este snapshot para routing, lifecycle ni selección de capability actual.
 
 ## EMQX (LXC 103) — snapshot histórico 2026-06-28
 
@@ -159,12 +227,14 @@ El vínculo EMQX → Kafka descrito en el snapshot legacy no se considera autori
 | # | Severidad | Alerta |
 |---|---|---|
 | 1 | 🟡 | Kafka PROD requiere discovery actualizado antes de desplegar MCP PROD |
-| 2 | 🟡 | Flink/EMQX conservan baseline legacy 2026-06-28 |
-| 3 | 🟡 | No existe esquema canónico de topics documentado en este recurso |
+| 2 | 🟡 | Flink PROD requiere discovery propio antes de `aranea-flink-prod-ro`; DEV ya está cerrado y certificado |
+| 3 | 🟡 | EMQX conserva baseline legacy 2026-06-28 |
+| 4 | 🟡 | No existe esquema canónico de topics documentado en este recurso |
 
 ## Autoridades relacionadas
 
 - Operación Kafka DEV agent-first → [[aranea-kafka-mcp]].
+- Operación Flink/StateFun DEV agent-first → [[aranea-flink-mcp]].
 - Routing de capabilities MCP → [[aranea-mcps-expert]].
 - Arquitectura/deployment MCP → [[AGENT-PLATFORM - MCP Access Plane - Architecture]].
 - Proyecto de rollout MCP → [[AGENT-PLATFORM - MCP Access Plane]].
@@ -173,4 +243,4 @@ El vínculo EMQX → Kafka descrito en el snapshot legacy no se considera autori
 
 **Fuentes legacy preservadas:** `/home/hermes/aranea/topology/services.md`, `/home/hermes/aranea/topology/discovery/{hera,kronos,zeus,hades}_20260628_211812.txt`.
 
-**Snapshot legacy:** 2026-06-28 21:18 UTC. **Kafka DEV reverificado:** 2026-09-13.
+**Snapshot legacy:** 2026-06-28 21:18 UTC. **Kafka DEV y Flink/StateFun DEV reverificados:** 2026-09-13.
