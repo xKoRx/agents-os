@@ -78,7 +78,7 @@ La arquitectura puede escalar a legacy, pero legacy no se contempla en el diseñ
 
 La SPEC declara que Kafka y otras read Actions requieren una identidad Tiger válida, no autorización ACME por equipo. Esta implementación no cambia esa regla ni introduce restricciones adicionales.
 
-Las read Actions de Kafka, Flink o ClickHouse están fuera de la primera entrega y continúan con el comportamiento actual. La observación de que algunas pueden devolver datos sensibles es válida como riesgo de seguridad, pero modificar su acceso sería un requerimiento funcional nuevo y debe discutirse fuera de esta implementación.
+Las read Actions de Kafka o ClickHouse están fuera de la primera entrega y continúan con el comportamiento actual. La observación de que algunas pueden devolver datos sensibles es válida como riesgo de seguridad, pero modificar su acceso sería un requerimiento funcional nuevo y debe discutirse fuera de esta implementación.
 
 ### 5.2 Actions mutantes
 
@@ -435,4 +435,3 @@ Esta evaluación pertenece al cierre arquitectónico del proyecto y debe figurar
 - [ ] Validar el interceptor contra el estado final y merge strategy del PR 1126.
 - [ ] Resolver error mapping de Tiger y ACME antes de congelar la SPEC técnica.
 - [ ] Definir branch y base limpias después de aprobar SPEC y tasks.
-

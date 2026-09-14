@@ -88,7 +88,6 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [/] Diseñar el componente reusable de autorización #owner/me #type/dev #area/meli
 > - [/] Pulir [[Diseño previo — Autorización de operaciones por equipo]] y cerrar los gates de Actions Signals #owner/me #type/research #area/meli
 > - [ ] Confirmar `catalog-signal + start/stop`, roles ACME, importados y ausencia de precreation con los dueños del flujo #owner/me #type/research #area/meli
 > - [ ] Confirmar o corregir la relación funcional/técnica de SIG-616 en Spellbook #owner/me #type/dev #area/meli
@@ -154,15 +153,15 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 ### Backlog de ideas
 
-- 
+-
 
 ### Motivos / principios
 
-- 
+-
 
 ### Memoria pública / interna
 
 %% Opcional para proyectos de agentes o conocimiento: definir qué memoria gobierna el sistema y cuál gobierna el agente, y por qué existe cada una. %%
-- **Memoria pública:** 
-- **Memoria interna:** 
-- **Motivo:** 
+- **Memoria pública:**
+- **Memoria interna:**
+- **Motivo:**
