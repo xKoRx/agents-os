@@ -20,3 +20,9 @@ Append-only, cronológico. Formato: `## [YYYY-MM-DD] <op> | <detalle>` con `<op>
 ## [2026-09-11] ingest | Capability plane MCP Aranea
 
 - Se actualizó `02-servicios/ml-ia.md` con el contrato operativo MCP verificado: PostgreSQL Echo PROD RO (`echo`/`mcp_echo_prod_ro`), DEV RW (`echo-develop`/`mcp_echo_dev_rw`), SSH certificado y routing Mongo Forge PROD RO / DEV RW; Mongo queda pendiente de smoke funcional posterior al restart del cliente después de corregir sus bearer env vars.
+
+## [2026-09-13] ingest | Kafka/Flink DEV MCP y runtime Echo DEV
+
+- `02-servicios/data-streaming.md` quedó actualizado con Kafka DEV certificado y con Flink/StateFun DEV vigente en `docker-echo-dev`; el antiguo `docker-flink` se conserva sólo como snapshot histórico.
+- `02-servicios/ml-ia.md` quedó alineado con el capability plane `:3000`–`:3008`, nueve capabilities certificadas, `aranea-flink-dev-admin` y el profile host/runtime `docker-echo-dev-operator`.
+- Flink DEV se cerró con source-of-truth Portainer stack `1`, config persistente bajo `/root/statefun`, control plane MCP separado del host/runtime plane y PROD explícitamente diferido.
