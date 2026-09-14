@@ -822,17 +822,9 @@ def sc_cold_default(ctx: Ctx) -> Tuple[str, str, List[str]]:
     evidence.append("estado: session_mode=%s active_entity=%s active_domain=%s bootstrap_runs=%d" % (
         s.session_mode, s.active_entity, s.active_domain, s.bootstrap_runs))
     evidence.append("gate: %s" % s.gate_note)
-    # WARN obligatorio (Hallazgo 6 / Hallazgos 4): la clausula de evidencia de
-    # superficie del paso 6 + conexion permanente de mcp__aranea-* puede
-    # colapsar la ejecucion real a ARANEA; la replicacion usa la lectura de
-    # contrato literal y registra la ambiguedad sin resolverla.
-    surface = ""
-    if ctx.machine_surface:
-        surface = "; configs de maquina observadas: %s" % ", ".join(
-            "%s aranea=%d meli=%d" % (c["surface"], c["aranea"], c["meli"]) for c in ctx.machine_surface)
-    state = "FAIL" if problems else "WARN"  # WARN declarado por diseno (spec section 5)
-    details = "cold start DEFAULT sin router (contrato literal del paso 6)" if not problems else "cold start DEFAULT violo el contrato"
-    evidence += problems + ["WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente%s una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (COLD-DEFAULT observable_evidence)." % surface]
+    state = "FAIL" if problems else "PASS"
+    details = "cold start DEFAULT sin router; disponibilidad ambiental no cuenta como evidencia de tarea" if not problems else "cold start DEFAULT violo el contrato"
+    evidence += problems + ["El registro federado exige evidencia perteneciente a la tarea; tools disponibles a nivel maquina no activan dominio."]
     return state, details, evidence
 
 
