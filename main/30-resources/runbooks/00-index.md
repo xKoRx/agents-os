@@ -6,8 +6,8 @@ icon: 📋
 slug: "runbooks-index"
 area: "[[Personal]]"
 created: "2026-09-12"
-updated: "2026-09-12"
-reviewed: "2026-09-12"
+updated: "2026-09-13"
+reviewed: "2026-09-13"
 aliases:
   - "runbooks index"
   - "índice de runbooks"
@@ -24,18 +24,20 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Runbooks curados:** 15 (+1 superseded, 8 en `symphony/`)
-- **Última ingesta:** 2026-09-12
+- **Runbooks curados:** 17 (+1 superseded, 8 en `symphony/`)
+- **Última ingesta:** 2026-09-13
 - **Estado:** active
 
 ## 📂 Catálogo
 
 | Runbook | Una línea | Dominio |
 |---|---|---|
-| [[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]] | Ejecución mecánica de la capability MCP SSH de Aranea (viewer/operator). | Aranea |
+| [[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]] | Ejecución mecánica de la capability MCP SSH de Aranea (viewer/operator), incluido `docker-echo-dev-operator`. | Aranea |
 | [[30-resources/runbooks/aranea-postgres-mcp|aranea-postgres-mcp]] | Uso de las capabilities PostgreSQL RO/RW de Aranea (Echo). | Aranea |
 | [[30-resources/runbooks/aranea-mongodb-mcp|aranea-mongodb-mcp]] | Uso de las capabilities MongoDB RO/RW de Aranea (Echo Forge). | Aranea |
 | [[30-resources/runbooks/aranea-hasura-mcp|aranea-hasura-mcp]] | Superficie certificada Hasura PROD RO y administración DEV. | Aranea |
+| [[30-resources/runbooks/aranea-kafka-mcp|aranea-kafka-mcp]] | Administración certificada Kafka DEV y boundary PROD diferido. | Aranea |
+| [[30-resources/runbooks/aranea-flink-mcp|aranea-flink-mcp]] | Flink/StateFun DEV: control plane MCP + host/runtime operator, con PROD diferido. | Aranea |
 | [[30-resources/runbooks/aranea-mcp-capability-plane|aranea-mcp-capability-plane]] | Plano de capabilities MCP: discovery, auth, transporte y policy. | Aranea |
 | [[30-resources/runbooks/signals-code-review-runbook|signals-code-review-runbook]] | Ejecución mecánica del code review Meli con Zord y `rjara-rio-impact`; gate humano único. | Meli |
 | [[30-resources/runbooks/resolver-versiones-java-sin-construir-via-fury-nexus|resolver-versiones-java-sin-construir-via-fury-nexus]] | Resolver versiones Java publicadas vía Fury/Nexus sin construir. | Meli |
