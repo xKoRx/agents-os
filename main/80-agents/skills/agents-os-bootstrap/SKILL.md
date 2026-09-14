@@ -4,7 +4,7 @@ schema_version: 1
 name: agents-os-bootstrap
 scope: global
 created: 2026-07-04
-updated: 2026-09-12
+updated: 2026-09-14
 description: Mandatory AGENTS OS startup skill. Run once at cold start when a new session begins or the user explicitly asks to load AGENTS OS. Its loaded contract governs warm turns and entity swaps without rereading the skill or base stack. Loads the minimum operating stack and routes entity-specific context lazily.
 aliases:
   - agents-os-bootstrap
@@ -77,16 +77,16 @@ changed on disk. Do NOT re-run the full ritual on every message.
 5. Identify the active entity from the user's request. If not explicit,
    infer candidates with a focused search and declare the assumed entity.
    Resolve aliases/slugs to the canonical Obsidian title.
-6. Apply the domain gate from the entity's `area` frontmatter (resolve it via
-   Graphify metadata/facets or the entity note; do not scan folders):
-   - `[[Meli]]` → load `meli-agent-dev`.
-   - `[[Echo]]` or `[[Aranea]]` → load `aranea-agent-dev`.
-   - Any other area, or no resolvable entity → no domain router.
-   If no entity resolves but the surface shows domain evidence (MCP tool
-   prefixes `mcp__aranea-*`, or corporate tooling such as Zord/Fury/Spellbook),
-   use that instead. Ambiguous or conflicting evidence fails closed: no
-   router. Never load both routers; the router loads at most ONE specialized
-   skill and owns the scoped preferences of its domain.
+6. Apply the domain gate from the optional federated registry
+   `30-resources/agents/domain-router-registry.md` (do not scan folders):
+   - Resolve the entity's `area` through Graphify metadata/facets or its note
+     and compare it exactly with the registry rows.
+   - If no entity resolves, task-specific evidence may match a row's declared
+     markers. Mere ambient tool availability is not task evidence.
+   - Zero matches means DEFAULT with no domain router; one match loads exactly
+     that router; more than one match fails closed and loads none.
+   A missing or empty registry is a valid DEFAULT installation. The selected
+   router loads at most ONE specialized skill and owns its scoped preferences.
 7. If the request needs vault state or domain context, route to `agents-os-context-retrieval` for the active entity (cheapest layer first; stop when sufficient). For casual or general requests that do not depend on a vault entity, skip entity retrieval.
 8. Open source Markdown only for notes that affect a persistent decision,
    edit, or answer that must be verified.
@@ -123,14 +123,14 @@ AGENTS OS → `agents-os-doctor`, project execution →
 `agents-os-entity-lifecycle`, index stale or blocked update →
 `agents-os-graphify-maintenance`.
 
-Domain-gated skills route through their domain router, never directly. The
-domain comes from the active entity's `area` (domain gate, cold start step 6):
-`[[Meli]]` → `meli-agent-dev`; `[[Echo]]`/`[[Aranea]]` → `aranea-agent-dev`;
-any other area → no router. The two domains are mutually exclusive; a domain
-swap replaces the pack explicitly instead of mixing.
+Domain-gated skills route through the single router selected from
+`30-resources/agents/domain-router-registry.md`, never directly. The domain
+comes from the active entity's `area`, or from task-specific evidence only
+when no entity resolves. A domain swap replaces the previous pack explicitly;
+zero matches remains DEFAULT and multiple matches fail closed.
 
-Do not load Nexus, MELI, or external project skills unless the request
-explicitly asks for them.
+Do not load domain or external-project skills unless the resolved registry row
+and the request require them.
 
 ## Hard Rules
 

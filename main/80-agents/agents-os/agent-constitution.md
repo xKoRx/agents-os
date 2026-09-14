@@ -3,7 +3,7 @@ type: constitution
 schema_version: 1
 scope: global
 created: 2026-06-27
-updated: 2026-09-03
+updated: 2026-09-14
 entities:
   - "[[AGENTS OS]]"
 related:
@@ -64,17 +64,18 @@ skill canónica.
     externos usar `repo + path relativo`, resolviendo el root desde la entidad
     de aplicación o el workspace actual.
 12. No agregar repositorios completos al vault. Clones, worktrees, builds y
-    grafos de código derivados deben vivir fuera de `VAULT_ROOT`, en el
-    workspace externo de la familia correspondiente: [[Fuentes — Workspace de
-    repositorios]] (`~/fuentes`, repos Meli/RIO con nombres canónicos `rio-*`)
-    o [[Echo — Workspace Go de repositorios]] (`~/go/src/github.com/xKoRx`,
-    repos Echo con nombres del remote); el vault solo conserva notas de
-    referencia con el repo y un path relativo a esa raíz. Diferencias del
-    remote no se convierten en nombres locales.
+    grafos de código derivados viven fuera de `VAULT_ROOT`, en el workspace
+    externo registrado por la entidad, el dominio o el repositorio. El vault
+    conserva sólo la referencia al repo y un path relativo a esa raíz; las
+    convenciones concretas de ubicación y naming pertenecen a su fuente scoped.
 13. Toda nota canónica nueva se materializa mediante el contrato ejecutable y
     `materialize_schema_note.py`; no copiar templates ni escribir frontmatter
     canónico a mano. Derivados/fragmentos requieren exención contractual.
-14. En repos de desarrollo, una rama feature jamás crea, fija ni publica una versión productiva limpia `X.Y.Z`; las features usan versiones de prueba con sufijo y el release productivo se realiza exclusivamente desde la rama principal autorizada después del merge (`master` en Meli/Fury).
+14. En repos de desarrollo, una rama de trabajo no crea, fija ni publica una
+    versión productiva estable salvo autorización explícita de la policy
+    scoped del repositorio o dominio. Las versiones de prueba deben distinguirse
+    de una release productiva; el canal, naming y branch autorizados pertenecen
+    a esa policy, no a esta constitución global.
 
 ## Retrieval
 
