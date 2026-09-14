@@ -98,7 +98,8 @@ def _router_preferences(router: str) -> List[str]:
     """Read scoped preferences declared by the router's own Minimal Read."""
     path = os.path.join(_vault_root_from_here(), router)
     try:
-        text = open(path, "r", encoding="utf-8").read()
+        with open(path, "r", encoding="utf-8") as handle:
+            text = handle.read()
     except OSError:
         return []
     seen: List[str] = []

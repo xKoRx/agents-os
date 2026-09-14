@@ -174,10 +174,10 @@ def filter_skill_index(
             break
         if line.startswith("- **Core AGENTS OS:**"):
             line = f"- **Core AGENTS OS:** {len(shipped_core)} skills de comportamiento del sistema.\n"
-        elif line.startswith("- **Federadas (vault):**"):
-            line = f"- **Federadas (vault):** {len(shipped_federated)} skills portables incluidas.\n"
-        elif line.startswith("- **App-owned:**"):
-            line = "- **App-owned:** 0 en el paquete base; se registran durante la instalación.\n"
+        elif line.startswith(("- **Federadas (vault):**", "- **Federadas transversales:**")):
+            line = f"- **Federadas transversales:** {len(shipped_federated)} skills portables incluidas.\n"
+        elif line.startswith(("- **App-owned:**", "- **Domain/app-owned:**")):
+            line = "- **Domain/app-owned:** se registran durante la instalación; no forman parte del índice always-load.\n"
         match = CORE_SKILL_RE.search(line)
         if match and match.group(1) not in shipped_core:
             dropped += 1

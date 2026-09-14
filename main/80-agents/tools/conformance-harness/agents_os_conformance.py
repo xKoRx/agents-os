@@ -433,7 +433,7 @@ def _parse_index_declared_counts(text: str) -> Dict[str, int]:
     declared: Dict[str, int] = {}
     for key, pat in (
             ("core", r"\*\*Core AGENTS OS:\*\*\s*(\d+)"),
-            ("federated", r"\*\*Federadas \(vault\):\*\*\s*(\d+)"),
+            ("federated", r"\*\*Federadas (?:\(vault\)|transversales):\*\*\s*(\d+)"),
             ("app-owned", r"\*\*App-owned:\*\*\s*(\d+)")):
         m = re.search(pat, text)
         if m:
@@ -442,8 +442,7 @@ def _parse_index_declared_counts(text: str) -> Dict[str, int]:
 
 
 def sc_registry_disk_parity(ctx: Ctx) -> Tuple[str, str, List[str]]:
-    """Authority: doctor Check 8, bootstrap paso 3 + Lazy Skill Routing, C12
-    (scenario REGISTRY-DISK-PARITY). Bidirectional parity INDEX.md <-> disk."""
+    """Verify the global index and the full federated wiki against disk."""
     text = read_text(os.path.join(ctx.root, "80-agents/skills/INDEX.md"))
     sections = _parse_index_tables(text)
     core_index = sorted({_row_name(r) for r in sections["core"]})
@@ -454,16 +453,18 @@ def sc_registry_disk_parity(ctx: Ctx) -> Tuple[str, str, List[str]]:
     fed_disk = sorted(
         d for d in os.listdir(os.path.join(ctx.root, "30-resources/agents/skills"))
         if os.path.isfile(os.path.join(ctx.root, "30-resources/agents/skills", d, "SKILL.md")))
+    wiki_text = read_text(os.path.join(ctx.root, "30-resources/agents/00-index.md"))
+    wiki_index = sorted(set(re.findall(
+        r"\[\[30-resources/agents/skills/([^/#|\]]+)/SKILL", wiki_text)))
     problems: List[str] = []
     evidence = [
-        "INDEX core=%d federadas=%d app-owned=%d" % (len(core_index), len(fed_index), len(sections["app-owned"])),
-        "disco core=%d federadas=%d" % (len(core_disk), len(fed_disk)),
+        "INDEX global core=%d federadas transversales=%d" % (len(core_index), len(fed_index)),
+        "wiki federada completa=%d; disco core=%d federadas=%d" % (len(wiki_index), len(core_disk), len(fed_disk)),
     ]
     # Callout counts: what INDEX.md DECLARES vs what the tables actually
     # contain (mismatch is a registry integrity drift -> WARN, not FAIL).
     declared = _parse_index_declared_counts(text)
-    parsed_counts = {"core": len(core_index), "federated": len(fed_index),
-                     "app-owned": len(sections["app-owned"])}
+    parsed_counts = {"core": len(core_index), "federated": len(fed_index)}
     count_mismatch: List[str] = []
     if declared:
         evidence.append("conteos declarados por el callout de INDEX: %s" % json.dumps(declared, sort_keys=True))
@@ -476,50 +477,26 @@ def sc_registry_disk_parity(ctx: Ctx) -> Tuple[str, str, List[str]]:
         problems.append("skill en disco ausente de INDEX (core): %s" % name)
     for name in sorted(set(core_index) - set(core_disk)):
         problems.append("fila core de INDEX sin SKILL.md en disco: %s" % name)
-    for name in sorted(set(fed_disk) - set(fed_index)):
-        problems.append("skill en disco ausente de INDEX (federada): %s" % name)
     for name in sorted(set(fed_index) - set(fed_disk)):
         problems.append("fila federada de INDEX sin SKILL.md en disco: %s" % name)
-    # App-owned rows: repo + relative path, never an absolute machine path
-    # (INDEX: "El registry enlaza por repo + path relativo", constitucion inv. 11).
-    app_rows = sections["app-owned"]
-    parsed_app: List[Tuple[str, str]] = []
-    for row in app_rows:
-        m = re.search(r"`([^`]+)`\s*→\s*`([^`]+)`", row)
-        if not m or "→" not in row:
-            problems.append("fila app-owned mal formada (esperado `repo` → `.agents/skills/...`): %s" % row[:100])
-            continue
-        repo, rel = m.group(1), m.group(2)
-        parsed_app.append((repo, rel))
-        if not re.match(r"^[^/]+/[^/]+ \.", rel) and not rel.startswith(".agents/skills/"):
-            problems.append("fila app-owned sin path relativo `.agents/skills/`: %s" % row[:100])
-        if "/home/" in row or "~/" in row or "file://" in row:
-            problems.append("fila app-owned persiste path absoluto de maquina (violacion inv. 11): %s" % row[:100])
-    # Physical existence verified only if the owner workspace is reachable
-    # (repo lives outside VAULT_ROOT, constitucion regla 12) — SKIP sub-check
-    # otherwise (scenario REGISTRY-DISK-PARITY observable_evidence).
-    repo_dir = None
-    home = os.path.expanduser("~")
-    for cand in ("go/src/github.com/xKoRx/symphony", "src/github.com/xKoRx/symphony",
-                 "code/xKoRx/symphony", "dev/xKoRx/symphony", "xKoRx/symphony"):
-        p = os.path.join(home, cand)
-        if os.path.isdir(p):
-            repo_dir = p
-            break
-    if repo_dir:
-        for repo, rel in parsed_app:
-            if not os.path.isfile(os.path.join(repo_dir, rel)):
-                problems.append("skill app-owned inexistente en repo owner %s: %s" % (repo, rel))
-        evidence.append("repo owner alcanzable en disco: verificacion fisica de %d filas app-owned" % len(parsed_app))
-    else:
-        evidence.append("SKIP sub-check: workspace del repo owner (%s) no alcanzable desde esta maquina" % (parsed_app[0][0] if parsed_app else "xKoRx/symphony"))
+    for name in sorted(set(fed_disk) - set(wiki_index)):
+        problems.append("skill federada en disco ausente de 30-resources/agents/00-index: %s" % name)
+    for name in sorted(set(wiki_index) - set(fed_disk)):
+        problems.append("fila de 30-resources/agents/00-index sin SKILL.md: %s" % name)
+    for route in rules.DOMAIN_ROUTES:
+        router = str(route["router"])
+        name = os.path.basename(os.path.dirname(router))
+        if not ctx.vault.exists(router):
+            problems.append("router registrado inexistente: %s" % router)
+        if name in fed_index:
+            problems.append("router de dominio filtrado dentro del INDEX always-load: %s" % name)
     if problems:
         return "FAIL", "paridad INDEX.md <-> disco violada", evidence + problems[:20]
     if count_mismatch:
         return ("WARN",
                 "paridad bidireccional OK; el callout de conteos declarado por INDEX.md no coincide con las filas parseadas",
                 evidence + count_mismatch)
-    return "PASS", "paridad exacta en ambas direcciones (core y federadas); conteos del callout verificados contra las filas parseadas; filas app-owned por repo+path relativo", evidence
+    return "PASS", "paridad core exacta; índice transversal resoluble; wiki federada completa igual a disco; routers scoped fuera del always-load", evidence
 
 
 def _classify_index_use(use: str, name: str) -> str:
@@ -538,8 +515,7 @@ def _classify_index_use(use: str, name: str) -> str:
 
 
 def sc_dual_registry_domain_sync(ctx: Ctx) -> Tuple[str, str, List[str]]:
-    """Authority: Hallazgo 16 ("las clasificaciones de ambos registros deben
-    coincidir skill a skill"), C13, scenario DUAL-REGISTRY-DOMAIN-SYNC."""
+    """Legacy scenario id: enforce the new global/federated boundary."""
     index_text = read_text(os.path.join(ctx.root, "80-agents/skills/INDEX.md"))
     federated = _parse_index_tables(index_text)["federated"]
     wiki_text = read_text(os.path.join(ctx.root, "30-resources/agents/00-index.md"))
@@ -551,7 +527,6 @@ def sc_dual_registry_domain_sync(ctx: Ctx) -> Tuple[str, str, List[str]]:
             if cls:
                 wiki[m.group(1)] = cls
     problems: List[str] = []
-    warns: List[str] = []
     compared = 0
     evidence: List[str] = []
     for row in federated:
@@ -564,23 +539,21 @@ def sc_dual_registry_domain_sync(ctx: Ctx) -> Tuple[str, str, List[str]]:
             evidence.append("sin fila equivalente en 00-index para %s (no comparada)" % name)
             continue
         compared += 1
-        if icls == "meli-dual":
-            if wcls != "transversal" and wcls != "meli":
-                problems.append("dual de INDEX contradicho por 00-index (%s): %s" % (name, wcls))
-            else:
-                warns.append("pr-description: INDEX declara clausula dual ('Vía meli-agent-dev u obra propia del vault') y 00-index la clasifica %s; ninguna autoridad define la semantica exacta de la columna (WARN de escenario)" % ("transversal" if wcls == "transversal" else "Meli-only"))
-        elif icls != wcls and not (icls == "transversal" and wcls == "transversal"):
-            problems.append("clasificacion divergente sin clausula dual: %s INDEX=%s vs 00-index=%s" % (name, icls, wcls))
-    if "se excluyen mutuamente" not in wiki_text:
-        problems.append("00-index no declara la exclusividad mutua de los routers en 'MCP Aranea y dominios de agente'")
-    if not re.search(r"Excluye", index_text):
-        problems.append("INDEX.md no declara exclusion de dominio en las filas de routers")
+        if icls != "transversal" or wcls != "transversal":
+            problems.append("skill no transversal llegó al INDEX always-load: %s INDEX=%s wiki=%s" % (name, icls, wcls))
+    registered_routers = {
+        os.path.basename(os.path.dirname(str(route["router"])))
+        for route in rules.DOMAIN_ROUTES
+    }
+    indexed_names = {_row_name(row) for row in federated}
+    leaked = sorted(registered_routers & indexed_names)
+    if leaked:
+        problems.append("routers scoped presentes en INDEX always-load: %s" % ", ".join(leaked))
     evidence.append("skills comparadas skill a skill: %d/%d" % (compared, len(federated)))
+    evidence.append("routers registrados fuera del INDEX always-load: %d" % len(registered_routers))
     if problems:
-        return "FAIL", "registros duales desincronizados (Hallazgo 16)", evidence + problems
-    if warns:
-        return "WARN", "sincronia de dominio OK; divergencia dual pr-description registrada como WARN documentado", evidence + warns
-    return "PASS", "clasificacion de dominio coincide skill a skill en ambos registros", evidence
+        return "FAIL", "boundary global/federado violado", evidence + problems
+    return "PASS", "INDEX always-load contiene sólo federadas transversales; routers scoped viven en el registro externo", evidence
 
 
 SECRET_KW = r"(?i)\b(?:password|passwd|pgpassword|secret|api[_-]?key|apikey|access[_-]?key|token|pwd|bearer)\b"
