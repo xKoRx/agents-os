@@ -91,7 +91,9 @@ Si el target es MELI/corporativo, detener esta skill y usar las autoridades corp
 | Kafka inspección o administración de desarrollo | DEV | `aranea-kafka-dev-admin` | admin Kafka DEV; topics/configs/partitions/produce-consume/groups/offsets |
 | Flink control plane de desarrollo | DEV | `aranea-flink-dev-admin` | admin Flink REST DEV; exactamente 22 tools certificadas, sin SQL |
 | Flink/StateFun host-runtime DEV | DEV runtime | `aranea-ssh` + `docker-echo-dev-operator` | root operator sobre `docker-echo-dev`; filesystem/Docker/lifecycle |
-| runtime/logs/archivos workers | según perfil | `aranea-ssh` | viewer para evidencia; operator cuando la operación necesita escritura/ejecución |
+| runtime/logs/archivos SQX Zeus/Hera/Kronos | DEV runtime | `aranea-ssh` + `sqx-zeus` / `sqx-hera` / `sqx-kronos` | operator writable como `echo-dev`; no root-equivalent; preferir `read-command` para inspección y usar mutación sólo cuando la tarea lo requiera |
+| MT4/MT5 worker-kronos inspección | DEV runtime | `aranea-ssh` + `mt5-kronos` | viewer / read-only |
+| MT4/MT5 worker-kronos mutación | DEV runtime | `aranea-ssh` + `mt5-kronos-operator` | operator writable como `echo-dev` |
 
 **Invariante:** elegir ambiente antes que autoridad. No cambiar de ambiente para conseguir más permisos ni usar una capability DEV para verificar estado PROD.
 
@@ -101,7 +103,11 @@ Flink PROD todavía no tiene capability certificada. `aranea-flink-prod-ro` est�
 
 ### 3. Elegir autoridad mínima dentro del ambiente correcto
 
-En SSH, viewer es default para evidencia y operator sólo si la operación exige mutación/ejecución. En data/control-plane MCPs no inventar capabilities nuevas como workaround. En Hasura, PROD y DEV son contratos distintos: PROD es inspección estricta; DEV puede administrar metadata/DDL cuando la tarea lo requiere. En Kafka, la capability certificada actual es DEV admin: usar lecturas cuando basten y reservar mutaciones para targets explícitos, con blast radius y post-condición definidos. En Flink, usar `aranea-flink-dev-admin` para cluster/jobs/savepoints/rescale/JAR/control plane; usar `docker-echo-dev-operator` sólo cuando la acción pertenece al host/runtime como editar bind-mounted config, logs/exec Docker, restart o redeploy del stack.
+En SSH, elegir primero el profile exacto del host y después el tool mínimo para la intención. Los tres profiles SQX (`sqx-zeus`, `sqx-hera`, `sqx-kronos`) son `operator/readOnly=false`, pero eso sólo habilita escritura bajo la identidad remota `echo-dev`: **no implica root, no obliga a mutar y no convierte una lectura en `run-command`**. Para evidencia usar `read-command`; para mutación justificada usar `run-command` o `sftp-upload`; sesiones/background/signal/privileged sólo cuando la tarea realmente los necesita. `mt5-kronos` sigue siendo viewer; `mt5-kronos-operator` es la superficie writable de ese host. `docker-echo-dev-operator` es root-equivalent sólo en ese host DEV.
+
+`approvalPolicy="auto"` en un profile operator no equivale a human-in-the-loop: el servidor puede autoautorizar una acción clasificada como destructive/privileged. Antes de mutar, el agente debe fijar target, scope/blast radius, rollback o post-condición y luego verificar el resultado. La policy del MCP no sustituye ese gate.
+
+En data/control-plane MCPs no inventar capabilities nuevas como workaround. En Hasura, PROD y DEV son contratos distintos: PROD es inspección estricta; DEV puede administrar metadata/DDL cuando la tarea lo requiere. En Kafka, la capability certificada actual es DEV admin: usar lecturas cuando basten y reservar mutaciones para targets explícitos, con blast radius y post-condición definidos. En Flink, usar `aranea-flink-dev-admin` para cluster/jobs/savepoints/rescale/JAR/control plane; usar `docker-echo-dev-operator` sólo cuando la acción pertenece al host/runtime como editar bind-mounted config, logs/exec Docker, restart o redeploy del stack.
 
 Para Hasura PROD, la superficie certificada es exclusivamente:
 
@@ -138,6 +144,7 @@ Fijar host/perfil o database/schema/table/collection/metadata object/cluster/top
 - `POLICY_DENIED` / permission denied → revisar el boundary del runbook, no crear bypass;
 - timeout → reducir scope/optimizar antes de ampliar policy;
 - una capability configurada pero sin tools expuestas no prueba fallo del servicio destino: primero aislar cliente/auth/handshake;
+- en SSH, `operator` describe superficie MCP, no privilegio OS: si `echo-dev` no puede hacer una acción, no elevar ni alterar ACLs automáticamente;
 - en Hasura, `tools/list` server-side es evidencia de autoridad: no asumir que `--read-only` o el nombre del container hacen segura una capability PROD;
 - `mcp_auth` visible en un cliente no cuenta como tool Hasura mientras no aparezca en `tools/list` server-side del backend;
 - en Kafka, `alter_configs` debe conservar semántica incremental certificada; si cambia configs no objetivo, detener mutaciones y tratar la capability como fuera de contrato;
@@ -167,6 +174,7 @@ Boundary: <none | policy/error relevante>
 - Nunca pedir, imprimir, copiar a documentación ni registrar bearer tokens, passwords, admin secrets o private keys.
 - No saltar el proxy MCP ni usar acceso directo agent-first cuando existe capability canónica que cubre la acción.
 - No cambiar ACLs/privilegios, publicar backends internos ni crear side channels como workaround automático.
+- En SSH, `approvalPolicy="auto"` no cuenta como aprobación humana: mutaciones y privilegios requieren scope, rollback/post-condición y verificación definidos por la tarea/agente.
 - Hasura PROD no expone SQL ni mutación de metadata; cualquier tarea que los requiera debe detenerse o moverse al ambiente/flujo correcto, no ampliar la capability dinámicamente.
 - Kafka DEV admin no autoriza operaciones sobre Kafka PROD. No usar brokers/listeners PROD hasta que existan capabilities PROD certificadas.
 - Flink DEV admin no autoriza PROD. Host/runtime Flink DEV se opera con el profile SSH dedicado; no ampliar el backend Flink con shell/Docker por conveniencia.
