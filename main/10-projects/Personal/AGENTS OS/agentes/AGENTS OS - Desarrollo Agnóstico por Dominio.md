@@ -193,28 +193,28 @@ El core no referencia `Meli`, `Aranea`, `Spellbook`, `Grimoire`, `Fury`, `O11y`,
 
 | Gate | Estado | Responsabilidad del agente | Evidencia de aceptación owner | Habilita |
 |---|---|---|---|---|
-| G0 | `pending` | Challenge adversarial y freeze | Owner acepta decisiones reconciliadas | F1 |
-| G1 | `pending` | Workflow/checkpoint en `review` | Owner acepta contrato transversal | F2 |
-| G2 | `pending` | Domain gate extensible en `review` | Owner acepta paridad y registry | F3 |
-| G3 | `pending` | Adapters/runbooks en `review` | Owner acepta matriz y aislamiento | F4 |
-| G4 | `pending` | Conformance final en `review` | Owner acepta entrega | Cierre |
+| G0 | `closed` | Challenge adversarial ejecutado; veredicto `NOT_READY` y consenso entre agentes | Owner confirmó el acuerdo el 2026-09-14 | Slice correctivo en Context Hygiene |
+| G1 | `canceled` | — | — | — |
+| G2 | `canceled` | Su sustancia (registro de dominios) migró al slice correctivo | — | — |
+| G3 | `canceled` | — | — | — |
+| G4 | `canceled` | — | — | — |
 
 ## ✅ Tareas
 
-- [ ] T0.1 Ejecutar challenge de arquitectura, leakage, fallback DEFAULT y eliminación Meli #owner/agent #type/research #area/personal
-- [ ] T0.2 Reconciliar findings, decisiones y file map; dejar G0 Review #owner/agent #type/admin #area/personal
-- [ ] T1.1 Materializar la skill transversal lean y sus aliases/capabilities #owner/agent #type/dev #area/personal
-- [ ] T1.2 Implementar autonomy envelope y delivery checkpoint retrocompatibles #owner/agent #type/dev #area/personal
-- [ ] T1.3 Validar schema/lint/Doctor/legacy y dejar G1 Review #owner/agent #type/testing #area/personal
-- [ ] T2.1 Resolver contrato metadata/registry para domain routers #owner/agent #type/dev #area/personal
-- [ ] T2.2 Reemplazar hardcode core preservando cold/warm/swap/default #owner/agent #type/dev #area/personal
-- [ ] T2.3 Actualizar fixtures/providers y dejar G2 Review #owner/agent #type/testing #area/personal
-- [ ] T3.1 Mapear capabilities reales de Meli sin mover tooling al core #owner/agent #type/dev #area/personal
-- [ ] T3.2 Mapear capabilities reales de Aranea y DEFAULT sin sustitución cross-domain #owner/agent #type/dev #area/personal
-- [ ] T3.3 Extraer solo runbooks mecánicos necesarios y dejar G3 Review #owner/agent #type/dev #area/personal
-- [ ] T4.1 Agregar conformance de workflow/profile y dominio ficticio #owner/agent #type/testing #area/personal
-- [ ] T4.2 Ejecutar simulación remove-Meli y medir aislamiento/contexto #owner/agent #type/testing #area/personal
-- [ ] T4.3 Consolidar rollback/evidencia y dejar G4 Review #owner/agent #type/admin #area/personal
+- [x] T0.1 Ejecutar challenge de arquitectura, leakage, fallback DEFAULT y eliminación Meli #owner/agent #type/research #area/personal
+- [x] T0.2 Reconciliar findings, decisiones y file map; dejar G0 Review #owner/agent #type/admin #area/personal
+- [-] T1.1 Materializar la skill transversal lean y sus aliases/capabilities #owner/agent #type/dev #area/personal
+- [-] T1.2 Implementar autonomy envelope y delivery checkpoint retrocompatibles #owner/agent #type/dev #area/personal
+- [-] T1.3 Validar schema/lint/Doctor/legacy y dejar G1 Review #owner/agent #type/testing #area/personal
+- [-] T2.1 Resolver contrato metadata/registry para domain routers #owner/agent #type/dev #area/personal
+- [-] T2.2 Reemplazar hardcode core preservando cold/warm/swap/default #owner/agent #type/dev #area/personal
+- [-] T2.3 Actualizar fixtures/providers y dejar G2 Review #owner/agent #type/testing #area/personal
+- [-] T3.1 Mapear capabilities reales de Meli sin mover tooling al core #owner/agent #type/dev #area/personal
+- [-] T3.2 Mapear capabilities reales de Aranea y DEFAULT sin sustitución cross-domain #owner/agent #type/dev #area/personal
+- [-] T3.3 Extraer solo runbooks mecánicos necesarios y dejar G3 Review #owner/agent #type/dev #area/personal
+- [-] T4.1 Agregar conformance de workflow/profile y dominio ficticio #owner/agent #type/testing #area/personal
+- [-] T4.2 Ejecutar simulación remove-Meli y medir aislamiento/contexto #owner/agent #type/testing #area/personal
+- [-] T4.3 Consolidar rollback/evidencia y dejar G4 Review #owner/agent #type/admin #area/personal
 
 ## 🤖 Prompt común del executor
 
@@ -236,6 +236,8 @@ Trabaja solo la fase asignada de `[[AGENTS OS - Desarrollo Agnóstico por Domini
 `FASE_ASIGNADA=4 · PAQUETE_CANONICO=Fase 4 — Conformance, eliminación y entrega · GATE_REQUERIDO=G3 accepted · TAREAS=T4.1-T4.3 · SALIDA=evidencia isolation/add/remove + rollback · STOP=G4 review`
 
 ## 📆 Bitácora
+
+- **2026-09-14 — Challenge G0 ejecutado y plan retirado.** Un agente fresco auditó la propuesta contra el vault vigente y ambos agentes convergieron en un consenso cerrado. Se confirmó la fuga de dominio en el hot path del core —bootstrap y constitución, ambos distribuidos en el core compartido— y se refutó el diagnóstico de los 13 `MEDIUM` de Doctor: son una migración federada incompleta con 13 skills y 9 runbooks duplicados, tres de ellos divergentes en contenido y uno `superseded` en la copia federada pero vigente en la del core. Se descartaron la skill transversal, las capabilities abstractas y el dominio ficticio por duplicación con `sdd-workflow` y por falta de demanda; `autonomy envelope` y `delivery checkpoint` quedan en backlog. El proyecto pasa a `archived` como registro del challenge y el slice correctivo queda bajo [[AGENTS OS - Context Hygiene and Canonical Integrity]], antes de PHASE 4.
 
 - **2026-09-14 — Validación:** `validate_plan.py` PASS (`phases=5/gates=5/dispatches=5/refs=10/errors=0/warnings=0`); lint strict de los tres archivos tocados `ERROR=0/WARN=0`; schema `project` y `change_log` verdes; Graphify reindexó y resolvió el nodo exacto. Doctor global reportó `HIGH=0/MEDIUM=13/LOW=0` por skills ausentes de `INDEX.md`; el gate global de Graphify mantiene deuda ajena `ERROR=64/WARN=27`; no se corrigieron por scope.
 - **2026-09-14** — Proyecto creado desde el harness externo y corregido por el owner: la intención no es importar una policy Meli, sino extraer capacidades agnósticas. Se verificó que AGENTS OS ya posee routers exclusivos `meli-agent-dev` y `aranea-agent-dev`, DEFAULT sin router y conformance de aislamiento. El plan propone una skill transversal, mappings de capabilities en routers scoped, herramientas solo en runbooks/adapters y domain discovery sin nombres hardcodeados para que Meli pueda eliminarse sin impacto. Queda listo para F0 challenge por un agente fresco; cero runtime modificado.

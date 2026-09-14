@@ -22,7 +22,7 @@ tags:
   - area/personal
   - project/agents-os
 created: "2026-09-13"
-updated: "2026-09-13"
+updated: "2026-09-14"
 ---
 
 # AGENTS OS - Context Hygiene and Canonical Integrity
@@ -56,6 +56,7 @@ CANONICAL / DEPRECATION
 - **Conformance Harness — DONE / OWNER REVIEW.** Autoridad para cold/warm/switch/isolation y contracts observables. Sigue registrando defectos reales del sistema sin auto-corregirlos; su F1 conocido no debe ocultar diagnósticos independientes de otras herramientas.
 - **PHASE 2 — DONE.** `python3 80-agents/tools/context-budget/context_budget.py`; selftest 21/21; suite estable PASS 7 · FAIL 0 · WARN 7 · SKIP 1. Baseline cold: DEFAULT ≈7025, MELI ≈9042, ARANEA ≈8222 `estimated_tokens` (`chars/4`, nunca precisión falsa). Warm deltas y ambos swaps cubiertos; 0 domain leaks; 0 deprecated hot-path; MCP surface SKIP salvo `--live`.
 - **PHASE 3 — DONE.** `python3 80-agents/tools/canonical-linter/canonical_linter.py`; 20 checks CL-01..CL-20; selftest 9/9; real-vault PASS 6 · FAIL 5 · WARN 9 · SKIP 0 · 1004 findings. D1 de CL-14 corregido y verificado; findings reales preservados.
+- **PHASE 3.5 — PLANNED / NOT IMPLEMENTED.** Slice correctivo atómico incorporado el 2026-09-14 tras el challenge de [[AGENTS OS - Desarrollo Agnóstico por Dominio]]. Cierra una migración federada incompleta y desacopla el dominio del hot path del core. Va **antes** de PHASE 4 porque su invariante termina como check del provider `Canonical`, y porque un Doctor unificado sobre un corpus con dos fuentes por hecho agrega verdes falsos. Ver [[doctor-verde-falso-por-duplicados-core-federado]].
 - **PHASE 4 — PLANNED / NOT IMPLEMENTED.** La arquitectura está congelada en `80-agents/skills/agents-os-doctor/PHASE-4-AGGREGATION-SPEC.md`. No existe todavía un Doctor unificado: el `agents-os-doctor` executable actual sigue siendo el Doctor estructural existente.
 
 ## 🧭 Arquitectura PHASE 4
@@ -170,6 +171,30 @@ Un provider que **ejecuta correctamente y encuentra un bug real** es `execution_
 - [x] P3-D — Fixer D1/CL-14; selftest 9/9 #owner/agent #type/dev #area/personal
 - [x] PHASE 3 acceptance gate #owner/agent #type/admin #area/personal
 
+### PHASE 3.5 — Canonical Dedup + Domain Decoupling
+
+> [!warning]+ Slice atómico, un solo gate
+> Los cinco pasos se aceptan juntos o se revierten juntos: deduplicar sin adaptar el builder deja la distribución sin índice, y adaptar el builder sin deduplicar deja dos fuentes escribibles. Sin adapter ficticio ni simulación E2E de un tercer dominio.
+
+- [ ] P35-A — **Dedup skills y runbooks**: completar la migración dejando `30-resources/` como autoridad y borrando la copia de `80-agents/`. Alcance verificado al 2026-09-14: 13 skills (12 idénticas, `signals-code-review` divergente en `updated` y rutas relativas) y 9 runbooks, con tres divergencias materiales — `aranea-mcp-capability-plane.md` (172 líneas), `aranea-ssh-mcp.md` (143 líneas) y `signals-code-review.md`, `superseded` en el federado y vigente en el core. #owner/agent #type/dev #area/personal
+- [ ] P35-B — **Builder y proyección del índice distribuido**: repuntar `core-export/sources.list` al path federado y adaptar `build-core.py` en el mismo cambio. `filter_skill_index()` matchea `80-agents/skills/([^/]+)/SKILL\.md` y descarta el bloque `## 🌐 Registro federado` completo; reapuntar sin tocarlo deja skills copiadas y cero filas descubribles. #owner/agent #type/dev #area/personal
+- [ ] P35-C — **Registro de dominios externo**: sacar el mapping del paso 6 de `agents-os-bootstrap` hacia un registro externo y opcional, con resolución `0 → DEFAULT`, `1 → router`, `>1 → fail-closed`. Preservar cold/warm/swap. #owner/agent #type/dev #area/personal
+- [ ] P35-D — **Desacoplar el hot path**: remover las referencias operativas a dominios y tooling del core always-load, incluida `agent-constitution.md` (reglas 12 y 14 nombran workspaces y convención de release de dominio y viajan al core compartido). Ajustar sólo los fixtures existentes necesarios. #owner/agent #type/dev #area/personal
+- [ ] P35-E — **Check permanente de duplicados**: agregar la detección core↔federado como **check nuevo del provider `Canonical`**, no como quinto provider; PHASE 4 sólo lo agrega. Preserva `provider owns semantics; Doctor aggregates`. #owner/agent #type/dev #area/personal
+- [ ] PHASE 3.5 acceptance gate — todos los gates observables verdes; luego OWNER REVIEW. #owner/agent #type/admin #area/personal
+
+#### Gates observables PHASE 3.5
+
+| Gate | Evidencia |
+|---|---|
+| Dedup completo | Cero nombres duplicados entre core y federado, en skills **y** runbooks |
+| Doctor limpio | `HIGH=0 / MEDIUM=0` sin suprimir findings |
+| Distribución sana | Export reproducible y sus skills descubribles desde el índice distribuido |
+| Core agnóstico | Cero literales operativos de dominio no allowlisted **en el artefacto construido**, distinguiendo por allowlist los ejemplos históricos y fixtures de las dependencias operativas |
+| Routing | `0 / 1 / >1` probado, con `>1` cerrado |
+| Paridad | Meli, Aranea y DEFAULT se comportan igual que antes del cambio |
+| Eliminación | Quitar una entrada del registro y su paquete no deja referencias ejecutables rotas |
+
 ### PHASE 4 — Unified Agents-OS Doctor
 
 - [x] P4-0 — Freeze de arquitectura/spec → `80-agents/skills/agents-os-doctor/PHASE-4-AGGREGATION-SPEC.md` #owner/agent #type/admin #area/personal
@@ -225,6 +250,8 @@ La remediación de findings es un carril posterior. Primero se construye una sup
 
 ## 📆 Bitácora
 
+- **2026-09-14 — PHASE 3.5 incorporada.** El challenge de [[AGENTS OS - Desarrollo Agnóstico por Dominio]] cerró `NOT_READY` y su único trabajo con valor verificado aterrizó acá por ownership: este proyecto ya posee canonicalidad y domain leak. Se descubrió que los 13 `MEDIUM` de Doctor no eran deuda de índice sino una migración federada incompleta, y que la duplicación alcanza también a 9 runbooks con tres divergencias materiales que Doctor no ve — por lo que `MEDIUM=0` por sí solo sería verde falso. Se sumó el desacoplamiento de dominio del hot path, incluida la constitución, y el gate sobre el artefacto construido. Runtime no modificado.
+
 - **2026-09-13 — PHASE 4 preparada.** Se confirmó que ya existe un `agents-os-doctor` estructural y que la integración correcta es evolucionarlo a **thin aggregator**, no crear un segundo Doctor. Se congeló `PHASE-4-AGGREGATION-SPEC.md`: providers, status dual execution/verdict, failure isolation, JSON envelope, exit policy, output bounded, baseline stability, safety, P4-A..P4-E y acceptance gate. Runtime PHASE 4 todavía NO implementado.
 - **2026-09-13 — PHASE 3 DONE.** Real-vault post-D1: PASS 6 · FAIL 5 · WARN 9 · SKIP 0 · 1004 findings. CL-14 revisa todos los wikilinks por fila; selftest 9/9; ningún finding real maquillado.
 - **2026-09-13 — PHASE 2 DONE.** Auditor de contexto estabilizado tras verificación adversarial; selftest 21/21; 0 domain leaks y 0 deprecated hot-path observados en su baseline.
@@ -238,6 +265,9 @@ La remediación de findings es un carril posterior. Primero se construye una sup
 - Findings de Agents-OS se registran y priorizan; diagnóstico ≠ remediación.
 - Phase 4 usa KISS/YAGNI: thin orchestration, bounded output, JSON y nada más.
 - Cuando el vault auto-sync mueva HEAD durante un run, reportar baseline moved en vez de congelar Git destructivamente.
+- La detección de duplicados core↔federado es un check del provider `Canonical`, no un provider nuevo: el provider posee la semántica y Doctor sólo agrega.
+- El gate de agnosticismo de dominio se ejecuta sobre el artefacto construido, no sólo sobre las fuentes: el export actual valida verde conteniendo referencias operativas de dominio.
+- `agent-development-workflow`, capabilities abstractas, `autonomy envelope` y `delivery checkpoint` quedan fuera de este slice; los dos últimos vuelven sólo con un consumidor concreto.
 
 ## 🔗 Docs / Links
 
@@ -249,4 +279,4 @@ La remediación de findings es un carril posterior. Primero se construye una sup
 
 ## ➡️ Next exact
 
-**P4-A — Provider Contract Audit.** Agente fresco, read-only para discovery; fijar el contrato REAL de los cuatro providers y recién después autorizar P4-B.
+**P35-A..E — Canonical Dedup + Domain Decoupling.** Slice atómico, un solo gate, antes de PHASE 4. Después: **P4-A — Provider Contract Audit** con agente fresco, read-only para discovery; fijar el contrato REAL de los providers y recién ahí autorizar P4-B.
