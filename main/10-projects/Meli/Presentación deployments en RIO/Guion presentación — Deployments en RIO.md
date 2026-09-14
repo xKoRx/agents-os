@@ -30,7 +30,7 @@ El documento organiza el relato slide por slide, conserva respuestas a preguntas
 
 ## Formato
 
-- Duración objetivo: 10 a 12 minutos, más conversación.
+- Duración objetivo: 20 a 25 minutos, más conversación.
 - Artefacto visual: `30-resources/grids/rio-deployments-critical-flow.html`.
 - Propósito: mostrar mi lectura actual del flujo después del primer mes en el equipo, contrastarla con quienes conocen el sistema y después revisar las fronteras de recuperación.
 - Tono: revisión técnica entre pares; describir lo verificado, separar las inferencias y dejar abiertas las configuraciones de producción todavía no contrastadas.
@@ -136,6 +136,32 @@ El documento organiza el relato slide por slide, conserva respuestas a preguntas
 ### Cierre
 
 “Hasta acá llega mi lectura del código y la documentación. Me interesa validar primero si el modelo del flujo es correcto y, sobre esa base, cuáles de estas fronteras ya tienen mitigaciones operacionales o configuración que no alcancé a ver.”
+
+## Slides 7 a 12 — Profundización por transición
+
+### Slide 7 — Solicitud y delta
+
+La solicitud no crea infraestructura en ese instante. Playmaker autentica, valida el DataProduct, Environment, Pipeline y freezes; después `DeltaComputationServiceImpl` compara la definición deseada contra el `Service` que representa el slot `component × environment`. Un Service inexistente, una ComponentDefinition distinta, un Service pendiente de remoción o un run previo terminal pueden producir una acción. `SKIP` no genera ComponentRun ni entra a los batches. El `desiredStateHash` identifica la reconciliación y evita tener dos equivalentes en vuelo.
+
+### Slide 8 — Creación de entidades
+
+Explicar el momento y el owner de cada registro: Playmaker crea `PipelineExecution` para toda la reconciliación; crea un `ComponentRun` por cambio distinto de `SKIP`; ordena esos runs en `DeploymentGroup`; y recién cuando despacha un group crea el `Deployment`. `DeploymentLog` aparece al recibir una transición de resultado. Subrayar que `ComponentRun` expresa el componente en la execution, mientras `Deployment` expresa un dispatch concreto para Service, ComponentDefinition y group.
+
+### Slide 9 — Construcción del dispatch
+
+`BatchDispatchServiceImpl` resuelve parámetros y persiste el Deployment como `REQUESTED`, con action, UUID de correlación, `retry_count = 0` y `timeout_at = null`. El commit hace visible esa intención. Después, `DeploymentDispatchRequestedEvent` corre con `AFTER_COMMIT` y `@Async`; el adapter elige la ruta, arma el `DeploymentTriggerMessage`, persiste el deadline y publica. La separación explica tanto por qué un resultado rápido puede resolverse como por qué hay una ventana entre intención durable y publicación.
+
+### Slide 10 — BigQueue y control planes
+
+BigQueue entrega por HTTP push y cada CP filtra los tipos que reconoce. Kafka, Flink y ClickHouse responden 2xx antes de terminar el efecto en un executor o cadena asíncrona local. Fury modela desired/observed state, leases y un reconciler, por lo que puede reconstruir trabajo desde estado durable. Signals conserva redelivery al propagar errores retryables. Observability consume el trigger como copia lateral para gobierno y telemetría, sin cerrar el deployment.
+
+### Slide 11 — Resultado de vuelta
+
+El CP publica `DeploymentResultMessage` con `STARTED`, `IN_PROGRESS`, `COMPLETED` o `FAILED`. Playmaker encuentra primero el Deployment por correlation UUID y conserva `materializationId` como compatibilidad legacy. Una transacción actualiza Deployment, DeploymentLog, Service.values y ComponentRun. Contrastar los CP: Kafka y ClickHouse pueden marcar terminal antes de un publish best effort; Signals publica antes de cerrar KVS; Fury conserva por separado que el efecto fue reportado y que el resultado fue publicado, de modo que el reconciler puede completar una publicación interrumpida.
+
+### Slide 12 — Avance y recuperación
+
+El commit del resultado emite otro evento `AFTER_COMMIT` para evaluar el batch. Fury Lock evita que dos callbacks avancen a la vez, pero no guarda la obligación de hacerlo si el evento se pierde. El timeout job sólo puede reintentar `REQUESTED` cuando el adapter ya persistió `timeout_at`; frente a `STARTED` falla cerrado para no duplicar un efecto cuyo estado real desconoce. La pregunta de cierre para cada frontera es qué acción queda durable, quién la reconstituye tras un reinicio y cómo mantiene idempotencia.
 
 ## Preguntas probables
 
