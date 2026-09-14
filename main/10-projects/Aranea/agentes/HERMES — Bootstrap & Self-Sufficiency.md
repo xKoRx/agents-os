@@ -329,7 +329,7 @@ Cuando B4 pasa:
 - Proyecto creado 2026-09-14 a partir del requisito explícito del owner de minimizar intervención humana.
 - **B0 PASS** (2026-09-14): approval model AUTO/GATED aplicado (SOUL.md §8.1, Regla Dura 1 de [[Ariadna]], USER.md). change_log `80-agents/journal/logs/2026-09-14-b0-autonomy-contract-applied.md`.
 - **B1 PASS** (2026-09-14): management path nativo certificado — `ssh mcps-ops` key-only (`hermes-ops@mcps`, host key pinneada, sudo passwordless scoped al LXC), wrapper `~/aranea/bin/mcps-ops` con logging, smoke create/inspect/destroy PASS sin residuos. Revoke: `rm /etc/sudoers.d/hermes-ops-mcps` + vaciar `authorized_keys` en el LXC. Ningún MCP de `mcps` usado como management path.
-- **B2 PASS** (2026-09-14): consumer piloto Hermes-VM → `aranea-postgres-ro` onboardeado y certificado end-to-end con el MCP client del runtime (initialize/tools/list 9 tools/tools/call list_schemas PASS). Bearer por referencia en `~/.hermes/.env`, config con `${VAR}` interpolation. Patrón repetible autónomo.
+- **B2 PASS PARCIAL — harness/pilot only** (2026-09-14): consumer piloto Hermes-VM → `aranea-postgres-ro` onboardeado y certificado end-to-end con el MCP client del runtime (initialize/tools/list 9 tools/tools/call list_schemas PASS). Bearer por referencia en `~/.hermes/.env`, config con `${VAR}` interpolation. Patrón repetible autónomo demostrado sobre el PROPIO runtime Hermes. **NO cierra B2**: falta onboarding autónomo sobre un consumer real de Echo/Forge (Daedalus/Cursor).
 - **Siguiente:** B3.1 skill `aranea-mcp-plane-operator` (sin duplicar [[aranea-mcps-expert]]) → B3.2 golden repair DEV → B3.3 golden configure/deploy → B4 human-exit audit. Echo/Forge permanece cerrado hasta B4.
 
 ## 🧱 Entrega de desarrollo
