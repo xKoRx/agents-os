@@ -5,7 +5,7 @@ name: aranea-agent-dev
 description: Router del dominio Aranea (homelab) para trabajo de desarrollo y operación del agente. Cargar al trabajar sobre Echo, Echo Forge, el appliance mcps, backups o red del homelab para fijar qué skills y fuentes de acceso son válidas. Todo acceso MCP aranea-* pasa exclusivamente por aranea-mcps-expert; nunca aplica a MELI ni a sistemas corporativos.
 scope: area
 created: "2026-09-12"
-updated: "2026-09-12"
+updated: "2026-09-13"
 area: "[[Aranea]]"
 entities:
   - "[[Aranea]]"
@@ -34,7 +34,7 @@ tags:
 
 ## Purpose
 
-Dominio exclusivo del homelab Aranea. Fija el boundary del dominio, carga las preferencias scoped y ruta al acceso MCP y a las skills de dominio. Los servicios MCP de Aranea (SSH, PostgreSQL, MongoDB, Hasura) son exclusivos de este dominio: ninguna otra skill o dominio los activa.
+Dominio exclusivo del homelab Aranea. Fija el boundary del dominio, carga las preferencias scoped y ruta al acceso MCP y a las skills de dominio. Los servicios MCP de Aranea (SSH, PostgreSQL, MongoDB, Hasura, Kafka y Flink) son exclusivos de este dominio: ninguna otra skill o dominio los activa.
 
 Trigger boundary:
 
