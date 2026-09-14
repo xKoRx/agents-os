@@ -1,6 +1,6 @@
 ---
 type: note
-status: in-progress
+status: dev-closed
 area: "[[Aranea]]"
 parent: "[[AGENT-PLATFORM - MCP Access Plane]]"
 created: "2026-09-13"
@@ -15,108 +15,247 @@ tags:
 
 > Componente del proyecto [[AGENT-PLATFORM - MCP Access Plane]]. **No es un proyecto paralelo.**
 >
-> Deployment target MCP: `mcps.lab.aranea.cl`. Cliente inicial: Daedalus. Ambiente DEV inicial: `docker-echo-dev`.
+> DEV está **PASS / CLOSED**. PROD queda diferido y se abrirá como fase separada strict-RO.
 
 ## Objetivo
 
 Materializar dos capabilities MCP separadas por ambiente para Apache Flink:
 
-- `aranea-flink-dev-admin`: administración operacional completa de Flink DEV, incluyendo inspección, jobs, configuración y lifecycle/restarts cuando la implementación real lo permita de forma explícita y verificable.
-- `aranea-flink-prod-ro`: inspección estrictamente read-only de Flink PROD, a implementar después de cerrar DEV.
+- `aranea-flink-dev-admin`: administración operacional Flink DEV vía REST/MCP;
+- `aranea-flink-prod-ro`: inspección estrictamente read-only de Flink PROD, diferida.
 
-La fase activa es exclusivamente DEV. PROD queda diferido y no debe bloquear ni ampliar el rollout inicial.
-
-## Scope DEV activo
-
-`aranea-flink-dev-admin` debe permitir administrar Flink DEV sin depender de SSH como primer mecanismo normal. La superficie objetivo incluye, según el deployment/version real:
-
-- cluster, JobManager, TaskManagers y health;
-- jobs, status, plan, vertices/operators, parallelism, exceptions;
-- checkpoints, savepoints, metrics, backpressure y watermarks cuando la API real lo permita;
-- submit/cancel/stop/restart/rescale jobs cuando Flink soporte la operación;
-- upload/run/delete JARs si forman parte del deployment real;
-- cambios de configuración con scope y post-condición explícitos;
-- lifecycle operacional del servicio Flink DEV, incluyendo restart cuando el runtime real lo requiera y exista un boundary controlable.
-
-DEV tiene autoridad administrativa real. Antes de una mutación se fija target, blast radius y post-condición y se verifica el resultado en el mismo ambiente.
-
-## Scope PROD diferido
-
-`aranea-flink-prod-ro` será una capability separada con bearer propio y tool surface estrictamente de lectura. No reutilizará la autoridad DEV ni expondrá submit/cancel/savepoint/JAR/config/lifecycle mutations. Su diseño se abrirá sólo después de cerrar DEV.
+El lifecycle/filesystem/Docker del host DEV no se mezcla dentro del backend Flink MCP: se resuelve mediante `aranea-ssh` + profile `docker-echo-dev-operator`.
 
 ## Estado
 
-`DISCOVERY / IN-PROGRESS — DEV FIRST`.
-
-Confirmado por el owner para este workstream:
-
 ```text
-MCP server host: mcps.lab.aranea.cl
-DEV target host: docker-echo-dev
-initial client: Daedalus
-phase 1: aranea-flink-dev-admin
-phase 2: aranea-flink-prod-ro
+DEV aranea-flink-dev-admin        PASS / CLOSED
+DEV docker-echo-dev-operator      PASS / CLOSED
+Daedalus integration              PASS
+Cursor integration                PASS
+PROD aranea-flink-prod-ro         DEFERRED / NOT IMPLEMENTED
 ```
 
-## Runtime DEV verificado — 2026-09-13
+Runbook canónico: [[aranea-flink-mcp]].
+
+## Runtime DEV certificado
 
 ```text
-host: docker-echo-dev.aranea.local
-LAN IP: 192.168.31.75
-runtime: Docker
-compose project label: flink
-StateFun image: apache/flink-statefun:3.2.0-java11
-containers: statefun-master, statefun-worker
-Flink: 1.14.3
-commit: 98997ea
+host/LXC:        docker-echo-dev
+LAN IP:          192.168.31.75
+runtime:         Docker / Portainer
+compose project: flink
+StateFun image:  apache/flink-statefun:3.2.0-java11
+containers:      statefun-master, statefun-worker
+Flink:           1.14.3
+commit:          98997ea
+StateFun:        3.2.0
 JobManager REST: http://192.168.31.75:8082 -> container :8081
-JobManager RPC host port: :6123
-HA: none
-TaskManagers: 1
-slots: 2 total / 0 free
-jobs running at discovery: 1
+JobManager RPC:  host :6123
+HA:              none
+TaskManagers:    1
+slots:           2 total / 0 free at certification
 ```
 
-REST `GET /overview`, `GET /jobmanager/config` y `GET /taskmanagers` respondieron `HTTP 200` desde el host DEV. `mcps` alcanzó `http://192.168.31.75:8082/overview` con `HTTP 200`, por lo que el path de red MCP→Flink DEV está validado.
-
-La configuración observable incluye `parallelism.default=2`, `state.backend=rocksdb`, checkpoints cada `120s`, `execution.checkpointing.mode=AT_LEAST_ONCE`, savepoints en `file:///opt/flink/savepoints` y checkpoints en `file:///opt/flink/checkpoints`.
-
-### Drift detectado
-
-Las labels Docker de `statefun-master` indican:
+Job observado:
 
 ```text
-compose_project=flink
-compose_workdir=/data/compose/1
-compose_files=/data/compose/1/docker-compose.yml
+name:      StatefulFunctions
+job id:    974f0479256bc8ffe71fe962750e9c90
+state:     RUNNING
+vertices:  14/14 RUNNING
+subtasks:  28/28 RUNNING
+parallelism: 2
 ```
 
-pero `/data/compose/1/docker-compose.yml` ya no existe en el host. Por tanto esas labels son provenance histórica/stale y no deben usarse como autoridad para lifecycle/restart hasta localizar el stack real vigente.
+## Source-of-truth del stack
 
-## MCP plane verificado — 2026-09-13
+La label histórica:
 
-`mcps.lab.aranea.cl` tiene ocupados `3000` a `3007`; `3008` estaba libre al discovery y queda como candidato para `aranea-flink-dev-admin`, sujeto a materialización sin drift concurrente.
+```text
+/data/compose/1/docker-compose.yml
+```
 
-Patrón live confirmado:
+no es una ruta host normal: es el path dentro de Portainer. El volumen `/data` del container Portainer está respaldado por `portainer_data`.
 
-- backend MCP privado sin host port;
-- Nginx auth proxy como único listener host-facing;
-- redes Docker `mcp-*` por familia;
-- `restart=unless-stopped` según arquitectura canónica;
-- `mcps -> Flink DEV` reachability PASS.
+Authority declarativa real:
 
-Kafka DEV admin (`aranea-kafka-dev-admin` en `:3007`) es el precedente operativo inmediato a replicar para layout, bearer proxy, network, secrets y certificación.
+```text
+Portainer stack id: 1
+Portainer path:      /data/compose/1/docker-compose.yml
+Host path real:      /var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml
+sha256:              92573189cd375b2dedb1da697b7f39496b1866643ecf1f41eb963912ab79148c
+```
 
-## Backend MCP candidato
+Config bind-mounted:
 
-Candidato preferido para DEV: `vaquarkhan/flink-mcp-enterprise-server` release `0.3.1` / Apache-2.0.
+```text
+/root/statefun/conf/flink-conf.yaml
+/root/statefun/modules
+```
 
-Razones materiales: transporte HTTP nativo, bearer, health/readiness/metrics, policy/allowlist, tool surface read y write separable, operaciones Flink REST/SQL administrativas y Docker non-root. Antes de freeze de imagen deben validarse compatibilidad real con Flink `1.14.3`, tool surface exacta y endpoints write contra la API disponible en este runtime.
+Persistencia runtime:
 
-El lifecycle de Docker/systemd no pertenece naturalmente al REST de Flink. Para reinicios de `statefun-master`, `statefun-worker` o stack se reutilizará `aranea-ssh` con un perfil operator acotado a `docker-echo-dev`, en vez de introducir shell arbitrario dentro del MCP Flink.
+```text
+/var/lib/docker/volumes/portainer_data/_data/compose/1/statefun/checkpoints
+/var/lib/docker/volumes/portainer_data/_data/compose/1/statefun/savepoints
+```
 
-## Arquitectura heredada
+Docker Compose v5 calcula hashes distintos a los labels del runtime vigente y `--dry-run up -d` propone recreación. Por tanto no usar el YAML recuperado con `docker compose up -d` como operación rutinaria. Bind-mounted config se cambia + restart controlado; topology/env/ports/volumes/image se cambian vía stack Portainer con redeploy explícito.
 
-Ambas capabilities deben reutilizar [[AGENT-PLATFORM - MCP Access Plane - Architecture]]: backend MCP interno sin host port, Nginx bearer proxy por capability como listener host-facing, bearer cliente→MCP independiente de cualquier credencial upstream, source/release/dependencies pinneados y secretos fuera de repos/config de Cursor.
+## Backend MCP adoptado
 
-Para DEV, la autoridad administrativa debe existir en la tool surface certificada y no depender de prompts de buena conducta. Para PROD, la ausencia de mutadores en `tools/list` server-side será parte del contrato strict-RO.
+```text
+repo:    vaquarkhan/flink-mcp-enterprise-server
+release: 0.3.1
+commit:  981bbeff3ed7f897ca7c5bde20f36669d5e93bc4
+license: Apache-2.0
+```
+
+Patch Aranea:
+
+```text
+sha256:   e0b683e8927fc888b986826b56b28655de54bc6f65f8d5fcacafe4cf4041a9b1
+image:    local/flink-mcp:0.3.1-981bbef-aranea2-flink1.14
+image id: sha256:d99ee2567c706801700c5415f6c4445c8d76c9cc1e6ffd91c0d578fccf61a4a9
+```
+
+Compatibilidad corregida para Flink 1.14.3:
+
+- config `/jobmanager/config`;
+- cancel `PATCH /jobs/:jobid?mode=cancel`;
+- savepoint `target-directory`;
+- stop `targetDirectory`;
+- delete JAR;
+- dispose savepoint;
+- status async savepoint/rescale/disposal.
+
+`MCP_FLINK_APPROVAL_REQUIRED` mantiene default upstream fail-closed `true`; DEV lo fija `false` porque la autoridad se aplica por bearer externo + allowlist/scopes. El approval secret no se entrega a clientes.
+
+No hay SQL Gateway verificado y no se exponen tools SQL.
+
+## Deployment MCP certificado
+
+```text
+Cursor / Daedalus
+  -> bearer capability
+  -> mcps.lab.aranea.cl:3008/mcp
+  -> flink-mcp-auth-dev-admin (Nginx)
+  -> flink-mcp-dev-admin:8090
+  -> Flink REST 192.168.31.75:8082
+```
+
+Runtime MCP:
+
+```text
+network: mcp-flink
+backend: flink-mcp-dev-admin
+proxy:   flink-mcp-auth-dev-admin
+backend host port: none
+proxy host port:   3008
+restart:            unless-stopped
+```
+
+Auth separation:
+
+```text
+client bearer -> Nginx
+private backend bearer -> backend
+backend registry -> hash-only
+```
+
+Secrets nunca se registran en Agents-OS.
+
+## Tool surface DEV certificada
+
+Exactamente 22 tools:
+
+```text
+cancel_job
+delete_jar
+dispose_savepoint
+get_cluster_info
+get_flink_config
+get_job
+get_job_config
+get_job_exceptions
+get_job_metrics
+get_job_status
+get_rescale_status
+get_savepoint_disposal_status
+get_savepoint_status
+list_checkpoints
+list_jars
+list_jobs
+list_taskmanagers
+rescale_job
+run_jar
+stop_job
+trigger_savepoint
+upload_jar
+```
+
+SQL surface: none.
+
+## Certificación MCP
+
+```text
+unauthenticated :3008/mcp -> 401
+wrong bearer -> 401
+initialize -> 200 + Mcp-Session-Id
+protocol -> 2024-11-05
+tools/list -> 22 exactas
+get_cluster_info -> PASS
+list_jobs -> PASS
+backend host port -> none
+Daedalus -> PASS
+Cursor -> PASS
+```
+
+El backend Java responde tools/call como `text/event-stream`; los probes manuales deben parsear eventos `data:` SSE.
+
+## Host/runtime operator certificado
+
+`aranea-ssh` incorpora:
+
+```text
+profile:    docker-echo-dev-operator
+target:     root@192.168.31.75
+authority:  operator / writable / root
+key:        dedicada
+readOnly:   false
+```
+
+E2E vía MCP `run-command`:
+
+```text
+host=docker-echo-dev
+user=root
+Docker client/server=29.1.3
+Docker Compose=v5.0.1
+statefun-master=running
+statefun-worker=running
+isError=false
+```
+
+Este profile es intencionalmente root-equivalent para DEV. No concede autoridad PROD ni sobre otros hosts.
+
+## Boundary congelado
+
+```text
+aranea-flink-dev-admin
+  = Flink REST/control plane
+  = cluster/jobs/checkpoints/savepoints/rescale/JAR/config observable
+
+aranea-ssh + docker-echo-dev-operator
+  = host/runtime plane
+  = filesystem/config files/Docker/logs/exec/restart/redeploy
+```
+
+No introducir shell arbitrario dentro del MCP Flink para cubrir lifecycle del host.
+
+## PROD diferido
+
+`aranea-flink-prod-ro` deberá ser capability separada con bearer propio y tool surface estrictamente de lectura. No reutilizará DEV admin ni `docker-echo-dev-operator`. La ausencia de mutadores en `tools/list` server-side será parte de la certificación PROD strict-RO.
+
+No diseñar ni implementar PROD dentro del cierre DEV.
