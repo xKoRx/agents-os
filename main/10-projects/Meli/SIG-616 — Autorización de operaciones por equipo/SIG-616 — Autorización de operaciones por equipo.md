@@ -373,8 +373,8 @@ Los IDs definitivos se crearán en Spellbook después de aprobar la SPEC técnic
 
 - [ ] Confirmar o corregir la relación funcional/técnica de SIG-616 en Spellbook.
 - [x] Confirmar `catalog-signal + start/stop` y `DEV_AND_UP`.
-- [ ] Confirmar tratamiento funcional definitivo de componentes importados.
-- [ ] Confirmar que precreation de Signals no tiene uso válido.
+- [x] Componentes importados: Action mutante denegada; la importación no transfiere ownership.
+- [x] Precreation: `catalog-signal + start/stop` no se habilita sin componente persistido.
 - [ ] Verificar polling de read Actions sin incorporarlo al alcance Signals.
 - [x] Confirmar PR 1126 mergeado en `origin/develop` (`1a4caf093`).
 - [x] Confirmar contrato ACME: `username + teamName + headers`; `projectCode` se valida localmente.
@@ -491,7 +491,7 @@ views:
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [/] Pulir el diseño consolidado y cerrar los gates de Actions Signals #owner/me #type/research #area/meli
-> - [ ] Confirmar `catalog-signal + start/stop`, roles ACME, importados y ausencia de precreation con los dueños del flujo #owner/me #type/research #area/meli
+> - [ ] Ejecutar validación independiente del diseño con el prompt maestro y resolver hallazgos #owner/me #type/research #area/meli
 > - [ ] Confirmar o corregir la relación funcional/técnica de SIG-616 en Spellbook #owner/me #type/dev #area/meli
 > - [ ] Crear y aprobar la SPEC técnica de Actions mutantes de Signals #owner/me #type/dev #area/meli #blocked
 > - [ ] Derivar y aprobar las tasks de la SPEC técnica en Spellbook #owner/me #type/dev #area/meli #blocked
@@ -532,10 +532,11 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-14** — Se cerraron los niveles `READ`, `DEV_AND_UP` y `DEPLOYER_AND_UP`; se confirmó PR 1126 mergeado, se incorporó pipeline deploy y se definió legacy por entrypoints `@Deprecated`/RFC-002.
 - **2026-09-14** — Se verificó el contrato ACME: `getUserGrants(username)` no contiene roles `OwnerProjectGrant`; se descartó ACME como middleware y la consulta precisa quedó en un autorizador reutilizable llamado desde el caso de uso tras resolver `teamName + projectCode`.
 - **2026-09-14** — Se acordó una sola implementación concreta del autorizador: se extrae desde delete/inactivate sin cambiar su política y luego se incorpora Actions Signals como primer caso nuevo.
+- **2026-09-14** — Se consolidó en esta única nota el baseline de la SPEC, evidencia técnica, arquitectura, dos slices, pruebas, gates y prompt de validación independiente.
 
 ## 🧭 Decisiones
 
-- **D1 — Primera vertical sólo Signals.** La primera implementación protege `catalog-signal + start/stop` sobre componentes existentes; no incluye legacy, otras tecnologías, precreation ni polling.
+- **D1 — Primer cambio funcional sólo Signals.** La primera restricción nueva protege `catalog-signal + start/stop` sobre componentes existentes; el refactor previo de delete/inactivate no cambia su política. No incluye legacy, otras tecnologías, precreation ni polling.
 - **D2 — Sólo Tiger es middleware.** Tiger se valida una vez en la frontera HTTP y publica el username. ACME se consulta desde un autorizador reutilizable cuando el caso de uso ya conoce el scope persistido.
 - **D3 — Whitelist de tipo + Action.** Una Action desconocida sobre `catalog-signal` se rechaza; tecnologías fuera del alcance conservan su comportamiento hasta contar con SPEC propia.
 - **D4 — Services consumidores con una sola validación.** Actions resuelve el target y llama una vez a un autorizador concreto con caller, `teamName`, `projectCode` y nivel antes de cualquier side effect; no consume `AcmeClient` ni implementa listas o parsing de roles.
