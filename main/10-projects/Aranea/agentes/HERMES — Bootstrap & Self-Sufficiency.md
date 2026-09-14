@@ -28,6 +28,7 @@ tags:
 created: "2026-09-14"
 updated: "2026-09-14"
 ---
+**B2 cerrado 2026-09-14** — ver Estado actual y change_log `80-agents/journal/logs/2026-09-14-b2-real-consumer-onboarding-closed.md`.
 
 # HERMES — Bootstrap & Self-Sufficiency
 
@@ -395,6 +396,7 @@ _No hay repo único. Este proyecto modifica comportamiento operativo, skills/con
 - **B-D05:** toda solicitud manual al owner se batchea; interacción humana de a un comando es un fallo de diseño salvo dependencia secuencial real.
 - **B-D06 (2026-09-14):** patch B0 se aplicó vía sesión Hermes con autorización explícita del owner para esta sesión; las fuentes tocadas fueron exactamente tres (SOUL.md §8/§8.1, Regla Dura 1 de Ariadna, USER.md). Ningún perfil o agente nuevo.
 - **B-D07 (2026-09-14):** management path elegido: SSH key-only `hermes-ops@mcps` con sudo passwordless scoped al LXC, wrapper `~/aranea/bin/mcps-ops`, host key strict pinneada. Revoke = quitar authorized_keys del usuario en `mcps` (una línea), sin tocar otras identities.
+- **B-D08 (2026-09-14):** management path de consumers: usuario OS dedicado `hermes-ops` por host consumer (key-only, password locked, SIN sudo) + ACLs scoped sobre los paths exactos de config/env/secrets del consumer (`mcp.json`, `aranea-env.sh`, `hermes-managed/`). Rechazado acceso al home del usuario real o identidad compartida; el smoke consumer-side usa el bearer inyectado en memoria porque los secret files del usuario consumer permanecen deliberadamente inaccesibles para `hermes-ops`.
 
 ## 🔗 Docs / Links
 

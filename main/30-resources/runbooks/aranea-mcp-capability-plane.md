@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-09-13"
+updated: "2026-09-14"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
@@ -56,6 +56,34 @@ aranea-hasura-dev-admin
 aranea-kafka-dev-admin
 aranea-flink-dev-admin
 ```
+
+## Consumer onboarding managed (B2 — 2026-09-14)
+
+Hermes puede onboardear/remover capabilities en el consumer real Daedalus/Cursor sin edición manual del owner:
+
+```text
+Authority:   hermes-ops@daedalus (key-only, password locked, SIN sudo)
+             ACLs scoped sobre /home/kor/.cursor/mcp.json (rw),
+             /home/kor/.cursor + /home/kor/.config/mcp (-wx, backups),
+             /home/kor/.config/aranea/secrets/hermes-managed/ (rwx)
+Operator:    /home/kor/.config/aranea/secrets/hermes-managed/bin/
+             mcp-onboard.py {add|remove|status}
+             consumer-smoke.py (bearer por stdin, nunca en argv/env persistido)
+Config real: /home/kor/.cursor/mcp.json  (refs ${env:VAR}, jamás bearer literal)
+Env chain:   plasma-workspace/env/aranea-mcp.sh -> .config/mcp/aranea-env.sh
+             -> secret files 0600 de kor (NO accesibles para hermes-ops: correcto)
+Onboarding:  entry nueva = clon de la entry existente de la capability (misma
+             ${env:} ref) -> cero duplicación de bearer, cero mutación del plane
+Smoke:       initialize (clientInfo REQUIERE version) / tools/list / tools/call
+             RO inocuo, desde Daedalus, resolviendo mcp.json + ${env:} shape
+Rollback:    remove + diff byte-identical vs backup (sha256 pre guardado)
+Quirk:       scripts con ${...}/regex via heredoc-through-ssh se corrompen ->
+             distribuir SIEMPRE por scp/base64-file
+```
+
+Revoke de la authority completa: `userdel -r hermes-ops` + `setfacl -x` de las entradas `u:hermes-ops` en `/home/kor`, `.config`, `.cursor`, `.config/mcp`, `.config/aranea`, `.config/aranea/secrets`, `mcp.json` y `aranea-env.sh` (detallado en el change_log `2026-09-14-b2-real-consumer-onboarding-closed`).
+
+Limitación conocida: el auth proxy de cada capability soporta un solo bearer por `map nginx` (`__MCP_BEARER_TOKEN__`); un bearer dedicado para un consumer nuevo exige recrear el container proxy (mutación del plane, B3).
 
 Endpoints certificados adicionales:
 
