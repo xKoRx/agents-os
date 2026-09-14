@@ -47,7 +47,7 @@ updated: "2026-09-14"
 
 ## 📊 Estado actual
 
-- **Fase actual:** diseño funcional cerrado y validaciones técnicas previas a SPEC; no se modificó código ni se crearon tasks de implementación.
+- **Fase actual:** diseño consolidado con gates funcionales/técnicos pendientes antes de la SPEC ejecutable; no se modificó código ni se crearon tasks de implementación.
 - Esta nota es la única fuente de verdad del proyecto: contiene estado, diseño, decisiones y gates. Después de cerrar el diseño se crearán la SPEC técnica de Actions Signals y sus tasks en Spellbook.
 - La SPEC menciona todas las mutaciones y actions de componentes, no sólo actions. En Spellbook está clasificada como `technical`, aunque fue presentada como funcional: confirmar si falta el funcional antes de implementar.
 - El ownership vive en `DataProduct.teamName`; los componentes pertenecen a un Data Product. Un componente importado conserva su DP local y señala su procedencia mediante `sourceComponentId`.
@@ -65,7 +65,7 @@ updated: "2026-09-14"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| `rio-playmaker` | Pendiente | Pendiente | Pendiente de confirmar o reclasificar; SIG-616 figura como técnica en Spellbook | Pendiente de crear: Actions mutantes de Signals | Diseño previo; no implementar hasta aprobar SPEC funcional, técnica y tasks |
+| `rio-playmaker` | Pendiente | Pendiente | Pendiente de confirmar o reclasificar; SIG-616 figura como técnica en Spellbook | Pendiente de crear: Actions mutantes de Signals | Diseño consolidado; no implementar hasta aprobar SPEC funcional, técnica y tasks |
 
 ## 🧠 Diseño técnico consolidado
 
@@ -171,6 +171,15 @@ Reglas asociadas:
 - Un componente importado (`sourceComponentId != null`) no puede ejecutar una Action mutante.
 - Precreation queda fuera; `catalog-signal + start/stop` sin componente persistido debe terminar rechazado.
 - Polling no obtiene una política nueva, no cambia `ActionKvsEntry` y no agrega `resultVisibility`.
+
+Inventario técnico observado para evitar clasificar sólo por nombre:
+
+- Signals: `catalog-signal + start/stop`.
+- Kafka: `aws-msk-topic`, `gcp-kafka-topic` y el tipo transicional `kafka-topic` con `peek` de lectura.
+- Flink: `start/stop` sobre sus tipos configurados; fuera de la primera vertical.
+- ClickHouse: `clickhouse-mat-view + start-materialized-view/stop-materialized-view`; lecturas como `execute-query`, `describe-table`, `list-warehouse`, `list-database`, `list-tables` y `ping`.
+
+La reutilización de nombres como `start/stop` entre tecnologías demuestra que `actionName` solo no es una clave de política segura. Los ejemplos prefijados de la SPEC no deben copiarse sin contrastarlos con los contratos reales.
 
 ### Estado objetivo de Tiger
 
@@ -305,7 +314,7 @@ Primero se cubren los caminos críticos y luego al menos 95% del código nuevo.
 - Delete e inactivate conservan `DEPLOYER_AND_UP`: admin/maintainer/deployer permiten; committer y roles inferiores rechazan.
 - Signals `start/stop` permiten con `DEV_AND_UP`; Action desconocida e importado rechazan.
 - Grant de otro team o proyecto no habilita.
-- ACME no disponible retorna `503`; rol insuficiente retorna `403`.
+- Rol insuficiente retorna `403`; ACME no disponible usa el status aprobado en Gate 0 (`403` actual o `503` propuesto).
 - Deny/error no guarda `ActionKvsEntry` ni publica BigQueue.
 - Allow guarda y publica exactamente una vez.
 - Kafka, Flink, ClickHouse, precreation, polling, callbacks y legacy no cambian ni consultan ACME en esta etapa.
@@ -372,6 +381,88 @@ Los IDs definitivos se crearán en Spellbook después de aprobar la SPEC técnic
 - [ ] Aprobar si ACME no disponible migra del `403` actual a `503` en todos los consumidores.
 - [ ] Resolver error mapping real de Tiger en la cadena de filtros.
 - [ ] Definir branch/base limpias después de aprobar SPEC y tasks.
+
+### Prompt maestro de validación independiente
+
+```text
+Actúa como Principal/Staff Backend Engineer y revisor independiente de seguridad y Specification-Driven Development. Necesito que audites el proyecto SIG-616 de autorización de operaciones por equipo en rio-playmaker. No implementes código, no edites Spellbook y no modifiques la nota durante la primera revisión: entrega hallazgos basados en evidencia.
+
+Fuentes obligatorias, en este orden:
+
+1. SPEC externa (no fue escrita por el owner de este proyecto):
+   https://spellbook.adminml.com/projects/SIG/specs/SIG-616
+2. Proyecto y diseño consolidado, única fuente interna de decisiones:
+   /Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/SIG-616 — Autorización de operaciones por equipo/SIG-616 — Autorización de operaciones por equipo.md
+3. Repositorio:
+   /Users/rjara/fuentes/rio-playmaker
+4. PR ya mergeado que debe reutilizarse/refactorizarse:
+   https://github.com/melisource/fury_rio-playmaker/pull/1126
+5. Base técnica a inspeccionar:
+   origin/develop, merge observado 1a4caf093.
+
+No confíes en el checkout actual como base limpia: puede contener cambios de otro trabajo. Usa lecturas de origin/develop o un mecanismo no destructivo. No borres, resetees ni sobrescribas cambios locales.
+
+Objetivo de la auditoría:
+
+Validar la trazabilidad completa desde la SPEC externa hasta el diseño y los slices propuestos. Determina si el diseño es correcto, seguro, KISS, YAGNI, SOLID pragmático, modular y escalable sin esconder autorización en controllers o Control Planes.
+
+Comprueba directamente en SPEC, PR, historial y código; no aceptes estas afirmaciones sin evidencia:
+
+- Qué mutaciones, deployments, undeploy, inactivate, relaciones, pipelines y Actions exige proteger la SPEC.
+- Qué Actions son de lectura y por qué permanecen Tiger-only.
+- Si pipeline deploy fue omitido documentalmente pero comparte la misma semántica mutante.
+- Reglas para componentes importados, precreation, cross-DP, platformTeams y tempAllCanEdit.
+- Contratos reales de Actions: el clasificador debe usar component_type + actionName.
+- Rutas modernas y legacy reales; identifica bypasses posibles sin ampliar silenciosamente el alcance.
+- Contrato real de ACME: parámetros de getUserGrants y getOwnerProjectGrants, forma del payload, paginación, roles y filtro de projectCode.
+- Confirma o refuta que getUserGrants(username) no entrega roles OwnerProjectGrant suficientes.
+- Confirma que getOwnerProjectGrants recibe username + teamName + Tiger headers, pero no projectCode.
+- Confirma que teamName y projectCode vienen del DataProduct persistido y revisa registros modernos con ownership incompleto.
+- Estado real de CustomAuthorizationFilter, SecurityConfig, SecurityContext, duplicación de validación Tiger, logs de token y respuesta HTTP ante fallo.
+- Todos los call sites productivos de PipelineAuthorizationService.assertAdminAccess y AuthorizationUtils.requireDeployerOrAbove.
+- Orden exacto de resolución, consulta ACME y side effects en delete, inactivate y ActionServiceImpl.
+- Status HTTP actual cuando ACME falla y compatibilidad de proponer 503 en vez del 403 actual.
+
+Evalúa especialmente esta arquitectura propuesta:
+
+- Sólo Tiger es middleware y publica username en SecurityContext.
+- ACME no es middleware porque la consulta precisa requiere conocer teamName.
+- Existe una sola clase concreta OperationAuthorizationService, sin interface/impl ni estrategias prematuras.
+- El autorizador recibe caller, teamName, projectCode, headers y nivel; encapsula AcmeClient, roles y errores.
+- Delete e inactivate son los primeros consumidores de regresión con DEPLOYER_AND_UP.
+- ActionServiceImpl es el primer consumidor funcional nuevo con DEV_AND_UP.
+- Signals sólo protege catalog-signal + start/stop, rechaza combinaciones desconocidas e importados y valida antes de deployment context, KVS y BigQueue.
+- Read Actions, polling, precreation, otras tecnologías y legacy no cambian en la primera entrega.
+- @RequiresCapability queda documentada como evolución futura, no implementación actual.
+
+Busca problemas de seguridad, TOCTOU, ownership incorrecto, queries duplicadas, dependencias HTTP filtradas al dominio, fallos fail-open, inconsistencias de status, bypass por rutas alternativas, ruptura de tests y abstracciones innecesarias. Distingue siempre entre:
+
+A. Requerimiento textual de la SPEC.
+B. Decisión explícita del owner registrada en el proyecto.
+C. Hecho comprobado en el código o PR.
+D. Inferencia o propuesta pendiente.
+
+Formato obligatorio de salida:
+
+1. Veredicto: GO, GO WITH CHANGES o NO-GO para crear la SPEC técnica.
+2. Resumen ejecutivo de máximo 10 puntos.
+3. Matriz de trazabilidad: requisito/decisión → evidencia → componente propuesto → test → estado.
+4. Hallazgos ordenados por severidad P0-P3, cada uno con evidencia exacta (archivo y línea, commit o sección de SPEC), impacto y corrección mínima.
+5. Contradicciones entre SPEC, proyecto y código.
+6. Evaluación de los dos slices: independencia, riesgo, criterio de salida y si el orden es correcto.
+7. Decisiones faltantes que bloquean la SPEC técnica; no conviertas preferencias menores en blockers.
+8. Cambios textuales concretos recomendados para la nota del proyecto, sin aplicarlos.
+9. Lista final de afirmaciones verificadas y afirmaciones que no pudiste verificar.
+
+Reglas de calidad:
+
+- No inventes contratos ACME ni comportamiento de Spellbook.
+- Si una fuente no está accesible, decláralo y reduce la confianza del hallazgo.
+- Prioriza fuentes primarias y código real sobre comentarios secundarios.
+- No propongas microservicios, frameworks de policies, interfaces de una sola implementación, annotations o generalizaciones sin consumidores reales.
+- No confundas autenticación, obtención de grants y decisión de autorización.
+- No apruebes el diseño sólo porque parece razonable: intenta refutarlo.
+```
 
 ## 🧩 Subproyectos
 
