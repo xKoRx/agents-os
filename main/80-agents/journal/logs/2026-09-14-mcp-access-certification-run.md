@@ -50,7 +50,7 @@ tags:
 
 - Veredicto de la run: `ACCESS_CERTIFICATION_PARTIAL` (H1 credenciales en `export_metadata`, H2 boundary viewer SSH no aplicado; M3–M8, I9–I10 en el artefacto).
 - El delta de readiness registra superficies verificadas y gaps (`REQUIRED_LATER`/`UNKNOWN_NEEDS_SOURCE_PROOF`) sin cambiar clases A/B/C ni estados de tareas; el trigger de reactivación del backlog permanece cerrado.
-- Cleanup verificado: topic `mcp-cert-20260914-a` ausente, `mcp-cert-20260913-150530` en eliminación final, colecciones Mongo de sonda eliminadas, `sessions=0`.
+- Cleanup: sondas propias eliminadas y verificadas; el residual preexistente `mcp-cert-20260913-150530` persiste tras 4 deletes exitosos con líder rotando — anomalía abierta (M4), requiere investigación cluster-side.
 
 ## Validación
 
