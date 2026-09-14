@@ -47,9 +47,12 @@ updated: "2026-09-14"
 
 ## 📊 Estado actual
 
-- **Fase actual:** diseño de la solución; no se modificó código.
+- **Fase actual:** diseño previo y análisis de casos; no se modificó código ni se crearon tasks de implementación.
+- La arquitectura y las decisiones vigentes están consolidadas en [[Diseño previo — Autorización de operaciones por equipo]]. Primero se cerrará ese diseño; después se crearán la SPEC técnica de Actions Signals y sus tasks en Spellbook.
 - La SPEC menciona todas las mutaciones y actions de componentes, no sólo actions. En Spellbook está clasificada como `technical`, aunque fue presentada como funcional: confirmar si falta el funcional antes de implementar.
 - El ownership vive en `DataProduct.teamName`; los componentes pertenecen a un Data Product. Un componente importado conserva su DP local y señala su procedencia mediante `sourceComponentId`.
+- La primera vertical se limita a Actions component-bound de Signals: `catalog-signal + start/stop`. Legacy, otras tecnologías, precreation, polling, deployments y otras mutaciones quedan fuera de esa entrega.
+- El [PR 1126](https://github.com/melisource/fury_rio-playmaker/pull/1126) aporta la consulta ACME y casos de autorización para delete/inactivate; se refactorizará progresivamente para converger al mecanismo común, sin adoptar `PipelineAuthorizationService.assertAdminAccess` como contrato transversal definitivo.
 
 ## 🧱 Entrega de desarrollo
 
@@ -57,7 +60,7 @@ updated: "2026-09-14"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| `rio-playmaker` | Pendiente | Pendiente | Pendiente de confirmar; SIG-616 figura como técnica en Spellbook | [SIG-616 — Autorizar mutaciones y operaciones de componentes por equipo](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | Diseño; gate de branch/base y clasificación funcional pendiente |
+| `rio-playmaker` | Pendiente | Pendiente | Pendiente de confirmar o reclasificar; SIG-616 figura como técnica en Spellbook | Pendiente de crear: Actions mutantes de Signals | Diseño previo; no implementar hasta aprobar SPEC funcional, técnica y tasks |
 
 ## 🧩 Subproyectos
 
@@ -86,8 +89,12 @@ views:
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [/] Diseñar el componente reusable de autorización #owner/me #type/dev #area/meli
-> - [ ] Confirmar matriz real `component_type` + `actionName` con los CPs y el criterio de la SPEC #owner/me #type/research #area/meli
-> - [ ] Confirmar clasificación de SIG-616 y definir branch/base antes de implementar #owner/me #type/dev #area/meli #blocked
+> - [/] Pulir [[Diseño previo — Autorización de operaciones por equipo]] y cerrar los gates de Actions Signals #owner/me #type/research #area/meli
+> - [ ] Confirmar `catalog-signal + start/stop`, roles ACME, importados y ausencia de precreation con los dueños del flujo #owner/me #type/research #area/meli
+> - [ ] Confirmar o corregir la relación funcional/técnica de SIG-616 en Spellbook #owner/me #type/dev #area/meli
+> - [ ] Crear y aprobar la SPEC técnica de Actions mutantes de Signals #owner/me #type/dev #area/meli #blocked
+> - [ ] Derivar y aprobar las tasks de la SPEC técnica en Spellbook #owner/me #type/dev #area/meli #blocked
+> - [ ] Definir branch/base limpias y comenzar implementación sólo después de SPECs + tasks #owner/me #type/dev #area/meli #blocked
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -120,16 +127,24 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
 - **2026-09-14** — Se revisó SIG-616 y el código de Playmaker. Se acordó iniciar por el diseño de autorización reusable antes de tocar rutas o control planes.
+- **2026-09-14** — Se acotó la primera vertical a `catalog-signal + start/stop`; se eligieron Tiger filter + interceptor ACME configurable sobre el endpoint component-bound, se excluyeron legacy/precreation/polling y se documentó el refactor evolutivo del PR 1126.
 
 ## 🧭 Decisiones
 
-- **D1 — Separar resolución de identidad de decisión de permisos.** Un `UserAuthorizationService` valida Tiger y obtiene roles/equipos en ACME una vez por request, devolviendo un contexto inmutable. Un helper/guard sin I/O externo aplica después las reglas contra el team persistido del DP.
-- **D2 — Helper reutilizable, no un service de negocio transversal.** El helper recibe `UserAuthorizationContext`, team dueño y operación; los servicios de dominio conservan su caso de uso. Actions agregará la clasificación estática `component_type + actionName`; deployments reutilizará la validación de team.
-- **D3 — Playmaker es el enforcement point.** Los CPs siguen procesando eventos defensivamente, pero no resuelven Tiger ni ACME; reciben sólo requests ya autorizados por Playmaker.
+- **D1 — Primera vertical sólo Signals.** La primera implementación protege `catalog-signal + start/stop` sobre componentes existentes; no incluye legacy, otras tecnologías, precreation ni polling.
+- **D2 — Dos capas HTTP con responsabilidades distintas.** Tiger se valida una vez en el filtro y publica username; un interceptor específico reconoce Signals, resuelve ownership persistido y consulta ACME antes del controller.
+- **D3 — Whitelist de tipo + Action.** Una Action desconocida sobre `catalog-signal` se rechaza; tecnologías fuera del alcance conservan su comportamiento hasta contar con SPEC propia.
+- **D4 — Services sin llamadas de seguridad externas.** Actions consume identidad desde `SecurityContext` y ejecuta el caso de uso sólo después de superar ambos middlewares.
+- **D5 — PR 1126 converge por refactor.** Se reutiliza `AcmeClient.getOwnerProjectGrants`; la API acoplada a pipeline y la política estática se refactorizan a medida que se incorporan casos reales.
+- **D6 — Annotation al final, no ahora.** `@RequiresCapability` se evaluará sobre services cuando exista repetición comprobada; queda documentada como evolución final y fuera de alcance inicial.
+- **D7 — Playmaker es el enforcement point.** Los CPs siguen procesando eventos defensivamente, pero no resuelven Tiger ni ACME; reciben sólo requests ya autorizados por Playmaker.
+- **D8 — SPECs y tasks antes de código.** Se cierra diseño, se valida la SPEC funcional, se crea la técnica por vertical y se aprueban sus tasks antes de definir branch/base e implementar.
 
 ## 🔗 Docs / Links
 
 - [SIG-616 — Spellbook](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
+- [[Diseño previo — Autorización de operaciones por equipo]]
+- [PR 1126 — Autorización ACME para inactivate/delete](https://github.com/melisource/fury_rio-playmaker/pull/1126)
 - [DataProductModel — `teamName`](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/model/DataProductModel.java)
 - [ComponentModel — `dataProduct` y `sourceComponentId`](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/model/ComponentModel.java)
 
