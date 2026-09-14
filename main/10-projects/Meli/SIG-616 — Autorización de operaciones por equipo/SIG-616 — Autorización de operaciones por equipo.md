@@ -72,6 +72,48 @@ updated: "2026-09-14"
 > [!warning] Todavía no es una SPEC ejecutable
 > El orden acordado es: cerrar diseño y casos → corregir o confirmar la SPEC funcional → crear la SPEC técnica de la primera vertical → derivar y aprobar sus tasks → definir branch/base → implementar.
 
+### Fuentes y autoridad
+
+| Fuente | Rol | Autoridad |
+|---|---|---|
+| [SIG-616 en Spellbook](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | Requerimiento de origen, escrito por terceros | Fuente funcional; sus omisiones o ambigüedades deben registrarse, no corregirse silenciosamente |
+| Conversación y decisiones registradas en esta nota | Alcance y decisiones del proyecto | Fuente de verdad para el diseño acordado por el owner |
+| `origin/develop` de `fury_rio-playmaker` | Comportamiento implementado | Evidencia técnica; base observada `1a4caf093` |
+| [PR 1126](https://github.com/melisource/fury_rio-playmaker/pull/1126) | Implementación ACME existente | Base a refactorizar, no arquitectura transversal definitiva |
+
+Esta separación es deliberada: un requerimiento de la SPEC, una decisión del proyecto y una inferencia del código no son equivalentes.
+
+### Baseline funcional extraído de la SPEC externa
+
+La SPEC exige autorización server-side para mutaciones y operaciones de componentes mediante identidad Tiger validada, ownership persistido y rol ACME. Define allow-list finita, clasificación server-side y default deny dentro de los casos protegidos.
+
+Inventario funcional indicado por la SPEC:
+
+- Crear, actualizar, eliminar y modificar diseño o metadatos de componentes.
+- Crear, actualizar y eliminar relaciones.
+- Crear/eliminar componentes de pipeline y modificar topología, diseño o relaciones.
+- Provisionar, desprovisionar e inactivar.
+- Ejecutar Actions mutantes sobre componentes de origen.
+- Permitir read Actions declaradas con Tiger válido, sin exigir ACME.
+
+Reglas transversales heredadas:
+
+- `team-dev-and-up` equivale a `admin`, `maintainer`, `deployer`, `committer`.
+- Los componentes importados no habilitan Actions mutantes; la importación no transfiere ownership.
+- Una Action mutante de precreación se rechaza porque no existe un componente de origen persistido.
+- Origen y destino de una relación deben pertenecer al mismo Data Product; cross-DP es inválido.
+- `platformTeams` y `tempAllCanEdit` no conceden autorización bajo el nuevo guard.
+- Tiger ausente/inválido, ownership faltante, rol insuficiente, ACME no verificable o recursos inconsistentes rechazan sin side effects.
+
+Correcciones o decisiones del proyecto sobre la SPEC:
+
+- Pipeline deploy también está incluido aunque su ruta real fue omitida en el inventario original.
+- Las Actions se clasifican por `component_type + actionName`; el nombre por sí solo no alcanza.
+- Kafka/ClickHouse declaradas de lectura permanecen Tiger-only; no se agregará ACME por precaución local.
+- Polling no recibe lógica nueva; cualquier contradicción preexistente se trata separadamente.
+- Legacy se identifica y excluye explícitamente de la primera etapa.
+- Primera vertical funcional: sólo `catalog-signal + start/stop` sobre componente persistido.
+
 ### Problema y frontera de responsabilidad
 
 Tiger autentica al caller, pero no demuestra que pueda modificar un recurso cuyo dueño es otro equipo. La autorización necesita combinar:
