@@ -10,7 +10,7 @@ parent: "[[HERMES — ARANEA AUTONOMOUS OPERATIONS]]"
 sprint:
 start: 2026-09-14
 due:
-progress: 0
+progress: 20
 repo:
 jira:
 prs:
@@ -389,6 +389,8 @@ _No hay repo único. Este proyecto modifica comportamiento operativo, skills/con
 - **B-D03:** root-equivalent inicial puede aceptarse dentro del LXC dedicado `mcps`; no se extiende a hosts Proxmox/TrueNAS por implicación.
 - **B-D04:** especialización por skills/connections primero; nuevos perfiles/subagentes sólo con beneficio material de aislamiento.
 - **B-D05:** toda solicitud manual al owner se batchea; interacción humana de a un comando es un fallo de diseño salvo dependencia secuencial real.
+- **B-D06 (2026-09-14):** patch B0 se aplicó vía sesión Hermes con autorización explícita del owner para esta sesión; las fuentes tocadas fueron exactamente tres (SOUL.md §8/§8.1, Regla Dura 1 de Ariadna, USER.md). Ningún perfil o agente nuevo.
+- **B-D07 (2026-09-14):** management path elegido: SSH key-only `hermes-ops@mcps` con sudo passwordless scoped al LXC, wrapper `~/aranea/bin/mcps-ops`, host key strict pinneada. Revoke = quitar authorized_keys del usuario en `mcps` (una línea), sin tocar otras identities.
 
 ## 🔗 Docs / Links
 
