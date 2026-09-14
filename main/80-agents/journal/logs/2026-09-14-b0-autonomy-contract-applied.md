@@ -57,6 +57,11 @@ tags:
 - `~/.ssh/agent_mcps_ops` — identity ED25519 dedicada `hermes-ops@mcps.lab.aranea`,
   fingerprint `SHA256:1ebPwqXIyeCC8zo4spKg+OyTDPYMXg78Kv1BaKRgp48` (sólo fingerprint
   público; private key nunca se imprime ni persiste en vault).
+  **Corrección 2026-09-14 sesión 2:** el bundle emitido en la sesión 1 instaló una
+  public key `IIxKwJK0...` (fp `SHA256:/9jv+B8...`) que NO corresponde a esta
+  identity — fue fabricada en el texto del bundle en lugar de leerse de disco.
+  La key instalada en `mcps` es inválida; se emitió bundle de corrección con la
+  key real verificada byte-identical contra `~/.ssh/agent_mcps_ops.pub`.
 - `~/.ssh/known_hosts` — host key ED25519 de `mcps.lab.aranea.cl` pinneada strict
   (`SHA256:REpcjg31iDIJ5xysEaM63UBgbtuIU3KCuvuJ0NZo+lY`).
 - `~/.ssh/config` — host alias `mcps-ops` (User hermes-ops, IdentitiesOnly, StrictHostKeyChecking yes, BatchMode).

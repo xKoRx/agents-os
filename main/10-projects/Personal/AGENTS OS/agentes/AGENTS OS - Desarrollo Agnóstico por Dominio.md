@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: archived
 priority: P1
 area: "[[Personal]]"
 parent: "[[AGENTS OS]]"
@@ -33,9 +33,9 @@ updated: "2026-09-14"
 
 # AGENTS OS - Desarrollo Agnóstico por Dominio
 
-> [!info]+ Planificador único
-> **Padre:** [[AGENTS OS]] · **Owner:** agent · **Estado:** active · **Prioridad:** P1 · **Progreso:** 0%
-> Plan listo para challenge arquitectónico. No hay implementación iniciada ni cambios runtime autorizados antes de G0.
+> [!warning]+ Registro de challenge — no es un planificador vigente
+> **Padre:** [[AGENTS OS]] · **Owner:** agent · **Estado:** archived · **Prioridad:** P1 · **Progreso:** 0%
+> El challenge G0 se ejecutó y su resultado fue retirar este plan. Las fases F1-F4, los paquetes autónomos, los despachos y los gates G1-G4 de más abajo **no son ejecutables**: se conservan como el contenido que fue evaluado y descartado. La corrección que sí procede vive en [[AGENTS OS - Context Hygiene and Canonical Integrity]].
 
 ## 🎯 Objetivo
 
@@ -45,11 +45,23 @@ updated: "2026-09-14"
 
 ## 📊 Estado actual
 
-- **Planificación completada:** alcance, arquitectura objetivo, decisiones del owner, fases, gates, tareas, prompts y pruebas de aislamiento quedaron documentados; el siguiente paso exacto es F0, challenge adversarial por un agente fresco.
+- **Challenge G0 cerrado el 2026-09-14 con veredicto `NOT_READY`.** Dos agentes contrastaron el plan contra la implementación vigente y convergieron en un consenso: el problema que el proyecto nombraba es real, pero su solución estaba sobredimensionada y apuntaba al lugar equivocado. El plan se retira y el slice correctivo pasa a [[AGENTS OS - Context Hygiene and Canonical Integrity]].
 - **Baseline vigente:** bootstrap selecciona explícitamente `meli-agent-dev`, `aranea-agent-dev` o ningún router; ambos routers ya aíslan preferencias y herramientas; Conformance Harness y Context Budget prueban exclusión MELI/ARANEA/DEFAULT, pero la tabla del dominio sigue hardcodeada en bootstrap y tooling.
 - **Gap transversal:** no existe una skill genérica que gobierne el ciclo material de desarrollo y una evidencia de delivery ligada al HEAD; `sdd-workflow`, `agents-os-agent-project-workflow` y `agents-os-agent-run-register` cubren responsabilidades vecinas que no deben reemplazarse.
 - **Fuente externa:** el bundle `meli-developer` entregado por el owner se considera input de investigación no canónico. Solo se retienen aquí patrones agnósticos; Grimoire, Spellbook, Fury, O11y y cualquier tooling corporativo permanecen exclusivamente en el dominio Meli.
 - **Repositorio:** no aplica; esta iteración modifica fuentes canónicas y tooling dentro del vault. El baseline es el estado verificado de los archivos citados, no un commit inexistente.
+
+## ⚖️ Resultado del challenge (G0)
+
+**Veredicto:** `NOT_READY`. El plan se retira como planificador; el trabajo que sobrevive es un slice correctivo bajo [[AGENTS OS - Context Hygiene and Canonical Integrity]].
+
+**Lo que el challenge confirmó.** El core sí filtra dominio: el paso 6 de [[agents-os-bootstrap]] hardcodea `[[Meli]]`, `[[Echo]]/[[Aranea]]`, `mcp__aranea-*` y tooling corporativo, y las reglas 12 y 14 de [[agent-constitution]] —always-load— nombran workspaces y convenciones de release de dominio. Ambos viajan al core compartido.
+
+**Lo que el challenge refutó.** El diagnóstico de los 13 `MEDIUM` de Doctor era incorrecto: no eran skills ausentes del índice ni deuda previa y ajena, sino una migración federada incompleta que dejó 13 skills y 9 runbooks duplicados entre `80-agents/` y `30-resources/`, con tres divergencias materiales de contenido. Ese es el defecto de canonicalidad real, y el plan no lo tocaba. Ver [[doctor-verde-falso-por-duplicados-core-federado]].
+
+**Lo que el challenge descartó.** La skill transversal `agent-development-workflow` duplicaba el lifecycle de [[sdd-workflow]]; la capa de capabilities abstractas era indirección sobre la tabla de routing que los routers ya tienen, con dos dominios reales; el dominio ficticio de F4 probaba escalabilidad sin demanda. `autonomy envelope` y `delivery checkpoint` quedan en backlog hasta que exista un consumidor concreto.
+
+**D6 vuelve a estar abierta.** Figuraba como resolución cerrada antes de ser desafiada, lo que anclaba al challenge. Su sustancia —sacar el mapping de dominios del core hacia un registro externo, opcional y fail-closed con resolución `0 → DEFAULT`, `1 → router`, `>1 → cerrado`— sobrevive como parte del slice correctivo, no como decisión previa.
 
 ## 🧠 Síntesis del input externo
 
@@ -136,7 +148,6 @@ El core no referencia `Meli`, `Aranea`, `Spellbook`, `Grimoire`, `Fury`, `O11y`,
 | D3 | `CONFIRMED` | Grimoire/Spellbook/Fury/O11y/Zord nunca entran a Aranea, DEFAULT ni core | Instrucción owner 2026-09-14 | F3-F4 |
 | D4 | `TECHNICAL_RESOLUTION` | Reutilizar y alinear `meli-agent-dev`/`aranea-agent-dev`; no crear routers paralelos | Baseline verificado | F2-F3 |
 | D5 | `TECHNICAL_RESOLUTION` | DEFAULT permanece sin router; el workflow aplica fallback repo-native | Economía de contexto + contrato vigente | F1-F4 |
-| D6 | `TECHNICAL_RESOLUTION` | Reemplazar mapping hardcodeado del core por discovery/registro metadata-driven y fail-closed | Invariante de eliminación limpia | F2 |
 | D7 | `CONFIRMED` | No agregar policy de desarrollo al system prompt ni always-load | Instrucción owner + constitución | Todas |
 | D8 | `CONFIRMED` | Borrar el paquete Meli en el futuro no debe romper core, Aranea ni DEFAULT | Instrucción owner 2026-09-14 | F2-F4 |
 

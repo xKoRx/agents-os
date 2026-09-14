@@ -6,7 +6,7 @@ tags:
   - project/agentsos
   - project/aranea
 created: 2026-06-30
-updated: 2026-08-08
+updated: 2026-09-14
 specialty:
   - aranea-homelab-operations
   - infra-orchestration
