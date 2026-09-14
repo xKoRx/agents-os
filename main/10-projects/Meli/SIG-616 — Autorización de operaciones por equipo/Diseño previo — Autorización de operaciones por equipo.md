@@ -17,7 +17,7 @@ updated: "2026-09-14"
 
 # Diseño previo: autorización de operaciones por equipo
 
-**Estado:** diseño en discusión · **Proyecto:** [[SIG-616 — Autorización de operaciones por equipo]] · **SPEC de referencia:** [SIG-616 en Spellbook](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) · **Primera vertical:** Actions mutantes de Signals
+**Estado:** diseño funcional cerrado; validaciones técnicas pendientes · **Proyecto:** [[SIG-616 — Autorización de operaciones por equipo]] · **SPEC de referencia:** [SIG-616 en Spellbook](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) · **Primera vertical:** fundación de seguridad + Actions mutantes de Signals
 
 > [!warning] Documento de diseño, todavía no SPEC ejecutable
 > Esta nota consolida el análisis y las decisiones previas. No autoriza implementación. El orden acordado es: cerrar diseño y casos → corregir o confirmar la SPEC funcional → crear la SPEC técnica de la primera vertical → derivar y aprobar sus tasks → definir branch/base → implementar.
@@ -26,16 +26,13 @@ updated: "2026-09-14"
 
 La autorización de operaciones se construirá como una capacidad server-side de `rio-playmaker`, con Tiger como fuente de identidad, `DataProduct.teamName` como ownership persistido y ACME como fuente de roles. Playmaker será el enforcement point antes de cualquier side effect; los Control Planes no resolverán Tiger ni ACME.
 
-La solución se desarrollará de manera incremental. La primera entrega cubrirá exclusivamente las Actions mutantes de Signals sobre componentes existentes: `catalog-signal + start` y `catalog-signal + stop`. Kafka, Flink, ClickHouse, endpoints legacy, Actions de precreación, polling, deployments y otras mutaciones quedan sin cambios en esta entrega.
+La solución se desarrollará de manera incremental. El único cambio funcional de la primera entrega será proteger las Actions mutantes de Signals sobre componentes existentes: `catalog-signal + start` y `catalog-signal + stop`. Como trabajo fundacional sin cambio funcional, la autorización de delete/inactivate ya mergeada se migrará al mismo autorizador y será el primer consumidor de regresión. Kafka, Flink, ClickHouse, endpoints legacy, Actions de precreación, polling, deployments y otras mutaciones quedan sin cambios.
 
-La arquitectura inicial tendrá dos capas HTTP configurables:
+La primera etapa conservará un único middleware HTTP: `TigerAuthenticationFilter`, responsable de validar Tiger una sola vez y publicar el username en el `SecurityContext`.
 
-1. `TigerAuthenticationFilter`, responsable de validar Tiger una sola vez y publicar el username en el `SecurityContext`.
-2. `SignalActionAuthorizationInterceptor`, registrado solamente sobre el endpoint component-bound de Actions y responsable de aplicar la whitelist de Signals, resolver el ownership persistido y verificar ACME antes de entrar al controller.
+ACME no se implementará como middleware. Después de resolver el recurso persistido, cada caso de uso invocará un autorizador concreto y reutilizable indicando `username`, `teamName`, `projectCode` y nivel requerido. Ese componente encapsulará el cliente ACME, la lista de roles y la traducción de errores. Los handlers no conocerán la autorización y los services consumidores no implementarán llamadas ni reglas ACME por su cuenta. `ActionServiceImpl` ejecutará esta única validación antes de cualquier side effect.
 
-Los handlers y services no harán llamadas a Tiger ni ACME. `ActionServiceImpl` consumirá el username ya autenticado desde el contexto solamente para auditoría y publicación.
-
-No se introducirá en esta etapa una interfaz genérica de autorización, un catálogo global de capabilities, un Aspect ni `@RequiresCapability`. Esos elementos sólo se evaluarán al final del proyecto, cuando existan varios casos implementados y se pueda abstraer sobre repetición real.
+No se introducirá en esta etapa una jerarquía de interfaces, un catálogo abierto de capabilities, un Aspect ni `@RequiresCapability`. Sólo existirán los tres niveles funcionales cerrados: `READ`, `DEV_AND_UP` y `DEPLOYER_AND_UP`. La annotation se evaluará al final del proyecto, cuando existan varios casos implementados y se pueda abstraer sobre repetición real.
 
 ## 2. Problema funcional transversal
 
@@ -63,14 +60,23 @@ El objetivo no es que cada flujo implemente su propia integración con Tiger y A
 
 | Etapa | Alcance | Estado de diseño |
 |---|---|---|
-| 1 | Actions component-bound de Signals: `catalog-signal + start/stop` | En diseño; primera implementación |
-| 2 | Refactor de delete/inactivate y ACME incorporado por PR 1126 hacia el mecanismo consolidado | Planificado; no implementar junto con etapa 1 salvo que la SPEC técnica lo indique expresamente |
-| 3 | Deployments y demás mutaciones de componentes | Futuro; requiere análisis y SPEC técnica propia |
-| 4 | Relaciones y pipelines | Futuro; requiere resolver casos cross-DP y legacy |
-| 5 | Actions de otras tecnologías y endpoints legacy | Futuro; se incorporan sólo mediante whitelist y SPEC aprobada |
+| 1 | Fundación: middleware Tiger, extracción del autorizador ACME, migración sin cambio funcional de delete/inactivate e integración con `catalog-signal + start/stop` | Primera SPEC técnica a crear; delta funcional sólo en Signals |
+| 2 | Deployments y demás mutaciones de componentes | Futuro; requiere análisis y SPEC técnica propia |
+| 3 | Relaciones y pipelines | Futuro; requiere resolver casos cross-DP y legacy |
+| 4 | Actions de otras tecnologías y endpoints legacy | Futuro; se incorporan sólo mediante whitelist y SPEC aprobada |
 | Final | Evaluar `@RequiresCapability` sobre casos de uso ya consolidados | Evolución documentada; fuera del alcance inicial |
 
 La arquitectura puede escalar a legacy, pero legacy no se contempla en el diseño técnico ni en las tasks de la primera entrega.
+
+### 4.1 Niveles de acceso definitivos
+
+| Nivel | Roles | Uso |
+|---|---|---|
+| `READ` | Cualquier identidad Tiger válida | Actions declaradas de lectura; no consulta ACME |
+| `DEV_AND_UP` | `admin`, `maintainer`, `deployer`, `committer` | Escrituras y mutaciones definidas por SIG-616, incluidas Actions mutantes de Signals |
+| `DEPLOYER_AND_UP` | `admin`, `maintainer`, `deployer` | Delete e inactivate cubiertos por el PR 1126 |
+
+No existe contradicción entre SIG-616 y el PR 1126: son dos políticas para sensibilidades distintas. No se agregarán más niveles sin un caso funcional nuevo.
 
 ## 5. Reglas funcionales preservadas
 
@@ -89,9 +95,9 @@ Para la primera entrega sólo se reconocen como Actions protegidas:
 | `catalog-signal` | `start` | Mutación operacional | Tiger válido + rol ACME permitido en el equipo dueño |
 | `catalog-signal` | `stop` | Mutación operacional | Tiger válido + rol ACME permitido en el equipo dueño |
 
-El rol mínimo debe quedar alineado con la política funcional definitiva. La implementación del PR 1126 considera `admin`, `maintainer` y `deployer`; esa será la base técnica a confirmar en la SPEC funcional.
+Signals `start/stop` requiere `DEV_AND_UP`: `admin`, `maintainer`, `deployer` o `committer` en el scope dueño persistido.
 
-Una combinación desconocida para `catalog-signal` se rechaza. Una Action de otra tecnología queda fuera del interceptor y mantiene su comportamiento actual hasta que una SPEC posterior la incorpore.
+Una combinación desconocida para `catalog-signal` se rechaza. Una Action de otra tecnología queda fuera de la validación ACME y mantiene su comportamiento actual hasta que una SPEC posterior la incorpore.
 
 ### 5.3 Componentes importados
 
@@ -133,65 +139,75 @@ SecurityContextHolder.getContext().setAuthentication(new CustomAuthenticationTok
 
 Actions comenzará a consumir `authentication.getName()` o el principal equivalente. No se migrarán en masa los demás call sites de Tiger dentro de la primera entrega; cada flujo se migrará al adoptar la nueva autorización o mediante una iniciativa específica.
 
-## 7. Autorización ACME como interceptor
+## 7. Autorización ACME después de resolver el target
 
-Tiger y ACME no son dos filtros simétricos:
+Tiger y ACME no son dos middlewares simétricos:
 
 - Tiger responde una pregunta independiente del dominio: quién es el caller.
-- ACME sólo puede responder si el caller puede operar después de conocer el equipo dueño y la operación solicitada.
+- ACME sólo permite decidir si el caller puede operar cuando ya se conocen el equipo y proyecto dueños.
 
-Por eso la segunda capa será un `HandlerInterceptor` de autorización específico para Signals, no un filtro que precargue todos los grants del usuario.
+El cliente ofrece `getUserGrants(username, headers)`, pero el commit `7737f053d` documenta que `/grants/user-grants/{username}` no incluye los roles de `OwnerProjectGrant`. La consulta precisa disponible es `getOwnerProjectGrants(username, teamName, headers)`; `projectCode` no se envía a ACME y se compara localmente contra el resultado.
 
-### 7.1 Ruta protegida
+Por esta limitación, ACME no se implementará como middleware ni se precargará en el contexto HTTP. La unidad reutilizable será un autorizador concreto, sin interfaz adicional en esta etapa, que recibe el caller, el scope persistido y el nivel requerido.
 
-El interceptor se registrará sólo para:
+### 7.1 Ruta incorporada en la primera vertical
+
+La primera integración se aplicará dentro del caso de uso servido por:
 
 ```text
 POST /data-products/{dataProductId}/components/{componentId}/environments/{environmentId}/actions/{actionName}
 ```
 
-No se aplicará a:
+No se incorporará ACME en:
 
 - `POST /data-products/{dataProductId}/actions/{actionName}` de precreación.
 - `GET /v2/actions/{actionId}` de polling.
 - `/services/{serviceId}/actions/**` legacy.
 - `/signals/**`, que corresponde a APIs públicas de productores y no al dispatch genérico de Actions.
 
-### 7.2 Algoritmo del interceptor
+### 7.2 Algoritmo de la primera integración
 
-1. Leer el username desde `SecurityContext`; si falta, la request no debió superar Tiger.
-2. Obtener `dataProductId`, `componentId`, `environmentId` y `actionName` desde las variables resueltas por Spring MVC.
-3. Resolver el componente mediante una query que garantice su pertenencia al Data Product indicado.
-4. Resolver el Data Product y su `teamName` persistido.
-5. Si el `componentTemplateCode` no es `catalog-signal`, continuar sin alterar el comportamiento actual.
-6. Si es `catalog-signal` y `actionName` no pertenece a `start/stop`, rechazar.
-7. Si `sourceComponentId` no es nulo, rechazar por ser componente importado.
-8. Consultar ACME para `username + teamName` y verificar el rol requerido.
-9. Si la verificación pasa, continuar hacia el controller; si falla, cortar la request.
+1. Tiger valida la request una sola vez y publica el username en `SecurityContext`.
+2. `ActionServiceImpl` resuelve Data Product, componente y environment persistidos como parte de su flujo normal.
+3. Si el `componentTemplateCode` no es `catalog-signal`, continúa sin alterar el comportamiento actual.
+4. Si es `catalog-signal` y `actionName` no pertenece a `start/stop`, rechaza.
+5. Si `sourceComponentId` no es nulo, rechaza por ser componente importado.
+6. Antes de cargar contexto de deployment, escribir KVS o publicar BigQueue, invoca una única validación reutilizable con `username`, `teamName`, `projectCode`, headers Tiger y `DEV_AND_UP`.
+7. El autorizador llama `getOwnerProjectGrants(username, teamName, headers)`, exige match exacto de `teamName + projectCode` y evalúa el nivel.
+8. Sólo después de allow continúan los side effects.
 
-El interceptor debe ejecutar todas estas verificaciones antes de que `ActionServiceImpl` cree la entrada KVS o publique el evento.
+El service consumidor conoce que su operación requiere autorización y aporta el target ya resuelto, pero no contiene listas de roles, parsing de grants, endpoints ACME ni traducción de errores.
 
-### 7.3 Contexto de request
+### 7.3 Dónde se obtiene el scope
 
-El `SecurityContext` conservará solamente la identidad autenticada. No se cargarán todos los grants ACME ni se diseñará todavía un `UserAuthorizationContext` genérico.
+El ownership no vive en `ServiceModel`: vive en el `DataProductModel`. Los distintos flujos llegan al mismo scope navegando desde su recurso objetivo hacia el Data Product dueño.
 
-El interceptor puede dejar un atributo mínimo para trazabilidad, por ejemplo `authorizedOperation=SIGNAL_ACTION_MUTATION`, pero sólo se incorporará si tiene un consumidor real de observabilidad. El éxito del interceptor ya habilita la continuación de la request; guardar roles sin consumidor sería complejidad accidental.
+En la primera vertical, la ruta component-bound contiene `dataProductId`, `componentId` y `environmentId`. `ActionServiceImpl.fetchComponentInHierarchy` ya comprueba que los tres recursos pertenezcan al mismo Data Product. De ese `DataProductModel` salen `teamName` y `projectCode`; del componente salen `componentTemplateCode` y `sourceComponentId`.
 
-### 7.4 Invariante de entrada HTTP
+Para Data Products modernos bajo la política SIG-616, `teamName` y `projectCode` forman el scope obligatorio. Ambos campos pueden faltar en datos históricos. En una operación protegida, scope incompleto implica rechazo fail-closed. Los caminos legacy quedan excluidos por entrypoint en la primera etapa, no mediante un fallback permisivo cuando falte ownership.
 
-Hoy `ActionService.triggerAction` sólo es invocado desde `ActionController`. Eso permite que la autorización HTTP sea la frontera efectiva de esta primera vertical. La SPEC técnica debe registrar este invariante y agregar una prueba arquitectónica o de integración que falle si aparece un llamador productivo que evite el endpoint protegido.
+### 7.4 Errores
 
-Si en el futuro un job, listener u otro service invoca Actions directamente, la autorización deberá moverse o repetirse en una frontera de aplicación antes de habilitar ese camino.
+- Tiger ausente o inválido: `401` desde la frontera HTTP.
+- Recurso persistido inexistente o inconsistente: `404` o error funcional equivalente antes de ACME.
+- Scope dueño incompleto en una operación protegida: rechazo fail-closed.
+- ACME disponible pero rol insuficiente para `teamName + projectCode`: `403`.
+- ACME no disponible o no verificable: `503`.
+
+### 7.5 Invariante del caso de uso
+
+La autorización vive en la frontera del caso de uso, no exclusivamente en el controller. Así, cualquier llamador futuro de `ActionService.triggerAction` atraviesa la misma validación. La prueba relevante debe demostrar que ninguna ejecución protegida alcanza KVS o BigQueue sin pasar por el autorizador.
 
 ## 8. Integración con PR 1126
 
-El [PR 1126 de rio-playmaker](https://github.com/melisource/fury_rio-playmaker/pull/1126) agrega autorización ACME para inactivate/delete y es la base más cercana para esta iniciativa.
+El [PR 1126 de rio-playmaker](https://github.com/melisource/fury_rio-playmaker/pull/1126) ya está mergeado en `origin/develop` mediante `1a4caf093`. Agrega autorización ACME para inactivate/delete y es la base técnica de esta iniciativa.
 
 ### 8.1 Elementos reutilizables
 
 - `AcmeClient.getOwnerProjectGrants(username, teamName, headers)` consulta los grants del usuario acotados al equipo dueño.
 - La implementación pagina respuestas, normaliza roles conocidos y selecciona el rol de mayor privilegio.
 - La política actual reconoce `admin`, `maintainer` y `deployer` para operaciones destructivas.
+- La versión final valida además que el grant corresponda al `projectCode` persistido del Data Product.
 - La verificación se ejecuta antes de locks y side effects.
 - Las pruebas cubren roles insuficientes, grants de otro equipo, roles faltantes y errores de ACME.
 
@@ -201,7 +217,7 @@ No se adoptará como API transversal `PipelineAuthorizationService.assertAdminAc
 
 Tampoco se mantendrá la política definitiva dentro de métodos estáticos de `AuthorizationUtils`. Lo implementado en el PR se refactorizará gradualmente para que Tiger, consulta ACME, política de roles y adaptación de errores tengan un único ownership técnico reutilizable por los casos que se vayan incorporando.
 
-Ese refactor no significa construir desde ahora un framework genérico. En la etapa Signals se reutilizará el cliente ACME y se extraerá solamente la pieza concreta necesaria por el interceptor. Cuando delete, inactivate, deployments u otras mutaciones migren, la abstracción final se decidirá sobre esos consumidores reales.
+Ese refactor no significa construir desde ahora un framework genérico. La unidad común será un scope persistido `teamName + projectCode` y uno de los dos niveles ACME (`DEV_AND_UP` o `DEPLOYER_AND_UP`). Primero se extraerá el comportamiento existente de `PipelineAuthorizationService.assertAdminAccess` y `AuthorizationUtils.requireDeployerOrAbove` hacia una única clase concreta. `PipelineComponentDeleteServiceImpl` y `ComponentInactivationServiceImpl` pasarán a consumirla conservando `DEPLOYER_AND_UP`; luego `ActionServiceImpl` será el primer consumidor funcional nuevo con `DEV_AND_UP`.
 
 ### 8.3 Diferenciación de errores
 
@@ -225,19 +241,22 @@ En cualquier error no se ejecuta el controller ni existen side effects. Los mens
     | valida Tiger una vez
     | principal = username
     v
-[NEW] SignalActionAuthorizationInterceptor
-    |
-    | resuelve DP + componente persistidos
-    | whitelist catalog-signal + start/stop
-    | rechaza importados
-    | consulta ACME username + ownerTeam
-    v
 [UNCHANGED] ActionController
     v
 [MODIFIED] ActionServiceImpl
     |
-    | consume username desde SecurityContext
-    | no llama Tiger ni ACME
+    | resuelve DP + componente persistidos
+    | whitelist catalog-signal + start/stop
+    | rechaza importados
+    v
+[NEW] OperationAuthorizationService (clase concreta)
+    |
+    | getOwnerProjectGrants(username, teamName, headers)
+    | valida projectCode + DEV_AND_UP
+    | retorna antes de cualquier efecto
+    v
+[MODIFIED] ActionServiceImpl
+    |
     | sólo después guarda KVS y publica
     v
 [UNCHANGED] Control Plane de Signals
@@ -258,11 +277,12 @@ Los cambios exactos de clases, paquetes y métodos se fijarán en la SPEC técni
 ### 10.2 Ownership y recurso
 
 - Confirmar la query canónica para obtener un componente dentro de un Data Product.
-- Confirmar que `DataProduct.teamName` es obligatorio y suficiente para ACME en componentes Signals vigentes.
+- Confirmar que `DataProduct.teamName` y `DataProduct.projectCode` están completos en los componentes Signals modernos vigentes.
+- Confirmar `DataProduct.projectCode` como segunda dimensión obligatoria del scope, alineada con el código mergeado del PR 1126.
 - Definir el error cuando `teamName` es nulo o vacío.
 - Confirmar que `systemId` no es requisito artificial si la consulta ACME utiliza `teamName`.
 - Confirmar el tratamiento de un componente importado y la semántica exacta de `sourceComponentId`.
-- Evaluar el intervalo entre autorización en el interceptor y carga/ejecución en el service; documentar el riesgo de cambio concurrente de ownership o acercar la verificación al efecto si el riesgo no es aceptable.
+- Mantener la autorización dentro del caso de uso y antes del primer efecto para minimizar el intervalo entre lectura del ownership y ejecución.
 
 ### 10.3 Actions de Signals
 
@@ -275,11 +295,15 @@ Los cambios exactos de clases, paquetes y métodos se fijarán en la SPEC técni
 
 ### 10.4 Compatibilidad
 
-- Verificar que tecnologías distintas de Signals atraviesan el interceptor sin cambios funcionales ni llamadas ACME.
+- Verificar que tecnologías distintas de Signals atraviesan el mismo caso de uso sin cambios funcionales ni llamadas ACME.
 - Verificar que read Actions continúan requiriendo sólo Tiger donde la SPEC lo declara.
 - Verificar que polling no cambia y documentar cualquier contradicción preexistente por separado.
 - Verificar que callbacks `/events/actions/**` continúan públicos y fuera de Tiger/ACME.
 - Verificar el comportamiento durante el despliegue si existen instancias con versiones distintas; no debe existir un intervalo default-allow para Signals.
+- No usar `getUserGrants(username, headers)` para resolver roles `OwnerProjectGrant`: el historial del cliente documenta que ese endpoint no entrega el rol necesario. Reutilizar la consulta precisa del PR 1126 una vez resuelto el team.
+- Incorporar `POST /data-products/{name}/environments/{envName}/pipeline/deploy` al inventario de mutaciones aunque haya sido omitido en la lista de rutas de la SPEC original.
+- Identificar como legacy las rutas expuestas por controllers `@Deprecated` y reemplazadas explícitamente por RFC-002; excluirlas mediante allow-list de rutas modernas, no mediante inferencia por nombre.
+- Tratar cualquier ruta legacy que permita la misma mutación como bypass potencial antes del rollout: debe existir evidencia de retiro, ausencia de tráfico o una decisión explícita de protección posterior.
 
 ### 10.5 Operación
 
@@ -343,10 +367,10 @@ Las tasks se crean solamente después de aprobar la SPEC técnica correspondient
 | Orden | Task conceptual | Gate de término |
 |---|---|---|
 | T-01 | Corregir el principal Tiger y su respuesta `401` | El filtro publica username, no registra token y los tests de seguridad pasan |
-| T-02 | Incorporar/refactorizar la consulta ACME necesaria desde PR 1126 | Existe respuesta diferenciada para rol insuficiente y ACME no disponible |
-| T-03 | Implementar el interceptor y whitelist de Signals | Sólo `catalog-signal + start/stop` dispara ACME; unknown/imported se rechaza |
-| T-04 | Registrar el interceptor sobre la ruta component-bound | Precreation, polling, legacy y callbacks quedan fuera |
-| T-05 | Migrar Actions a consumir el username del `SecurityContext` | No se llama `TigerTokenService` desde los métodos de Actions incluidos |
+| T-02 | Extraer el autorizador ACME concreto desde la implementación mergeada y migrar delete/inactivate | Una sola implementación recibe `username + teamName`, exige `projectCode`; ambos flujos conservan `DEPLOYER_AND_UP` y sus tests |
+| T-03 | Implementar whitelist y validación reutilizable de Signals dentro del caso de uso | Sólo `catalog-signal + start/stop` consulta `DEV_AND_UP`; unknown/imported se rechaza |
+| T-04 | Migrar Actions a consumir identidad Tiger y el autorizador común | Actions no llama `TigerTokenService` ni `AcmeClient` directamente y valida antes de efectos |
+| T-05 | Verificar exclusiones de alcance | Precreation, polling, legacy y callbacks quedan fuera; otras tecnologías no consultan ACME |
 | T-06 | Verificar orden y ausencia de side effects | Deny/error no guarda KVS ni publica BigQueue |
 | T-07 | Regresión de tecnologías fuera de alcance | Kafka, Flink y ClickHouse conservan el comportamiento previo |
 | T-08 | Observabilidad y documentación operativa | Métricas y logs no exponen token, grants o payloads sensibles |
@@ -364,7 +388,7 @@ Primero se implementan los caminos críticos; después se completa al menos 95% 
 - El token no queda como principal ni aparece en logs.
 - Una ruta pública preserva su comportamiento.
 
-### 13.2 Interceptor Signals
+### 13.2 Autorización de Signals
 
 - `catalog-signal + start` con rol permitido continúa.
 - `catalog-signal + stop` con rol permitido continúa.
@@ -375,7 +399,15 @@ Primero se implementan los caminos críticos; después se completa al menos 95% 
 - ACME no disponible devuelve `503`.
 - Data Product, componente o ownership inválido falla cerrado.
 
-### 13.3 Side effects e integración
+### 13.3 Regresión del primer consumidor
+
+- Delete e inactivate usan el autorizador común con `DEPLOYER_AND_UP`.
+- `admin`, `maintainer` y `deployer` conservan acceso.
+- `committer` y roles inferiores continúan rechazados.
+- Un grant de otro proyecto o equipo no habilita.
+- No quedan llamadas productivas a `AuthorizationUtils.requireDeployerOrAbove`.
+
+### 13.4 Side effects e integración
 
 - Un rechazo no guarda `ActionKvsEntry`.
 - Un rechazo no invoca `producer.publish`.
@@ -387,16 +419,20 @@ Primero se implementan los caminos críticos; después se completa al menos 95% 
 ## 14. Decisiones de diseño
 
 - **DD-1 — Tiger se resuelve una vez en la frontera HTTP.** `CustomAuthorizationFilter` valida el token y publica username como principal; Actions no vuelve a llamar Tiger.
-- **DD-2 — ACME se aplica mediante un interceptor específico, no de forma eager.** La consulta ocurre sólo después de reconocer una Action mutante de Signals y conocer el team dueño.
+- **DD-2 — ACME no es middleware.** La consulta exacta ocurre dentro de un autorizador reutilizable cuando el caso de uso ya resolvió `teamName + projectCode`.
 - **DD-3 — La primera whitelist es un par tipo + Action.** Sólo `catalog-signal + start` y `catalog-signal + stop` quedan protegidas; una Action Signals desconocida se rechaza.
 - **DD-4 — La fuente de verdad es persistida.** `componentTemplateCode`, pertenencia al Data Product, `teamName` y `sourceComponentId` salen de Playmaker, no del cliente.
-- **DD-5 — El endpoint HTTP es la frontera de enforcement de la primera vertical.** Es válido mientras `ActionController` sea el único llamador productivo de `ActionService.triggerAction`; el invariante se documenta y verifica.
-- **DD-6 — Los services no llaman Tiger ni ACME.** Reciben o consumen identidad ya autenticada y ejecutan el caso de uso después de que los middlewares autorizaron.
-- **DD-7 — PR 1126 es base técnica, no diseño transversal final.** Se reutiliza `getOwnerProjectGrants`; `PipelineAuthorizationService.assertAdminAccess` y la política estática se refactorizan al incorporar nuevos casos.
+- **DD-5 — El caso de uso aplica la autorización.** La validación no depende de que el llamador sea HTTP y se ejecuta después de resolver el target y antes del primer efecto.
+- **DD-6 — Los services consumen un autorizador concreto.** Resuelven su recurso y realizan una sola llamada con caller, scope y nivel; no contienen parsing de grants, endpoints ACME ni nombres de roles.
+- **DD-7 — PR 1126 mergeado es base técnica, no diseño transversal final.** Se reutiliza `getOwnerProjectGrants`; `PipelineAuthorizationService.assertAdminAccess` y la política estática se refactorizan al incorporar nuevos casos.
 - **DD-8 — Polling no cambia.** Cualquier contradicción con read Actions se registra y resuelve como alcance separado.
 - **DD-9 — Legacy no se contempla aún.** La arquitectura puede extenderse, pero no se agregan rutas, adaptadores ni tests legacy en esta entrega.
 - **DD-10 — Sin annotation en la implementación inicial.** `@RequiresCapability` se documenta como posible evolución al final del proyecto y sólo se evalúa sobre repetición comprobada.
 - **DD-11 — SDD es el gate de ejecución.** No hay branch de implementación ni código antes de aprobar la SPEC funcional, la SPEC técnica y sus tasks.
+- **DD-12 — Tres niveles y nada más.** `READ` usa Tiger; `DEV_AND_UP` acepta committer o superior; `DEPLOYER_AND_UP` acepta deployer o superior para delete/inactivate.
+- **DD-13 — Pipeline deploy está incluido.** La omisión de su ruta en la SPEC original se considera un error documental, no una exclusión funcional.
+- **DD-14 — Legacy se identifica explícitamente.** Controllers/rutas marcados `@Deprecated` y reemplazados por RFC-002 quedan fuera de la primera migración; las rutas modernas se seleccionan mediante allow-list.
+- **DD-15 — Una implementación, tres consumidores iniciales.** El autorizador es una clase concreta sin interfaz: delete e inactivate prueban la migración sin cambio funcional; Actions Signals incorpora el nuevo nivel `DEV_AND_UP`.
 
 ## 15. Evolución final: `@RequiresCapability`
 
@@ -427,11 +463,12 @@ Esta evaluación pertenece al cierre arquitectónico del proyecto y debe figurar
 ## 17. Gates pendientes
 
 - [ ] Confirmar clasificación o relación funcional/técnica de SIG-616 en Spellbook.
-- [ ] Confirmar `catalog-signal`, `start` y `stop` contra el contrato vigente del Control Plane.
-- [ ] Confirmar roles ACME permitidos para mutaciones de Signals.
+- [x] Confirmar `catalog-signal`, `start` y `stop` contra el contrato vigente del Control Plane.
+- [x] Confirmar roles ACME permitidos para mutaciones de Signals: `DEV_AND_UP`.
 - [ ] Confirmar tratamiento funcional de componentes importados.
 - [ ] Confirmar que precreation de Signals no tiene un uso válido.
 - [ ] Verificar comportamiento real de polling para read Actions sin incorporarlo al alcance Signals.
-- [ ] Validar el interceptor contra el estado final y merge strategy del PR 1126.
+- [x] Verificar que PR 1126 está mergeado en `origin/develop`; base observada `1a4caf093`.
+- [x] Validar la consulta ACME contra el contrato final: `username + teamName + headers`, con `projectCode` filtrado localmente.
 - [ ] Resolver error mapping de Tiger y ACME antes de congelar la SPEC técnica.
 - [ ] Definir branch y base limpias después de aprobar SPEC y tasks.

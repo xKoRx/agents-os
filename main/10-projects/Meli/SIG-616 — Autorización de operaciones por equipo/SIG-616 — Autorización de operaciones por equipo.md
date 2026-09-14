@@ -47,12 +47,17 @@ updated: "2026-09-14"
 
 ## 📊 Estado actual
 
-- **Fase actual:** diseño previo y análisis de casos; no se modificó código ni se crearon tasks de implementación.
+- **Fase actual:** diseño funcional cerrado y validaciones técnicas previas a SPEC; no se modificó código ni se crearon tasks de implementación.
 - La arquitectura y las decisiones vigentes están consolidadas en [[Diseño previo — Autorización de operaciones por equipo]]. Primero se cerrará ese diseño; después se crearán la SPEC técnica de Actions Signals y sus tasks en Spellbook.
 - La SPEC menciona todas las mutaciones y actions de componentes, no sólo actions. En Spellbook está clasificada como `technical`, aunque fue presentada como funcional: confirmar si falta el funcional antes de implementar.
 - El ownership vive en `DataProduct.teamName`; los componentes pertenecen a un Data Product. Un componente importado conserva su DP local y señala su procedencia mediante `sourceComponentId`.
 - La primera vertical se limita a Actions component-bound de Signals: `catalog-signal + start/stop`. Legacy, otras tecnologías, precreation, polling, deployments y otras mutaciones quedan fuera de esa entrega.
 - El [PR 1126](https://github.com/melisource/fury_rio-playmaker/pull/1126) aporta la consulta ACME y casos de autorización para delete/inactivate; se refactorizará progresivamente para converger al mecanismo común, sin adoptar `PipelineAuthorizationService.assertAdminAccess` como contrato transversal definitivo.
+- La primera implementación del autorizador común se extraerá desde ese comportamiento existente. Delete e inactivate serán consumidores de regresión con `DEPLOYER_AND_UP`; Actions Signals será el primer consumidor funcional nuevo con `DEV_AND_UP`.
+- PR 1126 ya está mergeado en `origin/develop` (`1a4caf093`); la versión final valida el grant contra `teamName + projectCode`.
+- ACME no puede precargarse correctamente sólo con el username: `/grants/user-grants/{username}` no informa el rol de `OwnerProjectGrant`. La verificación precisa requiere `username + teamName + Tiger headers` y luego match exacto de `projectCode`.
+- Se definieron tres niveles: `READ` con Tiger, `DEV_AND_UP` con committer o superior y `DEPLOYER_AND_UP` con deployer o superior para delete/inactivate.
+- Pipeline deploy está incluido; su ausencia en la lista original se considera un error documental. Las rutas legacy `@Deprecated` reemplazadas por RFC-002 quedan fuera de la primera migración y se identifican mediante allow-list explícita de entrypoints modernos.
 
 ## 🧱 Entrega de desarrollo
 
@@ -126,18 +131,25 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
 - **2026-09-14** — Se revisó SIG-616 y el código de Playmaker. Se acordó iniciar por el diseño de autorización reusable antes de tocar rutas o control planes.
-- **2026-09-14** — Se acotó la primera vertical a `catalog-signal + start/stop`; se eligieron Tiger filter + interceptor ACME configurable sobre el endpoint component-bound, se excluyeron legacy/precreation/polling y se documentó el refactor evolutivo del PR 1126.
+- **2026-09-14** — Se acotó la primera vertical a `catalog-signal + start/stop`; se evaluó y luego descartó un interceptor ACME al comprobar que el grant preciso requiere conocer el team. Se excluyeron legacy/precreation/polling y se documentó el refactor evolutivo del PR 1126.
+- **2026-09-14** — Se cerraron los niveles `READ`, `DEV_AND_UP` y `DEPLOYER_AND_UP`; se confirmó PR 1126 mergeado, se incorporó pipeline deploy y se definió legacy por entrypoints `@Deprecated`/RFC-002.
+- **2026-09-14** — Se verificó el contrato ACME: `getUserGrants(username)` no contiene roles `OwnerProjectGrant`; se descartó ACME como middleware y la consulta precisa quedó en un autorizador reutilizable llamado desde el caso de uso tras resolver `teamName + projectCode`.
+- **2026-09-14** — Se acordó una sola implementación concreta del autorizador: se extrae desde delete/inactivate sin cambiar su política y luego se incorpora Actions Signals como primer caso nuevo.
 
 ## 🧭 Decisiones
 
 - **D1 — Primera vertical sólo Signals.** La primera implementación protege `catalog-signal + start/stop` sobre componentes existentes; no incluye legacy, otras tecnologías, precreation ni polling.
-- **D2 — Dos capas HTTP con responsabilidades distintas.** Tiger se valida una vez en el filtro y publica username; un interceptor específico reconoce Signals, resuelve ownership persistido y consulta ACME antes del controller.
+- **D2 — Sólo Tiger es middleware.** Tiger se valida una vez en la frontera HTTP y publica el username. ACME se consulta desde un autorizador reutilizable cuando el caso de uso ya conoce el scope persistido.
 - **D3 — Whitelist de tipo + Action.** Una Action desconocida sobre `catalog-signal` se rechaza; tecnologías fuera del alcance conservan su comportamiento hasta contar con SPEC propia.
-- **D4 — Services sin llamadas de seguridad externas.** Actions consume identidad desde `SecurityContext` y ejecuta el caso de uso sólo después de superar ambos middlewares.
+- **D4 — Services consumidores con una sola validación.** Actions resuelve el target y llama una vez a un autorizador concreto con caller, `teamName`, `projectCode` y nivel antes de cualquier side effect; no consume `AcmeClient` ni implementa listas o parsing de roles.
 - **D5 — PR 1126 converge por refactor.** Se reutiliza `AcmeClient.getOwnerProjectGrants`; la API acoplada a pipeline y la política estática se refactorizan a medida que se incorporan casos reales.
 - **D6 — Annotation al final, no ahora.** `@RequiresCapability` se evaluará sobre services cuando exista repetición comprobada; queda documentada como evolución final y fuera de alcance inicial.
 - **D7 — Playmaker es el enforcement point.** Los CPs siguen procesando eventos defensivamente, pero no resuelven Tiger ni ACME; reciben sólo requests ya autorizados por Playmaker.
 - **D8 — SPECs y tasks antes de código.** Se cierra diseño, se valida la SPEC funcional, se crea la técnica por vertical y se aprueban sus tasks antes de definir branch/base e implementar.
+- **D9 — Tres niveles cerrados.** `READ`, `DEV_AND_UP` y `DEPLOYER_AND_UP`; delete/inactivate conservan los tres roles del PR 1126 y el resto de escrituras SIG-616 usa los cuatro roles dev+.
+- **D10 — Pipeline deploy incluido y legacy explícito.** La ruta moderna de pipeline deploy debe incorporarse a la SPEC; controllers `@Deprecated` reemplazados por RFC-002 quedan fuera de la primera migración.
+- **D11 — ACME preciso, no precarga incompleta.** No se usa `getUserGrants(username)` para permisos por proyecto. El autorizador reutiliza `getOwnerProjectGrants(username, teamName, headers)` y valida el `projectCode` persistido.
+- **D12 — Una implementación, consumidores incrementales.** No habrá `interface/impl` ni un autorizador por nivel. Delete e inactivate migran primero como regresión; Signals consume la misma clase con otra política.
 
 ## 🔗 Docs / Links
 

@@ -24,7 +24,7 @@ tags:
   - kind/project
   - project/agents-os
 created: 2026-06-27
-updated: 2026-09-09
+updated: 2026-09-14
 ---
 
 # AGENTS OS
@@ -44,9 +44,9 @@ updated: 2026-09-09
 
 ## 📊 Estado actual
 
-- **Estado exacto vigente:** sistema operativo y baseline maduro conservado en 100%; [[AGENTS OS - Fase 4]] está activa únicamente como backlog canónico con progreso 0%, todas sus tareas en To Do y ninguna ejecución WIP/Review iniciada.
+- **Estado exacto vigente:** sistema operativo y baseline maduro conservado en 100%; [[AGENTS OS - Fase 4]] permanece como backlog sin ejecución, [[AGENTS OS - Conformance Harness]] y [[AGENTS OS - Context Hygiene and Canonical Integrity]] están entregados en Review, y [[AGENTS OS - Desarrollo Agnóstico por Dominio]] queda planificado para challenge F0 sin cambios runtime iniciados.
 - **Registro de performance activo:** las superficies canónicas [[Codex]], [[Claude Code]], [[Cursor]] y [[Antigravity]] registran cada segmento material de trabajo de código como `agent_run`, separado por superficie×modelo exacto y con outcome, verificación, rework y scores opcionales con evaluator.
-- **Iteración activa:** [[AGENTS OS - Fase 4]], backlog-only y sin tarea iniciada. [[AGENTS OS - Relaciones Tipadas de Graphify]] permanece `completed`, entrega aceptada y `graphify-obsidian 0.9.6.post2` activo.
+- **Iteración de diseño activa:** [[AGENTS OS - Desarrollo Agnóstico por Dominio]], lista para challenge adversarial F0. Su contrato separa conducta transversal, routers scoped y runbooks/tooling de dominio, con DEFAULT repo-native y remove-Meli como gate físico. [[AGENTS OS - Fase 4]] sigue backlog-only.
 - **Salud verificada al 2026-09-09:** schema `45 tipos / 44 templates / 5 fixtures / 0 errores`; Doctor `HIGH=0 / MEDIUM=0 / LOW=0`, startup≈5033; lint del corpus `32 → 9 ERROR` con el gate en `GO` y `new=0`; Graphify `fresh` tras el primer reindex verde en seis sesiones. Los 9 errores residuales quedaron declarados en el baseline: cinco son secciones de las dos skills de specs de Signals y cuatro son secciones faltantes en tres notas de proyecto o recurso.
 - [[AGENTS OS - Fase 2]] quedó `completed` con G7 accepted. Su deuda residual
   se transfirió sin retrabajo a Fase 3: templates/schema versionados, lint
@@ -59,7 +59,7 @@ updated: 2026-09-09
 
 ## 🧩 Subproyectos
 
-- **Activo:** [[AGENTS OS - Fase 4]] — auditoría base y backlog canónico; progreso 0%, sin WIP/Review.
+- **Activos:** [[AGENTS OS - Desarrollo Agnóstico por Dominio]] — planner listo para challenge F0; [[AGENTS OS - Fase 4]] — backlog canónico sin WIP; [[AGENTS OS - Conformance Harness]] y [[AGENTS OS - Context Hygiene and Canonical Integrity]] — entregados en Review del owner.
 - **Completados:** [[AGENTS OS - Relaciones Tipadas de Graphify]] — preservación lossless de relaciones semánticas por par source-target; [[AGENTS OS - Fase 3]] — schema ejecutable, metadata retrieval, retrofit, segundo piloto y gate estricto; [[AGENTS OS - Fase 2]] — arquitectura, gobierno del vault, documentación curada y baseline heredado.
 - **Históricos:** [[AGENTS OS - Hot Path y Cierre Silencioso]],
   [[AGENTS OS - Beta y Hardening]], [[AGENTS OS - Fase 1 - Historial]].
@@ -80,6 +80,7 @@ updated: 2026-09-09
 > - [ ] [[AGENTS OS - Fase 4]] priorizar y supervisar la próxima mejora desde el backlog auditado #owner/me #type/supervision #area/personal
 > - [r] [[AGENTS OS - Conformance Harness]] arrancar + seguimiento #owner/me #type/supervision #area/personal
 > - [r] [[AGENTS OS - Context Hygiene and Canonical Integrity]] arrancar + seguimiento (PHASE 2 context budget + PHASE 3 canonical linter) #owner/me #type/supervision #area/personal
+> - [/] [[AGENTS OS - Desarrollo Agnóstico por Dominio]] validar arquitectura y supervisar implementación por fases #owner/me #type/supervision #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -141,6 +142,8 @@ hide task count
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-14** — Se abrió [[AGENTS OS - Desarrollo Agnóstico por Dominio]] como planificador único para extraer capacidades reutilizables de un harness externo sin importar su policy Meli. El diseño reutiliza los routers scoped actuales, agrega conducta transversal agnóstica y deja tools en runbooks/adapters; DEFAULT sigue repo-native y la eliminación completa de Meli será un gate de conformance. El proyecto queda en F0 para challenge por un agente fresco, sin implementación runtime iniciada.
 
 - **2026-09-09** — Ciclo de higiene `full-system-1` con el segundo reporte Kaizen del sistema (340 feedbacks, 67 días de backlog). Se desbloqueó el reindex poblando el baseline del lint después de bajar la deuda de 32 a 9 errores; se corrigió un bug de una línea en el linter de tags que generaba 104 errores fantasma; se cerraron cinco contradicciones define≠implement en fuentes canónicas, incluida una que hacía nacer toda skill nueva violando el contrato de leanness y otra que dejaba ciego al gate del club cerrado de `always`. La continuidad interna pasó de 112 notas per-sesión a 5 slots activos. Cinco patrones se promovieron a L3 y diez propuestas estructurales quedaron abiertas, entre ellas la descubribilidad de skills y el diagnóstico de capacidades por superficie. Se regeneró el core compartible como build declarativo con verificación SHA-256, corrigiendo en el camino cuatro defectos de portabilidad que sólo se ven al instalar en otra máquina. El entregable remoto pasó de evaluación con score a contraste promesa vs. evidencia, versión 4 verificada.
 
@@ -235,6 +238,7 @@ hide task count
 
 ## 🧭 Decisiones vigentes
 
+- El desarrollo material separa tres responsabilidades: conducta transversal en una skill agnóstica, selección de capacidades/runbooks en el router scoped activo y herramientas concretas en runbooks/adapters del dominio o repo. DEFAULT no carga router; ningún tooling Meli/Aranea entra al core.
 - `AGENTS.md` es un hook mínimo hacia `agents-os-bootstrap`; no implementa el
   startup.
 - `agents-os.md` es un mapa conceptual, no una dependencia obligatoria.
