@@ -44,9 +44,9 @@ updated: 2026-09-14
 
 ## 📊 Estado actual
 
-- **Estado exacto vigente:** sistema operativo y baseline maduro conservado en 100%; [[AGENTS OS - Fase 4]] permanece como backlog sin ejecución, [[AGENTS OS - Conformance Harness]] y [[AGENTS OS - Context Hygiene and Canonical Integrity]] están entregados en Review, y [[AGENTS OS - Desarrollo Agnóstico por Dominio]] queda planificado para challenge F0 sin cambios runtime iniciados.
+- **Estado exacto vigente:** sistema operativo y baseline maduro conservado en 100%; [[AGENTS OS - Fase 4]] permanece como backlog sin ejecución; [[AGENTS OS - Conformance Harness]] está entregado en Review; [[AGENTS OS - Context Hygiene and Canonical Integrity]] **no está entregado** —va 75% con PHASE 4 congelada pero sin runtime— y suma ahora PHASE 3.5 como slice correctivo previo; [[AGENTS OS - Desarrollo Agnóstico por Dominio]] quedó `archived` como registro de su challenge.
 - **Registro de performance activo:** las superficies canónicas [[Codex]], [[Claude Code]], [[Cursor]] y [[Antigravity]] registran cada segmento material de trabajo de código como `agent_run`, separado por superficie×modelo exacto y con outcome, verificación, rework y scores opcionales con evaluator.
-- **Iteración de diseño activa:** [[AGENTS OS - Desarrollo Agnóstico por Dominio]], lista para challenge adversarial F0. Su contrato separa conducta transversal, routers scoped y runbooks/tooling de dominio, con DEFAULT repo-native y remove-Meli como gate físico. [[AGENTS OS - Fase 4]] sigue backlog-only.
+- **Iteración activa:** [[AGENTS OS - Context Hygiene and Canonical Integrity]], PHASE 3.5 antes de PHASE 4. El challenge de la iteración de desarrollo agnóstico cerró `NOT_READY`: se descartaron la skill transversal, las capabilities abstractas y el dominio ficticio, y sobrevivió un slice correctivo —deduplicar skills y runbooks con `30-resources/` como autoridad, arreglar el builder del core compartido y sacar el dominio del hot path incluida la constitución—. [[AGENTS OS - Fase 4]] sigue backlog-only.
 - **Salud verificada al 2026-09-09:** schema `45 tipos / 44 templates / 5 fixtures / 0 errores`; Doctor `HIGH=0 / MEDIUM=0 / LOW=0`, startup≈5033; lint del corpus `32 → 9 ERROR` con el gate en `GO` y `new=0`; Graphify `fresh` tras el primer reindex verde en seis sesiones. Los 9 errores residuales quedaron declarados en el baseline: cinco son secciones de las dos skills de specs de Signals y cuatro son secciones faltantes en tres notas de proyecto o recurso.
 - [[AGENTS OS - Fase 2]] quedó `completed` con G7 accepted. Su deuda residual
   se transfirió sin retrabajo a Fase 3: templates/schema versionados, lint
@@ -59,7 +59,8 @@ updated: 2026-09-14
 
 ## 🧩 Subproyectos
 
-- **Activos:** [[AGENTS OS - Desarrollo Agnóstico por Dominio]] — planner listo para challenge F0; [[AGENTS OS - Fase 4]] — backlog canónico sin WIP; [[AGENTS OS - Conformance Harness]] y [[AGENTS OS - Context Hygiene and Canonical Integrity]] — entregados en Review del owner.
+- **Activos:** [[AGENTS OS - Context Hygiene and Canonical Integrity]] — 75%, PHASE 3.5 y PHASE 4 pendientes; [[AGENTS OS - Fase 4]] — backlog canónico sin WIP; [[AGENTS OS - Conformance Harness]] — entregado en Review del owner.
+- **Archivados:** [[AGENTS OS - Desarrollo Agnóstico por Dominio]] — registro del challenge G0; su plan de cinco fases fue retirado y su corrección vive en Context Hygiene.
 - **Completados:** [[AGENTS OS - Relaciones Tipadas de Graphify]] — preservación lossless de relaciones semánticas por par source-target; [[AGENTS OS - Fase 3]] — schema ejecutable, metadata retrieval, retrofit, segundo piloto y gate estricto; [[AGENTS OS - Fase 2]] — arquitectura, gobierno del vault, documentación curada y baseline heredado.
 - **Históricos:** [[AGENTS OS - Hot Path y Cierre Silencioso]],
   [[AGENTS OS - Beta y Hardening]], [[AGENTS OS - Fase 1 - Historial]].
@@ -79,8 +80,9 @@ updated: 2026-09-14
 > - [x] [[AGENTS OS - Relaciones Tipadas de Graphify]] desarrollar y revisar preservación lossless de relaciones tipadas #owner/me #type/supervision #area/personal
 > - [ ] [[AGENTS OS - Fase 4]] priorizar y supervisar la próxima mejora desde el backlog auditado #owner/me #type/supervision #area/personal
 > - [r] [[AGENTS OS - Conformance Harness]] arrancar + seguimiento #owner/me #type/supervision #area/personal
-> - [r] [[AGENTS OS - Context Hygiene and Canonical Integrity]] arrancar + seguimiento (PHASE 2 context budget + PHASE 3 canonical linter) #owner/me #type/supervision #area/personal
-> - [/] [[AGENTS OS - Desarrollo Agnóstico por Dominio]] validar arquitectura y supervisar implementación por fases #owner/me #type/supervision #area/personal
+> - [/] [[AGENTS OS - Context Hygiene and Canonical Integrity]] arrancar + seguimiento (PHASE 3.5 correctiva en ejecución) #owner/me #type/supervision #area/personal
+> - [x] [[AGENTS OS - Desarrollo Agnóstico por Dominio]] validar arquitectura — challenge cerrado `NOT_READY`; proyecto archivado #owner/me #type/supervision #area/personal
+> - [ ] [[AGENTS OS - Context Hygiene and Canonical Integrity]] aceptar PHASE 3.5 (dedup + desacople de dominio) antes de autorizar PHASE 4 #owner/me #type/supervision #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -142,6 +144,8 @@ hide task count
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-14** — El challenge adversarial de [[AGENTS OS - Desarrollo Agnóstico por Dominio]] cerró con veredicto `NOT_READY` y consenso entre dos agentes. Se descartó crear una skill transversal de desarrollo, la capa de capabilities y el dominio ficticio: duplicaban `sdd-workflow` o resolvían escalabilidad sin demanda. Lo que sobrevivió fue un defecto de canonicalidad real y mal diagnosticado: una migración federada incompleta dejó 13 skills y 9 runbooks duplicados entre core y `30-resources/`, con tres divergencias materiales de contenido y un runbook `superseded` que el core sigue presentando como vigente; Doctor no cubre runbooks, así que su verde no probaba nada. Se confirmó además que el hot path always-load —bootstrap y constitución— viaja al core compartido con referencias operativas de dominio. Todo eso quedó como PHASE 3.5 de [[AGENTS OS - Context Hygiene and Canonical Integrity]], con la detección como check permanente del provider `Canonical`. El proyecto de diseño pasó a `archived`. Runtime no modificado.
 
 - **2026-09-14** — Se abrió [[AGENTS OS - Desarrollo Agnóstico por Dominio]] como planificador único para extraer capacidades reutilizables de un harness externo sin importar su policy Meli. El diseño reutiliza los routers scoped actuales, agrega conducta transversal agnóstica y deja tools en runbooks/adapters; DEFAULT sigue repo-native y la eliminación completa de Meli será un gate de conformance. El proyecto queda en F0 para challenge por un agente fresco, sin implementación runtime iniciada.
 
