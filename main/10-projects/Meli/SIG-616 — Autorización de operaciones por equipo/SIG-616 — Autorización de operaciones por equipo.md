@@ -182,6 +182,15 @@ Reglas asociadas:
 - Mapear token ausente, inválido o expirado a `401` desde la cadena HTTP.
 - Migrar sólo los call sites tocados por cada vertical; no hacer una migración masiva de los 67 usos observados.
 
+Evidencia actual en `origin/develop`:
+
+- `CustomAuthorizationFilter` llama `TigerTokenService.getAuthToken`, descarta el username y guarda el Bearer token como principal.
+- El filtro duplica las rutas públicas declaradas en `SecurityConfig`.
+- Un token inválido se transforma en `ServletException`; debe comprobarse el status HTTP real fuera de `ControllerExceptionHandler`.
+- Existe una rama que registra el token crudo al fallar validación.
+- `ActionServiceImpl` vuelve a llamar Tiger en component-bound, precreation y polling.
+- No se observaron consumidores productivos actuales del `SecurityContext` fuera del filtro.
+
 ### Por qué ACME no es middleware
 
 El cliente actual expone:
@@ -196,6 +205,8 @@ El commit `7737f053d` documenta que `/grants/user-grants/{username}` no incluye 
 La consulta precisa requiere `username + teamName + Tiger headers`. ACME no recibe `projectCode`; el autorizador debe comparar localmente que el grant corresponda exactamente a `teamName + projectCode`.
 
 Consecuencia: sólo Tiger es middleware. ACME se consulta después de que el caso de uso resuelve el target persistido.
+
+El PR 1126 está mergeado en `origin/develop` mediante `1a4caf093`. Sus dos call sites productivos son `PipelineComponentDeleteServiceImpl` y `ComponentInactivationServiceImpl`, ambos a través de `PipelineAuthorizationService.assertAdminAccess` y `AuthorizationUtils.requireDeployerOrAbove`.
 
 ### Autorizador común
 
@@ -270,9 +281,11 @@ El ownership no vive en `ServiceModel`; vive en `DataProductModel`. `ActionServi
 | Scope dueño incompleto | Rechazo fail-closed; semántica exacta en SPEC técnica |
 | Rol insuficiente para team + project | `403 Forbidden` |
 | Signals desconocida o importada | `403` o error funcional definido por la SPEC |
-| ACME no disponible/no verificable | `503 Service Unavailable` |
+| ACME no disponible/no verificable | Propuesta: `503 Service Unavailable`; hoy el helper la envuelve en `SecurityException` y termina como `403` |
 
 Ningún mensaje expone miembros del equipo, grants, tokens o detalles internos de ACME.
+
+La semántica `503` debe aprobarse en la SPEC técnica. Cambiar el `403` actual de delete/inactivate es un cambio observable aunque la matriz allow/deny permanezca intacta.
 
 ### Rutas y flujos posteriores ya identificados
 
@@ -297,6 +310,43 @@ Primero se cubren los caminos críticos y luego al menos 95% del código nuevo.
 - Allow guarda y publica exactamente una vez.
 - Kafka, Flink, ClickHouse, precreation, polling, callbacks y legacy no cambian ni consultan ACME en esta etapa.
 
+### Slices de implementación
+
+El corte recomendado es **un gate documental y dos slices de código**. Tests, observabilidad y ausencia de side effects son criterios de cada slice, no una tercera entrega postergable.
+
+#### Gate 0 — SPEC técnica y tasks
+
+Sin cambios de código. Se corrige la relación funcional/técnica en Spellbook, se aprueba la SPEC de Actions Signals, se resuelve el status de error ACME y se generan sus tasks. Luego se fija una base limpia desde `develop`.
+
+#### Slice 1 — Extraer el autorizador usando los consumidores existentes
+
+Objetivo: obtener una base transversal probada sin agregar una restricción funcional nueva.
+
+- Crear una sola clase concreta de autorización.
+- Reutilizar `AcmeClient.getOwnerProjectGrants`.
+- Centralizar `DEV_AND_UP` y `DEPLOYER_AND_UP` sin estrategias ni interfaces.
+- Migrar delete e inactivate con `DEPLOYER_AND_UP`.
+- Retirar `AuthorizationUtils.requireDeployerOrAbove` al quedar sin consumidores.
+- Mantener `PipelineAuthorizationService.assertWriteAccess` y helpers no relacionados.
+- Preservar la matriz allow/deny existente; aplicar el mapping `503` sólo si Gate 0 lo aprueba expresamente.
+- Probar team/proyecto incorrectos, todos los roles, ACME fallido y ausencia de efectos.
+
+Gate de salida: los dos consumidores existentes usan la misma implementación y no existe regresión funcional accidental.
+
+#### Slice 2 — Actions mutantes de Signals end-to-end
+
+Objetivo: incorporar el primer comportamiento nuevo de SIG-616.
+
+- Publicar username desde Tiger en `SecurityContext` sin exponer el token.
+- Hacer que Actions consuma la identidad validada sin volver a invocar Tiger.
+- Clasificar por estado persistido `catalog-signal + start/stop`.
+- Rechazar Action Signals desconocida, componente importado y scope incompleto.
+- Invocar el autorizador con `DEV_AND_UP` después de resolver la jerarquía y antes de contexto de deployment, KVS o BigQueue.
+- Mantener Kafka, Flink, ClickHouse, precreation, polling, callbacks y legacy sin cambios ni llamadas ACME.
+- Agregar pruebas unitarias e integración para allow/deny/error y cero side effects.
+
+Gate de salida: Signals queda protegido end-to-end y todo lo fuera de alcance conserva su comportamiento.
+
 ### Descomposición preliminar de la primera SPEC técnica
 
 | Orden | Task conceptual | Gate de término |
@@ -319,7 +369,8 @@ Los IDs definitivos se crearán en Spellbook después de aprobar la SPEC técnic
 - [ ] Verificar polling de read Actions sin incorporarlo al alcance Signals.
 - [x] Confirmar PR 1126 mergeado en `origin/develop` (`1a4caf093`).
 - [x] Confirmar contrato ACME: `username + teamName + headers`; `projectCode` se valida localmente.
-- [ ] Resolver error mapping de Tiger y ACME.
+- [ ] Aprobar si ACME no disponible migra del `403` actual a `503` en todos los consumidores.
+- [ ] Resolver error mapping real de Tiger en la cadena de filtros.
 - [ ] Definir branch/base limpias después de aprobar SPEC y tasks.
 
 ## 🧩 Subproyectos

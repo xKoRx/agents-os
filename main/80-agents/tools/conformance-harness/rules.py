@@ -41,45 +41,81 @@ CONTINUITY_ARCHIVE = (  # fixture C14: superseded twin sharing the continuity_ke
 SKILLS_INDEX = "80-agents/skills/INDEX.md"  # bootstrap paso 3
 AGENTS_OS_MAP = "80-agents/agents-os/agents-os.md"  # bootstrap paso 4: only if conceptual map needed
 FEDERATED_DOMAIN_INDEX = "30-resources/agents/00-index.md"  # bootstrap paso 3: not read without routing need
+DOMAIN_ROUTER_REGISTRY = "30-resources/agents/domain-router-registry.md"  # bootstrap paso 6: optional federated config
 AGENTS_OS_PROJECT = "10-projects/Personal/AGENTS OS/AGENTS OS.md"  # Hard Rule: not loaded unless maintaining the system
 
-# Domain routers (bootstrap paso 6 + INDEX.md federated rows).
-ROUTERS = {
-    "meli": "30-resources/agents/skills/meli-agent-dev/SKILL.md",
-    "aranea": "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
-}
-# Scoped preferences owned by each router (bootstrap paso 6: "the router ...
-# owns the scoped preferences of its domain"; routers' Minimal Reads 2-3).
-# meli: Minimal Read 2 = rjara-meli-work-preferences.md, Minimal Read 3 =
-# rjara-vpn-routing-preferences.md. aranea: Minimal Read 2 =
-# rjara-aranea-operations-preferences.md (the VPN note is NOT listed in the
-# aranea Minimal Read; its on-demand load via the profile link is neither
-# asserted nor forbidden — domain-isolation-audit Hallazgo 7 / scenario
-# COLD-ARANEA WARN).
-ROUTER_PREFS = {
-    "meli": [
-        "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
-        "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md",
-    ],
-    "aranea": [
-        "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md",
-    ],
-}
+# Domain configuration is federated. The core bootstrap names only this
+# optional registry; domains, areas, routers and evidence markers live in its
+# rows. The harness parses the same source instead of transcribing the mapping.
+REGISTRY_HEADER = ("domain", "areas", "router", "evidence markers")
+
+
+def parse_domain_registry(text: str) -> List[Dict[str, object]]:
+    """Parse the exact four-column Markdown registry contract."""
+    routes: List[Dict[str, object]] = []
+    for raw in text.splitlines():
+        if not raw.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in raw.strip().strip("|").split("|")]
+        if len(cells) != 4:
+            continue
+        lowered = tuple(cell.lower() for cell in cells)
+        if lowered == REGISTRY_HEADER or all(set(cell) <= {"-", ":"} for cell in cells):
+            continue
+        domain = cells[0].strip("`").strip().lower()
+        areas = [value.strip().lower() for value in re.findall(r"\[\[([^\]]+)\]\]", cells[1])]
+        router_match = re.search(r"`([^`]+/SKILL\.md)`", cells[2])
+        markers = [value.strip().lower() for value in re.findall(r"`([^`]+)`", cells[3])]
+        if not domain or not areas or router_match is None:
+            continue
+        routes.append({
+            "domain": domain,
+            "areas": areas,
+            "router": router_match.group(1),
+            "evidence_markers": markers,
+        })
+    return routes
+
+
+def _vault_root_from_here() -> str:
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+
+
+def _load_domain_routes() -> List[Dict[str, object]]:
+    path = os.path.join(_vault_root_from_here(), DOMAIN_ROUTER_REGISTRY)
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            return parse_domain_registry(handle.read())
+    except OSError:
+        return []
+
+
+DOMAIN_ROUTES = _load_domain_routes()
+ROUTERS = {str(route["domain"]): str(route["router"]) for route in DOMAIN_ROUTES}
+
+
+def _router_preferences(router: str) -> List[str]:
+    """Read scoped preferences declared by the router's own Minimal Read."""
+    path = os.path.join(_vault_root_from_here(), router)
+    try:
+        text = open(path, "r", encoding="utf-8").read()
+    except OSError:
+        return []
+    seen: List[str] = []
+    for rel in re.findall(r"(?:\.\./)+80-agents/memory/public/user-preference/([a-zA-Z0-9._-]+\.md)", text):
+        canonical = "80-agents/memory/public/user-preference/" + rel
+        if canonical not in seen:
+            seen.append(canonical)
+    return seen
+
+
+ROUTER_PREFS = {domain: _router_preferences(router) for domain, router in ROUTERS.items()}
 ARANEA_MCPS_EXPERT = "30-resources/agents/skills/aranea-mcps-expert/SKILL.md"  # C13: sole MCP gate, aranea-only
-MELI_SCOPED_PREFS = set(ROUTER_PREFS["meli"])
-ARANEA_SCOPED_PREFS = set(ROUTER_PREFS["aranea"])
+MELI_SCOPED_PREFS = set(ROUTER_PREFS.get("meli", []))
+ARANEA_SCOPED_PREFS = set(ROUTER_PREFS.get("aranea", []))
 DOMAIN_GATED_SKILLS = {  # C12/C13: reachable only through their router, never directly
     "meli": {"signals-code-review", "signals-func-spec-authoring", "signals-tech-spec-authoring", "fury-lib-consumer-deploy"},
     "aranea": {"aranea-mcps-expert"},
-}
-
-# Domain gate mapping (bootstrap cold start paso 6, literal):
-#   [[Meli]] -> meli-agent-dev ; [[Echo]] or [[Aranea]] -> aranea-agent-dev ;
-#   any other area, or no resolvable entity -> no domain router.
-AREA_TO_DOMAIN = {
-    "meli": "meli",
-    "echo": "aranea",
-    "aranea": "aranea",
 }
 
 # Meli router Procedure 3 routing table (transcribed subset needed by the
@@ -99,11 +135,26 @@ def normalize_area(area: Optional[str]) -> Optional[str]:
 
 
 def domain_from_area(area: Optional[str]) -> Optional[str]:
-    """Bootstrap cold start paso 6 mapping. Returns None for other/unknown areas."""
+    """Return one registry domain; zero or ambiguous matches fail closed."""
     key = normalize_area(area)
     if key is None:
         return None
-    return AREA_TO_DOMAIN.get(key)
+    matches = sorted({str(route["domain"]) for route in DOMAIN_ROUTES if key in route["areas"]})
+    return matches[0] if len(matches) == 1 else None
+
+
+def domains_from_evidence(evidence: Optional[str]) -> List[str]:
+    """Resolve explicit task evidence against registry IDs and markers."""
+    if not evidence:
+        return []
+    value = evidence.strip().lower()
+    matches: List[str] = []
+    for route in DOMAIN_ROUTES:
+        domain = str(route["domain"])
+        markers = [str(marker) for marker in route["evidence_markers"]]
+        if value == domain or any(marker and marker in value for marker in markers):
+            matches.append(domain)
+    return sorted(set(matches))
 
 
 class Vault:
@@ -204,32 +255,25 @@ def domain_gate(
     surface_evidence: Optional[str] = None,
     task_evidence: Optional[str] = None,
 ) -> Tuple[Optional[str], str]:
-    """Bootstrap cold start paso 6 (literal transcription):
-
-    - [[Meli]] -> meli ; [[Echo]]/[[Aranea]] -> aranea ; other/none -> no router.
-    - "If no entity resolves but the surface shows domain evidence ... use that
-      instead": consulted ONLY when no entity resolves. Machine-ambient surface
-      presence (aranea MCPs permanently connected, Hallazgo 4) is NOT task
-      evidence; the harness passes task-level evidence explicitly. The
-      ambient-vs-task reading is the unresolved ambiguity of Hallazgo 6 /
-      COLD-DEFAULT WARN — encoded here as the literal-contract reading.
-    - "Ambiguous or conflicting evidence fails closed: no router."
-    - "Never load both routers."
-    """
+    """Bootstrap step 6: optional registry, zero/one/many fail-closed."""
+    evidence_domains = sorted(set(domains_from_evidence(task_evidence) + domains_from_evidence(surface_evidence)))
     if entity is not None:
-        area_domain = domain_from_area(entity.get("area"))
-        if task_evidence and area_domain and task_evidence != area_domain:
-            return None, "fail-closed: entity area maps to %s but task evidence indicates %s (bootstrap paso 6: ambiguous or conflicting evidence fails closed)" % (area_domain, task_evidence)
-        if surface_evidence and area_domain and surface_evidence != area_domain:
-            return None, "fail-closed: entity area maps to %s but surface evidence indicates %s (bootstrap paso 6)" % (area_domain, surface_evidence)
+        area_key = normalize_area(entity.get("area"))
+        area_matches = sorted({str(route["domain"]) for route in DOMAIN_ROUTES if area_key in route["areas"]})
+        if len(area_matches) > 1:
+            return None, "fail-closed: entity area matches multiple registry rows: %s" % ", ".join(area_matches)
+        area_domain = area_matches[0] if len(area_matches) == 1 else None
+        if len(evidence_domains) > 1 or (evidence_domains and area_domain and evidence_domains != [area_domain]):
+            return None, "fail-closed: entity area and task evidence are ambiguous or conflicting"
         if area_domain:
-            return area_domain, "entity %s has area %s -> %s (bootstrap paso 6)" % (
+            return area_domain, "entity %s has area %s -> %s (domain router registry)" % (
                 entity.get("title"), entity.get("area"), area_domain)
-        return None, "area %s is not a gate area -> no domain router (bootstrap paso 6: any other area)" % (entity.get("area"),)
-    # No resolvable entity: the surface clause applies (bootstrap paso 6).
-    if surface_evidence:
-        return surface_evidence, "no entity resolved; surface evidence used instead (bootstrap paso 6)"
-    return None, "no resolvable entity and no surface evidence -> no domain router (bootstrap paso 6)"
+        return None, "area %s has zero registry matches -> no domain router" % (entity.get("area"),)
+    if len(evidence_domains) == 1:
+        return evidence_domains[0], "no entity resolved; task evidence matched one registry row"
+    if len(evidence_domains) > 1:
+        return None, "fail-closed: task evidence matched multiple registry rows"
+    return None, "no resolvable entity and zero registry matches -> no domain router"
 
 
 class OpenEvent(object):
@@ -274,6 +318,7 @@ class Session(object):
         self.gate_note: Optional[str] = None
         self.swap_note: Optional[str] = None
         self._specialist_loaded = False
+        self._registry_loaded = False
 
     # -- file-open telemetry (C06/C07 observable: file-opens per turn) -------
     def open(self, rel: str, reason: str) -> Optional[str]:
@@ -317,7 +362,10 @@ class Session(object):
         title = request.get("entity_title")
         entity = self.vault.resolve_entity(title) if title else None
         self.active_entity = entity
-        # paso 6: domain gate from the entity's area frontmatter.
+        # paso 6: optional federated registry, read only when routing has an
+        # entity or explicit task evidence to evaluate.
+        if entity is not None or request.get("surface_evidence") or request.get("task_evidence"):
+            self._ensure_registry()
         domain, note = domain_gate(
             entity,
             surface_evidence=request.get("surface_evidence"),
@@ -335,6 +383,12 @@ class Session(object):
             self.route_specialist(domain, request["specialist_task"])
         self.session_mode = "cold"
         return missing
+
+    def _ensure_registry(self) -> None:
+        if self._registry_loaded:
+            return
+        self.open(DOMAIN_ROUTER_REGISTRY, "paso 6 registro federado de routers")
+        self._registry_loaded = True
 
     def _load_domain_pack(self, domain: str) -> None:
         """Minimal reads of the router: the router SKILL.md + the scoped
@@ -456,6 +510,8 @@ class Session(object):
         entity = self.vault.resolve_entity(title) if title else None
         old_entity = self.active_entity
         self.active_entity = entity
+        if entity is not None:
+            self._ensure_registry()
         domain, note = domain_gate(entity)
         self.gate_note = note
         # swap paso 3: drop the previous pack BEFORE loading the new one.
