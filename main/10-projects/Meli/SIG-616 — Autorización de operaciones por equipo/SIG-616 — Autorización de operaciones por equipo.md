@@ -2,19 +2,21 @@
 type: project
 schema_version: 1
 owner: me
-root: false
+root: true
 status: active
 priority: P2
 area: "[[Meli]]"
 parent:
 sprint:
-start:
+start: 2026-09-14
 due:
 progress: 0
-repo:
+repo: https://github.com/melisource/fury_rio-playmaker
 jira:
 prs:
-aliases: []
+aliases:
+  - SIG-616
+  - Autorización por equipo en Playmaker
 tags:
   - kind/project
   - area/meli
@@ -40,11 +42,14 @@ updated: "2026-09-14"
 
 ## 🎯 Objetivo
 
-- 
+- Diseñar e implementar la autorización server-side de operaciones de componentes por equipo en `rio-playmaker`, tomando como referencia [SIG-616 en Spellbook](https://spellbook.adminml.com/projects/SIG/specs/SIG-616).
+- Asegurar que Playmaker autorice con identidad Tiger validada, ownership persistido del Data Product y rol ACME; el cambio debe ser reutilizable en actions, deployments y demás mutaciones sin trasladar esa responsabilidad a los control planes.
 
 ## 📊 Estado actual
 
-- 
+- **Fase actual:** diseño de la solución; no se modificó código.
+- La SPEC menciona todas las mutaciones y actions de componentes, no sólo actions. En Spellbook está clasificada como `technical`, aunque fue presentada como funcional: confirmar si falta el funcional antes de implementar.
+- El ownership vive en `DataProduct.teamName`; los componentes pertenecen a un Data Product. Un componente importado conserva su DP local y señala su procedencia mediante `sourceComponentId`.
 
 ## 🧱 Entrega de desarrollo
 
@@ -52,7 +57,7 @@ updated: "2026-09-14"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
+| `rio-playmaker` | Pendiente | Pendiente | Pendiente de confirmar; SIG-616 figura como técnica en Spellbook | [SIG-616 — Autorizar mutaciones y operaciones de componentes por equipo](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | Diseño; gate de branch/base y clasificación funcional pendiente |
 
 ## 🧩 Subproyectos
 
@@ -80,9 +85,9 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/meli
-> - [ ] tarea delegada #owner/agent #type/dev #area/meli
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+> - [/] Diseñar el componente reusable de autorización #owner/me #type/dev #area/meli
+> - [ ] Confirmar matriz real `component_type` + `actionName` con los CPs y el criterio de la SPEC #owner/me #type/research #area/meli
+> - [ ] Confirmar clasificación de SIG-616 y definir branch/base antes de implementar #owner/me #type/dev #area/meli #blocked
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -114,15 +119,19 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-14** — 
+- **2026-09-14** — Se revisó SIG-616 y el código de Playmaker. Se acordó iniciar por el diseño de autorización reusable antes de tocar rutas o control planes.
 
 ## 🧭 Decisiones
 
-- 
+- **D1 — Separar resolución de identidad de decisión de permisos.** Un `UserAuthorizationService` valida Tiger y obtiene roles/equipos en ACME una vez por request, devolviendo un contexto inmutable. Un helper/guard sin I/O externo aplica después las reglas contra el team persistido del DP.
+- **D2 — Helper reutilizable, no un service de negocio transversal.** El helper recibe `UserAuthorizationContext`, team dueño y operación; los servicios de dominio conservan su caso de uso. Actions agregará la clasificación estática `component_type + actionName`; deployments reutilizará la validación de team.
+- **D3 — Playmaker es el enforcement point.** Los CPs siguen procesando eventos defensivamente, pero no resuelven Tiger ni ACME; reciben sólo requests ya autorizados por Playmaker.
 
 ## 🔗 Docs / Links
 
-- 
+- [SIG-616 — Spellbook](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
+- [DataProductModel — `teamName`](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/model/DataProductModel.java)
+- [ComponentModel — `dataProduct` y `sourceComponentId`](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/model/ComponentModel.java)
 
 ## 💡 Ideas
 
