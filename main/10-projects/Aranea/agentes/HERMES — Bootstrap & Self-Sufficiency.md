@@ -353,15 +353,15 @@ _No hay repo único. Este proyecto modifica comportamiento operativo, skills/con
 - [x] B1.1 Descubrir target real de `mcps`, SSH state, users/keys existentes y authority actual desde Hermes #owner/agent #type/admin #area/aranea
 - [x] B1.2 Generar/reutilizar identity dedicada sin exponer private key #owner/agent #type/admin #area/aranea
 - [x] B1.3 Preparar un único OWNER ACTION BUNDLE para instalar authority inicial si Hermes no puede hacerlo #owner/agent #type/admin #area/aranea
-- [ ] B1.4 Certificar direct SSH + root-equivalent scoped al LXC `mcps` #owner/agent #type/admin #area/aranea
-- [ ] B1.5 Materializar wrapper/operator entrypoint mínimo y documentar revoke path #owner/agent #type/admin #area/aranea
+- [x] B1.4 Certificar direct SSH + root-equivalent scoped al LXC `mcps` #owner/agent #type/admin #area/aranea
+- [x] B1.5 Materializar wrapper/operator entrypoint mínimo y documentar revoke path #owner/agent #type/admin #area/aranea
 
 ### B2 — Consumer onboarding path
 
-- [ ] B2.1 Descubrir consumers reales y source of truth de MCP config/secrets #owner/agent #type/research #area/aranea
-- [ ] B2.2 Elegir consumer piloto de Echo/Forge y management path mínimo #owner/agent #type/admin #area/aranea
-- [ ] B2.3 Batchear cualquier alta manual restante junto al bootstrap, si es posible #owner/agent #type/admin #area/aranea
-- [ ] B2.4 Certificar publicación/configuración sin edición manual owner por capability #owner/agent #type/admin #area/aranea
+- [x] B2.1 Descubrir consumers reales y source of truth de MCP config/secrets #owner/agent #type/research #area/aranea
+- [x] B2.2 Elegir consumer piloto de Echo/Forge y management path mínimo #owner/agent #type/admin #area/aranea
+- [x] B2.3 Batchear cualquier alta manual restante junto al bootstrap, si es posible #owner/agent #type/admin #area/aranea
+- [x] B2.4 Certificar publicación/configuración sin edición manual owner por capability #owner/agent #type/admin #area/aranea
 
 ### B3 — Operator skill + golden paths
 
