@@ -7,7 +7,7 @@ slug: aranea-projects-index
 area: "[[Aranea]]"
 project:
 created: 2026-07-02
-updated: 2026-07-02
+updated: 2026-09-14
 aliases:
   - Aranea projects
   - Proyectos Aranea
@@ -26,6 +26,12 @@ cssclasses:
 > Documentación evergreen (topología, servicios, storage, tickets históricos) sigue en `30-resources/aranea/`.
 
 ---
+
+## 🧭 Iniciativas activas destacadas
+
+- **[[HERMES — ARANEA AUTONOMOUS OPERATIONS]]** — programa P0 para convertir a Hermes en operador autónomo de Aranea con dos planos separados: `[[HERMES — Infrastructure Operations]]` y `[[HERMES — Agent Access Operations]]`. El management plane nativo queda deliberadamente separado del MCP Access Plane.
+- **[[AGENT-PLATFORM-OWNER-PROJECT]]** — iniciativa de Agent Platform; contiene el [[AGENT-PLATFORM - MCP Access Plane]] existente, que permanece como source of truth operativo de capabilities MCP.
+- **[[BACKUP-DR-OWNER-PROJECT]]** — source of truth de Backup/DR; será el primer dominio real del rollout de Infrastructure Operations y no se duplica dentro del proyecto Hermes.
 
 ## 🔄 Cierre de sesión 2026-07-02 — handover
 
@@ -85,7 +91,7 @@ cssclasses:
 ### 🛣️ Roadmap (no cambios en esta sesión)
 
 Esta sesión NO modificó el roadmap del proyecto Backup/DR (sigue siendo el del iter 4 congelado 2026-07-01):
-```
+```text
 Fase 0 (cuando owner apruebe) → scrub pool2, ceph compact, sanoid config
 Fase 1 (~1 día)              → VM PBS en kronos sobre SSD libre
 Fase 2 (~medio día)          → ZFS recv en hera
@@ -98,10 +104,8 @@ Fase 5 (continuo)            → restore drills mensuales
 
 1. **Convención PARA: leer `90-system/convenciones.md` + skill `second-brain-vault-conventions` ANTES de crear o mover archivos del vault.** El proyecto Backup/DR vivía en `30-resources/aranea/03-storage/backup-dr/` por herencia, no por convención. Faltó la validación inicial. Aplicar siempre: ¿el archivo es proyecto (con plazo y tareas) o es evergreen (runbook/policy/diseño)? → define carpeta. → Aplica a TODO el vault, no solo a este proyecto.
 2. **`pip install --break-system-packages` en el venv de Hermes** no es opción: contamina la toolchain de Hermes. Para tools no-Hermes → venv dedicado en `~/.local/share/<tool>-venv/` + symlink/wrapper en `~/.local/bin/`. Patrón documentado y replicable para próximas tools.
-3. **El wrapper `graphify-obsidian` debe forzar `--graph` al cache local**
-   resuelto por `graphify-obsidian cache-path`; nunca al vault.
-4. **Las queries del wrapper controlan freshness y auto-refrescan**. No usar
-   cron, watcher ni el binario crudo dentro del vault.
+3. **El wrapper `graphify-obsidian` debe forzar `--graph` al cache local** resuelto por `graphify-obsidian cache-path`; nunca al vault.
+4. **Las queries del wrapper controlan freshness y auto-refrescan**. No usar cron, watcher ni el binario crudo dentro del vault.
 
 ### 📊 Métricas de la sesión
 
@@ -125,41 +129,34 @@ Fase 5 (continuo)            → restore drills mensuales
 
 | # | Proyecto | Status | Owner | Prioridad | Doc |
 |---|---|---|---|---|---|
-| 1 | [[BACKUP-DR-OWNER-PROJECT]] | design-frozen | me | P1 | proyecto owner |
-| 2 | [[SERVICIOS-DOCS-OWNER-PROJECT]] | paused | me | P1 | proyecto pausado (prioridad Backup/DR) |
+| 1 | [[HERMES — ARANEA AUTONOMOUS OPERATIONS]] | active | me | P0 | iniciativa raíz; dos workstreams agent-owned |
+| 2 | [[BACKUP-DR-OWNER-PROJECT]] | design-frozen | me | P1 | proyecto owner |
+| 3 | [[SERVICIOS-DOCS-OWNER-PROJECT]] | paused | me | P1 | proyecto pausado (prioridad Backup/DR) |
+| 4 | [[AGENT-PLATFORM-OWNER-PROJECT]] | active | me | P2 | iniciativa Agent Platform / MCP Access Plane |
 
 ## 📂 Estructura
 
-```
+```text
 10-projects/Aranea/
-├── README.md                                    (este archivo)
-├── BACKUP-DR-OWNER-PROJECT.md                   (proyecto owner — design-frozen)
-├── SERVICIOS-DOCS-OWNER-PROJECT.md              (proyecto paused — prioridad Backup/DR)
-├── agentes/                                     (subproyectos de agente — owner: agent)
-│   ├── agent-project-00-policy-and-doc-cleanup.md
-│   ├── agent-project-01-critical-config-backup.md
-│   ├── agent-project-02-pbs-on-backup-node.md
-│   ├── agent-project-03-app-consistent-data-backups.md
-│   ├── agent-project-04-cloud-critical-tier.md
-│   ├── agent-project-05-cloud-bulk-archive-tier.md
-│   ├── agent-project-06-observability-and-alerting.md
-│   ├── agent-project-07-restore-drills.md
-│   ├── agent-project-08-session-closeout-and-learning-loop.md
-│   └── agent-project-09-service-docs-rollout.md  (paused — prioridad Backup/DR)
-└── 05-tickets/                                  (tickets formales del proyecto)
-    ├── 2026-07-02-018-owner-task-critical-vms.md
-    ├── 2026-07-02-019-owner-task-maint-window.md
-    ├── 2026-07-02-020-owner-task-secret-zero.md
-    ├── 2026-07-02-021-owner-task-oauth-scope.md
-    └── 2026-07-02-022-deferred-service-docs.md  (paused — prioridad Backup/DR)
+├── README.md
+├── HERMES — ARANEA AUTONOMOUS OPERATIONS.md      (iniciativa raíz owner)
+├── BACKUP-DR-OWNER-PROJECT/                      (proyecto Backup/DR existente)
+├── AGENT-PLATFORM/                               (iniciativa Agent Platform existente)
+├── SERVICIOS-DOCS-OWNER-PROJECT.md
+├── agentes/
+│   ├── HERMES — Infrastructure Operations.md    (owner: agent)
+│   ├── HERMES — Agent Access Operations.md      (owner: agent)
+│   └── agent-project-09-service-docs-rollout.md
+└── 05-tickets/
 ```
 
 ## 📝 Convention
 
-- **Proyectos del área Aranea** → esta carpeta, un archivo por proyecto (sin subcarpeta propia).
+- **Proyectos del área Aranea** → esta carpeta, un archivo por proyecto raíz salvo iniciativas históricas ya estructuradas en subcarpetas.
 - **Subproyectos de agente** (`owner: agent`) → `agentes/`, con `parent: "[[Proyecto humano padre]]"`.
-- **Tickets formales** → `05-tickets/`, uno por owner-task o blocker.
-- **Documentación evergreen** del refactor → `30-resources/aranea/03-storage/backup-dr/`.
+- **Tickets formales** → `05-tickets/`, uno por owner-task o blocker cuando aplique.
+- **Documentación evergreen** → `30-resources/aranea/` en su dominio correspondiente.
+- Los proyectos Hermes enlazan sources of truth existentes; no copian estado detallado de Backup/DR ni MCP Access Plane.
 
 ## ➕ Cómo agregar un nuevo proyecto de Aranea
 
@@ -175,5 +172,6 @@ Fase 5 (continuo)            → restore drills mensuales
 - [[20-areas/Aranea]] — nota de área (visión, estado, servicios, riesgos)
 - [[30-resources/aranea/00-index]] — índice de docs evergreen
 - [[30-resources/aranea/03-storage/backup-dr/00-index]] — índice de docs Backup/DR
-- [[30-resources/tools/graphify]] — nota canónica de la tool graphify (estado actualizado)
-- [[80-agents/journal/logs/2026-07-02-aranea-backup-dr-migration-to-10-projects]] — log de migración
+- [[30-resources/tools/graphify]] — nota canónica de la tool graphify
+- [[HERMES — ARANEA AUTONOMOUS OPERATIONS]] — programa de autonomía operativa Hermes
+- [[AGENT-PLATFORM - MCP Access Plane]] — source of truth MCP operativo
