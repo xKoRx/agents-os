@@ -382,6 +382,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-14 — Access & Physical Capability Certification:** [[Echo — Access & Physical Capability Matrix]] registra probes físicos de SSH, PostgreSQL, Docker DEV PG17.11, Hasura, Kafka reachability, Flink REST/checkpoints, ARGUS observability, GitHub y MT4/MT5. Resultado global `ACCESS_CERTIFICATION_BLOCKED`: el carril inmediato E-02 carece de Hasura DEV data/metadata, Kafka producer/consumer, Flink recovery control y target físico Gateway/Core/Bridge. No se modificó Echo, E-05, master, despliegue ni trading.
 - **2026-09-13** — S0 erratum V3-006 controlled integration ([[Echo — E-01 Canonical SDK Foundation S0]]): `S0_ERRATUM_INTEGRATED`, `origin/master = 7e628bf5fcadd92dc5398663d9b99a239a95ef7a` (FF puro desde `a99f9a63`, push normal sin force). E-05 V3-006 authority blocker resuelto; E-05 sigue en `3bc5dca9` como `WAITING_E05_RECONCILIATION`. No tag, no release; interlock 063/062 intacto.
 - **2026-09-13** — E-05 FULL RE-VERIFICATION #2 independiente ([[Echo — E-05 Analytics Convergence A0]]): target `d40153f38101febf381b2a3fb9abf6f6834ebdc0` exacto; pre-flight Git y source scope PASS; suites Go relevantes PASS; `DecimalString` falla un half-tie negativo con redondeo sign-inverted. `VERIFICATION_FAIL`; gates PG/Hasura/BWC/coverage posteriores no ejecutados por stop fail-closed; no merge/deploy; interlock 062 de E-02 vigente.
 - **2026-09-12** — E-05 NORMAL T01–T21 IMPLEMENTATION PASS ([[Echo — E-05 Analytics Convergence A0]]): `IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW` @ `69eec0b9` en `origin/feature/e05-analytics-convergence-a0` (9 commits sobre planning `dd1f2da9`; master intacto `a99f9a63`). Migración 063 write-once + stores + `v3/sdk/analytics` (calculator frozen fail-closed) + writer + `lab-canonical-a0` + Hasura SELECT; PG REAL 17.11 descartable PASS; BWC Lab PASS; coverage 95.6%. No verifier; no merge; interlock: 063 sin merge/deploy hasta 062 de E-02 en `master`. Puente E-05 permanece Review.
@@ -408,6 +409,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 🔗 Docs / Links
 
+- [[Echo — Access & Physical Capability Matrix]]
 - [[Echo — E-01 Canonical SDK Foundation S0]]
 - [[Echo — E-02 Control Safety, Auth and Journal Recovery]]
 - [[Echo — E-03 Identity and BWC Foundation E0]]

@@ -180,6 +180,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-14 — Access certification delta:** PG17 disposable mechanism `PASS` para gate físico (E-05 063 no se aplicó); source/Git `PASS` por lectura de master `7e628bf5`, feature `3bc5dca9`, branches/diffs/files; Hasura T19 `BLOCKED` por ausencia de MCP/CLI metadata/data; BWC `BLOCKED/PARTIAL` porque MT5 tiene filesystem/operator pero no terminal/demo account/pipe activos. E-05 no se modifica, reconcilia ni cierra. Evidencia durable: [[Echo — Access & Physical Capability Matrix]].
 - **2026-09-13** — Controlled integration del erratum S0 V3-006 completada por el Manager: `origin/master = 7e628bf5fcadd92dc5398663d9b99a239a95ef7a` (FF desde `a99f9a63`), `S0_ERRATUM_INTEGRATED`. V3-006 `AUTHORITY_CONFLICT` resuelto en master. E-05 no fue tocado: sigue en `3bc5dca9` con estado `WAITING_E05_RECONCILIATION` (reconcile de la feature contra el nuevo master + Full Verifier #4 pendientes; interlock 063/062 vigente).
 - **2026-09-13** — CONSOLIDATED CORRECTION #3 post verifier #3: triage completo de V3-001…V3-011 contra `VERIFICATION.md` y SPEC/authorities. Root causes agrupadas en numeric/formulas, identity, stores/writer, migration 063, adapters/job y CLI. Repros pre-fix fueron ejecutados antes de editar; correcciones focalizadas y regresiones agregadas. Evidencia física: PostgreSQL 17.11 descartable con `analytics_a0` e `identity_bwc` PASS; tests Go físicos secuenciales de `postgres` y `builders` PASS; `go test ./v3/sdk/analytics/...` 95.3% coverage; race/vet y Lab BWC PASS. AC-21 permanece pendiente por Hasura DEV MCP no disponible. V3-006 es `AUTHORITY_CONFLICT` porque su requisito completo cruza S0 READ ONLY; no se modificó `v3/sdk/contracts/**`. Estado máximo: `CORRECTION PARTIAL — BLOCKED BY AUTHORITY_CONFLICT`; no VERIFIED, no READY FOR INTEGRATION, no merge/deploy.
 - **2026-09-13** — FULL INDEPENDENT VERIFIER #3 completó la certificación adversarial sobre `e917e25a`: source scope, E-04 histórico, regresiones currency/rounding, fórmulas, PG 17.11 UP/DOWN/UP, stores/writer, adapters/job, BWC, coverage, race y vet. Verdict irrevocable `VERIFICATION_FAIL` por `V3-001`…`V3-011`; AC-02/AC-22 FAIL y AC-21 BLOCKED por superficie MCP ausente. `VERIFICATION.md` conserva la historia previa y la matriz AC completa; no se implementaron fixes ni se hizo merge/deploy.
@@ -203,6 +204,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 🔗 Docs / Links
 
+- [[Echo — Access & Physical Capability Matrix]]
 - [[Echo — Live Platform V1]]
 - [[Echo — Producto Integrado]]
 - [[Echo — E-01 Canonical SDK Foundation S0]]

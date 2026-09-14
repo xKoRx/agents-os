@@ -132,6 +132,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-14 — Access certification delta:** PG17.11 disposable 062 up/down/up `READY`; ARGUS Prometheus/Jaeger/Loki READ `PASS`. Hasura DEV roles/hook, Kafka PublishSync/redelivery, Flink restart/recovery y Gateway físico `BLOCKED` por falta de superficies/tools/target probados; E-02 permanece `PHYSICAL_PARTIAL` y no se reabre para cierre. Evidencia durable: [[Echo — Access & Physical Capability Matrix]]. Sin physical gate E-02 ejecutado.
 - **2026-09-12 (focused source-review correction)** — Sobre HEAD inicial `df99084b`, se corrigió el contrato Hasura a JSON de session variables y se añadió validación explícita de unicidad entre tokens READ/CONFIG/CONTROL/webhook con 503 fail-closed. Se registraron primero y limpiaron después los 17 paths históricos autorizados. Gateway `-race`, front tests/build/bundle scan, SOURCE, tooling compile y regresión E-04 relevantes PASS; PHYSICAL sigue parcial. Commit final `f7ddea18`, push sólo a feature; master intacto. Puente permanece Review.
 
 - **2026-09-12 (TOP correction)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.1 @ `151e0bc5`. Auth: READ/CONFIG/CONTROL/webhook son credenciales distintas; el humano presenta tokens (prompt/sessionStorage); webhook solo server-side; prohibido runtime-config de Bearers. CommandID: traza física fact→Kafka fan-out paralelo (journal sink vs planner/close_handler); journal/retry no duplica efecto económico ⇒ UUIDv5 **fuera** (E-08); T11 `[-]`; planner/MM/MQL intocables. Paths: Allowed Files exactos `v3/...` (no existe `sdk/` raíz). Sin source productivo. Puente sigue Review.
@@ -150,6 +151,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 🔗 Docs / Links
 
+- [[Echo — Access & Physical Capability Matrix]]
 - [[Echo — Live Platform V1]]
 - [[Echo + Echo Forge — Independent Reality Check and Time-to-Value Plan]]
 - [[Echo + Echo Forge — Evidencia de revisión independiente 2026-09-06]]
