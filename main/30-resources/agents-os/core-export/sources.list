@@ -5,8 +5,8 @@
 #
 # What is deliberately absent: the personal profile (the distribution ships a
 # standard one), 80-agents/memory/internal/, the journal's own contents, the
-# Meli/Signals-specific skills, real application pages, and the AGENTS OS
-# project note with its local roadmap and state.
+# domain-owned skills and router registrations, real application pages, and
+# the AGENTS OS project note with its local roadmap and state.
 
 # --- Conceptual map, invariants, conventions ---
 file|core|80-agents/agents-os/agents-os.md
@@ -24,15 +24,15 @@ file|skills|80-agents/skills/INDEX.md
 globtree|skills|80-agents/skills/agents-os-*
 
 # --- Portable, domain-agnostic skills ---
-tree|skills|80-agents/skills/human-first-technical-writing
-tree|skills|80-agents/skills/operational-healthcheck-policy
-tree|skills|80-agents/skills/e2e-gated-validation
-tree|skills|80-agents/skills/release-certification
-tree|skills|80-agents/skills/deployment-proof
-tree|skills|80-agents/skills/readonly-production-probe
-tree|skills|80-agents/skills/distributed-incident-triage
-tree|skills|80-agents/skills/evidence-channel-discovery
-tree|skills|80-agents/skills/write-once-conflict-triage
+tree|skills|30-resources/agents/skills/human-first-technical-writing
+tree|skills|30-resources/agents/skills/operational-healthcheck-policy
+tree|skills|30-resources/agents/skills/e2e-gated-validation
+tree|skills|30-resources/agents/skills/release-certification
+tree|skills|30-resources/agents/skills/deployment-proof
+tree|skills|30-resources/agents/skills/readonly-production-probe
+tree|skills|30-resources/agents/skills/distributed-incident-triage
+tree|skills|30-resources/agents/skills/evidence-channel-discovery
+tree|skills|30-resources/agents/skills/write-once-conflict-triage
 
 # --- Templates: System 1 and System 2 ---
 tree|templates|80-agents/templates

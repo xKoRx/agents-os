@@ -7,8 +7,8 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-09-13"
-reviewed: "2026-09-13"
+updated: "2026-09-14"
+reviewed: "2026-09-14"
 aliases:
   - "00-index index"
 cssclasses:
@@ -24,8 +24,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas curadas:** 21
-- **Última ingesta:** 2026-09-13
+- **Páginas curadas:** 22
+- **Última ingesta:** 2026-09-14
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -34,6 +34,7 @@ tags:
 |---|---|---|
 | [[agent-executor]] | Prompt reusable para encargar una fase acotada sin sustituir el planificador canónico. | target: agent · v1 |
 | [[f3-skill-migration]] | Inventario, checksums y rollback del movimiento de skills de Fase 3. | migration record |
+| [[domain-router-registry]] | Registro opcional y fail-closed que enlaza áreas con routers scoped sin hardcodear dominios en el core. | routing contract |
 | [[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]] | Router del dominio Meli: boundary, preferencias scoped y skill especializada por tarea. | skill · Meli-only |
 | [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]] | Router del dominio Aranea (homelab); puerta única del acceso MCP vía aranea-mcps-expert. | skill · Aranea-only |
 | [[30-resources/agents/skills/aranea-mcps-expert/SKILL|aranea-mcps-expert]] | Router agent-facing para elegir ambiente/capability MCP de Aranea y cargar el runbook canónico correcto. | skill · Aranea-only |

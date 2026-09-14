@@ -66,6 +66,21 @@ SEED_ALLOWED = {
 
 PRESERVE_IN_TARGET = {".git", ".obsidian"}
 
+CORE_SKILL_RE = re.compile(r"80-agents/skills/([^/]+)/SKILL\.md")
+FEDERATED_SKILL_RE = re.compile(r"30-resources/agents/skills/([^/]+)/SKILL\.md")
+
+DOMAIN_NEUTRAL_HOT_PATH = (
+    "80-agents/agents-os/agent-constitution.md",
+    "80-agents/agents-os/context-router.md",
+    "80-agents/skills/agents-os-bootstrap/SKILL.md",
+)
+DOMAIN_OPERATIONAL_MARKERS = re.compile(
+    r"\[\[(?:Meli|Aranea|Echo|RIO)\]\]|"
+    r"\b(?:Zord|Fury|Spellbook|Grimoire|O11y)\b|"
+    r"mcp__aranea-|~/fuentes|~/go/src/github\.com/xKoRx",
+    re.IGNORECASE,
+)
+
 
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -139,36 +154,73 @@ def clear_target(target: Path) -> None:
         shutil.rmtree(path) if path.is_dir() else path.unlink()
 
 
-def filter_skill_index(target: Path, shipped: set[str]) -> int:
-    """Keep only rows whose skill actually shipped; drop the federated registry.
+def filter_skill_index(
+    target: Path,
+    shipped_core: set[str],
+    shipped_federated: set[str],
+) -> int:
+    """Project the source registry to exactly the skills shipped.
 
-    An index that lists skills absent from disk fails `agents-os-doctor`, so the
-    distribution needs its own view rather than the source vault's.
+    The source vault keeps core skills under ``80-agents/skills`` and curated
+    portable skills under ``30-resources/agents/skills``. The distribution
+    preserves both locations and must retain discoverable rows for both.
     """
     index = target / "80-agents/skills/INDEX.md"
-    kept, dropped = [], 0
-    federated = False
-    for line in index.read_text(encoding="utf-8").splitlines(keepends=True):
+    source_lines = index.read_text(encoding="utf-8").splitlines(keepends=True)
+    kept: list[str] = []
+    dropped = 0
+    for line in source_lines:
         if line.startswith("## 🌐 Registro federado"):
-            federated = True
-            kept.append(
-                "## 🌐 Registro federado (fuentes fuera del core)\n\n"
-                "El registry **enlaza, no copia**. El core vive arriba en `80-agents/skills/`.\n"
-                "Las skills transversales curadas del vault viven bajo `30-resources/agents/skills/`\n"
-                "y las de una aplicación viven en el repo que las posee, referenciadas por\n"
-                "`repo + path relativo`, nunca por un path absoluto de máquina.\n\n"
-                "Esta distribución no trae ninguna: el registry se puebla durante la instalación.\n"
-            )
-            continue
-        if federated:
-            continue
-        match = re.search(r"80-agents/skills/([^/]+)/SKILL\.md", line)
-        if match and match.group(1) not in shipped:
+            break
+        if line.startswith("- **Core AGENTS OS:**"):
+            line = f"- **Core AGENTS OS:** {len(shipped_core)} skills de comportamiento del sistema.\n"
+        elif line.startswith("- **Federadas (vault):**"):
+            line = f"- **Federadas (vault):** {len(shipped_federated)} skills portables incluidas.\n"
+        elif line.startswith("- **App-owned:**"):
+            line = "- **App-owned:** 0 en el paquete base; se registran durante la instalación.\n"
+        match = CORE_SKILL_RE.search(line)
+        if match and match.group(1) not in shipped_core:
             dropped += 1
             continue
         kept.append(line)
+
+    federated_rows: list[str] = []
+    for line in source_lines:
+        match = FEDERATED_SKILL_RE.search(line)
+        if not match:
+            continue
+        if match.group(1) in shipped_federated:
+            federated_rows.append(line)
+        else:
+            dropped += 1
+
+    kept.extend([
+        "## 🌐 Registro federado incluido\n",
+        "\n",
+        "Estas skills portables conservan su ubicación canónica fuera del core y\n",
+        "siguen siendo descubribles desde el índice cargado por bootstrap.\n",
+        "\n",
+        "| Skill | Una línea | Dominio / uso |\n",
+        "|---|---|---|\n",
+    ])
+    kept.extend(federated_rows)
     index.write_text("".join(kept), encoding="utf-8")
     return dropped
+
+
+def validate_domain_neutral_hot_path(target: Path) -> None:
+    """Fail the package when operational domain policy reaches shared startup."""
+    failures: list[str] = []
+    for rel in DOMAIN_NEUTRAL_HOT_PATH:
+        path = target / rel
+        if not path.is_file():
+            failures.append(f"missing hot-path file: {rel}")
+            continue
+        for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if DOMAIN_OPERATIONAL_MARKERS.search(line):
+                failures.append(f"{rel}:{lineno}: {line.strip()}")
+    if failures:
+        sys.exit("Domain-specific operational policy reached shared hot path:\n" + "\n".join(failures))
 
 
 def main() -> None:
@@ -209,14 +261,26 @@ def main() -> None:
         if not any(directory.iterdir()):
             (directory / ".gitkeep").touch()
 
-    shipped = {rel.split("/")[2] for _, rel, _, _ in rows if rel.startswith("80-agents/skills/")}
-    dropped_rows = filter_skill_index(target, shipped)
+    shipped_core = {
+        Path(rel).parts[-2]
+        for _, rel, _, _ in rows
+        if rel.startswith("80-agents/skills/") and rel.endswith("/SKILL.md")
+    }
+    shipped_federated = {
+        Path(rel).parts[-2]
+        for _, rel, _, _ in rows
+        if rel.startswith("30-resources/agents/skills/") and rel.endswith("/SKILL.md")
+    }
+    dropped_rows = filter_skill_index(target, shipped_core, shipped_federated)
     # Count real skills, not path segments: `_shared` and `INDEX.md` also live
     # one level under skills/ and must not inflate the reported total.
     skill_count = sum(
         1 for _, rel, _, _ in rows
-        if rel.startswith("80-agents/skills/") and rel.endswith("/SKILL.md")
+        if rel.startswith(("80-agents/skills/", "30-resources/agents/skills/"))
+        and rel.endswith("/SKILL.md")
     )
+
+    validate_domain_neutral_hot_path(target)
 
     leaked = [rel for _, rel, _, _ in rows if rel.startswith(FORBIDDEN)]
     stray = [
