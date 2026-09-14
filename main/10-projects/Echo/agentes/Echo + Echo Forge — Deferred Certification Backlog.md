@@ -136,6 +136,18 @@ F-04: `IMPLEMENTED` y `SOURCE VERIFIED` en product SHA `b57bfb2c3d2c4e0a96d2b3fa
 | E-12 Apply/rebalance/replacement/retirement | B — CAN IMPLEMENT BUT CANNOT CERTIFY | La implementación DEMO puede avanzar; PHYSICAL DEMO requiere runtime real y ACK/recovery. |
 | E-13 Front/read/ops and V1 closure | B — CAN IMPLEMENT BUT CANNOT CERTIFY | Read/ops surfaces pueden avanzar; PRODUCT CAPABILITY/restore requiere evidencia física. |
 
+### Delta de readiness por certificación de accesos — 2026-09-14
+
+Fuente: [[ACCESS-CERTIFICATION]] (run 2026-09-14, veredicto `ACCESS_CERTIFICATION_PARTIAL`). Este delta **no cambia ninguna clase A/B/C ni cierra carriles**; registra qué superficies de acceso quedaron verificadas físicamente y qué gaps siguen bloqueando cada gate.
+
+- **Verificado y disponible para gates físicos:** PostgreSQL PROD-RO y DEV-RW (DML sin DDL en DEV), MongoDB forge RO/RW, Kafka DEV admin (con `delete_topic` eventual — post-condición obligatoria de cleanup), Flink DEV control-plane read, SSH operator sobre SQX/MT5/docker-echo-dev (identidades re-verificadas).
+- **E-02:** sus verificaciones físicas pendientes contra `psql`/Kafka/Flink/Hasura-DEV ya tienen capability certificada para ejecutarse; `etcd`/tokens reales siguen `NOT_OBSERVED` (sin capability). Clase B se mantiene.
+- **CERT-F04-01/CERT-F04-02 (F-04 T2.12/T2.11):** bases de acceso re-verificadas; siguen `BLOCKED BY INFRA` por la ausencia de observación del runtime Echo y de capability Temporal/equivalente autorizada. Prerrequisito nuevo explícito: capability de observación del host Echo runtime (192.168.31.71:8090, visto en webhooks Hasura).
+- **CERT-E04-01 (E-04 T21/AC-37):** sigue `HARD BLOCKED`; el mismo prerrequisito de observación del runtime Echo es el gap dominante. Clase C se mantiene.
+- **CERT-F04-03 / CERT-F05-01…03:** sin cambio; dependen de los gates anteriores.
+- **E-05…E-13:** sin cambio de clase; para sus futuros gates físicos queda disponible la superficie DEV certificada arriba, y quedan nombrados como `REQUIRED_LATER`: observación runtime Echo, etcd, observabilidad (OBS3), Temporal (T5), Kafka/Flink PROD.
+- **Condición de acceso vigente:** el trigger de reactivación de este backlog **sigue cerrado** hasta resolver H1 (credenciales expuestas por `export_metadata`), H2 (boundary viewer SSH no aplicado) y la capability de observación del runtime Echo.
+
 ### Próxima tarea única recomendada para NORMAL
 
 **F-05-I — Cohesive release/read-surface preparation.** Repo `xKoRx/symphony`; nueva rama `codex/f05-release-prep`; baseline exacto `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`; autoridad `Echo Forge — Factory V2 Completion` F-05 y contratos F-01…F-04/S0 frozen. Implementar sólo la matriz determinística de release, la preparación de result/read surfaces y la conformance checklist sobre outputs ya existentes; mantener fixtures explícitamente sintéticas, no publicar release productiva desde la rama y no ejecutar T2.11/T2.12/T2.13. Completion: tests/source checks verdes del scope, SHA/release/provenance reproducibles, read surfaces inspectables, cero cambios a contratos frozen y ningún gate físico marcado PASS.
