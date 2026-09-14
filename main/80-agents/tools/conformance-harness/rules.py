@@ -660,12 +660,12 @@ AUTH_DOCTOR = "80-agents/skills/agents-os-doctor/SKILL.md"
 
 FIDELITY_ANCHORS: List[Tuple[str, str, str]] = [
     # Domain gate (bootstrap cold start paso 6) — cited at domain_gate().
-    ("gate-meli", AUTH_BOOTSTRAP, "`[[Meli]]` → load `meli-agent-dev`."),
-    ("gate-echo-aranea", AUTH_BOOTSTRAP, "`[[Echo]]` or `[[Aranea]]` → load `aranea-agent-dev`."),
-    ("gate-other-no-router", AUTH_BOOTSTRAP, "Any other area, or no resolvable entity → no domain router."),
-    ("gate-surface-evidence", AUTH_BOOTSTRAP, "If no entity resolves but the surface shows domain evidence (MCP tool prefixes `mcp__aranea-*`, or corporate tooling such as Zord/Fury/Spellbook), use that instead."),
-    ("gate-fail-closed", AUTH_BOOTSTRAP, "Ambiguous or conflicting evidence fails closed: no router."),
-    ("gate-never-both-routers", AUTH_BOOTSTRAP, "Never load both routers; the router loads at most ONE specialized skill and owns the scoped preferences of its domain."),
+    ("gate-registry", AUTH_BOOTSTRAP, "Apply the domain gate from the optional federated registry `30-resources/agents/domain-router-registry.md`"),
+    ("gate-area", AUTH_BOOTSTRAP, "compare it exactly with the registry rows."),
+    ("gate-task-evidence", AUTH_BOOTSTRAP, "Mere ambient tool availability is not task evidence."),
+    ("gate-cardinality", AUTH_BOOTSTRAP, "Zero matches means DEFAULT with no domain router; one match loads exactly that router; more than one match fails closed and loads none."),
+    ("gate-empty-registry", AUTH_BOOTSTRAP, "A missing or empty registry is a valid DEFAULT installation."),
+    ("gate-one-specialist", AUTH_BOOTSTRAP, "The selected router loads at most ONE specialized skill and owns its scoped preferences."),
     # Cold set (bootstrap cold start pasos 1-5) — cited at Session.cold_start().
     ("cold-paso1-constitution", AUTH_BOOTSTRAP, "`80-agents/agents-os/agent-constitution.md`"),
     ("cold-paso1-profile-dir", AUTH_BOOTSTRAP, "`80-agents/memory/public/user-preference/` — the global profile. Resolve it by that directory"),

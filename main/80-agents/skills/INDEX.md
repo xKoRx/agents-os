@@ -29,8 +29,8 @@ tags:
 ## 📊 De un vistazo
 
 - **Core AGENTS OS:** 28 skills de comportamiento del sistema.
-- **Federadas (vault):** 19 skills curadas en `30-resources/agents/skills/`.
-- **App-owned:** 21 skills en `xKoRx/symphony/.agents/skills/` (3 con routing cross-dominio listadas abajo; resto se descubre en el repo owner).
+- **Federadas transversales:** 12 skills curadas en `30-resources/agents/skills/`.
+- **Domain/app-owned:** se descubren mediante el registro de routers y el repo owner; no forman parte del índice always-load.
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
 ## 🛠️ Catálogo core — comportamientos de AGENTS OS
@@ -68,22 +68,17 @@ tags:
 
 ## 🌐 Registro federado (enlaza, no copia)
 
-Las skills de dominio y transversales viven curadas en el vault bajo
-`30-resources/agents/skills/` con su [[30-resources/agents/00-index|índice wiki de dominio]]; las de una aplicación viven en el repo owner. El enrutamiento por dominio lo poseen [[30-resources/agents/skills/meli-agent-dev/SKILL.md|meli-agent-dev]] y [[30-resources/agents/skills/aranea-agent-dev/SKILL.md|aranea-agent-dev]].
+Las skills transversales viven curadas en el vault bajo
+`30-resources/agents/skills/`. Los routers scoped y sus especialistas se
+descubren únicamente desde `30-resources/agents/domain-router-registry.md`; las
+skills de una aplicación viven y se descubren en su repo owner.
 
 ### Dominio y transversales — `30-resources/agents/skills/`
 
 | Skill | Una línea | Dominio / uso |
 |---|---|---|
-| [[30-resources/agents/skills/meli-agent-dev/SKILL.md|meli-agent-dev]] | Router del dominio Meli: boundary, preferencias scoped y skill especializada por tarea. | Todo trabajo corporativo Meli. Excluye MCPs `aranea-*`. |
-| [[30-resources/agents/skills/aranea-agent-dev/SKILL.md|aranea-agent-dev]] | Router del dominio Aranea (homelab): boundary, preferencias scoped y puerta única del acceso MCP. | Todo trabajo homelab Echo/Forge/mcps. Excluye Meli/corporativo. |
-| [[30-resources/agents/skills/aranea-mcps-expert/SKILL.md|aranea-mcps-expert]] | Selecciona y gobierna capabilities MCP de Aranea (ambiente antes que autoridad) bajo `aranea-agent-dev`. | Sólo dominio Aranea. **MUST NOT** para MELI/corporativo. |
-| [[30-resources/agents/skills/signals-code-review/SKILL.md|signals-code-review]] | Revisa branches y PRs exclusivamente Meli con Zord; en Signals/RIO agrega el revisor `rjara-rio-impact`. | Vía `meli-agent-dev`. Fuera de Meli termina sin ejecutar Zord. |
-| [[30-resources/agents/skills/signals-func-spec-authoring/SKILL.md|signals-func-spec-authoring]] | Escribe y revisa specs FUNCIONALES de Signals/Ads en Spellbook. | Vía `meli-agent-dev`. |
-| [[30-resources/agents/skills/signals-tech-spec-authoring/SKILL.md|signals-tech-spec-authoring]] | Escribe, corrige y revisa specs TÉCNICAS de Signals/Ads y design docs backend RIO. | Vía `meli-agent-dev`. |
-| [[30-resources/agents/skills/pr-description/SKILL.md|pr-description]] | Produce descripciones de PR con evidencia real y las materializa como recurso del proyecto. | Vía `meli-agent-dev` u obra propia del vault. |
+| [[30-resources/agents/skills/pr-description/SKILL.md|pr-description]] | Produce descripciones de PR con evidencia real y las materializa como recurso del proyecto. | Transversal; respeta template y policy del repo activo. |
 | [[30-resources/agents/skills/human-first-technical-writing/SKILL.md|human-first-technical-writing]] | Reduce la carga cognitiva del lector mediante narrativa técnica causal. | Transversal: PRs, specs, reportes, incidentes, guías. |
-| [[30-resources/agents/skills/fury-lib-consumer-deploy/SKILL.md|fury-lib-consumer-deploy]] | Publica versiones test de librerías Java con Fury y las importa en apps consumidoras. | Vía `meli-agent-dev`. |
 | [[30-resources/agents/skills/sync-local-branch/SKILL.md|sync-local-branch]] | Sincroniza ramas Git exclusivamente locales con pull literal, merge conservador, commit y push. | Dev-workflow genérico. |
 | [[30-resources/agents/skills/sdd-workflow/SKILL.md|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclar specification, plan, tasks, implementation y verification. | Features/cambios no triviales; metodología en `30-resources/methodologies/sdd/`. |
 | [[30-resources/agents/skills/e2e-gated-validation/SKILL.md|e2e-gated-validation]] | Orquesta validaciones E2E como secuencia de gates con evidencia y criterios PASS/FAIL. | E2E, golden runs o certificaciones físicas; transferible. |
@@ -94,17 +89,6 @@ Las skills de dominio y transversales viven curadas en el vault bajo
 | [[30-resources/agents/skills/evidence-channel-discovery/SKILL.md|evidence-channel-discovery]] | Descubre y persiste qué canales de evidencia existen realmente por pregunta. | Al empezar en un sistema desconocido o tras canales muertos. |
 | [[30-resources/agents/skills/write-once-conflict-triage/SKILL.md|write-once-conflict-triage]] | Investiga conflictos de inmutabilidad clasificando duplicate/race/stale/contract-defect. | Ante CONTRACT_CONFLICT, checksum mismatch o violaciones de idempotencia. |
 | [[30-resources/agents/skills/operational-healthcheck-policy/SKILL.md|operational-healthcheck-policy]] | Diferencia cuándo validar manualmente componentes vigilables y cuándo confiar en la automatización. | Ante una señal concreta de problema o antes de acciones masivas. |
-
-### App-owned — repo `xKoRx/symphony` (Echo Forge / SQX)
-
-Ownership real = repo de la app. `xKoRx/symphony` usa `.agents/skills/` como home canónica (21 skills al 2026-09-13; catálogo completo en el repo: `xKoRx/symphony` → `.agents/skills/`). El registry enlaza por `repo + path relativo`; nunca copia ni persiste un path absoluto de máquina (constitución, invariante 11). Sólo se listan aquí las skills con routing cross-dominio; el resto se descubre en el repo owner.
-
-| Skill | Una línea | Estado / ubicación |
-|---|---|---|
-| `xKoRx/symphony` → `.agents/skills/sqx-plugin-lifecycle/SKILL.md` | Modifica, compila, despliega y valida plugins Java de SQX con build contra SDK real, backup, canary y rollback. | ✅ migrada (piloto, 2026-08-07) al repo owner. |
-| `xKoRx/symphony` → `.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` | Troubleshooting de Echo Forge/WFM; delega el acceso MCP a [[aranea-mcps-expert]]. | ✅ repo owner; fuente única de routing de dominio. |
-| `xKoRx/symphony` → `.agents/skills/sqx-temporal-failure-audit/SKILL.md` | Audita una ejecución fallida de un workflow Temporal del SQX Worker sin proponer fix. | ✅ migrada al repo owner. |
-| `xKoRx/symphony` → `.agents/skills/aranea-mcps-expert/SKILL.md` | Copia repo-side del router MCP de Aranea (⚠️ divergencia conocida auditada 2026-09-13: la canónica vive en `30-resources/agents/skills/`); delegar acceso MCP siempre a la canónica. | ⚠️ duplicada en repo; canónica en vault. |
 
 ## 🔗 Links
 
