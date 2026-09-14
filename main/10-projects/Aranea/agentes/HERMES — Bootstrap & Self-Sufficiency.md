@@ -331,6 +331,9 @@ Cuando B4 pasa:
 - Gap confirmado de diseño: el perfil actual exige aprobación owner para cambios no triviales, por lo que debe evolucionar hacia clases preautorizadas.
 - Gap confirmado operativo: [[AGENT-PLATFORM - MCP Access Plane]] registró incidentes donde no pudo observar/reiniciar server-side `mcps` por falta de authority administrativa disponible en la sesión.
 - Próximo paso: B0/B1 en una sesión Hermes dedicada; no resolver todavía blockers específicos de Echo/Forge.
+- **2026-09-14 — B0 PASS:** approval model AUTO/GATED aplicado a SOUL.md §8.1, Regla Dura 1 de [[Ariadna]] y USER.md operativo. Cambio loggeado en `80-agents/journal/logs/2026-09-14-b0-autonomy-contract-applied.md`.
+- **2026-09-14 — B1 discovery PASS, authority pendiente:** target `mcps.lab.aranea.cl` = `192.168.31.219`, SSH :22 open, host key ED25519 pinneada (`SHA256:REpcjg31iDIJ5xysEaM63UBgbtuIU3KCuvuJ0NZo+lY`). Identity dedicada ED25519 `agent_mcps_ops` generada en VM Hermes (fingerprint `SHA256:1ebPwqXIyeCC8zo4spKg+OyTDPYMXg78Kv1BaKRgp48`); alias `mcps-ops` en `~/.ssh/config`; wrapper `~/aranea/bin/mcps-ops` creado con logging. No existe identity reutilizable: las keys locales (`agent_ro_aranea`, `agent_pve_create_athena`, `agent_traefik_*`, tunnel) son de otros targets; `root@mcps` y `hermes-ops@mcps` rechazan `publickey`. Conexión actualmente `Permission denied` — OWNER ACTION BUNDLE emitido para instalar `hermes-ops` + sudo passwordless en el LXC. Tras aplicar el bundle: B1.4 (certificación: sudo proof → docker ps → smoke create/destroy) y B1.5 (revoke path) se ejecutan automáticos.
+- **B2 pre-work registrado:** consumers reales conocidos vía runbook `aranea-mcp-capability-plane`: Daedalus/Cursor en host separado con bearers vía KDE env chain (`~/.config/plasma-workspace/env/aranea-mcp.sh` → `~/.config/mcp/aranea-env.sh`); Hermes-VM aún no consume capabilities. El alta del management path en Daedalus se agrupará en un bundle posterior de B2, no en el actual (evitar mezclar hosts sin evidencia).
 
 ## 🧱 Entrega de desarrollo
 
@@ -340,16 +343,16 @@ _No hay repo único. Este proyecto modifica comportamiento operativo, skills/con
 
 ### B0 — Autonomy contract
 
-- [ ] B0.1 Cargar [[Ariadna]], USER/MEMORY operativos y este proyecto; reconciliar reglas que bloquean autonomía #owner/agent #type/admin #area/aranea
-- [ ] B0.2 Proponer patch mínimo al approval model: AUTO vs GATED, sin reducir secret/target/rollback rules #owner/agent #type/admin #area/aranea
-- [ ] B0.3 Aplicar el patch autorizado a las fuentes canónicas reales del perfil/system prompt #owner/agent #type/admin #area/aranea
-- [ ] B0.4 Definir y adoptar formato único `OWNER ACTION BUNDLE` #owner/agent #type/admin #area/aranea
+- [x] B0.1 Cargar [[Ariadna]], USER/MEMORY operativos y este proyecto; reconciliar reglas que bloquean autonomía #owner/agent #type/admin #area/aranea
+- [x] B0.2 Proponer patch mínimo al approval model: AUTO vs GATED, sin reducir secret/target/rollback rules #owner/agent #type/admin #area/aranea
+- [x] B0.3 Aplicar el patch autorizado a las fuentes canónicas reales del perfil/system prompt #owner/agent #type/admin #area/aranea
+- [x] B0.4 Definir y adoptar formato único `OWNER ACTION BUNDLE` #owner/agent #type/admin #area/aranea
 
 ### B1 — Direct mcps management
 
-- [ ] B1.1 Descubrir target real de `mcps`, SSH state, users/keys existentes y authority actual desde Hermes #owner/agent #type/admin #area/aranea
-- [ ] B1.2 Generar/reutilizar identity dedicada sin exponer private key #owner/agent #type/admin #area/aranea
-- [ ] B1.3 Preparar un único OWNER ACTION BUNDLE para instalar authority inicial si Hermes no puede hacerlo #owner/agent #type/admin #area/aranea
+- [x] B1.1 Descubrir target real de `mcps`, SSH state, users/keys existentes y authority actual desde Hermes #owner/agent #type/admin #area/aranea
+- [x] B1.2 Generar/reutilizar identity dedicada sin exponer private key #owner/agent #type/admin #area/aranea
+- [x] B1.3 Preparar un único OWNER ACTION BUNDLE para instalar authority inicial si Hermes no puede hacerlo #owner/agent #type/admin #area/aranea
 - [ ] B1.4 Certificar direct SSH + root-equivalent scoped al LXC `mcps` #owner/agent #type/admin #area/aranea
 - [ ] B1.5 Materializar wrapper/operator entrypoint mínimo y documentar revoke path #owner/agent #type/admin #area/aranea
 
@@ -377,6 +380,7 @@ _No hay repo único. Este proyecto modifica comportamiento operativo, skills/con
 ## 📆 Bitácora
 
 - **2026-09-14** — Se crea bootstrap transitorio para priorizar la salida del owner del loop. Se decide conservar Ariadna como identidad principal, cambiar approval model por clases preautorizadas, dar management path out-of-band a `mcps` y resolver consumer onboarding antes de atacar blockers individuales.
+- **2026-09-14 (sesión B0/B1)** — B0 PASS: patch AUTO/GATED aplicado a SOUL.md §8.1 (runtime), Regla Dura 1 de [[Ariadna]] (vault) y USER.md (hermes memory). change_log creado. B1: discovery real desde la VM Hermes — `mcps.lab.aranea.cl`→`192.168.31.219`, :22/:3000 open, ninguna identity local sirve para `mcps`; se genera `agent_mcps_ops` (ED25519, sólo fingerprint público registrado), se pinnea host key strict, alias `mcps-ops` y wrapper `~/aranea/bin/mcps-ops` con log. Conexión `Permission denied` hasta que el owner aplique el OWNER ACTION BUNDLE (usuario `hermes-ops` + sudo passwordless + authorized_keys en el LXC). B2 pre-work: consumers reales documentados (Daedalus/Cursor vía KDE env chain); bundle de B2 diferido a su propia intervención. No se tocó Echo/Forge ni Proxmox/TrueNAS.
 
 ## 🧭 Decisiones
 
