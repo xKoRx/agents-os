@@ -4,8 +4,8 @@ schema_version: 1
 scope: session
 created: "2026-09-14"
 updated: "2026-09-14"
-area:
-  "[[Echo — Live Platform V1]]"
+area: "[[Echo]]"
+project: "[[Echo — Live Platform V1]]"
 application:
 entities:
   - "[[Echo — E-02 Control Safety, Auth and Journal Recovery]]"
