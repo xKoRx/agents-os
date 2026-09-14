@@ -4,7 +4,7 @@ status: active
 area: "[[Aranea]]"
 parent: "[[AGENT-PLATFORM - MCP Access Plane]]"
 created: "2026-09-12"
-updated: "2026-09-12"
+updated: "2026-09-13"
 confidence: verified
 aliases:
   - aranea-mcp-access-plane-architecture
@@ -51,7 +51,7 @@ Backend MCP
          │
          ▼
 Servicio destino
-(PostgreSQL / MongoDB / Hasura / etc.)
+(PostgreSQL / MongoDB / Hasura / Kafka / Flink / etc.)
 ```
 
 **No introducir un patrón distinto sólo porque un nuevo MCP lo haga más fácil.** Una desviación requiere evidencia material y decisión explícita en [[AGENT-PLATFORM - MCP Access Plane]].
@@ -62,9 +62,9 @@ Servicio destino
 
 Hard rules:
 
-- No instalar clientes de servicios destino en el host (`psql`, `mongosh`, Hasura CLI, clientes Redis, etc.) para discovery, troubleshooting o convenience.
+- No instalar clientes de servicios destino en el host (`psql`, `mongosh`, Hasura CLI, Kafka CLI, Flink CLI, etc.) para discovery, troubleshooting o convenience.
 - No depender de herramientas de administración del servicio destino instaladas en el LXC.
-- No convertir `mcps` en punto de acceso directo a PostgreSQL, MongoDB, Hasura u otros backends.
+- No convertir `mcps` en punto de acceso directo a PostgreSQL, MongoDB, Hasura, Kafka, Flink u otros backends.
 - Discovery y administración se hacen desde consumidores autorizados usando capabilities MCP, o desde la autoridad operativa propia del servicio cuando el MCP aún no existe.
 - Docker/Portainer y herramientas base de inspección del runtime (`docker`, `ss`, `find`, `cat`/`sed` sobre configuración propia del MCP) sí pertenecen al boundary.
 - Tooling auxiliar debe vivir en container/artefacto explícito y descartable o en el host de administración correspondiente.
@@ -78,9 +78,9 @@ Hard rules:
 Nunca confundir:
 
 1. **Bearer cliente → MCP proxy**: autentica a Daedalus/Hermes/u otro consumidor contra la capability.
-2. **Credencial backend MCP → servicio destino**: PostgreSQL password, Hasura admin secret, token upstream, etc.
+2. **Credencial backend MCP → servicio destino/backend privado**: PostgreSQL password, Hasura admin secret, token upstream o bearer backend privado cuando la implementación lo requiere.
 
-El cliente no recibe la credencial real del servicio destino. El backend no necesita conocer el bearer del cliente.
+El cliente no recibe la credencial real del servicio destino/backend. El backend no necesita conocer el bearer del cliente.
 
 ### 2. Secretos server-side
 
@@ -89,7 +89,7 @@ Convención verificada en `mcps`:
 ```text
 /opt/mcp/<familia>/runtime/proxy/           # templates Nginx
 /opt/mcp/<familia>/runtime/proxy-secrets/   # bearer cliente→MCP
-/opt/mcp/<familia>/runtime/secrets/         # credenciales upstream del backend
+/opt/mcp/<familia>/runtime/secrets/         # credenciales upstream/backend privadas
 ```
 
 Los secretos se montan read-only al container correspondiente. No registrar valores en Agents-OS, repos, prompts, Cursor config ni logs.
@@ -104,6 +104,8 @@ Redes Docker privadas verificadas:
 mcp-postgres
 mcp-mongo-forge
 mcp-hasura
+mcp-kafka
+mcp-flink
 ```
 
 ### 4. Un proxy por capability
@@ -124,7 +126,7 @@ Contrato:
 
 - `restart=unless-stopped`;
 - template `/run/mcp/mcp.conf.template` read-only;
-- bearer `/run/secrets/daedalus.bearer` read-only;
+- bearer cliente montado read-only;
 - arranque materializa config, descarta variable temporal y ejecuta Nginx foreground;
 - `401` cuando el bearer no coincide;
 - `proxy_pass` sólo al backend de la red Docker privada;
@@ -132,7 +134,7 @@ Contrato:
 
 No copiar tokens materializados desde Nginx a documentación.
 
-## Runtime verificado — 2026-09-12
+## Runtime verificado — 2026-09-13
 
 ### Inventario de capabilities y puertos
 
@@ -145,6 +147,8 @@ No copiar tokens materializados desde Nginx a documentación.
 | `3004` | `aranea-mongo-forge-rw` | DEV RW | Nginx auth → MongoDB MCP interno |
 | `3005` | `aranea-hasura-prod-ro` | PROD strict RO | Nginx auth → strict-RO Hasura MCP interno |
 | `3006` | `aranea-hasura-dev-admin` | DEV admin | Nginx auth → Hasura MCP interno |
+| `3007` | `aranea-kafka-dev-admin` | DEV admin | Nginx auth → Kafka MCP interno |
+| `3008` | `aranea-flink-dev-admin` | DEV admin | Nginx auth → Flink MCP interno |
 
 **Antes de asignar un puerto nuevo, verificar runtime vivo con `docker ps` + `ss -lntp`; este inventario documenta estado, no reserva puertos futuros.**
 
@@ -256,6 +260,41 @@ Cursor puede mostrar una tool cliente `mcp_auth`; no apareció en `tools/list` s
 
 Runbook: [[aranea-hasura-mcp]]. Workstream cerrado: [[HASURA MCP — workstream del MCP Access Plane]].
 
+### Kafka DEV
+
+Backend adoptado y pinneado:
+
+```text
+repo:   wklee610/kafka-mcp
+commit: 0b3bf477ac482468fbd9bbafedf056d0ee83f325
+image:  local/kafka-mcp:2.0.0-0b3bf47-inc1-fm3.0.1
+```
+
+Red: `mcp-kafka`.
+
+`aranea-kafka-dev-admin` publica sólo el proxy en `:3007/mcp`; el backend no publica host port. La imagen Aranea fija FastMCP `3.0.1` y parchea `alter_configs` para usar `incremental_alter_configs`, evitando revertir propiedades no objetivo. Superficie certificada: 19 tools. PROD queda diferido como capabilities separadas futuras; no reutilizar DEV.
+
+Runbook: [[aranea-kafka-mcp]].
+
+### Flink DEV
+
+Backend adoptado y pinneado:
+
+```text
+repo:   vaquarkhan/flink-mcp-enterprise-server
+version: 0.3.1
+commit: 981bbeff3ed7f897ca7c5bde20f36669d5e93bc4
+image:  local/flink-mcp:0.3.1-981bbef-aranea2-flink1.14
+```
+
+Red: `mcp-flink`.
+
+`aranea-flink-dev-admin` publica sólo el proxy en `:3008/mcp`; backend `flink-mcp-dev-admin` sin host port. El proxy no reenvía el bearer del cliente: usa un bearer backend privado separado, validado server-side mediante registry hash-only. La variante Aranea conserva el approval HMAC upstream como default fail-closed, pero DEV ejecuta con `MCP_FLINK_APPROVAL_REQUIRED=false` detrás del bearer proxy y allowlist explícita. Superficie certificada: exactamente 22 tools y **cero SQL tools** contra Flink `1.14.3`.
+
+El host/runtime plane no se mezcla dentro del backend Flink MCP. Filesystem, Docker, config bind-mounted y lifecycle de `docker-echo-dev` usan `aranea-ssh` + profile `docker-echo-dev-operator`, root-equivalent sólo para DEV. Source-of-truth del stack: Portainer stack `1`; host path `/var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml`.
+
+Runbooks: [[aranea-flink-mcp]] y [[aranea-ssh-mcp]]. Workstream DEV cerrado: [[Flink MCP — workstream del MCP Access Plane]]. PROD `aranea-flink-prod-ro` queda diferido.
+
 ## Excepción existente: SSH MCP
 
 `aranea-ssh` en `:3000` no usa Nginx porque el upstream desplegado ya implementa bearer/policies y publica directamente. Es una **excepción existente**, no el blueprint default para nuevos MCPs.
@@ -264,7 +303,7 @@ Runbook: [[aranea-ssh-mcp]].
 
 ## Deployment actual
 
-`docker compose ls` estaba vacío durante el discovery 2026-09-12. El runtime usa containers standalone/Portainer con `restart=unless-stopped`.
+El runtime MCP usa containers standalone/Portainer con `restart=unless-stopped`; no depende de un Compose canónico del access plane.
 
 No introducir Compose como requisito implícito. Estandarizar deployment sería un cambio separado.
 
@@ -283,7 +322,7 @@ No introducir Compose como requisito implícito. Estandarizar deployment sería 
 1. Crear `/opt/mcp/<familia>/runtime/{proxy,proxy-secrets,secrets}` según necesidad.
 2. Crear red Docker privada `mcp-<familia>`.
 3. Levantar backend MCP sin host port.
-4. Montar credencial upstream sólo en backend, read-only.
+4. Montar credencial upstream/backend sólo donde corresponda, read-only.
 5. Levantar Nginx auth proxy separado usando el digest canónico o sucesor explícitamente aprobado.
 6. Montar template + bearer read-only en proxy.
 7. Publicar sólo el puerto del proxy.
@@ -308,7 +347,7 @@ secret mounts -> RO
 capability/tool surface -> exact authority contract
 PROD mutation path -> absent or rejected by construction/policy
 DEV mutation/admin path -> positive test sólo cuando corresponda
-upstream credential exposed to client -> no
+upstream/backend credential exposed to client -> no
 restart policy -> unless-stopped
 client real (Cursor/Daedalus) -> PASS
 ```
@@ -321,11 +360,11 @@ No cerrar una capability sólo porque `curl` responda o el container esté `Up`.
 
 No hacer:
 
-- instalar `psql`, `mongosh`, Hasura CLI u otros clientes de servicio en `mcps`;
+- instalar `psql`, `mongosh`, Hasura CLI, Kafka CLI, Flink CLI u otros clientes de servicio en `mcps`;
 - usar `mcps` como jump host/workstation;
 - publicar backend MCP directo al host por comodidad;
-- poner admin secret/password upstream en Cursor o prompts;
-- reutilizar bearer cliente→MCP como credencial upstream;
+- poner admin secret/password/token upstream en Cursor o prompts;
+- reutilizar bearer cliente→MCP como credencial upstream/backend;
 - usar `latest`;
 - bearer universal para authorities distintas;
 - saltar a acceso directo al servicio cuando el MCP falla;
@@ -344,14 +383,15 @@ Si sigue compatible con este contrato, continuar usando esta nota como autoridad
 
 ## Fuentes de evidencia
 
-Arquitectura consolidada desde runtime real de `mcps` el 2026-09-12:
+Arquitectura consolidada desde runtime real de `mcps` y certificaciones E2E al 2026-09-13:
 
 - `docker ps` / `ss -lntp` para puertos;
-- `docker inspect` de proxies/backends PostgreSQL, MongoDB y Hasura;
+- `docker inspect` de proxies/backends PostgreSQL, MongoDB, Hasura, Kafka y Flink;
 - handshakes MCP reales con bearer;
-- `tools/list` server-side de Hasura DEV y PROD;
+- `tools/list` server-side para boundaries certificadas;
 - validaciones end-to-end desde Daedalus/Cursor;
 - mounts, imágenes y redes Docker efectivos;
-- árbol `/opt/mcp` efectivo.
+- árbol `/opt/mcp` efectivo;
+- certificación host/runtime de `docker-echo-dev-operator` y source-of-truth Portainer del stack Flink DEV.
 
-No se almacenan valores de bearer, passwords ni admin secrets en esta nota.
+No se almacenan valores de bearer, passwords, admin secrets ni private keys en esta nota.
