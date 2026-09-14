@@ -109,6 +109,8 @@ Si el MCP de Kafka, Hasura, Temporal o cualquier otro servicio deja de responder
 
 Los dos workstreams son coordinados por este proyecto, pero mantienen tareas, autoridad, credenciales, prompts y criterios de aceptación independientes.
 
+[[HERMES — Bootstrap & Self-Sufficiency]] es un proyecto **transitorio**, no un tercer workstream. Existe sólo para sacar al owner del loop antes de comenzar la operación repetitiva.
+
 ## 🏛️ Modelo de agentes / autoridad
 
 Hermes actúa como **orquestador**. La ejecución concreta debe poder separarse en operadores especializados con system prompt, credenciales, herramientas y scope propios.
@@ -116,7 +118,7 @@ Hermes actúa como **orquestador**. La ejecución concreta debe poder separarse 
 Roles lógicos iniciales — no implican todavía un framework ni procesos separados obligatorios:
 
 ```text
-Hermes
+Hermes / Ariadna
 ├── backup / storage operator
 ├── proxmox operator
 ├── linux / container operator
@@ -125,13 +127,13 @@ Hermes
 └── access-plane operator
 ```
 
-La implementación puede consolidar o separar estos roles según evidencia real. La separación de autoridad importa más que el número de agentes.
+La implementación puede consolidar o separar estos roles según evidencia real. La separación de autoridad importa más que el número de agentes. En v1 se prefieren **skills + connections/credentials separadas**; un perfil/subagente nuevo sólo aparece cuando agrega aislamiento real.
 
 ### Niveles conceptuales
 
 - **Consumer:** Echo, Forge y futuros agentes. Consumen capabilities publicadas; no administran Aranea.
-- **Operator:** subagentes/perfiles Hermes con acceso nativo scoped para una responsabilidad concreta.
-- **Orchestrator:** Hermes decide qué operador usar, coordina, valida evidencia, escala bloqueos y actualiza Agents-OS.
+- **Operator:** skills/perfiles/subagentes Hermes con acceso nativo scoped para una responsabilidad concreta.
+- **Orchestrator:** Ariadna/Hermes decide qué operador usar, coordina, valida evidencia, escala bloqueos y actualiza Agents-OS.
 
 ## 🔐 Principios frozen para v1
 
@@ -142,11 +144,101 @@ La implementación puede consolidar o separar estos roles según evidencia real.
 5. **Target proof antes de mutar.** Toda mutación debe demostrar host/servicio/entorno real antes de ejecutarse.
 6. **DEV/test primero.** La autonomía de mutación se certifica primero fuera de PROD.
 7. **PROD no es autónomo por defecto.** Mutaciones PROD requieren un gate explícito hasta que el owner cambie esta política.
-8. **Consumer-side verification.** Una capability agent-facing no está lista sólo porque el servidor responde; debe pasar desde el consumidor real.
+8. **Consumer-side verification.** Una capability agent-facing no está lista sólo porque el servidor responde; debe pasar desde el consumidor real o harness equivalente certificado.
 9. **Reuse > repair > extend > wrap > build.** No construir MCPs o tooling nuevo si una superficie existente puede servir de forma segura.
 10. **Agents-OS es el estado durable.** Los proyectos de agente deben permitir que un agente fresco continúe sin depender del chat anterior.
 11. **Rollback/revoke obligatorio para cambios de autoridad.** Toda ampliación operativa debe poder revertirse o revocarse.
 12. **KISS/YAGNI.** No crear dashboard, policy DSL, capability database ni provider framework genérico antes de demostrar repetición real.
+13. **Human actions are bootstrap debt.** Toda acción manual repetida del owner debe eliminarse, automatizarse o quedar clasificada como gate excepcional.
+14. **Batch owner intervention.** Hermes acumula necesidades de bootstrap en un único `OWNER ACTION BUNDLE`; no dirige al owner comando por comando salvo dependencia secuencial real.
+
+## 🛣️ Orden de implementación operativo
+
+Aunque existen dos workstreams permanentes, **la ejecución inicial es deliberadamente serial** para maximizar independencia y minimizar intervención humana.
+
+### Fase 0 — B0/B4: sacar al owner del loop
+
+Proyecto: [[HERMES — Bootstrap & Self-Sufficiency]].
+
+Objetivo:
+
+```text
+perfil/autonomía
+→ direct management path a mcps
+→ consumer onboarding path
+→ operator skill
+→ golden repair/deploy
+→ HUMAN EXIT
+```
+
+El owner acepta trabajo manual sólo aquí para instalar las primeras identities/keys/configs que Hermes aún no pueda auto-provisionar.
+
+**Gate:** Hermes puede administrar el MCP Access Plane y publicar una capability DEV/test sin shell/config manual rutinaria del owner.
+
+### Fase 1 — A0/A5: autonomía del Agent Access Plane
+
+Proyecto: [[HERMES — Agent Access Operations]].
+
+Hermes convierte el bootstrap en operación reusable:
+
+```text
+request funcional
+→ discover
+→ reuse/repair/extend/deploy
+→ certify server
+→ certify consumer
+→ publish
+→ register
+```
+
+**Gate:** un request nuevo DEV/test puede resolverse end-to-end sin intervención humana, salvo authority realmente ausente.
+
+### Fase 2 — Echo + Echo Forge: cerrar blockers reales
+
+Con A0-A5 operativo, Hermes toma la cola real de Echo/Forge. Primero reconcilia el blocker report contra el plano vigente para no rehacer capabilities ya existentes.
+
+Prioridad de ejecución:
+
+1. marcar `PASS` todo requirement ya cubierto por capabilities certificadas;
+2. extender/configurar capabilities existentes antes de desplegar nuevas;
+3. desplegar capabilities faltantes;
+4. devolver evidencia consumible a los carriles Echo/Forge;
+5. cerrar sólo blockers de infraestructura/capability; no invadir decisiones de producto/código de esos proyectos.
+
+**Gate:** Echo y Forge dejan de depender del owner para obtener acceso operativo a servicios DEV/test.
+
+### Fase 3 — H0/H1: backups y storage
+
+Proyecto: [[HERMES — Infrastructure Operations]], reutilizando [[BACKUP-DR-OWNER-PROJECT]].
+
+Objetivo inmediato:
+
+```text
+inventory H0
+→ authority mínima
+→ backup health/coverage
+→ ejecutar/verificar jobs
+→ restore drill
+→ operación autónoma H1
+```
+
+**Gate:** la protección y validación rutinaria de backups no requiere intervención shell humana.
+
+### Fase 4 — H2/H6: administración completa de Aranea
+
+Expansión progresiva después de H1:
+
+```text
+H2 Proxmox lifecycle
+→ H3 guest/service operations
+→ H4 provisioning
+→ H5 high-impact infra
+→ H6 integrated autonomy
+```
+
+La meta H4 incluye que Hermes pueda **instalar servicios nuevos, configurarlos, levantarlos, integrarlos con observabilidad/backups y destruirlos cuando corresponda**, dentro de authority aprobada y con rollback/evidencia.
+
+H5/H6 agregan networking, storage/cluster de mayor blast radius y recoveries multi-capa sólo después de demostrar seguridad operacional en etapas anteriores.
 
 ## 🚦 Rollout de Infrastructure Operations
 
@@ -158,7 +250,7 @@ La madurez de infraestructura se versiona de forma independiente de la madurez d
 | **H1 — Backup & Storage** | backups, restore evidence, storage health, TrueNAS/PBS/targets relacionados según diseño vigente | backups verificables + restore drill + operación sin intervención shell humana habitual |
 | **H2 — Proxmox Lifecycle** | inspect/start/stop/reboot/create/clone/configurar VMs/LXC dentro de scopes definidos | lifecycle completo certificado con target proof y rollback |
 | **H3 — Guest & Service Operations** | Linux, Windows, Docker, systemd, filesystem/config y restart de servicios | diagnóstico + reparación de un servicio DEV/test sin intervención humana |
-| **H4 — Provisioning** | levantar nuevas VMs/LXC/containers y software requerido desde cero | provisioning reproducible + evidencia + registro durable |
+| **H4 — Provisioning** | levantar VMs/LXC/containers, instalar/configurar software, onboarding backup/observability y teardown controlado | servicio DEV/test provisionado y retirado reproduciblemente con evidencia |
 | **H5 — High-impact Infrastructure** | networking, cluster/storage de alto impacto y operaciones con blast radius mayor | gates específicos, recovery probado y autoridad explícitamente habilitada |
 | **H6 — Integrated Autonomy** | coordinación end-to-end entre capas y recovery de incidentes | runbooks/skills maduros + ejercicios de recovery + intervención humana excepcional |
 
@@ -246,16 +338,17 @@ descubrir el target real
 → actualizar Agents-OS
 ```
 
-Para Infrastructure Operations, el equivalente es que Hermes pueda recibir un objetivo operativo —por ejemplo proteger un nuevo servicio, crear una VM DEV o recuperar un daemon— y completar la operación dentro de su autoridad vigente con target proof, rollback y evidencia.
+Para Infrastructure Operations, el equivalente es que Hermes pueda recibir un objetivo operativo —por ejemplo proteger un nuevo servicio, crear una VM DEV, instalar/configurar una aplicación o recuperar un daemon— y completar la operación dentro de su authority vigente con target proof, rollback y evidencia.
 
 ## 📊 Estado actual
 
 - **Proyecto creado:** 2026-09-14.
-- **Diseño macro:** frozen para iniciar ejecución: dos workstreams independientes, management plane nativo y MCP Access Plane separado.
-- **Infrastructure Operations:** autoridad incremental aún por bootstrap; H0/H1 son el inicio previsto.
+- **Plan de implementación reordenado:** Bootstrap/Human Exit → Agent Access autonomy → Echo/Forge blockers → Backup/Storage → full Infrastructure autonomy.
+- **Bootstrap:** activo como [[HERMES — Bootstrap & Self-Sufficiency]].
+- **Infrastructure Operations:** authority incremental aún por bootstrap; ejecución H0/H1 queda después del cierre del P0 Echo/Forge.
 - **Agent Access Operations:** existe un MCP Access Plane funcional y en evolución bajo [[AGENT-PLATFORM - MCP Access Plane]], pero Hermes todavía no dispone del ciclo autónomo completo A0→A5.
 - **Dependencias ya existentes:** [[BACKUP-DR-OWNER-PROJECT]] para Backup/DR y [[AGENT-PLATFORM - MCP Access Plane]] para la implementación MCP actual.
-- **Prioridad inmediata del programa:** habilitar autonomía de Agent Access Operations para desbloquear desarrollo sin comprometer el diseño de administración integral de Aranea.
+- **Prioridad inmediata:** completar B0-B4 y sacar al owner del loop antes de resolver más MCPs manualmente.
 
 ## 🧱 Entrega de desarrollo
 
@@ -280,30 +373,37 @@ views:
 ## ✅ Tareas
 
 > [!note]+ Cockpit humano
-> El detalle vive en los dos proyectos `owner: agent`. Este proyecto conserva sólo una tarea puente por workstream.
+> Los dos workstreams son permanentes. Bootstrap es transitorio y debe cerrarse primero. El detalle operativo vive en cada proyecto `owner: agent`.
 
-- [ ] [[HERMES — Infrastructure Operations]] arrancar + seguimiento #owner/me #type/supervision #area/aranea
-- [ ] [[HERMES — Agent Access Operations]] arrancar + seguimiento #owner/me #type/supervision #area/aranea
+- [/] [[HERMES — Bootstrap & Self-Sufficiency]] sacar al owner del loop + seguimiento #owner/me #type/supervision #area/aranea
+- [ ] [[HERMES — Agent Access Operations]] autonomía MCP + desbloqueo Echo/Forge #owner/me #type/supervision #area/aranea
+- [ ] [[HERMES — Infrastructure Operations]] backups → administración integral #owner/me #type/supervision #area/aranea
 
 ## 📆 Bitácora
 
+- **2026-09-14** — Se reordena la implementación para minimizar intervención humana: bootstrap transitorio primero; luego autonomía MCP; después blockers Echo/Forge; luego Backup/DR; finalmente expansión H2-H6.
 - **2026-09-14** — Proyecto creado. Se separan formalmente las responsabilidades de administración integral del homelab y habilitación MCP para agentes. Se congela el principio de management path independiente y el rollout dual H0→H6 / A0→A5.
 
 ## 🧭 Decisiones
 
-- **D-01 — Dos workstreams independientes.** Infrastructure Operations y Agent Access Operations tienen autoridad, herramientas, credenciales y criterios de madurez distintos.
-- **D-02 — Hermes orquesta; operadores ejecutan.** Se prefieren perfiles/subagentes especializados sobre un agente único con todas las herramientas siempre disponibles.
+- **D-01 — Dos workstreams independientes.** Infrastructure Operations y Agent Access Operations tienen authority, herramientas, credenciales y criterios de madurez distintos.
+- **D-02 — Ariadna/Hermes orquesta; operadores ejecutan.** Skills/connections separadas son el default inicial; perfiles/subagentes adicionales sólo con beneficio material de aislamiento.
 - **D-03 — MCP es consumer plane, no recovery plane.** El MCP Access Plane sirve a agentes de desarrollo; Hermes conserva interfaces administrativas nativas para operar/recuperar servicios.
-- **D-04 — Rollout gradual.** Storage/backups abre el carril de infraestructura; agent enablement puede avanzar en paralelo a mayor velocidad.
+- **D-04 — Secuencia inicial serial.** Primero Human Exit, luego Access Plane, luego Echo/Forge, luego Backup/DR y después infraestructura completa. No se paraleliza mientras el owner siga siendo dependencia operativa.
 - **D-05 — Existing systems remain canonical.** Backup/DR y MCP Access Plane existentes se reutilizan; este proyecto no duplica su source of truth.
+- **D-06 — Owner Action Bundle.** El trabajo manual de bootstrap debe pedirse batcheado y minimizarse; cada repetición futura se trata como deuda de automatización.
 
 ## 🔗 Docs / Links
 
+- [[HERMES — Bootstrap & Self-Sufficiency]] — bootstrap transitorio y Human Exit Gate.
+- [[HERMES — Agent Access Operations]] — autonomía del capability plane y desbloqueo de Echo/Forge.
+- [[HERMES — Infrastructure Operations]] — Backup/Storage y expansión a administración integral.
+- [[Ariadna]] — identidad operativa existente sobre Hermes Agent.
 - [[Aranea]] — área del homelab.
-- [[BACKUP-DR-OWNER-PROJECT]] — diseño/proyecto canónico de Backup/DR usado por el rollout H1.
+- [[BACKUP-DR-OWNER-PROJECT]] — diseño/proyecto canónico de Backup/DR usado por H1.
 - [[AGENT-PLATFORM-OWNER-PROJECT]] — iniciativa donde vive el MCP Access Plane existente.
 - [[AGENT-PLATFORM - MCP Access Plane]] — source of truth operativo del capability plane MCP.
-- [[aranea-mcps-expert]] — skill agent-facing canónica del MCP plane, según el proyecto existente.
+- [[aranea-mcps-expert]] — skill agent-facing canónica del MCP plane; no se convierte en operador privilegiado.
 
 ## 💡 Ideas
 
@@ -314,11 +414,12 @@ views:
 
 ### Motivos / principios
 
-- La prioridad es **autonomía útil y recuperable**, no maximizar privilegios ni construir una plataforma genérica antes de tiempo.
+- La prioridad inmediata no es darle más herramientas al owner: es eliminar al owner como relay técnico.
+- La autonomía se expande por authority certificada y escenarios reales, no por entregar root global anticipadamente.
 - Una capability sólo agrega valor cuando el consumidor real puede usarla y Hermes puede recuperarla si falla.
 
 ### Memoria pública / interna
 
-- **Memoria pública:** este proyecto y sus dos workstreams son la fuente durable de estado, decisiones, etapas y blockers del programa.
+- **Memoria pública:** este proyecto, Bootstrap y sus dos workstreams son la fuente durable de estado, decisiones, etapas y blockers del programa.
 - **Memoria interna:** conocimiento efímero del agente sólo se conserva si cambia el plan, una decisión o un procedimiento reusable.
 - **Motivo:** permitir continuidad entre sesiones y agentes sin depender del chat ni duplicar facts de Backup/DR o MCP Access Plane.
