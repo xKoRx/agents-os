@@ -21,3 +21,9 @@
 - Se movieron 13 skills no-agents-os desde `80-agents/skills/` a `30-resources/agents/skills/` (signals-*, pr-description, human-first-technical-writing, y las 8 de evidencia/validación); el core quedó reservado a comportamientos de AGENTS OS.
 - Se crearon los routers de dominio `meli-agent-dev` y `aranea-agent-dev` (excluyentes entre sí); `aranea-mcps-expert` quedó subordinada a `aranea-agent-dev` como única puerta MCP de Aranea.
 - `80-agents/skills/INDEX.md` se reescribió en formato índice wiki (core + registro federado enlazado); este `00-index.md` incorporó las 18 skills como filas del catálogo.
+
+## [2026-09-13] update | Aranea MCP Kafka/Flink
+
+- `aranea-agent-dev` y `aranea-mcps-expert` quedaron alineadas con las familias Kafka y Flink sin duplicar mecánica: la expert sigue siendo router central y deriva a runbooks de familia bajo `30-resources/runbooks/`.
+- Flink DEV usa dos superficies complementarias: `aranea-flink-dev-admin` para control plane y `aranea-ssh` + `docker-echo-dev-operator` para host/runtime; PROD queda diferido strict-RO.
+- El índice de agents y el índice/log de runbooks se actualizaron para incluir `aranea-kafka-mcp` y `aranea-flink-mcp` como autoridades mecánicas canónicas.
