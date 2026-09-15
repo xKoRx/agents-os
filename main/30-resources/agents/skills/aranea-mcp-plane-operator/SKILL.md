@@ -88,4 +88,7 @@ SoT update:      <nota/runbook actualizado | none>
 - Scripts con `${...}`/regex van por scp/base64-file, nunca heredoc-through-ssh.
 - Sin baseline previo no se interviene; sin server smoke no se declara repair.
 - No introducir topología nueva ni Compose: la arquitectura canónica manda; desviación requiere decisión explícita en la nota de arquitectura.
+- La evidencia runtime vigente (`tools/list`, health, mounts, digests reales) vence cualquier documentación histórica; ante contradicción, re-clasificar el estado antes de intervenir.
+- Toda boundary de seguridad se certifica con probe positivo **y** negativo (auth vs unauth → 401, tool esperada vs tool rechazada/ausente); la prueba positiva sola no certifica.
+- Todo cambio reusable exige rollback evidence (restauración probada o path documentado con verificación) y post-condición de drift cero: cualquier delta no intencional se revierte inmediatamente.
 - Delegar procedimientos por familia a los runbooks; esta skill no duplica endpoints ni inventarios.
