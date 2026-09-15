@@ -146,6 +146,10 @@ No existe tool de escritura (`create_/update_/delete_` ausentes de la superficie
    proxy bearer en la red dedicada.
 6) serverInfo.version reporta "(devel)" aunque la imagen sea el digest 1.4.2 pinneado;
    la evidencia de versión es el digest de imagen, no ese string.
+7) Los nombres de argumentos difieren por tool (1.4.2): query_prometheus usa
+   expr/startTime/endTime/stepSeconds (NO "query"); query_loki_logs usa
+   logql/startRfc3339/endRfc3339 (NO startTime/endTime); datasourceUid es
+   OBLIGATORIO en ambos (Loki P8E80F9AEF21F6940, Prometheus PBFA97CFB590B2093).
 ```
 
 ## Certificación material 2026-09-15
