@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-09-14"
+updated: "2026-09-15"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
@@ -93,6 +93,7 @@ Hasura PROD RO    http://mcps.lab.aranea.cl:3005/mcp
 Hasura DEV admin  http://mcps.lab.aranea.cl:3006/mcp
 Kafka DEV admin   http://mcps.lab.aranea.cl:3007/mcp
 Flink DEV admin   http://mcps.lab.aranea.cl:3008/mcp
+Observability RO  http://mcps.lab.aranea.cl:3009/mcp
 ```
 
 La mera presencia de un bloque en config no demuestra que la capability esté conectada: el proceso cliente también debe heredar las env vars requeridas y completar handshake MCP.
