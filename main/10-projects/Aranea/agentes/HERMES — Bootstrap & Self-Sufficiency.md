@@ -10,7 +10,7 @@ parent: "[[HERMES — ARANEA AUTONOMOUS OPERATIONS]]"
 sprint:
 start: 2026-09-14
 due:
-progress: 40
+progress: 60
 repo:
 jira:
 prs:
@@ -26,7 +26,7 @@ tags:
   - agent/hermes
   - action/bootstrap
 created: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-09-15"
 ---
 **B2 cerrado 2026-09-14** — ver Estado actual y change_log `80-agents/journal/logs/2026-09-14-b2-real-consumer-onboarding-closed.md`.
 
