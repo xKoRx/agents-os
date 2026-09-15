@@ -20,6 +20,7 @@ tags:
 ## Gaps
 
 - Docker Hub gateway requiere `%2F` en namespaces anidados; el 404 resultante se confunde fácilmente con "tag inexistente". El digest final debe salir siempre de `registry-1.docker.io` o del tag API con encoding correcto.
+- Graphify degradado al cierre: `query` timeout (60s) y `explain` reporta "índice stale; el refresh ya falló" sin resolver notas nuevas del día. Recomendado: corrida de `agents-os-graphify-maintenance` (rebuild explícito) fuera de esta sesión.
 
 ## Pain Pattern Candidate
 
