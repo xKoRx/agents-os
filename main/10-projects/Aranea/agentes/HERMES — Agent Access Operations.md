@@ -387,9 +387,9 @@ _No existe un único repo. La mayoría de cambios serán configuración/infraest
 
 ### A0 — Reconciliar y bootstrap
 
-- [ ] A0.1 Cargar [[AGENT-PLATFORM - MCP Access Plane]] y reconciliar estado real desde Hermes #owner/agent #type/admin #area/aranea
-- [ ] A0.2 Identificar management path real de `mcps` y demostrar que no depende de sus MCP #owner/agent #type/admin #area/aranea
-- [ ] A0.3 Clasificar authority Hermes para inspect/repair/configure/deploy/grant #owner/agent #type/admin #area/aranea
+- [x] A0.1 Cargar [[AGENT-PLATFORM - MCP Access Plane]] y reconciliar estado real desde Hermes #owner/agent #type/admin #area/aranea
+- [x] A0.2 Identificar management path real de `mcps` y demostrar que no depende de sus MCP #owner/agent #type/admin #area/aranea
+- [x] A0.3 Clasificar authority Hermes para inspect/repair/configure/deploy/grant #owner/agent #type/admin #area/aranea
 - [ ] A0.4 Congelar Capability Request/Grant v1 en forma mínima, sin crear plataforma adicional #owner/agent #type/admin #area/aranea
 
 ### A1 — Repair loop
@@ -427,6 +427,7 @@ _No existe un único repo. La mayoría de cambios serán configuración/infraest
 ## 📆 Bitácora
 
 - **2026-09-14** — Workstream creado. Los blockers de Echo/Forge pasan a ser acceptance workload. Se preserva [[AGENT-PLATFORM - MCP Access Plane]] como source of truth del plano MCP y se fija la meta A0→A5 de autonomía Hermes.
+- **2026-09-15** — A0 ejecutado sobre el primer workload real (Echo runtime access): Access Plane reconciliado (10 capabilities vivas, puertos 3000–3009, todos los proxies 401 unauth). Target runtime Echo resuelto con evidencia: `.211` muerto, runtime vivo = PROD `192.168.31.71` (`prod.echo.gateway.lab.aranea`, `/health` 200); DEV runtime NOT_DEPLOYED. Profile VIEWER `echo-runtime-prod` staged en `aranea-ssh` vía `mcps-ops` (AUTO; backup + rollback byte-identical disponibles). Certificación consumer Daedalus real RESULT: PASS (H2 positivo+negativo). Observación runtime PROD operativa vía `aranea-observability-ro` (logs/metrics en vivo). Único residual GATED: owner key install en `.71`. Evidencia: [[ACCESS-CERTIFICATION]] § Observación runtime Echo · change log `2026-09-15-echo-runtime-access-observation`.
 
 ## 🧭 Decisiones
 
@@ -436,6 +437,7 @@ _No existe un único repo. La mayoría de cambios serán configuración/infraest
 - **A-D04:** Hermes usa management plane independiente para reparar runtime/servicios del access plane.
 - **A-D05:** PROD mutation no es autónoma en v1.
 - **A-D06:** Agents-OS + configs actuales son registry suficiente para v1; no capability DB/dashboard/policy engine todavía.
+- **A-D07:** Reuse-first verificado en la práctica: un blocker de observación runtime (Echo) se resolvió EXTENDIENDO `aranea-ssh` con un profile viewer scoped (staging AUTO vía `mcps-ops`), sin capability nueva. Quirk operativo: el pipeline upstream evalúa connect antes que policy — un target sin key instalada falla cerrado en connect; el DENY explícito (H2) se certifica después de instalar la credencial.
 
 ## 🔗 Docs / Links
 
