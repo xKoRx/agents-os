@@ -22,6 +22,8 @@ tags:
 ```text
 ACCESS_CERTIFICATION_PARTIAL — run 2026-09-14
 H1 RESOLVED 2026-09-15 · H2 RESOLVED 2026-09-15 (remediation run, evidencia abajo)
+Echo runtime observation: PARCIALMENTE RESUELTO 2026-09-15 (logs+metrics PROD en vivo vía
+aranea-observability-ro; SSH viewer echo-runtime-prod staged — pending owner key install)
 ```
 
 Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary viewer SSH no aplicado; credenciales upstream expuestas por `export_metadata`) y varias superficies con verbos no demostrables o no ejercidos por diseño. No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
@@ -51,6 +53,17 @@ Ejecutada por Ariadna (Hermes) vía management path nativo `mcps-ops`; certifica
   - `docker-echo-dev-operator`: `run-command docker ps` diagnóstico PASS
   - `sqx-zeus` (operator): read PASS, run PASS (operators no afectados)
 - Rollback demostrado: recrear `ssh-mcp` con `local/ssh-mcp:2.8.0-d2d7696` (imagen base retenida) + config sin cambios.
+
+### Observación runtime Echo — 2026-09-15 (staging + observabilidad)
+
+Ejecutada por Ariadna (Hermes) vía management path `mcps-ops` + certificación consumer desde Daedalus real. Resuelve por vía observacional el prerrequisito de observación runtime Echo (CERT-E04-01/F-04) sin mutar el host PROD:
+
+- **Target resuelto con evidencia runtime:** `.211:8090` (referencia histórica de la matriz Echo) está MUERTO (22/8090 closed). El runtime Echo vivo es **PROD** `192.168.31.71` = `prod.echo.gateway.lab.aranea` (PTR real; `GET /health` → 200 `{"status":"ok"}`; 8082 cerrado; error 404 estilo Go net/http; coincide con webhooks del hallazgo H1 y con logs `env=production, host=echo`). El runtime DEV no está desplegado (docker-echo-dev = sólo Flink/Hasura/Portainer, verificado por Docker vía operator root).
+- **Viewer staged en `aranea-ssh`:** profile `echo-runtime-prod` (`echo-dev@192.168.31.71:22`, `role=viewer`, `readOnly=true`, `group=prod`, host key pinneada `zPHN…wdfU`, keyRef existente `/run/ssh-keys/echo-dev/id_ed25519`). Config `22664e96…` → `047d00e7…`; backup `/tmp/config.toml.pre-echo-runtime-prod` en mcps; defecto transitorio de deploy (modo/ownership del config tras el patch → crash loop) corregido a `600 65532:65532`; resto del plane sin drift. **PENDING_OWNER_GATE:** ninguna identidad del plane (`echo-dev`, `id_ed25519`) ni local está autorizada en `.71` (12 combinaciones probeadas → Permission denied). Consumidor no puede leer aún; H2 deny explícito en este perfil será observable post-instalación (orden upstream: connect → policy).
+- **Enforcement H2 re-certificado consumer-side (Daedalus real, RESULT: PASS):** initialize PASS (SSH MCP Server 2.8.0), 11 tools, 7 perfiles visibles; `run-command echo` en `mt5-kronos` → `POLICY_DENIED … read-only-tool` MUST DENY ✓; `read-command whoami` viewer PASS (`worker-kronos\echo-dev`); en `echo-runtime-prod` el `run-command` falla cerrado en connect (nada ejecuta) y `read-command` queda en `Permission denied` esperado.
+- **Observación runtime PROD operativa vía `aranea-observability-ro`:** sonda desde mcps (bearer stdin) — initialize PASS, 22 tools RO, `query_loki_logs {job="echo-core"}` → líneas reales en vivo (`env=production`, `host=echo`, `service=echo-core`, `account_sync: flushed snapshots`, `inst_snapshot: updated` broker ORION GOLD, source `github.com/xKoRx/echo/v3/core/internal/telemetry.go`), `query_prometheus up` instant → 5 series reales. Quirks 1.4.2 aplicados: args `logql/startRfc3339/endRfc3339/expr`, `datasourceUid` obligatorio (Loki `P8E80F9AEF21F6940`, Prometheus `PBFA97CFB590B2093`).
+- **Finding de higiene SSH:** el host key ED25519 de `.71` es IDÉNTICO al de `sqx-zeus` (`SHA256:zPHNJq9WlQofIib7Rx1gkCyAtF+HeoMeWPXeltowdfU`) — clon sin regenerar host key (mismo patrón corregido en Hera/Kronos 2026-09-10). Rotación de host key en `.71` = owner action sugerida (no bloqueante).
+- Scripts de smoke eliminados de mcps/Daedalus/local; sin secrets en chat/vault; sin mutación en `.71`.
 
 ### Post-condición remediation (verificada)
 
