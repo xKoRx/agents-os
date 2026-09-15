@@ -1,12 +1,34 @@
+---
+type: doc
+schema_version: 1
+status: active
+area: "[[Personal]]"
+project: "[[AGENTS OS - Context Hygiene and Canonical Integrity]]"
+related:
+  - "[[agents-os-doctor]]"
+aliases:
+  - Phase 4 Aggregation Specification
+tags:
+  - kind/doc
+  - project/agentsos
+  - tech/agents-os
+created: "2026-09-13"
+updated: "2026-09-14"
+---
+
 # AGENTS OS Doctor — Phase 4 Aggregation Specification
 
-Status: **PLANNED / NOT IMPLEMENTED**
+## Propósito
+
+Status: **IMPLEMENTED / OWNER REVIEW**
 
 This document is the implementation contract for the Phase 4 evolution of
-`agents-os-doctor`. It does not change runtime behavior by itself. Until the
-Phase 4 acceptance gate is complete, the executable at
-`80-agents/skills/agents-os-doctor/scripts/doctor.py` remains the current
-structural Doctor and must not be described as the unified health surface.
+`agents-os-doctor`. Runtime is implemented at
+`80-agents/skills/agents-os-doctor/scripts/doctor.py`; independent adversarial
+review closed `READY` and final acceptance remains with the owner. The contract still governs future
+changes and does not itself execute checks.
+
+## Contenido
 
 ## 1. Goal
 
@@ -262,6 +284,10 @@ confidence
 path/ref when applicable
 ```
 
+Structural `LOW` findings use normalized `status: INFO`: they remain visible in
+records and metrics but do not affect component verdict or strict exit policy.
+`INFO` is a finding status, never a provider verdict.
+
 Do not force a provider to invent fields it cannot support. Missing data stays
 null/absent/unknown according to the final schema decision.
 
@@ -280,6 +306,8 @@ Examples:
   passed.
 
 Doctor aggregates. Providers decide their own checks.
+This includes Context's `RULES-FIDELITY-ANCHORS`: Context emits the record and
+count; Doctor consumes them without inspecting provider-specific gate fields.
 
 ## 10. Overall Verdict
 
@@ -538,6 +566,10 @@ real vault before acceptance.
 
 ### P4-D — Adversarial Verification
 
+Status: **DONE — external verdict `READY`**. The verifier independently
+reproduced the final fixes, provider selftests, source/export execution,
+read-only hash evidence and DEFAULT build. No findings remain open.
+
 Fresh verifier must try to prove:
 
 - Doctor duplicates provider business logic;
@@ -570,28 +602,28 @@ After implementation is verified:
 Do not mark Phase 4 DONE until:
 
 ```text
-[ ] P4-A real provider contract audited
-[ ] no provider business logic duplicated
-[ ] existing structural Doctor checks preserved or explicitly re-owned
-[ ] one canonical Doctor entrypoint
-[ ] sequential execution demonstrated
-[ ] provider FAIL does not suppress independent providers
-[ ] provider ERROR distinguishable from Agents-OS FAIL
-[ ] PASS/FAIL/WARN/SKIP preserved
-[ ] concise human summary
-[ ] machine-readable JSON
-[ ] DEFAULT/MELI/ARANEA context baseline surfaced without false precision
-[ ] canonical large finding sets bounded in human output
-[ ] --strict policy verified
-[ ] --component verified
-[ ] --live remains read-only
-[ ] baseline start/end captured where Git is available
-[ ] no canonical mutations during Doctor run
-[ ] orchestration selftests green
-[ ] all provider selftests remain green
-[ ] real-vault smoke completed
-[ ] fresh adversarial verifier completed
-[ ] SKILL.md reflects implemented reality, not planned behavior
+[x] P4-A real provider contract audited
+[x] no provider business logic duplicated
+[x] existing structural Doctor checks preserved or explicitly re-owned
+[x] one canonical Doctor entrypoint
+[x] sequential execution demonstrated
+[x] provider FAIL does not suppress independent providers
+[x] provider ERROR distinguishable from Agents-OS FAIL
+[x] PASS/FAIL/WARN/SKIP preserved
+[x] concise human summary
+[x] machine-readable JSON
+[x] DEFAULT and installed federated context packs surfaced without false precision
+[x] canonical large finding sets bounded in human output
+[x] --strict policy verified
+[x] --component verified
+[x] --live remains read-only
+[x] baseline start/end captured where Git is available
+[x] no canonical mutations during Doctor run
+[x] orchestration selftests green
+[x] all provider selftests remain green
+[x] real-vault and built-artifact smoke completed
+[x] fresh adversarial verifier completed
+[x] SKILL.md reflects implemented reality, not planned behavior
 ```
 
 ## 23. Non-goals

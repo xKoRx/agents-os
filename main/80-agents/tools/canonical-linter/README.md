@@ -1,8 +1,30 @@
+---
+type: doc
+schema_version: 1
+status: active
+area: "[[Personal]]"
+project: "[[AGENTS OS - Context Hygiene and Canonical Integrity]]"
+related:
+  - "[[agents-os-doctor]]"
+aliases:
+  - canonical-linter
+tags:
+  - kind/doc
+  - project/agentsos
+  - tech/agents-os
+created: "2026-09-13"
+updated: "2026-09-14"
+---
+
 # Canonical / Deprecation Linter (AGENTS OS, PHASE 3 — P3-B)
 
-Linter determinista de higiene canónica y deprecación para AGENTS OS. Es el tercer pilar junto al Conformance Harness (correctness/contracts) y context-budget (efficiency/isolation): este pilar cubre **knowledge hygiene** — canonicalidad, deprecación, archive y referencias. Implementa los checks CL-01..CL-20 ratificados en `artifacts/p3-canonical-linter-spec.md` a partir del modelo de `artifacts/p3-canonical-model.md`.
+## Propósito
+
+Linter determinista de higiene canónica y deprecación para AGENTS OS. Es el tercer pilar junto al Conformance Harness (correctness/contracts) y context-budget (efficiency/isolation): este pilar cubre **knowledge hygiene** — canonicalidad, deprecación, archive y referencias. Implementa los checks CL-01..CL-20 ratificados en `artifacts/p3-canonical-linter-spec.md` y el invariante correctivo CL-21 de PHASE 3.5.
 
 Propiedades: Python 3.9+ stdlib only, determinista, read-only sobre todo el vault salvo `results/` propio, sin daemon/DB/red. **Nunca auto-corrige**: reporta findings con `recommended_action` propuesto para el owner.
+
+## Contenido
 
 ## Qué chequea
 
@@ -28,8 +50,9 @@ Propiedades: Python 3.9+ stdlib only, determinista, read-only sobre todo el vaul
 | CL-18 | HOT-PATH | Destino de routing del hot path (Minimal Reads de routers/prefs, cold steps) no vigente o archivado | FAIL | bootstrap Hard Rules; constitución regla 10 |
 | CL-19 | METADATA | `type: resource`/`methodology` con `status: active` sin `last_verified` | WARN | 00-RESOURCE-WIKI (freshness event-driven) |
 | CL-20 | METADATA | `memory_state` en nota cuyo tipo declarado ≠ `agent_memory` | WARN report-only | schema-contract; metadata-schema |
+| CL-21 | CANONICALITY | Misma identidad de skill o runbook presente en autoridad core y federada | FAIL | core-export; Context Hygiene PHASE 3.5 |
 
-Sólo MACHINE-DETERMINISTIC produce FAIL (lista completa en el spec sección 2). "No parece actualizado" no es un check; la duplicación semántica no existe como check (sólo los proxies CL-06/CL-07/CL-08).
+Sólo MACHINE-DETERMINISTIC produce FAIL (lista completa en el spec sección 2 y addendum PHASE 3.5). "No parece actualizado" no es un check; CL-21 cubre identidad estructural core↔federado, no equivalencia semántica de contenido.
 
 ## Cómo correrlo
 
@@ -39,6 +62,9 @@ python3 80-agents/tools/canonical-linter/canonical_linter.py
 
 # JSON a stdout + results; resumen a stderr
 python3 80-agents/tools/canonical-linter/canonical_linter.py --json
+
+# JSON sin persistir un record (modo usado por el Doctor unificado)
+python3 80-agents/tools/canonical-linter/canonical_linter.py --json --no-write
 
 # run dirigido por el operador: un solo check o una categoría
 python3 80-agents/tools/canonical-linter/canonical_linter.py --check CL-14
@@ -78,7 +104,7 @@ Desduplicación por scope (spec sección 2 y modelo sección 6): el linter NO re
 ## Qué NO chequea
 
 - "No parece actualizado" como criterio general (00-RESOURCE-WIKI prohíbe la cadencia global; CL-19 sólo reporta la presencia de `last_verified`).
-- Duplicación semántica de contenido (regla 5): sólo proxies mecánicos CL-06/CL-07/CL-08; la competencia de fuentes canónicas es HUMAN-REVIEW proposal-only (hygiene-review).
+- Duplicación semántica de contenido (regla 5): sólo proxies mecánicos CL-06/CL-07/CL-08; CL-21 detecta únicamente identidad estructural entre las dos raíces de autoridad. La competencia de fuentes por significado sigue siendo HUMAN-REVIEW proposal-only (hygiene-review).
 - Elección del sucesor correcto en deprecaciones sin campo (CL-05 es WARN con proxy declarado).
 - Drift entre callout renderizado y frontmatter; obediencia real de carga en sesión viva (UNOBSERVABLE); vigencia factual de notas activas.
 - Duplicados cross-repo declarados fuera del vault (p.ej. aranea-mcps-expert).

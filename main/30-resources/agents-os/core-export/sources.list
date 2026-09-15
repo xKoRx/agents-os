@@ -2,6 +2,7 @@
 # file:     include one exact file.
 # tree:     include every file below an exact directory.
 # globtree: expand a directory glob, then include every file below each match.
+# exclude:  remove one exact file selected by a broader tree.
 #
 # What is deliberately absent: the personal profile (the distribution ships a
 # standard one), 80-agents/memory/internal/, the journal's own contents, the
@@ -19,9 +20,16 @@ file|core|30-resources/LLM Wiki.md
 # --- Executable contracts (schema, note types, skills, Graphify) ---
 tree|contracts|80-agents/skills/_shared
 
+# --- Unified Doctor providers (runtime only; no results/artifacts/selftests) ---
+file|doctor-provider|80-agents/tools/conformance-harness/agents_os_conformance.py
+file|doctor-provider|80-agents/tools/conformance-harness/rules.py
+file|doctor-provider|80-agents/tools/context-budget/context_budget.py
+file|doctor-provider|80-agents/tools/canonical-linter/canonical_linter.py
+
 # --- Core AGENTS OS skills ---
 file|skills|80-agents/skills/INDEX.md
 globtree|skills|80-agents/skills/agents-os-*
+exclude|skills|80-agents/skills/agents-os-doctor/P4-ADVERSARIAL-HANDOFF.md
 
 # --- Portable, domain-agnostic skills ---
 tree|skills|30-resources/agents/skills/human-first-technical-writing
@@ -42,6 +50,12 @@ tree|templates|70-templates
 tree|public-memory|80-agents/memory/public/decision/agents-os
 tree|public-memory|80-agents/memory/public/known-error/agents-os
 tree|public-memory|80-agents/memory/public/learning/agents-os
+exclude|public-memory|80-agents/memory/public/learning/agents-os/diff-audit-diagnostic-leftovers.md
+exclude|public-memory|80-agents/memory/public/learning/agents-os/pr-branch-clean-reconstruction.md
+exclude|public-memory|80-agents/memory/public/learning/agents-os/preserve-legacy-semantics-when-extending-feature.md
+exclude|public-memory|80-agents/memory/public/learning/agents-os/surface-external-repo-policy-conflicts-before-writing.md
+exclude|public-memory|80-agents/memory/public/known-error/agents-os/grid-skill-version-outdated.md
+exclude|public-memory|80-agents/memory/public/known-error/agents-os/review-finding-heredado-confundido-con-regresion.md
 file|public-memory|80-agents/memory/public/runbook/graphify-obsidian-install.md
 file|public-memory|80-agents/memory/public/runbook/agents-os-skill-authoring.md
 file|public-memory|80-agents/memory/public/runbook/resource-wiki-lint-reindex.md

@@ -362,6 +362,17 @@ def _skip(rec: Dict[str, Any], reason: str) -> Dict[str, Any]:
     return rec
 
 
+def _fidelity_record(state: str, details: str, evidence: List[str]) -> Dict[str, Any]:
+    """Expose the provider-owned pre-flight through the normal record schema."""
+    rec = _new_record("RULES-FIDELITY-ANCHORS", ["conformance fidelity pre-flight"])
+    rec["verdict"] = state
+    rec["details"] = details
+    rec["evidence"] = list(evidence)
+    if state == "SKIP":
+        rec["skip_reason"] = details
+    return rec
+
+
 def _finish(rec: Dict[str, Any], problems: List[str], pass_state: str, pass_details: str, fail_details: str, warns: Optional[List[str]] = None) -> Dict[str, Any]:
     if problems:
         rec["verdict"] = "FAIL"
@@ -463,11 +474,9 @@ def ctx_15_baseline(ctx, rules, harness) -> Dict[str, Any]:
     if profile is None:
         return _skip(rec, "perfil always de %s no resuelto (0 o >1 notas; bootstrap paso 1 / doctor Check 3)" % rules.USER_PREF_DIR)
     always = [rules.CONSTITUTION, profile, rules.GLOBAL_INTERNAL, rules.SKILLS_INDEX]
-    packs = {
-        "meli": [rules.ROUTERS["meli"]] + rules.ROUTER_PREFS["meli"],
-        "aranea": [rules.ROUTERS["aranea"]] + rules.ROUTER_PREFS["aranea"],
-    }
-    missing = harness.require_files(ctx.vault, always + [f for f in packs["meli"] + packs["aranea"]])
+    packs = {domain: [router] + rules.ROUTER_PREFS.get(domain, [])
+             for domain, router in sorted(rules.ROUTERS.items())}
+    missing = harness.require_files(ctx.vault, always + [rel for files in packs.values() for rel in files])
     if missing:
         return _skip(rec, "archivos del baseline ausentes en el vault: %s" % missing)
     rec["metrics"].append(metric("always_load_file_list", always, "files", "EXACT",
@@ -483,7 +492,7 @@ def ctx_15_baseline(ctx, rules, harness) -> Dict[str, Any]:
         rec["metrics"].append(metric("scope_pack_chars_%s" % domain, agg["chars"], "chars", "EXACT", "_size del harness"))
         rec["metrics"].append(metric("scope_pack_estimated_tokens_%s" % domain, agg["estimated_tokens"], "estimated_tokens",
                                      "ESTIMATED", "_size del harness + " + TOKENS_NOTE))
-    for rel in always + packs["meli"] + packs["aranea"]:
+    for rel in always + [path for files in packs.values() for path in files]:
         w = file_weight(harness, ctx.vault, rel)
         rec["evidence"].append("%s: bytes=%d chars=%d estimated_tokens=%d" % (
             rel, w["bytes"], w["chars"], w["estimated_tokens"]))
@@ -493,19 +502,17 @@ def ctx_15_baseline(ctx, rules, harness) -> Dict[str, Any]:
     cb_baseline = harness.context_baseline(ctx)
     h_always = cb_baseline.get("always_load_total_approx_tokens")
     h_packs = {dom: cb_baseline.get("scope_packs", {}).get(dom, {}).get("total_approx_tokens")
-               for dom in ("meli", "aranea")}
+               for dom in packs}
     consistent = (h_always == agg_always["estimated_tokens"]
-                  and h_packs["meli"] == weight_of(harness, ctx.vault, packs["meli"])["estimated_tokens"]
-                  and h_packs["aranea"] == weight_of(harness, ctx.vault, packs["aranea"])["estimated_tokens"])
-    rec["evidence"].append("cross-check context_baseline del harness (misma fuente _size): always=%s meli=%s aranea=%s; coincidencia con los agregados del medidor: %s" % (
-        h_always, h_packs["meli"], h_packs["aranea"], consistent))
+                  and all(h_packs[dom] == weight_of(harness, ctx.vault, files)["estimated_tokens"]
+                          for dom, files in packs.items()))
+    rec["evidence"].append("cross-check context_baseline del harness (misma fuente _size): always=%s packs=%s; coincidencia con los agregados del medidor: %s" % (
+        h_always, h_packs, consistent))
     rec["evidence"].append(TOKENS_NOTE)
-    problems = [] if consistent else ["context_baseline del harness no coincide con los agregados del medidor (bug de agregación): always %s vs %s, meli %s vs %s, aranea %s vs %s" % (
-        h_always, agg_always["estimated_tokens"], h_packs["meli"],
-        weight_of(harness, ctx.vault, packs["meli"])["estimated_tokens"], h_packs["aranea"],
-        weight_of(harness, ctx.vault, packs["aranea"])["estimated_tokens"])]
+    problems = [] if consistent else ["context_baseline del harness no coincide con los agregados del medidor (bug de agregación): always %s vs %s, packs %s" % (
+        h_always, agg_always["estimated_tokens"], h_packs)]
     return _finish(rec, problems, "PASS",
-                   "baseline-only (chars/4, C04): always-load y packs meli/aranea medidos con _size en el run; nunca criterio de fallo",
+                   "baseline-only (chars/4, C04): always-load y packs federados instalados medidos con _size en el run; nunca criterio de fallo",
                    "inconsistencia interna del baseline")
 
 
@@ -1369,6 +1376,32 @@ _FUNCS = {
     "CTX-14": ctx_14_surface,
 }
 
+# Context scenarios below intentionally encode concrete MELI/ARANEA fixtures.
+# Their absence is valid in the portable DEFAULT export and is not an execution
+# error. Baseline/default scenarios remain runnable without federated domains.
+SCENARIO_REQUIRED_DOMAINS = {
+    "CTX-02": ("meli", "aranea"),
+    "CTX-03": ("meli", "aranea"),
+    "CTX-05": ("meli", "aranea"),
+    "CTX-06": ("meli", "aranea"),
+    "CTX-07": ("meli", "aranea"),
+    "CTX-08": ("meli", "aranea"),
+    "CTX-09": ("meli", "aranea"),
+    "CTX-10": ("meli", "aranea"),
+    "CTX-11": ("meli", "aranea"),
+    "CTX-12": ("meli", "aranea"),
+    "CTX-13": ("meli", "aranea"),
+}
+
+
+def unavailable_domain_reason(scenario_id: str, rules) -> Optional[str]:
+    missing = [domain for domain in SCENARIO_REQUIRED_DOMAINS.get(scenario_id, ())
+               if domain not in rules.ROUTERS or not rules.ROUTER_PREFS.get(domain)]
+    if not missing:
+        return None
+    return ("dominio federado no instalado o sin pack completo: %s; "
+            "el escenario scoped no aplica a esta instalación DEFAULT" % ", ".join(missing))
+
 
 def _aggregate_totals(results: List[Dict[str, Any]]) -> Dict[str, Any]:
     by_id = {r["id"]: r for r in results}
@@ -1479,6 +1512,7 @@ def run_suite(vault_root: str, live: bool = False, scenario: Optional[str] = Non
     marker_ok = os.path.isfile(os.path.join(vault_root, MARKER))
     if not marker_ok:
         reason = "marker %s ausente bajo la raiz indicada: las reglas de AGENTS OS no aplican (AGENTS.md / spec sección 6)" % MARKER
+        doc["scenarios"].append(_fidelity_record("SKIP", "no ejecutable: %s" % reason, []))
         for sid in requested:
             rec = _new_record(sid, list(SCENARIOS[[s[0] for s in SCENARIOS].index(sid)][2]))
             doc["scenarios"].append(_skip(rec, reason))
@@ -1487,6 +1521,7 @@ def run_suite(vault_root: str, live: bool = False, scenario: Optional[str] = Non
             rules, harness = load_harness(vault_root)
         except Exception as exc:
             reason = "harness no disponible (%s: %s): los escenarios que dependen del modelo de sesión van a SKIP" % (type(exc).__name__, exc)
+            doc["scenarios"].append(_fidelity_record("SKIP", "no ejecutable: %s" % reason, []))
             for sid in requested:
                 rec = _new_record(sid, list(SCENARIOS[[s[0] for s in SCENARIOS].index(sid)][2]))
                 doc["scenarios"].append(_skip(rec, reason))
@@ -1502,6 +1537,7 @@ def run_suite(vault_root: str, live: bool = False, scenario: Optional[str] = Non
         doc["fidelity_gate"] = a_state
         doc["fidelity_details"] = a_details
         doc["fidelity_evidence"] = a_ev
+        doc["scenarios"].append(_fidelity_record(a_state, a_details, a_ev))
         gate_failed = a_state == "FAIL"
         operator_directed = scenario is not None
         for sid in requested:
@@ -1509,6 +1545,10 @@ def run_suite(vault_root: str, live: bool = False, scenario: Optional[str] = Non
             rec = _new_record(sid, reuses)
             if gate_failed and not operator_directed:
                 doc["scenarios"].append(_skip(rec, "gate: pre-flight RULES-FIDELITY-ANCHORS en FAIL (transcripción obsoleta); los resultados presupuestarios no son interpretables sobre una transcripción derivada (diseño sección 3)"))
+                continue
+            domain_reason = unavailable_domain_reason(sid, rules)
+            if domain_reason:
+                doc["scenarios"].append(_skip(rec, domain_reason))
                 continue
             fn = _FUNCS[sid]
             try:
@@ -1570,8 +1610,10 @@ def human_summary(doc: Dict[str, Any]) -> str:
     al = t.get("always_load")
     sp = t.get("scope_pack") or {}
     if al:
-        lines.append("baseline (baseline-only, chars/4, C04): always-load ≈ %s estimated_tokens · pack meli ≈ %s estimated_tokens · pack aranea ≈ %s estimated_tokens" % (
-            al.get("estimated_tokens"), sp.get("meli", {}).get("estimated_tokens"), sp.get("aranea", {}).get("estimated_tokens")))
+        parts = ["always-load ≈ %s estimated_tokens" % al.get("estimated_tokens")]
+        parts.extend("pack %s ≈ %s estimated_tokens" % (domain, values.get("estimated_tokens"))
+                     for domain, values in sorted(sp.items()))
+        lines.append("baseline (baseline-only, chars/4, C04): " + " · ".join(parts))
     for r in doc["scenarios"]:
         if r["verdict"] == "FAIL":
             lines.append("FAIL %s: %s" % (r["id"], r["details"]))
@@ -1588,6 +1630,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--scenario", help="corre un solo escenario CTX por id (run dirigido por el operador, sin gate) o RULES-FIDELITY-ANCHORS")
     ap.add_argument("--live", action="store_true", help="habilita CTX-14 (lectura names-only de configs de máquina vía el harness)")
     ap.add_argument("--conformance-json", help="adjunta los veredictos de un run del harness como evidencia cruzada (CTX-14), sin re-ejecutarlos")
+    ap.add_argument("--no-write", action="store_true", help="no persiste results/; integración read-only para el Doctor")
     args = ap.parse_args(argv)
 
     root = resolve_vault_root(args.vault_root)
@@ -1606,7 +1649,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.scenario and args.scenario not in valid_ids:
         print("ERROR: escenario desconocido: %s (validos: %s, RULES-FIDELITY-ANCHORS)" % (args.scenario, ", ".join(sid for sid, _, _ in SCENARIOS)), file=sys.stderr)
         return 2
-    doc = run_suite(root, live=args.live, scenario=args.scenario, write=True, conformance_json=conformance_json,
+    doc = run_suite(root, live=args.live, scenario=args.scenario, write=not args.no_write, conformance_json=conformance_json,
                     vault_root_arg=args.vault_root or "auto")
     if args.json:
         json.dump(doc, sys.stdout, indent=2, ensure_ascii=False)
@@ -1618,7 +1661,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(human_summary(doc))
         if doc.get("results_file"):
             print("[results] %s" % doc["results_file"])
-    fail = doc["counts"].get("fail", 0) > 0 or doc.get("fidelity_gate") == "FAIL"
+    fail = doc["counts"].get("fail", 0) > 0
     return 1 if fail else 0
 
 

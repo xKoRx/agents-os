@@ -244,11 +244,14 @@ def t3_preflight_red() -> None:
             fh.write("# bootstrap truncado\n\nContenido sin las citas transcritas.\n")
         doc = cb.run_suite(root, write=False)
         gate = doc["fidelity_gate"]
-        all_skip = all(r["verdict"] == "SKIP" for r in doc["scenarios"]) and doc["scenarios"]
-        motivated = all("gate" in (r.get("skip_reason") or "") for r in doc["scenarios"])
-        report("T3.preflight-rojo-todos-skip", gate == "FAIL" and bool(all_skip) and motivated,
-               "fidelity_gate=%s; %d/%d CTX en SKIP con motivo de gate (transcripción obsoleta)" % (
-                   gate, sum(1 for r in doc["scenarios"] if r["verdict"] == "SKIP"), len(doc["scenarios"])))
+        anchor = next(r for r in doc["scenarios"] if r["id"] == "RULES-FIDELITY-ANCHORS")
+        ctx_records = [r for r in doc["scenarios"] if r["id"].startswith("CTX-")]
+        all_ctx_skip = all(r["verdict"] == "SKIP" for r in ctx_records) and ctx_records
+        motivated = all("gate" in (r.get("skip_reason") or "") for r in ctx_records)
+        counted_once = doc["counts"]["fail"] == 1 and sum(r["verdict"] == "FAIL" for r in doc["scenarios"]) == 1
+        report("T3.preflight-rojo-fail-propio-y-ctx-skip", gate == "FAIL" and anchor["verdict"] == "FAIL" and bool(all_ctx_skip) and motivated and counted_once,
+               "fidelity_gate=%s contado una vez; %d/%d CTX en SKIP con motivo de gate" % (
+                   gate, sum(1 for r in ctx_records if r["verdict"] == "SKIP"), len(ctx_records)))
     finally:
         shutil.rmtree(root, ignore_errors=True)
 

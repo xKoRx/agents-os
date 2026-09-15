@@ -1,8 +1,10 @@
 ---
 type: doc
-scope: vault
+schema_version: 1
+status: active
+scope: project
 created: 2026-07-25
-updated: 2026-08-08
+updated: 2026-09-14
 project: "[[AGENTS OS - Hot Path y Cierre Silencioso]]"
 entities:
   - "[[AGENTS OS]]"
@@ -22,8 +24,12 @@ tags:
 
 # AGENTS OS Hot Path — End-to-End Benchmark Gate
 
+## Propósito
+
 Gate reproducible para validar que la iteración Hot Path cumple su tesis:
 **reducir tokens sin perder una fuente que cambie la decisión.**
+
+## Contenido
 
 ## Cuándo correrlo
 
@@ -105,7 +111,7 @@ El gate pasa cuando TODOS estos se cumplen:
 - **Swap-entity <4k** tokens para el nuevo pack.
 - **Fallback degradado funcional** — Graphify caído no rompe la sesión.
 - **Reporte de cierre correcto** en los cinco escenarios.
-- **`agents-os-doctor` pasa limpio** (0 HIGH, ≤ 3 MEDIUM aceptables).
+- **`agents-os-doctor --strict` no tiene `execution_status: ERROR` ni findings no aceptados.** Los cuatro componentes deben verse; un `FAIL` real de un provider no se convierte en falla del instrumento.
 - **Calidad de decisión ≥ 4/5** en escenarios 1-3 (no se perdió ninguna
   fuente que cambiara la decisión).
 

@@ -749,12 +749,12 @@ def sc_active_memory_domain_purity(ctx: Ctx) -> Tuple[str, str, List[str]]:
 # ---------------------------------------------------------------------------
 BASE_4 = [rules.CONSTITUTION, rules.USER_PREF_DIR + "rjara-agent-profile.md",
           rules.GLOBAL_INTERNAL, rules.SKILLS_INDEX]
-NOT_LOAD_DEFAULT = [
-    rules.ROUTERS["meli"], rules.ROUTERS["aranea"], rules.ARANEA_MCPS_EXPERT,
-    rules.ROUTER_PREFS["meli"][0], rules.ROUTER_PREFS["aranea"][0],
-    rules.AGENTS_OS_MAP, rules.FEDERATED_DOMAIN_INDEX, rules.AGENTS_OS_PROJECT,
-    rules.CONTINUITY_ARCHIVE,
-]
+NOT_LOAD_DEFAULT = (
+    list(rules.ROUTERS.values())
+    + [pref for prefs in rules.ROUTER_PREFS.values() for pref in prefs]
+    + [rules.ARANEA_MCPS_EXPERT, rules.AGENTS_OS_MAP, rules.FEDERATED_DOMAIN_INDEX,
+       rules.AGENTS_OS_PROJECT, rules.CONTINUITY_ARCHIVE]
+)
 MELI_ECHO_ACTIVE_NOTES = [
     "80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md",
     "80-agents/memory/internal/agent-memory/2026-09-05-echo-forge-full-golden-flow-continuity.md",
@@ -952,7 +952,7 @@ def sc_warm_default(ctx: Ctx) -> Tuple[str, str, List[str]]:
     s.turn = 2
     s.warm_turn({})
     problems = _warm_no_base_reopen(s, 2, evidence)
-    if any(rules.ROUTERS[d] in s.opens_in_turn(2) for d in ("meli", "aranea")):
+    if any(router in s.opens_in_turn(2) for router in rules.ROUTERS.values()):
         problems.append("router cargado en turno warm casual")
     if s.session_mode != "warm" or s.bootstrap_runs != 1:
         problems.append("modo/ritual incorrecto: mode=%s runs=%d" % (s.session_mode, s.bootstrap_runs))
@@ -1462,8 +1462,8 @@ def context_baseline(ctx: Ctx) -> Dict[str, Any]:
         out["always_load"][rel] = _size(ctx.vault, rel)
     total = sum((v or {}).get("approx_tokens_chars_over_4", 0) for v in out["always_load"].values() if v)
     out["always_load_total_approx_tokens"] = total
-    for domain, files in (("meli", [rules.ROUTERS["meli"]] + rules.ROUTER_PREFS["meli"]),
-                          ("aranea", [rules.ROUTERS["aranea"]] + rules.ROUTER_PREFS["aranea"])):
+    for domain, router in sorted(rules.ROUTERS.items()):
+        files = [router] + rules.ROUTER_PREFS.get(domain, [])
         pack = {rel: _size(ctx.vault, rel) for rel in files}
         ptot = sum((v or {}).get("approx_tokens_chars_over_4", 0) for v in pack.values() if v)
         out["scope_packs"][domain] = {"files": pack, "total_approx_tokens": ptot}
@@ -1503,6 +1503,34 @@ SCENARIOS: List[Tuple[str, str, Any]] = [
     # L2
     ("SESSION-SURFACE-EXPOSURE", "L2", sc_session_surface_exposure),
 ]
+
+# These scenarios assert concrete MELI/ARANEA fixtures. A portable DEFAULT
+# installation intentionally has no federated domain rows, so absence is a
+# supported configuration and must be reported as SKIP rather than crashing or
+# pretending the domain contract was exercised.
+SCENARIO_REQUIRED_DOMAINS = {
+    "COLD-MELI": ("meli",),
+    "COLD-ARANEA": ("aranea",),
+    "COLD-CONFLICTING-EVIDENCE-FAILS-CLOSED": ("meli", "aranea"),
+    "WARM-MELI": ("meli", "aranea"),
+    "WARM-ARANEA": ("meli", "aranea"),
+    "SWITCH-MELI-TO-ARANEA": ("meli", "aranea"),
+    "SWITCH-ARANEA-TO-MELI": ("meli", "aranea"),
+    "SWITCH-DEFAULT-TO-MELI": ("meli", "aranea"),
+    "SWITCH-DEFAULT-TO-ARANEA": ("meli", "aranea"),
+    "MELI-NEGATIVE-ARANEA-TOOL": ("meli", "aranea"),
+    "ARANEA-NEGATIVE-MELI-TOOL": ("meli", "aranea"),
+    "UNRELATED-DOMAIN-NOT-LOADED": ("meli", "aranea"),
+}
+
+
+def unavailable_domain_reason(scenario_id: str) -> Optional[str]:
+    missing = [domain for domain in SCENARIO_REQUIRED_DOMAINS.get(scenario_id, ())
+               if domain not in rules.ROUTERS or not rules.ROUTER_PREFS.get(domain)]
+    if not missing:
+        return None
+    return ("dominio federado no instalado o sin pack completo: %s; "
+            "el escenario scoped no aplica a esta instalación DEFAULT" % ", ".join(missing))
 
 
 def detect_vault_root() -> Optional[str]:
@@ -1602,6 +1630,11 @@ def run(args: argparse.Namespace) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]
                                 "details": "gate L0: FAIL en %s; los resultados L1/L2 no serian interpretables sobre un corpus no conformante (spec section 3)" % ", ".join(gate_failed),
                                 "evidence": []})
                 continue
+            domain_reason = unavailable_domain_reason(sid)
+            if domain_reason:
+                results.append({"id": sid, "level": level, "state": "SKIP",
+                                "details": domain_reason, "evidence": []})
+                continue
             try:
                 state, details, evidence = fn(ctx)
             except Exception as exc:  # scenario bug or unreadable fixture: honest SKIP
@@ -1651,10 +1684,10 @@ def human_summary(results: List[Dict[str, Any]], doc: Dict[str, Any], root: str)
     cb = doc.get("context_baseline") or {}
     if "always_load_total_approx_tokens" in cb:
         packs = cb.get("scope_packs", {})
-        lines.append("context baseline (baseline-only, chars/4): always-load ≈ %d tok · pack meli ≈ %s tok · pack aranea ≈ %s tok" % (
-            cb["always_load_total_approx_tokens"],
-            packs.get("meli", {}).get("total_approx_tokens", "?"),
-            packs.get("aranea", {}).get("total_approx_tokens", "?")))
+        parts = ["always-load ≈ %d tok" % cb["always_load_total_approx_tokens"]]
+        parts.extend("pack %s ≈ %s tok" % (domain, values.get("total_approx_tokens", "?"))
+                     for domain, values in sorted(packs.items()))
+        lines.append("context baseline (baseline-only, chars/4): " + " · ".join(parts))
     for r in results:
         if r["state"] == "FAIL":
             lines.append("FAIL %s: %s" % (r["id"], r["details"]))
@@ -1671,29 +1704,34 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--json", action="store_true", help="salida machine-readable a stdout y results/run-<timestamp>.json")
     ap.add_argument("--vault-root", help="ruta del vault (default: autodeteccion por marker)")
     ap.add_argument("--no-live", action="store_true", help="omite la parte de configs de maquina de L2 (para correr fuera de la maquina del owner)")
+    ap.add_argument("--no-write", action="store_true", help="no persiste results/; integración read-only para el Doctor")
     args = ap.parse_args(argv)
 
     results, doc = run(args)
 
-    results_dir = os.path.join(HERE, "results")
-    os.makedirs(results_dir, exist_ok=True)  # unica escritura permitida (spec section 7)
-    ts = time.strftime("%Y%m%d-%H%M%S")
-    out_path = os.path.join(results_dir, "run-%s.json" % ts)
-    n = 1
-    while os.path.exists(out_path):
-        n += 1
-        out_path = os.path.join(results_dir, "run-%s-%d.json" % (ts, n))
-    with open(out_path, "w", encoding="utf-8") as fh:
-        json.dump(doc, fh, indent=2, ensure_ascii=False)
+    out_path = None
+    if not args.no_write:
+        results_dir = os.path.join(HERE, "results")
+        os.makedirs(results_dir, exist_ok=True)  # unica escritura permitida (spec section 7)
+        ts = time.strftime("%Y%m%d-%H%M%S")
+        out_path = os.path.join(results_dir, "run-%s.json" % ts)
+        n = 1
+        while os.path.exists(out_path):
+            n += 1
+            out_path = os.path.join(results_dir, "run-%s-%d.json" % (ts, n))
+        with open(out_path, "w", encoding="utf-8") as fh:
+            json.dump(doc, fh, indent=2, ensure_ascii=False)
 
     if args.json:
         json.dump(doc, sys.stdout, indent=2, ensure_ascii=False)
         print()
-        print("[results] %s" % out_path, file=sys.stderr)
+        if out_path:
+            print("[results] %s" % out_path, file=sys.stderr)
         print(human_summary(results, doc, doc["run"].get("vault_root_arg", "")), file=sys.stderr)
     else:
         print(human_summary(results, doc, doc["run"].get("vault_root_arg", "")))
-        print("[results] %s" % out_path)
+        if out_path:
+            print("[results] %s" % out_path)
 
     return 1 if doc["counts"].get("FAIL", 0) else 0
 

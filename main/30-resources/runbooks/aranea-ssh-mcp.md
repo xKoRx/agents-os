@@ -89,6 +89,20 @@ Ejecutar inspección y operación remota sobre workers/hosts autorizados de Aran
 
 ## Certificación
 
+### H2 viewer enforcement — 2026-09-15
+
+Defecto cerrado: `run-command` ejecutaba comandos clasificados `read-only` (p.ej. `echo`, `whoami`) en profiles viewer, porque el engine solo filtraba por clase de comando y `run-command` no verificaba el tool. Enforcement ahora es **tool-level server-side**: un profile `readOnly=true` sólo es alcanzable por tools de lectura (`read-command`, `list-connections`, `list-sessions`, `read-session-output`, `sftp-download`, `close-session`, `open-session`); cualquier otro tool → `POLICY_DENIED` con `ruleId: read-only-tool-boundary`. `open-session`/`close-session` permanecen permitidos por diseño upstream (viewer puede abrir un background `tail -f` y debe poder cerrarlo).
+
+Imagen: `local/ssh-mcp:2.8.0-d2d7696-h2fix`. Certificación E2E desde Daedalus (2026-09-15, ver `[[ACCESS-CERTIFICATION]]` § Remediation):
+
+```text
+mt5-kronos (viewer)          read-command whoami PASS | run-command echo  -> POLICY_DENIED (MUST DENY)
+linux-viewer-smoke (viewer)  read-command whoami PASS | run-command echo  -> POLICY_DENIED (MUST DENY)  [profile efímero, removido]
+mt5-kronos-operator          run-command echo PASS
+docker-echo-dev-operator     run-command docker ps PASS
+sqx-zeus (operator)          read PASS | run PASS
+```
+
 ### SQX operators — 2026-09-13
 
 Los profiles `sqx-zeus`, `sqx-hera` y `sqx-kronos` fueron promovidos desde `viewer/readOnly=true` a `operator/readOnly=false`, conservando host, puerto, usuario `echo-dev`, key, host-key pinning, `tty=false`, timeout y `approvalPolicy="auto"`.

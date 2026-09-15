@@ -4,7 +4,7 @@
 Implementa la tool definida por dos documentos vinculantes (autoridad de esta
 implementación):
 - artifacts/p3-canonical-model.md      (P3-A: autoridades, hot path en 4 clases,
-  checks CL-01..CL-20, desduplicación sección 6, recomendación sección 8)
+  checks CL-01..CL-21, desduplicación sección 6, recomendación sección 8)
 - artifacts/p3-canonical-linter-spec.md (spec del parent: decisiones A1-A10,
   checks ratificados, semántica de veredictos, write scope, output schema)
 
@@ -120,6 +120,11 @@ THRESHOLDS = {
                                  "packaging/derivados) se anota como 'existe en zona no "
                                  "canónica; no es destino canónico' y no como 'no resuelve' "
                                  "(verificación adversarial N2/R2); el veredicto no cambia",
+    "cl21_authority_pairs": {
+        "skills": ["80-agents/skills", "30-resources/agents/skills"],
+        "runbooks": ["80-agents/memory/public/runbook", "30-resources/runbooks"],
+        "identity": "nombre casefold del directorio de skill o archivo de runbook",
+    },
 }
 
 # Zonas físicas no canónicas (clase no_corpus del mapa físico) distinguibles en
@@ -630,7 +635,7 @@ def skip_check(rec: Dict[str, Any], reason: str) -> Dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------
-# CL-01..CL-20
+# CL-01..CL-21
 # ---------------------------------------------------------------------------
 AUTH_LINTPY = "80-agents/skills/agents-os-entity-lifecycle/scripts/lint.py"
 AUTH_DOCTOR = "80-agents/skills/agents-os-doctor/SKILL.md + scripts/doctor.py"
@@ -1592,6 +1597,57 @@ def cl_20(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]
             findings, [AUTH_LINTPY + " (forbidden-field sólo cubre prohibiciones explícitas del envelope)"], [])
 
 
+def cl_21(ctx: LintCtx) -> Tuple[str, List[Dict[str, Any]], List[str], List[str]]:
+    """Una identidad no puede existir simultáneamente en la autoridad core y
+    federada. La comparación es mecánica y case-insensitive: directorio para
+    skills con SKILL.md y nombre de archivo para runbooks. MACHINE -> FAIL."""
+    findings: List[Dict[str, Any]] = []
+    evidence: List[str] = []
+    pairs = (
+        ("skill", "80-agents/skills", "30-resources/agents/skills"),
+        ("runbook", "80-agents/memory/public/runbook", "30-resources/runbooks"),
+    )
+
+    def identities(rel_root: str, kind: str) -> Dict[str, List[str]]:
+        abs_root = os.path.join(ctx.root, rel_root)
+        out: Dict[str, List[str]] = {}
+        if not os.path.isdir(abs_root):
+            return out
+        if kind == "skill":
+            for name in sorted(os.listdir(abs_root)):
+                skill_file = os.path.join(abs_root, name, "SKILL.md")
+                if os.path.isfile(skill_file):
+                    rel = os.path.relpath(skill_file, ctx.root).replace(os.sep, "/")
+                    out.setdefault(name.casefold(), []).append(rel)
+        else:
+            for name in sorted(os.listdir(abs_root)):
+                path = os.path.join(abs_root, name)
+                if os.path.isfile(path) and name.endswith(".md"):
+                    rel = os.path.relpath(path, ctx.root).replace(os.sep, "/")
+                    out.setdefault(name.casefold(), []).append(rel)
+        return out
+
+    for kind, core_root, federated_root in pairs:
+        core = identities(core_root, kind)
+        federated = identities(federated_root, kind)
+        duplicates = sorted(set(core) & set(federated))
+        evidence.append("%s: core=%d federado=%d duplicados=%d" %
+                        (kind, len(core), len(federated), len(duplicates)))
+        for identity in duplicates:
+            core_paths = sorted(core[identity])
+            federated_paths = sorted(federated[identity])
+            findings.append(finding(
+                "CL-21", "CANONICALITY", "FAIL", "FAIL", core_paths[0],
+                "%s '%s' existe en core y federado" % (kind, identity),
+                "cada identidad vive en una sola autoridad; 30-resources es la autoridad de artefactos federados",
+                "core: %s; federado: %s" % (", ".join(core_paths), ", ".join(federated_paths)),
+                "30-resources/agents-os/core-export/README.md; "
+                "10-projects/Personal/AGENTS OS/agentes/AGENTS OS - Context Hygiene and Canonical Integrity.md (PHASE 3.5)",
+                "conservar la copia federada bajo 30-resources y retirar la copia core; nunca auto-corregido"))
+    return ("identidades duplicadas entre autoridades core y federada para skills y runbooks",
+            findings, [], evidence)
+
+
 # ---------------------------------------------------------------------------
 # Registro y runner
 # ---------------------------------------------------------------------------
@@ -1617,6 +1673,7 @@ CHECKS: List[Tuple[str, str, str, Any, Tuple[str, ...]]] = [
     ("CL-18", "HOT-PATH", "FAIL", cl_18, ("contract", "harness", "rules")),
     ("CL-19", "METADATA", "WARN", cl_19, ("contract", "harness")),
     ("CL-20", "METADATA", "WARN", cl_20, ("contract", "harness")),
+    ("CL-21", "CANONICALITY", "FAIL", cl_21, ("harness",)),
 ]
 
 CATEGORIES = sorted({c[1] for c in CHECKS})
@@ -1708,7 +1765,7 @@ def run_suite(vault_root: str, only_ids: Optional[List[str]] = None,
             "en_retiro": {"status": list(EN_RETIRO_ST)},
             "wikilink_resolution": "path-relativo(origen) > path VAULT_ROOT-relativo (regla 11) > basename exacto > casefold unico > alias exacto; ambiguo -> WARN",
             "hot_path_classes": "DEFAULT-LOADED / ROUTABLE / REFERENCED / ARCHIVED-NO-CORPUS (modelo P3-A seccion 3)",
-            "semantic_duplication": "no existe como check: solo proxies CL-06/CL-07/CL-08 (modelo seccion 5)",
+            "semantic_duplication": "contenido semántico: sólo proxies CL-06/CL-07/CL-08; CL-21 cubre identidad estructural core-federado",
         },
         "checks": results,
         "counts": counts,
@@ -1761,6 +1818,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--json", action="store_true", help="JSON a stdout y results/run-<timestamp>.json; resumen a stderr")
     ap.add_argument("--check", help="corre un solo check CL por id (run dirigido por el operador)")
     ap.add_argument("--category", help="corre sólo los checks de una categoría (%s)" % ", ".join(CATEGORIES))
+    ap.add_argument("--no-write", action="store_true", help="no persiste results/; integración read-only para el Doctor")
     args = ap.parse_args(argv)
 
     root = resolve_vault_root(args.vault_root)
@@ -1780,7 +1838,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             return 2
         only_categories = [args.category]
 
-    doc = run_suite(root, only_ids, only_categories, write=True,
+    doc = run_suite(root, only_ids, only_categories, write=not args.no_write,
                     vault_root_arg=args.vault_root or "auto")
     if args.json:
         json.dump(doc, sys.stdout, indent=2, ensure_ascii=False)

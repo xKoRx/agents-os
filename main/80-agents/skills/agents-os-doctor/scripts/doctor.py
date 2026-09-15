@@ -6,11 +6,11 @@ Outputs findings without printing matched secret values.
 
 from __future__ import annotations
 
-import argparse
 import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Optional
 
 
 @dataclass(frozen=True)
@@ -67,6 +67,14 @@ SECRET_ASSIGNMENT = re.compile(
 )
 
 
+def configure_root(root: Path) -> None:
+    """Point the structural provider at the vault selected by the aggregator."""
+    global ROOT, AGENTS, GLOBAL_INTERNAL_MEMORY
+    ROOT = root.resolve()
+    AGENTS = ROOT / "80-agents"
+    GLOBAL_INTERNAL_MEMORY = ROOT / "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md"
+
+
 def relative(path: Path) -> str:
     try:
         return str(path.relative_to(ROOT))
@@ -74,7 +82,7 @@ def relative(path: Path) -> str:
         return str(path)
 
 
-def frontmatter_value(path: Path, key: str) -> str | None:
+def frontmatter_value(path: Path, key: str) -> Optional[str]:
     text = path.read_text(encoding="utf-8", errors="ignore")
     if not text.startswith("---\n"):
         return None
@@ -373,11 +381,9 @@ def check_projects(findings: list[Finding]) -> None:
         )
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--strict", action="store_true",
-                        help="exit non-zero on MEDIUM as well as HIGH")
-    args = parser.parse_args()
+def run_structural(root: Path) -> dict[str, object]:
+    """Run the original structural checks and return their machine contract."""
+    configure_root(root)
     findings: list[Finding] = []
     check_paths(findings)
     check_always(findings)
@@ -396,19 +402,27 @@ def main() -> int:
     findings.sort(key=lambda item: (order[item.severity], item.check, item.path))
     counts = {severity: sum(f.severity == severity for f in findings)
               for severity in order}
-    print(
-        "AGENTS OS doctor: "
-        f"HIGH={counts['HIGH']} MEDIUM={counts['MEDIUM']} LOW={counts['LOW']} "
-        f"startup_tokens≈{startup_tokens}"
-    )
-    for finding in findings:
-        print(
-            f"{finding.severity} [{finding.check}] "
-            f"{finding.path} — {finding.message}"
-        )
-    if counts["HIGH"] or (args.strict and counts["MEDIUM"]):
-        return 1
-    return 0
+    return {
+        "tool": "structural-doctor",
+        "counts": {key.lower(): value for key, value in counts.items()},
+        "startup_estimated_tokens": startup_tokens,
+        "findings": [
+            {
+                "severity": finding.severity,
+                "check": finding.check,
+                "path": finding.path,
+                "message": finding.message,
+            }
+            for finding in findings
+        ],
+    }
+
+
+def main(argv: Optional[list[str]] = None) -> int:
+    """Preserve the canonical path while delegating orchestration."""
+    from aggregate import main as aggregate_main
+
+    return aggregate_main(argv, run_structural)
 
 
 if __name__ == "__main__":
