@@ -375,7 +375,7 @@ views:
 > [!note]+ Cockpit humano
 > Los dos workstreams son permanentes. Bootstrap es transitorio y debe cerrarse primero. El detalle operativo vive en cada proyecto `owner: agent`.
 
-- [/] [[HERMES — Bootstrap & Self-Sufficiency]] sacar al owner del loop + seguimiento #owner/me #type/supervision #area/aranea
+- [x] [[HERMES — Bootstrap & Self-Sufficiency]] sacar al owner del loop — B4 Human Exit Gate PASS 2026-09-15; proyecto en Review, owner fuera de la configuración MCP rutinaria #owner/me #type/supervision #area/aranea
 - [ ] [[HERMES — Agent Access Operations]] autonomía MCP + desbloqueo Echo/Forge #owner/me #type/supervision #area/aranea
 - [ ] [[HERMES — Infrastructure Operations]] backups → administración integral #owner/me #type/supervision #area/aranea
 
@@ -383,6 +383,7 @@ views:
 
 - **2026-09-14** — Se reordena la implementación para minimizar intervención humana: bootstrap transitorio primero; luego autonomía MCP; después blockers Echo/Forge; luego Backup/DR; finalmente expansión H2-H6.
 - **2026-09-14** — Proyecto creado. Se separan formalmente las responsabilidades de administración integral del homelab y habilitación MCP para agentes. Se congela el principio de management path independiente y el rollout dual H0→H6 / A0→A5.
+- **2026-09-15** — **Bootstrap B4 PASS: Human Exit Gate cerrado.** Residual B3.3 (env del chain de kor) eliminado por Hermes sin owner — chain-cert PASS, rollback byte-identical y re-aplicación convergente demostrados. Las 9 condiciones del gate certificadas con evidencia runtime/durable (detalle: `80-agents/journal/logs/2026-09-15-b4-human-exit-gate-pass.md`). [[HERMES — Bootstrap & Self-Sufficiency]] pasa a **Review**: el bootstrap transitorio terminó. [[HERMES — Agent Access Operations]] asume la continuidad; los blockers reales de Echo/Forge son su primer workload A0-A5. El owner deja de hacer configuración MCP rutinaria.
 
 ## 🧭 Decisiones
 
@@ -395,7 +396,7 @@ views:
 
 ## 🔗 Docs / Links
 
-- [[HERMES — Bootstrap & Self-Sufficiency]] — bootstrap transitorio y Human Exit Gate.
+- [[HERMES — Bootstrap & Self-Sufficiency]] — bootstrap transitorio CERRADO: Human Exit Gate PASS 2026-09-15, en Review.
 - [[HERMES — Agent Access Operations]] — autonomía del capability plane y desbloqueo de Echo/Forge.
 - [[HERMES — Infrastructure Operations]] — Backup/Storage y expansión a administración integral.
 - [[Ariadna]] — identidad operativa existente sobre Hermes Agent.

@@ -28,7 +28,7 @@ tags:
   - tech/mcp
   - domain/agent-access
 created: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-09-15"
 ---
 
 # HERMES — Agent Access Operations
