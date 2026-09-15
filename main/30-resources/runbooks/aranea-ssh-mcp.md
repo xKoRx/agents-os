@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-09-13"
+updated: "2026-09-15"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
@@ -63,6 +63,7 @@ Ejecutar inspección y operación remota sobre workers/hosts autorizados de Aran
 | `mt5-kronos` | Windows worker-kronos | `echo-dev` | viewer / read-only | inspección MT4/MT5, procesos, logs, paths |
 | `mt5-kronos-operator` | Windows worker-kronos | `echo-dev` | operator / writable | upload, compile y ejecución explícitamente autorizados |
 | `docker-echo-dev-operator` | Linux `docker-echo-dev` / `192.168.31.75` | `root` | operator / writable / root | config/filesystem, Docker/Compose, logs, exec y lifecycle DEV |
+| `echo-runtime-prod` | Linux `prod.echo.gateway.lab.aranea` / `192.168.31.71` | `echo-dev` | viewer / read-only — **STAGED 2026-09-15, pending owner key install en `.71`** | observación runtime Echo PROD: identity/logs/listeners/fs-meta cuando la key esté instalada; jamás mutar este host desde el plane |
 
 2. **Elegir el tool por intención, no por comodidad.** La superficie certificada de `ssh-mcp` v2.8.0 incluye:
 
@@ -88,6 +89,15 @@ Ejecutar inspección y operación remota sobre workers/hosts autorizados de Aran
 10. **Tratar fallos como boundary.** `POLICY_DENIED` → revisar profile/tool/scope; no escalar automáticamente. `Access Denied` en un path → registrar path exacto y operación requerida; no mutar ACLs automáticamente. Error de sintaxis Windows → verificar PowerShell antes de diagnosticar la aplicación destino. Elevación requerida pero el usuario remoto no tiene sudo/admin → detener y reportar boundary. Transferencia imposible por SFTP/staging → detener; no inventar side channel.
 
 ## Certificación
+
+### echo-runtime-prod (viewer staged) — 2026-09-15
+
+Perfil añadido al plane vía `mcps-ops` (config `22664e96…` → `047d00e7…`; backup `/tmp/config.toml.pre-echo-runtime-prod` en mcps): `echo-dev@192.168.31.71:22`, `role=viewer`, `readOnly=true`, `group=prod`, host key pinneada `SHA256:zPHN…wdfU`, keyRef `/run/ssh-keys/echo-dev/id_ed25519` (key existente del plane, sin credencial nueva). Target = runtime Echo PROD real (`/health` 200; `.211` histórico muerto).
+
+- Consumer cert Daedalus real RESULT: PASS — 7 perfiles visibles, `run-command` en `mt5-kronos` → POLICY_DENIED (H2 vivo), viewer read PASS (`worker-kronos\echo-dev`).
+- **PENDING_OWNER_GATE:** ninguna identidad del plane está autorizada aún en `.71` (probe `Permission denied` esperado). **Quirk de orden upstream:** `resolveConn` (connect SSH) corre ANTES que `policy.evaluateWithOpa`, así que en un target sin credencial instalada `run-command` falla cerrado en connect (`SSH connection error`) y el DENY explícito H2 sólo es observable después de instalar la key. Post-instalación: recertificar identity (`hostname`/`whoami`), health (`curl -s http://127.0.0.1:8090/health` read-only), listeners, logs y negative `run-command` → POLICY_DENIED.
+- **Finding de higiene:** el host key ED25519 de `.71` es IDÉNTICA a la de `sqx-zeus` — clon sin regenerar (mismo patrón corregido en Hera/Kronos 2026-09-10). Si el owner rota la host key de `.71`, actualizar `trustedHostKey` de este perfil en el mismo cambio.
+- Defecto de deploy corregido en el camino: el config bind-mounted debe quedar `600` con dueño `65532:65532` (el container lee como appuser uid 65532); con `644 root:root` el server entra en crash loop (`group/world accessible`), y con `600 root:root` en `EACCES`.
 
 ### H2 viewer enforcement — 2026-09-15
 
@@ -195,7 +205,9 @@ PROD authority:       none
 
 Abortar sin mutar cuando el cliente no tiene `aranea-ssh`, el profile/tool no cubre la acción, la transferencia no cabe en SFTP/staging o el único workaround sería publicar puertos/alterar ACLs. Ante fallo, conservar evidencia de boundary, no rotar secretos preventivamente y handoff a [[aranea-mcp-capability-plane]] si el problema es el plano MCP.
 
-Para revertir específicamente la promoción SQX si aparece un problema de policy, volver cada profile `sqx-zeus`, `sqx-hera`, `sqx-kronos` a `role="viewer"` + `readOnly=true`, reiniciar sólo `ssh-mcp` y revalidar `/status` + `read-command`; usar el backup runtime creado antes del cambio si se necesita restauración exacta.
+Para revertir específicamente la promoción SQX si aparece un problema de policy, volver cada profile `sqx-zeus`, `sqx-hera` y `sqx-kronos` a `role="viewer"` + `readOnly=true`, reiniciar sólo `ssh-mcp` y revalidar `/status` + `read-command`; usar el backup runtime creado antes del cambio si se necesita restauración exacta.
+
+Rollback del profile `echo-runtime-prod` (staged 2026-09-15): `sudo cp /tmp/config.toml.pre-echo-runtime-prod /opt/mcp/ssh/runtime/config/config.toml && sudo chown 65532:65532 … && sudo chmod 600 … && sudo docker restart ssh-mcp`, luego revalidar `list-connections` = 6 perfiles y health.
 
 Para `docker-echo-dev-operator`, no asumir que un `docker compose up -d` es reversible o no disruptivo: seguir el runbook de dominio, preparar rollback y verificar el servicio después de cualquier lifecycle mutation.
 

@@ -99,6 +99,7 @@ Si el target es MELI/corporativo, detener esta skill y usar las autoridades corp
 | Observabilidad de Aranea (Grafana/Prometheus/Loki) lectura | PROD-RO | `aranea-observability-ro` | read-only estricto; exactamente 22 tools RO (`--disable-write` + allowlist 5 toolsets); toda query bounded; administración de Grafana/dashboards NO pertenece a esta capability |
 | MT4/MT5 worker-kronos inspección | DEV runtime | `aranea-ssh` + `mt5-kronos` | viewer / read-only |
 | MT4/MT5 worker-kronos mutación | DEV runtime | `aranea-ssh` + `mt5-kronos-operator` | operator writable como `echo-dev` |
+| Observación runtime Echo PROD (identity/logs/listeners) | PROD runtime | `aranea-ssh` + `echo-runtime-prod` | viewer / read-only — **STAGED 2026-09-15, pending owner key install en `192.168.31.71`**; mientras tanto usar `aranea-observability-ro` para logs/metrics (`service=echo-core`) |
 
 **Invariante:** elegir ambiente antes que autoridad. No cambiar de ambiente para conseguir más permisos ni usar una capability DEV para verificar estado PROD.
 
