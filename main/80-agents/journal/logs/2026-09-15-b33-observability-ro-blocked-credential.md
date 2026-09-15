@@ -33,6 +33,8 @@ Golden deploy/config B3.3: materializar y certificar `aranea-observability-ro` s
 
 `B3.3 BLOCKED` — falta únicamente la credencial Grafana read-only (service account token Viewer). Emitido UN `OWNER ACTION BUNDLE` (sesión 2026-09-15). No se deployó backend ni proxy, no se publicó consumer, no se cerró B3.3.
 
+> **SUPERSEDED 2026-09-15 (mismo día):** el bundle fue aplicado por el owner y B3.3 quedó **cerrado PASS**. Estado vigente y evidencia: change_log `80-agents/journal/logs/2026-09-15-b33-observability-ro-closed.md` + runbook `30-resources/runbooks/aranea-observability-mcp.md`. Nota: la red `mcp-observability` pre-stageada como `--internal` en esta nota fue rediseñada a bridge estándar durante el deploy (Docker no publica puertos host en redes internal y el backend requiere egress a Grafana); detalle en el change_log de cierre.
+
 ## Rollback
 
 - `mcps`: `sudo docker network rm mcp-observability` + `sudo rm -rf /opt/mcp/observability` (sin contenedores creados; cero residuo).
