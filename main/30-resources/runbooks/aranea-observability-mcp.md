@@ -205,7 +205,7 @@ Tools con 401 upstream  -> token file ilegible por el backend (quirk 2) o token 
                            y GET /api/user con el valor server-side (nunca imprimirlo).
 "stepSeconds must…"     -> queryType=range sin stepSeconds; usar instant o agregar step.
 "parsing end time"      -> falta endTime en query_prometheus.
-Entry en Cursor sin tools -> env var no heredada (paso owner-side) o proceso sin restart.
+Entry en Cursor sin tools -> env var no heredada (revisar chain/secret file de la capability) o proceso sin restart.
 Capacidad de consulta   -> toda query es bounded: fijar endTime/limit explícito.
 ```
 
@@ -230,8 +230,8 @@ MCP initialize/tools:   PASS / 22 exactas
 Negative write:         BLOCKED
 Prometheus/Loki/Grafana probes: PASS (bounded, datos reales)
 Backend host port:      none
-Consumer:               Daedalus/Cursor entry publicada; smoke PASS (bearer stdin)
-Pendiente owner-side:   alta de ARANEA_OBSERVABILITY_MCP_RO_BEARER en chain env kor
+Consumer:               Daedalus/Cursor entry publicada; chain-cert PASS (env resuelta del chain persistente, B4 2026-09-15)
+Owner-side residual:    NONE ROUTINE — alta de ARANEA_OBSERVABILITY_MCP_RO_BEARER en chain kor ejecutada por Hermes (B4, sin owner)
 Secrets exposed:        no
 E2E:                    PASS / CLOSED (2026-09-15)
 ```
