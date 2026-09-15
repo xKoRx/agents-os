@@ -6,7 +6,7 @@ scope: project
 project: "[[AGENTS OS]]"
 area: "[[Personal]]"
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-14
 description: Notas de implementación P3-B — canonical-linter (motor, selftest, README). Decisiones, evidencia de los 7 requisitos del spec sección 5, resultados de la primera ejecución real y limitaciones.
 aliases:
   - p3-implementation-notes
@@ -105,3 +105,9 @@ Corpus vivo: 853 notas (`iter_vault_md` = 877 − 5 `_shared/fixtures` − 19 fi
 - **Nombres de módulo cacheados**: importar harness/schema en el mismo proceso desde dos vaults distintos reutiliza el primer módulo cargado (contenido idéntico; el selftest precalienta desde el vault real para rutas estables).
 - **Performance**: O(notas × links) con caches; run real ≈1s. Sin riesgo conocido en vaults de este tamaño.
 - El linter NO sustituye a hygiene-review/relation-maintenance (siguen siendo las skills de ejecución con criterio); los mecaniza corpus-wide y sus salidas quedan como findings, nunca auto-fix.
+
+## 7. Extensión PHASE 3.5 (2026-09-14)
+
+- Se agregó CL-21 para impedir que una identidad de skill o runbook vuelva a existir en core y federado al mismo tiempo. El check compara ambas raíces directamente y queda dentro del provider `Canonical`; el futuro Doctor unificado sólo agregará su resultado.
+- Selftest: **9/9 PASS**, con fixtures positivas para ambas clases y vault limpio con **21/21 checks PASS**. Run dirigido real: `CL-21 PASS`, cero duplicados.
+- La suite real completa conserva findings preexistentes de otras clases; CL-21 no los reinterpreta ni los maquilla. El gate específico de PHASE 3.5 se validó además con Doctor fuente y export construido en `HIGH=0 MEDIUM=0 LOW=0`.

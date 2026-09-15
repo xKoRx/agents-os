@@ -1,0 +1,1692 @@
+{
+  "run": "2026-09-14T21:37:31",
+  "tool": "context-budget",
+  "git_head": null,
+  "fidelity_gate": "PASS",
+  "vault_root_arg": "/Users/rjara/obsidian/SecondBrain/main",
+  "scenarios": [
+    {
+      "id": "CTX-15",
+      "reuses": [
+        "context_baseline (spec sección 9 del harness)"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "always_load_file_list",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "bootstrap pasos 1-3 (C02) via rules.Session.cold_start/resolve_profile_note"
+        },
+        {
+          "name": "scope_pack_file_list_meli",
+          "value": [
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.ROUTERS + rules.ROUTER_PREFS (Minimal Reads de los routers)"
+        },
+        {
+          "name": "scope_pack_file_list_aranea",
+          "value": [
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.ROUTERS + rules.ROUTER_PREFS (Minimal Reads de los routers)"
+        },
+        {
+          "name": "always_load_bytes",
+          "value": 25105,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "always_load_chars",
+          "value": 24823,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "always_load_estimated_tokens",
+          "value": 6205,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "scope_pack_bytes_meli",
+          "value": 8148,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_chars_meli",
+          "value": 8076,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_estimated_tokens_meli",
+          "value": 2017,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "scope_pack_bytes_aranea",
+          "value": 4836,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_chars_aranea",
+          "value": 4803,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_estimated_tokens_aranea",
+          "value": 1200,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        }
+      ],
+      "evidence": [
+        "80-agents/agents-os/agent-constitution.md: bytes=6112 chars=6041 estimated_tokens=1510",
+        "80-agents/memory/public/user-preference/rjara-agent-profile.md: bytes=5610 chars=5536 estimated_tokens=1384",
+        "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md: bytes=2052 chars=2034 estimated_tokens=508",
+        "80-agents/skills/INDEX.md: bytes=11331 chars=11212 estimated_tokens=2803",
+        "30-resources/agents/skills/meli-agent-dev/SKILL.md: bytes=3973 chars=3938 estimated_tokens=984",
+        "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md: bytes=2447 chars=2423 estimated_tokens=605",
+        "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md: bytes=1728 chars=1715 estimated_tokens=428",
+        "30-resources/agents/skills/aranea-agent-dev/SKILL.md: bytes=3860 chars=3831 estimated_tokens=957",
+        "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md: bytes=976 chars=972 estimated_tokens=243",
+        "cross-check context_baseline del harness (misma fuente _size): always=6205 meli=2017 aranea=1200; coincidencia con los agregados del medidor: True",
+        "estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+      ],
+      "skip_reason": null,
+      "details": "baseline-only (chars/4, C04): always-load y packs meli/aranea medidos con _size en el run; nunca criterio de fallo"
+    },
+    {
+      "id": "CTX-01",
+      "reuses": [
+        "COLD-DEFAULT"
+      ],
+      "verdict": "WARN",
+      "metrics": [
+        {
+          "name": "always_load_file_list",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "bootstrap pasos 1-3 (C02) via rules.Session"
+        },
+        {
+          "name": "always_load_bytes",
+          "value": 25105,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "always_load_chars",
+          "value": 24823,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "always_load_estimated_tokens",
+          "value": 6205,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens (telemetría D1)"
+        },
+        {
+          "name": "opens_per_turn",
+          "value": {
+            "1": 4
+          },
+          "unit": "count",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn"
+        },
+        {
+          "name": "session_cold_estimated_tokens",
+          "value": 6205,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "gate_decision_trace",
+          "value": "no resolvable entity and zero registry matches -> no domain router",
+          "unit": "text",
+          "confidence": "EXACT (transcripción)",
+          "authority": "bootstrap paso 6 via rules.domain_gate"
+        },
+        {
+          "name": "unrelated_domain_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_cold_base",
+          "value": 6205,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_cold_base",
+          "value": false,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 3-6k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        }
+      ],
+      "evidence": [
+        "entidad fantasma 'entidad-fantasma-xyz' no resuelve: True (fixture)",
+        "stack base cargado: 80-agents/agents-os/agent-constitution.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/skills/INDEX.md",
+        "expected_not_load verificado (9 paths): ninguno abierto",
+        "WARN (A1/M18): cold_base = 6205 estimated_tokens (chars/4) fuera del techo blando 3-6k; desviación registrada, nunca FAIL (C04)",
+        "estado: session_mode=cold active_entity=None active_domain=None bootstrap_runs=1 pack=[]",
+        "WARN declarado (Hallazgo 6): la clausula de evidencia de superficie del paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (ADR pendiente)."
+      ],
+      "skip_reason": null,
+      "details": "cold start DEFAULT sin router: set = exactamente los 4 always; presupuesto base medido (chars/4, C04)"
+    },
+    {
+      "id": "CTX-02",
+      "reuses": [
+        "COLD-MELI"
+      ],
+      "verdict": "WARN",
+      "metrics": [
+        {
+          "name": "always_load_file_list",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "bootstrap pasos 1-3 via rules.Session"
+        },
+        {
+          "name": "scope_pack_file_list_meli",
+          "value": [
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.ROUTERS + rules.ROUTER_PREFS (Minimal Reads router meli-agent-dev)"
+        },
+        {
+          "name": "scope_pack_bytes_meli",
+          "value": 8148,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_chars_meli",
+          "value": 8076,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_estimated_tokens_meli",
+          "value": 2017,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "session_cold_bytes",
+          "value": 34922,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(1)"
+        },
+        {
+          "name": "session_cold_chars",
+          "value": 34552,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(1)"
+        },
+        {
+          "name": "session_cold_estimated_tokens",
+          "value": 8635,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(1) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md",
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "opens_per_turn",
+          "value": {
+            "1": 8
+          },
+          "unit": "count",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn"
+        },
+        {
+          "name": "session_cold_estimated_tokens",
+          "value": 8635,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "specialist_skills_selected",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "bootstrap paso 9 via rules.Session.route_specialist (sin specialist_task en el fixture)"
+        },
+        {
+          "name": "gate_decision_trace",
+          "value": "entity RIO has area [[Meli]] -> meli (domain router registry)",
+          "unit": "text",
+          "confidence": "EXACT (transcripción)",
+          "authority": "bootstrap paso 6 via rules.domain_gate"
+        },
+        {
+          "name": "unrelated_domain_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_cold_base",
+          "value": 6205,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_cold_base",
+          "value": false,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 3-6k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        }
+      ],
+      "evidence": [
+        "stack base cargado: 80-agents/agents-os/agent-constitution.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/skills/INDEX.md",
+        "fixture real 30-resources/applications/RIO.md: area=[[Meli]] (frontmatter leído, sin escanear carpetas; heredado COLD-MELI)",
+        "expected_not_load verificado (8 paths): ninguno abierto",
+        "Hallazgo 10 (estado observado): continuidad interna activa meli hoy = ninguna; el delta esperado de retrieval es vacío",
+        "estado: active_entity=RIO active_domain=meli pack=['30-resources/agents/skills/meli-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-meli-work-preferences.md', '80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md']",
+        "WARN (A1/M18): cold_base = 6205 estimated_tokens (chars/4) fuera del techo blando 3-6k; desviación registrada, nunca FAIL (C04)"
+      ],
+      "skip_reason": null,
+      "details": "cold start Meli: base 4 + router meli-agent-dev + 2 prefs scoped; presupuesto ≈ base + pack meli (chars/4)"
+    },
+    {
+      "id": "CTX-03",
+      "reuses": [
+        "COLD-ARANEA"
+      ],
+      "verdict": "WARN",
+      "metrics": [
+        {
+          "name": "always_load_file_list",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "bootstrap pasos 1-3 via rules.Session"
+        },
+        {
+          "name": "scope_pack_file_list_aranea",
+          "value": [
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.ROUTERS + rules.ROUTER_PREFS (Minimal Reads router aranea-agent-dev; A7: 30-resources/aranea/00-index.md no se cobra al pack base)"
+        },
+        {
+          "name": "scope_pack_aranea_bytes",
+          "value": 4836,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_aranea_chars",
+          "value": 4803,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_aranea_estimated_tokens",
+          "value": 1200,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "session_cold_bytes",
+          "value": 31610,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(1)"
+        },
+        {
+          "name": "session_cold_chars",
+          "value": 31279,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(1)"
+        },
+        {
+          "name": "session_cold_estimated_tokens",
+          "value": 7818,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(1) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md",
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "opens_per_turn",
+          "value": {
+            "1": 7
+          },
+          "unit": "count",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn"
+        },
+        {
+          "name": "session_cold_estimated_tokens",
+          "value": 7818,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "specialist_skills_selected",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "bootstrap paso 9 (sin necesidad MCP en el fixture)"
+        },
+        {
+          "name": "gate_decision_trace",
+          "value": "entity Echo Forge has area [[Echo]] -> aranea (domain router registry)",
+          "unit": "text",
+          "confidence": "EXACT (transcripción)",
+          "authority": "bootstrap paso 6 via rules.domain_gate"
+        },
+        {
+          "name": "unrelated_domain_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_cold_base",
+          "value": 6205,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_cold_base",
+          "value": false,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 3-6k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        }
+      ],
+      "evidence": [
+        "stack base cargado: 80-agents/agents-os/agent-constitution.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/skills/INDEX.md",
+        "fixture real: area=[[Echo]] -> mapeo [[Echo]]->aranea-agent-dev verificado (bootstrap paso 6)",
+        "expected_not_load verificado (8 paths): ninguno abierto",
+        "estado: active_entity=Echo Forge active_domain=aranea pack=['30-resources/agents/skills/aranea-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md']",
+        "WARN declarado (Hallazgo 7): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area y el router Aranea no la lista en su Minimal Read; su carga on-demand via el enlace del perfil no se afirma ni se prohíbe (C11). M15 la clasifica ambigua (A3).",
+        "WARN (A1/M18): cold_base = 6205 estimated_tokens (chars/4) fuera del techo blando 3-6k; desviación registrada, nunca FAIL (C04)"
+      ],
+      "skip_reason": null,
+      "details": "cold start Aranea via area [[Echo]]: base 4 + router aranea-agent-dev + aranea ops prefs; expert no cobrada (chars/4)"
+    },
+    {
+      "id": "CTX-04",
+      "reuses": [
+        "WARM-DEFAULT"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "warm_delta_files",
+          "value": 0,
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn(2) (fix D1)"
+        },
+        {
+          "name": "warm_delta_bytes",
+          "value": 0,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "warm_delta_chars",
+          "value": 0,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "warm_delta_estimated_tokens",
+          "value": 0,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(2) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_warm_delta",
+          "value": 0,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_warm_delta",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: <1k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        }
+      ],
+      "evidence": [
+        "turno 2: file-opens = - (cero aperturas de base)",
+        "estado: session_mode=warm active_entity=None active_domain=None"
+      ],
+      "skip_reason": null,
+      "details": "turno warm sin dominio: cero opens obligatorios; presupuesto del turno = delta puro (0 archivos)"
+    },
+    {
+      "id": "CTX-05",
+      "reuses": [
+        "WARM-MELI",
+        "BOOTSTRAP-NOT-RERUN-ON-WARM"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md",
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md",
+            "80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "warm_delta_files",
+          "value": 1,
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn(2) (fix D1)"
+        },
+        {
+          "name": "warm_delta_bytes",
+          "value": 2565,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "warm_delta_chars",
+          "value": 2537,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "warm_delta_estimated_tokens",
+          "value": 634,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(2) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "resources_selected",
+          "value": {
+            "candidates": [
+              "80-agents/memory/public/decision/2026-08-19-crear-context-ephemeral-create-only.md",
+              "80-agents/memory/public/decision/rio/2026-08-25-playmaker-cp-idempotency-boundary.md",
+              "80-agents/memory/public/known-error/2026-09-03-vulnes-signals-no-salen-por-fury-cli.md",
+              "80-agents/memory/public/known-error/2026-09-09-git-case-collision-claude-md-macos.md",
+              "80-agents/memory/public/known-error/clickhouse-controlplane-plaintext-password-en-output-de-deployment.md",
+              "80-agents/memory/public/known-error/playmaker-environment-stub-en-dispatch-v1.md",
+              "80-agents/memory/public/known-error/playmaker-java-toolkit-kvs-0-6-1-json-jackson-4-linkage.md",
+              "80-agents/memory/public/known-error/rio-playmaker-claude-md-colision-de-mayusculas-bloquea-rebase.md",
+              "80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md",
+              "80-agents/memory/public/known-error/rio/2026-08-25-rio-scope-grid-restructure-lives-outside-the-generator.md",
+              "80-agents/memory/public/known-error/rio/qkvs-save-version-zero-no-garantiza-create-only.md",
+              "80-agents/memory/public/known-errors/qkvs-save-version-zero-no-garantiza-create-only.md"
+            ],
+            "opened": [
+              "80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md"
+            ]
+          },
+          "unit": "files",
+          "confidence": "EXACT (modelo)",
+          "authority": "rules.Session.retrieve + open_delta (C09: matching declarado por el harness)"
+        },
+        {
+          "name": "soft_target_warm_delta",
+          "value": 634,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_warm_delta",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: <1k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        }
+      ],
+      "evidence": [
+        "turno 2: file-opens = ['80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md'] (cero aperturas de base)",
+        "ciclo de vida del cuerpo abierto (diseño 8.2): 80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md -> sin memory_state/status retirado",
+        "turnos 3..5 warm sin aperturas de base: verificado (BOOTSTRAP-NOT-RERUN-ON-WARM heredado)",
+        "candidatos del filtro (12): 80-agents/memory/public/decision/2026-08-19-crear-context-ephemeral-create-only.md, 80-agents/memory/public/decision/rio/2026-08-25-playmaker-cp-idempotency-boundary.md, 80-agents/memory/public/known-error/2026-09-03-vulnes-signals-no-salen-por-fury-cli.md, 80-agents/memory/public/known-error/2026-09-09-git-case-collision-claude-md-macos.md, 80-agents/memory/public/known-error/clickhouse-controlplane-plaintext-password-en-output-de-deployment.md, 80-agents/memory/public/known-error/playmaker-environment-stub-en-dispatch-v1.md, 80-agents/memory/public/known-error/playmaker-java-toolkit-kvs-0-6-1-json-jackson-4-linkage.md, 80-agents/memory/public/known-error/rio-playmaker-claude-md-colision-de-mayusculas-bloquea-rebase.md, 80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md, 80-agents/memory/public/known-error/rio/2026-08-25-rio-scope-grid-restructure-lives-outside-the-generator.md, 80-agents/memory/public/known-error/rio/qkvs-save-version-zero-no-garantiza-create-only.md, 80-agents/memory/public/known-errors/qkvs-save-version-zero-no-garantiza-create-only.md",
+        "cuerpo abierto (delta único del turno 2): 80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md",
+        "estado: session_mode=warm active_entity=RIO active_domain=meli"
+      ],
+      "skip_reason": null,
+      "details": "turno warm Meli: delta = known-error RIO (1 archivo, peso chars/4); base y pack intactos en turnos 2..5"
+    },
+    {
+      "id": "CTX-06",
+      "reuses": [
+        "WARM-ARANEA"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md",
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md",
+            "80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "warm_delta_files",
+          "value": 1,
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn(2) (fix D1)"
+        },
+        {
+          "name": "warm_delta_bytes",
+          "value": 3345,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "warm_delta_chars",
+          "value": 3317,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "warm_delta_estimated_tokens",
+          "value": 829,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(2) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "resources_selected",
+          "value": {
+            "candidates": [
+              "80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md",
+              "80-agents/memory/internal/agent-memory/2026-09-05-echo-forge-full-golden-flow-continuity.md",
+              "80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-finalist-model-v2.md",
+              "80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-mt5-slot-pool-long-running-v2.md",
+              "80-agents/memory/internal/agent-memory/2026-09-10-echo-forge-f03-physical-certification-continuity.md",
+              "80-agents/memory/internal/agent-memory/2026-09-12-zcode-docs-agent-factory-continuity.md",
+              "80-agents/memory/internal/known-errors/2026-09-10-symphony-sqx-trial-license-fleet-expired.md",
+              "80-agents/memory/public/decision/2026-07-25-atomic-artifact-writer-single-call.md",
+              "80-agents/memory/public/decision/2026-07-26-trade-list-package-complete-and-nonretryable.md",
+              "80-agents/memory/public/decision/2026-08-27-durable-sdk-minio-atomic-create.md",
+              "80-agents/memory/public/decision/echo-forge/2026-09-04-release-0-2-92-physical-c3-closure.md",
+              "80-agents/memory/public/decision/sqx-historical-builder-templates-fd9.md",
+              "80-agents/memory/public/decision/stager/2026-08-10-stager-product-boundary-and-durable-activation.md",
+              "80-agents/memory/public/decision/symphony/2026-07-27-trade-list-exporter-type-internal-project-mapping.md",
+              "80-agents/memory/public/decision/symphony/2026-07-31-storage-path-deterministic-by-logical-identity.md",
+              "80-agents/memory/public/decision/symphony/2026-07-31-task-local-dirs-input-output-only.md",
+              "80-agents/memory/public/decision/symphony/2026-07-31-temporal-activity-contract-remote-only.md",
+              "80-agents/memory/public/decision/symphony/2026-08-14-echo-forge-one-vm-one-worker-one-task.md",
+              "80-agents/memory/public/decision/symphony/2026-08-15-echo-forge-g0l-owner-amendments.md",
+              "80-agents/memory/public/decision/symphony/2026-08-16-echo-forge-g0p-mvp-physical-design.md",
+              "80-agents/memory/public/decision/symphony/2026-08-16-echo-forge-mt5-comparability-taxonomy.md",
+              "80-agents/memory/public/decision/symphony/2026-08-18-echo-forge-mt5-fidelity-scope-bypass.md",
+              "80-agents/memory/public/decision/symphony/2026-08-19-echo-forge-a6-big-bang-supersedes-a5.md",
+              "80-agents/memory/public/decision/symphony/2026-08-23-durable-strategy-identity-v2-cutover.md",
+              "80-agents/memory/public/decision/symphony/2026-08-23-durable-strategy-identity-v2-storage-support.md",
+              "80-agents/memory/public/decision/symphony/2026-08-26-sqx-output-namespace-ownership-pre-sqx-guard.md",
+              "80-agents/memory/public/decision/symphony/2026-08-27-builder-historical-templates-certified-closed.md",
+              "80-agents/memory/public/decision/symphony/2026-08-27-historical-cohort-resolution-at-group-boundary.md",
+              "80-agents/memory/public/decision/symphony/2026-08-27-sqx-cross-flowrun-reuse-certified-closed-frozen.md",
+              "80-agents/memory/public/decision/symphony/2026-08-30-echo-forge-finalist-promotion-v1.md",
+              "80-agents/memory/public/decision/symphony/2026-09-02-config-source-wave-identity.md",
+              "80-agents/memory/public/decision/symphony/2026-09-02-echo-forge-c3-cert-a-supply-via-aligned-mt5-window.md",
+              "80-agents/memory/public/decision/symphony/2026-09-03-deploy-release-only.md",
+              "80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-c3-lean-recert-plan.md",
+              "80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-release-0288-cancel-smoke-certified.md",
+              "80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-worker-execution-model-v1.md",
+              "80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-worker-lifecycle-mt5-orphan-plan.md",
+              "80-agents/memory/public/decision/symphony/2026-09-03-forge-campaign-telemetry-replay-fix.md",
+              "80-agents/memory/public/decision/symphony/2026-09-03-mt5-artifact-timeout-authority.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-0289-blocked-reretester.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-0290-blocked-mt5-build.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-recert-blocked.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-zero-supply-closure.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-builder-supply-identity.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-replenishment-resume-policy-v1.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-mt5-report-6140-compatible-allowlist.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-mt5-report-6180-compatible-allowlist.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-final-reretester-empty-fanin-rca.md",
+              "80-agents/memory/public/decision/symphony/2026-09-04-forge-campaign-stop-policy-schema-ownership.md",
+              "80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-finalist-model-v2.md",
+              "80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-execution-model-v2.md",
+              "80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-fencing-and-cancellation-v3.md",
+              "80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-global-physical-ownership-v2.md",
+              "80-agents/memory/public/known-error/2026-07-25-success-sentinel-after-manifest-rewrite.md",
+              "80-agents/memory/public/known-error/2026-07-29-sqx-trade-list-exporter-source-order-count-zero.md",
+              "80-agents/memory/public/known-error/2026-07-29-sqx-watcher-missing-on-hera-kronos.md",
+              "80-agents/memory/public/known-error/2026-08-02-minio-content-type-user-metadata-rejected.md",
+              "80-agents/memory/public/known-error/2026-08-02-minio-nosuchkey-misclassified-as-transient.md",
+              "80-agents/memory/public/known-error/echo-forge-g3-false-closure-runtime-path.md",
+              "80-agents/memory/public/known-error/echo-forge/2026-09-04-cfg-id-length-intake-harness.md",
+              "80-agents/memory/public/known-error/optimizer-wf-matrix-second-sqx-output.md",
+              "80-agents/memory/public/known-error/sqx-custom-analysis-loads-snippets-jar.md",
+              "80-agents/memory/public/known-error/stager-state-0600-runtime-kor.md",
+              "80-agents/memory/public/known-error/symphony-config-source-wave-legacy-cfg.md",
+              "80-agents/memory/public/known-error/symphony-deploy-release-go-stager-cutover-gap.md",
+              "80-agents/memory/public/known-error/symphony-mt5-backtest-report-htm-absent.md",
+              "80-agents/memory/public/known-error/symphony-mt5-compile-ex5-absent.md",
+              "80-agents/memory/public/known-error/symphony-mt5-compile-ex5-key-source-folder-substring.md",
+              "80-agents/memory/public/known-error/symphony-mt5-utf16-journal-sanitizer-bypass.md",
+              "80-agents/memory/public/known-error/symphony/2026-08-15-mt5-html-parser-fail-open-signed-costs.md",
+              "80-agents/memory/public/known-error/symphony/2026-08-18-sqx-mt5-scope-identity-mismatch.md",
+              "80-agents/memory/public/known-error/symphony/2026-08-26-flowrun-lifecycle-telemetry-carrier-mismatch.md",
+              "80-agents/memory/public/known-error/symphony/2026-08-28-embedded-postgres-shm-init-failure.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-01-echo-forge-c3-release-authority-sdk-stdout-contamination.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-01-release-authority-stale-manifest-rollback.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-01-stager-version-collision-release-not-converged.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-02-echo-forge-c3-adaptive-workflow-registration.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-02-echo-forge-c3-mt5-fidelity-period-mismatch.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-02-release-wrapper-inflight-manifest-preflight-race.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-02-sqx-watcher-stager-current-link-mismatch.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-03-mt5-artifact-timeout-retry-loop.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-03-orphan-mt5-after-cancel.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-04-campaign-generic-mt5-backtest-cap.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-04-cert-a-no-final-reretester-survivor.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-04-echo-forge-c3-zero-supply-control-flow.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-04-forge-campaign-orchestration-contract-broken.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-04-forge-campaign-v2-stop-policy-schema-mismatch.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-04-mt5-terminal-build-unsupported.md",
+              "80-agents/memory/public/known-error/symphony/2026-09-04-reretester-single-artifact-contract.md",
+              "80-agents/memory/public/known-error/symphony/apply-selected-run-metadata-run-id-mismatch.md",
+              "80-agents/memory/public/known-error/symphony/deployer-manifest-publication-race.md",
+              "80-agents/memory/public/known-error/symphony/durable-builder-retry-reemits-evaluations-under-same-stage.md",
+              "80-agents/memory/public/known-error/symphony/durable-retester-contract-conflict-on-reset.md",
+              "80-agents/memory/public/known-error/symphony/embedded-postgres-maven-dns-timeout.md",
+              "80-agents/memory/public/known-error/symphony/final-reretester-missing-strategy-artifact-return.md",
+              "80-agents/memory/public/known-error/symphony/mongodb-index-specs-conflict.md",
+              "80-agents/memory/public/known-error/symphony/sqcli-databanks-not-found.md",
+              "80-agents/memory/public/known-error/symphony/sqcli-echoforge-class-not-found-fresh-worker.md",
+              "80-agents/memory/public/known-error/symphony/sqcli-retester-config-errors.md",
+              "80-agents/memory/public/known-error/symphony/sqx-import-metadata-silent-fallback.md",
+              "80-agents/memory/public/known-error/symphony/sqx-watcher-systemd-service-hangs-after-deploy.md",
+              "80-agents/memory/public/known-error/symphony/sqx-watcher-validate-configs-ignores-config-folder.md",
+              "80-agents/memory/public/known-error/symphony/sqx-wfm-durable-export-heartbeat-timeout-while-sqcli-running.md",
+              "80-agents/memory/public/known-error/symphony/stager-go-noop-pending-sync-thrash.md",
+              "80-agents/memory/public/known-error/symphony/symphony-sqx-global-verification-non-hermetic.md",
+              "80-agents/memory/public/known-error/symphony/trade-list-exporter-local-path-cross-worker.md",
+              "80-agents/memory/public/known-error/symphony/trade-list-exporter-minio-prefix-mismatch-robust-sqx.md",
+              "80-agents/memory/public/known-error/symphony/wfm-runs-duplicate-key-on-rerun-example-flow-41.md",
+              "80-agents/memory/public/known-errors/durable-retester-contract-conflict-on-reset.md",
+              "80-agents/memory/public/learning/stager-g3-lifecycle-accepted-e2e-is-next.md",
+              "80-agents/memory/public/learning/symphony/2026-07-31-minio-storage-path-must-be-deterministic-by-logical-identity.md",
+              "80-agents/memory/public/learning/symphony/2026-07-31-sqx-custom-analysis-loads-snippets-not-jar.md",
+              "80-agents/memory/public/learning/symphony/2026-09-03-temporal-activity-started-deferred.md",
+              "80-agents/memory/public/learning/symphony/2026-09-04-echo-forge-c3-static-blocker-burndown.md",
+              "80-agents/memory/public/learning/symphony/2026-09-04-nested-domain-schema-authority.md",
+              "80-agents/memory/public/pattern/symphony/2026-09-03-echo-forge-cancel-drain-lifecycle.md",
+              "80-agents/memory/public/pattern/symphony/2026-09-03-echo-forge-one-job-per-worker.md",
+              "80-agents/memory/public/pattern/symphony/2026-09-06-echo-forge-temporal-activity-ceiling-clamp.md",
+              "80-agents/memory/public/runbook/symphony/echo-forge-cross-system-triage.md",
+              "80-agents/memory/public/runbook/symphony/echo-forge-golden-e2e.md",
+              "80-agents/memory/public/runbook/symphony/echo-forge-workers-shared-access.md",
+              "80-agents/memory/public/runbook/symphony/plugin-java-deployment-via-setup-echoforge-projects.md",
+              "80-agents/memory/public/runbook/symphony/symphony-prod-probe.md",
+              "80-agents/memory/public/runbook/symphony/symphony-release-certification.md",
+              "80-agents/memory/public/runbook/symphony/symphony-worker-runtime-proof.md"
+            ],
+            "opened": [
+              "80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md"
+            ]
+          },
+          "unit": "files",
+          "confidence": "EXACT (modelo)",
+          "authority": "rules.Session.retrieve + open_delta"
+        },
+        {
+          "name": "soft_target_warm_delta",
+          "value": 829,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_warm_delta",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: <1k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        }
+      ],
+      "evidence": [
+        "turno 2: file-opens = ['80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md'] (cero aperturas de base)",
+        "ciclo de vida del cuerpo abierto (diseño 8.2): 80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md -> sin memory_state/status retirado",
+        "trigger del fixture: when_echo_forge_loaded (vocabulario no canónico = WARN de LOAD-POLICY-VOCABULARY/C09, no invalida el escenario)",
+        "candidatos del filtro (125): 80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-05-echo-forge-full-golden-flow-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-finalist-model-v2.md, 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-mt5-slot-pool-long-running-v2.md, 80-agents/memory/internal/agent-memory/2026-09-10-echo-forge-f03-physical-certification-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-12-zcode-docs-agent-factory-continuity.md, 80-agents/memory/internal/known-errors/2026-09-10-symphony-sqx-trial-license-fleet-expired.md, 80-agents/memory/public/decision/2026-07-25-atomic-artifact-writer-single-call.md, 80-agents/memory/public/decision/2026-07-26-trade-list-package-complete-and-nonretryable.md, 80-agents/memory/public/decision/2026-08-27-durable-sdk-minio-atomic-create.md, 80-agents/memory/public/decision/echo-forge/2026-09-04-release-0-2-92-physical-c3-closure.md, 80-agents/memory/public/decision/sqx-historical-builder-templates-fd9.md, 80-agents/memory/public/decision/stager/2026-08-10-stager-product-boundary-and-durable-activation.md, 80-agents/memory/public/decision/symphony/2026-07-27-trade-list-exporter-type-internal-project-mapping.md, 80-agents/memory/public/decision/symphony/2026-07-31-storage-path-deterministic-by-logical-identity.md, 80-agents/memory/public/decision/symphony/2026-07-31-task-local-dirs-input-output-only.md, 80-agents/memory/public/decision/symphony/2026-07-31-temporal-activity-contract-remote-only.md, 80-agents/memory/public/decision/symphony/2026-08-14-echo-forge-one-vm-one-worker-one-task.md, 80-agents/memory/public/decision/symphony/2026-08-15-echo-forge-g0l-owner-amendments.md, 80-agents/memory/public/decision/symphony/2026-08-16-echo-forge-g0p-mvp-physical-design.md, 80-agents/memory/public/decision/symphony/2026-08-16-echo-forge-mt5-comparability-taxonomy.md, 80-agents/memory/public/decision/symphony/2026-08-18-echo-forge-mt5-fidelity-scope-bypass.md, 80-agents/memory/public/decision/symphony/2026-08-19-echo-forge-a6-big-bang-supersedes-a5.md, 80-agents/memory/public/decision/symphony/2026-08-23-durable-strategy-identity-v2-cutover.md, 80-agents/memory/public/decision/symphony/2026-08-23-durable-strategy-identity-v2-storage-support.md, 80-agents/memory/public/decision/symphony/2026-08-26-sqx-output-namespace-ownership-pre-sqx-guard.md, 80-agents/memory/public/decision/symphony/2026-08-27-builder-historical-templates-certified-closed.md, 80-agents/memory/public/decision/symphony/2026-08-27-historical-cohort-resolution-at-group-boundary.md, 80-agents/memory/public/decision/symphony/2026-08-27-sqx-cross-flowrun-reuse-certified-closed-frozen.md, 80-agents/memory/public/decision/symphony/2026-08-30-echo-forge-finalist-promotion-v1.md, 80-agents/memory/public/decision/symphony/2026-09-02-config-source-wave-identity.md, 80-agents/memory/public/decision/symphony/2026-09-02-echo-forge-c3-cert-a-supply-via-aligned-mt5-window.md, 80-agents/memory/public/decision/symphony/2026-09-03-deploy-release-only.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-c3-lean-recert-plan.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-release-0288-cancel-smoke-certified.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-worker-execution-model-v1.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-worker-lifecycle-mt5-orphan-plan.md, 80-agents/memory/public/decision/symphony/2026-09-03-forge-campaign-telemetry-replay-fix.md, 80-agents/memory/public/decision/symphony/2026-09-03-mt5-artifact-timeout-authority.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-0289-blocked-reretester.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-0290-blocked-mt5-build.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-recert-blocked.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-zero-supply-closure.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-builder-supply-identity.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-replenishment-resume-policy-v1.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-mt5-report-6140-compatible-allowlist.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-mt5-report-6180-compatible-allowlist.md, 80-agents/memory/public/decision/symphony/2026-09-04-final-reretester-empty-fanin-rca.md, 80-agents/memory/public/decision/symphony/2026-09-04-forge-campaign-stop-policy-schema-ownership.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-finalist-model-v2.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-execution-model-v2.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-fencing-and-cancellation-v3.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-global-physical-ownership-v2.md, 80-agents/memory/public/known-error/2026-07-25-success-sentinel-after-manifest-rewrite.md, 80-agents/memory/public/known-error/2026-07-29-sqx-trade-list-exporter-source-order-count-zero.md, 80-agents/memory/public/known-error/2026-07-29-sqx-watcher-missing-on-hera-kronos.md, 80-agents/memory/public/known-error/2026-08-02-minio-content-type-user-metadata-rejected.md, 80-agents/memory/public/known-error/2026-08-02-minio-nosuchkey-misclassified-as-transient.md, 80-agents/memory/public/known-error/echo-forge-g3-false-closure-runtime-path.md, 80-agents/memory/public/known-error/echo-forge/2026-09-04-cfg-id-length-intake-harness.md, 80-agents/memory/public/known-error/optimizer-wf-matrix-second-sqx-output.md, 80-agents/memory/public/known-error/sqx-custom-analysis-loads-snippets-jar.md, 80-agents/memory/public/known-error/stager-state-0600-runtime-kor.md, 80-agents/memory/public/known-error/symphony-config-source-wave-legacy-cfg.md, 80-agents/memory/public/known-error/symphony-deploy-release-go-stager-cutover-gap.md, 80-agents/memory/public/known-error/symphony-mt5-backtest-report-htm-absent.md, 80-agents/memory/public/known-error/symphony-mt5-compile-ex5-absent.md, 80-agents/memory/public/known-error/symphony-mt5-compile-ex5-key-source-folder-substring.md, 80-agents/memory/public/known-error/symphony-mt5-utf16-journal-sanitizer-bypass.md, 80-agents/memory/public/known-error/symphony/2026-08-15-mt5-html-parser-fail-open-signed-costs.md, 80-agents/memory/public/known-error/symphony/2026-08-18-sqx-mt5-scope-identity-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-08-26-flowrun-lifecycle-telemetry-carrier-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-08-28-embedded-postgres-shm-init-failure.md, 80-agents/memory/public/known-error/symphony/2026-09-01-echo-forge-c3-release-authority-sdk-stdout-contamination.md, 80-agents/memory/public/known-error/symphony/2026-09-01-release-authority-stale-manifest-rollback.md, 80-agents/memory/public/known-error/symphony/2026-09-01-stager-version-collision-release-not-converged.md, 80-agents/memory/public/known-error/symphony/2026-09-02-echo-forge-c3-adaptive-workflow-registration.md, 80-agents/memory/public/known-error/symphony/2026-09-02-echo-forge-c3-mt5-fidelity-period-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-02-release-wrapper-inflight-manifest-preflight-race.md, 80-agents/memory/public/known-error/symphony/2026-09-02-sqx-watcher-stager-current-link-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-03-mt5-artifact-timeout-retry-loop.md, 80-agents/memory/public/known-error/symphony/2026-09-03-orphan-mt5-after-cancel.md, 80-agents/memory/public/known-error/symphony/2026-09-04-campaign-generic-mt5-backtest-cap.md, 80-agents/memory/public/known-error/symphony/2026-09-04-cert-a-no-final-reretester-survivor.md, 80-agents/memory/public/known-error/symphony/2026-09-04-echo-forge-c3-zero-supply-control-flow.md, 80-agents/memory/public/known-error/symphony/2026-09-04-forge-campaign-orchestration-contract-broken.md, 80-agents/memory/public/known-error/symphony/2026-09-04-forge-campaign-v2-stop-policy-schema-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-04-mt5-terminal-build-unsupported.md, 80-agents/memory/public/known-error/symphony/2026-09-04-reretester-single-artifact-contract.md, 80-agents/memory/public/known-error/symphony/apply-selected-run-metadata-run-id-mismatch.md, 80-agents/memory/public/known-error/symphony/deployer-manifest-publication-race.md, 80-agents/memory/public/known-error/symphony/durable-builder-retry-reemits-evaluations-under-same-stage.md, 80-agents/memory/public/known-error/symphony/durable-retester-contract-conflict-on-reset.md, 80-agents/memory/public/known-error/symphony/embedded-postgres-maven-dns-timeout.md, 80-agents/memory/public/known-error/symphony/final-reretester-missing-strategy-artifact-return.md, 80-agents/memory/public/known-error/symphony/mongodb-index-specs-conflict.md, 80-agents/memory/public/known-error/symphony/sqcli-databanks-not-found.md, 80-agents/memory/public/known-error/symphony/sqcli-echoforge-class-not-found-fresh-worker.md, 80-agents/memory/public/known-error/symphony/sqcli-retester-config-errors.md, 80-agents/memory/public/known-error/symphony/sqx-import-metadata-silent-fallback.md, 80-agents/memory/public/known-error/symphony/sqx-watcher-systemd-service-hangs-after-deploy.md, 80-agents/memory/public/known-error/symphony/sqx-watcher-validate-configs-ignores-config-folder.md, 80-agents/memory/public/known-error/symphony/sqx-wfm-durable-export-heartbeat-timeout-while-sqcli-running.md, 80-agents/memory/public/known-error/symphony/stager-go-noop-pending-sync-thrash.md, 80-agents/memory/public/known-error/symphony/symphony-sqx-global-verification-non-hermetic.md, 80-agents/memory/public/known-error/symphony/trade-list-exporter-local-path-cross-worker.md, 80-agents/memory/public/known-error/symphony/trade-list-exporter-minio-prefix-mismatch-robust-sqx.md, 80-agents/memory/public/known-error/symphony/wfm-runs-duplicate-key-on-rerun-example-flow-41.md, 80-agents/memory/public/known-errors/durable-retester-contract-conflict-on-reset.md, 80-agents/memory/public/learning/stager-g3-lifecycle-accepted-e2e-is-next.md, 80-agents/memory/public/learning/symphony/2026-07-31-minio-storage-path-must-be-deterministic-by-logical-identity.md, 80-agents/memory/public/learning/symphony/2026-07-31-sqx-custom-analysis-loads-snippets-not-jar.md, 80-agents/memory/public/learning/symphony/2026-09-03-temporal-activity-started-deferred.md, 80-agents/memory/public/learning/symphony/2026-09-04-echo-forge-c3-static-blocker-burndown.md, 80-agents/memory/public/learning/symphony/2026-09-04-nested-domain-schema-authority.md, 80-agents/memory/public/pattern/symphony/2026-09-03-echo-forge-cancel-drain-lifecycle.md, 80-agents/memory/public/pattern/symphony/2026-09-03-echo-forge-one-job-per-worker.md, 80-agents/memory/public/pattern/symphony/2026-09-06-echo-forge-temporal-activity-ceiling-clamp.md, 80-agents/memory/public/runbook/symphony/echo-forge-cross-system-triage.md, 80-agents/memory/public/runbook/symphony/echo-forge-golden-e2e.md, 80-agents/memory/public/runbook/symphony/echo-forge-workers-shared-access.md, 80-agents/memory/public/runbook/symphony/plugin-java-deployment-via-setup-echoforge-projects.md, 80-agents/memory/public/runbook/symphony/symphony-prod-probe.md, 80-agents/memory/public/runbook/symphony/symphony-release-certification.md, 80-agents/memory/public/runbook/symphony/symphony-worker-runtime-proof.md",
+        "cuerpo abierto (delta único del turno 2): 80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md"
+      ],
+      "skip_reason": null,
+      "details": "turno warm Aranea: delta = continuidad MT5 parser cert; base intacta; delta acotado a memoria aranea"
+    },
+    {
+      "id": "CTX-07",
+      "reuses": [
+        "SWITCH-MELI-TO-ARANEA"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md",
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md",
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "swap_new_pack_files",
+          "value": [
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn(2) (fix D1)"
+        },
+        {
+          "name": "swap_bytes",
+          "value": 4836,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "swap_chars",
+          "value": 4803,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "swap_estimated_tokens",
+          "value": 1200,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(2) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "active_pack_count_post_swap",
+          "value": 1,
+          "unit": "count",
+          "confidence": "EXACT",
+          "authority": "rules.Session.holds_two_packs + pack_files (debe ser <=1)"
+        },
+        {
+          "name": "gate_decision_trace",
+          "value": "entity Echo Forge has area [[Echo]] -> aranea (domain router registry)",
+          "unit": "text",
+          "confidence": "EXACT (transcripción)",
+          "authority": "bootstrap swap paso 3 via rules.domain_gate"
+        },
+        {
+          "name": "potential_residual_bytes",
+          "value": 8148,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "peso en disco del pack saliente (meli); INFERRED como residuo (Hallazgo 8: sin mecanismo de unload)"
+        },
+        {
+          "name": "potential_residual_chars",
+          "value": 8076,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "peso en disco del pack saliente (meli); INFERRED como residuo (Hallazgo 8: sin mecanismo de unload)"
+        },
+        {
+          "name": "potential_residual_estimated_tokens",
+          "value": 2017,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "peso en disco del pack saliente (meli); INFERRED como residuo (Hallazgo 8: sin mecanismo de unload) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "potential_residual_files",
+          "value": [
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "INFERRED",
+          "authority": "Hallazgo 8: los archivos del pack saliente siguen en disco; su presencia en la ventana real es UNOBSERVABLE"
+        },
+        {
+          "name": "unrelated_domain_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_swap",
+          "value": 1200,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_swap",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 1-3k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        }
+      ],
+      "evidence": [
+        "antes: domain=meli pack=['30-resources/agents/skills/meli-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-meli-work-preferences.md', '80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md']",
+        "despues: domain=aranea pack=['30-resources/agents/skills/aranea-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md'] entity=Echo Forge",
+        "pack anterior (meli) descartado; pack nuevo (aranea) cargado; base sin relectura (bootstrap swap pasos 1-4)",
+        "residuo real post-swap en la ventana del modelo: UNOBSERVABLE (Hallazgo 8); a nivel modelo el pack meli salió de pack_files (EXACT) y no fue re-abierto tras el swap"
+      ],
+      "skip_reason": null,
+      "details": "swap Meli->Aranea: un solo pack, base persistente; swap_turn = pack aranea (1200 estimated_tokens, chars/4)"
+    },
+    {
+      "id": "CTX-08",
+      "reuses": [
+        "SWITCH-ARANEA-TO-MELI"
+      ],
+      "verdict": "WARN",
+      "metrics": [
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md",
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md",
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md",
+            "30-resources/agents/skills/signals-code-review/SKILL.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "swap_new_pack_files",
+          "value": [
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md",
+            "30-resources/agents/skills/signals-code-review/SKILL.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn(2) (fix D1)"
+        },
+        {
+          "name": "swap_bytes",
+          "value": 19558,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "swap_chars",
+          "value": 19291,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "swap_estimated_tokens",
+          "value": 4820,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(2) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "active_pack_count_post_swap",
+          "value": 1,
+          "unit": "count",
+          "confidence": "EXACT",
+          "authority": "rules.Session.holds_two_packs + pack_files (debe ser <=1)"
+        },
+        {
+          "name": "specialist_skills_selected",
+          "value": [
+            "30-resources/agents/skills/signals-code-review/SKILL.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "bootstrap paso 9 + router Procedure 3 via rules.Session.route_specialist"
+        },
+        {
+          "name": "gate_decision_trace",
+          "value": "entity RIO has area [[Meli]] -> meli (domain router registry)",
+          "unit": "text",
+          "confidence": "EXACT (transcripción)",
+          "authority": "bootstrap swap paso 3 via rules.domain_gate"
+        },
+        {
+          "name": "potential_residual_bytes",
+          "value": 4836,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "peso en disco del pack saliente (aranea); INFERRED como residuo (Hallazgo 8)"
+        },
+        {
+          "name": "potential_residual_chars",
+          "value": 4803,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "peso en disco del pack saliente (aranea); INFERRED como residuo (Hallazgo 8)"
+        },
+        {
+          "name": "potential_residual_estimated_tokens",
+          "value": 1200,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "peso en disco del pack saliente (aranea); INFERRED como residuo (Hallazgo 8) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "potential_residual_files",
+          "value": [
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "INFERRED",
+          "authority": "Hallazgo 8: residuo real en la ventana del modelo UNOBSERVABLE"
+        },
+        {
+          "name": "unrelated_domain_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        },
+        {
+          "name": "soft_target_swap",
+          "value": 4820,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_swap",
+          "value": false,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 1-3k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        }
+      ],
+      "evidence": [
+        "ciclo de vida de la especialista abierta (diseño 8.2): 30-resources/agents/skills/signals-code-review/SKILL.md -> sin memory_state/status retirado",
+        "routing: 30-resources/agents/skills/signals-code-review/SKILL.md via tabla del router meli-agent-dev (Procedure 3), no directo desde INDEX",
+        "VPN por rjara-vpn-routing-preferences.md antes del primer acceso corporativo (router Procedure 4): incluida en pack (autorizada en meli; A3)",
+        "despues: domain=meli pack=['30-resources/agents/skills/meli-agent-dev/SKILL.md', '80-agents/memory/public/user-preference/rjara-meli-work-preferences.md', '80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md'] especialista=['30-resources/agents/skills/signals-code-review/SKILL.md']",
+        "residuo real post-swap: UNOBSERVABLE (Hallazgo 8); potential_residual = peso del pack aranea saliente en disco",
+        "WARN (A1/M18): swap = 4820 estimated_tokens (chars/4) fuera del techo blando 1-3k; desviación registrada, nunca FAIL (C04)"
+      ],
+      "skip_reason": null,
+      "details": "swap Aranea->Meli: router + 2 prefs + signals-code-review solo via tabla del router; expert ausente"
+    },
+    {
+      "id": "CTX-09",
+      "reuses": [
+        "SWITCH-DEFAULT-TO-MELI"
+      ],
+      "verdict": "WARN",
+      "metrics": [
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md",
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "swap_new_pack_files",
+          "value": [
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn(2) (fix D1)"
+        },
+        {
+          "name": "swap_bytes",
+          "value": 9817,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "swap_chars",
+          "value": 9729,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "swap_estimated_tokens",
+          "value": 2430,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(2) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "active_pack_count_post_swap",
+          "value": 1,
+          "unit": "count",
+          "confidence": "EXACT",
+          "authority": "rules.Session.holds_two_packs + pack_files"
+        },
+        {
+          "name": "soft_target_swap",
+          "value": 2430,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_swap",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 1-3k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        },
+        {
+          "name": "gate_decision_trace",
+          "value": "entity RIO has area [[Meli]] -> meli (domain router registry)",
+          "unit": "text",
+          "confidence": "EXACT (transcripción)",
+          "authority": "bootstrap swap pasos 1-4 via rules.domain_gate"
+        },
+        {
+          "name": "unrelated_domain_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        }
+      ],
+      "evidence": [
+        "transicion: active_entity none->RIO; active_domain none->meli",
+        "gate: entity RIO has area [[Meli]] -> meli (domain router registry)",
+        "WARN declarado (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap ('switches to a different entity') convergen en el mismo observable; ninguna autoridad fija la clasificacion del modo."
+      ],
+      "skip_reason": null,
+      "details": "resolución tardía RIO: gate aplicado, base intacta, sin re-ejecutar bootstrap"
+    },
+    {
+      "id": "CTX-10",
+      "reuses": [
+        "SWITCH-DEFAULT-TO-ARANEA"
+      ],
+      "verdict": "WARN",
+      "metrics": [
+        {
+          "name": "session_loaded_set",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md",
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.all_opens"
+        },
+        {
+          "name": "swap_new_pack_files",
+          "value": [
+            "30-resources/agents/domain-router-registry.md",
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.Session.opens_in_turn(2) (fix D1)"
+        },
+        {
+          "name": "swap_bytes",
+          "value": 6505,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "swap_chars",
+          "value": 6456,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness sobre opens_in_turn(2)"
+        },
+        {
+          "name": "swap_estimated_tokens",
+          "value": 1613,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness sobre opens_in_turn(2) + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "active_pack_count_post_swap",
+          "value": 1,
+          "unit": "count",
+          "confidence": "EXACT",
+          "authority": "rules.Session.holds_two_packs + pack_files"
+        },
+        {
+          "name": "soft_target_swap",
+          "value": 1613,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "bootstrap Token Targets (soft) + doctor Check 11 + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "soft_target_in_range_swap",
+          "value": true,
+          "unit": "bool",
+          "confidence": "ESTIMATED",
+          "authority": "techo blando declarado: 1-3k estimated_tokens (bootstrap Token Targets (soft); A1: desviación = WARN, nunca FAIL)"
+        },
+        {
+          "name": "gate_decision_trace",
+          "value": "entity Echo Forge has area [[Echo]] -> aranea (domain router registry)",
+          "unit": "text",
+          "confidence": "EXACT (transcripción)",
+          "authority": "bootstrap swap pasos 1-4 via rules.domain_gate"
+        },
+        {
+          "name": "unrelated_domain_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "diseño 8.1 clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS)"
+        }
+      ],
+      "evidence": [
+        "transicion: active_entity none->Echo Forge; active_domain none->aranea",
+        "gate: entity Echo Forge has area [[Echo]] -> aranea (domain router registry)",
+        "WARN declarado (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap ('switches to a different entity') convergen en el mismo observable; ninguna autoridad fija la clasificacion del modo.",
+        "mapeo [[Echo]]->aranea-agent-dev verificado explícitamente (bootstrap paso 6)"
+      ],
+      "skip_reason": null,
+      "details": "resolución tardía Echo Forge: gate aplicado, base intacta, sin re-ejecutar bootstrap"
+    },
+    {
+      "id": "CTX-11",
+      "reuses": [
+        "UNRELATED-DOMAIN-NOT-LOADED"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "unrelated_domain_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "diseño 8.1: clasificación estática (frontmatter area + rules.ROUTERS/ROUTER_PREFS/DOMAIN_GATED_SKILLS) sobre opens+candidatos"
+        },
+        {
+          "name": "unrelated_domain_chars",
+          "value": 0,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "unrelated_domain_bytes",
+          "value": 0,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "unrelated_domain_estimated_tokens",
+          "value": 0,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "leak_avoided_pool_files",
+          "value": 0,
+          "unit": "files",
+          "confidence": "INFERRED",
+          "authority": "cota superior del leak evitado: notas bloqueadas solo por el chequeo de dominio y referenciando a la entidad activa (rules.references_entity)"
+        },
+        {
+          "name": "leak_avoided_pool_chars",
+          "value": 0,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "leak_avoided_pool_estimated_tokens",
+          "value": 0,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        }
+      ],
+      "evidence": [
+        "[meli] set cargado (20 archivos, opens+candidatos): 80-agents/agents-os/agent-constitution.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/skills/INDEX.md, 30-resources/agents/domain-router-registry.md, 30-resources/agents/skills/meli-agent-dev/SKILL.md, 80-agents/memory/public/user-preference/rjara-meli-work-preferences.md, 80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md, 80-agents/memory/public/decision/2026-08-19-crear-context-ephemeral-create-only.md, 80-agents/memory/public/decision/rio/2026-08-25-playmaker-cp-idempotency-boundary.md, 80-agents/memory/public/known-error/2026-09-03-vulnes-signals-no-salen-por-fury-cli.md, 80-agents/memory/public/known-error/2026-09-09-git-case-collision-claude-md-macos.md, 80-agents/memory/public/known-error/clickhouse-controlplane-plaintext-password-en-output-de-deployment.md, 80-agents/memory/public/known-error/playmaker-environment-stub-en-dispatch-v1.md, 80-agents/memory/public/known-error/playmaker-java-toolkit-kvs-0-6-1-json-jackson-4-linkage.md, 80-agents/memory/public/known-error/rio-playmaker-claude-md-colision-de-mayusculas-bloquea-rebase.md, 80-agents/memory/public/known-error/rio/2026-08-19-rio-fury-segment-suffix-breaks-last-token-profile-resolution.md, 80-agents/memory/public/known-error/rio/2026-08-25-rio-scope-grid-restructure-lives-outside-the-generator.md, 80-agents/memory/public/known-error/rio/qkvs-save-version-zero-no-garantiza-create-only.md, 80-agents/memory/public/known-errors/qkvs-save-version-zero-no-garantiza-create-only.md",
+        "[meli] leak evitado (cota superior INFERRED): 0 notas del dominio aranea referencian a la entidad activa y fueron bloqueadas solo por el chequeo de dominio del filtro (0 chars / 0 estimated_tokens)",
+        "[aranea] set cargado (132 archivos, opens+candidatos): 80-agents/agents-os/agent-constitution.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/skills/INDEX.md, 30-resources/agents/domain-router-registry.md, 30-resources/agents/skills/aranea-agent-dev/SKILL.md, 80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md, 80-agents/memory/internal/agent-memory/2026-09-04-echo-forge-mt5-6180-parser-cert-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-05-echo-forge-full-golden-flow-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-finalist-model-v2.md, 80-agents/memory/internal/agent-memory/2026-09-06-echo-forge-mt5-slot-pool-long-running-v2.md, 80-agents/memory/internal/agent-memory/2026-09-10-echo-forge-f03-physical-certification-continuity.md, 80-agents/memory/internal/agent-memory/2026-09-12-zcode-docs-agent-factory-continuity.md, 80-agents/memory/internal/known-errors/2026-09-10-symphony-sqx-trial-license-fleet-expired.md, 80-agents/memory/public/decision/2026-07-25-atomic-artifact-writer-single-call.md, 80-agents/memory/public/decision/2026-07-26-trade-list-package-complete-and-nonretryable.md, 80-agents/memory/public/decision/2026-08-27-durable-sdk-minio-atomic-create.md, 80-agents/memory/public/decision/echo-forge/2026-09-04-release-0-2-92-physical-c3-closure.md, 80-agents/memory/public/decision/sqx-historical-builder-templates-fd9.md, 80-agents/memory/public/decision/stager/2026-08-10-stager-product-boundary-and-durable-activation.md, 80-agents/memory/public/decision/symphony/2026-07-27-trade-list-exporter-type-internal-project-mapping.md, 80-agents/memory/public/decision/symphony/2026-07-31-storage-path-deterministic-by-logical-identity.md, 80-agents/memory/public/decision/symphony/2026-07-31-task-local-dirs-input-output-only.md, 80-agents/memory/public/decision/symphony/2026-07-31-temporal-activity-contract-remote-only.md, 80-agents/memory/public/decision/symphony/2026-08-14-echo-forge-one-vm-one-worker-one-task.md, 80-agents/memory/public/decision/symphony/2026-08-15-echo-forge-g0l-owner-amendments.md, 80-agents/memory/public/decision/symphony/2026-08-16-echo-forge-g0p-mvp-physical-design.md, 80-agents/memory/public/decision/symphony/2026-08-16-echo-forge-mt5-comparability-taxonomy.md, 80-agents/memory/public/decision/symphony/2026-08-18-echo-forge-mt5-fidelity-scope-bypass.md, 80-agents/memory/public/decision/symphony/2026-08-19-echo-forge-a6-big-bang-supersedes-a5.md, 80-agents/memory/public/decision/symphony/2026-08-23-durable-strategy-identity-v2-cutover.md, 80-agents/memory/public/decision/symphony/2026-08-23-durable-strategy-identity-v2-storage-support.md, 80-agents/memory/public/decision/symphony/2026-08-26-sqx-output-namespace-ownership-pre-sqx-guard.md, 80-agents/memory/public/decision/symphony/2026-08-27-builder-historical-templates-certified-closed.md, 80-agents/memory/public/decision/symphony/2026-08-27-historical-cohort-resolution-at-group-boundary.md, 80-agents/memory/public/decision/symphony/2026-08-27-sqx-cross-flowrun-reuse-certified-closed-frozen.md, 80-agents/memory/public/decision/symphony/2026-08-30-echo-forge-finalist-promotion-v1.md, 80-agents/memory/public/decision/symphony/2026-09-02-config-source-wave-identity.md, 80-agents/memory/public/decision/symphony/2026-09-02-echo-forge-c3-cert-a-supply-via-aligned-mt5-window.md, 80-agents/memory/public/decision/symphony/2026-09-03-deploy-release-only.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-c3-lean-recert-plan.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-release-0288-cancel-smoke-certified.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-worker-execution-model-v1.md, 80-agents/memory/public/decision/symphony/2026-09-03-echo-forge-worker-lifecycle-mt5-orphan-plan.md, 80-agents/memory/public/decision/symphony/2026-09-03-forge-campaign-telemetry-replay-fix.md, 80-agents/memory/public/decision/symphony/2026-09-03-mt5-artifact-timeout-authority.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-0289-blocked-reretester.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-0290-blocked-mt5-build.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-lean-recert-blocked.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-c3-zero-supply-closure.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-builder-supply-identity.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-campaign-replenishment-resume-policy-v1.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-mt5-report-6140-compatible-allowlist.md, 80-agents/memory/public/decision/symphony/2026-09-04-echo-forge-mt5-report-6180-compatible-allowlist.md, 80-agents/memory/public/decision/symphony/2026-09-04-final-reretester-empty-fanin-rca.md, 80-agents/memory/public/decision/symphony/2026-09-04-forge-campaign-stop-policy-schema-ownership.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-finalist-model-v2.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-execution-model-v2.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-fencing-and-cancellation-v3.md, 80-agents/memory/public/decision/symphony/2026-09-06-echo-forge-mt5-global-physical-ownership-v2.md, 80-agents/memory/public/known-error/2026-07-25-success-sentinel-after-manifest-rewrite.md, 80-agents/memory/public/known-error/2026-07-29-sqx-trade-list-exporter-source-order-count-zero.md, 80-agents/memory/public/known-error/2026-07-29-sqx-watcher-missing-on-hera-kronos.md, 80-agents/memory/public/known-error/2026-08-02-minio-content-type-user-metadata-rejected.md, 80-agents/memory/public/known-error/2026-08-02-minio-nosuchkey-misclassified-as-transient.md, 80-agents/memory/public/known-error/echo-forge-g3-false-closure-runtime-path.md, 80-agents/memory/public/known-error/echo-forge/2026-09-04-cfg-id-length-intake-harness.md, 80-agents/memory/public/known-error/optimizer-wf-matrix-second-sqx-output.md, 80-agents/memory/public/known-error/sqx-custom-analysis-loads-snippets-jar.md, 80-agents/memory/public/known-error/stager-state-0600-runtime-kor.md, 80-agents/memory/public/known-error/symphony-config-source-wave-legacy-cfg.md, 80-agents/memory/public/known-error/symphony-deploy-release-go-stager-cutover-gap.md, 80-agents/memory/public/known-error/symphony-mt5-backtest-report-htm-absent.md, 80-agents/memory/public/known-error/symphony-mt5-compile-ex5-absent.md, 80-agents/memory/public/known-error/symphony-mt5-compile-ex5-key-source-folder-substring.md, 80-agents/memory/public/known-error/symphony-mt5-utf16-journal-sanitizer-bypass.md, 80-agents/memory/public/known-error/symphony/2026-08-15-mt5-html-parser-fail-open-signed-costs.md, 80-agents/memory/public/known-error/symphony/2026-08-18-sqx-mt5-scope-identity-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-08-26-flowrun-lifecycle-telemetry-carrier-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-08-28-embedded-postgres-shm-init-failure.md, 80-agents/memory/public/known-error/symphony/2026-09-01-echo-forge-c3-release-authority-sdk-stdout-contamination.md, 80-agents/memory/public/known-error/symphony/2026-09-01-release-authority-stale-manifest-rollback.md, 80-agents/memory/public/known-error/symphony/2026-09-01-stager-version-collision-release-not-converged.md, 80-agents/memory/public/known-error/symphony/2026-09-02-echo-forge-c3-adaptive-workflow-registration.md, 80-agents/memory/public/known-error/symphony/2026-09-02-echo-forge-c3-mt5-fidelity-period-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-02-release-wrapper-inflight-manifest-preflight-race.md, 80-agents/memory/public/known-error/symphony/2026-09-02-sqx-watcher-stager-current-link-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-03-mt5-artifact-timeout-retry-loop.md, 80-agents/memory/public/known-error/symphony/2026-09-03-orphan-mt5-after-cancel.md, 80-agents/memory/public/known-error/symphony/2026-09-04-campaign-generic-mt5-backtest-cap.md, 80-agents/memory/public/known-error/symphony/2026-09-04-cert-a-no-final-reretester-survivor.md, 80-agents/memory/public/known-error/symphony/2026-09-04-echo-forge-c3-zero-supply-control-flow.md, 80-agents/memory/public/known-error/symphony/2026-09-04-forge-campaign-orchestration-contract-broken.md, 80-agents/memory/public/known-error/symphony/2026-09-04-forge-campaign-v2-stop-policy-schema-mismatch.md, 80-agents/memory/public/known-error/symphony/2026-09-04-mt5-terminal-build-unsupported.md, 80-agents/memory/public/known-error/symphony/2026-09-04-reretester-single-artifact-contract.md, 80-agents/memory/public/known-error/symphony/apply-selected-run-metadata-run-id-mismatch.md, 80-agents/memory/public/known-error/symphony/deployer-manifest-publication-race.md, 80-agents/memory/public/known-error/symphony/durable-builder-retry-reemits-evaluations-under-same-stage.md, 80-agents/memory/public/known-error/symphony/durable-retester-contract-conflict-on-reset.md, 80-agents/memory/public/known-error/symphony/embedded-postgres-maven-dns-timeout.md, 80-agents/memory/public/known-error/symphony/final-reretester-missing-strategy-artifact-return.md, 80-agents/memory/public/known-error/symphony/mongodb-index-specs-conflict.md, 80-agents/memory/public/known-error/symphony/sqcli-databanks-not-found.md, 80-agents/memory/public/known-error/symphony/sqcli-echoforge-class-not-found-fresh-worker.md, 80-agents/memory/public/known-error/symphony/sqcli-retester-config-errors.md, 80-agents/memory/public/known-error/symphony/sqx-import-metadata-silent-fallback.md, 80-agents/memory/public/known-error/symphony/sqx-watcher-systemd-service-hangs-after-deploy.md, 80-agents/memory/public/known-error/symphony/sqx-watcher-validate-configs-ignores-config-folder.md, 80-agents/memory/public/known-error/symphony/sqx-wfm-durable-export-heartbeat-timeout-while-sqcli-running.md, 80-agents/memory/public/known-error/symphony/stager-go-noop-pending-sync-thrash.md, 80-agents/memory/public/known-error/symphony/symphony-sqx-global-verification-non-hermetic.md, 80-agents/memory/public/known-error/symphony/trade-list-exporter-local-path-cross-worker.md, 80-agents/memory/public/known-error/symphony/trade-list-exporter-minio-prefix-mismatch-robust-sqx.md, 80-agents/memory/public/known-error/symphony/wfm-runs-duplicate-key-on-rerun-example-flow-41.md, 80-agents/memory/public/known-errors/durable-retester-contract-conflict-on-reset.md, 80-agents/memory/public/learning/stager-g3-lifecycle-accepted-e2e-is-next.md, 80-agents/memory/public/learning/symphony/2026-07-31-minio-storage-path-must-be-deterministic-by-logical-identity.md, 80-agents/memory/public/learning/symphony/2026-07-31-sqx-custom-analysis-loads-snippets-not-jar.md, 80-agents/memory/public/learning/symphony/2026-09-03-temporal-activity-started-deferred.md, 80-agents/memory/public/learning/symphony/2026-09-04-echo-forge-c3-static-blocker-burndown.md, 80-agents/memory/public/learning/symphony/2026-09-04-nested-domain-schema-authority.md, 80-agents/memory/public/pattern/symphony/2026-09-03-echo-forge-cancel-drain-lifecycle.md, 80-agents/memory/public/pattern/symphony/2026-09-03-echo-forge-one-job-per-worker.md, 80-agents/memory/public/pattern/symphony/2026-09-06-echo-forge-temporal-activity-ceiling-clamp.md, 80-agents/memory/public/runbook/symphony/echo-forge-cross-system-triage.md, 80-agents/memory/public/runbook/symphony/echo-forge-golden-e2e.md, 80-agents/memory/public/runbook/symphony/echo-forge-workers-shared-access.md, 80-agents/memory/public/runbook/symphony/plugin-java-deployment-via-setup-echoforge-projects.md, 80-agents/memory/public/runbook/symphony/symphony-prod-probe.md, 80-agents/memory/public/runbook/symphony/symphony-release-certification.md, 80-agents/memory/public/runbook/symphony/symphony-worker-runtime-proof.md",
+        "[aranea] leak evitado (cota superior INFERRED): 0 notas del dominio meli referencian a la entidad activa y fueron bloqueadas solo por el chequeo de dominio del filtro (0 chars / 0 estimated_tokens)",
+        "semántica del counterfactual: sin el chequeo de dominio, las notas del pool habrían entrado por when_error_matches/when_project_loaded/when_application_loaded (ref_hit); las when_area_loaded cruzadas siguen excluidas por desigualdad de área"
+      ],
+      "skip_reason": null,
+      "details": "retrieval en ambos dominios: 0 archivos del dominio ajeno en el set cargado (M15 EXACT); pool de leak evitado cuantificado (INFERRED)"
+    },
+    {
+      "id": "CTX-12",
+      "reuses": [
+        "DEPRECATED-DOC-NOT-DEFAULT-LOAD"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "deprecated_hot_path_files",
+          "value": [],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "frontmatter parseado de los sets fijos del hot path (always + packs + especialistas rules.DOMAIN_GATED_SKILLS; diseño 8.2; bootstrap Hard Rules superseded + schema-contract status)"
+        },
+        {
+          "name": "deprecated_hot_path_estimated_tokens",
+          "value": 0,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        }
+      ],
+      "evidence": [
+        "escenario harness heredado PASS: la continuidad superseded queda fuera de startup y retrieval normal (mismo continuity_key)",
+        "STATIC: archive declara memory_state=superseded, load_policy=manual, index_priority=low, superseded_by -> cuadruple completo; misma continuity_key que la activa: True",
+        "SIMULATED: candidatos del filtro retrieval normal (sin historico): 0; archive ausente",
+        "stack: exactamente una nota interna global (80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md)",
+        "barrido M16 estático sobre 14 archivos del hot path (always + packs + especialistas DOMAIN_GATED_SKILLS): 0 hits"
+      ],
+      "skip_reason": null,
+      "details": "ni el archive superseded ni contenido deprecated en el hot path (simulado + barrido estático M16: 0 hits esperados)"
+    },
+    {
+      "id": "CTX-13",
+      "reuses": [
+        "regla 5 de agent-constitution.md ('Una fuente canónica por hecho... Enlazar en vez de repetir')",
+        "DUAL-REGISTRY-DOMAIN-SYNC"
+      ],
+      "verdict": "WARN",
+      "metrics": [
+        {
+          "name": "duplicate_hot_path_pairs",
+          "value": 1,
+          "unit": "count",
+          "confidence": "INFERRED",
+          "authority": "heurística self-declared M14 v1 (umbral A4 ratificado): runs contiguos normalizados >= 5 (normalized runs, detector M14; unidad interna del detector, no estimated_tokens); condición chars >= 120 o >= 3 líneas"
+        },
+        {
+          "name": "duplicate_hot_path_chars",
+          "value": 1447,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "suma de chars normalizados de los runs detectados (dado el detector declarado)"
+        },
+        {
+          "name": "duplicate_hot_path_estimated_tokens",
+          "value": 361,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        }
+      ],
+      "evidence": [
+        "par duplicado [registros]: 30-resources/agents/00-index.md <-> 80-agents/skills/INDEX.md (total 1447 chars normalizados, max 1 líneas consecutivas)",
+        "  bloque (33 chars, 1/1 líneas): \"este índice es el catálogo curado\"",
+        "  bloque (29 chars, 1/1 líneas): \"30 resources 00 resource wiki\"",
+        "  bloque (47 chars, 1/1 líneas): \"30 resources agents skills pr description skill\"",
+        "  bloque (38 chars, 1/1 líneas): \"descripciones de pr con evidencia real\"",
+        "  bloque (62 chars, 1/1 líneas): \"30 resources agents skills human first technical writing skill\"",
+        "  bloque (36 chars, 1/1 líneas): \"reduce la carga cognitiva del lector\"",
+        "  bloque (50 chars, 1/1 líneas): \"30 resources agents skills sync local branch skill\"",
+        "  bloque (65 chars, 1/1 líneas): \"sync local branch sincroniza ramas git exclusivamente locales con\"",
+        "  bloque (45 chars, 1/1 líneas): \"30 resources agents skills sdd workflow skill\"",
+        "  bloque (46 chars, 1/1 líneas): \"sdd workflow clasifica y ejecuta fases sdd sin\"",
+        "  bloque (53 chars, 1/1 líneas): \"30 resources agents skills e2e gated validation skill\"",
+        "  bloque (43 chars, 1/1 líneas): \"e2e como secuencia de gates con evidencia y\"",
+        "  bloque (54 chars, 1/1 líneas): \"30 resources agents skills release certification skill\"",
+        "  bloque (84 chars, 1/1 líneas): \"release certification certifica que release binario corresponde al source autorizado\"",
+        "  bloque (49 chars, 1/1 líneas): \"30 resources agents skills deployment proof skill\"",
+        "  bloque (39 chars, 1/1 líneas): \"que el runtime ejecuta la release nueva\"",
+        "  bloque (58 chars, 1/1 líneas): \"30 resources agents skills readonly production probe skill\"",
+        "  bloque (46 chars, 1/1 líneas): \"contra sistemas reales con cleanup obligatorio\"",
+        "  bloque (60 chars, 1/1 líneas): \"30 resources agents skills distributed incident triage skill\"",
+        "  bloque (59 chars, 1/1 líneas): \"distributed incident triage triage forense multi subsistema\"",
+        "  bloque (29 chars, 1/1 líneas): \"y primer punto de divergencia\"",
+        "  bloque (59 chars, 1/1 líneas): \"30 resources agents skills evidence channel discovery skill\"",
+        "  bloque (46 chars, 1/1 líneas): \"evidence channel discovery descubre y persiste\"",
+        "  bloque (59 chars, 1/1 líneas): \"30 resources agents skills write once conflict triage skill\"",
+        "  bloque (36 chars, 1/1 líneas): \"duplicate race stale contract defect\"",
+        "  bloque (63 chars, 1/1 líneas): \"30 resources agents skills operational healthcheck policy skill\"",
+        "  bloque (87 chars, 1/1 líneas): \"cuándo validar manualmente componentes vigilables y cuándo confiar en la automatización\"",
+        "  bloque (43 chars, 1/1 líneas): \"las skills de dominio y transversales viven\"",
+        "  bloque (29 chars, 1/1 líneas): \"30 resources 00 resource wiki\"",
+        "veredicto máximo WARN (A4): la duplicación con umbral propio nunca sostiene FAIL hasta que el parent ratifique otro umbral; no detecta paráfrasis semántica"
+      ],
+      "skip_reason": null,
+      "details": "duplicación textual en el hot path detectada (WARN; umbral A4 declarado): 1 pares"
+    },
+    {
+      "id": "CTX-14",
+      "reuses": [
+        "SESSION-SURFACE-EXPOSURE (L2)"
+      ],
+      "verdict": "SKIP",
+      "metrics": [],
+      "evidence": [],
+      "skip_reason": "--live ausente (A5): la parte de configs de máquina se omite por defecto; equivalente a --no-live del harness",
+      "details": "no ejecutable: --live ausente (A5): la parte de configs de máquina se omite por defecto; equivalente a --no-live del harness"
+    }
+  ],
+  "totals": {
+    "always_load": {
+      "files": 4,
+      "chars": 24823,
+      "bytes": 25105,
+      "estimated_tokens": 6205,
+      "confidence": "ESTIMATED"
+    },
+    "scope_pack": {
+      "meli": {
+        "files": 3,
+        "chars": 8076,
+        "bytes": 8148,
+        "estimated_tokens": 2017,
+        "confidence": "ESTIMATED"
+      },
+      "aranea": {
+        "files": 2,
+        "chars": 4803,
+        "bytes": 4836,
+        "estimated_tokens": 1200,
+        "confidence": "ESTIMATED"
+      }
+    },
+    "cold_estimated_tokens": {
+      "default": 6205,
+      "meli": 8635,
+      "aranea": 7818,
+      "confidence": "ESTIMATED",
+      "note": "estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+    },
+    "warm_delta": {
+      "files": 1,
+      "chars": 2537,
+      "bytes": 2565,
+      "estimated_tokens": 634,
+      "confidence": "ESTIMATED"
+    },
+    "swap_estimated_tokens": {
+      "meli_to_aranea": 1200,
+      "aranea_to_meli": 4820,
+      "default_to_meli": 2430,
+      "default_to_aranea": 1613,
+      "confidence": "ESTIMATED"
+    },
+    "unrelated_domain": {
+      "files": 0,
+      "chars": 0,
+      "bytes": 0,
+      "estimated_tokens": 0,
+      "confidence": "EXACT"
+    },
+    "deprecated_hot_path": {
+      "files": 0,
+      "estimated_tokens": 0,
+      "confidence": "EXACT"
+    },
+    "duplicate_hot_path": {
+      "pairs": 1,
+      "chars": 1447,
+      "estimated_tokens": 361,
+      "confidence": "INFERRED"
+    }
+  },
+  "counts": {
+    "pass": 7,
+    "fail": 0,
+    "warn": 7,
+    "skip": 1
+  },
+  "ambiguities": [
+    "Hallazgo 6 (A2): la clausula de evidencia de superficie del bootstrap paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (ADR pendiente).",
+    "Hallazgo 7 (A3): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area; autorizada en el pack meli (Minimal Read 3 del router); en escenarios aranea su aparicion seria WARN (clasificacion ambigua, INFERRED).",
+    "C09: vocabulario load_policy ad-hoc (when_echo_forge_loaded, etc.) y la semantica exacta de 'error matching' no tienen autoridad; heredado del harness como WARN y no invalida escenarios.",
+    "Hallazgo 11: areas drift [[Echo Forge]]/[[Personal]] en memoria de dominio no mapean a ningun dominio del gate (WARN declarado del harness ACTIVE-MEMORY-DOMAIN-PURITY).",
+    "DUAL-REGISTRY-DOMAIN-SYNC (Hallazgo 16): clausula dual de pr-description entre INDEX.md ('Vía meli-agent-dev u obra propia') y 30-resources/agents/00-index.md; semantica de la columna no definida por autoridad.",
+    "Modo ambiguo DEFAULT->dominio (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap convergen al mismo observable; ninguna autoridad fija la clasificacion (CTX-09/CTX-10 WARN por diseno).",
+    "C04: estimated_tokens es chars/4 sin tokenizador de autoridad; vale para comparar escenarios y detectar drift entre runs, jamas para tokens reales ni como criterio de FAIL.",
+    "Hallazgo 3: domain gate, warm reuse y swap son prompt-discipline sin enforcement mecanico; el medidor mide la decision transcrita (rules.py), no la obediencia de una sesion viva.",
+    "Hallazgo 4 / Hallazgo 17: la presencia de tools en superficie no es violacion; la config MCP vive a nivel maquina fuera del vault (CTX-14 registra el dato, nunca es criterio de FAIL).",
+    "Hallazgo 8: 'drop the previous domain pack' es instruccion al modelo sin mecanismo de unload; el residuo real post-swap en la ventana del modelo es UNOBSERVABLE (solo potential_residual INFERRED).",
+    "Hallazgo 10: hoy no existe memoria interna activa Meli (estado observado, no invariante).",
+    "A8: skills transversales nunca cuentan como unrelated-domain aunque un registro diga 'Vía meli-agent-dev' (la fila es una puerta, no una exclusividad)."
+  ],
+  "thresholds": {
+    "duplication": {
+      "min_consecutive_lines": 3,
+      "min_chars": 120,
+      "min_run_tokens": 5,
+      "version": 1,
+      "max_verdict": "WARN",
+      "strip_frontmatter": true,
+      "scope": "texto normalizado sin frontmatter (metadatos estructurales del schema-contract, no contenido de la regla 5)"
+    },
+    "soft_ceilings": {
+      "cold_base_estimated_tokens": [
+        3000,
+        6000
+      ],
+      "warm_delta_estimated_tokens": [
+        0,
+        1000
+      ],
+      "swap_estimated_tokens": [
+        1000,
+        3000
+      ]
+    }
+  },
+  "fidelity_details": "todas las anclas de fidelidad de rules.py (26) existen en el texto vigente de las autoridades",
+  "fidelity_evidence": [
+    "80-agents/skills/agents-os-bootstrap/SKILL.md: 21 anclas verificadas (gate-registry, gate-area, gate-task-evidence, gate-cardinality, gate-empty-registry, gate-one-specialist, cold-paso1-constitution, cold-paso1-profile-dir, cold-paso2-global-internal, cold-paso3-registry, cold-paso3-no-federated-index, cold-paso4-map-no-ritual, cold-paso5-resolve-aliases, warm-reuse-delta-only, warm-never-reread, warm-no-bootstrap-rerun, swap-skip-global-internal-reload, swap-keep-invariants, swap-drop-pack, hard-superseded-not-loaded, hard-only-startup-procedure)",
+    "80-agents/skills/agents-os-doctor/SKILL.md: 5 anclas verificadas (doctor-club-constitution, doctor-club-bootstrap, doctor-club-global-internal, doctor-club-one-profile, doctor-club-second-is-violation)"
+  ]
+}

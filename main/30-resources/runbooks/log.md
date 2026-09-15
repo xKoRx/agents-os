@@ -1,5 +1,10 @@
 # Runbooks resource log
 
+## [2026-09-14] fix | Autoridad federada única
+
+- Se retiraron nueve copias residuales de `80-agents/memory/public/runbook/`; las versiones bajo `30-resources/runbooks/` quedan como única autoridad, incluidas las tres que ya habían divergido materialmente.
+- CL-21 del canonical-linter impide reintroducir un nombre de runbook simultáneamente en core y federado.
+
 ## [2026-09-13] update | MCP Aranea — Kafka/Flink + host operator
 
 - Se incorporó `aranea-kafka-mcp` al catálogo canónico de runbooks de Aranea para la capability `aranea-kafka-dev-admin`; PROD queda diferido.

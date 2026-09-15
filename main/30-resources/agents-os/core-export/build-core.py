@@ -16,9 +16,13 @@ script's own location, per constitution invariant 11.
 from __future__ import annotations
 
 import hashlib
+import json
+import os
 import re
 import shutil
+import subprocess
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -73,13 +77,37 @@ DOMAIN_NEUTRAL_HOT_PATH = (
     "80-agents/agents-os/agent-constitution.md",
     "80-agents/agents-os/context-router.md",
     "80-agents/skills/agents-os-bootstrap/SKILL.md",
+    "80-agents/skills/INDEX.md",
 )
 DOMAIN_OPERATIONAL_MARKERS = re.compile(
-    r"\[\[(?:Meli|Aranea|Echo|RIO)\]\]|"
-    r"\b(?:Zord|Fury|Spellbook|Grimoire|O11y)\b|"
+    r"\b(?:Meli|Aranea|Echo|RIO|Zord|Fury|Spellbook|Grimoire|O11y)\b|"
     r"mcp__aranea-|~/fuentes|~/go/src/github\.com/xKoRx",
     re.IGNORECASE,
 )
+
+# Structured domain references are forbidden across the portable artifact. Body
+# prose is inspected where it can execute or reproduce behavior (startup and
+# templates); frontmatter is inspected everywhere because routing consumes it.
+ARTIFACT_DOMAIN_MARKERS = re.compile(
+    r"\[\[(?:Meli|Aranea|Echo|RIO)(?:[|#][^\]]*)?\]\]|"
+    r"(?:#?area/)(?:meli|aranea|echo|rio)(?=$|[\s/\"'\],}])|"
+    r"(?:10-projects|20-areas|30-resources)/(?:Meli|Aranea|Echo|RIO)(?:/|\.md|\b)|"
+    r"mcp__aranea-|\b(?:Zord|Fury|Spellbook|Grimoire|O11y)\b",
+    re.IGNORECASE,
+)
+AREA_FIELD_RE = re.compile(
+    r'^area:\s*["\']?\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]["\']?\s*$',
+    re.IGNORECASE,
+)
+
+# These files exercise intentionally-invalid metadata. The allowlist is exact,
+# reviewable and never applies to templates or startup.
+ARTIFACT_DOMAIN_ALLOWLIST = {
+    "80-agents/skills/agents-os-entity-lifecycle/scripts/fixtures/valid/application-valid.md":
+        "schema fixture whose domain link is part of its test payload",
+    "80-agents/skills/agents-os-entity-lifecycle/scripts/fixtures/invalid/missing-status.md":
+        "negative schema fixture whose domain link is part of its test payload",
+}
 
 
 def sha256(path: Path) -> str:
@@ -90,10 +118,11 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def read_selection() -> list[tuple[str, str]]:
+def read_selection() -> tuple[list[tuple[str, str]], set[str]]:
     """Expand sources.list into an ordered, deduplicated (category, relpath) list."""
     picked: list[tuple[str, str]] = []
     seen: set[str] = set()
+    excluded: set[str] = set()
 
     def add(category: str, path: Path) -> None:
         rel = path.relative_to(VAULT_ROOT).as_posix()
@@ -113,7 +142,12 @@ def read_selection() -> list[tuple[str, str]]:
         if not line or line.startswith("#"):
             continue
         mode, category, rel = line.split("|", 2)
-        if mode == "file":
+        if mode == "exclude":
+            source = VAULT_ROOT / rel
+            if not source.is_file():
+                sys.exit(f"Missing source selected for exclusion: {rel}")
+            excluded.add(rel)
+        elif mode == "file":
             source = VAULT_ROOT / rel
             if not source.is_file():
                 sys.exit(f"Missing required source: {rel}")
@@ -133,10 +167,15 @@ def read_selection() -> list[tuple[str, str]]:
         else:
             sys.exit(f"Unknown selection mode: {mode}")
 
+    unmatched = excluded - seen
+    if unmatched:
+        sys.exit("Excluded source was not selected by any include rule: " + ", ".join(sorted(unmatched)))
+
+    picked = [(category, rel) for category, rel in picked if rel not in excluded]
     for _, rel in picked:
         if rel.startswith(FORBIDDEN):
             sys.exit(f"Selection would ship private material: {rel}")
-    return picked
+    return picked, excluded
 
 
 def clear_target(target: Path) -> None:
@@ -208,8 +247,62 @@ def filter_skill_index(
     return dropped
 
 
-def validate_domain_neutral_hot_path(target: Path) -> None:
-    """Fail the package when operational domain policy reaches shared startup."""
+def frontmatter_lines(path: Path) -> list[tuple[int, str]]:
+    """Return numbered frontmatter lines, or an empty list when absent."""
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if not lines or lines[0] != "---":
+        return []
+    try:
+        end = lines.index("---", 1)
+    except ValueError:
+        return []
+    return list(enumerate(lines[1:end], 2))
+
+
+def collect_artifact_domain_failures(
+    target: Path,
+    full_scan_paths: set[str] | None = None,
+) -> list[str]:
+    """Find domain coupling on executable surfaces and routing metadata."""
+    failures: list[str] = []
+    full_scan_paths = full_scan_paths or set()
+    for path in sorted(target.rglob("*.md")):
+        rel = path.relative_to(target).as_posix()
+        if rel in ARTIFACT_DOMAIN_ALLOWLIST:
+            continue
+
+        scan_full = (
+            rel in DOMAIN_NEUTRAL_HOT_PATH
+            or rel.startswith(("70-templates/", "80-agents/templates/"))
+            or rel in full_scan_paths
+        )
+        numbered = (
+            list(enumerate(path.read_text(encoding="utf-8").splitlines(), 1))
+            if scan_full
+            else frontmatter_lines(path)
+        )
+        for lineno, line in numbered:
+            if ARTIFACT_DOMAIN_MARKERS.search(line):
+                failures.append(f"{rel}:{lineno}: domain reference: {line.strip()}")
+
+        for lineno, line in frontmatter_lines(path):
+            match = AREA_FIELD_RE.match(line.strip())
+            if not match or "{{" in match.group(1):
+                continue
+            area_name = match.group(1).strip()
+            area_path = target / "20-areas" / f"{area_name}.md"
+            if not area_path.is_file():
+                failures.append(
+                    f"{rel}:{lineno}: unresolved distributed area [[{area_name}]]"
+                )
+    return failures
+
+
+def validate_domain_neutral_artifact(
+    target: Path,
+    full_scan_paths: set[str] | None = None,
+) -> None:
+    """Fail when the package depends on a domain absent from DEFAULT installs."""
     failures: list[str] = []
     for rel in DOMAIN_NEUTRAL_HOT_PATH:
         path = target / rel
@@ -219,8 +312,66 @@ def validate_domain_neutral_hot_path(target: Path) -> None:
         for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             if DOMAIN_OPERATIONAL_MARKERS.search(line):
                 failures.append(f"{rel}:{lineno}: {line.strip()}")
+    failures.extend(collect_artifact_domain_failures(target, full_scan_paths))
     if failures:
-        sys.exit("Domain-specific operational policy reached shared hot path:\n" + "\n".join(failures))
+        sys.exit("Domain-specific policy reached the portable artifact:\n" + "\n".join(failures))
+
+
+def load_schema_contract(target: Path) -> dict:
+    path = target / "80-agents/skills/_shared/schema-contract.md"
+    text = path.read_text(encoding="utf-8")
+    try:
+        payload = text.split("<!-- AGENTS_OS_SCHEMA_START -->", 1)[1].split(
+            "<!-- AGENTS_OS_SCHEMA_END -->", 1
+        )[0]
+    except IndexError as exc:
+        raise ValueError("schema markers are missing from the built artifact") from exc
+    match = re.search(r"```json\s*(\{.*\})\s*```", payload, re.DOTALL)
+    if not match:
+        raise ValueError("schema JSON is missing from the built artifact")
+    return json.loads(match.group(1))
+
+
+def verify_default_install_materialization(target: Path) -> int:
+    """Materialize every creatable schema type inside an isolated DEFAULT vault."""
+    contract = load_schema_contract(target)
+    creatable = sorted(
+        note_type
+        for config in contract["systems"].values()
+        for note_type, spec in config["types"].items()
+        if spec.get("template")
+    )
+    with tempfile.TemporaryDirectory(prefix="agents-os-default-install-") as temp_dir:
+        probe_root = Path(temp_dir) / "vault"
+        shutil.copytree(target, probe_root)
+        materializer = (
+            probe_root
+            / "80-agents/skills/_shared/scripts/materialize_schema_note.py"
+        )
+        generated: set[str] = set()
+        env = dict(os.environ)
+        env["PYTHONDONTWRITEBYTECODE"] = "1"
+        for note_type in creatable:
+            slug = re.sub(r"[^a-z0-9]+", "-", note_type.lower()).strip("-")
+            rel = f"00-inbox/default-install-probe-{slug}.md"
+            result = subprocess.run(
+                [sys.executable, str(materializer), note_type, rel],
+                cwd=probe_root,
+                env=env,
+                text=True,
+                capture_output=True,
+                check=False,
+                timeout=30,
+            )
+            if result.returncode:
+                detail = (result.stderr or result.stdout).strip()
+                sys.exit(f"DEFAULT materialization failed for {note_type}: {detail}")
+            if not (probe_root / rel).is_file():
+                sys.exit(f"DEFAULT materialization produced no entity for {note_type}")
+            generated.add(rel)
+
+        validate_domain_neutral_artifact(probe_root, full_scan_paths=generated)
+    return len(creatable)
 
 
 def main() -> None:
@@ -228,7 +379,7 @@ def main() -> None:
     if target == VAULT_ROOT or VAULT_ROOT in target.parents:
         sys.exit(f"Refusing to build into the source vault or below it: {target}")
 
-    selection = read_selection()
+    selection, excluded = read_selection()
     clear_target(target)
 
     total_bytes = 0
@@ -280,7 +431,8 @@ def main() -> None:
         and rel.endswith("/SKILL.md")
     )
 
-    validate_domain_neutral_hot_path(target)
+    validate_domain_neutral_artifact(target)
+    materialized_count = verify_default_install_materialization(target)
 
     leaked = [rel for _, rel, _, _ in rows if rel.startswith(FORBIDDEN)]
     stray = [
@@ -300,6 +452,8 @@ def main() -> None:
                 f"- **Canonical files copied:** {len(rows)}\n",
                 f"- **Distribution-authored files:** {dist_count}\n",
                 f"- **Skill index rows dropped (skill not shipped):** {dropped_rows}\n",
+                f"- **Scoped source files excluded:** {len(excluded)}\n",
+                f"- **DEFAULT entity types materialized:** {materialized_count}\n",
                 "- **Internal memory included:** no\n",
                 "- **Journal contents included:** no (empty scaffolding only)\n",
                 "- **Hash validation:** source/copy SHA-256 equality for every file\n",
@@ -313,6 +467,8 @@ def main() -> None:
     print(f"Canonical files:   {len(rows)} ({total_bytes} bytes)")
     print(f"Authored files:    {dist_count}")
     print(f"Skills shipped:    {skill_count}")
+    print(f"Scoped exclusions: {len(excluded)}")
+    print(f"Types materialized:{materialized_count}")
     print(f"Index rows dropped:{dropped_rows}")
     print("Validation:        passed")
 

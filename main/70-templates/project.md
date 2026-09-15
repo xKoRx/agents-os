@@ -5,7 +5,7 @@ owner: me
 root: false
 status: active
 priority: P2
-area: "[[Meli]]"
+area: "[[Personal]]"
 parent:
 sprint:
 start:
@@ -17,7 +17,7 @@ prs:
 aliases: []
 tags:
   - kind/project
-  - area/meli
+  - area/personal
 created: "{{date:YYYY-MM-DD}}"
 updated: "{{date:YYYY-MM-DD}}"
 ---
@@ -27,7 +27,7 @@ updated: "{{date:YYYY-MM-DD}}"
 %% Naming: {{title}} es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ {{title}}
-> **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
+> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
 > _parent / sprint / repo / jira / prs son opcionales._
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
@@ -36,7 +36,7 @@ updated: "{{date:YYYY-MM-DD}}"
 > `root: true` solo en **iniciativas raíz** (sin `parent`). Todo subproyecto debe setear `parent`; si no, aparece como huérfano en [[Panel de Proyectos]].
 >
 > **Tarea puente:** cuando este proyecto es `owner: agent`, en su proyecto **padre** debe existir UNA sola tarea humana que lo representa (arrancar + seguimiento). Así tu cockpit ve una línea por curro delegado, no las tareas internas del agente. Ejemplo, en el padre:
-> `- [ ] [[{{title}}]] arrancar + seguimiento #owner/me #type/supervision #area/meli`
+> `- [ ] [[{{title}}]] arrancar + seguimiento #owner/me #type/supervision #area/personal`
 
 ## 🎯 Objetivo
 
@@ -80,9 +80,9 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/meli
-> - [ ] tarea delegada #owner/agent #type/dev #area/meli
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+> - [ ] primera tarea #owner/me #type/dev #area/personal
+> - [ ] tarea delegada #owner/agent #type/dev #area/personal
+> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};

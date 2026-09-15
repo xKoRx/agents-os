@@ -2,7 +2,7 @@
 type: sprint
 schema_version: 1
 status: active
-area: "[[Meli]]"
+area: "[[Personal]]"
 quarter:
 start:
 end:

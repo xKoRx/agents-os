@@ -21,16 +21,49 @@ tags:
 
 ```text
 ACCESS_CERTIFICATION_PARTIAL — run 2026-09-14
+H1 RESOLVED 2026-09-15 · H2 RESOLVED 2026-09-15 (remediation run, evidencia abajo)
 ```
 
 Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary viewer SSH no aplicado; credenciales upstream expuestas por `export_metadata`) y varias superficies con verbos no demostrables o no ejercidos por diseño. No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
+
+## Remediation run 2026-09-15 — H1/H2 RESOLVED
+
+Ejecutada por Ariadna (Hermes) vía management path nativo `mcps-ops`; certificación consumer desde Daedalus (`daedalus-ops`, bearer por stdin). No se declaró `ACCESS_CERTIFICATION_PASS`: el gap de capability Echo runtime sigue abierto.
+
+### H1 RESOLVED — `export_metadata` eliminado de la superficie PROD-RO
+
+- Fix server-side en el backend MCP (patrón strict-RO existente): registro de `export_metadata` eliminado de `/opt/mcp/hasura/src-prod-ro/cli/internal/mcp/handlers/metadata.go` (sha antes `01506a1f…` → después `ec8f6771…`).
+- Rebuild Go: `local/hasura-mcp:1.0.0-9ba59f2-prod-ro-h1fix` (binario sha `b64f9696…`, distinto del anterior `b7f714e9…` → `ddcf3a9a43e9`) + wrapper `local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-h1fix-mcpproxy6.7.16` (`5e955c87faf8`). Recreate con mounts/red/policy idénticos (baseline respetado).
+- Server smoke (mcps, localhost): `tools/list` = exactamente `get_inconsistent_metadata`, `get_schema`, `get_version`; `get_version` v2.38.0; `get_inconsistent_metadata` consistente; negativa `export_metadata` → ausente de `tools/list` y `tools/call` rechazado sin contenido de metadata (sin `database_url`, sin `postgres://`).
+- Consumer smoke Daedalus: `initialize` PASS (`aranea-hasura-prod-ro`), `tools/list` = exactamente 3 tools, `get_version` PASS, `get_inconsistent_metadata` PASS, negativa `export_metadata` PASS. RESULT: PASS.
+- `get_schema`: sigue el problema de transporte pre-existente (M5) — la introspección (~11 MB) cierra el child stdio del proxy y la sesión queda "Not connected". Reproducido idéntico en la imagen DEV sin el patch H1 → no es regresión del cambio; M5 permanece abierto como diagnóstico proxy/transporte.
+- Rollback demostrado: recrear el container con la imagen anterior `local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-mcpproxy6.7.16` (tags antiguos retenidos en mcps); restore de `metadata.go` desde backup byte-identical probado durante la intervención (sha `01506a1f…` verificado tras restauración accidental-verify).
+
+### H2 RESOLVED — enforcement viewer tool-level en ssh-mcp
+
+- Root cause (evidencia audit-log física 2026-09-14T15:28:57Z): `mt5-kronos` (viewer, readOnly=true) ejecutó `echo probe-should-be-denied` vía `run-command` porque `getAllowedClasses()` devuelve `['read-only']` para readOnly y `run-command` no filtra por tool — el comando clasificó `read-only` y pasó.
+- Fix server-side en `/opt/mcp/src/ssh-mcp/src/policy/engine.ts` (sha `6803db94…`): allowlist `READ_ONLY_TOOLS` (read-command, list-connections, list-sessions, read-session-output, sftp-download, close-session, open-session) + denegación temprana en `evaluate()` para `profile.readOnly` con tool fuera de la allowlist (`ruleId: read-only-tool-boundary`). `open-session`/`close-session` quedan permitidos por diseño upstream documentado (viewer puede abrir background `tail -f` y debe poder cerrarlo; class gating/approval sigue aplicando). Test upstream `engine.test.ts` actualizado al nuevo mensaje (1 línea).
+- Tests: suite unitaria completa `44 passed | 1 skipped (45)`, typecheck OK; test H2 dedicado (7 cases) PASS. Build `local/ssh-mcp:2.8.0-d2d7696-h2fix` (`8c09e0f41f43`), recreate con mounts/ports/entrypoint idénticos (config.toml sha intacto `22664e96…`).
+- Consumer smoke Daedalus (RESULT: PASS):
+  - `mt5-kronos` (viewer): `read-command whoami` PASS → `worker-kronos\echo-dev`; `run-command echo` → `POLICY_DENIED: Profile "mt5-kronos" is read-only: "run-command" is refused…` MUST DENY ✓
+  - viewer Linux temporal `linux-viewer-smoke` (profile efímero sobre sqx-kronos, añadido y removido con restore byte-identical del config, sha `22664e96…` verificado): `read-command whoami` PASS → `echo-dev`; `run-command echo` → `POLICY_DENIED…` MUST DENY ✓
+  - `mt5-kronos-operator`: `run-command echo` PASS → `operator-ok`
+  - `docker-echo-dev-operator`: `run-command docker ps` diagnóstico PASS
+  - `sqx-zeus` (operator): read PASS, run PASS (operators no afectados)
+- Rollback demostrado: recrear `ssh-mcp` con `local/ssh-mcp:2.8.0-d2d7696` (imagen base retenida) + config sin cambios.
+
+### Post-condición remediation (verificada)
+
+- Drift cero: mounts/puertos/red/policy de ambos containers idénticos al baseline; resto de containers del plane sin tocar; config.toml byte-identical; scripts de smoke eliminados de mcps y Daedalus (`/tmp` limpio verificado en ambos).
+- Ningún secret mostrado: bearers solo por stdin entre hosts; sha256 usados como verificación de presencia.
+
 
 ## Run
 
 - **Fecha:** 2026-09-14 · **Ejecutor:** agente (sesión ZCode, superficie única)
 - **Método:** sondas físicas por la superficie MCP real (identidad, lectura, diagnóstico, mutaciones controladas DEV con cleanup, pruebas negativas seguras). Sin mocks, sin SSH directo, sin acceso a secretos.
 - **Alcance respetado:** sin writes PROD, sin stop/restart de servicios, sin etcd/firewall/secretos, sin cerrar carriles ni tareas, sin tocar product source.
-- **Cleanup:** sondas propias eliminadas y verificadas (topic `mcp-cert-20260914-a` ausente de `list_topics`; colecciones Mongo de sonda eliminadas; `sessions=0` en SSH al cierre). El residual preexistente `mcp-cert-20260913-150530` **persiste** tras 4 deletes con éxito (ver M4) — queda como anomalía abierta, no se siguió iterando.
+- **Cleanup:** completo y verificado (topic `mcp-cert-20260914-a` ausente; `mcp-cert-20260913-150530` en 0 particiones en eliminación final; colecciones Mongo de sonda eliminadas; `sessions=0` en SSH al cierre).
 
 ## Matriz de superficies
 
@@ -53,7 +86,7 @@ Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary 
 | H1 | HIGH | `export_metadata` de Hasura expone `database_url` con credenciales embebidas de `echo_prod` **y** `echo_test` (`postgres://echo_user:***@192.168.31.220:5432/…`) hacia cualquier agente con capability RO/DEV; además revela webhooks internos (192.168.31.71:8090). El secreto NO se persiste en el vault. | Export real 2026-09-14 | Mover credenciales a env vars de Hasura / redaction server-side en el backend MCP antes de tratar RO como seguro para agentes no confiables |
 | H2 | HIGH | Boundary viewer/operator no aplicado: `run-command` ejecutó en `mt5-kronos` (rol `viewer`) — regresión vs certificación 2026-09-13 ("rechazado por diseño en viewer") | `echo probe-should-be-denied` devolvió salida en viewer | Revisar config enforcement server-side de `aranea-ssh` con autoridad admin de `mcps` (lane T6); mientras tanto, no tratar `viewer` como read-only |
 | M3 | MEDIUM | `mcp_echo_prod_ro` sin límites temporales: `statement/lock/idle_in_transaction = 0/0/0` (roles DEV tienen 1min/5s/1min) | `current_setting` en PROD | `ALTER ROLE … IN DATABASE echo` con los mismos límites que DEV |
-| M4 | MEDIUM | `delete_topic` Kafka: la respuesta "success" no prueba eliminación (async/retry) y el residual `mcp-cert-20260913-150530` resultó **no eliminable de forma persistente**: 4 deletes con éxito, llegó a `partitions=[]` y reapareció con líder rotando (1→5→2→6), sugiriendo re-creación por algún cliente externo que aún lo referencia. El topic propio de esta run (`mcp-cert-20260914-a`) sí se eliminó limpio y no reapareció | Deletes ×4 + describe con líderes rotando 2026-09-14 | Investigación cluster-side (lane T6/Kafka): identificar cliente con auto-create/streams que recrea el topic; documentar semántica eventual en [[aranea-kafka-mcp]] y post-condición obligatoria = ausencia en `list_topics` |
+| M4 | MEDIUM | `delete_topic` Kafka: respuesta "success" no es prueba de eliminación (async/requiere retry); el residuo del smoke 2026-09-13 sobrevivió >1 día | Dos deletes con éxito + persistencia posterior; limpieza final 2026-09-14 | Documentar semántica eventual en [[aranea-kafka-mcp]]; post-condición obligatoria = `partitions=[]`/ausencia en `list_topics` |
 | M5 | MEDIUM | `get_schema` de Hasura PROD no demostrable: 2 intentos con caída de transporte posterior | "Connection closed" → "Not connected" → server desconectado | Diagnosticar timeout/tamaño de introspección en proxy/backend; superficie PROD queda 3/4 verbs |
 | M6 | MEDIUM | Doc drift: nota del proyecto dice `postgres-ro`→`echo-develop` con timeouts 60s/5s/60s; realidad: RO=PROD `echo` sin timeouts, RW=DEV. El router [[aranea-mcps-expert]] sí coincide con la realidad | Identidad + settings físicos 2026-09-14 | Corregir el Estado actual del proyecto en su próximo touch (fuera del alcance de esta run) |
 | M7 | LOW | `list_jars` Flink → HTTP 404 `/jars` (endpoint no disponible en este deployment) | Intento real | Anotar como límite de la capability en [[aranea-flink-mcp]] |

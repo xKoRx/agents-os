@@ -38,7 +38,7 @@ Operar y diagnosticar las capabilities Hasura del MCP Access Plane de Aranea sin
 | Ambiente | Capability | Endpoint | Autoridad | Estado |
 |---|---|---|---|---|
 | DEV | `aranea-hasura-dev-admin` | `http://mcps.lab.aranea.cl:3006/mcp` | administración Hasura | PASS / CLOSED end-to-end |
-| PROD | `aranea-hasura-prod-ro` | `http://mcps.lab.aranea.cl:3005/mcp` | inspección estrictamente read-only | PASS / CLOSED end-to-end |
+| PROD | `aranea-hasura-prod-ro` | `http://mcps.lab.aranea.cl:3005/mcp` | inspección estrictamente read-only | PASS / CLOSED end-to-end (superficie 3 tools desde H1 fix 2026-09-15) |
 
 ## Runtime Hasura verificado
 
@@ -173,14 +173,15 @@ hasura-mcp-prod-ro
 hasura-mcp-auth-prod-ro
 ```
 
-Tool surface PROD certificada server-side — exactamente 4:
+Tool surface PROD certificada server-side — exactamente 3 (H1 fix 2026-09-15):
 
 ```text
-export_metadata
 get_inconsistent_metadata
 get_schema
 get_version
 ```
+
+`export_metadata` fue eliminado de la superficie PROD-RO el 2026-09-15 (remediation H1): su respuesta expone `database_url` con credenciales embebidas. El boundary es que el tool no existe — no hay redacción ni confianza en el consumidor. Ver `[[ACCESS-CERTIFICATION]]` § Remediation run 2026-09-15.
 
 No existen en la superficie PROD:
 
@@ -188,6 +189,7 @@ No existen en la superficie PROD:
 apply_metadata
 clear_metadata
 drop_inconsistent_metadata
+export_metadata
 reload_metadata
 run_sql
 ```

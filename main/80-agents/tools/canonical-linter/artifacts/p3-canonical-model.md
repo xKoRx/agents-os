@@ -6,8 +6,8 @@ scope: project
 project: "[[AGENTS OS]]"
 area: "[[Personal]]"
 created: 2026-09-13
-updated: 2026-09-13
-description: P3-A Canonical Integrity Designer — modelo canonical/deprecation VIGENTE extraído de las autoridades reales del vault y diseño de los checks del linter determinista de higiene canónica (CL-01..CL-20), con clasificación MACHINE-DETERMINISTIC/HEURISTIC/HUMAN-REVIEW, modelo de hot path y desduplicación explícita contra validate_schema_contract, lint.py del entity-lifecycle, doctor, harness L0 y context-budget M16.
+updated: 2026-09-14
+description: P3-A Canonical Integrity Designer — modelo canonical/deprecation y checks CL-01..CL-20, extendido por PHASE 3.5 con CL-21 para identidad core↔federada.
 aliases:
   - p3-canonical-model
 tags:
@@ -94,6 +94,7 @@ Convenciones de la tabla: Severidad máxima permitida por clasificación (MACHIN
 | CL-18 | HOT-PATH | Contaminación de destinos: cualquier nota DESTINO de routing desde hot path (filas de INDEX/00-index, ROUTERS, ROUTER_PREFS, DOMAIN_GATED_SKILLS, paths de cold steps, Minimal Reads de routers) con `memory_state` superseded/archived o `status` deprecated/deprecating/superseded/archived, o bajo 40-archive | bootstrap Hard Rules ("Never load superseded or archived continuity during normal startup or entity retrieval"); constitution regla 10; CTX-12 (misma regla, otro alcance) | MACHINE-DETERMINISTIC | FAIL | destino + estado + mecanismo que lo enruta | CTX-12/M16 cubre el frontmatter de los ARCHIVOS del set fijo → P3 cubre los DESTINOS resueltos (gap real); reusar `rules.py` como librería (fork prohibido, precedente context-budget); no re-barrer los sets de M16 |
 | CL-19 | METADATA | Nota `type: resource` o `methodology` con `status: active` sin `last_verified` | 00-RESOURCE-WIKI (freshness event-driven; "Una página sin last_verified no está automáticamente inválida"; la query declara el gap); schema-contract (last_verified optional) | MACHINE-DETERMINISTIC (presencia) / HEURISTIC (semántica de vigencia) | WARN (nunca FAIL: la autoridad lo prohíbe) | path + ausencia | lint.py ya exige el envelope (updated/created) → P3 sólo reporta la falta de last_verified como dato de freshness, sin cadencia inventada |
 | CL-20 | METADATA | `memory_state` presente en nota cuyo tipo declarado ≠ agent_memory (uso informal del campo fuera de su tipo de contrato) | schema-contract (memory_state es opcional de agent_memory; metadata-schema: "no reemplaza el status de entidades Sistema 2") | MACHINE-DETERMINISTIC | WARN report-only | path + tipo + campo | lint.py no lo marca (sólo forbidden explícito) → net-new como observación; no decide si el campo debe migrarse (HUMAN-REVIEW) |
+| CL-21 | CANONICALITY | Misma identidad presente en autoridad core y federada para skills o runbooks | core-export (autoridad distribuible); Context Hygiene PHASE 3.5 (una fuente por artefacto federado) | MACHINE-DETERMINISTIC | FAIL | identidad + ambos paths + clase | CL-06 no sirve para skills porque `SKILL.md` es basename estructural; Doctor no inspecciona runbooks → net-new |
 
 ## 5. Qué NO es linteable mecánicamente y por qué
 

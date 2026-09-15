@@ -6,8 +6,8 @@ scope: project
 project: "[[AGENTS OS]]"
 area: "[[Personal]]"
 created: 2026-09-13
-updated: 2026-09-13
-description: Spec vinculante del parent para la tool canonical-linter (PHASE 3) — ratifica el modelo de P3-A (checks CL-01..CL-20, hot path en 4 clases), decide las ambiguities A1-A10, fija write scope, verificación y output schema.
+updated: 2026-09-14
+description: Spec vinculante del canonical-linter: base PHASE 3 CL-01..CL-20 y addendum PHASE 3.5 CL-21 para identidad core↔federada.
 aliases:
   - p3-canonical-linter-spec
 tags:
@@ -81,3 +81,9 @@ Se ratifican CL-01..CL-20 del modelo con su categoría, autoridad, clasificació
 
 - Enmienda del parent (2026-09-13, post-P3-B, ratificada): CL-01 se aplica sólo a `superseded_by` no vacío + estado active (FAIL). Un valor no vacío de `supersedes` junto a `active` es sucesión canónica legítima (00-RESOURCE-WIKI: "la nueva puede enlazar supersedes") y NO es hallazgo; los pares `supersedes`/`superseded_by` siguen verificándose como links en CL-04.
 - Los valores de `model` son ilustrativos: la clase unificada y el algoritmo de resolución se declaran en cada record (A5/A9). Compatibilidad futura `agents-os doctor`: campos `check_id/category/verdict/severity/confidence/authority` suficientes para agregación sin abstracción compartida (YAGNI).
+
+## 7. Addendum PHASE 3.5 — CL-21
+
+- `CL-21 / CANONICALITY / FAIL` detecta una misma identidad presente a la vez en autoridad core y federada. Compara, case-insensitive, el nombre del directorio para skills (`80-agents/skills/` ↔ `30-resources/agents/skills/`) y el nombre de archivo para runbooks (`80-agents/memory/public/runbook/` ↔ `30-resources/runbooks/`).
+- Es MACHINE-DETERMINISTIC y net-new: CL-06 detecta colisiones globales por basename, pero `SKILL.md` es un nombre estructural legítimamente repetido y Doctor no inspecciona runbooks. CL-21 expresa el límite de autoridad exacto sin inferir equivalencia semántica.
+- La resolución es report-only: el finding recomienda conservar `30-resources/` como autoridad federada, pero nunca elimina ni selecciona automáticamente una copia. PHASE 4 lo consume dentro del provider `Canonical`; no crea un quinto provider.

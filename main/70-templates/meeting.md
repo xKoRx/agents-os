@@ -2,7 +2,7 @@
 type: meeting
 schema_version: 1
 date: "{{date:YYYY-MM-DD}}"
-area: "[[Meli]]"
+area: "[[Personal]]"
 project:
 attendees:
 tags:
@@ -15,7 +15,7 @@ updated: "{{date:YYYY-MM-DD}}"
 # {{title}}
 
 > [!info]+ {{title}}
-> **Fecha:** {{date:YYYY-MM-DD}} · **Área:** [[Meli]] · **Proyecto:** —
+> **Fecha:** {{date:YYYY-MM-DD}} · **Área:** [[Personal]] · **Proyecto:** —
 > **Asistentes:** —
 
 ## 🗂️ Contexto / Agenda
@@ -33,4 +33,4 @@ updated: "{{date:YYYY-MM-DD}}"
 ## ✅ Action items
 
 %% Las action items con tag de área/sprint aparecen en tus paneles. Usa #owner/me (tuya) u #owner/agent (delegada). %%
-- [ ] acción #owner/me #type/admin #area/meli
+- [ ] acción #owner/me #type/admin #area/personal

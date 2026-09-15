@@ -1,5 +1,11 @@
 # Agents resource log
 
+## [2026-09-14] fix | Autoridad federada única y routing externo
+
+- Se completó la migración de 13 skills retirando sus copias bajo `80-agents/skills/`; `30-resources/agents/skills/` queda como única autoridad federada.
+- Se agregó `domain-router-registry.md` como configuración opcional de áreas, routers y evidencia: 0 matches → DEFAULT, 1 → router, más de 1 → fail-closed.
+- El índice always-load conserva sólo las skills transversales necesarias; los routers y skills de dominio se descubren desde este dominio, no desde el core.
+
 ## [2026-08-10] ingest | AGENTS OS Fase 3 → dominio agents
 
 - Se activó `30-resources/agents/` con su índice, contrato de prompt reusable y registro de migración F3.

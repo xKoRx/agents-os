@@ -2,7 +2,7 @@
 type: quarter
 schema_version: 1
 status: active
-area: "[[Meli]]"
+area: "[[Personal]]"
 start:
 end:
 tags:

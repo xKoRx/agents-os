@@ -2,7 +2,7 @@
 type: application
 schema_version: 1
 status: active
-area: "[[Meli]]"
+area: "[[Personal]]"
 lang:
 github:
 path:
@@ -23,7 +23,7 @@ updated: "{{date:YYYY-MM-DD}}"
 %% Convención LLM Wiki: separar lo ESTABLE (responsabilidad/rol/contratos: cambia solo si cambia el propósito) de lo VOLÁTIL (stack/librerías/versiones: se puede cambiar mañana). Ver [[30-resources/00-RESOURCE-WIKI|Resource Wiki]]. %%
 
 > [!info]+ {{title}}
-> **Rol:** — · **Área:** [[Meli]] · **Plataforma:** —
+> **Rol:** — · **Área:** [[Personal]] · **Plataforma:** —
 > **Repo:** — · **Local:** — · **Lang:** —
 
 ## 🎯 Responsabilidad (estable)
