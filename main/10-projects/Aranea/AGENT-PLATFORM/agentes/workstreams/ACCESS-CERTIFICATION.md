@@ -22,8 +22,8 @@ tags:
 ```text
 ACCESS_CERTIFICATION_PARTIAL — run 2026-09-14
 H1 RESOLVED 2026-09-15 · H2 RESOLVED 2026-09-15 (remediation run, evidencia abajo)
-Echo runtime observation: PARCIALMENTE RESUELTO 2026-09-15 (logs+metrics PROD en vivo vía
-aranea-observability-ro; SSH viewer echo-runtime-prod staged — pending owner key install)
+Echo runtime observation: RESUELTO 2026-09-15 — GAP-ECHO-004 CLOSED (owner seed instalado;
+recertificación viewer echo-runtime-prod PASS end-to-end desde Daedalus; detalle abajo)
 ```
 
 Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary viewer SSH no aplicado; credenciales upstream expuestas por `export_metadata`) y varias superficies con verbos no demostrables o no ejercidos por diseño. No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
@@ -64,6 +64,22 @@ Ejecutada por Ariadna (Hermes) vía management path `mcps-ops` + certificación 
 - **Observación runtime PROD operativa vía `aranea-observability-ro`:** sonda desde mcps (bearer stdin) — initialize PASS, 22 tools RO, `query_loki_logs {job="echo-core"}` → líneas reales en vivo (`env=production`, `host=echo`, `service=echo-core`, `account_sync: flushed snapshots`, `inst_snapshot: updated` broker ORION GOLD, source `github.com/xKoRx/echo/v3/core/internal/telemetry.go`), `query_prometheus up` instant → 5 series reales. Quirks 1.4.2 aplicados: args `logql/startRfc3339/endRfc3339/expr`, `datasourceUid` obligatorio (Loki `P8E80F9AEF21F6940`, Prometheus `PBFA97CFB590B2093`).
 - **Finding de higiene SSH:** el host key ED25519 de `.71` es IDÉNTICO al de `sqx-zeus` (`SHA256:zPHNJq9WlQofIib7Rx1gkCyAtF+HeoMeWPXeltowdfU`) — clon sin regenerar host key (mismo patrón corregido en Hera/Kronos 2026-09-10). Rotación de host key en `.71` = owner action sugerida (no bloqueante).
 - Scripts de smoke eliminados de mcps/Daedalus/local; sin secrets en chat/vault; sin mutación en `.71`.
+
+### GAP-ECHO-004 CLOSED — certificación viewer `echo-runtime-prod` (2026-09-15)
+
+Owner seed aplicado por el owner como root en `.71` (hostname `echo`): identidad dedicada `echo-dev` creada (uid/gid 1001, grupos sólo `echo-dev`, sudo DENIED), `mcps:/opt/mcp/ssh/keys/echo-dev.pub` (fingerprint `SHA256:2Qv9f2AREQyse50bGYaTLc1PHK43gvuf3xgv5TTJ+I0`) instalada en `~echo-dev/.ssh/authorized_keys` (append-only, `.ssh` 700 / archivo 600, sin reemplazo de keys existentes), `sshd -t` PASS. Corrección de runtime: el bundle asumía `echo-dev` preexistente y no lo estaba — el owner lo creó como identidad dedicada; lección de preflight registrada en runbook y skill.
+
+Recertificación consumer desde Daedalus real (probe server-side en mcps, bearer por stdin, sesión MCP única; RESULT: PASS):
+
+- initialize PASS (SSH MCP Server 2.8.0); `tools/list` = exactamente 11 tools; `echo-runtime-prod` visible en `list-connections` (7 perfiles).
+- identity/target proof: `whoami` → `echo-dev`; `hostname` → `echo`; `id` → `uid=1001(echo-dev) gid=1001(echo-dev) groups=1001(echo-dev)` — sin sudo, sin grupos operator.
+- runtime: `echo-gateway` (PID 713, desde ago09) y `echo-core` (PID 110701, desde ago20) RUNNING como `kor`; `echo-functions` (StateFun, PID 320982, sep12) RUNNING; **Bridge NOT_DEPLOYED** (sin proceso; registrado, no se levanta). Promtail y nginx (proxy :80) corriendo en el host.
+- listeners: 80, 9080, 9090, 8080, 8090 (+22/53); `ss -tlnp` no atribuye proceso de otros usuarios (límite viewer, esperado).
+- logs: `journalctl -n` PASS pero acotado al user journal de `echo-dev` (sin membresía `adm`/`systemd-journal`); la correlación de logs productivos sigue siendo `aranea-observability-ro` (`service=echo-core`).
+- boundary: `docker ps`, `curl`, `systemctl`, `dmesg`, `pgrep` → POLICY_DENIED (clase `safe` también rechazada en viewer); negative H2 `run-command echo cert-negative-probe` → `POLICY_DENIED … read-only` MUST DENY ✓ (observable post-seed; antes fallaba cerrado en connect por el orden upstream connect→policy).
+- leak check CLEAN; sin mutación en `.71`; sin restart de Gateway/Core. Única intervención en mcps: `docker restart ssh-mcp` tras agotar el pool de 64 sesiones con probes init-only por llamada (quirk registrado en runbook/skill; container healthy de vuelta, config intacto).
+
+GAP-ECHO-004 → **CLOSED**. El prerrequisito de observación runtime directo de CERT-E04-01 queda cubierto (viewer SSH + observabilidad). Deuda separada NO bloqueante: host key de `.71` idéntica a `sqx-zeus` (rotación owner-side sugerida).
 
 ### Post-condición remediation (verificada)
 
@@ -111,7 +127,7 @@ Ejecutada por Ariadna (Hermes) vía management path `mcps-ops` + certificación 
 
 | Recurso | Estado | Clase |
 |---|---|---|
-| Observación runtime Echo (Core/Gateway/Bridge HTTP; runtime vivo real `192.168.31.71` = `prod.echo.gateway.lab.aranea`; `.211` muerto) | PARCIAL 2026-09-15: observabilidad PROD operativa (`aranea-observability-ro`: logs Loki + Prometheus en vivo); SSH viewer `echo-runtime-prod` staged — pending owner key install | `IN_PROGRESS` (prerrequisito CERT-E04-01 parcialmente cubierto por observabilidad) |
+| Observación runtime Echo (Core/Gateway/Bridge; runtime vivo real `192.168.31.71` = `prod.echo.gateway.lab.aranea`; `.211` muerto) | CERTIFICADA 2026-09-15: viewer SSH `echo-runtime-prod` PASS end-to-end (identity/runtime/listeners/negative H2) + observabilidad PROD operativa (`aranea-observability-ro`); Gateway/Core RUNNING, Bridge NOT_DEPLOYED | `CERTIFIED` (prerrequisito de observación de CERT-E04-01 cubierto) |
 | etcd | Sin capability; existe como servicio de red del homelab | `UNKNOWN_NEEDS_SOURCE_PROOF` |
 | Observabilidad (Jaeger/OpenSearch/OTel; `docker-observability` en hades) | Targets MCP planeados no desplegados (OBS3) | `REQUIRED_LATER` |
 | Temporal | T5 deferred por decisión owner | `REQUIRED_LATER` (deferred) |
@@ -125,4 +141,4 @@ Sin writes PROD (Kafka/Hasura/etcd/PG), sin migraciones ni metadata mutations PR
 
 ## Conclusión
 
-El access plane es **operacional y parcialmente certificado**: las bases de datos (PG PROD-RO/DEV-RW, Mongo RO/RW), Kafka DEV, Flink DEV y SSH operator cubren las necesidades de diagnóstico y smoke del carril DEV. No se alcanza `ACCESS_CERTIFICATION_PASS` porque la observación directa del runtime Echo (prerrequisito directo de CERT-E04-01/T21) queda **parcial**: la vía observabilidad (logs/metrics PROD en vivo) ya es operativa y el viewer SSH `echo-runtime-prod` está staged esperando única owner action (instalar public key en `.71`); hasta entonces el consumidor no puede leer el host por SSH. El trigger de reactivación del backlog de certificación queda **abierto sólo para la certificación con viewer** (identity/health/logs/listeners/negative run-command sobre `.71`); el delta de readiness correspondiente vive en [[Echo + Echo Forge — Deferred Certification Backlog]].
+El access plane es **operacional y parcialmente certificado**: las bases de datos (PG PROD-RO/DEV-RW, Mongo RO/RW), Kafka DEV, Flink DEV y SSH operator cubren las necesidades de diagnóstico y smoke del carril DEV. La observación directa del runtime Echo (prerrequisito directo de CERT-E04-01/T21) quedó **resuelta** el 2026-09-15: owner seed instalado en `.71` y viewer `echo-runtime-prod` certificado end-to-end desde Daedalus (GAP-ECHO-004 CLOSED; identity/runtime/listeners/negative H2 PASS). El trigger de reactivación del backlog de certificación queda **abierto** — todas las capabilities requeridas están operacionales y certificadas; el delta de readiness correspondiente vive en [[Echo + Echo Forge — Deferred Certification Backlog]].
