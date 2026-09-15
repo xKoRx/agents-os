@@ -10,10 +10,10 @@ parent:
 sprint:
 start: 2026-09-14
 due:
-progress: 45
+progress: 65
 repo: https://github.com/melisource/fury_rio-playmaker
 jira:
-prs:
+prs: https://github.com/melisource/fury_rio-playmaker/pull/1169
 aliases:
   - SIG-616
   - Autorización por equipo en Playmaker
@@ -21,7 +21,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-09-15"
 ---
 
 # SIG-616 — Autorización de operaciones por equipo
@@ -47,7 +47,9 @@ updated: "2026-09-14"
 
 ## 📊 Estado actual
 
-- **Fase actual:** diseño acordado en revisión cruzada (`AGREED`) y tres SPECs creadas en Spellbook; no se modificó código.
+- **Fase actual:** Slice 1 está implementado en `feature/operation-authorization-by-team-f1` y publicado en [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169). La siguiente entrega es Slice 2 / [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623), cuya rama o worktree debe crearse desde `origin/feature/operation-authorization-by-team-f1@7fbb7efcf`, no desde `develop`, para heredar el autorizador común sin reimplementarlo.
+- **Evidencia de Slice 1:** commit `7fbb7efcf` en `feature/operation-authorization-by-team-f1`, sincronizado con `origin/develop@e02b2b09f`; suite focalizada posterior con `60` tests, `0` fallas y `0` errores; la suite completa previa reportó `3.785` tests, `0` fallas, `0` errores y `2` skips preexistentes; código nuevo con `100%` de líneas y `96,875%` de branches.
+- **Pendiente operacional:** smoke ACME/Data Product no productivo; no se ejecutó por falta de credenciales apropiadas.
 - **Persistencia acordada:** esta nota conserva la continuidad interna. En Spellbook, [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) es la SPEC funcional padre y [SIG-622](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) / [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) son sus SPECs técnicas hijas.
 - Esta nota es la única fuente de verdad interna del proyecto: contiene baseline externo, decisiones del owner, evidencia del código, exclusiones y riesgos residuales.
 - La SPEC SIG-616 de Spellbook se usa como requerimiento de origen aunque figure como `technical`. No se bloquea el avance por su clasificación: las nuevas SPECs explicitan su relación y los overrides deliberados.
@@ -66,12 +68,13 @@ updated: "2026-09-14"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| `rio-playmaker` | Pendiente | `origin/develop@1a4caf093` como baseline revisada | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621), iniciativa derivada de [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | [SIG-622 — Slice 1](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) · [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | SPECs en Draft; siguiente paso: implementar Slice 1 |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f1` | `origin/develop@e02b2b09f` sincronizada por merge | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621), iniciativa derivada de [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | [SIG-622 — Slice 1](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) | Implementado en `7fbb7efcf`; [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169) listo para revisión; smoke no productivo pendiente |
+| `rio-playmaker` | Pendiente — rama de Slice 2 | `origin/feature/operation-authorization-by-team-f1@7fbb7efcf` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | Pendiente de implementación; debe heredar Slice 1 y no recrearlo desde `develop` |
 
 ## 🧠 Diseño técnico consolidado
 
 > [!info] Diseño listo para ejecución incremental
-> SIG-621, SIG-622 y SIG-623 están creadas en Spellbook. La implementación comienza por Slice 1.
+> SIG-621, SIG-622 y SIG-623 están creadas en Spellbook. Slice 1 ya está implementado en `feature/operation-authorization-by-team-f1`; la ejecución continúa con Slice 2 desde ese head.
 
 ### Fuentes y autoridad
 
@@ -387,7 +390,7 @@ Las tasks definitivas viven en cada SPEC local y se materializarán recién al c
 - [x] Confirmar contrato ACME: `username + teamName + headers`; `projectCode` se valida localmente.
 - [x] Preservar `403` ante ACME no verificable en estos slices; evaluar `5xx` como mejora posterior.
 - [x] La SPEC de Slice 2 fija `401` como estado objetivo de Tiger y exige una prueba de integración; el status actual exacto no bloquea el diseño.
-- [ ] Definir branch/base limpias después de aprobar SPEC y tasks.
+- [x] Definir branch/base limpias después de aprobar SPEC y tasks.
 
 ### Prompt maestro de validación independiente
 
@@ -505,7 +508,8 @@ views:
 > - [x] Crear y revisar la SPEC técnica local de Slice 2 — Actions mutantes de Signals #owner/me #type/dev #area/meli
 > - [x] Derivar y acordar las tasks ejecutables dentro de ambas SPECs locales #owner/me #type/dev #area/meli
 > - [x] Crear SIG-621 y colgar SIG-622 / SIG-623 como SPECs técnicas hijas #owner/me #type/admin #area/meli
-> - [ ] Definir branch/base limpias e implementar SIG-622 #owner/me #type/dev #area/meli
+> - [r] Definir branch/base limpias e implementar SIG-622 — implementado y listo para revisión; smoke no productivo pendiente #owner/me #type/dev #area/meli
+> - [ ] Crear una rama/worktree de Slice 2 desde `origin/feature/operation-authorization-by-team-f1@7fbb7efcf` e implementar SIG-623 sin rehacer Slice 1 #owner/me #type/dev #area/meli
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -547,6 +551,11 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-14** — Se redactaron y corrigieron las dos SPECs técnicas. El revisor cerró con `AGREED`. Por decisión del owner se mantienen sólo en el vault; no se creó ni editó ninguna SPEC en Spellbook.
 - **2026-09-14** — Una segunda revisión detectó el caso `permitAll + Bearer inválido`. Se eliminó la duplicación de paths en el filtro y se dejó la decisión de acceso a `SecurityConfig`. Se rechazaron tests automatizados contra ACME real: se acordaron fixture contractual determinista + smoke no productivo. El revisor respondió `AGREED`.
 - **2026-09-14** — Por instrucción posterior del owner se creó [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) como SPEC funcional padre y se publicaron [SIG-622](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) y [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) como SPECs técnicas hijas, todas en Draft y sin cambios de alcance.
+- **2026-09-15** — Se implementó SIG-622 en `rio-playmaker` desde `origin/develop@1a4caf093`, en el worktree aislado `rio-playmaker-sig-622`. Se creó `OperationAuthorizationService`, se migraron exclusivamente delete/inactivate con `DEPLOYER_AND_UP`, se retiraron los helpers obsoletos solicitados y se preservaron `systemId`, orden, guards, side effects y `403`.
+- **2026-09-15** — Se corrigió el finding de observabilidad: las denegaciones registran el `access_level` y los errores de ACME sólo el `exception_type`, sin datos sensibles. La suite completa quedó verde; el commit `1abadb005` fue publicado en `feature/operation-authorization-by-team-f1`. SIG-623 no fue implementado; queda pendiente el smoke ACME/Data Product no productivo.
+- **2026-09-15** — Se creó [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169) con la descripción basada en el template del repo, se sincronizó la rama con `origin/develop@e02b2b09f` mediante el merge `5d9ed7f0f` y se dejó listo para revisión. La suite local sobre ese head reportó 3.785 tests, 0 fallas y 0 errores; CI remoto quedó en curso. Zord estándar se ejecutó; su revisor transversal RIO falló al iniciar y no publicó comentarios.
+- **2026-09-15** — Se restauró el contrato previo de `no owning team` para `teamName` o `projectCode` ausentes y se preservó la causa de excepciones ACME en `SecurityException`; commit `7fbb7efcf` publicado. La suite focalizada de 60 tests pasó sin fallas ni errores.
+- **2026-09-15** — Se fijó la continuidad de implementación: Slice 2 / SIG-623 debe comenzar desde `origin/feature/operation-authorization-by-team-f1@7fbb7efcf`. No debe partir desde `develop`, cherry-pickear parcialmente ni recrear el autorizador de Slice 1.
 
 ## 🧭 Decisiones
 
@@ -569,6 +578,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **D17 — `401` pertenece a la cadena de seguridad.** El filtro no conoce paths: sólo establece username ante Bearer válido o continúa sin Authentication. `SecurityConfig` es la única fuente de verdad; `permitAll` continúa incluso con Bearer inválido y `.authenticated()` activa el `AuthenticationEntryPoint` de `401`.
 - **D18 — Publicación autorizada posteriormente.** La decisión inicial fue mantener la documentación sólo local. El owner la reemplazó explícitamente el 2026-09-14 al ordenar crear SIG-621 y sus dos SPECs técnicas hijas en Spellbook.
 - **D19 — Contrato determinista, realidad como smoke.** El mapping ACME se prueba en CI con fixture representativo y la igualdad real de `projectCode` se valida en un smoke no productivo. No se introduce una dependencia live de ACME en la suite automatizada.
+- **D20 — Slice 2 hereda Slice 1.** La base obligatoria de la siguiente fase es `origin/feature/operation-authorization-by-team-f1@7fbb7efcf`. La implementación de SIG-623 debe consumir el `OperationAuthorizationService` y `OperationAccessLevel` ya creados, sin comenzar desde `develop` ni reimplementar ese trabajo.
 
 ## 🔗 Docs / Links
 
