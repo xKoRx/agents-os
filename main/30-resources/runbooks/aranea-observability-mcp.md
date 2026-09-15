@@ -178,9 +178,7 @@ Authorization:  Bearer ${env:ARANEA_OBSERVABILITY_MCP_RO_BEARER}
 env var:        ARANEA_OBSERVABILITY_MCP_RO_BEARER  (64 hex)
 ```
 
-Loader: mismo chain KDE del resto (`~/.config/plasma-workspace/env/aranea-mcp.sh` → `~/.config/mcp/aranea-env.sh`, secret files 0600 de kor, inaccesibles para `hermes-ops` por diseño).
-
-**Paso owner-side pendiente (configured vs exposed):** dar de alta `ARANEA_OBSERVABILITY_MCP_RO_BEARER=<bearer de /opt/mcp/observability/runtime/proxy-secrets/daedalus.bearer>` en el chain env de kor (mismo mecanismo que las 9 variables existentes). Hasta entonces, Cursor no resolverá la entry aunque la config ya esté publicada y certificada; el smoke autónomo usa el bearer por stdin (idéntico a B2) y no sustituye ese alta.
+Loader: mismo chain KDE del resto (`~/.config/plasma-workspace/env/aranea-mcp.sh` → `~/.config/mcp/aranea-env.sh`). Residual owner-side CERRADO 2026-09-15 (B4, sin owner): `ARANEA_OBSERVABILITY_MCP_RO_BEARER` persistida por Hermes — secret file `~kor/.config/aranea/secrets/hermes-managed/observability-mcp-ro.bearer` (640 + ACL u:kor:r--) + bloque `if [ -r ]` en `aranea-env.sh` (mecanismo completo en [[aranea-mcp-capability-plane]] § Consumer onboarding managed). Los secret files originales de kor siguen inaccesibles para `hermes-ops`; chain-cert PASS resolviendo la entry real de `mcp.json` (rollback byte-identical y re-aplicación convergente demostrados).
 
 ## Revoke path
 

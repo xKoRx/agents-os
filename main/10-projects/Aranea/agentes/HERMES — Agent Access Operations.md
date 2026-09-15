@@ -36,6 +36,9 @@ updated: "2026-09-14"
 > [!info]+ Agent Access Operations
 > **Padre:** [[HERMES — ARANEA AUTONOMOUS OPERATIONS]] · **Owner:** agent · **Estado:** active · **Prioridad:** P0
 
+> [!success]+ Handoff desde Bootstrap (2026-09-15)
+> **[[HERMES — Bootstrap & Self-Sufficiency]] cerró B4 (Human Exit Gate PASS) y está en Review:** el bootstrap transitorio terminó y este proyecto asume la continuidad. Estado heredado: management path `mcps-ops` certificado, consumer onboarding Daedalus/Cursor autónomo (B2), operador reusable + golden repair/deploy (B3: `aranea-postgres-rw`, `aranea-observability-ro`), chain-provisioning de secrets en el consumer certificado (B4). **Owner deja de hacer configuración MCP rutinaria.** Primer workload A0-A5: la cola real de blockers de Echo/Forge. Start aquí: A0.1 (reconciliar [[AGENT-PLATFORM - MCP Access Plane]] desde Hermes).
+
 ## 🎯 Objetivo
 
 Convertir a Hermes en el operador autónomo del **Agent Access Plane** de Aranea: recibir necesidades funcionales de Echo, Echo Forge y futuros agentes, descubrir la superficie real del servicio, reutilizar/reparar/extender/desplegar la capability necesaria, certificarla desde el consumidor real y registrar el resultado sin depender de intervención shell humana rutinaria.

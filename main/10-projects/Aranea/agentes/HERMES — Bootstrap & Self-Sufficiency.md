@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: review
 priority: P0
 area: "[[Aranea]]"
 parent: "[[HERMES — ARANEA AUTONOMOUS OPERATIONS]]"
 sprint:
 start: 2026-09-14
 due:
-progress: 80
+progress: 100
 repo:
 jira:
 prs:

@@ -84,7 +84,9 @@ Quirk:       scripts con ${...}/regex via heredoc-through-ssh se corrompen ->
 
 Revoke de la authority completa: `userdel -r hermes-ops` + `setfacl -x` de las entradas `u:hermes-ops` en `/home/kor`, `.config`, `.cursor`, `.config/mcp`, `.config/aranea`, `.config/aranea/secrets`, `mcp.json` y `aranea-env.sh` (detallado en el change_log `2026-09-14-b2-real-consumer-onboarding-closed`).
 
-Limitación conocida: el auth proxy de cada capability soporta un solo bearer por `map nginx` (`__MCP_BEARER_TOKEN__`); un bearer dedicado para un consumer nuevo exige recrear el container proxy (mutación del plane, B3).
+Provisioning del secret del chain (B4 — 2026-09-15, certificado sin owner): una env nueva del chain NO exige tocar los secret files de kor (inaccesibles por diseño). El bearer se persiste en `~kor/.config/aranea/secrets/hermes-managed/<cap>.bearer` (`640` hermes-ops + ACL `u:kor:r--`; el dir tiene sgid kor + default ACL) y `aranea-env.sh` — editable in-place por la ACL `rw` de hermes-ops preservando owner/mode/ACLs de kor — recibe el bloque canónico `if [ -r "$HOME/.config/aranea/secrets/hermes-managed/<cap>.bearer" ]; then export VAR="$(cat <path>)"; fi`. Disciplina: backup pre con sha, patch idempotente por marker, `bash -n` gate con auto-restore, rollback byte-identical probado y re-aplicación convergente (mismo sha final). Chain-cert = sourcear `aranea-env.sh` con `HOME=/home/kor` y resolver el entry real de `mcp.json` (los guards son `$HOME`-relativos: una sonda con el HOME equivocado reporta falsos NOT_SET). Aplicado a `ARANEA_OBSERVABILITY_MCP_RO_BEARER`; cero edición owner.
+
+Limitación conocida (acotada 2026-09-15): el auth proxy soporta un solo bearer por `map nginx` (`__MCP_BEARER_TOKEN__`). B3.3 demostró que un bearer NUEVO se genera server-side (`openssl rand -hex 32`) sobre el proxy existente sin recrear container; la recreación del proxy sólo aplica si el map necesitara otra estructura (p. ej. segundo consumer distinto en el mismo endpoint).
 
 Endpoints certificados adicionales:
 
