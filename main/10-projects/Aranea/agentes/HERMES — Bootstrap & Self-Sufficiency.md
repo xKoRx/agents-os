@@ -25,8 +25,8 @@ tags:
   - project/hermes-aranea-autonomous-operations
   - agent/hermes
   - action/bootstrap
-created: "2026-09-14"
-updated: "2026-09-15"
+created: 2026-09-14
+updated: 2026-09-15
 ---
 **B2 cerrado 2026-09-14** — ver Estado actual y change_log `80-agents/journal/logs/2026-09-14-b2-real-consumer-onboarding-closed.md`.
 
