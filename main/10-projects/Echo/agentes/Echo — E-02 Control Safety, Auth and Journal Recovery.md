@@ -24,7 +24,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-12"
-updated: "2026-09-12"
+updated: "2026-09-15"
 cssclasses:
   - wide
 ---
@@ -132,6 +132,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-15 — Access Plane delta (sin gates ejecutados):** reconciliación de gaps stale — Hasura DEV/PROD, Kafka DEV, Flink DEV y observabilidad PROD ya tienen capabilities MCP certificadas y operativas ([[ACCESS-CERTIFICATION]]); el bloqueo "no hay tool" de 2026-09-14 ya no aplica: las verificaciones físicas pendientes de E-02 pueden ejecutarse contra esas superficies. Target Gateway resuelto: `.211` muerto, runtime vivo = PROD `192.168.31.71` (`prod.echo.gateway.lab.aranea`, `/health` 200) observable vía `aranea-observability-ro` (logs/metrics en vivo); SSH viewer `echo-runtime-prod` staged pendiente de única owner action. `E02_PHYSICAL_CERTIFICATION_BLOCKED` se mantiene. Evidencia: [[Echo — Access & Physical Capability Matrix]].
 - **2026-09-14 — Access certification delta:** PG17.11 disposable 062 up/down/up `READY`; ARGUS Prometheus/Jaeger/Loki READ `PASS`. Hasura DEV roles/hook, Kafka PublishSync/redelivery, Flink restart/recovery y Gateway físico `BLOCKED` por falta de superficies/tools/target probados; E-02 permanece `PHYSICAL_PARTIAL` y no se reabre para cierre. Evidencia durable: [[Echo — Access & Physical Capability Matrix]]. Sin physical gate E-02 ejecutado.
 - **2026-09-12 (focused source-review correction)** — Sobre HEAD inicial `df99084b`, se corrigió el contrato Hasura a JSON de session variables y se añadió validación explícita de unicidad entre tokens READ/CONFIG/CONTROL/webhook con 503 fail-closed. Se registraron primero y limpiaron después los 17 paths históricos autorizados. Gateway `-race`, front tests/build/bundle scan, SOURCE, tooling compile y regresión E-04 relevantes PASS; PHYSICAL sigue parcial. Commit final `f7ddea18`, push sólo a feature; master intacto. Puente permanece Review.
 
