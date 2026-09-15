@@ -17,7 +17,7 @@ tags:
   - area/echo
   - project/echo
 created: "2026-09-13"
-updated: "2026-09-13"
+updated: "2026-09-15"
 ---
 
 # Echo + Echo Forge — Deferred Certification Backlog
@@ -135,6 +135,18 @@ F-04: `IMPLEMENTED` y `SOURCE VERIFIED` en product SHA `b57bfb2c3d2c4e0a96d2b3fa
 | E-11 PortfolioVersion shadow | A — CAN CONTINUE NOW | Selection/allocation shadow determinista puede avanzar con fixtures y CASH; no toca dinero real. |
 | E-12 Apply/rebalance/replacement/retirement | B — CAN IMPLEMENT BUT CANNOT CERTIFY | La implementación DEMO puede avanzar; PHYSICAL DEMO requiere runtime real y ACK/recovery. |
 | E-13 Front/read/ops and V1 closure | B — CAN IMPLEMENT BUT CANNOT CERTIFY | Read/ops surfaces pueden avanzar; PRODUCT CAPABILITY/restore requiere evidencia física. |
+
+### Delta de readiness por certificación de accesos — 2026-09-15 (gaps stale reconciliados)
+
+Actualiza el delta 2026-09-14 tras el cierre H1/H2, la certificación `aranea-observability-ro` (:3009, PASS 12/12 + consumer PASS) y la resolución del target runtime Echo. **No cambia ninguna clase A/B/C ni ejecuta gates productivos.**
+
+- **Gaps stale eliminados:** Hasura DEV/PROD (`aranea-hasura-dev-admin`/`aranea-hasura-prod-ro`), Kafka DEV (`aranea-kafka-dev-admin`) y Flink DEV (`aranea-flink-dev-admin` + `docker-echo-dev-operator`) están **certificados y operativos** desde 2026-09-12/13 — los GAP-ECHO-001/002/003 de la matriz de 2026-09-14 eran históricamente stale. Observabilidad PROD (GAP-ECHO-007) queda cubierta por `aranea-observability-ro`.
+- **E-02:** sus verificaciones físicas pendientes contra Hasura-DEV/Kafka/Flink **ya tienen capability certificada para ejecutarse** (siguen sin ejecutarse: no se corrieron en esta sesión). `etcd`/tokens reales siguen `NOT_OBSERVED` (sin capability). Clase B se mantiene; `E02_PHYSICAL_CERTIFICATION_BLOCKED` ahora depende sólo de ejecutar esas verificaciones y del target Gateway.
+- **E-02 Gateway physical:** target real resuelto — `.211` muerto; runtime vivo = PROD `192.168.31.71` (`prod.echo.gateway.lab.aranea`, `/health` 200). Viewer SSH `echo-runtime-prod` staged; verificación SSH pending owner key install. Observación vía `aranea-observability-ro` operativa (logs `service=echo-core` `env=production` en vivo).
+- **CERT-F04-01/CERT-F04-02 (F-04 T2.12/T2.11):** el prerrequisito de observación del runtime Echo queda **parcialmente cubierto por observabilidad** (logs/metrics PROD en vivo); la observación directa SSH queda pendiente de la única owner action (instalar `echo-dev.pub` del plane en `.71`). Sigue `BLOCKED BY INFRA` por Temporal/equivalente.
+- **CERT-E04-01 (E-04 T21/AC-37):** sigue `HARD BLOCKED` (clase C); el prerrequisito de observación runtime queda parcial (observabilidad sí, SSH viewer pending).
+- **CERT-F04-03 / CERT-F05-01…03:** sin cambio; dependen de los gates anteriores.
+- **Condición de acceso vigente:** H1/H2 RESOLVED; el trigger de reactivación de este backlog queda **abierto sólo para la certificación SSH viewer sobre `.71`** (post owner action) — el resto de capabilities requeridas ya está operacional.
 
 ### Delta de readiness por certificación de accesos — 2026-09-14
 

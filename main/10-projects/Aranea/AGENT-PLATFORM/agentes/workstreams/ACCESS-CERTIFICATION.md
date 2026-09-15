@@ -4,7 +4,7 @@ status: active
 area: "[[Aranea]]"
 parent: "[[AGENT-PLATFORM - MCP Access Plane]]"
 created: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-09-15"
 tags:
   - area/aranea
   - tech/mcp
@@ -111,7 +111,7 @@ Ejecutada por Ariadna (Hermes) vía management path `mcps-ops` + certificación 
 
 | Recurso | Estado | Clase |
 |---|---|---|
-| Observación runtime Echo (Core/Gateway/Bridge HTTP, host 192.168.31.71:8090 visto en webhooks Hasura) | Sin capability ni perfil SSH | `REQUIRED_LATER` (prerrequisito CERT-E04-01) |
+| Observación runtime Echo (Core/Gateway/Bridge HTTP; runtime vivo real `192.168.31.71` = `prod.echo.gateway.lab.aranea`; `.211` muerto) | PARCIAL 2026-09-15: observabilidad PROD operativa (`aranea-observability-ro`: logs Loki + Prometheus en vivo); SSH viewer `echo-runtime-prod` staged — pending owner key install | `IN_PROGRESS` (prerrequisito CERT-E04-01 parcialmente cubierto por observabilidad) |
 | etcd | Sin capability; existe como servicio de red del homelab | `UNKNOWN_NEEDS_SOURCE_PROOF` |
 | Observabilidad (Jaeger/OpenSearch/OTel; `docker-observability` en hades) | Targets MCP planeados no desplegados (OBS3) | `REQUIRED_LATER` |
 | Temporal | T5 deferred por decisión owner | `REQUIRED_LATER` (deferred) |
@@ -125,4 +125,4 @@ Sin writes PROD (Kafka/Hasura/etcd/PG), sin migraciones ni metadata mutations PR
 
 ## Conclusión
 
-El access plane es **operacional y parcialmente certificado**: las bases de datos (PG PROD-RO/DEV-RW, Mongo RO/RW), Kafka DEV, Flink DEV y SSH operator cubren las necesidades de diagnóstico y smoke del carril DEV. No se alcanza `ACCESS_CERTIFICATION_PASS` por H1/H2 y porque la observación del runtime Echo (prerrequisito directo de CERT-E04-01/T21) sigue sin capability. El trigger de reactivación del backlog de certificación **permanece cerrado**; el delta de readiness correspondiente vive en [[Echo + Echo Forge — Deferred Certification Backlog]].
+El access plane es **operacional y parcialmente certificado**: las bases de datos (PG PROD-RO/DEV-RW, Mongo RO/RW), Kafka DEV, Flink DEV y SSH operator cubren las necesidades de diagnóstico y smoke del carril DEV. No se alcanza `ACCESS_CERTIFICATION_PASS` porque la observación directa del runtime Echo (prerrequisito directo de CERT-E04-01/T21) queda **parcial**: la vía observabilidad (logs/metrics PROD en vivo) ya es operativa y el viewer SSH `echo-runtime-prod` está staged esperando única owner action (instalar public key en `.71`); hasta entonces el consumidor no puede leer el host por SSH. El trigger de reactivación del backlog de certificación queda **abierto sólo para la certificación con viewer** (identity/health/logs/listeners/negative run-command sobre `.71`); el delta de readiness correspondiente vive en [[Echo + Echo Forge — Deferred Certification Backlog]].

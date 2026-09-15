@@ -110,7 +110,7 @@ Current Echo source/runtime proof no estableció MinIO, Temporal, MongoDB Forge,
 | E-02 Hasura DEV roles/hook | BLOCKED: no callable DEV data/metadata surface; direct unauthenticated probes rejected |
 | E-02 Kafka PublishSync/redelivery | BLOCKED: TCP only; no produce/consume/key/header/group probe |
 | E-02 Flink restart/recovery | BLOCKED: REST read/checkpoints PASS; control authority not available/tested |
-| E-02 Gateway physical | BLOCKED: `.211:8090` health unreachable; no live target/profile |
+| E-02 Gateway physical | TARGET RESUELTO 2026-09-15: `.211` muerto; runtime vivo = PROD `192.168.31.71` (`prod.echo.gateway.lab.aranea`, `/health` 200). Observación vía `aranea-observability-ro` operativa (logs+metrics en vivo); SSH viewer `echo-runtime-prod` staged — pending owner key install. Verificación SSH directa BLOCKED-pending |
 | E-02 observability | PASS for ARGUS READ; DEV candidate `.45` PARTIAL |
 | E-02 result | `E02_PHYSICAL_CERTIFICATION_BLOCKED` |
 | E-05 PG17 physical | PASS for disposable PG17 mechanism; E05 063 product migration not executed |
