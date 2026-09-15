@@ -13,7 +13,7 @@ tags:
   - area/echo
   - project/echo
 created: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-09-15"
 ---
 
 # Echo — Access & Physical Capability Matrix
@@ -21,6 +21,10 @@ updated: "2026-09-14"
 ## Propósito
 
 Certificación independiente de mínimo privilegio y capacidad física para desarrollar, verificar, integrar y certificar Echo Live Platform V1. Autoridad: contrato/spec actual > source actual > documentación histórica. Corte: 2026-09-14. Resultado global: ACCESS_CERTIFICATION_BLOCKED porque el carril inmediato E-02 carece de superficies físicas Kafka, Hasura DEV y control Flink/Gateway.
+
+### Reconciliación 2026-09-15 (Access Plane actual)
+
+Re-evaluada contra las capabilities certificadas vigentes ([[ACCESS-CERTIFICATION]] remediation 2026-09-15; H1/H2 RESOLVED): **GAP-ECHO-001 (Hasura), GAP-ECHO-002 (Kafka) y GAP-ECHO-003 (Flink) quedan RESUELTOS** — existían capabilities DEV/PROD certificadas desde 2026-09-12/13 que la matriz de 2026-09-14 no vio (stale). **GAP-ECHO-007 (observabilidad) queda RESUELTO** vía `aranea-observability-ro` (:3009, cert PASS 12/12 + consumer PASS). **GAP-ECHO-004 se redefine**: `.211:8090` está MUERTO (host down); el runtime Echo vivo real es **PROD** `192.168.31.71` (`prod.echo.gateway.lab.aranea`, `/health` 200 `{"status":"ok"}`); el runtime **DEV** no está desplegado (docker-echo-dev sólo Flink/Hasura/Portainer). Viewer `echo-runtime-prod` staged en `aranea-ssh` pendiente de owner action (instalar public key en `.71`); mientras tanto la observación runtime PROD operativa es `aranea-observability-ro` (logs Loki `service=echo-core` en vivo + Prometheus). E-02 conserva `PHYSICAL_CERTIFICATION_BLOCKED` por sus gates propios ( Ya no por capabilities inexistentes).
 
 ## Contenido
 
