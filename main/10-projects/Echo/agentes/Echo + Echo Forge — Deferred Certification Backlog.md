@@ -136,6 +136,17 @@ F-04: `IMPLEMENTED` y `SOURCE VERIFIED` en product SHA `b57bfb2c3d2c4e0a96d2b3fa
 | E-12 Apply/rebalance/replacement/retirement | B — CAN IMPLEMENT BUT CANNOT CERTIFY | La implementación DEMO puede avanzar; PHYSICAL DEMO requiere runtime real y ACK/recovery. |
 | E-13 Front/read/ops and V1 closure | B — CAN IMPLEMENT BUT CANNOT CERTIFY | Read/ops surfaces pueden avanzar; PRODUCT CAPABILITY/restore requiere evidencia física. |
 
+### Delta de readiness por certificación de accesos — 2026-09-15b (GAP-ECHO-004 CLOSED)
+
+Actualiza el delta anterior tras instalar el owner seed en `.71` y recertificar el viewer `echo-runtime-prod` end-to-end. **No cambia ninguna clase A/B/C ni ejecuta gates productivos.**
+
+- **GAP-ECHO-004 → CLOSED:** owner seed instalado (identidad dedicada `echo-dev` uid/gid 1001, sudo DENIED; key `echo-dev.pub` del plane en `authorized_keys`) y viewer `echo-runtime-prod` certificado desde Daedalus real: identity PASS (`echo-dev@echo`, sin sudo), initialize/tools-list PASS, listeners 80/9080/9090/8080/8090, negative `run-command` → POLICY_DENIED MUST DENY, leak CLEAN. Runtime observado: `echo-gateway` (PID 713) y `echo-core` (PID 110701) RUNNING como `kor`, `echo-functions` (StateFun) RUNNING; **Bridge NOT_DEPLOYED** (registrado con evidencia; no se levanta).
+- **E-02:** el gate físico Gateway pasa de BLOCKED-pending a **observación SSH directa PASS** (procesos/listeners/identity); sigue sin control verbs (restart = PROD, fuera de scope). `E02_PHYSICAL_CERTIFICATION_BLOCKED` se mantiene por sus gates propios (Hasura DEV roles/hook, Kafka PublishSync/redelivery, Flink restart/recovery), todos con capability certificada disponible para ejecutarse.
+- **CERT-F04-01/CERT-F04-02 (F-04 T2.12/T2.11):** el prerrequisito de observación del runtime Echo queda **completo por vía directa** (viewer SSH) además de la observabilidad. Sigue `BLOCKED BY INFRA` por Temporal/equivalente.
+- **CERT-E04-01 (E-04 T21/AC-37):** sigue `HARD BLOCKED` (clase C) por golden Forge auténtico + join real; el prerrequisito de observación runtime ya no es gap.
+- **Condición de acceso vigente:** todas las capabilities requeridas del Access Plane están operacionales y certificadas (viewer runtime incluido). El trigger de reactivación de este backlog queda **abierto**; la limitación conocida del viewer es de cobertura (sin systemctl/docker/curl productivo, journal propio únicamente) — los logs productivos siguen por `aranea-observability-ro`.
+- **Deuda separada no bloqueante:** host key ED25519 de `.71` idéntica a `sqx-zeus` (clon sin regenerar); rotación owner-side opcional con actualización de `trustedHostKey` del perfil en el mismo cambio.
+
 ### Delta de readiness por certificación de accesos — 2026-09-15 (gaps stale reconciliados)
 
 Actualiza el delta 2026-09-14 tras el cierre H1/H2, la certificación `aranea-observability-ro` (:3009, PASS 12/12 + consumer PASS) y la resolución del target runtime Echo. **No cambia ninguna clase A/B/C ni ejecuta gates productivos.**
