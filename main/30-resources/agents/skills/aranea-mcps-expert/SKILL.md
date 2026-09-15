@@ -17,6 +17,7 @@ related:
   - "[[aranea-hasura-mcp]]"
   - "[[aranea-kafka-mcp]]"
   - "[[aranea-flink-mcp]]"
+  - "[[aranea-observability-mcp]]"
   - "[[aranea-mcp-capability-plane]]"
 aliases:
   - aranea-mcps-expert
@@ -29,6 +30,8 @@ aliases:
   - mcp hasura
   - mcp kafka
   - mcp flink
+  - mcp observability
+  - mcp grafana
 load_policy: manual
 indexable: true
 index_priority: high
@@ -58,6 +61,7 @@ Esta skill es el router agent-facing. Los procedimientos mecánicos viven exclus
 - `30-resources/runbooks/aranea-hasura-mcp.md` → [[aranea-hasura-mcp]]
 - `30-resources/runbooks/aranea-kafka-mcp.md` → [[aranea-kafka-mcp]]
 - `30-resources/runbooks/aranea-flink-mcp.md` → [[aranea-flink-mcp]]
+- `30-resources/runbooks/aranea-observability-mcp.md` → [[aranea-observability-mcp]]
 - `30-resources/runbooks/aranea-mcp-capability-plane.md` → [[aranea-mcp-capability-plane]]
 
 La arquitectura/deployment común para **agregar o reemplazar capabilities** vive en [[AGENT-PLATFORM - MCP Access Plane - Architecture]]. No redescubrirla desde cero salvo evidencia material de drift.
@@ -92,6 +96,7 @@ Si el target es MELI/corporativo, detener esta skill y usar las autoridades corp
 | Flink control plane de desarrollo | DEV | `aranea-flink-dev-admin` | admin Flink REST DEV; exactamente 22 tools certificadas, sin SQL |
 | Flink/StateFun host-runtime DEV | DEV runtime | `aranea-ssh` + `docker-echo-dev-operator` | root operator sobre `docker-echo-dev`; filesystem/Docker/lifecycle |
 | runtime/logs/archivos SQX Zeus/Hera/Kronos | DEV runtime | `aranea-ssh` + `sqx-zeus` / `sqx-hera` / `sqx-kronos` | operator writable como `echo-dev`; no root-equivalent; preferir `read-command` para inspección y usar mutación sólo cuando la tarea lo requiera |
+| Observabilidad de Aranea (Grafana/Prometheus/Loki) lectura | PROD-RO | `aranea-observability-ro` | read-only estricto; exactamente 22 tools RO (`--disable-write` + allowlist 5 toolsets); toda query bounded; administración de Grafana/dashboards NO pertenece a esta capability |
 | MT4/MT5 worker-kronos inspección | DEV runtime | `aranea-ssh` + `mt5-kronos` | viewer / read-only |
 | MT4/MT5 worker-kronos mutación | DEV runtime | `aranea-ssh` + `mt5-kronos-operator` | operator writable como `echo-dev` |
 
@@ -130,6 +135,7 @@ Para Flink DEV, SQL no forma parte del contrato actual: no hay SQL Gateway verif
 - Hasura → [[aranea-hasura-mcp]]
 - Kafka → [[aranea-kafka-mcp]]
 - Flink / StateFun → [[aranea-flink-mcp]]
+- Observabilidad (Grafana/Prometheus/Loki) → [[aranea-observability-mcp]]
 
 Si se está incorporando una familia nueva, la arquitectura común se toma de [[AGENT-PLATFORM - MCP Access Plane - Architecture]] y sólo se documenta aparte lo específico del servicio.
 

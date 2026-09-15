@@ -55,6 +55,7 @@ aranea-hasura-prod-ro
 aranea-hasura-dev-admin
 aranea-kafka-dev-admin
 aranea-flink-dev-admin
+aranea-observability-ro
 ```
 
 ## Consumer onboarding managed (B2 — 2026-09-14)
