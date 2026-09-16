@@ -46,7 +46,7 @@ Dejar inspectable, sin abrir bases a mano y sin publicar nada: matriz determiní
 - **Planificación TOP completa (2026-09-13):** SPEC frozen, tareas atómicas F05I-T1…T7, allowed files freeze, matriz de tests congelada. NORMAL puede ejecutar sin decisiones arquitectónicas.
 - **Baseline:** `xKoRx/symphony@b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43` (HEAD `origin/feature/f04-magic-version-handoff`; release `0.2.98`). Branch objetivo `codex/f05-release-prep` desde el SHA exacto. El checkout local puede estar divergido (`9fad768` no contiene C5): siempre fetch + branch por SHA.
 - **Decisiones frozen:** `DATABASE MIGRATION: NONE`; arquitectura CLI JSON (sin HTTP); funnel como proyección pura; release matrix = artefacto declarativo validado; sin writes runtime.
-- **Implementation:** NORMAL no autorizado aún (pending manager review del plan).
+- **Implementación T2–T4 (2026-09-16):** T2, T3 y T4 IMPLEMENTED / SOURCE VERIFIED en `codex/f05-release-prep` (commits `7d073b3`, `65c879a`, `d77342d`). Tests enfocados unit + persistencia embedded-postgres PASS, `-race` PASS, vet PASS. Físico: nada certificado. Pendiente: T1, T5, T6, T7 y revisión manager.
 
 ## 🧱 Entrega de desarrollo
 
@@ -66,9 +66,9 @@ Sin subproyectos; fases internas = tareas F05I-T1…T7 abajo.
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
 > - [ ] F05I-T1 Release matrix: paquete validador + artefacto `deploy/release-matrix.json` #owner/agent #type/dev #area/echo
-> - [ ] F05I-T2 Read ports + implementaciones PG (campaign list, stage list, participaciones, versiones/handoff reads) #owner/agent #type/dev #area/echo
-> - [ ] F05I-T3 Funnel projection pura (topología dinámica, orden determinístico) #owner/agent #type/dev #area/echo
-> - [ ] F05I-T4 Read services: strategy inspect + stage timeline + campaign list service (provenance por refs exactos) #owner/agent #type/dev #area/echo
+> - [x] F05I-T2 Read ports + implementaciones PG (campaign list, stage list, participaciones, versiones/handoff reads) ✅ 2026-09-16 #owner/agent #type/dev #area/echo
+> - [x] F05I-T3 Funnel projection pura (topología dinámica, orden determinístico) ✅ 2026-09-16 #owner/agent #type/dev #area/echo
+> - [x] F05I-T4 Read services: strategy inspect + stage timeline + campaign list service (provenance por refs exactos) ✅ 2026-09-16 #owner/agent #type/dev #area/echo
 > - [ ] F05I-T5 CLI `sqx-flowkit` subcomandos inspect + wiring (push-output intacto) #owner/agent #type/dev #area/echo
 > - [ ] F05I-T6 Handoff F-05-C: read-surface contract doc + conformance checklist + cert manifest template #owner/agent #type/dev #area/echo
 > - [ ] F05I-T7 Verificación completa enfocada (build/tests/race/vet/diff-check/BWC/fixtures) + evidencia #owner/agent #type/dev #area/echo
