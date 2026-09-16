@@ -28,7 +28,7 @@ GAP-ECHO-010: REPAIRED_AND_CERTIFIED 2026-09-16 (causa raíz mcp-proxy 6.7.16 hi
 compartido, familia hasura; fix g010; detalle § Remediation run 2026-09-16 c)
 ```
 
-Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary viewer SSH no aplicado; credenciales upstream expuestas por `export_metadata`) y varias superficies con verbos no demostrables o no ejercidos por diseño. No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
+Ninguna superficie obtiene PASS incondicional: al momento de la run (2026-09-14) había dos hallazgos HIGH — boundary viewer SSH no aplicado (H2) y credenciales upstream expuestas por `export_metadata` (H1) — y varias superficies con verbos no demostrables o no ejercidos por diseño. **Estado vigente: H1 RESOLVED 2026-09-15 y H2 RESOLVED 2026-09-15 (remediation run más abajo); los HIGH ya no existen como estado vigente.** No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
 
 ## Remediation run 2026-09-16 (c) — GAP-ECHO-010 REPAIRED_AND_CERTIFIED
 
@@ -47,7 +47,7 @@ Recuperación de la sesión colgada 18:56 y cierre del brief owner. Cambio log: 
 
 - **Cursor: READY** — refs Mongo `ARANEA_MONGO_FORGE_MCP_RO/RW_BEARER` corregidas y persistidas en disco (verificado por parse directo; mtime 15:29); 11/11 sweep PASS; clon `aranea-postgres-ro-hermes-managed` RETAINED (contrato del mecanismo B2: `mcp-onboard.py`/`consumer-smoke.py` lo referencian).
 - **ZCode: funcional conservado** — smoke 10/10 heredado; `${env:}` en headers HTTP NO documentado por ZCode ⇒ bearer literals se mantienen (600 kor) por decisión del brief; alternativa (rotación + canal kor-only) pendiente de decisión owner.
-- **Codex: PENDING** — config `600 kor` sin ACL (ilegible para `hermes-ops` por diseño). Instrumento read-only staged: Daedalus:`/tmp/tri-kor-inspect.py` (sha16 `de782b8708a13a82`), el owner lo ejecuta como kor; redactado, con backups `.bak-tri-*`; normalización sólo contra drift demostrado usando `bearer_token_env_var` (mecanismo nativo del binario).
+- **Codex: PENDING** — config `600 kor` sin ACL (ilegible para `hermes-ops` por diseño). Instrumento read-only staged: Daedalus:`/tmp/tri-kor-inspect.py` (sha16 `de782b8708a13a82`), el owner lo ejecuta como kor; redactado, con backups `.bak-tri-*`; normalización sólo contra drift demostrado usando `bearer_token_env_var` (mecanismo nativo del binario). **[RESOLUCIÓN POSTERIOR 2026-09-16 tarde — HISTORICAL hasta aquí]:** el owner ejecutó la normalización como kor (config en disco con backup `config.toml.bak-tri-20260916-181245`); Codex quedó con `bearer_token_env_var` y las 10 capabilities Aranea visibles; native consumer smoke 10/10 PASS desde Codex en Daedalus ⇒ `CONSUMER_ACCESS_READY: PASS`. Detalle en la bitácora 2026-09-16b del [[AGENT-PLATFORM - MCP Access Plane]].
 - **Anomalía abierta:** ambos configs kor con mtime 2026-09-16 13:26:41 + backups `.bak-mcp-20260916-132641` sin change_log que ampare la edición (la sesión vault de esa mañana declara read-only). Origen a identificar por el owner.
 - Sin smokes, sin herramientas MCP ejecutadas, sin secretos impresos, sin cambios de ACL.
 
