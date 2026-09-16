@@ -7,8 +7,8 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-09-15"
-reviewed: "2026-09-15"
+updated: "2026-09-16"
+reviewed: "2026-09-16"
 aliases:
   - "00-index index"
 cssclasses:
@@ -24,8 +24,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas curadas:** 23
-- **Última ingesta:** 2026-09-15
+- **Páginas curadas:** 24
+- **Última ingesta:** 2026-09-16
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -36,7 +36,8 @@ tags:
 | [[f3-skill-migration]] | Inventario, checksums y rollback del movimiento de skills de Fase 3. | migration record |
 | [[domain-router-registry]] | Registro opcional y fail-closed que enlaza áreas con routers scoped sin hardcodear dominios en el core. | routing contract |
 | [[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]] | Router del dominio Meli: boundary, preferencias scoped y skill especializada por tarea. | skill · Meli-only |
-| [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]] | Router del dominio Aranea (homelab); puerta única del acceso MCP vía aranea-mcps-expert. | skill · Aranea-only |
+| [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]] | Router del dominio Aranea (homelab); puerta única del acceso MCP vía aranea-mcps-expert y routing al operador Hermes cuando Hermes es el target. | skill · Aranea-only |
+| [[30-resources/agents/skills/hermes-agent-operator/SKILL|hermes-agent-operator]] | Operación y triage del runtime Hermes: perfiles, dashboard/serve, gateways, systemd user, updates y recovery. | skill · Aranea/Hermes |
 | [[30-resources/agents/skills/aranea-mcps-expert/SKILL|aranea-mcps-expert]] | Router agent-facing para elegir ambiente/capability MCP de Aranea y cargar el runbook canónico correcto. | skill · Aranea-only |
 | [[30-resources/agents/skills/signals-code-review/SKILL|signals-code-review]] | Code review Meli con Zord; en Signals/RIO agrega el revisor independiente `rjara-rio-impact`. | skill · Meli-only |
 | [[30-resources/agents/skills/signals-func-spec-authoring/SKILL|signals-func-spec-authoring]] | Specs funcionales de Signals/Ads en Spellbook con convenciones del equipo. | skill · Meli-only |
@@ -58,7 +59,7 @@ tags:
 
 ## 🔗 MCP Aranea y dominios de agente
 
-El acceso MCP de Aranea es exclusivo del dominio [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]], cuya única puerta MCP es `aranea-mcps-expert` (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`). Sus runbooks mecánicos viven en `30-resources/runbooks/` (dominio Runbooks): `aranea-ssh-mcp.md`, `aranea-postgres-mcp.md`, `aranea-mongodb-mcp.md`, `aranea-hasura-mcp.md`, `aranea-kafka-mcp.md`, `aranea-flink-mcp.md` y `aranea-mcp-capability-plane.md`. El dominio corporativo equivalente es [[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]]; los dos routers se excluyen mutuamente.
+El acceso MCP de Aranea es exclusivo del dominio [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]], cuya única puerta MCP es `aranea-mcps-expert` (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`). Cuando el target es el propio runtime Hermes, el mismo router deriva a `hermes-agent-operator`; esa skill no abre MCPs ni sustituye las skills del servicio que Hermes esté administrando. Sus runbooks mecánicos viven en `30-resources/runbooks/`, incluido `hermes-linux-update-recovery.md`. El dominio corporativo equivalente es [[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]]; los routers Aranea/Meli se excluyen mutuamente.
 
 Desde 2026-09-12 las skills de dominio y transversales viven aquí (migradas desde `80-agents/skills/`, que quedó reservado a comportamientos de AGENTS OS); el catálogo operativo completo vive en `80-agents/skills/INDEX.md`.
 
