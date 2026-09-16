@@ -35,7 +35,7 @@ Orden: evidencia runtime/certificación fechada (remediation runs 09-15/09-16, c
 
 - **Hasura PROD-RO surface (4 vs 3 tools):** vigente = exactamente 3 (`get_inconsistent_metadata`, `get_schema`, `get_version`) desde H1 2026-09-15; `export_metadata` eliminado por exponer `database_url` con credenciales upstream. Los textos de 09-12 que decían 4 tools quedaron etiquetados HISTORICAL, no borrados.
 - **GAP-ECHO-010:** vigente = `REPAIRED_AND_CERTIFIED` (causa: hijo stdio compartido de mcp-proxy 6.7.16, exclusiva de la familia hasura; fix g010; cert 50/50 + 30/30 server y consumer PASS). El diagnóstico intermedio "async-202 tras churn" que agrupaba a ssh-mcp y flink-mcp quedó SUPERSEDED; `202` sin sid es respuesta a notificaciones id-less, no initialize inválido; `-32001`/`-32000` mapeados. ssh-mcp = quirk propio pool-64; flink-mcp = SDK Java.
-- **Codex consumer:** vigente = config normalizada en disco 18:49 (`bearer_token_env_var`, backup `bak-tri-20260916-181245`) + smoke nativo 10/10 PASS según brief owner; el "PENDING patcher stageado" de los change logs de la mañana quedó HISTORICAL. La certificación funcional post-patch desde el IDE queda como validación residual de owner.
+- **Codex consumer:** vigente = config normalizada en disco 18:49 (`bearer_token_env_var`, backup `bak-tri-20260916-181245`) + smoke nativo 10/10 PASS desde Codex en Daedalus; `CONSUMER_ACCESS_READY: PASS`. El "PENDING patcher stageado" de los change logs de la mañana quedó HISTORICAL.
 - **Observability:** `aranea-observability-ro` desplegada y certificada 09-15 (22 tools RO); `aranea-jaeger-ro` sigue DEFERRED/NEEDS_SOURCE_PROOF (roadmap ≠ inventario).
 - **Mongo RO/RW:** certificación end-to-end cubierta por el run 09-14 (la nota "pendiente" del runbook era stale desde entonces).
 - **Incidente ssh 09-13:** RESUELTO (pool-64, causa identificada 09-15); ya no queda estado vigente "causa UNKNOWN / T6 abierto" por este incidente.
@@ -48,7 +48,6 @@ Orden: evidencia runtime/certificación fechada (remediation runs 09-15/09-16, c
 - **M5:** `get_schema` PROD falla por transporte (~11 MB) → pendiente de diagnóstico como deuda del plane.
 - **Host key `.71`** idéntica a `sqx-zeus` (rotación owner-side sugerida, no bloqueante).
 - **Temporal / MinIO / etcd / Jaeger-specific:** sin capability; quedan como DEFERRED / NEEDS_SOURCE_PROOF en la nota de certification (ya etiquetados); no se convirtieron en inventario.
-- **Codex certificación funcional desde el IDE** post-normalización (residual owner, no bloqueante).
 
 ## Escaneo de términos stale (post-edición)
 
