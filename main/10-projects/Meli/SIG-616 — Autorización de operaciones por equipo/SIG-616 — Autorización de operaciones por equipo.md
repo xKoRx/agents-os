@@ -10,12 +10,13 @@ parent:
 sprint:
 start: 2026-09-14
 due:
-progress: 75
+progress: 80
 repo: https://github.com/melisource/fury_rio-playmaker
 jira:
 prs:
   - https://github.com/melisource/fury_rio-playmaker/pull/1169
   - https://github.com/melisource/fury_rio-playmaker/pull/1178
+  - https://github.com/melisource/fury_rio-playmaker/pull/1181
 aliases:
   - SIG-616
   - Autorización por equipo en Playmaker
@@ -49,8 +50,8 @@ updated: "2026-09-16"
 
 ## 📊 Estado actual
 
-- **Slice 3 publicado:** `feature/operation-authorization-by-team-f3@25a50c10c`, con base exacta `feature/operation-authorization-by-team-f2@626585ca9`, está publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178) y listo para review. Protege las siete rutas de mutación/deploy de componentes con `DEV_AND_UP`; `/data-products/v2` conserva explícitamente el comportamiento pre-F3. Suite local: 3.868 tests, 0 fallas, 2 skips preexistentes; build exitoso. Gate de datos productivos y smoke Tiger/ACME no productivo siguen pendientes.
-- **Slice 4 en rama local:** `feature/operation-authorization-by-team-f4@0f37f7b29`, rebasada sobre `origin/feature/operation-authorization-by-team-f3@1f39b556`. Protege relaciones directas y las cinco mutaciones de pipeline, incluido deploy, con ownership persistido y `DEV_AND_UP`; restaura fail-closed para ownership incompleto; suite forzada: 3.927 tests, 0 fallas, 2 skips. Cobertura diferencial F4 integrado: 100,00% line (100/100) / 100,00% branch (28/28); cobertura global: 97,13% line (14.332/14.755) / 91,49% branch (3.933/4.299). Gate de datos y smoke externo siguen pendientes por falta de acceso.
+- **Slice 3 publicado:** `feature/operation-authorization-by-team-f3@1f39b556`, con base `feature/operation-authorization-by-team-f2`, está publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178) y es la base remota vigente de Slice 4. Protege las siete rutas de mutación/deploy de componentes con `DEV_AND_UP`; `/data-products/v2` conserva explícitamente el comportamiento pre-F3. Gate de datos productivos y smoke Tiger/ACME no productivo siguen pendientes.
+- **Slice 4 publicado:** `feature/operation-authorization-by-team-f4@0f37f7b29`, basado exactamente en `origin/feature/operation-authorization-by-team-f3@1f39b556`, está publicado y listo para review en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181). Protege relaciones directas y las cinco mutaciones de pipeline, incluido deploy, con ownership persistido y `DEV_AND_UP`; restaura fail-closed para ownership incompleto. Suite forzada: 3.927 tests, 0 fallas, 2 skips; cobertura diferencial: 100,00% line (100/100) / 100,00% branch (28/28). GitHub confirmó base F3, head F4, estado no draft, mergeable y workflow inicial exitoso. Gate de datos y smoke externo siguen pendientes por falta de acceso.
 - **Fase actual:** Slice 1 está implementado en `feature/operation-authorization-by-team-f1@fbf05159e` y publicado en [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169). Slice 2 / [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) está en `feature/operation-authorization-by-team-f2@626585ca9`, contiene el head funcional `7cac00089` de Slice 1 y debe incorporar `fbf05159e` antes de continuar su entrega.
 - **Evidencia de Slice 1:** commit `fbf05159e` en `feature/operation-authorization-by-team-f1`, sincronizado con `origin/develop@073f6a190` mediante el merge `9310ab7b5`; los cuatro tests afectados y `./gradlew check` pasaron, con `2` skips preexistentes. CI, cobertura, dependencias, análisis estático y workflow remoto terminaron correctamente. El feedback útil del review quedó aplicado sin mezclar la precondición legacy `systemId` con el autorizador transversal.
 - **Pendiente operacional:** smoke ACME/Data Product no productivo; no se ejecutó por falta de credenciales apropiadas.
@@ -75,8 +76,8 @@ updated: "2026-09-16"
 |---|---|---|---|---|---|
 | `rio-playmaker` | `feature/operation-authorization-by-team-f1` | `origin/develop@073f6a190` sincronizada por merge | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621), iniciativa derivada de [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | [SIG-622 — Slice 1](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) | Implementado en `fbf05159e`; [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169) actualizado; smoke no productivo pendiente |
 | `rio-playmaker` | `feature/operation-authorization-by-team-f2@626585ca9` | contiene `origin/feature/operation-authorization-by-team-f1@7cac00089` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | Rama existente; debe incorporar `fbf05159e` de Slice 1 antes de continuar su entrega |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f3@25a50c10c` | `feature/operation-authorization-by-team-f2@626585ca9` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] | Implementado y publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178); gate de datos y smoke Tiger/ACME pendientes |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f4@0f37f7b29` | `origin/feature/operation-authorization-by-team-f3@1f39b556` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | Integrado sobre el HEAD actual de F3; listo para revisión técnica; coverage diferencial 100% line/branch; gates externos pendientes |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f3@1f39b556` | `feature/operation-authorization-by-team-f2` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] | Implementado y publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178); gate de datos y smoke Tiger/ACME pendientes |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f4@0f37f7b29` | `origin/feature/operation-authorization-by-team-f3@1f39b556` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | Publicado y listo para review en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181); coverage diferencial 100% line/branch; gates externos pendientes |
 | `rio-playmaker` | Pendiente — rama de Slice 5 | Head aprobado de Slice 4 | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 5 — Actions restantes]] | SPEC local creada; publicación Spellbook e implementación pendientes |
 
 ## 🧠 Diseño técnico consolidado
@@ -538,6 +539,7 @@ views:
 > - [x] Crear la SPEC técnica local de Slice 3 — mutaciones y deployments de componentes #owner/me #type/dev #area/meli
 > - [x] Crear la SPEC técnica local de Slice 4 — relaciones y pipelines #owner/me #type/dev #area/meli
 > - [x] Crear la SPEC técnica local de Slice 5 — Actions restantes #owner/me #type/dev #area/meli
+> - [r] Revisar [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181) y completar gate de datos + smoke Tiger/ACME de Slice 4 #owner/me #type/pr-review #area/meli
 > - [ ] Publicar Slice 3, 4 y 5 como SPECs técnicas hijas de SIG-621 en Spellbook; la CLI requiere reautenticación #owner/me #type/admin #area/meli #blocked
 
 ```dataviewjs
@@ -591,6 +593,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-15** — Se crearon las SPECs técnicas locales de Slice 3, 4 y 5. Cada entrega incorpora su propia matriz de tests, gate de datos, smoke no productivo y coverage; se descartó un gate final separado. La publicación en Spellbook quedó pendiente porque la sesión de la CLI expiró.
 - **2026-09-15** — La revisión cruzada de Slice 5 confirmó `list-warehouses-for-team` en el contrato de CP ClickHouse y en un consumidor activo de rio-frontend; se mantuvo como alias legacy explícito. También se convirtió `ping` en un check nominal del gate de inventario previo al rollout.
 - **2026-09-16** — Se evaluaron los cuatro comentarios nuevos del PR #1169 contra el código y la SPEC. Se aplicaron las mejoras de helpers estáticos y estructura de tests en `fbf05159e`: matriz de roles parametrizada, `@InjectMocks`, `assertNull` y ownership centralizado en `AuthorizationUtilsTest`, conservando un smoke por consumidor con mensaje y orden. No se aplicó la propuesta de unir `requireOperationOwnership` con `OperationAuthorizationService.require` porque `systemId` es una precondición legacy exclusiva de delete/inactivate y no forma parte del contrato transversal. Los tests focalizados, `./gradlew check` y todos los checks remotos materiales pasaron; las cuatro respuestas cordiales se publicaron y verificaron en GitHub.
+- **2026-09-16** — Slice 4 se rebasó sobre `origin/feature/operation-authorization-by-team-f3@1f39b556`, restauró el fail-closed de ownership incompleto y cerró dos rondas de code review. La rama `feature/operation-authorization-by-team-f4@0f37f7b29` se publicó y se creó [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181), no draft, con base F3 verificada. Suite forzada: 3.927 tests, 0 fallas, 2 skips; cobertura diferencial 100% line/branch. Gate de datos y smoke Tiger/ACME continúan pendientes antes del merge/rollout.
 
 ## 🧭 Decisiones
 
@@ -630,6 +633,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - [[SPEC técnica — Slice 4 — Relaciones y pipelines]]
 - [[SPEC técnica — Slice 5 — Actions restantes]]
 - [PR 1126 — Autorización ACME para inactivate/delete](https://github.com/melisource/fury_rio-playmaker/pull/1126)
+- [PR #1178 — Slice 3: mutaciones y deployments de componentes](https://github.com/melisource/fury_rio-playmaker/pull/1178)
+- [PR #1181 — Slice 4: relaciones y pipelines](https://github.com/melisource/fury_rio-playmaker/pull/1181)
 - [DataProductModel — `teamName`](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/model/DataProductModel.java)
 - [ImportAuthorizationRepository — detección canónica de importados](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/repository/ImportAuthorizationRepository.java)
 
