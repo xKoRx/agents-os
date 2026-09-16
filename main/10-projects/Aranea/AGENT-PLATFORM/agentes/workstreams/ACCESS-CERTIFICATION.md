@@ -4,7 +4,7 @@ status: active
 area: "[[Aranea]]"
 parent: "[[AGENT-PLATFORM - MCP Access Plane]]"
 created: "2026-09-14"
-updated: "2026-09-15"
+updated: "2026-09-16"
 tags:
   - area/aranea
   - tech/mcp
@@ -38,6 +38,16 @@ Ejecutada por Ariadna (Hermes) vía management path `mcps-ops` + certificación 
 - **Certificación:** server-side dev 50/50 y prod-ro 30/30 ciclos `initialize→tools/list→tools/call→DELETE` PASS; consumer Daedalus dev 50/50 (`tools=9`) y prod-ro 30/30 (`tools=3`) PASS ⇒ `CONSUMER_DAEDALUS_PASS`, `DEVELOPER_UNBLOCKED: NOT_PROVEN` (sin agente Echo/Forge identificable como afectado hoy).
 - **Regresión:** 401 unauth en 3001–3009; superficie DEV 9 tools intacta; PROD-RO exactamente 3 tools post-H1 (`export_metadata` ausente); H2 `POLICY_DENIED` intacto; cero drift en el resto del plane.
 - **Veredicto:** `REPAIRED_AND_CERTIFIED`. Deuda residual: flink (Java SDK) y ssh-mcp (pool-64) requieren diagnóstico propio si muestran síntomas; fix a nivel bundle — evaluación upstream de mcp-proxy diferida.
+
+## Remediation run 2026-09-16 (d) — tri-client config normalization (Cursor/ZCode/Codex en Daedalus)
+
+Recuperación de la sesión colgada 18:56 y cierre del brief owner. Cambio log: `80-agents/journal/logs/2026-09-16-tri-client-mcp-config-normalization.md`.
+
+- **Cursor: READY** — refs Mongo `ARANEA_MONGO_FORGE_MCP_RO/RW_BEARER` corregidas y persistidas en disco (verificado por parse directo; mtime 15:29); 11/11 sweep PASS; clon `aranea-postgres-ro-hermes-managed` RETAINED (contrato del mecanismo B2: `mcp-onboard.py`/`consumer-smoke.py` lo referencian).
+- **ZCode: funcional conservado** — smoke 10/10 heredado; `${env:}` en headers HTTP NO documentado por ZCode ⇒ bearer literals se mantienen (600 kor) por decisión del brief; alternativa (rotación + canal kor-only) pendiente de decisión owner.
+- **Codex: PENDING** — config `600 kor` sin ACL (ilegible para `hermes-ops` por diseño). Instrumento read-only staged: Daedalus:`/tmp/tri-kor-inspect.py` (sha16 `de782b8708a13a82`), el owner lo ejecuta como kor; redactado, con backups `.bak-tri-*`; normalización sólo contra drift demostrado usando `bearer_token_env_var` (mecanismo nativo del binario).
+- **Anomalía abierta:** ambos configs kor con mtime 2026-09-16 13:26:41 + backups `.bak-mcp-20260916-132641` sin change_log que ampare la edición (la sesión vault de esa mañana declara read-only). Origen a identificar por el owner.
+- Sin smokes, sin herramientas MCP ejecutadas, sin secretos impresos, sin cambios de ACL.
 
 ## Remediation run 2026-09-16 (b) — E-02 CLOSED con runtime topology owner FROZEN
 
