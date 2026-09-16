@@ -24,7 +24,7 @@ tags:
   - project/aranea-agent-platform
   - tech/mcp
 created: "2026-09-07"
-updated: "2026-09-15"
+updated: "2026-09-16"
 ---
 
 # AGENT-PLATFORM - MCP Access Plane
@@ -129,6 +129,8 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 > - [ ] OBS5 **DEFERRED** — Saneamiento secundario: OpenSearch yellow single-node, capacidad/cardinalidad Prometheus, Promtail → Alloy y upgrades; no mezclar con OBS0–OBS4 sin necesidad material #owner/agent #type/admin #area/aranea
 
 ## 📆 Bitácora
+
+- **2026-09-16b — Reconciliación documental canónica del plane (workload owner; cero cambios runtime):** pasada completa skill ↔ runbooks ↔ proyecto ↔ [[ACCESS-CERTIFICATION]] ↔ [[HERMES — Agent Access Operations]]. Correcciones vigentes: Hasura PROD-RO = exactamente 3 tools post-H1 (skill, runbook hasura, capability-plane, Architecture, D24; la superficie de 4 tools queda HISTORICAL 2026-09-12); GAP-ECHO-010 = REPAIRED_AND_CERTIFIED con root cause hijo stdio compartido de mcp-proxy 6.7.16 (sólo familia hasura; el diagnóstico intermedio async-202 que agrupaba ssh/flink queda SUPERSEDED y documentado como HISTORICAL/RESOLVED en runbook hasura § Failure modes); perfiles SSH corregidos (SQX operator desde 09-13, 2 viewers post-H2); identidades PostgreSQL RO/RW corregidas (`mcp_echo_prod_ro`/PROD vs `mcp_echo_dev_rw`/DEV, drift M6 cerrado) con deuda M3 explícita; "nueve capabilities" → diez (incluida `aranea-observability-ro` certificada 2026-09-15; `aranea-jaeger-ro` queda DEFERRED/NEEDS_SOURCE_PROOF); incidente ssh 2026-09-13 re-clasificado RESUELTO (pool-64, causa identificada 09-15); Consumers: Cursor READY (11/11, clon B2 RETAINED), ZCode READY con deuda bearer-literals, Codex normalizado a `bearer_token_env_var` (config en disco 18:49 con backup; smoke nativo 10/10 PASS según brief owner). Deudas registradas sin resolver: aislamiento de credenciales RO/RW Mongo/PG (rotación coordinada owner), ZCode bearer literals, M3 timeouts PROD-RO, `get_schema` M5 en PROD, host key `.71` duplicada. Detalle: change log `2026-09-16-mcp-plane-documentation-canonicalization`.
 
 - **2026-09-16** — Certificación consumer tri-client: **Cursor** tiene sus 11 entradas corregidas y verificadas consumer-side (11/11 PASS; refs Mongo enmendadas a `ARANEA_MONGO_FORGE_MCP_*_BEARER`). **Deuda de aislamiento de credenciales (NO rotada por decisión owner):** los bearers Mongo y PostgreSQL comparten VALOR a pesar de nombres de variables distintos — proxy-secrets: `daedalus-ro.bearer` de postgres == `daedalus-ro.bearer` de mongo-forge (sha16 `5416e5d26b9b75ad`) y `daedalus.bearer`/RW == `daedalus-rw.bearer` (sha16 `aeca359b4e853f49`). La separación RO/RW y por-familia es hoy de NOMBRE de variable, no de material criptográfico; un leak de un bearer compromete las cuatro rutas. Propuesta: rotación coordinada de 4 proxies en una ventana única (generar nuevos `daedalus-ro`/`daedalus-rw` distintos por familia, actualizar el chain kor una vez, sin downtime: los proxies aceptan el valor nuevo en caliente). Queda como owner action posterior; detalle en `2026-09-16-tri-client-consumer-certification`. **ZCode** conserva config funcional con literales (su formato no documenta interpolación env en headers; 600 kor-only). **Codex** pendiente de normalización al mecanismo nativo `bearer_token_env_var` vía patcher stageado (ejecución kor del owner).
 

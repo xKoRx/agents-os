@@ -4,7 +4,7 @@ status: active
 area: "[[Aranea]]"
 parent: "[[AGENT-PLATFORM - MCP Access Plane]]"
 created: "2026-09-12"
-updated: "2026-09-13"
+updated: "2026-09-16"
 confidence: verified
 aliases:
   - aranea-mcp-access-plane-architecture
@@ -238,23 +238,23 @@ endpoint: http://mcps.lab.aranea.cl:3005/mcp
 target: http://192.168.31.48:8080
 Hasura: CE v2.38.0
 metadata DB: hasura_metadata
-base image: local/hasura-mcp:1.0.0-9ba59f2-prod-ro
-http image: local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-mcpproxy6.7.16
+base image: local/hasura-mcp:1.0.0-9ba59f2-prod-ro-h1fix
+http image: local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-h1fix-mcpproxy6.7.16-g010fix
+http rollback (tag retenido): local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-mcpproxy6.7.16
 containers: hasura-mcp-prod-ro + hasura-mcp-auth-prod-ro
 ```
 
 El flag upstream `--read-only` no fue aceptado como boundary suficiente porque mantenía `reload_metadata` y `run_sql`. La variante Aranea elimina ambas registrations y además ejecuta `--read-only`.
 
-Tool surface PROD certificada server-side — **exactamente 4**:
+Tool surface PROD certificada server-side — **exactamente 3** (desde H1 fix 2026-09-15):
 
 ```text
-export_metadata
 get_inconsistent_metadata
 get_schema
 get_version
 ```
 
-No existe `run_sql`, `reload_metadata` ni metadata mutators en PROD. Por construcción no existe camino MCP para DDL/DML/creación de views/functions ni cambios de metadata.
+`export_metadata` fue eliminado de la superficie PROD-RO por el remediation H1 (expone `database_url` con credenciales upstream embebidas). No existe `run_sql`, `reload_metadata`, `export_metadata` ni metadata mutators en PROD. Por construcción no existe camino MCP para DDL/DML/creación de views/functions ni cambios de metadata.
 
 Cursor puede mostrar una tool cliente `mcp_auth`; no apareció en `tools/list` server-side y no forma parte de la autoridad Hasura.
 
