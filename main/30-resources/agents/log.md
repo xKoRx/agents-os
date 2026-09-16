@@ -1,5 +1,11 @@
 # Agents resource log
 
+## [2026-09-16] create | Hermes Agent operator
+
+- Se creó `hermes-agent-operator` como skill federada de Aranea para diagnóstico/operación del propio runtime Hermes: perfiles, dashboard/serve, gateways, `systemd --user`, updates y recovery.
+- `aranea-agent-dev` quedó actualizado para cargar esta skill sólo cuando Hermes es el target; si Hermes sólo actúa como operador de otro servicio, se mantiene la skill del dominio objetivo.
+- La mecánica determinista de update/recovery quedó externalizada a `30-resources/runbooks/hermes-linux-update-recovery.md`; la skill conserva criterio, routing, guards y output contract.
+
 ## [2026-09-14] fix | Autoridad federada única y routing externo
 
 - Se completó la migración de 13 skills retirando sus copias bajo `80-agents/skills/`; `30-resources/agents/skills/` queda como única autoridad federada.
