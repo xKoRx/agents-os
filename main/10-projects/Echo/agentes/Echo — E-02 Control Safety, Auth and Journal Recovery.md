@@ -55,7 +55,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` (origin/master) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 @ `f7ddea18`; TASKS T01–T10, T12–T15 with focused source-review correction evidence and physical partials; T11 `[-]` E-08 | IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW · no verifier · no CLOSED |
+| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` (origin/master) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 @ `f7ddea18`; T01–T10, T12–T15 ejecutados (T11 `[-]` E-08); AC-01…AC-17 PASS con evidencia física; verifier independiente PASS | **E02 CLOSED (software)** — pendiente: CONTROLLED INTEGRATION a master (gate de closure) · AC-18 rotación prod = gate ops owner |
 
 ## 🗺️ Arquitectura frozen (resumen; contrato completo en SPEC)
 
@@ -94,7 +94,7 @@ Ver VERIFICATION.md. Clases: SOURCE (greps secret/auth/messaging, contracts + do
 
 ## Blockers
 
-`PHYSICAL_PARTIAL`: no hay psql, Kafka, compose Flink/StateFun ni sesión Hasura develop en esta ejecución. `NOT_OBSERVED`: etcd/tokens reales de prod, deploy Hasura prod, bundle servido y rotación AC-18.
+Ninguno para DONE de software. Pendientes de closure formal: (1) CONTROLLED INTEGRATION a `master` (ancestry demostrado, sin force-push); (2) AC-18 rotación en prod = gate ops del owner (no cierra software; sin él no se habilita capital). `echo.journal_quarantine` en PROD PG (152) se crea con el deploy del branch (PLAN §3).
 
 ## Closure conditions
 
