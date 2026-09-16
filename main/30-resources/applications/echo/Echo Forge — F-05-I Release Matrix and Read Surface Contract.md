@@ -80,14 +80,60 @@ PostgreSQL/MongoDB authorities (existentes, intocables)
 - Reabrir semántica F-01…F-04/S0/B1A/B1B/B2/Magic V1/Finalist V2/HandoffManifestV1.
 - Exponer evidencia Mongo secundaria (databank/wfm/deviation/export_runs) — documento como no-superficie de F-05-I.
 
-## Release matrix contract (`sqx-release-matrix.v1`)
+## Release matrix contract (`sqx-release-matrix.v1`) — CORREGIDO Planning C1 (2026-09-16)
 
-- **Dónde vive:** artefacto `deploy/release-matrix.json` (declaración humana/NORMAL, versionada en git) + validador `sqx/core/releasematrix` (parseo, validación estructural, clasificación) + superficie `sqx-flowkit release-matrix` (imprime el JSON validado). No runtime-generated, no segunda autoridad de release.
-- **Filas = capacidades** (mínimo): F-01 identity; F-02 Finalist V2; F-03 SQX long-running; F-04 magic allocation; F-04 StrategyVersion seal; F-04 handoff+delivery; pipeline core (ForgeCampaign+GenericSQX workflows); WFM evaluator; global ranking; robust selection; apply selected run; MT5 reconcile+score shadow; B1A/B1B/B2 (histórico CLOSED con SHA/release de época); release pipeline (deploy_release/release-authority/stager); F-05-I read surface (sí misma).
-- **Campos por capability:** `capability`, `contract_refs[]`, `producer_paths[]` (paths clave, no wildcard), `persistence_authority`, `read_surface`, `required_refs[]`, `implementation_sha`, y `states` con UNA entrada independiente por dimensión: `implemented`, `source_verified`, `released`, `deployed`, `physically_certified`, `cross_lane_certified`.
-- **Estados por dimensión:** objeto `{status: DONE|OPEN|DEFERRED|NOT_APPLICABLE, evidence: string, gate?: string}`. El validador chequea estructura y presencia, y **prohíbe derivar**: nunca exige ni infiere implicación entre dimensiones (p.ej. released NO implica deployed). Guard test negativo: el artefacto committed NO contiene `physically_certified.status=DONE` ni `cross_lane_certified.status=DONE` (en F-05-I todo eso es OPEN/DEFERRED con gate del backlog CERT-*).
-- **Orden determinístico:** capabilities ordenadas por `capability` ascendente; JSON marshaling estable.
-- **Contenido de verdad inicial** (desde [[Echo Forge — Factory V2 Completion]]): F-04 = implemented/source verified `b57bfb2` + released `0.2.98` + deployed linux PASS/windows OPEN + physical DEFERRED (CERT-F04-01/02/03) + cross-lane DEFERRED (CERT-E04-01). F-01/F-02/F-03 CLOSED con SHAs históricos y release de época; sus dimensiones físicas históricas declaradas con evidencia de época, sin re-certificar.
+### Ubicación del artefacto (C1.1)
+
+- **Ruta canónica:** `sqx/core/releasematrix/release-matrix.json` (co-ubicada con el validador, versionada en git, declaración humana editada por NORMAL). **Prohibido `deploy/release-matrix.json`** y cualquier artefacto declarativo dentro de `deploy/`.
+- **Evidencia de la decisión:** `deploy/` es el WatchRoot vivo del pipeline de release. `deployer-watcher` observa por defecto `./deploy` (`deployer/cmd/deployer-watcher/main.go`, fallback etcd `config/watch_root`), su source hace snapshot recursivo con `filepath.WalkDir` (`deployer/adapters/source-fsnotify/source.go`) y `deploy_release.sh` usa `deploy/` como staging de publicación (`deploy/<version>/linux-amd64/`; el watcher sincroniza ese árbol a MinIO y publica `deploy/manifest.json` como último paso). Un JSON declarativo ahí hoy no se subiría únicamente porque `StaticLayout.ComputeKey` exige exactamente `<root>/<semver>/<platform>/<file>` o el `manifest.json` raíz (`deployer/adapters/pathing-staticlayout/pathing.go`; `release-matrix.json` cae en `ok=false` y el planner lo salta en `deployer/core/planner/simple.go`) — es protección **accidental, acoplada al layout**: cada edición dispararía ciclos de plan contra MinIO, el archivo viviría dentro del árbol de staging publicable y un cambio futuro de layout podría convertirlo silenciosamente en key publicable, mintiendo sobre qué es un artefacto de release. En `sqx/core/releasematrix/` la ruta está fuera del WatchRoot y fuera del staging: el watcher no puede verla y el pipeline no puede publicarla (dos garantías independientes).
+- **Cómo lo encuentra T5 (C1.2):** no por path — por embedding. Ver §Política de carga.
+
+### Política de carga portable (C1.2)
+
+- **Fuente por defecto inequívoca: embedding.** `//go:embed release-matrix.json` en el paquete `sqx/core/releasematrix` (mismo directorio del paquete: restricción de `go:embed` cumplida; idioma ya usado en el repo por `sqx/adapters/registry-postgres/migrations/runner.go` y `postgrestest/db.go`). El binario `sqx-flowkit` lleva la matriz dentro; mismo binario ⇒ misma matriz, determinístico por construcción.
+- **API congelada del paquete:** `Embedded() []byte` (bytes del artefacto), `LoadEmbedded() (Matrix, error)`, `Parse(data []byte) (Matrix, error)`, `Load(path string) (Matrix, error)` (override explícito), `Validate(Matrix) error`, `Marshal canónico` (indent 2 espacios + newline final; el artefacto committed debe ser exactamente esa salida — test de igualdad byte a byte).
+- **Override explícito:** `sqx-flowkit release-matrix --matrix <path>`. Un override inválido (no existe, no parsea, falla validación) es error **tipado** `INVALID_ARGUMENT` → exit 2 con mensaje en stderr; nunca fallback silencioso al embebido.
+- **Restricciones duras:** ejecutable desde cualquier working directory; no exige checkout del repo; no exige acceso a `deploy/`; cero resolución de rutas relativas al repo (el default relativo-repo del plan original queda **eliminado**). Test de portabilidad: ejecutar el handler del subcomando con CWD en directorio temporal vacío ⇒ misma salida byte a byte.
+- **No se implementa el loader en esta sesión** (Planning C1 es CONTRACT REVIEW); el contrato anterior es la implementación obligatoria de T1/T5.
+
+### Dimensiones, estados y semántica (C1.3 + C1.4)
+
+- **Filas = capacidades**, IDs frozen (orden = `capability` ASC): `apply-selected-run`, `b1a-mt5-ownership`, `b1b-mt5-wallclock`, `b2-cancel-recovery`, `f01-identity`, `f02-finalist-model-v2`, `f03-sqx-long-running`, `f04-handoff-delivery`, `f04-magic-allocation`, `f04-strategy-version-seal`, `f05i-read-surface`, `global-ranking`, `mt5-reconcile-score-shadow`, `pipeline-core`, `release-pipeline`, `robust-selection`, `wfm-evaluator`.
+- **Campos por capability:** `capability`, `contract_refs[]` (≥1), `producer_paths[]` (≥1, paths clave sin wildcards — `*` rechazado por validador), `persistence_authority` (storage concreto + tablas/colecciones; nunca afirma intercambiabilidad entre PostgreSQL/MongoDB/Temporal/etcd/MinIO), `read_surface` (`sqx-flowkit …` o `none`), `required_refs[]`, `implementation_sha` (`^[0-9a-f]{7,64}$` o vacío con evidencia), `states` (objeto con UNA entrada por dimensión) y `deploy_targets[]` (ver abajo).
+- **Dimensiones (seis, independientes):** `implemented`, `source_verified`, `released`, `deployed`, `physically_certified`, `cross_lane_certified`. El validador jamás infiere una de otra; `released ≠ deployed` y `source_verified ≠ physically_certified` son reglas de lectura explícitas (alineadas 1:1 con la taxonomía frozen de [[Echo + Echo Forge — Deferred Certification Backlog]]).
+- **Estado por dimensión:** objeto `{status, evidence, evidence_kind, gate?, as_of?}` con semántica exacta:
+  - **DONE** = la dimensión está satisfecha con evidencia verificable registrada (histórica o actual); `evidence` y `evidence_kind` obligatorios, `gate` prohibido. En dimensiones físicas/de release/deploy, DONE histórico exige `as_of` + evidence_kind de certificación y su alcance es el SHA/release de época evidenciado — **nunca certifica la release actual por arrastre**.
+  - **OPEN** = requerido y no satisfecho hoy; `evidence` declara qué falta (p.ej. observación física pendiente ⇒ incertidumbre explícita); `gate` opcional.
+  - **DEFERRED** = requerido, retirado del critical path a un gate de la campaña CERT; `gate` obligatorio (`^CERT-[A-Z0-9]+(-[A-Z0-9]+)*$`).
+  - **NOT_APPLICABLE** = la dimensión no aplica a esa capability; `evidence` justifica por qué.
+  - `evidence_kind` enum: `git | tests | release_manifest | deployment_proof | runtime_observation | certification_record | cross_lane_receipt | none` (sólo admisible `none` con status ≠ DONE).
+- **`as_of`:** fecha `YYYY-MM-DD` de la evidencia; obligatoria en DONE de `released`/`deployed`/`physically_certified`/`cross_lane_certified`.
+- **Representación de flota (C1.3):** la dimensión `deployed` lleva además `deploy_targets[]`; cada target = `{target, release, release_present, process, evidence, as_of?}` con enums de **observación** (hechos, no certificación): `release_present: OBSERVED|NOT_OBSERVED`, `process: RUNNING|NOT_OBSERVED`. Reglas: `release_present=OBSERVED` ⇒ `release` no vacío (presencia observada de una release identificada); `process=RUNNING` exige observación de proceso real; target no observado = `NOT_OBSERVED` explícito (nunca inferido de publicación ni de archivos presentes); targets con versiones distintas = valores `release` distintos por target. Si `deployed.status=DONE` el validador exige `len(deploy_targets) ≥ 1` (contención de evidencia, no derivación de estados). NO se crea un sistema de monitoreo ni inventario de flota: esto es declaración con evidencia referenciada.
+- **Prohibiciones (C1.4):** no declarar PASS físicos nuevos sin evidencia; no borrar certificaciones históricas demostradas (F-03 physical PASS y B1A/B1B/B2 CLOSED son historia verdadera que la matriz conserva como DONE histórico con `certification_record` + `as_of`); no inferir certificación de una fase desde otra; no confundir RELEASED con DEPLOYED ni SOURCE VERIFIED con PHYSICALLY CERTIFIED; certificación histórica no comprobable ⇒ queda registrada como no verificada (OPEN), jamás resultado inventado.
+
+### Autoridades de datos por dimensión (C1.5)
+
+| Dimensión / campo | Evidencia admisible (`evidence_kind`) | Autoridad concreta |
+|---|---|---|
+| `implemented` | `git` | commit SHA presente en la branch/lineage autorizado (`git` es la única autoridad) |
+| `source_verified` | `tests`, `certification_record` | veredictos de revisión source/contract registrados (notas/manager review) + corridas locales de tests; jamás implica físico |
+| `released` | `release_manifest` | `deploy/manifest.json` de época, output `release-authority` (`sqx-release-authority.v1`), manifest+digest publicado en MinIO por `deploy_release.sh` |
+| `deployed` (+ `deploy_targets[].release_present`) | `deployment_proof`, `runtime_observation` | deployment proof por jerarquía: activación stager, inspección `stager-runtime.service`, `CURRENT/PENDING`; presencia en host observada. La sola publicación NO alimenta esta dimensión |
+| `deploy_targets[].process` | `runtime_observation` | observación de proceso real (servicio/PID); los archivos presentes en host NO prueban proceso activo |
+| `physically_certified` | `certification_record` | veredictos de campañas físicas registradas (T2.11/T2.12/T2.13, job físico F-03, épocas B); tests locales y fixtures NO califican |
+| `cross_lane_certified` | `cross_lane_receipt` | receipt + read-back del lane consumidor (Echo); synthetic ≠ PASS |
+| `persistence_authority` | `git` | schema/migrations + adapters: nombre concreto de storage y tablas/colecciones (PostgreSQL sqx, MongoDB forge, MinIO bucket, columnas Temporal, etcd); cada row nombra la suya y ninguna declara equivalencia entre services |
+| Override de CLI y contenido | — | la matriz consulta cero infraestructura en runtime: es declarativa; toda observación pendiente queda como no verificada |
+
+### Contenido de verdad inicial (congelado; T1 lo transcribe, no lo decide)
+
+- **Filas históricas CLOSED:** `b1a-mt5-ownership` SHA `185825c`, `b1b-mt5-wallclock` SHA `ef65dd1`, `b2-cancel-recovery` SHA `db8a022` — implemented/source_verified/physically_certified DONE históricos (veredictos PASS/CLOSED de época, evidence = record Factory V2 + contratos frozen + SHA; `as_of` época 2026-09-06/08); released DONE por `0.2.98` (contiene esos SHAs en su lineage git) con `as_of` 2026-09-13; deployed OPEN (deploy de época no re-verificable hoy ⇒ incertidumbre conservada; re-check sólo con delta); cross_lane NOT_APPLICABLE justificado (sin lane consumidor).
+- **Fases cerradas:** `f01-identity` (`0509342`), `f02-finalist-model-v2` (`c3b7ede`), `f03-sqx-long-running` (`382f4ba`) — implemented/source_verified DONE; released DONE por `0.2.98` (lineage); deployed OPEN con targets linux OBSERVED / windows NOT_OBSERVED (misma evidencia stager 2026-09-13); `f03` además physically_certified DONE histórico `as_of` 2026-09-10 (job real `14m51.98s` COMPLETED 3000/3000, heartbeat T+10m, cancel aislado — record Factory V2); f01/f02 physically_certified OPEN sin gate de campaña propia (su física de época no está registrada como campaña certificable separada ⇒ pendiente de verificación, no inventada).
+- **F-04 (tres filas):** implemented/source_verified DONE @ `b57bfb2`; released DONE `0.2.98` `as_of` 2026-09-13; deployed OPEN con `deploy_targets`: `{linux-amd64, 0.2.98, OBSERVED, RUNNING, stager-runtime.service /opt/stager/releases/0.2.98 (Zeus/Hera/Kronos), 2026-09-13}` y `{windows-amd64, "", NOT_OBSERVED, NOT_OBSERVED, viewer policy gap mt5-kronos}`; physically_certified DEFERRED con gates: magic-allocation `CERT-F04-01`, strategy-version-seal `CERT-F04-02`, handoff-delivery `CERT-F04-03`; cross_lane DONE prohibido — handoff-delivery DEFERRED `CERT-E04-01`, resto NOT_APPLICABLE.
+- **Capacidades de pipeline V2:** `pipeline-core`, `wfm-evaluator`, `global-ranking`, `robust-selection`, `apply-selected-run`, `mt5-reconcile-score-shadow` — implemented/source_verified DONE @ baseline auditado `b57bfb2` (existencia + verificación source en el recon F-05-I; SHA de fase individual no atribuible ⇒ se declara el SHA auditado, no se inventa atribución); released DONE `0.2.98`; deployed OPEN (targets como F-04); physically_certified DEFERRED `CERT-F05-02` (FULL golden real); cross_lane NOT_APPLICABLE.
+- **`release-pipeline`** (deploy_release/release-authority/stager/deployer-watcher): implemented/source_verified DONE @ `b57bfb2`; released NOT_APPLICABLE (es la autoridad que publica, no artefacto publicado); deployed OPEN con targets linux OBSERVED / windows NOT_OBSERVED; physically_certified DEFERRED `CERT-F05-01` (release/deployment proof cohesivo); cross_lane NOT_APPLICABLE.
+- **`f05i-read-surface`** (sí misma): implemented OPEN (T1/T5/T6/T7 pendientes en `codex/f05-release-prep`, HEAD `3da8b47`); source_verified OPEN; released OPEN (ninguna release contiene F-05-I aún); deployed OPEN (sigue a la release cohesiva futura); physically_certified DEFERRED `CERT-F05-02`; cross_lane NOT_APPLICABLE. Se actualiza a DONE/ source_verified DONE sólo tras T7 con veredicto `F-05-I IMPLEMENTED / SOURCE VERIFIED`.
+- **Guard tests corregidos (C1.4):** (a) el validador rechaza `physically_certified`/`cross_lane_certified` DONE sin `certification_record`/`cross_lane_receipt` + `as_of`; (b) guard de contenido del artefacto committed: cero DONE físico/cross-lane fuera de la allowlist histórica `{b1a-mt5-ownership, b1b-mt5-wallclock, b2-cancel-recovery, f03-sqx-long-running}`; (c) filas F-04/pipeline/release-pipeline/f05i: physically_certified ∈ {OPEN, DEFERRED} y cross_lane ∈ {OPEN, DEFERRED, NOT_APPLICABLE}; (d) `f04-handoff-delivery.cross_lane_certified.gate ∈ {CERT-E04-01, CERT-F04-03}` cuando DEFERRED. La allowlist vive en el test (datos de verdad documentados), no en lógica de derivación del validador.
 
 ## Read surface contract
 
@@ -100,7 +146,7 @@ PostgreSQL/MongoDB authorities (existentes, intocables)
 | `sqx-flowkit run get <FlowRunRef> [--ranking name]` | `forge-result.v1|v2` (modelo existente) | PG + Mongo vía `forge.Service.Result` |
 | `sqx-flowkit run stages <FlowRunRef>` | `sqx-run-stage-timeline.v1` + funnel embebido | PG `stage_executions`/`flow_run_strategies` |
 | `sqx-flowkit strategy get <StrategyRef>` | `sqx-strategy-inspect.v1` | PG `strategies`/`strategy_magic`/`strategy_versions`/`handoff_manifests`/`handoff_deliveries`/`flow_run_strategies` |
-| `sqx-flowkit release-matrix` | `sqx-release-matrix.v1` validado | artefacto repo |
+| `sqx-flowkit release-matrix` | `sqx-release-matrix.v1` validado | artefacto embebido (`sqx/core/releasematrix/release-matrix.json`) u override `--matrix` |
 
 - `campaign get`/`run get`/`strategy get` resuelven **sólo por ref exacto**; `list` es paginación de presentación con cursor explícito y nunca define identidad ("latest" no es ref válido y debe fallar `INVALID_ARGUMENT`).
 - `strategy get` (shape): identity (strategy_ref, canonical_strategy_id opaco, instrument/direction/timeframe desde la fila durable, logical_type/classification_version si existen), participation[] (flow_run_ref + role, orden determinístico `participated_at, flow_run_ref`), `magic` (objeto `{registry_namespace, magic_decimal, allocation_ref, assigned_at}` o `null` si no hay fila), `strategy_versions[]` (`version_ref, payload_digest, sealed_at`; orden `sealed_at, version_ref`), `handoff[]` (`idempotency_key, payload_digest, wave_key, version_ref, decision_ref, created_at` + `delivery {state, updated_at}`; orden `created_at, idempotency_key`).
@@ -136,14 +182,30 @@ PostgreSQL/MongoDB authorities (existentes, intocables)
 
 ### Exit codes (flowkit, aditivos)
 
-`0` respuesta válida (incluye NOT_MATERIALIZED/zero finalists/NOT_PRODUCED) · `2` INVALID_ARGUMENT · `4` NOT_FOUND (nuevo) · `10` config/DI · `50` CONTRACT_INCONSISTENCY/INFRASTRUCTURE/otros internos. `push-output` conserva sus códigos actuales.
+`0` respuesta válida (incluye NOT_MATERIALIZED/zero finalists/NOT_PRODUCED y página de lista vacía) · `2` INVALID_ARGUMENT (incluye override `--matrix` inválido) · `4` NOT_FOUND (nuevo) · `10` config/DI · `50` CONTRACT_INCONSISTENCY/INFRASTRUCTURE/AMBIGUOUS_RESULT/otros internos. `push-output` conserva sus códigos actuales. Mapping ErrorKind→exit: `INVALID_ARGUMENT→2`, `NOT_FOUND→4`, `CONTRACT_INCONSISTENCY→50`, `INFRASTRUCTURE_FAILURE→50`, `AMBIGUOUS_RESULT→50`; fallo de boot DI → `10` con formato stderr `<code>:config_error:<detalle>`.
+
+### Grafo mínimo de inicialización por subcomando (C1.6)
+
+El `main.go` actual llama un boot DI completo (etcd, telemetry SQX/MinIO/Postgres/Temporal, MinIO, Postgres, Temporal — `Init()` con `di.WithTemporal()` etc.) **antes** de parsear el subcomando, y `runPushOutput` vuelve a llamar `di.InitSelective` (etcd, telemetry Document, MinIO) sin guard de idempotencia en `internal/di` (doble creación de clientes, primera fuga). T5 corrige el orden sin tocar `internal/di`: **dispatch primero, boot después, sólo lo que el subcomando usa.**
+
+| Subcomando | Boot (exacto) | Prohibido |
+|---|---|---|
+| `release-matrix` | **Ninguno**: cero `di.InitSelective`, cero etcd/telemetry/red; sólo `releasematrix.LoadEmbedded()` u override `--matrix`, validar, emitir JSON a stdout | MongoDB, PostgreSQL, etcd, Temporal, MinIO |
+| `campaign get` / `campaign list` | `di.InitSelective("sqx-flowkit", WithEnvironment(ENV), WithEtcd(), WithTelemetry(telemetry.Postgres), WithPostgres())` → `registrypostgres.NewControlPlaneFromClient(di.Container.Postgres)` | MongoDB, Temporal, MinIO |
+| `run stages` | Boot PG como arriba → `InspectService` con `stages` + `participations` cableados, resto nil (la implementación T4 ya falla cerrado con dependencia nil → `INFRASTRUCTURE_FAILURE`) | MongoDB, Temporal, MinIO |
+| `strategy get` | Boot PG como arriba → `InspectService` con `identities`, `manifests`, `magic`, `participations`, `provenance`; `flowRuns`/`stages`/`campaigns` nil | MongoDB, Temporal, MinIO |
+| `run get` | Boot PG + `sharedmongo.New(di.Container.Etcd, di.Container.Telemetry)` → `forge.NewService(control, metadatamongo.NewRankingSnapshotStore(mongo, db), control)` (el store Mongo implementa el port read `GlobalRankingSnapshotQuery`; primer caller productivo de `forge.Service`) | Temporal, MinIO |
+| `push-output` | Comportamiento actual intacto: su `di.InitSelective` interno (etcd, telemetry Document, MinIO) dentro de `runPushOutput`, flags/salida/códigos byte-idénticos | — |
+
+- **Único delta conductual documentado de push-output:** hoy una falla del boot pre-dispatch (`Init()` completo con etcd caído) aborta con exit 1 antes de parsear argumentos; con dispatch-first ese boot desaparece y la falla de etcd ocurre en el boot propio del subcomando → exit `10` `config_error`, consistente con la tabla frozen de exit codes. La ruta de éxito (bytes stdout, flags, exit codes 2/20/30/50) no cambia; BWC test la cubre.
+- El wiring reusa exactamente el patrón frozen `sqx/cmd/sqx-worker/persistence.go` (`sharedmongo.New(di.Container.Etcd, di.Container.Telemetry)`, `registrypostgres.NewControlPlaneFromClient`); `internal/di` intocado. Diseñar un framework de DI nuevo o inicializar servicios que el subcomando no usa = violación de contrato.
 
 ## BWC y preservación
 
 - F-01 identity, F-02 Finalist V2 + result v1/v2, F-03 long-running, F-04 magic/seal/handoff, S0, B1A/B1B/B2: **no-touch semántico**; la superficie sólo los lee.
 - `forge.Service`, `LoadForgeCampaignResult`, models `ForgeResult`/`ForgeCampaignResult`: sin cambios de shape; nuevos consumers solamente.
 - `sqx-flowkit push-output`: flags, salida y exit codes byte-idénticos.
-- Deploy pipeline (`deploy_release.sh`, `deployer/`, `deploy/manifest.json`): intocado.
+- Deploy pipeline (`deploy_release.sh`, `deployer/`, `deploy/manifest.json`): intocado; además `deploy/` no recibe archivos nuevos de F-05-I (la release matrix vive en `sqx/core/releasematrix/`; ver §Release matrix contract C1.1).
 - Historia V1: legible; nada se reescribe.
 - `DATABASE MIGRATION: NONE`. Si la implementación cree necesitar schema: `STOP — MANAGER REVIEW — FROZEN_CONTRACT_COLLISION`.
 
@@ -159,7 +221,7 @@ PostgreSQL/MongoDB authorities (existentes, intocables)
 
 ## Handoff que F-05-I deja a F-05-C
 
-1. `deploy/release-matrix.json` validado (estados por capacidad con evidencia; campos físicos OPEN/DEFERRED).
+1. `sqx/core/releasematrix/release-matrix.json` validado (estados por capacidad con evidencia y autoridad; campos físicos OPEN/DEFERRED salvo historia certifiable; `deploy/` sin archivos nuevos).
 2. `docs/echo-forge/f05-read-surface.md`: contrato de read surface (esquemas JSON, comandos, error/empty semantics) — base para el front futuro sin acceso directo a DB.
 3. `docs/echo-forge/f05-conformance-checklist.md`: checklist de conformance para la campaña (qué verificar por superficie, con refs).
 4. `docs/echo-forge/f05-certification-manifest-template.json`: template del manifest de certificación con campos físicos explícitamente vacíos (`null` + `"status": "OPEN"`); F-05-C los llena con evidencia real, F-05-I no inventa valores.
