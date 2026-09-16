@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-12
 due:
-progress: 90
+progress: 95
 repo: xKoRx/echo
 jira:
 prs:
@@ -57,7 +57,7 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e02-control-safety-journal-recovery` | `7e628bf5fcadd92dc5398663d9b99a239a95ef7a` (origin/master, ancestro vía merge S0) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2; producto `f6e6af1b`; evidencia VERIFY `92d0ec2e`; T11 `[-]` E-08 | **VERIFICATION_PASS — READY_FOR_INTEGRATION** — no CLOSED; CONTROLLED INTEGRATION = gate de closure · AC-18 rotación prod = gate ops owner |
+| xKoRx/echo | `feature/e02-control-safety-journal-recovery` (integrada FF a `master` @ `92d0ec2e`) | `7e628bf5fcadd92dc5398663d9b99a239a95ef7a` (origin/master, ancestro vía merge S0) | Reality Check D-01/D-04 + master §14 + Live Authority V1 (replay facts ≠ commands) | `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2; producto `f6e6af1b`; evidencia VERIFY `92d0ec2e`; T11 `[-]` E-08 | **CLOSED — SOFTWARE / INTEGRATED** @ master `92d0ec2e` (FF `7e628bf5`→`92d0ec2e`, push normal) · AC-18 rotación prod **PENDING** = gate ops owner |
 
 ## 🗺️ Arquitectura frozen (resumen; contrato completo en SPEC)
 
@@ -96,11 +96,11 @@ Ver VERIFICATION.md. Clases: SOURCE (greps secret/auth/messaging, contracts + do
 
 ## Blockers
 
-Ninguno para DONE de software. Pendientes de closure formal: (1) CONTROLLED INTEGRATION a `master` (ancestry demostrado, sin force-push); (2) AC-18 rotación en prod = gate ops del owner (no cierra software; sin él no se habilita capital). `echo.journal_quarantine` en PROD PG (152) se crea con el deploy del branch (PLAN §3).
+Ninguno para DONE de software. CONTROLLED INTEGRATION a `master` ejecutada 2026-09-16 (FF exacto `7e628bf5`→`92d0ec2e`, push normal verificado, sin force-push). Pendiente de operación (no de software): AC-18 rotación en prod = gate ops del owner (no cierra software; sin él no se habilita capital). `echo.journal_quarantine` en PROD PG (152) se crea con el deploy del branch (PLAN §3); migración 062 requiere rollout separado donde corresponda.
 
 ## Closure conditions
 
-T01–T10 y T12–T15 `[x]`; T11 `[-]` (E-08); AC-01…AC-17 PASS con evidencia física; verifier independiente PASS; integración controlada a master; E-06 desbloqueado. E-02 no se declara CLOSED en planning.
+T01–T10 y T12–T15 `[x]`; T11 `[-]` (E-08); AC-01…AC-17 PASS con evidencia física; verifier independiente PASS; integración controlada a master **ejecutada 2026-09-16** (FF `7e628bf5`→`92d0ec2e`); E-06 desbloqueado. **E-02 CLOSED (SOFTWARE / INTEGRATED)** registrado en planning 2026-09-16 por mandato de integración controlada; AC-18 permanece pendiente (gate ops). El texto histórico de VERIFICATION.md en master no se modifica retroactivamente ni se crea commit adicional para cambiar estado.
 
 ## 🧩 Subproyectos
 
@@ -133,6 +133,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-16 (CONTROLLED INTEGRATION a master) — `INTEGRATION_PASS`; E-02 CLOSED (SOFTWARE / INTEGRATED).** Preflight completo sin desviaciones: `origin/master` = `7e628bf5` (esperado), `origin/feature/e02-control-safety-journal-recovery` = `92d0ec2e` (esperado), master ancestro de feature con 0 ahead, producto `f6e6af1b` ancestro de feature, delta `f6e6af1b..92d0ec2e` = sólo `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/VERIFICATION.md` (+100/−1), evidencia vigente declara `VERIFICATION_PASS — READY_FOR_INTEGRATION`, tree limpio (0 dirty ajeno). Integración en worktree limpio de master (`/tmp/echo-s0-erratum-integration`, master local ya checked-out ahí @ `7e628bf5`): `git merge --ff-only` → HEAD `92d0ec2e` exacto, sin merge commit. Recheck pre-push: `origin/master` intacto `7e628bf5`. Push normal `7e628bf5..92d0ec2e master -> master` (no forzado, sin rechazo). Post-verificación: `origin/master` = `92d0ec2e` remoto; `f6e6af1b`, `bbceecdf` y `92d0ec2e` ∈ historial de master; `ls-remote` confirma ramas ajenas intactas (E-04 `2f8db345`, E-05 `3bc5dca9`, feature E-02 `92d0ec2e`); 0 source mutation adicional, 0 deploy/órdenes/migraciones; suites certificadas no re-ejecutadas (commit integrado byte-idéntico al aprobado). AC-01…AC-17 PASS; **AC-18 PENDING** (ops owner, bloquea capital); **PROD NOT DEPLOYED / NOT ACTIVATED**; Hasura compartido conserva triggers antiguos + auth hook pendiente de activación operacional; 062 requiere rollout separado donde corresponda; FAIL preexistente `gateway/internal/automation` fuera de scope; topics Kafka residuales `e02cert-gate2{,b}-20260915` cleanup pendiente de ownership. VERIFICATION.md histórico intocado; sin commit nuevo en master. E-05 gate siguiente = RECONCILIATION (062 antes de 063); E-06 desbloqueada por dependencia, no iniciada.
 
 - **2026-09-16 (corrección de evidencia AC-03/04/05/17) — `VERIFICATION_PASS — READY_FOR_INTEGRATION`.** El PASS previo documentaba a la vez triggers `.211` sin Bearer, hook ausente y GraphQL por admin-secret. Se recertificó en fixtures descartables (Hasura CE `v2.38.0` + postgres:17 en `.75:18080/:15432`, Gateway `f6e6af1b` en Daedalus `:19090`, producer recorder): trigger `e02fix_accounts_config` delivered/error=f HTTP 200 → `echo.account-configs.v1`; hook JSON READ/CONFIG + 401/403/503 + hook-down fail-closed; GraphQL tokenizado SELECT/INSERT CONFIG y writes journal/delete denied; close-positions CONTROL 200 con 0 posiciones y command aislado (`partition_count=0` en Kafka DEV). Hasura compartido intacto (webhooks `.211` sin headers). Cleanup `compose down -v` + shred. Evidencia `92d0ec2e`. No merge. No E-05.
 - **2026-09-16 (verifier independiente post-S0) — `VERIFICATION_PASS — READY_FOR_INTEGRATION`.** Worktree aislado sobre `f6e6af1b` (parents `f7ddea18`+`7e628bf5`). S0 tocó 4 archivos de contracts; E-02 byte-idéntico a `f7ddea18`. AC-01…AC-17 PASS (matriz en VERIFICATION.md). Física AC-11/AC-12 transferida de `f7ddea18`; reejecutados SOURCE, CONTRACT `-race`, front/bundle, 062 descartable 17.11, Hasura metadata+negativos, clasificador 21/21, S0, E-04. Automation FAIL preexistente reproducido (no gate E-02). Evidencia `bbceecdf` pusheada FF sólo a feature. No merge. CLOSED corregido: una feature no se declara CLOSED antes de integrarse.
