@@ -40,7 +40,7 @@ tags:
 ## Evidencia
 
 - **Validaciones ejecutadas:** preflight 25 ahead / 0 behind; contracts/analytics/lab/lab-worker; adversarial `/tmp/e05-v4-adv`; SQL identity_bwc + journal_quarantine + analytics_a0 + cadena estricta 061→062→063; `go test -p 1 -skip TestScratch_ ./postgres`; Hasura admin reject + GraphQL readonly SELECT de MetricSet `sha256:c8cf39af…` / TradeSet `sha256:5ae44632…`; SOURCE E-04; race/vet; builds sdk/lab-worker/gateway/core/bridge/toolkit.
-- **Resultado observable:** `VERIFICATION_PASS` — `READY_FOR_CONTROLLED_INTEGRATION`. V3-001…011 PASS. AC-01…23 PASS salvo AC-21 shared DEV APPLY NOT_RUN.
+- **Resultado observable:** `VERIFICATION_PASS` — `READY_FOR_CONTROLLED_INTEGRATION`. Producto `30209342`; evidencia `5dd998f1` == `origin/feature/e05-analytics-convergence-a0`. V3-001…011 PASS. AC-01…23 PASS salvo AC-21 shared DEV APPLY NOT_RUN.
 - **Limitaciones de la evidencia:** fixture Hasura/PG descartable, no Aranea DEV compartido; `TestScratch_QueryDB` no corrido (DSN heredado); transcript raw de superficie ausente (sin L0/L1).
 
 ## Evaluación
