@@ -3,7 +3,7 @@
 
 Cubre los requisitos de verificación del spec (sección 5) y del modelo
 (sección 8):
-- cada check CL-01..CL-20 con caso positivo y negativo;
+- cada check CL-01..CL-21 con caso positivo y negativo;
 - demos FAIL obligatorias (CL-01, CL-06, CL-14, CL-18) y demos WARN
   obligatorias (CL-08, CL-10, CL-12, CL-19);
 - D1 (verificación adversarial): filas de índice con varios wikilinks —
@@ -529,6 +529,11 @@ tags:
 
 Uso informal de memory_state.
 """)
+    # CL-21: misma identidad presente en autoridad core y federada.
+    write_note(r, "80-agents/skills/dup-skill/SKILL.md", "# Skill core duplicada\n")
+    write_note(r, "30-resources/agents/skills/dup-skill/SKILL.md", "# Skill federada duplicada\n")
+    write_note(r, "80-agents/memory/public/runbook/dup-runbook.md", "# Runbook core duplicado\n")
+    write_note(r, "30-resources/runbooks/dup-runbook.md", "# Runbook federado duplicado\n")
     return r
 
 
@@ -554,7 +559,7 @@ def test_positivos_por_check() -> None:
     r = build_positive_vault()
     doc = run(r)
     ids = {c["check_id"] for c in doc["checks"]}
-    assert_true(ids == {c[0] for c in cl.CHECKS}, "deben correr los 20 checks: %s" % sorted(ids))
+    assert_true(ids == {c[0] for c in cl.CHECKS}, "deben correr los 21 checks: %s" % sorted(ids))
 
     f1 = findings_of(doc, "CL-01")
     assert_true(any(f["path"] == "cl01-reemplazada.md" and f["status"] == "FAIL" for f in f1),
@@ -655,6 +660,12 @@ def test_positivos_por_check() -> None:
     assert_true(any(f["path"] == "cl20-doc.md" and f["status"] == "WARN" for f in f20),
                 "CL-20: memory_state fuera de agent_memory -> WARN: %s" % f20)
 
+    f21 = findings_of(doc, "CL-21")
+    observed21 = {f["observed"] for f in f21}
+    assert_true(len(f21) == 2 and any("skill 'dup-skill'" in item for item in observed21)
+                and any("runbook 'dup-runbook.md'" in item for item in observed21),
+                "CL-21: duplicados core-federado de skill y runbook -> FAIL: %s" % f21)
+
 
 def test_d1_fila_indice_multilink() -> None:
     """D1 (verificación adversarial P3-C): `_index_rows` debe verificar TODOS
@@ -711,8 +722,8 @@ def test_negativos_vault_limpio() -> None:
         assert_true(c["verdict"] == "PASS" and not c["findings"],
                     "%s debe pasar en vault limpio: %s %s" % (c["check_id"], c["verdict"], c["findings"]))
     counts = doc["counts"]
-    assert_true(counts["pass"] == 20 and counts["fail"] == 0 and counts["warn"] == 0,
-                "20 PASS en vault limpio: %s" % counts)
+    assert_true(counts["pass"] == 21 and counts["fail"] == 0 and counts["warn"] == 0,
+                "21 PASS en vault limpio: %s" % counts)
 
 
 def test_exclusion_fixtures() -> None:
@@ -807,9 +818,9 @@ def test_git_head_y_schema_record() -> None:
 
 
 TESTS = [
-    ("positivos_por_check (CL-01..CL-20 con FAIL/WARN demos)", test_positivos_por_check),
+    ("positivos_por_check (CL-01..CL-21 con FAIL/WARN demos)", test_positivos_por_check),
     ("d1_fila_indice_multilink (D1: todos los links de una fila de índice)", test_d1_fila_indice_multilink),
-    ("negativos_vault_limpio (20 PASS)", test_negativos_vault_limpio),
+    ("negativos_vault_limpio (21 PASS)", test_negativos_vault_limpio),
     ("exclusion_fixtures (A8)", test_exclusion_fixtures),
     ("determinismo (dos runs idénticos)", test_determinismo),
     ("marker_ausente (exit 2)", test_marker_ausente_exit_2),
