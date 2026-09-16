@@ -136,7 +136,9 @@ No copiar tokens materializados desde Nginx a documentación.
 
 ## Runtime verificado — 2026-09-13
 
-### Inventario de capabilities y puertos
+### Inventario de capabilities y puertos (HISTORICAL SNAPSHOT 2026-09-13)
+
+> Este bloque es un **snapshot del 2026-09-13**: documenta el estado de ese momento (9 capabilities, `:3000`–`:3008`) y NO es el inventario vigente. El inventario CURRENT vive en el bloque siguiente.
 
 | Puerto | Capability | Autoridad | Topología |
 |---:|---|---|---|
@@ -149,6 +151,21 @@ No copiar tokens materializados desde Nginx a documentación.
 | `3006` | `aranea-hasura-dev-admin` | DEV admin | Nginx auth → Hasura MCP interno |
 | `3007` | `aranea-kafka-dev-admin` | DEV admin | Nginx auth → Kafka MCP interno |
 | `3008` | `aranea-flink-dev-admin` | DEV admin | Nginx auth → Flink MCP interno |
+
+### Inventario CURRENT — 10 capabilities (2026-09-16)
+
+| Puerto | Capability | Autoridad | Estado |
+|---:|---|---|---|
+| `3000` | `aranea-ssh` | perfiles viewer/operator; enforcement viewer tool-level (H2) | certificado |
+| `3001` | `aranea-postgres-ro` | PROD RO (`mcp_echo_prod_ro`) | certificado |
+| `3002` | `aranea-postgres-rw` | DEV RW (`mcp_echo_dev_rw`) | certificado |
+| `3003` | `aranea-mongo-forge-ro` | PROD RO (18 tools) | certificado |
+| `3004` | `aranea-mongo-forge-rw` | DEV RW (27 tools) | certificado |
+| `3005` | `aranea-hasura-prod-ro` | PROD strict RO — exactamente 3 tools post-H1 | certificado |
+| `3006` | `aranea-hasura-dev-admin` | DEV admin — 9 tools | certificado |
+| `3007` | `aranea-kafka-dev-admin` | DEV admin — 19 tools | certificado |
+| `3008` | `aranea-flink-dev-admin` | DEV admin REST — 22 tools, sin SQL | certificado |
+| `3009` | `aranea-observability-ro` | PROD-RO — 22 tools RO (Grafana/Prometheus/Loki de ARGUS) | certificado 2026-09-15 |
 
 **Antes de asignar un puerto nuevo, verificar runtime vivo con `docker ps` + `ss -lntp`; este inventario documenta estado, no reserva puertos futuros.**
 
