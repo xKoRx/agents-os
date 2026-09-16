@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-09-15"
+updated: "2026-09-16"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
@@ -139,16 +139,16 @@ Cursor -> get_version/get_inconsistent_metadata -> PASS
 
 El Hasura admin secret nunca fue entregado al cliente; queda server-side en `mcps`.
 
-### Hasura PROD RO — 2026-09-12
+### Hasura PROD RO — 2026-09-12 (superficie vigente: 3 tools desde H1 2026-09-15)
 
 El upstream `--read-only` conservaba `reload_metadata` y `run_sql`, por lo que no se aceptó como boundary suficiente. Se construyó una variante strict-RO que elimina ambas tools y mantiene `--read-only` para no registrar mutadores de metadata.
 
-Certificación:
+Certificación 2026-09-12:
 
 ```text
 unauthenticated :3005/mcp -> 401
 authenticated initialize -> 200 + session id
-tools/list server-side -> exactamente 4 tools
+tools/list server-side -> 4 tools (HISTORICAL: incluía export_metadata)
   export_metadata
   get_inconsistent_metadata
   get_schema
@@ -158,7 +158,13 @@ Cursor -> get_version/get_inconsistent_metadata -> PASS
 metadata -> consistent
 ```
 
+Desde el remediation H1 (2026-09-15), `export_metadata` fue ELIMINADO de la superficie por exponer `database_url` con credenciales upstream embebidas: la superficie vigente es exactamente `get_inconsistent_metadata`, `get_schema`, `get_version`. Detalle en [[ACCESS-CERTIFICATION]] § Remediation run 2026-09-15 y [[aranea-hasura-mcp]].
+
 Cursor además mostró `mcp_auth`, pero esa entrada no apareció en `tools/list` server-side y no se considera tool Hasura ni ampliación del authority boundary.
+
+### GAP-ECHO-010 (familia hasura) — 2026-09-16
+
+`initialize` que responde `200+sid` mientras TODO `tools/*` falla `-32603 Not connected` en las capabilities hasura (dev/prod-ro): el hijo stdio compartido del `mcp-proxy` 6.7.16 murió y no había respawn. Con el fix `fix-shared-child.mjs` (imágenes `-g010fix`), un `initialize` fresco recupera sesión funcional sin restart. Mapeo vigente de errores y estado HISTORICAL/SUPERSEDED del diagnóstico intermedio async-202: ver [[aranea-hasura-mcp]] § Failure modes. `ssh-mcp` (pool-64) y `flink-mcp` (SDK Java) NO comparten esta causa. Certificación: dev 50/50 y prod-ro 30/30 server + consumer Daedalus PASS ([[ACCESS-CERTIFICATION]] § Remediation run 2026-09-16 c).
 
 ### Kafka DEV admin — 2026-09-13
 

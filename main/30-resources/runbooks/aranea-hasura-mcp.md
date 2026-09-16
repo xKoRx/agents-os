@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-12"
-updated: "2026-09-12"
+updated: "2026-09-16"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 entities:
