@@ -46,7 +46,7 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 ## 📊 Estado actual
 
-- **E06_PLANNING_READY_FOR_MANAGER_REVIEW (2026-09-16, docs-only, v1.0.0).** SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` sobre `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. Worktree `/tmp/echo-e06-reference-enrollment`. **0 líneas en `v3/**`.** Master intacto. NORMAL no lanzado. No E-07.
+- **E06_PLANNING_READY_FOR_MANAGER_REVIEW (2026-09-16, docs-only, v1.0.0).** SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` sobre `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. Worktree dedicado de esa branch (no reutilizar checkout de otra fase). **0 líneas en `v3/**`.** Master intacto. NORMAL no lanzado. No E-07.
 - **RuntimeBinding key:** PK `binding_id` UUID; pin S0 `binding_ref = H("echo-reference-binding.v1",[ns,binding_id,version_ref,account_registration_ref,broker_server_ref,platform,magic_decimal,observation_class])`.
 - **Lifecycle:** PREPARED → (ACK + matching read-back) → OBSERVING → DRAINING → CLOSED; staleness → SUSPENDED + UNKNOWN. PREPARED/ACK solos ≠ OBSERVING.
 - **Read-back authority:** Bridge emite `REFERENCE_READBACK.v1`; Gateway persiste y transiciona. Operator ACK es CONFIG, no suficiente.
@@ -93,7 +93,7 @@ No ejecutar E-07…E-13. No reabrir E-01…E-05. E-04 T21 no bloquea. 061 DEV NO
 
 ## Allowed scope NORMAL
 
-Exacto PLAN.md. Development en `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Worktree `/tmp/echo-e06-reference-enrollment` (no el checkout E-02). Prohibido `origin/master` push/merge. Prohibido `v3/sdk/contracts/**`. Prohibido 061/062/063. 064 exclusiva. Prohibido MQL. Prohibido Aranea PROD. Prohibido apply 064 SHARED DEV hasta 061 APPLIED (ops aparte).
+Exacto PLAN.md. Development en `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Worktree dedicado; no reutilizar checkout de otra fase. Prohibido `origin/master` push/merge. Prohibido `v3/sdk/contracts/**`. Prohibido 061/062/063. 064 exclusiva. Prohibido MQL. Prohibido Aranea PROD. Prohibido apply 064 SHARED DEV hasta 061 APPLIED (ops aparte).
 
 ## 📦 Work packages
 
@@ -148,7 +148,7 @@ Ninguno para **planning**. Development: ninguno (PG descartable incluye 061). SH
 
 ## Handoff requirements
 
-Manager aprueba planning v1.0.0 → NORMAL implementa T01–T22 en worktree de esta branch desde `5dd998f1`. No usar checkout `feature/e02-control-safety-journal-recovery`. No merge/deploy. No E-07. No apply 061/064 Aranea.
+Manager aprueba planning v1.0.0 → **siguiente agente NORMAL** implementa T01–T22 en worktree dedicado de `feature/e06-reference-enrollment-binding` desde `5dd998f1`. No reutilizar checkout de otra fase. No merge/deploy. No E-07. No apply 061/064 Aranea.
 
 ## Closure conditions
 
@@ -162,6 +162,7 @@ _No aplica — hijo de implementación de E-06; no crea Integration ni más hijo
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/TASKS.md`. Aquí sólo work packages. NORMAL no arranca hasta manager review.
+> - [x] TOP planning SPEC/PLAN/TASKS/VERIFICATION v1.0.0 → Manager Review #owner/agent #type/docs #area/echo
 > - [ ] WP-A Persistencia 064 + stores + UNIQUEs #owner/agent #type/dev #area/echo
 > - [ ] WP-B Enrollment HTTP PREPARED/ACK/drain + ClientConfig #owner/agent #type/dev #area/echo
 > - [ ] WP-C Read-back Bridge→Gateway y transición OBSERVING #owner/agent #type/dev #area/echo
