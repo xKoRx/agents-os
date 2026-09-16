@@ -24,6 +24,8 @@ ACCESS_CERTIFICATION_PARTIAL — run 2026-09-14
 H1 RESOLVED 2026-09-15 · H2 RESOLVED 2026-09-15 (remediation run, evidencia abajo)
 Echo runtime observation: RESUELTO 2026-09-15 — GAP-ECHO-004 CLOSED (owner seed instalado;
 recertificación viewer echo-runtime-prod PASS end-to-end desde Daedalus; detalle abajo)
+GAP-ECHO-010: REPAIRED_AND_CERTIFIED 2026-09-16 (causa raíz mcp-proxy 6.7.16 hijo stdio
+compartido, familia hasura; fix g010; detalle § Remediation run 2026-09-16 c)
 ```
 
 Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary viewer SSH no aplicado; credenciales upstream expuestas por `export_metadata`) y varias superficies con verbos no demostrables o no ejercidos por diseño. No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
@@ -69,7 +71,7 @@ Ejecutada por Ariadna (Hermes) vía capabilities MCP certificadas + helper SDK c
 
 **Workaround certificado (usado 2 veces en hasura, 1 en ssh-mcp):** `docker restart <backend-proxy>` → healthy ~8s → primer init vuelve a 200-sync+sid. No toca config, no toca targets (Echo/Flink/Gateway nunca reiniciados por esto).
 
-**No resuelto (deuda P1):** causa raíz — el backend `mcp-proxy` 6.7.16 que envuelve backends stdio parece conservar sesiones sin cerrarlas (idle-close configurado 30min) y degrade el path sync→async; diagnóstico real pendiente (pool size, leak de sesiones, semántica de streams). Acción durable: instrumentar sesiones activas, añadir close/cleanup de sesión o TTL corto, o fijar modo sync explícito. Mientras el workaround sea restart, TODO consumidor agent-first de este plane debe tratar `202-no-sid` como "proxy degradado → reparar vía restart del proxy backend", no como fallo del target.
+**No resuelto (deuda P1):** causa raíz — el backend `mcp-proxy` 6.7.16 que envuelve backends stdio parece conservar sesiones sin cerrarlas (idle-close configurado 30min) y degrade el path sync→async; diagnóstico real pendiente (pool size, leak de sesiones, semántica de streams). Acción durable: instrumentar sesiones activas, añadir close/cleanup de sesión o TTL corto, o fijar modo sync explícito. Mientras el workaround sea restart, TODO consumidor agent-first de este plane debe tratar `202-no-sid` como "proxy degradado → reparar vía restart del proxy backend", no como fallo del target. **[SUPERSEDED 2026-09-16]:** este diagnóstico intermedio quedó resuelto y sustituido por la causa raíz PROVEN del run (c) más abajo — hijo stdio compartido de mcp-proxy, exclusivo de la familia hasura; ssh-mcp y flink-mcp no compartían esta causa.
 
 **Evidencia del diagnóstico del caso ssh-mcp (2026-09-16 ~02:00Z):** container `Up 5 hours (healthy)`, logs sin líneas "session limit"/pool en 3h, `/status` con `connections: 0` y `sessions=0` — es decir, **NO era el quirk conocido de pool-64-saturado** (sin conexiones activas ni logs de límite); era el mismo modo async-202 sin sid. Registrado como variante del defecto.
 

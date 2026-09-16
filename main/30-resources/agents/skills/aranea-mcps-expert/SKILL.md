@@ -5,7 +5,7 @@ name: aranea-mcps-expert
 description: Selecciona y gobierna el uso de las capabilities MCP del homelab Aranea bajo el dominio aranea-agent-dev, que es su única puerta de activación. Cargar antes de usar cualquier MCP aranea-* para elegir ambiente, capability, autoridad y runbook correctos; nunca aplica a MELI ni a sistemas corporativos.
 scope: area
 created: "2026-09-11"
-updated: "2026-09-15"
+updated: "2026-09-16"
 area: "[[Aranea]]"
 entities:
   - "[[Aranea]]"
