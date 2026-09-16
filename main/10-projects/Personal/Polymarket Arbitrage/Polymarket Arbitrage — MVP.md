@@ -24,7 +24,7 @@ tags:
   - tech/polymarket
   - topic/arbitrage
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 
 # Polymarket Arbitrage — MVP
@@ -56,6 +56,7 @@ Contexto completo, evidencia, oportunidades futuras y restricciones: [[Polymarke
 - Repo de implementación: pendiente de crear/seleccionar.
 - SPEC funcional/técnica: pendientes antes de implementar código.
 - Echo/Kafka/Flink quedan fuera del MVP.
+- Existe una cola post-MVP de estrategias no-arbitrage para explorar sólo después de cerrar/estabilizar F6.
 
 ## 🧱 Entrega de desarrollo
 
@@ -285,6 +286,22 @@ DETECTED
 - al menos las estrategias `GO` pueden operar tiny-live con US$300 bajo risk/kill-switch/reconciliation;
 - métricas permiten decidir si escalar bankroll o integrar con Echo.
 
+### F7+ — Opportunity Lab post-MVP (NO bloquea F0–F6)
+
+**Objetivo:** usar la infraestructura ya validada para descubrir y falsar nuevas fuentes de edge, una por una, sin ensanchar el MVP actual.
+
+Orden inicial de exploración:
+
+1. **Weather probabilistic / resolution-source edge** — construir distribución de probabilidad por bucket usando modelos meteorológicos, observación live, error histórico y la fuente exacta de resolución; primero paper/shadow, luego tiny-live si el EV neto se mantiene.
+2. **Toxicity-aware maker + rewards/rebates** — cotizar sólo cuando `spread capture + rewards + rebates - adverse selection - inventory risk` sea positivo; medir markout 1s/5s/30s/5m después de cada fill.
+3. **Favorite/Longshot Bias** — reproducir el sesgo por price bucket/categoría/horizonte y verificar si sobrevive fees, spread, selection bias y execution real; no asumir que Sports comparte el patrón.
+4. **Macro nowcasting + probabilistic portfolios** — construir distribución para CPI, unemployment, Fed/otras releases y asignar capital sólo a outcomes cuyo fair probability supere precio ejecutable con margen suficiente.
+5. **Resolution-source / information-latency edge general** — mercados donde una fuente oficial, estación, tabla o primera publicación determina el payout y puede modelarse/observarse mejor que el headline genérico.
+6. **Cross-market logical arbitrage** — relaciones de implicación/exclusión/exhaustividad fuera de NegRisk.
+7. **Cross-venue** — sólo si capital y complejidad operacional justifican prefondeo y legging multi-venue.
+
+**Regla F7+:** cada idea entra como mini-ciclo `hypothesis → read-only detector → historical/replay → shadow → GO/NO_GO`. No implementar ejecución nueva antes de que el detector demuestre frecuencia, capacidad y edge neto.
+
 ## 🎚️ Criterios económicos de decisión
 
 No definir un ROI mínimo arbitrario antes de medir. La decisión usa:
@@ -342,9 +359,17 @@ Preguntas obligatorias antes de escalar:
 - [ ] Activar tiny-live US$300 sólo en estrategias GO #owner/me #type/dev #area/personal
 - [ ] Certificar MVP y decidir scale / Echo integration / close #owner/me #type/research #area/personal
 
+### F7+ — Research backlog, ejecutar después del MVP
+- [ ] Weather probabilistic + resolution-source detector/shadow #owner/me #type/research #area/personal
+- [ ] Toxicity-aware maker/rewards/rebates detector/shadow #owner/me #type/research #area/personal
+- [ ] Favorite/longshot bias replication + net execution study #owner/me #type/research #area/personal
+- [ ] Macro nowcasting + probabilistic portfolio research #owner/me #type/research #area/personal
+- [ ] Resolution-source/information-latency opportunity taxonomy #owner/me #type/research #area/personal
+
 ## 📆 Bitácora
 
 - **2026-09-15** — Proyecto creado desde investigación Polymarket. Se decide KISS: app standalone, dos solvers paralelos (Sports Combinatorial + NegRisk), screeners primero, shadow después, tiny-live US$300 al final. Echo queda explícitamente fuera hasta demostrar valor.
+- **2026-09-16** — Se incorpora una cola post-MVP de discovery: Weather, toxicity-aware maker/rewards, Favorite/Longshot Bias, macro probabilistic portfolios y resolution-source/information-latency. No cambia scope ni gates F0–F6.
 
 ## 🧭 Decisiones
 
@@ -357,6 +382,7 @@ Preguntas obligatorias antes de escalar:
 - `D-007` — Límites concretos por event/strategy se derivan de shadow; no se inventan ahora.
 - `D-008` — MVP puede cerrar con una estrategia `NO_GO`; éxito del producto significa poder medir y operar correctamente las que demuestren edge, no obligar a ambas a ser rentables.
 - `D-009` — La integración con Echo sólo se evalúa después de F6.
+- `D-010` — Las estrategias no-arbitrage viven en F7+ y no expanden el MVP actual; se validan una por una con detector + shadow antes de cualquier ejecución.
 
 ## 🔗 Docs / Links
 
@@ -365,23 +391,29 @@ Preguntas obligatorias antes de escalar:
 - Sports arb paper 2026: https://arxiv.org/abs/2605.00864
 - NegRisk arb paper 2026: https://arxiv.org/abs/2608.00666
 - Cross-market arb paper: https://arxiv.org/abs/2508.03474
+- Favorite/Longshot Bias paper 2026: https://arxiv.org/abs/2609.12878
 
 ## 💡 Ideas
 
 ### Backlog de ideas
 
-- Reward-aware market making.
-- Cross-market logical arbitrage.
+- Weather probabilistic trading + resolution-source edge.
+- Toxicity-aware reward/rebate market making.
 - Favorite/longshot bias harvesting.
-- Weather/model-driven market making.
+- Macro nowcasting + probabilistic portfolios.
+- Resolution-source / information-latency strategies.
+- Cross-market logical arbitrage.
+- Model-driven market making.
 - Cross-venue arbitrage.
+- Holding/reward incentives como mejora económica, no tesis standalone.
 - Integrar con Echo como control plane sólo tras evidencia.
 
 ### Motivos / principios
 
 - KISS/YAGNI: demostrar plata antes de arquitectura grande.
-- Un solo motor, múltiples solvers.
+- Un solo motor, múltiples solvers/strategies sólo cuando cada una justifique existir.
 - Net executable edge > señal teórica.
 - Capital velocity importa especialmente con bankroll pequeño.
 - El mercado puede ser el limitante antes que el bankroll.
 - Medir p95/p99, no enamorarse de la mediana.
+- El research debe intentar falsar ideas, no sólo encontrar ejemplos ganadores.
