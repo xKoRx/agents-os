@@ -14,7 +14,7 @@ Orden: evidencia runtime/certificación fechada (remediation runs 09-15/09-16, c
 
 `ssh daedalus-ops` → `stat` de `/home/kor/.codex/config.toml` (mtime **2026-09-16 18:49**, 4285 B) + backup `config.toml.bak-tri-20260916-181245` presente. Esto demostró que el patcher stageado fue ejecutado como kor después del change log tri-client de la mañana: el estado "Codex PENDING" es histórico y el brief owner ("Codex: smoke nativo 2026-09-16 10/10 PASS, CONSUMER_ACCESS_READY: PASS") es la evidencia vigente. Contenido no leído (600 kor por diseño).
 
-## Documentos modificados (11)
+## Documentos modificados (12)
 
 | Documento | Estado previo → accion | Drift encontrado |
 |---|---|---|
@@ -28,6 +28,7 @@ Orden: evidencia runtime/certificación fechada (remediation runs 09-15/09-16, c
 | `10-projects/Aranea/AGENT-PLATFORM/agentes/workstreams/HASURA-MCP.md` | corregido | 2 menciones "4 tools" → 3 tools vigentes con etiqueta HISTORICAL; updated implícito vía contenido (nota status: done, histórica) |
 | `10-projects/Aranea/AGENT-PLATFORM/agentes/workstreams/ACCESS-CERTIFICATION.md | etiquetado | Fila Hasura PROD-RO de la matriz del run 09-14: 4 tools marcado HISTORICAL pre-H1, veredicto "H1 RESOLVED 2026-09-15"; sin más cambios (la nota ya estaba vigente) |
 | `10-projects/Aranea/agentes/HERMES — Agent Access Operations.md` | corregido | A1.1–A1.4 marcados [x] con evidencia GAP-ECHO-010 (golden repair ejecutado 09-16); Estado actual: A0 gate demostrado, A1 gate demostrado, A2 precedentes sin gate formal, A3–A5 abiertos; boundary precisado (config/capabilities/certificación, no desarrollo de aplicaciones); bitácora 2026-09-16d; updated |
+| `80-agents/tools/conformance-harness/artifacts/domain-isolation-audit.md` | etiquetado | Cifras del 09-12 (7 capabilities, Hasura 4 tools) presentadas sin marca temporal como hallazgo actual | Marcado snapshot 2026-09-12 + nota SUPERSEDED (10 capabilities / 3 tools vigentes) — **añadido a esta tabla en el POST-GATE FIX** (el informe inicial lo enumeró pero esta tabla no lo incluyó) |
 | `80-agents/journal/logs/` (change log) | creado | Este documento |
 
 ## Contradicciones resueltas y cómo
