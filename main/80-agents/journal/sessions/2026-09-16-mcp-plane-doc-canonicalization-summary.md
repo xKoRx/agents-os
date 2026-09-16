@@ -30,6 +30,10 @@ Workload owner one-shot de documentación/reconciliación. **Veredicto: `MCP_DOC
 
 ## Artefactos
 
-- Change log: `80-agents/journal/logs/2026-09-16-mcp-plane-documentation-canonicalization.md` (tabla de 11 documentos, contradicciones, deudas, scans).
+- Change log: `80-agents/journal/logs/2026-09-16-mcp-plane-documentation-canonicalization.md` (tabla de 12 documentos, contradicciones, deudas, scans, § POST-GATE FIX).
 - Feedback: `80-agents/journal/feedback/system-1/2026-09-16-mcp-access-plane-session-feedback.md`.
-- 11 documentos Sistema 1/2 modificados — detalle y evidencia en el change log.
+- 12 documentos Sistema 1/2 modificados — detalle y evidencia en el change log.
+
+## POST-GATE FIX (2026-09-16, mismo día)
+
+El gate independiente del owner encontró 4 inconsistencias residuales en esta pasada (veredicto HIGH sin resolver en certificación, Codex PENDING sin resolución, snapshot 09-13 sin etiqueta ni CURRENT en Architecture, UNKNOWN sin supersede + bullet duplicado en el proyecto). Todas corregidas; ver § POST-GATE FIX del change log. Veredicto re-evaluado tras el fix: `MCP_DOCUMENTATION_CANONICALIZED`.

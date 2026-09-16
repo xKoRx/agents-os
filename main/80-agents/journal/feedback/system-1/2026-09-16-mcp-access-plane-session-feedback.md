@@ -13,3 +13,7 @@
 ## Sugerencia
 
 - Añadir a `mcp-access-plane-operations` / golden repair smoke un paso final explícito: "canon sync" con la lista de los 6 artefactos a tocar, y cerrar el change log sólo con verificación de disco de los configs consumer tocados.
+
+## POST-GATE (mismo día, corrección posterior)
+
+- La pasada original declaró "cero contradicciones materiales" y un gate independiente encontró 4 residuales (HIGH sin resolver en veredicto, Codex PENDING sin cierre, snapshot 09-13 sin etiqueta, UNKNOWN sin supersede + bullet duplicado). Lección: en reconciliación documental, la auto-validación del mismo agente que editó no alcanza como gate — la pasada de verificación debe hacerla una superficie distinta (gate/segundo agente) o con checklist mecánico de términos por documento, no por memoria. Corregido en el mismo change log.
