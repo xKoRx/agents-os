@@ -33,3 +33,10 @@
 - `aranea-agent-dev` y `aranea-mcps-expert` quedaron alineadas con las familias Kafka y Flink sin duplicar mecánica: la expert sigue siendo router central y deriva a runbooks de familia bajo `30-resources/runbooks/`.
 - Flink DEV usa dos superficies complementarias: `aranea-flink-dev-admin` para control plane y `aranea-ssh` + `docker-echo-dev-operator` para host/runtime; PROD queda diferido strict-RO.
 - El índice de agents y el índice/log de runbooks se actualizaron para incluir `aranea-kafka-mcp` y `aranea-flink-mcp` como autoridades mecánicas canónicas.
+
+## [2026-09-15] create | observability-metrics-standard
+
+- Se instaló el plugin corporativo `sentinels@sentinels-commands` (repo `melisource/fury_rio-observability-standard`) en Claude Code, además de Codex, para que `meli-agent-dev` pueda referenciarlo en esta superficie sin fork.
+- Se creó la skill transversal `observability-metrics-standard` destilando el método de las skills `scan`/`migrate`/`pr-review` del plugin (checklist de límites de ciclo de vida, principios de tags/tipo/emisión, formato de hallazgos) sin copiar la gramática `signals.rio.*`/`fury_app`/catálogo de entidades, que es propiedad Meli y sigue evolucionando (`Status: Proposed`).
+- Trigger boundary explícito: Aranea/homelab y proyectos personales; handoff a `meli-agent-dev` para todo trabajo Meli/RIO/Signals/Ads.
+- `80-agents/skills/INDEX.md` y `30-resources/agents/00-index.md` se actualizaron con la fila y el conteo (13 federadas transversales).

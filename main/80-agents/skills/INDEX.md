@@ -7,7 +7,7 @@ slug: "skills-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-06-28
-updated: 2026-09-13
+updated: 2026-09-15
 reviewed: 2026-09-12
 aliases:
   - "skills index"
@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Core AGENTS OS:** 28 skills de comportamiento del sistema.
-- **Federadas transversales:** 12 skills curadas en `30-resources/agents/skills/`.
+- **Federadas transversales:** 13 skills curadas en `30-resources/agents/skills/`.
 - **Domain/app-owned:** se descubren mediante el registro de routers y el repo owner; no forman parte del índice always-load.
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
@@ -88,6 +88,7 @@ skills de una aplicación viven y se descubren en su repo owner.
 | [[30-resources/agents/skills/distributed-incident-triage/SKILL.md|distributed-incident-triage]] | Triage forense multi-subsistema: timeline común, side effects y primer punto de divergencia. | Fallos que cruzan orquestador/object store/DBs/logs. |
 | [[30-resources/agents/skills/evidence-channel-discovery/SKILL.md|evidence-channel-discovery]] | Descubre y persiste qué canales de evidencia existen realmente por pregunta. | Al empezar en un sistema desconocido o tras canales muertos. |
 | [[30-resources/agents/skills/write-once-conflict-triage/SKILL.md|write-once-conflict-triage]] | Investiga conflictos de inmutabilidad clasificando duplicate/race/stale/contract-defect. | Ante CONTRACT_CONFLICT, checksum mismatch o violaciones de idempotencia. |
+| [[30-resources/agents/skills/observability-metrics-standard/SKILL.md|observability-metrics-standard]] | Diseña, audita, migra o revisa métricas custom (nombre/tipo/tags/emisión) con un método portable, sin grammar de Meli. | Aranea/homelab o proyectos personales; nunca Meli/RIO/Signals (→ meli-agent-dev). |
 | [[30-resources/agents/skills/operational-healthcheck-policy/SKILL.md|operational-healthcheck-policy]] | Diferencia cuándo validar manualmente componentes vigilables y cuándo confiar en la automatización. | Ante una señal concreta de problema o antes de acciones masivas. |
 
 ## 🔗 Links

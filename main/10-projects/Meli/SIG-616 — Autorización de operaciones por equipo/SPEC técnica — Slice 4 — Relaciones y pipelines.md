@@ -11,9 +11,7 @@
 
 ## Objetivo
 
-Aplicar la autorización por equipo a las relaciones entre componentes y a las mutaciones modernas de pipeline. Las relaciones deben resolver sus extremos desde persistencia, pertenecer a un único Data Product y autorizar `DEV_AND_UP` contra ese owner. Los cambios de pipeline deben resolver el Data Product por nombre y autorizar antes de versionar, persistir topología, modificar relaciones, crear componentes o iniciar un pipeline deploy.
-
-El slice también protege `pipeline deploy`, porque un despliegue de pipeline puede generar deltas `DEPLOY` y `UNDEPLOY` y crear ejecuciones antes de despachar trabajo. Se autoriza una vez contra el Data Product antes de calcular o persistir esos efectos.
+Aplicar autorización por equipo a relaciones y mutaciones de pipeline. Las relaciones resuelven sus extremos persistidos, exigen un único Data Product y autorizan `DEV_AND_UP` contra su owner. Pipeline resuelve el Data Product por nombre y autoriza antes de versionar, persistir, crear componentes o iniciar un deploy. El deploy se autoriza una vez antes de calcular deltas `DEPLOY`/`UNDEPLOY`, crear ejecuciones o despachar trabajo.
 
 ## Alcance
 
@@ -35,7 +33,7 @@ El slice también protege `pipeline deploy`, porque un despliegue de pipeline pu
 | Crear componente | `POST /data-products/{name}/pipeline/components` | `ComponentCreateServiceImpl.createComponent` | Tiger + `DEV_AND_UP` |
 | Desplegar pipeline | `POST /data-products/{name}/environments/{envName}/pipeline/deploy` | `PipelineDeployServiceImpl.deploy` | Tiger + `DEV_AND_UP` |
 
-Pipeline component delete e inactivate permanecen en `DEPLOYER_AND_UP` y continúan consumiendo el autorizador común implementado en Slice 1.
+Pipeline component delete e inactivate permanecen en `DEPLOYER_AND_UP` mediante el autorizador común de Slice 1.
 
 ### No incluye
 
@@ -104,11 +102,11 @@ El orden común es:
 3. Ejecutar validaciones de versión y precondiciones funcionales sin mutar estado antes del allow.
 4. Recién entonces incrementar versiones, crear/eliminar componentes o relaciones, guardar snapshots, crear ejecuciones y despachar.
 
-En `PipelineWriteServiceImpl`, el guard ocurre antes de `checkAndIncrementVersion`, `computeDiff` y cualquier `save`. En `PipelineDesignServiceImpl`, ocurre antes de mutar `designMetadata`. En `PipelineRelationsServiceImpl`, ocurre antes del version check que pueda incrementar y antes de `applyAdd/applyRemove`. En `ComponentCreateServiceImpl`, ocurre antes del duplicate pre-check, version increment y persistencia. Los pre-checks que sólo resuelven el target pueden preceder al guard; ningún detalle sensible del estado de la pipeline se devuelve a un caller no autorizado.
+El guard precede a `checkAndIncrementVersion`, `computeDiff`, `designMetadata`, `applyAdd/applyRemove`, duplicate checks con efectos y cualquier `save`. Sólo la resolución necesaria para identificar el target y verificar el path puede ocurrir antes; no se devuelve detalle sensible a un caller no autorizado.
 
 ## Pipeline deploy
 
-`PipelineDeployServiceImpl.deploy` resuelve Data Product, environment y pipeline desde persistencia, autoriza `DEV_AND_UP` y sólo después ejecuta:
+`PipelineDeployServiceImpl.deploy` resuelve Data Product, environment y pipeline, autoriza `DEV_AND_UP` y sólo después ejecuta:
 
 - `DeploymentFreezeService.enforcePipelineDeploy` y el freeze por component types.
 - Resolución de rollback configs.
@@ -121,9 +119,7 @@ La autorización se evalúa una vez para el Data Product completo antes de calcu
 
 ## Identidad
 
-Los handlers mutantes reciben username desde `Authentication`. Las firmas de los services incorporan ese username y dejan de invocar `TigerTokenService` en los caminos tocados. Los métodos de lectura que no forman parte de este slice conservan su contrato.
-
-`PipelineTopologyController` puede mantener `TigerTokenService` mientras algún método de lectura no migrado lo necesite; las operaciones mutantes de esta SPEC no deben usarlo para revalidar la identidad.
+Los handlers mutantes reciben username desde `Authentication`; los services lo incorporan y no vuelven a invocar `TigerTokenService`. `PipelineTopologyController` puede conservar esa dependencia sólo para lecturas no migradas.
 
 ## Decisiones de diseño
 
@@ -157,15 +153,8 @@ Los handlers mutantes reciben username desde `Authentication`. Las firmas de los
 
 | Archivo | Cambio |
 |---|---|
-| `controller/ComponentRelationController.java` | Pasar username autenticado. |
-| `controller/PipelineTopologyController.java` | Pasar username a PUT, design, relations y component create. |
-| `controller/PipelineDeploymentController.java` | Pasar username al pipeline deploy. |
-| `service/ComponentRelationService.java` | Incorporar username a create/update/delete. |
-| `service/PipelineWriteService.java` | Mantener username explícito y adoptar el guard común. |
-| `service/PipelineDesignService.java` | Incorporar username. |
-| `service/PipelineRelationsService.java` | Incorporar username. |
-| `service/ComponentCreateService.java` | Reutilizar username autenticado para autorización y auditoría. |
-| `service/PipelineDeployService.java` | Incorporar username. |
+| `controller/ComponentRelationController.java`, `controller/PipelineTopologyController.java`, `controller/PipelineDeploymentController.java` | Propagar username a las operaciones protegidas. |
+| `service/ComponentRelationService.java`, `service/PipelineWriteService.java`, `service/PipelineDesignService.java`, `service/PipelineRelationsService.java`, `service/ComponentCreateService.java`, `service/PipelineDeployService.java` | Incorporar el username explícito en los contratos tocados. |
 | `service/impl/ComponentRelationServiceImpl.java` | Same-DP, owner persistido y guard antes de save. |
 | `service/impl/PipelineWriteServiceImpl.java` | `DEV_AND_UP` antes de versionado y escrituras. |
 | `service/impl/PipelineDesignServiceImpl.java` | `DEV_AND_UP` antes de modificar diseño. |
@@ -178,11 +167,8 @@ Los handlers mutantes reciben username desde `Authentication`. Las firmas de los
 | Archivo | Cobertura esperada |
 |---|---|
 | `service/impl/ComponentRelationServiceImplTest.java` y `integration/ComponentRelationControllerIntegrationTest.java` | Create/update/delete, same-DP, owner persistido y ausencia de save. |
-| `unit/service/PipelineWriteServiceImplTest.java` | Guard antes de versionado y persistencia. |
-| `unit/service/PipelineDesignServiceImplTest.java` | Guard antes de mutar metadata. |
-| `unit/service/PipelineRelationsServiceImplTest.java` | Guard, same-DP implícito y ausencia de version/save. |
-| `unit/service/ComponentCreateServiceTest.java` y `integration/PipelineComponentCreateControllerIntegrationTest.java` | Guard antes de duplicate/version/save. |
-| `unit/service/PipelineDeployServiceImplTest.java`, `integration/PipelineDeployControllerIntegrationTest.java` y `integration/PipelineDeployFlowIntegrationTest.java` | Guard antes de freeze/delta/lifecycle/dispatch. |
+| `unit/service/PipelineWriteServiceImplTest.java`, `unit/service/PipelineDesignServiceImplTest.java`, `unit/service/PipelineRelationsServiceImplTest.java`, `unit/service/ComponentCreateServiceTest.java` | Guard antes de versión, mutación y persistencia. |
+| `integration/PipelineComponentCreateControllerIntegrationTest.java`, `integration/PipelineDeployControllerIntegrationTest.java`, `integration/PipelineDeployFlowIntegrationTest.java`, `unit/service/PipelineDeployServiceImplTest.java` | Contrato HTTP y guard antes de freeze/delta/lifecycle/dispatch. |
 
 ## Errores
 
@@ -221,7 +207,7 @@ Los tests pertenecen al PR de este slice. El PR no queda listo para merge sin la
 
 Antes del rollout se mide la completitud de `teamName + projectCode` en los Data Products que poseen relaciones, pipelines activos o ejecuciones recientes. Los cross-DP existentes no se migran, pero deben cuantificarse para confirmar que el nuevo guard no intenta normalizarlos ni modificarlos accidentalmente.
 
-El smoke no productivo incluye una relación same-DP permitida, una cross-DP rechazada y un pipeline deploy permitido/denegado con identidades reales. La evidencia forma parte del PR y no se posterga a otra fase.
+El smoke incluye una relación same-DP permitida, una cross-DP rechazada y un pipeline deploy permitido/denegado con identidades reales. La evidencia forma parte del PR.
 
 Rollback: revert del PR. No hay migraciones de datos ni cambios en el contrato de eventos.
 

@@ -25,7 +25,7 @@ tags:
   - area/meli
   - project/crear-context
 created: 2026-08-10
-updated: 2026-09-09
+updated: 2026-09-15
 cssclasses:
   - wide
 ---
@@ -131,7 +131,7 @@ Crear un Context efímero por componente, publicarlo como campo opcional de `Dep
 
 ## 📊 Estado actual
 
-`rio-sdk-events:1.5.0` está publicado y Context está desplegado en producción en Playmaker. La entrega funcional terminó; queda abierta la etapa de observabilidad y validación runtime descrita abajo, además de la sincronización documental de SIG-573/SIG-590 en Spellbook. La rama de prueba de Flink `feature/test-deployment-context` y la versión Fury `0.0.1-test-deployment-context` ya están listas; falta desplegarla en test, ejecutar el canary y retirar el logger al terminar.
+`rio-sdk-events:1.5.0` está publicado y Context está desplegado en producción en Playmaker. La entrega funcional terminó; queda abierta la etapa de observabilidad y validación runtime descrita abajo, además de la sincronización documental de SIG-573/SIG-590 en Spellbook. La rama de prueba de Flink `feature/test-deployment-context` y la versión Fury `0.0.1-test-deployment-context` ya están listas; falta desplegarla en test, ejecutar el canary y retirar el logger al terminar. El onboarding visual autocontenido para el equipo está publicado en [Grid — Context RIO: de outputs a contexto útil](https://grid.adminml.com/d/01M2KD2XR8QBKSS6ZA57RER57D/view).
 
 ## 🔭 Última etapa — seguimiento y validación de Context
 
@@ -274,6 +274,8 @@ El logger usa el `ObjectMapper` compartido, JSON compacto de una línea para evi
 - [/] [[Crear Context - Discovery de Params en CPs]] arrancar + seguimiento #owner/me #type/supervision #area/meli
 
 ## 📆 Bitácora
+
+- **2026-09-15 — Onboarding visual publicado en Grid:** se publicó una guía interactiva y autocontenida que muestra cómo los resultados de los control planes se persisten en `deployment._values` y `service._values`, cómo Playmaker los recupera para construir `context` y cómo el mensaje separa la configuración actual en `params` del snapshot informativo en `context`. Incluye payloads de ejemplo para Flink SQL, ClickHouse MV —con tabla ClickHouse como `destination`— y Kafka. Documento privado: [Context RIO — De outputs a contexto útil](https://grid.adminml.com/d/01M2KD2XR8QBKSS6ZA57RER57D/view).
 
 - **2026-09-09 — Versión Flink de prueba lista:** `feature/test-deployment-context` parte de `develop @ c612fd29`, consume `rio-sdk-events:1.5.0` y agrega `ContextValidationLogger` antes del dispatch asíncrono. El log contiene el Context completo y sólo se activa con `nonprod & !prod` más `rio.context.validation.full-logging-enabled=true`; producción queda excluida y el default es `false`. Commit `1d2ff18c4bab` pusheado, versión Fury `0.0.1-test-deployment-context` creada con build exitoso. Gate local: 1.918 tests, 0 fallas, 0 errores, 0 skips; JaCoCo 100% en el logger y en el controller. Próximo paso: desplegar en test y ejecutar el canary correlacionado por `deploymentId`.
 

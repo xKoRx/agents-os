@@ -34,6 +34,8 @@ Este slice extiende el mecanismo incorporado para Signals sin convertirlo en un 
 
 La comparación de tipo y Action es exacta, case-sensitive y sin trim, aliases ni normalización. `component_type` proviene de `ComponentModel.componentTemplateCode` para component-bound. Un par no presente en la tabla es `DENY`, aunque el Control Plane sea capaz de procesarlo.
 
+`list-warehouses-for-team` no es una expansión por simetría: `fury_rio-controlplane-clickhouse` lo registra como `ClickHouseActionContract.ACTION_LIST_WAREHOUSES`, `ListWarehousesAction.supportedAction()` aún lo atiende y su deprecación indica mantenerlo hasta que Playmaker migre. Además, `fury_rio-frontend/api/services/warehouses.ts#dispatchWarehouseLookup` invoca ese literal contra Playmaker. Se conserva como alias legacy explícito de lectura junto a `list-warehouse` para no convertir un consumidor existente en `DENY`.
+
 ### Matriz precreation
 
 | Par solicitado | Resultado |
@@ -216,7 +218,7 @@ Los tests pertenecen al PR de este slice. El PR no queda listo para merge sin la
 
 ## Rollout
 
-Antes de habilitar el PR se obtiene un inventario de `componentTemplateCode + actionName` observado para confirmar que no existen pares productivos legítimos fuera de la allow-list. Cualquier par adicional requiere ampliar la SPEC funcional; no se agrega un fallback permisivo.
+Antes de habilitar el PR se obtiene un inventario de `componentTemplateCode + actionName` observado para confirmar que no existen pares productivos legítimos fuera de la allow-list. El gate debe buscar `ping` explícitamente: si tiene consumidores reales, el PR no se habilita hasta decidir su incorporación o migración en la SPEC funcional. Cualquier otro par adicional sigue la misma regla; no se agrega un fallback permisivo.
 
 El smoke no productivo cubre al menos una mutación Flink o ClickHouse permitida, la misma operación con identidad sin grant, un componente importado rechazado, una lectura ClickHouse Tiger-only y Kafka peek. La evidencia se adjunta al mismo PR.
 

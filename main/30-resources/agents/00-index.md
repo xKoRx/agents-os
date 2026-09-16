@@ -7,8 +7,8 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-09-14"
-reviewed: "2026-09-14"
+updated: "2026-09-15"
+reviewed: "2026-09-15"
 aliases:
   - "00-index index"
 cssclasses:
@@ -24,8 +24,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas curadas:** 22
-- **Última ingesta:** 2026-09-14
+- **Páginas curadas:** 23
+- **Última ingesta:** 2026-09-15
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -54,6 +54,7 @@ tags:
 | [[30-resources/agents/skills/evidence-channel-discovery/SKILL|evidence-channel-discovery]] | Descubre y persiste los canales de evidencia reales por pregunta. | skill · transversal |
 | [[30-resources/agents/skills/write-once-conflict-triage/SKILL|write-once-conflict-triage]] | Triage de conflictos write-once: duplicate/race/stale/contract-defect. | skill · transversal |
 | [[30-resources/agents/skills/operational-healthcheck-policy/SKILL|operational-healthcheck-policy]] | Cuándo validar manualmente componentes vigilables y cuándo confiar en la automatización. | skill · transversal |
+| [[30-resources/agents/skills/observability-metrics-standard/SKILL|observability-metrics-standard]] | Diseña, audita, migra o revisa métricas custom con método portable (sin grammar de Meli); handoff a meli-agent-dev para RIO/Signals. | skill · transversal |
 
 ## 🔗 MCP Aranea y dominios de agente
 

@@ -23,7 +23,7 @@ tags:
   - area/meli
   - project/scopes-rio
 created: 2026-08-12
-updated: 2026-09-03
+updated: 2026-09-16
 cssclasses:
   - wide
 ---
@@ -61,7 +61,73 @@ cssclasses:
 - **Reconciliación:** 1 consumer BigQueue pausado de [[rio-controlplane-fury]] quedó sin runtime resoluble en el service graph; se conserva explícitamente como hallazgo y no se asigna por inferencia.
 - **SPEC funcional vigente:** [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599) define un catálogo acotado de ambientes (`production`, `staging`, `alpha`, `beta`, `gamma`), no una cantidad fija de scopes. Cada equipo adopta sólo los ambientes y roles que necesita; frontend usa `<environment>` y backend usa `<environment>-<rol>-<segment>`.
 - **Grid publicado:** el doc Grid `01KZXKPH3YAGGX89P04GTY7B7E` separa la foto Fury del contrato funcional y no agrega instrucciones, targets, routing, filtros, segmentación ni pilotos que no estén definidos por SIG-599. El HTML narrativo quedó integrado al generador.
-- **Próxima fase:** la implementación física, el aprovisionamiento, el routing y la migración corresponden a una futura SPEC técnica.
+- **Próxima fase:** ejecutar una POC end-to-end de deploy sobre `alpha`, dividida en SPECs técnicas independientes por repo e infraestructura antes de implementar.
+
+## 🧪 POC alpha end-to-end — plan de implementación
+
+### Resultado a demostrar
+
+La POC debe completar una vuelta real de deploy dentro del mismo ambiente lógico `alpha`: `ads-signals-frontend/alpha` inicia el deploy, `rio-playmaker/alpha-api-nonprod` publica el trigger, `rio-controlplane-flink/alpha-consumer-nonprod` lo procesa y publica el resultado, `rio-playmaker/alpha-consumer-nonprod` persiste el estado en la DB `test`, y el frontend observa el resultado terminal. La POC certifica deploys; actions, runtime status, `rio-data-product-changed`, Observability y el path legacy de Materializer quedan fuera de alcance.
+
+```text
+ads-signals-frontend/alpha
+  -> Fury route de rio-playmaker/alpha-api-nonprod
+  -> rio-deployment-trigger [segment=nonprod, filter=scope:alpha]
+  -> rio-controlplane-flink/alpha-consumer-nonprod
+  -> rio-deployment-result [segment=nonprod, filter=scope:alpha]
+  -> rio-playmaker/alpha-consumer-nonprod
+  -> DB test
+  -> frontend alpha
+```
+
+### Decisiones cerradas para la POC
+
+- **Frontend activo:** la implementación se hace en `ads-signals-frontend`; `rio-frontend` permanece fuera por estar deprecado.
+- **Selección en el front:** el front resuelve y persiste `frontend` y `backend` desde query params/MeliLab, valida `alpha` contra un catálogo cerrado y usa la Fury route del Playmaker alpha. La POC no introduce un header custom de scope: ese header era una propuesta para multiplexar una entrada compartida y no es necesario para una vuelta `alpha -> alpha` con route explícita.
+- **Scope server-side:** Playmaker deriva `environment_scope=alpha` desde su `SCOPE` materializado, no desde un body o header controlado por el browser.
+- **Topics estables:** se reutilizan `rio-deployment-trigger` y `rio-deployment-result` en `nonprod`; no se crea un topic por ambiente.
+- **Filtro BigQueue:** los filtros por tag son una capability existente de Fury y se usan como mecanismo obligatorio, no como experimento. Producer y consumers usan `scope:alpha`.
+- **Defensa en profundidad:** además del filtro Fury, Playmaker y Flink validan `runtime environment == payload.environment_scope == filter scope:alpha` antes de ejecutar un side effect.
+- **Datos compartidos:** `alpha` usa DB `test`; el scope separa routing y cómputo, no datos.
+- **CP piloto:** `rio-controlplane-flink` cubre el deploy moderno por BigQueue y su resultado de vuelta.
+- **Actions fuera de alcance:** `rio-actions-trigger` es el tópico lógico nuevo del dominio Actions y existe materializado en `nonsite` y `nonprod`; convive con `rio-action-trigger` singular por migración. La POC de deploy no modifica ni valida ninguno de los dos.
+
+### Separación en futuras SPECs técnicas
+
+Cada unidad desarrollable debe tener su propia SPEC técnica hija de SIG-599. Esta planificación no crea esas SPECs; sólo fija sus límites y dependencias.
+
+| Orden | SPEC técnica futura | Repo / superficie | Alcance mínimo |
+|---|---|---|---|
+| 1 | Contrato de scope para deployment events | `rio-sdk-events` | Agregar `environment_scope` compatible a `DeploymentTriggerMessage` y `DeploymentResultMessage`; helper canónico `scope:<environment>`; serialización, validación y compatibilidad de consumidores |
+| 2 | Frontend alpha y selección de backend | `ads-signals-frontend` | Resolver/persistir `frontend` y `backend` en el front; integrar MeliLab y query params; allowlist; configurar la llamada del BFF a la Fury route del Playmaker alpha; fail-closed para selecciones inválidas |
+| 3 | Playmaker alpha — publish y consume de deploy | `rio-playmaker` | Resolver `alpha-api-nonprod`/`alpha-consumer-nonprod`; mapear alpha a configuración test/nonprod; actualizar el producer del golden path pipeline para publicar `environment_scope=alpha` y `scope:alpha`; validar el result antes de persistir; mantener el path legacy compatible sin incorporarlo a la POC |
+| 4 | Flink alpha — consumer y result de deploy | `rio-controlplane-flink` | Resolver runtime alpha sin confundir `nonprod` con ambiente; validar payload+filter+runtime; ejecutar sólo component types Flink; publicar `DeploymentResultMessage` con el mismo environment/tag; compatibilidad controlada para mensajes legacy |
+| 5 | Aprovisionamiento y bindings alpha | Fury: frontend, Playmaker y Flink | Crear scopes; cargar Fury Config; crear routes; mantener topics; crear consumers filtrados; registrar manifiesto `application/scope/role/channel/segment/filter/contract` |
+
+La integración, el orden de rollout, el golden deploy, el cleanup y el rollback se ejecutan desde un runbook/checklist liviano basado en las fases y criterios de aceptación de este proyecto; no requieren una sexta SPEC técnica porque no agregan una unidad de diseño independiente.
+
+### Fases de ejecución
+
+1. **Contrato:** redactar y aprobar las cinco SPECs técnicas de implementación; cerrar DTOs, tags, compatibilidad y nombres exactos de scopes antes de abrir PRs, y derivar el runbook de integración/rollout desde este plan.
+2. **SDK:** implementar y publicar una versión de prueba de `rio-sdk-events`; nunca publicar una versión productiva limpia desde una branch feature.
+3. **Consumers seguros:** implementar primero las validaciones en Playmaker consumer y Flink, desplegarlas también en los scopes nonprod existentes y conservar compatibilidad explícita sólo para mensajes legacy sin `environment_scope`.
+4. **Producers:** actualizar Playmaker para derivar `alpha` desde runtime y publicar trigger+filter; actualizar Flink para devolver result+filter.
+5. **Frontend:** implementar la selección y persistencia en el front y apuntar el BFF a la Fury route alpha.
+6. **Infra:** crear scopes, routes, Fury Config y consumers de `rio-deployment-trigger`/`rio-deployment-result` con `scope:alpha`; mantenerlos sin tráfico hasta que el código compatible esté desplegado.
+7. **Golden deploy:** desplegar un componente `flink-sql` descartable desde el front alpha, verificar el recorrido completo y luego ejecutar undeploy/cleanup.
+8. **Rollback:** deshabilitar la selección alpha en el front, retirar tráfico de las routes y pausar los consumers alpha; los scopes anteriores, topics y DB permanecen intactos.
+
+### Criterios de aceptación de la POC
+
+- `frontend=alpha&backend=alpha` selecciona y conserva ambos ejes en el front.
+- El request de deploy llega únicamente a `rio-playmaker/alpha-api-nonprod`.
+- El trigger se publica en el topic nonprod existente con `environment_scope=alpha` y `scope:alpha`.
+- Sólo `rio-controlplane-flink/alpha-consumer-nonprod` ejecuta el deployment Flink de la POC.
+- El result vuelve por el topic nonprod existente con el mismo environment/tag y sólo `rio-playmaker/alpha-consumer-nonprod` lo persiste.
+- El frontend observa el estado terminal del deploy.
+- Un mismatch entre runtime, payload y filter se reconoce sin retry y sin side effects.
+- Ningún consumer test, staging o production procesa el deployment alpha.
+- El recurso creado se elimina y el rollback de routing/consumers queda probado.
 
 ## 🔀 Discovery técnico histórico — fuera de SIG-599
 
@@ -74,7 +140,7 @@ cssclasses:
 
 ### Direccionamiento por capa
 - **Front → nginx.** El nginx del front resuelve qué scope/build de front sirve.
-- **Back (Playmaker) → Fury routes por HEADER.** El scope **lo manda el request**: el front traduce el `backend` resuelto a un **header de scope** en cada request a Playmaker (el scope NO va en el dominio; se descartó `rio-playmaker-<scope>.melisystems.com` porque obliga a mantener hosts por scope). Las **Fury routes** matchean ese header y rutean al runtime de Playmaker del scope.
+- **Back (Playmaker) → Fury route resuelta por el front.** Para la POC `alpha -> alpha`, el front/BFF llama la Fury route explícita de `rio-playmaker/alpha-api-nonprod`; no se agrega un header custom de scope. Una futura entrada compartida que multiplexe varios backends puede evaluar routing por header en su propia SPEC técnica.
 - **CP (control planes) → un tópico compartido + filtro por scope.** Playmaker (publisher) adjunta un **tag `scope:<x>`** al mensaje (mecanismo `WithFilters`/`BigQueueFilters` = lista de tags arbitrarios, confirmado en VIS). El **consumer definido en Fury** aplica el filtro por ese tag; el endpoint de la app puede además re-filtrar (defensa en profundidad, como hace VIS en `pkg/middlewares/filter.go`).
 
 ### El fork y su resolución
@@ -89,23 +155,21 @@ cssclasses:
 - **SDK (`rio-sdk-events`, librería Java 21):** `BigQueueClient` es publish-only; `BigQueueFilters` = `List<String>` (record, wire `modified_fields`); sin campo scope en el envelope.
 
 ### Requisitos duros que agrega esta capability
-1. **Front:** leer+persistir `frontend`/`backend`; leer cookie MeliLab; traducir `backend` a header de scope en cada request a Playmaker (introducir el interceptor/override, hoy no existe).
-2. **Playmaker:** leer/validar el header de scope en el ingreso; estampar `scope:<x>` como tag en cada publish (y opcionalmente `environment_scope` en el body para auditoría/validación consumer-side); ruteo por Fury routes según header.
+1. **Front:** leer y persistir `frontend`/`backend`, integrar la cookie MeliLab y resolver la Fury route del backend seleccionado.
+2. **Playmaker:** derivar el ambiente lógico desde el runtime validado, incluir `environment_scope` en el payload y estampar `scope:<x>` como tag en cada publish incluido en la POC.
 3. **CP:** filtrar por el tag `scope:<x>` (server-side en la definición Fury del consumer; y/o extender el filtro client-side `componentType` para incluir scope).
 4. **DB:** `test` y `prod` sin cambios. El scope es routing/cómputo, **no frontera de datos**.
 
 ### Seguridad (guardrails no negociables)
-- **El scope (header a Playmaker y tag en el mensaje) lo estampa SIEMPRE server-side el trusted-ingress**, nunca desde datos del cliente. Si viniera del cliente, se podría spoofear el scope de otro CP (CWE-639 / CWE-862).
+- **El scope del mensaje lo estampa SIEMPRE Playmaker desde su runtime validado**, nunca desde datos del cliente. Si viniera del cliente, se podría spoofear el scope de otro CP (CWE-639 / CWE-862).
 - **Validar el queryParam contra un enum allowlist** de scopes válidos (`@meli/input-validation`, `iv.enumeration()`); nunca armar host/routing/tag desde el valor crudo (CWE-918 / CWE-99).
 - **Fail-closed:** en prod para usuario real/anónimo → ignorar selectores y forzar `prod`. Override a no-prod sólo para **identidad interna** (gating MeliLab + identidad no manipulable, `@platsec-security/*`).
 - **DB no-prod compartida (test):** `alpha/beta/gamma` comparten la DB `test` → **no hay aislamiento de datos entre scopes no-prod**; el filtro de scope es routing, no frontera de datos. Dejarlo escrito.
-- No PII en el queryParam (CWE-598). Reusar el header de scope estándar, no inventar variantes por capa.
+- No PII en el queryParam (CWE-598).
 
 ### Verificaciones de plataforma pendientes (no confirmables desde el código local)
-1. **Fury BigQueue:** ¿el filtro por tag se aplica **server-side** en la definición del consumer (entrega sólo lo matcheado) o es app-side? Decide si hace falta separar el tópico de prod. *(La definición Fury del consumer NO está versionada en los repos.)*
-2. **Fury routes:** nombre/estructura del header estándar de scope que matchean para rutear Playmaker, y cómo se declara la route por scope.
-3. **MeliLab:** nombre/estructura real de la cookie y cómo la leen los fronts (confirmar en algún front que ya la use). *(El RAG interno `ask_knowledge` no respondió esta sesión — timeout.)*
-4. **nginx front:** dónde vive la config del direccionamiento de scope de front (nginx propio vs Fury frontend routing).
+1. **MeliLab/front:** integrar en la SPEC del frontend el contrato real de la cookie y su persistencia junto con los query params `frontend`/`backend`.
+2. **Frontend routing:** declarar en la SPEC de infraestructura dónde se configura la selección del scope/build `alpha` del frontend y la Fury route explícita del Playmaker alpha.
 
 ## 🚀 Propuesta ejecutiva
 
@@ -159,7 +223,7 @@ views:
 > - [x] **[Fury Config real]** Contrastar por scope versión desplegada vs latest `APPROVED` de Config Orchestrator; separar por completo esta evidencia de profiles/archivos del checkout #owner/me #type/research #area/meli ✅ 2026-08-12
 > - [x] **[Target state por aplicación]** Registrar en base separada scopes objetivo, origen, grupo/rol/workload, segmento y decisiones pendientes; exponer switch actual/propuesta en cada card #owner/me #type/dev #area/meli ✅ 2026-08-12
 > - [x] **[Diff visual de migración]** Derivar desde las bases el listado retirar/mantener/agregar, ordenar retiros primero y luego prod/stage/alpha/beta/gamma, con validación amarilla exclusiva para Streams #owner/me #type/dev #area/meli ✅ 2026-08-12
-> - [x] **[Diseño de routing de ambientes]** Auditar Playmaker, rio-sdk-events, mqclient y Fury consumer filters; definir header de ingreso + `environment_scope` + tópico/filtro #owner/me #type/research #area/meli ✅ 2026-08-12
+> - [x] **[Diseño de routing de ambientes]** Auditar Playmaker, rio-sdk-events, mqclient y Fury consumer filters; separar selección del front, `environment_scope` y tópico/filtro; la POC alpha usa Fury route explícita y no requiere header custom #owner/me #type/research #area/meli ✅ 2026-08-12
 > - [x] **[Spec funcional]** Reestructurar [[scope-naming-standard]] como Functional Specification con contrato de datos, user stories, acceptance criteria, E2E, riesgos y rollout #owner/me #type/dev #area/meli ✅ 2026-08-12
 > - [x] **[Front/back — verificación de estado]** Confirmar en repos el acople actual (front por `baseURL` de config; Playmaker sin header-routing, solo env `SCOPE` + profiles + topics estáticos; CP por push HTTP + filtro `componentType`) con evidencia file:line #owner/me #type/research #area/meli ✅ 2026-08-19
 > - [x] **[Front/back — verificación de filtros BigQueue]** Confirmar en `~/fuentes/vis/vis-items-loader-tagging` que los filtros son tags de valor arbitrarios (`scope:x` viable); corrige reporte previo #owner/me #type/research #area/meli ✅ 2026-08-19
@@ -175,10 +239,13 @@ views:
 > - [ ] **[Manifest de bindings]** Definir y completar por runtime `application/scope`, lane, role, workload, channel, direction, infra-segment, contract/schema, versión y site/tenant #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Estándar]** Definir contrato de configuración: perfiles, segmentos, recursos compartidos/dedicados, secretos, canales, criticidad y ownership #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Automatización]** Diseñar validadores de CI/runtime que impidan scopes incompatibles, perfiles ausentes y rutas cross-segment accidentales #owner/me #type/dev #area/meli #waiting
-> - [ ] **[Implementar routing de ambientes]** Versionar contratos SDK, propagar `environment_scope`/tag `scope:<x>`, crear el ingreso de header en Playmaker y el filtro por scope en consumers, ejecutar con compatibilidad/rollback #owner/me #type/dev #area/meli #waiting
-> - [ ] **[Front/back — validar tópicos y filtros]** Confirmar con Fury el contrato de los tópicos `nonsite`/`nonprod` y que el filtro `scope:<environment>` de `nonprod` se aplica antes de entregar cada mensaje #owner/me #type/dev #area/meli #waiting
-> - [ ] **[Front/back — verificar plataforma]** Header estándar de Fury routes; cookie MeliLab (nombre/estructura y lectura en front); config de scope de front en nginx #owner/me #type/research #area/meli #waiting
-> - [ ] **[Front/back — guardrails de seguridad]** Allowlist enum (`@meli/input-validation`), authz de override (identidad no manipulable), fail-closed a prod, scope estampado server-side, DB compartida = routing no datos #owner/me #type/dev #area/meli #waiting
+> - [ ] **[POC alpha — SPEC técnica SDK]** Crear la SPEC técnica de `rio-sdk-events` para `environment_scope` y `scope:alpha` en `DeploymentTriggerMessage`/`DeploymentResultMessage`, con compatibilidad y wire tests #owner/me #type/dev #area/meli
+> - [ ] **[POC alpha — SPEC técnica Front]** Crear la SPEC técnica de `ads-signals-frontend` para selección/persistencia `frontend`/`backend`, MeliLab, allowlist y llamada del BFF a la Fury route alpha #owner/me #type/dev #area/meli
+> - [ ] **[POC alpha — SPEC técnica Playmaker]** Crear la SPEC técnica de `rio-playmaker` para scopes `alpha-api-nonprod`/`alpha-consumer-nonprod`, publicación filtrada y consumo validado de deployment results #owner/me #type/dev #area/meli
+> - [ ] **[POC alpha — SPEC técnica Flink]** Crear la SPEC técnica de `rio-controlplane-flink` para el consumer alpha, guard de runtime/payload/filter y publicación del result con el mismo ambiente #owner/me #type/dev #area/meli
+> - [ ] **[POC alpha — SPEC técnica Infra Fury]** Crear la SPEC técnica de aprovisionamiento para scopes, Fury Config, routes, consumers y manifiesto de bindings sin crear topics #owner/me #type/dev #area/meli
+> - [ ] **[POC alpha — runbook de integración]** Escribir el checklist ejecutable de orden de rollout, golden deploy, aislamiento, cleanup y rollback, sin duplicar las decisiones de las cinco SPECs técnicas #owner/me #type/dev #area/meli
+> - [ ] **[POC alpha — implementación]** Implementar las SPECs técnicas aprobadas y ejecutar la vuelta completa de deploy en alpha #owner/me #type/dev #area/meli #waiting
 > - [x] **[Front/back — spec funcional]** Publicar y simplificar [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599): ambientes canónicos, selección independiente, frontend con scope simple, backend `api`/`consumer` y continuidad end-to-end; queda en `draft` para revisión del equipo #owner/me #type/dev #area/meli ✅ 2026-09-01
 > - [ ] **[Migración]** Preparar plan incremental de renombre/adopción con compatibilidad, rollback y retiro de scopes obsoletos #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Implementación]** Ejecutar los cambios aprobados y extender el estándar al resto del backend RIO #owner/me #type/dev #area/meli #waiting
@@ -214,6 +281,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **2026-09-03 (corrección de naming backend)** — Se corrigió el contrato y el Grid: el formato backend es `<environment>-<rol>-<segment>`.
 - **2026-09-03 (SIG-599 alineado)** — Se actualizó el SPEC funcional en Spellbook para definir backend con `<environment>-<rol>-<segment>`; `api`, `consumer`, `sink` y `tp` quedan como ejemplos de rol y no como un catálogo limitado a dos tipos.
 - **2026-09-03 (render de placeholders)** — Spellbook interpretaba los placeholders con `<…>` como tags HTML y mostraba sólo `--`; las cuatro apariciones del patrón backend quedaron escapadas para renderizar `<environment>-<rol>-<segment>` completo.
+- **2026-09-16 (POC alpha planificada)** — La segunda parte del proyecto queda acotada a una vuelta real de deploy `ads-signals-frontend -> rio-playmaker -> rio-controlplane-flink -> rio-playmaker -> frontend`, toda en `alpha`. Se elimina el header custom como requisito de la POC, se toma el filtro BigQueue por tag como capability disponible, se mantienen `rio-deployment-trigger`/`rio-deployment-result`, se dejan Actions y Observability fuera de alcance y se divide el trabajo en cinco futuras SPECs técnicas más un runbook de integración, sin crear esos artefactos en esta sesión.
 
 ## 🧭 Decisiones
 
@@ -224,14 +292,15 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **Ambiente lógico vs segmento:** `environment_scope` (`production/staging/alpha/beta/gamma`) decide routing funcional; `metadata.segment` (`legacy/nonprod/nonsite`) describe placement Fury. Ejes independientes.
 - **Fuentes:** Fury es autoridad del inventario desplegado; los repos son autoridad de interpretación y comportamiento; el vault conserva el conocimiento durable y las decisiones.
 - **Selección front/back:** MeliLab define el ambiente base de ambos ejes; `frontend` y `backend` lo sobrescriben de forma independiente; cada eje sin selección usa `production`. El front lee y persiste la selección.
-- **Entrada Web extensible:** nginx sirve el frontend efectivo con una regla genérica y el front deja de seleccionar Playmaker mediante archivos/baseURL por scope. Playmaker mantiene sólo dos puntos de entrada: productivo para `prod` y testing para los ambientes `nonprod`.
+- **Entrada Web de la POC:** el front resuelve y persiste `frontend`/`backend`; para `alpha -> alpha`, su BFF usa la Fury route explícita de `rio-playmaker/alpha-api-nonprod`. Una entrada compartida que multiplexe ambientes queda fuera de la POC y requerirá una decisión técnica posterior.
 - **BigQueue por segmento + filtro:** cada canal mantiene un tópico `nonsite` para `prod` y uno `nonprod` compartido por los ambientes de testing; los mensajes y consumers `nonprod` se asocian mediante `scope:<environment>`.
 - **Cantidad y nombres funcionales:** frontend se nombra con `<environment>` y backend con `<environment>-<rol>-<segment>`.
-- **Extensibilidad:** agregar una lane de testing consiste en aprovisionar scopes y bindings; no agrega código, reglas nginx por ambiente, subdominios de Playmaker ni tópicos BigQueue.
+- **Extensibilidad:** la POC debe demostrar que topics y contratos no se duplican por ambiente; la generalización del routing de frontend/Playmaker a nuevas lanes se diseña después de validar alpha.
 - **DB sin cambios:** sólo `test` y `prod`; el scope es routing/cómputo, no frontera de datos.
-- **Scope estampado server-side:** el header/tag de scope lo fija el trusted-ingress, nunca el cliente.
+- **Scope estampado server-side:** Playmaker deriva `environment_scope` y `scope:<environment>` desde su runtime validado, nunca desde datos enviados por el browser.
 - **Nombre canónico:** SIG-599 define frontend `<environment>` y backend `<environment>-<rol>-<segment>`.
-- **Piloto KMS:** usar la obligación de segmentar `test` como primer slice vertical, con target `alpha-api-nonprod` y bridge `test-nonprod` sólo si Fury lo impone para marcar cumplimiento.
+- **POC end-to-end:** el CP piloto es `rio-controlplane-flink` y la cobertura obligatoria es el deploy completo; Actions, runtime status, Observability, Materializer y KMS quedan fuera.
+- **Piloto KMS separado:** la remediación de segmentación de KMS conserva su propio objetivo y no certifica la POC end-to-end.
 
 ### Preguntas abiertas para el equipo / verificaciones
 1. ¿Qué decisiones de negocio y ownership se requieren para proponer retiros sin convertir bindings en una categoría genérica?
@@ -242,7 +311,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 6. ¿Qué capability soportada por Fury implementará el aislamiento de lanes dentro de `nonprod`?
 7. ¿Dónde se versionará el manifiesto de bindings y el generador reproducible?
 8. ¿Qué aplicación será el piloto de migración y quién aprueba cada retiro y cada Stream amarillo?
-9. **Front/back:** ¿el filtro por tag BigQueue se aplica server-side antes de la entrega? ¿Qué contrato de Fury routes permite que el punto de entrada de testing seleccione el scope? ¿Nombre/estructura de la cookie MeliLab y cómo la leen los fronts? ¿Qué capacidad de nginx permite una regla genérica sin configuración por ambiente?
+9. **Front/back:** ¿cuál es el contrato exacto de la cookie MeliLab que debe implementar `ads-signals-frontend` y dónde se configura la selección del build `alpha` y la Fury route explícita de Playmaker alpha?
 10. **Piloto KMS:** ¿la remediación de `test` acepta el target renombrado `alpha-api-nonprod` o exige crear `test-nonprod`? ¿Qué señal del dashboard confirma que la restricción de deploy quedó levantada?
 
 ## 🔗 Docs / Links

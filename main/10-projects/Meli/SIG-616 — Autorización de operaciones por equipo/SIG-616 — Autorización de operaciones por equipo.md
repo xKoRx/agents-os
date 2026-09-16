@@ -10,10 +10,12 @@ parent:
 sprint:
 start: 2026-09-14
 due:
-progress: 65
+progress: 75
 repo: https://github.com/melisource/fury_rio-playmaker
 jira:
-prs: https://github.com/melisource/fury_rio-playmaker/pull/1169
+prs:
+  - https://github.com/melisource/fury_rio-playmaker/pull/1169
+  - https://github.com/melisource/fury_rio-playmaker/pull/1178
 aliases:
   - SIG-616
   - Autorización por equipo en Playmaker
@@ -21,7 +23,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-09-14"
-updated: "2026-09-15"
+updated: "2026-09-16"
 ---
 
 # SIG-616 — Autorización de operaciones por equipo
@@ -47,10 +49,13 @@ updated: "2026-09-15"
 
 ## 📊 Estado actual
 
-- **Fase actual:** Slice 1 está implementado en `feature/operation-authorization-by-team-f1` y publicado en [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169). La siguiente entrega es Slice 2 / [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623), cuya rama o worktree debe crearse desde `origin/feature/operation-authorization-by-team-f1@7fbb7efcf`, no desde `develop`, para heredar el autorizador común sin reimplementarlo.
-- **Evidencia de Slice 1:** commit `7fbb7efcf` en `feature/operation-authorization-by-team-f1`, sincronizado con `origin/develop@e02b2b09f`; suite focalizada posterior con `60` tests, `0` fallas y `0` errores; la suite completa previa reportó `3.785` tests, `0` fallas, `0` errores y `2` skips preexistentes; código nuevo con `100%` de líneas y `96,875%` de branches.
+- **Slice 3 publicado:** `feature/operation-authorization-by-team-f3@25a50c10c`, con base exacta `feature/operation-authorization-by-team-f2@626585ca9`, está publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178) y listo para review. Protege las siete rutas de mutación/deploy de componentes con `DEV_AND_UP`; `/data-products/v2` conserva explícitamente el comportamiento pre-F3. Suite local: 3.868 tests, 0 fallas, 2 skips preexistentes; build exitoso. Gate de datos productivos y smoke Tiger/ACME no productivo siguen pendientes.
+- **Slice 4 en rama local:** `feature/operation-authorization-by-team-f4@5bd02cff0`, derivada de `origin/feature/operation-authorization-by-team-f3@1a8b4d972`. Protege relaciones directas y las cinco mutaciones de pipeline, incluido deploy, con ownership persistido y `DEV_AND_UP`; suite forzada: 3.914 tests, 0 fallas, 2 skips. Cobertura diferencial F4: 98,15% line (106/108) / 95,24% branch (40/42); cobertura global: 97,14% line (14.342/14.765) / 91,46% branch (3.961/4.331). Gate de datos y smoke externo siguen pendientes por falta de acceso.
+- **Fase actual:** Slice 1 está implementado en `feature/operation-authorization-by-team-f1@fbf05159e` y publicado en [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169). Slice 2 / [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) está en `feature/operation-authorization-by-team-f2@626585ca9`, contiene el head funcional `7cac00089` de Slice 1 y debe incorporar `fbf05159e` antes de continuar su entrega.
+- **Evidencia de Slice 1:** commit `fbf05159e` en `feature/operation-authorization-by-team-f1`, sincronizado con `origin/develop@073f6a190` mediante el merge `9310ab7b5`; los cuatro tests afectados y `./gradlew check` pasaron, con `2` skips preexistentes. CI, cobertura, dependencias, análisis estático y workflow remoto terminaron correctamente. El feedback útil del review quedó aplicado sin mezclar la precondición legacy `systemId` con el autorizador transversal.
 - **Pendiente operacional:** smoke ACME/Data Product no productivo; no se ejecutó por falta de credenciales apropiadas.
 - **Persistencia acordada:** esta nota conserva la continuidad interna. En Spellbook, [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) es la SPEC funcional padre y [SIG-622](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) / [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) son sus SPECs técnicas hijas.
+- **Roadmap posterior a Actions:** las SPECs locales de Slice 3, 4 y 5 están creadas. Cada slice contiene sus propios tests, smoke, gate de datos y criterios de salida; no existe un gate final de pruebas separado. La publicación como hijas de SIG-621 está pendiente de reautenticar la CLI de Spellbook.
 - Esta nota es la única fuente de verdad interna del proyecto: contiene baseline externo, decisiones del owner, evidencia del código, exclusiones y riesgos residuales.
 - La SPEC SIG-616 de Spellbook se usa como requerimiento de origen aunque figure como `technical`. No se bloquea el avance por su clasificación: las nuevas SPECs explicitan su relación y los overrides deliberados.
 - El ownership vive en `DataProduct.teamName`; los componentes pertenecen a un Data Product. La condición canónica de componente importado es una autorización de importación activa y aprobada, consultada mediante `ImportAuthorizationRepository.existsApprovedByImportedComponentId(componentId)`. `sourceComponentId` no sirve como discriminador porque también se completa en clones de migración v1→v2.
@@ -60,7 +65,7 @@ updated: "2026-09-15"
 - PR 1126 ya está mergeado en `origin/develop` (`1a4caf093`); la versión final valida el grant contra `teamName + projectCode`.
 - ACME no puede precargarse correctamente sólo con el username: `/grants/user-grants/{username}` no informa el rol de `OwnerProjectGrant`. La verificación precisa requiere `username + teamName + Tiger headers` y luego match exacto de `projectCode`.
 - Se definieron sólo dos niveles ACME: `DEV_AND_UP` con committer o superior y `DEPLOYER_AND_UP` con deployer o superior para delete/inactivate. `READ` no es una policy del autorizador: permanece Tiger-only en la frontera HTTP.
-- Pipeline deploy está incluido; su ausencia en la lista original se considera un error documental. Las rutas legacy `@Deprecated` reemplazadas por RFC-002 quedan fuera de la primera migración y se identifican mediante allow-list explícita de entrypoints modernos.
+- Pipeline deploy está incluido; su ausencia en la lista original se considera un error documental. Las rutas enumeradas expresamente por SIG-616 se protegen aunque alguna esté marcada `@Deprecated`; el legacy no enumerado queda fuera y se identifica mediante allow-list explícita.
 
 ## 🧱 Entrega de desarrollo
 
@@ -68,13 +73,16 @@ updated: "2026-09-15"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| `rio-playmaker` | `feature/operation-authorization-by-team-f1` | `origin/develop@e02b2b09f` sincronizada por merge | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621), iniciativa derivada de [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | [SIG-622 — Slice 1](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) | Implementado en `7fbb7efcf`; [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169) listo para revisión; smoke no productivo pendiente |
-| `rio-playmaker` | Pendiente — rama de Slice 2 | `origin/feature/operation-authorization-by-team-f1@7fbb7efcf` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | Pendiente de implementación; debe heredar Slice 1 y no recrearlo desde `develop` |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f1` | `origin/develop@073f6a190` sincronizada por merge | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621), iniciativa derivada de [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | [SIG-622 — Slice 1](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) | Implementado en `fbf05159e`; [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169) actualizado; smoke no productivo pendiente |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f2@626585ca9` | contiene `origin/feature/operation-authorization-by-team-f1@7cac00089` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | Rama existente; debe incorporar `fbf05159e` de Slice 1 antes de continuar su entrega |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f3@25a50c10c` | `feature/operation-authorization-by-team-f2@626585ca9` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] | Implementado y publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178); gate de datos y smoke Tiger/ACME pendientes |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f4@eae72cf23` | `origin/feature/operation-authorization-by-team-f3@1a8b4d972` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | Implementado localmente; listo para revisión técnica, con coverage branch y gates externos pendientes |
+| `rio-playmaker` | Pendiente — rama de Slice 5 | Head aprobado de Slice 4 | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 5 — Actions restantes]] | SPEC local creada; publicación Spellbook e implementación pendientes |
 
 ## 🧠 Diseño técnico consolidado
 
 > [!info] Diseño listo para ejecución incremental
-> SIG-621, SIG-622 y SIG-623 están creadas en Spellbook. Slice 1 ya está implementado en `feature/operation-authorization-by-team-f1`; la ejecución continúa con Slice 2 desde ese head.
+> SIG-621, SIG-622 y SIG-623 están creadas en Spellbook. Las SPECs locales de Slice 3, 4 y 5 están cerradas para publicación. Slice 1 ya está implementado en `feature/operation-authorization-by-team-f1`; la ejecución continúa con Slice 2 desde ese head.
 
 ### Fuentes y autoridad
 
@@ -145,10 +153,9 @@ Playmaker es el enforcement point. Los handlers y Control Planes no consultarán
 |---|---|---|
 | Slice 1 | Extraer autorizador desde PR 1126 y migrar delete/inactivate | Ninguno: refactor compatible de la política existente |
 | Slice 2 | Corregir principal Tiger e integrar `catalog-signal + start/stop` | Sólo Signals agrega una restricción nueva |
-| 2 | Deployments y demás mutaciones modernas de componentes | SPEC técnica propia |
-| 3 | Relaciones y pipelines, incluido pipeline deploy | SPEC técnica propia; resolver cross-DP |
-| 4 | Otras Actions y eventual legacy | Sólo con whitelist y SPEC aprobada |
-| Final | Evaluar `@RequiresCapability` | Evolución, no compromiso inicial |
+| Slice 3 | Mutaciones y deployments de componentes | `DEV_AND_UP` en todas las rutas enumeradas; tests y rollout en el mismo PR |
+| Slice 4 | Relaciones y pipelines, incluido pipeline deploy | `DEV_AND_UP`, same-DP y tests/rollout en el mismo PR |
+| Slice 5 | Actions restantes de Flink, ClickHouse y lecturas allow-listed | Whitelist completa, default deny y tests/rollout en el mismo PR |
 
 ### Niveles ACME
 
@@ -182,7 +189,7 @@ Inventario técnico observado para evitar clasificar sólo por nombre:
 - Signals: `catalog-signal + start/stop`.
 - Kafka: `aws-msk-topic`, `gcp-kafka-topic` y el tipo transicional `kafka-topic` con `peek` de lectura.
 - Flink: `start/stop` sobre sus tipos configurados; fuera de la primera vertical.
-- ClickHouse: `clickhouse-mat-view + start-materialized-view/stop-materialized-view`; lecturas como `execute-query`, `describe-table`, `list-warehouse`, `list-database`, `list-tables` y `ping`.
+- ClickHouse: `clickhouse-mat-view + start-materialized-view/stop-materialized-view`; lecturas `execute-query`, `describe-table`, `list-warehouse`, su alias legacy aún consumido `list-warehouses-for-team`, `list-database`, `list-tables` y `ping`. Slice 5 excluye `ping` por no estar declarado en SIG-616 y exige medir su uso antes del rollout.
 
 La reutilización de nombres como `start/stop` entre tecnologías demuestra que `actionName` solo no es una clave de política segura. Los ejemplos prefijados de la SPEC no deben copiarse sin contrastarlos con los contratos reales.
 
@@ -330,11 +337,11 @@ Primero se cubren los caminos críticos y luego al menos 95% del código nuevo.
 
 ### Slices de implementación
 
-El corte recomendado es **un gate documental y dos slices de código**. Tests, observabilidad y ausencia de side effects son criterios de cada slice, no una tercera entrega postergable.
+El proyecto se ejecuta como **un gate documental y cinco slices de código**. Tests, observabilidad, smoke, gate de datos y ausencia de side effects son parte del PR de cada slice; no existe una entrega o gate final de pruebas.
 
 #### Gate 0 — SPECs técnicas y tasks locales
 
-Sin cambios de código. Se crean y revisan en el vault dos SPECs técnicas relacionadas con SIG-616, una para cada slice, y se derivan sus tasks dentro de cada documento. Luego se fija una base limpia desde `develop`.
+Sin cambios de código. Se crea y revisa una SPEC técnica por slice, se derivan sus tasks dentro del documento y se fija como base el head aprobado de la entrega anterior.
 
 #### Slice 1 — Extraer el autorizador usando los consumidores existentes
 
@@ -366,7 +373,25 @@ Objetivo: incorporar el primer comportamiento nuevo de SIG-616.
 
 Gate de salida: Signals queda protegido end-to-end y todo lo fuera de alcance conserva su comportamiento.
 
-### Descomposición preliminar de la primera SPEC técnica
+#### Slice 3 — Mutaciones y deployments de componentes
+
+Objetivo: integrar `DEV_AND_UP` en las cinco mutaciones de `ComponentController` y en component deploy/undeploy, usando el principal Tiger validado y la jerarquía persistida antes de cualquier efecto lateral.
+
+La implementación, tests, gate de datos, smoke no productivo y evidencia de coverage viven en [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] y se entregan en un único PR.
+
+#### Slice 4 — Relaciones y pipelines
+
+Objetivo: proteger create/update/delete de relaciones con same-DP y owner persistido, y migrar PUT/design/relations/component-create/pipeline-deploy al autorizador común con `DEV_AND_UP`.
+
+La implementación, tests cross-DP, verificación de cero side effects, gate de datos, smoke y coverage viven en [[SPEC técnica — Slice 4 — Relaciones y pipelines]] y se entregan en un único PR.
+
+#### Slice 5 — Actions restantes
+
+Objetivo: completar la whitelist exacta `component_type + actionName` para Flink, ClickHouse y las lecturas declaradas por SIG-616, exigir origin + `DEV_AND_UP` en mutaciones y aplicar default deny a todo par desconocido.
+
+La matriz parametrizada, integración HTTP, inventario de pares, smoke y coverage viven en [[SPEC técnica — Slice 5 — Actions restantes]] y se entregan en un único PR.
+
+### Descomposición de Slice 1 y Slice 2
 
 | Orden | Task conceptual | Gate de término |
 |---|---|---|
@@ -509,7 +534,11 @@ views:
 > - [x] Derivar y acordar las tasks ejecutables dentro de ambas SPECs locales #owner/me #type/dev #area/meli
 > - [x] Crear SIG-621 y colgar SIG-622 / SIG-623 como SPECs técnicas hijas #owner/me #type/admin #area/meli
 > - [r] Definir branch/base limpias e implementar SIG-622 — implementado y listo para revisión; smoke no productivo pendiente #owner/me #type/dev #area/meli
-> - [ ] Crear una rama/worktree de Slice 2 desde `origin/feature/operation-authorization-by-team-f1@7fbb7efcf` e implementar SIG-623 sin rehacer Slice 1 #owner/me #type/dev #area/meli
+> - [ ] Incorporar `origin/feature/operation-authorization-by-team-f1@fbf05159e` en `feature/operation-authorization-by-team-f2` y continuar SIG-623 sin rehacer Slice 1 #owner/me #type/dev #area/meli
+> - [x] Crear la SPEC técnica local de Slice 3 — mutaciones y deployments de componentes #owner/me #type/dev #area/meli
+> - [x] Crear la SPEC técnica local de Slice 4 — relaciones y pipelines #owner/me #type/dev #area/meli
+> - [x] Crear la SPEC técnica local de Slice 5 — Actions restantes #owner/me #type/dev #area/meli
+> - [ ] Publicar Slice 3, 4 y 5 como SPECs técnicas hijas de SIG-621 en Spellbook; la CLI requiere reautenticación #owner/me #type/admin #area/meli #blocked
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -556,6 +585,12 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-15** — Se creó [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169) con la descripción basada en el template del repo, se sincronizó la rama con `origin/develop@e02b2b09f` mediante el merge `5d9ed7f0f` y se dejó listo para revisión. La suite local sobre ese head reportó 3.785 tests, 0 fallas y 0 errores; CI remoto quedó en curso. Zord estándar se ejecutó; su revisor transversal RIO falló al iniciar y no publicó comentarios.
 - **2026-09-15** — Se restauró el contrato previo de `no owning team` para `teamName` o `projectCode` ausentes y se preservó la causa de excepciones ACME en `SecurityException`; commit `7fbb7efcf` publicado. La suite focalizada de 60 tests pasó sin fallas ni errores.
 - **2026-09-15** — Se fijó la continuidad de implementación: Slice 2 / SIG-623 debe comenzar desde `origin/feature/operation-authorization-by-team-f1@7fbb7efcf`. No debe partir desde `develop`, cherry-pickear parcialmente ni recrear el autorizador de Slice 1.
+- **2026-09-15** — Se cubrieron las ramas faltantes de ownership/ACME en `a367b6690` y se aplicó el feedback del PR en `b71b6bec6`: precondición compartida sin incorporar `systemId` al autorizador transversal, `cause` ACME preservada internamente y protegida por un test HTTP contra filtración anidada, y logs de denegación con team/project sin username ni tokens. Suite completa: 3.788 tests, 0 fallas y 2 skips preexistentes.
+- **2026-09-15** — Se sincronizó la rama con `origin/develop@a78db6ede` mediante el merge `e5b1ab7c8`, se repitió la suite completa con 3.830 tests, 0 fallas y 2 skips, se publicó el head y se respondieron los cuatro comentarios de review con la evidencia de su aplicación. CI, cobertura, dependencias y workflow terminaron en verde; quedan aprobación humana y smoke no productivo.
+- **2026-09-15** — Se corrigió el contrato de falla ACME en `7cac00089`: `OperationAuthorizationService` vuelve a descartar la excepción interna, el unit test exige `cause == null` y se retiró el test HTTP agregado para una causa que ya no existe. Suite completa: 3.829 tests, 0 fallas y 2 skips; la respuesta del review y la descripción del PR se actualizaron en consecuencia.
+- **2026-09-15** — Se crearon las SPECs técnicas locales de Slice 3, 4 y 5. Cada entrega incorpora su propia matriz de tests, gate de datos, smoke no productivo y coverage; se descartó un gate final separado. La publicación en Spellbook quedó pendiente porque la sesión de la CLI expiró.
+- **2026-09-15** — La revisión cruzada de Slice 5 confirmó `list-warehouses-for-team` en el contrato de CP ClickHouse y en un consumidor activo de rio-frontend; se mantuvo como alias legacy explícito. También se convirtió `ping` en un check nominal del gate de inventario previo al rollout.
+- **2026-09-16** — Se evaluaron los cuatro comentarios nuevos del PR #1169 contra el código y la SPEC. Se aplicaron las mejoras de helpers estáticos y estructura de tests en `fbf05159e`: matriz de roles parametrizada, `@InjectMocks`, `assertNull` y ownership centralizado en `AuthorizationUtilsTest`, conservando un smoke por consumidor con mensaje y orden. No se aplicó la propuesta de unir `requireOperationOwnership` con `OperationAuthorizationService.require` porque `systemId` es una precondición legacy exclusiva de delete/inactivate y no forma parte del contrato transversal. Los tests focalizados, `./gradlew check` y todos los checks remotos materiales pasaron; las cuatro respuestas cordiales se publicaron y verificaron en GitHub.
 
 ## 🧭 Decisiones
 
@@ -568,7 +603,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **D7 — Playmaker es el enforcement point.** Los CPs siguen procesando eventos defensivamente, pero no resuelven Tiger ni ACME; reciben sólo requests ya autorizados por Playmaker.
 - **D8 — SPECs y tasks antes de código.** Se cierra diseño, se valida el requerimiento de origen y se acuerda una SPEC por vertical con sus tasks antes de definir branch/base e implementar.
 - **D9 — Dos niveles ACME cerrados.** `DEV_AND_UP` y `DEPLOYER_AND_UP`; delete/inactivate conservan los tres roles del PR 1126 y el resto de escrituras SIG-616 usa los cuatro roles dev+. `READ` queda Tiger-only fuera del autorizador.
-- **D10 — Pipeline deploy incluido y legacy explícito.** La ruta moderna de pipeline deploy debe incorporarse a la SPEC; controllers `@Deprecated` reemplazados por RFC-002 quedan fuera de la primera migración.
+- **D10 — Pipeline deploy incluido y legacy explícito.** La ruta moderna de pipeline deploy debe incorporarse a la SPEC. Toda ruta enumerada expresamente por SIG-616 se protege aunque esté marcada `@Deprecated`; las rutas legacy no enumeradas quedan fuera.
 - **D11 — ACME preciso, no precarga incompleta.** No se usa `getUserGrants(username)` para permisos por proyecto. El autorizador reutiliza `getOwnerProjectGrants(username, teamName, headers)` y valida el `projectCode` persistido.
 - **D12 — Una implementación, consumidores incrementales.** No habrá `interface/impl` ni un autorizador por nivel. Delete e inactivate migran primero como regresión; Signals consume la misma clase con otra política.
 - **D13 — Importación por evidencia canónica.** Una Action mutante se considera importada sólo cuando `ImportAuthorizationRepository.existsApprovedByImportedComponentId(componentId)` lo confirma; `sourceComponentId` no decide porque también representa linaje de migración.
@@ -578,7 +613,10 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **D17 — `401` pertenece a la cadena de seguridad.** El filtro no conoce paths: sólo establece username ante Bearer válido o continúa sin Authentication. `SecurityConfig` es la única fuente de verdad; `permitAll` continúa incluso con Bearer inválido y `.authenticated()` activa el `AuthenticationEntryPoint` de `401`.
 - **D18 — Publicación autorizada posteriormente.** La decisión inicial fue mantener la documentación sólo local. El owner la reemplazó explícitamente el 2026-09-14 al ordenar crear SIG-621 y sus dos SPECs técnicas hijas en Spellbook.
 - **D19 — Contrato determinista, realidad como smoke.** El mapping ACME se prueba en CI con fixture representativo y la igualdad real de `projectCode` se valida en un smoke no productivo. No se introduce una dependencia live de ACME en la suite automatizada.
-- **D20 — Slice 2 hereda Slice 1.** La base obligatoria de la siguiente fase es `origin/feature/operation-authorization-by-team-f1@7fbb7efcf`. La implementación de SIG-623 debe consumir el `OperationAuthorizationService` y `OperationAccessLevel` ya creados, sin comenzar desde `develop` ni reimplementar ese trabajo.
+- **D20 — Slice 2 hereda Slice 1.** La base obligatoria vigente de la siguiente fase es `origin/feature/operation-authorization-by-team-f1@fbf05159e`. La implementación de SIG-623 debe consumir el `OperationAuthorizationService` y `OperationAccessLevel` ya creados, sin comenzar desde `develop` ni reimplementar ese trabajo; la rama `feature/operation-authorization-by-team-f2@626585ca9` debe incorporar este head.
+- **D21 — Pruebas por slice, sin gate final.** Cada SPEC técnica contiene su matriz crítica, regresión, gate de datos, smoke y coverage. El PR de cada slice no queda listo sin esa evidencia y no existe una fase posterior dedicada a probar todo el proyecto.
+- **D22 — Encadenamiento secuencial.** Slice 3 parte del head aprobado de Slice 2, Slice 4 del head aprobado de Slice 3 y Slice 5 del head aprobado de Slice 4. Ninguna entrega recrea el autorizador ni se basa directamente en `develop` mientras dependa de cambios aún no mergeados.
+- **D23 — Alias ClickHouse probado y `ping` bloqueante de rollout.** `list-warehouses-for-team` permanece allow-listed porque CP ClickHouse aún lo registra y rio-frontend lo consume. `ping` no se incorpora sin respaldo funcional, pero su uso se mide explícitamente y bloquea el rollout si aparece un consumidor real.
 
 ## 🔗 Docs / Links
 
@@ -588,6 +626,9 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - [SIG-623 — SPEC técnica Slice 2: Actions mutantes de Signals](https://spellbook.adminml.com/projects/SIG/specs/SIG-623)
 - [[SPEC técnica — Slice 1 — Autorizador común de operaciones]]
 - [[SPEC técnica — Slice 2 — Actions mutantes de Signals]]
+- [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]]
+- [[SPEC técnica — Slice 4 — Relaciones y pipelines]]
+- [[SPEC técnica — Slice 5 — Actions restantes]]
 - [PR 1126 — Autorización ACME para inactivate/delete](https://github.com/melisource/fury_rio-playmaker/pull/1126)
 - [DataProductModel — `teamName`](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/model/DataProductModel.java)
 - [ImportAuthorizationRepository — detección canónica de importados](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/repository/ImportAuthorizationRepository.java)
