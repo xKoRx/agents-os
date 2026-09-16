@@ -33,7 +33,7 @@ updated: "2026-09-16"
 
 Esta Resource es el contrato técnico de `F-05-I — Cohesive release and read surfaces` (preparación de implementación de F-05). Define qué debe quedar cierto. La ejecución vive en [[Echo Forge — F-05-I Cohesive release and read surfaces]]. F-05-I NO publica release, NO ejecuta gates físicos y NO marca ningún T2.11/T2.12/T2.13. Veredicto válido al implementar: `F-05-I IMPLEMENTED / SOURCE VERIFIED`.
 
-Baseline de source: `xKoRx/symphony@b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43` (= HEAD de `origin/feature/f04-magic-version-handoff`; release `0.2.98`). Branch de implementación: `codex/f05-release-prep`, creada desde el SHA exacto, nunca desde master ni desde un checkout local divergente (el checkout local del repo puede estar en `9fad768`, que NO contiene C5; la autoridad es el SHA). Contratos frozen inputs: F-01/F-02/F-03/F-04, S0 Echo, B1A/B1B/B2.
+Baseline de source: `xKoRx/symphony@b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43` (= HEAD de `origin/feature/f04-magic-version-handoff`; release `0.2.98`). Branch de implementación: `codex/f05-release-prep`, creada desde el SHA exacto, nunca desde master ni desde un checkout local divergente (el checkout local del repo puede estar en `9fad768`, que NO contiene C5; la autoridad es el SHA). Estado de la branch verificado 2026-09-16: HEAD `3da8b470239a15f62d87f16559feada409e2d611` (T2+corrección keyset, T3, T4 con aprobación manager SOURCE REVIEW; T1/T5–T7 pendientes). Contratos frozen inputs: F-01/F-02/F-03/F-04, S0 Echo, B1A/B1B/B2.
 
 `DATABASE MIGRATION: NONE`. Toda la superficie es read-only sobre tablas/colecciones existentes; cero writes en runtime; cero cambios de schema.
 
@@ -57,7 +57,7 @@ PostgreSQL/MongoDB authorities (existentes, intocables)
 ```
 
 - **Arquitectura elegida: CLI JSON sobre la librería existente.** No se crea servidor HTTP (auth/deploy es territorio F-05-C+/front), no se toca `internal/di` (flowkit ya trae Postgres/etcd/telemetry; Mongo se bootea con `sharedmongo.New` igual que `sqx/cmd/sqx-worker/persistence.go`), no se duplican authorities. El contrato JSON versionado ES el backend contract que el futuro front consumirá envolviendo los mismos read services.
-- **Release matrix = declaración validada, no segunda autoridad.** Vive como artefacto versionado en el repo (`deploy/release-matrix.json`) + validador puro (`sqx/core/releasematrix`). La autoridad de release sigue siendo `deploy_release.sh`/`release-authority`/stager; la matriz declara estados con evidencia y jamás deriva un estado de otro.
+- **Release matrix = declaración validada, no segunda autoridad.** Vive como artefacto versionado en el repo (`sqx/core/releasematrix/release-matrix.json`, embebido en el binario del CLI vía `go:embed`) + validador puro (`sqx/core/releasematrix`). La autoridad de release sigue siendo `deploy_release.sh`/`release-authority`/stager; la matriz declara estados con evidencia y jamás deriva un estado de otro.
 - **Funnel = proyección pura sobre stage_executions.** Topología V2 dinámica: los boundaries son los `stage_key` realmente ejecutados (stages omitidos no aparecen; stages repetidos agregan). Cero hardcode builder→…→handoff.
 - **Zero finalists es resultado válido** (`STRUCTURAL_EMPTY`/`TOP_PROJECTION_EMPTY`, ranking `NOT_MATERIALIZED`), nunca error de software.
 
@@ -66,7 +66,7 @@ PostgreSQL/MongoDB authorities (existentes, intocables)
 1. Read ports nuevos (sólo lecturas): listado de campañas (paginado determinístico), stage executions por FlowRunRef exacto, participaciones por FlowRunRef/StrategyRef, versiones/manifests/entregas por StrategyRef.
 2. Read services: campaña (`LoadForgeCampaignResult` existente), flow run (`forge.Service.Result` existente, finalmente cableado a un caller), inspección de estrategia (identidad + magic + versiones + handoff por refs exactos), timeline de stages + funnel projection.
 3. CLI `sqx-flowkit`: subcomandos `campaign get|list`, `run get|stages`, `strategy get`, `release-matrix`; salida JSON versionada a stdout; exit codes por error kind; `push-output` queda byte-idéntico en comportamiento.
-4. Release matrix: paquete `sqx/core/releasematrix` (schema `sqx-release-matrix.v1`), artefacto `deploy/release-matrix.json` con las capacidades F-01…F-04 + pipeline + release pipeline, estados implementada/verificada/released/deployed/certificada-física/cross-lane independientes con evidencia.
+4. Release matrix: paquete `sqx/core/releasematrix` (schema `sqx-release-matrix.v1`), artefacto `sqx/core/releasematrix/release-matrix.json` embebido con las capacidades F-01…F-04 + pipeline + release pipeline, estados implementada/verificada/released/deployed/certificada-física/cross-lane independientes con evidencia y autoridad.
 5. Handoff F-05-C: `docs/echo-forge/f05-read-surface.md` (contrato JSON/commands/semántica), `docs/echo-forge/f05-conformance-checklist.md`, `docs/echo-forge/f05-certification-manifest-template.json`.
 6. Tests: unit/contract/persistence/BWC/negative + race + vet según matriz del proyecto.
 
