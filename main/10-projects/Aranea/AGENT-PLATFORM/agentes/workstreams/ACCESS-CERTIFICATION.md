@@ -28,6 +28,16 @@ recertificación viewer echo-runtime-prod PASS end-to-end desde Daedalus; detall
 
 Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary viewer SSH no aplicado; credenciales upstream expuestas por `export_metadata`) y varias superficies con verbos no demostrables o no ejercidos por diseño. No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
 
+## Remediation run 2026-09-16 (b) — E-02 CLOSED con runtime topology owner FROZEN
+
+Continuación de la misma fecha: AC-11/AC-12/AC-01 + verifier independiente **PASS** → `E02 CLOSED` (software). **Autoridad arquitectónica owner (FROZEN, aplica a toda certificación futura):**
+
+- **Daedalus `192.168.31.161` = runtime temporal/dev de Echo y Echo Forge** (builds, fixtures, procesos de certificación). `.75` = infra DEV compartida (Hasura/Flink/Portainer) — **jamás runtime Echo** (sin binarios, procesos, services, containers persistentes ni autostart de componentes Echo). `.71` = Echo PROD, observation-only. `.211` = antiguo ubuntu-dev, retirado/offline (referencias históricas = stale).
+- **DNS canónico (Pi-hole `192.168.31.31`):** `dev.echo.core.lab.aranea → 192.168.31.161` (actualizado por owner). El runtime/DNS actual manda sobre documentación histórica.
+- Regla durable: **"Application runtime follows declared topology; infrastructure proximity is never authority to colocate product components."** Antes de elegir dónde ejecutar un componente, la certificación debe descubrir la runtime topology declarada (esta nota + [[Echo — Access & Physical Capability Matrix]]), no inferirla de proximidad de infraestructura.
+- Hallazgo de targeting: el resolver embebido de Docker (127.0.0.11) NO consulta `/etc/hosts` del host — los containers de Flink en `.75` resuelven vía Pi-hole. Un hosts-fixture en el host no alcanza a los containers; la autoridad real del nombre es el DNS del lab. Verificar el resolver efectivo del consumidor antes de elegir el mecanismo de targeting; prohibido `extra_hosts`/compose override para esta clase de fix (decisión owner: DNS canónico).
+- Detalle técnico de ACs, KEEP (062 en `.220/echo-develop`) y REMOVE (fixtures) en change_log `2026-09-16-e02-closed` y bitácora E-02.
+
 ## Remediation run 2026-09-16 — E-02 physical gates + 2º caso del defecto async-202
 
 Ejecutada por Ariadna (Hermes) vía capabilities MCP certificadas + helper SDK consumer único (bearer por stdin, sin argv). Resultado: los tres gates físicos E-02 (Hasura roles/hook, Kafka PublishSync/redelivery, Flink restart/recovery) **PASS** — detalle y verdict en [[Echo — E-02 Control Safety, Auth and Journal Recovery]] y [[Echo — Access & Physical Capability Matrix]].
