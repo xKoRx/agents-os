@@ -66,7 +66,7 @@ Sin subproyectos; fases internas = tareas F05I-T1…T7 abajo.
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
 > - [ ] F05I-T1 Release matrix: paquete validador + artefacto `deploy/release-matrix.json` #owner/agent #type/dev #area/echo
-> - [r] F05I-T2 Read ports + implementaciones PG (campaign list, stage list, participaciones, versiones/handoff reads) — implementada 2026-09-16 (commit `7d073b3`), manager review pending #owner/agent #type/dev #area/echo
+> - [r] F05I-T2 Read ports + implementaciones PG (campaign list, stage list, participaciones, versiones/handoff reads) — implementada 2026-09-16 (commit `7d073b3`), corrección de paginación keyset en empates (commit `3da8b47`), manager review pending #owner/agent #type/dev #area/echo
 > - [r] F05I-T3 Funnel projection pura (topología dinámica, orden determinístico) — implementada 2026-09-16 (commit `65c879a`), manager review pending #owner/agent #type/dev #area/echo
 > - [r] F05I-T4 Read services: strategy inspect + stage timeline + campaign list service (provenance por refs exactos) — implementada 2026-09-16 (commit `d77342d`), manager review pending #owner/agent #type/dev #area/echo
 > - [ ] F05I-T5 CLI `sqx-flowkit` subcomandos inspect + wiring (push-output intacto) #owner/agent #type/dev #area/echo
