@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-07
-updated: 2026-09-12
+updated: 2026-09-16
 cssclasses:
   - wide
 ---
@@ -44,6 +44,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 ## 📊 Estado actual
 
+- **E-06 PLANNING READY FOR MANAGER REVIEW (2026-09-16):** [[Echo — E-06 Reference Enrollment and Binding]] SPEC/PLAN/TASKS/VERIFICATION v1.0.0 en `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f1`. Docs-only; 0 product source. RuntimeBinding = `reference_bindings` + ACK CONFIG + read-back Bridge; OBSERVING nunca desde SQL. Migración 064; FK 061; SHARED DEV apply gated. NORMAL no lanzado. E-01…E-05 no reabiertos.
 - **S0 ERRATUM INTEGRATED — MASTER `7e628bf5` (2026-09-13):** erratum post-certificación E-01/S0 (V3-006, metric formula identity) integrado fast-forward a `origin/master` (`a99f9a63..7e628bf5`; commits `8a979fb5`/`da469d50`/`7e628bf5`), con Independent Verifier PASS y gates post-integración PASS (tests, corpus G01–G36, race, coverage contracts `95.1%`, vet, gofmt). Certificación histórica S0 `91671f6f` preservada; E-01 sigue closed. E-05 V3-006 authority blocker resuelto en master; E-05 espera reconciliation + Full Verifier #4 (`3bc5dca9`). Interlock 063/062 intacto.
 - **E-05 INDEPENDENT VERIFICATION FAIL (2026-09-13):** `baa2e305` infiere moneda Lab/USD ambigua en `pnl.total` cuando el parámetro de moneda está vacío; ver `Echo — E-05 Analytics Convergence A0` y su `VERIFICATION.md`. No merge/deploy; 063 sigue esperando 062 de E-02 en `master`.
 - **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2) + E-05 IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION. E-05 planning v1.0.1 @ `dd1f2da9` en `feature/e05-analytics-convergence-a0` (reserva 063; 062 es E-02); no NORMAL; master intacto `a99f9a63`.
@@ -78,7 +79,7 @@ views:
       - note.priority
 ```
 
-Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]], [[Echo — E-05 Analytics Convergence A0]]. S0 permanece ownership de este track.
+Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]], [[Echo — E-05 Analytics Convergence A0]], [[Echo — E-06 Reference Enrollment and Binding]]. S0 permanece ownership de este track.
 
 ## ✅ Tareas
 
@@ -88,7 +89,7 @@ Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 C
 > - [r] [[Echo — E-03 Identity and BWC Foundation E0]] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-04 Forge Ingestion E1]] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-05 Analytics Convergence A0]] E-05 Analytics convergence A0 #owner/agent #type/dev #area/echo
-> - [ ] E-06 Reference enrollment and binding #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-06 Reference Enrollment and Binding]] E-06 Reference enrollment and binding #owner/agent #type/dev #area/echo
 > - [ ] E-07 Raw facts DEAL coverage and trade lifecycle #owner/agent #type/dev #area/echo
 > - [ ] E-08 Routing EconomicCommand and risk reservation #owner/agent #type/dev #area/echo
 > - [ ] E-09 Execution copy reconciliation and Execution Fidelity #owner/agent #type/dev #area/echo
@@ -221,7 +222,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-06 Reference enrollment and binding
 
-- **ID / status / size:** E-06 · To Do · MEDIUM
+- **ID / status / size:** E-06 · PLANNING READY FOR MANAGER REVIEW · MEDIUM
 - **Objective:** RuntimeBinding: una enrollment canónica por Version; cuenta+broker+magic mapping observado; ACK/read-back; coverage start barrier. Attach manual verificado permitido V1.
 - **Capability unlocked:** reloj forward atribuible. Ingestion ≠ observing.
 - **Why:** sin enrollment no hay Quality canónica.
@@ -230,14 +231,14 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Out of scope:** generic provisioning; auto-takeover; editor.
 - **Dependencies:** E-04; E-02 para confiar captura. Supply Forge ayuda, no bloquea diseño.
 - **Parallel:** F-05 si hay candidata.
-- **Hypotheses:** accounts/policies + facts de binding bastan (no tabla deployments anticipada).
+- **Hypotheses:** accounts/policies + facts de binding bastan (no tabla deployments anticipada). **Planning 1.0.0:** accounts/policies solos REFUTADOS; accounts/policies (intent) + `reference_bindings` (hecho) CONFIRMADO; no `deployments`.
 - **Risks:** overlap magic/cuenta; ACK operator sin read-back.
 - **Output authority:** RuntimeBinding + coverage watermark inicial.
 - **Certification:** PHYSICAL (read-back, duplicate collector, no trading on DB-only). Mocks ≠ OBSERVING.
 - **Done when:** primera observación atribuible o UNKNOWN explícito.
 - **Unlocks:** E-07.
 - **Accepted debt:** attach manual.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning:** TOP v1.0.0 ([[Echo — E-06 Reference Enrollment and Binding]]). SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` @ branch `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Store `reference_bindings`; ACK≠OBSERVING; read-back Bridge; 064 FK 061; PHYSICAL zero-order. **Implementation:** NORMAL (no lanzado). **GOD:** NONE.
 
 ### E-07 Raw facts, DEAL, coverage and trade lifecycle
 
