@@ -10,7 +10,7 @@ parent: "[[Echo Forge — Factory V2 Completion]]"
 sprint:
 start: 2026-09-13
 due:
-progress: 0
+progress: 57
 repo: xKoRx/symphony
 jira:
 prs:
@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-13"
-updated: "2026-09-13"
+updated: "2026-09-16"
 ---
 
 # Echo Forge — F-05-I Cohesive release and read surfaces
@@ -52,7 +52,7 @@ Dejar inspectable, sin abrir bases a mano y sin publicar nada: matriz determiní
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `codex/f05-release-prep` (crear desde SHA) | `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43` | [[Echo Forge — Factory V2 Completion]] F-05 | [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]] | PLANNED → NORMAL pendiente |
+| xKoRx/symphony | `codex/f05-release-prep` (creada desde SHA) | `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43` | [[Echo Forge — Factory V2 Completion]] F-05 | [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]] | NORMAL EN CURSO: T2–T4 done, T1/T5–T7 pendientes |
 
 ## 🧩 Subproyectos
 
@@ -187,6 +187,7 @@ Matriz release + provenance reproducibles (deterministas); read surfaces inspect
 
 ## 📆 Bitácora
 
+- **2026-09-16 — F05I-T2 + T3 + T4 IMPLEMENTED / SOURCE VERIFIED (sesión NORMAL).** Baseline verificado `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43` == `origin/feature/f04-magic-version-handoff` tras `git fetch` (sin BASELINE_MOVED); branch `codex/f05-release-prep` creada desde el SHA exacto (HEAD local previo `9fad768`, detrás del baseline; dirty preexistente `specs/.../phase4_performance.json` preservado sin commitear). Commits: `7d073b3` (T2: ports `capabilities/forge_inspect_query.go` + 4 adapters PG read-only con orden/paginación frozen), `65c879a` (T3: `core/forge/funnel.go` proyección pura `sqx-forge-funnel-projection.v1`), `d77342d` (T4: `core/forge/inspect.go` InspectService con `sqx-strategy-inspect.v1` / `sqx-run-stage-timeline.v1` / `sqx-campaign-list.v1`). Diff: 13 archivos nuevos autorizados, 2526 inserciones, 0 modificaciones a archivos existentes; sin migraciones, sin `internal/di`/`deploy`/`deployer`/`cmd`, contratos frozen intactos. Tests: gate enfocado `go test ./sqx/adapters/registry-postgres/ -run 'TestListForgeCampaigns|TestListStageExecutionsByFlowRun|TestListParticipations|TestStrategyProvenanceReads'` PASS (sqlmock + persistencia embedded-postgres aislado, fixtures sintéticas etiquetadas); `go test ./sqx/core/forge/... ./sqx/core/capabilities/...` PASS; `-race` PASS en los tres paquetes; `go vet` PASS; `gofmt` OK; `git diff --check` OK. NOT_RUN: `go build ./sqx/...` completo falló sólo en `sqx/tools` (mains duplicados preexistentes al baseline, fuera de scope); suite completa de registry-postgres no corrida (timeout conocido preexistente, el gate es el subset enfocado); certification física/CLI (T5+) no aplica a esta sesión. Dependencia técnica registrada: `InspectService` define port local `MagicAllocationReader` (consumidor) satisfecho estructuralmente por `ControlPlane.LoadMagicAllocation`; namespace magic se recibe por wiring (`MagicRegistryNamespaceLive`). Sin certificación física: ningún gate T2.11/T2.12/T2.13 ni golden marcado. Siguiente paso: revisión manager del handoff; luego T1/T5/T6/T7 según asignación.
 - **2026-09-13 — TOP planificación completa.** Recon source read-only @ `b57bfb2`: read models existentes sin callers (`forge.Service`, `LoadForgeCampaignResult`), cero HTTP/API, tools informales; authorities mapeadas (PG 19 tablas sqx, Mongo 9 colecciones, MinIO, Temporal cols, etcd). SPEC frozen [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]: CLI JSON + release matrix declarativa + funnel proyección pura; `DATABASE MIGRATION: NONE`. Tareas F05I-T1…T7, allowed files y matriz de tests congelados. NORMAL pendiente autorización manager.
 
 ## 🧭 Decisiones
