@@ -18,10 +18,10 @@ agent_model: unknown
 model_source: unknown
 task_type: coding
 task_complexity: medium
-outcome: success
-verification: full_suite_and_remote_build
+outcome: partial
+verification: full_suite_remote_build_started
 evaluator: agent
-user_rework: unknown
+user_rework: required
 source_session:
 load_policy: manual
 indexable: false
@@ -37,13 +37,13 @@ tags:
 
 - **Objetivo:** Instrumentar de punta a punta la inactivación de componentes en la versión de prueba con grant ACME `deployer`, para identificar el gate exacto que bloquea una operación.
 - **Alcance atribuible a esta combinación superficie×modelo:** Se agregaron logs estructurados y seguros desde el controller hasta autorización, ownership, precondiciones, lock y publicación; se publicó el cambio y se generó una nueva versión Fury.
-- **Artefactos afectados:** Repo `fury_rio-playmaker`, branch `feature/auth-deployer-mock`, commit `6c91d67d0`; controller de inactivación, `AcmeClientDeployerMock`, autorizador común, servicio de inactivación y `AuthorizationUtils`.
+- **Artefactos afectados:** Repo `fury_rio-playmaker`, branch `feature/auth-deployer-mock`, commits `6c91d67d0` y `8791066d4`; controller de inactivación, `AcmeClientDeployerMock`, configuración `test3`, autorizador común, servicio de inactivación y `AuthorizationUtils`.
 
 ## Evidencia
 
-- **Validaciones ejecutadas:** Suite dirigida; `git diff --check`; `./gradlew clean test jacocoTestReport --no-daemon`; build remoto Fury `1685`.
-- **Resultado observable:** Suite completa local verde con dos skips preexistentes; versión `0.0.3-auth-deployer-logs` terminada exitosamente sobre commit `6c91d67d0`.
-- **Limitaciones de la evidencia:** No se desplegó la versión ni se reprodujo la inactivación desde el frontend; el diagnóstico final depende de observar los nuevos eventos en `test4`.
+- **Validaciones ejecutadas:** Suite dirigida; `git diff --check`; dos ejecuciones de `./gradlew clean test jacocoTestReport --no-daemon`; build remoto Fury `1685` exitoso y build `1687` iniciado.
+- **Resultado observable:** Suite completa local verde con dos skips preexistentes; tras feedback del usuario se detectó que el target real era `test3`, se habilitó allí el mock y se creó `0.0.4-auth-test3-logs` sobre `8791066d4`.
+- **Limitaciones de la evidencia:** No se desplegó la versión ni se reprodujo la inactivación desde el frontend; el monitoreo de build `1687` se interrumpió porque expiró el token local de Zero Trust.
 
 ## Evaluación
 
@@ -57,6 +57,6 @@ tags:
 
 ## Resultado
 
-- **Outcome:** success
-- **Rework posterior:** unknown
+- **Outcome:** partial
+- **Rework posterior:** required; la primera instrumentación asumió `test4`, pero el usuario estaba validando en `test3` con otra versión.
 - **Aprendizaje para comparar herramientas:** Una taxonomía única de eventos permite separar rápidamente la activación del mock, el match de scope ACME y los bloqueos posteriores de reglas de negocio sin exponer username, token ni payloads de grants.
