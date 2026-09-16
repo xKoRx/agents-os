@@ -24,7 +24,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-12"
-updated: "2026-09-13"
+updated: "2026-09-16"
 cssclasses:
   - wide
 ---
@@ -69,7 +69,7 @@ Dejar la foundation analítica canónica lista: paths nuevos para Operation/Scop
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 @ `dd1f2da9` | IMPLEMENTATION READY FOR INDEPENDENT VERIFIER @ `baa2e305` · no verifier · no merge |
+| xKoRx/echo | `feature/e05-analytics-convergence-a0` | `a99f9a63354bbe72219d1e590bb93757ed08e45e` + master `92d0ec2e` reconciliado | [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] §§4–8 FR-2/FR-3 | `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 | RECONCILED @ `30209342` · READY FOR INDEPENDENT VERIFIER #4 · no verifier · no merge a master |
 
 ## 🗺️ Source map (baseline `a99f9a63` + PG/Hasura)
 
@@ -180,6 +180,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-16 — Reconciliación post S0 + E-02 (`E05_RECONCILED_READY_FOR_INDEPENDENT_VERIFIER_4`):** preflight verificado (HEAD `3bc5dca9` == origin, worktree limpio, merge-base `a99f9a6`, divergencia 23/16, E-02 `f6e6af1b` ancestro de master `92d0ec2e`); merge conservador `bd568426` con único conflicto `specs/SPECS.md` (ambas filas E-02+E-05 preservadas, sin duplicados); delta `v3/sdk/contracts/**` y 062 vacíos, orden 061→062→063 aplicado estricto en PG 17.11 descartable; gates sin caché PASS (contracts S0, analytics, lab-worker, gateway/internal, 120 tests físicos postgres, SOURCE E-04, race/vet, coverage 95.3%); hallazgo E05-REC-001 (Hasura rechaza rol `admin` reservado en `canonical_analytics.yaml`) corregido mecánicamente a `readonly`; AC-21 PASS físico en fixture Hasura v2.38 + PG 17 descartables (SELECT GraphQL del MetricSet insertado por el writer, mutations "no mutations exist"); FAILs preexistentes reportados sin corrección (gateway automation, scratch DSN hardcodeado, journalctl sin go.sum — todos bit-idénticos a master); fix+evidencia `30209342`, push fast-forward verificado. Interlock de integración vigente (sin merge a master, sin deploy, sin capital). Pendiente verifier #4.
 
 - **2026-09-14 — Access certification delta:** PG17 disposable mechanism `PASS` para gate físico (E-05 063 no se aplicó); source/Git `PASS` por lectura de master `7e628bf5`, feature `3bc5dca9`, branches/diffs/files; Hasura T19 `BLOCKED` por ausencia de MCP/CLI metadata/data; BWC `BLOCKED/PARTIAL` porque MT5 tiene filesystem/operator pero no terminal/demo account/pipe activos. E-05 no se modifica, reconcilia ni cierra. Evidencia durable: [[Echo — Access & Physical Capability Matrix]].
 - **2026-09-13** — Controlled integration del erratum S0 V3-006 completada por el Manager: `origin/master = 7e628bf5fcadd92dc5398663d9b99a239a95ef7a` (FF desde `a99f9a63`), `S0_ERRATUM_INTEGRATED`. V3-006 `AUTHORITY_CONFLICT` resuelto en master. E-05 no fue tocado: sigue en `3bc5dca9` con estado `WAITING_E05_RECONCILIATION` (reconcile de la feature contra el nuevo master + Full Verifier #4 pendientes; interlock 063/062 vigente).
