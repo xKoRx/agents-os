@@ -28,6 +28,17 @@ recertificación viewer echo-runtime-prod PASS end-to-end desde Daedalus; detall
 
 Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary viewer SSH no aplicado; credenciales upstream expuestas por `export_metadata`) y varias superficies con verbos no demostrables o no ejercidos por diseño. No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
 
+## Remediation run 2026-09-16 (c) — GAP-ECHO-010 REPAIRED_AND_CERTIFIED
+
+Ejecutada por Ariadna (Hermes) vía management path `mcps-ops` + certificación consumer desde Daedalus. Causa raíz **PROVEN** (detalle completo en change_log `2026-09-16-gap-echo-010-shared-stdio-child-repaired`):
+
+- **Causa:** `mcp-proxy` 6.7.16 en las imágenes http-wrapper spawnea UN hijo stdio compartido y multiplexa todas las sesiones HTTP sobre ese `Client`. Si el hijo muere, no hay respawn: `initialize` sigue respondiendo 200+sid (metadata cacheada) mientras todo `tools/*` devuelve `-32603 Not connected` hasta `docker restart`. Mapeo: `-32001`=sid inexistente/reapado; `-32000`=sin header sid; `202` sin sid = notificaciones id-less, no initialize requests. `ssh-mcp` (pool-64) y `flink-mcp` (SDK Java, servlet propio) **no comparten** esta causa.
+- **Fix:** patcher determinista `fix-shared-child.mjs` en los build trees (`/opt/mcp/hasura/http-wrapper/`, `/opt/mcp/hasura/build-prod-ro/`) aplicado al bundle del CLI; respawnea el upstream en el próximo `createServer`. Imágenes nuevas con rollback intacto: `local/hasura-mcp-http:1.0.0-9ba59f2-mcpproxy6.7.16-g010fix` (dev) y `local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-h1fix-mcpproxy6.7.16-g010fix` (prod-ro). Containers recreados con mounts/env/red/policy idénticos.
+- **Verificación del fix:** kill del hijo ⇒ sesión vieja `-32603` (esperado) ⇒ initialize fresco 200+sid ⇒ calls OK sin restart (dev y prod-ro).
+- **Certificación:** server-side dev 50/50 y prod-ro 30/30 ciclos `initialize→tools/list→tools/call→DELETE` PASS; consumer Daedalus dev 50/50 (`tools=9`) y prod-ro 30/30 (`tools=3`) PASS ⇒ `CONSUMER_DAEDALUS_PASS`, `DEVELOPER_UNBLOCKED: NOT_PROVEN` (sin agente Echo/Forge identificable como afectado hoy).
+- **Regresión:** 401 unauth en 3001–3009; superficie DEV 9 tools intacta; PROD-RO exactamente 3 tools post-H1 (`export_metadata` ausente); H2 `POLICY_DENIED` intacto; cero drift en el resto del plane.
+- **Veredicto:** `REPAIRED_AND_CERTIFIED`. Deuda residual: flink (Java SDK) y ssh-mcp (pool-64) requieren diagnóstico propio si muestran síntomas; fix a nivel bundle — evaluación upstream de mcp-proxy diferida.
+
 ## Remediation run 2026-09-16 (b) — E-02 CLOSED con runtime topology owner FROZEN
 
 Continuación de la misma fecha: AC-11/AC-12/AC-01 + verifier independiente **PASS** → `E02 CLOSED` (software). **Autoridad arquitectónica owner (FROZEN, aplica a toda certificación futura):**
