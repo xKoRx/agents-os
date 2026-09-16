@@ -57,6 +57,9 @@ Contexto completo, evidencia, oportunidades futuras y restricciones: [[Polymarke
 - SPEC funcional/técnica: pendientes antes de implementar código.
 - Echo/Kafka/Flink quedan fuera del MVP.
 - Existe una cola post-MVP de estrategias no-arbitrage para explorar sólo después de cerrar/estabilizar F6.
+- Arquitectura frozen: **modular monolith first**; un motor central compartido y un módulo/servicio lógico por estrategia dentro del mismo deployable.
+- Topología inicial frozen: **una sola máquina grande con holgura**, evitando ruido de red/distribución mientras se valida edge.
+- El objetivo de plataforma posterior al MVP es reducir `TIME_TO_VALIDATED_HYPOTHESIS`: llevar nuevas hipótesis desde definición falsable hasta detector/replay/shadow con el mínimo trabajo específico.
 
 ## 🧱 Entrega de desarrollo
 
@@ -66,26 +69,115 @@ Contexto completo, evidencia, oportunidades futuras y restricciones: [[Polymarke
 
 ## 🧩 Arquitectura MVP frozen
 
-Mantener cuatro responsabilidades lógicas; pueden vivir en pocos procesos/binarios al principio:
+### Decisión principal — modular monolith first
+
+La primera implementación será **un monolito modular, un solo deployable y preferentemente un solo proceso para el hot path**. Las estrategias tienen boundaries explícitos en código, pero **no son microservicios** ni requieren llamadas de red entre sí.
 
 ```text
-Polymarket APIs / WS
-        ↓
-market-data + canonical books
-        ↓
-strategy solvers
-   ├── sports-combinatorial
-   └── negrisk
-        ↓
-execution feasibility
-(depth + fees + slippage + lifetime)
-        ↓
-shadow / allocator / local risk
-        ↓
-real execution (fase tiny-live)
+                         POLYMARKET ENGINE
+                    modular monolith / 1 host
+                               │
+        ┌──────────────────────┼──────────────────────┐
+        │                      │                      │
+        ▼                      ▼                      ▼
+  market-data            shared engine          observability
+  discovery              + hypothesis lab       + persistence
+  books/WS                    │
+  recorder/replay             │
+                              ▼
+                    strategy modules/services
+                    ├── sports-combinatorial
+                    ├── negrisk
+                    ├── weather            [F7+]
+                    ├── maker/rewards      [F7+]
+                    ├── favorite-bias      [F7+]
+                    └── future hypotheses  [F7+]
+                              │
+                              ▼
+                    common feasibility/risk
+                              │
+                ┌─────────────┼─────────────┐
+                ▼             ▼             ▼
+             screener       shadow        live
 ```
 
-### Boundary
+**“Servicio por estrategia” significa inicialmente un componente lógico interno**, con contrato propio, tests y estado identificable. Sólo se extrae a otro proceso/host si aparece evidencia material de que lo exige performance, aislamiento de fallos, recursos especializados o operación independiente.
+
+### Motor central compartido
+
+Debe absorber todo lo que razonablemente comparten las hipótesis para que agregar una nueva estrategia sea barato:
+
+- market/event discovery;
+- adapters Gamma/CLOB/WS;
+- local order books + snapshot/recovery/staleness;
+- canonical Event/Market/Outcome/Token model;
+- raw recorder + normalized recorder;
+- deterministic replay;
+- fee/rebate/reward inputs dinámicos;
+- full-depth/VWAP calculations;
+- sizing primitives;
+- bankroll/exposure accounting;
+- local risk + kill switch;
+- execution lifecycle/reconciliation;
+- timestamps y latency instrumentation;
+- common opportunity/result schema;
+- experiment metadata;
+- shadow accounting;
+- metrics/journal/datasets;
+- hypothesis registry y comparison scorecards cuando llegue F7+.
+
+### Strategy boundary
+
+Cada estrategia debe implementar sólo lo que la hace distinta, por ejemplo:
+
+```text
+strategy
+  ├── universe / eligibility
+  ├── required external data (si aplica)
+  ├── relationship / fair-value model
+  ├── opportunity detector
+  ├── strategy-specific feasibility
+  └── strategy-specific metrics
+```
+
+Sports y NegRisk son los dos primeros módulos. Weather, Maker/Rewards, Favorite/Longshot, Macro y futuras hipótesis deben poder agregarse reutilizando el mismo recorder, replay, shadow, capital/risk y observabilidad siempre que el dominio lo permita.
+
+### Modes reutilizables
+
+Una estrategia debe poder avanzar sin reescribir el sistema:
+
+```text
+READ_ONLY / SCREEN
+        ↓
+REPLAY
+        ↓
+SHADOW
+        ↓
+TINY_LIVE
+        ↓
+LIVE
+```
+
+La promoción cambia el modo/configuración y los gates, no la arquitectura fundamental de la estrategia.
+
+### Deployment inicial
+
+**Una sola máquina grande con holgura** para el monolito y sus dependencias de runtime necesarias.
+
+Objetivo: mientras se investiga edge, no introducir problemas secundarios de distribución, scheduling, cross-host latency, networking, service discovery o consistencia eventual.
+
+Principios:
+
+- preferir CPU/RAM/NVMe sobrantes antes que optimizar infraestructura demasiado pronto;
+- mantener market-data, books, solver, shadow/live decision path y estado caliente local al mismo host;
+- persistencia/analytics puede trabajar async fuera del hot path, aunque inicialmente viva en la misma máquina;
+- no Kafka/Flink/microservices/k8s para resolver problemas que todavía no existen;
+- instrumentar CPU, RAM, GC, disk I/O, queue depth y latency desde el inicio;
+- dividir procesos/hosts sólo cuando profiling o aislamiento operacional lo justifiquen.
+
+No se fija aún un tamaño exacto de máquina: se elegirá con holgura deliberada en F0/F1 y se medirá antes de optimizar coste.
+
+### Boundary funcional
 
 **Común:**
 - market discovery;
@@ -99,7 +191,7 @@ real execution (fase tiny-live)
 - execution lifecycle;
 - metrics/journal.
 
-**Strategy-specific:**
+**Strategy-specific MVP:**
 - Sports payoff relationships/solver.
 - NegRisk conversion relationships/solver.
 
@@ -112,7 +204,56 @@ real execution (fase tiny-live)
 - UI compleja;
 - HFT/co-location;
 - custom Polygon node;
-- decenas de abstracciones venue-agnostic antes de necesitarlas.
+- decenas de abstracciones venue-agnostic antes de necesitarlas;
+- microservicios por estrategia.
+
+## 🧪 Modelo de Hypothesis Lab
+
+El diseño debe permitir acumular **20–30 hipótesis** y validarlas de forma incremental sin convertir cada experimento en un proyecto nuevo de infraestructura.
+
+Cada hipótesis tendrá como mínimo:
+
+```text
+id
+mechanism / causal thesis
+universe
+required data
+signal / detector
+capital lock
+capacity hypothesis
+latency sensitivity
+competition hypothesis
+supporting evidence
+contrary evidence
+minimum read-only experiment
+GO condition
+NO_GO condition
+status
+parent hypothesis / iteration
+```
+
+Estados objetivo:
+
+```text
+NEW
+→ SCREENING
+→ REPLAY
+→ SHADOW
+→ TINY_LIVE
+→ PROMOTED
+
+cualquier etapa
+→ ITERATING
+→ REJECTED
+```
+
+Las hipótesis que muestren señal pero fallen parcialmente pueden iterar (`HYP-x.y`) sin perder la trazabilidad del experimento original. Una hipótesis sólo se promueve cuando sobrevive costes y condiciones de ejecución; una idea atractiva sin evidencia no gana prioridad por narrativa.
+
+North star de plataforma de research:
+
+`TIME_TO_VALIDATED_HYPOTHESIS`
+
+La plataforma debe hacer que, una vez construido el motor central, el coste marginal de agregar un nuevo detector/estrategia disminuya de forma material.
 
 ## 🪜 Fases hasta MVP
 
@@ -125,11 +266,16 @@ real execution (fase tiny-live)
 - branch/base definidos;
 - SPEC funcional;
 - SPEC técnica;
+- modular monolith y single-host topology declarados en SPEC;
+- contrato mínimo de strategy module/service;
+- modos comunes `screen/replay/shadow/live`;
 - modelo canónico mínimo de Event/Market/Outcome/Token/Book/Opportunity;
 - fuentes oficiales frozen para Gamma/CLOB/fees/NegRisk;
-- contracts de timestamps/decimal precision/staleness/error semantics.
+- contracts de timestamps/decimal precision/staleness/error semantics;
+- instrumentation mínima para CPU/RAM/I/O/latency;
+- sizing inicial de máquina deliberadamente holgado, documentado como baseline y no como capacidad final.
 
-**Gate F0:** implementación puede empezar sin decisiones materiales abiertas.
+**Gate F0:** implementación puede empezar sin decisiones materiales abiertas y sin necesitar diseño distribuido.
 
 ### F1 — Market discovery + live recorder
 
@@ -142,13 +288,15 @@ real execution (fase tiny-live)
 - CLOB WebSocket + snapshots/recovery;
 - timestamp exchange/local receive;
 - persistencia suficiente para replay;
-- detección de gaps/stale feeds/reconnects.
+- detección de gaps/stale feeds/reconnects;
+- medir resource headroom de la máquina y asegurar que la infraestructura no contamine las mediciones de estrategia.
 
 **Gate F1:**
 - books reproducibles y consistentes;
 - no gaps inexplicados en ventanas de prueba;
 - eventos Sports y NegRisk correctamente clasificados;
-- recorder funcionando durante una ventana prolongada sin intervención manual.
+- recorder funcionando durante una ventana prolongada sin intervención manual;
+- sin evidencia de resource starvation que invalide latency/data-quality measurements.
 
 ### F2A — Sports Combinatorial Screener
 
@@ -290,6 +438,8 @@ DETECTED
 
 **Objetivo:** usar la infraestructura ya validada para descubrir y falsar nuevas fuentes de edge, una por una, sin ensanchar el MVP actual.
 
+La cola objetivo inicial será de **20–30 hipótesis**. Los Deep Research, papers, perfiles públicos, datasets, anomalías propias y nuevas capacidades del protocolo alimentan el registry; no se implementan automáticamente.
+
 Orden inicial de exploración:
 
 1. **Weather probabilistic / resolution-source edge** — construir distribución de probabilidad por bucket usando modelos meteorológicos, observación live, error histórico y la fuente exacta de resolución; primero paper/shadow, luego tiny-live si el EV neto se mantiene.
@@ -301,6 +451,8 @@ Orden inicial de exploración:
 7. **Cross-venue** — sólo si capital y complejidad operacional justifican prefondeo y legging multi-venue.
 
 **Regla F7+:** cada idea entra como mini-ciclo `hypothesis → read-only detector → historical/replay → shadow → GO/NO_GO`. No implementar ejecución nueva antes de que el detector demuestre frecuencia, capacidad y edge neto.
+
+**Regla de priorización:** favorecer hipótesis baratas de falsar, compatibles con el capital disponible y que reutilicen alta proporción del motor central. Una hipótesis con gran narrativa pero alto coste de datos/infra puede quedar detrás de otra menos sexy que pueda medirse mañana.
 
 ## 🎚️ Criterios económicos de decisión
 
@@ -329,6 +481,10 @@ Preguntas obligatorias antes de escalar:
 - [ ] Definir nombre de aplicación definitivo #owner/me #type/dev #area/personal
 - [ ] Materializar SPEC funcional F0–F6 #owner/me #type/dev #area/personal
 - [ ] Materializar SPEC técnica MVP #owner/me #type/dev #area/personal
+- [ ] Congelar modular-monolith + single-host topology en las SPECs #owner/me #type/dev #area/personal
+- [ ] Definir contrato mínimo común de strategy module/service #owner/me #type/dev #area/personal
+- [ ] Definir modes comunes screen/replay/shadow/live #owner/me #type/dev #area/personal
+- [ ] Definir baseline de observabilidad de recursos + latency #owner/me #type/dev #area/personal
 - [ ] Congelar fuentes oficiales/API/contracts vigentes #owner/me #type/research #area/personal
 
 ### F1 — Data plane
@@ -336,6 +492,7 @@ Preguntas obligatorias antes de escalar:
 - [ ] Implementar CLOB snapshots/WS/local books #owner/me #type/dev #area/personal
 - [ ] Implementar recorder + replay source #owner/me #type/dev #area/personal
 - [ ] Certificar gaps/staleness/timestamps #owner/me #type/dev #area/personal
+- [ ] Certificar headroom de la máquina para que no contamine mediciones #owner/me #type/dev #area/personal
 
 ### F2 — Screeners paralelos
 - [ ] Sports: modelar evento + payoff matrix #owner/me #type/dev #area/personal
@@ -360,6 +517,7 @@ Preguntas obligatorias antes de escalar:
 - [ ] Certificar MVP y decidir scale / Echo integration / close #owner/me #type/research #area/personal
 
 ### F7+ — Research backlog, ejecutar después del MVP
+- [ ] Crear hypothesis registry durable y cargar 20–30 hipótesis priorizadas #owner/me #type/research #area/personal
 - [ ] Weather probabilistic + resolution-source detector/shadow #owner/me #type/research #area/personal
 - [ ] Toxicity-aware maker/rewards/rebates detector/shadow #owner/me #type/research #area/personal
 - [ ] Favorite/longshot bias replication + net execution study #owner/me #type/research #area/personal
@@ -370,6 +528,7 @@ Preguntas obligatorias antes de escalar:
 
 - **2026-09-15** — Proyecto creado desde investigación Polymarket. Se decide KISS: app standalone, dos solvers paralelos (Sports Combinatorial + NegRisk), screeners primero, shadow después, tiny-live US$300 al final. Echo queda explícitamente fuera hasta demostrar valor.
 - **2026-09-16** — Se incorpora una cola post-MVP de discovery: Weather, toxicity-aware maker/rewards, Favorite/Longshot Bias, macro probabilistic portfolios y resolution-source/information-latency. No cambia scope ni gates F0–F6.
+- **2026-09-16** — Se congela arquitectura `modular monolith first`: motor central reusable + strategy modules/services internos; un solo deployable/host grande al inicio. El objetivo posterior es mantener 20–30 hipótesis y minimizar `TIME_TO_VALIDATED_HYPOTHESIS`. Deep Research alimentará el registry, no el backlog de implementación directamente.
 
 ## 🧭 Decisiones
 
@@ -383,6 +542,11 @@ Preguntas obligatorias antes de escalar:
 - `D-008` — MVP puede cerrar con una estrategia `NO_GO`; éxito del producto significa poder medir y operar correctamente las que demuestren edge, no obligar a ambas a ser rentables.
 - `D-009` — La integración con Echo sólo se evalúa después de F6.
 - `D-010` — Las estrategias no-arbitrage viven en F7+ y no expanden el MVP actual; se validan una por una con detector + shadow antes de cualquier ejecución.
+- `D-011` — Arquitectura inicial = modular monolith; un deployable y hot path local. Los strategy services son boundaries de código, no microservicios.
+- `D-012` — Deployment inicial = una máquina grande con headroom deliberado; primero eliminar ruido operacional, después optimizar coste/partición con profiling.
+- `D-013` — No Kafka/Flink/k8s/service mesh para la primera implementación salvo evidencia material que obligue a introducirlos.
+- `D-014` — North star de la plataforma de research post-MVP = `TIME_TO_VALIDATED_HYPOTHESIS`.
+- `D-015` — La cola objetivo es 20–30 hipótesis; Deep Research y otras fuentes alimentan el registry, luego se priorizan y falsan una por una.
 
 ## 🔗 Docs / Links
 
@@ -411,9 +575,12 @@ Preguntas obligatorias antes de escalar:
 ### Motivos / principios
 
 - KISS/YAGNI: demostrar plata antes de arquitectura grande.
+- Modular monolith before distributed system.
+- Un motor central reusable; una estrategia nueva debe aportar mayormente lógica específica, no reconstruir infraestructura.
 - Un solo motor, múltiples solvers/strategies sólo cuando cada una justifique existir.
 - Net executable edge > señal teórica.
 - Capital velocity importa especialmente con bankroll pequeño.
 - El mercado puede ser el limitante antes que el bankroll.
 - Medir p95/p99, no enamorarse de la mediana.
 - El research debe intentar falsar ideas, no sólo encontrar ejemplos ganadores.
+- Optimizar primero `TIME_TO_VALIDATED_HYPOTHESIS`; optimizar infraestructura después de medir.
