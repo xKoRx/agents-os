@@ -138,7 +138,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-02 Control safety auth and journal recovery
 
-- **ID / status / size:** E-02 · IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW (focused correction v1.0.2; PHYSICAL_PARTIAL) · MEDIUM
+- **ID / status / size:** E-02 · VERIFICATION_PASS — READY_FOR_INTEGRATION (producto `f6e6af1b`, evidencia `bbceecdf`; no CLOSED) · MEDIUM
 - **Objective:** Cerrar exposición de control (admin secret fuera del cliente; auth proxy+roles) y journal ACK/recovery (hechos no se pierden ni se doble-efectúan). H1 del Reality Check; D-04/D-01.
 - **Capability unlocked:** el owner puede confiar que una falla se ve y se recupera; control no queda abierto en red.
 - **Product value:** TIME_TO_USABLE sin capturar meses sobre un journal que traga errores.
@@ -155,7 +155,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Unlocks:** E-06 captura confiable; E-13 ops.
 - **Accepted debt:** journal mínimo no es ledger institucional.
 - **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
-- **Planning vivo:** SPEC/PLAN/TASKS/VERIFICATION v1.0.2 en `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/` @ `f7ddea18` ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): auth = actores READ/CONFIG/CONTROL/webhook con Bearer presentado y hook Hasura por JSON de session variables (A03-A, sin BFF, sin runtime-config de tokens); unicidad de tokens fail-closed; journal = transientes al retry del ingress journal + cuarentena 062 + `v3/tools/journalctl` PG→PG (A01-A); CommandID UUIDv5 diferido a E-08 (fan-out Kafka paralelo); migración única additive; PHYSICAL_PARTIAL por infraestructura ausente.
+- **Planning vivo:** SPEC/PLAN/TASKS/VERIFICATION v1.0.2 en `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/` producto `f6e6af1b` evidencia `bbceecdf` ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): auth = actores READ/CONFIG/CONTROL/webhook con Bearer presentado y hook Hasura por JSON de session variables; unicidad de tokens fail-closed; journal = transientes al retry del ingress journal + cuarentena 062 + `v3/tools/journalctl` PG→PG; CommandID UUIDv5 diferido a E-08; **VERIFICATION_PASS — READY_FOR_INTEGRATION**; no CLOSED.
 
 ### E-03 Identity and BWC foundation E0
 
@@ -382,7 +382,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
-- **2026-09-14 — Access & Physical Capability Certification:** [[Echo — Access & Physical Capability Matrix]] registra probes físicos de SSH, PostgreSQL, Docker DEV PG17.11, Hasura, Kafka reachability, Flink REST/checkpoints, ARGUS observability, GitHub y MT4/MT5. Resultado global `ACCESS_CERTIFICATION_BLOCKED`: el carril inmediato E-02 carece de Hasura DEV data/metadata, Kafka producer/consumer, Flink recovery control y target físico Gateway/Core/Bridge. No se modificó Echo, E-05, master, despliegue ni trading.
+- **2026-09-16 — E-02 independent verification PASS:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] `VERIFICATION_PASS — READY_FOR_INTEGRATION` @ producto `f6e6af1b` / evidencia `bbceecdf`. CLOSED contradicho y corregido (no CLOSED pre-integración). Master `7e628bf5` intacto. Puente E-02 permanece Review.
 - **2026-09-13** — S0 erratum V3-006 controlled integration ([[Echo — E-01 Canonical SDK Foundation S0]]): `S0_ERRATUM_INTEGRATED`, `origin/master = 7e628bf5fcadd92dc5398663d9b99a239a95ef7a` (FF puro desde `a99f9a63`, push normal sin force). E-05 V3-006 authority blocker resuelto; E-05 sigue en `3bc5dca9` como `WAITING_E05_RECONCILIATION`. No tag, no release; interlock 063/062 intacto.
 - **2026-09-13** — E-05 FULL RE-VERIFICATION #2 independiente ([[Echo — E-05 Analytics Convergence A0]]): target `d40153f38101febf381b2a3fb9abf6f6834ebdc0` exacto; pre-flight Git y source scope PASS; suites Go relevantes PASS; `DecimalString` falla un half-tie negativo con redondeo sign-inverted. `VERIFICATION_FAIL`; gates PG/Hasura/BWC/coverage posteriores no ejecutados por stop fail-closed; no merge/deploy; interlock 062 de E-02 vigente.
 - **2026-09-12** — E-05 NORMAL T01–T21 IMPLEMENTATION PASS ([[Echo — E-05 Analytics Convergence A0]]): `IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW` @ `69eec0b9` en `origin/feature/e05-analytics-convergence-a0` (9 commits sobre planning `dd1f2da9`; master intacto `a99f9a63`). Migración 063 write-once + stores + `v3/sdk/analytics` (calculator frozen fail-closed) + writer + `lab-canonical-a0` + Hasura SELECT; PG REAL 17.11 descartable PASS; BWC Lab PASS; coverage 95.6%. No verifier; no merge; interlock: 063 sin merge/deploy hasta 062 de E-02 en `master`. Puente E-05 permanece Review.
