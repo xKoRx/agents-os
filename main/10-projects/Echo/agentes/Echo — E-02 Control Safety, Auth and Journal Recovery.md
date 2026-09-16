@@ -24,7 +24,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-12"
-updated: "2026-09-15"
+updated: "2026-09-16"
 cssclasses:
   - wide
 ---
@@ -46,7 +46,8 @@ Cerrar los dos P0 actuales con evidencia física: (A) control autenticado fail-c
 
 ## 📊 Estado actual
 
-- **IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW — FOCUSED CORRECTION (2026-09-12).** Commit final `f7ddea18` en `origin/feature/e02-control-safety-journal-recovery`, master intacto. Hasura auth hook corregido a JSON de session variables; `AuthConfig` rechaza tokens duplicados entre READ/CONFIG/CONTROL/webhook con 503 fail-closed; 17 paths históricos autorizados fueron limpiados sin imprimir valores. Gateway `-race`, front tests/build/bundle scan, SOURCE y regresión E-04 relevantes PASS; PG/Kafka/Flink/Hasura físico `PHYSICAL_PARTIAL`. No verifier, no E-02 CLOSED.
+- **E02_IMPLEMENTATION_READY_FOR_INDEPENDENT_VERIFICATION (2026-09-16, sesión 3 recovery).** HEAD `f6e6af1b` (merge S0 `--no-ff` sobre `f7ddea18`; master `7e628bf5` ahora ancestro, pusheado sólo a feature). Clasificador journal adversarial sin defecto material; gates locales PASS (core/gateway/sdk-postgres `-race`, journalctl, bridge, vet); PG17 descartable 062 UP/DOWN/UP PASS; delta 70 archivos ⊆ allowed files; física AC-01/AC-11/AC-12 PASS previa @ `f7ddea18` (delta E-02 byte-idéntico tras merge). Conflicto con E-05: sólo `specs/SPECS.md` (trivial). Hallazgo preexistente fuera de scope: paquete `gateway/internal/automation` roto en baseline/master (tests desactualizados vs firma del Executor). Pendiente de closure: verifier independiente sobre `f6e6af1b` + CONTROLLED INTEGRATION (manager); AC-18 rotación prod (ops owner). No se declara CLOSED.
+- **Historial:** IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW — FOCUSED CORRECTION (2026-09-12). Commit `f7ddea18` en `origin/feature/e02-control-safety-journal-recovery`, master intacto. Hasura auth hook corregido a JSON de session variables; `AuthConfig` rechaza tokens duplicados entre READ/CONFIG/CONTROL/webhook con 503 fail-closed; 17 paths históricos autorizados fueron limpiados sin imprimir valores. Gateway `-race`, front tests/build/bundle scan, SOURCE y regresión E-04 relevantes PASS; PG/Kafka/Flink/Hasura físico `PHYSICAL_PARTIAL`.
 - **Baseline verificado:** `origin/master` = `a99f9a63354bbe72219d1e590bb93757ed08e45e` (E-04 integrado), igual al esperado al inicio de la sesión. E-04 T21/AC-37 POST-INTEGRATION **no** bloquea E-02; F-04 y E-05 tampoco. E-02 no depende de código nuevo de otro carril.
 - **Source revalidado en `a99f9a63`** (no sólo heredado del Reality Check): gateway sin auth en control/webhooks tras CORS `*`; `close-positions` publica CloseCommands físicos sin credencial; admin secret en `v3/front/.env*` + `client.js` + `v3/hasura/config.yaml` (literal); metadata Hasura sólo con rol `admin`; `TradeJournalFn.Invoke` retorna `nil` siempre (fallos de persistencia y conflictos absorbidos); sin cuarentena/DLQ/replay tools; Flink AT_LEAST_ONCE 60s + restart fixed-delay 5×10s (el retry runtime existe y está sin usar). Fan-out Kafka: journal **independiente** del planner/close_handler (consumer groups distintos; `TradeJournalFn` sink). `CommandID` UUIDv7 observado en fábricas de dominio llamadas por MM/close_handler: **no es defecto D-01 de E-02**. Detalle: SPEC §3.
 - **Autoridades:** Reality Check D-01/D-04 (certificación requerida y alternativas A01-A/A03-A), master §14, evidencia R02/R03/R06/R09. Ningún AUTHORITY_CONFLICT encontrado: el defecto observado en source coincide con el frozen input.
@@ -163,7 +164,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - [[Echo + Echo Forge — Arquitectura de producto, gaps y roadmap de cierre 2026]] (§14)
 - [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]
 - SPEC: `xKoRx/echo` `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` (PLAN/TASKS/VERIFICATION en la misma carpeta)
-- Branch: `feature/e02-control-safety-journal-recovery` @ `f7ddea18` (v1.0.2 focused source-review correction; parent histórico `ac7b4e14`)
+- Branch: `feature/e02-control-safety-journal-recovery` @ `f6e6af1b` (merge S0 sobre v1.0.2 `f7ddea18`; contiene master `7e628bf5`; parent histórico `ac7b4e14`)
 
 ## 💡 Ideas
 
