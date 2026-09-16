@@ -46,7 +46,7 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 ## 📊 Estado actual
 
-- **E06_PLANNING_READY_FOR_MANAGER_REVIEW (2026-09-16, docs-only, v1.0.0).** SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` sobre `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. Worktree dedicado de esa branch (no reutilizar checkout de otra fase). **0 líneas en `v3/**`.** Master intacto. NORMAL no lanzado. No E-07.
+- **E06_PLANNING_READY_FOR_MANAGER_REVIEW (2026-09-16, docs-only, v1.0.0).** SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` sobre `feature/e06-reference-enrollment-binding` @ `9989f399fd992dc315f2bfe3279bfd862592ccf1` desde `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. **0 líneas en `v3/**`.** Master intacto. NORMAL no lanzado. No E-07. No PR.
 - **RuntimeBinding key:** PK `binding_id` UUID; pin S0 `binding_ref = H("echo-reference-binding.v1",[ns,binding_id,version_ref,account_registration_ref,broker_server_ref,platform,magic_decimal,observation_class])`.
 - **Lifecycle:** PREPARED → (ACK + matching read-back) → OBSERVING → DRAINING → CLOSED; staleness → SUSPENDED + UNKNOWN. PREPARED/ACK solos ≠ OBSERVING.
 - **Read-back authority:** Bridge emite `REFERENCE_READBACK.v1`; Gateway persiste y transiciona. Operator ACK es CONFIG, no suficiente.
@@ -61,7 +61,7 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.0.0 | E06_PLANNING_READY_FOR_MANAGER_REVIEW · 0 source · NORMAL no lanzado |
+| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.0.0 @ `9989f399` | E06_PLANNING_READY_FOR_MANAGER_REVIEW · 0 source · NORMAL no lanzado |
 
 ## 🗺️ Source map (baseline `5dd998f1` + PG/Hasura)
 
@@ -186,7 +186,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-16 (TOP planning one-shot)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.0. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. O1/O3 applied. 064 reservada. 0 source. Estado `E06_PLANNING_READY_FOR_MANAGER_REVIEW`. Puente padre → Review.
+- **2026-09-16 (TOP planning one-shot)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `9989f399`. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. O1/O3 applied. 064 reservada. 0 source. Estado `E06_PLANNING_READY_FOR_MANAGER_REVIEW`. Puente padre → Review.
 
 ## 🧭 Decisiones (ejecución, no semántica nueva)
 
