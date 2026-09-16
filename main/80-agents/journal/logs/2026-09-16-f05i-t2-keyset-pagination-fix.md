@@ -49,7 +49,7 @@ tags:
 
 ## Validación
 
-- Hechos verificados contra el repo real (SHA, ascendencia, resultados de tests) al momento de la edición. Validación de retrieval pendiente al cierre (query enfocada Graphify).
+- Hechos verificados contra el repo real (SHA, ascendencia, resultados de tests) al momento de la edición. Retrieval Graphify NOT_RUN: el CLI (`graphify-personal`/`graphify-obsidian`) no está disponible en esta máquina; las rutas de journal están excluidas del índice y la nota de proyecto se resuelve por título canónico. Pendiente validar con query enfocada en la próxima sesión con Graphify instalado.
 
 ## Compartibilidad
 
