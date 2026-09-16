@@ -221,7 +221,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ### Backlog de ideas
 
-- Apply 063 a Aranea DEV es deuda ops post-verifier, no gate de CONTRACT; el apply/deploy real espera 062 de E-02 en `master`.
+- Apply 063 a Aranea DEV es deuda ops post-verifier, no gate de CONTRACT; 062 ya está en master; apply/deploy 063 espera controlled integration, no esta sesión.
 
 ### Motivos / principios
 
