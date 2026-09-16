@@ -1,5 +1,11 @@
 # Runbooks resource log
 
+## [2026-09-16] create | Hermes Linux update recovery
+
+- Se creó `hermes-linux-update-recovery` como runbook canónico de operación mecánica para updates/recovery de Hermes en Linux con perfiles, `systemd --user`, dashboard/serve persistentes y reconciliación de `fleet_restart_pending`/receipts.
+- El runbook incorpora la evidencia certificada de 2026-09-16: checkout fresco v0.21.3/`8c8003f8`, restart explícito de dashboard y gateway Ariadna, detección de gateway default duplicado con el mismo token Telegram, deshabilitación del legacy y limpieza respaldada del marker sólo después de `PENDING_RESTART = False`.
+- El criterio agent-facing queda en `hermes-agent-operator`; el runbook no decide cuándo revivir/retirar un gateway ni cuándo un warning del updater vence evidencia funcional.
+
 ## [2026-09-14] fix | Autoridad federada única
 
 - Se retiraron nueve copias residuales de `80-agents/memory/public/runbook/`; las versiones bajo `30-resources/runbooks/` quedan como única autoridad, incluidas las tres que ya habían divergido materialmente.
