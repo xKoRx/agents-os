@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-09-11"
+updated: "2026-09-16"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
@@ -49,6 +49,8 @@ Operar MongoDB de Echo Forge mediante dos capabilities separadas por ambiente. L
 
 El nombre exacto de las databases productiva/development no se infiere aquí si la capability no lo expone; usar el target preconfigurado y observarlo en runtime. Una lectura DEV usa `aranea-mongo-forge-rw` sin necesidad de mutar. No usar PROD RO para verificar una mutación DEV.
 
+Nota I9 (certificación 2026-09-14): RO y RW llegan al **mismo mongod** — la separación PROD/DEV de esta tabla es autoridad MCP (RO/RW), no ambiente físico distinto.
+
 ## Precondiciones
 
 - El target es Aranea, no MELI/corporativo.
@@ -77,7 +79,7 @@ En `daedalus`, los archivos de secret del cliente están bajo `~/.config/aranea/
 
 En host `mcps`, los bearer del proxy Mongo viven bajo `/opt/mcp/mongo-forge/runtime/proxy-secrets/`; documentar paths, jamás contenido. Los proxies observados son `mongo-forge-auth-ro` y `mongo-forge-auth-rw`.
 
-**Estado 2026-09-11:** se confirmó que la ausencia inicial de tools Mongo en el cliente coincidía con ambas env vars `NOT_SET`; luego quedaron `SET` y persistidas en `daedalus`. La certificación funcional end-to-end posterior al restart del cliente queda pendiente de evidencia en esta fuente y no debe inventarse como PASS.
+**Estado vigente (actualizado 2026-09-16):** la certificación funcional end-to-end pendiente de 2026-09-11 quedó CUBIERTA por la access certification run 2026-09-14 ([[ACCESS-CERTIFICATION]]): RO validado con `list-databases`/`list-collections`/`find` sobre datos reales (`wfm_runs`) y negativa `$out/$merge` server-side; RW validado con round-trip completo `create-collection → insert-many → find read-back → drop-collection`. Mongo RO y RW llegan al mismo mongod (instancia única; la separación RO/RW es de autoridad MCP, no de ambiente físico — I9). La nota "pendiente" original se conserva aquí sólo como HISTORICAL.
 
 ## Validación
 
