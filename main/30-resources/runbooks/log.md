@@ -1,5 +1,9 @@
 # Runbooks resource log
 
+## [2026-09-16] update | Índice de runbooks: fila aranea-observability-mcp
+
+- Se añadió a `00-index.md` la fila faltante de `aranea-observability-mcp` (runbook creado y certificado 2026-09-15; índice nunca actualizado). Parte de la reconciliación documental canónica del MCP Access Plane (change log `2026-09-16-mcp-plane-documentation-canonicalization`).
+
 ## [2026-09-16] create | Hermes Linux update recovery
 
 - Se creó `hermes-linux-update-recovery` como runbook canónico de operación mecánica para updates/recovery de Hermes en Linux con perfiles, `systemd --user`, dashboard/serve persistentes y reconciliación de `fleet_restart_pending`/receipts.
