@@ -9,7 +9,7 @@ sources:
   - "[[Echo Forge — F-02 Finalist Model V2 Contract]]"
   - "[[Echo Forge — F-03 SQX Long-Running Contract]]"
   - "[[Echo + Echo Forge — Deferred Certification Backlog]]"
-last_verified: "2026-09-13"
+last_verified: "2026-09-16"
 confidence: verified
 aliases:
   - F-05-I SPEC
@@ -26,7 +26,7 @@ tags:
   - area/echo
   - project/echo-forge
 created: "2026-09-13"
-updated: "2026-09-13"
+updated: "2026-09-16"
 ---
 
 # Echo Forge — F-05-I Release Matrix and Read Surface Contract
