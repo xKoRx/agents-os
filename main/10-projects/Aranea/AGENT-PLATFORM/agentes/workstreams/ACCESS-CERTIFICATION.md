@@ -28,6 +28,20 @@ recertificación viewer echo-runtime-prod PASS end-to-end desde Daedalus; detall
 
 Ninguna superficie obtiene PASS incondicional: hay dos hallazgos HIGH (boundary viewer SSH no aplicado; credenciales upstream expuestas por `export_metadata`) y varias superficies con verbos no demostrables o no ejercidos por diseño. No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
 
+## Remediation run 2026-09-16 — E-02 physical gates + 2º caso del defecto async-202
+
+Ejecutada por Ariadna (Hermes) vía capabilities MCP certificadas + helper SDK consumer único (bearer por stdin, sin argv). Resultado: los tres gates físicos E-02 (Hasura roles/hook, Kafka PublishSync/redelivery, Flink restart/recovery) **PASS** — detalle y verdict en [[Echo — E-02 Control Safety, Auth and Journal Recovery]] y [[Echo — Access & Physical Capability Matrix]].
+
+### GAP-ECHO-010 (nuevo, P1) — proxies nginx-wrapped entran en modo async-202 tras churn de sesiones
+
+**Síntomas observados (reproducidos en 3 proxies: hasura :3006, ssh :3000, flink :3008):** tras decenas de sesiones creadas en pocas horas, el `initialize` responde `HTTP 202 Accepted` **sin `Mcp-Session-Id` en headers y sin body**; todo tool call posterior falla (`-32000 Missing mcp-session-id`, `-32603 Not connected`, `-32001 Session not found`). Clientes stateless que hacen init-per-run quedan bloqueados; el mismo request es 200-sync+sid cuando el proxy está "fresco" y 202-async en modo degradado. La ventana de recuperación natural por idle fue inconstante (60s funcionó una vez, 76s de backoff no otra).
+
+**Workaround certificado (usado 2 veces en hasura, 1 en ssh-mcp):** `docker restart <backend-proxy>` → healthy ~8s → primer init vuelve a 200-sync+sid. No toca config, no toca targets (Echo/Flink/Gateway nunca reiniciados por esto).
+
+**No resuelto (deuda P1):** causa raíz — el backend `mcp-proxy` 6.7.16 que envuelve backends stdio parece conservar sesiones sin cerrarlas (idle-close configurado 30min) y degrade el path sync→async; diagnóstico real pendiente (pool size, leak de sesiones, semántica de streams). Acción durable: instrumentar sesiones activas, añadir close/cleanup de sesión o TTL corto, o fijar modo sync explícito. Mientras el workaround sea restart, TODO consumidor agent-first de este plane debe tratar `202-no-sid` como "proxy degradado → reparar vía restart del proxy backend", no como fallo del target.
+
+**Evidencia del diagnóstico del caso ssh-mcp (2026-09-16 ~02:00Z):** container `Up 5 hours (healthy)`, logs sin líneas "session limit"/pool en 3h, `/status` con `connections: 0` y `sessions=0` — es decir, **NO era el quirk conocido de pool-64-saturado** (sin conexiones activas ni logs de límite); era el mismo modo async-202 sin sid. Registrado como variante del defecto.
+
 ## Remediation run 2026-09-15 — H1/H2 RESOLVED
 
 Ejecutada por Ariadna (Hermes) vía management path nativo `mcps-ops`; certificación consumer desde Daedalus (`daedalus-ops`, bearer por stdin). No se declaró `ACCESS_CERTIFICATION_PASS`: el gap de capability Echo runtime sigue abierto.

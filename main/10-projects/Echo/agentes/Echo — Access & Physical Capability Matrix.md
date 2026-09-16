@@ -107,14 +107,14 @@ Current Echo source/runtime proof no estableció MinIO, Temporal, MongoDB Forge,
 | Gate | Result |
 |---|---|
 | E-02 PG17 062 physical gate | READY: disposable PG17.11 up/down/up applied and verified; no PROD migration |
-| E-02 Hasura DEV roles/hook | BLOCKED: no callable DEV data/metadata surface; direct unauthenticated probes rejected |
-| E-02 Kafka PublishSync/redelivery | BLOCKED: TCP only; no produce/consume/key/header/group probe |
-| E-02 Flink restart/recovery | BLOCKED: REST read/checkpoints PASS; control authority not available/tested |
+| E-02 Hasura DEV roles/hook | **PASS 2026-09-16:** roles `readonly`/`config_operator` (metadata branch `f7ddea18`) aplicados vía `apply_metadata` (107 grants vivos, consistente); probes 13/13 (READ SELECT-only, CONFIG write config-only sin delete, journal/identity inaccesibles, CONTROL/webhook→403 fail-closed, hook JSON sin header, anon/wrong→denied). Hook del Gateway demostrado con fixture compilado @ `f7ddea18`; hook env = activation step de deploy (PLAN §3) |
+| E-02 Kafka PublishSync/redelivery | **PASS 2026-09-16:** fixture `e02cert-gate2-*` DEV `.44`: produce(key+headers+payload)→consume round-trip preservado→re-consume mismo registro offset 0 (sin duplicado lógico)→delete→absent (post-condición) |
+| E-02 Flink restart/recovery | **PASS 2026-09-16 (worker restart):** `StatefulFunctions` `6bfc59ad`: baseline RUNNING/1524 cp/0 exc → restart `statefun-worker` → RUNNING, `restored=1`/1532 → Kafka groups sanos, `echo.core-commands.v1` sin publishes anómalos. Residual: kill -9 del binario core Go queda para AC-12 completo |
 | E-02 Gateway physical | TARGET+CERT 2026-09-15 (GAP-ECHO-004 CLOSED): viewer `echo-runtime-prod` PASS — Gateway RUNNING (`echo-gateway` PID 713), Core RUNNING (`echo-core` PID 110701), `echo-functions` RUNNING, Bridge NOT_DEPLOYED (evidencia, no se levanta); listeners 80/9080/9090/8080/8090; identity `echo-dev@echo` sin sudo; negative `run-command` POLICY_DENIED. Logs productivos vía `aranea-observability-ro`. Verificación SSH directa PASS |
 | E-02 observability | PASS for ARGUS READ; DEV candidate `.45` PARTIAL |
-| E-02 result | `E02_PHYSICAL_CERTIFICATION_BLOCKED` |
+| E-02 result | `E02_PHYSICAL_CERTIFICATION_PASS` — gates 1-3 físicos PASS (2026-09-16); pendientes para DONE: AC-11 outage PG real, AC-12 kill -9 core Go, AC-01 bundle, verifier independiente |
 | E-05 PG17 physical | PASS for disposable PG17 mechanism; E05 063 product migration not executed |
-| E-05 Hasura T19 | BLOCKED: no callable metadata/data authority or CLI |
+| E-05 Hasura T19 | **PARCIALEMENTE RESUELTO 2026-09-16:** la metadata authority DEV existe (`aranea-hasura-dev-admin` aplicó metadata E-02 y la mantuvo consistente); falta sesión `hasura` CLI para aplicar deltas no-MCP |
 | E-05 source/Git | PASS: master/E05 commits, branches, diffs/files read; no write |
 | E-05 BWC environment | BLOCKED/PARTIAL: MT5 filesystem/operator exists, but no running terminal/demo account/pipe |
 | E-05 result | `E05_PHYSICAL_SURFACES_NOT_READY`; exact gaps GAP-ECHO-001 and GAP-ECHO-006 |
