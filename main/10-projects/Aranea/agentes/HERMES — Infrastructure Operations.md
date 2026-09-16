@@ -26,7 +26,7 @@ tags:
   - agent/hermes
   - domain/infrastructure
 created: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-09-16"
 ---
 
 # HERMES — Infrastructure Operations
@@ -203,7 +203,10 @@ Este workstream debe demostrar progresivamente escenarios reales, no sólo acces
 - Workstream creado 2026-09-14.
 - **Nivel actual:** pre-H0 / bootstrap de authority aún no certificado de forma integral.
 - Existen capacidades operativas parciales distribuidas en el homelab, pero no deben asumirse como authority Hermes hasta reconciliarlas y probarlas desde su runtime real.
-- Primer dominio propuesto: **H0 inventory + H1 Backup & Storage**.
+- **Runtime Hermes Linux certificado 2026-09-16:** `v0.21.3 (2026.9.14)` / SHA `8c8003f80b528377d4387b96faa2c00283168d68`; `hermes-dashboard.service` sirve `127.0.0.1:9119` con HTTP 200; `hermes-gateway-ariadna.service` es el gateway vigente y Telegram queda `connected`, `needs_attention=false`.
+- El servicio legacy `hermes-gateway.service` (perfil default) quedó `disabled`: estaba inactivo y compartía el mismo token Telegram que Ariadna, por lo que levantar ambos produciría doble polling.
+- Recovery de update `mixed sys.modules`/`fleet_restart_pending` quedó destilado en [[hermes-linux-update-recovery]] y el criterio de operación del propio runtime Hermes en [[hermes-agent-operator]].
+- Primer dominio propuesto para expansión de autonomía sigue siendo **H0 inventory + H1 Backup & Storage**.
 - [[BACKUP-DR-OWNER-PROJECT]] permanece como autoridad del diseño Backup/DR; este proyecto opera la autonomía alrededor de ese diseño.
 
 ## 🧱 Entrega de desarrollo
@@ -244,6 +247,7 @@ _No aplica como repo único. Este workstream puede cambiar configuración ejecut
 
 ## 📆 Bitácora
 
+- **2026-09-16** — Recovery real del runtime Hermes tras `hermes update`: se demuestra checkout fresco, se reinician dashboard + gateway Ariadna por `systemd --user`, se detecta gateway default legacy con token Telegram duplicado, se deshabilita, se reconcilia `fleet_restart_pending` y se valida versión/SHA + HTTP 200 + Telegram connected. El procedimiento se extrae a skill+runbook federados.
 - **2026-09-14** — Workstream creado. Se fija rollout H0→H6 y se define H0/H1 como primer tramo. Backup/DR existente será reutilizado como primer dominio de autonomía, no duplicado.
 
 ## 🧭 Decisiones
@@ -252,6 +256,7 @@ _No aplica como repo único. Este workstream puede cambiar configuración ejecut
 - **I-D02:** autoridad progresiva por nivel; no root-equivalent global inicial.
 - **I-D03:** storage/backups es el primer dominio operativo por prioridad y porque permite certificar el patrón de seguridad/recovery antes de Proxmox completo.
 - **I-D04:** operadores especializados son boundaries de autoridad; su implementación concreta se difiere hasta ver las interfaces reales.
+- **I-D05:** en este host el gateway operativo es `hermes-gateway-ariadna.service`; `hermes-gateway.service` default permanece disabled mientras comparta identidad Telegram con Ariadna. Updater bookkeeping nunca justifica dos pollers sobre el mismo token.
 
 ## 🔗 Docs / Links
 
@@ -259,6 +264,8 @@ _No aplica como repo único. Este workstream puede cambiar configuración ejecut
 - [[BACKUP-DR-OWNER-PROJECT]] — source of truth de Backup/DR.
 - [[HERMES — Agent Access Operations]] — workstream paralelo del capability plane.
 - [[AGENT-PLATFORM - MCP Access Plane]] — plano que Infrastructure Operations debe poder recuperar sin depender de él.
+- [[hermes-agent-operator]] — skill agent-facing para operar el runtime Hermes cuando Hermes es el target.
+- [[hermes-linux-update-recovery]] — runbook mecánico validado de update/recovery Linux.
 
 ## 💡 Ideas
 
