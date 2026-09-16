@@ -26,7 +26,7 @@ Orden: evidencia runtime/certificación fechada (remediation runs 09-15/09-16, c
 | `10-projects/Aranea/AGENT-PLATFORM/agentes/AGENT-PLATFORM - MCP Access Plane.md` | corregido | Perfiles SSH stale (SQX viewer → operator desde 09-13; viewer boundary post-H2 tool-level); identidades PG RO/RW stale (`mcp_echo_ro`/`mcp_echo_rw` → `mcp_echo_prod_ro`/`mcp_echo_dev_rw`, drift M6 cerrado) con deuda M3 explícita; Hasura 4→3 tools; "nueve capabilities" → diez (observability certificada 09-15; `aranea-jaeger-ro` = DEFERRED/NEEDS_SOURCE_PROOF); incidente ssh 09-13 re-clasificado RESUELTO (pool-64, causa identificada 09-15; diagnóstico async-202 que lo agrupaba con ssh/flink = SUPERSEDED); lista de runbooks sin observability → 8 runbooks; D24 4→3; semántica de `progress: 85` aclarada (se conserva conservadoramente, sin recálculo objetivo); bitácora 2026-09-16b; updated |
 | `10-projects/Aranea/AGENT-PLATFORM/agentes/AGENT-PLATFORM - MCP Access Plane - Architecture.md` | corregido | Superficie PROD "exactamente 4" + `export_metadata` → 3 tools post-H1; artefactos de imagen → `-h1fix`/`-g010fix` + rollback; updated |
 | `10-projects/Aranea/AGENT-PLATFORM/agentes/workstreams/HASURA-MCP.md` | corregido | 2 menciones "4 tools" → 3 tools vigentes con etiqueta HISTORICAL; updated implícito vía contenido (nota status: done, histórica) |
-| `10-projects/Aranea/AGENT-PLATFORM/agentes/workstreams/ACCESS-CERTIFICATION.md | etiquetado | Fila Hasura PROD-RO de la matriz del run 09-14: 4 tools marcado HISTORICAL pre-H1, veredicto "H1 RESOLVED 2026-09-15"; sin más cambios (la nota ya estaba vigente) |
+| `10-projects/Aranea/AGENT-PLATFORM/agentes/workstreams/ACCESS-CERTIFICATION.md` | etiquetado | Fila Hasura PROD-RO de la matriz del run 09-14: 4 tools marcado HISTORICAL pre-H1, veredicto "H1 RESOLVED 2026-09-15"; sin más cambios (la nota ya estaba vigente) |
 | `10-projects/Aranea/agentes/HERMES — Agent Access Operations.md` | corregido | A1.1–A1.4 marcados [x] con evidencia GAP-ECHO-010 (golden repair ejecutado 09-16); Estado actual: A0 gate demostrado, A1 gate demostrado, A2 precedentes sin gate formal, A3–A5 abiertos; boundary precisado (config/capabilities/certificación, no desarrollo de aplicaciones); bitácora 2026-09-16d; updated |
 | `80-agents/tools/conformance-harness/artifacts/domain-isolation-audit.md` | etiquetado | Cifras del 09-12 (7 capabilities, Hasura 4 tools) presentadas sin marca temporal como hallazgo actual | Marcado snapshot 2026-09-12 + nota SUPERSEDED (10 capabilities / 3 tools vigentes) — **añadido a esta tabla en el POST-GATE FIX** (el informe inicial lo enumeró pero esta tabla no lo incluyó) |
 | `80-agents/journal/logs/` (change log) | creado | Este documento |
@@ -61,6 +61,17 @@ Resultados verificados tras el pase: `export_metadata` persiste sólo en context
 - 8 runbooks de familia/plane existen y están enlazados desde la skill y el proyecto (observability incluida en índice).
 - Historia preservada y etiquetada, no mezclada con estado vigente.
 - Cero secretos impresos o persistidos.
+- **Corrección POST-GATE:** la validación original no fue exhaustiva — un gate independiente encontró 4 inconsistencias residuales (ver § POST-GATE FIX más abajo), todas corregidas en la misma fecha.
+
+## POST-GATE FIX (2026-09-16, mismo día)
+
+El gate independiente del owner encontró cuatro inconsistencias residuales que esta pasada NO detectó. Todas corregidas; cero cambios runtime, sin smokes, sin discovery nuevo:
+
+1. **ACCESS-CERTIFICATION — veredicto:** presentaba los dos HIGH (viewer SSH sin boundary; `export_metadata` expuesto) como si aún existieran. Corregido: findings preservados como estado de la run 2026-09-14, con estado vigente explícito H1/H2 = RESOLVED 2026-09-15.
+2. **ACCESS-CERTIFICATION — run (d) Codex: PENDING:** preservado como estado histórico de ese momento + resolución posterior añadida inmediatamente después: config normalizada con `bearer_token_env_var`, 10 capabilities visibles, native consumer smoke 10/10 PASS desde Codex en Daedalus, `CONSUMER_ACCESS_READY: PASS`. No se reescribió la historia.
+3. **Architecture — bloque "Runtime verificado — 2026-09-13":** contenía sólo `:3000`–`:3008` como si fuera vigente. Corregido: etiquetado `HISTORICAL SNAPSHOT 2026-09-13` + nuevo bloque `Inventario CURRENT — 10 capabilities (2026-09-16)` incluyendo `aranea-observability-ro :3009/mcp`. Snapshot y CURRENT separados.
+4. **Proyecto MCP Access Plane:** (a) párrafo recheck 2026-09-13 con "causa UNKNOWN" etiquetado `[HISTORICAL]` superseded por evidencia 2026-09-15 (init-per-call agota pool-64); (b) eliminada la duplicación del bullet que enumera las diez capabilities.
+5. **Este change log:** tabla de archivos ahora incluye `domain-isolation-audit.md` (fue modificado en la pasada original pero faltaba en la tabla) y la validación ya no afirma consistencia absoluta: registra las 4 inconsistencias del gate y su corrección.
 
 ## Fuentes
 
