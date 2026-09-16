@@ -6,8 +6,8 @@ icon: 📋
 slug: "runbooks-index"
 area: "[[Personal]]"
 created: "2026-09-12"
-updated: "2026-09-13"
-reviewed: "2026-09-13"
+updated: "2026-09-16"
+reviewed: "2026-09-16"
 aliases:
   - "runbooks index"
   - "índice de runbooks"
@@ -24,14 +24,15 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Runbooks curados:** 17 (+1 superseded, 8 en `symphony/`)
-- **Última ingesta:** 2026-09-13
+- **Runbooks curados:** 18 (+1 superseded, 8 en `symphony/`)
+- **Última ingesta:** 2026-09-16
 - **Estado:** active
 
 ## 📂 Catálogo
 
 | Runbook | Una línea | Dominio |
 |---|---|---|
+| [[30-resources/runbooks/hermes-linux-update-recovery|hermes-linux-update-recovery]] | Update/recovery de Hermes en Linux: systemd user, perfiles, mixed sys.modules, fleet marker, gateways y validación funcional. | Aranea/Hermes |
 | [[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]] | Ejecución mecánica de la capability MCP SSH de Aranea (viewer/operator), incluido `docker-echo-dev-operator`. | Aranea |
 | [[30-resources/runbooks/aranea-postgres-mcp|aranea-postgres-mcp]] | Uso de las capabilities PostgreSQL RO/RW de Aranea (Echo). | Aranea |
 | [[30-resources/runbooks/aranea-mongodb-mcp|aranea-mongodb-mcp]] | Uso de las capabilities MongoDB RO/RW de Aranea (Echo Forge). | Aranea |
