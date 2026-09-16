@@ -25,7 +25,7 @@ updated: 2026-09-13
 
 > [!info]+ Echo Core
 > **Rol:** plataforma de ejecución y registro de trading (runtime v3) · **Área:** [[Echo]] · **Lang:** Go (+ EAs MQL, front Vue)
-> **Repo:** `xKoRx/echo` · **Baseline citado:** `xKoRx/echo@f7ddea18` (branch `feature/e02-control-safety-journal-recovery`; master `a99f9a63`)
+> **Repo:** `xKoRx/echo` · **Baseline citado:** `xKoRx/echo@92d0ec2e` (master 2026-09-16, E-02 integrado; producto E-02 `f7ddea18`-linaje `f6e6af1b`)
 
 ## 🎯 Responsabilidad (estable)
 
@@ -45,13 +45,13 @@ updated: 2026-09-13
 ## 🧩 Implementación (volátil · last_verified: 2026-09-12)
 
 - **Stack:** Go v3 (Core/Gateway/Bridge/SDK/lab-worker/toolkit), Flink StateFun vía HTTP (la orquestación NO es Temporal: cero dependencias `go.temporal`), PostgreSQL, Kafka (Sarama), etcd, Hasura, front Vue 3 + Vite, EAs MQL MT4/MT5 + DLLs.
-- **Auth por 4 actores (E-02, BRANCH-ONLY en `f7ddea18`, no en master `a99f9a63`):** `front_read`, `config_operator`, `control_operator`, `service_hasura_webhook`; tokens por env/etcd, fail-closed, 401 vs 403, hook Hasura emite sólo roles `readonly`/`config_operator`; front con session tokens por actor, sin admin secret en bundle.
+- **Auth por 4 actores (E-02, en master desde `92d0ec2e` 2026-09-16):** `front_read`, `config_operator`, `control_operator`, `service_hasura_webhook`; tokens por env/etcd, fail-closed, 401 vs 403, hook Hasura emite sólo roles `readonly`/`config_operator`; front con session tokens por actor, sin admin secret en bundle.
 - **Resilience:** productor síncrono durable Bridge→Kafka; cuarentena de journal (`echo.journal_quarantine`, razones POISON_PAYLOAD/CLOSE_WITHOUT_OPEN/conflictos) con ACK a Flink; `journalctl` (`quarantine list/show/resolve/discard`, `replay-facts` PG→PG garantizado sin Kafka por `deps_guard_test.go`); replay idempotente de ingestión Forge (200 exact-replay / 409 conflictos).
 - **Legacy conviviente:** binario `v3/core/cmd/echo-functions` DEPRECATED; topics `echo.account-snapshots.v1`/`echo.instrument-snapshots.v1` DEPRECATED; módulos v1/v2 aún en `go.work` (el activo es v3).
 
 ## 🚨 Estado y gaps conocidos (volátil · last_verified: 2026-09-12)
 
-- E-02 está en el branch como código + tests CONTRACT PASS pero PHYSICAL_PARTIAL: compose Flink/PG/Kafka/Hasura real no ejecutado (T14/T15); el branch no está mergeado a master.
+- **E-02 CLOSED — SOFTWARE / INTEGRATED (2026-09-16, master `92d0ec2e` vía FF desde `7e628bf5`):** AC-01…AC-17 PASS (matriz en `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/VERIFICATION.md`, intocada); AC-18 (rotación secret prod) = gate ops owner, bloquea uso con capital. PROD NOT DEPLOYED / NOT ACTIVATED: el Hasura compartido conserva triggers antiguos y el auth hook queda pendiente de activación operacional; migración 062 requiere rollout separado donde corresponda. FAIL preexistente `gateway/internal/automation` fuera de scope; topics Kafka residuales `e02cert-gate2{,b}-20260915` con cleanup pendiente de ownership.
 - Receptor Forge E-01/E-04: integrado en master, E-04 INTEGRATED pero FINAL CLOSED = NO (T21/AC-37 CROSS_LANE GOLDEN pending, `FORGE_GOLDEN_FIXTURE_PENDING`).
 - Sin backend de artefactos en V1: producción usa `unavailableArtifactSource` (503 fail-closed) → ningún primer accept end-to-end posible hoy (gap G3 del boundary).
 - Post-INGESTED no hay consumidores: cero provisioning/activación/capital/Kafka (impuesto por tests de non-effects y REVOKE en DB); E-06+ es frontera futura.
