@@ -83,7 +83,7 @@ linux/amd64
 
 La imagen publicada `sanjay3290/hasura-mcp:1.0.0` no ofrecía manifest `linux/amd64` durante la instalación; Aranea construye localmente desde source pinneado.
 
-El upstream es stdio-only. Aranea lo envuelve con `mcp-proxy` `6.7.16` para exponer Streamable HTTP interno; Nginx bearer sigue siendo el único listener host-facing.
+El upstream es stdio-only. Aranea lo envuelve con `mcp-proxy` `6.7.16` para exponer Streamable HTTP interno; Nginx bearer sigue siendo el único listener host-facing. El bundle del CLI lleva el patch determinista `fix-shared-child.mjs` (GAP-ECHO-010, 2026-09-16): respawnea el upstream stdio en el próximo `createServer` si el hijo compartido muere; los build trees con el fix viven en `/opt/mcp/hasura/http-wrapper/` y `/opt/mcp/hasura/build-prod-ro/`.
 
 ## DEV — deployment certificado
 
@@ -147,11 +147,10 @@ El `--read-only` upstream no se aceptó como boundary suficiente porque mantení
 Artefactos PROD RO:
 
 ```text
-base: local/hasura-mcp:1.0.0-9ba59f2-prod-ro
-base image id: sha256:36efa1aef5ceb428446fb6670159a8e2eb1d5c12eb45314f299119cb723b02c6
-http: local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-mcpproxy6.7.16
-http image id: sha256:d36ac06076a6272f3527e41de36540f51217808b143a694211f4cab8b20e076c
-architecture: amd64
+base (H1, 2026-09-15): local/hasura-mcp:1.0.0-9ba59f2-prod-ro-h1fix
+http VIGENTE (g010fix, 2026-09-16): local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-h1fix-mcpproxy6.7.16-g010fix
+http ROLLBACK (retenido en mcps):  local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-h1fix-mcpproxy6.7.16
+arquitectura: amd64
 ```
 
 Topología:
@@ -200,13 +199,13 @@ Certificación material PROD:
 
 - request sin bearer a `:3005/mcp` → `401`;
 - `initialize` autenticado → `HTTP 200` + MCP session id;
-- `tools/list` server-side → exactamente las 4 tools RO anteriores;
+- `tools/list` server-side → exactamente las 3 tools RO vigentes (desde H1 fix 2026-09-15);
 - backend MCP sin host port;
 - Cursor real → `get_version`: Hasura CE `v2.38.0`;
 - Cursor real → `get_inconsistent_metadata`: metadata consistente;
 - capability reportada por Cursor: `user-aranea-hasura-prod-ro`.
 
-Cursor también reportó `mcp_auth` en su inventario cliente. Esa entrada no apareció en `tools/list` server-side del backend PROD, que fue certificado con exactamente 4 tools Hasura; por tanto `mcp_auth` no se considera parte de la superficie Hasura ni amplía la autoridad upstream.
+Cursor también reportó `mcp_auth` en su inventario cliente. Esa entrada no apareció en `tools/list` server-side del backend PROD, certificado con exactamente 3 tools Hasura desde el H1 fix (2026-09-15); por tanto `mcp_auth` no se considera parte de la superficie Hasura ni amplía la autoridad upstream.
 
 Cliente Daedalus:
 
@@ -240,7 +239,7 @@ Cursor referencia `${env:ARANEA_HASURA_MCP_PROD_RO_BEARER}`; nunca contiene bear
 
 ### PROD discipline
 
-En PROD sólo son válidas operaciones cubiertas por las 4 tools certificadas. Si una tarea exige SQL, metadata mutation, reload o cualquier cambio, detenerse: esa autoridad no existe en `aranea-hasura-prod-ro` y no debe abrirse dinámicamente como workaround.
+En PROD sólo son válidas operaciones cubiertas por las 3 tools certificadas vigentes. Si una tarea exige SQL, metadata mutation, reload, export de metadata o cualquier cambio, detenerse: esa autoridad no existe en `aranea-hasura-prod-ro` y no debe abrirse dinámicamente como workaround.
 
 ### DEV mutation discipline
 
@@ -270,6 +269,18 @@ Antes de una mutación:
 - No confiar en nombre de container, README o flag `--read-only` como prueba de autoridad; `tools/list` server-side es evidencia material.
 - PROD no expone `run_sql`: no agregarlo sólo para una tarea puntual.
 - Si hay que transferir un secret hacia `mcps`, usar un bridge temporal controlado sin imprimir el valor y eliminar copias intermedias cuando corresponda.
+
+## Failure modes — sesión y transporte (familia hasura / mcp-proxy 6.7.16)
+
+Mapeo vigente tras GAP-ECHO-010 (REPAIRED_AND_CERTIFIED 2026-09-16):
+
+- `-32603 Not connected` en `tools/*` = sesión cuyo hijo stdio murió. Con el fix g010, un `initialize` fresco abre sesión nueva funcional SIN restart del container; las sesiones viejas quedan muertas y el cliente debe reconectar.
+- `-32001 Session not found` = session id inexistente/reapado (idle-close 30 min) o DELETE.
+- `-32000` = request sin header de session id.
+- `202 Accepted` sin `Mcp-Session-Id` = respuestas a notificaciones id-less del transporte Streamable HTTP. NO es respuesta inválida de `initialize` ni modo degradado del proxy.
+- `401` = bearer cliente→proxy ausente/incorrecto.
+
+HISTORICAL / RESOLVED: antes del fix g010 (2026-09-16), la muerte del hijo stdio compartido dejaba `initialize` respondiendo 200+sid (metadata cacheada) con TODO `tools/*` en `-32603` hasta `docker restart`; el workaround era reiniciar el backend proxy. El diagnóstico intermedio "modo async-202 tras churn" que agrupaba a ssh-mcp y flink-mcp bajo esta causa quedó SUPERSEDED: ssh-mcp (pool-64 de sesiones) y flink-mcp (SDK Java, servlet propio) no comparten esta root cause.
 
 ## Validación
 

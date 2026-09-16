@@ -90,7 +90,7 @@ Si el target es MELI/corporativo, detener esta skill y usar las autoridades corp
 | Echo PostgreSQL lectura o mutación de desarrollo | DEV | `aranea-postgres-rw` | read/write; puede usarse para lecturas DEV sin mutar |
 | Echo Forge MongoDB consulta productiva | PROD | `aranea-mongo-forge-ro` | read-only |
 | Echo Forge MongoDB lectura o mutación de desarrollo | DEV | `aranea-mongo-forge-rw` | read/write; puede usarse para lecturas DEV sin mutar |
-| Hasura inspección administrativa productiva | PROD | `aranea-hasura-prod-ro` | read-only estricto; exactamente 4 tools Hasura server-side |
+| Hasura inspección administrativa productiva | PROD | `aranea-hasura-prod-ro` | read-only estricto; exactamente 3 tools Hasura server-side (post-H1 2026-09-15; `export_metadata` eliminado) |
 | Hasura administración de desarrollo | DEV | `aranea-hasura-dev-admin` | admin Hasura; mutaciones sólo con scope/post-condición explícitos |
 | Kafka inspección o administración de desarrollo | DEV | `aranea-kafka-dev-admin` | admin Kafka DEV; topics/configs/partitions/produce-consume/groups/offsets |
 | Flink control plane de desarrollo | DEV | `aranea-flink-dev-admin` | admin Flink REST DEV; exactamente 22 tools certificadas, sin SQL |
@@ -118,13 +118,12 @@ En data/control-plane MCPs no inventar capabilities nuevas como workaround. En H
 Para Hasura PROD, la superficie certificada es exclusivamente:
 
 ```text
-export_metadata
 get_inconsistent_metadata
 get_schema
 get_version
 ```
 
-`run_sql`, `reload_metadata` y mutadores de metadata no existen en la capability PROD. No ampliar esta superficie para resolver una tarea puntual.
+Son exactamente 3 tools desde el H1 fix 2026-09-15: `export_metadata` fue ELIMINADO de la superficie PROD-RO porque exponía `database_url` con credenciales upstream embebidas. `run_sql`, `reload_metadata`, `export_metadata` y mutadores de metadata no existen en la capability PROD. No ampliar esta superficie para resolver una tarea puntual.
 
 Para Flink DEV, SQL no forma parte del contrato actual: no hay SQL Gateway verificado y `tools/list` no expone tools SQL. No inventar SQL como workaround.
 
@@ -153,6 +152,7 @@ Fijar host/perfil o database/schema/table/collection/metadata object/cluster/top
 - una capability configurada pero sin tools expuestas no prueba fallo del servicio destino: primero aislar cliente/auth/handshake;
 - en SSH, `operator` describe superficie MCP, no privilegio OS: si `echo-dev` no puede hacer una acción, no elevar ni alterar ACLs automáticamente;
 - en Hasura, `tools/list` server-side es evidencia de autoridad: no asumir que `--read-only` o el nombre del container hacen segura una capability PROD;
+- sesión MCP en la familia hasura (wrappers mcp-proxy): `-32603 Not connected` en una sesión vieja ⇒ reconectar (un `initialize` fresco abre sesión nueva funcional; el fix g010 respawnea el upstream sin restart); `-32001` = session id inexistente/reapado; `-32000` = falta header de sesión; `202` sin sid = notificaciones id-less del transporte, no respuesta a `initialize`;
 - `mcp_auth` visible en un cliente no cuenta como tool Hasura mientras no aparezca en `tools/list` server-side del backend;
 - en Kafka, `alter_configs` debe conservar semántica incremental certificada; si cambia configs no objetivo, detener mutaciones y tratar la capability como fuera de contrato;
 - en Flink, host/runtime y control plane son superficies distintas: necesidad de Docker/filesystem/restart no autoriza a meter shell arbitrario dentro del backend Flink MCP;
