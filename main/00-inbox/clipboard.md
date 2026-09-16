@@ -1,173 +1,51 @@
-# ECHO FORGE — F05I-T1-C1 / CORRECCIÓN DEL PARSER
+Sí. Esa wea es **Universal Clipboard**, y cuando falla intermitentemente normalmente no es el portapapeles en sí: queda pegado algún daemon de Continuity/Handoff. Apple confirma que depende de **misma cuenta Apple + Bluetooth + Wi-Fi + Handoff + proximidad**. ([Soporte Apple](https://support.apple.com/es-la/102430?utm_source=chatgpt.com "Usa Portapapeles universal para copiar y pegar contenido de un dispositivo Apple a otro - Soporte técnico de Apple"))
 
-ROL: coding agent NORMAL.
+Yo iría KISS, en este orden:
 
-OBJETIVO:
-Corregir exclusivamente el defecto de validación de trailing data en
-sqx/core/releasematrix.Parse.
+1. **Cuando vuelva a fallar, no reinicies los Macs todavía.** En el Mac donde no está funcionando:
+    
+    ```bash
+    killall useractivityd
+    killall sharingd
+    killall pboard
+    ```
+    
+    Los tres los vuelve a levantar `launchd` automáticamente. `useractivityd` maneja Handoff, `sharingd` el transporte entre dispositivos y `pboard` el clipboard local. Es un reset bastante inocuo y hay evidencia reciente de que recupera Universal Clipboard sin reboot. ([GitHub](https://github.com/grapeot/context-infrastructure/blob/main/rules/skills/mac_universal_clipboard.md?utm_source=chatgpt.com "context-infrastructure/rules/skills/mac_universal_clipboard.md at main · grapeot/context-infrastructure · GitHub"))
+    
+2. Si sigue muerto:
+    
+    ```bash
+    sudo killall bluetoothd
+    ```
+    
+    Vas a perder Bluetooth unos segundos y debería reconectarse solo. Hay casos recientes de macOS donde **`bluetoothd` queda zombie aunque Bluetooth aparentemente funcione** y esto recupera Universal Clipboard. ([Ask Different](https://apple.stackexchange.com/questions/486949/universal-clipboard-works-iphone-%E2%86%92-mac-but-not-mac-%E2%86%92-iphone-while-airdrop-works?utm_source=chatgpt.com "macos - Universal Clipboard works iPhone → Mac but not Mac → iPhone, while AirDrop works both ways - Ask Different"))
+    
+3. Si vuelve a romperse frecuentemente, revisaría en **ambos Macs**:  
+    **System Settings → General → AirDrop & Handoff → Allow Handoff between this Mac and your iCloud devices**. Apágalo/enciéndelo una vez. También confirma Wi-Fi y Bluetooth activos y misma Apple Account. Apple recomienda justamente esas comprobaciones. ([Soporte Apple](https://support.apple.com/es-la/102430?utm_source=chatgpt.com "Usa Portapapeles universal para copiar y pegar contenido de un dispositivo Apple a otro - Soporte técnico de Apple"))
+    
+4. Si todavía se pone weón, hay un estado específico que podemos forzar:
+    
+    ```bash
+    defaults write ~/Library/Preferences/com.apple.coreservices.useractivityd.plist ClipboardSharingEnabled -bool true
+    killall useractivityd
+    killall sharingd
+    ```
+    
+    Esto ya es el segundo escalón; **no partiría tocando preferences** si matar los daemons lo arregla. Está documentado como workaround por usuarios y sigue apareciendo reportado como efectivo en 2026. ([Apple Community](https://discussions.apple.com/thread/253274114?utm_source=chatgpt.com "FIX for Universal Clipboard copy/paste no… - Apple Community"))
+    
 
-No repetir T1. No implementar T5. No reabrir Planning C1.
+### Lo primero que probaría yo
 
-## AUTORIDADES
+Cuando se te corte de nuevo:
 
-Repo: xKoRx/symphony
-Branch: codex/f05-release-prep
-HEAD esperado: 5295f1ca91f41cc28f999f517c5bbae425f86b1b
-Baseline F-04: b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43
+```bash
+killall useractivityd sharingd pboard
+```
 
-SPEC: Echo Forge — F-05-I Release Matrix and Read Surface Contract.
-Proyecto: Echo Forge — F-05-I Cohesive release and read surfaces.
+y prueba inmediatamente Mac A → Mac B y Mac B → Mac A.
 
-Ejecuta el bootstrap vigente de Agents OS.
+Si eso **lo arregla al tiro**, ya tenemos localizado el tipo de falla y no necesitas andar reiniciando las máquinas como cavernícola cada vez. 😆
 
-Verifica Git local y remoto antes de modificar.
+Además, ojo con **VPNs/firewalls**: si tienes alguno de los Macs conectado a VPN corporativa, Tailscale u otra interfaz rara cuando ocurre, vale la pena probar desconectándolo. Continuity usa Bluetooth + networking peer-to-peer y esas weas pueden meter ruido aunque AirDrop parezca funcionar normalmente. ([Apple Community](https://discussions.apple.com/thread/256040651?utm_source=chatgpt.com "How to fix Universal Clipboard and iPhone… - Apple Community"))
 
-Dirty ajeno conocido:
-specs/FEAT-SQX-STRATEGY-EVALUATION/fixtures/phase4_performance.json
-
-Preservarlo intacto.
-
-## DEFECTO CONFIRMADO
-
-Parse utiliza:
-
-    dec.More()
-
-después del primer Decode para verificar trailing data.
-
-Esto no garantiza el final del documento JSON.
-
-Una matriz JSON válida seguida de "}" o "]" puede ser aceptada.
-El contrato exige rechazar TODO contenido no-whitespace posterior al
-único objeto JSON permitido.
-
-El manager reprodujo el defecto con el decoder estándar de Go.
-
-## ALLOWED FILES
-
-Únicamente:
-
-sqx/core/releasematrix/releasematrix.go
-sqx/core/releasematrix/releasematrix_test.go
-
-NO modificar release-matrix.json.
-NO modificar otros archivos source, SPECs ni deploy/.
-
-## IMPLEMENTACIÓN
-
-Reemplaza exclusivamente la verificación dec.More() por la técnica
-correcta para validar un único documento JSON completo:
-
-- Primer Decode: decodifica Matrix.
-- Segundo Decode en una variable descartable.
-- Acepta exclusivamente io.EOF.
-- Si devuelve nil u otro error, rechaza el documento.
-- Conserva DisallowUnknownFields y Validate.
-
-No cambies:
-
-- API pública.
-- Modelos.
-- Estados.
-- Matriz de 17 capacidades.
-- Marshaling canónico.
-- Embedding.
-- Loader.
-- Contratos históricos.
-
-No agregues dependencias externas.
-
-## REGRESIÓN
-
-Extiende TestParseRejectsCorruptAndTrailing o crea un test enfocado.
-
-Construye los inputs a partir de Embedded() para asegurar que el
-primer documento sea una matriz auténticamente válida.
-
-Casos obligatorios:
-
-1. JSON válido + "}" => ERROR.
-2. JSON válido + "]" => ERROR.
-3. JSON válido + segundo objeto JSON => ERROR.
-4. JSON válido + texto inválido => ERROR.
-5. JSON válido + espacios/newlines => PASS.
-
-El test debe demostrar el defecto anterior y pasar con el arreglo.
-
-No alcanza un test que sólo compruebe dos objetos concatenados:
-el test anterior ya cubría ese caso y no detectó el problema.
-
-## VALIDACIÓN
-
-Ejecuta y reporta:
-
-- gofmt.
-- go test ./sqx/core/releasematrix/...
-- go test -race ./sqx/core/releasematrix/...
-- go vet ./sqx/core/releasematrix/...
-- go build ./sqx/core/releasematrix/...
-- git diff --check.
-- Confirmar que release-matrix.json no cambió.
-
-PASS / FAIL / NOT_RUN por cada comando.
-
-No usar MCPs de infraestructura.
-No usar bases de datos remotas.
-No desplegar, publicar releases ni ejecutar certificaciones físicas.
-
-## GIT
-
-Commit atómico con los dos archivos autorizados.
-
-Push normal a origin/codex/f05-release-prep.
-
-Sin force, tags, releases, PRs ni cambios a master.
-
-Verifica:
-
-- HEAD remoto == commit correctivo.
-- 5295f1c es ancestro del nuevo HEAD.
-- Diff limitado a dos archivos.
-- Dirty ajeno preservado.
-
-Si hay avance remoto incompatible: STOP.
-
-## AGENTS OS
-
-Actualiza únicamente T1:
-
-- Defecto encontrado.
-- Causa.
-- SHA correctivo.
-- Tests reales.
-- Manager review pending.
-
-Mantén T1 en Review.
-
-No cambiar T2–T4.
-No marcar T5/T6/T7 como realizadas.
-No cerrar F-05-I.
-No declarar nueva certificación física.
-
-Registra change_log y agent_run según las skills vigentes.
-
-Ejecuta session close.
-No crear L0 sin transcript auténtico.
-
-## HANDOFF
-
-Entrega breve:
-
-1. Resumen ejecutivo.
-2. SHA anterior y nuevo.
-3. Diff exacto.
-4. Evidencia de regresión antes/después.
-5. Validaciones.
-6. URL del commit y HEAD remoto.
-7. Estado Agents OS.
-8. Session close.
-
-No autoapruebes T1.
-No avances a T5.
-
-STOP.
+Si te pasa seguido, ahí sí conviene dejar un comando tipo `fixclipboard` que haga solamente este reset seguro en ambos Macs.
