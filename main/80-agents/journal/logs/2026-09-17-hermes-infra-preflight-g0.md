@@ -28,7 +28,7 @@ Mandato owner "HERMES INFRASTRUCTURE ENABLEMENT" (ventana 10h, referencia 18-09)
 
 ## Hallazgos de preflight
 
-1. **`sync.sh` sin scheduler verificado**: el repo `~/workspace/agents-os-repo` (origin `xKoRx/agents-os`, master, limpio) tiene `sync.sh` (commit+rebase+push cada 1 min) pero en hermes-vm NO hay cron de usuario ni timer systemd que lo ejecute y `.sync/sync.log` está vacío. Los últimos commits "sync HH:MM" (18:14–18:16 -03) llegaron por otra vía no identificada. Pendiente: identificar el mecanismo real antes de confiar en sync automático.
+1. **`sync.sh` / canal de publicación — RESUELTO**: el repo `~/workspace/agents-os-repo` (origin `xKoRx/agents-os`, master) publica el vault a GitHub con cadencia ~1 min. El pipeline NO corre en hermes-vm (sin cron/timer local, `.sync/sync.log` vacío, repo local atrasado) sino en otra máquina del LAN — los commits mezclan archivos del vault con agent-runs de Echo/ZCode. VERIFICADO 19:04 UTC: ediciones de esta sesión (change log, bitácora infra-ops, fechas-captura, nodo-docs) llegaron a `origin/master` en ≤6 min. El repo local de hermes-vm es consumidor (fast-forward), no productor.
 2. **Repo main/ es copia, no symlink** de `VAULT_ROOT` (inodos distintos). La edición canónica es en vault; el repo requiere sincronización para publicar.
 3. **Gap G3 (integración runtime)**: Hermes runtime sólo consume `aranea-postgres-ro`; el resto de capacidades (ssh family, hasura, temporal, minio, etcd, mongo) no están en `~/.hermes/config.yaml` aunque existen en el plane.
 4. **Inventario**: 59 VMs coincide con R0; delta vs doc del index (36/19) era drift del doc, corregido.
