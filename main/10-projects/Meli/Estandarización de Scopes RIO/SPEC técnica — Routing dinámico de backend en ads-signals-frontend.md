@@ -69,38 +69,53 @@ query.backend válido > override de sesión válido > env.SCOPE
 
 `backend=` vacío elimina el override y vuelve a `env.SCOPE`. Un valor explícito usa `^[a-z0-9][a-z0-9-]{0,62}$`; no existe catálogo frontend. Un scope bien formado que Fury no reconoce falla sin retry al default ni a producción.
 
-El override se conserva en la cookie de sesión host-only `rio_backend_scope_override`, con `Secure` y `SameSite=Lax`. `app/server/index.ts` la actualiza antes de SSR; `playmaker(req)` usa `req.query.backend` en el primer request y la cookie en `/api`. Sólo el BFF construye `X-Rio-Scope`.
+El override se conserva en la cookie de sesión host-only y `HttpOnly` `rio_backend_scope_override`, con `Secure` y `SameSite=Lax`. `app/server/index.ts` la actualiza antes de SSR; `playmaker(req)` usa `req.query.backend` en el primer request y la cookie en `/api`. Sólo el BFF construye `X-Rio-Scope`.
 
-El middleware expone `env.SCOPE` en la cookie de sesión host-only `rio_frontend_scope` para separar estado browser. La UI calcula `rio_backend_scope_override ?? rio_frontend_scope`; el BFF ignora esa cookie y usa `env.SCOPE` como fallback.
+Después de resolver, el middleware publica el resultado en la cookie host-only `rio_effective_backend_scope`, legible por la UI y no autoritativa. Los stores la usan únicamente para namespacing/reset; el BFF la ignora y siempre recalcula desde query, override de sesión y `env.SCOPE`.
 
 ### Frontera test / producción
 
-La activación no usa `NODE_ENV`: los scopes Fury de test ejecutan builds `production`. `test-production.js` declara `playmaker_scope_routing_enabled: true`, `default-production.js` declara `false` y `fury-production.js` usa `FURY_IS_TEST_SCOPE` para superponer la configuración test a cualquier scope Fury de test.
+La activación no usa `NODE_ENV`: los scopes Fury de test ejecutan builds `production`. `test-production.js` declara las claves de routing test, `default-production.js` las de producción y `fury-production.js` importa explícitamente `test-production.js`; `frontend-config` no hereda por `FURY_IS_TEST_SCOPE`. El archivo nuevo proyecta sólo `playmaker_meli_domain` y `playmaker_scope_routing_enabled`, nunca el objeto test completo:
+
+```js
+const env = require('frontend-env');
+const testConfig = require('./test-production');
+
+module.exports = env.FURY_IS_TEST_SCOPE === 'true'
+  ? {
+      playmaker_meli_domain: testConfig.playmaker_meli_domain,
+      playmaker_scope_routing_enabled: true,
+    }
+  : {};
+```
+
+El orden efectivo es `default` → `default-<env>` → `<env>` → `<platform>` → `<platform>-<env>` → `<scope>` → `<scope>-<env>`. Por eso los archivos de scopes conocidos de test declaran también esas dos claves compartidas; en particular, `staging-production.js` no puede depender de una clasificación aún no verificada de `FURY_IS_TEST_SCOPE`. Para scopes nuevos, `fury-production.js` entrega el default dinámico.
 
 La prohibición de scopes cruzados se aplica en dos capas:
 
 1. El cliente productivo usa sólo `rio-playmaker-prod.melisystems.com`, ignora `backend` y no emite `X-Rio-Scope`.
 2. `rio-playmaker-test.melisystems.com` sólo registra targets no productivos; `production` o un scope desconocido fallan cerrado.
 
-Eliminar las configuraciones `test2`, `test3`, `beta` y `staging` retira el acoplamiento scope→host/config. Los valores no productivos viven en `test-production.js` y todo scope Fury de test los hereda por `fury-production.js`.
+`test2-production.js`, `test3-production.js`, `beta-production.js` y `staging-production.js` se conservan. Sólo se desacopla el destino de Playmaker: sus diferencias actuales de templates, Entity Service, Kraken, feature flags y analítica no cambian en esta fase. En `test`, las dos claves de routing pueden mergearse desde `fury-production.js` y luego desde `test-production.js`; el segundo merge es idempotente.
 
 ### Resolver y cliente Playmaker
 
 `api/lib/backendScope.ts` concentra `resolveBackendScope(req)`, sintaxis, cookies y decisión test/prod. Devuelve `undefined` cuando `playmaker_scope_routing_enabled` es falso y no conoce hosts, targets ni listas de scopes.
 
-`api/lib/playmaker.ts` conserva su API pública (`playmaker(req).get/post/put/patch/delete`) y agrega el resultado del resolver a todos los verbos. En Fury inicializa RestClient con el `meliDomain` estático `rio-playmaker-test` o `rio-playmaker-prod`; `baseURL` queda sólo para localhost. El header se incorpora únicamente cuando el resolver retorna un scope y ningún caller puede sobreescribirlo.
+`api/lib/playmaker.ts` conserva su API pública (`playmaker(req).get/post/put/patch/delete`) y agrega el resultado del resolver a todos los verbos. En Fury inicializa RestClient con el `meliDomain` estático `rio-playmaker-test` o `rio-playmaker-prod`; fuera de Fury conserva el `baseURL` actual para no cambiar la resolución a `melioffice.com` ni el flujo local. El header se incorpora únicamente cuando el resolver retorna un scope y ningún caller puede sobreescribirlo. La construcción del cliente conserva `allowRepeatedParams: true`, requisito del filtro repetido `component_template_code`.
+
+El override selecciona el backend Playmaker, no el catálogo configurado en el frontend. `playmaker_component_templates` permanece asociado al scope frontend; la POC sólo certifica pares de scopes de test cuyos IDs/códigos de template sean compatibles. Esa compatibilidad es un gate de prueba o de manifiesto de infraestructura, nunca un enum ni una validación semántica en el frontend.
 
 ### Persistencia y aislamiento de estado
 
 Cambiar de backend scope obliga a una navegación completa. El reload hace que SSR, cookie, llamadas BFF y estado hidratado observen el mismo scope antes de emitir requests.
 
-Los datos persistidos o compartidos se particionan por `backendScope` efectivo:
+Los datos persistidos o compartidos se aíslan por `backendScope` efectivo:
 
 - `api/teams/grants.ts`: la clave deja de ser sólo `userId` y pasa a `backendScope:userId`.
 - `api/pipeline/index.ts`: la clave `history-month` incorpora `backendScope` además de usuario, data product, environment, mes, página y tamaño.
-- `src/app/store/page.store.ts`: la versión persistida registra `backendScope`; al hidratar otro scope conserva preferencias visuales y reinicia filtros/datos dependientes, `activeEnvironments`, drafts, pending approvers e import info.
+- `src/app/store/page.store.ts`: la versión persistida registra `backendScope`; al hidratar otro scope conserva preferencias visuales y reinicia los slices ligados al backend, incluidos `activeEnvironments`, drafts, pending approvers e import info.
 - `src/features/deploy-pipeline/store/deploySessionStore.ts`: el namespace incorpora `backendScope`; una ejecución iniciada en un scope no se retoma ni se pollea desde otro.
-- `src/app/store/ui.store.ts`: no cambia porque sólo persiste el tema y no contiene identidad de backend.
 
 ### Manejo de errores
 
@@ -135,7 +150,7 @@ Los datos persistidos o compartidos se particionan por `backendScope` efectivo:
 
 **Decisión**: test usa `rio-playmaker-test.melisystems.com` + `X-Rio-Scope`; producción usa `rio-playmaker-prod.melisystems.com` sin header.
 
-**Fundamentación**: la topología impide cruces sin que el frontend conozca todos los scopes. Construir `rio-playmaker-${scope}` mantendría el acoplamiento y abriría routing por input; `meliDomain` mantiene estático el destino real.
+**Fundamentación**: la topología impide cruces sin que el frontend conozca todos los scopes. Construir `rio-playmaker-${scope}` mantendría el acoplamiento y abriría routing por input. `meliDomain` cumple el contrato Nordic para dominios internos en Fury; la seguridad depende de que el destino sea estático, no de cambiar `baseURL` por sí mismo.
 
 #### DD-4: Fury valida existencia; el frontend sólo valida sintaxis
 
@@ -155,7 +170,7 @@ Los datos persistidos o compartidos se particionan por `backendScope` efectivo:
 
 | Archivo | Propósito |
 |---|---|
-| `config/fury-production.js` | Aplicar `test-production.js` a cualquier scope Fury de test mediante `FURY_IS_TEST_SCOPE` |
+| `config/fury-production.js` | Importar `test-production.js` y proyectar sólo las claves compartidas de routing cuando `FURY_IS_TEST_SCOPE=true` |
 | `api/lib/backendScope.ts` | Resolver y validar el scope backend efectivo y administrar el contrato de cookies |
 | `src/lib/backendScope.ts` | Leer el scope efectivo sólo para namespacing/reset de estado browser |
 | Tests unitarios de resolver/config/cliente | Cubrir precedencia, producción y headers por verbo |
@@ -164,26 +179,18 @@ Los datos persistidos o compartidos se particionan por `backendScope` efectivo:
 
 | Archivo | Cambio |
 |---|---|
-| `config/default.js` y `config/default-development.js` | Separar el `meliDomain` Fury del `baseURL` local |
+| `config/default.js` y `config/default-development.js` | Mantener `baseURL` para ejecución no Fury/local y separar el `meliDomain` usado en Fury |
 | `config/test-production.js` | Declarar `rio-playmaker-test` y habilitar routing por scope |
 | `config/default-production.js` | Declarar `rio-playmaker-prod` y routing deshabilitado |
+| `config/test2-production.js`, `config/test3-production.js`, `config/beta-production.js` y `config/staging-production.js` | Reutilizar las dos claves de routing test sin alterar templates, Entity Service, Kraken, flags ni analítica propios |
 | `types/config.d.ts` | Tipar `playmaker_meli_domain` y `playmaker_scope_routing_enabled` |
-| `app/server/index.ts` | Capturar/limpiar el override, exponer frontend scope y forzar navegación coherente |
+| `app/server/index.ts` | Capturar/limpiar el override, publicar el scope backend efectivo para los stores y forzar navegación coherente |
 | `app/nordic-pages/data-products/[name]/index.tsx` | Admitir `backend` en el schema estricto de query de la página SSR |
-| `api/lib/playmaker.ts` | Adjuntar `X-Rio-Scope` en test para todos los verbos |
+| `api/lib/playmaker.ts` | Adjuntar `X-Rio-Scope` en test para todos los verbos y conservar `allowRepeatedParams: true` |
 | `api/teams/grants.ts` | Particionar cache por scope |
 | `api/pipeline/index.ts` | Particionar request coalescing por scope |
 | `src/app/store/page.store.ts` | Versionar y resetear estado dependiente del backend al cambiar scope |
 | `src/features/deploy-pipeline/store/deploySessionStore.ts` | Namespacing de ejecuciones por backend scope |
-
-#### Archivos retirados
-
-| Archivo | Motivo |
-|---|---|
-| `config/test2-production.js` | Host y configuración test duplicados por scope |
-| `config/test3-production.js` | Host y configuración test duplicados por scope |
-| `config/beta-production.js` | Target de Playmaker acoplado al scope |
-| `config/staging-production.js` | Target de Playmaker acoplado al scope |
 
 ### Observabilidad
 
@@ -192,22 +199,24 @@ Los datos persistidos o compartidos se particionan por `backendScope` efectivo:
 ### Estrategia de tests
 
 - Resolver unitario: precedencia query→cookie→`env.SCOPE`, clear con `backend=`, sintaxis, cookie manipulada, scope ausente y producción.
-- Config unitario: cualquier `SCOPE` con `FURY_IS_TEST_SCOPE=true` usa `rio-playmaker-test`; `false` usa `rio-playmaker-prod`; localhost conserva `baseURL` y el routing no depende de `NODE_ENV`.
-- Cliente unitario: GET/POST/PUT/PATCH/DELETE y camino local incluyen header sólo en test; un caller no puede inyectarlo en prod.
+- Config unitario: cualquier `SCOPE` con `FURY_IS_TEST_SCOPE=true` usa `rio-playmaker-test`; scopes test conocidos conservan el routing compartido aun si una clasificación difiere; producción usa `rio-playmaker-prod`; fuera de Fury/local se conserva `baseURL` y el routing no depende de `NODE_ENV`.
+- Cliente unitario: GET/POST/PUT/PATCH/DELETE incluyen header sólo en test; un caller no puede inyectarlo en prod y dos o más `component_template_code` llegan como parámetros repetidos.
 - Middleware/SSR: el primer request con `?backend=beta` pasa los schemas de página, consulta beta, persiste el override y los XHR posteriores resuelven el mismo scope; `backend=` vuelve al scope Nordic.
 - Aislamiento: grants, history coalescing, page store y deploy sessions no reutilizan entradas entre `test2` y `test3`.
-- Integración Fury: matriz `test2→test2`, `test2→test3`, scope inexistente, `test→production`, `prod→test` y prod con query. Sólo los dos primeros casos resuelven targets no productivos; los cruces fallan o se ignoran según la frontera de origen.
+- Integración Fury: matriz `test2→test2`, `test2→test3`, scope inexistente, `test→production`, `prod→test` y prod con query. Los pares test sólo se certifican si comparten contrato de templates; los cruces fallan o se ignoran según la frontera de origen.
 
 ### Rollout y rollback
 
 La secuencia y sus gates viven en [[Estandarización de Scopes RIO#Fase 1 — Routing dinámico frontend → Playmaker]]. El rollout técnico exige route test sin targets productivos antes del frontend, canary con default+override y monitoreo de rechazos y ausencia del header en prod.
 
-Rollback: desactivar `playmaker_scope_routing_enabled` y restaurar temporalmente los archivos/hosts por scope. La route compartida puede quedar sin tráfico; producción no requiere rollback porque su host y contrato no cambian.
+Rollback: desactivar `playmaker_scope_routing_enabled` y volver a usar los `playmaker_base_url` que los archivos por scope conservaron. La route compartida puede quedar sin tráfico; producción no requiere rollback porque su host y contrato no cambian.
 
 ### Fuera de alcance
 
 - Crear o modificar las Fury Routes y sus targets; esa configuración la implementa el owner de infraestructura.
 - Cambiar Playmaker, eventos de deployment, BigQueue, control planes o bases de datos.
+- Cambiar dinámicamente `playmaker_component_templates`; el catálogo sigue perteneciendo al scope frontend y la compatibilidad entre pares test es un prerrequisito de certificación.
+- Enrutar `rio_entity_service_base_url` mediante el override; Entity Service conserva la configuración del scope frontend.
 - Agregar un selector visual de scope en la UI; MeliLab y el query param son las entradas de esta fase.
 - Validar semánticamente la existencia o el rol de un scope en el frontend.
 - Permitir routing productivo por header o cruces entre segmentos.

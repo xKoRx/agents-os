@@ -78,12 +78,12 @@ La POC debe demostrar un deploy completo en un único ambiente lógico de test y
 | Paso | Owner | Estado | Gate de salida |
 |---|---|---|---|
 | 1.1 Cerrar diseño y revisión | Rodrigo | `DRAFT listo` | SPEC aprobada; ninguna decisión de negocio abierta |
-| 1.2 Preparar Fury Route compartida | Rodrigo / Fury | `pending` | header resuelve sólo targets no-prod; scope desconocido falla sin fallback |
+| 1.2 Preparar Fury Route compartida | Rodrigo / Fury | `pending` | satisfacer la dependencia externa definida en la SPEC |
 | 1.3 Implementar frontend | Rodrigo | `pending` | PR cumple la SPEC y checks del repo |
 | 1.4 Certificar aislamiento | Rodrigo | `pending` | matriz default/override/desconocido/test→prod/prod→test con evidencia |
 | 1.5 Rollout controlado | Rodrigo | `pending` | canary test estable y rollback probado |
 
-Dependencias de inicio: aprobación del nombre `X-Rio-Scope`, route `rio-playmaker-test` disponible para pruebas y garantía de que su tabla de targets no admite infraestructura productiva. El código puede comenzar después de aprobar la SPEC; el gate 1.4 no puede cerrarse sin evidencia real de Fury.
+Dependencia de inicio: cerrar la [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend#Dependencia externa de aprobación]]. El código puede comenzar después de aprobar la SPEC; el gate 1.4 no puede cerrarse sin evidencia real de Fury.
 
 ### Fases siguientes
 
@@ -112,7 +112,7 @@ El discovery de `ads-signals-frontend` que habilita la Fase 1 quedó incorporado
 ## 🚀 Propuesta ejecutiva
 
 - **Propuesta:** estandarizar el nombre base como `<environment>-<role>`, dejar que Fury agregue `-<segment>` y usar `rio-controlplane-kms/test` como primer slice: `alpha-api` → `alpha-api-nonprod`. Si el flujo obligatorio sólo acepta `test-nonprod`, tratarlo como bridge transitorio, no como target state.
-- **Qué ganamos:** cumplimiento antes del 2026-09-09, salida verificable de `legacy`, nombres predecibles, selección independiente de front/back, menor blast radius y una plantilla reusable para migrar el resto de RIO con canary y rollback.
+- **Qué ganamos:** una ruta explícita para regularizar el incumplimiento del plazo 2026-09-09, salida verificable de `legacy`, nombres predecibles, selección independiente de front/back, menor blast radius y una plantilla reusable para migrar el resto de RIO con canary y rollback.
 - **Qué implica:** confirmar con Fury el nombre aceptado y la señal de cumplimiento; desacoplar ambiente/configuración del último token de `SCOPE`; crear el scope segmentado y sus routes; desplegar, probar y mover tráfico gradualmente; mantener el legacy como rollback; luego replicar el patrón con manifiesto, validadores y guardrails.
 
 ### Hallazgo de implementación — KMS
@@ -171,7 +171,7 @@ views:
 > - [ ] **[Grid — compartir con el equipo]** Presentar el Grid a Signals #owner/me #type/admin #area/meli
 > - [ ] **[Alineación]** Validar inventario, propósito y ownership con el equipo Signals; resolver scopes huérfanos y excepciones #owner/me #type/research #area/meli
 > - [/] **[Naming]** Validar con el equipo el contrato funcional de [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599): scopes de frontend iguales al ambiente y backend limitado a `api`/`consumer`; la materialización Fury y el manifiesto de compatibilidad se definen en el SPEC técnico #owner/me #type/dev #area/meli #blocked
-> - [ ] **[Piloto KMS — segmentación obligatoria]** Confirmar si Fury acepta `alpha-api-nonprod` como remediación de `test` o exige el bridge `test-nonprod`; ejecutar scope+routes, canary, verificación de tráfico y rollback antes del deadline #owner/me #type/dev #area/meli #urgent 📅 2026-09-09
+> - [ ] **[Piloto KMS — segmentación obligatoria]** Revalidar el estado de la exigencia vencida, acordar una nueva fecha y confirmar si Fury acepta `alpha-api-nonprod` como remediación de `test` o exige el bridge `test-nonprod`; luego ejecutar scope+routes, canary, verificación de tráfico y rollback #owner/me #type/dev #area/meli #urgent #blocked 📅 2026-09-09
 > - [ ] **[Piloto KMS — configuración]** Reemplazar `ScopeUtils` last-token por un mapping explícito de ambiente lógico/profile compatible con el sufijo `nonprod/nonsite` agregado por Fury #owner/me #type/dev #area/meli #blocked
 > - [ ] **[Segmentación/Legacy]** Inventariar recursos live y sus `segment-id` efectivos antes de planificar migración; confirmar con Fury el mecanismo de aislamiento dentro de `nonprod` #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Manifest de bindings]** Definir y completar por runtime `application/scope`, lane, role, workload, channel, direction, infra-segment, contract/schema, versión y site/tenant #owner/me #type/dev #area/meli #waiting
@@ -179,7 +179,7 @@ views:
 > - [ ] **[Automatización]** Diseñar validadores de CI/runtime que impidan scopes incompatibles, perfiles ausentes y rutas cross-segment accidentales #owner/me #type/dev #area/meli #waiting
 > - [ ] **[POC alpha — SPEC técnica SDK]** Crear la SPEC técnica de `rio-sdk-events` para `environment_scope` y `scope:alpha` en `DeploymentTriggerMessage`/`DeploymentResultMessage`, con compatibilidad y wire tests #owner/me #type/dev #area/meli
 > - [x] **[Fase 1 — SPEC técnica Front]** Crear [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]] con entrypoint test compartido, scope backend dinámico, aislamiento test/prod y particionado de estado/cache #owner/me #type/dev #area/meli ✅ 2026-09-16
-> - [ ] **[Fase 1 — Fury Route]** Configurar `rio-playmaker-test` para resolver `X-Rio-Scope` sólo contra targets no-prod y rechazar scopes desconocidos sin fallback #owner/me #type/dev #area/meli
+> - [ ] **[Fase 1 — Fury Route]** Implementar y evidenciar la dependencia externa definida en la [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend#Dependencia externa de aprobación|SPEC]] #owner/me #type/dev #area/meli
 > - [ ] **[Fase 1 — implementación Front]** Implementar la SPEC aprobada en `ads-signals-frontend` y completar checks del repo #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Fase 1 — certificación]** Ejecutar la matriz default/override/desconocido/test→prod/prod→test, probar rollback y enlazar evidencia #owner/me #type/dev #area/meli #waiting
 > - [ ] **[POC alpha — SPEC técnica Playmaker]** Crear la SPEC técnica de `rio-playmaker` para scopes `alpha-api-nonprod`/`alpha-consumer-nonprod`, publicación filtrada y consumo validado de deployment results #owner/me #type/dev #area/meli
@@ -250,13 +250,12 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 1. ¿Qué decisiones de negocio y ownership se requieren para proponer retiros sin convertir bindings en una categoría genérica?
 2. ¿La unidad de alineación es una lane/celda completa de RIO y qué contrato/schema debe compartir?
 3. ¿Qué scopes especiales sobreviven como roles explícitos y cuáles son deuda transitoria?
-4. ¿Qué ventana y fallback para mensajes legacy sin `environment_scope` mientras se adopta `prod/stage/alpha`?
+4. ¿Qué ventana y fallback para mensajes legacy sin `environment_scope` mientras se adopta el catálogo canónico `production/staging/alpha/beta/gamma`?
 5. ¿Qué recursos pueden compartirse entre familias y cuáles deben aislarse por construcción?
 6. ¿Qué capability soportada por Fury implementará el aislamiento de lanes dentro de `nonprod`?
 7. ¿Dónde se versionará el manifiesto de bindings y el generador reproducible?
 8. ¿Qué aplicación será el piloto de migración y quién aprueba cada retiro y cada Stream amarillo?
-9. **Front/back:** ¿Fury confirma que `X-Rio-Scope` puede ser la clave exacta de la route compartida, que un valor sin target falla sin fallback y que la entrada test no puede apuntar a infraestructura productiva?
-10. **Piloto KMS:** ¿la remediación de `test` acepta el target renombrado `alpha-api-nonprod` o exige crear `test-nonprod`? ¿Qué señal del dashboard confirma que la restricción de deploy quedó levantada?
+9. **Piloto KMS:** ¿la remediación de `test` acepta el target renombrado `alpha-api-nonprod` o exige crear `test-nonprod`? ¿Qué señal del dashboard confirma que la restricción de deploy quedó levantada y cuál es la nueva fecha acordada?
 
 ## 🔗 Docs / Links
 

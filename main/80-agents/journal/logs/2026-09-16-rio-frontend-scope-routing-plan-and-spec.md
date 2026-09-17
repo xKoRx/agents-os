@@ -60,6 +60,15 @@ tags:
 - El cliente usa `meliDomain` estático en Fury y reserva `baseURL` para localhost; el scope nunca se concatena a una URL.
 - La skill técnica ahora obliga a enlazar proyecto y SPEC y a eliminar duplicación según la autoridad de cada artefacto.
 
+## Corrección posterior a review
+
+- Se descartó retirar los archivos `test2/test3/beta/staging-production.js`: contienen catálogo de templates y, por herencia, diferencias de Entity Service/Kraken que esta fase no debe cambiar. La configuración compartida proyecta sólo las claves de routing de Playmaker.
+- Se explicitó que el override no cambia `playmaker_component_templates` ni `rio_entity_service_base_url`; la compatibilidad de templates entre el frontend y el backend elegido es gate de certificación, no validación semántica del frontend.
+- Se mantuvo `meliDomain` para dominios internos en Fury por el contrato Nordic, pero se acotó el cambio: `baseURL` sigue gobernando fuera de Fury/local para evitar el desvío a `melioffice.com`. La seguridad deriva del destino estático, no del nombre de la opción.
+- Se conservó el reset de `page.store.ts` porque contiene IDs, drafts y estado de mutación ligados al backend; se eliminó `ui.store.ts` del alcance y se mantuvieron como obligatorios los caches server-side y el namespace de `deploySessionStore`.
+- Se agregó el invariante `allowRepeatedParams: true`, el import explícito/proyección de `test-production.js`, la defensa particular de `staging` y el orden de merge de `frontend-config`.
+- El proyecto dejó una sola fuente para el contrato Fury, actualizó el catálogo canónico y marcó la remediación KMS como vencida y bloqueada hasta revalidar fecha/estado.
+
 ## Validación
 
 - `validate_schema_contract.py --type doc` y `--type change_log`: 0 errores.
