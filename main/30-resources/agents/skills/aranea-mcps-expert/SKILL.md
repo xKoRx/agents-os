@@ -110,7 +110,7 @@ Kafka PROD todavía no tiene capability certificada. `aranea-kafka-prod-ro` y `a
 
 Flink PROD todavía no tiene capability certificada. `aranea-flink-prod-ro` está diferido; no usar `aranea-flink-dev-admin` ni `docker-echo-dev-operator` como sustitutos para PROD.
 
-MT4/MT5 worker-kronos: la evidencia privilegiada (identidad/hash del ejecutable del worker, estado Stager, releases, reconciliación `StagerReconcile`) se consume del reporte del evidence publisher (`C:\ProgramData\Aranea\evidence\stager-evidence-latest.json`, leído con probes read-only vía `mt5-kronos-operator`), NO elevando `echo-dev`. Contrato, assertions de frescura/validez y estado: [[aranea-ssh-mcp]] § Evidence publisher worker-kronos (STAGED pending owner install 2026-09-17 — sin reporte no hay evidencia privilegiada; no sustituir con elevación ni bypass).
+MT4/MT5 worker-kronos: la evidencia privilegiada (identidad/hash del ejecutable del worker, estado Stager, releases, reconciliación `StagerReconcile`) se consume del reporte del evidence publisher (`C:\ProgramData\Aranea\evidence\stager-evidence-latest.json`, leído con `Get-Content`/`Get-Item` read-only vía `mt5-kronos-operator` — el camino viewer `mt5-kronos`+`sftp-download` está POLICY_DENIED verificado), NO elevando `echo-dev`. Assertions de validez: `generated_at_utc` ≤ 15 min para deployment/runtime certification (STALE más viejo = NO certificable; 8 h sólo health), `partial=false`, `inspector_sha256` == hash de registro, `run_identity` == SYSTEM. Contrato y estado: [[aranea-ssh-mcp]] § Evidence publisher worker-kronos (STAGED pending owner install 2026-09-17 — sin reporte no hay evidencia privilegiada; no sustituir con elevación ni bypass).
 
 ### 3. Elegir autoridad mínima dentro del ambiente correcto
 

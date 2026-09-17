@@ -1588,3 +1588,82 @@ Ningún finding se rechaza íntegramente: cinco aceptados y siete modificados. L
 **Handoff inequívoco — NEXT: M2 — TOP IMPLEMENTATION PLAN.** Inputs exclusivos: este proyecto frozen y Technical Platform Map; Edge Research Consolidado sólo cuando una decisión de implementación necesite requirements transversales. TOP transforma FOUNDATIONAL NOW en dependency order, slices, packages/files permitidos, schemas/storage setup, tests/gates, failure/recovery y definition of done. No rediseña. Una contradicción arquitectónica material se devuelve al manager como `BLOCKED — DESIGN ISSUE`; no se resuelve inventando arquitectura ni activando capacidades diferidas. El plan se escribirá en este mismo proyecto durante M2, no en este shot.
 
 **Persistencia y trazabilidad:** sólo esta nota fue editada; F.1–F.9 y el registro completo ASTRA-2 conservan los mismos bytes del baseline local, verificados por SHA-256. La propuesta ASTRA-1 mantiene autoría, estructura, alternativas/riesgos e historial, con correcciones normativas identificadas. No se modificó el Technical Platform Map ni se usó GitHub/sincronización remota como autoridad. Este cierre es el registro de cambio local del mandato ASTRA-3.
+
+## M2 — TOP Implementation Plan
+
+**Estado:** `M2_PLAN_READY_FOR_MANAGER_REVIEW` · **Autor:** TOP · **Fecha:** 2026-09-17. Este bloque transforma la partición `FOUNDATIONAL NOW` de M1.15 en un plan de implementación ordenado, verificable y ejecutable por agentes NORMAL. No rediseña: cada contrato citado ya está FROZEN en M1.1–M1.17 y este plan sólo decide estructura de paquetes Go, orden de slices, tests y verificación física. Se congela sólo tras revisión del manager/owner; hasta entonces es propuesta. Gates físicos siguen `NOT_RUN`; live sigue `NOT_CERTIFIED / LIVE_DISABLED`; ninguna capability live queda habilitada por este plan.
+
+### M2.0 — Baseline, autoridad y alcance del plan
+
+| Fuente | Uso en este plan |
+|---|---|
+| Este archivo, contenido previo a M2 | Autoridad principal: D-001…D-014, M1.1–M1.17, A-01…A-35, U-01…U-10, G-01…G-19, partición FOUNDATIONAL NOW de M1.15 |
+| [[Polymarket — Technical Platform Map — synced 2026-09-17]] y sus partes P01…P11 (notación de M1.0) | Contratos wire citados por slice (schemas, endpoints, units, rate limits, recovery); consulta selectiva por parte de NORMAL |
+| [[Polymarket — Edge Research Consolidado 2026-09-16]] | Sólo como requisito transversal de consumidores (baskets/relaciones); ya absorbido en M1.4/M1.9; NORMAL no lo necesita para estos slices |
+
+**Alcance = FOUNDATIONAL NOW exclusivamente** (partición M1.15, OD-2 APPROVED). Prohibido planificar implementación de: órdenes live reales, ActivationLease operativo de trading, wallet/signing productivo, User WS de ejecución (sólo fixture/interfaz si un test lo exige), writes on-chain, CTF position ops con ejecutor, conversión NegRisk CTF/v2, codecs Protocol-v2, `deferExec=true`, Builder modes, Session Keys, auto-wallet/auto-approvals, Combo/RFQ, Bridge/funding, estrategias Sports/NegRisk reales, DR off-host, dashboards/UI, Kubernetes, Kafka/Flink, microservicios. Las interfaces frozen para live futuro se representan como contratos + stubs que retornan `DISABLED` (deny-all) verificados por tests negativos; prohibido crear fake implementations que simulen éxito. Toda la evidencia privada de cuenta usada en tests es sintética (M1.15).
+
+**Escalamiento:** si un agente (TOP o NORMAL) demuestra una contradicción arquitectónica material entre este plan y M1 frozen, detiene el slice afectado con `BLOCKED — DESIGN ISSUE` hacia el manager; no improvisa, no inventa ownership ni activa capabilities diferidas. Decisiones operativas permitidas a M2 (driver SQLite, librería decimal, librerías auxiliares, versiones, ubicación local del repo) se registran en M2.9 y son reversibles sin tocar dominio.
+
+### M2.1 — Estructura de paquetes Go (decisión operativa M2)
+
+**Repo:** `xKoRx/polymarket-engine` (nombre acordado en M0; la creación del repo es paso posterior separado). **Ubicación local del clone: `REQUIRES_OWNER — REPO LOCATION ONLY`** — decisión de path local, no arquitectónica; propuesta por defecto: workspace externo registrado fuera del vault (p. ej. `~/code/xKoRx/polymarket-engine`), conforme a la regla de repos externos de Agents-OS. Layout baseline (sin monorepo grande):
+
+```text
+go.mod                          module github.com/xKoRx/polymarket-engine
+cmd/engine/                     composition root + CLI local (mismo binario)
+internal/
+  foundation/  config/  protocol/  capture/  persist/
+  catalog/  regimes/  transport/  books/  frames/
+  strategy/  economics/  simulator/  account/  risk/
+  experiment/  replay/  obs/  supervisor/  archtest/
+migrations/                     SQLite embebido, forward-only, rangos por slice
+testdata/                       fixtures versionadas + evidencia de gates + property-failures
+```
+
+| Paquete | Responsabilidad | Owns | Puede depender de | No debe depender de | Contratos públicos | Persistencia | Concurrencia |
+|---|---|---|---|---|---|---|---|
+| `cmd/engine` | Composition root y CLI local (run/screen/record/replay/backup/restore/verify/certify) | wiring exclusivo de puertos/adapters; sin dominio propio | todos los `internal/` sólo para construir | nadie lo importa | subcomandos CLI | ninguna (delega) | arranca/detiene Supervisor |
+| `internal/foundation` | Primitivas transversales: IDs nominales, `RevisionRef`, `AssetKey`, `ConditionRef`, decimal exacto `coefficient+scale`, unidades (`Price/Shares/CollateralAmount/BasisPoints/FeeCoefficient`), `Clock` wall+mono, error taxonomy, capability registry fail-closed, `ExecutionMode`/`ActivationLease` (contrato, no constructor) | tipos value inmutables y sus invariants | nada interno | todo lo demás (es la base) | tipos, errores, registry API | ninguna | tipos value; sin goroutines |
+| `internal/config` | Schema versionado, carga/validación estricta, `config_revision` hash | schema de configuración | foundation | paquetes de dominio | `Config` validada + revision | archivo config versionado | lectura única al boot |
+| `internal/protocol` | DTOs y parsers wire por superficie (`gamma`, `clobrest`, `marketws`, `datav2`), version identity, redaction schema, unión `ProtocolContext` CTF/V2/UNKNOWN | interpretación wire→tipos | foundation | transporte I/O, dominio, persistencia | `Parse(surface, bytes)` total; listas de redacción; version identity | fixtures versionadas en `testdata/` | parsers puros, sin estado |
+| `internal/persist` | Framework SQLite: open WAL synchronous FULL, migraciones embebidas forward-only, single writer, `applied_seq` por reducer/namespace, outbox pattern, chequeo `journal_seq ≥ applied_seq` | runner de migraciones, `reducer_cursors`, convención de cursores | foundation | tablas concretas de owners (las crea cada slice) | Open/Migrate/Writer/Cursor/Outbox API | `schema_migrations`, `reducer_cursors` (0001–0009) | un writer goroutine serial, transacciones breves |
+| `internal/capture` | Admisión durable-before-publish, journal segmentado con CRC y footer, `capture_seq`/`durable_seq`, carriles EVIDENCE/RUNTIME con cuotas, recovery de prefijo, manifests/bundle, integridad por clase (`ACCOUNT_FACT`/`RESEARCH_EVIDENCE`), redacción aplicada | bytes/manifests de captura y watermarks | foundation, protocol (redacción/identidad) | reducers de dominio; decisiones de negocio | Admit/Seal/Recover/Iterate/Verify API; envelope M1.6 | archivos journal + manifests | admisor único + writer secuencial + group commit |
+| `internal/catalog` | Event/Market/Outcome/Asset/Condition/relationships versionadas conocidas-a-fecha, `UniverseSpec`→`UniverseRevision`+`UniverseChanged`, Subscription Planner, quarantine | identidad, relaciones y membership de Universe | foundation, persist, protocol(gamma) | books/frames/estrategias; borrar por scan parcial | revisiones inmutables + `UniverseChanged` | tablas 0010–0019 + cursor propio | reducer serial single-owner |
+| `internal/regimes` | Tick/min-size/fees/lifecycle/resolution observations con provenance, `FeeResolver` versionado, `REGIME_SUSPECT`, fee trade-observed | constraints y lifecycle observado | foundation, persist, protocol | reescribir identidad de Catalog; quotes; fee universal | `RegimeID` revisions + invalidaciones | tablas 0020–0029 + cursor propio | reducer serial propio |
+| `internal/transport` | Adapters read-only REST/WS (`gamma`, `clob`, `datav2`, `marketws`): conexiones, subscriptions, epochs, rate budgets, heartbeats; escriben evidencia en Capture | conexiones y epochs de transporte | foundation, protocol, capture (admisión) | escribir proyecciones (books/catálogo); signer; dominio mutable | clientes por superficie | ninguna (evidencia vía Capture) | connection manager por superficie; un reader + un writer de control por conexión |
+| `internal/books` | Book shards por `AssetKey`, epochs/fencing, bootstrap WS full, calidad M1.5, namespace `REST_OBSERVATION` | proyección y calidad por epoch | foundation, capture, protocol(marketws), catalog (IDs), regimes (constraints) | frames/estrategias; mezclar REST+deltas; backfill L2 | `BookSnapshot` + `QualityState` | in-memory + `applied_seq` cursor por shard | N shards single-owner con inbox FIFO |
+| `internal/frames` | Dispatcher único, cortes forward con barreras FIFO, `revision_vector`, `DeliveryFrame` en carril RUNTIME, presupuestos K/bytes | demanda y delivery por consumidor | books, catalog, regimes, capture, foundation | estrategias concretas; cuenta (refs opacos); latest como sustituto | `DeliveryFrame` + API de barrera | RUNTIME journal + snapshots ≤K/bytes | dispatcher único + scheduler por run |
+| `internal/strategy` | Strategy API frozen M1.8 materializada en Go, runtime de actores, lifecycle, modo SCREEN, gate de imports/lint | instancias y estado runtime por estrategia | frames, foundation, catalog (vistas), obs | red/secrets/signer/wallet/repos/execution; goroutines propias en callbacks | `Strategy/Factory` + tipos M1.8 | RUNTIME journal; estado reconstruible | actor serial por instancia, mailbox acotado |
+| `internal/economics` | `Quote`/`CostEnvelope`, executable depth, VWAP, fees por escenario vía FeeResolver, incentivos estimados separados | funciones puras de economics | foundation, regimes, strategy (tipos), frames | simulator/account; mutar books | `Quote`/`CostEnvelope` | ninguna (pura) | sin estado |
+| `internal/simulator` | Fill engine determinista, escenarios optimistic/base/stress, liquidity ledger por namespace, `PORTFOLIO_SHARED`, eventos sintéticos para account | liquidez, modelo y eventos sintéticos | economics, strategy (tipos), frames, foundation | cuenta real; books; transport | FillModel API + ledger namespace | checkpoints reconstruibles por namespace | serial por run |
+| `internal/account` | Account Coordinator único writer (real y virtual): ledger, reservas, intents, fills, atribución, `BasketExecution`, `AccountView` revisions, classifier de writes, recovery, outbox | todo lo contable por namespace | foundation, persist, protocol(clobrest) | transport/signer; quotes (es consumidor); otra cuenta | comandos tipados + `AccountView` + classifier allowlist | tablas 0030–0044 (`ACCOUNT_FACT`) | un Coordinator por cuenta/namespace; reducers seriales |
+| `internal/risk` | Reglas versionadas, eligibility/sizing, evaluador puro sobre snapshot de cuenta | políticas de riesgo y sus snapshots | foundation, account (vistas) | ledger propio; transport | `RiskPolicyView` + decisión tipada | tablas de policy en rango 0030–0044 | sin estado |
+| `internal/replay` | Manifests, virtual clock, replay de observación y delivery, auditoría, `NOT_REPRODUCIBLE` | runs offline reproducibles | capture, catalog, regimes, books, account (reducers), strategy (fixture) | transport/red; estado actual como sustituto | manifest schema + replay API | manifests versionados | pool offline acotado |
+| `internal/experiment` | Registry de hipótesis `PE-xxx`, protocolo preregistrado, run manifests, scorecards, datasets con lineage, outcomes | manifests/pins de experimentos | persist, strategy (tipos), simulator, replay (manifests), foundation | tablas privadas de account; reescribir raw | registry/scorecard/outcome schemas | tablas 0045–0054 + derivados SQLite/JSONL | offline serial por experimento |
+| `internal/obs` | Métricas, logs estructurados con correlación, readiness por capability, cinco diagnósticos, pipeline timings, resource pressure | instrumentación | foundation | controlar dominio por logging | registro de métricas + readiness API | ninguna (exposición local) | collectors sin locks largos |
+| `internal/supervisor` | Lifecycle del proceso, lock exclusivo, boot markers, shutdown con deadline, `ExecutionMode`/`ActivationLease` validator, `DEGRADED_AUDIT`, disk watermarks, barrera de backup | ciclo del proceso y leases | construido por cmd sobre todos los módulos | mutar proyecciones o cursores ajenos | Supervisor + lease validator + markers | markers/`AUDIT_GAP` en store escribible | orquesta start/drain/stop |
+| `internal/archtest` | Test de arquitectura: dirección de imports, allowlist de estrategias (sin `unsafe/reflect/os/exec/net/syscall/plugin/cgo`), sin `utils/common` | sólo tests | nada (análisis AST) | runtime | go tests | ninguna | n/a |
+
+Reglas estructurales frozen que este árbol materializa: adapters dependen hacia adentro; dominio no importa transports ni storage de otros módulos; el composition root es el único que conecta puertos; no hay `utils` ni `common`; un paquete = un owner. Todo paquete nuevo requiere slice propio y actualización de esta tabla. Los árboles de paquetes son derivados de los límites frozen de M1.2; reorganizarlos sin cambiar ownership no requiere reapertura arquitectónica, pero sí revisión de manager.
+
+**Elección de dependencias third-party (operativa M2, reversible):** SQLite driver `modernc.org/sqlite` (pure Go, sin cgo; performance se mide en G-09b/G-13 y `mattn/go-sqlite3` es reemplazo encapsulado si hiciera falta); decimal `shopspring/decimal` encapsulado detrás de los tipos de `foundation` (nunca expuesto tal cual); property testing `pgregory.net/rapid` con seeds persistidas; WebSocket `gorilla/websocket` encapsulado en adapter; métricas `prometheus/client_golang` con exposición local; logs `log/slog`; config TOML estricta (`BurntSushi/toml`); HTTP/CLI stdlib. Go toolchain: pin en `go.mod` a la estable vigente al iniciar S01 (propuesta: `go 1.23`).
+
+### M2.2 — Orden de dependencia y checkpoints verticales
+
+```text
+S01 Foundation
+   ↓
+S02 Protocol ∥ S03 Capture + Persist          ← PARALLEL GROUP A
+   ↓ barrera
+S04 Catalog → S05 Regimes
+   ↓ barrera
+S06 WS+Books → S07 Frames → S08 Replay → S09 Strategy → S10 Economics+Simulator   ← GROUP B1
+S11 Account+Risk                                                                    ← GROUP B2 (∥ B1)
+   ↓ barrera (integración B1×B2)
+S12 Supervisor / Observability / Backup-Restore
+   ↓
+S13 Experiments / Shadow E2E / Certificación
+```
+
+Justificación del orden: Capture+Persist preceden a todo reducer porque `durable-before-publish` y `applied_seq` son prerequisito de catálogo, books y cuenta (M1.6/M1.7); Regimes precede a Books porque salir de `SYNCING` exige constraints válidos (M1.5); Frames preceden a Strategy porque el runtime entrega `Frame`; Strategy precede a Simulator porque los tipos de candidatos viven en la API frozen; Account puede correr en paralelo con la cadena B1 porque su seam (comandos tipados, `FillKey`, `AccountView`, estados M1.11) está congelado y su ownership de paquetes/migraciones es disjunto; Supervisor/Certificación van al final porque necesitan el wire completo. Se eligió esta forma para producir capacidades útiles temprano (checkpoints verticales) en vez de capas horizontales sin valor: tras S04 existe `catalog sync` real; tras S06 existe `record` de un mercado real; tras S08 existe replay determinista de la propia observación; tras S09 existe SCREEN end-to-end; tras S13 existe un experimento SHADOW con scorecard. Cada slice usa la plantilla de M2.3; M2.4–M2.10 completan paralelismo, tests, entrega a NORMAL, hitos, frontera M4, decisiones operativas y verificación de calidad.
