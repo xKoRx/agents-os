@@ -36,6 +36,7 @@ tags:
 - Los 9 agent-projects usan **un plan vigente por archivo**: los supuestos julio reemplazados (crear PBS 180 → adoptar; docker-observability → ARGUS vm 160; restore sólo-R7 → restore por fase) quedan marcados HISTORICAL inline, preservando el resto del plan como operativo.
 - RC-20260917-001 (banner DESIGN_FROZEN dentro de BACKUP-DR-DESIGN) aprobado y aplicado; registro en REQUEST-CHANGES.md.
 - Pendiente R1 (deuda owner, NO D0): pve-config (subcommand `config` en agent-read), etcd-snapshot (etcd-client + endpoint), pihole-config (api_token FTL v6); automatización (timer/pruning del wrapper r1-backup.sh) y retención = decisión owner. R2 gate: PBS 180 + tickets 018-021.
+- **R1.5 ejecutado (2026-09-17, mandato one-shot)**: etcd :2379 SÍ alcanzable desde hermes-vm (corrección del filtro asumido; snapshot cluster viable sin owner); pi-hole .149 está L2-dead (ARP FAILED desde athena) — no es sólo filtrado; DNS LAN hoy resuelve via .31, no 149. Timers frozen instalados (04:00/05:00/SAT 08:30). Pendiente owner: sección `config` en agent-read (root en 5 nodos), acme-stepca.json (root LXC 115), pi-hole (red + token). Detalle: change log `2026-09-17-backup-dr-r15-config-completion`.
 
 ## Señales de carga
 
