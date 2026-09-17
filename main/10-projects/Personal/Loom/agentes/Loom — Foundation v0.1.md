@@ -10,7 +10,7 @@ parent: "[[Loom]]"
 sprint:
 start: 2026-09-13
 due:
-progress: 59
+progress: 65
 repo: xKoRx/loom
 jira:
 prs:
@@ -47,7 +47,7 @@ cssclasses:
 
 ## 📊 Estado actual
 
-- **SESIÓN CERRADA POR OWNER · POST-CLOSE RECONCILIADO (2026-09-13, 10/17 tasks = 59%):** WP-A ✅ · WP-B ✅ · WP-C ✅ · WP-D: T10 ✅, T11 **NOT DONE / no aceptado** con parcial preservado como referencia · T12–T17 pendientes. Último feature checkpoint aceptado: T10 @ `4a9d0a48a9d91634d5e616b403d2921a7bcb8575`. Session-close original: `76d305c5c323a8429057ae079f4884bf1e843b41`. Después del cierre el owner preservó/pusheó el parcial de T11 en `master` @ `cb6245c3e94ef201b2ca966b624b20d18d523b1a`, commit que agrega `internal/serve/render.go.partial-t11` como artefacto **reference-only**, fuera del compile path; NO convierte T11 en implementación aceptada. Próximo paso canónico: T11 — inspeccionar y decidir qué rescatar/descartar del `.partial-t11`, completar y verificar según SPEC/TASKS. Sin subagente Loom activo; la sesión permanece **CLOSED**.
+- **EJECUCIÓN REANUDADA POR OWNER (2026-09-13, sesión 2 — 11/17 tasks = 65%):** owner ordenó continuar el resto del proyecto. **T11 DONE** (2 partes: renderer reconciliado por el orchestrator desde el `.partial-t11` @ `5933659` — fixes de API goldmark, callout regex grupo título, prioridad de renderers 500<1000; endpoints notes/render/tasks/search por R2 @ `ce752cb`; smoke real-vault PASS con los 4 endpoints) · **T12 DONE** (diagnostics paginado + audit error model @ `c006036`; vault real: 7084 diagnostics). **WP-D ✅ completo.** WP-E [/] (T13 en curso, R3). Vault real hoy: ~3179 notas.
 - **EJECUCIÓN (2026-09-13, sesión de implementación):** WP-A ✅ (T01 `422be60` + T02 `57e5316`) · WP-B ✅ (T05 `b33be34` + T03 `d8b16fc` + T04 `1059251`) · WP-C ✅ (T06 `1350ed2` scanner/snapshot/watcher ≈300ms vault real + T07 `c949bb3` projections 126 projects/2172 tasks + T08 `0d3c798` links shortest-path/backlinks 6575 resueltos + T09 `88f272d` invariancia PASS — mutación→revert→firma idéntica entre generaciones) · WP-D parcial (T10 `4a9d0a4` meta/projects/areas + security boundary + fix scanner NFD). Coverage: vault 100%, parse 95.3%, index 95.7%, serve 98.7%.
 - **FOUNDATION FINALIZATION (2026-09-13):** decisiones owner aplicadas — rename canónico **Project Lens → Loom** (aliases históricos preservados), repo `xKoRx/loom` + workspace `~/go/src/github.com/xKoRx/loom` + módulo `github.com/xKoRx/loom` + binario `loom` + branch `master` declarados; live refresh promovido a comportamiento CORE de F1 (backend dueño exclusivo del fs: watch fsnotify → debounce → rebuild → snapshot inmutable → swap atómico → generation++; Vue observa generation por polling y refetch); **MAX_CONCURRENT_LOOM_SUBAGENTS = 1** (secuencia estricta, sin R2∥R3, sin delegación recursiva); invariante de seguridad HTTP DocumentID registrada.
 - **F0 FOUNDATION COMPLETA (2026-09-13):** sesión de rebase/arquitectura produjo el planner original — dominio, identidad, matriz canonical/derived, boundaries, storage (sin SQLite), decisión Graphify (sin dependencia), API v0.1, roadmap vertical F1–F5, work packages atómicos T01–T17, modelo de subagents y gates. Cero product code en fundación.
@@ -59,7 +59,7 @@ cssclasses:
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| `xKoRx/loom` (**VERIFIED** 2026-09-13) | `master` (fase v0.1) | `5afd63e468e7a2104a175a727a961e4f678c09ea` (Initial commit) | repo `specs/FEAT-LOOM-V01/SPEC.md` @ `b031006b400e37a3a4647abc6049161bd2c2a7d6` (§ Product definition + § API contract) | repo `specs/FEAT-LOOM-V01/SPEC.md` @ `b031006b400e37a3a4647abc6049161bd2c2a7d6` (§ Domain model + § Architecture + § Test strategy) | **PAUSED / SESSION CLOSED — current master `cb6245c`; accepted product through T10 @ `4a9d0a4`; T11 NOT DONE; `.partial-t11` tracked reference-only** |
+| `xKoRx/loom` (**VERIFIED** 2026-09-13) | `master` (fase v0.1) | `5afd63e468e7a2104a175a727a961e4f678c09ea` (Initial commit) | repo `specs/FEAT-LOOM-V01/SPEC.md` @ `b031006b400e37a3a4647abc6049161bd2c2a7d6` (§ Product definition + § API contract) | repo `specs/FEAT-LOOM-V01/SPEC.md` @ `b031006b400e37a3a4647abc6049161bd2c2a7d6` (§ Domain model + § Architecture + § Test strategy) | **EXECUTING — T01–T12 DONE (backend completo); current master `c006036`; WP-E frontend en curso** |
 
 - Política: la ejecución corre con repo + branch/base registrados en esta tabla (regla dura de `agents-os-entity-lifecycle`). El repo es autoridad del contrato técnico; esta nota conserva estado/progreso/routing.
 - Checklist atómico T01–T17: repo `specs/FEAT-LOOM-V01/TASKS.md`; orden/gates/gobernanza: repo `specs/FEAT-LOOM-V01/PLAN.md`.
@@ -82,8 +82,8 @@ _No aplica — este es el subproyecto de fundación/implementación de Loom; no 
 > - [x] WP-A Scaffold: T01 Go scaffold (module github.com/xKoRx/loom, binario loom) + T02 Web scaffold #owner/agent #type/dev #area/personal ✅ 2026-09-13
 > - [x] WP-B Parse core: T05 fixtures → T03 frontmatter → T04 body #owner/agent #type/dev #area/personal ✅ 2026-09-13
 > - [x] WP-C Index + live refresh: T06 scanner/snapshot/watcher/generation → T07 projections → T08 links/backlinks → T09 rebuild invariance #owner/agent #type/dev #area/personal ✅ 2026-09-13
-> - [/] WP-D API: T10 ✅ → T11 notes/render/search/tasks (pausado; parcial tracked sólo como referencia en `render.go.partial-t11`, T11 sigue NOT DONE) → T12 diagnostics #owner/agent #type/dev #area/personal
-> - [ ] WP-E Frontend (secuencial): T13 shell + generation polling → T14 viewer → T15 cockpit → T16 search/diagnostics #owner/agent #type/dev #area/personal
+> - [x] WP-D API: T10 ✅ → T11 notes/render/search/tasks ✅ (renderer + endpoints) → T12 diagnostics ✅ #owner/agent #type/dev #area/personal
+> - [/] WP-E Frontend (secuencial): T13 shell + generation polling → T14 viewer → T15 cockpit → T16 search/diagnostics #owner/agent #type/dev #area/personal
 > - [ ] WP-F Gates: T17 e2e + hardening live refresh + build binario único #owner/agent #type/dev #area/personal
 
 ```dataviewjs
