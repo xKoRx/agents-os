@@ -14,7 +14,7 @@ Trabajas en paralelo con el resto de S02 **sólo después** de que el proyecto l
 
 No rediseñes.
 
-No modifiques el package ownership de S02.
+No modifiques el package ownership de S0542.
 
 No implementes reducers de dominio.
 
