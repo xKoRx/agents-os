@@ -1951,3 +1951,115 @@ Convenciones comunes a todos los slices: cada slice es una asignación NORMAL ce
 **Definition of Done:** fixtures exactas verdes; todos los escenarios etiquetados; evidencia G-10/G-10b emitida.
 
 **Handoff:** S13 integra simulator→account en namespace virtual y construye scorecards; los contratos de `Quote`/escenarios quedan congelados.
+
+#### M2-S11 — Account Coordinator (no-live) + Risk
+
+**Goal:** único writer de cuenta (real y virtual) con ledger, reservas, intents, fills, atribución, baskets secuenciales y recovery reducers; Risk puro; Execution/Reconciler/Credentials como stubs `DISABLED` deny-all detrás de los puertos frozen.
+
+**Depends on:** M2-S01–S03, M2-S02 (DTOs para classifier), M2-S05 (referencias de quantization/regimes). Paralelizable con la cadena B1 (grupo B2).
+
+**Allowed scope:** `internal/account/**`; `internal/risk/**`; `migrations/0030–0044_*`; `testdata/account/**`. Prohibido tocar `cmd/` (el wiring lo hace S12/S13) y cualquier paquete del grupo B1.
+
+**Forbidden:** HTTP write real; User WS; RPC/chain reads reales; resubmisión automática; salt/timestamp nuevo para recuperar un intent; liberar por tiempo/expiry/balances iguales; unwind automático; cifrado de payload firmado; fake success en stubs (retornan `DISABLED`); fake implementations de venue.
+
+**Contracts:** estados internos en ejes distintos de M1.11 exactos (intent `PREPARED/SEND_ATTEMPT_STARTED/VOID/UNKNOWN/REJECTED/ACK_OBSERVED`; orden `OPEN/PARTIAL/TERMINAL/UNKNOWN` con raw remoto; ejecución `NONE_PROVEN/EXECUTION_PROVEN/UNDETERMINED`; settlement `MATCHED/MINED/CONFIRMED/RETRYING/FAILED/UNKNOWN`; reserva `HELD/PARTIALLY_CONSUMED/RELEASABLE/RELEASED`; caso `RECONCILING/HUMAN_REVIEW_REQUIRED/CLOSED`); transacción atómica reserva + intent `PREPARED` + outbox; `WriteObservation` → classifier versionado con allowlist exacta de M1.11 (`DEFINITIVE_REJECT` sólo con contrato verificado; 400/401/403 y `success:false` por sí solos no bastan; 425/429/5xx/HTML/ambiguo → `UNKNOWN`); un attempt = máximo un submit (contador verificado); recovery de boot (`PREPARED` sin attempt en store íntegro → `VOID` + payload no enviable + reserva `RELEASABLE`; `SEND_ATTEMPT_STARTED` sin resultado → `UNKNOWN`; restore atrasado jamás permite VOID por ausencia); convergencia de `UNKNOWN` por evidencia (a)–(d) de M1.11 evaluada sobre observaciones aportadas (Reconciler stub `DISABLED`); dedup `FillKey` con `service=CLOB` (WS y REST comparten clave; status update no suma; Data v2 nunca acuña fills); atribución: subledger `(AccountID, StrategyInstanceID, AssetKey)` con `UNATTRIBUTED` bloqueante, transferencias como asiento explícito idempotente, `Σ atribuciones + UNATTRIBUTED = inventario` por categoría; `available` derivada una sola vez dentro del Coordinator; SELL exige disponibilidad de cuenta y de estrategia; `BasketPolicy` validada (SEQUENTIAL; PARALLEL → `UNSUPPORTED`) + máquina `BasketExecution` con transiciones exactas M1.11 (`PLANNED→RESERVED→EXECUTING→WAITING_LEG→BLOCKED_UNKNOWN→ABANDONING→RESIDUAL_HELD/COMPLETED→CLOSED_*`), sin unwind; compensación = candidato nuevo con autorización/budget/Risk propios; `AccountView` inmutable con revision+hash publicada; Risk: policy schema versionada, eligibility/sizing/reserva como evaluador puro, compare-and-check de revisión; tablas account clasificadas `ACCOUNT_FACT` (retención vida del proyecto, sin TTL).
+
+**Persistence:** migraciones 0030–0044 (intents, attempts, orders, fills, reservas, inventario, subledger, baskets, outbox, observaciones privadas sintéticas, policies); `applied_seq` por reducer/namespace.
+
+**Concurrency:** un Coordinator por cuenta/namespace con transacciones breves y reducers seriales; locks que nunca abarcan red ni fsync de raw; namespaces virtuales aislados por `(ExperimentID, RunID, instance, scenario)`.
+
+**Failure behaviour:** fallo de SQLite → rollback completo de la transacción atómica (sin estados intermedios); contradicción de fuentes → caso `RECONCILING` y exposición congelada; presupuesto de lectura agotado → `HUMAN_REVIEW_REQUIRED` + alerta; jamás liberación sin prueba positiva; `market_resolved` no devuelve cash.
+
+**Tests:** G-02 properties (conservación de reservas/balances, no doble gasto, no doble fill, actualización size absoluta donde aplique); G-02b (VOID de `PREPARED`; cursors con lag; mismo fill CLOB WS/REST aplicado una vez; SELL de B con tokens de A falla hasta transferencia explícita); G-10c (3 legs: primera llena, segunda UNKNOWN, tercera invalidada → `BLOCKED_UNKNOWN`, tercera jamás enviada, primera atribuida, segunda retenida, sin unwind; misma secuencia de hechos produce el mismo estado en el reducer de Simulator y en el gateway fixture; compensación sin nueva autorización rechazada); G-11b (ACK/fill tardíos convergen conservando reserva; expiry + REST ausente + balances iguales con match pendiente → `UNKNOWN` y escala; caso sin prueba nunca libera por tiempo; rechazo inequívoco libera sólo obligación inexistente); G-12b (425/429/503/500/HTML/success ambiguo/duplicate/`order timed out` no verificado → sin segundo submit ni re-firma; sends/attempt ≤1; crash sin exposición duplicada); G-15 parcial (intentos de `deferExec=true`, builder, convert CTF/v2, protocol UNKNOWN, calldata arbitraria → rechazo antes de firma vía stubs deny-all).
+
+**Gates:** G-02, G-02b (cierre), G-10c, G-11b, G-12b, G-15 (parcial).
+
+**Physical verification:** `go test ./internal/account/... ./internal/risk/... -race`; fixtures de fault con seeds persistidas; test negativo que prueba que cada stub retorna `DISABLED`.
+
+**Definition of Done:** todas las propiedades/fixtures verdes con evidencia; esquema con un writer por tabla y `applied_seq` por reducer; stubs `DISABLED` verificados; evidencia G-02b/G-10c/G-11b/G-12b emitida.
+
+**Handoff:** S12 arranca y wirea el Coordinator en Supervisor y en la barrera de backup; S13 conecta simulator→Coordinator virtual y ejecuta los fault fixtures integrados; los puertos de Execution/Reconciler/Credentials quedan listos para implementación live futura sin rediseño.
+
+#### M2-S12 — Supervisor, CLI, observabilidad y backup/restore local
+
+**Goal:** ciclo de vida del proceso con markers/leases fail-closed, observabilidad de los cinco diagnósticos y backup/restore local consistente y medido.
+
+**Depends on:** M2-S09, M2-S10, M2-S11 (wire completo), M2-S03 (bundle primitives).
+
+**Allowed scope:** `internal/supervisor/**`; `internal/obs/**`; `cmd/engine` (subcomandos `run/backup/restore/verify/inspect/kill`); `testdata/supervisor/**`; `testdata/obs/**`.
+
+**Forbidden:** endpoint admin HTTP autenticado (CLI primero); dashboards/alertas externas/tracing live completo; DR off-host; emitir ActivationLease live; borrar evidencia para liberar disco; terminar canales con productores activos.
+
+**Contracts:** orden de startup M1.2 (lock exclusivo → validar config/schema/manifests/capabilities → recovery journal y transacciones → captura + observabilidad → adapters públicos/catálogo/constraints → suscripciones/books → runtimes elegibles); fallo de startup de un writer no impide health/diagnóstico read-only; shutdown con deadline → `UNCLEAN/UNRESOLVED` durable y alerta; markers `BOOT_OPEN`/`BOOT_CLEAN` (arranque live exige reconcile; boot desconocido no es limpio); `ExecutionMode` poseído por Supervisor; `ActivationLease` validator completo con emisión disabled (default `LIVE_DISABLED`; lease expirada/revocada/desalineada en build/config → sin sends; `LIVE_DISABLED` puede reconciliar/cancelar bajo recovery scope, nunca crear órdenes); modo `DEGRADED_AUDIT` con allowlist cerrada aplicada sobre stubs deny-all (ring buffer + sink secundario stderr/syslog + `AUDIT_GAP{boot_id, since}` persistido en primer store escribible; lease bloqueada hasta cierre explícito con evidencia; prohibido nuevo order/liberación); disk watermarks low/critical (low frena replay/export/suscripciones; critical bloquea oportunidades/nuevos sends y mantiene reconcile/cancel, sin borrar raw pineado); observabilidad: pipeline timings `receive→durable→normalize→book→frame→strategy→decision→reserve→send→ack/fill` p50/p95/p99 + queue lag + fsync tail + GC/alloc/lock contention; readiness `liveness/readiness_public/readiness_strategy/readiness_live` (HTTP 200 no habilita live); logs estructurados con correlación `run/experiment/strategy`, `capture/epoch/frame`, `asset/condition/event`, `intent/order/trade/tx`, `config/capability revision` y reason codes, sin payloads sensibles; cinco diagnósticos con condiciones observables de M1.14, coexistentes; backup consistente: barrera de Supervisor → Capture fija corte durable `B` y sella prefijos → owners drenan hasta B sin avanzar cursores → SQLite backup por API del motor (incluye WAL) + outbox pendiente + versiones → manifest con `B`, rangos/hashes por clase, `applied_seq` por reducer/namespace y check `journal_seq ≥ applied_seq` → `BACKUP_COMPLETE` sólo tras verificación; restore: directorio limpio, verificación de hashes/refs/outbox/cursors por owner, reconstrucción de proyecciones y comparación de ledger; evidencia requerida faltante → degradado, jamás PASS; medición de duración y frontera de pérdida del fixture sin adjudicar SLA de DR.
+
+**Persistence:** bundle local completo; markers/`AUDIT_GAP` en store escribible; ningún GC.
+
+**Concurrency:** Supervisor detiene productores → drena hasta frontera registrada → cierra consumers; barrera de writers coordinada sin mutar proyecciones ajenas.
+
+**Failure behaviour:** backup interrumpido → bundle incompleto, jamás `BACKUP_COMPLETE`; restore con bundle que perdió evidencia requerida → degradado explícito; todos los sinks caídos → `BOOT_OPEN` sin cierre limpio y lease bloqueada hasta reconcile.
+
+**Tests:** G-14 (restore completo en directorio limpio con hashes/refs/outbox/cursors verificados y proyecciones reproducidas; GC simulado día 31 con `ACCOUNT_FACT` intacto y fuera de TTL; eliminar un activo requerido del bundle → integridad FAIL/degradada, health read-only puede funcionar); G-06b (bundle cubre cada cursor/dependencia/outbox incluso con writers concurrentes; DB adelantada al journal nunca recibe PASS); G-13b (DB caída → sólo cancel conocido/scoped vía stubs, marker/sink cuando escribibles, buffer recuperado con gaps documentados; todos los sinks fallan + restart → `BOOT_OPEN`, lease bloqueada hasta cierre explícito); G-13 parcial (workload preregistrado con capture+runtime+replay limitado; skips/UNKNOWN explicables; budgets/headroom medidos); tests de honestidad de readiness; cierre de G-15b (fixtures de body/error/headers y evidencia/restore sin filtrar `owner/signature/POLY_*`/secretos; ACL mínima verificable).
+
+**Gates:** G-14, G-06b, G-13b, G-13 (parcial: cierre en S13), G-15b (cierre).
+
+**Physical verification:** `go run ./cmd/engine backup|restore|verify` con fixture de cuenta simulada; drills G-06b/G-13b/G-14 ejecutados con evidencia (duración y frontera de pérdida medidas en el reporte).
+
+**Definition of Done:** ciclo backup→restore produce hashes/ledger idénticos en fixture; los tres drills verdes con evidencia; readiness/diagnósticos visibles sin secretos; sistema arrancable como proceso único con todos los modos.
+
+**Handoff:** base operativa completa para S13; los puertos de lease/`DEGRADED_AUDIT` quedan listos para live futuro sin rediseño.
+
+#### M2-S13 — Experiments, Shadow E2E y harness de certificación
+
+**Goal:** pipeline SHADOW completo preregistrado con scorecards honestos y la ejecución documentada de la matriz de gates no-live (readiness M4).
+
+**Depends on:** M2-S10, M2-S11, M2-S12.
+
+**Allowed scope:** `internal/experiment/**`; `cmd/engine` (subcomandos `experiment|shadow|certify`); `migrations/0045–0054_*`; `testdata/experiment/**`; `testdata/certification/**`.
+
+**Forbidden:** promover `GO` a live; holdout reciclado; mezclar resultados simulados con reales; capturar evidencia privada real (sólo sintética); crear módulos Sports/NegRisk; deniminadores que excluyan episodios sucios sin contarlos.
+
+**Contracts:** hypothesis registry `PE-xxx` con campos M1.9; protocolo de experimento preregistrado (hipótesis falsable, unidad estadística, baseline/controles negativos, exclusiones, stopping rule, sample requirement, `GO/ITERATE/NO_GO` ex ante); run manifest con pins completos de M1.6 + versiones de parámetros/calculadores + universo known-at + escenarios + bankroll virtual; scorecard M1.9 (coverage y discontinuidades; señales totales/independientes; lifetime; net edge por depth/fee/latency; fill/partial/legging rates; capacity; PnL bruto/neto/realizado/no realizado; lock/capital-turns; drawdown y worst loss; markouts/adverse selection; sensitivity y caveats; denominadores con `PEER_*`); outcome `GO|ITERATE|NO_GO|INCONCLUSIVE` con `GO` ≠ permiso live; `INCOMPLETE` explícito para runs interrumpidos; vista estadística mínima (splits temporales/por parent event, OOS, censura por mercados sin resolver, múltiples tests declarados); datasets derivados SQLite/JSONL con lineage y dinero en decimal/int exacto; pipeline SHADOW E2E: capture actual + runtime + simulator + Coordinator virtual con default `INDEPENDENT` y `PORTFOLIO_SHARED` sólo explícito en manifest; parity REPLAY/SHADOW: mismo `Assessment`/sizing/decisión Risk con `revision_vector` completo (account/risk/liquidity/quote refs); harness de certificación: runner que ejecuta cada gate no-live con evidencia (fixture hash, expected/actual, build/config/ambiente) y emite resumen `PASS/FAIL/NOT_RUN` por gate.
+
+**Persistence:** migraciones 0045–0054; manifests/scorecards versionados; datasets con lineage.
+
+**Concurrency:** offline pool para experiments; shadow en vivo respetando cuotas RUNTIME (pausa de runs, nunca revocación de epochs).
+
+**Failure behaviour:** experimento incompleto → `INCOMPLETE/INCONCLUSIVE`, jamás `GO`; replay con ref faltante → `NOT_REPRODUCIBLE`; saturación RUNTIME → runs pausados (contrato G-09b); resultados sólo-optimistic no promueven.
+
+**Tests:** G-07b (replay SHADOW iguala `Assessment`, sizing y Risk con refs completos; borrar/alterar un input → `NOT_REPRODUCIBLE`, nunca diferencia silenciosa); G-09b (saturar RUNTIME con EVIDENCE certificada: runs pausados, cero epochs revocados y cero holes de mercado por esa saturación; group commit sin fsync por callback con latencias medidas; crash antes de durable no publica feedback/intent); G-10b integrado con account; G-13 (ventana shadow preregistrada con capture+runtime+replay limitado y sin pérdidas no declaradas; todos los skips/UNKNOWN explicables; budgets/headroom y métricas medidos); re-ejecución de G-08 en SCREEN/REPLAY/SHADOW; fault fixtures G-10c/G-11b/G-12b integradas al pipeline.
+
+**Gates:** G-07b, G-09b, G-10b (cierre), G-13 (cierre); consolidación de evidencia G-01…G-15 + extensiones b para M4.
+
+**Physical verification:** `go run ./cmd/engine shadow --manifest …` produce scorecard + dataset con lineage; `go run ./cmd/engine certify --profile no-live` ejecuta la matriz y emite bundle de evidencia + resumen por gate; G-16…G-19 y G-14b aparecen explícitos como `NOT_RUN / IMPLEMENT LATER`.
+
+**Definition of Done:** un experimento shadow real (fixture strategy) con scorecard revisable y diagnósticos correctos; matriz no-live con evidencia completa; resumen entregado en este archivo para revisión manager/owner → abre la frontera M4.
+
+**Handoff:** M4 evalúa el engine resultante; Sports/NegRisk pueden consumir Universe/frames/economics/account sin modificar fundamentos (verificado por G-08 y por la estabilidad de los contratos publicados).
+
+### M2.4 — Paralelismo y fronteras de ownership
+
+```text
+SEQUENTIAL BASE
+- M2-S01 (Foundation; nadie más compila sin esto)
+
+PARALLEL GROUP A (tras S01)
+- M2-S02 (internal/protocol + testdata/protocol)
+- M2-S03 (internal/capture + internal/persist + migrations 0001–0009)
+
+SEQUENTIAL BARRIER
+- Integración S02×S03 (redaction aplicada en admisión) y verificación de archtest global
+
+PARALLEL GROUP B (tras S04→S05)
+- B1: M2-S06 → M2-S07 → M2-S08 → M2-S09 → M2-S10 (cadena secuencial; migrations: ninguna nueva)
+- B2: M2-S11 (internal/account + internal/risk + migrations 0030–0044; sin cmd/)
+
+SEQUENTIAL BARRIER
+- Integración B1×B2: adapter simulator→Coordinator virtual + E2E de namespace virtual
+
+SEQUENTIAL FINAL
+- M2-S12 → M2-S13
+```
+
+Fronteras que hacen seguro el paralelismo: en Group A, S02 y S03 no comparten archivos y su único seam (redaction schema) está definido contractualmente en M1.6; en Group B, B2 no toca paquetes de B1 ni `cmd/`, sus migraciones (0030–0044) son disjuntas de todo B1 (que no crea migraciones) y su seam con B1 (comandos tipados, `FillKey`, `AccountView`, estados de M1.11) está congelado en M1. Los rangos de migraciones son: S03 0001–0009, S04 0010–0019, S05 0020–0029, S11 0030–0044, S13 0045–0054. Regla dura: no se paralelizan slices que compartan migraciones, primitivas de dominio compartidas o el mismo contrato mutable; ante duda, secuencial. `S04→S05` es secuencial porque Regimes referencia identidades de Catalog; `S12→S13` es secuencial porque la certificación usa CLI/backup/readiness de S12.
+
+**Critical path estimado:** S01 → S03 → S04 → S05 → S06 → S07 → S08 → S09 → S10 → S12 → S13 = **11 slices** (B2/S11 corre en paralelo con holgura; la barrera B1×B2 y S12 lo incorporan).
