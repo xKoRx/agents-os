@@ -366,7 +366,7 @@ Debe incluir como mínimo:
 - known ambiguities/contradictions;
 - sync timestamp y source URLs por sección.
 
-**Gate M0: PASS — DESIGN_READY documental (2026-09-17).** Astra/Fable pueden diseñar sin descubrir contratos básicos. Ver [[Polymarket — Technical Platform Map — synced 2026-09-17]] y §24 de part-10. Límites frozen de M0: CTF/v2 conversion LIVE DISABLED; L2 historical backfill DISABLED; RFQ/Combos OUT_OF_SCOPE inicial; `deferExec=true`/Builder optional DISABLED; trading live sujeto a pruebas de auth, execution y reconciliación en M2–M4. Este gate NO constituye design freeze ni certificación live.
+**Gate M0: PASS — DESIGN_READY documental (2026-09-17).** Astra/Fable pueden diseñar sin descubrir contratos básicos. Ver [[Polymarket — Technical Platform Map — synced 2026-09-17]] y §24 de part-10. Límites frozen de M0: CTF/v2 conversion LIVE DISABLED; L2 historical backfill DISABLED; RFQ/Combos OUT_OF_SCOPE inicial; `deferExec=true`/Builder optional DISABLED; trading live sujeto a pruebas posteriores de auth, execution y reconciliación bajo mandato de activación, fuera de M4 no-live según OD-2. Este gate NO constituye design freeze ni certificación live.
 
 ### M1 — Astra/Fable Engine Design
 
@@ -1579,7 +1579,7 @@ Ningún finding se rechaza íntegramente: cinco aceptados y siete modificados. L
 | Persistencia / doce findings | PASSED: journal → durable_seq → applied_seq por owner → frame → decisión; reserva+intent/outbox → attempt durable → único I/O → reconciliación. ASTRA-2 resolvió FBL-001…012 y M1.15 conserva cierre observable para cada uno; recomendaciones históricas incompatibles no gobiernan | G-02b/G-05b/G-06b/G-09b/G-11b/G-12b/G-13b/G-14; resto en filas siguientes |
 | Replay | PASSED: observación, delivery, decision audit y contrafactual separados; inputs efectivos por fase recuperables, sin latest ante revisión faltante; M1.5–6/8–10 | G-07/G-07b/G-10b (FBL-004/005/012) |
 | Strategies | PASSED: discovery/WS/books/recorder/replay/economics/account/risk/basket infrastructure/observability comunes; Sports/NegRisk conservan lógica particular; M1.4/8–12 | G-08/G-10c (FBL-006) |
-| Scope | PASSED: FOUNDATIONAL NOW no exige adapters, credenciales ni infraestructura live/remota; componentes posteriores conservan ownership/dominio/API/persistencia y gates; M1.15 | G-01…G-15 y extensiones no-live, incluyendo G-06b/G-14 |
+| Scope | PASSED: FOUNDATIONAL NOW no exige adapters live, credenciales reales ni infraestructura remota; componentes posteriores conservan ownership/dominio/API/persistencia y gates; M1.15 | G-01…G-15 y extensiones no-live, incluyendo G-06b/G-14 |
 | Security | PASSED: disabled fail-closed, Strategy sin signer/red/ejecución vía API, sin calldata arbitrario ni retries ambiguos; OD aprobadas no otorgan lease ni capacidad live; M1.1/8/11/12/14 | G-12b/G-13b/G-15/G-15b (FBL-002/007/011) |
 | Gates / freeze | PASSED: contratos arquitectónicos FROZEN con pruebas y condiciones de fallo definidas; BLOCKED_BY_PROTOCOL preservado y políticas live DEFERRED_LIVE_DECISION. Diseño escrito no equivale a prueba pasada | Todos NOT_RUN; G-14b/G-16…G-19 en alcance IMPLEMENT LATER |
 
