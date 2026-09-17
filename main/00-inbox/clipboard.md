@@ -1,485 +1,545 @@
 # MANDATO DE IMPLEMENTACIÓN — NORMAL
 
-## Polymarket Engine · M2-S02 Protocol Wire / DTOs / Parsers / Fixtures
+## Polymarket Engine · M2-S03 Capture Journal + Persistence
 
 ### MISIÓN
 
 Implementa exclusivamente:
 
-`M2-S02 — Protocolo wire: DTOs, parsers y fixtures`
+`M2-S03 — Capture journal, carriles y framework de persistencia`
 
-M1 y M2 están frozen.
+Trabajas en paralelo con el resto de S02 **sólo después** de que el proyecto local indique:
 
-M2-S01 está PASS.
+`S02_SEAM_READY_FOR_S03`
 
 No rediseñes.
 
+No modifiques el package ownership de S02.
+
+No implementes reducers de dominio.
+
 No implementes networking.
 
-No adelantes Catalog, Capture, SQLite, Books ni estrategias.
+Si el seam de S02 resulta insuficiente:
 
-Si encuentras una contradicción material:
+`BLOCKED — S02 SEAM ISSUE`
 
-`BLOCKED — DESIGN ISSUE`
+No lo modifiques tú.
 
 ---
 
-# 0. AUTORIDADES LOCALES
+# 0. AUTORIDADES
 
-Agents-OS local es autoridad documental.
+Agents-OS local.
 
-No uses GitHub ni commits remotos como autoridad.
+No GitHub como autoridad.
 
 Proyecto:
 
 `main/10-projects/Personal/Polymarket Engine/Polymarket Engine — MVP.md`
 
-Lee sólo:
+Lee:
 
-- M1.3;
+- M1.6;
     
-- M1.6 en lo relativo a redaction;
+- M1.7;
     
-- M1.11 únicamente contratos wire relevantes;
+- FBL-003/FBL-009 reconciliados;
     
-- M2.0–M2.3;
+- M2.1;
     
-- `M2-S02`.
+- M2.2;
     
-
-Technical Platform Map:
-
-- `part-01-foundations.md`
+- `M2-S03`.
     
-- `part-02-rest-catalog.md`
-    
-- `part-03-auth-precision-time.md`
-    
-- `part-04-orders-lifecycle.md`
-    
-- `part-05-market-data-positions-contracts.md`
-    
-- `part-07-economics-resolution-history-limits.md`
-    
-- `part-08-specs-sdks-changelog.md`
-    
-
-Consulta sólo las secciones necesarias.
-
-No navegues Internet.
-
-No hagas nuevo research.
 
 Repo:
 
 `~/go/src/github.com/xKoRx/polymarket-engine`
 
-Go baseline:
+Go:
 
-`go 1.27.0`  
-`toolchain go1.27.1`
+`1.27.0`  
+toolchain `1.27.1`
+
+Technical Platform Map sólo cuando sea necesario para semantics de surface/redaction ya expuestas por S02.
+
+No hagas research.
 
 ---
 
 # 1. PRECONDICIÓN
 
-Verifica que S01 está presente y verde.
+Antes de modificar verifica:
 
-Ejecuta preflight local y suite antes de modificar.
+- S01 PASS;
+    
+- `S02_SEAM_READY_FOR_S03`;
+    
+- protocol expone surface identity/version/redaction sin I/O;
+    
+- suite base verde.
+    
 
-No alteres contracts de `internal/foundation` salvo que exista un bug demostrado.
-
-Si necesitas cambiar Foundation:
-
-`BLOCKED — S01 CONTRACT ISSUE`
-
-y detente.
+No uses DTOs de S02 que todavía estén en construcción salvo el seam declarado estable.
 
 ---
 
-# 2. SCOPE
+# 2. OWNERSHIP
 
-Crear e implementar:
+Tu scope exclusivo:
 
-`internal/protocol/**`
+`internal/capture/**`  
+`internal/persist/**`  
+`migrations/0001–0009_*`  
+`testdata/capture/**`
 
-Fixtures:
+y únicamente el wiring CLI necesario para:
 
-`testdata/protocol/**`
-
-No crear adapters de red.
-
-No crear migraciones.
+`journal verify`
 
 No tocar:
 
-- capture;
-    
-- persist;
-    
+`internal/protocol/**`
+
+No tocar reducers futuros:
+
 - catalog;
     
 - regimes;
     
-- transport;
-    
 - books;
     
-- frames;
+- account;
     
-- strategy;
-    
-- account.
+- strategy.
     
 
 ---
 
-# 3. SEAM OBLIGATORIO PARA S03
+# 3. CAPTURE ENVELOPE
 
-Ésta es la primera prioridad del slice.
-
-Materializa primero un seam pequeño y estable que S03 pueda consumir sin depender del resto de DTOs.
-
-Debe incluir como mínimo contratos tipados para:
-
-`SurfaceIdentity`  
-`SchemaVersion`  
-`NormalizerVersion`  
-`RedactionPolicy`  
-`RedactionResult`
-
-y la API pura necesaria para:
-
-- identificar la superficie de origen;
-    
-- asociar schema/normalizer version;
-    
-- sanitizar payloads antes de captura;
-    
-- indicar qué política/version de redaction se aplicó.
-    
-
-Debe cubrir desde el inicio la política frozen de secretos:
-
-- `owner` cuando representa API key;
-    
-- `signature`;
-    
-- cookies;
-    
-- auth fields;
-    
-- headers `POLY_*`;
-    
-- material HMAC;
-    
-- cualquier campo explícitamente clasificado como secreto por el TPM.
-    
-
-La redacción debe ocurrir **antes de persistencia**.
-
-No debe requerir red.
-
-No debe depender de Capture.
-
-No debe importar ningún paquete posterior.
-
-## Gate intermedio
-
-Cuando este seam:
-
-- compile;
-    
-- tenga tests positivos/negativos;
-    
-- tenga API estable;
-    
-- pase race/vet;
-    
-- no exponga secretos;
-    
-
-registra:
-
-`S02_SEAM_READY_FOR_S03`
-
-Éste **no es S02 PASS**.
-
-Después continúa implementando el resto de S02.
-
-No rompas este seam durante el resto del slice salvo bug material demostrado.
-
----
-
-# 4. CONTRATOS WIRE
-
-Implementa DTOs separados por superficie.
-
-No reutilices un mega-DTO universal.
+Implementa el envelope frozen de M1.6.
 
 Como mínimo:
 
-## Gamma
-
-- events;
+- capture_id;
     
-- markets;
+- boot_id;
     
-- IDs editoriales;
+- capture_seq;
     
-- arrays que puedan venir codificados como JSON string;
+- surface;
     
-- keyset fields documentados;
+- connection_id;
     
-- offset fallback fields documentados;
+- epoch;
     
-- fields necesarios posteriormente por Catalog.
+- frame_ordinal;
     
-
-No inventes envelope keyset ausente.
-
-## CLOB REST read-only
-
-Shapes necesarios para slices posteriores:
-
-- `/book`;
+- request_id;
     
-- `/clob-markets/{condition_id}`;
+- received_wall;
     
-- tick lookup;
+- received_mono_offset;
     
-- fee lookup;
+- source_time_raw;
     
-- órdenes/trades shapes requeridos sólo como DTO/fixture para classifiers futuros.
+- source_unit;
     
-
-No implementar requests HTTP.
-
-## Market WS
-
-DTOs/envelopes:
-
-- `book`;
+- schema_version;
     
-- `price_change`;
+- normalizer_version;
     
-- `last_trade_price`;
+- config_revision;
     
-- tick-size change;
+- content_hash;
     
-- BBO extendido;
+- sanitized payload bytes;
     
-- initial dump semantics necesarias para parsing.
+- redaction policy/version;
+    
+- quality/control kind;
+    
+- segment_id;
+    
+- offset;
+    
+- length;
+    
+- checksum.
     
 
-No implementar WebSocket.
+`capture_seq` es orden total **local**.
 
-## Data v2
+Nunca representa secuencia global Polymarket.
 
-Subset documentado necesario:
+La sanitización debe pasar por el seam S02 **antes** de escribir payload.
 
-- positions;
-    
-- trades;
-    
-- activity;
-    
-- resolutions;
-    
-- order/orders sólo donde estén en el pack y sean necesarios para fixtures futuros.
-    
-
-No convertir Data v2 en ledger privado.
+Payload secreto no llega al journal.
 
 ---
 
-# 5. IDENTIDAD DE PROTOCOLO
+# 4. DURABLE-BEFORE-PUBLISH
 
-Usa los tipos Foundation existentes.
+Regla central:
 
-Conserva:
+ningún consumer puede observar como aplicable un record con:
 
-`CTF`  
-`PROTOCOL_V2`  
-`UNKNOWN`
+`capture_seq > durable_seq`
 
-No implementes codecs Protocol-v2.
+`durable_seq` sólo avanza tras persistencia durable conforme al contrato.
 
-No hagas casts entre IDs CTF y v2.
+No simules durabilidad actualizando el watermark antes del fsync.
 
-Información insuficiente debe conservar:
+Batch/group commit es configurable y acotado.
 
-`UNKNOWN`
-
-Los consumers decidirán quarantine.
+Fallos deben ser visibles.
 
 ---
 
-# 6. PRECISIÓN Y TIEMPO
+# 5. EVIDENCE / RUNTIME LANES
 
-Usa Foundation para decimal exacto.
+Implementa dos carriles hacia el mismo orden lógico:
 
-No dupliques `orders.go`.
+`EVIDENCE`  
+`RUNTIME`
 
-Implementa solamente parsing/normalización wire.
+Presupuestos separados:
 
-Debe preservarse:
-
-- lexema original cuando corresponda;
+- count;
     
-- unidad original;
-    
-- precisión conocida;
-    
-- source time raw.
+- bytes.
     
 
-Tabla temporal mínima:
+EVIDENCE mantiene reserva propia.
 
-- Order EIP-712 timestamp: ms;
+Saturación RUNTIME:
+
+- pausa/niega nuevos runtime records según política;
     
-- expiration/auth: seconds;
+- nunca consume reserva EVIDENCE;
     
-- User WS: seconds;
+- nunca genera por sí misma pérdida de market-data;
     
-- Market WS: ms;
-    
-- Data v2 según contrato específico.
+- nunca revoca epochs.
     
 
-No convertir timestamp en sequence.
+Saturación EVIDENCE real:
 
-No inventar nanosegundos.
+- visible;
+    
+- produce discontinuidad declarable;
+    
+- Capture no inventa número de frames perdidos antes de admisión.
+    
 
-Sentinels conocidos deben conservar raw + semántica contextual, no convertirse silenciosamente en cero válido.
+No `drop-oldest`.
+
+No cola ilimitada.
 
 ---
 
-# 7. PARSERS
+# 6. JOURNAL
 
-Parsers deben ser:
+Formato segmentado append-only.
 
-- puros;
+Requisitos:
+
+- records length-prefixed;
     
-- totales sobre su input;
+- format version;
     
-- deterministas;
+- envelope;
     
-- sin I/O;
+- payload sanitizado;
     
-- sin estado global.
+- CRC/checksum por record;
+    
+- límites de segmento por bytes/tiempo;
+    
+- footer con range/count/SHA-256;
+    
+- segmentos sellados inmutables;
+    
+- rename seguro;
+    
+- sync de directorio cuando corresponda.
     
 
-JSON malformado:
+No implementar todavía:
 
-error tipado.
+- compresión;
+    
+- GC;
+    
+- remote backup;
+    
+- hash-chain sofisticada si está diferida.
+    
 
-Campo crítico incompatible:
-
-contract drift / invalid según contrato.
-
-Enum crítico desconocido:
-
-raw preservado + clasificación explícita.
-
-No:
-
-“best effort success”
-
-cuando falta un campo requerido para identidad o seguridad.
-
-Unknown fields no críticos pueden preservarse sin bloquear si el contrato frozen así lo permite.
-
-No conviertas toda aparición de campo nuevo en fallo si no afecta semántica crítica.
+Mantén el contrato preparado sin introducir complejidad no foundational.
 
 ---
 
-# 8. FIXTURES
+# 7. CRASH RECOVERY
 
-Crear fixtures versionadas:
+Al recuperar:
 
-`testdata/protocol/<surface>/<version>/`
-
-Cada fixture debe tener provenance suficiente:
-
-- TPM part/section;
+- escanear hasta último record completo/checksum válido;
     
-- fecha;
+- preservar evidencia del sufijo inválido;
     
-- schema/normalizer version;
+- no contabilizar record parcial;
     
-- sanitización aplicada.
+- reconstruir índices derivados;
+    
+- recuperar `durable_seq`;
+    
+- abrir nuevo boot cuando corresponda;
+    
+- registrar discontinuidades.
     
 
-Crear manifest:
+No afirmar que frames en kernel/RAM existieron.
 
-`testdata/protocol/manifest.json`
+No afirmar que un crash preservó mensajes no fsynced.
 
-con SHA-256 de cada fixture.
-
-Fixtures nunca contienen secretos reales.
-
-Incluir positivas y negativas.
+No usar “latest file size” como sustituto de frontera durable.
 
 ---
 
-# 9. TESTS / GATES
+# 8. SQLITE / PERSIST
 
-Cerrar `G-03`.
+Implementa framework SQLite de M2.
 
-Cubrir al menos:
+Driver previsto:
 
-- envelopes válidos;
+`modernc.org/sqlite`
+
+Debe quedar encapsulado.
+
+Config:
+
+- WAL;
     
-- JSON malformado;
+- synchronous FULL;
     
-- unknown fields;
+- busy deadline;
     
-- enum divergente;
-    
-- Gamma string-arrays;
-    
-- longitudes incompatibles;
-    
-- sentinels;
-    
-- timestamps multiunidad;
-    
-- CLOB `success:false`;
-    
-- errores tipados;
-    
-- parsing decimal desde lexema;
-    
-- Protocol UNKNOWN;
-    
-- redaction recursiva.
+- schema version.
     
 
-Agregar fuzz/property no-panic sobre bytes corruptos.
+Migraciones:
 
-Seeds/counterexamples deben persistirse cuando fallen según M2.
+`0001–0009`
 
-Redaction tests deben demostrar que después de sanitizar no aparecen:
+Como mínimo:
 
-- owner credential;
+- `schema_migrations`;
     
-- signature;
-    
-- cookies;
-    
-- POLY_*;
-    
-- HMAC/auth material.
+- `reducer_cursors`.
     
 
-Archtest debe demostrar cero imports de red desde protocol.
+Forward-only.
+
+Aplicación antigua contra schema futuro:
+
+FAIL explícito.
+
+No rollback mágico de migración después de efectos externos.
 
 ---
 
-# 10. QUALITY
+# 9. SINGLE WRITER / CURSORS
 
-Ejecuta:
+Framework provee single writer serializado para estado transaccional.
+
+Transacciones breves.
+
+Nunca mantener locks de DB durante:
+
+- red;
+    
+- journal fsync;
+    
+- callbacks externos.
+    
+
+`applied_seq` debe ser por:
+
+`reducer_id + namespace`
+
+No global único.
+
+Dos reducers pueden avanzar independientemente.
+
+Un reducer nunca puede afirmar:
+
+`applied_seq > durable_seq`
+
+Helpers deben rechazarlo.
+
+---
+
+# 10. OUTBOX
+
+Implementa pattern/framework, no negocio.
+
+Los owners posteriores crearán sus tablas/eventos.
+
+No existe generic worker autorizado a enviar efectos externos.
+
+Outbox no significa:
+
+`send anything`
+
+Debe ser primitive transaccional/idempotente.
+
+No implementar Execution.
+
+---
+
+# 11. INTEGRITY CLASSES
+
+Materializa las clases congeladas:
+
+`ACCOUNT_FACT`  
+`RESEARCH_EVIDENCE`
+
+En S03 sólo define/API y verificación básica.
+
+No implementes GC.
+
+La ausencia futura de RESEARCH_EVIDENCE podrá marcar:
+
+`NOT_REPRODUCIBLE`
+
+No debe confundirse con recuperación de account.
+
+ACCOUNT_FACT real aparecerá en S11.
+
+---
+
+# 12. CLI
+
+Agregar sólo:
+
+`journal verify`
+
+Debe poder inspeccionar un data-dir y reportar:
+
+- segments;
+    
+- ranges;
+    
+- durable frontier;
+    
+- holes/discontinuities;
+    
+- corrupted suffix;
+    
+- integrity class information.
+    
+
+No devolver simplemente un booleano `PASS`.
+
+Debe explicar qué verificó.
+
+---
+
+# 13. FAULT INJECTION / TESTS
+
+Implementa fault injection controlable para:
+
+- partial record write;
+    
+- failure before fsync;
+    
+- failure during/after fsync boundary;
+    
+- seal failure;
+    
+- manifest failure;
+    
+- corrupt CRC;
+    
+- corrupt footer;
+    
+- SQLite unavailable;
+    
+- reducer lag.
+    
+
+No dependas de matar el sistema operativo real para testear todos los casos.
+
+Usa abstractions pequeñas para filesystem/writer boundaries donde sea necesario.
+
+No construyas un filesystem framework gigante.
+
+## Gates
+
+G-06 parcial:
+
+- prefijo válido recuperado;
+    
+- corrupt tail detectado;
+    
+- tail preservado;
+    
+- `durable_seq` correcto;
+    
+- discontinuidad explícita.
+    
+
+G-02b parcial:
+
+- dos reducer cursors independientes;
+    
+- ninguno se adelanta mutuamente;
+    
+- `applied_seq > durable_seq` rechazado.
+    
+
+Inputs G-14:
+
+- bundle/frontier suficientemente explícito para futuro backup/restore.
+    
+
+Property:
+
+ninguna decisión/consumer test puede usar raw no durable.
+
+---
+
+# 14. CONCURRENCIA
+
+Expected ownership:
+
+- un admisor lógico;
+    
+- un writer secuencial de journal;
+    
+- queues bounded;
+    
+- un SQLite writer serial.
+    
+
+Race detector obligatorio.
+
+No goroutine por record.
+
+No mutex global abarcando fsync.
+
+Shutdown debe poder drenar hasta una frontera conocida.
+
+Supervisor completo corresponde a S12.
+
+---
+
+# 15. QUALITY
+
+Ejecutar:
 
 `go build ./...`  
 `go vet ./...`  
@@ -487,74 +547,91 @@ Ejecuta:
 `go test -race ./...`  
 `go mod tidy`
 
-Mantén coverage Agents-OS ≥95% en el código del slice.
+Coverage del código del slice ≥95%.
 
-No sacrifiques contract tests por coverage.
-
----
-
-# 11. DEFINITION OF DONE
-
-S02 PASS sólo si:
-
-1. seam S03 estable;
-    
-2. DTOs requeridos implementados;
-    
-3. parsers deterministas;
-    
-4. redaction fail-closed;
-    
-5. fixtures manifest completo;
-    
-6. G-03 PASS;
-    
-7. G-01 extensión wire PASS;
-    
-8. fuzz/property verde;
-    
-9. build/vet/race verde;
-    
-10. coverage requerido;
-    
-11. cero network I/O;
-    
-12. cero scope posterior.
-    
+Persistir property seeds/counterexamples cuando fallen.
 
 ---
 
-# 12. RESPUESTA FINAL
+# 16. DEFINITION OF DONE
 
-STATUS: `M2-S02_PASS | PARTIAL | BLOCKED`
+S03 PASS sólo si:
 
-SEAM:
+1. journal append/recovery funcional;
+    
+2. redaction S02 aplicada antes de persistencia;
+    
+3. durable-before-publish demostrable;
+    
+4. EVIDENCE/RUNTIME aislados por budgets;
+    
+5. corrupt/partial tail recuperable;
+    
+6. SQLite WAL FULL;
+    
+7. migrations 0001–0009 correctas;
+    
+8. cursor por reducer/namespace;
+    
+9. impossible applied_seq > durable_seq;
+    
+10. outbox framework sin sender;
+    
+11. G-06 parcial PASS;
+    
+12. G-02b parcial PASS;
+    
+13. race/vet/tests verdes;
+    
+14. coverage requerido;
+    
+15. cero reducers/transport posteriores.
+    
 
-- S02_SEAM_READY_FOR_S03:
+---
+
+# 17. RESPUESTA FINAL
+
+STATUS: `M2-S03_PASS | PARTIAL | BLOCKED`
+
+DEPENDENCY:
+
+- S02 seam consumed:
     
-- contracts:
-    
-- compatibility:
+- compatibility issues:
     
 
-PROTOCOL:
+CAPTURE:
 
-- surfaces:
+- envelope:
     
-- DTOs:
+- journal:
     
-- parsers:
+- durable frontier:
     
-- redaction:
+- lanes:
+    
+- recovery:
     
 
-FIXTURES:
+PERSIST:
 
-- count:
+- driver:
     
-- manifest:
+- migrations:
     
-- provenance:
+- writer:
+    
+- reducer cursors:
+    
+- outbox:
+    
+
+FAULTS:
+
+- scenarios covered:
+    
+- recovery evidence:
     
 
 QUALITY:
@@ -572,9 +649,11 @@ QUALITY:
 
 GATES:
 
-- G-03:
+- G-06:
     
-- G-01 wire extension:
+- G-02b:
+    
+- G-14 inputs:
     
 - NOT_RUN:
     
@@ -586,4 +665,4 @@ BLOCKERS:
 
 NEXT:
 
-- S03 may continue / barrier S02+S03
+- S02/S03 integration barrier → M2-S04
