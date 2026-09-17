@@ -849,3 +849,142 @@ Registry guarda `PE-xxx`, mecanismo, evidencia pro/contra, required data, univer
 Cada run simulado posee un ledger de liquidez **virtual consumida** por asset/precio/versión y cuenta: dos estrategias no pueden reutilizar la misma profundidad en el mismo escenario como si ambas fueran primeras. Actualizaciones posteriores no prueban reposición causada por nosotros; regla de replenishment conservadora y sensibilidad se versionan. Replay histórico no modela fielmente impacto contrafactual del bot sobre el mercado ni reacción de competidores. Fills simulados, órdenes observadas y liquidaciones chain se etiquetan de forma inequívoca.
 
 Baskets son multi-leg no atómicos: simular orden/tiempos de legs, partials, drawdown/lock intermedio y condiciones de abandono. Si la tesis exige conversión deshabilitada o atomicidad no disponible, su resultado queda `CONDITIONAL_UNEXECUTABLE`; puede falsarse económicamente, pero no obtener GO live. El motor provee ejecución/coste de legs y soporte de payoff tables; no implementa el payoff específico de Sports/NegRisk. `GO` exige que la conclusión sobreviva los supuestos aprobados y datos aptos, no un threshold global de ROI, número de trades o latencia inventado.
+
+### M1.10 — Economics, capital y risk compartidos
+
+**Cost quote común:** `Quote{frame_id, size_grid, executable_depth, VWAP, worst_price, platform_fee_interval, expected_incentives, slippage_scenarios, cash_required, token_required, capital_lock, validity, assumptions}`. Una cotización no reserva el book ni garantiza que siga disponible. BUY consume collateral+costes; SELL requiere tokens disponibles; no asumir short sintético mediante saldo negativo. Para baskets valorar todos los estados declarados, los fills parciales y costes de liquidación; la desigualdad de precios sólo establece un candidato matemático bajo sus supuestos.
+
+**Fees dinámicas:** conservar `feesEnabled`, `base_fee` bps, `fd.r/e/to`, `mbf/tbf`, category source y fecha como inputs distintos; un `FeeResolver` versionado selecciona sólo una fórmula con evidencia aplicable al mercado. La fórmula publicada `shares × feeRate × p × (1-p)` no autoriza sustituir `feeRate=base_fee/10000`. Rounding de cinco decimales/mínimo y empate no definido producen intervalo de coste o estado `UNRESOLVED`; no elegir silenciosamente un desempate como contrato. Múltiples fills pueden tener costes/rounding diferentes; estimar por fill/escenario y reconciliar fee efectiva. Donde no exista cota superior defendible, no sizing live. En SCREEN/SHADOW puede mostrarse sensibilidad con supuestos nombrados, pero no “net edge certificado”. Datos actuales jamás se aplican por defecto a toda la historia.
+
+**Incentivos:** separar fee pagada, maker rebate devengado estimado, taker rebate/tier estimado, liquidity reward esperado y pago observado en cuatro ledgers/modelos. La estimación no es cash disponible ni reduce el coste necesario para financiar una orden. Base risk no cuenta rewards futuros; scorecard muestra neto sin incentivos, con estimación y realizado tras pago. Eligibility instantánea/scoring, categoría y tamaño del pool no son entitlement final. Builder cero implica sin atribución opcional; jamás habilitar fees Builder mediante Opportunity.
+
+**Ledger de cuenta:** saldo collateral confirmado observado por bloque, obligaciones matched-pending, inventario por asset, reservas por intent/remanente, fees buffer y capital inmovilizado. `available` deriva una sola vez dentro del Coordinator: fondos confirmados utilizables menos reservas/obligaciones que todavía no estén reflejadas en ese balance. Cada obligación conserva qué snapshot/block la incluye; un fill no se descuenta dos veces al llegar chain y no se libera antes de confirmación. Para SELL, tokens reservados y pending-sold reducen disponibles. Discrepancia o incertidumbre de inclusión reduce disponibilidad conservadoramente y congela incrementos de exposición. Proceeds pendientes no financian nuevas órdenes por defecto.
+
+| Control | Evaluación / condición de bloqueo |
+|---|---|
+| Eligibility | Capability, cuenta/scope, protocol, restricciones, fresh frame/fees/rules, markets operables, datos y ledger sanos; cualquier unknown requerido rechaza |
+| Sizing | Cantidad mínima entre límites de presupuesto, inventario, profundidad y pérdida aprobada; cuantizar y revalidar economics/min-size después del rounding |
+| Reserva | Transacción única de reserva + IntentID + versión de risk/account + outbox; compare-and-check de revisión evita que dos estrategias gasten el mismo saldo |
+| Bankroll | US$300 es techo total tiny-live previsto, no una asignación automática ni cash garantizado; estrategias compiten por el mismo bankroll y leases parciales |
+| Exposición | Caps globales, por cuenta, estrategia, mercado, Event/relationship group, posiciones abiertas y número de órdenes; contar pending/UNKNOWN como exposición posible |
+| Concentración | Agrupar eventos relacionados/correlacionados con evidencia; no asumir independencia por distinto MarketID/EventID. Si no hay modelo, sumar pérdidas conservadoras |
+| Baskets | Reservar coste/exposición de todo el conjunto permitido antes de primera leg; limitar riesgo residual si sólo parte llena; no netear payouts hasta demostrar relación vigente |
+| Reutilización de capital | Liberar sólo por cancel/remanente conciliado, fill settled, venta/merge/redeem confirmado o rechazo inequívoco; `market_resolved` no devuelve cash |
+| Kill / breach | Latch global o scoped revoca nuevos sends, inicia cancel remanente y reconciliation, alerta; no coloca una liquidación agresiva automática salvo mandato y política específicos |
+
+Límites monetarios, worst-loss/lock máximo, tolerancias de fee/data y reparto de bankroll son `REQUIRES_OWNER`; deben derivarse de shadow/stress. Ausencia de configuración válida mantiene live cerrado. La aprobación de un candidato es efímera y ligada a input revisions: no se reutiliza al cambiar precio, fee, book, account o config. Competencia entre estrategias se resuelve por política registrada y orden de admisión determinista, no por velocidad accidental de goroutines; reportar rechazados por capital para no confundirlos con ausencia de señal.
+
+### M1.11 — Execution, reconciliation y crash con órdenes abiertas
+
+**Boundary de identidad:** `AccountProfile` versionado une chain 137, wallet type, maker/funder, EOA autorizada, signer del Order, credencial L2/scope y ruta de contratos. Tipo 3 Deposit usa maker/signer de contrato y EOA externa para TypedDataSign/ERC-7739; no tratarlo como EOA tipo 0. Tipos 0/1/2/3 se modelan, pero live sólo certifica el perfil realmente elegido. L1 ClobAuth, L2 HMAC, Order EIP-712 y allowances son permisos separados (P03 §4, P04 §7). Ningún helper puede auto-crear wallet, aprobar spenders ni desplegar por side effect de startup.
+
+```text
+Opportunity → Evaluation → Risk decision
+    → atomic [reserve + PREPARED intent + payload identity]
+    → construct/validate/sign exact order + persist protected payload/hash
+    → durable SEND_ATTEMPT_STARTED (one attempt token)
+    → single HTTP write
+       ├─ definitive reject → record → release only unused reservation
+       ├─ accepted evidence → order tracking + trade reconciliation
+       └─ timeout/contradiction/crash → UNKNOWN → reconcile, never auto-new-salt
+
+User WS / REST / chain observations → dedup + evidence reducer
+    → order remaining + fills pending/settled + reservation/position update
+    → reconciliation case closed only when invariants and sources agree
+```
+
+**Construcción:** separar objetos `SignedOrderFields`, `OrderDTO` y `SubmissionPolicy`; sólo los once campos de P04 §7A entran al Order EIP-712 CLOB v2. `expiration/orderType/postOnly/deferExec/owner` pertenecen al transporte/política según contrato, no a la firma Order. `owner` es API key, no dirección de wallet. DTO BUY/SELL y signed side uint8 se validan en correspondencia. Serialization exacta del body se prepara una sola vez por intento y los mismos bytes alimentan HMAC y HTTP. Secret se decodifica base64 para HMAC, URL path sin query, timestamp seconds, firma URL-safe con padding conforme P03; no copiar headers del raw journal. Cualquier discrepancia firma/DTO/hash/perfil detiene envío.
+
+**Estados internos en ejes distintos:** intent `PREPARED/SEND_ATTEMPT_STARTED/UNKNOWN/REJECTED/ACK_OBSERVED`; estado de orden venue raw + normalizado `OPEN/PARTIAL/TERMINAL/UNKNOWN`; settlement por trade `MATCHED/MINED/CONFIRMED/RETRYING/FAILED/UNKNOWN`; reserva `HELD/PARTIALLY_CONSUMED/RELEASABLE/RELEASED`. No forzar todo a una sola máquina monotónica: cancel de remanente puede coexistir con trade pending; reorg/fallo puede exigir corrección. Mantener variantes `TRADE_STATUS_*` del OpenAPI y enums cortos observados como mappings explícitos versionados, no string trimming oportunista. Campo desconocido relevante genera contract drift y quarantine.
+
+**Acknowledgement:** comprobar HTTP, `success`, `errorMsg`, `orderID` no vacío y consistencia con hash preparado; estados `live/matched/delayed/unmatched` se conservan en su vocabulario. `unmatched` en prosa frente a enum más acotado del schema exige fixture/validación; no asumir terminalidad. La anomalía batch `success:true` con error y sin ID se trata como rechazo/ambigüedad según evidencia, nunca como orden aceptada. ACK no equivale a fill y `matched` no equivale a fondos confirmados. Batch hasta 15 sólo si certificado, cada leg con identidad/reserva propia; no atomicidad multiorden. Diseño inicial favorece submit individual para hacer explícito el resultado de cada leg.
+
+**Retries:** lecturas idempotentes usan timeout/circuit breaker/backoff+jitter y presupuestos limitados; registran request/error/Retry-After y respetan scopes IP/signer. Writes no usan middleware automático de retry. Timeout/red cortada/5xx genérico después de comenzar intento → `UNKNOWN`, con fondos retenidos. Consultar hash, órdenes abiertas/por ID y trades de scope correcto; un 404/ausencia actual no prueba no aceptación porque no hay SLA de retención/exhaustividad. Duplicate → lookup, nunca salt nuevo. Sólo el error literal `order timed out` documentado como no ingresado al book puede habilitar resubmisión del mismo intent tras revalidar y certificar esa ruta; cualquier duda se queda UNKNOWN. Cambiar salt crea una **nueva** orden, requiere nueva decisión y no resuelve el intento anterior.
+
+**Cancelación:** intención durable por order hash, respuesta `canceled/not_canceled` se procesa elemento por elemento. Cancel timeout no libera reserva; volver a observar remanente/fills y, si aún vivo, emitir una nueva solicitud de cancel bajo política de convergencia, sin asumir idempotencia HTTP formal. Batch cancel ≤1000 según changelog específico; cancel-all es por credencial/scope, no prueba global de cuenta. Prioridad de cancel/reconcile por encima de nuevos orders; budget de cancel separado del de orders y del de capture/research. Un cancel no revierte fills existentes y una race fill/cancel sigue en reconciliation.
+
+**Dedup y contabilización:** `trade.id` identifica el trade; aportes maker propios se separan por order hash/leg validada, incluso si varias órdenes nuestras participan. Actualizaciones de status no suman otra cantidad. WS/REST del mismo trade actualizan la misma evidencia; payload conflictivo se conserva y bloquea reconciliación, no sobrescribe sin rastro. Tx hash no es clave única de fill: una transacción puede liquidar varios. Data públicos con maker/taker rows no se suman como fills privados adicionales; no siempre ofrecen trade ID homologable. `size_matched` sirve como control de total, no como segundo asiento además de fills. Asientos correctivos referencian los anteriores; no borrar una ejecución porque un source llegó tarde.
+
+**Reconciliación por evidencia, no “último timestamp gana”:**
+
+| Fuente | Autoridad acotada / tratamiento |
+|---|---|
+| User WS | Aviso rápido de order/trade; sin snapshot total ni replay. Su caída invalida readiness live y dispara recuperación REST |
+| CLOB REST | Estado de órdenes/ledger de matching; recuperar todos los pages y cada intent/order conocido; `/data/trades` con maker_address explícito y scope correcto, overlap temporal y dedup por IDs |
+| Chain/RPC | Receipt, block/hash/log index, ERC20/1155 balances y payouts de contrato correcto. `MINED` no es finality; profundidad de confirmación configurable/certificada, reorg conserva incertidumbre |
+| Data v2 | Corroboración eventual de posiciones/activity/resolution; `OPEN` incluye redeemable, filtros de dust/archive/inactive limitan visibilidad. Ausencia no prueba cero; no usar `total_size` lifetime como saldo actual |
+| Ledger local | Intents, intentos, reservas y atribución que venue no conoce. Se reconcilia, no impone realidad a fuentes externas |
+
+Reconciler conserva por run límites de consulta/cursor/filtros y cobertura. Captura User WS mientras recorre REST; aplica union deduplicada y revisita órdenes mutadas/ambiguas hasta converger, sin declarar snapshot atómico de REST+WS+chain. Una discrepancia persistente abre caso `UNRESOLVED`, congela nueva exposición y mantiene cancelación/lectura. Balance chain a bloque confirmado junto a transfers/fills pendientes evita doble contabilización; atribución a estrategia de transferencias externas desconocidas queda `UNATTRIBUTED`, bloquea presupuesto hasta clasificación. Failed/retrying no equivale automáticamente a saldo restaurado: revisar order, chain e inventario.
+
+**Muere el proceso con órdenes abiertas:** el exchange puede mantener GTC/restantes y llenarlas durante la caída. No existe garantía de cancel-on-disconnect certificada; los heartbeats HTTP de P08 no se usarán como dead-man switch supuesto. Propuesta tiny-live: permitir inicialmente FOK/FAK y GTD con duración finita aprobada; GTC requiere permiso adicional del owner y prueba operacional específica. GTD respeta expiry declarada ≥ server-now+180 s y expiración efectiva 60 s antes, pero no cierra por sí solo una cuenta durante una caída ni cubre fills ya matched. El monitor de servicio del host puede reiniciar el **mismo** binario; no garantiza continuidad si el host muere.
+
+Al recuperar: tomar lock exclusivo → abrir journal/store → marcar todos los `SEND_ATTEMPT_STARTED` sin resultado como UNKNOWN → cargar perfiles/scope → consultar órdenes conocidas, todas las abiertas visibles y trades desde checkpoint con overlap → observar balances/receipts → detectar órdenes externas → cancelar remanentes de cuenta dedicada por política aprobada → esperar convergencia → mantener `LIVE_DISABLED` hasta nuevo lease. Sin visibilidad de algún scope o cobertura suficiente no liberar reservas ni habilitar envío. Una cuenta compartida manualmente dificulta distinguir órdenes ajenas; se propone wallet/cuenta dedicada. Si el owner decide compartirla, sólo se cancelan IDs propiedad del engine y el riesgo no atribuible bloquea disponibilidad.
+
+**Kill switch operativo:** latch persistente y generation revocada en memoria, verificada por gateway antes de firmar y antes de escribir socket; solicitudes ya in-flight pueden haber sido aceptadas y se reconcilian. En disco lleno/DB caída se permiten únicamente cancelaciones defensivas de IDs/scope ya conocidos con credencial previamente autorizada, aun si no puede persistirse nuevo audit; se emite alerta por carril operacional y el siguiente arranque fuerza reconcile. Esta excepción de emergencia no permite nuevas órdenes, aprobación de contratos, conversión ni liberación de capital basada sólo en memoria. “Kill activo” significa no admitir nueva exposición; “órdenes canceladas” requiere evidencia separada.
+
+### M1.12 — NegRisk y dispatch de protocolo versionado
+
+`ProtocolContext` es una unión cerrada `CTF / PROTOCOL_V2 / UNKNOWN` más evidence revision, chain, contratos y mapping de outcomes. `negRisk` es otra dimensión, no el discriminador de protocolo. Un par completo de CTF token IDs y versión/contexto coherentes permite modelar la ruta CTF; position IDs v2 no se castean a token CTF aunque ambos se vean como números. Si versión, flags, pares de IDs y deployment se contradicen, `UNKNOWN/QUARANTINED`; no fallback al adapter que “funcione”. El comportamiento preferente del SDK no se convierte en garantía de wire universal (P06 §12).
+
+| Operación tipada | Inputs/outputs que el dominio admite | Gate de dispatch |
+|---|---|---|
+| CTF split / merge | ConditionRef CTF, complete set, collateral/amount E6; balance deltas tipados | Contrato/ruta/allowances y receipt cert; inicialmente sin ejecutor activado |
+| CTF redeem | Condition, payout final, indexSets y saldo elegible; no amount inexistente en ABI | Certificar efecto sobre todo saldo elegible: no permitir que una estrategia redima saldo de otras sin mandato de cuenta |
+| CTF NegRisk convert | `NegRiskMarketID`, question indices/indexSet, amount por NO, feeBips y outcome-set revision; output esperado sólo bajo reglas documentadas | **LIVE DISABLED**, sin registro de handler ejecutable; no invocar legacy Relayer retirado |
+| Protocol-v2 split/merge/redeem | Condition/position refs v2 y operación nombrada, capability unavailable si falta encoding | No reutilizar calldata CTF; certificar cada ABI/route futura |
+| Protocol-v2 NegRisk convert | Intent semántico sólo para expresar requisito de investigación | **LIVE DISABLED / BLOCKED_BY_PROTOCOL**; sin ABI, selector, calldata ni resultado calculado como contrato |
+
+CTF convert puede consumir varios NO y devolver YES complementarios y collateral con fee; el simple ejemplo NO(A)→otros YES no define el caso general ni una operación v2. `Other`/placeholders son slots con semántica versionada: nombrar un placeholder cambia interpretación del residual y exige revalidar exhaustive/mutually-exclusive antes de evaluar baskets. Gamma `negRiskMarketID` es evidencia de mapping, no certificación final de on-chain marketId; índices y feeBips deben corroborarse para activar una futura ruta.
+
+La incorporación posterior agrega una capability concreta `protocol × operation × contract revision`, su typed codec y pruebas receipt/balance; no exige cambiar Order/Position/Relationship ni introducir una interfaz universal de smart contracts. Los adapters de posición aceptan operaciones conocidas, nunca `target+data` arbitrario de una estrategia. Un resultado simulado de conversión se etiqueta supuesto y no aumenta saldo disponible real. Reabrir la capability live exige ABI oficial, runtime/proxy codehash actual, mapping exacto event→contract IDs, permisos y test autorizado; haber documentado la función CTF o la dirección del módulo v2 no satisface ese gate.
+
+### M1.13 — Concurrencia, backpressure y límites configurables
+
+| Unidad | Goroutines/ownership y comunicación | Saturación / orden |
+|---|---|---|
+| Connection manager | Supervisor por superficie; un reader y un writer de control por conexión; heartbeat con prioridad | Bounded frames/bytes; overflow cierra epoch y bloquea assets. Limitar sockets/assets por conexión según pruebas, no asumir cap remoto no documentado |
+| Ingress/Capture | Admisor y writer secuencial con colas acotadas; publish hasta watermark fsync | No drop silencioso. Un reader lento o journal saturado produce discontinuidad; no acumular RAM sin límite |
+| Book shards | N owners, partición estable por AssetKey, inbox FIFO local; N sólo cambia con nuevo epoch/rebootstrap | Orden por asset/epoch preservado; si un shard se atrasa invalida sus frames; snapshots inmutables para readers |
+| Frame builder | Scheduler por run con cortes y prioridades deterministas | Espera sólo requisitos de ese run; deadline evita bloqueo global; registra delivery/coalescing |
+| Strategy actors | Una ejecución serial por instancia, mailbox acotado | Coalescing a latest frame sólo si `DataRequirements` permite snapshots; gap control nunca omitido. Consumidor every-event desborda → pausa/invalida run, no drop |
+| Cuenta real | Un Coordinator por cuenta exclusiva; transacciones y reducers seriales | Reservas/intents/fills nunca dependen de orden de callbacks concurrentes; locks no abarcan red ni fsync de raw |
+| I/O ejecución/reconcile | Workers acotados, per-intent attempt fencing y jobs deduplicados | Cancel/lectura de riesgo tienen capacidad reservada. No múltiples sends del mismo attempt por timeout de worker |
+| Offline / derivados | Pool de CPU/I/O/memoria limitado; misma lógica de replay con clock virtual | Pausar primero replay/compaction/export bajo presión; no competir libremente con capture/cancel |
+
+Snapshots se exponen mediante copias/value objects o buffers con lifetime seguro y sin acceso mutable. Locks sólo para publicación breve/registry y coordinación de lifecycle; no un mutex global del monolito. `context.Context` propaga cancelación; espera de workers termina con deadline, pero no finge detener una goroutine que ignora contexto. Epoch/run generation invalida respuestas tardías. Al shutdown no se cierran channels que todavía tienen productores activos; Supervisor detiene productores, drena hasta frontera registrada y después cierra consumers.
+
+**Configuración obligatoria y validada:** límites por cantidad **y bytes** de colas, mensaje/body máximo, assets/universo/conexión, cantidad de shards/estrategias, callback timeout, stale/check/skew budgets, goroutines/jobs concurrentes, memoria de snapshots/replay, fsync batch bytes/time, segmentos, disk watermarks, DB busy/deadline, poll/reconnect jitter, intent TTL, cancel/reconcile deadline y rate budgets. No infinito/0 como default ambiguo; valores ausentes impiden iniciar el modo dependiente. M2 puede fijar defaults conservadores con fixtures; M4 los certifica para el universo probado y hardware real. No se inventa SLO comercial de microsegundos.
+
+Medir receive→durable→normalize→book→frame→strategy→decision→reserve→send→ack/fill, p50/p95/p99 y máximos/queue lag, duración callback, bytes/s, fsync tail, GC, alloc, lock contention y saturación. Source→receive incorpora clock uncertainty y no se reporta como latencia exacta de red. Perf gate se define por workload/capacidad aprobados y headroom medido; cambiar universo/concurrency por encima del perfil certificado invalida readiness live hasta revalidar.
+
+### M1.14 — Operación, observabilidad y seguridad
+
+**Interfaces operativas:** CLI del mismo binario y endpoint administrativo local protegido (socket/loopback con autenticación); estado, start/stop run, inspect quality/reconcile, export scorecard, revoke lease, kill/cancel. No UI compleja. `liveness` prueba proceso/event loop, `readiness_public` catálogo/capture/datos, `readiness_strategy` sus requisitos y `readiness_live` lease+auth+account+data; un HTTP 200 de health no significa que live pueda operar.
+
+| Señal | Métricas/evidencia | Acción |
+|---|---|---|
+| Data | Book states/ages/skew, malformed/unknown variants, REST discrepancies/inconclusive checks, reconnect/epoch count, heartbeat age, missing initial books, catalog coverage | Bloquear universo afectado, resincronizar y mostrar denominadores excluidos |
+| Recorder | admitted/durable/applied seq, fsync lag, queue bytes, lost/unknown intervals, corrupt segments, free disk, backup age/pins | Invalidar run afectado; critical disk/integrity → global live disabled |
+| Cuenta/Execution | UNKNOWN intents/edad, open remanente, reservas, unmatched fills, balance discrepancies, settlement lag, cancel outcomes, scope coverage | Congelar incremento, conciliar/cancelar y alertar |
+| Runtime | Strategy state, callbacks/errors/panics/deadlines, queue/coalescing, opportunity acceptance/rejection reasons | Cercar instancia y distinguir ausencia de señal de fallo |
+| Economics/experimentos | Fee unresolved, model scenario spread, simulated-vs-observed fill/markout, coverage/sample/holdout, capital utilisation/lock | Invalidar conclusión o iterar modelo antes de promover |
+| Recursos | CPU/RAM/GC, I/O tail, goroutines, DB WAL/checkpoint lag, workers y quota/429/warnings | Reducir trabajo cold; no degradar raw silenciosamente |
+
+Logs estructurados correlacionan `run/experiment/strategy`, `capture/epoch/frame`, `asset/condition/event`, `intent/order/trade/tx`, `config/capability revision` y reason code. No incluir payloads sensibles completos ni IDs de alta cardinalidad como labels de métricas; los IDs viven en logs/traces/index. Tracing muestreado en hot path y completo para transiciones de ejecución crítica, con sampling budget; que falle telemetry no habilita operaciones y no puede bloquear cancel. Alertas deduplicadas con estado/recuperación, destino a configurar por owner y sin emitir mensajes externos en este shot.
+
+| Diagnóstico de resultado | Condición observable para usar la etiqueta |
+|---|---|
+| `NO EDGE` | Datos aptos/cobertura suficiente, sistema sano y modelo de costes/fills aceptado; la hipótesis no cumple criterios preregistrados |
+| `BAD DATA` | Gaps, metadata/fees unknown, joins inconsistentes, staleness o coverage insuficiente; resultado económico no concluyente |
+| `BAD FILL MODEL` | Oportunidades dependen de queue/fills no respaldados, sensibilidad domina conclusión o calibración contradice observación |
+| `SYSTEM FAILURE` | Crash, pérdida/corrupción raw, saturación, bug/timeout de callback, schema incompatible o fallo de persistence |
+| `EXECUTION FAILURE` | Firma/rechazo/cancel/settlement/reconcile falla o outcome permanece ambiguo; puede coexistir con edge teórico |
+
+Se permiten varios diagnósticos simultáneos; una clasificación no oculta fallos de otra capa. Un screen sin oportunidades durante feed caído no es NO EDGE.
+
+**Secrets y scopes:** perfiles públicos (`SCREEN/REPLAY/SHADOW`) no cargan archivos secretos ni credenciales L2. Secrets fuera del repo, configs de research, raw, backups comunes y logs; acceso de OS mínimo al usuario del servicio, archivos/descriptor protegido o secret provider local aprobado, cifrado de artefactos privados y backups, sin asumir borrado perfecto de claves de memoria Go. EOA key, L2 triple y eventuales Relayer/Builder keys se gestionan separadamente. Allowlist de hosts TLS y chain/contract registry; no enviar credenciales a redirects/URLs arbitrarias. Rotación conserva scope/continuidad y se prueba mediante reconcile antes de retirar identidad vieja; revocar L2 no revoca allowances on-chain ni garantiza cancelar todo.
+
+**Control único de habilitación:** `ExecutionMode = SHADOW | LIVE_DISABLED | LIVE_ENABLED` lo posee Supervisor; el gateway live sólo se construye con un `ActivationLease` no fabricable por estrategia. El lease liga account/scope, chain/protocol/operation allowlist, estrategia/binario/config hashes, evidence bundle de gates, límite de bankroll/exposición, mercados admitidos, expiración y aprobación de owner. Controlador verifica todos esos campos, readiness actual y generation en cada send; expiry/kill/restart/config drift lo revoca. `LIVE_DISABLED` puede reconciliar/cancelar órdenes existentes bajo recovery scope, pero no crear órdenes. No hay `live=true` disperso ni promoción automática desde un scorecard GO. Se propone aprobación local explícita de la configuración exacta; no un servicio remoto de autorización nuevo.
+
+Credenciales no bastan para habilitar trading. Validar geoblock/account restrictions desde host real según ruta del pack, sin evadirlas; closed-only admite únicamente reducciones demostrables por risk y contrato certificado, no un intento de sortear el bloqueo. Read-only REST autenticado para recovery también usa scopes mínimos disponibles, sin inventar que la clave CLOB ofrece un scope read-only nativo. La separación se logra en los puertos/ejecutores y el perfil operacional. La cuenta dedicada y el código confiable son supuestos explícitos de seguridad del monolito.
