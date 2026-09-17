@@ -30,7 +30,7 @@ tags:
 
 ## Continuidad
 
-- D0 Backup/DR cerrado PASS (2026-09-17): saneamiento documental completo del dominio. Estado canónico: `[[2026-09-16-R0-reconciliacion]]` §9 (roadmap R0-R8) + change logs `2026-09-16-backup-dr-r0-reconciliacion` y `2026-09-17-backup-dr-r1-bootstrap-config` + `2026-09-17-backup-dr-d0-documentation-consistency`.
+- D0 Backup/DR completado PASS (2026-09-17; workload cerrado — el proyecto Backup/DR sigue ACTIVE, sin session close de owner): saneamiento documental completo del dominio. Estado canónico: `[[2026-09-16-R0-reconciliacion]]` §9 (roadmap R0-R8) + change logs `2026-09-16-backup-dr-r0-reconciliacion` y `2026-09-17-backup-dr-r1-bootstrap-config` + `2026-09-17-backup-dr-d0-documentation-consistency`.
 - Regla operativa ganada: **cada instrucción operacional lleva estado** (`DESIGNED — NOT IMPLEMENTED` / `BLOCKED — OWNER GATE` / `VERIFIED` + evidencia). Aplicado en BACKUP-DR-RUNBOOK (§0 VERIFIED R1 + 8 marcadores) y BACKUP-DR-CHECKLIST (§3/§4 condicionados). Patrón transferible a otros dominios de [[Aranea]].
 - Histórico se neutraliza **archivo por archivo** (banner HISTORICAL + `indexable: false` + `confidence: low`), nunca sólo en el README de la carpeta: retrieval individual reintroduciría instrucciones muertas. 9/9 legacy marcados en 03-storage/04-backups.
 - Los 9 agent-projects usan **un plan vigente por archivo**: los supuestos julio reemplazados (crear PBS 180 → adoptar; docker-observability → ARGUS vm 160; restore sólo-R7 → restore por fase) quedan marcados HISTORICAL inline, preservando el resto del plan como operativo.

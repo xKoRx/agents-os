@@ -97,7 +97,7 @@ links:
 - status: **approved** (owner 2026-09-17, paquete D0 v2) — aplicado
 - scope: doc (`BACKUP-DR-DESIGN.md` — sólo presentación de estado, NO decisiones)
 - impact: low · risk: low · created_at: 2026-09-17
-- owner_decision: pendiente (bloquea ese único cambio)
+- owner_decision: aprobado y aplicado (owner 2026-09-17, paquete D0 v2 completo — ver status arriba)
 - detalle completo: `RC-20260917-001-design-frozen-banner.md` (esta carpeta)
 
 Sin otros RC abiertos desde el cierre 2026-07-01.
@@ -186,5 +186,5 @@ Mensualmente (1° del mes) revisar:
 
 ---
 
-**Status**: active (vacío al cierre). Workflow definido.
+**Status**: active. Workflow definido; RC-20260917-001 aprobado y aplicado (2026-09-17).
 **Sesión cerrada por instrucción del owner**: 2026-07-01.

@@ -59,7 +59,7 @@ Una vez establecido el engine, el coste marginal de probar una hipótesis nueva 
 - Contexto económico/estratégico: [[Polymarket Engine — Opportunity Context]].
 - **M0 DESIGN_READY (documental, 2026-09-17):** Technical Platform Map canónico indexado en `30-resources/polymarket/`, con 11 partes, 7/7 OpenAPI (163 operaciones) y siete RG resueltos para diseño con exclusiones; no habilita live ni NegRisk conversion.
 - **M1_DESIGN_FROZEN (2026-09-17):** ASTRA-1 proposal → FABLE challenge → ASTRA-2 reconciliation → OD-1/OD-2/OD-3 `APPROVED` → auditoría final ASTRA-3 `PASSED` documental. M1 cerrado, sin blockers arquitectónicos materiales restantes. Contratos congelados en M1.1–M1.17; registro de cierre e historial al final de esta nota.
-- **Siguiente fase: M2 — TOP IMPLEMENTATION PLAN.** Planificar únicamente FOUNDATIONAL NOW de M1.15. Gates físicos `NOT_RUN`; live `NOT_CERTIFIED / LIVE_DISABLED`; capabilities live/optional siguen deshabilitadas. La aprobación del diseño no activa ejecución real.
+- **M2_TOP_PLAN_READY (2026-09-17):** TOP produjo `## M2 — TOP Implementation Plan` (13 slices sobre FOUNDATIONAL NOW de M1.15, hitos M3-A…M3-E, mapa de gates G-01…G-15+extensiones b con fault injection, grupos de paralelismo y política de entrega NORMAL); estado `M2_PLAN_READY_FOR_MANAGER_REVIEW`. Pendiente revisión manager/owner → M2 freeze → M3/NORMAL. Gates físicos `NOT_RUN`; live `NOT_CERTIFIED / LIVE_DISABLED`; ninguna capability live/optional habilitada.
 - No se implementa código del engine hasta cerrar M0–M2.
 
 ## 🧭 Autoridad documental y economía de tokens
@@ -495,7 +495,7 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - [x] ASTRA-3: auditoría final de consistencia y design freeze; challenge adicional no requerido al no quedar blocker material #owner/me #type/dev #area/personal
 
 ### Siguiente — M2 TOP; M3–M4 pendientes
-- [ ] TOP: implementation plan frozen en este archivo #owner/me #type/dev #area/personal
+- [/] TOP: implementation plan frozen en este archivo — plan entregado en `## M2 — TOP Implementation Plan` como `M2_PLAN_READY_FOR_MANAGER_REVIEW`; freeze tras revisión manager/owner #owner/me #type/dev #area/personal
 - [ ] NORMAL: implementar Engine MVP #owner/me #type/dev #area/personal
 - [ ] Certificar Engine MVP #owner/me #type/dev #area/personal
 
@@ -511,6 +511,7 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - **2026-09-16** — Reframing canónico: **Engine = MVP durable; strategies = POCs**. Se define M0 Technical Knowledge Pack antes de Astra/Fable y delivery `Astra → Fable challenge → Astra reconcile → TOP plan → NORMAL implementation`.
 - **2026-09-17** — M0 DESIGN_READY documental: 11 partes del Technical Map; 7 OpenAPI/163 operaciones, RFQ AsyncAPI 13/13, Data v2 y NegRisk CTF investigados. Sin certificación live; conversion CTF/v2, historical L2 backfill y modos opt-in deshabilitados. Paso siguiente: revisión conjunta → ASTRA-1.
 - **2026-09-17** — ASTRA-1 propuso M1, FABLE produjo doce findings y ASTRA-2 los reconcilió en `M1_RECONCILED_PENDING_OWNER_REVIEW`; sus registros se conservan abajo. El mandato ASTRA-3 aprueba OD-1/2/3; auditoría estructural final y correcciones normativas registradas en el cierre ASTRA-3 → `M1_DESIGN_FROZEN`. M1 cerrado; siguiente M2/TOP. Gates físicos NOT_RUN y live no certificado/deshabilitado; sin implementación, research adicional ni sincronización remota.
+- **2026-09-17** — M2/TOP: plan de implementación producido dentro de este archivo (`## M2 — TOP Implementation Plan`): 13 slices sobre FOUNDATIONAL NOW, hitos M3-A…M3-E, mapa de gates no-live con fault injection, grupos de paralelismo con barreras y rangos de migraciones, política de entrega NORMAL, decisiones operativas (driver SQLite, decimal, librerías, toolchain) y `REQUIRES_OWNER — REPO LOCATION ONLY` para el path local de `xKoRx/polymarket-engine`. Estado `M2_PLAN_READY_FOR_MANAGER_REVIEW`; sin implementación ni rediseño; gates físicos NOT_RUN; live deshabilitado. Único archivo modificado: este proyecto.
 
 ## 🧭 Decisiones frozen
 

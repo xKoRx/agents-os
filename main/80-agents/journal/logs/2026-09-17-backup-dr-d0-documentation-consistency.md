@@ -33,7 +33,7 @@ PASS — 12/12 validaciones sin contradicciones activas (2026-09-17).
 - **Formularios**: FORMULARIO-MINIMO = vigente (nota de base canónica contrato §2); FORMULARIO-DECISIONES = referencia (links placeholder a tickets corregidos).
 - **RESTORE-DRILL-TEMPLATE**: wikilink roto corregido (runbook-trimestral → runbook-mensual, marcado HISTORICAL).
 - **REQUEST-CHANGES.md**: registro del RC-20260917-001 (propuesto).
-- **Nuevo**: `RC-20260917-001-design-frozen-banner.md` (Request Change para el banner DESIGN_FROZEN del design — requiere aprobación owner aparte).
+- **Nuevo**: `RC-20260917-001-design-frozen-banner.md` (Request Change para el banner DESIGN_FROZEN del design). Estado final: **APPROVED + APPLIED** — la aprobación owner llegó con el paquete D0 v2 completo en la misma sesión (ver parágrafo de verificación al final); la frase "requiere aprobación owner aparte" de esta línea era la contradicción residual, corregida en R1.5 (ver § Corrección R1.5).
 
 ## Intacto (verificado, sin cambios)
 
@@ -61,4 +61,9 @@ VERIFIED: traefik-config (sha256 8/8), second-brain (3.438 archivos), hermes-sta
 | 12 | Sin secretos añadidos al vault | ✅ 0 patrones de credenciales (grep determinista sobre el set) |
 
 Verificación de aplicación: 31/31 archivos byte-idénticos al staging aprobado; conjunto intacto (contract, policy, tickets 018-021, R0, change log R1) invariado por sha256. RC-20260917-001 APROBADO por owner (paquete v2 completo) y aplicado: banner DESIGN_FROZEN en BACKUP-DR-DESIGN + `updated`.
+
+## Corrección R1.5 (2026-09-17, mandato owner one-shot)
+
+- Residuo §1.1: la línea del alcance (§ Nuevo) que decía "requiere aprobación owner aparte" contradictoria con la aprobación registrada fue reescrita arriba; REQUEST-CHANGES.md alineado (`owner_decision` ya no "pendiente"; status footer ya no "vacío al cierre"). Evidencia y decisiones intactas.
+- Residuo §1.2: D0 generó L0/L1 + feedback (mecánica de cierre) sin que existiera session close. Reclasificación mínima: L0 `2026-09-17-backup-dr-d0-doc-consistency-raw` y L1 `...-summary` conservados como evidencia del workload D0 completado, con nota de clasificación; L3 continuity `2026-09-17-backup-dr-doc-consistency-continuity` conservada (permitida como delta note) y actualizada; feedback conservado como evidencia de fricción. Proyecto Backup/DR = ACTIVE; sin session close de owner (ni en D0 ni en R1.5). Registro completo: change log `2026-09-17-backup-dr-r15-config-completion.md`.
 

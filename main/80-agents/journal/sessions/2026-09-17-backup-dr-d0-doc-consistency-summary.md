@@ -23,6 +23,9 @@ tags:
 
 # 2026-09-17-backup-dr-d0-doc-consistency-summary
 
+> [!note] Clasificación (corrección R1.5, 2026-09-17)
+> Este resumen evidencia el **workload D0 completado**. No es un session close de owner: el proyecto Backup/DR sigue **ACTIVE** y el L0/raw se conserva sólo como evidencia. Ver change log D0 § Corrección R1.5.
+
 > [!info]+ Session summary L1
 > Resumen operativo; fuera del corpus normal de Graphify.
 

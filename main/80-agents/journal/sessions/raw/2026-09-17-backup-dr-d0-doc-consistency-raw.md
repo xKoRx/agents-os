@@ -23,6 +23,8 @@ tags:
 
 # 2026-09-17-backup-dr-d0-doc-consistency-raw
 
+> Clasificación (corrección R1.5, 2026-09-17): este L0 es evidencia del workload D0 completado, no un session close de owner; el proyecto Backup/DR sigue ACTIVE. Ver change log D0 § Corrección R1.5.
+
 ## Resumen de la sesión (proxy de transcripción)
 
 Mandato owner (vía manager) D0: saneamiento documental del dominio Backup/DR antes de continuar infraestructura. Sin R2, sin repetir R0/R1, sin infraestructura.
