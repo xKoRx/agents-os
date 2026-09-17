@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: project
 created: 2026-08-10
-updated: 2026-08-10
+updated: 2026-09-17
 area: "[[Aranea]]"
 project:
 application:
@@ -11,11 +11,11 @@ entities:
   - "[[Aranea]]"
 related: []
 aliases: []
-confidence: medium
+confidence: low
 source_session:
 load_policy: manual
-indexable: true
-index_priority: high
+indexable: false
+index_priority: low
 tags:
   - kind/runbook
   - scope/project

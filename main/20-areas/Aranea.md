@@ -9,9 +9,9 @@ tags:
   - area/aranea
   - kind/area
 review: weekly
-status_detail: "Sesión 2026-06-30 cerrada limpiamente. Gaps #1-4 cerrados (diseño). Propuesta activa en `03-storage/DESIGN-PROPOSAL.md` (capex $0, iter 3). Auditoría topológica en `03-storage/TOPOLOGY-AUDIT.md` (10 anomalías). Pendiente: 5 decisiones owner (tickets 014-017 cuando se apruebe)."
+status_detail: "R0 Backup/DR reconciliado 2026-09-16 (59 guests, 23/23 Tier0 KEEP, 0 backups verificados entonces, PBS VM 180 sin integrar). R1 2026-09-17: 3 unidades BACKUP+RESTORE_VERIFIED (traefik/second-brain/hermes-state), 3 SKIPPED_GATED deuda owner, F-09=EXISTS. D0 2026-09-17: documentación del dominio saneada y consistente. Docs previos de storage marcados deprecated/superseded → [[BACKUP-DR-DESIGN]]."
 created: 2026-06-23
-updated: 2026-06-30
+updated: 2026-09-17
 aliases:
   - aranea
   - Homelab
@@ -39,7 +39,7 @@ cssclasses:
 - **Cierre sesión 2026-06-30**: ver `30-resources/aranea/00-index` § "Cierre de sesión — handover" para resumen completo + 5 decisiones pendientes.
 - **Cluster**: 5 Proxmox + TrueNAS VM + hermes-vm = **7 máquinas** · 302t / 767 GB RAM / ~12 TB útil.
 - **Doc principal**: [[30-resources/aranea/00-index]] · por nodo en [[30-resources/aranea/01-topologia/]].
-- **Proyecto activo**: [[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]] — Backup/DR integral (design-frozen, awaiting owner 018-021).
+- **Proyecto activo**: [[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]] — Backup/DR integral **ACTIVE**: R0 ✅, R1 ✅ (con deuda owner), D0 ✅; R2 en gate owner (PBS 180 + tickets 018-021).
 - **Skill operativa**: `aranea_agent_ro_inventory_refresh` — refresh periódico del inventario. 
 
 ## 🧩 Stack / Servicios

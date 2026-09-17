@@ -7,7 +7,7 @@ slug: backup-dr-checklist
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-07-01
+updated: 2026-09-17
 tags: [aranea, backup, checklist, ops, kind/runbook, area/personal, project/agents-os]
 related: "[[BACKUP-DR-DESIGN]]"
 parent: "[[BACKUP-DR-OWNER-PROJECT]]"
@@ -15,6 +15,9 @@ cssclasses: wide
 ---
 
 # ✅ BACKUP-DR-CHECKLIST — Checklists operacionales
+
+> [!warning] ESTADO (2026-09-17)
+> §1, §2, §5, §7: vigentes como disciplina transversal (aplican a cada cambio/drill). §3 y §4: `DESIGNED — NOT IMPLEMENTED` — presuponen PBS/Restic/rclone operativos que hoy NO existen; NO ejecutar sus ítems como si estuvieran corriendo. Lo único con cobertura real hoy: staging R1 (ver `BACKUP-DR-RUNBOOK` §0).
 
 ---
 
@@ -43,7 +46,7 @@ cssclasses: wide
 
 ---
 
-## §3. Mensual (1° del mes)
+## §3. Mensual (1° del mes) — `DESIGNED — NOT IMPLEMENTED` (ítems PBS/Restic/rclone requieren R2/R4/R5; ZFS scrub pool2 sí es candidato real — decisión owner pendiente)
 
 - [ ] PBS verify ejecutado, exit 0.
 - [ ] Restic check ejecutado, exit 0.
@@ -59,7 +62,7 @@ cssclasses: wide
 
 ---
 
-## §4. Trimestral
+## §4. Trimestral — `DESIGNED — NOT IMPLEMENTED` (drills cloud requieren R4/R5)
 
 - [ ] Restore drill Restic subset desde pcloud (ap-07 drill 4).
 - [ ] Restore drill ZFS chunk desde GDrive (ap-07 drill 5).
@@ -110,5 +113,4 @@ Si no está en esta lista pero parece destructivo: `DANGEROUS` por defecto.
 
 ---
 
-**Status**: design-frozen. Checklists NO ejecutados.
-**Sesión cerrada por instrucción del owner**: 2026-07-01.
+**Status**: checklist vigente con estados por sección (D0 2026-09-17). §1/§2/§5/§7 transversales; §3/§4 condicionados a mecanismos no implementados.

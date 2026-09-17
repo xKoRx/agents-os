@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Legacy ready, pero no autorizado para ejecución por el owner."
+status_detail: "Paused; fase R4 (roadmap R0 §9). pcloud es intención F-08 y proveedor PENDIENTE de revalidación con owner (R0 F-08); sin remotes rclone/restic en runtime (R0 §3). Gates: 020 (Secret Zero) + 021 (OAuth)."
 priority: P2
 progress: 0
 icon: 🔐
@@ -13,7 +13,7 @@ slug: agent-project-04-cloud-critical-tier
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/project
   - area/aranea
@@ -34,7 +34,9 @@ Configurar **Restic** sobre backend pcloud (cifrado AES-256 nativo de Restic) pa
 
 ## 📊 Estado actual
 
-- Pausado y listo para ejecución sólo cuando el owner habilite el proyecto padre; ninguna tarea del agente está completada.
+- **Paused; fase R4** (roadmap R0 §9; requiere staging de ap-01/ap-03).
+- Proveedores: pcloud = intención F-08, **pendiente de revalidación con owner** (R0 §5 F-08: "proveedores por validar"). En runtime NO existe ningún remote rclone ni repo restic (R0 §3) — este subproyecto no declara remotes cloud como configurados.
+- Gates: OWNER-TASK-SECRET-ZERO (020, passphrase Restic) + OWNER-TASK-OAUTH-SCOPE (021).
 
 ## Scope
 

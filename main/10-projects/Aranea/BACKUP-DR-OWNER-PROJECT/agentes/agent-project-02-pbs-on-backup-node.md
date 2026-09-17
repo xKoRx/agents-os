@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Legacy ready, pero no autorizado para ejecución por el owner."
+status_detail: "Paused hasta gate owner PBS (tickets 018/019). Alcance re-definido en D0 (2026-09-17): ADOPTAR/recuperar la VM 180 existente (R0: running, sin ping/22/8007, sin pve_storage, credenciales UNKNOWN), no crear desde cero."
 priority: P2
 progress: 0
 icon: 🖥️
@@ -13,7 +13,7 @@ slug: agent-project-02-pbs-on-backup-node
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/project
   - area/aranea
@@ -30,17 +30,18 @@ cssclasses: wide
 
 ## 🎯 Objetivo
 
-Crear VM Proxmox Backup Server en kronos, con datastore sobre `local-kronos` (SSD Samsung 870 QVO 680 GB libre), 8 GB RAM, 4 vCPU, ISO PBS 4.x sobre Debian 12. Registrar storage en los 5 PVE nodes.
+**Adoptar/recuperar la PBS VM 180 existente** en kronos (R0 2026-09-16: running, sin ping/22/8007 desde Hermes, sin registro `pbs` en `pve_storage`, credenciales UNKNOWN) e integrarla: datastore según F-06 (`local-kronos`), usuario backup, registro en los 5 PVE nodes y schedules vzdump. NO asumir datastore interno, red, credenciales ni versión sin evidencia: se descubren dentro del gate de adopción.
 
 ## 📊 Estado actual
 
-- Pausado y listo para ejecución sólo cuando el owner habilite el proyecto padre; ninguna tarea del agente está completada.
+- **Paused; alcance re-definido en D0 (2026-09-17).** La VM 180 YA EXISTE (evidencia R0), así que el supuesto julio "crear VM vmid 180 desde cero" queda HISTORICAL — único procedimiento reemplazado; el resto del plan julio (datastore, usuario, registro, schedules) sigue siendo el plan vigente post-adopción.
+- Bloqueado por: gate owner PBS (acceso/consola/credenciales de 180) + ticket 019 (ventana) + ticket 018 (lista tier 0 para schedules). Ningún paso ejecutado.
 
 ## Scope
 
-- Crear VM vmid 180 en kronos.
-- Install PBS sobre ISO.
-- Configurar datastore `main` sobre `local-kronos`.
+- Adoptar VM 180 existente en kronos (acceso vía owner; discovery interno read-only: versión PBS, datastore existente, servicios, red).
+- Instalar/reinstalar PBS sólo si el discovery del gate de adopción lo concluye necesario (no por default).
+- Configurar/validar datastore sobre `local-kronos` (F-06) partiendo del estado real de la VM.
 - Crear user `backup@pbs`.
 - Registrar storage `aranea-pbs` en los 5 PVE nodes (athena, zeus, hera, kronos, hades).
 - Configurar vzdump schedule diario (tier 0) + semanal (tier 1/2).
@@ -103,10 +104,12 @@ SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WIN
 
 ## Implementation plan
 
+> **Orden vigente (D0)**: el gate de adopción va PRIMERO — (0) owner habilita acceso a VM 180 + ventana 019; (0.1) discovery interno read-only; (0.2) decisión reutilizar vs reinstalar con evidencia. Recién entonces aplican los pasos 4-7 de julio (datastore, usuario, registro en 5 nodos, schedules, smoke). Los pasos 1-3 de julio (ISO, `qm create`, install) quedan HISTORICAL salvo que el gate concluya reinstalación.
+
 1. **Pre-flight**:
    - Validar `local-kronos` libre (~680 GB en `sdb` de kronos).
    - Descargar ISO PBS 4.x a `/var/lib/vz/template/iso/`.
-2. **Crear VM**:
+2. **Crear VM** (HISTORICAL — sólo si el gate concluye reinstalación):
    ```bash
    # DANGEROUS: requiere OWNER-TASK-MAINT-WINDOW
    qm create 180 --name pbs-kronos --memory 8192 --cores 4 --sockets 1 \
@@ -167,7 +170,7 @@ SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WIN
 
 ## Definition of Done
 
-- [ ] VM PBS creada y operativa.
+- [ ] VM PBS 180 adoptada e integrada (visible en `pve_storage` de los 5 nodos).
 - [ ] Datastore `main` con chunks reales.
 - [ ] 5 nodes registran storage sin error.
 - [ ] vzdump manual PASS.

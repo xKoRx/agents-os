@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Legacy ready, pero no autorizado para ejecución por el owner."
+status_detail: "Paused como fase de certificación recurrente (R7). El restore es requisito de CADA fase: R1 ya ejecutó drills a scratch PASS para 3 unidades. R7 = drills continuos + certificación por unidad; no inicia la actividad."
 priority: P2
 progress: 0
 icon: 🔄
@@ -13,7 +13,7 @@ slug: agent-project-07-restore-drills
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/project
   - area/aranea
@@ -30,11 +30,12 @@ cssclasses: wide
 
 ## 🎯 Objetivo
 
-Implementar calendario de restore drills con criterios PASS/FAIL explícitos. **Backup no es válido sin drill PASS reciente**.
+Implementar calendario de restore drills con criterios PASS/FAIL explícitos. **Backup no es válido sin drill PASS reciente.** El restore es requisito de cada fase (R1 ya lo practicó: drills a scratch por unidad certificada); R7 queda para certificación recurrente y drills continuos, no para iniciar la actividad.
 
 ## 📊 Estado actual
 
-- Pausado y listo para ejecución sólo cuando el owner habilite el proyecto padre; ninguna tarea del agente está completada.
+- **Paused como certificación recurrente (R7).** La práctica de drills por-fase ya está vigente desde R1: restore drills PASS a scratch para traefik-config, second-brain y hermes-state (change log R1). Cada fase R2+ ejecuta su drill antes de declarar VERIFIED.
+- Los 6 drills del catálogo julio (con frecuencias de policy) son el programa recurrente de R7; no son prerrequisito de los drills por-fase.
 
 ## Scope
 
@@ -53,7 +54,7 @@ Implementar calendario de restore drills con criterios PASS/FAIL explícitos. **
 
 ## Required inputs
 
-- ap-01, ap-02, ap-03, ap-04, ap-05 todos completados.
+- Para los drills recurrentes de R7: mecanismos R2-R6 operativos. Los drills por-fase corresponden a cada fase que implementa un mecanismo nuevo (práctica R1).
 
 ## Required owner permissions
 

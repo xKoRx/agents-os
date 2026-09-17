@@ -8,7 +8,7 @@ slug: backup-dr-request-changes
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/doc
   - area/personal
@@ -93,7 +93,14 @@ links:
 
 ## RC abiertos (estado)
 
-### (vacío — sin RC abiertos al cierre de sesión 2026-07-01)
+### RC-20260917-001 — Banner de estado DESIGN_FROZEN en BACKUP-DR-DESIGN
+- status: **proposed** (incluido en el paquete D0; requiere aprobación owner)
+- scope: doc (`BACKUP-DR-DESIGN.md` — sólo presentación de estado, NO decisiones)
+- impact: low · risk: low · created_at: 2026-09-17
+- owner_decision: pendiente (bloquea ese único cambio)
+- detalle completo: `RC-20260917-001-design-frozen-banner.md` (esta carpeta)
+
+Sin otros RC abiertos desde el cierre 2026-07-01.
 
 Cuando se abra el primer RC, agregarlo aquí con formato:
 

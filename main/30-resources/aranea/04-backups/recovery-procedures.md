@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: project
 created: 2026-08-10
-updated: 2026-08-10
+updated: 2026-09-17
 area: "[[Aranea]]"
 project:
 application:
@@ -11,16 +11,19 @@ entities:
   - "[[Aranea]]"
 related: []
 aliases: []
-confidence: medium
+confidence: low
 source_session:
 load_policy: manual
-indexable: true
-index_priority: high
+indexable: false
+index_priority: low
 tags:
   - kind/runbook
   - scope/project
   - area/aranea
 ---
+> [!warning] HISTORICAL / SUPERSEDED (2026-09-17)
+> Registro histórico — NO instrucción operativa. Estado/verdad actual de Backup/DR: `[[2026-09-16-R0-reconciliacion]]`, change log `2026-09-17-backup-dr-r1-bootstrap-config` y `[[BACKUP-DR-DESIGN]]` (diseño congelado). Contenido preservado como evidencia; NO ejecutar procedimientos de este archivo sin revalidarlos contra la realidad actual.
+
 
 ## Propósito
 

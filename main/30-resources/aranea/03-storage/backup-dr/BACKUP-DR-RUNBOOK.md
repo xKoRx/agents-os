@@ -7,7 +7,7 @@ slug: backup-dr-runbook
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-07-01
+updated: 2026-09-17
 tags: [aranea, backup, runbook, ops, kind/runbook, area/personal, project/agents-os]
 related: "[[BACKUP-DR-DESIGN]]"
 parent: "[[BACKUP-DR-OWNER-PROJECT]]"
@@ -16,11 +16,26 @@ cssclasses: wide
 
 # 📖 BACKUP-DR-RUNBOOK — Runbook operacional
 
-> Verdad operacional humana. Comandos ejecutables paso a paso. Cada paso tiene validación.
+> Verdad operacional humana. Comandos paso a paso con validación.
+>
+> [!warning] ESTADO DE EJECUCIÓN (2026-09-17)
+> Este runbook describe el diseño congelado. La ÚNICA operación certificada hoy (R1) es la tabla del §0. Todo lo demás está `DESIGNED — NOT IMPLEMENTED`: los comandos corresponden a mecanismos inexistentes o no integrados (PBS sin adoptar, sin restic, sin rclone, Secret Zero sin definir). NO ejecutar secciones no implementadas sin su fase del roadmap ([[2026-09-16-R0-reconciliacion]] §9) + gate owner.
 
 ---
 
-## §1. Backup manual de VM tier 0 (PBS)
+## §0. VERIFIED hoy (R1, 2026-09-17) — lo único ejecutable con evidencia
+
+| Unidad | Método | Drill |
+|---|---|---|
+| traefik-config | wrapper `~/aranea/bin/r1-backup.sh` (tar cz vía `agent_traefik`, LXC 115) | PASS — sha256 8/8 vs fuente viva |
+| second-brain | tar cz local del vault (3.438 archivos) | PASS — conteo+bytes idénticos |
+| hermes-state | tar cz local (`~/.hermes` + `~/aranea` + unit túnel, 600) | PASS — estructura validada |
+
+Staging: `~/aranea/backup-staging/` (700, Hermes VM 118) — **NO es offsite, NO es failure-domain independiente de Hermes**. Wrapper manual, sin timer ni pruning (frecuencia/retención = decisión owner pendiente). Evidencia: change log `2026-09-17-backup-dr-r1-bootstrap-config` + manifests por run. Los artefactos hermes-state son sensibles (600).
+
+---
+
+## §1. Backup manual de VM tier 0 (PBS) — `DESIGNED — NOT IMPLEMENTED` (PBS VM 180 sin adoptar/integrar)
 
 ### §1.1 Listar VMs tier 0
 
@@ -46,7 +61,7 @@ Validar: `tail /var/log/vzdump/vzdump-<vmid>-*.log` → "Backup finished success
 
 ---
 
-## §2. Restore manual de VM tier 0 (PBS)
+## §2. Restore manual de VM tier 0 (PBS) — `DESIGNED — NOT IMPLEMENTED`
 
 ### §2.1 Listar snapshots disponibles
 
@@ -74,7 +89,7 @@ PASS si servicio responde.
 
 ---
 
-## §3. Backup manual PostgreSQL
+## §3. Backup manual PostgreSQL — `DESIGNED — NOT IMPLEMENTED` (sin dumps; fase R3). Paths internos de la VM (`192.168.31.<vm152-ip>`, staging `kronos:/opt/...`) = UNKNOWN hasta implementación.
 
 ```bash
 ssh postgres@192.168.31.<vm152-ip>
@@ -89,7 +104,7 @@ Validar: archivo .sql.gz existe en staging.
 
 ---
 
-## §4. PBS — verify, prune, datastore full
+## §4. PBS — verify, prune, datastore full — `DESIGNED — NOT IMPLEMENTED` (requiere R2; nombre de datastore real = UNKNOWN hasta adopción de 180)
 
 ### §4.1 Verify semanal
 
@@ -115,7 +130,7 @@ Si `pvesm status` muestra > 80%:
 
 ---
 
-## §5. Restic — push, restore, check
+## §5. Restic — push, restore, check — `DESIGNED — NOT IMPLEMENTED` (sin repo, sin remote, sin passphrase; bloqueado por 020 + revalidación F-08)
 
 ### §5.1 Push manual
 
@@ -141,7 +156,7 @@ PASS si exit 0.
 
 ---
 
-## §6. rclone crypt GDrive — push, restore, check
+## §6. rclone crypt GDrive — push, restore, check — `DESIGNED — NOT IMPLEMENTED` (sin remote; bloqueado por 021 + revalidación F-08)
 
 ### §6.1 Push manual chunked
 
@@ -182,7 +197,7 @@ Alertas:
 
 ---
 
-## §8. Secret Zero recovery procedure
+## §8. Secret Zero recovery procedure — `DESIGNED — BLOCKED — OWNER GATE` (ticket 020: ubicación caja fuerte/USB/bitwarden sin confirmar; NO ejecutable)
 
 Si bitwarden está inaccesible:
 
@@ -208,5 +223,4 @@ Owner-driven. NO automatizable.
 
 ---
 
-**Status**: design-frozen. Comandos NO ejecutados.
-**Sesión cerrada por instrucción del owner**: 2026-07-01.
+**Status**: runbook vigente con estados por sección (D0 2026-09-17). §0 = VERIFIED (R1); §1-§6, §8 = DESIGNED — NOT IMPLEMENTED / BLOCKED; §7 (SMART) y §9 (troubleshooting) genéricos, verificar contexto al usar. Diseño de referencia: `BACKUP-DR-DESIGN.md` (frozen).

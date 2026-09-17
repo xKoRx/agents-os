@@ -8,7 +8,7 @@ slug: backup-dr-formulario-minimo
 area: "[[Aranea]]"
 project: "[[BACKUP-DR-OWNER-PROJECT]]"
 created: 2026-07-02
-updated: 2026-08-10
+updated: 2026-09-17
 aliases:
   - Formulario mínimo Backup/DR
   - Owner decisions minimal form
@@ -70,6 +70,9 @@ Recopilar en formato breve las cuatro decisiones del owner necesarias para destr
 | 160 | argus | hades | observabilidad general | ✅ Sí |
 
 > **Nota**: la lista sugerida incluye **15 VMs tier 0** (las que sostienen el sistema echo + control plane). Esto es más que los 12 originales del ticket 018 — incluye también **echo (140)**, **mt4-demo (144)** y **argus (160)** que el owner mencionó como parte del core echo.
+>
+> [!info] Base canónica (D0 2026-09-17)
+> El contrato §2 (`BACKUP-DR-CONTRACT`) define 23 workloads / 16 unidades Tier 0 congeladas desde 2026-07-02. La lista de 15 de este formulario es una **propuesta resumida** en espera de decisión owner (ticket 018); las unidades etcd/kafka del contrato se respaldan como cluster, no VM por VM. La decisión owner sobre 018 concilia ambas.
 
 ### Tu respuesta esperada
 

@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Legacy ready, pero no autorizado para ejecución por el owner."
+status_detail: "Paused; adaptado D0 (2026-09-17) al mecanismo vigente de Agents-OS: cierre por workload con change log canónico + bitácora del owner project. El session close L0/L1 ocurre sólo bajo orden explícita del owner (agents-os-session-close). NO se ejecuta en D0."
 priority: P2
 progress: 0
 icon: 🎓
@@ -13,7 +13,7 @@ slug: agent-project-08-session-closeout-and-learning-loop
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/project
   - area/aranea
@@ -30,11 +30,12 @@ cssclasses: wide
 
 ## 🎯 Objetivo
 
-Cerrar la sesión de implementación de backup/DR con resumen, lecciones, actualización de memoria y skills, validación de deliverables, y handover claro.
+Cerrar cada workload/fase del proyecto con resumen, lecciones, actualización de memoria y skills, validación de deliverables y handover claro, **adaptado al mecanismo vigente de Agents-OS**: change log canónico por workload + bitácoras de proyecto (R0 y R1 ya siguen este patrón). El cierre de sesión L0/L1 ocurre sólo bajo orden explícita del owner vía `agents-os-session-close`.
 
 ## 📊 Estado actual
 
-- Pausado y listo para ejecución sólo cuando el owner habilite el proyecto padre; ninguna tarea del agente está completada.
+- **Paused; mecanismo re-definido en D0 (2026-09-17).** Cada fase cierra con change log canónico (ej.: `2026-09-16-backup-dr-r0-reconciliacion.md`, `2026-09-17-backup-dr-r1-bootstrap-config.md`) + bitácora del owner project. NO ejecutar session close en D0 ni en fases normales; sólo por orden owner.
+- Lecciones del dominio ya registradas en la skill `aranea-config-backup-staging` (R1).
 
 ## Scope
 
@@ -87,7 +88,7 @@ Ninguno.
 
 ## Implementation plan
 
-1. Listar todos los tickets 018-026 (uno por ap) y su status.
+1. Listar tickets 018-021 + estado de fases R0-R8 (los tickets 022-026 citados por el DoD julio no existen; error ya corregido en el owner project).
 2. Comparar con DoD de [[BACKUP-DR-OWNER-PROJECT]].
 3. Crear `00-session-closeout.md` con resumen.
 4. Actualizar `~/.hermes/profiles/ariadna/memory/` con lecciones (concurrencia, redacción).

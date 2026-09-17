@@ -4,8 +4,8 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: done
-status_detail: "Ejecutado parcialmente como fase R1 del mandato owner 2026-09-16/17: 3 unidades BACKUP_VERIFIED+RESTORE_VERIFIED (traefik-config, second-brain, hermes-state) con restore drills PASS a scratch; pve-config/etcd/pi-hole SKIPPED_GATED (sin canal root/etcdctl/api_token — deuda owner acotada). Detalle: change_log 2026-09-17-backup-dr-r1-bootstrap-config."
+status: in-progress
+status_detail: "IN-PROGRESS tras reconciliación D0 (2026-09-17): R1 certificó 3/6 unidades Capa A (traefik-config, second-brain, hermes-state) con BACKUP+RESTORE_VERIFIED y drills a scratch; 3 SKIPPED_GATED con deuda owner acotada (pve-config, etcd-snapshot, pihole-config); automatización pendiente (wrapper manual sin timer/pruning — no es operativa). Detalle: change_log 2026-09-17-backup-dr-r1-bootstrap-config."
 priority: P2
 progress: 65
 icon: 📂
@@ -13,7 +13,7 @@ slug: agent-project-01-critical-config-backup
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/project
   - area/aranea
@@ -34,7 +34,18 @@ Implementar backup de configuración crítica (Capa A de BACKUP-DR-DESIGN §5.1)
 
 ## 📊 Estado actual
 
-- Pausado y listo para ejecución sólo cuando el owner habilite el proyecto padre; ninguna tarea del agente está completada.
+Reconciliado contra evidencia R1 (2026-09-17; change log `2026-09-17-backup-dr-r1-bootstrap-config`):
+
+| Unidad Capa A | Estado | Evidencia / gap |
+|---|---|---|
+| traefik-config | ✅ BACKUP_VERIFIED + RESTORE_VERIFIED | tar cz vía `agent_traefik` (LXC 115); drill sha256 8/8 vs fuente viva. Gap root-only: `secrets/ ssl/ acme.json` fuera de cobertura (canal root pendiente owner). |
+| second-brain | ✅ BACKUP_VERIFIED + RESTORE_VERIFIED | vault 3.438 archivos; restore a scratch idéntico (conteo+bytes, 5 muestras sha256). |
+| hermes-state | ✅ BACKUP_VERIFIED + RESTORE_VERIFIED | `~/.hermes` operacional + `~/aranea` + unit túnel (600); restore estructural validado. |
+| pve-config (`/etc/pve`) | ⏸ SKIPPED_GATED | sin canal de lectura; requerimiento owner: subcommand `config` en `agent-read` (root SSH fail-closed, correcto). |
+| etcd-snapshot | ⏸ SKIPPED_GATED | `etcdctl` ausente en hermes-vm; :2379 filtrado; sin certs conocidas. |
+| pihole-config | ⏸ SKIPPED_GATED | api_token FTL v6 no disponible; .149 sin HTTP desde Hermes (coherente R0). |
+
+**Pendiente para cerrar este subproyecto**: (1) las 3 unidades gated (deuda owner acotada); (2) automatización operativa — el wrapper `~/aranea/bin/r1-backup.sh` es manual, sin timer ni pruning; frecuencia y retención son decisión owner; (3) nota de alcance: restore de configuración (probado) ≠ recuperación integral de plataforma desde cero (no equivale).
 
 ## Scope
 
@@ -97,7 +108,7 @@ Todos los §2 BACKUP-DR-DESIGN. NO tocar.
 
 ## Implementation plan
 
-1. Crear `/opt/aranea-backup/` con subdirs `config/`, `etcd/`, `step-ca/`, `inventory/`, `runbooks/`.
+1. (VIGENTE sólo para unidades pendientes) Staging real desde R1: `~/aranea/backup-staging/` (700) — el path julio `/opt/aranea-backup/` queda reemplazado; no recrear.
 2. Crear scripts wrapper:
    - `backup-etc-pve.sh` — `tar czf /opt/aranea-backup/config/etc-pve-$(date +%Y%m%d).tgz /etc/pve`.
    - `backup-traefik.sh` — `tar czf /opt/aranea-backup/config/traefik-$(date +%Y%m%d).tgz /etc/traefik/`.
@@ -150,27 +161,27 @@ Todos los §2 BACKUP-DR-DESIGN. NO tocar.
 
 ## ✅ Tareas
 
-- [ ] **AGENT-TASK-01-1**: crear estructura `/opt/aranea-backup/`.
+- [x] **AGENT-TASK-01-1**: crear estructura de staging. — EJECUTADO-equivalente en R1: `~/aranea/backup-staging/` (700) con manifests por run; path julio reemplazado.
   - target_system: PBS VM (futuro) o hermes-vm (temporal).
   - commands_allowed: mkdir, chown.
   - commands_forbidden: ninguno destructivo.
   - tags: [agent, setup]
 
-- [ ] **AGENT-TASK-01-2**: implementar 7 scripts wrapper.
+- [~] **AGENT-TASK-01-2**: scripts wrapper. — PARCIAL en R1: wrapper único `~/aranea/bin/r1-backup.sh` (750) cubre traefik-config + second-brain + hermes-state. NO implementados: backup de `/etc/pve`, etcd, pi-hole (gated) ni step-ca/sanoid/inventory/runbooks como unidades (step-ca además fuera de R1: LXC `ca` 200 stopped).
   - commands_allowed: write_file, chmod +x.
   - expected_output: 7 archivos `.sh` ejecutables.
   - tags: [agent, scripting]
 
-- [ ] **AGENT-TASK-01-3**: configurar cron jobs.
+- [ ] **AGENT-TASK-01-3**: configurar cron jobs. — PENDIENTE: sin timer por decisión owner pendiente (frecuencia/ventana); el wrapper es ejecución manual.
   - commands_allowed: crontab, write_file en /etc/cron.d/.
   - tags: [agent, scheduling]
 
-- [ ] **AGENT-TASK-01-4**: smoke test end-to-end.
+- [x] **AGENT-TASK-01-4**: validación end-to-end. — EJECUTADO-equivalente en R1: drills de restore a scratch + verificación sha256/conteo por run (2 ejecuciones del wrapper, idempotencia probada).
   - commands_allowed: bash.
   - validation: cada script exit 0 + archivo generado verificable.
   - tags: [agent, validation]
 
-- [ ] **AGENT-TASK-01-5**: configurar retención 30d.
+- [ ] **AGENT-TASK-01-5**: configurar retención 30d. — PENDIENTE: sin pruning; retención = decisión owner (misma deuda que frecuencia).
   - tags: [agent, retention]
 
 ---
@@ -202,7 +213,7 @@ Todos los §2 BACKUP-DR-DESIGN. NO tocar.
 
 ---
 
-**Status**: done (parcial — 3/6 unidades de Capa A certificadas R1; 3 gated con deuda owner).
+**Status**: in-progress (R1 certificó 3/6 unidades + drills; automatización y 3 unidades gated pendientes; reconciliado en D0 2026-09-17).
 **Sesión cerrada por instrucción del owner**: 2026-07-01 (histórico).
 
 ## 📆 Bitácora

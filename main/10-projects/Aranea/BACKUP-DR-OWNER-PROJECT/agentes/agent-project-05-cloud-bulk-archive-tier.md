@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Legacy ready, pero no autorizado para ejecución por el owner."
+status_detail: "Paused; fase R5 (roadmap R0 §9), requiere infraestructura R4. GDrive = intención F-08, proveedor pendiente de revalidación; sin remotes en runtime (R0 §3). Gate: 021 (OAuth) + 020 (passphrase crypt)."
 priority: P2
 progress: 0
 icon: ☁️
@@ -13,7 +13,7 @@ slug: agent-project-05-cloud-bulk-archive-tier
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/project
   - area/aranea
@@ -34,7 +34,9 @@ Configurar **rclone crypt** sobre GDrive para tier bulk off-site: snapshots ZFS 
 
 ## 📊 Estado actual
 
-- Pausado y listo para ejecución sólo cuando el owner habilite el proyecto padre; ninguna tarea del agente está completada.
+- **Paused; fase R5** (roadmap R0 §9; depende de R4 y de snapshots sanoid de R3).
+- Proveedores: GDrive = intención F-08, **pendiente de revalidación con owner** (R0 F-08). En runtime NO existe remote rclone-crypt (R0 §3) — no presentar como configurado.
+- Gates: OWNER-TASK-OAUTH-SCOPE (021) + OWNER-TASK-SECRET-ZERO (020).
 
 ## Scope
 

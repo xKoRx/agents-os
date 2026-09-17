@@ -7,7 +7,7 @@ icon: 📝
 slug: backup-dr-formulario-decisiones
 area: "[[Aranea]]"
 created: 2026-07-02
-updated: 2026-08-10
+updated: 2026-09-17
 aliases:
   - Formulario Backup/DR
   - Owner decisions form
@@ -54,10 +54,10 @@ Recopilar en Obsidian las cuatro decisiones del owner que bloquean la implementa
 
 | # | Pregunta | Bloquea | Completado |
 |---|---|---|---|
-| 1 | [Ticket 018](https://github.com) — ¿Qué VMs son tier 0? | ap-02 (PBS schedule) | [ ] |
-| 2 | [Ticket 019](https://github.com) — ¿Cuándo puedo tocar VMs/hosts? | ap-02 (crear VM PBS) | [ ] |
-| 3 | [Ticket 020](https://github.com) — ¿Dónde viven los secretos raíz? | ap-04 / ap-05 (cloud tier) | [ ] |
-| 4 | [Ticket 021](https://github.com) — ¿Quién corre los OAuth? | ap-04 / ap-05 (cloud tier) | [ ] |
+| 1 | Ticket 018 (`2026-07-02-018-owner-task-critical-vms`) — ¿Qué VMs son tier 0? | ap-02 (PBS schedule) | [ ] |
+| 2 | Ticket 019 (`2026-07-02-019-owner-task-maint-window`) — ¿Cuándo puedo tocar VMs/hosts? | ap-02 (adopción PBS 180) | [ ] |
+| 3 | Ticket 020 (`2026-07-02-020-owner-task-secret-zero`) — ¿Dónde viven los secretos raíz? | ap-04 / ap-05 (cloud tier) | [ ] |
+| 4 | Ticket 021 (`2026-07-02-021-owner-task-oauth-scope`) — ¿Quién corre los OAuth? | ap-04 / ap-05 (cloud tier) | [ ] |
 
 ---
 

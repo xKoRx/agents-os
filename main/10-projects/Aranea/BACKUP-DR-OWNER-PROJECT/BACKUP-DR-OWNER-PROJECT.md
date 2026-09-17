@@ -5,7 +5,7 @@ schema_version: 1
 owner: me
 root: true
 status: active
-status_detail: "ACTIVE 2026-09-16 por mandato owner. R0 reconciliación completa (2026-09-16-R0-reconciliacion.md). R1 ejecutado 2026-09-17 (PASS WITH DEBT): traefik/second-brain/hermes-state BACKUP+RESTORE_VERIFIED en staging Hermes; pve-config/etcd/pi-hole SKIPPED_GATED (deuda owner); F-09=EXISTS. Detalle: change_log 2026-09-17-backup-dr-r1-bootstrap-config."
+status_detail: "ACTIVE. R0 reconciliación completa (2026-09-16). R1 ejecutado 2026-09-17 (PASS WITH DEBT): 3 unidades BACKUP+RESTORE_VERIFIED, 3 SKIPPED_GATED deuda owner, F-09=EXISTS. D0 saneamiento documental ejecutado 2026-09-17: nueve agent-projects reconciliados, runbook/checklist con estados, legacy marcado individualmente, índices alineados, RC-20260917-001 propuesto (banner DESIGN_FROZEN en BACKUP-DR-DESIGN). Saneamiento D0: change_log 2026-09-17-backup-dr-d0-documentation-consistency."
 priority: P1
 icon: 📋
 slug: backup-dr-owner-project
@@ -15,7 +15,7 @@ created: 2026-07-01
 updated: 2026-09-17
 start: 2026-07-02
 due:
-progress: 20
+progress: 25
 repo:
 jira:
 prs:
@@ -97,15 +97,15 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
 
 | # | Subproyecto | Foco | Esfuerzo | Bloqueado por |
 |---|---|---|---|---|
-| 00 | [[agent-project-00-policy-and-doc-cleanup]] | Limpiar DESIGN-PROPOSAL histórico, cerrar gaps de docs | 0.5 día | nada |
-| 01 | [[agent-project-01-critical-config-backup]] | /etc/pve, Traefik, OPNsense, step-ca, etcd, manifests | 1 día | 00 |
-| 02 | [[agent-project-02-pbs-on-backup-node]] | Crear VM PBS en kronos, datastore local-kronos, 8 GB RAM | 1 día | 00 |
-| 03 | [[agent-project-03-app-consistent-data-backups]] | PG, Mongo, CouchDB, minio, sanoid pool0 | 1.5 días | 02 |
-| 04 | [[agent-project-04-cloud-critical-tier]] | pcloud + Restic cifrado, push semanal configs/dumps | 0.5 día | 01, 03 |
-| 05 | [[agent-project-05-cloud-bulk-archive-tier]] | GDrive + rclone crypt + chunking, push mensual ZFS | 0.5 día | 03 |
-| 06 | [[agent-project-06-observability-and-alerting]] | Stack mínimo de alertas, integración con docker-observability | 1 día | 02, 04 |
-| 07 | [[agent-project-07-restore-drills]] | Calendario drills, criterios PASS/FAIL, evidencia | continuo | 04, 05 |
-| 08 | [[agent-project-08-session-closeout-and-learning-loop]] | Cierre sesión, lecciones, memoria, skills | 0.5 día | 00 |
+| 00 | [[agent-project-00-policy-and-doc-cleanup]] | Limpieza documental del dominio — **DONE** (julio vía R0 + complemento D0 2026-09-17) | 0.5 día | nada |
+| 01 | [[agent-project-01-critical-config-backup]] | Config crítica — **IN-PROGRESS**: 3/6 unidades VERIFIED en R1; 3 gated + automatización pendientes | 1 día | 00 |
+| 02 | [[agent-project-02-pbs-on-backup-node]] | **Adoptar PBS VM 180 existente** (R0: running, sin integrar) + datastore F-06 + registro 5 nodos | 1 día | gate owner 180 + 018 + 019 |
+| 03 | [[agent-project-03-app-consistent-data-backups]] | PG, Mongo, CouchDB, minio, sanoid pool0 — fase **R3** (drills incluidos) | 1.5 días | 02 |
+| 04 | [[agent-project-04-cloud-critical-tier]] | Cloud crítico + Restic — fase **R4**; proveedor por revalidar owner (F-08); sin remotes en runtime | 0.5 día | 01, 03, 020, 021 |
+| 05 | [[agent-project-05-cloud-bulk-archive-tier]] | Bulk/archive + chunking — fase **R5**; proveedor por revalidar owner (F-08); sin remotes en runtime | 0.5 día | 03, 020, 021 |
+| 06 | [[agent-project-06-observability-and-alerting]] | Señales de backup en **ARGUS (vm 160)** — fase **R6** vía management path (docker-observability: supuestos julio HISTORICAL) | 1 día | 02, 04 |
+| 07 | [[agent-project-07-restore-drills]] | Restore por fase + certificación recurrente **R7** (drills por fase desde R1) | continuo | prácticas por fase; recurrente: R2-R6 |
+| 08 | [[agent-project-08-session-closeout-and-learning-loop]] | Cierre por workload (change log canónico); session close L0/L1 sólo por orden owner | 0.5 día | por workload |
 
 **Total esfuerzo**: ~6.5 días-hombre (sin contar drills continuos).
 **Crítico path**: 00 → 01 → 02 → 03 → 04 → 06 + 05 paralelo → 07 continuo.
@@ -124,7 +124,7 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
 
 ### Bloqueantes (deben resolverse antes de implementar)
 
-- [ ] **OWNER-TASK-CRITICAL-VMS**: confirmar lista tier 0 (step-ca, OPNsense si VM, postgresql, mongodb, mt4-real, mt5-real, obsidian-sync).
+- [ ] **OWNER-TASK-CRITICAL-VMS** (ticket 018): confirmar lista tier 0. Base vigente = contrato §2 (23 workloads / 16 unidades) + ADDs propuestos R0 §6; la lista de 15 del formulario mínimo es la propuesta en espera de decisión. (La lista julio de este bloque —mt5-real, sin etcd/kafka/argus— quedó obsoleta y fue retirada.)
   - reason: define retention y frecuencia de vzdump tier 0.
   - required_by: agent-project-02 PBS schedule.
   - blocks: implementación completa.
@@ -173,12 +173,15 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
 
 ## 🛑 Tareas bloqueadas por permisos / decisiones
 
-- AGENT-TASK-PBS-VM-CREATE: bloqueada por OWNER-TASK-MAINT-WINDOW.
+- AGENT-TASK-PBS-ADOPT: adoptar/integrar VM 180 existente (la creación quedó HISTORICAL — la VM ya existe, R0). Bloqueada por gate owner PBS + OWNER-TASK-MAINT-WINDOW (019).
 - AGENT-TASK-PBS-DATASTORE-INIT: bloqueada por OWNER-TASK-SECRET-ZERO (passphrase).
 - AGENT-TASK-RCLONE-REMOTE-SETUP: bloqueada por OWNER-TASK-OAUTH-SCOPE.
 - AGENT-TASK-VZDUMP-TIER0-CFG: bloqueada por OWNER-TASK-CRITICAL-VMS.
 
 ## 📅 Calendario recomendado
+
+> [!info] SUPERSEDED como cronograma (2026-09-17)
+> El calendario S1–S3 de julio quedó reemplazado por el roadmap por fases **R0–R8** con dependencias reales: ver `[[2026-09-16-R0-reconciliacion]]` §9 (autoridad de planificación). Estado actual: R0 DONE, R1 DONE (con deuda), D0 DONE, R2 gate owner.
 
 | Semana | Subproyectos |
 |---|---|
@@ -208,12 +211,12 @@ Top específicos del proyecto:
 
 El proyecto se considera **completo** cuando:
 
-- [ ] 9 agent-proyectos ejecutados sin gates DANGEROUS abiertos.
-- [ ] PBS operativo en kronos, datastore `local-kronos` con al menos 7d de backups tier 0.
-- [ ] Restic repo en pcloud-crit con al menos 1 semana de configs + dumps.
-- [ ] rclone bulk en GDrive con al menos 1 chunk ZFS pool0 sync'd.
+- [ ] Fases R0–R8 ejecutadas según roadmap R0 §9 (R0 ✅, R1 ✅ con deuda owner, D0 ✅; R2+ gates owner).
+- [ ] PBS VM 180 adoptada e integrada, datastore operativo con al menos 7d de backups tier 0 (fase R2).
+- [ ] Repo Restic en el proveedor crítico revalidado con owner (F-08) con al menos 1 semana de configs + dumps (fase R4).
+- [ ] Tier bulk en el proveedor revalidado con owner (F-08) con al menos 1 chunk ZFS pool0 sync'd (fase R5).
 - [ ] sanoid configurado en truenas con templates production/critical/backup.
-- [ ] Observabilidad: 16 alertas mínimas activas, channels Telegram + email + dashboard.
+- [ ] Observabilidad: señales de backup en ARGUS con las alertas mínimas de la policy activas (fase R6).
 - [ ] Secret Zero documentado y validado (caja fuerte + USB cifrado).
 - [ ] Restore drill tier 0 PASS reciente (< 35d).
 - [ ] Restore drill DB PASS reciente (< 35d).
@@ -221,7 +224,7 @@ El proyecto se considera **completo** cuando:
 - [ ] Checklists en `BACKUP-DR-CHECKLIST.md` ejecutados al menos 1 ciclo completo.
 - [ ] Request changes de evolución registrados en `REQUEST-CHANGES.md`.
 - [ ] Sesión de cierre con lecciones en `agent-project-08` completada.
-- [ ] Tickets 018-026 (1 por subproyecto) cerrados.
+- [ ] Tickets 018-021 cerrados por el owner (los tickets 022-026 citados antes no existen; error de julio corregido en D0).
 
 ---
 
@@ -232,4 +235,5 @@ El proyecto se considera **completo** cuando:
 
 - **2026-08-10** — Parent migrado a `project` v1 para soportar contractualmente los nueve hijos `owner: agent`; se preservó la prohibición de ejecutar y se crearon sus tareas puente humanas en To Do.
 - **2026-09-16** — Owner autoriza reactivación (mandato Backup/DR autónomo). R0 reality reconciliation completado sin cambios en infraestructura: captura 6/6 nodos (TS 20260916_233513), mecanismos de backup descubiertos, 23/23 Tier0 KEEP, F-01..F-14 reconciliadas, matriz GAP y roadmap R1–R8 en [[2026-09-16-R0-reconciliacion]]. Gates owner consolidados en R0 §10 (PBS 180 + tickets 018-021 vigentes).
+- **2026-09-17 (D0)** — Saneamiento documental completo (mandato owner): 9 agent-projects reconciliados, runbook/checklist con estados por sección, 9 docs legacy con advertencia individual, índices/área/README alineados, wikilinks corregidos, RC-20260917-001 propuesto (banner DESIGN_FROZEN en el design). Sin cambios a contract/design/policy/tickets. Evidencia: `80-agents/journal/logs/2026-09-17-backup-dr-d0-documentation-consistency.md`.
 - **2026-09-17** — **R1 ejecutado (PASS WITH DEBT)**. Staging real en Hermes VM 118 (`~/aranea/backup-staging/`, 700) + wrapper `~/aranea/bin/r1-backup.sh` (2 ejecuciones, idempotencia probada, sin pruning/timer — frecuencia y retención pendientes decisión owner). Certificadas BACKUP+RESTORE_VERIFIED: traefik-config (LXC 115, configs estática+dinámica, drill sha256 8/8 vs fuente viva), second-brain (vault 3.438 archivos, drill idéntico), hermes-state (`~/.hermes` operacional + `~/aranea` + unit túnel, 600). SKIPPED_GATED con deuda owner: `/etc/pve` (necesita subcommand `config` en `agent-read`), etcd snapshot (necesita etcd-client + endpoint/certs), pi-hole (necesita api_token FTL v6 o root). F-09: `pool2/pool0_backup` **EXISTS** (live + captura R0), intacto. Traefik parcial: `secrets/ ssl/ acme.json` root-only quedan fuera (gap registrado). Cero toques a producción; tickets 018-021 intactos; R2 no iniciado. Evidencia: change_log `80-agents/journal/logs/2026-09-17-backup-dr-r1-bootstrap-config.md` + `manifest.json` por run.

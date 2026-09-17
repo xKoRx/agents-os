@@ -49,7 +49,7 @@ cssclasses:
 
 #### 🎯 Empezar por aquí (resumen ejecutivo)
 
-- **[[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]]** ← proyecto owner del refactor Backup/DR, ahora en su ubicación correcta por convención PARA. Design-frozen. 9 subproyectos agente + 4 owner-tasks CRÍTICAS.
+- **[[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]]** ← proyecto owner Backup/DR — **ACTIVE**: R0 reconciliación ✅, R1 bootstrap-config ✅ (3 unidades VERIFIED, deuda owner acotada), D0 saneamiento documental ✅; R2 (adopción PBS 180) en gate owner (tickets 018-021).
 - **[[30-resources/aranea/03-storage/backup-dr/00-index]]** ← docs evergreen del refactor (diseño, runbook, checklist, policy). El proyecto migró; los docs se quedaron.
 - **[[30-resources/tools/graphify]]** ← nota canónica de la tool, actualizada con el estado "INSTALADO en VM Hermes" y comandos disponibles.
 

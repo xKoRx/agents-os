@@ -14,7 +14,7 @@ tags:
   - area/personal
   - project/agents-os
 created: 2026-06-23
-updated: 2026-08-11
+updated: 2026-09-17
 reviewed: 2026-06-30
 aliases:
   - Aranea index
@@ -119,21 +119,21 @@ Ver detalle completo en `~/aranea/topology/health.md`.
 | [[03-storage/inventory]] | Storage landscape raw/used/free |
 | [[03-storage/DESIGN-PROPOSAL]] | ⚠️ DEPRECATED 2026-07-01 — ver backup-dr/BACKUP-DR-DESIGN. Histórico iter 1-4. |
 | [[03-storage/PROPUESTA-COMPLETA-ITER4]] | ⚠️ DEPRECATED 2026-07-01 — consolidación previa. |
-| [[03-storage/backup-dr/00-index]] | **NUEVO 2026-07-01** — set completo refactor (16 archivos, 140 KB) |
+| [[03-storage/backup-dr/00-index]] | **CURRENT** — índice del set evergreen Backup/DR (estado R0/R1/D0; ver su callout de frescura) |
 | [[03-storage/backup-dr/BACKUP-DR-DESIGN]] | **NUEVO** — diseño final, capas A-G, decisiones congeladas, modelo policy/runbook/skill |
 | [[../../10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/BACKUP-DR-OWNER-PROJECT]] | **MOVIDO 2026-07-02** — proyecto owner + mapa subproyectos agente. Ubicación vigente: `10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/`. |
-| [[../../10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/agentes/agent-project-00]] a [[../../10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/agentes/agent-project-08]] | **MOVIDO 2026-07-02** — 9 subproyectos agente (cleanup, configs, PBS, app-consistent, cloud crit, cloud bulk, observability, drills, closeout). Ubicación vigente: `10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/agentes/`. |
-| [[03-storage/backup-dr/BACKUP-DR-RUNBOOK]] | **NUEVO** — verdad operacional, comandos paso a paso |
-| [[03-storage/backup-dr/BACKUP-DR-CHECKLIST]] | **NUEVO** — pre/post/mes/trimestral/drill |
-| [[03-storage/backup-dr/backup-policy]] | **NUEVO** — policy ejecutable (cambios solo via Request Change) |
-| [[03-storage/backup-dr/backup-inventory-template]] | **NUEVO** — template JSON Schema |
+| [[agent-project-00-policy-and-doc-cleanup]] a [[agent-project-08-session-closeout-and-learning-loop]] | **9 subproyectos agente** (cleanup, configs, PBS-adopción, app-consistent, cloud crítico, cloud bulk, observabilidad-ARGUS, drills, closeout) en `10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/agentes/` — reconciliados en D0 2026-09-17. |
+| [[03-storage/backup-dr/BACKUP-DR-RUNBOOK]] | **CURRENT** — runbook con estado por sección (§0 VERIFIED R1; resto DESIGNED) |
+| [[03-storage/backup-dr/BACKUP-DR-CHECKLIST]] | **CURRENT** — checklists con estado por sección (§3/§4 condicionados) |
+| `backup-policy.yaml` | **FROZEN** — policy ejecutable (cambios solo via Request Change; enlace directo a archivo) |
+| `backup-inventory-template.json` | **FROZEN** — template con JSON Schema (enlace directo a archivo) |
 | [[03-storage/backup-dr/REQUEST-CHANGES]] | **NUEVO** — workflow evolución controlada |
-| [[03-storage/TOPOLOGY-AUDIT]] | Auditoría crítica topológica (10 hallazgos) |
-| [[03-storage/AUDIT]] | Auditoría storage previa |
-| [[03-storage/BACKUP-SYSTEM]] | Task 2 previa (políticas detalladas) |
+| [[03-storage/TOPOLOGY-AUDIT]] | ⚠️ SUPERSEDED (superseded_by: BACKUP-DR-DESIGN) — histórico |
+| [[03-storage/AUDIT]] | ⚠️ SUPERSEDED — histórico |
+| [[03-storage/BACKUP-SYSTEM]] | ⚠️ SUPERSEDED — histórico |
 
-### [[04-backups]] — Reservado (Task 2)
-Vacío. La auditoría profunda de storages + diseño de sistema de backup va en la **siguiente tarea** (ticket `2026-06-30-011`).
+### [[04-backups]] — HISTORICAL (marcado 2026-09-16/17)
+Runbooks de la era 2026-06-30 preservados como histórico; **NO ejecutar** sin revalidar. Fuente vigente: `[[03-storage/backup-dr/00-index]]` + `[[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/BACKUP-DR-OWNER-PROJECT]]`. |
 
 ### [[05-tickets]] — Tickets del sistema
 | Doc | Contenido |

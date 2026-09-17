@@ -9,8 +9,14 @@ aliases: []
 tags:
   - kind/doc
 created: 2026-08-10
-updated: 2026-08-10
+updated: 2026-09-17
+indexable: false
+load_policy: manual
+confidence: low
 ---
+> [!warning] HISTORICAL / SUPERSEDED (2026-09-17)
+> Registro histórico — NO instrucción operativa. Estado/verdad actual de Backup/DR: `[[2026-09-16-R0-reconciliacion]]`, change log `2026-09-17-backup-dr-r1-bootstrap-config` y `[[BACKUP-DR-DESIGN]]` (diseño congelado). Contenido preservado como evidencia; NO ejecutar procedimientos de este archivo sin revalidarlos contra la realidad actual.
+
 
 # 🛡️ Aranea — Propuesta completa de Storage + Backup (iter 4)
 

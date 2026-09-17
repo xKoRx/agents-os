@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Legacy ready, pero no autorizado para ejecución por el owner."
+status_detail: "Paused; fase R6 (roadmap R0 §9, requiere jobs R2-R4). Plataforma vigente: ARGUS (vm 160, Tier 0d contrato §2). El supuesto julio 'docker-observability' quedó HISTORICAL; no se inventa plataforma nueva. Vía management path del stack, no capability RO."
 priority: P2
 progress: 0
 icon: 📊
@@ -13,7 +13,7 @@ slug: agent-project-06-observability-and-alerting
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/project
   - area/aranea
@@ -30,16 +30,18 @@ cssclasses: wide
 
 ## 🎯 Objetivo
 
-Integrar el sistema de backup con el stack de observabilidad existente (`docker-observability` en hades). Implementar las 16 alertas mínimas definidas en BACKUP-DR-DESIGN §8.2 con thresholds y canales.
+Integrar las señales de backup con **ARGUS (vm 160)** — la plataforma de observabilidad vigente de Aranea (Tier 0d, contrato §2). Implementar las 16 alertas mínimas definidas en BACKUP-DR-DESIGN §8.2 con thresholds y canales. La mención julio a `docker-observability` es el único supuesto reemplazado (HISTORICAL); no se inventa una plataforma nueva.
 
 ## 📊 Estado actual
 
-- Pausado y listo para ejecución sólo cuando el owner habilite el proyecto padre; ninguna tarea del agente está completada.
+- **Paused; fase R6** (roadmap R0 §9; requiere jobs de R2-R4 emitiendo señales).
+- Plataforma vigente: **ARGUS (vm 160)**. Integración vía management path del stack de observabilidad (extensión de capability si aplica, canal HERMES — Agent Access Operations); no vía la capability RO existente.
+- R0: ARGUS existe y corre, pero sin señales de backup configuradas (matriz GAP, columna Monitoring = no).
 
 ## Scope
 
 - 16 alertas con thresholds.
-- Integración con `docker-observability` (Prometheus + Grafana si existen, o lo que haya).
+- Integración con ARGUS (vm 160): exponer señales de backup (exit codes, freshness, % staging) por el canal de ingesta que ARGUS ya consume; formato por discovery, no asumido.
 - Canales: Telegram owner + email + dashboard banner.
 - Runbook links en cada alerta.
 
@@ -57,7 +59,7 @@ Integrar el sistema de backup con el stack de observabilidad existente (`docker-
 
 - Acceso a canal Telegram del owner (configuración bot).
 - Acceso email relay (SMTP) si se usa canal email.
-- Acceso a `docker-observability` para agregar scrape targets.
+- Management path del stack de observabilidad (ARGUS, vm 160) para agregar señales/targets; extensiones de capability vía HERMES — Agent Access Operations.
 
 ## Required credentials / secrets
 
@@ -91,7 +93,7 @@ Ninguno.
 
 ## Implementation plan
 
-1. Identificar stack actual en `docker-observability`.
+1. Discovery read-only del canal de ingesta de ARGUS (vm 160) y del formato de señales disponible vía management path.
 2. Crear alert rules en formato Prometheus (16 alertas).
 3. Configurar Alertmanager con rutas Telegram + email.
 4. Crear dashboard Grafana con estado de backups.
@@ -135,7 +137,7 @@ Ninguno urgente (config Telegram puede esperar).
 
 ## ✅ Tareas
 
-- [ ] **AGENT-TASK-06-1**: identificar stack observability actual.
+- [ ] **AGENT-TASK-06-1**: identificar canal de señales de ARGUS (vm 160).
   - tags: [agent, discovery]
 
 - [ ] **AGENT-TASK-06-2**: crear 16 alert rules Prometheus.

@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Legacy ready, pero no autorizado para ejecución por el owner."
+status_detail: "Paused; fase R3 del roadmap R0 §9 (tras R2). Mecánica julio vigente (pg_dumpall/mongodump/CouchDB/minio/sanoid); destino PBS requiere R2 — hasta entonces staging local como en R1. Restore drill = requisito de esta fase (práctica R1)."
 priority: P2
 progress: 0
 icon: 💾
@@ -13,7 +13,7 @@ slug: agent-project-03-app-consistent-data-backups
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/project
   - area/aranea
@@ -34,7 +34,9 @@ Implementar backups app-consistent de PostgreSQL, MongoDB, CouchDB (Obsidian), m
 
 ## 📊 Estado actual
 
-- Pausado y listo para ejecución sólo cuando el owner habilite el proyecto padre; ninguna tarea del agente está completada.
+- **Paused; se ejecuta como fase R3** (roadmap R0 §9, tras R2). La mecánica julio (pg_dumpall / mongodump --oplog / CouchDB / mc mirror / sanoid) sigue vigente como plan único; el supuesto "destino PBS datastore" requiere R2 completado — hasta entonces, staging local en Hermes como demostró R1.
+- Recordatorio de alcance: backup app-consistent (dump lógico) ≠ backup de VM (vzdump); ambos aplican a unidades distintas del contrato §2.
+- Esta fase incluye sus restore drills (2 drills DB) antes de declararse VERIFIED — no se difieren a R7.
 
 ## Scope
 
@@ -75,7 +77,7 @@ No estricto. Dumps en madrugada.
 
 ## Dependencies
 
-- ap-02 (PBS para staging local).
+- ap-02 (PBS como destino definitivo; mientras tanto staging local en Hermes como en R1).
 - OWNER-TASK-SECRET-ZERO (credenciales DB).
 
 ## Protected resources

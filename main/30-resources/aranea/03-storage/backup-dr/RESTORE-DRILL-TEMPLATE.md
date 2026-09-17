@@ -8,7 +8,7 @@ slug: restore-drill-template
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-02
-updated: 2026-08-10
+updated: 2026-09-17
 tags:
   - kind/doc
   - area/personal
@@ -23,7 +23,7 @@ related:
   - "[[BACKUP-DR-CHECKLIST]]"
   - "[[agent-project-07-restore-drills]]"
   - "[[04-backups/runbook-mensual]]"
-  - "[[04-backups/runbook-trimestral]]"
+  - "[[04-backups/runbook-mensual]] — HISTORICAL, sólo referencia; checklist vigente: BACKUP-DR-CHECKLIST"
 parent: "[[BACKUP-DR-OWNER-PROJECT]]"
 cssclasses: wide
 ---
