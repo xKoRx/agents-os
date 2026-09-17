@@ -10,7 +10,7 @@ parent: "[[Loom]]"
 sprint:
 start: 2026-09-13
 due:
-progress: 65
+progress: 100
 repo: xKoRx/loom
 jira:
 prs:
@@ -83,8 +83,8 @@ _No aplica — este es el subproyecto de fundación/implementación de Loom; no 
 > - [x] WP-B Parse core: T05 fixtures → T03 frontmatter → T04 body #owner/agent #type/dev #area/personal ✅ 2026-09-13
 > - [x] WP-C Index + live refresh: T06 scanner/snapshot/watcher/generation → T07 projections → T08 links/backlinks → T09 rebuild invariance #owner/agent #type/dev #area/personal ✅ 2026-09-13
 > - [x] WP-D API: T10 ✅ → T11 notes/render/search/tasks ✅ (renderer + endpoints) → T12 diagnostics ✅ #owner/agent #type/dev #area/personal
-> - [/] WP-E Frontend (secuencial): T13 shell + generation polling → T14 viewer → T15 cockpit → T16 search/diagnostics #owner/agent #type/dev #area/personal
-> - [ ] WP-F Gates: T17 e2e + hardening live refresh + build binario único #owner/agent #type/dev #area/personal
+> - [x] WP-E Frontend (secuencial): T13 shell + generation polling → T14 viewer → T15 cockpit → T16 search/diagnostics #owner/agent #type/dev #area/personal ✅ 2026-09-13
+> - [x] WP-F Gates: T17 e2e + hardening live refresh + build binario único #owner/agent #type/dev #area/personal ✅ 2026-09-13
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -102,6 +102,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-13 (V0.1 COMPLETA — T01–T17 [x], 17/17 = 100%):** ejecución reanudada y terminada por el orchestrator. **WP-E ✅:** T13 `b259447` (shell dark-first + polling generation con invalidación + vitest 19) · T14 `98e281d` (note viewer con estilos lens, backlinks panel, intercept links; conversión route↔DocumentID .md) · T15 `c089da7` (cockpit con filtros URL, board 5 estados, 72 tests) · T16 `9b208c5` (search + diagnostics pages; 118 tests; dispatch interrumpido sin reporte — trabajo revisado y aceptado por el orchestrator). **WP-F ✅:** T17 `eb1938e` (scripts/e2e.sh 10/10 PASS contra vault real; e2e-live-refresh.sh 6/6 PASS — modify→gen++ 0.36-0.6s→search ve el cambio→delete→count baja, mismo PID; burst test añadido; coverage vault 100%/index 95.7% piso CUMPLIDO; binario único 12.6MB offline). **Validación visual (browser, 1440×900, binario final vs vault real):** Home/Project/Note/Search/Diagnostics PASS — encontró y corrigió 3 defectos (`848fb28`: callout comía el cuerpo por `break`-en-switch; fold `[!info]+` mal parseado; overflow 175px de SHA en inline code). Adversarial review limpio (sin TODOs, sin paths absolutos, sin fs en frontend, sin React, worktree clean). Final: `master` @ `848fb28` == origin/master (push ff exitoso). **Pendiente del owner:** tarea puente a Review; politica MELI (gate de riesgo, no bloquea).
 
 - **2026-09-13 (POST-CLOSE CORRECTION — owner preservation commit + continuity reconciliation):** la sesión de implementación ya estaba **CLOSED** en `76d305c5c323a8429057ae079f4884bf1e843b41`. Después del cierre, el owner hizo un commit/push de preservación para no perder el parcial: `xKoRx/loom` `master` quedó en `cb6245c3e94ef201b2ca966b624b20d18d523b1a` (parent `76d305c...`), commit que **sólo** agrega `internal/serve/render.go.partial-t11` (738 líneas) como referencia fuera del compile path. Esta reconciliación NO reabre la sesión ni promueve el parcial: T11 sigue NOT DONE/NO aceptado; el último feature checkpoint aceptado sigue siendo T10 @ `4a9d0a48a9d91634d5e616b403d2921a7bcb8575`. Continuidad canónica: retomar T11 inspeccionando el `.partial-t11`, rescatar únicamente piezas válidas o descartarlo si corresponde, completar T11 contra SPEC/TASKS y recién entonces avanzar a T12. Sin child Loom activo; `progress: 59`; sesión **CLOSED**.
 
