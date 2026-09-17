@@ -1,0 +1,106 @@
+name: One-shot M0 NegRisk contract audit
+on:
+  push:
+    paths:
+      - .github/workflows/polymarket-m0-negrisk-once.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+          persist-credentials: true
+      - name: Verify official Solidity and SDK, update NegRisk contract and manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha1,sha256
+          from urllib.request import urlopen,Request
+          import re,datetime
+          def get(repo,commit,path,blob):
+            url=f'https://raw.githubusercontent.com/{repo}/{commit}/{path}'
+            with urlopen(Request(url,headers={'User-Agent':'m0-readonly-protocol-audit/1.0'}),timeout=30) as res:
+              assert res.status==200,(url,res.status)
+              body=res.read(1000001)
+            assert len(body)<1000000
+            actual=sha1(b'blob '+str(len(body)).encode()+b'\0'+body).hexdigest()
+            assert actual==blob,(url,actual,blob)
+            text=body.decode('utf8')
+            print('VERIFIED_SOURCE',url,'HTTP200','Git_blob',actual,'SHA256',sha256(body).hexdigest(),'bytes',len(body))
+            return text,url
+          old,legacy=get('Polymarket/neg-risk-ctf-adapter','f78b35b0863b4308a431ca307d06f49b2ea65e78','docs/NegRiskAdapter.md','164fca154042311e9aef5f1105f53b037a87398a')
+          sol,ctf=get('Polymarket/ctf-exchange-v2','ccc0596074f4dfd62c944fbca4de252893b82b4b','src/adapters/NegRiskCtfCollateralAdapter.sol','698691ab6134ab31fbebb0fa62ffdb7a0395bcb8')
+          env,envurl=get('Polymarket/ts-sdk','983a10a7579c95043d4099f60873ff7ea817e5a0','packages/client/src/environments.ts','bc650df9ac7735a87eaea70e0e401ade019a6636')
+          pos,posurl=get('Polymarket/ts-sdk','983a10a7579c95043d4099f60873ff7ea817e5a0','packages/client/src/actions/positions.ts','578e48eea9c5fe81153d922fe246e12526acf1d8')
+          gamma,gammaurl=get('Polymarket/ts-sdk','983a10a7579c95043d4099f60873ff7ea817e5a0','packages/bindings/src/gamma/market.ts','854c4cbe97ced3e5745c9599ef8afece5a0ececc')
+          checks=[('legacy docs',old,'convertPositions'),('new pUSD adapter',sol,'function convertPositions(bytes32 _marketId, uint256 _indexSet, uint256 _amount)'),('new pUSD flow',sol,'adapter.convertPositions(_marketId, _indexSet, _amount);'),('new fee',sol,'uint256 amountOut = _amount - (_amount * feeBips / 10_000);'),('new pUSD wrap',sol,'CollateralToken(COLLATERAL_TOKEN).wrap'),('module address',env,'0x200000900045e3B6259600682756002200028933'),('CTF adapter address',env,'0xadA2005600Dec949baf300f4C6120000bDB6eAab'),('version enum',gamma,"V2 = 'v2'"),('CTF dispatch',pos,'protocol: PositionProtocol.CTF'),('v2 dispatch',pos,'protocol: PositionProtocol.V2'),('v2 Router',pos,'routerSplitCall'),('v2 PositionManager',pos,'positionErc1155Address: client.environment.contracts.positionManager')]
+          for label,text,needle in checks:
+            assert needle in text,label
+          print('NEG_RISK_CHECKS',len(checks),'PASS')
+          folder=Path('main/30-resources/polymarket')
+          pp=folder/'Polymarket — Technical Platform Map — part-06-negrisk-combos.md'
+          p10=folder/'Polymarket — Technical Platform Map — part-10-gaps-recovery.md'
+          p11=folder/'Polymarket — Technical Platform Map — part-11-sources.md'
+          manifest=folder/'Polymarket — Technical Platform Map — synced 2026-09-17.md'
+          t=pp.read_text()
+          t=t.replace('el SDK vigente resuelve primero el Market por `conditionId`, después la versión y el adaptador/router de *split, merge y redeem*','el SDK vigente consulta Gamma por `conditionId` y discrimina primero IDs de outcomes: par completo `tokenId` → CTF (requiere `negRisk` no nulo); si no hay tokens CTF y sí par `positionId` → v2 (Router/PositionManager). `market.version` ofrece discriminante wire `v1`/`v2` nullable y debe contrastarse; no sustituir el dispatch observado')
+          oldrow='| NO→complementary YES | adaptador NegRisk CTF antiguo `0xd91E80cF2E7be2e162c6513ceD06f1dD0dA35296`, semántica histórica; **deprecated para relayer** | **ABI, contract address, selector y metadata de evento NO VERIFICADOS** | fuente de concepto describe convert sin discriminar versión; changelog 2026-07-14 retira llamadas antiguas relayer desde 2026-07-17 [S26][S32] |'
+          assert oldrow in t
+          newrow='| NO→complementary YES | `0xd91E80...` legacy directo, retirado del Relayer; adaptador pUSD CTF `0xadA2005600Dec949baf300f4C6120000bDB6eAab` **sí implementa** `convertPositions(bytes32,uint256,uint256)` en Solidity oficial pinned; caller ERC1155 approval y contexto CTF necesarios | módulo v2 dirección `0x200000900045e3B6259600682756002200028933` conocida en SDK; función, selector/ABI, IDs de evento y semántica de conversión v2 **NO VERIFICADOS** | CTF contrato oficial [S51], legado [S50], producción dirección [S34]; v2 address no prueba función, live bloqueado |'
+          t=t.replace(oldrow,newrow)
+          olddiv='El cambio NO demuestra que esa segunda dirección implemente el mismo `convertPositions`; no reemplazar ABI por semejanza nominal.'
+          assert olddiv in t
+          t=t.replace(olddiv,'**Corrección contractual:** el Solidity oficial del adaptador CTF con colateral pUSD implementa explícitamente `convertPositions(bytes32,uint256,uint256)` y llama al adaptador legacy; sí existe esta ABI en el código de `0xadA200...`, ver [S51]. La coincidencia de dirección entre código y `production` SDK es evidencia documental, NO una verificación del bytecode desplegado ni de su habilitación Relayer. Esto NO demuestra que el módulo v2 `0x200000...` exponga conversión equivalente: no transferir rutas CTF a v2.')
+          oldgate='**Blocking contract de conversión v2:** falta una tupla comprobada `(market/version discriminator, event/condition identifier, target router/module address, exact ABI/function selector, argument mapping, allowance policy, transaction return/logs)`. Aunque el SDK confirma rutas Router para split/merge/redeem, NO se certifica `convertPositions` de v2. Estado: `NO LIVE CONVERSION UNTIL ROUTE VERIFIED`; clasificado como RESEARCH GAP de implementación (§24), no como ausencia demostrada de capability. [S34b][S25]'
+          assert oldgate in t
+          gate='**Design contract y live gate v2:** el SDK fija `ProtocolVersion={v1,v2}` nullable y posición de outcome por par `tokenId` (CTF) frente a `positionId` (v2); el módulo NegRisk v2 de producción tiene dirección **conocida** `0x200000900045e3B6259600682756002200028933`. Para conversión v2 **no se identificó** función pública, ABI, selector, mapping de `marketId`/condition/positionIds, autorizaciones, asset flow, returns/logs ni prueba oficial de test que vincule esta dirección a una operación de conversión. No existe `convertPositions` público en `actions/positions.ts` pinned; `negRiskModule` en config/approvals no certifica método. **NO LIVE CONVERSION UNTIL ROUTE VERIFIED**: capability de ejecución bloqueada, pero es diseñable como deshabilitada/fail-closed sin atribuir una ABI ficticia. Gate posterior exige fuente oficial ABI+runtime codehash Polygon137+reconciliación receipt/balance en ambiente autorizado, no conversión con fondos durante M0. [S34][S34b][S34g][S51]'
+          t=t.replace(oldgate,gate)
+          detail='''**CTF-era convert exacto, source-verified (2026-09-17).** ABI `convertPositions(bytes32 _marketId,uint256 _indexSet,uint256 _amount)` (`external`, sin retorno Solidity) en `NegRiskCtfCollateralAdapter.sol` del repositorio oficial pinned [S51]. `marketId` es bytes32 del contrato NegRisk (NO `Gamma Event.id` y no sustituir por `conditionId`); `_indexSet` bitmask de índices de preguntas cuyas posiciones NO se consumen; `_amount` unidad entera ERC1155 de **cada** NO seleccionado. Lee `getQuestionCount(_marketId)` y `getFeeBips(_marketId)` del adaptador legacy. Obtiene ids NO `getPositionId(bytes32(uint256(marketId)|i),false)` para bits seleccionados, los transfiere desde `msg.sender` mediante `CONDITIONAL_TOKENS.safeBatchTransferFrom`, llama al legacy `convertPositions`, devuelve YES de índices **no seleccionados** con `amountOut = amount - amount*feeBips/10000` y envuelve el saldo USDC.e recibido a pUSD al caller. Es una transacción EVM: falla integral por pause USDCE (`onlyUnpaused`), autorización ERC1155, balances insuficientes, parámetros/indexSet/marketId inválidos o revert legacy; no afirmar códigos revert exactos sin ABI/runtime. El adaptador aprueba a legacy CTF/wrapped collateral **en constructor**; el usuario aún debe aprobar al operador adaptador pUSD CTF para transferir NO. Fee se calcula con división entera Solidity y requiere snapshot `feeBips` del marketId exacto; no extrapolar el payout de una cesta a un mercado aumentado incompleto. La doc legacy [S50] define `m` NO consumidos → `(m-1)*amount` collateral bruto y YES complementarios, advierte pérdida si ningún outcome resulta verdadero; la capa pUSD/fee modifica balances finales. Verificar receipt y deltas ERC1155+USDC.e+pUSD; no validar por HTTP precio. **LIVE DISABLED** hasta cotejar deployment bytecode/ABI, ruta actual autorizada, mapping oficial event→marketId, allowances reales y test controlado; especialmente no llamar el antiguo adaptador directamente por Relayer retirado.\n\n**Version routing — SDK behavior no garantía universal:** `GammaMarket.version` acepta `v1|v2|null`; el SDK consulta market por conditionId/marketId, exige conditionId y outcomes completos, prefiere CTF si ambos tokenIds existen y sólo selecciona v2 si ambos positionIds existen sin par tokenId. CTF negRisk usa `negRiskCollateralAdapter` para split/merge/redeem y `negRiskAdapter` como fuente de IDs; v2 usa `protocolV2Router` y ERC1155 `positionManager`. Una discrepancia entre versión, IDs, flags y contrato es error de contrato, no fallback oportunista. [S34b][S34g][S34]'''
+          assert '## 13. Combinatorial' in t
+          t=t.replace('## 13. Combinatorial',detail+'\n\n## 13. Combinatorial',1)
+          pp.write_text(t)
+          g=p10.read_text()
+          rows=g.splitlines()
+          updated=False
+          for i,row in enumerate(rows):
+            if row.startswith('| RG-05 |'):
+              rows[i]='| RG-05 | CLOSED FOR DESIGN / LIVE BLOCKED 2026-09-17: legacy CTF `convertPositions` [S50], pUSD CTF adapter ABI/asset flow [S51], production addr + version and outcome dispatch [S34][S34b][S34g] verified; v2 module addr known, conversion ABI/selector not published/verified | Astra can design versioned CTF/v2 routing with v2 conversion disabled; neither CTF conversion nor v2 conversion is certified live, `NO LIVE CONVERSION UNTIL ROUTE VERIFIED` | enabling live requires official v2 ABI and protocol tests, on-chain runtime/approval check, version/event ID proof, receipt+balance validation; no real transactions in M0 |'
+              updated=True
+          assert updated
+          p10.write_text('\n'.join(rows)+'\n')
+          source=p11.read_text()
+          assert '| S50 |' not in source and '| S51 |' not in source
+          source+='\n| S50 | Legacy NegRiskAdapter conversion semantics — pinned | `'+legacy.replace('raw.githubusercontent.com/','github.com/').replace('/f78b35b0863b4308a431ca307d06f49b2ea65e78/','/blob/f78b35b0863b4308a431ca307d06f49b2ea65e78/')+'` | Polymarket Solidity official docs, SHA-pinned | HTTP 200, Git blob `164fca154042311e9aef5f1105f53b037a87398a`, 2026-09-17 | §12 legacy convertPositions, NO/YES/collateral and fee |\n'
+          source+='| S51 | CTF pUSD NegRisk collateral adapter Solidity — pinned | `'+ctf.replace('raw.githubusercontent.com/','github.com/').replace('/ccc0596074f4dfd62c944fbca4de252893b82b4b/','/blob/ccc0596074f4dfd62c944fbca4de252893b82b4b/')+'` | Polymarket official Solidity, SHA-pinned | HTTP 200, Git blob `698691ab6134ab31fbebb0fa62ffdb7a0395bcb8`, 2026-09-17 | §12 exact CTF adapter ABI and flow; NOT v2 |\n'
+          source+='| S34g | Gamma SDK market version/identity — pinned | `'+gammaurl.replace('raw.githubusercontent.com/','github.com/').replace('/983a10a7579c95043d4099f60873ff7ea817e5a0/','/blob/983a10a7579c95043d4099f60873ff7ea817e5a0/')+'` | Polymarket official SDK | HTTP 200, Git blob `854c4cbe97ced3e5745c9599ef8afece5a0ececc`, 2026-09-17 | §12 `ProtocolVersion` enum, nullable market fields |\n'
+          p11.write_text(source)
+          parts=sorted(folder.glob('Polymarket — Technical Platform Map — part-*.md'));assert len(parts)==11
+          m=manifest.read_text().splitlines()
+          for part in parts:
+            matches=[i for i,line in enumerate(m) if ('part-'+part.name.split('part-')[1]+')') in line]
+            assert len(matches)==1,(part,matches)
+            ix=matches[0]
+            m[ix]=re.sub(r'\| \d+ bytes \| `[a-f0-9]{64}` \|$',f'| {part.stat().st_size} bytes | `{sha256(part.read_bytes()).hexdigest()}` |',m[ix])
+          m=[line for line in m if not line.startswith('**Manifiesto vigente:**')]
+          combined=b''.join(p.read_bytes() for p in parts)
+          m.insert(m.index('## Integridad y mantenimiento'),'**Manifiesto vigente:** verificado 2026-09-17; 11 partes, '+str(len(combined))+' bytes; SHA-256 `'+sha256(combined).hexdigest()+'`. Baseline histórico: `02566696b5bc9bd71f07ae73c47b6dbb950b2553cfd9aff5a6247a9663c5b9f5` (no comparar con digest corregido).')
+          assert sum(line.startswith('| [part-') for line in m)==11
+          manifest.write_text('\n'.join(m)+'\n')
+          print('MANIFEST',len(combined),sha256(combined).hexdigest(),'11_LINKS_PASS')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -- .github/workflows/polymarket-m0-negrisk-once.yml
+          if test -f .github/workflows/polymarket-m0-fix-contracts-once.yml; then git rm -- .github/workflows/polymarket-m0-fix-contracts-once.yml; fi
+          git add -- main/30-resources/polymarket/
+          git -c core.whitespace=-blank-at-eof diff --cached --check
+          git commit -m 'docs(polymarket): verify CTF NegRisk conversion and fail-closed v2 design contract'
+          git fetch origin master
+          git rebase origin/master
+          git push origin HEAD:master
