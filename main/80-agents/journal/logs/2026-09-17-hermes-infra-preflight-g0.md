@@ -30,7 +30,7 @@ Mandato owner "HERMES INFRASTRUCTURE ENABLEMENT" (ventana 10h, referencia 18-09)
 
 1. **`sync.sh` / canal de publicación — RESUELTO**: el repo `~/workspace/agents-os-repo` (origin `xKoRx/agents-os`, master) publica el vault a GitHub con cadencia ~1 min. El pipeline NO corre en hermes-vm (sin cron/timer local, `.sync/sync.log` vacío, repo local atrasado) sino en otra máquina del LAN — los commits mezclan archivos del vault con agent-runs de Echo/ZCode. VERIFICADO 19:04 UTC: ediciones de esta sesión (change log, bitácora infra-ops, fechas-captura, nodo-docs) llegaron a `origin/master` en ≤6 min. El repo local de hermes-vm es consumidor (fast-forward), no productor.
 2. **Repo main/ es copia, no symlink** de `VAULT_ROOT` (inodos distintos). La edición canónica es en vault; el repo requiere sincronización para publicar.
-3. **Gap G3 (integración runtime)**: Hermes runtime sólo consume `aranea-postgres-ro`; el resto de capacidades (ssh family, hasura, temporal, minio, etcd, mongo) no están en `~/.hermes/config.yaml` aunque existen en el plane.
+3. **Gap G3 (integración runtime) — CERRADO 2026-09-17 19:xx UTC**: batch aplicado con consentimiento owner (`aranea-ssh` :3000 + `aranea-observability-ro` :3009 junto a `aranea-postgres-ro`). Bearers por referencia en `~/.hermes/.env` (600). Certificación consumidor-side PASS (detalle en bitácora del proyecto infra-ops y § Integración runtime). Efectivo desde la próxima sesión Hermes. Capacidades Echo (hasura/kafka/flink/temporal/minio/etcd/mongo) quedan fuera del runtime de infra por scope.
 4. **Inventario**: 59 VMs coincide con R0; delta vs doc del index (36/19) era drift del doc, corregido.
 
 ## Authority verificada (resumen — detalle en proyecto)
