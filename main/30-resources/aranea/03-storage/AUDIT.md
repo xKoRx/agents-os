@@ -1,7 +1,8 @@
 ---
 type: doc
 schema_version: 1
-status: active
+status: superseded
+superseded_by: "[[BACKUP-DR-DESIGN]]"
 area: "[[Aranea]]"
 related: []
 aliases: []

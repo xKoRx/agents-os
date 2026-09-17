@@ -24,6 +24,9 @@ tags:
 
 ## Propósito
 
+> [!warning] HISTORICAL / SUPERSEDED (2026-09-16)
+> Este set de runbooks es **documentación legacy** de la era 2026-06-30 (pre-NOPASSWD, referencias a `BACKUP-SYSTEM`/`AUDIT` y a un stack de observabilidad anterior). El **canon operativo Backup/DR vive en** `[[BACKUP-DR-OWNER-PROJECT]]` + `30-resources/aranea/03-storage/backup-dr/` (design/policy/runbook). Se preserva como referencia histórica y material de recuperación reusable; NO ejecutar sin validar contra el runtime actual (su bloqueador SSH citado ya está resuelto desde 2026-06-30).
+
 Procedimiento operacional histórico de [[Aranea]]; validar los datos volátiles antes de ejecutarlo.
 
 ## Procedimiento

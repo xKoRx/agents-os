@@ -33,24 +33,31 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 | `topology/nodes/README.md` | 2026-06-28 | manual | 2 días | [[01-topologia/README]] § bloqueador |
 | `topology/00-access.md` | 2026-06-28 | manual | 2 días | [[01-topologia/red]], [[00-index]] § roadmap |
 | `discovery/athena_20260628_211812.txt` | 2026-06-28 21:18:12 UTC | raw agent-read | superseded | archivo histórico |
-| `discovery/athena_20260630_194423.txt` | **2026-06-30 19:44:23 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-athena]], este doc |
+| `discovery/athena_20260630_194423.txt` | 2026-06-30 19:44:23 UTC | raw agent-read | superseded 2026-09-16 | archivo histórico |
 | `discovery/zeus_20260628_211812.txt` | 2026-06-28 21:18:12 UTC | raw agent-read | superseded | archivo histórico |
-| `discovery/zeus_20260630_194423.txt` | **2026-06-30 19:44:23 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-zeus]], este doc |
+| `discovery/zeus_20260630_194423.txt` | 2026-06-30 19:44:23 UTC | raw agent-read | superseded 2026-09-16 | archivo histórico |
 | `discovery/hera_20260628_211812.txt` | 2026-06-28 21:18:12 UTC | raw agent-read | superseded | archivo histórico |
-| `discovery/hera_20260630_194423.txt` | **2026-06-30 19:44:23 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-hera]], este doc |
+| `discovery/hera_20260630_194423.txt` | 2026-06-30 19:44:23 UTC | raw agent-read | superseded 2026-09-16 | archivo histórico |
 | `discovery/kronos_20260628_211812.txt` | 2026-06-28 21:18:12 UTC | raw agent-read | superseded | archivo histórico |
-| `discovery/kronos_20260630_194423.txt` | **2026-06-30 19:44:23 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-kronos]], este doc |
+| `discovery/kronos_20260630_194423.txt` | 2026-06-30 19:44:23 UTC | raw agent-read | superseded 2026-09-16 | archivo histórico |
 | `discovery/hades_20260628_211812.txt` | 2026-06-28 21:18:12 UTC | raw agent-read | superseded | archivo histórico |
-| `discovery/hades_20260630_194423.txt` | **2026-06-30 19:44:23 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-hades]], este doc |
+| `discovery/hades_20260630_194423.txt` | 2026-06-30 19:44:23 UTC | raw agent-read | superseded 2026-09-16 | archivo histórico |
 | `discovery/truenas_20260628_211812.txt` | 2026-06-28 21:18:12 UTC | raw agent-read | superseded | archivo histórico |
-| `discovery/truenas_20260630_194423.txt` | **2026-06-30 19:44:23 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-truenas]], este doc |
+| `discovery/truenas_20260630_194423.txt` | 2026-06-30 19:44:23 UTC | raw agent-read | superseded 2026-09-16 | archivo histórico |
+| `discovery/*_20260702_033204.txt` (6 nodos) | 2026-07-02 03:32:04 UTC | raw agent-read | no registrada en su momento; integrada retroactivamente 2026-09-16 | archivos en `discovery/` |
+| `discovery/athena_20260916_233513.txt` | **2026-09-16 23:35:13 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-athena]], R0 [[BACKUP-DR-OWNER-PROJECT]] |
+| `discovery/hades_20260916_233513.txt` | **2026-09-16 23:35:13 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-hades]], R0 [[BACKUP-DR-OWNER-PROJECT]] |
+| `discovery/zeus_20260916_233513.txt` | **2026-09-16 23:35:13 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-zeus]], R0 [[BACKUP-DR-OWNER-PROJECT]] |
+| `discovery/hera_20260916_233513.txt` | **2026-09-16 23:35:13 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-hera]], R0 [[BACKUP-DR-OWNER-PROJECT]] |
+| `discovery/kronos_20260916_233513.txt` | **2026-09-16 23:35:13 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-kronos]], R0 [[BACKUP-DR-OWNER-PROJECT]] |
+| `discovery/truenas_20260916_233513.txt` | **2026-09-16 23:35:13 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-truenas]], R0 [[BACKUP-DR-OWNER-PROJECT]] |
 | `tickets/2026-06-29-001..009-*.md` | 2026-06-29 | ticket cerrado | 1 día | [[05-tickets/*]] |
 | `tickets/2026-06-30-010..012-*.md` | 2026-06-30 | ticket | 0 días | [[05-tickets/*]] |
 | **Ping check (6 nodos)** | **2026-06-30** | live | 0 días | [[00-index]], todos los `nodo-*.md` |
 
 ## 🔍 Resumen de drift
 
-- **Inventario crudo (discovery/*.txt)**: **0 días** ✅ (refresh 2026-06-30 19:44 UTC)
+- **Inventario crudo (discovery/*.txt)**: **0 días** ✅ (refresh 2026-09-16 23:35 UTC, R0 Backup/DR; refresh previo 2026-06-30 19:44 UTC)
 - **Documentación manual (README/services/health)**: 2 días (no regenerada en este refresh — solo se actualizaron timestamps de fuente)
 - **Tickets históricos**: 1-2 días
 - **Tickets en curso (010, 011, 012)**: 0 días
