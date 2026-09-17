@@ -97,6 +97,7 @@ Si el target es MELI/corporativo, detener esta skill y usar las autoridades corp
 | Flink/StateFun host-runtime DEV | DEV runtime | `aranea-ssh` + `docker-echo-dev-operator` | root operator sobre `docker-echo-dev`; filesystem/Docker/lifecycle |
 | runtime/logs/archivos SQX Zeus/Hera/Kronos | DEV runtime | `aranea-ssh` + `sqx-zeus` / `sqx-hera` / `sqx-kronos` | operator writable como `echo-dev`; no root-equivalent; preferir `read-command` para inspección y usar mutación sólo cuando la tarea lo requiera |
 | Observabilidad de Aranea (Grafana/Prometheus/Loki) lectura | PROD-RO | `aranea-observability-ro` | read-only estricto; exactamente 22 tools RO (`--disable-write` + allowlist 5 toolsets); toda query bounded; administración de Grafana/dashboards NO pertenece a esta capability |
+| Temporal (SQX) inspección workflows/schedules/namespaces | PROD-RO | `aranea-temporal-ro` | read-only estricto por construcción (`hardReadOnly` + `allowedNamespaces [sqx-dev, sqx, sqx-prop]`); exactamente 28 tools sin mutadores; endpoint `http://mcps.lab.aranea.cl:3010/mcp`; start/signal/cancel/terminate NO existen en la superficie |
 | MT4/MT5 worker-kronos inspección | DEV runtime | `aranea-ssh` + `mt5-kronos` | viewer / read-only |
 | MT4/MT5 worker-kronos mutación | DEV runtime | `aranea-ssh` + `mt5-kronos-operator` | operator writable como `echo-dev` |
 | Observación runtime Echo PROD (identity/logs/listeners) | PROD runtime | `aranea-ssh` + `echo-runtime-prod` | viewer / read-only — **CERTIFICADO 2026-09-15, GAP-ECHO-004 CLOSED** (identity `echo-dev@echo` sin sudo; Gateway/Core RUNNING, Bridge NOT_DEPLOYED; negative `run-command` POLICY_DENIED; cobertura allowlist: systemctl/docker/curl/clase safe rechazados, journal propio únicamente); logs/metrics productivos por `aranea-observability-ro` (`service=echo-core`) |
@@ -138,6 +139,9 @@ Para Flink DEV, SQL no forma parte del contrato actual: no hay SQL Gateway verif
 - Observabilidad (Grafana/Prometheus/Loki) → [[aranea-observability-mcp]]
 
 Si se está incorporando una familia nueva, la arquitectura común se toma de [[AGENT-PLATFORM - MCP Access Plane - Architecture]] y sólo se documenta aparte lo específico del servicio.
+
+- Temporal → [[aranea-temporal-mcp]] (nueva, 2026-09-17)
+- MinIO/S3 y etcd: NO tienen capability certificada aún (workstreams abiertos 2026-09-17; MinIO espera identidad upstream dedicada, etcd carece de upstream MCP mantenible — decisión owner pendiente). No inventar capabilities como workaround.
 
 ### 5. Acotar y ejecutar
 
