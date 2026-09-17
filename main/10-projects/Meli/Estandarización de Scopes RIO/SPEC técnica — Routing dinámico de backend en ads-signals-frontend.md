@@ -36,22 +36,9 @@ Desacoplar el scope del frontend Nordic del target físico de Playmaker en ambie
 
 ### Contexto
 
-`frontend-config` carga hoy `config/<SCOPE>-production.js`, por lo que `test2`, `test3`, `beta` y `staging` fijan distintos hosts de Playmaker. Nordic ya publica el scope efectivo del frontend en `env.SCOPE`, incluido el scope elegido mediante MeliLab. Las llamadas server-side y las 61 integraciones BFF con Playmaker convergen en `api/lib/playmaker.ts`; no se requiere migrar cada servicio a un cliente nuevo.
+`frontend-config` carga `config/<SCOPE>-production.js`, y `test2`, `test3`, `beta` y `staging` fijan distintos hosts de Playmaker. Nordic publica el scope MeliLab efectivo en `env.SCOPE`; las 61 integraciones BFF convergen en `api/lib/playmaker.ts`, por lo que no se migra cada servicio.
 
 El cambio introduce un único entrypoint no productivo. El frontend sólo valida forma y longitud; Fury Routes decide si un scope existe y a qué target no productivo resuelve.
-
-### Arquitectura objetivo
-
-```text
-MeliLab / Nordic [UNCHANGED]
-  └─▶ env.SCOPE = frontendScope
-
-URL ?backend=<scope> [NEW, test only]
-  └─▶ resolveBackendScope(req) [NEW]
-       └─▶ playmaker(req) [MODIFIED]
-            ├─ test ─▶ Fury Route compartida [NEW] ─▶ target no-prod
-            └─ prod ─▶ Playmaker productivo [UNCHANGED]
-```
 
 ### Contrato de selección
 
@@ -118,7 +105,7 @@ Los datos persistidos o compartidos se aíslan por `backendScope` efectivo:
 
 ### Seguridad
 
-`backend` no forma una URL ni selecciona un dominio: el destino de red es un `meliDomain` estático y el valor sólo viaja en el header aprobado `X-Rio-Scope`. El regex es una whitelist sintáctica resistente a ReDoS; la whitelist de targets no productivos vive en Fury. Producción ignora el selector, el browser nunca envía el header al upstream y logs/errores no incluyen query completa, cookies ni tokens. La persistencia usa cookies de sesión porque el repo no tiene Ragnar Session configurado; agregarlo exigiría Secret+KVS sólo para un valor no sensible que ya es visible en la URL.
+`backend` no forma una URL: el destino es un `meliDomain` estático y el valor sólo viaja en `X-Rio-Scope`. El regex es resistente a ReDoS y la allowlist de targets vive en Fury. Producción ignora el selector; el browser no envía el header al upstream y los logs omiten query, cookies y tokens. Se usan cookies de sesión porque el repo no tiene Ragnar Session y agregarlo exigiría Secret+KVS para un valor no sensible.
 
 ### Design Decisions
 
