@@ -55,6 +55,7 @@ tags:
 - Pregunta B: caso B2. AutoTrading es capability; no gate OBSERVING; VALID_NO_SIGNAL sigue E-07.
 - C-3: DEFER = hook SQX exportado. Echo collector status IN SCOPE.
 - Verdict: `E06_PLANNING_CORRECTED_READY_FOR_MANAGER_REVIEW`
+- Echo planning HEAD: `3e190d86467a0c51bbe96afd1fad3d814117997d` (old `9989f399`; contrato `ef8a96f3`)
 
 ## Verificación
 
