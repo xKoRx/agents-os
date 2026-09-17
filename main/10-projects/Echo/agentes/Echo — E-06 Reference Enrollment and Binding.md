@@ -46,7 +46,7 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 ## 📊 Estado actual
 
-- **E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED (2026-09-16, docs-only, SPEC v1.1.0 sin bump).** Reconciliación de autoridad zero-order magic = **CASE C**. Live Authority §5 exige inputs/readback observed-equality; C-3 defiere el hook SQX y no autoriza inequívocamente pin+KNOWN_EMPTY; collector no puede leer MagicNumber SQX. AutoTrading B2 intacto. C-3 DEFER intacto. Branch `feature/e06-reference-enrollment-binding` old HEAD `3e190d86467a0c51bbe96afd1fad3d814117997d`. Baseline `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. **0 líneas productivas en `v3/**`.** Master intacto. NORMAL no lanzado. No E-07. No PR. Next gate = MANAGER REVIEW.
+- **E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED (2026-09-16, docs-only, SPEC v1.1.0 sin bump).** Reconciliación de autoridad zero-order magic = **CASE C**. Live Authority §5 exige inputs/readback observed-equality; C-3 defiere el hook SQX y no autoriza inequívocamente pin+KNOWN_EMPTY; collector no puede leer MagicNumber SQX. AutoTrading B2 intacto. C-3 DEFER intacto. Branch `feature/e06-reference-enrollment-binding` HEAD `349b6ac8bc4ef6701f20dd654ecbf796d406ba74` (contrato `1c794d5a`; old `3e190d86467a0c51bbe96afd1fad3d814117997d`). Baseline `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. **0 líneas productivas en `v3/**`.** Master intacto. NORMAL no lanzado. No E-07. No PR. Next gate = MANAGER REVIEW.
 - **RuntimeBinding key:** PK `binding_id` UUID; pin S0 `binding_ref = H("echo-reference-binding.v1",[ns,binding_id,version_ref,account_registration_ref,broker_server_ref,platform,magic_decimal,observation_class])`.
 - **Lifecycle:** PREPARED → (ACK + matching read-back) → OBSERVING → DRAINING → CLOSED; staleness → SUSPENDED + UNKNOWN. PREPARED/ACK solos ≠ OBSERVING.
 - **Read-back authority:** Echo collector `reference_status` → Bridge `REFERENCE_READBACK.v1` → Gateway. Operator ACK es CONFIG, no suficiente. Heartbeat/UnifiedBatch/config **no** son OBSERVING.
@@ -61,7 +61,7 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable; C-3 collector | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.1.0 (CASE C blocked; old HEAD `3e190d86`) | E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED · 0 source · NORMAL no lanzado |
+| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable; C-3 collector | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.1.0 (CASE C blocked; HEAD `349b6ac8`; contrato `1c794d5a`; old `3e190d86`) | E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED · 0 source · NORMAL no lanzado |
 
 ## 🗺️ Source map (baseline `5dd998f1` + PG/Hasura)
 
@@ -192,7 +192,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-16 (TOP authority reconciliation)** — CASE C. Live Authority §5 vs Fable C-3 no cierran si zero-order exige echo físico de magic. SPEC v1.1.0 sin bump; §7.3 KNOWN_EMPTY no es implementable. AutoTrading B2 intacto. C-3 DEFER intacto. old HEAD `3e190d86`. Source delta `v3/` = 0. Estado `E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED`.
+- **2026-09-16 (TOP authority reconciliation)** — CASE C. Live Authority §5 vs Fable C-3 no cierran si zero-order exige echo físico de magic. SPEC v1.1.0 sin bump; §7.3 KNOWN_EMPTY no es implementable. AutoTrading B2 intacto. C-3 DEFER intacto. HEAD `349b6ac8` (contrato `1c794d5a`; old `3e190d86`). Source delta `v3/` = 0. Estado `E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED`.
 - **2026-09-16 (TOP planning correction #1)** — v1.1.0 @ `3e190d86` (contrato `ef8a96f3`; old `9989f399`). Heartbeat/UnifiedBatch no son autoridad zero-order. Producer congelado: `reference_status` Echo collector. Magic = inventario; KNOWN_EMPTY no se fabrica. AutoTrading = capability (B2). C-3 DEFER SQX conservado. Source mutations 0. Estado `E06_PLANNING_CORRECTED_READY_FOR_MANAGER_REVIEW`.
 - **2026-09-16 (TOP planning one-shot)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `9989f399`. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. O1/O3 applied. 064 reservada. 0 source. Estado `E06_PLANNING_READY_FOR_MANAGER_REVIEW`. Puente padre → Review.
 

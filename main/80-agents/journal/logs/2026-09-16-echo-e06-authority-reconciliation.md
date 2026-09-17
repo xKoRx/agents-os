@@ -56,6 +56,7 @@ tags:
 - AutoTrading B2 intacto.
 - SPEC permanece v1.1.0; §7.3 KNOWN_EMPTY marcado no implementable.
 - Verdict: `E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED`
+- Echo planning HEAD: `349b6ac8bc4ef6701f20dd654ecbf796d406ba74` (contrato `1c794d5ab2c1a8217b4be2c309b641fcc0e0ac81`; old `3e190d86467a0c51bbe96afd1fad3d814117997d`)
 - Product source `v3/**` delta = 0
 
 ## Validación
