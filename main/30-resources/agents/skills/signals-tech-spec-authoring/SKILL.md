@@ -5,7 +5,7 @@ name: signals-tech-spec-authoring
 scope: project
 description: Escribir, estructurar, corregir o revisar specs TÉCNICAS (type=technical) del equipo Signals/Ads en Spellbook (proyecto SIG) y, en general, cualquier design doc de backend RIO/Meli. Usar al redactar la técnica que deriva de un funcional — rio-playmaker, rio-sdk-events, rio-controlplane-*, ads-signals-* — o cuando el usuario nombre una spec SIG-#### técnica y pida escribirla, arreglarla, acortarla o revisarla. Cubre qué definiciones entran y desde qué perspectiva, la forma real del equipo (DD-N, diagrama con marcadores de cambio, Files Changed), la calibración de largo y la regla de atemporalidad. Para el FUNCIONAL usar signals-func-spec-authoring.
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-16
 entities:
   - "[[Onboarding Signals]]"
 related:
@@ -31,6 +31,18 @@ Hermana de `signals-func-spec-authoring`, que dueña el **funcional**. Ésta due
 
 Derivada de las 33 specs técnicas reales del proyecto SIG (fecaputo, vmilesi, frsalazar, wvenera, dochoa, eolopes, dilimaa, jupereira). No es un template inventado: es lo que el equipo efectivamente escribe.
 
+## Purpose
+
+Producir una spec técnica de Signals implementable y revisable que sea autoridad del diseño objetivo sin duplicar requisitos funcionales ni estado de ejecución del proyecto.
+
+## Procedure
+
+1. Leer la regla del lector cero y una spec viva comparable de §6.
+2. Identificar funcional, proyecto, baseline de código y límites; asignar cada hecho a su artefacto dueño según §1.
+3. Diseñar con nombres reales, contratos pegados, diagrama de cambio y `DD-N` sólo para alternativas discutibles.
+4. Escribir únicamente las secciones necesarias de §5, dentro de la calibración de §3.
+5. Ejecutar el checklist de §7 y publicar/verificar según §8 cuando el usuario lo solicite.
+
 ---
 
 ## 0. La regla que manda sobre todas las demás
@@ -54,6 +66,17 @@ Es el diseño ejecutable de un funcional ya escrito. Responde tres preguntas y n
 **Prueba ácida:** un dev que no participó del diseño lo implementa sin volver a preguntar, y un reviewer puede estar en desacuerdo **con una decisión puntual, citándola por su id**. Si el reviewer solo puede decir "no me convence en general", la spec no decidió nada: describió código.
 
 **Funcional vs técnica.** El funcional dice *qué tiene que ser verdad* y **es el dueño de `RF-N` / `CA-N` / `E2E-N`**. La técnica los **referencia**, nunca los redefine ni los repite. Si estás reescribiendo requisitos, estás escribiendo el funcional otra vez.
+
+### Proyecto vs spec técnica — una autoridad por hecho
+
+Cuando la implementación también tiene una nota de proyecto, ambos artefactos son complementarios y se enlazan; no se resumen mutuamente.
+
+- **El proyecto posee la ejecución:** orden de fases, dependencias, gates, responsables, tareas, estado, evidencia de cierre y próximo punto de reanudación.
+- **La spec técnica posee el diseño objetivo:** arquitectura, contratos, decisiones `DD-N`, manejo de errores, seguridad, observabilidad, archivos afectados, estrategia de tests y límites técnicos.
+- El proyecto puede nombrar el resultado de una fase y enlazar la sección o `DD-N` que la define, pero no copia el contrato ni vuelve a explicar la arquitectura.
+- La spec puede declarar dependencias y orden técnico necesario para rollout, pero no mantiene el task board, el porcentaje, la bitácora ni el estado diario de ejecución.
+- Un cambio de diseño actualiza la spec; un cambio de progreso actualiza el proyecto. Si un mismo hecho aparece en ambos, elegir su dueño según estas reglas y reemplazar la copia por un enlace.
+- Si `agents-os-implementation-planning` está activo, sus paquetes de fase referencian esta spec para semántica y contratos; no crean una segunda autoridad técnica dentro del planner.
 
 ---
 
@@ -232,6 +255,7 @@ Nunca partas de un template. Abrí la spec real más parecida y espejá su forma
 - [ ] Nombres reales del código. Números de línea solo donde señalan un defecto concreto.
 - [ ] Tabla de archivos nuevos vs modificados.
 - [ ] `RF-N`/`CA-N` referenciados, nunca redefinidos; cobertura verdadera de lo que se despliega.
+- [ ] Si existe proyecto: proyecto y spec se enlazan; plan/estado viven en el proyecto y diseño/contratos viven sólo en la spec.
 - [ ] Fuera de alcance explícito. Rollback si toca infra o datos.
 - [ ] Preguntas abiertas separadas de decisiones cerradas.
 - [ ] Sin baselines que caduquen sin aviso; predicados en vez de enumeraciones.
@@ -251,6 +275,7 @@ Lo único propio de la técnica: está llena de backticks y el CLI **rechaza bac
 
 - El documento no habla de sí mismo. Nunca. (§0)
 - `DD-N` para decisiones, no `DT-N`. `RF-N`/`CA-N`/`E2E-N` son del funcional y solo se referencian.
+- Proyecto y spec no duplican hechos: el proyecto controla ejecución y la spec controla diseño técnico.
 - Ningún `DD-N` sin alternativa cerrada; ninguna fundamentación que sea una atribución.
 - Leé una spec viva de §6 antes de escribir; no copies un template.
 - Condensar, nunca inflar: si la iteración la dejó más larga, revisá §3.
