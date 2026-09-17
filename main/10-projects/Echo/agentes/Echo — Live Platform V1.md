@@ -383,7 +383,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
-- **2026-09-16 — E-06 TOP planning correction #1:** [[Echo — E-06 Reference Enrollment and Binding]] v1.1.0. Old SHA `9989f399`. Heartbeat/UnifiedBatch no son autoridad zero-order. C-3 DEFER SQX conservado; Echo collector `reference_status` IN SCOPE. 0 source. Puente E-06 permanece Review. Master intacto.
+- **2026-09-16 — E-06 TOP planning correction #1:** [[Echo — E-06 Reference Enrollment and Binding]] v1.1.0 @ `3e190d86` (old `9989f399`). Heartbeat/UnifiedBatch no son autoridad zero-order. C-3 DEFER SQX conservado; Echo collector `reference_status` IN SCOPE. 0 source. Puente E-06 permanece Review. Master intacto.
 - **2026-09-16 — E-06 TOP planning one-shot:** [[Echo — E-06 Reference Enrollment and Binding]] SPEC/PLAN/TASKS/VERIFICATION v1.0.0. Branch `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f1`. Docs-only; 0 source. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. 064 reservada con interlock 061 SHARED DEV. Puente E-06 → Review. Master intacto. E-01…E-05 no reabiertos.
 - **2026-09-16 — E-02 evidencia AC-03/04/05/17 corregida:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] recertificó los cuatro AC con fixtures descartables; evidencia `92d0ec2e` sobre producto `f6e6af1b`. Hasura compartido y master intactos. Puente E-02 permanece Review.
 - **2026-09-16 — E-02 independent verification PASS:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] `VERIFICATION_PASS — READY_FOR_INTEGRATION` @ producto `f6e6af1b` / evidencia `bbceecdf`. CLOSED contradicho y corregido (no CLOSED pre-integración). Master `7e628bf5` intacto. Puente E-02 permanece Review.
