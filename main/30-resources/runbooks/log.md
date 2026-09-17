@@ -1,5 +1,9 @@
 # Runbooks resource log
 
+## [2026-09-17] create | aranea-temporal-mcp
+
+- Se creó `aranea-temporal-mcp` para la capability `aranea-temporal-ro` (certificada 2026-09-17): Temporal 1.31.2, 28 tools RO por diseño con `hardReadOnly` + allowlist namespaces SQX, wrapper mcp-proxy 6.7.16 + g010. Fila añadida a `00-index.md` (19 curados). Detalle: change log `2026-09-17-mcp-trio-temporal-minio-etcd`.
+
 ## [2026-09-16] update | Índice de runbooks: fila aranea-observability-mcp
 
 - Se añadió a `00-index.md` la fila faltante de `aranea-observability-mcp` (runbook creado y certificado 2026-09-15; índice nunca actualizado). Parte de la reconciliación documental canónica del MCP Access Plane (change log `2026-09-16-mcp-plane-documentation-canonicalization`).

@@ -24,8 +24,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Runbooks curados:** 18 (+1 superseded, 8 en `symphony/`)
-- **Última ingesta:** 2026-09-16
+- **Runbooks curados:** 19 (+1 superseded, 8 en `symphony/`)
+- **Última ingesta:** 2026-09-17
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -41,6 +41,7 @@ tags:
 | [[30-resources/runbooks/aranea-flink-mcp|aranea-flink-mcp]] | Flink/StateFun DEV: control plane MCP + host/runtime operator, con PROD diferido. | Aranea |
 | [[30-resources/runbooks/aranea-mcp-capability-plane|aranea-mcp-capability-plane]] | Plano de capabilities MCP: discovery, auth, transporte y policy. | Aranea |
 | [[30-resources/runbooks/aranea-observability-mcp|aranea-observability-mcp]] | Lectura read-only de observabilidad ARGUS (Grafana/Prometheus/Loki) vía `aranea-observability-ro`. | Aranea |
+| [[30-resources/runbooks/aranea-temporal-mcp|aranea-temporal-mcp]] | Lectura read-only de Temporal SQX vía `aranea-temporal-ro` (28 tools, hardReadOnly + allowlist namespaces). | Aranea |
 | [[30-resources/runbooks/signals-code-review-runbook|signals-code-review-runbook]] | Ejecución mecánica del code review Meli con Zord y `rjara-rio-impact`; gate humano único. | Meli |
 | [[30-resources/runbooks/resolver-versiones-java-sin-construir-via-fury-nexus|resolver-versiones-java-sin-construir-via-fury-nexus]] | Resolver versiones Java publicadas vía Fury/Nexus sin construir. | Meli |
 | [[30-resources/runbooks/stager-windows-mt5-cutover-and-occupieddrain|stager-windows-mt5-cutover-and-occupieddrain]] | Cutover Windows de stager MT5 con occupied/drain. | stager |
