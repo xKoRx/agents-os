@@ -26,7 +26,7 @@ updated: "2026-09-17"
 
 ## Referencia
 
-- **Origen resoluble:** repo `ads-signals-skills-marketplace`, path `.`, relativo a [[Fuentes — Workspace de repositorios]]; remoto upstream `https://github.com/melisource/fury_ads-signals-skills-marketplace`.
+- **Origen resoluble:** repo `ads-signals-skills-marketplace`, path `.`, relativo a [[30-resources/storage/fuentes-workspace|Fuentes — Workspace de repositorios]]; remoto upstream `https://github.com/melisource/fury_ads-signals-skills-marketplace`.
 - **Fecha de captura:** 2026-09-01; branch `feature/human-first-technical-writing`, commit `d1515df`, basada en `master@ac72fb7`.
 
 ## Alcance

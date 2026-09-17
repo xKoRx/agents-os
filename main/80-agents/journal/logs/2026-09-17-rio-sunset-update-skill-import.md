@@ -5,7 +5,7 @@ scope: session
 created: "2026-09-17"
 updated: "2026-09-17"
 area: "[[Meli]]"
-project: "[[10-projects/Meli/Vulnerabilidades WebSec — RIO Foundation/Vulnerabilidades WebSec — RIO Foundation|Vulnerabilidades WebSec — RIO Foundation]]"
+project: "[[AGENTS OS]]"
 application:
 entities:
   - "[[RIO]]"
@@ -60,6 +60,7 @@ tags:
 
 - Marketplace upstream: `Marketplace válido: 3 skill(s) revisada(s).`; `git diff --check` verde.
 - Gates importados: `validate-input.test.mjs` y `validate-gates.test.mjs` verdes.
+- YAML estricto y checks canónicos del artefacto: verdes. `quick_validate.py` confirmó la incompatibilidad esperada del perfil portable con las claves locales de AGENTS OS (`type`, `scope`, `created`, `updated`, `tags` y metadata de lifecycle).
 - Draft→Ready: schema/frontmatter, secciones requeridas, routing y activaciones validados por los checks del vault registrados al cierre de esta operación.
 
 ## Compartibilidad
