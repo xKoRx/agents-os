@@ -5,6 +5,8 @@ area: "[[Aranea]]"
 parent: "[[AGENT-PLATFORM - MCP Access Plane]]"
 created: "2026-09-17"
 updated: "2026-09-17"
+aliases:
+  - "Daedalus — Development Agents MCP Access & Gaps"
 tags:
   - area/aranea
   - tech/mcp
@@ -13,76 +15,71 @@ tags:
 
 # Daedalus — Development Agents MCP Access & Gaps
 
-> Corte documental: 2026-09-17. Alcance exclusivo: capabilities del MCP Access Plane destinadas a coding agents de Daedalus para Echo/Echo Forge. NO es un estado de producto, una SPEC de Echo/Forge ni una nueva arquitectura. Fuente de routing: [[aranea-mcps-expert]]; inventario de puertos/deployment: [[AGENT-PLATFORM - MCP Access Plane - Architecture]]; procedimientos: runbooks `aranea-*-mcp`. Este corte reconcilia certificaciones ya registradas; NO constituye un nuevo smoke en vivo de los clientes.
+> Corte documental: 2026-09-17. Alcance EXCLUSIVO: capabilities MCP para coding agents de Daedalus que trabajan en Echo/Echo Forge. No es SPEC/estado de producto ni arquitectura nueva. Router: [[aranea-mcps-expert]], inventario y deployment: [[AGENT-PLATFORM - MCP Access Plane - Architecture]], procedimientos: runbooks `aranea-*-mcp`. Esta nota reconcilia evidencia de certificación ya registrada; NO es un nuevo smoke vivo.
 
-## Semántica de estado
+## Estados: no confundir servidor, cliente y operación
 
-- `SERVER CERTIFIED`: backend/proxy y boundaries validados en el LXC `mcps`.
-- `CONSUMER CERTIFIED`: cliente concreto de Daedalus comprobado con su entry/env/credencial real y una llamada inocua. El PASS de Cursor NO equivale automáticamente a ZCode o Codex.
-- `NOT CERTIFIED`: la capability/operación no está demostrada; no inferir que el servicio físico no exista. `READ ONLY` nunca autoriza mutaciones.
-- `ACCESS GAP`: la operación requerida no está cubierta por una capability certificada ni otro camino autorizado ya existente. Describir necesidad y gate antes de desplegar otro MCP.
+- `SERVER CERTIFIED`: backend, proxy, auth y boundary materialmente comprobados en `mcps`.
+- `CONSUMER CERTIFIED`: el CLIENTE ESPECÍFICO de Daedalus (`Cursor`, `ZCode`, `Codex`) pasó entry/env/handshake/tools/call bajo su identidad real; smoke Cursor no prueba Codex ni ZCode.
+- `OPERATION CERTIFIED`: el verbo y target realmente requeridos fueron demostrados, no sólo una tool listada. `READ ONLY` no autoriza publicar, borrar ni controlar workflows.
+- `ACCESS GAP`: operación sin capability cubierta ni camino alternativo autorizado demostrado. Antes de nuevo MCP: objetivo, verbo, target, error/permiso, contrato, identidad, scope, negativos, rollback y consumer smoke.
 
-## Inventario de capabilities registradas (13; 2026-09-17)
+## Inventario registrado 2026-09-17: 13 capabilities
 
-| Puerto | Capability | Alcance certificado / frontera |
+| Puerto | Capability | Authority real / límite |
 |---:|---|---|
-| 3000 | `aranea-ssh` | Perfiles por host; SQX operators `echo-dev` no-root; `mt5-kronos` viewer, `mt5-kronos-operator` `echo-dev` no-admin; `docker-echo-dev-operator` root DEV; `echo-runtime-prod` viewer. No implica OS admin universal. |
-| 3001 | `aranea-postgres-ro` | Echo PROD, SQL RO en esquema permitido; no DDL ni writes. |
-| 3002 | `aranea-postgres-rw` | Echo DEV data RW. No inferir CREATE sobre esquema `echo`; migraciones DEV E-05 usaron el workflow existente de Hasura DEV admin `run_sql`, no ampliación del rol PG. |
-| 3003 | `aranea-mongo-forge-ro` | Mongo Forge PROD, 18 tools RO. |
-| 3004 | `aranea-mongo-forge-rw` | Mongo Forge DEV, 27 tools incl. mutación autorizable dentro del target. |
-| 3005 | `aranea-hasura-prod-ro` | Control/metadata, 3 tools estrictamente RO post-H1; no `export_metadata`, SQL, GraphQL data plane ni mutadores. |
-| 3006 | `aranea-hasura-dev-admin` | Metadata/control DEV, 9 tools; `run_sql` habilitado con scope/gates DEV. No es un cliente GraphQL genérico. |
-| 3007 | `aranea-kafka-dev-admin` | Kafka DEV, 19 tools; producer/consumer/admin DEV. No cubre Kafka PROD. |
-| 3008 | `aranea-flink-dev-admin` | Flink REST/control DEV, 22 tools sin SQL. Host Docker DEV va por SSH `docker-echo-dev-operator`, no por este MCP. |
-| 3009 | `aranea-observability-ro` | Grafana/Prometheus/Loki ARGUS, 22 tools RO y queries acotadas; NO expone toolset Jaeger ni administra dashboards/alertas. |
-| 3010 | `aranea-temporal-ro` | Temporal SQX, 28 tools RO, namespaces `sqx-dev`, `sqx`, `sqx-prop`; sin start/signal/cancel/terminate. |
-| 3011 | `aranea-minio-ro` | MinIO S3 RO, 9 tools registradas; IAM permite listar `deploy` y `examples`, leer sólo `deploy/worker/sqx/*` y objetos autorizados de `examples`; backups y demás prefijos denegados. Put/copy/delete listados por upstream pero bloqueados por read-only. NO es lectura global de Forge ni publicación de releases. |
-| 3012 | `aranea-etcd-ro` | 4 tools de lectura, 8 prefijos allowlisted, nombres de claves secretas denegados, caps 200 keys/4KB; sin put/delete/txn/watch. El cluster subyacente sin auth/TLS es deuda de hardening separada; NO usar conexión directa como bypass del MCP. |
+| 3000 | `aranea-ssh` | perfiles por host, SQX `echo-dev` no-root, MT5 operator `echo-dev` no-admin, Docker DEV root, Echo PROD viewer; sin OS admin universal |
+| 3001 | `aranea-postgres-ro` | Echo PROD SQL RO sobre esquema permitido; sin writes/DDL |
+| 3002 | `aranea-postgres-rw` | Echo DEV data RW; no asumir schema CREATE; E-05 demostró migración DEV 063 vía Hasura admin `run_sql` existente |
+| 3003 | `aranea-mongo-forge-ro` | Forge PROD RO, 18 tools |
+| 3004 | `aranea-mongo-forge-rw` | Forge DEV RW, 27 tools |
+| 3005 | `aranea-hasura-prod-ro` | control/metadata strict-RO, 3 tools post-H1; sin `export_metadata`, SQL ni GraphQL data plane |
+| 3006 | `aranea-hasura-dev-admin` | metadata/control DEV, 9 tools incluido `run_sql`; NO GraphQL data-plane genérico |
+| 3007 | `aranea-kafka-dev-admin` | Kafka DEV 19 tools produce/consume/admin; PROD no cubierto |
+| 3008 | `aranea-flink-dev-admin` | Flink REST/control DEV 22 tools sin SQL; Docker DEV separado por SSH |
+| 3009 | `aranea-observability-ro` | Grafana/Prometheus/Loki ARGUS, 22 tools read-only bounded; SIN Jaeger toolset, sin administración dashboards/alertas |
+| 3010 | `aranea-temporal-ro` | Temporal SQX 28 tools RO, namespaces sqx-dev/sqx/sqx-prop; sin start/signal/cancel/terminate |
+| 3011 | `aranea-minio-ro` | S3 RO; IAM List `deploy`,`examples`; Get `deploy/worker/sqx/*` y objetos autorizados `examples`; deny backups; put/copy/delete bloqueados incluso si visibles en upstream |
+| 3012 | `aranea-etcd-ro` | 4 tools lectura; 8 prefixes allowlisted, secret-names excluidos, caps 200 keys/4KB, sin put/delete/txn/watch; cluster sin auth/TLS = hardening aparte, no acceso directo |
 
-**Origen de la ampliación 11→13:** MinIO y etcd fueron desplegados/certificados posteriormente a la fotografía de 11 del documento de arquitectura; la sección anterior a la ampliación es histórica. Fuente de verdad por familia: [[aranea-minio-mcp]], [[aranea-etcd-mcp]] y change log del workstream MCP-trio.
+La fotografía anterior de 11 capabilities incluía Temporal; **se sumaron MinIO y etcd**, total 13. El inventario 9 (2026-09-13) y el 11 anterior son historia, no estado vigente. MinIO/etcd certificados server-side y Cursor el 2026-09-17 según [[aranea-minio-mcp]], [[aranea-etcd-mcp]] y bitácora 2026-09-17b de [[AGENT-PLATFORM - MCP Access Plane]].
 
-## Estado de consumidores Daedalus
+## Disponibilidad real por cliente Daedalus
 
-- **Cursor:** 11 capabilities previas verificadas y MinIO/etcd añadidas con consumer smoke `3/3` para el nuevo trío Temporal+MinIO+etcd según bitácora 2026-09-17. Esto no es un re-smoke global de las 13 en este documento.
-- **ZCode:** normalización histórica 10/10 del 2026-09-16; para Temporal/MinIO/etcd se dejó patcher+smoke tri-client en Daedalus pendiente de ejecución por `kor`. No marcar las 13 visibles/funcionales sin consumer proof nuevo. Los bearers literales en config 600 de ZCode son un hecho documentado, no razón para copiarlos al vault.
-- **Codex:** configuración normalizada con `bearer_token_env_var` y 10/10 smoke nativo del 2026-09-16; altas posteriores Temporal/MinIO/etcd pendientes de patcher+smoke específico. `mcp.json`/`config.toml` de `kor` no son modificables por otro usuario sin autorización.
-- **Hermes:** otro consumidor; su gateway Telegram y su configuración no certifican una capability MCP Telegram disponible para los coding agents de Daedalus.
+- **Cursor:** las 10 capabilities base tenían E2E previo; Temporal fue incorporada y produjo inventario 11; nuevo smoke del trío Temporal+MinIO+etcd `3/3 PASS` al 2026-09-17. Es evidencia de altas del trío, NO una nueva certificación global de 13/13 ejecutada por esta nota.
+- **ZCode:** baseline 10/10 desde 2026-09-16; incorporación Temporal/MinIO/etcd mediante patcher+smoke tri-client stageado, **PENDING** de evidencia bajo identidad `kor`; config 600 con bearer literal según contrato ZCode (no copiar valor a docs).
+- **Codex:** baseline 10/10 desde 2026-09-16 con `bearer_token_env_var` y native consumer smoke; el trío 3010–3012 sigue **PENDING** de patcher+smoke con identidad `kor`.
+- **Hermes:** es otro consumidor; su gateway Telegram NO demuestra una capability MCP Telegram expuesta a coding agents de Daedalus.
 
-Estado de consumidor se obtiene del `tools/list`/probe actual por cliente; no inferirlo de un endpoint healthy, una nota de despliegue o la configuración de otro cliente. Patcher tri-client stageado el 2026-09-17: ejecutar/certificar únicamente con autoridad `kor` cuando el procedimiento documentado lo requiera; nunca imprimir bearer ni marcar PASS antes del resultado.
+Usar `tools/list` y llamada inocua por cliente real; endpoint/container sano o config JSON/TOML no dan PASS de consumo. El patcher de tri-client está stageado en Daedalus según bitácora; sólo ejecutar bajo autoridad efectiva autorizada para los archivos de `kor`, no ampliar ACL por conveniencia ni publicar secrets.
 
-## Windows evidencia privilegiada — CERRADO para inspección
+## Windows privileged evidence: bloqueo de lectura resuelto
 
-`AraneaEvidencePublish` SYSTEM cada 5 min → JSON sanitizado `C:\ProgramData\Aranea\evidence\stager-evidence-latest.json` → `mt5-kronos-operator` como `echo-dev` no-admin → `Get-Content`/`Get-Item` read-only. Estado `ACTIVE/CERTIFIED 2026-09-17`; task/SYSTEM/self-hash, lectura consumer, ACE read-without-write, dos publicaciones y viewer negativo demostrados. El viewer `mt5-kronos+sftp-download` fue `POLICY_DENIED` 3/3, no ofrecerlo como alternativa. Para certificar deploy: `generated_at_utc` ≤ 15 min y `partial=false`; reporte STALE/ausente ⇒ UNKNOWN, investigar publisher antes de requerir owner. La evidencia de worker 0.2.98/sha es disponible; el veredicto final de la campaña física Forge es independiente. [[aranea-ssh-mcp]] y [[SSH MCP — workstream del MCP Access Plane]].
+`AraneaEvidencePublish` task SYSTEM cada 5 min → JSON sanitizado `C:\ProgramData\Aranea\evidence\stager-evidence-latest.json` → `aranea-ssh` `mt5-kronos-operator` como `echo-dev` no-admin → `Get-Content/Get-Item` read-only. ACTIVE/CERTIFIED 2026-09-17: identidad/self-hash, dos publicaciones, consumer lectura efectiva, Write/Create DENIED y viewer negativo. `mt5-kronos+sftp-download` = `POLICY_DENIED` 3/3; el precedente viewer SFTP de Linux efímero no prueba Windows. Certificación de deploy sólo si `generated_at_utc` ≤15 min y `partial=false`; STALE/ausente ⇒ UNKNOWN, diagnosticar publisher sin owner por inercia. Reporte observó worker PID 1700 SHA release 0.2.98, pero **certificación de F04/F05 es un gate distinto**. [[aranea-ssh-mcp]]. Esta capability NO autoriza administrar servicios, tasks, ACL ni releases.
 
-## Accesos MCP que podrían faltar para Echo / Forge
+## Gaps de ACCESO MCP por operación Echo/Forge
 
-| Necesidad concreta | Estado de acceso | Condición para abrir trabajo (no suponer que ya bloquea el desarrollo) |
+| Necesidad | Estado demostrado | Gate mínimo para abrirla |
 |---|---|---|
-| Lectura MinIO de releases SQX | **CUBIERTA en scope exacto** `deploy/worker/sqx/*`, y `examples` autorizados, vía `aranea-minio-ro`. | Si el artefacto requerido está fuera de IAM actual, aportar bucket/key real sin secretos, GET DENIED comprobado y ampliar sólo prefix/operación necesarios; no pedir MinIO global. |
-| Lectura de golden/results/artefactos durables Forge | **NO ACREDITADA para todo el corpus**: el RO actual sólo certifica prefixes limitados; no inferir que cubra `durable/*`, manifests u otros buckets. | Fijar bucket/key + identidad del artefacto y probar GET RO. Si DENIED, SA RO dedicada/policy acotada a ese corpus o reuse de API/read-surface existente. No abrir backups. |
-| Escritura/publicación MinIO de releases, fixtures o resultados | **NO CUBIERTA por `aranea-minio-ro`**; sus put/copy/delete están bloqueados. | Mostrar el flujo productor exacto y verificar primero Stager/publisher/API ya autorizados. Sólo si carece de camino: capability/identidad RW separada, prefijos, operaciones, no-overwrite/rollback, auth y probes negativos; jamás convertir RO en RW. |
-| Temporal: iniciar/cancelar/señalizar workflows o detener una campaña atascada | **NO CUBIERTO** por `aranea-temporal-ro`. | Probar ausencia de un control ya existente y definir namespaces, tipos/workflow IDs permitidos, caller, autorización, semántica de cancelación, guard contra tocar flujos no propios. Crear ops capability independiente sólo por necesidad demostrada. No activar trading real como efecto colateral. |
-| etcd: configurar nuevos prefijos/valores, CAS, reservas y rotación | **NO CUBIERTO** por `aranea-etcd-ro`; cluster físico abierto NO es autorización. | Primero contrato de prefijos/verbs/roles e hardening/autenticación del cluster, luego escribir con identidad separada y tests reversibles. Nunca usar root/endpoint anónimo como workaround. |
-| Kafka PROD y Flink PROD (lectura/operación) | **NO CERTIFICADOS**; sólo DEV admin disponible. | Fase que necesite evidencia o control físico PROD debe demostrar operación, cluster/job exacto, lectura primero, authority/rollback y separación RO vs ops. No usar DEV como sustituto. |
-| Jaeger traces directas por MCP | **NO CERTIFICADO como toolset/capability separada**; `aranea-observability-ro` cubre Prometheus/Loki/Grafana y ve Jaeger como datasource, pero no ofrece tools Jaeger. | Probar si lectura desde Grafana/otras superficies ya certificadas basta para trace-id/spans requeridos. Si no: MCP Jaeger RO de queries bounded, sin escritura ni administración. |
-| Echo PROD restart/deploy/config/Bridge lifecycle | **NO CUBIERTO**: `echo-runtime-prod` es viewer RO; `docker-echo-dev-operator` no es autoridad PROD. | Gate operacional explícito por servicio/comando, identidad segregada, rollback y no trading no autorizado. No escalar viewer a root. |
-| Windows admin / task/service/release control | **NO CUBIERTO**: evidencia SYSTEM es observación, `mt5-kronos-operator` sigue no-admin. | Sólo cuando release/repair autorizado necesite acción administrativa no provista por Stager. Diseñar operación fija acotada con owner seed y verificación, no shell admin genérico. |
-| Telegram: enviar avisos, leer chats o controlar bot desde Daedalus | **NO MCP TELEGRAM CERTIFICADO EN INVENTARIO**. Gateway Telegram de Hermes es un servicio distinto; no probar por su mera existencia que los agentes de desarrollo pueden usarlo. | Definir verbo necesario: notificación de gates vs leer mensajes vs administrar bot. Para avisos, evaluar reutilizar Hermes por un puente explícitamente autorizado; si realmente exige MCP, wrapper acotado por chat ID allowlist, sin token al cliente, sin lectura ni comandos arbitrarios por defecto. No es bloqueo demostrado de Echo/Forge sólo por no existir. |
-| GitHub integration/push | No es una familia `aranea-*` de este plano; no crear un MCP homelab por duplicación de connector GitHub existente. | Resolver la autoridad por repositorio/rama y gate de integración en su flujo específico, fuera del scope de este inventario. |
+| Leer releases SQX en MinIO | CUBIERTO en `deploy/worker/sqx/*` y `examples` permitidos por `aranea-minio-ro` | Fuera de scope: bucket/key exactos, GET real DENIED y justificación; IAM/prefix específico o read surface existente, nunca lectura global/backups. |
+| Leer goldens/resultados/artefactos durables Forge | NO ACREDITADO para corpus completo (IAM RO actual sólo abarca paths declarados) | Probar bucket/key/manifest real y GET con identidad actual. Si falla, RO acotado al corpus o API/read surface ya autorizada. |
+| Publicar releases, fixtures o resultados a MinIO | NO por `aranea-minio-ro`; put/copy/delete bloqueados | Verificar primero Stager/publisher/servicio productor existente. Si no cubre: capability RW distinta, service account scoped, prefix/verbo/overwrites/rollback/negativos; nunca convertir RO en RW. |
+| Iniciar, signal o cancelar workflows/campañas Temporal | NO por `aranea-temporal-ro` | Demostrar falta de control existente y fijar namespace, workflow IDs/tipos, identidad, ownership, efectos, autorización y safety. Sólo ops capability separada acotada; no tocar flujos ajenos ni trading real. |
+| Escribir/CAS/configurar etcd | NO por `aranea-etcd-ro`; cluster anónimo no es permiso | Primero hardening/auth/identidades y operación/prefix concretos; escritura separada con rollback. |
+| Kafka PROD / Flink PROD | NO certificado; DEV admin NO equivale PROD | Fase que lo requiera demuestra operación, cluster/job y authority específica; RO primero, ops aparte. |
+| Jaeger trace/span query directa MCP | NO certificado; Grafana ve datasource pero observability MCP no tiene toolset Jaeger | Probar si consulta Grafana/otra ruta ya autorizada basta; si no, MCP Jaeger RO con consultas bounded. |
+| Reiniciar/desplegar Echo PROD / controlar Bridge | NO: `echo-runtime-prod` viewer RO | Gate por servicio/operación, identidad separada, rollback y seguridad trading; no elevar viewer. |
+| Windows servicio/task/release admin | NO: `mt5-kronos-operator` no-admin y evidence SYSTEM sólo lectura | Primero ruta Stager; sólo si falta acción administrativa, owner seed de operación fija acotada, no shell admin global. |
+| Telegram para coding agents Daedalus | NO existe MCP Telegram certificado en este inventario. Hermes Telegram gateway es distinto. | Definir verbo: avisos de gates, leer chats o bot control. Para avisos intentar puente explícito y autorizado vía Hermes; nuevo MCP sólo si necesidad no cubierta, con chat allowlist y token server-side, send-only por defecto. Ausencia por sí sola NO es bloqueo demostrado de Echo/Forge. |
+| GitHub push/integration | Fuera de familia `aranea-*`; connector/repos existentes, no nuevo MCP homelab por defecto | Autoridad por repo/branch/gate de integración en flujo GitHub correspondiente. |
 
-## Acciones documentales / operativas restantes del propio plane
+## Deuda del propio acceso / documentación
 
-1. Reconcilia inventario 11→13 en arquitectura, proyecto, router y runbook capability-plane. Preserva snapshots históricos etiquetados como tales; evita `BLOCKED` de MinIO/etcd como CURRENT. Documenta que la certificación Cursor ≠ ZCode/Codex.
-2. Corrige heading histórico `STAGED pending owner` del evidence publisher en `aranea-ssh-mcp`; no alterar su contrato ni reclasificar F05C como producto cerrado.
-3. Patcher tri-client posterior a Temporal/MinIO/etcd: `PENDING CONSUMER CERT` para ZCode/Codex mientras no exista evidencia real de 13/13. No pedir al owner comandos sin analizar primero ACL/autoridad de `kor` y la herramienta de onboarding vigente.
-4. Sin nuevas capabilities por intuición: cada gap exige target/operación, fallo material del camino existente, scope de acceso, auditoría, rollback y consumer smoke; actualizar [[aranea-mcps-expert]], runbook y Architecture únicamente tras certificación.
+- Inventario 13 en router, Architecture, capability-plane runbook e índice de runbooks. Mantener notas de 9/10/11 sólo como snapshots históricos fechados; proyecto MCP tiene bitácora más reciente que algunos resúmenes introductorios.
+- ZCode/Codex para 3010–3012: PENDING consumer smoke bajo `kor`; no promover por inferencia.
+- No confundir `aranea-etcd-ro ACTIVE` con hardening del cluster (aún sin TLS/auth). No extrapolar `aranea-minio-ro` a lectura de todos los buckets ni escritura.
+- Todo gap nuevo exige evidencia de failure path, minimización de authority, negativa, rollback, certificación server+consumer y actualización del router/runbook. No usar Telegram/Hermes como justificación de arquitectura antes del verbo concreto.
 
-## Fuentes canónicas
+## Fuentes
 
-- [[AGENT-PLATFORM - MCP Access Plane - Architecture]] — arquitectura y puertos; snapshot 11 obsoleto después del MCP-trio.
-- [[aranea-mcps-expert]] — elección del agente.
-- [[aranea-ssh-mcp]] — Windows evidence + viewer/operator.
-- [[aranea-temporal-mcp]], [[aranea-minio-mcp]], [[aranea-etcd-mcp]] — contratos actuales de las nuevas familias.
-- [[aranea-observability-mcp]] — límite explícito sin Jaeger toolset.
-- [[ACCESS-CERTIFICATION]] — resultados fechados de autenticación/policies; no transponer un smoke a otro cliente.
+[[AGENT-PLATFORM - MCP Access Plane - Architecture]], [[aranea-mcps-expert]], [[aranea-ssh-mcp]], [[aranea-temporal-mcp]], [[aranea-minio-mcp]], [[aranea-etcd-mcp]], [[aranea-observability-mcp]], [[aranea-mcp-capability-plane]], [[ACCESS-CERTIFICATION]]. Esta nota no contiene credenciales ni sustituye el estado runtime vivo.
