@@ -51,7 +51,7 @@ Branch:
 
 ## Único archivo de salida
 
-`main/10-projects/Personal/Polymarket Engine/Polymarket Engine — MVP.md`
+`10-projects/Personal/Polymarket Engine/Polymarket Engine — MVP.md`
 
 URL:
 
@@ -899,14 +899,10 @@ NO generes otro documento.
 
 NO pegues interfaces extensas ni diagramas completos en la respuesta.
 
-Responde sólo con:
+Responde sólo con un resumen ejecutivo de (todo lo demás debe quedar en el documento del proyecto):
 
 ```text
 STATUS: M1_ASTRA_PROPOSAL_READY_FOR_FABLE | PARTIAL | BLOCKED
-<<
-GITHUB:
-- commit SHA<
-- enlace al proyecto actualizado
 
 DESIGN:
 - principales decisiones propuestas
