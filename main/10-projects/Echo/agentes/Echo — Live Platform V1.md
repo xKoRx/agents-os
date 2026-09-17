@@ -222,7 +222,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-06 Reference enrollment and binding
 
-- **ID / status / size:** E-06 · PLANNING BLOCKED — MANAGER DECISION REQUIRED · MEDIUM
+- **ID / status / size:** E-06 · PLANNING V1.2.0 READY FOR MANAGER REVIEW · MEDIUM
 - **Objective:** RuntimeBinding: una enrollment canónica por Version; cuenta+broker+magic mapping observado; ACK/read-back; coverage start barrier. Attach manual verificado permitido V1.
 - **Capability unlocked:** reloj forward atribuible. Ingestion ≠ observing.
 - **Why:** sin enrollment no hay Quality canónica.
@@ -238,7 +238,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Done when:** primera observación atribuible o UNKNOWN explícito.
 - **Unlocks:** E-07.
 - **Accepted debt:** attach manual.
-- **Planning:** TOP v1.1.0 CASE C blocked ([[Echo — E-06 Reference Enrollment and Binding]]). SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` @ branch `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Zero-order magic **no ratificado**. **Implementation:** NORMAL (no lanzado). **GOD:** NONE.
+- **Planning:** TOP v1.2.0 CASE B resuelto por Manager ([[Echo — E-06 Reference Enrollment and Binding]]). SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` @ branch `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Zero-order magic **ratificado**: atestación runtime `effective_magic` == pin (§7.2a; excepción C-3 identidad mínima). Producer físico congelado: exporter Forge un archivo + relay collector. **Implementation:** NORMAL (no lanzado; gate Manager). **GOD:** NONE.
 
 ### E-07 Raw facts, DEAL, coverage and trade lifecycle
 
@@ -383,7 +383,8 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
-- **2026-09-16 — E-06 TOP authority reconciliation:** [[Echo — E-06 Reference Enrollment and Binding]] CASE C @ `349b6ac8` (contrato `1c794d5a`; old `3e190d86`). Zero-order magic no cierra A vs B. SPEC v1.1.0 sin bump. 0 source. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW.
+- **2026-09-16 — E-06 TOP planning correction #2 (Manager CASE B):** [[Echo — E-06 Reference Enrollment and Binding]] v1.2.0. Manager resolvió CASE C: `effective_magic` runtime atestiguado por la instancia strategy EA (excepción C-3 §7.2a) == pin o no hay OBSERVING. Discovery físico: producer = exporter Forge (`EchoForgeMT5Exporter.java`, `xKoRx/symphony`; inyección futura un archivo, lane propio); `MagicNumber` es `input` externo (readback/seal F-04); atestación por variables globales del terminal, relay verbatim del collector. Identidad: bytes cambian ⇒ nuevo `strategy_version_ref`; históricos intactos. 0 source Echo; 0 bytes Forge. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW.
+- **2026-09-16 — E-06 TOP authority reconciliation:** [[Echo — E-06 Reference Enrollment and Binding]] CASE C @ `349b6ac8` (contrato `1c794d5a`; old `3e190d86`). Zero-order magic no cierra A vs B. SPEC v1.1.0 sin bump. 0 source. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW. *(Resuelto después por Manager CASE B; ver entrada superior.)*
 - **2026-09-16 — E-06 TOP planning correction #1:** [[Echo — E-06 Reference Enrollment and Binding]] v1.1.0 @ `3e190d86` (old `9989f399`). Heartbeat/UnifiedBatch no son autoridad zero-order. C-3 DEFER SQX conservado; Echo collector `reference_status` IN SCOPE. 0 source. Puente E-06 permanece Review. Master intacto.
 - **2026-09-16 — E-06 TOP planning one-shot:** [[Echo — E-06 Reference Enrollment and Binding]] SPEC/PLAN/TASKS/VERIFICATION v1.0.0. Branch `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f1`. Docs-only; 0 source. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. 064 reservada con interlock 061 SHARED DEV. Puente E-06 → Review. Master intacto. E-01…E-05 no reabiertos.
 - **2026-09-16 — E-02 evidencia AC-03/04/05/17 corregida:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] recertificó los cuatro AC con fixtures descartables; evidencia `92d0ec2e` sobre producto `f6e6af1b`. Hasura compartido y master intactos. Puente E-02 permanece Review.
