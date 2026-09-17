@@ -2,15 +2,16 @@
 type: skill
 schema_version: 1
 name: aranea-agent-dev
-description: Router del dominio Aranea (homelab) para trabajo de desarrollo y operación del agente. Cargar al trabajar sobre Echo, Echo Forge, Hermes, el appliance mcps, backups o red del homelab para fijar qué skills y fuentes de acceso son válidas. Todo acceso MCP aranea-* pasa exclusivamente por aranea-mcps-expert; nunca aplica a MELI ni a sistemas corporativos.
+description: Router exclusivo del dominio Aranea homelab para trabajo de desarrollo y operación del agente. Cargar para Echo, Echo Forge, Hermes, mcps, backups o red; acceso MCP sólo por aranea-mcps-expert, nunca MELI.
 scope: area
 created: "2026-09-12"
-updated: "2026-09-16"
+updated: "2026-09-17"
 area: "[[Aranea]]"
 entities:
   - "[[Aranea]]"
 related:
   - "[[aranea-mcps-expert]]"
+  - "[[Daedalus — Development Agents MCP Access & Gaps]]"
   - "[[hermes-agent-operator]]"
   - "[[rjara-aranea-operations-preferences]]"
   - "[[meli-agent-dev]]"
@@ -35,48 +36,42 @@ tags:
 
 ## Purpose
 
-Dominio exclusivo del homelab Aranea. Fija el boundary del dominio, carga las preferencias scoped y ruta al acceso MCP y a las skills de dominio. Los servicios MCP de Aranea (SSH, PostgreSQL, MongoDB, Hasura, Kafka y Flink) son exclusivos de este dominio: ninguna otra skill o dominio los activa.
+Dominio exclusivo del homelab Aranea. Fija boundary del dominio, carga preferencias scoped y enruta hacia acceso MCP y skills de dominio. Las capabilities `aranea-*` (13 registradas al 2026-09-17: SSH, PostgreSQL RO/RW, Mongo Forge RO/RW, Hasura PROD/DEV, Kafka DEV, Flink DEV, observabilidad ARGUS RO, Temporal RO, MinIO RO, etcd RO) pertenecen **exclusivamente** a este dominio; selección, estado y procedimientos en [[aranea-mcps-expert]], no duplicar el inventario aquí ni habilitar en MELI. El gateway Telegram de Hermes NO es automáticamente un MCP Telegram para coding agents.
 
-Trigger boundary:
-
-- **Sí:** trabajo sobre hosts/servicios del homelab, Hermes Agent, Echo/Echo Forge (DEV o PROD), el appliance `mcps`, backups/DR, red del homelab, o cualquier uso de una capability MCP `aranea-*`.
-- **No:** Meli o sistemas corporativos (→ [[meli-agent-dev]]), trabajo local sin infraestructura Aranea.
-- **Handoff:** Hermes como target/runtime → [[hermes-agent-operator]]; elección de ambiente/capability MCP → [[aranea-mcps-expert]]; trabajo Meli → [[meli-agent-dev]]; skills app-owned de `xKoRx/symphony` para SQX/Echo Forge específico.
+**Trigger:** trabajo sobre hosts/servicios Aranea, Hermes Agent, Echo/Echo Forge DEV o PROD, appliance `mcps`, backups/DR, red del homelab o capability `aranea-*`. **No trigger:** MELI/corporativo (→ [[meli-agent-dev]]) ni trabajo puramente local sin infra Aranea.
 
 ## Minimal Read
 
-1. Esta skill para fijar dominio y boundary MCP.
+1. Esta skill y boundary.
 2. `../../../../80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md` — preferencias scoped Aranea.
-3. `30-resources/aranea/00-index.md` — wiki curada del dominio (topología, servicios, storage); abrir sólo las páginas que la tarea toque.
-4. [[hermes-agent-operator]] sólo cuando Hermes Agent sea el target del incidente/cambio.
-5. [[aranea-mcps-expert]] sólo cuando la tarea requiera acceso MCP.
+3. `30-resources/aranea/00-index.md` — wiki de dominio, sólo páginas necesarias.
+4. [[hermes-agent-operator]] sólo cuando Hermes es **target** (gateway, systemd, perfiles, dashboard/update/recovery), no porque sea actor de una operación en otro host.
+5. [[aranea-mcps-expert]] cuando se requiere acceso MCP; para coding agents Daedalus y preguntas de acceso que bloquea Echo/Forge, su matriz enlazada [[Daedalus — Development Agents MCP Access & Gaps]].
 
 ## Procedure
 
-1. **Confirmar boundary Aranea.** Homelab y sus hosts/Hermes/Echo/mcps son este dominio; Meli/corporativo se rechaza y deriva a [[meli-agent-dev]] antes de leer documentación o abrir conexiones.
-2. **Cargar preferencias scoped** (Minimal Read 2).
-3. **Contexto de dominio:** elegir la página desde `30-resources/aranea/00-index.md`; no escanear la carpeta.
-4. **Hermes como target:** activar [[hermes-agent-operator]] para instalación, perfiles, dashboard/serve, gateways, systemd user, updates y recovery del propio runtime Hermes. Si Hermes sólo opera otro target, no cargarla.
-5. **Acceso MCP:** activar [[aranea-mcps-expert]] y seguir su contrato: ambiente (PROD/DEV/runtime) antes que autoridad, autoridad mínima, runbook de la familia. Esta skill nunca conecta `aranea-*` por su cuenta.
-6. **Skills app-owned:** para plugins SQX o troubleshooting Echo Forge/WFM, usar las skills en `xKoRx/symphony/.agents/skills/` (repo owner); ellas delegan el acceso MCP aquí.
+1. Confirmar que el target es Aranea. Si es MELI/corporativo, STOP antes de cargar documentación/conectar y swap explícito a [[meli-agent-dev]].
+2. Cargar preferencias scoped, luego página de dominio pertinente desde índice; no escanear todo el vault.
+3. Hermes como runtime/target: [[hermes-agent-operator]]. Si Hermes sólo opera `mcps`/Daedalus/otro servicio, usar skill del target y no confundir actor con target.
+4. Acceso MCP: activar [[aranea-mcps-expert]], elegir ambiente PROD/DEV/runtime ANTES de capability y autoridad mínima, verificar cliente concreto Cursor/ZCode/Codex, cargar runbook de familia. Esta skill no abre MCP por su cuenta.
+5. Para plugins SQX/troubleshooting Echo Forge/WFM, usar skills app-owned de `xKoRx/symphony/.agents/skills/`; delegan MCP al router aquí y no duplican tokens/endpoints.
 
 ## Output
 
 ```text
-Dominio:              aranea
-Boundary:             <host/servicio/app> | NO_DEMOSTRADO
-Prefs cargadas:       aranea-operations
-Hermes target:         <sí → hermes-agent-operator | no>
-MCP requerido:        <sí → aranea-mcps-expert | no>
-Skill de dominio:     <hermes-agent-operator | aranea-mcps-expert | app-owned symphony | ninguna>
-Dominio rechazado:    <ninguno | meli/local + motivo>
+Dominio:            aranea
+Target:             <host/servicio/app> | NO_DEMOSTRADO
+Prefs:              aranea-operations
+Hermes target:       <sí → hermes-agent-operator | no>
+MCP requerido:      <sí → aranea-mcps-expert + consumer real | no>
+Skill de dominio:   <hermes-agent-operator | aranea-mcps-expert | app-owned | ninguna>
+Dominio rechazado:  <ninguno | meli/local + motivo>
 ```
 
 ## Hard Rules
 
-- El acceso MCP `aranea-*` es **exclusivo de este dominio** y pasa siempre por [[aranea-mcps-expert]]; ninguna otra skill abre esas conexiones ni duplica endpoints, permisos o semántica MCP.
-- Hermes como runtime/target pasa por [[hermes-agent-operator]]; no usarla sólo porque Hermes sea el actor que opera otro servicio.
-- **MUST NOT** para MELI o sistemas corporativos: es dominio de [[meli-agent-dev]].
-- Elegir ambiente antes que autoridad; PROD de datos/control plane es read-only (contrato de [[aranea-mcps-expert]]).
-- No mezclar dominios: si la tarea cruza a Meli, cerrar el paquete Aranea y hacer swap explícito.
-- No copiar esta skill ni las skills expert/operator a `80-agents/skills/` ni a repos de cliente; el vault cura, el repo owner posee lo suyo.
+- Todas las `aranea-*` pasan por [[aranea-mcps-expert]] y quedan fuera de MELI/corporativo.
+- Hermes como target usa [[hermes-agent-operator]]; no activarla sólo porque Hermes opera otro target.
+- Ambiente antes que autoridad; RO PROD no se amplía ni se sustituye con DEV para obtener permiso.
+- No mezclar documentación/bearers/repos MELI y Aranea; hacer swap explícito de dominio.
+- No copiar skills/router/runbooks federados a `80-agents/skills/` ni a repos de clientes; el vault cura y el repo owner posee su documentación específica.
