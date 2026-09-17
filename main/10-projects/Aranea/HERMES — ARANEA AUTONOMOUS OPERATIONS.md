@@ -377,7 +377,7 @@ views:
 
 - [x] [[HERMES — Bootstrap & Self-Sufficiency]] sacar al owner del loop — B4 Human Exit Gate PASS 2026-09-15; proyecto en Review, owner fuera de la configuración MCP rutinaria #owner/me #type/supervision #area/aranea
 - [ ] [[HERMES — Agent Access Operations]] autonomía MCP + desbloqueo Echo/Forge #owner/me #type/supervision #area/aranea
-- [ ] [[HERMES — Infrastructure Operations]] backups → administración integral #owner/me #type/supervision #area/aranea
+- [/] [[HERMES — Infrastructure Operations]] backups → administración integral #owner/me #type/supervision #area/aranea
 
 ## 📆 Bitácora
 
