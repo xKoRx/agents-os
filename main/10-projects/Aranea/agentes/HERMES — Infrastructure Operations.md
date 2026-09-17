@@ -318,8 +318,8 @@ Tiempos son **timeboxes**, no promesas. Si los workers no pueden correr concurre
 ### I1 — H0 Observe (única cola ejecutable 2026-09-18)
 
 - [x] I1.0 Verificar G0, G1 discovery y G3 helper ya hechos; NO repetir salvo drift — evidencia change log `2026-09-17-hermes-infra-preflight-g0`, owner recap #owner/agent #type/admin #area/aranea
-- [/] I1.1 Reconciliar inventario real nodes/hosts/59 VMs/LXC/10 storages **y catálogo de servicios**; baseline 59 confirmado, service map pendiente #owner/agent #type/admin #area/aranea
-- [ ] I1.2 Construir y probar service → guest → host → storage/dependencies (si demostrado) → management path; resolver unknown/ambiguous/drift #owner/agent #type/admin #area/aranea
+- [x] I1.1 Reconciliar inventario real nodes/hosts/59 VMs/LXC/10 storages **y catálogo de servicios**; baseline 59 confirmado, service map pendiente #owner/agent #type/admin #area/aranea — DONE run h0-20260918-r1 WS A: inventory_59.json 59=42+17 verificado 1:1, service_map 58 servicios (38 completos/17 parciales/3 unknown), 7 testcases G4, discrepancies.md (step-ca 200 stopped vs doc activa; renombres SQX 108/111/112/123; 121/122 eliminados; PBS 180 nuevo)
+- [/] I1.2 Construir y probar service → guest → host → storage/dependencies (si demostrado) → management path; resolver unknown/ambiguous/drift #owner/agent #type/admin #area/aranea
 - [ ] I1.3 Congelar evidence contract/matriz G2 por máquina/familia; distinguir 17 offline de acceso fallido #owner/agent #type/admin #area/aranea
 - [ ] I1.4 Preparar owner bundle API RO SOLO ante gap de facts; obtener decisión owner sin exponer tokens, revalidar D #owner/agent #type/admin #area/aranea
 - [ ] I1.5 Certificar Linux y Windows desde sesión Hermes, positivos/negativos y permisos efectivos #owner/agent #type/admin #area/aranea
