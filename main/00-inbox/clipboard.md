@@ -1,901 +1,951 @@
-# MANDATO DE IMPLEMENTACIÓN — NORMAL
+# MANDATO MAESTRO — MULTIMODAL KNOWLEDGE ENGINE
 
-## Polymarket Engine · M2-S01 Foundation
+## Autonomous M0 Implementation
 
-### ROL
+Actúa como **Development Manager principal** de `Multimodal Knowledge Engine`.
 
-Actúa como **Senior Go Engineer / NORMAL coding agent**.
+Tu misión es implementar, probar, integrar y validar **M0 completo** utilizando exclusivamente la arquitectura y las SPECs congeladas.
 
-La arquitectura y el plan de implementación ya están congelados.
+Este mandato autoriza desarrollo.
 
-Tu misión es implementar exclusivamente:
-
-`M2-S01 — Foundation`
-
-Este es el **primer slice productivo del Polymarket Engine**.
-
-No rediseñes arquitectura.
-
-No adelantes slices.
-
-No investigues nuevamente Polymarket.
-
-No implementes market data, recorder, SQLite, strategies ni trading.
-
-Si una instrucción necesaria contradice el diseño frozen:
-
-`BLOCKED — DESIGN ISSUE`
-
-No improvises.
+No autoriza rediseño general.
 
 ---
 
-# 0. ENTORNO
+# 0. AUTORIDADES
 
-Trabajas exclusivamente sobre recursos locales.
+Repositorio:
 
-Agents-OS está sincronizado externamente de manera automática.
+`xKoRx/multimodal-knowledge-engine`
 
-No uses GitHub como autoridad operacional.
+Branch de autoridad:
 
-No busques commits remotos ni realices operaciones de sincronización.
+`master`
 
-Resuelve el root local de Agents-OS mediante su bootstrap canónico mínimo.
+Baseline congelado:
 
-## Autoridad de proyecto
+`e5f9e9757d0e42b00c831e57920174428397d3b5`
 
-`main/10-projects/Personal/Polymarket Engine/Polymarket Engine — MVP.md`
+Proyecto Agents-OS:
 
-Lee únicamente lo necesario:
+`[[Multimodal Knowledge Engine]]`
 
-- decisiones frozen D-*;
-    
-- estado `M1_DESIGN_FROZEN`;
-    
-- `M2 — TOP Implementation Plan`;
-    
-- especialmente:
-    
-    - M2.0;
-        
-    - M2.1;
-        
-    - M2.2;
-        
-    - `M2-S01`;
-        
-    - políticas de entrega a NORMAL;
-        
-    - gates asociados a S01.
-        
-
-No recorras otros proyectos del vault.
-
-No abras Echo, Echo Forge, Hermes ni memorias ajenas.
-
-Technical Platform Map no debería ser necesario para S01 salvo referencia explícita del slice.
-
----
-
-# 1. IMPLEMENTATION REPOSITORY
-
-Producto:
-
-`Polymarket Engine`
-
-Go module:
-
-`github.com/xKoRx/polymarket-engine`
-
-Primero localiza un checkout local existente del repositorio bajo el workspace habitual.
-
-Si ya existe, úsalo.
-
-Si todavía no existe y Agents-OS / entorno local define una ruta canónica de repos externos, créalo allí.
-
-Preferencia operacional si no existe otra autoridad local:
-
-`~/go/src/github.com/xKoRx/polymarket-engine`
-
-No pongas el código productivo dentro del vault de Agents-OS.
-
-Antes de modificar:
-
-1. resuelve la ruta real;
-    
-2. verifica si existe contenido previo;
-    
-3. comprueba estado local;
-    
-4. evita sobrescribir trabajo ajeno;
-    
-5. registra la ruta resuelta en el proyecto Agents-OS si aún figuraba `REQUIRES_OWNER — REPO LOCATION ONLY`.
-    
-
----
-
-# 2. TOOLCHAIN GO — DECISIÓN OPERATIVA CERRADA
-
-Usar Go 1.27.
-
-Baseline:
+Documentos canónicos del repo:
 
 ```text
-go 1.27.0
-toolchain go1.27.1
+docs/architecture/architecture.md
+
+docs/specs/SPEC-00A-product-spike.md
+docs/specs/SPEC-00B-local-runtime.md
+docs/specs/SPEC-01-media-foundation.md
+docs/specs/SPEC-02-evidence-acquisition.md
+docs/specs/SPEC-03-knowledge-pipeline.md
+docs/specs/SPEC-04-integration-benchmark.md
 ```
 
-Si la máquina no tiene Go 1.27.1 pero el mecanismo estándar de toolchain de Go puede obtenerlo, úsalo.
-
-No reduzcas la versión para acomodarte al host.
-
-Corrige en el M2 plan cualquier referencia histórica/propuesta a:
-
-`go 1.23`
-
-para dejar Go 1.27 como baseline del proyecto.
-
-No hagas otras modificaciones al plan.
-
----
-
-# 3. SCOPE DEL SLICE
-
-Implementa exclusivamente la foundation congelada para los slices posteriores.
-
-Debe entregar:
-
-## Repository bootstrap
-
-Como mínimo:
+Jerarquía:
 
 ```text
-go.mod
-cmd/engine/
-internal/foundation/
-internal/config/
-internal/archtest/
-migrations/
-testdata/
+SPEC vigente
+    ↓
+architecture.md
+    ↓
+Agents-OS project state
+    ↓
+este mandato
 ```
 
-No crees todos los paquetes futuros vacíos sólo porque aparecen en M2.1.
+Este mandato define ejecución y gobierno.
 
-Créelos cuando corresponda a su slice.
+Las SPECs definen comportamiento técnico.
 
-El binario puede ser mínimo, pero debe compilar.
+No reconstruyas requerimientos desde conversaciones anteriores.
 
 ---
 
-# 4. FOUNDATION CONTRACTS
+# 1. BOOTSTRAP OBLIGATORIO
 
-Implementa en:
+Ejecuta el bootstrap canónico de Agents-OS.
 
-`internal/foundation`
+Carga:
 
-los contratos base necesarios por M2.
+`[[Multimodal Knowledge Engine]]`
 
-## A. IDs nominales
+y el workflow canónico para proyectos `owner: agent`.
 
-No utilizar `string` intercambiable para IDs de namespaces distintos.
+Recupera únicamente el contexto necesario.
 
-Materializa tipos separados al menos para los identificadores internos frozen que ya puedan definirse sin contratos wire específicos.
+No abras Echo, Echo Forge, Hermes u otros proyectos salvo referencia explícita necesaria.
 
-Ejemplos conceptuales:
+Crea o retoma el subproyecto de agente correspondiente y úsalo como planificador durable único.
+
+Mantén Agents-OS actualizado durante hitos reales.
+
+No mantengas un segundo roadmap durable fuera de ese proyecto.
+
+---
+
+# 2. GIT PREFLIGHT
+
+Antes de modificar código:
+
+1. verifica que `master` contiene el baseline:
+    
 
 ```text
-GammaEventID
-GammaMarketID
-ConditionRef
-AssetKey
-Order/Intent local identifiers where applicable
-RevisionRef
-ExperimentID
-RunID
-StrategyID
+e5f9e9757d0e42b00c831e57920174428397d3b5
 ```
 
-No inventes conversiones entre IDs.
+2. comprueba worktree limpio;
+    
+3. verifica que las seis SPECs y `architecture.md` existen;
+    
+4. crea branch/worktree de desarrollo desde ESE baseline;
+    
+5. registra branch, base exacta y worktree en Agents-OS.
+    
 
-No introduzcas parsing wire específico de Polymarket; corresponde a S02.
+Si `master` avanzó respecto del baseline:
 
-Constructores deben validar invariantes estructurales que sean independientes del protocolo wire.
+- NO asumas compatibilidad;
+    
+- compara cambios;
+    
+- si son exclusivamente compatibles con el freeze, registra la nueva base explícitamente;
+    
+- si afectan arquitectura/SPECs, `BLOCKED`.
+    
+
+Nunca desarrollar desde un baseline ambiguo.
 
 ---
 
-## B. Protocol identity
+# 3. MODELO DE EJECUCIÓN
 
-Materializa unión cerrada conceptual:
+Opera como manager.
+
+Para cada etapa utiliza roles separados:
 
 ```text
-CTF
-PROTOCOL_V2
-UNKNOWN
+MANAGER
+   ↓
+IMPLEMENTER
+   ↓
+TEST
+   ↓
+QA REVIEWER
+   ↓
+GATE
 ```
 
-No agregues codecs ni ABI.
+El implementador no certifica su propia entrega.
 
-No conviertas UNKNOWN automáticamente a ninguna versión.
+El QA recibe:
+
+- SPEC;
+    
+- código;
+    
+- tests;
+    
+- artefactos;
+    
+- evidencia necesaria.
+    
+
+Cuando corresponda debe verificar directamente contra el source original.
+
+No entregar al QA razonamiento privado del implementador.
+
+Separar contextos.
+
+Usar modelos diferentes para QA cuando estén disponibles, pero no convertirlo en dependencia obligatoria.
 
 ---
 
-## C. Decimal exacto y unidades
+# 4. SEMÁNTICA DE GATES
 
-Implementa representación monetaria exacta encapsulada.
+Cada gate termina exactamente en:
 
-La librería concreta puede ser:
+### PASS
 
-`github.com/shopspring/decimal`
+Todos los acceptance criteria obligatorios de la SPEC están demostrados.
 
-pero **no debe escapar de foundation como contrato público del engine**.
+→ continuar automáticamente.
 
-Crear tipos nominales apropiados, según M1/M2, tales como:
+### CORRECT
+
+Existe un defecto acotado y corregible dentro del scope.
+
+→ manager define corrección cerrada;  
+→ implementer corrige;  
+→ tests;  
+→ QA nuevamente.
+
+Máximo dos ciclos por la misma causa raíz.
+
+Después: `BLOCKED`.
+
+### BLOCKED
+
+Falta una autoridad, recurso, permiso o decisión que no puede resolverse legítimamente dentro del scope.
+
+→ detener únicamente dependencias afectadas.
+
+No detener trabajo independiente que pueda avanzar.
+
+### NO_GO
+
+La alternativa técnica evaluada no cumple el contrato.
+
+→ detener esa alternativa.
+
+Un provider/runtime `NO_GO` no implica necesariamente M0 `NO_GO`.
+
+---
+
+# 5. PRINCIPIO DE SCOPE
+
+No reabrir ADR-001 salvo evidencia física de que una decisión concreta impide satisfacer una SPEC.
+
+No introducir por conveniencia:
+
+- Kafka;
+    
+- Temporal;
+    
+- microservicios;
+    
+- Postgres;
+    
+- MinIO;
+    
+- vector DB;
+    
+- frontend;
+    
+- cluster;
+    
+- frameworks de DI;
+    
+- repository abstractions genéricas;
+    
+- event bus;
+    
+- sistema distribuido.
+    
+
+No modificar:
+
+- Echo;
+    
+- Echo Forge;
+    
+- Hermes productivo;
+    
+- infraestructura compartida no autorizada.
+    
+
+KISS / YAGNI.
+
+---
+
+# 6. PROVIDERS
+
+## VLM
+
+El backend de desarrollo inicial es:
+
+`GLM-5.3-Flash`
+
+Debe permanecer detrás del contrato `VLMProvider`.
+
+El dominio NO conoce:
+
+- GLM;
+    
+- Qwen;
+    
+- Ollama;
+    
+- LM Studio;
+    
+- vendors;
+    
+- URLs específicas.
+    
+
+Posteriormente pueden añadirse:
 
 ```text
-Price
-Shares
-CollateralAmount
-BasisPoints
-FeeCoefficient
+Ollama/Qwen
+LM Studio/Qwen
 ```
 
-y primitives necesarias.
+sin rediseñar dominio ni pipeline.
 
-Requisitos:
+## ASR
 
-- no `float64` en decisiones monetarias;
-    
-- parsing decimal exacto;
-    
-- signo sólo donde corresponda;
-    
-- operaciones de suma/resta/comparación;
-    
-- escala explícita;
-    
-- representación canónica;
-    
-- serialización determinista;
-    
-- errores en overflow/invariant violations;
-    
-- cero no se usa como sustituto de unknown.
-    
+`ASRProvider` es la segunda frontera externa anticipada.
 
-No implementes todavía las reglas de rounding específicas de órdenes Polymarket; corresponden a S02/protocol.
+Durante `00A` está permitido usar transcript fixture/manual conforme a SPEC.
+
+Posteriormente:
+
+`Whisper HTTP`
+
+debe conectarse al mismo contrato.
+
+No inventar endpoints, modelos, credenciales ni capabilities.
 
 ---
 
-## D. RevisionRef
+# 7. SECUENCIA OBLIGATORIA
 
-Implementa un identificador/referencia inmutable para snapshots/revisions.
-
-Debe permitir posteriormente referenciar de forma explícita una revisión de:
+Ejecutar:
 
 ```text
-catalog
-book
-regime
-account
-risk policy
-universe
-relationship
-liquidity ledger
-config
+SPEC-00A
+   ↓
+SPEC-00B
+   ↓
+SPEC-01
+   ↓
+SPEC-02
+   ↓
+SPEC-03-A
+   ↓
+SPEC-03-C
+   ↓
+SPEC-04
 ```
 
-No construyas todavía dichos stores.
+`03-A` y `03-C` pertenecen a SPEC-03.
 
-Evita un `map[string]any` como contrato principal.
-
----
-
-## E. Time primitives
-
-Implementa primitives suficientes para separar:
-
-- source time;
-    
-- receive wall time;
-    
-- monotonic offset local cuando corresponda;
-    
-- virtual time;
-    
-- unknown/absent source time.
-    
-
-No conviertas timestamps en secuencia global.
-
-No inventes precisión.
-
-No implementes wire parsers de segundos/milisegundos específicos todavía.
-
-Define `Clock` abstraction para testabilidad y virtual clock posterior.
-
-No usar directamente `time.Now()` dentro del dominio cuando el clock inyectado sea aplicable.
+No crear una segunda implementación del pipeline para C.
 
 ---
 
-## F. Error taxonomy
+# 8. SPEC-00A — PRODUCT SPIKE
 
-Materializa errores/códigos tipados compatibles con el diseño frozen.
+Objetivo:
 
-Como mínimo distinguir:
+obtener lo antes posible un walking skeleton REAL:
 
 ```text
-invalid input
-unsupported
-insufficient data
-invariant violation
-contract drift
-disabled capability
-not reproducible
-transient failure
-system failure
+video
+ → metadata
+ → transcript disponible
+ → evidencia visual básica
+ → GLM-5.3-Flash
+ → knowledge estructurado
+ → Markdown técnico
 ```
 
-No conviertas todos los errores en strings.
+Debe existir un comando equivalente a:
 
-Debe soportar:
+```bash
+mke process video.mp4 \
+  --transcript transcript.json \
+  --vlm glm
+```
+
+y producir artefactos equivalentes a:
 
 ```text
-errors.Is
-errors.As
+artifacts/
+  source.json
+  evidence/
+  knowledge.jsonl
+  documentation.md
 ```
 
-o contrato idiomático equivalente.
+Priorizar vertical slice sobre infraestructura.
 
-No diseñes una jerarquía gigantesca.
+No implementar todavía mecanismos reservados por SPECs posteriores.
+
+Si aún no existe video/credencial GLM, implementar y probar todo lo demostrable mediante fixtures/replays y marcar exclusivamente el E2E correspondiente como `BLOCKED`.
+
+La ausencia temporal del source real NO justifica inventar resultados.
+
+Gate independiente conforme a SPEC-00A.
 
 ---
 
-## G. Capability registry fail-closed
+# 9. SPEC-00B — LOCAL RUNTIME
 
-Implementa registry cerrado/versionable.
+Validar providers/runtime locales definidos por SPEC.
 
-Regla central:
+Targets previstos pueden incluir:
 
-**capability ausente o desconocida = DENIED/DISABLED.**
+- Whisper;
+    
+- Qwen;
+    
+- Ollama;
+    
+- LM Studio;
+    
+- M4;
+    
+- Kronos.
+    
 
-Representar explícitamente capabilities que ya están congeladas como no habilitables inicialmente, incluyendo al menos conceptos futuros como:
+Cada target puede terminar:
 
 ```text
-LIVE_EXECUTION
-NEGRISK_CTF_CONVERSION
-NEGRISK_V2_CONVERSION
-L2_HISTORICAL_BACKFILL
-DEFER_EXEC
-BUILDER_OPTIONAL
-COMBO
-RFQ
+PASS
+NO_GO
+BLOCKED
 ```
 
-No implementar esas capabilities.
+No modificar core para satisfacer peculiaridades accidentales de un runtime.
 
-Sólo su identidad/estado fail-closed.
+No ocultar fallbacks.
 
-No debe existir:
+No asumir que más RAM/cores implica performance suficiente.
+
+Medir las capabilities exigidas por la SPEC.
+
+GLM-5.3-Flash sigue siendo backend válido de M0 mientras cumpla el contrato.
+
+Un target local `NO_GO` NO bloquea automáticamente SPEC-01.
+
+---
+
+# 10. SPEC-01 — MEDIA FOUNDATION
+
+Implementar únicamente el contrato congelado.
+
+Debe resolver, entre otros elementos definidos por la SPEC:
+
+- identidad de source;
+    
+- hashes;
+    
+- FFmpeg/ffprobe;
+    
+- streams;
+    
+- reloj canónico;
+    
+- PTS real;
+    
+- transcript;
+    
+- cobertura visual inicial;
+    
+- actividad;
+    
+- frames/evidencia base.
+    
+
+Tests obligatorios para temporalidad y failure paths.
+
+Nunca sustituir PTS efectivo por timestamp solicitado sin validación.
+
+Al finalizar:
+
+IMPLEMENT → TEST → QA → GATE.
+
+---
+
+# 11. SPEC-02 — EVIDENCE ACQUISITION
+
+Implementar el protocolo tipado definido en freeze.
+
+Incluye solamente lo especificado para:
 
 ```text
-defaultAllow = true
+FRAME
+REGION
+COMPARE
+SEQUENCE
+FIND_CHANGE
 ```
 
-ni fallback equivalente.
+Añadir persistencia, idempotencia lógica, budgets, dedupe, resume/reconciliation y crash behavior según SPEC.
+
+No implementar un workflow engine.
+
+No confundir:
+
+`request_id`
+
+con:
+
+`acquisition_key`.
+
+Los artefactos deben conservar provenance, source/hash y tiempo real.
+
+Al finalizar:
+
+IMPLEMENT → TEST → QA → GATE.
 
 ---
 
-## H. ExecutionMode
+# 12. SPEC-03-A — BASELINE COMPLETO
 
-Materializa únicamente el contrato frozen:
+Primero construir A completo.
+
+No implementar Investigator C antes de que A tenga PASS.
+
+Pipeline:
 
 ```text
-SHADOW
-LIVE_DISABLED
-LIVE_ENABLED
+Evidence
+ → Knowledge Reconstruction
+ → Integrity Validator
+ → Grounding Reviewer
+ → Global Consolidation
+ → revalidation
+ → knowledge.jsonl
+ → documentation.md
 ```
 
-Pero:
+El determinismo exigido corresponde a:
 
-`LIVE_ENABLED`
-
-no puede producir capacidad efectiva de trading en S01.
-
-No existe aún gateway live.
-
-No existe aún signer.
-
-No existe aún ActivationLease operativo.
-
-Debe ser imposible que un test o config de S01 habilite un efecto externo.
-
----
-
-## I. ActivationLease contract
-
-Define sólo el value contract necesario por M1/M2 para que slices posteriores no cambien API.
-
-Puede contener identities/revisions/hashes necesarios según el diseño frozen.
-
-No implementar emisión de leases.
-
-No implementar validación productiva completa.
-
-No crear secretos.
-
-No crear trading.
-
-Cualquier intento de obtener una lease operacional en S01 debe terminar en:
-
-`DISABLED`
-
----
-
-# 5. CONFIG
-
-Implementa en:
-
-`internal/config`
-
-configuración versionada y estricta.
-
-Debe contener únicamente configuración transversal de foundation necesaria ahora.
-
-Requisitos:
-
-- versión de schema obligatoria;
+- orquestación;
     
-- unknown fields rechazados;
-    
-- defaults sólo donde sean inequívocos;
-    
-- ningún `0` ambiguo como infinity/default;
-    
-- hash/revision determinista de la configuración validada;
-    
-- secrets no forman parte de la config pública;
-    
-- execution mode inicial debe ser fail-closed;
-    
-- ausencia de configuración para una capability dependiente no la habilita.
-    
-
-Formato:
-
-TOML es aceptado según M2.
-
-Librería propuesta:
-
-`github.com/BurntSushi/toml`
-
-Puede sustituirse por otra sólo si conserva exactamente este contrato y se documenta el motivo.
-
----
-
-# 6. ARCHITECTURE TESTS
-
-Implementa en:
-
-`internal/archtest`
-
-la primera versión de tests estructurales.
-
-Como mínimo verificar:
-
-- `internal/foundation` no importa paquetes superiores del engine;
-    
-- `internal/config` sólo depende de foundation y stdlib/dependencias de parsing permitidas;
-    
-- no existen paquetes genéricos `utils` o `common`;
-    
-- no existen dependencias circulares;
-    
-- futuros paquetes strategy podrán someterse al import gate frozen.
-    
-
-No necesitas implementar todavía toda la blacklist de strategies si los paquetes strategy aún no existen.
-
-Deja el mecanismo extensible para S09/G-15b.
-
-No uses una herramienta enorme si el AST/`go list` estándar basta.
-
----
-
-# 7. CMD MINIMAL
-
-Crear:
-
-`cmd/engine`
-
-Debe:
-
-- compilar;
-    
-- exponer `--version` o equivalente mínimo;
-    
-- cargar configuración sólo si corresponde;
-    
-- no iniciar networking;
-    
-- no iniciar market data;
-    
-- no iniciar SQLite;
-    
-- no emitir órdenes;
-    
-- no contener lógica de negocio.
-    
-
-No anticipes la CLI completa.
-
----
-
-# 8. DEPENDENCIES
-
-Dependencias permitidas en S01 deben mantenerse mínimas.
-
-Esperadas:
-
-- decimal implementation encapsulada;
-    
-- TOML parser;
-    
-- property testing si ya se utiliza en tests.
-    
-
-No agregues:
-
-```text
-Kafka
-Flink
-gRPC
-Kubernetes libraries
-ORM
-HTTP router framework
-dependency injection framework
-plugin framework
-```
-
-No agregues SQLite todavía salvo que el slice M2-S01 frozen lo exija literalmente; su implementación corresponde a S03.
-
-Ejecuta:
-
-```text
-go mod tidy
-```
-
-y revisa dependencias transitivas inesperadas.
-
----
-
-# 9. TESTS OBLIGATORIOS
-
-Implementar tests unitarios/property según corresponda.
-
-## IDs
-
-- distintos namespaces no son intercambiables;
-    
-- constructor inválido falla;
-    
-- representación estable.
-    
-
-## Decimal / units
-
-- parsing exacto;
-    
-- valores grandes;
-    
-- negativos permitidos/prohibidos según tipo;
-    
-- cero;
-    
-- igualdad;
+- IDs;
     
 - ordering;
     
-- serialización round-trip;
+- validaciones;
     
-- ninguna conversión silenciosa vía float.
+- publicación;
     
-
-## RevisionRef
-
-- igualdad;
-    
-- canonical representation;
-    
-- invalid refs;
-    
-- deterministic serialization.
+- provider replay.
     
 
-## Time
+NO prometer inferencia LLM determinista live.
 
-- unknown source time;
-    
-- wall vs virtual separados;
-    
-- fake clock determinista.
-    
+Cada `Procedure.step` material necesita su propia evidencia.
 
-## Error taxonomy
-
-- errors.Is / errors.As;
-    
-- wrapping conserva clasificación.
-    
-
-## Capabilities
-
-Property/invariant:
+Provenance obligatoria:
 
 ```text
-unknown capability -> DENIED
-missing capability -> DENIED
-explicit disabled -> DENIED
+knowledge
+ → review
+ → evidence
+ → source
+ → actual timestamp / ROI / hash
 ```
 
-Nunca allow implícito.
-
-## Config
-
-- unknown field → FAIL;
-    
-- invalid schema version → FAIL;
-    
-- live missing requirements → FAIL/DISABLED;
-    
-- mismo config → mismo revision hash;
-    
-- cambio material → revision distinta.
-    
-
-## Architecture
-
-- import violations detectadas;
-    
-- foundation limpio.
-    
-
-Usa `-race` donde aplique.
+Gate `03-A PASS` obligatorio antes de C.
 
 ---
 
-# 10. GATES DE ESTE SLICE
+# 13. SPEC-03-C — ADAPTIVE INVESTIGATOR
 
-Ejecuta exclusivamente los gates asociados por M2-S01.
+Agregar exclusivamente:
 
-Como mínimo foundation parcial de:
+- formulación de preguntas;
+    
+- decisiones de adquisición;
+    
+- `EvidenceRequest`;
+    
+- estados terminales;
+    
+- budgets.
+    
 
-```text
-G-01
-G-02
-G-15
-```
+C NO posee:
 
-y cualquier subgate que el M2 plan haya asignado explícitamente a S01.
+- Knowledge Reconstruction propia;
+    
+- reviewer propio;
+    
+- consolidación propia;
+    
+- publisher propio.
+    
 
-No declares gates posteriores PASS.
+Toda nueva evidencia vuelve exactamente al pipeline `03-A`.
 
-No declares:
+La presencia de C nunca puede cambiar la semántica del baseline A.
 
-```text
-G-03+
-```
+Si C:
 
-por inferencia.
+- no aporta conocimiento correcto;
+    
+- introduce regresiones;
+    
+- excede costos injustificados;
+    
+- o reduce calidad;
+    
 
-Registra evidencia física de los tests ejecutados.
+puede terminar `NO_GO`.
+
+M0 puede quedarse legítimamente con A.
 
 ---
 
-# 11. QUALITY
+# 14. SPEC-04 — INTEGRATION & BENCHMARK
 
-Ejecuta al menos:
+Ejecutar integración completa según SPEC.
 
-```bash
-go test ./...
-go test -race ./...
-go vet ./...
-go mod tidy
+Procesar el material real autorizado cuando esté disponible.
+
+Preparar golden congelado ANTES de analizar A/C.
+
+Evaluar por elemento:
+
+```text
+A + C correctos
+solo C correcto
+solo A correcto
+ambos fallan
+C introduce error
 ```
 
-Si Agents-OS tiene tooling/lint global obligatorio para Go, úsalo.
+Registrar frontera de pérdida:
 
-Coverage:
+```text
+detection
+ → acquisition
+ → interpretation
+ → grounding/consolidation
+ → publication
+```
 
-aplica el piso de Agents-OS correspondiente al código implementado.
+Ejecutar failure/recovery/invalidation paths.
 
-No persigas coverage artificialmente mediante tests sin assertions útiles.
+No medir éxito por cantidad de texto.
+
+Medir:
+
+- conocimiento correcto recuperado;
+    
+- omisiones críticas;
+    
+- falsos claims;
+    
+- referencias válidas;
+    
+- procedimientos reconstruibles;
+    
+- costos;
+    
+- recursos;
+    
+- errores;
+    
+- utilidad incremental de C.
+    
+
+Entregar `BenchmarkReport`.
 
 ---
 
-# 12. DOCUMENTACIÓN
+# 15. TESTING
 
-No crees SPECs nuevos.
+Cada SPEC debe ejecutar sus pruebas congeladas.
 
-No crees ADRs.
+Reglas globales:
 
-No generes README gigantesco.
-
-La documentación normativa sigue siendo Agents-OS.
-
-Al terminar, actualiza únicamente el estado necesario en:
-
-`main/10-projects/Personal/Polymarket Engine/Polymarket Engine — MVP.md`
-
-Registra:
-
-- path real del repo;
+- unit tests donde protegen lógica;
     
-- Go baseline `1.27 / toolchain 1.27.1`;
+- integration tests para fronteras reales;
     
-- S01 status;
+- provider replay para reproducibilidad;
     
-- gates ejecutados;
+- fixtures media donde corresponda;
     
-- evidencias relevantes;
+- failure injection;
+    
+- E2E para walking skeleton y pipeline;
+    
+- validar paths negativos;
+    
+- ejecutar `go test ./...` en gates relevantes.
+    
+
+Objetivo de cobertura según política global para código crítico, sin perseguir porcentaje mediante tests inútiles.
+
+Nunca modificar tests para esconder un defecto real de implementación.
+
+---
+
+# 16. QA
+
+QA debe intentar falsar el PASS.
+
+Debe buscar al menos:
+
+- claims inventados;
+    
+- valores incorrectos;
+    
+- evidence references rotas;
+    
+- timestamps falsos;
+    
+- pasos sin evidencia;
+    
+- pérdida silenciosa de errores;
+    
+- fallbacks no declarados;
+    
+- acoplamiento a providers;
+    
+- presupuestos ignorados;
+    
+- recovery incompleto;
+    
+- regressions;
+    
+- diferencias entre output y SPEC.
+    
+
+Una salida compilando NO es evidencia suficiente.
+
+---
+
+# 17. CALIDAD DE DOCUMENTACIÓN
+
+El producto no es el pipeline.
+
+El producto M0 debe demostrar que una fuente multimedia puede convertirse en conocimiento útil.
+
+`documentation.md` no puede ser un resumen narrativo genérico.
+
+Debe permitir recuperar, cuando estén presentes:
+
+- conceptos;
+    
+- reglas;
+    
+- condiciones;
+    
+- parámetros;
+    
+- procedimientos;
+    
+- ejemplos;
+    
+- excepciones;
+    
+- evidencia visual;
+    
+- incertidumbres;
+    
+- contradicciones;
+    
+- referencias temporales.
+    
+
+No publicar información ilegible como conocida.
+
+---
+
+# 18. COMMITS Y DISCIPLINA DE CAMBIO
+
+Mantener cambios por SPEC suficientemente aislables y auditables.
+
+No mezclar refactors no relacionados.
+
+Antes de comenzar una SPEC:
+
+- estado anterior debe estar gateado;
+    
+- baseline de esa SPEC debe quedar registrado.
+    
+
+Después de PASS:
+
+- commit estable;
+    
+- evidencia;
+    
+- Agents-OS actualizado;
+    
+- handoff claro a siguiente etapa.
+    
+
+No reescribir historial compartido.
+
+---
+
+# 19. AGENTS-OS
+
+La nota/projecto de agente debe reflejar de forma durable:
+
+- SPEC activa;
+    
+- estado;
+    
+- baseline;
+    
+- branch;
+    
+- tests;
+    
+- findings;
+    
+- decisiones;
     
 - blockers;
     
-- next slice = S02/S03 según barrera M2.
+- siguiente paso.
     
 
-No reescribas M1/M2.
+Actualizar tareas a medida que avanza trabajo real.
 
----
+No guardar estado crítico únicamente en contexto del chat.
 
-# 13. PROHIBICIONES
-
-NO implementar:
-
-- protocol DTOs;
-    
-- Gamma;
-    
-- CLOB;
-    
-- WebSocket;
-    
-- HTTP;
-    
-- SQLite;
-    
-- capture journal;
-    
-- Catalog;
-    
-- Regimes;
-    
-- Books;
-    
-- Frames;
-    
-- Replay;
-    
-- Strategy API;
-    
-- Simulator;
-    
-- Account Coordinator;
-    
-- Risk;
-    
-- live execution;
-    
-- signing;
-    
-- wallets;
-    
-- NegRisk;
-    
-- Sports.
-    
-
-Aunque parezca fácil.
-
-Eso pertenece a slices posteriores.
-
-No anticipes código.
+No cerrar la sesión completa de Agents-OS salvo solicitud explícita del owner.
 
 ---
 
-# 14. DEFINITION OF DONE
+# 20. CUÁNDO ESCALAR AL OWNER
 
-S01 sólo está `PASS` si:
+No pedir autorización por:
 
-1. repo Go existe y compila;
+- decisiones normales de implementación dentro de SPEC;
     
-2. module path correcto;
+- naming interno no material;
     
-3. Go baseline es 1.27;
+- tests;
     
-4. toolchain fijada a 1.27.1;
+- refactors locales necesarios;
     
-5. foundation contracts anteriores están implementados;
+- retries permitidos;
     
-6. config estricta funciona;
-    
-7. capability registry falla cerrado;
-    
-8. ninguna ruta puede habilitar live;
-    
-9. architecture tests pasan;
-    
-10. tests/race/vet pasan;
-    
-11. coverage requerido pasa;
-    
-12. no se implementó scope posterior;
-    
-13. Agents-OS refleja resultado real;
-    
-14. no queda blocker del slice.
+- selección entre soluciones equivalentes dentro del contrato.
     
 
-Si falta una condición:
+Escalar exclusivamente:
 
-`PARTIAL` o `BLOCKED`.
+- falta de permisos;
+    
+- falta de source autorizado;
+    
+- credenciales inexistentes;
+    
+- gasto nuevo;
+    
+- modificación fuera del repo/scope;
+    
+- contradicción material entre SPECs;
+    
+- decisión irreversible;
+    
+- blocker después de dos correcciones;
+    
+- cambio necesario de arquitectura congelada.
+    
 
-No marques PASS parcial.
+Cuando escales:
 
----
-
-# 15. RESPUESTA FINAL
-
-Responde únicamente:
+entrega UNA solicitud compacta con:
 
 ```text
-STATUS: M2-S01_PASS | PARTIAL | BLOCKED
-
-REPO:
-- path:
-- module:
-- Go:
-- toolchain:
-
-IMPLEMENTED:
-- foundation:
-- config:
-- archtest:
-- cmd:
-
-QUALITY:
-- go test:
-- race:
-- vet:
-- coverage:
-
-GATES:
-- PASS:
-- NOT_RUN:
-- evidence:
-
-SCOPE:
-- files/packages created:
-- explicit deferred work:
-
-BLOCKERS:
-- none | exact blocker
-
-NEXT:
-- M2-S02 + M2-S03 barrier
+BLOCKER
+evidencia
+qué intentaste
+por qué no puede resolverse dentro del scope
+opciones
+recomendación técnica
+dato/decisión mínima requerida
 ```
-
-No pegues código completo en el chat.
-
-El código local y el proyecto Agents-OS actualizado son los entregables.
 
 ---
 
-# INSTRUCCIÓN FINAL
+# 21. CRITERIO DE ÉXITO M0
 
-**Empieza el desarrollo del Polymarket Engine.**
+M0 no termina porque:
 
-Implementa únicamente `M2-S01 Foundation`.
+- compile;
+    
+- tenga tests;
+    
+- exista una CLI;
+    
+- GLM responda;
+    
+- se genere un Markdown.
+    
 
-Hazlo sólido, pequeño y verificable.
+M0 termina únicamente cuando SPEC-04 tiene gate final y existe evidencia de que el sistema puede transformar el video autorizado en documentación y conocimiento estructurado, trazable y auditable conforme a las SPECs.
 
-No adelantes arquitectura ni slices.
+El resultado final debe indicar claramente:
+
+```text
+M0 PASS
+```
+
+o:
+
+```text
+M0 NO_GO
+```
+
+o:
+
+```text
+M0 BLOCKED
+```
+
+y por qué.
+
+---
+
+# 22. ENTREGA FINAL DEL MANAGER
+
+Al terminar, reporta únicamente lo necesario para el owner:
+
+```text
+M0:
+Branch:
+Baseline inicial:
+HEAD final:
+
+SPEC-00A:
+SPEC-00B:
+SPEC-01:
+SPEC-02:
+SPEC-03-A:
+SPEC-03-C:
+SPEC-04:
+
+Tests:
+QA:
+Video evaluado:
+VLM utilizado:
+ASR utilizado:
+
+A:
+C:
+
+Artefactos principales:
+Benchmark:
+
+Blockers / known limitations:
+
+Next:
+```
+
+Si M0 PASS:
+
+el siguiente trabajo NO es ampliar arquitectura de M0.
+
+El siguiente trabajo es preparar planificación específica de **M1 — Corpus → Documentation** basándose en los resultados físicos obtenidos.
+
+---
+
+# REGLA FINAL
+
+**Implementa. Prueba. Intenta falsar el resultado. Corrige. Integra.**
+
+No vuelvas a diseñar el sistema porque sí.
+
+No adelantes M1/M2.
+
+No maquilles gates.
+
+No inventes evidencia.
+
+Ejecuta M0 desde el freeze.
