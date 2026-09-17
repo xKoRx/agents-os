@@ -701,3 +701,151 @@ El boundary de órdenes aplica exactamente P03 §5: verificar grid/decimales de 
 `UniverseSpec` es un selector declarativo sobre tags, tipos de mercado, Event/Market IDs, fechas, protocol y relationship requirements. Catalog devuelve `UniverseRevision{members, exclusions_with_reason, coverage, observed_at}` y `UniverseChanged` al runtime. La estrategia puede filtrar elegibilidad semántica sobre esa vista; no pagina Gamma ni maneja subscriptions. El Subscription Planner une/refcuenta las demandas de estrategias, recorder y cuentas; retiene assets con órdenes/posiciones aunque salgan del universo. Un scan incompleto puede servir investigación marcada parcial, pero no probar “no existen oportunidades”.
 
 Sports consume eventos/markets/line/rules, books multiasset y, si declara necesidad, Sports WS con matching de `slug/gameId/team` versionado y verificado; un score sin join verificable no se asigna por similitud de título. NegRisk consume membresía/exhaustividad/Other versionados y protocol context. Ninguno necesita redefinir discovery. RTDS y proveedores futuros entran por `ExternalObservation{source, source_key, event_time, receive_time, payload_version, quality}` y el mismo recorder; el cálculo de fair value/payoff particular permanece en la estrategia.
+
+### M1.5 — Market data, books y cutover sin garantías inventadas
+
+**Unidad de ownership:** un asset pertenece a un solo book shard y a una sola conexión/epoch autora en cada momento. Un reader por conexión conserva orden de frames recibidos; los arrays/mensajes multiasset conservan ordinal interno. La serialización local por asset no prueba orden de generación del exchange. No se mezclan deltas de sockets distintos durante una migración: el nuevo epoch espera snapshot completo y el anterior queda fenced. Heartbeats: Market/User PING cada 10 s; Sports responde al ping del servidor de 5 s dentro del límite documentado de 10 s; RTDS PING 5 s si ese adapter se activa. Son contratos de transporte, no prueba de frescura del book.
+
+| Estado de book | Significado interno | Uso autorizado |
+|---|---|---|
+| `UNINITIALIZED` | Sin full snapshot de epoch actual | Sólo diagnóstico |
+| `SYNCING` | Subscription enviada; esperando `book`, constraints y mapping válidos | Sin oportunidades elegibles |
+| `OBSERVED_USABLE` | Snapshot completo y updates admitidos, sin anomalía conocida, requisitos de freshness cubiertos | SCREEN/SHADOW y LIVE sólo con política certificada; calidad **best-effort observada**, nunca garantía lossless |
+| `REST_OBSERVATION` | Foto REST independiente sin continuidad WS asociada | Triage/read-only o experimento explícito de snapshots; no baseline para mezclar deltas WS |
+| `STALE` | Venció presupuesto de frescura de observación/check, source time o transporte | Bloquea evaluación ejecutable; puede reportar diagnóstico |
+| `SUSPECT` | Overflow, regresión temporal significativa, crossed book, schema/ID conflict, control perdido o discrepancia de comprobación | Invalidación inmediata; nueva sincronización requerida |
+| `HALTED` | Cierre/estado de mercado incompatible, protocolo no admitido o shutdown | Sin nuevos intents; no elimina posiciones ni cancela hechos de fills |
+
+**Bootstrap normal:** suscribir Market WS con `initial_dump=true` y esperar `book` completo por asset (P05 §9). REST puede obtener constraints y una foto independiente durante ese período. Deltas anteriores al primer `book` se capturan pero no se aplican a una base REST ni se guardan para “replay después”: carecen de frontera comparable. El `book` inaugura el epoch local; sólo los mensajes recibidos después alimentan esa proyección. Timeout de initial book → renovar conexión/suscripción con backoff y permanecer bloqueado. Un book WS posterior sustituye niveles completos y aumenta revisión; no implica sanear incertidumbre de metadata/protocolo.
+
+**REST → WS:** no existe operación de merge certificable entre ambas superficies. La foto REST se mantiene en su namespace; el primer full WS la reemplaza como fuente de continuidad, sin pegar deltas buffered por timestamp. **WS → REST:** tras gap, REST permite observar estado actual o comparar niveles; no reconstruye el intervalo perdido. Para reanudar updates se crea epoch nuevo con snapshot WS. Un modo degradado exclusivamente REST puede producir estudios de snapshots con disclosure, pero no habilita live ni completa un dataset L2. El precio de esta decisión es menor disponibilidad, elegido sobre una sincronización ficticia.
+
+**Aplicación:** `book` reemplaza; `price_change` asigna size absoluto en lado/precio y size cero elimina; `last_trade_price` no muta niveles; BBO extendido no sustituye profundidad; tick change invalida constraints y candidatos, sin reescalar niveles antiguos. Books REST se reordenan canónicamente bids descendentes/asks ascendentes al normalizar (wire REST tiene best al final). Validar precios/rangos/unidades, sizes no negativos, asset/condition, duplicados de nivel, grid y BBO; un book vacío válido no equivale a error, pero no tiene profundidad ejecutable. Hash se conserva opaco, nunca se usa como cadena/checksum probado. No deduplicar mensajes de mercado sólo por timestamp/hash: dos observaciones iguales pueden ser legítimas; un delta size absoluto repetido no suma volumen.
+
+**Orden y comprobaciones:** no ordenar deltas por timestamp de fuente ni retrasar mensajes para inventar una secuencia. El orden de recepción capturado manda para reproducir nuestro estado. Una regresión/dato incompatible se registra y vuelve `SUSPECT`; igualdad de timestamps no permite conocer causalidad. Comprobación REST periódica por sample/universo activo captura intervalo request→response y revisiones WS a ambos extremos; diferencias con tráfico concurrente son `INCONCLUSIVE`, no prueba de corrupción. Coincidencia de niveles/hash aporta evidencia limitada; ni siquiera una coincidencia demuestra ausencia de gaps. Una discrepancia no explicada dispara nueva sincronización, sin parche selectivo de niveles. Conservar métricas de falsos bloqueos para ajustar políticas con evidencia.
+
+**Frame multiasset:** el Frame Builder solicita a los owners un corte local `capture_seq=C` y conserva la revisión de cada book/metadata/regime disponible a ese corte; los shards confirman un watermark procesado (también para posiciones sin mutación relevante). Entrega un vector inmutable, no lecturas sucesivas de punteros “latest” cambiantes. La antigüedad de cada book, la diferencia de receive times, source times con incertidumbre y el mayor offset durable forman parte del frame. Un corte local es coherencia de nuestra observación, **no snapshot simultáneo del mercado**. Si un shard no llega al corte dentro del budget, el frame no es elegible; los demás consumidores siguen. Coalescing y policy de corte se versionan/capturan.
+
+`DataRequirements` fija máxima edad desde observación/check de book, edad de metadata/fees, clock uncertainty y skew entre assets; silence budget y edad desde último cambio son métricas separadas para no tratar automáticamente un mercado quieto como desconectado. En ausencia de criterio aprobado, live falla cerrado. Antes de emitir intent se revalida el frame y, antes de enviar, la lease de calidad/constraint revision; un cambio lo invalida y exige una nueva evaluación. Ni esto ni la firma limit price garantizan fills múltiples ni cancelan una race posterior al último check.
+
+### M1.6 — Recorder, evidencia durable y replay
+
+**Contrato de captura:** se registra cada frame entrante y respuesta REST relevante antes de publicar su efecto, más solicitudes públicas, subscription/control events, errores, clock samples, config/universe changes, admission/quality transitions y decisiones. Capturar el payload wire disponible sin transformaciones de negocio, acompañado por envelope versionado. Los bytes secretos de auth, cookies, headers HMAC y mensajes User WS auth se excluyen/redactan **antes** del journal; la redacción tiene versión y lista de campos. Payloads privados de cuenta tienen storage/ACL separados. El replay del dominio no depende de secretos ni de una firma reutilizable.
+
+| Campo de envelope | Semántica |
+|---|---|
+| `capture_id`, `boot_id`, `capture_seq` | Identidad única del journal y orden total local asignado por un único admisor; no orden global Polymarket |
+| `surface`, `connection_id`, `epoch`, `frame_ordinal`, `request_id` | Fuente, fencing y correlación; una respuesta REST conserva tiempos de inicio/fin de su request |
+| `received_wall`, `received_mono_offset`, `source_time_raw`, `source_unit`, `source_time?` | Hora local vs fuente y precisión; source time puede faltar o ser inválido sin reemplazo silencioso |
+| `schema_version`, `normalizer_version`, `config_revision`, `content_hash` | Interpretación reproducible y trazabilidad |
+| `payload_bytes`, `redaction_policy`, `quality/control_kind` | Evidencia raw permitida o control explícito de pérdida/cambio |
+| `segment_id`, `offset`, `length`, `checksum` | Ubicación y detección de escritura parcial/corrupción |
+
+**Formato propuesto:** journal append-only de records length-prefixed con versión, envelope, bytes y CRC por record; segmentos acotados por bytes/tiempo, footer con rango/count/SHA-256 y enlace al hash previo. Un writer secuencial, batch/group commit configurable y `fsync` antes de avanzar `durable_seq`. Segmentos sellados se comprimen fuera del hot path y quedan inmutables, con checksum del contenido lógico y del comprimido. Rename/manifest y directorio se sincronizan al sellar. Checksums detectan corrupción; no prueban que el proveedor envió todo ni protegen contra un administrador malicioso que reescriba toda la cadena de hashes.
+
+**Política por defecto: durable-before-publish.** Books/estrategias sólo consumen records hasta `durable_seq`. La cola entre socket y writer es acotada; si no puede admitir un frame, se revoca inmediatamente el estado elegible del epoch por una señal de seguridad fuera de la cola saturada, se corta/reconecta transporte y se crea discontinuidad. Si el disco impide persistirla, readiness cae y el siguiente arranque parte de un boot no cerrado con intervalo final desconocido. No se promete contar los mensajes perdidos antes de admisión. No liberar decisiones usando datos que sólo viven en RAM; no configurar “drop oldest” en evidencia L2.
+
+**Crash:** escanear último segmento hasta el último record completo y checksum válido, preservar evidencia del sufijo inválido, recuperar manifest y watermarks; nada posterior a la frontera demostrable se considera capturado. Registros físicamente presentes después del último watermark publicado pueden conservarse como evidencia recuperada, pero no se afirma que hayan sido vistos por estrategias. Reinicio abre boot/epoch nuevos, marca intervalo entre última evidencia y nuevos snapshots como discontinuidad y reconcilia cuenta antes de live. Un crash puede perder frames en kernel/cola/no-fsync; el diseño hace esa pérdida visible, no imposible. Un fallo de NVMe/host puede perder todo lo no respaldado fuera de él.
+
+**Dos productos de replay, sin conflación:**
+
+1. **Replay de observación:** reconstruye reducers/books a partir de exactamente los records durables seleccionados, incluidos gaps, snapshots y cambios conocidos a cada `capture_seq`. Determinista para el mismo manifest, código, parámetros y seed; no reconstruye cotizaciones que no se capturaron ni valida orden remoto.
+2. **Replay de decisiones entregadas:** además usa el journal de `DeliveryFrame{run_id, ordinal, trigger, cut_seq, revision_vector, quality, virtual_time}` y resultados/controles de runtime. Reproduce coalescing, skips y el input exacto de la estrategia. Un delivery sin resultado durable al crash queda `INCOMPLETE`; no se atribuye una decisión o efecto live por reejecutarlo.
+
+El scheduler registra durablemente el descriptor del frame antes de invocarlo; luego registra resultado determinista/errores. Para recuperar un corte pasado se usan checkpoints derivados con offsets/checksum y journal, no un puntero a “latest”. El replay no carga credenciales ni puede enviar órdenes. El reloj virtual se mueve por el tiempo de delivery/recepción definido en el manifest; timers son eventos registrados/ordenados. Randomness sólo por seed inyectada, maps se serializan en orden canónico y reducers no dependen del scheduling Go. No se ordena por event-time para llenar huecos; una simulación alternativa con reordenamiento es otro experimento y otra versión de dataset.
+
+**Manifest de experimento:** hashes/rangos de segmentos, coverage por stream/asset/epoch, holes, checkpoints, revisiones metadata/rules/fees/relationships y su disponibilidad temporal, normalizador, estrategia/binario/Go toolchain/dependencies, parámetros, seed, clocks, fill/cost/risk models, delivery policy, sample split y política de censura. Inputs posteriores al cutoff nunca rellenan retroactivamente metadata “conocida”. Dataset parcial permanece parcial; un estudio que cruza una discontinuidad termina ese episodio o lo etiqueta no evaluable según regla ex ante. Cada exclusión se cuenta en denominadores para evitar selección de sólo episodios limpios rentables.
+
+### M1.7 — Persistencia, datasets, retención y recuperación
+
+| Store propuesto | Qué guarda / owner | Garantía, índices y límites |
+|---|---|---|
+| SQLite embebido, WAL, synchronous FULL | Metadata versionada, registry/manifests, órdenes/intents/reservas/fills/ledger y checkpoints, vía owners | Transacción ACID local; writer serial con transacciones breves. Índices ID/protocol/account/status/event y known-at; raw stream no se inserta fila por fila aquí |
+| Capture journal segmentado | Raw sanitizado y eventos de control/delivery; Capture | Append secuencial durable; índice reconstruible `(surface, asset/condition, receive-range, seq-range)→segment/offset`; el índice no es autoridad |
+| Execution private store | Payload exacto preparado, order hash, intent, attempt y auth profile **sin claves**; Coordinator | Bytes de orden firmada cifrados en reposo como artefacto sensible; headers HMAC no se persisten. Escritura durable antes del intento; clave de cifrado externa a DB/backups |
+| Parquet particionado | Datasets normalizados/episodios/metrics/scorecards, derivados de manifests | Partición por dataset/date/surface y rangos, evitando archivo por asset minúsculo; lineage y schema version. Dinero como decimal/int exacto, no float obligatorio |
+| In-memory | Books, snapshots, caches, colas y runtimes | Reconstruibles; nunca única prueba de intent enviado, fill o saldo disponible |
+
+**Justificación y reversibilidad:** SQLite evita servidor/operación adicional y permite atomicidad de cuenta en un host. El writer único puede convertirse en límite; analytics pesado no lee la base operacional durante transacciones críticas. PostgreSQL sería alternativa si profiling muestra contención, múltiples writers inevitables o consultas operativas incompatibles; no está descartado para siempre. Repositorios por owner y schemas de exportación lógicos aíslan el motor; una migración requerirá reconciliación y prueba de equivalencia, nunca doble escritura live sin diseño. Parquet y journal versionado permiten cambiar motor analítico sin alterar el dominio. La elección concreta de driver Go, librería decimal/Parquet y versions corresponde a selección técnica de M2 bajo estos contratos, no abre investigación de protocolo.
+
+**Consistencia entre journal y DB:** no hay transacción atómica filesystem+SQLite. Capture sella primero evidencia; DB confirma proyección y `applied_seq` en una transacción. Al reiniciar, reprocesar desde `applied_seq+1` con dedup y claves únicas; segmentos durables huérfanos se indexan, referencias DB a evidencia ausente invalidan integridad. Las decisiones de cuenta viven primero en DB (reserva+intent+evento outbox en la misma transacción); su exportador al journal es idempotente por event ID. Nadie envía desde la outbox genérica: sólo Execution con estado/attempt autorizado. No exigir a ambos stores un “exactly once” distribuido ficticio.
+
+**Retención propuesta para decisión del owner:** raw de mercado no pineado 30 días, datasets derivados no pineados 90 días, manifests/scorecards/config/rules/ledger de cuenta retenidos durante la vida del proyecto; segmentos necesarios para experimentos revisados quedan pineados hasta liberación explícita. Son defaults operativos propuestos, no SLA del exchange. GC sólo elimina segmentos sellados sin referencias después de backup verificable si la política lo exige; borrar un input pineado convierte el experimento en `NOT_REPRODUCIBLE`, nunca en resultado intacto. Capacidad mínima se estima con bytes/s medidos × ventana × overhead/backup, sin inventar volumen de mercado.
+
+**Disco:** budgets separados para raw, DB, derivados y reserva operacional. Low-watermark frena replay/export y nuevas suscripciones; critical-watermark bloquea oportunidades/nuevos sends, mantiene reconciliación/cancel mientras sea posible y alerta. No borrar raw pineado para sostener live ni llenar el volumen hasta que SQLite falle. Tamaño/tiempo de segmento, batch fsync, headroom y retention son configuración validada y capturada.
+
+**Migraciones:** schema version y compatibilidad explícitos, backup previo y writer detenido; transacción cuando sea posible. App antigua rechaza schema futuro; rollback restaura sólo bajo reconcile, porque restaurar DB vieja no deshace órdenes externas. Raw nunca se reescribe por migración; nuevo normalizador genera dataset nuevo.
+
+**Backups:** snapshot consistente de SQLite por mecanismo de backup del motor (no copiar sólo `.db` ignorando WAL), más segmentos sellados, manifests/pins y key references; cifrado y copia a destino fuera del host como requisito para resiliencia ante pérdida física. No es otro nodo de ejecución. Snapshot registra fronteras DB/journal, outbox pendiente y hashes; restore valida esos vínculos, reproduce reducers y abre books nuevos. Propuesta inicial: snapshot DB horario, copia de segmentos al sellar y verificación diaria; RPO/RTO y destino pendientes owner, medidos mediante restore completo. Sin copia externa sólo se certifica crash recovery local, no recuperación ante pérdida del host.
+
+### M1.8 — Contrato Go de estrategia y modos
+
+Interfaces **de diseño**, deliberadamente sin implementación. El engine entrega todos los servicios comunes; la estrategia calcula elegibilidad, detecta oportunidades y evalúa su lógica particular. No recibe conexiones, repositorios, signer, wallet ni un callback de envío.
+
+```go
+type Strategy interface {
+    Describe() Descriptor
+    Universe() UniverseSpec
+    RequiredData() DataRequirements
+    Start(context.Context, RunContext) error
+    Detect(context.Context, Frame) ([]Opportunity, error)
+    Evaluate(context.Context, Opportunity, EvaluationContext) (Assessment, error)
+    Observe(context.Context, Feedback) error
+    Stop(context.Context, StopReason) error
+}
+
+type Factory interface {
+    New(Parameters) (Strategy, error)
+}
+
+// Contratos conceptuales: todos los valores entregados son inmutables.
+// RunContext: run/strategy IDs, versions, virtual clock, seeded RNG,
+//             parameters, declared metric sink; sin acceso a red/secretos.
+// Frame: delivery ordinal + cut seq + UniverseRevision + BookSnapshots +
+//        RegimeSnapshots + RelationshipSnapshots + ExternalObservations + quality.
+// EvaluationContext: mismo frame + DepthQuote/CostEnvelope + AccountView
+//                    del modo + RiskPolicyView; nunca objetos mutables.
+// Assessment: ACCEPT | REJECT | INCONCLUSIVE, reason codes, differentiated
+//             metrics, bounded ActionCandidate y supuestos explícitos.
+// Feedback: UniverseChanged | QualityChanged | EvaluationResult |
+//           SimulatedExecution | LiveExecution | Timer | StopRequested.
+```
+
+`Descriptor` exige ID, versión de código/schema, hipótesis asociada, descripción de mecanismo y metric definitions. `UniverseSpec` y `DataRequirements` se validan antes de arrancar; una estrategia que requiere dato no disponible queda `WAITING_DATA/UNSUPPORTED`, no recibe campos cero sustitutos. `Start` se ejecuta una vez por instancia; `Observe(UniverseChanged)` permite incorporar/excluir miembros antes de `Detect` sobre esa revisión. `Detect` sólo produce candidatos no vinculantes; Economics construye cotizaciones y costes comunes; `Evaluate` aplica factibilidad/modelo particular sobre el mismo frame. Risk siempre revisa el resultado después. `Observe` recibe resultados posteriores sin convertirlos en prueba de fill si son simulados. `Stop` es idempotente desde la perspectiva del runtime y no coloca ni cancela órdenes.
+
+`ActionCandidate` contiene una o varias legs tipadas de asset, side, limit/size o presupuesto, prioridad, vigencia, restricciones de parcialidad y máximo riesgo residual. Para acciones sobre posiciones sólo referencia capability y inputs tipados; no admite dirección arbitrary/calldata. Economics retorna quantities cuantizadas y coste por escenario. Una estrategia puede aportar payoff states/model outputs como datos auditables, nunca reemplazar el motor común de sizing o inventar conversiones habilitadas. Bounds de cardinalidad de oportunidades/legs/payloads impiden resultados ilimitados.
+
+| Modo | Fuente / misma lógica Strategy | Destino y permiso |
+|---|---|---|
+| `SCREEN` | Datos actuales o dataset declarado, universe/Detect/Evaluate idénticos | Reporta candidatos/costes; no abre orden real ni simulada por defecto; no secrets |
+| `REPLAY` | Manifest cerrado, reloj virtual, mismos reducers y estrategia | Simulator bajo optimistic/base/stress; cuenta virtual y resultados reproducibles; red bloqueada |
+| `SHADOW` | Datos actuales capturados, reloj de delivery y misma estrategia | Simulator con órdenes/fills sintéticos y cuenta virtual compartida; cero envío venue |
+| `LIVE` | Datos actuales y feedback de cuenta real | ExecutionMode comienza `LIVE_DISABLED`; sólo un lease central certificado habilita el gateway real; no estrategia “live especial” |
+
+Factory crea instancias aisladas por experimento; no hot-load de plugins Go ni swaps de código sobre órdenes abiertas. Cada instancia procesa un callback a la vez. Estado propio sólo en su actor; reinicio conservador crea instancia nueva desde manifest y replay de inputs, o checkpoint versionado validado contra replay. No se promete que un checkpoint arbitrario escrito por la POC sea confiable. Para reproducibilidad no usar I/O, reloj global, goroutines propias, random global ni iteración de maps sin orden dentro de callbacks; se verifica en revisión/fixtures y comparación de replay.
+
+**Errores y aislamiento realista:** error tipado distingue `NO_SIGNAL`, `INSUFFICIENT_DATA`, `INVALID_MODEL`, `TRANSIENT_INPUT` y fallo de software. Panic recuperable en callback → instancia `FAILED`, retiro de sus candidatos y política de cancel de sus remanentes a través del Coordinator; no se recupera balance inventándolo. Deadline cancela contexto; resultado tardío se descarta mediante run generation. **Go en un proceso no ofrece sandbox de memoria, bloqueo de syscalls ni kill seguro de goroutine**: estrategias son código confiable revisado. Si un callback ignora cancelación, no se inicia otro callback/instancia que acumule goroutines; se cerca la instancia, se revoca live y se reinicia el proceso de forma controlada si no drena. Si se requiere ejecutar código hostil o aislamiento físico fuerte, excede este baseline y vuelve a decisión del owner. Una API sin secretos evita acceso implícito, no constituye defensa contra código malicioso en el mismo proceso.
+
+### M1.9 — Hypotheses, experimentos y simulación
+
+Registry guarda `PE-xxx`, mecanismo, evidencia pro/contra, required data, universo/exclusiones, capacidad/lock/latency, experimento mínimo y parent revision. No convierte las 30 familias del ERC en 30 módulos. Cheap triage consulta catálogo/datos disponibles y cotización de costes antes de activar captura amplia: `NO_DATA` es bloqueo/inconclusión, `NO_SIGNAL` es evidencia sólo si coverage suficiente y `BAD_ECONOMICS` requiere modelo/coste explícitos.
+
+| Artefacto lógico dentro del framework | Contenido mínimo |
+|---|---|
+| Protocol de experimento | Hipótesis falsable, estimando/unidad estadística, baseline/negative controls, exclusiones, stopping rule, sample requirement, GO/ITERATE/NO_GO ex ante |
+| Run manifest | M1.6 + versiones parámetros/calculadores, universo conocido-a-fecha, escenarios, estado de datos, gastos de cómputo/humanos, bankroll virtual |
+| Scorecard | Cobertura y discontinuidades; señales totales/independientes; lifetime; net edge por depth/fee/latency; fill/partial/legging rates; capacity; PnL bruto/neto/realizado/no realizado; lock/capital-turns; drawdown y worst loss; markouts/adverse selection; sensitivity y caveats |
+| Statistical view | Separar calibración Brier/log-loss, retorno de regla y ponderación de flujo. Splits temporales y por parent event, OOS, censura por mercados sin resolver y múltiples tests declarados; no holdout reciclado sin nueva revisión |
+| Outcome | `GO` al siguiente gate, no permiso live; `ITERATE` con cambio falsable; `NO_GO` con evidencia suficiente; `INCONCLUSIVE` cuando datos/modelo/sistema impiden concluir |
+
+**Fill engine común:** órdenes virtuales con submit-time, delay, limit/policy, remanente, cancel-latency y fill events. BUY barre asks y SELL bids al tiempo simulado de llegada, integra niveles para VWAP y rechaza cantidad no cubierta; FOK exige total y FAK admite parcial. En snapshots discretos no se interpola liquidez no observada. Un book agregado no revela FIFO, prioridad individual ni nuestra queue: resting/touch no es fill probado. Last trade y BBO no bastan para asignar todos los fills. El modelo maker estima/boundea queue y fill usando evidencia disponible y declara su incertidumbre; no certifica price-time priority.
+
+| Escenario | Liquidez/latencia/fills | Interpretación |
+|---|---|---|
+| Optimistic | Profundidad observada disponible, latencia baja parametrizada, queue favorable bajo evidencia mínima declarada | Cota exploratoria, nunca evidencia suficiente de promoción |
+| Base | Delays/latencia medidos o supuestos explícitos, haircut de profundidad y queue conservadora calibrable, partials y cancel races | Resultado candidato sujeto a sensibilidad; si faltan datos de calibración se etiqueta `UNCALIBRATED` |
+| Stress | Mayor delay, reducción de depth, adverse selection, patas incompletas, fallo de cancel, settlement/dispute lock prolongado y costes altos | Riesgo residual y fragilidad; magnitudes preregistradas por experimento, no constantes universales |
+
+Cada run simulado posee un ledger de liquidez **virtual consumida** por asset/precio/versión y cuenta: dos estrategias no pueden reutilizar la misma profundidad en el mismo escenario como si ambas fueran primeras. Actualizaciones posteriores no prueban reposición causada por nosotros; regla de replenishment conservadora y sensibilidad se versionan. Replay histórico no modela fielmente impacto contrafactual del bot sobre el mercado ni reacción de competidores. Fills simulados, órdenes observadas y liquidaciones chain se etiquetan de forma inequívoca.
+
+Baskets son multi-leg no atómicos: simular orden/tiempos de legs, partials, drawdown/lock intermedio y condiciones de abandono. Si la tesis exige conversión deshabilitada o atomicidad no disponible, su resultado queda `CONDITIONAL_UNEXECUTABLE`; puede falsarse económicamente, pero no obtener GO live. El motor provee ejecución/coste de legs y soporte de payoff tables; no implementa el payoff específico de Sports/NegRisk. `GO` exige que la conclusión sobreviva los supuestos aprobados y datos aptos, no un threshold global de ROI, número de trades o latencia inventado.
