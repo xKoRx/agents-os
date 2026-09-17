@@ -137,18 +137,19 @@ PostgreSQL/MongoDB authorities (existentes, intocables)
 
 ## Read surface contract
 
-### Comandos y documentos (todos JSON a stdout, `schema` obligatorio)
+### Comandos y documentos (todos JSON versionados a stdout; las superficies F-05-I nuevas usan `schema`, `run get` conserva `schema_version` del modelo preexistente ForgeResult)
 
 | Comando | Salida | Autoridad leída |
 |---|---|---|
 | `sqx-flowkit campaign get <ForgeCampaignRef>` | `sqx-forge-campaign-result.v1` (modelo existente) | PG `forge_campaigns*` vía `LoadForgeCampaignResult` |
-| `sqx-flowkit campaign list [--limit N] [--cursor C]` | `sqx-campaign-list.v1` (ref, status, created_at; orden `created_at DESC, ref ASC`) | PG `forge_campaigns` (listado presentación; identidad sigue siendo el ref exacto) |
+| `sqx-flowkit campaign list [--limit N] [--cursor C]` | `sqx-campaign-list.v1` (`schema`, `campaigns[]` (ref, status, created_at), `next_cursor` string\|null SIEMPRE presente; orden `created_at DESC, ref ASC`) | PG `forge_campaigns` (listado presentación; identidad sigue siendo el ref exacto) |
 | `sqx-flowkit run get <FlowRunRef> [--ranking name]` | `forge-result.v1|v2` (modelo existente) | PG + Mongo vía `forge.Service.Result` |
 | `sqx-flowkit run stages <FlowRunRef>` | `sqx-run-stage-timeline.v1` + funnel embebido | PG `stage_executions`/`flow_run_strategies` |
 | `sqx-flowkit strategy get <StrategyRef>` | `sqx-strategy-inspect.v1` | PG `strategies`/`strategy_magic`/`strategy_versions`/`handoff_manifests`/`handoff_deliveries`/`flow_run_strategies` |
 | `sqx-flowkit release-matrix` | `sqx-release-matrix.v1` validado | artefacto embebido (`sqx/core/releasematrix/release-matrix.json`) u override `--matrix` |
 
-- `campaign get`/`run get`/`strategy get` resuelven **sólo por ref exacto**; `list` es paginación de presentación con cursor explícito y nunca define identidad ("latest" no es ref válido y debe fallar `INVALID_ARGUMENT`).
+- `campaign get`/`run get`/`strategy get` resuelven **sólo por ref exacto**; `list` es paginación de presentación y nunca define identidad ("latest" no es ref válido y debe fallar `INVALID_ARGUMENT`).
+- **Paginación `campaign list` — corrección pre-release F05I-PAGINATION-C2 (2026-09-16, decide F05I-PAGINATION-C1):** `sqx-campaign-list.v1` emite `next_cursor` (`string | null`, SIEMPRE presente en el JSON) como **server-issued opaque cursor**. Algoritmo N+1: el read service valida `limit ≥ 1` (y overflow-safe del sondeo) ANTES de consultar, hace la query con `LIMIT N+1`, emite exactamente N filas; si llegó la fila N+1, `next_cursor` codifica el boundary (created_at, ref) de la **última fila EMITIDA** (jamás la N+1); si no llegó, `next_cursor: null` (no existe fila posterior al boundary según el estado durable observado por esa query). Página vacía válida: `{"schema":"sqx-campaign-list.v1","campaigns":[],"next_cursor":null}`. El consumidor trata el token como opaco: nunca lo construye ni decodifica, sólo lo reenvía (`campaign list --cursor <next_cursor>`); el codec `EncodeCampaignCursor`/`DecodeCampaignCursor` vive en `sqx/core/forge` (encoding actual base64url de JSON compacto: detalle reservado del servidor, no obligación del cliente). Sigue siendo schema `sqx-campaign-list.v1` (F-05-I nunca fue released; no v2). Registro: sin migration, sin cambio de port (`ForgeCampaignListReader` intacto), sin cambio de adapter/SQL (T2 frozen); T4 reabierto únicamente por este delta de pagination; ningún gate físico tocado.
 - `strategy get` (shape): identity (strategy_ref, canonical_strategy_id opaco, instrument/direction/timeframe desde la fila durable, logical_type/classification_version si existen), participation[] (flow_run_ref + role, orden determinístico `participated_at, flow_run_ref`), `magic` (objeto `{registry_namespace, magic_decimal, allocation_ref, assigned_at}` o `null` si no hay fila), `strategy_versions[]` (`version_ref, payload_digest, sealed_at`; orden `sealed_at, version_ref`), `handoff[]` (`idempotency_key, payload_digest, wave_key, version_ref, decision_ref, created_at` + `delivery {state, updated_at}`; orden `created_at, idempotency_key`).
 - **Provenance:** cada elemento lleva refs durables exactas (FlowRunRef, StrategyRef, DecisionRef, RankingSnapshotRef, ScoreRef, EvaluationRef donde el modelo ya los expone, StageExecutionRef, allocation_ref, version_ref, idempotency_key). Prohibido: lookup por latest, filename como identity, timestamp como join, parse de CanonicalStrategyID, rankings como autoridad de membership. Ausencia opcional = `null` explícito; nunca ref inventada.
 
