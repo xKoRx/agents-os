@@ -15,7 +15,7 @@ Para compactar las tablas, `G=https://gamma-api.polymarket.com`, `C=https://clob
 | `GET /markets/{id}`; `GET /markets/slug/{slug}` | Gamma market ID o slug | Market | [S39] |
 | `GET /events/{id}/tags`; `GET /markets/{id}/tags` | Gamma ID | Tag[] | [S39] |
 | `GET /markets/{id}/description` | Gamma market ID | descripción/rules relacionadas | [S39] |
-| `POST /markets/information`; `POST /markets/abridged` | batch body según OpenAPI | Markets batch, `id`/condition/tokens | [S39]; **RESEARCH GAP**: cuerpo/restricciones exactas no reextraídos |
+| `POST /markets/information`; `POST /markets/abridged` | JSON `MarketsInformationBody` [S39], schema de referencia §19.1.1; secundarios OUT_OF_SCOPE de discovery MVP | `Market[]`; no reemplaza `/markets` y `/events` keyset | [S39] |
 | `GET /tags`; `GET /tags/{id}`; `GET /tags/slug/{slug}` | filtros + offset según ruta | Tag.id/slug | [S39] |
 | `GET /tags/{id}/related-tags`; `GET /tags/slug/{slug}/related-tags`; `GET /tags/{id}/related-tags/tags`; `GET /tags/slug/{slug}/related-tags/tags` | estado/filtros | ids/objetos relacionados | [S39] |
 | `GET /series`; `GET /series/{id}`; `GET /series-summary/{id}`; `GET /series-summary/slug/{slug}` | offset o id/slug | Series ID y agrupación | [S39] |
@@ -33,6 +33,7 @@ Para compactar las tablas, `G=https://gamma-api.polymarket.com`, `C=https://clob
 |---|---|---|---|
 | `GET /time` | — | tiempo servidor Unix | [S40] |
 | `GET /book?token_id={assetId}` | `token_id` obligatorio | `market` condition, `asset_id`, `timestamp`, `hash`, `bids[]`,`asks[]`, `min_order_size`,`tick_size`,`neg_risk`; 400 token inválido, 404 sin book | [S07][S40][S18] |
+| `GET /books` | query `token_ids` string obligatorio (ver serialización S40); sin body | `OrderBookSummary[]`; 400 bad token IDs; sin snapshot atómico multi-asset publicado | [S40] |
 | `POST /books` | JSON array `{token_id:string}[]`, hasta **500** | array de books por asset; 400 malformed/batch excesivo | [S07][S40][S18] |
 | `GET /price` | `token_id`, `side=BUY|SELL` | `{price: string}`; 400 side/token, 404 book | [S40][S18] |
 | `GET /prices` | `token_ids` y `sides` CSV alineados | map asset→side→price | [S40] |
@@ -42,13 +43,13 @@ Para compactar las tablas, `G=https://gamma-api.polymarket.com`, `C=https://clob
 | `GET /last-trade-price`; `GET /last-trades-prices`; `POST /last-trades-prices` | token single, CSV batch o body array, máximo documentado POST 500 | último trade precio, side/time según variante | [S40] |
 | `GET /fee-rate?token_id={assetId}`; `GET /fee-rate/{token_id}` | token/asset ID | `{base_fee:int64}` **basis points**; no confundir con coeficiente decimal categoría de [S21] | [S21][S40][S40a] |
 | `GET /tick-size?token_id={assetId}`; `GET /tick-size/{token_id}` | token | tick efectivo; 400 id/404 mercado | [S40][S18] |
-| `GET /neg-risk?token_id={assetId}` | token | flag NegRisk del contexto CLOB; no discrimina por sí solo generación de position protocol | [S40] |
+| `GET /neg-risk?token_id={assetId}`; `GET /neg-risk/{token_id}` | token | flag NegRisk del contexto CLOB; no discrimina por sí solo generación de position protocol | [S40] |
 | `GET /prices-history` | `market={assetId}` obligatorio; `startTs`,`endTs`, `interval` (`max`,`all`,`1m`,`1w`,`1d`,`6h`,`1h`), `fidelity` minutos | `{history:[{t,p}]}`; precio histórico, NO L2; 400 filtros | [S40][S31] |
 | `POST /batch-prices-history` | batch de asset/rango/fidelity según schema | series múltiples; **RESEARCH GAP**: body límite exacto no revalidado | [S40] |
 | `GET /clob-markets/{condition_id}` | condition ID | trading market, `fd`/fees, tokens, delay, precision/status | [S40][S40b] |
 | `GET /markets-by-token/{token_id}` | asset ID | market/condition reverse mapping | [S40] |
 | `GET /simplified-markets`; `GET /sampling-markets`; `GET /sampling-simplified-markets` | `next_cursor` opaco, filtros endpoint | `{data:[...],next_cursor,count,limit}`, condición y tokens | [S40] |
-| `GET /markets/live-activity`; `GET /markets/live-activity/{id}` | market/criterios según ruta | actividad corriente | [S40] |
+| `POST /markets/live-activity`; `GET /markets/live-activity/{condition_id}` | POST JSON `string[]` condition IDs; GET required path condition ID | POST `LiveActivityMarket[]`, GET `LiveActivityMarket`; optional transient analytics, OUT_OF_SCOPE canonical book/discovery | [S40] |
 | `GET /ohlc`; `GET /orderbook-history` | `startTs` requerido; `/ohlc` necesita `asset_id`, fidelity enum `1m,5m,15m,30m,1h,4h,1d,1w`; `/orderbook-history` necesita `market` condition o `asset_id`; `limit<=1000` | mencionados explícitamente por referencia vigente de errores; esquema/retención **NO DOCUMENTADOS EN S40**; evidencia y probes §17 [S18][S40] |
 
 `GET /fee-rate` es fuente de tarifa base en **bps**; no convertir automáticamente `base_fee=30` en el `feeRate=0.07` de fórmula category sin confirmar relación de campos: son superficies y escalas diferentes. La migración CLOB v2 añade parámetros efectivos `fd.r`, `fd.e` y `fd.to` en CLOB market info. El contrato de cálculo de fee por trading no debe deducirse de un solo campo cuyo significado esté ambiguo. [S21][S40a][S32a]
@@ -72,7 +73,7 @@ El `midpoint=(bestBid+bestAsk)/2` no es fill price; `last_trade_price` es histó
 | `POST /orders` | L2 + firma individual | array wrappers, **1–15 órdenes**; array respuesta por orden, posibles resultados mixtos | [S15][S40][S18] |
 | `GET /data/order/{orderID}` | L2 | hash exacto → orden incluso terminal si todavía retenida | 400 ID/500 [S16] |
 | `GET /data/orders` | L2 | opcionales `id`,`market={conditionId}`,`asset_id`; `next_cursor` | estado actual + filtro por ID para terminal [S16] |
-| `GET /data/trades` | L2 | `id`, `market` condition, `asset_id`, `maker_address`,`after`,`before`, `next_cursor`; `{limit,next_cursor,count,data:[trade...]}` | 400 filtro/500, NO incluye órdenes nunca llenadas [S16] |
+| `GET /data/trades` | L2 | `id`, `market` condition, `asset_id`, **`maker_address` required según OpenAPI S40**, `after`,`before`, `next_cursor`; validar scope maker real, no inventar default; `{limit,next_cursor,count,data:[trade...]}` | 400 filtro/500, NO incluye órdenes nunca llenadas [S16] |
 | `GET /builder/trades` | Builder auth según operación | trades atribuidos a builder, cursor/filtros | [S16][S40] |
 | `DELETE /order` | L2 | JSON `{"orderID":"<hash>"}` → `{canceled:[],not_canceled:{...}}` | cuerpo HMAC exacto; 400 id [S16] |
 | `DELETE /orders` | L2 | JSON array de order hashes; máximo **1.000** IDs por request desde 2026-06-15; output cancelación parcial | **CONTRADICCIÓN DOCUMENTAL:** la prosa de Manage Orders [S16] aún indica 3.000, pero changelog oficial con fecha efectiva posterior lo redujo explícitamente a 1.000 [S32]. Prevalece la actualización específica fechada; OpenAPI raw no contrastado [S40] |
@@ -81,11 +82,12 @@ El `midpoint=(bestBid+bestAsk)/2` no es fill price; `last_trade_price` es histó
 | `GET /order-scoring`; `GET /orders-scoring`; `POST /orders-scoring` | L2 | `order_id` o IDs en query/body → bool/map id→bool | elegibilidad instantánea [S16][S24][S40] |
 | `GET /balance-allowance` | L2 | `asset_type`,`token_id` cuando conditional, `signature_type`; balance y allowances | CLOB cache ≠ ERC20 allowance on-chain; [S18][S40] |
 | `PUT /balance-allowance` y `GET /balance-allowance/update` | L2 (S40) | ambos query `asset_type` requerido, opcionales `token_id`, `signature_type`; PUT HTTP 200 `{}`; GET/update HTTP 200 `BalanceAllowanceResponse {balance,allowances}`. Refrescan datos CLOB, **no aprueban on-chain** | raw S40 parseado 2026-09-17 14:48 UTC; §19.1 y §20 [S40] |
-| `POST /heartbeats` | L2 | heartbeat account API | no confundir con PING WS [S40] |
+| `POST /heartbeats` | L2 | sin body, `HeartbeatResponse`; endpoint distinto de variante v1 | no confundir con PING WS [S40] |
+| `POST /v1/heartbeats` | L2 | JSON `HeartbeatRequest` → `HeartbeatV1Response` HTTP 200; 400 `HeartbeatErrorResponse`; 401/500 ErrorResponse | no asumir que habilitar un heartbeat implica cancel-all; contrato detallado §19.1.1 [S40] |
 | `GET /auth/ban-status`; `GET /auth/ban-status/closed-only` | L2 | account restriction; segundo retorna `{closed_only:boolean}` | closed-only admite reducciones únicamente [S16][S40] |
 | `GET /notifications`; `DELETE /notifications` | L2; auth/body de borrado sin revalidar | superficie de notificaciones cuenta, **NO requerida para reconciliar fills** | path+methods observados en SDK clásico; exact schema CURRENT **RESEARCH GAP** [S40][S36a] |
 | `GET /rewards/markets/current` | público | config activa por mercado | [S24][S40] |
-| `GET /rewards/markets/{id}`; `GET /rewards/markets/multi` | público | config raw individual/múltiple | [S24][S40] |
+| `GET /rewards/markets/{condition_id}`; `GET /rewards/markets/multi` | público | config raw individual/múltiple | [S24][S40] |
 | `GET /rewards/user`; `GET /rewards/user/total`; `GET /rewards/user/percentages`; `GET /rewards/user/markets` | L2 o público según endpoint; consultar auth propia | earnings, totals, percentage, mercado/config; params user,date,signature_type según ruta | [S24][S40] **RESEARCH GAP** campos/auth por ruta no extraídos |
 | `GET /rebates/current` | credencial maker según spec | rebate actual | [S23][S40] **RESEARCH GAP** query/auth/schema exactos |
 

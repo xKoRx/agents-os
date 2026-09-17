@@ -81,7 +81,7 @@ Rechazo puede ser `{success:false,errorMsg:"not enough balance / allowance",orde
 | `orderType:FOK` | fill inmediato **total** o kill | no resto abierto; `postOnly` incompatible; la validez del snapshot de profundidad no garantiza fill |
 | `orderType:FAK` | ejecuta disponible inmediato, mata resto | partial fill válido; `postOnly` incompatible |
 | `postOnly:true` | agrega liquidez o rechaza si cruza | sólo `GTC/GTD`, rechazo crossing, no orden maker creada si rechazada |
-| `deferExec` | parámetro wrapper booleano presente en contrato | `false` documentado para flujo inmediato; significado exacto de `true`/interacción con tipos: **RESEARCH GAP** de schema y/o NOT DOCUMENTED si schema carece de semántica |
+| `deferExec` | booleano opcional en HTTP `SendOrder`; SDK pinned serializa `false` tanto individual como batch | `true` no tiene semántica/recuperación pública verificable: **DISABLED / NOT DOCUMENTED**; sólo `false` dentro del MVP [S34e][S40] |
 | Batch `POST /orders` | hasta 15 órdenes firmadas separadas | resultado individual por orden; algunos aceptados y otros rechazados, no batch atomic de business outcome |
 
 Una **market order** no es nueva estructura EIP-712: es orden límite agresivamente valorada y política `FAK`/`FOK`. Los helpers SDK `estimateMarketPrice` (BUY budget USD, SELL shares) no garantizan precio de ejecución final y no son endpoint matching distinto. `postOnly` en FAK/FOK no es una combinación válida. [S15][S18]
