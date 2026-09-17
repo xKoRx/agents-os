@@ -1,9 +1,16 @@
 ---
 type: change_log
 schema_version: 1
-created: 2026-09-17
-project: "[[BACKUP-DR-OWNER-PROJECT]]"
+scope: session
+created: "2026-09-17"
+updated: "2026-09-17"
 area: "[[Aranea]]"
+project: "[[BACKUP-DR-OWNER-PROJECT]]"
+entities:
+  - "[[BACKUP-DR-OWNER-PROJECT]]"
+related:
+  - "[[BACKUP-DR-CONTRACT]]"
+  - "[[agent-project-01-critical-config-backup]]"
 tags:
   - kind/change-log
   - area/aranea
