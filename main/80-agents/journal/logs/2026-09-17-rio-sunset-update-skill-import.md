@@ -38,6 +38,7 @@ tags:
 - **Archivo(s):**
   - `30-resources/agents/skills/rio-sunset-update/` — skill canónica, referencias y gates ejecutables.
   - `30-resources/agents/skills/meli-agent-dev/SKILL.md` — routing de sunsets RIO.
+  - `30-resources/agents/00-index.md` y `30-resources/agents/log.md` — discoverability y bitácora del dominio.
   - `30-resources/tools/ads-signals-skills-marketplace.md` — link a la adaptación canónica.
   - `30-resources/tools/sources/ads-signals-skills-marketplace-source.md` — provenance de la propuesta y evidencia de validación.
 

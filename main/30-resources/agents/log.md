@@ -1,5 +1,11 @@
 # Agents resource log
 
+## [2026-09-17] create | rio-sunset-update
+
+- Se curó en el vault la propuesta `feat/rio-sunset-update@a7872cd` de `ads-signals-skills-marketplace`, incluyendo referencias y gates ejecutables de input, binding build→SHA y scope de test.
+- La adaptación alineó la metadata con AGENTS OS, agregó routing desde `meli-agent-dev` y corrigió la contradicción que excluía Fury CLI aunque el flujo exige `fury create-version`.
+- El validador del marketplace y los tests `validate-input.test.mjs` y `validate-gates.test.mjs` quedaron verdes antes y después de la importación.
+
 ## [2026-09-16] create | Hermes Agent operator
 
 - Se creó `hermes-agent-operator` como skill federada de Aranea para diagnóstico/operación del propio runtime Hermes: perfiles, dashboard/serve, gateways, `systemd --user`, updates y recovery.

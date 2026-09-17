@@ -7,8 +7,8 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-09-16"
-reviewed: "2026-09-16"
+updated: "2026-09-17"
+reviewed: "2026-09-17"
 aliases:
   - "00-index index"
 cssclasses:
@@ -24,8 +24,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas curadas:** 24
-- **Última ingesta:** 2026-09-16
+- **Páginas curadas:** 25
+- **Última ingesta:** 2026-09-17
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -45,6 +45,7 @@ tags:
 | [[30-resources/agents/skills/pr-description/SKILL|pr-description]] | Descripciones de PR con evidencia real, materializadas como recurso del proyecto. | skill · transversal |
 | [[30-resources/agents/skills/human-first-technical-writing/SKILL|human-first-technical-writing]] | Narrativa técnica causal que reduce la carga cognitiva del lector. | skill · transversal |
 | [[30-resources/agents/skills/fury-lib-consumer-deploy/SKILL|fury-lib-consumer-deploy]] | Publica versiones test de librerías Java con Fury e importa las versiones en consumidores. | skill · Meli-only |
+| [[30-resources/agents/skills/rio-sunset-update/SKILL|rio-sunset-update]] | Remedia sunsets RIO próximos mediante gates fail-closed, un único PR por aplicación y deploy confirmado sólo a test. | skill · Meli-only · manual |
 | [[30-resources/agents/skills/sync-local-branch/SKILL|sync-local-branch]] | Sincroniza ramas Git exclusivamente locales con merge conservador. | skill · transversal |
 | [[30-resources/agents/skills/sdd-workflow/SKILL|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclarlas. | skill · transversal |
 | [[30-resources/agents/skills/e2e-gated-validation/SKILL|e2e-gated-validation]] | Validación E2E como secuencia de gates con evidencia y PASS/FAIL por gate. | skill · transversal |
