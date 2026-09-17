@@ -57,7 +57,9 @@ Una vez establecido el engine, el coste marginal de probar una hipótesis nueva 
 - Primero se construye el Engine MVP; Sports y NegRisk dejan de ser “el MVP” y pasan a ser **POC-S01** y **POC-S02**, primeros consumidores del engine.
 - Backlog research: 30 familias canónicas `PE-001…PE-030` en [[Polymarket — Edge Research Consolidado 2026-09-16]].
 - Contexto económico/estratégico: [[Polymarket Engine — Opportunity Context]].
-- **M0 DESIGN_READY (documental, 2026-09-17):** Technical Platform Map canónico indexado en `30-resources/polymarket/`, con 11 partes, 7/7 OpenAPI (163 operaciones) y siete RG resueltos para diseño con exclusiones; no habilita live ni NegRisk conversion. Siguiente gate: revisión conjunta y M1 Astra → Fable → Astra.
+- **M0 DESIGN_READY (documental, 2026-09-17):** Technical Platform Map canónico indexado en `30-resources/polymarket/`, con 11 partes, 7/7 OpenAPI (163 operaciones) y siete RG resueltos para diseño con exclusiones; no habilita live ni NegRisk conversion.
+- **M1_DESIGN_FROZEN (2026-09-17):** ASTRA-1 proposal → FABLE challenge → ASTRA-2 reconciliation → OD-1/OD-2/OD-3 `APPROVED` → auditoría final ASTRA-3 `PASSED` documental. M1 cerrado, sin blockers arquitectónicos materiales restantes. Contratos congelados en M1.1–M1.17; registro de cierre e historial al final de esta nota.
+- **Siguiente fase: M2 — TOP IMPLEMENTATION PLAN.** Planificar únicamente FOUNDATIONAL NOW de M1.15. Gates físicos `NOT_RUN`; live `NOT_CERTIFIED / LIVE_DISABLED`; capabilities live/optional siguen deshabilitadas. La aprobación del diseño no activa ejecución real.
 - No se implementa código del engine hasta cerrar M0–M2.
 
 ## 🧭 Autoridad documental y economía de tokens
@@ -323,9 +325,9 @@ Uso preferente por fase:
 
 No usar Astra para collectors, structs, queries, boilerplate o bugs normales.
 
-### Ventana Fable actual
+### Ventana Fable — antecedente de M1
 
-Hasta 2026-09-20 existe cuota remanente de Fable en Cursor. Prioridad inmediata: **usar Fable intensamente en el Engine MVP**, especialmente para challengear propuestas de Astra, identificar capabilities omitidas y atacar boundaries antes de congelar diseño.
+La ventana hasta 2026-09-20 se consideró para el challenge de M1. FABLE completó F.1–F.9 y ASTRA-2 reconcilió sus doce findings; ASTRA-3 cerró la auditoría final. No queda otra ronda de arquitectura pendiente para este freeze.
 
 ## 🏗️ Delivery workflow del Engine
 
@@ -387,25 +389,25 @@ Debe incluir como mínimo:
 - observability;
 - test/certification strategy;
 - explicit non-goals;
-- unresolved decisions = 0 para pasar M2.
+- decisiones arquitectónicas materiales sin resolver = 0 para pasar M2; políticas exclusivas de live pueden quedar `DEFERRED_LIVE_DECISION`, con `LIVE_DISABLED`.
 
-**Gate M1:** Astra + Fable convergen; no findings arquitectónicos materiales abiertos.
+**Gate M1: PASSED documental — `M1_DESIGN_FROZEN` (ASTRA-3, 2026-09-17).** Astra/Fable convergieron mediante la reconciliación, OD-1/2/3 están aprobadas y la auditoría final no deja findings arquitectónicos materiales abiertos. Ningún gate físico recibe PASS por este cierre.
 
 ### M2 — TOP Implementation Plan
 
-Un agente TOP recibe el diseño frozen y produce **dentro de este archivo** el plan implementable:
+Un agente TOP recibe exclusivamente este proyecto frozen y [[Polymarket — Technical Platform Map — synced 2026-09-17]]; consulta [[Polymarket — Edge Research Consolidado 2026-09-16]] sólo cuando una decisión de implementación necesite requirements transversales. Transforma FOUNDATIONAL NOW de M1.15 en el plan ejecutable **dentro de este archivo**:
 
 - dependency order;
 - slices/commits;
 - allowed files/packages;
 - contracts to implement;
-- migration/persistence setup;
+- schemas y migration/storage setup;
 - unit/integration/property/replay tests;
 - physical gates;
 - rollback/recovery;
 - exact definition of done.
 
-El TOP **no rediseña** salvo blocker demostrable; si encuentra uno, devuelve `BLOCKED — DESIGN ISSUE` al manager/Astra.
+El TOP **no rediseña**. Si encuentra una contradicción arquitectónica material, detiene el trabajo afectado con `BLOCKED — DESIGN ISSUE` y la devuelve al manager. No debe inventar ownership, dominio, Strategy API, persistencia ni permisos para resolverla. Las políticas live pendientes no bloquean M2; ASTRA-3 sólo deja este handoff, sin escribir el plan.
 
 ### M3 — NORMAL Engine Implementation
 
@@ -431,6 +433,7 @@ Antes de POC strategies:
 - auth/order plumbing puede permanecer disabled si live todavía no es necesario, pero interfaces/recovery deben estar diseñados;
 - observability y resource headroom verificados;
 - failure injection básica;
+- backup/restore local consistente y medido según G-06b/G-14, sin depender de infraestructura remota;
 - no critical/open architecture debt.
 
 **Engine MVP CLOSED** cuando la plataforma puede consumir una strategy POC sin alterar fundamentos del core.
@@ -476,21 +479,22 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 
 ## ✅ Tareas
 
-### Ahora — M0
+### M0 — cerrado documentalmente
 - [x] Ejecutar Deep Research técnico oficial de Polymarket #owner/me #type/research #area/personal
 - [x] Ingerir resultado como `Polymarket — Technical Platform Map — synced YYYY-MM-DD` en `30-resources/polymarket/` #owner/me #type/research #area/personal
 - [x] Reconciliar contradicciones con docs oficiales/changelog/OpenAPI/AsyncAPI #owner/me #type/research #area/personal
 - [x] Confirmar nombre de repo de implementación Go: `xKoRx/polymarket-engine` (nombre acordado; verificar creación por separado) #owner/me #type/dev #area/personal
 
-### M1
-- [ ] Revisión conjunta owner/manager del M0 DESIGN_READY y boundaries disabled; no reabrir research general salvo blocker concreto
-- [ ] Preparar context pack único para Astra/Fable #owner/me #type/research #area/personal
-- [ ] Astra: diseño completo Engine MVP #owner/me #type/dev #area/personal
-- [ ] Fable: adversarial challenge del diseño #owner/me #type/dev #area/personal
-- [ ] Astra: reconcile y freeze #owner/me #type/dev #area/personal
-- [ ] Fable: challenge final sólo si quedan findings materiales #owner/me #type/dev #area/personal
+### M1 — cerrado: M1_DESIGN_FROZEN
+- [x] Conservar M0 DESIGN_READY y boundaries disabled en el cierre aprobado por el owner; sin reapertura de research general #owner/me #type/research #area/personal
+- [x] Context pack único utilizado por Astra/Fable, registrado en M1.0/F.1 #owner/me #type/research #area/personal
+- [x] ASTRA-1: diseño completo Engine MVP #owner/me #type/dev #area/personal
+- [x] FABLE: adversarial challenge, FBL-001…012 #owner/me #type/dev #area/personal
+- [x] ASTRA-2: reconciliación de los doce findings #owner/me #type/dev #area/personal
+- [x] Owner: OD-1/OD-2/OD-3 APPROVED por mandato ASTRA-3 #owner/me #type/dev #area/personal
+- [x] ASTRA-3: auditoría final de consistencia y design freeze; challenge adicional no requerido al no quedar blocker material #owner/me #type/dev #area/personal
 
-### M2–M4
+### Siguiente — M2 TOP; M3–M4 pendientes
 - [ ] TOP: implementation plan frozen en este archivo #owner/me #type/dev #area/personal
 - [ ] NORMAL: implementar Engine MVP #owner/me #type/dev #area/personal
 - [ ] Certificar Engine MVP #owner/me #type/dev #area/personal
@@ -506,6 +510,7 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - **2026-09-16** — Se consolida research en 30 hipótesis y se adopta modular monolith / single large host.
 - **2026-09-16** — Reframing canónico: **Engine = MVP durable; strategies = POCs**. Se define M0 Technical Knowledge Pack antes de Astra/Fable y delivery `Astra → Fable challenge → Astra reconcile → TOP plan → NORMAL implementation`.
 - **2026-09-17** — M0 DESIGN_READY documental: 11 partes del Technical Map; 7 OpenAPI/163 operaciones, RFQ AsyncAPI 13/13, Data v2 y NegRisk CTF investigados. Sin certificación live; conversion CTF/v2, historical L2 backfill y modos opt-in deshabilitados. Paso siguiente: revisión conjunta → ASTRA-1.
+- **2026-09-17** — ASTRA-1 propuso M1, FABLE produjo doce findings y ASTRA-2 los reconcilió en `M1_RECONCILED_PENDING_OWNER_REVIEW`; sus registros se conservan abajo. El mandato ASTRA-3 aprueba OD-1/2/3; auditoría estructural final y correcciones normativas registradas en el cierre ASTRA-3 → `M1_DESIGN_FROZEN`. M1 cerrado; siguiente M2/TOP. Gates físicos NOT_RUN y live no certificado/deshabilitado; sin implementación, research adicional ni sincronización remota.
 
 ## 🧭 Decisiones frozen
 
@@ -547,7 +552,7 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 
 **Estado del shot:** `M1_ASTRA_PROPOSAL_READY_FOR_FABLE` · **Etiqueta:** `M1 — ASTRA PROPOSAL — READY FOR FABLE` · **Autor:** ASTRA-1 · **Fecha:** 2026-09-17. Esta sección propone arquitectura; no congela M1, no aprueba gates físicos, no implementa estrategias y no contiene el plan de coding de M2. Las decisiones `D-001…D-014` y el gate documental M0 permanecen vigentes. Todas las decisiones nuevas requieren challenge de FABLE y reconciliación antes del freeze.
 
-**Enmienda normativa ASTRA-2 · 2026-09-17:** estado vigente `M1_RECONCILED_PENDING_OWNER_REVIEW`. Se conserva la autoría/baseline de ASTRA-1 y el challenge F.1–F.9 íntegro como evidencia histórica. Las enmiendas de M1.2–M1.17 y el cierre ASTRA-2 gobiernan la propuesta reconciliada sobre recomendaciones históricas incompatibles; no equivalen a aprobación del owner ni a tests ejecutados. M0 permanece cerrado para diseño. Único cambio persistente: este proyecto; sin implementación, M2 ni sincronización remota.
+**Precedencia normativa ASTRA-3 · 2026-09-17:** estado vigente `M1_DESIGN_FROZEN`. ASTRA-1 produjo la propuesta y ASTRA-2 la llevó a `M1_RECONCILED_PENDING_OWNER_REVIEW`; se conservan sus registros y F.1–F.9 como historia. OD-1/2/3 están `APPROVED`. M1.1–M1.17, reconciliadas por ASTRA-2 y corregidas por ASTRA-3, son el contrato frozen; las recomendaciones incompatibles y handoffs de los shots históricos no son instrucciones vigentes. M1.15 gobierna el alcance de implementación y sus gates. El cierre ASTRA-3 registra la auditoría final y el handoff M2/TOP. M0 permanece cerrado para diseño; ningún gate físico fue ejecutado ni capability live activada. Único archivo modificado: este proyecto.
 
 ### M1.0 — Base documental, autoridad y criterio de éxito
 
@@ -600,7 +605,7 @@ Los estados siguientes no son sinónimos. `SUPPORTED FOR DESIGN` admite modelar 
 
 ### M1.2 — Arquitectura, responsabilidades y ownership
 
-**Propuesta:** un binario Go, un proceso de servicio, módulos internos con puertos estrechos, SQLite embebido para estado transaccional, journal raw segmentado en NVMe y datasets Parquet derivados. El mismo binario puede correr el modo offline de replay; no se agrega un servicio por estrategia, una cola distribuida ni una segunda base operativa. Analytics/exportación y replay usan presupuestos de recursos independientes del servicio activo.
+**Contrato frozen (OD-2):** un binario Go, un proceso de servicio, módulos internos con puertos estrechos, SQLite embebido para estado transaccional, journal raw segmentado en NVMe y datasets derivados con manifest/lineage en SQLite/JSONL inicialmente; Parquet queda diferido detrás del mismo schema lógico. El mismo binario puede correr el modo offline de replay; no se agrega un servicio por estrategia, una cola distribuida ni una segunda base operativa. Analytics/exportación y replay usan presupuestos de recursos independientes del servicio activo.
 
 ```text
 CONTROL: config versionada + capability registry + supervisor + control local
@@ -638,22 +643,24 @@ Observability recibe métricas de todos; nunca controla dominio por logging.
 |---|---|---|
 | Composition / Supervisor | Ciclo del proceso, capability registry, leases de activación, config revision, fallos y readiness | Construye adapters y módulos; puede detenerlos, no modificar sus proyecciones directamente |
 | Transport / Venue adapters | Conexiones REST/WS, subscriptions deseadas, epochs, rate budgets IP/signer, parsing de envelope y auth de transporte | Escribe en Ingress; recibe comandos de Catalog/Execution por puertos; no escribe books ni posiciones |
-| Capture | Orden local de admisión, journal, watermarks durables, manifests, integridad y discontinuidades | Recibe evidencia/control; entrega offsets; no conoce fórmulas de estrategias ni decide órdenes |
+| Capture | Orden local de admisión, journal, watermarks durables, manifests de captura/segmentos, integridad y discontinuidades | Recibe evidencia/control; entrega offsets; no conoce fórmulas de estrategias ni decide órdenes |
 | Catalog / Universe | Revisiones Event/Market/Outcome/Asset/Condition, relaciones documentales, reglas y membership por consumidor | Lee observaciones normalizadas; publica revisiones inmutables y subscription demand; consulta REST mediante adapter |
 | Market Data | Books por asset, revisión, epoch, calidad; proyecciones BBO/midpoint/trade separadas | Consume catálogo/WS; publica snapshots inmutables; no llama estrategias ni REST desde el reducer |
 | Regimes / Resolution | Versiones de tick/min-size/fee/reward/delay y observaciones de resolución con provenance | Consume REST/WS/chain; publica constraints y lifecycle; cambios de régimen invalidan frames y candidatos |
 | Frame Builder / Runtime | Suscripciones de consumidores, frames consistentes localmente, secuencia de delivery, estado de cada instancia Go | Lee snapshots; invoca estrategia serialmente; publica resultados; no conoce credenciales |
-| Economics / Simulator | Funciones puras de VWAP, costes, capital y fill models; estado de órdenes/fills **simulados** en namespace del experimento | Recibe frame+candidato+modelo; emite resultados sintéticos identificados; nunca actualiza cuenta real |
+| Economics / Simulator | Economics: funciones puras de VWAP/costes/capital. Simulator: estado del fill model, agenda de eventos sintéticos y liquidity ledger por namespace del experimento | Recibe frame+candidato+modelo; propone observaciones sintéticas al Coordinator virtual. Órdenes/fills contables, reservas y BasketExecution simulados tienen como único writer ese Coordinator; nunca actualiza cuenta real |
 | Risk | Reglas versionadas de límites, eligibility y sizing, evaluador puro sobre snapshot de cuenta | Devuelve decisión acotada al Account Coordinator; no mantiene una segunda copia de balance disponible |
 | Account Coordinator | **Único writer de cuenta real:** órdenes/intents, fills, reservas, posiciones contables, balances observados, atribución, dedup, `BasketExecution` y reconciliación | Ejecuta reducers Risk/Orders/Ledger/Basket dentro de la transacción de cuenta; autoriza cada leg, recibe observaciones Reconciler/resultados Execution. Mismo reducer en namespaces de cuenta simulada; nunca mezcla sus stores con cuenta real |
-| Execution / Reconciler | Execution posee intentos de I/O, no balance; Reconciler posee jobs/cursors/observaciones pendientes, no ledger alternativo | Execution consume autorizaciones del Coordinator; Reconciler consulta REST/User WS/chain y propone hechos al mismo Coordinator |
+| Execution / Reconciler | Execution posee workers y estado transitorio del I/O, no el registro durable del attempt; Reconciler posee jobs/cursors de consulta/observaciones pendientes, no ledger alternativo | Coordinator persiste y reclama el attempt antes del I/O; Capture conserva evidencia durable; Reconciler consulta REST/User WS/chain y propone hechos al mismo Coordinator, sin mutar su cuenta ni su applied_seq |
 | Credentials / Signing | Material secreto y sesión autenticada, perfil wallet y permisos; firma sólo payload tipado ya autorizado | Sólo Execution autorizado puede solicitar firma/envío; no puerto genérico `sign(bytes)` a estrategias |
-| Experiment / Dataset | Registry de hipótesis, manifests inmutables, parámetros, versiones, scorecards, pins de retención, artefactos derivados | Consume capture/projections/runtime; no toca tablas privadas de ejecución ni reescribe raw |
+| Experiment / Dataset | Registry de hipótesis, manifests de experimento inmutables, parámetros, versiones, scorecards, pins de retención, artefactos derivados | Referencia manifests de captura sin mutarlos; consume projections/runtime; no toca tablas privadas de ejecución ni reescribe raw |
 | Operations / Telemetry | Logs, métricas, alertas y comandos locales autenticados | Kill/control por Supervisor; consultas de snapshots; no SQL arbitrario ni callbacks de estrategia |
 
 **Regla de acoplamiento:** domain values y contratos públicos no importan adapters. Un módulo no importa implementaciones/repositorios de otro ni consulta sus tablas; solicita una vista o emite un comando tipado. No hay “event bus de cualquier cosa” ni service locator global. Los eventos de observación y comandos de efecto son tipos distintos. El composition root es el único lugar que conecta puertos. Los reducers de cuenta comparten una transacción porque reserva, intent y exposición forman una sola unidad de consistencia; esta dependencia es deliberada y no se extiende a catálogo, books o analytics. Contratos, dependencias y ownership se verifican en revisión y pruebas de imports de M2, sin inventar hoy un árbol de paquetes definitivo.
 
 **Enmienda de ownership ASTRA-2, FBL-006/009:** Basket es estado del Coordinator, no otro servicio ni scheduler de la POC. Execution sólo realiza I/O autorizado; Simulator produce observaciones sintéticas para los mismos reducers y tiene su liquidity ledger aislado. Capture posee ambos carriles de admisión y el secuenciador; Runtime puede pausar runs, nunca invalidar un epoch por saturación propia. Supervisor posee `DEGRADED_AUDIT`/leases; Reconciler propone evidencia y Coordinator decide sus efectos contables.
+
+**Precisión ASTRA-3 de owner único:** Catalog posee identidad/relaciones/membership de Universe; Runtime posee demanda y delivery por consumidor; Transport posee subscriptions/epochs de conexión y cada Book shard su proyección/quality asociada a ese epoch. Regimes/Resolution posee constraints y lifecycle observado, sin reescribir identidad de Catalog. Capture posee bytes/manifests de captura; Experiment posee manifests/pins de runs que los referencian. En cuenta real o virtual, Coordinator es el único writer de intents/attempts, órdenes/fills contables, reservas/atribución y BasketExecution; Simulator sólo posee liquidez/modelo/eventos sintéticos. Observaciones pendientes de Reconciler y evidencia inmutable de Capture no son otra cuenta. G-02b/G-08/G-10c verifican estos límites.
 
 **Hot path:** admisión/captura durable → normalización → book/quality → frame → detector/evaluator → decisión; en live agrega reserva/intent durable → firma/envío. No LLM, consultas analíticas, exportación, metadata REST síncrona ni llamadas arbitrarias de estrategia. La latencia de fsync es parte del coste elegido y debe medirse. **Cold path:** discovery/refresh, compactación, SQL de reporting, extracción Parquet, backups, fixtures, replay y scorecards. Reconciliación, heartbeat y cancelación son un carril operacional prioritario; no compiten detrás de screener/replay.
 
@@ -671,7 +678,7 @@ Clases: **E** entidad con identidad estable y estado mutable bajo owner; **S** s
 | Market | `GammaMarketID` independiente; links `ConditionRef?`, Event IDs, outcomes ordenados, reglas/source y operational flags | E + S; Catalog; trading eligibility derivada cruza CLOB/constraints |
 | Outcome | `(GammaMarketID, outcome_index)` y label versionado; rol YES/NO validado por mapping, no por BUY/SELL | S; array de outcomes alineado con IDs, nunca join sólo por etiqueta |
 | Asset / Token / Position instrument | `AssetKey{chain_id, protocol, token_contract?, wire_asset_id}`; variante CTF con token uint256; variante ProtocolV2 con position ID opaco validado por su contrato | E + S; Catalog. `AssetID` CLOB es identificador wire dentro de contexto, no wallet holding |
-| Condition | `ConditionRef{protocol, raw_id}`, CTF bytes32; `QuestionID` separado; oracle/payout refs si conocidos | E + S; Catalog/Resolution, sin derivación especulativa v2 |
+| Condition | `ConditionRef{protocol, raw_id}`, CTF bytes32; `QuestionID` separado; oracle/payout refs si conocidos | E + S; Catalog posee identidad/relaciones; Resolution posee observaciones de lifecycle/payout referenciadas, sin writer compartido ni derivación especulativa v2 |
 | Market relationship | `RelationshipID` local + revisión, endpoints tipados y tipo: containment, complement, documented NegRisk membership, semantic relation propuesta | S + D; fuente/evidencia, exhaustividad y exclusividad `UNKNOWN/VERIFIED/INVALIDATED`; compartir Event no prueba equivalencia de payouts |
 | NegRisk context | Gamma Event, `NegRiskMarketID` contractual bytes32 separado, question indices/bitmasks, CTF/v2, augmented slots, `Other` y revisión de membresía | S; mapping sólo con evidencia; no cast desde Event ID o condition ID |
 | Order | `IntentID` local estable + `OrderHash?` venue; cuenta/scope, AssetKey, BUY/SELL, size/price, policy, reserva, revisiones de frame/config; placement, estado REST y envío separados | E + S + O; Account Coordinator |
