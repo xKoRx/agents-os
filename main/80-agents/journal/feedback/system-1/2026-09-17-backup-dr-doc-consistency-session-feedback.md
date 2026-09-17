@@ -42,3 +42,5 @@ tags:
 ## Sugerencias
 
 - Considerar en [[agents-os-hygiene-cycle]] un check de consistencia: archivos con `status: deprecated/superseded` referenciados por índices con `status: active`.
+- Observado durante el close (2026-09-17): lint gate global con deuda preexistente (ERROR=213, WARN=67 a nivel vault; el auto-refresh de Graphify continuó en modo derivado). Fuera del alcance D0; candidato para un hygiene cycle dedicado.
+- Discovery: los tickets con fecha-prefijo (`2026-07-02-018-...`) no se encuentran por glob del número solo (`*018-*`); buscar por prefijo de fecha o grep de contenido.
