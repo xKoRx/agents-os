@@ -75,19 +75,7 @@ Después de resolver, el middleware publica el resultado en la cookie host-only 
 
 ### Frontera test / producción
 
-La activación no usa `NODE_ENV`: los scopes Fury de test ejecutan builds `production`. `test-production.js` declara las claves de routing test, `default-production.js` las de producción y `fury-production.js` importa explícitamente `test-production.js`; `frontend-config` no hereda por `FURY_IS_TEST_SCOPE`. El archivo nuevo proyecta sólo `playmaker_meli_domain` y `playmaker_scope_routing_enabled`, nunca el objeto test completo:
-
-```js
-const env = require('frontend-env');
-const testConfig = require('./test-production');
-
-module.exports = env.FURY_IS_TEST_SCOPE === 'true'
-  ? {
-      playmaker_meli_domain: testConfig.playmaker_meli_domain,
-      playmaker_scope_routing_enabled: true,
-    }
-  : {};
-```
+La activación no usa `NODE_ENV`: los scopes Fury de test ejecutan builds `production`. `test-production.js` declara las claves de routing test, `default-production.js` las de producción y `fury-production.js` debe hacer `require('./test-production')` explícito porque `frontend-config` no hereda por `FURY_IS_TEST_SCOPE`; cuando este vale `true`, proyecta sólo `playmaker_meli_domain` y `playmaker_scope_routing_enabled`, nunca el objeto test completo.
 
 El orden efectivo es `default` → `default-<env>` → `<env>` → `<platform>` → `<platform>-<env>` → `<scope>` → `<scope>-<env>`. Por eso los archivos de scopes conocidos de test declaran también esas dos claves compartidas; en particular, `staging-production.js` no puede depender de una clasificación aún no verificada de `FURY_IS_TEST_SCOPE`. Para scopes nuevos, `fury-production.js` entrega el default dinámico.
 
@@ -134,35 +122,11 @@ Los datos persistidos o compartidos se aíslan por `backendScope` efectivo:
 
 ### Design Decisions
 
-#### DD-1: Reutilizar `playmaker(req)` como cliente scope-aware
-
-**Decisión**: extender el cliente BFF existente y mantener su API pública.
-
-**Fundamentación**: todos los verbos y consumidores convergen en ese seam. Un cliente paralelo o headers por router producirían cobertura parcial entre GET, mutaciones y SSR.
-
-#### DD-2: Usar el scope Nordic como default y `backend` sólo como override
-
-**Decisión**: `env.SCOPE` representa la selección MeliLab ya materializada para el frontend; `backend` altera únicamente el backend.
-
-**Fundamentación**: evita interpretar una cookie privada o duplicar Nordic. El repo no contiene un contrato MeliLab de dos ejes; el valor estable es el runtime efectivo.
-
-#### DD-3: Una entrada test por header y una entrada prod sin multiplexación
-
-**Decisión**: test usa `rio-playmaker-test.melisystems.com` + `X-Rio-Scope`; producción usa `rio-playmaker-prod.melisystems.com` sin header.
-
-**Fundamentación**: la topología impide cruces sin que el frontend conozca todos los scopes. Construir `rio-playmaker-${scope}` mantendría el acoplamiento y abriría routing por input. `meliDomain` cumple el contrato Nordic para dominios internos en Fury; la seguridad depende de que el destino sea estático, no de cambiar `baseURL` por sí mismo.
-
-#### DD-4: Fury valida existencia; el frontend sólo valida sintaxis
-
-**Decisión**: no incorporar enum, allowlist ni archivo por scope.
-
-**Fundamentación**: el alta de una lane debe ser una operación de infraestructura. Una allowlist frontend convertiría cada scope nuevo en un deploy de UI y generaría dos autoridades de existencia.
-
-#### DD-5: Persistir sólo el override y forzar reload al cambiarlo
-
-**Decisión**: la cookie conserva la intención explícita del usuario; el default continúa siendo `env.SCOPE`, y todo cambio se aplica mediante navegación completa.
-
-**Fundamentación**: MeliLab sigue definiendo ambos ejes sin override y el reload evita que SSR y XHR consulten backends distintos; `sessionStorage` no cubre SSR.
+- **DD-1 — cliente único:** extender `playmaker(req)` y mantener su API pública; todos los verbos y consumidores convergen allí, mientras un cliente paralelo dejaría cobertura parcial.
+- **DD-2 — default Nordic:** `env.SCOPE` representa MeliLab ya materializado y `backend` altera sólo el backend; no se interpreta otra cookie privada ni se duplica Nordic.
+- **DD-3 — entradas aisladas:** test usa `rio-playmaker-test.melisystems.com` + `X-Rio-Scope`; producción usa `rio-playmaker-prod.melisystems.com` sin header. `meliDomain` cumple Nordic en Fury, pero la seguridad proviene del destino estático y de la topología separada.
+- **DD-4 — existencia en Fury:** el frontend no incorpora enum, allowlist ni archivo por scope; validar una lane en UI convertiría cada alta en un deploy y crearía dos autoridades.
+- **DD-5 — override de sesión + reload:** se persiste sólo la intención explícita y el default sigue siendo `env.SCOPE`; una navegación completa evita mezclar SSR y XHR, cosa que `sessionStorage` no resuelve.
 
 ### Archivos afectados
 
