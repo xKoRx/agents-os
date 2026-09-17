@@ -222,7 +222,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-06 Reference enrollment and binding
 
-- **ID / status / size:** E-06 · PLANNING CORRECTED READY FOR MANAGER REVIEW · MEDIUM
+- **ID / status / size:** E-06 · PLANNING BLOCKED — MANAGER DECISION REQUIRED · MEDIUM
 - **Objective:** RuntimeBinding: una enrollment canónica por Version; cuenta+broker+magic mapping observado; ACK/read-back; coverage start barrier. Attach manual verificado permitido V1.
 - **Capability unlocked:** reloj forward atribuible. Ingestion ≠ observing.
 - **Why:** sin enrollment no hay Quality canónica.
@@ -238,7 +238,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Done when:** primera observación atribuible o UNKNOWN explícito.
 - **Unlocks:** E-07.
 - **Accepted debt:** attach manual.
-- **Planning:** TOP v1.1.0 ([[Echo — E-06 Reference Enrollment and Binding]]). SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` @ branch `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Store `reference_bindings`; ACK≠OBSERVING; producer `reference_status`; 064 FK 061; PHYSICAL zero-order con producer real. **Implementation:** NORMAL (no lanzado). **GOD:** NONE.
+- **Planning:** TOP v1.1.0 CASE C blocked ([[Echo — E-06 Reference Enrollment and Binding]]). SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` @ branch `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Zero-order magic **no ratificado**. **Implementation:** NORMAL (no lanzado). **GOD:** NONE.
 
 ### E-07 Raw facts, DEAL, coverage and trade lifecycle
 
@@ -383,6 +383,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-16 — E-06 TOP authority reconciliation:** [[Echo — E-06 Reference Enrollment and Binding]] CASE C @ old HEAD `3e190d86`. Zero-order magic no cierra A vs B. SPEC v1.1.0 sin bump. 0 source. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW.
 - **2026-09-16 — E-06 TOP planning correction #1:** [[Echo — E-06 Reference Enrollment and Binding]] v1.1.0 @ `3e190d86` (old `9989f399`). Heartbeat/UnifiedBatch no son autoridad zero-order. C-3 DEFER SQX conservado; Echo collector `reference_status` IN SCOPE. 0 source. Puente E-06 permanece Review. Master intacto.
 - **2026-09-16 — E-06 TOP planning one-shot:** [[Echo — E-06 Reference Enrollment and Binding]] SPEC/PLAN/TASKS/VERIFICATION v1.0.0. Branch `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f1`. Docs-only; 0 source. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. 064 reservada con interlock 061 SHARED DEV. Puente E-06 → Review. Master intacto. E-01…E-05 no reabiertos.
 - **2026-09-16 — E-02 evidencia AC-03/04/05/17 corregida:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] recertificó los cuatro AC con fixtures descartables; evidencia `92d0ec2e` sobre producto `f6e6af1b`. Hasura compartido y master intactos. Puente E-02 permanece Review.
