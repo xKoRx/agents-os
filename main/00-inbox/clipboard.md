@@ -55,7 +55,7 @@ Branch:
 
 URL:
 
-[https://github.com/xKoRx/agents-os/blob/master/main/10-projects/Personal/Polymarket%20Engine/Polymarket%20Engine%20%E2%80%94%20MVP.md](https://github.com/xKoRx/agents-os/blob/master/main/10-projects/Personal/Polymarket%20Engine/Polymarket%20Engine%20%E2%80%94%20MVP.md)
+[10-projects/Personal/Polymarket%20Engine/Polymarket%20Engine%20%E2%80%94%20MVP.md](10-projects/Personal/Polymarket%20Engine/Polymarket%20Engine%20%E2%80%94%20MVP.md)
 
 Debes modificar este archivo directamente.
 
