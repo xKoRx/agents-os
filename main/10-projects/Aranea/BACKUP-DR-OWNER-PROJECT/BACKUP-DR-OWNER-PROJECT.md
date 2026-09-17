@@ -5,17 +5,17 @@ schema_version: 1
 owner: me
 root: true
 status: active
-status_detail: "ACTIVE 2026-09-16 por mandato owner (reactivación carril Backup/DR). R0 reconciliación completado: ver 2026-09-16-R0-reconciliacion.md. Estado técnico honesto: 0 unidades con backup verificado; PBS VM 180 existe pero sin integración (gate owner). Roadmap R1-R8 vigente en el doc R0."
+status_detail: "ACTIVE 2026-09-16 por mandato owner. R0 reconciliación completa (2026-09-16-R0-reconciliacion.md). R1 ejecutado 2026-09-17 (PASS WITH DEBT): traefik/second-brain/hermes-state BACKUP+RESTORE_VERIFIED en staging Hermes; pve-config/etcd/pi-hole SKIPPED_GATED (deuda owner); F-09=EXISTS. Detalle: change_log 2026-09-17-backup-dr-r1-bootstrap-config."
 priority: P1
 icon: 📋
 slug: backup-dr-owner-project
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-16
+updated: 2026-09-17
 start: 2026-07-02
 due:
-progress: 5
+progress: 20
 repo:
 jira:
 prs:
@@ -232,3 +232,4 @@ El proyecto se considera **completo** cuando:
 
 - **2026-08-10** — Parent migrado a `project` v1 para soportar contractualmente los nueve hijos `owner: agent`; se preservó la prohibición de ejecutar y se crearon sus tareas puente humanas en To Do.
 - **2026-09-16** — Owner autoriza reactivación (mandato Backup/DR autónomo). R0 reality reconciliation completado sin cambios en infraestructura: captura 6/6 nodos (TS 20260916_233513), mecanismos de backup descubiertos, 23/23 Tier0 KEEP, F-01..F-14 reconciliadas, matriz GAP y roadmap R1–R8 en [[2026-09-16-R0-reconciliacion]]. Gates owner consolidados en R0 §10 (PBS 180 + tickets 018-021 vigentes).
+- **2026-09-17** — **R1 ejecutado (PASS WITH DEBT)**. Staging real en Hermes VM 118 (`~/aranea/backup-staging/`, 700) + wrapper `~/aranea/bin/r1-backup.sh` (2 ejecuciones, idempotencia probada, sin pruning/timer — frecuencia y retención pendientes decisión owner). Certificadas BACKUP+RESTORE_VERIFIED: traefik-config (LXC 115, configs estática+dinámica, drill sha256 8/8 vs fuente viva), second-brain (vault 3.438 archivos, drill idéntico), hermes-state (`~/.hermes` operacional + `~/aranea` + unit túnel, 600). SKIPPED_GATED con deuda owner: `/etc/pve` (necesita subcommand `config` en `agent-read`), etcd snapshot (necesita etcd-client + endpoint/certs), pi-hole (necesita api_token FTL v6 o root). F-09: `pool2/pool0_backup` **EXISTS** (live + captura R0), intacto. Traefik parcial: `secrets/ ssl/ acme.json` root-only quedan fuera (gap registrado). Cero toques a producción; tickets 018-021 intactos; R2 no iniciado. Evidencia: change_log `80-agents/journal/logs/2026-09-17-backup-dr-r1-bootstrap-config.md` + `manifest.json` por run.
