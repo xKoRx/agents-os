@@ -17,11 +17,11 @@
 | [part-07-economics-resolution-history-limits.md](./Polymarket%20%E2%80%94%20Technical%20Platform%20Map%20%E2%80%94%20part-07-economics-resolution-history-limits.md) | §14–§18 | 19959 bytes | `46151736eb42d594b66d27b2249d6ad0829f0be297458d78ef0ea859c027854c` |
 | [part-08-specs-sdks-changelog.md](./Polymarket%20%E2%80%94%20Technical%20Platform%20Map%20%E2%80%94%20part-08-specs-sdks-changelog.md) | §19–§21 | 81418 bytes | `8c1fd83fb568ca8c249adb4cff05bf6346419d4ade3af57d78f575061ebcb7a7` |
 | [part-09-security-workflows.md](./Polymarket%20%E2%80%94%20Technical%20Platform%20Map%20%E2%80%94%20part-09-security-workflows.md) | §22–§23 | 10842 bytes | `45094a5c26f59a0ac7ef4120717ca4d266a626058f3ce04a03e5b04a8a376251` |
-| [part-10-gaps-recovery.md](./Polymarket%20%E2%80%94%20Technical%20Platform%20Map%20%E2%80%94%20part-10-gaps-recovery.md) | §24–§25 | 13686 bytes | `56cb0ee68032464f5f71a156d380d62f2ba96fcc547c4af4a6f89394a5bcbf18` |
-| [part-11-sources.md](./Polymarket%20%E2%80%94%20Technical%20Platform%20Map%20%E2%80%94%20part-11-sources.md) | §26 | 15936 bytes | `ad103b90198cf46c8c8c5fb004d6578e55f3e04d9fec626d39c1c736209ff659` |
+| [part-10-gaps-recovery.md](./Polymarket%20%E2%80%94%20Technical%20Platform%20Map%20%E2%80%94%20part-10-gaps-recovery.md) | §24–§25 | 13735 bytes | `cf903bf296449687aeed90e277f72cb50330383bd792d713b24369d779a6fab5` |
+| [part-11-sources.md](./Polymarket%20%E2%80%94%20Technical%20Platform%20Map%20%E2%80%94%20part-11-sources.md) | §26 | 27352 bytes | `2af1a29f4d6be2779d550fd26ad50f3967d319e442d466498ad16df6c58d53de` |
 
 
-**Manifiesto vigente:** 2026-09-17 14:56 UTC; 11 partes, 273205 bytes SHA-256 `30245ef4b4bc0b5ea4f5719a685b40a8fdf87c55618fb699ed68233544616d9c`; baseline histórico `02566696b5bc9bd71f07ae73c47b6dbb950b2553cfd9aff5a6247a9663c5b9f5`.
+**Manifiesto vigente:** 2026-09-17 14:59 UTC; 284670 bytes; SHA-256 `2f9951d2ef830fe10821439fde5cafd7629a71fecd20c32d54f738854599705c`; historical baseline SHA-256 `02566696b5bc9bd71f07ae73c47b6dbb950b2553cfd9aff5a6247a9663c5b9f5`.
 ## Integridad y mantenimiento
 
 - Concatenar las partes en orden numérico sin insertar separadores; comprobar SHA-256 contra el hash anterior.
