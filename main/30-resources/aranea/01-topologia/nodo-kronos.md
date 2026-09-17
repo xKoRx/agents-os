@@ -21,9 +21,10 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 
 
 > **Estado**: ✅ OK (el más potente en RAM, gran capacidad Ceph local)
-> **Capturado**: 2026-06-28 vía `agent-read all`
-> **Fuente**: `/home/hermes/aranea/topology/discovery/kronos_20260628_211812.txt`
-> **Ping check 2026-06-30**: ✅ responde ICMP
+> **Capturado**: 2026-09-16 23:35 UTC vía `agent-read all`
+> **Fuente primaria**: `/home/hermes/aranea/topology/discovery/kronos_20260916_233513.txt`
+> **Fuente previa (superseded)**: `/home/hermes/aranea/topology/discovery/kronos_20260628_211812.txt`
+> **Alcanzabilidad 2026-09-16**: ✅ SSH agent-read OK
 
 ## 🪪 Identidad
 

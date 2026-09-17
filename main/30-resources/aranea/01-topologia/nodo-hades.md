@@ -21,10 +21,10 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 
 
 > **Estado**: ⚠️ Atención — **74% RAM usado + sin OSDs Ceph + aloja truenas VM**
-> **Capturado**: 2026-06-30 19:44 UTC vía `agent-read all`
-> **Fuente primaria**: `/home/hermes/aranea/topology/discovery/hades_20260630_194423.txt`
-> **Fuente previa (superseded)**: `/home/hermes/aranea/topology/discovery/hades_20260628_211812.txt`
-> **Ping check 2026-06-30**: ✅ responde ICMP
+> **Capturado**: 2026-09-16 23:35 UTC vía `agent-read all`
+> **Fuente primaria**: `/home/hermes/aranea/topology/discovery/hades_20260916_233513.txt`
+> **Fuente previa (superseded)**: `/home/hermes/aranea/topology/discovery/hades_20260630_194423.txt`
+> **Ping check 2026-09-16**: ✅ responde ICMP
 
 ## 🪪 Identidad
 
