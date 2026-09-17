@@ -2063,3 +2063,71 @@ SEQUENTIAL FINAL
 Fronteras que hacen seguro el paralelismo: en Group A, S02 y S03 no comparten archivos y su único seam (redaction schema) está definido contractualmente en M1.6; en Group B, B2 no toca paquetes de B1 ni `cmd/`, sus migraciones (0030–0044) son disjuntas de todo B1 (que no crea migraciones) y su seam con B1 (comandos tipados, `FillKey`, `AccountView`, estados de M1.11) está congelado en M1. Los rangos de migraciones son: S03 0001–0009, S04 0010–0019, S05 0020–0029, S11 0030–0044, S13 0045–0054. Regla dura: no se paralelizan slices que compartan migraciones, primitivas de dominio compartidas o el mismo contrato mutable; ante duda, secuencial. `S04→S05` es secuencial porque Regimes referencia identidades de Catalog; `S12→S13` es secuencial porque la certificación usa CLI/backup/readiness de S12.
 
 **Critical path estimado:** S01 → S03 → S04 → S05 → S06 → S07 → S08 → S09 → S10 → S12 → S13 = **11 slices** (B2/S11 corre en paralelo con holgura; la barrera B1×B2 y S12 lo incorporan).
+
+### M2.5 — Estrategia de pruebas y mapa de gates
+
+Principios: primero invariantes críticos y ramas de falla; coverage (piso Agents-OS 95%) es condición complementaria, nunca sustituto; fixtures negativas deben demostrar que el diseño rechaza rutas inseguras, no sólo que acepta happy paths; toda evidencia de gate registra fixture/input hash, expected/actual, build/config y ambiente; PASS físico se emite por capability/perfil/versiones/workload probado, nunca por haber escrito el test (M1.15).
+
+| Gate | Slice(s) | Fixture / input | Acción | Output esperado | Fallo que hace FAIL | Evidencia |
+|---|---|---|---|---|---|---|
+| G-01 | S01, S05 | IDs por namespace; tabla ticks/redondeos P03 §5; lexemas wire | parsear/redondear/convertir | valores exactos sin overflow ni float | conflación de namespace, rounding distinto, unknown→cero | `g01.json` expected/actual |
+| G-02 | S10, S11 | secuencias generadas (rapid) | aplicar fills/reservas/sizes | conservación, no doble gasto/fill, IDs estables | cualquier contraejemplo | seed+contraejemplo persistidos |
+| G-02b | S03, S11 | stores íntegros/atraserados; fills WS+REST | recovery/dedup/cursors | VOID correcto; un fill una vez; cursors sin adelantarse | VOID por ausencia en copia atrasada; fill duplicado | fixtures + reporte |
+| G-03 | S02 | fixtures REST/WS/errores versionadas | parsear todo envelope | accept/reject exactos por contrato | parser acepta contradicción o depende de SDK | manifest SHA + evidencia |
+| G-04 | S04 | paginaciones con altas/duplicados/cursor inválido; desaparición parcial | sync + refresh | revisiones/coverage correctos; nada borrado | borra por scan parcial; pierde join; look-ahead | evidencia g04 |
+| G-05 | S06 | delta pre-snapshot; handover; overflow; timestamps regresivos; crossed; REST concurrente | aplicar/fencing | sin frame elegible hasta nueva base+constraints; SUSPECT/STALE correctos | mezcla REST+deltas; epoch viejo reutilizado | evidencia g05 |
+| G-05b | S07 | scheduling aleatorio con seeds | cortes forward | cero omisiones ≤C, cero inclusiones >C; K/bytes respetados; INELIGIBLE sin slot | contraejemplo de barrera | seeds + traza |
+| G-06 | S03, S06 | corte en write/fsync/seal/manifest | recovery | prefijo íntegro; sufijo preservado; discontinuidad | pérdida silenciosa; manifest falso; tail presentado íntegro | evidencia g06 |
+| G-06b | S12 | writers concurrentes + seal/snapshot/export interrumpidos | armar bundle | cobertura de cursores/dependencias/outbox; `journal_seq ≥ applied_seq` | DB adelantada al journal con PASS | bundle + manifiesto |
+| G-07 | S08 | misma captura/manifest/seed, ≥3 schedules | replay observación/delivery | hashes idénticos; INCOMPLETE explícito | diferencia no explicada; episodio incompleto reproducido | reporte de hashes |
+| G-07b | S13 | corrida SHADOW con revision_vector completo | replay delivery | iguala Assessment/sizing/Risk; tamper → `NOT_REPRODUCIBLE` | reproduce con estado actual | evidencia g07b |
+| G-08 | S09, S13 | fixture neutral single/multiasset + timers + external sintético | correr en SCREEN/REPLAY/SHADOW | resultados consistentes; cero acceso API prohibido | estrategia necesita infra del core; writers duplicados | evidencia g08 |
+| G-09 | S09 | callback lento/panic/no cooperativo | ejecutar runtime | progreso de otros; fencing; sin leaks | bloqueo global; callback tardío ejecuta; goroutines ilimitadas | evidencia g09 |
+| G-09b | S13 | saturación RUNTIME con EVIDENCE certificada | cargar carriles | runs pausados; cero epochs revocados/holes; latencias medidas | epoch revocado por research | evidencia g09b |
+| G-10 | S10 | sweep/VWAP/fees/partials/GTD/FOK/FAK/cancel race/multi-leg/liquidez virtual | simular | resultados exactos; missing fee/queue → inconcluso | touch=fill; depth doble-usada; rewards gastables | evidencia g10 |
+| G-10b | S10, S13 | dos runs idénticos; portfolio compartido; fee entre polls | comparar/atrbuir | aislados iguales; peers atribuidos; intervalo marcado | contaminación cross-run; fee extrapolada | evidencia g10b |
+| G-10c | S11 | 3 legs: llena+UNKNOWN+invalidada | reducer basket | `BLOCKED_UNKNOWN`; tercera jamás enviada; sin unwind; mismo estado en Simulator y gateway fixture | unwind; cierre ficticio | fixtures |
+| G-11 | S11 | WS duplicado/fuera de orden; REST paginado concurrente; settlement FAILED/reorg; transfers externos | reconciliar | converge o abre caso; nunca liberación doble/prematura | balance creado; fill duplicado; 404→no-send | fixtures |
+| G-11b | S11, S13 | ACK/fill tardíos; expiry+ausencia+balances iguales con match pendiente | terminalizar UNKNOWN | converge por evidencia o escala; jamás libera por tiempo | liberación por timeout | fixtures |
+| G-12 | S11 | crash antes/después de marker; post-socket pre-ACK; timeout/duplicate/batch mixto | clasificar writes | UNKNOWN retenido; sin segundo submit ni salt nuevo | blind retry; reserva liberada sin prueba | fixtures |
+| G-12b | S11, S13 | 425/429/503/500/HTML/ambiguo/duplicate/`order timed out` no verificado | classifier | sin resubmit; sends/attempt ≤1; sin exposición duplicada | segundo submit; re-firma | fixtures + contador |
+| G-13 | S12, S13 | ventana preregistrada capture+runtime+replay | operar | skips/UNKNOWN explicables; budgets/headroom medidos | sólo favorable en optimistic; readiness engañosa | reporte |
+| G-13b | S12 | DB caída; todos los sinks caídos + restart | drill | cancel conocido/scoped; `AUDIT_GAP`; lease bloqueada hasta cierre | nuevos sends; liberación; cierre limpio falso | drill + marker |
+| G-14 | S12 | bundle consistente + GC simulado día 31 + bundle incompleto | restore/verificar | restore íntegro; ACCOUNT_FACT intacto; incompleto degrada | bundle incompleto con PASS; cursores adelantados | drill + hashes |
+| G-15 | S11, S12 | pedidos deferExec/builder/convert/calldata; perfiles sin secrets; lease revocada | intentar ruta | rechazo antes de signing; flag no abre ruta disabled | config abre ruta; capability omitida cae a genérico | fixtures negativas |
+| G-15b | S01, S09, S12 | probe imports prohibidos; fixtures con `owner/signature/POLY_*` | gate de imports + redacción | falla prohibido; neutral pasa; cero filtración en journal/logs/restore | import pasa; secreto en raw | evidencia g15b |
+| G-16…G-19, G-14b | — | — | — | `NOT_RUN` / `IMPLEMENT LATER` (mandato live separado) | — | — |
+
+**Fault injection obligatoria (mapa completo):** partial journal write → S03/G-06; crash before/after fsync → S03/G-06; invalid segment → S03/G-06; reducer behind journal → S03+S11/G-02b; WS overflow → S06/G-05; stale epochs → S06–S07/G-05+G-05b; slow strategy → S09/G-09; callback panic → S09/G-09; missing revision → S08+S13/G-07+G-07b; SQLite failure → S11 (rollback atómico) + S12/G-13b; disk pressure → S12 (watermarks low/critical); restore → S12/G-14; incomplete experiment → S13 (`INCOMPLETE/INCONCLUSIVE`).
+
+**Property testing:** todo property usa `pgregory.net/rapid` con seed registrada en la evidencia; ante falla, el runner persiste seed + contraejemplo mínimo en `testdata/property-failures/<gate>/<fecha>/` y el slice queda FAIL hasta reproducir/fix. Los seeds de corridas verdes se conservan por gate para regresión.
+
+### M2.6 — Política de entrega a agentes NORMAL
+
+Cada asignación NORMAL contiene exactamente: (1) un slice de M2.3 (copiado tal cual, es autocontenido); (2) el path del repo (`REQUIRES_OWNER — REPO LOCATION ONLY` resuelto por el owner antes de la primera asignación); (3) baseline assumptions: S01–previos en `[x]` con sus gates verdes, branch de trabajo sobre el estado congelado del slice anterior; (4) allowed/forbidden scope del slice (sin expansiones); (5) refs M1/TPM citadas dentro del slice; (6) tests y gates a implementar/ejecutar; (7) commit/checkpoint único por DoD; (8) DoD binario. NORMAL no lee el vault completo, no reinterpreta arquitectura, no elige DB/runtime/error policy/dirección de paquetes, no marca gates PASS sin evidencia y no toca este proyecto salvo actualizar su tarea y bitácora al terminar. Si la implementación prueba la arquitectura imposible: parar con `BLOCKED — DESIGN ISSUE`, evidencia del contraejemplo y vuelta al manager; prohibido improvisar alrededor. Toda ejecución material de coding deja registro en `agents-os-agent-run-register` (superficie×modelo, evidencia, outcome).
+
+### M2.7 — Hitos de implementación
+
+| Hito | Slices | Capacidad utilizable al cerrarlo |
+|---|---|---|
+| M3-A — Protocol & Durable Data Foundation | S01–S03 | Todo el wire parsea con fixtures versionadas; journal durable con recovery de prefijo; framework SQLite con `applied_seq`; G-01/G-03 con evidencia |
+| M3-B — Market Data + Recorder + Replay | S04–S08 | **Podemos sincronizar catálogo, capturar un mercado real con books de calidad honesta y reproducir determinísticamente nuestra propia observación** (`record` → `manifest` → `replay` bit-a-bit) |
+| M3-C — Strategy Runtime + Simulator + Account + Ops | S09–S12 | Fixture neutral corre en SCREEN sobre datos reales; quotes/simulación exactas; cuenta virtual con invariants demostradas; proceso único arrancable con backup/restore local verificado y observabilidad de diagnósticos |
+| M3-D — Shadow Research Engine | S13 | **Podemos registrar una hipótesis, correrla en SCREEN/REPLAY/SHADOW y obtener un scorecard reproducible `GO/ITERATE/NO_GO/INCONCLUSIVE`** |
+| M3-E — Engine Certification readiness | S13 (matriz) | Matriz G-01…G-15+extensiones b ejecutada con evidencia; G-16…G-19/G-14b explícitos `NOT_RUN`; revisión manager/owner → M4 |
+
+### M2.8 — Frontera de completitud / M4
+
+La implementación puede avanzar a M4 cuando existan, todos verificables sin capital: binario buildable con CLI completa (S12); migraciones aplicables y forward-only (S03–S13); fixtures versionadas por superficie (S02+); tests deterministas con evidencia (todos); captura real (S06); replay determinista (S08); strategy fixture en los tres modos (S09/S13); shadow end-to-end con scorecard (S13); simulator con escenarios (S10); invariants de cuenta/risk demostradas (S11); observabilidad con cinco diagnósticos y readiness honestos (S12); restore local consistente y medido (S12). M2 no marca M4 PASS: M4 es la certificación separada que ejecuta la matriz completa. Live permanece `NOT_CERTIFIED / LIVE_DISABLED`; G-16…G-19 y G-14b requieren mandato posterior.
+
+### M2.9 — Decisiones operativas M2 y pendientes de owner
+
+`REQUIRES_OWNER — REPO LOCATION ONLY`: path local del clone de `xKoRx/polymarket-engine` (propuesta por defecto `~/code/xKoRx/polymarket-engine`, fuera del vault). Única decisión bloqueante para iniciar S01; no es blocker arquitectónico.
+
+Decisiones operativas tomadas por TOP bajo contratos frozen (reversibles sin tocar dominio; el owner puede objetar en la revisión): module path `github.com/xKoRx/polymarket-engine`; layout `cmd/ internal/ migrations/ testdata/`; driver SQLite `modernc.org/sqlite`; decimal `shopspring/decimal` encapsulado en foundation; property `pgregory.net/rapid`; WS `gorilla/websocket` en adapter; métricas `prometheus/client_golang` local; logs `log/slog`; config TOML estricta; toolchain pin `go 1.23` (o estable vigente al iniciar S01); migraciones forward-only con rangos por slice (M2.4). El driver SQLite y la latencia de fsync se re-evalúan con mediciones de G-09b/G-13; cambiarlos es cambio encapsulado en `internal/persist`/`internal/capture`, no rediseño.
+
+### M2.10 — Verificación de calidad del plan (§15 del mandato)
+
+1. Toda capability FOUNDATIONAL NOW aparece en ≥1 slice: sí — mapeo completo en M2.3/M2.7 (foundation S01; protocol S02; capture S03; catalog S04; regimes S05; market data S06–S07; replay S08; strategy runtime S09; economics/simulator S10; account/basket S11; observability/recovery/backup S12; experiments/shadow/certificación S13). 2. Todo paquete tiene owner: tabla M2.1. 3. Todo schema tiene un writer: rangos de migraciones M2.4 + ownership por paquete (único writer contable = Coordinator; cursores por reducer). 4. Toda frontera de concurrencia explícita: columna Concurrencia de M2.1 + contratos por slice. 5. Toda ruta crítica de falla tiene test: M2.5 (mapa de fault injection completo). 6. Todo gate no-live de M4 mapea a trabajo: tabla M2.5 (G-16…G-19/G-14b explícitamente fuera). 7. Ningún slice requiere capability live-disabled: stubs `DISABLED` deny-all verificados por G-15/G-12b. 8. Ningún NORMAL inventa arquitectura: M2.6 (paquete cerrado + `BLOCKED — DESIGN ISSUE`). 9. Ningún par comparte contrato mutable: fronteras M2.4 (seams frozen, migraciones disjuntas, sin `cmd/` compartido). 10. El orden produce capacidades intermedias útiles: checkpoints M2.2/M2.7. 11. Local restore testable: S12/G-14/G-06b obligatorios. 12. Sports/NegRisk consumen sin modificar fundamentos: contratos congelados y verificados por G-08; relationships/universe/frames/economics/account publicados como APIs estables.
+
+**Estado del plan:** `M2_PLAN_READY_FOR_MANAGER_REVIEW`. Siguiente paso: revisión manager/owner → M2 freeze → asignaciones NORMAL por slice según M2.4/M2.6. Mientras no haya freeze, ningún slice se implementa.
