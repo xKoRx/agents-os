@@ -1,0 +1,262 @@
+name: One-shot Polymarket M0 core contracts
+on:
+  push:
+    paths:
+      - .github/workflows/polymarket-m0-contracts-once.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+          persist-credentials: true
+      - name: Read official raw contracts and patch existing parts only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install -q --disable-pip-version-check PyYAML
+          python3 - <<'PY'
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          from urllib.error import HTTPError
+          from hashlib import sha256
+          from urllib.parse import urlencode
+          import json,re,yaml,datetime
+          d=Path('main/30-resources/polymarket')
+          path=lambda num,slug:d/f'Polymarket — Technical Platform Map — part-{num:02d}-{slug}.md'
+          p02=path(2,'rest-catalog');p04=path(4,'orders-lifecycle');p06=path(6,'negrisk-combos');p07=path(7,'economics-resolution-history-limits');p08=path(8,'specs-sdks-changelog');p10=path(10,'gaps-recovery');p11=path(11,'sources');manifest=d/'Polymarket — Technical Platform Map — synced 2026-09-17.md'
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
+          def fetch(url,limit=8000000):
+            try:
+              with urlopen(Request(url,headers={'User-Agent':'Polymarket-M0-readonly-audit/1.0','Accept':'application/json, text/yaml, */*'}),timeout=35) as r:
+                b=r.read(limit+1)
+                if len(b)>limit: raise ValueError('oversize response')
+                return r.status,b,r.headers.get('Content-Type','')
+            except HTTPError as e: return e.code,e.read(5000),e.headers.get('Content-Type','')
+          data_url='https://data-api.polymarket.com/v2/openapi.json'; data_status,raw,ct=fetch(data_url)
+          assert data_status==200,(data_status,raw[:150])
+          data=json.loads(raw);assert isinstance(data.get('paths'),dict)
+          clob_url='https://docs.polymarket.com/api-spec/clob-openapi.yaml'; cs,cb,cc=fetch(clob_url);assert cs==200
+          clob=yaml.safe_load(cb);assert isinstance(clob.get('paths'),dict)
+          rfq_url='https://docs.polymarket.com/asyncapi-rfq.json'; rs,rb,rc=fetch(rfq_url)
+          rfq=json.loads(rb) if rs==200 else None
+          if rfq is not None: assert isinstance(rfq.get('channels'),dict) and isinstance(rfq.get('operations'),dict),'RFQ AsyncAPI malformed'
+          print('DATA_V2_RAW',data_status,ct,len(raw),'SHA256',sha256(raw).hexdigest(),'INFO',data.get('info'),'SERVERS',data.get('servers'),'PATHS',len(data['paths']))
+          print('RFQ_RAW',rs,rc,len(rb),'SHA256',sha256(rb).hexdigest() if rs==200 else '-', 'INFO',rfq.get('info') if rfq else '-', 'CHANNELS',list(rfq['channels']) if rfq else '-','OPERATIONS',list(rfq['operations']) if rfq else '-')
+          print('CLOB_HISTORY_IN_SPEC','/orderbook-history' in clob['paths'],'CLOB_PATHS',len(clob['paths']))
+          def ref(node,root):
+            for _ in range(12):
+              if not isinstance(node,dict) or '$ref' not in node: break
+              pointer=node['$ref'];assert pointer.startswith('#/'),pointer
+              value=root
+              for token in pointer[2:].split('/'):value=value[token.replace('~1','/').replace('~0','~')]
+              node=value
+            return node
+          def typ(n,root):
+            n=ref(n,root)
+            if not isinstance(n,dict):return str(type(n).__name__)
+            t=n.get('type','unknown');t=','.join(map(str,t)) if isinstance(t,list) else str(t)
+            if 'items' in n:return 'array['+typ(n['items'],root)+']'
+            if 'oneOf' in n or 'anyOf' in n:return 'union['+','.join(typ(v,root) for v in n.get('oneOf',n.get('anyOf',[])))+']'
+            return t+('('+str(n['format'])+')' if n.get('format') else '')
+          def walk(n,root,prefix='',depth=0,required=False):
+            n=ref(n,root)
+            if not isinstance(n,dict):return []
+            label=prefix or '$response';desc=' '.join(str(n.get('description','')).split())[:160]
+            enums=' enum='+','.join(map(str,n['enum'])) if isinstance(n.get('enum'),list) else ''
+            limits=(' min='+str(n['minimum']) if 'minimum' in n else '')+(' max='+str(n['maximum']) if 'maximum' in n else '')
+            row=(label,('!' if required else '')+typ(n,root)+enums+limits,desc or '—')
+            out=[row]
+            if depth>=4:return out
+            for name,prop in n.get('properties',{}).items():out+=walk(prop,root,(prefix+'.' if prefix else '')+name,depth+1,name in n.get('required',[]))
+            if 'items' in n:out+=walk(n['items'],root,(prefix or '$response')+'[]',depth+1)
+            for branch in n.get('allOf',[]):out+=walk(branch,root,prefix,depth+1)
+            return out
+          def opinfo(doc,path):
+            op=doc['paths'][path]['get'];par=doc['paths'][path].get('parameters',[])+op.get('parameters',[])
+            params=[]
+            for p in par:
+              p=ref(p,doc)
+              if not isinstance(p,dict):continue
+              schema=ref(p.get('schema',{}),doc)
+              params.append((p.get('name','?'),p.get('in','?'),p.get('required',False),typ(schema,doc),schema.get('enum') if isinstance(schema,dict) else None,schema.get('default') if isinstance(schema,dict) else None,' '.join(str(p.get('description','')).split())[:250]))
+            responses={}
+            for code,r in op.get('responses',{}).items():
+              r=ref(r,doc);content=r.get('content',{})
+              responses[code]=walk(content.get('application/json',{}).get('schema',{}),doc)
+            return op,params,responses
+          operations=[(path,method.upper(),op) for path,item in data['paths'].items() for method,op in item.items() if isinstance(op,dict) and method.lower() in ('get','post','put','patch','delete')]
+          print('DATA_OPERATIONS',len(operations))
+          assert len(operations)>=15,'Unexpectedly tiny Data v2 spec'
+          catalog=p02.read_text()
+          s=p08.read_text()
+          assert '### 19.1 OpenAPI' in s and '### 19.2 AsyncAPI' in s
+          start=s.index('### 19.1 OpenAPI');end=s.index('### 19.2 AsyncAPI',start)
+          sec=s[start:end]
+          assert '**Specs recuperados:** 6/7' in sec and '**Specs fallidos:** 1' in sec,'RG01 checkpoint shifted'
+          sec=sec.replace('**Operaciones realmente parseadas:** 143',f'**Operaciones realmente parseadas:** {143+len(operations)}').replace('**Specs recuperados:** 6/7','**Specs recuperados:** 7/7').replace('**Specs fallidos:** 1','**Specs fallidos:** 0')
+          sec=re.sub(r'\n\*\*Descargas sin éxito \(NO PARSEADO, no atribuir cobertura\):\*\*\n- S41 [^\n]+\n','\n',sec)
+          data_rows=[];missing=[]
+          for endpoint,method,op in sorted(operations):
+            key=f'{method} {endpoint}'
+            existing=bool(re.search(r'`'+re.escape(key)+r'`',catalog))
+            status='DOCUMENTED' if existing else 'MISSING / AMBIGUOUS — assess §3.4'
+            if not existing:missing.append(key)
+            params=[]
+            for parm in data['paths'][endpoint].get('parameters',[])+op.get('parameters',[]):
+              parm=ref(parm,data)
+              if not isinstance(parm,dict):continue
+              params.append(('!' if parm.get('required') else '')+str(parm.get('in'))+':'+str(parm.get('name'))+':'+typ(parm.get('schema',{}),data))
+            resp=[]
+            for code,r in op.get('responses',{}).items():
+              r=ref(r,data)
+              rr=r.get('content',{}).get('application/json',{}).get('schema',{})
+              resp.append(str(code)+':'+typ(rr,data))
+            security=op.get('security',data.get('security',[]));auth=','.join('+'.join(v.keys()) for v in security) if security else 'public (spec operation security empty)'
+            fields=[f'S41 {key}',status,str(op.get('operationId','—')),auth,', '.join(params) or '—','—','; '.join(resp) or '—']
+            data_rows.append('| '+' | '.join(v.replace('|','\\|').replace('\n',' ') for v in fields)+' |')
+          data_rows+=['| S41 SPEC HEADER | MEASURED | '+str(data.get('info',{}).get('title'))+' / '+str(data.get('info',{}).get('version'))+' | '+str(data.get('servers',[])).replace('|','\\|')+' | OpenAPI '+str(data.get('openapi'))+'; SHA256 '+sha256(raw).hexdigest()+' | '+str(len(raw))+' bytes; '+str(len(data['paths']))+' paths; '+str(len(operations))+' operations | '+data_url+' |']
+          insert=sec.index('| S41a ');sec=sec[:insert]+'\n'.join(data_rows)+'\n'+sec[insert:]
+          sec+='\n**Data v2 coverage triage:** '+str(len(operations))+' operaciones extraídas, '+str(len(missing))+' no encontradas literalmente en §3.4: '+(', '.join(missing) if missing else 'none')+'. Parámetros y schemas detallados de resolución/posiciones/trades/activity: §3.4.1. [S41]\n'
+          s=s[:start]+sec+s[end:]
+          # Exact request/response for Data v2 critical APIs, resolving refs; SDK normalization is separate.
+          critical=['/v2/resolutions','/v2/positions','/v2/trades','/v2/activity']
+          blocks=['### 3.4.1 Contratos Data v2 extraídos del OpenAPI raw ('+ts+')','','Fuente: [S41], OpenAPI '+str(data.get('openapi'))+', SHA-256 `'+sha256(raw).hexdigest()+'`. Todas estas operaciones son HTTP `GET https://data-api.polymarket.com<path>`, `security` conforme a su objeto OpenAPI. Las rutas públicas no requieren credenciales CLOB; la especificación puede declarar respuestas `401`, lo que no demuestra que se requiera L2. Los campos marcados `!` son `required` según schema JSON, no inferencias. Los tipos `number` del wire NO equivalen a `DecimalString` del SDK.','']
+          for endpoint in critical:
+            assert endpoint in data['paths'],endpoint
+            op,params,responses=opinfo(data,endpoint)
+            blocks+=['**`GET '+endpoint+'` — `operationId='+str(op.get('operationId','—'))+'`; auth='+str(op.get('security',data.get('security',[])))+'**','','| Query (HTTP) | In | Required | Tipo / enum | Default | Descripción normativa |','|---|---|---:|---|---|---|']
+            for name,loc,needed,t,enum,default,desc in params:blocks.append('| '+' | '.join(str(v).replace('|','\\|') for v in (name,loc,str(needed),t+(' enum='+str(enum) if enum else ''),str(default),desc))+' |')
+            blocks+=['','| HTTP response | Campo wire | Tipo / enum (`!`=required) | Semántica literal spec |','|---|---|---|---|']
+            for code,rows in responses.items():
+              for label,t,desc in rows:
+                blocks.append('| '+' | '.join(str(v).replace('|','\\|') for v in (str(code),label,t,desc))+' |')
+            blocks+=['','**No extrapolar:** errores, cursor, estado y timestamps únicamente según schema y descripciones anteriores; `success` HTTP de un aggregate no es confirmación on-chain.','']
+            print('CRITICAL_WIRE',endpoint,'PARAMS',json.dumps(params,ensure_ascii=False),'RESPONSE_SCHEMAS',json.dumps(responses,ensure_ascii=False)[:18000])
+          block='\n'.join(blocks)+'\n'
+          assert '### 3.4.1 Contratos Data v2' not in catalog
+          assert '**Mini-contract crítico de posiciones:**' in catalog
+          catalog=catalog.replace('**Mini-contract crítico de posiciones:**',block+'\n**Mini-contract crítico de posiciones:**',1)
+          catalog=catalog.replace('El detalle de todos los nombres wire de posición y de la paginación de cada familia en los OpenAPI no fue reextraído íntegramente en esta pasada: **RESEARCH GAP**, no inventar struct de Go a partir de este resumen.','El detalle wire oficial de `positions`, `trades`, `activity` y `resolutions` está expandido en §3.4.1; el SDK transforma nombres y números de forma independiente. No inferir garantías históricas desde una respuesta actual.')
+          # Historical L2: compare official CLOB spec with error reference claim; read-only unauthenticated probe.
+          found='/orderbook-history' in clob['paths']
+          test_urls=['https://clob.polymarket.com/orderbook-history?startTs=1700000000&limit=1','https://clob.polymarket.com/orderbook-history?asset_id=98022490269692409998126496127597032490334070080325855126491859374983463996227&startTs=1789600000&limit=1']
+          probes=[]
+          for url in test_urls:
+            st,b,ctype=fetch(url,3000)
+            probes.append((st,url,b.decode('utf8','replace')[:350].replace('\n',' ')))
+            print('ORDERBOOK_HISTORY_READONLY',st,url,'BODY',b.decode('utf8','replace')[:600])
+          history='**RG-03 verificación '+ts+':** El OpenAPI CLOB raw [S40] '+('incluye' if found else '**NO incluye**')+' `GET /orderbook-history` en su mapa de `paths` ('+str(len(clob['paths']))+' paths). La página de errores [S18] lo menciona, pero esto no define request/response, orden, retención o completitud. Pruebas GET públicas sin credenciales, cuerpo máximo 3 KB: '+ '; '.join('HTTP '+str(st)+' para `'+url.replace('https://clob.polymarket.com','CLOB')+'` → `'+body.replace('`','')+'`' for st,url,body in probes)+'. **Conclusión documental:** no existe aquí un contrato certificable de archivo L2 íntegro y ordenado, ni una promesa de replay; `prices-history` y trades son datasets distintos. Capability de backfill L2 por este endpoint = `DISABLED/NOT DOCUMENTED`; para replay propio debe capturarse evidencia `book`/`price_change` y reconcilaciones en tiempo de observación. No afirmar que el endpoint nunca existió ni que se comprobó retención completa. [S18][S40][S45]'
+          catalog=catalog.replace('esquema/retención completo **RESEARCH GAP** [S18]', 'esquema/retención **NO DOCUMENTADOS EN S40**; evidencia y probes §17 [S18][S40]')
+          p02.write_text(catalog)
+          hist=p07.read_text()
+          original='El contrato exacto de TODOS los campos de `GET /v2/resolutions`, incluidos enum/timestamp, sigue siendo RESEARCH GAP mientras su OpenAPI raw no haya sido parseado (§24); no inventar enum universal.'
+          assert original in hist
+          hist=hist.replace(original,'El contrato raw de `GET /v2/resolutions`, sus enums, filtros, timestamps y respuesta está expandido directamente desde OpenAPI en §3.4.1. El SDK oficial normaliza a camelCase, convierte sentinelas y fechas [S41][S34f]; ninguno de sus getters reemplaza la confirmación de payout o redemption en cadena.')
+          hist=hist.replace('cuya semántica, coverage y retention siguen **RESEARCH GAP** y deben investigarse','que NO está inventariado en OpenAPI S40; su semántica, cobertura y retención son **NOT DOCUMENTED** y no deben asumirse')
+          assert '## 18. Rate limits' in hist
+          hist=hist.replace('## 18. Rate limits',history+'\n\n## 18. Rate limits',1)
+          p07.write_text(hist)
+          # RFQ AsyncAPI: complete inventory and directional messaging, no invented resume.
+          if rfq:
+            ops=[];messages=[]
+            for oid,op in rfq['operations'].items():
+              channel=op.get('channel',{});channel=str(channel.get('$ref',channel.get('address','?'))) if isinstance(channel,dict) else str(channel)
+              mrefs=[str(m.get('$ref',m.get('name','inline'))) if isinstance(m,dict) else str(m) for m in op.get('messages',[])]
+              ops.append((oid,str(op.get('action','?')),channel,','.join(mrefs) or '—',str(op.get('security',[]))))
+            for channel,chan in rfq['channels'].items():
+              for mid,msg in chan.get('messages',{}).items():
+                msg=ref(msg,rfq);payload=ref(msg.get('payload',{}),rfq)
+                f=walk(payload,rfq)
+                messages.append((channel,mid,str(msg.get('name',mid)),str(msg.get('contentType','—')),f))
+            print('RFQ_INVENTORY',len(rfq['channels']),len(ops),len(messages),'SERVERS',json.dumps(rfq.get('servers',{}))[:1200])
+            for row in messages:print('RFQ_MESSAGE',row[0],row[1],row[2],json.dumps(row[4],ensure_ascii=False)[:6000])
+            details=['### 19.3 RFQ AsyncAPI oficial: inventario medido '+ts,'','[S48] HTTP 200; SHA-256 `'+sha256(rb).hexdigest()+'`; AsyncAPI `'+str(rfq.get('asyncapi'))+'`; `info.version='+str(rfq.get('info',{}).get('version'))+'`; servers `'+json.dumps(rfq.get('servers',{}),ensure_ascii=False).replace('|','\\|')+'`. **No equivale a CLOB WS ni a operación de conversión NegRisk.** Las direcciones `send/receive` son desde la perspectiva declarada por AsyncAPI; no inferir secuencia/replay si no hay campo explícito.','','| operationId | Dirección | Canal/ref | Mensajes | Security explícita |','|---|---|---|---|---|']
+            for row in ops:details.append('| '+' | '.join(str(v).replace('|','\\|') for v in row)+' |')
+            details+=['','| Canal | Mensaje | name | Content type | Campos del payload (`!`=required) |','|---|---|---|---|---|']
+            for ch,mid,name,ctype,fields in messages:
+              details.append('| '+' | '.join(str(v).replace('|','\\|') for v in (ch,mid,name,ctype,'; '.join(k+':'+t for k,t,desc in fields)))+' |')
+            details+=['','**Recovery:** extraído esquema de mensajes, no se declara cursor, secuencia ni replay sin especificación expresa; RFQ/Combos queda `OUT_OF_SCOPE` para el Engine MVP inicial por ser un venue/flujo de ejecución adicional condicionado a evidencia de utilidad. Si se incorpora después, el gateway requester/builder y firma Exchange-v3 exigen verificación independiente; el AsyncAPI maker por sí solo no certifica escritura end-to-end. [S28][S43][S48]','']
+            s=s.replace('## 20. SDKs', '\n'.join(details)+'\n## 20. SDKs',1)
+            lines=s.splitlines()
+            for i,line in enumerate(lines):
+              if line.startswith('| S48 |'):lines[i]='| S48 | RFQ AsyncAPI '+str(rfq.get('asyncapi'))+' / '+str(rfq.get('info',{}).get('version'))+'; '+str(len(rfq['channels']))+' channels | **'+str(len(ops))+' operations; '+str(len(messages))+' messages** | payloads/directions enumerated en §19.3 | **PARSED HTTP 200 '+ts+'; OUT_OF_SCOPE implementation** |'
+            s='\n'.join(lines)+'\n'
+          # Preserve correctly read CLOB post SDK behavior; true defer not documented as operationally safe.
+          posturl='https://raw.githubusercontent.com/Polymarket/ts-sdk/983a10a7579c95043d4099f60873ff7ea817e5a0/packages/client/src/actions/orders/post.ts'
+          poststatus,postbytes,_=fetch(posturl)
+          if poststatus==200:
+            post=postbytes.decode('utf8');assert 'deferExec: false' in post
+          else:post=''
+          print('SDK_POST',poststatus,'deferExec_false',bool(post),'SHA256',sha256(postbytes).hexdigest() if post else '-')
+          s=s.replace('## 20. SDKs oficiales', '**RG-07 observed SDK behavior ('+ts+'):** '+('TS unified SDK `post.ts` pinned SHA `983a10a…` serializes `deferExec: false` for both POST `/order` and `/orders`; S40 request body includes optional boolean but no externally verifiable semantics of `true`. This observation supports only the default `false`; `true` is **DISABLED / NOT DOCUMENTED**, not a recommended batching/scheduling feature.' if post else 'SDK post.ts raw retrieval failed; `deferExec=true` remains disabled pending explicit official behavior.')+' CLOB raw S40 defines **`PUT /balance-allowance`** and **`GET /balance-allowance/update`** with `asset_type` required, optional `token_id`, `signature_type`; both L2, `PUT` HTTP 200 `{}`, GET/update HTTP 200 `BalanceAllowanceResponse`. Neither endpoint grants ERC20/1155 approval on-chain; refresh/reconcile CLOB cache separately. S40 `GET /auth/api-keys` security array declares **L1 headers** whereas official pinned TS SDK `fetchApiKeys` invokes `secureClob` L2: **documentary contradiction; use L2 route confirmed by SDK, do not treat spec alone as proof of L1.** Builder-key revocation SDK calls unauthenticated BaseClient while OpenAPI security must decide actual requirements; omit Builder features until independently validated. [S40][S34c][S34e]\n\n## 20. SDKs oficiales',1)
+          p08.write_text(s)
+          # Part 02 targeted material contradiction and secondary semantics (not full rewrite).
+          c=p02.read_text()
+          c=c.replace('| `GET /balance-allowance/update` | L2 | mismos selectores, solicita refresco de cache de servicio; respuesta exacta/reacción interna **RESEARCH GAP** | ruta soportada por SDK oficial Rust v2 y documentación de límites [S20c][S19] |','| `PUT /balance-allowance` y `GET /balance-allowance/update` | L2 (S40) | ambos query `asset_type` requerido, opcionales `token_id`, `signature_type`; PUT HTTP 200 `{}`; GET/update HTTP 200 `BalanceAllowanceResponse {balance,allowances}`. Refrescan datos CLOB, **no aprueban on-chain** | raw S40 parseado '+ts+'; §19.1 y §20 [S40] |')
+          c=c.replace('| `DELETE /auth/builder-api-key` | headers Builder/credenciales según ruta y current SDK | revoca clave Builder; respuesta `"OK"`; request headers precisos **RESEARCH GAP** [S34c][S18] |','| `DELETE /auth/builder-api-key` | OpenAPI S40 security por operación; SDK oficial invoca BaseClient sin headers explícitos | HTTP 200 JSON `"OK"`; **conflicto de seguridad spec/SDK no resuelto; Builder credential management DISABLED** [S34c][S40] |')
+          c=c.replace('| `POST /order` | L2 + orden firmada | wrapper/DTO de §7;', '| `POST /order` | L2 + orden firmada | `deferExec=false` observado SDK; `true` DISABLED sin semántica verificable; wrapper/DTO de §7;')
+          p02.write_text(c)
+          # §24 status is scoped: end-to-end full certification still cannot pass solely from spec extraction.
+          g=p10.read_text().splitlines();update={
+            'RG-01':f'PARTIAL {ts}: 7/7 OpenAPI raw recuperados y parseados, {143+len(operations)} operaciones; comparación literal en §19.1 y schemas Data críticos §3.4.1; {len(missing)} rutas Data no coinciden literal. | inventario mecánico cerrado, falta triage de operaciones CLOB/Gamma/Relayer clasificadas ambiguas y expansión de DTOs trading críticos | confirmar discrepancias, schema/seguridad y excluir secundarias con razón antes de marcar PASS',
+            'RG-02':('CLOSED M0 '+ts+': RFQ AsyncAPI descargado HTTP 200 y parseado: '+str(len(rfq['channels']))+' canales, '+str(len(ops))+' operaciones, '+str(len(messages))+' mensajes; contratos en §19.3 | Combo/RFQ condicionado, OUT_OF_SCOPE MVP inicial; no prometer routing/recovery end-to-end | reabrir sólo al incorporar Combo/RFQ con gateway requester y exchange-v3 cert' if rfq else 'PARTIAL: RFQ asyncapi raw falló HTTP '+str(rs)+' | No declarar cobertura RFQ | repetir extracción oficial'),
+            'RG-03':('CLOSED M0 '+ts+': raw CLOB S40 '+('incluye ruta' if found else 'NO enumera la ruta')+' `/orderbook-history`; GET públicos '+','.join(str(t[0]) for t in probes)+'; schema/SLA/ordering no publicados; respuesta en §17 | histórico L2 completo NO certificado, backfill L2 DISABLED; recorder propio obligatorio como dato de diseño | sólo reabrir ante especificación oficial completa o certificación empírica del archivo; no inferir replay'),
+            'RG-04':'CLOSED M0 '+ts+': `GET /v2/resolutions` OpenAPI raw request+response+enums/timestamps expandido en §3.4.1, API vs SDK separadas en §16 | resolution lifecycle diseñable sin equiparar end/proposal/resolved/redeemed; chain payout autoridad final | revisar changes de spec por fecha; pruebas públicas read-only según parámetros reales',
+            'RG-07':'PARTIAL '+ts+': CLOB S40 confirma PUT y GET cache balance/allowance, SDK pinned fuerza `deferExec=false`; TRUE no documentado y DISABLED, Builder CRUD mismatch auth identificado | modo normal `false` puede diseñarse; Builder auth alternativo prohibido hasta resolver conflicto; notificaciones OUT_OF_SCOPE | verificar Builder auth/relayer variantes si quedan mandatory, de otro modo cerrar scoped exclusion',
+          }
+          for i,line in enumerate(g):
+            for rg,text in update.items():
+              if line.startswith('| '+rg+' |'):
+                cols=text.split(' | ')
+                assert len(cols)==4,(rg,cols)
+                g[i]='| '+rg+' | '+' | '.join(cols)+' |'
+          p10.write_text('\n'.join(g)+'\n')
+          # Source registry: update only GET-confirmed raw sources; stable IDs retained.
+          r=p11.read_text().splitlines()
+          checks={'S40':(sha256(cb).hexdigest(),len(cb),'HTTP 200 raw parsed'),'S41':(sha256(raw).hexdigest(),len(raw),'HTTP 200 raw parsed'),'S48':(sha256(rb).hexdigest(),len(rb),'HTTP 200 raw parsed') if rfq else None}
+          for i,line in enumerate(r):
+            for sid,info in checks.items():
+              if info and line.startswith('| '+sid+' |'):
+                cells=line.split(' | ')
+                assert len(cells)>=5
+                # preserve title, url, type, sections supported; modify retrieval cell only
+                cells[4]=info[2]+' '+ts+'; '+str(info[1])+' bytes; SHA256 `'+info[0]+'`'
+                r[i]=' | '.join(cells)
+          for sid,name,relurl,desc in [
+             ('S34e','ts-sdk orders post.ts pinned','packages/client/src/actions/orders/post.ts','deferExec=false and signed order request serializer'),
+             ('S34f','ts-sdk Data resolutions.ts pinned','packages/bindings/src/data/resolutions.ts','wire-to-SDK status/enum/sentinel/epoch conversions')]:
+            if not any(x.startswith('| '+sid+' |') for x in r):
+              url='https://github.com/Polymarket/ts-sdk/blob/983a10a7579c95043d4099f60873ff7ea817e5a0/'+relurl
+              r.insert(next(i for i,x in enumerate(r) if x.startswith('| S35 |')), '| '+sid+' | '+name+' | `'+url+'` | SDK oficial commit pinned | '+('raw HTTP 200; '+ts if sid=='S34e' and post else 'GitHub fetch_file path y SHA comprobado '+ts)+' | '+desc+' |')
+          p11.write_text('\n'.join(r)+'\n')
+          # byte/shas of existing eleven parts; never modify structural sections.
+          parts=sorted(d.glob('Polymarket — Technical Platform Map — part-*.md'));assert len(parts)==11
+          m=manifest.read_text().splitlines()
+          for part in parts:
+            matching=[i for i,line in enumerate(m) if ('part-'+part.name.split('part-')[1]+')') in line]
+            assert len(matching)==1,(part,matching)
+            i=matching[0];old=m[i]
+            m[i]=re.sub(r'\| \d+ bytes \| `[a-f0-9]{64}` \|$',f'| {part.stat().st_size} bytes | `{sha256(part.read_bytes()).hexdigest()}` |',old)
+            assert m[i]!=old or (str(part.stat().st_size)+' bytes' in old)
+          joined=b''.join(p.read_bytes() for p in parts)
+          m=[line for line in m if not line.startswith('**Manifiesto vigente:**')]
+          at=m.index('## Integridad y mantenimiento')
+          m.insert(at,'**Manifiesto vigente:** verificado '+ts+'; concatenación actual de 11 partes: '+str(len(joined))+' bytes; SHA-256 `'+sha256(joined).hexdigest()+'`. Baseline original histórico SHA-256 `02566696b5bc9bd71f07ae73c47b6dbb950b2553cfd9aff5a6247a9663c5b9f5` (no debe igualar documento corregido).')
+          manifest.write_text('\n'.join(m)+'\n')
+          assert sum(line.startswith('| [part-') for line in m)==11
+          print('MANIFEST',len(joined),sha256(joined).hexdigest(),'LINKS',11,'RESEARCH_GAPS_RG02',bool(rfq),'RG03_HISTORY_IN_SPEC',found)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -- .github/workflows/polymarket-m0-contracts-once.yml
+          git add -- main/30-resources/polymarket/
+          git -c core.whitespace=-blank-at-eof diff --cached --check
+          git commit -m 'docs(polymarket): extract Data v2 resolution RFQ and L2-history evidence'
+          git fetch origin master
+          git rebase origin/master
+          git push origin HEAD:master
