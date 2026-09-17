@@ -53,7 +53,7 @@ El grafo read-only que usa Fury contiene los hechos necesarios para resolver el 
 7. Registrar por scope la Fury route Web y contrastar la versión de configuración desplegada por Fury con el latest release `APPROVED` de Config Orchestrator; la resolución del profile en código queda como evidencia independiente.
 8. Traducir los hechos a una lista explícita de cambios candidatos por aplicación para conducir la nomenclatura de todos los componentes Fury.
 9. Exigir que toda aplicación desplegable represente los scopes lógicos `prod`, `stage` y `alpha`; `beta/gamma` son extensiones opcionales.
-10. Definir un routing escalable desde el ambiente solicitado hasta el consumer del scope efectivo, separado del segmento físico Fury.
+10. Definir un routing escalable desde el scope Fury solicitado hasta el consumer efectivo, separado tanto del pipeline environment como del segmento físico Fury.
 
 ## Scope
 
@@ -306,7 +306,7 @@ La propuesta versionada vive en `~/fuentes/rio-inspector/rio-scope-policy.json`;
 ```text
 <environment>-<role>[-<qualifier>]-<segment>
 
-environment : prod | stage | alpha | beta | gamma   · ambiente lógico real
+environment : prod | stage | alpha | beta | gamma   · token de lane Fury, no Pipeline Environment
 role        : token funcional del servicio          · vocabulario canónico abajo
 qualifier   : opcional                              · SÓLO si hay >1 scope del mismo tipo+ambiente
 segment     : nonsite | nonprod                     · metadata.segment de Fury (real)
@@ -317,7 +317,7 @@ prod -> nonsite        stage | alpha | beta | gamma -> nonprod
 Reglas duras:
 - RIO define el nombre base `<environment>-<role>[-<qualifier>]`; `<segment>` lo agrega Fury como último token y nunca se inventa ni se escribe a mano.
 - Sin nombres base pelados: el web principal parte como `prod-api` y Fury lo materializa `prod-api-nonsite`, nunca `prod`.
-- El ambiente lógico y el profile/config se resuelven explícitamente; nunca desde el último token `nonprod/nonsite` agregado por Fury.
+- El token de lane Fury y el profile/config se resuelven explícitamente; nunca desde el pipeline environment ni desde el último token `nonprod/nonsite` agregado por Fury.
 - Con un único runtime del tipo, `<role>` toma el valor canónico del tipo; no se omiten tokens.
 - `<environment>` ≠ `<segment>`: un runtime `nonprod` puede ser `stage` o `alpha`; el primer token los distingue.
 - `legacy` no es segmento objetivo: todo runtime `legacy` se migra (`prod→nonsite`, resto→`nonprod`) y recién ahí toma nombre canónico.

@@ -54,7 +54,7 @@ cssclasses:
 - Partir de una **fuente de verdad verificable del estado actual**: qué scopes existen en Fury, su segmento runtime, lifecycle/health y qué bindings tipados los referencian.
 - Convertir el resultado en una propuesta implementable: contrato de naming, reglas de compatibilidad entre Playmaker y control planes, validaciones automáticas, estrategia de migración, ownership y documentación operativa.
 - **Capability nueva (2026-08-19):** habilitar **selección independiente del scope de frontend y de backend en runtime**: Nordic/MeliLab determina el frontend y `backend` puede sobreescribir sólo el backend en test, sin acoplar el alta de scopes a un deploy del frontend. El diseño ejecutable vive en [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]].
-- **Resultado esperado:** RIO dispone del catálogo acotado de ambientes lógicos `production`, `staging`, `alpha`, `beta` y `gamma`, pero cada equipo habilita sólo los ambientes y roles que necesita. Los scopes de frontend se llaman únicamente como el ambiente; el backend usa `<environment>-<rol>-<segment>`. Una operación conserva el mismo ambiente de backend a lo largo de todo el flujo.
+- **Resultado esperado:** RIO dispone del catálogo acotado de scopes Fury lógicos `production`, `staging`, `alpha`, `beta` y `gamma`, pero cada equipo habilita sólo las lanes y roles que necesita. Los scopes de frontend se llaman únicamente como la lane; el backend usa `<environment>-<rol>-<segment>`. Una operación conserva el mismo scope Fury de backend a lo largo del flujo sin modificar su pipeline environment.
 
 ## 📊 Estado actual
 
@@ -70,7 +70,7 @@ cssclasses:
 
 ### Resultado del programa
 
-La POC debe demostrar un deploy completo en un único ambiente lógico de test y probar que ninguna etapa cruza a producción ni a otra lane. El contrato funcional está en SIG-599; cada repo conserva su propia SPEC técnica y este proyecto mantiene únicamente orden, dependencias, gates y evidencia de cierre.
+La POC debe demostrar un deploy completo en el scope Fury `alpha` y probar que ninguna etapa cruza a producción ni a otra lane. El pipeline environment del deploy permanece intacto. El contrato funcional está en SIG-599; cada repo conserva su propia SPEC técnica y este proyecto mantiene únicamente orden, dependencias, gates y evidencia de cierre.
 
 ### Fase 1 — Routing dinámico frontend → Playmaker
 
@@ -180,7 +180,7 @@ views:
 > - [ ] **[Alineación]** Validar inventario, propósito y ownership con el equipo Signals; resolver scopes huérfanos y excepciones #owner/me #type/research #area/meli
 > - [/] **[Naming]** Validar con el equipo el contrato funcional de [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599): scopes de frontend iguales al ambiente y backend limitado a `api`/`consumer`; la materialización Fury y el manifiesto de compatibilidad se definen en el SPEC técnico #owner/me #type/dev #area/meli #blocked
 > - [ ] **[Piloto KMS — segmentación obligatoria]** Revalidar el estado de la exigencia vencida, acordar una nueva fecha y confirmar si Fury acepta `alpha-api-nonprod` como remediación de `test` o exige el bridge `test-nonprod`; luego ejecutar scope+routes, canary, verificación de tráfico y rollback #owner/me #type/dev #area/meli #urgent #blocked 📅 2026-09-09
-> - [ ] **[Piloto KMS — configuración]** Reemplazar `ScopeUtils` last-token por un mapping explícito de ambiente lógico/profile compatible con el sufijo `nonprod/nonsite` agregado por Fury #owner/me #type/dev #area/meli #blocked
+> - [ ] **[Piloto KMS — configuración]** Reemplazar `ScopeUtils` last-token por un mapping explícito de scope Fury/profile compatible con el sufijo `nonprod/nonsite` agregado por Fury #owner/me #type/dev #area/meli #blocked
 > - [ ] **[Segmentación/Legacy]** Inventariar recursos live y sus `segment-id` efectivos antes de planificar migración; confirmar con Fury el mecanismo de aislamiento dentro de `nonprod` #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Manifest de bindings]** Definir y completar por runtime `application/scope`, lane, role, workload, channel, direction, infra-segment, contract/schema, versión y site/tenant #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Estándar]** Definir contrato de configuración: perfiles, segmentos, recursos compartidos/dedicados, secretos, canales, criticidad y ownership #owner/me #type/dev #area/meli #waiting
@@ -241,7 +241,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **Ownership y jerarquía:** proyecto humano raíz (`owner: me`, `root: true`) bajo [[Meli]], tercero del dominio Signals. No es subproyecto de onboarding ni de [[Crear Context]].
 - **Separación de fases:** el inventario as-is se completa antes de diseñar naming o implementar cambios. La propuesta y la adopción pertenecen a este mismo objetivo, pero quedan gated por evidencia.
 - **Definición operativa vigente:** un scope existe si el service graph Fury lo lista; lifecycle, health, segmento y binding se registran como dimensiones independientes.
-- **Dimensiones separadas:** el estándar debe distinguir al menos lane/celda, aplicación, rol/workload, ambiente lógico, segmento Fury, canal y contrato/schema.
+- **Dimensiones separadas:** el estándar debe distinguir al menos lane/celda, aplicación, rol/workload, scope Fury lógico, pipeline environment, segmento Fury, canal y contrato/schema.
 - **Tres ejes separados:** pipeline environment es dominio del data product; scope Fury (`prod/stage/alpha/beta/gamma`) identifica la lane de infraestructura; `metadata.segment` (`legacy/nonprod/nonsite`) describe placement físico. Ninguno reemplaza a otro.
 - **Fuentes:** Fury es autoridad del inventario desplegado; los repos son autoridad de interpretación y comportamiento; el vault conserva el conocimiento durable y las decisiones.
 - **Selección front/back:** Nordic/MeliLab determina el scope frontend efectivo y, por default, el backend; `backend` puede sobreescribir sólo el backend en test. Producción no procesa overrides.
