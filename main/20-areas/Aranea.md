@@ -9,7 +9,7 @@ tags:
   - area/aranea
   - kind/area
 review: weekly
-status_detail: "R0 Backup/DR reconciliado 2026-09-16 (59 guests, 23/23 Tier0 KEEP, 0 backups verificados entonces, PBS VM 180 sin integrar). R1 2026-09-17: 3 unidades BACKUP+RESTORE_VERIFIED (traefik/second-brain/hermes-state), 3 SKIPPED_GATED deuda owner, F-09=EXISTS. D0 2026-09-17: documentación del dominio saneada y consistente. Docs previos de storage marcados deprecated/superseded → [[BACKUP-DR-DESIGN]]."
+status_detail: "R0 Backup/DR reconciliado 2026-09-16 (59 guests, 23/23 Tier0 KEEP). R1 2026-09-17: 3 unidades BACKUP+RESTORE_VERIFIED, 3 SKIPPED_GATED deuda owner, F-09=EXISTS. D0 2026-09-17: documentación saneada. R1.5 2026-09-17: etcd-snapshot VERIFIED+AUTOMATED, timers activos. Preflight G0 Infrastructure Enablement 2026-09-17 18:58 UTC: inventario refrescado 6/6 + JSON materializado (59 VMs). Docs previos de storage marcados deprecated/superseded → [[BACKUP-DR-DESIGN]]."
 created: 2026-06-23
 updated: 2026-09-17
 aliases:
@@ -31,7 +31,7 @@ cssclasses:
 
 ## 📊 Estado actual
 
-- **Inventario**: ✅ Refrescado 2026-06-30 19:44 UTC. Drift = 0d.
+- **Inventario**: ✅ Refrescado 2026-09-17 18:58 UTC (captura 6/6 + JSON materializado). Drift = 0d.
 - **Gap #1 (NOPASSWD agent_ro)**: ✅ Cerrado 2026-06-30 (ticket `2026-06-30-012`).
 - **Gap #2 (drift inventario)**: ✅ Cerrado 2026-06-30.
 - **Gap #3 (auditoría storage)**: ✅ Diseño cerrado 2026-06-30 (ticket `2026-06-30-013`).

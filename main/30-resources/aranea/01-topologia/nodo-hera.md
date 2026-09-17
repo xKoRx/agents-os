@@ -21,10 +21,11 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 
 
 > **Estado**: ✅ OK (subutilizado: 72 cores, 125 GB RAM, solo 9 vCPU + 28 GB RAM asignados)
-> **Capturado**: 2026-09-16 23:35 UTC vía `agent-read all`
-> **Fuente primaria**: `/home/hermes/aranea/topology/discovery/hera_20260916_233513.txt`
+> **Capturado**: 2026-09-17 18:58 UTC vía `agent-read all`
+> **Fuente primaria**: `/home/hermes/aranea/topology/discovery/hera_20260917_185839.txt`
+> **Fuente previa (superseded)**: `/home/hermes/aranea/topology/discovery/hera_20260916_233513.txt`
 > **Fuente previa (superseded)**: `/home/hermes/aranea/topology/discovery/hera_20260628_211812.txt`
-> **Alcanzabilidad 2026-09-16**: ✅ SSH agent-read OK
+> **Alcanzabilidad 2026-09-17**: ✅ SSH agent-read OK (matriz 6/6 PASS)
 
 ## 🪪 Identidad
 

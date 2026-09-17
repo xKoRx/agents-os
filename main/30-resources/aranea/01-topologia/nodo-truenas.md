@@ -21,9 +21,11 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 
 
 > **Rol**: Almacenamiento compartido (NFS/SMB) para el cluster Aranea.
-> **Recolectado**: 2026-09-16 23:35 UTC vía `agent-read all`
-> **Fuente**: `/home/hermes/aranea/topology/discovery/truenas_20260916_233513.txt` + `nodes/truenas.md` (template original)
+> **Capturado**: 2026-09-17 18:58 UTC vía `agent-read all`
+> **Fuente primaria**: `/home/hermes/aranea/topology/discovery/truenas_20260917_185839.txt`
+> **Fuente previa (superseded)**: `/home/hermes/aranea/topology/discovery/truenas_20260916_233513.txt` + `nodes/truenas.md` (template original)
 > **Estado**: ✅ Inventario completo, **con alertas críticas de diseño**
+> **Alcanzabilidad 2026-09-17**: ✅ SSH agent-read OK (matriz 6/6 PASS)
 > **Ping check 2026-09-16**: ✅ responde ICMP (192.168.31.91)
 
 ## 🪪 Identidad

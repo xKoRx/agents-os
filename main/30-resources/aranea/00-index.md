@@ -35,7 +35,7 @@ cssclasses:
 |> **Storage distribuido**: Ceph con 4 OSDs NVMe + TrueNAS NFS/iSCSI/SMB
 >
 > [!success] ✅ Frescura de los datos — al día
-> **Última captura real**: **2026-09-16 23:35 UTC** vía `agent-read all` en los 6 nodos (validación previa 6/6 PASS; R0 Backup/DR).
+> **Última captura real**: **2026-09-17 18:58 UTC** vía `agent-read all` en los 6 nodos (validación previa 6/6 PASS; preflight G0 mandato Infrastructure Enablement).
 > **Drift actual**: 0 días
 > **NOPASSWD aplicado** en athena/zeus/hera/kronos/truenas/hades — `agent-read` corre vía `sudo -n` sin password. Skill: `aranea_agent_ro_inventory_refresh`.
 > **Ping check 2026-09-16**: los 6 nodos responden a ICMP ✅ (nota R0: PBS VM 180 SIN ping/22/8007 desde Hermes — ver [[BACKUP-DR-OWNER-PROJECT]])
