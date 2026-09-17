@@ -61,7 +61,7 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable; C-3 collector + excepción Manager §7.2a | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.2.1 (encoding v1; HEAD `336c723b`, contrato `662c0dce`; previo `e8fba410`) | E06_TRANSPORT_CONTRACT_READY_FOR_MANAGER_REVIEW · 0 source · NORMAL no lanzado |
+| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable; C-3 collector + excepción Manager §7.2a | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.2.2 (encoding v1 + erratum liveness refresh; HEAD `acf996ad`, contrato `28afc47f`; previo `336c723b`) | E06_PLANNING_READY_FOR_IMPLEMENTATION_REVIEW · 0 source · NORMAL no lanzado |
 | xKoRx/symphony (Forge, READ ONLY en planning) | `codex/f05-release-prep` @ `0ddd4db` (master observado `0b9742b` **no** es la branch de desarrollo) | — | F-04 sello/readback magic | Discovery físico §7.2a.5: inyección futura estructural en **un** archivo `sqx/exporter-plugin/src/SQ/CustomAnalysis/EchoForgeMT5Exporter.java` (blob `cfbd5b78`; lane Forge propio; no editado) | Sin cambios · WRITE futuro MUST reidentificar branch |
 
 ## 🗺️ Source map (baseline `5dd998f1` + PG/Hasura)
@@ -156,7 +156,7 @@ SPEC AC-01…AC-25 + AC-26…AC-33. SOURCE + CONTRACT + PG REAL + HTTP + PHYSICA
 
 ## Handoff requirements
 
-Manager revisa v1.2.1 (encoding v1 + CASE B intacto) → autoriza NORMAL. **NORMAL no arranca antes.** No merge/deploy. No E-07. Hook SQX de coverage sigue DEFER. No apply 061/064 Aranea. La inyección Forge se ejecuta como expansión de borde de un archivo con gate Manager/Forge **después** de reidentificar la branch autorizada.
+Implementation review de v1.2.2 (erratum liveness + encoding v1 + CASE B intacto) → autoriza NORMAL. **NORMAL no arranca antes.** No merge/deploy. No E-07. Hook SQX de coverage sigue DEFER. No apply 061/064 Aranea. La inyección Forge se ejecuta como expansión de borde de un archivo con gate Manager/Forge **después** de reidentificar la branch autorizada.
 
 ## Closure conditions
 
@@ -175,6 +175,7 @@ _No aplica — hijo de implementación de E-06; no crea Integration ni más hijo
 > - [x] TOP authority reconciliation zero-order magic → CASE C blocked #owner/agent #type/docs #area/echo
 > - [x] TOP planning correction #2 v1.2.0 Manager CASE B + producer discovery §7.2a → Manager Review #owner/agent #type/docs #area/echo
 > - [x] TOP transport contract correction v1.2.1 encoding GV lossless → Manager Review #owner/agent #type/docs #area/echo
+> - [x] TOP refresh liveness erratum v1.2.2 (OnTimer compatible / OnTick oportunista / sin liveness continua prometida) → Implementation Review #owner/agent #type/docs #area/echo
 > - [ ] WP-A Persistencia 064 + stores + UNIQUEs #owner/agent #type/dev #area/echo
 > - [ ] WP-B Enrollment HTTP PREPARED/ACK/drain + ClientConfig #owner/agent #type/dev #area/echo
 > - [ ] WP-C Read-back Bridge→Gateway desde `reference_status` y transición OBSERVING #owner/agent #type/dev #area/echo
@@ -198,6 +199,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-16 (TOP refresh liveness erratum — v1.2.2)** — Defecto: §7.2a.4 v1.2.1 exigía «MUST republicar al menos cada 5 s» con sitio `OnTick`; MQL5 no garantiza ticks cada 5 s ⇒ garantía temporal irrealizable. Decisión Manager frozen (sólo semántica de refresh): `OnTimer` existente realmente activado con período ≤5 s preferido; prohibido modificar `EventSetTimer` existente ni crear timer; si sólo `OnTick`, renovación oportunista — 5 s = intervalo mínimo entre publicaciones, no frecuencia garantizada; sin tick ni timer compatible nunca se promete liveness continua; expiración 15 s fail-closed `SUSPENDED + UNKNOWN`; recovery exige nueva atestación física matching con las transiciones §6 congeladas; ninguna actualización de `ts` desde Echo/Bridge/Gateway/config; cero cambios de trading. Tests AC-37a…d (contractual+físico; PHYSICAL gated por Version con inyección §7.2a.5). Scanner §7.2a.5: ausencia de sitio de refresh deja de ser fail-closed en export. CASE B, encoding v1 y resto de gates intactos. Source mutations 0 (Echo y Forge). HEAD `acf996ad043f87d6bbe6ae7b6190d1eb801e908a` (contrato `28afc47faf72b70e67b141b39224b8674f98458b`; old `336c723b`); push FF. Estado `E06_PLANNING_READY_FOR_IMPLEMENTATION_REVIEW`.
 - **2026-09-16 (TOP transport contract correction — encoding v1)** — Defecto: `GlobalVariableSet` no transporta `{program_name, chart_ref, magic}` ni int64 magic sin pérdida; `GlobalVariableTime` no es publicación. SPEC v1.2.1 cierra encoding fragmentado lossless, vigencia `ts`, correlación chart/cuenta, inyección estructural Forge (no implementada). CASE B intacto. Source mutations 0 (Echo y Forge). HEAD `336c723ba46a7c04a1a6cc4390c6d5a4f15b56d7` (contrato `662c0dcef9fb17a5308ddcb974eabb6074c748aa`; old `e8fba410`); push FF. Estado `E06_TRANSPORT_CONTRACT_READY_FOR_MANAGER_REVIEW`.
 - **2026-09-16 (TOP planning correction #2 — Manager CASE B)** — Manager resolvió CASE C: zero-order exige `effective_magic` físicamente atestiguado por la instancia strategy EA (excepción C-3 §7.2a: bootstrap runtime identity attestation, sin signals/deals/coverage/métricas/lifecycle/telemetría/estado). Discovery físico READ ONLY: producer = exporter Forge `EchoForgeMT5Exporter.java` (stamp `MagicNumber` input por `EchoForgeRobustRunExporter`; verificado por `magic-readback`; sello F-04). Transporte: variables globales terminal → relay verbatim collector `reference_status`. Identidad: bytes cambian ⇒ nuevo `strategy_version_ref`; históricos intactos fail-closed. SPEC v1.2.0; caso AC-26a/b/c; bloque CASE-C removido; reconciliación preservada en VERIFICATION.md. AutoTrading B2 intacto; coverage hook sigue DEFER. Source mutations 0 (Echo y Forge). HEAD `e8fba410347f6c60d036f9d03b2d0b1946d53e28` (contrato `3d5a5d627f5ed66e48479e24f6b664c5a973899b`; old `349b6ac8`); push FF. Estado `E06_PLANNING_V1_2_READY_FOR_MANAGER_REVIEW`.
 - **2026-09-16 (TOP authority reconciliation)** — CASE C. Live Authority §5 vs Fable C-3 no cierran si zero-order exige echo físico de magic. SPEC v1.1.0 sin bump; §7.3 KNOWN_EMPTY no es implementable. AutoTrading B2 intacto. C-3 DEFER intacto. HEAD `349b6ac8` (contrato `1c794d5a`; old `3e190d86`). Source delta `v3/` = 0. Estado `E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED`. *(Resuelto después por Manager CASE B; ver entrada superior.)*
@@ -213,6 +215,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - Hook SQX de coverage **no** se abre (C-3 DEFER). La excepción §7.2a es identidad runtime mínima, registrada como decisión Manager posterior explícita (2026-09-16), no reescritura del freeze C-3.
 - Zero-order magic = fail-closed congelado (CASE B): atestación runtime == pin o no hay OBSERVING.
 - Transporte §7.2a = encoding v1 sobre GVs del mismo terminal; magic nunca viaja como `double`; una GV existente no es instancia viva.
+- Liveness §7.2a.4 (erratum v1.2.2): refresh = `OnTimer` compatible preferido sin tocar `EventSetTimer` / `OnTick` oportunista (5 s = intervalo mínimo entre publicaciones); sin sitio ⇒ sin liveness continua prometida; la expiración de 15 s es la autoridad fail-closed.
 
 ## 🔗 Docs / Links
 
