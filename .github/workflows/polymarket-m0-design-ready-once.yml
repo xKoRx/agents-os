@@ -1,0 +1,114 @@
+name: One-shot Polymarket M0 design-ready closure
+on:
+  push:
+    paths:
+      - .github/workflows/polymarket-m0-design-ready-once.yml
+permissions:
+  contents: write
+jobs:
+  close-m0:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+          persist-credentials: true
+      - name: Reconcile verified RG evidence and close DESIGN_READY only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from urllib.parse import quote
+          from datetime import datetime,timezone
+          import subprocess,re
+          d=Path('main/30-resources/polymarket')
+          part10=d/'Polymarket — Technical Platform Map — part-10-gaps-recovery.md'
+          manifest=d/'Polymarket — Technical Platform Map — synced 2026-09-17.md'
+          root=Path('main/10-projects/Personal/Polymarket Engine/Polymarket Engine — MVP.md')
+          idx=d/'00-index.md'
+          log=d/'log.md'
+          expected={str(part10):'fe12e597bcac8cff5eaf5ef0009a0edd303a9ee2',str(manifest):'48a4d749bc78ed52c3f3d136a8a7a749c462ced5',str(root):'88d36198eb08417b4d8217acabc567bfff03b6f6',str(idx):'922944df43d2ff96b472ea2e548a08c3f1b64783',str(log):'7abb687da630996e7b118fb41efb4dbea13aa1f5'}
+          for file,blob in expected.items():
+            actual=subprocess.check_output(['git','hash-object',file],text=True).strip()
+            assert actual==blob,(file,'concurrent edit / baseline mismatch',actual,blob)
+          sections=[]
+          for i in range(1,12):
+            found=list(d.glob(f'Polymarket — Technical Platform Map — part-{i:02d}-*.md'))
+            assert len(found)==1,(i,found)
+            sections.append(found[0])
+          original=b''.join(p.read_bytes() for p in sections)
+          assert len(original)==284670 and sha256(original).hexdigest()=='2f9951d2ef830fe10821439fde5cafd7629a71fecd20c32d54f738854599705c','Existing manifest integrity failure: do not change docs'
+          def replace_one(body,old,new,where):
+            assert body.count(old)==1,(where,'expected exactly once',old[:120],body.count(old))
+            return body.replace(old,new,1)
+          g=part10.read_text(encoding='utf-8')
+          g=replace_one(g,'### B. UNRESOLVED RESEARCH GAPS — ESTADO: **NO VACÍO**','### B. Research Gaps RG-01…RG-07 — CLOSED FOR M0 DESIGN; live and optional gates tracked separately',str(part10))
+          g=replace_one(g,'Las preguntas siguientes **no** pueden reclasificarse como protocolo no documentado: tienen fuente oficial existente, pero aún sin extracción suficiente.','Los RG que siguen conservan su identidad y evidencia histórica. Su estado vigente por fila distingue cierre para diseño de habilitación live; las ausencias genuinas del protocolo permanecen en la tabla A y no se convierten artificialmente en certezas.',str(part10))
+          begin=g.index('**Certificación de hardening:**')
+          end=g.index('## 25. Parámetros dinámicos',begin)
+          closing='''**Certificación M0 — DESIGN_READY: PASS (documental, 2026-09-17).** Los siete RG han sido cerrados para las decisiones arquitectónicas del Engine MVP, con exclusiones o rutas fail-closed explícitas: RG-01 7/7 OpenAPI y 163 operaciones inventariadas/triadas; RG-02 RFQ AsyncAPI 13 operaciones/13 mensajes y RFQ fuera del MVP inicial; RG-03 no existe un contrato verificable de archivo L2 completo, por lo que backfill L2 queda DISABLED y el recorder propio es obligatorio; RG-04 DTOs Data v2 de resoluciones/posiciones/trades/actividad extraídos; RG-05 CTF pUSD adapter documentado en Solidity oficial pero conversión CTF/v2 live DISABLED y ABI de conversión v2 no verificada; RG-06 72 IDs/69 URLs consultados, 71 respuestas legibles y un fallo secundario S37 por límite de descarga, sin fuente crítica fallida; RG-07 modos opcionales `deferExec=true` y Builder no certificados, DISABLED. Esto certifica suficiencia del conocimiento para **diseñar**, NO cliente Go implementado, integración, verificación de bytecode desplegado, ejecución live, rentabilidad ni certificación integral de toda la plataforma. [S39][S40][S41][S48][S50][S51]\n\n**Gates separados:** `M0_DESIGN_READY=PASS`; `FULL_PLATFORM_CONTRACT_CERTIFIED=NO`; `ENGINE_IMPLEMENTED=NO`; `LIVE_EXECUTION_CERTIFIED=NO`; `NEGRISK_CTF_LIVE=DISABLED`; `NEGRISK_V2_LIVE=DISABLED`; `L2_HISTORICAL_BACKFILL=DISABLED`; `RFQ_COMBOS=OUT_OF_SCOPE_MVP`; `DEFER_EXEC_TRUE=DISABLED`; `BUILDER_OPTIONAL_MODES=DISABLED`. Live order/auth exige integración y reconciliación comprobadas en fases posteriores: discrepancias SDK-vs-OpenAPI no son licencia para inventar headers. [S34][S40]\n\n**Checklist M0:** OpenAPI 7/7 y 163 operaciones ✓; AsyncAPI RFQ 13/13 ✓; operaciones MVP triadas y schemas críticos ✓; resolution DTO ✓; histórico L2 no garantizado y backfill bloqueado ✓; discriminación CTF/v2 documentada y conversión live bloqueada ✓; provenance crítica verificada, S37 no crítico pendiente de retrieval completo ✓; `RG pendientes que impiden arquitectura = 0` ✓. `FULL PLATFORM CONTRACT CERTIFICATION` sigue pendiente y no es condición de M0.\n\n### C. Matriz de aceptación Astra/Fable — sólo diseño\n\n| Capacidad | Estado del knowledge pack | Boundary obligatorio para M1 |\n|---|---|---|\n| Event/Market/Token/Condition, discovery, Sports | DESIGN_READY: §§2–3,19; schemas oficiales inventariados | no equiparar Gamma ID, condition ID y token ID; tomar valores dinámicos por mercado |\n| CLOB REST, books, Market/User WS | DESIGN_READY: §§3,8–9,19,25 | sin secuencia/replay garantizados: snapshot, staleness, read-only fail-closed y reconciliación |\n| Recorder, histórico y replay | DESIGN_READY: §§17,24–25 | captura propia desde el inicio; NO asumir archivo histórico L2 determinista |\n| Auth L1/L2, firmas, órdenes, fills y cancels | DESIGN_READY documental: §§3–8,19,23–25 | designar integración/contract tests obligatorios para discrepancias SDK-vs-spec; live deshabilitado hasta validación |\n| Positions/CTF, protocol-v2 y resolution Data v2 | DESIGN_READY: §§3,10–12,16,19 | version dispatch explícito, cadena como autoridad de settlement; no equiparar timestamps ni positions |\n| NegRisk conversion | DESIGN_READY como capacidad versionada con live DISABLED: §12, RG-05 | CTF fuente Solidity verificada, deployment/approvals no; v2 ABI desconocida: prohibido ejecutar o inventar contrato |\n| Fees, rewards, limits, incentives | DESIGN_READY: §§14–15,18,25 | parámetros/versiones efectivas dinámicas; no hardcodear snapshot 2026-09-17 |\n| RFQ/Combos, deferExec=true, Builder | OUT_OF_SCOPE / DISABLED inicial: RG-02/07 | promover sólo mediante contrato adicional, sin contaminar core actual |\n\n**Handoff M1:** Astra y Fable reciben el proyecto raíz, índice y sus once partes como corpus de protocolo, y Edge Research Consolidado. ASTRA diseña boundaries, modelo, recorder/replay, recovery, strategy runtime y gates; FABLE cuestiona. El owner revisa antes de congelar. `M0_DESIGN_READY` NO significa `M1_DESIGN_FROZEN`.\n\n'''
+          g=g[:begin]+closing+g[end:]
+          part10.write_text(g,encoding='utf-8')
+          m=manifest.read_text(encoding='utf-8')
+          m=replace_one(m,'**Estado contractual:** M0 PARTIAL; RG-01…RG-07 abiertos. No habilita NegRisk Protocol-v2 live conversion.','**Estado contractual:** M0 DESIGN_READY (documental); RG-01…RG-07 cerrados para diseño con exclusiones explícitas. NO certifica trading live, backfill L2 ni conversión NegRisk live. Ver §24 en part-10.',str(manifest))
+          m=replace_one(m,'- Concatenar las partes en orden numérico sin insertar separadores; comprobar SHA-256 contra el hash anterior.','- Concatenar las partes en orden numérico sin separadores y comparar con **Manifiesto vigente**; el SHA original de 160164 bytes es únicamente baseline histórico, no hash esperado después de correcciones.',str(manifest))
+          m=replace_one(m,'El estado real M0 se evalúa en §24: este split no cierra ningún Research Gap.','El estado real de M0 y las capacidades live bloqueadas se evalúan en §24 de part-10; el split por sí solo no cerró Research Gaps.',str(manifest))
+          project=root.read_text(encoding='utf-8')
+          project=replace_one(project,'updated: 2026-09-16','updated: 2026-09-17',str(root))
+          project=replace_one(project,'- Siguiente gate: **Deep Research técnico exhaustivo de la documentación oficial de Polymarket**, materializado en `30-resources/polymarket/` con fecha de sincronización, antes de consumir Astra/Fable.','- **M0 DESIGN_READY (documental, 2026-09-17):** Technical Platform Map canónico indexado en `30-resources/polymarket/`, con 11 partes, 7/7 OpenAPI (163 operaciones) y siete RG resueltos para diseño con exclusiones; no habilita live ni NegRisk conversion. Siguiente gate: revisión conjunta y M1 Astra → Fable → Astra.',str(root))
+          project=replace_one(project,'**Gate M0:** Astra/Fable pueden diseñar el engine sin salir a internet para descubrir facts básicos.','**Gate M0: PASS — DESIGN_READY documental (2026-09-17).** Astra/Fable pueden diseñar sin descubrir contratos básicos. Ver [[Polymarket — Technical Platform Map — synced 2026-09-17]] y §24 de part-10. Límites frozen de M0: CTF/v2 conversion LIVE DISABLED; L2 historical backfill DISABLED; RFQ/Combos OUT_OF_SCOPE inicial; `deferExec=true`/Builder optional DISABLED; trading live sujeto a pruebas de auth, execution y reconciliación en M2–M4. Este gate NO constituye design freeze ni certificación live.',str(root))
+          for title in ('Ejecutar Deep Research técnico oficial de Polymarket','Ingerir resultado como `Polymarket — Technical Platform Map — synced YYYY-MM-DD` en `30-resources/polymarket/`','Reconciliar contradicciones con docs oficiales/changelog/OpenAPI/AsyncAPI'):
+            old='- [ ] '+title;new='- [x] '+title
+            project=replace_one(project,old,new,str(root))
+          project=replace_one(project,'- [ ] Confirmar repo/nombre de implementación Go','- [x] Confirmar nombre de repo de implementación Go: `xKoRx/polymarket-engine` (nombre acordado; verificar creación por separado)',str(root))
+          project=replace_one(project,'### M1\n- [ ] Preparar context pack único para Astra/Fable','### M1\n- [ ] Revisión conjunta owner/manager del M0 DESIGN_READY y boundaries disabled; no reabrir research general salvo blocker concreto\n- [ ] Preparar context pack único para Astra/Fable',str(root))
+          project=replace_one(project,'- **2026-09-16** — Reframing canónico: **Engine = MVP durable; strategies = POCs**. Se define M0 Technical Knowledge Pack antes de Astra/Fable y delivery `Astra → Fable challenge → Astra reconcile → TOP plan → NORMAL implementation`.','- **2026-09-16** — Reframing canónico: **Engine = MVP durable; strategies = POCs**. Se define M0 Technical Knowledge Pack antes de Astra/Fable y delivery `Astra → Fable challenge → Astra reconcile → TOP plan → NORMAL implementation`.\n- **2026-09-17** — M0 DESIGN_READY documental: 11 partes del Technical Map; 7 OpenAPI/163 operaciones, RFQ AsyncAPI 13/13, Data v2 y NegRisk CTF investigados. Sin certificación live; conversion CTF/v2, historical L2 backfill y modos opt-in deshabilitados. Paso siguiente: revisión conjunta → ASTRA-1.',str(root))
+          project=replace_one(project,'- [[Polymarket — Edge Research Consolidado 2026-09-16]]\n- [[polymarket/00-index]]','- [[Polymarket — Edge Research Consolidado 2026-09-16]]\n- [[Polymarket — Technical Platform Map — synced 2026-09-17]] — índice canónico y 11 partes, knowledge pack M0 DESIGN_READY.\n- [[polymarket/00-index]]',str(root))
+          root.write_text(project,encoding='utf-8')
+          index=idx.read_text(encoding='utf-8')
+          index=replace_one(index,'- **Estado M0:** el mapa debe completarse **in-place** hasta `M0 DESIGN READY`; Astra/Fable no deben gastar ventanas descubriendo contracts básicos.','- **Estado M0:** `DESIGN_READY` documental 2026-09-17; siete RG resueltos para diseño con live/optional gates deshabilitados. Revisión conjunta antes de ASTRA-1; §24 de part-10 es autoridad del estado.',str(idx))
+          index=replace_one(index,'`status: M0 hardening`','`status: M0 DESIGN_READY (no live certification)`',str(idx))
+          index=replace_one(index,'- **Technical Map:** working resource, no versión `Intake`; completar el mismo archivo y actualizar sus gaps/gates.','- **Technical Map:** once partes indexadas desde la nota canónica; M0 DESIGN_READY para arquitectura; contratos dinámicos sujetos a versionado y live sujeto a certificación posterior. La versión `Intake` no es autoridad.',str(idx))
+          index=replace_one(index,'- **Gate inmediato:** dejar el Technical Map suficiente para que Astra/Fable diseñen sin navegar Polymarket para obtener información que M0 debía entregar.','- **Gate inmediato:** revisión conjunta del M0 DESIGN_READY y paso a diseño Astra/Fable. Nunca interpretar M0 como habilitación live ni como certificación de contratos fuera de scope.',str(idx))
+          idx.write_text(index,encoding='utf-8')
+          lg=log.read_text(encoding='utf-8')
+          lg+='\n## [2026-09-17] gate | M0 DESIGN_READY documental, no live certification\n\n- Evidencia en Technical Platform Map §24: siete RG cerrados **para diseño**; 7/7 OpenAPI con 163 operaciones, RFQ AsyncAPI 13/13, DTOs Data v2; sources críticos validados con un fallo secundario S37 de límite de descarga.\n- Conversión NegRisk CTF y v2 sigue deshabilitada live; v2 ABI no verificada. Historical L2 backfill deshabilitado por falta de garantías de replay/retención. RFQ/Combos y modos Builder/deferExec=true fuera de MVP inicial o disabled.\n- M0 DESIGN_READY=PASS; FULL_PLATFORM_CONTRACT_CERTIFIED=NO; LIVE_EXECUTION_CERTIFIED=NO. Es cierre del knowledge pack para arquitectura, no diseño aprobado, implementación ni certificación con fondos.\n- El manifiesto conserva el baseline histórico (160164 bytes) y actualiza SHA-256 de la concatenación vigente de once partes; proyecto e índice alineados con §24. Siguiente fase: owner/manager revisión conjunta → Astra propuesta → Fable challenge.\n'
+          log.write_text(lg,encoding='utf-8')
+          # Regenerate manifest rows from actual content, preserving exact existing links and section labels.
+          total=b''
+          for p in sections:
+            data=p.read_bytes();total+=data
+            label=p.name.split(' — ')[-1]
+            pattern=re.compile(r'(?m)^(\| \['+re.escape(label)+r'\]\([^\n]*?\) \| [^\n|]+ \| )\d+ bytes \| `[0-9a-f]{64}` \|$')
+            m,count=pattern.subn(lambda match:match.group(1)+str(len(data))+' bytes | `'+sha256(data).hexdigest()+'` |',m)
+            assert count==1,('manifest row',label,count)
+          latest=sha256(total).hexdigest()
+          now=datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
+          m,count=re.subn(r'\*\*Manifiesto vigente:\*\* [^\n]+',f'**Manifiesto vigente:** {now}; {len(total)} bytes; SHA-256 `{latest}`; historical baseline SHA-256 `02566696b5bc9bd71f07ae73c47b6dbb950b2553cfd9aff5a6247a9663c5b9f5`.',m)
+          assert count==1,count
+          manifest.write_text(m,encoding='utf-8')
+          # Repeat independently after writing and check explicit safety boundaries.
+          reread=b''.join(p.read_bytes() for p in sections)
+          assert len(reread)==len(total) and sha256(reread).hexdigest()==latest
+          assert 'M0 DESIGN_READY' in manifest.read_text() and 'M0 DESIGN_READY' in root.read_text()
+          assert 'NO LIVE CONVERSION UNTIL ROUTE VERIFIED' in part10.read_text()
+          assert 'M0_DESIGN_READY=PASS' in part10.read_text()
+          assert 'NO APROBADA' not in part10.read_text()
+          assert 'RG-01…RG-07 abiertos' not in manifest.read_text()
+          for name in ('part-02-rest-catalog.md','part-06-negrisk-combos.md','part-08-specs-sdks-changelog.md'):
+            assert name in manifest.read_text(),name
+          print('PASS: M0 DESIGN_READY documentary closure; seven RG closed for design, live disabled; manifest',len(total),latest,'parts',len(sections))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -- .github/workflows/polymarket-m0-design-ready-once.yml
+          git add -- main/30-resources/polymarket/ main/10-projects/Personal/Polymarket\ Engine/Polymarket\ Engine\ —\ MVP.md
+          git -c core.whitespace=-blank-at-eof diff --cached --check
+          git diff --cached --stat
+          git commit -m 'docs(polymarket): certify M0 design-ready with fail-closed live gates'
+          git fetch origin master
+          git rebase origin/master
+          git push origin HEAD:master
