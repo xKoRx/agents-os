@@ -14,6 +14,7 @@ entities:
 related:
   - "[[aranea-mcps-expert]]"
   - "[[aranea-mcp-capability-plane]]"
+  - "[[Daedalus — Development Agents MCP Access & Gaps]]"
   - "[[aranea-postgres-mcp]]"
   - "[[aranea-mongodb-mcp]]"
   - "[[aranea-flink-mcp]]"
@@ -39,199 +40,83 @@ tags:
 
 # aranea-ssh-mcp
 
-## Propósito
+## Propósito y precondiciones
 
-Ejecutar inspección y operación remota sobre workers/hosts autorizados de Aranea mediante la capability canónica `aranea-ssh`. Este runbook posee hechos operativos de SSH MCP. La selección de capability y autoridad mínima pertenece a [[aranea-mcps-expert]]. Las skills/runbooks de dominio deciden cuándo se necesita evidencia o mutación de host/runtime.
+Inspección y operación remota de hosts Aranea por `aranea-ssh` (endpoint `http://mcps.lab.aranea.cl:3000/`). El router [[aranea-mcps-expert]] elige ambiente/capability/autoridad; aquí vive la mecánica. El estado transversal de accesos de los coding agents Daedalus y sus gaps está en [[Daedalus — Development Agents MCP Access & Gaps]]. Sólo Aranea; para MELI/corporativo STOP. El cliente debe exponer `aranea-ssh`. Private keys/credenciales SSH permanecen en `mcps`; no pedirlas, imprimirlas ni copiarlas. No sustituir MCP por [[echo-forge-workers-shared-access]] si MCP cubre la operación.
 
-## Precondiciones
+## Perfiles y autoridad efectiva
 
-- El target es infraestructura Aranea; si es MELI/corporativo, abortar y no usar este runbook.
-- `aranea-mcps-expert` ya eligió `aranea-ssh` y el perfil mínimo.
-- La capability `aranea-ssh` aparece conectada en el cliente.
-- Las credenciales/keys SSH finales permanecen en `mcps`; el agente no las pide, imprime, copia ni persiste.
-- Este camino MCP no se sustituye por [[echo-forge-workers-shared-access]] mientras `aranea-ssh` cubra la acción.
+| Profile | Target | Usuario remoto | Autoridad / uso |
+|---|---|---|---|
+| `sqx-zeus` | Linux SQX Zeus | `echo-dev` | operator writable no-root; runtime SQX dentro de sus permisos |
+| `sqx-hera` | Linux SQX Hera | `echo-dev` | operator writable no-root |
+| `sqx-kronos` | Linux SQX Kronos | `echo-dev` | operator writable no-root |
+| `mt5-kronos` | Windows worker-kronos | `echo-dev` | viewer RO, tool allowlist limitada; **NO `sftp-download` Windows** (POLICY_DENIED comprobado) |
+| `mt5-kronos-operator` | Windows worker-kronos | `worker-kronos\echo-dev` | operator writable **no-admin**; upload/compile y lectura del evidence JSON de SYSTEM |
+| `docker-echo-dev-operator` | Linux `docker-echo-dev`, `.75` | `root` | root-equivalent únicamente DEV; filesystem/Docker/lifecycle, seguir runbook Flink |
+| `echo-runtime-prod` | Echo PROD `.71` | `echo-dev` | viewer RO, sin sudo; procesos/listeners/fs-meta, no restart/deploy |
 
-## Procedimiento
+`operator` es autoridad del MCP, NO privilegio OS adicional. `privileged-command` no eleva si el usuario no dispone ya de sudo/admin y acción autorizada. `approvalPolicy="auto"` puede autoejecutar una tool: no equivale a aprobación humana. Antes de mutación, target exacto, blast radius, rollback/post-condición y verificación. No convertir una lectura en `run-command` por comodidad.
 
-1. **Fijar perfil y autoridad.** Elegir el profile que corresponde al host real. `operator` habilita operaciones mutables en el MCP, pero **no convierte al usuario remoto en root**: la autoridad efectiva sigue limitada por el usuario SSH y sus permisos del sistema operativo. No invocar operaciones privileged/admin ni alterar ACLs salvo autorización explícita de esa acción administrativa exacta.
+## Tool surface y procedimiento
 
-| Profile | Target | Remote identity | Authority | Uso normal |
-|---|---|---|---|---|
-| `sqx-zeus` | Linux SQX Zeus | `echo-dev` | operator / writable | procesos, logs, archivos, ejecución y mutaciones necesarias del runtime SQX dentro de permisos `echo-dev` |
-| `sqx-hera` | Linux SQX Hera | `echo-dev` | operator / writable | procesos, logs, archivos, ejecución y mutaciones necesarias del runtime SQX dentro de permisos `echo-dev` |
-| `sqx-kronos` | Linux SQX Kronos | `echo-dev` | operator / writable | procesos, logs, archivos, ejecución y mutaciones necesarias del runtime SQX dentro de permisos `echo-dev` |
-| `mt5-kronos` | Windows worker-kronos | `echo-dev` | viewer / read-only | inspección MT4/MT5, procesos, logs, paths |
-| `mt5-kronos-operator` | Windows worker-kronos | `echo-dev` | operator / writable | upload, compile y ejecución explícitamente autorizados |
-| `docker-echo-dev-operator` | Linux `docker-echo-dev` / `192.168.31.75` | `root` | operator / writable / root | config/filesystem, Docker/Compose, logs, exec y lifecycle DEV |
-| `echo-runtime-prod` | Linux `prod.echo.gateway.lab.aranea` / `192.168.31.71` | `echo-dev` | viewer / read-only — **CERTIFICADO 2026-09-15 (GAP-ECHO-004 CLOSED)**: identity PASS (`echo-dev@echo`, uid 1001, sin sudo), Gateway/Core RUNNING, Bridge NOT_DEPLOYED, listeners 80/9080/9090/8080/8090, negative `run-command` POLICY_DENIED; cobertura read-command allowlist (systemctl/docker/curl/clase safe → POLICY_DENIED; journal propio únicamente) | observación runtime Echo PROD: identity/processes/listeners/fs-meta; jamás mutar este host desde el plane; logs productivos vía `aranea-observability-ro` |
+Surface `ssh-mcp` v2.8.0: `list-connections`, `list-sessions`, `open-session`, `close-session`, `read-session-output`, `read-command`, `run-command`, `privileged-command`, `signal-process`, `sftp-upload`, `sftp-download` (disponibilidad efectiva por policy/profile; listado no equivale a permiso).
 
-2. **Elegir el tool por intención, no por comodidad.** La superficie certificada de `ssh-mcp` v2.8.0 incluye:
+1. Descubrir conexión exacta por `list-connections`; confirmar identidad remota (`whoami`/`id`) con lectura autorizada y no inferir root.
+2. Inspección: `read-command`, preferentemente comando único allowlisted (`ls`, `cat`, `grep`, `find`, `stat`, `df`, etc. según profile). Compuestos/pipelines/clases 'safe' pueden ser denegados: dividir, no cambiar a operator o saltarse policy.
+3. Mutación: sólo operator/identidad con permiso OS real, `run-command` y target delimitado + rollback/post-condición. `signal-process` exige PID identificado.
+4. Sesión stateful/background sólo si CWD/env o proceso largo aporta valor; `open-session` + tool adecuada; leer output y cerrar con `close-session`. Reutilizar una sesión MCP en probes para no saturar pool (ver más abajo).
+5. Transferencia pequeña por `sftp-upload`/`sftp-download` cuando tool y profile lo permitan; para binarios/grandes staging autorizado. No HTTP improvisado/netcat/side channel. **En viewer `mt5-kronos`, `sftp-download` responde POLICY_DENIED ANTES del filesystem**: usar `mt5-kronos-operator`+`Get-Content` read-only para evidence JSON, no relajar viewer.
+6. Windows usa PowerShell, identidad validada `worker-kronos\echo-dev`, home `C:\Users\echo-dev.WORKER-KRONOS`; no asumir POSIX ni `&&` universal. Para MT4 compilación `master_test_001`, includes globales pueden resolver en AppData `echo-dev` aunque fuente viva en árbol KoR; mirror validado `C:\Users\echo-dev.WORKER-KRONOS\AppData\Roaming\MetaQuotes\Terminal\8819D02A34F64665EDC6BEA4A390310C\MQL4\Include\`. Antes de cambiar EA/ACL por `can't open include`, verificar ese mirror.
+7. `docker-echo-dev-operator` es root sólo en `.75` DEV; Flink control REST por `aranea-flink-dev-admin`, host/Docker/lifecycle por SSH. Portainer stack 1 es declarativo; `/data/compose/1/docker-compose.yml` interno equivale a host `/var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml`. No crear Compose paralelo ni `docker compose up -d` rutinario por hash drift.
+8. `POLICY_DENIED` y Access Denied son boundaries. No ampliar ACL/policy ni credenciales automáticamente. Si requiere admin inexistente, reportar la capability exacta faltante y alternativa autorizada; no 'privileged-command' improvisado.
 
-| Intención | Tool | Regla |
-|---|---|---|
-| descubrir perfiles/conexiones | `list-connections` | read-only; usar para confirmar profile/estado |
-| lectura puntual | `read-command` | preferido para `ls`, `cat`, `grep`, `find`, `stat`, `df` y demás allowlist de lectura |
-| comando que puede mutar | `run-command` | usar sólo con profile operator y target/scope explícitos |
-| sesión shell stateful | `open-session` + `run-command` con `session` | sólo cuando CWD/env persistente aporta valor; cerrar con `close-session` |
-| proceso largo/background | `open-session` tipo `background` + `read-session-output` | cerrar la sesión al terminar; `signal-process` sólo sobre PID identificado |
-| transferencia de archivo | `sftp-upload` / `sftp-download` | upload es escritura; download es lectura |
-| elevación sudo | `privileged-command` | sólo si la tarea requiere sudo y el usuario remoto realmente tiene esa autoridad |
+## Certificaciones por fecha (no equiparar historia con estado vigente)
 
-`approvalPolicy = "auto"` significa que un profile operator **no garantiza un prompt humano** antes de un comando que el servidor clasifique como write/destructive/privileged. El agente debe aplicar el gate antes de invocar: target exacto, blast radius, rollback/post-condición cuando haya mutación y verificación posterior. No usar el approval gate del servidor como sustituto del razonamiento de seguridad.
+### SQX operators — 2026-09-13 PASS
 
-3. **Usar el endpoint canónico.** MCP: `aranea-ssh`. Endpoint: `http://mcps.lab.aranea.cl:3000/`. No inferir otro puerto, host o transporte si este runbook está disponible.
-4. **Reducir lecturas al tool de lectura.** Aunque `sqx-*` ahora sean operator, las inspecciones normales deben seguir usando `read-command`; no usar `run-command` para una lectura sólo porque el profile lo permite. Las policies de lectura pueden rechazar comandos compuestos, pipelines o constructos de shell; si ocurre, reducir a una sola operación allowlisted o partir la evidencia en llamadas separadas.
-5. **Transferir archivos por el canal autorizado.** Para texto/código/config pequeños (`.mq4`, `.mqh`, `.mq5`, `.txt`, `.json`, `.ini`, scripts) usar `sftp-upload` / `sftp-download` a través de `aranea-ssh`. No crear servidores HTTP temporales, listeners netcat ni otros side channels. Para artefactos grandes/binarios, preferir el staging autorizado. Si no existe path autorizado, detener y reportar el blocker.
-6. **Respetar semántica Windows.** `mt5-kronos-operator` está validado con identidad `worker-kronos\echo-dev`, hostname `worker-kronos` y home efectivo `C:\Users\echo-dev.WORKER-KRONOS`. El shell remoto es PowerShell: no asumir POSIX ni usar `&&` como separador genérico; usar sintaxis compatible como `;` cuando corresponda.
-7. **Aplicar el hecho conocido de includes MT4.** En `master_test_001`, compilar un EA como `echo-dev` puede resolver `#include <...>` globales desde el árbol AppData de `echo-dev` aunque el `.mq4` principal viva en el árbol del terminal KoR. Mirror validado: `C:\Users\echo-dev.WORKER-KRONOS\AppData\Roaming\MetaQuotes\Terminal\8819D02A34F64665EDC6BEA4A390310C\MQL4\Include\`. Si MetaEditor emite una cascada `can't open include`, verificar este mirror antes de cambiar lógica del EA o ampliar ACLs.
-8. **Tratar `docker-echo-dev-operator` como root-equivalent.** El profile entra como `root@192.168.31.75` con key dedicada y `readOnly=false`. Está autorizado para el host DEV completo, pero no es permiso genérico sobre otros hosts ni PROD. Para Flink/StateFun, seguir [[aranea-flink-mcp]]: control plane por `aranea-flink-dev-admin`; filesystem/Docker/lifecycle por este profile.
-9. **No inventar source-of-truth de Compose.** En `docker-echo-dev`, el stack Flink vive en Portainer stack `1`; `/data/compose/1/docker-compose.yml` es path interno de Portainer y corresponde en el host a `/var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml`. No crear otra definición paralela ni ejecutar lifecycle rutinario desde un compose reconstruido.
-10. **Tratar fallos como boundary.** `POLICY_DENIED` → revisar profile/tool/scope; no escalar automáticamente. `Access Denied` en un path → registrar path exacto y operación requerida; no mutar ACLs automáticamente. Error de sintaxis Windows → verificar PowerShell antes de diagnosticar la aplicación destino. Elevación requerida pero el usuario remoto no tiene sudo/admin → detener y reportar boundary. Transferencia imposible por SFTP/staging → detener; no inventar side channel.
+`SQX-zeus/hera/kronos` promovidos viewer→operator sin cambiar host, puerto, `echo-dev`, key, pin ED25519, `tty=false`, timeout ni `approvalPolicy=auto`. Reiniciado sólo ssh-mcp, `running/healthy`, status perfiles operator. MCP Streamable HTTP initialize protocolo `2025-03-26`, notifications/initialized `202`, tools/list PASS; los tres targets `run-command` create `/tmp/aranea-mcp-write-smoke` → `read-command` readback → remove PASS/CLEAN. Eso prueba circuito real cliente→HTTP MCP→SSH→FS; no root.
 
-## Certificación
+### worker-kronos operator — 2026-09-11 y corrección 2026-09-17
 
-### echo-runtime-prod (viewer staged) — 2026-09-15
+`run-command`, `sftp-upload`, `sftp-download` en **operator** `worker-kronos\echo-dev` probados con fixture reversible bajo `C:/Windows/Temp`. La nota H2 2026-09-15 de SFTP viewer se certificó en profile **Linux efímero `linux-viewer-smoke`**, NO en `mt5-kronos`. En Windows `mt5-kronos` viewer + `sftp-download` = `POLICY_DENIED` 3/3 incluso con `echo-dev:R`: enforcement de profile antes del filesystem. Esta es la autoridad factual final; nunca reusar el claim incorrecto.
 
-Perfil añadido al plane vía `mcps-ops` (config `22664e96…` → `047d00e7…`; backup `/tmp/config.toml.pre-echo-runtime-prod` en mcps): `echo-dev@192.168.31.71:22`, `role=viewer`, `readOnly=true`, `group=prod`, host key pinneada `SHA256:zPHN…wdfU`, keyRef `/run/ssh-keys/echo-dev/id_ed25519` (key existente del plane, sin credencial nueva). Target = runtime Echo PROD real (`/health` 200; `.211` histórico muerto).
+### H2 viewer enforcement — 2026-09-15 PASS
 
-- Consumer cert Daedalus real RESULT: PASS — 7 perfiles visibles, `run-command` en `mt5-kronos` → POLICY_DENIED (H2 vivo), viewer read PASS (`worker-kronos\echo-dev`).
-- ~~PENDING_OWNER_GATE~~ **RESUELTO 2026-09-15 (GAP-ECHO-004 CLOSED):** owner seed instalado en `.71` — identidad dedicada `echo-dev` creada por el owner (uid/gid 1001, sudo DENIED; el bundle inicial asumía preexistente la identidad: **lección de preflight** — todo owner seed bundle debe verificar primero que la identidad target existe, p.ej. `id -u <user>`, antes de asumirla) y public key instalada append-only en `~echo-dev/.ssh/authorized_keys` (fingerprint verificado `SHA256:2Qv9f2AREQyse50bGYaTLc1PHK43gvuf3xgv5TTJ+I0` desde disco; `.ssh` 700 / archivo 600; `sshd -t` PASS). Recertificación consumer completa PASS: identity (`whoami=echo-dev`, `hostname=echo`, `id` sin sudo), 11 tools, Gateway/Core RUNNING (`echo-gateway` PID 713, `echo-core` PID 110701, `echo-functions` PID 320982, como `kor`), **Bridge NOT_DEPLOYED** (sin proceso; registrado, no se levanta), listeners 80/9080/9090/8080/8090, negative `run-command` → `POLICY_DENIED: Profile "echo-runtime-prod" is read-only: "run-command" is refused` MUST DENY, leak CLEAN.
-- **Cobertura real del viewer (certificada):** `read-command` allowlist cubre `whoami`/`hostname`/`id`/`ps aux`/`ss -tlnp`/`cat`/`ls`/`journalctl`; quedan POLICY_DENIED incluso comandos clase `safe` (`docker ps`, `curl`, `systemctl`, `dmesg`, `pgrep`) — el enforcement viewer rechaza por clase de comando además de por tool. `journalctl` sólo muestra el user journal de `echo-dev` (sin `adm`/`systemd-journal`); los logs productivos (`echo-core`) siguen por `aranea-observability-ro`. `ss -tlnp` no atribuye proceso de otros usuarios (esperado sin root).
-- **Finding de higiene (ABIERTO, deuda separada no bloqueante):** el host key ED25519 de `.71` es IDÉNTICA a la de `sqx-zeus` — clon sin regenerar (mismo patrón corregido en Hera/Kronos 2026-09-10). Si el owner rota la host key de `.71`, actualizar `trustedHostKey` de este perfil en el mismo cambio.
-- **Rollback de seed (revocar acceso viewer):** remover la línea `echo-dev@mcps` de `~echo-dev/.ssh/authorized_keys` en `.71` (owner-side) — no requiere cambios en mcps; opcionalmente remover el profile del config (rollback del staging documentado abajo).
-- **Gotcha de pool de sesiones (2026-09-15):** ssh-mcp limita a 64 sesiones vivas y los probes que hacen initialize por cada tools/call (init-only) agotan el pool → HTTP 503 `Server is at its session limit`. Recovery: `docker restart ssh-mcp` (sin cambio de config; healthy en ~8s). Prevención: un consumer probe debe abrir UNA sesión y reutilizar el `Mcp-Session-Id` para todas sus llamadas; reservar el patrón init-only-per-call para backends que rompen la sesión (familia hasura/mcp-proxy).
-- Defecto de deploy corregido en el camino: el config bind-mounted debe quedar `600` con dueño `65532:65532` (el container lee como appuser uid 65532); con `644 root:root` el server entra en crash loop (`group/world accessible`), y con `600 root:root` en `EACCES`.
+Defecto anterior: `run-command echo/whoami` pasaba sobre viewer porque sólo se chequeaba clase `read-only`. Fix server-side tool-level `read-only-tool-boundary`, imagen `local/ssh-mcp:2.8.0-d2d7696-h2fix`; `run-command` en viewer DENIED y `read-command` permitido. Allowlist nominal de tools viewer upstream incluye `read-command`, `list-connections`, `list-sessions`, `read-session-output`, `sftp-download`, `close-session`, `open-session`; **la presencia nominal de `sftp-download` NO certifica ejecución por el profile Windows concreto**. Desde Daedalus: `mt5-kronos` read `whoami` PASS/run `echo` DENIED; Linux viewer smoke idem; `mt5-kronos-operator` run PASS; Docker DEV run PASS; SQX operator read+run PASS.
 
-### H2 viewer enforcement — 2026-09-15
+### echo-runtime-prod — CERTIFIED 2026-09-15 / GAP-ECHO-004 CLOSED
 
-Defecto cerrado: `run-command` ejecutaba comandos clasificados `read-only` (p.ej. `echo`, `whoami`) en profiles viewer, porque el engine solo filtraba por clase de comando y `run-command` no verificaba el tool. Enforcement ahora es **tool-level server-side**: un profile `readOnly=true` sólo es alcanzable por tools de lectura (`read-command`, `list-connections`, `list-sessions`, `read-session-output`, `sftp-download`, `close-session`, `open-session`); cualquier otro tool → `POLICY_DENIED` con `ruleId: read-only-tool-boundary`. `open-session`/`close-session` permanecen permitidos por diseño upstream (viewer puede abrir un background `tail -f` y debe poder cerrarlo).
+Perfil `.71` `echo-dev`, viewer/RO, keyRef plane existente, host-key pinning. Owner seed creó identidad `echo-dev` uid/gid 1001 sin sudo y authorized key 600 (`.ssh` 700); `sshd -t` PASS. Consumer Daedalus 7 profiles, identity `echo-dev@echo` PASS, Core/Gateway/echo-functions RUNNING al corte, Bridge NOT_DEPLOYED, listeners 80/9080/9090/8080/8090. Viewer `run-command` MUST DENY, `read-command` allowlist `whoami`, `hostname`, `id`, `ps aux`, `ss -tlnp`, `cat`, `ls`, `journalctl`; `docker ps`, `curl`, `systemctl`, `dmesg`, `pgrep` son POLICY_DENIED aun si parecen 'safe'. Journal sólo propio de `echo-dev`; logs PROD por `aranea-observability-ro`. No atribuir PID de otros usuarios desde `ss` sin root. Host key de `.71` idéntica a `sqx-zeus` (clon): rotación controlada pendiente como higiene, con actualización simultánea de `trustedHostKey`. Revoke owner-side: quitar línea `echo-dev@mcps` de authorized_keys en `.71`; opcional retirar profile.
 
-Imagen: `local/ssh-mcp:2.8.0-d2d7696-h2fix`. Certificación E2E desde Daedalus (2026-09-15, ver `[[ACCESS-CERTIFICATION]]` § Remediation):
+### Evidence publisher worker-kronos — 2026-09-17 ACTIVE / CERTIFIED (owner seed COMPLETED)
+
+**Contrato:** Task Scheduler `AraneaEvidencePublish` como SYSTEM, cada 5 minutos, guard anti-solapamiento (skip sin efectos) ejecuta inspector PowerShell protegido de superficie fija: cero inputs/rutas dinámicas/red. Publica atómicamente tmp+rename JSON sanitizado a `C:\ProgramData\Aranea\evidence\stager-evidence-latest.json`; dirs `Aranea`/`evidence` sin herencia, Administrators+SYSTEM write; `worker-kronos\echo-dev:R` sólo reporte. Contenido: `generated_at_utc`, `publish_interval_minutes=5`, `deployment_stale_after_minutes=15`, `health_stale_after_hours=8`, `partial`, `errors`, self-hash y evidencia worker/Stager/CURRENT/reconciliación/poller.
+
+**Camino agent-facing CERTIFICADO:** `AraneaEvidencePublish SYSTEM -> JSON -> aranea-ssh / mt5-kronos-operator -> Get-Content/Get-Item read-only como echo-dev -> agente Daedalus`. El operator MCP permite ejecutar la lectura, pero NO eleva identidad ni autoriza modificar publicación. Para deployment/runtime certification: `generated_at_utc` ≤15 min, `partial=false`, `evidence.inspector_sha256` igual al hash canónico, `run_identity=SYSTEM`; consultar además publish task `last_run_utc/last_result`, comparar con reloj cliente. Umbral 8 h es sólo salud general, NO deploy. Ausencia/STALE => evidencia UNKNOWN/no certificable; diagnosticar publisher con authority existente, no volver al one-shot owner sin demostrar nuevo gap.
+
+**Pruebas materiales 2026-09-17:** task SYSTEM, primera publicación 18:43Z y segunda 18:53Z (cadencia constatada), `partial=false`, self-hash inspector `28d782b78ebf1374…83e4a07` igual al esperado, lectura RO efectiva `echo-dev`; Write/Create DENIED sobre reporte, inspector, rollback, dir evidence; viewer `sftp-download` POLICY_DENIED; Stager/worker intactos. Reporte incluye worker PID `1700`, `C:\ProgramData\Stager\releases\0.2.98\bin\sqx-mt5-worker.exe`, SHA256 `0bceda4badd982b25b01f13ec40a23eb95c8179e28d8a6d955036b30fc7aa474` exacto con release 0.2.98. Esta capability resuelve inspección Windows; **NO certifica por sí sola la campaña F05C/F04 ni habilita acciones administrativas**.
+
+**Owner seed/verifier histórico:** intento 1 abortó por `EXPECT_RB` stale tras parchear rollback; copia de bytes era íntegra. Intento 2 creó task/publicó JSON, pero self-verify consultó `$j.inspector_sha256` en vez de `$j.evidence.inspector_sha256` y devolvió falso `exit 4`. El agente certificó materialmente consumer/publisher; instalador v6 corregido canónico `aranea-evidence-install2.bat` SHA256 `2c32361f6fc213cf82a19b867531fbdd309b3b59e2bb77b778dea794a62a20fb`, stageado para posibles reinstalaciones. Rollback `aranea-evidence-rollback2.bat` está materializado y su SHA verificado: elimina task y `C:\ProgramData\Aranea` únicamente si se ejecuta elevado por owner autorizado. No ejecutarlo rutinariamente. Residuo benigno ACL `C:\Windows\Temp\sim-aranea` requiere owner sólo si decide higiene, no bloquea.
+
+**Staging byte exact:** `sftp-upload` transporta `content` string, normaliza saltos de línea y NO reemplaza fiable un path existente (puede reportar éxito dejando bytes previos); para scripts/binaries byte-exactos: base64 sin newlines→`certutil -decode` target→comparar sha256 local/remoto completo. Evitar ensayos ACL en Temp que quiten herencia al directorio y bloqueen después al propio `echo-dev`.
+
+## Operación, validación y rollback del plano SSH
+
+- Pool ssh-mcp de 64 sesiones: probes init-per-call agotan pool ⇒ 503 `Server is at its session limit`; prevenir abriendo UNA sesión por probe y reutilizando `Mcp-Session-Id`, cerrándola. Recovery management-path sólo cuando confirmado: `docker restart ssh-mcp`, después health/consumer smoke; nunca reiniciar producto por fallo MCP. No atribuir defectos Hasura mcp-proxy a SSH.
+- Config bind-mounted `ssh-mcp` debe ser mode `600`, owner uid/gid `65532:65532`; con `644 root` server rechaza world-accessible y con `600 root:root` falla EACCES. Restaurar config y verificar before restart si hubo drift.
+- Rollback promoción SQX: revertir profiles a `viewer`+`readOnly=true`, reiniciar sólo ssh-mcp y certificar status/read-command, backup original cuando se requiera byte equality. Rollback profile `echo-runtime-prod` desde backup `/tmp/config.toml.pre-echo-runtime-prod` en mcps con owner/mode `65532:65532/600`, reiniciar ssh-mcp y revalidar perfiles/health. Rollback Windows publisher: procedimiento elevado y bundle owner descritos arriba. Docker DEV lifecycle: seguir runbook Flink, no usar `compose up -d` como rollback implícito.
 
 ```text
-mt5-kronos (viewer)          read-command whoami PASS | run-command echo  -> POLICY_DENIED (MUST DENY)
-linux-viewer-smoke (viewer)  read-command whoami PASS | run-command echo  -> POLICY_DENIED (MUST DENY)  [profile efímero, removido]
-mt5-kronos-operator          run-command echo PASS
-docker-echo-dev-operator     run-command docker ps PASS
-sqx-zeus (operator)          read PASS | run PASS
+Capability:         aranea-ssh
+Profile:            <nombre exacto>
+Target / identity:  <host + usuario OS real>
+Authority:          <viewer|operator + permisos OS>
+Operation:          <tool exacta + lectura/mutación>
+Evidence:           <salida material + fecha/frescura si aplica>
+Mutation:           none | target + rollback/post-condición + verificación
+Boundary:           none | POLICY_DENIED/Access Denied, sin bypass
+Secrets:            none persisted
 ```
 
-### SQX operators — 2026-09-13
-
-Los profiles `sqx-zeus`, `sqx-hera` y `sqx-kronos` fueron promovidos desde `viewer/readOnly=true` a `operator/readOnly=false`, conservando host, puerto, usuario `echo-dev`, key, host-key pinning, `tty=false`, timeout y `approvalPolicy="auto"`.
-
-Se reinició únicamente `ssh-mcp`; el container volvió `running/healthy` y `GET /status` autenticado reportó los tres profiles como `role=operator`, `readOnly=false`.
-
-Certificación E2E por MCP Streamable HTTP, no por SSH directo:
-
-```text
-initialize -> protocolVersion 2025-03-26
-notifications/initialized -> 202 Accepted
-tools/list -> PASS
-sqx-zeus   -> run-command create /tmp probe -> read-command verify -> rm -> PASS/CLEAN
-sqx-hera   -> run-command create /tmp probe -> read-command verify -> rm -> PASS/CLEAN
-sqx-kronos -> run-command create /tmp probe -> read-command verify -> rm -> PASS/CLEAN
-```
-
-El probe fue `/tmp/aranea-mcp-write-smoke` con contenido `aranea-mcp-write-smoke`; quedó eliminado en los tres hosts. Esta certificación prueba el circuito `agent/client → HTTP MCP → operator profile → SSH → filesystem remoto`.
-
-Boundary operativo: estos tres profiles siguen entrando como `echo-dev`; no son root-equivalent. `privileged-command` sólo es útil si el usuario remoto posee sudo y la acción está autorizada. `approvalPolicy="auto"` permanece vigente y debe tratarse como capacidad de auto-ejecución, no como human-in-the-loop.
-
-### worker-kronos operator — 2026-09-11
-
-Se verificó end-to-end `run-command` con el perfil operator autorizado sobre `worker-kronos` y la identidad `worker-kronos\echo-dev`. También se verificaron `sftp-upload` y `sftp-download` con un probe reversible en `C:/Windows/Temp`, incluyendo eliminación posterior.
-
-**Corrección factual (2026-09-17, verificado con probes):** la cobertura viewer de la nota H2 siguiente es incorrecta para `sftp-download` — en el profile viewer `mt5-kronos` la tool responde `POLICY_DENIED` (rechazo por perfil readOnly, antes de evaluar el filesystem). El certificado viewer-only de `sftp-download` en 2026-09-15 se ejecutó en un profile Linux viewer efímero (`linux-viewer-smoke`), no en `mt5-kronos`; no generalizar.
-
-El perfil `mt5-kronos` sigue siendo viewer/read-only; para mutaciones usar únicamente `mt5-kronos-operator` cuando la tarea las requiera.
-
-### Evidence publisher worker-kronos — 2026-09-17 (STAGED pending owner)
-
-Contrato: una tarea programada SYSTEM (`AraneaEvidencePublish`, cada 5 minutos, ejecución no solapada por guard interno) ejecuta un inspector PowerShell de superficie fija (cero inputs, cero rutas dinámicas, cero red) que publica `C:\ProgramData\Aranea\evidence\stager-evidence-latest.json` — escritura atómica tmp+rename, ACL cerrada (Admins+SYSTEM en `C:\ProgramData\Aranea` y `evidence`), `worker-kronos\echo-dev:R` en el reporte, JSON sanitizado con self-hash, `generated_at_utc`, `publish_interval_minutes: 5`, `deployment_stale_after_minutes: 15`, `health_stale_after_hours: 8`, `partial`, `errors`.
-
-Freshness: para deployment/runtime certification, `generated_at_utc` con edad > 15 minutos = STALE y NO certificable; el umbral de 8 h es sólo health/observación general. El consumidor valida frescura contra su reloj y contra `publisher_task.last_run_utc/last_result`.
-
-Camino consumer final (verificado 2026-09-17): `AraneaEvidencePublish (SYSTEM) → reporte JSON → mt5-kronos-operator (echo-dev, no-admin) → Get-Content/Get-Item read-only → agente`. El camino alternativo viewer (`mt5-kronos` + `sftp-download`) fue PROBADO y es POLICY_DENIED (3/3, incluso contra archivo con ACE explícita `echo-dev:R`): el enforcement viewer v2.8.0 rechaza `sftp-download` por perfil readOnly antes de evaluar el filesystem — corrección factual de la nota H2 de 2026-09-15 más abajo. No ampliar permisos del viewer como workaround; no usar `run-command` para leer el reporte salvo lectura puntual justificada.
-
-Procedimiento de consumo (agente normal): leer el reporte sólo con probes read-only vía `mt5-kronos-operator`; nunca modificar tarea/inspector/reporte; nunca elevar `echo-dev`. Assertions de validez: edad ≤ 15 min para certification (≤ 8 h para health), `partial=false`, `inspector_sha256` == hash de registro, `run_identity` == SYSTEM. Sin reporte vigente, la evidencia privilegiada sigue owner-gated: no sustituir con elevación ni bypass.
-
-Estado: **ACTIVE/CERTIFIED 2026-09-17** — instalado vía owner seed (tarea `AraneaEvidencePublish` corriendo cada 5 min como SYSTEM; primera publicación 18:43Z, regeneración 5-min certificada 18:43→18:53, `partial=false` en todas las corridas). Certificación consumer PASS: lectura del reporte por `echo-dev` vía `mt5-kronos-operator` (read-only), identidad `nt authority\system`, self-hash == canónico `28d782b7…`, ACE read-without-write probada conductualmente (Write/Create DENIED sobre JSON, inspector y rollback), viewer `sftp-download` POLICY_DENIED (negativo), Stager/worker intactos (PID 1700 invariante, registro sin cambios). Evidencia ya publicada por el reporte: worker `sqx-mt5-worker` PID 1700, `sha256 0bceda4b…7aa474` = artefacto publicado 0.2.98, path `releases\0.2.98\bin\` (cierra la brecha de evidencia de convergencia F04; el veredicto formal corresponde a la misión F05C). Instalador canónico para reinstalaciones: `aranea-evidence-install2.bat` sha256 `2c32361f6fc213cf82a19b867531fbdd309b3b59e2bb77b778dea794a62a20fb` (v6: self-verify consulta `$j.evidence.inspector_sha256`; el seed v3 falló exit 4 por consultar `$j.inspector_sha256` = `$null` — falso negativo de verificación, el sistema publicado estaba sano). Residuo de la prueba ACL (`C:\Windows\Temp\sim-aranea`) sigue como limpieza owner opcional.
-
-Gotchas de staging (nuevos, certificados): `sftp-upload` transfiere el argumento `content` (string) y NORMALIZA saltos de línea, y NO sobreescribe un path existente (reporta éxito dejando los bytes viejos) — para artefactos byte-exactos usar base64 sin newlines + `certutil -decode` en el target + comparación de sha256 completo local vs remoto. Y cuidado con el DACL del destino al simular ACLs en Temp: un directorio con herencia removida vuelve inaccesibles los objetos hijos para el usuario que los creó (sólo el owner elevado limpia).
-
-### docker-echo-dev operator — 2026-09-13
-
-Profile certificado:
-
-```text
-name:      docker-echo-dev-operator
-target:    root@192.168.31.75
-authority: operator / writable / root
-key:       dedicada al profile
-host key:  strict / fingerprint pinneado
-```
-
-Certificación E2E a través de `aranea-ssh` / `run-command`:
-
-```text
-host=docker-echo-dev
-user=root
-Docker client/server=29.1.3
-Docker Compose=v5.0.1
-statefun-master=running
-statefun-worker=running
-isError=false
-```
-
-La key privada queda montada read-only dentro de `ssh-mcp`; no se comparte con Daedalus/Cursor ni se reutiliza para SQX/MT5.
-
-## Validación
-
-```text
-Capability:          aranea-ssh
-Profile:             <profile exacto>
-Remote identity:     <usuario efectivo>
-Authority match:     PASS
-Target:              <host/profile>
-Operation:           <read-command|run-command|sftp-*|session|privileged-command justificado>
-Mutation:            none | target + rollback/post-condition + verification
-Boundary:            none | POLICY_DENIED/Access Denied registrado sin bypass
-Secrets:             none persisted
-```
-
-Para `sqx-zeus`, `sqx-hera` y `sqx-kronos`, además:
-
-```text
-Remote identity:      echo-dev
-Authority:            operator / writable
-Root-equivalent:      no
-Preferred read tool:  read-command
-Write tool:           run-command / sftp-upload según intención
-Approval policy:      auto; no asumir prompt humano
-```
-
-Para `docker-echo-dev-operator`, además:
-
-```text
-Target host:          192.168.31.75
-Remote identity:      root
-Root-equivalent:      yes / intentional DEV boundary
-Domain runbook:       aranea-flink-mcp cuando la tarea es Flink/StateFun
-PROD authority:       none
-```
-
-## Rollback / recuperación
-
-Abortar sin mutar cuando el cliente no tiene `aranea-ssh`, el profile/tool no cubre la acción, la transferencia no cabe en SFTP/staging o el único workaround sería publicar puertos/alterar ACLs. Ante fallo, conservar evidencia de boundary, no rotar secretos preventivamente y handoff a [[aranea-mcp-capability-plane]] si el problema es el plano MCP.
-
-Para revertir específicamente la promoción SQX si aparece un problema de policy, volver cada profile `sqx-zeus`, `sqx-hera` y `sqx-kronos` a `role="viewer"` + `readOnly=true`, reiniciar sólo `ssh-mcp` y revalidar `/status` + `read-command`; usar el backup runtime creado antes del cambio si se necesita restauración exacta.
-
-Rollback del profile `echo-runtime-prod` (staged 2026-09-15): `sudo cp /tmp/config.toml.pre-echo-runtime-prod /opt/mcp/ssh/runtime/config/config.toml && sudo chown 65532:65532 … && sudo chmod 600 … && sudo docker restart ssh-mcp`, luego revalidar `list-connections` = 6 perfiles y health.
-
-Para `docker-echo-dev-operator`, no asumir que un `docker compose up -d` es reversible o no disruptivo: seguir el runbook de dominio, preparar rollback y verificar el servicio después de cualquier lifecycle mutation.
-
-Rollback del evidence publisher worker-kronos (2026-09-17): `aranea-evidence-rollback2.bat` elevado elimina la tarea `AraneaEvidencePublish` y `C:\ProgramData\Aranea` (nada más que restaurar: el instalador es aditivo). Antes de instalar, rollback del stageo = `Remove-Item` de los 3 archivos `C:\Windows\Temp\aranea-*` (creados por `echo-dev`, borrables por él).
-
-## Evidencia
-
-Reportar profile, target host, identidad remota, tool/operación ejecutada, output/file path relevante, si hubo mutación y cualquier boundary de policy/ACL. Para operators root-equivalent o acciones privileged, incluir rollback/post-condición cuando exista mutación.
+Ante transport/auth/session fallidos, primero [[aranea-mcp-capability-plane]]; ante elección de authority, [[aranea-mcps-expert]]. No imprimir secretos, no acceder a MELI y no publicar servicios extra.
