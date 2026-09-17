@@ -4,7 +4,7 @@ status: active
 area: "[[Aranea]]"
 parent: "[[AGENT-PLATFORM - MCP Access Plane]]"
 created: "2026-09-12"
-updated: "2026-09-16"
+updated: "2026-09-17"
 confidence: verified
 aliases:
   - aranea-mcp-access-plane-architecture
@@ -18,414 +18,133 @@ tags:
 
 # AGENT-PLATFORM - MCP Access Plane - Architecture
 
-> Arquitectura canónica para **agregar, reemplazar o reinstalar capabilities MCP en Aranea**. Este documento evita redescubrir el deployment en cada integración.
->
-> Proyecto padre: [[AGENT-PLATFORM - MCP Access Plane]]. Router agent-facing: [[aranea-mcps-expert]].
+> Arquitectura canónica para agregar, reemplazar o reinstalar capabilities MCP Aranea. Proyecto padre: [[AGENT-PLATFORM - MCP Access Plane]]. Router para agentes: [[aranea-mcps-expert]]. Matriz fechada de acceso Cursor/ZCode/Codex y necesidades Echo/Forge: [[Daedalus — Development Agents MCP Access & Gaps]]. Las operaciones de cada familia viven en sus runbooks, no aquí. **Inventario CURRENT reconciliado al 2026-09-17: 13 capabilities `:3000`–`:3012`.** No es un nuevo smoke de runtime ni certificación implícita de todos los clientes.
 
 ## Regla principal
 
-Para nuevos MCPs de servicios/datos, el patrón default es:
+Para un nuevo MCP de servicio/datos, patrón default:
 
 ```text
-Cliente / agente
-  │
-  │ HTTP MCP + Authorization: Bearer <capability-token>
-  ▼
-mcps.lab.aranea.cl:<puerto dedicado>
-  │
-  ▼
-Nginx auth proxy de ESA capability
-  ├─ único container de la capability que publica host port
-  ├─ valida bearer cliente→MCP
-  ├─ template montado read-only
-  ├─ bearer montado read-only desde archivo local de mcps
-  └─ proxy_pass por red Docker privada
-         │
-         ▼
-Backend MCP
-  ├─ NO publica puerto al host
-  ├─ imagen/release/source pinneado; no usar latest
-  ├─ recibe credencial del servicio destino separada del bearer
-  ├─ credencial montada read-only cuando el backend la necesita
-  └─ comparte sólo la red Docker de su familia/capability
-         │
-         ▼
-Servicio destino
-(PostgreSQL / MongoDB / Hasura / Kafka / Flink / etc.)
+Cliente / coding agent (Daedalus)
+  -> HTTP MCP + bearer dedicado cliente->capability
+  -> mcps.lab.aranea.cl:<puerto de la capability>
+  -> Nginx auth proxy específico (ÚNICO host port publicado; bearer+template RO)
+  -> red Docker privada de familia
+  -> backend MCP sin host port, imagen/source/release pinneados
+  -> credencial upstream separada, montada RO sólo donde sea necesaria
+  -> servicio destino autorizado
 ```
 
-**No introducir un patrón distinto sólo porque un nuevo MCP lo haga más fácil.** Una desviación requiere evidencia material y decisión explícita en [[AGENT-PLATFORM - MCP Access Plane]].
+No introducir una topología distinta por conveniencia. Desviación sólo con evidencia material y decisión explícita en el proyecto padre. Excepción preexistente: `aranea-ssh` sirve bearer/policy directamente en `:3000` sin Nginx; no convierte esa excepción en blueprint para servicios nuevos. etcd FastMCP usa HTTP nativo internamente; MinIO/Temporal usan bridge stdio→HTTP pinneado; ambos respetan proxy bearer separado y backend sin host port.
 
-## Boundary del host `mcps` — appliance de servicios MCP
+## Boundary del host mcps
 
-`mcps` es un **LXC dedicado a alojar servicios MCP containerizados mediante Docker/Portainer**. No es workstation, jump host ni host de administración general.
+`mcps` es LXC dedicado a servicios MCP Docker/Portainer, NO workstation/jump host. Prohibido instalar clientes de los servicios destino (`psql`, `mongosh`, Hasura/Kafka/Flink CLI, etc.) en el LXC para discovery o troubleshooting. Discovery/administración mediante MCP autorizado desde consumidor, o autoridad operativa nativa del servicio si la capability aún no existe. Docker, Portainer, `ss`, `find` y lectura de configuración propia MCP sí están dentro de este boundary. Tooling auxiliar, si hace falta, vive en artefacto/container descartable explícito o management host correspondiente. Para operar/reparar el appliance usar management path `mcps-ops` y [[aranea-mcp-plane-operator]], nunca un MCP alojado en el propio `mcps`.
 
-Hard rules:
+## Seguridad: identidades, red y deployment
 
-- No instalar clientes de servicios destino en el host (`psql`, `mongosh`, Hasura CLI, Kafka CLI, Flink CLI, etc.) para discovery, troubleshooting o convenience.
-- No depender de herramientas de administración del servicio destino instaladas en el LXC.
-- No convertir `mcps` en punto de acceso directo a PostgreSQL, MongoDB, Hasura, Kafka, Flink u otros backends.
-- Discovery y administración se hacen desde consumidores autorizados usando capabilities MCP, o desde la autoridad operativa propia del servicio cuando el MCP aún no existe.
-- Docker/Portainer y herramientas base de inspección del runtime (`docker`, `ss`, `find`, `cat`/`sed` sobre configuración propia del MCP) sí pertenecen al boundary.
-- Tooling auxiliar debe vivir en container/artefacto explícito y descartable o en el host de administración correspondiente.
-
-**Invariante:** `mcps` aloja y expone capabilities MCP; no se usa como cliente ad-hoc de los servicios que esas capabilities administran.
-
-## Boundaries de seguridad
-
-### 1. Dos secretos distintos
-
-Nunca confundir:
-
-1. **Bearer cliente → MCP proxy**: autentica a Daedalus/Hermes/u otro consumidor contra la capability.
-2. **Credencial backend MCP → servicio destino/backend privado**: PostgreSQL password, Hasura admin secret, token upstream o bearer backend privado cuando la implementación lo requiere.
-
-El cliente no recibe la credencial real del servicio destino/backend. El backend no necesita conocer el bearer del cliente.
-
-### 2. Secretos server-side
-
-Convención verificada en `mcps`:
+**Dos secretos no intercambiables:** bearer cliente→proxy y credencial backend→servicio destino. La segunda nunca se entrega a Daedalus/Hermes ni se persiste en sus configuraciones, el vault, prompts o logs. Bearer por capability separado, no universal.
 
 ```text
-/opt/mcp/<familia>/runtime/proxy/           # templates Nginx
-/opt/mcp/<familia>/runtime/proxy-secrets/   # bearer cliente→MCP
-/opt/mcp/<familia>/runtime/secrets/         # credenciales upstream/backend privadas
+/opt/mcp/<familia>/runtime/proxy/           # Nginx template
+/opt/mcp/<familia>/runtime/proxy-secrets/   # bearer cliente-MCP
+/opt/mcp/<familia>/runtime/secrets/         # identidad upstream/backend
 ```
 
-Los secretos se montan read-only al container correspondiente. No registrar valores en Agents-OS, repos, prompts, Cursor config ni logs.
+Mounts sensibles read-only; backend no publica host port; proxy único listener de familia con red Docker privada (`mcp-postgres`, `mcp-mongo-forge`, `mcp-hasura`, `mcp-kafka`, `mcp-flink`, `mcp-observability`, `mcp-temporal`, `mcp-minio`, `mcp-etcd` según familia). Cuando el backend necesita egress al servicio, no volver `--internal` una red que rompa ese egress. Las autoridades PROD/DEV y RO/RW distintas exigen capabilities/identidades separadas cuando el contrato lo requiera.
 
-### 3. Backend interno
+**Nginx canónico:** `nginx@sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de`. `restart=unless-stopped`, template y bearer RO, startup que materializa config y descarta variables temporales, 401 sin bearer, proxy_pass privado, buffering/timeouts compatibles con MCP. No documentar el valor del token materializado. Backend/imagen pinneada (commit/release/digest), nunca `latest`; rollback por familia en su runbook.
 
-El backend MCP no publica host port. Sólo el proxy de la capability expone el puerto estable de `mcps.lab.aranea.cl`.
+**Deployment vigente:** containers standalone/Portainer y `restart=unless-stopped`; no existe Compose canónico del access plane. No introducir Compose como requisito o rediseño implícito.
 
-Redes Docker privadas verificadas:
+## Inventarios fechados
 
-```text
-mcp-postgres
-mcp-mongo-forge
-mcp-hasura
-mcp-kafka
-mcp-flink
-```
+### HISTORICAL — 2026-09-13: nueve capabilities
 
-### 4. Un proxy por capability
+El despliegue inicial registraba sólo `:3000`–`:3008` (SSH; PostgreSQL RO/RW; Mongo RO/RW; Hasura PROD-RO/DEV-admin; Kafka DEV-admin; Flink DEV-admin). Este snapshot no se usa como inventario vigente.
 
-RO/RW, PROD/DEV o cualquier autoridad distinta se materializa como capability separada cuando el contrato lo exige. Cada capability tiene bearer y backend/configuración upstream propios.
+### CURRENT — 2026-09-17: trece capabilities
 
-No usar bearer universal para múltiples capabilities.
+| Puerto | Capability | Autoridad certificada / frontera |
+|---:|---|---|
+| `3000` | `aranea-ssh` | perfiles viewer/operator, H2 enforcement tool-level; Windows evidence SYSTEM se consume RO con `mt5-kronos-operator`, no viewer SFTP |
+| `3001` | `aranea-postgres-ro` | Echo PROD `mcp_echo_prod_ro`, restricted/RO |
+| `3002` | `aranea-postgres-rw` | Echo DEV `mcp_echo_dev_rw`, data RW, no asumir schema CREATE |
+| `3003` | `aranea-mongo-forge-ro` | Mongo Forge PROD RO, 18 tools |
+| `3004` | `aranea-mongo-forge-rw` | Mongo Forge DEV RW, 27 tools |
+| `3005` | `aranea-hasura-prod-ro` | Hasura PROD strict-RO, **3 tools** post-H1, sin `export_metadata` |
+| `3006` | `aranea-hasura-dev-admin` | Hasura DEV admin, 9 tools |
+| `3007` | `aranea-kafka-dev-admin` | Kafka DEV, 19 tools; NO PROD |
+| `3008` | `aranea-flink-dev-admin` | Flink REST DEV, 22 tools, sin SQL; NO PROD |
+| `3009` | `aranea-observability-ro` | ARGUS Grafana/Prometheus/Loki, 22 tools RO; sin Jaeger toolset |
+| `3010` | `aranea-temporal-ro` | Temporal SQX, 28 tools RO, namespace allowlist, no mutadores |
+| `3011` | `aranea-minio-ro` | MinIO S3 RO, 9 tools listadas, IAM acotado `deploy/worker/sqx/*`+`examples`, backups denegados |
+| `3012` | `aranea-etcd-ro` | etcd RO, 4 tools, prefijos/secret-name filtrados; sin mutadores |
 
-## Nginx auth proxy canónico
+`3000` es la excepción SSH, `3001`–`3012` siguen el boundary auth proxy/backend. La tabla registra certificación de familias (según runbooks); **NO prueba que Cursor, ZCode y Codex tengan individualmente las 13**. Cursor obtuvo 11 previas + nuevo trío Temporal/MinIO/etcd probado 3/3; normalización ZCode/Codex 10/10 al 2026-09-16, incorporaciones 3010–3012 pendientes de patcher/smoke con identidad `kor` según bitácora 2026-09-17. Confirmar herramientas en el cliente real antes de afirmar disponibilidad. Comprobar puertos vivos con `docker ps`+`ss -lntp` antes de asignar uno nuevo.
 
-Imagen verificada:
+## Familias y contratos específicos
 
-```text
-nginx@sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de
-```
+### Temporal — 2026-09-17
 
-Contrato:
+Upstream `stevekinney/temporal-mcp` npm `0.2.1`; wrapper `mcp-proxy 6.7.16`+fix g010; imagen `local/temporal-mcp-http:0.2.1-mcpproxy6.7.16-g010fix`; backend `temporal-mcp-ro` uid 1000 sin host port en `mcp-temporal`, proxy `temporal-mcp-auth-ro :3010`. Temporal server 1.31.2 gRPC `192.168.31.46:7233` (NO confundir con Traefik UI :8080); config server-side `hardReadOnly`+`allowedNamespaces [sqx-dev,sqx,sqx-prop]`, 28 tools RO, namespace externo DENIED. El frontend interno no tiene TLS/API key: boundary agent-facing bearer+RO+allowlist. Ninguna llamada start/signal/cancel/terminate es parte de esta capability. [[aranea-temporal-mcp]].
 
-- `restart=unless-stopped`;
-- template `/run/mcp/mcp.conf.template` read-only;
-- bearer cliente montado read-only;
-- arranque materializa config, descarta variable temporal y ejecuta Nginx foreground;
-- `401` cuando el bearer no coincide;
-- `proxy_pass` sólo al backend de la red Docker privada;
-- buffering desactivado y timeouts compatibles con sesiones MCP largas cuando corresponde.
+### MinIO S3 RO — 2026-09-17
 
-No copiar tokens materializados desde Nginx a documentación.
+Upstream `txn2/mcp-s3` v1.4.0 pinneado; backend `minio-mcp-ro` imagen `local/minio-mcp-http:1.4.0-mcpproxy6.7.16-g010fix` (Go stdio + mcp-proxy fix), proxy `minio-mcp-auth-ro :3011`, red privada `mcp-minio`, S3 target `192.168.31.92:9000`. Identidad upstream: service account hija con policy embedded, NO admin; effective allow = padre ∩ policy, ListBucket `deploy` y `examples`, GetObject `deploy/worker/sqx/*` y objetos `examples`; DENY `*backup*`. 9 tools registradas; put/copy/delete se muestran upstream pero read-only los rechaza server-side. No generalizar el Get a resultados Forge arbitrarios ni usar RO para publicar releases. [[aranea-minio-mcp]].
 
-## Runtime verificado — 2026-09-13
+### etcd RO — 2026-09-17
 
-### Inventario de capabilities y puertos (HISTORICAL SNAPSHOT 2026-09-13)
-
-> Este bloque es un **snapshot del 2026-09-13**: documenta el estado de ese momento (9 capabilities, `:3000`–`:3008`) y NO es el inventario vigente. El inventario CURRENT vive en el bloque siguiente.
-
-| Puerto | Capability | Autoridad | Topología |
-|---:|---|---|---|
-| `3000` | `aranea-ssh` | perfiles viewer/operator | excepción existente: `ssh-mcp` publica directamente y aplica su propio bearer/policy |
-| `3001` | `aranea-postgres-ro` | PROD RO | Nginx auth → PostgreSQL MCP interno |
-| `3002` | `aranea-postgres-rw` | DEV RW | Nginx auth → PostgreSQL MCP interno |
-| `3003` | `aranea-mongo-forge-ro` | PROD RO | Nginx auth → MongoDB MCP interno |
-| `3004` | `aranea-mongo-forge-rw` | DEV RW | Nginx auth → MongoDB MCP interno |
-| `3005` | `aranea-hasura-prod-ro` | PROD strict RO | Nginx auth → strict-RO Hasura MCP interno |
-| `3006` | `aranea-hasura-dev-admin` | DEV admin | Nginx auth → Hasura MCP interno |
-| `3007` | `aranea-kafka-dev-admin` | DEV admin | Nginx auth → Kafka MCP interno |
-| `3008` | `aranea-flink-dev-admin` | DEV admin | Nginx auth → Flink MCP interno |
-
-### Inventario CURRENT — 11 capabilities (2026-09-17)
-
-| Puerto | Capability | Autoridad | Estado |
-|---:|---|---|---|
-| `3000` | `aranea-ssh` | perfiles viewer/operator; enforcement viewer tool-level (H2) | certificado |
-| `3001` | `aranea-postgres-ro` | PROD RO (`mcp_echo_prod_ro`) | certificado |
-| `3002` | `aranea-postgres-rw` | DEV RW (`mcp_echo_dev_rw`) | certificado |
-| `3003` | `aranea-mongo-forge-ro` | PROD RO (18 tools) | certificado |
-| `3004` | `aranea-mongo-forge-rw` | DEV RW (27 tools) | certificado |
-| `3005` | `aranea-hasura-prod-ro` | PROD strict RO — exactamente 3 tools post-H1 | certificado |
-| `3006` | `aranea-hasura-dev-admin` | DEV admin — 9 tools | certificado |
-| `3007` | `aranea-kafka-dev-admin` | DEV admin — 19 tools | certificado |
-| `3008` | `aranea-flink-dev-admin` | DEV admin REST — 22 tools, sin SQL | certificado |
-| `3009` | `aranea-observability-ro` | PROD-RO — 22 tools RO (Grafana/Prometheus/Loki de ARGUS) | certificado 2026-09-15 |
-| `3010` | `aranea-temporal-ro` | PROD-RO — 28 tools sin mutadores, `hardReadOnly` + allowlist namespaces SQX | certificado 2026-09-17 |
-
-**Antes de asignar un puerto nuevo, verificar runtime vivo con `docker ps` + `ss -lntp`; este inventario documenta estado, no reserva puertos futuros.**
-
-### Temporal (familia nueva — 2026-09-17)
-
-```text
-repo:        stevekinney/temporal-mcp (npm temporal-mcp 0.2.1, 28 tools RO por diseño)
-wrapper:     mcp-proxy 6.7.16 + fix g010 (patrón hasura)
-image:       local/temporal-mcp-http:0.2.1-mcpproxy6.7.16-g010fix
-backend:     temporal-mcp-ro (sin host port, red mcp-temporal, uid 1000)
-proxy:       temporal-mcp-auth-ro (nginx digest canónico, :3010)
-target:      Temporal 1.31.2 — frontend gRPC 192.168.31.46:7233 (VM temporal, hades)
-config:      /opt/mcp/temporal/runtime/config/temporal-mcp.json — hardReadOnly + allowedNamespaces [sqx-dev, sqx, sqx-prop]
-superficie:  28 tools sin mutadores; describe de namespace fuera de allowlist → NAMESPACE_NOT_ALLOWED
-runbook:     [[aranea-temporal-mcp]]
-```
-
-El frontend interno no usa TLS ni API key: el boundary agent-facing es bearer + hardReadOnly + namespace allowlist. La conexión es gRPC `:7233`; la ruta Traefik `temporal.lab.aranea` (`:8080`) es la UI y NO sirve gRPC.
+Gateway greenfield FastMCP autorizado por mandato del MCP-trio, imagen `local/etcd-mcp-ro:0.1.0`, HTTP streamable nativo backend `etcd-mcp-ro` sin host port, proxy `etcd-mcp-auth-ro :3012`, red `mcp-etcd`. Servicio: cinco miembros `192.168.31.250-.254`, gateway v3 JSON `/v3/kv/range`, timeout 3s. Cuatro tools read-only; deny-by-default 8 prefixes, branch MinIO sensible excluida, regex secret-name en todas las rutas, caps 200 keys/4KB, sin `put`/`delete`/`txn`/`watch`. El cluster subyacente permanece sin TLS/auth: no convertir acceso directo anónimo en autoridad de agentes ni declarar hardening cerrado. Workstream separado [[ETCD — Seguridad y Hardening — workstream del MCP Access Plane]]. [[aranea-etcd-mcp]].
 
 ### PostgreSQL
 
-Backend pinneado:
-
-```text
-local/postgres-mcp:0.3.0-15c8e33
-```
-
-Red: `mcp-postgres`.
-
-El backend RO real usa:
-
-```text
-user = mcp_echo_prod_ro
-host = postgresql.lab.aranea.cl
-port = 5432
-database = echo
-access-mode = restricted
-transport = streamable-http
-listen interno = 0.0.0.0:8000
-```
-
-Deuda conocida: el container histórico `postgres-mcp-echo-dev-ro` está mal nombrado respecto de su target efectivo PROD/RO. No propagar ese error a capabilities nuevas.
-
-Runbook: [[aranea-postgres-mcp]].
+Imagen `local/postgres-mcp:0.3.0-15c8e33`, red `mcp-postgres`. RO real: `mcp_echo_prod_ro@postgresql.lab.aranea.cl:5432/echo`, restricted Streamable HTTP, backend :8000 interno. Container histórico llamado `postgres-mcp-echo-dev-ro` está mal nombrado respecto al target PROD: no propagar su nombre como authority. RW es data DEV, no schema CREATE por inferencia. E-05 aplicó 063 en DEV usando `run_sql` de Hasura admin bajo su contrato. [[aranea-postgres-mcp]].
 
 ### MongoDB Forge
 
-Backend pinneado:
-
-```text
-local/mongodb-mcp:2.1.1-2e8eae9
-```
-
-Red: `mcp-mongo-forge`.
-
-Los backends RO/RW no publican host ports y los proxies usan el digest Nginx canónico.
-
-Runbook: [[aranea-mongodb-mcp]].
+Imagen pinneada `local/mongodb-mcp:2.1.1-2e8eae9`, red `mcp-mongo-forge`, backend RO/RW sin host ports y proxies Nginx por capability separados. RO 18 tools, RW 27; conexión normal `connectionId=preconfigured`, no URIs arbitrarias. [[aranea-mongodb-mcp]].
 
 ### Hasura
 
-Source MCP pinneado:
-
-```text
-repo: sanjay3290/graphql-engine
-commit: 9ba59f273daf42205919e6d43e27d2876a6e0b32
-MCP version: 1.0.0
-```
-
-El upstream es stdio-only. Aranea usa `mcp-proxy` `6.7.16` para exponer Streamable HTTP **dentro** de `mcp-hasura`; Nginx sigue siendo el único listener host-facing.
-
-DEV:
-
-```text
-capability: aranea-hasura-dev-admin
-endpoint: http://mcps.lab.aranea.cl:3006/mcp
-target: http://192.168.31.75:8080
-Hasura: CE v2.38.0
-metadata DB: hasura_dev_metadata
-backend image: local/hasura-mcp:1.0.0-9ba59f2
-containers: hasura-mcp-dev-admin + hasura-mcp-auth-dev-admin
-```
-
-Tool surface DEV certificada:
-
-```text
-apply_metadata
-clear_metadata
-drop_inconsistent_metadata
-export_metadata
-get_inconsistent_metadata
-get_schema
-get_version
-reload_metadata
-run_sql
-```
-
-PROD:
-
-```text
-capability: aranea-hasura-prod-ro
-endpoint: http://mcps.lab.aranea.cl:3005/mcp
-target: http://192.168.31.48:8080
-Hasura: CE v2.38.0
-metadata DB: hasura_metadata
-base image: local/hasura-mcp:1.0.0-9ba59f2-prod-ro-h1fix
-http image: local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-h1fix-mcpproxy6.7.16-g010fix
-http rollback (tag retenido): local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-mcpproxy6.7.16
-containers: hasura-mcp-prod-ro + hasura-mcp-auth-prod-ro
-```
-
-El flag upstream `--read-only` no fue aceptado como boundary suficiente porque mantenía `reload_metadata` y `run_sql`. La variante Aranea elimina ambas registrations y además ejecuta `--read-only`.
-
-Tool surface PROD certificada server-side — **exactamente 3** (desde H1 fix 2026-09-15):
-
-```text
-get_inconsistent_metadata
-get_schema
-get_version
-```
-
-`export_metadata` fue eliminado de la superficie PROD-RO por el remediation H1 (expone `database_url` con credenciales upstream embebidas). No existe `run_sql`, `reload_metadata`, `export_metadata` ni metadata mutators en PROD. Por construcción no existe camino MCP para DDL/DML/creación de views/functions ni cambios de metadata.
-
-Cursor puede mostrar una tool cliente `mcp_auth`; no apareció en `tools/list` server-side y no forma parte de la autoridad Hasura.
-
-Runbook: [[aranea-hasura-mcp]]. Workstream cerrado: [[HASURA MCP — workstream del MCP Access Plane]].
+Upstream MCP `sanjay3290/graphql-engine` commit `9ba59f273daf42205919e6d43e27d2876a6e0b32`, MCP v1.0.0 stdio bridged por mcp-proxy 6.7.16 + fix g010. DEV `aranea-hasura-dev-admin :3006` → Hasura CE 2.38.0 `.75:8080`, imagen base `local/hasura-mcp:1.0.0-9ba59f2`, metadata dev, **9 tools**: `apply_metadata`, `clear_metadata`, `drop_inconsistent_metadata`, `export_metadata`, `get_inconsistent_metadata`, `get_schema`, `get_version`, `reload_metadata`, `run_sql`. PROD `aranea-hasura-prod-ro :3005` → `.48:8080`, CE 2.38.0, imagen strict RO `local/hasura-mcp-http:1.0.0-9ba59f2-prod-ro-h1fix-mcpproxy6.7.16-g010fix`, rollback tag anterior retenido. PROD expone EXACTAMENTE `get_inconsistent_metadata`, `get_schema`, `get_version`; `export_metadata` eliminado H1 por exponer credenciales upstream, `run_sql`/reload/mutadores ausentes. Un flag upstream `--read-only` NO bastaba por sí solo. `mcp_auth` UI Cursor no es tool del backend salvo presente en `tools/list` server-side. El bug GAP-ECHO-010 de hijo stdio compartido muerto está reparado con g010 (nueva sesión), no extrapolar a SSH/Flink. [[aranea-hasura-mcp]].
 
 ### Kafka DEV
 
-Backend adoptado y pinneado:
-
-```text
-repo:   wklee610/kafka-mcp
-commit: 0b3bf477ac482468fbd9bbafedf056d0ee83f325
-image:  local/kafka-mcp:2.0.0-0b3bf47-inc1-fm3.0.1
-```
-
-Red: `mcp-kafka`.
-
-`aranea-kafka-dev-admin` publica sólo el proxy en `:3007/mcp`; el backend no publica host port. La imagen Aranea fija FastMCP `3.0.1` y parchea `alter_configs` para usar `incremental_alter_configs`, evitando revertir propiedades no objetivo. Superficie certificada: 19 tools. PROD queda diferido como capabilities separadas futuras; no reutilizar DEV.
-
-Runbook: [[aranea-kafka-mcp]].
+Upstream `wklee610/kafka-mcp` commit `0b3bf477ac482468fbd9bbafedf056d0ee83f325`; imagen `local/kafka-mcp:2.0.0-0b3bf47-inc1-fm3.0.1`, red `mcp-kafka`, backend interno, proxy :3007, 19 tools. Pin FastMCP 3.0.1 y patch `alter_configs` a `incremental_alter_configs` para no revertir settings ajenos. PROD diferido con identidades separadas `aranea-kafka-prod-ro`/`aranea-kafka-prod-ops` (NO desplegadas). [[aranea-kafka-mcp]].
 
 ### Flink DEV
 
-Backend adoptado y pinneado:
+Upstream `vaquarkhan/flink-mcp-enterprise-server` 0.3.1 commit `981bbeff3ed7f897ca7c5bde20f36669d5e93bc4`; imagen `local/flink-mcp:0.3.1-981bbef-aranea2-flink1.14`, red `mcp-flink`, proxy :3008, backend sin host port. Proxy bearer cliente ≠ bearer backend privado. Approval HMAC upstream fail-closed por default, `MCP_FLINK_APPROVAL_REQUIRED=false` sólo en DEV detrás de proxy/allowlist. 22 tools, CERO SQL, Flink 1.14.3. Host/filesystem/Docker/config/lifecycle separado: `aranea-ssh` + `docker-echo-dev-operator` root-equivalent DEV; source-of-truth Portainer stack 1 (`/var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml`). PROD `aranea-flink-prod-ro` diferido/no desplegado. [[aranea-flink-mcp]], [[aranea-ssh-mcp]].
 
-```text
-repo:   vaquarkhan/flink-mcp-enterprise-server
-version: 0.3.1
-commit: 981bbeff3ed7f897ca7c5bde20f36669d5e93bc4
-image:  local/flink-mcp:0.3.1-981bbef-aranea2-flink1.14
-```
+### Observabilidad y SSH
 
-Red: `mcp-flink`.
+ARGUS `aranea-observability-ro :3009` = `grafana/mcp-grafana` v1.4.2 digest pinneado, `--disable-write`, toolsets search/datasource/prometheus/loki/dashboard, 22 tools read-only, sin Jaeger toolset aunque datasource exista; no administra alertas/dashboards. [[aranea-observability-mcp]]. SSH `aranea-ssh :3000` excepción con bearer/policy propia, H2 viewer tool-level; `mt5-kronos-operator` no-admin consume evidence JSON publicado SYSTEM, report freshness ≤15 min para deploy, reviewer `mt5-kronos+sftp-download` DENIED; `echo-runtime-prod` es viewer sin mutación. [[aranea-ssh-mcp]], [[SSH MCP — workstream del MCP Access Plane]].
 
-`aranea-flink-dev-admin` publica sólo el proxy en `:3008/mcp`; backend `flink-mcp-dev-admin` sin host port. El proxy no reenvía el bearer del cliente: usa un bearer backend privado separado, validado server-side mediante registry hash-only. La variante Aranea conserva el approval HMAC upstream como default fail-closed, pero DEV ejecuta con `MCP_FLINK_APPROVAL_REQUIRED=false` detrás del bearer proxy y allowlist explícita. Superficie certificada: exactamente 22 tools y **cero SQL tools** contra Flink `1.14.3`.
+## Blueprint de nueva capability (NO ejecutar sin gap demostrado)
 
-El host/runtime plane no se mezcla dentro del backend Flink MCP. Filesystem, Docker, config bind-mounted y lifecycle de `docker-echo-dev` usan `aranea-ssh` + profile `docker-echo-dev-operator`, root-equivalent sólo para DEV. Source-of-truth del stack: Portainer stack `1`; host path `/var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml`.
+**Gate A — discovery:** servicio real host/puerto/versión/ambiente/auth sin instalar clientes en mcps; operación mínima, identity, scope, upstream existente pinneado o excepción autorizada; transporte validado; puerto disponible verificado vivo.
 
-Runbooks: [[aranea-flink-mcp]] y [[aranea-ssh-mcp]]. Workstream DEV cerrado: [[Flink MCP — workstream del MCP Access Plane]]. PROD `aranea-flink-prod-ro` queda diferido.
+**Gate B — materialización:** runtime dir/proxy-secrets/upstream secrets scoped, red Docker de familia, backend sin host port ni latest, upstream credential RO mount, proxy Nginx bearer dedicado como único listener, template+bearer RO, `restart=unless-stopped`, rollback exacto. Cambiar authority PROD/RO a RW exige capability/identidad separada y decisión owner, NO flip de flag.
 
-## Excepción existente: SSH MCP
+**Gate C — consumer:** credencial cliente por capability en archivo fuera de mcp.json cuando cliente soporta env, referencia real al chain; `VAR=SET` sin revelar valor, endpoint estable `mcps.lab.aranea.cl`. ZCode/Codex pueden diferir semánticamente de Cursor; exigir prueba independiente con config propia. [[aranea-mcp-capability-plane]].
 
-`aranea-ssh` en `:3000` no usa Nginx porque el upstream desplegado ya implementa bearer/policies y publica directamente. Es una **excepción existente**, no el blueprint default para nuevos MCPs.
+**Gate D — certificación:** `401` sin bearer, handshake válido, backend sin host port, secret mounts RO, `tools/list` autoridad exacta, rechazo negativo de mutadores PROD/RO, probes positivos acotados DEV cuando corresponda, no upstream credential al cliente, restart y rollback, E2E consumidor identificado. `tools/list` del servidor prevalece sobre etiqueta del container/flag. `Up` o `curl 200` aislado NO son certificación; no confundir smoke de Cursor con ZCode/Codex.
 
-Runbook: [[aranea-ssh-mcp]].
+## Anti-patrones y drift
 
-## Deployment actual
+NO: clientes ad-hoc en `mcps`, jump host, backend expuesto, secreto upstream en Cursor/vault/chat, bearer universal, bearer proxy reutilizado upstream, tags `latest`, acceso directo para saltarse MCP, aprobación `auto` tratada como owner, PROD por capability DEV, viewer ampliado para solucionar SFTP Windows, MinIO RO usado para escritura, etcd endpoint anónimo usado para writes, Telegram gateway Hermes supuesto MCP de Daedalus. Si la capability existente no cubre operación: documentar target, verbo, policy denial y alternativa autorizada antes de pedir nueva.
 
-El runtime MCP usa containers standalone/Portainer con `restart=unless-stopped`; no depende de un Compose canónico del access plane.
-
-No introducir Compose como requisito implícito. Estandarizar deployment sería un cambio separado.
-
-## Blueprint para agregar una capability nueva
-
-### Gate A — discovery
-
-1. Identificar servicio destino real: host, puerto, versión, ambiente y auth sin instalar clientes ad-hoc en `mcps`.
-2. Definir capability y autoridad exactas antes de instalar.
-3. Seleccionar upstream MCP existente; pinnear release/commit/image. No `latest`.
-4. Verificar transporte. Upstream stdio-only requiere bridge HTTP pinneado sin romper esta arquitectura.
-5. Verificar puertos vivos en `mcps`.
-
-### Gate B — materialización
-
-1. Crear `/opt/mcp/<familia>/runtime/{proxy,proxy-secrets,secrets}` según necesidad.
-2. Crear red Docker privada `mcp-<familia>`.
-3. Levantar backend MCP sin host port.
-4. Montar credencial upstream/backend sólo donde corresponda, read-only.
-5. Levantar Nginx auth proxy separado usando el digest canónico o sucesor explícitamente aprobado.
-6. Montar template + bearer read-only en proxy.
-7. Publicar sólo el puerto del proxy.
-8. `restart=unless-stopped` salvo decisión explícita distinta.
-
-### Gate C — cliente
-
-1. Bearer independiente por capability.
-2. Secret file fuera de Cursor JSON; Cursor referencia env var.
-3. Validar `VAR=SET` sin imprimir valor.
-4. Endpoint estable `http://mcps.lab.aranea.cl:<puerto>/<path MCP>`.
-
-### Gate D — certificación
-
-Mínimo:
-
-```text
-unauthenticated request -> 401
-bearer válido -> initialize MCP PASS
-backend host port -> none
-secret mounts -> RO
-capability/tool surface -> exact authority contract
-PROD mutation path -> absent or rejected by construction/policy
-DEV mutation/admin path -> positive test sólo cuando corresponda
-upstream/backend credential exposed to client -> no
-restart policy -> unless-stopped
-client real (Cursor/Daedalus) -> PASS
-```
-
-`tools/list` server-side es evidencia material de authority cuando la seguridad depende de la superficie expuesta.
-
-No cerrar una capability sólo porque `curl` responda o el container esté `Up`.
-
-## Anti-patrones
-
-No hacer:
-
-- instalar `psql`, `mongosh`, Hasura CLI, Kafka CLI, Flink CLI u otros clientes de servicio en `mcps`;
-- usar `mcps` como jump host/workstation;
-- publicar backend MCP directo al host por comodidad;
-- poner admin secret/password/token upstream en Cursor o prompts;
-- reutilizar bearer cliente→MCP como credencial upstream/backend;
-- usar `latest`;
-- bearer universal para authorities distintas;
-- saltar a acceso directo al servicio cuando el MCP falla;
-- asumir authority por nombre de container, README o flags sin certificar runtime/tool surface;
-- redescubrir esta topología desde cero salvo drift material.
-
-## Discovery mínimo ante drift
+Discovery mínimo por management path autorizado:
 
 ```bash
 docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}'
 docker network ls
-ss -lntp | grep -E ':(300[0-9])\b' || true
+ss -lntp | grep -E ':(300[0-9]|301[0-2])\b' || true
 ```
 
-Si sigue compatible con este contrato, continuar usando esta nota como autoridad. Auditar mounts/commands sólo cuando exista drift material o el nuevo servicio lo exija.
+Sólo ampliar inspección mounts/commands ante drift material. Actualizar router+runbook+inventario tras un cambio certificado, no reconstruir el plane cada vez.
 
-## Fuentes de evidencia
+## Fuentes y alcance de evidencia
 
-Arquitectura consolidada desde runtime real de `mcps` y certificaciones E2E al 2026-09-13:
-
-- `docker ps` / `ss -lntp` para puertos;
-- `docker inspect` de proxies/backends PostgreSQL, MongoDB, Hasura, Kafka y Flink;
-- handshakes MCP reales con bearer;
-- `tools/list` server-side para boundaries certificadas;
-- validaciones end-to-end desde Daedalus/Cursor;
-- mounts, imágenes y redes Docker efectivos;
-- árbol `/opt/mcp` efectivo;
-- certificación host/runtime de `docker-echo-dev-operator` y source-of-truth Portainer del stack Flink DEV.
-
-No se almacenan valores de bearer, passwords, admin secrets ni private keys en esta nota.
+Arquitectura original consolidada desde `docker ps`/`ss`, `docker inspect`, tool surface y smoke E2E de 2026-09-13. Adiciones 2026-09-15/17 por runbooks [[aranea-observability-mcp]], [[aranea-temporal-mcp]], [[aranea-minio-mcp]], [[aranea-etcd-mcp]] y bitácora del proyecto padre. La presente actualización reconcilia documentación ya certificada: no afirma haber ejecutado un nuevo probe live. Ningún bearer/password/API secret/private key se registra aquí.
