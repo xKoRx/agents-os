@@ -25,7 +25,7 @@ tags:
   - tech/polymarket
   - topic/prediction-markets
 created: 2026-09-15
-updated: 2026-09-16
+updated: 2026-09-17
 ---
 
 # Polymarket Engine — MVP
@@ -57,7 +57,7 @@ Una vez establecido el engine, el coste marginal de probar una hipótesis nueva 
 - Primero se construye el Engine MVP; Sports y NegRisk dejan de ser “el MVP” y pasan a ser **POC-S01** y **POC-S02**, primeros consumidores del engine.
 - Backlog research: 30 familias canónicas `PE-001…PE-030` en [[Polymarket — Edge Research Consolidado 2026-09-16]].
 - Contexto económico/estratégico: [[Polymarket Engine — Opportunity Context]].
-- Siguiente gate: **Deep Research técnico exhaustivo de la documentación oficial de Polymarket**, materializado en `30-resources/polymarket/` con fecha de sincronización, antes de consumir Astra/Fable.
+- **M0 DESIGN_READY (documental, 2026-09-17):** Technical Platform Map canónico indexado en `30-resources/polymarket/`, con 11 partes, 7/7 OpenAPI (163 operaciones) y siete RG resueltos para diseño con exclusiones; no habilita live ni NegRisk conversion. Siguiente gate: revisión conjunta y M1 Astra → Fable → Astra.
 - No se implementa código del engine hasta cerrar M0–M2.
 
 ## 🧭 Autoridad documental y economía de tokens
@@ -364,7 +364,7 @@ Debe incluir como mínimo:
 - known ambiguities/contradictions;
 - sync timestamp y source URLs por sección.
 
-**Gate M0:** Astra/Fable pueden diseñar el engine sin salir a internet para descubrir facts básicos.
+**Gate M0: PASS — DESIGN_READY documental (2026-09-17).** Astra/Fable pueden diseñar sin descubrir contratos básicos. Ver [[Polymarket — Technical Platform Map — synced 2026-09-17]] y §24 de part-10. Límites frozen de M0: CTF/v2 conversion LIVE DISABLED; L2 historical backfill DISABLED; RFQ/Combos OUT_OF_SCOPE inicial; `deferExec=true`/Builder optional DISABLED; trading live sujeto a pruebas de auth, execution y reconciliación en M2–M4. Este gate NO constituye design freeze ni certificación live.
 
 ### M1 — Astra/Fable Engine Design
 
@@ -477,12 +477,13 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 ## ✅ Tareas
 
 ### Ahora — M0
-- [ ] Ejecutar Deep Research técnico oficial de Polymarket #owner/me #type/research #area/personal
-- [ ] Ingerir resultado como `Polymarket — Technical Platform Map — synced YYYY-MM-DD` en `30-resources/polymarket/` #owner/me #type/research #area/personal
-- [ ] Reconciliar contradicciones con docs oficiales/changelog/OpenAPI/AsyncAPI #owner/me #type/research #area/personal
-- [ ] Confirmar repo/nombre de implementación Go #owner/me #type/dev #area/personal
+- [x] Ejecutar Deep Research técnico oficial de Polymarket #owner/me #type/research #area/personal
+- [x] Ingerir resultado como `Polymarket — Technical Platform Map — synced YYYY-MM-DD` en `30-resources/polymarket/` #owner/me #type/research #area/personal
+- [x] Reconciliar contradicciones con docs oficiales/changelog/OpenAPI/AsyncAPI #owner/me #type/research #area/personal
+- [x] Confirmar nombre de repo de implementación Go: `xKoRx/polymarket-engine` (nombre acordado; verificar creación por separado) #owner/me #type/dev #area/personal
 
 ### M1
+- [ ] Revisión conjunta owner/manager del M0 DESIGN_READY y boundaries disabled; no reabrir research general salvo blocker concreto
 - [ ] Preparar context pack único para Astra/Fable #owner/me #type/research #area/personal
 - [ ] Astra: diseño completo Engine MVP #owner/me #type/dev #area/personal
 - [ ] Fable: adversarial challenge del diseño #owner/me #type/dev #area/personal
@@ -504,6 +505,7 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - **2026-09-15** — Inicio como proyecto de arbitraje Sports + NegRisk.
 - **2026-09-16** — Se consolida research en 30 hipótesis y se adopta modular monolith / single large host.
 - **2026-09-16** — Reframing canónico: **Engine = MVP durable; strategies = POCs**. Se define M0 Technical Knowledge Pack antes de Astra/Fable y delivery `Astra → Fable challenge → Astra reconcile → TOP plan → NORMAL implementation`.
+- **2026-09-17** — M0 DESIGN_READY documental: 11 partes del Technical Map; 7 OpenAPI/163 operaciones, RFQ AsyncAPI 13/13, Data v2 y NegRisk CTF investigados. Sin certificación live; conversion CTF/v2, historical L2 backfill y modos opt-in deshabilitados. Paso siguiente: revisión conjunta → ASTRA-1.
 
 ## 🧭 Decisiones frozen
 
@@ -527,6 +529,7 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - [[Polymarket Engine — Opportunity Context]]
 - [[Research — Merge de cuatro Deep Research]]
 - [[Polymarket — Edge Research Consolidado 2026-09-16]]
+- [[Polymarket — Technical Platform Map — synced 2026-09-17]] — índice canónico y 11 partes, knowledge pack M0 DESIGN_READY.
 - [[polymarket/00-index]]
 - Polymarket official docs: https://docs.polymarket.com/
 - Polymarket official docs index: https://docs.polymarket.com/llms.txt

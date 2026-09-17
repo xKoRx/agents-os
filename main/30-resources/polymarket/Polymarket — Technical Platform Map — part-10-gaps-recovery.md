@@ -12,9 +12,9 @@
 | Exacto clock skew permitido para cada HMAC/L1, semántica de idempotency-key universal | S03,S15,S18 no definen tolerancia universal ni key idempotente HTTP | timeout write ambiguo | test controlado de stale timestamp/order hash duplicado en entorno autorizado |
 | Activación efectiva del signer rate limiter | S20 todavía describe warning desde 2026-07-24 y posterior anuncio no incorporado al texto | no atribuir 429 live al gate sin headers | observar `Poly-RateLimit-Warning`, `Tier`, 429 y anuncio oficial |
 
-**`NOT DOCUMENTED` no significa que el comportamiento no exista**, sólo que el contrato público inspeccionado no lo garantiza. Las preguntas siguientes **no** pueden reclasificarse como protocolo no documentado: tienen fuente oficial existente, pero aún sin extracción suficiente.
+**`NOT DOCUMENTED` no significa que el comportamiento no exista**, sólo que el contrato público inspeccionado no lo garantiza. Los RG que siguen conservan su identidad y evidencia histórica. Su estado vigente por fila distingue cierre para diseño de habilitación live; las ausencias genuinas del protocolo permanecen en la tabla A y no se convierten artificialmente en certezas.
 
-### B. UNRESOLVED RESEARCH GAPS — ESTADO: **NO VACÍO**
+### B. Research Gaps RG-01…RG-07 — CLOSED FOR M0 DESIGN; live and optional gates tracked separately
 
 | ID | Fuente oficial disponible / extracción faltante | Impacto técnico concreto | Gate verificable para cerrarlo |
 |---|---|---|---|
@@ -26,9 +26,26 @@
 | RG-06 | CLOSED MATERIAL 2026-09-17 14:59 UTC: 72 source IDs / 69 distinct URLs individually requested; 71 HTTP200 readable, 1 failures; detailed statuses+titles+SHA §26.1; critical failures none | source provenance verified for critical MVP sources; secondary broken URLs classified in §26.1 | re-audit dynamic versions after change; noncritical links still require repair |
 | RG-07 | CLOSED FOR DESIGN / OPTIONAL MODES DISABLED 2026-09-17: `deferExec=false` SDK pinned, true disabled; CLOB PUT/GET balance-allowance schemas, GET/books, NegRisk path alias, rewards market endpoint, v1 heartbeats, Relayer credential endpoint triaged §19.1.1; Builder CRUD/alt auth explicitly disabled. | mandatory single-order, L2 balance and cancellations have documented contracts, opt-in modes withheld; no assumption heartbeats imply order cancellation. | reopen only if Builder or deferExec=true promoted to required scope; never use production credentials in research |
 
-**Certificación de hardening:** NO APROBADA como “única referencia implementable sin navegar documentación” bajo los gates solicitados. Sí se documentan contratos críticos verificados, diferencias de versión y bloqueos operativos. **Nunca** afirmar `UNRESOLVED RESEARCH GAPS = NONE` para esta revisión. No se ha ejecutado una orden, conversión NegRisk v2 ni una certificación live; este es un análisis documental. [S01][S32]
+**Certificación M0 — DESIGN_READY: PASS (documental, 2026-09-17).** Los siete RG han sido cerrados para las decisiones arquitectónicas del Engine MVP, con exclusiones o rutas fail-closed explícitas: RG-01 7/7 OpenAPI y 163 operaciones inventariadas/triadas; RG-02 RFQ AsyncAPI 13 operaciones/13 mensajes y RFQ fuera del MVP inicial; RG-03 no existe un contrato verificable de archivo L2 completo, por lo que backfill L2 queda DISABLED y el recorder propio es obligatorio; RG-04 DTOs Data v2 de resoluciones/posiciones/trades/actividad extraídos; RG-05 CTF pUSD adapter documentado en Solidity oficial pero conversión CTF/v2 live DISABLED y ABI de conversión v2 no verificada; RG-06 72 IDs/69 URLs consultados, 71 respuestas legibles y un fallo secundario S37 por límite de descarga, sin fuente crítica fallida; RG-07 modos opcionales `deferExec=true` y Builder no certificados, DISABLED. Esto certifica suficiencia del conocimiento para **diseñar**, NO cliente Go implementado, integración, verificación de bytecode desplegado, ejecución live, rentabilidad ni certificación integral de toda la plataforma. [S39][S40][S41][S48][S50][S51]
 
-Checklist de alcance: fuentes estables en §26 ✓; referencias efímeras excluidas del documento ✓; órdenes signed/DTO/wrapper separados ✓; fee rounding explícito ✓; buckets signer documentados ✓; contradicciones expuestas ✓; raw OpenAPI todos parseados ✓ (7/7, 163); RFQ AsyncAPI parseado ✓ (13 ops/13 msgs); catálogo operaciones MVP triaged ✓ (exclusiones explícitas); NegRisk v2 conversión certificada ✗; todos los URLs individualmente validados ✗; research gaps cero ✗.
+**Gates separados:** `M0_DESIGN_READY=PASS`; `FULL_PLATFORM_CONTRACT_CERTIFIED=NO`; `ENGINE_IMPLEMENTED=NO`; `LIVE_EXECUTION_CERTIFIED=NO`; `NEGRISK_CTF_LIVE=DISABLED`; `NEGRISK_V2_LIVE=DISABLED`; `L2_HISTORICAL_BACKFILL=DISABLED`; `RFQ_COMBOS=OUT_OF_SCOPE_MVP`; `DEFER_EXEC_TRUE=DISABLED`; `BUILDER_OPTIONAL_MODES=DISABLED`. Live order/auth exige integración y reconciliación comprobadas en fases posteriores: discrepancias SDK-vs-OpenAPI no son licencia para inventar headers. [S34][S40]
+
+**Checklist M0:** OpenAPI 7/7 y 163 operaciones ✓; AsyncAPI RFQ 13/13 ✓; operaciones MVP triadas y schemas críticos ✓; resolution DTO ✓; histórico L2 no garantizado y backfill bloqueado ✓; discriminación CTF/v2 documentada y conversión live bloqueada ✓; provenance crítica verificada, S37 no crítico pendiente de retrieval completo ✓; `RG pendientes que impiden arquitectura = 0` ✓. `FULL PLATFORM CONTRACT CERTIFICATION` sigue pendiente y no es condición de M0.
+
+### C. Matriz de aceptación Astra/Fable — sólo diseño
+
+| Capacidad | Estado del knowledge pack | Boundary obligatorio para M1 |
+|---|---|---|
+| Event/Market/Token/Condition, discovery, Sports | DESIGN_READY: §§2–3,19; schemas oficiales inventariados | no equiparar Gamma ID, condition ID y token ID; tomar valores dinámicos por mercado |
+| CLOB REST, books, Market/User WS | DESIGN_READY: §§3,8–9,19,25 | sin secuencia/replay garantizados: snapshot, staleness, read-only fail-closed y reconciliación |
+| Recorder, histórico y replay | DESIGN_READY: §§17,24–25 | captura propia desde el inicio; NO asumir archivo histórico L2 determinista |
+| Auth L1/L2, firmas, órdenes, fills y cancels | DESIGN_READY documental: §§3–8,19,23–25 | designar integración/contract tests obligatorios para discrepancias SDK-vs-spec; live deshabilitado hasta validación |
+| Positions/CTF, protocol-v2 y resolution Data v2 | DESIGN_READY: §§3,10–12,16,19 | version dispatch explícito, cadena como autoridad de settlement; no equiparar timestamps ni positions |
+| NegRisk conversion | DESIGN_READY como capacidad versionada con live DISABLED: §12, RG-05 | CTF fuente Solidity verificada, deployment/approvals no; v2 ABI desconocida: prohibido ejecutar o inventar contrato |
+| Fees, rewards, limits, incentives | DESIGN_READY: §§14–15,18,25 | parámetros/versiones efectivas dinámicas; no hardcodear snapshot 2026-09-17 |
+| RFQ/Combos, deferExec=true, Builder | OUT_OF_SCOPE / DISABLED inicial: RG-02/07 | promover sólo mediante contrato adicional, sin contaminar core actual |
+
+**Handoff M1:** Astra y Fable reciben el proyecto raíz, índice y sus once partes como corpus de protocolo, y Edge Research Consolidado. ASTRA diseña boundaries, modelo, recorder/replay, recovery, strategy runtime y gates; FABLE cuestiona. El owner revisa antes de congelar. `M0_DESIGN_READY` NO significa `M1_DESIGN_FROZEN`.
 
 ## 25. Parámetros dinámicos, paginación y recuperación — consulta por fuente
 

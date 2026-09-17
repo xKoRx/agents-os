@@ -28,7 +28,7 @@ tags:
 - **Proyecto consumidor:** [[Polymarket Engine — MVP]].
 - **Recurso técnico M0 canónico:** [[Polymarket — Technical Platform Map — synced 2026-09-17]].
 - **Original íntegro preservado:** Biblioteca `/Polymarket Engine/Resources/Polymarket — Technical Platform Map — synced 2026-09-17.md`, 160165 bytes, 1177 líneas, SHA-256 `78e6506fa67aa12843ba4acb0e4c8271a83c1841432a4a53777c73c4c723c11f`.
-- **Estado M0:** el mapa debe completarse **in-place** hasta `M0 DESIGN READY`; Astra/Fable no deben gastar ventanas descubriendo contracts básicos.
+- **Estado M0:** `DESIGN_READY` documental 2026-09-17; siete RG resueltos para diseño con live/optional gates deshabilitados. Revisión conjunta antes de ASTRA-1; §24 de part-10 es autoridad del estado.
 - **Research de oportunidades:** [[Polymarket — Edge Research Consolidado 2026-09-16]].
 - **Live:** ninguna nota de research autoriza ejecución; NegRisk Protocol-v2 conversion permanece bloqueada hasta route/ABI verificadas.
 
@@ -36,7 +36,7 @@ tags:
 
 | Página | Una línea | Meta |
 |---|---|---|
-| [[Polymarket — Technical Platform Map — synced 2026-09-17]] | Knowledge pack técnico para diseño del Engine: APIs, WS, auth, orders, positions, contracts, fees, resolution, history y gaps; el agente de M0 debe trabajar directamente sobre este archivo. | `status: M0 hardening` |
+| [[Polymarket — Technical Platform Map — synced 2026-09-17]] | Knowledge pack técnico para diseño del Engine: APIs, WS, auth, orders, positions, contracts, fees, resolution, history y gaps; el agente de M0 debe trabajar directamente sobre este archivo. | `status: M0 DESIGN_READY (no live certification)` |
 | [[Polymarket — Edge Research Consolidado 2026-09-16]] | Síntesis deduplicada: 58 formulaciones nominales → 30 hipótesis/familias, datos, tests, evidencia contraria, contradicciones y secuencia de falsación. | `confidence: medium` |
 | [[Polymarket DR R1 — Mecanismos y evidencia]] | Origen R1: diez mecanismos y experimentos con NO_GO; riesgo de crypto lead-lag. | `type: source`, SHA-256 |
 | [[Polymarket DR R2 — Microestructura y oráculo]] | Origen R2: cuatro configuraciones concretas; estimaciones de rentabilidad por verificar. | `type: source`, SHA-256 |
@@ -45,10 +45,10 @@ tags:
 
 ## 🚨 Salud
 
-- **Technical Map:** working resource, no versión `Intake`; completar el mismo archivo y actualizar sus gaps/gates.
+- **Technical Map:** once partes indexadas desde la nota canónica; M0 DESIGN_READY para arquitectura; contratos dinámicos sujetos a versionado y live sujeto a certificación posterior. La versión `Intake` no es autoridad.
 - **Contradicciones de edge research:** fees/rebates históricos, FLB Sports, oracle bond/settlement, estadísticas de wallets, claims de arb sin riesgo.
 - **Regla técnica:** parámetros operacionales se versionan/consultan desde autoridad vigente; no convertir snapshots históricos en constantes del engine.
-- **Gate inmediato:** dejar el Technical Map suficiente para que Astra/Fable diseñen sin navegar Polymarket para obtener información que M0 debía entregar.
+- **Gate inmediato:** revisión conjunta del M0 DESIGN_READY y paso a diseño Astra/Fable. Nunca interpretar M0 como habilitación live ni como certificación de contratos fuera de scope.
 
 ## 🔗 Links
 
