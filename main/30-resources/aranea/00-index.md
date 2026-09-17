@@ -54,7 +54,7 @@ cssclasses:
 | **truenas** | 192.168.31.91 | — | Almacenamiento compartido (VM en hades) | 2× Xeon E5-2697 v4 (virt) | 30t | 32 GB | ⚠️ turtles |
 | **hermes-vm** | 192.168.31.122 | — | Agente IA (este sistema) | — | — | — | ✅ |
 
-**Totales**: **302 threads / 767 GB RAM / 4 OSDs Ceph activos / ~55 VMs definidas / 36 running / 19 stopped**
+**Totales**: **302 threads / 767 GB RAM / 4 OSDs Ceph activos / 59 VMs definidas / 42 running / 17 stopped** (captura 2026-09-17)
 
 ---
 
