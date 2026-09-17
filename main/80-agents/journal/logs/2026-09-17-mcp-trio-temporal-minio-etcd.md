@@ -68,6 +68,14 @@ aranea-minio-ro    : BLOCKED        (owner action: identidad MinIO dedicada)
 aranea-etcd-ro     : BLOCKED        (owner decision: greenfield sí/no + boundaries)
 ```
 
+## Continuación 2026-09-17 (instrucciones owner: cierre controlado)
+
+- **etcd greenfield: NO AUTORIZADO** — registrado. Creada workstream note `ETCD-HARDENING` (workstreams/): incidente, exposición real (63 keys con credenciales, `:2380` peer también expuesto a todo el LAN, LXC sin SSH → contención sólo vía OPNsense/PVE), contención de red propuesta (no implementada, GATED), y fases de hardening F1–F5 (snapshot→TLS→RBAC→rotación→re-evaluación MCP). Skill `mcp-access-plane-operations` actualizada con el alcance real de exposición.
+- **Temporal:** inspector stageado verificado (sha256 completo íntegro local=Daedalus `f290562f49e8b64b…`, única escritura = `.bak-tri-*` de los propios configs kor, ENVSH read-only, auto-test PASS). Ejecución kor imposible para hermes-ops (sin sudo por diseño A0–A5, no se amplían permisos) → queda como la única OWNER ACTION para cerrar ZCode/Codex. Estado de Temporal queda PARTIAL hasta esa ejecución + integración de los dos consumidores.
+- **MinIO:** `/usr/bin/mc` en mcps es Midnight Commander, no MinIO Client — sin autoridad admin local (correcto por appliance design). Política RO dedicada propuesta (scope `deploy/worker/sqx/*` + `examples`, deny explícito a `*backup*`) guardada en `~/aranea/work/mcp-trio/minio-mcp-ro-policy.json` (hermes-vm); scope a confirmar por el owner contra la lista real de buckets. Identidad + política = owner action con instrucciones exactas entregadas en el reporte.
+- Feedback de sesión creado (event-driven): `80-agents/journal/feedback/system-1/2026-09-17-aranea-mcp-trio-session-feedback.md` (pain pattern: infra-docs sin mapa VMID→IP).
+- Post-verificación de no-regresión: 3001–3010 en 401 unauth, ssh-mcp :3000/ healthy, etcd healthy rev 55033 (estado post-rollback intacto), ambos containers temporal Up.
+
 ## Rollback
 
 - Temporal completo: restore backups mcp.json/aranea-env.sh (hermes-managed), rm bearer kor, `docker rm -f temporal-mcp-auth-ro temporal-mcp-ro`, `docker network rm mcp-temporal`, opcional `docker rmi local/temporal-mcp-http:0.2.1-…` y `rm -rf /opt/mcp/temporal`. Detalle en runbook.
