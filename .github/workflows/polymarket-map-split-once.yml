@@ -88,7 +88,8 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git rm -- .github/workflows/polymarket-map-split-once.yml
           git add -- main/30-resources/polymarket/
-          git diff --cached --check
+          # Part boundaries retain the source's original blank separators by design.
+          git -c core.whitespace=-blank-at-eof diff --cached --check
           git commit -m 'docs(polymarket): split map into 11 lossless linked sections'
           git fetch origin master
           git rebase origin/master
