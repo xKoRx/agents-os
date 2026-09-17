@@ -34,6 +34,7 @@ updated: "2026-09-17"
 ## 📊 Estado actual
 
 - **2026-09-17 — Bootstrap y preflight completados:** Agents-OS cargado; subproyecto materializado; repo clonado en workspace externo (`~/mke/multimodal-knowledge-engine`); baseline congelado `e5f9e9757d0e42b00c831e57920174428397d3b5` verificado como HEAD exacto de `master`; worktree limpio; las 7 docs canónicas presentes (`architecture.md` + 6 SPECs). Despachando SPEC-00A.
+- **2026-09-17 — SPEC-00A GATE = BLOCKED (solo criterio-8):** implementación completa en `m0-implementation` HEAD `e1cfdc6` (6 commits). QA adversarial: criterios 1–7, 9, 10 PASS re-verificados (tests 9/9 verde, cobertura 97.2%, replay byte-idéntico `7fa119b6…`/`bea7aa3d…`, trazas Markdown→JSONL→evidencia resuelven, malformado nunca publicado, sin secretos). Ciclo CORRECT cerrado (D1 fixtures veraces vs píxeles, D3 audit gating). Criterio-8 (E2E live GLM-5.3-Flash) BLOCKED físico: sin credenciales (`MKE_GLM_API_KEY`) ni video autorizado en la máquina. Solo el owner puede desbloquear; no detiene 00B/01.
 - Gate físico pendiente de verificar durante 00A: video autorizado y credenciales GLM. Si faltan al llegar al gate, `BLOCKED` puntual del E2E físico, sin inventar resultados (mandato §8).
 
 ## 🧱 Entrega de desarrollo
@@ -63,8 +64,8 @@ views:
 > [!note]+ Ownership y tarea puente
 > Tarea puente única vive en el proyecto padre: `- [ ] [[M0 Execution]] arrancar + seguimiento #owner/me #type/supervision #area/personal`. El agente nunca la marca `[x]`; máximo `[r]`.
 
-- [/] SPEC-00A Product Spike: walking skeleton `mke process` → source.json/evidence/knowledge.jsonl/documentation.md; fixtures si falta video/credencial, E2E físico BLOCKED puntual si aplica. #owner/agent #type/dev #area/personal
-- [ ] SPEC-00B Local Runtime Validation: capability matrix por target (Whisper/Qwen/Ollama/LM Studio/M4/Kronos); cada target PASS/NO_GO/BLOCKED. #owner/agent #type/dev #area/personal
+- [x] SPEC-00A Product Spike: walking skeleton `mke process` → source.json/evidence/knowledge.jsonl/documentation.md; GATE BLOCKED solo criterio-8 (live GLM sin credenciales/video); resto PASS QA en HEAD `e1cfdc6`. #owner/agent #type/dev #area/personal ✅2026-09-17
+- [/] SPEC-00B Local Runtime Validation: capability matrix por target (Whisper/Qwen/Ollama/LM Studio/M4/Kronos); cada target PASS/NO_GO/BLOCKED. #owner/agent #type/dev #area/personal
 - [ ] SPEC-01 Media Foundation: source identity/hashes, ffprobe/ffmpeg, timeline/PTS real, transcript normalizado, frames, activity/anchors. #owner/agent #type/dev #area/personal
 - [ ] SPEC-02 Evidence Acquisition: FRAME/REGION/COMPARE/SEQUENCE/FIND_CHANGE, budgets, request_id≠acquisition_key, SQLite+FS, dedupe, crash/resume. #owner/agent #type/dev #area/personal
 - [ ] SPEC-03-A Knowledge Baseline: pipeline completo sin investigator; determinismo por replay. QA PASS obligatorio antes de C. #owner/agent #type/dev #area/personal
