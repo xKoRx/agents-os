@@ -60,7 +60,10 @@ tags:
 
 ## Validación
 
-- Pendiente de ejecutar al cierre: validator del planner, lint estricto de las cuatro notas, schema contract y comprobación focused de links.
+- `validate_plan.py`: 5 fases, 5 gates, 5 dispatches, 2 referencias locales, 0 errores y 0 warnings.
+- Lint estricto sobre las cinco notas afectadas: `ERROR=0 WARN=0`.
+- Graphify auto-refresh completado; `explain` resolvió el título canónico y el alias `POC Playmaker scope alpha` devolvió una única fuente canónica.
+- El validator global del schema reportó una deuda ajena preexistente en `agents-os-skill-authoring/SKILL.md`; Graphify también informó deuda global, pero publicó el índice derivado y quedó `fresh`. No se modificaron superficies fuera del delta.
 
 ## Compartibilidad
 
