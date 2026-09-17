@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-16
 due:
-progress: 15
+progress: 25
 repo: xKoRx/echo
 jira:
 prs:
