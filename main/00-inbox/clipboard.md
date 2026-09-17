@@ -90,7 +90,7 @@ Lee sus decisiones, objetivos, restricciones, capabilities, fases, gates y flujo
 
 Índice canónico:
 
-`main/30-resources/polymarket/Polymarket — Technical Platform Map — synced 2026-09-17.md`
+`30-resources/polymarket/Polymarket — Technical Platform Map — synced 2026-09-17.md`
 
 Contiene once partes enlazadas.
 
@@ -131,7 +131,7 @@ Prioriza especialmente:
 
 ### C. Edge Research Consolidado
 
-`main/30-resources/polymarket/Polymarket — Edge Research Consolidado 2026-09-16.md`
+`30-resources/polymarket/Polymarket — Edge Research Consolidado 2026-09-16.md`
 
 Úsalo exclusivamente para comprender los requerimientos transversales que podrían necesitar las distintas hipótesis.
 
@@ -903,9 +903,9 @@ Responde sólo con:
 
 ```text
 STATUS: M1_ASTRA_PROPOSAL_READY_FOR_FABLE | PARTIAL | BLOCKED
-
+<<
 GITHUB:
-- commit SHA
+- commit SHA<
 - enlace al proyecto actualizado
 
 DESIGN:
