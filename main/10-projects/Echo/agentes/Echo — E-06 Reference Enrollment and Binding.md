@@ -82,11 +82,12 @@ echo.v_reference_bindings
 POST /api/v1/reference/bindings[+ /ack /drain /suspend /close]
 echo.reference-readback.v1   # Bridge → Gateway, solo desde reference_status
 ClientConfig additive pin fields
-v3/clients/mt{4,5}/reference_v3.mq{4,5}  # reference_status mínimo (NORMAL futuro)
+v3/clients/mt{4,5}/reference_v3.mq{4,5}  # reference_status mínimo + relay verbatim atestaciones §7.2a (NORMAL futuro)
 v3/hasura/metadata/tables/reference_bindings.yaml  # SELECT only
+(xKoRx/symphony) EchoForgeMT5Exporter.java  # inyección atestación §7.2a — lane Forge, un archivo
 ```
 
-Ningún cambio a `v3/sdk/contracts/**`. Ningún MQL. Ningún E-07 DEAL. Ningún apply 061/064 a Aranea en NORMAL.
+Ningún cambio a `v3/sdk/contracts/**`. MQL sólo el delta collector T09b. Ningún E-07 DEAL. Ningún apply 061/064 a Aranea en NORMAL. Resto de Forge intocado.
 
 ## 🕸️ Dependency graph
 
@@ -147,7 +148,7 @@ SPEC AC-01…AC-25 + AC-26…AC-33. SOURCE + CONTRACT + PG REAL + HTTP + PHYSICA
 
 ## Prohibited files
 
-`v3/sdk/contracts/**`, `migrations/061-063_*`, `v3/clients/**` salvo collector `reference_status`, `v3/front/**`, `v3/core/**`, Docker/Compose/deploy/workflows, Forge, `sync.sh`.
+`v3/sdk/contracts/**`, `migrations/061-063_*`, `v3/clients/**` salvo collector `reference_status`+relay §7.2a, `v3/front/**`, `v3/core/**`, Docker/Compose/deploy/workflows, Forge/symphony **salvo la inyección de un archivo §7.2a en lane Forge propio**, `sync.sh`.
 
 ## Blockers
 
@@ -172,6 +173,7 @@ _No aplica — hijo de implementación de E-06; no crea Integration ni más hijo
 > - [x] TOP planning SPEC/PLAN/TASKS/VERIFICATION v1.0.0 → Manager Review #owner/agent #type/docs #area/echo
 > - [x] TOP planning correction #1 v1.1.0 zero-order physical authority → Manager Review #owner/agent #type/docs #area/echo
 > - [x] TOP authority reconciliation zero-order magic → CASE C blocked #owner/agent #type/docs #area/echo
+> - [x] TOP planning correction #2 v1.2.0 Manager CASE B + producer discovery §7.2a → Manager Review #owner/agent #type/docs #area/echo
 > - [ ] WP-A Persistencia 064 + stores + UNIQUEs #owner/agent #type/dev #area/echo
 > - [ ] WP-B Enrollment HTTP PREPARED/ACK/drain + ClientConfig #owner/agent #type/dev #area/echo
 > - [ ] WP-C Read-back Bridge→Gateway desde `reference_status` y transición OBSERVING #owner/agent #type/dev #area/echo
@@ -195,7 +197,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
-- **2026-09-16 (TOP authority reconciliation)** — CASE C. Live Authority §5 vs Fable C-3 no cierran si zero-order exige echo físico de magic. SPEC v1.1.0 sin bump; §7.3 KNOWN_EMPTY no es implementable. AutoTrading B2 intacto. C-3 DEFER intacto. HEAD `349b6ac8` (contrato `1c794d5a`; old `3e190d86`). Source delta `v3/` = 0. Estado `E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED`.
+- **2026-09-16 (TOP planning correction #2 — Manager CASE B)** — Manager resolvió CASE C: zero-order exige `effective_magic` físicamente atestiguado por la instancia strategy EA (excepción C-3 §7.2a: bootstrap runtime identity attestation, sin signals/deals/coverage/métricas/lifecycle/telemetría/estado). Discovery físico READ ONLY: producer = exporter Forge `EchoForgeMT5Exporter.java` (stamp `MagicNumber` input por `EchoForgeRobustRunExporter`; verificado por `magic-readback`; sello F-04). Transporte: variables globales terminal → relay verbatim collector `reference_status`. Identidad: bytes cambian ⇒ nuevo `strategy_version_ref`; históricos intactos fail-closed. SPEC v1.2.0; caso AC-26a/b/c; bloque CASE-C removido; reconciliación preservada en VERIFICATION.md. AutoTrading B2 intacto; coverage hook sigue DEFER. Source mutations 0 (Echo y Forge). Estado `E06_PLANNING_V1_2_READY_FOR_MANAGER_REVIEW`.
+- **2026-09-16 (TOP authority reconciliation)** — CASE C. Live Authority §5 vs Fable C-3 no cierran si zero-order exige echo físico de magic. SPEC v1.1.0 sin bump; §7.3 KNOWN_EMPTY no es implementable. AutoTrading B2 intacto. C-3 DEFER intacto. HEAD `349b6ac8` (contrato `1c794d5a`; old `3e190d86`). Source delta `v3/` = 0. Estado `E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED`. *(Resuelto después por Manager CASE B; ver entrada superior.)*
 - **2026-09-16 (TOP planning correction #1)** — v1.1.0 @ `3e190d86` (contrato `ef8a96f3`; old `9989f399`). Heartbeat/UnifiedBatch no son autoridad zero-order. Producer congelado: `reference_status` Echo collector. Magic = inventario; KNOWN_EMPTY no se fabrica. AutoTrading = capability (B2). C-3 DEFER SQX conservado. Source mutations 0. Estado `E06_PLANNING_CORRECTED_READY_FOR_MANAGER_REVIEW`.
 - **2026-09-16 (TOP planning one-shot)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `9989f399`. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. O1/O3 applied. 064 reservada. 0 source. Estado `E06_PLANNING_READY_FOR_MANAGER_REVIEW`. Puente padre → Review.
 
@@ -205,7 +208,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - OBSERVING nunca se sintetiza desde SQL/ACK/config/heartbeat/UnifiedBatch.
 - Apply 064 SHARED DEV es ops gated por 061, no NORMAL.
 - PHYSICAL V1 exige producer `reference_status`; fake ≠ PHYSICAL. Terminal MT5 real GAP-ECHO-006 pendiente no se disfraza de PASS.
-- Residual C-3 (SQX input magic) **no** se abre. Status Echo collector ≠ hook C-3. Zero-order magic matching no es fail-closed congelado: es CASE C para Manager.
+- Hook SQX de coverage **no** se abre (C-3 DEFER). La excepción §7.2a es identidad runtime mínima, registrada como decisión Manager posterior explícita (2026-09-16), no reescritura del freeze C-3.
+- Zero-order magic = fail-closed congelado (CASE B): atestación runtime == pin o no hay OBSERVING.
 
 ## 🔗 Docs / Links
 
@@ -223,7 +227,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ### Backlog de ideas
 
-- Hook EA SQX exportado: DEFER (C-3), no V1. Echo collector `reference_status` no es ese hook.
+- Hook EA SQX exportado de **coverage**: DEFER (C-3), no V1. La excepción §7.2a (identidad runtime mínima) NO es ese hook y no lo preimplementa.
 
 ### Motivos / principios
 
