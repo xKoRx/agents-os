@@ -1,7 +1,7 @@
 ---
 type: request_change
 rc_id: RC-20260917-001
-status: proposed
+status: approved
 scope:
   - doc
 impact: low
@@ -79,6 +79,6 @@ Eliminar el callout insertado y restaurar `updated:` — reversión de una inser
 
 ## Owner decision
 
-- [ ] approved
+- [x] approved (owner 2026-09-17 vía manager review: paquete D0 v2 completo, incluye este RC; aplicado)
 - [ ] rejected
 - [ ] needs changes

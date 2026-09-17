@@ -94,7 +94,7 @@ links:
 ## RC abiertos (estado)
 
 ### RC-20260917-001 — Banner de estado DESIGN_FROZEN en BACKUP-DR-DESIGN
-- status: **proposed** (incluido en el paquete D0; requiere aprobación owner)
+- status: **approved** (owner 2026-09-17, paquete D0 v2) — aplicado
 - scope: doc (`BACKUP-DR-DESIGN.md` — sólo presentación de estado, NO decisiones)
 - impact: low · risk: low · created_at: 2026-09-17
 - owner_decision: pendiente (bloquea ese único cambio)

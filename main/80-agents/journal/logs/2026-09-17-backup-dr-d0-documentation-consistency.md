@@ -19,7 +19,7 @@ Owner (vía manager): saneamiento documental completo del dominio Backup/DR ANTE
 
 ## Resultado
 
-PASS (pendiente de confirmar tras la validación post-aplicación de 12 checks — se completa al cerrar el workload).
+PASS — 12/12 validaciones sin contradicciones activas (2026-09-17).
 
 ## Alcance aplicado
 
@@ -43,7 +43,22 @@ CONTRACT §2 y §4 (23 workloads), F-01..F-14, backup-policy.yaml (parámetros f
 
 VERIFIED: traefik-config (sha256 8/8), second-brain (3.438 archivos), hermes-state (600). Staging `~/aranea/backup-staging/` en Hermes VM 118: NO offsite, NO failure-domain independiente. Wrapper manual sin timer/pruning. SKIPPED_GATED (deuda owner): pve-config (subcommand `config` en agent-read), etcd-snapshot (etcd-client + endpoint/certs), pihole-config (api_token FTL v6 o canal root). F-09 = EXISTS. Traefik root-only (acme.json/secrets/ssl) fuera de cobertura demostrada.
 
-## Validación
+## Validación (12 checks del mandato, post-aplicación)
 
-(Se ejecuta post-aplicación; resultados en el cierre del workload D0.)
+| # | Check | Resultado |
+|---|---|---|
+| 1 | Ningún proyecto done con alcance obligatorio pendiente | ✅ ap-00 done con 5/5 tareas cerradas; ap-01 in-progress (3/6 unidades) |
+| 2 | Ningún histórico como autoridad actual | ✅ 9/9 legacy con banner HISTORICAL individual + indexable:false |
+| 3 | Ningún índice apunta a fuente reemplazada como canon | ✅ 00-index evergreen + aranea: filas legacy marcadas, backup-dr CURRENT |
+| 4 | Runbook sin mecanismos inexistentes como ejecutables | ✅ §0 VERIFIED (R1) + 8 marcadores DESIGNED — NOT IMPLEMENTED + Secret Zero BLOCKED — OWNER GATE; checklist §3/§4 condicionados |
+| 5 | Sin dos estados actuales contradictorios | ✅ 0 residuos del estado julio ("ninguna tarea completada" = 0; ap-01 sin status done) |
+| 6 | Decisiones F-* intactas | ✅ 14 filas F-01..F-14 íntegras en DESIGN; policy.yaml y contract invariados por sha256 |
+| 7 | Wikilinks resuelven o quedan corregidos | ✅ 0 rotos en backup-dr/; runbook-trimestral→runbook-mensual corregido |
+| 8 | Metadata coherente con Agents-OS | ✅ frontmatter YAML validado con parser en 31/31 archivos; status_detail entrecomillados; sin campos inventados |
+| 9 | Referencias PBS/ARGUS/staging/Access Plane según R0/R1 | ✅ 0 residuos "Crear VM vmid 180"/"PBS-VM-CREATE"; ARGUS (vm 160) en ap-06; staging declarado NO offsite |
+| 10 | Evidencia R0/R1 intacta y fechada | ✅ R0 + change log R1 invariados por sha256; bitácoras R1 preservadas |
+| 11 | Tareas pendientes visibles | ✅ ap-01 cron/retención sin marcar, visibles; tickets 018-021 open citados en índices |
+| 12 | Sin secretos añadidos al vault | ✅ 0 patrones de credenciales (grep determinista sobre el set) |
+
+Verificación de aplicación: 31/31 archivos byte-idénticos al staging aprobado; conjunto intacto (contract, policy, tickets 018-021, R0, change log R1) invariado por sha256. RC-20260917-001 APROBADO por owner (paquete v2 completo) y aplicado: banner DESIGN_FROZEN en BACKUP-DR-DESIGN + `updated`.
 
