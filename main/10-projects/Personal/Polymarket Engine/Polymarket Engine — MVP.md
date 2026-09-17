@@ -1111,7 +1111,7 @@ Credenciales no bastan para habilitar trading. Validar geoblock/account restrict
 | G-11 Account/reconcile | WS duplicado/fuera de orden, REST paginado concurrente, multiple maker orders, settlement FAILED/reorg y transfers externos convergen o abren caso; no liberación doble/prematura | Balance creado, fill duplicado, 404 tratado como no-send o scope omitido |
 | G-12 Ambiguous writes/recovery | Crash antes/después de marker durable, después de socket y antes de ACK; timeout/duplicate/batch mixto/cancel timeout no causan un segundo submit automático ni salt nuevo | Blind retry, reserva liberada sin prueba, intento UNKNOWN olvidado al reiniciar |
 | G-13 Shadow/operación | Ventana/workload preregistrados con capture+runtime+replay limitado, sin pérdidas no declaradas; todos los skips/UNKNOWN explicables, budgets/headroom y métricas medidos | Resultado sólo favorable en optimistic, pipeline sin cobertura/recursos, readiness engañosa o monitor sin distinguir diagnósticos |
-| G-14 Backup/restore | Restaurar snapshot+segmentos en directorio limpio, verificar hashes/offsets/outbox, reproducir proyecciones y obtener RPO/RTO medidos dentro del presupuesto owner | Backup no restaurable, key ausente, input pineado perdido o referencia a efecto externo borrada |
+| G-14 Backup/restore local | Bundle consistente M1.7 restaurado en directorio limpio del host, hashes/refs/outbox/cursors por owner verificados, proyecciones/ledger reproducidos; duración y frontera de pérdida medidas con fixtures sin capital | Bundle incompleto presentado completo, evidencia requerida ausente con integridad PASS, cursores adelantados o liberación por restore atrasado; no certifica DR |
 | G-15 Security/disabled | Intentos de pedir `deferExec=true`, builder, convert CTF/v2, protocol UNKNOWN y calldata arbitraria fallan antes de signing; perfiles read-only sin secrets; lease expirado/revocado impide nuevos sends | Un simple config flag abre ruta disabled, secreto en raw/log o capability omitida cae a ejecutor genérico |
 | G-16 Auth/order integration | Ambiente autorizado y perfil wallet concreto: vectores EIP-712/HMAC/DTO correctos, body firmado=enviado, identidad/domain/hash verificados, auth real válida; resolver divergencia L1/L2 sin fallback ciego | Sólo mocks, signer/maker incorrectos, clock fuera de presupuesto o contrato no verificable; live sigue cerrado |
 | G-17 Live plumbing cert | Con mandato separado y alcance acotado: place/lookup/fill o cancel según caso, recuperación de respuesta perdida, órdenes abiertas al restart, receipt/balances y kill verificados por IDs/scope; evidencia de fondos/ruta/allowances | ACK tomado como settlement, remanente desconocido, cancel-all sin proof, heartbeat asumido dead-man o test con scope distinto al lease |
@@ -1120,11 +1120,40 @@ Credenciales no bastan para habilitar trading. Validar geoblock/account restrict
 
 Unit/property/contract cubren primero invariantes críticos y ramas de falla. Para implementación futura aplica el piso de coverage de Agents-OS (95%) como condición complementaria, nunca como sustituto de las pruebas críticas. Fixtures negativas deben demostrar que el diseño rechaza rutas inseguras, además de aceptar happy paths. Staging mencionado en OpenAPI no demuestra sandbox funcional ni equivalencia de producción; G-16/G-17 documentarán el ambiente que realmente se autorice. Integración que implique órdenes/transacciones reales requiere mandato específico posterior; no se ejecuta por consecuencia de M1 ni para declarar cerrado M4.
 
-**Cierre M4 sin live:** requiere los gates no-live G-01…G-15, con branches live verificados mediante fault fixtures y auth/order integration marcada pendiente, adapter real sin permiso y reporte inequívoco de límites. Trading/posiciones on-chain activas exigen además G-16…G-19 según la ruta. Esta separación conserva el objetivo de certificar engine sin capital en riesgo, sin rebautizarlo como certificación live.
+**Tests de cierre ASTRA-2 — todos `NOT_RUN`:** esta matriz precisa/sustituye los criterios históricos F.4/F.6 cuando excedían la evidencia. Son tests futuros, no resultados de esta edición.
+
+| Gate / finding | Condición verificable de cierre | Alcance |
+|---|---|---|
+| G-02b / FBL-010 | PREPARED sin attempt en store íntegro → VOID y payload no enviable; snapshot atrasado no permite VOID por ausencia. Cursors de dos reducers con lag no se adelantan mutuamente; mismo fill CLOB WS/REST se aplica una vez; SELL B con tokens de A falla hasta transferencia explícita idempotente | M4 fixtures/replay/restart |
+| G-05b / FBL-008 | Scheduling aleatorio, shard adelantado y shard sin mutaciones: barreras no omiten records ≤C ni incluyen revisiones >C; K y bytes nunca excedidos; sin slot/snapshot → INELIGIBLE, sin bloquear captura | M4 property tests |
+| G-06b / FBL-003 | Cortar seal/snapshot/export: bundle completo cubre cada cursor/dependencia/outbox, incluso con writers concurrentes; DB adelantada al journal nunca recibe PASS | M4 local |
+| G-07b / FBL-004 | Replay SHADOW iguala Assessment, sizing y Risk con account/risk/liquidity/quote refs completos; borrar/alterar uno produce NOT_REPRODUCIBLE; estado actual disponible no se sustituye. Live audit se verifica con fixture, sin send | M4 |
+| G-09b / FBL-009 | Saturar sólo RUNTIME bajo carga de EVIDENCE certificada: runs pausados, cero epochs revocados/holes de mercado por esa saturación; group commit sin fsync por callback, latencias medidas; crash antes de durable no publica feedback/intent | M4 workload acotado |
+| G-10b / FBL-005/012 | Dos runs independientes idénticos igualan el individual; portfolio compartido manifiesta peers y atribuye competencia. Cambio de fee entre polls marca intervalo incierto; fee de trade A no se aplica universalmente a B ni antes de known_at | M4 |
+| G-10c / FBL-006 | Tres legs, primera llena, segunda UNKNOWN, tercera invalidada: tercera no enviada, reservas/residual conservados, sin unwind; misma secuencia de hechos produce mismo estado en Simulator y gateway fixture. Compensación sin nueva autorización/budget/Risk rechazada | M4 reducer/fixtures; live diferido |
+| G-11b / FBL-001 | ACK/fill tardíos conservan reserva y convergen por evidencia; expiry+REST ausente+balances iguales con match pendiente sigue UNKNOWN y escala. Caso sin prueba nunca libera por tiempo; rechazo inequívoco sí libera sólo obligación inexistente | M4 fixtures; evidencia venue real G-17 |
+| G-12b / FBL-002/010 | 425/429/503/500/HTML, success ambiguo, duplicate y order timed out no verificado → sin segundo submit/re-firma. Cancel parcial/trade tardío no libera obligación pendiente; bytes/hash iguales no habilitan retry. Contador de sends por attempt ≤1, sin exposición duplicada tras crash | M4 fixtures; classifier real G-16/G-17 |
+| G-13b / FBL-007 | DB caída → sólo cancel conocido/scoped, sin nuevos sends antes de firma ni liberación; sink/marker cuando escribibles, buffer recuperado con gaps. Todos los sinks fallan + restart → BOOT_OPEN/no cierre impide continuidad limpia y lease hasta reconcile/cierre explícito | M4 fault fixtures, no cancel real |
+| G-14 / FBL-003 | Restore local completo y GC simulado día 31: evidencia privada intacta; research expirado declarado no reproducible. Eliminar activo requerido del bundle → integridad FAIL/degradada, no PASS hasta reconstruir evidencia; health read-only puede funcionar | M4; GC automatizado diferido |
+| G-15b / FBL-011 | Import directo/transitivo prohibido, goroutine propia o cgo → gate falla; fixtures de body/error/headers no filtran owner/signature/POLY_*; read-only no carga secrets. No afirmar sandbox por pasar lint | M4 |
+| G-14b / recuperación fuera del host | Host perdido, bundle externo cifrado y claves recuperables, exclusividad/fencing de instancia previa, rotación y reconcile; RPO/RTO medidos bajo presupuesto owner. Falla cualquier dependencia → sin lease ni DR PASS | IMPLEMENT LATER, mandato separado |
+
+**Cierre M4 sin live — ASTRA-2:** G-01…G-15 y extensiones anteriores, salvo G-14b, son fundamentales en su alcance no-live. Estados de intents/cancel/basket/audit y permisos se prueban con reducers, stubs deny-all y fault fixtures; no exigen implementar HTTP live/User WS privado/RPC/signer/cifrado real para pasar M4. El alcance de G-03/G-15 sobre auth/firmas es schema, rechazo de rutas y sanitización de fixtures, no integración criptográfica real. G-16…G-19, G-14b y mediciones operacionales live quedan `DEFERRED_NOT_RUN`; sólo las rutas posteriormente autorizadas deben ejecutarlos. G-18 conserva su fila original conjunta con G-19. M4 certifica núcleo durable read-only/shadow y restore local, nunca trading, DR ni capacidades diferidas.
+
+**Partición normativa OD-2 — baseline F.7 reconciliado:**
+
+| FOUNDATIONAL NOW | IMPLEMENT LATER WITHOUT REDESIGN |
+|---|---|
+| Journal con CRC/checksum por segmento, dos carriles, clases de evidencia, manifests/pins básicos, prefijo de crash y bundle/restore local consistente G-14 | Compresión/encadenado entre segmentos, GC/pins automatizados, copias fuera del host, DR/RPO/RTO G-14b y rotación real |
+| Dominio decimal, Catalog/Regimes known-at, Book shards, corte forward acotado; Strategy API y SCREEN/REPLAY/SHADOW | Sports/adapters externos concretos, codecs Protocol-v2 y cada operación on-chain detrás de allowlist existente |
+| Coordinator/reducers/reservas/atribución/BasketPolicy secuencial, Simulator aislado y portfolio explícito, optimistic/base/stress, fixtures de ambigüedad y DEGRADED_AUDIT | Execution HTTP/User WS privado/RPC, signer/perfil LIVE/leases operativos/cifrado de payload firmado, basket live/PARALLEL/compensación autorizada; no retry automático habilitado |
+| SQLite WAL FULL para cuenta/metadata; datasets/scorecards con manifest/lineage en SQLite/JSONL; CLI, readiness, diagnósticos y métricas | Parquet mediante mismo manifest/schema lógico; endpoint admin mediante mismos comandos; alertas externas, tracing live completo y dashboards; maker queue calibrado |
+
+Los puertos/identidades/revisiones, estados persistentes, policy schemas y gates ya definidos son contratos ahora; los componentes diferidos sólo añaden adapters/implementaciones. No se requieren 35 subsistemas para 35 decisiones. La excepción material a F.7 es traer bundle/restore local medido a FOUNDATIONAL NOW; restauración fuera del host sigue diferida. Compresión/encadenado/Parquet descritos en M1.6–7 son formatos objetivo, no requisitos de primera certificación. No hay plan M2 en esta partición.
 
 ### M1.16 — Registro de decisiones arquitectónicas propuestas
 
-Esta tabla es el registro único de decisiones nuevas de ASTRA-1. Los detalles normativos están en las secciones referidas; la tabla registra alternativas y coste de elegir. `PROPOSED` no significa aprobado; `REQUIRES_OWNER` identifica política/capital/operación que ASTRA no puede fijar por inferencia; `BLOCKED_BY_PROTOCOL` conserva una ruta cerrada por contrato insuficiente. El baseline macro frozen no se reabre.
+Esta tabla conserva el registro de ASTRA-1, enmendado normativamente por ASTRA-2 donde se indica; se mantienen sus alternativas/riesgos como historia de la propuesta. Detalles vigentes en M1.2–M1.15 y enmiendas siguientes. `PROPOSED` no significa aprobado; `REQUIRES_OWNER` distingue aprobación arquitectónica OD-1…3 de políticas futuras live; `BLOCKED_BY_PROTOCOL` mantiene rutas cerradas. El baseline macro frozen no se reabre salvo rechazo explícito del owner a OD-1.
 
 | ID | Decisión propuesta | Alternativas | Rationale | Tradeoff | Riesgo | Estado |
 |---|---|---|---|---|---|---|
@@ -1164,6 +1193,25 @@ Esta tabla es el registro único de decisiones nuevas de ASTRA-1. Los detalles n
 | A-34 | Gates físicos por capability y M4 sin live posible (M1.15) | Certificar todo por smoke test; exigir capital para MVP | Respeta M0/M4 y autorización posterior | Estados/gates más explícitos | Confundir MVP certificado con trading listo | PROPOSED |
 | A-35 | Mantener backfill L2, deferExec true y Builder disabled; Combo/RFQ fuera (M1.1) | Activarlos desde esquemas parciales | Conserva exclusiones M0 sin expandir core | Capabilities diferidas | Ruta accidental por config/adapter genérico | PROPOSED |
 
+**Enmiendas ASTRA-2 al registro A — sustituyen el alcance anterior de estas filas; las restantes conservan su propuesta:**
+
+| ID afectado | Decisión normativa reconciliada / finding | Coste o riesgo residual | Estado |
+|---|---|---|---|
+| A-02 / A-13 | Cursors por reducer/namespace, VOID con no-send probado, FillKey CLOB común WS/REST y atribución explícita (M1.3/7/10/11; FBL-010) | Restore atrasado exige reconcile, no VOID por ausencia | PROPOSED |
+| A-07 | Corte forward con barrera FIFO admitida antes de >C, K+bytes acotados (M1.5/13; FBL-008) | Frame inelegible si no hay capacidad; no historial ilimitado | PROPOSED |
+| A-08 / A-29 | EVIDENCE/RUNTIME separados; descriptor appended antes del callback, inputs/resultado durables antes de efectos (M1.6/13; FBL-009) | Callback incompleto debe reconstruirse; host compartido conserva límites | PROPOSED |
+| A-09 | Observación, decisiones, auditoría real y contrafactual separados; vector efectivo por fase recuperable (M1.6; FBL-004) | Storage/pins; faltante da NOT_REPRODUCIBLE | PROPOSED |
+| A-10 | SQLite/journal fundamentales; SQLite/JSONL derivados primero, Parquet diferido (M1.15) | Exportación posterior conserva schema/lineage | REQUIRES_OWNER: OD-2 |
+| A-11 | ACCOUNT_FACT y evidencia privada fuera de GC 30d, retención vida del proyecto; research expirado explícito (M1.7; FBL-003) | Privacidad/capacidad/custodia, sin borrado de requeridos | REQUIRES_OWNER: OD-3; plazos raw operacionales posteriores |
+| A-12 | Bundle consistente y restore local M4; backup/DR fuera del host y SLA posterior G-14b (M1.7/15; FBL-003) | Local no cubre pérdida física; claves/fencing necesarios después | REQUIRES_OWNER: OD-2; destino/RPO/RTO posteriores |
+| A-14 / A-16 | Strategy declara BasketPolicy; Coordinator posee BasketExecution, Execution I/O, Simulator mismo reducer; sin unwind declarativo (M1.8/11; FBL-006) | Residual puede mantenerse; basket live deshabilitado | PROPOSED |
+| A-16 / A-17 / A-20 | Simulación aislada por experimento/scenario; portfolio compartido explícito y competencia atribuida; bankroll real sigue compartido (M1.9/10; FBL-005) | Comparabilidad depende de manifest, no mezcla accidental | PROPOSED; caps live REQUIRES_OWNER después |
+| A-15 | Código confiable in-process con imports/lint/fixtures y límites explícitos, no sandbox (M1.14; FBL-011) | Código malicioso/OOM puede afectar todo; signer separado no aísla estrategias | REQUIRES_OWNER: OD-1 |
+| A-18 | Fee observada sólo evidencia del trade; conflicto marca REGIME_SUSPECT, sin tarifa universal (M1.10; FBL-012) | Mapping y cota siguen U-02 | PROPOSED |
+| A-21 / A-22 | Clasificador por evidencia exacta; UNKNOWN converge a prueba o revisión, sin timeout-release ni resubmit automático/re-firma (M1.11; FBL-001/002) | Puede quedar capital retenido indefinidamente sin prueba remota | PROPOSED; thresholds live posteriores |
+| A-25 / A-31 | DEGRADED_AUDIT sólo cancel conocido/scoped, best-effort secondary sink, boot desconocido/reconcile bloquean lease (M1.11/14; FBL-007) | Persistencia imposible si todos los sinks fallan; audit gap explícito | PROPOSED |
+| A-32 / A-34 | M4 núcleo/CLI/diagnósticos y fault fixtures; G-14 local obligatorio, G-14b/16…19 posteriores (M1.15) | M4 no certifica live ni disaster recovery | REQUIRES_OWNER: OD-2 |
+
 ### M1.17 — Incertidumbres, revisión interna y handoff FABLE
 
 **Pendientes explícitos:** una política fail-closed resuelve cómo funciona el engine mientras falta evidencia; no convierte una incertidumbre en contrato conocido. No se realizó investigación para cerrar ninguno de estos puntos en ASTRA-1.
@@ -1181,7 +1229,9 @@ Esta tabla es el registro único de decisiones nuevas de ASTRA-1. Los detalles n
 | U-09 | Throughput/fsync/GC y queue/fill realism todavía sin mediciones | Buffers acotados, escenarios explícitos, no SLO inventado ni fill garantizado | G-09/G-10/G-13 con workload/host; bounds y latencia calibrados por experimento |
 | U-10 | Límite de aislamiento en proceso y privilegios del signer en memoria | Código confiable, puertos restringidos, kill/restart, mínimos privilegios OS | A-15 y revisión de amenazas concreta antes de live; no afirmar sandbox |
 
-M1 no exige resolver hoy ABI live excluida ni retención remota inexistente para poder diseñar; sí exige cerrar todas las decisiones arquitectónicas materiales con owner/FABLE antes de M2. Las incertidumbres de integración restantes deben tener owner, gate y capability deshabilitada definidos al freeze. TOP no puede escoger otra arquitectura para ocultar un pendiente: devuelve `BLOCKED — DESIGN ISSUE` si no encuentra esa resolución en este archivo.
+**Enmiendas ASTRA-2 a U / handoff vigente:** U-02 incluye fee trade-observed sin extrapolación (Regimes/Economics; G-10b, integración futura). U-04 incluye verificación por operación del classifier: hash/JSON/status no son idempotencia ni prueba genérica de rechazo (Execution; G-12b/G-16/G-17). U-06 conserva ausencia de garantía de terminalidad/exhaustividad: Coordinator/Reconciler mantienen UNKNOWN y escalan, nunca liberan por expiry/balances; owner fija después deadlines/settlement_window de observación, finality y caps de casos para live. U-08 separa OD-3 retención privada y OD-2 restore local fundamental de destinos/claves/RPO/RTO/alertas futuros; G-14 local obligatorio, G-14b diferido. U-10 requiere OD-1 sobre confianza in-process, controles G-15b y límite no-sandbox.
+
+M1 queda reconciliado para **revisión final owner + manager**, no para otro challenge general. OD-1…OD-3 son las decisiones arquitectónicas pendientes de aprobación; no hay un finding sin contrato ni un gate declarado ejecutado. Las políticas financieras/operacionales U-06/U-07/U-08 y ABI live excluidas no bloquean diseñar/construir read-only/shadow tras aprobación. Owner decide; manager verifica alcance y gates. M2 no se desarrolla aquí y sólo puede iniciarse después de aprobación explícita del diseño. TOP no debe inventar estados, stores ni permisos para resolver incertidumbres de protocolo: mantiene la capability afectada cerrada.
 
 **Control de completitud de ASTRA-1 — revisión documental realizada, no certificación del software:**
 
@@ -1200,7 +1250,7 @@ M1 no exige resolver hoy ABI live excluida ni retención remota inexistente para
 | 11. ¿Sports/NegRisk consumen sin deformar? | Universe/relationship revisions, frames multiasset, depth/costs/partials comunes y external seam; semántica particular/payoff en POC |
 | 12. ¿TOP puede planificar sin inventar arquitectura? | Ownership/contratos/stores/recovery/estados/gates definidos; A/U pendientes visibles para reconciliación. M2 sólo después de aprobación/freeze, no en este shot |
 
-**FABLE HANDOFF — challenge esperado, sin delegación ejecutada por ASTRA-1:**
+**FABLE HANDOFF histórico de ASTRA-1 — conservado como antecedente, cumplido por F.1–F.9; no es el próximo paso vigente:**
 
 | Prioridad | Qué debe cuestionar FABLE | Criterio de finding accionable |
 |---|---|---|
@@ -1215,7 +1265,7 @@ M1 no exige resolver hoy ABI live excluida ni retención remota inexistente para
 | P1 | ¿Fees, rewards, finality y lock desconocidos pueden presentarse como net edge/available capital válido? | Caso con costes no acotados o ingreso esperado usado como saldo |
 | P2 | ¿Retención/pins/backups y gates permiten auditar el resultado sin repetir research? | Evidencia no reproducible, fuente/versión sin provenance o PASS imposible de observar |
 
-FABLE debe registrar findings **en este mismo archivo**, identificando sección/A-ID/U-ID, severidad, evidencia del pack, escenario de fallo, consecuencia y condición verificable de cierre; no necesita reconstruir ni reemplazar el TPM. ASTRA reconciliará esos findings y las decisiones del owner en una segunda pasada. **NEXT: FABLE adversarial challenge.** No se declara `M1_DESIGN_FROZEN` ni se inicia TOP.
+El mandato histórico pidió findings en este archivo por sección/A-ID/U-ID, evidencia, contraejemplo y cierre, sin reemplazar TPM. FABLE lo completó en F.1–F.9; ASTRA-2 reconcilió sus doce findings en las secciones normativas. **NEXT vigente: Owner + manager design review.** No se declara `M1_DESIGN_FROZEN` ni se inicia TOP.
 
 ## M1 — FABLE Adversarial Challenge
 
@@ -1460,3 +1510,38 @@ Ningún elemento de la columna derecha altera puertos, ownership, replay ni el S
 ### F.9 — Estado
 
 `M1_FABLE_CHALLENGE_COMPLETE` · Resultado: `MATERIAL_FINDINGS_REQUIRE_RECONCILIATION` · P0: 0 · P1: 7 · P2: 5. No se declara `M1_DESIGN_FROZEN`. **NEXT: ASTRA-2 reconcile** conforme a F.8; el owner revisa OD-1…OD-3 antes del freeze.
+
+## M1 — ASTRA-2 Reconciliation
+
+**Estado:** `M1_RECONCILED_PENDING_OWNER_REVIEW` · 2026-09-17. Una pasada siguiendo F.8; sin implementación ni M2. F.1–F.9 permanece como evidencia original, no se altera su recomendación histórica. M0 DESIGN_READY permanece cerrado; no se habilita ninguna ruta live.
+
+| Finding | Resolución | Verificación del defecto / ajuste mínimo y riesgo evitado | Ubicación normativa / cierre |
+|---|---|---|---|
+| FBL-001 | MODIFIED_AND_INTEGRATED | Retención sin convergencia operacional demostrada. Expiry+ausencia+balances iguales admite match pendiente no visible; no prueba terminalidad. UNKNOWN conserva exposición y escala, sin liberar por timeout | M1.11; A-21/22, U-06; G-11b |
+| FBL-002 | MODIFIED_AND_INTEGRATED | HTTP/re-firma/cancel tardío sí crean riesgo. JSON genérico y hash idéntico no bastan; classifier por operación, sin resubmit automático, obligaciones de fills separadas del remanente | M1.11; A-21/22, U-04; G-12b |
+| FBL-003 | MODIFIED_AND_INTEGRATED | GC/segmento activo pueden romper referencias. Clases privadas/research, barrera de backup y restore local obligatorio; pérdida requerida nunca recibe PASS ni recuperación garantizada por venue | M1.6–7/15; A-11/12/13, U-08; G-06b/G-14, G-14b posterior |
+| FBL-004 | ACCEPTED_AND_INTEGRATED | Frame solo no reconstruye Evaluate/Risk. Inputs por fase recuperables/pineados, snapshots y NOT_REPRODUCIBLE sin estado actual sustituto | M1.6/8/10; A-09; G-07b |
+| FBL-005 | ACCEPTED_AND_INTEGRATED | Consumo virtual accidental contamina POC. Cuenta/liquidez aisladas, portfolio explícito y competencia atribuida | M1.8–10; A-16/17/20; G-10b |
+| FBL-006 | MODIFIED_AND_INTEGRATED | Basket carecía de owner. Coordinator/reducer común y política secuencial; se elimina permiso implícito de unwind, compensación exige autorización/budget/Risk nuevos | M1.2/8–11; A-14/16; G-10c/G-12b |
+| FBL-007 | MODIFIED_AND_INTEGRATED | Emergencia podía perder rastro/scope. Allowlist, boot abierto, sink/marker best-effort y reconcile; no promesa de persistencia con todos los dispositivos caídos | M1.11/14; A-25/31; G-13b/G-14 |
+| FBL-008 | MODIFIED_AND_INTEGRATED | Shard adelantado/sin eventos no sirve corte pasado. Barrera atómica FIFO y K+bytes; watermark global aislado no prueba inbox procesado | M1.3/5/13; A-07; G-05b |
+| FBL-009 | ACCEPTED_AND_INTEGRATED | Runtime puede saturar captura. Carriles/presupuestos y append antes de callback, durabilidad antes de efectos; no rebajar SQLite real ni prometer aislamiento físico | M1.2/6/13; A-08/29; G-09b |
+| FBL-010 | ACCEPTED_AND_INTEGRATED | Cuatro ambigüedades cerradas: VOID condicionado a no-send probado, cursors por owner, FillKey por servicio y subledger atribuido | M1.3/7/10/11; A-02/13; G-02b/G-12b |
+| FBL-011 | ACCEPTED_AND_INTEGRATED | Credencial en owner/imports peligrosos son rutas reales. Redacción y gates automáticos con límites explícitos, estrategias confiables sujetas OD-1 | M1.6/8/14; A-15, U-10; G-15b |
+| FBL-012 | MODIFIED_AND_INTEGRATED | Polling puede ignorar evidencia de fee. Se incorpora trade observado; extrapolar su bps a otro rol/trade/período carece de prueba y queda prohibido | M1.4/10; A-18, U-02; G-10b |
+
+Ningún finding se rechaza íntegramente: cuatro aceptados directamente más FBL-011 (cinco en total), siete modificados. Los contraejemplos a correcciones inseguras se registran en M1.7/10/11; no se desecha el defecto original.
+
+| Decisión owner | Propuesta concreta (`REQUIRES_OWNER`, ninguna aprobada) | Consecuencia de aceptar / rechazar |
+|---|---|---|
+| OD-1 | Estrategias confiables/revisadas in-process con controles G-15b; puerto de Credentials externalizable después | Aceptar mantiene monolito con riesgo compartido de memoria/CPU. Rechazar exige definir aislamiento por proceso antes de M2; separar signer solo no resuelve aislamiento de estrategias |
+| OD-2 | Aprobar partición M1.15 basada en F.7, con restore local consistente y medido ahora; DR/adapters live y optimizaciones después | Aceptar permite certificar núcleo durable sin capital. Rechazar requiere acordar otra partición y ajustar gates antes de M2, no imponer silenciosamente implementaciones diferidas |
+| OD-3 | Retener ACCOUNT_FACT y evidencia privada necesaria durante vida del proyecto, fuera del GC raw, con ACL y custodia previstas | Aceptar preserva recovery/auditoría con coste de storage/privacidad. Rechazar exige una frontera de retención/recuperación alternativa verificable antes de captar cuenta real; no autoriza borrar ni declarar íntegro lo irrecuperable; research público puede continuar |
+
+**Capabilities deshabilitadas:** LIVE/order gateway/leases operativos, basket live/PARALLEL y compensación automática, resubmisión automática, CTF position ops inicialmente, conversiones NegRisk CTF/v2 y codecs v2 no verificados, backfill L2, deferExec=true, Builder opcional, Session Keys/auto-wallet/auto-approvals. Combo/RFQ/Exchange-v3 y Bridge/funding automático siguen fuera del MVP inicial; M1.1/M1.12 conservan la allowlist.
+
+**Gates diferidos sin ejecutar:** todos los tests G-01…G-19 y extensiones están NOT_RUN. Para M4 se ejecutarán G-01…G-15 y G-02b/05b/06b/07b/09b/10b/10c/11b/12b/13b/15b en alcance no-live; G-14b fuera del host y G-16…G-19 reales requieren fase/mandato posterior. Claims de integridad/DR/live nunca se infieren de esta revisión documental.
+
+**Pendientes materiales:** aprobación OD-1…OD-3; implementación y pruebas futuras. Exclusivos de activación live: caps/worst-loss/lock/reparto, wallet/scope, políticas GTC/GTD y book residual, deadlines/escalación/finality, contratos específicos de classifier, costes verificados, destino/claves/RPO/RTO/alertas. Sin configurar hoy toda la operación financiera; esos pendientes conservan live bloqueado y no reabren M0 ni el contrato read-only/shadow.
+
+**Handoff:** Owner + manager design review de OD-1…OD-3, partición/gates M1.15 y disposición de findings. La propuesta está reconciliada para aprobar o ajustar explícitamente; no se declara DESIGN_FROZEN. El entregable es este archivo local; FABLE no necesita otro challenge para completar esta reconciliación.
