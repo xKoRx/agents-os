@@ -28,183 +28,165 @@ updated: "2026-09-17"
 # Course Intelligence Engine
 
 > [!info]+ Proyecto
-> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P2 · **Repo:** no asignado · **Arquitectura:** acordada para implementar y falsar mediante una POC, NO certificada experimentalmente · **Implementación:** no autorizada. Proyecto independiente de Hermes, Echo y Echo Forge; Aranea es infraestructura opcional. Esta nota es la única arquitectura vigente para el proyecto.
+> **Estado:** active · **Repo:** pendiente de resolver · **Arquitectura:** ADR-001 cerrada para POC, pendiente de validación física · **Ejecución:** delegación por agentes autorizada dentro de los gates; no hay implementación certificada. Esta nota es la única autoridad vigente. Proyecto independiente de Hermes, Echo y Echo Forge.
 
 ## 🎯 Objetivo
 
-- Convertir cursos de trading heterogéneos de 1–2 horas (teoría, diapositivas, gráficos, StrategyQuant X, parámetros, procedimientos y backtests) en conocimiento técnico estructurado, verificable y reutilizable, no en resúmenes narrativos.
-- POC: procesar UN video real autorizado, recuperar información hablada y visual —incluidas demostraciones silenciosas—, registrar ambigüedades y omisiones, y generar Markdown técnico y JSONL estructurado con evidencia verificable y timestamps reales.
-- Go es dueño del dominio; KISS, YAGNI, SOLID. Sin frontend, Kafka, base vectorial, microservicios, scheduler distribuido ni modificaciones a Echo/Echo Forge. No usar GLM Pro destinado al desarrollo como inferencia recurrente del corpus.
+**Objetivo único e invariable:** transformar videos de cursos de trading en documentación técnica de alta calidad y una base de conocimiento explotable para derivar conceptos, reglas, procedimientos, estrategias, ideas, contradicciones e hipótesis. El procesamiento de video es un medio, no el producto final. No construir motores de trading, backtesting, frontend ni infraestructura por anticipación.
+
+- **M0 — Video → conocimiento:** POC funcional sobre UN video real autorizado de 1–2 h, comenzando con fragmento configurable de 5–10 min. Audio, demostraciones visuales silenciosas, gráficos, SQX, presentaciones y parámetros deben producir Markdown técnico y JSONL estructurado, con evidencia y tiempos reales. El fragmento de procesamiento NO es frontera semántica.
+- **M1 — Curso → documentación:** procesar múltiples videos de manera incremental, consolidar lecciones en documentos coherentes, evitar duplicados y mantener cobertura/procedencia.
+- **M2 — Conocimiento → inteligencia:** cruzar cursos, reconstruir reglas y estrategias con condiciones y excepciones, identificar equivalencias, desacuerdos contextualizados, ideas e hipótesis falsables. Ninguna idea se presenta como rentable sin evidencia empírica independiente.
+
+**Función objetivo:** fidelidad, cobertura de contenido recuperable, trazabilidad, utilidad y calidad documental. Tokens, cantidad de frames, tamaño de Markdown y complejidad no son objetivos. GLM Pro se utiliza para DESARROLLO por agentes, no inferencia masiva del corpus.
 
 ## 📊 Estado actual
 
-- **2026-09-17 — Arquitectura de la POC acordada por dos interlocutores; validación física pendiente.** ADR-001 acepta ensayar una cobertura visual independiente del audio y una investigación multimodal adaptativa opcional. A es baseline end-to-end obligatorio; C usa el mismo ejecutable con `adaptive_investigation=true`. B queda documentada como alternativa, no se implementa ni evalúa en la POC. No existen métricas reales de superioridad.
-- **Diseño anterior superseded dentro de esta misma nota:** las nueve SPECs y comparación A/B/C de la versión anterior no están vigentes. Se conservan sus invariantes útiles (tiempo real, golden humano, recuperación tras fallos y baseline A E2E). No existe una segunda arquitectura activa.
-- **Contexto:** `Raw → Extracted → Aligned → Interpreted → Verified → Published` describe hitos, no un flujo irreversible. Ventanas de 5–10 minutos son parámetros ilustrativos de procesamiento, nunca unidades semánticas obligatorias.
-- **Runtime candidato, NO verificado físicamente:** Mac Apple Silicon M4, 24 GB; `Qwen/Qwen3.5-27B` / conversión `mlx-community/Qwen3.5-27B-4bit`, FFmpeg/FFprobe y ASR local candidato whisper.cpp. Compatibilidad, memoria, lectura de texto pequeño, múltiples imágenes y formato estructurado requieren SPEC-00. No inferir soporte de clips de un backend diferente. Un modelo menor es una variante experimental etiquetada, nunca fallback silencioso.
-- **Precondiciones pendientes:** video autorizado y representativo, repo/workspace y baseline Git, autorización expresa de SPEC-00, identidad y recursos reales del runtime, anotación humana independiente y presupuesto experimental. Diseñar la POC NO autoriza escribir código.
-- **Agents-OS:** proyecto canónico localizado y actualizado por instrucción explícita; sesión abierta, sin cierre.
+- **2026-09-17 — Diseño CERRADO para ejecución experimental:** convergencia de dos IAs sobre ADR-001. Los cuatro hallazgos posteriores están incorporados: interpretación de gráficos, cierre verificable de preguntas, benchmark emparejado A/C y dos gates internos para SPEC-03. No reiniciar debate arquitectónico sin un fallo físico que lo justifique.
+- **Delegación autorizada:** agentes hacen discovery, SPEC-00 y continúan por gates PASS dentro de scope efectivamente autorizado; revisor separado valida cada fase. No requieren aprobación humana para cada paso rutinario. Solo escalar permisos/derechos, presupuesto nuevo, scope externo o bloqueo irreparable. No prometer ejecución persistente si el entorno no la permite.
+- **Sin validación física:** no hay video, repo/workspace ni baseline Git identificados en esta nota; no hay pruebas de modelo, memoria, rendimiento, código o calidad. Resolver recursos reales antes de tocar código. No inventar ruta, permisos, repo, SHA ni métricas.
+- **Diseño superseded:** las nueve SPECs y variante B de la primera versión ya no aplican. Se conserva su historia en Git, no una segunda arquitectura vigente.
+- **Agents-OS:** proyecto principal `owner: me`; proyecto ejecutor `owner: agent` se creará con materializador canónico y `parent: [[Course Intelligence Engine]]` cuando exista entorno apto. Una tarea puente humana, planificador único en el subproyecto. No fingir que se creó ya. Cierre de esta sesión exclusivamente por solicitud explícita.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| Course Intelligence Engine / repo pendiente | pendiente | preflight Git pendiente | [[Course Intelligence Engine#1. Contrato funcional y resultado]] | [[Course Intelligence Engine#9. Roadmap de SPECs]] | Diseño acordado; implementación BLOCKED hasta autorización y precondiciones de SPEC-00 |
+| Course Intelligence Engine / por resolver | por resolver | SHA por verificar | [[Course Intelligence Engine#1. Contrato funcional]] | [[Course Intelligence Engine#9. Roadmap de SPECs]] | Discovery autorizado; desarrollo bloqueado hasta preflight y SPEC-00 PASS |
 
-## 1. Contrato funcional y resultado
+## 1. Contrato funcional
 
-**Entrada:** video autorizado, original inmutable identificado por SHA-256, streams y tiempo canónico, configuración efectiva versionada y presupuesto por video. **Salida:** `KnowledgeItem`, `Procedure`, `Relation` y `Evidence` persistidos como conocimiento estructurado, exportación JSONL reproducible y Markdown técnico navegable; reporte de cobertura, limitaciones y evaluación. Cada afirmación material conserva identidad, clase epistemológica, estado de validación y referencias a audio/video con timestamps reales. La publicación explicita incertidumbres; nunca promete comprensión exhaustiva ni verdad empírica automáticamente certificada.
+**Entrada:** video procesable con derechos suficientes; original inmutable SHA-256; streams/PTS, configuración, versión y presupuesto. **Salida M0:** `Evidence`, `KnowledgeItem`, `Procedure` y `Relation`, JSONL reproducible, Markdown navegable, reporte de cobertura/incertidumbre/QA y referencias que llevan al origen y tiempo real. Cada afirmación material tiene identidad, evidencia, clase epistémica y estado; cada paso de un procedimiento tiene evidencia POR PASO.
 
-**Tres identidades distintas:** ventana de procesamiento, evento temporal/espacial y conocimiento. Cada instante pertenece a una ventana principal; el contexto vecino puede solaparse, sin duplicar conocimiento. Una regla o procedimiento puede abarcar varias ventanas, enlazar excepciones posteriores y consolidarse globalmente.
+**Documentación DE VALOR:** debe recuperar conceptos, condiciones, reglas, valores legibles, procedimientos SQX y ejemplos de gráficos sin tener que rever el video completo, con referencias para auditar. No aprobar un resumen narrativo bonito. Declarar expresamente dudas, ilegibilidad, omisiones y contradicciones. El motor no certifica exhaustividad ni verdad empírica.
 
-**Golden temprano:** seleccionar video y comenzar anotación humana sobre el ORIGINAL desde el inicio; definir criticidad y congelar el golden antes de evaluar resultados, idealmente antes de mostrar cualquier salida A/C al anotador. El golden jamás alimenta prompts, selección, calibración encubierta ni conocimiento publicado. Con un solo video no se puede generalizar exactitud al corpus completo.
+Ventana, evento y conocimiento tienen identidades separadas; un instante tiene ventana principal y contexto vecino solapado sin duplicar conocimiento. Una explicación puede cruzar muchas ventanas y una excepción posterior debe actualizar y revalidar la regla. `Raw → Extracted → Aligned → Interpreted → Verified → Published` son hitos y checkpoints, NO flujo irreversible.
 
 ## 2. ADR-001 — Bounded Hybrid Evidence Acquisition (ACCEPTED FOR POC DESIGN)
 
-**Contexto:** audio, diapositivas, interfaces, gráficos y demostraciones contienen información complementaria; ASR solo deja ciegos visuales, y selección rígida puede no resolver configuraciones o secuencias ambiguas.
+Monolito CLI Go. Cobertura visual independiente del ASR, densidad configurable y reproducible; investigador opcional pide evidencia adicional con protocolo cerrado. El código gobierna procedencia, límites, estados, tiempos, publicación e idempotencia. El modelo propone preguntas e interpretaciones; no controla shell, video externo ni política de verdad.
 
-**Decisión:** construir un monolito CLI Go con cobertura visual independiente de ASR, densidad configurable, selección inicial reproducible y un investigador que puede solicitar evidencia adicional mediante protocolo cerrado. Comparar el baseline A end-to-end frente a C con adquisición adaptativa activada. Mantener como autoridad operacional evidencia íntegra, identidad temporal, límites y estados, no el juicio del modelo.
+**Experimento A/C:** `adaptive_investigation=false` versus `true`, mismo ejecutable, video/hash, ASR, índice, evidencia inicial, modelos/backend, grounding, consolidación y publisher. Única diferencia controlada: adquisición adaptativa. Comparar techo común de recursos y separadamente costos operativos reales. Medir conocimiento correcto incremental, errores/regresiones y costo, NO longitud documental. Si A pasa y C no aporta calidad correcta útil, retirar C por KISS; si ninguna pasa, NO_GO. B (ASR+anclas mínimas+agente) no se implementa por puntos ciegos visuales. Cobertura visual no exige decodificación exhaustiva permanente: barrido denso versus densidad reducida es experimento, no decisión fija.
 
-**Experimento controlado:** A (`adaptive_investigation=false`) y C (`true`) comparten video/hash, transcripción, índice, evidencia inicial, modelo/revisión/backend, reconstrucción, grounding, consolidación, publisher y configuración relevante. La única diferencia funcional del experimento principal es la adquisición adaptativa. Ejecutar una comparación con límites iguales de imágenes/inferencia y reportar consumo real; ejecutar por separado otra con presupuestos operacionales propios. Igual techo no implica igual consumo. La mejora se expresa como conocimiento correcto incremental y errores/costo introducidos, nunca longitud del documento.
+No Kafka, Temporal, base vectorial, frontend, API pública, microservicios, Postgres/MinIO obligatorios ni cluster en POC. No fijar umbrales/fps/paquetes o estrategias distribuidas antes de medir. Clips nativos solo si el backend exacto acredita soporte; secuencias de frames primero.
 
-**No decisiones:** cobertura visual no significa decodificar todos los frames permanentemente: barrido exhaustivo económico versus densidad reducida es ablación experimental. No se congelan paquetes Go, umbrales, intervalos de anclas, modelos alternativos ni estrategia distribuida. B (transcripción + anclas mínimas + agente) no se implementa: riesgo de eventos visuales desconocidos y sin pregunta incremental imprescindible para esta POC. Envío de video completo a VLM, clips nativos, Kafka/Temporal, Postgres/MinIO obligatorios, base vectorial, múltiples modelos y cluster quedan diferidos hasta justificación empírica.
-
-**Consecuencia:** C añade complejidad y costo potencial; se retira la adaptación por KISS si A alcanza gates y C no recupera conocimiento relevante adicional bajo condiciones comparables. Si ninguna variante alcanza gates, no se aprueba ninguna por sofisticación.
-
-## 3. Arquitectura lógica y responsabilidades
+## 3. Arquitectura y persistencia
 
 ```text
-Video original + identidad / reloj canónico
-       ├── Transcripción completa + timestamps
-       └── Cobertura visual independiente + índice de actividad
-                   ↓
-          Planning Context (NO AUTORITATIVO)
-                   ↓
-          Selección determinista inicial
-                   ↓
-      Interpretación / Investigator opcional
-                   ↕ preguntas y solicitudes acotadas
-          Evidence Acquisition + journal
-                   ↓
-          Knowledge Reconstruction
-                   ↓
-      Integrity Validator + Grounding Reviewer
-                   ↓
-      Global Consolidation → revalidar cambios
-                   ↓
-          JSONL + Markdown + evaluación golden
+Video original/identidad/reloj
+   ├── ASR completo y timestamps
+   └── cobertura visual independiente + índice de actividad
+          → Planning Context NO autoritativo
+          → selección inicial reproducible
+          → Investigator opcional ↔ solicitudes tipadas + Evidence Acquisition
+          → Knowledge Reconstruction
+          → Integrity Validator + Grounding Reviewer
+          → consolidación global y revalidación
+          → JSONL + Markdown + QA/benchmark
 ```
 
-- **Go:** estados, reglas de adquisición, presupuesto, idempotencia, referencias, dependencias y política de publicación. FFmpeg/FFprobe, ASR y VLM son ejecutores especializados, no autoridad de negocio.
-- **Planning Context:** combina transcripción, inventario visual, actividad silenciosa, contexto vecino y preguntas pendientes; solo orienta preguntas. Ningún dato del mapa global se convierte directamente en conocimiento publicado: `hint → question → evidence → claim → review → publication`.
-- **Separación de fases:** `Raw/Extracted/Aligned/Interpreted/Verified/Published` son checkpoints auditables; el investigator puede solicitar adquisición nueva y retroceder localmente de forma acotada.
-- **Persistencia:** un solo proceso local secuencial, filesystem de originales/derivados y SQLite para estado, solicitudes, índice y journal. Un propietario/bloqueo verificable por ejecución; no cola externa ni motor de workflows. Una ejecución aislada por video (`video_id`, espacio de artefactos, presupuesto y dependencias); particionable más adelante sin implementar distribución ahora.
-- **Artefactos:** original y evidencia inmutables; hashes y versión de entradas, configuración y extractores/modelos; escritura temporal → validar/hash → publicación atómica en el mismo filesystem → journal; reconciliación ante crash. Duplicados equivalentes reutilizan evidencia por `acquisition_key`, conservan identidad de cada pregunta. No prometer exactly-once físico.
-- **Invalidación:** cambios de modelo/grounding invalidan sus salidas descendientes, no la extracción independiente; cambio de índice visual conserva ASR; cambio de plantilla solo regenera proyección cuando no modifica el conocimiento. Versionar prompts, modelos, parámetros, resultados y fallos.
-- **Go packages:** implementar fronteras reales, sin congelar layout ni interfaces por cada struct. Una CLI operativa capaz de correr, inspeccionar y reanudar; logs estructurados mínimos y manifiesto por corrida. Medios, transcript y secretos no van a logs ni endpoints remotos por defecto. Texto dentro del curso es entrada no confiable; jamás comandos ni instrucciones de sistema.
+Go: dominio/estados, presupuestos, request validation, dependencias, idempotencia, referencias y política de publicación. FFmpeg/ffprobe, ASR, análisis visual y VLM son ejecutores especializados, no autoridad de conocimiento. `hint → question → evidence → claim → review → publication`; no publicar sugerencias del planning context como hechos.
 
-## 4. Extracción visual, tiempo y adquisición
+Ejecución local secuencial, SQLite + filesystem y CLI con run/inspect/resume. Bloqueo verificable por run/video. Original/evidencia inmutables, hash de inputs y versiones de configuraciones/prompts/extractores/modelos, escritura temporal → validar/hash → rename atómico mismo FS → journal; reconciliación tras crash. `request_id` ≠ `acquisition_key`; deduplicar efecto lógico sin prometer exactly-once físico. Invalidar descendientes afectados, no repetir ASR si cambia reviewer. No interfaces por struct, logs con secretos/media/transcripción ni ejecución de instrucciones encontradas dentro del curso.
 
-**Inspección versus adquisición:** inspección calcula señales baratas sobre toda la cobertura declarada; adquisición recupera material a resolución original para responder preguntas. Medir frames inspeccionados, artefactos adquiridos e imágenes efectivamente inferidas por separado. Barrido exhaustivo con buffers pequeños es una variante inicial a probar contra muestreo menos denso, NO contrato de producción. Guardar intervalos no observados y candidatos descartados.
+## 4. Extracción visual, gráficos y tiempo
 
-**Señales candidatas:** cambios globales (luminancia/bordes/histograma), diferencias por tiles/regiones a resolución suficiente, persistencia temporal (antes/durante/después/transitorios), anclas estables y auditables, agrupación de actividad continua de gráficos, OCR diferencial únicamente selectivo y deduplicación perceptual contextual. OCR, downsampling y upscale no prueban por sí solos valores; dos gráficos visualmente similares conservan identidades temporales separadas. PySceneDetect/OpenCV/optical flow son opciones, no dependencias arquitectónicas obligatorias.
+Inspección barata de toda la cobertura declarada, independiente del habla, produce activity timeline; adquisición recupera evidencia de resolución original a demanda. Registrar frames inspeccionados, artefactos adquiridos, imágenes inferidas, intervalos sin observar y candidatos descartados por separado. Cobertura temporal ≠ de eventos ≠ semántica.
 
-**Selección inicial:** anclas distribuidas incluso en escenas estables, capturas antes/durante/después de eventos, capturas vinculadas a expresiones de audio y actividad visual silenciosa. La separación de anclas de 30–60 s es ilustrativa y debe medirse. Un evento de 2 s solo se considera recuperado si la evidencia contiene realmente el contenido dentro de su intervalo; anclas anterior/posterior no bastan. Gráficos y secuencias deben conservar orden y estados, sin inferir intención a partir de movimiento. Una captura que no permite leer un parámetro produce `UNREADABLE`, nunca una cifra inventada.
+Señales candidatas: histogramas/bordes/luminancia, diferencias por tiles/ROI, persistencia antes-durante-después, transitorios, anclas incluso en escenas estables, actividad continua en gráficos, OCR diferencial selectivo y deduplicación perceptual contextual. PySceneDetect/OpenCV/optical flow son opciones, no obligaciones. Anclas 30–60 s y densidades son hipótesis experimentales. Evento de 2 s se recupera solo si el frame contiene contenido realmente dentro de ese intervalo. No inferir cifras de OCR/upscale ambiguo.
 
-**Solicitudes permitidas:** `FRAME`, `REGION`, `COMPARE`, `SEQUENCE`, `FIND_CHANGE`; clip nativo diferido. Cada solicitud tiene `request_id`, `video_id`, `segment_id` o evento referenciado, `question_id`, `kind`, intervalo concreto, justificación, límites y ROI cuando corresponda. `FIND_CHANGE` usa detectores deterministas en ventana local, no un VLM recorriendo videos enteros. Go valida identidad, permiso, límites de duración y búsqueda local, timestamps/ROI, duplicados y cuotas ANTES de ejecutar; el investigador nunca recibe shell, paths ni acceso a otros videos. Presupuesto acota rondas, solicitudes, frames, imágenes inferidas, secuencias, tokens reportados/estimados, RAM, tiempos, reintentos y disco. Agotamiento ⇒ `INCOMPLETE`, no loop ilimitado.
+**Gráficos financieros:** conservar frame completo, ROI con coordenadas originales y secuencia temporal ordenada/PTS cuando la interpretación requiera movimiento. Registrar instrumento/timeframe, vela/región, anotaciones, valores y condiciones SOLO cuando legibles; en otro caso `UNKNOWN`/`UNREADABLE`. Diferenciar cursor, zoom/pan y actualización real del gráfico; nunca interpretar desplazamiento visual como cambio de mercado sin evidencia. Dos gráficos parecidos conservan identidad temporal. Golden incluye interpretación de gráfico, no solo captura correcta.
 
-**Tiempo canónico:** preservar stream, PTS original, time base racional, ordinal, tiempo normalizado, tiempo solicitado y tiempo REAL del frame recuperado, intervalos y hash. Gestionar VFR, start_time, offset audio/video y discontinuidades. El seek es una petición: decodificar, seleccionar según política, verificar PTS efectivo y tolerancia fundada en frames vecinos; si no se puede, la referencia no pasa integridad. ROI conserva coordenadas del frame original y origen del recorte.
+Solicitudes `FRAME`, `REGION`, `COMPARE`, `SEQUENCE`, `FIND_CHANGE`; `FIND_CHANGE` usa detector determinista en intervalo local. Cada solicitud contiene ID de pregunta/video/segmento o evento, tipo, intervalo, justificación, límites y ROI opcional. Go valida identidad, intervalo, geometría, permisos, presupuesto y dedup ANTES del extractor. Acotar rondas, solicitudes, frames, imágenes efectivamente inferidas, secuencias, tokens, memoria, tiempo, disco y reintentos; agotamiento ⇒ `INCOMPLETE`.
 
-## 5. Contratos de conocimiento y verificación
+**Cierre del investigator:** cada pregunta relevante termina `ANSWERED` (evidencia concreta y grounding suficiente), `UNRESOLVED`, `UNREADABLE` o `BUDGET_EXHAUSTED`. Go valida estados terminales, no acepta solo «ya entendí» del LLM. Las incertidumbres se publican; no alegar comprensión completa por falta de preguntas nuevas.
 
-**Modelo canónico mínimo:** `KnowledgeItem` (`kind=claim|concept|rule|parameter|observation`, alcance, condiciones, clase epistemológica, estado y evidencia), `Procedure` (pasos ordenados, precondiciones, excepciones, estado y evidencia POR PASO), `Relation` (incluye dependencias, excepciones y contradicciones entre fragmentos) y `Evidence` (identidad, tiempo, contenido/ROI, hash y procedencia). Contradicción e incertidumbre son estados/relaciones, no agregados separados para la POC. Las preguntas y solicitudes son estado operacional, no nuevas entidades ontológicas.
+**Tiempo canónico:** stream, PTS real, time base racional, ordinal, tiempo normalizado, instante solicitado y realmente recuperado, intervalos, hash y geometría original de ROI. Gestionar VFR, offset audio/video, start_time y discontinuidades. Un seek solicitado no es una referencia válida hasta verificar PTS efectivo y tolerancia fundada en frames vecinos.
 
-**Clases epistemológicas distintas de validación:** `INSTRUCTOR_SAID`, `VIDEO_OBSERVED`, `MODEL_INFERRED`, `EXTERNALLY_CHECKED`, `EMPIRICALLY_VALIDATED`. Una afirmación del instructor, una cifra en pantalla, una inferencia y un backtest reproducido no son equivalentes. No usar la etiqueta `EMPIRICALLY_VALIDATED` sin prueba externa reproducible.
+## 5. Conocimiento y revisión
 
-**Integrity Validator (determinista):** verifica evidencia existente, video correcto, hash, versión, fuente, timestamps reales, ROI y correspondencia formal de intervalos. `INTEGRITY_PASS` NO demuestra semántica.
+Modelo mínimo: `Evidence` (fuente/tiempo/ROI/hash), `KnowledgeItem` (`claim|concept|rule|parameter|observation`, alcance, condiciones, evidencia, estado), `Procedure` (pasos ordenados, condiciones, excepciones, evidencia POR PASO) y `Relation` (dependencia, excepción, equivalencia, contradicción). Preguntas/requests son journal, no entidades ontológicas nuevas.
 
-**Claim Grounding Reviewer (stateless):** recibe únicamente la versión concreta del claim/paso, referencias de evidencia, fragmento de transcripción necesario y clase epistemológica, sin la conversación ni razonamiento del investigator. Responde `GROUNDING_SUPPORTED | GROUNDING_CONTRADICTED | GROUNDING_INSUFFICIENT` con IDs y motivo auditables. Puede usar el mismo VLM con contexto separado: esto no garantiza independencia de errores. JSON inválido, reviewer ausente o fallo ⇒ no se marca SUPPORTED. La pareja `INTEGRITY_PASS && GROUNDING_SUPPORTED` autoriza mostrar `SUPPORTED_BY_AUTOMATED_REVIEW`, **nunca VERIFIED_TRUE / verdad certificada**. Falsos `SUPPORTED`, especialmente críticos, se miden contra golden humano.
+Clases epistémicas: `INSTRUCTOR_SAID`, `VIDEO_OBSERVED`, `MODEL_INFERRED`, `EXTERNALLY_CHECKED`, `EMPIRICALLY_VALIDATED`; no usar validación empírica sin prueba reproducible externa. Integrity Validator determinista: IDs, original/hash, tiempos reales, ROI, versiones/artefactos. Integrity PASS no prueba que un claim esté semánticamente soportado. Grounding Reviewer stateless: solo claim/paso versionado, evidencia/transcripción necesaria y clase, SIN historial/razonamiento del generador; devuelve `GROUNDING_SUPPORTED|GROUNDING_CONTRADICTED|GROUNDING_INSUFFICIENT` con motivo/IDs. Mismo VLM con contexto separado NO garantiza independencia de errores. Error, JSON inválido o reviewer ausente nunca equivale a SUPPORTED. Solo `INTEGRITY_PASS && GROUNDING_SUPPORTED` permite `SUPPORTED_BY_AUTOMATED_REVIEW`, nunca `VERIFIED_TRUE`.
 
-**Consolidación y revalidación:** reconciliar conocimientos de todas las ventanas, reglas/excepciones posteriores, pasos y contradicciones antes de publicar. Modificar una afirmación invalida grounding de esa versión; revalidar la nueva versión Y cualquier paso o elemento dependiente afectado. Preservar ambos canales cuando audio y video discrepan, sin atribuir automáticamente el error al instructor. `CONTRADICTED`, `INSUFFICIENT`, `UNREADABLE` e `INCOMPLETE` se muestran como tales; no publicar hechos materiales huérfanos ni ocultar conflictos.
+Consolidación entre ventanas y revisión posterior de cambios/dependientes; preservar diferencias entre audio y pantalla sin decidir automáticamente cuál es cierto. Mostrar `CONTRADICTED`, `INSUFFICIENT`, `UNREADABLE`, `INCOMPLETE`. JSONL ordenado/versionado es intercambio estructurado; Markdown es proyección legible con índice, procedimientos, gráficos, reglas, excepciones, preguntas, cobertura y enlaces relativos a evidencias; nunca reconstruir JSONL desde Markdown.
 
-**Publicación:** JSONL versionado, con orden estable/IDs y referencias completas, es intercambio estructurado reproducible; SQLite conserva estado operacional. Markdown es proyección de lectura (índice, conceptos, reglas, pasos, parámetros, contradicciones, preguntas, cobertura y evidencia). No reconstruir JSONL a partir de Markdown. Toda referencia material resuelve al original o artefacto íntegro y timestamp real; usar paths relativos, no `file://` como única referencia.
+## 6. QA por agentes y benchmark
 
-## 6. Benchmark, escenarios y límites de verdad
+**El usuario no valida manualmente cada SPEC.** Un agente implementador entrega; un agente QA separado verifica contra video ORIGINAL, artefactos y contratos, jamás solo contra el Markdown generado. Un agente evaluador prepara `GoldenManifest` desde ORIGINAL ANTES de ver A/C, anota hechos/eventos, condiciones, valores, timestamps/ROI, criticidad y legibilidad; otro agente revisa críticos cuando sea posible. Congelar golden antes de evaluación, no introducirlo en prompts del engine ni recalibrar sobre él y presentar el mismo run como test independiente. Separar roles y contextos; distintos modelos si disponibles, pero no dependencia obligatoria.
 
-**Golden independiente:** anotación humana directamente desde el video original con ID, clase, timestamp/intervalo, ROI si existe, contenido esperado, criticidad fijada antes, canal, legibilidad, dependencias y adjudicación. Incluir demostraciones sin pista en ASR y distinguir recuperable de ilegible. Preferible doble revisión para críticos; si solo hay una, registrar limitación. Congelar antes de analizar resultados A/C; no recalibrar el sistema sobre ese golden y presentar la misma ejecución como test independiente.
+**Honestidad del benchmark:** etiquetar `AGENT_GOLDEN`, `AGENT_REVIEWED`, jamás `HUMAN_VERIFIED`. Agentes pueden compartir sesgos: PASS significa que pasaron las pruebas y revisión automatizada en ese material, NO calidad humana certificada ni generalización a todos los cursos. El gold humano queda como evaluación externa optativa posterior, no gate cotidiano.
 
-**Casos críticos:** (1) teoría y slides; (2) parámetro SQX silencioso sin pista textual; (3) gráfico con orden temporal; (4) evento breve cuya evidencia debe caer en el intervalo; (5) regla con excepción distante; (6) contradicción audio/pantalla; (7) valor genuinamente ilegible con abstención correcta. Los ausentes en el video real se prueban con fixtures claramente segregados y NO se contabilizan como recuperación del video principal.
+**E1 A/C emparejado por elemento:** ambos recuperan / solo C recupera / solo A recupera (regresión) / ambos fallan / C agrega error. Registrar primer punto de pérdida: detección→adquisición→interpretación→grounding/consolidación→publicación. Métrica primaria: conocimiento CORRECTO incremental, regresiones y costo marginal; nunca páginas. Comparación bajo techo de inferencia común y segunda operacional por consumo real. Experimentos complementarios: E2 denso/reducido; E3 global/ROI + OCR; E4 frame/par/secuencia; E5 backend y memoria físicos; E6 crash/reintentos/invalidación.
 
-**Experimentos:** E1 A vs C con misma evidencia inicial y modelo/validador/publisher, en comparación de igual techo de inferencia y comparación operacional separadas; E2 inspección densa vs temporal reducida; E3 global vs regional y OCR selectivo solo si aporta; E4 frame/par/secuencia, clips solo si las secuencias fallan y el backend acredita soporte; E5 modelo/backends y memoria físicamente; E6 fallos, reintentos, crash, hashes e invalidación. No construir B como tercer pipeline.
+**Casos:** teoría/slides, SQX silencioso y parámetro breve, gráficos y zoom/pan, evento 2 s, excepción lejana, contradicción audio/pantalla y valor ilegible. Ausentes en el video principal se prueban con fixtures segregados y NO se atribuyen a ese video. Un video no generaliza al corpus.
 
-**Métricas:** eventos recuperados / eventos recuperables del golden, omisiones críticas clasificadas por primer punto de pérdida (`detección → adquisición → interpretación → validación/consolidación → publicación`), parámetros exactos (etiqueta/valor/unidad/condición), grounding falso positivo humano, referencias íntegras, cobertura temporal/eventos/conocimiento por separado, utilidad humana del procedimiento y costo marginal. Registrar tiempo total, RAM pico, decodificación, imágenes entregadas, tokens reales o estimados y fallos; la cantidad de páginas no mide calidad.
+**Gates medibles para el golden evaluado:** G0 permisos/video/runtime/repo reales; G1 temporalidad/PTS válida; G2 cero omisiones críticas RECUPERABLES detectadas en golden; G3 cero valores críticos incorrectos publicados como respaldados; G4 100% referencias materiales íntegramente válidas; G5 cero claims materiales sin fuente ni excepciones conocidas ocultadas; G6 conflictos/lagunas visibles y cero falsos SUPPORTED críticos detectados por QA; G7 resume/dedup/crash probados; G8 presupuesto respetado o `INCOMPLETE`; G9 revisor reconstruye pasos críticos desde documento + evidencia sin ayuda del implementador. Pruebas críticas primero y cobertura de código ≥95% según perfil global si aplica; no reemplaza E2E.
 
-**Gates:** G0 video/derechos y runtime real; G1 línea temporal verificable; G2 cero omisiones críticas recuperables en el golden evaluado; G3 cero valores críticos incorrectos publicados como respaldados; G4 100% referencias materialmente válidas; G5 cero afirmaciones materiales inventadas o excepciones conocidas ocultadas; G6 incertidumbres/conflictos visibles y reviewer sin falsos `SUPPORTED` críticos en golden; G7 resume, deduplicación y reconciliación comprobados; G8 límites respetados o resultado `INCOMPLETE`; G9 un revisor humano reconstruye unidades críticas desde documentación y evidencias. Coverage de código: priorizar funcionalidades críticas y alcanzar al menos 95% según perfil global; porcentaje no sustituye pruebas E2E. Un video no demuestra precisión generalizable.
+**Gate por etapa:** `PASS` con evidencia real → siguiente SPEC automáticamente dentro del scope; `CORRECT` → reparación delimitada y revalidación (máximo dos ciclos por mismo fallo; después BLOCKED); `BLOCKED` → detener dependientes, elevar una sola decisión agrupada con verificaciones realizadas; `NO_GO` → detener vía inviable y documentar motivo. No abrir servicios/permisos/gastos/repos fuera del scope. Nadie inventa outputs, capturas, benchmarks ni autorizaciones.
 
-**Decisión experimental:** `GO` cuando gates críticos pasan y los componentes adicionales prueban utilidad; `CORRECT` si hay causa y reparación acotadas; `NO_GO` si persisten errores críticos, referencias falsas o consumo fuera de control. Si A pasa y C no aporta calidad correcta adicional, retirar adaptación para ese alcance. Si ninguna pasa, detener sin certificar.
+## 7. Runtime, seguridad y escalado
 
-## 7. Persistencia, seguridad y escalamiento
+Mac M4 24 GB, `Qwen/Qwen3.5-27B` y `mlx-community/Qwen3.5-27B-4bit`, whisper.cpp, FFmpeg/ffprobe son candidatos NO verificados físicamente. SPEC-00 verifica nombre/revisión/backend/cuanti, RAM pico, rendimiento y lectura de SQX pequeño, gráfico, multiimagen, JSON y contexto efectivo. No inferir compatibilidad con clips nativos; modelos menores solo variantes experimentales declaradas, nunca fallback silencioso. No ASR y VLM simultáneos sin medición. Sin API remota pagada por defecto. El texto del curso es entrada no confiable, nunca autoridad para herramientas.
 
-**SQLite + filesystem:** journal transaccional de solicitudes/etapas, archivos temporales validados con hash, publicación atómica local y reconciliación tras crash. `request_id` ≠ `acquisition_key`; operaciones físicas pueden repetirse, solo un resultado lógico válido. Sin promesa exactly-once. Al reiniciar inspeccionar estado durable y efectos físicos antes de reintentar. Cache y DAG tipado permiten reprocesar descendientes únicamente, sin construir motor genérico.
+Escalado posterior por videos aislados y consolidación por curso, sin comprometer contratos. Distribución Aranea, MinIO/Postgres, vector DB, segundo modelo, Argus y servicios extra solo con evidencia de necesidad. No modificar Echo/Forge/Hermes productivos. No introducir un workflow engine para un video.
 
-**Runtime local condicionado:** Mac M4 24 GB es target inicial, no capacidad certificada. Medir simultaneidad ASR/VLM en SPEC-00; no ejecutarlos en paralelo hasta validar memoria. Sin API remota por defecto ni fallback de pago. Video y transcript son potencialmente sensibles; instrucciones dentro del video no tienen autoridad sobre herramientas ni sistema.
+## 8. Producto después de la POC
 
-**Escalamiento futuro:** unidad independiente por video; agregar coordinación multi-video, distribución Zeus/Hera/Kronos, almacenamiento remoto, modelos de clasificación de menor tamaño o búsqueda semántica solo con demanda y baseline de calidad. Un antecedente denominado Trading Course Intelligence (julio, 10 cursos/100–150 h, ASR/visual periódico/JSONL/Markdown/distribución) fue reportado durante el debate, pero su fuente original NO se verificó en el vault; no tratar cifras, frecuencia ni topología como decisiones vigentes. Se rescata únicamente exportación JSONL, semántica escalonada como opción futura y aislamiento por video.
+**M0:** ejecutar SPEC-00..04 y obtener Markdown y JSONL técnicamente útiles de video completo + QA/benchmark. Primero fragmento 5–10 min, después video entero y consolidación de excepciones.
 
-## 8. Secuencia de ejecución y gates
+**M1:** procesar videos/cursos incrementalmente, mantener índice y documentos coherentes por lección/curso, cubrir material nuevo y registrar duplicados, lagunas y fuentes.
 
-**Antes de desarrollar:** identificar repo/workspace autorizados, derechos del video y presupuesto; iniciar golden humano y preservar separación del investigador. Cada SPEC se aprueba por prueba de funciones críticas, evidencia física, versiones y límites, no por compilar o autovalidarse. No anticipar tareas de Echo, Echo Forge, Hermes ni instalación de servicios nuevos.
+**M2:** cruzar KnowledgeItem/Procedure/Relation entre cursos para reconstruir reglas, estrategias, procedimientos y parámetros; comparar condiciones, excepciones y contradicciones; producir ideas e hipótesis comprobables respaldadas por fuentes. M1/M2 son entregables obligatorios del PRODUCTO, pero sus SPECs técnicas exactas se definen según evidencia M0: YAGNI.
 
-**Baseline E2E obligatorio:** SPEC-03 primero debe producir A con selección fija, conocimiento completo, integrity + grounding, consolidación/revalidación y Markdown/JSONL mínimo. Solo con A evaluable se habilita el investigator C. La publicación base no puede esperar a SPEC-04; SPEC-04 finaliza reportes y comparación. Ambas variantes comparten contrato de conocimiento y publisher.
+**Done del proyecto:** biblioteca documental explotable y trazable con capacidad demostrada de extraer conocimiento transversal, no solo CLI corriendo ni un video resumido. M0 es hito, no fin.
 
 ## 9. Roadmap de SPECs
 
-| SPEC | Alcance y dependencia | Prueba/entregable y gate |
+| SPEC | Alcance / dependencias | Entregable / gate |
 |---|---|---|
-| **00 — Runtime & Feasibility** | Verificar herramientas, modelo exacto/backend, ASR, imágenes y memoria con material autorizado; NO construir el motor. Requiere autorización explícita y preflight. | `RuntimeCapabilityReport`; imagen SQX legible, gráfico, comparación multiimagen, JSON estructurado y RAM pico medidos. BLOCKED ante falta de permisos/material/workspace; OOM no implica retry ilimitado. |
-| **01 — Media Intelligence Foundation** | Después de 00: fuente/hash, PTS/offsets, ASR completo, segmentos+contexto, cobertura visual independiente, índice y anclas. | `VideoAsset`, `TranscriptSegment`, `VisualEvent`, `VisualCoverage`, manifiesto temporal. Pruebas VFR, seek, silencios, parámetro pequeño, evento 2 s, gráfico, fallos y densidad. |
-| **02 — Evidence Acquisition** | Después de 01: solicitudes tipadas locales, ROI/pares/secuencias, timestamps efectivos, SQLite/FS, presupuestos e idempotencia. | `EvidenceRequest`, `EvidenceArtifact`, `AcquisitionResult`. Pruebas rango/ROI inválidos, deduplicación, crash, archivo parcial, hashes, lock, reanudación. |
-| **03 — Investigator & Knowledge** | Después de 02: construir PRIMERO A end-to-end (reconstrucción, integrity, grounding, consolidación, revalidación, publicación JSONL/Markdown mínimo). Solo después activar C con investigator acotado. Golden ya iniciado y congelado antes de evaluar resultados. | `KnowledgeItem`, `Procedure`, `Relation`, `InvestigationDecision`, `ValidationResult`, `PublicationManifest`; A E2E funcional y C con límites/errores controlados. Gating: no autocertificación, false support ni hechos sin evidencia. |
-| **04 — Publication & Experiment** | Después de 03: publicar documentación final, comprobar golden previamente congelado y comparar A/C (presupuesto común vs operacional separado), ablaciones, costos y decisión. | `BenchmarkReport`, documentación navegable, JSONL válido, métricas por causa, pruebas de recovery y decisión GO/CORRECT/NO_GO. No atribuir los siete escenarios al video si se cubrieron con fixtures. |
+| **00 Runtime & Feasibility** | Discovery read-only de video autorizado, repo/workspace/permisos y M4; verificar FFmpeg/ASR, modelo/backend, SQX pequeño, gráfico, multiimagen, JSON, RAM. NO construir motor. | `RuntimeCapabilityReport` con evidencia física QA separado; PASS/CORRECT/BLOCKED/NO_GO. |
+| **01 Media Intelligence** | Tras 00 PASS: original/hash, PTS, offsets, ASR, fragmentos+contexto, cobertura visual independiente, activity timeline, anclas. Golden agente desde original congelado antes de A/C. | `VideoAsset`, `TranscriptSegment`, `VisualEvent`, `VisualCoverage`, `GoldenManifest`. Pruebas VFR/seek, silencio, evento 2 s, gráfico, densidad. |
+| **02 Evidence Acquisition** | Tras 01 PASS: requests tipadas, ROI/pares/secuencias, PTS real, SQLite/FS, límites, dedup, crash/resume. | `EvidenceRequest`, `EvidenceArtifact`, `AcquisitionResult` y pruebas negativas/recovery QA. |
+| **03-A Baseline E2E** | Tras 02 PASS: interpretación, Knowledge, integrity, grounding, consolidación y revalidación, JSONL y Markdown mínimo, SIN investigator C. | Documento REAL y QA PASS antes de habilitar 03-C. |
+| **03-C Investigator acotado** | Tras 03-A PASS: bucle de preguntas/requests y estados terminales bajo límites; mismo pipeline y publisher con toggle. | QA de decisiones, límites, errores y regresión; no reimplementar A. |
+| **04 Publication & Experiment** | Tras A, C si 03-C PASS: documentación completa, benchmark golden congelado, A/C emparejado, ablaciones, costo y decisión. | `BenchmarkReport`, conocimiento/documentos, GO/CORRECT/NO_GO por variante con evidencia. |
 
-**Disciplina:** scope y baseline Git fijados por SPEC, sin código fuera de archivos permitidos, pruebas de funciones críticas antes que cobertura superficial, evidencia física, errores cerrados y handoff claro. Las cinco SPECs son slices de entrega, no cinco servicios ni packages forzados.
+Son **cinco SPECs numeradas**, con dos gates internos en 03; NO seis servicios. Cada SPEC fija repo, branch, SHA base, allowed files, presupuesto, tests, errores y evidencia antes de codificar. Agent manager coordina implementador y QA en contextos separados. La aprobación de este mandato AUTORIZA discovery read-only, SPEC-00 y encadenamiento de SPEC-01..04 dentro de los permisos verificados, solo tras PASS. No autoriza crear repo público, contratar servicios, editar otros proyectos ni inventar Git baseline. Un repo dedicado inexistente o video sin derechos son BLOCKED con una sola solicitud concreta al usuario.
 
-## 10. Autorización y próximo mandato
+## 10. Próximo mandato ejecutable
 
-**Arquitectura:** ADR-001 aceptada únicamente como diseño para implementar y falsar en la POC. No existe validación experimental de C, del backend ni de detección exhaustiva. El usuario debe autorizar SPEC-00 y definir video/repo/workspace antes de ejecutar código; no abrir SPEC-01 por iniciativa propia.
-
-> **Mandato SPEC-00 (condicionado):** ejecutar bootstrap canónico, recuperar esta nota, comprobar autorización de SPEC-00, repo/workspace/branch/base/worktree y video autorizado, verificar FFmpeg/ffprobe/ASR y identidad exacta de `Qwen/Qwen3.5-27B` + conversión `mlx-community/Qwen3.5-27B-4bit` o variante declarada. Probar inferencia sobre SQX de texto pequeño, gráfico, multiimagen y salida estructurada; medir memoria, duración, errores y contexto residual. Diferenciar DOCUMENTED, SOURCE_VERIFIED y PHYSICALLY_VERIFIED. Reportar `RuntimeCapabilityReport`, mediciones/evidencia, incertidumbres y PASS/BLOCKED/NO_GO. Si 27B falla, documentar causa y proponer prueba separada con modelo menor, sin sustitución silenciosa. No implementar motor, levantar infraestructura, modificar Echo/Forge ni cerrar Agents-OS.
+> Hermes/manager: bootstrap canónico; cargar SOLO esta arquitectura y skill `agents-os-agent-project-workflow`. Resolver recursos y permisos reales de video, repo/workspace y M4; efectuar Git preflight. Crear subproyecto `owner: agent` mediante materializador y una sola tarea puente en este proyecto, sin inventar status. Preparar golden agente ciego y lanzar SPEC-00 con QA separado. Tras PASS documentado, avanzar 01→02→03-A→03-C→04 dentro del mismo alcance; registrar tareas/estado/bitácora y pruebas en el planificador canónico. Entregar Markdown y JSONL DE VALOR, evidencia exacta y benchmark sobre UN video. Si algo material falta, emitir un único BLOCKED preciso: verificado, dato faltante, decisión mínima. No cerrar sesión Agents-OS automáticamente; cierre solo por solicitud explícita.
 
 ## 🧩 Subproyectos
 
-- Ninguno creado; no se ha autorizado delegación de implementación.
+- Proyecto de ejecución `owner: agent` autorizado pero todavía NO creado ni verificado; materializar en entorno con contrato vigente y enlazar tras creación efectiva.
 
 ## ✅ Tareas
 
-- [x] Converger arquitectura de la POC y reemplazar arquitectura anterior en proyecto canónico #owner/me #type/admin #area/personal
-- [ ] Designar repo/workspace, video con derechos y presupuesto; confirmar autorización de SPEC-00 #owner/me #type/admin #area/personal
-- [ ] Iniciar y congelar golden independiente antes de evaluar A/C; definir adjudicación de críticos #owner/me #type/research #area/personal
-- [ ] Ejecutar SPEC-00 solo tras autorización explícita y revisar su reporte de runtime #owner/me #type/supervision #area/personal
-- [ ] Revisar benchmark A/C y decisiones de adaptación después de SPEC-04 #owner/me #type/supervision #area/personal
+- [x] Convergencia arquitectónica ADR-001 A/C; versiones previas superseded. #owner/me #type/admin #area/personal
+- [x] Fijar objetivo único, QA delegado, contratos visual/gráficos, gates y milestones M0/M1/M2. #owner/me #type/admin #area/personal
+- [ ] Tarea puente de ejecución: discovery, subproyecto de agente, SPEC-00..04 y entrega M0 validada. #owner/me #type/supervision #area/personal
+- [ ] Tras M0 PASS, delegar M1/M2 con SPECs basadas en evidencia, hasta biblioteca transversal. #owner/me #type/supervision #area/personal
 
 ## 📆 Bitácora
 
-- **2026-09-17:** la versión inicial de esta nota contenía nueve SPECs y A/B/C. Debate posterior entre interlocutores acordó A vs C, cinco SPECs, Grounding Reviewer con alcance limitado, golden temprano, baseline A E2E, JSONL y aislamiento por video. Se actualiza la misma entidad canónica; no se ejecutaron pruebas ni código y no se autoriza implementación. Sesión Agents-OS abierta.
+- **2026-09-17:** debate de dos IAs convergió en ADR-001 y cinco SPECs; implementación y runtime sin verificar. Arquitectura inicial A/B/C y nueve SPECs superseded en historia Git.
+- **2026-09-17 — cierre operativo:** usuario fija objetivo documental y explotación de cursos; delega QA de etapas a agentes y solo interviene por excepción. Integrados cuatro findings de review, dos gates 03, golden de agente etiquetado, M0/M1/M2 y mandato SPEC-00. No hay ejecución física ni creación de repo/subproyecto confirmada.
 
 ## 🧭 Decisiones
 
-- **2026-09-17 / ADR-001 ACCEPTED FOR POC DESIGN:** cobertura visual independiente del audio con densidad experimental; baseline A E2E y C opcional mismo ejecutable/único toggle; B no implementada.
-- **2026-09-17:** evidence integrity y grounding son controles distintos. `SUPPORTED_BY_AUTOMATED_REVIEW` no significa verdad; cambios tras consolidación invalidan revisiones afectadas.
-- **2026-09-17:** SQLite + filesystem + monolito Go; knowledge mínimo + JSONL exportable + Markdown proyección; golden humano independiente desde selección del video.
-- **2026-09-17:** ninguna SPEC ni despliegue autorizados por este acuerdo; resultados de runtime y superioridad de C siguen NO PROBADOS.
+- ADR-001: híbrido fijo/adaptativo falsable, A obligatorio antes de C, un único toggle, B no implementada.
+- Documentación de calidad y explotación de conocimiento son la autoridad del producto; M0 no equivale a Done.
+- QA por agentes sin falsa certificación humana; gates PASS autoavanzan, scope/permisos bloquean, modelo/costo no se inventa.
+- Go + SQLite/FS en POC, ASR y cobertura visual independientes, timestamps reales, integrity + grounding, JSONL canónico y Markdown proyección.
 
 ## 🔗 Docs / Links
 
-- [[agents-os]] — mapa operativo; bootstrap ejecutable en [[agents-os-bootstrap]].
-- Fuentes técnicas candidatas a verificar durante SPEC-00: https://huggingface.co/Qwen/Qwen3.5-27B ; https://huggingface.co/mlx-community/Qwen3.5-27B-4bit ; https://ffmpeg.org/ffprobe.html ; https://github.com/ggml-org/whisper.cpp .
-- Historial del diseño inicial: revisión anterior de esta misma nota en Git; las decisiones antiguas A/B/C y SPEC-00..08 se consideran superseded, no arquitectura alternativa vigente.
+- [[agents-os]], [[agents-os-bootstrap]], [[agents-os-agent-project-workflow]], [[agents-os-session-close]].
+- Candidatos SPEC-00: https://huggingface.co/Qwen/Qwen3.5-27B ; https://huggingface.co/mlx-community/Qwen3.5-27B-4bit ; https://ffmpeg.org/ffprobe.html ; https://github.com/ggml-org/whisper.cpp .
+- Historia de versiones previas: Git de esta misma nota, no arquitectura alternativa vigente.
 
-## 💡 Ideas
+## 💡 Ideas diferidas
 
-- Evaluar únicamente después de los resultados: clips nativos, clasificación preliminar con modelo pequeño, almacenamiento MinIO, jobs PostgreSQL, observabilidad Argus, corpus completo, deduplicación entre cursos, distribución entre nodos y búsqueda semántica.
-- Principio: el código controla procedencia, recursos, temporalidad y qué puede publicarse; el modelo pregunta e interpreta; solo un golden humano permite medir fidelidad semántica en un video y no puede garantizar exhaustividad universal.
+- Clips nativos, modelos pequeños de clasificación, Postgres/MinIO, Argus, cluster, corpus masivo y búsqueda vectorial solo con pruebas de necesidad. No desviar M0.
