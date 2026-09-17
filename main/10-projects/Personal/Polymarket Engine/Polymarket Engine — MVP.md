@@ -1608,7 +1608,7 @@ Ningún finding se rechaza íntegramente: cinco aceptados y siete modificados. L
 
 ### M2.1 — Estructura de paquetes Go (decisión operativa M2)
 
-**Repo:** `xKoRx/polymarket-engine` (nombre acordado en M0; la creación del repo es paso posterior separado). **Ubicación local del clone: `REQUIRES_OWNER — REPO LOCATION ONLY`** — decisión de path local, no arquitectónica; propuesta por defecto: workspace externo registrado fuera del vault (p. ej. `~/code/xKoRx/polymarket-engine`), conforme a la regla de repos externos de Agents-OS. Layout baseline (sin monorepo grande):
+**Repo:** `xKoRx/polymarket-engine` (nombre acordado en M0; la creación del repo es paso posterior separado). **Ubicación local del clone: `~/go/src/github.com/xKoRx/polymarket-engine`** — resuelta al iniciar S01 (checkout existente con remote `origin` y commit inicial; fuera del vault, conforme a la regla de repos externos de Agents-OS). Layout baseline (sin monorepo grande):
 
 ```text
 go.mod                          module github.com/xKoRx/polymarket-engine
@@ -1648,7 +1648,7 @@ testdata/                       fixtures versionadas + evidencia de gates + prop
 
 Reglas estructurales frozen que este árbol materializa: adapters dependen hacia adentro; dominio no importa transports ni storage de otros módulos; el composition root es el único que conecta puertos; no hay `utils` ni `common`; un paquete = un owner. Todo paquete nuevo requiere slice propio y actualización de esta tabla. Los árboles de paquetes son derivados de los límites frozen de M1.2; reorganizarlos sin cambiar ownership no requiere reapertura arquitectónica, pero sí revisión de manager.
 
-**Elección de dependencias third-party (operativa M2, reversible):** SQLite driver `modernc.org/sqlite` (pure Go, sin cgo; performance se mide en G-09b/G-13 y `mattn/go-sqlite3` es reemplazo encapsulado si hiciera falta); decimal `shopspring/decimal` encapsulado detrás de los tipos de `foundation` (nunca expuesto tal cual); property testing `pgregory.net/rapid` con seeds persistidas; WebSocket `gorilla/websocket` encapsulado en adapter; métricas `prometheus/client_golang` con exposición local; logs `log/slog`; config TOML estricta (`BurntSushi/toml`); HTTP/CLI stdlib. Go toolchain: pin en `go.mod` a la estable vigente al iniciar S01 (propuesta: `go 1.23`).
+**Elección de dependencias third-party (operativa M2, reversible):** SQLite driver `modernc.org/sqlite` (pure Go, sin cgo; performance se mide en G-09b/G-13 y `mattn/go-sqlite3` es reemplazo encapsulado si hiciera falta); decimal `shopspring/decimal` encapsulado detrás de los tipos de `foundation` (nunca expuesto tal cual); property testing `pgregory.net/rapid` con seeds persistidas; WebSocket `gorilla/websocket` encapsulado en adapter; métricas `prometheus/client_golang` con exposición local; logs `log/slog`; config TOML estricta (`BurntSushi/toml`); HTTP/CLI stdlib. Go toolchain: baseline del proyecto `go 1.27.0` con `toolchain go1.27.1` (decisión operativa cerrada por el owner al iniciar S01; corrige la propuesta histórica `go 1.23`).
 
 ### M2.2 — Orden de dependencia y checkpoints verticales
 
@@ -2123,9 +2123,9 @@ La implementación puede avanzar a M4 cuando existan, todos verificables sin cap
 
 ### M2.9 — Decisiones operativas M2 y pendientes de owner
 
-`REQUIRES_OWNER — REPO LOCATION ONLY`: path local del clone de `xKoRx/polymarket-engine` (propuesta por defecto `~/code/xKoRx/polymarket-engine`, fuera del vault). Única decisión bloqueante para iniciar S01; no es blocker arquitectónico.
+`REPO LOCATION — RESUELTO`: el clone local de `xKoRx/polymarket-engine` vive en `~/go/src/github.com/xKoRx/polymarket-engine` (checkout existente registrado al iniciar S01; fuera del vault). Ya no es decisión bloqueante.
 
-Decisiones operativas tomadas por TOP bajo contratos frozen (reversibles sin tocar dominio; el owner puede objetar en la revisión): module path `github.com/xKoRx/polymarket-engine`; layout `cmd/ internal/ migrations/ testdata/`; driver SQLite `modernc.org/sqlite`; decimal `shopspring/decimal` encapsulado en foundation; property `pgregory.net/rapid`; WS `gorilla/websocket` en adapter; métricas `prometheus/client_golang` local; logs `log/slog`; config TOML estricta; toolchain pin `go 1.23` (o estable vigente al iniciar S01); migraciones forward-only con rangos por slice (M2.4). El driver SQLite y la latencia de fsync se re-evalúan con mediciones de G-09b/G-13; cambiarlos es cambio encapsulado en `internal/persist`/`internal/capture`, no rediseño.
+Decisiones operativas tomadas por TOP bajo contratos frozen (reversibles sin tocar dominio; el owner puede objetar en la revisión): module path `github.com/xKoRx/polymarket-engine`; layout `cmd/ internal/ migrations/ testdata/`; driver SQLite `modernc.org/sqlite`; decimal `shopspring/decimal` encapsulado en foundation; property `pgregory.net/rapid`; WS `gorilla/websocket` en adapter; métricas `prometheus/client_golang` local; logs `log/slog`; config TOML estricta; toolchain baseline `go 1.27.0` / `toolchain go1.27.1` (decisión del owner al iniciar S01; sustituye la propuesta `go 1.23`); migraciones forward-only con rangos por slice (M2.4). El driver SQLite y la latencia de fsync se re-evalúan con mediciones de G-09b/G-13; cambiarlos es cambio encapsulado en `internal/persist`/`internal/capture`, no rediseño.
 
 ### M2.10 — Verificación de calidad del plan (§15 del mandato)
 
