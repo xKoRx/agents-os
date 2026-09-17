@@ -99,7 +99,7 @@ Dependencia de inicio: cerrar la [[SPEC técnica — Routing dinámico de backen
 | Orden | Unidad | Repo / superficie | Dependencia de entrada | Gate de salida |
 |---|---|---|---|---|
 | 2 | Header Fury y filtros BigQueue | `rio-playmaker` | Fase 1 aprobada + G0 del planner aceptado | G1–G3 del [[POC KISS — Routing de scopes en Playmaker]] aceptados |
-| 3 | Consumer/result del ambiente | `rio-controlplane-flink` | contrato de filtro Playmaker aprobado | consumer y result preservan `scope:alpha` sin cambio SDK |
+| 3 | Consumer/result del scope Fury | `rio-controlplane-flink` | contrato de filtro Playmaker aprobado | consumer y result preservan `scope:alpha` sin cambio SDK |
 | 4 | Aprovisionamiento de lane | Fury | Specs 2–3 aprobadas | scopes, config, routes y bindings listos sin tráfico |
 | 5 | Integración | todas | gates 1–4 aceptados | golden deploy, negativos, cleanup y rollback completados |
 

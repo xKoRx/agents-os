@@ -243,7 +243,7 @@ Como equipo RIO, quiero ver el delta completo actual→propuesta para saber qué
 - Los scopes nuevos usan borde verde.
 - Después de los retiros, la lista se ordena `prod`, `stage`, `alpha`, `beta`, `gamma`.
 - Un punto amarillo aparece únicamente en scopes Stream objetivo que necesitan decisión de sink.
-- `rio-sdk-events` participa mediante contrato por ambiente, sin inventar runtimes Fury para una librería.
+- `rio-sdk-events` participa mediante el envelope genérico de filtros, sin conocer ambientes ni inventar runtimes Fury para una librería.
 
 ### US-12 — Routing por scope efectivo
 
@@ -399,7 +399,7 @@ Decisión recomendada:
 5. Separar prod en su propio topic sólo si Fury confirma que el filtro por tag no se aplica antes de la entrega.
 6. Mantener el mapping físico independiente: `prod→nonsite`, resto→`nonprod`.
 
-El alta de `beta` o `gamma` se vuelve mecánica: registrar el ambiente en Playmaker, aprovisionar scopes/consumers de ese ambiente, enlazar el filtro `scope:<x>` y ejecutar la matriz E2E. No exige inventar `nonprod-beta`: Fury agrega `nonprod` al nombre base materializado.
+El alta de `beta` o `gamma` se vuelve mecánica: aprovisionar los scopes/consumers Fury, enlazar el filtro `scope:<x>` y ejecutar la matriz E2E. No exige registrar un pipeline environment en Playmaker ni inventar `nonprod-beta`: Fury agrega `nonprod` al nombre base materializado.
 
 ### Piloto de migración — `rio-controlplane-kms`
 
