@@ -1,0 +1,202 @@
+{
+  "run": "2026-09-13T04:02:37",
+  "tool": "context-budget",
+  "git_head": "14ecd2cd53ab64128c0565ef7097b0d5c0c6f9ac",
+  "fidelity_gate": "PASS",
+  "scenarios": [
+    {
+      "id": "CTX-15",
+      "reuses": [
+        "context_baseline (spec sección 9 del harness)"
+      ],
+      "verdict": "PASS",
+      "metrics": [
+        {
+          "name": "always_load_file_list",
+          "value": [
+            "80-agents/agents-os/agent-constitution.md",
+            "80-agents/memory/public/user-preference/rjara-agent-profile.md",
+            "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md",
+            "80-agents/skills/INDEX.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "bootstrap pasos 1-3 (C02) via rules.Session.cold_start/resolve_profile_note"
+        },
+        {
+          "name": "scope_pack_file_list_meli",
+          "value": [
+            "30-resources/agents/skills/meli-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md",
+            "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.ROUTERS + rules.ROUTER_PREFS (Minimal Reads de los routers)"
+        },
+        {
+          "name": "scope_pack_file_list_aranea",
+          "value": [
+            "30-resources/agents/skills/aranea-agent-dev/SKILL.md",
+            "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md"
+          ],
+          "unit": "files",
+          "confidence": "EXACT",
+          "authority": "rules.ROUTERS + rules.ROUTER_PREFS (Minimal Reads de los routers)"
+        },
+        {
+          "name": "always_load_bytes",
+          "value": 28436,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "always_load_chars",
+          "value": 28105,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "always_load_estimated_tokens",
+          "value": 7025,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "scope_pack_bytes_meli",
+          "value": 8148,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_chars_meli",
+          "value": 8076,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_estimated_tokens_meli",
+          "value": 2017,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        },
+        {
+          "name": "scope_pack_bytes_aranea",
+          "value": 4821,
+          "unit": "bytes",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_chars_aranea",
+          "value": 4788,
+          "unit": "chars",
+          "confidence": "EXACT",
+          "authority": "_size del harness"
+        },
+        {
+          "name": "scope_pack_estimated_tokens_aranea",
+          "value": 1197,
+          "unit": "estimated_tokens",
+          "confidence": "ESTIMATED",
+          "authority": "_size del harness + estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+        }
+      ],
+      "evidence": [
+        "80-agents/agents-os/agent-constitution.md: bytes=6234 chars=6161 estimated_tokens=1540",
+        "80-agents/memory/public/user-preference/rjara-agent-profile.md: bytes=5610 chars=5536 estimated_tokens=1384",
+        "80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md: bytes=2052 chars=2034 estimated_tokens=508",
+        "80-agents/skills/INDEX.md: bytes=14540 chars=14374 estimated_tokens=3593",
+        "30-resources/agents/skills/meli-agent-dev/SKILL.md: bytes=3973 chars=3938 estimated_tokens=984",
+        "80-agents/memory/public/user-preference/rjara-meli-work-preferences.md: bytes=2447 chars=2423 estimated_tokens=605",
+        "80-agents/memory/public/user-preference/rjara-vpn-routing-preferences.md: bytes=1728 chars=1715 estimated_tokens=428",
+        "30-resources/agents/skills/aranea-agent-dev/SKILL.md: bytes=3845 chars=3816 estimated_tokens=954",
+        "80-agents/memory/public/user-preference/rjara-aranea-operations-preferences.md: bytes=976 chars=972 estimated_tokens=243",
+        "estimated_tokens = chars//4 (chars/4, sin tokenizador de autoridad, C04); baseline-only, jamas criterio de fallo"
+      ],
+      "skip_reason": null,
+      "details": "baseline-only (chars/4, C04): always-load y packs meli/aranea medidos con _size en el run; nunca criterio de fallo"
+    }
+  ],
+  "totals": {
+    "always_load": {
+      "files": 4,
+      "chars": 28105,
+      "bytes": 28436,
+      "estimated_tokens": 7025,
+      "confidence": "ESTIMATED"
+    },
+    "scope_pack": {
+      "meli": {
+        "files": 3,
+        "chars": 8076,
+        "bytes": 8148,
+        "estimated_tokens": 2017,
+        "confidence": "ESTIMATED"
+      },
+      "aranea": {
+        "files": 2,
+        "chars": 4788,
+        "bytes": 4821,
+        "estimated_tokens": 1197,
+        "confidence": "ESTIMATED"
+      }
+    }
+  },
+  "counts": {
+    "pass": 1,
+    "fail": 0,
+    "warn": 0,
+    "skip": 0
+  },
+  "ambiguities": [
+    "Hallazgo 6 (A2): la clausula de evidencia de superficie del bootstrap paso 6 no distingue evidencia ambiental de evidencia de tarea; con mcp__aranea-* conectados permanentemente una sesion real sin entidad puede colapsar a ARANEA. Registrado como WARN, no resuelto (ADR pendiente).",
+    "Hallazgo 7 (A3): rjara-vpn-routing-preferences.md tiene trigger when_area_loaded sin campo area; autorizada en el pack meli (Minimal Read 3 del router); en escenarios aranea su aparicion seria WARN (clasificacion ambigua, INFERRED).",
+    "C09: vocabulario load_policy ad-hoc (when_echo_forge_loaded, etc.) y la semantica exacta de 'error matching' no tienen autoridad; heredado del harness como WARN y no invalida escenarios.",
+    "Hallazgo 11: areas drift [[Echo Forge]]/[[Personal]] en memoria de dominio no mapean a ningun dominio del gate (WARN declarado del harness ACTIVE-MEMORY-DOMAIN-PURITY).",
+    "DUAL-REGISTRY-DOMAIN-SYNC (Hallazgo 16): clausula dual de pr-description entre INDEX.md ('Vía meli-agent-dev u obra propia') y 30-resources/agents/00-index.md; semantica de la columna no definida por autoridad.",
+    "Modo ambiguo DEFAULT->dominio (C02/C07 unknown): con entidad previa=none, la definicion de cold ('no entity loaded yet') y la de swap convergen al mismo observable; ninguna autoridad fija la clasificacion (CTX-09/CTX-10 WARN por diseno).",
+    "C04: estimated_tokens es chars/4 sin tokenizador de autoridad; vale para comparar escenarios y detectar drift entre runs, jamas para tokens reales ni como criterio de FAIL.",
+    "Hallazgo 3: domain gate, warm reuse y swap son prompt-discipline sin enforcement mecanico; el medidor mide la decision transcrita (rules.py), no la obediencia de una sesion viva.",
+    "Hallazgo 4 / Hallazgo 17: la presencia de tools en superficie no es violacion; la config MCP vive a nivel maquina fuera del vault (CTX-14 registra el dato, nunca es criterio de FAIL).",
+    "Hallazgo 8: 'drop the previous domain pack' es instruccion al modelo sin mecanismo de unload; el residuo real post-swap en la ventana del modelo es UNOBSERVABLE (solo potential_residual INFERRED).",
+    "Hallazgo 10: hoy no existe memoria interna activa Meli (estado observado, no invariante).",
+    "A8: skills transversales nunca cuentan como unrelated-domain aunque un registro diga 'Vía meli-agent-dev' (la fila es una puerta, no una exclusividad)."
+  ],
+  "thresholds": {
+    "duplication": {
+      "min_consecutive_lines": 3,
+      "min_chars": 120,
+      "min_run_tokens": 5,
+      "version": 1,
+      "max_verdict": "WARN",
+      "strip_frontmatter": true,
+      "scope": "texto normalizado sin frontmatter (metadatos estructurales del schema-contract, no contenido de la regla 5)"
+    },
+    "soft_ceilings": {
+      "cold_base_estimated_tokens": [
+        3000,
+        6000
+      ],
+      "warm_delta_estimated_tokens": [
+        0,
+        1000
+      ],
+      "swap_estimated_tokens": [
+        1000,
+        3000
+      ]
+    }
+  },
+  "fidelity_details": "todas las anclas de fidelidad de rules.py (26) existen en el texto vigente de las autoridades",
+  "fidelity_evidence": [
+    "80-agents/skills/agents-os-bootstrap/SKILL.md: 21 anclas verificadas (gate-meli, gate-echo-aranea, gate-other-no-router, gate-surface-evidence, gate-fail-closed, gate-never-both-routers, cold-paso1-constitution, cold-paso1-profile-dir, cold-paso2-global-internal, cold-paso3-registry, cold-paso3-no-federated-index, cold-paso4-map-no-ritual, cold-paso5-resolve-aliases, warm-reuse-delta-only, warm-never-reread, warm-no-bootstrap-rerun, swap-skip-global-internal-reload, swap-keep-invariants, swap-drop-pack, hard-superseded-not-loaded, hard-only-startup-procedure)",
+    "80-agents/skills/agents-os-doctor/SKILL.md: 5 anclas verificadas (doctor-club-constitution, doctor-club-bootstrap, doctor-club-global-internal, doctor-club-one-profile, doctor-club-second-is-violation)"
+  ]
+}
