@@ -26,7 +26,7 @@ tags:
   - agent/hermes
   - domain/infrastructure
 created: "2026-09-14"
-updated: "2026-09-16"
+updated: "2026-09-17"
 ---
 
 # HERMES — Infrastructure Operations
@@ -77,6 +77,18 @@ El conocimiento existente de Backup/DR se reutiliza desde [[BACKUP-DR-OWNER-PROJ
 - endpoints/permisos exactos del MCP Access Plane: source of truth [[AGENT-PLATFORM - MCP Access Plane]];
 - redefinir la estrategia Backup/DR: source of truth [[BACKUP-DR-OWNER-PROJECT]];
 - mutaciones PROD no autorizadas explícitamente.
+
+## 🔐 Matriz de authority efectiva (2026-09-17, verificada por probe)
+
+| Target | Canal/identidad | Clase | Evidencia |
+|---|---|---|---|
+| athena/zeus/hera/kronos/hades/truenas | SSH `agent_ro` + `sudo -n agent-read` | observe (wrapper-only) | matriz 6/6 PASS 2026-09-17 |
+| `mcps` LXC | SSH `hermes-ops@mcps` + sudo passwordless scoped | operate (appliance completo) | smoke 2026-09-17, 26 containers |
+| daedalus | SSH `hermes-ops@daedalus` key-only, NO sudo, ACL-scoped | operate (consumer configs gestionadas) | smoke 2026-09-17 |
+| hermes-vm (self) | `systemd --user` (dashboard/gateway), filesystem local | operate (propio runtime) | recovery certificado 2026-09-16 |
+| Windows `worker-kronos` | vía ssh-mcp viewer/operator (plano MCP) | observe/operate parcial | probes certificados 2026-09-17 |
+| APIs nativas Proxmox/TrueNAS | sin credencial para Hermes | absent (gap) | GAP — requiere owner action |
+| MCPs en runtime Hermes | `~/.hermes/config.yaml`: sólo `aranea-postgres-ro` | parcial | config leída 2026-09-17 |
 
 ## 🔐 Principios de autoridad
 
@@ -217,10 +229,10 @@ _No aplica como repo único. Este workstream puede cambiar configuración ejecut
 
 ### I0 — Bootstrap del management plane
 
-- [ ] I0.1 Inventariar interfaces administrativas realmente disponibles para Hermes #owner/agent #type/research #area/aranea
-- [ ] I0.2 Clasificar authority actual por target: observe / operate / provision / absent #owner/agent #type/admin #area/aranea
-- [ ] I0.3 Definir referencias de credenciales y boundaries sin persistir secretos #owner/agent #type/admin #area/aranea
-- [ ] I0.4 Certificar que Hermes conserva recovery path independiente del MCP Access Plane #owner/agent #type/admin #area/aranea
+- [x] I0.1 Inventariar interfaces administrativas realmente disponibles para Hermes #owner/agent #type/research #area/aranea — verificado 2026-09-17 (matriz § authority + bitácora)
+- [x] I0.2 Clasificar authority actual por target: observe / operate / provision / absent #owner/agent #type/admin #area/aranea — matriz § authority 2026-09-17
+- [x] I0.3 Definir referencias de credenciales y boundaries sin persistir secretos #owner/agent #type/admin #area/aranea — matriz § authority (identidades/canales, cero valores)
+- [x] I0.4 Certificar que Hermes conserva recovery path independiente del MCP Access Plane #owner/agent #type/admin #area/aranea — B1 gate PASS (mcps-ops nativo) + recovery runtime 2026-09-16
 
 ### I1 — H0 Observe
 
@@ -247,6 +259,7 @@ _No aplica como repo único. Este workstream puede cambiar configuración ejecut
 
 ## 📆 Bitácora
 
+- **2026-09-17** — Preflight G0 mandato *Infrastructure Enablement*: validación matriz agent-read 6/6 PASS, captura `all` 6/6 (`discovery/*_20260917_185839.txt`, JSON `inventory_20260917_185839.json`: 59 VMs / 42 running / 17 stopped / 10 storages), smoke `mcps-ops` OK (26 containers), smoke `daedalus-ops` OK. Canon actualizado por delta (index, fechas-captura, 6 nodo-docs, área). Hallazgo: `sync.sh` del repo agents-os existe en `~/workspace/agents-os-repo/` pero NO hay scheduler activo verificable en hermes-vm (sin cron de usuario, sin timer systemd, `.sync/sync.log` vacío) — commits recientes llegaron por otra vía; pendiente aclarar antes de automatizar. Gap G3: runtime Hermes sólo tiene 1 MCP configurado (`aranea-postgres-ro`).
 - **2026-09-16** — Recovery real del runtime Hermes tras `hermes update`: se demuestra checkout fresco, se reinician dashboard + gateway Ariadna por `systemd --user`, se detecta gateway default legacy con token Telegram duplicado, se deshabilita, se reconcilia `fleet_restart_pending` y se valida versión/SHA + HTTP 200 + Telegram connected. El procedimiento se extrae a skill+runbook federados.
 - **2026-09-14** — Workstream creado. Se fija rollout H0→H6 y se define H0/H1 como primer tramo. Backup/DR existente será reutilizado como primer dominio de autonomía, no duplicado.
 
