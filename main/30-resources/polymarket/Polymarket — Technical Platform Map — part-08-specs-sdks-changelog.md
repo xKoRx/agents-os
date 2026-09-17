@@ -6,7 +6,7 @@
 
 **Método:** descarga HTTP raw de las siete URLs [S39]–[S44], parseo YAML/JSON real (`yaml.safe_load`), inventario de `paths`, métodos, `operationId`, parámetros, `requestBody`, respuestas y `security`; clasificación literal método/path contra §3 (comparación literal puede producir falsos negativos por nombres de parámetros/rutas, por eso se etiqueta `MISSING / AMBIGUOUS` hasta triage). Un valor documentado en esta tabla refleja el spec descargado, no una prueba live. `!` marca parámetro obligatorio; schema `*campo` marca propiedad obligatoria. Tipos de payload representados por referencias del OpenAPI, no inventados.
 
-**Fecha de extracción:** 2026-09-17 14:39 UTC. **Operaciones realmente parseadas:** 143. **Specs recuperados:** 6/7. **Specs fallidos:** 1.
+**Fecha de extracción:** 2026-09-17 14:39 UTC. **Operaciones realmente parseadas:** 163. **Specs recuperados:** 7/7. **Specs fallidos:** 0.
 
 | Operación/spec | Clasificación / razón | operationId o título | Seguridad / servers | Parámetros / meta | Request body | Response status y schema / URL |
 |---|---|---|---|---|---|---|
@@ -120,6 +120,27 @@
 | S40 GET /time | DOCUMENTED | getTime | public / unspecified | — | - | 200:application/json:integer; 400:application/json:ErrorResponse |
 | S40 POST /v1/heartbeats | MISSING / AMBIGUOUS — requires contract triage | sendHeartbeatV1 | polyApiKey+polyAddress+polySignature+polyPassphrase+polyTimestamp | — | application/json:HeartbeatRequest | 200:application/json:HeartbeatV1Response; 400:application/json:HeartbeatErrorResponse; 401:application/json:ErrorResponse; 500:application/json:ErrorResponse |
 | S40 SPEC HEADER | MEASURED | Polymarket CLOB API / 1.0.0 | [{"url": "https://clob.polymarket.com", "description": "Production CLOB API"}, {"url": "https://clob-staging.polymarket.com", "description": "Staging CLOB API"}] | OpenAPI 3.1.0; SHA256 d993169c2fd17cbc75304c9cd7bc3b6a351fa21f98cbd12dcd4c5dbbca2fedb8 | 216099 bytes; 54 paths; 66 operations | https://docs.polymarket.com/api-spec/clob-openapi.yaml |
+| S41 GET /v2/activity | DOCUMENTED | get_activity | public (spec operation security empty) | query:user:string,null, query:limit:integer,null(int32), query:cursor:string,null, query:type:string,null, query:condition:string,null, query:event_id:string,null, query:side:string,null, query:start:integer,null(int64), query:end:integer,null(int64), query:sort_by:string,null, query:sort_direction:string,null, query:exclude_deposits_withdrawals:boolean,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/activity/combos | DOCUMENTED | get_combos | public (spec operation security empty) | query:user:string,null, query:limit:integer,null(int32), query:cursor:string,null, query:condition:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/approvals | DOCUMENTED | get_approvals | public (spec operation security empty) | query:user:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/biggest-winners | DOCUMENTED | get_biggest_winners | public (spec operation security empty) | query:time_period:string,null, query:category:string,null, query:limit:integer,null(int32), query:cursor:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/builders/leaderboard | DOCUMENTED | get_builders_leaderboard | public (spec operation security empty) | query:time_period:string,null, query:limit:integer,null(int32), query:cursor:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/builders/volume | DOCUMENTED | get_builders_volume | public (spec operation security empty) | query:interval:string,null, query:limit:integer,null(int32) | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/holders | DOCUMENTED | get_holders | public (spec operation security empty) | query:condition:string,null, query:limit:integer,null(int32), query:cursor:string,null, query:min_balance:number,null(double), query:include_pnl:boolean,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/leaderboard | DOCUMENTED | get_leaderboard | public (spec operation security empty) | query:time_period:string,null, query:category:string,null, query:sort_by:string,null, query:user:string,null, query:limit:integer,null(int32), query:cursor:string,null | — | 200:union[object,object]; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/live-volume | DOCUMENTED | get_live_volume | public (spec operation security empty) | query:event_id:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/oi | DOCUMENTED | get_oi | public (spec operation security empty) | query:condition:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/positions | DOCUMENTED | get_positions | public (spec operation security empty) | query:user:string,null, query:condition:string,null, query:limit:integer,null(int32), query:cursor:string,null, query:status:string,null, query:event_id:string,null, query:title:string,null, query:filter_type:string,null, query:filter_amount:number,null(double), query:include_archived:boolean,null, query:sort_by:string,null, query:start:integer,null(int64), query:end:integer,null(int64), query:sort_direction:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/positions/combos | DOCUMENTED | get_combo_positions | public (spec operation security empty) | query:user:string,null, query:limit:integer,null(int32), query:cursor:string,null, query:condition:string,null, query:status:string,null, query:sort_by:string,null, query:sort_direction:string,null, query:updated_after:integer,null(int64), query:updated_before:integer,null(int64) | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/prices-history | DOCUMENTED | get_prices_history | public (spec operation security empty) | query:token_id:string,null, query:start:integer,null(int64), query:end:integer,null(int64), query:interval:string,null, query:bucket_seconds:integer,null(int64), query:as_of:integer,null(int64), query:limit:integer,null(int32), query:cursor:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/resolutions | DOCUMENTED | get_resolutions | public (spec operation security empty) | query:question_id:string,null, query:condition:string,null, query:event_id:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/status | DOCUMENTED | get_status | public (spec operation security empty) | — | — | 200:object; 401:object; 503:object |
+| S41 GET /v2/trades | DOCUMENTED | get_trades | public (spec operation security empty) | query:user:string,null, query:limit:integer,null(int32), query:cursor:string,null, query:taker_only:boolean,null, query:filter_type:string,null, query:filter_amount:number,null(double), query:start:integer,null(int64), query:end:integer,null(int64), query:condition:string,null, query:event_id:string,null, query:side:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/user-pnl | DOCUMENTED | get_user_pnl_v2 | public (spec operation security empty) | query:user:string,null, query:interval:string,null, query:fidelity:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/user-stats | DOCUMENTED | get_user_stats | public (spec operation security empty) | query:user:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/user-volume | DOCUMENTED | get_user_volume | public (spec operation security empty) | query:user:string,null, query:start:integer,null(int64), query:end:integer,null(int64) | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 GET /v2/value | DOCUMENTED | get_value | public (spec operation security empty) | query:user:string,null, query:condition:string,null | — | 200:object; 400:object; 401:object; 429:object; 500:object; 503:object |
+| S41 SPEC HEADER | MEASURED | Polymarket Data API v2 / 0.1.0 | [{'url': 'https://data-api.polymarket.com', 'description': 'Production'}, {'url': 'https://data-api-rs.stage.pmd.use1.polymarket.sh', 'description': 'Staging'}] | OpenAPI 3.1.0; SHA256 877b955a83df48e862631773a179f446acd0b112d2d0884922af49e83cdf1ff1 | 144258 bytes; 20 paths; 20 operations | https://data-api.polymarket.com/v2/openapi.json |
 | S41a GET / | LEGACY — Data v1 frozen | getDataApiHealth | public / unspecified | — | - | 200:application/json:HealthResponse |
 | S41a GET /activity | LEGACY — Data v1 frozen | — | public / unspecified | query:limit:integer, query:offset:integer, !query:user:Address, query:market:array[Hash64], query:eventId:array[integer], query:type:array[string], query:excludeDepositsWithdrawals:boolean, query:start:integer, query:end:integer, query:sortBy:string, query:sortDirection:string, query:side:string | - | 200:application/json:array[Activity]; 400:application/json:ErrorResponse; 401:application/json:ErrorResponse; 500:application/json:ErrorResponse |
 | S41a GET /closed-positions | LEGACY — Data v1 frozen | — | public / unspecified | !query:user:Address, query:market:array[Hash64], query:title:string, query:eventId:array[integer], query:limit:integer, query:offset:integer, query:sortBy:string, query:sortDirection:string | - | 200:application/json:array[ClosedPosition]; 400:application/json:ErrorResponse; 401:application/json:ErrorResponse; 500:application/json:ErrorResponse |
@@ -160,11 +181,11 @@
 | S44 POST /withdraw | OUT_OF_SCOPE — funding/withdrawal, not matching MVP | — | public / unspecified | ref:BuilderCodeHeader | application/json:WithdrawalRequest | 201:application/json:DepositResponse; 400:application/json:ErrorResponse; 500:application/json:ErrorResponse |
 | S44 SPEC HEADER | MEASURED | Polymarket Bridge API / 1.0.0 | [{"url": "https://bridge.polymarket.com", "description": "Polymarket Bridge API"}] | OpenAPI 3.0.3; SHA256 e6ea7f3209c4b33f2e1fe8360681c0248f8a0f304c336b60b4d265fb731b6f15 | 21719 bytes; 5 paths; 5 operations | https://docs.polymarket.com/api-spec/bridge-openapi.yaml |
 
-**Descargas sin éxito (NO PARSEADO, no atribuir cobertura):**
-- S41 https://data-api.polymarket.com/v2/openapi.json — TypeError: can only concatenate str (not "list") to str
 
 **Gate RG-01:** inventario medido, pero la clasificación `MISSING / AMBIGUOUS` requiere resolver o excluir cada ruta MVP; los schemas referenciados requieren expansión contractual de órdenes, reconciliación, posiciones y resolución antes de marcar PASS. Ver §24.
 
+
+**Data v2 coverage triage:** 20 operaciones extraídas, 0 no encontradas literalmente en §3.4: none. Parámetros y schemas detallados de resolución/posiciones/trades/activity: §3.4.1. [S41]
 ### 19.2 AsyncAPI — inventario verificable
 
 | ID | Documento, versión; host | Canales | Operaciones / tipos de mensaje | Extracción |
@@ -172,7 +193,7 @@
 | S45 | Market AsyncAPI **3.0.0**, `info.version=1.0.0`; `wss://ws-subscriptions-clob.polymarket.com/ws/market` | 1 `market` | **11 operaciones, 11 mensajes**: `subscriptionRequest`, `subscriptionRequestUpdate`, `ping`, `pong`, `book`, `priceChange`, `lastTradePrice`, `tickSizeChange`, `bestBidAsk`, `newMarket`, `marketResolved` | JSON visible; identificadores enumerados de `channels.market.messages` y `operations` |
 | S46 | User AsyncAPI **3.0.0**, `info.version=1.0.0`; `/ws/user` mismo host | 1 `user` | **6 operaciones, 6 mensajes**: solicitud/actualización suscripción, ping/pong, `order`, `trade` | JSON visible; distinguir evento `order` de estado de orden |
 | S47 | Sports AsyncAPI **3.0.0**, `info.version=1.0.0`; `wss://sports-api.polymarket.com/ws` | 1 sports | **3 operaciones/mensajes**: ping, pong, `sportsUpdate` | JSON visible; WS abierto sin `assets_ids`; servidor PING cada 5s, cliente PONG dentro de 10s según spec |
-| S48 | RFQ AsyncAPI, `wss://combos-rfq-gateway-quoter.polymarket.com/ws/rfq` por SDK | **NO MEDIDO** | **NO MEDIDO** | vínculo JSON oficial, cuerpo no recuperado; RESEARCH GAP para mensaje por mensaje |
+| S48 | RFQ AsyncAPI 3.0.0 / 1.0.0; 1 channels | **13 operations; 13 messages** | payloads/directions enumerated en §19.3 | **PARSED HTTP 200 2026-09-17 14:48 UTC; OUT_OF_SCOPE implementation** |
 | S49 | `connect-wss.json` listado en índice; variante histórica | 1 market observado | **2 operaciones, 5 mensajes**, versus 11 en S45 | representación antigua/subconjunto: NO usar para suprimir mensajes actuales de S45; no resuelve discrepancias por sí sola |
 
 *Detalle por familia de mensajes* (dirección relativa al cliente):
@@ -186,6 +207,46 @@
 | RTDS | JSON `subscribe` a `crypto_prices`, `crypto_prices_chainlink` y topics admitidos, PING texto según página | envelope `{topic,type,timestamp,payload}` | filtro dependiente del topic, source timestamp ms donde lo declare | no secuencia universal, replay y retention garantizados **NOT DOCUMENTED** [S11] |
 
 **Divergencias conservadas:** Market WS `price_change` contiene hash con semántica de book state descrita como hash, pero no hay contrato público de algoritmo/verificación ni continuidad de secuencia; `book` llega al suscribir y tras trades, no equivale a todas las confirmaciones REST de un mismo instante. El spec `connect-wss` parcial no prevalece sobre el AsyncAPI Market más completo. El mercado CLOB expone `itode` y página de mercado aún menciona 250 ms; changelog fechado 2026-08-17 reduce crypto delay a 50 ms: para fecha efectiva prevalece changelog y se retiene contradicción, sin inferir tiempo para otros mercados. [S45][S49][S40b][S32]
+
+### 19.3 RFQ AsyncAPI oficial: inventario medido 2026-09-17 14:48 UTC
+
+[S48] HTTP 200; SHA-256 `6f4d9a814f457a4aa81b7eb7759e6b277491a9131edb35aab6e6b9d45236523b`; AsyncAPI `3.0.0`; `info.version=1.0.0`; servers `{"production": {"host": "combos-rfq-gateway-quoter.polymarket.com", "pathname": "/ws/rfq", "protocol": "wss", "description": "Production quoter gateway WebSocket server"}}`. **No equivale a CLOB WS ni a operación de conversión NegRisk.** Las direcciones `send/receive` son desde la perspectiva declarada por AsyncAPI; no inferir secuencia/replay si no hay campo explícito.
+
+| operationId | Dirección | Canal/ref | Mensajes | Security explícita |
+|---|---|---|---|---|
+| authenticate | receive | #/channels/quoter | #/channels/quoter/messages/auth | [] |
+| authResult | send | #/channels/quoter | #/channels/quoter/messages/authResponse | [] |
+| receiveRfqRequest | send | #/channels/quoter | #/channels/quoter/messages/rfqRequest | [] |
+| submitQuote | receive | #/channels/quoter | #/channels/quoter/messages/rfqQuote | [] |
+| acknowledgeQuote | send | #/channels/quoter | #/channels/quoter/messages/ackRfqQuote | [] |
+| cancelQuote | receive | #/channels/quoter | #/channels/quoter/messages/rfqQuoteCancel | [] |
+| acknowledgeQuoteCancel | send | #/channels/quoter | #/channels/quoter/messages/ackRfqQuoteCancel | [] |
+| receiveConfirmationRequest | send | #/channels/quoter | #/channels/quoter/messages/rfqConfirmationRequest | [] |
+| respondConfirmation | receive | #/channels/quoter | #/channels/quoter/messages/rfqConfirmationResponse | [] |
+| acknowledgeConfirmation | send | #/channels/quoter | #/channels/quoter/messages/ackRfqConfirmationResponse | [] |
+| receiveExecutionUpdate | send | #/channels/quoter | #/channels/quoter/messages/rfqExecutionUpdate | [] |
+| receiveTradeBroadcast | send | #/channels/quoter | #/channels/quoter/messages/rfqTrade | [] |
+| receiveError | send | #/channels/quoter | #/channels/quoter/messages/rfqError | [] |
+
+| Canal | Mensaje | name | Content type | Campos del payload (`!`=required) |
+|---|---|---|---|---|
+| quoter | auth | Auth | application/json | $response:object; type:!string; auth:!object; auth.apiKey:!string; auth.secret:!string; auth.passphrase:!string; identity:!object; identity.signer_address:!string; identity.maker_address:!string; identity.signature_type:!integer enum=0,1,2,3 |
+| quoter | authResponse | AuthResponse | application/json | $response:object; type:!string; success:!boolean; address:string; error:string |
+| quoter | rfqRequest | RfqRequest | application/json | $response:object; type:!string; rfq_id:!string; requestor_public_id:!string; leg_position_ids:!array[string]; leg_position_ids[]:string; condition_id:!string; yes_position_id:!string; no_position_id:!string; direction:!string enum=BUY,SELL; side:!string enum=YES,NO; requested_size:!object; requested_size.unit:!string enum=notional,shares; requested_size.value_e6:!string; submission_deadline:!integer(int64) |
+| quoter | rfqQuote | RfqQuote | application/json | $response:object; type:!string; rfq_id:!string; price_e6:!string; size_e6:!string; signed_order:!object; signed_order.salt:!string; signed_order.maker:!string; signed_order.signer:!string; signed_order.tokenId:!string; signed_order.makerAmount:!string; signed_order.takerAmount:!string; signed_order.side:!integer enum=0,1; signed_order.signatureType:!integer enum=0,1,2,3; signed_order.timestamp:!string; signed_order.metadata:string; signed_order.builder:string; signed_order.signature:!string |
+| quoter | ackRfqQuote | AckRfqQuote | application/json | $response:object; type:!string; rfq_id:!string; quote_id:!string |
+| quoter | rfqQuoteCancel | RfqQuoteCancel | application/json | $response:object; type:!string; rfq_id:!string; quote_id:!string; signer_address:!string; maker_address:!string |
+| quoter | ackRfqQuoteCancel | AckRfqQuoteCancel | application/json | $response:object; type:!string; rfq_id:!string; quote_id:!string |
+| quoter | rfqConfirmationRequest | RfqConfirmationRequest | application/json | $response:object; type:!string; rfq_id:!string; quote_id:!string; signer_address:!string; maker_address:!string; signature_type:!integer enum=0,1,2,3; leg_position_ids:!array[string]; leg_position_ids[]:string; condition_id:!string; yes_position_id:!string; no_position_id:!string; direction:!string enum=BUY,SELL; side:!string enum=YES,NO; fill_size_e6:!string; price_e6:!string; confirm_by:!integer(int64) |
+| quoter | rfqConfirmationResponse | RfqConfirmationResponse | application/json | $response:object; type:!string; rfq_id:!string; quote_id:!string; decision:!string enum=CONFIRM,DECLINE |
+| quoter | ackRfqConfirmationResponse | AckRfqConfirmationResponse | application/json | $response:object; type:!string; rfq_id:!string; quote_id:!string; decision:!string enum=CONFIRM,DECLINE |
+| quoter | rfqExecutionUpdate | RfqExecutionUpdate | application/json | $response:object; type:!string; rfq_id:!string; status:!string enum=MATCHED,MINED,RETRYING,CONFIRMED,FAILED; tx_hash:string |
+| quoter | rfqTrade | RfqTrade | application/json | $response:object; type:!string; rfq_id:!string; requester_id:!string; condition_id:!string; leg_position_ids:!array[string]; leg_position_ids[]:string; direction:!string enum=BUY,SELL; side:!string enum=YES,NO; price_e6:!string; size_e6:!string; executed_at:!integer(int64) |
+| quoter | rfqError | RfqError | application/json | $response:object; type:!string; request_type:string; rfq_id:string; quote_id:string; code:!string; error:!string |
+
+**Recovery:** extraído esquema de mensajes, no se declara cursor, secuencia ni replay sin especificación expresa; RFQ/Combos queda `OUT_OF_SCOPE` para el Engine MVP inicial por ser un venue/flujo de ejecución adicional condicionado a evidencia de utilidad. Si se incorpora después, el gateway requester/builder y firma Exchange-v3 exigen verificación independiente; el AsyncAPI maker por sí solo no certifica escritura end-to-end. [S28][S43][S48]
+
+**RG-07 observed SDK behavior (2026-09-17 14:48 UTC):** TS unified SDK `post.ts` pinned SHA `983a10a…` serializes `deferExec: false` for both POST `/order` and `/orders`; S40 request body includes optional boolean but no externally verifiable semantics of `true`. This observation supports only the default `false`; `true` is **DISABLED / NOT DOCUMENTED**, not a recommended batching/scheduling feature. CLOB raw S40 defines **`PUT /balance-allowance`** and **`GET /balance-allowance/update`** with `asset_type` required, optional `token_id`, `signature_type`; both L2, `PUT` HTTP 200 `{}`, GET/update HTTP 200 `BalanceAllowanceResponse`. Neither endpoint grants ERC20/1155 approval on-chain; refresh/reconcile CLOB cache separately. S40 `GET /auth/api-keys` security array declares **L1 headers** whereas official pinned TS SDK `fetchApiKeys` invokes `secureClob` L2: **documentary contradiction; use L2 route confirmed by SDK, do not treat spec alone as proof of L1.** Builder-key revocation SDK calls unauthenticated BaseClient while OpenAPI security must decide actual requirements; omit Builder features until independently validated. [S40][S34c][S34e]
 
 ## 20. SDKs oficiales y frontera protocolo/conveniencia
 

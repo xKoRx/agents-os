@@ -49,7 +49,7 @@ Para compactar las tablas, `G=https://gamma-api.polymarket.com`, `C=https://clob
 | `GET /markets-by-token/{token_id}` | asset ID | market/condition reverse mapping | [S40] |
 | `GET /simplified-markets`; `GET /sampling-markets`; `GET /sampling-simplified-markets` | `next_cursor` opaco, filtros endpoint | `{data:[...],next_cursor,count,limit}`, condición y tokens | [S40] |
 | `GET /markets/live-activity`; `GET /markets/live-activity/{id}` | market/criterios según ruta | actividad corriente | [S40] |
-| `GET /ohlc`; `GET /orderbook-history` | `startTs` requerido; `/ohlc` necesita `asset_id`, fidelity enum `1m,5m,15m,30m,1h,4h,1d,1w`; `/orderbook-history` necesita `market` condition o `asset_id`; `limit<=1000` | mencionados explícitamente por referencia vigente de errores; esquema/retención completo **RESEARCH GAP** [S18] |
+| `GET /ohlc`; `GET /orderbook-history` | `startTs` requerido; `/ohlc` necesita `asset_id`, fidelity enum `1m,5m,15m,30m,1h,4h,1d,1w`; `/orderbook-history` necesita `market` condition o `asset_id`; `limit<=1000` | mencionados explícitamente por referencia vigente de errores; esquema/retención **NO DOCUMENTADOS EN S40**; evidencia y probes §17 [S18][S40] |
 
 `GET /fee-rate` es fuente de tarifa base en **bps**; no convertir automáticamente `base_fee=30` en el `feeRate=0.07` de fórmula category sin confirmar relación de campos: son superficies y escalas diferentes. La migración CLOB v2 añade parámetros efectivos `fd.r`, `fd.e` y `fd.to` en CLOB market info. El contrato de cálculo de fee por trading no debe deducirse de un solo campo cuyo significado esté ambiguo. [S21][S40a][S32a]
 
@@ -67,8 +67,8 @@ El `midpoint=(bestBid+bestAsk)/2` no es fill price; `last_trade_price` es histó
 | `DELETE /auth/api-key` | L2 | **sin body**, borra *credencial autenticada*; wire respuesta texto JSON `"OK"` en SDK vigente | 500 [S34c][S18] |
 | `POST /auth/builder-api-key` | L2 | crea builder triple de credenciales | 500 [S34c][S18] |
 | `GET /auth/builder-api-key` | L2 | lista claves Builder | 500 [S34c][S18] |
-| `DELETE /auth/builder-api-key` | headers Builder/credenciales según ruta y current SDK | revoca clave Builder; respuesta `"OK"`; request headers precisos **RESEARCH GAP** [S34c][S18] |
-| `POST /order` | L2 + orden firmada | wrapper/DTO de §7; `{success,errorMsg,orderID,status,makingAmount,takingAmount,transactionsHashes,tradeIDs}` | no idempotency key [S15][S40] |
+| `DELETE /auth/builder-api-key` | OpenAPI S40 security por operación; SDK oficial invoca BaseClient sin headers explícitos | HTTP 200 JSON `"OK"`; **conflicto de seguridad spec/SDK no resuelto; Builder credential management DISABLED** [S34c][S40] |
+| `POST /order` | L2 + orden firmada | `deferExec=false` observado SDK; `true` DISABLED sin semántica verificable; wrapper/DTO de §7; `{success,errorMsg,orderID,status,makingAmount,takingAmount,transactionsHashes,tradeIDs}` | no idempotency key [S15][S40] |
 | `POST /orders` | L2 + firma individual | array wrappers, **1–15 órdenes**; array respuesta por orden, posibles resultados mixtos | [S15][S40][S18] |
 | `GET /data/order/{orderID}` | L2 | hash exacto → orden incluso terminal si todavía retenida | 400 ID/500 [S16] |
 | `GET /data/orders` | L2 | opcionales `id`,`market={conditionId}`,`asset_id`; `next_cursor` | estado actual + filtro por ID para terminal [S16] |
@@ -80,7 +80,7 @@ El `midpoint=(bestBid+bestAsk)/2` no es fill price; `last_trade_price` es histó
 | `DELETE /cancel-market-orders` | L2 | body `{market:"conditionId"}` o `{asset_id:"tokenId"}`; al menos un filtro | output cancelación parcial [S16] |
 | `GET /order-scoring`; `GET /orders-scoring`; `POST /orders-scoring` | L2 | `order_id` o IDs en query/body → bool/map id→bool | elegibilidad instantánea [S16][S24][S40] |
 | `GET /balance-allowance` | L2 | `asset_type`,`token_id` cuando conditional, `signature_type`; balance y allowances | CLOB cache ≠ ERC20 allowance on-chain; [S18][S40] |
-| `GET /balance-allowance/update` | L2 | mismos selectores, solicita refresco de cache de servicio; respuesta exacta/reacción interna **RESEARCH GAP** | ruta soportada por SDK oficial Rust v2 y documentación de límites [S20c][S19] |
+| `PUT /balance-allowance` y `GET /balance-allowance/update` | L2 (S40) | ambos query `asset_type` requerido, opcionales `token_id`, `signature_type`; PUT HTTP 200 `{}`; GET/update HTTP 200 `BalanceAllowanceResponse {balance,allowances}`. Refrescan datos CLOB, **no aprueban on-chain** | raw S40 parseado 2026-09-17 14:48 UTC; §19.1 y §20 [S40] |
 | `POST /heartbeats` | L2 | heartbeat account API | no confundir con PING WS [S40] |
 | `GET /auth/ban-status`; `GET /auth/ban-status/closed-only` | L2 | account restriction; segundo retorna `{closed_only:boolean}` | closed-only admite reducciones únicamente [S16][S40] |
 | `GET /notifications`; `DELETE /notifications` | L2; auth/body de borrado sin revalidar | superficie de notificaciones cuenta, **NO requerida para reconciliar fills** | path+methods observados en SDK clásico; exact schema CURRENT **RESEARCH GAP** [S40][S36a] |
@@ -125,7 +125,335 @@ Host D2: `https://data-api.polymarket.com`; todas las rutas siguientes llevan pr
 | `GET /v2/leaderboard` | ranking operadores | cursor, wallet |
 | `GET /v2/status` | frescura / estado servicio | sin cursor |
 
-**Mini-contract crítico de posiciones:** entrada GET `/v2/positions?user=<0x...>&status=OPEN` o `REDEEMABLE` o `CLOSED` (verificar aceptación exacta de filtro en schema antes de usar en vivo); campos de respuesta de interés: posición/asset ID, condition, wallet, size/balance, price/value, PnL y resolución cuando presentes. `data:null` y `data:[]` son resultados de lectura legítimos de v2. Un cursor sólo es reutilizable con la combinación de endpoint/filtros original: ciertas familias dan HTTP 400 si cambia el filtro, trades/activity pueden reanclarse; el cursor no codifica un snapshot global inmutable. El detalle de todos los nombres wire de posición y de la paginación de cada familia en los OpenAPI no fue reextraído íntegramente en esta pasada: **RESEARCH GAP**, no inventar struct de Go a partir de este resumen. [S30][S41]
+### 3.4.1 Contratos Data v2 extraídos del OpenAPI raw (2026-09-17 14:48 UTC)
+
+Fuente: [S41], OpenAPI 3.1.0, SHA-256 `877b955a83df48e862631773a179f446acd0b112d2d0884922af49e83cdf1ff1`. Todas estas operaciones son HTTP `GET https://data-api.polymarket.com<path>`, `security` conforme a su objeto OpenAPI. Las rutas públicas no requieren credenciales CLOB; la especificación puede declarar respuestas `401`, lo que no demuestra que se requiera L2. Los campos marcados `!` son `required` según schema JSON, no inferencias. Los tipos `number` del wire NO equivalen a `DecimalString` del SDK.
+
+**`GET /v2/resolutions` — `operationId=get_resolutions`; auth=[]**
+
+| Query (HTTP) | In | Required | Tipo / enum | Default | Descripción normativa |
+|---|---|---:|---|---|---|
+| question_id | query | False | string,null | None | One UMA question identifier (`0x` plus 64 hexadecimal characters). |
+| condition | query | False | string,null | None | Comma-separated Gamma condition identifiers (at most 20 distinct values). |
+| event_id | query | False | string,null | None | Comma-separated positive Gamma event IDs (at most 20 distinct values). |
+
+| HTTP response | Campo wire | Tipo / enum (`!`=required) | Semántica literal spec |
+|---|---|---|---|
+| 200 | $response | object | `{ "data": T }`; the envelope for endpoints that don't paginate. There is no `pagination` key: an aggregate or bounded list has no next page. Paginated feeds re |
+| 200 | data | !array[object] | — |
+| 200 | data[] | object | One non-paginated `/v2/resolutions` row. UMA lifecycle rows populate the numeric-string price fields; direct question lookups omit `condition_id`, while conditi |
+| 200 | data[].condition_id | string,null | Condition id the row answers for; absent on question-keyed rows. |
+| 200 | data[].extended_review | !boolean | True while a managed proposal sits past its normal expiry in extended review; always false outside that window. |
+| 200 | data[].last_update_timestamp | !string | Latest lifecycle change: an epoch-seconds string on question-keyed rows, RFC3339 UTC on condition-keyed rows. |
+| 200 | data[].log_index | !string | Log index of the latest lifecycle event, as a numeric string; empty where `transaction_hash` is empty. |
+| 200 | data[].market_type | string,null | BINARY, INCREMENTAL_NEGRISK or ATOMIC_NEGRISK; condition-keyed rows only. |
+| 200 | data[].new_version_q | !boolean | Whether the question rules were updated after posing. |
+| 200 | data[].payouts | array[integer(int64)] | Per-outcome payout in micro-USDC per share, `[outcome0, outcome1]`; present on resolved condition-keyed rows. |
+| 200 | data[].payouts[] | integer(int64) | — |
+| 200 | data[].price | string,null | Final settlement price, same conventions as `proposed_price`. |
+| 200 | data[].proposed_price | string,null | Price of the first proposal as a numeric string; `69` means unset. Present on question-keyed rows only. |
+| 200 | data[].question_id | string,null | UMA question id serving the row; absent on condition-keyed rows. |
+| 200 | data[].reporter | string,null | Reporter family that resolved it: UMA_OO, CHAINLINK or EOA. |
+| 200 | data[].reproposed_price | string,null | Price of the second proposal, same conventions as `proposed_price`. |
+| 200 | data[].resolution_source | string,null | `reported` (an oracle reported it) or `derived` (a neg-risk sibling resolution no client can reconstruct). |
+| 200 | data[].resolved_at | string,null | When the condition resolved, RFC3339 UTC. |
+| 200 | data[].resolved_block | integer,null(int64) | Block the condition resolved at. |
+| 200 | data[].status | !string | Lifecycle state: initialized, posed, proposed, challenged, reproposed, disputed or resolved; condition-keyed rows can also serve active and arbitration. |
+| 200 | data[].transaction_hash | !string | Transaction of the latest lifecycle event; empty on condition-keyed rows without one. |
+| 200 | data[].was_arbitrated | boolean,null | Whether arbitration was triggered on the request. |
+| 200 | data[].was_disputed | !boolean | Whether the resolution was disputed at any point. |
+| 400 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 400 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 400 | error | !string | Human-readable error message. |
+| 400 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 400 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 400 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 401 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 401 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 401 | error | !string | Human-readable error message. |
+| 401 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 401 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 401 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 429 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 429 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 429 | error | !string | Human-readable error message. |
+| 429 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 429 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 429 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 500 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 500 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 500 | error | !string | Human-readable error message. |
+| 500 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 500 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 500 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 503 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 503 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 503 | error | !string | Human-readable error message. |
+| 503 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 503 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 503 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+
+**No extrapolar:** errores, cursor, estado y timestamps únicamente según schema y descripciones anteriores; `success` HTTP de un aggregate no es confirmación on-chain.
+
+**`GET /v2/positions` — `operationId=get_positions`; auth=[]**
+
+| Query (HTTP) | In | Required | Tipo / enum | Default | Descripción normativa |
+|---|---|---:|---|---|---|
+| user | query | False | string,null | None | The wallet to anchor on. At least one of `user`/`condition` is required. |
+| condition | query | False | string,null | None | Condition id(s), comma-separated (at most 20 distinct values). With `user`, narrows that user's positions (all ids honoured). Without `user`, anchors on the market's holders; exactly one id is accepted there, and a multi-id list is rejected rather th |
+| limit | query | False | integer,null(int32) | None | First-page size. Ignored when `cursor` is supplied (the cursor's size wins). |
+| cursor | query | False | string,null | None | Opaque pagination cursor from a prior response's `next_cursor`. It carries the page position, page size, and the status/sort/direction it was minted under. |
+| status | query | False | string,null | None | One of `OPEN`, `REDEEMABLE`, or `CLOSED`; defaults to `OPEN`. `OPEN` is the superset; it includes settled-but-unredeemed winners, which `REDEEMABLE` narrows to. `CLOSED` is exited positions. |
+| event_id | query | False | string,null | None | Event id(s), comma-separated. User-anchored only. |
+| title | query | False | string,null | None | Case-insensitive market-title substring filter, honoured on every anchor and status. SQL LIKE wildcards (`%`, `_`) keep their usual meaning; empty or whitespace-only is treated as absent; at most 200 characters. NOT carried by the cursor: re-send it  |
+| filter_type | query | False | string,null | None | `CASH` or `TOKENS`; defaults to `TOKENS` (the /v2/trades-homogenized filter pair, replacing the former `size_threshold`). |
+| filter_amount | query | False | number,null(double) | None | The filter floor. `TOKENS`: minimum CURRENT holding in shares (defaults to the 0.1 dust floor; applies to `OPEN`/`REDEEMABLE`; a user's `CLOSED` set is not narrowed by it, and on a market anchor it moves the OPEN/CLOSED boundary). `CASH`: minimum mar |
+| include_archived | query | False | boolean,null | None | Also include positions on archived markets; defaults to `false`. `OPEN`/`REDEEMABLE` only; combining it with `status=CLOSED` is rejected. Inactive markets remain excluded either way. |
+| sort_by | query | False | string,null | None | One of `CURRENT_VALUE`, `TOKENS`, `UNREALIZED_PNL`, `REALIZED_PNL`, `TOTAL_PNL`, or `TIMESTAMP` (the row's `last_event_at`). The default follows the status: `CURRENT_VALUE` for `OPEN`/`REDEEMABLE`, `REALIZED_PNL` for `CLOSED`. |
+| start | query | False | integer,null(int64) | None | Inclusive lower bound on `last_event_at`, epoch seconds; omit or `0` for unbounded (the `/v2/activity` + `/v2/trades` vocabulary). |
+| end | query | False | integer,null(int64) | None | Inclusive upper bound on `last_event_at`, epoch seconds; omit or `0` for unbounded. A position with no native economics carries no `last_event_at` and is therefore **excluded by any bound**, in either direction; a window asks which positions moved in |
+| sort_direction | query | False | string,null | None | `ASC` or `DESC`; defaults to `DESC`. |
+
+| HTTP response | Campo wire | Tipo / enum (`!`=required) | Semántica literal spec |
+|---|---|---|---|
+| 200 | $response | object | `{ data, pagination }` envelope for `/v2/positions`. |
+| 200 | data | !array[object] | The page's rows. |
+| 200 | data[] | object | One position (`/v2/positions`); a holding in a single outcome token, priced and enriched. The shape is **uniform across all three arms** (user OPEN/REDEEMABLE,  |
+| 200 | data[].archived | !boolean | Whether the market is archived; tells a caller using `includeArchived` which rows the flag surfaced. |
+| 200 | data[].avg_price | !number(double) | Weighted-average entry price per share, in USDC. |
+| 200 | data[].condition_id | !string | The on-chain condition id. |
+| 200 | data[].current_price | !number(double) | Live mark per share, in USDC. |
+| 200 | data[].current_size | !number(double) | The CURRENT holding, in shares (~0 residual on the CLOSED arm). |
+| 200 | data[].current_value | !number(double) | `current_size × current_price`, in USDC. |
+| 200 | data[].end_date | !string | Market end date, `YYYY-MM-DD`; `1970-01-01` when Gamma has none. |
+| 200 | data[].entry_cost_usdc | !number(double) | The fee-EXCLUSIVE entry basis. |
+| 200 | data[].entry_fees_usdc | !number(double) | Attributed BUY-fee total for the position. Disclosure only: `entry_cost_usdc` is already fee-exclusive, so never re-deduct this from a PnL column. |
+| 200 | data[].event_id | !string | Gamma event id of the parent event. |
+| 200 | data[].event_slug | !string | Parent event slug. |
+| 200 | data[].icon | !string | Market icon URL. |
+| 200 | data[].last_event_at | !integer(int64) | The row's last economics event, epoch seconds; 0 without native state. |
+| 200 | data[].mergeable | !boolean | Whether the wallet also holds the opposite outcome, so the pair can merge back into collateral. |
+| 200 | data[].name | !string | Profile display name of the wallet. |
+| 200 | data[].negative_risk | !boolean | Whether the market belongs to a neg-risk group. |
+| 200 | data[].opposite_outcome | !string | Label of the market's other outcome; what a merge pairs with. |
+| 200 | data[].opposite_token_id | !string | Token id of the market's other outcome. |
+| 200 | data[].outcome | !string | Label of the held outcome (e.g. `Yes`). |
+| 200 | data[].outcome_index | !integer(int32) | Index of the held outcome within the market; `999` means the outcome could not be labeled. |
+| 200 | data[].percent_pnl | !number(double) | `(current_value - entry_cost_usdc) / entry_cost_usdc`, as a percent. Fee-exclusive basis, and the numerator is `unrealized_pnl`; not `total_pnl / total_cost_usd |
+| 200 | data[].percent_realized_pnl | !number(double) | `(current_value - total_size × avg_price) / (total_size × avg_price)`, as a percent. A compatibility shape: despite the name, it is not `realized_pnl` over a ba |
+| 200 | data[].profile_image | !string | Profile image URL. |
+| 200 | data[].proxy_wallet | !string | Proxy wallet holding the position. |
+| 200 | data[].realized_pnl | !number(double) | Realized PnL in USDC, cumulative for the position. |
+| 200 | data[].redeemable | !boolean | Whether the position can be redeemed now: its market resolved and the tokens are still held (losing sides included; redeemable ≠ won). |
+| 200 | data[].slug | !string | Market slug; the URL segment on polymarket.com. |
+| 200 | data[].status | !string | The row's actual state; can be narrower than the requested `status`, since an `OPEN` request also returns `REDEEMABLE` rows. |
+| 200 | data[].title | !string | Market question title (Gamma enrichment; empty when unenriched). |
+| 200 | data[].token_id | !string | The outcome token id. |
+| 200 | data[].total_cost_usdc | !number(double) | Gross (fee-INCLUSIVE) basis. Always exactly `entry_cost_usdc + entry_fees_usdc`; the contract sums the two served columns, so the identity holds on every row of |
+| 200 | data[].total_pnl | !number(double) | Always equals `realized_pnl + unrealized_pnl`. |
+| 200 | data[].total_size | !number(double) | LIFETIME bought shares (the WAC denominator), never the current balance; that is `current_size`. |
+| 200 | data[].unrealized_pnl | !number(double) | Unrealized (mark-to-market) PnL: `current_value - entry_cost_usdc`. |
+| 200 | data[].verified | !boolean | Profile verification badge. |
+| 200 | pagination | !object | — |
+| 200 | pagination.has_more | !boolean | Exact: `true` iff another page exists; probe-based, never inferred from page fullness. |
+| 200 | pagination.limit | !integer(int32) min=0 | Page size this page was served with. |
+| 200 | pagination.next_cursor | string,null | Opaque, signed cursor for the next page; `null` on the last page. |
+| 200 | pagination.offset | !integer(int32) min=0 | Running item offset for display continuity across keyset pages (the cursor drives the actual seek; this is cosmetic; there is no total). |
+| 400 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 400 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 400 | error | !string | Human-readable error message. |
+| 400 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 400 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 400 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 401 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 401 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 401 | error | !string | Human-readable error message. |
+| 401 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 401 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 401 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 429 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 429 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 429 | error | !string | Human-readable error message. |
+| 429 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 429 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 429 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 500 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 500 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 500 | error | !string | Human-readable error message. |
+| 500 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 500 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 500 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 503 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 503 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 503 | error | !string | Human-readable error message. |
+| 503 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 503 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 503 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+
+**No extrapolar:** errores, cursor, estado y timestamps únicamente según schema y descripciones anteriores; `success` HTTP de un aggregate no es confirmación on-chain.
+
+**`GET /v2/trades` — `operationId=get_trades`; auth=[]**
+
+| Query (HTTP) | In | Required | Tipo / enum | Default | Descripción normativa |
+|---|---|---:|---|---|---|
+| user | query | False | string,null | None | Address to filter by; omit for the market/event/global feed. |
+| limit | query | False | integer,null(int32) | None | First-page size. Ignored when `cursor` is supplied (the cursor's size wins). |
+| cursor | query | False | string,null | None | Opaque pagination cursor from a prior response's `next_cursor`. |
+| taker_only | query | False | boolean,null | None | Defaults to `true`: each fill is served once, on its taker side. `false` includes the maker rows too. |
+| filter_type | query | False | string,null | None | CASH or TOKENS; defaults to TOKENS. |
+| filter_amount | query | False | number,null(double) | None | Minimum trade size; defaults to 0.01, and 0 means the same. |
+| start | query | False | integer,null(int64) | None | Window start on `block_timestamp`, epoch seconds (inclusive); honored on the `user` shape only. Omitted or `0` floors to three years back; `start=1` asks for full history. The `condition`/`event_id` shapes serve a fixed three-year window and the bare |
+| end | query | False | integer,null(int64) | None | Window end, epoch seconds (inclusive); honored on the `user` shape only; omitted or `0` means now plus one day. |
+| condition | query | False | string,null | None | Condition id(s), comma-separated (at most 20 distinct values). `condition_id` / `conditionId` are accepted aliases. |
+| event_id | query | False | string,null | None | Event id(s), comma-separated. |
+| side | query | False | string,null | None | BUY or SELL. |
+
+| HTTP response | Campo wire | Tipo / enum (`!`=required) | Semántica literal spec |
+|---|---|---|---|
+| 200 | $response | object | `{ data, pagination }` envelope for `/v2/trades`. |
+| 200 | data | !array[object] | The page's rows. |
+| 200 | data[] | object | A trade (`/v2/trades`). |
+| 200 | data[].bio | !string | Profile bio text. |
+| 200 | data[].condition_id | !string | On-chain condition id of the market (`0x` hex). |
+| 200 | data[].event_slug | !string | Parent event slug. |
+| 200 | data[].icon | !string | Market icon URL. |
+| 200 | data[].name | !string | Profile display name of the wallet. |
+| 200 | data[].outcome | !string | Label of the traded outcome (e.g. `Yes`). |
+| 200 | data[].outcome_index | !integer(int32) | Index of the traded outcome within the market; `999` means the outcome could not be labeled. |
+| 200 | data[].price | !number(double) | Execution price per share, in USDC. |
+| 200 | data[].profile_image | !string | Profile image URL. |
+| 200 | data[].profile_image_optimized | !string | Resized profile image URL, when one exists. |
+| 200 | data[].proxy_wallet | !string | Proxy wallet the row belongs to; the address every wallet-keyed endpoint accepts as `user`. |
+| 200 | data[].pseudonym | !string | Generated fallback handle for profiles without a display name. |
+| 200 | data[].side | !string | `BUY` or `SELL`, from this wallet's perspective. |
+| 200 | data[].size | !number(double) | Filled quantity in shares; bare sizes are shares, never USD. |
+| 200 | data[].slug | !string | Market slug; the URL segment on polymarket.com. |
+| 200 | data[].timestamp | !integer(int64) | Block timestamp of the fill, epoch seconds. |
+| 200 | data[].title | !string | Market question title (Gamma enrichment; empty when unenriched). |
+| 200 | data[].token_id | !string | CLOB asset id of the traded outcome token. |
+| 200 | data[].transaction_hash | !string | Hash of the settling transaction. |
+| 200 | pagination | !object | — |
+| 200 | pagination.has_more | !boolean | Exact: `true` iff another page exists; probe-based, never inferred from page fullness. |
+| 200 | pagination.limit | !integer(int32) min=0 | Page size this page was served with. |
+| 200 | pagination.next_cursor | string,null | Opaque, signed cursor for the next page; `null` on the last page. |
+| 200 | pagination.offset | !integer(int32) min=0 | Running item offset for display continuity across keyset pages (the cursor drives the actual seek; this is cosmetic; there is no total). |
+| 400 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 400 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 400 | error | !string | Human-readable error message. |
+| 400 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 400 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 400 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 401 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 401 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 401 | error | !string | Human-readable error message. |
+| 401 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 401 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 401 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 429 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 429 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 429 | error | !string | Human-readable error message. |
+| 429 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 429 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 429 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 500 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 500 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 500 | error | !string | Human-readable error message. |
+| 500 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 500 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 500 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 503 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 503 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 503 | error | !string | Human-readable error message. |
+| 503 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 503 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 503 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+
+**No extrapolar:** errores, cursor, estado y timestamps únicamente según schema y descripciones anteriores; `success` HTTP de un aggregate no es confirmación on-chain.
+
+**`GET /v2/activity` — `operationId=get_activity`; auth=[]**
+
+| Query (HTTP) | In | Required | Tipo / enum | Default | Descripción normativa |
+|---|---|---:|---|---|---|
+| user | query | False | string,null | None | Required; the feed is user-anchored. |
+| limit | query | False | integer,null(int32) | None | Page size; default 100, max 1000, past-cap rejected. |
+| cursor | query | False | string,null | None | Opaque cursor from a prior response's `next_cursor`; binds the sort direction it was minted under. |
+| type | query | False | string,null | None | Activity type(s), comma-separated (TRADE, SPLIT, MERGE, REDEEM, …). `TIP` is **opt-in**: it is never in the default set, so it is only returned when you name it here. A tip is a user↔user pUSD transfer that is not a trade-settlement leg; `size` is th |
+| condition | query | False | string,null | None | Condition id(s), comma-separated (at most 20 distinct values). `condition_id` / `conditionId` are accepted aliases. |
+| event_id | query | False | string,null | None | Gamma event id(s), comma-separated; resolves to the events' markets. Mutually exclusive with `condition`. |
+| side | query | False | string,null | None | BUY or SELL. |
+| start | query | False | integer,null(int64) | None | Window start on `block_timestamp`, epoch seconds (inclusive). Omitted or `0` floors to three years back; pass `start=1` for full history. |
+| end | query | False | integer,null(int64) | None | Window end, epoch seconds (inclusive); omitted or `0` means now plus one day. |
+| sort_by | query | False | string,null | None | Only `TIMESTAMP` is supported (v2 pages by keyset). |
+| sort_direction | query | False | string,null | None | `ASC` or `DESC` (default). The keyset seeks in the chosen direction; the minted cursor binds it, so pass it consistently when paging. |
+| exclude_deposits_withdrawals | query | False | boolean,null | None | Defaults to `true`. |
+
+| HTTP response | Campo wire | Tipo / enum (`!`=required) | Semántica literal spec |
+|---|---|---|---|
+| 200 | $response | object | `{ data, pagination }` envelope for `/v2/activity`. |
+| 200 | data | !array[object] | The page's rows. |
+| 200 | data[] | object | One activity-feed event (`/v2/activity`); a trade, split, merge, redeem, … |
+| 200 | data[].bio | !string | Profile bio text. |
+| 200 | data[].condition_id | !string | On-chain condition id of the market (`0x` hex). |
+| 200 | data[].event_slug | !string | Parent event slug. |
+| 200 | data[].icon | !string | Market icon URL. |
+| 200 | data[].is_combo | boolean | Flag only, on V2/V3 combo trade rows. Combo detail lives on the combos endpoints; omitted from non-combo rows. |
+| 200 | data[].name | !string | Profile display name of the wallet. |
+| 200 | data[].outcome | !string | Label of the outcome (e.g. `Yes`). |
+| 200 | data[].outcome_index | !integer(int32) | Index of the outcome within the market; `999` means the outcome could not be labeled. |
+| 200 | data[].price | !number(double) | Price per share in USDC (trades; `0` where no price applies). |
+| 200 | data[].profile_image | !string | Profile image URL. |
+| 200 | data[].profile_image_optimized | !string | Resized profile image URL, when one exists. |
+| 200 | data[].proxy_wallet | !string | Proxy wallet the row belongs to; the address every wallet-keyed endpoint accepts as `user`. |
+| 200 | data[].pseudonym | !string | Generated fallback handle for profiles without a display name. |
+| 200 | data[].side | !string | `BUY` or `SELL` on trade rows, from this wallet's perspective; empty where a side does not apply. |
+| 200 | data[].size | !number(double) | Share quantity of the action; bare sizes are shares, never USD. |
+| 200 | data[].slug | !string | Market slug; the URL segment on polymarket.com. |
+| 200 | data[].timestamp | !integer(int64) | Block timestamp of the action, epoch seconds. |
+| 200 | data[].title | !string | Market question title (Gamma enrichment; empty when unenriched). |
+| 200 | data[].token_id | !string | CLOB asset id of the outcome token the action touched. |
+| 200 | data[].transaction_hash | !string | Hash of the settling transaction. |
+| 200 | data[].type | !string | TRADE, SPLIT, MERGE, REDEEM, REWARD, CONVERSION, … |
+| 200 | data[].usdc_size | !number(double) | Cash value of the action in USDC. |
+| 200 | pagination | !object | — |
+| 200 | pagination.has_more | !boolean | Exact: `true` iff another page exists; probe-based, never inferred from page fullness. |
+| 200 | pagination.limit | !integer(int32) min=0 | Page size this page was served with. |
+| 200 | pagination.next_cursor | string,null | Opaque, signed cursor for the next page; `null` on the last page. |
+| 200 | pagination.offset | !integer(int32) min=0 | Running item offset for display continuity across keyset pages (the cursor drives the actual seek; this is cosmetic; there is no total). |
+| 400 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 400 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 400 | error | !string | Human-readable error message. |
+| 400 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 400 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 400 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 401 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 401 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 401 | error | !string | Human-readable error message. |
+| 401 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 401 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 401 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 429 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 429 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 429 | error | !string | Human-readable error message. |
+| 429 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 429 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 429 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 500 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 500 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 500 | error | !string | Human-readable error message. |
+| 500 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 500 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 500 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+| 503 | $response | object | Error body returned by Data API endpoints for unsuccessful requests. |
+| 503 | code | !string enum=invalid_request,unauthorized,not_found,method_not_allowed,request_timeout,rate_limited,dependency_unavailable,internal | Stable machine-readable classification for Data API failures. |
+| 503 | error | !string | Human-readable error message. |
+| 503 | parameter | string,null | Query or body parameter associated with a validation failure. |
+| 503 | retryable | !boolean | Whether an automated consumer may retry the request unchanged. |
+| 503 | trace_id | !string | Opaque identifier shared with structured logs and error telemetry. |
+
+**No extrapolar:** errores, cursor, estado y timestamps únicamente según schema y descripciones anteriores; `success` HTTP de un aggregate no es confirmación on-chain.
+
+
+**Mini-contract crítico de posiciones:** entrada GET `/v2/positions?user=<0x...>&status=OPEN` o `REDEEMABLE` o `CLOSED` (verificar aceptación exacta de filtro en schema antes de usar en vivo); campos de respuesta de interés: posición/asset ID, condition, wallet, size/balance, price/value, PnL y resolución cuando presentes. `data:null` y `data:[]` son resultados de lectura legítimos de v2. Un cursor sólo es reutilizable con la combinación de endpoint/filtros original: ciertas familias dan HTTP 400 si cambia el filtro, trades/activity pueden reanclarse; el cursor no codifica un snapshot global inmutable. El detalle wire oficial de `positions`, `trades`, `activity` y `resolutions` está expandido en §3.4.1; el SDK transforma nombres y números de forma independiente. No inferir garantías históricas desde una respuesta actual. [S30][S41]
 
 **V1 residual (compatibilidad, NO confundir con D2):** `GET /positions`, `/closed-positions`, `/value`, `/traded`, `/activity`, `/trades`, `/holders`, `/oi`, `/live-volume`, `/v1/market-positions`, `/v1/positions/combos`, `/v1/activity/combos`, `/v1/leaderboard`, `/v1/builders/leaderboard`, `/v1/builders/volume`, `/v1/accounting/snapshot`. La migración explícita orienta posiciones v1 abierta/cerrada al `/v2/positions` con filtro `status`; la función accounting snapshot permanece v1. No trasladar offsets ni alias `market` de v1 a D2. [S30][S32a]
 
