@@ -62,6 +62,7 @@ Esta skill es el router agent-facing. Los procedimientos mecánicos viven exclus
 - `30-resources/runbooks/aranea-kafka-mcp.md` → [[aranea-kafka-mcp]]
 - `30-resources/runbooks/aranea-flink-mcp.md` → [[aranea-flink-mcp]]
 - `30-resources/runbooks/aranea-observability-mcp.md` → [[aranea-observability-mcp]]
+- `30-resources/runbooks/aranea-temporal-mcp.md` → [[aranea-temporal-mcp]]
 - `30-resources/runbooks/aranea-mcp-capability-plane.md` → [[aranea-mcp-capability-plane]]
 
 La arquitectura/deployment común para **agregar o reemplazar capabilities** vive en [[AGENT-PLATFORM - MCP Access Plane - Architecture]]. No redescubrirla desde cero salvo evidencia material de drift.

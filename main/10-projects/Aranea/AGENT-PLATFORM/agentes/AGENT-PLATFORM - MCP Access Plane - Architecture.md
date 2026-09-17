@@ -152,7 +152,7 @@ No copiar tokens materializados desde Nginx a documentación.
 | `3007` | `aranea-kafka-dev-admin` | DEV admin | Nginx auth → Kafka MCP interno |
 | `3008` | `aranea-flink-dev-admin` | DEV admin | Nginx auth → Flink MCP interno |
 
-### Inventario CURRENT — 10 capabilities (2026-09-16)
+### Inventario CURRENT — 11 capabilities (2026-09-17)
 
 | Puerto | Capability | Autoridad | Estado |
 |---:|---|---|---|
@@ -166,6 +166,7 @@ No copiar tokens materializados desde Nginx a documentación.
 | `3007` | `aranea-kafka-dev-admin` | DEV admin — 19 tools | certificado |
 | `3008` | `aranea-flink-dev-admin` | DEV admin REST — 22 tools, sin SQL | certificado |
 | `3009` | `aranea-observability-ro` | PROD-RO — 22 tools RO (Grafana/Prometheus/Loki de ARGUS) | certificado 2026-09-15 |
+| `3010` | `aranea-temporal-ro` | PROD-RO — 28 tools sin mutadores, `hardReadOnly` + allowlist namespaces SQX | certificado 2026-09-17 |
 
 **Antes de asignar un puerto nuevo, verificar runtime vivo con `docker ps` + `ss -lntp`; este inventario documenta estado, no reserva puertos futuros.**
 
