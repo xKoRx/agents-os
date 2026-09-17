@@ -59,7 +59,7 @@ Pasar de "tenemos backups parciales y silenciosos" a "tenemos un sistema de back
 
 - **ACTIVE desde 2026-09-16** por mandato owner (reactivación del carril Backup/DR). Reconciliación R0 completa: `2026-09-16-R0-reconciliacion.md` (mismo directorio).
 - R0 evidenció: 59 guests (23/23 Tier0 KEEP + ADDs propuestos), **ningún mecanismo de backup activo** (0 snapshots ZFS, sin vzdump jobs, sin restic/rclone, sin dumps DB), PBS VM 180 running en kronos pero sin registro en pve_storage ni acceso demostrado (gate owner), pool2 single-disk con scrub overdue.
-- Los nueve agent-projects hijos permanecen `paused` hasta su fase: ap-02 cambia de "crear VM PBS" a "adoptar/recuperar VM 180 existente"; ap-06 se reescribe contra ARGUS (stack docker-observability mencionado quedó legacy).
+- Los nueve agent-projects hijos operan según el roadmap por fases: ap-00 **DONE** (R0+D0), ap-01 **IN-PROGRESS** (R1+R1.5: 4/6 unidades VERIFIED+AUTOMATED, 2 gated), los demás `paused` hasta su fase; ap-02 cambia de "crear VM PBS" a "adoptar/recuperar VM 180 existente"; ap-06 se reescribe contra ARGUS (stack docker-observability mencionado quedó legacy).
 
 ## 📦 Alcance
 

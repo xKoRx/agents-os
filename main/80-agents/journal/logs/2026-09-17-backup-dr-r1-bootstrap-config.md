@@ -43,6 +43,9 @@ preflight mínimo sobre captura `*_20260916_233513` + verificación live acotada
 
 ### Unidades SKIPPED_GATED (deuda acotada, no bloquean el resto)
 
+> [!note] SUPERSEDED parcial (R1.5, 2026-09-17)
+> De estas 3 unidades: etcd-snapshot quedó RESUELTA en R1.5 (:2379 resultó alcanzable desde hermes-vm — el "filtrado desde LAN" registrado abajo era falso para este host); pve-config quedó PARCIAL (node-local VERIFIED automatizado, pmxcfs sigue gated); pi-hole sigue gated con causa ampliada (L2-dead + token). Estado vigente: change log `2026-09-17-backup-dr-r15-config-completion`. El texto de abajo se conserva como registro histórico de R1.
+
 1. **pve-config** (`/etc/pve` + networking): sin canal de lectura — `agent-read`
    no expone config; root SSH desde hermes falla cerrado en todos los nodos
    (probe BatchMode con las 3 llaves existentes: Permission denied, correcto).
