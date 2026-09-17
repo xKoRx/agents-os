@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-09-16"
+updated: "2026-09-17"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
@@ -11,6 +11,7 @@ entities:
   - "[[Aranea]]"
 related:
   - "[[AGENT-PLATFORM - MCP Access Plane - Architecture]]"
+  - "[[Daedalus — Development Agents MCP Access & Gaps]]"
   - "[[aranea-mcps-expert]]"
   - "[[aranea-ssh-mcp]]"
   - "[[aranea-postgres-mcp]]"
@@ -18,6 +19,10 @@ related:
   - "[[aranea-hasura-mcp]]"
   - "[[aranea-kafka-mcp]]"
   - "[[aranea-flink-mcp]]"
+  - "[[aranea-observability-mcp]]"
+  - "[[aranea-temporal-mcp]]"
+  - "[[aranea-minio-mcp]]"
+  - "[[aranea-etcd-mcp]]"
 aliases:
   - runbook capability plane MCP Aranea
   - aranea mcp plane
@@ -39,28 +44,33 @@ tags:
 
 ## Propósito
 
-Validar y diagnosticar el capability plane MCP de Aranea cuando el fallo está en discovery, configuración del cliente, environment, auth, proxy, transporte o policy, antes de culpar al backend de datos/servicio. El routing agent-facing vive en [[aranea-mcps-expert]], la arquitectura común en [[AGENT-PLATFORM - MCP Access Plane - Architecture]] y la mecánica de cada familia en sus runbooks.
+Diagnosticar discovery, configuración del cliente, env, auth, proxy, transporte, sesiones o policy antes de culpar al backend de datos/servicio. Router agent-facing: [[aranea-mcps-expert]]. Arquitectura y puertos: [[AGENT-PLATFORM - MCP Access Plane - Architecture]]. Procedimientos de cada familia: sus runbooks. Matriz por consumidor Daedalus y gaps Echo/Forge de acceso exclusivamente: [[Daedalus — Development Agents MCP Access & Gaps]]. No usar esta nota como SPEC de producto.
 
-## Estado normal
+## Estado normal (registrado al 2026-09-17)
 
-Capabilities actualmente certificadas/esperadas por familia:
+**13 capabilities**; listado de registros certificados por familia, no sustituto de `tools/list` efectivo en el cliente:
 
 ```text
-aranea-ssh
-aranea-postgres-ro
-aranea-postgres-rw
-aranea-mongo-forge-ro
-aranea-mongo-forge-rw
-aranea-hasura-prod-ro
-aranea-hasura-dev-admin
-aranea-kafka-dev-admin
-aranea-flink-dev-admin
-aranea-observability-ro
+3000  aranea-ssh
+3001  aranea-postgres-ro
+3002  aranea-postgres-rw
+3003  aranea-mongo-forge-ro
+3004  aranea-mongo-forge-rw
+3005  aranea-hasura-prod-ro
+3006  aranea-hasura-dev-admin
+3007  aranea-kafka-dev-admin
+3008  aranea-flink-dev-admin
+3009  aranea-observability-ro
+3010  aranea-temporal-ro
+3011  aranea-minio-ro
+3012  aranea-etcd-ro
 ```
 
-## Consumer onboarding managed (B2 — 2026-09-14)
+La fotografía histórica con sólo 10/11 capabilities precede la incorporación de Temporal/MinIO/etcd. MinIO y etcd están ACTIVE y certificados server + Cursor desde 2026-09-17, con limitaciones de IAM/prefix documentadas en [[aranea-minio-mcp]] y [[aranea-etcd-mcp]]. **Cursor PASS no implica ZCode/Codex PASS**: el 2026-09-16 ZCode/Codex estaban en 10/10 y el patcher/smoke del nuevo trío sigue pendiente de evidencia material por cliente. No deducir éxito de que existan las entries ni requerir owner cuando un operador ya autorizado pueda aplicar una corrección dentro de ACL/contrato.
 
-Hermes puede onboardear/remover capabilities en el consumer real Daedalus/Cursor sin edición manual del owner:
+## Consumer onboarding managed (B2 2026-09-14, B4 2026-09-15)
+
+Hermes puede onboardear/remover capabilities en el consumer real Daedalus/Cursor sin edición manual del owner bajo un permiso scoped:
 
 ```text
 Authority:   hermes-ops@daedalus (key-only, password locked, SIN sudo)
@@ -69,191 +79,67 @@ Authority:   hermes-ops@daedalus (key-only, password locked, SIN sudo)
              /home/kor/.config/aranea/secrets/hermes-managed/ (rwx)
 Operator:    /home/kor/.config/aranea/secrets/hermes-managed/bin/
              mcp-onboard.py {add|remove|status}
-             consumer-smoke.py (bearer por stdin, nunca en argv/env persistido)
-Config real: /home/kor/.cursor/mcp.json  (refs ${env:VAR}, jamás bearer literal)
+             consumer-smoke.py (bearer por stdin, nunca argv/env persistido)
+Config real: /home/kor/.cursor/mcp.json (refs ${env:VAR}; nunca bearer literal)
 Env chain:   plasma-workspace/env/aranea-mcp.sh -> .config/mcp/aranea-env.sh
-             -> secret files 0600 de kor (NO accesibles para hermes-ops: correcto)
-Onboarding:  entry nueva = clon de la entry existente de la capability (misma
-             ${env:} ref) -> cero duplicación de bearer, cero mutación del plane
-Smoke:       initialize (clientInfo REQUIERE version) / tools/list / tools/call
-             RO inocuo, desde Daedalus, resolviendo mcp.json + ${env:} shape
-Rollback:    remove + diff byte-identical vs backup (sha256 pre guardado)
-Quirk:       scripts con ${...}/regex via heredoc-through-ssh se corrompen ->
-             distribuir SIEMPRE por scp/base64-file
+             -> archivos de secreto 0600 de kor (NO accesibles para hermes-ops)
+Onboarding:  clon de entry existente, ref ${env:} idéntica; sin duplicar bearer
+Smoke:       initialize (clientInfo requiere version) / tools/list / tools/call inocuo
+             usando mcp.json + env chain real del consumer
+Rollback:    remove + hash byte-identical vs backup anterior
+Quirk:       scripts con ${...}/regex por heredoc-through-ssh se corrompen;
+             distribuir por scp/base64-file
 ```
 
-Revoke de la authority completa: `userdel -r hermes-ops` + `setfacl -x` de las entradas `u:hermes-ops` en `/home/kor`, `.config`, `.cursor`, `.config/mcp`, `.config/aranea`, `.config/aranea/secrets`, `mcp.json` y `aranea-env.sh` (detallado en el change_log `2026-09-14-b2-real-consumer-onboarding-closed`).
+Revoke de esta autoridad: `userdel -r hermes-ops` + `setfacl -x` sólo sobre las entradas u:hermes-ops autorizadas en `/home/kor`, `.config`, `.cursor`, `.config/mcp`, `.config/aranea`, `.config/aranea/secrets`, `mcp.json`, `aranea-env.sh` (detalle en change_log `2026-09-14-b2-real-consumer-onboarding-closed`).
 
-Provisioning del secret del chain (B4 — 2026-09-15, certificado sin owner): una env nueva del chain NO exige tocar los secret files de kor (inaccesibles por diseño). El bearer se persiste en `~kor/.config/aranea/secrets/hermes-managed/<cap>.bearer` (`640` hermes-ops + ACL `u:kor:r--`; el dir tiene sgid kor + default ACL) y `aranea-env.sh` — editable in-place por la ACL `rw` de hermes-ops preservando owner/mode/ACLs de kor — recibe el bloque canónico `if [ -r "$HOME/.config/aranea/secrets/hermes-managed/<cap>.bearer" ]; then export VAR="$(cat <path>)"; fi`. Disciplina: backup pre con sha, patch idempotente por marker, `bash -n` gate con auto-restore, rollback byte-identical probado y re-aplicación convergente (mismo sha final). Chain-cert = sourcear `aranea-env.sh` con `HOME=/home/kor` y resolver el entry real de `mcp.json` (los guards son `$HOME`-relativos: una sonda con el HOME equivocado reporta falsos NOT_SET). Aplicado a `ARANEA_OBSERVABILITY_MCP_RO_BEARER`; cero edición owner.
+Provisioning B4: un env nuevo se persiste en `~kor/.config/aranea/secrets/hermes-managed/<cap>.bearer` (640, ACL `u:kor:r--`); `aranea-env.sh` se edita con bloque idempotente `if [ -r ... ]; then export VAR="$(cat ...)"; fi` con backup sha y `bash -n`/auto-restore. Certificar sourceando el chain con `HOME=/home/kor` y comprobando la entry real. HOME incorrecto produce falsos NOT_SET. Esto se demostró con observabilidad. Secret files originales de kor fuera del alcance hermes-ops permanecen así; no ampliar ACL para Codex/ZCode por comodidad.
 
-Limitación conocida (acotada 2026-09-15): el auth proxy soporta un solo bearer por `map nginx` (`__MCP_BEARER_TOKEN__`). B3.3 demostró que un bearer NUEVO se genera server-side (`openssl rand -hex 32`) sobre el proxy existente sin recrear container; la recreación del proxy sólo aplica si el map necesitara otra estructura (p. ej. segundo consumer distinto en el mismo endpoint).
+El proxy Nginx histórico admite un solo bearer por su `map`; B3.3 demostró generar bearer nuevo server-side sobre proxy existente sin recrear el container, salvo cambio estructural del map. Bearer nunca en docs/logs/argv. ZCode mantiene literal en config 600 por decisión documentada 2026-09-16 (`${env:}` en headers no validado); Codex usa `bearer_token_env_var` tras normalización 2026-09-16. NO copiar tokens entre clientes o notas; ejecutar nueva certificación del trío 3010–3012 antes de declararlos completamente onboarded.
 
-Endpoints certificados adicionales:
+## Procedimiento de diagnóstico
+
+1. Inventariar `tools/list` real del cliente concreto (`Cursor`, `ZCode`, `Codex`); distingir config presente, env heredada, handshake, tools expuestas y llamada inocua. Un `Up` o HTTP sin payload no prueba MCP.
+2. Verificar URL, variable y autorización **sin revelar secreto** (`SET/NOT_SET`). Una shell con variable SET no implica que Cursor ya abierto la haya heredado.
+3. Ante missing capability: discovery/config/environment antes de culpar al backend. Ante 401: bearer cliente/proxy; no rotar credenciales upstream por intuición. Ante 400/406: GET `/mcp` manual puede no ser request Streamable HTTP válido; comprobar initialize y headers MCP reales.
+4. Ante `POLICY_DENIED` o Access Denied, cargar router/runbook de familia y respetar boundary. No ir al servicio directo, ampliar ACL ni cambiar de ambiente. Para timeout reducir scope/limit/query antes de ampliar policy.
+5. Ante change de capability: cargar Architecture; comparar imagen/mounts/red/puerto y tool surface real, preparar backup/revert, añadir sólo el backend/proxy autorizado, test positivo+negativo 401/no-write y E2E en cliente real. Sin cert no cambiar estado de skills.
+6. Hasura PROD authority: server tools/list EXACTAMENTE 3 (`get_inconsistent_metadata`, `get_schema`, `get_version`); sin `export_metadata`/`run_sql`/`reload_metadata` (H1). `mcp_auth` del cliente Cursor no cuenta si ausente en tools/list server-side. DEV 9 tools. `get_schema` históricamente grande (~11MB) podía matar hijo stdio; evitar queries masivas sin límite.
+7. GAP-ECHO-010 Hasura: `initialize` 200+sid pero tools `-32603 Not connected` era hijo compartido muerto mcp-proxy 6.7.16, fix `-g010fix` respawnea con sesión nueva; ssh-mcp (pool 64, init-per-call) y flink-mcp (SDK Java) NO comparten esta causa. `-32001` sid inexistente; `-32000` sid ausente; `202` sin sid en notificaciones no es respuesta positiva a initialize.
+8. Kafka DEV: 19 tools, `alter_configs` incremental Aranea para no revertir propiedades no objetivo; detener mutaciones ante drift. Kafka PROD no certificado.
+9. Flink DEV: 22 tools y NO SQL. REST/control por `aranea-flink-dev-admin`; filesystem/Docker/lifecycle sólo por `aranea-ssh` + `docker-echo-dev-operator`. Declarativo Portainer stack 1; no `docker compose up -d` indiscriminado.
+10. Temporal 3010: 28 tools RO `hardReadOnly`, allowlist namespaces; iniciar/cancelar no está cubierto. MinIO 3011: 9 tools listadas, put/copy/delete denegados e IAM sólo prefixes del runbook. etcd 3012: 4 tools RO, prefijos/secret keys filtrados; acceso directo al cluster sin auth/TLS NO es workaround.
+11. Windows privileged evidence: `AraneaEvidencePublish` SYSTEM -> JSON -> `mt5-kronos-operator` `echo-dev` read-only. El viewer `sftp-download` está `POLICY_DENIED` en Windows; no inferirlo desde viewer Linux histórico. Filtros y frescura en [[aranea-ssh-mcp]].
+12. Distinguir reparación `mcps` de consumer onboarding: para operaciones appliance usar management path `mcps-ops` vía [[aranea-mcp-plane-operator]], nunca usar un MCP del mismo appliance para reiniciarlo. Un smoke por stdin no equivale a demostrar env-chain persistente; exigir ambas pruebas cuando corresponde.
+
+## Casos históricos relevantes, sin tratarlos como estado actual
+
+- 2026-09-11 Mongo Forge ausente del cliente por bearers env `NOT_SET`; backend no era culpable.
+- 2026-09-12 Hasura DEV PASS: :3006 401 sin bearer, init 200+sid, tools/list 9, Cursor `get_version`/consistency PASS; admin secret server-side.
+- 2026-09-12 Hasura PROD certificación inicial 4 tools incl. `export_metadata`: **SUPERSEDED 2026-09-15** H1 elimina export, 3 vigentes; cualquier rebuild que lo reintroduzca queda fuera de contrato.
+- 2026-09-13 Kafka DEV :3007 401, 19 tools, 6 brokers, golden admin smoke create/alter incremental/increase/produce/consume/group/delete PASS con recursos temporales. `ARANEA_KAFKA_MCP_DEV_ADMIN_BEARER` se carga vía chain KDE; clientes abiertos necesitan reheredar env.
+- 2026-09-13 Flink DEV :3008 401 wrong bearer, init, 22 tools, no SQL, `get_cluster_info`/`list_jobs` PASS, host operator root DEV; su Java MCP puede usar SSE `data:` en tools/call. Portainer stack 1 es autoridad del runtime.
+- 2026-09-15 observabilidad 22 tools viewer RO, Prometheus/Loki queries reales; Jaeger datasource visible pero sin toolset Jaeger.
+- 2026-09-16 GAP-ECHO-010 Hasura `-g010fix` validado 50/50 DEV + 30/30 PROD server+Daedalus. El diagnóstico anterior que atribuía lo mismo a SSH/Flink está SUPERSEDED.
+- 2026-09-17 Windows evidence publisher ACTIVE/CERTIFIED por consumer; dos fallos anteriores del self-verifier del instalador eran metadata, no fallo de la publicación. MinIO/etcd certificados, Cursor 3/3 sobre el trío nuevo; ZCode/Codex aún requieren su propio smoke posterior.
+
+## Validación / rollback
 
 ```text
-Hasura PROD RO    http://mcps.lab.aranea.cl:3005/mcp
-Hasura DEV admin  http://mcps.lab.aranea.cl:3006/mcp
-Kafka DEV admin   http://mcps.lab.aranea.cl:3007/mcp
-Flink DEV admin   http://mcps.lab.aranea.cl:3008/mcp
-Observability RO  http://mcps.lab.aranea.cl:3009/mcp
+Plane symptom:      missing|401|POLICY_DENIED|timeout|invalid request
+Config present:     yes|no
+Required env:       SET|NOT_SET (value never shown)
+Capability exposed: yes|no (tools/list del cliente específico)
+Client vs backend:  distinguished
+Tool surface:       expected exact set|unexpected
+Architecture drift: none|material
+Mutation:           none | scope + rollback + postcondition
+Bypass:             none
+Secrets in docs:    none
 ```
 
-La mera presencia de un bloque en config no demuestra que la capability esté conectada: el proceso cliente también debe heredar las env vars requeridas y completar handshake MCP.
-
-Para cualquier capability nueva o reinstalada, el deployment normal es el definido en [[AGENT-PLATFORM - MCP Access Plane - Architecture]]: proxy bearer publicado, backend MCP interno sin host port y credencial upstream separada del bearer del cliente cuando el servicio destino la requiera.
-
-## Procedimiento
-
-1. **Inventariar antes de probar backend.** Listar capabilities/tools realmente expuestas por el cliente. Si una capability esperada no aparece, clasificar primero como `MCP discovery/client`.
-2. **Verificar configuración sin secretos.** Confirmar URL, nombre de env var y policy esperada; nunca imprimir el bearer.
-3. **Verificar environment del proceso.** Comprobar sólo `SET/NOT_SET`. Una env presente en una shell no implica que un proceso ya iniciado la haya heredado.
-4. **Distinguir configured vs exposed.** Si el bloque MCP existe pero no hay tools, no saltar al servicio destino por acceso directo como sustituto: aislar env/auth/handshake primero.
-5. **Enrutar `401`.** Tratarlo como bearer/config del cliente o boundary del proxy autenticado. No rotar ni pedir secretos upstream sin evidencia.
-6. **Enrutar policy/permission denied.** Respetar autoridad de [[aranea-mcps-expert]] y runbook de familia; no crear bypass.
-7. **Enrutar `invalid request` / HTTP 400/406.** Un `GET /mcp` manual puede ser inválido para Streamable HTTP y no prueba caída del backend. Validar `initialize`, sesión y headers o hacer llamada MCP real.
-8. **Enrutar timeout.** Estrechar query/comando/filtro antes de ampliar policy.
-9. **Disciplina de cambio.** Al agregar/reemplazar/reinstalar capability: cargar [[AGENT-PLATFORM - MCP Access Plane - Architecture]], reutilizar blueprint y actualizar skill + runbook de familia. No introducir otra topología sin evidencia material.
-10. **Drift check mínimo.** No repetir auditoría completa. Comparar primero containers/red/binds; inspeccionar mounts/commands sólo si el drift material lo exige.
-11. **Hasura authority check.** Para Hasura, `tools/list` server-side forma parte de la certificación de autoridad. No aceptar `--read-only`, nombre del container o README como prueba suficiente de PROD RO.
-12. **Kafka authority check.** Para Kafka DEV, `tools/list` debe exponer la superficie administrativa certificada y `alter_configs` debe conservar semántica incremental. Si una config no objetivo cambia, detener mutaciones y tratar la capability como fuera de contrato.
-13. **Flink authority check.** Para Flink DEV, `tools/list` debe exponer exactamente 22 tools y ninguna tool SQL. Lifecycle/filesystem/Docker no pertenecen a la superficie Flink MCP: deben ir por `aranea-ssh` + `docker-echo-dev-operator` según [[aranea-flink-mcp]].
-14. **Distinguir tool backend vs helper cliente.** Una entrada como `mcp_auth` reportada por Cursor no amplía el authority boundary si no aparece en `tools/list` server-side del MCP correspondiente.
-
-## Casos conocidos
-
-### Mongo Forge — 2026-09-11
-
-Capabilities declaradas pero ausentes del inventario resultaron ser env vars bearer `NOT_SET` en Daedalus. Lección: diagnosticar discovery/env antes de culpar a MongoDB.
-
-### Hasura DEV — 2026-09-12
-
-`aranea-hasura-dev-admin` fue certificado por capas:
-
-```text
-unauthenticated :3006/mcp -> 401
-authenticated initialize -> 200 + session id
-tools/list -> 9 tools admin
-Daedalus -> endpoint -> 200
-Cursor -> get_version/get_inconsistent_metadata -> PASS
-```
-
-El Hasura admin secret nunca fue entregado al cliente; queda server-side en `mcps`.
-
-### Hasura PROD RO — 2026-09-12 (superficie vigente: 3 tools desde H1 2026-09-15)
-
-El upstream `--read-only` conservaba `reload_metadata` y `run_sql`, por lo que no se aceptó como boundary suficiente. Se construyó una variante strict-RO que elimina ambas tools y mantiene `--read-only` para no registrar mutadores de metadata.
-
-Certificación 2026-09-12:
-
-```text
-unauthenticated :3005/mcp -> 401
-authenticated initialize -> 200 + session id
-tools/list server-side -> 4 tools (HISTORICAL: incluía export_metadata)
-  export_metadata
-  get_inconsistent_metadata
-  get_schema
-  get_version
-backend host port -> none
-Cursor -> get_version/get_inconsistent_metadata -> PASS
-metadata -> consistent
-```
-
-Desde el remediation H1 (2026-09-15), `export_metadata` fue ELIMINADO de la superficie por exponer `database_url` con credenciales upstream embebidas: la superficie vigente es exactamente `get_inconsistent_metadata`, `get_schema`, `get_version`. Detalle en [[ACCESS-CERTIFICATION]] § Remediation run 2026-09-15 y [[aranea-hasura-mcp]].
-
-Cursor además mostró `mcp_auth`, pero esa entrada no apareció en `tools/list` server-side y no se considera tool Hasura ni ampliación del authority boundary.
-
-### GAP-ECHO-010 (familia hasura) — 2026-09-16
-
-`initialize` que responde `200+sid` mientras TODO `tools/*` falla `-32603 Not connected` en las capabilities hasura (dev/prod-ro): el hijo stdio compartido del `mcp-proxy` 6.7.16 murió y no había respawn. Con el fix `fix-shared-child.mjs` (imágenes `-g010fix`), un `initialize` fresco recupera sesión funcional sin restart. Mapeo vigente de errores y estado HISTORICAL/SUPERSEDED del diagnóstico intermedio async-202: ver [[aranea-hasura-mcp]] § Failure modes. `ssh-mcp` (pool-64) y `flink-mcp` (SDK Java) NO comparten esta causa. Certificación: dev 50/50 y prod-ro 30/30 server + consumer Daedalus PASS ([[ACCESS-CERTIFICATION]] § Remediation run 2026-09-16 c).
-
-### Kafka DEV admin — 2026-09-13
-
-`aranea-kafka-dev-admin` quedó certificado por capas:
-
-```text
-unauthenticated :3007/mcp -> 401
-authenticated tools/list -> exactamente 19 tools
-backend host port -> none
-Cursor -> describe_cluster/list_topics -> PASS
-cluster_id -> Eiuq4GsaTXOUPif-rLU-6Q
-brokers -> 6
-topics baseline -> 117
-```
-
-Golden admin smoke sobre recursos `mcp-cert-*`:
-
-```text
-create topic -> PASS
-alter retention.ms incremental -> PASS / configs ajenas intactas
-increase partitions -> PASS
-produce + consume marker -> PASS
-consumer group describe/offsets/reset -> PASS
-delete temp topic -> PASS
-```
-
-El backend upstream fue patchado para usar `incremental_alter_configs`; el `alter_configs` legacy podía revertir a defaults propiedades no incluidas. Ver [[aranea-kafka-mcp]] para la autoridad técnica y referencias oficiales.
-
-Daedalus carga `ARANEA_KAFKA_MCP_DEV_ADMIN_BEARER` mediante el mismo chain KDE usado por el resto de capabilities (`~/.config/plasma-workspace/env/aranea-mcp.sh` -> `~/.config/mcp/aranea-env.sh`). Un proceso Cursor ya iniciado no absorbe automáticamente una variable agregada a mitad de sesión.
-
-### Flink DEV admin + host operator — 2026-09-13
-
-`aranea-flink-dev-admin` quedó certificado por capas:
-
-```text
-unauthenticated :3008/mcp -> 401
-wrong bearer -> 401
-authenticated initialize -> 200 + Mcp-Session-Id
-protocol -> 2024-11-05
-tools/list -> exactamente 22 tools
-SQL tools -> none
-backend host port -> none
-get_cluster_info -> PASS
-list_jobs -> PASS
-Daedalus -> PASS
-Cursor -> cluster/job read -> PASS
-```
-
-Target observado:
-
-```text
-Flink 1.14.3 / commit 98997ea
-TaskManagers=1
-slots=2 total / 0 available
-job StatefulFunctions RUNNING
-job id=974f0479256bc8ffe71fe962750e9c90
-```
-
-El backend Java entrega `tools/call` como `text/event-stream`; un parser que espere JSON plano puede fallar aunque la operación haya sido exitosa. Para probes manuales, parsear eventos `data:`.
-
-El host/runtime plane quedó separado y certificado mediante `aranea-ssh` profile `docker-echo-dev-operator`, con identidad `root@192.168.31.75`. La separación es contractual: Flink MCP administra REST/control plane; SSH operator administra filesystem/Docker/lifecycle.
-
-El stack declarativo real vive en Portainer stack `1`. El path interno `/data/compose/1/docker-compose.yml` corresponde en el host a `/var/lib/docker/volumes/portainer_data/_data/compose/1/docker-compose.yml`. Ver [[aranea-flink-mcp]] antes de cualquier redeploy.
-
-## Validación
-
-```text
-Plane symptom:       missing|401|POLICY_DENIED|timeout|invalid request
-Config present:      yes|no
-Required env:        SET|NOT_SET (value never shown)
-Capability exposed:  yes|no
-Client vs backend:   distinguished
-Architecture drift:  none|material
-Tool surface:        expected exact set|unexpected
-Family runbook:      loaded only after plane/auth is scoped
-Bypass:              none
-Secrets persisted in docs: no
-```
-
-## Rollback / recuperación
-
-No publicar backends, no abrir nuevos puertos y no pedir secretos como workaround. Si una modificación de config/env empeora discovery, restaurar configuración anterior y reiniciar cliente; tocar backend sólo con evidencia que lo incrimine.
-
-Para Hasura PROD, si un upgrade vuelve a exponer `run_sql`, `reload_metadata` o cualquier mutador, considerar la capability fuera de contrato y restaurar el artefacto strict-RO certificado antes de continuar.
-
-Para Kafka DEV, si un rebuild cambia versiones pinneadas, pierde el patch incremental o `tools/list` deja de coincidir con la superficie certificada, restaurar `local/kafka-mcp:2.0.0-0b3bf47-inc1-fm3.0.1` y no ejecutar mutaciones hasta recertificar.
-
-Para Flink DEV, si un rebuild pierde el pin/patch compatible con Flink 1.14.3, `tools/list` deja de ser exactamente 22, aparecen SQL tools inesperadas o el backend se publica al host, considerar la capability fuera de contrato y restaurar `local/flink-mcp:0.3.1-981bbef-aranea2-flink1.14` antes de continuar. Si la operación requerida es host/runtime, no ampliar el MCP Flink: usar el profile SSH dedicado.
+No publicar backend, abrir puertos, pedir secretos o modificar ACL para resolver discovery. Config/env que empeore el cliente ⇒ restore de backup y reinicio/re-smoke sólo del cliente. Hasura PROD expone mutadores/export ⇒ restore strict-RO; Kafka pierde patch incremental ⇒ restore imagen `local/kafka-mcp:2.0.0-0b3bf47-inc1-fm3.0.1`; Flink pierde pin/patch o añade SQL ⇒ restore `local/flink-mcp:0.3.1-981bbef-aranea2-flink1.14`. Nuevas familias: seguir runbook específico y rollback propio; no inventar rollback genérico.
 
 ## Evidencia
 
-Registrar capability afectada, estado de discovery, nombres de env vars sin valores, boundary cliente/proxy/backend, tool surface server-side cuando aplique, drift respecto de arquitectura, acción correctiva y resultado material.
+Registrar capability, fecha, consumer exacto, discovery/env por nombre sin valor, handshake/tool surface, auth/policy, target, acciones y rollback, y efecto material. Server cert, Cursor cert y ZCode/Codex cert son dimensiones distintas.
