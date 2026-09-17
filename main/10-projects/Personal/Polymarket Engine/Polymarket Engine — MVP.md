@@ -1811,3 +1811,143 @@ Convenciones comunes a todos los slices: cada slice es una asignación NORMAL ce
 **Definition of Done:** fixtures fee/tick verdes con evidencia; ningún código retorna fee puntual sin revisión de régimen; invalidación observable por revision bump en test.
 
 **Handoff:** Books (S06) exigirá constraints válidos para salir de `SYNCING`; Economics (S10) consume `FeeResolver`; Regimes expone el reducer de fee trade-observed que S06 conecta al WS.
+
+#### M2-S06 — Market WS + book shards + quality
+
+**Goal:** capturar y proyectar books reales con epochs fencing y estados de calidad honestos; checkpoint vertical `record` de un mercado real.
+
+**Depends on:** M2-S05 (constraints), M2-S01–S03.
+
+**Allowed scope:** `internal/transport/marketws/**`; `internal/books/**`; `testdata/books/**`; `cmd/engine` subcomandos `record` y `books inspect`; wiring de fee trade-observed hacia el reducer de Regimes.
+
+**Forbidden:** mezclar REST+deltas WS; reordenar deltas por timestamp de fuente; backfill L2; Sports WS/RTDS; User WS; revocar epoch por saturación RUNTIME (sólo por fallo real de EVIDENCE); "reparar" gaps con REST; tocar paquetes de S07+.
+
+**Contracts:** unidad de ownership (un asset → un shard → una conexión/epoch autora en cada momento); bootstrap `initial_dump=true` esperando `book` completo por asset (timeout → renovar conexión/suscripción con backoff, permanecer bloqueado); deltas previos al primer `book` se capturan pero no se aplican; aplicación exacta M1.5 (`book` reemplaza niveles; `price_change` asigna size absoluto y cero elimina; `last_trade_price` no muta niveles; tick change invalida constraints sin reescalar niveles); namespace separado `REST_OBSERVATION` sin mezcla; tras gap → epoch nuevo con snapshot WS (nunca reconstrucción del intervalo perdido); estados de calidad y uso autorizado exactamente como la tabla M1.5 (`UNINITIALIZED/SYNCING/OBSERVED_USABLE/REST_OBSERVATION/STALE/SUSPECT/HALTED`); budgets de freshness y checks periódicos REST con resultado `INCONCLUSIVE` ante tráfico concurrente; heartbeat PING 10 s; reorden canónico de books REST; book vacío válido sin profundidad ejecutable; hash opaco; no deduplicar mensajes de mercado por timestamp/hash.
+
+**Persistence:** raw WS al journal EVIDENCE (S03); proyecciones in-memory + `applied_seq` cursor por shard en `reducer_cursors`.
+
+**Concurrency:** un reader por conexión; N shards single-owner con inbox FIFO y barreras (S07); overflow real de EVIDENCE → discontinuidad + epoch revocado + reconexión; overflow RUNTIME nunca revoca.
+
+**Failure behaviour:** delta antes de snapshot → no aplica; timestamp regresivo, crossed book o conflicto schema/ID → `SUSPECT` + nueva sincronización (sin parche selectivo de niveles); staleness → `STALE` bloquea evaluación; desconexión → fencing del epoch y discontinuidad marcada en Capture.
+
+**Tests:** G-05 fault injection (delta antes de snapshot; handover de socket; overflow; timestamps regresivos; crossed books; REST concurrente → sin frame elegible hasta nueva base y constraints); propiedades de aplicación (size absoluto, cero elimina, no doble suma, orden de recepción manda); fixtures WS versionadas de S02 reutilizadas; property con seeds.
+
+**Gates:** G-05; cierre de G-06 con consumidores reales (books y decisiones sólo hasta `durable_seq`).
+
+**Physical verification:** `go run ./cmd/engine record --assets <…>` suscribe, construye book y captura al journal; `go run ./cmd/engine books inspect --asset …` muestra estado/epoch/calidad; `go test ./internal/books/... -race`.
+
+**Definition of Done:** sesión de record sin estados `OBSERVED_USABLE` falsos (transiciones de calidad registradas y explicables); G-05 verde con evidencia; toda reconexión produce epoch nuevo y cero mezclas cross-epoch demostradas por property.
+
+**Handoff:** S07 construye frames sobre shards+quality; los datasets heredan discontinuidades explícitas; quality API congelada para SHADOW.
+
+#### M2-S07 — Frame Builder y delivery runtime
+
+**Goal:** cortes forward multi-asset con barreras FIFO, `revision_vector` y journaling de `DeliveryFrame` en RUNTIME — la unidad de entrega reproducible.
+
+**Depends on:** M2-S06 (shards/quality), M2-S04/S05 (revisiones universe/regimes), M2-S03.
+
+**Allowed scope:** `internal/frames/**`; `testdata/frames/**`; sin CLI nueva (consumo vía tests y S09).
+
+**Forbidden:** consultas arbitrarias del pasado; latest como sustituto de corte; retención ilimitada de revisiones; bloquear Capture; usar `dispatched_seq` global aislado como prueba de inbox procesado; tocar paquetes de S08+.
+
+**Contracts:** corte forward exacto de FBL-008: `C=dispatched_seq` fijado entre despachos; `Barrier(cut_id, C, generation)` encolada en cada inbox FIFO antes de cualquier record >C (o C futuro con barrera reservada antes de despachar >C); al cruzar la barrera cada owner publica su snapshot incluso sin mutación, con avance certificado por watermarks; `INELIGIBLE` ante falta de slot/bytes/deadline/generation inválida/shard pasado de C sin snapshot (jamás latest); presupuestos K snapshots por owner + bytes totales; coalescing de solicitudes del mismo corte; `DeliveryFrame{run_id, ordinal, trigger, cut_seq, revision_vector, quality, virtual_time}` journaleado en RUNTIME con descriptor append antes de invocar y durabilidad antes de publicar resultado/feedback; `revision_vector` con `RevisionRef` verificables (universe/relationship/regime/quality/clock/config + slots para account/risk/liquidity que S11/S13 completan); antigüedad, skew e incertidumbre viajan en el frame (coherencia local, no snapshot simultáneo del venue).
+
+**Persistence:** delivery frames en journal RUNTIME; snapshots retenidos ≤K/bytes con liberación al completar/abortar.
+
+**Concurrency:** dispatcher único + scheduler por run con prioridades deterministas; barreras con prioridad en inboxes; pausa de runs bajo presión sin revocar epochs ni bloquear Capture.
+
+**Failure behaviour:** sin slot/bytes o deadline → frame `INELIGIBLE` y refs liberadas; crash → frames válidos sólo ≤ `durable_seq`; descriptor no durable → no se publica feedback ni se invoca el siguiente callback dependiente; reserva/timeout de un frame no acumula historia.
+
+**Tests:** G-05b property (scheduling aleatorio: ningún record ≤C omitido y ninguna revisión >C incluida; K/bytes nunca excedidos; shard adelantado y shard sin eventos → snapshot o `INELIGIBLE`, jamás latest; sin bloqueo de Capture); invariants G-02 de frames; determinismo del ordinal.
+
+**Gates:** G-05b.
+
+**Physical verification:** `go test ./internal/frames/... -race`; harness de scheduling con ≥100 seeds registrados en evidencia.
+
+**Definition of Done:** property G-05b verde con seeds registrados; cualquier contraejemplo persiste seed + traza y es FAIL del slice; schema de `DeliveryFrame` emitido y congelado en test de compatibilidad.
+
+**Handoff:** S09 entrega `Frame` a estrategias; S13 reutiliza barreras para SHADOW; la semántica de corte queda cerrada para always.
+
+#### M2-S08 — Replay de observación y manifests
+
+**Goal:** reproducibilidad demostrable de la propia observación: replay determinista desde journal + manifest con lineage y `NOT_REPRODUCIBLE` explícito.
+
+**Depends on:** M2-S07 (schema DeliveryFrame), M2-S04–S06 (reducers), M2-S03.
+
+**Allowed scope:** `internal/replay/**`; `testdata/replay/**`; `cmd/engine` subcomandos `manifest build` y `replay`.
+
+**Forbidden:** red y wall-clock en replay; usar estado actual para rellenar revisión faltante; reconstruir cotizaciones no capturadas; backfill L2; prometer replay de episodios incompletos; tocar paquetes de S09+.
+
+**Contracts:** manifest M1.6/M1.9 (hashes/rangos de segmentos, coverage por stream/asset/epoch, holes, checkpoints, revisiones metadata/rules/fees/relationships y su disponibilidad temporal, normalizador, parámetros, seed, clocks, delivery policy, política de censura/exclusiones con denominadores); replay de observación (reducers sobre exactamente los records durables del manifest, determinista por manifest+código+params+seed); replay de delivery (inputs exactos por fase vía `DeliveryFrame`; delivery sin resultado durable al crash → `INCOMPLETE`); auditoría de decisiones (compara outputs registrados con inputs efectivos; no reenvía ni reejecuta como mandato); resolución de `revision_vector`: sólo ref resoluble por hash+localizador o snapshot pineado; falta o mismatch → `NOT_REPRODUCIBLE` de esa fase/decisión, nunca estado actual; virtual clock y RNG seeded por manifest; simulación contrafactual sólo con manifest/namespace nuevos y etiqueta explícita.
+
+**Persistence:** manifests como artefactos versionados (JSON + hashes); replay es read-only sobre journal.
+
+**Concurrency:** pool offline acotado; pausa bajo presión de disco (critical watermark bloquea nuevos replays antes que evidencia).
+
+**Failure behaviour:** segmento faltante o alterado → integridad `FAIL/MISSING` + run `NOT_REPRODUCIBLE`; episodio que cruza discontinuidad → termina ese episodio o queda etiquetado no evaluable según regla ex ante; exclusiones contadas en denominadores.
+
+**Tests:** G-07 (misma captura/manifest/seed/build con ≥3 concurrencias de ingestión offline → hashes de frames/reducers/oportunidades iguales; delivery replay concuerda con outputs completados); borrar/alterar un input pineado → `NOT_REPRODUCIBLE` detectado (semilla G-07b); property de determinismo con seeds.
+
+**Gates:** G-07 (parcial: cierre completo con estrategia y account refs en S09/S13).
+
+**Physical verification:** `record` → `manifest build` → dos `replay` con schedules distintos → reporte de igualdad de hashes; manipular un segmento del fixture → detección documentada.
+
+**Definition of Done:** replay bit-a-bit igual para ≥3 schedules; manifest manipulado detectado con evidencia; evidencia parcial G-07 emitida.
+
+**Handoff:** S09 corre REPLAY con virtual clock; S13 completa `revision_vector` con account/risk/liquidity/quote refs y cierra G-07/G-07b.
+
+#### M2-S09 — Strategy runtime y modo SCREEN
+
+**Goal:** materializar la Strategy API frozen (M1.8) con runtime aislado, deadlines y fencing; fixture neutral corriendo SCREEN end-to-end sobre frames reales.
+
+**Depends on:** M2-S07/M2-S08 (frames + delivery + virtual clock), M2-S01–S03.
+
+**Allowed scope:** `internal/strategy/**`; extensión de `internal/archtest` (imports gate de estrategias); `testdata/strategy/**` (fixture neutral); `cmd/engine` subcomando `screen`.
+
+**Forbidden:** signer/wallet/secrets/red en la API; goroutines propias, reloj global, random global o I/O en callbacks; plugins; pipeline completo REPLAY/SHADOW (S13); estrategias Sports/NegRisk reales; tocar `internal/account` (sólo consume tipos públicos cuando existan); paquetes de S10+.
+
+**Contracts:** tipos Go exactos de M1.8 (`Strategy`, `Factory`, `Descriptor`, `RunContext`, `Frame`, `EvaluationContext`, `Opportunity`, `ActionCandidate`, `Assessment`, `Feedback`), todos los valores inmutables, bounds en legs/payloads/oportunidades; lifecycle (`WAITING_DATA/UNSUPPORTED` sin campos cero sustitutos; `Start` una vez; `Observe(UniverseChanged)` antes de `Detect` sobre esa revisión; `Stop` idempotente sin colocar/cancelar órdenes); actor serial por instancia con mailbox acotado, coalescing sólo si `DataRequirements` lo permite, deadline con cancelación de contexto y descarte de resultados tardíos por run generation; panic recuperable → instancia `FAILED`, retiro de candidatos y política de cancel de remanentes vía Coordinator (stub deny-all en este slice); callback no cooperativo → cierre de instancia y restart controlado del proceso si no drena, sin acumular goroutines; descriptor journaleado en RUNTIME (append antes de invocar, durable antes de publicar); gate de imports (prohibidos `unsafe/reflect/os/exec/net/syscall/plugin/cgo` para paquetes de estrategia; base confiable delimitada) + lint (sin goroutines propias/I/O/reloj global); modo SCREEN: reporta candidatos/costes sin abrir orden real ni simulada y sin secrets.
+
+**Persistence:** runtime journal en RUNTIME; estado de instancia reconstruible desde manifest + deliveries.
+
+**Concurrency:** una ejecución por instancia; orden de mailbox determinista y registrado.
+
+**Failure behaviour:** errores tipados (`NO_SIGNAL/INSUFFICIENT_DATA/INVALID_MODEL/TRANSIENT_INPUT/fallo de software`); resultado tardío descartado por generation; instancia fallada no reinicia en el mismo proceso sin fencing; `INSUFFICIENT_DATA` nunca se convierte en señal.
+
+**Tests:** G-08 (fixture neutral single/multiasset con timers y external input sintético, resultados consistentes en SCREEN; cero acceso por API a red/secrets/signer/wallet/repos/execution ports; ownership de cada estado mutable verificado); G-09 (callback lento/panic/no cooperativo: otros consumidores mantienen progreso dentro del perfil, instancia fenced, sin leaks acumulativos, cancel/reconcile prioritarios); G-15b parcial (probe con import prohibido falla el gate; neutral pasa; sin afirmar sandbox); propiedades de no-mutación de inputs.
+
+**Gates:** G-08, G-09, G-15b (parcial: cierre en S12).
+
+**Physical verification:** `go run ./cmd/engine screen --strategy fixture-neutral …` produce reporte de oportunidades/costes sobre datos reales sin envíos; `go test ./internal/strategy/... -race`.
+
+**Definition of Done:** fixture neutral estable en corrida mixta wall+virtual; evidencia G-08/G-09 emitida; imports gate demostrado en ambas direcciones (acepta neutral, rechaza probe).
+
+**Handoff:** S10 consume los tipos `Frame/Opportunity/ActionCandidate/EvaluationContext`; S13 monta REPLAY/SHADOW sobre este runtime sin cambiar la API.
+
+#### M2-S10 — Economics y Simulator
+
+**Goal:** cotización/costes comunes y fill engine determinista con escenarios y liquidity ledger aislado por experimento; decisiones monetarias en decimal exacto.
+
+**Depends on:** M2-S09 (tipos), M2-S05 (FeeResolver), M2-S07 (frame refs).
+
+**Allowed scope:** `internal/economics/**`; `internal/simulator/**`; `testdata/economics/**`; `cmd/engine` subcomando `quote` (diagnóstico puro opcional).
+
+**Forbidden:** reservar el book real; short sintético vía saldo negativo; interpolar liquidez no observada; modelo maker calibrado (etiqueta `UNCALIBRATED` mientras falte); convertir rewards estimados en cash; touch=fill; tocar `internal/account` (integración en S13).
+
+**Contracts:** `Quote{frame_id, size_grid, executable_depth, VWAP, worst_price, platform_fee_interval, expected_incentives, slippage_scenarios, cash_required, token_required, capital_lock, validity, assumptions}` y `CostEnvelope` completos; BUY consume collateral+costes y SELL exige tokens disponibles (sin corto sintético); fee por escenario con intervalo del FeeResolver (múltiples fills pueden tener costes distintos; reconciliar fee efectiva por fill); fill engine M1.9 (submit-time, delay, limit/policy, remanente, cancel-latency; BUY barre asks / SELL bids al tiempo simulado de llegada integrando niveles para VWAP; FOK exige total, FAK admite parcial; rechaza cantidad no cubierta; sin interpolación entre snapshots; resting/touch no es fill probado); escenarios optimistic/base/stress con parámetros por manifest y `UNCALIBRATED` donde falte calibración; liquidity ledger por `(ExperimentID, RunID, instance, scenario)` sin doble consumo por asset/side/precio/`RevisionRef`; modo `PORTFOLIO_SHARED` explícito con `PortfolioRunID`, participantes/orden de admisión/seed preregistrados y atribución `PEER_CONSUMED_DEPTH`/`PEER_RESERVED_CAPITAL` (FBL-005); modelo maker acotado con incertidumbre declarada; eventos sintéticos de basket que alimentan el mismo contrato de reducer `BasketExecution` de M1.11 (wiring en S13, sin segunda política de secuenciación local).
+
+**Persistence:** ledger de liquidez por namespace reconstruible por replay (checkpoints periódicos permitidos; nunca cuenta real ni `synchronous=FULL` requerido).
+
+**Concurrency:** simulación serial por run; offline pool acotado.
+
+**Failure behaviour:** profundidad insuficiente → rechazo de cantidad (sin fill parcial inventado); fee `UNRESOLVED` → coste inconcluso; depth doble-usada → property failure con seed.
+
+**Tests:** G-10 (fixtures exactas de sweep/VWAP/fees/partials/GTD/FOK/FAK/cancel race/multi-leg/virtual liquidity; missing fee/queue bounds → inconcluso; escenarios trazables); G-10b (dos runs independientes idénticos igualan al individual; portfolio compartido atribuye peers y conserva denominadores; cambio de fee entre polls marca intervalo; fee del trade A no se aplica a B ni antes de `known_at`); propiedades de conservación de depth con seeds.
+
+**Gates:** G-10, G-10b.
+
+**Physical verification:** `go test ./internal/economics/... ./internal/simulator/... -race`; reporte de escenarios por fixture con labels de calibración.
+
+**Definition of Done:** fixtures exactas verdes; todos los escenarios etiquetados; evidencia G-10/G-10b emitida.
+
+**Handoff:** S13 integra simulator→account en namespace virtual y construye scorecards; los contratos de `Quote`/escenarios quedan congelados.
