@@ -14,74 +14,47 @@ tags:
 
 # ETCD — Seguridad y Hardening — workstream del MCP Access Plane
 
-> Componente del proyecto [[AGENT-PLATFORM - MCP Access Plane]]. **No es un proyecto paralelo.**
->
-> Registro del incidente de escritura accidental en PROD (2026-09-17), del hallazgo de exposición de credenciales, y del workstream de hardening (TLS, auth/RBAC, rotación). El MCP etcd greenfield quedó **NO AUTORIZADO** por el owner (2026-09-17); este workstream cubre la seguridad del cluster, no el access plane.
+> Componente de [[AGENT-PLATFORM - MCP Access Plane]], NO proyecto paralelo. Esta nota gobierna la deuda de seguridad del CLUSTER etcd y el incidente previo, no el estado de deployment del MCP. **Reconciliación temporal 2026-09-17:** la decisión inicial de NO autorizar greenfield fue supersedida posteriormente por el mandato del MCP-trio que autorizó un gateway estrictamente RO y la certificación `aranea-etcd-ro :3012`. El deployment MCP está ACTIVE/CERTIFIED; TLS/auth/RBAC y rotación del cluster siguen ABIERTOS y OWNER-GATED. No mezclar los dos veredictos. Contrato client-facing en [[aranea-etcd-mcp]] y matriz [[Daedalus — Development Agents MCP Access & Gaps]].
 
-## Estado
+## Estado vigente (corte 2026-09-17)
 
 ```text
-INCIDENTE 2026-09-17:   CONTAINED / ROLLBACK VERIFIED (sin pérdida de datos)
-HALLAZGO ETCD-EXP-01:   OPEN — HIGH (cluster sin auth/TLS expuesto a todo el LAN,
-                        incl. 63 keys con credenciales en claro)
-GREENFIELD ETCD MCP:    NO AUTORIZADO (owner 2026-09-17)
-HARDENING (TLS+RBAC):   PENDING / OWNER-GATED (workstream separado)
+INCIDENTE PUT ACCIDENTAL:   CONTAINED / ROLLBACK VERIFIED / NO DATA LOSS
+ETCD-EXP-01:                OPEN HIGH — cluster :2379/:2380 LAN, sin TLS/auth
+aranea-etcd-ro MCP :3012:  ACTIVE/CERTIFIED — server 13/13 y Cursor consumer PASS
+MCP MUTATORS:               NONE (cuatro tools exclusivamente de lectura)
+CLUSTER HARDENING:          PENDING / OWNER-GATED
+ROTACIÓN CREDENCIALES:      PENDING / OWNER-GATED según inventario
 ```
 
-## Cluster afectado (identidad física verificada 2026-09-17)
+**Hechos físicos de cluster verificados en discovery (NO re-probados en esta reconciliación documental):** un cluster de 5 members etcd 3.6.4/3.6.0, cluster_id `10805131107728833281`, athena `.254`, zeus `.250`, hera `.251`, kronos `.252`, hades `.253`; :2379 client y :2380 peer abiertos al LAN `192.168.31.0/24`, `authRevision=1` con auth DISABLED, sin TLS. SSH no expuesto en LXCs; configuración vía consola PVE owner. Inventario baseline 985 keys en 13 prefijos; 63 keys con nombres y contenido de credenciales en claro. No transcribir valores al vault ni a prompts.
 
-```text
-cluster:  UNO — cluster_id 10805131107728833281, etcd 3.6.4 / etcdcluster 3.6.0, healthy
-members:  athena 192.168.31.254 · zeus .250 · hera .251 · kronos .252 · hades .253
-          (VMIDs topología: 101/147/154/155/156; los puertos son por IP real, no VMID)
-puertos:  :2379 client + :2380 peer — AMBOS abiertos a todo el LAN 192.168.31.0/24
-auth:     authRevision=1 → auth DISABLED; sin TLS (plaintext)
-SSH:      los LXC no exponen :22 → configuración sólo accesible vía consola PVE (owner)
-keys:     985 en 13 prefijos; 63 contienen credenciales en claro (ver § Exposición)
-```
+## Incidente 2026-09-17 — escritura accidental PROD (histórico, mitigado)
 
-## Incidente 2026-09-17 — escritura accidental en PROD
+Probe planificado como negativo `kv/put` de `aranea-test=x` fue aceptado porque el cluster no tenía auth. Revisiones 55031 antes → 55032 después. Rollback exacto `kv/deleterange` de esa key ⇒ `deleted:1`, rev 55033; readback count 0, sweep 985 keys igual al baseline, health true en los cinco members, sin keys aranea residuales. Primera tentativa de delete usó equivocadamente slash inicial en la key base64, `deleted=0`; luego key exacta y éxito. Regla durable: **en servicio sin enforcement, nunca usar mutador como prueba negativa; verificar auth/status por READ**. Skill `mcp-access-plane-operations` y feedback de sesión registraron la lección.
 
-- **Qué:** durante discovery del mandato MCP-trio, un probe pensado como "negativo" (`kv/put` de la key `aranea-test` con valor `x`) fue **aceptado** por el cluster porque auth está deshabilitada. Revisiones: 55031 (pre) → 55032 (post-put).
-- **Por qué ocurrió:** se asumió que un servidor rechazaría escrituras anónimas. En un server sin auth no existen probes negativos de escritura: todo `put/delete/txn` es una mutación real. Regla añadida a la skill `mcp-access-plane-operations`: el enforcement se demuestra con un READ (`auth/status`), jamás ejecutando el mutador.
-- **Rollback (verificado):** `kv/deleterange` de la key exacta → `deleted:1`, rev 55033; re-read `count=0`; sweep completo de keys → **985 = baseline pre-incidente** (idéntico); `/health` → `true` en los 5 members. Cero keys residuales con `aranea` en el nombre. Nota: la primera tentativa de delete usó base64 con `/` inicial por transcripción (key inexistente, deleted=0); corregido a la key exacta sin slash.
-- **Lección durable:** skill actualizada (gotcha "probes negativos en superficies sin enforcement = mutaciones reales") + feedback de sesión (`80-agents/journal/feedback/system-1/2026-09-17-aranea-mcp-trio-session-feedback.md`).
+## Exposición ETCD-EXP-01 — alcance documentado, no redistribuir valores
 
-## Exposición de credenciales (ETCD-EXP-01)
+La investigación identificó 63 claves con nombres de credenciales (no se extrajeron ni imprimieron sus valores): MinIO `access_key`/`secret_key` y PostgreSQL `password` en ramas como `/sqx-worker`, `/sqx-watcher`, `/sqx-flowkit`, `/sqx-mt5-worker`, `/sqx-worker-backup`, `/deployer-watcher`, `/deployer`, `/symphony`, `/echo`, `/demo` y `/minio-example`. La rama `/deployer-watcher/development/minio` y variantes malformadas también fueron identificadas. El servicio responde range de claves desde hosts del LAN, demostrado desde `mcps`, Daedalus y Hermes VM; :2380 abre además superficie peer. Esto no implica afirmar exfiltración; sí exposición potencial demostrada. La allowlist/redacción del MCP RO limita a **agentes consumidores del MCP**, no corrige el cluster abierto ni autoriza acceso directo.
 
-Keys que **contienen** credenciales en claro (mapeo por nombre — valores jamás leídos ni impresos por el agente):
+Los consumidores dependen de la configuración dinámica en esos prefijos: sqx-worker, sqx-flowkit, symphony, sqx-watcher, deployer-watcher, echo, sqx-mt5-worker, sqx-worker-backup, deployer y fixtures demo/minio-example. Rotar, cambiar rutas o habilitar auth de golpe puede romperlos: hardening es migración por etapas, nunca un flip improvisado.
 
-- MinIO `access_key`/`secret_key`: `/sqx-worker/{development,f03cert,production}`, `/sqx-watcher/{development,f03cert,production}`, `/sqx-flowkit/{development,production}`, `/sqx-mt5-worker/production`, `/sqx-worker-backup/production`, `/deployer-watcher/{development,production}` (incluye variante malformada `deployer-watcher/productionminio/…`), `/deployer/development`, `/symphony/{development,integration_test,local,production}`, `/minio-example/development`, `/demo/local`
-- PostgreSQL `password`: `/echo/{development,production}`, `/sqx-worker/…`, `/sqx-watcher/…`, `/sqx-flowkit/…`, `/symphony/…`, `/demo/local`
+## Mitigación y hardening (propuesta, NO ejecutada)
 
-**Alcance de lectura:** cualquier host del LAN puede `range` completo sobre `:2379` (verificado desde mcps .219, daedalus .161 y hermes-vm). Con `:2380` abierto además existe superficie de operaciones de membership para quien hable el protocolo peer.
+1. **Inventario previo de consumidores legítimos:** conexiones efectivas a :2379 desde hosts SQX/Echo/deployer y miembros, por management paths autorizados; incluir `etcd-keeper` si realmente usado. Registrar origen, servicio, dependencia, prefijo y rollback.
+2. **Contención de red reversible:** allow client :2379 sólo desde consumidores verificados y administración, deny+log del resto; peer :2380 únicamente membresía `.250-.254` y peers necesarios. Verificar según topología PVE/OPNsense real: un firewall LAN que no ve tráfico L2 intra-LAN no garantiza contención; usar el punto de enforcement efectivo. Esto NO sustituye TLS/auth y no es un cambio automático del MCP.
+3. **Snapshot consistente previo** del cluster, verificada restaurabilidad, antes de tocar TLS/auth.
+4. **TLS por member:** CA interna, cert/key/CA client+peer, roll uno por uno preservando quorum >=3; owner/consola PVE y rollback probado.
+5. **auth/RBAC con identidades por servicio:** cada consumidor sólo prefijos/verbos propios; credencial MCP RO separada; migrar consumidores secuencialmente, no bloquear todos a la vez.
+6. **Rotar credenciales comprometidas/expuestas** MinIO/PostgreSQL tras cerrar acceso anónimo y actualizar servicios con gates individuales.
+7. **Re-certificar `aranea-etcd-ro`** después del hardening con identidad autenticada dedicada, tools 4/4, allowlist/negative probes, server+Cursor/ZCode/Codex según necesidad; no crear write capability por defecto.
 
-**Servicios que dependen de estos prefijos** (config dinámica en etcd): sqx-worker, sqx-flowkit, symphony, sqx-watcher, deployer-watcher, echo, sqx-mt5-worker, sqx-worker-backup, deployer, demo, minio-example. Cambiar claves/valores o habilitar auth sin migrar estos consumidores los rompe — por eso el hardening es un workstage con migración, no un flip.
+Fuera de scope: cambios de membership, downgrade/upgrade, reubicación de members, exposición por Internet. Cada cambio exige owner gate, ventana, backup/rollback y health + consumidor smoke. No atribuir estas tareas al coding agent por tener una capability RO.
 
-## Contención de red propuesta (NO implementada — requiere owner)
+## Fuentes / evidencia
 
-Objetivo: dejar `:2379` alcanzable **sólo** desde los hosts que legítimamente lo consumen, sin tocar los LXC (no hay SSH) y sin romper consumidores.
-
-1. **Inventario de consumidores reales (owner, ~15 min):** en cada host que corre los servicios SQX/echo/deployer, identificar el origen de las conexiones a :2379 (`ss -tnp | grep 2379` en Zeus/Hera/Kronos/hades vía agent_ro; los PVE sí tienen canal). Sospechosos legítimos: los propios VMs/LXC que corren los servicios listados arriba y `etcd-keeper` (.148) para la UI.
-2. **Reglas OPNsense (reversibles, auditadas):** en el LAN interface, allow `:2379/:2380` sólo hacia `.250-.254` desde la lista de consumidores del paso 1 + mcps (futuro) + etcd-keeper; **deny log** para el resto del LAN. `:2380` debería permitir además tráfico member↔member entre `.250-.254` (los 5 se hablan entre sí por peer port). Estado actual = implícito allow-all; la contención es un cambio de firewall de blast radius medio → **GATED owner**, con ventana y rollback (desactivar reglas).
-3. **Verificación post-contención:** probes TCP desde un host no-listed (debe fallar) y desde cada consumidor listado (debe pasar); health de los 5 members; smoke de un servicio SQX de los que lean etcd.
-4. **No sustitutivo:** bloquear red NO sustituye auth/TLS (cualquier host permitido sigue pudiendo escribir); es reducción de superficie mientras el hardening se ejecuta.
-
-## Workstream de hardening (propuesto, owner-gated, separado)
-
-Fases sugeridas (cada una con ventana, rollback y verificación propia):
-
-- **F1 — snapshot previo:** UNA snapshot del cluster vía gateway v3 HTTP desde mcps (host de staging `~/aranea/backup-staging`) antes de tocar nada. Precondición de todo lo demás.
-- **F2 — TLS:** certificados internos (step-ca ya existe en el homelab) para los 5 members + clientes; reinstalar members con `--trusted-ca-file/--cert-file/--key-file/--client-cert-auth` (requiere recrear los LXC o consola PVE; ventana con quorum: NUNCA <3 members vivos, hacer member por member).
-- **F3 — auth/RBAC:** `auth enable` + usuario admin + roles por prefijo (least-privilege: cada servicio con role readonly sobre su prefijo; escritura sólo para el servicio que la posee). Requiere emitir credenciales a cada consumidor (F2 antes).
-- **F4 — rotación de credenciales expuestas:** tras F3, rotar las 63 credenciales (MinIO access keys y PostgreSQL passwords) que estuvieron legibles en claro; actualizar consumidores por servicio.
-- **F5 — re-evaluación del MCP etcd:** con auth+TLS activos, un `aranea-etcd-ro` con credencial dedicada y allowlist de prefijos vuelve a ser evaluable (greenfield sigue requiring decisión owner; con cluster endurecido el riesgo residual baja).
-
-Fuera de scope de este workstream: membership changes, downgrade/upgrade de versión, re-ubicación de members.
-
-## Evidencia
-
-- Change log del mandato: `80-agents/journal/logs/2026-09-17-mcp-trio-temporal-minio-etcd.md`
-- Skill local (gotchas): `mcp-access-plane-operations` § etcd cluster Aranea
-- Feedback: `80-agents/journal/feedback/system-1/2026-09-17-aranea-mcp-trio-session-feedback.md`
-- Reconciliación MCP-etcd (upstreams descartados): `~/aranea/work/mcp-trio/etcd-reconciliation.md` (hermes-vm)
+- [[aranea-etcd-mcp]] — MCP ACTIVE server+Cursor 2026-09-17, cuatro tools RO, ocho prefijos allowlisted, secret-names excluidos, 200 keys/4KB, sin write/watch.
+- `80-agents/journal/logs/2026-09-17-mcp-trio-temporal-minio-etcd.md` — discovery/incident/historia inicial.
+- `80-agents/journal/feedback/system-1/2026-09-17-aranea-mcp-trio-session-feedback.md` — lección sobre probes negativos.
+- Skill `mcp-access-plane-operations` — safety de operación etcd.
+- `~/aranea/work/mcp-trio/etcd-reconciliation.md` en Hermes VM — upstream evaluation previa. No almacenar secretos en estas notas.
