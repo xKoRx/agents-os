@@ -110,6 +110,8 @@ Kafka PROD todavía no tiene capability certificada. `aranea-kafka-prod-ro` y `a
 
 Flink PROD todavía no tiene capability certificada. `aranea-flink-prod-ro` está diferido; no usar `aranea-flink-dev-admin` ni `docker-echo-dev-operator` como sustitutos para PROD.
 
+MT4/MT5 worker-kronos: la evidencia privilegiada (identidad/hash del ejecutable del worker, estado Stager, releases, reconciliación `StagerReconcile`) se consume del reporte del evidence publisher (`C:\ProgramData\Aranea\evidence\stager-evidence-latest.json`, leído con probes read-only vía `mt5-kronos-operator`), NO elevando `echo-dev`. Contrato, assertions de frescura/validez y estado: [[aranea-ssh-mcp]] § Evidence publisher worker-kronos (STAGED pending owner install 2026-09-17 — sin reporte no hay evidencia privilegiada; no sustituir con elevación ni bypass).
+
 ### 3. Elegir autoridad mínima dentro del ambiente correcto
 
 En SSH, elegir primero el profile exacto del host y después el tool mínimo para la intención. Los tres profiles SQX (`sqx-zeus`, `sqx-hera`, `sqx-kronos`) son `operator/readOnly=false`, pero eso sólo habilita escritura bajo la identidad remota `echo-dev`: **no implica root, no obliga a mutar y no convierte una lectura en `run-command`**. Para evidencia usar `read-command`; para mutación justificada usar `run-command` o `sftp-upload`; sesiones/background/signal/privileged sólo cuando la tarea realmente los necesita. `mt5-kronos` sigue siendo viewer; `mt5-kronos-operator` es la superficie writable de ese host. `docker-echo-dev-operator` es root-equivalent sólo en ese host DEV.
