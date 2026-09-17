@@ -5,9 +5,9 @@ schema_version: 1
 owner: agent
 root: false
 status: in-progress
-status_detail: "IN-PROGRESS tras reconciliación D0 (2026-09-17): R1 certificó 3/6 unidades Capa A (traefik-config, second-brain, hermes-state) con BACKUP+RESTORE_VERIFIED y drills a scratch; 3 SKIPPED_GATED con deuda owner acotada (pve-config, etcd-snapshot, pihole-config); automatización pendiente (wrapper manual sin timer/pruning — no es operativa). Detalle: change_log 2026-09-17-backup-dr-r1-bootstrap-config."
+status_detail: "IN-PROGRESS tras R1.5 (2026-09-17): 4/6 unidades Capa A con BACKUP+RESTORE_VERIFIED Y automatización frozen activa (traefik-config +drop-in clouDNS DAILY 04:00, second-brain, hermes-state, etcd-snapshot DAILY 05:00); pve-config node-local VERIFIED semanal SAT 08:30 con pmxcfs GATED (extensión agent-read config requiere root — bundle owner entregado); pihole-config GATED doble (servicio L2-dead + api_token). Detalle: change_log 2026-09-17-backup-dr-r15-config-completion."
 priority: P2
-progress: 65
+progress: 80
 icon: 📂
 slug: agent-project-01-critical-config-backup
 area: "[[Aranea]]"
@@ -34,18 +34,18 @@ Implementar backup de configuración crítica (Capa A de BACKUP-DR-DESIGN §5.1)
 
 ## 📊 Estado actual
 
-Reconciliado contra evidencia R1 (2026-09-17; change log `2026-09-17-backup-dr-r1-bootstrap-config`):
+Reconciliado contra evidencia R1+R1.5 (2026-09-17; change logs `2026-09-17-backup-dr-r1-bootstrap-config` y `2026-09-17-backup-dr-r15-config-completion`):
 
 | Unidad Capa A | Estado | Evidencia / gap |
 |---|---|---|
-| traefik-config | ✅ BACKUP_VERIFIED + RESTORE_VERIFIED | tar cz vía `agent_traefik` (LXC 115); drill sha256 8/8 vs fuente viva. Gap root-only: `secrets/ ssl/ acme.json` fuera de cobertura (canal root pendiente owner). |
-| second-brain | ✅ BACKUP_VERIFIED + RESTORE_VERIFIED | vault 3.438 archivos; restore a scratch idéntico (conteo+bytes, 5 muestras sha256). |
-| hermes-state | ✅ BACKUP_VERIFIED + RESTORE_VERIFIED | `~/.hermes` operacional + `~/aranea` + unit túnel (600); restore estructural validado. |
-| pve-config (`/etc/pve`) | ⏸ SKIPPED_GATED | sin canal de lectura; requerimiento owner: subcommand `config` en `agent-read` (root SSH fail-closed, correcto). |
-| etcd-snapshot | ⏸ SKIPPED_GATED | `etcdctl` ausente en hermes-vm; :2379 filtrado; sin certs conocidas. |
-| pihole-config | ⏸ SKIPPED_GATED | api_token FTL v6 no disponible; .149 sin HTTP desde Hermes (coherente R0). |
+| traefik-config | ✅ BACKUP+RESTORE_VERIFIED · AUTOMATED | tar cz vía `agent_traefik` (LXC 115); R1.5 agrega drop-in systemd `traefik.service.d` (env clouDNS, permite re-emitir acme.json); drill sha256 11/11. Timer DAILY 04:00. Gap root-only: `ssl/acme.json` (re-emisible) y `ssl/acme-stepca.json` (recovery-critical: CA lxc-200 stopped) fuera de cobertura (gate owner). |
+| second-brain | ✅ BACKUP+RESTORE_VERIFIED · AUTOMATED | vault 3.438 archivos; drill R1 idéntico. Viaja en el run 04:00 (SCHEDULE_NOT_FROZEN documentado en la unidad del timer). |
+| hermes-state | ✅ BACKUP+RESTORE_VERIFIED · AUTOMATED | `~/.hermes` operacional + `~/aranea` + unit túnel (600); sanity YAML/unit en run R1.5; manifests con sha256 completos (fix bug null). Timer DAILY 04:00. |
+| pve-config (`/etc/pve`) | ◐ PARCIAL: node-local VERIFIED · pmxcfs GATED | R1.5: node-local (interfaces/hosts/hostname) 5/5 nodos backup+restore drill, timer WEEKLY SAT 08:30. pmxcfs requiere sección `config` en `agent-read` (root; bundle owner con instrucciones idempotentes entregado en change log R1.5; el script ya captura sin cambios cuando exista). |
+| etcd-snapshot | ✅ BACKUP+RESTORE_VERIFIED · AUTOMATED | R1.5: :2379 ALCANZABLE desde hermes (corrección de R1); etcdctl/etcdutl 3.6.4 oficiales; pre-checks health 5/5 + hashkv consistente; snapshot cluster rev 55033; drill restore scratch. Timer DAILY 05:00. |
+| pihole-config | ⏸ GATED (doble causa) | .149 muerto a nivel L2 (ARP FAILED desde athena, su hipervisor; DNS LAN hoy resuelve via .31) — hallazgo operativo owner; además sin api_token FTL ni canal (22 filtered). Gate: root/consola LXC 149 + token. |
 
-**Pendiente para cerrar este subproyecto**: (1) las 3 unidades gated (deuda owner acotada); (2) automatización operativa — el wrapper `~/aranea/bin/r1-backup.sh` es manual, sin timer ni pruning; frecuencia y retención son decisión owner; (3) nota de alcance: restore de configuración (probado) ≠ recuperación integral de plataforma desde cero (no equivale).
+**Pendiente para cerrar este subproyecto**: (1) pmxcfs vía bundle owner del change log R1.5; (2) `ssl/acme-stepca.json` (canal root LXC 115, o reactivar lxc-200); (3) pihole-config (depende del hallazgo operativo + token); (4) nota de alcance: restore de configuración (probado) ≠ recuperación integral de plataforma desde cero.
 
 ## Scope
 
@@ -172,9 +172,12 @@ Todos los §2 BACKUP-DR-DESIGN. NO tocar.
   - expected_output: 7 archivos `.sh` ejecutables.
   - tags: [agent, scripting]
 
-- [ ] **AGENT-TASK-01-3**: configurar cron jobs. — PENDIENTE: sin timer por decisión owner pendiente (frecuencia/ventana); el wrapper es ejecución manual.
-  - commands_allowed: crontab, write_file en /etc/cron.d/.
+- [x] **AGENT-TASK-01-3**: configurar cron jobs. — EJECUTADO en R1.5: systemd timers con schedules frozen literales de backup-policy.yaml (`aranea-backup-r1.timer` DAILY 04:00, `aranea-etcd-snapshot.timer` DAILY 05:00, `aranea-pve-config.timer` WEEKLY SAT 08:30; Persistent=true; semántica systemd-analyze verificada; pruebas manuales exit 0 vía la unidad del timer, journal consultable).
+  - commands_allowed: systemctl, write_file en /etc/systemd/system/.
   - tags: [agent, scheduling]
+
+- [~] **AGENT-TASK-01-5**: configurar retención 30d. — RESUELTO-POR-DISEÑO en R1.5 (§9 del mandato): staging declarado destino explícitamente TEMPORAL, sin pruning destructivo genérico, con alerta staging_disk_full en los scripts; las retenciones formales viven en backup-policy.yaml para los destinos finales (R2/PBS las activa). No instalar find -mtime -delete.
+  - tags: [agent, retention]
 
 - [x] **AGENT-TASK-01-4**: validación end-to-end. — EJECUTADO-equivalente en R1: drills de restore a scratch + verificación sha256/conteo por run (2 ejecuciones del wrapper, idempotencia probada).
   - commands_allowed: bash.
