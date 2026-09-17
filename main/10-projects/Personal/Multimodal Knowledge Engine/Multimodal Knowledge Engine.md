@@ -181,6 +181,7 @@ Los contratos detallados, inputs/outputs, persistencia, errores, idempotencia, c
 - **2026-09-17 — cierre operativo:** usuario fija objetivo documental/explotación de conocimiento, QA por agentes y dos gates 03; no hay ejecución física ni creación de subproyecto confirmada.
 - **2026-09-17 — rename:** se adopta **Multimodal Knowledge Engine** y repo `xKoRx/multimodal-knowledge-engine`; `Course Intelligence Engine` queda como alias histórico; M0 sigue sobre un video de curso de trading.
 - **2026-09-17 — M0 SPEC Freeze:** repo remoto `master` verificado; se reemplaza runtime-first por product-first `00A→00B→01→02→03-A→03-C→04`. Se persisten arquitectura y seis documentos SPEC. Review adversarial resuelve riesgos materiales: runtime local no bloquea el core por target, determinismo definido por replay/control determinista, SQLite diferido hasta SPEC-02, adapters GLM/Qwen/Whisper detrás de dos fronteras externas reales, provenance obligatorio y QA automatizable con fixtures/replay más E2E físico. Próximo paso: implementación 00A desde baseline exacto del freeze.
+- **2026-09-17 — mandato de implementación iniciado:** subproyecto [[M0 Execution]] materializado (`owner: agent`), tarea puente en WIP, repo clonado en workspace externo `~/mke/`, baseline freeze `e5f9e97` verificado como HEAD de `master`, rama de desarrollo `m0-implementation` creada desde ese baseline. SPEC-00A despachada al Implementer con QA separado.
 
 ## 🧭 Decisiones
 
