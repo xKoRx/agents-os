@@ -4,18 +4,18 @@ type: project
 schema_version: 1
 owner: me
 root: true
-status: paused
-status_detail: "Proyecto owner. Mapa de subproyectos agente. Owner tasks listadas. NO implementado. Migrado 2026-07-02 desde 30-resources/aranea/03-storage/backup-dr/ a 10-projects/Aranea/ por convención PARA (proyecto con plazo y tareas, no evergreen)."
+status: active
+status_detail: "ACTIVE 2026-09-16 por mandato owner (reactivación carril Backup/DR). R0 reconciliación completado: ver 2026-09-16-R0-reconciliacion.md. Estado técnico honesto: 0 unidades con backup verificado; PBS VM 180 existe pero sin integración (gate owner). Roadmap R1-R8 vigente en el doc R0."
 priority: P1
 icon: 📋
 slug: backup-dr-owner-project
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-08-10
+updated: 2026-09-16
 start: 2026-07-02
 due:
-progress: 0
+progress: 5
 repo:
 jira:
 prs:
@@ -57,7 +57,9 @@ Pasar de "tenemos backups parciales y silenciosos" a "tenemos un sistema de back
 
 ## 📊 Estado actual
 
-- Pausado con diseño congelado y sin autorización de ejecución; los nueve proyectos de agente hijos están contractualmente migrados pero permanecen pausados.
+- **ACTIVE desde 2026-09-16** por mandato owner (reactivación del carril Backup/DR). Reconciliación R0 completa: `2026-09-16-R0-reconciliacion.md` (mismo directorio).
+- R0 evidenció: 59 guests (23/23 Tier0 KEEP + ADDs propuestos), **ningún mecanismo de backup activo** (0 snapshots ZFS, sin vzdump jobs, sin restic/rclone, sin dumps DB), PBS VM 180 running en kronos pero sin registro en pve_storage ni acceso demostrado (gate owner), pool2 single-disk con scrub overdue.
+- Los nueve agent-projects hijos permanecen `paused` hasta su fase: ap-02 cambia de "crear VM PBS" a "adoptar/recuperar VM 180 existente"; ap-06 se reescribe contra ARGUS (stack docker-observability mencionado quedó legacy).
 
 ## 📦 Alcance
 
@@ -223,9 +225,10 @@ El proyecto se considera **completo** cuando:
 
 ---
 
-**Status**: paused. Diseño congelado; NO ejecutar sin autorización del owner.
-**Sesión cerrada por instrucción del owner**: 2026-07-01.
+**Status**: active (reactivado por owner 2026-09-16). El diseño de referencia sigue congelado (F-01..F-14); cambios semánticos vía REQUEST-CHANGES. Ejecución por fases R0–R8 según `2026-09-16-R0-reconciliacion.md`.
+**Sesión cerrada por instrucción del owner**: 2026-07-01 (histórico). Reactivación: 2026-09-16.
 
 ## 📆 Bitácora
 
 - **2026-08-10** — Parent migrado a `project` v1 para soportar contractualmente los nueve hijos `owner: agent`; se preservó la prohibición de ejecutar y se crearon sus tareas puente humanas en To Do.
+- **2026-09-16** — Owner autoriza reactivación (mandato Backup/DR autónomo). R0 reality reconciliation completado sin cambios en infraestructura: captura 6/6 nodos (TS 20260916_233513), mecanismos de backup descubiertos, 23/23 Tier0 KEEP, F-01..F-14 reconciliadas, matriz GAP y roadmap R1–R8 en [[2026-09-16-R0-reconciliacion]]. Gates owner consolidados en R0 §10 (PBS 180 + tickets 018-021 vigentes).
