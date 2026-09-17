@@ -46,7 +46,7 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 ## 📊 Estado actual
 
-- **E06_PLANNING_CORRECTED_READY_FOR_MANAGER_REVIEW (2026-09-16, docs-only, v1.1.0).** Corrección zero-order: producer `reference_status` del Echo collector; `observed_magic` = inventario (KNOWN_EMPTY no se rellena); AutoTrading = capability no gate OBSERVING; C-3 DEFER del hook SQX conservado. SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` sobre `feature/e06-reference-enrollment-binding` @ `3e190d86467a0c51bbe96afd1fad3d814117997d` (contrato `ef8a96f3`; old `9989f399`). Baseline `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. **0 líneas productivas en `v3/**` esta sesión.** Master intacto. NORMAL no lanzado. No E-07. No PR.
+- **E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED (2026-09-16, docs-only, SPEC v1.1.0 sin bump).** Reconciliación de autoridad zero-order magic = **CASE C**. Live Authority §5 exige inputs/readback observed-equality; C-3 defiere el hook SQX y no autoriza inequívocamente pin+KNOWN_EMPTY; collector no puede leer MagicNumber SQX. AutoTrading B2 intacto. C-3 DEFER intacto. Branch `feature/e06-reference-enrollment-binding` old HEAD `3e190d86467a0c51bbe96afd1fad3d814117997d`. Baseline `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. **0 líneas productivas en `v3/**`.** Master intacto. NORMAL no lanzado. No E-07. No PR. Next gate = MANAGER REVIEW.
 - **RuntimeBinding key:** PK `binding_id` UUID; pin S0 `binding_ref = H("echo-reference-binding.v1",[ns,binding_id,version_ref,account_registration_ref,broker_server_ref,platform,magic_decimal,observation_class])`.
 - **Lifecycle:** PREPARED → (ACK + matching read-back) → OBSERVING → DRAINING → CLOSED; staleness → SUSPENDED + UNKNOWN. PREPARED/ACK solos ≠ OBSERVING.
 - **Read-back authority:** Echo collector `reference_status` → Bridge `REFERENCE_READBACK.v1` → Gateway. Operator ACK es CONFIG, no suficiente. Heartbeat/UnifiedBatch/config **no** son OBSERVING.
@@ -61,7 +61,7 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable; C-3 collector | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.1.0 @ `3e190d86` (corrige v1.0.0 @ `9989f399`) | E06_PLANNING_CORRECTED_READY_FOR_MANAGER_REVIEW · 0 source · NORMAL no lanzado |
+| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable; C-3 collector | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.1.0 (CASE C blocked; old HEAD `3e190d86`) | E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED · 0 source · NORMAL no lanzado |
 
 ## 🗺️ Source map (baseline `5dd998f1` + PG/Hasura)
 
@@ -106,8 +106,8 @@ Exacto PLAN.md. Development en `feature/e06-reference-enrollment-binding` desde 
 
 ## TOP / NORMAL boundaries
 
-- TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padre. No source Go/SQL/HTTP productivo (cumplido). Corrección 1.1.0 docs-only.
-- NORMAL: T01–T22 + T09b mecánicamente. No elegir recetas, no sintetizar OBSERVING, no hook SQX, no E-07, no apply 061.
+- TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padre. No source Go/SQL/HTTP productivo (cumplido). Authority reconciliation CASE C docs-only. No eligió A ni B.
+- NORMAL: **no lanzado**. T01–T22+T09b permanecen en el plan; T09b/T11 magic-match están gated por Manager. No elegir CASE A/B, no sintetizar OBSERVING, no hook SQX, no E-07, no apply 061.
 - GOD: NONE.
 
 ## Frozen decisions
@@ -122,7 +122,7 @@ Exacto PLAN.md. Development en `feature/e06-reference-enrollment-binding` desde 
 8. Stale > 15000ms sin `reference_status` → SUSPENDED + UNKNOWN.
 9. Migración 064; FK 061; interlock SHARED DEV explícito.
 10. Certificación sin órdenes. Unit fakes ≠ PHYSICAL OBSERVING. PHYSICAL exige producer `reference_status`.
-11. `observed_magic` = inventario broker; KNOWN_EMPTY no se rellena desde config.
+11. `observed_magic` = inventario broker; KNOWN_EMPTY no se rellena desde config. **Si KNOWN_EMPTY basta para OBSERVING = CASE C, no frozen.**
 12. `*_trade_allowed` se capturan; no gatean OBSERVING. VALID_NO_SIGNAL es E-07.
 13. C-3: hook SQX DEFER; Echo collector status IN SCOPE.
 
@@ -148,11 +148,11 @@ SPEC AC-01…AC-25 + AC-26…AC-33. SOURCE + CONTRACT + PG REAL + HTTP + PHYSICA
 
 ## Blockers
 
-Ninguno para **planning v1.1.0**. Development: ninguno (PG descartable incluye 061). SHARED DEV 064 apply: **061 NOT_APPLIED** (ops/E-03). PHYSICAL producer real: GAP-ECHO-006 si no hay terminal collector; **no** se sustituye por fake. E-04 T21 no bloquea. Residual C-3 (input magic SQX) congelado, no bloquea zero-order pin-sin-contradicción.
+**Zero-order magic = CASE C.** Manager debe elegir A, B o alternativa acotada antes de NORMAL. Development: ninguno adicional (PG descartable incluye 061). SHARED DEV 064 apply: **061 NOT_APPLIED** (ops/E-03). PHYSICAL producer real: GAP-ECHO-006 si no hay terminal collector; **no** se sustituye por fake. E-04 T21 no bloquea. C-3 DEFER del hook SQX conservado; status Echo collector compatible con C-3 y no puede afirmar MagicNumber SQX.
 
 ## Handoff requirements
 
-Manager aprueba planning v1.1.0 → **siguiente agente NORMAL** implementa T01–T22+T09b en worktree dedicado de `feature/e06-reference-enrollment-binding` desde `5dd998f1`. No reutilizar checkout de otra fase. No merge/deploy. No E-07. No hook SQX. No apply 061/064 Aranea.
+Manager resuelve CASE C (A vs B vs alternativa) → sólo entonces planning puede relanzarse. **NORMAL no arranca.** No merge/deploy. No E-07. No hook SQX sin decisión. No apply 061/064 Aranea.
 
 ## Closure conditions
 
@@ -168,6 +168,7 @@ _No aplica — hijo de implementación de E-06; no crea Integration ni más hijo
 > Checklist atómico en `xKoRx/echo` `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/TASKS.md`. Aquí sólo work packages. NORMAL no arranca hasta manager review.
 > - [x] TOP planning SPEC/PLAN/TASKS/VERIFICATION v1.0.0 → Manager Review #owner/agent #type/docs #area/echo
 > - [x] TOP planning correction #1 v1.1.0 zero-order physical authority → Manager Review #owner/agent #type/docs #area/echo
+> - [x] TOP authority reconciliation zero-order magic → CASE C blocked #owner/agent #type/docs #area/echo
 > - [ ] WP-A Persistencia 064 + stores + UNIQUEs #owner/agent #type/dev #area/echo
 > - [ ] WP-B Enrollment HTTP PREPARED/ACK/drain + ClientConfig #owner/agent #type/dev #area/echo
 > - [ ] WP-C Read-back Bridge→Gateway desde `reference_status` y transición OBSERVING #owner/agent #type/dev #area/echo
@@ -191,6 +192,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-16 (TOP authority reconciliation)** — CASE C. Live Authority §5 vs Fable C-3 no cierran si zero-order exige echo físico de magic. SPEC v1.1.0 sin bump; §7.3 KNOWN_EMPTY no es implementable. AutoTrading B2 intacto. C-3 DEFER intacto. old HEAD `3e190d86`. Source delta `v3/` = 0. Estado `E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED`.
 - **2026-09-16 (TOP planning correction #1)** — v1.1.0 @ `3e190d86` (contrato `ef8a96f3`; old `9989f399`). Heartbeat/UnifiedBatch no son autoridad zero-order. Producer congelado: `reference_status` Echo collector. Magic = inventario; KNOWN_EMPTY no se fabrica. AutoTrading = capability (B2). C-3 DEFER SQX conservado. Source mutations 0. Estado `E06_PLANNING_CORRECTED_READY_FOR_MANAGER_REVIEW`.
 - **2026-09-16 (TOP planning one-shot)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `9989f399`. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. O1/O3 applied. 064 reservada. 0 source. Estado `E06_PLANNING_READY_FOR_MANAGER_REVIEW`. Puente padre → Review.
 
@@ -200,7 +202,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - OBSERVING nunca se sintetiza desde SQL/ACK/config/heartbeat/UnifiedBatch.
 - Apply 064 SHARED DEV es ops gated por 061, no NORMAL.
 - PHYSICAL V1 exige producer `reference_status`; fake ≠ PHYSICAL. Terminal MT5 real GAP-ECHO-006 pendiente no se disfraza de PASS.
-- Residual C-3 (SQX input magic) fail-closed cuando el inventario posterior contradiga el pin.
+- Residual C-3 (SQX input magic) **no** se abre. Status Echo collector ≠ hook C-3. Zero-order magic matching no es fail-closed congelado: es CASE C para Manager.
 
 ## 🔗 Docs / Links
 
