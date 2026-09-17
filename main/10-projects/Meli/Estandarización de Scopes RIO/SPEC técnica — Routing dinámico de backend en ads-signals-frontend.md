@@ -38,7 +38,7 @@ Desacoplar el scope del frontend Nordic del target físico de Playmaker en ambie
 
 `frontend-config` carga `config/<SCOPE>-production.js`, y `test2`, `test3`, `beta` y `staging` fijan distintos hosts de Playmaker. Nordic publica el scope MeliLab efectivo en `env.SCOPE`; las 61 integraciones BFF convergen en `api/lib/playmaker.ts`, por lo que no se migra cada servicio.
 
-El cambio introduce un único entrypoint no productivo. El frontend sólo valida forma y longitud; Fury Routes decide si un scope existe y a qué target no productivo resuelve.
+Hay un entrypoint test. El frontend valida sintaxis; Fury decide si el scope existe y a qué target resuelve.
 
 ### Contrato de selección
 
