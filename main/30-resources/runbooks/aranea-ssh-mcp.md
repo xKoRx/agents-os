@@ -143,6 +143,18 @@ Se verificó end-to-end `run-command` con el perfil operator autorizado sobre `w
 
 El perfil `mt5-kronos` sigue siendo viewer/read-only; para mutaciones usar únicamente `mt5-kronos-operator` cuando la tarea las requiera.
 
+### Evidence publisher worker-kronos — 2026-09-17 (STAGED pending owner)
+
+Contrato: una tarea programada SYSTEM (`AraneaEvidencePublish`, cada 4 h) ejecuta un inspector PowerShell de superficie fija (cero inputs, cero rutas dinámicas, cero red) que publica `C:\ProgramData\Aranea\evidence\stager-evidence-latest.json` — escritura atómica tmp+rename, ACL cerrada con `worker-kronos\echo-dev:R`, JSON sanitizado con self-hash, `generated_at_utc`, `publish_interval_hours: 4`, `stale_after_hours: 8`, `partial`, `errors`.
+
+Motivación (gap medido con probes reales 2026-09-17): `echo-dev` no-admin no puede ver identidad/hash del worker (`tasklist /FI` → Access denied), estado Stager (`C:\ProgramData\Stager` y `CURRENT` → ACL Administrators+SYSTEM), la tarea `StagerReconcile` (invisible sin elevación) ni event logs (`wevtutil` denegado); el viewer `mt5-kronos` además rechaza por clase todo comando útil (`reg query`, `netstat`, `schtasks`, `tasklist`, `type`, `powershell` → POLICY_DENIED; sólo `whoami`/`hostname` pasan). Legible sin publisher: registro del servicio, `netstat :7233`, listado `C:\stager`. El inspector elevado one-shot de F05C cubría el gap pero exigía owner en cada lectura.
+
+Procedimiento de consumo (agente normal): leer el reporte sólo con probes read-only vía `mt5-kronos-operator` (`Get-Content`/`Get-Item`); nunca modificar tarea/inspector/reporte; nunca elevar `echo-dev`. Assertions de validez: edad ≤ `stale_after_hours`, `partial=false`, `inspector_sha256` == hash de registro, `run_identity` == SYSTEM. Sin reporte vigente, la evidencia privilegiada sigue owner-gated: no sustituir con elevación ni bypass.
+
+Estado: STAGED 2026-09-17 — inspector + instalador + rollback verificados byte-exacto en `C:\Windows\Temp` (sha256 en `~/aranea/work/winagent-evidence/owner-action-bundle.md`); instalación = UN paso owner idempotente con autoverificación (identidad SYSTEM, hash embebido, ACE echo-dev) — hasta entonces no existe reporte.
+
+Gotchas de staging (nuevos, certificados): `sftp-upload` transfiere el argumento `content` (string) y NORMALIZA saltos de línea, y NO sobreescribe un path existente (reporta éxito dejando los bytes viejos) — para artefactos byte-exactos usar base64 sin newlines + `certutil -decode` en el target + comparación de sha256 completo local vs remoto.
+
 ### docker-echo-dev operator — 2026-09-13
 
 Profile certificado:
@@ -213,6 +225,8 @@ Para revertir específicamente la promoción SQX si aparece un problema de polic
 Rollback del profile `echo-runtime-prod` (staged 2026-09-15): `sudo cp /tmp/config.toml.pre-echo-runtime-prod /opt/mcp/ssh/runtime/config/config.toml && sudo chown 65532:65532 … && sudo chmod 600 … && sudo docker restart ssh-mcp`, luego revalidar `list-connections` = 6 perfiles y health.
 
 Para `docker-echo-dev-operator`, no asumir que un `docker compose up -d` es reversible o no disruptivo: seguir el runbook de dominio, preparar rollback y verificar el servicio después de cualquier lifecycle mutation.
+
+Rollback del evidence publisher worker-kronos (2026-09-17): `aranea-evidence-rollback2.bat` elevado elimina la tarea `AraneaEvidencePublish` y `C:\ProgramData\Aranea` (nada más que restaurar: el instalador es aditivo). Antes de instalar, rollback del stageo = `Remove-Item` de los 3 archivos `C:\Windows\Temp\aranea-*` (creados por `echo-dev`, borrables por él).
 
 ## Evidencia
 
