@@ -1667,3 +1667,147 @@ S13 Experiments / Shadow E2E / Certificación
 ```
 
 Justificación del orden: Capture+Persist preceden a todo reducer porque `durable-before-publish` y `applied_seq` son prerequisito de catálogo, books y cuenta (M1.6/M1.7); Regimes precede a Books porque salir de `SYNCING` exige constraints válidos (M1.5); Frames preceden a Strategy porque el runtime entrega `Frame`; Strategy precede a Simulator porque los tipos de candidatos viven en la API frozen; Account puede correr en paralelo con la cadena B1 porque su seam (comandos tipados, `FillKey`, `AccountView`, estados M1.11) está congelado y su ownership de paquetes/migraciones es disjunto; Supervisor/Certificación van al final porque necesitan el wire completo. Se eligió esta forma para producir capacidades útiles temprano (checkpoints verticales) en vez de capas horizontales sin valor: tras S04 existe `catalog sync` real; tras S06 existe `record` de un mercado real; tras S08 existe replay determinista de la propia observación; tras S09 existe SCREEN end-to-end; tras S13 existe un experimento SHADOW con scorecard. Cada slice usa la plantilla de M2.3; M2.4–M2.10 completan paralelismo, tests, entrega a NORMAL, hitos, frontera M4, decisiones operativas y verificación de calidad.
+
+### M2.3 — Slices de implementación
+
+Convenciones comunes a todos los slices: cada slice es una asignación NORMAL cerrada (un paquete de trabajo, un commit range, un DoD binario); todo slice ejecuta `go build ./... && go vet ./... && go test ./... -race` como verificación mecánica mínima; fixtures nuevas llevan header de provenance (fuente TPM parte/sección, fecha, SHA de la parte); fallos de property testing persisten seed + contraejemplo mínimo en `testdata/property-failures/<gate>/<fecha>/`; ningún slice usa coverage como sustituto de invariants; ningún slice toca archivos de otro slice ni migraciones fuera de su rango.
+
+#### M2-S01 — Repositorio y Foundation
+
+**Goal:** materializar el baseline del repo y las primitivas transversales con las que todo lo demás compila: IDs nominales, decimal exacto, unidades, relojes, taxonomía de errores, capability registry fail-closed, config versionada y gates mecánicos (build/vet/imports/arquitectura).
+
+**Depends on:** ninguno (primer slice).
+
+**Allowed scope:** crear el repo según M2.1; `go.mod` con toolchain pinned; `internal/foundation/**`; `internal/config/**`; `internal/archtest/**`; `cmd/engine` con main mínimo y subcomando `version`; `testdata/foundation/**`; Makefile opcional.
+
+**Forbidden:** cualquier paquete de dominio/transport/persistencia; dependencias third-party fuera de la lista M2.1; I/O de red; crear migraciones; tocar TPM/vault; implementar tipos de Strategy API (S09).
+
+**Contracts:** M1.3 completo: IDs tipados por namespace (`GammaEventID`, `GammaMarketID`, `ConditionRef`, `AssetKey{chain_id, protocol, token_contract?, wire_asset_id}`, `IntentID`, `FillKey`, `RevisionRef{owner, namespace, entity_id, generation, revision, schema_version, content_hash}`); decimal exacto coefficient+scale desde lexema JSON (`json.Number`), sin `float64` monetario ni `*big.Int` mutable expuesto; unidades en tipos; boundary numérico de órdenes P03 §5 como funciones puras (grid/decimales de precio, size floor 2dp, amount ceil/floor, conversión E6 por BUY/SELL, rechazo de desbordes/escalas desconocidas/negativos); sentinel handling (69/999/1970-01-01/0 → unknown en contexto); `Clock` wall + monotonic-offset por boot; error taxonomy tipada (`TRANSIENT/INVALID/UNSUPPORTED/DISABLED/QUARANTINED/UNKNOWN`, jamás strings libres); capability registry allowlist versionada y cerrada (M1.1: capability ausente/deshabilitada no produce ruta; `ExecutionMode` default `LIVE_DISABLED`; `ActivationLease` tipo no fabricable sin emisión); config strict con `config_revision` hash.
+
+**Persistence:** ninguna (sin DB en este slice).
+
+**Concurrency:** tipos value inmutables con copias defensivas; cero goroutines en foundation.
+
+**Failure behaviour:** parsing inválido, desborde o escala desconocida → error tipado con contexto, jamás clamp/cero/defaults; capability desconocida o deshabilitada → `DISABLED` antes de cualquier ruta; config inválida → abort de startup con diagnóstico exacto del campo.
+
+**Tests:** G-01 unit vectors (IDs distintos por namespace; tabla completa de ticks/redondeos P03 §5; amounts/digests reproducibles); property tests decimal (round-trip lexema→decimal→string, sin overflow, asociatividad acotada); matriz de capabilities (ninguna ruta ejecutable para disabled/unknown — semilla de G-15); archtest: dirección de imports y probe negativo (paquete strategy-fake que importa `unsafe` falla el gate; la base confiable Go queda delimitada y versionada según M1.14); fixtures negativas de config.
+
+**Gates:** G-01; base mecánica de G-15b.
+
+**Physical verification:** `go build ./... && go vet ./... && go test ./... -race`; `go run ./cmd/engine version` imprime module/commit/toolchain/config schema; demostración del gate de imports con probe `unsafe` en rojo y luego revertida.
+
+**Definition of Done:** build/vet/tests verdes con `-race`; G-01 PASS con evidencia en `testdata/foundation/evidence/g01.json` (fixture hash, expected/actual, build); fallos de property con seed persistida = FAIL del slice.
+
+**Handoff:** la API de foundation queda v1 estable; todos los slices posteriores importan IDs/unidades/errores/registry desde aquí; agregar un ID o unidad nuevo exige slice propio.
+
+#### M2-S02 — Protocolo wire: DTOs, parsers y fixtures
+
+**Goal:** contratos wire versionados y parsers totales por superficie, separados del dominio, con fixtures sanitizados versionados y redaction schema; sin I/O.
+
+**Depends on:** M2-S01.
+
+**Allowed scope:** `internal/protocol/**`; `testdata/protocol/**`; tests de protocolo.
+
+**Forbidden:** dial HTTP/WS de cualquier tipo; tipos de dominio de catálogo/books/cuenta; migraciones; fixtures con secretos reales; modificar el TPM.
+
+**Contracts:** DTOs wire exactos: Gamma events/markets con arrays codificados como string, keyset `after_cursor` + fallback explícito a `/events`//`/markets` offset (M1.4/U-03); CLOB REST read-only shapes (`/book` con best al final, `/clob-markets/{condition_id}`, tick y fee lookups); Market WS mensajes (`book`, `price_change`, `last_trade_price`, tick-size change, BBO extendido, variante `initial_dump=true`); Data v2 subset (trades, order/orders, positions, activity, resolution) con sentinels y units por campo; `ProtocolContext` unión cerrada `CTF/PROTOCOL_V2/UNKNOWN` como identidad tipada, sin codecs v2 (UNKNOWN → quarantine en consumers); version identity por superficie (`schema_version` + `normalizer_version`); tabla de unidades de tiempo (Order v2 ms, expiration/auth s, User WS s, Market WS ms, Data v2 según lookup) con normalización UTC sin inventar precisión; redaction schema versionado por superficie: `owner`, `signature`, cookies, auth, todos los headers `POLY_*`/HMAC, validación recursiva por schema (M1.6/FBL-011); parsers totales: campo crítico desconocido o enum divergente → raw preservado + flag, nunca drop silencioso.
+
+**Persistence:** fixtures bajo `testdata/protocol/<surface>/<version>/` con manifest SHA en `testdata/protocol/manifest.json`.
+
+**Concurrency:** parsers puros; sin estado global.
+
+**Failure behaviour:** JSON malformado, tipo inesperado o enum crítico desconocido → error tipado con raw adjunto; arrays Gamma con longitudes/índices inconsistentes → error de identidad (Catalog decidirá `QUARANTINED`); ninguna superficie "normaliza lo mejor posible".
+
+**Tests:** G-03 (fixtures por envelope: happy path, unknown-field, enum divergente, string-arrays, sentinels, multi-unit timestamps, `success:false`/errores CLOB tipados para classifier futuro); fuzz/property no-panic sobre bytes corruptos con seeds persistidas; round-trip decimal desde lexema; fixtures centinela que prueban que la redacción elimina `owner/signature/POLY_*` recursivamente.
+
+**Gates:** G-03; extensión G-01 (lexema wire→decimal, unidades).
+
+**Physical verification:** `go test ./internal/protocol/... -race`; `go test ./internal/protocol -run TestFixturesManifest` valida SHA de cada fixture contra el manifest.
+
+**Definition of Done:** todas las superficies parsean sus fixtures (positivas y negativas) verdes; manifest de fixtures con SHA; archtest confirma cero imports de red en `internal/protocol`; evidencia G-03 emitida.
+
+**Handoff:** S03 consume el redaction schema; S04/S05/S06 consumen DTOs/parsers por superficie; agregar una superficie nueva = slice nuevo; los parsers son la única autoridad de interpretación wire.
+
+#### M2-S03 — Capture journal, carriles y framework de persistencia
+
+**Goal:** admisión durable-before-publish con carriles EVIDENCE/RUNTIME, journal segmentado con CRC y recovery de prefijo, y el framework SQLite (migraciones, single writer, `applied_seq`, outbox pattern, integridad por clase) que usarán todos los owners.
+
+**Depends on:** M2-S01, M2-S02 (redaction schema + surface identity).
+
+**Allowed scope:** `internal/capture/**`; `internal/persist/**`; `migrations/0001–0009_*`; `testdata/capture/**`; `cmd/engine` subcomando `journal verify`.
+
+**Forbidden:** reducers de dominio (catalog/books/account); dial de red; migraciones fuera de 0001–0009; lógica de retención/GC/borrado (no hay GC inicial); cifrado; tocar paquetes de S02.
+
+**Contracts:** envelope M1.6 completo (`capture_id/boot_id/capture_seq`, `surface/connection_id/epoch/frame_ordinal/request_id`, tiempos `received_wall/received_mono_offset/source_time_raw/source_unit`, `schema_version/normalizer_version/config_revision/content_hash`, `payload_bytes/redaction_policy/quality-control_kind`, `segment_id/offset/length/checksum`); `capture_seq` como orden total local asignada por un único admisor; `durable_seq` avanza sólo tras fsync (batch/group commit configurable); carriles EVIDENCE y RUNTIME hacia un secuenciador lógico con cuotas separadas por count/bytes y reserva EVIDENCE (overflow RUNTIME pausa runs, nunca revoca epochs ni roba reserva — contrato que S06/S07 consumen); segmentos acotados por bytes/tiempo con footer range/count/SHA-256; seal inmutable con rename + dir sync; recovery: escanear hasta el último record completo y checksum válido, preservar el sufijo inválido como evidencia, marcar discontinuidad, abrir boot nuevo; clasificación `ACCOUNT_FACT` vs `RESEARCH_EVIDENCE` como API de integridad por clase/rango (sin GC); framework persist: SQLite WAL synchronous FULL con busy deadline, migraciones embebidas forward-only (app antigua rechaza schema futuro; rollback sólo por restore), single writer goroutine, `reducer_cursors(reducer_id, namespace, …)`, helpers transaccionales, outbox pattern (la tabla la crea cada owner), check `journal_seq ≥ applied_seq`.
+
+**Persistence:** journal bajo el data dir configurado; migraciones 0001–0009 (`schema_migrations`, `reducer_cursors`).
+
+**Concurrency:** un admisor único + un writer secuencial; dos colas acotadas por count/bytes; locks que nunca abarquen fsync ni red.
+
+**Failure behaviour:** write parcial o CRC inválido → el record no contabiliza y el sufijo se preserva como evidencia; fallo de fsync → `durable_seq` no avanza, readiness de capture cae y el intervalo queda como discontinuidad; overflow EVIDENCE real → discontinuidad declarada (revocar epoch es responsabilidad del consumer); overflow RUNTIME → pausa de runs; SQLite caída → errores tipados a owners; jamás drop-oldest ni conteos inventados de mensajes perdidos antes de admisión.
+
+**Tests:** G-06 fault fixtures (corte en write/fsync/seal/manifest mediante inyección de writer/filesystem; prefijo recuperado íntegro; sufijo corrupto preservado; manifest falso detectado); G-02b parcial (dos reducers con lag; cursores que no se adelantan mutuamente; check `journal_seq ≥ applied_seq`); property: ningún consumer confirma una decisión sobre raw no durable (consumo sólo hasta `durable_seq`); matriz de crash determinista con seeds.
+
+**Gates:** G-06 (parcial: cierre con consumidores reales en S06), G-02b (parcial: cierre en S11), insumos de G-14.
+
+**Physical verification:** `go test ./internal/capture/... ./internal/persist/... -race`; `go run ./cmd/engine journal verify --data-dir …` reporta clases/rangos/holes por clase, no un PASS único.
+
+**Definition of Done:** cada fault fixture produce prefijo íntegro + discontinuidad marcada + cero decisiones sobre no durable; migraciones aplican y una DB "futura" es rechazada (fixture); evidencia parcial G-06/G-02b en `testdata/capture/evidence/`.
+
+**Handoff:** API de capture/persist v1 estable; los owners posteriores crean sólo sus tablas dentro de su rango de migraciones y filas en `reducer_cursors`; S04 construye Catalog sobre este framework.
+
+#### M2-S04 — Catalog/Universe + adapter Gamma read-only
+
+**Goal:** identidad y relaciones versionadas conocidas-a-fecha con ingest REST real read-only; primer checkpoint vertical (`catalog sync`).
+
+**Depends on:** M2-S01, M2-S02, M2-S03.
+
+**Allowed scope:** `internal/catalog/**`; `internal/transport/gamma/**`; `migrations/0010–0019_*`; `testdata/catalog/**`; `cmd/engine` subcomandos `catalog sync|inspect`.
+
+**Forbidden:** books/frames/estrategias/cuenta; writes contra Gamma; inferir `effective_from` histórico; borrar entidades por pasada parcial; inventar envelope keyset (usar fallback offset documentado); Sports WS; tocar paquetes de S05+.
+
+**Contracts:** entidades y revisiones Event/Market/Outcome/Asset/Condition/Relationship con `RevisionRef` + content_hash + `observed_at/source_at?/source_ref/capture_ref`; relationships tipadas con exhaustividad/evidencia `UNKNOWN/VERIFIED/INVALIDATED` (compartir Event no prueba equivalencia de payouts); contexto de membresía NegRisk como evidencia de mapping (sin cast desde IDs); `UniverseSpec` declarativo → `UniverseRevision{members, exclusions_with_reason, coverage, observed_at}` + `UniverseChanged`; Subscription Planner con unión/refcount de demandas y retención de assets con órdenes/posiciones vía hook opcional (stub hasta S11); quarantine `QUARANTINED` → sin book elegible ni firma; estado de scan (fingerprint de filtros/cursor, inicio/fin, coverage parcial marcado); refresh con dedup por ID y frecuencias separadas activa/archivada; identity join validado entre arrays Gamma y CLOB.
+
+**Persistence:** tablas 0010–0019; reducer con `applied_seq` propio sobre journal EVIDENCE; raw nunca se reescribe.
+
+**Concurrency:** reducer serial single-owner; adapter con rate budget, timeout/backoff de lecturas; sin goroutines compartidas con books.
+
+**Failure behaviour:** pasada parcial o cursor inválido → pasada marcada parcial, nada se borra; conflicto de identidad → `QUARANTINED`; 5xx/timeout del adapter → backoff con budget y pasada inconclusa marcada; crash → reproceso desde el cursor propio con dedup por identidad.
+
+**Tests:** G-04 (pagination con altas/duplicados/cursor inválido; cambios de rules/Other/tick/fees → revisiones nuevas; desaparición parcial → coverage, candidatos viejos bloqueados); propiedades: revisiones inmutables, known-at sin look-ahead, ID estable bajo reingesta (idempotencia de dos pasadas); fixtures REST versionadas (grabadas read-only) + fixture server.
+
+**Gates:** G-04.
+
+**Physical verification:** `go run ./cmd/engine catalog sync` (read-only, config de test contra host real o fixture server); `go run ./cmd/engine catalog inspect --event …` muestra revisiones/coverage; `go test ./internal/catalog/... -race`.
+
+**Definition of Done:** dos pasadas consecutivas de sync producen cero diffs de contenido (idempotentes); fixture de desaparición parcial conserva la entidad y marca coverage; evidencia G-04 emitida.
+
+**Handoff:** S05 referencia identidades de Catalog; S06 obtiene elegibilidad vía `UniverseRevision`; la API de relationships queda lista para Sports/NegRisk sin cambios de dominio.
+
+#### M2-S05 — Regimes/Resolution + constraints CLOB + Data v2 read-only
+
+**Goal:** tick/min-size/fees/lifecycle/resolution como revisiones versionadas con provenance y `FeeResolver` intervalar; constraints que gobiernan la elegibilidad de frames.
+
+**Depends on:** M2-S04 (identidades), M2-S01–S03.
+
+**Allowed scope:** `internal/regimes/**`; `internal/transport/clob/**` (REST read-only); `internal/transport/datav2/**`; `migrations/0020–0029_*`; `testdata/regimes/**`; `cmd/engine` subcomando `regimes inspect`.
+
+**Forbidden:** cálculo de quotes (S10); aplicar régimen actual a la historia; constante universal de fee; desempatar rounding por conveniencia; User WS privado; conversions; tocar paquetes de S06+.
+
+**Contracts:** `RegimeID/revision` por market/asset con raw fields separados (`feesEnabled`, `base_fee` bps, `fd.r/e/to`, `mbf/tbf`, tick, min size, category source + fecha); lifecycle observado con estados que no colapsan (`end/closed/proposed/resolved/redeemable/redeemed` por separado); resolution observations (`ConditionRef`, reporter, proposal/dispute/finality, payout vector raw, block/hash/log index); `FeeResolver` versionado que selecciona una sola fórmula con evidencia aplicable o devuelve intervalo/`UNRESOLVED` (la fórmula publicada no autoriza `feeRate=base_fee/10000` sin prueba); ingestion de `fee_rate_bps` trade-observed con `known_at=capture_seq` como reducer disponible (el wiring desde Market WS lo conecta S06); discrepancia fee → `REGIME_SUSPECT` + refresh + `fee_regime_uncertain_interval`, nunca tarifa universal; invalidación: nuevo tick/min-size/fee/status produce revision bump que invalida evaluaciones y candidatos vigentes.
+
+**Persistence:** tablas 0020–0029 con provenance completo por revisión.
+
+**Concurrency:** reducer serial propio; adapters read-only con rate budgets separados por signer/IP.
+
+**Failure behaviour:** fee sin mapping o con empate no definido → intervalo/`UNRESOLVED` (jamás punto medio silencioso); discrepancia → `REGIME_SUSPECT` y refresh del mercado afectado; crash → reproceso desde cursor propio.
+
+**Tests:** G-01 extendido (grids de tick P03 §5 completos); fixtures de intervalo de fee (U-02); fixture `REGIME_SUSPECT` con cambio de fee entre polls y fee observada por trade (semilla de G-10b/FBL-012); fixtures de lifecycle no-collapse; propiedades known-at.
+
+**Gates:** G-01 (fee/tick vectors); insumos de G-10b.
+
+**Physical verification:** `go test ./internal/regimes/... -race`; `go run ./cmd/engine regimes inspect --market …` lista revisiones y estado de fee con `known_at`.
+
+**Definition of Done:** fixtures fee/tick verdes con evidencia; ningún código retorna fee puntual sin revisión de régimen; invalidación observable por revision bump en test.
+
+**Handoff:** Books (S06) exigirá constraints válidos para salir de `SYNCING`; Economics (S10) consume `FeeResolver`; Regimes expone el reducer de fee trade-observed que S06 conecta al WS.
