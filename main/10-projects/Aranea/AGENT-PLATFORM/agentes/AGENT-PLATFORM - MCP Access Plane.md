@@ -202,6 +202,7 @@ _No aplica por ahora — la primera etapa es discovery y configuración operativ
 - [[aranea-mcps-expert]] (`30-resources/agents/skills/aranea-mcps-expert/SKILL.md`) — contrato canónico de selección/uso de capabilities MCP Aranea.
 - `xKoRx/symphony/.agents/skills/echo-forge-wfm-troubleshooting/SKILL.md` — routing de dominio Echo Forge/WFM; delega acceso MCP a `aranea-mcps-expert`.
 - [[aranea-ssh-mcp]] · [[aranea-postgres-mcp]] · [[aranea-mongodb-mcp]] · [[aranea-hasura-mcp]] · [[aranea-kafka-mcp]] · [[aranea-flink-mcp]] · [[aranea-mcp-capability-plane]] — runbooks mecánicos en AGENTS OS.
+- [[ETCD-HARDENING]] — workstream de seguridad etcd (incidente 2026-09-17, exposición de credenciales, contención y hardening propuesto).
 
 ## 💡 Ideas
 
