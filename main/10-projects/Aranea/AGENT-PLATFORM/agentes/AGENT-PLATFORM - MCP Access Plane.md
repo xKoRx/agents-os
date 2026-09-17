@@ -24,7 +24,7 @@ tags:
   - project/aranea-agent-platform
   - tech/mcp
 created: "2026-09-07"
-updated: "2026-09-16"
+updated: "2026-09-17"
 ---
 
 # AGENT-PLATFORM - MCP Access Plane
@@ -39,7 +39,7 @@ updated: "2026-09-16"
 
 ## 📊 Estado actual
 
-- T0, T2, T3 y T4 cerrados. T1 continúa WIP como contrato transversal. El carril funcional inmediato pasa a **ARGUS / Observability**; T5 Temporal queda diferido, no cancelado, hasta cerrar el baseline y access path de observabilidad.
+- T0, T2, T3, T4 y T5 cerrados (T5 reabierto y cerrado 2026-09-17 como `aranea-temporal-ro` PASS/CLOSED). T1 continúa WIP como contrato transversal. Carriles abiertos 2026-09-17: MinIO/S3 (BLOCKED por identidad upstream dedicada) y etcd (BLOCKED por ausencia de upstream MCP mantenible; decisión owner).
 - `progress: 85` conserva el avance histórico del scope previo a ARGUS; el resto del roadmap (T6 hardening, observabilidad OBS0-OBS5, carriles PROD diferidos) no permite un recálculo objetivo sin doble estándar, por lo que se mantiene conservadoramente hasta que el cierre de un workstream material justifique recalcularlo.
 - `mcps` es un LXC dedicado con Docker + Portainer; IP actual `192.168.31.219`, considerada mutable y no parte del contrato estable. `mcps.lab.aranea.cl` es el endpoint estable usado por consumidores.
 - SSH MCP operativo en una sola instancia/puerto con siete perfiles: operator writable `sqx-zeus`, `sqx-hera`, `sqx-kronos` (promovidos desde viewer el 2026-09-13, siguen entrando como `echo-dev`), `mt5-kronos-operator` y `docker-echo-dev-operator`; viewer/read-only `mt5-kronos` y `echo-runtime-prod` (certificado 2026-09-15, GAP-ECHO-004 CLOSED).
