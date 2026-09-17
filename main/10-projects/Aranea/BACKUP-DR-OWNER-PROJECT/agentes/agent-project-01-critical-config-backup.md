@@ -4,10 +4,10 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: paused
-status_detail: "Legacy ready, pero no autorizado para ejecución por el owner."
+status: done
+status_detail: "Ejecutado parcialmente como fase R1 del mandato owner 2026-09-16/17: 3 unidades BACKUP_VERIFIED+RESTORE_VERIFIED (traefik-config, second-brain, hermes-state) con restore drills PASS a scratch; pve-config/etcd/pi-hole SKIPPED_GATED (sin canal root/etcdctl/api_token — deuda owner acotada). Detalle: change_log 2026-09-17-backup-dr-r1-bootstrap-config."
 priority: P2
-progress: 0
+progress: 65
 icon: 📂
 slug: agent-project-01-critical-config-backup
 area: "[[Aranea]]"
@@ -202,9 +202,10 @@ Todos los §2 BACKUP-DR-DESIGN. NO tocar.
 
 ---
 
-**Status**: ready. NO ejecutado.
-**Sesión cerrada por instrucción del owner**: 2026-07-01.
+**Status**: done (parcial — 3/6 unidades de Capa A certificadas R1; 3 gated con deuda owner).
+**Sesión cerrada por instrucción del owner**: 2026-07-01 (histórico).
 
 ## 📆 Bitácora
 
 - **2026-08-10** — Migrado de `agent-project` legacy a `project` v1 sin activar la ejecución; owner, parent, lifecycle, progress, tags y secciones quedaron contractuales.
+- **2026-09-17** — Fase R1 del mandato owner 2026-09-16/17 ejecutada contra este proyecto (drift de julio aplicado: sin PBS, sin step-ca, sin 7-day cron, restore inmediato). Certificadas: traefik-config (LXC 115 vía `agent_traefik`, configs estática+dinámica; sha256 8/8 vs fuente viva en drill), second-brain (vault 3.438 archivos, restore scratch idéntico), hermes-state (`~/.hermes` operacional + `~/aranea` + unit túnel; 600, drills PASS). Gated/deuda owner: `/etc/pve` (requiere subcommand `config` en `agent-read`), etcd snapshot (requiere etcd-client + endpoint/certs), pi-hole (requiere api_token FTL v6 o canal root). Staging `/home/hermes/aranea/backup-staging/` + wrapper `/home/hermes/aranea/bin/r1-backup.sh` (idempotencia probada, sin timer: frecuencia/retención pendiente decisión owner). Evidencia: `80-agents/journal/logs/2026-09-17-backup-dr-r1-bootstrap-config.md` + manifests por run.
