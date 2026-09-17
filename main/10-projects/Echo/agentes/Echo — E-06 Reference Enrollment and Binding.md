@@ -49,11 +49,11 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 - **E06_PLANNING_CORRECTED_READY_FOR_MANAGER_REVIEW (2026-09-16, docs-only, v1.1.0).** Corrección zero-order: producer `reference_status` del Echo collector; `observed_magic` = inventario (KNOWN_EMPTY no se rellena); AutoTrading = capability no gate OBSERVING; C-3 DEFER del hook SQX conservado. SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` sobre `feature/e06-reference-enrollment-binding`. Old planning SHA `9989f399fd992dc315f2bfe3279bfd862592ccf1`. New SHA se registra post-commit. Baseline `origin/master` `5dd998f16aea7b2821f460188718d7a6d279829c`. **0 líneas productivas en `v3/**` esta sesión.** Master intacto. NORMAL no lanzado. No E-07. No PR.
 - **RuntimeBinding key:** PK `binding_id` UUID; pin S0 `binding_ref = H("echo-reference-binding.v1",[ns,binding_id,version_ref,account_registration_ref,broker_server_ref,platform,magic_decimal,observation_class])`.
 - **Lifecycle:** PREPARED → (ACK + matching read-back) → OBSERVING → DRAINING → CLOSED; staleness → SUSPENDED + UNKNOWN. PREPARED/ACK solos ≠ OBSERVING.
-- **Read-back authority:** Bridge emite `REFERENCE_READBACK.v1`; Gateway persiste y transiciona. Operator ACK es CONFIG, no suficiente.
+- **Read-back authority:** Echo collector `reference_status` → Bridge `REFERENCE_READBACK.v1` → Gateway. Operator ACK es CONFIG, no suficiente. Heartbeat/UnifiedBatch/config **no** son OBSERVING.
 - **Coverage barrier:** `coverage_started_at = max(proof.recorded_at, capture_barrier_at)`. Prohibido created_at/ingestion/ACK clocks.
 - **CANONICAL/SHADOW:** 1 CANONICAL OPEN-admitting por Version; SHADOW no suma. Duplicate collector y same-account overlap fail-closed.
 - **Migración:** `064_reference_enrollment_binding` exclusiva E-06; FK a 061; SHARED DEV apply gated por 061 APPLIED (hoy NOT_APPLIED). 062/063 no-touch.
-- **PHYSICAL:** matriz AC-01…15 sin órdenes; mocks ≠ OBSERVING. GAP-ECHO-006 terminal opcional extra.
+- **PHYSICAL:** AC-01…15 + AC-26…32; producer real `reference_status`; fakes ≠ OBSERVING. GAP-ECHO-006 = PHYSICAL_PENDING, no PASS.
 - **Hipótesis accounts/policies solos:** REFUTADA en source/PG. Bastan accounts/policies (intent) + `reference_bindings` (hecho). No `deployments`.
 - **AUTHORITY_CONFLICT:** ninguno. S0 ACTIVE/CLOSED = envelope de pin; lifecycle operacional = Live Authority §5. O1/O3 technical default Fable.
 
@@ -170,7 +170,7 @@ _No aplica — hijo de implementación de E-06; no crea Integration ni más hijo
 > - [x] TOP planning correction #1 v1.1.0 zero-order physical authority → Manager Review #owner/agent #type/docs #area/echo
 > - [ ] WP-A Persistencia 064 + stores + UNIQUEs #owner/agent #type/dev #area/echo
 > - [ ] WP-B Enrollment HTTP PREPARED/ACK/drain + ClientConfig #owner/agent #type/dev #area/echo
-> - [ ] WP-C Read-back Bridge→Gateway y transición OBSERVING #owner/agent #type/dev #area/echo
+> - [ ] WP-C Read-back Bridge→Gateway desde `reference_status` y transición OBSERVING #owner/agent #type/dev #area/echo
 > - [ ] WP-D Gates negativos duplicate/overlap/mismatch/stale/DB-only #owner/agent #type/dev #area/echo
 > - [ ] WP-E Hasura/BWC/SOURCE/PHYSICAL no-trading #owner/agent #type/dev #area/echo
 
@@ -191,14 +191,16 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-16 (TOP planning correction #1)** — v1.1.0. Heartbeat/UnifiedBatch no son autoridad zero-order. Producer congelado: `reference_status` Echo collector. Magic = inventario; KNOWN_EMPTY no se fabrica. AutoTrading = capability (B2). C-3 DEFER SQX conservado. Old SHA `9989f399`. Source mutations 0. Estado `E06_PLANNING_CORRECTED_READY_FOR_MANAGER_REVIEW`.
 - **2026-09-16 (TOP planning one-shot)** — SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `9989f399`. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. O1/O3 applied. 064 reservada. 0 source. Estado `E06_PLANNING_READY_FOR_MANAGER_REVIEW`. Puente padre → Review.
 
 ## 🧭 Decisiones (ejecución, no semántica nueva)
 
 - Hijo de implementación de E-06; ownership sigue en [[Echo — Live Platform V1]], no Integration.
-- OBSERVING nunca se sintetiza desde SQL/ACK/config.
+- OBSERVING nunca se sintetiza desde SQL/ACK/config/heartbeat/UnifiedBatch.
 - Apply 064 SHARED DEV es ops gated por 061, no NORMAL.
-- PHYSICAL V1 usa collector fixture zero-order; terminal MT5 real es extra.
+- PHYSICAL V1 exige producer `reference_status`; fake ≠ PHYSICAL. Terminal MT5 real GAP-ECHO-006 pendiente no se disfraza de PASS.
+- Residual C-3 (SQX input magic) fail-closed cuando el inventario posterior contradiga el pin.
 
 ## 🔗 Docs / Links
 
@@ -216,7 +218,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ### Backlog de ideas
 
-- Hook EA exportado: DEFER (C-3), no V1.
+- Hook EA SQX exportado: DEFER (C-3), no V1. Echo collector `reference_status` no es ese hook.
 
 ### Motivos / principios
 

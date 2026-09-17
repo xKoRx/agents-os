@@ -44,7 +44,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 ## 📊 Estado actual
 
-- **E-06 PLANNING READY FOR MANAGER REVIEW (2026-09-16):** [[Echo — E-06 Reference Enrollment and Binding]] SPEC/PLAN/TASKS/VERIFICATION v1.0.0 en `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f1`. Docs-only; 0 product source. RuntimeBinding = `reference_bindings` + ACK CONFIG + read-back Bridge; OBSERVING nunca desde SQL. Migración 064; FK 061; SHARED DEV apply gated. NORMAL no lanzado. E-01…E-05 no reabiertos.
+- **E-06 PLANNING CORRECTED READY FOR MANAGER REVIEW (2026-09-16):** [[Echo — E-06 Reference Enrollment and Binding]] SPEC/PLAN/TASKS/VERIFICATION v1.1.0 (corrige v1.0.0 @ `9989f399`) en `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f1`. Docs-only; 0 product source. Producer `reference_status`; ACK≠OBSERVING; magic=inventario no config; AutoTrading=capability. Migración 064; FK 061. NORMAL no lanzado. E-01…E-05 no reabiertos.
 - **S0 ERRATUM INTEGRATED — MASTER `7e628bf5` (2026-09-13):** erratum post-certificación E-01/S0 (V3-006, metric formula identity) integrado fast-forward a `origin/master` (`a99f9a63..7e628bf5`; commits `8a979fb5`/`da469d50`/`7e628bf5`), con Independent Verifier PASS y gates post-integración PASS (tests, corpus G01–G36, race, coverage contracts `95.1%`, vet, gofmt). Certificación histórica S0 `91671f6f` preservada; E-01 sigue closed. E-05 V3-006 authority blocker resuelto en master; E-05 espera reconciliation + Full Verifier #4 (`3bc5dca9`). Interlock 063/062 intacto.
 - **E-05 INDEPENDENT VERIFICATION FAIL (2026-09-13):** `baa2e305` infiere moneda Lab/USD ambigua en `pnl.total` cuando el parámetro de moneda está vacío; ver `Echo — E-05 Analytics Convergence A0` y su `VERIFICATION.md`. No merge/deploy; 063 sigue esperando 062 de E-02 en `master`.
 - **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2) + E-05 IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION. E-05 planning v1.0.1 @ `dd1f2da9` en `feature/e05-analytics-convergence-a0` (reserva 063; 062 es E-02); no NORMAL; master intacto `a99f9a63`.
@@ -61,7 +61,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` (integrada FF) + feature `feature/e05-analytics-convergence-a0` + feature `feature/e06-reference-enrollment-binding` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 CLOSED: master `92d0ec2e` (FF desde `7e628bf5`; producto `f6e6af1b`) · E-05 CLOSED SOFTWARE/INTEGRATED master `5dd998f1` · E-06 planning desde `5dd998f1` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 · E-05: `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 · E-06: `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.0.0 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · T21 POST-INTEGRATION PENDING · E-02 CLOSED — SOFTWARE / INTEGRATED @ `92d0ec2e` · E-05 CLOSED — SOFTWARE / INTEGRATED @ `5dd998f1` · E-06 PLANNING READY FOR MANAGER REVIEW |
+| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` (integrada FF) + feature `feature/e05-analytics-convergence-a0` + feature `feature/e06-reference-enrollment-binding` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 CLOSED: master `92d0ec2e` (FF desde `7e628bf5`; producto `f6e6af1b`) · E-05 CLOSED SOFTWARE/INTEGRATED master `5dd998f1` · E-06 planning desde `5dd998f1` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 · E-05: `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 · E-06: `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.1.0 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · T21 POST-INTEGRATION PENDING · E-02 CLOSED — SOFTWARE / INTEGRATED @ `92d0ec2e` · E-05 CLOSED — SOFTWARE / INTEGRATED @ `5dd998f1` · E-06 PLANNING READY FOR MANAGER REVIEW |
 
 ## 🧩 Subproyectos
 
@@ -222,7 +222,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-06 Reference enrollment and binding
 
-- **ID / status / size:** E-06 · PLANNING READY FOR MANAGER REVIEW · MEDIUM
+- **ID / status / size:** E-06 · PLANNING CORRECTED READY FOR MANAGER REVIEW · MEDIUM
 - **Objective:** RuntimeBinding: una enrollment canónica por Version; cuenta+broker+magic mapping observado; ACK/read-back; coverage start barrier. Attach manual verificado permitido V1.
 - **Capability unlocked:** reloj forward atribuible. Ingestion ≠ observing.
 - **Why:** sin enrollment no hay Quality canónica.
@@ -238,7 +238,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Done when:** primera observación atribuible o UNKNOWN explícito.
 - **Unlocks:** E-07.
 - **Accepted debt:** attach manual.
-- **Planning:** TOP v1.0.0 ([[Echo — E-06 Reference Enrollment and Binding]]). SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` @ branch `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Store `reference_bindings`; ACK≠OBSERVING; read-back Bridge; 064 FK 061; PHYSICAL zero-order. **Implementation:** NORMAL (no lanzado). **GOD:** NONE.
+- **Planning:** TOP v1.1.0 ([[Echo — E-06 Reference Enrollment and Binding]]). SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` @ branch `feature/e06-reference-enrollment-binding` desde `5dd998f1`. Store `reference_bindings`; ACK≠OBSERVING; producer `reference_status`; 064 FK 061; PHYSICAL zero-order con producer real. **Implementation:** NORMAL (no lanzado). **GOD:** NONE.
 
 ### E-07 Raw facts, DEAL, coverage and trade lifecycle
 
@@ -383,6 +383,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-16 — E-06 TOP planning correction #1:** [[Echo — E-06 Reference Enrollment and Binding]] v1.1.0. Old SHA `9989f399`. Heartbeat/UnifiedBatch no son autoridad zero-order. C-3 DEFER SQX conservado; Echo collector `reference_status` IN SCOPE. 0 source. Puente E-06 permanece Review. Master intacto.
 - **2026-09-16 — E-06 TOP planning one-shot:** [[Echo — E-06 Reference Enrollment and Binding]] SPEC/PLAN/TASKS/VERIFICATION v1.0.0. Branch `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f1`. Docs-only; 0 source. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. 064 reservada con interlock 061 SHARED DEV. Puente E-06 → Review. Master intacto. E-01…E-05 no reabiertos.
 - **2026-09-16 — E-02 evidencia AC-03/04/05/17 corregida:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] recertificó los cuatro AC con fixtures descartables; evidencia `92d0ec2e` sobre producto `f6e6af1b`. Hasura compartido y master intactos. Puente E-02 permanece Review.
 - **2026-09-16 — E-02 independent verification PASS:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] `VERIFICATION_PASS — READY_FOR_INTEGRATION` @ producto `f6e6af1b` / evidencia `bbceecdf`. CLOSED contradicho y corregido (no CLOSED pre-integración). Master `7e628bf5` intacto. Puente E-02 permanece Review.
