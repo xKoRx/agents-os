@@ -1113,3 +1113,247 @@ M1 no exige resolver hoy ABI live excluida ni retención remota inexistente para
 | P2 | ¿Retención/pins/backups y gates permiten auditar el resultado sin repetir research? | Evidencia no reproducible, fuente/versión sin provenance o PASS imposible de observar |
 
 FABLE debe registrar findings **en este mismo archivo**, identificando sección/A-ID/U-ID, severidad, evidencia del pack, escenario de fallo, consecuencia y condición verificable de cierre; no necesita reconstruir ni reemplazar el TPM. ASTRA reconciliará esos findings y las decisiones del owner en una segunda pasada. **NEXT: FABLE adversarial challenge.** No se declara `M1_DESIGN_FROZEN` ni se inicia TOP.
+
+## M1 — FABLE Adversarial Challenge
+
+**Estado del shot:** `M1_FABLE_CHALLENGE_COMPLETE` · **Autor:** FABLE-1 · **Fecha:** 2026-09-17 · **Resultado:** `MATERIAL_FINDINGS_REQUIRE_RECONCILIATION`. Esta sección audita la propuesta ASTRA-1; no la reemplaza, no congela M1, no implementa código y no ejecuta gates físicos. Toda corrección indicada es una resolución mínima propuesta que ASTRA-2 integra durante la reconciliación preservando autoría.
+
+### F.1 — Alcance y baseline auditado
+
+- **Baseline:** `xKoRx/agents-os` · `master` · commit ASTRA-1 `4e95dcd1a7a605c210e7f421933d48b3477451f9` · blob del proyecto `b78142b34a88bf9afa398ca32be281ca71f224e1` (idéntico en HEAD local al iniciar; sin cambios concurrentes sobre el archivo).
+- **Leído íntegramente:** objetivos, capabilities, gates M0–M4, M1.0–M1.17, A-01…A-35, U-01…U-10 y handoff FABLE.
+- **TPM consultado selectivamente para verificar findings:** P10 §24–25 (estado M0, recovery matrix, dinámicos); P04 §7A–E y §8.1–8.4 (Order firmado, DTO, wrapper, estados, writes ambiguas, matriz de errores); P05 §9.1–9.5 y §10–11 (books, Market/User WS, CTF, contratos, allowances); P03 §4 y §6 (identidades, L1/L2, tiempo); P07 §18 (rate limits y buckets por signer). ERC §2–4 sólo para requisitos transversales de baskets/relaciones. No se abrió Internet, SDKs, investigaciones originales ni otros proyectos; no se modificó el TPM.
+- **Criterio:** se buscaron contraejemplos reproducibles sobre pérdida de datos, capital incorrecto, duplicación de efectos, falso resultado experimental, deadlock, recuperación imposible o complejidad innecesaria. Las decisiones macro frozen `D-001…D-014` no se reabren. Ningún finding exige otro engine.
+- **Veredicto agregado:** la propuesta es conservadora y coherente en sus invariantes principales; **no se demostró ningún P0**. Se demuestran **7 P1** (contradicciones internas, reglas de convergencia ausentes y ownership indefinido que TOP no puede resolver sin inventar arquitectura) y **5 P2** (precisiones y simplificaciones que no exigen rediseño). Ninguno reabre el baseline macro.
+
+### F.2 — Hallazgos materiales
+
+#### FBL-001 · P1 · Intents `UNKNOWN` sin regla de convergencia terminal: capital congelado indefinidamente
+
+- **Affects:** M1.11 (Retries, Al recuperar), M1.13 (config `intent TTL` sin semántica), A-21, U-06.
+- **Claim:** timeout/5xx tras iniciar el intento deja el intent `UNKNOWN` con fondos retenidos; «un 404/ausencia actual no prueba no aceptación»; nunca salt nuevo.
+- **Counterexample:** intent I1 GTD (expiry +180 s) → `SEND_ATTEMPT_STARTED` durable → HTTP timeout. Reconcile: `/data/order/{hash}` 404, `/data/orders` no lo lista, `/data/trades` sin trade. Según M1.11 la ausencia no prueba nada, por lo que la reserva permanece `HELD`. Nada en M1 define cuándo `UNKNOWN` se vuelve terminal. Repetir con 3–5 timeouts en una sesión y el bankroll tiny-live completo (US$300) queda reservado sin ningún hecho externo que lo justifique; el siguiente arranque tampoco lo libera («sin visibilidad… no liberar reservas»).
+- **Violated invariant:** liveness del ledger: toda reserva debe alcanzar `RELEASABLE` o `CONSUMED` en tiempo finito bajo evidencia definible ex ante.
+- **Impact:** capital incorrecto por defecto (disponible artificialmente cero), rechazos por capital confundidos con ausencia de señal, operación live inviable con bankroll pequeño.
+- **Evidence:** M1.11 «Timeout/red cortada/5xx genérico… → UNKNOWN, con fondos retenidos» y «un 404/ausencia actual no prueba no aceptación»; A-21 tradeoff «Fondos bloqueados en UNKNOWN»; P04 §8.3 sin Idempotency-Key HTTP; P04 §7D GTD vence 60 s antes de `expiration`, FOK/FAK sin resto abierto; P05 §10 balances ERC1155/ERC20 on-chain como hechos por bloque.
+- **Minimal correction:** definir en M1.11 la regla de terminalización por evidencia, sin usar ausencia REST como prueba: un `UNKNOWN` pasa a `RESOLVED_NOT_FILLED` (reserva `RELEASABLE`) sólo cuando se cumplen todas: (a) la orden es de tipo con vencimiento propio (FOK/FAK inmediato, GTD por `expiration`) y `now_server ≥ expiration + settlement_window`; (b) lookups por hash, órdenes abiertas y trades con overlap desde antes del intento no muestran la orden ni un trade que la referencie; (c) balance collateral y saldo ERC1155 del asset a bloque confirmado coinciden con el ledger sin ese fill; (d) User WS estuvo conectado o su hueco fue cubierto por REST. GTC `UNKNOWN` no terminaliza por tiempo: exige cancel por hash exitoso o evidencia terminal. `settlement_window` y el máximo de `UNKNOWN` simultáneos que bloquean nuevos sends son parámetros `REQUIRES_OWNER` para live; el mecanismo es contrato de diseño ahora.
+- **Closure test:** fixture G-11/G-12 con timeout tras aceptación real (orden visible después) → permanece `HELD` y converge a `ACK_OBSERVED`; timeout sin aceptación (nunca visible, balances intactos, expiry vencido) → `RELEASABLE` exactamente tras (a)–(d); 404 aislado sin (a)/(c) → sigue `HELD`.
+- **Disposition:** `BLOCKING_BEFORE_FREEZE` (regla); valores numéricos `OWNER_DECISION` para live activation.
+
+#### FBL-002 · P1 · Clasificación incompleta de respuestas de escritura y resubmisión `order timed out`
+
+- **Affects:** M1.11 (Acknowledgement, Retries, Cancelación), A-21, U-04.
+- **Claim:** 5xx genérico/red → `UNKNOWN`; sólo el error literal `order timed out` habilita «resubmisión del mismo intent»; cancel `canceled` libera remanente.
+- **Counterexample:** (1) `POST /order` responde HTTP 425 (matching engine restart) o 429 de bucket signer, ambos ausentes de la clasificación de M1.11; TOP puede implementarlos como rechazo definitivo y liberar la reserva, mientras P04 §8.4 exige «para write ambiguo consultar estado» en 425. (2) `order timed out`: si «mismo intent» se implementa re-firmando (nuevo `timestamp` ms firmado → nuevo hash, P04 §7A), y la primera orden sí entró pese al error, existen dos órdenes vivas del mismo intent: doble exposición sin salt nuevo. (3) Cancel `canceled` recibido, reserva del remanente liberada con `size_matched` conocido localmente; llega trade tardío del mismo order hash con match previo al cancel → obligación mayor que la reserva retenida → `available` sobreestimado para el siguiente intent.
+- **Violated invariant:** un intent produce como máximo un efecto externo; la reserva cubre toda obligación posible hasta terminalidad probada.
+- **Impact:** doble exposición o doble gasto de bajo volumen pero real; violación de conservación en ledger.
+- **Evidence:** M1.11 párrafos «Retries» y «Cancelación»; P04 §8.4 filas 425, 429, 503, `order timed out`, HTTP 500 genérico; P04 §7A `timestamp` uint256 ms es campo firmado; P04 §8.3 `POST /order` «orden firmada tiene identidad/hash determinista».
+- **Minimal correction:** tabla normativa en M1.11: `DEFINITIVE_REJECT` = body JSON CLOB parseable con `success:false` y `errorMsg` no vacío, o HTTP 400/401/403 con body CLOB; `UNKNOWN` = 425, 429, 5xx, 503 sin body parseable, timeout, red cortada, body no parseable o `success:true` sin `orderID`. Resubmisión por `order timed out` exige: body JSON del envelope CLOB con `errorMsg == "order timed out"` exacto, **mismos bytes firmados y mismo hash** (jamás re-firmar), un solo reintento, ruta certificada en G-12/G-17; cualquier re-firma es un intent nuevo con nueva decisión de Risk. Liberación tras `canceled`: sólo con `GET /data/order/{hash}` en estado terminal y `size_matched` final; obligaciones por trades permanecen hasta `CONFIRMED` o `FAILED` conciliado.
+- **Closure test:** fixtures G-12: 425/429/503/500 genérico/body HTML → `UNKNOWN` y reserva `HELD`; `order timed out` exacto → segundo envío con bytes idénticos y hash igual, `Duplicated` → lookup sin tercer envío; variante `upstream timed out` → `UNKNOWN`; cancel con trade tardío → reserva cubre obligación, `available` no negativo.
+- **Disposition:** `BLOCKING_BEFORE_FREEZE`.
+
+#### FBL-003 · P1 · Contradicción entre integridad DB↔journal, retención 30 d y conjunto de backup
+
+- **Affects:** M1.6 (Crash), M1.7 (Consistencia, Retención, Backups), A-11, A-12, A-13, U-08.
+- **Claim:** «referencias DB a evidencia ausente invalidan integridad»; raw no pineado se elimina a 30 días; backup = snapshot DB horario + segmentos copiados al sellar; «restore valida esos vínculos».
+- **Counterexample A:** fill F (día 1) queda en DB con `capture_ref` al segmento S. Día 31 GC borra S (no pineado, ledger de cuenta se retiene «vida del proyecto»). Día 32 el arranque valida referencias: por la regla literal la integridad es inválida → o bloquea el writer de cuenta (recuperación imposible con hechos externos verdaderos) o la regla se ignora (invariante vacío). **Counterexample B:** snapshot DB a T1 registra `applied_seq=N` en el segmento activo S_k (no sellado, no copiado). Host muere en T2 < sellado. Restore en directorio limpio: DB referencia evidencia inexistente → mismo dilema; además el conjunto restaurado tiene DB **por delante** del journal, invirtiendo la frontera de crash asumida en M1.7 (journal sella primero).
+- **Violated invariant:** integridad referencial definible y recovery siempre posible para hechos de cuenta.
+- **Impact:** recuperación imposible o invariante ficticio; backup no restaurable según G-14.
+- **Evidence:** M1.7 «Consistencia entre journal y DB», «Retención propuesta», «Backups»; A-11; A-12; G-14.
+- **Minimal correction:** (1) dos clases de referencia en M1.7: `ACCOUNT_FACT` (intents, attempts, fills, reservas, observaciones de cuenta) es autoridad local reconciliable con venue/chain y su evidencia privada se retiene vida del proyecto en el storage privado ya previsto en M1.6, fuera del GC de 30 d; `RESEARCH_EVIDENCE` ausente marca proyecciones/experimentos `NOT_REPRODUCIBLE`, nunca bloquea startup ni cuenta. (2) Punto de consistencia de backup: cada snapshot DB fuerza sello del segmento activo (o copia el prefijo durable ≤ `durable_seq` con su checksum) antes de copiarse, y registra `(durable_seq, applied_seq por reducer)`; restore exige `journal_seq ≥ applied_seq` para toda clase o degrada a `RECOVER_FROM_VENUE` sólo para `ACCOUNT_FACT`. (3) Restore en host nuevo exige rotación de credencial L2 antes de cualquier lease (evita instancia antigua viva con la misma identidad).
+- **Closure test:** G-14 extendido: restaurar snapshot con segmento activo perdido → cuenta recupera y reconcilia, experimentos afectados `NOT_REPRODUCIBLE`, sin bloqueo; GC simulado a día 31 → arranque limpio, integridad `PASS`, evidencia privada de cuenta intacta.
+- **Disposition:** `BLOCKING_BEFORE_FREEZE`.
+
+#### FBL-004 · P1 · Replay de decisiones no reproducible: `EvaluationContext` fuera del `revision_vector`
+
+- **Affects:** M1.6 (Replay de decisiones entregadas), M1.8 (`EvaluationContext`), M1.10, A-09, G-07.
+- **Claim:** `DeliveryFrame{run_id, ordinal, trigger, cut_seq, revision_vector, quality, virtual_time}` permite reproducir «el input exacto de la estrategia».
+- **Counterexample:** en SHADOW/LIVE, `Evaluate` recibe `AccountView del modo + RiskPolicyView + DepthQuote/CostEnvelope`. `AccountView` real depende de fills/settlement externos con timing propio (no derivable del journal de mercado); `RiskPolicyView` cambia por config revision; el ledger de liquidez virtual depende de órdenes simuladas previas. Ninguno figura en `revision_vector`. Reejecutar la delivery reproduce `Detect` pero no `Evaluate` ni la decisión de Risk: mismo frame, distinto `Assessment`/sizing → G-07 no puede pasar para deliveries live/shadow y la auditoría de una decisión real es imposible.
+- **Violated invariant:** determinismo del replay de decisiones entregadas sobre la evidencia capturada.
+- **Impact:** falso resultado experimental, imposibilidad de auditar una orden real, G-07 inalcanzable.
+- **Evidence:** M1.6 definición de `DeliveryFrame`; M1.8 comentario `EvaluationContext`; M1.9 ledger de liquidez virtual; G-07.
+- **Minimal correction:** `revision_vector` incluye obligatoriamente `account_view_rev`, `risk_policy_rev`, `regime_rev`, `universe_rev`, `relationship_rev`, `liquidity_ledger_rev` (SHADOW/REPLAY) y `quote_inputs_hash`; el Coordinator publica `AccountView` como snapshot inmutable versionado (ya lo es «snapshot de cuenta» para Risk) y el descriptor lo referencia; el resultado registra `Assessment` y decisión de Risk con esas revisiones. Un descriptor con revisión de cuenta no recuperable marca la delivery `NOT_REPRODUCIBLE`, nunca reproduce con estado actual.
+- **Closure test:** G-07 con corrida SHADOW: replay de deliveries iguala hashes de `Assessment`, sizing y decisión de Risk; alterar `AccountView` fuera del descriptor debe producir `NOT_REPRODUCIBLE`, no una diferencia silenciosa.
+- **Disposition:** `BLOCKING_BEFORE_FREEZE`.
+
+#### FBL-005 · P1 · Ledger virtual compartido entre estrategias contamina el scorecard por POC
+
+- **Affects:** M1.8 (fila `SHADOW`: «cuenta virtual compartida»), M1.9 (ledger de liquidez por run), A-16, A-17.
+- **Claim:** «dos estrategias no pueden reutilizar la misma profundidad en el mismo escenario como si ambas fueran primeras»; SHADOW usa cuenta virtual compartida.
+- **Counterexample:** POC-S01 y POC-S02 corren en SHADOW sobre el mismo asset. S01 (admitida primero por orden determinista) consume el ask de 500 shares. S02 detecta la misma oportunidad; su `Evaluate` ve profundidad virtual cero → `REJECT`. Scorecard S02 registra señal sin fill/edge. El protocolo preregistrado de S02 concluye `NO_GO` por capacidad, cuando aislada habría llenado. El resultado depende de qué otras POCs corrían, no de la hipótesis.
+- **Violated invariant:** un scorecard mide la hipótesis, no la composición accidental del portafolio de experimentos (`NO EDGE` sólo con sistema/modelo aptos).
+- **Impact:** falso `NO_GO`/falso edge, north star degradado; irreproducible sin listar todas las POCs coetáneas.
+- **Evidence:** M1.8 tabla de modos; M1.9 «Cada run simulado posee un ledger de liquidez virtual consumida… dos estrategias no pueden reutilizar…»; M1.14 diagnóstico `NO EDGE`.
+- **Minimal correction:** default = ledger virtual de liquidez y cuenta **aislado por experimento/instancia**; modo `PORTFOLIO_SHARED` explícito en manifest, con contador `PEER_CONSUMED_DEPTH` en denominadores del scorecard y lista de peers en el manifest. El recorder ya captura ambos; no hay coste de datos.
+- **Closure test:** G-10: dos fixtures idénticas en paralelo aisladas → scorecards iguales entre sí y al run individual; en `PORTFOLIO_SHARED` → diferencia explicada íntegramente por `PEER_CONSUMED_DEPTH`.
+- **Disposition:** `BLOCKING_BEFORE_FREEZE` (cambio de texto/contrato; sin rediseño).
+
+#### FBL-006 · P1 · Ejecución multi-leg live sin owner: la política de basket no tiene máquina de estados
+
+- **Affects:** M1.8 (`ActionCandidate`), M1.9 (Baskets), M1.10 (fila Baskets), M1.11 (submit individual), A-14, A-16.
+- **Claim:** el engine provee «ejecución/coste de legs», reserva todo el conjunto antes de la primera leg y «limita riesgo residual si sólo parte llena»; la estrategia no recibe callback de envío; diseño favorece submit individual.
+- **Counterexample:** candidato S01 con 3 legs. Leg 1 llena, leg 2 `UNKNOWN`, leg 3 rechazada por tick change. ¿Quién decide esperar, abandonar o deshacer leg 1? La estrategia sólo puede reaccionar en `Observe(LiveExecution)` y emitir otro candidato, es decir, reimplementar la secuenciación y el unwind en cada POC (viola «una strategy no implementa… risk engine»). Execution «posee intentos de I/O, no balance» y Risk es «evaluador puro»: ningún módulo posee el estado del basket. En simulación M1.9 sí modela «condiciones de abandono», luego SHADOW y LIVE divergen de contrato.
+- **Violated invariant:** un owner por estado; misma lógica en los cuatro modos; POC sólo implementa lo diferenciador.
+- **Impact:** POCs S01/S02 (ambas baskets según ERC §2–3) deformarían el core o producirían legging risk no gobernado en live; resultados SHADOW no comparables con LIVE.
+- **Evidence:** M1.8 «ActionCandidate contiene una o varias legs… restricciones de parcialidad y máximo riesgo residual»; M1.9 «Baskets son multi-leg no atómicos: simular orden/tiempos de legs… condiciones de abandono»; M1.10 fila Baskets; M1.11 «submit individual».
+- **Minimal correction:** tipo `BasketPolicy` declarativo en `ActionCandidate` (`legs_order: PARALLEL|SEQUENTIAL`, `max_leg_skew`, `on_partial: HOLD|UNWIND_FILLED|COMPLETE_IF_BUDGET`, `max_residual_risk`, `ttl`), interpretado por una máquina de estados `BasketExecution` propiedad del Account Coordinator (estado) y ejecutada por Execution (I/O); el Simulator implementa la misma política. La estrategia sólo declara. Sin política válida → candidato rechazado. Implementación live diferida; el contrato se fija ahora.
+- **Closure test:** G-10/G-12: fixture 3 legs con leg 2 `UNKNOWN` y leg 3 rechazada → `on_partial` aplicado por el engine, resultado idéntico en SHADOW y en fault-fixture live, sin código de secuenciación en la estrategia neutral de G-08.
+- **Disposition:** `BLOCKING_BEFORE_FREEZE` (contrato); implementación `DEFER_TO_M2_WITH_FIXED_CONTRACT`.
+
+#### FBL-007 · P1 · Cancelación defensiva sin audit: frontera operativa no contractual
+
+- **Affects:** M1.11 (Kill switch operativo), M1.14, A-25.
+- **Claim:** con disco lleno/DB caída se permiten cancelaciones defensivas de IDs/scope conocidos sin persistir audit; alerta operacional; el siguiente arranque fuerza reconcile.
+- **Counterexample:** DB caída; cancel-all emitido; proceso reiniciado por el supervisor con disco parcialmente liberado. Nada durable indica que hubo acciones sin audit: la «alerta» es efímera y `LIVE_DISABLED/RECOVERING` es el arranque normal, no una señal de audit gap. El operador humano revisa después el ledger y no encuentra rastro del cancel; la secuencia de decisiones live queda incompleta sin marca. Además el texto no acota qué es «defensivo»: un `DELETE /orders` con IDs en memoria potencialmente stale o un cancel-all sobre scope compartido cabrían en la excepción.
+- **Violated invariant:** trazabilidad degradada declarada, no silenciosa; excepción de emergencia acotada por allowlist.
+- **Impact:** auditoría incompleta de acciones con credencial real; riesgo de ampliación de la excepción en implementación.
+- **Evidence:** M1.11 último párrafo; A-25 tradeoff «Audit parcial en emergencia».
+- **Minimal correction:** definir `DEGRADED_AUDIT` como modo explícito del Supervisor: allowlist = {`DELETE /order` por hash conocido, `DELETE /orders` por hashes conocidos, `DELETE /cancel-all` sólo si cuenta dedicada (A-23)}; cada acción se escribe en un ring buffer en memoria y en un sink secundario mínimo (stderr/syslog del servicio, ya fuera del journal) con timestamp, hashes y respuesta; flag `AUDIT_GAP{boot_id, since}` se persiste en el primer store escribible disponible (DB, journal o archivo marcador en el directorio de estado) y bloquea cualquier `ActivationLease` hasta que un reconcile completo lo cierre con firma del operador. Prohibido en este modo: nuevos orders, approvals, conversión, liberación de reservas.
+- **Closure test:** drill G-13/G-14: DB inaccesible → cancel permitido, `AUDIT_GAP` presente tras reinicio, lease denegada hasta cierre explícito, ring buffer volcado al journal al recuperar storage; intento de `POST /order` en el modo → rechazado antes de firmar.
+- **Disposition:** `BLOCKING_BEFORE_FREEZE`.
+
+#### FBL-008 · P2 · Semántica del corte `C` del Frame Builder subespecificada
+
+- **Affects:** M1.5 (Frame multiasset), M1.13 (Book shards, Frame builder), A-07.
+- **Claim:** el builder «solicita a los owners un corte local `capture_seq=C` y conserva la revisión de cada book… disponible a ese corte; los shards confirman un watermark procesado (también para posiciones sin mutación)».
+- **Counterexample:** shard A ya aplicó seq 1.050 cuando llega la solicitud `C=1.000`; sólo mantiene la última revisión → no puede servir la revisión ≤1.000 sin historial. Shard B, sin eventos de su asset desde 900, no sabe si «procesó hasta 1.000» salvo que observe el avance global del dispatcher. Sin especificación, TOP elige entre retención ilimitada de revisiones (memoria) o lecturas «latest» disfrazadas de corte (viola coherencia local).
+- **Violated invariant:** coherencia local del frame sin retención ilimitada.
+- **Impact:** implementación con memoria no acotada o frames incoherentes; no afecta capital.
+- **Evidence:** M1.5 párrafo «Frame multiasset»; A-07 tradeoff «retención de revisiones».
+- **Minimal correction:** fijar el contrato: el corte es **forward**: `C` se elige ≥ `dispatched_seq` actual; cada shard emite snapshot al cruzar `C` (o inmediatamente si su inbox no contiene records ≤ `C` y `dispatched_seq ≥ C`); retención por shard de revisiones acotada a `K` (config) sólo para cortes ya solicitados; si un shard ya superó `C` sin snapshot retenido, el frame es `INELIGIBLE`; el dispatcher mantiene `dispatched_seq` monotónico observable por todos los shards.
+- **Closure test:** property test G-05/G-07: bajo scheduling aleatorio ningún frame contiene revisión con seq > `C` ni omite records ≤ `C`; memoria por shard ≤ `K` snapshots.
+- **Disposition:** `DEFER_TO_M2_WITH_FIXED_CONTRACT`.
+
+#### FBL-009 · P2 · Carril único de admisión: carga de research puede revocar epochs de mercado; fsync por callback evitable
+
+- **Affects:** M1.6 (Política durable-before-publish, scheduler), M1.13 (Ingress/Capture), A-08, A-29.
+- **Claim:** registros de control/delivery/resultados van al mismo journal secuencial; si la cola no admite un frame se revoca el epoch y se reconecta; el scheduler «registra durablemente el descriptor antes de invocarlo».
+- **Counterexample:** 20 estrategias SCREEN generan descriptores+resultados a alta tasa; la cola acotada se llena por registros de runtime; un frame de Market WS no es admitido → epoch revocado y discontinuidad L2 causada por research, no por el mercado. Además cada callback espera un group commit aunque su resultado no tenga efecto externo.
+- **Violated invariant:** research no degrada captura; latencia del hot path proporcional a efectos reales.
+- **Impact:** discontinuidades autoinfligidas en datasets; latencia añadida sin beneficio.
+- **Evidence:** M1.6 «Política por defecto» y «El scheduler registra durablemente el descriptor del frame antes de invocarlo»; M1.13 fila Ingress/Capture.
+- **Minimal correction:** dos carriles hacia el mismo secuenciador único: `EVIDENCE` (mercado/cuenta/control de transporte) y `RUNTIME` (descriptores/resultados/control de experimentos) con presupuestos separados; saturación de `RUNTIME` pausa runs (política ya prevista para consumidores), nunca revoca epochs. Relajar a «descriptor **añadido** antes de invocar; **durable** antes de publicar resultado, feedback o intent dependiente»: la lineage se conserva porque el resultado sigue al descriptor en el journal y el intent referencia un descriptor ya durable. El Simulator no requiere `synchronous=FULL`: su estado es reconstruible por replay; puede usar checkpoints periódicos.
+- **Closure test:** G-09/G-13: saturar `RUNTIME` con estrategias lentas → cero epochs revocados y cero holes de mercado; p99 receive→decision sin fsync por callback medido y documentado.
+- **Disposition:** `DEFER_TO_M2_WITH_FIXED_CONTRACT`.
+
+#### FBL-010 · P2 · Precisiones de recovery y ledger que TOP no debe inferir
+
+- **Affects:** M1.3 (Trade/Fill), M1.7 (`applied_seq`), M1.10 (Ledger), M1.11 (Al recuperar), A-02, A-13.
+- **Claim:** al recuperar se marcan `SEND_ATTEMPT_STARTED` sin resultado como `UNKNOWN`; DB confirma «`applied_seq`» en una transacción; `FillKey=(account_scope, service, trade_id, order_hash, AssetKey)`; SELL requiere tokens disponibles.
+- **Counterexample:** (1) intent `PREPARED` con payload firmado persistido y sin attempt al crash: el texto no lo clasifica; el payload firmado no expira por sí solo (P03 §6) y podría enviarse después por error. (2) `applied_seq` singular con reducers Catalog/Regimes/Account independientes → un reducer lento retrasa o adelanta el checkpoint de otro. (3) `service` en `FillKey` interpretado como transporte (WS vs REST) duplica el mismo `trade.id`. (4) Estrategia B vende tokens comprados por A: elegible a nivel cuenta, atribución rota.
+- **Violated invariant:** recuperación cerrada; dedup por identidad; atribución por estrategia.
+- **Impact:** envío tardío de payload obsoleto, doble fill contable, atribución incorrecta; todos evitables con texto explícito.
+- **Evidence:** M1.11 «Al recuperar»; M1.7 «DB confirma proyección y `applied_seq`»; M1.3 fila Trade/Fill; M1.10 «Para SELL, tokens reservados…».
+- **Minimal correction:** (1) `PREPARED` sin `SEND_ATTEMPT_STARTED` al arranque → `VOID` + reserva `RELEASABLE` + payload marcado no enviable; el gateway sólo envía payloads cuyo intent esté en `SEND_ATTEMPT_STARTED` del boot actual. (2) `applied_seq` por reducer/owner. (3) `service` = namespace emisor (`CLOB`); WS y REST del CLOB comparten clave; Data v2 nunca produce `FillKey`. (4) Elegibilidad SELL usa inventario atribuido a la estrategia; conciliación chain usa inventario de cuenta; transferencias entre estrategias son asiento explícito.
+- **Closure test:** G-02/G-11/G-12 con estos cuatro casos como fixtures negativas.
+- **Disposition:** `DEFER_TO_M2_WITH_FIXED_CONTRACT`.
+
+#### FBL-011 · P2 · Seguridad in-process: controles baratos no enumerados
+
+- **Affects:** M1.6 (redacción), M1.8 (aislamiento), M1.14, A-15, U-10, G-15.
+- **Claim:** código de estrategia confiable; API sin secretos; redacción de auth antes del journal; imports verificados en M2.
+- **Counterexample:** el DTO `order` lleva `owner` = API key (P04 §7C) y el body se captura como «solicitud»; sin listarlo en la política de redacción, el identificador de credencial termina en journal/logs. Una estrategia con `import "unsafe"` o `reflect` lee memoria del signer sin violar ningún puerto; la revisión humana es el único control.
+- **Violated invariant:** secretos e identificadores de credencial fuera del journal; aislamiento verificado mecánicamente en la medida posible.
+- **Impact:** fuga de identificador de credencial; ninguna pérdida directa de capital.
+- **Evidence:** M1.6 «redacción tiene versión y lista de campos»; M1.8 «Go en un proceso no ofrece sandbox»; P04 §7C `owner` es API key.
+- **Minimal correction:** añadir `owner`, `signature` y headers `POLY_*` a la lista de redacción; G-15 incluye gate de imports para paquetes de estrategia (prohibidos `unsafe`, `reflect`, `os/exec`, `net`, `syscall`, `plugin`) y prohibición de goroutines propias por lint; opcional sin rediseño: Credentials/Signing detrás de su puerto ya definido puede moverse a proceso separado más adelante (`IMPLEMENT LATER`), no requerido para MVP.
+- **Closure test:** G-15: fixture con `import "unsafe"` en estrategia → build/gate falla; journal de captura de `POST /order` no contiene `owner` ni `signature`.
+- **Disposition:** `DEFER_TO_M2_WITH_FIXED_CONTRACT`.
+
+#### FBL-012 · P2 · `fee_rate_bps` observado por trade no se usa como evidencia de régimen
+
+- **Affects:** M1.4 (Constraints), M1.10 (Fees dinámicas), A-18, U-02.
+- **Claim:** fees se conocen por REST (`/fee-rate`, market-info) con `known-at` de polling; simulación usa el régimen conocido a la fecha.
+- **Counterexample:** cambio de fee en t0; próximo poll en t1 = t0+10 min. Replay simula fills en (t0,t1) con fee antigua; en realidad el matching cobró la nueva. Scorecard sobreestima edge neto en ese intervalo y nadie lo detecta, aunque `last_trade_price` (P05 §9.2) y `trade` User WS (P05 §9.3) llevan `fee_rate_bps` con resolución ms.
+- **Violated invariant:** economics sobre régimen efectivo observable, no sólo sobre polling.
+- **Impact:** falso edge acotado; calibración de `FeeResolver` sin la mejor evidencia disponible.
+- **Evidence:** P05 §9.2 fila `last_trade_price`; P05 §9.3 fila `trade`; M1.10 «Fees dinámicas».
+- **Minimal correction:** Regimes ingiere `fee_rate_bps` de `last_trade_price` y de trades propios como observación de régimen (`source=trade_observed`) con `source_time`; discrepancia con el régimen vigente marca `REGIME_SUSPECT` y el Simulator usa la fee observada más reciente ≤ t para trades en ese asset; scorecard reporta `fee_regime_uncertain_interval`.
+- **Closure test:** G-10: fixture con cambio de fee entre polls → coste simulado usa fee observada por trade y el intervalo queda etiquetado.
+- **Disposition:** `DEFER_TO_M2_WITH_FIXED_CONTRACT`.
+
+### F.3 — Invariantes auditadas sin defecto demostrado (PASS razonado)
+
+| Área | Escenario atacado | Por qué resiste (referencia) |
+|---|---|---|
+| Books | Merge REST+deltas WS; delta de epoch previo tras nuevo snapshot; overflow con calidad elegible | Namespaces separados, fencing por conexión/epoch, revocación fuera de la cola saturada (M1.5, M1.6, A-05); coherente con P05 §9.2/9.5 y P10 §24A |
+| Books | Tick/fee/rules cambian tras evaluar | Invalidación de constraints/candidatos y revalidación antes de intent y de envío; race posterior reconocida como residual (M1.5, M1.10) |
+| Frames | Shard lento bloquea todo; `C` espera su propio delivery | Deadline por run y `C` fijado antes del descriptor (M1.5, M1.6); semántica pendiente sólo en FBL-008 |
+| Journal | Frame publicado con evidencia no durable | Consumo sólo ≤ `durable_seq`; frame ≤ `C` ≤ `durable_seq` (M1.6) |
+| Journal→DB | Fill reprocesado tras crash entre journal y DB | Reproceso desde `applied_seq+1` con `FillKey` única; sin dependencia circular (M1.7, A-13); precisión en FBL-010 |
+| Intent | Crash entre reserva, firma, attempt y envío | Orden reserva→payload→`SEND_ATTEMPT_STARTED` durable→un solo write; nada se envía antes del marcador (M1.11); VOID explícito en FBL-010 |
+| Cuenta | Fills concurrentes con cancel; múltiples maker propias; updates duplicados/fuera de orden; matched sin settlement; transferencia externa | Ejes de estado separados, `maker_orders[].order_id`, quarantine ante contradicción, `UNATTRIBUTED` bloquea presupuesto (M1.11, A-22) |
+| Cuenta | Reorg; balance discrepante | `MINED≠finality`, profundidad configurable, discrepancia congela exposición (M1.11, U-06) |
+| Cuenta | Reinicio con GTC/GTD abiertas; cancel-all sobre scope incompleto | Arranque `LIVE_DISABLED`, cancel de remanente, sin dead-man asumido, cuenta dedicada (A-23, A-24); coherente con P04 §8.3 y P07 §18 |
+| Seguridad | Alcanzar signer por Strategy API, config, adapters, recovery, cambio de perfil, lease ajena/expirada | Allowlist cerrada, operaciones tipadas sin `target+data`, lease ligada a build/config/cuenta verificada por send, recovery cancel-only (M1.1, M1.12, M1.14, G-15) |
+| Disabled | Conversión CTF/v2, backfill L2, `deferExec=true`, Builder, Combo/RFQ | Sin handler, sin calldata, `LIVE_ENABLED` no los levanta (M1.1, A-27, A-35); coherente con P10 §24B |
+| Replay | Scheduling, maps, timers, coalescing, metadata tardía, snapshots perdidos | Reducers single-owner, orden canónico, timers/coalescing registrados, `known-at`, holes explícitos (M1.6, M1.8, A-09); excepción sólo FBL-004/005 |
+| Diagnóstico | `NO EDGE` desde pérdida de datos | Cinco diagnósticos coexistentes y coverage en denominadores (M1.9, M1.14, A-32) |
+| Discovery | Keyset Gamma vs CLOB (§25.2 vs inventario) | Registrado por ASTRA como U-03 con fallback offset capturado; no se resuelve en este pack |
+
+### F.4 — Freeze blockers
+
+| Finding | Sev | Corrección mínima que ASTRA-2 debe integrar | Test de cierre |
+|---|---|---|---|
+| FBL-001 | P1 | Regla de terminalización de `UNKNOWN` por evidencia (a)–(d); GTC excluido del cierre por tiempo | G-11/G-12 fixtures aceptación tardía vs nunca aceptada |
+| FBL-002 | P1 | Tabla `DEFINITIVE_REJECT`/`UNKNOWN`; resubmisión sólo bytes idénticos; liberación tras `canceled` con `size_matched` final | G-12 fixtures 425/429/503/500/HTML/`order timed out`/cancel con trade tardío |
+| FBL-003 | P1 | Clases `ACCOUNT_FACT`/`RESEARCH_EVIDENCE`; seal-then-snapshot; rotación de credencial en restore | G-14 extendido con segmento activo perdido y GC día 31 |
+| FBL-004 | P1 | `revision_vector` con account/risk/regime/universe/relationship/liquidity + `quote_inputs_hash`; `NOT_REPRODUCIBLE` explícito | G-07 sobre corrida SHADOW |
+| FBL-005 | P1 | Ledger virtual aislado por defecto; `PORTFOLIO_SHARED` explícito con `PEER_CONSUMED_DEPTH` | G-10 pares idénticos aislados vs compartidos |
+| FBL-006 | P1 | `BasketPolicy` declarativo + `BasketExecution` owner Coordinator/Execution; misma política en Simulator | G-10/G-12 basket 3 legs con `UNKNOWN` y rechazo |
+| FBL-007 | P1 | Modo `DEGRADED_AUDIT` con allowlist, sink secundario, flag `AUDIT_GAP` persistido y bloqueo de lease | Drill G-13/G-14 con DB inaccesible |
+
+### F.5 — Decisiones del owner
+
+**Necesarias para `M1 DESIGN FREEZE`:**
+
+- `OD-1` — Aceptar el modelo de confianza in-process (A-15/U-10): estrategias son código revisado; sin sandbox de proceso en MVP; Credentials permanece como puerto que puede externalizarse después sin rediseño (FBL-011). Rechazarlo obliga a rediseñar el runtime antes de M2.
+- `OD-2` — Aprobar la partición de alcance `FOUNDATIONAL NOW` / `IMPLEMENT LATER WITHOUT REDESIGN` de F.7, que define lo que TOP planifica en M2 y lo que queda como contrato con adapter sin permiso.
+- `OD-3` — Retener evidencia privada de cuenta (`ACCOUNT_FACT`) durante la vida del proyecto fuera del GC de 30 d (FBL-003); coste de storage marginal frente a raw de mercado.
+
+**Necesarias después, para `LIVE ACTIVATION` (pueden permanecer deshabilitadas hoy):** A-06 riesgo residual de book; A-20 caps/worst-loss/reparto de bankroll; A-23 wallet/cuenta dedicada y perfil; A-24 GTC vs GTD/FOK/FAK; parámetros de FBL-001 (`settlement_window`, máximo de `UNKNOWN` simultáneos); profundidad de confirmación (U-06); A-11/A-12 retención de raw no pineado, destino cifrado, RPO/RTO y canal de alertas (U-08).
+
+### F.6 — Gates diferidos para TOP/NORMAL (verificables sin inventar arquitectura; ninguno ejecutado)
+
+- `G-05b` property test del corte forward y retención `K` (FBL-008).
+- `G-06b` consistencia del conjunto de backup: seal-then-snapshot y `journal_seq ≥ applied_seq` por reducer (FBL-003).
+- `G-07b` replay de deliveries SHADOW con `revision_vector` completo y detección `NOT_REPRODUCIBLE` (FBL-004).
+- `G-09b` saturación del carril `RUNTIME` sin epochs revocados; medición de latencia sin fsync por callback (FBL-009).
+- `G-10b` ledger aislado vs `PORTFOLIO_SHARED`; fee observada por trade en simulación (FBL-005, FBL-012).
+- `G-11b` terminalización de `UNKNOWN` con evidencia chain/REST y GTC excluido (FBL-001).
+- `G-12b` tabla de clasificación de writes y resubmisión bytes-idénticos; `VOID` de `PREPARED` (FBL-002, FBL-010).
+- `G-13b` drill `DEGRADED_AUDIT` con `AUDIT_GAP` y lease bloqueada (FBL-007).
+- `G-15b` gate de imports de estrategia y redacción de `owner`/`signature`/`POLY_*` (FBL-011).
+
+### F.7 — Alcance: FOUNDATIONAL NOW vs IMPLEMENT LATER WITHOUT REDESIGN
+
+| FOUNDATIONAL NOW (M2–M4 sin live) | IMPLEMENT LATER WITHOUT REDESIGN (contrato fijo, adapter sin permiso o ausente) |
+|---|---|
+| Capture journal durable-before-publish, dos carriles, manifests, crash recovery de prefijo | Compresión de segmentos, encadenado de hashes entre segmentos, GC/pins automatizados |
+| Dominio/tipos nominales/decimal exacto; Catalog known-at; Regimes; Book shards; Frame Builder con corte forward | Sports WS y cualquier adapter externo concreto; Protocol-v2 codecs |
+| Strategy API completa y fixture neutral G-08; SCREEN/REPLAY/SHADOW | Perfil LIVE, `ActivationLease` operativo, Execution HTTP/User WS, Reconciler chain/RPC, cifrado de payloads firmados |
+| Account Coordinator ledger + reservas + `BasketPolicy` + property tests G-02 (usado por Simulator y por live futuro) | Backups fuera del host, restore medido, rotación de credenciales (contrato en FBL-003) |
+| Simulator con ledger de liquidez aislado, optimistic/base/stress, multi-leg | Modelo maker de queue calibrado (etiquetado `UNCALIBRATED` mientras falte) |
+| SQLite WAL FULL para cuenta/metadata; scorecards y datasets derivados con manifest/lineage (formato inicial libre: SQLite/JSONL) | Exportación Parquet particionada; endpoint admin HTTP autenticado (CLI primero); alertas externas |
+| Observabilidad de los cinco diagnósticos, readiness por capability, métricas de pipeline | Tracing completo de transiciones live; dashboards |
+
+Ningún elemento de la columna derecha altera puertos, ownership, replay ni el Strategy API definidos en M1; sólo agrega implementaciones detrás de contratos ya fijados. Las 35 decisiones y 19 gates no se reducen; TOP debe tratar G-16…G-19 como mandato separado posterior (ya previsto en M1.15).
+
+### F.8 — Handoff cerrado para ASTRA-2
+
+**Orden de reconciliación por dependencia:**
+
+1. FBL-003 (clases de integridad, consistencia de backup, retención privada) → fija las fronteras de stores que usan los siguientes.
+2. FBL-010 (VOID de `PREPARED`, `applied_seq` por reducer, `FillKey.service`, inventario atribuido) → precisa el ledger.
+3. FBL-001 y FBL-002 (terminalización `UNKNOWN`, clasificación de writes, resubmisión bytes-idénticos, liberación tras cancel) → cierran el ciclo de intent sobre 1–2.
+4. FBL-007 (`DEGRADED_AUDIT`) → excepción acotada sobre el ciclo cerrado.
+5. FBL-004 (`revision_vector` completo) y FBL-009 (carriles, durabilidad del descriptor) → contrato de delivery/replay.
+6. FBL-006 (`BasketPolicy`/`BasketExecution`) y FBL-005 (ledger aislado por defecto) → contrato Strategy API/Simulator.
+7. FBL-008, FBL-011, FBL-012 → precisiones M1.5/M1.14/M1.10.
+8. Actualizar M1.16 (nuevas filas o enmiendas de A-02, A-07, A-08, A-09, A-11, A-12, A-13, A-16, A-21, A-25), M1.17 (U-06/U-08 con parámetros de FBL-001/003) y M1.15 (gates `*b` de F.6).
+
+**Criterio de aceptación de la reconciliación:** cada FBL-001…007 tiene texto normativo integrado en la sección afectada, fila en M1.16 y test de cierre en M1.15; ningún finding queda como «pendiente vago»; las decisiones OD-1…OD-3 quedan registradas como `REQUIRES_OWNER` con su impacto explícito; no se introduce ninguna capability deshabilitada por M0; M1.0–M1.17 originales conservan autoría con enmiendas marcadas. Donde FABLE ofreció dos soluciones, la recomendación técnica es: FBL-009 → descriptor añadido antes de invocar y durable antes de publicar resultado/intent (menor latencia, misma lineage; la alternativa «durable antes de invocar» es válida si la medición de G-09b muestra coste despreciable); FBL-011 → signer in-process con gate de imports en MVP (la alternativa de proceso separado queda como evolución detrás del mismo puerto). La elección final se registra en M1.16, sin congelarla por cuenta de FABLE.
+
+### F.9 — Estado
+
+`M1_FABLE_CHALLENGE_COMPLETE` · Resultado: `MATERIAL_FINDINGS_REQUIRE_RECONCILIATION` · P0: 0 · P1: 7 · P2: 5. No se declara `M1_DESIGN_FROZEN`. **NEXT: ASTRA-2 reconcile** conforme a F.8; el owner revisa OD-1…OD-3 antes del freeze.
