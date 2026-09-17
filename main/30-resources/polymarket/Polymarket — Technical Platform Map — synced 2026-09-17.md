@@ -4,7 +4,7 @@
 
 **Estado contractual:** M0 DESIGN_READY (documental); RG-01…RG-07 cerrados para diseño con exclusiones explícitas. NO certifica trading live, backfill L2 ni conversión NegRisk live. Ver §24 en part-10.
 
-**Fuente original:** blob Git `0e6f8856d23695fd28493ec5b861828af461dd1b` · 160164 bytes · SHA-256 `02566696b5bc9bd71f07ae73c47b6dbb950b2553cfd9aff5a6247a9663c5b9f5`. Concatenar las partes en orden reproduce exactamente estos bytes.
+**Baseline histórico, NO hash del contenido actual:** blob Git `0e6f8856d23695fd28493ec5b861828af461dd1b` · 160164 bytes · SHA-256 `02566696b5bc9bd71f07ae73c47b6dbb950b2553cfd9aff5a6247a9663c5b9f5`. Las 11 partes reproducían exactamente ese original al dividirse; después de las correcciones contractuales y del cierre M0 cambiaron legítimamente. Para verificar la versión actual, concatenar las partes en orden y comparar con el **Manifiesto vigente** inferior.
 
 | Parte | Secciones | Tamaño | SHA-256 |
 |---|---|---:|---|
