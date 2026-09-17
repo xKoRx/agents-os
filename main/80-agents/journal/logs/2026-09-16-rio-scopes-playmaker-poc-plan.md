@@ -3,7 +3,7 @@ type: change_log
 schema_version: 1
 scope: session
 created: "2026-09-16"
-updated: "2026-09-16"
+updated: "2026-09-17"
 area: "[[Meli]]"
 project: "[[Estandarización de Scopes RIO]]"
 application: "[[rio-playmaker]]"
@@ -54,7 +54,7 @@ tags:
 ## Resolución aplicada
 
 - Se creó un proyecto `owner: agent` con fases F0–F4, gates owner-controlled, tareas atómicas, prompts por fase y stop behavior.
-- Se creó la SPEC de Playmaker y se enlazó al funcional. `environment_scope` queda persistido en `pipeline_execution`; el wire contract usa `filters.modified_fields=["scope:alpha"]` y no cambia los DTOs SDK.
+- La resolución original que proponía persistir un scope en `pipeline_execution` fue invalidada por el owner el 2026-09-17 por mezclar pipeline environment con Fury scope. La resolución vigente está en `2026-09-17-rio-scopes-fury-pipeline-separation-correction.md`: header transitorio → filtro BigQueue, sin persistencia ni cambios de dominio.
 - El proyecto raíz canceló la fase/SPEC SDK, convirtió Playmaker en la Fase 2 y agregó una única tarea puente al planner delegado.
 - El funcional local corrigió rollout/E2E/open decision para no exigir un campo de payload descartado y agregó el backlink técnico.
 

@@ -24,12 +24,15 @@ tags:
   - agent/discovery
   - priority/p1
 created: "2026-08-25"
-updated: "2026-08-25"
+updated: "2026-09-17"
 ---
 
 # Scopes RIO - Discovery de Integraciones y Persistencia
 
 %% Naming: Scopes RIO - Discovery de Integraciones y Persistencia es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
+
+> [!danger] Corrección vigente 2026-09-17
+> **Pipeline Environment ≠ Fury Scope.** Este documento conserva el as-is observado, pero sus propuestas originales de `ScopeContext`/persistencia quedan reemplazadas para la POC: `X-Rio-Scope` es metadata de infraestructura transitoria y se transporta como filtro BigQueue. No se persiste en `PipelineExecution`, no modifica idempotencia/history y no agrega campos a los payloads SDK. Ver [[SPEC técnica — Routing KISS por scope en rio-playmaker]].
 
 > [!info]+ Scopes RIO - Discovery de Integraciones y Persistencia
 > **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Estandarización de Scopes RIO]] · **Owner:** agent · **Progreso:** 100%
@@ -209,21 +212,21 @@ Cada seam parte del contrato actual observado y queda como propuesta; no se impl
 
 | Seam | Contrato actual | Autoridad propuesta | Compatibilidad / riesgo | Rollout y rollback |
 |---|---|---|---|---|
-| S1. `ScopeContext` canónico | Cada app replica `ScopeUtils`; algunas derivan sólo el último token, Fury deriva además roles y ClickHouse normaliza segmentos | Resolver una estructura tipada con `deployment_scope`, `logical_environment`, `segment`, `frontend_scope` y `backend_scope`, con provenance | Evita colisiones semánticas; riesgo alto si se reemplaza `SCOPE` sin dual-read | Introducir parser común en SDK, emitir métricas de divergencia y conservar `SCOPE` como fallback hasta convergencia |
-| S2. Entrada en front | Fronts eligen host Playmaker por config de despliegue y no persisten scope RIO | Resolver el scope en el borde autorizado y persistir sólo la selección lógica necesaria, con contrato de lectura/escritura | Requiere nginx/MeliLab y puede afectar URLs cacheadas; no inferir desde cookie de auth | Dual-write del selector nuevo y host actual; rollback por feature flag al baseURL conocido |
-| S3. Carrier HTTP | Requests llevan `buildContext(req)` y Tiger; casi ningún cliente lleva scope | Añadir un header canónico de scope lógico firmado/validado por el borde, separado de auth y de `SCOPE` runtime | No confiar en headers enviados por browser; riesgo de spoofing y propagación accidental | Proxy fija/limpia el header, Playmaker acepta dual-read y audita mismatch; rollback ignora header nuevo |
-| S4. Carrier de eventos | `DeploymentTriggerMessage` lleva ambiente, componente, params y context, pero no scope | Agregar envelope versionado con `scope_context` o al menos `logical_scope` y provenance; no copiar `SCOPE` crudo como contrato de negocio | Cambia SDK, productores y consumidores; riesgo de replay y compatibilidad de schemas | Campo opcional + default derivado del ambiente; consumers dual-read, luego campo obligatorio por versión |
-| S5. Routing BigQueue | Topic y `segment` son configuración del productor; CPs filtran por `componentType` | Definir una sola regla de routing: broker/filter tag para `logical_scope`, con allowlist en consumer | Requiere validar si BigQueue filtra server-side y cómo se configura el proxy; riesgo de pérdida silenciosa | Shadow filters y métricas de entregas; rollback conserva topic actual y filtro por componente |
-| S6. Identidad/persistencia | Materializer y S3 prefijan IDs/keys con `SCOPE` runtime; DB/requests usan ambiente por separado | Persistir `logical_scope` como campo explícito y usar `deployment_scope` sólo para aislamiento técnico | Migración de nombres y paths puede romper referencias; alto riesgo de orphan data | Resolver alias viejo→nuevo, backfill controlado, lectura dual y rollback por alias |
-| S7. Resultados y callbacks | Result messages no llevan scope; callback usa contexto/Tiger | Propagar el mismo `scope_context` en resultados y callbacks, con correlation ID | Permite trazabilidad end-to-end; aumenta tamaño de payload y superficie de datos | Campo opcional, validación de origen y dashboards de missing scope |
+| S1. Dimensiones separadas | Cada app replica `ScopeUtils`; pipeline environment, scope Fury y segmento tienen semánticas distintas | Nombrar explícitamente cada eje y prohibir conversiones implícitas entre ellos | Evita colisiones semánticas sin inventar un objeto canónico prematuro | Documentación + tests/no-touch; no migrar SDK en la POC |
+| S2. Entrada en front | Fronts eligen host Playmaker por config de despliegue y no envían scope Fury | Resolver la selección frontend/backend y enviar el backend efectivo como `X-Rio-Scope` | Requiere nginx/MeliLab y puede afectar URLs cacheadas | Rollback: dejar de emitir el header y volver al baseURL conocido |
+| S3. Carrier HTTP | Requests llevan `buildContext(req)` y Tiger; ningún cliente lleva el scope Fury de routing | Añadir `X-Rio-Scope`, separado de auth y de pipeline environment | Validar sintaxis y aislar targets en Fury Routes; no usar el valor para consultar dominio | Playmaker usa header presente y conserva legacy cuando está ausente |
+| S4. Carrier de eventos | `DeploymentTriggerMessage` no lleva scope, pero el envelope SDK ya expone `filters.modified_fields` | Estampar `scope:<header>` como filtro, sin cambiar el payload | Requiere validar filtro server-side; no hay migración de schema | Header ausente conserva publish legacy |
+| S5. Routing BigQueue | Topic y `segment` son configuración del productor; CPs filtran por `componentType` | Agregar `scope:<x>` al filtro del broker manteniendo el filtro por componente donde corresponda | Scope y segmento son ejes distintos; riesgo si el filtro no es server-side | G0 bloquea implementación si Fury no confirma la capability |
+| S6. Identidad/persistencia | Materializer y S3 prefijan IDs/keys con `SCOPE` runtime; DB/requests usan pipeline environment por separado | Fuera de la POC; no persistir el scope Fury nuevo en entidades de pipeline | Mezclarlo rompería semántica de dominio | Sin cambios |
+| S7. Resultados y callbacks | Result messages no llevan scope, pero el envelope admite filtros | El control plane copia el mismo `scope:<x>` al result | La POC mantiene el filtro sólo durante esa request; retry/restart queda fuera | Result legacy sin filtro conserva comportamiento actual |
 | S8. Observabilidad y seguridad | Fury mantiene logs temporales de raw payload/params en el consumer; scopes pueden confundirse con auth | Redactar payloads, etiquetar cada dimensión de scope y prohibir secretos/headers en logs | Riesgo actual de exposición y diagnóstico ambiguo | Primero remover logging sensible y agregar tests de redacción; rollback no reintroduce raw payload |
 
 ### Invariantes propuestas
 
-- `deployment_scope` no es equivalente a `logical_scope`, `environment`, `segment`, `auth_scope` ni al `Scope` de tracing.
-- El browser no es autoridad final para un scope de routing; el borde y Playmaker deben validar, normalizar y registrar provenance.
+- El scope Fury de routing no es equivalente al pipeline environment, al segmento, al auth scope ni al `Scope` de tracing.
+- El frontend/BFF selecciona y envía el scope; Fury Routes controla el target y Playmaker valida sintaxis antes de convertirlo en filtro.
 - Un mensaje de deployment debe poder ser procesado de forma determinista con su envelope, sin depender de que producer y consumer compartan el mismo `SCOPE` de proceso.
-- Las persistencias que necesiten aislamiento deben guardar la dimensión explícita que consultan; un prefijo derivado no reemplaza un campo auditable.
+- La POC no crea persistencia para el scope Fury; una necesidad durable futura requiere otra decisión y nunca reutiliza el pipeline environment.
 - Todo fallback de compatibilidad debe ser observable y tener fecha/criterio de retiro.
 
 ## 🧭 Semántica de scope observada
@@ -276,7 +279,7 @@ flowchart LR
 - Confirmar si BigQueue aplica filtros server-side por tags, si los filtros llegan al push HTTP y si existe un contrato estable para `scope:<value>`; el SDK observado sólo modela `modified_fields` y filtros opcionales.
 - Confirmar el contrato del proxy que entrega triggers a Fury: el código declara que no recibe Tiger desde el proxy; falta definir cómo autenticación y scope llegarían sin confiar en headers del cliente.
 - Confirmar si la base de datos de Signals tiene una dimensión scope que no aparece en el repository/query auditado o si el parámetro `scope` es sólo compatibilidad de API.
-- Confirmar el catálogo de scopes vigente y la nomenclatura autorizada para separar `deployment_scope`, `logical_scope`, `environment` y `segment`.
+- Confirmar el catálogo de scopes vigente y la nomenclatura autorizada para separar scope Fury, pipeline environment y segmento.
 - Revisar y retirar el logging temporal de payload crudo y `params` en `rio-controlplane-fury/pusher/bigqueue/DeploymentTriggerController.kt:104-127` antes de propagar nuevos carriers.
 
 ## 🔎 Resumen ejecutivo para el proyecto padre
@@ -284,8 +287,8 @@ flowchart LR
 - El sistema actual no tiene un carrier transversal de scope: tiene scopes locales de proceso y algunos usos puntuales en identidad, storage y GenAI.
 - Front y Playmaker no intercambian un scope RIO explícito; el ambiente se selecciona principalmente por host/config de despliegue y los requests preservan contexto de routing/Tiger.
 - BigQueue distribuye deployment triggers sin scope; los consumers seleccionan por `componentType` y resuelven su propio runtime scope, por lo que no existe garantía de aislamiento end-to-end basada sólo en el mensaje.
-- El refactor debería comenzar por nombrar dimensiones distintas y crear un `ScopeContext` versionado con provenance, antes de cambiar nombres de S3/Materializer o filtros de BigQueue.
-- La primera migración segura es observabilidad + dual-read/dual-write: medir mismatches entre `SCOPE`, ambiente y selector lógico, luego introducir carriers opcionales y sólo después endurecer routing/persistencia.
+- El refactor comienza por nombrar dimensiones distintas: pipeline environment, scope Fury y segmento no se convierten entre sí.
+- La primera POC sólo introduce `X-Rio-Scope` como carrier HTTP y `scope:<x>` como filtro BigQueue. No agrega `ScopeContext`, payload fields ni persistencia.
 
 ## 🔗 Docs / Links
 
