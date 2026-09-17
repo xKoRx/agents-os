@@ -4,8 +4,7 @@
 - Query window: `<start ISO-8601 with offset>` through `<end ISO-8601 with offset>` (inclusive)
 - Source status: `<verified | blocked>`
 
-This pull request carries **every** applied sunset update for this project in one batch. There is
-at most one open sunset pull request per project; reruns update this one rather than opening another.
+This pull request carries **every** applied sunset update for this project in one batch. There is at most one open sunset pull request per project; reruns update this one rather than opening another.
 
 ### Applied in this PR
 
@@ -15,16 +14,13 @@ at most one open sunset pull request per project; reruns update this one rather 
 
 ### Found but not applied — needs a human decision
 
-These are inside the window but are not declared with a literal version in the manifest, so no
-mechanical update exists. Each row states why.
+These are inside the window but are not declared with a literal version in the manifest, so no mechanical update exists. Each row states why.
 
 | Sunset ID | Component/dependency | Sunset date | Current version | Target version | Classification | Managed by (artifact and declared version) | Evidence reference |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `<id>` | `<component>` | `<date>` | `<current>` | `<target>` | `<managed by BOM / managed by build plugin / transitive only / conflicting targets>` | `<managing artifact @ version, as declared in the manifest, or "not identifiable from the manifest">` | `<reference>` |
 
-For each row, quote the manifest line that declares the manager, and the project's existing
-override idiom if it has one. Do not assert which manager version would resolve the sunset unless
-that was verified.
+For each row, quote the manifest line that declares the manager, and the project's existing override idiom if it has one. Do not assert which manager version would resolve the sunset unless that was verified.
 
 ### Already in flight — excluded from this PR
 

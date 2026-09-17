@@ -5,7 +5,7 @@ name: meli-agent-dev
 description: Router del dominio Meli para trabajo de desarrollo del agente. Cargar al empezar trabajo corporativo Meli (RIO/Signals/Ads, Fury, Spellbook, Zord) para fijar qué skills, preferencias y fuentes de acceso son válidas en este dominio. Nunca aplica al homelab Aranea ni a sistemas personales; las capabilities MCP aranea-* no existen en este dominio.
 scope: area
 created: "2026-09-12"
-updated: "2026-09-12"
+updated: "2026-09-17"
 area: "[[Meli]]"
 entities:
   - "[[Meli]]"
@@ -60,6 +60,7 @@ Trigger boundary:
    | Spec técnica / design doc RIO | [[signals-tech-spec-authoring]] |
    | Descripción de PR | [[pr-description]] |
    | Comunicación escrita para personas | [[human-first-technical-writing]] |
+   | Remediación manual de sunsets RIO | [[rio-sunset-update]] |
    | Deploy de librería Java Fury | [[fury-lib-consumer-deploy]] |
    | Sincronizar rama local | [[sync-local-branch]] |
 

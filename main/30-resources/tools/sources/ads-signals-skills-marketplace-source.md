@@ -19,7 +19,7 @@ aliases:
 tags:
   - kind/source
 created: "2026-09-01"
-updated: "2026-09-01"
+updated: "2026-09-17"
 ---
 
 # ads-signals-skills-marketplace-source
@@ -33,10 +33,12 @@ updated: "2026-09-01"
 
 - README y contrato de contribución, catálogo `catalog/skills.json`, validador local, licencia y las tres skills presentes en el branch verificado.
 - La captura incluye el cambio que agrega `human-first-technical-writing` v1.0.0 y eleva el catálogo a v1.2.0; el cambio está propuesto en `melisource/fury_ads-signals-skills-marketplace#1` y aún no forma parte de `master`.
+- La captura del 2026-09-17 incorpora la propuesta `feat/rio-sunset-update`, disponible localmente como `origin/pr/2@a7872cd`, con la skill portable `rio-sunset-update` v0.1.0, sus referencias y sus gates ejecutables.
 
 ## Notas de provenance
 
 - `node scripts/validate-marketplace.mjs` reportó `Marketplace válido: 3 skill(s) revisada(s).` y `git diff --check` pasó sin errores.
+- Para `origin/pr/2@a7872cd`, `validate-input.test.mjs` y `validate-gates.test.mjs` pasaron; la adaptación canónica corrigió la contradicción textual que declaraba Fury CLI fuera del contrato aunque el flujo más reciente exige `fury create-version`.
 - La skill nueva declara compatibilidad con Claude y Codex, sin permisos y con runtime `none`; no agrega scripts, conectores, variables de entorno ni recursos generados.
 - El check remoto `Code Reviewer` terminó en `SUCCESS`; la revisión automática no encontró issues y aprobó el PR como low-risk.
 - La página canónica [[ads-signals-skills-marketplace]] describe el contrato estable del repo. La presencia de la skill nueva y el número de versión del catálogo son estado de branch hasta que el PR sea mergeado.

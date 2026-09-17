@@ -1,8 +1,6 @@
 # Rio sunset update — run report
 
-Fill every field from values observed during the run. Never emit a planned, assumed, or
-placeholder PR, scope, or deployment ID. If a phase stopped early, replace that phase's values
-with its stop reason. A run with no eligible sunsets produces no report at all.
+Fill every field from values observed during the run. Never emit a planned, assumed, or placeholder PR, scope, or deployment ID. If a phase stopped early, replace that phase's values with its stop reason. A run with no eligible sunsets produces no report at all.
 
 - Project (exact Fury application name): `<project>`
 - Executed at: `<ISO-8601 with offset>`
@@ -20,8 +18,7 @@ Every sunset found inside the window, whether or not it could be updated.
 
 ## Ya en curso — excluidos del lote
 
-Eligible sunsets that another effort is already resolving. Listed so the reader can see they were
-seen and deliberately skipped. These were not edited, committed, or counted toward opening a PR.
+Eligible sunsets that another effort is already resolving. Listed so the reader can see they were seen and deliberately skipped. These were not edited, committed, or counted toward opening a PR.
 
 | Sunset ID | Component/dependency | Expiry date | Handled by | That work sets it to |
 | --- | --- | --- | --- | --- |
@@ -29,9 +26,7 @@ seen and deliberately skipped. These were not edited, committed, or counted towa
 
 ## Sunsets con fecha fuera de la ventana
 
-Informative only, so nothing dated is invisible to the reader. These were found in the catalog but
-fall outside the evaluated window, so this run did not act on them. List every one; do not
-truncate.
+Informative only, so nothing dated is invisible to the reader. These were found in the catalog but fall outside the evaluated window, so this run did not act on them. List every one; do not truncate.
 
 | Sunset ID | Component/dependency | Expiry date | Current version | Target version | Days until expiry |
 | --- | --- | --- | --- | --- | --- |
@@ -69,8 +64,7 @@ One pull request carries the whole applied batch for this project.
 | Deployment final state | `finished`, `active: false` (scope released) |
 | Finish pressed | `yes` |
 
-No production deployment, promotion, finish, terminate, or auto-merge was performed, and no
-default scope was stored.
+No production deployment, promotion, finish, terminate, or auto-merge was performed, and no default scope was stored.
 
 ## Destino del documento
 
