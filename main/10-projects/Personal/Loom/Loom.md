@@ -78,7 +78,7 @@ views:
 
 - [ ] Validar política corporativa MELI: qué está vetado exactamente y qué canales alternos existen #owner/me #type/research #area/personal
 - [x] Crear repo GitHub `xKoRx/loom` (branch `master`) + workspace local `~/go/src/github.com/xKoRx/loom` #owner/me #type/admin #area/personal ✅ 2026-09-13
-- [ ] [[Loom — Foundation v0.1]] arrancar + seguimiento #owner/me #type/supervision #area/personal
+- [r] [[Loom — Foundation v0.1]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ implementación T01–T17 completa 2026-09-13 — a Review del owner
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -96,6 +96,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-13** — **LOOM v0.1 COMPLETA (T01–T17, 100%):** backend (scan/watcher/proyecciones/links/API segura) + frontend (shell dark, viewer, cockpit, board 5 estados, search, diagnostics) + gates (e2e 10/10, live-refresh 6/6 sin reinicio, coverage vault 100%/index 95.7%, race limpio, binario único 12.6MB offline) + validación visual real en browser (3 defectos encontrados y corregidos). Final `xKoRx/loom` master @ `848fb28` == origin/master. Tarea puente a Review. Detalle completo en [[Loom — Foundation v0.1]] § Bitácora.
 
 - **2026-09-13** — SESIÓN DE IMPLEMENTACIÓN PAUSADA POR OWNER (10/17 tasks = 59%): T01–T10 DONE y aceptados en `xKoRx/loom` master @ `4a9d0a4` (== origin/master, push externo confirmado) — backend completo (scaffold, fixtures, parser frontmatter/body, scanner+snapshot+watcher+generation con invariancia de rebuild probada, proyecciones Agents-OS, resolución de links/backlinks, API meta/projects/areas con security boundary DocumentID). T11 (notes/render/search) interrumpido por quota del surface a mitad de dispatch; parcial preservado como referencia (`render.go.partial-t11`, sin compilar). Cobertura acumulada: vault 100%, parse 95.3%, index 95.7%, serve 98.7%. v0.1 NO está completo: restan T11–T17 (API notes/render/search/tasks/diagnostics + frontend completo + e2e/hardening). Detalle de retomada en [[Loom — Foundation v0.1]] § Bitácora (SESSION CLOSE).
 - **2026-09-13** — EXECUTION START: repo `xKoRx/loom` verificado (owner lo creó físicamente: workspace + GitHub, branch `master`, worktree clean, baseline `5afd63e468e7a2104a175a727a961e4f678c09ea`); B1 cerrado; tarea de creación de repo marcada Done. Contratos congelados migrados del planner al repo `specs/FEAT-LOOM-V01/` (SPEC/TASKS/PLAN @ `b031006`) según patrón Echo E-01 — el repo es autoridad del contrato, el subproyecto conserva estado/routing. Sesión de implementación iniciada (T01–T17, 1 subagente a la vez).
