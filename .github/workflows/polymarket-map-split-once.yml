@@ -1,0 +1,95 @@
+name: One-shot split Polymarket Technical Map
+on:
+  push:
+    paths:
+      - .github/workflows/polymarket-map-split-once.yml
+permissions:
+  contents: write
+jobs:
+  split:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: true
+      - name: Split canonical Markdown and verify byte-for-byte recovery
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha1, sha256
+          from urllib.parse import quote
+          import re
+
+          directory = Path('main/30-resources/polymarket')
+          source = directory / 'Polymarket — Technical Platform Map — synced 2026-09-17.md'
+          original = source.read_bytes()
+          expected_blob = '0e6f8856d23695fd28493ec5b861828af461dd1b'
+          actual_blob = sha1(b'blob ' + str(len(original)).encode() + b'\0' + original).hexdigest()
+          assert actual_blob == expected_blob, f'Baseline changed: {actual_blob}'
+          assert len(original) == 160164
+          starts = {int(m.group(1)): m.start() for m in re.finditer(rb'(?m)^## (\d+)\. ', original)}
+          assert sorted(starts) == list(range(1, 27)), 'Section headings changed; aborting'
+          groups = [
+              ('foundations', 0, 2),
+              ('rest-catalog', 3, 3),
+              ('auth-precision-time', 4, 6),
+              ('orders-lifecycle', 7, 8),
+              ('market-data-positions-contracts', 9, 11),
+              ('negrisk-combos', 12, 13),
+              ('economics-resolution-history-limits', 14, 18),
+              ('specs-sdks-changelog', 19, 21),
+              ('security-workflows', 22, 23),
+              ('gaps-recovery', 24, 25),
+              ('sources', 26, 26),
+          ]
+          assert [n for _, a, z in groups for n in range(max(1, a), z + 1)] == list(range(1, 27))
+          chunks = []
+          for number, (slug, first, last) in enumerate(groups, 1):
+              begin = 0 if first == 0 else starts[first]
+              end = starts[last + 1] if last < 26 else len(original)
+              data = original[begin:end]
+              assert data and len(data) <= 30000, (slug, len(data))
+              name = f'Polymarket — Technical Platform Map — part-{number:02}-{slug}.md'
+              dest = directory / name
+              assert not dest.exists(), f'Existing part, refusing overwrite: {name}'
+              dest.write_bytes(data)
+              chunks.append((name, data, first, last))
+          assert b''.join(item[1] for item in chunks) == original, 'Lossy split'
+          lines = [
+              '# Polymarket — Technical Platform Map — synced 2026-09-17',
+              '',
+              '> **Índice canónico de un único documento, dividido en 11 partes para edición incremental.** Las partes son secciones consecutivas, sin resúmenes ni contenido inventado. La versión completa anterior permanece recuperable en el historial Git.',
+              '',
+              '**Estado contractual:** M0 PARTIAL; RG-01…RG-07 abiertos. No habilita NegRisk Protocol-v2 live conversion.',
+              '',
+              f'**Fuente original:** blob Git `{expected_blob}` · {len(original)} bytes · SHA-256 `{sha256(original).hexdigest()}`. Concatenar las partes en orden reproduce exactamente estos bytes.',
+              '',
+              '| Parte | Secciones | Tamaño | SHA-256 |',
+              '|---|---|---:|---|',
+          ]
+          for name, data, first, last in chunks:
+              section = f'Introducción y §1–§{last}' if first == 0 else (f'§{first}' if first == last else f'§{first}–§{last}')
+              lines.append(f'| [{name.split(" — ")[-1]}](./{quote(name)}) | {section} | {len(data)} bytes | `{sha256(data).hexdigest()}` |')
+          lines += [
+              '', '## Integridad y mantenimiento', '',
+              '- Concatenar las partes en orden numérico sin insertar separadores; comprobar SHA-256 contra el hash anterior.',
+              '- Editar sólo las partes afectadas y actualizar este manifest ante cambios. Los identificadores `[Sxx]` viven en §26. El estado real M0 se evalúa en §24: este split no cierra ningún Research Gap.',
+              '',
+          ]
+          source.write_text('\n'.join(lines), encoding='utf-8')
+          assert sha256(b''.join((directory / n).read_bytes() for n, *_ in chunks)).digest() == sha256(original).digest()
+          print(f'PASS: {len(chunks)} parts, {len(original)} original bytes, SHA256 {sha256(original).hexdigest()}')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -- .github/workflows/polymarket-map-split-once.yml
+          git add -- main/30-resources/polymarket/
+          git diff --cached --check
+          git commit -m 'docs(polymarket): split map into 11 lossless linked sections'
+          git fetch origin master
+          git rebase origin/master
+          git push origin HEAD:master
