@@ -9,9 +9,8 @@ updated: "2026-09-17"
 entities:
   - "[[RIO]]"
 related:
-  - "[[meli-agent-dev]]"
+  - "[[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]]"
   - "[[ads-signals-skills-marketplace]]"
-  - "[[Vulnerabilidades WebSec — RIO Foundation]]"
 aliases:
   - rio sunset update
   - remediación de sunsets RIO
@@ -36,7 +35,7 @@ Orquestar una actualización completa y auditable de sunsets RIO próximos, desd
 ## Minimal Read
 
 1. Ejecutar primero `scripts/validate-input.mjs`; el gate usa `references/projects.json` como allowlist única.
-2. Sólo después de un input válido, leer completos `references/workflow.md`, `references/pr-template.md` y `references/report-template.md`.
+2. Sólo después de un input válido, leer completos `references/rio-sunset-update-workflow.md`, `references/pr-template.md` y `references/report-template.md`.
 3. Resolver preferencias y conectividad mediante `../meli-agent-dev/SKILL.md`; no cargar otro dominio.
 
 ## Procedure
@@ -49,7 +48,7 @@ Orquestar una actualización completa y auditable de sunsets RIO próximos, desd
 6. Mantener exactamente una branch determinística y a lo sumo un PR abierto por aplicación. Crear la versión con `fury create-version`, esperar su estado terminal y autorizar continuidad sólo mediante `scripts/validate-build.mjs` contra el SHA completo del PR.
 7. Solicitar un scope sólo después del PR y build inmutable. Guardar la respuesta de scopes y autorizar el destino exclusivamente con `scripts/validate-scope.mjs`; luego mostrar proyecto, SHA, build y scope, y pedir confirmación humana inmediata antes del deploy.
 8. Desplegar sólo el scope validado de test, verificar ausencia de un deployment activo conflictivo, monitorear hasta estado estable, ejecutar `Finish` para liberar el scope y nunca promover, auto-mergear, programar, terminar instantáneamente ni hacer rollback sin pedido humano.
-9. Generar el reporte local fuera de cualquier checkout usando `references/report-template.md` y cerrar con el resumen por fases exigido por `references/workflow.md`. La publicación externa es opcional y no bloquea el artefacto local.
+9. Generar el reporte local fuera de cualquier checkout usando `references/report-template.md` y cerrar con el resumen por fases exigido por `references/rio-sunset-update-workflow.md`. La publicación externa es opcional y no bloquea el artefacto local.
 
 ## Output
 

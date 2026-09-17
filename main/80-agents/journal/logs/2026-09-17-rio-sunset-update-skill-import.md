@@ -5,14 +5,14 @@ scope: session
 created: "2026-09-17"
 updated: "2026-09-17"
 area: "[[Meli]]"
-project: "[[Vulnerabilidades WebSec — RIO Foundation]]"
+project: "[[10-projects/Meli/Vulnerabilidades WebSec — RIO Foundation/Vulnerabilidades WebSec — RIO Foundation|Vulnerabilidades WebSec — RIO Foundation]]"
 application:
 entities:
   - "[[RIO]]"
   - "[[ads-signals-skills-marketplace]]"
 related:
   - "[[rio-sunset-update]]"
-  - "[[meli-agent-dev]]"
+  - "[[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]]"
 aliases: []
 confidence: verified
 source_session:
@@ -53,7 +53,7 @@ tags:
 
 ## Resolución aplicada
 
-- Se materializó la skill bajo el contrato S1, se importaron referencias y scripts, se adaptó el frontmatter portable al schema del vault y se agregó el handoff en `meli-agent-dev`.
+- Se materializó la skill bajo el contrato S1, se importaron referencias y scripts, se adaptaron el frontmatter y los paths portables al schema/layout del vault y se agregó el handoff en `meli-agent-dev`.
 - Se corrigió una contradicción de la propuesta: el workflow declaraba Fury CLI fuera del contrato mientras la revisión más reciente exige `fury create-version`; la versión canónica la declara capacidad obligatoria desde el preflight.
 
 ## Validación

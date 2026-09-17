@@ -47,7 +47,7 @@ This is the highest-risk decision in the flow. Measured on 2026-09-16 across the
 **The rule lives in a script, not in this prose.** Save the scopes response to a file and run:
 
 ```text
-node skills/rio-sunset-update/scripts/validate-scope.mjs --project <proyecto> --scope <scope> --scopes-file <ruta.json>
+node "$VAULT_ROOT/30-resources/agents/skills/rio-sunset-update/scripts/validate-scope.mjs" --project <proyecto> --scope <scope> --scopes-file <ruta.json>
 ```
 
 A non-zero exit is a complete stop, and its exit code — not this document — is what authorizes the deploy. The script is the gate precisely so that an agent which never opens this file still cannot reach production. Never re-implement the decision by hand, never proceed on a rejection, and never pass a payload that was edited after being fetched.
@@ -265,7 +265,7 @@ Passing external values as separate process arguments does not by itself prevent
 
 ## Phases and resumability
 
-1. **Input gate (no network/mutation):** run `node skills/rio-sunset-update/scripts/validate-input.mjs <nombre_del_proyecto>`. It accepts exactly one literal allowlisted project. Any error stops here.
+1. **Input gate (no network/mutation):** run `node "$VAULT_ROOT/30-resources/agents/skills/rio-sunset-update/scripts/validate-input.mjs" <nombre_del_proyecto>`. It accepts exactly one literal allowlisted project. Any error stops here.
 2. **Preflight:** obtain the checkout as described in "Obtaining the project checkout" below, then verify its identity equals the supplied project and that `git status --porcelain` is empty. Check existing code-host and Fury authentication non-interactively only. Missing or expired credentials stop the affected external phase; never invoke login and never ask for a password, token, or verification code.
 3. **Discovery:** read the scopes response to learn which artifact versions are deployed, then read the dependency catalog for the relevant version, paginating with `page`/`size` until `page.total` is covered. Enumerate **every** dependency that carries a sunset date — never stop at the first, and never sample: paginate the catalog to completion before filtering. A dependency may carry several issues, so collect all of them. Then keep the ones whose `upgrade_to` yields a valid target version. At runtime select the inclusive window of 15 calendar days **counting the execution date itself as day 1**: from the start of the current day through the end of `current day + 14 days`, in an explicitly displayed IANA timezone and offset. Both boundaries are inclusive, so a sunset expiring today and one expiring on day 15 are both eligible. Compute the window per execution; never persist it and never schedule it. Deduplicate by `(sunsetId, component, targetVersion)`. Zero eligible items is a complete no-op: no branch, PR, deploy, or report.
 
@@ -311,7 +311,7 @@ This step needs the Fury CLI on the host, which is a sixth required capability a
 Then, once a version exists, save the repository's versions response to a file and run the gate, which decides mechanically rather than by reading:
 
    ```text
-   node skills/rio-sunset-update/scripts/validate-build.mjs --sha <pr-head-sha> --versions-file <ruta.json>
+   node "$VAULT_ROOT/30-resources/agents/skills/rio-sunset-update/scripts/validate-build.mjs" --sha <pr-head-sha> --versions-file <ruta.json>
    ```
 
 It accepts only a build whose `commit` equals the full 40-character PR head SHA exactly, whose status is finished, which is not disabled, and which is not productive; it rejects a short SHA, a missing build, and two usable builds for the same commit. A non-zero exit stops the flow. Never compare by branch name, version string, or recency, and never use the working tree, an implicit base branch, or an unbound artifact. Record the accepted `version` and `commit` together; every later phase refers to that pair.
