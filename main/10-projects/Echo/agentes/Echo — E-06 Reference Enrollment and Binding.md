@@ -61,7 +61,8 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable; C-3 collector | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.1.0 (CASE C blocked; HEAD `349b6ac8`; contrato `1c794d5a`; old `3e190d86`) | E06_PLANNING_BLOCKED — MANAGER_DECISION_REQUIRED · 0 source · NORMAL no lanzado |
+| xKoRx/echo | `feature/e06-reference-enrollment-binding` | `5dd998f16aea7b2821f460188718d7a6d279829c` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §§5–6; O1/O3 Fable; C-3 collector + excepción Manager §7.2a | `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.2.0 (CASE B resuelto; HEAD v1.2.0 ver bitácora; previo `349b6ac8`) | E06_PLANNING_V1_2_READY_FOR_MANAGER_REVIEW · 0 source · NORMAL no lanzado |
+| xKoRx/symphony (Forge, READ ONLY en planning) | `codex/f05-release-prep` @ `0ddd4db` | — | F-04 sello/readback magic | Discovery físico §7.2a: inyección futura de atestación en **un** archivo `sqx/exporter-plugin/src/SQ/CustomAnalysis/EchoForgeMT5Exporter.java` (lane Forge propio; no editado) | Sin cambios · expansión de borde documentada |
 
 ## 🗺️ Source map (baseline `5dd998f1` + PG/Hasura)
 
@@ -69,7 +70,8 @@ Crear `RuntimeBinding` verificable: enrollment canónico por StrategyVersion, ma
 - ClientConfig/Kafka/handshake: config delivery; login+company; **sin** ACCOUNT_SERVER; **sin** ACK de EA.
 - Bridge heartbeat: liveness vestigial; MQL Reference **no emite** heartbeat; payload ignorado. UnifiedBatch = Execution-only. AccountRegistry no es unique físico.
 - 061 source sí / SHARED DEV no. 062+063 DEV sí. `reference_bindings` ausente.
-- S0 `RuntimeBinding` READ ONLY. E-04 INGESTED no-touch. E-02 CONFIG REUSE. Hook SQX exportado OUT_OF_SCOPE (C-3 DEFER). Echo collector `reference_status` **IN SCOPE** (corrección 1.1.0).
+- S0 `RuntimeBinding` READ ONLY. E-04 INGESTED no-touch. E-02 CONFIG REUSE. Hook SQX de coverage OUT_OF_SCOPE (C-3 DEFER). Echo collector `reference_status` + relay de atestaciones IN SCOPE (§7.2a). Producer del strategy EA = Forge exporter (`EchoForgeRobustRunExporter` estampa `MagicNumber` input; `EchoForgeMT5Exporter` genera; `magic-readback` verifica; sello F-04 exige allocated==readback).
+- `reference_v3.mq{4,5}`: sin magic input propio; `GetEffectiveMagicNumber` = POSITION_MAGIC o fallback ClientConfig (prohibido como atestación). Cero `GlobalVariable*`/`ACCOUNT_SERVER`/`CHART_EXPERT_NAME` hoy: helpers net-new T09b.
 
 ## 🎯 Target physical state
 
@@ -106,8 +108,8 @@ Exacto PLAN.md. Development en `feature/e06-reference-enrollment-binding` desde 
 
 ## TOP / NORMAL boundaries
 
-- TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padre. No source Go/SQL/HTTP productivo (cumplido). Authority reconciliation CASE C docs-only. No eligió A ni B.
-- NORMAL: **no lanzado**. T01–T22+T09b permanecen en el plan; T09b/T11 magic-match están gated por Manager. No elegir CASE A/B, no sintetizar OBSERVING, no hook SQX, no E-07, no apply 061.
+- TOP: SPEC, esta nota, TASKS, PLAN puente, linkage padre. No source Go/SQL/HTTP productivo (cumplido). Materializó la decisión Manager CASE B y el discovery físico del producer (READ ONLY, 0 bytes Forge). No implementó la inyección.
+- NORMAL: **no lanzado** (gate Manager). T01–T22+T09b desbloqueados por v1.2.0: zero-order = atestación runtime §7.2a + KNOWN_EMPTY; fail-closed `RUNTIME_ATTESTATION_ABSENT`/`MISMATCH`. No sintetizar OBSERVING, no hook SQX de coverage, no E-07, no apply 061. La inyección Forge (un archivo) corre en lane Forge con gate propio.
 - GOD: NONE.
 
 ## Frozen decisions
@@ -121,10 +123,11 @@ Exacto PLAN.md. Development en `feature/e06-reference-enrollment-binding` desde 
 7. `coverage_started_at = max(proof.recorded_at, capture_barrier_at)`.
 8. Stale > 15000ms sin `reference_status` → SUSPENDED + UNKNOWN.
 9. Migración 064; FK 061; interlock SHARED DEV explícito.
-10. Certificación sin órdenes. Unit fakes ≠ PHYSICAL OBSERVING. PHYSICAL exige producer `reference_status`.
-11. `observed_magic` = inventario broker; KNOWN_EMPTY no se rellena desde config. **Si KNOWN_EMPTY basta para OBSERVING = CASE C, no frozen.**
+10. Certificación sin órdenes. Unit fakes ≠ PHYSICAL OBSERVING. PHYSICAL exige producer `reference_status` + Version con inyección §7.2a.
+11. `observed_magic` = inventario broker; `runtime_attestations` = relay verbatim §7.2a; sin backfill/mint desde config/PG/Version. **Zero-order (Manager CASE B): `effective_magic == binding.magic_decimal` atestiguado por la instancia EA strategy; ausente/mismatch ⇒ fail-closed. Nunca trade/pending/DEAL artificial.**
 12. `*_trade_allowed` se capturan; no gatean OBSERVING. VALID_NO_SIGNAL es E-07.
-13. C-3: hook SQX DEFER; Echo collector status IN SCOPE.
+13. C-3: hook SQX de **coverage** DEFER; excepción §7.2a = **sólo** atestación de identidad runtime mínima (sin signals/deals/coverage/métricas/lifecycle/telemetría/estado). Echo collector status + relay IN SCOPE.
+14. Identidad de Version: inyectar atestación cambia bytes ⇒ **nuevo** `strategy_version_ref` (canonical_strategy_id estable). Versions históricos nunca se mutan; fail-closed `RUNTIME_ATTESTATION_ABSENT`. Re-enroll = nueva exportación + ingestion + nuevo `binding_id`.
 
 ## Migrations
 
@@ -148,11 +151,11 @@ SPEC AC-01…AC-25 + AC-26…AC-33. SOURCE + CONTRACT + PG REAL + HTTP + PHYSICA
 
 ## Blockers
 
-**Zero-order magic = CASE C.** Manager debe elegir A, B o alternativa acotada antes de NORMAL. Development: ninguno adicional (PG descartable incluye 061). SHARED DEV 064 apply: **061 NOT_APPLIED** (ops/E-03). PHYSICAL producer real: GAP-ECHO-006 si no hay terminal collector; **no** se sustituye por fake. E-04 T21 no bloquea. C-3 DEFER del hook SQX conservado; status Echo collector compatible con C-3 y no puede afirmar MagicNumber SQX.
+**Planning: ninguno** (CASE C resuelto por Manager; discovery físico completo). Development: ninguno adicional (PG descartable incluye 061). SHARED DEV 064 apply: **061 NOT_APPLIED** (ops/E-03). PHYSICAL producer real: GAP-ECHO-006 si no hay terminal collector **y/o** Version Forge con inyección §7.2a; **no** se sustituye por fake. E-04 T21 no bloquea. La inyección Forge (un archivo `EchoForgeMT5Exporter.java`) requiere lane/gate Forge propio antes de que existan Versions atestuantes — bloquea sólo los AC PHYSICAL de atestación, no CONTRACT.
 
 ## Handoff requirements
 
-Manager resuelve CASE C (A vs B vs alternativa) → sólo entonces planning puede relanzarse. **NORMAL no arranca.** No merge/deploy. No E-07. No hook SQX sin decisión. No apply 061/064 Aranea.
+Manager revisa v1.2.0 (CASE B + producer §7.2a + regla identidad) → autoriza NORMAL. **NORMAL no arranca antes.** No merge/deploy. No E-07. Hook SQX de coverage sigue DEFER. No apply 061/064 Aranea. La inyección Forge se ejecuta como expansión de borde de un archivo con gate Manager/Forge.
 
 ## Closure conditions
 
