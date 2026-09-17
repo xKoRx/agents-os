@@ -85,22 +85,27 @@ La POC debe demostrar un deploy completo en un único ambiente lógico de test y
 
 Dependencia de inicio: cerrar la [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend#Dependencia externa de aprobación]]. El código puede comenzar después de aprobar la SPEC; el gate 1.4 no puede cerrarse sin evidencia real de Fury.
 
+### Fase 2 — Routing KISS por scope en Playmaker
+
+**Entregables:** [[POC KISS — Routing de scopes en Playmaker]] y [[SPEC técnica — Routing KISS por scope en rio-playmaker]].
+
+**Resultado de fase:** Playmaker valida `X-Rio-Scope: alpha` contra su runtime, persiste `environment_scope=alpha`, publica triggers con `scope:alpha` y sólo procesa results cuyo filtro coincide con runtime y ejecución. La POC reutiliza el envelope de filtros y no modifica los DTOs de `rio-sdk-events`.
+
 ### Fases siguientes
 
 | Orden | Unidad | Repo / superficie | Dependencia de entrada | Gate de salida |
 |---|---|---|---|---|
-| 2 | Contrato de scope en deployment events | `rio-sdk-events` | Fase 1 aprobada | SPEC técnica + compatibilidad wire aprobadas |
-| 3 | Publish/consume del ambiente | `rio-playmaker` | SDK de prueba disponible | producer y consumer certificados en nonprod |
-| 4 | Consumer/result del ambiente | `rio-controlplane-flink` | contrato SDK disponible | consumer y result certificados sin side effects cruzados |
-| 5 | Aprovisionamiento de lane | Fury | Specs 2–4 aprobadas | scopes, config y bindings listos sin tráfico |
-| 6 | Integración | todas | gates 1–5 aceptados | golden deploy, cleanup y rollback completados |
+| 2 | Header, persistencia y filtros | `rio-playmaker` | Fase 1 aprobada + G0 del planner aceptado | G1–G4 del [[POC KISS — Routing de scopes en Playmaker]] aceptados |
+| 3 | Consumer/result del ambiente | `rio-controlplane-flink` | contrato de filtro Playmaker aprobado | consumer y result preservan `scope:alpha` sin cambio SDK |
+| 4 | Aprovisionamiento de lane | Fury | Specs 2–3 aprobadas | scopes, config, routes y bindings listos sin tráfico |
+| 5 | Integración | todas | gates 1–4 aceptados | golden deploy, negativos, cleanup y rollback completados |
 
 La implementación, los archivos y los contratos de cada unidad viven sólo en su SPEC. El runbook final orquesta rollout, golden deploy, cleanup y rollback sin reescribir esas decisiones.
 
 ### Gates del programa
 
 - **G1 Frontend:** Fase 1 aprobada y sin rutas cross-segment.
-- **G2 Contratos:** SDK, Playmaker y Flink comparten el mismo identificador de ambiente y compatibilidad.
+- **G2 Contratos:** Playmaker y Flink comparten `scope:<environment>` mediante el envelope BigQueue existente; los payloads SDK permanecen sin cambios.
 - **G3 Infra:** recursos no productivos listos, sin tráfico y con rollback.
 - **G4 E2E:** un golden deploy completa el recorrido, el frontend observa estado terminal y los negativos no producen side effects.
 - **G5 Cierre:** recurso descartable eliminado, evidencia enlazada y ruta de rollback ejecutada.
@@ -177,12 +182,13 @@ views:
 > - [ ] **[Manifest de bindings]** Definir y completar por runtime `application/scope`, lane, role, workload, channel, direction, infra-segment, contract/schema, versión y site/tenant #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Estándar]** Definir contrato de configuración: perfiles, segmentos, recursos compartidos/dedicados, secretos, canales, criticidad y ownership #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Automatización]** Diseñar validadores de CI/runtime que impidan scopes incompatibles, perfiles ausentes y rutas cross-segment accidentales #owner/me #type/dev #area/meli #waiting
-> - [ ] **[POC alpha — SPEC técnica SDK]** Crear la SPEC técnica de `rio-sdk-events` para `environment_scope` y `scope:alpha` en `DeploymentTriggerMessage`/`DeploymentResultMessage`, con compatibilidad y wire tests #owner/me #type/dev #area/meli
+> - [-] **[POC alpha — SPEC técnica SDK]** Cancelada: el contrato existente de `BigQueueMessage.filters`/mqclient ya transporta `scope:alpha`; la POC no agrega `environment_scope` a los DTOs #owner/me #type/dev #area/meli
 > - [x] **[Fase 1 — SPEC técnica Front]** Crear [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]] con entrypoint test compartido, scope backend dinámico, aislamiento test/prod y particionado de estado/cache #owner/me #type/dev #area/meli ✅ 2026-09-16
 > - [ ] **[Fase 1 — Fury Route]** Implementar y evidenciar la dependencia externa definida en la [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend#Dependencia externa de aprobación|SPEC]] #owner/me #type/dev #area/meli
 > - [ ] **[Fase 1 — implementación Front]** Implementar la SPEC aprobada en `ads-signals-frontend` y completar checks del repo #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Fase 1 — certificación]** Ejecutar la matriz default/override/desconocido/test→prod/prod→test, probar rollback y enlazar evidencia #owner/me #type/dev #area/meli #waiting
-> - [ ] **[POC alpha — SPEC técnica Playmaker]** Crear la SPEC técnica de `rio-playmaker` para scopes `alpha-api-nonprod`/`alpha-consumer-nonprod`, publicación filtrada y consumo validado de deployment results #owner/me #type/dev #area/meli
+> - [r] **[POC alpha — SPEC técnica Playmaker]** Revisar [[SPEC técnica — Routing KISS por scope en rio-playmaker]]: header validado contra runtime, scope persistido, publicación filtrada y consumo con triple guard #owner/me #type/dev #area/meli
+> - [/] **[[POC KISS — Routing de scopes en Playmaker]]** revisar y supervisar la implementación fase a fase bajo KISS/YAGNI #owner/me #type/supervision #area/meli
 > - [ ] **[POC alpha — SPEC técnica Flink]** Crear la SPEC técnica de `rio-controlplane-flink` para el consumer alpha, guard de runtime/payload/filter y publicación del result con el mismo ambiente #owner/me #type/dev #area/meli
 > - [ ] **[POC alpha — SPEC técnica Infra Fury]** Crear la SPEC técnica de aprovisionamiento para scopes, Fury Config, routes, consumers y manifiesto de bindings sin crear topics #owner/me #type/dev #area/meli
 > - [ ] **[POC alpha — runbook de integración]** Escribir el checklist ejecutable de orden de rollout, golden deploy, aislamiento, cleanup y rollback, sin duplicar las decisiones de las cinco SPECs técnicas #owner/me #type/dev #area/meli
@@ -224,6 +230,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **2026-09-03 (render de placeholders)** — Spellbook interpretaba los placeholders con `<…>` como tags HTML y mostraba sólo `--`; las cuatro apariciones del patrón backend quedaron escapadas para renderizar `<environment>-<rol>-<segment>` completo.
 - **2026-09-16 (POC alpha planificada)** — La segunda parte del proyecto queda acotada a una vuelta real de deploy `ads-signals-frontend -> rio-playmaker -> rio-controlplane-flink -> rio-playmaker -> frontend`, toda en `alpha`. Se elimina el header custom como requisito de la POC, se toma el filtro BigQueue por tag como capability disponible, se mantienen `rio-deployment-trigger`/`rio-deployment-result`, se dejan Actions y Observability fuera de alcance y se divide el trabajo en cinco futuras SPECs técnicas más un runbook de integración, sin crear esos artefactos en esta sesión.
 - **2026-09-16 (Fase 1 replanteada y especificada)** — La primera implementación de la POC pasa a ser el routing dinámico de backend en `ads-signals-frontend`: el plan de ejecución queda en este proyecto y el diseño objetivo en [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]]. Se adopta una entrada test compartida por header, sin catálogo frontend de scopes; producción conserva su entrada aislada y Fury queda como gate externo de no-crossing.
+- **2026-09-16 (Fase 2 Playmaker POC KISS)** — Se creó [[POC KISS — Routing de scopes en Playmaker]] como planner delegable y [[SPEC técnica — Routing KISS por scope en rio-playmaker]] como diseño derivado de SIG-599. Se cancela la SPEC/cambio de SDK: Playmaker persiste `environment_scope`, pero el mensaje lo transporta mediante el filtro existente `scope:alpha`. El primer gate es una revisión independiente que debe aplicar KISS/YAGNI y bloquear cualquier ampliación no justificada.
 
 ## 🧭 Decisiones
 
@@ -241,7 +248,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **Cantidad y nombres funcionales:** frontend se nombra con `<environment>` y backend con `<environment>-<rol>-<segment>`.
 - **Extensibilidad:** la Fase 1 debe demostrar que una lane de test nueva no exige un archivo de configuración ni un deploy frontend; las fases posteriores prueban que topics y contratos tampoco se duplican por ambiente.
 - **DB sin cambios:** sólo `test` y `prod`; el scope es routing/cómputo, no frontera de datos.
-- **Scope estampado server-side:** Playmaker deriva `environment_scope` y `scope:<environment>` desde su runtime validado, nunca desde datos enviados por el browser.
+- **Scope validado y estampado server-side:** Playmaker captura `X-Rio-Scope`, exige que coincida con el ambiente derivado de su runtime, persiste `environment_scope` en la ejecución y construye `scope:<environment>` desde ese valor persistido; el browser no es autoridad final.
+- **Sin cambio SDK en la POC:** `DeploymentTriggerMessage` y `DeploymentResultMessage` permanecen iguales; el ambiente viaja en `BigQueueMessage.filters`/mqclient y cualquier propuesta de agregar el campo reabre explícitamente la decisión.
 - **Nombre canónico:** SIG-599 define frontend `<environment>` y backend `<environment>-<rol>-<segment>`.
 - **POC end-to-end:** el CP piloto es `rio-controlplane-flink` y la cobertura obligatoria es el deploy completo; Actions, runtime status, Observability, Materializer y KMS quedan fuera.
 - **Piloto KMS separado:** la remediación de segmentación de KMS conserva su propio objetivo y no certifica la POC end-to-end.
@@ -250,7 +258,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 1. ¿Qué decisiones de negocio y ownership se requieren para proponer retiros sin convertir bindings en una categoría genérica?
 2. ¿La unidad de alineación es una lane/celda completa de RIO y qué contrato/schema debe compartir?
 3. ¿Qué scopes especiales sobreviven como roles explícitos y cuáles son deuda transitoria?
-4. ¿Qué ventana y fallback para mensajes legacy sin `environment_scope` mientras se adopta el catálogo canónico `production/staging/alpha/beta/gamma`?
+4. ¿Qué ventana se usará después de la POC para retirar el modo legacy sin filtro y las ejecuciones con `environment_scope=NULL`?
 5. ¿Qué recursos pueden compartirse entre familias y cuáles deben aislarse por construcción?
 6. ¿Qué capability soportada por Fury implementará el aislamiento de lanes dentro de `nonprod`?
 7. ¿Dónde se versionará el manifiesto de bindings y el generador reproducible?
@@ -265,6 +273,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - Propuesta de nomenclatura (borrador): [[scope-naming-standard]]
 - Spec funcional de ambientes y scopes: [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599) · estado `draft`
 - SPEC técnica Fase 1: [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]] · estado `DRAFT`
+- Planner y SPEC técnica Fase 2: [[POC KISS — Routing de scopes en Playmaker]] · [[SPEC técnica — Routing KISS por scope en rio-playmaker]] · estado `DRAFT listo para revisión independiente`
 - Grid visual (generado): `30-resources/grids/rio-scope-inventory.html` · índice [[00-index|grids]]
 - Grid publicado para el equipo (reproducible): [RIO · scopes y ambientes](https://grid.adminml.com/d/01KZXKPH3YAGGX89P04GTY7B7E/view) · doc Grid `01KZXKPH3YAGGX89P04GTY7B7E`
 - Deuda del grid resuelta: [[2026-08-25-rio-scope-grid-restructure-lives-outside-the-generator]]

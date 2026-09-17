@@ -19,7 +19,7 @@ tags:
   - tech/rio
   - project/scopes-rio
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-09-16
 cssclasses:
   - wide
 ---
@@ -516,7 +516,7 @@ La base reserva identidad `application/scope/resource_type/resource_name` y los 
 1. Abrir una sesión interna con `?frontend=alpha&backend=beta` y verificar que ambos ejes persisten independientemente.
 2. Verificar que nginx sirve el front alpha y que Fury routes dirige el header de scope al Playmaker beta.
 3. Verificar que Playmaker estampa `scope:beta` y que sólo el consumer beta recibe el mensaje.
-4. Alterar el tag o payload para producir mismatch y verificar que el guard del consumer no ejecuta la operación.
+4. Alterar o remover el tag para producir mismatch y verificar que el guard del consumer no ejecuta la operación.
 5. Repetir para prod y stage; beta/gamma se prueban sólo cuando estén habilitados y un usuario no interno siempre falla cerrado a prod.
 
 ## Rollout
@@ -526,7 +526,7 @@ La base reserva identidad `application/scope/resource_type/resource_name` y los 
 3. Renderizar Markdown y HTML desde el snapshot aprobado.
 4. Aprobar el diff retirar/mantener/agregar por aplicación; resolver los 15 puntos amarillos de Streams.
 5. Ejecutar primero el piloto KMS: corregir la resolución de profile, crear scope+routes, validar tráfico NONPROD y mantener `test` como rollback.
-6. Implementar el contrato `environment_scope`/tag `scope:<x>` en SDK, Playmaker y consumers, con compatibilidad de payload.
+6. Implementar la continuidad `environment_scope`/tag `scope:<x>` en Playmaker y consumers reutilizando el envelope BigQueue existente; la POC no agrega el campo a los payloads SDK.
 7. Aprovisionar scopes prod/stage/alpha mediante plantilla; ejecutar E2E y sólo entonces extender al resto y retirar nombres antiguos.
 
 ## Open Decisions
@@ -535,7 +535,7 @@ La base reserva identidad `application/scope/resource_type/resource_name` y los 
 2. ¿Qué canal publicará el snapshot y con qué cadencia?
 3. ¿Se agregará una superficie oficial de Fury para Streams/Work Queues o se mantendrá el adapter sobre el service graph?
 4. ¿Cómo se mostrarán en una próxima iteración los recursos no runtime, como topics, streams físicos y KVS, sin colapsarlos al scope?
-5. ¿Cuál será la política de compatibilidad para mensajes antiguos sin `environment_scope` durante el rollout?
+5. ¿Cuál será la política posterior a la POC para retirar mensajes legacy sin filtro y ejecuciones con `environment_scope=NULL`?
 6. ¿Fury acepta `alpha-api-nonprod` para remediar `rio-controlplane-kms/test` o exige el bridge `test-nonprod`, y qué señal levanta la restricción de deploy?
 7. ¿El filtro `scope:<x>` se aplica server-side en la definición Fury del consumer o después de la entrega?
 
@@ -546,4 +546,5 @@ La base reserva identidad `application/scope/resource_type/resource_name` y los 
 - Segmentación: [[fury-segmentation-model]]
 - Entregable visual: `30-resources/grids/rio-scope-inventory.html`
 - Proyecto: [[Estandarización de Scopes RIO]]
+- Diseño técnico Playmaker: [[SPEC técnica — Routing KISS por scope en rio-playmaker]]
 - Atlas: [[00-index|RIO Atlas]]

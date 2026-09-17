@@ -106,7 +106,7 @@ Reglas:
 3. El ambiente esperado se deriva del primer token del `SCOPE` materializado sólo cuando el nombre completo cumple `^([a-z0-9]+)-(api|consumer)-(nonprod|nonsite)$`; para la POC los valores válidos son `alpha-api-nonprod` y `alpha-consumer-nonprod`.
 4. Header ausente o malformado produce `400 Bad Request`; un valor bien formado distinto del ambiente del runtime produce `409 Conflict`.
 5. El header es una declaración del caller, no la autoridad final: Playmaker sólo persiste el valor después de compararlo con su runtime.
-6. La POC aplica el contrato al `POST /data-products/{name}/environments/{envName}/pipeline/deploy`. Los GET de history/detail pueden incorporar el mismo guard en esta fase si el frontend los consulta a través del entrypoint compartido; nunca deben devolver una ejecución cuyo `environmentScope` no coincide con el runtime.
+6. La POC aplica el contrato al `POST /data-products/{name}/environments/{envName}/pipeline/deploy` y a los GET de history/detail/logs que el frontend consulta a través del entrypoint compartido; nunca deben devolver una ejecución cuyo `environmentScope` no coincide con el runtime.
 
 No se usa `ThreadLocal`, MDC ni request-scoped bean como carrier de negocio: el publish ocurre después del commit y puede ejecutarse en otro thread o en un retry sin request original.
 
