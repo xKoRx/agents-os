@@ -10,7 +10,7 @@ parent:
 sprint:
 start: 2026-09-17
 due:
-progress: 0
+progress: 5
 repo: xKoRx/multimodal-knowledge-engine
 jira:
 prs:
@@ -31,7 +31,7 @@ updated: "2026-09-17"
 # Multimodal Knowledge Engine
 
 > [!info]+ Proyecto
-> **Estado:** active · **Repo:** `xKoRx/multimodal-knowledge-engine` · **Arquitectura:** ADR-001 cerrada para POC, pendiente de validación física · **Ejecución:** delegación por agentes autorizada dentro de los gates; no hay implementación certificada. Esta nota es la única autoridad vigente. Proyecto independiente de Hermes, Echo y Echo Forge.
+> **Estado:** active · **Repo:** `xKoRx/multimodal-knowledge-engine` · **Arquitectura:** ADR-001 cerrada para POC y M0 SPEC Freeze completado · **Ejecución:** lista para iniciar SPEC-00A desde el baseline congelado del repo; implementación y runtime todavía no certificados. Esta nota es autoridad de producto/decisiones; el detalle ejecutable vive en `docs/architecture/` y `docs/specs/` del repo. Proyecto independiente de Hermes, Echo y Echo Forge.
 
 ## 🎯 Objetivo
 
@@ -41,22 +41,23 @@ updated: "2026-09-17"
 - **M1 — Corpus → Documentation:** procesar múltiples fuentes de manera incremental y consolidarlas en documentación coherente por unidad lógica/corpus, evitando duplicados y manteniendo cobertura/procedencia. La primera expansión será por videos y cursos.
 - **M2 — Knowledge → Intelligence:** cruzar fuentes/corpus, reconstruir reglas y estrategias con condiciones y excepciones, identificar equivalencias, desacuerdos contextualizados, ideas e hipótesis falsables. Ninguna idea se presenta como rentable o verdadera sin evidencia independiente suficiente.
 
-**Función objetivo:** fidelidad, cobertura de contenido recuperable, trazabilidad, utilidad y calidad documental. Tokens, cantidad de frames, tamaño de Markdown y complejidad no son objetivos. GLM Pro se utiliza para DESARROLLO por agentes, no inferencia masiva del corpus.
+**Función objetivo:** fidelidad, cobertura de contenido recuperable, trazabilidad, utilidad y calidad documental. Tokens, cantidad de frames, tamaño de Markdown y complejidad no son objetivos. El backend multimodal inicial de desarrollo para M0 es `GLM-5.3-Flash`; es una implementación de `VLMProvider`, no parte del dominio ni autoridad de conocimiento.
 
 ## 📊 Estado actual
 
-- **2026-09-17 — Nombre y alcance generalizados:** `Course Intelligence Engine` pasa a ser **Multimodal Knowledge Engine**. El repo dedicado ya existe como `xKoRx/multimodal-knowledge-engine`. La POC sigue siendo un video de curso de trading; no ampliar M0 a otras fuentes antes de certificarlo.
-- **2026-09-17 — Diseño CERRADO para ejecución experimental:** convergencia de dos IAs sobre ADR-001. Los cuatro hallazgos posteriores están incorporados: interpretación de gráficos, cierre verificable de preguntas, benchmark emparejado A/C y dos gates internos para SPEC-03. No reiniciar debate arquitectónico sin un fallo físico que lo justifique.
-- **Delegación autorizada:** agentes hacen discovery, SPEC-00 y continúan por gates PASS dentro de scope efectivamente autorizado; revisor separado valida cada fase. No requieren aprobación humana para cada paso rutinario. Solo escalar permisos/derechos, presupuesto nuevo, scope externo o bloqueo irreparable. No prometer ejecución persistente si el entorno no la permite.
-- **Sin validación física:** repo identificado, pero branch/base/workspace local, video/runtime y métricas todavía deben verificarse por preflight. No hay pruebas de modelo, memoria, rendimiento, código o calidad. No inventar ruta, permisos, SHA ni métricas.
-- **Diseño superseded:** las nueve SPECs y variante B de la primera versión ya no aplican. Se conserva su historia en Git, no una segunda arquitectura vigente.
-- **Agents-OS:** proyecto principal `owner: me`; proyecto ejecutor `owner: agent` se creará con materializador canónico y `parent: [[Multimodal Knowledge Engine]]` cuando exista entorno apto. Una tarea puente humana, planificador único en el subproyecto. No fingir que se creó ya. Cierre de esta sesión exclusivamente por solicitud explícita.
+- **2026-09-17 — M0 SPEC Freeze COMPLETADO:** el repo contiene arquitectura M0 y SPECs congeladas `00A → 00B → 01 → 02 → 03-A → 03-C → 04`; no hay decisiones arquitectónicas materiales abiertas para comenzar 00A. El baseline exacto es el HEAD final de `master` posterior al freeze y debe quedar fijado en el mandato de implementación.
+- **2026-09-17 — Product-first:** SPEC-00A reemplaza el antiguo runtime-first. El primer desarrollo debe producir cuanto antes `mke process video.mp4 --transcript transcript.json --vlm glm` → `source.json`, `evidence/`, `knowledge.jsonl`, `documentation.md`. SQLite/resume no entran hasta SPEC-02.
+- **2026-09-17 — Local runtime desacoplado:** SPEC-00B valida Whisper/Qwen/Ollama/LM Studio/M4/Kronos contra los mismos contratos externos. Un backend local `NO_GO` no rediseña el core ni bloquea por sí solo SPEC-01 mientras exista un VLM aceptado; una insuficiencia del contrato vuelve a manager como `PLAN_CONFLICT`.
+- **2026-09-17 — Diseño CERRADO para ejecución experimental:** ADR-001 se mantiene: interpretación de gráficos, cierre verificable de preguntas, benchmark emparejado A/C y dos gates internos de SPEC-03. No reiniciar debate arquitectónico sin evidencia física contradictoria.
+- **Delegación autorizada:** futuro mandato `Manager → Implementer → QA`, cada SPEC `IMPLEMENT → TEST → QA`; `PASS` autoavanza, `CORRECT` corrige y revalida, `BLOCKED` detiene dependientes mientras manager busca solución en scope, `NO_GO` detiene la vía afectada. Solo escalar humano por permisos, gasto nuevo, cambio de scope, otros sistemas o decisión irreversible.
+- **Sin implementación física todavía:** repo y branch remotos están verificados, pero video autorizado, credenciales/runtime GLM, runtimes locales, memoria/rendimiento y calidad real se verifican durante ejecución. No inventar métricas ni disponibilidad.
+- **Agents-OS:** proyecto principal `owner: me`; el proyecto ejecutor `owner: agent` sigue autorizado pero NO creado. Materializarlo al iniciar el mandato de implementación y mantener una sola tarea puente humana. Cierre de sesión solo por solicitud explícita.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| Multimodal Knowledge Engine / `xKoRx/multimodal-knowledge-engine` | `master` declarada por GitHub; verificar localmente | SHA por verificar | [[Multimodal Knowledge Engine#1. Contrato funcional]] | [[Multimodal Knowledge Engine#9. Roadmap de SPECs]] | Discovery autorizado; desarrollo bloqueado hasta preflight y SPEC-00 PASS |
+| Multimodal Knowledge Engine / `xKoRx/multimodal-knowledge-engine` | `master` verificada | HEAD final del SPEC Freeze; fijar SHA exacto al despachar 00A | esta nota + ADR-001 | `docs/architecture/architecture.md` + `docs/specs/SPEC-00A-product-spike.md` … `SPEC-04-integration-benchmark.md` | `READY_FOR_IMPLEMENTATION`; comenzar por 00A |
 
 ## 1. Contrato funcional
 
@@ -70,7 +71,7 @@ Ventana, evento y conocimiento tienen identidades separadas; un instante tiene v
 
 Monolito CLI Go. Cobertura visual independiente del ASR, densidad configurable y reproducible; investigador opcional pide evidencia adicional con protocolo cerrado. El código gobierna procedencia, límites, estados, tiempos, publicación e idempotencia. El modelo propone preguntas e interpretaciones; no controla shell, fuente externa ni política de verdad.
 
-**Experimento A/C:** `adaptive_investigation=false` versus `true`, mismo ejecutable, source/hash, ASR, índice, evidencia inicial, modelos/backend, grounding, consolidación y publisher. Única diferencia controlada: adquisición adaptativa. Comparar techo común de recursos y separadamente costos operativos reales. Medir conocimiento correcto incremental, errores/regresiones y costo, NO longitud documental. Si A pasa y C no aporta calidad correcta útil, retirar C por KISS; si ninguna pasa, NO_GO. B (ASR+anclas mínimas+agente) no se implementa por puntos ciegos visuales. Cobertura visual no exige decodificación exhaustiva permanente: barrido denso versus densidad reducida es experimento, no decisión fija.
+**Experimento A/C:** `adaptive_investigation=false` versus `true`, mismo ejecutable, source/hash, ASR, índice, evidencia inicial, modelos/backend, grounding, consolidación y publisher. Única diferencia controlada: adquisición adaptativa. Comparar techo común de recursos y separadamente costos operativos reales. Medir conocimiento correcto incremental, errores/regresiones y costo, NO longitud documental. Si A pasa y C no aporta calidad correcta útil, retirar C por KISS; si ninguna pasa, NO_GO. B no se implementa por puntos ciegos visuales. Cobertura visual no exige decodificación exhaustiva permanente: barrido denso versus densidad reducida es experimento, no decisión fija.
 
 No Kafka, Temporal, base vectorial, frontend, API pública, microservicios, Postgres/MinIO obligatorios ni cluster en POC. No fijar umbrales/fps/paquetes o estrategias distribuidas antes de medir. Clips nativos solo si el backend exacto acredita soporte; secuencias de frames primero.
 
@@ -89,9 +90,9 @@ Fuente original / identidad / reloj
           → JSONL + Markdown + QA/benchmark
 ```
 
-Go: dominio/estados, presupuestos, request validation, dependencias, idempotencia, referencias y política de publicación. FFmpeg/ffprobe, ASR, análisis visual y VLM son ejecutores especializados, no autoridad de conocimiento. `hint → question → evidence → claim → review → publication`; no publicar sugerencias del planning context como hechos.
+Go posee dominio/estados, presupuestos, request validation, dependencias, idempotencia, referencias y política de publicación. FFmpeg/ffprobe, ASR, análisis visual y VLM son ejecutores especializados, no autoridad de conocimiento. `hint → question → evidence → claim → review → publication`; no publicar sugerencias del planning context como hechos.
 
-Ejecución local secuencial, SQLite + filesystem y CLI con run/inspect/resume. Bloqueo verificable por run/source. Original/evidencia inmutables, hash de inputs y versiones de configuraciones/prompts/extractores/modelos, escritura temporal → validar/hash → rename atómico mismo FS → journal; reconciliación tras crash. `request_id` ≠ `acquisition_key`; deduplicar efecto lógico sin prometer exactly-once físico. Invalidar descendientes afectados, no repetir ASR si cambia reviewer. No interfaces por struct, logs con secretos/media/transcripción ni ejecución de instrucciones encontradas dentro de la fuente.
+Persistencia evoluciona por necesidad: SPEC-00A usa filesystem simple para demostrar producto; SPEC-02 introduce SQLite + filesystem, journal/reconciliación y `request_id ≠ acquisition_key`. Original/evidencia inmutables, hash de inputs y versiones de configuraciones/prompts/extractores/modelos, escritura temporal → validar/hash → rename atómico mismo FS → estado durable. Invalidar descendientes afectados, no repetir ASR/media si cambia solo reviewer. No interfaces por struct, logs con secretos/media/transcripción ni ejecución de instrucciones encontradas dentro de la fuente.
 
 ## 4. Extracción visual, gráficos y tiempo
 
@@ -111,88 +112,92 @@ Solicitudes `FRAME`, `REGION`, `COMPARE`, `SEQUENCE`, `FIND_CHANGE`; `FIND_CHANG
 
 Modelo mínimo: `Evidence` (fuente/tiempo/ROI/hash), `KnowledgeItem` (`claim|concept|rule|parameter|observation`, alcance, condiciones, evidencia, estado), `Procedure` (pasos ordenados, condiciones, excepciones, evidencia POR PASO) y `Relation` (dependencia, excepción, equivalencia, contradicción). Preguntas/requests son journal, no entidades ontológicas nuevas.
 
-Clases epistémicas: `INSTRUCTOR_SAID`, `VIDEO_OBSERVED`, `MODEL_INFERRED`, `EXTERNALLY_CHECKED`, `EMPIRICALLY_VALIDATED`; no usar validación empírica sin prueba reproducible externa. Integrity Validator determinista: IDs, original/hash, tiempos reales, ROI, versiones/artefactos. Integrity PASS no prueba que un claim esté semánticamente soportado. Grounding Reviewer stateless: solo claim/paso versionado, evidencia/transcripción necesaria y clase, SIN historial/razonamiento del generador; devuelve `GROUNDING_SUPPORTED|GROUNDING_CONTRADICTED|GROUNDING_INSUFFICIENT` con motivo/IDs. Mismo VLM con contexto separado NO garantiza independencia de errores. Error, JSON inválido o reviewer ausente nunca equivale a SUPPORTED. Solo `INTEGRITY_PASS && GROUNDING_SUPPORTED` permite `SUPPORTED_BY_AUTOMATED_REVIEW`, nunca `VERIFIED_TRUE`.
+Clases epistémicas: `INSTRUCTOR_SAID`, `VIDEO_OBSERVED`, `MODEL_INFERRED`, `EXTERNALLY_CHECKED`, `EMPIRICALLY_VALIDATED`; no usar validación empírica sin prueba reproducible externa. Integrity Validator determinista: IDs, original/hash, tiempos reales, ROI, versiones/artefactos. Integrity PASS no prueba que un claim esté semánticamente soportado. Grounding Reviewer stateless: solo claim/paso versionado, evidencia/transcripción necesaria y clase, SIN historial/razonamiento del generador; devuelve `GROUNDING_SUPPORTED|GROUNDING_CONTRADICTED|GROUNDING_INSUFFICIENT`. Error, JSON inválido o reviewer ausente nunca equivale a SUPPORTED. Solo `INTEGRITY_PASS && GROUNDING_SUPPORTED` permite `SUPPORTED_BY_AUTOMATED_REVIEW`, nunca `VERIFIED_TRUE`.
 
-Consolidación entre ventanas y revisión posterior de cambios/dependientes; preservar diferencias entre audio y pantalla sin decidir automáticamente cuál es cierto. Mostrar `CONTRADICTED`, `INSUFFICIENT`, `UNREADABLE`, `INCOMPLETE`. JSONL ordenado/versionado es intercambio estructurado; Markdown es proyección legible con índice, procedimientos, gráficos, reglas, excepciones, preguntas, cobertura y enlaces relativos a evidencias; nunca reconstruir JSONL desde Markdown.
+Consolidación entre ventanas y revisión posterior de cambios/dependientes; preservar diferencias entre audio y pantalla sin decidir automáticamente cuál es cierto. Mostrar `CONTRADICTED`, `INSUFFICIENT`, `UNREADABLE`, `INCOMPLETE`. JSONL ordenado/versionado es intercambio estructurado canónico; Markdown es proyección legible y nunca fuente de reconstrucción estructurada.
 
 ## 6. QA por agentes y benchmark
 
-**El usuario no valida manualmente cada SPEC.** Un agente implementador entrega; un agente QA separado verifica contra fuente ORIGINAL, artefactos y contratos, jamás solo contra el Markdown generado. Un agente evaluador prepara `GoldenManifest` desde ORIGINAL ANTES de ver A/C, anota hechos/eventos, condiciones, valores, timestamps/ROI, criticidad y legibilidad; otro agente revisa críticos cuando sea posible. Congelar golden antes de evaluación, no introducirlo en prompts del engine ni recalibrar sobre él y presentar el mismo run como test independiente. Separar roles y contextos; distintos modelos si disponibles, pero no dependencia obligatoria.
+**El usuario no valida manualmente cada SPEC.** Un agente implementador entrega; un agente QA separado verifica contra fuente ORIGINAL, artefactos y contratos, jamás solo contra el Markdown generado. Un agente evaluador prepara `GoldenManifest` desde ORIGINAL ANTES de ver A/C; otro agente revisa críticos cuando sea posible. Congelar golden antes de evaluación, no introducirlo en prompts del engine ni recalibrar sobre él y presentar el mismo run como test independiente.
 
-**Honestidad del benchmark:** etiquetar `AGENT_GOLDEN`, `AGENT_REVIEWED`, jamás `HUMAN_VERIFIED`. Agentes pueden compartir sesgos: PASS significa que pasaron las pruebas y revisión automatizada en ese material, NO calidad humana certificada ni generalización a todos los corpus. El gold humano queda como evaluación externa optativa posterior, no gate cotidiano.
+**Honestidad del benchmark:** etiquetar `AGENT_GOLDEN`, `AGENT_REVIEWED`, jamás `HUMAN_VERIFIED`. PASS significa pruebas/revisión automatizada sobre ese material, NO calidad humana certificada ni generalización a todos los corpus.
 
-**E1 A/C emparejado por elemento:** ambos recuperan / solo C recupera / solo A recupera (regresión) / ambos fallan / C agrega error. Registrar primer punto de pérdida: detección→adquisición→interpretación→grounding/consolidación→publicación. Métrica primaria: conocimiento CORRECTO incremental, regresiones y costo marginal; nunca páginas. Comparación bajo techo de inferencia común y segunda operacional por consumo real. Experimentos complementarios: E2 denso/reducido; E3 global/ROI + OCR; E4 frame/par/secuencia; E5 backend y memoria físicos; E6 crash/reintentos/invalidación.
+**E1 A/C emparejado por elemento:** ambos recuperan / solo C recupera / solo A recupera / ambos fallan / C agrega error. Registrar primer punto de pérdida: detección→adquisición→interpretación→grounding/consolidación→publicación. Métrica primaria: conocimiento correcto incremental, regresiones y costo marginal; nunca páginas.
 
-**Casos M0:** teoría/slides, SQX silencioso y parámetro breve, gráficos y zoom/pan, evento 2 s, excepción lejana, contradicción audio/pantalla y valor ilegible. Ausentes en el video principal se prueban con fixtures segregados y NO se atribuyen a ese video. Un video no generaliza al corpus.
+**Casos M0:** teoría/slides, SQX silencioso y parámetro breve, gráficos y zoom/pan, evento 2 s, excepción lejana, contradicción audio/pantalla y valor ilegible. Ausentes en el video principal se prueban con fixtures segregados y NO se atribuyen a ese video.
 
-**Gates medibles para el golden evaluado:** G0 permisos/source/runtime/repo reales; G1 temporalidad/PTS válida; G2 cero omisiones críticas RECUPERABLES detectadas en golden; G3 cero valores críticos incorrectos publicados como respaldados; G4 100% referencias materiales íntegramente válidas; G5 cero claims materiales sin fuente ni excepciones conocidas ocultadas; G6 conflictos/lagunas visibles y cero falsos SUPPORTED críticos detectados por QA; G7 resume/dedup/crash probados; G8 presupuesto respetado o `INCOMPLETE`; G9 revisor reconstruye pasos críticos desde documento + evidencia sin ayuda del implementador. Pruebas críticas primero y cobertura de código ≥95% según perfil global si aplica; no reemplaza E2E.
-
-**Gate por etapa:** `PASS` con evidencia real → siguiente SPEC automáticamente dentro del scope; `CORRECT` → reparación delimitada y revalidación (máximo dos ciclos por mismo fallo; después BLOCKED); `BLOCKED` → detener dependientes, elevar una sola decisión agrupada con verificaciones realizadas; `NO_GO` → detener vía inviable y documentar motivo. No abrir servicios/permisos/gastos/repos fuera del scope. Nadie inventa outputs, capturas, benchmarks ni autorizaciones.
+**Gates medibles:** G0 permisos/source/runtime/repo reales; G1 temporalidad/PTS válida; G2 cero omisiones críticas RECUPERABLES detectadas en golden; G3 cero valores críticos incorrectos publicados como respaldados; G4 100% referencias materiales íntegramente válidas; G5 cero claims materiales sin fuente ni excepciones conocidas ocultadas; G6 conflictos/lagunas visibles y cero falsos SUPPORTED críticos detectados por QA; G7 resume/dedup/crash probados; G8 presupuesto respetado o `INCOMPLETE`; G9 revisor reconstruye pasos críticos desde documento + evidencia sin ayuda del implementador. Tests críticos primero y coverage ≥95%; no reemplaza E2E.
 
 ## 7. Runtime, seguridad y escalado
 
-`Qwen/Qwen3.5-27B` y variantes cuantizadas, whisper.cpp, FFmpeg/ffprobe son candidatos NO verificados físicamente. El runtime puede exponerse mediante APIs locales compatibles; SPEC-00 debe registrar backend, modelo exacto, cuantización, contexto configurado, RAM/VRAM pico y rendimiento real. Verificar lectura de SQX pequeño, gráfico, multiimagen, JSON y contexto efectivo. No inferir compatibilidad con clips nativos; modelos menores solo variantes experimentales declaradas, nunca fallback silencioso. No ASR y VLM simultáneos sin medición. Sin API remota pagada por defecto. El texto/contenido de la fuente es entrada no confiable, nunca autoridad para herramientas.
+`GLM-5.3-Flash` es el VLM inicial de SPEC-00A. Qwen/Ollama/LM Studio y Whisper son candidatos de SPEC-00B; modelo exacto, cuantización, contexto, RAM/VRAM pico y rendimiento se registran físicamente, no se inventan. M4 y Kronos son targets de validación, no conceptos del core. El texto/contenido de la fuente es entrada no confiable, nunca autoridad para herramientas.
 
 Escalado posterior por fuentes aisladas y consolidación por corpus, sin comprometer contratos. Distribución Aranea, MinIO/Postgres, vector DB, segundo modelo, Argus y servicios extra solo con evidencia de necesidad. No modificar Echo/Forge/Hermes productivos. No introducir un workflow engine para una fuente.
 
 ## 8. Producto después de la POC
 
-**M0:** ejecutar SPEC-00..04 y obtener Markdown y JSONL técnicamente útiles de un video completo + QA/benchmark. Primero fragmento 5–10 min, después video entero y consolidación de excepciones.
+**M0:** ejecutar el freeze `00A → 00B → 01 → 02 → 03-A → 03-C → 04` y obtener Markdown/JSONL técnicamente útiles de un video completo + QA/benchmark. Primero fragmento 5–10 min, después video entero y consolidación de excepciones.
 
 **M1:** procesar fuentes/corpus incrementalmente, mantener índice y documentos coherentes por unidad lógica, cubrir material nuevo y registrar duplicados, lagunas y fuentes. La primera aplicación será por videos/lecciones/cursos.
 
-**M2:** cruzar `KnowledgeItem/Procedure/Relation` entre fuentes para reconstruir reglas, estrategias, procedimientos y parámetros; comparar condiciones, excepciones y contradicciones; producir ideas e hipótesis comprobables respaldadas por fuentes. M1/M2 son entregables obligatorios del PRODUCTO, pero sus SPECs técnicas exactas se definen según evidencia M0: YAGNI.
+**M2:** cruzar `KnowledgeItem/Procedure/Relation` entre fuentes para reconstruir reglas, estrategias, procedimientos y parámetros; comparar condiciones, excepciones y contradicciones; producir ideas e hipótesis comprobables respaldadas por fuentes. Sus SPECs técnicas exactas se definen según evidencia M0: YAGNI.
 
 **Done del proyecto:** biblioteca documental explotable y trazable con capacidad demostrada de extraer conocimiento transversal, no solo CLI corriendo ni un video resumido. M0 es hito, no fin.
 
-## 9. Roadmap de SPECs
+## 9. Roadmap de SPECs — FROZEN M0
 
-| SPEC | Alcance / dependencias | Entregable / gate |
+| SPEC | Alcance | Gate/Handoff |
 |---|---|---|
-| **00 Runtime & Feasibility** | Discovery read-only de video autorizado, repo/workspace/permisos y runtime; verificar FFmpeg/ASR, modelo/backend, SQX pequeño, gráfico, multiimagen, JSON, memoria y contexto. NO construir motor. | `RuntimeCapabilityReport` con evidencia física QA separado; PASS/CORRECT/BLOCKED/NO_GO. |
-| **01 Media Intelligence** | Tras 00 PASS: original/hash, PTS, offsets, ASR, fragmentos+contexto, cobertura visual independiente, activity timeline, anclas. Golden agente desde original congelado antes de A/C. | `VideoAsset`, `TranscriptSegment`, `VisualEvent`, `VisualCoverage`, `GoldenManifest`. Pruebas VFR/seek, silencio, evento 2 s, gráfico, densidad. |
-| **02 Evidence Acquisition** | Tras 01 PASS: requests tipadas, ROI/pares/secuencias, PTS real, SQLite/FS, límites, dedup, crash/resume. | `EvidenceRequest`, `EvidenceArtifact`, `AcquisitionResult` y pruebas negativas/recovery QA. |
-| **03-A Baseline E2E** | Tras 02 PASS: interpretación, Knowledge, integrity, grounding, consolidación y revalidación, JSONL y Markdown mínimo, SIN investigator C. | Documento REAL y QA PASS antes de habilitar 03-C. |
-| **03-C Investigator acotado** | Tras 03-A PASS: bucle de preguntas/requests y estados terminales bajo límites; mismo pipeline y publisher con toggle. | QA de decisiones, límites, errores y regresión; no reimplementar A. |
-| **04 Publication & Experiment** | Tras A, C si 03-C PASS: documentación completa, benchmark golden congelado, A/C emparejado, ablaciones, costo y decisión. | `BenchmarkReport`, conocimiento/documentos, GO/CORRECT/NO_GO por variante con evidencia. |
+| **00A Product Spike** | Walking skeleton real con transcript disponible + frames simples + `VLMProvider` GLM-5.3-Flash → knowledge JSONL → Markdown. Filesystem simple, sin runtime local ni SQLite. | PASS exige E2E con GLM sobre fragmento autorizado y provenance resoluble. Handoff: provider contract + primer artifact set real. |
+| **00B Local Runtime Validation** | Probar `VLMProvider`/`ASRProvider` con Qwen/Ollama/LM Studio/Whisper y targets M4/Kronos; capability matrix por target. | Cada target termina PASS/NO_GO/BLOCKED. Un local NO_GO no rediseña ni bloquea el core mientras exista VLM aceptado. |
+| **01 Media Foundation** | Source/hash, ffprobe/ffmpeg, timeline/PTS real, transcript normalizado, frames, visual activity/anchors y coverage independiente del ASR. | QA de VFR/seek, silencio, evento corto, cobertura e identidad. |
+| **02 Evidence Acquisition** | `FRAME/REGION/COMPARE/SEQUENCE/FIND_CHANGE`, budgets, `request_id ≠ acquisition_key`, SQLite+FS, dedupe, crash/resume/reconciliation. | QA física de artifacts + DB, dedupe y crash matrix. |
+| **03-A Knowledge Baseline** | Evidence → reconstruction → integrity → grounding → consolidation/revalidation → JSONL → Markdown, sin investigator. “Determinista” = replay con outputs provider grabados + orquestación/serialización deterministas. | Documento real + QA PASS obligatorio antes de C. |
+| **03-C Investigator** | Preguntas acotadas → requests tipadas → Evidence adicional → EXACTO pipeline 03-A, con estados terminales y hard budgets. | QA de límites, typed-only acquisition, regresión y reuse del pipeline. |
+| **04 Integration & Benchmark** | Video completo, golden agente congelado antes de A/C, A/C emparejado, recovery, invalidation, calidad/costo, docs finales. | G0–G9 + decisión A/C basada en conocimiento correcto incremental/regresiones/costo; no diseñar M1/M2. |
 
-Son **cinco SPECs numeradas**, con dos gates internos en 03; NO seis servicios. Cada SPEC fija repo, branch, SHA base, allowed files, presupuesto, tests, errores y evidencia antes de codificar. Agent manager coordina implementador y QA en contextos separados. La aprobación de este mandato AUTORIZA discovery read-only, SPEC-00 y encadenamiento de SPEC-01..04 dentro de los permisos verificados, solo tras PASS. No autoriza crear repo público, contratar servicios, editar otros proyectos ni inventar Git baseline. Un video sin derechos o runtime inaccesible son BLOCKED con una sola solicitud concreta al usuario.
+Los contratos detallados, inputs/outputs, persistencia, errores, idempotencia, criterios binarios, tests, QA gates y handoffs son canónicos en el repo. Agents-OS conserva este resumen, estado y decisiones.
 
 ## 10. Próximo mandato ejecutable
 
-> Hermes/manager: bootstrap canónico; cargar SOLO esta arquitectura y skill `agents-os-agent-project-workflow`. Resolver recursos y permisos reales de video, repo/workspace `xKoRx/multimodal-knowledge-engine` y runtime; efectuar Git preflight. Crear subproyecto `owner: agent` mediante materializador y una sola tarea puente en este proyecto, sin inventar status. Preparar golden agente ciego y lanzar SPEC-00 con QA separado. Tras PASS documentado, avanzar 01→02→03-A→03-C→04 dentro del mismo alcance; registrar tareas/estado/bitácora y pruebas en el planificador canónico. Entregar Markdown y JSONL DE VALOR, evidencia exacta y benchmark sobre UN video. Si algo material falta, emitir un único BLOCKED preciso: verificado, dato faltante, decisión mínima. No cerrar sesión Agents-OS automáticamente; cierre solo por solicitud explícita.
+> Manager: bootstrap canónico; verificar que `master` coincide con el baseline del SPEC Freeze; crear el subproyecto `owner: agent` mediante el materializador y enlazar una sola tarea puente; despachar SOLO SPEC-00A al Implementer con `docs/architecture/architecture.md` + `docs/specs/SPEC-00A-product-spike.md`; usar QA separado; tras PASS encadenar automáticamente 00B→01→02→03-A→03-C→04 dentro del scope. El primer objetivo físico es `mke process video.mp4 --transcript transcript.json --vlm glm` produciendo `source.json`, `evidence/`, `knowledge.jsonl`, `documentation.md`. El golden se crea recién en SPEC-04 desde ORIGINAL y antes de mostrar A/C al evaluador. Si faltan video autorizado, credenciales/runtime o permisos al llegar al gate físico correspondiente, emitir un único `BLOCKED` preciso. No cerrar Agents-OS automáticamente.
 
 ## 🧩 Subproyectos
 
-- Proyecto de ejecución `owner: agent` autorizado pero todavía NO creado ni verificado; materializar en entorno con contrato vigente y enlazar tras creación efectiva.
+- Proyecto de ejecución `owner: agent` autorizado pero todavía NO creado; materializar al comenzar implementación, no durante el SPEC Freeze.
 
 ## ✅ Tareas
 
 - [x] Convergencia arquitectónica ADR-001 A/C; versiones previas superseded. #owner/me #type/admin #area/personal
 - [x] Fijar objetivo único, QA delegado, contratos visual/gráficos, gates y milestones M0/M1/M2. #owner/me #type/admin #area/personal
 - [x] Renombrar proyecto a Multimodal Knowledge Engine y vincular repo `xKoRx/multimodal-knowledge-engine`; mantener nombre anterior como alias histórico. #owner/me #type/admin #area/personal
-- [ ] Tarea puente de ejecución: discovery, subproyecto de agente, SPEC-00..04 y entrega M0 validada. #owner/me #type/supervision #area/personal
+- [x] Congelar arquitectura ejecutable M0 y SPEC-00A/00B/01/02/03/04 en el repo; product spike antes de infraestructura local. #owner/me #type/admin #area/personal
+- [ ] Tarea puente de ejecución: crear subproyecto de agente, ejecutar SPEC-00A→04 por gates y entregar M0 validada. #owner/me #type/supervision #area/personal
 - [ ] Tras M0 PASS, delegar M1/M2 con SPECs basadas en evidencia, hasta biblioteca transversal. #owner/me #type/supervision #area/personal
 
 ## 📆 Bitácora
 
-- **2026-09-17:** debate de dos IAs convergió en ADR-001 y cinco SPECs; implementación y runtime sin verificar. Arquitectura inicial A/B/C y nueve SPECs superseded en historia Git.
-- **2026-09-17 — cierre operativo:** usuario fija objetivo documental y explotación de cursos; delega QA de etapas a agentes y solo interviene por excepción. Integrados cuatro findings de review, dos gates 03, golden de agente etiquetado, M0/M1/M2 y mandato SPEC-00. No hay ejecución física ni creación de subproyecto confirmada.
-- **2026-09-17 — rename:** usuario generaliza el dominio más allá de cursos (entrevistas, podcasts y otras fuentes). Se adopta **Multimodal Knowledge Engine**, se fija repo `xKoRx/multimodal-knowledge-engine` y `Course Intelligence Engine` queda como alias histórico. M0 no cambia de alcance: sigue validándose con un video de curso de trading.
+- **2026-09-17:** debate de dos IAs convergió en ADR-001; implementación y runtime sin verificar. Arquitectura inicial A/B/C y nueve SPECs superseded en historia Git.
+- **2026-09-17 — cierre operativo:** usuario fija objetivo documental/explotación de conocimiento, QA por agentes y dos gates 03; no hay ejecución física ni creación de subproyecto confirmada.
+- **2026-09-17 — rename:** se adopta **Multimodal Knowledge Engine** y repo `xKoRx/multimodal-knowledge-engine`; `Course Intelligence Engine` queda como alias histórico; M0 sigue sobre un video de curso de trading.
+- **2026-09-17 — M0 SPEC Freeze:** repo remoto `master` verificado; se reemplaza runtime-first por product-first `00A→00B→01→02→03-A→03-C→04`. Se persisten arquitectura y seis documentos SPEC. Review adversarial resuelve riesgos materiales: runtime local no bloquea el core por target, determinismo definido por replay/control determinista, SQLite diferido hasta SPEC-02, adapters GLM/Qwen/Whisper detrás de dos fronteras externas reales, provenance obligatorio y QA automatizable con fixtures/replay más E2E físico. Próximo paso: implementación 00A desde baseline exacto del freeze.
 
 ## 🧭 Decisiones
 
 - Nombre canónico: **Multimodal Knowledge Engine**; `Course Intelligence Engine` queda como alias histórico.
 - ADR-001: híbrido fijo/adaptativo falsable, A obligatorio antes de C, un único toggle, B no implementada.
-- Documentación de calidad y explotación de conocimiento son la autoridad del producto; M0 no equivale a Done.
+- `GLM-5.3-Flash` es backend VLM inicial de desarrollo y NO entra al dominio; `VLMProvider` y `ASRProvider` son las únicas fronteras externas que justifican interfaces anticipadas.
+- Product-first: 00A demuestra documentación real antes de construir runtime/persistencia completos; SQLite entra en 02 cuando existen resume/reconciliation reales.
+- Determinismo 03-A significa pipeline/replay reproducible con respuestas grabadas, no promesa de inferencia LLM determinista.
+- JSONL es publicación estructurada canónica; Markdown es proyección.
 - QA por agentes sin falsa certificación humana; gates PASS autoavanzan, scope/permisos bloquean, modelo/costo no se inventa.
-- Go + SQLite/FS en POC, ASR y cobertura visual independientes, timestamps reales, integrity + grounding, JSONL canónico y Markdown proyección.
+- Go + SQLite/FS en M0 maduro, ASR y cobertura visual independientes, timestamps reales, integrity + grounding.
 
 ## 🔗 Docs / Links
 
 - Repo: `xKoRx/multimodal-knowledge-engine`.
+- Repo canónico M0: `docs/architecture/architecture.md`, `docs/specs/SPEC-00A-product-spike.md`, `docs/specs/SPEC-00B-local-runtime.md`, `docs/specs/SPEC-01-media-foundation.md`, `docs/specs/SPEC-02-evidence-acquisition.md`, `docs/specs/SPEC-03-knowledge-pipeline.md`, `docs/specs/SPEC-04-integration-benchmark.md`.
 - [[agents-os]], [[agents-os-bootstrap]], [[agents-os-agent-project-workflow]], [[agents-os-session-close]].
-- Candidatos SPEC-00: https://huggingface.co/Qwen/Qwen3.5-27B ; https://huggingface.co/mlx-community/Qwen3.5-27B-4bit ; https://ffmpeg.org/ffprobe.html ; https://github.com/ggml-org/whisper.cpp .
 - Historia de versiones previas: Git de esta misma entidad; `Course Intelligence Engine` permanece como alias, no arquitectura alternativa.
 
 ## 💡 Ideas diferidas
