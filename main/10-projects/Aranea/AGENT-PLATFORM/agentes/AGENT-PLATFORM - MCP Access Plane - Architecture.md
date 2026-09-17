@@ -170,6 +170,22 @@ No copiar tokens materializados desde Nginx a documentación.
 
 **Antes de asignar un puerto nuevo, verificar runtime vivo con `docker ps` + `ss -lntp`; este inventario documenta estado, no reserva puertos futuros.**
 
+### Temporal (familia nueva — 2026-09-17)
+
+```text
+repo:        stevekinney/temporal-mcp (npm temporal-mcp 0.2.1, 28 tools RO por diseño)
+wrapper:     mcp-proxy 6.7.16 + fix g010 (patrón hasura)
+image:       local/temporal-mcp-http:0.2.1-mcpproxy6.7.16-g010fix
+backend:     temporal-mcp-ro (sin host port, red mcp-temporal, uid 1000)
+proxy:       temporal-mcp-auth-ro (nginx digest canónico, :3010)
+target:      Temporal 1.31.2 — frontend gRPC 192.168.31.46:7233 (VM temporal, hades)
+config:      /opt/mcp/temporal/runtime/config/temporal-mcp.json — hardReadOnly + allowedNamespaces [sqx-dev, sqx, sqx-prop]
+superficie:  28 tools sin mutadores; describe de namespace fuera de allowlist → NAMESPACE_NOT_ALLOWED
+runbook:     [[aranea-temporal-mcp]]
+```
+
+El frontend interno no usa TLS ni API key: el boundary agent-facing es bearer + hardReadOnly + namespace allowlist. La conexión es gRPC `:7233`; la ruta Traefik `temporal.lab.aranea` (`:8080`) es la UI y NO sirve gRPC.
+
 ### PostgreSQL
 
 Backend pinneado:
