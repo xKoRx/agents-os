@@ -51,7 +51,7 @@ updated: "2026-09-17"
 - **2026-09-17 — Diseño CERRADO para ejecución experimental:** ADR-001 se mantiene: interpretación de gráficos, cierre verificable de preguntas, benchmark emparejado A/C y dos gates internos de SPEC-03. No reiniciar debate arquitectónico sin evidencia física contradictoria.
 - **Delegación autorizada:** futuro mandato `Manager → Implementer → QA`, cada SPEC `IMPLEMENT → TEST → QA`; `PASS` autoavanza, `CORRECT` corrige y revalida, `BLOCKED` detiene dependientes mientras manager busca solución en scope, `NO_GO` detiene la vía afectada. Solo escalar humano por permisos, gasto nuevo, cambio de scope, otros sistemas o decisión irreversible.
 - **Sin implementación física todavía:** repo y branch remotos están verificados, pero video autorizado, credenciales/runtime GLM, runtimes locales, memoria/rendimiento y calidad real se verifican durante ejecución. No inventar métricas ni disponibilidad.
-- **Agents-OS:** proyecto principal `owner: me`; el proyecto ejecutor `owner: agent` sigue autorizado pero NO creado. Materializarlo al iniciar el mandato de implementación y mantener una sola tarea puente humana. Cierre de sesión solo por solicitud explícita.
+- **Agents-OS:** proyecto principal `owner: me`; subproyecto ejecutor [[M0 Execution]] materializado el 2026-09-17 con tarea puente única en WIP. Workspace del repo: `~/mke/` (fuera del vault). Cierre de sesión solo por solicitud explícita.
 
 ## 🧱 Entrega de desarrollo
 
@@ -164,7 +164,7 @@ Los contratos detallados, inputs/outputs, persistencia, errores, idempotencia, c
 
 ## 🧩 Subproyectos
 
-- Proyecto de ejecución `owner: agent` autorizado pero todavía NO creado; materializar al comenzar implementación, no durante el SPEC Freeze.
+- [[M0 Execution]] (`owner: agent`, en `agentes/`): ejecución del mandato M0 desde el freeze; planificador único de la implementación. Materializado el 2026-09-17 al iniciar el mandato.
 
 ## ✅ Tareas
 
@@ -172,7 +172,7 @@ Los contratos detallados, inputs/outputs, persistencia, errores, idempotencia, c
 - [x] Fijar objetivo único, QA delegado, contratos visual/gráficos, gates y milestones M0/M1/M2. #owner/me #type/admin #area/personal
 - [x] Renombrar proyecto a Multimodal Knowledge Engine y vincular repo `xKoRx/multimodal-knowledge-engine`; mantener nombre anterior como alias histórico. #owner/me #type/admin #area/personal
 - [x] Congelar arquitectura ejecutable M0 y SPEC-00A/00B/01/02/03/04 en el repo; product spike antes de infraestructura local. #owner/me #type/admin #area/personal
-- [ ] Tarea puente de ejecución: crear subproyecto de agente, ejecutar SPEC-00A→04 por gates y entregar M0 validada. #owner/me #type/supervision #area/personal
+- [/] [[M0 Execution]] arrancar + seguimiento (subproyecto `owner: agent` creado 2026-09-17; ejecuta SPEC-00A→04 por gates) #owner/me #type/supervision #area/personal
 - [ ] Tras M0 PASS, delegar M1/M2 con SPECs basadas en evidencia, hasta biblioteca transversal. #owner/me #type/supervision #area/personal
 
 ## 📆 Bitácora
