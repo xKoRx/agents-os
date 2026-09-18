@@ -64,6 +64,20 @@ Scratch borrado post-evidencia; cero toques a producción; artefactos preservado
 - Residual registrado: directorio vacío `backup-staging/r16-stepca/` (residuo del bundle
   R1.6 en PAUSA; se elimina cuando owner resuelva R1.6).
 
+## Cambios documentales
+
+- `agentes/agent-project-01-critical-config-backup.md`: bitácora +18-sep; campo `status`
+  corregido `in-progress` → `active` (valor inválido para el schema; deuda que bloqueaba
+  el rebuild de Graphify, detectada en la validación de cierre).
+- `BACKUP-DR-OWNER-PROJECT.md`: status_detail + bitácora +18-sep (conviviente con entrada
+  del subagente de continuidad documental, preservada).
+- Feedback: `80-agents/journal/feedback/system-1/2026-09-18-backup-dr-r1-continuity-session-feedback.md`.
+- Skill local `aranea-config-backup-staging`: +6 lecciones (ssh -n en loops de drill, ruta
+  de drop-ins, drill-evidence manual, cwd huérfano, escritura concurrente en vault).
+- Graphify: rebuild bloqueado por deuda global de frontmatter (55 errores pre-existentes en
+  templates/R0/Polymarket/otros; ninguno de esta sesión). `freshness=stale` al cierre;
+  se recomienda ciclo `agents-os-graphify-maintenance` como follow-up propio.
+
 ## No hecho (explícito)
 
 - Sin cambios a contrato, diseño, `backup-policy.yaml`, tickets 018-021 ni schedules
