@@ -319,12 +319,12 @@ Tiempos son **timeboxes**, no promesas. Si los workers no pueden correr concurre
 
 - [x] I1.0 Verificar G0, G1 discovery y G3 helper ya hechos; NO repetir salvo drift — evidencia change log `2026-09-17-hermes-infra-preflight-g0`, owner recap #owner/agent #type/admin #area/aranea
 - [x] I1.1 Reconciliar inventario real nodes/hosts/59 VMs/LXC/10 storages **y catálogo de servicios**; baseline 59 confirmado, service map pendiente #owner/agent #type/admin #area/aranea — DONE run h0-20260918-r1 WS A: inventory_59.json 59=42+17 verificado 1:1, service_map 58 servicios (38 completos/17 parciales/3 unknown), 7 testcases G4, discrepancies.md (step-ca 200 stopped vs doc activa; renombres SQX 108/111/112/123; 121/122 eliminados; PBS 180 nuevo)
-- [/] I1.2 Construir y probar service → guest → host → storage/dependencies (si demostrado) → management path; resolver unknown/ambiguous/drift #owner/agent #type/admin #area/aranea
-- [ ] I1.3 Congelar evidence contract/matriz G2 por máquina/familia; distinguir 17 offline de acceso fallido #owner/agent #type/admin #area/aranea
-- [ ] I1.4 Preparar owner bundle API RO SOLO ante gap de facts; obtener decisión owner sin exponer tokens, revalidar D #owner/agent #type/admin #area/aranea
-- [ ] I1.5 Certificar Linux y Windows desde sesión Hermes, positivos/negativos y permisos efectivos #owner/agent #type/admin #area/aranea
-- [ ] I1.6 Certificar Proxmox/TrueNAS/observabilidad por wrapper o API native RO, sin sobredimensionar permisos #owner/agent #type/admin #area/aranea
-- [ ] I1.7 Ejecutar golden G4 desde sesión nueva con escenarios cross-layer y safety negatives #owner/agent #type/admin #area/aranea
+- [x] I1.2 Construir y probar service → guest → host → storage/dependencies (si demostrado) → management path; resolver unknown/ambiguous/drift #owner/agent #type/admin #area/aranea — DONE WS A: service_map 58 servicios (38 completos/17 parciales/3 unknown), 2 ambiguos y 1 inexistente como testcases G4
+- [x] I1.3 Congelar evidence contract/matriz G2 por máquina/familia; distinguir 17 offline de acceso fallido #owner/agent #type/admin #area/aranea — DONE: integration/g2_matrix.csv 70 filas + evidence_records.jsonl (contrato de campos); 17 stopped = STOPPED_EXPECTED, 0 contados como fallo
+- [x] I1.4 Preparar owner bundle API RO SOLO ante gap de fact; obtener decisión owner sin exponer tokens, revalidar D #owner/agent #type/admin #area/aranea — RESUELTO SIN BUNDLE: D certificó 0 gaps críticos (9 COVERED/4 PARTIAL/1 MISSING=backup jobs material H1, obtenible extendiendo wrapper); D/owner_bundle_draft.md declara NO SE REQUIERE BUNDLE
+- [x] I1.5 Certificar Linux y Windows desde sesión Hermes, positivos/negativos y permisos efectivos #owner/agent #type/admin #area/aranea — DONE WS B+C: Linux PASS (wrapper 6/6, mcps-ops/daedalus-ops, ssh-mcp 16+/4-), Windows PASS_WITH_LIMITATIONS (worker-kronos viewer+operator, publisher FRESH, negativos 4/5 + drift netstat registrado)
+- [x] I1.6 Certificar Proxmox/TrueNAS/observabilidad por wrapper o API native RO, sin sobredimensionar permisos #owner/agent #type/admin #area/aranea — DONE WS D + manager probes: facts críticos COVERED por wrapper (nodos/quorum/59 VMs/10 storages/Ceph/pools TrueNAS/versiones/PBS), observabilidad-ro y postgres-ro con lectura real correlacionada y 401 sin bearer
+- [/] I1.7 Ejecutar golden G4 desde sesión nueva con escenarios cross-layer y safety negatives #owner/agent #type/admin #area/aranea
 - [ ] I1.8 Auditar zero mutation/secrets, reconciliar canon, reportar H0 PASS/PASS WITH DEBT/PARTIAL/BLOCKED con evidencias + handoff H1 #owner/agent #type/admin #area/aranea
 
 ### I2 — H1 Backup & Storage (NO ejecutar en jornada H0)
