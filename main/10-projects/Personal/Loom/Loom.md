@@ -82,7 +82,7 @@ views:
 - [x] Crear repo GitHub `xKoRx/loom` (branch `master`) + workspace local `~/go/src/github.com/xKoRx/loom` #owner/me #type/admin #area/personal ✅ 2026-09-13
 - [r] [[Loom — Foundation v0.1]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ implementación T01–T17 completa 2026-09-13 — a Review del owner
 - [r] [[Loom — Design System & Storybook]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ fundación completa 2026-09-17 (`feature/loom-design-system` `5f7270d`+`b0e24a2`, gates G1–G10 PASS) — a Review del owner
-- [ ] [[Loom — Product v0.2]] arrancar + seguimiento #owner/me #type/supervision #area/personal
+- [ ] [[Loom — Product v0.2]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ entregada 2026-09-18 (`feature/loom-v02` @ `0a71272`, gates PASS) — a Review del owner
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -100,6 +100,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-18 — LOOM v0.2 ENTREGADA (a Review):** iteración completa en `origin/feature/loom-v02` @ `0a71272` (sin merge a master). 2 subagentes en paralelo (A=UI: 9 componentes Loom con stories/tests; B=Producto: fix búsqueda, `/api/v1/tree`+`/vault`, Note Viewer content-first con inspector, `/tasks`, cockpit) + manager integrador (shell Notion-inspired con tree en sidebar, shortcut `/`, skip-link, edad del índice). Gates integrales PASS (go 6/6+race, vitest 203, storybook, smoke, e2e 10/10, live-refresh 6/6, G9) + visual en navegador real 1440/1920 con evidencia. Durante la integración se detectó y preservó trabajo concurrente de la sesión de auditoría externa (fix closed-world de carpetas vacías). Detalle en [[Loom — Product v0.2]] § Bitácora.
 
 - **2026-09-18 — LOOM v0.2 EN EJECUCIÓN:** mandato del owner "Product Experience, Notion-Inspired Design System & Autonomous Delivery". Preflight PASS (master `848fb28` == origin, design system `b0e24a2` verificado con gates, auditoría UX `UX-IA-REVIEW-V0.1.md` preservada untracked). Decisión registrada: **MAX_CONCURRENT_LOOM_SUBAGENTS = 2** para v0.2 (A=UI, B=Product, worktrees independientes, manager integrador único). Contratos congelados en repo `specs/FEAT-LOOM-V02/` @ `738de70` (rama `feature/loom-v02`, sin merge a master). Detalle en [[Loom — Product v0.2]].
 

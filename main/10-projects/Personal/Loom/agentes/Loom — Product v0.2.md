@@ -66,8 +66,9 @@ _No aplica — subproyecto de ejecución; no crea hijos._
 > - [x] Agente A — Loom UI: 9/9 componentes required (P0+P1) con stories+tests+commits #owner/agent #type/dev #area/personal ✅ 2026-09-18 (10 commits `922e854`→`0fa3e38`; gates: typecheck OK, vitest 164/164, storybook build OK; 2 desviaciones de contrato justificadas: Disclosure prop+emit equivalente a defineModel, TaskItem `noteHref`+emit `open`)
 > - [/] Integración A verificada y publicada: merge --no-ff a `feature/loom-v02` @ `83f363e` (vitest 164/164 + storybook build en integración) #owner/agent #type/dev #area/personal ✅ 2026-09-18
 > - [/] Agente B — Loom Product: SLICE-0 search fix en curso (test-first) → SLICE-2 explorer (API+UI) → SLICE-1 note viewer → SLICE-3 tasks → SLICE-5 cockpit; sync con `83f363e` enviado para migrar vistas a componentes A #owner/agent #type/dev #area/personal
-> - [ ] Integración manager (App.vue sidebar, style.css, dist) + gates integrales + revisión visual navegador real #owner/agent #type/dev #area/personal
-> - [ ] Entrega al owner (RESULT + evidencias + guías de review) #owner/agent #type/dev #area/personal
+> - [x] Integración manager (App.vue sidebar, style.css dedup, labels Relaciones, dist) #owner/agent #type/dev #area/personal ✅ 2026-09-18 (`d5c649c`+`0cc5ce6`+`0a71272`)
+> - [x] Gates integrales + revisión visual navegador real + corrección auditoría externa integrada #owner/agent #type/dev #area/personal ✅ 2026-09-18 (todos PASS; `e15c224`/`9abf6e5` preservados)
+> - [x] Entrega al owner (RESULT + evidencias + guías de review) #owner/agent #type/dev #area/personal ✅ 2026-09-18 — a Review del owner
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -85,6 +86,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **ENTREGADA A REVIEW (2026-09-18):** `origin/feature/loom-v02` @ `0a71272` == local, worktree limpio, sin merge a master. **Producto:** fix búsqueda (secuenciado, test-first, AC-0.1…0.4) · `/api/v1/tree` + `/vault` (tree cerrado por scan, corrección auditoría `e15c224`) · Note Viewer content-first con inspector (?panel=info, Outline/Relaciones agrupadas con labels/Atributos+frontmatter/Tareas/Diagnóstico, supresión H1, View as project ↔ Open note) · `/tasks` con filtros URL y link a nota fuente · cockpit con system-zone etiquetada + filtro (D4) y bloque de tareas activas · shell Notion-inspired (nav LoomNavItem + tree lazy en sidebar + buscador global con shortcut `/` + skip-link + edad del índice). **Gates integrales PASS:** go test 6/6 · vet · gofmt · race serve+index · vitest 203 · vue-tsc · storybook build · make web · smoke · e2e 10/10 · live-refresh 6/6 · G9 (cero Storybook en binario) · visual Chromium real 1440×900+1920×1080 (7 capturas en `~/go/src/github.com/xKoRx/loom-v02-evidence/`). **Concurrencia:** durante la integración se detectó y preservó trabajo de una sesión de auditoría externa (commits `e15c224`, `9abf6e5`, además de haber commiteado el WIP del shell del manager como `d5c649c`); gates reejecutados sobre el estado combinado. Run register: `80-agents/journal/agent-runs/2026-09-18-zcode-glm-loom-v02-delivery.md`.
 
 - **2026-09-18 (CHECKPOINT OWNER — PUBLICACIÓN):** preflight de los 3 worktrees consistente; commit identificado `a1f3fe4` incorpora la auditoría UX del owner byte-a-byte (sha256 `da429ccd` verificado pre/post commit); escaneo de secretos del diff limpio; `feature/loom-v02` publicada en origin por push normal (local == remoto `a1f3fe4`), sin tocar master ni los worktrees A/B (A sin commits aún, B WIP en test de regresión de búsqueda). Auditoría externa habilitada con: SPEC + Registry + auditoría en GitHub (`specs/FEAT-LOOM-V02/`, `specs/FEAT-LOOM-V01/UX-IA-REVIEW-V0.1.md`), planner en el vault.
 
