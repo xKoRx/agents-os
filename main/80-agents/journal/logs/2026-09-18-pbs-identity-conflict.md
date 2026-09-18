@@ -37,7 +37,7 @@ tags:
 - **Tipo:** conflict-resolution
 - **Archivo(s):**
   - `80-agents/journal/logs/2026-09-18-pbs-identity-conflict.md` (este log; único archivo nuevo en el vault)
-  - `80-agents/memory/internal/agent-memory/aranea/backup-dr/agent-internal.md` (delta interno: identidad PBS=180 cacheada, fuera del vault canónico)
+  - `80-agents/memory/internal/agent-memory/2026-09-17-backup-dr-doc-consistency-continuity.md` (delta interno in-place en el checkpoint activo: identidad PBS=180 cacheada)
 - **Cero cambios** en artefactos operativos Backup/DR (índice, CONTRACT, DESIGN, RUNBOOK, CHECKLIST, ap-02, owner project, tickets, R0).
 
 ## Motivo
@@ -81,4 +81,4 @@ tags:
 
 ## Rollback
 
-- Borrar `80-agents/journal/logs/2026-09-18-pbs-identity-conflict.md` y revertir el delta interno en `agent-internal.md` (línea PBS=180 del 2026-09-18). Sin más efectos: ningún otro archivo fue modificado.
+- Borrar `80-agents/journal/logs/2026-09-18-pbs-identity-conflict.md` y revertir el delta interno del checkpoint `2026-09-17-backup-dr-doc-consistency-continuity.md` (párrafo «PBS identity conflict resuelto (2026-09-18)» + `updated`). Sin más efectos: ningún otro archivo fue modificado.
