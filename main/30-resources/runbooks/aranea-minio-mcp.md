@@ -34,6 +34,7 @@ Creado: 2026-09-17 (Parte 2 mcp-trio). Estado: ACTIVE (server + Cursor certifica
 - Smoke server: certificador `minio-cert.py` (workspace sesión) o init+tools/list+list_buckets vía mcp-smoke.py con bearer `< /opt/mcp/minio/runtime/proxy-secrets/daedalus-ro.bearer`.
 - Smoke consumer: entry `aranea-minio-ro` de `~/.cursor/mcp.json` con `${env:ARANEA_MINIO_MCP_RO_BEARER}`.
 - 2026-09-18 cert funcional 3 consumidores (Cursor/ZCode/Codex): `get_object` real 477 B con SHA256 propio `2d2dd8c7…03a3` y MD5 == ETag; mutaciones → "server is in read-only mode"; **403 IAM demostrado** en `sqx-strategies` (HTM RERUN-3) → owner action pendiente `~/aranea/work/trio-cert-20260918/owner-action-htm6182-minio-getobject.md` (grant puntual GetObject del ARN exacto, revocable).
+- 2026-09-18 noche (verificación post-T21, 4×403): plano SANO (unauth 401 / auth 200, contenedores Up 31h, enforcement read-only activo); los 403 reiterados sobre `sqx-strategies` son el deny IAM **correcto** de la SA — no hay defecto del plano ni del conector. La key owner no dejó copia en discos operator. Concesión T21 de A (MQ5) + B (`strategy.sqx`) stageada en `/opt/mcp/minio/work/`: `policy-t21-ab-grant.json` (`79298be79604a7ea…`) + `f04-apply-t21.py` (`74279dee3487b611…`) + `f04-owner-step-t21.sh` (`981f2b93f7139860…`); el owner aplica con UN comando (key por stdin): `ssh -t root@mcps.lab.aranea.cl 'sudo -n bash /opt/mcp/minio/work/f04-owner-step-t21.sh'`. Tras el apply, fetch/verificación SHA256/entrega Daedalus/revoke corren por Ariadna (jamás con la identidad admin).
 
 ## Rollback
 
