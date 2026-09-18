@@ -82,17 +82,24 @@ El conocimiento existente de Backup/DR se reutiliza desde [[BACKUP-DR-OWNER-PROJ
 - redefinir la estrategia Backup/DR: source of truth [[BACKUP-DR-OWNER-PROJECT]];
 - mutaciones PROD no autorizadas explícitamente.
 
-## 🔐 Matriz de authority efectiva (2026-09-17, reconciliación incremental)
+## 🔐 Matriz de autoridad H1 (2026-09-18, certificación read-only)
 
-| Target | Canal/identidad | Clase | Evidencia / límite |
-|---|---|---|---|
-| athena/zeus/hera/kronos/hades/truenas | SSH `agent_ro` + `sudo -n agent-read` | observe, wrapper-only | G0: matriz 6/6 PASS; no generalizar a SSH de guests |
-| `mcps` LXC | SSH `hermes-ops@mcps` + sudo scoped | operate, appliance | G0: 26 containers; recovery independiente del MCP |
-| daedalus | SSH `hermes-ops@daedalus`, sin sudo | operate scoped | G0 consumer configs; no permisos generales |
-| hermes-vm (self) | `systemd --user` y FS local | operate propio runtime | recovery 2026-09-16 |
-| Windows `worker-kronos` | ssh-mcp viewer/operator | observe/operate parcial | probes 2026-09-17; requiere matriz G2 formal y smoke de sesión nueva |
-| APIs nativas Proxmox/TrueNAS | sin credencial Hermes demostrada | absent para API directa | preparar RO owner bundle si las consultas necesarias no están cubiertas por wrapper; NO asumir H2/H4 habilitados |
-| MCPs runtime Hermes | `aranea-postgres-ro`, `aranea-ssh` :3000, `aranea-observability-ro` :3009 | observe, parcial | G3 consumer helper PASS 2026-09-17; recertificar carga en sesión nueva |
+Cadena demostrada por familia: `CONNECTIVITY ✓ < AUTHENTICATION ✓ < AUTHORITY ✓ (ejercida sólo en lectura) ≠ OPERATIONAL CERTIFICATION ✗ (ninguna operación de backup/restore ejecutada ni certificada)`.
+
+| Target | Identidad estable | Canal(es) | Autenticación demostrada | Permisos efectivos demostrados (sólo lectura) | Estado | Límites / notas |
+|---|---|---|---|---|---|---|
+| athena .10 / zeus .100 / hera .110 / kronos .120 / hades .90 | host PVE 8.4.20, clúster `aranea` | SSH + API 8006 | SSH `ariadna` con key `ariadna_pve` (ED25519, `from=192.168.31.122`=hermes-vm); API token `ariadna@pve!backup-dr` (privsep=1, expire=0) | SSH: uid local + `sudo NOPASSWD: ALL` **5/5**; API: `version`+`cluster/resources` **200 en los 5 nodos** (59 guests = 39 qemu+20 lxc, exacto vs H0); local con sudo: `pvecm status` Quorate 5/5, `storage.cfg` 10 storages sin `pbs`, `/cluster/backup` = **[] (0 jobs, `/etc/pve/jobs.cfg` inexistente)**, user/token/ACL leídos (`/vms` AriadnaVMBackup) | VERIFIED · **G1 PASS** | Token API NO cubre `/cluster/status`(403)/`/cluster/backup`(403)/`/storage`(403) — scope `/vms` VM.Audit+VM.Backup; lecturas cluster-level requieren SSH+sudo (disponible). Permisos H2 (lifecycle) clasificados por ACL, NO ejercidos. |
+| truenas — VM 145, .91 | TrueNAS SCALE 25.04.1 | SSH + WS `wss://.91/websocket` + UI 443 | SSH `ariadna` key `ariadna_truenas` (sin from-restrict); WS api-key `ariadna-admin-20260918` (id 1, user `ariadna` uid 3005, grupos 544/3002/3008, FULL_ADMIN, password_disabled) | WS: system.info 25.04.1, pool.query (pool0+pool2 ONLINE healthy), zfs.dataset.query 202 (173 FS+29 VOL), zfs.snapshot.query 606, replication.query 0, cronjob.query 0, cloudsync.query 0, service.query (cifs/nfs/iscsitarget/smartd/ssh RUNNING); SSH: uid 3005, `sudo (ALL) NOPASSWD: ALL`, midclt disponible | VERIFIED · **G2 PASS** | ENOMETHOD en `snapshot.query` y `snapshottask.query` (25.04 renombró métodos ZFS a `zfs.*`): snapshot tasks por `task.query`/oneshot **pendiente de verificar** (gap menor, no bloquea R2). Canal de recovery independiente: SSH+sudo. |
+| pbs — VM 180 @kronos, .123 | proxmox-backup-server 4.2.6-1 (running 4.2.5), Debian 13.6, kernel 7.0.14-8-pve | SSH + UI :8007 | SSH `ariadna` key `ariadna_pbs` (ED25519, `from=192.168.31.122`); UI unauth responde 401 (wall de auth verificado — jamás se probó login) | SSH: uid 1000 + `sudo NOPASSWD: ALL`; servicios api+proxy activos; `datastore list` = **vacío (0 datastores)**; `user.cfg` solo root@pam; sin remote.cfg/sync jobs — **PBS VIRGEN** (re-confirmado; consistente con R2 discovery de Backup/DR del mismo día) | VERIFIED · **G3 PASS** (con límite) | RBAC/API PBS NO probado con credencial propia (sólo existe root@pam; no se pidió login — quedaría para el ejecutor). Operacional: sin datastores no hay nada que certificar operativamente (correcto pre-R2). |
+| hermes-vm (self) | runtime Hermes | `systemd --user` + FS local | identidad propia | recovery 2026-09-16 vigente | VERIFIED | ver [[hermes-linux-update-recovery]] |
+| mcps LXC / daedalus | management paths `mcps-ops` / `daedalus-ops` | SSH nativo | key-only | estado previo vigente (G0) | VERIFIED | independiente del MCP — management independence re-verificada en G4 |
+| Windows worker-kronos | ssh-mcp viewer/operator | plano MCP | — | estado 2026-09-18 vigente (viewer) | VERIFIED (parcial) | CONSUMER_PLANE_ONLY; sin cambios en H1 |
+
+**Recuperación independiente:** todas las identidades SSH viven en `~/.ssh/` de hermes-vm (`ariadna_pve`, `ariadna_truenas`, `ariadna_pbs`; fingerprints en evidencia) — no dependen del MCP Access Plane. **Revocación observable:** `authorized_keys` por host (option `from=` restringe a hermes-vm en PVE/PBS; TrueNAS sin restrict), token PVE eliminable vía `pveum` (owner), api-key TrueNAS eliminable vía UI/owner. **Expiración:** token `expire=0` (sin expirar; rotación = decisión owner), keys sin fecha de expiración.
+
+## 🔐 Matriz de authority previa (2026-09-17, H0 — HISTORICAL)
+
+La matriz incremental de H0 (wrapper `agent_ro`+`agent-read` 6/6, `mcps-ops` 26 containers, `daedalus-ops` sin sudo, APIs nativas "absent") queda **HISTORICAL**: las APIs nativas dejaron de estar absent con las identidades instaladas 2026-09-18 y certificadas arriba; el wrapper sigue válido como canal alternativo de observación. Detalle completo en la bitácora 2026-09-17 y change log G0.
 
 ## 🔐 Principios de autoridad
 
@@ -191,7 +198,10 @@ Este workstream debe demostrar progresivamente escenarios reales, no sólo acces
 
 ## 📊 Estado actual
 
-- **Workstream:** creado 2026-09-14; **H0 PASS WITH DEBT — 2026-09-18 (run h0-20260918-r1):** G0/G1/G3 heredados del preflight + G2 (5 familias) y G4 (sesiones frescas) certificados en este run; veredicto completo, deuda y handoff H1 en la bitácora de cierre.
+- **H1 ENABLEMENT PASS — 2026-09-18 (mandato owner; cero mutaciones):** alcance administrativo PVE/TrueNAS/PBS certificado read-only (matriz H1 arriba), consumidor real verificado en sesión fresca (G4), handoff entregado a Backup/DR R2. Detalle, límites y evidencia: `80-agents/journal/logs/2026-09-18-h1-enablement.md`.
+- **Workstream:** creado 2026-09-14; **H0 PASS WITH DEBT — 2026-09-18 (run h0-20260918-r1):** G0/G1/G3 heredados del preflight + G2 (5 familias) y G4 (sesiones frescas) certificados en ese run; veredicto completo, deuda y handoff en la bitácora de cierre.
+- **Habilitación habilitada por carriles:** H2–H6 quedan enablement-only (clasificación de autoridad/contratos para el ejecutor) — ver roadmap arriba. Backup/DR conserva autoridad de ejecución ([[BACKUP-DR-OWNER-PROJECT]]).
+- **Backup/DR:** [[BACKUP-DR-OWNER-PROJECT]] mantiene autoridad de ejecución; R2 discovery PBS ya ejecutado por ese carril el 2026-09-18 (owner action bundle propio en `~/aranea/work/r2-pbs-20260918/`); este carril no toca jobs, tickets ni decisiones.
 - **G0:** PASS, bootstrap y `agent-read` 6/6, `mcps-ops`, `daedalus-ops` y authorities; `I0.1–I0.4` cerradas.
 - **G1 discovery:** captura 2026-09-17 18:58 UTC 6/6, 59 VMs definidas (42 running / 17 stopped), 10 storages, canon actualizado. Discovery PASS según resumen owner; la cobertura service/guest y G2 no se infieren de este PASS.
 - **G3 integration:** batch autorizado en config Hermes (`aranea-ssh` y observability junto con postgres-ro); helper consumer-side PASS (SSH 11 tools, observabilidad 22 tools); pendiente prueba en sesión nueva. El change log `2026-09-17-hermes-infra-preflight-g0` ya registra G3 resuelto; la fotografía previa 'sólo postgres' queda histórica.
@@ -206,7 +216,10 @@ Este workstream debe demostrar progresivamente escenarios reales, no sólo acces
 
 _No aplica como repo único. Este workstream puede cambiar configuración ejecutable e infraestructura; antes de cada implementación registrar target, source of truth, baseline, scope, rollback y evidencia. Si aparece código/versioned config, declarar repo, branch, base y SPEC antes de modificar. No inventar repo ni editar el espejo GitHub como si fuera el vault en runtime._
 
-## 🧭 H0 — Plan de ejecución 2026-09-18 · SPEC freeze
+## 🧭 H0 — Plan de ejecución 2026-09-18 · **HISTORICAL SPEC (ejecutado y cerrado 2026-09-18, run `h0-20260918-r1`, veredicto PASS WITH DEBT)**
+
+> [!warning] HISTORICAL — no volver a ejecutar
+> Este SPEC se congeló el 2026-09-17 para la jornada H0 del 18 y ya fue ejecutado y cerrado. El roadmap actual es de HABILITACIÓN (ver Objetivo y H1–H6 arriba). Se conserva como registro histórico; el change log de esta sesión documenta la corrección de alcance.
 
 ### Misión y definición de resultado
 

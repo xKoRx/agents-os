@@ -60,3 +60,4 @@ tags:
 ## Pendiente
 
 - Owner: resolver bundle (A datastore LV 300/500/650G + quién ejecuta mkfs; B credenciales token recomendado; C formalizar 018/019). Luego agente ejecuta A→B→piloto→restore drill (~30-45min). Schedules tras 018/019. AC-002/003 (7 días) corren desde schedules activos.
+- Graphify (clasificación delta-vs-global): auto-refresh stale + `update` manual bloqueado por deuda pre-existente ajena a esta sesión (`Polymarket Arbitrage — Opportunity Context` sin sección Propósito; `70-templates/agent-profile.md` con placeholder `{{date}}` en `created`; warnings no-frontmatter en 3 notas). El índice conserva el último estado válido; las notas de esta sesión se incorporarán en el próximo rebuild exitoso → pasar por `agents-os-graphify-maintenance`, NO sanitizar en este cierre.
