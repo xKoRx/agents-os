@@ -63,8 +63,9 @@ _No aplica — subproyecto de ejecución; no crea hijos._
 > - [x] Preflight + reconciliación de baseline (master/origin/DS gates/auditoría UX preservada) #owner/agent #type/dev #area/personal ✅ 2026-09-18
 > - [x] Component Contract Freeze: inventario + COMPONENT-REGISTRY congelado #owner/agent #type/dev #area/personal ✅ 2026-09-18 (`738de70`)
 > - [x] SPEC v0.2 congelada + decisión MAX_CONCURRENT_LOOM_SUBAGENTS=2 registrada #owner/agent #type/dev #area/personal ✅ 2026-09-18
-> - [/] Agente A — Loom UI: P0 registry (LoomIcon, LoomNavItem, LoomDisclosure, LoomSearchInput, LoomFolderTree, LoomInspector, LoomTaskItem) + P1 (LoomRelationList, LoomSearchResult) + identidad Notion-inspired #owner/agent #type/dev #area/personal
-> - [/] Agente B — Loom Product: SLICE-0 search fix → SLICE-1 note viewer → SLICE-2 explorer (API+UI) → SLICE-3 tasks → SLICE-5 cockpit #owner/agent #type/dev #area/personal
+> - [x] Agente A — Loom UI: 9/9 componentes required (P0+P1) con stories+tests+commits #owner/agent #type/dev #area/personal ✅ 2026-09-18 (10 commits `922e854`→`0fa3e38`; gates: typecheck OK, vitest 164/164, storybook build OK; 2 desviaciones de contrato justificadas: Disclosure prop+emit equivalente a defineModel, TaskItem `noteHref`+emit `open`)
+> - [/] Integración A verificada y publicada: merge --no-ff a `feature/loom-v02` @ `83f363e` (vitest 164/164 + storybook build en integración) #owner/agent #type/dev #area/personal ✅ 2026-09-18
+> - [/] Agente B — Loom Product: SLICE-0 search fix en curso (test-first) → SLICE-2 explorer (API+UI) → SLICE-1 note viewer → SLICE-3 tasks → SLICE-5 cockpit; sync con `83f363e` enviado para migrar vistas a componentes A #owner/agent #type/dev #area/personal
 > - [ ] Integración manager (App.vue sidebar, style.css, dist) + gates integrales + revisión visual navegador real #owner/agent #type/dev #area/personal
 > - [ ] Entrega al owner (RESULT + evidencias + guías de review) #owner/agent #type/dev #area/personal
 
