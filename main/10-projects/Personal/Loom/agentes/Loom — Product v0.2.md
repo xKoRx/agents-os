@@ -85,6 +85,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-18 (CHECKPOINT OWNER — PUBLICACIÓN):** preflight de los 3 worktrees consistente; commit identificado `a1f3fe4` incorpora la auditoría UX del owner byte-a-byte (sha256 `da429ccd` verificado pre/post commit); escaneo de secretos del diff limpio; `feature/loom-v02` publicada en origin por push normal (local == remoto `a1f3fe4`), sin tocar master ni los worktrees A/B (A sin commits aún, B WIP en test de regresión de búsqueda). Auditoría externa habilitada con: SPEC + Registry + auditoría en GitHub (`specs/FEAT-LOOM-V02/`, `specs/FEAT-LOOM-V01/UX-IA-REVIEW-V0.1.md`), planner en el vault.
+
 - **2026-09-18 (BOOTSTRAP + PREFLIGHT + CONTRATOS):** Agents-OS cargado (constitución, perfil, continuidad, dominio DEFAULT). Preflight PASS: master `848fb28` == origin/master; DS branch `b0e24a2` verificada con gates reejecutados (vitest 126/126, vue-tsc clean, go build/vet/test ok); auditoría UX del owner preservada untracked. Decisión del owner registrada: **MAX_CONCURRENT_LOOM_SUBAGENTS = 2** para v0.2 (sustituye el límite 1 de v0.1 sólo en esta iteración; contrato histórico intacto). Creada `feature/loom-v02` desde DS + lucide pre-instalado por el manager (`09e6d1f`); SPEC + Registry congelados (`738de70`). Worktrees `loom-a` / `loom-b` creados; dispatch paralelo inmediato.
 
 ## 🧭 Decisiones
