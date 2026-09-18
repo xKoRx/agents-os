@@ -56,6 +56,7 @@ Documentación canónica legacy de [[Aranea]]; se conserva el contenido históri
 | `discovery/kronos_20260916_233513.txt` | 2026-09-16 23:35:13 UTC | raw agent-read | superseded 2026-09-17 | R0 [[BACKUP-DR-OWNER-PROJECT]] |
 `discovery/kronos_20260917_185839.txt` | **2026-09-17 18:58:39 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-kronos]], preflight G0 mandato Infrastructure Enablement |
 | `discovery/truenas_20260916_233513.txt` | 2026-09-16 23:35:13 UTC | raw agent-read | superseded 2026-09-17 | R0 [[BACKUP-DR-OWNER-PROJECT]] |
+| sondas vivas H1 enablement (SSH/API 8006/WS DDP sobre PVE×5, TrueNAS, PBS; evidencia fuera del vault en `~/aranea/work/h1-enablement-20260918/`) | 2026-09-18 16:30–17:30 (-03) | probes read-only live (ssh/https/wss) | **0 días** ✅ | Matriz de autoridad H1 en [[HERMES — Infrastructure Operations]] |
 `discovery/truenas_20260917_185839.txt` | **2026-09-17 18:58:39 UTC** | raw agent-read | **0 días** ✅ | [[01-topologia/nodo-truenas]], preflight G0 mandato Infrastructure Enablement |
 | `tickets/2026-06-29-001..009-*.md` | 2026-06-29 | ticket cerrado | 1 día | [[05-tickets/*]] |
 | `tickets/2026-06-30-010..012-*.md` | 2026-06-30 | ticket | 0 días | [[05-tickets/*]] |

@@ -207,22 +207,21 @@ Prioridad de ejecución:
 
 **Gate:** Echo y Forge dejan de depender del owner para obtener acceso operativo a servicios DEV/test.
 
-### Fase 3 — H0/H1: backups y storage
+### Fase 3 — H1: habilitación administrativa de Backup & Storage
 
 Proyecto: [[HERMES — Infrastructure Operations]], reutilizando [[BACKUP-DR-OWNER-PROJECT]].
 
-Objetivo inmediato:
+**Alcance corregido (decisión owner 2026-09-18):** H1 es **habilitación** — Ariadna certifica identidades, permisos efectivos, rutas nativas de administración y recuperación independiente, y las entrega como capacidades listas para consumir. La **ejecución** (jobs, backups, restores, drills, retención) pertenece al proyecto Backup/DR, no a este carril.
 
 ```text
-inventory H0
-→ authority mínima
-→ backup health/coverage
-→ ejecutar/verificar jobs
-→ restore drill
-→ operación autónoma H1
+inventory H0 (DONE 2026-09-18)
+→ reconciliación de accesos administrativos
+→ certificación read-only por familia (matriz de autoridad)
+→ verificación del consumidor real en sesión fresca
+→ handoff de capacidades a Backup/DR (R2 las consume)
 ```
 
-**Gate:** la protección y validación rutinaria de backups no requiere intervención shell humana.
+**Gate:** las capacidades administrativas necesarias están certificadas y el proyecto Backup/DR puede consumirlas sin bootstrap manual rutinario. H1 no implica backups/jobs/retención/restores existentes ni certificados.
 
 ### Fase 4 — H2/H6: administración completa de Aranea
 
