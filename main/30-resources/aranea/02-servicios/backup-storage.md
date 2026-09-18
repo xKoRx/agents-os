@@ -111,7 +111,7 @@ pool2/backup/
 |---|---|---|
 | 1 | 🔴 | **TrueNAS VM en hades** — si hades cae se cae TODO el storage compartido |
 | 2 | 🟠 | `pool2` (donde están los backups) **sin redundancia** — disco único |
-| 3 | 🟠 | Scrub de pool2 obsoleto (11 meses) — bit-rot no detectado |
+| 3 | 🟠 | Scrub de pool2 obsoleto (432 días al 2026-09-17; último scrub 2025-07-12, 0 errores) — bit-rot no detectado |
 | 4 | 🟠 | Sin UPS — corrupción ZFS posible en corte eléctrico |
 | 5 | 🟡 | minio en hades (otro SPOF) |
 | 6 | 🟡 | No hay off-host backup |
