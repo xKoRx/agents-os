@@ -10,7 +10,7 @@ parent: "[[Loom]]"
 sprint:
 start: 2026-09-18
 due:
-progress: 0
+progress: 100
 repo: xKoRx/loom
 jira:
 prs:
