@@ -56,7 +56,7 @@ Diffs presentados y aprobados por el owner en chat (2026-09-18), opción «Aplic
 
 ## Proposed diff conceptual
 
-Consolidado en el change log `80-agents/journal/logs/2026-09-18-backup-dr-continuidad-documental.md` (7 archivos, 25 patches, hashes pre/post).
+Diffs unificados completos quedaron registrados por la herramienta de parcheo durante la aplicación (7 archivos, 25 patches). Resumen: 1 callout de estado nuevo en el índice; 1 línea de banner en el DESIGN (+ `updated`); runbook (callout, título §0, +2 filas de unidades, +1 párrafo de automatización, staging re-escrito, footer); checklist (callout); ap-02 (Implementation plan re-organizado con sección HISTORICAL, rollback dividido, 5 referencias alineadas, tareas 02-0 a 02-3, bitácora); owner project (reason 019, callout calendario con R1.5, bitácora, `updated`); README (resumen ejecutivo con R1.5, ticket 019, `updated`). Hashes post-aplicación por archivo en el change log `80-agents/journal/logs/2026-09-18-backup-dr-continuidad-documental.md`.
 
 ## Safety impact
 
