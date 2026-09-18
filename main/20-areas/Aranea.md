@@ -39,7 +39,7 @@ cssclasses:
 - **Cierre sesión 2026-06-30**: ver `30-resources/aranea/00-index` § "Cierre de sesión — handover" para resumen completo + 5 decisiones pendientes.
 - **Cluster**: 5 Proxmox + TrueNAS VM + hermes-vm = **7 máquinas** · 302t / 767 GB RAM / ~12 TB útil.
 - **Doc principal**: [[30-resources/aranea/00-index]] · por nodo en [[30-resources/aranea/01-topologia/]].
-- **Proyecto activo**: [[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]] — Backup/DR integral **ACTIVE**: R0 ✅, R1 ✅ (con deuda owner), D0 ✅; R2 en gate owner (PBS 180 + tickets 018-021).
+- **Proyecto activo**: [[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]] — Backup/DR integral **ACTIVE**: R0 ✅, R1 ✅ (con deuda owner), D0 ✅; R2 discovery PBS ejecutado 2026-09-18 (REUTILIZAR; bundle owner pendiente) — mutaciones en gate owner (tickets 018/019).
 - **Skill operativa**: `aranea_agent_ro_inventory_refresh` — refresh periódico del inventario. 
 
 ## 🧩 Stack / Servicios
