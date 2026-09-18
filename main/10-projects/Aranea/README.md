@@ -7,7 +7,7 @@ slug: aranea-projects-index
 area: "[[Aranea]]"
 project:
 created: 2026-07-02
-updated: 2026-09-14
+updated: 2026-09-18
 aliases:
   - Aranea projects
   - Proyectos Aranea
@@ -49,14 +49,14 @@ cssclasses:
 
 #### 🎯 Empezar por aquí (resumen ejecutivo)
 
-- **[[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]]** ← proyecto owner Backup/DR — **ACTIVE**: R0 reconciliación ✅, R1 bootstrap-config ✅ (3 unidades VERIFIED, deuda owner acotada), D0 saneamiento documental ✅; R2 (adopción PBS 180) en gate owner (tickets 018-021).
+- **[[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]]** ← proyecto owner Backup/DR — **ACTIVE**: R0 reconciliación ✅, R1 bootstrap-config ✅ (3 unidades VERIFIED, deuda owner acotada), D0 saneamiento documental ✅, R1.5 config completion ✅ (4/6 unidades VERIFIED+AUTOMATED, 2 gated); R2 (adopción PBS 180) en gate owner (tickets 018-021).
 - **[[30-resources/aranea/03-storage/backup-dr/00-index]]** ← docs evergreen del refactor (diseño, runbook, checklist, policy). El proyecto migró; los docs se quedaron.
 - **[[30-resources/tools/graphify]]** ← nota canónica de la tool, actualizada con el estado "INSTALADO en VM Hermes" y comandos disponibles.
 
 #### 🛠️ Tickets activos (owner-driven, gating implementation)
 
 - **[[10-projects/Aranea/05-tickets/2026-07-02-018-owner-task-critical-vms]]** — open. Confirmar lista tier 0 (VMs críticas). Bloquea ap-02 PBS schedule.
-- **[[10-projects/Aranea/05-tickets/2026-07-02-019-owner-task-maint-window]]** — open. Declarar ventana de mantenimiento preferida. Bloquea ap-02 (creación VM PBS).
+- **[[10-projects/Aranea/05-tickets/2026-07-02-019-owner-task-maint-window]]** — open. Declarar ventana de mantenimiento preferida. Bloquea ap-02 (adopción/integración PBS 180).
 - **[[10-projects/Aranea/05-tickets/2026-07-02-020-owner-task-secret-zero]]** — open (severity high). Confirmar ubicación caja fuerte + USB cifrado. Bloquea ap-04/ap-05 cloud tier.
 - **[[10-projects/Aranea/05-tickets/2026-07-02-021-owner-task-oauth-scope]]** — open (severity high). Decidir quién ejecuta OAuth flows (pcloud/GDrive). Bloquea ap-04/ap-05.
 

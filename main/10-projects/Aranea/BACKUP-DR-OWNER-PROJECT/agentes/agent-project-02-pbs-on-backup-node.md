@@ -13,7 +13,7 @@ slug: agent-project-02-pbs-on-backup-node
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-17
+updated: 2026-09-18
 tags:
   - kind/project
   - area/aranea
@@ -57,12 +57,12 @@ cssclasses: wide
 - ap-00 done.
 - ap-01 staging (no obligatorio, pero ayuda validación).
 - OWNER-TASK-CRITICAL-VMS (lista tier 0).
-- OWNER-TASK-MAINT-WINDOW (ventana para crear VM).
+- OWNER-TASK-MAINT-WINDOW (ventana de mantenimiento para la integración PBS).
 - OWNER-TASK-SECRET-ZERO (passphrase datastore).
 
 ## Required owner permissions
 
-- Crear VM en kronos (root kronos).
+- Habilitar acceso/consola a la VM 180 existente (owner; credenciales UNKNOWN hasta el gate).
 - Acceder PVE UI de los 5 nodes para registrar storage.
 - Passphrase datastore (referencia Secret Zero).
 
@@ -73,7 +73,7 @@ cssclasses: wide
 
 ## Required maintenance window
 
-SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WINDOW.
+SÍ. La integración escribe `/etc/pve/storage.cfg` (se replica a los 5 nodos) y trabaja sobre la VM 180 existente. Usar OWNER-TASK-MAINT-WINDOW.
 
 ## Dependencies
 
@@ -85,7 +85,7 @@ SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WIN
 | Recurso | Protección |
 |---|---|
 | `local-sqx-kronos` | SAGRADO. NO TOCAR. PBS datastore va en `local-kronos` (distinto). |
-| Ceph MON/MGR de kronos | NO interrumpir quorum al crear VM. |
+| Ceph MON/MGR de kronos | NO interrumpir quorum al registrar storage / trabajar sobre la VM 180. |
 
 ## Risks
 
@@ -102,14 +102,44 @@ SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WIN
 - Snapshot pre-cambio de kronos (si tiene VMs productivas que puedan afectarse, NO debería).
 - Diff visible antes de commit storage.cfg.
 
-## Implementation plan
+## Implementation plan — procedimiento vigente: adopción e integración (post-gate owner)
 
-> **Orden vigente (D0)**: el gate de adopción va PRIMERO — (0) owner habilita acceso a VM 180 + ventana 019; (0.1) discovery interno read-only; (0.2) decisión reutilizar vs reinstalar con evidencia. Recién entonces aplican los pasos 4-7 de julio (datastore, usuario, registro en 5 nodos, schedules, smoke). Los pasos 1-3 de julio (ISO, `qm create`, install) quedan HISTORICAL salvo que el gate concluya reinstalación.
+> **Orden vigente (D0)**: el gate de adopción va PRIMERO — (0) owner habilita acceso a VM 180 + ventana 019; (0.1) discovery interno read-only; (0.2) decisión reutilizar vs reinstalar con evidencia. Recién entonces aplican los pasos 1-6 de abajo (datastore, usuario, registro en 5 nodos, schedules, smoke). La creación desde cero de julio vive SOLO en la sección HISTORICAL de abajo.
+
+1. **Gate de adopción (pasos 0–0.2)**:
+   - Owner habilita acceso/consola a la VM 180 existente + ventana (OWNER-TASK-MAINT-WINDOW).
+   - Discovery interno read-only: versión PBS, datastore existente, servicios, red, credenciales.
+   - Decisión con evidencia: reutilizar vs reinstalar (si reinstalar → sección HISTORICAL, con re-aprobación owner).
+2. **Datastore** sobre `local-kronos` (F-06), path según discovery:
+   ```bash
+   proxmox-backup-manager datastore create main --path <según-discovery> \
+     --prune-backups keep-daily=7,keep-weekly=4,keep-monthly=12
+   ```
+3. **User**:
+   ```bash
+   proxmox-backup-manager user create backup@pbs --comment "PBS backup user"
+   proxmox-backup-manager user update backup@pbs --password <STRONG>
+   ```
+4. **Registrar storage en 5 PVE nodes**:
+   ```bash
+   # En cada uno de athena, zeus, hera, kronos, hades:
+   pvesm add pbs aranea-pbs --server 192.168.31.180 --datastore main \
+     --username backup@pbs --password <STRONG> \
+     --content backup --prune-backups keep-daily=7,keep-weekly=4,keep-monthly=12
+   ```
+5. **Schedule vzdump**:
+   - Daily 02:00 — tier 0 (lista OWNER-TASK-CRITICAL-VMS).
+   - Weekly Sat 02:00 — tier 1/2.
+6. **Smoke test**: `vzdump` manual de 1 VM tier 0.
+
+### HISTORICAL — creación desde cero (julio 2026; reemplazado por adopción en D0)
+
+> Sólo aplica si el gate (0.2) concluye reinstalación; requiere re-aprobación owner + OWNER-TASK-MAINT-WINDOW. NO es el plan por defecto.
 
 1. **Pre-flight**:
    - Validar `local-kronos` libre (~680 GB en `sdb` de kronos).
    - Descargar ISO PBS 4.x a `/var/lib/vz/template/iso/`.
-2. **Crear VM** (HISTORICAL — sólo si el gate concluye reinstalación):
+2. **Crear VM**:
    ```bash
    # DANGEROUS: requiere OWNER-TASK-MAINT-WINDOW
    qm create 180 --name pbs-kronos --memory 8192 --cores 4 --sockets 1 \
@@ -118,25 +148,6 @@ SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WIN
      --boot order=ide2 --ostype l26
    ```
 3. **Install PBS**: interactivo vía noVNC.
-4. **Post-install**:
-   ```bash
-   # Crear datastore sobre local-kronos (montar /dev/pve/local-kronos-vm--180--disk--1 en /backup/main)
-   proxmox-backup-manager datastore create main --path /backup/main \
-     --prune-backups keep-daily=7,keep-weekly=4,keep-monthly=12
-   proxmox-backup-manager user create backup@pbs --comment "PBS backup user"
-   proxmox-backup-manager user update backup@pbs --password <STRONG>
-   ```
-5. **Registrar storage en 5 PVE nodes**:
-   ```bash
-   # En cada uno de athena, zeus, hera, kronos, hades:
-   pvesm add pbs aranea-pbs --server 192.168.31.180 --datastore main \
-     --username backup@pbs --password <STRONG> \
-     --content backup --prune-backups keep-daily=7,keep-weekly=4,keep-monthly=12
-   ```
-6. **Schedule vzdump**:
-   - Daily 02:00 — tier 0 (lista OWNER-TASK-CRITICAL-VMS).
-   - Weekly Sat 02:00 — tier 1/2.
-7. **Smoke test**: `vzdump` manual de 1 VM tier 0.
 
 ## Validation plan
 
@@ -148,8 +159,17 @@ SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WIN
 
 ## Rollback plan
 
-- `qm stop 180 && qm destroy 180` (DANGEROUS, requiere re-aprobación si ya hay data).
-- `pvesm remove aranea-pbs` en los 5 nodes.
+### Rollback vigente — integración post-adopción (NO destructivo)
+
+- `pvesm remove aranea-pbs` en los 5 nodes (revierte el registro; no toca la VM).
+- Revertir datastore/usuario dentro de la VM 180 según lo encontrado en el discovery del gate.
+- La VM 180 existente y sus discos NO se destruyen.
+
+### HISTORICAL — rollback destructivo de la creación (julio 2026)
+
+> Sólo junto con el procedimiento HISTORICAL de creación. DESTRUCTIVO: `DANGEROUS` + re-aprobación owner si ya hay data.
+
+- `qm stop 180 && qm destroy 180` (DANGEROUS).
 - PBS datastore queda en `local-kronos`. Re-format si se requiere.
 
 ## Evidence to collect
@@ -178,24 +198,27 @@ SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WIN
 
 ## Linked owner tasks
 
-- OWNER-TASK-MAINT-WINDOW (ventana creación VM).
+- OWNER-TASK-MAINT-WINDOW (ventana integración PBS).
 - OWNER-TASK-CRITICAL-VMS (lista tier 0).
 - OWNER-TASK-SECRET-ZERO (passphrase).
 
 ## ✅ Tareas
 
-- [ ] **AGENT-TASK-02-1**: descargar ISO PBS a kronos.
-  - commands_allowed: wget, curl.
-  - tags: [agent, prep]
+- [ ] **AGENT-TASK-02-0**: gate de adopción — acceso owner a VM 180 + discovery read-only + decisión reutilizar/reinstalar.
+  - tags: [agent, gated, owner-interactive]
 
-- [ ] **AGENT-TASK-02-2**: crear VM 180 (DANGEROUS — requiere ventana).
+- [ ] **AGENT-TASK-02-1**: descargar ISO PBS a kronos (HISTORICAL — sólo si el gate concluye reinstalación).
+  - commands_allowed: wget, curl.
+  - tags: [agent, prep, historical]
+
+- [ ] **AGENT-TASK-02-2**: crear VM 180 (HISTORICAL — sólo si el gate concluye reinstalación; DANGEROUS — requiere ventana).
   - commands_allowed: `qm create`.
   - commands_forbidden: cualquier `qm destroy` sin re-aprobación.
-  - tags: [agent, dangerous, vm-create]
+  - tags: [agent, dangerous, vm-create, historical]
 
-- [ ] **AGENT-TASK-02-3**: install PBS via ISO.
+- [ ] **AGENT-TASK-02-3**: install PBS via ISO (HISTORICAL — sólo si el gate concluye reinstalación).
   - requiere noVNC, NO automatizable. Owner-driven o session interactiva.
-  - tags: [agent, install, owner-interactive]
+  - tags: [agent, install, owner-interactive, historical]
 
 - [ ] **AGENT-TASK-02-4**: configurar datastore + user PBS.
   - commands_allowed: `proxmox-backup-manager`.
@@ -248,3 +271,4 @@ SÍ. Crear VM en kronos interrumpe brevemente el nodo. Usar OWNER-TASK-MAINT-WIN
 ## 📆 Bitácora
 
 - **2026-08-10** — Migrado de `agent-project` legacy a `project` v1 sin activar la ejecución; owner, parent, lifecycle, progress, tags y secciones quedaron contractuales.
+- **2026-09-18** — Continuidad documental (mandato owner): separación física entre HISTORICAL (creación desde cero, julio) y vigente (adopción + integración post-gate); rollback dividido en vigente (no destructivo) e HISTORICAL (destructivo); referencias operativas de creación alineadas a adopción; añadida AGENT-TASK-02-0 (gate de adopción). Historia preservada, decisiones congeladas intactas.

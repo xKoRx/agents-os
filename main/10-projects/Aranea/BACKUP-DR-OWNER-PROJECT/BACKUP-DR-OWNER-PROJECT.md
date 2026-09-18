@@ -12,7 +12,7 @@ slug: backup-dr-owner-project
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-17
+updated: 2026-09-18
 start: 2026-07-02
 due:
 progress: 25
@@ -134,7 +134,7 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
   - tags: [owner, blocking, tier0]
 
 - [ ] **OWNER-TASK-MAINT-WINDOW**: declarar ventana de mantenimiento preferida (sábado madrugada, domingo noche, otro).
-  - reason: agent-project-02 crea VM (interrumpe nodo kronos brevemente).
+  - reason: agent-project-02 adopta/integra la PBS VM 180 existente (registro storage replica /etc/pve/storage.cfg a los 5 nodos). La creación de VM quedó HISTORICAL (R0: la VM ya existe).
   - required_by: agent-project-02.
   - blocks: implementación agent-project-02.
   - required_access: schedule owner.
@@ -181,7 +181,7 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
 ## 📅 Calendario recomendado
 
 > [!info] SUPERSEDED como cronograma (2026-09-17)
-> El calendario S1–S3 de julio quedó reemplazado por el roadmap por fases **R0–R8** con dependencias reales: ver `[[2026-09-16-R0-reconciliacion]]` §9 (autoridad de planificación). Estado actual: R0 DONE, R1 DONE (con deuda), D0 DONE, R2 gate owner.
+> El calendario S1–S3 de julio quedó reemplazado por el roadmap por fases **R0–R8** con dependencias reales: ver `[[2026-09-16-R0-reconciliacion]]` §9 (autoridad de planificación). Estado actual: R0 DONE, R1 DONE (con deuda), D0 DONE, R1.5 DONE (gates owner vigentes), R2 gate owner.
 
 | Semana | Subproyectos |
 |---|---|
@@ -238,3 +238,4 @@ El proyecto se considera **completo** cuando:
 - **2026-09-17 (D0)** — Saneamiento documental completo (mandato owner): 9 agent-projects reconciliados, runbook/checklist con estados por sección, 9 docs legacy con advertencia individual, índices/área/README alineados, wikilinks corregidos, RC-20260917-001 propuesto (banner DESIGN_FROZEN en el design). Sin cambios a contract/design/policy/tickets. Evidencia: `80-agents/journal/logs/2026-09-17-backup-dr-d0-documentation-consistency.md`.
 - **2026-09-17** — **R1 ejecutado (PASS WITH DEBT)**. Staging real en Hermes VM 118 (`~/aranea/backup-staging/`, 700) + wrapper `~/aranea/bin/r1-backup.sh` (2 ejecuciones, idempotencia probada, sin pruning/timer — frecuencia y retención pendientes decisión owner). Certificadas BACKUP+RESTORE_VERIFIED: traefik-config (LXC 115, configs estática+dinámica, drill sha256 8/8 vs fuente viva), second-brain (vault 3.438 archivos, drill idéntico), hermes-state (`~/.hermes` operacional + `~/aranea` + unit túnel, 600). SKIPPED_GATED con deuda owner: `/etc/pve` (necesita subcommand `config` en `agent-read`), etcd snapshot (necesita etcd-client + endpoint/certs), pi-hole (necesita api_token FTL v6 o root). F-09: `pool2/pool0_backup` **EXISTS** (live + captura R0), intacto. Traefik parcial: `secrets/ ssl/ acme.json` root-only quedan fuera (gap registrado). Cero toques a producción; tickets 018-021 intactos; R2 no iniciado. Evidencia: change_log `80-agents/journal/logs/2026-09-17-backup-dr-r1-bootstrap-config.md` + `manifest.json` por run.
 - **2026-09-17 (R1.5)** — **Mandato owner one-shot ejecutado (PASS WITH OWNER GATES)**. D0 residuos corregidos (RC contradicción + reclasificación L0/L1/L3). etcd-snapshot: :2379 resultó alcanzable desde hermes (corrección de R1), snapshot cluster 3.6.4 rev 55033 con pre-checks quorum/hashkv, drill scratch PASS, timer DAILY 05:00. pve-config: node-local 5/5 nodos VERIFIED con drill, timer SAT 08:30; pmxcfs GATED (extensión agent-read config requiere root; script ya captura cuando exista). traefik-config: +drop-in systemd clouDNS (permite re-emitir acme.json); `acme-stepca.json` identificado recovery-critical (CA lxc-200 stopped). pi-hole: GATED doble — hallazgo operativo .149 L2-dead (ARP FAILED desde athena) + api_token. Timers systemd frozen activos y probados (04:00/05:00/SAT 08:30; Persistent; journal). Fix manifest sha null. Evidencia: change_log `80-agents/journal/logs/2026-09-17-backup-dr-r15-config-completion.md`, manifests `manifest-etcd.jsonl`/`manifest-pve.jsonl` + restore-drill.json por run.
+- **2026-09-18** — Continuidad documental (mandato owner): razón de OWNER-TASK-MAINT-WINDOW alineada a adopción (no creación); estado del calendario superseded incluye R1.5. Sin cambios de alcance, gates ni decisiones. Evidencia: change_log `80-agents/journal/logs/2026-09-18-backup-dr-continuidad-documental.md` + `RC-20260918-001-continuidad-documental.md`.
