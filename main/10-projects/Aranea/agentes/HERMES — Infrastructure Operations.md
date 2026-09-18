@@ -214,7 +214,7 @@ Este workstream debe demostrar progresivamente escenarios reales, no sólo acces
 
 ## 📊 Estado actual
 
-- **Workstream:** creado 2026-09-14; H0 EN EJECUCIÓN PARCIAL, no certificado integral.
+- **Workstream:** creado 2026-09-14; **H0 PASS WITH DEBT — 2026-09-18 (run h0-20260918-r1):** G0/G1/G3 heredados del preflight + G2 (5 familias) y G4 (sesiones frescas) certificados en este run; veredicto completo, deuda y handoff H1 en la bitácora de cierre.
 - **G0:** PASS, bootstrap y `agent-read` 6/6, `mcps-ops`, `daedalus-ops` y authorities; `I0.1–I0.4` cerradas.
 - **G1 discovery:** captura 2026-09-17 18:58 UTC 6/6, 59 VMs definidas (42 running / 17 stopped), 10 storages, canon actualizado. Discovery PASS según resumen owner; la cobertura service/guest y G2 no se infieren de este PASS.
 - **G3 integration:** batch autorizado en config Hermes (`aranea-ssh` y observability junto con postgres-ro); helper consumer-side PASS (SSH 11 tools, observabilidad 22 tools); pendiente prueba en sesión nueva. El change log `2026-09-17-hermes-infra-preflight-g0` ya registra G3 resuelto; la fotografía previa 'sólo postgres' queda histórica.
