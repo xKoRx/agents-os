@@ -80,7 +80,7 @@ views:
 - [ ] Validar política corporativa MELI: qué está vetado exactamente y qué canales alternos existen #owner/me #type/research #area/personal
 - [x] Crear repo GitHub `xKoRx/loom` (branch `master`) + workspace local `~/go/src/github.com/xKoRx/loom` #owner/me #type/admin #area/personal ✅ 2026-09-13
 - [r] [[Loom — Foundation v0.1]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ implementación T01–T17 completa 2026-09-13 — a Review del owner
-- [ ] [[Loom — Design System & Storybook]] arrancar + seguimiento #owner/me #type/supervision #area/personal
+- [r] [[Loom — Design System & Storybook]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ fundación completa 2026-09-17 (`feature/loom-design-system` `5f7270d`+`b0e24a2`, gates G1–G10 PASS) — a Review del owner
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -98,6 +98,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-17 — DESIGN SYSTEM & STORYBOOK FOUNDATION ENTREGADA (a Review):** ejecutada por el agente bajo mandato del owner del mismo día, sin reabrir v0.1. Rama `feature/loom-design-system` (sin push/merge) con tokens compartidos app↔Storybook, 9 componentes compartidos con consumidor real (`internal/web/src/ui/`), 43 stories + autodocs (Storybook 10.6 + addon-docs dentro de `internal/web/`), migración incremental de las 5 vistas y aislamiento total del binario (G9: cero Storybook en dist). Gates G1–G10 PASS (vitest 126/126, e2e 6/6, visual en navegador real). Incluye fix pre-existente del smoke del Makefile. Durante la ejecución apareció en el repo el review UX/IA (`specs/FEAT-LOOM-V01/UX-IA-REVIEW-V0.1.md`, untracked) — preservado; sus pendientes (R1–R4, bug P1 de búsqueda) quedan para la próxima iteración con el owner. Detalle en [[Loom — Design System & Storybook]] § Bitácora.
 
 - **2026-09-13** — **LOOM v0.1 COMPLETA (T01–T17, 100%):** backend (scan/watcher/proyecciones/links/API segura) + frontend (shell dark, viewer, cockpit, board 5 estados, search, diagnostics) + gates (e2e 10/10, live-refresh 6/6 sin reinicio, coverage vault 100%/index 95.7%, race limpio, binario único 12.6MB offline) + validación visual real en browser (3 defectos encontrados y corregidos). Final `xKoRx/loom` master @ `848fb28` == origin/master. Tarea puente a Review. Detalle completo en [[Loom — Foundation v0.1]] § Bitácora.
 
