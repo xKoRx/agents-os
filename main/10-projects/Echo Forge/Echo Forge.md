@@ -20,7 +20,7 @@ tags:
   - area/echo
   - kind/project
 created: 2026-06-27
-updated: "2026-09-07"
+updated: "2026-09-18"
 aliases:
   - Echo Forge Program
 ---
@@ -212,6 +212,7 @@ hide task count
 
 ## 📆 Bitácora
 
+ - **2026-09-18** — Lane Forge E-06 (inyección atestación runtime §7.2a en `EchoForgeMT5Exporter`) entregada en branch propia `feature/e06-runtime-attestation-exporter-r2` @ `a1f62a6` (desde `a440ac4`; push FF; worktree aislado, dirty ajeno intacto). Gates CONTRACT/SOURCE PASS (build plugin, harness §17 A–O + C1, hashes post-inyección); PHYSICAL BLOCKED por acceso al host de compilación MT5. Dependencia: [[Echo — E-06 Reference Enrollment and Binding]].
  - **2026-09-07** — Roadmap operativo de cierre V2 vive en [[Echo Forge — Factory V2 Completion]] bajo [[Echo — Producto Integrado]]. Este programa conserva historia/etapas cerradas; no duplicar F0/F1/D/F2 aquí.
  - **2026-09-06** — MT5 Long-Running V2 slice B2 `PASS / CLOSED` (commit `db8a022`): preserve jobs across temporal attempt loss + singleton Windows + same-host recovery + drain. Control: [[Echo Forge - Arquitectura de Datos y Migración de Persistencia]].
  - **2026-08-30** — Product resume post Foundation V1: el pipeline físico 0.2.82 ejecuta E2E; no hay fábrica autónoma ni superficie de entrega. NEXT EXACT `ECHO-FORGE-RESULT-SURFACE-V1-NORMAL`. Control: [[2026-08-30-echo-forge-post-foundation-product-resume]].

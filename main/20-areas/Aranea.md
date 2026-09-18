@@ -11,7 +11,7 @@ tags:
 review: weekly
 status_detail: "R0 Backup/DR reconciliado 2026-09-16 (59 guests, 23/23 Tier0 KEEP). R1 2026-09-17: 3 unidades BACKUP+RESTORE_VERIFIED, 3 SKIPPED_GATED deuda owner, F-09=EXISTS. D0 2026-09-17: documentación saneada. R1.5 2026-09-17: etcd-snapshot VERIFIED+AUTOMATED, timers activos. Preflight G0 Infrastructure Enablement 2026-09-17 18:58 UTC: inventario refrescado 6/6 + JSON materializado (59 VMs). Docs previos de storage marcados deprecated/superseded → [[BACKUP-DR-DESIGN]]."
 created: 2026-06-23
-updated: 2026-09-17
+updated: 2026-09-18
 aliases:
   - aranea
   - Homelab
