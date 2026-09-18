@@ -42,7 +42,7 @@ updated: "2026-09-18"
 
 Este workstream define el **management plane nativo** de Hermes. No depende del MCP Access Plane para reparar o administrar el mismo plano MCP ni los servicios subyacentes.
 
-**Objetivo inmediato vigente (mandato owner 2026-09-18):** `H1 — Backup & Storage Administrative Enablement` — certificación administrativa read-only de Proxmox/TrueNAS/PBS, corrección de alcance del roadmap y handoff a Backup/DR R2. H0 cerró 2026-09-18 (`h0-20260918-r1`, PASS WITH DEBT); su SPEC queda HISTORICAL.
+**Objetivo inmediato vigente (mandatos owner 2026-09-18):** `H1 — Backup & Storage Administrative Enablement` CERRADO con `H1 ENABLEMENT PASS`, y `H2 — Proxmox Lifecycle Administrative Enablement` CERRADO con `H2 ENABLEMENT PASS` el mismo día. H0 cerró 2026-09-18 (`h0-20260918-r1`, PASS WITH DEBT); su SPEC queda HISTORICAL. Próximo nivel natural (H3) sin mandato vigente.
 
 ## 🧠 Contexto
 
@@ -68,11 +68,11 @@ El conocimiento existente de Backup/DR se reutiliza desde [[BACKUP-DR-OWNER-PROJ
 
 - authority/bootstrap de Hermes sobre interfaces administrativas nativas;
 - inventario y discovery de infraestructura;
-- administración de Proxmox/TrueNAS/hosts/guests según etapa activa;
+- habilitación y certificación de la administración de Proxmox/TrueNAS/hosts/guests por etapa (H0–H6): este carril clasifica autoridad, contratos y rollback; la ejecución operativa queda en los proyectos ejecutores;
 - acceso Linux/Windows para operación;
 - Docker/systemd/filesystem/configuración no secreta;
-- service lifecycle y recovery;
-- provisioning de infraestructura cuando H4 quede habilitado;
+- contratos y habilitación de service lifecycle/recovery (la ejecución es del proyecto de servicio correspondiente);
+- habilitación de provisioning (H4): el provisioning mismo lo ejecuta el proyecto consumidor;
 - gates, rollback, revoke y evidencia de cada nivel.
 
 ### Este workstream NO gobierna
@@ -186,14 +186,14 @@ No se crea un framework genérico de operadores por anticipación. Primero se ce
 
 ## 🧪 Acceptance scenarios
 
-Este workstream debe demostrar progresivamente escenarios reales, no sólo acceso técnico:
+Este workstream debe demostrar progresivamente escenarios reales, no sólo acceso técnico. Escenario habilitado ≠ ejecutado por este carril: cada escenario se certifica como capacidad entregada al proyecto ejecutor correspondiente:
 
 - identificar host/guest de un servicio desde nombre lógico;
-- detectar backup faltante o job fallido;
-- validar un backup y restaurar una muestra acotada;
-- reiniciar de forma segura un servicio DEV/test;
+- habilitar al ejecutor para detectar backup faltante o job fallido;
+- habilitar al ejecutor para validar un backup y restaurar una muestra acotada;
+- habilitar al ejecutor para reiniciar de forma segura un servicio DEV/test;
 - recuperar un MCP/runtime caído usando el management path nativo;
-- crear/provisionar un workload no crítico cuando H4 esté activo;
+- habilitar al ejecutor para crear/provisionar un workload no crítico cuando H4 esté habilitado;
 - registrar evidencia suficiente para que otro agente continúe.
 
 ## 📊 Estado actual
