@@ -58,6 +58,7 @@ updated: "2026-09-13"
 - [[Loom — Foundation v0.1]] — subproyecto de agente: fundación + ejecución v0.1 (planificador único de implementación).
 - [[Loom — Design System & Storybook]] — subproyecto de agente: design system compartido + integración Storybook (mandato del owner 2026-09-17; entrega a review sin reabrir v0.1).
 - [[Loom — Product v0.2]] — subproyecto de agente: producto + identidad Notion-inspired con 2 subagentes (mandato del owner 2026-09-18).
+- [[Loom — Product v0.3]] — subproyecto de agente: Daily Workspace + theming dark/light/System + graph local con 2 subagentes (mandato del owner 2026-09-18).
 
 ```base
 filters:
@@ -83,6 +84,7 @@ views:
 - [r] [[Loom — Foundation v0.1]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ implementación T01–T17 completa 2026-09-13 — a Review del owner
 - [r] [[Loom — Design System & Storybook]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ fundación completa 2026-09-17 (`feature/loom-design-system` `5f7270d`+`b0e24a2`, gates G1–G10 PASS) — a Review del owner
 - [ ] [[Loom — Product v0.2]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ entregada 2026-09-18 (`feature/loom-v02` @ `0a71272`, gates PASS) — a Review del owner
+- [/] [[Loom — Product v0.3]] arrancar + seguimiento #owner/me #type/supervision #area/personal — IN EXECUTION 2026-09-18 (SPEC congelada @ `f58c3ac`, dispatch A+B)
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -100,6 +102,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-18 — LOOM v0.3 EN EJECUCIÓN:** mandato del owner "Daily Workspace, Themes, Agent Supervision & Knowledge Graph" sobre el baseline certificado `feature/loom-v02 @ 0cba972`. Rama de integración `feature/loom-v03` (sin merge a master); contratos congelados `specs/FEAT-LOOM-V03/` @ `f58c3ac`; D1–D5 autorizadas por el mandato; 2 subagentes (A=UI theming, B=Product P0 + graph P1) con manager integrador único. Detalle en [[Loom — Product v0.3]].
 
 - **2026-09-18 — LOOM v0.2.1 TÉCNICAMENTE CERTIFICADA (a decisión de dirección técnica):** estabilización sobre la RC `0a71272` → `origin/feature/loom-v02` @ `ff53337` (sin merge a master). Corregidos: breadcrumbs con directorio padre real (bug de auditoría externa), frontmatter etiquetado como reconstrucción, encoding de rutas en sidebar, filtros de texto dark. Auditoría integral en navegador real (7 rutas + estados + hostiles inertes + live refresh), accesibilidad con sub-gates NO VERIFICADO documentados, gates integrales PASS sobre el SHA final (race determinista vía snapshot congelado — el vault real recibe escrituras concurrentes de otras sesiones), secret scan limpio, 10 capturas sanitizadas. Detalle en [[Loom — Product v0.2]] § Bitácora.
 
