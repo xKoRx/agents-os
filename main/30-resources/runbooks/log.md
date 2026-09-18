@@ -1,5 +1,10 @@
 # Runbooks resource log
 
+## [2026-09-18] create | proxmox-lifecycle-operator-contract
+
+- Se creó el contrato del futuro operador Proxmox (habilitación H2 de [[HERMES — Infrastructure Operations]]): orden de selección de canales (API token `ariadna@pve!backup-dr` sólo lecturas per-VM → SSH `ariadna`+sudo root-equivalent → consola owner como break-glass), resolución de target por inventario, recursos protegidos (`local-sqx-*`, TrueNAS 145, PBS 180, Ceph), reglas de concurrencia/timeouts/parciales, validación post-change por capa semántica, rollback y criterios de abort. El runbook NO autoriza operaciones: la ejecución queda gated al proyecto ejecutor.
+- Evidencia base: matriz H2 (34 filas, familias A–G) y probes read-only en `~/aranea/work/h2-enablement-20260918/`; hallazgo clave capturado: 200-filtrado-vacío en `/storage`//`cluster/tasks`//`pools` sin `Sys.Audit`/`Datastore.Audit` NO equivale a vacío real ni a permiso. Fila añadida a `00-index.md` (22 curados). Change log: `2026-09-18-h2-proxmox-enablement`.
+
 ## [2026-09-17] create | aranea-temporal-mcp
 
 - Se creó `aranea-temporal-mcp` para la capability `aranea-temporal-ro` (certificada 2026-09-17): Temporal 1.31.2, 28 tools RO por diseño con `hardReadOnly` + allowlist namespaces SQX, wrapper mcp-proxy 6.7.16 + g010. Fila añadida a `00-index.md` (19 curados). Detalle: change log `2026-09-17-mcp-trio-temporal-minio-etcd`.
