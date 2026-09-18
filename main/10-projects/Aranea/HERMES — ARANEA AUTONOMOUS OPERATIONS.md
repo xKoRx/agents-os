@@ -344,7 +344,7 @@ Para Infrastructure Operations, el equivalente es que Hermes pueda recibir un ob
 - **Proyecto creado:** 2026-09-14.
 - **Plan de implementación reordenado:** Bootstrap/Human Exit → Agent Access autonomy → Echo/Forge blockers → Backup/Storage → full Infrastructure autonomy.
 - **Bootstrap:** activo como [[HERMES — Bootstrap & Self-Sufficiency]].
-- **Infrastructure Operations:** authority incremental aún por bootstrap; ejecución H0/H1 queda después del cierre del P0 Echo/Forge.
+- **Infrastructure Operations:** workstream enablement activo — H0 PASS WITH DEBT, H1 ENABLEMENT PASS y H2 ENABLEMENT PASS (2026-09-18, los tres con cero mutaciones); H3–H6 enablement-only pendientes de mandato; ver [[HERMES — Infrastructure Operations]].
 - **Agent Access Operations:** existe un MCP Access Plane funcional y en evolución bajo [[AGENT-PLATFORM - MCP Access Plane]], pero Hermes todavía no dispone del ciclo autónomo completo A0→A5.
 - **Dependencias ya existentes:** [[BACKUP-DR-OWNER-PROJECT]] para Backup/DR y [[AGENT-PLATFORM - MCP Access Plane]] para la implementación MCP actual.
 - **Prioridad inmediata:** completar B0-B4 y sacar al owner del loop antes de resolver más MCPs manualmente.
