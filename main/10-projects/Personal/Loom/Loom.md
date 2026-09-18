@@ -84,7 +84,7 @@ views:
 - [r] [[Loom — Foundation v0.1]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ implementación T01–T17 completa 2026-09-13 — a Review del owner
 - [r] [[Loom — Design System & Storybook]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ fundación completa 2026-09-17 (`feature/loom-design-system` `5f7270d`+`b0e24a2`, gates G1–G10 PASS) — a Review del owner
 - [ ] [[Loom — Product v0.2]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ entregada 2026-09-18 (`feature/loom-v02` @ `0a71272`, gates PASS) — a Review del owner
-- [/] [[Loom — Product v0.3]] arrancar + seguimiento #owner/me #type/supervision #area/personal — IN EXECUTION 2026-09-18 (SPEC congelada @ `f58c3ac`, dispatch A+B)
+- [/] [[Loom — Product v0.3]] arrancar + seguimiento #owner/me #type/supervision #area/personal — [r] RC_READY 2026-09-18 (`origin/feature/loom-v03 @ 3f13ea1`, gates PASS + walkthrough 22/22 + grafo) — a Review del owner
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -102,6 +102,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-18 — LOOM v0.3 RC_READY (a Review):** ejecución completa del mandato "Daily Workspace, Themes, Agent Supervision & Knowledge Graph" sobre `feature/loom-v03` @ `3f13ea1` (== origin; sin merge a master). P0: Daily Workspace accionable (continuidad local + 6 colas con conteos reales de la API), presets de tasks URL-backed con D1/D1b/D2 aditivas, supervisión de proyectos. Theming dark/light/System con anti-flash, persistencia (defecto real hallado y corregido RED→GREEN), LoomThemeToggle accesible, Storybook con temas. P1: Knowledge Graph local (`/api/v1/graph` read-only con caps + GraphView radial determinista + acción desde nota). Gates integrales PASS (go 6/6 + race, vitest 269, storybook, e2e 10/10, live-refresh 6/6, G9, tokens, secret scan) + recorrido del mandato 22/22 en Chromium real (3 resoluciones, teclado, deep links, Back/Forward). Evidencia sintética: contact sheets dark/light + 36 capturas + MANIFEST (`~/go/src/github.com/xKoRx/loom-v03-evidence/`; subconjunto en `specs/FEAT-LOOM-V03/evidence/`). Tarea puente a Review. Detalle en [[Loom — Product v0.3]].
 
 - **2026-09-18 — LOOM v0.3 EN EJECUCIÓN:** mandato del owner "Daily Workspace, Themes, Agent Supervision & Knowledge Graph" sobre el baseline certificado `feature/loom-v02 @ 0cba972`. Rama de integración `feature/loom-v03` (sin merge a master); contratos congelados `specs/FEAT-LOOM-V03/` @ `f58c3ac`; D1–D5 autorizadas por el mandato; 2 subagentes (A=UI theming, B=Product P0 + graph P1) con manager integrador único. Detalle en [[Loom — Product v0.3]].
 

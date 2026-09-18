@@ -10,7 +10,7 @@ parent: "[[Loom]]"
 sprint:
 start: 2026-09-18
 due:
-progress: 5
+progress: 100
 repo: xKoRx/loom
 jira:
 prs:
@@ -41,6 +41,7 @@ cssclasses:
 
 ## 📊 Estado actual
 
+- **READY FOR OWNER ACCEPTANCE (2026-09-18):** `origin/feature/loom-v03 @ 3f13ea1` == local (push normal, sin merge a master; master `848fb28` intacto). P0 + P1 completos e integrados: theming dark/light/system con anti-flash + persistencia (defecto real de persistencia hallado en walkthrough y corregido RED→GREEN `4d465db`), Daily Workspace accionable (continuidad + 6 colas + cockpit), presets de tasks con D1/D1b (flag + CSV) y D2 (relations), supervisión de proyectos, Knowledge Graph local (D3: `/api/v1/graph` con caps + GraphView radial determinista + acción Graph en NoteView). Gates integrales sobre el SHA final: gofmt/vet/test 6/6 · race serve+index limpio · vue-tsc · vitest 269 · storybook build · dist reproducible · smoke · e2e 10/10 · live-refresh 6/6 · G9 · hex/rgba 0 fuera de tokens.css · secret scan limpio · recorrido del mandato 22/22 PASS en Chromium real (3 resoluciones, dark/light/system, teclado, deep links, Back/Forward) · grafo verificado en navegador (navegación por click y teclado, filtros kinds, depth 2, hostile 400/404, empty state útil). Evidencia sintética: paquete completo `~/go/src/github.com/xKoRx/loom-v03-evidence/` (36 capturas, contact sheets dark/light, MANIFEST) + subconjunto en repo `specs/FEAT-LOOM-V03/evidence/`. Pendiente: aceptación humana del owner. Reviews de v0.1/DS/v0.2 intactas.
 - **SPEC CONGELADA + DISPATCH (2026-09-18):** discovery acotado ejecutado contra el repo y el vault vivo (matriz dato→fuente→API→gap en la SPEC; muestras reales: 2403 tareas, review 52, blocked 39, waiting 24, unassigned 814); contratos `specs/FEAT-LOOM-V03/` congelados @ `f58c3ac` en rama `feature/loom-v03` (base `0cba972`); D1 (filtro flag en /api/v1/tasks), D2 (relations en note detail), D3 (endpoint /api/v1/graph read-only acotado), D4 (theming), D5 (continuidad local) autorizadas por el mandato; MAX_CONCURRENT_LOOM_SUBAGENTS = 2; worktrees `loom-a`/`loom-b` sobre branches `feature/loom-v03-ui`/`feature/loom-v03-product`; dispatch A+B en paralelo.
 - **Baseline verificado:** `feature/loom-v02 @ 0cba972447cd9a5752a1460f1fff9667dcefebea` == origin, worktree limpio; master `848fb28` == origin/master (sin merge); disciplina de tokens vigente (0 hex fuera de tokens.css; 7 rgba a tokenizar en v0.3).
 
@@ -63,13 +64,13 @@ _No aplica — subproyecto de ejecución; no crea hijos._
 > - [x] Preflight + baseline: `0cba972` verificado, rama `feature/loom-v03` creada desde el baseline certificado #owner/agent #type/dev #area/personal ✅ 2026-09-18
 > - [x] Discovery acotado (≤90min): matriz dato→fuente→API→gap + muestras reales del vault #owner/agent #type/research #area/personal ✅ 2026-09-18
 > - [x] SPEC v0.3 + COMPONENT-REGISTRY addendum + FUTURE-WRITING congelados en repo @ `f58c3ac` #owner/agent #type/dev #area/personal ✅ 2026-09-18
-> - [/] Agente A — Loom UI: theming dark/light/System (tokens, composable theme, LoomThemeToggle, Storybook con temas, audit tokenización) con stories+tests #owner/agent #type/dev #area/personal
-> - [/] Agente B — Loom Product: S1 Daily Workspace · S2 presets de tasks + filtro flag · S3 supervisión de proyectos · S4 continuidad local #owner/agent #type/dev #area/personal
-> - [ ] Integración P0 (manager): merges a `feature/loom-v03`, App.vue/index.html/style.css, dist, gates #owner/agent #type/dev #area/personal
-> - [ ] Agente B — Knowledge Graph local (P1): API `/api/v1/graph` + GraphView + filtros + límites + estados #owner/agent #type/dev #area/personal
-> - [ ] Gates integrales + recorrido completo del mandato (3 resoluciones × dark/light/system, teclado, deep links, live-refresh) #owner/agent #type/dev #area/personal
-> - [ ] Evidencia visual sintética (contact sheets dark/light, manifiesto SHAs) + paquete local fuera del repo #owner/agent #type/dev #area/personal
-> - [ ] Entrega al owner (RESULT + evidencias + guías de review) #owner/agent #type/dev #area/personal
+> - [x] Agente A — Loom UI: theming dark/light/System (tokens, composable theme, LoomThemeToggle, Storybook con temas, audit tokenización) con stories+tests #owner/agent #type/dev #area/personal ✅ 2026-09-18 (6 commits `fe5c67f`→`cea6fa7`; vitest 231, storybook build, contraste AA light; merge `0e59998`)
+> - [x] Agente B — Loom Product: S1 Daily Workspace · S2 presets de tasks + filtro flag · S3 supervisión de proyectos · S4 continuidad local #owner/agent #type/dev #area/personal ✅ 2026-09-18 (6 commits `1f8dda5`→`1077251`; smoke vivo D1/D1b/D2; merge `704ab92`)
+> - [x] Integración P0 (manager): merges a `feature/loom-v03`, App.vue/index.html/style.css, dist, gates #owner/agent #type/dev #area/personal ✅ 2026-09-18 (`664db33`; fix persistencia tema RED→GREEN `4d465db`; walkthrough 22/22)
+> - [x] Agente B — Knowledge Graph local (P1): API `/api/v1/graph` + GraphView + filtros + límites + estados #owner/agent #type/dev #area/personal ✅ 2026-09-18 (4 commits `39b2b19`→`f5db2fa`; race serve limpio; merge `21e6155`)
+> - [x] Gates integrales + recorrido completo del mandato (3 resoluciones × dark/light/system, teclado, deep links, live-refresh) #owner/agent #type/dev #area/personal ✅ 2026-09-18 (todos PASS @ `a7a7f91`/`3f13ea1`; grafo 10/12 navegador + 2 limitaciones documentadas en MANIFEST)
+> - [x] Evidencia visual sintética (contact sheets dark/light, manifiesto SHAs) + paquete local fuera del repo #owner/agent #type/dev #area/personal ✅ 2026-09-18 (`~/go/src/github.com/xKoRx/loom-v03-evidence/`; subconjunto en repo `specs/FEAT-LOOM-V03/evidence/`)
+> - [r] Entrega al owner (RESULT + evidencias + guías de review) #owner/agent #type/dev #area/personal — publicada `origin/feature/loom-v03 @ 3f13ea1`, a Review del owner
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -87,6 +88,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **READY FOR OWNER ACCEPTANCE (2026-09-18):** integración completa P0+P1 y publicación. **Producto:** Daily Workspace (continuidad con recientes/favoritos locales validados contra snapshot + 6 colas de trabajo con conteos de la API + review por proyecto), presets de tasks URL-backed (My/Agent/Review/Blocked/Waiting/Unassigned) con flags clicables, supervisión de proyectos (review pendiente del subárbol, progress etiquetado "documented"), theming completo (tokens light AA, `data-theme` resuelto, anti-flash en index.html, LoomThemeToggle accesible, Storybook con toolbar de tema), Knowledge Graph local (`/api/v1/graph` read-only con caps depth≤2/max≤200/truncado determinista; GraphView radial sin motor externo; leyenda-filtro por kind; acción Graph en NoteView; empty/error states). **Gates @ SHA final `3f13ea1`:** gofmt/vet · go test 6/6 · race serve+index 0 data races · vue-tsc · vitest 269 · storybook build · dist reproducible commiteada · smoke · e2e 10/10 (vault real GET) · live-refresh 6/6 (gen 1→2→3 sin reinicio) · G9 0×"storybook" · hex/rgba 0 fuera de tokens.css · secret scan limpio · recorrido del mandato 22/22 en Chromium real (1280/1440/1920, dark/light/system, teclado, deep links, Back/Forward, 0 errores de consola) · grafo en navegador (click/teclado navegan, kinds filtran, depth 2 expande vía typed supersedes, hostile 400/404, empty state útil). **Defecto corregido:** persistencia del tema (bare-initTheme; RED→GREEN + verificación navegador). **Nota de proceso:** se detectó que `origin/feature/loom-v03` recibió un push intermedio (`4d465db`) antes de la publicación final — historia lineal e idéntica a la local (fast-forward), master y v0.2 intactos; se registra como fricción para feedback. Run register: `80-agents/journal/agent-runs/2026-09-18-zcode-glm-loom-v03-execution.md`. RESULT: **RC_READY** — sin merge a master, sin aceptación humana declarada.
 
 - **2026-09-18 (BOOTSTRAP + DISCOVERY + SPEC FREEZE + DISPATCH):** Agents-OS cargado (constitución, perfil, continuidad, dominio DEFAULT — Loom es área Personal). Preflight PASS: `feature/loom-v02 @ 0cba972` == origin (baseline certificado del mandato), master `848fb28` intacto, disciplina de tokens verificada (0 hex fuera de tokens.css). Discovery acotado contra el vault vivo en loopback (meta 3263 notas / 138 proyectos / 2403 tareas; owner=me/todo 239, review 52, blocked 39, waiting 24, unassigned 814) y contratos del repo (SPEC/REGISTRY v0.2, TaskIndex, relations allowlist, guard de seguridad). Gap API: filtro por flags (D1), relations por nota (D2), grafo (D3). Rama `feature/loom-v03` creada desde `0cba972`; SPEC + Registry addendum + FUTURE-WRITING congelados @ `f58c3ac`; worktrees A/B repuntados a `feature/loom-v03-ui`/`feature/loom-v03-product` (conservando node_modules de v0.2); dispatch paralelo A (theming) + B (P0 product, luego graph).
 
