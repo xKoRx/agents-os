@@ -4,8 +4,8 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: paused
-status_detail: "Paused hasta gate owner PBS (tickets 018/019). Alcance re-definido en D0 (2026-09-17): ADOPTAR/recuperar la VM 180 existente (R0: running, sin pve_storage, credenciales UNKNOWN), no crear desde cero. IP efectiva 192.168.31.123 (:8007 UI vivo, 18sep); los sondeos 'sin ping/22/8007' de R0 usaron la IP del plan .180, sin host en la LAN."
+status: in-progress
+status_detail: "R2 discovery efectivo EJECUTADO (2026-09-18): accesos ariadna@ demostrados en PBS y 5 nodos (keys ~/.ssh/ariadna_pbs / ariadna_pve, sudo NOPASSWD); PBS 4.2.6-1 viva pero VIRGEN (0 datastores, 0 usuarios integración, 0 jobs); F-06 a nivel disco OK, gap de capacidad (38G interno vs ~600G retención completa tier 0) propuesto resolver con LV en la misma VG local-kronos; decisión gate 0.2 = REUTILIZAR. Mutaciones (LV+mkfs, usuario/token, pvesm add) = OWNER ACTION BUNDLE pendiente en ~/aranea/work/r2-pbs-20260918/owner-action-bundle.md (bloques A/B/C). Tickets 018/019 siguen todo. Piloto/restore NOT EXECUTED."
 priority: P2
 progress: 0
 icon: 🖥️
@@ -34,8 +34,7 @@ cssclasses: wide
 
 ## 📊 Estado actual
 
-- **Paused; alcance re-definido en D0 (2026-09-17).** La VM 180 YA EXISTE (evidencia R0), así que el supuesto julio "crear VM vmid 180 desde cero" queda HISTORICAL — único procedimiento reemplazado; el resto del plan julio (datastore, usuario, registro, schedules) sigue siendo el plan vigente post-adopción.
-- Bloqueado por: gate owner PBS (acceso/consola/credenciales de 180) + ticket 019 (ventana) + ticket 018 (lista tier 0 para schedules). Ningún paso ejecutado.
+- **IN-PROGRESS (R2 discovery ejecutado 2026-09-18).** Gate de adopción (AGENT-TASK-02-0) resuelto con evidencia: accesos `ariadna@` demostrados y discovery completo; decisión = REUTILIZAR la VM 180 (PBS 4.2.6-1 viva, adminizada vía SSH+sudo; sin reinstalar). Pendiente: mutaciones de integración agrupadas en el bundle owner (datastore A, credenciales B, tickets C). El supuesto julio "crear VM vmid 180 desde cero" queda HISTORICAL — único procedimiento reemplazado.
 
 ## Scope
 
@@ -204,8 +203,9 @@ SÍ. La integración escribe `/etc/pve/storage.cfg` (se replica a los 5 nodos) y
 
 ## ✅ Tareas
 
-- [ ] **AGENT-TASK-02-0**: gate de adopción — acceso owner a VM 180 + discovery read-only + decisión reutilizar/reinstalar.
-  - tags: [agent, gated, owner-interactive]
+- [x] **AGENT-TASK-02-0**: gate de adopción — acceso owner a VM 180 + discovery read-only + decisión reutilizar/reinstalar.
+  - EJECUTADO 2026-09-18: accesos `ariadna@` demostrados en PBS (192.168.31.123) y 5 nodos; PBS 4.2.6-1 viva, VIRGEN (0 datastores/usuarios/jobs); decisión REUTILIZAR con evidencia; huella tier 0 medida (~165-185G used-in-guest por ciclo); gap de capacidad documentado (LV propuesto en VG local-kronos). Mutaciones → Owner Action Bundle (`~/aranea/work/r2-pbs-20260918/`). Evidencia: change log `2026-09-18-r2-pbs-discovery-effective`.
+  - tags: [agent, gated, owner-interactive, done-2026-09-18]
 
 - [ ] **AGENT-TASK-02-1**: descargar ISO PBS a kronos (HISTORICAL — sólo si el gate concluye reinstalación).
   - commands_allowed: wget, curl.
@@ -272,3 +272,4 @@ SÍ. La integración escribe `/etc/pve/storage.cfg` (se replica a los 5 nodos) y
 
 - **2026-08-10** — Migrado de `agent-project` legacy a `project` v1 sin activar la ejecución; owner, parent, lifecycle, progress, tags y secciones quedaron contractuales.
 - **2026-09-18** — Continuidad documental (mandato owner): separación física entre HISTORICAL (creación desde cero, julio) y vigente (adopción + integración post-gate); rollback dividido en vigente (no destructivo) e HISTORICAL (destructivo); referencias operativas de creación alineadas a adopción; añadida AGENT-TASK-02-0 (gate de adopción). Historia preservada, decisiones congeladas intactas.
+- **2026-09-18 (R2 discovery)** — Gate de adopción AGENT-TASK-02-0 EJECUTADO (mandato owner R2): accesos `ariadna@` demostrados (PBS .123 y 5 nodos, sudo NOPASSWD), PBS 4.2.6-1/Debian 13 viva y virgen (0 datastores, solo root@pam, sin jobs), F-06 a nivel disco confirmada (`scsi0: local-kronos:vm-180-disk-0`), `storage.cfg`/`jobs.cfg` intactos, VG local-kronos con 567.5G libres, huella tier 0 medida (~165-185G used-in-guest/ciclo; alloc 660G). Decisión 0.2: REUTILIZAR. Cero mutaciones (regla contrato 4.6): bundle owner único en `~/aranea/work/r2-pbs-20260918/` con A datastore (LV 300/500/650G), B credenciales (token recomendado), C tickets 018/019. Piloto y restore NOT EXECUTED. Evidencia: `80-agents/journal/logs/2026-09-18-r2-pbs-discovery-effective.md`.
