@@ -214,6 +214,15 @@ Y Ceph usa `pool1` (RBD) que es **separado** del pool0 de truenas — vive en lo
 | 7 | 🟡 | **Netdata solo en loopback** — buen monitoring local pero no agregable desde otros nodos. |
 | 8 | 🟡 | **`rc-local.service` fallando** — menor, pero denota drift de mantenimiento. |
 
+## 🔑 Acceso administrativo Ariadna (2026-09-18)
+
+- Usuario `ariadna` (uid 3005, grupo `ariadna` gid 3008): SSH por clave + `sudo -n` completo (línea 6 `/etc/sudoers`, preexistente); `password_disabled=true` (sin login por contraseña).
+- Grupo `ariadna` agregado al privilegio builtin **Local Administrator** (id 1, FULL_ADMIN): `local_groups = [544 builtin_administrators, 3002 apps_admin, 3008 ariadna]`. Privilegios 2 (Read-Only) y 3 (Sharing) y membresías existentes sin cambios.
+- API key propia de usuario: id 1, `ariadna-admin-20260918`. Secreto en `~/aranea/secrets/truenas/` (0700/0600); metadata/evidencia en `~/aranea/work/truenas-ariadna-20260918/` (incluye script `cert_api.py`).
+- Canal WS oficial: `wss://192.168.31.91/websocket` habla el protocolo DDP del GUI (handshake `{"msg":"connect","version":"1"}`, llamadas `{"msg":"method",...}`), **no** JSON-RPC crudo.
+- Certificación 7/7 PASS (login key, auth.me, user.query roles, my_keys, privilege.query, privilege.update idempotente, logout). Change log: `80-agents/journal/logs/2026-09-18-truenas-ariadna-admin-enablement.md`.
+- Rollback: `api_key.delete 1` + `privilege.update 1 {"local_groups":[544,3002]}`.
+
 ## ⚡ Comandos útiles
 
 ```bash
