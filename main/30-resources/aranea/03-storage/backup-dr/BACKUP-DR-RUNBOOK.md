@@ -7,7 +7,7 @@ slug: backup-dr-runbook
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [aranea, backup, runbook, ops, kind/runbook, area/personal, project/agents-os]
 related: "[[BACKUP-DR-DESIGN]]"
 parent: "[[BACKUP-DR-OWNER-PROJECT]]"
@@ -18,20 +18,24 @@ cssclasses: wide
 
 > Verdad operacional humana. Comandos paso a paso con validación.
 >
-> [!warning] ESTADO DE EJECUCIÓN (2026-09-17)
-> Este runbook describe el diseño congelado. La ÚNICA operación certificada hoy (R1) es la tabla del §0. Todo lo demás está `DESIGNED — NOT IMPLEMENTED`: los comandos corresponden a mecanismos inexistentes o no integrados (PBS sin adoptar, sin restic, sin rclone, Secret Zero sin definir). NO ejecutar secciones no implementadas sin su fase del roadmap ([[2026-09-16-R0-reconciliacion]] §9) + gate owner.
+> [!warning] ESTADO DE EJECUCIÓN (2026-09-18)
+> Este runbook describe el diseño congelado. Las ÚNICAS operaciones certificadas hoy (R1 + R1.5) son la tabla del §0. Todo lo demás está `DESIGNED — NOT IMPLEMENTED`: los comandos corresponden a mecanismos inexistentes o no integrados (PBS sin adoptar, sin restic, sin rclone, Secret Zero sin definir). NO ejecutar secciones no implementadas sin su fase del roadmap ([[2026-09-16-R0-reconciliacion]] §9) + gate owner.
 
 ---
 
-## §0. VERIFIED hoy (R1, 2026-09-17) — lo único ejecutable con evidencia
+## §0. VERIFIED hoy (R1 + R1.5, 2026-09-17) — lo único ejecutable con evidencia
 
 | Unidad | Método | Drill |
 |---|---|---|
 | traefik-config | wrapper `~/aranea/bin/r1-backup.sh` (tar cz vía `agent_traefik`, LXC 115) | PASS — sha256 8/8 vs fuente viva |
 | second-brain | tar cz local del vault (3.438 archivos) | PASS — conteo+bytes idénticos |
 | hermes-state | tar cz local (`~/.hermes` + `~/aranea` + unit túnel, 600) | PASS — estructura validada |
+| etcd-snapshot | `etcdctl snapshot save` al member líder vía `~/aranea/bin/r15-etcd-snapshot.sh` (pre-checks quorum/hashkv; tooling etcd-io v3.6.4 en Hermes) | PASS — drill restore a scratch, rev 55033 verificada con etcdutl |
+| pve-config node-local | tar `/etc/network/interfaces + hosts + hostname` por nodo vía `agent_ro` (`~/aranea/bin/r15-pve-config.sh`); pmxcfs `/etc/pve` sigue GATED (sin canal root) | PASS — drill sha256 5/5 nodos |
 
-Staging: `~/aranea/backup-staging/` (700, Hermes VM 118) — **NO es offsite, NO es failure-domain independiente de Hermes**. Wrapper manual, sin timer ni pruning (frecuencia/retención = decisión owner pendiente). Evidencia: change log `2026-09-17-backup-dr-r1-bootstrap-config` + manifests por run. Los artefactos hermes-state son sensibles (600).
+Staging: `~/aranea/backup-staging/` (700, Hermes VM 118) — **NO es offsite, NO es failure-domain independiente de Hermes**. Ejecución automatizada desde R1.5 vía timers (párrafo siguiente); sin pruning (retención = decisión owner pendiente). Evidencia: change logs `2026-09-17-backup-dr-r1-bootstrap-config` + `2026-09-17-backup-dr-r15-config-completion` + manifests por run. Los artefactos hermes-state son sensibles (600).
+
+Automatización R1.5: timers systemd activos y probados en hermes-vm — `aranea-backup-r1.timer` (DAILY 04:00; incluye traefik-config + second-brain + hermes-state), `aranea-etcd-snapshot.timer` (DAILY 05:00), `aranea-pve-config.timer` (WEEKLY SAT 08:30). pi-hole permanece GATED (servicio L2-dead + api_token).
 
 ---
 
@@ -223,4 +227,4 @@ Owner-driven. NO automatizable.
 
 ---
 
-**Status**: runbook vigente con estados por sección (D0 2026-09-17). §0 = VERIFIED (R1); §1-§6, §8 = DESIGNED — NOT IMPLEMENTED / BLOCKED; §7 (SMART) y §9 (troubleshooting) genéricos, verificar contexto al usar. Diseño de referencia: `BACKUP-DR-DESIGN.md` (frozen).
+**Status**: runbook vigente con estados por sección (D0 2026-09-17; automatización R1.5 incorporada 2026-09-18). §0 = VERIFIED (R1+R1.5); §1-§6, §8 = DESIGNED — NOT IMPLEMENTED / BLOCKED; §7 (SMART) y §9 (troubleshooting) genéricos, verificar contexto al usar. Diseño de referencia: `BACKUP-DR-DESIGN.md` (frozen).

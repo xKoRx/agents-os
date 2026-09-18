@@ -7,7 +7,7 @@ slug: backup-dr-checklist
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [aranea, backup, checklist, ops, kind/runbook, area/personal, project/agents-os]
 related: "[[BACKUP-DR-DESIGN]]"
 parent: "[[BACKUP-DR-OWNER-PROJECT]]"
@@ -16,8 +16,8 @@ cssclasses: wide
 
 # ✅ BACKUP-DR-CHECKLIST — Checklists operacionales
 
-> [!warning] ESTADO (2026-09-17)
-> §1, §2, §5, §7: vigentes como disciplina transversal (aplican a cada cambio/drill). §3 y §4: `DESIGNED — NOT IMPLEMENTED` — presuponen PBS/Restic/rclone operativos que hoy NO existen; NO ejecutar sus ítems como si estuvieran corriendo. Lo único con cobertura real hoy: staging R1 (ver `BACKUP-DR-RUNBOOK` §0).
+> [!warning] ESTADO (2026-09-18)
+> §1, §2, §5, §7: vigentes como disciplina transversal (aplican a cada cambio/drill). §3 y §4: `DESIGNED — NOT IMPLEMENTED` — presuponen PBS/Restic/rclone operativos que hoy NO existen; NO ejecutar sus ítems como si estuvieran corriendo. Lo único con cobertura real hoy: staging R1 + automatización R1.5 (etcd-snapshot + pve node-local con timers; pi-hole GATED) — ver `BACKUP-DR-RUNBOOK` §0.
 
 ---
 
