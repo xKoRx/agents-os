@@ -277,7 +277,7 @@ SÍ. La integración escribe `/etc/pve/storage.cfg` (se replica a los 5 nodos) y
 
 ---
 
-**Status**: ready. NO ejecutado.
+**Status**: in-progress. R2 piloto ejecutado + cierre resuelto (2026-09-18); pendientes: OK owner bundle v3 (fail-closed, medición 7d, reboot), retención/schedules, criterios 7d.
 **Sesión cerrada por instrucción del owner**: 2026-07-01.
 
 ## 📆 Bitácora
