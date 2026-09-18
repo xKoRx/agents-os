@@ -8,7 +8,7 @@ slug: backup-dr-index
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-07-02
+updated: 2026-09-18
 tags: [kind/index, area/aranea, project/agents-os, topic/backup, topic/disaster-recovery]
 related: []
 cssclasses: wide
@@ -20,8 +20,8 @@ cssclasses: wide
 
 > **Una sola verdad activa**: este set de docs reemplaza `DESIGN-PROPOSAL.md` y `PROPUESTA-COMPLETA-ITER4.md` (ambos marcados deprecated).
 >
-> **NO ejecutado**. Cero cambios a infraestructura.
-> **Sesión cerrada por owner**: 2026-07-01.
+> **Estado de ejecución (al 2026-09-18)**: la nota «NO ejecutado» anterior quedó obsoleta. Ejecutado y verificado: R0 reconciliación (2026-09-16), R1 bootstrap-config (2026-09-17: traefik-config, second-brain, hermes-state BACKUP+RESTORE_VERIFIED en staging Hermes — NO offsite), D0 saneamiento documental, R1.5 config completion (2026-09-17: etcd-snapshot + pve node-local VERIFIED+AUTOMATED, timers activos; pi-hole GATED). Pendiente: R2 adopción PBS 180 (gate owner, tickets 018-021). Roadmap R0–R8: `[[2026-09-16-R0-reconciliacion]]` §9. Lo único ejecutable con evidencia: `BACKUP-DR-RUNBOOK` §0.
+> **Sesión cerrada por owner**: 2026-07-01 (histórico; proyecto reactivado 2026-09-16).
 >
 > **2026-07-02**: el **proyecto owner** (la ejecución con plazo y tareas) se migró a `[[BACKUP-DR-OWNER-PROJECT]]`; su ubicación vigente es `10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/`. Este folder conserva solo la **documentación evergreen** del refactor: diseño, runbook, checklist, policy, template, diff conceptual y workflow de cambios. Los **subproyectos de agente** (ejecución con tareas `#owner/agent`) viven en `10-projects/Aranea/BACKUP-DR-OWNER-PROJECT/agentes/`. Los **tickets formales** (018-021) viven en `10-projects/Aranea/05-tickets/`.
 

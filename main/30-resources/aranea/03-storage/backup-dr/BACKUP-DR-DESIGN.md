@@ -9,7 +9,7 @@ slug: backup-dr-design
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-17
+updated: 2026-09-18
 revision_note: "Iter 5 (2026-07-01): refactor completo. Sin contradicciones activas. 14 decisiones congeladas. Decisión del owner 2026-07-01: 'cerrar sesión al terminar'. No ejecutado."
 aliases:
   - Backup DR design
@@ -48,7 +48,7 @@ cssclasses:
 # 🛡️ BACKUP-DR-DESIGN — Diseño final Backup/DR Aranea
 
 > [!warning] DESIGN_FROZEN — documento de diseño, NO estado operativo
-> Este documento está **congelado**: describe la arquitectura objetivo aprobada (F-01..F-14, capas A-G), no lo implementado. Lo VERIFIED hoy (R1, 2026-09-17): staging Hermes con traefik-config, second-brain y hermes-state — ver `BACKUP-DR-RUNBOOK` §0 y change log `2026-09-17-backup-dr-r1-bootstrap-config`. Estado del proyecto y roadmap vigente: `[[2026-09-16-R0-reconciliacion]]` §9. Las secciones cuyo mecanismo no existe aún (PBS integrado, dumps, cloud tiers) NO deben ejecutarse desde este documento.
+> Este documento está **congelado**: describe la arquitectura objetivo aprobada (F-01..F-14, capas A-G), no lo implementado. Lo VERIFIED hoy (R1 + R1.5, 2026-09-17): staging Hermes con traefik-config, second-brain y hermes-state (R1), más etcd-snapshot y pve node-local VERIFIED+AUTOMATED con timers activos (R1.5; pi-hole GATED) — ver `BACKUP-DR-RUNBOOK` §0 y change logs `2026-09-17-backup-dr-r1-bootstrap-config` / `2026-09-17-backup-dr-r15-config-completion`. Estado del proyecto y roadmap vigente: `[[2026-09-16-R0-reconciliacion]]` §9. Las secciones cuyo mecanismo no existe aún (PBS integrado, dumps, cloud tiers) NO deben ejecutarse desde este documento.
 
 ## Propósito
 
