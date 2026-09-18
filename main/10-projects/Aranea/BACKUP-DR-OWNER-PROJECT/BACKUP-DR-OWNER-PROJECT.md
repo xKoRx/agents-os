@@ -5,7 +5,7 @@ schema_version: 1
 owner: me
 root: true
 status: active
-status_detail: "ACTIVE. R0 reconciliación completa (2026-09-16). R1 (2026-09-17, PASS WITH DEBT): 3 unidades BACKUP+RESTORE_VERIFIED, 3 SKIPPED_GATED, F-09=EXISTS. D0 saneamiento documental (2026-09-17): 9 agent-projects reconciliados, RC-20260917-001 aprobado+aplicado. R1.5 (2026-09-17, PASS WITH OWNER GATES): residuos D0 corregidos; etcd-snapshot VERIFIED+AUTOMATED (corrección: :2379 alcanzable desde hermes); pve node-local VERIFIED semanal + pmxcfs GATED; traefik +drop-in clouDNS; timers frozen 04:00/05:00/SAT 08:30 activos y probados; pi-hole GATED doble (servicio L2-dead + token). Detalle: change_log 2026-09-17-backup-dr-r15-config-completion."
+status_detail: "ACTIVE. R0 reconciliación completa (2026-09-16). R1 (2026-09-17, PASS WITH DEBT): 3 unidades BACKUP+RESTORE_VERIFIED, 3 SKIPPED_GATED, F-09=EXISTS. D0 saneamiento documental (2026-09-17): 9 agent-projects reconciliados, RC-20260917-001 aprobado+aplicado. R1.5 (2026-09-17, PASS WITH OWNER GATES): residuos D0 corregidos; etcd-snapshot VERIFIED+AUTOMATED (corrección: :2379 alcanzable desde hermes); pve node-local VERIFIED semanal + pmxcfs GATED; traefik +drop-in clouDNS; timers frozen 04:00/05:00/SAT 08:30 activos y probados; pi-hole GATED doble (servicio L2-dead + token). Re-verificación continuidad R1 (2026-09-18): runs automáticos del día OK, drills 4/4 PASS nuevos (traefik/etcd/second-brain/hermes-state), F-09 EXISTS live, gates sin cambios (pmxcfs bundle R1.6 en PAUSA, pi-hole L2-dead, traefik ssl), staging 283M/20%, PASS WITH DEBT mantenido. Detalles: change_logs 2026-09-17-backup-dr-r15-config-completion y 2026-09-18-backup-dr-r1-continuity-verification."
 priority: P1
 icon: 📋
 slug: backup-dr-owner-project
