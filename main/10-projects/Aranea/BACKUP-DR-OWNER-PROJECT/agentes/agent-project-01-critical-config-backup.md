@@ -4,7 +4,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: in-progress
+status: active
 status_detail: "IN-PROGRESS tras R1.5 (2026-09-17): 4/6 unidades Capa A con BACKUP+RESTORE_VERIFIED Y automatización frozen activa (traefik-config +drop-in clouDNS DAILY 04:00, second-brain, hermes-state, etcd-snapshot DAILY 05:00); pve-config node-local VERIFIED semanal SAT 08:30 con pmxcfs GATED (extensión agent-read config requiere root — bundle owner entregado); pihole-config GATED doble (servicio L2-dead + api_token). Detalle: change_log 2026-09-17-backup-dr-r15-config-completion."
 priority: P2
 progress: 80
