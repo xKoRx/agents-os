@@ -100,6 +100,13 @@ links:
 - owner_decision: aprobado y aplicado (owner 2026-09-17, paquete D0 v2 completo — ver status arriba)
 - detalle completo: `RC-20260917-001-design-frozen-banner.md` (esta carpeta)
 
+### RC-20260918-001 — Corrección de continuidad documental Backup/DR (R1.5)
+- status: **approved** (owner 2026-09-18 en chat, paquete A–F) — aplicado
+- scope: doc (índice evergreen, banner DESIGN, runbook, checklist, agent-project-02, owner project, README Aranea — cero decisiones congeladas ni policy)
+- impact: low · risk: low · created_at: 2026-09-18
+- owner_decision: aprobado y aplicado (owner 2026-09-18, opción «Aplicar A–F completo»)
+- detalle completo: `RC-20260918-001-continuidad-documental.md` (esta carpeta)
+
 Sin otros RC abiertos desde el cierre 2026-07-01.
 
 Cuando se abra el primer RC, agregarlo aquí con formato:
@@ -186,5 +193,5 @@ Mensualmente (1° del mes) revisar:
 
 ---
 
-**Status**: active. Workflow definido; RC-20260917-001 aprobado y aplicado (2026-09-17).
+**Status**: active. Workflow definido; RC-20260917-001 y RC-20260918-001 aprobados y aplicados (2026-09-17 / 2026-09-18).
 **Sesión cerrada por instrucción del owner**: 2026-07-01.
