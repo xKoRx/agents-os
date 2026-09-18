@@ -49,3 +49,7 @@ tags:
 
 - SPEC v1.2.2, PLAN, `messages.go`, contrato T08, migration 064, Gateway, Bridge, Forge, stores, `go.mod`/`go.sum` — diff 0. Identidad durable C1-1 intacta (4 tests C1 en verde).
 - MQL_COMPILE=NOT_RUN en C2: host `mt5-kronos.lab.aranea.cl` sin path de acceso ejecutable en esta sesión (publickey denegada para todas las identidades locales; key temporal C1 revocada post-uso; sin capability MCP del host ni wine/MetaEditor local); bloqueo documentado, no PASS inventado. Los binarios ex5/ex4 de C1 no se reutilizan como evidencia C2.
+
+## Corrección de acceso (2026-09-18, mandato Manager)
+
+- **Erratum:** la afirmación de esta entrada «sin capability MCP del host» era INCORRECTA como diagnóstico de capacidad. La capability `aranea-ssh` con perfiles `mt5-kronos` (viewer) y `mt5-kronos-operator` (operator upload/compile) existía y estaba certificada (runbook `aranea-ssh-mcp`, 2026-09-11/13/17); la sesión C2 no ejecutó el diagnóstico del plano (`/status` + initialize + `tools/list`) y confundió el fallo del mecanismo elegido (SSH directo con key temporal C1 ya revocada) con inexistencia de la capacidad. La capacidad real y la receta de invocación correcta quedan documentadas en VERIFICATION.md @ `1f59b19b` (repo `xKoRx/echo`) y en el proyecto E-06 (`E06_T21_PREREQ_ACCESS_RESTORED_MQL_COMPILE_C2_PASS`). El «NOT_RUN» de esta fecha sigue siendo fiel a lo que esa sesión hizo (no compiló); la deuda MQL_COMPILE_C2 quedó PASS el 2026-09-18 (MT5 ex5 204736 B sha256 `49e95cfb…`, MT4 ex4 198014 B sha256 `179404a0…`).
