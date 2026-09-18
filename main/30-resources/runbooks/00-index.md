@@ -24,7 +24,7 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Runbooks curados:** 22 (+1 superseded, 8 en `symphony/`); se incorpora `proxmox-lifecycle-operator-contract` 2026-09-18.
+- **Runbooks curados:** 25 (+1 superseded, 8 en `symphony/`); se incorporan `proxmox-lifecycle-operator-contract`, `linux-container-operator-contract`, `windows-operator-contract` y `service-lifecycle-operator-contract` (2026-09-18).
 - **Última ingesta:** 2026-09-18.
 - **Estado:** active.
 
@@ -34,6 +34,9 @@ tags:
 |---|---|---|
 | [[30-resources/runbooks/hermes-linux-update-recovery|hermes-linux-update-recovery]] | Update/recovery de Hermes en Linux: systemd user, perfiles, mixed sys.modules, fleet marker, gateways y validación funcional. | Aranea/Hermes |
 | [[30-resources/runbooks/proxmox-lifecycle-operator-contract|proxmox-lifecycle-operator-contract]] | Contrato del futuro operador Proxmox H2: canales API/SSH, recursos protegidos, precondiciones, rollback y abort (enablement-only, no autoriza operaciones). | Aranea |
+| [[30-resources/runbooks/linux-container-operator-contract|linux-container-operator-contract]] | Contrato del futuro operador Linux/containers H3: canales por target (SSH nativo, qm guest cmd host-mediated, MCP consumidor), Docker/systemd, recursos protegidos, rollback y abort (enablement-only). | Aranea |
+| [[30-resources/runbooks/windows-operator-contract|windows-operator-contract]] | Contrato del futuro operador Windows H3: autoridad demostrada vs NOT CERTIFIED (sin admin nativa), canales disponibles, spec W1 pendiente owner (enablement-only). | Aranea |
+| [[30-resources/runbooks/service-lifecycle-operator-contract|service-lifecycle-operator-contract]] | Contrato del futuro operador de servicios H3: systemd system/user, Docker/Compose, Task Scheduler, ownership del servicio, validación semántica y rollback (enablement-only). | Aranea |
 | [[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]] | SSH Aranea: viewer/operator, `docker-echo-dev-operator` y evidence publisher Windows ACTIVE/CERTIFIED. | Aranea |
 | [[30-resources/runbooks/aranea-postgres-mcp|aranea-postgres-mcp]] | PostgreSQL RO/RW Aranea (Echo). | Aranea |
 | [[30-resources/runbooks/aranea-mongodb-mcp|aranea-mongodb-mcp]] | MongoDB RO/RW Aranea (Echo Forge). | Aranea |

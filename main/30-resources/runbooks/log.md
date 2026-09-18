@@ -1,5 +1,9 @@
 # Runbooks resource log
 
+## [2026-09-18] create | linux-container-operator-contract + windows-operator-contract + service-lifecycle-operator-contract
+
+- Se crearon los tres contratos del operador de guests/servicios (habilitación H3 de [[HERMES — Infrastructure Operations]]): Linux/containers (canales por target — SSH nativo por identidad, `qm guest cmd` host-mediated read-only, MCP consumidor —, regla `sudo docker` en mcps, .75 root DEV sólo por perfil MCP, recursos protegidos, validación semántica y abort), Windows (tabla demostrado vs NO CERTIFIED: WMI/CIM denegado para `echo-dev`, SSH/WinRM no provisionados, inspección `qm guest cmd 135` verificada, spec W1 pendiente owner) y service-lifecycle (superficies systemd/Docker/Task Scheduler, ownership del servicio, pre/post-state, orden de dependencias, rollback). Ningún contrato autoriza operaciones; la ejecución queda gated al proyecto ejecutor. Filas añadidas a `00-index.md` (25 curados). Evidencia: `~/aranea/work/h3-enablement-20260918/`. Change log: `2026-09-18-h3-guest-service-enablement`.
+
 ## [2026-09-18] create | proxmox-lifecycle-operator-contract
 
 - Se creó el contrato del futuro operador Proxmox (habilitación H2 de [[HERMES — Infrastructure Operations]]): orden de selección de canales (API token `ariadna@pve!backup-dr` sólo lecturas per-VM → SSH `ariadna`+sudo root-equivalent → consola owner como break-glass), resolución de target por inventario, recursos protegidos (`local-sqx-*`, TrueNAS 145, PBS 180, Ceph), reglas de concurrencia/timeouts/parciales, validación post-change por capa semántica, rollback y criterios de abort. El runbook NO autoriza operaciones: la ejecución queda gated al proyecto ejecutor.
