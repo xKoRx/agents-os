@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Paused hasta gate owner PBS (tickets 018/019). Alcance re-definido en D0 (2026-09-17): ADOPTAR/recuperar la VM 180 existente (R0: running, sin ping/22/8007, sin pve_storage, credenciales UNKNOWN), no crear desde cero."
+status_detail: "Paused hasta gate owner PBS (tickets 018/019). Alcance re-definido en D0 (2026-09-17): ADOPTAR/recuperar la VM 180 existente (R0: running, sin pve_storage, credenciales UNKNOWN), no crear desde cero. IP efectiva 192.168.31.123 (:8007 UI vivo, 18sep); los sondeos 'sin ping/22/8007' de R0 usaron la IP del plan .180, sin host en la LAN."
 priority: P2
 progress: 0
 icon: 🖥️
@@ -30,7 +30,7 @@ cssclasses: wide
 
 ## 🎯 Objetivo
 
-**Adoptar/recuperar la PBS VM 180 existente** en kronos (R0 2026-09-16: running, sin ping/22/8007 desde Hermes, sin registro `pbs` en `pve_storage`, credenciales UNKNOWN) e integrarla: datastore según F-06 (`local-kronos`), usuario backup, registro en los 5 PVE nodes y schedules vzdump. NO asumir datastore interno, red, credenciales ni versión sin evidencia: se descubren dentro del gate de adopción.
+**Adoptar/recuperar la PBS VM 180 existente** en kronos (R0 2026-09-16: running, sin registro `pbs` en `pve_storage`, credenciales UNKNOWN; IP efectiva 192.168.31.123:8007 — UI PBS verificada 18sep, PTR pbs.lab.aranea; el 'sin ping/22/8007' de R0 sondeó la IP plan .180, sin host real) e integrarla: datastore según F-06 (`local-kronos`), usuario backup, registro en los 5 PVE nodes y schedules vzdump. NO asumir datastore interno, red, credenciales ni versión sin evidencia: se descubren dentro del gate de adopción.
 
 ## 📊 Estado actual
 
@@ -123,7 +123,7 @@ SÍ. La integración escribe `/etc/pve/storage.cfg` (se replica a los 5 nodos) y
 4. **Registrar storage en 5 PVE nodes**:
    ```bash
    # En cada uno de athena, zeus, hera, kronos, hades:
-   pvesm add pbs aranea-pbs --server 192.168.31.180 --datastore main \
+   pvesm add pbs aranea-pbs --server 192.168.31.123 --datastore main \\
      --username backup@pbs --password <STRONG> \
      --content backup --prune-backups keep-daily=7,keep-weekly=4,keep-monthly=12
    ```
@@ -152,7 +152,7 @@ SÍ. La integración escribe `/etc/pve/storage.cfg` (se replica a los 5 nodos) y
 ## Validation plan
 
 - `qm status 180` running.
-- PBS UI accesible en https://192.168.31.180:8007.
+- PBS UI accesible en https://192.168.31.123:8007 (IP efectiva verificada 2026-09-18; `.180` era la IP del plan julio, sin host en la LAN).
 - Datastore `main` muestra chunks.
 - `pvesm status` en los 5 nodes muestra `aranea-pbs` active.
 - `vzdump` manual de VM tier 0 aparece en PBS.

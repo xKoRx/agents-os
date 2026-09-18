@@ -62,7 +62,7 @@ Census de guests (agrupado): Tier0 contrato §2 (ver §4), sqx trio 108/111/123 
 | Mecanismo | Evidencia | Clasificación |
 |---|---|---|
 | vzdump/jobs de backup PVE | Sin jobs configurados; storage `nfs-storage` declara content backup pero no hay historial verificado | ABANDONED/UNKNOWN |
-| PBS | VM 180 running PERO: sin ping/22/8007 desde Hermes, sin registro `pbs` en `pve_storage` de ningún nodo, sin credenciales conocidas | CONFIGURED-parcial/UNKNOWN — requiere acceso owner |
+| PBS | VM 180 running PERO: sin ping/22/8007 desde Hermes, sin registro `pbs` en `pve_storage` de ningún nodo, sin credenciales conocidas | CONFIGURED-parcial/UNKNOWN — requiere acceso owner. Verificado 2026-09-18 (tarde): VMID/nodo/estado confirmados por agent-read; dimension IP resuelta por red viva — 192.168.31.180 no tiene host en la LAN (ARP INCOMPLETE) y era solo la IP del plan julio; PBS responde en 192.168.31.123:8007 (UI 'pbs - Proxmox Backup Server', PTR pbs.lab.aranea). El sondeo R0 usó la IP del plan (.180), por eso dio sin-respuesta. |
 | Snapshots ZFS (sanoid/autosync) | **0 snapshots** en pool0/pool2 (`zfs list -t snap` vacío en captura) | NO EXISTE |
 | TrueNAS replication/cloudsync/tareas | Sin evidencia en captura (wrapper no expone UI tasks; marcar UNKNOWN hasta acceso UI owner) | UNKNOWN |
 | Dumps DB programados (pg/mongo/couchdb/minio) | No encontrados en ningún nodo (grep cron/timers negativo fuera de paquetes estándar) | NO EXISTEN |
@@ -194,7 +194,7 @@ Veredicto de matriz: **0 unidades en READY; 0 con backup ejecutándose; 1 UNKNOW
 | Fase | Alcance corregido por evidencia | Dependencia | Criterio de cierre |
 |---|---|---|---|
 | R1 | Bootstrap/config crítico: definir y ejecutar primer backup real de configs (traefik, pi-hole, /etc/pve export via wrapper GAP, etcd snapshot, Hermes+vault). Incluye decidir staging (Hermes VM 118) y resolver F-09 existence check | R0 (hecho) | ≥1 backup CONFIGURED+VERIFIED de cada clase de config; restore a scratch probado en 1 caso |
-| R2 | PBS: recuperar/adoptar VM 180 (owner), integrar pve_storage, primer vzdump real de 1 VM T0, retention+verify | Owner gate .180 + maint window | vzdump diario T0 VERIFIED + restore drill 1 |
+| R2 | PBS: recuperar/adoptar VM 180 (owner), integrar pve_storage, primer vzdump real de 1 VM T0, retention+verify | Owner gate (VM 180 = 192.168.31.123; `.180` era IP del plan, corregido 18sep) + maint window | vzdump diario T0 VERIFIED + restore drill 1 |
 | R3 | App-consistent: pg_dumpall 152, mongodump 153, CouchDB 116, minio mirror, snapshots pool0 (sanoid o nativo TrueNAS), etcd snapshot cluster | R2 staging | Dumps diarios VERIFIED + 2 restore drills DB |
 | R4 | Offsite crítico: proveedor + cifrado (revalidar pcloud vs alternativas), restic repo, push semanal | Owner gates OAuth/secret | 1 snapshot restic VERIFIED offsite + drill descarga |
 | R5 | Bulk/archive: revalidar GDrive/pCloud/otros; chunking pool0; monthly | R4 infra | 1 chunk VERIFIED + drill recv |

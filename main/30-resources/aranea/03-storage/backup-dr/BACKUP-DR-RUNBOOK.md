@@ -39,7 +39,7 @@ Automatización R1.5: timers systemd activos y probados en hermes-vm — `aranea
 
 ---
 
-## §1. Backup manual de VM tier 0 (PBS) — `DESIGNED — NOT IMPLEMENTED` (PBS VM 180 sin adoptar/integrar)
+## §1. Backup manual de VM tier 0 (PBS) — `DESIGNED — NOT IMPLEMENTED` (PBS VM 180 — IP efectiva 192.168.31.123:8007 — sin adoptar/integrar)
 
 ### §1.1 Listar VMs tier 0
 
@@ -61,7 +61,8 @@ Validar: `tail /var/log/vzdump/vzdump-<vmid>-*.log` → "Backup finished success
 
 ### §1.3 Verificar en PBS UI
 
-`https://192.168.31.180:8007` → datastore `main` → verificar snapshot existe.
+IP efectiva verificada 2026-09-18: `https://192.168.31.123:8007` (UI 'pbs - Proxmox Backup Server'; PTR `pbs.lab.aranea`). → datastore `main` → verificar snapshot existe.
+> Nota: `192.168.31.180` era la IP del plan de julio 2026, nunca observada en la LAN (sin host en .180). La IP por defecto de un guest NO se infiere del VMID.
 
 ---
 
@@ -108,7 +109,7 @@ Validar: archivo .sql.gz existe en staging.
 
 ---
 
-## §4. PBS — verify, prune, datastore full — `DESIGNED — NOT IMPLEMENTED` (requiere R2; nombre de datastore real = UNKNOWN hasta adopción de 180)
+## §4. PBS — verify, prune, datastore full — `DESIGNED — NOT IMPLEMENTED` (requiere R2; nombre de datastore real = UNKNOWN hasta adopción de la VM 180, IP 192.168.31.123)
 
 ### §4.1 Verify semanal
 
