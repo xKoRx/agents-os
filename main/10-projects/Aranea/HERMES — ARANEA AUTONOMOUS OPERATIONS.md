@@ -26,7 +26,7 @@ tags:
   - project/hermes-aranea-autonomous-operations
   - agent/hermes
 created: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-09-18"
 ---
 
 # HERMES — ARANEA AUTONOMOUS OPERATIONS
@@ -246,7 +246,7 @@ La madurez de infraestructura se versiona de forma independiente de la madurez d
 | Nivel | Alcance | Gate de salida |
 |---|---|---|
 | **H0 — Observe** | inventario, topología, health, configuración no secreta, relaciones host/VM/LXC/service | Hermes puede reconstruir el estado real sin mutar y detectar drift básico |
-| **H1 — Backup & Storage** | backups, restore evidence, storage health, TrueNAS/PBS/targets relacionados según diseño vigente | backups verificables + restore drill + operación sin intervención shell humana habitual |
+| **H1 — Backup & Storage Administrative Enablement** *(corregido 2026-09-18)* | habilitación administrativa: identidades, permisos efectivos, rutas nativas y recuperación para TrueNAS/PBS/targets, certificadas read-only; la ejecución de backups/restores es del proyecto [[BACKUP-DR-OWNER-PROJECT]] | capacidades certificadas consumibles por R2 sin bootstrap manual rutinario — **H1 ENABLEMENT PASS 2026-09-18** |
 | **H2 — Proxmox Lifecycle** | inspect/start/stop/reboot/create/clone/configurar VMs/LXC dentro de scopes definidos | lifecycle completo certificado con target proof y rollback |
 | **H3 — Guest & Service Operations** | Linux, Windows, Docker, systemd, filesystem/config y restart de servicios | diagnóstico + reparación de un servicio DEV/test sin intervención humana |
 | **H4 — Provisioning** | levantar VMs/LXC/containers, instalar/configurar software, onboarding backup/observability y teardown controlado | servicio DEV/test provisionado y retirado reproduciblemente con evidencia |
@@ -380,6 +380,7 @@ views:
 
 ## 📆 Bitácora
 
+- **2026-09-18 — H1 ENABLEMENT PASS (mandato owner; corrección de alcance):** la Fase 3 queda como habilitación administrativa (no ejecución de backups): [[HERMES — Infrastructure Operations]] certificó read-only PVE/TrueNAS/PBS (SSH `ariadna`+sudo en 7/7 targets, API/WS funcionales, matriz de autoridad en esa nota), verificó el consumidor en sesión fresca y entregó handoff a R2. La ejecución de PBS/jobs/restores sigue en [[BACKUP-DR-OWNER-PROJECT]] (su R2 discovery ya corrió hoy con bundle owner propio). Propuesta de cambio contractual (gate por-acción → gates por clase) preparada y NO aplicada. Detalle: `80-agents/journal/logs/2026-09-18-h1-enablement.md`.
 - **2026-09-14** — Se reordena la implementación para minimizar intervención humana: bootstrap transitorio primero; luego autonomía MCP; después blockers Echo/Forge; luego Backup/DR; finalmente expansión H2-H6.
 - **2026-09-14** — Proyecto creado. Se separan formalmente las responsabilidades de administración integral del homelab y habilitación MCP para agentes. Se congela el principio de management path independiente y el rollout dual H0→H6 / A0→A5.
 - **2026-09-15** — **Bootstrap B4 PASS: Human Exit Gate cerrado.** Residual B3.3 (env del chain de kor) eliminado por Hermes sin owner — chain-cert PASS, rollback byte-identical y re-aplicación convergente demostrados. Las 9 condiciones del gate certificadas con evidencia runtime/durable (detalle: `80-agents/journal/logs/2026-09-15-b4-human-exit-gate-pass.md`). [[HERMES — Bootstrap & Self-Sufficiency]] pasa a **Review**: el bootstrap transitorio terminó. [[HERMES — Agent Access Operations]] asume la continuidad; los blockers reales de Echo/Forge son su primer workload A0-A5. El owner deja de hacer configuración MCP rutinaria.
