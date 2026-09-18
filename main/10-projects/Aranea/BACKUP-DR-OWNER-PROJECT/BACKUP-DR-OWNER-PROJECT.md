@@ -173,7 +173,7 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
 
 ## 🛑 Tareas bloqueadas por permisos / decisiones
 
-- AGENT-TASK-PBS-ADOPT: adoptar/integrar VM 180 existente (la creación quedó HISTORICAL — la VM ya existe, R0). Bloqueada por gate owner PBS + OWNER-TASK-MAINT-WINDOW (019).
+- AGENT-TASK-PBS-ADOPT: adoptar/integrar VM 180 existente (la creación quedó HISTORICAL — la VM ya existe, R0). Discovery gate 0-0.2 EJECUTADO 2026-09-18 (REUTILIZAR; accesos ariadna@ demostrados). Mutaciones de integración pendientes: Owner Action Bundle `~/aranea/work/r2-pbs-20260918/` (datastore/credenciales) + ventana 019.
 - AGENT-TASK-PBS-DATASTORE-INIT: bloqueada por OWNER-TASK-SECRET-ZERO (passphrase).
 - AGENT-TASK-RCLONE-REMOTE-SETUP: bloqueada por OWNER-TASK-OAUTH-SCOPE.
 - AGENT-TASK-VZDUMP-TIER0-CFG: bloqueada por OWNER-TASK-CRITICAL-VMS.
