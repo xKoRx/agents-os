@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: in-progress
-status_detail: "R2 discovery efectivo EJECUTADO (2026-09-18): accesos ariadna@ demostrados en PBS y 5 nodos (keys ~/.ssh/ariadna_pbs / ariadna_pve, sudo NOPASSWD); PBS 4.2.6-1 viva pero VIRGEN (0 datastores, 0 usuarios integración, 0 jobs); F-06 a nivel disco OK, gap de capacidad (38G interno vs ~600G retención completa tier 0) propuesto resolver con LV en la misma VG local-kronos; decisión gate 0.2 = REUTILIZAR. Mutaciones (LV+mkfs, usuario/token, pvesm add) = OWNER ACTION BUNDLE pendiente en ~/aranea/work/r2-pbs-20260918/owner-action-bundle.md (bloques A/B/C). Tickets 018/019 siguen todo. Piloto/restore NOT EXECUTED."
+status_detail: "R2 discovery efectivo EJECUTADO (2026-09-18): accesos ariadna@ demostrados en PBS y 5 nodos; PBS 4.2.6-1 viva pero VIRGEN (0 datastores/usuarios/jobs); decisión gate 0.2 = REUTILIZAR; cero mutaciones. Mutaciones (disco nuevo 300G vm-180-disk-1 + token backup@pbs + pvesm add aranea-pbs + piloto/restore aislado) = ESPERANDO Owner Action Bundle v2 corregido por owner: ~/aranea/work/r2-pbs-20260918/owner-action-bundle-v2.md (v1 SUPERSEDED). 650G descartado; 300G = solo piloto; retención final decide owner post-medición. Tickets 018/019 siguen todo."
 priority: P2
 progress: 0
 icon: 🖥️
