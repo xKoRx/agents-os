@@ -57,6 +57,7 @@ updated: "2026-09-13"
 
 - [[Loom — Foundation v0.1]] — subproyecto de agente: fundación + ejecución v0.1 (planificador único de implementación).
 - [[Loom — Design System & Storybook]] — subproyecto de agente: design system compartido + integración Storybook (mandato del owner 2026-09-17; entrega a review sin reabrir v0.1).
+- [[Loom — Product v0.2]] — subproyecto de agente: producto + identidad Notion-inspired con 2 subagentes (mandato del owner 2026-09-18).
 
 ```base
 filters:
@@ -81,6 +82,7 @@ views:
 - [x] Crear repo GitHub `xKoRx/loom` (branch `master`) + workspace local `~/go/src/github.com/xKoRx/loom` #owner/me #type/admin #area/personal ✅ 2026-09-13
 - [r] [[Loom — Foundation v0.1]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ implementación T01–T17 completa 2026-09-13 — a Review del owner
 - [r] [[Loom — Design System & Storybook]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ fundación completa 2026-09-17 (`feature/loom-design-system` `5f7270d`+`b0e24a2`, gates G1–G10 PASS) — a Review del owner
+- [ ] [[Loom — Product v0.2]] arrancar + seguimiento #owner/me #type/supervision #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
