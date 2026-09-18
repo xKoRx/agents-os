@@ -42,7 +42,7 @@ updated: "2026-09-18"
 
 Este workstream define el **management plane nativo** de Hermes. No depende del MCP Access Plane para reparar o administrar el mismo plano MCP ni los servicios subyacentes.
 
-**Objetivo inmediato vigente (mandatos owner 2026-09-18):** `H1 — Backup & Storage Administrative Enablement` CERRADO con `H1 ENABLEMENT PASS`, y `H2 — Proxmox Lifecycle Administrative Enablement` CERRADO con `H2 ENABLEMENT PASS` el mismo día. H0 cerró 2026-09-18 (`h0-20260918-r1`, PASS WITH DEBT); su SPEC queda HISTORICAL. Próximo nivel natural (H3) sin mandato vigente.
+**Objetivo inmediato vigente (mandatos owner 2026-09-18):** `H1 — Backup & Storage Administrative Enablement` CERRADO con `H1 ENABLEMENT PASS`, `H2 — Proxmox Lifecycle Administrative Enablement` CERRADO con `H2 ENABLEMENT PASS`, y `H3 — Guest & Service Administrative Enablement` EJECUTADO el mismo día con veredicto `H3 PARTIAL — LINUX ENABLED / WINDOWS BLOCKED` (Windows sin management nativo; owner bundle W1 pendiente). H0 cerró 2026-09-18 (`h0-20260918-r1`, PASS WITH DEBT); su SPEC queda HISTORICAL. Próximo nivel natural (H4) sin mandato vigente.
 
 ## 🧠 Contexto
 
