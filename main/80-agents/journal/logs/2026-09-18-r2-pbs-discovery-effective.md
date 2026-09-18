@@ -17,7 +17,8 @@ aliases:
   - "R2 PBS discovery efectivo 2026-09-18"
 confidence: verified
 source_session:
-source_feedbacks: []
+source_feedbacks:
+  - "[[2026-09-18-backup-dr-r2-session-feedback]]"
 share_scope: local
 load_policy: manual
 indexable: false

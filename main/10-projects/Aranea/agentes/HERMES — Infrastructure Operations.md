@@ -10,7 +10,7 @@ parent: "[[HERMES — ARANEA AUTONOMOUS OPERATIONS]]"
 sprint:
 start: 2026-09-14
 due:
-progress: 0
+progress: 30
 repo:
 jira:
 prs:
@@ -26,7 +26,7 @@ tags:
   - agent/hermes
   - domain/infrastructure
 created: "2026-09-14"
-updated: "2026-09-17"
+updated: "2026-09-18"
 ---
 
 # HERMES — Infrastructure Operations
@@ -36,11 +36,13 @@ updated: "2026-09-17"
 
 ## 🎯 Objetivo
 
-Dar a Hermes autoridad operativa **paulatina, verificable y recuperable** sobre Aranea hasta poder administrar de extremo a extremo el homelab: storage, backups, TrueNAS, Proxmox, nodos, VMs/LXC, Linux/Windows, Docker, lifecycle de servicios, provisioning y componentes de mayor impacto cuando sean habilitados explícitamente.
+**Habilitar (enablement) y certificar la capacidad administrativa de Ariadna/Hermes sobre Aranea**: descubrir y reconciliar identidades, certificar acceso/permisos/alcance y rutas de recuperación, documentar herramientas y límites, y preparar procedimientos y contratos operativos que los **proyectos ejecutores** (Backup/DR, y en su momento los demás) consumen sin bootstrap humano rutinario.
+
+**Separación enablement/execution (decisión owner 2026-09-18):** este workstream NO ejecuta backups, restores, lifecycle, provisioning ni ningún cambio operativo en los sistemas de otros proyectos. Ejecutar es del proyecto ejecutor (p.ej. [[BACKUP-DR-OWNER-PROJECT]] para Backup/DR); de aquí salen identidades, matrices de autoridad certificadas, rutas nativas y handoffs listos para consumir. El objetivo final de autonomía operativa del programa se conserva: lo que cambia es **quién ejecuta cada tarea y desde qué proyecto**.
 
 Este workstream define el **management plane nativo** de Hermes. No depende del MCP Access Plane para reparar o administrar el mismo plano MCP ni los servicios subyacentes.
 
-**Objetivo inmediato autorizado el 2026-09-17:** ejecutar H0 Observe/Inventory en una ventana de hasta 10 horas el 2026-09-18. El plan operativo vinculante está en `## 🧭 H0 — Plan de ejecución 2026-09-18` de ESTA nota: no crear otro planner ni volver a diseñar H0.
+**Objetivo inmediato vigente (mandato owner 2026-09-18):** `H1 — Backup & Storage Administrative Enablement` — certificación administrativa read-only de Proxmox/TrueNAS/PBS, corrección de alcance del roadmap y handoff a Backup/DR R2. H0 cerró 2026-09-18 (`h0-20260918-r1`, PASS WITH DEBT); su SPEC queda HISTORICAL.
 
 ## 🧠 Contexto
 
@@ -119,19 +121,19 @@ El conocimiento existente de Backup/DR se reutiliza desde [[BACKUP-DR-OWNER-PROJ
 
 **Gate:** un agente fresco puede diagnosticar dónde vive un servicio y qué management path usar sin preguntar al owner por datos ya documentados.
 
-### H1 — Backup & Storage
+### H1 — Backup & Storage Administrative Enablement *(redefinido 2026-09-18; el texto anterior que ordenaba ejecutar backups quedó HISTORICAL — ver change log)*
 
-**Objetivo:** Hermes opera protección y recovery básico usando el diseño vigente.
+**Objetivo:** Ariadna dispone de identidades, herramientas, permisos efectivos, rutas nativas de administración, recuperación independiente y documentación suficiente para que [[BACKUP-DR-OWNER-PROJECT]] utilice esas capacidades **sin bootstrap humano rutinario**. H1 NO implica que existan backups, jobs, retención o restores certificados: eso es ejecución de Backup/DR (R2+).
 
-- leer y reconciliar [[BACKUP-DR-OWNER-PROJECT]];
-- ejecutar/verificar backups dentro del scope aprobado;
-- health de targets/storage;
-- detectar jobs fallidos o cobertura incompleta;
-- validar evidencia de restore;
-- ejecutar restore drill acotado;
-- registrar findings y drift en Agents-OS.
+Tareas de habilitación (reemplazan las I2.1–I2.5 ejecutoras originales):
 
-**Gate:** la operación normal de backup/restore evidence no requiere shell humana habitual.
+- reconciliar los accesos administrativos instalados (PVE/TrueNAS/PBS) con evidencia read-only y matriz de autoridad;
+- certificar conectividad, autenticación y autoridad efectiva por familia (G1/G2/G3), distinguiendo `CONNECTIVITY != AUTHENTICATION != AUTHORITY != OPERATIONAL CERTIFICATION`;
+- certificar desde sesión fresca que el consumidor real (Ariadna) resuelve canales sin owner ni secretos en el prompt (G4);
+- consumir la lista de necesidades administrativas de Backup/DR y producir handoff consumible por R2;
+- identificar capacidades realmente faltantes (owner bundle sólo ante bloqueo demostrado) y dependencias futuras.
+
+**Gate:** `H1 ENABLEMENT PASS` — el alcance administrativo demostrado permite a Backup/DR consumirlo sin bootstrap manual rutinario. Variantes honestas: `PASS WITH LIMITATIONS`, `PARTIAL`, `BLOCKED` según impacto demostrado. No se certifica capacidad por inferencia.
 
 ### H2 — Proxmox Lifecycle
 
