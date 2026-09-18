@@ -69,6 +69,16 @@ _No aplica — subproyecto de ejecución; no crea hijos._
 > - [x] Integración manager (App.vue sidebar, style.css dedup, labels Relaciones, dist) #owner/agent #type/dev #area/personal ✅ 2026-09-18 (`d5c649c`+`0cc5ce6`+`0a71272`)
 > - [x] Gates integrales + revisión visual navegador real + corrección auditoría externa integrada #owner/agent #type/dev #area/personal ✅ 2026-09-18 (todos PASS; `e15c224`/`9abf6e5` preservados)
 > - [x] Entrega al owner (RESULT + evidencias + guías de review) #owner/agent #type/dev #area/personal ✅ 2026-09-18 — a Review del owner
+> - [/] **v0.2.1 — Estabilización + certificación técnica** (mandato dirección técnica 2026-09-18, mismo día): Gate inicial ownership/concurrencia #owner/agent #type/dev #area/personal ✅ 2026-09-18 (worktrees A/B limpios e integrados, único manager integrador sobre `feature/loom-v02`)
+> - [/] v0.2.1 — Fix obligatorio Breadcrumbs (NoteView usa directorio padre real del DocumentID, no `folderBreadcrumbs` sobre la ruta sin extensión) + regresiones #owner/agent #type/dev #area/personal
+> - [ ] v0.2.1 — Fix obligatorio Frontmatter (no presentar `frontmatterToYamlish()` como texto original; atributos estructurados + etiqueta de datos reconstruidos) + tests #owner/agent #type/dev #area/personal
+> - [ ] v0.2.1 — Auditoría integral del producto (7 rutas, deep links, estados vacíos/error, links rotos, controles muertos) + correcciones #owner/agent #type/dev #area/personal
+> - [ ] v0.2.1 — Product polish Notion-inspired (sidebar, densidad, tipografía, inspector, cards, search) con stories/tests/consumidores actualizados #owner/agent #type/dev #area/personal
+> - [ ] v0.2.1 — Accesibilidad verificada por interacción real (keyboard, foco, shortcuts; gates imposibles → NO VERIFICADO con evidencia) #owner/agent #type/dev #area/personal
+> - [ ] v0.2.1 — Security review (`/api/v1/tree` invariantes, v-html trust boundaries, SearchResult injection tests) #owner/agent #type/dev #area/personal
+> - [ ] v0.2.1 — Gates de regresión sobre SHA final (go test/race/vet/fmt, typecheck, vitest, builds, smoke, e2e, live-refresh, G9) #owner/agent #type/dev #area/personal
+> - [ ] v0.2.1 — Validación visual navegador real (1280×800, 1440×900, 1920×1080; capturas sanitizadas publicables) #owner/agent #type/dev #area/personal
+> - [ ] v0.2.1 — Publicación `origin/feature/loom-v02` (push normal, secret scan del diff, sin merge a master) + RESULT v0.2.1 #owner/agent #type/dev #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
