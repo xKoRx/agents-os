@@ -97,6 +97,28 @@ Cadena demostrada por familia: `CONNECTIVITY ✓ < AUTHENTICATION ✓ < AUTHORIT
 
 **Recuperación independiente:** todas las identidades SSH viven en `~/.ssh/` de hermes-vm (`ariadna_pve`, `ariadna_truenas`, `ariadna_pbs`; fingerprints en evidencia) — no dependen del MCP Access Plane. **Revocación observable:** `authorized_keys` por host (option `from=` restringe a hermes-vm en PVE/PBS; TrueNAS sin restrict), token PVE eliminable vía `pveum` (owner), api-key TrueNAS eliminable vía UI/owner. **Expiración:** token `expire=0` (sin expirar; rotación = decisión owner), keys sin fecha de expiración.
 
+## 🔐 Matriz de autoridad H2 (2026-09-18, Proxmox lifecycle — clasificación read-only, sin ejercer mutaciones)
+
+Auditoría en vivo 5/5 nodos (20:41–21:02 UTC): PVE 8.4.20 en todos, quorum 5/5, 59 guests verificados vivos (39 qemu + 20 lxc, exacto vs inventario H0), 10 storages, HA sin recursos, `datacenter.cfg` vacío (defaults), sudoers `90-ariadna-pve` NOPASSWD en 5/5, llave `from=192.168.31.122` presente en todos. Permisos efectivos contrastados usuario↔token por `pveum user/token permissions`: idénticos (`VM.Audit`+`VM.Backup` en `/vms`, propagate). API sondeada con 19 GET declarados como read-intent. **Capacidad del token API (`ariadna@pve!backup-dr`) ≠ capacidad SSH (`ariadna` + sudo root-equivalent):** el token sólo lee per-VM; todo lifecycle existe vía SSH y queda NO EJERCIDO por diseño de este carril.
+
+| Familia | Operaciones clave | Permiso API requerido (según PVE 8.4) | Efectivo demostrado | Alternativa SSH/sudo | Estado habilitación |
+|---|---|---|---|---|---|
+| A — Descubrimiento/inspección/estado | cluster/resources, version, config+status per-VM, Ceph health, storages, ACL/roles, snapshots existentes | `VM.Audit` (/vms) | 200 reales API + SSH — **EJERCIDO**; node-status 403 y lecturas cluster-level por SSH | `qm/pct list/config/status`, `ceph -s`, `pveum`, `storage.cfg` | AUTHORIZED_AND_VERIFIED (lecturas) |
+| B — Power lifecycle | start/stop/shutdown/reboot VM+LXC, consola | `VM.PowerMgmt` | NOT_PROVEN (no ejercido; jamás inferido de VM.Audit) | `qm/pct start|stop|shutdown|reboot` (root-equivalent disponible) | AUTHORIZED_NOT_EXERCISED |
+| C — Config/recursos | CD/ISO, CPU/RAM, disco, red, options | `VM.Config.*` | NOT_PROVEN | `qm set/resize` (disponible) | AUTHORIZED_NOT_EXERCISED |
+| D — Creación/clonación | create, clone, template | `VM.Allocate`+`Datastore.AllocateSpace`; `VM.Clone` | NOT_PROVEN | `qm create/clone/template` (disponible; pool1 Ceph NEARFULL hoy = precaución de capacity) | AUTHORIZED_NOT_EXERCISED |
+| E — Migración/ubicación | migrate, move-disk, affinity | `VM.Migrate` + recursos en ambos nodos | NOT_PROVEN; foto: storages `local-sqx-*`/`local-kronos` LVM shared=0 (migrar = mover discos), pool1 RBD shared; HA vacío | `qm migrate/move-disk`, `ha-manager` (disponible) | AUTHORIZED_NOT_EXERCISED |
+| F — Eliminación/teardown | destroy VM/LXC | `VM.Allocate` | NOT_PROVEN y **vetado por contrato**: jamás sobre los 59 guests ni PBS 180; sólo recursos propios del ejecutor con doble target proof | `qm/pct destroy` (sin red de seguridad hoy: 0 backups, 0 snapshots) | OUT_OF_SCOPE salvo owner-gate |
+| G — Recovery/rollback | snapshot/rollback, restore, recuperación de acceso | `VM.Snapshot`/`VM.Snapshot.Rollback`; restore requiere Datastore en destino | NOT_PROVEN e **inaplicable hoy**: 0 snapshots verificados (108/111/123/135/145/180) y 0 jobs de backup; acceso: SSH 5/5 **EJERCIDO** | `qm snapshot/rollback`, `qmrestore` (post-R2); break-glass = consola owner | AUTHORIZED_NOT_EXERCISED (acceso: VERIFIED) |
+
+Hallazgo técnico (regla nueva para operadores): PVE **filtra por permiso** en `/storage`, `/nodes/{n}/storage`, `/pools` y `/cluster/tasks` devolviendo **200 con lista vacía** sin `Sys.Audit`/`Datastore.Audit`; mientras `/cluster/status`, `/cluster/backup`, `/cluster/ha` y `/nodes/{n}/status` dan 403 reales. Un 200-filtrado no prueba vacío real ni permiso efectivo.
+
+Discos de los sagrados SQX leídos: `backup=0` explícito en los 4 discos verificados (VM 108/111/123: 50G+600G cada una; worker-kronos 135 sin snapshots). Ceph: HEALTH_WARN (osd.0/osd.2 nearfull; pools pool1 y .mgr nearfull; 129 pgs active+clean; 834 GiB / 2.3 TiB usados).
+
+**Matriz completa (34 filas, por operación, con target/canal/riesgo/precondiciones/validación/rollback/recuperación/evidencia+timestamp):** `~/aranea/work/h2-enablement-20260918/h2_authority_matrix.csv` + probes crudos del mismo directorio. **Contrato del futuro operador:** [[proxmox-lifecycle-operator-contract]] (enablement-only; no autoriza operaciones). **G4 sesión fresca:** hijo aislado resolvió `sqx-hera` desde inventario (VM 123 @ hera, running), verificó estado vivo por API+SSH, clasificó operaciones por canal y demostró management independence sin tocar el guest ni usar secretos en el prompt — read-only completo.
+
+**Recuperación independiente:** SSH+sudo 5/5 (verificado hoy); si la API PVE cae, SSH opera todo; si SSH falla, consola PVE del owner (break-glass); si hermes-vm muere, `from=` de las llaves exige reinstalación por consola física del owner.
+
 ## 🔐 Matriz de authority previa (2026-09-17, H0 — HISTORICAL)
 
 La matriz incremental de H0 (wrapper `agent_ro`+`agent-read` 6/6, `mcps-ops` 26 containers, `daedalus-ops` sin sudo, APIs nativas "absent") queda **HISTORICAL**: las APIs nativas dejaron de estar absent con las identidades instaladas 2026-09-18 y certificadas arriba; el wrapper sigue válido como canal alternativo de observación. Detalle completo en la bitácora 2026-09-17 y change log G0.
