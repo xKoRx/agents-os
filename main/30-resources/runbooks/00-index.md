@@ -6,7 +6,7 @@ icon: 📋
 slug: "runbooks-index"
 area: "[[Personal]]"
 created: "2026-09-12"
-updated: "2026-09-17"
+updated: "2026-09-18"
 reviewed: "2026-09-17"
 aliases:
   - "runbooks index"

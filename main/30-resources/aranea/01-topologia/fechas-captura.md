@@ -8,7 +8,7 @@ aliases: []
 tags:
   - kind/doc
 created: 2026-08-10
-updated: 2026-08-10
+updated: 2026-09-18
 ---
 
 # Fechas de captura — honestidad documental
