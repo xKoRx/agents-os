@@ -1,6 +1,6 @@
 # Runbook — aranea-minio-mcp (`aranea-minio-ro`)
 
-Creado: 2026-09-17 (Parte 2 mcp-trio). Estado: ACTIVE (server + Cursor certificados; ZCode/Codex vía patcher kor).
+Creado: 2026-09-17 (Parte 2 mcp-trio). Estado: ACTIVE (server + Cursor certificados 2026-09-17; certificación funcional completa 3 consumidores 2026-09-18).
 
 ## Identidad
 
@@ -33,6 +33,7 @@ Creado: 2026-09-17 (Parte 2 mcp-trio). Estado: ACTIVE (server + Cursor certifica
 - unauth POST :3011/mcp → 401.
 - Smoke server: certificador `minio-cert.py` (workspace sesión) o init+tools/list+list_buckets vía mcp-smoke.py con bearer `< /opt/mcp/minio/runtime/proxy-secrets/daedalus-ro.bearer`.
 - Smoke consumer: entry `aranea-minio-ro` de `~/.cursor/mcp.json` con `${env:ARANEA_MINIO_MCP_RO_BEARER}`.
+- 2026-09-18 cert funcional 3 consumidores (Cursor/ZCode/Codex): `get_object` real 477 B con SHA256 propio `2d2dd8c7…03a3` y MD5 == ETag; mutaciones → "server is in read-only mode"; **403 IAM demostrado** en `sqx-strategies` (HTM RERUN-3) → owner action pendiente `~/aranea/work/trio-cert-20260918/owner-action-htm6182-minio-getobject.md` (grant puntual GetObject del ARN exacto, revocable).
 
 ## Rollback
 

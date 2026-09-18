@@ -95,6 +95,8 @@ mcp-proxy 6.7.16: POST sin `Content-Type: application/json` → 400; sin `Accept
 
 Patrón B2: resolver `/home/kor/.cursor/mcp.json` entry `aranea-temporal-ro`, interpolar `${env:ARANEA_TEMPORAL_MCP_RO_BEARER}`, bearer por stdin desde `mcps-ops 'sudo -n cat …bearer'` pipe a `ssh daedalus-ops 'python3 <smoke>.py'` — script de referencia en `~/aranea/work/mcp-trio/temporal-consumer-smoke.py` (hermes-vm). PASS = initialize + tools/list 28 + `temporal.namespace.list` devolviendo los 4 namespaces reales. Un Cursor ya corriendo NO re-absorbe la env var nueva sin restart del cliente (quirk conocido del chain KDE).
 
+- 2026-09-18: certificación funcional 3 consumidores (Cursor resolviento su `mcp.json` real + `${env:VAR}`/chain kor; ZCode/Codex runtime vía caps-map+chain) — `namespace.list` real contra 1.31.2, `NAMESPACE_NOT_ALLOWED` en temporal-system, mutadores absent, leak clean. Change log `2026-09-18-mcp-trio-functional-certification`.
+
 ## Rollback
 
 1. Entry Cursor: `mcp.json.bak-temporal-<ts>` en `hermes-managed/` (restaurar byte-identical).

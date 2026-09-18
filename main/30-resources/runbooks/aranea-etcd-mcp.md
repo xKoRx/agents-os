@@ -1,6 +1,6 @@
 # Runbook — aranea-etcd-mcp (`aranea-etcd-ro`)
 
-Creado: 2026-09-17 (Parte 2 mcp-trio). Estado: ACTIVE (server + Cursor certificados; ZCode/Codex vía patcher kor).
+Creado: 2026-09-17 (Parte 2 mcp-trio). Estado: ACTIVE (server + Cursor certificados 2026-09-17; certificación funcional completa 3 consumidores 2026-09-18).
 
 ## Identidad
 
@@ -31,6 +31,7 @@ Creado: 2026-09-17 (Parte 2 mcp-trio). Estado: ACTIVE (server + Cursor certifica
 - `docker ps --filter name=etcd-mcp` → ambos Up; unauth POST :3012/mcp → 401.
 - Probe real: `etcd_count_keys /echo/` → 75; `etcd_get_value /deployer-watcher/development/service/version` → `0.1.0`.
 - Negativos: `/demo/`, `/minio-example/` → prefix not in allowlist; keys secret-named → denied.
+- 2026-09-18 cert funcional 3 consumidores (Cursor/ZCode/Codex): count `/echo/`=75 y `/symphony/`=133, `list_keys` reales, `get_value` benigna (`0.1.0`) real, DENY branch `/deployer-watcher/development/minio` + `/demo/`, key inexistente → `found:false`; cero escrituras al cluster.
 
 ## Rollback
 
