@@ -24,8 +24,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Runbooks curados:** 21 (+1 superseded, 8 en `symphony/`); se incorporan MinIO y etcd 2026-09-17.
-- **Última ingesta:** 2026-09-17.
+- **Runbooks curados:** 22 (+1 superseded, 8 en `symphony/`); se incorpora `proxmox-lifecycle-operator-contract` 2026-09-18.
+- **Última ingesta:** 2026-09-18.
 - **Estado:** active.
 
 ## 📂 Catálogo
@@ -33,6 +33,7 @@ tags:
 | Runbook | Una línea | Dominio |
 |---|---|---|
 | [[30-resources/runbooks/hermes-linux-update-recovery|hermes-linux-update-recovery]] | Update/recovery de Hermes en Linux: systemd user, perfiles, mixed sys.modules, fleet marker, gateways y validación funcional. | Aranea/Hermes |
+| [[30-resources/runbooks/proxmox-lifecycle-operator-contract|proxmox-lifecycle-operator-contract]] | Contrato del futuro operador Proxmox H2: canales API/SSH, recursos protegidos, precondiciones, rollback y abort (enablement-only, no autoriza operaciones). | Aranea |
 | [[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]] | SSH Aranea: viewer/operator, `docker-echo-dev-operator` y evidence publisher Windows ACTIVE/CERTIFIED. | Aranea |
 | [[30-resources/runbooks/aranea-postgres-mcp|aranea-postgres-mcp]] | PostgreSQL RO/RW Aranea (Echo). | Aranea |
 | [[30-resources/runbooks/aranea-mongodb-mcp|aranea-mongodb-mcp]] | MongoDB RO/RW Aranea (Echo Forge). | Aranea |
