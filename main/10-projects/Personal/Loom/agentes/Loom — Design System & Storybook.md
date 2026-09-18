@@ -10,7 +10,7 @@ parent: "[[Loom]]"
 sprint:
 start: 2026-09-17
 due:
-progress: 0
+progress: 100
 repo: xKoRx/loom
 jira:
 prs:
@@ -43,13 +43,14 @@ cssclasses:
 
 ## 📊 Estado actual
 
-- **ITERACIÓN INICIADA (2026-09-17):** baseline verificado `848fb28` == origin/master, worktree clean; rama `feature/loom-design-system` creada. Inventario frontend completo (ver Bitácora). Implementación en curso.
+- **FUNDACIÓN ENTREGADA A REVIEW (2026-09-17):** rama `feature/loom-design-system` con 2 commits (`5f7270d` design system + `b0e24a2` fix smoke pre-existente) sobre `848fb28`; sin push ni merge (espera review del owner). Gates G1–G9 PASS con evidencia (ver Bitácora); G10 PASS con navegador real. Storybook 10.6 + addon-docs, 9 componentes compartidos con stories, tokens compartidos app↔catálogo, binario sin Storybook (G9 verificado). Tests 126/126. Tarea puente en Review.
+- **Insumo relevante:** durante la ejecución apareció en el repo el review UX/IA del owner (`specs/FEAT-LOOM-V01/UX-IA-REVIEW-V0.1.md`, untracked, baseline `848fb28`) — preservado sin tocar; valida los tokens existentes como base sana y lista pendientes (R1–R4, P1 búsqueda) que NO bloquean esta fundación.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| `xKoRx/loom` (**VERIFIED** 2026-09-17) | `feature/loom-design-system` | `848fb28f12e92f8220792e4ba55fc9b78571fd26` (master, cierre Foundation v0.1) | Mandato del owner 2026-09-17 "Loom Design System & Storybook Foundation" (§2, §4–§9, §11–§13, §15) — registrado en esta nota y en [[Loom]] | Esta nota § Tareas + contratos del repo `specs/FEAT-LOOM-V01/` vigentes (sin mutar) | **EXECUTING** |
+| `xKoRx/loom` (**VERIFIED** 2026-09-17) | `feature/loom-design-system` | `848fb28f12e92f8220792e4ba55fc9b78571fd26` (master, cierre Foundation v0.1) | Mandato del owner 2026-09-17 "Loom Design System & Storybook Foundation" (§2, §4–§9, §11–§13, §15) — registrado en esta nota y en [[Loom]] | Esta nota § Tareas + contratos del repo `specs/FEAT-LOOM-V01/` vigentes (sin mutar) | **DELIVERED — `5f7270d` + `b0e24a2`, a Review del owner** |
 
 - Política: ejecución en rama feature aislada; sin force push; sin merge a master sin autorización del owner; `make web` / `make build` / smoke / e2e no cambian de semántica. Los SPEC congelados de FEAT-LOOM-V01 no se reabren; esta iteración es aditiva (design system) con migración incremental.
 
