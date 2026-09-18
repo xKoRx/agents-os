@@ -135,60 +135,35 @@ Tareas de habilitación (reemplazan las I2.1–I2.5 ejecutoras originales):
 
 **Gate:** `H1 ENABLEMENT PASS` — el alcance administrativo demostrado permite a Backup/DR consumirlo sin bootstrap manual rutinario. Variantes honestas: `PASS WITH LIMITATIONS`, `PARTIAL`, `BLOCKED` según impacto demostrado. No se certifica capacidad por inferencia.
 
-### H2 — Proxmox Lifecycle
+### H2 — Proxmox Lifecycle *(enablement-only desde 2026-09-18)*
 
-**Objetivo:** Hermes administra lifecycle de VMs/LXC con scopes explícitos.
+**Qué habilitará este workstream:** permisos, herramientas, contratos y certificaciones para que el proyecto ejecutor opere `inspect/config/status`, `start/stop/reboot`, `create/clone` y cambios de resource/config con target proof, validación post-change y rollback. Este carril NO ejecuta lifecycle.
 
-- inspect/config/status;
-- start/stop/reboot;
-- create/clone cuando el scope esté aprobado;
-- resource/config changes acotados;
-- validación post-change;
-- rollback/recovery.
+**Gate:** matriz de autoridad H2 demostrada (permisos efectivos clasificados sin ejercerlos) + contratos/rollback disponibles para el ejecutor.
 
-**Gate:** lifecycle completo certificado sobre workloads no críticos antes de ampliar scope.
+### H3 — Guest & Service Operations *(enablement-only)*
 
-### H3 — Guest & Service Operations
+**Qué habilitará:** accesos Linux/Windows management, Docker/Compose, systemd, filesystem y canales de diagnóstico para que el servicio operativo correspondiente repare servicios dentro de guests. Este carril NO ejecuta repairs.
 
-**Objetivo:** Hermes diagnostica y repara servicios dentro de guests.
+**Gate:** rutas nativas por familia (Linux/Windows) certificadas + contratos de escalation definidos.
 
-- Linux SSH;
-- Windows management path;
-- Docker/Compose;
-- systemd/services;
-- filesystem/configuración;
-- logs/health;
-- restart/recovery;
-- verificación funcional post-repair.
+### H4 — Provisioning *(enablement-only)*
 
-**Gate:** reparar un servicio DEV/test roto end-to-end sin intervención humana.
+**Qué habilitará:** autoridad y tooling de provisioning (VM/LXC/containers, OS/bootstrap, instalación/config, onboarding backup/observabilidad) para el proyecto ejecutor. Este carril NO provisiona.
 
-### H4 — Provisioning
+**Gate:** identidad/token con scope de provisioning clasificado + flujo de onboarding documentado, sin ejecutar.
 
-**Objetivo:** Hermes puede levantar infraestructura nueva reproducible.
+### H5 — High-impact Infrastructure *(enablement-only)*
 
-- VM/LXC/containers;
-- OS/bootstrap;
-- instalación/configuración de software;
-- networking/config necesaria dentro del scope;
-- observabilidad y backup onboarding;
-- documentation/state registration.
+**Qué habilitará:** certificaciones de autoridad para networking, cluster/storage de mayor blast radius y operaciones host-level críticas, cada familia con recovery demostrado, authority específica y criterios abort/rollback, para uso del ejecutor autorizado.
 
-**Gate:** nuevo servicio DEV/test provisionado desde objetivo funcional hasta health/backup/documentación.
+**Gate:** por familia, autoridad clasificada y recovery path verificado — sólo lectura; la operación queda gated al proyecto ejecutor.
 
-### H5 — High-impact Infrastructure
+### H6 — Integrated Autonomy *(enablement-only)*
 
-**Objetivo:** habilitar progresivamente operaciones de mayor blast radius.
+**Qué habilitará:** contratos de coordinación multi-capa (handoffs, matriz de operadores, criterios de incidente) que permitan al programa coordinar incidentes y cambios usando los proyectos ejecutores y operadores especializados.
 
-Ejemplos potenciales: networking, cluster/storage operations, quorum-sensitive services, cambios host-level críticos.
-
-**Gate:** cada familia tiene recovery demostrado, authority específica y criterios de abort/rollback.
-
-### H6 — Integrated Autonomy
-
-**Objetivo:** Hermes coordina incidentes y cambios multi-capa usando operadores especializados.
-
-**Gate:** tareas habituales y recoveries previstos requieren intervención humana excepcional, no como paso normal del procedimiento.
+**Gate:** el conjunto H0–H5 certificado permite tareas multi-capa habituales sin intervención humana excepcional — demostrado por los ejecutores, no por este carril.
 
 ## 🤖 Operadores lógicos previstos
 
@@ -329,21 +304,21 @@ Tiempos son **timeboxes**, no promesas. Si los workers no pueden correr concurre
 - [x] I1.7 Ejecutar golden G4 desde sesión nueva con escenarios cross-layer y safety negatives #owner/agent #type/admin #area/aranea — DONE: G4 PASS (sesiones frescas CLI): G4.0 carga 3/3 MCPs (50 tools); G4.1 Linux PASS (postgresql→VM152@hades desde nombre lógico, estado vivo PG 17.6 `mcp_echo_prod_ro@echo`, sin contexto privado); G4.2 Windows ejecución PASS (publisher vivo vía mt5-kronos-operator: FRESH 7.2min/SYSTEM/PID 5496/0.2.100+SHA; clasificación del agente corregida por integrador a CONSUMER_PLANE_ONLY); G4.3 TrueNAS PASS (25.04.1, pools ONLINE 0 errores, secciones citadas); G4.4 negativos 3/3 (NOT_FOUND, AMBIGUOUS 114/125, POLICY_DENIED con sessions=0); management independence (`mcps-ops` durante 503 del plano), gateway legacy disabled
 - [x] I1.8 Auditar zero mutation/secrets, reconciliar canon, reportar H0 PASS/PASS WITH DEBT/PARTIAL/BLOCKED con evidencias + handoff H1 #owner/agent #type/admin #area/aranea — DONE: leak check CLEAN (sin valores de secretos en evidencia/vault); 3 mutaciones AUTO registradas fielmente por orden owner (config perfil, restart ssh-mcp, parche helper) — veredicto **H0 PASS WITH DEBT** (deuda no bloqueante, detalle en bitácora); handoff H1 en bitácora
 
-### I2 — H1 Backup & Storage (NO ejecutar en jornada H0)
+### I2 — H1 Backup & Storage Administrative Enablement (mandato 2026-09-18; reemplaza las I2.1–I2.5 ejecutoras del plan original, ahora HISTORICAL — ver change log)
 
-- [ ] I2.1 Cargar y reconciliar [[BACKUP-DR-OWNER-PROJECT]] sin rediseñarlo #owner/agent #type/admin #area/aranea
-- [ ] I2.2 Identificar authority faltante para backups/storage/restore #owner/agent #type/admin #area/aranea
-- [ ] I2.3 Certificar operación de backup/health dentro de scope aprobado #owner/agent #type/admin #area/aranea
-- [ ] I2.4 Ejecutar restore drill acotado y registrar evidencia #owner/agent #type/admin #area/aranea
-- [ ] I2.5 Declarar H1 PASS o blockers precisos #owner/agent #type/admin #area/aranea
+- [x] I2.1 Cargar y reconciliar [[BACKUP-DR-OWNER-PROJECT]] como consumidor (no rediseñarlo); consumir su lista de necesidades administrativas #owner/agent #type/admin #area/aranea — contrato/ownerships reconciliados; R2 discovery PBS ya ejecutado por ese carril hoy (referencia, no duplicación)
+- [x] I2.2 Reconciliar accesos instalados por target (5 PVE + TrueNAS + PBS): identidad, canal, auth, permisos efectivos — 7/7 targets con matriz completa; sin exposición de secretos #owner/agent #type/admin #area/aranea
+- [x] I2.3 Certificación read-only por familia G1/G2/G3 (PVE API+SSH, TrueNAS WS+SSH, PBS SSH+UI) con límites explícitos y cero mutaciones #owner/agent #type/admin #area/aranea — matriz de autoridad en `## 🔐 Matriz de autoridad H1 (2026-09-18)`
+- [x] I2.4 G4 sesión fresca Ariadna: canales cargados, resolución por inventario, consultas read-only por familia, independencia del MCP #owner/agent #type/admin #area/aranea — G4.0/G4.1/G4.3 PASS; G4.2 PARTIAL (ver matriz)
+- [x] I2.5 Handoff H1 → Backup/DR R2 + clasificación de gaps (owner bundle sólo ante bloqueo demostrado) + veredicto del gate #owner/agent #type/admin #area/aranea — handoff en `80-agents/journal/logs/2026-09-18-h1-enablement.md`; veredicto: **H1 ENABLEMENT PASS (con límites explícitos)**
 
-### I3 — Expansión H2→H6 (NO ejecutar en jornada H0)
+### I3 — Expansión H2→H6 (habilitación only; ningún nivel autoriza operaciones desde este carril)
 
-- [ ] I3.1 Planificar H2 Proxmox lifecycle sólo después de H1 #owner/agent #type/admin #area/aranea
-- [ ] I3.2 Planificar H3 guest/service operations sólo con management paths certificados #owner/agent #type/admin #area/aranea
-- [ ] I3.3 Planificar H4 provisioning con onboarding a backup/observability/documentación #owner/agent #type/admin #area/aranea
-- [ ] I3.4 Mantener H5 high-impact gated hasta aprobación explícita del owner #owner/agent #type/admin #area/aranea
-- [ ] I3.5 Definir criterio medible de H6 sólo después de escenarios reales repetidos #owner/agent #type/admin #area/aranea
+- [ ] I3.1 H2: matriz de autoridad Proxmox lifecycle (clasificar sin ejercer) + contratos/rollback para el ejecutor #owner/agent #type/admin #area/aranea
+- [ ] I3.2 H3: rutas nativas Linux/Windows management certificadas + contratos de escalation #owner/agent #type/admin #area/aranea
+- [ ] I3.3 H4: identidad/scope de provisioning clasificado + flujo de onboarding backup/observabilidad documentado #owner/agent #type/admin #area/aranea
+- [ ] I3.4 H5: mantener high-impact gated hasta aprobación explícita del owner; sólo clasificación de autoridad por familia #owner/agent #type/admin #area/aranea
+- [ ] I3.5 H6: definir criterio medible de integración sólo después de escenarios reales repetidos por los ejecutores #owner/agent #type/admin #area/aranea
 
 ## 📆 Bitácora
 
