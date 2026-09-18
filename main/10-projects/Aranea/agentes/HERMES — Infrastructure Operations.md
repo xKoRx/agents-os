@@ -113,6 +113,29 @@ Auditoría en vivo 5/5 nodos (20:41–21:02 UTC): PVE 8.4.20 en todos, quorum 5/
 
 Hallazgo técnico (regla nueva para operadores): PVE **filtra por permiso** en `/storage`, `/nodes/{n}/storage`, `/pools` y `/cluster/tasks` devolviendo **200 con lista vacía** sin `Sys.Audit`/`Datastore.Audit`; mientras `/cluster/status`, `/cluster/backup`, `/cluster/ha` y `/nodes/{n}/status` dan 403 reales. Un 200-filtrado no prueba vacío real ni permiso efectivo. Negativo G4 (21:02 UTC): `POST /nodes/hera/qemu/123/status/start` y `/shutdown` con el token → **403 `VM.PowerMgmt`** (denegación de mutación demostrada por read-intent, sin ejecutar nada).
 
+## 🔐 Matriz de autoridad H3 (2026-09-18, guests & services — clasificación read-only, cero mutaciones)
+
+Sondeos en vivo 23:14–23:31 UTC sobre canales nativos (sin instalar nada): canales H1 revalidados 4/4 (sudo NOPASSWD truenas/pbs/mcps; daedalus `hermes-ops` sin sudo, consistente H0); `cluster/resources` revalidado exacto (59 = 39 qemu + 20 lxc = 42 running + 17 stopped). Hallazgos clave: (1) **canal nativo host-mediated** `qm guest cmd` verificado vivo en 111/118/123/135/138 (get-osinfo completo en sqx-hera 123 Ubuntu 24.04.3 y worker-kronos 135 Windows 10 IoT LTSC 2024) — disponible sólo donde `agent: 1` (vm128/155/154 verificados sin agent); (2) Docker en mcps administrable por nativo vía `sudo docker` (26 contenedores leídos; `hermes-ops` NO en grupo docker); (3) `worker-kronos\echo-dev` es **usuario estándar**: WMI/CIM denegado (0x80041003), Task Scheduler-CIM denegado ⇒ Windows sin management nativo.
+
+| Target | VMID | Tipo/Nodo | Canal | Identidad | Autoridad demostrada (read-only) | Dependencia MCP | Estado H3 |
+|---|---|---|---|---|---|---|---|
+| mcps (plano MCP) | 113 | lxc/hades | SSH `mcps-ops` nativo | hermes-ops + sudo | docker ps 26 LEÍDO (vía sudo), systemd LEÍDO | ninguna | VERIFIED (Linux mgmt + Docker read) |
+| daedalus (.75, Forge DEV) | 141 | lxc/hades | MCP `docker-echo-dev-operator` (root DEV, certs 09-13/17 vigentes); nativo `daedalus-ops` SIN sudo/docker | hermes-ops (nativo) / root (MCP) | nativo: getent/id LEÍDOS, sudo DENIED | MCP sí (nativo NO) | ACCESS_NOT_PROVISIONED (nativo host-level) |
+| truenas | 145 | qemu/hades | SSH + WS FULL_ADMIN (H1) | ariadna + sudo | revalidado: sudo, servicios | ninguna | VERIFIED (revalidado) |
+| pbs | 180 | qemu/kronos | SSH (H1) | ariadna + sudo | revalidado: sudo, servicios | ninguna | VERIFIED (revalidado) |
+| hermes-vm | 118 | qemu/kronos | local/self `systemd --user` | runtime | 2 units running LEÍDAS; G4 ejercitó is-active/show | ninguna | VERIFIED |
+| sqx-hera | 123 | qemu/hera | `qm guest cmd` vía hera (sudo) + MCP operator sqx-hera | ariadna@pve / echo-dev | ping + get-osinfo LEÍDOS (agente vivo) | qm: ninguna | VERIFIED (host-mediated read) |
+| sqx-kronos / sqx-zeus | 111/108 | qemu/kronos,zeus | `qm guest cmd` (111) + MCP operator (certs vigentes) | ariadna@pve / echo-dev | ping LEÍDO (111); MCP no re-ejercido (cert 09-13 vigente) | qm: ninguna | VERIFIED (111) / AUTHORIZED_NOT_EXERCISED (108) |
+| worker-kronos | 135 | qemu/kronos | MCP viewer+operator + `qm guest cmd` vía kronos | echo-dev (std user) / ariadna@pve | whoami OK; viewer run DENIED; CIM DENIED; qm guest cmd LEÍDO | ambos | PARTIAL (consumer+inspección OK; admin NOT CERTIFIED) |
+| kafka-kronos (muestra brokers) | 138 | qemu/kronos | `qm guest cmd` vía kronos | ariadna@pve | ping LEÍDO (agente vivo) | ninguna | VERIFIED (host-mediated, limitado) |
+| echo PROD .71 / postgresql .152 | 140/152 | qemu/hades | MCP viewer `echo-runtime-prod` (cert 09-15 vigente) | echo-dev sin sudo | no re-ejercido (cert vigente) | sí (CONSUMER_PLANE) | AUTHORIZED_NOT_EXERCISED |
+| Guests stopped (inv) | 17 | mixto | — | — | no encendidos para certificar | — | STOPPED_EXPECTED |
+| Guests running sin canal propio | ~18 | qemu+lxc | consola owner; `qm guest cmd` sólo donde agent=1 | — | no elegibles en muestra | — | UNKNOWN/NO_CHANNEL |
+
+Matriz completa + superficies A–H: `~/aranea/work/h3-enablement-20260918/` (`h3_matrix.csv`, `h3_surfaces.csv`, `owner_bundle_draft.md`, `g4/`). Contratos del ejecutor: [[linux-container-operator-contract]], [[windows-operator-contract]], [[service-lifecycle-operator-contract]]. G4 sesión fresca: 5/5 casos PASS, `mcp_calls=0`, `mutations=0`, resolución por inventario, management independence demostrada (Linux y Docker 100% nativos). **Owner bundle único:** W1 (Windows admin nativa: usuario delegado + WinRM/OpenSSH scoped a .122), L1 opcional (daedalus docker-grupo/sudo scoped), L2 opcional (qemu-guest-agent en guests sin agent). Anomalía existente reconfirmada sin tocarla: sqx-hera conserva `unused0/unused1` (pool1 + local-lvm).
+
+**Recuperación independiente:** llaves nativas en `~/.ssh/` de hermes-vm (invulnerable al plano MCP); `qm guest cmd` como segunda vía de inspección de guests; consola PVE del owner como break-glass universal; publisher Windows sigue siendo la fuente certificada de superficie worker-kronos (freshness ≤15 min).
+
 Discos de los sagrados SQX leídos: `backup=0` explícito en los 4 discos verificados (VM 108/111/123: 50G+600G cada una; worker-kronos 135 sin snapshots). Ceph: HEALTH_WARN (osd.0/osd.2 nearfull; pools pool1 y .mgr nearfull; 129 pgs active+clean; 834 GiB / 2.3 TiB usados).
 
 **Matriz completa (34 filas, por operación, con target/canal/riesgo/precondiciones/validación/rollback/recuperación/evidencia+timestamp):** `~/aranea/work/h2-enablement-20260918/h2_authority_matrix.csv` + probes crudos del mismo directorio. **Contrato del futuro operador:** [[proxmox-lifecycle-operator-contract]] (enablement-only; no autoriza operaciones). **G4 sesión fresca:** hijo aislado resolvió `sqx-hera` desde inventario (VM 123 @ hera, running), verificó estado vivo por API+SSH, clasificó operaciones por canal y demostró management independence sin tocar el guest ni usar secretos en el prompt — read-only completo.
@@ -178,6 +201,8 @@ Tareas de habilitación (reemplazan las I2.1–I2.5 ejecutoras originales):
 
 **Gate:** rutas nativas por familia (Linux/Windows) certificadas + contratos de escalation definidos.
 
+**Resultado (2026-09-18):** `H3 PARTIAL — LINUX ENABLED / WINDOWS BLOCKED` — Linux/LXC/Docker(mcps)/systemd con canales nativos demostrados y contratos publicados ([[linux-container-operator-contract]], [[service-lifecycle-operator-contract]]); canal host-mediated `qm guest cmd` verificado vivo (incluye Windows 135); Windows sin management nativo (`WINDOWS NATIVE MANAGEMENT = NOT CERTIFIED`; spec única pendiente owner W1). G4 sesión fresca 5/5 PASS, `mcp_calls=0`. Matriz H3 arriba; owner bundle único en `~/aranea/work/h3-enablement-20260918/owner_bundle_draft.md`. `GUEST & SERVICE OPERATIONAL CERTIFICATION` queda explícitamente FUERA de este hito: la demuestra el proyecto ejecutor operando.
+
 ### H4 — Provisioning *(enablement-only)*
 
 **Qué habilitará:** autoridad y tooling de provisioning (VM/LXC/containers, OS/bootstrap, instalación/config, onboarding backup/observabilidad) para el proyecto ejecutor. Este carril NO provisiona.
@@ -222,6 +247,7 @@ Este workstream debe demostrar progresivamente escenarios reales, no sólo acces
 
 ## 📊 Estado actual
 
+- **H3 PARTIAL — LINUX ENABLED / WINDOWS BLOCKED — 2026-09-18 (mandato owner; cero mutaciones):** habilitación guests/servicios ejecutada read-only: canales nativos revalidados 4/4 (+self), inventario revalidado exacto (59=42+17), canal host-mediated `qm guest cmd` verificado vivo en 5 VMs (incluida Windows 135), Docker mcps leído por nativo (26 conts vía sudo), Windows: plano consumidor MCP OK + `echo-dev` usuario estándar (CIM denegado) ⇒ **WINDOWS NATIVE MANAGEMENT = NOT CERTIFIED**; matriz H3 (arriba) + superficies A–H (`h3_surfaces.csv`); 3 contratos del ejecutor publicados; G4 sesión fresca 5/5 PASS (`mcp_calls=0`, `mutations=0`); owner bundle único (W1 Windows admin, L1 daedalus docker opcional, L2 qemu-guest-agent opcional). Detalle y evidencia: `80-agents/journal/logs/2026-09-18-h3-guest-service-enablement.md` + `~/aranea/work/h3-enablement-20260918/`.
 - **H2 ENABLEMENT PASS — 2026-09-18 (mandato owner; cero mutaciones):** capacidad administrativa Proxmox lifecycle clasificada para las familias A–G sobre auditoría read-only en vivo (matriz H2 arriba, 34 operaciones), contrato del futuro operador publicado ([[proxmox-lifecycle-operator-contract]]), consumidor real verificado en sesión fresca (G4: resolución sqx-hera 123@hera API+SSH), management independence re-verificada, handoff entregado. La `PROXMOX LIFECYCLE OPERATIONAL CERTIFICATION` corresponde al proyecto ejecutor futuro. Detalle y evidencia: `80-agents/journal/logs/2026-09-18-h2-proxmox-enablement.md` + `~/aranea/work/h2-enablement-20260918/`.
 - **H1 ENABLEMENT PASS — 2026-09-18 (mandato owner; cero mutaciones):** alcance administrativo PVE/TrueNAS/PBS certificado read-only (matriz H1 arriba), consumidor real verificado en sesión fresca (G4), handoff entregado a Backup/DR R2. Detalle, límites y evidencia: `80-agents/journal/logs/2026-09-18-h1-enablement.md`.
 - **Workstream:** creado 2026-09-14; **H0 PASS WITH DEBT — 2026-09-18 (run h0-20260918-r1):** G0/G1/G3 heredados del preflight + G2 (5 familias) y G4 (sesiones frescas) certificados en ese run; veredicto completo, deuda y handoff en la bitácora de cierre.
@@ -353,7 +379,7 @@ Tiempos son **timeboxes**, no promesas. Si los workers no pueden correr concurre
 ### I3 — Expansión H2→H6 (habilitación only; ningún nivel autoriza operaciones desde este carril)
 
 - [x] I3.1 H2: matriz de autoridad Proxmox lifecycle (clasificar sin ejercer) + contratos/rollback para el ejecutor #owner/agent #type/admin #area/aranea — DONE 2026-09-18: 34 operaciones A–G (9 VERIFIED / 24 NOT_EXERCISED / 1 OUT_OF_SCOPE), contrato [[proxmox-lifecycle-operator-contract]], G4 fresco PASS, hallazgo 200-filtrado; evidencia `~/aranea/work/h2-enablement-20260918/`; veredicto H2 ENABLEMENT PASS — change log `2026-09-18-h2-proxmox-enablement`
-- [ ] I3.2 H3: rutas nativas Linux/Windows management certificadas + contratos de escalation #owner/agent #type/admin #area/aranea
+- [x] I3.2 H3: rutas nativas Linux/Windows management certificadas + contratos de escalation #owner/agent #type/admin #area/aranea — DONE 2026-09-18 con veredicto **H3 PARTIAL — LINUX ENABLED / WINDOWS BLOCKED**: Linux/LXC/Docker/systemd VERIFIED (canales nativos + `qm guest cmd` host-mediated), Windows PARTIAL (consumer MCP OK, admin NOT CERTIFIED), 3 contratos creados, G4 5/5 PASS, owner bundle único (W1/L1/L2); cero mutaciones — change log `2026-09-18-h3-guest-service-enablement`
 - [ ] I3.3 H4: identidad/scope de provisioning clasificado + flujo de onboarding backup/observabilidad documentado #owner/agent #type/admin #area/aranea
 - [ ] I3.4 H5: mantener high-impact gated hasta aprobación explícita del owner; sólo clasificación de autoridad por familia #owner/agent #type/admin #area/aranea
 - [ ] I3.5 H6: definir criterio medible de integración sólo después de escenarios reales repetidos por los ejecutores #owner/agent #type/admin #area/aranea
