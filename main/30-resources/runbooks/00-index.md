@@ -24,7 +24,7 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Runbooks curados:** 26 (+1 superseded, 8 en `symphony/`); se incorporan `proxmox-lifecycle-operator-contract`, `linux-container-operator-contract`, `windows-operator-contract`, `service-lifecycle-operator-contract` (2026-09-18) y `provisioning-operator-contract` (2026-09-18, H4).
+- **Runbooks curados:** 29 (+1 superseded, 8 en `symphony/`); se incorporan `proxmox-lifecycle-operator-contract`, `linux-container-operator-contract`, `windows-operator-contract`, `service-lifecycle-operator-contract` (2026-09-18) y `provisioning-operator-contract` (2026-09-18, H4); `high-impact-networking-dns-contract`, `cluster-node-maintenance-contract`, `ceph-storage-operations-contract` (2026-09-19, H5).
 - **Última ingesta:** 2026-09-18.
 - **Estado:** active.
 
@@ -38,6 +38,9 @@ tags:
 | [[30-resources/runbooks/windows-operator-contract|windows-operator-contract]] | Contrato del operador Windows H3+W1: admin nativa CERTIFICADA por SSH (ariadna-win, from=.122, host key pinneada) sobre worker-kronos VM 135 — alcance limitado a esa VM; canales, validación, revoke/rollback; flota Windows restante sin canal. | Aranea |
 | [[30-resources/runbooks/service-lifecycle-operator-contract|service-lifecycle-operator-contract]] | Contrato del futuro operador de servicios H3: systemd system/user, Docker/Compose, Task Scheduler, ownership del servicio, validación semántica y rollback (enablement-only). | Aranea |
 | [[30-resources/runbooks/provisioning-operator-contract|provisioning-operator-contract]] | Contrato del futuro operador de provisioning H4: rutas reales VM Linux (clon 117/120, ISO) y LXC (vztmpl debian-13), criterio de capacidad por storage (Ceph pool1 NO_GO nearfull), recursos protegidos, bootstrap/identidad, onboarding post-creación y teardown (enablement-only, no autoriza crear). | Aranea |
+| [[30-resources/runbooks/high-impact-networking-dns-contract|high-impact-networking-dns-contract]] | Contrato H5 del operador networking/DNS high-impact: OPNsense 130 (SPOF, sin recovery), Pi-hole, Tailscale 119, firewall PVE disabled; clasificación CLASS 1–3 y precondiciones (enablement-only). | Aranea |
+| [[30-resources/runbooks/cluster-node-maintenance-contract|cluster-node-maintenance-contract]] | Contrato H5 del operador de nodos/quorum: baseline corosync sin red dedicada, precondiciones GO, condiciones NO_GO y plantilla de mantenimiento (enablement-only, CLASS 3 owner-gated). | Aranea |
+| [[30-resources/runbooks/ceph-storage-operations-contract|ceph-storage-operations-contract]] | Contrato H5 del operador Ceph: baseline nearfull medido 3/3 MONs (pool1 87.26%), plan de resolución por riesgo ascendente, criterios GO/NO_GO y rollback (enablement-only, no ejecuta reparaciones). | Aranea |
 | [[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]] | SSH Aranea: viewer/operator, `docker-echo-dev-operator` y evidence publisher Windows ACTIVE/CERTIFIED. | Aranea |
 | [[30-resources/runbooks/aranea-postgres-mcp|aranea-postgres-mcp]] | PostgreSQL RO/RW Aranea (Echo). | Aranea |
 | [[30-resources/runbooks/aranea-mongodb-mcp|aranea-mongodb-mcp]] | MongoDB RO/RW Aranea (Echo Forge). | Aranea |
