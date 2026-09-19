@@ -1,0 +1,61 @@
+---
+type: agent_run
+schema_version: 1
+scope: session
+created: "2026-09-18"
+updated: "2026-09-18"
+area: "[[Aranea]]"
+project: "[[Echo — E-06 Reference Enrollment and Binding]]"
+application: "[[xKoRx/echo]]"
+entities:
+  - "[[Echo — E-06 Reference Enrollment and Binding]]"
+  - "[[Echo Forge]]"
+related:
+  - "[[AGENT-PLATFORM - MCP Access Plane]]"
+  - "[[aranea-minio-mcp]]"
+aliases: []
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash (zai-individual-coding-plan/GLM-5.3-Flash)
+model_source: host
+task_type: coding
+task_complexity: medium
+outcome: partial
+verification: run
+evaluator: agent
+user_rework: unknown
+source_session:
+load_policy: manual
+indexable: false
+index_priority: never
+tags:
+  - kind/agent-run
+  - scope/session
+---
+
+# Agent Run — 2026-09-18-zcode-glm-5.3-flash-e06-t21-fetch-contrast
+
+## Trabajo
+
+- **Objetivo:** Mandato E-06/T21 (4ª sesión, certificación física): el owner declaró MinIO desbloqueado y el mandato ordenó ejecutar la descarga REAL de los dos objetos y contrastar TODAS las rutas autorizadas actualmente documentadas antes de admitir bloqueo; FASE 2+ (exporter R2 → compilación → Version/E-04 → matriz §22) sólo con los bytes reales.
+- **Alcance atribuible a esta combinación superficie×modelo:** bootstrap Agents OS (base mínima + entidad E-06); preflight git de ambos repos (echo `feature/e06-reference-enrollment-binding` @ `fb9aabd1` == origin; forge `feature/e06-runtime-attestation-exporter-r2` @ `a1f62a6` == origin; worktrees limpios, dirty ajeno preservado); descarga real vía `aranea-minio-ro` (HeadObject/GetObject sobre A y B, presigned GET, GET anónimo upstream, listado completo `deploy`/`examples`); contraste de rutas de entrega en 5 hosts SSH (`mt5-kronos` recursivo `*b94f1400*`, `sqx-zeus`/`sqx-hera`/`sqx-kronos`, docker `192.168.31.75`, identidad funnel `kor`); clasificación de la matriz §22 por clase de gate; delta docs-only en echo (`6f870229`, push FF `fb9aabd1..6f870229`, HEAD==origin); actualización owner-action (§4 evidencia 4ª), entidad, agent_run y change_log.
+- **Artefactos afectados:** `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/{VERIFICATION,TASKS}.md` @ `6f870229`; `~/aranea/work/e06-t21-owner-action/owner-action-e06-t21-minio-getobject.md`; nota entidad E-06; esta nota; change_log `2026-09-18-e06-t21-fetch-contrast`.
+
+## Evidencia
+
+- **Validaciones ejecutadas:** HeadObject A → 403 `18D68D1C40DBA1A7`; GetObject A → 403 `18D68D4836A1BD95`; HeadObject B → 403 `18D68D8E2F920464`; GetObject B → 403 `18D68D8F624DD22A`; presigned GET (misma identidad) → 403 AccessDenied; GET anónimo upstream → 403 AccessDenied; ListBuckets = deploy+examples; `deploy` = sólo `worker/sqx/<versión>/`; `examples` = 13 fixtures 2025-08; `mt5-kronos` sin MQ5/SQX de `b94f1400` (sólo CSV + cache del tester); zeus/hera/kronos/docker sin copias de los 3 UUIDs; identidad funnel `kor` inaccesible (`.mc` 700 kor:kor; sudo POLICY_DENIED para rol operator); `git diff --check` limpio; push FF `fb9aabd1..6f870229` verificado.
+- **Resultado observable:** RESULT = **BLOCKED, causa exacta `READ_ONLY_ARTIFACT_FETCH_REQUIRED` (vigente)** — la concesión declarada por el owner no es observable desde ninguna ruta certificada de este agente; causa NO atribuida (sin diagnóstico IAM inventado). Matriz §22 clasificada: normativa CONTRACT/PG/SOURCE vigente (T11–T20) vs NOT_RUN físico con causa única; T21 NO PASS.
+- **Limitaciones de la evidencia:** FASE 2+ no iniciada (sin bytes no hay exporter R2 físico, ni compilación, ni Version/E-04, ni matriz física); identidad byte de A/B sigue pendiente del fetch real.
+
+## Evaluación
+
+- **Correctness:** 5 — cada ruta declarada inaccesible tiene evidencia fresca de esta sesión (RequestID, listado, búsqueda recursiva o POLICY_DENIED); el veredicto no se basa en documentación vieja.
+- **Autonomy:** 5 — el mandato se ejecutó hasta el límite de las rutas certificadas (descarga real + contraste total) sin pedir permiso ni reabrir auditorías; STOP sólo donde el alcance certificado termina.
+- **Efficiency:** 4 — el contraste de rutas fue obligatorio por el propio mandato; costo moderado de exploración multi-host justificado por la regla «sólo se admite bloqueo si TODAS las rutas fallan».
+- **Tool use:** 5 — sólo capacidades pre-autorizadas; cero cambios IAM/ACL/credenciales; cero secretos impresos (owner-action y configs revisadas con redacción de valores).
+- **Overall:** 5
+
+## Resultado
+
+- **Outcome:** partial — contraste completo ejecutado y persistido; la certificación física T21 sigue bloqueada por acceso a los artefactos reales; gates T11–T20, lane Forge R2 y MQL_COMPILE_C2 intactos; E-06 NO CLOSED.
+- **Rework posterior:** unknown
+- **Aprendizaje para comparar herramientas:** cuando el owner declara un gate desbloqueado pero la identidad del agente sigue denegada, la respuesta correcta no es re-discutir el diagnóstico histórico ni inventar causa IAM: es intentar la operación real, contrastar cada ruta certificada con evidencia fresca y entregar el error exacto con la acción mínima vigente.
