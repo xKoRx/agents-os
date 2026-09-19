@@ -179,7 +179,7 @@ GAP-ECHO-004 → **CLOSED**. El prerrequisito de observación runtime directo de
 | Observabilidad (Jaeger/OpenSearch/OTel; `docker-observability` en hades) | Targets MCP planeados no desplegados (OBS3) | `REQUIRED_LATER` |
 | Temporal | T5 deferred por decisión owner | `REQUIRED_LATER` (deferred) |
 | Kafka PROD / Flink PROD | Capabilities reservadas no creadas (KAFKA2-PROD, FLINK2-PROD) | `REQUIRED_LATER` (deferred) |
-| MinIO/S3 | Fuera del plane actual | `LEGACY_OR_UNUSED` (sin dependencia demostrada desde Echo) |
+| MinIO/S3 | En el plane desde 2026-09-17 (`:3011`); **RW full `aranea-minio-rw` desde 2026-09-18** (identidad = key owner; certificado server 4/4 + chain 6/6) | `CERTIFIED` (la lectura `LEGACY_OR_UNUSED` y el nombre `aranea-minio-ro` son históricos) |
 | MT4/MT5 (MetaEditor golden path) | Identidades re-verificadas hoy; compile golden certificado históricamente 2026-09-10, no re-ejecutado aquí | `REQUIRED_NOW` (base OK para CERT-F04-01) |
 
 ## Prohibiciones respetadas

@@ -78,10 +78,10 @@ El despliegue inicial registraba sólo `:3000`–`:3008` (SSH; PostgreSQL RO/RW;
 | `3008` | `aranea-flink-dev-admin` | Flink REST DEV, 22 tools, sin SQL; NO PROD |
 | `3009` | `aranea-observability-ro` | ARGUS Grafana/Prometheus/Loki, 22 tools RO; sin Jaeger toolset |
 | `3010` | `aranea-temporal-ro` | Temporal SQX, 28 tools RO, namespace allowlist, no mutadores |
-| `3011` | `aranea-minio-ro` | MinIO S3 RO, 9 tools listadas, IAM acotado `deploy/worker/sqx/*`+`examples`, backups denegados |
+| `3011` | `aranea-minio-rw` | MinIO S3 **RW** (2026-09-18 noche), 9 tools, identidad = key owner full (todos los buckets; put/delete reales certificados); ex `aranea-minio-ro` |
 | `3012` | `aranea-etcd-ro` | etcd RO, 4 tools, prefijos/secret-name filtrados; sin mutadores |
 
-`3000` es la excepción SSH, `3001`–`3012` siguen el boundary auth proxy/backend. La tabla registra certificación de familias (según runbooks); **NO prueba que Cursor, ZCode y Codex tengan individualmente las 13**. Cursor obtuvo 11 previas + nuevo trío Temporal/MinIO/etcd probado 3/3; normalización ZCode/Codex 10/10 al 2026-09-16, incorporaciones 3010–3012 pendientes de patcher/smoke con identidad `kor` según bitácora 2026-09-17. Confirmar herramientas en el cliente real antes de afirmar disponibilidad. Comprobar puertos vivos con `docker ps`+`ss -lntp` antes de asignar uno nuevo.
+`3000` es la excepción SSH, `3001`–`3012` siguen el boundary auth proxy/backend. La tabla registra certificación de familias (según runbooks); **NO prueba que Cursor, ZCode y Codex tengan individualmente las 13**. Cursor obtuvo 11 previas + nuevo trío Temporal/MinIO/etcd probado 3/3; normalización ZCode/Codex 10/10 al 2026-09-16, trío 3010–3012 incorporado por patcher kor el 2026-09-17 y runtime funcional certificado por chain 2026-09-18; **rename 3011 → `aranea-minio-rw` (2026-09-18 noche): Cursor aplicado, ZCode/Codex pendiente de patcher kor** (bearer sin cambio de valor). Confirmar herramientas en el cliente real antes de afirmar disponibilidad. Comprobar puertos vivos con `docker ps`+`ss -lntp` antes de asignar uno nuevo.
 
 ## Familias y contratos específicos
 

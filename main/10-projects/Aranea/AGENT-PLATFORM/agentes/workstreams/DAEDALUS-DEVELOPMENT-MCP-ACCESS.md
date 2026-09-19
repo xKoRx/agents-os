@@ -25,7 +25,7 @@ tags:
 - **Echo:** E-04 T21/AC-37 depende del golden Forge auténtico y cross-lane real; NO hay un fallo de permisos MCP documentado como causa inmediata. E-06 sigue su propio desarrollo/validación física, no se clasifica como bloqueo MCP por inferencia. Autoridad: [[Echo + Echo Forge — Deferred Certification Backlog]].
 - **Windows evidence:** resuelto `ACTIVE/CERTIFIED` para inspección privilegiada de `worker-kronos` mediante publisher SYSTEM y lectura no-admin; ya permitió certificar el rollout de la release `0.2.99`. El publisher NO otorga admin ni certifica automáticamente el flujo F-04; no solicitar otro seed por inercia. Autoridad: [[aranea-ssh-mcp]], backlog de certificación.
 
-No volver a mezclar "no existe la tool X" con "la fase Y está bloqueada por X". Una limitación de autoridad es un contrato de seguridad, NO un bloqueo real sin misión detenida que la requiera. Telegram, Jaeger MCP, MinIO RW, Temporal ops, etcd RW y Kafka/Flink PROD **NO SON BLOQUEOS DE ECHO/FORGE DEMOSTRADOS A ESTE CORTE**. No convertirlos en lista de tareas ni proponer implementarlos preventivamente.
+No volver a mezclar "no existe la tool X" con "la fase Y está bloqueada por X". Una limitación de autoridad es un contrato de seguridad, NO un bloqueo real sin misión detenida que la requiera. Telegram, Jaeger MCP, Temporal ops, etcd RW y Kafka/Flink PROD **NO SON BLOQUEOS DE ECHO/FORGE DEMOSTRADOS A ESTE CORTE**. No convertirlos en lista de tareas ni proponer implementarlos preventivamente. **MinIO RW dejó de ser pendiente el 2026-09-18 (noche):** existe como `aranea-minio-rw` (:3011, identidad = key owner full, certificado 4/4 server + 6/6 chain) por decisión owner — la herramienta NO debe volver a citarse como "MinIO RW pendiente".
 
 ## Semántica de evidencia
 
@@ -49,16 +49,16 @@ No volver a mezclar "no existe la tool X" con "la fase Y está bloqueada por X".
 | 3008 | `aranea-flink-dev-admin` | Flink DEV REST, 22 tools sin SQL; runtime Docker DEV usa SSH separado |
 | 3009 | `aranea-observability-ro` | Grafana/Prometheus/Loki ARGUS, 22 tools RO; sin Jaeger toolset |
 | 3010 | `aranea-temporal-ro` | 28 tools RO namespaces `sqx-dev`,`sqx`,`sqx-prop`; sin start/signal/cancel/terminate |
-| 3011 | `aranea-minio-ro` | lectura IAM scoped: List `deploy`,`examples`; Get `deploy/worker/sqx/*` y objetos autorizados de `examples`; sin Put/Copy/Delete; backups denegados |
+| 3011 | `aranea-minio-rw` | **RW full** (2026-09-18 noche): identidad = key owner, todos los buckets (put/get/delete/copy/presign); certificado server 4/4 + smoke chain kor 6/6. Ex `aranea-minio-ro` (lectura IAM acotada) — histórico |
 | 3012 | `aranea-etcd-ro` | cuatro tools RO; ocho prefixes allowlisted, nombres de secretos filtrados; sin mutadores; cluster sin TLS/auth requiere hardening separado |
 
 Los inventarios históricos de 9/10/11 capacidades no sustituyen este corte; comprobar runtime ante cambios posteriores. Los límites por capability se consultan en los runbooks, no se transforman en tickets sin uso probado.
 
 ## Estado de consumidores: deuda propia del plano, NO blocker de proyecto probado
 
-- **Cursor:** las 10 capacidades base certificadas anteriormente, Temporal añadida y smoke del trío Temporal/MinIO/etcd `3/3 PASS` el 2026-09-17. No confundir con un nuevo re-smoke total 13/13.
-- **ZCode:** baseline 10/10 al 2026-09-16; altas/smokes 3010–3012 pendientes de evidencia bajo identidad `kor` en la bitácora disponible.
-- **Codex:** baseline nativo 10/10 al 2026-09-16, `bearer_token_env_var`; altas/smokes 3010–3012 pendientes de evidencia bajo identidad `kor`.
+- **Cursor:** las 10 capacidades base certificadas anteriormente, Temporal añadida y smoke del trío Temporal/MinIO/etcd `3/3 PASS` el 2026-09-17. No confundir con un nuevo re-smoke total 13/13. **2026-09-18 noche:** entry renombrada a `aranea-minio-rw` (misma URL, bearer sin cambio de valor; smoke funcional RW 6/6 vía chain kor).
+- **ZCode:** baseline 10/10 al 2026-09-16; altas 3010–3012 aplicadas por patcher kor 2026-09-17 (shape) y runtime funcional certificado 2026-09-18 vía chain kor. **Rename minio → `aranea-minio-rw` pendiente de patcher kor** (stageado 2026-09-18 noche en `/tmp`; el valor del bearer no cambia, sólo nombre de entry/var).
+- **Codex:** baseline nativo 10/10 al 2026-09-16, `bearer_token_env_var`; runtime funcional 2026-09-18 vía chain kor. **Rename minio → `aranea-minio-rw` pendiente del mismo patcher kor.**
 
 Completar esos smokes si una sesión de ZCode/Codex requiere las tools nuevas. No declarar bloqueo Echo/Forge sólo por el pendiente documental; no afirmar PASS sin prueba individual. El patcher tri-client stageado se opera con autoridad autorizada sobre los archivos de `kor`; sin ampliar ACL ni imprimir bearer.
 
