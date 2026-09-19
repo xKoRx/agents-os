@@ -57,7 +57,7 @@ Clasificaciones usadas: `ENABLED` (canal+identidad+lectura demostrados), `ENABLE
 
 ## 🧭 Matriz de ownership y routing (NEED → ejecutor)
 
-Regla dura: **no existe proyecto ejecutor ⇒ `EXECUTOR_NOT_DEFINED`** — no se asigna silenciosamente a Infrastructure Operations. Infrastructure Operations habilita, certifica accesos y coordina; no ejecuta operaciones de otros dominios.
+Regla dura: **no existe proyecto ejecutor ⇒ `EXECUTOR_NOT_DEFINED`** — no se asigna silenciosamente a Infrastructure Operations. Infrastructure Operations habilita, certifica accesos y coordina; no ejecuta operaciones de otros dominios. Nota de navegación: los contratos de operador citados en esta matriz viven en `30-resources/runbooks/` (enlazados abajo y en el índice de runbooks). Las fichas de proyecto propuestas, si el owner aprueba crearlas, se materializan como notas `type: project` en `10-projects/Aranea/agentes/` desde `70-templates/` mediante el contrato ejecutable (`materialize_schema_note.py`, constitución regla 13) — no se crean por iniciativa del carril.
 
 | Necesidad (ejemplos reales) | Dominio | Proyecto ejecutor | Capacidades | Autoridad/gate | Contrato | Handoff hacia |
 |---|---|---|---|---|---|---|
