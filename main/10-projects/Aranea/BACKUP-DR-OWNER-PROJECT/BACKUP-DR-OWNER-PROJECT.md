@@ -12,7 +12,7 @@ slug: backup-dr-owner-project
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-18
+updated: 2026-09-19
 start: 2026-07-02
 due:
 progress: 25
@@ -181,7 +181,7 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
 ## 📅 Calendario recomendado
 
 > [!info] SUPERSEDED como cronograma (2026-09-17)
-> El calendario S1–S3 de julio quedó reemplazado por el roadmap por fases **R0–R8** con dependencias reales: ver `[[2026-09-16-R0-reconciliacion]]` §9 (autoridad de planificación). Estado actual: R0 DONE, R1 DONE (con deuda), D0 DONE, R1.5 DONE (gates owner vigentes), R2 gate owner.
+> El calendario S1–S3 de julio quedó reemplazado por el roadmap por fases **R0–R8** con dependencias reales: ver `[[2026-09-16-R0-reconciliacion]]` §9 (autoridad de planificación). Estado actual: R0 DONE, R1 DONE (con deuda), D0 DONE, R1.5 DONE (gates owner vigentes), R2 IN-PROGRESS (fail-closed PASS + piloto 7d ACTIVO desde 2026-09-19; falta 7/7 días con verify ok → decisión D).
 
 | Semana | Subproyectos |
 |---|---|

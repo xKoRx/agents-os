@@ -8,7 +8,7 @@ slug: backup-dr-index
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [kind/index, area/aranea, project/agents-os, topic/backup, topic/disaster-recovery]
 related: []
 cssclasses: wide

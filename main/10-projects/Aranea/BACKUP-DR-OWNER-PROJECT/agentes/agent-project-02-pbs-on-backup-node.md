@@ -13,7 +13,7 @@ slug: agent-project-02-pbs-on-backup-node
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-18
+updated: 2026-09-19
 tags:
   - kind/project
   - area/aranea
