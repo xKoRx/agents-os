@@ -563,9 +563,9 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - [ ] Certificar Engine MVP #owner/me #type/dev #area/personal
 
 ### Research Data Unblock v0.2 — en ejecución (2026-09-19)
-- [/] Preflight v0.2: SHA `0d6a635` verificado en `feature/research-strategies-v01`, árbol limpio, sin writers, suite global verde #owner/me #type/dev #area/personal
-- [ ] FASE A1: bundle persistente del journal real v0.1 (copia íntegra + manifiesto SHA-256 + `journal verify` sobre la copia + replay físico con digests comparados) sin borrar originales #owner/me #type/dev #area/personal
-- [ ] FASE A2: matriz de identidades NegRisk 30829 + Sports con faltantes clasificados (`NOT_OBSERVED|UNKNOWN|CONFLICT|UNSUPPORTED`) #owner/me #type/research #area/personal
+- [x] Preflight v0.2: SHA `0d6a635` verificado en `feature/research-strategies-v01`, árbol limpio, sin writers, suite global verde #owner/me #type/dev #area/personal
+- [x] FASE A1: bundle persistente del journal real v0.1 (copia íntegra + manifiesto SHA-256 + `journal verify` sobre la copia + replay físico con digests comparados) sin borrar originales #owner/me #type/dev #area/personal
+- [x] FASE A2: matriz de identidades NegRisk 30829 + Sports con faltantes clasificados (`NOT_OBSERVED|UNKNOWN|CONFLICT|UNSUPPORTED`) — `testdata/research-v02/IDENTITIES.md` #owner/me #type/research #area/personal
 - [ ] FASE B1: Gamma dirigido GET-por-ID dentro del ownership Gamma/Protocol/Capture/Catalog, sin catálogo paralelo #owner/me #type/dev #area/personal
 - [ ] FASE B2: contrato keyset investigado (OpenAPI + wire real); adapter mínimo con fixtures sólo si demostrado, si no `KEYSET_UNVERIFIED` #owner/me #type/dev #area/personal
 - [ ] FASE B3: prueba explícita de exhaustividad NegRisk (o `EXHAUSTIVENESS_UNKNOWN` con causa exacta); conversión DISABLED #owner/me #type/research #area/personal
