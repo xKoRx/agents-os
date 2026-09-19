@@ -17,7 +17,7 @@ tags:
   - area/echo
   - project/echo
 created: "2026-09-13"
-updated: "2026-09-18"
+updated: "2026-09-19"
 ---
 
 # Echo + Echo Forge — Deferred Certification Backlog
