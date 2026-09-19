@@ -1,25 +1,31 @@
 ---
 type: project
 schema_version: 1
-owner: me
+owner: agent
 root: false
 status: active
-priority: P2
+priority: P1
 area: "[[Personal]]"
-parent:
+parent: "[[Loom]]"
 sprint:
-start:
+start: 2026-09-18
 due:
-progress: 0
-repo:
+progress: 5
+repo: xKoRx/loom
 jira:
 prs:
-aliases: []
+aliases:
+  - Loom v0.4
+  - FEAT-LOOM-V04
+  - Workspace Model & UX Refinement
 tags:
   - kind/project
   - area/personal
+  - agent/owner
 created: "2026-09-18"
 updated: "2026-09-18"
+cssclasses:
+  - wide
 ---
 
 # Loom — Product v0.4
@@ -27,34 +33,34 @@ updated: "2026-09-18"
 %% Naming: Loom — Product v0.4 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Loom — Product v0.4
-> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
-> _parent / sprint / repo / jira / prs son opcionales._
-
-> [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
-> `owner: me` → **proyecto humano**: la iniciativa/esfuerzo que conduces tú.
-> `owner: agent` → **proyecto de agente**: un curro delegado, con detalle pesado que escribe y sigue un agente. Casi siempre es subproyecto de uno humano y vive en la subcarpeta `agentes/` de su iniciativa.
-> `root: true` solo en **iniciativas raíz** (sin `parent`). Todo subproyecto debe setear `parent`; si no, aparece como huérfano en [[Panel de Proyectos]].
->
-> **Tarea puente:** cuando este proyecto es `owner: agent`, en su proyecto **padre** debe existir UNA sola tarea humana que lo representa (arrancar + seguimiento). Así tu cockpit ve una línea por curro delegado, no las tareas internas del agente. Ejemplo, en el padre:
-> `- [ ] [[Loom — Product v0.4]] arrancar + seguimiento #owner/me #type/supervision #area/personal`
+> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Loom]] · **Repo:** `xKoRx/loom` (**VERIFIED** 2026-09-18; base `feature/loom-v03 @ 5636e4f` RC2 certificada; master `848fb28` intacto)
+> Subproyecto de agente: **Workspace Model & UX Refinement** — mandato de Dirección Técnica 2026-09-18. Convierte la experiencia saturada por el volumen global del vault en un workspace personal de foco: hotfix visual P0 (ancho de lectura Comfortable/Wide, scrollbars, overflow), contrato operativo Agents-OS documentado (sin editar el schema canónico), fixtures realistas materializados con el materializador canónico, Home orientada a foco, vista Today read-only sobre fixtures y contrato de writer como entrega separada. Sin migración del vault, sin escritura, sin merge a master.
 
 ## 🎯 Objetivo
 
-- 
+- Partir de la RC2 v0.3 certificada (`5636e4f`) y transformar la experiencia en un workspace personal: foco, planificación diaria y separación explícita del trabajo humano y delegado.
+- P0 visual: auditar en navegador real y corregir ancho excesivamente limitado del Markdown, espacio desperdiciado a la derecha, layout responsive, scroll horizontal global, scrollbar blanca de la sidebar en dark y scrollbars de paneles; ancho de lectura Comfortable/Wide por tokens. Sin modificar documentos.
+- Contrato operativo Agents-OS documentado por separado (lifecycle de proyecto/tarea, responsabilidad, review humana, foco personal, plan diario, evidencia de ejecución de agente) reutilizando campos y estados existentes; sin nuevos estados de Project para favoritos/foco; modificaciones sólo como propuesta de contrato.
+- Fixtures realistas sintéticos y privados (7 proyectos, subproyectos de agente, tareas del owner, delegadas, reviews, blocked/waiting, backlog amplio, pausados/completados, dos planes diarios consecutivos, notas y relaciones) materializados con el materializador canónico y lint cuando corresponda; sin copiar notas privadas del owner.
+- Home orientada a foco (plan de hoy, proyectos seleccionados explícitamente, reviews y bloqueos relevantes, delegado resumido, continuar trabajando); catálogo completo en Projects/Tasks; la selección de foco no modifica `status`; localStorage etiquetado como no sincronizado.
+- Vista Today read-only funcional sobre fixtures + contrato del writer como entrega separada (sin botones que aparenten persistir cambios).
+- Entregable: UNA versión integrada y verificable en `feature/loom-v04`, sin merge a master. RESULT objetivo: READY_FOR_OWNER_UX_REVIEW.
 
 ## 📊 Estado actual
 
-- 
+- **EN EJECUCIÓN (2026-09-18):** baseline verificado `feature/loom-v03 @ 5636e4f` == origin (RC2 hotfix certificada, a Review del owner); rama `feature/loom-v04` creada desde ese SHA; contratos `specs/FEAT-LOOM-V04/` por congelar en esta iteración. Restricciones del mandato vigentes: no migración masiva del vault, no implementar escritura, no merge a master, no grafo global.
 
 ## 🧱 Entrega de desarrollo
 
-%% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
-
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
+| `xKoRx/loom` (**VERIFIED** 2026-09-18) | `feature/loom-v04` | `5636e4f` (RC2 v0.3 certificada, sin merge a master) | Mandato de Dirección Técnica "LOOM — Workspace Model & UX Refinement" 2026-09-18 | `specs/FEAT-LOOM-V04/` (OPERATIONAL-CONTRACT + CONTRACT-PROPOSALS + SPEC) | **IN EXECUTION** |
+
+- Política heredada: rama de integración de iteración; sin force push/reset --hard/clean destructivo; sin merge a master; APIs nuevas aditivas y read-only; dist productivo consolidada sólo en esta rama; fixtures sintéticos viven fuera del vault real (workspace `loom-v04-evidence/`).
 
 ## 🧩 Subproyectos
+
+_No aplica — subproyecto de ejecución; no crea hijos._
 
 ```base
 filters:
@@ -72,17 +78,17 @@ views:
 
 ## ✅ Tareas
 
-> [!note]+ Ownership y tarea puente
-> `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala.
-> El board es **adaptativo según `owner` del frontmatter**:
-> - **Proyecto humano** (`owner: me`): muestra tus tareas y las **tareas puente** (`#type/supervision`) que representan proyectos de agente. Las tareas de agente **no** aparecen acá; viven en su propio proyecto.
-> - **Proyecto de agente** (`owner: agent`): muestra las tareas del agente.
-
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/personal
-> - [ ] tarea delegada #owner/agent #type/dev #area/personal
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/personal
+> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. %%
+> - [x] Preflight + baseline: `5636e4f` verificado, rama `feature/loom-v04` creada, subproyecto materializado + tarea puente en [[Loom]] #owner/agent #type/dev #area/personal ✅ 2026-09-18
+> - [/] S1 — Hotfix visual P0: auditoría en navegador real (ancho Markdown, scroll horizontal, scrollbars dark/light) + ancho de lectura Comfortable/Wide por tokens + pruebas con notas complejas y fixtures #owner/agent #type/dev #area/personal
+> - [ ] S2 — Contrato operativo Agents-OS: lifecycles, responsabilidad, review humana, foco personal, plan diario, evidencia de agente; propuestas de contrato sin editar el schema canónico #owner/agent #type/research #area/personal
+> - [ ] S3 — Fixtures realistas: 7 proyectos + subproyectos de agente + tareas owner/delegadas + reviews + blocked/waiting + backlog + pausados/completados + 2 planes diarios; materializador canónico + lint; identidad de tareas documentada #owner/agent #type/dev #area/personal
+> - [ ] S4 — Home orientada a foco (plan de hoy, foco explícito sin tocar status, reviews/bloqueos relevantes, delegado resumido, continuar) + catálogo completo en Projects/Tasks #owner/agent #type/dev #area/personal
+> - [ ] S5 — Vista Today read-only sobre fixtures (referencias estables, progreso, arrastre, historial) + contrato del writer como entrega separada #owner/agent #type/dev #area/personal
+> - [ ] S6 — Evidencia visual: Home/Tasks/Projects/Today en dark/light, 1280×800 + 1440×900 + ventana angosta, Storybook, contact sheets legibles #owner/agent #type/dev #area/personal
+> - [ ] Gates integrales + recorrido del mandato en navegador real #owner/agent #type/dev #area/personal
+> - [ ] Entrega al owner (RESULT READY_FOR_OWNER_UX_REVIEW + evidencias + guías de review) #owner/agent #type/dev #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -99,46 +105,39 @@ board(primary);
 if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
-%% Rollup de iniciativa — descomentar solo en proyectos padre para ver las tareas #owner/me (incluye puentes) de todos los subproyectos, agrupadas por nota. Cambiar la ruta por la carpeta de esta iniciativa. Nunca muestra tareas de agente.
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-const ord={" ":0,"/":1,"r":2,"x":3,"X":3,"-":4};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-const pages=dv.pages('"10-projects/CARPETA-DE-LA-INICIATIVA"');
-for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x=>has(x,"owner/me")&&x.status!=="x"&&x.status!=="X").sort((a,b)=>(ord[a.status]??9)-(ord[b.status]??9));if(t.length){dv.el('h4',p.file.link);render(t);}}
-```
-%%
-
 ## 📆 Bitácora
 
-%% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-18** — 
+- **2026-09-18 (BOOTSTRAP + PREFLIGHT):** Agents-OS cargado (constitución, perfil, continuidad, dominio DEFAULT — Loom es área Personal). Preflight PASS: `feature/loom-v03 @ 5636e4f` == origin (RC2 certificada), master `848fb28` intacto, worktree limpio. Rama `feature/loom-v04` creada desde `5636e4f`; subproyecto materializado con `materialize_schema_note.py`; tarea puente registrada en [[Loom]].
 
 ## 🧭 Decisiones
 
-- 
+- **(mandato Dirección Técnica, 2026-09-18):** partir desde la RC2 v0.3 certificada; sin migración masiva del vault; sin implementar escritura; sin merge a master; el foco de proyectos NO modifica `status`; sin nuevos estados de Project para favoritos/foco; sin inferir actividad runtime desde status documental; sin asumir que toda tarea Review requiere aprobación humana; propuestas de contrato sin editar el schema canónico público; writer como entrega separada; sin grafo global.
+
+## Risks
+
+- **R-1 Home pierde el catálogo:** mitigado moviendo el cockpit completo a `/projects` (nav nueva) — nada se elimina, se reubica.
+- **R-2 fixtures vs schema real:** materialización vía `materialize_schema_note.py --stdout` + lint contractual; identidad de tareas por `note_path + line` documentada.
+- **R-3 ancho Wide rompe vistas existentes:** tokens nuevos aditivos (`--measure-*`), default Comfortable bit-a-bit igual al estado actual; gates visuales antes de integrar.
+- **R-4 Today aparenta escritura:** vista 100% read-only; contrato del writer en doc separado; microcopy explícita.
+
+## Blockers
+
+- Ninguno activo.
 
 ## 🔗 Docs / Links
 
-- 
+- [[Loom]] — proyecto padre (decisiones del owner, tarea puente).
+- [[Loom — Foundation v0.1]] · [[Loom — Design System & Storybook]] · [[Loom — Product v0.2]] · [[Loom — Product v0.3]] — iteraciones anteriores (en Review; NO reabiertas).
+- Repo: `specs/FEAT-LOOM-V04/` (contratos de esta iteración).
 
 ## 💡 Ideas
 
-%% Captura ideas sueltas del proyecto al final. Si maduran, promover a tarea o a nota de idea (70-templates/idea.md). %%
-
 ### Backlog de ideas
 
-- 
+- Sincronización futura del foco y del plan diario si algún día hay backend multi-dispositivo (fuera de v0.4 por diseño; hoy son browser-local etiquetado).
 
 ### Motivos / principios
 
-- 
-
-### Memoria pública / interna
-
-%% Opcional para proyectos de agentes o conocimiento: definir qué memoria gobierna el sistema y cuál gobierna el agente, y por qué existe cada una. %%
-- **Memoria pública:** 
-- **Memoria interna:** 
-- **Motivo:** 
+- Los Markdown siguen siendo la base de datos; el índice es derivado y reconstruible; read-only siempre.
+- El foco es presentación personal, nunca estado documental.
+- Estado documentado ≠ actividad en runtime.
