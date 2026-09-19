@@ -49,7 +49,7 @@ tags:
   - `10-projects/Aranea/agentes/HERMES — Infrastructure Operations.md` — matriz de autoridad H5, gate H5, I3.4, Estado, Bitácora, progress 55→65, updated.
   - `10-projects/Aranea/HERMES — ARANEA AUTONOMOUS OPERATIONS.md` — fila H5 del rollout Infrastructure Operations.
   - `80-agents/journal/logs/2026-09-19-h5-high-impact-enablement.md` — este log.
-  - FUERA del vault: `~/aranea/work/h5-high-impact-20260919/probes/` (10 sondas read-only: 5 PVE + 3 Ceph + athena + truenas + pbs + scrub/pool detail + datastore PBS).
+  - FUERA del vault: `~/aranea/work/h5-high-impact-20260919/probes/` (13 sondas read-only: 5 PVE + 3 Ceph + athena + truenas + pbs + truenas scrub/pool detail + pbs datastore detail).
 
 ## Motivo
 
@@ -74,7 +74,7 @@ tags:
 
 ## Validación
 
-- 10/10 sondas SSH exit 0; outputs archivados sin secretos (grep: sin tokens/llaves/contraseñas en evidencia).
+- 13/13 sesiones SSH read-only con exit 0; outputs archivados sin secretos (grep: sin tokens/llaves/contraseñas en evidencia).
 - Inventario reconciliado con H0/H4: 59 guests (39 qemu + 20 lxc), 5 nodos, storage.cfg 12 defs (nueva `aranea-pbs` post-R2 explicada), sin conflictos.
 - Publicación: 7 archivos canónicos tocados por H5 verificados byte-idénticos (`PUBLISHED_IDENTICAL`) contra `origin/master` del espejo GitHub (comparación por sha256; productor externo vivo, sin push directo desde este carril).
 - Golden G9: veredicto del hijo PASS con `operaciones_mutantes=0`; reconciliado por el integrador con la evidencia de sondas.

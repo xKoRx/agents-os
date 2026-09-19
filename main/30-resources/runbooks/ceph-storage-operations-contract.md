@@ -13,7 +13,7 @@ entities:
 related:
   - "[[provisioning-operator-contract]]"
   - "[[cluster-node-maintenance-contract]]"
-  - "[[truenas-admin-operations]]"
+  - "[[BACKUP-DR-OWNER-PROJECT]]"
 aliases:
   - ceph storage operations contract
   - contrato ceph storage
