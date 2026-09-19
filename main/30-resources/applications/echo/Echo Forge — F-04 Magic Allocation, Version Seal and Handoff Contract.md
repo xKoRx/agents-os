@@ -11,7 +11,7 @@ sources:
   - "[[Echo Forge — F-01 Canonical Generation Concurrency Contract]]"
   - "[[Echo Forge — F-02 Finalist Model V2 Contract]]"
   - "[[Echo Forge — F-03 SQX Long-Running Contract]]"
-last_verified: "2026-09-12"
+last_verified: "2026-09-19"
 confidence: verified
 aliases:
   - F-04 SPEC
@@ -31,7 +31,7 @@ tags:
   - area/echo
   - project/echo-forge
 created: "2026-09-10"
-updated: "2026-09-12"
+updated: "2026-09-19"
 ---
 
 # Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract
@@ -414,6 +414,10 @@ ALLOCATE → APPLY/STAMP allocated (TaskSpec magic_number is not a request gate)
 Mismatch readback ≠ allocated: **FAIL CLOSED. NO SEAL. NO HANDOFF.** No crear StrategyVersion sobre valores sólo solicitados.
 
 Retry stamp: solo recovery Apply ya existente (RUNNING sin producer sellado). Tras producer sellado con mismatch: `CONTRACT_CONFLICT` terminal. No reseal.
+
+### Errata 2026-09-19 — representabilidad MQL (E-06 / SPEC v1.2.4)
+
+El dominio `magic_decimal` permanece int64 positivo. Stamp XML **MUST** usar `<type>long</type>` cuando allocated `> 2147483647`; generate emite `input long`. `FromMQ5`/`FromSQX` **MUST** rechazar un literal fuera del rango del tipo declarado (un `input int MagicNumber = 26090011005` ya no es PASS). Compile log: 0 errors **y** 0 warning 44 de truncamiento de MagicNumber. Identificadores de trading magic en el MQ5 generado (`const int magicNo`, casts `(int)` sobre POSITION/ORDER/DEAL MAGIC) **MUST** ampliarse a `long` después de generate y antes de sellar cuando la declaración es `long`. MagicAllocationRef / CanonicalStrategyID / StrategyRef inmutables; R3 sella un **nuevo** Version. Contrato ejecutable: Echo SPEC/VERIFICATION E-06 sección R3. Cero re-allocation.
 
 ## Compile Evaluation contract (frozen 2026-09-12)
 

@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-10"
-updated: "2026-09-13"
+updated: "2026-09-19"
 ---
 
 # Echo Forge — F-04 Magic allocation, version seal and handoff
@@ -42,6 +42,8 @@ updated: "2026-09-13"
 Materializar el pipeline contractual Forge: allocation durable de magic → stamp/readback → compile/verify bytes → StrategyVersion seal → HandoffManifestV1 write-once → thin adapter. S0 pin `91671f6f`. CC = `CC_MISSING_OWNER_GATE` (no allocation física de producción). No escribir DB Echo. No tercer dominio Integration.
 
 ## 📊 Estado actual
+
+- **Errata representabilidad MQL 2026-09-19 (E-06 SPEC v1.2.4, TOP).** Stamp XML `long` cuando allocated > int32; FromMQ5/FromSQX typed fail-closed; widening de identificadores magic en MQ5 generado. MagicAllocationRef intacto. Código F-04 **no** mutado esta sesión. Contrato R3 en VERIFICATION E-06.
 
 - **C5.1–C5.6 IMPLEMENTED (2026-09-12) — READY FOR MANAGER REVIEW.** Commit `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`, parent C4 `bba833d7b57c767d6ce5ebfeae7a7b71b5785782`, pushed fast-forward en `feature/f04-magic-version-handoff`. `StrategyManifestIdentityReader` lee la fila exacta `sqx.strategies` por StrategyRef; instrument/timeframe/direction/canonical durable son authority; CanonicalStrategyID permanece opaco y sólo se compara exacto contra el carrier; OperationSide `L|LONG→LONG`, `S|SHORT→SHORT`, `B|BOTH/empty/unknown→CONTRACT_CONFLICT` antes de manifest/POST; requested instrument/timeframe/direction son gates WorkflowSpec tras TrimSpace exacto case-sensitive; observed/requested instrument/timeframe salen de la fila durable; parser legacy retirado. Tests C5 `-race` PASS, negative proofs 0 referencias; registry full sweep quedó limitado por timeout 10m de embedded-postgres y su subconjunto histórico no mostró fallas nuevas; migration NONE. C4.1–C4.6 permanecen CLOSED @ `bba833d7b57c767d6ce5ebfeae7a7b71b5785782`. **F-04 overall permanece NOT CLOSED / no physical-ready.** T2.11/T2.12/T2.13 permanecen OPEN.
 - **Dependencia `aranea-ssh` (2026-09-13):** previous `UNHEALTHY / HTTP 503 session limit 64`; current `PASS / CLOSED — ARANEA SSH MCP HEALTH RESTORED`. `initialize`, `tools/list`, `resources/list`, cuatro smokes viewer y 5/5 ciclos create/use/DELETE pasaron; no se ejecutó restart por el agente y la causa histórica permanece `UNKNOWN` por falta de observabilidad server-side retrospectiva. F-04 queda `UNBLOCKED FOR T2.12 RESUME`, sin ejecutar T2.12 en esta sesión; release `0.2.98` se conserva y T2.11/T2.12/T2.13 permanecen OPEN.

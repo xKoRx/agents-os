@@ -36,6 +36,8 @@ aliases:
 
 ## 📊 Estado actual
 
+- **E-06 MAGIC WIDTH R3_READY_FOR_NORMAL (2026-09-19, TOP).** Allocation 26090011005 preservada. B1 demostrado: XML `<type>long</type>` → generate real `input long`. Gate A exige widening `int→long` de `magicNo`/casts MAGIC en `EchoForgeMT5Exporter` post-generate / pre-instrument; readback typed fail-closed. Tres archivos autorizados. Código Forge **no** mutado (`a1f62a6`). Dirty ajeno en checkout `codex/f05-release-prep` preservado. Contrato: Echo VERIFICATION §R3 / SPEC v1.2.4.
+
 - **Producto integrado y Factory V2 — 2026-09-07:** el padre canónico de producto es [[Echo — Producto Integrado]]. El delivery restante de factory vive en el subproyecto de agente [[Echo Forge — Factory V2 Completion]] (F-01…F-05; C1/C2 fusionados en F-02). Este programa histórico **no** es el tercer hijo de producto ni reabre B1A/B1B/B2. Contrato SDK: [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en S0 de Echo. Sin código/runtime modificado.
 
 
