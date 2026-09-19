@@ -24,7 +24,7 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Runbooks curados:** 25 (+1 superseded, 8 en `symphony/`); se incorporan `proxmox-lifecycle-operator-contract`, `linux-container-operator-contract`, `windows-operator-contract` y `service-lifecycle-operator-contract` (2026-09-18).
+- **Runbooks curados:** 26 (+1 superseded, 8 en `symphony/`); se incorporan `proxmox-lifecycle-operator-contract`, `linux-container-operator-contract`, `windows-operator-contract`, `service-lifecycle-operator-contract` (2026-09-18) y `provisioning-operator-contract` (2026-09-18, H4).
 - **Última ingesta:** 2026-09-18.
 - **Estado:** active.
 
@@ -37,6 +37,7 @@ tags:
 | [[30-resources/runbooks/linux-container-operator-contract|linux-container-operator-contract]] | Contrato del futuro operador Linux/containers H3: canales por target (SSH nativo, qm guest cmd host-mediated, MCP consumidor), Docker/systemd, recursos protegidos, rollback y abort (enablement-only). | Aranea |
 | [[30-resources/runbooks/windows-operator-contract|windows-operator-contract]] | Contrato del operador Windows H3+W1: admin nativa CERTIFICADA por SSH (ariadna-win, from=.122, host key pinneada) sobre worker-kronos VM 135 — alcance limitado a esa VM; canales, validación, revoke/rollback; flota Windows restante sin canal. | Aranea |
 | [[30-resources/runbooks/service-lifecycle-operator-contract|service-lifecycle-operator-contract]] | Contrato del futuro operador de servicios H3: systemd system/user, Docker/Compose, Task Scheduler, ownership del servicio, validación semántica y rollback (enablement-only). | Aranea |
+| [[30-resources/runbooks/provisioning-operator-contract|provisioning-operator-contract]] | Contrato del futuro operador de provisioning H4: rutas reales VM Linux (clon 117/120, ISO) y LXC (vztmpl debian-13), criterio de capacidad por storage (Ceph pool1 NO_GO nearfull), recursos protegidos, bootstrap/identidad, onboarding post-creación y teardown (enablement-only, no autoriza crear). | Aranea |
 | [[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]] | SSH Aranea: viewer/operator, `docker-echo-dev-operator` y evidence publisher Windows ACTIVE/CERTIFIED. | Aranea |
 | [[30-resources/runbooks/aranea-postgres-mcp|aranea-postgres-mcp]] | PostgreSQL RO/RW Aranea (Echo). | Aranea |
 | [[30-resources/runbooks/aranea-mongodb-mcp|aranea-mongodb-mcp]] | MongoDB RO/RW Aranea (Echo Forge). | Aranea |
