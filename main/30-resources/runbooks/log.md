@@ -13,6 +13,12 @@
 
 - Se creó `aranea-temporal-mcp` para la capability `aranea-temporal-ro` (certificada 2026-09-17): Temporal 1.31.2, 28 tools RO por diseño con `hardReadOnly` + allowlist namespaces SQX, wrapper mcp-proxy 6.7.16 + g010. Fila añadida a `00-index.md` (19 curados). Detalle: change log `2026-09-17-mcp-trio-temporal-minio-etcd`.
 
+## [2026-09-18] update | windows-operator-contract: W1 ejecutado (admin nativa Windows CERTIFICADA, scope VM 135)
+
+- El owner bundle W1 fue EJECUTADO y certificado la noche del 2026-09-18 (mandato owner; excepción de bootstrap acotada a worker-kronos VM 135): transporte OpenSSH for Windows reutilizado, identidad `ariadna-win` (Administrators), llave `~/.ssh/ariadna_win` con `from="192.168.31.122"` en `administrators_authorized_keys` (ACL canónica), host key pinneada desde fuente independiente, positivos (CIM servicios/tareas) + negativos (credencial/llave/origen) + logs sshd.log, sin restart de sshd ni toque a firewall/echo-dev, G4 hijo fresco 10/10 PASS `mcp_calls=0`.
+- El contrato pasa de PARTIAL/NOT CERTIFIED a **ENABLED — VERIFIED SCOPE (W1 PASS)**: canal SSH nativo VERIFIED con procedimiento, validación, revoke (minutos) y rollback completo (RB-01/02/03, independiente del canal nuevo). Alcance Windows = VM 135 únicamente; WinRM NOT PROVISIONED; flota Windows restante sin canal.
+- Con esto, H3 pasa de PARTIAL a **H3 ENABLEMENT PASS — VERIFIED SCOPE**. Detalle y mutaciones exactas: change log `2026-09-18-w1-windows-native-bootstrap` + `~/aranea/work/w1-windows-native-20260918/`.
+
 ## [2026-09-16] update | Índice de runbooks: fila aranea-observability-mcp
 
 - Se añadió a `00-index.md` la fila faltante de `aranea-observability-mcp` (runbook creado y certificado 2026-09-15; índice nunca actualizado). Parte de la reconciliación documental canónica del MCP Access Plane (change log `2026-09-16-mcp-plane-documentation-canonicalization`).
