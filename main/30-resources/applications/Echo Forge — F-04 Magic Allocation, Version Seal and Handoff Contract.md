@@ -31,7 +31,7 @@ tags:
   - area/echo
   - project/echo-forge
 created: "2026-09-10"
-updated: "2026-09-12"
+updated: "2026-09-19"
 ---
 
 # Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract
@@ -384,6 +384,8 @@ MUST files: `sqx/core/capabilities` (nueva reader, **no** extender `StrategyIden
 NO-TOUCH: algoritmo C4 `AllocateMagicV1`; Magic V1 codec/mapper; F-01/F-02/F-03; Echo S0; migrations 015/016; `handoff_producer.go` field mapping S0 (cambia el input, no el envelope); B1/B2; T2.11/T2.12/T2.13.
 
 ## Stamp + readback contract
+
+> **Estado 2026-09-19 (R3 MAGIC WIDTH):** el readback es typed fail-closed (Forge R3 `5d55c6b4`): `FromMQ5` rechaza duplicados (`ErrMagicDuplicate`) y `input int MagicNumber` con literal > 2147483647 (`ErrMagicWidth` — el compilador lo trunca, el artefacto jamás podría atestar su allocation); `FromSQX` exige el ancho del `<type>` declarado (int/ausente ⇒ int32 positivo; long ⇒ int64 positivo). La igualdad C4 sigue siendo textual (`allocated_magic == readback_magic`). Evidencia física E-06 R3: MQ5 `4042db94…` / EX5 `34e7fe64…` / Dependencies `sha256:c80cdee8…` — [[Echo — E-06 Reference Enrollment and Binding]].
 
 Cuatro valores, nunca colapsados:
 
