@@ -1,0 +1,46 @@
+---
+type: change_log
+schema_version: 1
+scope: session
+created: "2026-09-19"
+updated: "2026-09-19"
+area: "[[Personal]]"
+project: "[[AGENTS OS]]"
+application:
+entities:
+  - "[[AGENTS OS]]"
+related:
+  - "[[agents-os-hygiene-cycle]]"
+aliases:
+  - "md.tmp residue cleanup"
+confidence: verified
+source_session:
+source_feedbacks: []
+share_scope: local
+load_policy: manual
+tags:
+  - kind/change-log
+  - action/hygiene
+  - project/agentsos
+---
+
+# Limpieza de residuos `*.md.tmp.*`
+
+## Qué
+
+Eliminación de 36 archivos residuales `*.md.tmp.<pid>.<hash>` en el vault (escrituras atómicas interrumpidas del writer de notas; auditoría M4 previa reportaba cuatro, la inspección física encontró 36 en `30-resources/`, `10-projects/Echo|Loom|Polymarket Engine/` y `80-agents/journal/`).
+
+## Prueba por archivo (cero eliminaciones a ciegas)
+
+- Writer PIDs (4627, 464097, 153247, 740422, 488609): todos muertos — sin writer activo.
+- Ningún archivo tmp trackeado por git (invisible para el repo; la limpieza no altera el historial).
+- 29 eliminados por **supersesión temporal**: mtime del tmp anterior al mtime del archivo real ⇒ el writer completó una escritura posterior exitosa que lo reemplazó.
+- 7 eliminados por **igualdad de contenido byte a byte** con su archivo real vigente ⇒ cero trabajo único.
+- 0 inciertos: ningún tmp divergió de su real sin estar superseded por tiempo.
+- Muestra inspeccionada en contenido (`Polymarket Engine — MVP.md.tmp.153247.*` vs real): intermedio antiguo (`progress: 0`, texto M2 superseded) contra real evolucionado (`progress: 25`) — patrón consistente con residuo.
+- Ninguna nota del vault referencia rutas `.md.tmp.` (patrón interno del writer, sin inbound links).
+
+## Efecto
+
+- Vault: 36 archivos menos, sin cambio de contenido canónico.
+- Separación de commits: esta entrada vive en el vault; los commits del engine (`polymarket-engine`) quedan intactos y separados.
