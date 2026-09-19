@@ -60,6 +60,7 @@ updated: "2026-09-19"
 - [[Loom — Product v0.2]] — subproyecto de agente: producto + identidad Notion-inspired con 2 subagentes (mandato del owner 2026-09-18).
 - [[Loom — Product v0.3]] — subproyecto de agente: Daily Workspace + theming dark/light/System + graph local con 2 subagentes (mandato del owner 2026-09-18).
 - [[Loom — Product v0.4]] — subproyecto de agente: Workspace Model & UX Refinement (hotfix visual P0 + contrato operativo + fixtures + Home de foco + Today read-only; mandato de Dirección Técnica 2026-09-18).
+- [[Loom — Product v0.5]] — subproyecto de agente: Daily Operations Center (Human Action Center + Project Command Center + Resume Context; Smart Collections MVP documentado; mandato maestro 2026-09-19).
 
 ```base
 filters:
@@ -87,6 +88,7 @@ views:
 - [ ] [[Loom — Product v0.2]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ entregada 2026-09-18 (`feature/loom-v02` @ `0a71272`, gates PASS) — a Review del owner
 - [/] [[Loom — Product v0.3]] arrancar + seguimiento #owner/me #type/supervision #area/personal — [r] RC_READY hotfix RC2 2026-09-18 (`origin/feature/loom-v03 @ 5636e4f`: FIX 1 filtros kinds + FIX 2 truncado preserva centro + FIX 3 truncado verificado en navegador 21/21; gates PASS) — a Review del owner
 - [r] [[Loom — Product v0.4]] arrancar + seguimiento #owner/me #type/supervision #area/personal — [r] READY_FOR_OWNER_UX_REVIEW 2026-09-19 (`origin/feature/loom-v04 @ 3b69eed` desde la RC2 `5636e4f`: hotfix visual P0 + contrato operativo + fixtures + Home de foco + Today read-only; gates PASS, verify 22/22, judge visual PASS) · **INTEGRITY_PASS 2026-09-19** (`cead63c`: 5 defectos de integridad del plan diario resueltos — block IDs exactos, cargas dedup por DocumentID, canceled fuera de completadas, rollover de día, compromisos fuera de colas /tasks; vitest 346, verify 32/32, judge PASS) — a re-Review de Dirección Técnica antes de autorizar el writer (F3)
+- [/] [[Loom — Product v0.5]] arrancar + seguimiento #owner/me #type/supervision #area/personal — EN EJECUCIÓN 2026-09-19 (`feature/loom-v05` desde `cead63c`: Human Action Center + Project Command Center + Resume Context; read-only, sin writer, sin merge a master)
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -104,6 +106,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-19 — LOOM v0.5 EN EJECUCIÓN:** mandato maestro "Daily Operations Center" sobre el baseline `cead63c` (v0.4 INTEGRITY_PASS). Rama de integración `feature/loom-v05` creada (sin merge a master); subproyecto [[Loom — Product v0.5]] materializado con el materializador canónico; tarea puente registrada como `[/]`. P0: Human Action Center (aprobaciones sólo desde puentes canónicas me+supervision+review con relación verificable al subproyecto; casos incompletos diagnosticados; revisiones genéricas separadas), Project Command Center (ProjectView extendido con la jerarquía del mandato), Resume Context (continuidad read-only del snapshot). P1: Smart Collections MVP documentado, implementación condicionada a presupuesto. Detalle en [[Loom — Product v0.5]].
 
 - **2026-09-19 — LOOM v0.4 INTEGRITY_PASS (a re-Review):** mandato de Dirección Técnica "Daily Plan Integrity Gate" ejecutado sobre `57aeb13`, publicado en `origin/feature/loom-v04 @ cead63c` (push normal, sin merge a master, sin writer). Los 5 defectos de integridad del plan diario quedan resueltos: A coincidencia exacta de block IDs (`^task-a` ≠ `^task-ab`; duplicados → ambigua, nunca primera arbitraria), B cargas de orígenes deduplicadas por DocumentID (una ref repetida ya no pisa una nota bien cargada), C `canceled` separado de "completadas" con denominador documentado (badges de canceladas en Home/Today), D rollover de día con `useToday()` (instancia abierta >24h recarga su plan; reloj controlado en tests), E contrato nuevo: `#plan/ref`/`#plan/moved` son compromisos, no tareas ejecutables — fuera de las colas de /tasks con toggle `?plan=1` y conteo visible (`/api/v1/tasks` intacta, cero migración). Gates PASS @ `cead63c` (go 6/6 + race, vitest 346 (+23), dist reproducible, smoke, e2e 10/10, live-refresh 6/6) + verify **32/32** en Chromium con fixtures reforzados (2 regresiones en vivo nuevas) + judge visual PASS (15 capturas cambiadas). Contrato actualizado: DAILY-PLAN-FORMAT (identidad exacta, presencia en el índice global, progreso) + OPERATIONAL-CONTRACT §7. Today queda confiable para evaluar UX; el writer (F3) sigue esperando autorización. Detalle en [[Loom — Product v0.4]].
 
