@@ -59,6 +59,7 @@ updated: "2026-09-13"
 - [[Loom — Design System & Storybook]] — subproyecto de agente: design system compartido + integración Storybook (mandato del owner 2026-09-17; entrega a review sin reabrir v0.1).
 - [[Loom — Product v0.2]] — subproyecto de agente: producto + identidad Notion-inspired con 2 subagentes (mandato del owner 2026-09-18).
 - [[Loom — Product v0.3]] — subproyecto de agente: Daily Workspace + theming dark/light/System + graph local con 2 subagentes (mandato del owner 2026-09-18).
+- [[Loom — Product v0.4]] — subproyecto de agente: Workspace Model & UX Refinement (hotfix visual P0 + contrato operativo + fixtures + Home de foco + Today read-only; mandato de Dirección Técnica 2026-09-18).
 
 ```base
 filters:
@@ -85,6 +86,7 @@ views:
 - [r] [[Loom — Design System & Storybook]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ fundación completa 2026-09-17 (`feature/loom-design-system` `5f7270d`+`b0e24a2`, gates G1–G10 PASS) — a Review del owner
 - [ ] [[Loom — Product v0.2]] arrancar + seguimiento #owner/me #type/supervision #area/personal ✅ entregada 2026-09-18 (`feature/loom-v02` @ `0a71272`, gates PASS) — a Review del owner
 - [/] [[Loom — Product v0.3]] arrancar + seguimiento #owner/me #type/supervision #area/personal — [r] RC_READY hotfix RC2 2026-09-18 (`origin/feature/loom-v03 @ 5636e4f`: FIX 1 filtros kinds + FIX 2 truncado preserva centro + FIX 3 truncado verificado en navegador 21/21; gates PASS) — a Review del owner
+- [/] [[Loom — Product v0.4]] arrancar + seguimiento #owner/me #type/supervision #area/personal — en ejecución 2026-09-18 (`feature/loom-v04` desde la RC2 `5636e4f`; Workspace Model & UX Refinement)
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
