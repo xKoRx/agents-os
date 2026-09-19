@@ -10,7 +10,7 @@ parent: "[[HERMES — ARANEA AUTONOMOUS OPERATIONS]]"
 sprint:
 start: 2026-09-14
 due:
-progress: 55
+progress: 65
 repo:
 jira:
 prs:
@@ -26,7 +26,7 @@ tags:
   - agent/hermes
   - domain/infrastructure
 created: "2026-09-14"
-updated: "2026-09-18"
+updated: "2026-09-19"
 ---
 
 # HERMES — Infrastructure Operations
@@ -42,7 +42,7 @@ updated: "2026-09-18"
 
 Este workstream define el **management plane nativo** de Hermes. No depende del MCP Access Plane para reparar o administrar el mismo plano MCP ni los servicios subyacentes.
 
-**Objetivo inmediato vigente (mandatos owner 2026-09-18):** `H1 — Backup & Storage Administrative Enablement` CERRADO con `H1 ENABLEMENT PASS`, `H2 — Proxmox Lifecycle Administrative Enablement` CERRADO con `H2 ENABLEMENT PASS`, `H3 — Guest & Service Administrative Enablement` EJECUTADO el mismo día con veredicto `H3 PARTIAL — LINUX ENABLED / WINDOWS BLOCKED` (Windows sin management nativo; owner bundle W1 pendiente), COMPLETADO esa misma noche por el **mandato W1 — Windows Native Management Bootstrap** con veredicto `H3 ENABLEMENT PASS — VERIFIED SCOPE`: excepción de bootstrap acotada ejecutada sobre worker-kronos VM 135 (canal SSH nativo + identidad dedicada `ariadna-win`; mutaciones W1 registradas; alcance Windows limitado a esa VM). H0 cerró 2026-09-18 (`h0-20260918-r1`, PASS WITH DEBT); su SPEC queda HISTORICAL. `H4 — Provisioning Administrative Enablement` EJECUTADO la noche 2026-09-18/19 por mandato owner one-shot con veredicto `H4 ENABLEMENT PASS — VERIFIED SCOPE`: matriz de autoridad de provisioning, inventario real de templates/imágenes, criterio de capacidad GO/NO_GO por storage, contratos de networking/identidad/bootstrap/onboarding, contrato del futuro operador ([[provisioning-operator-contract]]) y golden G8 desde sesión fresca — sin ejecutar ninguna creación. Próximo nivel natural (H5) sin mandato vigente; este workstream vuelve a su boundary enablement-only.
+**Objetivo inmediato vigente (mandatos owner 2026-09-18):** `H1 — Backup & Storage Administrative Enablement` CERRADO con `H1 ENABLEMENT PASS`, `H2 — Proxmox Lifecycle Administrative Enablement` CERRADO con `H2 ENABLEMENT PASS`, `H3 — Guest & Service Administrative Enablement` EJECUTADO el mismo día con veredicto `H3 PARTIAL — LINUX ENABLED / WINDOWS BLOCKED` (Windows sin management nativo; owner bundle W1 pendiente), COMPLETADO esa misma noche por el **mandato W1 — Windows Native Management Bootstrap** con veredicto `H3 ENABLEMENT PASS — VERIFIED SCOPE`: excepción de bootstrap acotada ejecutada sobre worker-kronos VM 135 (canal SSH nativo + identidad dedicada `ariadna-win`; mutaciones W1 registradas; alcance Windows limitado a esa VM). H0 cerró 2026-09-18 (`h0-20260918-r1`, PASS WITH DEBT); su SPEC queda HISTORICAL. `H4 — Provisioning Administrative Enablement` EJECUTADO la noche 2026-09-18/19 por mandato owner one-shot con veredicto `H4 ENABLEMENT PASS — VERIFIED SCOPE`: matriz de autoridad de provisioning, inventario real de templates/imágenes, criterio de capacidad GO/NO_GO por storage, contratos de networking/identidad/bootstrap/onboarding, contrato del futuro operador ([[provisioning-operator-contract]]) y golden G8 desde sesión fresca — sin ejecutar ninguna creación. `H5 — High-Impact Infrastructure Enablement` EJECUTADO el 2026-09-19 por mandato owner one-shot con veredicto `H5 ENABLEMENT PASS — VERIFIED SCOPE` (familias A–J inventariadas, autoridad clasificada, blast radius CLASS 1–3, Ceph revalidado 3/3 MONs, mapa networking/DNS, quorum verificado, TrueNAS/PBS revalidados, PKI/UPS con gaps honestos, 3 contratos high-impact y golden G9 en sesión fresca — ZERO INFRASTRUCTURE MUTATIONS; índice en [[30-resources/aranea/06-high-impact/00-index]]). Siguiente nivel natural (H6) sin mandato vigente; este workstream vuelve a su boundary enablement-only.
 
 ## 🧠 Contexto
 
@@ -161,6 +161,25 @@ Auditoría en vivo (22:17/01:17 UTC, 5/5 nodos): 59 guests exactos (39 qemu + 20
 
 **Gates de onboarding (G6):** todo guest nuevo exige A–H (inventario, acceso nativo, backup/DR, ARGUS, health, runbook, recovery/revoke, registro); **si el workload exige backup y no hay ruta operativa demostrada ⇒ GO-LIVE = BLOCKED** (a la fecha: 0 jobs PVE, PBS sin datastores operativos — R2 de [[BACKUP-DR-OWNER-PROJECT]] conserva su estado). **Contrato del futuro operador:** [[provisioning-operator-contract]] (enablement-only; no autoriza crear). **Golden G8 sesión fresca:** hijo aislado resolvió 2 specs (VM Linux metrics-dev + LXC redis-dev) contra estado vivo real y clasificó 6 negativos (N1 storage protegido, N2 pool1 capacidad, N3 VMID/IP sin prueba, N4 token API sin permisos, N5 backup obligatorio, N6 solicitud ambigua) — detalle en change log H4 + `~/aranea/work/h4-provisioning-20260918/`.
 
+## 🔐 Matriz de autoridad H5 (2026-09-19, high-impact infrastructure — clasificación read-only, ZERO mutaciones)
+
+Auditoría en vivo 15:42–15:50 UTC (probes en `~/aranea/work/h5-high-impact-20260919/probes/`): PVE 8.4.20 ×5 con quorum 5/5, Ceph desde 3/3 MONs, TrueNAS FULL revalidado, PBS fail-closed confirmado en vivo, servicios de red en athena verificados, DNS desde hermes-vm. Dimensiones separadas: `ACCESS CERTIFIED` (conectividad+auth+lectura) ≠ `AUTHORITY CLASSIFIED` (permiso potencial) ≠ `RECOVERY DOCUMENTED` ≠ `RECOVERY DEMONSTRATED`; en ninguna familia del alcance H5 se ejecutó una operación high-impact. Clase máx. = la operación más severa teóricamente posible sobre la familia; su ejecución requiere proyecto ejecutor + owner gate (CLASS 3 permanece owner-gated sin excepción).
+
+| Familia | Componente (identidad estable) | Canal/identidad | Autoridad efectiva | MCP dep. | Blast radius / clase máx. | Recovery doc. | Recovery demostrado | Ejecutor natural |
+|---|---|---|---|---|---|---|---|---|
+| A — Networking/Firewall | OPNsense qemu/130 @athena (SPOF gateway LAN/WAN); PVE firewall disabled; Tailscale lxc/119 | Sólo host-mediated (qm status; pct exec ejercitado read-only en 119/149); config interna OPNsense NO legible | ROOT-EQUIVALENT AVAILABLE / NOT EXERCISED | no | Corte LAN/WAN total, corosync y Ceph-over-LAN incluidos; CLASS 3 | NO | NO | Proyecto de networking (por crear) |
+| B — DNS/DHCP | Pi-hole lxc/149 @athena (.31, FTL vivo); wildcard `*.lab.aranea`+`lab.aranea.cl`; DHCP upstream router .1 | pct exec 149 (read-only H5); DNS de hermes-vm = .31 | AUTHORIZED_NOT_EXERCISED | no | Resolución de todo el homelab; CLASS 3 | NO (rebuild por ticket) | Resolución demostrada (consulta viva) | Proyecto de networking |
+| C — Cluster/quorum | PVE 8.4.20 ×5, corosync LAN-only, HA vacío, datacenter.cfg defaults | SSH `ariadna`+sudo 5/5 (EJERCIDO); API token sin cluster-scope | SSH: EJERCIDO; lifecycle/power: AUTHORIZED_NOT_EXERCISED | no | Pérdida de quorum, jobs de gestión; CLASS 3 | Parcial (SSH EJERCIDO; consola owner break-glass) | SSH EJERCIDO; node-loss NO | [[cluster-node-maintenance-contract]] |
+| D — Ceph | pool1 (87.26% nearfull), .mgr, 4 OSD, 3 MONs LAN, 2 MGR, sin CephFS | SSH+sudo desde zeus/hera/kronos (EJERCIDO read-only); athena sin conf Ceph | VERIFIED_READ; OSD/CRUSH/pool ops AUTHORIZED_NOT_EXERCISED | no | Datos de todos los guests sobre pool1; CLASS 3 | NO | NO | [[ceph-storage-operations-contract]] |
+| E — TrueNAS | VM 145 @hades (turtles), pool0/pool2 ONLINE, 4 NFS+3 SMB+1 iSCSI | SSH+WS FULL_ADMIN (H1, revalidado H5) | VERIFIED_READ (admin FULL revalidado) | no | NFS/SMB/iSCSI de todo el cluster; CLASS 2/3 | SSH+sudo EJERCIDO | SSH EJERCIDO | Matriz H1 vigente (reutilizada) |
+| F — PBS/protección | VM 180 @kronos, datastore main 731M, fail-closed drop-ins | SSH+sudo (H1); estado R2 vigente | VERIFIED_READ; operar PBS = Backup/DR | no | Sistema de protección completo; CLASS 2 | R2 (fail-closed validado) | SÍ — reboot+fail-closed EJERCIDOS por R2 2026-09-19 | [[BACKUP-DR-OWNER-PROJECT]] |
+| G — PKI | step-ca lxc/200 @athena STOPPED (CA .12); Traefik 115 + wildcard vigentes | pct config/status (H5) | AUTHORIZED_NOT_EXERCISED | no | Emisión/renovación TLS interno; CLASS 3 | NO — CA sin backup documentado | NO | Sin contrato (gap) |
+| H — Energía/UPS | Sin UPS configurado; `ups` STOPPED en TrueNAS | n/a | NOT_PROVEN (sin superficie) | no | Corrupción ZFS/Ceph en corte; CLASS 3 | NO | NO | Sin superficie — primero decisión owner |
+| I — Control plane Ariadna | hermes-vm 118 @kronos (.122), keys `ariadna_*` | Self `systemd --user` | VERIFIED_READ | no | Autonomía operativa del agente; CLASS 2 | SÍ ([[hermes-linux-update-recovery]]) | SÍ (recovery 2026-09-16) | Existente |
+| J — Host transversal | 5 nodos PVE + TrueNAS-VM (turtles); kernel drift athena -29 vs -18 | SSH `ariadna`+sudo 5/5 | VERIFIED_READ; host ops AUTHORIZED_NOT_EXERCISED | no | Guest de host = doble blast; CLASS 3 | SSH EJERCIDO; física NOT_CERTIFIED | SSH EJERCIDO | [[cluster-node-maintenance-contract]] |
+
+Hallazgos H5 (nuevos vs H4): (1) **corosync sin red dedicada** — quorum de PVE y MONs de Ceph dependen de la LAN gestionada por OPNsense (SPOF compuesto: athena+130); (2) **kernel drift**: athena `6.8.12-29-pve` vs `-18` en el resto (reboot de athena acumula SPOF+kernel change); (3) **pool0 scrubbed 2026-09-06 con 0 errores** — riesgo #3 legacy cerrado para pool0; pool2 sigue sin scrub desde 2025-07-12 (>14 meses); (4) **`aranea-pbs` = 12ª definición de storage** post-R2 (drift H1→R2 esperado y adoptado); (5) **TrueNAS update disponible** (alerta); (6) **PVE firewall disabled + nft vacío** (borde único en OPNsense); (7) DNS interno de hermes-vm = .31 (Pi-hole) con upstream .1; `ca.lab.aranea` resuelve aunque el servicio está stopped (N4).
+
 ## 🔐 Matriz de authority previa (2026-09-17, H0 — HISTORICAL)
 
 La matriz incremental de H0 (wrapper `agent_ro`+`agent-read` 6/6, `mcps-ops` 26 containers, `daedalus-ops` sin sudo, APIs nativas "absent") queda **HISTORICAL**: las APIs nativas dejaron de estar absent con las identidades instaladas 2026-09-18 y certificadas arriba; el wrapper sigue válido como canal alternativo de observación. Detalle completo en la bitácora 2026-09-17 y change log G0.
@@ -235,6 +254,8 @@ Tareas de habilitación (reemplazan las I2.1–I2.5 ejecutoras originales):
 **Qué habilitará:** certificaciones de autoridad para networking, cluster/storage de mayor blast radius y operaciones host-level críticas, cada familia con recovery demostrado, authority específica y criterios abort/rollback, para uso del ejecutor autorizado.
 
 **Gate:** por familia, autoridad clasificada y recovery path verificado — sólo lectura; la operación queda gated al proyecto ejecutor.
+
+**Resultado (2026-09-19):** `H5 ENABLEMENT PASS — VERIFIED SCOPE` — 10 familias (A–J) inventariadas con identidad estable y timestamp; autoridad clasificada por familia (matriz H5 arriba; dimensiones ACCESS/AUTHORITY/RECOVERY no colapsadas); blast radius CLASS 1–3 con CLASS 3 owner-gated sin excepción; Ceph revalidado en vivo 3/3 MONs (nearfull persistente, NO_GO vigente); quorum 5/5 verificado; TrueNAS/PBS revalidados (pool0 scrub 0-errores 6-sep; fail-closed R2 en vivo); PKI y UPS con gaps honestos (step-ca stopped sin backup de CA; UPS inexistente); 3 contratos creados ([[high-impact-networking-dns-contract]], [[cluster-node-maintenance-contract]], [[ceph-storage-operations-contract]]) + reutilización de matriz H1 (TrueNAS) y estado R2 (PBS); golden G9 sesión fresca PASS (2 escenarios + 6 negativos, cero mutaciones). `HIGH-IMPACT OPERATIONAL CERTIFICATION` queda explícitamente FUERA de este hito; **ningún contrato H5 autoriza operaciones**. Detalle: change log `2026-09-19-h5-high-impact-enablement` + `~/aranea/work/h5-high-impact-20260919/`.
 
 ### H6 — Integrated Autonomy *(enablement-only)*
 
