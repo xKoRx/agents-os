@@ -10,7 +10,7 @@ parent: "[[Loom]]"
 sprint:
 start: 2026-09-18
 due:
-progress: 5
+progress: 100
 repo: xKoRx/loom
 jira:
 prs:
@@ -48,7 +48,7 @@ cssclasses:
 
 ## 📊 Estado actual
 
-- **EN EJECUCIÓN (2026-09-18):** baseline verificado `feature/loom-v03 @ 5636e4f` == origin (RC2 hotfix certificada, a Review del owner); rama `feature/loom-v04` creada desde ese SHA; contratos `specs/FEAT-LOOM-V04/` por congelar en esta iteración. Restricciones del mandato vigentes: no migración masiva del vault, no implementar escritura, no merge a master, no grafo global.
+- **READY_FOR_OWNER_UX_REVIEW (2026-09-19):** mandato "Workspace Model & UX Refinement" completo y publicado en `origin/feature/loom-v04 @ a902dc3` (== local; base RC2 v0.3 `5636e4f`; master `848fb28` intacto; sin merge). **S1 hotfix visual P0:** auditoría Chromium → causa real del scroll horizontal global era la nav del topbar (<1080px, ~450px naturales desbordando TODAS las rutas); corregido con wrap + ancho de lectura Comfortable/Wide por tokens (`--measure-*`, `html[data-measure]`, toggle accesible etiquetado "this browser") + scrollbars token-driven dark/light; comfortable queda bit-a-bit igual al estado anterior. **S2 contrato operativo:** `specs/FEAT-LOOM-V04/{OPERATIONAL-CONTRACT,DAILY-PLAN-FORMAT,CONTRACT-PROPOSALS,SPEC}.md` — lifecycles, responsabilidad, review humana (review ≠ aprobación; la puente es el único punto de aceptación), foco personal no-estado, plan diario referencial, evidencia documental; propuestas F1–F4 SIN editar el schema canónico. **S3 fixtures:** `fixture-workspace/` 16 notas/10 proyectos/48 tareas con 2 planes diarios, materializado vía `materialize_schema_note.py` y lint strict 16/16 ERROR=0; identidad por block ID único + (path,line). **S4 Home de foco:** Plan de hoy + Proyectos en foco (localStorage etiquetado, nunca toca `status`) + Reviews/Bloqueos relevantes foco-primero con owner visible + Delegado resumido + Continue working; catálogo completo en `/projects` con estrella. **S5 Today read-only:** `/today?date=` con progreso computado (live del origen), arrastre del día anterior, reprogramadas, historial, deep-link; sin controles de escritura; writer = propuesta F3 separada. **Gates @ `1c8c508` (producto) / `a902dc3` (rama):** gofmt/vet · go test 6/6 · race limpio · vue-tsc · vitest 323 (32 archivos; +32 nuevos) · storybook · dist reproducible byte-a-byte · smoke · e2e 10/10 · live-refresh 6/6 · G9 · hex/rgba 0 · secret scan limpio · overflow 0 en 6 rutas × 3 anchos · `verify-v04.mjs` 22/22 en Chromium real · judge visual PASS (38 capturas, sheets dark/light). Pendiente: revisión de experiencia y contrato por Dirección Técnica antes de autorizar el writer (F3).
 
 ## 🧱 Entrega de desarrollo
 
@@ -81,14 +81,14 @@ views:
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. %%
 > - [x] Preflight + baseline: `5636e4f` verificado, rama `feature/loom-v04` creada, subproyecto materializado + tarea puente en [[Loom]] #owner/agent #type/dev #area/personal ✅ 2026-09-18
-> - [/] S1 — Hotfix visual P0: auditoría en navegador real (ancho Markdown, scroll horizontal, scrollbars dark/light) + ancho de lectura Comfortable/Wide por tokens + pruebas con notas complejas y fixtures #owner/agent #type/dev #area/personal
-> - [ ] S2 — Contrato operativo Agents-OS: lifecycles, responsabilidad, review humana, foco personal, plan diario, evidencia de agente; propuestas de contrato sin editar el schema canónico #owner/agent #type/research #area/personal
-> - [ ] S3 — Fixtures realistas: 7 proyectos + subproyectos de agente + tareas owner/delegadas + reviews + blocked/waiting + backlog + pausados/completados + 2 planes diarios; materializador canónico + lint; identidad de tareas documentada #owner/agent #type/dev #area/personal
-> - [ ] S4 — Home orientada a foco (plan de hoy, foco explícito sin tocar status, reviews/bloqueos relevantes, delegado resumido, continuar) + catálogo completo en Projects/Tasks #owner/agent #type/dev #area/personal
-> - [ ] S5 — Vista Today read-only sobre fixtures (referencias estables, progreso, arrastre, historial) + contrato del writer como entrega separada #owner/agent #type/dev #area/personal
-> - [ ] S6 — Evidencia visual: Home/Tasks/Projects/Today en dark/light, 1280×800 + 1440×900 + ventana angosta, Storybook, contact sheets legibles #owner/agent #type/dev #area/personal
-> - [ ] Gates integrales + recorrido del mandato en navegador real #owner/agent #type/dev #area/personal
-> - [ ] Entrega al owner (RESULT READY_FOR_OWNER_UX_REVIEW + evidencias + guías de review) #owner/agent #type/dev #area/personal
+> - [x] S1 — Hotfix visual P0: auditoría Chromium (causa real: nav topbar <1080px) + Comfortable/Wide por tokens + scrollbars themed + wrap; verificado con notas reales y nota stress de fixtures #owner/agent #type/dev #area/personal ✅ 2026-09-18 (`95ad680`)
+> - [x] S2 — Contrato operativo Agents-OS: OPERATIONAL-CONTRACT + DAILY-PLAN-FORMAT + CONTRACT-PROPOSALS (F1–F4, sin editar schema canónico) + SPEC #owner/agent #type/research #area/personal ✅ 2026-09-18 (`6315e3c`)
+> - [x] S3 — Fixtures realistas: fixture-workspace 16 notas/10 proyectos/48 tareas, materializador canónico + lint strict 0, block IDs únicos, 2 planes diarios, nota stress visual #owner/agent #type/dev #area/personal ✅ 2026-09-18 (`6315e3c`)
+> - [x] S4 — Home orientada a foco + catálogo en /projects (estrella de foco, `loom.focus` etiquetado, nunca toca status) #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`55c3009`)
+> - [x] S5 — Vista Today read-only sobre fixtures (progreso/arrastre/reprogramadas/historial + deep-link) + writer como propuesta F3 separada #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`55c3009`)
+> - [x] S6 — Evidencia visual: 38 capturas dark/light × 3 ventanas, contact sheets, judge visual PASS, subconjunto en repo #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`a902dc3`)
+> - [x] Gates integrales + recorrido del mandato `verify-v04.mjs` 22/22 en Chromium real #owner/agent #type/dev #area/personal ✅ 2026-09-19 (todos PASS @ `1c8c508`)
+> - [r] Entrega al owner (RESULT READY_FOR_OWNER_UX_REVIEW + evidencias + guías de review) #owner/agent #type/dev #area/personal — publicada `origin/feature/loom-v04 @ a902dc3`, a Review del owner
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
