@@ -26,7 +26,7 @@ tags:
   - project/hermes-aranea-autonomous-operations
   - agent/hermes
 created: "2026-09-14"
-updated: "2026-09-18"
+updated: "2026-09-19"
 ---
 
 # HERMES — ARANEA AUTONOMOUS OPERATIONS
@@ -250,7 +250,7 @@ La madurez de infraestructura se versiona de forma independiente de la madurez d
 | **H2 — Proxmox Lifecycle** | inspect/start/stop/reboot/create/clone/configurar VMs/LXC dentro de scopes definidos | habilitación cerrada 2026-09-18 (`H2 ENABLEMENT PASS`): matriz de autoridad clasificada read-only + contrato del operador ([[proxmox-lifecycle-operator-contract]]); la certificación operativa (lifecycle ejecutado con target proof y rollback) la demuestra el proyecto ejecutor |
 | **H3 — Guest & Service Operations** | Linux, Windows, Docker, systemd, filesystem/config y restart de servicios | habilitación cerrada 2026-09-18 (`H3 ENABLEMENT PASS — VERIFIED SCOPE`): Linux/LXC/Docker(mcps)/systemd VERIFIED con canales nativos; Windows certificado por el bootstrap W1 (SSH nativo con identidad dedicada `ariadna-win` sobre worker-kronos VM 135, alcance limitado a esa VM); contratos del ejecutor publicados; la operación de servicio la demuestra el proyecto ejecutor |
 | **H4 — Provisioning** | levantar VMs/LXC/containers, instalar/configurar software, onboarding backup/observability y teardown controlado | habilitación cerrada 2026-09-18/19 (`H4 ENABLEMENT PASS — VERIFIED SCOPE`, cero mutaciones): matriz de autoridad A–H, rutas reales (clon 117/120, ISO, `pct create` debian-13), criterio de capacidad por storage (Ceph pool1 NO_GO nearfull), bootstrap/identidad y onboarding G6 documentados en [[provisioning-operator-contract]], golden G8 sesión fresca (2 specs + 6 negativos); Windows creación = NOT_PROVEN (W1 ≠ creación); el provisioning real y el go-live los demuestra el proyecto ejecutor |
-| **H5 — High-impact Infrastructure** | networking, cluster/storage de alto impacto y operaciones con blast radius mayor | gates específicos, recovery probado y autoridad explícitamente habilitada |
+| **H5 — High-impact Infrastructure** | networking, cluster/storage de alto impacto y operaciones con blast radius mayor | habilitación cerrada 2026-09-19 (`H5 ENABLEMENT PASS — VERIFIED SCOPE`): 10 familias A–J inventariadas y clasificadas read-only (matriz H5), blast radius CLASS 1–3 con CLASS 3 owner-gated, Ceph nearfull revalidado 3/3 MONs (NO_GO vigente), TrueNAS/PBS revalidados, PKI/UPS con gaps honestos, 3 contratos del ejecutor ([[high-impact-networking-dns-contract]], [[cluster-node-maintenance-contract]], [[ceph-storage-operations-contract]]), golden G9 sesión fresca PASS (2 escenarios + 6 negativos); cero mutaciones; la operación high-impact la demuestra el proyecto ejecutor |
 | **H6 — Integrated Autonomy** | coordinación end-to-end entre capas y recovery de incidentes | runbooks/skills maduros + ejercicios de recovery + intervención humana excepcional |
 
 El primer dominio práctico es **storage/backups**, reutilizando el conocimiento y decisiones canónicas de [[BACKUP-DR-OWNER-PROJECT]] en vez de duplicarlas.
@@ -344,7 +344,7 @@ Para Infrastructure Operations, el equivalente es que Hermes pueda recibir un ob
 - **Proyecto creado:** 2026-09-14.
 - **Plan de implementación reordenado:** Bootstrap/Human Exit → Agent Access autonomy → Echo/Forge blockers → Backup/Storage → full Infrastructure autonomy.
 - **Bootstrap:** activo como [[HERMES — Bootstrap & Self-Sufficiency]].
-- **Infrastructure Operations:** workstream enablement activo — H0 PASS WITH DEBT, H1 ENABLEMENT PASS, H2 ENABLEMENT PASS, **H3 ENABLEMENT PASS — VERIFIED SCOPE** (2026-09-18; el alcance Windows quedó certificado por el bootstrap W1 acotado a worker-kronos VM 135) y **H4 ENABLEMENT PASS — VERIFIED SCOPE** (2026-09-18/19; provisioning administrativo habilitado sin ejecutar, contrato [[provisioning-operator-contract]]); H5–H6 enablement-only pendientes de mandato; ver [[HERMES — Infrastructure Operations]].
+- **Infrastructure Operations:** workstream enablement activo — H0 PASS WITH DEBT, H1 ENABLEMENT PASS, H2 ENABLEMENT PASS, **H3 ENABLEMENT PASS — VERIFIED SCOPE** (2026-09-18; el alcance Windows quedó certificado por el bootstrap W1 acotado a worker-kronos VM 135), **H4 ENABLEMENT PASS — VERIFIED SCOPE** (2026-09-18/19; provisioning administrativo habilitado sin ejecutar, contrato [[provisioning-operator-contract]]) y **H5 ENABLEMENT PASS — VERIFIED SCOPE** (2026-09-19; alto impacto clasificado read-only por familia A–J, CLASS 3 owner-gated, 3 contratos [[high-impact-networking-dns-contract]]/[[cluster-node-maintenance-contract]]/[[ceph-storage-operations-contract]], golden G9 PASS, cero mutaciones); H6 enablement-only pendiente de mandato; ver [[HERMES — Infrastructure Operations]].
 - **Agent Access Operations:** existe un MCP Access Plane funcional y en evolución bajo [[AGENT-PLATFORM - MCP Access Plane]], pero Hermes todavía no dispone del ciclo autónomo completo A0→A5.
 - **Dependencias ya existentes:** [[BACKUP-DR-OWNER-PROJECT]] para Backup/DR y [[AGENT-PLATFORM - MCP Access Plane]] para la implementación MCP actual.
 - **Prioridad inmediata:** completar B0-B4 y sacar al owner del loop antes de resolver más MCPs manualmente.

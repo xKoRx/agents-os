@@ -14,7 +14,7 @@ tags:
   - area/personal
   - project/agents-os
 created: 2026-06-23
-updated: 2026-09-17
+updated: 2026-09-19
 reviewed: 2026-06-30
 aliases:
   - Aranea index
@@ -140,6 +140,11 @@ Runbooks de la era 2026-06-30 preservados como histórico; **NO ejecutar** sin r
 |---|---|
 | [[05-tickets/README]] | Índice de todos los tickets |
 | 11 tarjetas | Una por ticket (9 cerrados + 2 en curso) |
+
+### [[06-high-impact/00-index|06-high-impact]] — High-Impact Infrastructure (H5)
+| Doc | Contenido |
+|---|---|
+| [[06-high-impact/00-index]] | **CURRENT** — índice H5: matriz por familia (A networking → J host transversal), dependencias críticas, negativos; contratos del ejecutor en `30-resources/runbooks/`. Mandato 2026-09-19: ENABLEMENT PASS — VERIFIED SCOPE. |
 
 ### [[06-diagramas]] — Diagramas visuales
 | Doc | Contenido |
