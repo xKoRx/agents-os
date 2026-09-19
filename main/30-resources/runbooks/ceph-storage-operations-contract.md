@@ -44,7 +44,7 @@ Estado habilitación (2026-09-19): **D = VERIFIED_READ** — health/pools/OSD le
 
 ## Baseline verificado 2026-09-19 (sondas 3/3 MONs consistentes)
 
-- `HEALTH_WARN`: 2 OSD nearfull (osd.0 85.65%, osd.2 85.59%), 2 pools nearfull (pool1 87.26% — 834.3G/956.2G, 121.9G avail; .mgr), fragmentación bluestore 0.903/0.900, 189 PGs active+clean, VAR 0.63–1.33.
+- `HEALTH_WARN`: 2 OSD nearfull (osd.0 85.65%, osd.2 85.59%), 2 pools nearfull (pool1 87.26% — 834.3G/956.2G, 121.9G avail; .mgr), fragmentación bluestore 0.903/0.900, 129 PGs active+clean, VAR 0.63–1.33.
 - Topología: 4 OSD NVMe (osd.0 hera, osd.1 kronos, osd.2 zeus, osd.3 kronos), 3 MONs (**en LAN 192.168.31.x, NO en la red Ceph 10.10.10.0/24**), 2 MGR, sin CephFS. Replicación x3, min_size 2.
 - Pools: `pool1` (RBD, aplicación rbd, 128 PGs, selfmanaged_snaps) y `.mgr`. `pool1` alimenta discos de VMs vía storage `pool1` de PVE (shared, 5/5 nodos).
 - Drift vs H4 (87.17%): ninguno material. **NO_GO de provisioning sobre pool1 vigente** ([[provisioning-operator-contract]]).
