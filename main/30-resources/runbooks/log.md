@@ -37,6 +37,11 @@
 - El runbook incorpora la evidencia certificada de 2026-09-16: checkout fresco v0.21.3/`8c8003f8`, restart explícito de dashboard y gateway Ariadna, detección de gateway default duplicado con el mismo token Telegram, deshabilitación del legacy y limpieza respaldada del marker sólo después de `PENDING_RESTART = False`.
 - El criterio agent-facing queda en `hermes-agent-operator`; el runbook no decide cuándo revivir/retirar un gateway ni cuándo un warning del updater vence evidencia funcional.
 
+## [2026-09-19] create | integrated-orchestration-contract (H6)
+
+- Creado `integrated-orchestration-contract` como contrato canónico de orquestación integrada H6: cadena REQUEST→AGENTS-OS UPDATE con separación preparación (Ariadna) vs ejecución (proyecto ejecutor), máquina de estados (REQUESTED…READY_FOR_EXECUTOR vs EXECUTING…CLOSED), gates por clase (CLASS 3 owner-gated), paquete mínimo de handoff reproducible y la distinción AUTHORITY AVAILABLE ≠ EXECUTION AUTHORIZED ≠ OPERATION EXECUTED ≠ RESULT VERIFIED.
+- Enablement-only: el contrato no autoriza ni ejecuta operaciones; reutiliza las matrices de autoridad H1–H5 y el catálogo/matriz de routing de `30-resources/aranea/07-integration/00-index.md`. Fila añadida al índice de runbooks (30 curados).
+
 ## [2026-09-14] fix | Autoridad federada única
 
 - Se retiraron nueve copias residuales de `80-agents/memory/public/runbook/`; las versiones bajo `30-resources/runbooks/` quedan como única autoridad, incluidas las tres que ya habían divergido materialmente.

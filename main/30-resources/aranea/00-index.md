@@ -146,6 +146,11 @@ Runbooks de la era 2026-06-30 preservados como histórico; **NO ejecutar** sin r
 |---|---|
 | [[06-high-impact/00-index]] | **CURRENT** — índice H5: matriz por familia (A networking → J host transversal), dependencias críticas, negativos; contratos del ejecutor en `30-resources/runbooks/`. Mandato 2026-09-19: ENABLEMENT PASS — VERIFIED SCOPE. |
 
+### [[07-integration/00-index|07-integration]] — Integrated Capabilities & Routing (H6)
+| Doc | Contenido |
+|---|---|
+| [[07-integration/00-index]] | **CURRENT** — índice H6: catálogo integrado de capacidades (C01–C15), matriz de ownership/routing NEED→ejecutor, autoridad multicapa, dependencias del management plane con recovery decision tree, negativos N1–N10. Mandato 2026-09-19: ENABLEMENT PASS — VERIFIED SCOPE. Contrato: [[integrated-orchestration-contract]]. |
+
 ### [[06-diagramas]] — Diagramas visuales
 | Doc | Contenido |
 |---|---|
