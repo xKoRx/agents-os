@@ -20,7 +20,7 @@ tags:
   - area/echo
   - kind/project
 created: 2026-06-27
-updated: "2026-09-18"
+updated: "2026-09-19"
 aliases:
   - Echo Forge Program
 ---
