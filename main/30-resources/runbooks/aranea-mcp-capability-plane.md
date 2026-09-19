@@ -62,11 +62,11 @@ Diagnosticar discovery, configuración del cliente, env, auth, proxy, transporte
 3008  aranea-flink-dev-admin
 3009  aranea-observability-ro
 3010  aranea-temporal-ro
-3011  aranea-minio-ro
+3011  aranea-minio-rw   (ex aranea-minio-ro; RW full desde 2026-09-18, identidad = key owner)
 3012  aranea-etcd-ro
 ```
 
-La fotografía histórica con sólo 10/11 capabilities precede la incorporación de Temporal/MinIO/etcd. MinIO y etcd están ACTIVE y certificados server + Cursor desde 2026-09-17, con limitaciones de IAM/prefix documentadas en [[aranea-minio-mcp]] y [[aranea-etcd-mcp]]. **Cursor PASS no implica ZCode/Codex PASS**: el 2026-09-16 ZCode/Codex estaban en 10/10 y el patcher/smoke del nuevo trío sigue pendiente de evidencia material por cliente. No deducir éxito de que existan las entries ni requerir owner cuando un operador ya autorizado pueda aplicar una corrección dentro de ACL/contrato.
+La fotografía histórica con sólo 10/11 capabilities precede la incorporación de Temporal/MinIO/etcd. MinIO y etcd están ACTIVE y certificados server + Cursor desde 2026-09-17; **MinIO es RW full con rename a `aranea-minio-rw` desde 2026-09-18** (identidad = key owner; detalle en [[aranea-minio-mcp]]) y etcd mantiene sus limitaciones de prefix en [[aranea-etcd-mcp]]. **Cursor PASS no implica ZCode/Codex PASS**: el patcher del trío kor corrió el 2026-09-17 (shape) y el runtime funcional se certificó por chain el 2026-09-18; el rename minio en ZCode/Codex queda pendiente del patcher kor stageado (`/tmp/minio-rw-rename-zcode-codex.py`, 2026-09-18). No deducir éxito de que existan las entries ni requerir owner cuando un operador ya autorizado pueda aplicar una corrección dentro de ACL/contrato.
 
 ## Consumer onboarding managed (B2 2026-09-14, B4 2026-09-15)
 
