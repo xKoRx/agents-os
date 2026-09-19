@@ -62,7 +62,7 @@ Estado habilitación (2026-09-19): **C/J = VERIFIED_READ** — quorum 5/5, servi
 
 - Target ambiguo o conflicto de identidad (N4 del índice H5).
 - Quorum < 5/5 o `expected votes` anómalo.
-- Ceph HEALTH_WARN vigente en el nodo a mantener (hoy: osd.0/2 nearfull en hera/kronos) — drenaje u operaciones OSD prohibidas.
+- Ceph HEALTH_WARN vigente en el nodo a mantener (hoy: osd.0 hera y osd.2 zeus, ambos nearfull ~85.6%) — drenaje u operaciones OSD prohibidas.
 - Storage del nodo con dependencias desconocidas (guests de otro proyecto corriendo).
 - Sin ventana aprobada, sin rollback escrito o con otro cambio de infraestructura en vuelo.
 - PBS 180 o cualquier guest sagrado (SQX 108/111/123/135) en el nodo sin plan de protección confirmado por lectura (`qm config` — backup=0 verificado H2: los SQX NO tienen red de seguridad de snapshots).

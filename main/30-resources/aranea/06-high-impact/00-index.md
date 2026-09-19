@@ -87,7 +87,7 @@ Puntos donde un cambio deja fuera a Ariadna o al owner: gateway OPNsense, DNS Pi
 
 ## 📆 Bitácora
 
-- **2026-09-19 — H5 ENABLEMENT PASS — VERIFIED SCOPE (mandato owner one-shot; ZERO INFRASTRUCTURE MUTATIONS):** inventario G1 (familias A–J), matriz de autoridad (G2), blast radius (G3), revalidación Ceph 3/3 MONs (G4), mapa networking/DNS (G5), cluster/quorum (G6), TrueNAS/PBS/PKI/UPS (G7), 3 contratos nuevos + reutilización H1/R2 (G8). Golden G9 sesión fresca PASS (2 escenarios + 6 negativos). Detalle: change log `80-agents/journal/logs/2026-09-19-h5-high-impact-enablement.md`.
+- **2026-09-19 — H5 ENABLEMENT PASS — VERIFIED SCOPE (mandato owner one-shot; ZERO INFRASTRUCTURE MUTATIONS):** inventario G1 (familias A–J), matriz de autoridad (G2), blast radius (G3), revalidación Ceph 3/3 MONs (G4), mapa networking/DNS (G5), cluster/quorum (G6), TrueNAS/PBS/PKI/UPS (G7), 3 contratos nuevos + reutilización H1/R2 (G8). Golden G9 sesión fresca PASS (hijo aislado, 3 sesiones SSH read-only): Escenario A = **NO_GO condicionado** para mantenimiento de zeus (osd.2 nearfull en el nodo + SQX 108 sin plan de protección), Escenario B = **HANDOFF operativo** a [[ceph-storage-operations-contract]]; 6 negativos; `operaciones_mutantes=0`, `mcp_calls=0`. Detalle: change log `80-agents/journal/logs/2026-09-19-h5-high-impact-enablement.md`.
 
 ## 🔗 Links
 
