@@ -90,7 +90,8 @@ views:
 > - [x] S5 — Vista Today read-only sobre fixtures (progreso/arrastre/reprogramadas/historial + deep-link) + writer como propuesta F3 separada #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`55c3009`)
 > - [x] S6 — Evidencia visual: 38 capturas dark/light × 3 ventanas, contact sheets, judge visual PASS, subconjunto en repo #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`3b69eed`)
 > - [x] Gates integrales + recorrido del mandato `verify-v04.mjs` 22/22 en Chromium real #owner/agent #type/dev #area/personal ✅ 2026-09-19 (todos PASS @ `1c8c508`)
-> - [r] Entrega al owner (RESULT READY_FOR_OWNER_UX_REVIEW + evidencias + guías de review) #owner/agent #type/dev #area/personal — publicada `origin/feature/loom-v04 @ 3b69eed`, a Review del owner
+> - [x] Integrity Gate: A block IDs exactos + ambigüedad · B dedup de cargas por DocumentID · C canceled fuera de completadas + denominador documentado · D rollover de día (useToday) · E compromisos fuera de las colas de /tasks con toggle `?plan=1`; contrato + fixtures + verify 32/32 + judge #owner/agent #type/dev #area/personal ✅ 2026-09-19 (todos PASS @ `cead63c`)
+> - [r] Entrega al owner (RESULT READY_FOR_OWNER_UX_REVIEW + integridad resuelta INTEGRITY_PASS + evidencias + guías de review) #owner/agent #type/dev #area/personal — publicada `origin/feature/loom-v04 @ cead63c`, a re-Review de Dirección Técnica antes de autorizar el writer
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
