@@ -2,8 +2,8 @@
 type: change_log
 schema_version: 1
 scope: session
-created: "2026-09-19"
-updated: "2026-09-19"
+created: "2026-09-18"
+updated: "2026-09-18"
 area: "[[Aranea]]"
 project: "[[HERMES — Infrastructure Operations]]"
 application:
@@ -29,7 +29,7 @@ tags:
   - domain/infrastructure
 ---
 
-# 2026-09-19-h4-provisioning-enablement
+# 2026-09-18-h4-provisioning-enablement
 
 %% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
 
