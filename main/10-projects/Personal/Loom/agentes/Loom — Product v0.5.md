@@ -10,7 +10,7 @@ parent: "[[Loom]]"
 sprint:
 start: 2026-09-19
 due:
-progress: 0
+progress: 100
 repo: xKoRx/loom
 jira:
 prs:
@@ -47,7 +47,7 @@ cssclasses:
 
 ## 📊 Estado actual
 
-- **EN EJECUCIÓN (2026-09-19):** mandato maestro v0.5 arrancado sobre `cead63c` (== origin/feature/loom-v04; master intacto). Preflight PASS: rama `feature/loom-v05` creada, worktree limpio, 3 worktrees v03/v04 verificados sin modificar. Contratos v0.5 por congelar en `specs/FEAT-LOOM-V05/`.
+- **RC_READY (2026-09-19):** mandato maestro v0.5 completo y publicado en `origin/feature/loom-v05 @ 144482e` (== local; base `cead63c`; master `848fb28` intacto; sin merge; sin writer; read-only). **P0-A Human Action Center:** proyección `internal/index/humanactions.go` con la clasificación congelada (puente `#owner/me #type/supervision` en review + relación verificable → aprobación; sin relación/no resoluble/ambigua/fuera de proyecto → incompleto con razón; subproyecto de agente sin puente → diagnóstico `missing_bridge` con estados terminales excluidos; reviews genéricas fuera por construcción) + `GET /api/v1/human-actions` + vista `/actions` (tarjetas con padre/subproyecto/puente/estado/motivo/hito/enlaces, cero botones de aprobación) + resumen acotado en Home. **P0-B Project Command Center:** ProjectView con la jerarquía del mandato (estado documentado; próxima acción SÓLO contractual — compromisos de hoy del plan diario vía `committedRefsInScope` — o "No documentada" explícito; último hito por fecha máxima de bitácora; tareas humanas; entregas de agentes a review; bloqueos; tablero completo debajo). **P0-C Resume Context:** `GET /api/v1/projects/{path}/resume` (extracto verbatim de Estado actual, hito por fecha máxima, clasificación de subárbol, links; vacíos declarados `{"available":false}` con razón) + acción "Retomar" con deep-link `?resume=1`. **P1 Smart Collections:** MVP documentado (`SMART-COLLECTIONS-MVP.md`), sin implementar (por mandato, sujeto a presupuesto). **Gates @ `144482e`:** gofmt/vet · go 6/6 paquetes · race index+serve limpio · vue-tsc · vitest **367**/4 skipped (+21) · storybook build · dist reproducible byte-a-byte · smoke · e2e 10/10 · live-refresh 6/6 · G9 0×"storybook" · hex/rgba 0 fuera de tokens · secret scan limpio · fixtures lint strict **18/18** · `verify-v05.mjs` **40/40** en Chromium · judge visual **PASS dark + PASS light** (3 pasadas: 3 P1 → 1 P1 → 0; hallazgos corregidos: URL hostil envuelve en columna con `overflow-wrap` — defecto pre-existente de v0.4 —, píldoras con nombre corto, filas de tarea como grid items con `min-width:0`). Pendiente: revisión del owner (experiencia + clasificación) antes de merge a master; reviews humanas v0.1–v0.4 siguen abiertas.
 
 ## 🧱 Entrega de desarrollo
 
@@ -80,17 +80,17 @@ views:
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. %%
 > - [x] Preflight + baseline: `cead63c` verificado (== origin), rama `feature/loom-v05` creada, subproyecto materializado + tarea puente en [[Loom]] #owner/agent #type/dev #area/personal ✅ 2026-09-19
-> - [ ] C0 — Contratos congelados: SPEC + HUMAN-ACTIONS (clasificación aprobación/incompleto) + SMART-COLLECTIONS-MVP (documento) en `specs/FEAT-LOOM-V05/` #owner/agent #type/research #area/personal
-> - [ ] H1 — Backend human-actions: proyección en internal/index (aprobaciones/incompletos deterministas) + `GET /api/v1/human-actions` + tests Go de cada caso del mandato #owner/agent #type/dev #area/personal
-> - [ ] H2 — Backend resume: extracción mecánica bitácora/estado-actual + `GET /api/v1/projects/{path}/resume` + tests #owner/agent #type/dev #area/personal
-> - [ ] H3 — Human Action Center UI: vista `/actions` + resumen "Necesita mi intervención" en Home + composable + tests #owner/agent #type/dev #area/personal
-> - [ ] H4 — Project Command Center: ProjectView con jerarquía del mandato (próxima acción contractual vía plan de hoy; vacío explícito cuando no hay regla) + tests #owner/agent #type/dev #area/personal
-> - [ ] H5 — Resume Context UI: acción contextual + panel read-only con fuente enlazada por dato + tests #owner/agent #type/dev #area/personal
-> - [ ] F1 — Fixtures v0.5: puente en review SIN relación verificable, subproyecto de agente sin puente, proyectos sin bitácora/estado (estados vacíos) + lint strict #owner/agent #type/dev #area/personal
-> - [ ] S1 — Storybook: componentes nuevos con stories + tests de regresión #owner/agent #type/dev #area/personal
-> - [ ] E1 — Evidencia: capturas dark/light × 3 anchos, contact sheets, verify del mandato en Chromium, judge visual #owner/agent #type/dev #area/personal
-> - [ ] G1 — Gates integrales + regresiones del mandato (review genérica ≠ aprobación; puente Review aparece; puente Done no; sin puente se diagnostica; datos ausentes no inventados; continuidad vacía explícita; Home sin saturación) #owner/agent #type/dev #area/personal
-> - [r] Entrega al owner (RESULT RC_READY + evidencias + guías de review) #owner/agent #type/dev #area/personal
+> - [x] C0 — Contratos congelados: SPEC + HUMAN-ACTIONS + SMART-COLLECTIONS-MVP en `specs/FEAT-LOOM-V05/` #owner/agent #type/research #area/personal ✅ 2026-09-19 (`9378607`)
+> - [x] H1 — Backend human-actions: proyección en internal/index + `GET /api/v1/human-actions` + tests Go de cada caso del mandato #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`498619c`, race limpio)
+> - [x] H2 — Backend resume: extracción mecánica bitácora/estado-actual + `GET /api/v1/projects/{path}/resume` + tests #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`498619c` + `f2ac81d`: parser acepta ambos spellings canónicos de bitácora)
+> - [x] H3 — Human Action Center UI: vista `/actions` + resumen "Necesita mi intervención" en Home + composable + tests #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`5f20a68`)
+> - [x] H4 — Project Command Center: ProjectView con jerarquía del mandato + tests #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`5f20a68`)
+> - [x] H5 — Resume Context UI: acción contextual + panel read-only con fuente enlazada por dato + tests #owner/agent #type/dev #area/personal ✅ 2026-09-19 (`5f20a68`)
+> - [x] F1 — Fixtures v0.5: puente sin relación verificable, subproyecto sin puente, proyecto sin continuidad + lint strict 18/18 #owner/agent #type/dev #area/personal ✅ 2026-09-19
+> - [x] S1 — Storybook: LoomApprovalCard/LoomIncompleteRow/ResumePanel/CommandCenter con stories; suite 367 vitest #owner/agent #type/dev #area/personal ✅ 2026-09-19
+> - [x] E1 — Evidencia: 60 capturas dark/light × 3 anchos, sheets, `verify-v05.mjs` 40/40 en Chromium, judge visual 3 pasadas → PASS dark + PASS light #owner/agent #type/dev #area/personal ✅ 2026-09-19 (fixes `318d41e` + `e25b4f2`)
+> - [x] G1 — Gates integrales + regresiones del mandato (go 6/6+race, vue-tsc, vitest 367, storybook, dist reproducible, smoke, e2e 10/10, live-refresh 6/6, G9, hex/rgba, secret scan, review genérica ≠ aprobación, puente Done fuera, sin puente diagnosticado, datos ausentes declarados, Home sin saturación) #owner/agent #type/dev #area/personal ✅ 2026-09-19 (todos PASS @ `144482e`)
+> - [r] Entrega al owner (RESULT RC_READY + evidencias + guías de review) #owner/agent #type/dev #area/personal — publicada `origin/feature/loom-v05 @ 144482e`, a review del owner
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -108,6 +108,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-19 (RC_READY — entrega del mandato):** mandato maestro "Daily Operations Center" completo sobre `cead63c`, publicado en `origin/feature/loom-v05 @ 144482e` (push normal; master y reviews humanas previas intactos; sin merge; sin writer; producto 100% read-only). Backend: proyección human-actions determinista publicada con el snapshot (misma generación, incluida en la firma de invariancia), endpoints aditivos `/api/v1/human-actions` y `/api/v1/projects/{path}/resume` (dispatch por sufijo `/resume` — inequívoco porque todo DocumentID termina en `.md`), conjunto terminal de estados unificado en `index.IsTerminalStatus` (serve delega). Clasificación congelada: aprobación = puente me+supervision+review con EXACTAMENTE un subproyecto de agente hijo del padre referenciado por wikilink del texto; 0 referencias/no resoluble/ambigua/fuera de proyecto → incompleto con razón; subproyecto de agente no terminal sin NINGUNA puente que lo referencie → `missing_bridge`; reviews genéricas fuera por construcción. Frontend: `/actions` con tarjetas (padre/subproyecto/puente/estado/motivo/hito vía /resume del subproyecto/enlaces) y casos incompletos como diagnóstico; Home con bloque "Necesita mi intervención" acotado (top-3 + enlace, colas globales cap 5 intactas); ProjectView con Command Center (próxima acción SÓLO desde compromisos del plan de hoy con `committedRefsInScope` — sin inferencia de primera tarea abierta; hito por FECHA MÁXIMA independiente del orden del documento) y panel "Retomar" deep-linkable `?resume=1` con cada dato enlazado a su fuente; vacíos declarados `{"available":false}` + razón (sin sección / sección vacía / sin entradas con fecha). Hallazgos corregidos en camino: parser de bitácora con segundo spelling canónico (`**FECHA** — texto`), URL hostil que escapaba la columna de lectura (defecto PRE-EXISTENTE de v0.4, ahora `overflow-wrap: anywhere`), píldoras con nombre corto y filas de tarea como grid items con `min-width:0` (colisión `L44`, confirmada con medición de cajas). Gates completos PASS @ `144482e` (detalle en Estado actual) + `verify-v05.mjs` **40/40** + judge visual **PASS/PASS** tras 3 pasadas. RESULT: **RC_READY** — el writer (F3) y Smart Collections implementadas siguen esperando decisión del owner. Run register: `80-agents/journal/agent-runs/2026-09-19-zcode-glm-loom-v05-daily-operations.md`.
 
 - **2026-09-19 (BOOTSTRAP + PREFLIGHT):** Agents-OS cargado (constitución, perfil, continuidad, dominio DEFAULT — Loom es área Personal). Preflight PASS: local `feature/loom-v04 @ cead63c` == origin (SHA obligatorio del mandato), master `848fb28` intacto, worktree limpio, worktrees loom-a/loom-b verificados sin tocar. Rama `feature/loom-v05` creada desde `cead63c`; subproyecto materializado con `materialize_schema_note.py`; tarea puente registrada en [[Loom]] como `[/]`.
 
