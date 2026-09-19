@@ -6,7 +6,7 @@ Creado: 2026-09-17 (Parte 2 mcp-trio). Estado: ACTIVE (server + Cursor certifica
 
 | Campo | Valor |
 |---|---|
-| Capability | `aranea-minio-ro` |
+| Capability | `aranea-minio-ro` (nombre histórico; desde 2026-09-18 noche opera **RW** por decisión owner) |
 | Endpoint plane | `http://mcps.lab.aranea.cl:3011/mcp` |
 | Host | LXC `mcps` (192.168.31.219) |
 | Upstream | `txn2/mcp-s3` v1.4.0 (ghcr digest `09371acaca20…`, binario Go stdio) |
