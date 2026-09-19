@@ -57,13 +57,28 @@ tags:
 
 ## Verificación
 
-- SHA256 post-cambios: (verificado al cierre en evidencia `~/aranea/work/storage-ceph-assessment-20260919/`).
-- Sección presente y una sola vez; bitácora con una entrada nueva; resto del archivo intacto.
+- SHA256 del proyecto tras gate: `7dd359853e4c1ff36537a96e2dff0dfdf15286f8ef041056a881ddf1d8531b71` (baseline pre: `7eb60428…`). Sección ×1, bitácora ×1, frontmatter intacto.
+- R2 intacto verificado live: datastore main 733M/295G (sin drift vs baseline 18sep), timer `aranea-r2-measure.timer` pending first_run 2026-09-20 06:05, deadline 2026-09-26 (state files leídos, no tocados). Timers R1 04:00/05:00/SÁB activos, último run 20260919-115452.
+- Cero mutaciones de infraestructura: todas las lecturas SSH read-only; sin scrubs, snapshots, configs, journals>200 líneas, benchmarks, SMART self-tests, rbd du ni guest exec.
 
 ## Hallazgos / Resultado
 
-- Ver «Resultado del assessment» al final de este log (se completa al cierre del mandato).
+Veredicto: **ASSESSMENT PARTIAL — EVIDENCE STRONG** (handoff completo: `~/aranea/work/storage-ceph-assessment-20260919/HANDOFF-2026-09-19.md`).
+
+1. **Nearfull Ceph = causa estructural PROBADA** (no desbalance): CRUSH chooseleaf host + 1 solo OSD en hera y zeus + 2 en kronos + réplica 3 ⇒ todo PG coloca réplica en osd.0(hera) y osd.2(zeus): data 797=797=373+424 GiB demostrado; balancer upmap declara distribución perfecta. Márgenes: -7 GiB hasta nearfull, 40 hasta backfillfull. **Caída del host kronos = re-replicate imposible** (800 GiB vs 80 GiB disponibles). NOT_GO nuevos discos pool1 reconfirmado.
+2. **MinIO 157 (creencia owner INVERTIDA, verificado)**: SO = pool1 RBD (`vm-157-disk-0`), datos = zvol pool0/iscsi/minio_data via iSCSI LUN6 (49,8G usados de 100G zvol; metadata PVE size=16G es vieja). PG 152 / Mongo 153 mismo patrón: SO pool1 + datos iSCSI zvol pool0, todos `backup=0` → **hoy sin ninguna protección de backup** (ni vzdump ni dumps).
+3. **Hardware Ceph**: 4 NVMe QLC consumer (Crucial P3 ×2, Kingston NV3 ×2) con endurance usada 64% / 100% / 100% / **201%**; latencia 7-8ms en las Crucial vs 1-2ms Kingston. BlueStore fragmentación 0,90 en osd.0/2.
+4. **Red**: red dedicada 10.10.10/24 MTU9000 existe (10G) pero los sockets OSD muestran 38 pares por la LAN 192.168.31.x vs 9 por 10.10.10.x; mClock global = `high_recovery_ops` + recovery_sleep 0 (perfil temporal dejado permanente). Episodios históricos de lag: **NOT_PROVEN** (sin instrumentación; 0 slow-ops últimos 7d). Hipótesis líder de lag: mezcla réplica-por-LAN + recovery priorizada.
+5. **TrueNAS**: pool0 OK (scrub 06-sep-2026, 0 errores) pero **sin snapshots recientes** (solo reconstrucción jul-2025) y `pool2/pool0_backup` **STALE desde jul-2025** (no es copia viva; F-09 intacta). pool2 = ~4,2T en 3 árboles legacy congelados + 2,15T libres; **pool2 sin scrub desde 12-jul-2025** (riesgo F-14 vigente). pool2: NFS exports sin restricción de red en proxmox_storage/trading_documents.
+6. **LUN2 doble-attach latente**: zvol vm-zeus-win-disk apuntado por VMs 151 y 100 (ambas stopped). VMIDs 112/162/170: NO huérfanos (112 = VM real sqx-deprecado stopped, disco 120G; trash RBD vacío).
+7. **RPO 1h**: PG viable con alta confianza (WAL archiving/PITR, archive_timeout corto; NOT_CERTIFIED hasta drill); Mongo condicionado a topología (standalone → dumps no alcanzan; requiere replica set/PBM) — UNKNOWN sin acceso guest. 3-2-1 hoy **NO CUMPLE** (0 off-site real activo; Secret Zero 020 pendiente).
+8. Próximo paso mínimo propuesto (requiere aprobación): **R3 mínimo = dumps lógicos diarios PG+Mongo → staging+PBS + restore drill scratch**, gated por tickets 018/020. No ejecutado.
+
+Revisión adversarial independiente: `~/aranea/work/storage-ceph-assessment-20260919/adversarial-review.md` (resultado consolidado al cierre).
 
 ## Lecciones
 
-- (por completar al cierre)
+- El "size=" que PVE muestra en discos iSCSI puede ser metadata vieja (LUN6 decía 16G, zvol real 100G): el tamaño canónico vive en TrueNAS (extent/zvol), no en el config del guest.
+- `ceph config dump` con `osd_op_queue=mclock_scheduler` ignora sleep options: para diagnosticar latencia revisar SIEMPRE el perfil mClock efectivo (global vs por-OSD) antes de culpar hardware o red.
+- La distribución PG "asimétrica" (129/61/129/68) con FD=host y hosts de 1-2 OSDs es matemática, no patología: cruzar `osd df` con la regla CRUSH antes de proponer rebalanceos.
+
