@@ -34,7 +34,7 @@ tags:
 
 - **Tipo:** updated
 - **Archivo(s):**
-  - `xKoRx/echo` `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/{SPEC,VERIFICATION,TASKS}.md` (SPEC v1.2.4 + contrato R3)
+  - `xKoRx/echo` `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/{SPEC,VERIFICATION,TASKS}.md` @ `1e24d823` (SPEC v1.2.4 + contrato R3; push FF `feb790c9..1e24d823`)
   - `10-projects/Echo/agentes/Echo — E-06 Reference Enrollment and Binding.md`
   - `10-projects/Echo Forge/Echo Forge.md`
   - `10-projects/Echo/agentes/Echo Forge — F-04 Magic allocation, version seal and handoff.md`

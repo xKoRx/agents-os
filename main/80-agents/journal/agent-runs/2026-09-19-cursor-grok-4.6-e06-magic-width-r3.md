@@ -38,7 +38,7 @@ tags:
 
 - **Objetivo:** Mandato TOP E-06/F-04 MAGIC WIDTH: resolver MAGIC_IDENTITY_CONTRACT_CONFLICT preservando allocation 26090011005; demostrar B1 xor B2; autorizar contrato R3 ejecutable por NORMAL o BLOCKED preciso.
 - **Alcance atribuible a esta combinación superficie×modelo:** inspección de exporters/readback/contratos; generate SQX real aislado (XML type long → `input long`); scan de sitios int magic en MQ5 generado; errata SPEC v1.2.4; contrato R3 en VERIFICATION; delta entidades; cero código Forge/Echo productivo.
-- **Artefactos afectados:** Echo SPEC/VERIFICATION/TASKS (docs branch `feature/e06-reference-enrollment-binding`); notas E-06, Echo Forge, F-04 resource/project; change_log; este agent_run. Código symphony `a1f62a6` intocado.
+- **Artefactos afectados:** Echo SPEC/VERIFICATION/TASKS @ `1e24d823` (repo `xKoRx/echo`, rama `feature/e06-reference-enrollment-binding`, push FF `feb790c9..1e24d823`); notas E-06, Echo Forge, F-04 resource/project; change_log; este agent_run. Código symphony `a1f62a6` intocado.
 
 ## Evidencia
 
