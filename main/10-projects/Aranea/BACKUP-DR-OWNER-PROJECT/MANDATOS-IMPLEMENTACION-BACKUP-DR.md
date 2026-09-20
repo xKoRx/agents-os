@@ -41,7 +41,7 @@ ALCANCE (sin ventana, cero mutaciones en guests de trading):
 3. WP-A3: dump diario CouchDB 116 + ingesta; drill restore a scratch con conteo de docs.
 4. WP-A5: export semanal de compose/env/units de 126/129/141/127/128/158/142/113 + /etc/proxmox-backup-* de PBS 180 (sin secretos en claro).
 
-VALIDACIÓN / CIERRE: 2 ciclos de los jobs diarios + 1 ciclo del semanal (si MinIO fue autorizado) con VERIFY_TASK_OK + manifest sha + 1 drill de restore (PG o Mongo) desde PBS; timers active+enabled; cero impacto en R2 (verificar día del piloto y decisión D intactos al cierre). Criterio de cierre: PASS = PG+Mongo (+CouchDB) VERIFIED+AUTOMATED + drill PASS + R2 intacto verificado.
+VALIDACIÓN / CIERRE: 2 ciclos de los jobs diarios + 1 ciclo del semanal (si MinIO fue autorizado) con VERIFY_TASK_OK + manifest sha + 1 drill de restore (PG o Mongo) desde PBS; 1 ciclo A5 VERIFIED (export 9 targets con sha manifest + restore scratch de 1 compose — S-06); timers active+enabled; cero impacto en R2 (verificar día del piloto y decisión D intactos al cierre). Criterio de cierre: PASS = PG+Mongo (+CouchDB) VERIFIED+AUTOMATED + A5 VERIFIED + drill PASS + R2 intacto verificado.
 EVIDENCIA Y CIERRE DE SESIÓN: logs + manifests en ~/aranea/work/mp01-<fecha>/; change log canónico; feedback si hay fricción; cierre de sesión completo al terminar (mandato one-shot).
 PROHIBIDO: tocar postgresql.conf/mongod.conf, /etc/pve/storage.cfg, jobs.cfg PVE, Ceph, tickets, diseño congelado, prune del datastore main, y cualquier reinicio de guests. Fallar PASS → reportar BLOCKED con evidencia, sin reintentos a ciegas.
 ```
@@ -65,7 +65,7 @@ Prerrequisitos gates: decisión D-piloto R2 (post 7/7 días, ~28sep) con retenci
 
 ALCANCE: (fase 1) crecer datastore PBS + verify; (fase 2, en ventana) jobs vzdump diarios 02:00 para Tier 0 (lista 018) + semanal T1/T2, exclusiones §6.3 del diseño, mod snapshot, bandwidth limit conservador; (fase 3) verify jobs + restore drill de 1 VM T0 completa a scratch sin boot.
 VALIDACIÓN/CIERRE: 7 días de jobs VERIFIED + drill restore PASS + espacio datastore bajo umbral 70%. PASS = cobertura imagen-level T0 AUTOMATED.
-PROHIBIDO: vzdump de MT4/echo fuera del horario aprobado; backup de discos local-sqx-* (F-04); solapar con dumps G1A (03:00-04:30); tocar piloto R2 timers.
+PROHIBIDO: vzdump de MT4/echo fuera del horario aprobado en la decisión D/019 (S-07); backup de discos local-sqx-* (F-04); solapar con dumps G1A (03:00-04:30, ventana unificada — N-02); tocar piloto R2 timers.
 ```
 
 ## MP-04 — PG PITR + decisión Mongo RPO (WP-A2/A2b) [ventana 019]
@@ -74,7 +74,7 @@ PROHIBIDO: vzdump de MT4/echo fuera del horario aprobado; backup de discos local
 MANDATO ONE-SHOT — BACKUP-DR: RPO 1h EN DATOS DE TRADING (A2)
 Prerrequisitos: WP-A1 PASS (MP-01 parcial); ventana 019; OK owner explícito para mutar config de PostgreSQL 152 (PROD trading). Mongo (A2b) SÓLO si el owner aprobó la decisión de topología (replica set 1 nodo o PBM); si no, registrar RPO Mongo=24h como deuda aceptada y NO tocar Mongo.
 
-ALCANCE PG: medir tasa WAL 24h (UNKNOWN→medido); configurar archive_mode=on, archive_timeout=60s, archive_command rsync→staging hermes (WAL fuera de pool0); pg_basebackup semanal; reinicio controlado en ventana; drill PITR (restore a segundo objetivo, SELECTs reales patrón G1A).
+ALCANCE PG: medir tasa WAL 24h (UNKNOWN→medido); GATE DE CAPACIDAD (S-04): si proyección mensual > ~10G, destino alternativo fuera de pool1 (staging hermes vive íntegro en pool1 nearfull); configurar archive_mode=on, archive_timeout=60s, archive_command rsync→destino aprobado (fuera de pool0/pool1); pg_basebackup semanal; reinicio controlado en ventana; drill PITR (restore a segundo objetivo, SELECTs reales patrón G1A).
 VALIDACIÓN/CIERRE: PITR VERIFIED con RPO medido (esperado ≤5min) + rollback probado (archive_mode=off, conf revertida). PASS = RPO PG ≤1h DEMOSTRADO.
 PROHIBIDO: tocar Mongo sin la decisión topológica firmada; cambiar tuning no relacionado; ejecutar sin ventana.
 ```
@@ -83,9 +83,9 @@ PROHIBIDO: tocar Mongo sin la decisión topológica firmada; cambiar tuning no r
 
 ```
 MANDATO ONE-SHOT — BACKUP-DR: ROLLBACK LOCAL Y 2ª COPIA DE POOL0 (A6)
-Prerrequisitos: decisión owner de datasets (default propuesto en ROADMAP A6); ventana 019 para full inicial; autorización de ejecución en TrueNAS (H1 WS/API). F-09 intacto: dataset nuevo pool2/pool0_new/, jamás tocar pool0_backup.
+Prerrequisitos: decisión owner de datasets (default propuesto en ROADMAP A6 — SIN trading_documents: con él el set supera pool2 libre, S-02); ventana 019 para full inicial Y para scrub pool2 (I/O masiva sobre hades — B-01); autorización de ejecución en TrueNAS (H1 WS/API). F-09 intacto: dataset nuevo pool2/pool0_new/, jamás tocar pool0_backup.
 
-ALCANCE: scrub pool2 (read-only, AUTO, puede ir antes de ventana); snapshot schedules (horario zvols T0 pg/mongo/minio data + HA; diario aranea_storage/trading_documents/home/proxmox_storage; retención corta controlada); zfs send -n dry-run de la selección; full inicial REPL→pool2/pool0_new en ventana; incremental diaria (producción chico) y semanal (aranea_storage) vía replicación nativa TrueNAS.
+ALCANCE: scrub pool2 en ventana (read-only, I/O masiva); snapshot schedules (horario zvols T0 pg/mongo/minio data + HA; diario aranea_storage/home/proxmox_storage/apps config; retención corta controlada); zfs send -n dry-run de la selección; full inicial REPL→pool2/pool0_new en ventana; incremental diaria (producción chico) y semanal (aranea_storage) vía replicación nativa TrueNAS.
 VALIDACIÓN/CIERRE: 1º full VERIFIED (comparación zfs send -nv ending snap) + drill rollback de 1 zvol desde snapshot a dataset de prueba + scrub pool2 0 errores. PASS = snapshots activos + REPL viva.
 PROHIBIDO: autoclean/aggressive retención sin decisión; tocar árboles legacy pool2 (limpieza = decisión owner separada); frigate media en la replicación.
 ```
@@ -115,7 +115,7 @@ PROHIBIDO: reweight/ratio/PG changes/CRUSH edits/borrados sin autorización inde
 
 ```
 MANDATO ONE-SHOT — BACKUP-DR: DRILLS + RUNBOOK CANÓNICO (R7/B4)
-ALCANCE: ejecutar drills DR-1 (restore VM+CT desde PBS) y DR-4 (arranque MinIO desde G1B) si no están frescos (<35d); DR-2/DR-3/DR-5/DR-6 según disponibilidad de ventanas/off-site (ver ROADMAP bloque DR); consolidar BACKUP-DR-RUNBOOK.md (procedimientos de restore por unidad, claves por referencia, RPO/RTO por clase) + checklists; validar con un agente fresco ejecutando 1 restore guiado.
+ALCANCE: ejecutar drills DR-T1 fase CT (restore VM+CT desde PBS; fase VM post-B1) y DR-T4 (arranque MinIO desde G1B) si no están frescos (<35d); DR-T2/DR-T3/DR-T5/DR-T6 según disponibilidad de ventanas/off-site (ver ROADMAP bloque DR); consolidar BACKUP-DR-RUNBOOK.md (procedimientos de restore por unidad, claves por referencia, RPO/RTO por clase) + checklists; validar con un agente fresco ejecutando 1 restore guiado.
 VALIDACIÓN/CIERRE: cada drill PASS con evidencia; runbook validado por owner. PASS = sistema recuperable por tercero con el runbook.
 PROHIBIDO: drills destructivos sobre producción; drill de DR-6 sin 020 resuelto (sólo versión parcial).
 ```
