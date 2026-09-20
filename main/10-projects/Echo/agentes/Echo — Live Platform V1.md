@@ -64,7 +64,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` (integrada FF) + feature `feature/e05-analytics-convergence-a0` + feature `feature/e06-reference-enrollment-binding` + feature `feature/e07-raw-facts-deal-lifecycle` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 CLOSED: master `92d0ec2e` (FF desde `7e628bf5`; producto `f6e6af1b`) · E-05 CLOSED SOFTWARE/INTEGRATED master `5dd998f1` · E-06 planning desde `5dd998f1`, HEAD `b66dc5ff` · E-07 planning desde `b66dc5ff` HEAD `28213bbc` (NORMAL `7c836619` + C1 `a7a61875` + C2 `28213bbc`) | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 · E-05: `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 · E-06: `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.2.4 · E-07: `specs/FEAT-RAW-FACTS-DEAL-COVERAGE-LIFECYCLE-E7/SPEC.md` v1.0.0 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · T21 POST-INTEGRATION PENDING · E-02 CLOSED — SOFTWARE / INTEGRATED @ `92d0ec2e` · E-05 CLOSED — SOFTWARE / INTEGRATED @ `5dd998f1` · E-06 G0 PASS / G1 PROMOTION_SEAL_MISSING (desacoplada de Forge; T21 blocked) · E-07 IMPLEMENTATION COMPLETE + C2 consumido · CONTRACT/PG PASS · PHYSICAL_PENDING @ `28213bbc` |
+| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` (integrada FF) + feature `feature/e05-analytics-convergence-a0` + feature `feature/e06-reference-enrollment-binding` + feature `feature/e07-raw-facts-deal-lifecycle` + feature `feature/e08-routing-economic-command-risk-reservation` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 CLOSED: master `92d0ec2e` (FF desde `7e628bf5`; producto `f6e6af1b`) · E-05 CLOSED SOFTWARE/INTEGRATED master `5dd998f1` · E-06 planning desde `5dd998f1`, HEAD `b66dc5ff` · E-07 planning desde `b66dc5ff` HEAD `28213bbc` (NORMAL `7c836619` + C1 `a7a61875` + C2 `28213bbc`) · E-08 planning desde `3765f2ba` HEAD `fe5c9de0` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 · E-05: `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 · E-06: `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.2.4 · E-07: `specs/FEAT-RAW-FACTS-DEAL-COVERAGE-LIFECYCLE-E7/SPEC.md` v1.0.0 · E-08: `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/SPEC.md` v1.0.0 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · T21 POST-INTEGRATION PENDING · E-02 CLOSED — SOFTWARE / INTEGRATED @ `92d0ec2e` · E-05 CLOSED — SOFTWARE / INTEGRATED @ `5dd998f1` · E-06 G0 PASS / G1 PROMOTION_SEAL_MISSING (desacoplada de Forge; T21 blocked) · E-07 IMPLEMENTATION COMPLETE + C2/C3 consumidos · CONTRACT/PG PASS · PHYSICAL_PENDING @ `3765f2ba` · E-08 PLANNING FROZEN @ `fe5c9de0` (NORMAL PENDING) |
 
 ## 🧩 Subproyectos
 
@@ -94,7 +94,7 @@ Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 C
 > - [r] [[Echo — E-05 Analytics Convergence A0]] E-05 Analytics convergence A0 #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-06 Reference Enrollment and Binding]] E-06 Reference enrollment and binding #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] E-07 Raw facts DEAL coverage and trade lifecycle #owner/agent #type/dev #area/echo
-> - [ ] E-08 Routing EconomicCommand and risk reservation #owner/agent #type/dev #area/echo
+> - [ ] [[Echo — E-08 Routing EconomicCommand and Risk Reservation]] E-08 Routing EconomicCommand and risk reservation #owner/agent #type/dev #area/echo
 > - [ ] E-09 Execution copy reconciliation and Execution Fidelity #owner/agent #type/dev #area/echo
 > - [ ] E-10 Strategy Quality and eligibility #owner/agent #type/dev #area/echo
 > - [ ] E-11 PortfolioVersion selection allocation shadow #owner/agent #type/dev #area/echo
@@ -265,23 +265,23 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-08 Routing, EconomicCommand and risk reservation
 
-- **ID / status / size:** E-08 · To Do · MEDIUM
+- **ID / status / size:** E-08 · PLANNING FROZEN v1.0.0 (NORMAL PENDING) · MEDIUM
 - **Objective:** Universo expected/excluded congelado; EconomicCommand durable con policy/risk snapshot y reservation 1:N deals; UNKNOWN no resend ciego.
 - **Capability unlocked:** routing denominator + comando económico recuperable.
 - **Why:** Fidelity y apply necesitan expected universe, no INNER JOIN.
-- **Frozen input:** live authority §§7–8; SDK Routing/EconomicCommand.
+- **Frozen input:** live authority §§7–8; SDK Routing/EconomicCommand; E-07 ERRATUM-A §17.4 (gate RAW-BEFORE-ROUTE); E-02 §1.0.1 (defer CommandID).
 - **In scope:** planner snapshot; command uniqueness/outbox; reservation headroom por cuenta; crash PENDING; policy mutation no cambia command histórico.
 - **Out of scope:** optimizer de routing; multi-broker abstracto; netting.
-- **Dependencies:** E-07 identidad raw.
+- **Dependencies:** E-07 identidad raw (interfaces verificadas; base de desarrollo `3765f2ba`).
 - **Parallel:** guards de E-12 en shadow.
 - **Hypotheses:** reserva integrada en command, no servicio de riesgo distribuido.
 - **Risks:** dos opens concurrentes; UNKNOWN libera presupuesto.
 - **Output authority:** Routing result + EconomicCommand.
-- **Certification:** SOURCE + PHYSICAL (empty vs unknown, exclusions, MM crash PENDING).
-- **Done when:** expected recipients persistidos; reserva sobrevive crash.
+- **Certification:** SOURCE + CONTRACT + PG (clase A, cero órdenes); PHYSICAL y ECONOMIC_ACTIVATION condicionados (clase C).
+- **Done when:** expected recipients persistidos; reserva sobrevive crash; replay jamás genera segundo comando.
 - **Unlocks:** E-09, E-12.
 - **Accepted debt:** hedging-only V1.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning:** TOP v1.0.0 ([[Echo — E-08 Routing EconomicCommand and Risk Reservation]]). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/` @ branch `feature/e08-routing-economic-command-risk-reservation` HEAD `fe5c9de0` desde `3765f2ba` (HEAD E-07 C3; sus interfaces verificadas son la dependencia de desarrollo). Migración 066 exclusiva. Boundary RG-1…RG-6 frozen (gate E-07 §17.4); CommandID determinístico por `command_unique_key`+`content_digest`; reservas con UNKNOWN_HELD sin auto-release; outbox monotónico; activación económica clase C condicionada. **Implementation:** NORMAL (no lanzado; `NORMAL-PROMPT.md`). **GOD:** NONE.
 
 ### E-09 Execution copy, reconciliation and Execution Fidelity
 
@@ -386,6 +386,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-20 — E-08 TOP planning one-shot:** [[Echo — E-08 Routing EconomicCommand and Risk Reservation]] SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT v1.0.0 @ `fe5c9de0` pusheados a `origin/feature/e08-routing-economic-command-risk-reservation` desde `3765f2ba` (HEAD E-07 C3; docs-only; master intacto `5dd998f1`). Baseline resuelto contra repos reales (E-06 `b66dc5ff`, E-07 `3765f2ba` local=origin, migración 066 libre). Frozen: gate RAW-BEFORE-ROUTE RG-1…RG-6 (E-07 §17.4 elevado a boundary estructural); CommandID determinístico por `command_unique_key`+`content_digest` con UUIDv7 mint-once (consume defer E-02 §1.0.1); snapshots inmutables content-addressed; reservas integradas al command con headroom serializado por cuenta (`FOR UPDATE`) y `UNKNOWN_HELD` sin auto-release; outbox monotónico en la fila del comando; errores permanentes/transitorios/desconocidos fail-closed; sweepers SKIP LOCKED; reconciliación sin reenvío como superficie E-09. Separación clase A (desarrollable hoy, cero órdenes, router default OFF) vs clase C (activación económica condicionada: E-07 PHYSICAL, E-06 G1/T21, MQL_COMPILE, corrección EchoPersistence.mqh, E-02 AC-18). Worktree `/tmp/echo-e08-routing-economic-command-risk-reservation`. E-01…E-07 no reabiertos. Next = NORMAL (`NORMAL-PROMPT.md`).
 - **2026-09-20 — E-07 decisión Manager C2 consumida:** C4 (protocolo pipe Reference V1.1 aditivo con identidad física auténtica del productor, en el repo echo) + C5 (receta `fact_ref` frozen) + gate RAW-BEFORE-ROUTE (PublishSync ≠ commit durable; E-08 requiere aceptación durable + pin) @ `28213bbc` en `origin/feature/e07-raw-facts-deal-lifecycle` (push FF desde `a7a61875`; SPEC ERRATUM-A §17, VERIFICATION §9). Gates SOURCE/CONTRACT/PG PASS re-verificados; cero nombres E-07 en failing sets; S0/migraciones 001–065/go.mod diff 0; Forge/E-06/master/flota intocados. PHYSICAL_PENDING, FINAL_CLOSED=NO.
 - **2026-09-19 — E-07 TOP planning one-shot:** [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT v1.0.0 @ `59338a64` pusheados a `origin/feature/e07-raw-facts-deal-lifecycle` desde `b66dc5ff` (HEAD E-06; docs-only; master intacto `5dd998f1`). Baseline reconciliado sin drift; interfaces S0/E-06 verificadas en source; migración 065 reservada (exclusiva E-07, 066+ fuera); raw-before-route en echo-core; reuse aditivo de `raw_trade_events` (029); atribución al OPEN vía SELECT 064; PHYSICAL diferido explícito (sin Forge ni terminal para CONTRACT/PG). Worktree `/tmp/echo-e07-raw-facts-deal-lifecycle`. E-01…E-06 no reabiertos; T21 E-06 sigue blocked (G1) sin cambio. Next = NORMAL.
 - **2026-09-16 — E-06 TOP refresh liveness erratum v1.2.2:** [[Echo — E-06 Reference Enrollment and Binding]] v1.2.2 @ `acf996ad` (contrato `28afc47f`; old `336c723b`; push FF). §7.2a.4 v1.2.1 exigía «MUST republicar cada 5 s» vía `OnTick`; MQL5 no garantiza ticks ⇒ decisión Manager frozen: `OnTimer` compatible (≤5 s, realmente activado) preferido sin tocar `EventSetTimer`; `OnTick` oportunista con 5 s como intervalo mínimo entre publicaciones; sin tick ni timer compatible sin promesa de liveness continua (expiración 15 s fail-closed `SUSPENDED + UNKNOWN`; recovery §6; ninguna actualización de `ts` desde Echo/Bridge/Gateway/config). Tests AC-37a…d. CASE B y encoding v1 intactos. 0 source Echo; 0 bytes Forge. Master intacto. Next = IMPLEMENTATION REVIEW.
