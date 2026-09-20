@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Paused; fase R3 del roadmap R0 §9 (tras R2). 2026-09-19: primera copia de PG/Mongo PROPUESTA como G1A (GATE-G1A-v3, PENDIENTE de aprobación owner) — R3 sigue pendiente de revisión y cubriría recurrencia (cron/timers), RPO 1h (WAL/oplog), CouchDB, sanoid y MinIO (G1B, NO_GO hoy). Restore drill = requisito de esta fase (práctica R1)."
+status_detail: "Paused; fase R3 del roadmap R0 §9 (tras R2). 2026-09-20: G1A EJECUTADO y CERRADO-CERTIFICADO (primera copia PG/Mongo; drills funcionales re-certificados sobre datos RECUPERADOS desde snapshots PBS; reconciliación 15↔13 demostrada — ninguna base de usuario excluida). Pendiente owner: retiro de clave fuera de Hermes → purga plaintext; snapshot probe. R3 cubriría recurrencia (cron/timers), RPO 1h (WAL/oplog), CouchDB, sanoid y MinIO (G1B, NO_GO hoy)."
 priority: P2
 progress: 0
 icon: 💾
