@@ -51,21 +51,14 @@ Custodia y recuperación de la clave de cifrado de los backups G1A de PostgreSQL
 
 Ambas copias verificadas con la misma huella el 2026-09-20. Copia al owner mediante el archivo `r0d-g1a.key.owner-envelope` (0600, byte-idéntico a la clave, misma huella), entregable por cualquier canal privado del owner; verificado idéntico a la copia 1.
 
-## Cómo ve o copia el owner la clave (ruta real, probada)
+## Cómo ve o copia el owner la clave (ruta real, documentada)
 
-Desde cualquier máquina con SSH a hermes (VM 118), como su usuario:
+El owner no tiene cuenta local en hermes/daedalus (no se crean cuentas para esto). Ruta de acceso real, por orden de fricción:
 
-```bash
-# 1. Ver la huella (verificación sin exponer la clave)
-ssh <usuario>@hermes 'sha256sum ~/aranea/secrets/r0d-g1a.key'
-#    → debe imprimir 8e8e7efc40910ed7cebf48ea98574df4c50ed7071a298b2849eca7f3e6f46038
-
-# 2. Copiar la clave a su equipo (por scp; la clave nunca pasa por chat ni logs)
-scp <usuario>@hermes:aranea/secrets/r0d-g1a.key ~/Escritorio/r0d-g1a.key
-sha256sum ~/Escritorio/r0d-g1a.key   # verificar huella localmente
-```
-
-Alternativa equivalente: copia 2 en daedalus (`scp <usuario>@daedalus:.aranea-secrets/r0d-g1a.key …`). El archivo sobrante `r0d-g1a.key.owner-envelope` en `~/aranea/secrets/` es byte-idéntico a la clave y sirve como entregable directo del owner.
+1. **Pedirla a Hermes en una sesión** (`cat ~/aranea/secrets/r0d-g1a.key`): entrega directa en chat privado; la huella debe calzar con `8e8e7efc…f46038`. Es la ruta prevista por el mandato (la custodia la opera el agente).
+2. **Por SSH a hermes** desde su equipo (si dispone de acceso): `ssh <usuario>@hermes 'cat ~/aranea/secrets/r0d-g1a.key' > r0d-g1a.key && sha256sum r0d-g1a.key` — la clave nunca pasa por chat ni logs, solo por su terminal.
+3. **Archivo entregable ya existente:** `~/aranea/secrets/r0d-g1a.key.owner-envelope` (0600, byte-idéntico a la clave, misma huella), pensado para retiro por canal privado del owner.
+4. **Copia 2 alternativa:** `hermes-ops@daedalus:/home/hermes-ops/.aranea-secrets/r0d-g1a.key` (0700/0600; solo el usuario `hermes-ops` puede leerla — aislamiento POSIX verificado; `kor` u otros usuarios de daedalus no tienen acceso).
 
 ## Recuperación si desaparece Hermes
 
