@@ -228,7 +228,7 @@ El proyecto se considera **completo** cuando:
 
 ---
 
-**Status**: active (reactivado por owner 2026-09-16). El diseño de referencia sigue congelado (F-01..F-14); cambios semánticos vía REQUEST-CHANGES. Ejecución por fases R0–R8 según `2026-09-16-R0-reconciliacion.md`.
+**Status**: active (reactivado por owner 2026-09-16). El diseño de referencia sigue congelado (F-01..F-14); cambios semánticos vía REQUEST-CHANGES. Ejecución por fases R0–R8 según `2026-09-16-R0-reconciliacion.md`. **2026-09-19: R0D PROPUESTO y PENDIENTE de aprobación owner — G1A (PG/Mongo) gate ejecutable cerrado con preflight PASS; G1B (MinIO) NO_GO (G1B-BLOCKERS). R3 sigue pendiente de revisión. Diseño: `~/aranea/work/weekend-gate-01-20260919/GATE-G1A-v3.md`.**
 **Sesión cerrada por instrucción del owner**: 2026-07-01 (histórico). Reactivación: 2026-09-16.
 
 ## 🧭 Dirección owner — arquitectura storage y protección de datos — 2026-09-19
