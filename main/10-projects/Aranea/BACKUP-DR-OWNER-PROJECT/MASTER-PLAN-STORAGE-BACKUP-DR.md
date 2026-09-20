@@ -83,11 +83,11 @@ Hoja de ruta de capacidad (ningún paso en piloto): post-D-piloto (28sep) crecer
 
 | Métrica | Valor medido (fecha) | Implicación |
 |---|---|---|
-| PBS datastore main | 733M/295G tras G1A+G1B+2 días piloto | Dedup eficaz; espacio no es el blocker del piloto |
+| PBS datastore main | 733M/295G baseline 19sep PRE-G1A/G1B (429 chunks); G1A elevó a 500 chunks — [RE-MEDIR] uso real post-G1A/G1B antes de D-piloto | dedup eficaz; espacio no bloquea piloto |
 | tier 0 alloc 660G / used-in-guest ~165-185G/ciclo | R2 discovery 18sep | vzdump full T0 post-piloto cabe en +300G si dedup se comporta; re-medir si se suma flota ADD |
 | dump PG 160M + Mongo 73M/día (comprimidos en PBS tras dedup ≈ menor) | G1A 20sep | dumps diarios ~decenas de MB/día efectivos |
 | MinIO 64,76G lógicos → 12 snapshots pxar (dedup alto entre runs) | G1B 20sep | semanal sostenible; re-stream sólo si bucket cambia fuerte |
-| pool2 libre 2,15T vs full inicial REPL 1,1-1,1,6T | assessment 19sep | REPL inicial cabe sin limpiar árboles legacy |
+| pool2 libre 2,15T vs full inicial REPL: 1,1-1,6T según handoff §8.4 (EXCLUYE aranea_storage/trading_systems); con el set default A6 (incluye aranea_storage 1,09T + proxmox_storage + zvols) ≈1,7T | assessment 19sep | cabe en 2,15T pero margen corto — [RE-MEDIR] con `zfs send -n` antes del full; trading_systems sólo si dueño lo pide |
 
 ### D4. DBs: dumps certificados + PITR como segunda iteración; RPO 1h MongoDB = decisión de topología
 
@@ -117,10 +117,10 @@ Los procedimientos verificables completos viven en el ROADMAP (WP-DR1..DR6, cada
 |---|---|---|---|
 | DR-T1 pérdida de una VM | restore PBS → mismo nodo o alternativo | por clase (D4.1) | nunca requerir la VM caída como parte del restore (dumps y vzdump no dependen del guest) |
 | DR-T2 pérdida de un disco | pool0 mirror reconstruye solo (hot spare no hay; F-05); Ceph re-replica (salvo kronos = NO_GO hoy); local-lvm de nodo caído = restore PBS | pool0: RPO=0, RTO=rebuild; Ceph kronos: RPO=hasta re-replica imposible→riesgo 2 copias; local-lvm RPO=7d | no requerir TrueNAS para restaurar un zvol de TrueNAS (vzdump/dumps viven en PBS) |
-| DR-T3 pérdida de un nodo PVE | guests repartibles a otros nodos (pool1 RBD + nfs migran solos; local-lvm/iSCSI requieren restore o reconexión) | pool1 guests: minutos; local-lvm: RTO restore | PBS en kronos sobrevive (F-13); si cae kronos, copias locales quedan pero off-site R4 es el 2º destino |
+| DR-T3 pérdida de un nodo PVE | guests repartibles a otros nodos (pool1 RBD + nfs migran solos; local-lvm/iSCSI requieren restore o reconexión) | pool1 guests: minutos; local-lvm: RTO restore | **caída de kronos = caso crítico: PBS 180 Y staging 118 viven en kronos → se pierden TODAS las copias locales (dumps, configs, piloto); única recuperación posible = off-site (inexistente hasta A7/A8). Mitigación: acelerar A0/A7; la precedencia del riesgo priorizado ya refleja esto** |
 | DR-T4 pérdida de Ceph | SOs en pool1 se reconstruyen desde templates/config (re-instalar) + datos T0 ya viven en pool0 zvol; artefactos MinIO desde G1B | SOs: RPO irrelevante (reconstruir), RTO horas-por-VM | **ningún restore requiere pool1 vivo** (dumps/snapshots/zvols no viven en Ceph); este diseño es lo que hace DR-T4 sobrevivible |
 | DR-T5 pérdida de TrueNAS/hades | SO TrueNAS = reinstalar SCALE + import pool0/pool2 (pools sobreviven al chasis); zvols intactos; restore guests dependientes (nfs CTs, iSCSI data guests) | pools: RPO=0 (disco intacto); RTO=reinstalar+import+reattach | PBS kronos + off-site no dependen de hades; config TrueNAS exportada (WP-B2) evita reconfigurar a mano |
-| DR-T6 pérdida total Aranea | off-site cifrado (pCloud crítico + GDrive bulk) + Secret Zero (020) + inventory (R1) | RPO=1d configs, 1-7d datos | el bundle de recuperación vive fuera (020: caja fuerte+USB); sin 020 no hay DR-T6 |
+| DR-T6 pérdida total Aranea | off-site cifrado (pCloud crítico + GDrive bulk) + Secret Zero (020) + inventory (R1) | RPO configs off-site = hasta 7d (push semanal A7); 1-7d datos; 1d sólo en copia local PBS | el bundle de recuperación vive fuera (020: caja fuerte+USB); sin 020 no hay DR-T6 |
 
 ### D6. Dependencias circulares verificadas y su resolución
 
@@ -161,8 +161,8 @@ G1A/G1B sin prune → riesgo de llenado lento de datastore.
 
 ## 4. Ventana de mantenimiento (Echo vuelve domingo noche)
 
-- **Sin downtime (AUTO, no requiere ventana):** ingesta staging→PBS (A0), schedules dumps (A1/A4), snapshots zvol (A6), compose CFG (A5), observabilidad (B3), config exports read-only (B2), ingestas y timers, runbook (B4), MCP RO (S4).
-- **Requiere ventana (sábado madrugada):** PITR PG (A2, reinicio postgres), Mongo topología (A2b, si owner aprueba), vzdump T0 inicial (B1: prever I/O; MT4/echo en hades con CPU/idle I/O hoy), REPL full inicial (A6, I/O masivo pool0→pool2), pool2 scrub (A6), compact Ceph + mClock (S2, ventana), liberaciones 112/162/170 (S1, dueño).
+- **Sin downtime (AUTO, no requiere ventana):** ingesta staging→PBS (A0), schedules dumps (A1/A4), compose CFG (A5), observabilidad (B3), config exports read-only (B2), runbook (B4), MCP RO (S4). Snapshots zvol (A6) son ejecutables sin ventana PERO requieren antes la decisión owner de datasets (gate A6).
+- **Requiere ventana (sábado madrugada):** PITR PG (A2, reinicio postgres), Mongo topología (A2b, si owner aprueba), vzdump T0 inicial (B1: prever I/O; MT4/echo en hades — su I/O nocturno es UNKNOWN, la serie R2 mide otros CTs), REPL full inicial (A6, I/O masivo pool0→pool2), pool2 scrub (A6), compact Ceph + mClock (S2, ventana), liberaciones 112/162/170 (S1, dueño).
 - **Diferido a próxima ventana:** revisiones de decomisión (100/151), 2º target PBS→pool2, versioning MinIO, off-site bulk inicial (GDrive full pool0). Off-site crítico (A7) es sin downtime (restic sobre staging/PBS), no requiere ventana.
 - Regla: **nada arriesgado contra la operación de Echo domingos**; ventanas = sábado madrugada, y las GATED requieren OK owner explícito por WP.
 
