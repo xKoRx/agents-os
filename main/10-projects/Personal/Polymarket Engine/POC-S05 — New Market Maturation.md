@@ -159,7 +159,7 @@ Estados exactos: `VERIFIED_9d0512a` símbolo+SHA+test ejecutado PASS por la sesi
 
 **SFG-06 cohortes:** O usa `InspectEntity.FirstKnownAt` si fuente durable+revision conocida, WS no requerido. W exige new_market recibido y persisted con opt-in; el typed notice y el dedup YA existen (`protocol.MarketWSNewMarket`, `catalog.ParseNewMarketNotice/IdentityKey/Dedup`), pero W NO está lista: falta reducer→`UniverseChanged`→replay. C creation sigue `CREATION_SEMANTICS_UNKNOWN`. Lifecycle no antedata al conocer Gamma tardía. ID market Gamma ≠ condition ID ≠ token ID ≠ parent event (los tres namespaces están separados en el contrato). WP C1 no depende de completar captura Sports.
 
-**SFG-07:** `25f578a` no certifica que proceso activo terminara ni SQLite tenga consistencia recuperable. No matar proceso, no abrir active, no cp DB+WAL en caliente; QA puede generar nuevo dataset sintético en `t.TempDir` desde fixtures. Manifest y hashes del dataset real quedan owner RS.
+**SFG-07:** ningún checkpoint git certifica que el proceso de captura terminara ni que SQLite tenga consistencia recuperable (hoy sin procesos vivos, pero el recibo de cierre+backup del owner RS sigue pendiente). No matar proceso, no abrir active, no cp DB+WAL en caliente; QA puede generar nuevo dataset sintético en `t.TempDir` desde fixtures. Manifest y hashes del dataset real quedan owner RS.
 
 ### Bloqueos operativos: owner, tests y salida
 
@@ -172,7 +172,7 @@ Estados exactos: `VERIFIED_9d0512a` símbolo+SHA+test ejecutado PASS por la sesi
 7. `SFG-02` fee venue real `REAL_UNVERIFIED`: Economics owner; sólo extensión económica/PE004-B futura, no DoD actual. NUNCA requisito de la POC descriptiva.
 8. `INTEGRATION` merge/push de `feature/shared-poc-unblocker@9d0512a` a la rama principal del engine: decisión del owner tras Review humana (`ENGINE_MERGE_PENDING_OWNER_REVIEW`); PE-004 arranca contra el baseline `9d0512a` sin esperar el merge, sin ejecutarlo jamás por su cuenta.
 
-## Fixtures F01–F20 — CORPUS PRESERVADO (20 SPECIFIED, 0 NATIVE)
+## Fixtures F01–F22 — CORPUS PRESERVADO Y EXTENDIDO (22 SPECIFIED, 0 NATIVE; F01–F20 intactas, F21/F22 añadidas por cobertura descriptiva)
 
 **Base B0:** `t0=2026-09-20T12:00:00Z`, Event Gamma E1=9001, Market Gamma M1=1001, condition C1=`0x`+64×`a`, tokens A101/A102 sintéticos. Gamma G1 durably received t0, FirstKnownAt=t0; boot B1, WS epoch W1; tick .01, fee 0 SÓLO SYNTHETIC, accepting true conocido t0 (no se conoce cuándo se hizo true). Books FULL +1,+60,+300,+3600s: bid .40×10 ask .60×10, mid .50 spread .20 relative .40; Q10 buy VWAP .60/sell .40, 0 impacto relativo al best; sin trade/gap. Reemplazar eventos de B0, no duplicar. Captura q1… orden de recepción, NO WS venue sequence. Freshness max 30s al cut, no backfill. Cada Fxx serializa `{fixture_schema_version=1,synthetic=true,source=GENERATED,params_revision,raw_capture_records,metadata_timeline,epoch_timeline,expected_anchors,expected_quality,expected_reasons,expected_metrics,expected_digest}` con expectativas expresadas en claves canónicas `sfg05_v1` de la SPEC técnica. Materializar archivos SOLO coding agent, jamás declarar datos reales. **Condición W:** F03/F04 ejecutan en A como semántica sintética del notice (via `ParseNewMarketNotice/IdentityKey` sin proyección a Catalog); su variante E2E real (raw→Catalog→UniverseChanged→replay) está CONDICIONADA a SFG-06 y sólo corre con `PE004_W_START_ALLOWED=true`. Cada fixture tiene test nombrado con expectativa verificable (`TestPE004F<nn><slug>`); un nombre sin expectativa no cuenta.
 
