@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-07
-updated: 2026-09-19
+updated: 2026-09-20
 cssclasses:
   - wide
 ---
@@ -82,7 +82,7 @@ views:
       - note.priority
 ```
 
-Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]], [[Echo — E-05 Analytics Convergence A0]], [[Echo — E-06 Reference Enrollment and Binding]], [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]]. S0 permanece ownership de este track.
+Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]], [[Echo — E-05 Analytics Convergence A0]], [[Echo — E-06 Reference Enrollment and Binding]], [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]], [[Echo — E-08 Routing EconomicCommand and Risk Reservation]]. S0 permanece ownership de este track.
 
 ## ✅ Tareas
 
@@ -430,6 +430,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 - [[Echo — E-04 Forge Ingestion E1]]
 - [[Echo — E-05 Analytics Convergence A0]]
 - [[Echo — E-06 Reference Enrollment and Binding]]
+- [[Echo — E-08 Routing EconomicCommand and Risk Reservation]]
 - [[Echo — Producto Integrado]]
 - [[Echo Forge — Factory V2 Completion]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
