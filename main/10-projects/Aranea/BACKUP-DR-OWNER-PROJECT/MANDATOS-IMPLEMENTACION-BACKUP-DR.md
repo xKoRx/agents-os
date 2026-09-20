@@ -134,7 +134,7 @@ PROHIBIDO: subir sin cifrar; tocar árboles legacy pool2; borrar remote (CLEANUP
 
 | Mandato | Bloquea inicio | Puede partir YA |
 |---|---|---|
-| MP-01 | aprobación del plan (incluye recurrencia PG/Mongo; MinIO semanal y prune storage.cfg siguen gated internos) | ✅ tras aprobar plan |
+| MP-01 | aprobación del plan (incluye recurrencia PG/Mongo; MinIO semanal y prune storage.cfg siguen gated internos) | ✅ **EJECUTADO 2026-09-20** (A0-AUTO PASS; A1 PARTIAL — ciclo 1 VERIFIED, 2º ciclo 21sep pendiente; A3 SKIP con bundle; A5 PASS con hallazgo compose; ver change logs `2026-09-20-mp01-*` y `~/aranea/work/mp01-20260920/`) |
 | MP-02 | 020 + 021 | — |
 | MP-03 | D-piloto + 018 + 019 | crecimiento datastore como fase gated |
 | MP-04 | MP-01 + 019 (+OK owner PG; decisión Mongo para A2b) | — |
