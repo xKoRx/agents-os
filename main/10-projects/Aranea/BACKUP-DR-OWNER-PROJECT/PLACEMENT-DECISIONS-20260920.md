@@ -54,18 +54,18 @@ updated: "2026-09-20"
 
 #### W1 — nfs-storage fuera de pool0 (mismo chasis) → pool2 (TrueNAS)
 
-1. **Problema**: los rootfs de 4 CTs T0-edge (mcps 113, emqx 103, obsidian-sync 116, frigate 137) + ISOs viven en `pool0/proxmox_storage` (NFS): caída de TrueNAS derriba simultáneamente el plano edge Y los datasets de datos T0 (iSCSI). Un solo dominio de falla (chasis hades) cubre datos y arranque de servicios.
-2. **Evidencia**: handoff §3.2/§3.5 (dependencia circular verificada); runtime 20sep: NFS montado con 402G/1,4T (30%) y prune `keep-all=1` vigente (1 match en storage.cfg, 5/5 nodos).
-3. **Objetivo**: `pool2/pool1_storage_nfs` (dataset nuevo) exportado NFS a la LAN; `nfs-storage` redefinido en storage.cfg apuntando al nuevo export (mismo `nodes=` y exportlist).
+1. **Problema**: los rootfs de 4 CTs del plano edge (mcps 113, emqx 103, obsidian-sync 116, frigate 137 — ADD-IMP/T2 y ADD-CRIT en la matriz, pendientes de aprobación 018) viven en `pool0/proxmox_storage` (NFS), junto a ISOs y discos ide0 de MT4/labs: caída de TrueNAS derriba simultáneamente el plano edge Y los datasets de datos T0 (iSCSI). Un solo dominio de falla (chasis hades) cubre datos y arranque de servicios.
+2. **Evidencia**: handoff §3.2/§3.5 (dependencia circular verificada); runtime 20sep: montaje NFS con 402G usados/30% (vista de pool0; el dataset zfs usado = 416G según handoff — misma unidad, métricas distintas) y prune `keep-all=1` vigente.
+3. **Objetivo**: storage PVE NUEVO `nfs-pool2` (dataset `pool2/nfs_pool2` exportado NFS) que recibe SÓLO los 4 rootfs movidos. **`nfs-storage` NO se redefine ni se toca** (corrección adversarial B1): el export pool0/proxmox_storage sigue sirviendo los discos `ide0` de los MT4 PROD (124/133/134), los labs stopped (102/109/112) e ISOs — redefinirlo habría dejado a la flota de trading sin discos de arranque. Inventario del export (handoff §3.2): 8 CT rootfs en total; se mueven 4, los demás quedan. Estado final: DOS storages NFS, cada uno con su contenido.
 4. **Beneficio**: separa el dominio de falla del SO edge del de los datos T0; pool2 (HDD) es backend adecuado para CTs poco exigentes; sin capex.
 5. **Dependencias/riesgo**: CTs apagados durante el movimiento de su rootfs (vzdump→restore, nunca mover el file bajo el CT vivo); no corrige I/O (no lo necesita); no es off-host (SPOF F-14 del chasis se mantiene aceptado).
 6. **Capacidad destino**: pool2 libre 2,15T; rootfs a mover ≈ 138G brutos (54G del dataset PVE + margen); cabe sin tocar legacy F-09.
 7. **Downtime y mecanismo**: ~15 min/CT en ventanas escalonadas (CT stop → `pct move-volume <ct> rootfs <storage-nuevo>` con vzdump previo verificado; fallback vzdump + `pct restore` al nuevo storage). NO simultáneo con A6-REPL full (I/O compartido en TrueNAS).
-8. **Reversión**: redefinir `nfs-storage` de vuelta (diff guardado); los CTs vuelven al export original; rollback < 10 min/CT.
-9. **Protección previa**: vzdump fresco de cada CT ANTES de tocarlo (113 ya tiene coberturas del piloto; para los demás, primer vzdump en la misma ventana).
-10. **Autorización**: OWNER — cambio de definición de storage en los 5 nodos (storage.cfg, clase GATED igual que prune-nfs) + inclusión en 019.
+8. **Reversión**: re-restore del vzdump previo al backend original (`pct move-volume` elimina el volumen origen: NO hay vuelta por redefinición de storage). <10 min/CT para rootfs chicos; obsidian-sync (~64G asignados) puede tomar 20-40 min.
+9. **Protección previa**: vzdump fresco VERIFICADO (verify TASK OK) de los 4 CTs ANTES de tocarlos — **113 mcps incluido: NO está en el piloto R2** (corrección adversarial B2; matriz: "VZ post-D, NO en piloto").
+10. **Autorización**: OWNER — alta del storage nuevo `nfs-pool2` en storage.cfg (pmxcfs cluster-wide: una edición, replicada a los 5 nodos) + ventana 019.
 
-#### W2 — Traefik 115 de local-lvm (athena) → CT sobre el nuevo nfs-storage
+#### W2 — Traefik 115 de local-lvm (athena) → CT sobre nfs-pool2
 
 1. **Problema**: el edge de entrada del homelab depende del local-lvm de athena; si athena cae, traefik no arranca en otro nodo (re-restore manual).
 2. **Evidencia**: matriz (rootfs:local-lvm); R1 certifica que su config es la unidad de backup más madura (CFG diario + recovery-critical `acme-stepca.json`).
