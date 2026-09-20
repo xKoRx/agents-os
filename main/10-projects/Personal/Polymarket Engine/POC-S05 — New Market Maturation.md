@@ -31,219 +31,212 @@ updated: 2026-09-20
 
 # POC-S05 — New Market Maturation
 
-> [!info]+ PE-004 · planificación canónica
-> **Padre:** [[Polymarket Engine — MVP]] · **Estado:** PLAN_DOCUMENTED / LOCAL_GATE_PENDING · **Prioridad:** P1 · **Hipótesis:** PE-004 · **Progreso implementación:** 0%. Esta nota, no un handoff externo ni el chat, es el único planner del subproyecto. Ningún gate de implementación está aprobado por el solo hecho de haber redactado la SPEC.
+> [!info]+ PE-004 · planificación canónica reconciliada 2026-09-20
+> **Padre:** [[Polymarket Engine — MVP]] · **Estado:** `PE004_READY_AFTER_SHARED_GATE` para integración; núcleo descriptivo offline disponible después de preflight local · **Implementación: 0%** · **Hipótesis no validada** · **LIVE_DISABLED**. Reconciliación remota persistida, `LOCAL_VERIFICATION_PENDING`; NO es certificación de sincronización del checkout ni autorización del manager para gates compartidos.
 
 ## 🎯 Objetivo
 
-Diseñar, implementar y certificar una POC **descriptiva y causal**, read-only y sin órdenes, que mida la maduración observada de mercados de Polymarket desde una ancla explícita y conocible: cambios en spread, profundidad, impacto y actividad durante **1 minuto, 5 minutos y 1 hora**. Contrastar contra cohortes comparables y controles negativos PE-019 (display-price switching) y PE-020 (bid-ask bounce). Determinar si existe un patrón reproducible antes de formular una estrategia económica de trading. El descenso del spread NO equivale a beneficio ejecutable ni justifica BUY/SELL. No implementar producción, LIVE ni un predictor direccional en esta POC.
+Implementar una POC **descriptiva, causal, read-only, sin órdenes ni fills** que mida la maduración de mercados observados: spread, profundidad observable y truncamiento, impacto para Q=1/5/10 cuando los niveles cubran Q, midpoint, actividad, calidad y censura en ventanas individuales de 60/300/3600 s. Controles negativos PE-019 (display-price switching) y PE-020 (bid-ask bounce) son pruebas internas, NO strategies/proyectos nuevos. Aislar PE-004-A de PE-004-B: reducción de spread NO demuestra rentabilidad, predictor, acción, exit, fees venue y OOS quedan fuera de esta POC.
 
-**Entregables:** contrato venue y temporal verificable; cohorte y denominadores no sesgados; ingestión lifecycle observada sin inventar historia; snapshots as-of de profundidad; observador Strategy+Factory; 20 fixtures nativas deterministas; SCREEN/REPLAY/SHADOW de observación en dataset aislado; scorecard y resultados con censura; gates, tests, recibos y decisión de investigación separada del permiso live. La captura empírica y validación OOS son fases posteriores, nunca resultados inventados.
+**DoD dividido:** A = 20 fixtures sintéticas + cómputo puro/causal probado; B = Strategy/Factory y salida durable por frame de observación SIN Opportunity ni ActionCandidate, Catalog O y SCREEN reutilizado; C = REPLAY/SHADOW observation-only, invariancia, manifiestos y certificación no-live sobre dataset desechable. Cohorte W y dataset real son ampliaciones condicionadas; cohorte C de creación y validación económica no son prerequisitos de A. No inferir alpha desde fixtures.
 
-## 📊 Estado actual
+## 📊 Estado actual — evidencia, límites y aislamiento
 
-- **20-09-2026, esta nota:** proyecto y plan documental creados sobre `xKoRx/agents-os@master` tras comprobar que la ruta exacta no existía en el árbol remoto. **No se verificó el checkout local de Agents-OS, sus escritores, la indexación Graphify ni el estado actual de RS v0.3.** Reconciliar cambios locales antes de tocar el mismo archivo; no reset/rebase/overwrite de trabajo ajeno.
-- **Engine remoto AUDITADO, no ejecutado:** `xKoRx/polymarket-engine@main` commit `9ae5ddec1a0e52fdc0bbde608cd0504e644d05a5` (`9ae5dde`); no implica HEAD local ni build verde. `7bd264d` es baseline histórico, no HEAD. El M4 no-live certificado en el padre NO certifica PE-004. Comprobar HEAD, tests, flags, cambios pendientes y data-dir real en A0.
-- **Venue:** Market AsyncAPI oficial documenta `event_type=new_market` y opt-in `custom_feature_enabled:true`; `id` = Gamma market ID, `market` = condition ID, `assets_ids` = IDs de tokens, `event_message.id` = parent Event ID, `timestamp` = epoch-ms del aviso. No demuestra suscripción global, entrega completa, hora de publicación, primer trade o creación on-chain. No hay 7 casos reales capturados ni historial L2 completo verificado: `REAL_DATA_READY=NO`.
-- **Transporte existente:** `internal/transport/marketws/marketws.go::connectRaw` ya envía opt-in + initial_dump; `cmd/engine/record.go::framesSink.onFrame` captura todo raw recibido mediante ACK durable con ConnectionID/Epoch. No agregar collector independiente. `internal/protocol/marketws.go::ParseMarketWSEvent` conoce `new_market` pero solo guarda Raw (`Documented=false`); no objeto lifecycle tipado. `catalog.Reducer.applyRecord` solo proyecta Gamma: aviso WS aún no aparece en Catalog. Books y Regimes omiten lifecycle WS.
-- **Datos existentes reutilizables:** `catalog.InspectEntity` expone `FirstKnownAt` y revisions `KnownAt/SourceAt/CaptureRef`; `catalog.MarketContent.Dates` preserva `createdAt/updatedAt` como dato reportado, no como ancla de primera observación; Books respeta full snapshot, epoch y gap. `catalog.UniverseSpec.Events` está declarado pero `collectMembers` no lo filtra: prohibido usarlo como event-scope hasta corregirlo.
-- **Gaps de integración confirmados remotamente:** `frames.AssetSnapshot` contiene BBO y `Levels` (conteo), **no profundidad precio×size** ni lifecycle as-of; `cmd/engine/screen.go` y `experiment.RunShadow` están acoplados a `fixture-neutral`, hacen cortes después de recorrer todo el journal y usan simplificaciones distintas del reducer Books. SHADOW inventa profundidad 10 por lado y no resuelve fees: no es evidencia de PnL PE-004. `replay.RunObservation` verifica manifest/books, pero no ejecuta Strategy ni scorecard PE-004. `replayRegimesReducer.digest()` vacío no demuestra equivalencia de estado Regimes.
-- **Safety de datos:** `screen` y `RunShadow` hacen `capture.Open` (puede escribir boot/recovery); **NUNCA apuntarlos a RS v0.3 o al data-dir activo**. Usar una copia descartable pinneada y verificada. `capture.OpenView` para lecturas auténticamente read-only cuando aplique.
-- **Estado honesto:** `SPEC_v1=DOCUMENTED_PENDING_LOCAL_FREEZE`, `FIXTURES=20_DEFINED/0_NATIVE`, `ENGINE_LOCAL_HEAD=UNKNOWN`, `CAPTURE_REAL_CASES=0`, `HYPOTHESIS_VALIDATED=NO`, `LIVE_DISABLED`. No existen pruebas ejecutadas de PE-004 en esta preparación; el coding agent no empieza código hasta G0.
+- **Agents-OS:** esta misma nota S05 preexistente (`master`, blob inspeccionado antes del cambio `119423a3d73b28e2ab12fcde922047d31529c7a5`); parent y S01/S02/S03/S04 READ-ONLY. Se reconcilió la SPEC original conservando hipótesis, parámetros, 20 fixtures y trazabilidad de A0–C3; no se creó planner ni ADR paralelo. Checkout local, writers y autosync NO accesibles desde esta sesión: `LOCAL_VERIFICATION_PENDING`, lint/Graphify/sync local NOT_RUN. La escritura remota no prueba sincronización local y el manager debe reconciliar autosync antes de aceptar el gate documental.
+- **Engine:** `main@9ae5ddec1a0e52fdc0bbde608cd0504e644d05a5`, `feature/research-strategies-v01@25f578a502ce0c9e1ad27a93537a868a94533b34`, ambas refs remotas comprobadas 2026-09-20; feature 11 commits por delante de main. NO existe `master` en engine. `25f578a` es checkpoint RS v0.3 MID-CAPTURE, no HEAD local ni certificado final; HEAD/status/branch/worktrees/procesos/writers/capturas locales = `LOCAL_VERIFICATION_PENDING`. No se ha ejecutado `go test`, CLI, backup ni dataset durante esta planificación.
+- **RS v0.1:** `cmd/engine/screen.go::{screenFactories,screenPipeline,routeNext,toStrategyFrame,screenInstance.consume}`, `screen_consolidated.go`, `internal/strategy/runtime.go` y `internal/experiment/experiment.go::{RunShadow,Scorecard,shadowStrategyFor,fillCandidate}` implementan registry multiinstancia, cortes forward incrementales, runtime, Simulator y Account virtual. Tests existentes `cmd/engine/screen_pipeline_test.go`, `screen_consolidated_test.go`, `internal/experiment/rs_v01_shadow_test.go::TestRSV01ShadowBothPOCsEndToEnd`; EXISTENCIA del test, NO ejecución en esta sesión. Retirar las afirmaciones previas «neutral-only» y «all-at-end»: `SUPERSEDED`.
+- **RS v0.2:** discovery Gamma por ID, adapter keyset, `catalog.Service.InspectEntity` y revisions con `FirstKnownAt/KnownAt/SourceAt/CaptureRef`; emisión de params y normalización específica de Sports documentadas en `testdata/research-v02/DATA-CAPABILITIES.md`. No reconstruir Catalog, collector ni crawler. `FirstKnownAt` = primera observación durable local, NO creación/publicación. No asumir event-scope por `UniverseSpec.Events` no demostrado en código anterior.
+- **RS v0.3:** checkpoint publica artefactos NegRisk y snapshot intermedio `.rs-v03-sports/{engine.db,engine.db-wal,engine.db-shm,journal/*.seg.active}`. Git SQLite+WAL activo NO demuestra cierre ni recoverability. `testdata/research-v03/SPORTS-CAPTURE-RUNBOOK.md` programa fase deportiva adicional posterior; no confundir su runbook con evidencia de finalización. Único owner RS v0.3 controla la captura y cierre. No tocar, abrir para escrituras, mover, restaurar, limpiar, copiar en caliente ni ejecutar SCREEN/SHADOW sobre `.rs-v03-sports/` o datos activos.
+- **Profundidad y seguridad:** `pocdata.TopLevels=6`, `EncodeLevels/DecodeLevels/DepthFresh` y tests existen. `frames.AssetSnapshot.Levels` solo cuenta niveles; `Extras` guarda hasta 6 por lado del último full book y stale tras delta. `screen.applyOwnerRecord` no proyecta delta completo; `shadow` usa proyección simplificada. Ni 6 niveles ni count son `FULL_EXECUTABLE_DEPTH`. SHADOW legado puede fabricar size 10 desde BBO sin Candidate: prohibido para PE004. `capture.Open` en SCREEN/SHADOW puede escribir boot/recovery: SOLO `t.TempDir` o snapshot consistentemente restaurado.
+- **Hallazgo crítico SFG-05:** `Runtime.runJob(detect)` publica oportunidades únicamente si `len(ops)>0`; `screenInstance.consume` llama `Evaluate` solo dentro de `for _,op := range ops`; `RunShadow` hace igual. `Assessment.Metrics` no sirve para `Detect()->[]`; SHADOW retiene último metrics y `scorecardHash` no incorpora las métricas. No fabricar Opportunity instrumental, ACCEPT ni Candidate para lograr persistencia.
+- **Estados verificables:** `FIXTURES=20_SPECIFIED/0_NATIVE/0_RUN`; `PE004_INTEGRATION_TESTED=NO`; `REAL_CASES=0_VERIFIED`; `HYPOTHESIS_VALIDATED=NO`; `LIVE_DISABLED=UNCHANGED`; `PLAN_REMOTE_RECONCILED=YES`; `LOCAL_SYNC_VERIFIED=NO`. No aumentar `progress` por documentación.
 
-## 🧱 Entrega de desarrollo
+## 🧱 Entrega de desarrollo / baseline
 
-| Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
-|---|---|---|---|---|---|
-| `xKoRx/polymarket-engine` | `main` remoto; branch local exacta **A0 por verificar** | remoto `9ae5ddec1a0e52fdc0bbde608cd0504e644d05a5`; **A0 pin de HEAD local obligatorio** | [SPEC funcional v1](#spec-funcional-v1) | [SPEC técnica v1](#spec-técnica-v1) | DOCUMENTED; NO CODE / LOCAL_FREEZE_PENDING |
-| `xKoRx/agents-os` | `master` remoto; checkout local A0 | commit de creación de esta nota verificable en GitHub; local UNKNOWN | esta nota canónica | frontmatter `project` v1 + gates y WPs aquí | planner remoto creado; validar lint/Graphify local |
-
-## 🧩 Subproyectos
-
-Ninguno. PE-019 y PE-020 son controles negativos **dentro de PE-004**, no crear proyectos/estrategias adicionales ni un planner paralelo.
-
-## ✅ Tareas
-
-> [!note]+ Fuente única, ownership y criterio de estado
-> Todo WP permanece `[ ]` hasta evidencia física y recibo exacto en esta nota. `[/]` es trabajo empezado; `[r]` revisión; `[x]` evidencia aceptada. Las tareas del agente van aquí (`#owner/agent`); el padre necesita una única tarea puente `#owner/me #type/supervision`, todavía por reconciliar de forma segura con el archivo local enorme. El agente NO la cierra. No estimar `progress` por documentación ajena al código.
-
-- [ ] **A0 · Gate local y SPEC freeze:** verificar estado git/HEAD de ambos repos, writers y S05 único, RS v0.3, capturas y params; contrastar 14 seams auditados con HEAD local, fijar branch/base/allowed files; registrar resultados y congelar SPEC solo si G0–G3 PASS. #owner/agent #type/research #area/personal
-- [ ] **A1 · Catalog/temporal:** persistir/coherentemente consultar primera observación, anclas O/B y revisiones as-of; no retroactividad ni false event-scope; F02–F05/F19. #owner/agent #type/dev #area/personal
-- [ ] **A2 · WS lifecycle tipado:** parser Protocol de `new_market`, mapping y reconciliación Catalog, idempotencia raw→ACK→replay; mantener flag existente; F01/F03/F04/F05/F08. #owner/agent #type/dev #area/personal
-- [ ] **A3 · Books→Frames causal:** first usable two-sided, epoch/reconnect/gap, snapshot profundidad pinneada a cut y refs metadata; F06–F11/F15–F17. #owner/agent #type/dev #area/personal
-- [ ] **B1 · Observer/Factory PE-004:** Strategy determinista sin I/O, tres ventanas, cohortes/denominadores, quality/reasons, Candidate=nil; F01–F20. #owner/agent #type/dev #area/personal
-- [ ] **B2 · Economía descriptiva e hipotética:** reutilizar Economics real as-of, fee/tick intervalos, depth Q1/5/10 y veto PnL sin salida; F09/F10/F12/F15. #owner/agent #type/dev #area/personal
-- [ ] **B3 · Controles y scorecard:** PE-019/020, dedup trade, reason codes, censura, experiment manifest/metrics; F12–F14/F18. #owner/agent #type/dev #area/personal
-- [ ] **C1 · SCREEN PE-004 causal:** registry mínimo, forward cut por instante, quality verdadera del reducer y output descriptivo sin orders; F01–F20. #owner/agent #type/dev #area/personal
-- [ ] **C2 · REPLAY/SHADOW aislados:** pipeline PE004 en copia descartable con manifest/seed/digest, igualdad de schedules y ningún active boot; F07/F08/F16/F20. #owner/agent #type/dev #area/personal
-- [ ] **C3 · Certificación no-live:** 20/20 fixtures, build/vet/test/race, cobertura >=95% por paquete tocado sin exclusiones manipuladas, regresión M4, baseline/manifest/recibos, final owner review; no GO económico inferido. #owner/agent #type/dev #area/personal
-
-## SPEC funcional v1
-
-### Hipótesis y diseño del experimento
-
-**PE-004-A, mecanismo falsable:** entrada asíncrona de participantes, cambios de liquidez/cotización/tick/fees al conocerse un nuevo mercado pueden alterar las distribuciones de spread, depth, impacto y actividad. Estimando primario: cambio de spread cotizado y profundidad ejecutable de cohortes observadas entre t0 y los cortes 60, 300, 3600 s, reportando cobertura y censura. Secundarios: impacto Q, midpoint, first book/trade observado y régimen. Comparar cohortes con controles de categoría/evento/régimen cuando existan suficientes casos, cluster por parent Event; efecto nulo, inverso o explicable por missingness desconfirma generalización. **PE-004-B (trade) BLOQUEADO:** requiere predictor preregistrado ex ante, benchmark conocido antes del corte, acción concreta, salida causal, estudio OOS, fees/impact/slippage/adverse selection/capital y robustez. A no implica B.
-
-**Población:** TODOS los mercados Gamma detectados prospectivamente en periodo preregistrado, incluidos nunca-two-sided, sin trades, inactivos y censurados; no seleccionar por resultado posterior, book futuro, supervivencia o existencia actual de trade. Unidad market + asset, incertidumbre agrupada por parent Event; denominadores separados `N_discovered`, `N_eligible`, `N_book_seen`, `N_usable`, `N_window_complete`, `N_halted`, `N_gap`, `N_missing_trade`. El ranking de horizontes ex post no se usa para seleccionar estrategia. Horizonte de cohortes **individual por market**, nunca reloj global compartido.
-
-**Cohortes:** O=`CATALOG_FIRST_OBSERVED`: `catalog.EntityInspect.FirstKnownAt` de Gamma market, guardado originalmente en captura, v1 canónica. W=`WS_FIRST_NOTICE_OBSERVED` solo luego de A2 con payload validado y recepción durable, segregada de O. B=`FIRST_USABLE_BOOK_OBSERVED` primera dos-sided full+mapping+tick/quality aceptables; es un análisis complementario de liquidez, NO listing. C=`CREATION_KNOWN` permanece BLOCKED hasta semántica certificada de creación/publicación y feed sin lag anterior: `new_market.timestamp`, `Gamma.createdAt`, `startDate` y first seen no son intercambiables. No sustituir `created_at` retroactivamente con Gamma tardío.
-
-**Ventanas preregistradas:** `t0+60s`, `t0+300s`, `t0+3600s`. Eventos y revisiones con `known_at <= cutoff`, cut `capture_seq` cerrado; `received_at` decide causalidad, `source_at/event_time` es atributo del venue, no reloj compartido. Regla de métricas: BBO `bid=max(bids),ask=min(asks)`, mid=(bid+ask)/2, spread=ask-bid, relative_spread=spread/mid cuando mid>0, depth por suma niveles, BUY VWAP a asks y SELL VWAP a bids para tamaños Q; sin depth suficiente => `INSUFFICIENT_DEPTH`; si no hay dos lados => no precio. Δmid solo entre dos observaciones del MISMO asset válidas/contiguas. El último trade nunca altera profundidad ni reemplaza quote. Velocidad a primer book/trade OBSERVADO con right censor y muestra explícita. Reportar mediana/IQR y distribución por régimen sin atribuir causalidad a cambios de tick/fees.
-
-**Controles PE-019/020:** un cambio de display UI entre midpoint/last trade con book fijo produce `DISPLAY_PRICE_ONLY` y cero señal. Trades alternando bid/ask con book fijo producen `BID_ASK_BOUNCE_ONLY`, Δmid=0 y cero señal. No extrapolar umbral UI a contrato ejecutable. `SPREAD_COMPRESSED_DESCRIPTIVE_ONLY` no es retorno neto. Ningún `ActionCandidate`, órdenes, señales live ni estimación PnL si no existe salida ejecutable as-of.
-
-### Semántica temporal, lifecycle y parámetros
-
-| Campo | Semántica autorizada | Nunca inferir |
-|---|---|---|
-| `market_created_at` | creación del objeto indicado solo con contrato semántico certificado; por ahora UNKNOWN | Gamma `createdAt`=listing o WS timestamp=creación efectiva |
-| `market_published_at` | publicación externa probada, UNKNOWN hasta fuente | Gamma `startDate`=publicación |
-| `accepting_orders_at` | primera transición false→true OBSERVADA o timestamp venue certificado; almacenar fuente+receive | boolean true actual=instante inicial |
-| `first_catalog_observed_at` | primera recepción durable Gamma market (`FirstKnownAt`) | fecha Gamma pasada como local know-at |
-| `first_ws_observed_at` | primera recepción durable WS para identidad validada y epoch | event timestamp como receive; cobertura global |
-| `first_usable_book_at` | primer full book two-sided, mapped/tick-valid y quality usable | snapshot REST como WS delta base; one-sided válido para spread |
-| `first_trade_at` | primera operación histórica solo con feed completo certificado; si no `first_trade_observed_at` | ausencia desde t0=jamás negociado |
-
-Lifecycle son facetas observadas, no linealidad garantizada: DISCOVERED, ORDERS_UNKNOWN/ACCEPTED, BOOK_SEEN/USABLE, TRADING_OBSERVED, HALTED, CLOSED/RESOLVED. Revisión stale no reabre HALTED/CLOSED; contradicción Gamma vs WS => `LIFECYCLE_CONFLICT`. Estado source + known-at + capture_ref siempre. Gap declarado `evidence_gap`, epoch nueva requiere full snapshot; silencio WS sano no es gap, sin interpolar. `max_book_age=30s` es parámetro **de investigación**, no umbral del venue. Más viejo al corte => STALE; no rellenar con próximo book.
-
-**`PE004_params_v1` propuestos, freeze tras A0:** `anchor=CATALOG_FIRST_OBSERVED`, `windows_s=[60,300,3600]`, `max_book_age_s=30`, `min_two_sided_samples=2`, `size_grid_shares=[1,5,10]`, `tick_policy=AS_OF`, `fee_mode=AS_OF_OR_UNKNOWN`, `decision_mode=DESCRIPTIVE_ONLY`, `no_orders=true`; nombres/parámetros existentes en vault local tienen precedencia y discrepancias se registran, no se sobrescriben automáticamente. Identidad del resultado: `market+anchor_kind+t0+window+params_revision+cut_seq+catalog_revision+regime_revision+book_epoch`; re-run mismo manifest produce mismo ordered digest.
-
-**Criterio de producto:** resultado empírico solo cuando hay muestras reales prospectivas, datos as-of, cohortes/denominadores/censura y controles; `REAL_DATA_READY=NO` no bloquea terminar correctamente el core offline, pero bloquea afirmar que PE-004 produce edge.
-
-## SPEC técnica v1
-
-### Autoridades de venue, datos y repo
-
-- [[Polymarket Engine — MVP]]; [[Polymarket — Edge Research Consolidado 2026-09-16]]; [[Polymarket — Technical Platform Map — synced 2026-09-17]]. Referencias venue verificadas: https://docs.polymarket.com/asyncapi.json (NewMarketEvent, opt-in y timestamp); https://docs.polymarket.com/market-data/realtime-data (SDK normalizado != wire); https://docs.polymarket.com/market-data/discover-markets; https://docs.polymarket.com/market-data/market-details. Gamma OpenAPI https://docs.polymarket.com/api-spec/gamma-openapi.yaml fue identificado, NO extraído íntegro; fields semánticos creation/acceptance siguen UNKNOWN hasta contrato verificado. Data v2 no provee replay L2 garantizado.
-- `xKoRx/polymarket-engine@9ae5ddec1a0e52fdc0bbde608cd0504e644d05a5`: solo auditoría GitHub remota, sin `go test` ni `git status` local. No clonar lógica del engine dentro de PE-004. Preserve M1/M2 contracts, Go exact decimals, no floats económicos, no nuevos stores/schedulers/collectors/genérico sin segundo consumidor.
-
-### Interfaces y dueño exacto (verificado en remoto; reconfirmar local en A0)
-
-| Seam | Símbolos/archivo | Responsabilidad / condición |
-|---|---|---|
-| Gamma discovery | `catalog.Service.RunScan`, `catalog.PageSource` / `internal/catalog/scan.go` | reusar scan Gamma durably ACK; scan parcial nunca prueba ausencia |
-| As-of metadata | `catalog.Service.InspectEntity`, `MarketContent`, `FirstKnownAt` / `internal/catalog/inspect.go`, `content.go` | first seen local, versiones raw/known-at; no backdating |
-| WS subscription/capture | `marketws.connectRaw`, `framesSink.onFrame` / `internal/transport/marketws/marketws.go`, `cmd/engine/record.go` | opt-in ya presente; conservar raw, epoch, capture seq, ACK |
-| Lifecycle parser | `protocol.ParseMarketWSEvent`, `MarketWSEnvelope` / `internal/protocol/marketws.go` | mínimo payload typed, discriminator type/event_type, Gamma/Condition/asset IDs disjuntos, strict parse/raw |
-| Lifecycle projection | `catalog.Reducer.applyRecord` / `internal/catalog/reducer.go` | vincular aviso WS a Catalog sin falsificar revisión Gamma; dedup, first WS known-at, reconciliación |
-| Universe | `catalog.Service.CompileUniverse`, `collectMembers` / `internal/catalog/universe.go` | `Events` filter está incompleto; initial revision `Created=true` aunque `Changed=false`; no prometer feedback auto |
-| Capture | `capture.Envelope` / `internal/capture/envelope.go` | BootID, CaptureSeq, ConnectionID, Epoch, receive wall/mono, provenance; no store duplicado |
-| Books/quality | `books.Engine`, `applyBook`, `Shard.Transitions` / `internal/books/reducer.go` | full replace, stale/gap/reconnect; first usable derivado causal |
-| Frames | `frames.Dispatcher.RequestCut`, `AssetSnapshot` / `internal/frames/dispatcher.go`, `frames.go` | conservar barreras FIFO; nivel precio×size pinned as-of al cut, sin lookup latest/futuro |
-| Observer | `strategy.Strategy`, `Factory`, `Assessment` / `internal/strategy/api.go` | nuevo paquete local PE004; callbacks sin I/O; INCONCLUSIVE + Candidate=nil |
-| Economics | `economics.WalkSide`, `BuildQuote` / `internal/economics/economics.go` | reuso exact decimal, fee interval/unresolved, real book cut |
-| Execution wiring | `cmd/engine/screen.go::runScreen`, `applyOwnerRecord`; `internal/replay/replay.go::RunObservation`; `internal/experiment/experiment.go::RunShadow` | separar fixture neutral de PE004; cortes forward por observación; manifest y data-dir aislados; no synthetics como execution edge |
-
-**Modelo de entrada propuesto** (adoptar contratos reales en A0): observación `{source,source_raw_ref,raw_hash,market_gamma_id,parent_event_gamma_id?,condition_id,asset_id?,capture_seq,boot_id,connection_id,epoch,received_wall,received_mono_offset_ns,venue_event_time_raw?,known_at,revision_refs,quality}`; datos faltantes NULL/UNKNOWN, no rellenar. `MarketWS` puede recibir arrays de eventos; parse elemento a elemento. Dedup de mercado por namespace y condición verificada, no por slug/event ID; mensaje repetido preserva evidencia sin duplicar cohorte. Si IDs colisionan => `IDENTITY_CONFLICT`/quarantine. Una notificación no crea mágicamente un Market Gamma revision.
-
-**Salida inmutable:** observaciones de cohorte por market+asset+cut con `anchor_kind`, `window`, `cut_seq`, refs catálogo/regime/tick/fee, epoch, sample quality/reason, spread/mid/depth/impact/trade flags y missingness. No permitir retroactualizar ventana 1m después de recibir metadata/book 5m. `frames.AssetSnapshot.Levels` es solo count; el dueño Frames debe agregar un snapshot de L2 versionado o un ref resoluble por cut con evidencia durable, eligiendo UNA opción local y probándola. `Runtime` no entrega DB, red, wallet, signer ni clock global a la Strategy.
-
-**Firma lógica conforme API real:** `Describe` identifica `PE-004` versión, mecanismo, metrics; `Universe` declara cohortes específicas por market (NO `spec.Events` defectuoso); `RequiredData` exige metadata as-of y books válidos para métrica, trades opcionales, max ages; `Start` fija manifest/params/versiones; `Detect` solo observa y calcula métricas causales de frames, posibilidad de `Opportunity` **instrumental**; `Evaluate` siempre `Assessment{Decision:INCONCLUSIVE,ReasonCodes:[DESCRIPTIVE_ONLY],Candidate:nil,Metrics:...}` (errores por faltante), no aceptar por umbral de spread; `Observe` recibe feedback y escribe solo por runtime/owner existente, no I/O dentro de callback; `Stop` idempotente. Si métricas agregadas no caben en Strategy, ampliar salida de research mínima por composition/Experiment sin cambiar formato de `ActionCandidate`.
-
-**Riesgos de referencia del pipeline actual:** SCREEN/SHADOW parsean asset con búsqueda textual y solo `book`, fuerzan OBSERVED_USABLE sin reducer completo, generan N cortes al terminar, no desempatan array event; SHADOW ofrece fake size=10, FeeUnresolved, notional bruto y `INCONCLUSIVE`; ambos pueden abrir y mutar journal por `capture.Open`. No usar como oráculo de calidad ni para backtest. REPLAY observation manifiesta hash de segmentos pero no scorecard de PE004. La nueva integración debe capturar/proyectar/emitir cortes en orden de recepción hasta cutoff y conservar denominadores de frames INELIGIBLE. No tocar data-dir de RS vivo.
-
-### Fixtures F01–F20: especificación de corpus a serializar, no tests ya hechos
-
-**B0 sintética común:** `t0=2026-09-20T12:00:00.000Z`; parent Gamma E1=9001; Market Gamma M1=1001; Condition C1=`0x` + 64 `a`; YES/NO token A101/A102 (sintéticos); Gamma G1 recibido t0, `FirstKnownAt=t0`; boot B1, WS epoch W1; tick T1=.01, fee F1=0 **solo fixture**, acceptingOrders=true conocido t0 (sin afirmar hora de primer true). Por asset, books full at +1s, +60s,+300s,+3600s con bid `0.40×10`, ask `0.60×10`; midpoint=.50, spread=.20, relative=.40, Q10 VWAP buy=.60/sell=.40 e impacto relativo al best=0; no trade ni gap por defecto. Si una fila reemplaza un instante/evento/revisión, sustituye B0 (NO duplica). Reasignar q1..qN por orden local de recepción; qN no es secuencia venue. Raw bytes + manifest SHA256 + timelines + expected JSON + digest y source `GENERATED/synthetic=true` por fixture. Para no imputar snapshot viejo, toda ventana requiere libro de corte fresco <=30s. Ninguna fixture es evidencia empírica.
-
-| Fixture | Cambio explícito sobre B0 | Resultado y gate esperado |
-|---|---|---|
-| F01 | new_market q1 t0; book q2 +1; trade TX1 q3 +20 a .60; books q4 +60,q5 +300,q6 +3600 | 1 market, book +1, first trade **observed** +20, spread .20 en cortes, ninguna acción ni true creation time |
-| F02 | M2/C2 independiente, Gamma createdAt declarado t0-1h pero recibido t0 | ancla O=t0; creation cohort bloqueada; LATE_DISCOVERY; ningún pasado importado |
-| F03 | new_market idéntico repetido +2, hash igual; book +3 | un mercado, duplicate count 1; mismo first known |
-| F04 | book recibido +1, aviso WS +3 con venue time t0 | EVENT_OUT_OF_ORDER; no antedatar first WS local ni proyectar evento antes de +3 |
-| F05 | Gamma G1 no mapea asset↔condition hasta G2 +15; aviso +10; full +16 | metadata insufficient antes +15; primer usable >=+16; no backfill del libro +1 |
-| F06 | no books hasta +3600 inclusive; heartbeat sano | NO_USABLE_BOOK, no spread 0, censura >=1h, no inference never-traded |
-| F07 | books +1,+30; gap declarado +40..+120; W2 full +121; cuts >=300 | 1m KNOWN_CAPTURE_GAP/INCOMPLETE; no interpolation; reanchor nuevo epoch |
-| F08 | W1 book +1; W2 +21; delta +22 antes del full +25 | WAIT_INITIAL_BOOK descarta delta; no mezcla epochs |
-| F09 | T1 .01 cambia a T2 .001 en +21 y full +22 | REGIME_TICK_CHANGED; dos intervalos, no attribution orgánica |
-| F10 | F1=0 a F2>0 desde +21; book sin cambio | FEE_REGIME_CHANGED; no precio/fee futuro en cálculo previo |
-| F11 | G2 halt/accepting=false +30; aviso viejo +45 y book +60 | MARKET_HALTED, descriptiva censurada, nunca opportunity ejecutable |
-| F12 | book +1 .40/.60; +60 .48/.52 ×10; fee F1 0 | spread .20→.04; mid .50; roundtrip contemporáneo BUY .52/SELL .48 negativo; DESCRIPTIVE_ONLY |
-| F13 | book fijo .40/.60; display UI .50→.40 at +10; last trade .40 | PE019 DISPLAY_PRICE_ONLY; BBO/mid invariables; cero action |
-| F14 | TX1 bid .40 +10; TX2 ask .60 +20; book fijo | PE020 BID_ASK_BOUNCE_ONLY; trade delta .20; Δmid=0; cero action |
-| F15 | bid .40×10; asks .60×0.1 y .95×9.9; Q10 | buy VWAP=.9465, impact=.3465; no false midpoint/synthetic depth |
-| F16 | +300 future book .48/.52 inyectado con known_at=+300 al frame +60 | LOOKAHEAD_REJECTED en +60; prueba roja si detector contaminado acepta futuro |
-| F17 | book +1,+60, luego +330,+3600; a +300 book tiene 240s | STALE_BOOK_AT_CUTOFF; INCOMPLETE, no inventar capture gap por silencio |
-| F18 | todos los libros B0; no trade observado | NO_TRADE_OBSERVED_IN_CAPTURE; time-to-trade censurado, spread aún medible |
-| F19 | M1 ancla t0; M2/C2 ancla t0+30m; parent E1 compartido | dos relojes individuales; M2 no tiene 1h completa al t0+1h; cluster parent=1 |
-| F20 | B0 mismo raw con schedules [1], [7,3,1], [32] | outputs ordenados byte-equivalentes y digest idéntico, no clock/red/write activo |
-
-**Harness de fixtures:** cada caso contiene `id,fixture_schema_version=1,synthetic=true,source=GENERATED,params_revision,raw_capture_records,metadata/epoch timelines,expected_anchors,expected_quality/reasons,expected_metrics,expected_digest`. FAIL si aparece order, dato futuro, gap inventado, dedup erróneo, timestamp interpolado, market ID confundido con token, fee futura o índice revisado ex post. Verificar raw→Capture durable→Catalog/Books/Frames→Observer→Scorecard→REPLAY para cada caso. 20 definidas semánticamente; **0 serializadas y 0 ejecutadas a fecha de la nota**.
-
-### Work packages · secuencia, ownership, tests y gates
-
-| WP | Owner / allowed files verificados remotamente (reconfirmar A0) | Entrada→salida, pruebas, gate | Dependencia |
+| Repo | Autoridad y branch | Contratos | Estado |
 |---|---|---|---|
-| A0 | READ ONLY: checkout engine+vault; no modified files | git HEAD/status/branch/writers/RS, comparar 14 seams y source SHA, resolver S05+params; G0–G3 o BLOCKED | ninguna |
-| A1 | `internal/catalog/{scan,inspect,content,reducer,universe}.go` SOLO correctivo requerido | first-known/anchors/revisions/initial universe; F02–05,19; G-TEMP/G-UNIVERSE | A0 |
-| A2 | `internal/protocol/marketws.go`, `internal/catalog/reducer.go`, composición `cmd/engine/record.go` solo si necesaria | typed new_market, id/epoch, raw→journal→catalog, dedup; F01,03,04,05,08; G-CAPTURE-RAW/G-LIFECYCLE | A0,A1 |
-| A3 | `internal/books/{books,reducer}.go`, `internal/frames/{frames,dispatcher}.go` y testdata OWNED | full/epoch/gap/quality, depth pinned as-of; F06–11,15–17; G-DEPTH/G-FORWARD | A1,A2 |
-| B1 | nuevo `internal/strategy/pe004/` + tests, `internal/strategy/api.go` solo extension indispensable | Strategy/Factory descriptive, metrics/denominators, no-I/O/no orders; F01–20; G-STRATEGY | A1–A3 |
-| B2 | reutilizar `internal/economics/economics.go`, `internal/regimes/` solo delta demostrado | Q1/5/10 depth real + fees as-of/unknown, no mark-to-mid; F09,10,12,15; G-ECON | A3,B1 |
-| B3 | `internal/strategy/pe004/`, `internal/experiment/experiment.go` bajo ownership existente | controles PE019/020, scorecard/manifest, trade dedup/censor; F12–14,18; G-NEG-019/020 | B1,B2 |
-| C1 | `cmd/engine/screen.go` + composition tests | registry PE004 y cortes DURANTE replay, no all-at-end; calidad real; 20 fixtures; G-SCREEN | B1–B3 |
-| C2 | `internal/replay/replay.go`, `internal/experiment/experiment.go`, integration/testdata aislados | manifests pinned, schedules identical, SHADOW observation-only, no active boot; F07,08,16,20; G-ISOLATION/G-REPLAY | C1 |
-| C3 | exclusivamente tests/fixtures/evidence/docs PE004 y regresiones propias por owner | 20/20, build/vet/test/race, coverage >=95% por paquete tocado, M4 no regresión, SHA/hashes/receipts; G-REGRESSION | C2 |
+| `xKoRx/polymarket-engine` | `main@9ae5dde` histórico; feature remota `25f578a` inspeccionada; **HEAD local dinámico obligatorio**; nueva rama/worktree aislada de feature verificada por manager | Strategy API frozen, Catalog, Books/Frames, pocdata, Economics, SCREEN/REPLAY/SHADOW | READ-ONLY en planning; A0 antes de código; sin commits/push aquí |
+| `xKoRx/agents-os` | `master`; **esta nota única S05**, parent wikilink conservado | SPEC v1+matriz+fixtures+mandato de esta misma nota | edición remota con blob SHA exacto; local autosync/lint/Graphify por verificar |
 
-**Scope gates:** cada WP fija en esta tabla antes de editar rutas exactas, tests y SHA local de A0; no aplicar whitelist genérica como permiso a tocar módulos enteros. Rechazar trabajo con cambios ajenos, lock activo, divergencia de HEAD o decisiones incompatibles. Los cambios transversales los hace owner del módulo, no la Strategy. Ejecutar WP secuencialmente salvo paralelismo por ownership disjunto y barreras documentadas. No reset, force push, rebase ni overwrite; no push del engine y no interrumpir RS.
+**Ownership:** PE004 agent únicamente nuevo paquete y testdata propios (`internal/strategy/pocs/maturation/` solo si A0 confirma nombre libre; `testdata/pe004/` sólo si A0 confirma layout), jamás claim de ownership sobre módulos compartidos. Manager asigna dueños únicos: SFG-01 Books/Frames, SFG-02 Economics/Regimes, SFG-03 Composition/Replay/Experiment, SFG-05 Strategy Runtime/Experiment, SFG-06 Protocol/Catalog, SFG-07 RS capture+QA. Factory registration en `cmd/engine/screen.go` solo composición del manager. Si colisión o writer activo STOP sobre ese archivo. Padre, demás POC y recursos globales READ-ONLY. No otro planner, runner, codec L2, Economics, store, collector ni ADR.
 
-**G0** repositorios/working trees y writer ownership; **G1** schema venue y límites de cobertura (creation aún blocked puede continuar O); **G2** seams/HEAD locales y allowed files; **G3** 7 timestamps/known-at/cohort/as-of; **G4** 20 fixtures native + manifest SHA/expected; **G5** frozen SPEC/params/economics/negative controls; **G6** todo WP con archivos/deps/test/policy; **G7** nota AGENTS-OS schema/lint/Graphify/bridge. Gates implementación específicos: `G-CAPTURE-RAW`, `G-LIFECYCLE`, `G-UNIVERSE`, `G-DEPTH`, `G-FORWARD`, `G-STRATEGY`, `G-ECON`, `G-NEG-019/020`, `G-SCREEN`, `G-ISOLATION`, `G-REPLAY`, `G-REGRESSION`. Registrar PASS solo con comando, SHA y recibo verificable; ausente = NOT_RUN. RS dataset o Gamma vivo no accesible = DATA_BLOCKED, jamás resultado económico inventado.
+## 🧩 Subproyectos y puente al padre
 
-### Reglas de riesgo, seguridad y NO_GO
+Ninguno. `parent: "[[Polymarket Engine — MVP]]"` es autoridad intacta. **Delta exclusivamente para manager; no editar padre aquí:** registrar S05/PE004 implementación 0%, offline A desbloqueable tras A0, SFG-05 bloquea B/C, SFG-01 solo L2 causal real, SFG-06 solo W, SFG-07 solo datos reales, SFG-02 solo economía; reutilizar SCREEN/REPLAY/SHADOW y añadir una sola tarea `- [ ] Supervisar [[POC-S05 — New Market Maturation]]: A offline, SFG-05 común, integración B/C y Review sin autorizar LIVE. #owner/me #type/supervision #area/personal` si todavía no existe. No marcar revisión humana `[x]` por plan.
 
-- `LIVE_DISABLED` / `NO_ORDER` toda la POC. SCREEN observación, REPLAY/SHADOW virtual offline y dataset descartable. No habilitar wallet, creds, signer, execution real, permisos IAM, LIVE lease ni capital. Tiny-live US$300 del engine padre no autoriza trading en PE004.
-- No interpretar el precio UI, midpoint ni último trade como fill. Depth must be real as-of; fee UNRESOLVED/SUSPECT conserva incertidumbre, salida futura desconocida => net UNKNOWN. No usar costes promedio inventados ni fee 0 fuera de fixture sintética.
-- No usar `/data-dir` activo ni `capture.Open` sobre journal RS vivo. Inspeccionar con OpenView y copia con hashes/manifest. Un cambio de boot, writes sobre dataset o pérdida de raw aborta test.
-- No falsos PASS de tests, cobertura, real cases, backtest net, Graphify o aceptación humana. Sin datos completos no concluir ausencia de transacciones ni historia L2. Cualquier violación de tiempo, fee, identidad, epoch, owners o dato futuro = gate FAIL/INCONCLUSIVE, no reparar con interpolación.
+## ✅ Tareas — roadmap reconciliado, implementación 0%
+
+> Todos los WPs conservan `[ ]`; sólo evidencia ejecutada con baseline, comandos, tests, hashes y aprobación owner permite `[/]→[r]→[x]`. Historial previo A0–C3 preservado abajo. `BLOCKS_OFFLINE_CORE` sólo preflight real y errores de modelado; dependencia de economía/datos reales NO bloquea A. Presupuesto global Strategy Factory: 10 h compartidas, máximo 2 coding agents simultáneos; no reservar 10 h completas PE004. Continuar entre checkpoints técnicos sin pedir permiso innecesario; gates humanos formales NO autoaceptables.
+
+- [ ] **A0 · Preflight / ownership / SPEC local:** en AMBOS repos ejecutar `git status --short --branch; git rev-parse HEAD; git branch -vv; git worktree list; git log -n 12 --oneline`; comprobar feature vs `25f578a`, procesos/writers/autosync y capturas sin tocarlas; leer AGENTS.md, bootstrap, note SHA, ownership; fijar worktree aislado, paths permitidos exactos y parameters. Declarar `LOCAL_VERIFICATION_PENDING` hasta recibos. #owner/agent #type/research #area/personal
+- [ ] **A1 · Núcleo descriptivo PURO [PRIMER WP CODIFICABLE]:** módulo PE004 aislado: identidades/cohortes O/B, anclas/known-at, ventanas 60/300/3600, denominadores y right-censor, spread/mid/relative/actividad, Q1/Q5/Q10 solo con profundidad explícita fresca suficiente; calidad/reasons y tests table-driven. SIN Catalog writer, WS tipado, fee venue, SCREEN ni SFG-05. F02,F05–F20 según semántica offline. #owner/agent #type/dev #area/personal
+- [ ] **A2 · Fixtures y look-ahead:** serializar F01–F20 sintéticas versionadas con entrada/raw si aplica, expectativas y digest; controles PE019/020, por-market clocks, epoch, gap, revision futura y no-fill; fixture-only feed en temp dir sin venue. `20/20` únicamente cuando realmente ejecutadas. #owner/agent #type/dev #area/personal
+- [ ] **A3 · Catalog O/B adapter mínimo:** reutilizar `catalog.Service.InspectEntity`, FirstKnownAt/revisions y mapping ya existente; leer/proyectar as-of sin writes en Catalog ni `UniverseSpec.Events` no verificado. Sólo correctivo exclusivo demostrable y aprobado por owner Catalog; otherwise mantener adapter test double y registrar gate. F02,F05,F19. #owner/agent #type/dev #area/personal
+- [ ] **B1 · Factory / observer y SFG-05:** Strategy/Factory PE004 sin I/O ni ActionCandidate, consume frames, emite observación descriptiva con metrics/denominators/censura mediante salida común aprobada SFG-05, sin Opportunity instrumental; integration tests Detect vacío. #owner/agent #type/dev #area/personal
+- [ ] **B2 · SCREEN PE004 (reuso):** manager registra factory en `screenFactories` y consolidated existentes, forward cut incremental real y datasets aislados; `RUNNER_EXISTS != PE004_INTEGRATION_TESTED`; pruebas 0 opportunities/0 orders/observaciones persistidas. #owner/agent #type/dev #area/personal
+- [ ] **B3 · Scorecard/controles:** output durable versionado por frame, ordered digest completo, PE019/020, censura y denominadores; solo owner Experiment modifica scorecard compartido. Sin PnL desde spread ni fee cero implicada. #owner/agent #type/dev #area/personal
+- [ ] **C1 · Cohorte W lifecycle, condicional:** solo después de SFG-06 typed `new_market` raw→ACK→identity→Catalog→UniverseChanged→replay; timestamp WS no equivale a creación. Puede quedar DATA_BLOCKED sin detener O/B ni A/B. #owner/agent #type/dev #area/personal
+- [ ] **C2 · REPLAY/SHADOW observation-only:** manager reutiliza runners existentes, exige Strategy assessment/output parity por ≥2 schedules + manifest; 0 ACCEPT, Candidate nil, orders/fills 0; aislar t.TempDir/restored snapshot, prohibido fallback BBO fake size=10; SFG-01 para depth real. #owner/agent #type/dev #area/personal
+- [ ] **C3 · QA no-live / owner review:** 20 fixtures serializadas y ejecutadas, build/test/vet/race, cobertura por paquete tocado medida sin maquillaje, regresión M4/RS, manifest hashes y dataset isolation, lint/Graphify comprobables, manager Review; muestras reales y validación estadística FUTURAS. #owner/agent #type/dev #area/personal
+
+### Registro de reconciliación: tareas originales, NO borrar historia
+
+| WP anterior | Cambio 2026-09-20 | Motivo / gate |
+|---|---|---|
+| A0 local + freeze | CONSERVAR acotado | Requiere verificación HEAD/writers/sync, no re-investigar venue. |
+| A1 Catalog/temporal | REDUCIR → A1 puro + A3 adapter O | `FirstKnownAt/InspectEntity` ya existen; no implementar Catalog nuevamente. |
+| A2 WS lifecycle tipado | DIFERIR → C1/SFG-06 | O no depende de W; transporte y raw admission existentes. |
+| A3 Books→Frames causal | MOVER a SFG-01 compartido; A1 usa fixture L2 explícito | `pocdata` existe, hasta 6 niveles stale tras delta; no codec privado. |
+| B1 Observer/Factory | CONSERVAR → B1, con SFG-05 | Detect vacío no persiste metrics; no opportunity ficticia. |
+| B2 Economía descriptiva e hipotética | REDUCIR → spread/Q pura A1; fee real fuera DoD | WalkSide/BuildQuote existentes; fórmula venue no probada. |
+| B3 Controles y scorecard | CONSERVAR → A2/B3; scorecard owner compartido | PE019/020 son controles, no otras strategies. |
+| C1 SCREEN causal | SUPERSEDED runner/reparación all-at-end → B2 integración | `screenPipeline.routeNext` ya forward, factory multiinstancia existente. |
+| C2 REPLAY/SHADOW | REDUCIR → C2 test de reutilización | Runners existen, PE004 no está certificado; no fills obligatorios. |
+| C3 certificación | CONSERVAR → C3 por fase | Fixtures ≠ validación real; sin live. |
+
+## SPEC funcional v1 — contrato preservado con alcance regularizado
+
+**Hipótesis PE004-A:** la entrada asíncrona de participantes y cambios observados de cotizaciones/régimen puede producir distribuciones de spread/profundidad/actividad distintas entre t0 y 60/300/3600 s; contraste descriptivo con cohortes comparables y controles. Nulos, inversos, missingness y efecto de régimen son resultados válidos. Universo prospectivo: TODOS los mercados detectados, incluidos nunca-two-sided, sin trade, detenidos e incompletos. Unidad market+asset y cluster por parent Event cuando se estime incertidumbre. Denominadores: `N_discovered,N_eligible,N_book_seen,N_usable,N_window_complete,N_halted,N_gap,N_missing_trade`; horizonte INDIVIDUAL por mercado; no selection/survivorship/threshold ex post. Estado de validación empírica `NO`.
+
+**O** `CATALOG_FIRST_OBSERVED`: `catalog.EntityInspect.FirstKnownAt` primera observación durable; puede arrancar offline con fixture o Catalog as-of. **B** `FIRST_USABLE_BOOK_OBSERVED`: primer full two-sided mapped, tick/quality válido; análisis de liquidez, no listing. **W** `WS_FIRST_NOTICE_OBSERVED`: evento WS recibido y durably ACK con identidad probada, exige SFG-06 para E2E. **C** `CREATION_KNOWN`: bloqueado hasta demostrar significado de creación/publicación/cobertura; Gamma `createdAt`, `startDate`, `new_market.timestamp`, received_at y first book NO son equivalentes. Nunca antedatar first-known por metadata recibida después.
+
+**Tiempo:** `known_at<=cutoff` y `capture_seq<=cut_seq`; `received_at` es reloj de conocimiento, venue `source_at` sólo atributo; no interpolación ni rellenar +60 con book de +300. Ventanas `t0+60s,+300s,+3600s`, edades de book `max_book_age_s=30` parámetro de estudio. Censura derecha cuando ventana no completa, trade no observado o cobertura incompleta. Silencio sano NO equivale gap. Reconnect/epoch nueva requiere full; delta anterior no cruza epoch. Halt/cierre no revertido por revisión stale. `accepting_orders=true` observado no prueba momento inicial true.
+
+**Métricas:** bid=max(bids), ask=min(asks), mid=(bid+ask)/2, spread=ask-bid, relative=spread/mid si mid>0. Solo two-sided, mismo asset, calidad y revisiones previas; last trade y UI no reemplazan BBO. Profundidad precio×cantidad SUMA únicamente niveles observados del cut y declara `DEPTH_UP_TO_LEVEL_6` o `FULL_EXECUTABLE_DEPTH` solo si se prueba cobertura completa. Q1/Q5/Q10: sweep BUY asks y SELL bids vía Economics/función pura existente con tamaño cubierto; insuficiente => `INSUFFICIENT_DEPTH`, stale delta => `STALE_DEPTH`; NO inventar liquidez. Impacto/VWAP son medidas de libro, NO fill. Precio display cambia book fijo => `DISPLAY_PRICE_ONLY` (PE019). Trades bid/ask book fijo => `BID_ASK_BOUNCE_ONLY` (PE020), Δmid=0. Spread comprimido `SPREAD_COMPRESSED_DESCRIPTIVE_ONLY`, Candidate=nil, no PnL.
+
+**Parámetros versión 1 propuestos:** `anchor=CATALOG_FIRST_OBSERVED,windows_s=[60,300,3600],max_book_age_s=30,min_two_sided_samples=2,size_grid_shares=[1,5,10],tick_policy=AS_OF,fee_mode=AS_OF_OR_UNKNOWN,decision_mode=DESCRIPTIVE_ONLY,no_orders=true`. A0 contrasta parámetros realmente frozen; discrepancia se registra y no se sobreescribe. Identidad output `market+asset+anchor_kind+t0+window+params_revision+cut_seq+catalog_revision+regime_revision+book_epoch`; ordered output + manifest -> digest idéntico por schedule. Real OOS y PE004-B requieren otra decisión y gate económico; nunca convertir esta POC en trading silenciosamente.
+
+## SPEC técnica v1 — composición sin reinvención
+
+**Autoridades:** [[Polymarket Engine — MVP]], [[Polymarket — Edge Research Consolidado 2026-09-16]], [[Polymarket — Technical Platform Map — synced 2026-09-17]]. `xKoRx/polymarket-engine` branch `feature/research-strategies-v01@25f578a` como evidencia estática, HEAD LOCAL por A0. No redescubrir discovery salvo contradicción real en HEAD. Venue AsyncAPI `https://docs.polymarket.com/asyncapi.json`, Gamma/OpenAPI y fuentes ya incorporadas en investigación anterior: sus claims semánticos de creation siguen no demostrados; no inventarlos.
+
+**Entradas:** normalizar `{source,source_raw_ref,raw_hash,market_gamma_id,parent_event_gamma_id?,condition_id,asset_id?,capture_seq,boot_id,connection_id,epoch,received_wall,venue_event_time_raw?,known_at,revision_refs,quality}`; UNKNOWN/null cuando falta, no backdate. Reusar `catalog.Service.InspectEntity`, `catalog.MarketContent`, `protocol.ParseMarketWSEvent`, `marketws.connectRaw`, `record.framesSink.onFrame`, `books.Engine`, `frames.Dispatcher`, `pocdata`, `economics.WalkSide/BuildQuote`, `screenFactories/screenPipeline`, `replay.RunObservation/RunDelivery`, `experiment.RunShadow`. `MarketWSEnvelope.new_market` conocido/raw/Documented=false: typed+projection pertenecen SFG-06. AssetSnapshot.Levels es COUNT. No tomar latest state en cut histórico ni confiar en `Revision:1` fijo de adapters simplificados.
+
+**Observación PE004:** función pura recibe frame/cut, contexto de cohorte conocido, regime/metadata as-of y niveles observados con cobertura declarada; entrega registros inmutables `{schema_version,run,instance,market,asset,cohort,anchor,window,frame_ordinal,cut_seq,known_at,source_at,capture_ref,epoch,revision_vector,spread,mid,depth_coverage,impact_q,quality,censor,reason_codes,denominators,params_revision,manifest_ref}`. Ningún campo económico no sustentado se rellena a cero. Strategy `Describe/Universe/RequiredData/Start/Detect/Evaluate/Observe/Stop` frozen no permite callback con DB/red/wallet. `Detect` puede devolver CERO oportunidades para TODOS los frames y eso NO impide métricas: SFG-05 es el único seam de salida durable del runtime. Prohibida «Opportunity instrumental» propuesta en SPEC histórica: SUPERSEDED. Nada de `Assessment ACCEPT`, candidato, live signal o oportunidad económica inexistente.
+
+### SFG-05 — change request único listo para owner (prioridad transversal)
+
+**Causa exacta:** `internal/strategy/runtime.go::runJob` detect → publica sólo `len(ops)>0`, `cmd/engine/screen.go::screenInstance.consume` Evaluate solo dentro del loop, `internal/experiment/experiment.go::RunShadow` idem y último `Assessment.Metrics` last-wins; `scorecardHash` solo RunID, Frames, Fills, Accepted, PnL. Un output genuinamente sin Opportunity queda invisible e inválido como evidencia PE004.
+
+**Contrato mínimo propuesto al owner Strategy Runtime/Experiment, sujeto a su freeze formal:** interfaz OPCIONAL y versionada `ResearchFrameObserver` implementada por estrategias descriptivas con método puro `ObserveFrame(ctx,frame) -> FrameResearchObservation`; Runtime la llama secuencialmente en el MISMO actor tras `Detect` para cada frame elegible, incluso con `len(ops)==0`, sin modificar el contrato obligatorio `strategy.Strategy`. Distinguir fallo de Detect vs fallo de observación y abortar/INCOMPLETE antes de publicar output parcial ambiguo. Alternativa equivalente aceptable solo si owner demuestra símbolo+test vigente; no implementar otro store. `FrameResearchObservation{schema_version,run_id,strategy_id,instance_id,frame_ordinal,cut_seq,revision_vector,cohort,market,asset,anchor,window,metrics,reason_codes,quality,censor,denominators,params_revision,manifest_ref}`. Persistir mediante `JournalSink.AdmitRuntimeRecord` en RUNTIME, ACK durable antes de visibilidad, identidad idempotente (run+instance+frame+record key), tipo discriminado `research_observation`; SCREEN/Experiment consumen la MISMA proyección del journal. Canonicalizar orden/decimales/mapas; digest incorpora TODAS observaciones, exclusions, denominadores, params+manifest; no `lastStrategyMetrics`, no hash sólo PnL. Backward compatible: Strategies sin interfaz siguen comportamiento actual; no añadir método obligatorio, no alterar Candidate ni usar FeedbackTimer como store privado. Regla `0 opportunities,0 evaluations,0 accepted,0 candidates,0 orders,0 fills` con observaciones >0 es PASS descriptivo. Owner único hace cambio de Runtime+Experiment+Composition en worktree aislado, manager aprueba SPEC/interface antes de merge.
+
+**Tests de aceptación obligatorios:** `TestSFG05ZeroOpportunitiesResearchRecorded` (2 frames válidos, 0 ops, 2 outputs durables); `TestSFG05NoFakeOpportunityCandidateOrFill`; `TestSFG05JournalAckFailureFailClosed`; `TestSFG05DuplicateFrameIdempotent`; `TestSFG05TwoInstancesIsolation`; `TestSFG05ChangedMetricOrReasonChangesDigest`; `TestSFG05TwoSchedulesSameDigest`; `TestSFG05OldStrategiesBackwardCompatible`; `TestSFG05IncompleteOnMissingOutput`. **Gate EXIT:** tests Go en HEAD local pinneado + evidencia JSON journal, scorecard, digest con hashes, owner aceptación; nada autoaprobar por documentación. Debe ayudar PE001/PE030 abstention también. NO bloquear A mientras owner trabaja.
+
+### DEPENDENCY RECONCILIATION — 2026-09-20
+
+Estados exactos: `EXISTING_VERIFIED` símbolo+SHA+test identificado (test NO ejecutado en esta sesión); `EXISTING_NEEDS_TEST` código sí, propiedad específica no probada; `MISSING_CONFIRMED` ausencia en baseline remoto auditado; `LOCAL_VERIFICATION_PENDING` HEAD/captura local inaccesible; `POC_SPECIFIC`, `NOT_REQUIRED_FOR_OFFLINE`, `SUPERSEDED` se aplican a componentes o tareas como corresponda. Todos SHA de código = FEATURE REMOTA `25f578a`, no HEAD local.
+
+| Gate | Comportamiento requerido | Código existente | SHA | Test | Estado | Owner | WP bloqueado |
+|---|---|---|---|---|---|---|---|
+| SFG-01 | L2 exacta del asset, mismo cut, source/receive/capture/epoch/revision, delta/full/gap sin inventar; distinguir 6 niveles de full | `pocdata.{TopLevels,EncodeLevels,DecodeLevels,DepthFresh}`; `frames.AssetSnapshot.Extras`; `screen.applyOwnerRecord` solo full; Books durable distinto | `25f578a` | EXISTE `pocdata_test.go::{TestEncodeLevelsSortsAndTruncates,TestDecodeLevelsRoundTripAndRefusals,TestDepthFreshness}`; FALTAN `TestSFG01DeltaCutRevisionEpoch` y `TestSFG01TruncationCapacity` | `EXISTING_NEEDS_TEST` (codec `EXISTING_VERIFIED`; full depth `MISSING_CONFIRMED`) | Books/Frames/Composition shared | B depth real, C con datos reales; NO A |
+| SFG-02 | Sweep y fee venue verificable, as-of revisionada, UNKNOWN no cero | `economics.{BookView,WalkSide,ExecutableDepth,BuildQuote}`, `regimes.FeeResolution`; BuildQuote usa BPS×notional | `25f578a` | tests Economics existentes; FALTAN fee venue multinivel/revisión/no-false-zero | `EXISTING_NEEDS_TEST`; `NOT_REQUIRED_FOR_OFFLINE` | Regimes/Economics shared | validación económica B futura, NO A/B descriptiva |
+| SFG-03 | Factory SCREEN multiinstancia, forward cut, REPLAY de Strategy y SHADOW PE004 solo observación/0 fills | `screenFactories,screenPipeline,routeNext`, consolidated, `RunShadow`, `RunObservation/RunDelivery` | `25f578a` | EXISTEN `screen_pipeline_test.go`, `screen_consolidated_test.go`, `rs_v01_shadow_test.go`; FALTAN tests PE004 assessment/observación parity y no fake fills | `EXISTING_NEEDS_TEST` (runner `EXISTING_VERIFIED`, reparación all-at-end `SUPERSEDED`) | Composition/Replay/Experiment shared | B2/C2, NO A |
+| SFG-05 | persistir observations y scorecard sin Opportunity/Assessment/Candidate y digest completo | Runtime detect publish condicional; SCREEN+Shadow Evaluate solo por ops; Scorecard last-wins/hash parcial | `25f578a` | FALTAN nueve tests SFG-05 definidos arriba | `MISSING_CONFIRMED` | único owner Strategy Runtime/Experiment/Composition | B1/B3/C2, NO A |
+| SFG-06 | raw opt-in→ACK→identidad→typed new_market→Catalog→UniverseChanged→replay; O/W/C separadas | WS `custom_feature_enabled`, raw Capture, Protocol `new_market` raw/Documented=false; Catalog first known | `25f578a` | EXISTEN parser/raw/capture unitarios; FALTAN `TestSFG06NewMarketTypedProjectionReplay`, late-Gamma/dedup/identity | `EXISTING_NEEDS_TEST` raw; typed/projection `MISSING_CONFIRMED`; cohorte O `POC_SPECIFIC` y disponible | Protocol/Catalog shared, PE004 consumidor | C1/W; C creación semántica bloqueada, NO A/O |
+| SFG-07 | fixtures temp, captura RSv03 cerrada y snapshot coherente antes de real | `capture.OpenView`; `openScreenPipeline/RunShadow` llaman `capture.Open`; Git trae SQLite+WAL+active segment | `25f578a` | `rs_v01_shadow_test.go` usa `t.TempDir`; FALTAN recibo owner cierre+backup/restore/hash y guard active-dir | `LOCAL_VERIFICATION_PENDING`; temp fixtures `NOT_REQUIRED_FOR_OFFLINE` | RSv0.3 capture owner + QA/Experiment | real data, NO A/B fixtures |
+
+**Clasificación secundaria por fase:**
+
+| Gate | Categoría de bloqueo | Resolución mínima y condición objetiva de salida |
+|---|---|---|
+| A0 local | `BLOCKS_OFFLINE_CORE` sólo para escritura hasta constatar HEAD, allowed files y ausencia writer; NO se atribuye a hipótesis | comandos git/ps/locks/autosync, freeze/manager receipts, worktree aislado |
+| SFG-01 | `NON_BLOCKING` offline; `BLOCKS_SCREEN` si se exige Q real; `BLOCKS_REAL_DATA` L2 | owner entrega cut exacto+coverage enum, delta/epoch tests y hash; A usa fixture con 100% Q probado o `INSUFFICIENT_DEPTH` |
+| SFG-02 | `BLOCKS_ECONOMIC_VALIDATION`, NO A/B descriptiva | fórmula venue per-regime/per-level/rounding, UNKNOWN veto, tests fee y revision |
+| SFG-03 | `BLOCKS_REPLAY`, `BLOCKS_SHADOW` de PE004, registro SCREEN sin runner nuevo | factory seleccionada, outputs mismo manifest y schedules, 0 real orders, scorecard no-fill |
+| SFG-05 | `BLOCKS_SCREEN` integración métrica durable, `BLOCKS_REPLAY`, `BLOCKS_SHADOW`; NO offline puro | output versionado+ACK+manifest/digest/scorecard; tests cero oportunidades, aislamiento, backwards compatibility; owner approves |
+| SFG-06 | `BLOCKS_REAL_DATA` cohorte W; `NON_BLOCKING` cohorte O y offline | typed payload, IDs exactos, receive/seq/epoch, replay, mapping y UniverseChanged probados; creación C sigue blocked semánticamente |
+| SFG-07 | `BLOCKS_REAL_DATA`; `NON_BLOCKING` para fixture t.TempDir | recibo cierre de captura por su owner, snapshot SQLite consistente + journal verificado, restore y hashes; no hot copy |
+
+**Change request SFG-01:** coordinar UNA API con PE001/PE030 (`L2View{asset_id,cut_seq,source_at,received_at,capture_ref,epoch,revision,quality,coverage:DEPTH_UP_TO_LEVEL_6|FULL_EXECUTABLE_DEPTH,bids,asks}` o ref equivalentemente resoluble as-of). Owner Books/Frames decide representación única; tras delta FULL anterior stale hasta snapshot nuevo o reducer causal probado. Tests full→delta→cut/epoch/partial/size>coverage; nunca profundidad inventada. No seam privado PE004.
+
+**SFG-06 cohortes:** O usa `InspectEntity.FirstKnownAt` si fuente durable+revision conocida, WS no requerido. W exige new_market recibido y persisted con opt-in; ninguna entrega global garantizada. C creation sigue `CREATION_SEMANTICS_UNKNOWN`. Lifecycle no antedata al conocer Gamma tardía. ID market Gamma ≠ condition ID ≠ token ID ≠ parent event. WP C1 no depende de completar captura Sports.
+
+**SFG-07:** `25f578a` no certifica que proceso activo terminara ni SQLite tenga consistencia recuperable. No matar proceso, no abrir active, no cp DB+WAL en caliente; QA puede generar nuevo dataset sintético en `t.TempDir` desde fixtures. Manifest y hashes del dataset real quedan owner RS.
+
+### Bloqueos operativos: owner, tests y salida
+
+1. `LOCAL-01` manager/workspace: comprobar `git status --short --branch;git rev-parse HEAD;git branch -vv;git worktree list;git log -n 12 --oneline` en los DOS repos; comprobar procesos/locks, data-dir, autosync local y writer S05. Si HEAD local no coincide con feature remota, diff y readjustar SPECS/allowed paths. Sin checkout local en esta preparación: NO falsa verificación. Gate de salida receipts archivados y autorización owner; no checkout/reset/clean/rebase/commit/push de engine en planificación.
+2. `SFG-05` Runtime/Experiment manager: CR y nueve tests de arriba; resultado por frame sin oportunidades durable y digested. Bloquea B/C solamente. **Es el único trabajo compartido propuesto como primer encargo de coding agent de infraestructura**; no implementarlo en PE004.
+3. `SFG-01` Books/Frames manager: depth same-cut/epoch/revision, coverage explícita, real tests; afecta Q real de B/C, no impide synthetic A ni spread BBO.
+4. `SFG-03` Composition/Replay manager: integración PE004 real con Strategy replay y SHADOW observation-only, 0 fills; afecta C.
+5. `SFG-06` Protocol/Catalog owner: typed/projection new_market; sólo cohorte W, no O.
+6. `SFG-07` RSv03 owner/QA: cierre+backup consistente+restauración y hashes; sólo dataset empírico.
+7. `SFG-02` Economics owner: fee formula venue/regime y simulador; sólo extensión económica/PE004-B, no DoD actual.
+
+## Fixtures F01–F20 — CORPUS PRESERVADO (20 SPECIFIED, 0 NATIVE)
+
+**Base B0:** `t0=2026-09-20T12:00:00Z`, Event Gamma E1=9001, Market Gamma M1=1001, condition C1=`0x`+64×`a`, tokens A101/A102 sintéticos. Gamma G1 durably received t0, FirstKnownAt=t0; boot B1, WS epoch W1; tick .01, fee 0 SÓLO SYNTHETIC, accepting true conocido t0 (no se conoce cuándo se hizo true). Books FULL +1,+60,+300,+3600s: bid .40×10 ask .60×10, mid .50 spread .20 relative .40; Q10 buy VWAP .60/sell .40, 0 impacto relativo al best; sin trade/gap. Reemplazar eventos de B0, no duplicar. Captura q1… orden de recepción, NO WS venue sequence. Freshness max 30s al cut, no backfill. Cada Fxx serializa `{fixture_schema_version=1,synthetic=true,source=GENERATED,params_revision,raw_capture_records,metadata_timeline,epoch_timeline,expected_anchors,expected_quality,expected_reasons,expected_metrics,expected_digest}`. Materializar archivos SOLO coding agent, jamás declarar datos reales.
+
+| ID | Delta frente a B0 | Resultado esperado |
+|---|---|---|
+| F01 | new_market t0, book +1, TX1 +20 @.60, books cortes | un market, book +1, first trade OBSERVED +20, spread .20, creation UNKNOWN, 0 action |
+| F02 | M2 createdAt declarado t0-1h, recibido t0 | O=t0, `LATE_DISCOVERY`, no pasado importado, C bloqueada |
+| F03 | aviso new_market idéntico duplicado +2 | un mercado, duplicate_count=1, misma first known |
+| F04 | book recibido +1, aviso +3 con timestamp venue t0 | out-of-order, W first observed +3, sin antedatar |
+| F05 | asset↔condition se resuelve Gamma G2 +15, full +16 | no metadata usable antes de +15, primer book usable >=+16, sin backfill |
+| F06 | cero books hasta +3600 con heartbeat sano | no spread cero, `NO_USABLE_BOOK`, censura; no inventar gap/trades |
+| F07 | books +1,+30, gap declarado +40..120, W2 full +121 | +60 incompleto, no interpolation, nuevo epoch |
+| F08 | W1 full +1, W2 delta +22 antes W2 full +25 | ignorar delta anterior a full del nuevo epoch |
+| F09 | tick .01→.001 +21, full +22 | `REGIME_TICK_CHANGED`, intervalos sin atribución orgánica |
+| F10 | fee 0→valor positivo +21, book fijo | `FEE_REGIME_CHANGED`, revisión futura no entra en cut previo |
+| F11 | accepting=false halt +30, aviso viejo +45, book +60 | `MARKET_HALTED`, censura, no reabrir por datos stale |
+| F12 | book .40/.60→.48/.52 +60 | spread .20→.04, mid .50; BUY .52/SELL .48 es pérdida, descriptive only |
+| F13 | book fijo, display .50→.40 y trade .40 | PE019 `DISPLAY_PRICE_ONLY`, BBO/mid constantes, 0 action |
+| F14 | TX bid .40, luego ask .60, book fijo | PE020 `BID_ASK_BOUNCE_ONLY`, Δmid=0, 0 action |
+| F15 | bid .40×10, asks .60×.1 y .95×9.9 | Q10 buy VWAP=.9465, impacto=.3465, nunca fake depth |
+| F16 | book +300 inyectado al cálculo +60 con known_at=+300 | `LOOKAHEAD_REJECTED`, no conocimiento futuro |
+| F17 | books +1,+60,+330,+3600; cut +300 stale 240s | `STALE_BOOK_AT_CUTOFF`, no gap falso |
+| F18 | books base, cero trade | no trade OBSERVED, censura de primer trade y spread medible |
+| F19 | M2 ancla t0+30m, mismo parent E1 | reloj individual, M2 1h incompleta al global t0+1h, cluster=1 |
+| F20 | mismo raw schedules `[1]`, `[7,3,1]`, `[32]` | observations ordenadas byte equivalentes y digest idéntico |
+
+**Harness fases:** A valida función pura A1/A2 en todos los casos relevantes, incl. F01/F03/F04 sólo semántica sintética de notice sin proyectar WS typed; B valida Catalog O y Strategy 0-opps/scorecard tras SFG-05; C valida raw→Capture→Catalog/Books/Frames→observer→REPLAY/SHADOW según gating de W y L2. No exigir W ni full historical dataset para PASS de A/B O. Fallar si orders, future revision, fabricated liquidity, stale fee as-of, lookahead, falso GAP o hash excluye observations. 0 serializadas/0 ejecutadas al editar plan.
+
+## Gates y seguridad
+
+**G0** HEAD/status/worktrees, writers, autosync y datasets certificados en local; **G1** hipótesis/cohort/venue schema frozen (C puede seguir UNKNOWN); **G2** allowed-files exactos y owners compartidos; **G3** known-at/anchor/cut/future-proof; **G4** fixtures nativas hashes (sólo cuando ejecutadas); **G5** params y controles negativos; **G6** 10 WPs y presupuesto/2-agents ownership; **G7** schema/lint/Graphify/puente parent verificados localmente por manager, no imaginados. Fase A gate: tests 20 fixtures pure, 0 I/O/ActionCandidate; B gate: SFG-05 + Catalog O + SCREEN con journal outputs; C gate: replay two schedules, SHADOW 0 candidates/fills, no active dirs y owner Review. Todas las pruebas no ejecutadas aquí = NOT_RUN. No forzar cobertura >=95% si no hay recibo real; medirla por paquetes tocados sin exclusiones manipuladas.
+
+**Prohibiciones absolutas:** engine live/wallet/creds/signing/orders, worker sobre active `.rs-v03-sports/`, `capture.Open` sobre dataset activo, falsa depth por count/6 levels/size10, inventar fee 0, PnL desde display/spread, usar future metadata, convertir PE004-A en trading B, tocar parent/S01/S02/S03/S04/resources global, hacer push o modificar engine durante este mandato de documentación. Captura real solo con owner RSv03; Git checkpoint ≠ consistencia SQLite. La edición de esta nota en Agents-OS NO autoriza gates humanos.
 
 ## 📆 Bitácora
 
-- **2026-09-20 — Creación documental remota:** se creó la nota canónica con plantilla `project` v1 replicada desde fuente, SPEC funcional/técnica, 20 casos sintéticos especificados, 10 WPs y mandato de implementación. Código engine solo auditado remotamente en `9ae5ddec...`; no se corrieron tests, no se tocó el dataset, no se implementó PE004. Pendiente G0 local, tarea puente del padre, lint/Graphify y freeze real. No registrar como completada la planificación operacional si esos gates no están probados.
+- **2026-09-20 — Creación inicial:** nota canónica única con SPEC y F01–F20 definidas, WPs A0–C3 y mandato original; engine auditado main@9ae5dde, ningún test/código. Historial intacto en registro de reconciliación, no cerrar tareas retrospectivamente.
+- **2026-09-20 — Reconciliación RS feature:** inspección estática remota feature@25f578a; confirmado SCREEN multiinstancia/incremental, pocdata six levels, Catalog FirstKnownAt, Economics BPS-on-notional, RunShadow selector y legacy fake-10; descubierto blocker real SFG-05 `Detect()->[]` no persiste métricas. Roadmap reorganizado A puro/B observador/C integrations; A2 WS diferido, A3 L2 asignado shared, B2 fee real diferido. SFG-01/02/03/05/06/07, blockers/exit criteria y manager handoff documentados. `progress:0`, local/writers/sync/lint/Graphify NOT_VERIFIED, no tests ni ejecución de agentes demostrada por esta escritura.
 
 ## 🧭 Decisiones
 
-- **D-001:** separar maduración descriptiva PE004-A de predictor económico PE004-B bloqueado; ningún ActionCandidate.
-- **D-002:** v1 primera observación Gamma local como ancla canónica; WS notice y first book son cohortes diferentes; created/publication no inferidos.
-- **D-003:** no nueva infraestructura ni duplicación Economics, Catalog o Frames; mínimos del owner y tests negativos.
-- **D-004:** no usar SCREEN/SHADOW neutral actual como backtest causal; dataset disposable, forward cuts y L2 realmente conocido.
-- **D-005:** parámetros propuestos sujetos a reconciliación local, sin tocar congelación M1/M2; cuando falte evidencia, estado BLOCKED/INCONCLUSIVE.
+- D-001: PE004-A es descriptiva; PE004-B sin predictor, OOS, acción, exit, fees e impacto queda excluida.
+- D-002: O FirstKnownAt y B primer book observados, W tipada solo con SFG-06, C creación UNKNOWN sin semántica demostrada.
+- D-003: reutilizar Catalog/Books/pocdata/Economics/SCREEN/REPLAY/SHADOW; un owner por seam, cero duplicación.
+- D-004: `Detect()->[]` conserva cero oportunidades; SFG-05 optional research output durable, NO oportunidades instrumentales ni Assessment ACCEPT ficticio.
+- D-005: `DEPTH_UP_TO_LEVEL_6` ≠ `FULL_EXECUTABLE_DEPTH`; fee UNRESOLVED ≠ 0; SAMPLE fixture ≠ market alpha.
+- D-006: núcleo A puede ejecutarse en worktree aislado mientras manager/owner resuelve SFG-05; C/W y datasets reales no bloquean A. Presupuesto 10 h GLOBAL/2 agentes simultáneos.
+- D-007: parent READ-ONLY; delta de una sola tarea puente al manager; no cambio de progreso por planificación.
 
 ## 🔗 Docs / Links
 
 - [[Polymarket Engine — MVP]] · [[Polymarket — Edge Research Consolidado 2026-09-16]] · [[Polymarket — Technical Platform Map — synced 2026-09-17]] · [[Polymarket Engine — Opportunity Context]].
-- Venue: https://docs.polymarket.com/asyncapi.json · https://docs.polymarket.com/market-data/discover-markets · https://docs.polymarket.com/market-data/realtime-data.
-- Code audit: https://github.com/xKoRx/polymarket-engine/tree/9ae5ddec1a0e52fdc0bbde608cd0504e644d05a5.
-- Handoff externo de investigación existe en ChatGPT Library `/PE-004/PE-004-New-Market-Maturation-Research-Handoff-2026-09-20.md`, únicamente evidencia auxiliar histórica; esta nota es autosuficiente, fuente de verdad del proyecto.
+- Engine main: https://github.com/xKoRx/polymarket-engine/commit/9ae5ddec1a0e52fdc0bbde608cd0504e644d05a5 · feature: https://github.com/xKoRx/polymarket-engine/commit/25f578a502ce0c9e1ad27a93537a868a94533b34.
+- Símbolos SFG-05: `internal/strategy/runtime.go`, `cmd/engine/screen.go`, `internal/experiment/experiment.go`; SFG-01: `internal/strategy/pocs/pocdata/pocdata.go`, `internal/frames/frames.go`; SFG-06: `internal/protocol/marketws.go`, `internal/catalog/inspect.go`; dataset `testdata/research-v03/SPORTS-CAPTURE-RUNBOOK.md`.
+- Investigación histórica complementaria: ChatGPT Library `/PE-004/PE-004-New-Market-Maturation-Research-Handoff-2026-09-20.md`; esta nota es planner único autosuficiente.
 
-## 💡 Ideas
+## 💡 Ideas / memoria
 
-### Backlog de ideas
-
-- Variante creación real C únicamente después de certificar timestamps y cobertura histórica; predictor B y tiny-live como **proyecto/fase futuros sujetos a nueva SPEC y aprobación humana**, no en este mandato.
-
-### Motivos / principios
-
-- Time-to-validated-hypothesis; observación ≠ oportunidad; known-at ≠ venue time; quote ≠ fill; reproducibilidad antes de extrapolación.
-
-### Memoria pública / interna
-
-- **Pública:** esta nota, referencias pinneadas, manifests/fixtures y recibos del engine cuando existan.
-- **Interna:** no persistir deliberación de agente ni secretos en notas de proyecto.
-- **Motivo:** cualquier coding agent debe retomar por el estado de tareas y gates sin depender del historial de chat.
+- Creación real C, predictor B, economic trading y tiny-live son fases posteriores con nueva SPEC y aprobación humana; no alterar DoD A/B/C offline.
+- Principios: observation != opportunity; known_at != venue timestamp; book quote != fill; experiment != live permission. Persistir evidencia pública de tests, hashes, manifest y decisiones, no secretos ni deliberación interna.
 
 ---
 
-## MANDATO DE IMPLEMENTACIÓN AUTÓNOMO — emitir a coding agent SOLO tras G0
+## MANDATO DE IMPLEMENTACIÓN AUTÓNOMO — 2026-09-20, manager entrega por WP
 
-**Rol y alcance:** Principal Go implementer PE-004, ownership estricto. No redescubrir investigación venue salvo contradicción efectiva de versión. Leer `AGENTS.md`, `main/AGENTS.md`, bootstrap, padre, esta nota y autoridades enlazadas; no cerrar sesión completa de Agents-OS salvo instrucción. Primer output verificable: `pwd; git status --short; git rev-parse HEAD; git branch --show-current` en engine y vault; corroborar writers, RS capture, plantilla/path/bridge y params. Local HEAD puede diferir del remoto `9ae5dde`; actualizar esta nota con el SHA real antes de ejecución. Si conflicto en archivos o está activo otro writer, STOP y devolver bloqueo concreto; sin git reset/checkout/rebase/force/push. A0 read-only y reconciliación de tabla `Entrega de desarrollo` preceden a código.
+**Rol:** Go coding agent PE004 o owner compartido según el WP; NO implementar producción en la sesión de planificación. Leer `AGENTS.md`, `main/AGENTS.md`/bootstrap de Agents-OS y esta única nota, parent read-only, research/TPM ya documentados. **HEAD dinámico:** correr `pwd; git status --short --branch;git rev-parse HEAD;git branch -vv;git worktree list;git log -n 12 --oneline` en engine y Agents-OS; comparar local vs main 9ae5dde y feature 25f578a, diff de código posterior, writers/autosync/captura y allowed files exactos. Si local diverge, reconciliar antes de código, no asumir remoto como HEAD. Prohibido checkout/reset/clean/rebase/cherry-pick sobre árbol activo, no engine push, no modificar/copy hot `.rs-v03-sports/`, no tocar recursos/global/otras POCs/parent. Worktree/branch AISLADA creada únicamente por manager luego de G0; no autoasignar shared owner. Priorizar `LIVE_DISABLED`, `NO_ORDER`, `NO_FILL`.
 
-**Freeze obligatorio:** comprobar archivos, símbolos y firmas de la matriz, decidir un único transporte de profundidad exacta pinned al cut, preservar fronteras de M1/M2 y resolver parámetros locales. Establecer branch/base, allowed files por WP y fixtures serializadas nativas con `expected` y hash. Actualizar `SPEC_v1=FROZEN` en nota solo con G0–G5 respaldados; si solo cohort C sigue bloqueada, congelar O/B con limitación C y no llamarla muestra de creación real. Si Gamma actual difiere del contrato identificado, documentar y fail-closed antes de usar campos ambiguos.
+**Paralelismo máximo global 2 coding agents dentro de presupuesto global 10 h, no exclusivo PE004:** uno puede ejecutar A1/A2 core puro en rutas nuevas exclusivas y OTRO owner único SFG-05 en Runtime/Experiment, si manager validó worktrees y disjoint-file ownership. Agentes continúan automáticamente entre checkpoints puramente técnicos con resultados de tests, sin esperar dueño por cada paso; freeze de interfaz compartida, merge, GO y Review son gates humanos que NO pueden autoaceptar. Si manager no autoriza ownership, producir resumen de bloqueo exacto y no invadir archivos.
 
-**Fase A:** A1 known-at y cohorte Gamma; A2 parse/identity+projection lifecycle WS durable, dedup y reconciliación as-of; A3 epoch/book full/quality+L2 depth pinneado al forward cut. Tests F01–11,15–17,19. Jamás escribir timestamp retroactivo por fuente más tardía, aplicar delta W2 antes full, usar UI como BBO, inferir gap desde silencio ni marcar usable sin dos lados. Un full snapshot sustituye niveles, no fusiona.
+**Trabajo inmediato PE004:** A0 read-only, luego A1 pure package (`internal/strategy/pocs/maturation` solo si libre) y A2 fixtures F01–F20 sintéticas. Implementar tiempo causal, cohortes O/B, censura/denominadores, BBO/spread/mid, Q solo si niveles cubren request, PE019/020, negativos futuro/epoch/gap; sin dependencia de new_market tipado, fees reales, data real ni SFG-05. Tests GO package en fixture; registrar 0 performance real. A3 Catalog O adapter cuando owner permite; no modificar Catalog sin necesidad demostrada.
 
-**Fase B:** B1 observer/Factory independiente del `neutral`, determinista sin I/O/clock global; `Detect` genera solo observaciones instrumentales, `Evaluate` INCONCLUSIVE + DESCRIPTIVE_ONLY + Candidate=nil, Observe y Stop idempotentes. B2 costos hipotéticos por Economics exacto y profundidad real con fee as-of o unknown, Q1/5/10; B3 negative controls PE019/020 y scorecard con cohortes, censura, missingness y denominator. Ejecutar F01–20; cero órdenes, cero signal live, cero PnL neto inferido de caída de spread.
+**Trabajo compartido prioritario antes de B:** owner Strategy Runtime/Experiment ejecuta SOLO SFG-05 CR arriba: optional frame observer dentro actor, RUNTIME ACK, versión/identity, Scorecard/digest full metrics, compatibilidad previa y nueve tests. Entregar commit en branch aislada + reporte; manager inspecciona diff, tests, SHA y aprueba interfaz; PE004 NO implementa store paralelo. Si owner encuentra mecanismo ya implementado en HEAD local, registrar símbolo/SHA/test y SUPERSEDED el CR, evitando duplicación.
 
-**Fase C:** C1 integrar registry de Strategy y cortar frames durante el recorrido ordenado antes de que entren records futuros. No usar `applyOwnerRecord` con bandera OBSERVED_USABLE artificial ni parse de asset por simple substring como autoridad; proyectar calidad real. C2 REPLAY/SHADOW en corpus desechable con manifiesto pinned y `capture.OpenView` de lectura, sin tocar RS; reproducibilidad entre schedules 1/7-3-1/32, false positives negativos cero. C3 build/vet/test/race, cobertura por paquete tocado >=95% después de caminos críticos, regression del certificado previo y lint/esquema del proyecto. No usar runner `--skip-suites` para PASS.
+**Integración B/C posterior:** manager registra factory en SCREEN actual, SFG-05 outputs sin opportunities; Catalog O as-of. Cohorte W sólo tras SFG-06, C creación permanece UNKNOWN. Q venue real sólo con SFG-01; fee venue sólo con SFG-02 si amplía economics. REPLAY re-ejecuta observer/Strategy por schedules y compara ordered digests, SHADOW sólo observación 0 candidate/0 order/0 fill sin fallback 10-size; usar `t.TempDir` o snapshot consistente previamente certificado por RS owner. `capture.Open` sobre active = HARD FAIL. No afirmar PnL neto, validar hipótesis o live.
 
-**Entrega final del agente:** actualizar esta nota WP por WP `[ ]→[/]→[r]→[x]` únicamente con evidencia, progreso real y bitácora por hito; reportar SHA inicial/final, diff allowed-files, commands/output de tests, coverage, hash raw+manifest+scorecard, G0–G7 e implementación gates, 20 fixtures y casos reales (si 0, 0). Estado de investigación distinto de autorización LIVE. Cuando esté TODO listo para revisión, puente humano máximo `[r]`, jamás `[x]` automático. Si no hay datos o APIs del venue disponibles, entregar core offline con `REAL_DATA_BLOCKED` y próximo trabajo preciso, no inventar una estrategia rentable.
+**Gates al cerrar WP:** reporte command/output, initial/final HEAD y diff de allowed files, tests concretos, 20 fixtures/pass/fail, hashes raw+manifest+scorecard, aislamientos, cero acciones y registros de owners; actualizar checklist/progress SOLO con evidencia, review owner `[r]` hasta aceptación humana. Si falta dataset real, `REAL_DATA_BLOCKED` y core offline puede PASS; si faltan firmas shared, entregar A completo y B/C explícitamente BLOCKED, no inventar resultados ni dedicar el presupuesto completo a PE004.
