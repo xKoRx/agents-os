@@ -64,4 +64,4 @@ tags:
 
 ## Rollback
 
-- Repo: `git revert c2e88a0d^..c2e88a0d` (o reset de la rama a `53d42615` y push forzado sólo con autorización del owner — los 5 commits son exclusivamente de esta corrección). Vault: eliminar las dos notas de journal creadas. Nada más: ninguna mutación productiva ni de esquema.
+- Repo: `git revert c2e88a0d^..c2e88a0d` (o reset de la rama a `53d42615` y push forzado sólo con autorización del owner — los 5 commits son exclusivamente de esta corrección). Vault: revertir la sección C2 de la nota del proyecto E-08 y eliminar las dos notas de journal creadas. Nada más: ninguna mutación productiva ni de esquema.
