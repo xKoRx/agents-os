@@ -49,7 +49,7 @@ Custodia y recuperación de la clave de cifrado de los backups G1A de PostgreSQL
 | 1 | hermes (VM 118), usuario `hermes` | `~/aranea/secrets/r0d-g1a.key` | dir `~/aranea/secrets/` 0700, archivo 0600 |
 | 2 | daedalus (desarrollo), usuario `hermes-ops` | `/home/hermes-ops/.aranea-secrets/r0d-g1a.key` | dir 0700, archivo 0600 (grupo/others: sin acceso) |
 
-Ambas copias verificadas con la misma huella el 2026-09-20. Copia al owner mediante el archivo `r0d-g1a.key.owner-envelope` (0600, byte-idéntico a la clave, misma huella), entregable por cualquier canal privado del owner; verificado idéntico a la copia 1.
+Ambas copias verificadas con la misma huella el 2026-09-20. Copia al owner mediante el archivo `r0d-g1a.key.owner-envelope` (0600, byte-idéntico a la clave, misma huella), entregable por cualquier canal privado del owner; verificado idéntico a la copia 1. **2026-09-20 (purga G1A):** con esta custodia en vigor se purgaron los plaintexts temporales (staging + `/var/tmp/r0d-close.*`, 19 archivos); los ciphertexts `.enc`, manifiestos y snapshots PBS se conservan — los plaintexts son regenerables mediante el procedimiento de recuperación de esta nota (demostrado).
 
 ## Cómo ve o copia el owner la clave (ruta real, documentada)
 
