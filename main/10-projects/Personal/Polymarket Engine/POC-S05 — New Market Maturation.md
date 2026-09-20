@@ -38,7 +38,7 @@ updated: 2026-09-20
 
 Implementar una POC **descriptiva, causal, read-only, sin órdenes ni fills** que mida la maduración de mercados observados: spread, profundidad observable y truncamiento, impacto para Q=1/5/10 cuando los niveles cubran Q, midpoint, actividad, calidad y censura en ventanas individuales de 60/300/3600 s. Controles negativos PE-019 (display-price switching) y PE-020 (bid-ask bounce) son pruebas internas, NO strategies/proyectos nuevos. Aislar PE-004-A de PE-004-B: reducción de spread NO demuestra rentabilidad, predictor, acción, exit, fees venue y OOS quedan fuera de esta POC.
 
-**DoD dividido:** A = 20 fixtures sintéticas + cómputo puro/causal probado; B = Strategy/Factory y salida durable por frame de observación SIN Opportunity ni ActionCandidate, Catalog O y SCREEN reutilizado; C = REPLAY/SHADOW observation-only, invariancia, manifiestos y certificación no-live sobre dataset desechable. Cohorte W y dataset real son ampliaciones condicionadas; cohorte C de creación y validación económica no son prerequisitos de A. No inferir alpha desde fixtures.
+**DoD dividido:** A = 22 fixtures sintéticas (F01–F20 preservadas + F21/F22 de contrato descriptivo) + cómputo puro/causal probado; B = Strategy/Factory y salida durable por frame de observación SIN Opportunity ni ActionCandidate vía `FrameObserver` (contrato existente @ `9d0512a`), Catalog O y SCREEN reutilizado; C = REPLAY (`RunStrategyReplay`)/SHADOW (`DECLARED_L2`) observation-only, invariancia, manifiestos y certificación no-live sobre dataset desechable. Cohorte W y dataset real son ampliaciones condicionadas; cohorte C de creación y validación económica no son prerequisitos de A. No inferir alpha desde fixtures.
 
 ## 📊 Estado actual — evidencia, límites y aislamiento
 
