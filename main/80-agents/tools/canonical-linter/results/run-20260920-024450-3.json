@@ -1,0 +1,107 @@
+{
+  "run": "2026-09-20T02:44:50",
+  "tool": "canonical-linter",
+  "git_head": "f513b71d6c602c9052ea053a460eb251fc581704",
+  "vault_root_arg": "/home/kor/secondbrain/main",
+  "model": {
+    "no_vigente": {
+      "memory_state": [
+        "superseded",
+        "archived"
+      ],
+      "status": [
+        "archived",
+        "superseded"
+      ]
+    },
+    "en_retiro": {
+      "status": [
+        "deprecated",
+        "deprecating"
+      ]
+    },
+    "wikilink_resolution": "path-relativo(origen) > path VAULT_ROOT-relativo (regla 11) > basename exacto > casefold unico > alias exacto; ambiguo -> WARN",
+    "hot_path_classes": "DEFAULT-LOADED / ROUTABLE / REFERENCED / ARCHIVED-NO-CORPUS (modelo P3-A seccion 3)",
+    "semantic_duplication": "contenido semántico: sólo proxies CL-06/CL-07/CL-08; CL-21 cubre identidad estructural core-federado"
+  },
+  "checks": [
+    {
+      "check_id": "CL-17",
+      "category": "HOT-PATH",
+      "verdict": "PASS",
+      "severity": "FAIL",
+      "findings": [],
+      "details": "archivos DEFAULT-LOADED escaneados: 5 (AGENTS.md excluido: dedup doctor)",
+      "skip_reason": null,
+      "dedup_cites": [
+        "doctor:check_paths (cubre SÓLO AGENTS.md; este check extiende el mismo patrón a los demás hot-path files)",
+        "doctor:check_skill_refs (refs relativas '../' de skills, scope distinto)"
+      ],
+      "evidence": [
+        "citadores: 80-agents/skills/agents-os-bootstrap/SKILL.md, 80-agents/agents-os/agent-constitution.md, 80-agents/memory/internal/agent-memory/global/agents-os-operating-continuity.md, 80-agents/skills/INDEX.md, 80-agents/memory/public/user-preference/rjara-agent-profile.md"
+      ]
+    }
+  ],
+  "counts": {
+    "pass": 1,
+    "fail": 0,
+    "warn": 0,
+    "skip": 0,
+    "findings": 0
+  },
+  "observations": [
+    "A8: fixtures sintéticas excluidas explícitamente del corpus (80-agents/skills/_shared/fixtures/, 80-agents/skills/agents-os-entity-lifecycle/scripts/fixtures/); iter_vault_md del harness no las excluye y .graphifyignore tampoco -> diferencia registrada (hallazgo de sistema, no auto-correctible)",
+    "política de side-effects: los findings se registran; las correcciones canónicas son propuestas (recommended_action) para el owner; el motor no muta nada fuera de results/",
+    "corpus vivo: 1004 notas (iter_vault_md - fixtures); mapa físico: 3357 notas .md",
+    "clase A5 en vigor: no_vigente = memory_state {superseded, archived} U status {archived, superseded} dentro del enum por tipo; en retiro = status {deprecated, deprecating}"
+  ],
+  "ambiguities": [
+    "A5 (ratificado): clase unificada no_vigente = memory_state {superseded, archived} U status {archived, superseded} dentro del enum por tipo via load_contract(); deprecated/deprecating = sub-clase en retiro. Para tipos s1 (status forbidden) o tipo ausente, un status en el set se cuenta como estado observado con dedup_cite a lint.py:forbidden-field/bad-status/unknown-type (A3).",
+    "A9 (ratificado): resolución de wikilinks = path relativo al origen > path VAULT_ROOT-relativo (constitución regla 11, para targets con '/') > basename exacto > casefold único > alias exacto; múltiples candidatos -> WARN ambiguo. Los heading/block refs ([[n#sec]], [[n#^b]], [[^b]]) se resuelven por su nota; no se valida la existencia del anchor. hygiene-review + graphify-contract citados.",
+    "A1: archive/ raíz no declarado por autoridad; CL-10 lo reporta WARN report-only; la decisión de migración/exclusión es del owner (hallazgo de sistema).",
+    "A3: práctica de deprecación de S1 federado con status fuera de contrato (caso signals-code-review): lint.py forbidden-field/bad-status lo cubre; CL-03 sólo emite WARN del par indexable/index_priority.",
+    "A10: doble registro de skills INDEX.md <-> 30-resources/agents/00-index.md permanece WARN declarado (DUAL-REGISTRY-DOMAIN-SYNC); CL-14/15/16 lo citan y jamás lo convierten en FAIL.",
+    "A2: archivos sueltos en la raíz del vault SIN check (ninguna autoridad fija el layout de raíz); limitación declarada.",
+    "CL-01 (estrechamiento declarado con autoridad): supersedes en nota active es sucesión canónica (00-RESOURCE-WIKI: 'la nueva puede enlazar supersedes'); sólo superseded_by en nota active contradice 'no se conserva como una segunda autoridad activa' (metadata-schema).",
+    "Resolución de destinos: el índice de resolución cubre corpus vivo + 40-archive; journal, packaging (30-resources/agents-os/) y resultados derivados NO son destino canónico (agents-os.md: 'auditoría o distribución, nunca autoridad vigente'; relation-maintenance: no enlazar sessions/logs). Un link hacia ese material se reporta como no resuelto (CL-12).",
+    "Extracción de links de cuerpo: se excluyen fenced code blocks e inline code spans (Obsidian no renderiza wikilinks dentro de código)."
+  ],
+  "thresholds": {
+    "cl05_proxy_fields": [
+      "related",
+      "entities"
+    ],
+    "cl06_whitelist": "ninguna: toda colisión casefold se reporta; los grupos estructurales (SKILL/00-index/log/...) se anotan como mandados por autoridad en la evidencia",
+    "cl08_alias_match": "exacto (string), sobre S2 y 80-agents/memory/public",
+    "cl10": {
+      "name_regex": "archiv (case-insensitive) sobre cualquier componente del path",
+      "min_notes": 2,
+      "min_retired_ratio": 0.5,
+      "excluded_prefixes": [
+        "80-agents/memory/internal/"
+      ],
+      "excluded_dir_names": [
+        "sources"
+      ],
+      "max_verdict": "WARN"
+    },
+    "cl12_code": "los wikilinks dentro de fenced code blocks e inline code spans no se cuentan como enlaces de cuerpo (Obsidian no los renderiza)",
+    "resolution_scope": "corpus vivo + 40-archive; journal/packaging/derivados no son destino canónico (agents-os.md; relation-maintenance)",
+    "fixtures_excluded": [
+      "80-agents/skills/_shared/fixtures/",
+      "80-agents/skills/agents-os-entity-lifecycle/scripts/fixtures/"
+    ],
+    "cl11_cl12_zone_annotation": "un destino inexistente en el índice de resolución pero presente físicamente en zona no canónica (journal/packaging/derivados) se anota como 'existe en zona no canónica; no es destino canónico' y no como 'no resuelve' (verificación adversarial N2/R2); el veredicto no cambia",
+    "cl21_authority_pairs": {
+      "skills": [
+        "80-agents/skills",
+        "30-resources/agents/skills"
+      ],
+      "runbooks": [
+        "80-agents/memory/public/runbook",
+        "30-resources/runbooks"
+      ],
+      "identity": "nombre casefold del directorio de skill o archivo de runbook"
+    }
+  }
+}
