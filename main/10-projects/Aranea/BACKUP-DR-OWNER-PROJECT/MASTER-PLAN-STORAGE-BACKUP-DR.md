@@ -31,11 +31,11 @@ related:
 
 ## 0. Estado de partida (verificado, no supuesto)
 
-1. **Copia recuperable demostrada existe hoy para:** configs traefik/second-brain/hermes-state (R1 diario), pve node-local + etcd snapshot (R1.5 diario), PostgreSQL 13 bases + Mongo archive + MinIO 12 buckets (G1A/G1B one-shot en PBS, cadena restore→descifrado→drill certificada, claves con custodia doble).
+1. **Copia recuperable demostrada existe hoy para:** configs traefik/second-brain/hermes-state (R1 diario), etcd snapshot (R1.5 diario 05:00) + pve node-local (R1.5 semanal SÁB 08:30), PostgreSQL 13 bases + Mongo archive + MinIO 12 buckets (G1A/G1B one-shot en PBS, cadena restore→descifrado→drill certificada, claves con custodia doble).
 2. **Piloto vzdump R2 activo** día 2/7 (6 CTs, timer 06:05, expira 26-09, fail-closed PASS). Decisión D (retención final y producción) pendiente tras 7/7 días.
-3. **0 unidades tienen protección agendada con retención**; 3-2-1 NO CUMPLE (0 off-site real); PG/Mongo/MinIO/argus-data siguen `backup=0` a nivel disco.
-4. **Ceph NO_GO estructural** (nearfull 85,6% osd.0/2, causa CRUSH host + 1 OSD/host PROBADA; kronos cae = recovery imposible; QLC 64-201%; NO_GO nuevos discos pool1).
-5. **hades concentra** TrueNAS(iSCSI/NFS de datos T0) + Echo PROD; SPOF aceptado (F-13) pero sin mitigación operativa hoy (UPS inexistente).
+3. **0 unidades tienen retención aprobada** (R1/R1.5 y piloto R2 sí están agendados); 3-2-1 NO CUMPLE (0 off-site real); PG/Mongo/MinIO/argus-data siguen `backup=0` a nivel disco.
+4. **Ceph NO_GO estructural** (nearfull 85,7% = 799/932 GiB osd.0/2, causa CRUSH host + 1 OSD/host PROBADA; kronos cae = recovery imposible; QLC 64-201%; NO_GO nuevos discos pool1).
+5. **hades concentra** TrueNAS(iSCSI/NFS de datos T0) + Echo PROD; SPOF aceptado (F-13) pero sin mitigación operativa hoy (UPS inexistente — gap H5).
 6. pool0 sano (scrub 0 errores) pero **sin snapshots recientes = cero rollback local**; pool2 sin scrub >14 meses con 2,15T libres.
 
 ## 1. Principios
@@ -57,7 +57,7 @@ El patrón verificado (SO VMs productivas en pool1 RBD + datos en zvol pool0 ví
 |---|---|
 | pool1 (Ceph RBD) | SOs VMs productivas (HA por réplica 3). Congelado para crecimiento (NO_GO nearfull); corrección estructural = carril Ceph |
 | pool0 zvol iSCSI (LUN4/5/6) | Datos T0 (PG/Mongo/MinIO). Correcto; protección = dumps+PITR+snapshots, no migración |
-| local-lvm | SOs reconstruibles sin HA (etcd, traefik, pi-hole, CA, TrueNAS SO, PBS SO+data) |
+| local-lvm | SOs reconstruibles sin HA (etcd, traefik, pi-hole, CA, TrueNAS SO, PBS SO — datastore PBS = local-kronos) |
 | nfs-storage (pool0) | rootfs CTs file-backend + ISOs; corregir `keep-all=1` (WP-A0) |
 | local-sqx-* | SQX sagrado F-04, intacto |
 | local-kronos/pool-kronos | PBS data + jobs + labs |
@@ -114,7 +114,7 @@ Hoja de ruta de capacidad (ningún paso en piloto): post-D-piloto (28sep) crecer
 Los procedimientos verificables completos viven en el ROADMAP (WP-DR1..DR6, cada uno con validación y rollback) y su ejecución va por WP-R7 drills. Aquí los límites:
 
 | Escenario | Estrategia | RPO/RTO | Dependencia circular evitada |
-|---|---|---|--- recovery |
+|---|---|---|---|
 | DR-T1 pérdida de una VM | restore PBS → mismo nodo o alternativo | por clase (D4.1) | nunca requerir la VM caída como parte del restore (dumps y vzdump no dependen del guest) |
 | DR-T2 pérdida de un disco | pool0 mirror reconstruye solo (hot spare no hay; F-05); Ceph re-replica (salvo kronos = NO_GO hoy); local-lvm de nodo caído = restore PBS | pool0: RPO=0, RTO=rebuild; Ceph kronos: RPO=hasta re-replica imposible→riesgo 2 copias; local-lvm RPO=7d | no requerir TrueNAS para restaurar un zvol de TrueNAS (vzdump/dumps viven en PBS) |
 | DR-T3 pérdida de un nodo PVE | guests repartibles a otros nodos (pool1 RBD + nfs migran solos; local-lvm/iSCSI requieren restore o reconexión) | pool1 guests: minutos; local-lvm: RTO restore | PBS en kronos sobrevive (F-13); si cae kronos, copias locales quedan pero off-site R4 es el 2º destino |
@@ -125,7 +125,7 @@ Los procedimientos verificables completos viven en el ROADMAP (WP-DR1..DR6, cada
 ### D6. Dependencias circulares verificadas y su resolución
 
 | Dependencia circular | Resolución |
-|---|---| recovery |
+|---|---|
 | PG/Mongo/MinIO datos en zvol pool0 vía TrueNAS (hades) — hades cae, datos inaccesibles aunque pools intactos | dumps/PITR y snapshots PBS **no dependen del guest caído ni de hades vivo**; restore a cualquier nodo con PBS; iSCSI re-attach al levantar hades |
 | PBS 180 (kronos) destino único local | off-site (R4/R5) + 2º target pool2 opcional; ingesta staging en 2º lugar de falla (hermes también en kronos: mitigar moviendo staging off-kronos en R4+ o aceptando off-site como mitigación) |
 | etcd quorum 5 miembros en 5 hosts | cluster sobrevive 2 caídas; snapshot lógico diario R1.5 cubre pérdida total |
