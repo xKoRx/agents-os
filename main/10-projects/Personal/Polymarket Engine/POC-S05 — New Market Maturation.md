@@ -31,8 +31,8 @@ updated: 2026-09-20
 
 # POC-S05 — New Market Maturation
 
-> [!info]+ PE-004 · planificación canónica reconciliada 2026-09-20
-> **Padre:** [[Polymarket Engine — MVP]] · **Estado:** `PE004_READY_AFTER_SHARED_GATE` para integración; núcleo descriptivo offline disponible después de preflight local · **Implementación: 0%** · **Hipótesis no validada** · **LIVE_DISABLED**. Reconciliación remota persistida, `LOCAL_VERIFICATION_PENDING`; NO es certificación de sincronización del checkout ni autorización del manager para gates compartidos.
+> [!info]+ PE-004 · regularización post-shared-integration 2026-09-20
+> **Padre:** [[Polymarket Engine — MVP]] · **Estado:** `OB_SPEC_READY_SHARED_VERIFIED` — fundaciones compartidas verificadas EN DISCO sobre INTEGRATION_SHA `9d0512a912fcce4b9aefc152c7a89b090ff8df1d` (branch `feature/shared-poc-unblocker`, descendiente de `feature/research-strategies-v01@f070496`): `go build ./...` PASS y tests dirigidos SFG-01/03/05/06-parser/07 re-ejecutados PASS por esta sesión de regularización. Track **O/B `PE004_OB_START_ALLOWED=true`** (`READY_WITH_RESTRICTIONS`; baseline de arranque obligatorio `9d0512a`). Track **W `PE004_W_START_ALLOWED=false`** (`WS_COHORT_BLOCKED` / `BLOCKED_BY_SFG06`). La rama shared NO está mergeada a `feature/research-strategies-v01` ni pusheada: `ENGINE_MERGE_PENDING_OWNER_REVIEW`; módulos shared congelados hasta Review humana. **Implementación: 0%** · **Hipótesis no validada** · **LIVE_DISABLED**.
 
 ## 🎯 Objetivo
 
