@@ -132,16 +132,16 @@ Estados: `INTEGRATED_PASS` = implementado y probado sobre el INTEGRATION_SHA rea
 
 **Distinción de timestamps (regla frozen):** `ReferenceTime`/run_ref (cuándo se emitió el forecast) ≠ `AvailableAt` (cuándo el proveedor lo publicó) ≠ `KnownAt` (cuándo el engine lo admitió) ≠ `valid_window` (a qué ventana del mundo aplica; dentro del payload) ≠ `frame.VirtualTime` (cut). Ninguno sustituye a otro; toda igualdad entre ellos debe ser una regla de contrato probada. Causalidad garantizada por el canal: un forecast admitido después del cut jamás aparece en ese frame (proyección por `CaptureSeq<=CutSeq` sobre journal inmutable — una revisión posterior no reescribe la información disponible en cuts históricos), vintage futuro rechazado en admisión, hash inválido impide admisión/carga, duplicado idéntico idempotente, contradicción falla cerrada, fuente requerida ausente ⇒ la instancia no arranca (vía `DataRequirements.ExternalSources`) o `WX_SOURCE_UNAVAILABLE` según el punto de fallo, y restart/replay preserva identidad y resultado (hash re-verificado al cargar). El adapter puede hacer I/O sólo durante ingestión/admisión (leer la fixture en el composition del test); Detect/Evaluate es puro: sin proveedores meteorológicos, sin filesystem, sin clock.
 
-## MUST RESOLVE BEFORE CODING AGENTS START — sólo transversal
+## MUST RESOLVE BEFORE CODING AGENTS START — estado transversal tras la entrega shared
 
-| Orden | Gate / problema concreto | POCs | Owner único / mínimo fix | Files bajo ownership común | Prueba de cierre | Complejidad / colisión |
-|---|---|---|---|---|---|---|
-| 1 | `PRECONDITION_SHARED_SFG-04` — no existe ingreso external→durable→Frame→Strategy→replay, Weather no puede integrar sin romper frozen | PE-030 directamente; PE-001/PE-004 sólo si luego usan external | manager del engine asigna 1 owner de core; entregar seam mínimo v1 arriba, no Weather agents | `internal/protocol/**`, `internal/capture/**`, `internal/frames/**`, `internal/strategy/api.go`, `cmd/engine/screen.go`, `internal/experiment/**`, `internal/replay/**` sólo con freeze exacto | E2E fixture external antes/después del cut + replay parity + tests antiguos | MEDIA/ALTA, **colisión HIGH si Weather improvisa**. A1 puro puede ejecutarse independiente; B1/B2 no empezar hasta PASS. |
-| 2 | `PRECONDITION_SHARED_SFG-01` — contrato L2 truncado/full-only y sin provenance completa | PE-001, PE-004, PE-030 | owner Books/Frames fija shared policy: para offline usar top6 full-fresh y cubrir size, abstain tras delta; sólo extender delta-aware si los requisitos PE-001/004 lo exigen | `internal/books/**`, `internal/frames/**`, `cmd/engine/screen.go`, `internal/strategy/pocs/pocdata/**` | full→delta stale, re-full, epoch fence, size>observed depth, deterministic cut | MEDIA; **colisión MED/ALTA** si cada POC modifica el codec. Gate cerrado por contrato explícito y tests antes de integración en paralelo; no exige full L2 para A1. |
-| 3 | `PRECONDITION_SHARED_SFG-02` — precio-dependencia, fee schedule y multi-level no expresados por fee plana; ownership disperso en params | PE-001, PE-004 (economics), PE-030 | owner Regimes/Economics decide única API fee schedule+revision+rounding/known-at; preservar unresolved; para offline sintético single level conversión documentada sólo como fixture | `internal/regimes/**`, `internal/economics/**`, `internal/simulator/**`, `internal/experiment/**` | 2 niveles distintos vs fee plana, unresolved veto, previous fee not overwritten, simulator parity | MEDIA; **colisión ALTA** si Strategies implementan tarifas privadas. Antes de paralelismo aprobar ruta compartida o recortar explícitamente offline sólo a caso quoteable y fee conocida. |
-| 4 | `PRECONDITION_SHARED_SFG-05` — abstention sin Opportunity no deja reason/metrics; scorecard last-wins y digest incompleto | PE-004 principalmente; PE-030 para F03/F15/F20, PE-001 si requiere diagnóstico | owner Experiment/Strategy define frame-level diagnostics durable/hashed mínimo, sin inventar ActionCandidate; no duplicar scorecard por POC | `internal/strategy/api.go`, `internal/strategy/runtime.go`, `cmd/engine/screen.go`, `internal/experiment/**` | 0 opp genera reason/quality, dos instancias aisladas, cambio metric cambia digest y no PnL | MEDIA; **colisión MEDIA/ALTA** si POC crea output propio. A1 puede devolver reasons internamente mientras gate compartido pendiente. |
+| Orden | Gate / problema concreto | Estado | Owner / condición |
+|---|---|---|---|
+| 1 | Review humana de la branch shared + push/merge del `INTEGRATION_SHA 9d0512a` (o su sucesor validado) | `PENDING_OWNER_REVIEW` (puente del padre en `[r]`) | Manager/owner humano: validar receipts, integrar el árbol resultante y publicar el `INTEGRATION_SHA` definitivo; módulos shared congelados hasta entonces |
+| 2 | Autorización explícita `PE030_START_ALLOWED` para arrancar el coding agent | `NOT_GRANTED` | Manager: sólo tras (1); sin ella el agent NO modifica el engine (documentación/fixtures aislados sólo con alcance autorizado expresamente) |
+| 3 | Edición del registry (`screenFactories`/`shadowStrategyFor`) para registrar Weather | `MANAGER_OWNED` | Manager lo ejecuta u otorga permiso puntual en B2; Weather no abre el seam por su cuenta |
+| 4 | Aceptación manager de la recert M4 @ `9d0512a` (`M4_ACCEPTANCE_PENDING`) | `PENDING` | Decisión humana; no bloquea la POC sintética offline y NO se convierte en `M4_CERTIFIED` heredada |
 
-**No bloqueadores antes de iniciar dominio Weather:** SFG-03 runtime ya existente → sólo preflight de integración/permisos antes B2; SFG-06 `NOT_REQUIRED`; SFG-07 procedimiento t.TempDir sin cambio productivo. Necesaria una autoridad de manager sobre congelamiento de paths; no lanzar tres agentes a editar módulos compartidos simultáneamente. El owner no tiene que decidir implementación meteorológica menor.
+Resuelto por la entrega shared @ `9d0512a` (antes PRECONDITION en esta nota): SFG-04 external→durable→Frame→Strategy→replay; SFG-01 contrato L2 as-of-cut delta-aware; SFG-02 fee schedule versionado con oráculo independiente y paridad simulator; SFG-05 output descriptivo sin oportunidades; SFG-07 guard de datasets. No queda ningún bloqueador shared en la ruta crítica de PE-030; la POC offline sintética no depende de `new_market` ni de la cohorte W de PE-004.
 
 ## CAN BE RESOLVED INSIDE WEATHER — sin colisión
 
@@ -151,13 +151,13 @@ Contrato de market meteorológico, estación exacta, variable/unidad/timezone/ve
 
 | Legacy ID | Clasificación nueva | Estado/acción |
 |---|---|---|
-| B-ENG-01 | `STILL_BLOCKING_IMPLEMENTATION` únicamente preflight local/ownership; no investigación RS | branch remota source inspeccionada, HEAD local/worktree no. A0 fija SHA antes escritura; preflight es común a todos y no implica cambiar engine. |
-| B-ENG-02 | `RESOLVED_BY_RS` para supuesto neutral-only; `MERGED_INTO_SFG-04` para external; `MERGED_INTO_SFG-01` para L2 | eliminar afirmación 9ae5dde como baseline único; no duplicar blockers. |
+| B-ENG-01 | `RESOLVED_BY_REGULARIZATION_2026-09-20` | HEAD local `f070496` + tip shared `9d0512a` verificados físicamente, checkout limpio, sin writers concurrentes; A0 conserva sólo un drift-check barato al arranque. |
+| B-ENG-02 | `RESOLVED_BY_RS` para supuesto neutral-only; `RESOLVED_BY_SFG-04` para external; `RESOLVED_BY_SFG-01` para L2 | cerrado sin duplicar blockers; el estado vigente vive en la matriz SFG. |
 | B-RULE-01 | `REAL_DATA_ONLY` | IDs Gamma/Condition/assets, regla exacta timezone/rounding/fallback/revision. Londres REFERENCE_ONLY. |
-| B-EXEC-01 | `MERGED_INTO_SFG-01` + `MERGED_INTO_SFG-02`; metadata real `REAL_DATA_ONLY` | L2/fees common preconditions; market-specific fee/tick/min-size/book aún real-only. |
+| B-EXEC-01 | `RESOLVED_BY_SFG-01` + `RESOLVED_BY_SFG-02`; metadata real `REAL_DATA_ONLY` | fee venue real sigue `REAL_UNVERIFIED` (U-02 abierto); market-specific fee/tick/min-size/book permanecen real-only. |
 | B-DATA-01 | `VALIDATION_ONLY` (historia de miembros) + prospective data `REAL_DATA_ONLY` | no backfill pseudo-point-in-time; capturar vintages nuevos cuando autorizado. |
 | B-LIC-01 | `REAL_DATA_ONLY` | licencia comercial/terms, station-grid correction; no gasto ni permisos requeridos para fixtures offline. |
-| B-OPS-01 | `MERGED_INTO_SFG-07` | generación dataset sintético nuevo en t.TempDir; no tocar `.rs-v03-sports/`. |
+| B-OPS-01 | `RESOLVED_BY_SFG-07` | `dataset.Guard` cableado; generación dataset sintético nuevo en t.TempDir; no tocar `.rs-v03-*`. |
 
 ## SPEC funcional v1 — Weather exclusivo, frozen para núcleo offline
 
