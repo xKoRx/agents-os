@@ -111,7 +111,7 @@ Hoja de ruta de capacidad (ningún paso en piloto): post-D-piloto (28sep) crecer
 
 ### D5. Failover-recoveries (los 6 escenarios del mandato)
 
-Los procedimientos verificables completos viven en el ROADMAP (WP-DR1..DR6, cada uno con validación y rollback) y su ejecución va por WP-R7 drills. Aquí los límites:
+Los procedimientos verificables completos viven en el ROADMAP (bloque DR: DR-T1..T6, cada uno con validación y rollback) y su ejecución va por WP-R7 drills. Aquí los límites:
 
 | Escenario | Estrategia | RPO/RTO | Dependencia circular evitada |
 |---|---|---|---|
@@ -146,7 +146,7 @@ El roadmap R0-R8 del proyecto es la autoridad de fases; los WPs concretos en [[R
 - R7 = **WP-R7** (drills recurrentes certificación).
 - R8 = **WP-B4** (runbook canónico + closeout).
 - Carril Ceph/Storage = **WP-S1..S4** (ejecutor distinto; handoff H5/H6 vigente).
-- Carril Edge/DR = **WP-B2** (config exports OPNsense/TrueNAS/PBS/mcps + decisión CA) + **WP-DR** (procedimientos 6 escenarios).
+- Carril Edge/DR = **WP-B2** (config exports OPNsense/TrueNAS/PBS/mcps + decisión CA) + **bloque DR-T1..T6** (procedimientos, ejecutados vía WP-R7).
 
 ## 3. Problemas que SÍ necesitan corrección (priorizados por reducción de riesgo global)
 
@@ -181,7 +181,7 @@ G1A/G1B sin prune → riesgo de llenado lento de datastore.
 
 ## 6. Primer bloque tras aprobar el plan
 
-**WP-A0** (ingesta staging→PBS + corregir prune nfs) — es AUTO, sin ventana, reutiliza mecanismo G1A demostrado, convierte las 4 unidades R1/R1.5 en una sola copia protegida en PBS y libera la dependencia del staging; se ejecuta inmediatamente después de la aprobación del plan y mientras el owner resuelve 018-021/D. En paralelo, **WP-A1** (schedules PG/Mongo/MinIO) queda listo para ejecutar sin ventana una vez aprobado (los mecanismos ya existen certificados; es agendar, no inventar).
+**WP-A0** (ingesta staging→PBS + corregir prune nfs) — es AUTO, sin ventana, reutiliza mecanismo G1A demostrado, convierte las 4 unidades R1/R1.5 en una sola copia protegida en PBS y libera la dependencia del staging; se ejecuta inmediatamente después de la aprobación del plan y mientras el owner resuelve 018-021/D. En paralelo, **WP-A1** (schedules PG/Mongo; MinIO queda one-shot G1B hasta su gate owner) queda listo para ejecutar sin ventana una vez aprobado (los mecanismos ya existen certificados; es agendar, no inventar).
 
 ---
 *Métricas de capacidad medidas en WS: `~/aranea/work/master-plan-20260920/CAPACITY-METRICS.md` — repetir antes de decidir D-piloto (28sep).*

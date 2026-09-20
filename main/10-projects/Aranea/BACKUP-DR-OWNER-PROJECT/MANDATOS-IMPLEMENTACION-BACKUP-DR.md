@@ -35,12 +35,12 @@ Actúa como operador del proyecto BACKUP-DR-OWNER-PROJECT. Reutiliza: MASTER-PLA
 
 ALCANCE (todo AUTO, sin ventana, cero mutaciones en guests de trading):
 1. WP-A0: ingestar a PBS (host/r0d-config-*) los run-dirs R1/R1.5 vigentes; round-trip sha de 1 unidad; corregir prune-backups `keep-all=1` de nfs-storage en 5 nodos (diff antes/después).
-2. WP-A1: timers systemd en hermes — PG 152 dump diario, Mongo 153 dump diario (patrón g1a-driver: dump→cifrado AES→ingesta pxar→verify PBS), MinIO 157 stream semanal (patrón G1B). Retención 30d sin prune. Credenciales por stdin/forced-command whitelist; claves por custodia existente.
+2. WP-A1: timers systemd en hermes — PG 152 dump diario, Mongo 153 dump diario (patrón g1a-driver: dump→cifrado AES→ingesta pxar→verify PBS). MinIO 157 semanal recurrente EXCLUIDO de este mandato: requiere gate owner separado (regla 4.1/018 — MinIO es ADD no aprobado); si el owner lo autoriza en chat, se agrega al timer con el mismo patrón G1B. Retención 30d sin prune. Credenciales por stdin/forced-command whitelist; claves por custodia existente. Horarios: dumps 03:00-03:45, ANTES de los timers R1 04:00/05:00 (mismo host; no re-agendarlos).
 3. WP-A3: dump diario CouchDB 116 + ingesta; drill restore a scratch con conteo de docs.
 4. WP-A5: export semanal de compose/env/units de 126/129/141/127/128/158/142/113 + /etc/proxmox-backup-* de PBS 180 (sin secretos en claro).
 5. WP-A4 (sólo parte AUTO): incluir el stream semanal MinIO en el timer; versioning MinIO queda EXCLUIDO (gated).
 
-VALIDACIÓN / CIERRE: 2 ciclos completos de cada job con VERIFY_TASK_OK + manifest sha + 1 drill de restore (PG o Mongo) desde PBS; timers active+enabled; cero impacto en R2 (día 7/7 y decisión D intactos). Criterio de cierre: PASS = 3 jobs VERIFIED+AUTOMATED + drill PASS + R2 intacto verificado.
+VALIDACIÓN / CIERRE: 2 ciclos de los jobs diarios + 1 ciclo del semanal (si MinIO fue autorizado) con VERIFY_TASK_OK + manifest sha + 1 drill de restore (PG o Mongo) desde PBS; timers active+enabled; cero impacto en R2 (día 7/7 y decisión D intactos). Criterio de cierre: PASS = PG+Mongo (+CouchDB) VERIFIED+AUTOMATED + drill PASS + R2 intacto verificado.
 PROHIBIDO: tocar postgresql.conf/mongod.conf, jobs.cfg PVE, Ceph, tickets, diseño congelado, prune del datastore main, y cualquier reinicio de guests. Fallar PASS → reportar BLOCKED con evidencia sin reintentos Ciegos.
 ```
 
@@ -70,7 +70,7 @@ PROHIBIDO: vzdump de MT4/echo fuera del horario aprobado; backup de discos local
 
 ```
 MANDATO ONE-SHOT — BACKUP-DR: RPO 1h EN DATOS DE TRADING (A2)
-Prerrequisitos: MP-01 PASS; ventana 019; OK owner explícito para mutar config de PostgreSQL 152 (PROD trading). Mongo (A2b) SÓLO si el owner aprobó la decisión de topología (replica set 1 nodo o PBM); si no, registrar RPO Mongo=24h como deuda aceptada y NO tocar Mongo.
+Prerrequisitos: WP-A1 PASS (MP-01 parcial); ventana 019; OK owner explícito para mutar config de PostgreSQL 152 (PROD trading). Mongo (A2b) SÓLO si el owner aprobó la decisión de topología (replica set 1 nodo o PBM); si no, registrar RPO Mongo=24h como deuda aceptada y NO tocar Mongo.
 
 ALCANCE PG: medir tasa WAL 24h (UNKNOWN→medido); configurar archive_mode=on, archive_timeout=60s, archive_command rsync→staging hermes (WAL fuera de pool0); pg_basebackup semanal; reinicio controlado en ventana; drill PITR (restore a segundo objetivo, SELECTs reales patrón G1A).
 VALIDACIÓN/CIERRE: PITR VERIFIED con RPO medido (esperado ≤5min) + rollback probado (archive_mode=off, conf revertida). PASS = RPO PG ≤1h DEMOSTRADO.
@@ -92,7 +92,7 @@ PROHIBIDO: autoclean/aggressive retención sin decisión; tocar árboles legacy 
 
 ```
 MANDATO ONE-SHOT — BACKUP-DR: EDGE CONFIGS + SEÑALES EN ARGUS (B2/B3)
-ALCANCE B2: export config OPNsense semanal (canal a demostrar; si falta acceso → bundle puntual); export config TrueNAS via API key existente (unidad nueva); pi-hole: SOLO diagnóstico del estado .149 L2-dead + preparación (token FTL6 sigue gated; la decisión de retiro/reactivación es del owner); CA 200: ejecutar la decisión que el owner haya tomado (si no hay decisión: NO tocar, registrar pendiente).
+ALCANCE B2: export config OPNsense semanal (canal POR VERIFICAR — SSH admin demostrado por H1 pero API/backup de OPNsense no; si falta acceso → bundle puntual); export config TrueNAS (SSH admin certificado; API key ya existe para WS — verificar qué canal permite export config; unidad nueva); pi-hole: SOLO diagnóstico del estado .149 L2-dead + preparación (token FTL6 sigue gated; la decisión de retiro/reactivación es del owner); CA 200: ejecutar la decisión que el owner haya tomado (si no hay decisión: NO tocar, registrar pendiente).
 ALCANCE B3 (tras A1/B1 corriendo): señales en ARGUS vía management path — edad de último backup por unidad, VERIFY tasks PBS, espacio datastore, timers failed; alertas mínimas del diseño §8; test de disparo real de 1 alerta.
 VALIDACIÓN/CIERRE: 3-4 unidades config VERIFIED (OPNsense, TrueNAS, PBS, + pi-hole si se resolvió) + alerta de prueba disparada y recibida. PASS = edge configs protegidos + backup dejó de ser silencioso.
 PROHIBIDO: mutar servicios edge en producción (pi-hole/OPNsense/CA = sólo lectura hasta decisión owner); credenciales en claro.
@@ -127,6 +127,6 @@ PROHIBIDO: drills destructivos sobre producción; drill de DR-6 sin 020 resuelto
 | MP-03 | D-piloto + 018 + 019 | crecimiento datastore como fase gated |
 | MP-04 | MP-01 + 019 (+OK owner PG; decisión Mongo para A2b) | — |
 | MP-05 | datasets decisión + 019 (scrub puede ir antes) | scrub pool2 ✅ |
-| MP-06 | B2 parcial (pi-hole/CA decisión); B3 tras MP-01/MP-03 | OPNsense/TrueNAS export ✅ |
+| MP-06 | B2 parcial (pi-hole/CA decisión); B3 tras MP-01/MP-03 | exports OPNsense/TrueNAS tras verificar canal ✅/❓ |
 | MP-07 | S1 (dueño), S2 (ventana); S4 ✅ | S4 ✅ (ejecutor Ceph) |
 | MP-08 | MP-01 (y MP-02 parcial para DR-6) | — |
