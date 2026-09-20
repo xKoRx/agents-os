@@ -65,3 +65,12 @@ tags:
 - Recibo de claves (`r0d-g1a.key.owner-envelope`) por canal fuera de Hermes → habilita purga de plaintext en staging.
 - Eliminar snapshot probe `host/r0d-probe` (o decidir retención en R3).
 - Retención: 30 días mínimo, sin prune automático.
+
+## Cierre one-shot (2026-09-20, sesión de certificación)
+
+- **Cadena de recuperación demostrada END-TO-END desde los snapshots PBS** (lo que el round-trip de ciphertext de la ejecución no cubría): restore→descifrado→sha→drill funcional in-guest sobre datos recuperados. PG 13/13 + SELECTs reales; Mongo 55.968 docs + find() forge. PASS en ambos motores → **G1A CERRADO-CERTIFICADO**.
+- **Reconciliación 15↔13 demostrada**: `pg_database` live de 152 (17 entradas) = 13 bases no-template dumpeadas + template0 (no conectable) + template1 (template), ambas excluidas por diseño del dump. Cero bases de usuario excluidas.
+- **Corrección de registro**: `raw/fase3a-drill-pg.json` corresponde a un intento temprano (race del driver); el drill PASS original corrió detached (`run-drill-detached.sh`) y su log no quedó en raw/. Subsanado: logs del drill original conservados in-guest (`/var/tmp/r0d/{pg,mg}-drill.log`) y drills de cierre sobre datos recuperados capturados en `raw/close-{pg,mg}-drill-from-pbs.log`.
+- **Mutaciones de cierre** (todas revertibles, en alcance del gate aprobado): `/home/ariadna/r0d/close-{pg,mg}` en PBS (~465M, purgable con la purga de staging); clave efímera r0d-ephemeral re-instalada y REVOCADA con verify (grep=0 en 152/153); tgz recuperados extraídos en `/root` de 152/153 (conservados como rollback junto a run-dirs originales); plaintext de recuperación 699M en hermes `/var/tmp/r0d-close.*` (0700/600, conservado hasta retiro de clave por owner). Cero prune/forget/eliminaciones.
+- **R2 intacto verificado al cierre**: timers aranea-backup-r1 04:00, etcd 05:00, r2-measure dom 06:05 vivos; datastore `ct/` solo 155; `verify main` TASK OK (500 chunks); snapshots `host/r0d-*` y probe intactos.
+- **Pendiente owner (único)**: retirar `r0d-g1a.key` fuera de Hermes y verificar huella sha256 (8e8e7efc40910ed7…) → habilita purga de plaintexts (staging + /var/tmp) y cierre Secret Zero en R3.
