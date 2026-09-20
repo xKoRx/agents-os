@@ -1,25 +1,32 @@
 ---
 type: project
 schema_version: 1
-owner: me
+owner: agent
 root: false
 status: active
-priority: P2
-area: "[[Personal]]"
-parent:
+priority: P1
+area: "[[Echo]]"
+parent: "[[Echo — Live Platform V1]]"
 sprint:
-start:
+start: 2026-09-20
 due:
 progress: 0
-repo:
+repo: xKoRx/echo
 jira:
 prs:
-aliases: []
+aliases:
+  - Echo E-08
+  - Routing EconomicCommand risk reservation
+  - E-08 Routing
+  - FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8
 tags:
   - kind/project
-  - area/personal
+  - area/echo
+  - agent/owner
 created: "2026-09-20"
 updated: "2026-09-20"
+cssclasses:
+  - wide
 ---
 
 # Echo — E-08 Routing EconomicCommand and Risk Reservation
@@ -27,118 +34,56 @@ updated: "2026-09-20"
 %% Naming: Echo — E-08 Routing EconomicCommand and Risk Reservation es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo — E-08 Routing EconomicCommand and Risk Reservation
-> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
-> _parent / sprint / repo / jira / prs son opcionales._
+> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Live Platform V1]] · **Repo:** `xKoRx/echo`
+> Subproyecto de **implementación** de la fase E-08 / Routing, EconomicCommand and risk reservation. No es Integration. El contrato WHAT vive en el SPEC de Echo; esta nota es HOW / ORDER / GATES.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
-> `owner: me` → **proyecto humano**: la iniciativa/esfuerzo que conduces tú.
-> `owner: agent` → **proyecto de agente**: un curro delegado, con detalle pesado que escribe y sigue un agente. Casi siempre es subproyecto de uno humano y vive en la subcarpeta `agentes/` de su iniciativa.
-> `root: true` solo en **iniciativas raíz** (sin `parent`). Todo subproyecto debe setear `parent`; si no, aparece como huérfano en [[Panel de Proyectos]].
->
-> **Tarea puente:** cuando este proyecto es `owner: agent`, en su proyecto **padre** debe existir UNA sola tarea humana que lo representa (arrancar + seguimiento). Así tu cockpit ve una línea por curro delegado, no las tareas internas del agente. Ejemplo, en el padre:
-> `- [ ] [[Echo — E-08 Routing EconomicCommand and Risk Reservation]] arrancar + seguimiento #owner/me #type/supervision #area/personal`
+> Este proyecto es `owner: agent`. El padre [[Echo — Live Platform V1]] enlaza aquí. La supervisión humana del track live sigue en [[Echo — Producto Integrado]].
 
 ## 🎯 Objetivo
 
-- 
+Persistir la decisión económica como hecho durable: universo expected/excluded congelado por decisión, EconomicCommand con identidad determinística, snapshot inmutable de policy/risk, reserva de presupuesto por cuenta conservada frente a crash y UNKNOWN, outbox idempotente y recovery sin reenvío ciego. Principios: `RAW_DURABLE_BEFORE_ROUTE` (gate E-07 §17.4); `UNKNOWN != ZERO`; raw fact ≠ economic command; replay de hechos ≠ replay de órdenes; Strategy ≠ Version ≠ RuntimeBinding. Sin optimizador de routing, sin multi-broker abstracto, sin netting. Unlock: denominador de routing + comando económico recuperable para E-09/E-12.
 
 ## 📊 Estado actual
 
-- 
+- **E08_PLANNING_FROZEN v1.0.0 (2026-09-20):** SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT @ `fe5c9de0` en branch `feature/e08-routing-economic-command-risk-reservation` (base `3765f2ba` = HEAD E-07 C3; master `5dd998f1` intacto). Migración `066` reservada (exclusiva E-08; 066 libre verificada). Gate RAW-BEFORE-ROUTE como boundary RG-1…RG-6 (sólo hechos `PROCESSED` commiteados + pin OBSERVING válido; PublishSync ≠ commit durable; UNKNOWN/SHADOW/sin coverage jamás elegibilidad; replay jamás genera segundo comando; dispatch jamás adelanta al commit). CommandID determinístico resuelto por regla (`command_unique_key` UNIQUE + `content_digest`; UUIDv7 minteado una vez; misma key+digest ⇒ mismo comando; key+digest distinto ⇒ `COMMAND_CONFLICT` cuarentenado) — consume el defer de E-02 §1.0.1. Snapshot inmutable content-addressed de policy/sizing/SLTP/destination/delay/account/instrument/decision (fila mutable jamás es autoridad histórica). Reserva integrada al command con headroom serializado por cuenta (`SELECT … FOR UPDATE`), `UNKNOWN_HELD` sin auto-release. Outbox monotónico en la propia fila del comando; sweepers SKIP LOCKED; reconciliación sin reenvío. Separación frozen: clase A (persistencia/identidad, PG hoy, cero órdenes) / clase C (activación económica condicionada: wiring vivo + dispatcher + E2E; prerrequisitos E-07 PHYSICAL, E-06 G1/T21, MQL_COMPILE, corrección `EchoPersistence.mqh`, E-02 AC-18). No reabre E-01…E-07 ni el roadmap. Next = NORMAL (`NORMAL-PROMPT.md`).
 
 ## 🧱 Entrega de desarrollo
 
-%% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
-
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
-
-## 🧩 Subproyectos
-
-```base
-filters:
-  and:
-    - 'type == "project"'
-    - 'file.hasLink(this.file)'
-views:
-  - type: cards
-    name: Subproyectos
-    order:
-      - file.name
-      - note.status
-      - note.priority
-```
+| xKoRx/echo | `feature/e08-routing-economic-command-risk-reservation` | `3765f2ba` (E-07 HEAD C3; master `5dd998f1` intacto) | `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/SPEC.md` v1.0.0 @ `fe5c9de0` | `.../PLAN.md` + `.../TASKS.md` + `.../VERIFICATION.md` + `.../NORMAL-PROMPT.md` | E08_PLANNING_FROZEN v1.0.0 · NORMAL PENDING · gates objetivo: SOURCE/CONTRACT/PG PASS + PHYSICAL_PENDING + ECONOMIC_ACTIVATION_PENDING + FINAL_CLOSED=NO |
 
 ## ✅ Tareas
 
-> [!note]+ Ownership y tarea puente
-> `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala.
-> El board es **adaptativo según `owner` del frontmatter**:
-> - **Proyecto humano** (`owner: me`): muestra tus tareas y las **tareas puente** (`#type/supervision`) que representan proyectos de agente. Las tareas de agente **no** aparecen acá; viven en su propio proyecto.
-> - **Proyecto de agente** (`owner: agent`): muestra las tareas del agente.
-
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/personal
-> - [ ] tarea delegada #owner/agent #type/dev #area/personal
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/personal
+> - [ ] E-08 T00–T02: baseline + failing sets, dominio E-08, migración 066 + harness #owner/agent #type/dev #area/echo
+> - [ ] E-08 T03–T07: stores snapshots/routing/comandos/reservas + RoutingGate RG-1…RG-4 #owner/agent #type/dev #area/echo
+> - [ ] E-08 T08–T10: router durable (default OFF), sweepers recovery/reconciliation, driver + wiring apagado #owner/agent #type/dev #area/echo
+> - [ ] E-08 T11–T14: matriz MT-01…MT-18, gates SOURCE/BWC, VERIFICATION con evidencia, handoff Manager #owner/agent #type/dev #area/echo
 
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-function board(tasks){const cols=[[" ","🟦 To Do"],["/","🟡 WIP"],["r","🔵 Review"]];let any=false;for(const[st,label]of cols){const c=tasks.filter(t=>t.status===st);if(c.length){any=true;dv.el('h4',label);render(c);}}const done=tasks.filter(t=>t.status==="x"||t.status==="X");if(done.length){any=true;dv.el('h4',"✅ Done");render(done);}if(!any)dv.paragraph("_Sin tareas._");}
-const owner=((dv.current().owner)==="agent")?"agent":"me";
-const all=dv.current().file.tasks.array();
-const primary=all.filter(t=>has(t,`owner/${owner}`));
-const loose=all.filter(t=>!has(t,"owner/me")&&!has(t,"owner/agent"));
-dv.header(3, owner==="agent"?"🤖 Tareas del agente":"🧍 Mis tareas");
-board(primary);
-if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
-```
+## 🗺️ Roadmap (padre)
 
-%% Rollup de iniciativa — descomentar solo en proyectos padre para ver las tareas #owner/me (incluye puentes) de todos los subproyectos, agrupadas por nota. Cambiar la ruta por la carpeta de esta iniciativa. Nunca muestra tareas de agente.
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-const ord={" ":0,"/":1,"r":2,"x":3,"X":3,"-":4};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-const pages=dv.pages('"10-projects/CARPETA-DE-LA-INICIATIVA"');
-for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x=>has(x,"owner/me")&&x.status!=="x"&&x.status!=="X").sort((a,b)=>(ord[a.status]??9)-(ord[b.status]??9));if(t.length){dv.el('h4',p.file.link);render(t);}}
-```
-%%
+- [[Echo — Live Platform V1]] § Roadmap → «E-08 Routing, EconomicCommand and risk reservation». Dependencias: E-07 identidad raw (interfaces verificadas @ `3765f2ba`, consumidas como base). Parallel: guards de E-12 en shadow (E-12 decides).
+- Preservaciones: UNKNOWN ≠ ZERO · raw fact ≠ economic command · replay de hechos ≠ replay de órdenes · Strategy ≠ Version ≠ RuntimeBinding · routing legacy intacto en clase A/B.
 
 ## 📆 Bitácora
 
-%% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-20** — 
+- **2026-09-20 — E-08 TOP planning one-shot:** SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT v1.0.0 @ `fe5c9de0` en `origin/feature/e08-routing-economic-command-risk-reservation` (docs-only; base `3765f2ba` E-07 C3; master intacto `5dd998f1`). Baseline resuelto contra repos reales (ramas E-06 `b66dc5ff` / E-07 `3765f2ba` local=origin; migración 066 libre). Diseño frozen: gate RG-1…RG-6 sobre E-07 §17.4; identidad comando por `command_unique_key`+`content_digest` (UUIDv7 mint once; resuelve defer E-02); snapshots content-addressed inmutables; reservas con lock por cuenta y `UNKNOWN_HELD` conservador; outbox monotónico con claims SKIP LOCKED; errores permanentes/transitorios/desconocidos con fail-closed; recovery sin resend ciego; reconciliación como superficie para E-09. Separación clase A (desarrollable hoy, cero órdenes) vs clase C (activación condicionada, prerrequisitos declarados). Worktree `/tmp/echo-e08-routing-economic-command-risk-reservation`. E-01…E-07 no reabiertos; defecto `EchoPersistence.mqh` intocado (carril Manager). Next = NORMAL.
 
 ## 🧭 Decisiones
 
-- 
+- Boundary RAW-BEFORE-ROUTE es **gate estructural** (`RoutingGate` SELECT transaccional RG-1…RG-4 + RG-5/RG-6 por diseño transaccional): la única prueba de aceptación durable es la fila `echo.raw_trade_events` con `processing_status='PROCESSED'` commiteada (E-07 §17.4); Kafka/coordenadas jamás prueban durabilidad.
+- CommandID determinístico **por regla, no por UUID**: `UNIQUE(command_unique_key)` + `content_digest`; mismo key+digest ⇒ mismo comando (`REPLAY_CONVERGED`); key+digest distinto ⇒ `COMMAND_CONFLICT` cuarentenado; UUIDv7 se mintea una vez y jamás se remintea (Live Authority §7 + invariante 12; defer E-02 consumido).
+- Snapshots inmutables **content-addressed con contenido embebido**: las filas mutables de catálogo se leen UNA vez con marca de revisión; los valores aplicados viajan embebidos; policy mutation posterior no toca histórico (invariante 16).
+- Reserva **integrada al comando** (sin servicio de riesgo distribuido): lock de fila de presupuesto por cuenta serializa OPENs concurrentes; `UNKNOWN_HELD` jamás auto-release; reconciliación (superficie para E-09) resuelve con evidencia.
+- Outbox **es la fila del comando** (sin tabla outbox separada): estados monotónicos protegidos; dispatch sólo de `READY` commiteada; el dispatcher real es clase C y no existe en el delta NORMAL.
+- Activación económica **separada** del desarrollo: clase A/B PG con cero órdenes; clase C (router vivo + dispatcher + CLOSE durable + E2E) requiere prerrequisitos externos y decisión Manager/owner; router default OFF fail-closed.
 
 ## 🔗 Docs / Links
 
-- 
-
-## 💡 Ideas
-
-%% Captura ideas sueltas del proyecto al final. Si maduran, promover a tarea o a nota de idea (70-templates/idea.md). %%
-
-### Backlog de ideas
-
-- 
-
-### Motivos / principios
-
-- 
-
-### Memoria pública / interna
-
-%% Opcional para proyectos de agentes o conocimiento: definir qué memoria gobierna el sistema y cuál gobierna el agente, y por qué existe cada una. %%
-- **Memoria pública:** 
-- **Memoria interna:** 
-- **Motivo:** 
+- `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/` (SPEC/PLAN/TASKS/VERIFICATION/NORMAL-PROMPT) en `xKoRx/echo`.
+- [[Echo — Live Platform V1]] · [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] · [[Echo — E-06 Reference Enrollment and Binding]] · [[Echo — E-02 Control Safety, Auth and Journal Recovery]] · [[Echo — Producto Integrado]]
+- [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] (§§7–8 autoridad de routing/comandos; invariante 16/17/18)
+- [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
+- [[Echo + Echo Forge — Deferred Certification Backlog]]
