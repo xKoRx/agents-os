@@ -69,7 +69,7 @@ updated: "2026-09-20"
 
 1. **Problema**: el edge de entrada del homelab depende del local-lvm de athena; si athena cae, traefik no arranca en otro nodo (re-restore manual).
 2. **Evidencia**: matriz (rootfs:local-lvm); R1 certifica que su config es la unidad de backup más madura (CFG diario + recovery-critical `acme-stepca.json`).
-3. **Objetivo**: rootfs de 115 en el nfs-storage MIGRADO (W1): cualquier nodo puede levantarlo.
+3. **Objetivo**: rootfs de 115 en nfs-pool2 (W1): cualquier nodo puede levantarlo.
 4. **Beneficio**: eliminación del SPOF de nodo para el edge; reconstrucción trivial con la config ya protegida.
 5. **Dependencias**: W1 ejecutado; prueba de arranque en nodo alterno (verificar attach de IP).
 6. **Capacidad destino**: rootfs 115 = 5-10G; trivial sobre pool2.
@@ -93,12 +93,12 @@ updated: "2026-09-20"
 
 #### W4 — Kafka dev 128 (docker-kafka, hera) → hades
 
-1. **Problema**: el broker kafka dev vive solo en hera junto a 1 de los 3 OSD Ceph y al MON; su health impacta directamente el pipeline Echo (brote de errores "metadata out of date" del 20sep en los 3 bridges). Un solo host lo contiene todo.
+1. **Problema**: el broker kafka dev vive solo en hera junto a 1 de los 3 OSD Ceph y al MON; el brote de errores "metadata out of date" del 20sep en los 3 bridges (21:26-21:30) sugiere churn de liderazgo kafka afectando al pipeline Echo — **hipótesis pendiente de diagnóstico** (el patrón del error apunta más a los multi-broker 136/138/139 que al single-node 128; P1-4 lo resuelve). Un solo host contiene hoy a docker-kafka.
 2. **Evidencia**: runtime 20sep (128 en hera; errores 21:26-21:30; kafka-hera/kronos/zeus sin ISR verificable por falta de canal); matriz (rootfs:pool1).
-3. **Objetivo**: mover el CT 128 a hades (capacidad sobrada: 22% CPU, ~53G RAM libres). El disco del CT está en pool1 (RBD, cualquier nodo lo monta): la migración es offline y de ubicación, no de backend.
+3. **Objetivo**: mover el CT 128 a **athena** (destino corregido por revisión adversarial: <1% CPU, sin OSD Ceph, sin PBS, densidad mínima; hades queda descartado por ser el chasis SPOF F-13 con máxima densidad y Echo PROD encima). El disco del CT está en pool1 (RBD, cualquier nodo lo monta): la migración es offline y de ubicación, no de backend.
 4. **Beneficio**: separa al broker de los hosts Ceph; reduce correlación de fallos con el storage nearfull; ventana de diagnóstico del brote más limpia.
 5. **Dependencias**: ventana con Echo cerrado (reinicio del broker = reconexión de bridges); verificar que clientes no dependan de un hostname ligado a hera.
-6. **Capacidad destino**: hades tiene ~53G RAM libres; el disco no se mueve físicamente.
+6. **Capacidad destino**: athena tiene RAM/CPU sobrada; el disco no se mueve físicamente.
 7. **Downtime**: 3-5 min offline.
 8. **Reversión**: migrar de vuelta (mismo mecanismo); 5 min.
 9. **Protección previa**: vzdump 128 (hoy NO está en piloto → primer vzdump en la ventana antes de mover) + verificar topics/offsets post-arranque.
@@ -108,7 +108,7 @@ updated: "2026-09-20"
 
 1. **Problema**: pool1 nearfull estructural (CRUSH host + 1 OSD/host, PROBADO 19-09) se agrava: 87,8% hoy con slow ops. La alternativa G del assessment (mover SOs fuera) es la única liberación estructural sin capex que no toca datos de valor.
 2. **Evidencia**: rbd du 20sep: los SOs productivos identificados suman ≈64G lógicos (PG 152 20G, mongo 153 20G, echo 140 24G aprox por clase de tamaño, MT4s 133/134/144, margen). Todo el valor de esos guests vive fuera de pool1 (datos en zvol pool0 / SQX local / terminal MT4 en hades).
-3. **Objetivo**: vzdump→PBS + restore del rootfs a local-lvm del nodo destino (o nfs-storage para CTs), priorizando: echo 140 → hades local-lvm (donde opera; mínimo riesgo, máximo alivio); MT4s → hades; PG/Mongo/MinIO SOs → local-lvm hades. NO migrar SQX (F-04). 64G ≈ -64G en cada OSD lleno (87,8% → ~81%).
+3. **Objetivo**: vzdump→PBS + restore del rootfs a local-lvm del nodo destino (o nfs-storage para CTs), priorizando: echo 140 → hades local-lvm (donde opera; mínimo riesgo, máximo alivio); MT4s → hades; PG/Mongo/MinIO SOs → local-lvm hades. NO migrar SQX (F-04). ≈64G base (20+20+24G: PG/Mongo/echo) — suma conservadora: con MT4s 133/134/144 y margen el total real es mayor; cuantificar exacto en preflight. Resultado esperado ≈ -64G o más por OSD lleno (87,8% → ~81% o menos).
 4. **Beneficio**: des-presuriza pool1 SIN capex y sin tocar datos; reduce el riesgo del escenario "kronos cae = recovery imposible" al bajar el punto de llenado; habilita a futuro el gate de nuevos discos con evidencia.
 5. **Dependencias**: piloto R2 con verify OK + decisión D-piloto (28sep) + B1 operativo (vzdump T0 como mecanismo); PBS con +300G (D3) o validación de espacio; NO ejecutar con slow ops activos.
 6. **Capacidad destino**: local-lvm hades (SSD nodo; re-medir en preflight); PBS necesita room para 6-8 imágenes T0 (con dedup, dentro del +300G planificado).
@@ -150,7 +150,7 @@ updated: "2026-09-20"
 
 ## C. Caso Ceph (resumen ejecutivo del carril, NO ejecutable por Backup/DR)
 
-- **Estado**: HEALTH_WARN; nearfull estructural PROBADO (CRUSH host + 1 OSD/host + réplica 3) + **slow ops BlueStore nuevos en osd.0/2** (20sep) + growth medido (+19G/OSD lleno en 27h). Márgenes: nearfull-oficial ya superado; backfillfull ≈ 33G de margen; full ≈ 110G.
+- **Estado**: HEALTH_WARN; nearfull estructural PROBADO (CRUSH host + 1 OSD/host + réplica 3) + **slow ops BlueStore nuevos en osd.0/2** (20sep) + growth medido (~+17G/OSD lleno en 27h). Márgenes por OSD lleno (818/932 GiB; ratios estándar nearfull 0,90 / backfillfull 0,95): backfillfull ≈ 21G, full ≈ 67G — a este ritmo, backfillfull en ~1 día si el growth no frena.
 - **Causa del growth a identificar**: los 43 guests running escriben en pool1; candidatos: 127 (docker-observability, 70% rootfs), flink checkpoints (126), kafka topics, logs. Primera acción de la ventana: identificar escritor con las métricas de disco guest ya capturadas en `~/aranea/work/operating-state-20260920/pve-live.txt`, sin tocar el cluster.
 - **Secuencia vigente del carril Ceph**: S4 (instrumentación, READY) → S1 (liberaciones gated) → S2 (mClock+compact, ventana) → S3 (decisión estructural pool1). Master plan D1: si se ejecuta W5, la alternativa G queda activada parcialmente y pool1 recupera ~64G.
 - **Regla inviolable**: ninguna operación Backup/DR escribe en pool1 mientras dure NO_GO; las 5 migraciones aquí definidas lo respetan (W5 LEE de pool1 vía vzdump y ESCRIBE en local-lvm/PBS).
