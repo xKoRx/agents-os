@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-07
-updated: 2026-09-16
+updated: 2026-09-19
 cssclasses:
   - wide
 ---
@@ -259,7 +259,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Done when:** lookup por trade_id; coverage U visible.
 - **Unlocks:** E-08/E-09.
 - **Accepted debt:** legacy journal rows.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning:** TOP v1.0.0 ([[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]]). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-RAW-FACTS-DEAL-COVERAGE-LIFECYCLE-E7/` @ branch `feature/e07-raw-facts-deal-lifecycle` HEAD `59338a64` desde `b66dc5ff` (HEAD E-06; sus interfaces son la dependencia de desarrollo, verificadas). Migración 065 exclusiva. **Implementation:** NORMAL (prompt listo; no lanzado). **GOD:** NONE.
 
 ### E-08 Routing, EconomicCommand and risk reservation
 
@@ -384,6 +384,7 @@ Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles
 
 ## 📆 Bitácora
 
+- **2026-09-19 — E-07 TOP planning one-shot:** [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT v1.0.0 @ `59338a64` pusheados a `origin/feature/e07-raw-facts-deal-lifecycle` desde `b66dc5ff` (HEAD E-06; docs-only; master intacto `5dd998f1`). Baseline reconciliado sin drift; interfaces S0/E-06 verificadas en source; migración 065 reservada (exclusiva E-07, 066+ fuera); raw-before-route en echo-core; reuse aditivo de `raw_trade_events` (029); atribución al OPEN vía SELECT 064; PHYSICAL diferido explícito (sin Forge ni terminal para CONTRACT/PG). Worktree `/tmp/echo-e07-raw-facts-deal-lifecycle`. E-01…E-06 no reabiertos; T21 E-06 sigue blocked (G1) sin cambio. Next = NORMAL.
 - **2026-09-16 — E-06 TOP refresh liveness erratum v1.2.2:** [[Echo — E-06 Reference Enrollment and Binding]] v1.2.2 @ `acf996ad` (contrato `28afc47f`; old `336c723b`; push FF). §7.2a.4 v1.2.1 exigía «MUST republicar cada 5 s» vía `OnTick`; MQL5 no garantiza ticks ⇒ decisión Manager frozen: `OnTimer` compatible (≤5 s, realmente activado) preferido sin tocar `EventSetTimer`; `OnTick` oportunista con 5 s como intervalo mínimo entre publicaciones; sin tick ni timer compatible sin promesa de liveness continua (expiración 15 s fail-closed `SUSPENDED + UNKNOWN`; recovery §6; ninguna actualización de `ts` desde Echo/Bridge/Gateway/config). Tests AC-37a…d. CASE B y encoding v1 intactos. 0 source Echo; 0 bytes Forge. Master intacto. Next = IMPLEMENTATION REVIEW.
 - **2026-09-16 — E-06 TOP transport contract v1.2.1:** [[Echo — E-06 Reference Enrollment and Binding]] v1.2.1 @ `336c723b` (contrato `662c0dce`; old `e8fba410`; push FF). Encoding GV lossless; CASE B intacto. 0 source Echo; 0 bytes Forge. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW. *(Siguientes gates evolucionaron con v1.2.2; ver entrada superior.)*
 - **2026-09-16 — E-06 TOP planning correction #2 (Manager CASE B):** [[Echo — E-06 Reference Enrollment and Binding]] v1.2.0 @ `e8fba410` (contrato `3d5a5d62`; old `349b6ac8`; push FF). Manager resolvió CASE C: `effective_magic` runtime atestiguado por la instancia strategy EA (excepción C-3 §7.2a) == pin o no hay OBSERVING. Discovery físico: producer = exporter Forge (`EchoForgeMT5Exporter.java`, `xKoRx/symphony`; inyección futura un archivo, lane propio); `MagicNumber` es `input` externo (readback/seal F-04); atestación por variables globales del terminal, relay verbatim del collector. Identidad: bytes cambian ⇒ nuevo `strategy_version_ref`; históricos intactos. 0 source Echo; 0 bytes Forge. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW.
