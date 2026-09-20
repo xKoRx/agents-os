@@ -250,6 +250,16 @@ El proyecto se considera **completo** cuando:
 - **Ownership**: Backup/DR gobierna protección/restore/R3–R8 y política de recuperación; futuro ejecutor Ceph/Storage gobierna correcciones del clúster y placement; Hermes integra; Infrastructure Operations H0–H6 solo contratos en REVIEW. R2 (piloto 7d) continúa exactamente como está.
 - **Decisiones abiertas registradas**: RTO por servicio; selección de datasets pool0→pool2; política de storage; exclusiones SQX/Tier0; topología DB para RPO 1h; estrategia MinIO; RCA Ceph; Secret Zero/off-site; ventana y gates.
 
+## 🏛️ Planificación integral — Storage + Backup/DR (2026-09-20)
+
+> Mandato owner ONE-SHOT de planificación (sin implementar). Entregables canónicos del sistema completo, derivados de la dirección owner 19-09 + evidencia 16-20sep, SIN tocar diseño congelado, tickets ni R2:
+
+- **[[MASTER-PLAN-STORAGE-BACKUP-DR]]** — arquitectura objetivo: placement sin regla universal (patrón SO=pool1 + datos=zvol pool0 SE MANTIENE para PG/Mongo/MinIO), roles PBS/pool0/pool2/pCloud/GDrive sin dominios de falla compartidos, capacidad PBS (+300G post-D-piloto), RPO/RTO por clase, los 6 escenarios DR con resolución de dependencias circulares, ventana (sábado madrugada) y bloqueantes owner consolidados (10).
+- **[[MATRIZ-59-GUESTS-BACKUP]]** — 59/59 guests con SO/datos por backend, decisión KEEP/MIGRATE/DEFER, mecanismo y destino de backup, RPO propuesto + unidades de datos no-guest (zvols, datasets pool0, árboles legacy pool2).
+- **[[ROADMAP-WP-BACKUP-DR]]** — WPs con formato completo del mandato: bloque A (A0-A8 datos/configs/off-site), bloque B (B1-B4 plataforma/edge/observabilidad/runbook), bloque S (S1-S4 Ceph — ejecutor Ceph/Storage, NO Backup/DR), bloque DR (procedimientos 6 escenarios); orden, paralelismo y precedencia estricta.
+- **[[MANDATOS-IMPLEMENTACION-BACKUP-DR]]** — 8 prompts one-shot (MP-01..MP-08) autosuficientes con matriz de activación; MP-01 (A0+A1+A3+A5, AUTO sin ventana) = primer bloque ejecutable tras aprobar el plan.
+- Evidencia de capacidad: `~/aranea/work/master-plan-20260920/CAPACITY-METRICS.md` (baseline; re-medir antes de D-piloto). Change log: `80-agents/journal/logs/2026-09-20-master-plan-storage-backup-dr.md`. Cero mutaciones de infraestructura.
+
 ## 📆 Bitácora
 
 - **2026-08-10** — Parent migrado a `project` v1 para soportar contractualmente los nueve hijos `owner: agent`; se preservó la prohibición de ejecutar y se crearon sus tareas puente humanas en To Do.
