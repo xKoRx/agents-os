@@ -143,33 +143,34 @@ Estados exactos: `VERIFIED_9d0512a` símbolo+SHA+test ejecutado PASS por la sesi
 | SFG-06 | raw opt-in→ACK→identidad→typed new_market→Catalog→UniverseChanged→replay; O/W/C separadas | `protocol.MarketWSNewMarket{EventID,GammaMarketID,ConditionID,TokenIDs,VenueTimestampRaw(=evidencia, NUNCA creation),FeesEnabled,TakerBaseFeeBps,TickSize,FeeScheduleRaw}`; `catalog.NewMarketNotice/IdentityKey(condition: o tokens:hash)/ParseNewMarketNotice/Dedup` (known-at=admisión) | `9d0512a` | `TestSFG06NewMarketKnownAtDedup` + `TestSFG06NoticeEdges` PASS re-ejecutados por esta sesión; FALTAN `TestSFG06NewMarketTypedCatalogProjection/LateGammaReconcile/UniverseChangedReplay` | parser/dedup `VERIFIED_9d0512a`; reducer→UniverseChanged→replay `MISSING_CONFIRMED` ⇒ `WS_COHORT_BLOCKED` (correctivo exacto en nota shared; owner: manager shared tras Review, NO PE004); cohorte O `POC_SPECIFIC` disponible | Protocol/Catalog shared, PE004 consumidor W | C1/W; C creación semántica bloqueada, NO A/O |
 | SFG-07 | fixtures temp, captura RSv03 cerrada y snapshot coherente antes de real | `dataset.Guard(dataDir,ProtectedDirs())` ejecutado antes de `capture.Open` en composición y `RunStrategyReplay`; realpath+symlink aliases; manifests de contenido | `9d0512a` | `cmd/engine/sfg07_isolation_test.go::TestSFG07*` — re-ejecutados PASS por esta sesión; captura RS v0.3 sin procesos vivos verificada | `VERIFIED_9d0512a` para fixtures/sandbox; dataset REAL (cierre+backup owner RS) sigue `PENDING_OWNER_RECEIPT` | RSv0.3 capture owner + QA/Experiment | real data, NO A/B fixtures |
 
-**Clasificación secundaria por fase:**
+**Clasificación secundaria por fase (actualizada post-shared-integration):**
 
 | Gate | Categoría de bloqueo | Resolución mínima y condición objetiva de salida |
 |---|---|---|
-| A0 local | `BLOCKS_OFFLINE_CORE` sólo para escritura hasta constatar HEAD, allowed files y ausencia writer; NO se atribuye a hipótesis | comandos git/ps/locks/autosync, freeze/manager receipts, worktree aislado |
-| SFG-01 | `NON_BLOCKING` offline; `BLOCKS_SCREEN` si se exige Q real; `BLOCKS_REAL_DATA` L2 | owner entrega cut exacto+coverage enum, delta/epoch tests y hash; A usa fixture con 100% Q probado o `INSUFFICIENT_DEPTH` |
-| SFG-02 | `BLOCKS_ECONOMIC_VALIDATION`, NO A/B descriptiva | fórmula venue per-regime/per-level/rounding, UNKNOWN veto, tests fee y revision |
-| SFG-03 | `BLOCKS_REPLAY`, `BLOCKS_SHADOW` de PE004, registro SCREEN sin runner nuevo | factory seleccionada, outputs mismo manifest y schedules, 0 real orders, scorecard no-fill |
-| SFG-05 | `BLOCKS_SCREEN` integración métrica durable, `BLOCKS_REPLAY`, `BLOCKS_SHADOW`; NO offline puro | output versionado+ACK+manifest/digest/scorecard; tests cero oportunidades, aislamiento, backwards compatibility; owner approves |
-| SFG-06 | `BLOCKS_REAL_DATA` cohorte W; `NON_BLOCKING` cohorte O y offline | typed payload, IDs exactos, receive/seq/epoch, replay, mapping y UniverseChanged probados; creación C sigue blocked semánticamente |
-| SFG-07 | `BLOCKS_REAL_DATA`; `NON_BLOCKING` para fixture t.TempDir | recibo cierre de captura por su owner, snapshot SQLite consistente + journal verificado, restore y hashes; no hot copy |
+| A0 local | Parcialmente resuelto: preflight git/procesos/captura ejecutado 2026-09-20 (bitácora); queda ownership/worktree/parámetros | manager asigna worktree de PE-004 desde `9d0512a` y allowed files |
+| SFG-01 | RESUELTO @ `9d0512a`: L2 as-of-cut consumible con `DepthState/Truncated/Capacity` honestos | PE004 consume `ViewFromSnapshot/Capacity`; `INSUFFICIENT_DEPTH`/`STALE_DEPTH` cuando no cubre; jamás profundidad inventada |
+| SFG-02 | `BLOCKS_ECONOMIC_VALIDATION` únicamente; `NOT_REQUIRED_FOR_OFFLINE`; fee venue `REAL_UNVERIFIED` | sólo si PE004-B económico se autoriza algún día; no requisito artificial de la POC descriptiva |
+| SFG-03 | RESUELTO @ `9d0512a`: `RunStrategyReplay` + DECLARED_L2 disponibles | PE004 usa replay ×2 schedules y jamás el fallback legacy |
+| SFG-05 | RESUELTO @ `9d0512a`: FrameObserver durable por frame | B1 consume la interfaz existente; cero oportunidades es PASS descriptivo |
+| SFG-06 | parser/dedup RESUELTOS; residual `BLOCKS_W` exclusivamente | manager shared implementa reducer→UniverseChanged→replay + 3 tests tras Review ⇒ `WS_COHORT_READY`; creación C sigue `CREATION_SEMANTICS_UNKNOWN` |
+| SFG-07 | RESUELTO para sandbox/fixtures @ `9d0512a`; `BLOCKS_REAL_DATA` para datasets reales | recibo del owner RS (cierre+backup consistente+hashes) antes de cualquier dato real |
 
-**Change request SFG-01:** coordinar UNA API con PE001/PE030 (`L2View{asset_id,cut_seq,source_at,received_at,capture_ref,epoch,revision,quality,coverage:DEPTH_UP_TO_LEVEL_6|FULL_EXECUTABLE_DEPTH,bids,asks}` o ref equivalentemente resoluble as-of). Owner Books/Frames decide representación única; tras delta FULL anterior stale hasta snapshot nuevo o reducer causal probado. Tests full→delta→cut/epoch/partial/size>coverage; nunca profundidad inventada. No seam privado PE004.
+**Change request SFG-01: `SUPERSEDED_BY_IMPLEMENTATION` @ `9d0512a`.** La API coordinada existe como `pocdata.L2View{AssetID,CutSeq,StateSeq,Epoch,Revision,RevisionHash,LastSourceMs,LastObservedAt,Quality,Bids,Asks,Truncated,DepthState}` + `Capacity(side,size)` + `marketview.Projection` (la cobertura propuesta `DEPTH_UP_TO_LEVEL_6|FULL_EXECUTABLE_DEPTH` quedó como `Truncated`+`DepthState`+`Capacity` honesta). Tras delta, el depth anterior queda `Stale` hasta full fresco. Tests full→delta→cut/epoch/partial/size>coverage ya existen (`sfg01_l2_test.go`). No seam privado PE004.
 
-**SFG-06 cohortes:** O usa `InspectEntity.FirstKnownAt` si fuente durable+revision conocida, WS no requerido. W exige new_market recibido y persisted con opt-in; ninguna entrega global garantizada. C creation sigue `CREATION_SEMANTICS_UNKNOWN`. Lifecycle no antedata al conocer Gamma tardía. ID market Gamma ≠ condition ID ≠ token ID ≠ parent event. WP C1 no depende de completar captura Sports.
+**SFG-06 cohortes:** O usa `InspectEntity.FirstKnownAt` si fuente durable+revision conocida, WS no requerido. W exige new_market recibido y persisted con opt-in; el typed notice y el dedup YA existen (`protocol.MarketWSNewMarket`, `catalog.ParseNewMarketNotice/IdentityKey/Dedup`), pero W NO está lista: falta reducer→`UniverseChanged`→replay. C creation sigue `CREATION_SEMANTICS_UNKNOWN`. Lifecycle no antedata al conocer Gamma tardía. ID market Gamma ≠ condition ID ≠ token ID ≠ parent event (los tres namespaces están separados en el contrato). WP C1 no depende de completar captura Sports.
 
 **SFG-07:** `25f578a` no certifica que proceso activo terminara ni SQLite tenga consistencia recuperable. No matar proceso, no abrir active, no cp DB+WAL en caliente; QA puede generar nuevo dataset sintético en `t.TempDir` desde fixtures. Manifest y hashes del dataset real quedan owner RS.
 
 ### Bloqueos operativos: owner, tests y salida
 
-1. `LOCAL-01` manager/workspace: comprobar `git status --short --branch;git rev-parse HEAD;git branch -vv;git worktree list;git log -n 12 --oneline` en los DOS repos; comprobar procesos/locks, data-dir, autosync local y writer S05. Si HEAD local no coincide con feature remota, diff y readjustar SPECS/allowed paths. Sin checkout local en esta preparación: NO falsa verificación. Gate de salida receipts archivados y autorización owner; no checkout/reset/clean/rebase/commit/push de engine en planificación.
-2. `SFG-05` Runtime/Experiment manager: CR y nueve tests de arriba; resultado por frame sin oportunidades durable y digested. Bloquea B/C solamente. **Es el único trabajo compartido propuesto como primer encargo de coding agent de infraestructura**; no implementarlo en PE004.
-3. `SFG-01` Books/Frames manager: depth same-cut/epoch/revision, coverage explícita, real tests; afecta Q real de B/C, no impide synthetic A ni spread BBO.
-4. `SFG-03` Composition/Replay manager: integración PE004 real con Strategy replay y SHADOW observation-only, 0 fills; afecta C.
-5. `SFG-06` Protocol/Catalog owner: typed/projection new_market; sólo cohorte W, no O.
-6. `SFG-07` RSv03 owner/QA: cierre+backup consistente+restauración y hashes; sólo dataset empírico.
-7. `SFG-02` Economics owner: fee formula venue/regime y simulador; sólo extensión económica/PE004-B, no DoD actual.
+1. `LOCAL-01` RESUELTO 2026-09-20 (sesión de regularización): preflight ejecutado en ambos repos — checkout principal `f070496` (feature, ahead 5), worktree shared `9d0512a` limpio, sin procesos engine, captura RS v0.3 intocada; pendiente sólo ownership/worktree de PE-004 por el manager. Prohibido checkout/reset/clean/rebase/commit/push de engine desde PE-004.
+2. `SFG-05` RESUELTO @ `9d0512a` (FrameObserver + 9 tests PASS verificados). Ya no es encargo de infraestructura: B1 consume el contrato. Bloqueaba B/C; desbloqueado.
+3. `SFG-01` RESUELTO @ `9d0512a` (`marketview`/`pocdata.L2View` con capacidad honesta y tests). Afecta Q real de B/C consumible, no impide synthetic A.
+4. `SFG-03` RESUELTO @ `9d0512a` (`RunStrategyReplay`, SHADOW DECLARED_L2, fix basketID). Integración real de PE004 queda en B2/C2 de esta POC.
+5. `SFG-06` residual (`WS_COHORT_BLOCKED`): Protocol/Catalog owner (manager shared, tras Review) implementa reducer→UniverseChanged→replay + tests `TestSFG06NewMarketTypedCatalogProjection/LateGammaReconcile/UniverseChangedReplay`; sólo cohorte W, no O.
+6. `SFG-07` datasets reales: RSv03 owner/QA debe entregar cierre+backup consistente+restauración y hashes; fixtures sandbox ya cubiertas por guard.
+7. `SFG-02` fee venue real `REAL_UNVERIFIED`: Economics owner; sólo extensión económica/PE004-B futura, no DoD actual. NUNCA requisito de la POC descriptiva.
+8. `INTEGRATION` merge/push de `feature/shared-poc-unblocker@9d0512a` a la rama principal del engine: decisión del owner tras Review humana (`ENGINE_MERGE_PENDING_OWNER_REVIEW`); PE-004 arranca contra el baseline `9d0512a` sin esperar el merge, sin ejecutarlo jamás por su cuenta.
 
 ## Fixtures F01–F20 — CORPUS PRESERVADO (20 SPECIFIED, 0 NATIVE)
 
