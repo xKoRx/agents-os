@@ -39,7 +39,7 @@ tags:
   - `v3/core/internal/econroute/universe.go` — C2-4 (candidateRevisionView congela magic override/offsets/delays; único constructor `revisionView`).
   - `v3/core/internal/econroute/recovery.go` — C2-4 (redrive fail-closed sobre snapshots sin freeze completo; reconstrucción completa sin defaults).
   - `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/{SPEC,VERIFICATION}.md` — ERRATUM C2 (§19) y registro §11 con evidencia y gates.
-  - Vault: `80-agents/journal/agent-runs/2026-09-20-zcode-glm-5.3-flash-e08-correction-c2.md` (creada) y esta change_log (creada).
+  - Vault: `10-projects/Echo/agentes/Echo — E-08 Routing EconomicCommand and Risk Reservation.md` (Estado actual + tabla de entrega + tarea C1/C2 marcada + bitácora 2026-09-20) y las notas de journal `80-agents/journal/agent-runs/2026-09-20-zcode-glm-5.3-flash-e08-correction-c2.md` y esta change_log (creadas).
 
 ## Motivo
 
