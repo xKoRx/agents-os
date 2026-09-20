@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-19
 due:
-progress: 10
+progress: 85
 repo: xKoRx/echo
 jira:
 prs:
@@ -46,7 +46,7 @@ Persistir hechos raw inmutables **antes** de routing, el DEAL económico irreduc
 
 ## 📊 Estado actual
 
-- **E07_PLANNING_FROZEN v1.0.0 (2026-09-19, TOP planning one-shot; docs-only, cero código E-07).** SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-RAW-FACTS-DEAL-COVERAGE-LIFECYCLE-E7/` @ branch `feature/e07-raw-facts-deal-lifecycle` (commits `0091af43` planning + `59338a64` prompt; push FF desde `b66dc5ff` = HEAD de E-06). Baseline reconciliado sin drift: `origin/master` `5dd998f1` (igual al mandato) y E-06 `b66dc5ff` == origin. Interfaces verificadas en source: S0 `TradingFactV1`/`CoverageRecord` (READ ONLY), E-06 migration 064 (`binding_ref`, `coverage_started_at`, `accepts_opens_from/to`, `observation_class`), stores y patrón consumer T11 + fix messaging. Migración **065** reservada para E-07 (E-06 SPEC §16 dejó 065+ libre; exclusiva E-07, 066+ fuera). Diseño frozen: consumer dedicado en `echo-core` (raw-before-route, Live Authority §6 opción I), envelope Bridge paralelo (topics nuevos `echo.trade-facts.v1`/`echo.reference-coverage.v1`) sin tocar legacy, extensión aditiva de `echo.raw_trade_events` (029) sin ALTER a 001–064, atribución pineada al OPEN vía SELECT read-only de 064, matriz dedupe D1/C1–C4/D2/Q1 con quarantine. Estados: `IMPLEMENTATION_READY` vigente; gates CONTRACT/PG ejecutables con fixtures + PG descartable **sin Forge ni terminal**; `PHYSICAL_PENDING` declarado (productor MQL real, outage real, E-06 OBSERVING real — desacoplado por Manager 2026-09-19); `FINAL_CLOSED=NO`. **Siguiente acción única: lanzar NORMAL con `NORMAL-PROMPT.md`.**
+- **E07_IMPLEMENTATION_COMPLETE v1.0.0 (2026-09-19, NORMAL ejecutado): gates SOURCE_VERIFIED + CONTRACT_PASS + PG_PASS alcanzados; PHYSICAL_PENDING y FINAL_CLOSED=NO. Push FF `59338a64..7c836619` en `origin/feature/e07-raw-facts-deal-lifecycle`. Evidencia completa en `VERIFICATION.md` §7 (commits WP1–WP7: `8580cc1e`, `309205b6`, `46f729df`, `29089d02`, `e82fdd5e`, `7c836619`; failing set idéntico por nombre vs baseline en modalidades sin y con PG; PG 17.11 descartable 061→065). Decisión de mapeo V1 documentada: OPENs del pipe Reference quedan UNKNOWN honestos (pipe sin ACCOUNT_SERVER/plataforma) hasta enriquecimiento del productor (deuda PHYSICAL 7.5.5). Siguiente acción única: Manager review.** Estado previo: E07_PLANNING_FROZEN v1.0.0 (TOP planning one-shot; docs-only). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-RAW-FACTS-DEAL-COVERAGE-LIFECYCLE-E7/` @ branch `feature/e07-raw-facts-deal-lifecycle` (commits `0091af43` planning + `59338a64` prompt; push FF desde `b66dc5ff` = HEAD de E-06). Baseline reconciliado sin drift: `origin/master` `5dd998f1` (igual al mandato) y E-06 `b66dc5ff` == origin. Interfaces verificadas en source: S0 `TradingFactV1`/`CoverageRecord` (READ ONLY), E-06 migration 064 (`binding_ref`, `coverage_started_at`, `accepts_opens_from/to`, `observation_class`), stores y patrón consumer T11 + fix messaging. Migración **065** reservada para E-07 (E-06 SPEC §16 dejó 065+ libre; exclusiva E-07, 066+ fuera). Diseño frozen: consumer dedicado en `echo-core` (raw-before-route, Live Authority §6 opción I), envelope Bridge paralelo (topics nuevos `echo.trade-facts.v1`/`echo.reference-coverage.v1`) sin tocar legacy, extensión aditiva de `echo.raw_trade_events` (029) sin ALTER a 001–064, atribución pineada al OPEN vía SELECT read-only de 064, matriz dedupe D1/C1–C4/D2/Q1 con quarantine. Estados: `IMPLEMENTATION_READY` vigente; gates CONTRACT/PG ejecutables con fixtures + PG descartable **sin Forge ni terminal**; `PHYSICAL_PENDING` declarado (productor MQL real, outage real, E-06 OBSERVING real — desacoplado por Manager 2026-09-19); `FINAL_CLOSED=NO`. **Siguiente acción única: lanzar NORMAL con `NORMAL-PROMPT.md`.**
 
 ## 🧱 Entrega de desarrollo
 
@@ -68,6 +68,7 @@ Persistir hechos raw inmutables **antes** de routing, el DEAL económico irreduc
 
 ## 📆 Bitácora
 
+- **2026-09-19 — NORMAL ejecutado (una sesión autónoma):** implementación completa WP0–WP7 / T00–T17 @ `7c836619` (push FF desde `59338a64`; base histórica `b66dc5ff` intacta). Gates: SOURCE (delta ⊆ autorizados, 39 archivos, go.mod delta 0, tokens 0), CONTRACT (dominio 13 tests + bridge `-race` PASS, MT-17/21–23 dual-publish byte-idéntico y legacy sin degradar), PG (19 tests stores + 8 consumer `-race` + harness `trade_facts_e7` PASS: interlock 064→065, up/down/up, matriz D1/C1–C4/D2/Q1, guardas lifecycle, REVOKEs, dedupe dual coverage) sobre PG 17.11 descartable. Failing set idéntico por nombre vs `b66dc5ff` sin y con PG (4 y 55 preexistentes; 0 nuevos). PHYSICAL_PENDING declarado con 5 deudas listadas (VERIFICATION §7.5). Migración 065 exclusiva E-07; cero ALTER a 001–064; cero Forge/Hasura/MQL; cero órdenes (consumer sin producer: replay sin dispatch estructural).
 - **2026-09-19 — E-07 TOP planning one-shot:** SPEC/PLAN/TASKS/VERIFICATION/NORMAL-PROMPT v1.0.0 @ `59338a64` en `origin/feature/e07-raw-facts-deal-lifecycle` (docs-only; 4 archivos + prompt; base `b66dc5ff`; master intacto). Migración 065 reservada (exclusiva E-07). Worktree `/tmp/echo-e07-raw-facts-deal-lifecycle`. Gates CONTRACT/PG sin Forge; PHYSICAL diferido explícito. E-01…E-06 no reabiertos; E-06 T21 sigue blocked (G1 `PROMOTION_SEAL_MISSING`) sin cambio.
 
 ## 🧭 Decisiones
@@ -77,6 +78,7 @@ Persistir hechos raw inmutables **antes** de routing, el DEAL económico irreduc
 - Atribución resuelta **al OPEN** con SELECT read-only de 064; pin write-once; sin re-resolución ni retro-atribución.
 - Topics nuevos `echo.trade-facts.v1` / `echo.reference-coverage.v1` con Bridge dual-publish paralelo; legacy intacto.
 - MQL/collector (emisión física de DEAL/coverage) **fuera** de E-07 V1: shapes por fixtures; PHYSICAL diferido.
+- Mapeo V1 del envelope Bridge (derivación documentada en VERIFICATION §7.4): envelope porta `trade_id` + `origin_position_id` (§5.1 los exige y S0 no los tiene); `source_key` = `trade_id`; `fact_ref` = receta propia sobre ingredientes §5.1; `broker_server_ref` = broker de sesión Bridge y `platform` = UNKNOWN (el pipe no observa identidad física ⇒ atribución UNKNOWN honesta §6.3).
 - Sin Hasura en E-07 (read surfaces E-13); sin EconomicCommand (E-08); cero órdenes.
 
 ## 🔗 Docs / Links
