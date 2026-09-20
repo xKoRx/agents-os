@@ -167,9 +167,18 @@ Un parámetro es de experimento sólo si la factory lo acepta por `--param`/`--r
 - Suite completa: `go build ./... && go vet ./... && go test ./... -count=1` (34 paquetes).
 - Certificación: `engine experiment certify --profile no-live --baseline <sha>` → `M4_CERTIFIED_NON_LIVE` esperado al cierre del programa.
 
-## Estado del programa (2026-09-20)
+## Estado del programa (2026-09-20, aceptación final)
 
+`FIVE_POC_FINAL_ACCEPTANCE_READY` — baseline final `1bcae43` (HEAD `c915c11` con
+receipt `certificate-v06.json` pineado a `1bcae43`); esta guía alineada a ese SHA.
 `HYPOTHESIS_VALIDATED = NO` en las cinco (esperado). S01/S02 `RESEARCH_READY`;
-S03/S04/S05-O/B `RESEARCH_READY_OFFLINE`. Prohibido fabricar alpha/liquidez
-(nada de BBO×10); fees sintéticas siempre con provenance `SYNTHETIC_FIXTURE`;
-`REAL_FEE = UNVERIFIED`; datos meteorológicos reales `PENDING`.
+S03/S04/S05-O/B `RESEARCH_READY_OFFLINE` (O/B demostradas con anclas causales;
+A2 queda como serialización opcional; A3 cubierto por `CatalogFirstKnownAnchor`).
+Cinco smokes operacionales de punta a punta verificados en la aceptación; contadores
+NegRisk/Weather auditados sin bug (ver sección de interpretación arriba);
+`CORE_CHANGES_REQUIRED_FOR_NEXT_EXPERIMENT = NONE`. **M4 RECERTIFICADO @ `1bcae43`:
+27 PASS / 0 FAIL / 0 in-scope NOT_RUN / 5 live diferidos** (`testdata/research-v06/`).
+Prohibido fabricar alpha/liquidez (nada de BBO×10); fees sintéticas siempre con
+provenance `SYNTHETIC_FIXTURE`; `REAL_FEE = UNVERIFIED`; datos meteorológicos y de
+Catalog reales `PENDING`; `LIVE_DISABLED`. Revisión humana del rango
+`cb549c7..c915c11` y decisión de merge/push pendientes del owner.
