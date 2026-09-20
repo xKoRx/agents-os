@@ -83,7 +83,7 @@ views:
       - note.priority
 ```
 
-Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]], [[Echo — E-05 Analytics Convergence A0]], [[Echo — E-06 Reference Enrollment and Binding]], [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]], [[Echo — E-08 Routing EconomicCommand and Risk Reservation]]. S0 permanece ownership de este track.
+Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]], [[Echo — E-05 Analytics Convergence A0]], [[Echo — E-06 Reference Enrollment and Binding]], [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]], [[Echo — E-08 Routing EconomicCommand and Risk Reservation]], [[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]]. S0 permanece ownership de este track.
 
 ## ✅ Tareas
 
@@ -96,7 +96,7 @@ Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 C
 > - [r] [[Echo — E-06 Reference Enrollment and Binding]] E-06 Reference enrollment and binding #owner/agent #type/dev #area/echo
 > - [r] [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] E-07 Raw facts DEAL coverage and trade lifecycle #owner/agent #type/dev #area/echo
 > - [ ] [[Echo — E-08 Routing EconomicCommand and Risk Reservation]] E-08 Routing EconomicCommand and risk reservation #owner/agent #type/dev #area/echo
-> - [ ] E-09 Execution copy reconciliation and Execution Fidelity #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]] E-09 Execution copy reconciliation and Execution Fidelity #owner/agent #type/dev #area/echo
 > - [ ] E-10 Strategy Quality and eligibility #owner/agent #type/dev #area/echo
 > - [ ] E-11 PortfolioVersion selection allocation shadow #owner/agent #type/dev #area/echo
 > - [ ] E-12 Apply rebalance replacement retirement #owner/agent #type/dev #area/echo
@@ -266,7 +266,7 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 
 ### E-08 Routing, EconomicCommand and risk reservation
 
-- **ID / status / size:** E-08 · PLANNING FROZEN v1.0.0 (NORMAL PENDING) · MEDIUM
+- **ID / status / size:** E-08 · CORRECCIÓN C2 COMPLETA (SOURCE/CONTRACT/PG PASS; Manager review delta C2 pendiente) · MEDIUM
 - **Objective:** Universo expected/excluded congelado; EconomicCommand durable con policy/risk snapshot y reservation 1:N deals; UNKNOWN no resend ciego.
 - **Capability unlocked:** routing denominator + comando económico recuperable.
 - **Why:** Fidelity y apply necesitan expected universe, no INNER JOIN.
