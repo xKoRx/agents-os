@@ -282,26 +282,26 @@ E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No red
 - **Done when:** expected recipients persistidos; reserva sobrevive crash; replay jamás genera segundo comando.
 - **Unlocks:** E-09, E-12.
 - **Accepted debt:** hedging-only V1.
-- **Planning:** TOP v1.0.0 ([[Echo — E-08 Routing EconomicCommand and Risk Reservation]]). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/` @ branch `feature/e08-routing-economic-command-risk-reservation` HEAD `fe5c9de0` desde `3765f2ba` (HEAD E-07 C3; sus interfaces verificadas son la dependencia de desarrollo). Migración 066 exclusiva. Boundary RG-1…RG-6 frozen (gate E-07 §17.4); CommandID determinístico por `command_unique_key`+`content_digest`; reservas con UNKNOWN_HELD sin auto-release; outbox monotónico; activación económica clase C condicionada. **Implementation:** NORMAL (no lanzado; `NORMAL-PROMPT.md`). **GOD:** NONE.
+- **Planning:** TOP v1.0.0 ([[Echo — E-08 Routing EconomicCommand and Risk Reservation]]). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/` @ branch `feature/e08-routing-economic-command-risk-reservation` HEAD `fe5c9de0` desde `3765f2ba` (HEAD E-07 C3; sus interfaces verificadas son la dependencia de desarrollo). Migración 066 exclusiva. Boundary RG-1…RG-6 frozen (gate E-07 §17.4); CommandID determinístico por `command_unique_key`+`content_digest`; reservas con UNKNOWN_HELD sin auto-release; outbox monotónico; activación económica clase C condicionada. **Implementation:** NORMAL T00–T14 ejecutado @ `b0012909` + corrección Manager C1 @ `53d42615` + corrección C2 (C2-1…C2-4) @ `c2e88a0d` (HEAD == origin). Estado: SOURCE/CONTRACT/PG PASS + COVERAGE_GATE_PENDING + PHYSICAL_PENDING + ECONOMIC_ACTIVATION_PENDING + FINAL_CLOSED=NO. Siguiente: **Manager review del delta C2**. **GOD:** NONE.
 
 ### E-09 Execution copy, reconciliation and Execution Fidelity
 
-- **ID / status / size:** E-09 · To Do · MEDIUM
+- **ID / status / size:** E-09 · PLANNING FROZEN v1.0.0 (NORMAL clase A PENDING) · MEDIUM
 - **Objective:** Copiar Reference→Execution con correlación/reconciliación; EF desde early trades: missing/extra/duplicate/reject/delay distintos. SQ ≠ EF ≠ Forge fidelity.
 - **Capability unlocked:** owner ve si la copia es fiel, no sólo si la estrategia “funciona”.
 - **Why:** H4; D-21.
-- **Frozen input:** SDK purposes; master §8; Reality Check fidelity mínimo.
-- **In scope:** ACK/deals/positions; reconcile FULL universo expected; vector pequeño por operación.
-- **Out of scope:** percentiles institucionales; DEMO→REAL sin evidencia; score broker sofisticado.
-- **Dependencies:** E-08. E-02 recovery.
+- **Frozen input:** SDK purposes; master §8; Reality Check fidelity mínimo; Live Authority §7 lineage + invariantes 12/13/14/15/16/17/18; E-07/E-08 como autoridades de datos.
+- **In scope (clase A):** unidad de reconciliación = destinatario E-08; correlación `command_ref` claim + DEAL set E-07 1:N como prueba; veredictos PENDING/FILLED/PARTIAL/REJECTED/MISSING_EVIDENCED/UNKNOWN/SUPERSEDED/UNRESOLVED; dedupe dual + duplicados append-only; vector por operación UNKNOWN-aware; métricas con denominador expected set; exportación `resolution_evidence` (READ-ONLY sobre 001–066).
+- **Out of scope:** percentiles institucionales; DEMO→REAL sin evidencia; score broker sofisticado; SQ E-10; liberación CONSUMED sin autoridad contable; fabricar outcomes del broker; inferir fills desde ACK.
+- **Dependencies:** E-08 (interfaces verificadas @ `c2e88a0d`), E-02 recovery. **Parallel:** E-10/E-11 por su DAG.
 - **Hypotheses:** expected+outcomes bastan para V1 útil.
-- **Risks:** INNER JOIN como EF; 2505 unpaired como pérdidas.
-- **Output authority:** Execution Fidelity MetricSet/diagnósticos.
+- **Risks:** INNER JOIN como EF; 2505 unpaired como pérdidas; MISSING por deadline.
+- **Output authority:** Execution Fidelity MetricSet/diagnósticos + veredictos por operación.
 - **Certification:** PHYSICAL (Reference mala/copia fiel y viceversa). No mocks como PHYSICAL PASS.
 - **Done when:** missing/reject/duplicate visibles; no-trade ≠ outage.
 - **Unlocks:** E-10 interpretación conjunta; E-12 safety.
-- **Accepted debt:** p50/p95 POST.
-- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Accepted debt:** p50/p95 POST; read model no autoridad hasta E-13.
+- **Planning:** TOP v1.0.0 ([[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]]). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-EXECUTION-COPY-RECONCILIATION-FIDELITY-E9/` @ branch `feature/e09-execution-copy-reconciliation-fidelity` HEAD `e892b3d7` desde `c2e88a0d` (HEAD E-08 C2; sus superficies durables son la dependencia de desarrollo). Migración 067 exclusiva (disponibilidad verificada, no asumida). Dependencias exactas E-08 C3-A/C3-B registradas (SPEC §16; no corregidas desde E-09; bloquean sólo clase B). Separación clase A vs clase B frozen. **Implementation:** NORMAL clase A (no lanzado; `NORMAL-PROMPT.md`). **GOD:** NONE.
 
 ### E-10 Strategy Quality and eligibility
 
