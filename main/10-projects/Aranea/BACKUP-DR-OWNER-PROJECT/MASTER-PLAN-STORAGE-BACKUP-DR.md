@@ -55,12 +55,12 @@ El patrón verificado (SO VMs productivas en pool1 RBD + datos en zvol pool0 ví
 
 | Backend | Rol arquitectural |
 |---|---|
-| pool1 (Ceph RBD) | SOs VMs productivas (HA por réplica 3). Congelado para crecimiento (NO_GO nearfull); corrección estructural = carril Ceph |
+| pool1 (Ceph RBD) | SOs VMs productivas (réplica 3 nominal; HA NO demostrada — sin drill de nodo; re-replica imposible con kronos caído). Congelado para crecimiento (NO_GO nearfull); corrección estructural = carril Ceph |
 | pool0 zvol iSCSI (LUN4/5/6) | Datos T0 (PG/Mongo/MinIO). Correcto; protección = dumps+PITR+snapshots, no migración |
-| local-lvm | SOs reconstruibles sin HA (etcd, traefik, pi-hole, CA, TrueNAS SO, PBS SO — datastore PBS = local-kronos) |
+| local-lvm | SOs reconstruibles sin HA (etcd, traefik, pi-hole, CA, TrueNAS SO) |
 | nfs-storage (pool0) | rootfs CTs file-backend + ISOs; corregir `keep-all=1` (WP-A0) |
 | local-sqx-* | SQX sagrado F-04, intacto |
-| local-kronos/pool-kronos | PBS data + jobs + labs |
+| local-kronos/pool-kronos | PBS SO + datastore + jobs + labs |
 
 ### D2. Roles de PBS / pool0 / pool2 / pCloud / GDrive (sin dominio de falla compartido)
 
@@ -116,11 +116,11 @@ Los procedimientos verificables completos viven en el ROADMAP (bloque DR: DR-T1.
 | Escenario | Estrategia | RPO/RTO | Dependencia circular evitada |
 |---|---|---|---|
 | DR-T1 pérdida de una VM | restore PBS → mismo nodo o alternativo | por clase (D4.1) | nunca requerir la VM caída como parte del restore (dumps y vzdump no dependen del guest) |
-| DR-T2 pérdida de un disco | pool0 mirror reconstruye solo (hot spare no hay; F-05); Ceph re-replica (salvo kronos = NO_GO hoy); local-lvm de nodo caído = restore PBS | pool0: RPO=0, RTO=rebuild; Ceph kronos: RPO=hasta re-replica imposible→riesgo 2 copias; local-lvm RPO=7d | no requerir TrueNAS para restaurar un zvol de TrueNAS (vzdump/dumps viven en PBS) |
+| DR-T2 pérdida de un disco | pool0 mirror reconstruye solo (hot spare no hay; F-05); Ceph re-replica (salvo kronos = NO_GO hoy); local-lvm de nodo caído = restore PBS | pool0: RPO=0, RTO=rebuild; Ceph kronos: RPO=hasta re-replica imposible→riesgo 2 copias; local-lvm T0: 1d post-B1; T1/T2: 7d; resto local-lvm sin backup (fuera de scope) | no requerir TrueNAS para restaurar un zvol de TrueNAS (vzdump/dumps viven en PBS) |
 | DR-T3 pérdida de un nodo PVE | guests repartibles a otros nodos (pool1 RBD + nfs migran solos; local-lvm/iSCSI requieren restore o reconexión) | pool1 guests: minutos; local-lvm: RTO restore | **caída de kronos = caso crítico: PBS 180 Y staging 118 viven en kronos → se pierden TODAS las copias locales VIGENTES (dumps G1A/G1B, configs R1/R1.5, piloto vzdump). Sobreviven pool2 y pool0 (chasis hades/TrueNAS), pero pool2 sólo contiene árboles legacy STALE jul-2025 (pool2/backup, pool0_backup, zfs_backup — F-09, sin valor de recuperación del estado vigente) y pool0 no tiene snapshots (WP-A6 inexistente): ninguna copia superviviente cubre el estado actual → recuperación funcional = sólo off-site (inexistente hasta A7/A8). Copia superviviente ≠ recuperación demostrada. Mitigación: acelerar A0/A7; la precedencia del riesgo priorizado ya refleja esto** |
-| DR-T4 pérdida de Ceph | SOs en pool1 se reconstruyen desde templates/config (re-instalar) + datos T0 ya viven en pool0 zvol; artefactos MinIO desde G1B | SOs: RPO irrelevante (reconstruir), RTO horas-por-VM | **ningún restore requiere pool1 vivo** (dumps/snapshots/zvols no viven en Ceph); este diseño es lo que hace DR-T4 sobrevivible |
+| DR-T4 pérdida de Ceph | SOs en pool1 se reconstruyen desde templates/config (re-instalar) + datos T0 ya viven en pool0 zvol; artefactos MinIO desde G1B | SOs: RPO irrelevante (reconstruir), RTO horas-por-VM | **post-A0: ningún restore de datos requiere pool1 vivo** (dumps/snapshots/zvols no viven en Ceph). Excepciones vigentes: pre-A0 las configs R1/R1.5 existen sólo en staging (VM 118, discos pool1) y el ejecutor de todos los jobs (hermes 118) vive íntegro en pool1 → reprovisionar hermes desde CFG hermes-state + reingesta (vzdump de hermes sólo post-B1). WP-A0 es el cerrador de este hueco |
 | DR-T5 pérdida de TrueNAS/hades | SO TrueNAS = reinstalar SCALE + import pool0/pool2 (pools sobreviven al chasis); zvols intactos; restore guests dependientes (nfs CTs, iSCSI data guests) | pools: RPO=0 (disco intacto); RTO=reinstalar+import+reattach | PBS kronos + off-site no dependen de hades; config TrueNAS exportada (WP-B2) evita reconfigurar a mano |
-| DR-T6 pérdida total Aranea | off-site cifrado (pCloud crítico + GDrive bulk) + Secret Zero (020) + inventory (R1) | RPO configs off-site = hasta 7d (push semanal A7); 1-7d datos; 1d sólo en copia local PBS | el bundle de recuperación vive fuera (020: caja fuerte+USB); sin 020 no hay DR-T6; **el off-site DEBE incluir las claves de cifrado r0d-g1a/g1b (o su escrow dentro de Secret Zero): los snapshots PBS y todo off-site están cifrados — sin claves accesibles fuera de kronos el off-site es irrecuperable** |
+| DR-T6 pérdida total Aranea | off-site cifrado (pCloud crítico + GDrive bulk) + Secret Zero (020) + inventory (R1) | configs/dumps off-site ≤7d (A7 semanal); bulk/imágenes/PBS-export ≤~35d (A8 mensual); 1d sólo en copia local PBS | el bundle de recuperación vive fuera (020: caja fuerte+USB); sin 020 no hay DR-T6; **el off-site DEBE incluir las claves de cifrado r0d-g1a/g1b (o su escrow dentro de Secret Zero): los snapshots PBS y todo off-site están cifrados — sin claves accesibles fuera de kronos el off-site es irrecuperable** |
 
 ### D6. Dependencias circulares verificadas y su resolución
 
@@ -161,7 +161,7 @@ G1A/G1B sin prune → riesgo de llenado lento de datastore.
 
 ## 4. Ventana de mantenimiento (Echo vuelve domingo noche)
 
-- **Sin downtime (AUTO, no requiere ventana):** ingesta staging→PBS (A0), schedules dumps (A1/A4), compose CFG (A5), observabilidad (B3), config exports read-only (B2), runbook (B4), MCP RO (S4). Snapshots zvol (A6) son ejecutables sin ventana PERO requieren antes la decisión owner de datasets (gate A6).
+- **Sin downtime (AUTO, no requiere ventana):** ingesta staging→PBS (A0), schedules dumps PG/Mongo (A1; autorizados por la aprobación del plan — MinIO A1/A4 y versioning = GATED), compose CFG (A5), observabilidad (B3), config exports read-only (B2), runbook (B4), MCP RO (S4). Snapshots zvol (A6) son ejecutables sin ventana PERO requieren antes la decisión owner de datasets (gate A6).
 - **Requiere ventana (sábado madrugada):** PITR PG (A2, reinicio postgres), Mongo topología (A2b, si owner aprueba), vzdump T0 inicial (B1: prever I/O; MT4/echo en hades — su I/O nocturno es UNKNOWN, la serie R2 mide otros CTs), REPL full inicial (A6, I/O masivo pool0→pool2), pool2 scrub (A6), compact Ceph + mClock (S2, ventana), liberaciones 112/162/170 (S1, dueño).
 - **Diferido a próxima ventana:** revisiones de decomisión (100/151), 2º target PBS→pool2, versioning MinIO, off-site bulk inicial (GDrive full pool0). Off-site crítico (A7) es sin downtime (restic sobre staging/PBS), no requiere ventana.
 - Regla: **nada arriesgado contra la operación de Echo domingos**; ventanas = sábado madrugada, y las GATED requieren OK owner explícito por WP.
@@ -181,7 +181,7 @@ G1A/G1B sin prune → riesgo de llenado lento de datastore.
 
 ## 6. Primer bloque tras aprobar el plan
 
-**WP-A0** (ingesta staging→PBS + corregir prune nfs) — es AUTO, sin ventana, reutiliza mecanismo G1A demostrado, convierte las 4 unidades R1/R1.5 en una sola copia protegida en PBS y libera la dependencia del staging; se ejecuta inmediatamente después de la aprobación del plan y mientras el owner resuelve 018-021/D. En paralelo, **WP-A1** (schedules PG/Mongo; MinIO queda one-shot G1B hasta su gate owner) queda listo para ejecutar sin ventana una vez aprobado (los mecanismos ya existen certificados; es agendar, no inventar).
+**WP-A0** (ingesta staging→PBS + corregir prune nfs) — es AUTO, sin ventana, reutiliza mecanismo G1A demostrado, convierte las 4 unidades R1/R1.5 en una sola copia protegida en PBS y reduce la dependencia del staging (la copia vigente queda en PBS; la rotación/liberación de run-dirs es operación aparte); se ejecuta inmediatamente después de la aprobación del plan y mientras el owner resuelve 018-021/D. En paralelo, **WP-A1** (schedules PG/Mongo; MinIO queda one-shot G1B hasta su gate owner) queda listo para ejecutar sin ventana una vez aprobado (los mecanismos ya existen certificados; es agendar, no inventar).
 
 ---
 *Métricas de capacidad medidas en WS: `~/aranea/work/master-plan-20260920/CAPACITY-METRICS.md` — repetir antes de decidir D-piloto (28sep).*
