@@ -26,7 +26,7 @@ updated: "2026-09-20"
 
 ## Propósito
 
-- Primera ola de mantenimiento concreta tras el cierre de mercado. **Cierre operativo REAL de Echo, medido desde sus datos** (echo.trade_journal, PG 152 vía RO, 20sep): último trade **cerrado vie 18sep 17:59 -03**; el dom 20sep (hoy) se abrieron 2 operaciones en la sesión vespertina (última apertura dom 21:36 -03). El mercado NO equivale a ventana disponible: la primera ventana segura es **sábado 26-09 02:00-07:00 -03** (fuera de sesiones abiertas, antes del run del domingo-noche, después del último ciclo R2 del viernes 25sep). Ventanas de respaldo: dom 27-09 madrugada SOLO para acciones sin tocar guests de trading; si el mercado cierra viernes, reconfirmar con este mismo query.
+- Primera ola de mantenimiento concreta tras el cierre de mercado. **Cierre operativo REAL de Echo, medido desde sus datos** (echo.trade_journal, PG 152 vía RO, 20sep): último trade **cerrado vie 18sep 17:59 -03**; el dom 20sep (hoy) se abrieron 2 operaciones en la sesión vespertina (última apertura dom 21:36 -03). El mercado NO equivale a ventana disponible: la primera ventana segura es **sábado 26-09 02:00-07:00 -03** (fuera de sesiones abiertas, antes del run del domingo-noche, después del último ciclo R2 del viernes 25sep), **siempre que no queden posiciones abiertas sosteniendo el fin de semana** (el mercado siempre cierra viernes; lo que importa es la ausencia de posiciones vivas — el precheck lo verifica sin filtro temporal). Ventana de respaldo: dom 27-09 madrugada SOLO para acciones que no toquen guests de trading.
 
 ## Contenido
 
