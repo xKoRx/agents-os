@@ -79,6 +79,15 @@ views:
 - [x] SPEC-03-C Adaptive Investigator: GATE PASS 12/12 (HEAD `0479b3a`; housekeeping DEFECT-1/OBS-2 cerrado; A independiente ejecutable). #owner/agent #type/dev #area/personal ✅2026-09-18
 - [x] SPEC-04 Integration & Benchmark: harness + golden (41 elems AGENT_GOLDEN, 8 manifests congelados) + A/C emparejado ejecutado; GATE = NO_GO material (sintético) + BLOCKED físico; 1 ciclo CORRECT cerrado (HEAD `77b8d6f`). #owner/agent #type/dev #area/personal ✅2026-09-20
 - [x] Entrega final M0: reporte del manager emitido; rama pusheada; Agents-OS actualizado; veredicto M0 BLOCKED (físico) con hallazgos documentados. #owner/agent #type/dev #area/personal ✅2026-09-20
+- [/] RECOVERY SPRINT (mandato 2026-09-20, rama `fix/m0-synthetic-recovery` @ `77b8d6f`): corregir defectos sintéticos F1–F7. #owner/agent #type/dev #area/personal
+  - [/] WP-01 eventos visuales breves (digit-change): reproducir, primera frontera de pérdida, corrección mínima, tests pos/neg/frontera. #owner/agent #type/dev #area/personal
+  - [ ] WP-02 evidencia adquirida no interpretada (red-flash): separar DETECTED→ACQUIRED→INTERPRETED→PUBLISHED, política mínima de cobertura de interpretación. #owner/agent #type/dev #area/personal
+  - [ ] WP-03 procedimientos y fidelidad textual (intake-procedure, tokens discriminantes, parámetros exactos). #owner/agent #type/dev #area/personal
+  - [ ] WP-04 detección de contradicciones (candidato determinista + evaluación semántica en capacidades existentes). #owner/agent #type/dev #area/personal
+  - [ ] WP-05 eliminar falso PASS del evaluador (`gold-contra-conflict` laxo: token `not`); versión explícita del evaluador + errata, golden congelado intacto. #owner/agent #type/dev #area/personal
+  - [ ] WP-06 ampliar benchmark si es legítimo (5 fixtures sin transcript; clasificar por caso). #owner/agent #type/dev #area/personal
+  - [ ] WP-07 reevaluación A/C emparejada tras correcciones (per-item recovery + costo). #owner/agent #type/dev #area/personal
+  - [ ] Cierre recovery: QA adversarial independiente, ablation pre/post, push, actualización Agents-OS, reporte manager. #owner/agent #type/dev #area/personal
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
