@@ -591,7 +591,7 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - [ ] Mantener backlog PE-001…PE-030 priorizado por coste de falsación #owner/me #type/research #area/personal
 
 ### POC Shared Unblocker — supervision
-- [ ] [[Polymarket Engine — POC Shared Unblocker]] arrancar + seguimiento; desbloquear contratos SFG-01/02/03/04/05/07 y evaluar SFG-06; Review humana. #owner/me #type/supervision #area/personal
+- [r] [[Polymarket Engine — POC Shared Unblocker]] arrancar + seguimiento; desbloquear contratos SFG-01/02/03/04/05/07 y evaluar SFG-06; Review humana. #owner/me #type/supervision #area/personal
 
 ## 📆 Bitácora
 
