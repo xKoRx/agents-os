@@ -108,7 +108,7 @@ Rol: ejecutor Ceph/Storage según routing H5/H6 (contratos ceph-storage-operatio
 
 ALCANCE: (S4, RO, inmediato) instrumentar métricas OSD/slow-ops → ARGUS. (S1, gated dueño) inventario y liberación de imagen RBD huérfana vm-112-disk-0 (120G, lock stale) + discos 162/170 tras confirmación por VMID; resolver riesgo LUN2 (100 vs 151) documentando bloqueo de arranque simultáneo. (S2, ventana) mClock global→balanced + recovery_sleep>0 con medición antes/después + bluestore compact osd.0/2. (S3) propuesta numerada de estructura (OSDs SATA existentes vs mover SOs vs mantener): decisión owner, sin ejecutar.
 VALIDACIÓN/CIERRE: HEALTH sin degradación; freed GB medidos (S1); latencia osd.0/2 antes/después (S2); NOT_PROVEN de lag reemplazado por series medibles (S4). PASS = margen pool1 ampliado y perfil balanced con evidencia.
-PROHIBIDO: reweight/ratio/PG changes/CRUSH edits/borrados sin confirmación por VMID del dueño; cualquier acción durante operación de Echo; mezclar con jobs de backup.
+PROHIBIDO: reweight/ratio/PG changes/CRUSH edits/borrados sin autorización independiente del dueño con objeto exacto identificado por VMID + evidencia de propiedad (sin snapshot/volume refs vivos) y snapshot previo donde sea posible; cualquier acción durante operación de Echo; mezclar con jobs de backup.
 ```
 
 ## MP-08 — Drills recurrentes + runbook (WP-R7 + B4)
@@ -124,7 +124,7 @@ PROHIBIDO: drills destructivos sobre producción; drill de DR-6 sin 020 resuelto
 
 | Mandato | Bloquea inicio | Puede partir YA |
 |---|---|---|
-| MP-01 | nada (AUTO) | ✅ tras aprobar plan |
+| MP-01 | aprobación del plan (incluye recurrencia PG/Mongo; MinIO semanal y prune storage.cfg siguen gated internos) | ✅ tras aprobar plan |
 | MP-02 | 020 + 021 | — |
 | MP-03 | D-piloto + 018 + 019 | crecimiento datastore como fase gated |
 | MP-04 | MP-01 + 019 (+OK owner PG; decisión Mongo para A2b) | — |

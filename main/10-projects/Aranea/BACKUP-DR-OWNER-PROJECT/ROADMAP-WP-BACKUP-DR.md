@@ -122,3 +122,35 @@ Precedencia estricta: B1 requiere D-piloto + 018 + crecimiento datastore; A2 req
 ## Riesgo priorizado (reducción de riesgo global, no "terminar DBs primero")
 
 1. A7/A8+020 (elimina pérdida total) → 2. A0+A1 (protección deja de envejecer) → 3. A6 (rollback local pool0) → 4. B1 (cobertura imagen T0) → 5. S1/S2 (salud Ceph) → 6. B2 (edge/DR prerrequisitos) → 7. resto.
+
+## Clasificación final de WPs (validación 2026-09-20, post-correcciones C1-C6)
+
+> Un estado por WP. READY = precondiciones verificadas + autorización identificada + mecanismo demostrado + rollback/validación completos. OWNER_GATE especifica exactamente qué autoriza. Nada aquí ejecuta ni declara ejecutado.
+
+**READY_TO_EXECUTE (en el instante en que el owner apruebe el plan — esa aprobación ES la autorización de recurrencia PG/Mongo):**
+- **WP-A0-AUTO** (ingesta staging→PBS + inventario nfs-storage + round-trip) — mecanismo G1A demostrado; sin ventana.
+- **WP-A1** para PG/Mongo (timers 03:00-03:45; rollback = timers off; R2/R1 intactos por diseño de horarios).
+- **WP-A3** (CouchDB dump; canal replicator existente; drill scratch).
+- **WP-A5** (exports config 9 targets; lectura).
+- **WP-S4** (instrumentación RO Ceph→ARGUS; sin mutación) — carril Ceph, ejecutor propio.
+- **Scrub pool2** (fracción A6 declarada read-only AUTO en plan §4).
+- **WP-R7 parcial** (drills DR-T1/DR-T4 a scratch) — desbloquea al completar A0/A1 primer ciclo.
+
+**OWNER_GATE (qué autoriza exactamente):**
+- **A0-gated**: editar prune nfs-storage en 5 × storage.cfg (diff exacto por nodo, post-inventario).
+- **A1/A4**: stream recurrente semanal de MinIO (ADD no aprobado, regla 4.1/018); A4 versioning (mutación servicio trading).
+- **A2**: ventana 019 + archive_mode en PG PROD trading. · **A2b**: topología Mongo (o deudas aceptada RPO 24h).
+- **A6**: selección datasets + full inicial REPL en ventana 019.
+- **A7**: tickets 020+021 (y define escrow de claves r0d — operación obligatoria del WP). · **A8**: ídem + selección bulk.
+- **B1**: decisión D-piloto + 018 + 019 + crecimiento +300G datastore (fase 1 gated).
+- **B2 parcial**: pi-hole (retiro/reactivación + token FTL6) y CA 200 (reactivar vs retiro).
+- **S1**: liberación por VMID (112/162/170, RBD 120G) — autorización independiente de borrado. · **S2**: ventana compact/mClock. · **S3**: decisión estructural pool1.
+
+**DEFER (válido, bloqueado por ventana/dependencia — no requiere decisión hoy):**
+- **A8 full inicial** (tras A7; push largo). · **B3** (tras A1/B1 corriendo). · **WP-R7 recurrente completo + DR-T2/T3/T5/T6 drills** (según ventanas/off-site). · **B4** (cierre, tras A0-B3). · **2º target PBS→pool2** (opcional post-B1). · **MP-04 A2b si owner mantiene RPO 24h** (queda deuda documentada, no bloqueo).
+
+**BLOCKED_TECHNICAL (falta evidencia de acceso/ejecutabilidad):**
+- **B2 exports OPNsense** (canal API/backup no verificado) y **export config TrueNAS** (factibilidad vía API/SSH por confirmar; WS DDP existe pero el método de export no está probado) → verificar canal o bundle; mientras, sin ejecutor definido.
+- **Datos kafka (scsi1) y argus (scsi1-4)**: valor/retención UNKNOWN → resuelve 018; sin dato no hay mecanismo ejecutable.
+
+**Camino crítico**: aprobación del plan → MP-01 (A0/A1/A3/A5) ∥ (018/019/020/021/D owner en paralelo) → A6/B1/A2 tras gates → A7 en cuanto 020/021 (riesgo #1). Paralelizable sin interferencia: carril Ceph S4/S1-S3 ∥ carril Backup/DR; A3/A5 ∥ A1; B2-diagnóstico ∥ todo lo anterior.
