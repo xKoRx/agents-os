@@ -5,7 +5,7 @@ schema_version: 1
 owner: agent
 root: false
 status: paused
-status_detail: "Paused; fase R3 del roadmap R0 §9 (tras R2). 2026-09-20: G1A EJECUTADO y CERRADO-CERTIFICADO (primera copia PG/Mongo; drills funcionales re-certificados sobre datos RECUPERADOS desde snapshots PBS; reconciliación 15↔13 demostrada — ninguna base de usuario excluida). Pendiente owner: retiro de clave fuera de Hermes → purga plaintext; snapshot probe. R3 cubriría recurrencia (cron/timers), RPO 1h (WAL/oplog), CouchDB, sanoid y MinIO (G1B, NO_GO hoy)."
+status_detail: "Paused; fase R3 del roadmap R0 §9 (tras R2). 2026-09-20: G1A EJECUTADO y CERRADO-CERTIFICADO (primera copia PG/Mongo; drills funcionales re-certificados sobre datos RECUPERADOS desde snapshots PBS; reconciliación 15↔13 demostrada — ninguna base de usuario excluida). 2026-09-20 (mismo día): G1B MinIO EJECUTADO — primera protección recuperable (12 buckets/90.768 objetos/64,76G → PBS cifrado; drill aislado con arranque real de MinIO sobre datos restaurados; 10/12 buckets byte-idénticos + 2/12 deltas por escritura concurrente; mandato ONE-SHOT owner). Pendiente owner: retiro de clave G1A fuera de Hermes → purga plaintext; snapshot probe; retiro copia owner clave G1B. R3 cubriría recurrencia (cron/timers), RPO 1h (WAL/oplog), CouchDB, sanoid y versioning de buckets MinIO (mutación en servicio de trading, gated)."
 priority: P2
 progress: 0
 icon: 💾

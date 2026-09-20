@@ -86,6 +86,15 @@ Resultado esperado: `sha256sum` del tgz descifrado = los SHAs de referencia de a
 
 Cadena ejecutada con la clave local de Hermes **fuera de su ubicación** (stash temporal): restore desde PBS → SHA de ambos `.enc` idénticos al manifiesto → descifrado **en daedalus usando solo la copia 2** → SHAs de plaintext byte-idénticos a los originales in-guest del 2026-09-20 (PG `7d87839267c40d26…`, Mongo `80f968cef9728f67…`) → artefactos temporales eliminados y estado original restaurado (huella verificada post-restauración). PASS. Bitácora y change log en las Fuentes.
 
+## Clave G1B — `r0d-g1b.key` (MinIO, 2026-09-20)
+
+- **Clave:** `r0d-g1b.key` — 32 bytes hex (65 chars con `\n`), generada con `openssl rand -hex 32`. Cifra los backups G1B de MinIO 157.
+- **Huella de verificación:** `83c4a94fc62ec05280da6344380cdebe0833567414fb82778fc6d415ecb99d71`.
+- **Cifra:** idéntica a G1A: `openssl enc -aes-256-cbc -pbkdf2 -iter 600000 -salt` (los streams además van comprimidos zstd ANTES de cifrar; descifrar = `openssl enc -d … | zstd -dc`).
+- **Backups que descifra:** snapshots PBS `host/minio-spool/2026-09-20T07:58:56Z` (12 buckets + CONFIG en partes `*_<tag>.part-*.enc`), `host/minio-SYS/2026-09-20T10:19:53Z` (`.minio.sys`), `host/minio-BIN/2026-09-20T10:19:54Z` (binarios), `host/minio-CONFIG2/2026-09-20T10:19:56Z` (cfg/IAM/metadata). Dentro del spool snapshot, cada stream tiene su SHA de referencia en `stream-<tag>.sha` (sha del tar en claro) y los refs por objeto en `refs-<bucket>.txt`.
+- **Ubicaciones:** copia 1 hermes `~/aranea/secrets/r0d-g1b.key` (0700/0600) · copia 2 daedalus `/home/hermes-ops/.aranea-secrets/r0d-g1b.key` (0700/0600). Envelope entregable al owner: pedir a Hermes en sesión privada y verificar huella (la copia local del envelope fue retirada tras la certificación del drill).
+- **Recuperación demostrada:** drill G1B (2026-09-20) descifró y verificó TODOS los streams con esta clave y arrancó un MinIO aislado con las credenciales recuperadas del export.
+
 ## Fuentes
 
 - `80-agents/journal/logs/2026-09-20-g1a-custodia-clave.md` — change log de esta operación de custodia.
