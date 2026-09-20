@@ -103,7 +103,7 @@ Evidencia de la misión: agent-run `2026-09-20-zcode-glm-5.3-flash-f05c-cert-f04
 - **Required MCP capabilities:** lectura de evidencia Forge, artefactos y metadatos del control plane; transferencia segura de los bytes auténticos; no capability sintética ni fixture manual.
 - **Physical recipe:** capturar desde la ejecución física el golden Forge completo: producer F-04 auténtico, StrategyVersion sellada, artefactos compile/readback, EvaluationRefs y manifest; preservar hashes y provenance.
 - **Durable evidence:** fixture/preimages byte-exactos, SHA256/size, refs, producer identity, release manifest y enlace al run físico.
-- **PASS criteria:** todos los bytes que el manifest/reference declara existen y verifican; producer es `echo-forge-handoff`; corpus no es copia de S0 ni fakeconsumer. No ejecutar ni marcar PASS ahora.
+- **PASS criteria:** todos los bytes que el manifest/reference declara existen y verifican; producer es `echo-forge-handoff`; corpus no es copia de S0 ni fakeconsumer. ~~No ejecutar ni marcar PASS ahora.~~ **→ EJECUTADO 2026-09-20: `CERT_F04_02_PASS` / T2.11 satisfecho** (corpus `~/aranea/work/f04-cert-f04-02/corpus`, verificación 25/25 + recomputación 5/5 + validador independiente; limitación declarada: bodies de manifests/versions en PG `trading_systems_test` sin canal autorizado, por referencia con garantías verificadas; detalle en el delta CERT-F04-02 de esta nota).
 
 #### CERT-E04-01 — Echo cross-lane golden / T21
 
