@@ -38,6 +38,7 @@ tags:
 |---|---|---|
 | [[Polymarket — Technical Platform Map — synced 2026-09-17]] | Knowledge pack técnico para diseño del Engine: APIs, WS, auth, orders, positions, contracts, fees, resolution, history y gaps; el agente de M0 debe trabajar directamente sobre este archivo. | `status: M0 DESIGN_READY (no live certification)` |
 | [[Polymarket — Edge Research Consolidado 2026-09-16]] | Síntesis deduplicada: 58 formulaciones nominales → 30 hipótesis/familias, datos, tests, evidencia contraria, contradicciones y secuencia de falsación. | `confidence: medium` |
+| [[Polymarket Engine — Five-POC Guía Operativa 2026-09-20]] | Guía operativa de las cinco POCs (S01–S05): HOW TO RUN, input, mode, output, artifacts, research surface y limitaciones; baseline `feature/five-poc-integration@037c15d`, M4 recert no-live. | `status: RESEARCH_READY (hypothesis_validated=NO)`
 | [[Polymarket DR R1 — Mecanismos y evidencia]] | Origen R1: diez mecanismos y experimentos con NO_GO; riesgo de crypto lead-lag. | `type: source`, SHA-256 |
 | [[Polymarket DR R2 — Microestructura y oráculo]] | Origen R2: cuatro configuraciones concretas; estimaciones de rentabilidad por verificar. | `type: source`, SHA-256 |
 | [[Polymarket DR R3 — Anomalías estadísticas y 24 hipótesis]] | Origen R3: 24 tests y controles econométricos, incentivos y fallas de medición. | `type: source`, SHA-256 |

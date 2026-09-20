@@ -1,0 +1,637 @@
+{
+  "profile": "no-live",
+  "generated_at": "2026-09-20T18:18:12.924042393Z",
+  "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+  "expected_baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+  "go_version": "go version go1.27.1 linux/amd64",
+  "gates": [
+    {
+      "gate": "G-01",
+      "slice": "M2-S01/S02/S05",
+      "status": "PASS",
+      "evidence": "testdata/foundation/evidence/g01.json",
+      "evidence_sha256": "d0de83dc4c4143f0a45b331086bb8fd284ef3e47ea65138e58ea50b04094d25a",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG01|TestG01EvidenceFileIsStableJSON|TestG01OrderBoundary' ./internal/foundation",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/foundation"
+        ],
+        "run_pattern": "TestG01|TestG01EvidenceFileIsStableJSON|TestG01OrderBoundary",
+        "process_state": "executed",
+        "evidence_ref": "testdata/foundation/evidence/g01.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/foundation\t0.039s"
+      }
+    },
+    {
+      "gate": "G-01-wire",
+      "slice": "M2-S02",
+      "status": "PASS",
+      "evidence": "testdata/protocol/evidence/g01_wire.json",
+      "evidence_sha256": "59c577a3f07059632595cb698146aa1ecb814018cdd53b757e271d6ed4af691b",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG01WireExtension' ./internal/protocol",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/protocol"
+        ],
+        "run_pattern": "TestG01WireExtension",
+        "process_state": "executed",
+        "evidence_ref": "testdata/protocol/evidence/g01_wire.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/protocol\t0.007s"
+      }
+    },
+    {
+      "gate": "G-01-regime",
+      "slice": "M2-S05",
+      "status": "PASS",
+      "portion": "G01_REGIME_INTEGRATION: la frontera numérica frozen de foundation (P03 §5) consume tick/min-size desde revisiones de régimen durables (nunca hardcodeadas); el bump de revisión por cambio de tick cambia inmediatamente la grilla aceptada",
+      "evidence": "testdata/regimes/evidence/g01_regime_integration.json",
+      "evidence_sha256": "9d31e3d540f251b7e2cee05c1a7d0afea12a332555fad55e2148eaa12f48df78",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG01RegimeIntegration' ./internal/regimes",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/regimes"
+        ],
+        "run_pattern": "TestG01RegimeIntegration",
+        "process_state": "executed",
+        "evidence_ref": "testdata/regimes/evidence/g01_regime_integration.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/regimes\t0.045s"
+      }
+    },
+    {
+      "gate": "G-03",
+      "slice": "M2-S02",
+      "status": "PASS",
+      "evidence": "testdata/protocol/evidence/g03.json",
+      "evidence_sha256": "cc70f9c5e1e9a4d53b58d0ce0207f9cb656f271a10b0d8ba4bf5883a846a5dee",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live"
+    },
+    {
+      "gate": "G-04",
+      "slice": "M2-S04",
+      "status": "PASS",
+      "portion": "completa en su alcance: catálogo/universo/planner sobre fixture server determinista más el cierre correctivo M2-S04-C1 (parser de fechas Gamma corregido upstream en M2-S02-C1, checkpoint 81aadb5; sync real read-only re-ejecutado en tres pasadas contra gamma-api.polymarket.com: sin cuarentenas por el defecto temporal, dedup de contenido demostrada sobre datos vivos y las revisiones nuevas atribuidas a cambios reales del servicio vía updatedAt/precios; techo no documentado de paginación offset ≤2000 (HTTP 422) deja la caminata del universo activo en partial honesto con fetch_error; defectos demostrados y corregidos en el cierre: dedup de oscilación A→B→A en revisiones y relaciones, corte de source_at por bytes, reporte de drain fallido oculto y límite de record de capture para páginas /events)",
+      "evidence": "testdata/catalog/evidence/g04.json",
+      "evidence_sha256": "3c443a8fa0b09a966df2b4640ed937412b30416a32c88e208ca76b0594f47db7",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG04Evidence' ./internal/catalog",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/catalog"
+        ],
+        "run_pattern": "TestG04Evidence",
+        "process_state": "executed",
+        "evidence_ref": "testdata/catalog/evidence/g04.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/catalog\t0.849s"
+      }
+    },
+    {
+      "gate": "G-05",
+      "slice": "M2-S06",
+      "status": "PASS",
+      "portion": "books projection sobre fixture journal determinista: bootstrap/deltas/epochs/quality/gap/REST separado; verificación real read-only documentada en testdata/books/fixtures (WS vivo capturado y re-proyectado por books inspect)",
+      "evidence": "testdata/books/evidence/g05.json",
+      "evidence_sha256": "01e14e93dfceb5f819aa6ae68eb7e00e94f72cb4edf716d1942e2c8cea9aedc6",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG05BooksEvidence' ./internal/books",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/books"
+        ],
+        "run_pattern": "TestG05BooksEvidence",
+        "process_state": "executed",
+        "evidence_ref": "testdata/books/evidence/g05.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/books\t0.013s"
+      }
+    },
+    {
+      "gate": "G-05b",
+      "slice": "M2-S07",
+      "status": "PASS",
+      "portion": "property de scheduling del Frame Builder: ningún record ≤C omitido y ninguno \u003eC incluido (suma determinista por owner), snapshots de watermark para owners sin mutación, INELIGIBLE con razones frozen (inbox llena, deadline, presupuesto, owner pasado de C), presupuestos K/bytes nunca excedidos, descriptor durable antes de la entrega, capture jamás bloqueado",
+      "evidence": "testdata/frames/evidence/g05b.json",
+      "evidence_sha256": "099d8b1058e802cec57742ae7a7d81b049f4b1376819e707a1e366c21ce98b52",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG05bSchedulingEvidence' ./internal/frames",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/frames"
+        ],
+        "run_pattern": "TestG05bSchedulingEvidence",
+        "process_state": "executed",
+        "evidence_ref": "testdata/frames/evidence/g05b.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/frames\t0.044s"
+      }
+    },
+    {
+      "gate": "G-06",
+      "slice": "M2-S03",
+      "status": "PASS",
+      "portion": "parcial: fault fixtures de journal (cierre con consumidores reales en S06, owner M2-S06)",
+      "evidence": "testdata/capture/evidence/g06.json",
+      "evidence_sha256": "38f78ac6870ea080e6dc3032185ab9653581ec7067629190514a0602a19d33a8",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live"
+    },
+    {
+      "gate": "G-02b",
+      "slice": "M2-S03/S11",
+      "status": "PASS",
+      "portion": "parcial: cursors que nunca pasan la frontera durable (cierre en S11, owner M2-S11)",
+      "evidence": "testdata/capture/evidence/g02b.json",
+      "evidence_sha256": "0f684a036a0e2e0eb4055354689a711cd30070d28c97cef521f1257e68a6394c",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG02b' ./internal/capture ./internal/account",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/capture",
+          "./internal/account"
+        ],
+        "run_pattern": "TestG02b",
+        "process_state": "executed",
+        "evidence_ref": "testdata/capture/evidence/g02b.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/capture\t0.008s [no tests to run] | ok  \tgithub.com/xKoRx/polymarket-engine/internal/account\t0.045s"
+      }
+    },
+    {
+      "gate": "G-08+G-09",
+      "slice": "M2-S09",
+      "status": "PASS",
+      "portion": "runtime del actor sobre fixture neutral: lifecycle, serialización, panic recovery, fencing no-cooperativo, backpressure, descriptor durable antes de publicar; gate de imports en ambas direcciones (archtest); SCREEN sin órdenes ni secretos",
+      "evidence": "testdata/strategy/evidence/g08_g09.json",
+      "evidence_sha256": "593872f631a89e2e75798717ef356e9bfd91bac1fd274c50367312ee8c7c9d48",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG08G09Evidence' ./internal/strategy",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/strategy"
+        ],
+        "run_pattern": "TestG08G09Evidence",
+        "process_state": "executed",
+        "evidence_ref": "testdata/strategy/evidence/g08_g09.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/strategy\t0.005s"
+      }
+    },
+    {
+      "gate": "G-15b-base",
+      "slice": "M2-S01",
+      "status": "PASS",
+      "evidence": "testdata/foundation/evidence/g15b-base.json",
+      "evidence_sha256": "0897b43ba59b4b4309f6362aed00184bbbb5a759fc43834f9eea45776a0d5860",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'Test' ./internal/archtest",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/archtest"
+        ],
+        "run_pattern": "Test",
+        "process_state": "executed",
+        "evidence_ref": "testdata/foundation/evidence/g15b-base.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/archtest\t0.121s"
+      }
+    },
+    {
+      "gate": "G-07",
+      "slice": "M2-S08",
+      "status": "PASS",
+      "portion": "deterministic replay of observation: identical digests across the three explicit batch schedules {32}, {1} and {7,3,1} over the same manifest-pinned capture; delivery replay with per-frame NOT_REPRODUCIBLE declared for the unresolvable frame",
+      "evidence": "testdata/replay/evidence/g07.json",
+      "evidence_sha256": "235ff63eb869165c932ee7d344d1b695c3a0905072e07e766adda064ddb6bdc0",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG07Evidence|TestG07ReplayDeterminismAndDelivery' ./internal/replay",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/replay"
+        ],
+        "run_pattern": "TestG07Evidence|TestG07ReplayDeterminismAndDelivery",
+        "process_state": "executed",
+        "evidence_ref": "testdata/replay/evidence/g07.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/replay\t0.025s"
+      }
+    },
+    {
+      "gate": "G-11",
+      "slice": "M2-S11",
+      "status": "PASS",
+      "portion": "reconciliación de cuenta sobre eventos sintéticos fieles a los contratos frozen (fixtures versionadas con provenance verificada por sha256): fills WS duplicados/fuera de orden con dedup FillKey, status atrasado sin regresión, contradicción → caso durable sin terminalidad inventada, ACK tardío converge sin resubmisión; scan REST paginado con re-lectura de estabilidad — mutación entre páginas o fallo de página deja UNKNOWN con caso RECONCILE_INCOMPLETE, jamás ausencia concluyente; settlement MATCHED→MINED→CONFIRMED monótono, reorg no desconfirma, FAILED no libera reserva ni crea saldo ni confirma y escala a HUMAN_REVIEW_REQUIRED con fills atribuidos; transferencias externas quedan UNATTRIBUTED bloqueantes sin asignación silenciosa, SELL cross-instancia exige INSTANCE_MOVE explícito e idempotente; conservación contable, sin doble liberación, sin terminalización por timeout, sin resubmisión",
+      "evidence": "testdata/account/evidence/g11.json",
+      "evidence_sha256": "8541e6ee67aa2fdd5f548d0c2340f13678837cef88a231209fa7f1010e978a5f",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG11AccountReconciliation' ./internal/account",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/account"
+        ],
+        "run_pattern": "TestG11AccountReconciliation",
+        "process_state": "executed",
+        "evidence_ref": "testdata/account/evidence/g11.json",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/account\t0.167s"
+      }
+    },
+    {
+      "gate": "G-02",
+      "slice": "M2-S10/S11",
+      "status": "PASS",
+      "portion": "conservation/dedup/availability properties in the account and simulator suites",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG02' ./internal/account ./internal/simulator",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/account",
+          "./internal/simulator"
+        ],
+        "run_pattern": "TestG02",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/account\t0.127s | ok  \tgithub.com/xKoRx/polymarket-engine/internal/simulator\t0.021s [no tests to run]"
+      }
+    },
+    {
+      "gate": "G-10",
+      "slice": "M2-S10",
+      "status": "PASS",
+      "portion": "exact sweep/VWAP/fee/FOK/FAK/cancel/multi-leg fixtures and the registered conservation property",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestSweep|TestFOK|TestFAK|TestLiquidity|TestLedger|TestCancel|TestMissingFee|TestMultiLeg|TestScenario|TestFillConservation' ./internal/economics ./internal/simulator",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/economics",
+          "./internal/simulator"
+        ],
+        "run_pattern": "TestSweep|TestFOK|TestFAK|TestLiquidity|TestLedger|TestCancel|TestMissingFee|TestMultiLeg|TestScenario|TestFillConservation",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/economics\t0.017s [no tests to run] | ok  \tgithub.com/xKoRx/polymarket-engine/internal/simulator\t0.032s"
+      }
+    },
+    {
+      "gate": "G-10b",
+      "slice": "M2-S10",
+      "status": "PASS",
+      "portion": "independent-run parity, portfolio attribution, fee no-bleed",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG10b' ./internal/simulator",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/simulator"
+        ],
+        "run_pattern": "TestG10b",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/simulator\t0.016s"
+      }
+    },
+    {
+      "gate": "G-10c",
+      "slice": "M2-S11",
+      "status": "PASS",
+      "portion": "three-leg basket fixture: BLOCKED_UNKNOWN, third leg never sent, no unwind",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG10c' ./internal/account",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/account"
+        ],
+        "run_pattern": "TestG10c",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/account\t0.028s"
+      }
+    },
+    {
+      "gate": "G-11b",
+      "slice": "M2-S11",
+      "status": "PASS",
+      "portion": "late-fill convergence and no-timeout-release",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG11b' ./internal/account",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/account"
+        ],
+        "run_pattern": "TestG11b",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/account\t0.030s"
+      }
+    },
+    {
+      "gate": "G-12",
+      "slice": "M2-S11",
+      "status": "PASS",
+      "portion": "classifier matrix, one-send-per-attempt, double-submit refusal, boot recovery retains UNKNOWN/VOIDs unattempted PREPARED",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG12b|TestG02bBootRecovery|TestG02ReserveConservation' ./internal/account",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/account"
+        ],
+        "run_pattern": "TestG12b|TestG02bBootRecovery|TestG02ReserveConservation",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/account\t0.069s"
+      }
+    },
+    {
+      "gate": "G-12b",
+      "slice": "M2-S11",
+      "status": "PASS",
+      "portion": "classifier matrix and single-submit fixture",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG12b' ./internal/account",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/account"
+        ],
+        "run_pattern": "TestG12b",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/account\t0.016s"
+      }
+    },
+    {
+      "gate": "G-14",
+      "slice": "M2-S12",
+      "status": "PASS",
+      "portion": "backup/restore round-trip, degraded-on-missing/tampered, GC-day-31 fixture",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG14' ./internal/supervisor",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/supervisor"
+        ],
+        "run_pattern": "TestG14",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/supervisor\t0.206s"
+      }
+    },
+    {
+      "gate": "G-06b",
+      "slice": "M2-S12",
+      "status": "PASS",
+      "portion": "cursor-witness check within frontier",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG06b' ./internal/supervisor",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/supervisor"
+        ],
+        "run_pattern": "TestG06b",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/supervisor\t0.065s"
+      }
+    },
+    {
+      "gate": "G-13b",
+      "slice": "M2-S12",
+      "status": "PASS",
+      "portion": "boot markers and lease validator, degraded audit on discontinuous evidence",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestBootLeaseAndLock|TestBootOpenMarkerOnDiscontinuousJournal' ./internal/supervisor",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/supervisor"
+        ],
+        "run_pattern": "TestBootLeaseAndLock|TestBootOpenMarkerOnDiscontinuousJournal",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/supervisor\t0.066s"
+      }
+    },
+    {
+      "gate": "G-15",
+      "slice": "M2-S11/S12",
+      "status": "PASS",
+      "portion": "disabled execution ports fail closed, misaligned/absent lease keeps LIVE_DISABLED with readiness_live false",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG15|TestBootLeaseAndLock' ./internal/account ./internal/supervisor",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/account",
+          "./internal/supervisor"
+        ],
+        "run_pattern": "TestG15|TestBootLeaseAndLock",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/account\t0.062s | ok  \tgithub.com/xKoRx/polymarket-engine/internal/supervisor\t0.060s"
+      }
+    },
+    {
+      "gate": "G-07b",
+      "slice": "M2-S13",
+      "status": "PASS",
+      "portion": "SHADOW parity (identical scorecard across runs)",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestShadowParityDeterministic' ./internal/experiment",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/experiment"
+        ],
+        "run_pattern": "TestShadowParityDeterministic",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/experiment\t0.070s"
+      }
+    },
+    {
+      "gate": "G-09b",
+      "slice": "M2-S13",
+      "status": "PASS",
+      "portion": "RUNTIME saturation pauses runs, epochs intact",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestG09bRuntimeSaturationPausesNotRevokes' ./internal/experiment",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/experiment"
+        ],
+        "run_pattern": "TestG09bRuntimeSaturationPausesNotRevokes",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/experiment\t0.015s"
+      }
+    },
+    {
+      "gate": "G-13",
+      "slice": "M2-S13",
+      "status": "PASS",
+      "portion": "shadow window with budgets measured and denominators honest",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "receipt": {
+        "command": "go test -count=1 -run 'TestShadow' ./internal/experiment",
+        "baseline_sha": "037c15de56331ab3ad69d2c6687d7bdaeabdd00a",
+        "exit_code": 0,
+        "result": "PASS",
+        "packages": [
+          "./internal/experiment"
+        ],
+        "run_pattern": "TestShadow",
+        "process_state": "executed",
+        "recorded_at": "2026-09-20T18:18:12.924042393Z",
+        "detail": "ok  \tgithub.com/xKoRx/polymarket-engine/internal/experiment\t0.098s"
+      }
+    },
+    {
+      "gate": "G-16",
+      "slice": "IMPLEMENT LATER",
+      "status": "NOT_RUN",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "detail": "deferred live gate: G-16 auth/order integration"
+    },
+    {
+      "gate": "G-17",
+      "slice": "IMPLEMENT LATER",
+      "status": "NOT_RUN",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "detail": "deferred live gate: G-17 live plumbing cert"
+    },
+    {
+      "gate": "G-18",
+      "slice": "IMPLEMENT LATER",
+      "status": "NOT_RUN",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "detail": "deferred live gate: G-18 live activation"
+    },
+    {
+      "gate": "G-19",
+      "slice": "IMPLEMENT LATER",
+      "status": "NOT_RUN",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "detail": "deferred live gate: G-19 future position routes"
+    },
+    {
+      "gate": "G-14b",
+      "slice": "IMPLEMENT LATER",
+      "status": "NOT_RUN",
+      "verified_at": "2026-09-20T18:18:12.924042393Z",
+      "verify_command": "engine experiment certify --profile no-live",
+      "detail": "deferred live gate: G-14b off-host recovery"
+    }
+  ],
+  "summary": {
+    "pass": 27,
+    "fail": 0,
+    "not_run": 5,
+    "in_scope_not_run": 0,
+    "deferred_not_run": 5,
+    "rows": 32
+  },
+  "outcome": "M4_CERTIFIED_NON_LIVE",
+  "notes": "certification at baseline 037c15de56331ab3ad69d2c6687d7bdaeabdd00a: committed evidence verified by identity+hash, suite-backed gates hold receipts produced at certify time; deferred live gates stay NOT_RUN by design (M4 certifies the durable read-only/shadow core, never trading or DR)"
+}

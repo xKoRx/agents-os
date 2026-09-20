@@ -53,3 +53,10 @@ tags:
 - Conversión NegRisk CTF y v2 sigue deshabilitada live; v2 ABI no verificada. Historical L2 backfill deshabilitado por falta de garantías de replay/retención. RFQ/Combos y modos Builder/deferExec=true fuera de MVP inicial o disabled.
 - M0 DESIGN_READY=PASS; FULL_PLATFORM_CONTRACT_CERTIFIED=NO; LIVE_EXECUTION_CERTIFIED=NO. Es cierre del knowledge pack para arquitectura, no diseño aprobado, implementación ni certificación con fondos.
 - El manifiesto conserva el baseline histórico (160164 bytes) y actualiza SHA-256 de la concatenación vigente de once partes; proyecto e índice alineados con §24. Siguiente fase: owner/manager revisión conjunta → Astra propuesta → Fable challenge.
+
+## [2026-09-20] checkpoint | Five-POC Research-Ready: 5/5 integradas + gates F5 verdes + M4 recertificado
+
+- Rama `feature/five-poc-integration` @ `037c15d` (base shared `9d0512a`): las cinco POCs registradas (`poc-negrisk`, `poc-sports`, `poc-sports-combinatorial`, `poc-weather`, `poc-maturation`), suite completa 34/34 paquetes ok, race PASS en paquetes tocados, archtests PASS.
+- Casos de uso nombrados engine-level: NEG-CASE-01, SPORT-REV-CASE-01 (`d4cf25e`) y gates F5-G01..G12 con vertical S03 + coexistencia de cinco instancias (`037c15d`); causas raíz documentadas (dispatcher usa reloj real para VirtualTime; contract_id weather = `SYN-WX-20260920-HIGH-UTC`).
+- M4 recert: `experiment certify --profile no-live --baseline 037c15d` → 27 PASS / 0 FAIL / 0 in-scope NOT_RUN / 5 deferred live ⇒ `M4_CERTIFIED_NON_LIVE`. Evidencia: `10-projects/Personal/Polymarket Engine/agentes/M4-certify-037c15d-2026-09-20.json`.
+- Guía operativa canónica: [[Polymarket Engine — Five-POC Guía Operativa 2026-09-20]] (HOW TO RUN/INPUT/MODE/OUTPUT por POC, research surfaces, limitaciones). `HYPOTHESIS_VALIDATED=NO` en las cinco (esperado); S05_W `BLOCKED_BY_SFG06`; fee REAL `UNVERIFIED`.
