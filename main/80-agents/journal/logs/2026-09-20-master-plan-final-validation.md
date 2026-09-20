@@ -68,3 +68,11 @@ tags:
 
 - Plan validado y corregido; roadmap ejecutable con un estado por WP; primer mandato listo sin ejecutar.
 - Estado R2: piloto ACTIVO según última evidencia (G1B close 20-09); NO re-verificado en esta sesión (prohibiciones); decisión D sigue pendiente post 7/7 días.
+
+## Revisión adversarial round-2 (auditor aislado, post-correcciones C1-C6)
+
+- **Veredicto: APROBADO CON CORRECCIONES — 1 BLOCKER, 9 SHOULD_FIX, 14 NIT** (deleg_0ad9e047, 22m41s). Corregidas TODAS las materiales:
+- **B-01 corregido (defecto introducido por la round-1):** la clasificación READY citaba falsamente plan §4 para poner scrub pool2 (read-only ~5T sobre hades) como inmediato; §4 lo lista en ventana. Scrub movido a DEFER/ventana (ROADMAP clasificación + A6 gate + MP-05).
+- **SHOULD_FIX corregidos:** S-01 RPO DR-T6 (configs/dumps ≤7d A7; bulk/PBS-export ≤~35d A8 mensual); S-02 default A6 SIN trading_documents (set completo ≈2,2T > 2,15T pool2); S-03 celda pool1 (réplica 3 nominal, HA NO demostrada); S-04 A2/MP-04 gate de capacidad WAL (>10G/mes → destino fuera de pool1); S-05 DR-T4 calificado post-A0 (hermes 118 íntegro en pool1, A0 cerrador); S-06 DoD A5 en MP-01/MP01-FIRST; S-07 timing Echo (dumps lunes 03:00 caen en sesión domingonoche; OK implícito en aprobación, horario vzdump trading lo fija D/019); S-08 MP-09 creado para A8 + matriz; S-09 §4 alineado con gates A1/A4.
+- **NIT corregidos:** N-01 (MinIO gated en operaciones A1 y línea de orden), N-02 (ventana dumps unificada 03:00-04:30 en MP-03), N-03 (DR-Tn en MP-08/R7), N-05 (MP01-FIRST declarado canónico para MP-01), N-06 (A0 «reduce dependencia», no «libera»), N-07 (RPO local-lvm por clase), N-10 (PBS SO en local-kronos), N-11 (135 fuera de ADD-IMP/T2), N-12 (preflight tamaño dump A3), N-13 (precondición de aprobación al despachar), N-14 (traefik 115 = 6º CT del piloto en matriz). No aplicados (registro): N-04 (contrato stale 019 → toca contrato, requiere ventana de cambios aprobada), N-08/N-09 parcialmente integrados vía MP-09/R7 (detalle en ejecución).
+- Transcript auditor: `~/.hermes/profiles/ariadna/cache/delegation/live/deleg_0ad9e047/task-0.log`.

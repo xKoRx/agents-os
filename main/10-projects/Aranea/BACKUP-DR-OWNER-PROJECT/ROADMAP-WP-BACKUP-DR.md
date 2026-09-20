@@ -89,7 +89,7 @@ related:
 `ID` WP-S4 · `objetivo` medir p95 y correlate con recoveries · `ejecutor` Ceph/Storage · `dependencias` ninguna (RO) · `operaciones` exporter de métricas osd perf/slow-ops → ARGUS (observabilidad RO existente) · `riesgo` ninguno · `gate` ninguno · `validación` series visibles 7d · `rollback` quitar exporter · `DoD` evidencia futura de lag medible.
 
 ### WP-R7 — Drills recurrentes + certificación (R7)
-`ID` WP-R7 · `objetivo` cada unidad T0/T1 con drill PASS reciente (<35d); procedimientos DR ejecutados · `ejecutor` Backup/DR · `dependencias` A0/A1 (drills DR-T1/DR-T4 posibles en cuanto A0/A1 estén activos), resto según off-site/ventanas · `operaciones` ejecutar drills DR-T1..T6 según ROADMAP bloque DR; certificar estados por unidad (§14 mandato R0); calendario recurrente post-B1 · `riesgo` bajo (targets scratch) · `gate` ninguno para drills scratch; ventana para DR-5 · `validación` cada drill PASS con evidencia en change log · `rollback` borrar targets scratch · `DoD` unidad T0/T1 sin drill fresco = 0.
+`ID` WP-R7 · `objetivo` cada unidad T0/T1 con drill PASS reciente (<35d); procedimientos DR ejecutados · `ejecutor` Backup/DR · `dependencias` A0/A1 (drills DR-T1/DR-T4 posibles en cuanto A0/A1 estén activos), resto según off-site/ventanas · `operaciones` ejecutar drills DR-T1..T6 según ROADMAP bloque DR; certificar estados por unidad (§14 mandato R0); calendario recurrente post-B1 · `riesgo` bajo (targets scratch) · `gate` ninguno para drills scratch; ventana para DR-T5 · `validación` cada drill PASS con evidencia en change log · `rollback` borrar targets scratch · `DoD` unidad T0/T1 sin drill fresco = 0.
 
 ## Bloque DR — Procedimientos de desastre (ejecuta Backup/DR; drills por WP-R7)
 
