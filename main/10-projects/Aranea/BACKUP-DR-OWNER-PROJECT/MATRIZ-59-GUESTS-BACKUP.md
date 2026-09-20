@@ -52,7 +52,7 @@ cssclasses:
 
 | VMID | Nombre | Tipo | Estado | SO (backend) | Datos (backend) | Decisión | Mecanismo backup | Destino | RPO propuesto | Notas |
 |---|---|---|---|---|---|---|---|---|---|---|
-EOF| 100 | win11-gpu-red | VM | stopped | — | virtio0:iscsi-aranea | KEEP (decomisión a revisar) | NONE (lab); LUN2 double-attach latente con 151 → resolver (WP-S1) | — | — | win11-gpu-red |
+| 100 | win11-gpu-red | VM | stopped | — | virtio0:iscsi-aranea | KEEP (decomisión a revisar) | NONE (lab); LUN2 double-attach latente con 151 → resolver (WP-S1) | — | — | win11-gpu-red |
 | 101 | etcd-athena | CT | running | mp0:local-lvm; rootfs:local-lvm | — | KEEP | etcd snapshot cluster (R1.5 VERIFIED 05:00) + VZ piloto ACTIVO | PBS | snap 1d | quorum 5 hosts; sobrevive pérdida de 1-2 nodos |
 | 102 | mt5-wsl-red | VM | stopped | ide0:nfs-storage; scsi0:local-lvm | — | KEEP | NONE (lab) | — | — | mt5-wsl-red |
 | 103 | emqx | CT | running | rootfs:nfs-storage | — | KEEP | VZ post-D | PBS | 30d | emqx 4G nfs |
