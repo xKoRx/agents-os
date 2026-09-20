@@ -56,7 +56,7 @@ tags:
 
 1. Spool PBS compartido con blobs G1A → primer snapshot PG contaminado; rollback parcial (forget bloqueado por ACL mínima del token — registro owner) + spool aislado por run + higiene de `mnt/`.
 2. `TASK OK` no es línea de backup en client PBS 4.2.5 → verificación durable por `snapshot list`.
-3. vm158 guest-exec no transporta binario en out-data → tar|base64 dentro del guest (variante del patrón G1A).
+3. vm158: primer intento murió por `B64: unbound variable` (set -u + quoting del driver); corregido eso, out-data de guest-exec siguió sin transportar binario limpio (JSON) → solución definitiva: `tar | base64 -w0` dentro del guest y decodificar fuera (variante del patrón G1A).
 4. daedalus sin sudo para hermes-ops → capturas sin sudo (archivos legibles); registrar si se requiere más alcance.
 5. pbs180: `/etc/proxmox-backup-proxy` no existe → tar sólo `/etc/proxmox-backup`.
 6. Checks con globs/expansión y anclas mal calzados en a5 → corregidos con validación por contenido.
