@@ -51,7 +51,7 @@ related:
 
 ### D1. Placement: sin regla universal; SO reconstruible ≠ dato irremplazable
 
-El patrón verificado (SO VMs productivas en pool1 RBD + datos en zvol pool0 vía iSCSI) **se MANTIENE** para PG 152/Mongo 153/MinIO 157: el zvol pool0 es mirror sano; migrar SOs a local-lvm perdería HA-exigida y pagaríamos migraciones masivas en Ceph nearfull. La dirección "SOs fuera de pool1" (alternativa G del assessment) queda **estratégica a mediano plazo, activada sólo si el ejecutor Ceph necesita aliviar pool1**, no como proyecto de Backup/DR.
+El patrón verificado (SO VMs productivas en pool1 RBD + datos en zvol pool0 vía iSCSI) **se MANTIENE** para PG 152/Mongo 153/MinIO 157. Veredicto por workload: los tres = **KEEP_JUSTIFIED** — no por HA demostrada, sino por costo/riesgo medido: (a) la HA del SO es **nominal, no demostrada** — réplica 3 probada a nivel almacenamiento (FD=host), pero no existe drill de falla de nodo con estos guests, y el data-plane de los tres depende de hades vivo vía iSCSI (F-13); (b) migrar hoy exige escrituras masivas sobre pool1 al 85,7% nearfull (NO_GO estructural vigente); (c) el dato T0 ya vive FUERA de Ceph (zvol pool0 mirror sano): perder Ceph no toca el dato, sólo el SO (reconstruible/restore, RTO horas); (d) sin capex no hay destino disponible sin dominio de falla compartido que mejore el conjunto. La dirección "SOs fuera de pool1" (alternativa G del assessment) queda **estratégica a mediano plazo, activada sólo si el ejecutor Ceph necesita aliviar pool1**, no como proyecto de Backup/DR. Si el owner exige HA real de servicio, el camino es replicación a nivel app (PG streaming / Mongo replica set / MinIO), no placement de discos — decisión trading, fuera de este plan.
 
 | Backend | Rol arquitectural |
 |---|---|
@@ -67,7 +67,7 @@ El patrón verificado (SO VMs productivas en pool1 RBD + datos en zvol pool0 ví
 | Destino | Rol | Dominio de falla |
 |---|---|---|
 | PBS (VM 180, kronos, datastore 295G→crecer) | Receptor único de vzdump + dumps G1A/G1B + ingesta staging R1; dedup; retención por clase | Node kronos (SPOF del destino local — mitigación D3) |
-| staging hermes (49G) | Staging de configs R1 y dumps; ingesta→PBS (WP-A0); NO destino final | vm 118 (kronos) — por eso A0 ingesta ASAP |
+| staging hermes (49G) | Staging de configs R1 y dumps; ingesta→PBS (WP-A0); NO destino final | vm 118 (kronos) — A0 reduce la ventana de exposición, pero staging y PBS siguen co-ubicados en kronos hasta que off-site (A7) aporte el 2º dominio de falla |
 | pool0 snapshots (WP-A6) | Rollback local rápido (borrado/corrupción), NO backup | pool0 mismo |
 | pool2 (REPL pool0→pool2, WP-A6) | 2ª copia local de datasets pool0 | mismo chasis TrueNAS que pool0 — **no es off-host**; mitigación = off-site |
 | pCloud (restic crítico) | 3ª copia off-site de configs + dumps + claves custodia | externo; gates 020/021 |
@@ -89,7 +89,7 @@ Hoja de ruta de capacidad (ningún paso en piloto): post-D-piloto (28sep) crecer
 | MinIO 64,76G lógicos → 12 snapshots pxar (dedup alto entre runs) | G1B 20sep | semanal sostenible; re-stream sólo si bucket cambia fuerte |
 | pool2 libre 2,15T vs full inicial REPL: 1,1-1,6T según handoff §8.4 (EXCLUYE aranea_storage/trading_systems); con el set default A6 (incluye aranea_storage 1,09T + proxmox_storage + zvols) ≈1,7T | assessment 19sep | cabe en 2,15T pero margen corto — [RE-MEDIR] con `zfs send -n` antes del full; trading_systems sólo si dueño lo pide |
 
-### D4. DBs: dumps certificados + PITR como segunda iteración; RPO 1h MongoDB = decisión de topología
+### D4. DBs: dumps certificados → agendar (gated a aprobación del plan) + PITR como segunda iteración; RPO 1h MongoDB = decisión de topología
 
 - **PG 152:** dumps G1A → schedule diario (WP-A1). RPO objetivo ≤1h vía WAL archiving (archive_mode=on, archive_timeout 60s) a staging hermes + PBS (WP-A2, requiere ventana/gate: cambiar postgresql.conf de un sistema trading PROD = GATED; alternativa pgBackRest). RPO real esperado ≈1-2min. **Migrar del zvol NO.**
 - **Mongo 153:** dumps G1A → schedule diario. RPO 1h **NO demostrable con standalone** (sin oplog): requiere replica set 1 nodo o PBM = **cambio topológico en PROD trading → GATED, decisión owner**. Honestidad: con dumps, RPO real = 24h.
@@ -117,10 +117,10 @@ Los procedimientos verificables completos viven en el ROADMAP (bloque DR: DR-T1.
 |---|---|---|---|
 | DR-T1 pérdida de una VM | restore PBS → mismo nodo o alternativo | por clase (D4.1) | nunca requerir la VM caída como parte del restore (dumps y vzdump no dependen del guest) |
 | DR-T2 pérdida de un disco | pool0 mirror reconstruye solo (hot spare no hay; F-05); Ceph re-replica (salvo kronos = NO_GO hoy); local-lvm de nodo caído = restore PBS | pool0: RPO=0, RTO=rebuild; Ceph kronos: RPO=hasta re-replica imposible→riesgo 2 copias; local-lvm RPO=7d | no requerir TrueNAS para restaurar un zvol de TrueNAS (vzdump/dumps viven en PBS) |
-| DR-T3 pérdida de un nodo PVE | guests repartibles a otros nodos (pool1 RBD + nfs migran solos; local-lvm/iSCSI requieren restore o reconexión) | pool1 guests: minutos; local-lvm: RTO restore | **caída de kronos = caso crítico: PBS 180 Y staging 118 viven en kronos → se pierden TODAS las copias locales (dumps, configs, piloto); única recuperación posible = off-site (inexistente hasta A7/A8). Mitigación: acelerar A0/A7; la precedencia del riesgo priorizado ya refleja esto** |
+| DR-T3 pérdida de un nodo PVE | guests repartibles a otros nodos (pool1 RBD + nfs migran solos; local-lvm/iSCSI requieren restore o reconexión) | pool1 guests: minutos; local-lvm: RTO restore | **caída de kronos = caso crítico: PBS 180 Y staging 118 viven en kronos → se pierden TODAS las copias locales VIGENTES (dumps G1A/G1B, configs R1/R1.5, piloto vzdump). Sobreviven pool2 y pool0 (chasis hades/TrueNAS), pero pool2 sólo contiene árboles legacy STALE jul-2025 (pool2/backup, pool0_backup, zfs_backup — F-09, sin valor de recuperación del estado vigente) y pool0 no tiene snapshots (WP-A6 inexistente): ninguna copia superviviente cubre el estado actual → recuperación funcional = sólo off-site (inexistente hasta A7/A8). Copia superviviente ≠ recuperación demostrada. Mitigación: acelerar A0/A7; la precedencia del riesgo priorizado ya refleja esto** |
 | DR-T4 pérdida de Ceph | SOs en pool1 se reconstruyen desde templates/config (re-instalar) + datos T0 ya viven en pool0 zvol; artefactos MinIO desde G1B | SOs: RPO irrelevante (reconstruir), RTO horas-por-VM | **ningún restore requiere pool1 vivo** (dumps/snapshots/zvols no viven en Ceph); este diseño es lo que hace DR-T4 sobrevivible |
 | DR-T5 pérdida de TrueNAS/hades | SO TrueNAS = reinstalar SCALE + import pool0/pool2 (pools sobreviven al chasis); zvols intactos; restore guests dependientes (nfs CTs, iSCSI data guests) | pools: RPO=0 (disco intacto); RTO=reinstalar+import+reattach | PBS kronos + off-site no dependen de hades; config TrueNAS exportada (WP-B2) evita reconfigurar a mano |
-| DR-T6 pérdida total Aranea | off-site cifrado (pCloud crítico + GDrive bulk) + Secret Zero (020) + inventory (R1) | RPO configs off-site = hasta 7d (push semanal A7); 1-7d datos; 1d sólo en copia local PBS | el bundle de recuperación vive fuera (020: caja fuerte+USB); sin 020 no hay DR-T6 |
+| DR-T6 pérdida total Aranea | off-site cifrado (pCloud crítico + GDrive bulk) + Secret Zero (020) + inventory (R1) | RPO configs off-site = hasta 7d (push semanal A7); 1-7d datos; 1d sólo en copia local PBS | el bundle de recuperación vive fuera (020: caja fuerte+USB); sin 020 no hay DR-T6; **el off-site DEBE incluir las claves de cifrado r0d-g1a/g1b (o su escrow dentro de Secret Zero): los snapshots PBS y todo off-site están cifrados — sin claves accesibles fuera de kronos el off-site es irrecuperable** |
 
 ### D6. Dependencias circulares verificadas y su resolución
 
@@ -171,7 +171,7 @@ G1A/G1B sin prune → riesgo de llenado lento de datastore.
 1. **Ticket 018** — lista Tier 0 final (propuesta vigente: 23 contrato + ADDs propuestos; matriz como insumo). Bloquea WP-B1.
 2. **Ticket 019** — ventana de mantenimiento formal. Bloquea B1/A2/A6-REPL/S2.
 3. **Ticket 020** — Secret Zero (ubicación caja fuerte + USB cifrado). Bloquea A7/A8/DR-T6.
-4. **Ticket 021** — OAuth pCloud/GDrive (agente vs owner). Bloquea A7/A8.
+4. **Ticket 021** — OAuth pCloud/GDrive (agente vs owner). Autoriza el setup de remotes; la recurrencia de cada job queda dentro del alcance de su WP (A7/A8). Bloquea A7/A8.
 5. **Decisión D-piloto (28sep)** — retención final PBS + pasar a producción (preflight AP-02). Bloquea B1.
 6. **Decisión Mongo topología** — replica set 1 nodo/PBM para RPO 1h (cambio PROD trading). Bloquea RPO 1h Mongo; sin ella RPO Mongo=24h.
 7. **Decisión datasets pool0→pool2 + limpieza legacy pool2** (puede posponerse: inicial cabe en 2,15T libres).
