@@ -95,6 +95,16 @@ Cadena ejecutada con la clave local de Hermes **fuera de su ubicación** (stash 
 - **Ubicaciones:** copia 1 hermes `~/aranea/secrets/r0d-g1b.key` (0700/0600) · copia 2 daedalus `/home/hermes-ops/.aranea-secrets/r0d-g1b.key` (0700/0600). Envelope entregable al owner: pedir a Hermes en sesión privada y verificar huella (la copia local del envelope fue retirada tras la certificación del drill).
 - **Recuperación demostrada:** drill G1B (2026-09-20) descifró y verificó TODOS los streams con esta clave y arrancó un MinIO aislado con las credenciales recuperadas del export.
 
+## Paquete de recuperación off-site (WP-A7, 2026-09-20)
+
+Preparado por mandato WP-A7 (Secret Zero sin servicios nuevos). El paquete reúne las claves de esta nota + G1B + la credencial PBS, cifrado con una passphrase independiente:
+
+- **Contenedor:** `r0d-a7-recovery-pkg.tgz.enc` (hermes `~/aranea/work/a7-offsite-20260920/`). **SHA256:** `5cd8de942d865a3c2acaee20ca2b7133899f095835138660afbc24094e951a9b`.
+- **Passphrase de apertura:** `r0d-a7-recovery.pw` — NO está dentro del paquete. Copias: hermes `~/aranea/secrets/` y daedalus `/home/hermes-ops/.aranea-secrets/` (0700/0600, huella `bbdc10544d07fe5663fe6d69869d7d87e930339486e915411a717f81427230b4`) + envelope owner `~/aranea/secrets/r0d-a7-recovery.pw.owner-envelope` (retirable por canal privado).
+- **Contenido:** `keys/r0d-g1a.key` + `keys/r0d-g1b.key` + `secrets/pbs-backup.pw` (password del token `backup@pbs!aranea`; huella `4a6f3755…abc0a`; verificado autenticando contra PBS) + `RECOVER.md` (procedimiento clean-room: requisitos, verificación, apertura, casos PBS/off-site) + `INVENTORY.md` (artefactos protegidos con SHAs).
+- **Demo clean-room (2026-09-20, PASS):** en daedalus, con solo el envelope owner + openssl: SHA del contenedor OK → apertura OK → huellas internas OK → descifrado de `pve.tgz.enc` y del dump PG real → SHA plaintext PG `7d878392…dee4` = referencia canónica. Sin usar copias operativas de claves.
+- **Pendiente (bloqueo registrado):** subir el paquete + payload (6 `.enc`, 288 MB, manifiesto `MANIFEST-A7-PAYLOAD.sha256`) a pCloud — bloqueado por gates 020/021 sin credencial. Hasta entonces el paquete no tiene copia fuera de Aranea.
+
 ## Fuentes
 
 - `80-agents/journal/logs/2026-09-20-g1a-custodia-clave.md` — change log de esta operación de custodia.
