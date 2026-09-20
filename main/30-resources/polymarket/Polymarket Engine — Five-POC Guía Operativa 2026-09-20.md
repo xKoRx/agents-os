@@ -23,30 +23,48 @@ re-derivar la integración. Baseline integrada: `feature/five-poc-integration`
 `~/go/src/github.com/xKoRx/polymarket-engine-integration`. Live siempre
 `LIVE_DISABLED`; SHADOW es virtual (`INCONCLUSIVE` honesto, nunca permiso).
 
-## Invocación homogénea (los tres comandos)
+## Invocación homogénea (los comandos)
 
 ```bash
 cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/engine ./cmd/engine
+# 0) FIXTURE — materializar el journal de entrada (SINTÉTICO, determinista, nunca sobrescribe)
+/tmp/engine fixture fivepoc --kind vertical --out /tmp/j-s01s02   # S01/S02 (AAA/BBB/S1)
+/tmp/engine fixture fivepoc --kind s03      --out /tmp/j-s03      # par B0 de S03
+/tmp/engine fixture fivepoc --kind combined --out /tmp/j-all      # los cinco consumidores (forecast weather admitido primero)
 # 1) SCREEN — detector sobre frames causales de un journal fixture (read-only)
 /tmp/engine screen-consolidated --data-dir <journal> --cuts <N> --run "<strategy_id>:<k=v>;..."
-# 2) SHADOW — economía virtual sobre el mismo journal (scorecard JSON)
+# 2) SHADOW — economía virtual sobre el mismo journal (scorecard JSON, durable)
 /tmp/engine experiment shadow --data-dir <journal> --run-id <run> --hypothesis <PE-xxx> \
-  --strategy <strategy_id> --param k=v [--param ...]
-# 3) REPLAY — pin del journal y replay determinista de observaciones
+  --strategy <strategy_id> --param k=v [--param ...] [--seed N]
+# 3) COMPARE — "¿qué cambió entre dos runs?" desde artifacts, sin logs
+/tmp/engine experiment compare --data-dir <journal> <run-a> <run-b>
+# 4) REPLAY — pin del journal y replay determinista de observaciones
 /tmp/engine manifest build --data-dir <journal> --out /tmp/m.json
 /tmp/engine replay --data-dir <journal> --manifest /tmp/m.json --schedule 2,1   # → RESOLVED
 ```
 
-- INPUT de todos: un **journal fixture** (capture dir cerrado). Sintéticos
-  (`SYNTHETIC_FIXTURE`) para cierre offline; nunca mezclar con `REAL_CAPTURE`.
+- INPUT de todos: un **journal fixture** materializado con `engine fixture fivepoc`
+  (capture dir cerrado, reloj de fixture + stamps de receive timeline: es
+  históricamente determinista y nunca se vuelve `STALE_BOOK` por el reloj de pared).
+  Sintéticos (`SYNTHETIC_FIXTURE`) para cierre offline; nunca mezclar con
+  `REAL_CAPTURE`; el guard SFG-07 rechaza directorios protegidos y el comando nunca
+  sobrescribe un output existente.
 - OUTPUT inspectable: reporte JSON de screen (deliveries→evaluations con
-  `decision`, `reason_codes`, `metrics`), `{outcome, detail, scorecard}` del
-  shadow (`scorecard.content_hash`, `observation_digests`), `RESOLVED` del
-  replay, y descriptores/observaciones durables en la lane RUNTIME del journal.
-- Determinismo: misma invocación (mismo run-id + seed) → mismo `content_hash`.
-- Journal fixtures de referencia en código: `cmd/engine/five_poc_cases_test.go`
-  (NEG-CASE-01, SPORT-REV-CASE-01) y `cmd/engine/five_poc_gates_test.go`
-  (gates F5 + journal combinado de cinco).
+  `decision`, `reason_codes`, `metrics`; ahora con `engine_sha` y `dataset_digest`),
+  `{outcome, detail, scorecard}` del shadow (`scorecard.content_hash`,
+  `observation_digests`, `engine_sha`, `mode`, `dataset_digest`; el run y su scorecard
+  quedan durables en `experiment_runs` / `experiment_scorecards` del `engine.db` del
+  data-dir), el delta estructurado del compare (parámetros cambiados, contadores,
+  métricas, hashes), el `RESOLVED` del replay, y descriptores/observaciones durables
+  en la lane RUNTIME del journal.
+- Determinismo: misma invocación (mismo run-id + seed) → mismo `content_hash`; los
+  stamps de los frames viajan en la receive timeline del journal, así que dos runs
+  sobre el mismo journal producen stamps idénticos aunque se ejecuten a distinta hora.
+- Comparar BASE vs VARIANT: correr los dos shadows sobre el MISMO journal y
+  `experiment compare` — los `parameters_changed` nombran la mutación, los
+  `counters_differ` el efecto; `dataset_digest` igual en ambos prueba mismo input.
+- Drill completo worked-example por POC (BASE/VARIANT + compare):
+  `testdata/research-v05/experiment-drills/DRILLS.md` en el repo.
 
 ## POC-S01 — NegRisk / PE-002 (`poc-negrisk`)
 
