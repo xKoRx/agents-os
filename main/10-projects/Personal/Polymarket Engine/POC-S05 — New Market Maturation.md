@@ -174,32 +174,34 @@ Estados exactos: `VERIFIED_9d0512a` símbolo+SHA+test ejecutado PASS por la sesi
 
 ## Fixtures F01–F20 — CORPUS PRESERVADO (20 SPECIFIED, 0 NATIVE)
 
-**Base B0:** `t0=2026-09-20T12:00:00Z`, Event Gamma E1=9001, Market Gamma M1=1001, condition C1=`0x`+64×`a`, tokens A101/A102 sintéticos. Gamma G1 durably received t0, FirstKnownAt=t0; boot B1, WS epoch W1; tick .01, fee 0 SÓLO SYNTHETIC, accepting true conocido t0 (no se conoce cuándo se hizo true). Books FULL +1,+60,+300,+3600s: bid .40×10 ask .60×10, mid .50 spread .20 relative .40; Q10 buy VWAP .60/sell .40, 0 impacto relativo al best; sin trade/gap. Reemplazar eventos de B0, no duplicar. Captura q1… orden de recepción, NO WS venue sequence. Freshness max 30s al cut, no backfill. Cada Fxx serializa `{fixture_schema_version=1,synthetic=true,source=GENERATED,params_revision,raw_capture_records,metadata_timeline,epoch_timeline,expected_anchors,expected_quality,expected_reasons,expected_metrics,expected_digest}`. Materializar archivos SOLO coding agent, jamás declarar datos reales.
+**Base B0:** `t0=2026-09-20T12:00:00Z`, Event Gamma E1=9001, Market Gamma M1=1001, condition C1=`0x`+64×`a`, tokens A101/A102 sintéticos. Gamma G1 durably received t0, FirstKnownAt=t0; boot B1, WS epoch W1; tick .01, fee 0 SÓLO SYNTHETIC, accepting true conocido t0 (no se conoce cuándo se hizo true). Books FULL +1,+60,+300,+3600s: bid .40×10 ask .60×10, mid .50 spread .20 relative .40; Q10 buy VWAP .60/sell .40, 0 impacto relativo al best; sin trade/gap. Reemplazar eventos de B0, no duplicar. Captura q1… orden de recepción, NO WS venue sequence. Freshness max 30s al cut, no backfill. Cada Fxx serializa `{fixture_schema_version=1,synthetic=true,source=GENERATED,params_revision,raw_capture_records,metadata_timeline,epoch_timeline,expected_anchors,expected_quality,expected_reasons,expected_metrics,expected_digest}` con expectativas expresadas en claves canónicas `sfg05_v1` de la SPEC técnica. Materializar archivos SOLO coding agent, jamás declarar datos reales. **Condición W:** F03/F04 ejecutan en A como semántica sintética del notice (via `ParseNewMarketNotice/IdentityKey` sin proyección a Catalog); su variante E2E real (raw→Catalog→UniverseChanged→replay) está CONDICIONADA a SFG-06 y sólo corre con `PE004_W_START_ALLOWED=true`. Cada fixture tiene test nombrado con expectativa verificable (`TestPE004F<nn><slug>`); un nombre sin expectativa no cuenta.
 
-| ID | Delta frente a B0 | Resultado esperado |
-|---|---|---|
-| F01 | new_market t0, book +1, TX1 +20 @.60, books cortes | un market, book +1, first trade OBSERVED +20, spread .20, creation UNKNOWN, 0 action |
-| F02 | M2 createdAt declarado t0-1h, recibido t0 | O=t0, `LATE_DISCOVERY`, no pasado importado, C bloqueada |
-| F03 | aviso new_market idéntico duplicado +2 | un mercado, duplicate_count=1, misma first known |
-| F04 | book recibido +1, aviso +3 con timestamp venue t0 | out-of-order, W first observed +3, sin antedatar |
-| F05 | asset↔condition se resuelve Gamma G2 +15, full +16 | no metadata usable antes de +15, primer book usable >=+16, sin backfill |
-| F06 | cero books hasta +3600 con heartbeat sano | no spread cero, `NO_USABLE_BOOK`, censura; no inventar gap/trades |
-| F07 | books +1,+30, gap declarado +40..120, W2 full +121 | +60 incompleto, no interpolation, nuevo epoch |
-| F08 | W1 full +1, W2 delta +22 antes W2 full +25 | ignorar delta anterior a full del nuevo epoch |
-| F09 | tick .01→.001 +21, full +22 | `REGIME_TICK_CHANGED`, intervalos sin atribución orgánica |
-| F10 | fee 0→valor positivo +21, book fijo | `FEE_REGIME_CHANGED`, revisión futura no entra en cut previo |
-| F11 | accepting=false halt +30, aviso viejo +45, book +60 | `MARKET_HALTED`, censura, no reabrir por datos stale |
-| F12 | book .40/.60→.48/.52 +60 | spread .20→.04, mid .50; BUY .52/SELL .48 es pérdida, descriptive only |
-| F13 | book fijo, display .50→.40 y trade .40 | PE019 `DISPLAY_PRICE_ONLY`, BBO/mid constantes, 0 action |
-| F14 | TX bid .40, luego ask .60, book fijo | PE020 `BID_ASK_BOUNCE_ONLY`, Δmid=0, 0 action |
-| F15 | bid .40×10, asks .60×.1 y .95×9.9 | Q10 buy VWAP=.9465, impacto=.3465, nunca fake depth |
-| F16 | book +300 inyectado al cálculo +60 con known_at=+300 | `LOOKAHEAD_REJECTED`, no conocimiento futuro |
-| F17 | books +1,+60,+330,+3600; cut +300 stale 240s | `STALE_BOOK_AT_CUTOFF`, no gap falso |
-| F18 | books base, cero trade | no trade OBSERVED, censura de primer trade y spread medible |
-| F19 | M2 ancla t0+30m, mismo parent E1 | reloj individual, M2 1h incompleta al global t0+1h, cluster=1 |
-| F20 | mismo raw schedules `[1]`, `[7,3,1]`, `[32]` | observations ordenadas byte equivalentes y digest idéntico |
+| ID | Delta frente a B0 | Resultado esperado (invariantes) | Test |
+|---|---|---|---|
+| F01 | new_market t0, book +1, TX1 +20 @.60, books cortes | un market, book +1, first trade OBSERVED +20, spread .20, creation UNKNOWN, 0 action | TestPE004F01FirstBookAndTradeObserved |
+| F02 | M2 createdAt declarado t0-1h, recibido t0 | O=t0, `LATE_DISCOVERY` en Reasons, no pasado importado, C bloqueada | TestPE004F02LateDiscoveryNoBackdate |
+| F03 (W cond.) | aviso new_market idéntico duplicado +2 | un mercado, `IdentityKey` colisiona ⇒ duplicate_count=1, misma first known | TestPE004F03DuplicateNoticeDedup |
+| F04 (W cond.) | book recibido +1, aviso +3 con timestamp venue t0 | out-of-order, W first observed +3, `VenueTimestampRaw` jamás antedata | TestPE004F04LateNoticeNoAntedate |
+| F05 | asset↔condition se resuelve Gamma G2 +15, full +16 | no metadata usable antes de +15, primer book usable >=+16, sin backfill | TestPE004F05LateGammaIdentityResolve |
+| F06 | cero books hasta +3600 con heartbeat sano | no spread cero, `NO_USABLE_BOOK`+`Censored=true`, no inventar gap/trades | TestPE004F06NoUsableBookCensored |
+| F07 | books +1,+30, gap declarado +40..120, W2 full +121 | +60 incompleto, no interpolation, `DepthState` nuevo epoch | TestPE004F07GapNoInterpolationNewEpoch |
+| F08 | W1 full +1, W2 delta +22 antes W2 full +25 | ignorar delta anterior a full del nuevo epoch (`marketview`) | TestPE004F08DeltaBeforeFullIgnored |
+| F09 | tick .01→.001 +21, full +22 | `REGIME_TICK_CHANGED`, intervalos sin atribución orgánica | TestPE004F09TickRegimeChanged |
+| F10 | fee 0→valor positivo +21, book fijo | `FEE_REGIME_CHANGED`, revisión futura no entra en cut previo | TestPE004F10FeeRegimeChangedNotBackdated |
+| F11 | accepting=false halt +30, aviso viejo +45, book +60 | `MARKET_HALTED`, censura, no reabrir por datos stale | TestPE004F11HaltCensoredNoStaleReopen |
+| F12 | book .40/.60→.48/.52 +60 | spread .20→.04, mid .50; BUY .52/SELL .48 es pérdida, `SPREAD_COMPRESSED_DESCRIPTIVE_ONLY`, Candidate=nil | TestPE004F12SpreadCompressionDescriptiveOnly |
+| F13 | book fijo, display .50→.40 y trade .40 | PE019 `DISPLAY_PRICE_ONLY`, BBO/mid constantes, 0 action | TestPE004F13DisplayPriceOnlyPE019 |
+| F14 | TX bid .40, luego ask .60, book fijo | PE020 `BID_ASK_BOUNCE_ONLY`, Δmid=0, 0 action | TestPE004F14BidAskBounceOnlyPE020 |
+| F15 | bid .40×10, asks .60×.1 y .95×9.9 | Q10 buy VWAP=.9465, impacto=.3465 vía `Capacity` real, nunca fake depth | TestPE004F15InsufficientDepthVWAPImpact |
+| F16 | book +300 inyectado al cálculo +60 con known_at=+300 | `LOOKAHEAD_REJECTED`, no conocimiento futuro | TestPE004F16LookaheadRejected |
+| F17 | books +1,+60,+330,+3600; cut +300 stale 240s | `STALE_BOOK_AT_CUTOFF` (`DepthState=Stale`), no gap falso | TestPE004F17StaleBookAtCutoff |
+| F18 | books base, cero trade | no trade OBSERVED, censura de primer trade y spread medible | TestPE004F18NoTradeObservedSpreadValid |
+| F19 | M2 ancla t0+30m, mismo parent E1 | reloj individual, M2 1h incompleta al global t0+1h, cluster=1 | TestPE004F19PerMarketAnchorClock |
+| F20 | mismo raw schedules `[1]`, `[7,3,1]`, `[32]` | observaciones ordenadas byte-equivalentes y digest idéntico vía `RunStrategyReplay` | TestPE004F20ReplayDigestStableAcrossSchedules |
+| F21 (nueva) | B0 ×2: segunda ejecución cambia UNA métrica real (spread .20→.18) | digest distinto con la métrica cambiada e idéntico sin cambios; reordenar `Reasons` también cambia digest; cero oportunidades ⇒ observación durable igualmente | TestPE004F21DigestSensitiveToMetricChange |
+| F22 (nueva) | dos instancias observer (mismos params) sobre el mismo feed | InstanceID distintos, sin fuga de estado entre instancias, digests por instancia deterministas, `ObservationCount`=2×frames | TestPE004F22ObserverInstanceIsolation |
 
-**Harness fases:** A valida función pura A1/A2 en todos los casos relevantes, incl. F01/F03/F04 sólo semántica sintética de notice sin proyectar WS typed; B valida Catalog O y Strategy 0-opps/scorecard tras SFG-05; C valida raw→Capture→Catalog/Books/Frames→observer→REPLAY/SHADOW según gating de W y L2. No exigir W ni full historical dataset para PASS de A/B O. Fallar si orders, future revision, fabricated liquidity, stale fee as-of, lookahead, falso GAP o hash excluye observations. 0 serializadas/0 ejecutadas al editar plan.
+**Harness fases:** A valida función pura A1/A2 en todos los casos relevantes, incl. F03/F04 como semántica sintética de notice vía `ParseNewMarketNotice/IdentityKey` sin proyectar WS typed; B valida Catalog O y Strategy 0-opps/scorecard sobre el `FrameObserver` existente @ `9d0512a`; C valida REPLAY (`RunStrategyReplay` ×2 schedules)/SHADOW (`DECLARED_L2`) según gating de W y L2 real. No exigir W ni full historical dataset para PASS de A/B O. Fallar si orders, future revision, fabricated liquidity, stale fee as-of, lookahead, falso GAP o hash excluye observations. 0 serializadas/0 ejecutadas al editar plan.
 
 ## Gates y seguridad
 
