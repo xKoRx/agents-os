@@ -25,7 +25,7 @@ related:
 
 # 📨 MANDATOS DE IMPLEMENTACIÓN — prompts one-shot
 
-> Un prompt por bloque ejecutable. Cada mandato es autosuficiente: referencia los entregables del plan, declara alcance, prerrequisitos, criterios de cierre y prohibiciones. Ejecutor por defecto = Ariadna (carril Backup/DR). Copiar el bloque como mandato. Regla transversal de todos: cero cambios a diseño congelado F-01..F-14 sin RC, tickets 018-021 intocables (los resuelve el owner), R2 piloto intacto hasta decisión D, y evidencia en `~/aranea/work/<bloque>-<fecha>/` + change log.
+> Un prompt por bloque ejecutable. Para MP-01, la copia canónica ampliada (preflight fail-closed y rollback detallado) es `~/aranea/work/master-plan-20260920/MP01-FIRST-MANDATO.md` — este bloque resume el mismo alcance (N-05). Cada mandato es autosuficiente: referencia los entregables del plan, declara alcance, prerrequisitos, criterios de cierre y prohibiciones. Ejecutor por defecto = Ariadna (carril Backup/DR). Copiar el bloque como mandato. Regla transversal de todos: cero cambios a diseño congelado F-01..F-14 sin RC, tickets 018-021 intocables (los resuelve el owner), R2 piloto intacto hasta decisión D, y evidencia en `~/aranea/work/<bloque>-<fecha>/` + change log.
 
 ## MP-01 — Cobertura base (WP-A0-AUTO + A1 + A3 + A5; MinIO y prune storage.cfg = gated)
 
@@ -120,6 +120,16 @@ VALIDACIÓN/CIERRE: cada drill PASS con evidencia; runbook validado por owner. P
 PROHIBIDO: drills destructivos sobre producción; drill de DR-6 sin 020 resuelto (sólo versión parcial).
 ```
 
+## MP-09 — Off-site bulk GDrive (WP-A8) [requiere MP-02 PASS + 020/021 + datasets bulk]
+
+```
+MANDATO ONE-SHOT — BACKUP-DR: OFF-SITE BULK GDRIVE (A8)
+Prerrequisitos: MP-02 PASS (A7 verificado); 020+021; decisión owner de datasets a bulk. PREFLIGHT (N-08): definir método de export del datastore PBS (restore a scratch → cifrado → chunked) y verificar cuota libre GDrive ≥ 1,3× el tamaño proyectado del primer full + estimación de duración de subida ANTES de fijar cadencia; si la cuota/tiempo no dan, reportar BLOCKED con números, no iniciar.
+ALCANCE: rclone crypt chunked mensual de datasets irremplazables + export cifrado del datastore PBS (crítico).
+VALIDACIÓN/CIERRE: 1 chunk VERIFIED + drill recv + duración/cuota medidas. PASS = bulk VERIFIED (3-2-1 cumple para pool0 selectivo).
+PROHIBIDO: subir sin cifrar; tocar árboles legacy pool2; borrar remote (CLEANUP con autorización separada).
+```
+
 ## Matriz de activación
 
 | Mandato | Bloquea inicio | Puede partir YA |
@@ -132,3 +142,4 @@ PROHIBIDO: drills destructivos sobre producción; drill de DR-6 sin 020 resuelto
 | MP-06 | B2 parcial (pi-hole/CA decisión); B3 tras MP-01/MP-03 | exports OPNsense/TrueNAS tras verificar canal ✅/❓ |
 | MP-07 | S1 (dueño), S2 (ventana); S4 ✅ | S4 ✅ (ejecutor Ceph) |
 | MP-08 | MP-01 (y MP-02 parcial para DR-T6) | — |
+| MP-09 | MP-02 PASS + 020/021 + datasets bulk | — |

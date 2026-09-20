@@ -44,7 +44,7 @@ cssclasses:
 | T0c quorum | 101,147,154,155,156,148,136,138,139 | etcd-snap cluster diario (5 miembros; 148 cubierto como datos) | vzdump kafka SOs post-D; datos kafka UNKNOWN→018 |
 | T0d Echo trading | 124,133,134,144,140,152,153,160,126,129 | PG/Mongo DUMP one-shot VERIFIED (no agendado) | schedules + PITR + vzdump; argus/flink/hasura datos→018 |
 | ADD-CRIT | 116,118 | vault + hermes-state CFG activos | CouchDB dump; ingesta staging→PBS |
-| ADD-IMP/T2 | 113,103,105,106,157,158,142,141,127,128,132,119,137,180,135 | MinIO DUMP one-shot VERIFIED | MinIO schedule; vzdump flota; HA zvol SNAP |
+| ADD-IMP/T2 | 113,103,105,106,157,158,142,141,127,128,132,119,137,180 | MinIO DUMP one-shot VERIFIED | MinIO schedule; vzdump flota; HA zvol SNAP |
 | T3/SQX | 108,111,123,135 + 12 stopped lab | NONE por diseño (F-04 / tier3) | — (defensión documental, no gap) |
 | stopped T3 DEFER | 100,112,151,162,170 | NONE | riesgos latentes LUN2 + RBD huérfana (WP-S1) |
 
@@ -67,7 +67,7 @@ cssclasses:
 | 112 | kronos-sqx-deprecado | VM | stopped | ide0:nfs-storage; scsi0:pool-kronos | — | DEFER (decomisión) | NONE; imagen RBD 120G huérfana lock stale → liberación gated dueño (WP-S1); disco ACTIVO = LVM pool-kronos | — | — | kronos-sqx-deprecado |
 | 113 | mcps | CT | running | rootfs:nfs-storage | — | KEEP | VZ post-D (NO está en piloto) + CFG mcps-ops (WP-A5) | staging+PBS | cfg 7d | plano de acceso; rootfs nfs-storage 20G |
 | 114 | mt4-test | VM | stopped | scsi0:pool1 | — | KEEP | NONE (lab) | — | — | mt4-test pool1 |
-| 115 | traefik | CT | running | rootfs:local-lvm | — | KEEP | CFG R1 VERIFIED diario 04:00 + VZ | staging hermes + PBS (A0) | cfg 1d | acme-stepca.json recovery-critical (CA 200 stopped) |
+| 115 | traefik | CT | running | rootfs:local-lvm | — | KEEP | CFG R1 VERIFIED diario 04:00 + VZ PILOTO R2 ACTIVO (6º CT) | staging hermes + PBS (A0) | cfg 1d | acme-stepca.json recovery-critical (CA 200 stopped) |
 | 116 | obsidian-sync | CT | running | rootfs:nfs-storage | — | KEEP | CFG vault (R1 VERIFIED) + DUMP CouchDB (WP-A1 ext) + VZ post-D | staging+PBS | vault 1d; DB 7d | LiveSync CouchDB 64G rootfs nfs |
 | 117 | ubuntu-server | VM | stopped | scsi0:local-lvm | — | KEEP | NONE (lab) | — | — | ubuntu-server |
 | 118 | agent | VM | running | scsi0:pool1; scsi1:pool1 | — | KEEP | CFG R1 hermes-state VERIFIED 1d + VZ post-D + ingesta staging→PBS (WP-A0) | staging→PBS; off-site R4 | 1d | VM agent; discos pool1 (scsi0+scsi1) |
