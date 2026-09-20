@@ -23,7 +23,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-07"
-updated: "2026-09-13"
+updated: "2026-09-20"
 ---
 
 # Echo Forge — Factory V2 Completion
@@ -32,7 +32,7 @@ updated: "2026-09-13"
 
 > [!info]+ Echo Forge — Factory V2 Completion
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/symphony`
-> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 C5.1–C5.6 IMPLEMENTED @ `b57bfb2`: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] / [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] — READY FOR MANAGER REVIEW; C4 CLOSED @ `bba833d`; T2.11–T2.13 OPEN; not physical-ready and F-04 not closed. F-05-I PLANNED (SPEC + tareas frozen): [[Echo Forge — F-05-I Cohesive release and read surfaces]] / [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]; F-05-C queda diferido a certificación.
+> Subproyecto de agente. Cada fase = una Agent Task `#owner/agent`. F-01 CLOSED: [[Echo Forge — F-01 Canonical generation concurrency]] / [[Echo Forge — F-01 Canonical Generation Concurrency Contract]]. F-02 CLOSED: [[Echo Forge — F-02 Finalist Model V2]] / [[Echo Forge — F-02 Finalist Model V2 Contract]]. F-03 CLOSED: [[Echo Forge — F-03 SQX long-running]] / [[Echo Forge — F-03 SQX Long-Running Contract]]. F-04 C5.1–C5.6 IMPLEMENTED @ `b57bfb2`: [[Echo Forge — F-04 Magic allocation, version seal and handoff]] / [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] — READY FOR MANAGER REVIEW; C4 CLOSED @ `bba833d`; T2.11–T2.13 OPEN; not physical-ready and F-04 not closed. **F-05-I IMPLEMENTED / SOURCE VERIFIED — DECLARATIVE CLOSURE COMPLETE (2026-09-16, T7-CLOSE `3d0e8c9`; reconciliación de esta nota 2026-09-20):** [[Echo Forge — F-05-I Cohesive release and read surfaces]] / [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]; release/deploy/físico NOT RUN; F-05-C queda diferido a certificación.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
 > Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`. Las fases internas no inundan el cockpit.
@@ -237,13 +237,15 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### Next development task
 
-**F-05-I — Cohesive release/read-surface preparation.** `xKoRx/symphony`, nueva rama `codex/f05-release-prep`, baseline `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`. SPEC: [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]; proyecto con tareas atómicas/allowed files/test matrix: [[Echo Forge — F-05-I Cohesive release and read surfaces]]. Completion: matriz determinística y provenance reproducibles, result/read surfaces inspectables, tests/source checks del scope PASS, cero cambios a F-01…F-04/S0 frozen, cero publicación productiva desde la rama y ningún T2.11/T2.12/T2.13 marcado PASS.
+**(Actualizado 2026-09-20.)** F-05-I está `IMPLEMENTED / SOURCE VERIFIED` desde el 2026-09-16 (T7-CLOSE `3d0e8c9`; ver bitácora) — esa preparación de CERT-F05-01 ya está entregada. No queda tarea de ejecución Forge desbloqueada: el siguiente gate del orden frozen es **CERT-E04-01 (T21/AC-37, lane Echo — dependencia externa; owner actions 1/2 pendientes del lado Echo)**, y tras él **CERT-F04-03** (paquete de continuidad Forge listo en `~/aranea/work/f04-cert-f04-02/corpus/F04-03-FORGE-CONTINUITY.md`). Pendiente de decisión manager (no ejecutar autónomamente): refresco de `sqx/core/releasematrix/release-matrix.json` para reflejar CERT-F04-01/02 PASS — exige ampliar la allowlist histórica física del guard (`FROZEN_CONTRACT_COLLISION` potencial, STOP previsto por la SPEC F-05-I).
 
 ## Definition of Done — Factory V2
 
 Factory puede crear supply, evaluar robusto, validar físicamente, producir finalistas estructurales, replenish, sellar versiones exactas, emitir handoffs canónicos, recuperar, correr cómputos largos, pasar FULL golden real y exponer result surfaces. No promete yield rentable ni eligibility Echo.
 
 ## 📆 Bitácora
+
+- **2026-09-20 — Misión FORGE-F04-CONTINUITY/F05-NEXT (lane Forge only; sin efectos laterales).** Reconciliación documental: esta nota quedó desactualizada respecto a F-05-I — el cierre declarativo T7-CLOSE `3d0e8c9` (2026-09-16) ya había dejado F-05-I `IMPLEMENTED / SOURCE VERIFIED` en la SPEC y en el proyecto hijo; verificado en git (`3d0e8c9`/`0ddd4db` en la genealogía de HEAD `25a5122`) y corregido el info box de esta nota. G4 del mandato: **ninguna tarea de ejecución Forge desbloqueada** — F-05-I cerrada; la preparación de CERT-F05-01 (matriz + read surface + checklist + manifest template) ya fue entregada por F-05-I; CERT-F05-01…03 permanecen tras CERT-F04-01…03 por orden frozen; el único gate siguiente es **CERT-E04-01 (T21, lane Echo — dependencia externa, ownership Echo)**. Hallazgo registrado para manager (**FROZEN_CONTRACT_COLLISION potencial**, condición STOP prevista por la SPEC F-05-I): la fila de la release matrix para `f04-magic-allocation`/`f04-strategy-version-seal` declara `physically_certified DEFERRED {CERT-F04-01, CERT-F04-02}`, gates hoy PASS (CERT-F04-01 PHYSICALLY CERTIFIED, CERT-F04-02 PASS/T2.11) — actualizarlas a DONE exigiría ampliar la allowlist histórica física del guard del artefacto (cambio frozen, requiere manager review; NO ejecutado en esta sesión). Continuidad F04-03: frontera A/B/C fijada y paquete `F04-03-FORGE-CONTINUITY.md` creado en el corpus; validador del corpus re-ejecutado PASS; suites herméticas del productor re-evidenciadas @ `25a5122` (PASS + `-race` + vet). Cero campañas/backtests/POST/releases/deploys; producción y Echo intactos; dirty operacional ajeno preservado. Control: delta FORGE-F04-CONTINUITY en [[Echo + Echo Forge — Deferred Certification Backlog]]; agent-run `2026-09-20-zcode-glm-5.3-flash-forge-f04-continuity-f05-next`.
 
 - **2026-09-13 — TOP F-05-I PLANNING COMPLETE.** Recon read-only @ `b57bfb2` confirmó: read models V2 sin callers productivos (`forge.Service`, `LoadForgeCampaignResult`), cero HTTP/API/GraphQL, inspección vía `sqx/tools` informales. SPEC frozen [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]: read surface CLI JSON determinística sobre ports narrow + release matrix declarativa (`deploy/release-matrix.json` + validador `sqx/core/releasematrix`) + funnel proyección pura por `stage_key`; `DATABASE MIGRATION: NONE`; sin HTTP; sin writes; `fixture != authentic physical golden`. Proyecto hijo con F05I-T1…T7, allowed files exactos y matriz de tests congelada. NORMAL pendiente manager review. Ningún gate físico marcado.
 
