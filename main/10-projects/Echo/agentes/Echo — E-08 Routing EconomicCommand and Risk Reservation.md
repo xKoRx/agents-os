@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-20
 due:
-progress: 0
+progress: 60
 repo: xKoRx/echo
 jira:
 prs:
@@ -46,21 +46,23 @@ Persistir la decisión económica como hecho durable: universo expected/excluded
 
 ## 📊 Estado actual
 
-- **E08_PLANNING_FROZEN v1.0.0 (2026-09-20):** SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT @ `fe5c9de0` en branch `feature/e08-routing-economic-command-risk-reservation` (base `3765f2ba` = HEAD E-07 C3; master `5dd998f1` intacto). Migración `066` reservada (exclusiva E-08; 066 libre verificada). Gate RAW-BEFORE-ROUTE como boundary RG-1…RG-6 (sólo hechos `PROCESSED` commiteados + pin OBSERVING válido; PublishSync ≠ commit durable; UNKNOWN/SHADOW/sin coverage jamás elegibilidad; replay jamás genera segundo comando; dispatch jamás adelanta al commit). CommandID determinístico resuelto por regla (`command_unique_key` UNIQUE + `content_digest`; UUIDv7 minteado una vez; misma key+digest ⇒ mismo comando; key+digest distinto ⇒ `COMMAND_CONFLICT` cuarentenado) — consume el defer de E-02 §1.0.1. Snapshot inmutable content-addressed de policy/sizing/SLTP/destination/delay/account/instrument/decision (fila mutable jamás es autoridad histórica). Reserva integrada al command con headroom serializado por cuenta (`SELECT … FOR UPDATE`), `UNKNOWN_HELD` sin auto-release. Outbox monotónico en la propia fila del comando; sweepers SKIP LOCKED; reconciliación sin reenvío. Separación frozen: clase A (persistencia/identidad, PG hoy, cero órdenes) / clase C (activación económica condicionada: wiring vivo + dispatcher + E2E; prerrequisitos E-07 PHYSICAL, E-06 G1/T21, MQL_COMPILE, corrección `EchoPersistence.mqh`, E-02 AC-18). No reabre E-01…E-07 ni el roadmap. Next = NORMAL (`NORMAL-PROMPT.md`).
+- **E08_IMPLEMENTED clase A v1.0.0 (2026-09-20):** NORMAL T00–T14 ejecutado; `SOURCE_VERIFIED · CONTRACT_PASS · PG_PASS · PHYSICAL_PENDING · ECONOMIC_ACTIVATION_PENDING · FINAL_CLOSED=NO`. Push FF `fe5c9de0..b0012909` en `origin/feature/e08-routing-economic-command-risk-reservation` (HEAD == origin; master `5dd998f1` intacto). 13 commits: dominio §5/§6 (identidad S0-validada sin truncar), migración 066 con SIETE tablas (corrección Manager #2) + harness up/down/up, stores snapshots/routing/comandos/reservas, RoutingGate RG-1…RG-4, router durable con transacción única y re-drive desde snapshot congelado (corrección Manager #3), recovery sweepers §12, driver `ECHO_E8_DURABLE_ROUTING=false` default fail-closed. Matriz MT-01…MT-18 PASS sobre PG 17.11 descartable; failing sets 55=55 vs T00 (cero nuevos/cambiados); delta ⊆ PLAN §2 (gofmt accidental de 8 archivos E-07 revertido en `dff46409`). Cobertura: críticos (identidad/reservas/outbox/gate) 100%; residuo declarado = wrappers de error de infra no inyectables sin mocks. VERIFICATION §2–§9 con evidencia real. Next = **Manager review** de la implementación (decisión: aceptar CONTRACT/PG y programar clase C con prerrequisitos §14).
+- **E08_PLANNING_FROZEN v1.0.0 (2026-09-20): SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT @ `fe5c9de0` en branch `feature/e08-routing-economic-command-risk-reservation` (base `3765f2ba` = HEAD E-07 C3; master `5dd998f1` intacto). Migración `066` reservada (exclusiva E-08; 066 libre verificada). Gate RAW-BEFORE-ROUTE como boundary RG-1…RG-6 (sólo hechos `PROCESSED` commiteados + pin OBSERVING válido; PublishSync ≠ commit durable; UNKNOWN/SHADOW/sin coverage jamás elegibilidad; replay jamás genera segundo comando; dispatch jamás adelanta al commit). CommandID determinístico resuelto por regla (`command_unique_key` UNIQUE + `content_digest`; UUIDv7 minteado una vez; misma key+digest ⇒ mismo comando; key+digest distinto ⇒ `COMMAND_CONFLICT` cuarentenado) — consume el defer de E-02 §1.0.1. Snapshot inmutable content-addressed de policy/sizing/SLTP/destination/delay/account/instrument/decision (fila mutable jamás es autoridad histórica). Reserva integrada al command con headroom serializado por cuenta (`SELECT … FOR UPDATE`), `UNKNOWN_HELD` sin auto-release. Outbox monotónico en la propia fila del comando; sweepers SKIP LOCKED; reconciliación sin reenvío. Separación frozen: clase A (persistencia/identidad, PG hoy, cero órdenes) / clase C (activación económica condicionada: wiring vivo + dispatcher + E2E; prerrequisitos E-07 PHYSICAL, E-06 G1/T21, MQL_COMPILE, corrección `EchoPersistence.mqh`, E-02 AC-18). No reabre E-01…E-07 ni el roadmap. Next = NORMAL (`NORMAL-PROMPT.md`).
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `feature/e08-routing-economic-command-risk-reservation` | `3765f2ba` (E-07 HEAD C3; master `5dd998f1` intacto) | `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/SPEC.md` v1.0.0 @ `fe5c9de0` | `.../PLAN.md` + `.../TASKS.md` + `.../VERIFICATION.md` + `.../NORMAL-PROMPT.md` | E08_PLANNING_FROZEN v1.0.0 · NORMAL PENDING · gates objetivo: SOURCE/CONTRACT/PG PASS + PHYSICAL_PENDING + ECONOMIC_ACTIVATION_PENDING + FINAL_CLOSED=NO |
+| xKoRx/echo | `feature/e08-routing-economic-command-risk-reservation` | `3765f2ba` (E-07 HEAD C3; master `5dd998f1` intacto) | `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/SPEC.md` v1.0.0 @ `fe5c9de0` | `.../PLAN.md` + `.../TASKS.md` + `.../VERIFICATION.md` + `.../NORMAL-PROMPT.md` | E08_IMPLEMENTED clase A v1.0.0 @ `b0012909` · SOURCE/CONTRACT/PG PASS + PHYSICAL_PENDING + ECONOMIC_ACTIVATION_PENDING + FINAL_CLOSED=NO · Next: Manager review |
 
 ## ✅ Tareas
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> - [ ] E-08 T00–T02: baseline + failing sets, dominio E-08, migración 066 + harness #owner/agent #type/dev #area/echo
-> - [ ] E-08 T03–T07: stores snapshots/routing/comandos/reservas + RoutingGate RG-1…RG-4 #owner/agent #type/dev #area/echo
-> - [ ] E-08 T08–T10: router durable (default OFF), sweepers recovery/reconciliation, driver + wiring apagado #owner/agent #type/dev #area/echo
-> - [ ] E-08 T11–T14: matriz MT-01…MT-18, gates SOURCE/BWC, VERIFICATION con evidencia, handoff Manager #owner/agent #type/dev #area/echo
+> - [x] E-08 T00–T02: baseline + failing sets, dominio E-08, migración 066 + harness #owner/agent #type/dev #area/echo
+> - [x] E-08 T03–T07: stores snapshots/routing/comandos/reservas + RoutingGate RG-1…RG-4 #owner/agent #type/dev #area/echo
+> - [x] E-08 T08–T10: router durable (default OFF), sweepers recovery/reconciliation, driver + wiring apagado #owner/agent #type/dev #area/echo
+> - [x] E-08 T11–T14: matriz MT-01…MT-18, gates SOURCE/BWC, VERIFICATION con evidencia, handoff Manager #owner/agent #type/dev #area/echo
+> - [ ] E-08 clase C: wiring vivo + dispatcher + CLOSE durable + E2E (gate Manager/owner; prerrequisitos SPEC §14) #owner/agent #type/dev #area/echo
 
 ## 🗺️ Roadmap (padre)
 
@@ -69,6 +71,7 @@ Persistir la decisión económica como hecho durable: universo expected/excluded
 
 ## 📆 Bitácora
 
+- **2026-09-20 — NORMAL T00–T14 una sesión:** implementación clase A completa @ `b0012909` pushed. Gates: SOURCE (delta ⊆ PLAN §2; tokens 0; contracts/001–065/go.mod/legacy diff 0), CONTRACT (`-race` domain/postgres/econroute), PG (harness 066 up/down/up + suites PG REAL con DATABASE_URL). Failing sets 55=55 idénticos vs T00. Correcciones Manager aplicadas: HEAD `fe5c9de0` (#1), SIETE tablas (#2), re-drive desde snapshot congelado (#3), S0 real validado sin truncamiento (#4 — `Validate()` del envelope construye el S0 `EconomicCommand` y propaga su rechazo exacto; claves no representables (>128 bytes) fallan cerradas). Decisiones de ejecución en VERIFICATION §8: gates Go en modo workspace (GOWORK=off imposible para v3/core sin editar go.sum), `routing_universe_ref` en 066 como fuente del re-drive §12a, `IN_FLIGHT` expirado dual (reclaim §9 / sweeper §12c con SKIP LOCKED), CREATED sin headroom ⇒ BLOCKED_AFTER_DECISION + EXCLUDED(INSUFFICIENT_RESERVATION). Cobertura: críticos 100%, residuo declarado (wrappers de error de infra; repo prohíbe mocks de stores). Next = Manager review.
 - **2026-09-20 — E-08 TOP planning one-shot:** SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT v1.0.0 @ `fe5c9de0` en `origin/feature/e08-routing-economic-command-risk-reservation` (docs-only; base `3765f2ba` E-07 C3; master intacto `5dd998f1`). Baseline resuelto contra repos reales (ramas E-06 `b66dc5ff` / E-07 `3765f2ba` local=origin; migración 066 libre). Diseño frozen: gate RG-1…RG-6 sobre E-07 §17.4; identidad comando por `command_unique_key`+`content_digest` (UUIDv7 mint once; resuelve defer E-02); snapshots content-addressed inmutables; reservas con lock por cuenta y `UNKNOWN_HELD` conservador; outbox monotónico con claims SKIP LOCKED; errores permanentes/transitorios/desconocidos con fail-closed; recovery sin resend ciego; reconciliación como superficie para E-09. Separación clase A (desarrollable hoy, cero órdenes) vs clase C (activación condicionada, prerrequisitos declarados). Worktree `/tmp/echo-e08-routing-economic-command-risk-reservation`. E-01…E-07 no reabiertos; defecto `EchoPersistence.mqh` intocado (carril Manager). Next = NORMAL.
 
 ## 🧭 Decisiones
