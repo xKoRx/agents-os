@@ -117,7 +117,7 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 
 ## POC-S05 — New Market Maturation / PE-004 O/B (`poc-maturation`)
 
-- **HOW TO RUN**: `--run "poc-maturation:cohort=B;market_id=0xc;asset_id=AAA"` (cohort `O` exige `known_at_ms`; `B` lo PROHÍBE — ancla = primer book usable). Defaults: `windows_s=60,300,3600;max_book_age_s=30;min_two_sided_samples=2;size_grid_shares=1,5,10;params_revision=1`.
+- **HOW TO RUN**: `--run "poc-maturation:cohort=B;market_id=0xc;asset_id=AAA"` (cohort `O` exige `known_at_ms`; `B` lo PROHÍBE — ancla = primer book usable). Defaults: `windows_s=60,300,3600;max_book_age_s=30;min_two_sided_samples=2;size_grid_shares=1,5,10;params_revision=1`. Para cohorte `O`, el `known_at_ms` debe ser el `first_known_at` de Catalog — el adapter `CatalogFirstKnownAnchor` (`internal/strategy/pocs/maturation/catalog_anchor.go`, aceptación 2026-09-20) lo lee read-only as-of de `catalog.Service.InspectEntity` y jamás antedata con `createdAt`; no pasar nunca un `createdAt` de Gamma como known-at.
 - **MODE**: **OBSERVATION_ONLY** (descriptivo): `Opportunity=none`, `Orders=0`; `FrameObserver` → observaciones durables `pe004.*` (spread, mid, profundidad observable, Q1/Q5/Q10 si hay capacidad, impacto, actividad, censoring, controles PE-019/020).
 - **OUTPUT**: digests de observación por frame en el reporte screen (`delivery.observation`) y `scorecard.observation_digests` en shadow.
 - **Casos**: PE004-CASE-MATURATION / CENSORED / ZERO-OPPORTUNITIES / TRUNCATED-DEPTH / INSTANCE-ISOLATION (`internal/strategy/pocs/maturation/maturation_test.go`, `core_test.go`) + replay digest MATCH (commit `fa69adc`).
