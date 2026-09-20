@@ -82,6 +82,7 @@ Use 1-5, where 1 is poor and 5 is excellent.
 - Missing context: ninguno.
 - Duplicate/noisy result: ninguno.
 - Better future query: n/a.
+- Fricción menor: `graphify-obsidian explain` superó 60 s (timeout) en validación de cierre; cierre completado por lectura directa de fuentes sin bloqueo. Si se repite, candidata a graphify-maintenance.
 
 ## Skill Feedback
 
