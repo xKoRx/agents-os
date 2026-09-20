@@ -38,10 +38,10 @@ ALCANCE (todo AUTO, sin ventana, cero mutaciones en guests de trading):
 2. WP-A1: timers systemd en hermes — PG 152 dump diario, Mongo 153 dump diario (patrón g1a-driver: dump→cifrado AES→ingesta pxar→verify PBS). MinIO 157 semanal recurrente EXCLUIDO de este mandato: requiere gate owner separado (regla 4.1/018 — MinIO es ADD no aprobado); si el owner lo autoriza en chat, se agrega al timer con el mismo patrón G1B. Retención 30d sin prune. Credenciales por stdin/forced-command whitelist; claves por custodia existente. Horarios: dumps 03:00-03:45, ANTES de los timers R1 04:00/05:00 (mismo host; no re-agendarlos).
 3. WP-A3: dump diario CouchDB 116 + ingesta; drill restore a scratch con conteo de docs.
 4. WP-A5: export semanal de compose/env/units de 126/129/141/127/128/158/142/113 + /etc/proxmox-backup-* de PBS 180 (sin secretos en claro).
-5. WP-A4 (sólo parte AUTO): incluir el stream semanal MinIO en el timer; versioning MinIO queda EXCLUIDO (gated).
+4. WP-A4: SOLO si el owner autoriza el stream recurrente de MinIO (mismo gate del punto 2); versioning MinIO queda EXCLUIDO (gated).
 
 VALIDACIÓN / CIERRE: 2 ciclos de los jobs diarios + 1 ciclo del semanal (si MinIO fue autorizado) con VERIFY_TASK_OK + manifest sha + 1 drill de restore (PG o Mongo) desde PBS; timers active+enabled; cero impacto en R2 (día 7/7 y decisión D intactos). Criterio de cierre: PASS = PG+Mongo (+CouchDB) VERIFIED+AUTOMATED + drill PASS + R2 intacto verificado.
-PROHIBIDO: tocar postgresql.conf/mongod.conf, jobs.cfg PVE, Ceph, tickets, diseño congelado, prune del datastore main, y cualquier reinicio de guests. Fallar PASS → reportar BLOCKED con evidencia sin reintentos Ciegos.
+PROHIBIDO: tocar postgresql.conf/mongod.conf, jobs.cfg PVE, Ceph, tickets, diseño congelado, prune del datastore main, y cualquier reinicio de guests. Fallar PASS → reportar BLOCKED con evidencia, sin reintentos a ciegas.
 ```
 
 ## MP-02 — Off-site crítico (WP-A7) [requiere 020+021]
@@ -129,4 +129,4 @@ PROHIBIDO: drills destructivos sobre producción; drill de DR-6 sin 020 resuelto
 | MP-05 | datasets decisión + 019 (scrub puede ir antes) | scrub pool2 ✅ |
 | MP-06 | B2 parcial (pi-hole/CA decisión); B3 tras MP-01/MP-03 | exports OPNsense/TrueNAS tras verificar canal ✅/❓ |
 | MP-07 | S1 (dueño), S2 (ventana); S4 ✅ | S4 ✅ (ejecutor Ceph) |
-| MP-08 | MP-01 (y MP-02 parcial para DR-6) | — |
+| MP-08 | MP-01 (y MP-02 parcial para DR-T6) | — |
