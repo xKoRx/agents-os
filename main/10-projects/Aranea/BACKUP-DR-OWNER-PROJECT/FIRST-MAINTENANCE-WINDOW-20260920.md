@@ -63,8 +63,8 @@ updated: "2026-09-20"
 | ID | Servicio | Problema | Operaciones | Dependencias | Gate | Duración |
 |---|---|---|---|---|---|---|
 | P1-1 | Echo 140 SO → hades local-lvm (W5 fase 1) | SO reconstruible en pool1 nearfull | vzdump offline 140 → restore a local-lvm hades → arranque → verificación app completa (arranque limpio + sesiones reconectadas + freshness de métricas; NO se exige intent de mercado con el mercado cerrado) | D-piloto GO + 018 + B1 mecanismo + ventana con Echo cerrado | OWNER | 30-40 min |
-| P1-2 | W2 traefik 115 → nfs-storage nuevo | SPOF edge en athena | mismo mecanismo P0-2 aplicado a 115 + prueba arranque nodo alterno | W1 hecho (P0-2) | OWNER | 30 min |
-| P1-3 | W4 kafka 128 hera→hades | broker del pipeline Echo en host Ceph | diagnóstico previo del brote (ver P1-4) + vzdump 128 + migración offline 5 min | diagnóstico del brote sin causa abierta | OWNER | 15 min |
+| P1-2 | W2 traefik 115 → nfs-pool2 | SPOF edge en athena | mismo mecanismo P0-2 aplicado a 115 + prueba arranque nodo alterno | W1 hecho (P0-2) | OWNER | 30 min |
+| P1-3 | W4 kafka 128 hera→athena | broker del pipeline Echo en host Ceph | diagnóstico previo del brote (ver P1-4) + vzdump 128 + migración offline 5 min | diagnóstico del brote sin causa abierta | OWNER | 15 min |
 | P1-4 | Diagnóstico brote kafka bridges | +147 err/h en bridges 20sep | correlación logs kafka 128 vs errores métricas; verificar ISR de kafka-hera/kronos/zeus (canal a definir) | canal RO a 128/guests kafka | ninguno si hay canal | 1h |
 | P1-5 | W5 fases 2-3 (MT4s, SOs PG/Mongo/MinIO) | resto de down-tier pool1 | igual que P1-1, escalonado | P1-1 exitoso + espacio PBS post-P0-1 | OWNER | 2-3 ventanas |
 
@@ -80,7 +80,7 @@ updated: "2026-09-20"
 ### Bloqueantes owner estrictamente necesarios para P0
 
 1. **OK D-piloto** con métricas del 25-26sep (habilita P0-1) — ya está calendarizado como decisión del 28sep; adelantarla a la ventana o ejecutar P0-1 cuando el owner decida.
-2. **Diff storage.cfg W1 aprobado** (export pool2 + redefine nfs-storage, 5 nodos) + **ventana 019 declarada** (sáb 26sep 02:00-07:00) — habilita P0-2.
+2. **Alta del storage `nfs-pool2` aprobada** (dataset+export pool2 y una edición pmxcfs; `nfs-storage` NO se toca) + **ventana 019 declarada** (sáb 26sep 02:00-07:00) — habilita P0-2.
 3. K1/K2 no requieren gates.
 
 ### Mandato de ejecución P0
