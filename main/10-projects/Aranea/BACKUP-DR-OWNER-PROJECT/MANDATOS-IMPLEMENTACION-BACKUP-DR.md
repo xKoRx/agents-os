@@ -27,21 +27,23 @@ related:
 
 > Un prompt por bloque ejecutable. Cada mandato es autosuficiente: referencia los entregables del plan, declara alcance, prerrequisitos, criterios de cierre y prohibiciones. Ejecutor por defecto = Ariadna (carril Backup/DR). Copiar el bloque como mandato. Regla transversal de todos: cero cambios a diseño congelado F-01..F-14 sin RC, tickets 018-021 intocables (los resuelve el owner), R2 piloto intacto hasta decisión D, y evidencia en `~/aranea/work/<bloque>-<fecha>/` + change log.
 
-## MP-01 — Cobertura base AUTO (WP-A0 + A1 + A3 + A4-AUTO + A5)
+## MP-01 — Cobertura base (WP-A0-AUTO + A1 + A3 + A5; MinIO y prune storage.cfg = gated)
 
 ```
 MANDATO ONE-SHOT — BACKUP-DR: COBERTURA BASE (A0/A1/A3/A5)
 Actúa como operador del proyecto BACKUP-DR-OWNER-PROJECT. Reutiliza: MASTER-PLAN-STORAGE-BACKUP-DR, ROADMAP-WP (A0,A1,A3,A4,A5), MATRIZ-59-GUESTS, patrón G1A/G1B (driver, cifrado, custodia claves BACKUP-DR-KEY-RECOVERY) y staging R1/R1.5 existente.
+AUTORIDADES: AUTO = lectura/diagnóstico, escritura en hermes (timers nuevos, staging propio) e ingesta PBS vía mecanismo demostrado. Baseline: R2 piloto ACTIVO (no tocar; verificar al cierre), datastore main 733M→~500+ chunks, staging 9,1G/49G, timers R1 04:00/05:00 intocables.
+PREFLIGHT (fail-closed): acceso PBS + hermes OK; espacio datastore <70%; staging legible; snapshots G1A/G1B presentes; si cualquier check falla → BLOCKED con evidencia, sin reintentos a ciegas.
 
-ALCANCE (todo AUTO, sin ventana, cero mutaciones en guests de trading):
-1. WP-A0: ingestar a PBS (host/r0d-config-*) los run-dirs R1/R1.5 vigentes; round-trip sha de 1 unidad; corregir prune-backups `keep-all=1` de nfs-storage en 5 nodos (diff antes/después).
-2. WP-A1: timers systemd en hermes — PG 152 dump diario, Mongo 153 dump diario (patrón g1a-driver: dump→cifrado AES→ingesta pxar→verify PBS). MinIO 157 semanal recurrente EXCLUIDO de este mandato: requiere gate owner separado (regla 4.1/018 — MinIO es ADD no aprobado); si el owner lo autoriza en chat, se agrega al timer con el mismo patrón G1B. Retención 30d sin prune. Credenciales por stdin/forced-command whitelist; claves por custodia existente. Horarios: dumps 03:00-03:45, ANTES de los timers R1 04:00/05:00 (mismo host; no re-agendarlos).
+ALCANCE (sin ventana, cero mutaciones en guests de trading):
+1. WP-A0 (AUTO): ingestar a PBS (host/r0d-config-*) los run-dirs R1/R1.5 vigentes; round-trip sha de 1 unidad. PRUNE nfs-storage: PREPARAR el diff de prune-backups `keep-all=1` de nfs-storage en 5 nodos y presentarlo al owner — la edición de /etc/pve/storage.cfg NO se ejecuta en este mandato (GATED: OK owner sobre diff exacto, post-inventario del contenido backup nfs).
+2. WP-A1: timers systemd en hermes — PG 152 dump diario, Mongo 153 dump diario (patrón g1a-driver: dump→cifrado AES→ingesta pxar→verify PBS). La recurrencia PG/Mongo queda autorizada POR LA APROBACIÓN DE ESTE PLAN (el OK one-shot de G1A no la incluía). MinIO 157 semanal recurrente EXCLUIDO: requiere gate owner separado (regla 4.1/018 — MinIO es ADD no aprobado); si el owner lo autoriza en chat, se agrega con el mismo patrón G1B. Retención 30d sin prune. Credenciales por stdin/forced-command whitelist; claves por custodia existente. Horarios: dumps 03:00-03:45, ANTES de los timers R1 04:00/05:00 (mismo host; no re-agendarlos).
 3. WP-A3: dump diario CouchDB 116 + ingesta; drill restore a scratch con conteo de docs.
 4. WP-A5: export semanal de compose/env/units de 126/129/141/127/128/158/142/113 + /etc/proxmox-backup-* de PBS 180 (sin secretos en claro).
-4. WP-A4: SOLO si el owner autoriza el stream recurrente de MinIO (mismo gate del punto 2); versioning MinIO queda EXCLUIDO (gated).
 
-VALIDACIÓN / CIERRE: 2 ciclos de los jobs diarios + 1 ciclo del semanal (si MinIO fue autorizado) con VERIFY_TASK_OK + manifest sha + 1 drill de restore (PG o Mongo) desde PBS; timers active+enabled; cero impacto en R2 (día 7/7 y decisión D intactos). Criterio de cierre: PASS = PG+Mongo (+CouchDB) VERIFIED+AUTOMATED + drill PASS + R2 intacto verificado.
-PROHIBIDO: tocar postgresql.conf/mongod.conf, jobs.cfg PVE, Ceph, tickets, diseño congelado, prune del datastore main, y cualquier reinicio de guests. Fallar PASS → reportar BLOCKED con evidencia, sin reintentos a ciegas.
+VALIDACIÓN / CIERRE: 2 ciclos de los jobs diarios + 1 ciclo del semanal (si MinIO fue autorizado) con VERIFY_TASK_OK + manifest sha + 1 drill de restore (PG o Mongo) desde PBS; timers active+enabled; cero impacto en R2 (verificar día del piloto y decisión D intactos al cierre). Criterio de cierre: PASS = PG+Mongo (+CouchDB) VERIFIED+AUTOMATED + drill PASS + R2 intacto verificado.
+EVIDENCIA Y CIERRE DE SESIÓN: logs + manifests en ~/aranea/work/mp01-<fecha>/; change log canónico; feedback si hay fricción; cierre de sesión completo al terminar (mandato one-shot).
+PROHIBIDO: tocar postgresql.conf/mongod.conf, /etc/pve/storage.cfg, jobs.cfg PVE, Ceph, tickets, diseño congelado, prune del datastore main, y cualquier reinicio de guests. Fallar PASS → reportar BLOCKED con evidencia, sin reintentos a ciegas.
 ```
 
 ## MP-02 — Off-site crítico (WP-A7) [requiere 020+021]
@@ -50,7 +52,7 @@ PROHIBIDO: tocar postgresql.conf/mongod.conf, jobs.cfg PVE, Ceph, tickets, dise�
 MANDATO ONE-SHOT — BACKUP-DR: OFF-SITE CRÍTICO restic→pCloud (A7)
 Prerrequisitos gates: ticket 020 (Secret Zero operativo) y 021 (decisión OAuth) RESUELTOS por el owner; proveedor pCloud revalidado. Sin ambos: NO iniciar.
 
-ALCANCE: repo restic cifrado en pCloud (F-08: crítico); push semanal de configs R1/R1.5 + dumps PBS exportados + referencias de custodia de claves; drill de descarga+descifrado en máquina limpia (hermes off, prueba de recuperación sin infra local).
+ALCANCE: repo restic cifrado en pCloud (F-08: crítico); push semanal de configs R1/R1.5 + dumps PBS exportados + copia CIFRADA de las claves `r0d-g1a.key`/`r0d-g1b.key` (o escrow de ambas dentro de Secret Zero 020 — referencias sin la clave NO sirven para recuperar); drill de descarga+descifrado en máquina limpia (hermes off, prueba de recuperación sin infra local).
 VALIDACIÓN/CIERRE: 1 snapshot VERIFIED off-site + drill completo de recuperación PASS + retención documentada. PASS = 3-2-1 cumple para configs/dumps.
 PROHIBIDO: subir plaintext sin cifrar, mezclar con tier bulk, guardar credenciales en vault/agentes (solo referencias seguras).
 ```
