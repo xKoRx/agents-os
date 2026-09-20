@@ -10,7 +10,7 @@ parent: "[[Multimodal Knowledge Engine]]"
 sprint:
 start: 2026-09-17
 due:
-progress: 5
+progress: 100
 repo: xKoRx/multimodal-knowledge-engine
 jira:
 prs:
@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/personal
 created: "2026-09-17"
-updated: "2026-09-17"
+updated: "2026-09-20"
 ---
 
 # M0 Execution
@@ -33,6 +33,8 @@ updated: "2026-09-17"
 
 ## 📊 Estado actual
 
+- **2026-09-20 — M0 FINAL: BLOCKED (físico) + hallazgos materiales del benchmark de capacidad.** Campaña de implementación COMPLETA: las 7 SPECs despachadas, implementadas, testeadas y gateadas con QA adversarial separado. Rama `m0-implementation` pusheada a origin en HEAD `77b8d6f` (46 commits desde el freeze `e5f9e97`; 16/16 paquetes verdes; coberturas ≥95% new-code verificadas por QA). El BLOCKED es exclusivamente físico: sin video autorizado ni credenciales GLM-5.3-Flash no puede ejecutarse la certificación autoritativa de SPEC-04 (G0, golden desde original real, A/C sobre material real) ni el E2E live de 00A (criterio-8). NO es NO_GO: la evidencia sintética es de capacidad, no del material real. Desbloqueo del owner: (1) video autorizado 1-2h + credenciales GLM (`MKE_GLM_API_KEY`), (2) opcional: instalar Ollama/LM Studio/Whisper o autorizar Kronos para completar filas BLOCKED de 00B.
+- **Hallazgos materiales del benchmark sintético (adjudicados por QA, aplicar al run real):** (1) la no-surfacing de contradicciones era input-driven — el pipeline SÍ publica CONTRADICTS end-to-end cuando la reconstrucción lo propone (diagnóstico con estructura 03-A); el run real debe exigir propuesta de CONTRADICTS ante discrepancia de fuentes; (2) gap real de detección de eventos de frontera (digit-change: sin evidencia commiteada en [0.9,1.1)s — density/stride configurable); (3) paráfrasis pierde tokens y procedures de transcript no se reconstruyen como Procedures; (4) C (adaptive) aportó 0 conocimiento incremental correcto en 3/3 casos con costo extra → si el run real lo confirma, las reglas congeladas rechazan C por KISS; (5) G9 FAIL sobre lo ejecutado (reconstruibilidad 2/3, 3/4, 3/5). Evidencia: `~/mke/evidence/04/` (qa-report.md, benchmark-execution-report.md, correction-report.md, golden-evaluator-report.md).
 - **2026-09-17 — Bootstrap y preflight completados:** Agents-OS cargado; subproyecto materializado; repo clonado en workspace externo (`~/mke/multimodal-knowledge-engine`); baseline congelado `e5f9e9757d0e42b00c831e57920174428397d3b5` verificado como HEAD exacto de `master`; worktree limpio; las 7 docs canónicas presentes (`architecture.md` + 6 SPECs). Despachando SPEC-00A.
 - **2026-09-17 — SPEC-00A GATE = BLOCKED (solo criterio-8):** implementación completa en `m0-implementation` HEAD `e1cfdc6` (6 commits). QA adversarial: criterios 1–7, 9, 10 PASS re-verificados (tests 9/9 verde, cobertura 97.2%, replay byte-idéntico `7fa119b6…`/`bea7aa3d…`, trazas Markdown→JSONL→evidencia resuelven, malformado nunca publicado, sin secretos). Ciclo CORRECT cerrado (D1 fixtures veraces vs píxeles, D3 audit gating). Criterio-8 (E2E live GLM-5.3-Flash) BLOCKED físico: sin credenciales (`MKE_GLM_API_KEY`) ni video autorizado en la máquina. Solo el owner puede desbloquear; no detiene 00B/01.
 - **2026-09-17 — SPEC-03-A GATE = PASS (15/15, habilita 03-C):** HEAD `97fa0e0` (7 commits; +13.4k líneas). Pipeline completo baseline sobre evidence fijo: reconstruction→integrity→grounding→consolidation→knowledge.jsonl→documentation.md, replay byte-idéntico sobre el dataset real de 02 (2 replays propios del QA), crash/resume en 3+5 puntos sin duplicar invocaciones (21/21), contradicción audio/screen visible sin elegir verdad, merge de ventanas con provenance completa, late-exception revalida a v2, epistémicas reservadas estructuralmente imposibles, budget→INCOMPLETE durable con doc parcial. Cobertura nuevo código 97.2-97.4% (QA midió 97.19%). Defecto menor no-bloqueante DEFECT-1 (4 ramas inducibles sin cubrir: cmd/mke/pipeline.go:93, publish/knowledge03.go:331, pipeline/baseline_review.go:525, baseline.go:525/530) delegado como housekeeping obligatorio a 03-C. OBS-1 "v%s" prompts horneado en identidades (no tocar: invalidación intencional); OBS-2 purity test cubre 2/8 secciones (ampliar en 03-C).
@@ -46,7 +48,7 @@ updated: "2026-09-17"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| Multimodal Knowledge Engine / `xKoRx/multimodal-knowledge-engine` | `m0-implementation` | `e5f9e9757d0e42b00c831e57920174428397d3b5` (HEAD freeze de `master`) | nota padre + ADR-001 | `docs/architecture/architecture.md` + `docs/specs/SPEC-00A…04` | `IN_PROGRESS` — SPEC-00A despachada |
+| Multimodal Knowledge Engine / `xKoRx/multimodal-knowledge-engine` | `m0-implementation` (pusheada a origin @ `77b8d6f`) | `e5f9e9757d0e42b00c831e57920174428397d3b5` (HEAD freeze de `master`) | nota padre + ADR-001 | `docs/architecture/architecture.md` + `docs/specs/SPEC-00A…04` | `M0_CAMPAIGN_COMPLETE` — 7/7 SPECs gateadas; final BLOCKED físico |
 
 ## 🧩 Subproyectos
 
@@ -74,9 +76,9 @@ views:
 - [x] SPEC-01 Media Foundation: GATE PASS 12/12 (1 ciclo CORRECT cerrado; HEAD `b628ced`; cobertura media 96.35%). #owner/agent #type/dev #area/personal ✅2026-09-17
 - [x] SPEC-02 Evidence Acquisition: GATE PASS 13/13 (1 ciclo CORRECT cobertura 90.2→95.1%; HEAD `1737e0a`). #owner/agent #type/dev #area/personal ✅2026-09-17
 - [x] SPEC-03-A Knowledge Baseline: GATE PASS 15/15 (HEAD `97fa0e0`; replay byte-idéntico; habilita 03-C). #owner/agent #type/dev #area/personal ✅2026-09-17
-- [/] SPEC-03-C Adaptive Investigator: preguntas → requests tipadas → evidence adicional → pipeline 03-A exacto; estados terminales y budgets. Housekeeping obligatorio: cubrir DEFECT-1 (4 ramas) y ampliar purity test (OBS-2). #owner/agent #type/dev #area/personal
-- [ ] SPEC-04 Integration & Benchmark: video completo, golden congelado antes de A/C, benchmark emparejado, gates G0–G9, BenchmarkReport. #owner/agent #type/dev #area/personal
-- [ ] Entrega final M0: reporte del manager, commits estables, Agents-OS actualizado, handoff. #owner/agent #type/dev #area/personal
+- [x] SPEC-03-C Adaptive Investigator: GATE PASS 12/12 (HEAD `0479b3a`; housekeeping DEFECT-1/OBS-2 cerrado; A independiente ejecutable). #owner/agent #type/dev #area/personal ✅2026-09-18
+- [x] SPEC-04 Integration & Benchmark: harness + golden (41 elems AGENT_GOLDEN, 8 manifests congelados) + A/C emparejado ejecutado; GATE = NO_GO material (sintético) + BLOCKED físico; 1 ciclo CORRECT cerrado (HEAD `77b8d6f`). #owner/agent #type/dev #area/personal ✅2026-09-20
+- [x] Entrega final M0: reporte del manager emitido; rama pusheada; Agents-OS actualizado; veredicto M0 BLOCKED (físico) con hallazgos documentados. #owner/agent #type/dev #area/personal ✅2026-09-20
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -94,6 +96,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-20 — cierre de campaña M0:** SPEC-03-C PASS 12/12 (`0479b3a`, housekeeping QA-03A cerrado). SPEC-04: harness completo (`2fb30dc`), golden evaluator separado congeló 8 manifests/41 elementos AGENT_GOLDEN, benchmark executor corrió 3 benchmarks emparejados (5 excluidos L-2 sin transcript viable, verificado sha a sha), QA-04 adjudicó (overturn G3 por artefacto de clasificación; G2c=1 input-driven; 2 defectos harness corregidos en ciclo CORRECT `77b8d6f`; diagnóstico: surfacing de contradicciones es input-driven, pipeline OK). Veredicto final: M0 BLOCKED físico con hallazgos de capacidad documentados; rama pusheada. Tarea puente movida a Review.
 
 - **2026-09-17** — Mandato M0 iniciado. Bootstrap Agents-OS OK (entidad [[Multimodal Knowledge Engine]], workflow owner:agent). Git preflight OK: repo clonado en `~/mke/multimodal-knowledge-engine` (workspace externo fuera del vault), baseline `e5f9e97` = HEAD de `master`, worktree limpio, 7 docs canónicas presentes. Subproyecto materializado y tarea puente confirmada en el padre. Siguiente: branch `m0-implementation` y despacho SPEC-00A al Implementer.
 

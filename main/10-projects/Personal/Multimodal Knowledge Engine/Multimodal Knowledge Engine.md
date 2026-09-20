@@ -172,7 +172,7 @@ Los contratos detallados, inputs/outputs, persistencia, errores, idempotencia, c
 - [x] Fijar objetivo único, QA delegado, contratos visual/gráficos, gates y milestones M0/M1/M2. #owner/me #type/admin #area/personal
 - [x] Renombrar proyecto a Multimodal Knowledge Engine y vincular repo `xKoRx/multimodal-knowledge-engine`; mantener nombre anterior como alias histórico. #owner/me #type/admin #area/personal
 - [x] Congelar arquitectura ejecutable M0 y SPEC-00A/00B/01/02/03/04 en el repo; product spike antes de infraestructura local. #owner/me #type/admin #area/personal
-- [/] [[M0 Execution]] arrancar + seguimiento (subproyecto `owner: agent` creado 2026-09-17; ejecuta SPEC-00A→04 por gates) #owner/me #type/supervision #area/personal
+- [/] [[M0 Execution]] arrancar + seguimiento (subproyecto `owner: agent`; campaña 00A→04 COMPLETA 2026-09-20: rama `m0-implementation` pusheada @ `77b8d6f`, veredicto M0 **BLOCKED físico** — requiere video autorizado + credenciales GLM para la certificación de SPEC-04; hallazgos de capacidad documentados en [[M0 Execution]]) #owner/me #type/supervision #area/personal
 - [ ] Tras M0 PASS, delegar M1/M2 con SPECs basadas en evidencia, hasta biblioteca transversal. #owner/me #type/supervision #area/personal
 
 ## 📆 Bitácora
