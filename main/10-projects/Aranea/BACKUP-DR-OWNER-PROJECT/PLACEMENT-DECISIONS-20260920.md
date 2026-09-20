@@ -60,7 +60,7 @@ updated: "2026-09-20"
 4. **Beneficio**: separa el dominio de falla del SO edge del de los datos T0; pool2 (HDD) es backend adecuado para CTs poco exigentes; sin capex.
 5. **Dependencias/riesgo**: CTs apagados durante el movimiento de su rootfs (vzdump→restore, nunca mover el file bajo el CT vivo); no corrige I/O (no lo necesita); no es off-host (SPOF F-14 del chasis se mantiene aceptado).
 6. **Capacidad destino**: pool2 libre 2,15T; rootfs a mover ≈ 138G brutos (54G del dataset PVE + margen); cabe sin tocar legacy F-09.
-7. **Downtime y mecanismo**: ~15 min/CT en ventanas escalonadas (vzdump CT → pvesm restore del rootfs en el nuevo backend → arrancar). NO simultáneo con A6-REPL full (I/O compartido en TrueNAS).
+7. **Downtime y mecanismo**: ~15 min/CT en ventanas escalonadas (CT stop → `pct move-volume <ct> rootfs <storage-nuevo>` con vzdump previo verificado; fallback vzdump + `pct restore` al nuevo storage). NO simultáneo con A6-REPL full (I/O compartido en TrueNAS).
 8. **Reversión**: redefinir `nfs-storage` de vuelta (diff guardado); los CTs vuelven al export original; rollback < 10 min/CT.
 9. **Protección previa**: vzdump fresco de cada CT ANTES de tocarlo (113 ya tiene coberturas del piloto; para los demás, primer vzdump en la misma ventana).
 10. **Autorización**: OWNER — cambio de definición de storage en los 5 nodos (storage.cfg, clase GATED igual que prune-nfs) + inclusión en 019.
