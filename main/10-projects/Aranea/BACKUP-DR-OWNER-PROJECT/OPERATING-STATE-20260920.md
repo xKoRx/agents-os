@@ -37,7 +37,7 @@ updated: "2026-09-20"
 
 - **59/59 guests reconciliados: 43 RUNNING / 16 STOPPED.** 43/43 running con uptime ≥42d salvo 118 (1d, reinicio planificado por R2) y 113 mcps (12d). Quórum PVE 5/5, nodos online 5/5 (uptime 42d). Stop drain del clúster = 5 nodos reiniciados juntos (~18sep 01:30), patrón consistente con corte eléctrico general; sin UPS (gap H5 conocido).
 - **Echo sano y EN OPERACIÓN a las 21:36 -03 (domingo): 25 sesiones MT4 vivas** (17 ejecución + 7 referencia + sesiones core), 0 rechazos/fallos de intents en 24h, ~4,88M mensajes pipe/24h, rate máximo de latencia de hop ~18ms/s, frescura de métricas 27s (scrape vivo). Los bridges reportan un **brote de errores Kafka** (ver hallazgos).
-- **Ceph: nearfull EMPEORÓ de forma material desde el assessment 19-09**: osd.0/2 al **87,8%** (818/932 GiB; 19sep: 799G/85,7%) y **2 OSD con slow ops BlueStore** (hallazgo nuevo). Growth ≈ +19G/OSD lleno en ~27h. HEALTH_WARN (nearfull + slow ops).
+- **Ceph: nearfull EMPEORÓ de forma material desde el assessment 19-09**: osd.0/2 al **87,8%** (818/932 GiB; 19sep: 799G/85,7%) y **2 OSD con slow ops BlueStore** (hallazgo nuevo). Growth ≈ +17G/OSD lleno en ~27h. HEALTH_WARN (nearfull + slow ops).
 - **Backups: 6 timers activos y verificados hoy** (A1 03:00/03:20, R1 04:00, R1.5 05:00, R2 06:05, pve semanal sáb). PBS al 16% (48G/295G), verify tasks OK en archive, 6 CTs piloto + 12 snapshots host presentes.
 - **TrueNAS vivo**: pool0 y pool2 ONLINE y healthy (DDP, 2026-09-20 20:07), uptime SO 42d.
 
@@ -87,7 +87,7 @@ updated: "2026-09-20"
 - **PostgreSQL 152** (MCP RO): primaria (no recovery), up 9d (desde 11sep 10:00 UTC), 14 bases con allowconn, **archive_mode=off** (confirma WP-A2 pendiente), respuesta SQL inmediata.
 - **Echo (métricas ARGUS)**: 25 series de sesión activa = 24 sesiones de bridge (17 ejecución {mt4-ttp 6, mt4-real 10, mt4-ftmo 2 — mt4-real incluye cuenta 80636976} + 7 referencia en mt4-demo) + 1 gauge agregado de sesiones core; 6 pipes ejecución + 7 referencia, core (140) con pipeline viva; trades/24h = 2 abiertos (cero fallos de journal); kafka_produced fluyendo. Versión bridge/core 2.0.0, deployment=production.
 - **ARGUS (160)**: 3/3 datasources OK (Prometheus/Loki/Jaeger); scrape de servicios Echo fresco (27s); 865 series en namespaces de plataforma (kafka/ceph/pve/node) PERO 0 muestras — **instrumentación declarada sin scrapes vivos** (ver PLACEMENT).
-- **mcps (113)**: 26/26 containers up (5d), rootfs 83% (hallazgo 3), build cache 8,9G.
+- **mcps (113)**: 26/26 containers up (5d), rootfs 85% (hallazgo 3), build cache 8,9G (4,1G reclaimable).
 - **TrueNAS (145/hades)**: pool0/pool2 ONLINE healthy (DDP); scrub pool2 sigue overdue (>14m, riesgo F-14 vigente, en ventana).
 
 ## Fuentes
