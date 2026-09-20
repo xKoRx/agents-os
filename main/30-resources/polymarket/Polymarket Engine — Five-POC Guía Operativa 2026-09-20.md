@@ -111,10 +111,46 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 - **RESEARCH SURFACE**: cohort, `windows_s`, `size_grid_shares`, filtros/metrics.
 - **NEXT EXPERIMENT**: ventanas alternativas, grids Q, cohorte B sobre capturas reales futuras.
 
+## Superficie de configuración por POC (auditoría 2026-09-20)
+
+La meta: que el próximo agente no trate infraestructura como parámetro de estrategia.
+Un parámetro es de experimento sólo si la factory lo acepta por `--param`/`--run`.
+
+**S01 NegRisk** — fixture: `vertical`.
+- SAFE_TO_CHANGE_FOR_EXPERIMENT: `min_edge_bps`, `max_size_per_leg`.
+- USUALLY_CHANGE: `fee_bps` (siempre declarada por fixture), dataset (nuevo fixture).
+- DO_NOT_CHANGE: `membership`/`exhaustiveness`/`other_present`/`protocol` son evidencia de identidad del set — cambiarlos cambia la hipótesis, no el parámetro; core del engine; registries (`strategyCapabilities` es la única fuente).
+- REQUIRES_RESEARCH: fee real (U-02), datasets de capture reales.
+
+**S02 Sports Reversion** — fixture: `vertical`.
+- SAFE_TO_CHANGE_FOR_EXPERIMENT: `widen_min_bps`, `min_net_edge_bps`, `window_ms`, `ref_frames`, `entry_budget`.
+- USUALLY_CHANGE: `fee_bps`, `kickoff_ms` (siempre futuro respecto de los cuts), serie de spreads del fixture.
+- DO_NOT_CHANGE: `taker` (maker UNCALIBRATED); core del engine.
+- REQUIRES_RESEARCH: fee real; calibración de fills taker.
+
+**S03 Sports Combinatorial** — fixture: `s03`.
+- SAFE_TO_CHANGE_FOR_EXPERIMENT: `min_worst_net`, `q`, `max_residual_loss`, `candidate_validity_ms`, `fee_rate`/`fee_exponent` (schedule sintética), risk_*.
+- USUALLY_CHANGE: `pair.P001.*` de identidad/reglas (template de par alternativo — cambia el template declarado, sigue siendo input), fixture de libros.
+- DO_NOT_CHANGE: Economics y marketview compartidos; path de replay; `fee_provenance` (REAL es `UNVERIFIED`, la factory lo rechaza); claves de reglas con punto extra.
+- REQUIRES_RESEARCH: matrices terminales alternativas (vía SPEC), fee real de venue.
+
+**S04 Weather** — fixture: `combined` (forecast admitido primero).
+- SAFE_TO_CHANGE_FOR_EXPERIMENT: `fee_rate`/`fee_mode` (input experimental sintético), `size`, `validity_ms`, buckets/estación/contrato vía `contract_json`.
+- USUALLY_CHANGE: dataset (vintages encadenadas), ensemble/pesos (contrato).
+- DO_NOT_CHANGE: `internal/external` (seam SFG-04); core Strategy API; modelo frozen sin calibración fabricada; `contract_id` registrado (`SYN-WX-20260920-HIGH-UTC` es el BaseEventID real del fixture — el comentario histórico "WX-BASE-V1" es FALSO).
+- REQUIRES_RESEARCH: proveedor real; calibración probabilística (hoy UNCALIBRATED).
+
+**S05 Maturation** — fixture: `combined`.
+- SAFE_TO_CHANGE_FOR_EXPERIMENT: `size_grid_shares` (Q grid), `min_two_sided_samples`, `max_book_age_s`, `cohort` O/B, `market_id`/`asset_id`.
+- USUALLY_CHANGE: `params_revision`, `manifest_ref`.
+- DO_NOT_CHANGE: FrameObserver (observación-only, cero órdenes por diseño); `decision_mode`/`no_orders` (forzados DESCRIPTIVE por la factory).
+- REQUIRES_RESEARCH: `windows_s` — hoy restringido a {60, 300, 3600} por validación de la factory; ampliar el dominio es un cambio legítimo de research surface dentro del paquete maturation, no alcanzable por parámetro; cohorte W (`DEFERRED_BLOCKED_BY_SFG06`); capturas reales futuras.
+
 ## Gates transversales y calidad
 
 - Gates F5 (registro, guard, identidad/live-disabled, vertical S03, coexistencia 5): `go test ./cmd/engine/ -run 'TestF5' -count=1`.
-- Suite completa: `go build ./... && go vet ./... && go test ./... -count=1` (33 paquetes, verde en la baseline de esta guía salvo gates en vuelo).
+- Gates de research-readiness: `go test ./cmd/engine/ -run 'TestF5G13|TestF5G14|TestF5G15' -count=1` — G13 RESEARCH MUTABILITY (las cinco POCs aceptan una variante significativa por su research surface sin tocar core), G14 OPERATIONAL DISCOVERABILITY (fixture + screen + shadow + compare desde cero con los comandos documentados), G15 ARTIFACT COMPARABILITY (BASE/VARIANT comparables por artifacts con `experiment compare`).
+- Suite completa: `go build ./... && go vet ./... && go test ./... -count=1` (34 paquetes).
 - Certificación: `engine experiment certify --profile no-live --baseline <sha>` → `M4_CERTIFIED_NON_LIVE` esperado al cierre del programa.
 
 ## Estado del programa (2026-09-20)
