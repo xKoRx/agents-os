@@ -29,7 +29,7 @@ updated: "2026-09-21"
 
 Fuente canónica **del límite DEV/PROD y del mapa de ambientes** de Echo y Echo Forge en Aranea. Lectura obligatoria al iniciar una sesión de cualquiera de los dos proyectos a través de [[aranea-agent-dev]], antes de acceder a infraestructura. También aplica a sesiones de investigación/review que puedan producir instrucciones de operación o despliegue. No es una SPEC de producto, un inventario general de Aranea, un runbook ni una autorización de ejecución.
 
-**Corte de este documento: 2026-09-21** (reconciliación AS-BUILT Echo Core/Gateway DEV en Daedalus del 2026-09-21; el corte 2026-09-20 sigue siendo la base de las secciones no tocadas). Las asignaciones de destino expresan decisiones del owner; los estados físicos solo expresan evidencia identificada, con su propia fecha. **No se ha recibido ni validado aquí el reporte AS-BUILT de Hermes.** Nunca convertir una decisión TARGET, configuración escrita, servicio healthy, release o acceso MCP en `PHYSICALLY_VERIFIED` sin su smoke material. Frente a un runtime más reciente, reconciliar y actualizar este contrato antes de apoyarse en un dato desmentido; ninguna nota histórica autoriza una mutación.
+**Corte de este documento: 2026-09-21** (AS-BUILT Core/Gateway DEV en Daedalus + recertificación CERT-E04-01/CERT-F04-03 del mismo día; el corte 2026-09-20 sigue siendo la base de las secciones no tocadas). Las asignaciones de destino expresan decisiones del owner; los estados físicos solo expresan evidencia identificada, con su propia fecha. **No se ha recibido ni validado aquí el reporte AS-BUILT de Hermes.** Nunca convertir una decisión TARGET, configuración escrita, servicio healthy, release o acceso MCP en `PHYSICALLY_VERIFIED` sin su smoke material. Frente a un runtime más reciente, reconciliar y actualizar este contrato antes de apoyarse en un dato desmentido; ninguna nota histórica autoriza una mutación.
 
 ## Contenido
 
@@ -116,6 +116,18 @@ Ejecutado por sesión ZCode/GLM sobre el host Daedalus (192.168.31.161, Ubuntu, 
 - **Forge en Daedalus (inventario, sin iniciar nada):** binarios/CLIs del repo `xKoRx/symphony` (`cmd/symphony`, `sqx/cmd`, `deployer/cmd`); namespaces ETCD `/symphony/development/` (38 keys, sin `echo/ingest/*` ⇒ handoff DEV hacia Echo sin sembrar), `/deployer-watcher/development/` (watcher con config MinIO) y `/deployer/`. Ningún componente Forge fue autorizado con aislamiento demostrado para instalarse como servicio en Daedalus ⇒ `FORGE_RUNTIME_SCOPE_BLOCKED` para watcher DEV, worker Temporal sqx y workers SQX/MT5 (compartidos Zeus/Hera/Kronos, NO TOUCH). No se lanzaron campañas ni backtests.
 - **Ownership del runtime DEV compartido en Daedalus:** esta sesión instaló y es dueña de `echo-core-dev`/`echo-gateway-dev` + release layout `/home/kor/opt/echo-dev`; cualquier otra sesión debe reconciliar contra esta sección antes de mutar. El screen `deployer` tiene owner separado (sesión 2026-09-17) y NO debe reiniciarse.
 
+### 5.2 Recertificación join Forge→Echo (2026-09-21T02:30Z) — evidencia AS-BUILT de certificación; NO cierra producto
+
+Sesión Cursor/Composer sobre el mismo host Daedalus; **sin redeploy**, sin restart de Core/Gateway, sin tocar workers/PROD/`.132`. Informe: workdir externo `~/aranea/work/cert-int-qa-20260921/FINDINGS-CERT-INT-QA-20260921.md` (fuera del vault).
+
+- **Runtime health reconfirmado:** ambos `systemctl --user is-active` = active; `/health` Core `:9090` y Gateway `:8090` = 200; binarios SHA idénticos al §5.1; source HEAD desplegado = `5dd998f1…` (sin fix posterior).
+- **Ingest real:** `forge_ingest_misconfigured=true` vigente; POST live `/api/v1/forge/promotions` → HTTP 503 `UNAVAILABLE` retryable. Keys ETCD `/echo/development/gateway/forge_ingest/*` **ausentes** (`etcd_get_value` found=false para `artifact_root`/`namespace`). Path de código sigue cableando `unavailableArtifactSource` cuando no hay source inyectado.
+- **Schema DEV:** `echo-develop` tiene `canonical_scopes`/`journal_quarantine` pero **no** `promotion_records` / `strategy_versions` / `strategy_identity_mappings` ⇒ migración 061 identity/E-04 **no aplicada** al PG DEV compartido.
+- **Forge consumer DEV:** `/symphony/development/echo/ingest/base_url` (y bearer) **ausentes**; `FORGE_RUNTIME_SCOPE_BLOCKED` sin cambio (no se arrancó worker).
+- **Golden:** corpus F04-02 revalidado (`validate.py` PASS; `goldenrecompute` 5/5); bodies/payload_digest siguen **GOLDEN_AUTHORITY_BLOCKED** (owner action 1 pendiente).
+- **Defectos código:** E-INT-01…08 y F-INT-01…05 **STILL_REPRODUCIBLE** sobre el mismo SHA + E-INT-09 (Store reutiliza archivo corrupto). Suites herméticas contracts/Corpus/CertPack PASS contra PG descartable `127.0.0.1:15433/cert_int_qa`; **no equivalen** a CERT-E04-01/CERT-F04-03.
+- **Veredicto certificación producto:** `CERT_E04_01=BLOCKED`, `CERT_F04_03=BLOCKED`, G6 cross-lane **NOT_EXECUTED**. `/health` ≠ ingest funcional ≠ join certificado.
+
 ### 6. Lectura y operación para cada sesión
 
 - **Cold start o cambio de entidad a Echo/Forge:** `agents-os-bootstrap` → router `aranea-agent-dev` → leer este contrato **antes de elegir ambiente o actuar**. No añadirlo al stack global ni cambiar el bootstrap.
@@ -131,7 +143,9 @@ Ejecutado por sesión ZCode/GLM sobre el host Daedalus (192.168.31.161, Ubuntu, 
 | Reporte final Hermes `dev-win` | No recibido aquí | Incorporar host/identidad, claves host sanitizadas, profiles, smokes y fecha. |
 | Core/Gateway sobre Daedalus | **AS-BUILT completo 2026-09-21 en §5.1** — ambos `RUNNING/PHYSICALLY_VERIFIED`; credencial PG resuelta por owner; `systemd --user`+linger, unidades de sistema pendientes de owner con root | Owner opcional: migrar a unidades de sistema. |
 | Seed tests que sobrescriben credenciales ETCD (v1/v2/v3 `echo_seed_test.go`, dev+prod, sin guardas) | Causa raíz del incidente de credencial 2026-09-21; fix de ETCD y rotación ya aplicados por owner | **Manager/owner Echo:** blindar o eliminar los seed tests y retirar credenciales versionadas (`scratch_query_test.go`); mientras tanto NO ejecutar `go test ./...` desde la raíz del repo. |
-| Forge DEV en Daedalus | Inventario en §5.1; `FORGE_RUNTIME_SCOPE_BLOCKED` para watcher/worker/workers compartidos | Designar componente(s) Forge autorizados para Daedalus y sembrar `/symphony/development/echo/ingest/*` cuando exista consumidor autorizado y Gateway ingesting. |
+| Forge DEV en Daedalus | Inventario en §5.1; `FORGE_RUNTIME_SCOPE_BLOCKED` reconfirmado §5.2; `echo/ingest/*` ausente | Designar componente(s) Forge autorizados para Daedalus y sembrar `/symphony/development/echo/ingest/*` cuando exista consumidor autorizado y Gateway ingesting. |
+| Gateway forge_ingest DEV + mig 061 en `echo-develop` | §5.2: keys ausentes; tablas E-04 ausentes; 503 live | Owner: sembrar `gateway/forge_ingest/*`, ArtifactSource MinIO DEV, aplicar 061 por vía de migración autorizada. |
+| CERT-E04-01 / CERT-F04-03 | §5.2 BLOCKED; G6 NOT_EXECUTED | Owner actions golden RO + Echo/Forge manager packages; no cerrar gates por health. |
 | SQX local / Windows MT5 | Target owner; no certificado aquí | Registrar instalación/licencia permitida, worker, tests, HTM y aislación. |
 | Mapa PROD actual | Snapshot parcial de 2026-09-15 | Leer deployment/runtime actual RO antes de cualquier decisión operacional. |
 | Repositorios Echo y Symphony `AGENTS.md` | Fuera del alcance de esta escritura | Añadir puntero breve al contrato en cambio independiente; retirar credenciales versionadas mediante gestión segura y rotación correspondiente. |
