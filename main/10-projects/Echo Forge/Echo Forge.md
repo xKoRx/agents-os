@@ -20,7 +20,7 @@ tags:
   - area/echo
   - kind/project
 created: 2026-06-27
-updated: "2026-09-19"
+updated: "2026-09-21"
 aliases:
   - Echo Forge Program
 ---
@@ -36,6 +36,7 @@ aliases:
 
 ## 📊 Estado actual
 
+- **FACTORY_V2_PHYSICALLY_CERTIFIED (2026-09-21).** CERT-F05-01/02/03 PASS en la misión F05 FINAL COMPLETION: release cohesiva `0.2.105` @ `745bc8b` (F-01…F-05-I + fixes C1…C13 + F-INT-01/02/03), rollout 4/4, campaña FULL `0ce72173…` COMPLETED/TARGET_REACHED con 3 finalistas (magics `26090011019/020/021`), HTM byte-verificados, slot MT5 serializada, delivery `HANDOFF_CREATED ×3` con 0 POST, result surfaces inspectadas. Manifest final: `~/aranea/work/cert-f05-20260921/CERT-F05-03-MANIFEST-PASS-20260921.md`; control y bitácora en [[Echo Forge — Factory V2 Completion]]. Debt aceptada con owner: mongo/uri flowkit, warnings PG, refresh frozen de pipeline rows.
 - **E-06 R3 ejecutado — R3_READY_FOR_E06_G0 (2026-09-19, lane Forge propia).** Branch `feature/e06-runtime-attestation-exporter-r3` desde `a1f62a6` en worktree aislado `symphony-e06-r3` (commits `63e2d26`/`5125546`/`5d55c6b`, push FF `5d55c6b4`==origin; checkout compartido y dirty ajeno intactos). Tres archivos autorizados: B1 XML long (`EchoForgeRobustRunExporter`), `widenMagicIdentifiersIfRequired` token-completo (`EchoForgeMT5Exporter`), readback typed (`readback.go`). Físico verificado: export real → **MQ5 R3 `4042db94…` 286815 B** (delta vs R2 = 62 sitios widening + 2 metadata SQX), **MetaEditor64 0 errors/0 warnings** (warning 44 eliminado), **EX5 R3 `34e7fe64…`** 183828 B; readback typed físico = `26090011005`; C8 `sha256:c80cdee8…`; deploy activo del plugin (`internal/libs/Snippets.jar`) actualizado con backup R2 (`1072e4e7…`). Dependencia: [[Echo — E-06 Reference Enrollment and Binding]] (G0/E-04/T21 NO ejecutados).
 
 - **E-06 MAGIC WIDTH R3_READY_FOR_NORMAL (2026-09-19, TOP).** Allocation 26090011005 preservada. B1 demostrado: XML `<type>long</type>` → generate real `input long`. Gate A exige widening `int→long` de `magicNo`/casts MAGIC en `EchoForgeMT5Exporter` post-generate / pre-instrument; readback typed fail-closed. Tres archivos autorizados. Código Forge **no** mutado (`a1f62a6`). Dirty ajeno en checkout `codex/f05-release-prep` preservado. Contrato: Echo VERIFICATION §R3 / SPEC v1.2.4.
