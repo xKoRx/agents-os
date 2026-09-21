@@ -7,7 +7,7 @@ slug: backup-dr-runbook
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-18
+updated: 2026-09-21
 tags: [aranea, backup, runbook, ops, kind/runbook, area/personal, project/agents-os]
 related: "[[BACKUP-DR-DESIGN]]"
 parent: "[[BACKUP-DR-OWNER-PROJECT]]"
@@ -18,8 +18,8 @@ cssclasses: wide
 
 > Verdad operacional humana. Comandos paso a paso con validación.
 >
-> [!warning] ESTADO DE EJECUCIÓN (2026-09-18)
-> Este runbook describe el diseño congelado. Las ÚNICAS operaciones certificadas hoy (R1 + R1.5) son la tabla del §0. Todo lo demás está `DESIGNED — NOT IMPLEMENTED`: los comandos corresponden a mecanismos inexistentes o no integrados (PBS sin adoptar, sin restic, sin rclone, Secret Zero sin definir). NO ejecutar secciones no implementadas sin su fase del roadmap ([[2026-09-16-R0-reconciliacion]] §9) + gate owner.
+> [!warning] ESTADO DE EJECUCIÓN (2026-09-21)
+> Este runbook describe el diseño congelado. Los mecanismos certificados hoy (§0) son: R1 + R1.5 + **MP-01 (A0/A1/A5) + G1A/G1B + piloto R2** (todos verificados 20-21sep). Todo lo demás está `DESIGNED — NOT IMPLEMENTED`: los comandos corresponden a mecanismos inexistentes o no integrados (vzdump producción sin decisión D, sin restic, sin rclone, Secret Zero sin off-site). NO ejecutar secciones no implementadas sin su fase del roadmap ([[2026-09-16-R0-reconciliacion]] §9) + gate owner.
 
 ---
 
@@ -36,6 +36,19 @@ cssclasses: wide
 Staging: `~/aranea/backup-staging/` (700, Hermes VM 118) — **NO es offsite, NO es failure-domain independiente de Hermes**. Ejecución automatizada desde R1.5 vía timers (párrafo siguiente); sin pruning (retención = decisión owner pendiente). Evidencia: change logs `2026-09-17-backup-dr-r1-bootstrap-config` + `2026-09-17-backup-dr-r15-config-completion` + manifests por run. Los artefactos hermes-state son sensibles (600).
 
 Automatización R1.5: timers systemd activos y probados en hermes-vm — `aranea-backup-r1.timer` (DAILY 04:00; incluye traefik-config + second-brain + hermes-state), `aranea-etcd-snapshot.timer` (DAILY 05:00), `aranea-pve-config.timer` (WEEKLY SAT 08:30). pi-hole permanece GATED (servicio L2-dead + api_token).
+
+### §0.1 Mecanismos vigentes al 2026-09-21 (post MP-01 + G1A/G1B + R2 — ampliación de §0, verificados 20-21sep)
+
+| Mecanismo | Método | Última verificación |
+|---|---|---|
+| PG 152 dump diario (WP-A1/MP-01) | timer `aranea-r3-pg-dump` 03:00 → cifrado AES → PBS `host/r0d-postgresql`; drill restore→descifrado→SELECTs reales (13/13 bases) | 21sep 07:36 (2º ciclo: snapshot `2026-09-21T10:37:57Z`) |
+| Mongo 153 dump diario (WP-A1/MP-01) | timer `aranea-r3-mongo-dump` 03:20 → ídem → PBS `host/r0d-mongodb` | 21sep 07:36 (`2026-09-21T10:37:21Z`) |
+| Ingesta staging→PBS (WP-A0/MP-01) | pxar cifrado de run-dirs R1/R1.5 → `host/r0d-config-{r1,etcd,pve,mp01a5}` + round-trip sha | 20sep |
+| Configs CTs docker + PBS (WP-A5/MP-01) | bundle cifrado 9 targets → `host/r0d-config-mp01a5` (stacks por units systemd, no compose) | 20sep |
+| MinIO 157 (G1B one-shot) | 12 buckets streaming tar\|zstd\|AES → `host/minio-*`; drill FULL_DR PASS | 20sep (recurrencia = gate owner) |
+| Piloto vzdump R2 (6 CTs) | timer `aranea-r2-measure` 06:05 → datastore `main`; verify TASK OK por run | serie 3/7 al 21sep (run 21sep perdido por apagado de hermes; expira 26sep) |
+
+Notas de operación (21sep): (a) los timers A1/R1/R1.5 usan `Persistent=true` → tras un apagado corren en catch-up al arranque; el trigger R2 es absoluto no-persistente → un apagado a las 06:05 PIERDE el run del día (así se perdió el del 21sep). (b) El paso second-brain de R1 puede fallar si el vault cambia durante el tar (`file changed as we read it`) — fallo observado el 21sep; corrección gated al owner (tarea T-21b del proyecto); mientras tanto, un FAIL de esa unidad no invalida las otras dos del mismo run. Retención vigente: 30d sin prune en dumps G1A; decision D pendiente para el resto.
 
 ---
 
