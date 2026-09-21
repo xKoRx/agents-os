@@ -81,6 +81,7 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > - [x] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
 > - [/] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 implementation complete; physical/cross-lane certification deferred #owner/agent #type/dev #area/echo
 > - [ ] [[Echo Forge — F-05-I Cohesive release and read surfaces]] F-05-I Cohesive release/read-surface preparation #owner/agent #type/dev #area/echo
+> - [ ] [[Echo Forge — Forge Explorer v0]] Forge Explorer v0 (visor local read-only; SPEC frozen, implementación NORMAL pendiente) #owner/agent #type/dev #area/echo
 > - [ ] F-05-C Release/physical/FULL golden certification campaign #owner/agent #type/admin #area/echo #blocked
 
 ```dataviewjs
