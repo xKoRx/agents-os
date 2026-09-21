@@ -1,201 +1,64 @@
-# MANDATO — POLYMARKET PE-001 REALITY CHECK
+**Decisión: `GO_RESEARCH`.** PE-001 tiene un par real identificable y el fail-closed del engine se sostuvo (0 `ACCEPT`). La implicación contractual no está demostrada y U-02 no está cerrado: no hay validación económica ni permiso live.
 
-**Fecha:** 2026-09-21
+Informe durable: `~/go/src/github.com/xKoRx/polymarket-engine-datasets/pe001-reality-check-20260921/REPORT.md`. Código de producción intacto. `LIVE_DISABLED`. Sesión Agents-OS abierta.
 
-**Rol:** Principal Quant Researcher + Polymarket Protocol Auditor + Principal Go Architect.
+## 1. Checkout y certificación
 
-## MISIÓN
+Worktree de integración `feature/five-poc-integration` en `85e27ff85d466c6522455f1426f6e0c8e23fe157`, limpio. `56e8fac` es ancestro; `c38f6c4` es el pin de evidencia/M4; `c38f6c4..85e27ff` es sólo `certificate-v07.json`. El remoto sigue en `25f578a`; HEAD local no está publicado. RS v0.3 no se tocó. M4 no se recertificó (no hubo código nuevo).
 
-Convertir PE-001 Sports Combinatorial desde una POC offline certificada en un experimento falsable sobre contratos reales.
+## 2. Par contractual
 
-No rediseñar el engine. No crear una sexta POC. No implementar trading real.
+Identidad admisible, **implicación no demostrada**:
 
-El objetivo es entregar evidencia que permita decidir si PE-001 puede comenzar su validación económica.
+| | Moneyline | Spread ATL −1.5 |
+|---|---|---|
+| Evento | WNBA `986912` Atlanta Dream vs New York Liberty, `gameId` `13002544`, kickoff `2026-09-22T00:00:00Z` | mismo evento y `gameStartTime` |
+| Market | `4358151` | `4778073` |
+| Condition | `0x05877726250f4903cbe937cd159419b2be8a9a604f36ae38c062b10b090d4f68` | `0x7a95a6f7dfaae94f0292d96064ff8a0fa94c0940ebee0f6fa0b6ba85915736fb` |
+| YES / NO | `69509824…76083` / `11014429…793111` | `40059528…16569` / `55586564…74006` |
+| Texto | ganador **con OT**; postpone abierto; cancel 50-50; **sin empate** | ATL por ≥2, si no NYL; **empate → NYL**; postpone abierto; cancel 50-50; **OT no declarado** |
+| Fuente | `wnba.com/scores` | `wnba.com/` |
+| SHA reglas | `4998c255…b3241` | `3f4ad514…eb9c` |
+| Consulta | Gamma HTTP 200, `2026-09-21T12:51:20Z` | misma captura |
 
-## 1. AUTORIDADES
+`Cover(ATL,−1.5) ⇒ Win(ATL)` valdría si ambas patas liquidan el mismo marcador final. El texto no lo prueba: el spread no declara OT y sí declara empate, contra el axioma basketball v1. Basket PE-001 = YES(ML)+NO(SP): ≥2 → 1, por 1 → 2, derrota → 1, cancel 50-50, postpone no terminal. `proof_status` honesto = `HYPOTHESIS`.
 
-Repositorios:
+Descartados (no se inventó par sintético): MLB 494880 (no basketball; empate distinto), series NBA sin games, Euroleague/ACB/Greek sin spread, WNBA ya cerrados, FIBA pasado.
 
-- `xKoRx/agents-os`
-    
-- `xKoRx/polymarket-engine`
-    
+Gamma avisó `deprecation: true` y `sunset` 2026-05-01 (ya vencido); el endpoint aún respondió.
 
-Documentos obligatorios:
+## 3. U-02 y economics
 
-- Agents-OS bootstrap y constitución vigentes.
-    
-- `Polymarket Engine — MVP`.
-    
-- `Polymarket Engine — Continuidad Five-POC 2026-09-20`.
-    
-- `Polymarket Engine — Five-POC Guía Operativa 2026-09-20`.
-    
-- `POC-S03 — Sports Combinatorial`.
-    
-- Technical Platform Map vigente.
-    
-- `testdata/research-v07/experiment-drills/DRILLS.md`.
-    
+Parámetros observados el 2026-09-21 ~12:48–12:51Z: docs Sports `0.05·p·(1−p)` con redondeo 5 dp; Gamma `sports_fees_v3` rate 0.05 exp 1 takerOnly; CLOB `fd {r:0.05,e:1,to:true}` en ambas patas. `/fee-rate` sigue `{base_fee:1000}` (legado, no es la fórmula sports). Factory del engine: sólo `SYNTHETIC_FIXTURE`, `TRUNCATE_6DP`. **`REAL_FEE_READY=NO`.** U-02 reducido, no cerrado. No hay rentabilidad declarable.
 
-Baseline documentada: `feature/five-poc-integration@85e27ff`.
+REST taker, no midpoint, q=20: ML YES VWAP **0.56** (62 al best), SP NO VWAP **0.48** (921 al best), suma **1.04**, coste **20.80**. Peor payoff si la implicación valiera: 20. Gross **−0.80**. Fee sintética ≈ **0.496**. Worst net ≈ **−1.296**. Canasta secuencial: profundidad puntual sí cubre q=20; no hay atomicidad. Lock de capital no acotado si hay postpone.
 
-El código certificado corresponde a `c38f6c4`. Verificar físicamente ambos SHA, su relación y el estado real del checkout antes de trabajar.
+## 4. Dataset
 
-No utilizar el remoto antiguo como sustituto del worktree local.
+Bundle `polymarket-engine-datasets/pe001-reality-check-20260921/` (rs-v03 intacto). Catalog scans `a8a742cf…` / `31d3e11c…`, fingerprint `9d498011d8dc…`. WS `12:53:26Z`–`12:54:12Z`, admitted 177 / refused 0, durable_seq **184**, ambas patas `OBSERVED_USABLE`. Journal captura: research_evidence OK. Replay digest `0829265feb0b4136…` idéntico en schedules `1` y `32,7,1`, `not_reproducible=0`.
 
-## 2. FASE A — PREFLIGHT
+SHADOW escribió RUNTIME después: cutoff 2162. El journal de captura pura es 184. Próxima vez: congelar **antes** de shadow. `engine replay` no tiene `--json`.
 
-Verificar:
+## 5. Experimento
 
-- HEAD, branch, worktrees y cambios pendientes.
-    
-- Certificado v07 y correspondencia con el código.
-    
-- Estado de los datasets RS v0.3.
-    
-- Contratos e interfaces reales de PE-001.
-    
-- Ausencia de modificaciones concurrentes sobre los mismos archivos.
-    
+**H1** (única, pre-registrada): con reglas verbatim, este par no produce `ACCEPT`. Falsación: cualquier `ACCEPT` sin `RELATION_UNVERIFIED` / `RULES_CONTRADICT` / `TERMINAL_STATE_INCOMPLETE`.
 
-No ejecutar operaciones destructivas ni modificar datos originales.
+**H1 no falsificada.** SCREEN 5/5 `REJECT` `RULES_CONTRADICT`. SHADOW honest: 54 evals, 54 semantic_reject, 0 ACCEPT, 0 fills, outcome `INCONCLUSIVE`, `engine_sha` `85e27ff`. Ceros y rechazos registrados. Skew WS 834 ms > 250 ms.
 
-Si falla el preflight, entregar un diagnóstico reproducible y detener únicamente las acciones dependientes de él.
+Diagnóstico (no es H1; COMPARE `identical=false`): forzar OT/no-tie contra el texto → 52 economic_reject + 1 economic_unknown, 0 ACCEPT. Coherente con VWAP 1.04>1. No certifica reglas.
 
-## 3. FASE B — CONTRATO REAL
+## 6. Auditoría adversarial
 
-Encontrar un par real Moneyline/Spread de un mismo evento.
+La relación escrita no garantiza el payoff. El alcance OT no está emparejado. El libro es pre-partido y corto; skew supera el umbral. Fees observadas, no certificadas. El lock puede extenderse con postpone. Identidad y books son reales; fee y el diagnóstico OT no. Sin retrospectiva de resultado (el partido no se había jugado). Journal post-shadow contaminado: declarado.
 
-Documentar:
+## 7. Decisión y mandato mínimo
 
-- Event ID, Market IDs, Condition IDs y token IDs.
-    
-- Reglas completas de ambos contratos.
-    
-- Alcance temporal, overtime, empate y cancelaciones.
-    
-- Postponement, excepciones y resolución parcial.
-    
-- Fuente oficial, timestamp de consulta y evidencia preservada.
-    
-- Demostración formal de la implicación contractual.
-    
+**`GO_RESEARCH`**: hay evidencia real nueva y el pipeline funcionó en contratos vivos. No es `NO_GO` (no se demostró imposibilidad). No es `ITERATE` de código. No es `REAL_DATA_READY`. `GO_RESEARCH` no autoriza live.
 
-No aceptar similitudes entre títulos como prueba.
+Siguiente mandato mínimo, no un rediseño:
 
-Construir la matriz completa de estados terminales.
+1. Par basketball con el **mismo OT escrito en ambas patas** y sin payout de empate vivo, **o** dictamen del owner de que la cláusula de empate WNBA es boilerplate inerte.
+2. Captura WS read-only, journal congelado **antes** de SHADOW; medir la fracción de frames con skew ≤ 250 ms.
+3. Reusar SCREEN → REPLAY → SHADOW → COMPARE. Sin órdenes. Sin recertificar M4 salvo código nuevo.
 
-Si no existe un par admisible, documentar candidatos descartados y razones precisas. No inventar un par sintético para declarar éxito.
-
-## 4. FASE C — ECONOMICS / U-02
-
-Resolver la configuración efectiva de fees para los mercados elegidos.
-
-Verificar fórmula, parámetros, vigencia, redondeo y provenance.
-
-Consultar libros reales y calcular:
-
-- Precios ejecutables por profundidad.
-    
-- VWAP de cada pata.
-    
-- Tamaño efectivamente cubierto.
-    
-- Peor payoff contractual.
-    
-- Fees y costes.
-    
-- Riesgo de ejecución parcial.
-    
-- Capital requerido y duración del bloqueo.
-    
-
-No utilizar midpoint como precio ejecutable.
-
-No declarar rentabilidad si existen fees, estados terminales o costes desconocidos.
-
-## 5. FASE D — EXPERIMENTO
-
-Pre-registrar una única hipótesis, muestra y criterio de falsación.
-
-Reutilizar exclusivamente el pipeline existente:
-
-SCREEN → REPLAY → SHADOW → COMPARE.
-
-Si la captura existente no contiene el par o carece de la evidencia necesaria, producir un plan de captura prospectiva ejecutable con los componentes actuales.
-
-No fabricar datos históricos.
-
-Registrar también cero oportunidades, rechazos, profundidad insuficiente y casos inconclusos.
-
-## 6. FASE E — AUDITORÍA ADVERSARIAL
-
-Intentar refutar la conclusión obtenida:
-
-- ¿La relación contractual realmente garantiza el payoff?
-    
-- ¿Las dos patas pertenecen al mismo estado temporal?
-    
-- ¿El libro es suficientemente reciente?
-    
-- ¿La profundidad es ejecutable?
-    
-- ¿Las fees están verificadas?
-    
-- ¿El capital queda inmovilizado más tiempo del supuesto?
-    
-- ¿Los resultados dependen de un fixture sintético?
-    
-- ¿Existe sesgo retrospectivo?
-    
-
-Toda incertidumbre material debe reflejarse en el resultado.
-
-## 7. ENTREGABLES
-
-Entregar:
-
-1. Estado físico del checkout y certificación.
-    
-2. Identidad y prueba del par contractual.
-    
-3. Evidencia de U-02 o bloqueo exacto.
-    
-4. Manifest y procedencia del dataset.
-    
-5. Resultados del experimento y condición de falsación.
-    
-6. Riesgos y evidencia faltante.
-    
-7. Decisión técnica `GO_RESEARCH`, `ITERATE`, `NO_GO` o `INCONCLUSIVE`, con justificación verificable.
-    
-
-`GO_RESEARCH` sólo autoriza continuar investigando. Nunca significa permiso live.
-
-Actualizar las notas existentes de Agents-OS según sus procedimientos y ownership, sin duplicar proyectos ni borrar historia.
-
-Si no hay evidencia suficiente para ejecutar el experimento, entregar el bloqueo concreto y el siguiente mandato mínimo, no un plan arquitectónico nuevo.
-
-## RESTRICCIONES
-
-- `LIVE_DISABLED` obligatorio.
-    
-- Sin wallet, firma ni órdenes.
-    
-- Sin push o merge.
-    
-- Sin modificaciones de código de producción.
-    
-- Sin refactor general.
-    
-- Sin reescribir evidencia histórica.
-    
-- Sin certificaciones inventadas.
-    
-- Sin autoaceptación del trabajo del owner.
-    
-- Sin cierre de sesión Agents-OS salvo instrucción explícita.
-    
-
-**Criterio de éxito:** nueva evidencia real y reproducible que reduzca la incertidumbre de PE-001, aunque el resultado sea negativo.
+Review humana `c915c11..85e27ff` y publicación del engine siguen abiertas; no se autoaceptaron. Graphify `NOT_RUN` (binario ausente). Notas actualizadas: POC-S03, continuidad §9, bitácora del padre, guía S03, índice/log, change log `[[2026-09-21-pe001-reality-check]]`.s
