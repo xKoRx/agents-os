@@ -188,3 +188,36 @@ G1A/G1B sin prune → riesgo de llenado lento de datastore.
 
 ---
 *Métricas de capacidad medidas en WS: `~/aranea/work/master-plan-20260920/CAPACITY-METRICS.md` — repetir antes de decidir D-piloto (28sep).*
+
+---
+
+## 7. REDIRECCIÓN OWNER — D-NEW-01..06 (mandato ONE-SHOT 21sep noche; sustituye propuestas incompatibles)
+
+> Registro de decisiones owner explícitas que REDIRIGEN la arquitectura. No alteran histórico previo (secciones 0-6 quedan como registro); donde contradigan, manda esta sección. Change log: `80-agents/journal/logs/2026-09-21-redireccion-storage-backup-dr.md`.
+
+### D-NEW-01 — pool2 exclusivamente para emergencia
+pool2 (HDD single-disk) queda reservado a **recibir la réplica diaria de TODO pool0** (snapshots ZFS + incrementales). CANCELADOS como propuestas de placement: W1 y W2 hacia `nfs-pool2` (no se mantiene el alta del storage ni el P0-2 de rootfs edge). Sin VMs, sin rootfs, sin apps, sin backups de VMs, sin full diaria (sólo incrementales). Datasets legacy protegidos por F-09 quedan intactos.
+
+### D-NEW-02 — pool0
+Almacenamiento mirror de datos productivos + snapshots locales + **espacio separado para respaldos recuperables de los workloads de pool1** (patrón backup de datos dentro de pool0, no migración de discos).
+
+### D-NEW-03 — pool1 (Ceph)
+Uso por workload según latencia/rendimiento/disponibilidad demostrada/capacidad/dominios de falla. **NO_GO de capacidad vigente**: sin discos nuevos ni migraciones hacia pool1 hasta certificación del carril Storage.
+
+### D-NEW-04 — Dos mecanismos de backup
+(A) Backup de VM/LXC completo (PBS, independiente) y (B) backup de datos consistente (dumps G1A/G1B + snapshots). No intercambiables: un backup de VM con disco excluido NO declara recuperación integral sin procedimiento de restore de ese disco o sus datos.
+
+### D-NEW-05 — Cloud (prioridad)
+1. PostgreSQL y MongoDB → 2. CouchDB → 3. MinIO última copia verificable → 4. Configs/inventario de reconstrucción → 5. Secret Zero con custodia externa independiente. Imágenes de VM a cloud NO obligatorias. 3-2-1 NO declarado mientras A7 siga bloqueado.
+
+### D-NEW-06 — Hermes
+Hermes se apaga de noche por costo; **los backups deben funcionar sin Hermes** (ejecución en infraestructura permanente; W-02 standby PBS sigue vigente como solución gated; los nuevos jobs NUNCA dependen de sesión LLM).
+
+### Flujos congelados
+`POOL1 → backup recuperable en POOL0` · `POOL0 → snapshots → réplica incremental DIARIA → POOL2` · `DATOS CRÍTICOS → backup consistente cifrado → CLOUD` · `PBS permanece como mecanismo independiente para backups de VMs`.
+
+### Errata material de capacidad (medida 21sep noche, API+SSH TrueNAS, rueda de capacidad en POOL0-TO-POOL2-REPLICATION-SPEC)
+- pool2: **4,08T libres a nivel zpool** (size 7,27T / alloc 3,19T); la vista `zfs list` AVAIL 2,15T subestima (el "used" 4,99T doble-cuenta snapshots compartidos con orígenes borrados). El número operativo para la réplica es 4,08T. La errata del freeze del martes ("4,18T") queda CORREGIDA a 4,08T (mismo orden, conclusión sin cambio).
+- pool0: used lógico **2,59T** (aranea_storage 1,09T + proxmox_storage 417G + trading_systems 485G + iscsi 539G + apps 67G + varios 26G) — el "todo pool0" CABE en pool2 con ~1,4T de margen (35% del pool).
+- pool0 scrub OK 6sep (0 errores); **pool2 sin scrub desde jul-2025** y la única tarea de scrub semanal (task id=3) apunta a pool0 — pool2 sin verificación programada (pre-requisito de la SPEC: scrub gated antes de la 1ª réplica).
+- **SPECS vigentes:** [[POOL0-TO-POOL2-REPLICATION-SPEC]] · [[TWO-LAYER-BACKUP-SPEC]] · [[PLACEMENT-DECISIONS-20260920]] §D-Cancelaciones · [[ROADMAP-WP-BACKUP-DR]] §Redirección · mandatos `MANDATO-{PREP,BACKUP-VMS,BACKUP-DATOS,REPLICACION,MIGRACIONES,CERTIFICACION}-SPEC.md` de este directorio.
