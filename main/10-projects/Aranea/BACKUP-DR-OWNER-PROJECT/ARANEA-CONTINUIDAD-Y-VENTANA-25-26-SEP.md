@@ -86,7 +86,7 @@ Paralelizables sin riesgo: carril documental/prep de Backup/DR ∥ diagnóstico 
 
 ## Primer mandato seguro para el agente siguiente
 
-1. Bootstrap Agents-OS + router [[aranea-agent-dev]]; leer esta nota, [[BACKUP-DR-OWNER-PROJECT]] (bitácora), [[FIRST-MAINTENANCE-WINDOW-20260920]] y [[K2-CEPH-RISK-20260920]].
+1. Bootstrap Agents-OS + router Aranea (`30-resources/agents/skills/aranea-agent-dev/SKILL.md`); leer esta nota, [[BACKUP-DR-OWNER-PROJECT]] (bitácora), [[FIRST-MAINTENANCE-WINDOW-20260920]] y [[K2-CEPH-RISK-20260920]].
 2. Verificar delta runtime (read-only): `ceph osd df` (¿≥89% en 2 lecturas separadas ≥1h? → condición de alerta K2), timers de hermes, `/cluster/resources`, último run R2 (expira 26sep), staging de R1 (¿fix tar aplicado?).
 3. Ejecutar SOLO la tarea del día del cronograma; nada GATED sin OK owner explícito y registrado; **prohibido**: backups/migraciones/reinicios/cambios Ceph/TrueNAS/PBS/scrub/borrados fuera de la ventana autorizada.
 4. Si el owner entrega los gates: ejecutar la ventana con `~/aranea/work/first-window-20260926/MANDATO-P0.md` (borrador vigente; prechecks §5 antes de cada intervención; ABORT según su regla 3; una mutación a la vez).
