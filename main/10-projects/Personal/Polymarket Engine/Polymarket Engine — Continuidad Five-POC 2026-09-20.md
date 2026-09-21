@@ -364,3 +364,42 @@ HISTORICAL_RESEARCH_M0_RESULT: HISTORICAL_DATA_PARTIAL
   decision_if_strategy_eligible_backtest_is_required: a point-in-time tick fact that is not Gamma-today and is not inside these v3 hours
 ```
 
+## 16. Historical backtest readiness — PE-005-R1 — 2026-09-21
+
+Mandato owner one-shot. Change log [[2026-09-21-historical-backtest-readiness]]. Agent run [[2026-09-21-cursor-grok-4.7-historical-backtest-readiness]]. Sesión Agents-OS no cerrada. No se tocó el servicio, el binario, los parámetros ni el dataset de Sports Week.
+
+```text
+HISTORICAL_BACKTEST_READINESS_RESULT: DESCRIPTIVE_ONLY
+  published: origin/master = origin/main = 09e8c7610f29a35f8080122b7cb4219b9866ebd7
+  code_sha: 66486ac99a4606d5dc2b44757ac0722a6baa5415
+  certificate: testdata/research-master/certificate.json M4_CERTIFIED_NON_LIVE 27/0/0-in-scope-NOT_RUN/5-deferred-live pineado a 66486ac
+  tests: gofmt, go vet, go test -count=1 ./... PASS, go test -count=1 -race ./... PASS
+  histimport_coverage: 95.0% of statements
+  live: LIVE_DISABLED
+  real_fee_ready: false
+  economics: ECONOMICS_UNCERTIFIED
+  not_claimed: BACKTEST_PASS OOS_PASS HYPOTHESIS_VALIDATED
+  cohort: same exploratory four, kickoff 2026-09-01T22:40:00Z, window [21:10Z, 22:40Z)
+  oos_sealed_not_analyzed: ATL 3901955 and SEA 3901953 kickoff 22:45Z
+  tick_scan: 367 hours 2026-08-18T06 through 2026-09-02T12, errors 0, full parquet not stored
+  new_market: 2026-08-26T13Z, slug date only, tick columns null, no gameStartTime
+  first_tick_change_utc: SF 2026-09-02T00:03:10.022Z, NYM 2026-09-02T00:08:40.416Z, TOR 2026-09-02T00:48:52.187Z, SD 2026-09-02T01:26:50.708Z
+  tick_lexemes: old_tick_size 0.0100, new_tick_size 0.0010, two collector copies per asset, no intermediate change since new_market
+  tick_integration: not backfilled. A window book alone stays SYNCING. The real tick plus the next book ends OBSERVED_USABLE. A later tick with no following book ends SUSPECT.
+  qualities_lookahead: the regime store is projected before the books drain, so a later revision is visible to an earlier book during that drain. Terminal state is still the last event. Not used as causal eligibility. A point-in-time read would be a quality-model change and was not made.
+  kickoff_authority: SCHEDULE_CORROBORATED_POSTHOC. Wayback CDX HTTP 503. No pre-decision gameStartTime in v3 new_market.
+  book_parity: describe mismatches 6+6+2+2 = 16, unchanged. File order does not change the describe report. Unverifiable intervals stay censored. No value was edited to match a hash.
+  publisher_sha256: still the external provenance of hours 21 and 22, not a local recompute of the full object
+  screen_cuts_30: 30/30 delivered, ineligible 0, opportunities 0, two passes, same dataset digest per market
+  screen_digests: SD fc3927ce0797c5719e45e94322b70dec48e461d180fb1021a1b51c0b826f55a9;records=15420 NYM 5a36d995ddf546ff8974c907051e952a7363bba7d0a807bc9626e235825f6a97;records=13100 TOR cf3d2ab1b03a9d11a42dc3f47e9c04a05668990b33616d100c0ba97a0626889c;records=12982 SF 5a78014ffad3d75990d9ec71315c66a834778ee34b63d5ce75c5aff838db4aaa;records=9126
+  screen_quality_note: marketview marks a full non-crossed book OBSERVED_USABLE without the regime tick. Qualities, which uses the regime store, stays SYNCING on a window book. The zero opportunities match describe widenings=0 and are not a causal pass.
+  replay: schedule {1} equals {32,7,1} on all four. Digests 67fdba7b, 701d30b0, 873d0fb2, 048bc960. Nil-constraint replay can say OBSERVED_USABLE; that is not the regime gate.
+  shadow: INCONCLUSIVE, frames 920, ineligible 0, opportunities 0, simulated_fills 0, fees UNRESOLVED, same dataset digests as SCREEN. content_hash differs only with run_id.
+  describe: widenings 0, controls 36, mismatches 6/6/2/2, observations 15268/12858/12854/8986
+  journal_verify: CRC, contiguity and frontier OK. account_fact DEGRADED because these research journals have no account facts.
+  sports_week: service active since 2026-09-21 14:15:20 -03, NRestarts=0, binary bfa6eaf unchanged
+  sports_week_campaign: entered CAPTURING at 2026-09-21T21:05:20Z on its own. health 21:09:33Z mode RUNNING, disk_free_ratio 0.169, real_fee_ready false, economics NOT_CERTIFIED
+  missing_for_causal_eligibility: a tick revision published at or before each book (tick_size_change.new_tick_size, or a Gamma/CLOB tick_size captured before 2026-09-01T21:10Z) and a kickoff published before the decision (gameStartTime or equivalent with a pre-decision timestamp)
+  next_action: when Internet Archive is up, fetch a pre-21:10Z snapshot of Gamma/CLOB for markets 3901945, 3901951, 3901947 and 3901949 and read tick_size and gameStartTime. Do not open the sealed OOS and do not change the quality model to backfill old_tick_size.
+```
+
