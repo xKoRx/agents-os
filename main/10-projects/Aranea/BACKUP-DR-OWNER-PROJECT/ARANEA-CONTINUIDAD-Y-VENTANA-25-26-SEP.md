@@ -52,6 +52,18 @@ updated: "2026-09-21"
 | mcps 113 | rootfs 85% (8,9G cache reclamable); 26/26 containers up | 20sep | [[OPERATING-STATE-20260920]] |
 | pi-hole 149 / CA 200 | L2-dead / stopped — decisiones owner pendientes (WP-B2) | 20sep | [[OPERATING-STATE-20260920]] |
 
+## Delta sesión lun 21 tarde-2 — CONGELACIÓN para el martes 22 (medido 17:02-17:11Z)
+
+**Congelamiento ejecutado** (mandato `~/aranea/work/continuity-20260921/MANDATO-MARTES-22.md`, read-only, cero mutaciones; Echo operando): workspace `~/aranea/work/continuity-20260922/` → `CAPACITY-FREEZE.md` (números fechados), `PLACEMENT-FREEZE.md` (W1-W5/PBS/Ceph toda PENDIENTE_DECISIÓN, ninguna DECIDIDA), `BUNDLE-DECISIONES-MARTES.md` (D1-D8 con opciones/evidencia/impacto/rollback), `WEDNESDAY-MANDATES-INDEX.md` (borrador de mandatos del miércoles), `raw/` (sondas RO). El martes sólo registra decisiones del owner y redirige al cronograma.
+
+**Serie R2 al cierre del 21**: 1 OK de 3 disparos posibles (19 skip fuera de ventana; 20 OK 6/6+verify; 21 perdido por apagado); quedan 5 disparos (22-26) → D-A tolerancia CERO. Próximo disparo: mar 22 06:05 (requiere hermes encendida). Protección del día: A1 2º ciclo VERIFIED (PG `2026-09-21T10:37:57Z` + Mongo `10:37:21Z`, ambos verify TASK OK); R1 second-brain **FAIL 2º día consecutivo** (tar-race; T-21b sigue gated); etcd OK (rev 58563).
+
+**4 erratas materiales medidas hoy** (no bloquean decisiones; refinan mandatos): (1) VG `local-kronos` VFree real = **267,5G** (el 567,5G del baseline era pre-creación del disco pbs-data de 300G) → el `+300G` de MANDATO-P0 §P0-1 no es ejecutable tal cual; opciones: grow ≤250G / 2º disco en VG `pool-kronos` (VFree 733,9G) / diferir — se pide junto a D1. (2) hades local-lvm **33,4G libres** < los ~64G de W5 → reparto por VM (zeus 77,5G / hera 91,7G) o alcance reducido en T-23. (3) pi-hole 149 corre en **athena** (no hades como decía la ficha W3) → el argumento "sobrevivir a hades" cae; decisión = reactivar+proteger vs retiro. (4) pool2 **4,18T libres** (holgura; decisión W1 no cambia).
+
+**K2 del día**: osd.0/2 **85,55/85,57%** (17:10:51Z), HEALTH_WARN + slow ops BlueStore (2 OSD); fondo hoy ≈ +0,37G/h; **condición de alerta NO disparada** (margen ~32G/OSD a 89%). Canal verificado: `pvesh /nodes/<nodo>/ceph/osd` (el `sudo ceph` de hades falla sin `-c /etc/pve/ceph.conf` — feedback registrado). Lectura 2 del día (≥18:11Z) se añade al freeze; no bloquea nada.
+
+**mcps 113**: rootfs 88% / 2,4G libres / 26 containers (17:06Z vía mcps-ops) — estable; prune sigue en P1. ping 149: 100% loss (17:07Z) — L2-dead persiste.
+
 ## Delta sesión lun 21 tarde — medido 09:27-09:50Z (post-cierre documental de la mañana)
 
 **Serie R2 certificada con evidencia dura** (runlog driver + journal hermes + PBS): first_run=**20sep**
