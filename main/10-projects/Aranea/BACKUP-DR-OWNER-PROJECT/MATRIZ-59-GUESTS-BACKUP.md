@@ -75,7 +75,7 @@ cssclasses:
 | 120 | k8s-node-2 | VM | stopped | scsi0:local-lvm | — | KEEP | NONE (lab) | — | — | k8s-node-2 |
 | 123 | sqx-hera | VM | running | scsi0:local-sqx-hera; scsi1:local-sqx-hera | — | KEEP | NONE por diseño (F-04 + dirección owner); artefactos SQX vía MinIO G1B; vzdump opcional → 018 | — | — | sqx-hera; local-sqx-hera sagrado |
 | 124 | mt4-real | VM | running | ide0:nfs-storage; scsi0:pool1 | — | KEEP | VZ post-D (terminal completo SO+datos MT4) | PBS | 7d | mt4-real; credenciales broker fuera de alcance |
-| 125 | mt4-test | VM | stopped | scsi0:pool1 | — | KEEP | NONE (lab) | — | — | mt4-test pool1 |
+| 125 | mt4-test | VM | stopped | scsi0:pool1 | — | KEEP | NONE (lab) | — | — | mt4-test pool1 — [Errata 21sep] estado "stopped" capturado antes del encendido manual del 20-09 18:54:44; estado real desde entonces: **RUNNING en hades** (scsi0 pool1 `vm-125-disk-1,cache=unsafe`; escritor identificado por K2) — ver [[K2-CEPH-RISK-20260920]]; regularizar en 018. No confundir con la fila 114 (mt4-test, stopped, kronos): ambos guests coexisten |
 | 126 | docker-flink | CT | running | rootfs:pool1 | — | KEEP | CFG compose (WP-A5) + VZ post-D | staging+PBS | cfg 7d | flink |
 | 127 | docker-observability | CT | running | rootfs:pool1 | — | KEEP | CFG compose (WP-A5) + VZ post-D | staging+PBS | cfg 7d | ARGUS corre en 160; 127 legacy/dev |
 | 128 | docker-kafka | CT | running | rootfs:pool1 | — | KEEP | CFG compose (WP-A5) + VZ post-D | staging+PBS | cfg 7d |  |

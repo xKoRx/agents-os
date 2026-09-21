@@ -8,7 +8,7 @@ slug: backup-dr-mandatos-implementacion
 area: "[[Aranea]]"
 project: "[[BACKUP-DR-OWNER-PROJECT]]"
 created: 2026-09-20
-updated: 2026-09-20
+updated: "2026-09-21"
 aliases:
   - Mandatos implementación backup DR
   - Prompts one-shot WPs
@@ -134,7 +134,7 @@ PROHIBIDO: subir sin cifrar; tocar árboles legacy pool2; borrar remote (CLEANUP
 
 | Mandato | Bloquea inicio | Puede partir YA |
 |---|---|---|
-| MP-01 | aprobación del plan (incluye recurrencia PG/Mongo; MinIO semanal y prune storage.cfg siguen gated internos) | ✅ **EJECUTADO 2026-09-20** (A0-AUTO PASS; A1 PARTIAL — ciclo 1 VERIFIED, 2º ciclo 21sep pendiente; A3 SKIP con bundle; A5 PASS con hallazgo compose; ver change logs `2026-09-20-mp01-*` y `~/aranea/work/mp01-20260920/`) |
+| MP-01 | aprobación del plan (incluye recurrencia PG/Mongo; MinIO semanal y prune storage.cfg siguen gated internos) | ✅ **EJECUTADO 2026-09-20** (A0-AUTO PASS; A1 PARTIAL — ciclo 1 VERIFIED, 2º ciclo 21sep pendiente; A3 SKIP con bundle; A5 PASS con hallazgo compose; ver change logs `2026-09-20-mp01-*` y `~/aranea/work/mp01-20260920/`) — **[Errata 21sep] A1 = DONE**: 2º ciclo verificado en PBS (`host/r0d-postgresql/2026-09-21T10:37:57Z`, `host/r0d-mongodb/2026-09-21T10:37:21Z`, catch-up 07:36 tras apagado de hermes); retención 30d sin prune sigue en pie hasta decisión D. **Nota aparte**: el mandato P0 de la primera ventana (`~/aranea/work/first-window-20260926/MANDATO-P0.md`) es BORRADOR — no es autorización de ejecución (sus 3 gates owner deben estar OK). |
 | MP-02 | 020 + 021 | — |
 | MP-03 | D-piloto + 018 + 019 | crecimiento datastore como fase gated |
 | MP-04 | MP-01 + 019 (+OK owner PG; decisión Mongo para A2b) | — |

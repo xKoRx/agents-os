@@ -8,7 +8,7 @@ slug: backup-dr-master-plan-storage
 area: "[[Aranea]]"
 project: "[[BACKUP-DR-OWNER-PROJECT]]"
 created: 2026-09-20
-updated: 2026-09-20
+updated: "2026-09-21"
 aliases:
   - Master Plan Storage Backup DR
   - Arquitectura objetivo storage backup DR
@@ -76,6 +76,9 @@ El patrón verificado (SO VMs productivas en pool1 RBD + datos en zvol pool0 ví
 Anti-ejemplos (regla binding): vzdump→nfs-storage NO es backup de pool0 (pool0 es la fuente); snapshot pool0 ≠ backup; REPL pool0→pool2 ≠ off-site; PBS datastore sin off-site = copia local.
 
 ### D3. PBS datastore: 295G es el cuello de botella del sistema
+
+> [!warning] Errata 21sep — la hoja de ruta de este D3 sigue gated y su fecha depende de la decisión D, que ya no puede apoyarse en "7/7"
+> El run R2 del 21sep 06:05 no ocurrió (hermes apagada 01:09-07:36) → serie 3/7 no consecutiva; ver la errata de dependencia en [[ROADMAP-WP-BACKUP-DR]]. El crecimiento +300G NO se ejecuta sin decisión D explícita del owner (criterio alternativo 6/7+OK owner en MANDATO-P0); nada de esta sección está ejecutado.
 
 Hoja de ruta de capacidad (ningún paso en piloto): post-D-piloto (28sep) crecer disco scsi1 `pbs-data` (VG `local-kronos` tiene 567G libres → **+300G = 595G total**, dentro F-06/F-07). Con dedup PBS (F-11) y exclusión de reconstruibles, cabe T0a-d (SO) + dumps + staging-ingest con retención 7d/4w. **Umbral de revisión: 70%.** 2º target pool2 = opción futura (WP-B2 opcional), no bloqueante. La copia fuera de PBS es lo que salva de la pérdida del disco data.
 

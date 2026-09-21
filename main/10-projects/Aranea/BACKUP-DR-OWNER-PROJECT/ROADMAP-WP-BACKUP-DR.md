@@ -7,8 +7,8 @@ icon: 🗺️
 slug: backup-dr-roadmap-wp
 area: "[[Aranea]]"
 project: "[[BACKUP-DR-OWNER-PROJECT]]"
-created: 2026-09-20
-updated: 2026-09-20
+created: "2026-09-20"
+updated: "2026-09-21"
 aliases:
   - ROADMAP WP Backup DR
   - WPs storage backup DR
@@ -126,6 +126,9 @@ Precedencia estricta: B1 requiere D-piloto + 018 + crecimiento datastore; A2 req
 ## Clasificación final de WPs (validación 2026-09-20, post-correcciones C1-C6)
 
 > Un estado por WP. READY = precondiciones verificadas + autorización identificada + mecanismo demostrado + rollback/validación completos. OWNER_GATE especifica exactamente qué autoriza. Nada aquí ejecuta ni declara ejecutado.
+
+> [!warning] Errata 21sep — dependencia D-piloto ↔ serie R2
+> El run R2 del 21sep 06:05 no ocurrió (hermes apagada 01:09→07:36; catch-up ejecutó A1/R1/R1.5 pero el trigger absoluto de R2 expiró dentro del apagado). La serie queda **3/7 NO consecutiva** y el criterio original "7/7 días con verify ok" es **inalcanzable** antes de la expiración del 26sep. La decisión D (gated al owner) debe resolverse explícitamente con el criterio alternativo ya definido en `~/aranea/work/first-window-20260926/MANDATO-P0.md`: **6/7 runs OK + OK owner con CAPACITY-METRICS re-medidas 25-26sep** — o el owner difiere D, y con ella B1 y el crecimiento +300G (D3), a su calendario original (28sep). Esta errata NO cambia la clasificación de los WPs; cambia la precondición factual de B1.
 
 **READY_TO_EXECUTE (en el instante en que el owner apruebe el plan — esa aprobación ES la autorización de recurrencia PG/Mongo):**
 - **WP-A0-AUTO** (ingesta staging→PBS + inventario nfs-storage + round-trip) — mecanismo G1A demostrado; sin ventana.
