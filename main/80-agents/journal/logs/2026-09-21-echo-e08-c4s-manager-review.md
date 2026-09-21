@@ -1,0 +1,21 @@
+# Echo E-08 C4-S — Manager review (2026-09-21)
+
+## Executive decision
+
+`SOURCE_DELTA_VERIFIED / COVERAGE_REPORTED_PASS / HARNESS_SAFETY_BLOCKED / E08_COVERAGE_GATE_NOT_YET_CLOSED`.
+
+Owner: manager único de Echo. Repo `xKoRx/echo`, única feature remota de desarrollo `feature/e09-execution-copy-reconciliation-fidelity @ 7c843e9c62de8de72b1cd1b7ca066fd467ce01ca`; master `5dd998f16aea7b2821f460188718d7a6d279829c` intacto. Comparación GitHub `4464a6dd..7c843e9c`: fast-forward +4 commits; sólo tests, harness scripts y E-08 VERIFICATION; ningún source de producción, migración o contrato modificado. Remoto: master + feature/e09 + dos rescue; E-02 retirado. Resultados de tests y cobertura son evidencia REPORTADA por agente, no re-ejecutada por manager; números reportados: econroute 95.6%, gate 98.0%, reservas 98.2%, command store 98.4%, routing store 97.9%, snapshot store 98.9%; `PHYSICAL_PENDING`, `ECONOMIC_ACTIVATION_PENDING`, `FINAL_CLOSED=NO`.
+
+## Dos defectos acotados del arnés publicado
+
+**C4-S-R1 — Bootstrap PG escribe antes de comprobar identidad del servidor en el puerto (bloqueante).** `v3/sdk/postgres/tests/economic_commands_e8/boot_disposable_pg.sh`: después de pg_ctl status/start, conecta a `127.0.0.1:$E8_PG_PORT` y puede ejecutar `CREATE DATABASE`, `CREATE SCHEMA`, `CREATE TABLE` y el INSERT/UPDATE del token en el servidor que responda; ANTES no compara `SHOW data_directory` del servidor de esa conexión con la ruta propia canónica `$E8_PG_DATADIR`, ni comprueba su identidad. Si el puerto apunta a un PG distinto accesible con ese usuario, puede escribir en instancia ajena previo a los gates Go/run.sh. Fix: preflight de conectividad + identidad servidor/instancia ANTES del primer DDL/DML (no generar marker de base en target aún no probado), fail-closed si puerto ocupado, host/datadir distinto, PID/owner/cluster discrepante o ambigüedad. Preferir arrancar en puerto libre exclusivo y probar caso de colisión con segunda instancia descartable controlada; ningún acceso de escritura al cluster equivocado. Preservar/reforzar el gate ya incluido en run.sh y Go, no eliminarlo.
+
+**C4-S-R2 — Predelete del binding NO es transaccional en el camino normal (bloqueante).** `v3/sdk/postgres/e8_stores_infra_test.go`, `infSeedBindingIdent`: recorre `ALTER ... DISABLE TRIGGER`, `DELETE`, `ALTER ... ENABLE TRIGGER` vía `db.Exec` secuenciales sin transacción; sólo abre transacción después de que algún paso falló. Un fallo intermedio deja cambios confirmados/triggers desactivados y el fallback puede fallar de nuevo. Fix: sustituir todo el primer loop + fallback por UNA transacción desde el inicio (con defer Rollback hasta Commit), checks de errors por paso y después de commit; nunca `DISABLE TRIGGER` fuera de tx. Comprobar con CHECK o permiso que falla en el paso intermedio y fingerprint pre/post (triggers, filas, restricciones); reproducir camino feliz sin contaminación de otros tests.
+
+## Decisión sobre coverage
+
+Se reconoce el avance de cobertura pero no se aprueba `COVERAGE_GATE_CLOSED_WITH_DECLARED_RESIDUAL` ni `FINAL_CLOSED` hasta corregir R1/R2 y revalidar la seguridad del arnés. No exigir volver a perseguir los residuos de driver de §14.3: son deuda explícita, no una orden de subir cada función al 100%; el alcance crítico declarado sí alcanza ≥95% en el reporte. No otra auditoría de E-08 C1–C3 ni de migraciones. Si R1/R2 pasan, el manager puede aceptar el gate de desarrollo E-08 con el residual nombrado, dejando PHYSICAL/ECONOMIC pendientes.
+
+## Next exact
+
+Un NORMAL, misma branch y baseline SHA `7c843e9c62de8de72b1cd1b7ca066fd467ce01ca`, corrige exclusivamente R1/R2 + tests regresión + delta VERIFICATION. No crear ramas adicionales, no cambiar producción, master, flags ni despliegues. Tests destructivos sólo en dos clusters descartables propios (para colisión segura), con setup fail-closed, fingerprint pre/post y suites focalizadas; parar si no se puede garantizar destino. Publicar push FF/read-back y cierre Agents-OS. Después manager review breve → E-09 COVERAGE_GATE. Previo a ejecutar harness 067 de E-09 en una nueva tarea, aplicar a ese script el mismo preflight destructivo: hoy se declara ungated en handoff, no confundir con la garantía de E-08. No tocar contraseñas/infra PROD como parte de estos mandatos.
