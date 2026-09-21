@@ -14,6 +14,12 @@ tags: [kind/doc, area/aranea, domain/backup-dr]
 
 **Ejecutor**: Ariadna (Backup/DR) + canal DDP TrueNAS. **SPEC**: [[POOL0-TO-POOL2-REPLICATION-SPEC]] (autoridad técnica). **Etapa C** — ventana propia o tramo exclusivo, JAMÁS simultánea con backups full, restauraciones o migraciones que carguen TrueNAS.
 
+## Propósito
+
+Mandato de ejecución de la réplica pool0→pool2 (Etapa C): primera transferencia y activación del schedule diario.
+
+## Contenido
+
 ## Preflight (fail-closed, el día de la ventana)
 1. **G-REP-1**: scrub pool2 completado con 0 errores (ventana previa separada; ~7h estimadas; NO el mismo día que la full si el chasis comparte carga — programar scrub → día siguiente réplica).
 2. **G-REP-2**: alcance confirmado (todo pool0; excluidos técnicos `.ix-virt`/`.system`; trading_systems/documents y frigate media INCLUIDOS por confirmación explícita del owner).

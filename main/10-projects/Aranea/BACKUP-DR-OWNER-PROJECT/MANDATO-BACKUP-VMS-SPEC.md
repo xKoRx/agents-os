@@ -14,6 +14,12 @@ tags: [kind/doc, area/aranea, domain/backup-dr]
 
 **Ejecutor**: Ariadna (Backup/DR). **Dependencias**: MANDATO 1 (diffs listos); decisión D-piloto; ticket 018; ventana 019. **I/O**: vzdump T0 full inicial concentra I/O — JAMÁS simultáneo con la 1ª réplica a pool2 ni G1B.
 
+## Propósito
+
+Mandato de ejecución del Mecanismo A: producción vzdump (B1) y capa nfs-vmbackup pool1→pool0.
+
+## Contenido
+
 ## Objetivo
 Cobertura imagen-level de VM/LXC según [[TWO-LAYER-BACKUP-SPEC]] §1: (a) B1 producción en PBS; (b) 2ª copia local en `nfs-vmbackup` (pool0) de las unidades con discos en pool1.
 

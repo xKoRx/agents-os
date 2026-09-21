@@ -14,6 +14,12 @@ tags: [kind/doc, area/aranea, domain/backup-dr]
 
 **Ejecutor**: Ariadna (Backup/DR). **Base**: [[BACKUP-DR-RUNBOOK]] + [[BACKUP-DR-CHECKLIST]] + RESTORE-DRILL-TEMPLATE; WP-R7. **Principio**: restauración demostrada = único criterio de cobertura.
 
+## Propósito
+
+Mandato de certificación: restore drills y procedimientos de recuperación con evidencia.
+
+## Contenido
+
 ## Drills a certificar (en orden de dependencia; targets scratch, jamás sobre producción)
 1. **Restore completo 1 CT T0 desde PBS** → scratch (re-certificación con la plataforma de producción B1; patrón CT 990).
 2. **Restore completo 1 VM T0 desde PBS** → scratch, con arranque y check de servicio (PRIMERA certificación VM completa del sistema; candidato: echo 140 con Echo cerrado, o PG 152 con su dato en zvol aparte — el SO restaurado + `SELECT 1` contra el dato vivo).

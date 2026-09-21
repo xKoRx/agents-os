@@ -27,6 +27,12 @@ related:
 
 > Autoridad: D-NEW-01 (pool2 = réplica diaria de TODO pool0, sin otro uso) del mandato ONE-SHOT 21sep noche. Estado: **SPEC congelable en T-24; ejecución GATED** (gates §G). Números medidos 21sep noche (API v2.0 + SSH ariadna@truenas); regla del proyecto: re-medir en preflight antes de cada gate.
 
+## Propósito
+
+Especifica la réplica diaria incremental de TODO pool0 hacia pool2 según D-NEW-01: inventario, capacidad, snapshots, consistencia, vida del HDD, recuperación y gates de activación. Ejecución GATED.
+
+## Contenido
+
 ## 1. Inventario pool0 (medido 21sep ~17:45-18:00 -03)
 
 pool0: mirror ×3 (6 discos 932G virtuales), 4,08T size, ONLINE, scrub OK 6sep 2026 (0 errores). Used lógico 2,59T / avail dataset-view 945G. **No hay snapshots periódicos activos** (606 snapshots totales son residuos 2025 + sistema; sólo 156 en pool0, todos jul-2025 o de instalación).

@@ -14,6 +14,12 @@ tags: [kind/doc, area/aranea, domain/backup-dr]
 
 **Ejecutor**: Ariadna (Backup/DR). **Base**: no rehacer lo certificado (G1A/G1B/A1/R1/R1.5) — este mandato CIERRA deudas y habilita cloud, según la matriz de [[TWO-LAYER-BACKUP-SPEC]] §2.
 
+## Propósito
+
+Mandato de ejecución del Mecanismo B: cierre de deudas de datos y cloud priorizado según D-NEW-05.
+
+## Contenido
+
 ## Operaciones (por orden de valor de riesgo)
 1. **T-21b (gated: aplicar diff)**: fix tar-race R1 second-brain — diff probado `~/aranea/work/continuity-20260921/T21B-R1-TAR-RACE-FIX.diff`; DoD: run siguiente 3/3 unidades OK.
 2. **W-02 ejecutor standby PBS (gates D2 a+b+c)**: implementación según especificación cerrada `~/aranea/work/continuity-20260923/W-02-BACKUPS-AUTONOMOS.md` — post-cierre Echo del viernes, fuera de ventana; sin auto-activación; flag manual.

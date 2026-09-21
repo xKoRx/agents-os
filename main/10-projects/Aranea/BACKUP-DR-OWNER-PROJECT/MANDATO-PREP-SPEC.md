@@ -14,6 +14,12 @@ tags: [kind/doc, area/aranea, domain/backup-dr]
 
 **Momento**: Etapa A — durante la semana (mercado abierto); RO + documental + scripts sin ejecutar en producción. **Ejecutor**: Ariadna. **Ejecución de mutaciones**: NO en este mandato.
 
+## Propósito
+
+Mandato de preparación (Etapa A): scripts, diffs, re-medición de capacidad y preflights sin tocar producción.
+
+## Contenido
+
 ## Objetivo
 Dejar todo listo para que los mandatos 2-6 sean ejecutables en sus ventanas: scripts preparados, capacidad re-medida, preflights empaquetados.
 

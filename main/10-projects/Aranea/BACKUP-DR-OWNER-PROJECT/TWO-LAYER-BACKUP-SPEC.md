@@ -28,6 +28,12 @@ related:
 
 > Autoridad: D-NEW-04 del mandato 21sep noche. Los dos mecanismos NO son intercambiables. **Regla binding: un backup de VM con un disco excluido NO declara recuperación integral del servicio sin procedimiento de restauración de ese disco o de sus datos.** Fuente canónica de los 59 guests: [[MATRIZ-59-GUESTS-BACKUP]] (esta SPEC NO la duplica; añade exclusiones ledger + RTO + mecanismo pool1→pool0). Ejecución GATED; mandatos en [[MANDATO-BACKUP-VMS-SPEC]] y [[MANDATO-BACKUP-DATOS-SPEC]].
 
+## Propósito
+
+Define los dos mecanismos de backup no intercambiables (D-NEW-04): imagen VM/LXC vía PBS y datos consistentes por servicio, con exclusiones ledger, capa pool1→pool0 y matriz de cobertura. Ejecución GATED.
+
+## Contenido
+
 ## 1. Mecanismo A — Backup de VM/LXC completo (PBS, independiente)
 
 **Qué cubre**: configuración + SO + discos incluidos → restaurar la máquina completa. Motor: vzdump→PBS VM 180 (datastore `main`, dedup, verify jobs) — mecanismo pilotado por R2 (6 CTs, verify TASK OK) y adoptado como producción por B1 tras decisión D.

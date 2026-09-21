@@ -14,6 +14,12 @@ tags: [kind/doc, area/aranea, domain/backup-dr]
 
 **Ejecutor**: Ariadna (placement) + carril Ceph/Storage cuando toque pool1. **Base**: [[PLACEMENT-DECISIONS-20260920]] §D. **Principio**: el objetivo es el placement correcto, NO llenar la ventana — ninguna migración sin destino y mecanismo de recuperación certificados; sin causalidad, no se mueve nada.
 
+## Propósito
+
+Mandato de migraciones justificadas tras la redirección: W1/W2 canceladas, W3/W4 por decisión, W5 reevaluada por VM.
+
+## Contenido
+
 ## Alcance tras D-NEW
 | Ítem | Estado | Operación |
 |---|---|---|
