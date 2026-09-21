@@ -20,7 +20,7 @@ tags:
   - area/echo
   - tech/environment
 created: "2026-09-20"
-updated: "2026-09-20"
+updated: "2026-09-21"
 ---
 
 # Echo + Echo Forge — Environment Contract
@@ -29,7 +29,7 @@ updated: "2026-09-20"
 
 Fuente canónica **del límite DEV/PROD y del mapa de ambientes** de Echo y Echo Forge en Aranea. Lectura obligatoria al iniciar una sesión de cualquiera de los dos proyectos a través de [[aranea-agent-dev]], antes de acceder a infraestructura. También aplica a sesiones de investigación/review que puedan producir instrucciones de operación o despliegue. No es una SPEC de producto, un inventario general de Aranea, un runbook ni una autorización de ejecución.
 
-**Corte de este documento: 2026-09-20.** Las asignaciones de destino expresan decisiones del owner; los estados físicos solo expresan evidencia identificada, con su propia fecha. **No se ha recibido ni validado aquí el reporte AS-BUILT de Hermes.** Nunca convertir una decisión TARGET, configuración escrita, servicio healthy, release o acceso MCP en `PHYSICALLY_VERIFIED` sin su smoke material. Frente a un runtime más reciente, reconciliar y actualizar este contrato antes de apoyarse en un dato desmentido; ninguna nota histórica autoriza una mutación.
+**Corte de este documento: 2026-09-21** (reconciliación AS-BUILT Echo Core/Gateway DEV en Daedalus del 2026-09-21; el corte 2026-09-20 sigue siendo la base de las secciones no tocadas). Las asignaciones de destino expresan decisiones del owner; los estados físicos solo expresan evidencia identificada, con su propia fecha. **No se ha recibido ni validado aquí el reporte AS-BUILT de Hermes.** Nunca convertir una decisión TARGET, configuración escrita, servicio healthy, release o acceso MCP en `PHYSICALLY_VERIFIED` sin su smoke material. Frente a un runtime más reciente, reconciliar y actualizar este contrato antes de apoyarse en un dato desmentido; ninguna nota histórica autoriza una mutación.
 
 ## Contenido
 
@@ -47,7 +47,7 @@ Fuente canónica **del límite DEV/PROD y del mapa de ambientes** de Echo y Echo
 
 | Componente | Destino objetivo | Estado físico de esta decisión |
 |---|---|---|
-| Workspace, coding agents, builds, Echo Core y Gateway DEV, componentes auxiliares requeridos, Forge Go | **Daedalus** | `TARGET / AS_BUILT_PENDING`: verificar servicio, source SHA, binario, configuración DEV, health, dependencias y recuperación. |
+| Workspace, coding agents, builds, Echo Core y Gateway DEV, componentes auxiliares requeridos, Forge Go | **Daedalus** | **AS-BUILT parcial 2026-09-21** (ver §5.1): Gateway DEV `RUNNING / PHYSICALLY_VERIFIED` (health, restart, kill-recovery); Core DEV `BLOCKED` por drift de credencial PostgreSQL DEV (owner); sin unidades de sistema (sin root interactivo) se usó `systemd --user` de `kor` con linger demostrado. |
 | SQX DEV y plugins/worker de investigación rápida | **Daedalus**, preferencia por instalación nativa | `TARGET / FEASIBILITY_AND_AS_BUILT_PENDING`: licencia, recursos, plugin, proceso y job real pendientes de evidencia. Si resulta inviable, alternativa DEV autorizada y documentada; no nueva VM por inercia. |
 | MT4/MT5, MetaEditor, Strategy Tester y MT5 worker DEV | **Windows `192.168.31.132`**, nombre lógico `dev-win`; clon designado de `mt5-win` | `OWNER_DESIGNATED / ISOLATION_AND_AS_BUILT_PENDING`: no asumir SSH, perfiles MCP, worker, cuenta demo ni backtest habilitados hasta smoke real. |
 | PostgreSQL, Hasura, Kafka, Flink/StateFun, MongoDB y dependencias efectivas | Instancias **DEV ya existentes** en Aranea, no duplicarlas en Daedalus | Inventario y capacidades documentadas; cada consumidor debe demostrar endpoint/recurso DEV y conectividad actual. |
