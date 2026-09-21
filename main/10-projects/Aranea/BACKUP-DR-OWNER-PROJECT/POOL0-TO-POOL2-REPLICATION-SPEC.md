@@ -95,6 +95,8 @@ pool0: mirror ×3 (6 discos 932G virtuales), 4,08T size, ONLINE, scrub OK 6sep 2
 
 ## 4. Consistencia por workload (honestidad de la réplica)
 
+> **Addendum auditoría 21sep noche-3 — dependencias reales del horario (reemplaza el argumento por inercia):** mapa verificado de los checkpoints de protección (timers hermes + cronograma pool0): 03:00 dumps PG · 03:20 dump Mongo (A1, I/O liviano sobre pool0) · 04:00 R1 (empaqueta el vault de hermes; NO toca TrueNAS) · 04:45 → **snapshot pool0** · 04:50 → **réplica a pool2** · 05:00 etcd snapshot · 06:05 R2 (vzdump CTs a PBS — LEE pool0 vía los rootfs NFS `proxmox_storage`, expira 26sep; sin conflicto futuro con la réplica que ya corrió 04:50). La ventana 04:45-04:50 queda libre por diseño: separada de A1 (evita snapshot mientras el dump Mongo puede seguir escribiendo su zvol) y suficientemente lejos de R1/R2. La primera transferencia completa NO corre a esta hora: va en su ventana exclusiva propia (G-REP-3) — el horario diario rige para el régimen incremental.
+
 La réplica es **crash-consistent** (snapshot ZFS ≠ aplicación congelada). Por workload:
 
 | Dato | Consistencia de la réplica | Copia consistente paralela | Recuperación coordinada |
