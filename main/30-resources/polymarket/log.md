@@ -95,3 +95,11 @@ tags:
 - S04: contratos KLGA/RJTT inventariados; sin vintages PIT. S05: `first_known_at` ≠ `createdAt` en 986912; ningún mercado nuevo en la ventana. S01 663 INCONCLUSIVE no promovidos. S02 0 señales locales ≠ NO_GO global.
 - Bundle `polymarket-engine-datasets/hardening-20260921/`. Continuidad §10. Change log [[2026-09-21-polymarket-final-readiness]]. No alpha, no live.
 
+## [2026-09-21] audit | U-02 protocol authority — `V2_CASH_CONFIRMED`
+
+- Integración `85e27ff` intacta; worktree U-02 `d62768a`/`d5ce263` no mergeado; v07/v08 preservados; sin push; `LIVE_DISABLED`; `REAL_FEE_READY=NO`.
+- PE-001 liquida en CTF Exchange V2 `0xE11118…` / pUSD. Tx BUY `0x35f20473…`: 180.34 shares completas + 2.239820 pUSD fee (notional+fee = cash 85.196220).
+- Weather NYC liquida en Neg Risk V2 `0xe2222d27…`. Tx BUY `0x5a2269f1…`: 483.9 shares + 0.047040 pUSD fee. Misma unidad.
+- `TAKER_PROCEEDS` = V1 `CalculatorHelper` (repo archivado). Help Center Maker Rebates (shares on BUY) es lenguaje V1; el FAQ de upgrade + contrato V2 + txs coinciden en collateral.
+- Plan de relabel preparado, no ejecutado. Informe `u02-protocol-authority-20260921/REPORT.md`. Continuidad §11. Change log [[2026-09-21-u02-protocol-authority]].
+

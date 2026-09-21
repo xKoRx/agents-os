@@ -114,7 +114,8 @@ Para M4, leer flags reales `engine experiment certify --help`, confirmar SHA com
 - [ ] **PE-030 / P2 — Forecast vintages:** ingestar NWS MOS/NBM issued-at ≤ frame; no latest. Mantener UNCALIBRATED hasta evidencia.
 - [x] **PE-004 / P2 — Catalog first_known ≠ createdAt (2026-09-21):** sync Gamma de 986912 en dataset fresco → `first_known_at=2026-09-21T14:33:53Z` vs `createdAt=2026-09-08`. Wiring honesto. **No nació mercado nuevo en la ventana** → cohorte O/B real ausente (no sustituir).
 - [ ] **PE-004 / P2 — Cohorte real O/B:** observar un mercado **nuevo** durante captura; `first_known_at` auténtico; W sigue SFG-06.
-- [ ] **BACKLOG no bloqueante / P3:** SFG-06 residual `new_market → Catalog reducer → UniverseChanged → replay` para W; fee BUY-shares vs USDC (U-02 residual; no parchear sin ownership); `capitalLock` legacy BBO hardcodeado `5.1` ≠ notional real (reconfirmado `experiment.go`); tres archivos `cmd/engine` gofmt drift reconfirmados (`five_poc_cases_test.go`, `research_gates_test.go`, `screen.go`); A2 PE-004 serializar corpus 22 fixtures. Priorizar sólo cuando un experimento lo requiera.
+- [x] **U-02 / P0 — Protocol authority V1/V2 (2026-09-21):** dictamen **`V2_CASH_CONFIRMED`**. PE-001 y weather liquidan en Exchange V2 / NegRisk V2 con BUY fee en pUSD y shares completas. `TAKER_PROCEEDS` @ `d5ce263` modela V1 archivado; no mergear como venue. `REAL_FEE_READY=NO`. Informe `u02-protocol-authority-20260921/REPORT.md`. Change log [[2026-09-21-u02-protocol-authority]]. Código no integrado; v07/v08 preservados.
+- [ ] **BACKLOG no bloqueante / P3:** SFG-06 residual `new_market → Catalog reducer → UniverseChanged → replay` para W; relabel `USDC_CASH`/`TAKER_PROCEEDS` según dictamen V2 (plan listo, no ejecutado); redondeo 5 dp vs `TRUNCATE_6DP`; `capitalLock` legacy BBO hardcodeado `5.1` ≠ notional real (reconfirmado `experiment.go`); tres archivos `cmd/engine` gofmt drift reconfirmados (`five_poc_cases_test.go`, `research_gates_test.go`, `screen.go`); A2 PE-004 serializar corpus 22 fixtures. Priorizar sólo cuando un experimento lo requiera.
 - [ ] **CIERRE / P0 al retomar:** actualizar esta nota, padre, nota POC afectada, recurso/guía y journal con resultados de la nueva sesión. `Graphify` y lint sólo marcar PASS si se ejecutaron; no confundir docs con ejecución física.
 
 ## 7. Políticas de ejecución y separación de estados
@@ -199,5 +200,36 @@ RESUME_STATUS_20260921_HARDENING:
   blockers_requiring_owner: Review/publicación engine; dictamen OT/tie WNBA; autorización de parche Economics BUY-shares si se desea
   next_execution_action: no código; esperar par usable o vintages weather; no live
   decision: ENGINEERING_STAGE_CLOSED_RESEARCH_REPRODUCIBLE (nunca live, nunca alpha)
+```
+
+## 11. Protocol authority U-02 — 2026-09-21
+
+Dictamen **`V2_CASH_CONFIRMED`**. Informe: `~/go/src/github.com/xKoRx/polymarket-engine-datasets/u02-protocol-authority-20260921/REPORT.md`. Change log [[2026-09-21-u02-protocol-authority]]. **Cero código nuevo en integración; parche U-02 no mergeado.** v07 y v08 preservados. `REAL_FEE_READY=NO`.
+
+```text
+RESUME_STATUS_20260921_U02_AUTHORITY:
+  agents_os_bootstrap: PASS (DEFAULT Personal; Graphify degradado — binario ausente)
+  engine_worktree: /home/kor/go/src/github.com/xKoRx/polymarket-engine-integration
+  current_branch: feature/five-poc-integration
+  current_head: 85e27ff85d466c6522455f1426f6e0c8e23fe157
+  clean: YES
+  u02_worktree: /home/kor/go/src/github.com/xKoRx/polymarket-engine-u02 @ d62768a (código d5ce263, no integrado)
+  final_code_sha_present: 56e8fac
+  evidence_sha_present: c38f6c4
+  certificate_baseline_verified: YES v07 @ c38f6c4; v08 @ d5ce263 (HEAD U-02 = pin d62768a; correspondencia exacta HEAD↔cert NO)
+  remote_vs_local: origin 25f578a; HEAD local unpushed
+  five_pocs_status: offline certified intacto
+  u02_gate: V2_CASH_CONFIRMED (unidad BUY=collateral pUSD); TAKER_PROCEEDS=V1 archivado; REAL_FEE_READY=NO
+  pe001_exchange: CTF Exchange V2 0xE111180000d2663C0091e4f400237545B87B996B; collateral pUSD
+  pe001_settlement_tx: 0x35f204735b3d0854dc3da5a77a0ff4251cf41ad19a88f4dc569a9b83b7c2de61 (BUY 180.34 shares + 2.239820 pUSD fee)
+  weather_exchange: Neg Risk CTF Exchange V2 0xe2222d279d744050d28e00520010520000310F59
+  weather_settlement_tx: 0x5a2269f1f9a9325b7874630b3346040ddd7fef18899cca5c22ee3f38685c5fc8
+  datasets_and_capture_safety: pe001/rs-v03/v07/v08 intocados; bundle nuevo u02-protocol-authority-20260921
+  owner_review_state: OPEN c915c11..85e27ff; d5ce263 NO mergear como venue
+  publication_decision_state: UNPUBLISHED
+  chosen_poc_and_first_falsifiable_experiment: PE-001 espera par OT-emparejado o dictamen boilerplate; S04 vintages
+  blockers_requiring_owner: Review/publicación engine; dictamen OT/tie WNBA; autorización de relabel USDC_CASH/TAKER_PROCEEDS (plan listo, no ejecutar)
+  next_execution_action: no código; no integrar d5ce263; no live
+  decision: V2_CASH_CONFIRMED (nunca REAL_FEE_READY, nunca live, nunca alpha)
 ```
 
