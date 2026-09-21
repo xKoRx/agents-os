@@ -29,7 +29,7 @@ updated: "2026-09-21"
 
 Fuente canónica **del límite DEV/PROD y del mapa de ambientes** de Echo y Echo Forge en Aranea. Lectura obligatoria al iniciar una sesión de cualquiera de los dos proyectos a través de [[aranea-agent-dev]], antes de acceder a infraestructura. También aplica a sesiones de investigación/review que puedan producir instrucciones de operación o despliegue. No es una SPEC de producto, un inventario general de Aranea, un runbook ni una autorización de ejecución.
 
-**Corte de este documento: 2026-09-21** (AS-BUILT Core/Gateway DEV en Daedalus + recertificación CERT-E04-01/CERT-F04-03 del mismo día; el corte 2026-09-20 sigue siendo la base de las secciones no tocadas). Las asignaciones de destino expresan decisiones del owner; los estados físicos solo expresan evidencia identificada, con su propia fecha. **No se ha recibido ni validado aquí el reporte AS-BUILT de Hermes.** Nunca convertir una decisión TARGET, configuración escrita, servicio healthy, release o acceso MCP en `PHYSICALLY_VERIFIED` sin su smoke material. Frente a un runtime más reciente, reconciliar y actualizar este contrato antes de apoyarse en un dato desmentido; ninguna nota histórica autoriza una mutación.
+**Corte de este documento: 2026-09-21T03:38Z** (AS-BUILT Core/Gateway DEV + recertificación + recovery source + **deploy Gateway `2360369c` e ingestión DEV funcional**; el corte 2026-09-20 sigue siendo la base de las secciones no tocadas). Las asignaciones de destino expresan decisiones del owner; los estados físicos solo expresan evidencia identificada, con su propia fecha. **No se ha recibido ni validado aquí el reporte AS-BUILT de Hermes.** Nunca convertir una decisión TARGET, configuración escrita, servicio healthy, release o acceso MCP en `PHYSICALLY_VERIFIED` sin su smoke material. Frente a un runtime más reciente, reconciliar y actualizar este contrato antes de apoyarse en un dato desmentido; ninguna nota histórica autoriza una mutación.
 
 ## Contenido
 
@@ -139,6 +139,18 @@ Sesión Cursor/Grok sobre Hermes (no sobre Daedalus). **No se tocó PROD, worker
 - **Golden:** `trading_systems_test` confirmado como autoridad de bodies; MCP postgres-rw está ligado a `echo-develop` ⇒ **GOLDEN_AUTHORITY_BLOCKED** intacto.
 - **Runtime desplegado:** sigue binarios §5.1 SHA `5dd998f1`. Ingest live no recertificado.
 
+### 5.4 Deploy Gateway + ingestión DEV (2026-09-21T03:38Z) — `ECHO_DEV_INGEST_FUNCTIONAL_PASS`; CERT formal no cerrado
+
+Sesión Cursor/Grok **sobre Daedalus** (`hostname=daedalus`, usuario `kor`). **No se tocó PROD, workers SQX/MT5, Windows `.132`, Core DEV, ni el screen `deployer`.** Informe: `~/aranea/work/echo-dev-ingest-close-20260921/FINDINGS-INGEST-CLOSE-20260921.md`.
+
+- **Access:** `DAEDALUS_EXECUTION_ACCESS_PASS` por ejecución local (no SSH). `systemctl --user` operativo; write en `/home/kor/opt/echo-dev`.
+- **Release Gateway:** publicado `/home/kor/opt/echo-dev/releases/2360369c3ba406a8bf575f2169993028978f48da/echo-gateway` SHA256 `ef56fff6b1b4afcfeafee33971d44706eaf30083bab51f68f34e47201eb96f80`; `vcs.revision=2360369c…` `vcs.modified=false`; go1.27.1 linux/amd64 `-trimpath -buildvcs=true`. Core binario copiado sin rebuild (`34f10782…`). Symlink `current` atómico al SHA nuevo. Rollback documentado al release `5dd998f1`.
+- **Unidad:** restart exclusivo `echo-gateway-dev.service`. MainPID 2478768→2521367; `NRestarts=0`; ExecStart `%h/opt/echo-dev/current/echo-gateway`. Core MainPID **2479388 intacto** (sin restart). `/health` Gateway+Core 200. Journal: `forge_ingest_misconfigured=false`.
+- **Schema DEV (delta sobre §5.3):** GRANT UPDATE a `echo_user` sobre `strategy_identity_mappings` / `strategy_versions` / `promotion_records` / aliases. Causa: RI PostgreSQL exige UPDATE para `SELECT … FOR KEY SHARE`; los triggers write-once siguen bloqueando UPDATE/DELETE reales. Migración 061 **no marcada completa**; `strategy_definitions.id` sigue `varchar(64)`.
+- **Ingestión física:** HTTPIngress Symphony `a2321cc` → POST `/api/v1/forge/promotions`. 401 sin Bearer; 201 receipt `338bd937-95ad-4389-9278-89285908b0a6` `INGESTED`; replay 200 mismo id; GET by-key 200; same-key different digest 409 `CONTRACT_CONFLICT`/`sealed_digest`. PG read-back: `registry_namespace=forge-live`, key `sha256:0feb7f41…`, digest `sha256:be73cf7f…`, canonical `dev-daedalus-ingest-daedalus-dev-ingest-20260921T033545Z`. Artefactos materializados bajo `var/forge-source/minio/forge/…` con store `var/forge-artifacts/sha256/1ab88438…`. **No es el golden RERUN-6.**
+- **Golden:** `GOLDEN_AUTHORITY_BLOCKED` intacto (bodies en `trading_systems_test.sqx.handoff_manifests`; owner action 1 sin entrega).
+- **Veredicto:** `ECHO_DEV_INGEST_FUNCTIONAL_PASS`. `CERT_E04_01=BLOCKED`, `CERT_F04_03=BLOCKED`. `/health` ≠ ingest funcional ≠ join certificado con golden.
+
 ### 6. Lectura y operación para cada sesión
 
 - **Cold start o cambio de entidad a Echo/Forge:** `agents-os-bootstrap` → router `aranea-agent-dev` → leer este contrato **antes de elegir ambiente o actuar**. No añadirlo al stack global ni cambiar el bootstrap.
@@ -153,10 +165,10 @@ Sesión Cursor/Grok sobre Hermes (no sobre Daedalus). **No se tocó PROD, worker
 |---|---|---|
 | Reporte final Hermes `dev-win` | No recibido aquí | Incorporar host/identidad, claves host sanitizadas, profiles, smokes y fecha. |
 | Core/Gateway sobre Daedalus | **AS-BUILT completo 2026-09-21 en §5.1** — ambos `RUNNING/PHYSICALLY_VERIFIED`; credencial PG resuelta por owner; `systemd --user`+linger, unidades de sistema pendientes de owner con root | Owner opcional: migrar a unidades de sistema. |
-| Seed tests que sobrescriben credenciales ETCD (v1/v2/v3 `echo_seed_test.go`, dev+prod, sin guardas) | **Cerrado en source** `2360369c` (fail-closed por defecto + CLI bootstrap). Runtime Daedalus aún no corre ese SHA | Owner: SSH `kor@192.168.31.161` para publicar release y restart Gateway DEV. |
-| Forge DEV en Daedalus | `echo/ingest/base_url` sembrado 2026-09-21T03:15Z; bearer DEV creado (no en vault). Sin worker nuevo | Consumidor HTTPIngress aislado sigue pendiente de deploy Echo. |
-| Gateway forge_ingest DEV + mig 061 en `echo-develop` | Keys no-secretas presentes; identity tables creadas; ALTER `strategy_definitions.id` y lab_* pendientes (owner `admin` + lock `trade_journal`) | Owner: SSH Daedalus para deploy; opcional ALTER restante como `admin`. |
-| CERT-E04-01 / CERT-F04-03 | Siguen BLOCKED (golden `trading_systems_test` + runtime no redeployed) | Owner action: SSH Daedalus. Golden RO `sqx` permanece para el PASS formal. |
+| Seed tests que sobrescriben credenciales ETCD (v1/v2/v3 `echo_seed_test.go`, dev+prod, sin guardas) | **Cerrado en source y en runtime Gateway DEV** `2360369c` (fail-closed + CLI bootstrap). Core sigue binario `5dd998f1` | No redeploy de Core mientras no haya delta de Core. |
+| Forge DEV en Daedalus | `echo/ingest/base_url` sembrado; HTTPIngress aislado ejecutado contra Gateway DEV 201/200/409 | No arrancar worker Temporal. Siguiente: golden bodies. |
+| Gateway forge_ingest DEV + mig 061 en `echo-develop` | Gateway desplegado `2360369c`; identity tables + GRANT UPDATE FK; ALTER `strategy_definitions.id` y lab_* pendientes (owner `admin` + lock `trade_journal`) | No forzar 061 completa. Opcional ALTER restante como `admin`. |
+| CERT-E04-01 / CERT-F04-03 | Ingestión DEV funcional PASS; certs formales BLOCKED por golden `trading_systems_test` | Owner action 1: SELECT RO / dump byte-exacto de 5 `canonical_body` en `~/aranea/work/cert-e04-01/`. |
 | SQX local / Windows MT5 | Target owner; no certificado aquí | Registrar instalación/licencia permitida, worker, tests, HTM y aislación. |
 | Mapa PROD actual | Snapshot parcial de 2026-09-15 | Leer deployment/runtime actual RO antes de cualquier decisión operacional. |
 | Repositorios Echo y Symphony `AGENTS.md` | Fuera del alcance de esta escritura | Añadir puntero breve al contrato en cambio independiente; retirar credenciales versionadas mediante gestión segura y rotación correspondiente. |
