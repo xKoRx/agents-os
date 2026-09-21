@@ -9,7 +9,7 @@ sources:
   - "[[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]"
   - "[[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]"
   - "[[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]"
-last_verified: "2026-09-13"
+last_verified: "2026-09-21"
 confidence: verified
 aliases:
   - Echo — Forge Integration Boundary V1
@@ -19,7 +19,7 @@ tags:
   - kind/resource
   - area/echo
 created: "2026-09-13"
-updated: "2026-09-13"
+updated: "2026-09-21"
 ---
 
 # echo-forge-integration-boundary
