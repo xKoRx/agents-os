@@ -10,7 +10,7 @@ parent: "[[Echo — Live Platform V1]]"
 sprint:
 start: 2026-09-11
 due:
-progress: 95
+progress: 100
 repo: xKoRx/echo
 jira:
 prs:
@@ -46,6 +46,7 @@ Dejar el boundary Forge → Echo listo para aceptar un `HandoffManifestV1` auten
 
 ## 📊 Estado actual
 
+- **CERT-E04-01 PASS / T21 PASS (2026-09-21T04:18Z, Daedalus).** Golden auténtico F04-02 (5 PKs) ingerido en Gateway DEV `3d260e81` vía HTTPIngress `a2321cc`. 5×201 INGESTED + replay 200 + GET 200 + 409 + noneffects. Fixes: `2498042f` (`finalist_promotion@2.0.0`) y `3d260e81` (`MetaTrader5` + mig 064). E-04 FINAL CLOSED = **YES** para T21/AC-37 en runtime DEV. Evidencia: [[Echo + Echo Forge — Environment Contract]] §5.5; `~/aranea/work/cert-e04-01/`.
 - **DEV INGEST FUNCTIONAL PASS — T21 AÚN BLOCKED (2026-09-21, Daedalus).** Owner action 2 DEV consumida: Gateway `2360369c` desplegado; POST `/api/v1/forge/promotions` 201 INGESTED (receipt `338bd937-95ad-4389-9278-89285908b0a6`) + replay 200 + GET by-key 200 + conflicto digest 409. GRANT UPDATE DEV para FK KEY SHARE. **No es CERT-E04-01:** el POST usó identidad DEV, no los 5 bodies de `trading_systems_test`. T21/AC-37 sigue `HARD BLOCKED / DEFERRED` por owner action 1. E-04 FINAL CLOSED = NO. Evidencia: [[Echo + Echo Forge — Environment Contract]] §5.4; `~/aranea/work/echo-dev-ingest-close-20260921/`.
 
 - **T21/AC-37 PREFLIGHT EJECUTADO — `CERT_E04_01_BLOCKED` (2026-09-20, sin POST).** El mandato cross-lane ejecutó G0 (brecha de bytes del golden F04-02: bodies canónicos sólo en `sqx.handoff_manifests.canonical_body` @ `trading_systems_test`, sin identidad de lectura autorizada; owner action 1 preparada) y G2 (preflight Echo: gateway PROD `192.168.31.71:8090` con binario del 2026-08-09 **sin ruta forge** — 404 vs baseline webhooks 405 —, PG compartido sin migraciones v3 en `echo`/`echo-develop`, config `forge_ingest` ausente en ETCD; owner action 2 preparada). `origin/master` `5dd998f1` contiene E-04 (ancestry `a99f9a63 ∈ 5dd998f1` PASS). Golden re-validado hoy (validator exit 0). G3–G7 NO_RUN; producer virgen (`/sqx-worker/production/echo` = 0 keys); F04-02 PASS confirmado sin errata. T21 sigue `HARD BLOCKED / DEFERRED`; E-04 FINAL CLOSED = NO. Evidencia: delta en [[Echo + Echo Forge — Deferred Certification Backlog]] + `~/aranea/work/cert-e04-01/`.
@@ -73,7 +74,7 @@ Dejar el boundary Forge → Echo listo para aceptar un `HandoffManifestV1` auten
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` @ integración FF; feature `feature/e04-forge-ingestion-e1` | desarrollo `c408a12f…`; base reconciliada `fac48051…`; boundary integrado desde `2f8db345…` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §4 + [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] (join) | `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 @ `2f8db345`; TASKS T01–T20 `[x]`; T21 POST-INTEGRATION `[ ]` | E-04 INTEGRATED=YES · READY_FOR_INTEGRATION consumed · T21 PENDING POST-INTEGRATION · FINAL CLOSED=NO |
+| xKoRx/echo | `master` @ integración FF; feature `feature/e04-dev-ingest-recovery` `3d260e81` (DEV cert, no merge) | desarrollo `c408a12f…`; base reconciliada `fac48051…`; boundary integrado desde `2f8db345…`; runtime DEV `3d260e81` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §4 + [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] (join) | `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 @ `2f8db345`; TASKS T01–T20 `[x]`; T21 PASS DEV 2026-09-21 | E-04 INTEGRATED=YES · T21/AC-37 PASS (DEV) · FINAL CLOSED=YES (T21 DEV) |
 
 ## 🗺️ Source map (baseline `c408a12f`)
 
@@ -186,7 +187,7 @@ _No aplica — hijo de implementación de E-04; no crea Integration ni más hijo
 > - [x] WP-C Gateway POST/GET + auth + timeout/concurrency #owner/agent #type/dev #area/echo
 > - [x] WP-D Corpus S0 HTTP + SQL-direct + HandoffIngress test client (SYNTHETIC; no golden) #owner/agent #type/dev #area/echo
 > - [x] WP-E SOURCE/coverage/governance cert pack #owner/agent #type/dev #area/echo
-> - [ ] WP-F CROSS_LANE GOLDEN authentic Forge fixture (T21 POST-INTEGRATION; FORGE_GOLDEN_FIXTURE_PENDING; blocks FINAL CLOSED only) #owner/agent #type/dev #area/echo
+> - [x] WP-F CROSS_LANE GOLDEN authentic Forge fixture (T21 POST-INTEGRATION; CERT-E04-01 PASS 2026-09-21 DEV) #owner/agent #type/dev #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};

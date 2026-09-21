@@ -163,6 +163,7 @@ Cerró el tramo que el recovery no pudo ejecutar. Sesión sobre Daedalus como `k
 - **PASS criteria:** Echo acepta exactamente el golden auténtico, persiste una única proyección consistente, devuelve receipt/read-back estable y no produce efectos fuera de E-04. T21/AC-37 permanece OPEN hasta ejecutar esto.
 - **Intento 2026-09-20:** `CERT_E04_01_BLOCKED` en preflight (sin POST) por `GOLDEN_MANIFEST_BYTES_BLOCKED` (identidad `sqx` RO sobre `trading_systems_test`, owner action 1) + `ECHO_RUNTIME_BLOCKED` (gateway PROD pre-E-04 sin ruta forge, PG compartido sin migraciones v3, config `forge_ingest` no provisionada, owner action 2). Detalle en el delta de esta fecha.
 - **Intento 2026-09-21 (DEV ingest, no golden):** owner action 2 DEV **consumida** (Gateway `2360369c` + ingestión funcional). T21 sigue OPEN únicamente por bodies auténticos (owner action 1). `ECHO_DEV_INGEST_FUNCTIONAL_PASS ≠ CERT_E04_01_PASS`.
+- **Ejecución 2026-09-21T04:18Z:** `CERT_E04_01_PASS`. Bodies auténticos extraídos RO de `trading_systems_test.sqx.handoff_manifests` (identity `sqx`/flowkit). HTTPIngress `a2321cc` → Gateway DEV `3d260e81`. 5×201 INGESTED (receipts `a167be91…` / `c5aa33f2…` / `ecf4afed…` / `5a7ad586…` / `d3de3cb6…`), replay 200 mismo receipt, GET by-key 200, 409 sealed_digest, namespace 404. Magics `26090011013/014/016/017/018`. T21/AC-37 **PASS** sobre runtime DEV. Evidencia `~/aranea/work/cert-e04-01/`.
 
 #### CERT-F04-03 — Real Echo join / T2.13
 
@@ -172,6 +173,7 @@ Cerró el tramo que el recovery no pudo ejecutar. Sesión sobre Daedalus como `k
 - **Physical recipe:** repetir un run Forge real desde Finalist/StrategyVersion hasta `POST` real y `GET by-key` en Echo, conservando la cadena de identidad y hashes.
 - **Durable evidence:** run IDs, release/deployment proofs, manifest/body digest, receipt `INGESTED`, read-backs y no-effects.
 - **PASS criteria:** handoff real→receipt real→lookup real converge exactamente una vez y los artefactos se pueden inspeccionar. Hasta entonces, join `DEFERRED`.
+- **Ejecución 2026-09-21T04:18Z:** `CERT_F04_03_PASS` vía cliente HTTPIngress real (Symphony `a2321cc`) y golden F04-02 auténtico; no se relanzó campaña ni worker Temporal. Receipt/GET/replay/conflicto/noneffects evidenciados. `sqx.handoff_deliveries` **no mutado** (harness aislado). **F-INT-03 registry-postgres** queda fuera de esta receta de join (HTTPIngress/receipt/GET) y permanece en su backlog propio; no es exención de severidad, es fuera de alcance del handoff E-04.
 
 #### CERT-F05-01 — Cohesive release/deployment proof
 

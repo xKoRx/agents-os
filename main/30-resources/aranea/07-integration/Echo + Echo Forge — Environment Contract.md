@@ -151,6 +151,17 @@ Sesión Cursor/Grok **sobre Daedalus** (`hostname=daedalus`, usuario `kor`). **N
 - **Golden:** `GOLDEN_AUTHORITY_BLOCKED` intacto (bodies en `trading_systems_test.sqx.handoff_manifests`; owner action 1 sin entrega).
 - **Veredicto:** `ECHO_DEV_INGEST_FUNCTIONAL_PASS`. `CERT_E04_01=BLOCKED`, `CERT_F04_03=BLOCKED`. `/health` ≠ ingest funcional ≠ join certificado con golden.
 
+### 5.5 CERT-E04-01 / CERT-F04-03 PASS (2026-09-21T04:18Z) — golden auténtico ingerido en Gateway DEV
+
+Sesión Cursor/Grok sobre Daedalus. **No se tocó PROD, workers SQX/MT5, Windows `.132`, Core DEV (PID 2479388), ni el screen `deployer`.** Evidencia: `~/aranea/work/cert-e04-01/`.
+
+- **Golden access (Caso A):** identity `sqx` de sqx-flowkit vía ETCD `/sqx-flowkit/development/postgres` (mismo canal que `strategy get`) contra `192.168.31.220/trading_systems_test.sqx.handoff_manifests`. SELECT RO por las 5 PKs `idempotency_key` del corpus F04-02. `canonical_body` es JSONB; POST usó `Encode()` canónico (`PERSISTED_JSONB_CANONICAL_REENCODE_VERIFIED`). MCP postgres-rw (`echo-develop`) no se usó para extraer.
+- **Runtime:** Gateway `3d260e81ee37dc80c3ff186b1a089e6aada07c1d` (SHA256 `5f77d108…`, `vcs.modified=false`) unidad `echo-gateway-dev` PID 2543059; Core `5dd998f1` / `34f10782…` PID **2479388 intacto**; `forge_ingest_misconfigured=false`; HTTPIngress Symphony `a2321cc`.
+- **Fixes Echo (local, branch `feature/e04-dev-ingest-recovery`):** `2498042f` acepta `policy_id=finalist_promotion@2.0.0`; `3d260e81` acepta `target_platform=MetaTrader5` + migración 064. CHECK DEV aplicado como `echo_user`.
+- **ETCD DEV:** `/echo/development/postgres/password` estaba en seed `test-postgres-password` (22 B, ping fail). Restaurado el valor previo de historial (mod_rev 58426, ping OK). **No se escribió PROD** (`/echo/production/postgres/password` sigue siendo el seed de prueba).
+- **Join:** 5×201 INGESTED + replay 200 mismo receipt + GET by-key 200 + 409 `CONTRACT_CONFLICT` + 404 foreign ns. Magics `26090011013/014/016/017/018`. Locators en `var/forge-artifacts/sha256/…`. Noneffects: accounts/positions/journal/raw/canonical invariantes; +5 promotions/versions/identities.
+- **Veredicto:** `GOLDEN_AUTHORITY_PASS` · `CERT_E04_01_PASS` · `CERT_F04_03_PASS` (HTTPIngress aislado; `sqx.handoff_deliveries` no mutado; F-INT-03 fuera de receta).
+
 ### 6. Lectura y operación para cada sesión
 
 - **Cold start o cambio de entidad a Echo/Forge:** `agents-os-bootstrap` → router `aranea-agent-dev` → leer este contrato **antes de elegir ambiente o actuar**. No añadirlo al stack global ni cambiar el bootstrap.
@@ -165,10 +176,10 @@ Sesión Cursor/Grok **sobre Daedalus** (`hostname=daedalus`, usuario `kor`). **N
 |---|---|---|
 | Reporte final Hermes `dev-win` | No recibido aquí | Incorporar host/identidad, claves host sanitizadas, profiles, smokes y fecha. |
 | Core/Gateway sobre Daedalus | **AS-BUILT completo 2026-09-21 en §5.1** — ambos `RUNNING/PHYSICALLY_VERIFIED`; credencial PG resuelta por owner; `systemd --user`+linger, unidades de sistema pendientes de owner con root | Owner opcional: migrar a unidades de sistema. |
-| Seed tests que sobrescriben credenciales ETCD (v1/v2/v3 `echo_seed_test.go`, dev+prod, sin guardas) | **Cerrado en source y en runtime Gateway DEV** `2360369c` (fail-closed + CLI bootstrap). Core sigue binario `5dd998f1` | No redeploy de Core mientras no haya delta de Core. |
-| Forge DEV en Daedalus | `echo/ingest/base_url` sembrado; HTTPIngress aislado ejecutado contra Gateway DEV 201/200/409 | No arrancar worker Temporal. Siguiente: golden bodies. |
-| Gateway forge_ingest DEV + mig 061 en `echo-develop` | Gateway desplegado `2360369c`; identity tables + GRANT UPDATE FK; ALTER `strategy_definitions.id` y lab_* pendientes (owner `admin` + lock `trade_journal`) | No forzar 061 completa. Opcional ALTER restante como `admin`. |
-| CERT-E04-01 / CERT-F04-03 | Ingestión DEV funcional PASS; certs formales BLOCKED por golden `trading_systems_test` | Owner action 1: SELECT RO / dump byte-exacto de 5 `canonical_body` en `~/aranea/work/cert-e04-01/`. |
+| Seed tests que sobrescriben credenciales ETCD (v1/v2/v3 `echo_seed_test.go`, dev+prod, sin guardas) | Source v3 fail-closed; **recurrencia 2026-09-21** DEV restaurado desde historial ETCD; PROD sigue en seed de prueba | Owner: restaurar `/echo/production/postgres/password` desde historial (no hecho aquí). No ejecutar `go test ./...` contra ETCD real. |
+| Forge DEV en Daedalus | HTTPIngress aislado `a2321cc` contra Gateway DEV; 5 golden INGESTED | No arrancar worker Temporal. Siguiente frozen: CERT-F05-01. |
+| Gateway forge_ingest DEV + mig 061/064 en `echo-develop` | Gateway `3d260e81`; CHECK platform incluye `MetaTrader5`; identity tables + GRANT UPDATE vigentes | No forzar 061 completa. No revertir 064 con filas Forge. |
+| CERT-E04-01 / CERT-F04-03 | **PASS 2026-09-21T04:18Z** sobre golden F04-02 + Gateway DEV | F-INT-03 sigue backlog propio. Echo feature commits no pusheados. |
 | SQX local / Windows MT5 | Target owner; no certificado aquí | Registrar instalación/licencia permitida, worker, tests, HTM y aislación. |
 | Mapa PROD actual | Snapshot parcial de 2026-09-15 | Leer deployment/runtime actual RO antes de cualquier decisión operacional. |
 | Repositorios Echo y Symphony `AGENTS.md` | Fuera del alcance de esta escritura | Añadir puntero breve al contrato en cambio independiente; retirar credenciales versionadas mediante gestión segura y rotación correspondiente. |
