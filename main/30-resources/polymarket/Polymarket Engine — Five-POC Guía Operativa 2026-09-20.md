@@ -187,3 +187,7 @@ Prohibido fabricar alpha/liquidez (nada de BBO×10); fees sintéticas siempre co
 provenance `SYNTHETIC_FIXTURE`; `REAL_FEE = UNVERIFIED`; datos meteorológicos y de
 Catalog reales `PENDING`; `LIVE_DISABLED`. Revisión humana del rango
 `cb549c7..c915c11` y decisión de merge/push pendientes del owner.
+
+## Estado del programa (2026-09-21, hardening)
+
+`ENGINEERING_STAGE_CLOSED_RESEARCH_REPRODUCIBLE` sobre HEAD `85e27ff` (código `56e8fac`, M4 v07 @ `c38f6c4`). **Cero código nuevo; M4 no recertificado.** U-02 **`U02_PARTIAL`**: paridad USDC `e=1` vs docs/SDK; BUY-shares y 5 vs 6 dp no pareados; `REAL_FEE_READY=NO`. Discovery PE-001: 41/73/7/0/0. Weather inventariado (KLGA/RJTT) sin vintages. Catalog `first_known_at` ≠ `createdAt` demostrado; cohorte O/B real ausente. `LIVE_DISABLED`. Review/publicación owner abiertas. Informe: `hardening-20260921/REPORT.md`. Change log [[2026-09-21-polymarket-final-readiness]].

@@ -87,3 +87,11 @@ tags:
 - Bundle: `polymarket-engine-datasets/pe001-reality-check-20260921/`. Notas: [[POC-S03 — Sports Combinatorial]], continuidad §9, [[2026-09-21-pe001-reality-check]].
 - Siguiente mandato mínimo: par basketball con OT explícito emparejado, journal congelado antes de SHADOW. No live.
 
+## [2026-09-21] hardening | U-02 + discovery + readiness — `ENGINEERING_STAGE_CLOSED_RESEARCH_REPRODUCIBLE`
+
+- Worktree `feature/five-poc-integration@85e27ff` limpio; **cero código**; M4 v07 @ `c38f6c4` no recertificado; sin push; `LIVE_DISABLED`; datasets pe001 78/78 y rs-v03 41/41 SHA OK.
+- U-02 **`U02_PARTIAL`**: CLOB `fd {r:0.05,e:1,to:true}` = docs/SDK USDC; BUY en shares y `TRUNCATE_6DP` vs 5 dp no pareados; `/fee-rate` 1000 ≠ `fd.r`; rebate sports 15% vs weather 25%; delay `seconds_delay=1`. Vectores `hardening-20260921/u02/`. Factory sigue `SYNTHETIC_FIXTURE`.
+- Discovery: 41 series / 73 eventos / 7 pares / 0 semántico∩temporal / 0 oportunidades q=20. WNBA familia `RULES_CONTRADICT`. FIBA 863805 template OT OK, PAST_KICKOFF. Sin SHADOW (no miembro admisible).
+- S04: contratos KLGA/RJTT inventariados; sin vintages PIT. S05: `first_known_at` ≠ `createdAt` en 986912; ningún mercado nuevo en la ventana. S01 663 INCONCLUSIVE no promovidos. S02 0 señales locales ≠ NO_GO global.
+- Bundle `polymarket-engine-datasets/hardening-20260921/`. Continuidad §10. Change log [[2026-09-21-polymarket-final-readiness]]. No alpha, no live.
+
