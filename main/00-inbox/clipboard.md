@@ -6,7 +6,7 @@ Quedó intacta. `sports-week-capture.service` sigue activo desde el 2026-09-21 1
 
 ## 2. Fuentes
 
-`archive.pmxt.dev` rechazó la conexión. El espejo PendulumFlow de PMXT v2 es CC BY 4.0 y termina el 2026-08-09, antes de la fecha MLB elegida. Gamma responde. `/prices-history` es historia de midpoint, insuficiente para el spread de PE-005. El `base_fee` 1000 del CLOB se consultó hoy: es posterior a la ventana. El dataset de DineshKumar8399 no se descargó: son cotizaciones, no un libro reconstruible, y el dump no cabe en el margen de disco.
+`archive.pmxt.dev` rechazó la conexión. El espejo PendulumFlow de PMXT v2 es CC BY 4.0 y termina el 2026-08-09, antes de la fecha MLB elegida. Gamma responde. `/prices-history` es historia de midpoint, insufixciente para el spread de PE-005. El `base_fee` 1000 del CLOB se consultó hoy: es posterior a la ventana. El dataset de DineshKumar8399 no se descargó: son cotizaciones, no un libro reconstruible, y el dump no cabe en el margen de disco.
 
 PendulumFlow v3 sí cubre el 2026-09-01. Cada hora es el flujo de eventos de esa hora UTC, no un snapshot horario. Trae `book`, `price_change`, `best_bid_ask`, `last_trade_price` y `tick_size_change`. En las dos horas de la cohorte, los cuatro mercados exploratorios tienen cero `tick_size_change`.
 
