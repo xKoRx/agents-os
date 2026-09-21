@@ -42,15 +42,36 @@ pool0: mirror ×3 (6 discos 932G virtuales), 4,08T size, ONLINE, scrub OK 6sep 2
 | pool0/aranea_storage | 1.114,8G | SÍ | mayor dataset de producción |
 | pool0/trading_systems | 485,2G | SÍ | "todo pool0" del owner lo incluye; confirmación D-W3 (inclusión explícita, no silenciosa) |
 | pool0/proxmox_storage | 416,8G | SÍ | NFS PVE; corregir prune keep-all=1 es tarea separada (WP-A0-gated), no excluir de réplica |
-| pool0/iscsi (zvols) | 539,2G | SÍ | pg_data 33,0G · mongo_data 32,5G · minio_data 50,3G · vm-zeus-win-disk 203,1G · win-development 203,1G · debian-xhrvgh 17,2G |
-| pool0/apps | 67,4G | SÍ | incluye frigate media 66,8G (reconstruible: exclusión OPCIONAL sólo por RC owner, por defecto va) |
-| pool0/trading_documents | ~0G | SÍ | casi vacío |
+| pool0/apps | 14,1G | SÍ | refer del propio tree; frigate media 66,7G vive en snapshots legacy pre-rebuild del jul-2025 (usados 67,3G del dataset = histéresis snapshot, no datos vivos) — exclusión OPCIONAL sólo por RC owner, por defecto va |
+| pool0/trading_documents | 0,02G | SÍ | casi vacío |
 | pool0/home / ix-apps | ~0G | SÍ | triviales |
 | pool0/ix-applications | 10,1G | SÍ | apps TrueNAS |
-| pool0/.ix-virt / pool0/.system | 15,5G / 3,1G | **NO** | exclusión técnica justificada: datasets de sistema del middleware TrueNAS (midvirt/instalación); sin valor de recuperación del owner; restauración = reinstalar SCALE/middleware |
-| **Total envío inicial** | **≈2,57T** | | 2,59T − 18,6G excluidos |
+| pool0/.ix-virt | 15,5G | **NO** | ISOs de instalador SCALE ×3 (4,3G) + volume `default_truenas-apps` 12,6G (Docker apps: **`app.query`=0, sin apps desplegadas** — medido 21sep) + árboles buckets/containers/deleted vacíos; restauración = re-descargar ISO / recrear dataset; sin valor de recuperación del owner |
+| pool0/.system | 3,1G | **NO** | middleware system dataset real en `boot-pool/.system` (verificado `systemdataset.config`); este remanente pool0 guarda netdata RRD 455M + configs 38M + samba/nfs/cores residuales; se regenera; excluido también por el middleware (dataset oculto, no seleccionable) |
+| **Total envío inicial (base `refer`)** | **2,35T** | | 2,37T de árbol vivo − 18,6G excluidos; presupuesto de diseño 2,4T |
 
-Casos no replicables: ninguno en el alcance (todo dataset/zvol es replicable con zfs send/recv). Si el preflight encuentra un zvol en uso con lock exclusivo que impida el snapshot, se documenta y ese dataset entra como excepción explícita — nunca exclusión silenciosa.
+**Ledger de cobertura (auditoría 21sep noche-3)** — `dataset | refer | inclusión | consistencia | método de recuperación`:
+
+| dataset | refer | incl | consistencia de la copia | recuperación |
+|---|---|---|---|---|
+| pool0/aranea_storage | 1,09T | SÍ | file-consistent (sin app transaccional encima) | clonar snapshot destino → montar RO → copiar de vuelta |
+| pool0/trading_systems | 485G | SÍ | ídem | ídem (confirmación D-W3) |
+| pool0/proxmox_storage | 401G | SÍ | crash-consistent NFS (guests corriendo); prune keep-all tarea separada (WP-A0) | ídem; VM/CT individual = vzdump PBS o restore directo |
+| pool0/iscsi/pg_data (zvol) | 1,25G* | SÍ | crash-consistent; PG recupera por WAL replay | clonar zvol destino → attach a VM nueva → replay → dumps G1A para punto limpio |
+| pool0/iscsi/mongo_data (zvol) | 0,54G* | SÍ | crash-consistent standalone | ídem |
+| pool0/iscsi/minio_data (zvol) | 50,3G | SÍ | crash-consistent | G1B manda para restore app-consistente |
+| pool0/iscsi/vm-zeus-win-disk (zvol) | 193G | SÍ | crash-consistent | clonar → attach como disco nuevo, nunca sobre el original |
+| pool0/iscsi/win-development (zvol) | 128G | SÍ | ídem | ídem |
+| pool0/iscsi/debian-xhrvgh (zvol) | 8,8G | SÍ | ídem | ídem |
+| pool0/apps (config + PG/Mongo app-datasets) | 14,1G | SÍ | file-consistent | clonar + leer |
+| pool0/ix-applications | 10,1G | SÍ | file-consistent | clonar + leer |
+| pool0/trading_documents + home + ix-apps | ~0G | SÍ | file-consistent | clonar + leer |
+| pool0/.ix-virt | 15,5G | NO | n/a | re-descargar ISOs; `default_truenas-apps` vacío de apps (app.query=0) |
+| pool0/.system | 3,1G | NO | n/a | regenerado por middleware (dataset real en boot-pool) |
+
+\* pg_data/mongo_data: `used` (33,0/32,5G) ≫ `refer` (1,25/0,54G) porque bloques liberados en el guest siguen reservados en el zvol (refreservation 33/32,5G sobre volsize 32G — la reserva excede el volsize y elthin real usado es el refer); el envío transmite el stream actual (~GB), no los 33G históricos. `win-development` análogo (used 203G / refer 128G).
+
+**Cobertura: 100% del contenido recuperable del árbol vivo de pool0** (todas las hojas del ledger son SÍ o NO-justificado-auditado). Con `.ix-virt`/`.system` incluidos el envío sería 2,37T (Δ +0,02T sobre el presupuesto): la exclusión es por valor de recuperación nulo, no por capacidad.
 
 ## 2. Capacidad (verificada 21sep noche)
 
