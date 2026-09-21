@@ -51,6 +51,8 @@ updated: 2026-09-13
 
 ## 🚨 Estado y gaps conocidos (volátil · last_verified: 2026-09-12)
 
+- **Refs consolidadas 2026-09-21 (cleanup):** en `origin` queda exactamente una feature activa — `feature/e09-execution-copy-reconciliation-fidelity` @ `86553207` (E-06…E-09 + recovery E-04) — sobre master `5dd998f1`; `origin/feature/e02-*` eliminada tras demostrar `92d0ec2e` ancestro de master sin commits exclusivos ni consumidores; conservados `rescue/e01-dirty-20260911-175139` @ `dc0348c2` y `rescue/e03-uncommitted-20260911-175842` @ `ce9ee11d`. Clon principal en master; worktree E-09 en fast-forward `86553207`.
+
 - **E-02 CLOSED — SOFTWARE / INTEGRATED (2026-09-16, master `92d0ec2e` vía FF desde `7e628bf5`):** AC-01…AC-17 PASS (matriz en `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/VERIFICATION.md`, intocada); AC-18 (rotación secret prod) = gate ops owner, bloquea uso con capital. PROD NOT DEPLOYED / NOT ACTIVATED: el Hasura compartido conserva triggers antiguos y el auth hook queda pendiente de activación operacional; migración 062 requiere rollout separado donde corresponda. FAIL preexistente `gateway/internal/automation` fuera de scope; topics Kafka residuales `e02cert-gate2{,b}-20260915` con cleanup pendiente de ownership.
 - Receptor Forge E-01/E-04: integrado en master, E-04 INTEGRATED pero FINAL CLOSED = NO (T21/AC-37 CROSS_LANE GOLDEN pending, `FORGE_GOLDEN_FIXTURE_PENDING`).
 - Sin backend de artefactos en V1: producción usa `unavailableArtifactSource` (503 fail-closed) → ningún primer accept end-to-end posible hoy (gap G3 del boundary).
