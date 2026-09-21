@@ -148,7 +148,7 @@ RESUME_STATUS:
   next_execution_action:
 ```
 
-La primera sesión debe **comenzar ejecutando el preflight y un caso de uso real offline**; no gastar horas redescubriendo arquitectura ni afirmar estado remoto/local sin comprobarlo. Esta continuidad queda cerrada documentalmente, **Review humana y push siguen abiertos**.
+La primera sesión debe **comenzar ejecutando el preflight y un caso de uso real offline**; no gastar horas redescubriendo arquitectura ni afirmar estado remoto/local sin comprobarlo. El cierre documental 2026-09-20 dejó Review/push abiertos; **§13 supersede**: `master` está publicado (`a770da6`).
 
 ## 9. Reality check PE-001 — 2026-09-21
 

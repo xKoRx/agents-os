@@ -12,6 +12,14 @@ tags:
 ---
 # Polymarket resources — Log
 
+## [2026-09-21] publish | Master canónico — Five-POC absorbido, M4 recertificado @ 85e27ff
+
+- Default GitHub `master` = `origin/main` = `a770da6`. Código `56e8fac` / integración `85e27ff` fast-forward desde `9ae5dde`. Recibo `testdata/research-master/certificate.json`: `M4_CERTIFIED_NON_LIVE` 27/0/0/5 pineado a `85e27ff` (no se heredó v07).
+- Gates físicos en worktree `polymarket-engine-master`: build/vet/test/race PASS. `LIVE_DISABLED`. Sin force-push.
+- U-02 `d5ce263` **no** integrado (`PATCH_NOT_ACCEPTED_FOR_V2`); tag `archive/u02-patch-not-accepted-for-v2`; unidad [[u02-v2-cash-confirmed]]. `REAL_FEE_READY=false`.
+- Sports E2 ya entregado (`NO_SIGNALS_IN_SAMPLE`), cero código; worktree de integración conservado.
+- Continuidad §13, padre, guía. Change log [[2026-09-21-polymarket-master-consolidation]].
+
 ## [2026-09-16] ingest | Cuatro Deep Research aportados por el owner → [[Polymarket — Edge Research Consolidado 2026-09-16]], cuatro source notes y [[polymarket/00-index|índice de dominio]]
 
 - Fuentes R1–R4 identificadas por IDs de attachment, títulos originales, tamaño y SHA-256; originales completos no duplicados en este repo.

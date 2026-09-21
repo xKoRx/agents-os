@@ -1,19 +1,14 @@
-# Handoff U-02 → consolidación
+# Handoff U-02 → consolidación — ABSORBIDO
 
-Para el responsable de consolidación Five-POC. No reabrir el dictamen. No editar esta nota como plan de Sports Reversion.
+Absorbed 2026-09-21 en `MASTER_CANONICAL`. No reabrir el dictamen. No mergear `d5ce263`.
 
-**Autoridad vigente:** [[u02-v2-cash-confirmed]] · change log [[2026-09-21-u02-v2-authority-register]] · auditoría [[2026-09-21-u02-protocol-authority]]
+**Autoridad vigente:** [[u02-v2-cash-confirmed]] · change logs [[2026-09-21-u02-v2-authority-register]] y [[2026-09-21-polymarket-master-consolidation]]
 
 | Campo | Valor |
 |---|---|
 | Dictamen | `V2_CASH_CONFIRMED` (BUY fee en pUSD; shares completas) |
-| Mercados cubiertos | PE-001 CTF Exchange V2 `0xE11118…`; weather NegRisk V2 `0xe2222d27…` |
-| `d5ce263` | `PATCH_NOT_ACCEPTED_FOR_V2` — no mergear |
-| Rama U-02 | `fix/u02-buy-shares-accounting@d62768a` — conservar |
-| Integración | `feature/five-poc-integration@85e27ff` limpio |
-| v07 / v08 | intactos (`c38f6c4` / pin `d5ce263`) |
+| `d5ce263` | `PATCH_NOT_ACCEPTED_FOR_V2` — no mergeado |
+| Rama U-02 | conservada localmente `fix/u02-buy-shares-accounting@d62768a`; tag remoto `archive/u02-patch-not-accepted-for-v2` |
+| Línea canónica | `master` @ `a770da6` (código `85e27ff`) |
 | `REAL_FEE_READY` | **false** |
-| Código | no implementado, no recertificado, no publicado |
-| Notas Sports | esta sesión no tocó padre, continuidad, guía, wiki, POC-S03 ni POC-S04 |
-
-Evidencia: `polymarket-engine-datasets/u02-protocol-authority-20260921/REPORT.md` y `STATUS.md`.
+| Worktree U-02 | eliminado tras backup en `polymarket-engine-datasets/u02-rejected-patch-20260921/` |
