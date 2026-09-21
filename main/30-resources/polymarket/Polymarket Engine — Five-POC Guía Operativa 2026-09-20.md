@@ -17,16 +17,12 @@ tags:
 
 # Polymarket Engine — Five-POC Guía Operativa (2026-09-20)
 
-Guía operativa mínima para tomar cualquiera de las cinco POCs y experimentar sin
-re-derivar la integración. Baseline integrada: `feature/five-poc-integration`
-(sobre shared `9d0512a`). WORKTREE de integración:
-`~/go/src/github.com/xKoRx/polymarket-engine-integration`. Live siempre
-`LIVE_DISABLED`; SHADOW es virtual (`INCONCLUSIVE` honesto, nunca permiso).
+Guía operativa mínima para tomar cualquiera de las cinco POCs y experimentar sin re-derivar la integración. Baseline canónica 2026-09-21: `master` @ `a770da6` (código `85e27ff` / `56e8fac`, M4 recertificado en `85e27ff`). WORKTREE canónico: `~/go/src/github.com/xKoRx/polymarket-engine-master`. El worktree `~/go/src/github.com/xKoRx/polymarket-engine-integration` (`feature/five-poc-integration@85e27ff`) se conserva para la sesión Sports. Live siempre `LIVE_DISABLED`; SHADOW es virtual (`INCONCLUSIVE` honesto, nunca permiso).
 
 ## Invocación homogénea (los comandos)
 
 ```bash
-cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/engine ./cmd/engine
+cd ~/go/src/github.com/xKoRx/polymarket-engine-master && go build -o /tmp/engine ./cmd/engine
 # 0) FIXTURE — materializar el journal de entrada (SINTÉTICO, determinista, nunca sobrescribe)
 /tmp/engine fixture fivepoc --kind vertical --out /tmp/j-s01s02   # S01/S02 (AAA/BBB/S1)
 /tmp/engine fixture fivepoc --kind s03      --out /tmp/j-s03      # par B0 de S03

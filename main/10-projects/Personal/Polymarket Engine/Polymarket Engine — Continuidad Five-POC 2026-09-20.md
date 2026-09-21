@@ -27,18 +27,18 @@ tags:
 |---|---|
 | Programa | `FIVE_POC_FINAL_CERTIFIED_BASELINE_READY` **offline**, 5/5 estrategias/observador implementados, pipeline y outputs reproducibles; **no** equivale a validación de edge. |
 | Engine | Go, monolito modular, Polymarket-specific, engine durable y strategies reemplazables. `TIME_TO_VALIDATED_HYPOTHESIS` sigue siendo el norte. |
-| Repo | `~/go/src/github.com/xKoRx/polymarket-engine`; worktree de integración `~/go/src/github.com/xKoRx/polymarket-engine-integration`; branch **LOCAL** `feature/five-poc-integration`. |
+| Repo | `~/go/src/github.com/xKoRx/polymarket-engine`; worktree **canónico** `~/go/src/github.com/xKoRx/polymarket-engine-master` en `master`. Worktree de integración `~/go/src/github.com/xKoRx/polymarket-engine-integration` conservado (`feature/five-poc-integration@85e27ff`) para la sesión Sports. |
 | Shared base | `9d0512a912fcce4b9aefc152c7a89b090ff8df1d` sobre `feature/research-strategies-v01@f070496` local al inicio del programa. |
 | SHA de corrección de código | `56e8fac`: bugs `notional_by_scenario`, `reserve_held` y wiring Catalog O. |
 | SHA de evidencia/certificación | `c38f6c4`: evidencia `research-v07` y baseline del recibo M4. Árbol de código idéntico a `56e8fac` según reporte. |
-| HEAD final | `85e27ff`: añade `certificate-v07.json`; delta `56e8fac..85e27ff` reportado **sin cambios de código**, worktree limpio. |
-| Calidad | Reporte del ejecutor: build/vet/test/race PASS, archtest 12/12, F5 + SFG-07 PASS, dataset guard y LIVE_DISABLED PASS. |
-| M4 | `M4_CERTIFIED_NON_LIVE` **@ c38f6c4**, 27 PASS, 0 FAIL, 0 NOT_RUN in-scope, 5 live diferidos. Receipt: `testdata/research-v07/certificate-v07.json`. No heredar este certificado si cambia código. |
-| Git/publicación | **Engine sin push ni merge** a `feature/research-strategies-v01` ni `main`; remoto puede ser históricamente anterior. `OWNER_REVIEW_REQUIRED`, rango `c915c11..85e27ff`. No publicar ni dar por aceptado sin decisión explícita del owner. |
+| HEAD final | Canónico `master` @ `a770da6` (recibo M4 de `85e27ff`). Código Go = `56e8fac`; `85e27ff` añade v07; `a770da6` añade `testdata/research-master/`. |
+| Calidad | 2026-09-21 sobre `85e27ff`: build/vet/test/race PASS (34 paquetes), certify no-live PASS. |
+| M4 | Recertificado **en `85e27ff`**: `M4_CERTIFIED_NON_LIVE` 27 PASS / 0 FAIL / 0 in-scope NOT_RUN / 5 live diferidos. Recibo: `testdata/research-master/certificate.json` (commit `a770da6`). El pin v07 @ `c38f6c4` queda histórico; no certifica `master` por herencia. |
+| Git/publicación | **Publicado.** Default GitHub `master` = `origin/main` = `a770da6`. Fast-forward, sin force-push. |
 | Datos/hipótesis | Fixtures sintéticos; datasets RS v0.3 (41/41 SHA OK) y pe001 (78/78 SHA OK) intactos; Weather/Catalog **inventariados** 2026-09-21 sin vintages ni cohorte nueva; fee venue **`V2_CASH_CONFIRMED`** (unidad BUY = collateral pUSD; `TAKER_PROCEEDS` = V1 archivado, no el venue de PE-001/weather); `REAL_FEE_READY=NO`; `HYPOTHESIS_VALIDATED=NO` en las cinco. Etapa: `ENGINEERING_STAGE_CLOSED_RESEARCH_REPRODUCIBLE`. |
 | Seguridad | `LIVE_DISABLED` / SHADOW virtual; wallet, signing, órdenes y certificación live fuera de alcance. |
 
-**Control de documentación:** las secciones antiguas, `updated` de frontmatter, `progress: 0` en subproyectos o bullets históricos del padre pueden describir checkpoints previos. Para el estado del programa usar *este snapshot + § Five-POC Cierre Definitivo del padre + receipts v07*, verificando el checkout. No borrar historial ni convertir un estado reportado en evidencia nueva.
+**Control de documentación:** las secciones antiguas, `updated` de frontmatter, `progress: 0` en subproyectos o bullets históricos del padre pueden describir checkpoints previos. Para el estado vigente usar *este snapshot + §13 + § Master canónico del padre + recibo `research-master`*, verificando el checkout. No borrar historial ni convertir un estado reportado en evidencia nueva.
 
 ## 2. Matriz de cinco POCs — límites del alcance
 
@@ -76,22 +76,21 @@ tags:
 Preflight **read-only** del checkout local (no ejecutar en la copia de GitHub si aún no está publicada):
 
 ```bash
-cd ~/go/src/github.com/xKoRx/polymarket-engine-integration
+cd ~/go/src/github.com/xKoRx/polymarket-engine-master
 git status --short --branch
 git rev-parse HEAD
 git worktree list
 git log -n 12 --oneline
-git merge-base --is-ancestor 56e8fac HEAD && echo CODE_ANCESTRY_OK
-git diff --name-status c38f6c4 85e27ff
-ls -l testdata/research-v07/certificate-v07.json testdata/research-v07/experiment-drills/DRILLS.md
+git merge-base --is-ancestor 85e27ff HEAD && echo CODE_ANCESTRY_OK
+ls -l testdata/research-master/certificate.json testdata/research-v07/certificate-v07.json
 ```
 
-Esperado **al cierre comunicado**, no condición impuesta si ha avanzado el repo: HEAD `85e27ff` limpio, branch `feature/five-poc-integration` y certificado con baseline `c38f6c4` sin delta de código después del pin. **STOP** si falta la rama/commit local, el árbol está dirty o M4 no corresponde al código: diagnosticar primero; NO forzar checkout/reset/push para fingir sincronización. El remoto de engine no contiene necesariamente estos commits. Si checkout está en `feature/research-strategies-v01` o `main`, descubrir la branch local y usar su worktree, NO reconstruir desde HEAD remoto viejo.
+Esperado **tras la consolidación 2026-09-21**: HEAD `a770da6` en `master`, limpio, certificado `research-master` pineado a `85e27ff`. **STOP** si falta la rama/commit, el árbol está dirty o M4 no corresponde a `85e27ff`: diagnosticar primero; NO forzar checkout/reset/push. El remoto canónico es `origin/master`. El worktree `feature/five-poc-integration` permanece en `85e27ff` para Sports; no reconstruir desde un HEAD remoto viejo.
 
 Validar operabilidad después del preflight, en dataset nuevo:
 
 ```bash
-cd ~/go/src/github.com/xKoRx/polymarket-engine-integration
+cd ~/go/src/github.com/xKoRx/polymarket-engine-master
 go build -o /tmp/engine ./cmd/engine
 go vet ./...
 go test ./... -count=1
@@ -103,8 +102,8 @@ Para M4, leer flags reales `engine experiment certify --help`, confirmar SHA com
 
 ## 6. Tareas reales de la próxima sesión — orden de decisión
 
-- [ ] **OWNER / P0 — Review humana** del rango `c915c11..85e27ff`, recibo `certificate-v07.json`, correcciones contables/wiring y datasets intactos. Registrar decisión en padre/bitácora; el agente NO se autoacepta.
-- [ ] **OWNER / P0 — Decidir publicación** del engine. Si acepta: estrategia de integración/push de `feature/five-poc-integration` hacia `feature/research-strategies-v01` o branch objetivo que el owner elija; detectar remoto adelantado, revisar diff/conflictos, no force-push; ejecutar suite+M4 sobre SHA realmente integrado. Si no acepta: preservar rama local y estado `UNPUBLISHED`.
+- [x] **OWNER / P0 — Review humana + publicación** (2026-09-21, mandato de consolidación): Five-POC `85e27ff` absorbido en `master` @ `a770da6`; M4 recertificado en `85e27ff`; remoto publicado; `d5ce263` no mergeado. El agente no se autoaceptó: el mandato owner autorizó la publicación.
+- [x] **OWNER / P0 — Publicación engine:** ejecutada. Default `master`. `main` alias FF. Sin force-push.
 - [ ] **RESEARCH / P1 — Elegir UNA POC y UN experimento falsable** con criterio de falsación, métrica, sample, dataset y controles; usar mutation drill BASE/VARIANT como harness, no como prueba de alpha. Arranque de menor infraestructura: S01 sensibilidad `min_edge_bps` o S05 B descriptiva sobre fixture; escoger según interés del owner.
 - [ ] **DATA / P1 — Plan de paso a datos reales de sólo lectura:** inventariar RS v0.3 certificados y manifest de cierre, integridad, fuente/reglas/fees/as-of y ventanas. No declarar `REAL_DATA_READY` por existencia de carpetas `.rs-v03-*`; obtener recibo verificable y preservar guard.
 - [r] **PE-001 / P2 — Contratos de mercado y fees (2026-09-21):** reality check ejecutado sobre HEAD `85e27ff`. Par WNBA 986912 ML/SP identificado; implicación Cover⇒Win **no** demostrada (OT del spread UNKNOWN + cláusula de empate); H1 no falsificada (0 ACCEPT, `RULES_CONTRADICT`); U-02 parcialmente observado (`fd r=0.05 e=1 to=true`) pero `REAL_FEE_READY=NO`; decisión `GO_RESEARCH`. Evidencia `pe001-reality-check-20260921`. No cierra Review humana ni live.
@@ -267,5 +266,31 @@ RESUME_STATUS_20260921_S02_E2:
   blockers_requiring_owner: Review/publicación engine; U-02 fee_source_discrepancy excluye Detect en books con last_trade fee=0
   next_execution_action: no código; no live; no merge U-02
   decision: NO_SIGNALS_IN_SAMPLE (nunca live, nunca alpha, nunca NO_GO global)
+```
+
+## 13. Consolidación `master` — 2026-09-21
+
+Mandato owner one-shot. Change log [[2026-09-21-polymarket-master-consolidation]]. Agent run [[2026-09-21-cursor-grok-4.6-polymarket-master-consolidation]].
+
+```text
+RESUME_STATUS_20260921_MASTER:
+  agents_os_bootstrap: PASS (DEFAULT Personal)
+  engine_worktree: /home/kor/go/src/github.com/xKoRx/polymarket-engine-master
+  current_branch: master
+  current_head: a770da6648f93127411cac9a844baaacb7a53397
+  clean: YES
+  integration_sha: 85e27ff85d466c6522455f1426f6e0c8e23fe157
+  code_sha: 56e8fac
+  m4_baseline: 85e27ff (recertified; v07 c38f6c4 historical)
+  certificate: testdata/research-master/certificate.json M4_CERTIFIED_NON_LIVE 27/0/0/5
+  remote: origin/master = origin/main = a770da6; default_branch=master
+  u02: V2_CASH_CONFIRMED; d5ce263 PATCH_NOT_ACCEPTED_FOR_V2; REAL_FEE_READY=false
+  sports: E2 NO_SIGNALS_IN_SAMPLE delivered; zero code; integration worktree kept @ 85e27ff
+  live: LIVE_DISABLED
+  owner_review_state: publication executed by consolidation mandate
+  publication_decision_state: PUBLISHED
+  blockers_requiring_owner: OT/tie WNBA boilerplate; autorización de relabel USDC_CASH/TAKER_PROCEEDS (no ejecutado: cambiaría modelo económico)
+  next_execution_action: research sobre master; no live; no merge U-02
+  decision: MASTER_CANONICAL
 ```
 
