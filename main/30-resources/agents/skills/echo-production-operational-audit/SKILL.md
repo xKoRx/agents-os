@@ -11,14 +11,14 @@ entities:
   - "[[Echo]]"
   - "[[Aranea]]"
 related:
-  - "[[aranea-agent-dev]]"
-  - "[[aranea-mcps-expert]]"
+  - "[[30-resources/agents/skills/aranea-agent-dev/SKILL.md|aranea-agent-dev]]"
+  - "[[30-resources/agents/skills/aranea-mcps-expert/SKILL.md|aranea-mcps-expert]]"
   - "[[Echo + Echo Forge — Environment Contract]]"
   - "[[Echo — Access & Physical Capability Matrix]]"
-  - "[[aranea-ssh-mcp]]"
-  - "[[aranea-etcd-mcp]]"
-  - "[[readonly-production-probe]]"
-  - "[[operational-healthcheck-policy]]"
+  - "[[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]]"
+  - "[[30-resources/runbooks/aranea-etcd-mcp|aranea-etcd-mcp]]"
+  - "[[30-resources/agents/skills/readonly-production-probe/SKILL.md|readonly-production-probe]]"
+  - "[[30-resources/agents/skills/operational-healthcheck-policy/SKILL.md|operational-healthcheck-policy]]"
 aliases:
   - echo prod audit
   - auditoria operacional echo
