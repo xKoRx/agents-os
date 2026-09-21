@@ -22,7 +22,7 @@ updated: "2026-09-21"
 
 # ARANEA — CONTINUIDAD Y VENTANA 25-26 SEP
 
-## Delta sesión lun 21 noche-3 — HARDENING FINAL DE STORAGE Y REPLICAACIÓN (ONE-SHOT auditor)
+## Delta sesión lun 21 noche-3 — HARDENING FINAL DE STORAGE Y REPLICACIÓN (ONE-SHOT auditor)
 
 **Mandato owner ONE-SHOT "Hardening final de storage y replicación"**: corregir SÓLO los bloqueantes materiales del SPEC freeze; cero cambios productivos. Ejecutado íntegro en modo RO (SSH ariadna@truenas + midclt + código instalado) + parches documentales. Hallazgos y correcciones:
 
