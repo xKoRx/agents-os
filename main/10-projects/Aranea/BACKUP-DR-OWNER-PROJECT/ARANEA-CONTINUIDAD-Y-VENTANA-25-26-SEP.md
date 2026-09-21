@@ -60,7 +60,7 @@ updated: "2026-09-21"
 
 **4 erratas materiales medidas hoy** (no bloquean decisiones; refinan mandatos): (1) VG `local-kronos` VFree real = **267,5G** (el 567,5G del baseline era pre-creación del disco pbs-data de 300G) → el `+300G` de MANDATO-P0 §P0-1 no es ejecutable tal cual; opciones: grow ≤250G / 2º disco en VG `pool-kronos` (VFree 733,9G) / diferir — se pide junto a D1. (2) hades local-lvm **33,4G libres** < los ~64G de W5 → reparto por VM (zeus 77,5G / hera 91,7G) o alcance reducido en T-23. (3) pi-hole 149 corre en **athena** (no hades como decía la ficha W3) → el argumento "sobrevivir a hades" cae; decisión = reactivar+proteger vs retiro. (4) pool2 **4,18T libres** (holgura; decisión W1 no cambia).
 
-**K2 del día**: osd.0/2 **85,55/85,57%** (17:10:51Z), HEALTH_WARN + slow ops BlueStore (2 OSD); fondo hoy ≈ +0,37G/h; **condición de alerta NO disparada** (margen ~32G/OSD a 89%). Canal verificado: `pvesh /nodes/<nodo>/ceph/osd` (el `sudo ceph` de hades falla sin `-c /etc/pve/ceph.conf` — feedback registrado). Lectura 2 del día (≥18:11Z) se añade al freeze; no bloquea nada.
+**K2 del día**: osd.0/2 **85,55/85,57%** (17:10:51Z), HEALTH_WARN + slow ops BlueStore (2 OSD); fondo hoy ≈ +0,37G/h; **condición de alerta NO disparada** (margen ~32G/OSD a 89%). Canal verificado: `pvesh /nodes/<nodo>/ceph/osd` (el `sudo ceph` de hades falla sin `-c /etc/pve/ceph.conf` — feedback registrado). Lectura 2 del día: **85,59/85,59% a las 17:31:17Z** — sin condición de alerta; ambas lecturas congeladas en el freeze.
 
 **mcps 113**: rootfs 88% / 2,4G libres / 26 containers (17:06Z vía mcps-ops) — estable; prune sigue en P1. ping 149: 100% loss (17:07Z) — L2-dead persiste.
 
