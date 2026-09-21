@@ -26,3 +26,9 @@ Append-only, cronológico. Formato: `## [YYYY-MM-DD] <op> | <detalle>` con `<op>
 - `02-servicios/data-streaming.md` quedó actualizado con Kafka DEV certificado y con Flink/StateFun DEV vigente en `docker-echo-dev`; el antiguo `docker-flink` se conserva sólo como snapshot histórico.
 - `02-servicios/ml-ia.md` quedó alineado con el capability plane `:3000`–`:3008`, nueve capabilities certificadas, `aranea-flink-dev-admin` y el profile host/runtime `docker-echo-dev-operator`.
 - Flink DEV se cerró con source-of-truth Portainer stack `1`, config persistente bajo `/root/statefun`, control plane MCP separado del host/runtime plane y PROD explícitamente diferido.
+
+## [2026-09-21] ingest | Cierre documental Backup/DR — mecanismos vigentes y preflight evergreen
+
+- `03-storage/backup-dr/BACKUP-DR-RUNBOOK.md`: warning de estado actualizado al 21sep (certificados: R1/R1.5 + MP-01 A0/A1/A5 + G1A/G1B + piloto R2); §0.1 nuevo con los 6 mecanismos vigentes, su última verificación y notas de operación (timers Persistent vs trigger absoluto — el run R2 del 21sep se perdió por apagado de hermes; tar-race de second-brain con corrección gated T-21b).
+- `03-storage/backup-dr/BACKUP-DR-CHECKLIST.md`: §1.1 nuevo — preflight evergreen de intervención en ventana (query sin filtro temporal, conservación previa verificada, failure domains, timers armados, canal de validación independiente, ABORT escritos, duraciones medidas), derivado de las lecciones 19-21sep.
+- Contenido del proyecto (bitácora, continuidad y erratas de las notas técnicas) no se duplica aquí: ver [[ARANEA-CONTINUIDAD-Y-VENTANA-25-26-SEP]] y change log `80-agents/journal/change-logs/2026-09-21-cierre-documental-integral.md`.

@@ -9,9 +9,9 @@ tags:
   - area/aranea
   - kind/area
 review: weekly
-status_detail: "R0 Backup/DR reconciliado 2026-09-16 (59 guests, 23/23 Tier0 KEEP). R1 2026-09-17: 3 unidades BACKUP+RESTORE_VERIFIED, 3 SKIPPED_GATED deuda owner, F-09=EXISTS. D0 2026-09-17: documentación saneada. R1.5 2026-09-17: etcd-snapshot VERIFIED+AUTOMATED, timers activos. Preflight G0 Infrastructure Enablement 2026-09-17 18:58 UTC: inventario refrescado 6/6 + JSON materializado (59 VMs). Docs previos de storage marcados deprecated/superseded → [[BACKUP-DR-DESIGN]]."
+status_detail: "Backup/DR ACTIVE: R0/R1/R1.5/D0 DONE (16-18sep); G1A+G1B (20sep) = primera protección recuperable CERTIFICADA de PG/Mongo/MinIO; MP-01 (20-21sep) = A1 dumps diarios DONE (2º ciclo verificado 21sep) + A0/A5 PASS; R2 piloto 3/7 (expira 26sep; run 21sep perdido por apagado de hermes). Master Plan+matriz 59/59+placement+ventana P0 cerrados (20sep). Owner decidió 21sep: semana 21-25sep de preparación, intervención tras cierre operativo real de Echo del vie 25, ventana sáb 26sep 02:00-07:00 pendiente de autorización. Estado datado: [[ARANEA-CONTINUIDAD-Y-VENTANA-25-26-SEP]]. Preflight G0 2026-09-17: inventario 6/6 (59 VMs). Docs storage previos deprecated/superseded → [[BACKUP-DR-DESIGN]]."
 created: 2026-06-23
-updated: 2026-09-18
+updated: 2026-09-21
 aliases:
   - aranea
   - Homelab
@@ -39,7 +39,7 @@ cssclasses:
 - **Cierre sesión 2026-06-30**: ver `30-resources/aranea/00-index` § "Cierre de sesión — handover" para resumen completo + 5 decisiones pendientes.
 - **Cluster**: 5 Proxmox + TrueNAS VM + hermes-vm = **7 máquinas** · 302t / 767 GB RAM / ~12 TB útil.
 - **Doc principal**: [[30-resources/aranea/00-index]] · por nodo en [[30-resources/aranea/01-topologia/]].
-- **Proyecto activo**: [[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]] — Backup/DR integral **ACTIVE**: R0 ✅, R1 ✅ (con deuda owner), D0 ✅; R2 discovery PBS ejecutado 2026-09-18 (REUTILIZAR; bundle owner pendiente) — mutaciones en gate owner (tickets 018/019).
+- **Proyecto activo**: [[10-projects/Aranea/BACKUP-DR-OWNER-PROJECT]] — Backup/DR integral **ACTIVE**: R0 ✅, R1 ✅ (con deuda owner), D0 ✅, G1A/G1B ✅ (20sep, primera protección recuperable certificada), MP-01 ✅ (A1 DONE al 21sep); R2 piloto 3/7 (expira 26sep). Semana 21-25sep = preparación; ventana P0 sáb 26sep 02:00-07:00 pendiente de autorización (gates owner). Continuidad: [[ARANEA-CONTINUIDAD-Y-VENTANA-25-26-SEP]] — mutaciones en gate owner (tickets 018/019).
 - **Skill operativa**: `aranea_agent_ro_inventory_refresh` — refresh periódico del inventario. 
 
 ## 🧩 Stack / Servicios
