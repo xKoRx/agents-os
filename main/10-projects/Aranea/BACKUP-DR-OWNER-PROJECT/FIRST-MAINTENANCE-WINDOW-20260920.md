@@ -19,7 +19,7 @@ tags:
   - area/aranea
   - domain/backup-dr
 created: "2026-09-20"
-updated: "2026-09-20"
+updated: "2026-09-21"
 ---
 
 # 🗓️ FIRST-MAINTENANCE-WINDOW — 2026-09-20
@@ -27,6 +27,13 @@ updated: "2026-09-20"
 ## Propósito
 
 - Primera ola de mantenimiento concreta tras el cierre de mercado. **Cierre operativo REAL de Echo, medido desde sus datos** (echo.trade_journal, PG 152 vía RO, 20sep): último trade **cerrado vie 18sep 17:59 -03**; el dom 20sep (hoy) se abrieron 2 operaciones en la sesión vespertina (última apertura dom 21:36 -03). El mercado NO equivale a ventana disponible: la primera ventana segura es **sábado 26-09 02:00-07:00 -03** (fuera de sesiones abiertas, antes del run del domingo-noche, después del último ciclo R2 del viernes 25sep), **siempre que no queden posiciones abiertas sosteniendo el fin de semana** (el mercado siempre cierra viernes; lo que importa es la ausencia de posiciones vivas — el precheck lo verifica sin filtro temporal). Ventana de respaldo: dom 27-09 madrugada SOLO para acciones que no toquen guests de trading.
+
+> [!warning] Errata y dependencias (2026-09-21, cierre documental — el cuerpo original del 20sep se conserva)
+> 1. **W1/W2 a pool2 son PROPUESTAS con ficha, no destinos aprobados**: pool2 es single-disk (F-14) y comparte chasis con pool0; su valor es separar el dominio de falla del SO edge, NO redundancia. Ejecución = gates del §Bloqueantes (alta `nfs-pool2` + ventana 019); W3/W4/W5 igualmente no aprobadas en bloque.
+> 2. **Dependencia D↔R2 resuelta explícitamente**: el run R2 del 21sep 06:05 no ocurrió (hermes apagada 01:09-07:36) → la serie es 3/7 NO consecutiva y el criterio "7/7 con verify ok" es inalcanzable. La decisión D de P0-1 se toma con el criterio alternativo ya definido en MANDATO-P0: **6/7 runs OK + OK owner con CAPACITY-METRICS re-medidas 25-26sep**. Si el owner no acepta el criterio alternativo, P0-1 se difiere a su decisión (la ventana continúa con K2/K1/P0-2 según gates).
+> 3. **VM125**: encendida el 20-09 18:54:44 en hades (el uptime ≥42d era del nodo, no del guest); es el escritor identificado por K2. Cualquier referencia de uptime de la matriz/Operating State para 125 queda corregida en [[K2-CEPH-RISK-20260920]] (errata 21sep).
+> 4. **Cierre operativo de Echo (vie 25) = comprobación + prevención**, no supuesto: query sin filtro temporal `SELECT count(*) FROM echo.trade_journal WHERE closed_at IS NULL;` = 0 + prevención de nuevas entradas (decisión del owner sobre su plataforma; el agente verifica y registra en el preflight GO/NO_GO).
+> 5. `pct move-volume` elimina el volumen origen; la conservación del origen de cada CT es el **vzdump previo verificado del paso 1** (ningún `--delete` ni borrado autorizado por defecto).
 
 ## Contenido
 
