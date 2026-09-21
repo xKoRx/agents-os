@@ -139,7 +139,7 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
 ### Bloqueantes (deben resolverse antes de implementar)
 
 - **WEDNESDAY-PAQUETE (T-23 DONE adelantado, 21sep tarde)**: mandatos completos en `~/aranea/work/continuity-20260923/` con capacidad medida y cero decisiones técnicas pendientes; TABLA-APROBACION-23SEP = única tabla de decisión owner (urgentes P1/P3/P4); MANDATO-P0-v2 reemplaza al borrador de 20sep (archivado); canónico en vault [[MANDATOS-MIERCOLES-23SEP]].
-- **OWNER-TASK-CRITICAL-VMS** (ticket 018): confirmar lista tier 0. Base vigente = contrato §2 (23 workloads / 16 unidades) + ADDs propuestos R0 §6; la lista de 15 del formulario mínimo es la propuesta en espera de decisión. (La lista julio de este bloque —mt5-real, sin etcd/kafka/argus— quedó obsoleta y fue retirada.)
+- [ ] **OWNER-TASK-CRITICAL-VMS** (ticket 018): confirmar lista tier 0. Base vigente = contrato §2 (23 workloads / 16 unidades) + ADDs propuestos R0 §6; la lista de 15 del formulario mínimo es la propuesta en espera de decisión. (La lista julio de este bloque —mt5-real, sin etcd/kafka/argus— quedó obsoleta y fue retirada.)
   - reason: define retention y frecuencia de vzdump tier 0.
   - required_by: agent-project-02 PBS schedule.
   - blocks: implementación completa.
