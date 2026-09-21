@@ -90,6 +90,7 @@ skills de una aplicación viven y se descubren en su repo owner.
 | [[30-resources/agents/skills/write-once-conflict-triage/SKILL.md|write-once-conflict-triage]] | Investiga conflictos de inmutabilidad clasificando duplicate/race/stale/contract-defect. | Ante CONTRACT_CONFLICT, checksum mismatch o violaciones de idempotencia. |
 | [[30-resources/agents/skills/observability-metrics-standard/SKILL.md|observability-metrics-standard]] | Diseña, audita, migra o revisa métricas custom (nombre/tipo/tags/emisión) con un método portable, sin grammar de Meli. | Aranea/homelab o proyectos personales; nunca Meli/RIO/Signals (→ meli-agent-dev). |
 | [[30-resources/agents/skills/operational-healthcheck-policy/SKILL.md|operational-healthcheck-policy]] | Diferencia cuándo validar manualmente componentes vigilables y cuándo confiar en la automatización. | Ante una señal concreta de problema o antes de acciones masivas. |
+| [[30-resources/agents/skills/echo-production-operational-audit/SKILL.md|echo-production-operational-audit]] | Auditoría operacional E2E read-only de Echo PROD: gates G1–G10, trazas E2E reales y veredicto OPERATIONAL_*. | Al auditar el funcionamiento real de Echo PROD tras una ventana de cambios. |
 
 ## 🔗 Links
 
