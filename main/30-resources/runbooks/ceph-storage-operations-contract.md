@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-19"
-updated: "2026-09-19"
+updated: "2026-09-21"
 area: "[[Aranea]]"
 project: "[[HERMES — Infrastructure Operations]]"
 application:
@@ -91,3 +91,13 @@ Estado habilitación (2026-09-19): **D = VERIFIED_READ** — health/pools/OSD le
 - Sondas read-only 2026-09-19 (3 MONs): `~/aranea/work/h5-high-impact-20260919/probes/ceph_probe_20260919_{100,110,120}.txt`.
 - Baseline H4 y criterio de capacidad: [[provisioning-operator-contract]], matrices en [[HERMES — Infrastructure Operations]].
 - Change log H5: `80-agents/journal/logs/2026-09-19-h5-high-impact-enablement.md`.
+
+## Línea base de capacidad K2 (20-21sep, decisiones del proyecto Backup/DR — errata del cierre documental 21sep)
+
+> Contexto para el ejecutor futuro: estos números provienen de la decisión K2 ([[K2-CEPH-RISK-20260920]]) y lecturas del cierre documental del 21sep. NO autorizan operaciones; delimitan la línea base sobre la que se medirá cualquier corrección de este contrato.
+
+- **Ratios efectivos verificados en `osd dump` (20sep)**: nearfull **0,85** · backfillfull **0,90** · full **0,95**. Los valores 0,90/0,95 citados como nearfull/backfillfull en documentos del 19-20sep eran supuesto — la medición real es la de aquí; márgenes siempre recalcular contra `osd dump`, no contra literatura.
+- **Banda dinámica medida (18-21sep)**: 87,17% → 85,6% → 87,9% (techo) → 85,19/85,17% (21sep 08:05). Patrón **ráfaga-con-recesión** (4 swings en 4 días), NO tendencia lineal: prohibido extrapolar pendiente de un solo lado del swing; el disparador de acción es la condición de K2 (≥89% en 2 lecturas separadas ≥1h o `OSD_BACKFILLFULL`/`OSD_FULL` en health), no el porcentaje puntual.
+- **Escritor identificado en la ráfaga del 20sep**: `vm-125-disk-1` (mt4-test, hades, encendido manual 20-09 18:54:44, `cache=unsafe`, imagen 48,3/50G). Cualquier corrección de escritores parte de esa evidencia; la lista completa de escritores (GB/día por guest) es entregable K2 de la ventana.
+- **Slow ops**: transitorias y correlacionadas con la fase de ráfaga (21:16 564 ms en osd.1 → 5 ms a las 21:57; el 21sep 08:05 sin slow ops listadas). Un snapshot de latencia no es diagnóstico: exigir serie con fase activa y fase de reposo.
+- **Escenario estructural sin cambios**: kronos caído = re-replicación imposible (probado 19-09); NO_GO de nuevos discos/provisioning sobre pool1 vigente hasta gates de este contrato.
