@@ -18,7 +18,7 @@ tags:
 
 ## Mandato vigente del owner
 
-**Prioridad antes de cualquier cobertura E-08/E-09, E-10 o nueva implementación:** reducir xKoRx/echo a `master` como línea estable y **una sola `feature/*` de desarrollo activa**. No perder commits, no forzar pushes, no confundir `SOURCE_VERIFIED` con release/physical; no integrar features inmaduras a master para simplemente borrar ramas. Este documento es plan/ownership, NO un informe de limpieza ejecutada. Owner del trabajo: manager Echo, agente TOP de integración; demás agentes congelan sus ramas hasta cierre.
+**Prioridad antes de cualquier cobertura E-08/E-09, E-10 o nueva implementación:** reducir xKoRx/echo a `master` como línea estable y **una sola `feature/*` de desarrollo activa**. No perder commits, no forzar pushes, no confundir `SOURCE_VERIFIED` con release/physical; no integrar features inmaduras a master para simplemente borrar ramas. Owner del trabajo: manager Echo, agente TOP de integración. Ejecución 2026-09-21: integración publicada; cobertura sigue pendiente.
 
 ## Inventario remoto observado (GitHub, 2026-09-21)
 
@@ -83,15 +83,25 @@ Local-only `impl/e04-forge-ingestion-e1-normal` @ `4aef2958ea444002b3ddb2d53f909
 
 Preview `git merge-tree` (sin checkout): E09+E08 limpio, árbol `d61e8ebb1f27bd127f3ed19ac5988b09e51ace74`, delta = los 7 archivos C3. E08-merge+E04 limpio. `061` de E09 es idéntica a master; la de E04 se conserva byte a byte (guardas de ownership, no un segundo rewrite de esta sesión). `068` entra desde E04. `064`–`067` permanecen de E06–E09. `main.go` y `server.go` combinan el consumer E-06 con el ArtifactSource E-04. Objetos de preview `99d88762` y `4837a05f` no están en ninguna rama y no se publican.
 
+## Ejecución (2026-09-21T17:0xZ)
+
+Worktree aislado `/tmp/echo-consolidate-20260921`, rama local `integrate/e09-e08-e04-20260921` desde `0798ce4a8174c1a87745069da090df5d5e8ef011`. No se movieron los worktrees previos.
+
+- Merge E08: `739238f09e928b7dc7cb64b3a4c6c464d6320f22` (padres `0798ce4a8174c1a87745069da090df5d5e8ef011` + `28db61b2b1e6d0a266bcbf395c334d93dc8103bc`). Sin conflictos. Delta = los 7 archivos C3. `8fe7e5b2` y `b7c9adbe` son ancestros.
+- Merge E04: `5e0017e556b714cf26c3cdde4cbbe6725a1a09ef` (padres `739238f09e928b7dc7cb64b3a4c6c464d6320f22` + `4aad647bfdd31f6eb8599736922cf4f97c406827`). Auto-merge de `v3/gateway/cmd/echo-gateway/main.go` y `v3/gateway/internal/server.go`: quedan el consumer E-06 y el ArtifactSource de filesystem. `061` y `068` byte-idénticos a E04. `064`–`067` byte-idénticos a E09. `061` de E09 era idéntica a master; no hubo segundo rewrite. Las guardas de ownership de E04 se conservaron. No se aplicó nada en DEV ni PROD.
+- Ajuste de harnesses: `865532078f2c1993e7a3a542a78a9db0fad1f015`. El rebuild E-08 salta 067/068; el de identidad se detiene en 060; el reset de fixtures de identidad suspende los triggers write-once de E-06 sólo en la base descartable y los reactiva.
+- Publicación: FF normal `0798ce4a..86553207` a `origin/feature/e09-execution-copy-reconciliation-fidelity`. Read-back `origin` = local = `865532078f2c1993e7a3a542a78a9db0fad1f015`. `origin/master` sigue `5dd998f16aea7b2821f460188718d7a6d279829c`.
+
 ## Gates y estado
 
-- INVENTORY + OWNERSHIP: VERIFICADO 2026-09-21T16:48Z. E09 sin agente activo. Worktrees ajenos congelados.
-- REDUNDANT_DELETE: autorizado para las 7 refs ahead=0 sin worktree; e02 PRESERVE por worktree ocupado. Aún no ejecutado en el momento de este párrafo.
-- E08_INTEGRATED: PENDING (preview limpio, merge real no hecho).
-- E04_INTEGRATED: PENDING.
-- RESCUES_RECONCILED: PENDING.
-- TESTS/BUILD/PG/SECURITY: PENDING sobre árbol consolidado.
-- MASTER_UNCHANGED: `5dd998f16aea7b2821f460188718d7a6d279829c` al inventario.
-- SINGLE_ACTIVE_FEATURE: PENDING.
+- INVENTORY + OWNERSHIP: VERIFICADO. E09 no tenía agente activo.
+- REDUNDANT_DELETE: hecha en origin para `feature/deprecated-sl-offset` `02fa35d8`, `feature/e04-forge-ingestion-e1` `2f8db345`, `feature/i8ab` `fd63a2b8`, `feature/13a` `e53c1da2`, `fix/e03-verification-correction-1` `fac48051`, `fix/s0-metric-formula-identity-erratum` `7e628bf5`, `feature/e05-analytics-convergence-a0` `5dd998f1`. Todas ahead=0 y ancestros de master. `feature/e02-control-safety-journal-recovery` `92d0ec2e` PRESERVE: el clone principal está checkout en esa rama.
+- E08_INTEGRATED: SÍ, ancestro de `86553207`.
+- E04_INTEGRATED: SÍ, ancestro de `86553207`. Migración 061 certificada por `identity_bwc/run.sh` PASS en PG 17.11 descartable `127.0.0.1:15471/echo_identity_disposable`. En el schema consolidado, AC-13/AC-17 del test Go se saltan porque 064 ensancha `active_positions.strategy_id`; no es un fallo de 061.
+- RESCUES: PRESERVE. E01 conserva `verification_findings_test.go` ausente en HEAD y un delta en `identity.go`. E03 tiene blobs divergentes (061, repos, MT4, pipe). No se fusionaron ni se borraron.
+- TESTS: build core/gateway/echo-etcd-bootstrap PASS; vet PASS. Hermético sin `DATABASE_URL` ni `ETCD_ENDPOINTS`: etcd v1/v2/v3, econroute, execfid, gateway, postgres PASS (los de PG hacen skip). Con PG descartable `127.0.0.1:15471/echo_consolidate_disposable`, un paquete por vez y `-race`: econroute, execfid, tradefacts, gateway, postgres PASS. Harness `economic_commands_e8` PASS, `execution_fidelity_e9` PASS, `identity_bwc` PASS. Una corrida paralela de varios paquetes contra la misma base falló por truncate cruzado; no cuenta como regresión. Flags `ECHO_E8_DURABLE_ROUTING` y `ECHO_E9_EXEC_FIDELITY` siguen default OFF. No se corrió `go test ./...`. No se tocó ETCD ni PG compartido. Cluster descartable detenido al cierre.
+- MASTER_UNCHANGED: `5dd998f16aea7b2821f460188718d7a6d279829c` inicial y final.
+- SINGLE_ACTIVE_FEATURE: `feature/e09-execution-copy-reconciliation-fidelity` @ `865532078f2c1993e7a3a542a78a9db0fad1f015`. Origin además conserva `feature/e02-control-safety-journal-recovery` y las dos `rescue/*`. Refs remotas E04 recovery, E06, E07 y E08 retiradas; sus worktrees locales siguen en los SHA viejos y no se movieron.
+- COVERAGE_GATE, PHYSICAL y ECONOMIC: siguen pendientes. No se declaran PASS.
 
-**NEXT EXACT:** borrar las 7 refs remotas redundantes, integrar E08 y E04 en worktree aislado con rama local temporal, y validar sin tocar master ni DEV/PROD.
+**NEXT EXACT:** el siguiente agente trabaja sólo en `feature/e09-execution-copy-reconciliation-fidelity` @ `865532078f2c1993e7a3a542a78a9db0fad1f015` (worktree nuevo o fast-forward del existente). El cierre de `COVERAGE_GATE` de E-08 y después el de E-09 corre sobre ese SHA, sin reabrir las ramas retiradas y sin activar flags económicos.
