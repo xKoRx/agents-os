@@ -128,6 +128,17 @@ Sesión Cursor/Composer sobre el mismo host Daedalus; **sin redeploy**, sin rest
 - **Defectos código:** E-INT-01…08 y F-INT-01…05 **STILL_REPRODUCIBLE** sobre el mismo SHA + E-INT-09 (Store reutiliza archivo corrupto). Suites herméticas contracts/Corpus/CertPack PASS contra PG descartable `127.0.0.1:15433/cert_int_qa`; **no equivalen** a CERT-E04-01/CERT-F04-03.
 - **Veredicto certificación producto:** `CERT_E04_01=BLOCKED`, `CERT_F04_03=BLOCKED`, G6 cross-lane **NOT_EXECUTED**. `/health` ≠ ingest funcional ≠ join certificado.
 
+### 5.3 Recovery DEV 2026-09-21T03:15Z — código, ETCD y schema; runtime todavía en baseline
+
+Sesión Cursor/Grok sobre Hermes (no sobre Daedalus). **No se tocó PROD, workers SQX/MT5, Windows `.132`, ni el screen `deployer`.** Health LAN reconfirmado: Core `:9090` y Gateway `:8090` = 200; POST live `/api/v1/forge/promotions` sigue 503 porque el proceso Gateway **no se reinició** (este agente no tiene SSH a `kor@192.168.31.161`).
+
+- **Source Echo:** worktree `feature/e04-dev-ingest-recovery` commit `2360369c3ba406a8bf575f2169993028978f48da` publicado en origin (baseline previo `5dd998f1`). Seed tests ya no escriben ETCD; CLI `echo-etcd-bootstrap` es el operador explícito DEV. ArtifactSource real = filesystem bajo `gateway/forge_ingest/source_root`. GetByID acotado a namespace. Store reemplaza artefactos corruptos.
+- **Source Symphony:** worktree `feature/f04-handoff-ingress-fixes` commit `a2321cc14e0236b393af2503eff35748005d9bc6` publicado en origin (baseline `25a5122`). Receipt `contract_version`/`receipt_id` fail-closed; 201 truncado reconcilia por GET-by-key.
+- **ETCD DEV aplicado (read-back MCP RO, sin secretos):** `/echo/development/gateway/forge_ingest/{artifact_root,namespace,source_root,store_allowlist}` presentes; `artifact_root=/home/kor/opt/echo-dev/var/forge-artifacts`; `namespace=forge-live`; token creado y no impreso; `postgres/password` existente no sobrescrito. `/symphony/development/echo/ingest/base_url=http://192.168.31.161:8090`; bearer creado y no impreso. Count no-secreto forge_ingest = 4 (+ token secreto no listado).
+- **Schema `echo-develop`:** creadas `strategy_identity_mappings`, `strategy_versions`, `promotion_records`, `strategy_identity_aliases` + triggers write-once; `echo_user` INSERT=true UPDATE=false sobre `promotion_records`. `strategy_definitions.id` **sigue** `varchar(64)` porque `v_lab_strategy_screener` es owned by `admin` y bloquea ALTER; no se reescribió `trade_journal` (242 651 filas). Backups `mig061_backup_*` creados. `v_trade_execution_delta` y `mv_daily_operations` recreados.
+- **Golden:** `trading_systems_test` confirmado como autoridad de bodies; MCP postgres-rw está ligado a `echo-develop` ⇒ **GOLDEN_AUTHORITY_BLOCKED** intacto.
+- **Runtime desplegado:** sigue binarios §5.1 SHA `5dd998f1`. Ingest live no recertificado.
+
 ### 6. Lectura y operación para cada sesión
 
 - **Cold start o cambio de entidad a Echo/Forge:** `agents-os-bootstrap` → router `aranea-agent-dev` → leer este contrato **antes de elegir ambiente o actuar**. No añadirlo al stack global ni cambiar el bootstrap.
@@ -142,10 +153,10 @@ Sesión Cursor/Composer sobre el mismo host Daedalus; **sin redeploy**, sin rest
 |---|---|---|
 | Reporte final Hermes `dev-win` | No recibido aquí | Incorporar host/identidad, claves host sanitizadas, profiles, smokes y fecha. |
 | Core/Gateway sobre Daedalus | **AS-BUILT completo 2026-09-21 en §5.1** — ambos `RUNNING/PHYSICALLY_VERIFIED`; credencial PG resuelta por owner; `systemd --user`+linger, unidades de sistema pendientes de owner con root | Owner opcional: migrar a unidades de sistema. |
-| Seed tests que sobrescriben credenciales ETCD (v1/v2/v3 `echo_seed_test.go`, dev+prod, sin guardas) | Causa raíz del incidente de credencial 2026-09-21; fix de ETCD y rotación ya aplicados por owner | **Manager/owner Echo:** blindar o eliminar los seed tests y retirar credenciales versionadas (`scratch_query_test.go`); mientras tanto NO ejecutar `go test ./...` desde la raíz del repo. |
-| Forge DEV en Daedalus | Inventario en §5.1; `FORGE_RUNTIME_SCOPE_BLOCKED` reconfirmado §5.2; `echo/ingest/*` ausente | Designar componente(s) Forge autorizados para Daedalus y sembrar `/symphony/development/echo/ingest/*` cuando exista consumidor autorizado y Gateway ingesting. |
-| Gateway forge_ingest DEV + mig 061 en `echo-develop` | §5.2: keys ausentes; tablas E-04 ausentes; 503 live | Owner: sembrar `gateway/forge_ingest/*`, ArtifactSource MinIO DEV, aplicar 061 por vía de migración autorizada. |
-| CERT-E04-01 / CERT-F04-03 | §5.2 BLOCKED; G6 NOT_EXECUTED | Owner actions golden RO + Echo/Forge manager packages; no cerrar gates por health. |
+| Seed tests que sobrescriben credenciales ETCD (v1/v2/v3 `echo_seed_test.go`, dev+prod, sin guardas) | **Cerrado en source** `2360369c` (fail-closed por defecto + CLI bootstrap). Runtime Daedalus aún no corre ese SHA | Owner: SSH `kor@192.168.31.161` para publicar release y restart Gateway DEV. |
+| Forge DEV en Daedalus | `echo/ingest/base_url` sembrado 2026-09-21T03:15Z; bearer DEV creado (no en vault). Sin worker nuevo | Consumidor HTTPIngress aislado sigue pendiente de deploy Echo. |
+| Gateway forge_ingest DEV + mig 061 en `echo-develop` | Keys no-secretas presentes; identity tables creadas; ALTER `strategy_definitions.id` y lab_* pendientes (owner `admin` + lock `trade_journal`) | Owner: SSH Daedalus para deploy; opcional ALTER restante como `admin`. |
+| CERT-E04-01 / CERT-F04-03 | Siguen BLOCKED (golden `trading_systems_test` + runtime no redeployed) | Owner action: SSH Daedalus. Golden RO `sqx` permanece para el PASS formal. |
 | SQX local / Windows MT5 | Target owner; no certificado aquí | Registrar instalación/licencia permitida, worker, tests, HTM y aislación. |
 | Mapa PROD actual | Snapshot parcial de 2026-09-15 | Leer deployment/runtime actual RO antes de cualquier decisión operacional. |
 | Repositorios Echo y Symphony `AGENTS.md` | Fuera del alcance de esta escritura | Añadir puntero breve al contrato en cambio independiente; retirar credenciales versionadas mediante gestión segura y rotación correspondiente. |

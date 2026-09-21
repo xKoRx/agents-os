@@ -110,6 +110,18 @@ Reanudó la certificación sobre el runtime Echo DEV ya desplegado en Daedalus (
 - **G6 NOT_EXECUTED.** Veredictos: **`CERT_E04_01_BLOCKED`**, **`CERT_F04_03_BLOCKED`**.
 - Evidencia: `~/aranea/work/cert-int-qa-20260921/FINDINGS-CERT-INT-QA-20260921.md`; AS-BUILT [[Echo + Echo Forge — Environment Contract]] §5.2.
 
+### Delta de recovery DEV CERT-E04-01 + CERT-F04-03 — 2026-09-21T03:15Z (código+ETCD+schema; runtime no redeployed; veredicto PARTIAL)
+
+Misión de recovery total sobre DEV. **No se cerró CERT-E04-01 ni CERT-F04-03.** Source y configuración sí avanzaron; el join físico no se ejecutó porque este agente no tiene SSH a Daedalus (`kor@192.168.31.161` Permission denied).
+
+- **TEST_SAFETY PASS (source):** seed/scratch ya no escriben ETCD/PG reales por defecto (`2360369c`). Bootstrap DEV = `go run ./etcd/cmd/echo-etcd-bootstrap --env development --apply` (dry-run por defecto).
+- **CONFIG PASS (ETCD DEV):** `gateway/forge_ingest/{artifact_root,namespace,source_root,store_allowlist}` + `echo/ingest/base_url`; tokens DEV creados, no versionados, no impresos; password PG existente no tocado. Read-back MCP RO.
+- **DATABASE PARTIAL:** tablas E-04 creadas en `echo-develop` con write-once; `strategy_definitions.id` sigue `varchar(64)` (vista lab owned by `admin`); `trade_journal` no reescrito. MV/delta recreados.
+- **CODE FIXES:** E-INT-01/02/03/04/05/06/07/09 y F-INT-01/02 corregidos en source con tests focalizados PASS. F-INT-03 (registry-postgres coexistencia v0/v1/v2) **no tocado** (fuera handoff).
+- **DEPLOY BLOCKED:** runtime sigue `5dd998f1`; POST live 503. Commits publicados: Echo `2360369c`, Symphony `a2321cc`.
+- **GOLDEN BLOCKED:** MCP postgres-rw = `echo-develop` only; bodies en `trading_systems_test`.
+- Veredictos: **`CERT_E04_01_BLOCKED`**, **`CERT_F04_03_BLOCKED`**, **`INTEGRATION_FUNCTIONAL` no demostrado en live**. Owner action única: habilitar SSH operator `kor@192.168.31.161` para publicar el release Gateway y `systemctl --user restart echo-gateway-dev`.
+
 ### Backlog ordenado; no ejecutar en esta sesión
 
 #### CERT-F04-01 — Forge physical chain / T2.12
