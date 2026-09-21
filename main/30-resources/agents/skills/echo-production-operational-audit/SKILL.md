@@ -80,7 +80,7 @@ REPORT:              <ruta del doc materializado>
 
 - READ ONLY absoluto: prohibido enviar órdenes, cerrar/modificar posiciones, cambiar config/riesgo/policies, reiniciar servicios, migrar, seedear, correr `go test` contra infra real, escribir ETCD/PG/Mongo, producir a Kafka o tocar offsets, alterar systemd, desplegar. Si una tool intenta escribir: STOP de esa tool. Sin identidades DEV para PROD y viceversa.
 - No ejecutar endpoints/comandos cuyo carácter de lectura no esté demostrado; en `echo-runtime-prod` sólo el allowlist del viewer (`whoami/hostname/id/ps aux/ss -tlnp/cat/ls/journalctl`); compound/pipelines pueden ser denegados: dividir, no escalar.
-- `pg_stat_activity` con rol RO oculta `client_addr/state` de backends ajenos: NO concluir "sin conexiones" desde esa vista; usar `pg_stat_database.numbackends` + recencia de datos.
+- `pg_stat_activity` con rol RO oculta `client_addr/state` de backends ajenos: NO concluir "sin conexiones" desde esa vista; usar `pg_stat_database.numbackends` + recencia de datos. Análogo en Loki: `query_loki_stats` puede devolver 0 para entradas de hace segundos (lab-worker vivo con corrida de hace 32 s devolvió stats 0); para liveness del Lab la ground truth es `max(created_at) de echo.lab_job_runs` contra `now()` de PG, no Loki.
 - No atribuir un defecto al cambio más reciente sin evidencia; sin despliegue en PROD, la correlación es con config/infra (ETCD, timers), no con código.
 - Secretos jamás se leen, imprimen ni persisten; la validez de credenciales se demuestra por autenticación exitosa fresca, no por valor.
 - No reconstruir PROD desde documentos históricos: la evidencia física del día manda; los docs del vault datan el baseline.
