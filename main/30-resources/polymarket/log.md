@@ -95,6 +95,13 @@ tags:
 - S04: contratos KLGA/RJTT inventariados; sin vintages PIT. S05: `first_known_at` ≠ `createdAt` en 986912; ningún mercado nuevo en la ventana. S01 663 INCONCLUSIVE no promovidos. S02 0 señales locales ≠ NO_GO global.
 - Bundle `polymarket-engine-datasets/hardening-20260921/`. Continuidad §10. Change log [[2026-09-21-polymarket-final-readiness]]. No alpha, no live.
 
+## [2026-09-21] experiment | S02 PE-005-R1 E2 — `NO_SIGNALS_IN_SAMPLE`
+
+- Integración `85e27ff` intacta; U-02 no baseline; cero código; sin push; `LIVE_DISABLED`; journal congelado antes de SHADOW.
+- Muestra preregistrada por kickoff: 4 MLB moneylines (4584879, 4584889, 4584903, 4613496); 2284198 excluido. Captura 1800 s, 2590/2411/0, frontier 2430.
+- SCREEN 0 opp (base y `widen_min_bps=25`); REPLAY MATCH `e713ebac…`; SHADOW 0 opp `INCONCLUSIVE` min_samples. 6/8 assets `SUSPECT` (`fee_source_discrepancy`); 4613496 USABLE 1-tick.
+- No es NO_GO global ni alpha. Economía no certificada. Informe `pe005-r1-e2-20260921/REPORT.md`. Continuidad §12. Change log [[2026-09-21-pe005-r1-e2]].
+
 ## [2026-09-21] audit | U-02 protocol authority — `V2_CASH_CONFIRMED`
 
 - Integración `85e27ff` intacta; worktree U-02 `d62768a`/`d5ce263` no mergeado; v07/v08 preservados; sin push; `LIVE_DISABLED`; `REAL_FEE_READY=NO`.
