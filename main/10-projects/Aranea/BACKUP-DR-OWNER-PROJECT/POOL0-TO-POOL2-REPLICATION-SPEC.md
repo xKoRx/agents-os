@@ -69,7 +69,7 @@ pool0: mirror ×3 (6 discos 932G virtuales), 4,08T size, ONLINE, scrub OK 6sep 2
 | pool0/.ix-virt | 15,5G | NO | n/a | re-descargar ISOs; `default_truenas-apps` vacío de apps (app.query=0) |
 | pool0/.system | 3,1G | NO | n/a | regenerado por middleware (dataset real en boot-pool) |
 
-\* pg_data/mongo_data: `used` (33,0/32,5G) ≫ `refer` (1,25/0,54G) porque bloques liberados en el guest siguen reservados en el zvol (refreservation 33/32,5G sobre volsize 32G — la reserva excede el volsize y elthin real usado es el refer); el envío transmite el stream actual (~GB), no los 33G históricos. `win-development` análogo (used 203G / refer 128G).
+\* pg_data/mongo_data: `used` (33,0/32,5G) ≫ `refer` (1,25/0,54G) porque bloques liberados en el guest siguen reservados en el zvol (refreservation 33/32,5G sobre volsize 32G — la reserva excede el volsize y el thin real usado es el refer); el envío transmite el stream actual (~GB), no los 33G históricos. `win-development` análogo (used 203G / refer 128G).
 
 **Cobertura: 100% del contenido recuperable del árbol vivo de pool0** (todas las hojas del ledger son SÍ o NO-justificado-auditado). Con `.ix-virt`/`.system` incluidos el envío sería 2,37T (Δ +0,02T sobre el presupuesto): la exclusión es por valor de recuperación nulo, no por capacidad.
 
