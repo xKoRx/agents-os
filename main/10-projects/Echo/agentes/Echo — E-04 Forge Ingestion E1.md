@@ -75,7 +75,7 @@ Dejar el boundary Forge → Echo listo para aceptar un `HandoffManifestV1` auten
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo | `master` @ integración FF; feature `feature/e04-dev-ingest-recovery` `3d260e81` (DEV cert, no merge) | desarrollo `c408a12f…`; base reconciliada `fac48051…`; boundary integrado desde `2f8db345…`; runtime DEV `3d260e81` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §4 + [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] (join) | `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 @ `2f8db345`; TASKS T01–T20 `[x]`; T21 PASS DEV 2026-09-21 | E-04 INTEGRATED=YES · T21/AC-37 PASS (DEV) · FINAL CLOSED=YES (T21 DEV) |
+| xKoRx/echo | `master` @ integración FF; feature `feature/e04-dev-ingest-recovery` **`4aad647b` PUBLICADA** (4 commits sobre `2360369c`; desplegado `3d260e81`) | desarrollo `c408a12f…`; base reconciliada `fac48051…`; boundary integrado desde `2f8db345…`; runtime DEV `3d260e81` | [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] §4 + [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]] (join) | `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 @ `2f8db345`; TASKS T01–T20 `[x]`; T21 PASS DEV 2026-09-21 | E-04 INTEGRATED=YES · T21/AC-37 PASS (DEV) · FINAL CLOSED=YES (T21 DEV) |
 
 ## 🗺️ Source map (baseline `c408a12f`)
 
@@ -206,6 +206,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-21 (git recovery R1 — `E04_RECOVERY_PUBLISHED`).** TOP manager recupera y publica los commits E-04 ausentes del remoto: FF `2360369c..4aad647b` a `origin/feature/e04-dev-ingest-recovery` (read-back OK; master `5dd998f1` intacto; sin force). Los dos commits certificados (`2498042f`, `3d260e81`) viajan intactos; encima, fix de seguridad ETCD (`988e0ae6`: dump mirror development→production de v1 cerrado; `DeleteVar` con guarda en v1/v2) y renumeración de la migración 064→068 (`4aad647b`: colisión con `064_reference_enrollment_binding` de E-06 resuelta contra el DAG real). Runtime DEV sin cambios (Gateway `3d260e81` PID 2543059; Core `5dd998f1` PID 2479388). Golden con alcance `PERSISTED_JSONB_CANONICAL_REENCODE_VERIFIED`. Deudas: sin tabla de control de migraciones; 061 parcial; ArtifactSource filesystem; observabilidad parcial; owner actions ETCD (restaurar `/echo/production/postgres/password`; verificar `/sqx-flowkit/production/` post-dump). Detalle: [[Echo + Echo Forge — Deferred Certification Backlog]] delta 2026-09-21T13:0xZ.
 
 - **2026-09-21 (DEV ingest close — `ECHO_DEV_INGEST_FUNCTIONAL_PASS`, T21 OPEN).** Deploy Gateway `2360369c` en Daedalus; ingestión HTTPIngress real 201/200/409; PG INGESTED. CERT-E04-01 no cerrado (golden). Detalle: [[Echo + Echo Forge — Deferred Certification Backlog]] delta 2026-09-21T03:38Z.
 

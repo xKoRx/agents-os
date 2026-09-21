@@ -1,52 +1,201 @@
-La verificación de mi slice está completa y verde. Hago un último chequeo del estado del repo completo y del corpus de fuzz, y cierro:
+# MANDATO — POLYMARKET PE-001 REALITY CHECK
 
-Todo el trabajo del slice está completo y verificado. Estado final:
+**Fecha:** 2026-09-21
 
----
+**Rol:** Principal Quant Researcher + Polymarket Protocol Auditor + Principal Go Architect.
 
-## STATUS: `M2-S02_PASS`
+## MISIÓN
 
-*(con una salvedad de ambiente: `go test ./...` repo-completo falla hoy en `internal/capture`, paquete del slice S03 que otro agente está implementando en paralelo en este mismo árbol — sus tests de journal crash-recovery están en progreso y cambiaron durante mi verificación. No es código M2-S02; mi alcance está 100% verde.)*
+Convertir PE-001 Sports Combinatorial desde una POC offline certificada en un experimento falsable sobre contratos reales.
 
-### SEAM
+No rediseñar el engine. No crear una sexta POC. No implementar trading real.
 
-- **S02_SEAM_READY_FOR_S03:** registrado (evidencia en `testdata/protocol/evidence/s02_seam.json`), cerrado antes de implementar el resto del slice.
-- **contracts:** `SurfaceIdentity` (+`Identify/Validate/IsCurrent/Canonical`), `SchemaVersion` y `NormalizerVersion` nominales (schema v1 por superficie, normalizer v1), `RedactionPolicy`/`PolicyV1` (8 reglas cerradas con provenance TPM), `Redact(payload, identity) → (bytes, RedactionResult, error)`, `RedactionResult` (versión de política, lista cerrada de reglas, hits por regla, SHA-256 del payload sanitizado).
-- **compatibility:** S03 consume sólo el seam — sin dependencia de DTOs, sin red, sin I/O, sin estado. Cualquier payload con identidad incompleta o JSON malformado falla tipado. Determinista (mismo input → mismos bytes/hash).
+El objetivo es entregar evidencia que permita decidir si PE-001 puede comenzar su validación económica.
 
-### PROTOCOL
+## 1. AUTORIDADES
 
-- **surfaces:** `gamma`, `clobrest`, `marketws`, `datav2` — archivos separados por superficie, sin mega-DTO; dispatcher total `Parse(identity, kind, bytes)`.
-- **DTOs:** Gamma events/markets con `GammaStringArray` (array real o string-codificado, forma registrada) y alignment posicional outcomes/prices/tokens (inconsistencia = error de identidad `invariant_violation` para quarantine de Catalog); CLOB read-only: `ClobBook` (best al END, semántica documentada sin enforcement), `ClobMarketDetails` (literal, `fd`/`r`/`t` preservados raw — semántica NOT DOCUMENTED declarada), `ClobFeeRate` (bps, sin conversión a coeficiente), `ClobOrder`/`ClobOrdersPage`, `ClobTrade`+`ClobMakerOrder`/`ClobTradesPage` (cursor terminal `LTE=`), `ClobPlacement` (`success:false` preservado, clasificación queda para el classifier futuro), `ClobCancel`; Market WS: envelope por `type` (book full-snapshot, price_change, last_trade_price, tick_size_change con key `time`, best_bid_ask, suscripciones inicial/update con `initial_dump`), `new_market`/`market_resolved` raw-preservados (gap AsyncAPI declarado); Data v2: positions/trades/activity/resolutions + error envelope, con la paginación `{has_more,limit,next_cursor,offset}` y `data:null` legítimo. `ProtocolContext` CTF/PROTOCOL_V2/UNKNOWN sobre foundation, sin codecs v2 ni casts.
-- **parsers:** puros, totales, deterministas, dos fases (estructural → drift por campo), tabla temporal frozen de 19 campos (Order ms, expiration/auth s, User WS s, Market WS/book ms, Data v2 según lookup, RFC3339 con precisión declarada 0/3/6/9 dígitos, date-only sin instante de medianoche), sentinels preservados raw + flag (`0`, `1970-01-01`, `999`, `69`), enums divergentes raw+flag, unknown fields registrados sin bloquear, decimales siempre por lexema exacto (`json.Number`, nunca float64).
-- **redaction:** recursiva por schema sobre JSON decodificado, fail-closed (malformed, trailing garbage, profundidad >100, identidad inválida), 8 reglas frozen; `owner`/`signature` (exacto — `signatureType` sobrevive), triple `secret/passphrase/apiKey`, `auth` completo, `authorization`, cookies, `hmac`, y todo `POLY_*` con **drop de la clave completa** (metadata de transporte: el mandato exige que POLY_* no aparezca siquiera como nombre). El barrido anti-fuga demuestra que ningún valor sintético ni clave `POLY_*` sobrevive.
+Repositorios:
 
-### FIXTURES
+- `xKoRx/agents-os`
+    
+- `xKoRx/polymarket-engine`
+    
 
-- **count:** 41 fixtures sintéticos (positivas, negativas y divergentes) bajo `testdata/protocol/{gamma,clobrest,marketws,datav2,redaction}/v1/`.
-- **manifest:** `testdata/protocol/manifest.json` — SHA-256 por fixture, verificado en cada run (`TestFixturesManifest`), regenerable con `PM_ENGINE_EMIT_EVIDENCE=1`; inventario cerrado (archivo sin spec o spec sin archivo = FAIL).
-- **provenance:** por entrada: parte/sección TPM (P02 §3.1–§3.4.1, P04 §7C/§8.1, P05 §9.2, P08 §19.1.1), fecha 2026-09-17, schema/normalizer version, política de redaction aplicada, variante y outcome esperado (ok / error con kind exacto).
+Documentos obligatorios:
 
-### QUALITY
+- Agents-OS bootstrap y constitución vigentes.
+    
+- `Polymarket Engine — MVP`.
+    
+- `Polymarket Engine — Continuidad Five-POC 2026-09-20`.
+    
+- `Polymarket Engine — Five-POC Guía Operativa 2026-09-20`.
+    
+- `POC-S03 — Sports Combinatorial`.
+    
+- Technical Platform Map vigente.
+    
+- `testdata/research-v07/experiment-drills/DRILLS.md`.
+    
 
-- **build:** OK
-- **test:** OK — toda la matriz G-03 cubierta (envelopes válidos, malformed, unknown fields, enums divergentes, string-arrays, longitudes incompatibles, sentinels, timestamps multiunidad, `success:false`, errores tipados, round-trip decimal, UNKNOWN preservado, redaction recursiva)
-- **race:** OK (`-race` en protocol; además repo verde en race excluyendo capture)
-- **vet:** OK
-- **coverage:** **95.3%** en `internal/protocol` (funcionalidad crítica primero; las ramas defensivas inalcanzables que quedan están documentadas — una nota: `GammaIDLexeme` fue eliminado a favor de parseo explícito de raw, que además clasifica drift mejor)
+Baseline documentada: `feature/five-poc-integration@85e27ff`.
 
-### GATES
+El código certificado corresponde a `c38f6c4`. Verificar físicamente ambos SHA, su relación y el estado real del checkout antes de trabajar.
 
-- **G-03:** **PASS** — evidencia física en `testdata/protocol/evidence/g03.json` (hash del manifest, 6 probes, build identity), re-verificada en cada run.
-- **G-01 wire extension:** **PASS** — `testdata/protocol/evidence/g01_wire.json` (14 vectores lexema→decimal incl. uint256-scale y E6, tabla de unidades completa).
-- **NOT_RUN:** G-04…G-19 (gates de slices posteriores; G-12/G-16/G-17 requieren el classifier de Account).
+No utilizar el remoto antiguo como sustituto del worktree local.
 
-### BLOCKERS
+## 2. FASE A — PREFLIGHT
 
-- none *(observación operacional: el árbol compartido con S03 está en movimiento — `go vet ./...` global puede fallar transitoriamente por archivos a medio editar de capture; el verify mecánico del slice es `go build && go vet && go test -race ./internal/protocol/...`, todo verde).*
+Verificar:
 
-### NEXT
+- HEAD, branch, worktrees y cambios pendientes.
+    
+- Certificado v07 y correspondencia con el código.
+    
+- Estado de los datasets RS v0.3.
+    
+- Contratos e interfaces reales de PE-001.
+    
+- Ausencia de modificaciones concurrentes sobre los mismos archivos.
+    
 
-- **S03 may continue** — el seam de redacción/identidad ya es consumible desde `internal/protocol` (Capture lo invoca antes de persistir); la barrera S02+S03 del plan queda satisfecha cuando S03 cierre sus tests de journal.
+No ejecutar operaciones destructivas ni modificar datos originales.
 
-Decisiones documentadas que conviene conocer: (1) no inventé el envelope keyset de Gamma (gap declarado; sólo offset pagination documentada); (2) no implementé `/tick-size` ni `/neg-risk` como DTOs porque el TPM no documenta su envelope de respuesta (gap, no invención); (3) la clasificación bytes32→CTF para `conditionId` de Gamma es la única inferencia de protocolo, explícitamente basada en la tabla de namespaces de P01, y todo lo demás conserva UNKNOWN.
+Si falla el preflight, entregar un diagnóstico reproducible y detener únicamente las acciones dependientes de él.
+
+## 3. FASE B — CONTRATO REAL
+
+Encontrar un par real Moneyline/Spread de un mismo evento.
+
+Documentar:
+
+- Event ID, Market IDs, Condition IDs y token IDs.
+    
+- Reglas completas de ambos contratos.
+    
+- Alcance temporal, overtime, empate y cancelaciones.
+    
+- Postponement, excepciones y resolución parcial.
+    
+- Fuente oficial, timestamp de consulta y evidencia preservada.
+    
+- Demostración formal de la implicación contractual.
+    
+
+No aceptar similitudes entre títulos como prueba.
+
+Construir la matriz completa de estados terminales.
+
+Si no existe un par admisible, documentar candidatos descartados y razones precisas. No inventar un par sintético para declarar éxito.
+
+## 4. FASE C — ECONOMICS / U-02
+
+Resolver la configuración efectiva de fees para los mercados elegidos.
+
+Verificar fórmula, parámetros, vigencia, redondeo y provenance.
+
+Consultar libros reales y calcular:
+
+- Precios ejecutables por profundidad.
+    
+- VWAP de cada pata.
+    
+- Tamaño efectivamente cubierto.
+    
+- Peor payoff contractual.
+    
+- Fees y costes.
+    
+- Riesgo de ejecución parcial.
+    
+- Capital requerido y duración del bloqueo.
+    
+
+No utilizar midpoint como precio ejecutable.
+
+No declarar rentabilidad si existen fees, estados terminales o costes desconocidos.
+
+## 5. FASE D — EXPERIMENTO
+
+Pre-registrar una única hipótesis, muestra y criterio de falsación.
+
+Reutilizar exclusivamente el pipeline existente:
+
+SCREEN → REPLAY → SHADOW → COMPARE.
+
+Si la captura existente no contiene el par o carece de la evidencia necesaria, producir un plan de captura prospectiva ejecutable con los componentes actuales.
+
+No fabricar datos históricos.
+
+Registrar también cero oportunidades, rechazos, profundidad insuficiente y casos inconclusos.
+
+## 6. FASE E — AUDITORÍA ADVERSARIAL
+
+Intentar refutar la conclusión obtenida:
+
+- ¿La relación contractual realmente garantiza el payoff?
+    
+- ¿Las dos patas pertenecen al mismo estado temporal?
+    
+- ¿El libro es suficientemente reciente?
+    
+- ¿La profundidad es ejecutable?
+    
+- ¿Las fees están verificadas?
+    
+- ¿El capital queda inmovilizado más tiempo del supuesto?
+    
+- ¿Los resultados dependen de un fixture sintético?
+    
+- ¿Existe sesgo retrospectivo?
+    
+
+Toda incertidumbre material debe reflejarse en el resultado.
+
+## 7. ENTREGABLES
+
+Entregar:
+
+1. Estado físico del checkout y certificación.
+    
+2. Identidad y prueba del par contractual.
+    
+3. Evidencia de U-02 o bloqueo exacto.
+    
+4. Manifest y procedencia del dataset.
+    
+5. Resultados del experimento y condición de falsación.
+    
+6. Riesgos y evidencia faltante.
+    
+7. Decisión técnica `GO_RESEARCH`, `ITERATE`, `NO_GO` o `INCONCLUSIVE`, con justificación verificable.
+    
+
+`GO_RESEARCH` sólo autoriza continuar investigando. Nunca significa permiso live.
+
+Actualizar las notas existentes de Agents-OS según sus procedimientos y ownership, sin duplicar proyectos ni borrar historia.
+
+Si no hay evidencia suficiente para ejecutar el experimento, entregar el bloqueo concreto y el siguiente mandato mínimo, no un plan arquitectónico nuevo.
+
+## RESTRICCIONES
+
+- `LIVE_DISABLED` obligatorio.
+    
+- Sin wallet, firma ni órdenes.
+    
+- Sin push o merge.
+    
+- Sin modificaciones de código de producción.
+    
+- Sin refactor general.
+    
+- Sin reescribir evidencia histórica.
+    
+- Sin certificaciones inventadas.
+    
+- Sin autoaceptación del trabajo del owner.
+    
+- Sin cierre de sesión Agents-OS salvo instrucción explícita.
+    
+
+**Criterio de éxito:** nueva evidencia real y reproducible que reduzca la incertidumbre de PE-001, aunque el resultado sea negativo.
