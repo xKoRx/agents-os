@@ -76,7 +76,7 @@ tags:
 ## Retrieval Feedback
 
 - Useful query or source: search_files por `*20260920*`, `*eph*`, `*PLACEMENT-DECISIONS*` sobre VAULT_ROOT.
-- Missing context: Graphifyhubiera resuelto "dónde está la decisión K2" en una query; no se usó por el latch persistente conocido (deuda hygiene, no sanitizada en sesión).
+- Missing context: Graphify habría resuelto "dónde está la decisión K2" en una query; no se usó por el latch persistente conocido (deuda hygiene, no sanitizada en sesión).
 - Duplicate/noisy result: resultados del linter canónico (*20260920*) antes que las notas del proyecto.
 - Better future query: una vez refrescado el índice, `graphify query "K2 Ceph"` debería ser el primer paso.
 
