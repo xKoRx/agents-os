@@ -1,0 +1,146 @@
+---
+type: doc
+schema_version: 1
+status: active
+area: "[[Personal]]"
+project: "[[Polymarket Engine — MVP]]"
+created: 2026-09-20
+updated: 2026-09-20
+aliases:
+  - Five-POC continuity
+  - Polymarket Engine handoff
+  - Retoma Polymarket Engine
+tags:
+  - kind/doc
+  - tech/polymarket
+  - topic/research-ops
+---
+
+# Polymarket Engine — Continuidad Five-POC (cierre 2026-09-20)
+
+> [!important] PUNTO DE ENTRADA PARA LA PRÓXIMA SESIÓN
+> Esta nota es un **handoff de continuidad y tareas**, no una nueva SPEC ni sustituto del proyecto padre. Leer primero [[Polymarket Engine — MVP]], esta nota y [[Polymarket Engine — Five-POC Guía Operativa 2026-09-20]]. Fuente del cierre: reporte ejecutor del 2026-09-20, registrado en [[2026-09-20-polymarket-fivepoc-final-closure]] y recursos del dominio. Las evidencias ejecutables viven en **el repo local del engine**, no en este vault. Cualquier SHA/resultado se debe volver a verificar al retomar; esta nota no afirma haber corrido comandos en la sesión documental.
+
+## 1. Estado canónico al cierre
+
+| Dimensión | Estado comunicado y condición |
+|---|---|
+| Programa | `FIVE_POC_FINAL_CERTIFIED_BASELINE_READY` **offline**, 5/5 estrategias/observador implementados, pipeline y outputs reproducibles; **no** equivale a validación de edge. |
+| Engine | Go, monolito modular, Polymarket-specific, engine durable y strategies reemplazables. `TIME_TO_VALIDATED_HYPOTHESIS` sigue siendo el norte. |
+| Repo | `~/go/src/github.com/xKoRx/polymarket-engine`; worktree de integración `~/go/src/github.com/xKoRx/polymarket-engine-integration`; branch **LOCAL** `feature/five-poc-integration`. |
+| Shared base | `9d0512a912fcce4b9aefc152c7a89b090ff8df1d` sobre `feature/research-strategies-v01@f070496` local al inicio del programa. |
+| SHA de corrección de código | `56e8fac`: bugs `notional_by_scenario`, `reserve_held` y wiring Catalog O. |
+| SHA de evidencia/certificación | `c38f6c4`: evidencia `research-v07` y baseline del recibo M4. Árbol de código idéntico a `56e8fac` según reporte. |
+| HEAD final | `85e27ff`: añade `certificate-v07.json`; delta `56e8fac..85e27ff` reportado **sin cambios de código**, worktree limpio. |
+| Calidad | Reporte del ejecutor: build/vet/test/race PASS, archtest 12/12, F5 + SFG-07 PASS, dataset guard y LIVE_DISABLED PASS. |
+| M4 | `M4_CERTIFIED_NON_LIVE` **@ c38f6c4**, 27 PASS, 0 FAIL, 0 NOT_RUN in-scope, 5 live diferidos. Receipt: `testdata/research-v07/certificate-v07.json`. No heredar este certificado si cambia código. |
+| Git/publicación | **Engine sin push ni merge** a `feature/research-strategies-v01` ni `main`; remoto puede ser históricamente anterior. `OWNER_REVIEW_REQUIRED`, rango `c915c11..85e27ff`. No publicar ni dar por aceptado sin decisión explícita del owner. |
+| Datos/hipótesis | Fixtures sintéticos; datasets RS v0.3 originales intactos; `REAL_DATA_READY` no demostrado para Weather/Catalog; fee venue real `U-02 REAL_UNVERIFIED`; `HYPOTHESIS_VALIDATED=NO` en las cinco. |
+| Seguridad | `LIVE_DISABLED` / SHADOW virtual; wallet, signing, órdenes y certificación live fuera de alcance. |
+
+**Control de documentación:** las secciones antiguas, `updated` de frontmatter, `progress: 0` en subproyectos o bullets históricos del padre pueden describir checkpoints previos. Para el estado del programa usar *este snapshot + § Five-POC Cierre Definitivo del padre + receipts v07*, verificando el checkout. No borrar historial ni convertir un estado reportado en evidencia nueva.
+
+## 2. Matriz de cinco POCs — límites del alcance
+
+| POC | ID/identidad | Camino disponible y evidencia comunicada | Lo que NO está demostrado |
+|---|---|---|---|
+| S01 NegRisk | PE-002, `poc-negrisk` | Fixture → SCREEN → SHADOW virtual → REPLAY RESOLVED → compare; 919 evaluaciones aceptadas, 16 fills de pata, notional corregido `170`; variante min_edge_bps 919→0. | Beneficio con book/fee real, liquidez ejecutable y alpha. |
+| S02 Sports Reversion | PE-005-R1, `poc-sports` | Una aceptación/fill en caso sintético; variante `widen_min_bps` rechaza; notional `24.9998`, replay RESOLVED. | Maker calibrado, fill/fee real y edge. NO confundir con Sports Combinatorial. |
+| S03 Sports Combinatorial | PE-001, `poc-sports-combinatorial` | Proof `Cover(A,-h) ⇒ Win(A)`, 2 BUY legs, L2 DECLARED, synthetic fee, casos positive/no-edge/shortfall/semantic-reject; caso reporta 5 accepted, 2 fills, 1 canasta completa, notional `18`; replay/compare. | RFQ/Combo nativo, semántica de cada contrato real, real fee/alpha. |
+| S04 Weather | PE-030, `poc-weather` | `weather.obs.v1`, admission externa causal, modelo `wx-uniform-v1` UNCALIBRATED, cinco WX-CASE, screen/shadow/replay/compare; 1.827 accepted y 12 fills en drills completos, variante fee_rate→0. | Forecast vintages reales point-in-time, calibración, reglas reales de estaciones/buckets, alpha. |
+| S05 New Market Maturation O/B | PE-004, `poc-maturation` | Observador durable `FrameObserver`, 920 observaciones en drills, cero candidates/orders/fills; O anclada a first-known Catalog; B a primer book two-sided usable; replay determinista y compare. | Cohorte W, Catalog Gamma productivo real, alpha. Es descriptiva: NO forzar SHADOW fills/Opportunity. |
+
+**Semántica de métricas:** S01 `accepted` = evaluaciones, `baskets_planned` = planes, `simulated_fills` = patas; 16 fills = ocho canastas completadas, 911 residuales en el drill completo. S04 `scorecard.accepted` es total del run; `strategy_metrics` como `fee_bps`/`net` describen **último bucket del último frame** (merge last-wins), no el run entero. No inferir aceptación con net negativo de comparar ambos niveles. Ver explicación y regresiones en `testdata/research-v07/experiment-drills/DRILLS.md` y la guía.
+
+## 3. Correcciones finales v07 — qué cambió y por qué
+
+1. `notional_by_scenario`: el acumulador era `""`, provocaba `ParseDecimal("")` y omitía notional de patas; ahora identidad aditiva `"0"`, corrupción → error invariante. Pruebas no-ops, pata única, basket completo/parcial, rutas mixtas y persistencia. El drill S01 comunica notional `170` que ya constaba en ledger.
+2. `reserve_held`: lectura errónea `Balances["held"]`; la fuente es `HeldReserves` viva por namespace. Reporta `"0"` sin reservas. Es reporting-only según auditoría, **no** alimentación de Risk. Precaución: repetir el **mismo** run-id sobre el mismo directorio puede topar con dedup de fill keys y dejar reservas vivas; para repetir experimentos usar dataset/directorio fresco o la receta de idempotencia documentada.
+3. Catalog O: `cmd/engine/maturation_catalog.go` integra `CatalogFirstKnownAnchor`/`catalog.Service.InspectEntity` **antes** de congelar manifest, con rechazo fail-closed. `anchor_source=catalog` + `market_id` explícito; prohíbe doble declaración `known_at_ms`, cohorte B+Catalog, ancla ausente y `createdAt` de Gamma como sustituto. Modo fixture sin `anchor_source` preservado. Probado sobre catálogo real de servicio alimentado con fixture, **NO** en Gamma productivo.
+4. Evidencia v07: 10 drills BASE/VARIANT regenerados, datasets `dataset_digest` idénticos 10/10, contadores idénticos 10/10 y observaciones S05 idénticas; cambiaron `content_hash`/`virtual_pnl_net` cuando corresponde por notional corregido. Evidencias `research-v01…v06` preservadas. `cuts=5` es el default correcto para reproducir drill histórico; `cuts=4` da digest diferente. La identidad experimental es `dataset_digest`, no hash byte-a-byte de journal (capture_id/boot_id aleatorios).
+
+## 4. Ubicación precisa de fuentes y artifacts
+
+- **Proyecto padre:** [[Polymarket Engine — MVP]] — sección `Five-POC Cierre Definitivo` y su bitácora; el padre conserva historia previa.
+- **Guía de ejecución:** [[Polymarket Engine — Five-POC Guía Operativa 2026-09-20]] (build, `fixture fivepoc`, `screen-consolidated`, `experiment shadow`, `experiment compare`, `manifest build`, `replay`, HOW TO RUN de S01–S05 y modo Catalog O).
+- **Corpus de evidence final del engine:** `testdata/research-v07/experiment-drills/DRILLS.md`, `testdata/research-v07/experiment-drills/S01..S05/{base,variant,compare}.json`, `S05O/base.json`, `testdata/research-v07/certificate-v07.json`.
+- **Correcciones en code:** `internal/experiment/experiment.go`, `cmd/engine/maturation_catalog.go`, `internal/strategy/pocs/maturation/catalog_anchor.go`, más tests. Usar `git show 56e8fac` y `git log c915c11..85e27ff --oneline`; no confiar en nombres de commits sin inspección.
+- **Notas POC existentes:** [[POC-S03 — Sports Combinatorial]], [[POC-S04 — Weather]], [[POC-S05 — New Market Maturation]]; S01/S02 tienen historial integrado en el padre y el repo, no inventar notas nuevas si no existen.
+- **Recibo narrativo final:** `80-agents/journal/logs/2026-09-20-polymarket-fivepoc-final-closure.md`; recursos del dominio `main/30-resources/polymarket/log.md`.
+- **Research autoridad:** [[Polymarket — Edge Research Consolidado 2026-09-16]]; plataforma [[Polymarket — Technical Platform Map — synced 2026-09-17]]. No usar papers o snapshots para inferir fee/contratos vivos sin verificación nueva.
+
+## 5. Procedimiento de retoma para cualquier agente nuevo
+
+**Orden:** bootstrap canónico de Agents-OS (`main/AGENTS.md` y skill bootstrap), leer padre → esta continuidad → guía → SPEC de la POC elegida → `DRILLS.md` v07 → código real. No reabrir diseño M0/M1 ni ejecutar un refactor por defecto.
+
+Preflight **read-only** del checkout local (no ejecutar en la copia de GitHub si aún no está publicada):
+
+```bash
+cd ~/go/src/github.com/xKoRx/polymarket-engine-integration
+git status --short --branch
+git rev-parse HEAD
+git worktree list
+git log -n 12 --oneline
+git merge-base --is-ancestor 56e8fac HEAD && echo CODE_ANCESTRY_OK
+git diff --name-status c38f6c4 85e27ff
+ls -l testdata/research-v07/certificate-v07.json testdata/research-v07/experiment-drills/DRILLS.md
+```
+
+Esperado **al cierre comunicado**, no condición impuesta si ha avanzado el repo: HEAD `85e27ff` limpio, branch `feature/five-poc-integration` y certificado con baseline `c38f6c4` sin delta de código después del pin. **STOP** si falta la rama/commit local, el árbol está dirty o M4 no corresponde al código: diagnosticar primero; NO forzar checkout/reset/push para fingir sincronización. El remoto de engine no contiene necesariamente estos commits. Si checkout está en `feature/research-strategies-v01` o `main`, descubrir la branch local y usar su worktree, NO reconstruir desde HEAD remoto viejo.
+
+Validar operabilidad después del preflight, en dataset nuevo:
+
+```bash
+cd ~/go/src/github.com/xKoRx/polymarket-engine-integration
+go build -o /tmp/engine ./cmd/engine
+go vet ./...
+go test ./... -count=1
+/tmp/engine fixture fivepoc --kind vertical --out /tmp/pme-resume-s01s02
+# Continuar la receta exacta por POC desde la guía operativa; no reutilizar un output dir existente.
+```
+
+Para M4, leer flags reales `engine experiment certify --help`, confirmar SHA completo de baseline e invocar perfil `no-live` solo si se requiere certificar **código nuevo**. El recibo v07 histórico sigue válido exclusivamente para el código correspondiente; no heredar M4 por nombre de branch.
+
+## 6. Tareas reales de la próxima sesión — orden de decisión
+
+- [ ] **OWNER / P0 — Review humana** del rango `c915c11..85e27ff`, recibo `certificate-v07.json`, correcciones contables/wiring y datasets intactos. Registrar decisión en padre/bitácora; el agente NO se autoacepta.
+- [ ] **OWNER / P0 — Decidir publicación** del engine. Si acepta: estrategia de integración/push de `feature/five-poc-integration` hacia `feature/research-strategies-v01` o branch objetivo que el owner elija; detectar remoto adelantado, revisar diff/conflictos, no force-push; ejecutar suite+M4 sobre SHA realmente integrado. Si no acepta: preservar rama local y estado `UNPUBLISHED`.
+- [ ] **RESEARCH / P1 — Elegir UNA POC y UN experimento falsable** con criterio de falsación, métrica, sample, dataset y controles; usar mutation drill BASE/VARIANT como harness, no como prueba de alpha. Arranque de menor infraestructura: S01 sensibilidad `min_edge_bps` o S05 B descriptiva sobre fixture; escoger según interés del owner.
+- [ ] **DATA / P1 — Plan de paso a datos reales de sólo lectura:** inventariar RS v0.3 certificados y manifest de cierre, integridad, fuente/reglas/fees/as-of y ventanas. No declarar `REAL_DATA_READY` por existencia de carpetas `.rs-v03-*`; obtener recibo verificable y preservar guard.
+- [ ] **PE-001 / P2 — Contratos de mercado y fees:** verificar resolución real, relaciones/hándicap, books y U-02 fee venue antes de conclusiones reales.
+- [ ] **PE-030 / P2 — Forecast vintages y resolución:** contratos Gamma reales, estación, ventanas y punto-en-tiempo; adapter meteorológico real sólo con provenance; mantener UNCALIBRATED hasta evidencia.
+- [ ] **PE-004 / P2 — Datos Catalog/Books reales O/B:** `catalog sync` read-only contra fuente autorizada, `first_known_at` auténtico, consistencia del book, cohorts/censoring; W bloqueada por SFG-06. NO sustituir createdAt por first_known_at.
+- [ ] **BACKLOG no bloqueante / P3:** SFG-06 residual `new_market → Catalog reducer → UniverseChanged → replay` para W; fee real U-02; `capitalLock` legacy BBO hardcodeado `5.1` ≠ notional real; tres archivos `cmd/engine` con gofmt drift reportado; A2 PE-004 serializar corpus 22 fixtures (ya pasan como tests). Priorizar sólo cuando un experimento lo requiera. Refactor post-cinco-POC requiere auditoría comparativa y mandato propio.
+- [ ] **CIERRE / P0 al retomar:** actualizar esta nota, padre, nota POC afectada, recurso/guía y journal con resultados de la nueva sesión. `Graphify` y lint sólo marcar PASS si se ejecutaron; no confundir docs con ejecución física.
+
+## 7. Políticas de ejecución y separación de estados
+
+- `IMPLEMENTATION_PASS`, `PIPELINE_PASS`, `RESEARCH_READY_OFFLINE`, `REAL_DATA_READY`, `HYPOTHESIS_VALIDATED`, `LIVE_CERTIFIED` **son seis estados diferentes**. Hoy sólo los tres primeros están reportados afirmativamente para cinco consumidores. Real datos, alpha y live pendientes.
+- S05 O/B es **descriptiva**. `0 opportunities / 0 orders / 0 fills` es PASS de diseño; no comparar directamente con PnL de strategies. SFG-06 W no bloquea O/B.
+- Dos workstreams aislados como máximo para nuevos coding agents. Manager único escritor de composition/registry/shared; cada POC sólo su paquete/fixtures. Datos originales read-only; fixtures en temp, `dataset.Guard`, no `LIVE`.
+- Nuevos cambios de código invalidan recertificación anterior hasta certificar SHA final. Historical evidence v05/v06/v07 no se sobrescribe; nuevo experimento → nuevo run-id, provenance, manifest y artifact versionado.
+- Nada de negociación con dinero real, secrets, wallet, signing o permisos live sin mandato/seguridad/aceptación explícitos separados.
+
+## 8. Qué debe responder el primer agente de la próxima sesión
+
+```text
+RESUME_STATUS:
+  agents_os_bootstrap:
+  engine_worktree:
+  current_branch:
+  current_head:
+  clean:
+  final_code_sha_present:
+  evidence_sha_present:
+  certificate_baseline_verified:
+  remote_vs_local:
+  five_pocs_status:
+  datasets_and_capture_safety:
+  owner_review_state:
+  publication_decision_state:
+  chosen_poc_and_first_falsifiable_experiment:
+  blockers_requiring_owner:
+  next_execution_action:
+```
+
+La primera sesión debe **comenzar ejecutando el preflight y un caso de uso real offline**; no gastar horas redescubriendo arquitectura ni afirmar estado remoto/local sin comprobarlo. Esta continuidad queda cerrada documentalmente, **Review humana y push siguen abiertos**.
