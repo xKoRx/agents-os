@@ -19,7 +19,7 @@ tags:
   - area/aranea
   - domain/backup-dr
 created: "2026-09-20"
-updated: "2026-09-20"
+updated: "2026-09-21"
 ---
 
 # 📡 OPERATING-STATE — 2026-09-20
@@ -27,6 +27,7 @@ updated: "2026-09-20"
 ## Propósito
 
 - Estado operativo real de Aranea medido en vivo el 2026-09-20 ~20:00-21:30 -03 (read-only, sin mutaciones), reconciliado contra [[MATRIZ-59-GUESTS-BACKUP]]. Actualiza la columna "Estado" de la matriz; las decisiones siguen en [[PLACEMENT-DECISIONS-20260920]] y la ventana en [[FIRST-MAINTENANCE-WINDOW-20260920]].
+- **Esta nota es un HISTORICAL SNAPSHOT del 20sep** (así lo fechó su medición): el estado corriente vive en el bloque CURRENT 21sep de abajo y en [[ARANEA-CONTINUIDAD-Y-VENTANA-25-26-SEP]]. Las métricas y citas del 20sep se preservan tal como se midieron (no se falsifican retroactivamente); las correcciones se hacen por erratas marcadas.
 
 ## Método y límites
 
@@ -50,7 +51,7 @@ updated: "2026-09-20"
 | VMID | Nombre | Matriz decía | Runtime 20sep | Clasificación |
 |---|---|---|---|---|
 | 132 | docker-monitoreo | running | **STOPPED** (hera) | Intencional-desconocido: stopped sin registro de decisión. Sin consumo y sin impacto observado en ARGUS (160 sirve las métricas). Requiere decisión: formalizar retiro o devolver a running |
-| 125 | mt4-test | stopped | **RUNNING** (hades, up 42d) | Intencional probable: terminal de prueba vivo desde hace ≥42d. Sin canal de inspección; sin evidencia de daño. Requiere regularizar en 018 |
+| 125 | mt4-test | stopped | **RUNNING** (hades; iniciada 20-09 18:54:44 — errata 21sep: el "up 42d" era del nodo hades, no del guest; verificación pmxcfs en [[K2-CEPH-RISK-20260920]]) | Intencional probable: terminal de prueba encendido manualmente el 20sep. Sin canal de inspección; sin evidencia de daño. Requiere regularizar en 018; es el escritor identificado de la ráfaga Ceph |
 
 ### Degradados (con evidencia)
 
@@ -89,6 +90,13 @@ updated: "2026-09-20"
 - **ARGUS (160)**: 3/3 datasources OK (Prometheus/Loki/Jaeger); scrape de servicios Echo fresco (27s); 865 series en namespaces de plataforma (kafka/ceph/pve/node) PERO 0 muestras — **instrumentación declarada sin scrapes vivos** (ver PLACEMENT).
 - **mcps (113)**: 26/26 containers up (5d), rootfs 85% (hallazgo 3), build cache 8,9G (4,1G reclaimable).
 - **TrueNAS (145/hades)**: pool0/pool2 ONLINE healthy (DDP); scrub pool2 sigue overdue (>14m, riesgo F-14 vigente, en ventana).
+
+## CURRENT — seguimiento 2026-09-21 (lecturas RO 08:00-08:20 -03, cierre documental)
+
+- **Backups**: catch-up de timers a las 07:36 tras apagado limpio de hermes 118 (01:09→07:36, causa no registrada). A1 2º ciclo **VERIFICADO en PBS** (`host/r0d-postgresql/2026-09-21T10:37:57Z`, `host/r0d-mongodb/2026-09-21T10:37:21Z`); etcd-snapshot OK; **R1 falló second-brain** (`tar: main: file changed as we read it`; traefik-config y hermes-state OK; manifest `~/aranea/backup-staging/20260921-073644/`) → corrección gated T-21b (diff al owner); **run R2 06:05 no ocurrió** → serie 3/7 NO consecutiva (decisión D con criterio alternativo 6/7+OK owner de MANDATO-P0).
+- **Ceph**: osd.0/2 **85,19/85,17%** (794/793 GiB de 932; 08:05) — recesión completa del swing del 20sep (−24G vs techo 87,9%); HEALTH_WARN 2 nearfull osd + 2 pool nearfull; sin slow ops listadas en esta lectura. Condición de alerta K2 (≥89% ×2 lecturas ≥1h) sigue sin dispararse; banda histórica 85,6-87,9% con 4 swings en 4 días.
+- **Guests verificados**: 125 mt4-test RUNNING hades (desde 20sep 18:54:44, cache=unsafe — escritor K2; premisa "125 no existe" refutada: 114 kronos stopped coexiste); 132 docker-monitoreo STOPPED hera (sin decisión); 118 agent RUNNING kronos (uptime 13min en la lectura); quórum 5/5.
+- **Estado de la semana**: preparación 21-25sep sin mutaciones; ventana P0 sáb 26sep 02:00-07:00 pendiente de autorización (gates: ventana 019, OK D-piloto criterio alternativo, alta `nfs-pool2`). Fuente viva: [[ARANEA-CONTINUIDAD-Y-VENTANA-25-26-SEP]].
 
 ## Fuentes
 

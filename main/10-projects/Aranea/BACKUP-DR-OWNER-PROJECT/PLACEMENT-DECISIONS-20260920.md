@@ -19,7 +19,7 @@ tags:
   - area/aranea
   - domain/backup-dr
 created: "2026-09-20"
-updated: "2026-09-20"
+updated: "2026-09-21"
 ---
 
 # 🎯 PLACEMENT-DECISIONS — 2026-09-20
@@ -33,6 +33,7 @@ updated: "2026-09-20"
 - **El placement de datos está correcto; el problema activo es capacidad de pool1.** El patrón SO-en-Ceph + datos-en-zvol-pool0 (PG 152, Mongo 153, MinIO 157) se mantiene KEEP_JUSTIFIED (master plan D1): el dato T0 vive fuera del dominio de falla de Ceph; migrar SOs hoy exigiría escribir en pool1 nearfull (NO_GO) sin demostrar HA real. La migración que ALIVIA (SOs fuera de pool1) NO es la que corrige disponibilidad — es la que evita la pérdida de los SOs reconstruibles si el cluster se degrada más.
 - **Ceph NO_GO vigente.** Ningún MIGRATE escribe en pool1. Toda liberación de espacio va por el carril Ceph (WP-S1) con gates de dueño.
 - **4 correcciones de disponibilidad no requieren migrar discos de datos** (W1-W4) y 1 sí, en orden (W5). Todas requieren ventana: la primera es **sábado 26-09 madrugada** (ver [[FIRST-MAINTENANCE-WINDOW-20260920]]).
+- **[Errata 21sep] Las 5 fichas MIGRATE son PROPUESTAS, no destinos aprobados.** Ninguna W1-W5 está autorizada en bloque; cada una exige su gate owner explícito (indicado en la ficha) y la ventana formal. En particular W1/W2→pool2: pool2 es **single-disk (F-14)** y **comparte chasis con pool0** — su aporte es separar el dominio de falla del SO edge respecto de los datos T0, NO redundancia ni off-host (el SPOF del chasis se mantiene aceptado). El down-tier W5 lee de pool1 vía vzdump y escribe en local-lvm/PBS (respeta NO_GO).
 
 ## B. Clasificación
 
