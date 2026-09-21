@@ -25,13 +25,13 @@ Mandato de ejecución de la réplica pool0→pool2 (Etapa C): primera transferen
 2. **G-REP-2**: alcance confirmado (todo pool0; excluidos técnicos `.ix-virt`/`.system`; trading_systems/documents y frigate media INCLUIDOS por confirmación explícita del owner).
 3. Capacidad: pool2 free zpool ≥ 4,00T (de lo contrario NO_GO con cifras); pool0 saludable (scrub OK, sin errores); espacio pool0 para retención @repl-* 14d (estimar con delta medido).
 4. **G-REP-3**: ventana con presupuesto de I/O exclusivo: sin G1B, sin vzdump full, sin migraciones sobre TrueNAS ese día/tramo; Echo cerrado (madrugada sábado-domingo propuesta).
-5. Canal de ejecución verificado (SSH ariadna@truenas o consola middleware); script `repl-pool0.sh` del MANDATO 1 desplegado y probado con fixture.
+5. Canal de ejecución verificado (SSH ariadna@truenas o consola middleware); **stack nativo desplegado y probado con fixture G-REP-0** (snapshottask+replication creados disabled sobre `pool2/fixrep`, 1 ciclo real + drill dataset/zvol verificado; el script `repl-pool0.sh` del paquete anterior queda DESCARTADO — mecanismo nativo zettarepl LOCAL).
 
 ## Operaciones (orden)
-1. Crear dataset destino `pool2/pool0-replica` (sin quotas; readonly=on si fixture lo valida).
-2. **1ª transferencia completa**: `zfs send -R pool0@repl-<hoy> | zfs recv -F pool2/pool0-replica` (~2,57T; 8-12h estimadas a HDD; monitorear cada 60 min: exit en curso, tasa, free pool2; log a archivo local TrueNAS).
-3. Al terminar: verificar listing de datasets hijos + 1 drill de lectura (montar RO un dataset hijo del destino).
-4. **G-REP-4**: activar cron diario 04:45 con modo incremental; retención 14 @repl-* en origen, 7-14 en destino; alerta NO-SEND por umbral.
+1. Crear dataset destino `pool2/pool0-replica` (sin quotas; sin `sync=always`; el readonly final lo aplica la tarea con `readonly:"SET"` — probado en fixture G-REP-0).
+2. **1ª transferencia completa**: deshabilitar el schedule y ejecutar `replication.run_onetime` de la tarea validada en fixture (~2,35T; 7-11h estimadas a HDD; monitoreo horario: estado job, tasa, `zpool list` free pool2 ≥1,00T).
+3. Al terminar: verificar `zfs list -r pool2/pool0-replica` (datasets hijos + zvols con volsize correcto) + 1 drill de lectura (clonar RO un dataset hijo y un zvol del destino).
+4. **G-REP-4**: habilitar la tarea nativa (`replication.update enabled=true` + snapshottask enabled) con horarios 04:45/04:50; retención 14d origen (snapshottask) + destino según fixture; scrub mensual pool2 (`pool.scrub.create` primer domingo 00:00).
 5. Registrar serie de crecimiento diario y estado en CAPACITY-FREEZE v2.
 
 ## Gates

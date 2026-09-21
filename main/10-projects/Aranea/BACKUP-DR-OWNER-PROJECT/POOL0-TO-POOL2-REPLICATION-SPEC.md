@@ -25,7 +25,7 @@ related:
 
 # 🔁 SPEC — Replicación diaria pool0 → pool2
 
-> Autoridad: D-NEW-01 (pool2 = réplica diaria de TODO pool0, sin otro uso) del mandato ONE-SHOT 21sep noche. Estado: **SPEC congelable en T-24; ejecución GATED** (gates §G). Números medidos 21sep noche (API v2.0 + SSH ariadna@truenas); regla del proyecto: re-medir en preflight antes de cada gate.
+> Autoridad: D-NEW-01 (pool2 = réplica diaria de TODO pool0, sin otro uso) del mandato ONE-SHOT 21sep noche. Estado: **SPEC HARDENED en auditoría 21sep noche-3; ejecución GATED** (gates §7: G-REP-0..5). Mecanismo definitivo: **stack nativo TrueNAS 25.04.1 (zettarepl), transporte LOCAL** — la "ausencia de API" de la noche anterior quedó refutada con evidencia (401 de ruta existente + familia `replication.*` en el middleware + enum LOCAL en el código instalado). Números: envío inicial **2,35T base `refer`** (ledger §1), pool2 free zpool 4,08T → CAPACITY_GO con margen ≥1,71T. Horario 04:45/04:50 con dependencias reales verificadas (§4 addendum). Regla del proyecto: re-medir en preflight antes de cada gate.
 
 ## Propósito
 
@@ -120,7 +120,7 @@ Una sesión diaria (04:45): escritura del delta diario después de la inicial; s
 3. **Zvol corrupto**: clonar `pool2/pool0-replica/iscsi/<zvol>@repl-<d>` → attach a la VM como disco nuevo (nunca sobre el original) → validar guest → conmutar.
 4. **Pérdida completa de pool0**: reconstrucción de datasets desde `pool2/pool0-replica` (último snapshot común) + dumps PBS para consistencia app; Mirror vdevs dañados = reemplazo de discos (capex gated F-01) antes de importar.
 5. **Pérdida completa de TrueNAS/chasis**: **pool2 NO ayuda** (mismo chasis, F-14): recuperación = reinstalar SCALE + importar pool0/pool2 si los discos sobreviven; si el chasis/discos se pierden → sólo off-site (A7/A8, bloqueado) + PBS si kronos vive. Deuda declarada, no promesa.
-- Verificación post-recv de CADA sesión: exit=0 + `zfs list` destino con snapshot del día + (semanal) scrub de los datasets replicados o comparación de tamaños. Validación de restore: 1 drill con dataset de prueba en fixture antes de declarar la réplica operativa.
+- Verificación post-recv de CADA sesión: estado `FINISHED`/sin errores en `zettarepl.list_states` + `zfs list -t snapshot` destino con snapshot del día; (semanal) comparación de tamaños `refer` origen/destino. Validación de restore: **el drill de restauración (dataset + zvol) se ejecuta en el fixture G-REP-0 antes de la activación** (anexo del mandato de ejecución).
 
 ## 7. Gates owner (todos requeridos; una aprobación general NO sustituye gates)
 
