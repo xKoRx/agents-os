@@ -122,3 +122,10 @@ Corrección in-place del contrato F-04: identidad del HandoffManifestV1 desde `s
 - Refresh futuro = verificar ancestry → inspeccionar sólo `documented_sha..target` (o merge-base si diverge) → clasificar impacto → tocar sólo páginas afectadas → verificar → avanzar cursor únicamente con PASS.
 - Se distingue `NO_DOC_IMPACT`, `IMPLEMENTATION_DOC_IMPACT`, `CONTRACT_IMPACT` y `BOUNDARY_IMPACT`; contratos frozen no se reescriben para esconder divergencias de implementación.
 - El mecanismo especializa [[30-resources/00-RESOURCE-WIKI|Resource Wiki]] sin crear README/runbook paralelo; KBC queda como snapshot full inicial y el mantenimiento posterior es incremental.
+
+## [2026-09-21] update | Echo/Echo Forge — frontera Forge→Echo al estado post-certificación
+
+- `echo-forge-integration-boundary.md` actualizada por delta (mandato TOP de cierre de scope): G1–G5 RESUELTOS (HTTPIngress en-pipeline en 0.2.105 `745bc8b`; seal con caller; ArtifactSource filesystem en rama; reconciliación GET-by-key; golden F04-02 5×201 CERT-E04-01/CERT-F04-03 PASS 2026-09-21), G6 parcial (deployment-link → OWNED_BY_ECHO), G7 abierto.
+- Nuevas secciones: ownership transferido a Echo (attach/monitoring/deployment-link MT5 demo, vía E-06/E-09) y deuda git exacta de migración (`codex/f05-post-cert-delta` @ `145d6be` +2 sin release; sdk `c7f11496` sin merge; master symphony 38 commits atrás; lanes E-06; secretos versionados).
+- Baselines avanzados: symphony línea certificada `codex/f05-release-prep@745bc8b` (0.2.105), echo `origin/master@5dd998f1` + rama consolidada `feature/e09-…@7c843e9c` (contiene `4aad647b`), Gateway DEV `3d260e81`.
+- Clasificación: `BOUNDARY_IMPACT`; contratos frozen no reescritos. Cambio de entidad y programa en [[Echo Forge]] y [[Echo Forge — Factory V2 Completion]] (Explorer v0 DEFERRED_BY_OWNER); change log de sesión: [[2026-09-21-echo-forge-scope-closure-migration-readiness]].
