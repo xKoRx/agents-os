@@ -159,3 +159,21 @@ updated: "2026-09-21"
 ## Fuentes
 
 - [[OPERATING-STATE-20260920]] (runtime 20sep), handoff assessment `~/aranea/work/storage-ceph-assessment-20260919/HANDOFF-2026-09-19.md` (§3.2, §3.5, §4, §6), [[MASTER-PLAN-STORAGE-BACKUP-DR]] (D1/D3/§4/§5), [[MATRIZ-59-GUESTS-BACKUP]], [[FIRST-MAINTENANCE-WINDOW-20260920]] (secuencia de ejecución).
+
+---
+
+## D. Redirección owner 21sep noche (D-NEW-01..06) — cancelaciones y recolocación
+
+> Autoridad: mandato ONE-SHOT 21sep noche (§7 del [[MASTER-PLAN-STORAGE-BACKUP-DR]]). No altera el histórico A-C; donde contradiga, manda esta sección. Las fichas W1/W2 anteriores quedan CANCELADAS (no P0 condicionado); W3/W4/W5 se recalifican.
+
+| Ficha | Veredicto nuevo | Detalle |
+|---|---|---|
+| W1 (4 CTs edge → nfs-pool2) | **CANCELADA** | D-NEW-01: pool2 exclusivo para réplica de pool0. Sin alta `nfs-pool2`, sin P0-2 en la ventana 26. Si el problema de dominio de falla del edge volviera a priorizarse: destinos alternativos pool0 (`nfs-vmbackup` para rootfs) / pool1 (bloqueado NO_GO) / local-lvm por nodo — según características del workload; NO pool2. Estado actual de los 4 CTs: **correctamente configurados donde están** (nfs-storage pool0 es backend file válido) — no hay migración que inventar |
+| W2 (traefik 115 → nfs-pool2) | **CANCELADA** | ídem W1. 115 queda en local-lvm athena con CFG R1 diario (mecanismo más maduro del sistema); su SPOF de nodo se mitiga por restore, no por migración |
+| W3 (pi-hole 149) | **DEFER → decisión de función (D5)** | 149 corre en ATHENA (no hades) y está L2-dead: resolver por diagnóstico y decisión (reactivar+proteger vs retiro), no por supervivencia a hades. Sin migración planificada |
+| W4 (kafka 128 hera→athena) | **KEEP hasta diagnóstico (D6/P1-4)** | No mover el broker sin causalidad demostrada del brote "metadata out of date"; el diagnóstico RO manda. La ficha original ya lo condicionaba |
+| W5 (down-tier SOs desde pool1) | **RECALIFICADA — reevaluación por VM** | No asumir que todos los SOs deben salir de pool1: por VM evaluar beneficio/rendimiento/disponibilidad/capacidad/destino/dominio de falla/restore/alivio real de Ceph. Hades local-lvm (33,4G) NO es destino de la propuesta anterior. Nueva opción habilitada por D-NEW-02: rootfs destino = `nfs-vmbackup` (pool0, ver [[TWO-LAYER-BACKUP-SPEC]] §1) además de zeus 77,5G / hera 91,7G. El alivio de pool1 NO justifica por sí solo la ventana: placement correcto > llenar la ventana |
+| Alta `nfs-pool2` (habilitador D4) | **CANCELADA** | sin W1/W2 no tiene consumidor; la ventana 26sep pierde P0-2 (queda K2/K1/P0-1) |
+| 2º target PBS→pool2 (D3/WP-B2 opcional) | **CANCELADA** | contradice D-NEW-01 (pool2 no recibe backups de VMs); la 2ª copia local de VMs vive en `nfs-vmbackup` (pool0) |
+
+**Matriz corregida resumida**: KEEP = PG/Mongo/MinIO datos (zvol pool0) + SOs donde estén salvo reevaluación W5 por VM + etcd×5 + CTs edge en nfs-storage + SQX F-04 + PBS 180. MIGRATE = ninguna activa (W1/W2 canceladas; W5 condicionada a la reevaluación; W4 gated a diagnóstico). RECONFIGURE = R-1..R-5 sin cambios. DEFER = W3 (D5), 100/151, 112/162/170, REPL-full (ahora SPEC réplica), CA 200. UNKNOWN = kafka/argus data, CouchDB credencial, MT4 interior — sin cambios.

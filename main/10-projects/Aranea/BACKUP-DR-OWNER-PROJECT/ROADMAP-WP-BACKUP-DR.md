@@ -156,3 +156,22 @@ Precedencia estricta: B1 requiere D-piloto + 018 + crecimiento datastore; A2 req
 - **Datos kafka (scsi1) y argus (scsi1-4)**: valor/retención UNKNOWN → resuelve 018; sin dato no hay mecanismo ejecutable.
 
 **Camino crítico**: aprobación del plan → MP-01 (A0/A1/A3/A5) ∥ (018/019/020/021/D owner en paralelo) → A6/B1/A2 tras gates → A7 en cuanto 020/021 (riesgo #1). Paralelizable sin interferencia: carril Ceph S4/S1-S3 ∥ carril Backup/DR; A3/A5 ∥ A1; B2-diagnóstico ∥ todo lo anterior.
+
+---
+
+## Redirección owner 21sep noche — WPs actualizados y operaciones obsoletas retiradas
+
+> Autoridad: D-NEW-01..06 ([[MASTER-PLAN-STORAGE-BACKUP-DR]] §7). Las entradas contradictorias de los bloques A/B anteriores quedan así modificadas; el histórico no se borra.
+
+| WP | Estado nuevo | Cambio |
+|---|---|---|
+| WP-A6 (snapshots + REPL pool0→pool2 + scrub) | **REEEMPLAZADO por [[POOL0-TO-POOL2-REPLICATION-SPEC]] + [[MANDATO-REPLICACION-SPEC]]** | alcance ya NO selectivo: TODO pool0, incremental diario, gates G-REP-1..4; scrub pool2 pasa a pre-requisito G-REP-1 |
+| WP-B1 (vzdump producción) | VIGENTE + ampliación | exclusión ledger de [[TWO-LAYER-BACKUP-SPEC]] §1; añade capa semanal `nfs-vmbackup` (pool1→pool0, gate G-NFSVM) |
+| W1/W2 dentro de P0-2 (FIRST-MAINTENANCE-WINDOW) | **RETIRADAS** | P0-2 obsoleto; la ventana 26sep queda: prechecks → K2 → K1 → P0-1 (según W-01/gates) |
+| Alta `nfs-pool2` (W-03 §1 del paquete miércoles) | **OBSOLETA** | sin consumidor tras cancelación W1/W2 |
+| 2º target PBS→pool2 (DEFER de esta clasificación) | **CANCELADA** | contradice D-NEW-01 |
+| WP-A2/A2b/A3/A4/A5/A7/A8 | VIGENTES sin cambios | deudas y gates ídem; prioridad cloud ahora explícita (D-NEW-05) en A7 |
+| WP-B2 | VIGENTE | TrueNAS config export gana prioridad (requisito DR-T5 de la SPEC de réplica §6.5) |
+| WP-B3/B4/R7/S1-S4 | VIGENTES sin cambios | — |
+
+**Orden actualizado (consistente con esta redirección):** AHORA (AUTO): A0→A1∥(A3,A5,S4,R7-parcial) · TRAS GATES OWNER: B1(D+018+019) → G-NFSVM (capa pool1→pool0) · RÉPLICA: G-REP-1 (scrub pool2) → G-REP-2/3 (full inicial en ventana propia) → G-REP-4 (schedule diario) — I/O de réplica JAMÁS simultáneo con B1-fulls/G1B/migraciones · CLOUD: A7 en cuanto 020/021 · CARRIL CEPH: S4→S1→S2→S3 sin cambios.
