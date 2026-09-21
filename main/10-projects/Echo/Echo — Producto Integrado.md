@@ -237,6 +237,7 @@ Deuda acotada es herramienta. No convertirla en blocker sin impacto material. Cl
 
 ## 📆 Bitácora
 
+- **2026-09-21** — Gate de ambiente `ECHO_CORE_GATEWAY_DEV_SYSTEMD_PASS → PARTIAL` en Daedalus (mandato owner 2026-09-20): Gateway DEV `RUNNING/PHYSICALLY_VERIFIED` (systemd --user + linger, release `5dd998f1`, health 200, restart/kill-recovery PASS); Core DEV `BLOCKED` por drift de credencial PG DEV (`echo_user@.220` vs convención repo/ETCD, owner action). Detalle completo y ownership en [[Echo + Echo Forge — Environment Contract]] §5.1. No certifica producto ni join Forge→Echo.
 - **2026-09-13** — Owner acepta [[Echo — Knowledge Base Consolidation]] tras revisión final: bridge `[r]→[x]`. Campaña documental cerrada; remediación P0 de secretos queda como trabajo operacional separado y no reabre KBC.
 - **2026-09-13** — Campaña [[Echo — Knowledge Base Consolidation]] COMPLETE (fases A–K): subdominio `30-resources/applications/echo/` publicado y verificado adversarialmente (frontera Forge→Echo rota en producción documentada con gaps G1–G7); AGENTS.md de repos como patches propuestos; 2 hallazgos de seguridad escalados al owner (credenciales `30-resources/APIs.md` y contraseña SSH en symphony tracked). Puente → Review.
 - **2026-09-11** — E-04 TOP: hijo [[Echo — E-04 Forge Ingestion E1]]. Development E-04 puede partir en paralelo con verification E-03; integration/merge gated por E-03 CONTRACT_PASS. `origin/master` no se mueve. Join Forge no closed.
