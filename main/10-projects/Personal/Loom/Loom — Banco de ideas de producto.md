@@ -11,7 +11,7 @@ tags:
   - kind/doc
   - area/personal
 created: "2026-09-20"
-updated: "2026-09-20"
+updated: "2026-09-21"
 ---
 
 # Loom — Banco de ideas de producto
@@ -46,6 +46,16 @@ Preservar **íntegramente las ideas útiles** discutidas al pausar Loom, con est
 | Agent Run Explorer | **Pendiente, incremental** | Historial documental de mandatos, agentes, SHAs, gates, evidencias y revisiones. `[/]` en Markdown significa estado declarado, jamás prueba de proceso vivo. Primera sección puede nacer en Resume Context v0.7. |
 | Safe Capture | **Fuera de F3 / diferido** | Capturar nuevas ideas/notas requiere nuevo contrato de escritura, allowlist, backups, concurrencia, auditoría, revisión y permiso específicos. F3 solo puede escribir planes diarios, no editor genérico. |
 
+### Nueva idea (2026-09-21): Prompt Context Inspector — validación y contexto antes de ejecutar
+
+**Pedido del owner:** desde Loom, ingresar un prompt, validarlo y obtener una vista previa del contexto que se cargaría en función de ese prompt, considerando **todas las herramientas e integraciones disponibles, incluida Graphify**. El objetivo es poder inspeccionar qué información recibiría efectivamente el agente, no solo ver una lista genérica de documentos.
+
+**Experiencia deseada (propuesta, no SPEC):** mostrar el contexto ensamblado y su procedencia: documentos de Agents-OS, referencias de proyecto, memoria, resultados de búsqueda/grafo de Graphify y las demás herramientas habilitadas que correspondan. Distinguir herramientas **disponibles**, **seleccionadas/invocadas** y **no aplicables o no disponibles**, con razones cuando sea posible. Mostrar fuentes y fragmentos incorporados, orden de carga, estimación de tokens/presupuesto, duplicados, referencias rotas y truncamientos; reportar errores de validación y permisos sin inventar resultados.
+
+**Condición de veracidad y seguridad:** una simulación o estimación de contexto debe identificarse como tal. Para afirmar «contexto realmente cargado», se necesita evidencia del ensamblador/runtime y trazas de las herramientas; no presentar una predicción como ejecución confirmada. Preferir inspección *dry-run* / solo lectura sin acciones con efectos secundarios. Reutilizar las integraciones e índices existentes, especialmente Graphify, sin crear otro motor de grafo, memoria u orquestador.
+
+**Estado:** idea de producto capturada para discovery y priorización futura. No implica desarrollo, SPEC congelada, cambio de roadmap, inicio de agentes ni autorización de escritura o ejecución.
+
 ### Oportunidad distintiva: operaciones de agentes SIN un nuevo orquestador
 
 Una bandeja **Needs your attention** debe llevar de entrega→puente humana→SPEC→evidencia→bitácora→decisión; separar **bloqueos documentados**, **reviews genéricas** y **aceptaciones de owner**. Retomar un proyecto debe enseñar último hito verificable, último `agent_run` documentado, última entrega SHA, gates y próxima acción; ausencia de datos ⇒ «no disponible». Beads/Gas Town/Superpowers son inspiración para vistas de dependencia/gates, no autorización para ejecutar agentes desde Loom ni para declarar actividad en vivo.
@@ -79,6 +89,7 @@ Una bandeja **Needs your attention** debe llevar de entrega→puente humana→SP
 
 ## Fuentes
 
+- Idea del owner del 2026-09-21: validar un prompt desde Loom e inspeccionar el contexto cargado según el prompt con todas las herramientas, incluida Graphify. Capturada como idea nueva, no incluida entre las 13 propuestas originales.
 - Investigación de producto compartida por el owner el 2026-09-20: «Loom — convertir Agents-OS en tu centro de operaciones» (13 propuestas; investigación basada originalmente en v0.4). Se preserva aquí su inventario reconciliado con el estado posterior; las prioridades v0.7/v0.8 son propuestas, no decisiones de implementación ya aprobadas.
 - `xKoRx/loom`, `feature/loom-v06 @ 36c760cc9d124ef8522aa10ab91852e1fcac334b`, `specs/FEAT-LOOM-V06/SPEC.md`.
 - `xKoRx/loom`, `feature/f3-ux-lab @ 47cbadb8e3e46cda85ccac776fc6de767338bc44`, `specs/FEAT-F3-UX-LAB/RESULTS.md`.
