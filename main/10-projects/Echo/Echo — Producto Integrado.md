@@ -23,7 +23,7 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: 2026-09-13
+updated: 2026-09-21
 cssclasses:
   - wide
 ---
@@ -61,6 +61,7 @@ La función de optimización es **TIME_TO_USABLE_TRADING_SYSTEM**, sujeta a corr
 - **Echo checkpoint:** core productivo reportado `e25165ba`; ingestión canónica ausente; Lab/journal/copia existen con deuda P0 de auth/journal. Discovery histórico: [[Echo - Discovery y Estado]].
 - **Usable V1 ≠ cartera financiada.** Software puede completar con CASH/INSUFFICIENT_EVIDENCE. Dinero real es gate owner aparte (O-01).
 - **F-04 resultante:** implementación y source/contract verification DONE en `b57bfb2c3d2c4e0a96d2b3fa654cea41e1a64f43`, release `0.2.98` publicada, Linux rollout PASS; Windows physical certification, authentic golden y Echo join quedan deferred. Overall `IMPLEMENTED / NOT CERTIFIED`; T2.11/T2.12/T2.13 y E-04 T21 no se cierran.
+- **Join DEV 2026-09-21:** Gateway Echo DEV `2360369c` ingiere de verdad (`ECHO_DEV_INGEST_FUNCTIONAL_PASS`); CERT-E04-01/CERT-F04-03 siguen BLOCKED por bodies golden en `trading_systems_test`. Contrato: [[Echo + Echo Forge — Environment Contract]] §5.4.
 
 ## 🧱 Entrega de desarrollo
 

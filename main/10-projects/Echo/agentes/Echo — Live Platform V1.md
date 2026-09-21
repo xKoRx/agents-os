@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-07
-updated: 2026-09-20
+updated: 2026-09-21
 cssclasses:
   - wide
 ---
@@ -58,7 +58,7 @@ Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, captur
 - **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
 - **E-03:** CONTRACT_PASS / FINAL CLOSED en [[Echo — E-03 Identity and BWC Foundation E0]] @ `fac48051` (integrado FF a `origin/master` 2026-09-12; evidencia en esa nota y en `specs/FEAT-CROSS-IDENTITY-BWC-E0/VERIFICATION.md`).
 - **E-04:** SPEC v1.0.2 en [[Echo — E-04 Forge Ingestion E1]]. **INTEGRATED=YES** por fast-forward desde `2f8db345` tras implementation/verifier/E-03/base gates PASS. READY_FOR_INTEGRATION consumido. T21/AC-37 PENDING como gate POST-INTEGRATION; E-04 FINAL CLOSED=NO. Golden no inventado; F-04 no tocado.
-- **CERT-E04-01 recert 2026-09-21 (Daedalus):** Core/Gateway DEV `RUNNING` @ `5dd998f1` reconfirmados; ingest live sigue `forge_ingest_misconfigured=true` (503); mig 061 ausente en `echo-develop`; golden bodies aún GOLDEN_AUTHORITY_BLOCKED; defectos E-INT-* STILL_REPRODUCIBLE. Veredicto **`CERT_E04_01_BLOCKED`** (G6 NOT_EXECUTED). Evidencia: `~/aranea/work/cert-int-qa-20260921/FINDINGS-CERT-INT-QA-20260921.md` + [[Echo + Echo Forge — Environment Contract]] §5.2.
+- **CERT-E04-01 deploy DEV 2026-09-21 (Daedalus):** Gateway DEV **desplegado** `2360369c` (binario SHA256 `ef56fff6…`); `forge_ingest_misconfigured=false`; HTTPIngress 201 INGESTED receipt `338bd937-…` + replay/GET/409. Core `5dd998f1` PID intacto. **`ECHO_DEV_INGEST_FUNCTIONAL_PASS`**. Golden bodies siguen `GOLDEN_AUTHORITY_BLOCKED` ⇒ **`CERT_E04_01_BLOCKED`** (T21 no cerrado). Recert previo @ `5dd998f1` con 503 queda histórico (§5.2). Evidencia: `~/aranea/work/echo-dev-ingest-close-20260921/FINDINGS-INGEST-CLOSE-20260921.md` + [[Echo + Echo Forge — Environment Contract]] §5.4.
 - **Continuidad frente a F-04:** la certificación física Forge no bloquea el desarrollo Echo que no la requiere. E-04 T01–T20 queda integrado y no se reabre; T21/AC-37 sigue `HARD BLOCKED` hasta golden Forge auténtico + join real. E-06…E-13 pueden avanzar por su DAG con fixtures/shadow cuando su propia SPEC lo permita, pero sus gates físicos/product-capability permanecen separados.
 - **Taxonomía compartida:** `PLANNED → IMPLEMENTED → SOURCE VERIFIED → RELEASED → DEPLOYED → PHYSICALLY CERTIFIED → CROSS-LANE CERTIFIED → CLOSED`; `IMPLEMENTED` no equivale a `CERTIFIED`. La campaña se mantiene en [[Echo + Echo Forge — Deferred Certification Backlog]].
 

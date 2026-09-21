@@ -24,7 +24,7 @@ tags:
   - area/echo
   - agent/owner
 created: 2026-09-11
-updated: 2026-09-20
+updated: 2026-09-21
 cssclasses:
   - wide
 ---
@@ -45,6 +45,8 @@ cssclasses:
 Dejar el boundary Forge → Echo listo para aceptar un `HandoffManifestV1` autenticado, persistir mapping/version/promotion sobre foundations E-03, copiar artefactos operativos verificados y devolver receipt `INGESTED`, sin activation/provisioning/capital y sin decisiones críticas pendientes para NORMAL.
 
 ## 📊 Estado actual
+
+- **DEV INGEST FUNCTIONAL PASS — T21 AÚN BLOCKED (2026-09-21, Daedalus).** Owner action 2 DEV consumida: Gateway `2360369c` desplegado; POST `/api/v1/forge/promotions` 201 INGESTED (receipt `338bd937-95ad-4389-9278-89285908b0a6`) + replay 200 + GET by-key 200 + conflicto digest 409. GRANT UPDATE DEV para FK KEY SHARE. **No es CERT-E04-01:** el POST usó identidad DEV, no los 5 bodies de `trading_systems_test`. T21/AC-37 sigue `HARD BLOCKED / DEFERRED` por owner action 1. E-04 FINAL CLOSED = NO. Evidencia: [[Echo + Echo Forge — Environment Contract]] §5.4; `~/aranea/work/echo-dev-ingest-close-20260921/`.
 
 - **T21/AC-37 PREFLIGHT EJECUTADO — `CERT_E04_01_BLOCKED` (2026-09-20, sin POST).** El mandato cross-lane ejecutó G0 (brecha de bytes del golden F04-02: bodies canónicos sólo en `sqx.handoff_manifests.canonical_body` @ `trading_systems_test`, sin identidad de lectura autorizada; owner action 1 preparada) y G2 (preflight Echo: gateway PROD `192.168.31.71:8090` con binario del 2026-08-09 **sin ruta forge** — 404 vs baseline webhooks 405 —, PG compartido sin migraciones v3 en `echo`/`echo-develop`, config `forge_ingest` ausente en ETCD; owner action 2 preparada). `origin/master` `5dd998f1` contiene E-04 (ancestry `a99f9a63 ∈ 5dd998f1` PASS). Golden re-validado hoy (validator exit 0). G3–G7 NO_RUN; producer virgen (`/sqx-worker/production/echo` = 0 keys); F04-02 PASS confirmado sin errata. T21 sigue `HARD BLOCKED / DEFERRED`; E-04 FINAL CLOSED = NO. Evidencia: delta en [[Echo + Echo Forge — Deferred Certification Backlog]] + `~/aranea/work/cert-e04-01/`.
 
@@ -202,6 +204,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-21 (DEV ingest close — `ECHO_DEV_INGEST_FUNCTIONAL_PASS`, T21 OPEN).** Deploy Gateway `2360369c` en Daedalus; ingestión HTTPIngress real 201/200/409; PG INGESTED. CERT-E04-01 no cerrado (golden). Detalle: [[Echo + Echo Forge — Deferred Certification Backlog]] delta 2026-09-21T03:38Z.
 
 - **2026-09-20 (T21 preflight — `CERT_E04_01_BLOCKED`)** — Ejecución G0/G2 del mandato CERT-E04-01: la brecha de bytes del golden (5 `canonical_body` en `trading_systems_test.sqx.handoff_manifests`) no es resoluble con las capabilities del Access Plane (PG MCP scoped a `echo`/`echo-develop`; F-05-I expone digests sin body; evidencia Temporal/MinIO con refs solamente) → owner action 1 (SELECT RO de 5 filas exactas o entrega byte-exacta vía C6). Preflight Echo: gateway PROD desplegado 2026-08-09 sin ruta forge (404 vs 405 webhooks), PG sin migraciones 061 en bases compartidas, config `forge_ingest` no provisionada, ETCD producer virgen → owner action 2 (deploy v3 + migración + config + token). Master `5dd998f1` verificado con E-04 integrado. Golden corpus re-validado PASS. Cero POST/cambios; T21 OPEN; E-04 FINAL CLOSED = NO. Detalle: [[Echo + Echo Forge — Deferred Certification Backlog]] delta 2026-09-20; `~/aranea/work/cert-e04-01/`.
 

@@ -17,7 +17,7 @@ tags:
   - area/echo
   - project/echo
 created: "2026-09-13"
-updated: "2026-09-20"
+updated: "2026-09-21"
 ---
 
 # Echo + Echo Forge — Deferred Certification Backlog
@@ -122,6 +122,17 @@ Misión de recovery total sobre DEV. **No se cerró CERT-E04-01 ni CERT-F04-03.*
 - **GOLDEN BLOCKED:** MCP postgres-rw = `echo-develop` only; bodies en `trading_systems_test`.
 - Veredictos: **`CERT_E04_01_BLOCKED`**, **`CERT_F04_03_BLOCKED`**, **`INTEGRATION_FUNCTIONAL` no demostrado en live**. Owner action única: habilitar SSH operator `kor@192.168.31.161` para publicar el release Gateway y `systemctl --user restart echo-gateway-dev`.
 
+### Delta de deploy + ingestión DEV — 2026-09-21T03:38Z (Daedalus; Gateway `2360369c`; veredicto PARTIAL)
+
+Cerró el tramo que el recovery no pudo ejecutar. Sesión sobre Daedalus como `kor`. **No se cerró CERT-E04-01 ni CERT-F04-03.** Se demostró ingestión DEV real.
+
+- **DEPLOY PASS:** Gateway DEV publicado y reiniciado exclusivamente (`echo-gateway-dev`); SHA `2360369c3ba406a8bf575f2169993028978f48da`; binario SHA256 `ef56fff6b1b4afcfeafee33971d44706eaf30083bab51f68f34e47201eb96f80`; `forge_ingest_misconfigured=false`. Core PID 2479388 sin restart. Rollback al release `5dd998f1` documentado.
+- **SCHEMA COMPAT PASS (parcial 061):** GRANT UPDATE a `echo_user` sobre tablas E-04 porque `SELECT FOR KEY SHARE` exige UPDATE; triggers write-once intactos. 061 no marcada completa.
+- **INGEST FUNCTIONAL PASS:** HTTPIngress `a2321cc` → 201 INGESTED receipt `338bd937-95ad-4389-9278-89285908b0a6`; replay 200; GET by-key 200; conflicto digest 409. Identidad DEV (no golden). PG row `echo.promotion_records` status INGESTED namespace `forge-live`.
+- **GOLDEN BLOCKED:** owner action 1 intacta; 0 bodies en `~/aranea/work/cert-e04-01/`.
+- **F-INT-03** no tocado (registry-postgres coexistencia v0/v1/v2); no participa del HTTPIngress E-04.
+- Veredictos: **`ECHO_DEV_INGEST_FUNCTIONAL_PASS`**, **`CERT_E04_01_BLOCKED`**, **`CERT_F04_03_BLOCKED`**. Evidencia: `~/aranea/work/echo-dev-ingest-close-20260921/FINDINGS-INGEST-CLOSE-20260921.md`; AS-BUILT [[Echo + Echo Forge — Environment Contract]] §5.4.
+
 ### Backlog ordenado; no ejecutar en esta sesión
 
 #### CERT-F04-01 — Forge physical chain / T2.12
@@ -151,6 +162,7 @@ Misión de recovery total sobre DEV. **No se cerró CERT-E04-01 ni CERT-F04-03.*
 - **Durable evidence:** request/body digest, HTTP status, receipt, mapping/version/promotion rows, artifact hashes y GET by-key outcome.
 - **PASS criteria:** Echo acepta exactamente el golden auténtico, persiste una única proyección consistente, devuelve receipt/read-back estable y no produce efectos fuera de E-04. T21/AC-37 permanece OPEN hasta ejecutar esto.
 - **Intento 2026-09-20:** `CERT_E04_01_BLOCKED` en preflight (sin POST) por `GOLDEN_MANIFEST_BYTES_BLOCKED` (identidad `sqx` RO sobre `trading_systems_test`, owner action 1) + `ECHO_RUNTIME_BLOCKED` (gateway PROD pre-E-04 sin ruta forge, PG compartido sin migraciones v3, config `forge_ingest` no provisionada, owner action 2). Detalle en el delta de esta fecha.
+- **Intento 2026-09-21 (DEV ingest, no golden):** owner action 2 DEV **consumida** (Gateway `2360369c` + ingestión funcional). T21 sigue OPEN únicamente por bodies auténticos (owner action 1). `ECHO_DEV_INGEST_FUNCTIONAL_PASS ≠ CERT_E04_01_PASS`.
 
 #### CERT-F04-03 — Real Echo join / T2.13
 
