@@ -86,8 +86,8 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 - **MODE**: SCREEN + SHADOW (2-leg basket, fills sólo de profundidad observada).
 - **Caso de uso**: NEG-CASE-01 (`go test ./cmd/engine/ -run TestF5NegCase01Vertical`).
 - **KNOWN LIMITATIONS**: acepta condicional `CONDITIONAL_UNEXECUTABLE` en SCREEN (read-only); fee `fee_bps` declarada por fixture.
-- **REAL DATA STATUS**: datos de mercado reales requieren capture real (guard SFG-07 protege datasets activos).
-- **NEXT EXPERIMENT**: variar `min_edge_bps` / `max_size_per_leg` / dataset.
+- **REAL DATA STATUS**: datos de mercado reales requieren capture real (guard SFG-07 protege datasets activos). RS v0.3 evento 159954: membership on-chain VERIFIED; payout exhaustiveness **UNKNOWN**. 663 INCONCLUSIVE **no se promueven**.
+- **NEXT EXPERIMENT**: variar `min_edge_bps` / `max_size_per_leg` / dataset; releer `getQuestionCount` al cierre, no ACCEPT con exhaustiveness UNKNOWN.
 
 ## POC-S02 — Sports Reversion / PE-005-R1 (`poc-sports`)
 
@@ -95,7 +95,8 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 - **MODE**: SCREEN + SHADOW (1-leg taker).
 - **Caso de uso**: SPORT-REV-CASE-01 (`-run TestF5SportRevCase01Vertical`): 3 cuts quietos + bid shock → ACCEPT.
 - **KNOWN LIMITATIONS**: kickoff desconocido bloquea TODA señal (por diseño); `taker=true` obligatorio (maker UNCALIBRATED).
-- **NEXT EXPERIMENT**: `widen_min_bps`, `window_ms`, `ref_frames`, serie de spreads del fixture.
+- **REAL DATA STATUS**: captura RS v0.3 MLB 2284198 (6 h) intacta; 0 señales en esa ventana = `NO_SIGNAL_OBSERVED_IN_WINDOW` **local**. No es NO_GO global.
+- **NEXT EXPERIMENT**: `widen_min_bps`, `window_ms`, `ref_frames`, serie de spreads del fixture; **otra** ventana pre-match, mismo harness, distinto juego.
 
 ## POC-S03 — Sports Combinatorial / PE-001 (`poc-sports-combinatorial`)
 
@@ -106,6 +107,7 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 - **RESEARCH SURFACE**: relación/template (`pair.*`, reglas), `min_worst_net`, `q`, `max_residual_loss`, fixture de libros. Fee REAL = `UNVERIFIED` (U-02) ⇒ sólo `SYNTHETIC_FEE_EXPLICIT`.
 - **NEXT EXPERIMENT**: pares con handicaps distintos, `min_worst_net` de sensibilidad, matrices terminales alternativas (vía SPEC).
 - **REALITY CHECK 2026-09-21** (no sustituye el fixture B0): par WNBA event `986912` ML `4358151` / SP `4778073` (ATL −1.5). Spec honesta usa `proof_status=HYPOTHESIS`, `rules_sp_overtime=UNKNOWN`, `rules_sp_tie=true`. Resultado: 0 ACCEPT / `RULES_CONTRADICT`. Bundle `~/go/src/github.com/xKoRx/polymarket-engine-datasets/pe001-reality-check-20260921/`. CLI: `engine experiment shadow` (no subcomando `shadow`); `engine replay` **no** tiene flag `--json`. Congelar el journal de captura **antes** de SHADOW (el shadow escribe RUNTIME). `LIVE_DISABLED`. Decisión `GO_RESEARCH`, no live.
+- **DISCOVERY 2026-09-21:** 41 series basketball / 73 eventos / 7 pares ML+SP / 1 semántico (FIBA 863805, kickoff pasado) / 3 temporales live WNBA / **0 semántico∩temporal** / **0** lock q=20. Familia WNBA 6/6 `RULES_CONTRADICT`. U-02 `U02_PARTIAL`. Sin SHADOW nuevo. Bundle `hardening-20260921/`. Asks CLOB se ordenan **ascendente** (wire descendente).
 
 ## POC-S04 — Weather / PE-030 (`poc-weather`)
 
@@ -115,6 +117,7 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 - **KNOWN LIMITATIONS**: modelo frozen **UNCALIBRATED** (no fabricar calibración); vintage futura rechazada fail-closed; sin proveedor real.
 - **RESEARCH SURFACE**: estación/buckets/ensemble (contrato), `size`, `fee_rate`, `validity_ms`, dataset.
 - **NEXT EXPERIMENT**: contratos con buckets distintos (vía `contract_json`), ensembles/pesos alternativos, dataset con vintages encadenadas.
+- **INVENTARIO REAL 2026-09-21:** NYC KLGA (eventos 1046925/1052139), Tokyo RJTT (1046399). Fee `weather_fees` 0.05/1/to rebate **0.25**. Sin vintages PIT → no calibrar. Adquisición: `hardening-20260921/weather/ACQUISITION.md`.
 
 ## POC-S05 — New Market Maturation / PE-004 O/B (`poc-maturation`)
 
@@ -125,6 +128,7 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 - **KNOWN LIMITATIONS**: cohorte W = `DEFERRED_BLOCKED_BY_SFG06` (residual `new_market → Catalog reducer → UniverseChanged`); censoring por diseño, sin backfill.
 - **RESEARCH SURFACE**: cohort, `windows_s`, `size_grid_shares`, filtros/metrics.
 - **NEXT EXPERIMENT**: ventanas alternativas, grids Q, cohorte B sobre capturas reales futuras.
+- **CATALOG VIVO 2026-09-21:** sync 986912 demuestra `first_known_at` ≠ `createdAt`. **No apareció mercado nuevo** → cohorte O/B real ausente. No sustituir.
 
 ## Superficie de configuración por POC (auditoría 2026-09-20)
 
