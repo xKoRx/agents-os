@@ -79,10 +79,10 @@ Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo
 > - [x] [[Echo Forge — F-01 Canonical generation concurrency]] F-01 Canonical generation concurrency #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-02 Finalist Model V2]] F-02 Finalist Model V2 (C1+C2) #owner/agent #type/dev #area/echo
 > - [x] [[Echo Forge — F-03 SQX long-running]] F-03 SQX long-running #owner/agent #type/dev #area/echo
-> - [/] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 implementation complete; physical/cross-lane certification deferred #owner/agent #type/dev #area/echo
-> - [ ] [[Echo Forge — F-05-I Cohesive release and read surfaces]] F-05-I Cohesive release/read-surface preparation #owner/agent #type/dev #area/echo
+> - [x] [[Echo Forge — F-04 Magic allocation, version seal and handoff]] F-04 physically certified: CERT-F04-01/02/E04-01/F04-03 PASS (2026-09-20/21) #owner/agent #type/dev #area/echo
+> - [x] [[Echo Forge — F-05-I Cohesive release and read surfaces]] F-05-I Cohesive release/read-surface preparation (shipped in 0.2.99–0.2.105; read surface certificada en F05-02) #owner/agent #type/dev #area/echo
 > - [ ] [[Echo Forge — Forge Explorer v0]] Forge Explorer v0 (visor local read-only; SPEC frozen, implementación NORMAL pendiente) #owner/agent #type/dev #area/echo
-> - [ ] F-05-C Release/physical/FULL golden certification campaign #owner/agent #type/admin #area/echo #blocked
+> - [x] F-05-C Release/physical/FULL golden certification campaign — CERT_F05_01/02/03_PASS, FACTORY_V2_PHYSICALLY_CERTIFIED 2026-09-21 #owner/agent #type/admin #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -238,7 +238,7 @@ Cada bloque es el contenedor de planificación. No es SPEC. TOP futuro debe fija
 
 ### Next development task
 
-**(Actualizado 2026-09-21T13:40Z.)** **CERT-F05-01 PASS** (2026-09-21T13:05Z): release cohesiva `0.2.105` @ `codex/f05-release-prep` `745bc8b` (master `0b9742b` + F-04 + F-05-I + fixes C1…C13 + `a2321cc` F-INT-01/02 + `1056b30` F-INT-03 + refresh frozen release matrix `745bc8b`); rollout Stager 4/4 con SHA instalado == manifest EXACT; `vcs.revision=745bc8b` en binarios. Release test gate 6182 obligatorio 53/53 PASS/0 skips; registry-postgres GREEN (4 FAILs del baseline corregidos test-only, `1056b30`); workflows 21 fallos idénticos al baseline por nombre (twin worktree `25a5122`); anti-masking aditivo. Release matrix refrescada por mandato §7: filas F-04 físico + cross-lane DONE con certification_record/cross_lane_receipt; `f05i-read-surface.released` DONE; pipeline conserva DEFERRED CERT-F05-01/02. **CERT-F05-02 EN EJECUCIÓN** (13:22:40Z): campaña FULL `cert-f05-02-20260921T131850Z-fcc90342` sobre `0.2.105` — CampaignRef `0ce72173-b629-4ca4-bf4c-e7e586792e72`, workflows `sqx-forge-campaign-v1-87a7bb80…`/`01a0c422-0935…` + `sqx-main-v1-52fc8a15…`, receta RERUN-6 con diff de exactamente 4 paths (identidades todas nuevas), CFX byte-exactos fd5ffebe/121ec05e/1a993957, preimage SHA `50e51a34…`, dispatch único 6/6 pasos. Siguiente: observación hasta terminalización + result surfaces + CERT-F05-03.
+**(Actualizado 2026-09-21T17:20Z.)** **FACTORY_V2_PHYSICALLY_CERTIFIED — proyecto completado.** CERT-F05-01/02/03 PASS en la misión F05 FINAL COMPLETION (release `0.2.105` @ `745bc8b`; campaña FULL `0ce72173…` COMPLETED/TARGET_REACHED con 3 finalistas; manifest final + debt aceptada en `~/aranea/work/cert-f05-20260921/CERT-F05-03-MANIFEST-PASS-20260921.md`). Única tarea Forge abierta: [[Echo Forge — Forge Explorer v0]] (SPEC frozen, NORMAL pendiente). Owner actions menores registradas en el manifest (mongo/uri flowkit para `run get`; refresh frozen de pipeline rows en próxima delta material).
 
 ## Definition of Done — Factory V2
 
