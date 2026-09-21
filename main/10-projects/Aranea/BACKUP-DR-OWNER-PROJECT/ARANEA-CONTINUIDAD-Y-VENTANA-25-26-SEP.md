@@ -22,6 +22,18 @@ updated: "2026-09-21"
 
 # ARANEA — CONTINUIDAD Y VENTANA 25-26 SEP
 
+## Delta sesión lun 21 noche-4 — STORAGE-ORGANIZATION-FREEZE (mandato "Placement Freeze antes de Backup/DR")
+
+**Mandato owner ONE-SHOT** (organizar recursos ANTES de Backup/DR; NO iniciar respaldos/replicaciones/migraciones). Ejecutado documental sobre las fuentes canónicas ya congeladas noche-2/noche-3 (sin re-investigar, sin re-inventariar los 59). Entregables E1-E8:
+
+- **E1** mapa actual/objetivo: derivable de [[MATRIZ-59-GUESTS-BACKUP]] + [[POOL0-TO-POOL2-REPLICATION-SPEC]] §1 ledger (no se duplica). **E2** [[PLACEMENT-DECISIONS-20260920]] **§F PLACEMENT-FREEZE-V2**: KEEP por workload (PG/Mongo/MinIO datos=críticos vs SO=reconstruible como unidades distintas; Echo+MT4; edge CTs; traefik; etcd; SQX F-04; OPNsense/TrueNAS/CA) · DEFER (W5 reevaluación por VM post-réplica; W4 KEEP hasta causalidad P1-4; W3=D5 función, no migración; 100/151/112/162/170) · **MIGRATE activas: NINGUNA** · pool2 RESERVADO réplica exclusiva.
+- **E3** [[CAPACITY-AND-RESERVATIONS]]: presupuesto pool2 (4,08T free; +2,35T réplica → margen ≥1,71T) · pool0 (free 1,64T; vm-backup 0,43-1,03T + @repl 0,27-1,09T → margen combinado ACOTADO; orden: medir vm-backup real → fijar retención final) · pool1 (banda 85,2-87,9%, cero asignaciones nuevas) · PBS (+300G vía 2º disco pool-kronos 733,87G, opción recomendada W-01) · local-lvm (hades 33,4G / zeus 77,5G / hera 91,7G). Doble-asignación eliminada (errata de la propia nota aplicada en el mismo acto).
+- **E4** plan de ejecución consolidado: [[FIRST-MAINTENANCE-WINDOW-20260920]] §8.2 — DAG organización; **viernes 25 = MIGRATIONS_NOT_READY** (sin operaciones inventadas para el calendario); sábado 26 = prechecks→K2→K1 (PENDIENTE_GO owner)→P0-1, **sin P0-2**; 1ª réplica en ventana EXCLUSIVA G-REP-3; I/O TrueNAS nunca compartido.
+- **E5** runbooks: por operación autorizable ya existen (mandatos 2-6 + MANDATO-P0-v2 + W-01..W-04 + payloads réplica); corrección aplicada en [[MANDATO-MIGRACIONES-SPEC]] (fila W1/W2 estaba en imperativo, contradiciendo su CANCELADA).
+- **E6** [[STORAGE-ORGANIZATION-FREEZE]]: gate **`STORAGE_ORGANIZATION_COMPLETE`** con 9 criterios (incluye condición "sin cambios pendientes que alteren materialmente el volumen de pool0 a replicar" → retención final @repl 7/14d sólo tras medir `pool0/vm-backup` real). Preparación documental en paralelo; ejecución jobs nuevos + réplica esperan el gate + sus gates específicos (una aprobación general NO sustituye gates).
+- **E7** decisiones owner: tabla única `~/aranea/work/continuity-20260923/TABLA-APROBACION-23SEP.md` — urgentes **P1 (W-01) · P4 (D-piloto 6/7 criterio alternativo) · P6 (réplica G-REP-0..5)** · T=018/020/021 · P2 (T-21b+W-02) · P3 sin objeto · P5 pi-hole.
+- **E8**: proyecto actualizado (bitácora + status_detail + tarea T-23a DONE), change log `80-agents/journal/change-logs/2026-09-21-hardening-replicacion-noche3.md`, mandatos anteriores corregidos. **Cero mutaciones de infraestructura; Echo operando.**
+
 ## Delta sesión lun 21 noche-3 — HARDENING FINAL DE STORAGE Y REPLICACIÓN (ONE-SHOT auditor)
 
 **Mandato owner ONE-SHOT "Hardening final de storage y replicación"**: corregir SÓLO los bloqueantes materiales del SPEC freeze; cero cambios productivos. Ejecutado íntegro en modo RO (SSH ariadna@truenas + midclt + código instalado) + parches documentales. Hallazgos y correcciones:

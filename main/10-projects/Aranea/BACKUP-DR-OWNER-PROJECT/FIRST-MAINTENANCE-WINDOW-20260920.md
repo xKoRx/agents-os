@@ -37,6 +37,21 @@ updated: "2026-09-21"
 
 ## Contenido
 
+---
+### 8.2 Plan de ejecución consolidado post-redirección D-NEW (21sep noche — vigente; el P0 del 20sep queda como registro histórico, su P0-2 CANCELADO)
+
+**DAG de organización** (autoridad: [[STORAGE-ORGANIZATION-FREEZE]]): 1. Decisiones placement ([[PLACEMENT-DECISIONS-20260920]] §F) → 2. Reservas y capacidad ([[CAPACITY-AND-RESERVATIONS]]; re-medición en cada preflight) → 3. Preparación de destinos (payloads réplica, diff nfs-vmbackup, W-01 PBS) → 4. Protección previa por operación (fixture G-REP-0 / vzdump verificado) → 5. Operaciones justificadas → 6. Validación de servicios → 7. Certificación ([[MANDATO-CERTIFICACION-SPEC]]) → 8. `STORAGE_ORGANIZATION_COMPLETE` → inicio capacidad/retención finales + jobs Backup/DR.
+
+**Viernes 25sep (cierre operativo Echo + preflight)**: 10 checks W-04 (fail-closed, GO/NO_GO por intervención) + **MIGRATIONS_NOT_READY declarado** (ninguna migración preparada pasa al sábado; no se inventan operaciones para el calendario) + cierre real de Echo (query trade_journal sin filtro temporal = 0 + prevención de nuevas entradas, acción del owner) + re-medición CAPACITY-METRICS + `ceph osd df` (K2) + verify PBS.
+
+**Sábado 26sep (ventana 02:00-07:00 si gates)**: prechecks → K2 (RO) → K1 (ARGUS, AUTO-with-diff, **PENDIENTE_GO owner** — muta Prometheus 160: sin OK, la ventana continúa) → P0-1 (W-01 PBS growth, gates D1+P1-1+019) — **sin P0-2** (cancelado). Sin W1/W2, sin réplica-full ese día (la 1ª transferencia 2,35T va en ventana EXCLUSIVA propia, G-REP-3: madrugada sáb-dom propuesta, Echo cerrado, sin B1-fulls/G1B/migraciones sobre TrueNAS).
+
+**Dependencias duras**: Echo/PG/Mongo/MinIO conservan condiciones propias de disponibilidad y recuperación (dumps G1A ya diarios, G1B certificado) — ninguna depende de esta ventana. Ceph: separar K1/K2 (lecturas) de S2 (compact/mClock, carril Ceph, otra ventana). I/O TrueNAS jamás compartido: réplica-full ∥ B1-fulls ∥ G1B ∥ migraciones = PROHIBIDO simultáneo (regla MANDATO 2/4/5).
+
+**Paralelizables sin riesgo**: carril documental/prep ∥ diagnóstico kafka P1-4 (RO) ∥ operación Echo. Nunca simultáneo: TrueNAS/pool0 (réplica ∥ vm-backup-full ∥ scrub), Ceph (W5 ∥ S2), edge (una intervención a la vez).
+
+---
+
 ### Reglas de la ventana
 
 1. Una sola operación mutante a la vez en componentes que comparten recuperación: nunca simultáneo sobre TrueNAS/pool0 (A6-full ∥ W1), nunca sobre Ceph (W5 ∥ S2), nunca sobre el edge (W2 aislado).
