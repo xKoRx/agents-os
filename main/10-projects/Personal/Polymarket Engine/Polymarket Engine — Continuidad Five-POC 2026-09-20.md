@@ -294,3 +294,33 @@ RESUME_STATUS_20260921_MASTER:
   decision: MASTER_CANONICAL
 ```
 
+## 14. PE-005-R1 semana Sports — 2026-09-21
+
+Mandato owner one-shot. Change log [[2026-09-21-pe005-r1-sports-week]]. Agent run [[2026-09-21-cursor-grok-4.7-pe005-r1-sports-week]]. Sesión Agents-OS no cerrada.
+
+```text
+RESUME_STATUS_20260921_SPORTS_WEEK:
+  agents_os_bootstrap: PASS (sesión previa; esta nota es el delta)
+  published: origin/master = origin/main = bfa6eafa57ae17aa92d7e112d41b87cae5b67990
+  code_sha: c3b1aa1e01d2444feaf1d0ff7c32fde4b75ceb0d
+  certificate: testdata/research-master/certificate.json M4_CERTIFIED_NON_LIVE 27/0/5-deferred-live pineado a c3b1aa1
+  binary: vcs.revision bfa6eaf vcs.modified=false
+  fee_identities: cap declarado y fee de trade son distintas; trade dentro del cap → INTERVAL [0, cap]; fuera del cap o trades que no convergen → SUSPECT; trade convergente sin cap → POINT de ese trade
+  real_fee_ready: false
+  live: LIVE_DISABLED
+  u02: V2_CASH_CONFIRMED; d5ce263 no integrado
+  canary: PASS mercado 4584879 ambos libros OBSERVED_USABLE; trade fee raw "0" @ seq 29 conservada; suspect false; cuarentena 0; replay digest 844a9392eaea0eccf3555d3eb0eda0b329c5d10c3cfecde86e729b47f6ee8e86 MATCH
+  campaign_status: ARMED
+  started_at: null
+  ends_at: null
+  next_t90: 2026-09-21T21:05:00Z mercado 4584879 kickoff 2026-09-21T22:35:00Z
+  waiting_moneylines: 91
+  params_frozen: window_ms=300000 ref_frames=10 widen_min_bps=50 entry_budget=25 min_net_edge_bps=50 taker=true cuts=30
+  economics: NOT_CERTIFIED
+  service: user sports-week-capture.service active; timers health 5min y analyze 60min enabled
+  dataset: sports-week-pe005
+  notify_channel: none (alertas durables en el dataset)
+  disk_free_ratio_at_arm: 0.189 (pausa de sesiones nuevas bajo 0.15; halt bajo 0.05; no se borra evidencia)
+  decision: ARMED_WAITING_NEXT_WINDOW
+```
+

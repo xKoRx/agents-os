@@ -91,8 +91,8 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-master && go build -o /tmp/engine
 - **MODE**: SCREEN + SHADOW (1-leg taker).
 - **Caso de uso**: SPORT-REV-CASE-01 (`-run TestF5SportRevCase01Vertical`): 3 cuts quietos + bid shock → ACCEPT.
 - **KNOWN LIMITATIONS**: kickoff desconocido bloquea TODA señal (por diseño); `taker=true` obligatorio (maker UNCALIBRATED).
-- **REAL DATA STATUS**: RS v0.3 MLB 2284198 (6 h) intacta = `NO_SIGNAL_OBSERVED_IN_WINDOW` **local**. E2 2026-09-21 (`pe005-r1-e2-20260921/`): 4 moneylines distintas, 1800 s, HEAD `85e27ff` = **`NO_SIGNALS_IN_SAMPLE`**. 3/4 `SUSPECT` (`fee_source_discrepancy`); 4613496 USABLE 1-tick; variante `widen_min_bps=25` también 0. No es NO_GO global. Economía no certificada.
-- **NEXT EXPERIMENT**: cola T-90min→kickoff de los MLB de esta noche **si** permanecen `OBSERVED_USABLE`, o runbook 2284198 T-8.5h. No repetir un tercer umbral sobre el dataset E2.
+- **REAL DATA STATUS**: RS v0.3 MLB 2284198 (6 h) intacta = `NO_SIGNAL_OBSERVED_IN_WINDOW` **local**. E2 2026-09-21 (`pe005-r1-e2-20260921/`): 4 moneylines distintas, 1800 s, HEAD `85e27ff` = **`NO_SIGNALS_IN_SAMPLE`**. 3/4 `SUSPECT` (`fee_source_discrepancy`); 4613496 USABLE 1-tick; variante `widen_min_bps=25` también 0. No es NO_GO global. Economía no certificada. Desde `c3b1aa1` un trade dentro del cap publicado ya no marca el libro SUSPECT por esa confusión.
+- **NEXT EXPERIMENT**: campaña de 7 días armada, no iniciada. Universo MLB `series_id=3` moneyline, ventana T−90, parámetros congelados `window_ms=300000`, `ref_frames=10`, `widen_min_bps=50`, `entry_budget=25`, `min_net_edge_bps=50`, `taker=true`. Fee de screen = intervalo emitido, economía `NOT_CERTIFIED`. No bajar umbrales. Próxima ventana 2026-09-21T21:05:00Z.
 
 ## POC-S03 — Sports Combinatorial / PE-001 (`poc-sports-combinatorial`)
 
@@ -191,3 +191,7 @@ Catalog reales `PENDING`; `LIVE_DISABLED`. Revisión humana del rango
 ## Estado del programa (2026-09-21, master canónico)
 
 `MASTER_CANONICAL` — default `master` @ `a770da6`; código certificado `85e27ff`; M4 recertificado no-live 27/0/0/5 (`testdata/research-master/certificate.json`). `main` es alias fast-forward. U-02 `d5ce263` no integrado. `REAL_FEE_READY=NO`. `HYPOTHESIS_VALIDATED=NO`. `LIVE_DISABLED`. Sports E2 `NO_SIGNALS_IN_SAMPLE` (research-only). Change log [[2026-09-21-polymarket-master-consolidation]].
+
+## Estado del programa (2026-09-21, semana Sports armada)
+
+`ARMED_WAITING_NEXT_WINDOW`. Publicado `bfa6eaf` (código `c3b1aa1`). M4 no-live 27/0/5 diferidos live, pin `c3b1aa1`. Canary 4584879 PASS. Servicio user activo; el reloj de 7 días no partió. `REAL_FEE_READY=NO`. `LIVE_DISABLED`. Change log [[2026-09-21-pe005-r1-sports-week]].

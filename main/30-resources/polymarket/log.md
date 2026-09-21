@@ -12,6 +12,13 @@ tags:
 ---
 # Polymarket resources — Log
 
+## [2026-09-21] ops | Semana Sports armada — fee identities, canary PASS, reloj no iniciado
+
+- `origin/master` = `origin/main` = `bfa6eaf`. Código `c3b1aa1`. Recibo M4 `M4_CERTIFIED_NON_LIVE` 27/0/5 diferidos live, pin `c3b1aa1`.
+- Trade dentro del cap publicado → INTERVAL, no `fee_source_discrepancy`. `REAL_FEE_READY=false`. `LIVE_DISABLED`. `d5ce263` no integrado.
+- Canary 4584879: libros `OBSERVED_USABLE`, fee de trade `"0"` conservada, replay MATCH. Campaña `ARMED`, `started_at` null. Próxima T−90 2026-09-21T21:05:00Z.
+- Change log [[2026-09-21-pe005-r1-sports-week]]. Continuidad §14.
+
 ## [2026-09-21] publish | Master canónico — Five-POC absorbido, M4 recertificado @ 85e27ff
 
 - Default GitHub `master` = `origin/main` = `a770da6`. Código `56e8fac` / integración `85e27ff` fast-forward desde `9ae5dde`. Recibo `testdata/research-master/certificate.json`: `M4_CERTIFIED_NON_LIVE` 27/0/0/5 pineado a `85e27ff` (no se heredó v07).
