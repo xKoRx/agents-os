@@ -1,0 +1,56 @@
+---
+type: agent_run
+schema_version: 1
+scope: session
+created: "2026-09-20"
+updated: "2026-09-20"
+area: "[[Personal]]"
+project: "[[Loom]]"
+application:
+entities:
+  - "[[Loom]]"
+related:
+  - "[[Loom — Product v0.6]]"
+aliases: []
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash
+model_source: host
+task_type: coding
+task_complexity: high
+outcome: success
+verification: passed
+evaluator: agent
+user_rework: unknown
+source_session:
+load_policy: manual
+indexable: false
+index_priority: never
+tags:
+  - kind/agent-run
+  - scope/session
+---
+
+# Loom F3 Hardening — contención estructural por dirfd + journal de transacciones
+
+## Trabajo
+
+- **Objetivo:** mandato del owner — eliminar el residual "TOCTOU reducido a microsegundos" del writer POC F3 (no aceptable como criterio), auditar concurrencia/durabilidad por clases de escritor, fault injection con muerte real del proceso en todos los puntos de la transacción, validación adversarial independiente sobre el SHA final, y preparar el contrato de integración writer→watcher/index→API→UI con gates; sin integrar producción, sin tocar el vault real, sin flags/endpoints en el binario.
+- **Alcance atribuible a esta combinación superficie×modelo:** rama aislada `feature/f3-writer-poc` (worktree loom-f3poc): commit `78a8a23` (contención estructural — `poc/f3writer/fsanchor.go` con anclaje openat2 `RESOLVE_BENEATH|NO_SYMLINKS|NO_MAGICLINKS|NO_XDEV` al objeto `(dev,ino)` autorizado, operaciones relativas a dirfd con `O_NOFOLLOW`+regular-only, commit `renameat`/`renameat2(RENAME_NOREPLACE)` entre planesFd y planesFd, política de visibilidad pre-commit, fail-closed `ErrFsUnsupported`; `journal.go` con transacciones fsync-adas prepare/commit, recuperación clasificada not_applied/applied_uncommitted/superseded/environment_lost, replay idempotente por TxnID; reordenación backup→edit con post-hash declarado; tests X01–X05 contención + R01–R07 crash con `os.Exit(137)`/SIGKILL genuino verificados por proceso nuevo; evidencia RED→GREEN archivada — RED determinista contra el diseño por-string: impostor recibe la escritura, y señuelo recibe un plan bajo ventana modelada) + commit `cfa0ebc` (fixes r2 de la auditoría adversarial independiente: H1 StateDir resuelto real + re-verificación por op, H2 re-lectura final post-confirmación con degradación honesta, H3 GC del fence, H4 errores de journal auditados; regresiones R08/R09). Documentación: `specs/FEAT-F3-HARDENING/RESULTS.md` (modelo de amenazas, garantías por clase de escritor, límites cuantificados) y `specs/FEAT-F3-INTEGRATION/INTEGRATION-CONTRACT.md` (idempotencia por request id, 409 busy/conflict, pending de primera clase, reconciliación por generación, gates G0–G5).
+- **Artefactos afectados:** loom-f3poc — `poc/f3writer/{fsanchor,journal,writer,edit,plan,audit,failinject}.go` + `race_containment_test.go`, `crash_recovery_test.go`, `audit_r2_test.go` + specs; vault — nota del proyecto [[Loom]] (estado/bitácora), este agent run. Binario productivo intacto: 0 referencias desde `cmd/loom`, sin flags ni endpoints.
+
+## Evidencia
+
+- **Validaciones ejecutadas:** `go test ./poc/f3writer/ -count=1` 58/58 PASS (43 de regresión intactas — diff de tests previos vacío, expectativas sin rebaja); `go test -race` PASS; `go test ./...` repo 7/7 ok; `go vet` + gofumpt limpios; aislamiento `go list -deps ./cmd/loom | grep -c f3writer` = 0. RED demostrado contra el diseño previo y archivado en `specs/FEAT-F3-HARDENING/evidence/` (impostor con mtime falsificado recibe la escritura; martilleo symlink-swap: señuelo recibe plan). Validación independiente adversarial (revisor distinto del implementador, 116 tool calls, laboratorio /tmp multi-proceso): G1 contención RESISTE martilleo externo real (13.500 ciclos/20s, 0 bytes fuera del objeto); G3 75 muertes reales sin pérdida ni prepared sin clasificar; G4 sin doble aplicación; G6 ventana residual cuantificada (mediana 23,4µs, ~1,8% bajo martilleo máximo — piso POSIX documentado, no oculto).
+- **Resultado observable:** **SECURITY_READY confirmado por el revisor adversarial (ronda 2b sobre `cfa0ebc`): G1–G8 RESISTE, 4 hallazgos cerrados con repros del auditor fallando cerrado, 2 residuales LOW documentados** (metadata de estado en swap post-New del StateDir —jamás bytes de plan—; ventana de confirmación restante mediana 397µs = semántica declarada). Sustituir `Planes/` por symlink/impostor durante la operación no puede desviar la escritura (sin ventana, kernel-enforced); fail closed si el entorno no da la garantía; original siempre recuperable tras muerte en cualquier punto; jamás éxito falso ni doble aplicación de retries ambiguos.
+- **Limitaciones de la evidencia:** watcher simulado con contador interno (integración real es G1 del plan de gates); fsync ordenado por contrato POSIX sin prueba de hardware (power-loss); flock cooperativo (no-cooperativos cubiertos por detección+journal, ventana cuantificada); Linux-only; decisión de producto del owner pendiente (nada habilitado).
+
+## Evaluación
+
+- **Score (self):** outcome 5/5, verificación 5/5 (RED→GREEN archivado + revisor adversarial independiente), complejidad alta.
+- **Rework:** pendiente de evidencia del owner.
+
+## Resultado
+
+- **Outcome:** hardening estructural completo sobre la POC aislada; veredicto por garantías en `specs/FEAT-F3-HARDENING/RESULTS.md` §6-§7.
+- **Rework posterior:** ninguno por ahora; fixes r2 derivados de la auditoría aplicados en el mismo ciclo.
+- **Aprendizaje para comparar herramientas:** la contención por dirfd elimina la clase de bug que las re-validaciones por path sólo acotan; los revisores adversariales con laboratorio propio multi-proceso encontraron lo que los hooks in-proceso no ejercitan (StateDir, ventana de confirmación).

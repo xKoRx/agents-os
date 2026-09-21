@@ -1,0 +1,462 @@
+---
+type: project
+schema_version: 1
+owner: agent
+root: false
+status: active
+priority: P1
+area: "[[Echo]]"
+parent: "[[Echo — Producto Integrado]]"
+sprint:
+start: 2026-09-07
+due:
+progress: 0
+repo: xKoRx/echo
+jira:
+prs:
+aliases:
+  - Echo Live Platform V1
+  - Echo S0 E0 E1 A0
+tags:
+  - kind/project
+  - area/echo
+  - agent/owner
+created: 2026-09-07
+updated: 2026-09-20
+cssclasses:
+  - wide
+---
+
+# Echo — Live Platform V1
+
+%% Naming: Echo — Live Platform V1 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
+
+> [!info]+ Echo — Live Platform V1
+> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Echo — Producto Integrado]] · **Repo:** `xKoRx/echo`
+> Dueño de Echo SDK (S0) y de la cadena live. No recalcula membership Forge. No asigna magic.
+
+> [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
+> Este proyecto es `owner: agent`. El padre humano tiene la tarea puente `#type/supervision`.
+
+## 🎯 Objetivo
+
+Consumir handoffs Forge, persistir identidad/versión, enrolar Reference, capturar hechos atribuibles, copiar a Execution con seguridad, medir Execution Fidelity y Strategy Quality, decidir eligibility cuando las reglas lo pidan, construir/aplicar PortfolioVersion determinista, reservar/controlar riesgo, observar/reconciliar estado físico, soportar replacement/rebalance/retirement, y exponer superficies READ/OBSERVE suficientes para el owner.
+
+## 📊 Estado actual
+
+- **E-09 PLANNING FROZEN v1.0.0 (2026-09-20):** [[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]] SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT @ `e892b3d7` en branch `feature/e09-execution-copy-reconciliation-fidelity` (base `c2e88a0d` = HEAD E-08 C2; master `5dd998f1` intacto). Migración 067 reservada (exclusiva E-09; disponibilidad verificada en baseline). Frozen: unidad de reconciliación = destinatario E-08; denominador = expected set retenido (invariante 17; INNER JOIN prohibido D-21); `command_ref` es claim de atribución y el DEAL set E-07 1:N es la prueba del fill; `MISSING_EVIDENCED` sólo con evidencia positiva (deadline de ACK jamás produce MISSING); UNKNOWN ≠ ZERO; duplicados/extras/not-requested visibles y separados; métricas con read model NO autoridad; E-09 READ-ONLY sobre 001–066 (exporta `resolution_evidence` para ops E-08, jamás aplica transiciones); exposición `CONSUMED` sin liberación por timeout. **Dependencias exactas E-08 C3 registradas (E08-C3-A gate antes de recover en `Router.Route`; E08-C3-B `time.Now()` en re-drive sin `DecisionAt` restaurado): no corregidas desde E-09, bloquean sólo clase B.** Separación clase A (contratos/stores/proyecciones con fixtures, cero órdenes) vs clase B (ingesta viva + E2E + certificación semántica, condicionada). Next = NORMAL clase A.
+- **E-08 CORRECCIÓN C2 COMPLETA (2026-09-20):** [[Echo — E-08 Routing EconomicCommand and Risk Reservation]] NORMAL T00–T14 clase A ejecutado @ `b0012909` + correcciones Manager C1 @ `53d42615` y C2 (C2-1…C2-4: clase de observación write-once, identidad de estrategia contra binding vivo, coverage por intervalos reales, snapshot ROUTING_INPUT con freeze completo) @ `c2e88a0d` (push FF; HEAD == origin; master `5dd998f1` intacto). Gate RAW-BEFORE-ROUTE elevado a boundary estructural RG-1…RG-6; CommandID determinístico por `command_unique_key`+`content_digest` con UUIDv7 mint-once (consume defer E-02 §1.0.1); snapshots inmutables content-addressed; reservas integradas al command con headroom serializado por cuenta y `UNKNOWN_HELD` sin auto-release; outbox monotónico en la fila del comando; recovery sin resend ciego; reconciliación como superficie E-09. Estado: `SOURCE/CONTRACT/PG PASS` + `COVERAGE_GATE_PENDING` + `PHYSICAL_PENDING` + `ECONOMIC_ACTIVATION_PENDING` + `FINAL_CLOSED=NO`. Separación frozen: clase A vs clase C (prerrequisitos E-07 PHYSICAL, E-06 G1/T21, MQL_COMPILE, corrección `EchoPersistence.mqh`, E-02 AC-18). Next = **Manager review del delta C2**.
+- **E-07 DECISIÓN MANAGER C2 CONSUMIDA (2026-09-20):** [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] C4+C5 implementados @ `28213bbc` (push FF `a7a61875..28213bbc`; commits `33730d4e`+`28213bbc`): C4 protocolo pipe Reference **V1.1 aditivo** con identidad física auténtica del productor (en el repo echo: `v3/clients/mt{5,4}/reference_v3.mq*`; Bridge publica el hecho E-07 sólo con identidad completa observada, sin fallback h.broker, legacy byte-idéntico), C5 receta `fact_ref` frozen del Manager, gate RAW-BEFORE-ROUTE documentado (obligatorio para E-08). SOURCE/CONTRACT/PG PASS re-verificados (SPEC ERRATUM-A §17; VERIFICATION §9). **PHYSICAL_PENDING** (falta emisión física real del EA enriquecido sobre binding OBSERVING real) · **FINAL_CLOSED=NO**. Previo: NORMAL completo @ `7c836619` + corrección C1 @ `a7a61875`.
+- **E-07 PLANNING FROZEN v1.0.0 (2026-09-19):** [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT @ `59338a64` en branch `feature/e07-raw-facts-deal-lifecycle` (base `b66dc5ff` = HEAD E-06; master `5dd998f1` intacto). Migración 065 reservada (exclusiva E-07). Raw-before-route en echo-core (Live Authority §6 opción I); reuse aditivo de `echo.raw_trade_events`; atribución pineada al OPEN vía SELECT 064; matriz dedupe D1/C1–C4/D2/Q1; coverage UNKNOWN ≠ cero; replay sin dispatch. Gates CONTRACT/PG ejecutables con fixtures + PG descartable **sin Forge ni terminal**; `PHYSICAL_PENDING` declarado; `FINAL_CLOSED=NO`. E-01…E-06 no reabiertos. Next = NORMAL (`NORMAL-PROMPT.md`).
+- **E-06 PLANNING READY FOR IMPLEMENTATION REVIEW v1.2.2 (2026-09-16):** [[Echo — E-06 Reference Enrollment and Binding]] SPEC v1.2.2. Erratum de liveness del refresh §7.2a.4: MQL5 no garantiza ticks cada 5 s ⇒ `OnTimer` compatible preferido (sin tocar `EventSetTimer`) / `OnTick` oportunista (5 s = intervalo mínimo entre publicaciones) / sin sitio ⇒ sin promesa de liveness continua; expiración 15 s fail-closed; recovery §6; AC-37a…d. CASE B intacto. Transporte §7.2a encoding GV v1 lossless; collector reconstruye y no fabrica magic; inyección Forge estructural no implementada. Docs-only; 0 product source Echo; 0 bytes Forge mutados. NORMAL no lanzado. E-01…E-05 no reabiertos.
+- **S0 ERRATUM INTEGRATED — MASTER `7e628bf5` (2026-09-13):** erratum post-certificación E-01/S0 (V3-006, metric formula identity) integrado fast-forward a `origin/master` (`a99f9a63..7e628bf5`; commits `8a979fb5`/`da469d50`/`7e628bf5`), con Independent Verifier PASS y gates post-integración PASS (tests, corpus G01–G36, race, coverage contracts `95.1%`, vet, gofmt). Certificación histórica S0 `91671f6f` preservada; E-01 sigue closed. E-05 V3-006 authority blocker resuelto en master; E-05 espera reconciliation + Full Verifier #4 (`3bc5dca9`). Interlock 063/062 intacto.
+- **E-05 INDEPENDENT VERIFICATION FAIL (2026-09-13):** `baa2e305` infiere moneda Lab/USD ambigua en `pnl.total` cuando el parámetro de moneda está vacío; ver `Echo — E-05 Analytics Convergence A0` y su `VERIFICATION.md`. No merge/deploy; 063 sigue esperando 062 de E-02 en `master`.
+- **PREPARADO + E-01 CLOSED + E-03 CONTRACT_PASS / FINAL CLOSED + E-04 INTEGRATED (SPEC 1.0.2) + E-05 IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW.** Roadmap congelado; E2 histórico descompuesto. Progress 0 de plataforma V1. E-04 FINAL CLOSED espera T21 POST-INTEGRATION. E-05 planning v1.0.1 @ `dd1f2da9` en `feature/e05-analytics-convergence-a0` (reserva 063; 062 es E-02); no NORMAL; master intacto `a99f9a63`.
+- **E-02 CLOSED — SOFTWARE / INTEGRATED (2026-09-16):** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] integrada a `master` por fast-forward exacto `7e628bf5`→`92d0ec2e` (push normal, sin merge commit ni force; producto `f6e6af1b` y evidencia `bbceecdf`/`92d0ec2e` ∈ historial de master). AC-01…AC-17 PASS; **AC-18 PENDING** (gate ops owner, bloquea capital). **PROD NOT DEPLOYED / NOT ACTIVATED** (auth hook y rollout 062 quedan como activación operacional). Ramas E-04/E-05 intactas. Siguiente gate: **E-05 RECONCILIATION** contra master actualizado (062 antes de 063); E-06 desbloqueada por dependencia, no iniciada.
+- **Contrato:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] B + FR-1…FR-5 en E-01 (`CONTRACT_PASS` `91671f6f`). Live authority [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]] ratificado por Fable durability; O1/O3 default técnico; O2 catálogo CC (F-04 Magic Number V1 ya owner-gated).
+- **Base observada:** `origin/master` `fac4805185eb586bb73c3df0c0ccc20d1377099c` (E-03 CONTRACT_PASS / FINAL CLOSED; FF desde `c408a12fe36643129a2ae3c3dfa69727b593ba76`, 2026-09-12). E-01 certified S0 permanece `91671f6f`.
+- **Ownership SDK:** S0 es de **este** subproyecto. Forge consume el pin. No hay proyecto Integration.
+- **E-03:** CONTRACT_PASS / FINAL CLOSED en [[Echo — E-03 Identity and BWC Foundation E0]] @ `fac48051` (integrado FF a `origin/master` 2026-09-12; evidencia en esa nota y en `specs/FEAT-CROSS-IDENTITY-BWC-E0/VERIFICATION.md`).
+- **E-04:** SPEC v1.0.2 en [[Echo — E-04 Forge Ingestion E1]]. **INTEGRATED=YES** por fast-forward desde `2f8db345` tras implementation/verifier/E-03/base gates PASS. READY_FOR_INTEGRATION consumido. T21/AC-37 PENDING como gate POST-INTEGRATION; E-04 FINAL CLOSED=NO. Golden no inventado; F-04 no tocado.
+- **Continuidad frente a F-04:** la certificación física Forge no bloquea el desarrollo Echo que no la requiere. E-04 T01–T20 queda integrado y no se reabre; T21/AC-37 sigue `HARD BLOCKED` hasta golden Forge auténtico + join real. E-06…E-13 pueden avanzar por su DAG con fixtures/shadow cuando su propia SPEC lo permita, pero sus gates físicos/product-capability permanecen separados.
+- **Taxonomía compartida:** `PLANNED → IMPLEMENTED → SOURCE VERIFIED → RELEASED → DEPLOYED → PHYSICALLY CERTIFIED → CROSS-LANE CERTIFIED → CLOSED`; `IMPLEMENTED` no equivale a `CERTIFIED`. La campaña se mantiene en [[Echo + Echo Forge — Deferred Certification Backlog]].
+
+## 🧱 Entrega de desarrollo
+
+| Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
+|---|---|---|---|---|---|
+| xKoRx/echo | `master` integrado + feature histórica `feature/e04-forge-ingestion-e1` + feature `feature/e02-control-safety-journal-recovery` (integrada FF) + feature `feature/e05-analytics-convergence-a0` + feature `feature/e06-reference-enrollment-binding` + feature `feature/e07-raw-facts-deal-lifecycle` + feature `feature/e08-routing-economic-command-risk-reservation` + feature `feature/e09-execution-copy-reconciliation-fidelity` | E-01 certified: `91671f6f46ffa889a79aed0979cb3b4e5821ed33` · E-03 CONTRACT_PASS: `fac4805185eb586bb73c3df0c0ccc20d1377099c` · E-04 boundary integrado desde `2f8db345` · E-02 CLOSED: master `92d0ec2e` (FF desde `7e628bf5`; producto `f6e6af1b`) · E-05 CLOSED SOFTWARE/INTEGRATED master `5dd998f1` · E-06 planning desde `5dd998f1`, HEAD `b66dc5ff` · E-07 planning desde `b66dc5ff` HEAD `28213bbc` (NORMAL `7c836619` + C1 `a7a61875` + C2 `28213bbc`) · E-08 planning desde `3765f2ba` HEAD `fe5c9de0` (NORMAL `b0012909` + C1 `53d42615` + C2 `c2e88a0d`) · E-09 planning desde `c2e88a0d` HEAD `e892b3d7` | Por Agent Task | E-01: `specs/FEAT-SDK-CANONICAL-CONTRACT/SPEC.md` · E-03: `specs/FEAT-CROSS-IDENTITY-BWC-E0/SPEC.md` v1.1.1 · E-04: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md` v1.0.2 · E-02: `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/SPEC.md` v1.0.2 · E-05: `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md` v1.0.1 · E-06: `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/SPEC.md` v1.2.4 · E-07: `specs/FEAT-RAW-FACTS-DEAL-COVERAGE-LIFECYCLE-E7/SPEC.md` v1.0.0 · E-08: `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/SPEC.md` v1.0.0 · E-09: `specs/FEAT-EXECUTION-COPY-RECONCILIATION-FIDELITY-E9/SPEC.md` v1.0.0 | E-01 CLOSED · E-03 CONTRACT_PASS / FINAL CLOSED · E-04 INTEGRATED · T21 POST-INTEGRATION PENDING · E-02 CLOSED — SOFTWARE / INTEGRATED @ `92d0ec2e` · E-05 CLOSED — SOFTWARE / INTEGRATED @ `5dd998f1` · E-06 G0 PASS / G1 PROMOTION_SEAL_MISSING (desacoplada de Forge; T21 blocked) · E-07 IMPLEMENTATION COMPLETE + C2/C3 consumidos · CONTRACT/PG PASS · PHYSICAL_PENDING @ `3765f2ba` · E-08 CORRECCIÓN C2 COMPLETA @ `c2e88a0d` (SOURCE/CONTRACT/PG PASS + COVERAGE_GATE_PENDING + PHYSICAL_PENDING + ECONOMIC_ACTIVATION_PENDING; Next: Manager review delta C2) · E-09 PLANNING FROZEN @ `e892b3d7` (NORMAL clase A PENDING) |
+
+## 🧩 Subproyectos
+
+```base
+filters:
+  and:
+    - 'type == "project"'
+    - 'file.hasLink(this.file)'
+views:
+  - type: cards
+    name: Subproyectos
+    order:
+      - file.name
+      - note.status
+      - note.priority
+```
+
+Hijos de implementación (no Integration, no tercer producto): [[Echo — E-01 Canonical SDK Foundation S0]], [[Echo — E-03 Identity and BWC Foundation E0]], [[Echo — E-04 Forge Ingestion E1]], [[Echo — E-02 Control Safety, Auth and Journal Recovery]], [[Echo — E-05 Analytics Convergence A0]], [[Echo — E-06 Reference Enrollment and Binding]], [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]], [[Echo — E-08 Routing EconomicCommand and Risk Reservation]], [[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]]. S0 permanece ownership de este track.
+
+## ✅ Tareas
+
+> [!example]- Fuente de tareas — editar / mover de estado aquí
+> - [r] [[Echo — E-01 Canonical SDK Foundation S0]] E-01 Canonical SDK foundation S0 #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-02 Control Safety, Auth and Journal Recovery]] E-02 Control safety auth and journal recovery #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-03 Identity and BWC Foundation E0]] E-03 Identity and BWC foundation E0 #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-04 Forge Ingestion E1]] E-04 Forge ingestion E1 #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-05 Analytics Convergence A0]] E-05 Analytics convergence A0 #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-06 Reference Enrollment and Binding]] E-06 Reference enrollment and binding #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] E-07 Raw facts DEAL coverage and trade lifecycle #owner/agent #type/dev #area/echo
+> - [ ] [[Echo — E-08 Routing EconomicCommand and Risk Reservation]] E-08 Routing EconomicCommand and risk reservation #owner/agent #type/dev #area/echo
+> - [r] [[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]] E-09 Execution copy reconciliation and Execution Fidelity #owner/agent #type/dev #area/echo
+> - [ ] E-10 Strategy Quality and eligibility #owner/agent #type/dev #area/echo
+> - [ ] E-11 PortfolioVersion selection allocation shadow #owner/agent #type/dev #area/echo
+> - [ ] E-12 Apply rebalance replacement retirement #owner/agent #type/dev #area/echo
+> - [ ] E-13 Front observe ops and V1 completion #owner/agent #type/dev #area/echo
+
+```dataviewjs
+const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
+function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
+function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
+function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
+function board(tasks){const cols=[[" ","🟦 To Do"],["/","🟡 WIP"],["r","🔵 Review"]];let any=false;for(const[st,label]of cols){const c=tasks.filter(t=>t.status===st);if(c.length){any=true;dv.el('h4',label);render(c);}}const done=tasks.filter(t=>t.status==="x"||t.status==="X");if(done.length){any=true;dv.el('h4',"✅ Done");render(done);}if(!any)dv.paragraph("_Sin tareas._");}
+const owner=((dv.current().owner)==="agent")?"agent":"me";
+const all=dv.current().file.tasks.array();
+const primary=all.filter(t=>has(t,`owner/${owner}`));
+const loose=all.filter(t=>!has(t,"owner/me")&&!has(t,"owner/agent"));
+dv.header(3, owner==="agent"?"🤖 Tareas del agente":"🧍 Mis tareas");
+board(primary);
+if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
+```
+
+## 🗺️ Roadmap — Agent Tasks
+
+E2 histórico era mega-fase; aquí está partido en verticales ya frozen. No rediseñar semántica. Size relativo a este track.
+
+### E-01 Canonical SDK foundation S0
+
+- **ID / status / size:** E-01 · To Do · MEDIUM
+- **Objective:** Materializar el contrato frozen en `v3/sdk/contracts` puro: types, wire, validation, hash recipes, MetricSelector, Scope sin valuation, record_digest, golden corpus, FR-1…FR-5, compatibility.
+- **Capability unlocked:** pin de corpus que Forge y Echo pueden consumir en paralelo.
+- **Product value:** lenguaje compartido estable; desbloquea F-04 y E-03/E-05.
+- **Why:** sin S0 no hay handoff ni analytics canónica nueva.
+- **Frozen input:** [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]; [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]] FR-1…FR-5. No reabrir freeze.
+- **In scope:** nested módulo stdlib-only; codec/schema; G01–36 corpus; `C()` vs `H()` vs HashIdentity legacy nombrados distintos; fixture write-once conflict.
+- **Out of scope:** infra, DB, Gateway, producers reales, migrar Lab big-bang, autoridad de dominio.
+- **Dependencies:** none. **Parallel:** F-01, F-02, F-03, E-02.
+- **Hypotheses:** FR-1…FR-5 caben en S0 sin TOP nuevo.
+- **Risks:** mezclar hash recipes; valuation colarse en Scope.
+- **Output authority:** módulo + golden bytes/digests + pin revisable.
+- **Certification:** CONTRACT PASS; tests puros sin infra; GOWORK=off; old/new compat.
+- **Done when:** pin publicable; consumidores fake compilando; Forge no cambia significado de fixtures unilateralmente.
+- **Unlocks:** F-04, E-03, E-05, E-04.
+- **Accepted debt:** adapters vendor/legacy.
+- **Planning:** TOP (SPEC). **Implementation:** NORMAL. **GOD:** NONE.
+
+### E-02 Control safety auth and journal recovery
+
+- **ID / status / size:** E-02 · CLOSED — SOFTWARE / INTEGRATED (master `92d0ec2e`, FF desde `7e628bf5`; producto `f6e6af1b`; AC-18 ops PENDING) · MEDIUM
+- **Objective:** Cerrar exposición de control (admin secret fuera del cliente; auth proxy+roles) y journal ACK/recovery (hechos no se pierden ni se doble-efectúan). H1 del Reality Check; D-04/D-01.
+- **Capability unlocked:** el owner puede confiar que una falla se ve y se recupera; control no queda abierto en red.
+- **Product value:** TIME_TO_USABLE sin capturar meses sobre un journal que traga errores.
+- **Why:** P0 actual; no esperar portfolio.
+- **Frozen input:** Reality Check §3 D-01/D-04; master security §14. No nuevo control-plane genérico.
+- **In scope:** retirar admin del bundle; auth de mutaciones; persistencia/ack journal; cuarentena de conflictos; replay de facts ≠ replay de órdenes.
+- **Out of scope:** rewrite UI; tenancy; DR multi-región; eligibility; CommandID determinístico / EconomicCommand (E-08).
+- **Dependencies:** none. **Parallel:** E-01 y Forge interno. Debe anteceder captura canónica E-06.
+- **Hypotheses:** Gateway endurecido basta vs servicio nuevo.
+- **Risks:** rotación incompleta de secret; ack que dispara órdenes.
+- **Output authority:** control autenticado + journal recuperable.
+- **Certification:** SOURCE + PRODUCT (GET bundle sin secreto; outage DB/retry/CLOSE-before-OPEN sin pérdida/doble efecto). PHYSICAL de red interna.
+- **Done when:** D-04/D-01 del scope habilitado PASS.
+- **Unlocks:** E-06 captura confiable; E-13 ops.
+- **Accepted debt:** journal mínimo no es ledger institucional.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+- **Planning vivo:** SPEC/PLAN/TASKS/VERIFICATION v1.0.2 en `specs/FEAT-CONTROL-SAFETY-JOURNAL-RECOVERY-E2/` producto `f6e6af1b` evidencia `92d0ec2e` ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): auth = actores READ/CONFIG/CONTROL/webhook con Bearer presentado y hook Hasura por JSON de session variables; unicidad de tokens fail-closed; journal = transientes al retry del ingress journal + cuarentena 062 + `v3/tools/journalctl` PG→PG; CommandID UUIDv5 diferido a E-08; **CLOSED — SOFTWARE / INTEGRATED** (master `92d0ec2e` 2026-09-16; AC-18 ops owner pendiente).
+
+### E-03 Identity and BWC foundation E0
+
+- **ID / status / size:** E-03 · To Do · MEDIUM
+- **Objective:** Persistence/protocol groundwork: StrategyVersion, PromotionRecord, wide IDs, magic int64, legacy dispatch, immutability, schema protection, BWC.
+- **Capability unlocked:** Echo puede guardar identidad/versión sin truncar ni competir con Forge.
+- **Why:** ingestión sin esto fabrica identidades Echo.
+- **Frozen input:** SDK identity; live authority §§2–3, 9. Magic Forge-owned.
+- **In scope:** widen canonical/IDs; EA variable-length/migración; G19–21; layouts old/new; fail-closed unsupported.
+- **Out of scope:** allocator magic; ingestion handler; live facts; JS float loss sin test.
+- **Dependencies:** E-01. **Parallel:** F-04, E-05.
+- **Hypotheses:** PromotionRecord + binding cubre versión sin version-service.
+- **Risks:** truncar >64 canonical; crash widen in-place (D-31).
+- **Output authority:** schema protegido + adapters BWC.
+- **Certification:** SOURCE + MIGRATION (backup/atomic/restart; >int32; >2^53 wire).
+- **Done when:** no truncate; old maps preserved; no magic Echo competidor.
+- **Unlocks:** E-04 development (implementation closed); E-04 integration espera CONTRACT_PASS.
+- **Accepted debt:** aliases `magic_*` por scope.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+
+### E-04 Forge ingestion E1
+
+- **ID / status / size:** E-04 · READY_FOR_INTEGRATION (SPEC 1.0.2) · MEDIUM
+- **Objective:** Gateway individual autenticado; validación; copia verificada de artefacto operativo; tx identity/version/promotion; replay/idempotency; **cero** provision/activation/capital.
+- **Capability unlocked:** INGESTED = receipt, no live.
+- **Why:** D-13; puente H3.
+- **Frozen input:** SDK §12; live authority §4. IngestionReceipt = respuesta del PromotionRecord. Join: [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]].
+- **In scope:** endpoint; auth; verified copy; G01–25/G31/G35 (SYNTHETIC); race/crash/restore; producer fake suficiente para CONTRACT.
+- **Out of scope:** batch; attach EA; eligibility; escribir Forge DB; latest lookup.
+- **Development dependency:** E-01 + E-03 IMPLEMENTATION CLOSED @ `c408a12f`. `FORGE_GOLDEN_FIXTURE_PENDING` no bloquea development.
+- **Golden dependency:** fixture Forge auténtica versionada. Hoy pending. Bloquea CROSS_LANE GOLDEN PASS / E-04 FINAL CLOSED (gate POST-INTEGRATION). No bloquea READY_FOR_INTEGRATION ni merge. No espera E-03 CONTRACT_PASS.
+- **Integration dependency:** E-03 CONTRACT_PASS MET @ `fac48051` + implementation PASS + independent verifier PASS + base reconciliada gates PASS. T21/AC-37 no era prerrequisito del merge; E-04 ya está integrado por FF.
+- **Parallel:** F-04 tras pin; verification E-03 (development only).
+- **Hypotheses:** key+digest idempotente; conflicto write-once.
+- **Risks:** timeout post-commit; side effects.
+- **Output authority:** PromotionRecord INGESTED.
+- **Certification:** SOURCE + CONTRACT + PG + PHYSICAL HTTP+PG. SYNTHETIC ≠ CROSS_LANE GOLDEN. CROSS_LANE GOLDEN pending authentic Forge fixture (POST-INTEGRATION). CONTROLLED INTEGRATION habilitada por E-03 CONTRACT_PASS + implementation/verifier/base; T21 no bloquea merge. FINAL CLOSED espera T21 PASS.
+- **Done when:** matriz duplicate/conflict/partial PASS **e** integración FF ejecutada; FINAL CLOSED adicionalmente T21 PASS.
+- **Unlocks:** E-06; join con F-04/F-05 (tras merge E-04; T21 certifica el join).
+- **Accepted debt:** artefactos grandes quedan en Forge por refs.
+- **Planning:** TOP v1.0.2 ([[Echo — E-04 Forge Ingestion E1]]). **Implementation:** T01–T20 `[x]`. **GOD:** NONE.
+
+### E-05 Analytics convergence A0
+
+- **ID / status / size:** E-05 · TOP CORRECTION READY FOR MANAGER REVIEW · MEDIUM
+- **Objective:** Operaciones/scopes/sets/metrics canónicos en **paths nuevos**. Lab legacy vía adapters/proyecciones. No big bang.
+- **Capability unlocked:** métricas nuevas con key+basis+unit+formula.
+- **Why:** mismo nombre ≠ misma semántica.
+- **Frozen input:** SDK §§4–8, FR-2/FR-3; Lab R AUTO no prueba base única.
+- **In scope:** MetricSet/Scope/R explícito; G16–18/G26–29/G32–33/G36 por borde; adapters Forge/Echo.
+- **Out of scope:** recompute histórico masivo; UI nueva como autoridad; ML.
+- **Dependencies:** E-01. No exige E-01+E-04 para todos los bordes.
+- **Parallel:** E-03/E-04; E-02 development/implementation/verification en paralelo. Merge/deploy de 063 serial tras 062 en `master`.
+- **Hypotheses:** projections legacy identificadas bastan.
+- **Risks:** win_rate % vs ratio; R pips vs money silencioso.
+- **Output authority:** writers nuevos canónicos; readers legacy adaptados.
+- **Certification:** CONTRACT/SOURCE con datasets sintéticos; no analizar profit histórico como prueba.
+- **Done when:** new writes canónicos; legacy no se presenta como autoridad.
+- **Unlocks:** E-10.
+- **Accepted debt:** snapshots Lab como read model.
+- **Planning:** TOP v1.0.1 ([[Echo — E-05 Analytics Convergence A0]]). **Implementation:** NORMAL (no lanzado). **GOD:** NONE.
+- **Planning vivo:** SPEC/PLAN/TASKS/VERIFICATION v1.0.1 en `specs/FEAT-ANALYTICS-CONVERGENCE-A0/` @ `dd1f2da9` sobre `a99f9a63`. Persistencia 063 additive (exclusiva E-05); `062_journal_quarantine` reserva E-02; 064+ fuera de scope. Calculator Go; Lab dual-run; Hasura SELECT; sin FK a 061; sin SQ/EF. E-02 no bloquea development/implementation/verification. Merge/deploy de 063 espera 062 en `master`.
+
+### E-06 Reference enrollment and binding
+
+- **ID / status / size:** E-06 · PLANNING READY FOR IMPLEMENTATION REVIEW v1.2.2 · MEDIUM
+- **Objective:** RuntimeBinding: una enrollment canónica por Version; cuenta+broker+magic mapping observado; ACK/read-back; coverage start barrier. Attach manual verificado permitido V1.
+- **Capability unlocked:** reloj forward atribuible. Ingestion ≠ observing.
+- **Why:** sin enrollment no hay Quality canónica.
+- **Frozen input:** live authority §§5–6; O1/O3 default técnico Fable; pin Version al OPEN.
+- **In scope:** observed fact; duplicate collector reject; no observation on DB-only; shadow vs canonical; no same-account overlap de versiones.
+- **Out of scope:** generic provisioning; auto-takeover; editor.
+- **Dependencies:** E-04; E-02 para confiar captura. Supply Forge ayuda, no bloquea diseño.
+- **Parallel:** F-05 si hay candidata.
+- **Hypotheses:** accounts/policies + facts de binding bastan (no tabla deployments anticipada). **Planning 1.0.0:** accounts/policies solos REFUTADOS; accounts/policies (intent) + `reference_bindings` (hecho) CONFIRMADO; no `deployments`.
+- **Risks:** overlap magic/cuenta; ACK operator sin read-back.
+- **Output authority:** RuntimeBinding + coverage watermark inicial.
+- **Certification:** PHYSICAL (read-back, duplicate collector, no trading on DB-only). Mocks ≠ OBSERVING.
+- **Done when:** primera observación atribuible o UNKNOWN explícito.
+- **Unlocks:** E-07.
+- **Accepted debt:** attach manual.
+- **Planning:** TOP v1.2.2 encoding v1 + erratum liveness refresh ([[Echo — E-06 Reference Enrollment and Binding]]). SPEC/PLAN/TASKS/VERIFICATION en `specs/FEAT-REFERENCE-ENROLLMENT-BINDING-E6/` @ branch `feature/e06-reference-enrollment-binding` HEAD `acf996ad` desde `5dd998f1`. CASE B intacto. **Implementation:** NORMAL (no lanzado; gate implementation review). **GOD:** NONE.
+
+### E-07 Raw facts, DEAL, coverage and trade lifecycle
+
+- **ID / status / size:** E-07 · In Progress (CONTRACT/PG PASS; PHYSICAL_PENDING) · MEDIUM
+- **Objective:** Raw immutable antes de routing; DEAL irreducible; OPEN/MODIFY/CLOSE clocks/costs; coverage como evidencia de observación, no “no hubo trades”.
+- **Capability unlocked:** hechos recuperables; UNKNOWN ≠ cero.
+- **Why:** Quality/Fidelity mienten sin esto.
+- **Frozen input:** SDK TradingFact/Coverage; live authority §6; FR-5 record_digest.
+- **In scope:** durable raw; deal dedupe; late CLOSE; partial fills; initial-risk unknown; outage coverage U; replay no despacha.
+- **Out of scope:** netting; MAE/MFE institucionales; pre-broker signal.
+- **Dependencies:** E-06, E-03.
+- **Parallel:** diseño E-08.
+- **Hypotheses:** journal proyecta; raw es autoridad de fills que el journal no tiene.
+- **Risks:** CLOSE usa current_version; recorded vs event-time (Lab recorded se conserva).
+- **Output authority:** TradingFact ledger + Coverage.
+- **Certification:** PHYSICAL (offline/restart/partial/late cost). SOURCE fixtures primero.
+- **Done when:** lookup por trade_id; coverage U visible.
+- **Unlocks:** E-08/E-09.
+- **Accepted debt:** legacy journal rows.
+- **Planning:** TOP v1.0.0 ([[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]]). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-RAW-FACTS-DEAL-COVERAGE-LIFECYCLE-E7/` @ branch `feature/e07-raw-facts-deal-lifecycle` HEAD `59338a64` desde `b66dc5ff` (HEAD E-06; sus interfaces son la dependencia de desarrollo, verificadas). Migración 065 exclusiva. **Implementation:** NORMAL ejecutado @ `7c836619`; corrección C1 @ `a7a61875`; decisión Manager C2 consumida @ `28213bbc` (C4 protocolo V1.1 con identidad física, C5 receta `fact_ref` frozen, gate RAW-BEFORE-ROUTE/E-08). **GOD:** NONE. Siguiente: PHYSICAL (EA enriquecido en terminal real + binding E-06 OBSERVING real).
+
+### E-08 Routing, EconomicCommand and risk reservation
+
+- **ID / status / size:** E-08 · CORRECCIÓN C2 COMPLETA (SOURCE/CONTRACT/PG PASS; Manager review delta C2 pendiente) · MEDIUM
+- **Objective:** Universo expected/excluded congelado; EconomicCommand durable con policy/risk snapshot y reservation 1:N deals; UNKNOWN no resend ciego.
+- **Capability unlocked:** routing denominator + comando económico recuperable.
+- **Why:** Fidelity y apply necesitan expected universe, no INNER JOIN.
+- **Frozen input:** live authority §§7–8; SDK Routing/EconomicCommand; E-07 ERRATUM-A §17.4 (gate RAW-BEFORE-ROUTE); E-02 §1.0.1 (defer CommandID).
+- **In scope:** planner snapshot; command uniqueness/outbox; reservation headroom por cuenta; crash PENDING; policy mutation no cambia command histórico.
+- **Out of scope:** optimizer de routing; multi-broker abstracto; netting.
+- **Dependencies:** E-07 identidad raw (interfaces verificadas; base de desarrollo `3765f2ba`).
+- **Parallel:** guards de E-12 en shadow.
+- **Hypotheses:** reserva integrada en command, no servicio de riesgo distribuido.
+- **Risks:** dos opens concurrentes; UNKNOWN libera presupuesto.
+- **Output authority:** Routing result + EconomicCommand.
+- **Certification:** SOURCE + CONTRACT + PG (clase A, cero órdenes); PHYSICAL y ECONOMIC_ACTIVATION condicionados (clase C).
+- **Done when:** expected recipients persistidos; reserva sobrevive crash; replay jamás genera segundo comando.
+- **Unlocks:** E-09, E-12.
+- **Accepted debt:** hedging-only V1.
+- **Planning:** TOP v1.0.0 ([[Echo — E-08 Routing EconomicCommand and Risk Reservation]]). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-ROUTING-ECONOMIC-COMMAND-RISK-RESERVATION-E8/` @ branch `feature/e08-routing-economic-command-risk-reservation` HEAD `fe5c9de0` desde `3765f2ba` (HEAD E-07 C3; sus interfaces verificadas son la dependencia de desarrollo). Migración 066 exclusiva. Boundary RG-1…RG-6 frozen (gate E-07 §17.4); CommandID determinístico por `command_unique_key`+`content_digest`; reservas con UNKNOWN_HELD sin auto-release; outbox monotónico; activación económica clase C condicionada. **Implementation:** NORMAL T00–T14 ejecutado @ `b0012909` + corrección Manager C1 @ `53d42615` + corrección C2 (C2-1…C2-4) @ `c2e88a0d` (HEAD == origin). Estado: SOURCE/CONTRACT/PG PASS + COVERAGE_GATE_PENDING + PHYSICAL_PENDING + ECONOMIC_ACTIVATION_PENDING + FINAL_CLOSED=NO. Siguiente: **Manager review del delta C2**. **GOD:** NONE.
+
+### E-09 Execution copy, reconciliation and Execution Fidelity
+
+- **ID / status / size:** E-09 · PLANNING FROZEN v1.0.0 (NORMAL clase A PENDING) · MEDIUM
+- **Objective:** Copiar Reference→Execution con correlación/reconciliación; EF desde early trades: missing/extra/duplicate/reject/delay distintos. SQ ≠ EF ≠ Forge fidelity.
+- **Capability unlocked:** owner ve si la copia es fiel, no sólo si la estrategia “funciona”.
+- **Why:** H4; D-21.
+- **Frozen input:** SDK purposes; master §8; Reality Check fidelity mínimo; Live Authority §7 lineage + invariantes 12/13/14/15/16/17/18; E-07/E-08 como autoridades de datos.
+- **In scope (clase A):** unidad de reconciliación = destinatario E-08; correlación `command_ref` claim + DEAL set E-07 1:N como prueba; veredictos PENDING/FILLED/PARTIAL/REJECTED/MISSING_EVIDENCED/UNKNOWN/SUPERSEDED/UNRESOLVED; dedupe dual + duplicados append-only; vector por operación UNKNOWN-aware; métricas con denominador expected set; exportación `resolution_evidence` (READ-ONLY sobre 001–066).
+- **Out of scope:** percentiles institucionales; DEMO→REAL sin evidencia; score broker sofisticado; SQ E-10; liberación CONSUMED sin autoridad contable; fabricar outcomes del broker; inferir fills desde ACK.
+- **Dependencies:** E-08 (interfaces verificadas @ `c2e88a0d`), E-02 recovery. **Parallel:** E-10/E-11 por su DAG.
+- **Hypotheses:** expected+outcomes bastan para V1 útil.
+- **Risks:** INNER JOIN como EF; 2505 unpaired como pérdidas; MISSING por deadline.
+- **Output authority:** Execution Fidelity MetricSet/diagnósticos + veredictos por operación.
+- **Certification:** PHYSICAL (Reference mala/copia fiel y viceversa). No mocks como PHYSICAL PASS.
+- **Done when:** missing/reject/duplicate visibles; no-trade ≠ outage.
+- **Unlocks:** E-10 interpretación conjunta; E-12 safety.
+- **Accepted debt:** p50/p95 POST; read model no autoridad hasta E-13.
+- **Planning:** TOP v1.0.0 ([[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]]). SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT en `specs/FEAT-EXECUTION-COPY-RECONCILIATION-FIDELITY-E9/` @ branch `feature/e09-execution-copy-reconciliation-fidelity` HEAD `e892b3d7` desde `c2e88a0d` (HEAD E-08 C2; sus superficies durables son la dependencia de desarrollo). Migración 067 exclusiva (disponibilidad verificada, no asumida). Dependencias exactas E-08 C3-A/C3-B registradas (SPEC §16; no corregidas desde E-09; bloquean sólo clase B). Separación clase A vs clase B frozen. **Implementation:** NORMAL clase A (no lanzado; `NORMAL-PROMPT.md`). **GOD:** NONE.
+
+### E-10 Strategy Quality and eligibility
+
+- **ID / status / size:** E-10 · To Do · MEDIUM
+- **Objective:** Quality sobre observaciones forward de Version+Expectation; coverage primero; INSUFFICIENT/UNKNOWN separados de FAIL; eligibility sólo con policy validada. Abstención es resultado válido.
+- **Capability unlocked:** owner entiende calidad y candidatos explícitos; CASH si no hay evidencia.
+- **Why:** no fingir elegibilidad para diciembre.
+- **Frozen input:** master §9; Reality Check quality mínimo; Expectation portable acotada (no catálogo exhaustivo).
+- **In scope:** baseline Forge/expectation; Reference-only; warnings/incertidumbre; Decision eligibility si product rules lo piden; degradación/régimen **sólo si ya aprobado** (shadow simple SHOULD).
+- **Out of scope:** ML; MAE/MFE must; meta-score; bajar umbral en secreto.
+- **Dependencies:** E-06/E-07; E-05 writers; calendario irreductible.
+- **Parallel:** E-11 con fixtures.
+- **Hypotheses:** baseline pequeña + coverage desbloquea captura sin seasonality.
+- **Risks:** LIVE default; EdgeScore=coverage; reciclar evidencia de otra versión.
+- **Output authority:** Quality read models + Eligibility Decision o INSUFFICIENT.
+- **Certification:** PRODUCT (negative-PnL alta DQ no elegible por ese score; new version reset). Calendar Gate no se omite.
+- **Done when:** UNKNOWN visible; eligibility no se infiere de días de calendario solos.
+- **Unlocks:** E-11 candidatos reales; E-13 explicación.
+- **Accepted debt:** historical recover R-33 timebox paralelo.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+
+### E-11 PortfolioVersion selection allocation shadow
+
+- **ID / status / size:** E-11 · To Do · MEDIUM
+- **Objective:** Candidatos versionados + límites + equal-risk determinista + CASH + PortfolioVersion published inmutable. Shadow antes de efectos. Una PortfolioVersion = selection+allocation.
+- **Capability unlocked:** propuesta reproducible sin babysitting de Excel.
+- **Why:** H5; D-20/D-22.
+- **Frozen input:** SDK/master portfolio; no framework Decision-por-verbo.
+- **In scope:** draft vs published; no eligible→CASH; familias/concentración conservadora; curvas agregadas o no publicar DD inventado.
+- **Out of scope:** ML optimizer; apply/ACK (E-12); grupos de cuentas como allocation.
+- **Dependencies:** interfaces E-10; shadow con fixtures ahora.
+- **Parallel:** E-10 real y E-08 guards.
+- **Hypotheses:** equal-risk + límites V1 útiles.
+- **Risks:** UPDATE published; promedio de DD individuales.
+- **Output authority:** PortfolioVersion inmutable.
+- **Certification:** SOURCE determinista + replay; PRODUCT shadow. No PHYSICAL de dinero.
+- **Done when:** published inmutable también vía API/admin; CASH representable.
+- **Unlocks:** E-12.
+- **Accepted debt:** correlación unknown handling conservador.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+
+### E-12 Apply, rebalance, replacement and retirement
+
+- **ID / status / size:** E-12 · To Do · MEDIUM
+- **Objective:** Aplicar PortfolioVersion con ACK; pause/reduce/replace/rebalance/retire o CASH; risk reservation/control; cero unknown exposure al habilitar opens. Auto DEMO tras gates; REAL sólo aprobación owner.
+- **Capability unlocked:** loop DEMO operable (H6); no autonomía económica amplia.
+- **Why:** decide sin apply no es producto usable.
+- **Frozen input:** INGESTION≠ACTIVATION; D-06/07/09/24/25/32; O-04/O-05.
+- **In scope:** effect ledger; partial apply; crash mid-transition; kill pre-send; version drain; no overlap ambiguo.
+- **Out of scope:** auto-replace amplio V1; REAL sin gates; generic event sourcing.
+- **Dependencies:** E-11, E-08, E-09, E-02.
+- **Hypotheses:** auto-protección y cash por defecto.
+- **Risks:** replay de facts como replay de órdenes; pause que cierra todo implícito.
+- **Output authority:** applied N/N+1 + effect ledger.
+- **Certification:** PHYSICAL DEMO (partial/crash/ACK lost/two opens). REAL es PRODUCT DECISION aparte.
+- **Done when:** N→N+1 y pause/recovery sin opens/duplicates inesperados.
+- **Unlocks:** E-13 firma de scope.
+- **Accepted debt:** attach manual residual documentado.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+
+### E-13 Front observe, ops and V1 completion
+
+- **ID / status / size:** E-13 · To Do · MEDIUM
+- **Objective:** Superficies READ/OBSERVE (runs, funnels, strategies, metrics, warnings, rankings, finalists, campaigns, Reference/Execution/live, portfolio/control) con watermarks/UNKNOWN. Ops: freshness, backup/restore drill, alertas accionables. Certificar V1 de plataforma, no maquillar cartera financiada.
+- **Capability unlocked:** owner explica cada estado desde UI+ledger (H7 software).
+- **Why:** sin read surface el sistema no es usable; sin restore no hay REAL.
+- **Frozen input:** front READ first; viewer SQX SHOULD; no editor.
+- **In scope:** read models/API; auth ya de E-02; restore aislado del scope; certification manifest; declared supported scope.
+- **Out of scope:** rewrite UI; reexecution GUI; tenancy; SRE universal.
+- **Dependencies:** E-12 para loop; read models pueden adelantarse con fixtures.
+- **Hypotheses:** vistas pequeñas por capacidad > UI nueva.
+- **Risks:** reader stale como autoridad; declarar Product Complete con eligible=0 **está permitido** para software, no para dinero.
+- **Output authority:** control/read surfaces + cert manifest.
+- **Certification:** PRODUCT CAPABILITY PASS. Restore PHYSICAL. Viewer SQX no bloquea.
+- **Done when:** DoD plataforma del padre; O-01 dinero separado.
+- **Unlocks:** operación owner; no más fases V1 de este subproyecto.
+- **Accepted debt:** Lab legacy views vía adapter.
+- **Planning:** TOP. **Implementation:** NORMAL. **GOD:** NONE.
+
+## Definition of Done — Live Platform V1
+
+Consumir handoffs; persistir identity/version; bind Reference; facts atribuibles; copy Execution segura; medir EF y SQ; eligibility cuando las reglas lo requieren; PortfolioVersion determinista; risk reserve/control; observe/reconcile; replacement/rebalance/retirement; front/ops suficientes. CASH/INSUFFICIENT es éxito de software. REAL financiado es gate owner.
+
+## 📆 Bitácora
+
+- **2026-09-20 — E-09 TOP planning one-shot:** [[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]] SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT v1.0.0 @ `e892b3d7` pusheados a `origin/feature/e09-execution-copy-reconciliation-fidelity` desde `c2e88a0d` (HEAD E-08 C2; docs-only, 5 archivos; master intacto `5dd998f1`). Baseline resuelto contra repos reales (E-06 `b66dc5ff` / E-07 `3765f2ba` / E-08 `c2e88a0d` local=origin; migración 067 libre verificada en baseline, no asumida). Frozen: unidad de reconciliación = destinatario E-08 `(source_event_id, operation_kind, recipient)`; denominador = expected set retenido (invariante 17; INNER JOIN prohibido D-21); `command_ref` como claim de atribución y DEAL set E-07 1:N como prueba del fill (claim sin corroboración ⇒ warning, jamás FILLED); veredictos `PENDING/FILLED/PARTIAL/REJECTED/MISSING_EVIDENCED/UNKNOWN/SUPERSEDED/UNRESOLVED` con `MISSING_EVIDENCED` sólo con evidencia positiva (deadline de ACK jamás produce MISSING); extras/not-requested/duplicados visibles y separados; vector por operación UNKNOWN-aware (delay MEASURED sólo con basis UTC verificada); métricas con read model NO autoridad, p50/p95 POST; E-09 READ-ONLY sobre 001–066 (exporta `resolution_evidence` para ops E-08, jamás aplica transiciones); exposición `CONSUMED` sin liberación por timeout (exige evidencia de cierre o autoridad contable). Dependencias exactas E-08 C3 registradas en SPEC §16: E08-C3-A gate evalúa binding actual antes de recuperar routing durable (`router.go:86` gate / `:218` recover) y E08-C3-B `classifyCandidate` usa `time.Now()` (`:274`) sin restaurar `DecisionAt` — sin retoque desde E-09, no asumidas resueltas, bloquean sólo clase B. Separación clase A (contratos/stores/proyecciones/métricas con fixtures, cero órdenes) vs clase B (ingesta viva + E2E + certificación semántica master §8, condicionada a E-08 C3 + clase C + E-07 PHYSICAL + E-06 G1/T21 + MQL_COMPILE + EchoPersistence.mqh + E-02 AC-18). Worktree `/tmp/echo-e09-execution-copy-reconciliation-fidelity`. E-01…E-08 no reabiertos. Next = NORMAL clase A (`NORMAL-PROMPT.md`).
+- **2026-09-20 — E-08 TOP planning one-shot:** [[Echo — E-08 Routing EconomicCommand and Risk Reservation]] SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT v1.0.0 @ `fe5c9de0` pusheados a `origin/feature/e08-routing-economic-command-risk-reservation` desde `3765f2ba` (HEAD E-07 C3; docs-only; master intacto `5dd998f1`). Baseline resuelto contra repos reales (E-06 `b66dc5ff`, E-07 `3765f2ba` local=origin, migración 066 libre). Frozen: gate RAW-BEFORE-ROUTE RG-1…RG-6 (E-07 §17.4 elevado a boundary estructural); CommandID determinístico por `command_unique_key`+`content_digest` con UUIDv7 mint-once (consume defer E-02 §1.0.1); snapshots inmutables content-addressed; reservas integradas al command con headroom serializado por cuenta (`FOR UPDATE`) y `UNKNOWN_HELD` sin auto-release; outbox monotónico en la fila del comando; errores permanentes/transitorios/desconocidos fail-closed; sweepers SKIP LOCKED; reconciliación sin reenvío como superficie E-09. Separación clase A (desarrollable hoy, cero órdenes, router default OFF) vs clase C (activación económica condicionada: E-07 PHYSICAL, E-06 G1/T21, MQL_COMPILE, corrección EchoPersistence.mqh, E-02 AC-18). Worktree `/tmp/echo-e08-routing-economic-command-risk-reservation`. E-01…E-07 no reabiertos. Next = NORMAL (`NORMAL-PROMPT.md`). *(Evolución posterior: NORMAL T00–T14 @ `b0012909` + C1 @ `53d42615` + C2 @ `c2e88a0d`; ver nota E-08.)*
+- **2026-09-20 — E-07 decisión Manager C2 consumida:** C4 (protocolo pipe Reference V1.1 aditivo con identidad física auténtica del productor, en el repo echo) + C5 (receta `fact_ref` frozen) + gate RAW-BEFORE-ROUTE (PublishSync ≠ commit durable; E-08 requiere aceptación durable + pin) @ `28213bbc` en `origin/feature/e07-raw-facts-deal-lifecycle` (push FF desde `a7a61875`; SPEC ERRATUM-A §17, VERIFICATION §9). Gates SOURCE/CONTRACT/PG PASS re-verificados; cero nombres E-07 en failing sets; S0/migraciones 001–065/go.mod diff 0; Forge/E-06/master/flota intocados. PHYSICAL_PENDING, FINAL_CLOSED=NO.
+- **2026-09-19 — E-07 TOP planning one-shot:** [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]] SPEC/PLAN/TASKS/VERIFICATION + NORMAL-PROMPT v1.0.0 @ `59338a64` pusheados a `origin/feature/e07-raw-facts-deal-lifecycle` desde `b66dc5ff` (HEAD E-06; docs-only; master intacto `5dd998f1`). Baseline reconciliado sin drift; interfaces S0/E-06 verificadas en source; migración 065 reservada (exclusiva E-07, 066+ fuera); raw-before-route en echo-core; reuse aditivo de `raw_trade_events` (029); atribución al OPEN vía SELECT 064; PHYSICAL diferido explícito (sin Forge ni terminal para CONTRACT/PG). Worktree `/tmp/echo-e07-raw-facts-deal-lifecycle`. E-01…E-06 no reabiertos; T21 E-06 sigue blocked (G1) sin cambio. Next = NORMAL.
+- **2026-09-16 — E-06 TOP refresh liveness erratum v1.2.2:** [[Echo — E-06 Reference Enrollment and Binding]] v1.2.2 @ `acf996ad` (contrato `28afc47f`; old `336c723b`; push FF). §7.2a.4 v1.2.1 exigía «MUST republicar cada 5 s» vía `OnTick`; MQL5 no garantiza ticks ⇒ decisión Manager frozen: `OnTimer` compatible (≤5 s, realmente activado) preferido sin tocar `EventSetTimer`; `OnTick` oportunista con 5 s como intervalo mínimo entre publicaciones; sin tick ni timer compatible sin promesa de liveness continua (expiración 15 s fail-closed `SUSPENDED + UNKNOWN`; recovery §6; ninguna actualización de `ts` desde Echo/Bridge/Gateway/config). Tests AC-37a…d. CASE B y encoding v1 intactos. 0 source Echo; 0 bytes Forge. Master intacto. Next = IMPLEMENTATION REVIEW.
+- **2026-09-16 — E-06 TOP transport contract v1.2.1:** [[Echo — E-06 Reference Enrollment and Binding]] v1.2.1 @ `336c723b` (contrato `662c0dce`; old `e8fba410`; push FF). Encoding GV lossless; CASE B intacto. 0 source Echo; 0 bytes Forge. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW. *(Siguientes gates evolucionaron con v1.2.2; ver entrada superior.)*
+- **2026-09-16 — E-06 TOP planning correction #2 (Manager CASE B):** [[Echo — E-06 Reference Enrollment and Binding]] v1.2.0 @ `e8fba410` (contrato `3d5a5d62`; old `349b6ac8`; push FF). Manager resolvió CASE C: `effective_magic` runtime atestiguado por la instancia strategy EA (excepción C-3 §7.2a) == pin o no hay OBSERVING. Discovery físico: producer = exporter Forge (`EchoForgeMT5Exporter.java`, `xKoRx/symphony`; inyección futura un archivo, lane propio); `MagicNumber` es `input` externo (readback/seal F-04); atestación por variables globales del terminal, relay verbatim del collector. Identidad: bytes cambian ⇒ nuevo `strategy_version_ref`; históricos intactos. 0 source Echo; 0 bytes Forge. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW.
+- **2026-09-16 — E-06 TOP authority reconciliation:** [[Echo — E-06 Reference Enrollment and Binding]] CASE C @ `349b6ac8` (contrato `1c794d5a`; old `3e190d86`). Zero-order magic no cierra A vs B. SPEC v1.1.0 sin bump. 0 source. Puente E-06 permanece Review. Master intacto. Next = MANAGER REVIEW. *(Resuelto después por Manager CASE B; ver entrada superior.)*
+- **2026-09-16 — E-06 TOP planning correction #1:** [[Echo — E-06 Reference Enrollment and Binding]] v1.1.0 @ `3e190d86` (old `9989f399`). Heartbeat/UnifiedBatch no son autoridad zero-order. C-3 DEFER SQX conservado; Echo collector `reference_status` IN SCOPE. 0 source. Puente E-06 permanece Review. Master intacto.
+- **2026-09-16 — E-06 TOP planning one-shot:** [[Echo — E-06 Reference Enrollment and Binding]] SPEC/PLAN/TASKS/VERIFICATION v1.0.0. Branch `feature/e06-reference-enrollment-binding` desde `origin/master` `5dd998f1`. Docs-only; 0 source. Hipótesis accounts/policies solos refutada; `reference_bindings` + intent. 064 reservada con interlock 061 SHARED DEV. Puente E-06 → Review. Master intacto. E-01…E-05 no reabiertos.
+- **2026-09-16 — E-02 evidencia AC-03/04/05/17 corregida:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] recertificó los cuatro AC con fixtures descartables; evidencia `92d0ec2e` sobre producto `f6e6af1b`. Hasura compartido y master intactos. Puente E-02 permanece Review.
+- **2026-09-16 — E-02 independent verification PASS:** [[Echo — E-02 Control Safety, Auth and Journal Recovery]] `VERIFICATION_PASS — READY_FOR_INTEGRATION` @ producto `f6e6af1b` / evidencia `bbceecdf`. CLOSED contradicho y corregido (no CLOSED pre-integración). Master `7e628bf5` intacto. Puente E-02 permanece Review.
+- **2026-09-13** — S0 erratum V3-006 controlled integration ([[Echo — E-01 Canonical SDK Foundation S0]]): `S0_ERRATUM_INTEGRATED`, `origin/master = 7e628bf5fcadd92dc5398663d9b99a239a95ef7a` (FF puro desde `a99f9a63`, push normal sin force). E-05 V3-006 authority blocker resuelto; E-05 sigue en `3bc5dca9` como `WAITING_E05_RECONCILIATION`. No tag, no release; interlock 063/062 intacto.
+- **2026-09-13** — E-05 FULL RE-VERIFICATION #2 independiente ([[Echo — E-05 Analytics Convergence A0]]): target `d40153f38101febf381b2a3fb9abf6f6834ebdc0` exacto; pre-flight Git y source scope PASS; suites Go relevantes PASS; `DecimalString` falla un half-tie negativo con redondeo sign-inverted. `VERIFICATION_FAIL`; gates PG/Hasura/BWC/coverage posteriores no ejecutados por stop fail-closed; no merge/deploy; interlock 062 de E-02 vigente.
+- **2026-09-12** — E-05 NORMAL T01–T21 IMPLEMENTATION PASS ([[Echo — E-05 Analytics Convergence A0]]): `IMPLEMENTATION READY FOR MANAGER SOURCE REVIEW` @ `69eec0b9` en `origin/feature/e05-analytics-convergence-a0` (9 commits sobre planning `dd1f2da9`; master intacto `a99f9a63`). Migración 063 write-once + stores + `v3/sdk/analytics` (calculator frozen fail-closed) + writer + `lab-canonical-a0` + Hasura SELECT; PG REAL 17.11 descartable PASS; BWC Lab PASS; coverage 95.6%. No verifier; no merge; interlock: 063 sin merge/deploy hasta 062 de E-02 en `master`. Puente E-05 permanece Review.
+- **2026-09-12** — E-05 TOP CORRECTION v1.0.1 ([[Echo — E-05 Analytics Convergence A0]]): reserva de migración @ `dd1f2da9`. E-02 owner de `062_journal_quarantine`; E-05 cambia a `063_analytics_convergence_a0`; 064+ fuera de scope. E-02 no bloquea development/implementation/verification. Merge/deploy de 063 serializa tras 062 en `master`. Docs-only; master intacto `a99f9a63`. Puente E-05 permanece Review.
+- **2026-09-12** — E-05 TOP planning one-shot ([[Echo — E-05 Analytics Convergence A0]]): SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `be87f11e` pusheados a `origin/feature/e05-analytics-convergence-a0` desde `a99f9a63` (docs-only; master intacto). Persistencia mínima 062; adapters Lab; calculator Go; Hasura SELECT. E-02/E-04/F-04 no tocados. Puente E-05 → Review.
+- **2026-09-12** — E-02 focused source-review correction v1.0.2 ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): SPEC/PLAN/TASKS/VERIFICATION @ `f7ddea18` sobre HEAD inicial `df99084b`. Auth hook entrega JSON Hasura, tokens duplicados fallan cerrado, 17 paths históricos autorizados limpiados; Gateway/front/SOURCE y regresión E-04 relevante PASS; PHYSICAL_PARTIAL, no verifier, master intacto. Puente E-02 permanece Review.
+- **2026-09-12** — E-02 TOP planning one-shot ([[Echo — E-02 Control Safety, Auth and Journal Recovery]]): subproyecto materializado; SPEC/PLAN/TASKS/VERIFICATION v1.0.0 @ `ac7b4e14` pusheados a `origin/feature/e02-control-safety-journal-recovery` desde `a99f9a63` (docs-only; master intacto). Source D-04/D-01 revalidado en el baseline. Corregido el mismo día en v1.0.1.
+- **2026-09-12** — E-04 CONTROLLED INTEGRATION one-shot PASS: fetch/race y ancestry confirmados; gates mínimos PASS; `master` avanzó por fast-forward desde `fac48051` hasta el boundary E-04 `2f8db345`, sin reescritura ni force-push. Push normal verificado: `origin/master` final=`a99f9a63354bbe72219d1e590bb93757ed08e45e`; feature intacta=`2f8db345`. E-04 INTEGRATED=YES, READY consumido, T21/AC-37 PENDING POST-INTEGRATION y FINAL CLOSED=NO. Evidencia en E-04 `VERIFICATION.md`; F-04 no tocado.
+- **2026-09-12** — E-04 TOP CORRECTION 1.0.2 ([[Echo — E-04 Forge Ingestion E1]]): circular golden gate roto. T21/AC-37 ya no bloquea READY_FOR_INTEGRATION/merge; pasa a POST-INTEGRATION. READY_FOR_INTEGRATION=YES. FINAL CLOSED espera T21 PASS. Merge no ejecutado. Master intacto `fac48051`.
+- **2026-09-12** — E-03 CONTRACT_PASS / FINAL CLOSED ([[Echo — E-03 Identity and BWC Foundation E0]]): manager certificó en `fac48051` y se integró FF a `origin/master` (`c408a12f..fac48051`, sin merge commit/rebase/force). Gate `E03_CONTRACT_PASS_REQUIRED_FOR_INTEGRATION` de E-04 queda satisfecho; E-04 y Forge no tocados en esta integración. Puente E-03 permanece Review.
+- **2026-09-11** — E-04 planning v1.0.1 ([[Echo — E-04 Forge Ingestion E1]] @ `c8e68538`): CROSS_LANE GOLDEN exige fixture Forge auténtica (`FORGE_GOLDEN_FIXTURE_PENDING`); synthetic S0 ≠ golden; CROSS_LANE development no espera E-03 CONTRACT_PASS; merge/close sí. Master no se toca. Puente E-04 permanece Review.
+- **2026-09-11** — Enlace al subproyecto [[Echo — E-04 Forge Ingestion E1]]. Development may start en `feature/e04-forge-ingestion-e1` desde `c408a12f` en paralelo con verification E-03. Integration gated by E-03 CONTRACT_PASS. Master no se toca. Puente E-04 → Review.
+- **2026-09-10** — Enlace mínimo al subproyecto de implementación [[Echo — E-03 Identity and BWC Foundation E0]]. Baseline E-03 = E-01 certified `91671f6f`. No se reescribió el roadmap.
+- **2026-09-10** — E-03 relational integrity `576bf1f4` (parent `45a59fca`) listo para revisión manager. UNIQUE + composite FK Mapping→Version→Promotion. Puente permanece Review. Sin implementación.
+- **2026-09-10** — E-03 S0 module consumption `233ec89c` (parent `576bf1f4`) FF a `origin/master`. `require v0.0.0` + `replace => ./contracts`. `go.sum` no delta. Puente permanece Review. Implementación dirty no committed. MT4 PHYSICAL blocker.
+- **2026-09-07** — Reparentado a [[Echo — Producto Integrado]], `owner: agent`. E2 partido en E-06…E-09. E-02 extraído como H1. Tareas `#owner/me` de 4 ítems supersedidas. S0 permanece aquí.
+- **2026-09-07** — Enlace mínimo al subproyecto de implementación [[Echo — E-01 Canonical SDK Foundation S0]]. Baseline E-01 fijado `04c16bd2`. No se reescribió el roadmap.
+
+## 🧭 Decisiones
+
+- S0 es de Echo, no Integration.
+- E2 no es una Agent Task.
+- Front V1 es READ/OBSERVE.
+
+## 🔗 Docs / Links
+
+- [[Echo — Access & Physical Capability Matrix]]
+- [[Echo — E-01 Canonical SDK Foundation S0]]
+- [[Echo — E-02 Control Safety, Auth and Journal Recovery]]
+- [[Echo — E-03 Identity and BWC Foundation E0]]
+- [[Echo — E-04 Forge Ingestion E1]]
+- [[Echo — E-05 Analytics Convergence A0]]
+- [[Echo — E-06 Reference Enrollment and Binding]]
+- [[Echo — E-07 Raw Facts DEAL Coverage Trade Lifecycle]]
+- [[Echo — E-08 Routing EconomicCommand and Risk Reservation]]
+- [[Echo — E-09 Execution Copy Reconciliation and Execution Fidelity]]
+- [[Echo — Producto Integrado]]
+- [[Echo Forge — Factory V2 Completion]]
+- [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
+- [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]
+- [[Echo — Forge Ingestion, Runtime Identity and Live Authority Contract V1]]
+- [[Echo + Echo Forge — Independent Reality Check and Time-to-Value Plan]]
+- [[Echo - Discovery y Estado]]
+- [[echo-core]]
+
+## 💡 Ideas
+
+### Backlog de ideas
+
+- Viewer SQX pool: SHOULD, no fase bloqueante.
+- Recuperación histórica R-33: timebox, no fase V1 de factory.
+
+### Motivos / principios
+
+- Ingestion no inicia el reloj. Coverage no es edge/alpha.
+
+### Memoria pública / interna
+
+- **Memoria pública:** contratos enlazados.
+- **Memoria interna:** continuidad en esta nota.
+- **Motivo:** Discovery conserva historia, no el roadmap.
