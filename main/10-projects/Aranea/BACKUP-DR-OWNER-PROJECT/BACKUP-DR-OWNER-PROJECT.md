@@ -195,7 +195,7 @@ F-01 capex, F-02 no migrar TrueNAS, F-03 no cambio servidores, F-04 SQX sagrados
 ## 📅 Calendario recomendado
 
 > [!info] SUPERSEDED como cronograma (2026-09-17)
-> El calendario S1–S3 de julio quedó reemplazado por el roadmap por fases **R0–R8** con dependencias reales: ver `[[2026-09-16-R0-reconciliacion]]` §9 (autoridad de planificación). Estado actual: R0 DONE, R1 DONE (con deuda), D0 DONE, R1.5 DONE (gates owner vigentes), R2 IN-PROGRESS (fail-closed PASS + piloto 7d ACTIVO desde 2026-09-19; falta 7/7 días con verify ok → decisión D).
+> El calendario S1–S3 de julio quedó reemplazado por el roadmap por fases **R0–R8** con dependencias reales: ver `[[2026-09-16-R0-reconciliacion]]` §9 (autoridad de planificación). Estado actual: R0 DONE, R1 DONE (con deuda), D0 DONE, R1.5 DONE (gates owner vigentes), R2 IN-PROGRESS (fail-closed PASS + piloto 7d ACTIVO desde 2026-09-19; falta 7/7 días con verify ok → decisión D). **[Errata 21sep]**: la serie R2 quedó 3/7 NO consecutiva (run del 21sep perdido por apagado de hermes) y el criterio "7/7" es inalcanzable — la decisión D se toma con el criterio alternativo 6/7 + OK owner definido en MANDATO-P0; ver errata en [[ROADMAP-WP-BACKUP-DR]].
 
 | Semana | Subproyectos |
 |---|---|
