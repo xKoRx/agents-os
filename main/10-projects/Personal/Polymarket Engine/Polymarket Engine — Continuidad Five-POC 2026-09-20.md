@@ -108,10 +108,13 @@ Para M4, leer flags reales `engine experiment certify --help`, confirmar SHA com
 - [ ] **RESEARCH / P1 — Elegir UNA POC y UN experimento falsable** con criterio de falsación, métrica, sample, dataset y controles; usar mutation drill BASE/VARIANT como harness, no como prueba de alpha. Arranque de menor infraestructura: S01 sensibilidad `min_edge_bps` o S05 B descriptiva sobre fixture; escoger según interés del owner.
 - [ ] **DATA / P1 — Plan de paso a datos reales de sólo lectura:** inventariar RS v0.3 certificados y manifest de cierre, integridad, fuente/reglas/fees/as-of y ventanas. No declarar `REAL_DATA_READY` por existencia de carpetas `.rs-v03-*`; obtener recibo verificable y preservar guard.
 - [r] **PE-001 / P2 — Contratos de mercado y fees (2026-09-21):** reality check ejecutado sobre HEAD `85e27ff`. Par WNBA 986912 ML/SP identificado; implicación Cover⇒Win **no** demostrada (OT del spread UNKNOWN + cláusula de empate); H1 no falsificada (0 ACCEPT, `RULES_CONTRADICT`); U-02 parcialmente observado (`fd r=0.05 e=1 to=true`) pero `REAL_FEE_READY=NO`; decisión `GO_RESEARCH`. Evidencia `pe001-reality-check-20260921`. No cierra Review humana ni live.
-- [ ] **PE-001 / P2 — Mandato mínimo E3-RC2:** par basketball con el mismo alcance OT escrito en ambas patas y sin payout de empate vivo, o dictamen owner de boilerplate; captura WS congelada antes de SHADOW; medir skew≤250. Sin órdenes.
-- [ ] **PE-030 / P2 — Forecast vintages y resolución:** contratos Gamma reales, estación, ventanas y punto-en-tiempo; adapter meteorológico real sólo con provenance; mantener UNCALIBRATED hasta evidencia.
-- [ ] **PE-004 / P2 — Datos Catalog/Books reales O/B:** `catalog sync` read-only contra fuente autorizada, `first_known_at` auténtico, consistencia del book, cohorts/censoring; W bloqueada por SFG-06. NO sustituir createdAt por first_known_at.
-- [ ] **BACKLOG no bloqueante / P3:** SFG-06 residual `new_market → Catalog reducer → UniverseChanged → replay` para W; fee real U-02; `capitalLock` legacy BBO hardcodeado `5.1` ≠ notional real; tres archivos `cmd/engine` con gofmt drift reportado; A2 PE-004 serializar corpus 22 fixtures (ya pasan como tests). Priorizar sólo cuando un experimento lo requiera. Refactor post-cinco-POC requiere auditoría comparativa y mandato propio.
+- [x] **PE-001 / P2 — Discovery E3-RC2 (2026-09-21, Grok 4.6):** SCREEN Gamma+Catalog sobre 41 series basketball / 73 eventos / 7 pares ML+SP. Semántico∩temporal = **0**. Familia WNBA (6/6) `RULES_CONTRADICT` (OT SP UNKNOWN + tie clause). Template FIBA 863805 OT INCLUDED ambos lados, kickoff pasado (Gamma accepting stale). 0 oportunidades económicas q=20. U-02 **`U02_PARTIAL`**. Bundle `polymarket-engine-datasets/hardening-20260921/`. Sin SHADOW (no había miembro admisible). Sin órdenes.
+- [ ] **PE-001 / P2 — Siguiente par usable:** esperar un ML+SP con OT escrito igual y sin tie, **o** dictamen owner de que la cláusula WNBA es boilerplate inerte; entonces WS + congelar journal **antes** de SHADOW. Sin órdenes.
+- [x] **PE-030 / P2 — Inventario de contrato real (2026-09-21):** NYC Sep 21/22 station **KLGA**, Tokyo **RJTT**, NOAA hourly + fallback WU; fee `weather_fees` 0.05/1/to rebate 0.25. **Sin vintages point-in-time** → UNCALIBRATED. Adquisición mínima en `hardening-20260921/weather/ACQUISITION.md`. No se calibró.
+- [ ] **PE-030 / P2 — Forecast vintages:** ingestar NWS MOS/NBM issued-at ≤ frame; no latest. Mantener UNCALIBRATED hasta evidencia.
+- [x] **PE-004 / P2 — Catalog first_known ≠ createdAt (2026-09-21):** sync Gamma de 986912 en dataset fresco → `first_known_at=2026-09-21T14:33:53Z` vs `createdAt=2026-09-08`. Wiring honesto. **No nació mercado nuevo en la ventana** → cohorte O/B real ausente (no sustituir).
+- [ ] **PE-004 / P2 — Cohorte real O/B:** observar un mercado **nuevo** durante captura; `first_known_at` auténtico; W sigue SFG-06.
+- [ ] **BACKLOG no bloqueante / P3:** SFG-06 residual `new_market → Catalog reducer → UniverseChanged → replay` para W; fee BUY-shares vs USDC (U-02 residual; no parchear sin ownership); `capitalLock` legacy BBO hardcodeado `5.1` ≠ notional real (reconfirmado `experiment.go`); tres archivos `cmd/engine` gofmt drift reconfirmados (`five_poc_cases_test.go`, `research_gates_test.go`, `screen.go`); A2 PE-004 serializar corpus 22 fixtures. Priorizar sólo cuando un experimento lo requiera.
 - [ ] **CIERRE / P0 al retomar:** actualizar esta nota, padre, nota POC afectada, recurso/guía y journal con resultados de la nueva sesión. `Graphify` y lint sólo marcar PASS si se ejecutaron; no confundir docs con ejecución física.
 
 ## 7. Políticas de ejecución y separación de estados
@@ -169,5 +172,32 @@ RESUME_STATUS_20260921:
   blockers_requiring_owner: OT/tie boilerplate WNBA; Review/publicación engine; U-02 rounding 5 vs 6 dp
   next_execution_action: E3-RC2 par con OT explícito emparejado; congelar journal antes de shadow
   decision: GO_RESEARCH (nunca live)
+```
+
+## 10. Hardening + U-02 + discovery — 2026-09-21
+
+Informe: `~/go/src/github.com/xKoRx/polymarket-engine-datasets/hardening-20260921/REPORT.md`. Change log [[2026-09-21-polymarket-final-readiness]]. Código del engine **no** modificado; M4 v07 sigue válido para `c38f6c4`.
+
+```text
+RESUME_STATUS_20260921_HARDENING:
+  agents_os_bootstrap: PASS (DEFAULT Personal)
+  engine_worktree: /home/kor/go/src/github.com/xKoRx/polymarket-engine-integration
+  current_branch: feature/five-poc-integration
+  current_head: 85e27ff85d466c6522455f1426f6e0c8e23fe157
+  clean: YES
+  final_code_sha_present: 56e8fac
+  evidence_sha_present: c38f6c4
+  certificate_baseline_verified: YES (no recertificado; sin código nuevo)
+  remote_vs_local: origin 25f578a; HEAD local unpushed
+  five_pocs_status: offline certified intacto
+  u02_gate: U02_PARTIAL
+  pe001_discovery: 41 series / 73 events / 7 pairs / 0 semantic∩temporal / 0 economic
+  datasets_and_capture_safety: pe001 78/78 SHA OK; rs-v03 41/41 SHA OK; bundle nuevo hardening-20260921
+  owner_review_state: OPEN c915c11..85e27ff
+  publication_decision_state: UNPUBLISHED
+  chosen_poc_and_first_falsifiable_experiment: PE-001 espera par OT-emparejado o dictamen boilerplate; S04 adquisición NOAA/NWS; S02 segunda ventana
+  blockers_requiring_owner: Review/publicación engine; dictamen OT/tie WNBA; autorización de parche Economics BUY-shares si se desea
+  next_execution_action: no código; esperar par usable o vintages weather; no live
+  decision: ENGINEERING_STAGE_CLOSED_RESEARCH_REPRODUCIBLE (nunca live, nunca alpha)
 ```
 
