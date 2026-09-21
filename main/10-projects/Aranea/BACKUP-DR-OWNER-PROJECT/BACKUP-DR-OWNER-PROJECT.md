@@ -5,14 +5,14 @@ schema_version: 1
 owner: me
 root: true
 status: active
-status_detail: "ACTIVE. R0 reconciliación completa (2026-09-16). R1 (2026-09-17, PASS WITH DEBT): 3 unidades BACKUP+RESTORE_VERIFIED, 3 SKIPPED_GATED, F-09=EXISTS. D0 saneamiento documental (2026-09-17): 9 agent-projects reconciliados, RC-20260917-001 aprobado+aplicado. R1.5 (2026-09-17, PASS WITH OWNER GATES): residuos D0 corregidos; etcd-snapshot VERIFIED+AUTOMATED (corrección: :2379 alcanzable desde hermes); pve node-local VERIFIED semanal + pmxcfs GATED; traefik +drop-in clouDNS; timers frozen 04:00/05:00/SAT 08:30 activos y probados; pi-hole GATED doble (servicio L2-dead + token). Re-verificación continuidad R1 (2026-09-18): runs automáticos del día OK, drills 4/4 PASS nuevos (traefik/etcd/second-brain/hermes-state), F-09 EXISTS live, gates sin cambios (pmxcfs bundle R1.6 en PAUSA, pi-hole L2-dead, traefik ssl), staging 283M/20%, PASS WITH DEBT mantenido. Detalles: change_logs 2026-09-17-backup-dr-r15-config-completion y 2026-09-18-backup-dr-r1-continuity-verification."
+status_detail: "ACTIVE. R0/D0/R1/R1.5 DONE (16-18sep, PASS WITH DEBT; gates owner vigentes: pmxcfs en pausa, pi-hole L2-dead, traefik ssl). R2 piloto vzdump ACTIVO — 3/7 días verify ok al 21sep (el run del 21sep no ocurrió: hermes apagada 01:09-07:36); expira 26sep; decisión D con criterio alternativo 6/7+OK owner. G1A+G1B (20sep) DONE: primera protección recuperable CERTIFICADA PG/Mongo/MinIO (restore→descifrado→drill funcional; claves custodiadas hermes+daedalus+envelope; plaintexts purgados). MP-01 (20sep): A0/A5 PASS, A1 dumps diarios DONE (2º ciclo verificado 21sep), A3 SKIP con bundle. WP-A7 (20sep) PARTIAL: paquete Secret Zero cifrado + demo clean-room PASS, SIN copia fuera de Aranea (pCloud gates 020/021). Master Plan+matriz 59/59+roadmap+mandatos+placement+ventana P0 (20sep) con validación adversarial aplicada; MANDATO-P0 BORRADOR gated (ventana 019 + OK D-piloto + alta nfs-pool2). Decisión owner 21sep: semana 21-25sep de preparación, intervención tras el cierre operativo real de Echo del vie 25; ventana objetivo sáb 26sep 02:00-07:00 pendiente de autorización. Continuidad y estado datado por evidencia: [[ARANEA-CONTINUIDAD-Y-VENTANA-25-26-SEP]]. Detalles: change_logs 2026-09-20-* y 2026-09-21-cierre-documental-integral."
 priority: P1
 icon: 📋
 slug: backup-dr-owner-project
 area: "[[Aranea]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-20
+updated: 2026-09-21
 start: 2026-07-02
 due:
 progress: 25
@@ -60,6 +60,8 @@ Pasar de "tenemos backups parciales y silenciosos" a "tenemos un sistema de back
 - **ACTIVE desde 2026-09-16** por mandato owner (reactivación del carril Backup/DR). Reconciliación R0 completa: `2026-09-16-R0-reconciliacion.md` (mismo directorio).
 - R0 evidenció: 59 guests (23/23 Tier0 KEEP + ADDs propuestos), **ningún mecanismo de backup activo** (0 snapshots ZFS, sin vzdump jobs, sin restic/rclone, sin dumps DB), PBS VM 180 running en kronos pero sin registro en pve_storage ni acceso demostrado (gate owner), pool2 single-disk con scrub overdue.
 - Los nueve agent-projects hijos operan según el roadmap por fases: ap-00 **DONE** (R0+D0), ap-01 **IN-PROGRESS** (R1+R1.5: 4/6 unidades VERIFIED+AUTOMATED, 2 gated), los demás `paused` hasta su fase; ap-02 cambia de "crear VM PBS" a "adoptar/recuperar VM 180 existente"; ap-06 se reescribe contra ARGUS (stack docker-observability mencionado quedó legacy).
+- **Avance 19-21sep**: G1A/G1B certificaron la primera protección recuperable de los 3 stores de datos de Echo (PG/Mongo/MinIO); MP-01 automatizó dumps PG/Mongo (A1 DONE al 21sep) e ingesta R1/R1.5→PBS (A0); WP-A7 preparó el paquete Secret Zero (off-site pendiente, gates 020/021); Master Plan + matriz 59/59 + placement + primera ventana P0 cerrados con revisión adversarial; decisión owner (21sep): **semana 21-25sep de preparación documental, intervención tras el cierre operativo real de Echo del viernes 25, ventana objetivo sáb 26sep 02:00-07:00 (pendiente de autorización)** — estado datado por evidencia y primer mandato del agente siguiente en [[ARANEA-CONTINUIDAD-Y-VENTANA-25-26-SEP]].
+- **Hallazgo 21sep**: hermes (118) apagada 01:09→07:36 (clean shutdown); timers dispararon en catch-up (A1 2º ciclo VERIFIED en PBS; R1 falló second-brain por tar-race) y **el run R2 06:05 no ocurrió** → serie 3/7 no consecutiva; la decisión D usa el criterio alternativo ya definido en MANDATO-P0 (6/7 + OK owner con métricas 25sep).
 
 ## 📦 Alcance
 
