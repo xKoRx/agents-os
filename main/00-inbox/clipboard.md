@@ -1,62 +1,88 @@
-# MANDATO P0 — U-02: V1/V2 PROTOCOL AUTHORITY AUDIT
+# MANDATO — S02 SPORTS REVERSION / EXPERIMENTO REAL E2
 
-**Objetivo:** determinar si el modelo `TAKER_PROCEEDS` implementado en `d5ce263` corresponde realmente al venue aplicable. No implementar otro parche ni integrar código hasta obtener el dictamen.
+## MISIÓN
 
-## Evidencia nueva obligatoria
+Avanzar una sola POC: `PE-005-R1 / poc-sports`.
 
-Polymarket completó Exchange V2 el 28-04-2026.
+Objetivo: medir frecuencia y persistencia de señales de reversión sobre nuevos datos deportivos reales. No optimizar PnL ni implementar otra estrategia.
 
-V1 `ctf-exchange` está archivado y su `CalculatorHelper` cobra BUY sobre tokens recibidos.
+## AUTORIDADES
 
-En V2 `Trading.sol`, la ruta BUY transfiere tokens completos y cobra fee adicional en collateral. El operador proporciona `takerFeeAmount`; el contrato valida límites, pero la configuración `fd` no equivale por sí sola a una prueba completa de la fee efectiva.
+Bootstrap Agents-OS.
 
-El Help Center aún describe BUY fees en shares. Debes reconciliar esta discrepancia.
+Leer proyecto padre, continuidad Five-POC, guía operativa S02, research PE-005-R1 y evidencia RS v0.3.
 
-Fuentes:
+Baseline: integración `85e27ff`, verificando HEAD y limpieza. No utilizar el worktree U-02 como baseline hasta aceptación e integración explícitas.
 
-- `github.com/Polymarket/ctf-exchange-v2`
-    
-- `src/exchange/mixins/Trading.sol`
-    
-- `src/exchange/mixins/Fees.sol`
-    
-- documentación oficial de Exchange Upgrade
-    
-- documentación oficial de Trading Fees
-    
+## EXPERIMENTO
 
-## Tareas
-
-1. Identificar el exchange aplicable a los mercados reales de PE-001 y a la familia de mercados objetivo. Registrar dirección, versión, collateral y evidencia.
+1. Inspeccionar el experimento anterior: captura MLB 2284198, seis horas y cero señales. Documentar ventana, parámetros, cobertura y posibles causas observables de exclusión.
     
-2. Analizar las rutas BUY y SELL de V2: `_matchBuyOrders`, `_settleComplementary`, `_settleTakerOrder` y `_chargeFee`.
+2. Seleccionar antes de mirar los resultados una muestra acotada de otros partidos actuales con kickoff y mercados compatibles. Definir ventanas prepartido sin seleccionar retrospectivamente las que parezcan favorables.
     
-3. Obtener evidencia pública de liquidación: transacción, eventos, transferencias y fee efectiva. No ejecutar órdenes ni solicitar credenciales.
+3. Capturar Catalog y books en modo read-only. Conservar timestamps de fuente y recepción, gaps, secuencias y procedencia.
     
-4. Determinar si la diferencia con el Help Center se debe a documentación desactualizada, otra capa de ejecución, compatibilidad V1 o un mecanismo distinto. Si no se demuestra, conservar `UNKNOWN`.
+4. Congelar el journal antes de ejecutar SHADOW. Proteger originales y WAL; trabajar sobre un snapshot consistente o un dataset nuevo.
     
-5. Comparar los contratos reales con `USDC_CASH` y `TAKER_PROCEEDS`. Explicar qué modelo representa cada uno y cuáles son las unidades de `q`, cash, shares y fee.
+5. Ejecutar baseline con los parámetros canónicos. Si se evalúa una variante, cambiar sólo UN parámetro preregistrado y usar exactamente el mismo dataset para la comparación.
     
-6. Auditar el diff `85e27ff..d5ce263`: 14 archivos y +1487 líneas requieren justificar alcance, invariantes y ausencia de regresiones.
-    
-7. Auditar los gates faltantes: Economics 91,2%, Regimes 94,8%, suite completa, race y correspondencia exacta entre SHA de código y certificado. No rellenar cobertura con tests cosméticos.
+6. Ejecutar SCREEN → REPLAY → SHADOW → COMPARE cuando los datos y gates lo permitan.
     
 
-## Resultado obligatorio
+## MÉTRICAS OBLIGATORIAS
 
-Emitir UNO:
-
-- `V2_CASH_CONFIRMED`: la evidencia del mercado demuestra BUY fee en collateral.
+- Partidos y mercados elegibles.
     
-- `V1_SHARES_CONFIRMED`: la evidencia del mercado demuestra BUY fee en shares.
+- Tiempo y frames realmente observados.
     
-- `MIXED_BY_MARKET`: se demuestra que ambos mecanismos aplican y se identifica el discriminador.
+- Gaps, antigüedad y calidad de libros.
     
-- `PROTOCOL_UNRESOLVED`: la evidencia no permite resolverlo.
+- Frames elegibles versus excluidos, por causa.
+    
+- Número de shocks y señales.
+    
+- Señales por hora elegible.
+    
+- Duración de cada señal.
+    
+- Profundidad y coste observable al detectar la señal.
+    
+- Sensibilidad a retraso y repricing.
+    
+- Efecto de la variante respecto del baseline.
     
 
-Para cada resultado, entregar fuente primaria, pruebas, impacto sobre el código actual y cambio mínimo necesario.
+Distinguir `0 señales` de `sin observaciones suficientes`.
 
-Si encuentras una diferencia, prepara el plan de corrección, pero **no lo ejecutes en este mandato**.
+## ECONOMICS
 
-No merge, push, live, órdenes, wallet ni signing. Mantener `REAL_FEE_READY=false`. Preservar v07/v08, actualizar continuidad y dejar la sesión Agents-OS abierta.
+Mientras U-02 siga sin resolver, la economía de ejecución real permanece NO CERTIFICADA.
+
+Puedes reportar señales, quotes, spreads, profundidad y costes de referencia, pero no declarar oportunidad neta ejecutable, fills reales ni alpha.
+
+Maker permanece UNCALIBRATED. No atribuirle fills.
+
+## GATES DE SALIDA
+
+Entregar uno de estos resultados:
+
+- `SIGNALS_OBSERVED`: señales registradas, con frecuencia y condiciones.
+    
+- `NO_SIGNALS_IN_SAMPLE`: captura válida, cero señales dentro de la muestra.
+    
+- `DATA_INSUFFICIENT`: no se cubrió la muestra o calidad requerida.
+    
+- `IMPLEMENTATION_BLOCKED`: defecto concreto impidió el experimento.
+    
+
+No declarar NO_GO global con una ventana pequeña.
+
+## ENTREGABLES
+
+Un dataset nuevo versionado, manifest, hashes, parámetros preregistrados, resultados reproducibles, comparación y un informe que responda:
+
+«¿Qué observamos, cuánto observamos y qué experimento necesitamos después para evaluar la hipótesis?»
+
+Actualizar las notas existentes de Agents-OS y registrar evidencia. No cerrar sesión.
+
+Sin live, órdenes, wallet, signing, merge, push ni cambios al código compartido.
