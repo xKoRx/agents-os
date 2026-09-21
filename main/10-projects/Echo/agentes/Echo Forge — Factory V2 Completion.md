@@ -67,7 +67,7 @@ La backlog ordenada y no ejecutada vive en [[Echo + Echo Forge — Deferred Cert
 
 ## 🧩 Subproyectos
 
-Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). [[Echo Forge — F-04 Magic allocation, version seal and handoff]] (WIP C5; C5.1–C5.6 IMPLEMENTED, manager review pending). [[Echo Forge — F-05-I Cohesive release and read surfaces]] (PLANNED; SPEC+tareas frozen). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
+Hijos: [[Echo Forge — F-01 Canonical generation concurrency]] (CLOSED). [[Echo Forge — F-02 Finalist Model V2]] (CLOSED). [[Echo Forge — F-03 SQX long-running]] (CLOSED). [[Echo Forge — F-04 Magic allocation, version seal and handoff]] (WIP C5; C5.1–C5.6 IMPLEMENTED, manager review pending). [[Echo Forge — F-05-I Cohesive release and read surfaces]] (IMPLEMENTED / SOURCE VERIFIED @ `3d0e8c9`; físico diferido a F-05-C). [[Echo Forge — Forge Explorer v0]] (PLANNING FROZEN 2026-09-21; visor read-only sobre la read surface F-05-I; implementación NORMAL pendiente). C1/C2 siguen siendo milestones internos de F-02, no proyectos extra.
 
 ## ✅ Tareas
 
@@ -245,6 +245,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 
 ## 📆 Bitácora
 
+- **2026-09-21 — TOP Forge Explorer v0 planning frozen (sin tocar source ni el carril CERT).** Visor LOCAL read-only de resultados Forge como pieza nueva delimitada: package `sqx/cmd/forge-explorer` (sólo stdlib) que renderiza HTML en loopback consumiendo exclusivamente los 6 comandos read de `sqx-flowkit` (contrato F-05-I intacto; `push-output` excluido por guard; cero SQL/DI/drivers; loopback-only; GET-only; fail-closed). Baseline `codex/f05-release-prep` @ `745bc8b` (release `0.2.105`) verificado contra origin; branch `codex/forge-explorer-v0` + worktree independientes; SPEC/PLAN/NORMAL-PROMPT frozen en `specs/FEAT-FORGE-EXPLORER-V0/` @ `cc36c39` publicados en origin. Detalle e historial en [[Echo Forge — Forge Explorer v0]]. Implementación NORMAL pendiente de despacho; PHYSICAL CERTIFICATION NOT RUN.
 - **2026-09-21 — CERT-F05-01 PASS + CERT-F05-02 despachada (misión F05 FINAL COMPLETION).** G0 baseline `F05_SOURCE_AND_RUNTIME_BASELINE_PASS` (master ancestro del release branch; flota 0.2.104 4/4; `codex/f05-r3-integration` = lane E-06 no integrada). G1: FF `a2321cc`; fix F-INT-03 `1056b30` (DB compartido sin reset por test + invariante V1-origin en autocommit; suite registry-postgres GREEN; test-only); refresh frozen `745bc8b` de la release matrix (F-04 físico/cross-lane DONE con records; allowlist del guard ampliada acotadamente; F-04 PASS vs matriz DEFERRED resuelto). G2 PASS sin regresiones. Release `0.2.105` publicada y desplegada 4/4 (Zeus 2856509 / Hera 1440696 / Kronos 1400507 / Windows 16192; SHA == manifest EXACT; rollback 0.2.104 operativo). Campaña FULL F05-02 dispatch única 13:22:40Z sobre `0.2.105` con identidades todas nuevas; read surface F-05-I verificada viva (`campaign list` ve la campaña RUNNING). Evidencia: `~/aranea/work/cert-f05-20260921/`; delta en el Backlog.
 - **2026-09-21 — CERT-F04-03 PASS (HTTPIngress aislado, golden auténtico, sin workers).** 5 receipts INGESTED en Echo DEV `3d260e81`; `sqx.handoff_deliveries` no mutado. F-INT-03 abierto en backlog propio. Siguiente: CERT-F05-01. Evidencia: `~/aranea/work/cert-e04-01/`.
 - **2026-09-21 — Deploy Echo Gateway DEV + ingestión funcional (lane Echo; HTTPIngress Forge `a2321cc` aislado, sin workers).** Gateway `2360369c` en Daedalus; 201 INGESTED DEV; **`CERT_F04_03_BLOCKED`** por golden. Evidencia: `~/aranea/work/echo-dev-ingest-close-20260921/FINDINGS-INGEST-CLOSE-20260921.md`.
@@ -293,6 +294,7 @@ Factory puede crear supply, evaluar robusto, validar físicamente, producir fina
 - [[Echo Forge — F-04 Magic Allocation, Version Seal and Handoff Contract]]
 - [[Echo Forge — F-05-I Cohesive release and read surfaces]]
 - [[Echo Forge — F-05-I Release Matrix and Read Surface Contract]]
+- [[Echo Forge — Forge Explorer v0]]
 - [[Echo — Live Platform V1]]
 - [[Echo + Echo Forge — Deferred Certification Backlog]]
 - [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]
