@@ -1,64 +1,253 @@
-**Decisión: `GO_RESEARCH`.** PE-001 tiene un par real identificable y el fail-closed del engine se sostuvo (0 `ACCEPT`). La implicación contractual no está demostrada y U-02 no está cerrado: no hay validación económica ni permiso live.
+# MANDATO — POLYMARKET RESEARCH HARDENING & FINAL READINESS
 
-Informe durable: `~/go/src/github.com/xKoRx/polymarket-engine-datasets/pe001-reality-check-20260921/REPORT.md`. Código de producción intacto. `LIVE_DISABLED`. Sesión Agents-OS abierta.
+Fecha: 2026-09-21
 
-## 1. Checkout y certificación
+## MISIÓN
 
-Worktree de integración `feature/five-poc-integration` en `85e27ff85d466c6522455f1426f6e0c8e23fe157`, limpio. `56e8fac` es ancestro; `c38f6c4` es el pin de evidencia/M4; `c38f6c4..85e27ff` es sólo `certificate-v07.json`. El remoto sigue en `25f578a`; HEAD local no está publicado. RS v0.3 no se tocó. M4 no se recertificó (no hubo código nuevo).
+Disponemos de una ventana limitada de trabajo con Grok 4.6.
 
-## 2. Par contractual
+Tu misión es aprovecharla para dejar Polymarket Engine técnicamente consolidado y preparado para investigación económica real.
 
-Identidad admisible, **implicación no demostrada**:
+NO reinicies el research.
 
-| | Moneyline | Spread ATL −1.5 |
-|---|---|---|
-| Evento | WNBA `986912` Atlanta Dream vs New York Liberty, `gameId` `13002544`, kickoff `2026-09-22T00:00:00Z` | mismo evento y `gameStartTime` |
-| Market | `4358151` | `4778073` |
-| Condition | `0x05877726250f4903cbe937cd159419b2be8a9a604f36ae38c062b10b090d4f68` | `0x7a95a6f7dfaae94f0292d96064ff8a0fa94c0940ebee0f6fa0b6ba85915736fb` |
-| YES / NO | `69509824…76083` / `11014429…793111` | `40059528…16569` / `55586564…74006` |
-| Texto | ganador **con OT**; postpone abierto; cancel 50-50; **sin empate** | ATL por ≥2, si no NYL; **empate → NYL**; postpone abierto; cancel 50-50; **OT no declarado** |
-| Fuente | `wnba.com/scores` | `wnba.com/` |
-| SHA reglas | `4998c255…b3241` | `3f4ad514…eb9c` |
-| Consulta | Gamma HTTP 200, `2026-09-21T12:51:20Z` | misma captura |
+NO rediseñes M0/M1.
 
-`Cover(ATL,−1.5) ⇒ Win(ATL)` valdría si ambas patas liquidan el mismo marcador final. El texto no lo prueba: el spread no declara OT y sí declara empate, contra el axioma basketball v1. Basket PE-001 = YES(ML)+NO(SP): ≥2 → 1, por 1 → 2, derrota → 1, cancel 50-50, postpone no terminal. `proof_status` honesto = `HYPOTHESIS`.
+NO reconstruyas las cinco POCs.
 
-Descartados (no se inventó par sintético): MLB 494880 (no basketball; empate distinto), series NBA sin games, Euroleague/ACB/Greek sin spread, WNBA ya cerrados, FIBA pasado.
+NO confundas certificación técnica con rentabilidad.
 
-Gamma avisó `deprecation: true` y `sunset` 2026-05-01 (ya vencido); el endpoint aún respondió.
+Tu punto de partida es el reality check PE-001 que acabas de completar.
 
-## 3. U-02 y economics
+**North star: reducir el tiempo hasta una hipótesis validada, no aumentar el volumen de código.**
 
-Parámetros observados el 2026-09-21 ~12:48–12:51Z: docs Sports `0.05·p·(1−p)` con redondeo 5 dp; Gamma `sports_fees_v3` rate 0.05 exp 1 takerOnly; CLOB `fd {r:0.05,e:1,to:true}` en ambas patas. `/fee-rate` sigue `{base_fee:1000}` (legado, no es la fórmula sports). Factory del engine: sólo `SYNTHETIC_FIXTURE`, `TRUNCATE_6DP`. **`REAL_FEE_READY=NO`.** U-02 reducido, no cerrado. No hay rentabilidad declarable.
+## AUTORIDADES
 
-REST taker, no midpoint, q=20: ML YES VWAP **0.56** (62 al best), SP NO VWAP **0.48** (921 al best), suma **1.04**, coste **20.80**. Peor payoff si la implicación valiera: 20. Gross **−0.80**. Fee sintética ≈ **0.496**. Worst net ≈ **−1.296**. Canasta secuencial: profundidad puntual sí cubre q=20; no hay atomicidad. Lock de capital no acotado si hay postpone.
+Carga Agents-OS mediante el bootstrap canónico.
 
-## 4. Dataset
+Lee el proyecto padre, la continuidad Five-POC, la guía operativa, las cinco POCs y el informe:
 
-Bundle `polymarket-engine-datasets/pe001-reality-check-20260921/` (rs-v03 intacto). Catalog scans `a8a742cf…` / `31d3e11c…`, fingerprint `9d498011d8dc…`. WS `12:53:26Z`–`12:54:12Z`, admitted 177 / refused 0, durable_seq **184**, ambas patas `OBSERVED_USABLE`. Journal captura: research_evidence OK. Replay digest `0829265feb0b4136…` idéntico en schedules `1` y `32,7,1`, `not_reproducible=0`.
+`polymarket-engine-datasets/pe001-reality-check-20260921/REPORT.md`
 
-SHADOW escribió RUNTIME después: cutoff 2162. El journal de captura pura es 184. Próxima vez: congelar **antes** de shadow. `engine replay` no tiene `--json`.
+Engine baseline documentada:
 
-## 5. Experimento
+`feature/five-poc-integration@85e27ff`
 
-**H1** (única, pre-registrada): con reglas verbatim, este par no produce `ACCEPT`. Falsación: cualquier `ACCEPT` sin `RELATION_UNVERIFIED` / `RULES_CONTRADICT` / `TERMINAL_STATE_INCOMPLETE`.
+Certificación v07:
 
-**H1 no falsificada.** SCREEN 5/5 `REJECT` `RULES_CONTRADICT`. SHADOW honest: 54 evals, 54 semantic_reject, 0 ACCEPT, 0 fills, outcome `INCONCLUSIVE`, `engine_sha` `85e27ff`. Ceros y rechazos registrados. Skew WS 834 ms > 250 ms.
+`c38f6c4`
 
-Diagnóstico (no es H1; COMPARE `identical=false`): forzar OT/no-tie contra el texto → 52 economic_reject + 1 economic_unknown, 0 ACCEPT. Coherente con VWAP 1.04>1. No certifica reglas.
+Verifica el checkout antes de continuar.
 
-## 6. Auditoría adversarial
+Las decisiones del owner pendientes siguen pendientes. No te autoautorices a aceptar, publicar o habilitar trading.
 
-La relación escrita no garantiza el payoff. El alcance OT no está emparejado. El libro es pre-partido y corto; skew supera el umbral. Fees observadas, no certificadas. El lock puede extenderse con postpone. Identidad y books son reales; fee y el diagnóstico OT no. Sin retrospectiva de resultado (el partido no se había jugado). Journal post-shadow contaminado: declarado.
+---
 
-## 7. Decisión y mandato mínimo
+## FASE 1 — ECONOMIC CORRECTNESS / U-02
 
-**`GO_RESEARCH`**: hay evidencia real nueva y el pipeline funcionó en contratos vivos. No es `NO_GO` (no se demostró imposibilidad). No es `ITERATE` de código. No es `REAL_DATA_READY`. `GO_RESEARCH` no autoriza live.
+Resolver hasta donde permita la evidencia la discrepancia entre la implementación de Economics y la configuración real de Polymarket.
 
-Siguiente mandato mínimo, no un rediseño:
+Hallazgos que debes investigar:
 
-1. Par basketball con el **mismo OT escrito en ambas patas** y sin payout de empate vivo, **o** dictamen del owner de que la cláusula de empate WNBA es boilerplate inerte.
-2. Captura WS read-only, journal congelado **antes** de SHADOW; medir la fracción de frames con skew ≤ 250 ms.
-3. Reusar SCREEN → REPLAY → SHADOW → COMPARE. Sin órdenes. Sin recertificar M4 salvo código nuevo.
+- Sports fee rate 0.05, exponent 1 y takerOnly según la captura.
+    
+- Redondeo oficial a cinco decimales frente a TRUNCATE_6DP del engine.
+    
+- Fees cobradas en shares para BUY y USDC para SELL.
+    
+- Diferencias entre los parámetros de Gamma, CLOB, documentación y contratos.
+    
+- Distinción entre taker fees, maker fees y rebates.
+    
+- Demoras de ejecución deportiva y su efecto económico.
+    
 
-Review humana `c915c11..85e27ff` y publicación del engine siguen abiertas; no se autoaceptaron. Graphify `NOT_RUN` (binario ausente). Notas actualizadas: POC-S03, continuidad §9, bitácora del padre, guía S03, índice/log, change log `[[2026-09-21-pe001-reality-check]]`.s
+La documentación oficial presenta valores contradictorios de maker rebates para Sports. No asumir un valor único sin verificar la configuración pertinente al mercado y periodo.
+
+Revisar las implementaciones y contratos canónicos del protocolo, no blogs como autoridad.
+
+Construir vectores numéricos de referencia independientes.
+
+Determinar si el engine calcula correctamente coste, cantidad recibida, payout neto y capital reservado.
+
+No considerar el cálculo económico equivalente en USDC suficiente si la semántica real del BUY modifica shares recibidas.
+
+### Gate
+
+`U02_VERIFIED`: evidencia primaria suficiente y paridad demostrada.
+
+`U02_PARTIAL`: diferencia acotada y documentada.
+
+`U02_BLOCKED`: falta evidencia material exacta.
+
+Si identificas un defecto real, documenta causa raíz, impacto y regresión. Un cambio mínimo de código sólo podrá ejecutarse con ownership y alcance explícitos; cualquier cambio invalida la certificación anterior hasta recertificar el SHA final.
+
+No perseguir una equivalencia ficticia modificando tests.
+
+---
+
+## FASE 2 — PE-001 REAL MARKET DISCOVERY
+
+El par WNBA anterior queda rechazado económicamente en su snapshot.
+
+No dedicar la investigación a justificar cláusulas ambiguas.
+
+Objetivo: determinar si existe un universo utilizable de pares Moneyline/Spread con reglas demostrables.
+
+Reutilizar Catalog, Gamma y Books existentes.
+
+Descubrir una cohorte acotada de mercados deportivos actuales.
+
+Para cada par:
+
+1. Verificar identidad contractual.
+    
+2. Comprobar alcance temporal y resolución.
+    
+3. Construir o rechazar la matriz terminal.
+    
+4. Obtener books contemporáneos.
+    
+5. Calcular capacidad por profundidad observada.
+    
+6. Aplicar costes y escenarios de ejecución.
+    
+7. Clasificar el motivo de admisión o rechazo.
+    
+
+No interpretar automáticamente la palabra basketball como prueba de OT.
+
+No inventar contratos.
+
+No implementar un crawler privado si Catalog ya resuelve discovery.
+
+Un problema en un único par no demuestra que toda la familia sea inviable. Del mismo modo, un caso favorable no demuestra frecuencia.
+
+Registrar denominadores: mercados descubiertos, pares candidatos, pares semánticamente válidos, frames temporalmente válidos, oportunidades económicas y capacidad.
+
+Distinguir explícitamente falta de datos de ausencia de oportunidades.
+
+### Experimento
+
+Pre-registrar la muestra y las condiciones de evaluación.
+
+SCREEN → REPLAY → SHADOW → COMPARE.
+
+Captura read-only.
+
+Congelar el journal antes de SHADOW, utilizando un mecanismo de snapshot coherente con el store y sus WAL.
+
+No copiar ni modificar archivos activos de forma insegura.
+
+Preservar hashes, cutoff, manifiesto, secuencia y provenance.
+
+Medir skew, antigüedad, latencia y duración de oportunidades. Modelar un escenario de repricing adverso durante la demora de órdenes deportivas.
+
+No atribuir fills reales a un simulador.
+
+---
+
+## FASE 3 — READINESS DEL PROGRAMA COMPLETO
+
+Realizar una auditoría operativa ligera de las cinco POCs utilizando el baseline vigente.
+
+No repetir todas las pruebas si existe evidencia válida para el mismo SHA.
+
+Para cada POC, entregar:
+
+- Estado técnico.
+    
+- Disponibilidad de datos reales.
+    
+- Semántica contractual.
+    
+- Estado de fees/economics.
+    
+- Evidencia de experimento.
+    
+- Bloqueo material exacto.
+    
+- Próximo experimento mínimo.
+    
+
+Revisar especialmente:
+
+**S01 NegRisk:** utilizar RS v0.3 y distinguir membership verificada de payout exhaustiveness todavía desconocida. No promover los 663 resultados inconclusos.
+
+**S02 Sports Reversion:** conservar la captura deportiva existente. Identificar qué muestra adicional necesita para evaluar la frecuencia sin transformar una ausencia local de señales en NO_GO global.
+
+**S03 Sports Combinatorial:** incorporar los resultados de la fase 2.
+
+**S04 Weather:** inventariar contrato real, fuente de resolución, station ID y forecast vintages. No declarar calibración sin datos históricos point-in-time. Si no hay datos suficientes, producir el contrato de adquisición mínimo, no otro modelo.
+
+**S05 Maturation:** verificar una cohorte real O/B con anclas causales. No usar `createdAt` como sustituto de `first_known_at`. Si no aparece un mercado nuevo durante la observación, registrar explícitamente la falta de cohorte.
+
+W/SFG-06 permanece fuera de alcance salvo que se convierta en dependencia real de la investigación actual.
+
+No fabricar oportunidades ni fills para estrategias descriptivas.
+
+---
+
+## FASE 4 — AUDITORÍA FINAL
+
+Consolidar resultados verificables.
+
+Revisar que:
+
+- Los datasets originales estén intactos.
+    
+- Los manifests tengan procedencia y cutoff.
+    
+- Las pruebas reportadas realmente se hayan ejecutado.
+    
+- No exista mezcla de fixtures y datos reales.
+    
+- Los resultados inconclusos sigan siendo inconclusos.
+    
+- No existan cambios de código sin certificación nueva.
+    
+- LIVE_DISABLED permanezca intacto.
+    
+- La documentación refleje el estado real.
+    
+
+Auditar los pendientes reportados previamente: capitalLock legacy, gofmt drift, SFG-06, publicación y aceptación del owner.
+
+Corregir únicamente defectos demostrados y autorizados que bloqueen el objetivo. No hacer refactors cosméticos.
+
+No duplicar proyectos ni crear documentación paralela.
+
+Actualizar los proyectos y recursos existentes de Agents-OS, registrar change log y evidencia. Mantener la sesión abierta.
+
+---
+
+## ENTREGABLE FINAL
+
+Un único resumen ejecutivo:
+
+POLYMARKET_FINAL_READINESS
+
+ENGINE: estado y SHA
+
+M4: certificado válido para qué baseline
+
+DATA: disponibilidad y cobertura real
+
+ECONOMICS: U-02 y precisión
+
+POCS: matriz de cinco estados
+
+RESEARCH: hipótesis contrastadas y resultados
+
+BLOCKERS: únicamente pendientes materiales
+
+DEBT: deuda no bloqueante
+
+OWNER_DECISIONS: decisiones humanas pendientes
+
+NEXT_ACTION: trabajo mínimo restante
+
+Para cada bloqueo declarar evidencia faltante, impacto y condición concreta de resolución.
+
+No declarar alpha, readiness de dinero real ni fin definitivo del research sin evidencia.
+
+El objetivo es cerrar una etapa de ingeniería e iniciar investigación reproducible, aunque las cinco hipótesis continúen sin validación económica.
