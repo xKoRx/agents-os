@@ -230,6 +230,7 @@ Sesión TOP sobre Daedalus (`kor`, ejecución local). Misión: recuperar los com
 - **Physical recipe:** ejecutar la matriz final de release, confirmar no-regresiones del delta y emitir el manifest de certificación de Factory V2.
 - **Durable evidence:** cert manifest, release/source/runtime mapping, golden refs, unresolved accepted debt y veredictos por gate.
 - **PASS criteria:** sólo entonces F-05 puede marcar `PHYSICALLY CERTIFIED`/`CLOSED`; no recertifica B1A/B1B/B2 sin delta.
+- **Ejecutado 2026-09-21:** **`CERT_F05_03_PASS` / `FACTORY_V2_PHYSICALLY_CERTIFIED`** — manifest final en `~/aranea/work/cert-f05-20260921/CERT-F05-03-MANIFEST-PASS-20260921.md`; F-05 → `PHYSICALLY CERTIFIED / CLOSED`. Debt aceptada registrada con owner (mongo/uri flowkit, warnings PG, refresh frozen de pipeline rows, F-INT-04/05).
 
 ### Dependencias y clasificación de trabajo restante
 
