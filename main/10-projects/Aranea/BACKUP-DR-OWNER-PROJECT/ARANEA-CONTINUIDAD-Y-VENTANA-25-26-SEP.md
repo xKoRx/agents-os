@@ -52,7 +52,47 @@ updated: "2026-09-21"
 | mcps 113 | rootfs 85% (8,9G cache reclamable); 26/26 containers up | 20sep | [[OPERATING-STATE-20260920]] |
 | pi-hole 149 / CA 200 | L2-dead / stopped — decisiones owner pendientes (WP-B2) | 20sep | [[OPERATING-STATE-20260920]] |
 
-## Terminado / parcial / bloqueado
+## Delta sesión lun 21 tarde — medido 09:27-09:50Z (post-cierre documental de la mañana)
+
+**Serie R2 certificada con evidencia dura** (runlog driver + journal hermes + PBS): first_run=**20sep**
+(el 19 NO ejecutó: 2 intentos manuales 12:11/12:13 -03 fuera de ventana 06:00-07:30 → skip "día
+perdido"; run-20260919.jsonl); 20sep ciclo completo 6/6 CTs rc=0 + verify TASK OK 09:08:05Z
+(snapshots ct/* 09:05-09:08Z en PBS, listado verificado); 21sep perdido por apagado de hermes (timer
+**non-Persistent por diseño**: journal "día perdido = día perdido"). Quedan 5 disparos (22-26).
+**Serie máxima 6/7 → D-A con tolerancia CERO; un día más perdido = sólo D-B.** Errata aplicada en
+`~/aranea/work/first-window-20260926/MANDATO-P0.md` (§6/§7 se leen "6/7").
+
+**Desacoplamiento Hermes (E2, WP-HD staged)**: inventario verificado — los 6 jobs de protección viven
+TODOS en hermes (5 timers Persistent=true con catch-up demostrado; R2 non-Persistent por diseño).
+Candidatos verificados: PBS 180 up 2d11h (ya ejecuta ingesta A1/A0; datastore 232G libres), daedalus
+up 4d14h. Propuesta gated: **ejecutor standby = PBS 180 con timers espejo ConditionPathExists +
+Persistent=false, flag manual ACTIVE** (activar en la rutina de apagado, desactivar al arrancar) —
+sin auto-activación, sin catch-up retroactivo (regla: no reponer después de 09:00 en día de mercado).
+No ejecutar: 3 gates owner (diseño, credencial, ejecución) — `~/aranea/work/continuity-20260921/E2-WP-HERMES-DECOUPLING.md`.
+
+**T-21b empaquetado**: diff exacto preparado y probado con fixture aislado (escritor concurrente:
+staging atómico 4/4 rc=0 tar íntegro; tar directo 3/4 rc=1 por race; prueba negativa sin falso PASS;
+dry-run de patch limpio). OWNER_GATE mantiene — `~/aranea/work/continuity-20260921/T21B-R1-TAR-RACE-FIX.diff`
+(+ `T21B-FIX-TEST.sh`; aplicar/rollback documentados en el header del diff).
+
+**Deltas del día vs tabla de la mañana**: pi-hole 149 — PVE lo lista **RUNNING** pero sigue L2-dead
+(ICMP 100% loss 09:36; W3/B2 sin cambio real); mcps 113 rootfs **88%** (subió desde 85%; 2,4G libres;
+prune gated → añadir a P1); Ceph osd.0/2 **85,20/85,23%** (banda estable, sin condición de alerta;
+slow ops BlueStore aún listadas en health; 135 op/s wr fondo); Echo **1 posición abierta** verificada
+09:44 -03 vía canal dump propio (protección G1A intacta; mercado activo → cero intervenciones); A7
+payload 288M **≈264M** vs 16G libres de daedalus (baseline corregida — push viable); Prometheus no
+está expuesto como servicio HTTP consultable desde hermes (160:9090/127:9090 cerrados) — el precheck
+Echo de la ventana usa el canal dump de posiciones, no métricas.
+
+**E1 — estado del lunes (por componente, medido hoy)**: A1 **PASS** (2º ciclo VERIFIED en PBS —
+histórico, no nuevo hoy); R1 **PARTIAL** (traefik+hermes-state OK; second-brain FAIL tar-race → diff
+listo gated); CouchDB/A3 **BLOCKED** (sólo credencial owner `_reader` desbloquea; bundle A3 vigente);
+R2 **PARTIAL** (serie certificada arriba); desacoplamiento **DEFER a gates** (diseño listo); Ceph
+**STABLE-WARN** (85,2%, alerta no disparada); Echo **SANO en operación** (1 posición abierta, sin
+rechazos); W1-W5 **sin cambios** (matriz del martes en E4-E5 staged); MANDATO-MARTES-22 **READY** en
+`~/aranea/work/continuity-20260921/MANDATO-MARTES-22.md`.
+
+
 
 - **DONE:** R0, D0, R1 (mecanismo), R1.5, R2-discovery, G1A (+custodia+purga), G1B, MP-01 (A0/A1/A5; A3 SKIP con bundle), Master Plan + 2 validaciones adversariales, matriz 59/59, placement, ventana P0 diseñada, mandato P0 borrador.
 - **PARTIAL:** R2 (3/7 días válidos; run 21sep perdido), A7 (sin off-site real aún), R1 (fallo tar de hoy pendiente de fix), A3 (SKIP con bundle de desbloqueo).

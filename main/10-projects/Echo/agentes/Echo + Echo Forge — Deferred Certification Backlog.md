@@ -154,7 +154,7 @@ Sesión TOP sobre Daedalus (`kor`, ejecución local). Misión: recuperar los com
 - **CERT-F05-01:** ver `~/aranea/work/cert-f05-20260921/logs/CERT-F05-01-PASS-20260921.md`. Build/publicación canónica `./deploy_release.sh --release-only ""` (AUTO 0.2.105), manifest 6 artefactos, SHA local == manifest 3/3, `vcs.revision=745bc8b`; rollout 4/4 con read-back completo; rollback operativo (0.2.104 intacta en los 4 hosts); `LIVE_PHYSICAL_MT5_EXECUTIONS_ACROSS_FLEET = 0` durante todo el gate.
 - **Siguiente gate frozen: CERT-F05-02** (FULL golden auténtico sobre la release `0.2.105` convergida).
 
-
+### Backlog ordenado; no ejecutar en esta sesión
 
 #### CERT-F04-01 — Forge physical chain / T2.12
 
