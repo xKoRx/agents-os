@@ -5,7 +5,7 @@ status: active
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 created: 2026-09-20
-updated: 2026-09-20
+updated: 2026-09-21
 aliases:
   - Five-POC continuity
   - Polymarket Engine handoff
@@ -107,7 +107,8 @@ Para M4, leer flags reales `engine experiment certify --help`, confirmar SHA com
 - [ ] **OWNER / P0 — Decidir publicación** del engine. Si acepta: estrategia de integración/push de `feature/five-poc-integration` hacia `feature/research-strategies-v01` o branch objetivo que el owner elija; detectar remoto adelantado, revisar diff/conflictos, no force-push; ejecutar suite+M4 sobre SHA realmente integrado. Si no acepta: preservar rama local y estado `UNPUBLISHED`.
 - [ ] **RESEARCH / P1 — Elegir UNA POC y UN experimento falsable** con criterio de falsación, métrica, sample, dataset y controles; usar mutation drill BASE/VARIANT como harness, no como prueba de alpha. Arranque de menor infraestructura: S01 sensibilidad `min_edge_bps` o S05 B descriptiva sobre fixture; escoger según interés del owner.
 - [ ] **DATA / P1 — Plan de paso a datos reales de sólo lectura:** inventariar RS v0.3 certificados y manifest de cierre, integridad, fuente/reglas/fees/as-of y ventanas. No declarar `REAL_DATA_READY` por existencia de carpetas `.rs-v03-*`; obtener recibo verificable y preservar guard.
-- [ ] **PE-001 / P2 — Contratos de mercado y fees:** verificar resolución real, relaciones/hándicap, books y U-02 fee venue antes de conclusiones reales.
+- [r] **PE-001 / P2 — Contratos de mercado y fees (2026-09-21):** reality check ejecutado sobre HEAD `85e27ff`. Par WNBA 986912 ML/SP identificado; implicación Cover⇒Win **no** demostrada (OT del spread UNKNOWN + cláusula de empate); H1 no falsificada (0 ACCEPT, `RULES_CONTRADICT`); U-02 parcialmente observado (`fd r=0.05 e=1 to=true`) pero `REAL_FEE_READY=NO`; decisión `GO_RESEARCH`. Evidencia `pe001-reality-check-20260921`. No cierra Review humana ni live.
+- [ ] **PE-001 / P2 — Mandato mínimo E3-RC2:** par basketball con el mismo alcance OT escrito en ambas patas y sin payout de empate vivo, o dictamen owner de boilerplate; captura WS congelada antes de SHADOW; medir skew≤250. Sin órdenes.
 - [ ] **PE-030 / P2 — Forecast vintages y resolución:** contratos Gamma reales, estación, ventanas y punto-en-tiempo; adapter meteorológico real sólo con provenance; mantener UNCALIBRATED hasta evidencia.
 - [ ] **PE-004 / P2 — Datos Catalog/Books reales O/B:** `catalog sync` read-only contra fuente autorizada, `first_known_at` auténtico, consistencia del book, cohorts/censoring; W bloqueada por SFG-06. NO sustituir createdAt por first_known_at.
 - [ ] **BACKLOG no bloqueante / P3:** SFG-06 residual `new_market → Catalog reducer → UniverseChanged → replay` para W; fee real U-02; `capitalLock` legacy BBO hardcodeado `5.1` ≠ notional real; tres archivos `cmd/engine` con gofmt drift reportado; A2 PE-004 serializar corpus 22 fixtures (ya pasan como tests). Priorizar sólo cuando un experimento lo requiera. Refactor post-cinco-POC requiere auditoría comparativa y mandato propio.
@@ -144,3 +145,29 @@ RESUME_STATUS:
 ```
 
 La primera sesión debe **comenzar ejecutando el preflight y un caso de uso real offline**; no gastar horas redescubriendo arquitectura ni afirmar estado remoto/local sin comprobarlo. Esta continuidad queda cerrada documentalmente, **Review humana y push siguen abiertos**.
+
+## 9. Reality check PE-001 — 2026-09-21
+
+Ejecutado sobre worktree integración HEAD `85e27ff` (limpio). Informe: `~/go/src/github.com/xKoRx/polymarket-engine-datasets/pe001-reality-check-20260921/REPORT.md`. Change log [[2026-09-21-pe001-reality-check]].
+
+```text
+RESUME_STATUS_20260921:
+  agents_os_bootstrap: PASS (DEFAULT Personal)
+  engine_worktree: /home/kor/go/src/github.com/xKoRx/polymarket-engine-integration
+  current_branch: feature/five-poc-integration
+  current_head: 85e27ff85d466c6522455f1426f6e0c8e23fe157
+  clean: YES
+  final_code_sha_present: 56e8fac (ancestro)
+  evidence_sha_present: c38f6c4
+  certificate_baseline_verified: YES (v07 pin c38f6c4; no recertificado)
+  remote_vs_local: origin 25f578a; HEAD local unpushed
+  five_pocs_status: offline certified intacto; PE-001 E3_RC = GO_RESEARCH
+  datasets_and_capture_safety: rs-v03 intocado; bundle nuevo pe001-reality-check-20260921
+  owner_review_state: OPEN c915c11..85e27ff
+  publication_decision_state: UNPUBLISHED
+  chosen_poc_and_first_falsifiable_experiment: PE-001 H1 (reglas verbatim ⇒ no ACCEPT) — no falsificada
+  blockers_requiring_owner: OT/tie boilerplate WNBA; Review/publicación engine; U-02 rounding 5 vs 6 dp
+  next_execution_action: E3-RC2 par con OT explícito emparejado; congelar journal antes de shadow
+  decision: GO_RESEARCH (nunca live)
+```
+
