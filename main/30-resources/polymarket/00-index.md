@@ -7,8 +7,8 @@ slug: polymarket-resources-index
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 created: 2026-09-16
-updated: 2026-09-20
-reviewed: 2026-09-20
+updated: 2026-09-21
+reviewed: 2026-09-21
 aliases:
   - Polymarket resources index
 cssclasses:
@@ -26,9 +26,9 @@ tags:
 ## 📊 De un vistazo
 
 - **Proyecto consumidor:** [[Polymarket Engine — MVP]].
-- **Punto de retoma para nuevos agentes:** [[Polymarket Engine — Continuidad Five-POC 2026-09-20]]; leer junto al padre y la guía operativa antes de abrir código. Resume decisiones, SHAs, receipts, tareas con owner y bloqueos.
+- **Punto de retoma para nuevos agentes:** [[Polymarket Engine — Continuidad Five-POC 2026-09-20]]; leer junto al padre y la guía operativa antes de abrir código. Resume decisiones, SHAs, receipts, tareas con owner y bloqueos. Addendum 2026-09-21: PE-001 reality check `GO_RESEARCH` (§9 de continuidad).
 - **Último cierre técnico reportado (2026-09-20):** `FIVE_POC_FINAL_CERTIFIED_BASELINE_READY` offline, branch local del engine `feature/five-poc-integration`, código `56e8fac`, evidencia/M4 baseline `c38f6c4`, HEAD receipt `85e27ff`; build/vet/test/race/archtest + gates PASS según ejecutor, M4 no-live 27 PASS / 0 FAIL / 0 NOT_RUN in-scope / 5 live diferidos. **Sin push/merge ni aceptación humana**; no asumir que los SHAs existen en remoto. Detalle en continuidad, padre y `testdata/research-v07/` del engine local.
-- **Estado de investigación:** 5/5 POCs listas para experiments offline sintéticos. `HYPOTHESIS_VALIDATED=NO`, `LIVE_DISABLED`, fee venue real `U-02 REAL_UNVERIFIED`, Weather/Catalog real `REAL_DATA_READY=NO`, PE-004 W bloqueada por SFG-06.
+- **Estado de investigación:** 5/5 POCs listas para experiments offline sintéticos. `HYPOTHESIS_VALIDATED=NO`, `LIVE_DISABLED`, fee venue real `U-02` **parcialmente observado** (CLOB `fd r=0.05 e=1 to=true` el 2026-09-21; factory sigue `SYNTHETIC_FIXTURE`; `REAL_FEE_READY=NO`). PE-001 E3 reality check: par WNBA 986912 identificado, implicación no demostrada, 0 ACCEPT. Weather/Catalog real `REAL_DATA_READY=NO`, PE-004 W bloqueada por SFG-06.
 - **Recurso técnico M0 canónico:** [[Polymarket — Technical Platform Map — synced 2026-09-17]].
 - **Original íntegro preservado:** Biblioteca `/Polymarket Engine/Resources/Polymarket — Technical Platform Map — synced 2026-09-17.md`, 160165 bytes, 1177 líneas, SHA-256 `78e6506fa67aa12843ba4acb0e4c8271a83c1841432a4a53777c73c4c723c11f`.
 - **Estado M0 histórico:** `DESIGN_READY` documental 2026-09-17; siete RG resueltos para diseño con live/optional gates deshabilitados. §24 de part-10 es autoridad del estado de ese milestone; no es la baseline de implementación actual.
@@ -54,7 +54,7 @@ tags:
 - **Technical Map:** once partes indexadas desde la nota canónica; M0 DESIGN_READY para arquitectura; contratos dinámicos sujetos a versionado y live sujeto a certificación posterior. La versión `Intake` no es autoridad.
 - **Contradicciones de edge research:** fees/rebates históricos, FLB Sports, oracle bond/settlement, estadísticas de wallets, claims de arb sin riesgo.
 - **Regla técnica:** parámetros operacionales se versionan/consultan desde autoridad vigente; no convertir snapshots históricos en constantes del engine.
-- **Próximo gate:** Review humana de `c915c11..85e27ff`, decisión explícita de merge/push, verificación de datos reales read-only y elección de un experimento falsable. Ningún resultado sintético certifica alpha o live.
+- **Próximo gate:** Review humana de `c915c11..85e27ff`, decisión explícita de merge/push. PE-001: mandato mínimo E3-RC2 (par con OT explícito emparejado). Ningún resultado sintético ni este reality check certifica alpha o live.
 
 ## 🔗 Links
 

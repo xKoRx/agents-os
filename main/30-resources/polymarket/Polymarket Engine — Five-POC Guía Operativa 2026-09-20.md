@@ -5,7 +5,7 @@ status: active
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 created: 2026-09-20
-updated: 2026-09-20
+updated: 2026-09-21
 aliases:
   - Five-POC operational guide
   - Guía operativa Five-POC
@@ -105,6 +105,7 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 - **KNOWN LIMITATIONS**: claves de reglas SIN punto extra (`pair.P001.rules_ml_scope`, no `rules_ml_.scope`); `known_at` se valida no-vacío y se hashea (no causalidad vs frame).
 - **RESEARCH SURFACE**: relación/template (`pair.*`, reglas), `min_worst_net`, `q`, `max_residual_loss`, fixture de libros. Fee REAL = `UNVERIFIED` (U-02) ⇒ sólo `SYNTHETIC_FEE_EXPLICIT`.
 - **NEXT EXPERIMENT**: pares con handicaps distintos, `min_worst_net` de sensibilidad, matrices terminales alternativas (vía SPEC).
+- **REALITY CHECK 2026-09-21** (no sustituye el fixture B0): par WNBA event `986912` ML `4358151` / SP `4778073` (ATL −1.5). Spec honesta usa `proof_status=HYPOTHESIS`, `rules_sp_overtime=UNKNOWN`, `rules_sp_tie=true`. Resultado: 0 ACCEPT / `RULES_CONTRADICT`. Bundle `~/go/src/github.com/xKoRx/polymarket-engine-datasets/pe001-reality-check-20260921/`. CLI: `engine experiment shadow` (no subcomando `shadow`); `engine replay` **no** tiene flag `--json`. Congelar el journal de captura **antes** de SHADOW (el shadow escribe RUNTIME). `LIVE_DISABLED`. Decisión `GO_RESEARCH`, no live.
 
 ## POC-S04 — Weather / PE-030 (`poc-weather`)
 

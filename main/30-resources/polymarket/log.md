@@ -5,7 +5,7 @@ status: active
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 created: 2026-09-16
-updated: 2026-09-17
+updated: 2026-09-21
 tags:
   - kind/doc
   - tech/polymarket
@@ -77,3 +77,13 @@ tags:
 - Evidencia v07: 10 drills regenerados con receta idéntica (cuts 5 default CLI; digests v05 reproducen byte-idénticos en `c977447`): `dataset_digest` idéntico 10/10, contadores idénticos, obs digests byte-idénticos, `content_hash` cambia sólo por campos corregidos (BEFORE/AFTER en DRILLS.md v07; v05 intacto) + drill S05O catalog-mode.
 - Quality: build/vet/test/race PASS, archtest 12/12, F5 gates + SFG-07 + LIVE_DISABLED PASS, **M4 `M4_CERTIFIED_NON_LIVE` @ `c38f6c4` 27 PASS / 0 FAIL / 0 in-scope NOT_RUN / 5 live diferidos**.
 - Owner review pendiente: rango `c915c11..85e27ff`; decisión merge/push.
+
+## [2026-09-21] experiment | PE-001 Sports Combinatorial reality check — `GO_RESEARCH`
+
+- Worktree `feature/five-poc-integration@85e27ff` limpio; certificado v07 intacto; sin push; `LIVE_DISABLED`; rs-v03 intocado.
+- Par real WNBA event 986912 (ATL vs NYL), ML 4358151 + spread ATL −1.5 4778073. Implicación Cover⇒Win no demostrada (OT del spread no escrito; clause de empate). H1 no falsificada: 0 ACCEPT, SCREEN `RULES_CONTRADICT`, SHADOW 54 semantic_reject.
+- Fees: CLOB `fd {r:0.05,e:1,to:true}` en ambas patas; `/fee-rate` legado `{base_fee:1000}`; factory engine `SYNTHETIC_FIXTURE`; U-02 no cerrado.
+- REST q=20 VWAP 0.56+0.48=1.04 (no midpoint); worst net sintético negativo. WS 45 s, durable_seq 184, replay digest idéntico en dos schedules.
+- Bundle: `polymarket-engine-datasets/pe001-reality-check-20260921/`. Notas: [[POC-S03 — Sports Combinatorial]], continuidad §9, [[2026-09-21-pe001-reality-check]].
+- Siguiente mandato mínimo: par basketball con OT explícito emparejado, journal congelado antes de SHADOW. No live.
+
