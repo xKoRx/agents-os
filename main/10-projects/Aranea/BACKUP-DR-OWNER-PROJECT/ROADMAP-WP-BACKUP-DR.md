@@ -165,7 +165,7 @@ Precedencia estricta: B1 requiere D-piloto + 018 + crecimiento datastore; A2 req
 
 | WP | Estado nuevo | Cambio |
 |---|---|---|
-| WP-A6 (snapshots + REPL pool0→pool2 + scrub) | **REEEMPLAZADO por [[POOL0-TO-POOL2-REPLICATION-SPEC]] + [[MANDATO-REPLICACION-SPEC]]** | alcance ya NO selectivo: TODO pool0, incremental diario, gates G-REP-1..4; scrub pool2 pasa a pre-requisito G-REP-1 |
+| WP-A6 (snapshots + REPL pool0→pool2 + scrub) | **REEEMPLAZADO por [[POOL0-TO-POOL2-REPLICATION-SPEC]] + [[MANDATO-REPLICACION-SPEC]]** | alcance ya NO selectivo: TODO pool0 (2,35T base `refer`, ledger §1), incremental diario; mecanismo NATIVO zettarepl LOCAL (auditoría 21sep noche-3: la API existe — 401≠404, enum LOCAL en código instalado; script cron+zfs DESCARTADO); horario 04:45/04:50 con dependencias reales verificadas (timers hermes); gates G-REP-0..5 (nuevo: G-REP-0 fixture + G-REP-5 alertas); scrub pool2 = pre-requisito G-REP-1 |
 | WP-B1 (vzdump producción) | VIGENTE + ampliación | exclusión ledger de [[TWO-LAYER-BACKUP-SPEC]] §1; añade capa semanal `nfs-vmbackup` (pool1→pool0, gate G-NFSVM) |
 | W1/W2 dentro de P0-2 (FIRST-MAINTENANCE-WINDOW) | **RETIRADAS** | P0-2 obsoleto; la ventana 26sep queda: prechecks → K2 → K1 → P0-1 (según W-01/gates) |
 | Alta `nfs-pool2` (W-03 §1 del paquete miércoles) | **OBSOLETA** | sin consumidor tras cancelación W1/W2 |
