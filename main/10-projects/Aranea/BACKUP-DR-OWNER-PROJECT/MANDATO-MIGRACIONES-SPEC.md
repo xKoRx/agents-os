@@ -21,9 +21,12 @@ Mandato de migraciones justificadas tras la redirección: W1/W2 canceladas, W3/W
 ## Contenido
 
 ## Alcance tras D-NEW
+
+> [!warning] Errata 21sep noche-3 (revisión "Placement Freeze antes de Backup/DR") — la fila W1/W2 conservaba redacción en imperativo ("reubicar…", "Alta del storage nfs-pool2"), contradictoria con su propio estado CANCELADAS. Corrección: la operación es NINGUNA y el alta `nfs-pool2` queda OBSOLETA (sin consumidor tras D-NEW-01). Clasificación canónica: [[PLACEMENT-DECISIONS-20260920]] §F.
+
 | Ítem | Estado | Operación |
 |---|---|---|
-| W1/W2 edge → pool2 | CANCELADAS | ninguna; edge queda como está (correcto hoy) |
+| W1/W2 edge → pool2 | CANCELADAS (D-NEW-01) | ~~reubicar los 4 CTs + traefik a nfs-pool2~~ · ~~alta del storage nfs-pool2~~ → **NINGUNA**: edge queda como está (correcto hoy); `nfs-pool2` OBSOLETO (sin consumidor tras la cancelación) |
 | W3 pi-hole 149 | DEFER → D5 | si owner elige reactivar: mandato separado de diagnóstico RO (logs CT, config FTL, red/L2 en athena) + vzdump + protección; retiro = decomisión formal. Fuera de ventanas de backup |
 | W4 kafka 128 | KEEP hasta causalidad | P1-4 diagnóstico RO del brote primero; migración sólo si el diagnóstico la justifica (destino corregido: athena) |
 | W5 down-tier SOs | REEVALUACIÓN POR VM | por cada VM (140, 152, 153, 157, 133/134/144): beneficio/rendimiento/disponibilidad/capacidad/destino/dominio de falla/restore/alivio real. Destinos VÁLIDOS: zeus local-lvm (77,5G), hera (91,7G), `nfs-vmbackup` pool0, hades 33,4G SÓLO si la VM ≤25G y deja ≥8G. Tamaños reales en preflight (`qm config`+`pvesm`), no estimaciones |

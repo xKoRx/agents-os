@@ -28,6 +28,38 @@ updated: "2026-09-21"
 
 - Clasificación KEEP/MIGRATE/RECONFIGURE/DEFER/UNKNOWN sobre evidencia del assessment 19-09 (handoff §3/§6) + runtime 20-09 ([[OPERATING-STATE-20260920]]), SIN reabrir el master plan: refina sus decisiones D1/D3 con datos nuevos. Los tamaños iSCSI corregidos aquí (28/32G, no 32G por defecto) no contradicen nada del plan; ajustan capacidad real.
 
+---
+## F. PLACEMENT-FREEZE-V2 — congelación final (mandato owner "Placement Freeze antes de Backup/DR", 21sep noche)
+
+> **Autoridad máxima de esta nota donde contradiga A-E** (junto con §D). Congela la clasificación por workload; las migraciones quedan condicionadas al gate [[STORAGE-ORGANIZATION-FREEZE]]. Principio: el objetivo es el placement correcto, NO llenar la ventana — sin causalidad, no se mueve nada.
+
+### Clasificación final por workload
+
+| Workload | Veredicto | Clasificación de discos | Fundamento |
+|---|---|---|---|
+| PG 152 · Mongo 153 · MinIO 157 | **KEEP** | SO (scsi0, pool1 RBD) = reconstruible · DATOS (scsi1, zvol iSCSI pool0 LUN4/5/6) = críticos — **dos unidades distintas** | D1 KEEP_JUSTIFIED: dato T0 fuera de Ceph; migrar SO exigiría escribir en pool1 nearfull (NO_GO); protección = dumps+snapshots, no migración |
+| Echo 140 + flota MT4 (124/133/134/144) + MT4 test (125, 114) | **KEEP** | SO+terminal (pool1 RBD / nfs ide0) = reconstruibles; credenciales broker fuera de alcance | sostiene la operación; vzdump llega con B1 post-D; NO tocar en operación |
+| W5 down-tier SOs | **DEFER → reevaluación por VM** post-activación de la réplica (NUNCA simultánea con fulls) | por VM: beneficio/rendimiento/disponibilidad/capacidad/destino/dominio de falla/restore/alivio real; destinos válidos zeus 77,5G / hera 91,7G / `nfs-vmbackup` pool0; hades 33,4G sólo si VM ≤25G y deja ≥8G; NO trasladar la flota indiscriminadamente fuera de Ceph; NO migrar SQX (F-04) | el alivio de pool1 NO justifica por sí solo la ventana; cada VM con ficha y gate propios |
+| W4 kafka 128 | **KEEP** hasta causalidad | rootfs pool1; datos scsi1 UNKNOWN → 018 | el brote "metadata out of date" sin diagnóstico (P1-4) no autoriza mover el broker; el pattern apunta a los multi-broker 136/138/139 |
+| W3 pi-hole 149 | **DEFER → decisión de función D5** | rootfs local-lvm athena | corre en ATHENA (no hades); L2-dead crónico: diagnóstico + decisión reactivar+proteger vs retiro (WP-B2); sin migración planificada |
+| CTs edge nfs-storage (103/113/116/137) | **KEEP** | rootfs nfs-storage (pool0) = configuración crítica en file-backend válido | correctamente configurados donde están; D-NEW-01 canceló su reubicación |
+| Traefik 115 | **KEEP** | rootfs local-lvm athena = SO reconstruible + config crítica | CFG R1 diario (mecanismo más maduro); SPOF de nodo se mitiga por restore, no migración |
+| etcd ×5 (+148) | **KEEP** | rootfs local-lvm/pool1 | quorum 5 hosts; snapshot lógico R1.5 diario VERIFIED |
+| SQX 108/111/123 + worker 135 | **KEEP (intocable)** | local-sqx-* | F-04 sagrado |
+| OPNsense 130 · TrueNAS 145 · CA 200 | **KEEP** | local-lvm / passthrough | SPOF firewall y CA = decisiones función (WP-B2), no placement |
+| 100/151 (win) · 112/162/170 · labs stopped | **DEFER** | zvols/LUN/RBD según matriz | decomisión/liberación gated dueño (WP-S1); LUN2 double-attach latente |
+| Pool2 (todo uso) | **RESERVADO** | — | exclusivamente réplica diaria de pool0 (D-NEW-01); PROHIBIDO: discos VM, rootfs, apps, destino PBS, uso operativo; `nfs-pool2` no se crea |
+
+### Migraciones: tabla única de ejecución (vacía de activas)
+
+`ID | VMID | disco | origen | destino | tamaño real | motivo | capacidad | dependencias | indisponibilidad | riesgo | protección previa | rollback | autorización`
+
+- **Activas: NINGUNA.** W1/W2/P0-2 CANCELADAS (D-NEW-01) · W4 condicionada a causalidad P1-4 · W3 condicionada a D5 (y sería reactivación/retiro, no migración) · W5 = reevaluación por VM con ficha por disco en preflight (`qm config`+`pvesm`), gate por VM, nunca simultánea con fulls de réplica/B1/G1B.
+- **Viernes 25sep**: `MIGRATIONS_NOT_READY` — ninguna ficha pasa al sábado; la ventana 26 queda prechecks→K2→K1→P0-1 (W-01). Las validaciones W-04 del viernes se mantienen.
+- Seguridad (binding): protección previa verificado + capacidad destino + rollback + conservación del volumen origen (`--delete` jamás por defecto; `pct move-volume` elimina el origen → su protección ES el vzdump previo verificado) + autorización explícita por gate. Copia preventiva sólo dentro de su ventana autorizada.
+
+---
+
 ## A. Veredicto general
 
 - **El placement de datos está correcto; el problema activo es capacidad de pool1.** El patrón SO-en-Ceph + datos-en-zvol-pool0 (PG 152, Mongo 153, MinIO 157) se mantiene KEEP_JUSTIFIED (master plan D1): el dato T0 vive fuera del dominio de falla de Ceph; migrar SOs hoy exigiría escribir en pool1 nearfull (NO_GO) sin demostrar HA real. La migración que ALIVIA (SOs fuera de pool1) NO es la que corrige disponibilidad — es la que evita la pérdida de los SOs reconstruibles si el cluster se degrada más.
