@@ -28,7 +28,7 @@ Dejar todo listo para que los mandatos 2-6 sean ejecutables en sus ventanas: scr
 2. **Script vzdump semanal `nfs-vmbackup`** + alta de storage preparada como diff (`/etc/pve/storage.cfg` +5 nodos, un bloque nuevo; `nfs-storage` INTOCADO — diff en raw/).
 3. **Re-medición de capacidad** (preflight de cada gate): pool2 free zpool, pool0 used, crecimiento diario (serie 7d con lectura diaria RO vía API), PBS datastore, VGs kronos.
 4. **Lista 018 propuesta actualizada**: matriz 59/59 + exclusión ledger de [[TWO-LAYER-BACKUP-SPEC]] §1 como anexo del formulario del ticket 018 (para el owner).
-5. **Preflight T-25 extendido**: añadir a W-04 los checks de la réplica (G-REP-1..4) y de `nfs-vmbackup`.
+5. **Preflight T-25 extendido**: añadir a W-04 los checks de la réplica (G-REP-0..5) y de `nfs-vmbackup`.
 
 ## Gates
 Ninguno para la preparación documental (clase AUTO). Las ejecuciones de los scripts = gates de sus mandatos (2-4).

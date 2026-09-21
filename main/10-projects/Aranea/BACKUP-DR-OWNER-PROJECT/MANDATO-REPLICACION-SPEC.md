@@ -35,7 +35,7 @@ Mandato de ejecución de la réplica pool0→pool2 (Etapa C): primera transferen
 5. Registrar serie de crecimiento diario y estado en CAPACITY-FREEZE v2.
 
 ## Gates
-G-REP-1..4 — todos owner; una aprobación general NO sustituye gates. K2-check del día: si Ceph se degrada (HEALTH_ERR) durante la ventana por causas externas, la réplica NO se aborta (no toca pool1) pero se registra.
+G-REP-0..5 — todos owner; una aprobación general NO sustituye gates. K2-check del día: si Ceph se degrada (HEALTH_ERR) durante la ventana por causas externas, la réplica NO se aborta (no toca pool1) pero se registra.
 
 ## Riesgo / ABORT
 Riesgo principal: I/O sostenido sobre TrueNAS ~8-12h (chasis hades: guests de trading quedan en idle nocturno — ventana con Echo cerrado obligatoria). ABORT de la transferencia: free pool2 < 1,00T durante el envío, o errores de checksum/IO, o degradación del chasis (temperatura/errores SMART) → detener send, dejar destino consistente (último snapshot recibido completo), documentar, reprogramar.
