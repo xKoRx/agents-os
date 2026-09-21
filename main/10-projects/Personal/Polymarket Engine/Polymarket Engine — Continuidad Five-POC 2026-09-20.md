@@ -115,6 +115,7 @@ Para M4, leer flags reales `engine experiment certify --help`, confirmar SHA com
 - [x] **PE-004 / P2 — Catalog first_known ≠ createdAt (2026-09-21):** sync Gamma de 986912 en dataset fresco → `first_known_at=2026-09-21T14:33:53Z` vs `createdAt=2026-09-08`. Wiring honesto. **No nació mercado nuevo en la ventana** → cohorte O/B real ausente (no sustituir).
 - [ ] **PE-004 / P2 — Cohorte real O/B:** observar un mercado **nuevo** durante captura; `first_known_at` auténtico; W sigue SFG-06.
 - [x] **U-02 / P0 — Protocol authority V1/V2 (2026-09-21):** dictamen **`V2_CASH_CONFIRMED`**. PE-001 y weather liquidan en Exchange V2 / NegRisk V2 con BUY fee en pUSD y shares completas. `TAKER_PROCEEDS` @ `d5ce263` modela V1 archivado; no mergear como venue. `REAL_FEE_READY=NO`. Informe `u02-protocol-authority-20260921/REPORT.md`. Change log [[2026-09-21-u02-protocol-authority]]. Código no integrado; v07/v08 preservados.
+- [x] **S02 / PE-005-R1 — E2 real sports (2026-09-21):** captura 1800 s de 4 moneylines MLB distintas de 2284198, muestra por kickoff preregistrada. Exit **`NO_SIGNALS_IN_SAMPLE`** (0 señales baseline y `widen_min_bps=25`). 3/4 mercados `SUSPECT` por `fee_source_discrepancy` (WS fee 0 vs Gamma 1000); 4613496 USABLE 1-tick. No es NO_GO global. Bundle `pe005-r1-e2-20260921/`. Change log [[2026-09-21-pe005-r1-e2]]. Sin código, sin live.
 - [ ] **BACKLOG no bloqueante / P3:** SFG-06 residual `new_market → Catalog reducer → UniverseChanged → replay` para W; relabel `USDC_CASH`/`TAKER_PROCEEDS` según dictamen V2 (plan listo, no ejecutado); redondeo 5 dp vs `TRUNCATE_6DP`; `capitalLock` legacy BBO hardcodeado `5.1` ≠ notional real (reconfirmado `experiment.go`); tres archivos `cmd/engine` gofmt drift reconfirmados (`five_poc_cases_test.go`, `research_gates_test.go`, `screen.go`); A2 PE-004 serializar corpus 22 fixtures. Priorizar sólo cuando un experimento lo requiera.
 - [ ] **CIERRE / P0 al retomar:** actualizar esta nota, padre, nota POC afectada, recurso/guía y journal con resultados de la nueva sesión. `Graphify` y lint sólo marcar PASS si se ejecutaron; no confundir docs con ejecución física.
 
@@ -231,5 +232,40 @@ RESUME_STATUS_20260921_U02_AUTHORITY:
   blockers_requiring_owner: Review/publicación engine; dictamen OT/tie WNBA; autorización de relabel USDC_CASH/TAKER_PROCEEDS (plan listo, no ejecutar)
   next_execution_action: no código; no integrar d5ce263; no live
   decision: V2_CASH_CONFIRMED (nunca REAL_FEE_READY, nunca live, nunca alpha)
+```
+
+## 12. S02 PE-005-R1 E2 — captura real MLB — 2026-09-21
+
+Exit **`NO_SIGNALS_IN_SAMPLE`**. Informe: `~/go/src/github.com/xKoRx/polymarket-engine-datasets/pe005-r1-e2-20260921/REPORT.md`. Change log [[2026-09-21-pe005-r1-e2]]. **Cero código.** Integración HEAD `85e27ff` intacta. U-02 no usado como baseline. rs-v03 intocado. Journal congelado antes de SHADOW. Sesión **no cerrada**.
+
+```text
+RESUME_STATUS_20260921_S02_E2:
+  agents_os_bootstrap: PASS (DEFAULT Personal; warm turn)
+  engine_worktree: /home/kor/go/src/github.com/xKoRx/polymarket-engine-integration
+  current_branch: feature/five-poc-integration
+  current_head: 85e27ff85d466c6522455f1426f6e0c8e23fe157
+  clean: YES
+  u02_worktree_used: NO
+  final_code_sha_present: 56e8fac
+  evidence_sha_present: c38f6c4
+  certificate_baseline_verified: YES (v07 pin c38f6c4; no recertificado; sin código nuevo)
+  remote_vs_local: origin 25f578a; HEAD local unpushed
+  five_pocs_status: offline certified intacto
+  s02_e2_exit: NO_SIGNALS_IN_SAMPLE (no global NO_GO)
+  sample: 4 MLB moneylines (4584879, 4584889, 4584903, 4613496); excluded 2284198
+  capture: 2026-09-21T15:34:02Z/16:04:03Z 1800s; recv 2590 admitted 2411 refused 0 frontier 2430
+  quality: 6/8 SUSPECT fee_source_discrepancy; 4613496 YES+NO OBSERVED_USABLE 1-tick
+  screen: 30 cuts × 8 instances; 0 opportunities; 0 ineligible (CLI); engine_sha 85e27ff
+  replay: digest MATCH e713ebac… records_applied=2430 not_reproducible=0
+  shadow: 8 runs × 920 frames; 0 opp/eval/fills; INCONCLUSIVE min_samples 100
+  variant: widen_min_bps 50→25 same dataset; 0 vs 0 signals
+  economics: NOT_CERTIFIED; maker UNCALIBRATED; quotes/spreads/depth only
+  datasets_and_capture_safety: rs-v03 intocado; journal-frozen read-only pin; bundle pe005-r1-e2-20260921
+  owner_review_state: OPEN c915c11..85e27ff
+  publication_decision_state: UNPUBLISHED
+  chosen_poc_and_first_falsifiable_experiment: S02 E2 ejecutado; siguiente = T-90min kickoff esta noche SI USABLE, o runbook 2284198 T-8.5h
+  blockers_requiring_owner: Review/publicación engine; U-02 fee_source_discrepancy excluye Detect en books con last_trade fee=0
+  next_execution_action: no código; no live; no merge U-02
+  decision: NO_SIGNALS_IN_SAMPLE (nunca live, nunca alpha, nunca NO_GO global)
 ```
 

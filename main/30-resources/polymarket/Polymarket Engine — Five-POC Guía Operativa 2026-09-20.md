@@ -95,8 +95,8 @@ cd ~/go/src/github.com/xKoRx/polymarket-engine-integration && go build -o /tmp/e
 - **MODE**: SCREEN + SHADOW (1-leg taker).
 - **Caso de uso**: SPORT-REV-CASE-01 (`-run TestF5SportRevCase01Vertical`): 3 cuts quietos + bid shock → ACCEPT.
 - **KNOWN LIMITATIONS**: kickoff desconocido bloquea TODA señal (por diseño); `taker=true` obligatorio (maker UNCALIBRATED).
-- **REAL DATA STATUS**: captura RS v0.3 MLB 2284198 (6 h) intacta; 0 señales en esa ventana = `NO_SIGNAL_OBSERVED_IN_WINDOW` **local**. No es NO_GO global.
-- **NEXT EXPERIMENT**: `widen_min_bps`, `window_ms`, `ref_frames`, serie de spreads del fixture; **otra** ventana pre-match, mismo harness, distinto juego.
+- **REAL DATA STATUS**: RS v0.3 MLB 2284198 (6 h) intacta = `NO_SIGNAL_OBSERVED_IN_WINDOW` **local**. E2 2026-09-21 (`pe005-r1-e2-20260921/`): 4 moneylines distintas, 1800 s, HEAD `85e27ff` = **`NO_SIGNALS_IN_SAMPLE`**. 3/4 `SUSPECT` (`fee_source_discrepancy`); 4613496 USABLE 1-tick; variante `widen_min_bps=25` también 0. No es NO_GO global. Economía no certificada.
+- **NEXT EXPERIMENT**: cola T-90min→kickoff de los MLB de esta noche **si** permanecen `OBSERVED_USABLE`, o runbook 2284198 T-8.5h. No repetir un tercer umbral sobre el dataset E2.
 
 ## POC-S03 — Sports Combinatorial / PE-001 (`poc-sports-combinatorial`)
 
