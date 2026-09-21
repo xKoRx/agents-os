@@ -25,7 +25,7 @@ tags:
   - tech/polymarket
   - topic/prediction-markets
 created: 2026-09-15
-updated: 2026-09-19
+updated: 2026-09-21
 ---
 
 # Polymarket Engine — MVP
@@ -52,7 +52,8 @@ Una vez establecido el engine, el coste marginal de probar una hipótesis nueva 
 
 ## 📊 Estado actual
 
-- Greenfield; repo de implementación pendiente.
+- **`MASTER_CANONICAL` (2026-09-21):** repo `xKoRx/polymarket-engine`, default GitHub `master` @ `a770da6648f93127411cac9a844baaacb7a53397` (= `origin/main`, fast-forward desde `9ae5dde`). Código Five-POC `56e8fac` / evidencia v07 `c38f6c4` / HEAD de integración `85e27ff` absorbidos. M4 recertificado no-live **en `85e27ff`** (27 PASS / 0 FAIL / 0 in-scope NOT_RUN / 5 live diferidos); recibo `testdata/research-master/certificate.json` pineado en `a770da6`. Worktree canónico: `~/go/src/github.com/xKoRx/polymarket-engine-master`. `LIVE_DISABLED`. U-02 `d5ce263` **excluido** (`PATCH_NOT_ACCEPTED_FOR_V2`); unidad BUY = `V2_CASH_CONFIRMED`; `REAL_FEE_READY=false`. Sports E2 es research-only (`NO_SIGNALS_IN_SAMPLE`), sin código nuevo. No alpha, no live. Detalle: continuidad §13 y [[2026-09-21-polymarket-master-consolidation]].
+- Greenfield histórico (supersedido): el repo de implementación existe y está publicado; el bullet original describía el arranque M0.
 - Arquitectura frozen a nivel macro: **Go + modular monolith + single deployable + single large host**.
 - Primero se construye el Engine MVP; Sports y NegRisk dejan de ser “el MVP” y pasan a ser **POC-S01** y **POC-S02**, primeros consumidores del engine.
 - Backlog research: 30 familias canónicas `PE-001…PE-030` en [[Polymarket — Edge Research Consolidado 2026-09-16]].
@@ -642,11 +643,19 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - **P2 Catalog cohorte O CONECTADO (`eaa8154`):** wiring de composición `cmd/engine/maturation_catalog.go` — modo `anchor_source=catalog` en `engine experiment shadow`: el CLI resuelve el ancla ANTES de congelar el manifest vía el adapter sancionado `maturation.CatalogFirstKnownAnchor` sobre `catalog.Service.InspectEntity` real (store del dataset + sink de rechazo: resolución estructuralmente read-only, capture jamás se abre), inyecta `known_at_ms` y el manifest persistido registra `anchor_source=catalog` + ancla resuelta (provenance verificable). Fail-closed: entidad nunca observada → rechazo explícito; doble declaración (`known_at_ms` + catalog) → rechazo; cohorte B + catalog → rechazo (B ancla por su primer book usable, jamás hereda O); `createdAt` jamás antedata; forma no resuelta en otras superficies → rechazo del guard del registro. Modo fixture (default) byte a byte intacto. `CATALOG_WIRING_VERIFIED=YES`; `REAL_CATALOG_DATA_READY=NO` (entidad fixture en tests; sin sync Gamma vivo).
 - **Evidencia v07 (`testdata/research-v07/experiment-drills/`):** los diez drills regenerados con la MISMA receta (inputs/seed idénticos; cuts 5 = default del CLI — los digests v05 se reproducen byte-idénticos en `c977447` con esa receta, confirmado físicamente): `dataset_digest` IDÉNTICO en 10/10, contadores de comportamiento IDÉNTICOS, `observation_digests`/`strategy_metrics` byte-idénticos en S04/S05, y el único cambio de `content_hash` son los campos corregidos (tabla BEFORE/AFTER completa en `research-v07/experiment-drills/DRILLS.md`; v05 preservado intacto como histórico). Drill nuevo `S05O/base.json` (cohorte O modo Catalog, 920 observaciones, 0/0/0, determinismo verificado en dataset fresco).
 - **Quality:** build OK · vet OK · `go test ./...` PASS completo · `-race ./...` PASS · archtest 12/12 · F5-G01/G07/G08/G09/G12/G13×5/G14/G15 PASS · SFG-07 (`TestSFG07ActiveDirRefused`, `TestSFG07SandboxWritesOnlySandbox`) PASS · dataset guard PASS · LIVE_DISABLED (contrato de execution mode + F5-G08 never-GO) PASS · **`M4_CERTIFIED_NON_LIVE @ c38f6c4`: 27 PASS / 0 FAIL / 0 in-scope NOT_RUN / 5 live diferidos** — `testdata/research-v07/certificate-v07.json`.
-- **OWNER_ACTION_REQUIRED:** revisión humana del rango `c915c11..85e27ff` (cierre definitivo completo: fixes + wiring + evidencia + certificado); decisión de merge/push de la branch local.
+- **OWNER_ACTION_REQUIRED (histórico 2026-09-20):** revisión/publicación del rango `c915c11..85e27ff`. **Supersedido 2026-09-21** por mandato de consolidación: publicado en `master` @ `a770da6` con M4 recertificado en `85e27ff`.
 - **Deuda no bloqueante registrada (fuera de alcance):** (a) ruta legacy BBO llama `PrepareCandidate` con `capitalLock "5.1"` hardcodeado ≠ notional real del fill; (b) 3 archivos `cmd/engine` sin gofmt de toolchain (no tocados por ownership); (c) `windows_s` restringido a {60,300,3600} (research surface del paquete maturation).
+
+### Master canónico — Five-POC absorbido (2026-09-21)
+
+- **Estado: `MASTER_CANONICAL`** — default branch `master` @ `a770da6`; código certificado `85e27ff`; `main` alias fast-forward al mismo SHA. Recibo nuevo `testdata/research-master/` (no hereda el pin v07 `c38f6c4` como si certificara `master`).
+- **Integrado:** `feature/five-poc-integration@85e27ff` (fast-forward desde `main@9ae5dde`; sin conflictos).
+- **Excluido:** `fix/u02-buy-shares-accounting` / `d5ce263` (`PATCH_NOT_ACCEPTED_FOR_V2`). Tag `archive/u02-patch-not-accepted-for-v2`. Autoridad [[u02-v2-cash-confirmed]].
+- **Sports Reversion:** E2 entregado 2026-09-21 con **cero código**; nada que mergear. Worktree `feature/five-poc-integration` conservado para esa sesión.
 
 ## 📆 Bitácora
 
+- **2026-09-21 — `MASTER_CANONICAL` — CONSOLIDACIÓN Five-POC EN `master` (inicial `main@9ae5dde` → integración `85e27ff` → recibo `a770da6`, publicado, LIVE_DISABLED):** mandato owner one-shot. Five-POC era descendiente fast-forward de `origin/main`. Gates en worktree nuevo `polymarket-engine-master`: build/vet/test/race PASS; M4 recertificado **en `85e27ff`** 27/0/0/5 (`testdata/research-master/certificate.json`); no se heredó el pin v07. Push normal de `master`; `main` FF al mismo SHA; default GitHub = `master`. `d5ce263` no integrado (`PATCH_NOT_ACCEPTED_FOR_V2`); v08 + tag `archive/u02-patch-not-accepted-for-v2`. Sports E2 ya entregado, sin código. Worktrees POC/shared/U-02 eliminados; se conservan `master`, integración Five-POC (sesión Sports no cerrada), primario `research-strategies-v01`, rama U-02 y backup shared. Continuidad §13 y [[2026-09-21-polymarket-master-consolidation]].
 - **2026-09-21 — `NO_SIGNALS_IN_SAMPLE` — S02 PE-005-R1 E2 captura real MLB (HEAD `85e27ff` intacto, **cero código**, sin push, LIVE_DISABLED):** 4 moneylines distintas de 2284198, muestra por kickoff preregistrada, 1800 s, frontier 2430. SCREEN 0 oportunidades (baseline y `widen_min_bps=25`); REPLAY digest MATCH `e713ebac…`; SHADOW 0 opp `INCONCLUSIVE` min_samples. 3/4 mercados `SUSPECT` (`fee_source_discrepancy` WS fee 0 vs Gamma 1000); 4613496 USABLE 1-tick. No es NO_GO global ni `DATA_INSUFFICIENT`. Economía no certificada. Bundle `pe005-r1-e2-20260921/`. Continuidad §12 y [[2026-09-21-pe005-r1-e2]].
 - **2026-09-21 — `V2_CASH_CONFIRMED` — U-02 PROTOCOL AUTHORITY (integración HEAD `85e27ff` intacto, **cero código integrado**, sin push, LIVE_DISABLED):** dictamen de unidad BUY = collateral pUSD en CTF Exchange V2 (PE-001 tx `0x35f20473…`) y Neg Risk V2 (weather tx `0x5a2269f1…`). `TAKER_PROCEEDS` @ `d5ce263` modela V1 archivado; no mergear como venue. Help Center Maker Rebates (shares on BUY) queda como doc V1 desactualizada frente al FAQ de upgrade + contrato V2 + liquidación. `REAL_FEE_READY=NO` (operador aporta fee; 5 dp vs `TRUNCATE_6DP`; `fd` ≠ fee efectiva). v07/v08 preservados. Plan de relabel preparado, no ejecutado. Detalle continuidad §11 y [[2026-09-21-u02-protocol-authority]].
 
