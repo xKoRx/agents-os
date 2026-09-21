@@ -111,7 +111,7 @@ Regla: **NUNCA declarar** la réplica como "backup consistente de PostgreSQL/Mon
 
 ## 5. Vida útil del HDD (pool2, single-disk)
 
-Una sesión diaria (04:45): escritura del delta diario después de la inicial; sin servicios productivos, sin apps, sin full innecesarios. Scrub: **pool2 NO tiene scrub desde jul-2025** (verificado: last scrub 12jul2025 0 errores; la única tarea de scrub del sistema (id=3) apunta a pool0, scrubbed 6sep). Requisito gate: (1) **scrub manual de pool2 ANTES de la primera réplica** (ventana propia, ~7h estimadas por el histórico de pool0: 1,5T scrubbed en 1h28m → 7,27T ≈ 7h) y (2) tarea de scrub MENSUAL para pool2 creada con la activación. SMART/temperatura: alertas middleware TrueNAS vigentes; check semanal script: `zpool status pool2` sin errores + `smartctl` sin contadores nuevos (output a log local TrueNAS). Control de degradación: cualquier error de scrub o lectura → NO-SEND + alerta (no confiar la réplica a un disco degradado). No desactivar verificaciones para reducir desgaste.
+Una sesión diaria (04:45): escritura del delta diario después de la inicial; sin servicios productivos, sin apps, sin full innecesarios. Scrub: **pool2 sin scrub desde jul-2025** (último: 12jul2025, 0 errores, 07:01h — verificado vía `zpool status` y `pool.query`; la única tarea de scrub existente (id=3, semanal) apunta a pool0, scrubbed 6sep). **El servicio nativo `pool.scrub` existe y está operativo** (corrección: "sin tarea para pool2" era correcto, pero el mecanismo para crearla es nativo de primera parte). Requisito gate: (1) **scrub manual de pool2 ANTES de la primera réplica** (~7h, ventana propia) y (2) tarea de scrub MENSUAL para pool2 (`pool.scrub.create`, primer domingo 00:00) creada con la activación — nota operativa: ese domingo la réplica 04:50 corre durante la cola del scrub; contención de I/O aceptada y documentada (un día al mes; zfs serializa internamente). SMART/temperatura: alertas del middleware TrueNAS como fuente primaria (el subsistema nativo cubre scrub fallido/pool degradado; el canal de entrega queda como gate propio, G-REP-5); check semanal opcional vía `cronjob` interno: `zpool status pool2` sin errores + `smartctl` sin contadores nuevos (log local TrueNAS). Control de degradación: cualquier error de scrub o lectura → NO-SEND + alerta (no confiar la réplica a un disco degradado). No desactivar verificaciones para reducir desgaste.
 
 ## 6. Recuperación (procedimientos, resumen ejecutable en MANDATO-REPLICACION-SPEC)
 
@@ -124,11 +124,13 @@ Una sesión diaria (04:45): escritura del delta diario después de la inicial; s
 
 ## 7. Gates owner (todos requeridos; una aprobación general NO sustituye gates)
 
-- **G-REP-1**: scrub pool2 previo OK (0 errores) — ventana propia, no solapa con G1B/fulls.
-- **G-REP-2**: confirmación del alcance: todo pool0 (default) con la exclusión técnica de `.ix-virt`/`.system` + inclusión EXPLÍCITA de trading_systems/trading_documents (D-W3) y de frigate media.
-- **G-REP-3**: ventana para la 1ª transferencia completa (~2,57T; 8-12h estimadas a HDD; presupuesto de I/O exclusivo: sin G1B/fulls/migraciones sobre TrueNAS ese día; propuesta: madrugada sábado-domingo con Echo cerrado, fuera de la ventana P0).
-- **G-REP-4**: activación del schedule diario (04:45) + retención 14/14 + scrub mensual pool2.
-- Rollback global: desactivar cron + destruir `pool2/pool0-replica` (destrucción = autorización independiente e irreversible, jamás en la misma operación).
+- **G-REP-0**: fixture de validación en pool2 (workspace `pool2/fixrep` autodestruido): snapshottask+replication creados deshabilitados/en dataset de prueba, 1 ciclo real ejecutado, verificación de: exclusión Plan A vs Plan B, `properties=false` vs `sync` del destino, mecanismo de retención destino (i)/(ii)/(iii), restore drill de un dataset hijo y de un zvol. Sin fixture verificado NO hay G-REP-3/4 (clase AUTO por ser efímero y autolimitado; su creación muta pool2 → se anuncia en el bundle y se registra).
+- **G-REP-1**: scrub pool2 previo OK (0 errores) — ventana propia, no solapa con G1B/fulls; ~7h (12jul2025: 3,5T en 07:01h).
+- **G-REP-2**: confirmación del alcance: todo el árbol vivo de pool0 (envío base **2,35T**) con la exclusión técnica de `.ix-virt`/`.system` (justificada en el ledger §1) + inclusión EXPLÍCITA de trading_systems/trading_documents (D-W3). Nota frigate: el dataset vivo entra completo (~14,1G refer); el histórico de media (~52,9G, jul-2025) vive sólo en snapshots legacy y NO viaja (no existe en el árbol vivo — decisión implícita de alcance que el owner valida al aprobar este gate).
+- **G-REP-3**: ventana exclusiva para la 1ª transferencia completa (~2,35T; 7-11h estimadas a HDD; presupuesto de I/O exclusivo: sin G1B/fulls/migraciones sobre TrueNAS ese día; propuesta: madrugada sábado-domingo con Echo cerrado, fuera de la ventana P0).
+- **G-REP-4**: activación del stack nativo (snapshottask 04:45 + replication 04:50, enabled) + retención 14/7-14 + scrub mensual pool2 (`pool.scrub.create`).
+- **G-REP-5**: canal de alertas del middleware (G1A dump del día → alert owner): requisito de operación autónoma (D-NEW-06) mientras no exista SMTP.
+- Rollback global: deshabilitar/eliminar snapshottask+replication (`pool.snapshottask.delete` + `replication.delete`, sin tocar snapshots) + destruir `pool2/pool0-replica` (destrucción = autorización independiente e irreversible, jamás en la misma operación).
 
 ## 8. Contrato con los otros flujos (sin cadenas circulares)
 
