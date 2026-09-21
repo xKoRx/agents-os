@@ -195,3 +195,7 @@ Catalog reales `PENDING`; `LIVE_DISABLED`. Revisión humana del rango
 ## Estado del programa (2026-09-21, semana Sports armada)
 
 `ARMED_WAITING_NEXT_WINDOW`. Publicado `bfa6eaf` (código `c3b1aa1`). M4 no-live 27/0/5 diferidos live, pin `c3b1aa1`. Canary 4584879 PASS. Servicio user activo; el reloj de 7 días no partió. `REAL_FEE_READY=NO`. `LIVE_DISABLED`. Change log [[2026-09-21-pe005-r1-sports-week]].
+
+## Estado del programa (2026-09-21, histórico M0)
+
+`HISTORICAL_DATA_PARTIAL`. Publicado `de33d7d` (código `56195c9`). M4 no-live recertificado en ese código, 27/0/5 diferidos live. La semana Sports sigue en el binario `bfa6eaf`, servicio no reiniciado, `started_at` null. El comando `engine historical import` adapta NDJSON al journal existente; `engine historical describe` mide el spread y no es el SCREEN. Sin tick histórico en la hora, la calidad restringida queda `SYNCING` y la estrategia no declara oportunidad. `REAL_FEE_READY=NO`. `LIVE_DISABLED`. No declarar backtest, OOS ni hipótesis validada. Change log [[2026-09-21-historical-research-m0]].

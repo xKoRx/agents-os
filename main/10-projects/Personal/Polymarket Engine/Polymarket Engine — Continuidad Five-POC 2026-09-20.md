@@ -324,3 +324,43 @@ RESUME_STATUS_20260921_SPORTS_WEEK:
   decision: ARMED_WAITING_NEXT_WINDOW
 ```
 
+## 15. Histórico M0 — PE-005-R1 — 2026-09-21
+
+Mandato owner one-shot. Change log [[2026-09-21-historical-research-m0]]. Agent run [[2026-09-21-cursor-grok-4.7-historical-research-m0]]. La campaña Sports Week no se reinició, no se le cambió el binario ni se escribió su dataset. Sesión Agents-OS no cerrada.
+
+```text
+HISTORICAL_RESEARCH_M0_RESULT: HISTORICAL_DATA_PARTIAL
+  sports_week: INTACT
+    service: sports-week-capture.service active since 2026-09-21 14:15:20 -03
+    binary: sports-week-pe005/bin/engine-bfa6eafa57ae17aa92d7e112d41b87cae5b67990
+    campaign_status: ARMED
+    started_at: null
+    capture_mode: NO_GAMES_SCHEDULED
+  published: origin/master = origin/main = de33d7d4efbcb085cca46dc8f3e2fbe2b2335d97
+  code_sha: 56195c945eae59feb8aeefe849d887ed81776494
+  certificate: testdata/research-master/certificate.json M4_CERTIFIED_NON_LIVE 27/0/5-deferred-live pineado a 56195c9
+  binary_of_pilot: vcs.revision 56195c9 vcs.modified=false
+  live: LIVE_DISABLED
+  real_fee_ready: false
+  economics: ECONOMICS_UNCERTIFIED
+  not_claimed: BACKTEST_PASS OOS_PASS HYPOTHESIS_VALIDATED
+  source: PendulumFlow v3 hours 2026-09-01T21 and T22, remote predicate, full parquet not stored
+  publisher_sha256_not_recomputed_locally: 21=ee4c5add7d23cda375beaeafa0833969059e3d7ad0c5bf246d20b4eb9316c4d3 22=5cd4e6b10bba51f9d54d6ac16637a1009b7ef824c4ed21b4fdaadf8787925dd9
+  kickoff_authority: SCHEDULE_CORROBORATED_POSTHOC (MLB statsapi + Gamma gameStartTime, both retrieved 2026-09-21)
+  exploratory_kickoff: 2026-09-01T22:40:00Z receive window [21:10Z, 22:40Z)
+  markets: SD 3901945, NYM 3901951, TOR 3901947, SF 3901949
+  oos_sealed_not_analyzed: ATL 3901955 and SEA 3901953 kickoff 22:45Z sha256 740badfbcfacf9c21d13b0ec47518760de188ce6096fb42e49ce21cf8b7e71ee lines 18488
+  frozen_params: window_ms=300000 ref_frames=10 widen_min_bps=50 entry_budget=25 min_net_edge_bps=50 taker=true cuts=30 fee_unresolved=true
+  constrained_quality: SYNCING on every exploratory asset (tick_changes=0; Gamma tick of today was not written)
+  replay_nil_constraint_states: OBSERVED_USABLE (replay builds books with a nil constraint source; that is not screen eligibility)
+  replay_schedule_match: true on all four journals
+  describe_label: DESCRIPTIVE_NOT_STRATEGY
+  describe_widenings: 0 on each of the four events
+  screen_cuts_30: SCREEN_BLOCKED_INBOX (owner inbox full; MaxInboxDepth 128)
+  screen_cuts_400: EXECUTION_GRID_NOT_FROZEN opportunities 0 ineligible_frames 0 on SD
+  shadow_56195c9: INCONCLUSIVE frames 920 opportunities 0 fills 0 fees UNRESOLVED dataset_digest fc3927ce0797c5719e45e94322b70dec48e461d180fb1021a1b51c0b826f55a9;records=15420
+  trade_fee_in_window: "0" on 256 last_trade_price rows
+  clob_base_fee_queried_today: 1000 (post-hoc, not journaled)
+  decision_if_strategy_eligible_backtest_is_required: a point-in-time tick fact that is not Gamma-today and is not inside these v3 hours
+```
+
