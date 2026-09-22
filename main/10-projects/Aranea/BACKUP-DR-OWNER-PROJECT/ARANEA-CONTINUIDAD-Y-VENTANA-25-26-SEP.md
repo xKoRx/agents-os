@@ -22,6 +22,18 @@ updated: "2026-09-21"
 
 # ARANEA — CONTINUIDAD Y VENTANA 25-26 SEP
 
+## Delta sesión lun 21 noche-6 — CIERRE PREPARATORIO BACKUP/DR (21sep 22:26-23:0x -03)
+
+**Mandato owner ONE-SHOT** (cierre preparatorio reutilizando el estado noche-5; sin re-inventario ni re-arquitectura; cero cambios productivos). Ejecutado: sonda runtime RO completa + preparación ejecutable + congelación 018 + medición `rbd du` completa. **Entregable central: `~/aranea/work/cierre-preparatorio-20260921/PAQUETE-EJECUCION-25-26SEP.md`** (bloques READY / READY_AFTER_OWNER_GATE / GATED-owner-pendiente / DEFER con dependencias exactas — insumo directo del freeze T-24). Otros: `018-MATRIZ-COBERTURA.md` (matriz VM+datos; ticket 018 congelado a 3 decisiones owner: firma lista + argus datos + kafka datos — respuesta 1 línea) · `RBD-DU-RESULTADOS-20260921.md` + `raw/` (sondas + rbd du completo). Hallazgos verificados esta noche:
+
+- **Ceph 86,56/86,60% a las 22:39** (K2 NO disparada). Ritmo vespertino ≈1,8G/OSD/h en sesión US (08:05 85,2 → 22:39 86,6): margen a backfillfull ≈31,7G/OSD = **18-80h** → **riesgo nuevo: la condición K2 (≥89% ×2 ≥1h) puede disparar ANTES del viernes** → protocolo desde mié 22: 2 lecturas separadas ≥1h (`sudo ceph -c /etc/pve/ceph.conf osd df`), escalar owner si se cumple (acción gated `qm shutdown 125`).
+- **162 y 170 YA ESTÁN LIBERADAS**: el owner ejecutó ambos `qmdestroy` (root@pam) el 20sep 23:58 -03 (tasks OK verificados en kronos/zeus; configs ausentes; RBDs ausentes de pool1). Toda la doc del 21sep las mantenía DEFER por derivar de inventarios 19-20sep. **Sólo queda la liberación 112** (guest stopped kronos; RBD huérfana 5,9G — alivio marginal). Huérfanas vigentes 108/112/123/167/171 = 200G prov / **46,9G usados**.
+- **`rbd du` COMPLETO ejecutado** (48 imágenes, canal `sudo rbd -c /etc/pve/ceph.conf` validado contra vm-159=93G): **1.503G prov / 848G usados reales**. Alivio real: fase 1 W5-post ≈164G usados (echo+MT4+DB-SOs); escenario máximo con autorizaciones ≈572G. 127/106/141 LLENOS al prov → fichas W5-post prioritarias. Nunca prometer prov: contabilizar sólo `rbd du` post-liberación verificado.
+- **W-01 re-validado live**: pool-kronos VFree **733,87G**; VM 180 scsi1 serial `pbs-data` 300G; PBS 295G/18% ext4 → opción (b) ejecutable al exacto. **Errata hades local-lvm ≈20,5G libres** (el 33,4G del freeze era el USADO del thinpool; regla restauración local en hades: VM ≤12G dejando ≥8G) — corregida en [[CAPACITY-AND-RESERVATIONS]] §5.
+- **T-21b verificado SIN aplicar** (tar directo en `r1-backup.sh`; second-brain FAIL 2º día en manifest 20260921-073644) → orden W-02 correcto: D3 primero, run R1 3/3, recién entonces standby.
+- **Frontera de seguridad verificada (no tocar)**: whitelist del guest PG es `command=` (sólo rsync por clave efímera) — la query Echo de 0 posiciones corre por el canal W-04 (dump de posiciones), NO por SSH directo al guest; no ampliar ese whitelist.
+- Resto verde: quórum 5/5, 124/125 running, snapshots A1 vigentes (PG `2026-09-21T10:37:57Z`), hermes sin apagados desde 07:36, timers 6 vivos, R2 expira 26sep (último disparo ese día). Tickets 018-021 intactos (018 con su congelación documental). Cambios vault: erratas en [[CAPACITY-AND-RESERVATIONS]] y [[ANALISIS-DISCO-POR-DISCO]]; bitácora/status_detail proyecto; change log `2026-09-21-cierre-preparatorio-backup-dr`. Cero mutaciones de infra; Echo operando.
+
 ## Delta sesión lun 21 noche-5 — MANDATO CORRECTIVO "BACKUP FIRST" (21sep ~21:00-22:30 -03)
 
 **Mandato owner ONE-SHOT**: corregir la dependencia revocada y completar el análisis; cero cambios productivos. Ejecutado 100% documental (RO sobre evidencia existente + parches). Hallazgos y entregables:

@@ -30,6 +30,8 @@ related:
 
 # 2026-07-02-018 — OWNER-TASK-CRITICAL-VMS
 
+> [!warning] CONGELACIÓN noche-6 (2026-09-21) — el ticket NO se cierra solo: falta firma owner. La base y los deltas ya están congelados en `~/aranea/work/cierre-preparatorio-20260921/018-MATRIZ-COBERTURA.md` (matriz VM + datos con huecos reales). Deltas aplicados: 162 y 170 ELIMINADAS del universo (qmdestroy owner 20sep 23:58, verificado); 149 condicionado a P5; datos argus (40,5G usados) y kafka ×3 = ÚNICAS decisiones técnicas que faltan (retención vs reconstruible). Respuesta en una línea: `018 = lista OK + argus=<reconstruible|retener> + kafka=<reconstruible|retener>`. Con esa línea este ticket pasa a done y B1 obtiene su exclusión ledger definitiva. La lista de candidatos de abajo queda HISTORICAL (inventario jul-2026).
+
 ## Descripción
 
 Confirmar la lista de VMs críticas Tier 0 requerida por el diseño Backup/DR.
