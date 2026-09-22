@@ -23,7 +23,7 @@ Mandato owner ONE-SHOT (sin conversaciones intermedias; cero mutaciones producti
 - **T-21b = READY_AFTER_OWNER_GATE (P2a) con diff v2**: hermes-state también falló por tar-race (22sep) → v1 SUPERSEDED; `T21B-R1-TAR-RACE-FIX-v2.diff` (dry-run limpio sobre hash bca1d148…; fixture 12/12 + negativas; runbook `T21B-RUNBOOK-v2.md`; DoD = run real 3/3).
 - **W-02 = READY_AFTER_OWNER_GATE (a/b/c)**: payload staged `~/aranea/work/w02-standby-20260922/` (units espejo + wrapper freshness guard + instalador; README con los 8 aspectos; R1 excluido con justificación; nada desplegado; orden P2a→W-02).
 - **R2/018**: apagado nocturno de hermes confirmado (2ª noche) → runs 21+22 perdidos → D-A inalcanzable → **P4 = D-B cerrado**. 018 con propuesta fundamentada `kafka=RECONSTRUIBLE` / `argus=RECONSTRUIBLE` (evidencia MCP Kafka; firma owner pendiente).
-- **K2**: 87,03/87,09% a las 08:12 (alza sostenida; 2ª lectura del día registrada en [[K2-CEPH-RISK-20260920]]).
+- **K2**: lectura 1 del día = 87,03/87,09% a las 08:12 (alza sostenida, <89% ⇒ sin condición declarada hoy; la 2ª lectura ≥1h queda pendiente) — serie en [[K2-CEPH-RISK-20260920]].
 - **Paquete consolidado v2**: `PAQUETE-EJECUCION-25-26SEP.md` con READY/READY_AFTER_OWNER_GATE/BLOCKED/DEFER; comandos `qm set -scsi1/-scsi2` eliminados; errata canal kronos=.120.
 
 ## Pendiente owner (una línea por operación)
