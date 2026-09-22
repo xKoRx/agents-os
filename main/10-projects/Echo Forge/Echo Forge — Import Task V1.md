@@ -48,8 +48,9 @@ updated: "2026-09-21"
 > - [x] Review independiente ronda 1 (2026-09-22, agentes verificadores contexto fresco): MR-1 **APPROVED**; MR-2 **CHANGES_REQUIRED** (MAJOR H-1: recovery import validaba MetricSet con constantes Builder ⇒ retry post-crash roto; sin test) #owner/agent #type/pr-review
 > - [x] Correcciones ronda 2 @ `bed8d31`: Fix A recovery por contrato de productor + tests recovery/evidencia import + binding databank plugin (input para import / output para builder) + mensajes por contrato; regresión = fail-set baseline idéntico; re-review ronda 2 en curso #owner/agent #type/dev
 > - [x] Preflight control-plane (RO): Temporal `sqx-dev` OK / flota=`sqx-prop`+`sqx-main-queue` (ETCD production), 0 pollers en cola por defecto; ETCD DEV 40 keys (PG 192.168.31.220/trading_systems, Mongo forge, MinIO 192.168.31.92:9000); MinIO: 11 estrategias .sqx auténticas en `running/wave_2/xau/base/` + convención `00_configs/` con .cfx por stage (sin `EchoForgeImportExporter.cfx` aún — paso owner); canales caídos: aranea-ssh 503 y Mongo RO session-not-found ⇒ preflight host-level (licencia, JAR, passed local, proceso flota) PENDING #owner/agent #type/dev
-> - [r] MR-1/MR-2: veredicto formal ronda 2 del revisor independiente (delta `3d04d68..bed8d31`); solicitud RT-1 precisa al owner #owner/me #type/pr-review
-> - [ ] G7: BLOCKED a RT-1 (nada arrancado; flota intocada); certificación PARCIAL de un host (SPEC §4.3) #blocked
+> - [x] MR-1/MR-2 veredicto formal ronda 2: **APPROVED ambos** (K1–K8 PASS, sin BLOCKER/MAJOR; run `dwfrun-3d728aaa`); headers de amendments actualizados (INDEPENDENT REVIEW APPROVED / RATIFICACIÓN OWNER PENDIENTE) @ `329ee94` #owner/me #type/pr-review
+> - [x] Solicitud RT-1 precisa emitida: `specs/FEAT-SQX-IMPORT-TASK-V1/RT1-REQUEST-G7-OPCION-B.md` (host kronos propuesto, cola sqx-import-cert-v1@sqx-dev, prefix ETCD dedicado, lista cerrada de recursos, ≤2 h, teardown/rollback, condiciones previas) #owner/me #type/dev
+> - [ ] G7: BLOCKED a RT-1 (CONFIRMED del owner) + condiciones previas (canal aranea-ssh restaurado o checklist host-level, .cfx subido, 8 estrategias copiadas); será certificación PARCIAL de un host #blocked
 > - [ ] G8 cierre: merge owner + release según gates (push hecho 2026-09-21) #owner/me #type/dev
 > - [ ] Campaña B: congelar parámetros OOS/MT5 y ejecutar tras G7 #owner/me #type/dev
 
