@@ -69,7 +69,7 @@ related:
 | Ratios efectivos | nearfull 0,85 · backfillfull 0,90 · full 0,95 | verificados en osd dump 20sep |
 | Márgenes a backfillfull/full | ≈21,8G / ≈68G por OSD lleno | K2-CEPH-RISK |
 | Reservas | **NINGUNA asignación nueva** (D-NEW-03: sin discos nuevos ni migraciones hacia pool1) | condición de alerta K2: ≥89% ×2 lecturas ≥1h → acción gated `qm shutdown 125` |
-| Liberaciones futuras (no contabilizadas) | RBD huérfana 120G + 162/170 (20G c/u) + W5 por VM (~64G+) | carril Ceph/Storage S1, gate dueño por VMID; W5 = reevaluación por VM post-réplica |
+| Liberaciones futuras (no contabilizadas) | RBD huérfana vm-112-disk-0 (5,9G usados reales, no 120G — errata noche-6) + W5 por VM (~64G+) | carril Ceph/Storage S1, gate dueño por VMID; W5 = reevaluación por VM post-réplica — [Corrección 21sep] 162/170 YA liberadas por el owner (20sep 23:58); 112 = única liberación pendiente (alivio marginal) |
 
 ## 4. PBS (VM 180, kronos; datastore `main` 295G)
 

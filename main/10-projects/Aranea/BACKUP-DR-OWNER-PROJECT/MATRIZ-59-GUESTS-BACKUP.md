@@ -46,7 +46,7 @@ cssclasses:
 | ADD-CRIT | 116,118 | vault + hermes-state CFG activos | CouchDB dump; ingesta staging→PBS |
 | ADD-IMP/T2 | 113,103,105,106,157,158,142,141,127,128,132,119,137,180 | MinIO DUMP one-shot VERIFIED | MinIO schedule; vzdump flota; HA zvol SNAP |
 | T3/SQX | 108,111,123,135 + 12 stopped lab | NONE por diseño (F-04 / tier3) | — (defensión documental, no gap) |
-| stopped T3 DEFER | 100,112,151,162,170 | NONE | riesgos latentes LUN2 + RBD huérfana (WP-S1) |
+| stopped T3 DEFER | 100,112,151 | NONE | riesgos latentes LUN2 + RBD huérfana (WP-S1) — [Corrección 21sep] 162 y 170 ELIMINADAS del universo (qmdestroy owner 20sep 23:58, verificado tasks/configs/RBDs; ver errata en [[ANALISIS-DISCO-POR-DISCO]]) |
 
 ## Matriz 59/59
 
