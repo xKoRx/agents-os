@@ -1,0 +1,60 @@
+---
+type: agent_run
+schema_version: 1
+scope: session
+created: "2026-09-22"
+updated: "2026-09-22"
+area: "[[[Aranea]]]"
+project: "[[Echo — E-10 Strategy Quality and Eligibility]]"
+application:
+entities:
+  - "[[Echo]]"
+related:
+  - "[[Echo — E-10 Manager Review M3 — Policy Pin and T04 Authorization 2026-09-22]]"
+  - "[[Echo + Echo Forge — Environment Contract]]"
+aliases: []
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash (account:zai-individual-coding-plan)
+model_source: host
+task_type: coding
+task_complexity: high
+outcome: success
+verification: suite
+evaluator: agent
+user_rework: unknown
+source_session:
+load_policy: manual
+indexable: false
+index_priority: never
+tags:
+  - kind/agent-run
+  - scope/session
+---
+
+# Agent Run — 2026-09-22-zcode-glm53-e10-m3-policy-pin-t04
+
+## Trabajo
+
+- **Objetivo:** ejecutar el mandato NORMAL M3 sobre `xKoRx/echo` (única branch `feature/e09-execution-copy-reconciliation-fidelity`, baseline `d2754415`): FASE 1 cerrar el gate de pin de política M3-P1 (ROJO→VERDE, CONTRACT+PG) y FASE 2 implementar exclusivamente T04 (ensamblador de ventana/coverage y digests de inputs S1/S3), deteniéndose después de T04.
+- **Alcance atribuible a esta combinación superficie×modelo:** gate `ErrPolicyPinMismatch` en `PutDecision`/`PutAssessment` con extracción del pin del contenido canónico durable; ensamblador puro + lector READ ONLY 064/065; digest de inputs con tag frozen `echo-quality-inputs.v1`; tests herméticos y físicos etiquetados; SPEC 1.3.0 + TASKS 1.2.0 + VERIFICATION §9; 3 commits atómicos y push FF.
+- **Artefactos afectados:** `v3/sdk/postgres/strategy_quality_stores{,_test}.go`, `v3/sdk/domain/strategy_quality_coverage{,_test}.go` (nuevo), `v3/sdk/postgres/strategy_quality_coverage{,_test}.go` (nuevo), `specs/FEAT-STRATEGY-QUALITY-ELIGIBILITY-E10/{SPEC,TASKS,VERIFICATION}.md`; commits `6cad71ca`, `508c3e57`, `bea4c099`; push FF `d2754415..bea4c099` (read-back exacto `origin == bea4c099`); master `5dd998f1` intacto; migraciones 001–068 byte-intactas.
+
+## Evidencia
+
+- **Validaciones ejecutadas:** pre-flight (`origin == d2754415 == baseline obligatorio`; master intacto; worktree limpio); worktree aislado nuevo `/home/kor/aranea/work/e10-m3-pint04-20260922/echo`; instancia descartable EXCLUSIVA E-10 :15474 con datadir/marcadores propios (arnés `run.sh` PASS con cadena 001–069 antes de cualquier test; instancias de sesiones previas no reutilizadas; un intento de boot sobre :15446 default RECHAZADO por el preflight del arnés y datadir descartado). ROJO conductual M3-P1 capturado contra el árbol sin corregir (decisión bajo B `err=nil` escrita; assessment autoritativo bajo B `err=nil`): 2 FAIL exactamente en las aserciones del defecto. VERDE: 14/14 tests E-10 stores `-race`; 4/4 tests físicos del assembler `-race`; domain `-race` PASS; build/vet/gofmt(delta) limpios; failing set postgres 121/121 idéntico por nombre al baseline `d2754415` medido en worktree limpio de la sesión M2 contra la misma instancia; run.sh E-08 (:15475) y E-09 (:15476) PASS en instancias exclusivas propias; regresión Go E-08 con única falla preexistente `TestRoutingGate_PinContradictionBlocksRouting` RE-demostrada idéntica en baseline sobre la misma instancia; E-09 `ok`.
+- **Resultado observable:** VERIFICATION §9 (`M3-P1=FIXED · T04=DONE · CONTRACT=PASS · PG=PASS · REGRESSIONS=PASS`); SPEC v1.3.0 con erratum M3 y §3.5 (contrato T04 + tag `echo-quality-inputs.v1`); TASKS 1.2.0.
+- **Limitaciones de la evidencia:** COVERAGE_GATE PENDING (T09); PHYSICAL/INTEGRATION PENDING; `POLICY_RATIFICATION=UNACCREDITED` (clase C, UNRESOLVED antes de T06/T07); `FINAL_CLOSED=NO`; re-review Manager M3 es el gate siguiente.
+
+## Evaluación
+
+- **Correctness:** 5 — el pin se extrae del contenido cuya identidad ya re-verificó la lectura; el caso «digest distinto» se demuestra con el escenario donde sólo el pin gate atrapa (la decisión resuelve la política durable coherentemente); los diagnósticos tipados quedan intactos con regresión dedicada.
+- **Autonomy:** 5 — pre-flight, arnés propio, ROJO antes del fix, failing sets apples-to-apples y read-back sin escalaciones.
+- **Efficiency:** 4 — dos iteraciones de test durante el desarrollo (un fixture incoherente trade-dentro-de-VNS fue atrapado por el propio gate del ensamblador; corregido a fixture coherente — la detección demostró funcionar).
+- **Tool use:** 5 — TRUNCATE/FK del cleanup resueltos en un solo statement; stores canónicos E-06/E-07 usados para sembrar (sin SQL de mutación 064).
+- **Overall:** 5
+
+## Resultado
+
+- **Outcome:** success — M3-P1 FIXED y T04 DONE publicados; DETENIDO tras T04 según mandato (T05–T10 NOT AUTHORIZED).
+- **Rework posterior:** unknown (pendiente re-review Manager del delta M3).
+- **Aprendizaje para comparar herramientas:** el cleanup de arnés con FK graph (061→064→065) exige un único TRUNCATE con todas las tablas relacionadas; y un fixture físicamente incoherente (trade dentro de VALID_NO_SIGNAL) es la mejor prueba de que el gate de conflictos del ensamblador dispara.
