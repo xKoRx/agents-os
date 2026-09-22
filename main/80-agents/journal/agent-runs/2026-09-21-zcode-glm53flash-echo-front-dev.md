@@ -53,6 +53,6 @@ tags:
 
 ## Resultado
 
-- **Outcome:** FRONT_DEV_SERVING con gap data plane declarado.
-- **Rework posterior:** pendiente owner cablear `HASURA_GRAPHQL_AUTH_HOOK` en el Hasura DEV (.75) hacia `http://192.168.31.161:8090/api/v1/auth/hasura` + token de operador para datos vivos.
-- **Aprendizaje para comparar herramientas:** el override de env por proceso en `vite build` permite desplegar DEV sin tocar `.env` trackeado en master.
+- **Outcome:** FRONT_DEV_SERVING_WITH_LIVE_DATA — delta 2026-09-22: owner entregó admin secret DEV; parche en front (commit local `269fefc3` en master, **sin push**) usa `x-hasura-admin-secret` en HTTP y en `connection_init.payload.headers` (probe demostró que este Hasura ignora la secret top-level del protocolo `graphql-ws`); CORS Gateway DEV pasado a allow-all (ETCD `*` + `GATEWAY_ENV=develop`). Browser: sin prompt, `ECHO: HEALTHY`, 5/5 cuentas, 14 trades.
+- **Rework posterior:** owner decide push/revert de `269fefc3`; endurecimiento a Bearer requiere cablear auth webhook en el Hasura DEV; rotar secret si la exposición por bundle LAN no se acepta.
+- **Aprendizaje para comparar herramientas:** el override de env por proceso en `vite build` permite desplegar DEV sin tocar `.env` trackeado en master; verificar siempre el formato exacto de auth WS por protocolo antes de asumir el documentado.
