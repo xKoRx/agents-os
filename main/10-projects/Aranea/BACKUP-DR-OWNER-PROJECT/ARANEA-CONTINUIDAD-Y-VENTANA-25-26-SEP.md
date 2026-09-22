@@ -243,3 +243,16 @@ confirmado), P6=G-REP-0..5 sin ninguno aprobado, ticket 018 con propuesta técni
 fundamentada (kafka=RECONSTRUIBLE, argus=RECONSTRUIBLE — firma owner), 020/021 pendientes
 owner, K2 protocolo (22sep lectura 1: 87,03/87,09% 08:12). Errata crítica 22sep: canal
 kronos = 192.168.31.**120** (el GATE decía .100 = zeus).
+
+**Verificación Ariadna 22sep 09:2x (reauditoría del mandato ONE-SHOT):** claims
+re-verificados contra la realidad — hash `r1-backup.sh` bca1d148… intacto, dry-run del
+diff v2 limpio sobre el árbol vivo, staging v2 ≈2,9G pico sobre 36G libres, kronos .120
+live (VFree local-kronos 267,51G ≥ 250G; scsi1 = serial pbs-data 300G; pool-kronos
+733,87G), PBS .123 live (ext4 295G/48G, servicios active) → **P1-v3, T-21b v2 y W-02
+certificados sin defectos técnicos.** Correcciones documentales del verificador: GATE
+§P1 reestructurado (P1-v3 VIGENTE al frente; bloque `qm set -scsi2` histórico con banner
+SUPERSEDED — la fila vieja del registro ya no es firmable), GATE §P2a actualizado al diff
+v2 con comandos completos, §D/K2 corregidos, MANDATO-JUEVES-24 paso 1 apunta al gate
+vigente, TABLA-APROBACION-23SEP con banner SUPERSEDED. K2 día 22 COMPLETE: L1
+87,03/87,09% 08:12 · L2 87,10/87,15% 09:13 (Δ71 min, ritmo matinal lento) — condición
+≥89% ×2 NO disparada; protocolo continúa mié/jue/vie.
