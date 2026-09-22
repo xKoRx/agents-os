@@ -7,7 +7,7 @@ slug: backup-dr-runbook
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-01
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [aranea, backup, runbook, ops, kind/runbook, area/personal, project/agents-os]
 related: "[[BACKUP-DR-DESIGN]]"
 parent: "[[BACKUP-DR-OWNER-PROJECT]]"
@@ -46,9 +46,9 @@ Automatización R1.5: timers systemd activos y probados en hermes-vm — `aranea
 | Ingesta staging→PBS (WP-A0/MP-01) | pxar cifrado de run-dirs R1/R1.5 → `host/r0d-config-{r1,etcd,pve,mp01a5}` + round-trip sha | 20sep |
 | Configs CTs docker + PBS (WP-A5/MP-01) | bundle cifrado 9 targets → `host/r0d-config-mp01a5` (stacks por units systemd, no compose) | 20sep |
 | MinIO 157 (G1B one-shot) | 12 buckets streaming tar\|zstd\|AES → `host/minio-*`; drill FULL_DR PASS | 20sep (recurrencia = gate owner) |
-| Piloto vzdump R2 (6 CTs) | timer `aranea-r2-measure` 06:05 → datastore `main`; verify TASK OK por run | serie 3/7 al 21sep (run 21sep perdido por apagado de hermes; expira 26sep) |
+| Piloto vzdump R2 (6 CTs) | timer `aranea-r2-measure` 06:05 → datastore `main`; verify TASK OK por run | serie 1 OK / 3 disparos al 22sep (runs 21 y 22sep perdidos por apagado nocturno de hermes; máx posible 5/7; expira 26sep) |
 
-Notas de operación (21sep): (a) los timers A1/R1/R1.5 usan `Persistent=true` → tras un apagado corren en catch-up al arranque; el trigger R2 es absoluto no-persistente → un apagado a las 06:05 PIERDE el run del día (así se perdió el del 21sep). (b) El paso second-brain de R1 puede fallar si el vault cambia durante el tar (`file changed as we read it`) — fallo observado el 21sep; corrección gated al owner (tarea T-21b del proyecto); mientras tanto, un FAIL de esa unidad no invalida las otras dos del mismo run. Retención vigente: 30d sin prune en dumps G1A; decision D pendiente para el resto.
+Notas de operación (21sep): (a) los timers A1/R1/R1.5 usan `Persistent=true` → tras un apagado corren en catch-up al arranque; el trigger R2 es absoluto no-persistente → un apagado a las 06:05 PIERDE el run del día (así se perdieron los de 21 y 22sep — patrón de apagado nocturno de hermes confirmado 2 noches; D-A 6/7 quedó inalcanzable y P4 = D-B). (b) El paso second-brain de R1 puede fallar si el vault cambia durante el tar (`file changed as we read it`) — fallo observado el 21sep y extendido a hermes-state el 22sep; la corrección preparada es el diff v2 gated (tarea T-21b del proyecto, `T21B-R1-TAR-RACE-FIX-v2.diff` en hermes); mientras tanto, un FAIL de esas unidades no invalida traefik-config. (c) [22sep] Nota de acceso PBS client: `proxmox-backup-client` desde ariadna@PBS contra `192.168.31.123:main` funciona; contra `localhost:main` falla por validación de certificado self-signed — usar siempre la IP. (d) [22sep] Canal kronos = 192.168.31.120 (.100 es zeus). Retención vigente: 30d sin prune en dumps G1A; decision D pendiente para el resto.
 
 ---
 
