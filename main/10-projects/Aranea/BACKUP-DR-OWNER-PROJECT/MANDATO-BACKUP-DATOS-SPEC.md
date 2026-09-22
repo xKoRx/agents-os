@@ -21,6 +21,8 @@ Mandato de ejecución del Mecanismo B: cierre de deudas de datos y cloud prioriz
 ## Contenido
 
 ## Operaciones (por orden de valor de riesgo)
+
+> [!info] Orden nocturno (noche-5, BACKUP FIRST): primero T-21b/W-02 (protección autónoma), luego A3/A4/A7 por sus gates; el resto del carril Backup/DR no espera organización de storage.
 1. **T-21b (gated: aplicar diff)**: fix tar-race R1 second-brain — diff probado `~/aranea/work/continuity-20260921/T21B-R1-TAR-RACE-FIX.diff`; DoD: run siguiente 3/3 unidades OK.
 2. **W-02 ejecutor standby PBS (gates D2 a+b+c)**: implementación según especificación cerrada `~/aranea/work/continuity-20260923/W-02-BACKUPS-AUTONOMOS.md` — post-cierre Echo del viernes, fuera de ventana; sin auto-activación; flag manual.
 3. **CouchDB A3 (gate G-A3: credencial `_reader`)**: dump diario `_all_dbs` → cifrado r0d-g1a.key → PBS; drill restore scratch (conteo docs vs live).
