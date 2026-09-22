@@ -234,11 +234,12 @@ Paralelizables sin riesgo: carril documental/prep de Backup/DR ∥ diagnóstico 
 
 Autorización PUNTUAL por operación (owner, sin aprobaciones generales): instrumento único
 `~/aranea/work/cierre-preparatorio-20260921/GATE-AUTORIZACION-PUNTUAL-22SEP.md` — contiene
-P1 (W-01 → `qm set 180 -scsi2`, errata scsi1 corregida), P2a (T-21b aplicar; hash base
-bca1d148…, sin aplicar), W-02 a/b/c separados (depende P2a), P4=D-B baseline (D-A sólo con
-6/7 + métricas 25sep + dependencia apagado nocturno resuelta), P6=G-REP-0..5 sin ninguno
-aprobado, ticket 018 con las 3 decisiones exactas (ticket NO se cierra con UNKNOWN), 020/021
-pendientes owner, K2 protocolo MARTES 22 (2 lecturas ≥1h; 21sep 22:39 = 86,56/86,60%).
-Erratas corregidas esta noche: P0-1 slot `-scsi1`→`-scsi2` (scsi1 = datastore pbs-data vivo);
-"miércoles 22"→martes 22; 112 = 5,9G usados reales (no 120G) en CAPACITY/MANDATOS;
-162/170 eliminadas del universo en MATRIZ/CAPACITY/MANDATOS con marcadores de corrección.
+P1 (errata 22sep: **SUPERSEDED `qm set 180 -scsi2` → P1-v3 grow in-place** en `P1-GROW-IN-PLACE.md`; scsi1 = datastore pbs-data vivo y F-06 fija el datastore en local-kronos),
+P2a (T-21b **diff v2** aplicar; hash base bca1d148…, v1 SUPERSEDED porque hermes-state
+también falla por tar-race), W-02 a/b/c separados (depende P2a; payload staged con
+anti-doble-ejecución; R1 excluido del standby con justificación), P4=**D-B baseline
+cerrado** (D-A matemáticamente inalcanzable: 2 runs perdidos por el apagado nocturno
+confirmado), P6=G-REP-0..5 sin ninguno aprobado, ticket 018 con propuesta técnica
+fundamentada (kafka=RECONSTRUIBLE, argus=RECONSTRUIBLE — firma owner), 020/021 pendientes
+owner, K2 protocolo (22sep lectura 1: 87,03/87,09% 08:12). Errata crítica 22sep: canal
+kronos = 192.168.31.**120** (el GATE decía .100 = zeus).

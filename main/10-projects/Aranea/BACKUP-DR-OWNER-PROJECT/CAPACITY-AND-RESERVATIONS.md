@@ -77,8 +77,8 @@ related:
 |---|---|---|
 | Uso actual | 48G/295G (18%); 14.796 chunks (+253/32h, tendencia baja); verify TASK OK | CAPACITY-FREEZE 21sep |
 | Umbral de operación | 70% (207G) | D3 master plan |
-| Reserva: crecimiento | **+300G** vía **2º disco en VG `pool-kronos` (VFree 733,87G) — opción recomendada**; grow in-place ≤250G NO VIABLE tal cual (VG `local-kronos` VFree real 267,5G) | W-01 / TABLA-APROBACION P1 (errata del +300G sobre local-kronos) |
-| Con +300G | 595G total → cabe T0a-d fulls + dumps + staging-ingest con retención 7d/4w (dedup F-11) | post-P0-1/D |
+| Reserva: crecimiento | **+250G in-place (P1-v3, errata 22sep): `lvextend` de `local-kronos/vm-180-disk-1` + `resize2fs` online → ≈545G. ERRATA: la "opción recomendada" previa (2º disco VG `pool-kronos`) quedó SUPERSEDED** — era incoherente (el datastore del guest es ext4 crudo sin VG) y violaba F-06 ("PBS datastore = local-kronos", FROZEN); runbook `cierre-preparatorio-20260921/P1-GROW-IN-PLACE.md`. Trade: local-kronos VFree 267,51G → 17,51G | P1-GROW-IN-PLACE (verificado live 22sep: scsi1 serial pbs-data, ext4 crudo, sin thin pool en el VG) |
+| Con +250G | ≈545G total (delta -50G vs el presupuesto 595G anterior: la validación del footprint real T0a-d ocurre en D-piloto; si lo excede, gate de crecimiento adicional propio) | post-P0-1/D |
 
 ## 5. local-lvm por nodo (destinos W5 / restauraciones)
 
