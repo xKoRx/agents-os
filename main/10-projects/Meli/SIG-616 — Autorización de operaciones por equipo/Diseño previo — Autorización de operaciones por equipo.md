@@ -1,7 +1,7 @@
 ---
 type: doc
 schema_version: 1
-status: draft
+status: archived
 area: "[[Meli]]"
 related:
   - "[[SIG-616 — Autorización de operaciones por equipo]]"
@@ -12,15 +12,15 @@ tags:
   - kind/doc
   - project/sig-616
 created: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-09-21"
 ---
 
 # Diseño previo: autorización de operaciones por equipo
 
-**Estado:** diseño funcional cerrado; validaciones técnicas pendientes · **Proyecto:** [[SIG-616 — Autorización de operaciones por equipo]] · **SPEC de referencia:** [SIG-616 en Spellbook](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) · **Primera vertical:** fundación de seguridad + Actions mutantes de Signals
+**Estado:** archivado y reemplazado · **Proyecto:** [[SIG-616 — Autorización de operaciones por equipo]] · **SPEC vigente:** [[SPEC técnica — Slice 2 — Actions mutantes de Signals]]
 
-> [!warning] Documento de diseño, todavía no SPEC ejecutable
-> Esta nota consolida el análisis y las decisiones previas. No autoriza implementación. El orden acordado es: cerrar diseño y casos → corregir o confirmar la SPEC funcional → crear la SPEC técnica de la primera vertical → derivar y aprobar sus tasks → definir branch/base → implementar.
+> [!danger] Documento histórico; no usar para implementación
+> Este diseño contiene hipótesis descartadas, incluidas reglas para imports, precreation y default-deny. La fuente de verdad vigente es [[SIG-616 — Autorización de operaciones por equipo]] y la SPEC publicada [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623): la autorización es aditiva y un par no configurado conserva su comportamiento previo.
 
 ## 1. Resultado de diseño actual
 

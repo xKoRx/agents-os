@@ -15,8 +15,10 @@ repo: https://github.com/melisource/fury_rio-playmaker
 jira:
 prs:
   - https://github.com/melisource/fury_rio-playmaker/pull/1169
+  - https://github.com/melisource/fury_rio-playmaker/pull/1172
   - https://github.com/melisource/fury_rio-playmaker/pull/1178
   - https://github.com/melisource/fury_rio-playmaker/pull/1181
+  - https://github.com/melisource/fury_rio-playmaker/pull/1182
 aliases:
   - SIG-616
   - Autorización por equipo en Playmaker
@@ -24,7 +26,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-09-14"
-updated: "2026-09-16"
+updated: "2026-09-21"
 ---
 
 # SIG-616 — Autorización de operaciones por equipo
@@ -50,19 +52,20 @@ updated: "2026-09-16"
 
 ## 📊 Estado actual
 
-- **Slice 3 publicado:** `feature/operation-authorization-by-team-f3@1f39b556`, con base `feature/operation-authorization-by-team-f2`, está publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178) y es la base remota vigente de Slice 4. Protege las siete rutas de mutación/deploy de componentes con `DEV_AND_UP`; `/data-products/v2` conserva explícitamente el comportamiento pre-F3. Gate de datos productivos y smoke Tiger/ACME no productivo siguen pendientes.
-- **Slice 4 publicado:** `feature/operation-authorization-by-team-f4@0f37f7b29`, basado exactamente en `origin/feature/operation-authorization-by-team-f3@1f39b556`, está publicado y listo para review en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181). Protege relaciones directas y las cinco mutaciones de pipeline, incluido deploy, con ownership persistido y `DEV_AND_UP`; restaura fail-closed para ownership incompleto. Suite forzada: 3.927 tests, 0 fallas, 2 skips; cobertura diferencial: 100,00% line (100/100) / 100,00% branch (28/28). GitHub confirmó base F3, head F4, estado no draft, mergeable y workflow inicial exitoso. Gate de datos y smoke externo siguen pendientes por falta de acceso.
-- **Slice 5 publicado:** `feature/operation-authorization-by-team-f5@d721b908e`, basado exactamente en `feature/operation-authorization-by-team-f4@0f37f7b29`, está listo para review en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182). Completa la allow-list de Actions, default deny y los guards Tiger/ACME definidos por la SPEC. Inventario vivo y smoke no productivo siguen pendientes antes de rollout.
+- **Slice 2 publicado:** `feature/operation-authorization-by-team-f2@90667a5db`, con base F1, está actualizado en [PR #1172](https://github.com/melisource/fury_rio-playmaker/pull/1172). Tiger publica username, `ActionService` no conserva overloads ni revalida headers, y `catalog-signal + start|stop` exige `DEV_AND_UP` mediante un provider config-backed. No se agregaron reglas para imports, precreation o pares desconocidos. Los comentarios de Ale y Feli fueron respondidos y resueltos.
+- **Slice 3 publicado:** `feature/operation-authorization-by-team-f3@119207a71`, con base F2, está publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178). Protege las siete rutas de mutación/deploy de componentes con `DEV_AND_UP`; `/data-products/v2` conserva explícitamente el comportamiento pre-F3. Gate de datos productivos y smoke Tiger/ACME no productivo siguen pendientes.
+- **Slice 4 publicado:** `feature/operation-authorization-by-team-f4@ccce34382`, con base F3, está publicado en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181). Protege relaciones directas y mutaciones de pipeline, incluido deploy, con ownership persistido y `DEV_AND_UP`. Gate de datos y smoke externo siguen pendientes por falta de acceso.
+- **Slice 5 publicado:** `feature/operation-authorization-by-team-f5@6363d7e0e`, con base F4, está listo para review en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182). Agrega a la configuración los pares mutantes existentes de Flink y ClickHouse; no clasifica reads, no aplica default-deny y no cambia imports ni precreation.
 - **Evidencia de Slice 1:** commit `fbf05159e` en `feature/operation-authorization-by-team-f1`, sincronizado con `origin/develop@073f6a190` mediante el merge `9310ab7b5`; los cuatro tests afectados y `./gradlew check` pasaron, con `2` skips preexistentes. CI, cobertura, dependencias, análisis estático y workflow remoto terminaron correctamente. El feedback útil del review quedó aplicado sin mezclar la precondición legacy `systemId` con el autorizador transversal.
 - **Pendiente operacional:** smoke ACME/Data Product no productivo; no se ejecutó por falta de credenciales apropiadas.
 - **Persistencia acordada:** esta nota conserva la continuidad interna. En Spellbook, [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) es la SPEC funcional padre y [SIG-622](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) / [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) son sus SPECs técnicas hijas.
-- **Roadmap posterior a Actions:** las SPECs locales de Slice 3, 4 y 5 están creadas. Cada slice contiene sus propios tests, smoke, gate de datos y criterios de salida; no existe un gate final de pruebas separado. La publicación como hijas de SIG-621 está pendiente de reautenticar la CLI de Spellbook.
+- **Roadmap posterior a Actions:** las SPECs locales de Slice 3, 4 y 5 están creadas. Cada slice contiene sus propios tests, smoke, gate de datos y criterios de salida; no existe un gate final de pruebas separado. La publicación de Slice 3–5 como hijas de SIG-621 sigue pendiente.
 - Esta nota es la única fuente de verdad interna del proyecto: contiene baseline externo, decisiones del owner, evidencia del código, exclusiones y riesgos residuales.
 - La SPEC SIG-616 de Spellbook se usa como requerimiento de origen aunque figure como `technical`. No se bloquea el avance por su clasificación: las nuevas SPECs explicitan su relación y los overrides deliberados.
-- El ownership vive en `DataProduct.teamName`; los componentes pertenecen a un Data Product. La condición canónica de componente importado es una autorización de importación activa y aprobada, consultada mediante `ImportAuthorizationRepository.existsApprovedByImportedComponentId(componentId)`. `sourceComponentId` no sirve como discriminador porque también se completa en clones de migración v1→v2.
-- La primera vertical se limita a Actions component-bound de Signals: `catalog-signal + start/stop`. Legacy, otras tecnologías, precreation, polling, deployments y otras mutaciones quedan fuera de esa entrega.
-- El [PR 1126](https://github.com/melisource/fury_rio-playmaker/pull/1126) aporta la consulta ACME y casos de autorización para delete/inactivate; se refactorizará progresivamente para converger al mecanismo común, sin adoptar `PipelineAuthorizationService.assertAdminAccess` como contrato transversal definitivo.
-- La primera implementación del autorizador común se extraerá desde ese comportamiento existente. Delete e inactivate serán consumidores de regresión con `DEPLOYER_AND_UP`; Actions Signals será el primer consumidor funcional nuevo con `DEV_AND_UP`.
+- El ownership usado por autorización vive en `DataProduct.teamName + projectCode`; el tipo de Action component-bound proviene de `ComponentModel.componentTemplateCode`. La autorización de Actions no incorpora una condición especial para componentes importados.
+- La primera vertical se limita a Actions component-bound de Signals: `catalog-signal + start/stop`. Legacy, otras tecnologías, precreation, polling, deployments y otras mutaciones conservan su comportamiento en esa entrega.
+- El [PR 1126](https://github.com/melisource/fury_rio-playmaker/pull/1126) aportó la consulta ACME y los casos de autorización para delete/inactivate; Slice 1 los llevó al mecanismo común sin adoptar `PipelineAuthorizationService.assertAdminAccess` como contrato transversal definitivo.
+- `OperationAuthorizationService` se extrajo desde ese comportamiento existente. Delete e inactivate son consumidores de regresión con `DEPLOYER_AND_UP`; Actions Signals agrega `DEV_AND_UP` mediante una capa de permisos configurables.
 - PR 1126 ya está mergeado en `origin/develop` (`1a4caf093`); la versión final valida el grant contra `teamName + projectCode`.
 - ACME no puede precargarse correctamente sólo con el username: `/grants/user-grants/{username}` no informa el rol de `OwnerProjectGrant`. La verificación precisa requiere `username + teamName + Tiger headers` y luego match exacto de `projectCode`.
 - Se definieron sólo dos niveles ACME: `DEV_AND_UP` con committer o superior y `DEPLOYER_AND_UP` con deployer o superior para delete/inactivate. `READ` no es una policy del autorizador: permanece Tiger-only en la frontera HTTP.
@@ -75,15 +78,15 @@ updated: "2026-09-16"
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
 | `rio-playmaker` | `feature/operation-authorization-by-team-f1` | `origin/develop@073f6a190` sincronizada por merge | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621), iniciativa derivada de [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | [SIG-622 — Slice 1](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) | Implementado en `fbf05159e`; [PR #1169](https://github.com/melisource/fury_rio-playmaker/pull/1169) actualizado; smoke no productivo pendiente |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f2@626585ca9` | contiene `origin/feature/operation-authorization-by-team-f1@7cac00089` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | Rama existente; debe incorporar `fbf05159e` de Slice 1 antes de continuar su entrega |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f3@1f39b556` | `feature/operation-authorization-by-team-f2` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] | Implementado y publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178); gate de datos y smoke Tiger/ACME pendientes |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f4@0f37f7b29` | `origin/feature/operation-authorization-by-team-f3@1f39b556` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | Publicado y listo para review en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181); coverage diferencial 100% line/branch; gates externos pendientes |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f5@d721b908e` | `feature/operation-authorization-by-team-f4@0f37f7b29` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 5 — Actions restantes]] | Publicado y listo para review en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182); inventario vivo y smoke no productivo pendientes |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f2@90667a5db` | `feature/operation-authorization-by-team-f1` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | Implementado y publicado en [PR #1172](https://github.com/melisource/fury_rio-playmaker/pull/1172); review comments resueltos; smoke pendiente |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f3@119207a71` | `feature/operation-authorization-by-team-f2` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] | Implementado y publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178); gate de datos y smoke Tiger/ACME pendientes |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f4@ccce34382` | `feature/operation-authorization-by-team-f3` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | Publicado y listo para review en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181); gates externos pendientes |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f5@6363d7e0e` | `feature/operation-authorization-by-team-f4` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 5 — Actions restantes]] | Publicado y listo para review en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182); matriz config-backed y documentación alineadas; smoke pendiente |
 
 ## 🧠 Diseño técnico consolidado
 
 > [!info] Diseño listo para ejecución incremental
-> SIG-621, SIG-622 y SIG-623 están creadas en Spellbook. Las SPECs locales de Slice 3, 4 y 5 están cerradas para publicación. Slice 1 ya está implementado en `feature/operation-authorization-by-team-f1`; la ejecución continúa con Slice 2 desde ese head.
+> SIG-621, SIG-622 y SIG-623 están creadas en Spellbook. Las SPECs locales de Slice 3, 4 y 5 están cerradas para publicación. Las cinco ramas están implementadas y encadenadas; quedan los reviews y gates externos de cada slice.
 
 ### Fuentes y autoridad
 
@@ -98,7 +101,7 @@ Esta separación es deliberada: un requerimiento de la SPEC, una decisión del p
 
 ### Baseline funcional extraído de la SPEC externa
 
-La SPEC exige autorización server-side para mutaciones y operaciones de componentes mediante identidad Tiger validada, ownership persistido y rol ACME. Define allow-list finita, clasificación server-side y default deny dentro de los casos protegidos.
+La iniciativa exige autorización server-side para mutaciones y operaciones de componentes mediante identidad Tiger validada, ownership persistido y rol ACME. La implementación incorpora validaciones de manera incremental sin redefinir el catálogo ni el comportamiento de operaciones no configuradas.
 
 Inventario funcional indicado por la SPEC:
 
@@ -112,8 +115,8 @@ Inventario funcional indicado por la SPEC:
 Reglas transversales heredadas:
 
 - `team-dev-and-up` equivale a `admin`, `maintainer`, `deployer`, `committer`.
-- Los componentes importados no habilitan Actions mutantes; la importación no transfiere ownership.
-- Una Action mutante de precreación se rechaza porque no existe un componente de origen persistido.
+- Los componentes importados conservan el comportamiento existente; la autorización adicional usa el team/project persistido del Data Product.
+- Precreation conserva su comportamiento y queda fuera de la autorización component-bound.
 - Origen y destino de una relación deben pertenecer al mismo Data Product; cross-DP es inválido.
 - `platformTeams` y `tempAllCanEdit` no conceden autorización bajo el nuevo guard.
 - Tiger ausente/inválido, ownership faltante, rol insuficiente, ACME no verificable o recursos inconsistentes rechazan sin side effects.
@@ -141,11 +144,11 @@ Playmaker es el enforcement point. Los handlers y Control Planes no consultarán
 
 ### Principios
 
-- **KISS:** una clase concreta de autorización, sin pareja `interface/impl`.
+- **KISS:** un puerto mínimo para resolver permisos y un adapter config-backed; sin motor de policies, jobs o cache.
 - **YAGNI:** sin motor de policies, Aspects, annotations ni legacy en la primera entrega.
 - **SOLID pragmático:** Tiger autentica; el caso de uso resuelve el target; el autorizador encapsula ACME y roles.
-- **Default deny dentro del alcance:** una Action desconocida de Signals no se presume de lectura.
-- **Fuente persistida:** tipo, ownership e importación salen de Playmaker, no del request.
+- **Aditividad:** un par no configurado no recibe autorización nueva ni se clasifica como deny.
+- **Fuente persistida:** tipo y ownership salen de Playmaker, no del request.
 - **Evolución por consumidores reales:** primero se extrae el comportamiento existente; después se agregan nuevas operaciones.
 
 ### Alcance incremental
@@ -156,7 +159,7 @@ Playmaker es el enforcement point. Los handlers y Control Planes no consultarán
 | Slice 2 | Corregir principal Tiger e integrar `catalog-signal + start/stop` | Sólo Signals agrega una restricción nueva |
 | Slice 3 | Mutaciones y deployments de componentes | `DEV_AND_UP` en todas las rutas enumeradas; tests y rollout en el mismo PR |
 | Slice 4 | Relaciones y pipelines, incluido pipeline deploy | `DEV_AND_UP`, same-DP y tests/rollout en el mismo PR |
-| Slice 5 | Actions restantes de Flink, ClickHouse y lecturas allow-listed | Whitelist completa, default deny y tests/rollout en el mismo PR |
+| Slice 5 | Actions mutantes restantes de Flink y ClickHouse | Agrega pares y niveles a la configuración sin modificar otras Actions |
 
 ### Niveles ACME
 
@@ -167,9 +170,9 @@ Playmaker es el enforcement point. Los handlers y Control Planes no consultarán
 
 Las Actions de lectura quedan fuera del autorizador común y continúan protegidas sólo por Tiger. No se agregarán más niveles sin un caso funcional nuevo.
 
-### Actions: clasificación inicial
+### Actions: autorización configurada
 
-La whitelist se define mediante el par `component_type + actionName`, nunca sólo por nombre:
+La clave de autorización es el par exacto `component_type + actionName`, nunca sólo el nombre:
 
 | Tipo persistido | Action | Clasificación | Requisito |
 |---|---|---|---|
@@ -178,11 +181,11 @@ La whitelist se define mediante el par `component_type + actionName`, nunca sól
 
 Reglas asociadas:
 
-- Una Action desconocida sobre `catalog-signal` se rechaza.
-- Otros tipos conservan el comportamiento actual hasta que una SPEC los incorpore.
+- Un par ausente de `app.action-authorization.permissions` conserva su comportamiento actual.
+- Otros tipos reciben autorización sólo cuando su par exacto aparece en la configuración activa del scope.
 - Kafka y ClickHouse read Actions siguen Tiger-only, tal como indica la SPEC.
-- Un componente importado según `ImportAuthorizationRepository.existsApprovedByImportedComponentId(componentId)` no puede ejecutar una Action mutante. No se usa `sourceComponentId` para esta decisión.
-- Precreation queda fuera; `catalog-signal + start/stop` sin componente persistido debe terminar rechazado.
+- Los componentes importados siguen la misma autorización por team/project persistido; no existe un guard especial de importación.
+- Precreation queda fuera y conserva su comportamiento.
 - Polling no obtiene una política nueva, no cambia `ActionKvsEntry` y no agrega `resultVisibility`.
 
 Inventario técnico observado para evitar clasificar sólo por nombre:
@@ -190,28 +193,20 @@ Inventario técnico observado para evitar clasificar sólo por nombre:
 - Signals: `catalog-signal + start/stop`.
 - Kafka: `aws-msk-topic`, `gcp-kafka-topic` y el tipo transicional `kafka-topic` con `peek` de lectura.
 - Flink: `start/stop` sobre sus tipos configurados; fuera de la primera vertical.
-- ClickHouse: `clickhouse-mat-view + start-materialized-view/stop-materialized-view`; lecturas `execute-query`, `describe-table`, `list-warehouse`, su alias legacy aún consumido `list-warehouses-for-team`, `list-database`, `list-tables` y `ping`. Slice 5 excluye `ping` por no estar declarado en SIG-616 y exige medir su uso antes del rollout.
+- ClickHouse: `clickhouse-mat-view + start-materialized-view/stop-materialized-view` queda configurado con `DEV_AND_UP`; las lecturas existentes no reciben autorización ACME nueva.
 
 La reutilización de nombres como `start/stop` entre tecnologías demuestra que `actionName` solo no es una clave de política segura. Los ejemplos prefijados de la SPEC no deben copiarse sin contrastarlos con los contratos reales.
 
-### Estado objetivo de Tiger
+### Estado de Tiger
 
-`CustomAuthorizationFilter` ya valida Tiger, pero hoy guarda el token crudo como principal y los services vuelven a resolver el username. El objetivo incremental es:
+`CustomAuthorizationFilter` valida Tiger una vez y publica el username como principal:
 
 - Validar Tiger una sola vez.
 - Publicar el username como principal en `SecurityContext`.
 - No registrar ni exponer el token crudo.
 - Eliminar del filtro la allow-list duplicada de rutas. Con Bearer válido publica username; con token ausente, malformado, inválido o expirado continúa sin Authentication. `SecurityConfig` queda como única fuente de verdad: `permitAll` continúa y `.authenticated()` responde `401` mediante un `AuthenticationEntryPoint` explícito.
-- Migrar sólo los call sites tocados por cada vertical; no hacer una migración masiva de los 67 usos observados.
-
-Evidencia actual en `origin/develop`:
-
-- `CustomAuthorizationFilter` llama `TigerTokenService.getAuthToken`, descarta el username y guarda el Bearer token como principal.
-- El filtro duplica las rutas públicas declaradas en `SecurityConfig`.
-- Un token inválido se transforma en `ServletException`; debe comprobarse el status HTTP real fuera de `ControllerExceptionHandler`.
-- Existe una rama que registra el token crudo al fallar validación.
-- `ActionServiceImpl` vuelve a llamar Tiger en component-bound, precreation y polling.
-- No se observaron consumidores productivos actuales del `SecurityContext` fuera del filtro.
+- Los consumidores productivos de `ActionService` usan una sola firma con username; no existe un overload basado en headers.
+- La migración no se extiende a services ajenos a Actions.
 
 ### Por qué ACME no es middleware
 
@@ -232,7 +227,7 @@ El PR 1126 está mergeado en `origin/develop` mediante `1a4caf093`. Sus dos call
 
 ### Autorizador común
 
-Se creará una única clase concreta, provisionalmente `OperationAuthorizationService`, que:
+Existe una única clase concreta, `OperationAuthorizationService`, que:
 
 - Reutiliza `AcmeClient.getOwnerProjectGrants`.
 - Recibe caller, `teamName`, `projectCode`, headers Tiger y nivel requerido.
@@ -253,11 +248,11 @@ authorizationService.require(
     headers);
 ```
 
-No habrá un autorizador por nivel ni una interfaz con una sola implementación.
+No habrá un autorizador por nivel ni una interfaz artificial alrededor de `OperationAuthorizationService`. El puerto `ActionPermissionProvider` existe por la necesidad explícita de reemplazar la fuente config-backed por Discovery sin tocar consumidores.
 
-### Primeros consumidores
+### Consumidores implementados
 
-La validación mergeada actualmente sigue este camino:
+La autorización transversal quedó implementada sobre la base de Slice 1:
 
 ```text
 PipelineAuthorizationService.assertAdminAccess
@@ -265,12 +260,12 @@ PipelineAuthorizationService.assertAdminAccess
     → AcmeClient.getOwnerProjectGrants
 ```
 
-Se refactorizará así:
+El flujo vigente queda así:
 
-1. Extraer la política a `OperationAuthorizationService`.
-2. Migrar `PipelineComponentDeleteServiceImpl` con `DEPLOYER_AND_UP`.
-3. Migrar `ComponentInactivationServiceImpl` con `DEPLOYER_AND_UP`.
-4. Incorporar `ActionServiceImpl` como primer consumidor funcional nuevo con `DEV_AND_UP`.
+1. `PipelineComponentDeleteServiceImpl` conserva su autorización `DEPLOYER_AND_UP` mediante `OperationAuthorizationService`.
+2. `ComponentInactivationServiceImpl` conserva su autorización `DEPLOYER_AND_UP` mediante el mismo servicio.
+3. `ActionServiceImpl` recibe el username ya validado por Tiger y delega en `ActionAuthorizationService` sólo cuando el par `component_type + actionName` está configurado.
+4. `ActionAuthorizationService` resuelve el nivel mediante `ActionPermissionProvider` y delega la validación efectiva en `OperationAuthorizationService`.
 
 `PipelineAuthorizationService.assertWriteAccess` y otros helpers con consumidores distintos no se eliminan por arrastre. `AuthorizationUtils.requireDeployerOrAbove` puede retirarse cuando no tenga consumidores productivos.
 
@@ -283,11 +278,14 @@ Se refactorizará así:
     → pasan el username de Authentication; no aceptan identidad cliente
 [MODIFIED] ActionServiceImpl
     → resuelve DP + componente + environment
-    → clasifica tipo + Action
-    → rechaza importados
-[NEW] OperationAuthorizationService
+    → consulta el permiso para tipo + Action
+[NEW] ConfiguredActionPermissionProvider
+    → carga permisos desde app.action-authorization.permissions
+[NEW] ActionAuthorizationService
+    → si el par está configurado, delega la autorización
+[EXISTING] OperationAuthorizationService
     → consulta owner-project por username + team
-    → valida projectCode + DEV_AND_UP
+    → valida projectCode + nivel configurado
 [MODIFIED] ActionServiceImpl
     → sólo tras allow carga deployment, guarda KVS y publica
 [UNCHANGED] Signals Control Plane
@@ -303,7 +301,8 @@ El ownership no vive en `ServiceModel`; vive en `DataProductModel`. `ActionServi
 | Recurso persistido inexistente | `404 Not Found` |
 | Scope dueño incompleto | Rechazo fail-closed; semántica exacta en SPEC técnica |
 | Rol insuficiente para team + project | `403 Forbidden` |
-| Signals desconocida o importada | `403 Forbidden` |
+| Par `component_type + actionName` configurado con rol insuficiente | `403 Forbidden` |
+| Par no configurado, import o precreation | Conserva el comportamiento previo; esta iniciativa no agrega una regla |
 | ACME no disponible/no verificable | `403 Forbidden` en estos slices para preservar compatibilidad; una diferenciación `5xx` requiere cambio posterior explícito |
 
 Ningún mensaje expone miembros del equipo, grants, tokens o detalles internos de ACME.
@@ -328,13 +327,13 @@ Primero se cubren los caminos críticos y luego al menos 95% del código nuevo.
 - En rutas `.authenticated()`, Tiger válido publica username y token ausente/inválido/expirado retorna `401`; el token no aparece en logs.
 - Rutas `permitAll` continúan sin token, con Bearer válido y con Bearer inválido/expirado; el filtro no mantiene paths públicos.
 - Delete e inactivate conservan `DEPLOYER_AND_UP`: admin/maintainer/deployer permiten; committer y roles inferiores rechazan.
-- Signals `start/stop` permiten con `DEV_AND_UP`; Action desconocida e importado rechazan. Tipo y Action se comparan por igualdad exacta, case-sensitive y sin trim/aliases.
+- Signals `start/stop` permiten con `DEV_AND_UP` cuando el par exacto está configurado. Un par no configurado, import o precreation conserva el comportamiento previo. Tipo y Action se comparan por igualdad exacta, case-sensitive y sin trim/aliases.
 - Grant de otro team o proyecto no habilita.
 - `AcmeClientImpl` se valida con fixture contractual representativo de `owner-project`; la convención real de `projectCode` se confirma con smoke no productivo, nunca haciendo depender CI de ACME.
 - Rol insuficiente y ACME no verificable retornan `403`; observabilidad interna diferencia la causa.
 - Deny/error no guarda `ActionKvsEntry` ni publica BigQueue.
 - Allow guarda y publica exactamente una vez.
-- Kafka, Flink, ClickHouse, polling, callbacks y legacy no cambian ni consultan ACME en esta etapa. Precreation no consulta ACME, pero debe rechazar explícitamente `catalog-signal + start/stop` para no abrir un bypass sin componente persistido.
+- Kafka, Flink, ClickHouse, polling, callbacks, imports, precreation y legacy no reciben reglas de negocio nuevas en esta etapa.
 
 ### Slices de implementación
 
@@ -365,11 +364,10 @@ Objetivo: incorporar el primer comportamiento nuevo de SIG-616.
 
 - Publicar username desde Tiger en `SecurityContext` sin exponer el token.
 - Hacer que Actions consuma la identidad validada sin volver a invocar Tiger.
-- Clasificar por estado persistido `catalog-signal + start/stop`.
-- Rechazar Action Signals desconocida, componente importado según autorización de importación aprobada y scope incompleto.
+- Configurar el par exacto `catalog-signal + start/stop` con nivel `DEV_AND_UP`.
+- Mantener sin cambios los pares no configurados, imports y precreation.
 - Invocar el autorizador con `DEV_AND_UP` después de resolver la jerarquía y antes de contexto de deployment, KVS o BigQueue.
 - Mantener Kafka, Flink, ClickHouse, polling, callbacks y legacy sin cambios ni llamadas ACME.
-- En precreation, rechazar `catalog-signal + start/stop` sin consultar ACME, porque no existe target persistido que autorizar.
 - Agregar pruebas unitarias e integración para allow/deny/error y cero side effects.
 
 Gate de salida: Signals queda protegido end-to-end y todo lo fuera de alcance conserva su comportamiento.
@@ -388,7 +386,7 @@ La implementación, tests cross-DP, verificación de cero side effects, gate de 
 
 #### Slice 5 — Actions restantes
 
-Objetivo: completar la whitelist exacta `component_type + actionName` para Flink, ClickHouse y las lecturas declaradas por SIG-616, exigir origin + `DEV_AND_UP` en mutaciones y aplicar default deny a todo par desconocido.
+Objetivo: agregar a la misma configuración los pares mutantes existentes de Flink y ClickHouse con su nivel de permiso. Las lecturas y los pares no configurados conservan su comportamiento previo; no existe default deny.
 
 La matriz parametrizada, integración HTTP, inventario de pares, smoke y coverage viven en [[SPEC técnica — Slice 5 — Actions restantes]] y se entregan en un único PR.
 
@@ -398,7 +396,7 @@ La matriz parametrizada, integración HTTP, inventario de pares, smoke y coverag
 |---|---|---|
 | T-01 | Corregir principal Tiger y respuesta `401` | Username como principal, token fuera de logs, tests de seguridad verdes |
 | T-02 | Extraer autorizador y migrar delete/inactivate | Una implementación; comportamiento `DEPLOYER_AND_UP` intacto |
-| T-03 | Implementar whitelist Signals | Sólo `catalog-signal + start/stop` usa `DEV_AND_UP` |
+| T-03 | Configurar permisos de Signals | Sólo `catalog-signal + start/stop` agrega validación `DEV_AND_UP` |
 | T-04 | Integrar Actions antes de side effects | Sin llamadas directas a Tiger/ACME ni efectos al rechazar |
 | T-05 | Verificar exclusiones y regresión | Tecnologías/rutas fuera de alcance no cambian |
 | T-06 | Observabilidad y error mapping | `401/403/404` estables; causas ACME distinguibles internamente sin datos sensibles |
@@ -409,8 +407,8 @@ Las tasks definitivas viven en cada SPEC local y se materializarán recién al c
 
 - [x] Tratar SIG-616 como requerimiento de origen aunque figure como técnica; relacionar las nuevas SPECs sin bloquear por clasificación.
 - [x] Confirmar `catalog-signal + start/stop` y `DEV_AND_UP`.
-- [x] Componentes importados: Action mutante denegada; la importación no transfiere ownership.
-- [x] Precreation: `catalog-signal + start/stop` no se habilita sin componente persistido.
+- [x] Componentes importados: conservan el comportamiento existente; no se agrega una política especial.
+- [x] Precreation: conserva el comportamiento existente y no consulta ACME por esta iniciativa.
 - [x] Polling no recibe policy nueva ni llamadas ACME en estos slices.
 - [x] Confirmar PR 1126 mergeado en `origin/develop` (`1a4caf093`).
 - [x] Confirmar contrato ACME: `username + teamName + headers`; `projectCode` se valida localmente.
@@ -447,7 +445,7 @@ Comprueba directamente en SPEC, PR, historial y código; no aceptes estas afirma
 - Qué mutaciones, deployments, undeploy, inactivate, relaciones, pipelines y Actions exige proteger la SPEC.
 - Qué Actions son de lectura y por qué permanecen Tiger-only.
 - Si pipeline deploy fue omitido documentalmente pero comparte la misma semántica mutante.
-- Reglas para componentes importados, precreation, cross-DP, platformTeams y tempAllCanEdit.
+- Confirma que imports y precreation conservan el comportamiento previo; revisa además cross-DP, platformTeams y tempAllCanEdit sin inventar políticas nuevas.
 - Contratos reales de Actions: el clasificador debe usar component_type + actionName.
 - Rutas modernas y legacy reales; identifica bypasses posibles sin ampliar silenciosamente el alcance.
 - Contrato real de ACME: parámetros de getUserGrants y getOwnerProjectGrants, forma del payload, paginación, roles y filtro de projectCode.
@@ -455,7 +453,7 @@ Comprueba directamente en SPEC, PR, historial y código; no aceptes estas afirma
 - Confirma que getOwnerProjectGrants recibe username + teamName + Tiger headers, pero no projectCode.
 - Confirma que teamName y projectCode vienen del DataProduct persistido y revisa registros modernos con ownership incompleto.
 - Estado real de CustomAuthorizationFilter, SecurityConfig, SecurityContext, duplicación de validación Tiger, logs de token y respuesta HTTP ante fallo.
-- Detección canónica de componentes importados: intenta refutar expresamente el uso de `sourceComponentId` contrastándolo con migraciones v1→v2 y `ImportAuthorizationRepository.existsApprovedByImportedComponentId`.
+- Verifica que la iniciativa no introduzca dependencias de importación ni reglas basadas en `sourceComponentId` o `ImportAuthorizationRepository`.
 - Todos los call sites productivos de PipelineAuthorizationService.assertAdminAccess y AuthorizationUtils.requireDeployerOrAbove.
 - Orden exacto de resolución, consulta ACME y side effects en delete, inactivate y ActionServiceImpl.
 - Status HTTP actual cuando ACME falla y compatibilidad de preservar `403` en estos slices, dejando una eventual diferenciación `5xx` fuera de alcance.
@@ -467,9 +465,9 @@ Evalúa especialmente esta arquitectura propuesta:
 - Existe una sola clase concreta OperationAuthorizationService, sin interface/impl ni estrategias prematuras.
 - El autorizador recibe caller, teamName, projectCode, headers y nivel; encapsula AcmeClient, roles y errores.
 - Delete e inactivate son los primeros consumidores de regresión con DEPLOYER_AND_UP.
-- ActionServiceImpl es el primer consumidor funcional nuevo con DEV_AND_UP.
-- Signals sólo protege catalog-signal + start/stop, rechaza combinaciones desconocidas e importados detectados mediante una autorización de importación activa/aprobada y valida antes de deployment context, KVS y BigQueue.
-- Read Actions, polling, otras tecnologías y legacy no cambian en la primera entrega. Precreation no consulta ACME, pero rechaza el mismo par `catalog-signal + start/stop` antes de KVS/BigQueue para cerrar ese bypass mínimo.
+- ActionServiceImpl incorpora validación aditiva para los pares configurados y delega en `ActionAuthorizationService`.
+- Signals sólo protege `catalog-signal + start/stop` cuando el par está configurado, validando antes de deployment context, KVS y BigQueue.
+- Actions no configuradas, imports, precreation, read Actions, polling, otras tecnologías y legacy no reciben reglas nuevas.
 - @RequiresCapability queda documentada como evolución futura, no implementación actual.
 
 Busca problemas de seguridad, TOCTOU, ownership incorrecto, queries duplicadas, dependencias HTTP filtradas al dominio, fallos fail-open, inconsistencias de status, bypass por rutas alternativas, ruptura de tests y abstracciones innecesarias. Distingue siempre entre:
@@ -578,7 +576,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-14** — Se verificó el contrato ACME: `getUserGrants(username)` no contiene roles `OwnerProjectGrant`; se descartó ACME como middleware y la consulta precisa quedó en un autorizador reutilizable llamado desde el caso de uso tras resolver `teamName + projectCode`.
 - **2026-09-14** — Se acordó una sola implementación concreta del autorizador: se extrae desde delete/inactivate sin cambiar su política y luego se incorpora Actions Signals como primer caso nuevo.
 - **2026-09-14** — Se consolidó en esta única nota el baseline de la SPEC, evidencia técnica, arquitectura, dos slices, pruebas, gates y prompt de validación independiente.
-- **2026-09-14** — La revisión cruzada corrigió un supuesto crítico: `sourceComponentId` también existe en clones de migración y no identifica importación. Se adoptó `ImportAuthorizationRepository.existsApprovedByImportedComponentId`, se fijó compatibilidad `403` para fallos ACME, `401` como objetivo Tiger comprobable por integración y el rechazo mínimo de Signals mutante en precreation.
+- **2026-09-14** — La revisión cruzada corrigió un supuesto crítico: `sourceComponentId` también existe en clones de migración y no identifica importación. Se propuso entonces usar `ImportAuthorizationRepository` y rechazar Signals mutante en precreation; ambas decisiones fueron reemplazadas el 2026-09-21 al confirmar que la iniciativa no debe crear reglas de negocio.
 - **2026-09-14** — Se redactaron y corrigieron las dos SPECs técnicas. El revisor cerró con `AGREED`. Por decisión del owner se mantienen sólo en el vault; no se creó ni editó ninguna SPEC en Spellbook.
 - **2026-09-14** — Una segunda revisión detectó el caso `permitAll + Bearer inválido`. Se eliminó la duplicación de paths en el filtro y se dejó la decisión de acceso a `SecurityConfig`. Se rechazaron tests automatizados contra ACME real: se acordaron fixture contractual determinista + smoke no productivo. El revisor respondió `AGREED`.
 - **2026-09-14** — Por instrucción posterior del owner se creó [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) como SPEC funcional padre y se publicaron [SIG-622](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) y [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) como SPECs técnicas hijas, todas en Draft y sin cambios de alcance.
@@ -595,12 +593,13 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-16** — Se evaluaron los cuatro comentarios nuevos del PR #1169 contra el código y la SPEC. Se aplicaron las mejoras de helpers estáticos y estructura de tests en `fbf05159e`: matriz de roles parametrizada, `@InjectMocks`, `assertNull` y ownership centralizado en `AuthorizationUtilsTest`, conservando un smoke por consumidor con mensaje y orden. No se aplicó la propuesta de unir `requireOperationOwnership` con `OperationAuthorizationService.require` porque `systemId` es una precondición legacy exclusiva de delete/inactivate y no forma parte del contrato transversal. Los tests focalizados, `./gradlew check` y todos los checks remotos materiales pasaron; las cuatro respuestas cordiales se publicaron y verificaron en GitHub.
 - **2026-09-16** — Slice 4 se rebasó sobre `origin/feature/operation-authorization-by-team-f3@1f39b556`, restauró el fail-closed de ownership incompleto y cerró dos rondas de code review. La rama `feature/operation-authorization-by-team-f4@0f37f7b29` se publicó y se creó [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181), no draft, con base F3 verificada. Suite forzada: 3.927 tests, 0 fallas, 2 skips; cobertura diferencial 100% line/branch. Gate de datos y smoke Tiger/ACME continúan pendientes antes del merge/rollout.
 - **2026-09-16** — Slice 5 se publicó como `feature/operation-authorization-by-team-f5@d721b908e` con base F4 y [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182) listo para review. La revisión confirmó el flujo Tiger/ACME de la SPEC; no quedan findings propios de F5. Se documentó el inventario nominal y los gates de inventario vivo/smoke no productivo.
+- **2026-09-21** — Se corrigió el alcance de la iniciativa en toda la cadena: autorización estrictamente aditiva, sin reglas nuevas para imports, precreation o pares no configurados y sin default deny. Slice 2 quedó en `90667a5db` con `ActionPermissionProvider` y adapter de configuración por scope; Slice 3 en `119207a71`, Slice 4 en `ccce34382` y Slice 5 en `6363d7e0e`. Se actualizaron las descripciones de PR, se respondieron y resolvieron los comentarios de Ale y Feli en PR #1172 y se alinearon la SPEC técnica y este proyecto.
 
 ## 🧭 Decisiones
 
-- **D1 — Primer cambio funcional sólo Signals.** La primera restricción nueva protege `catalog-signal + start/stop` sobre componentes existentes; el refactor previo de delete/inactivate no cambia su política. No incluye legacy, otras tecnologías ni polling. En precreation sólo se rechaza ese mismo par para cerrar el bypass, sin consulta ACME ni policy general nueva.
+- **D1 — Primer cambio funcional sólo Signals.** La primera restricción nueva protege `catalog-signal + start/stop` sobre componentes existentes; el refactor previo de delete/inactivate no cambia su política. Legacy, otras tecnologías, polling, imports y precreation conservan su comportamiento.
 - **D2 — Sólo Tiger es middleware.** Tiger se valida una vez en la frontera HTTP y publica el username. ACME se consulta desde un autorizador reutilizable cuando el caso de uso ya conoce el scope persistido.
-- **D3 — Whitelist de tipo + Action.** Una Action desconocida sobre `catalog-signal` se rechaza; tecnologías fuera del alcance conservan su comportamiento hasta contar con SPEC propia.
+- **D3 — Configuración aditiva de tipo + Action.** Sólo un par exacto presente en la configuración recibe la validación nueva. Un par desconocido conserva su comportamiento anterior; la ausencia en configuración no implica deny.
 - **D4 — Services consumidores con una sola validación.** Actions resuelve el target y llama una vez a un autorizador concreto con caller, `teamName`, `projectCode` y nivel antes de cualquier side effect; no consume `AcmeClient` ni implementa listas o parsing de roles.
 - **D5 — PR 1126 converge por refactor.** Se reutiliza `AcmeClient.getOwnerProjectGrants`; la API acoplada a pipeline y la política estática se refactorizan a medida que se incorporan casos reales.
 - **D6 — Annotation al final, no ahora.** `@RequiresCapability` se evaluará sobre services cuando exista repetición comprobada; queda documentada como evolución final y fuera de alcance inicial.
@@ -609,18 +608,19 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **D9 — Dos niveles ACME cerrados.** `DEV_AND_UP` y `DEPLOYER_AND_UP`; delete/inactivate conservan los tres roles del PR 1126 y el resto de escrituras SIG-616 usa los cuatro roles dev+. `READ` queda Tiger-only fuera del autorizador.
 - **D10 — Pipeline deploy incluido y legacy explícito.** La ruta moderna de pipeline deploy debe incorporarse a la SPEC. Toda ruta enumerada expresamente por SIG-616 se protege aunque esté marcada `@Deprecated`; las rutas legacy no enumeradas quedan fuera.
 - **D11 — ACME preciso, no precarga incompleta.** No se usa `getUserGrants(username)` para permisos por proyecto. El autorizador reutiliza `getOwnerProjectGrants(username, teamName, headers)` y valida el `projectCode` persistido.
-- **D12 — Una implementación, consumidores incrementales.** No habrá `interface/impl` ni un autorizador por nivel. Delete e inactivate migran primero como regresión; Signals consume la misma clase con otra política.
-- **D13 — Importación por evidencia canónica.** Una Action mutante se considera importada sólo cuando `ImportAuthorizationRepository.existsApprovedByImportedComponentId(componentId)` lo confirma; `sourceComponentId` no decide porque también representa linaje de migración.
+- **D12 — Autorizador concreto y fuente de permisos reemplazable.** `OperationAuthorizationService` permanece como una clase concreta y única. Para Actions existe el puerto mínimo `ActionPermissionProvider`, hoy implementado por un adapter de configuración, de modo que Discovery pueda reemplazar sólo la fuente sin afectar consumidores.
+- **D13 — Sin política especial para imports.** Esta iniciativa no determina ni altera la autorización de importación. Las Actions sobre componentes importados conservan el comportamiento previo y no dependen de `ImportAuthorizationRepository`.
 - **D14 — Compatibilidad de errores ACME.** Rol insuficiente y ACME no verificable fallan cerrado con `403` en estos slices. Se distinguen mediante observabilidad interna; migrar indisponibilidad a `5xx` requiere una decisión futura explícita.
 - **D15 — Ruta mutante legacy visible.** `POST /services/{serviceId}/actions/code` no es lectura ni se presume deprecated; queda fuera de estos slices como riesgo residual y deberá integrarse mediante una SPEC posterior.
-- **D16 — `systemId` es elegibilidad local, no scope ACME.** Delete e inactivate conservan el rechazo si falta `systemId` para no cambiar el PR 1126, pero la precondición vive localmente en esos consumidores; el autorizador transversal sólo recibe username, team y project.
+- **D16 — `systemId` sólo es precondición legacy.** Delete e inactivate preservan la validación de `systemId` únicamente cuando `environment == legacy`; los Data Products modernos no adquieren esa restricción. El autorizador transversal sólo recibe username, team y project.
 - **D17 — `401` pertenece a la cadena de seguridad.** El filtro no conoce paths: sólo establece username ante Bearer válido o continúa sin Authentication. `SecurityConfig` es la única fuente de verdad; `permitAll` continúa incluso con Bearer inválido y `.authenticated()` activa el `AuthenticationEntryPoint` de `401`.
 - **D18 — Publicación autorizada posteriormente.** La decisión inicial fue mantener la documentación sólo local. El owner la reemplazó explícitamente el 2026-09-14 al ordenar crear SIG-621 y sus dos SPECs técnicas hijas en Spellbook.
 - **D19 — Contrato determinista, realidad como smoke.** El mapping ACME se prueba en CI con fixture representativo y la igualdad real de `projectCode` se valida en un smoke no productivo. No se introduce una dependencia live de ACME en la suite automatizada.
-- **D20 — Slice 2 hereda Slice 1.** La base obligatoria vigente de la siguiente fase es `origin/feature/operation-authorization-by-team-f1@fbf05159e`. La implementación de SIG-623 debe consumir el `OperationAuthorizationService` y `OperationAccessLevel` ya creados, sin comenzar desde `develop` ni reimplementar ese trabajo; la rama `feature/operation-authorization-by-team-f2@626585ca9` debe incorporar este head.
+- **D20 — Slice 2 hereda Slice 1.** La rama publicada `feature/operation-authorization-by-team-f2@90667a5db` consume `OperationAuthorizationService` y `OperationAccessLevel` de Slice 1 sin reimplementarlos. Las siguientes ramas permanecen encadenadas sobre el head de su slice anterior.
 - **D21 — Pruebas por slice, sin gate final.** Cada SPEC técnica contiene su matriz crítica, regresión, gate de datos, smoke y coverage. El PR de cada slice no queda listo sin esa evidencia y no existe una fase posterior dedicada a probar todo el proyecto.
 - **D22 — Encadenamiento secuencial.** Slice 3 parte del head aprobado de Slice 2, Slice 4 del head aprobado de Slice 3 y Slice 5 del head aprobado de Slice 4. Ninguna entrega recrea el autorizador ni se basa directamente en `develop` mientras dependa de cambios aún no mergeados.
-- **D23 — Alias ClickHouse probado y `ping` bloqueante de rollout.** `list-warehouses-for-team` permanece allow-listed porque CP ClickHouse aún lo registra y rio-frontend lo consume. `ping` no se incorpora sin respaldo funcional, pero su uso se mide explícitamente y bloquea el rollout si aparece un consumidor real.
+- **D23 — Sólo mutaciones comprobadas en Slice 5.** Los pares mutantes existentes de Flink y ClickHouse se agregan a la configuración. Reads, aliases y `ping` no adquieren autorización ACME ni bloquean por ausencia en configuración.
+- **D24 — Configuración por scope, contrato estable.** `app.action-authorization.permissions` es la fuente actual por ambiente/scope. Los consumidores dependen de `ActionPermissionProvider`; una carga futura desde Discovery, job o bootstrap reemplaza el adapter sin cambiar `ActionServiceImpl` ni `ActionAuthorizationService`.
 
 ## 🔗 Docs / Links
 
@@ -634,11 +634,11 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - [[SPEC técnica — Slice 4 — Relaciones y pipelines]]
 - [[SPEC técnica — Slice 5 — Actions restantes]]
 - [PR 1126 — Autorización ACME para inactivate/delete](https://github.com/melisource/fury_rio-playmaker/pull/1126)
+- [PR #1172 — Slice 2: Actions mutantes de Signals](https://github.com/melisource/fury_rio-playmaker/pull/1172)
 - [PR #1178 — Slice 3: mutaciones y deployments de componentes](https://github.com/melisource/fury_rio-playmaker/pull/1178)
 - [PR #1181 — Slice 4: relaciones y pipelines](https://github.com/melisource/fury_rio-playmaker/pull/1181)
 - [PR #1182 — Slice 5: Actions restantes](https://github.com/melisource/fury_rio-playmaker/pull/1182)
 - [DataProductModel — `teamName`](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/model/DataProductModel.java)
-- [ImportAuthorizationRepository — detección canónica de importados](file:///Users/rjara/fuentes/rio-playmaker/src/main/java/com/mercadolibre/rio/playmaker/repository/ImportAuthorizationRepository.java)
 
 ## 💡 Ideas
 
