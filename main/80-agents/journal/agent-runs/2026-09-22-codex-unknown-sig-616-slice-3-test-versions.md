@@ -41,7 +41,7 @@ tags:
 
 - **Validaciones ejecutadas:** Tests focalizados `AcmeClientRoleMockTest`, `ActionAuthorizationServiceTest`, `ActionServiceImplTest` y `ComponentAuthorizationIntegrationTest`; `git diff --check`; validación del contrato de testing y del contrato de repositorio.
 - **Resultado observable:** Las dos ramas fueron publicadas y Fury informó `FINISHED` para `0.1.3-p3-committer-allowed` y `0.1.4-p3-viewer-denied` con los commits publicados esperados.
-- **Limitaciones de la evidencia:** No se realizó deploy ni smoke remoto mutable; esas acciones quedan explícitamente fuera de esta ejecución.
+- **Limitaciones de la evidencia:** No se realizó deploy ni smoke remoto mutable; esas acciones quedan explícitamente fuera de esta ejecución. La eliminación de las refs transitorias `test/sig-616-slice3-*-mock-test3` quedó pendiente porque GitHub rechazó la operación por IP allowlist de Meli.
 
 ## Evaluación
 
