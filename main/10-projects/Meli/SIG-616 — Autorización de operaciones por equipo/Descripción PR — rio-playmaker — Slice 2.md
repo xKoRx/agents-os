@@ -13,12 +13,12 @@ tags:
   - kind/doc
   - project/sig-616-operation-authorization
 created: "2026-09-21"
-updated: "2026-09-21"
+updated: "2026-09-22"
 ---
 
 # Descripción PR — rio-playmaker — Slice 2
 
-**PR:** [#1172](https://github.com/melisource/fury_rio-playmaker/pull/1172) · `feature/operation-authorization-by-team-f2` @ `90667a5dbaa84ea262efb2496428bde481817f18` · base `feature/operation-authorization-by-team-f1` · SPEC [[SPEC técnica — Slice 2 — Actions mutantes de Signals]].
+**PR:** [#1172](https://github.com/melisource/fury_rio-playmaker/pull/1172) · `feature/operation-authorization-by-team-f2` @ `2e1d1c8955e40766eb9e0fbb07041de607e8f14b` · base `develop@625f491d218e5aaf743404e8f15ff832bc61f850` · SPEC [[SPEC técnica — Slice 2 — Actions mutantes de Signals]].
 
 ## Description
 
@@ -52,12 +52,12 @@ Changes:
 
 ## How Has This Been Tested?
 
-HEAD validado: `90667a5db`.
+HEAD validado: `2e1d1c8955e`.
 
 - Tests focalizados de provider, autorización, service y controllers: `BUILD SUCCESSFUL`.
 - `./gradlew check`: `BUILD SUCCESSFUL`; 2 tests preexistentes skipped.
 - Verificación estática: un solo método por operación en `ActionService`; todos los controllers productivos pasan username; `ActionServiceImpl` no contiene `TigerTokenService`, parsing Tiger ni reglas Signals.
-- Smoke no productivo con Tiger/ACME reales: pendiente por falta de credenciales/acceso.
+- Smoke no productivo con Tiger/ACME reales: ejecutado exitosamente; la captura adjunta en el PR conserva la evidencia.
 
 ## Review
 

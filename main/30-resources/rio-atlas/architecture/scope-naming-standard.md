@@ -460,7 +460,7 @@ La base reserva identidad `application/scope/resource_type/resource_name` y los 
 | El checkout local difiere del build desplegado | Persistir commit/branch junto al resultado, mostrarlo como “resoluble en código inspeccionado” y validar contra el build antes de ejecutar cambios. |
 | Un caller altera el header de scope Fury | Fury Routes controla targets y aislamiento test/prod; Playmaker valida sintaxis y no usa el valor para acceder a datos del pipeline. |
 | Alpha y stage comparten segmento nonprod | Separar por topic lógico y consumer; el segmento sólo controla placement físico. |
-| Un mensaje tiene filtro ausente o malformado | Fury aplica el binding server-side; Playmaker conserva legacy sin filtro y ACKea filtros malformados con una métrica bounded. |
+| Un mensaje tiene filtro ausente o malformado | Un runtime canónico ACKea sin side effects y emite una métrica bounded; no degrada a legacy ni publica sin filtro. |
 | Crear todos los ambientes multiplica infraestructura | Prod/stage/alpha son baseline; beta/gamma se activan mediante plantilla/manifiesto y sólo cuando la lane existe end-to-end. |
 
 ## Success Metrics
@@ -519,7 +519,7 @@ La base reserva identidad `application/scope/resource_type/resource_name` y los 
 1. Abrir una sesión interna con `?frontend=alpha&backend=beta` y verificar que ambos ejes persisten independientemente.
 2. Verificar que nginx sirve el front alpha y que Fury routes dirige el header de scope al Playmaker beta.
 3. Verificar que Playmaker estampa `scope:beta` y que sólo el consumer beta recibe el mensaje.
-4. Alterar el tag para volverlo malformado y verificar que el guard estructural del consumer no ejecuta la operación; removerlo verifica compatibilidad legacy durante la POC.
+4. Alterar o remover el tag y verificar que el runtime canónico no ejecuta la operación ni publica un resultado.
 5. Repetir para prod y stage; beta/gamma se prueban sólo cuando estén habilitados y un usuario no interno siempre falla cerrado a prod.
 
 ## Rollout

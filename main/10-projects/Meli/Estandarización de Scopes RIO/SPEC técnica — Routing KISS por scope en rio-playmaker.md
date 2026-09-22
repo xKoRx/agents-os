@@ -18,267 +18,252 @@ tags:
   - project/scopes-rio
   - tech/rio-playmaker
 created: "2026-09-16"
-updated: "2026-09-21"
+updated: "2026-09-22"
 ---
 
 # Technical Specification — Routing KISS por scope en `rio-playmaker`
 
 > [!danger] Regla básica e innegociable
-> **EL `Environment` DEL PIPELINE NO ES EL SCOPE DE FURY.** El `Environment` existente pertenece al dominio del pipeline y continúa identificando dónde se despliegan sus componentes. El scope Fury identifica la instancia de infraestructura donde corre Playmaker. Esta POC deriva la lane exclusivamente desde el `SCOPE` del runtime y la convierte en el filtro BigQueue `scope:<lane>`. No persiste el scope Fury en `PipelineExecution`, no modifica el `Environment` del pipeline, no cambia idempotencia/history y no introduce ningún campo llamado `environment_scope`.
+> **EL `Environment` DEL PIPELINE NO ES EL SCOPE DE FURY.** El primero sigue siendo dominio funcional. La lane de infraestructura se obtiene sólo del scope Fury del runtime y vive únicamente como filtro BigQueue. No se persiste en `PipelineExecution`, no participa en idempotencia/history y no crea `environment_scope`.
 
 **Feature**: `rio-playmaker-fury-scope-filter`
 **Owner**: Rodrigo Jara
-**Project**: Signals (`rio-playmaker`)
-**Status**: DRAFT — lista para revisión
-**Deriva de**: [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599) y [[scope-naming-standard]]
+**Status**: DRAFT revisado con criterio KISS/YAGNI
 **Plan ejecutable**: [[POC KISS — Routing de scopes en Playmaker]]
-**Baseline observada**: `rio-playmaker origin/master@f350fb26091d`; refrescar antes de implementar
+**Baseline observada**: `rio-playmaker origin/develop@625f491d218e`; corte 2026-09-22
 
 ## Propósito
 
-Demostrar en la lane `alpha` que cada runtime de Playmaker deriva su lane desde `ScopeUtils.getScopeValue()` y publica los deployment triggers y results con `filters.modified_fields=["scope:alpha"]`. El diseño cubre el trigger inicial, el trigger de batch N+1, el retry por timeout y el result sin propagar metadata desde HTTP ni modificar estado de dominio.
+Hacer que las instancias canónicas alpha de Playmaker resuelvan `RuntimeLane(alpha)` al startup y publiquen todos los deployment triggers incluidos en la POC y los deployment results con `filters.modified_fields=["scope:alpha"]`.
+
+La solución no lee `X-Rio-Scope`, no transporta metadata por request, no tiene fallback sin filtro y no intenta resolver timeout/retry cross-lane.
 
 ## Contenido
 
+## Decisión KISS
+
+- Un scope Fury canónico produce una lane inmutable al startup o la aplicación no arranca.
+- Tres puntos de publicación cambian a `Producer.send(message, Filters)`: los dos deployment trigger producers activos y el result producer.
+- Local/tests conservan sus implementaciones locales; no existe modo legacy dentro del runtime alpha.
+- El timeout processing se deshabilita en alpha porque la DB compartida no tiene ownership por lane.
+- No se agregan carrier, columnas, DTOs, SDKs, topics por lane ni abstracciones compartidas.
+
 ## Dos conceptos que nunca se mezclan
 
-| Concepto | Autoridad | Para qué sirve | Esta POC lo modifica |
-|---|---|---|---|
-| `Pipeline Environment` | Modelo y tablas actuales de Playmaker | Identifica el ambiente funcional de un data product/pipeline y participa en delta, deployments, history e idempotencia | **No** |
-| Scope de Fury | Variable `SCOPE` del runtime | Identifica la instancia/lane de infraestructura y origina el tag BigQueue `scope:<lane>` | **Sí, sólo como fuente runtime de routing** |
-| Segmento Fury | Configuración `nonprod`/`nonsite` y `ProducerBuilder.withSegmentID` | Selecciona placement físico del tópico/runtime | **Sí, sólo para que el default base sea `nonprod`; sigue siendo un eje distinto del filtro** |
-
-Reglas de separación:
-
-1. `ScopeUtils.getScopeValue()` no se compara con `EnvironmentModel.name`, `environmentId` ni ningún dato del pipeline.
-2. La lane no participa en hash, idempotencia, history, autorización de environments ni selección de componentes.
-3. No se agrega columna a `pipeline_execution`, `deployment_group`, `deployment` ni otra tabla.
-4. No se agrega `environment_scope`, `fury_scope` ni un equivalente a `DeploymentTriggerMessage` o `DeploymentResultMessage`.
-5. El tag `scope:<lane>` vive únicamente en `Filters.modifiedFields` del envelope mqclient.
+| Concepto | Autoridad | Uso |
+|---|---|---|
+| Pipeline Environment | Modelo/tablas actuales | Dominio del data product, delta, deployments, history e idempotencia |
+| Scope Fury | Runtime Fury | Resolver `RuntimeLane` y construir `scope:<lane>` |
+| Segmento Fury | Config `nonprod`/`nonsite` | Placement físico; no selecciona la lane |
 
 ## Baseline técnica
 
-| Evidencia | Estado actual | Consecuencia KISS |
+| Evidencia | Estado actual | Cambio requerido |
 |---|---|---|
-| `ScopeUtils.getScopeValue()` lee `System.getenv("SCOPE")` y cae en `local` | Implementado | Es la única fuente de la lane dentro de Playmaker |
-| `ScopeUtils.isKnownProfile()` reconoce sólo `local | test | stage | production` | Implementado | El vocabulario canónico requiere una resolución explícita de profile |
-| `ScopeUtils.calculateScopeSuffix()` usa el primer token cuando no encuentra un profile conocido | Implementado | `alpha` falla, `prod` no carga `production` y `beta` puede cargar configuración productiva |
-| `application.yml` no define datasource y usa `bigqueue.segment: nonsite` | Implementado | El default base debe pasar a datasource stage y segmento nonprod |
-| `application-beta.yml` apunta a `playmkrprod`, `rio-deployment-trigger-prod` y `nonsite` | Implementado | `beta-api-nonprod` nunca debe activar el profile `beta` |
-| `DeploymentTriggerProducerImpl.publish` usa `producer.send(message)` | Implementado | El overload con `Filters` cubre trigger inicial, N+1 y timeout retry |
-| `DeploymentResultProducerImpl.publish` usa `producer.send(message)` | Implementado | El mismo overload cubre results |
-| mqclient `3.4.9` expone `Producer.send(Object, Filters)` | Contrato | No se migra el producer ni se cambia el SDK |
-| `SegmentationUtils.getSegmentId()` deriva el eje hermano desde `System.getenv("SEGMENT")` con default `legacy` | Precedente de plataforma | Derivar scope/segmento desde el runtime es un patrón conocido |
+| `ScopeUtils.getScopeValue()` lee `SCOPE` y cae en `local` | Implementado | No usar ese fallback para routing canónico |
+| `ScopeUtils.calculateScopeSuffix()` no mapea correctamente todas las lanes | Implementado | `prod→production`; `stage/alpha/beta/gamma→stage` |
+| `application.yml` no tiene defaults seguros y usa segmento `nonsite` | Implementado | Defaults stage/nonprod para nuevos scopes nonprod |
+| `service.pipeline.impl.DeploymentTriggerProducerImpl` usa `producer.send` | Implementado | Publicar filtrado |
+| `restclient.impl.BigQueueDeploymentTriggerProducerImpl` usa `producer.send` y mantiene callers productivos | Implementado | Publicar filtrado también; no asumir un solo producer |
+| `DeploymentResultProducerImpl` usa `producer.send` | Implementado | Publicar filtrado |
+| `DeploymentTimeoutJob` consulta deployments globales por estado/timeout | Implementado | Deshabilitar procesamiento en alpha; no certificar retry |
+| mqclient 3.4.9 expone `Producer.send(Object, Filters)` | Contrato | Reutilizar sin cambiar payload/SDK |
 
-## Arquitectura objetivo
+## Gates externos
 
-Fury Routes usa `X-Rio-Scope` para elegir la instancia antes de que la request llegue a Playmaker. El header no es un contrato de Playmaker y no se lee dentro de la aplicación.
+Antes del rollout, Fury/BigQueue debe confirmar:
 
-```text
-frontend -- X-Rio-Scope --> Fury Routes --> Playmaker web/consumer
-                                             │
-                                             │ SCOPE=alpha-<role>-nonprod
-                                             ▼
-                                   ScopeUtils.getScopeValue()
-                                             │
-                         ┌───────────────────┴───────────────────┐
-                         ▼                                       ▼
-             profile Spring seguro                  lane = primer token válido
-             alpha → stage                           alpha → alpha
-                         │                                       │
-                         │                    ┌──────────────────┴──────────────────┐
-                         │                    ▼                                     ▼
-                         │       DeploymentTriggerProducerImpl.publish   DeploymentResultProducerImpl.publish
-                         │                    │                                     │
-                         └────────────────────┴──── send(message, Filters([scope:alpha]))
+- El accessor soportado para leer scope Java/Kotlin y la precedencia entre `scope`/`SCOPE` si ambos existen.
+- Filtrado server-side por `scope:alpha`.
+- Preservación de `filters.modified_fields` en el push HTTP.
+- Comportamiento de mensajes sin filtro frente a bindings filtrados.
 
-PipelineExecution / Pipeline Environment / HTTP controller / dispatch / result consumer / SDK: SIN CAMBIOS
-```
+La existencia de `FuryUtils.getEnv("SCOPE")` en el classpath no basta para elegirlo. La POC usa la API que Fury confirme y la encapsula en un único punto de startup.
 
-## Contrato de resolución del runtime
+## Contrato de naming y startup
 
-### Fuente
+Tokens runtime: `prod | stage | alpha | beta | gamma`. `production/staging` son etiquetas funcionales, no tokens materializados.
 
-`ScopeUtils.getScopeValue()` continúa leyendo `SCOPE`. No se agrega una segunda fuente, no se consulta el request context y no se acepta un override por header.
+Un scope canónico:
 
-### Derivación de lane
+- Está en lowercase.
+- Tiene al menos `<lane>-<role>-<segment>`.
+- Usa `nonsite` para `prod` y `nonprod` para las demás lanes.
+- No infiere lane desde pipeline environment, profile ni segmento.
 
-Se agrega `ScopeUtils.getLane()` como operación pura sobre el valor de `ScopeUtils.getScopeValue()` con el siguiente contrato:
-
-- Divide el scope por `-`, toma el primer token no vacío y lo normaliza a lowercase.
-- Devuelve lane sólo si el token pertenece a `prod | stage | alpha | beta | gamma`.
-- Para `alpha-api-nonprod` y `alpha-consumer-nonprod` devuelve `alpha`.
-- Para un valor vacío, malformed, legacy o fuera del vocabulario devuelve ausencia; nunca infiere una lane desde role, qualifier, segmento, Spring profile ni pipeline environment.
-
-El tipo concreto puede ser `Optional<String>` o un enum/value object mínimo si los tests demuestran que reduce estados inválidos; el vocabulario debe existir en un único lugar dentro de `ScopeUtils`.
-
-### Resolución del Spring profile
-
-`ScopeUtils.calculateScopeSuffix()` aplica primero la semántica canónica:
-
-| Primer token canónico | Spring profile |
-|---|---|
-| `prod` | `production` |
-| `stage` | `stage` |
-| `alpha` | `stage` |
-| `beta` | `stage` |
-| `gamma` | `stage` |
-
-Después conserva la compatibilidad vigente para `local | test | stage | production` y scopes legacy que ya resuelven esos profiles. Un token desconocido no se convierte en una lane, aunque la resolución legacy de profile pueda conservar su fallback actual.
-
-Casos obligatorios:
-
-| Scope Fury | Lane | Profile |
+| Scope | Lane | Profile |
 |---|---|---|
+| `prod-api-nonsite` | `prod` | `production` |
 | `stage-api-nonprod` | `stage` | `stage` |
 | `alpha-api-nonprod` | `alpha` | `stage` |
 | `alpha-consumer-nonprod` | `alpha` | `stage` |
 | `beta-api-nonprod` | `beta` | `stage` |
 | `gamma-api-nonprod` | `gamma` | `stage` |
-| `prod-api-nonsite` | `prod` | `production` |
 
-### Defaults base seguros
+Scope ausente, typo, uppercase o segmento incompatible impide arrancar el runtime canónico. No se convierte en `local` ni en publicación sin filtro. Local/tests inyectan la lane o usan los producers locales ya existentes.
 
-`application.yml` define los defaults mínimos de stage para que un scope nuevo sin archivo propio no dependa de recursos productivos:
+## Defaults base seguros
 
-- `spring.datasource` usa las credenciales, endpoint, driver y base `playmkrstg` equivalentes al profile stage.
-- `bigqueue.segment` pasa de `nonsite` a `nonprod`.
-- Los nombres base de tópicos nonprod existentes se conservan.
-- La resolución canónica de `beta` a profile `stage` impide que `beta-api-nonprod` cargue `application-beta.yml` y vuelve no explotable esa colisión.
+`application.yml` define los defaults mínimos de stage para que un scope nonprod nuevo no cargue recursos productivos:
+
+- Datasource equivalente a `playmkrstg`.
+- `bigqueue.segment: nonprod`.
+- Topics nonprod existentes sin crear nombres por lane.
+- `alpha/beta/gamma` resuelven profile `stage`; `prod` resuelve `production`.
 
 ## Contrato BigQueue
 
-Los payloads existentes no cambian. El filtro pertenece al envelope construido por mqclient:
+Los payloads permanecen intactos. El filtro vive en el envelope mqclient:
 
 ```json
 {
-  "filters": {
-    "modified_fields": ["scope:alpha"]
-  },
-  "msg": {
-    "...": "DeploymentTriggerMessage o DeploymentResultMessage actual, sin campos nuevos"
-  }
+  "filters": {"modified_fields": ["scope:alpha"]},
+  "msg": {"...": "payload actual"}
 }
 ```
 
-Reglas:
+Los tres producers productivos incluidos reciben la `RuntimeLane` inmutable y llaman siempre:
 
-- Tag exacto: `scope:<lane>`.
-- `DeploymentTriggerProducerImpl.publish` resuelve la lane del runtime al publicar y, si existe, usa `producer.send(message, new Filters(List.of("scope:" + lane)))`.
-- `DeploymentResultProducerImpl.publish` aplica exactamente la misma regla.
-- Lane ausente o fuera del vocabulario usa `producer.send(message)`; no se crea un filtro vacío y no se adivina una lane.
-- Cada producer agrega exactamente un tag `scope:` y no modifica el payload.
-- `ProducerBuilder.withSegmentID` permanece igual; segmento y scope siguen siendo ejes diferentes.
-- El consumer no parsea `envelope.filters`, no valida estructura y no propaga el tag. Sólo recibe lo que su binding server-side le entrega.
+```java
+producer.send(message, new Filters(List.of("scope:" + runtimeLane.value())));
+```
 
-## Cobertura de los cuatro caminos
+Puntos obligatorios:
 
-| Camino | Runtime que publica | Punto único de implementación | Resultado esperado en alpha |
-|---|---|---|---|
-| Primer batch del deploy | Scope web | `DeploymentTriggerProducerImpl.publish` | `scope:alpha` |
-| Batch N+1 | Scope consumer | `DeploymentTriggerProducerImpl.publish` | `scope:alpha` |
-| Retry por timeout | Runtime cuyo `DeploymentTimeoutJob` reclama el deployment | `DeploymentTriggerProducerImpl.publish` | `scope:<lane del runtime>` |
-| Result | Scope que adapta/publica el resultado | `DeploymentResultProducerImpl.publish` | `scope:alpha` |
+1. `service.pipeline.impl.DeploymentTriggerProducerImpl.publish`.
+2. `restclient.impl.BigQueueDeploymentTriggerProducerImpl.publish`.
+3. `service.pipeline.impl.DeploymentResultProducerImpl.publish`.
 
-La coincidencia entre web y consumer no requiere coordinación: `alpha-api-nonprod` y `alpha-consumer-nonprod` derivan el mismo primer token.
+No existe `producer.send(message)` como fallback en esos beans canónicos. Los producers locales/no-op quedan intactos.
 
-## Errores y observabilidad
+## Cobertura de la POC
 
-| Escenario | Comportamiento | Señal bounded |
+| Camino | Producer | Resultado esperado |
 |---|---|---|
-| Lane válida | Publish con `scope:<lane>` | `routing_mode:filtered` |
-| Lane ausente, malformed o desconocida | Publish legacy sin filtro | `routing_mode:legacy` |
-| Fallo mqclient | Semántica actual de `QueueException` | Métrica existente de publish failure |
+| Deploy/undeploy por servicio existente | `restclient...BigQueueDeploymentTriggerProducerImpl` | `scope:alpha` |
+| Trigger inicial del pipeline nuevo | `service.pipeline...DeploymentTriggerProducerImpl` | `scope:alpha` |
+| Batch N+1 lane-affine | `service.pipeline...DeploymentTriggerProducerImpl` | `scope:alpha` |
+| Result publicado por Playmaker | `DeploymentResultProducerImpl` | `scope:alpha` |
+| Timeout/retry | Fuera de alcance y deshabilitado en alpha | No se ejecuta |
 
-Ninguna métrica usa la lane, el scope completo, IDs o variables de entorno como tag dinámico. Los logs operativos pueden registrar el modo `legacy|filtered`, pero no necesitan imprimir el valor completo de `SCOPE`.
+## Timeout processing en alpha
 
-## Design Decisions
+Las lanes nonprod comparten DB y `DeploymentTimeoutJob` no filtra por lane. El diseño KISS no agrega `routingLane` a las tablas.
 
-- **DD-1 — separación y autoridad runtime:** pipeline environment y scope Fury son conceptos distintos; la única fuente de lane dentro de Playmaker es `ScopeUtils.getScopeValue()` y el dato no toca modelo, DB, idempotencia ni history.
-- **DD-4 — contratos de aplicación intactos:** no existe carrier por request, no se lee `X-Rio-Scope`, no se modifica controller/dispatch/consumer y los DTOs de deployment permanecen iguales.
-- **DD-5 — mqclient existente:** se usa la sobrecarga `Producer.send(message, Filters)`; no se migra el producer.
-- **DD-6 — compatibilidad por fallback:** lane no resoluble publica sin filtro; no se agrega feature flag ni se inventa una lane.
+Se agrega un único switch operacional booleano, default `true` para no cambiar runtimes existentes, y `false` en los scopes alpha de la POC. Cuando está apagado:
+
+- El scan programado no consulta ni procesa deployments.
+- La resolución lazy desde history tampoco ejecuta timeout processing.
+- No se certifica retry/restart.
+
+El nombre exacto de la property se fija en implementación junto a `DeploymentTimeoutConfig`; no contiene la lane ni duplica el scope.
+
+## Arquitectura objetivo
+
+```text
+Fury scope alpha-api-nonprod / alpha-consumer-nonprod
+                          │
+                          ▼ startup
+                   RuntimeLane(alpha)
+                          │
+       ┌───────────────────┼───────────────────┐
+       ▼                   ▼                   ▼
+pipeline trigger       existing trigger       result producer
+       └────────────── send(message, Filters([scope:alpha]))
+
+controller / dispatch / consumers / payloads / DB: SIN CAMBIOS
+timeout processing alpha: OFF
+```
 
 ## Archivos afectados
 
-### Modificar
-
-| Archivo/símbolo | Cambio |
-|---|---|
-| `ScopeUtils.calculateScopeSuffix()` | Mapear scopes canónicos a profiles seguros y conservar compatibilidad legacy |
-| `ScopeUtils.getLane()` | Derivar el primer token y validarlo contra el vocabulario canónico |
-| `application.yml` | Agregar datasource `playmkrstg` y cambiar el segmento base a `nonprod` |
-| `DeploymentTriggerProducerImpl.publish` | Publicar con filtro cuando `ScopeUtils.getLane()` resuelva una lane |
-| `DeploymentResultProducerImpl.publish` | Aplicar la misma regla al result |
-| Tests de utility, configuración y producers | Cubrir matriz, fallback, payload y ambos overloads |
+| Acción | Superficie | Cambio |
+|---|---|---|
+| `modify` | `ScopeUtils` o configuración de startup | Lane estricta y profile seguro |
+| `modify` | `application.yml` y profiles | Defaults stage/nonprod |
+| `modify` | Los dos trigger producers | Publish siempre filtrado en runtime canónico |
+| `modify` | Result producer | Publish siempre filtrado |
+| `modify` | `DeploymentTimeoutConfig`/`DeploymentTimeoutJob` | Switch binario para deshabilitar scan y resolución lazy en alpha |
+| `modify` | Tests asociados | Matriz de startup, producers, timeout off y payload |
 
 ### No tocar
 
-- `PipelineDeploymentController`, `PipelineDeployService`, sus implementaciones y el flujo HTTP.
-- `DeploymentGroupService`, `BatchDispatchService`, `DispatchRequest`, `DispatchRequestFactory` y `BigQueueDispatchAdapter`.
-- `DeploymentResultConsumerController`, consumer services y parsing del envelope.
-- `PipelineExecutionModel`, `EnvironmentModel`, repositories, migrations, idempotencia, history/detail/logs y lifecycle del pipeline.
-- `rio-sdk-events`, payload DTOs y `DeploymentSchemaVersion`.
-- Nombres de tópicos, Actions, inactivation, `DataProductChanged` y Materializer.
-- `DeploymentTimeoutJob`; queda cubierto porque ya publica mediante `DeploymentTriggerProducerImpl.publish`.
+- Controllers HTTP, deploy/group/batch services, dispatch, consumers y payload DTOs.
+- `PipelineExecution`, `EnvironmentModel`, repositories, migrations, idempotencia e history schema.
+- `rio-sdk-events`, nombres de topics, Actions, inactivation y Materializer.
+- Persistencia de lane o solución durable de retries.
 
 ## Estrategia de tests
 
-- `ScopeUtils`: matriz completa de scope→lane→profile; normalización de mayúsculas; valores vacíos, delimitadores, legacy y desconocidos; compatibilidad de `local | test | stage | production`.
-- Configuración: el contexto base obtiene datasource `playmkrstg` y segmento `nonprod`; alpha/beta/gamma usan profile stage; prod usa production; beta nonprod nunca carga recursos de `application-beta.yml`.
-- Trigger producer: lane alpha llama exactamente `send(message, Filters(["scope:alpha"]))`; lane no resoluble llama exactamente `send(message)`.
-- Result producer: misma matriz filtered/legacy.
-- Wire: `DeploymentTriggerMessage` y `DeploymentResultMessage` serializados permanecen idénticos; no aparecen `environment_scope`, `fury_scope` ni campos equivalentes.
-- No-regression: ningún test, query, model, controller, dispatch, consumer, migration o SDK cambia por esta feature.
-- E2E: deploy alpha con más de un batch verifica trigger inicial, result, batch N+1 y retry por timeout con `scope:alpha`.
-- Calidad: tests críticos primero, checks del repo y ≥95% de cobertura sobre código nuevo.
+- Startup: matriz canónica lane/profile y fallo por missing, typo, uppercase o segmento incompatible.
+- Config: alpha/beta/gamma usan stage/nonprod; prod usa production/nonsite; beta nunca activa recursos productivos.
+- Producers: los tres puntos llaman exactamente `send(message, Filters(["scope:alpha"]))`.
+- No-fallback: ningún producer canónico llama `send(message)` cuando falla la lane; el runtime no arranca antes.
+- Timeout off: scan programado y resolución lazy no consultan repositories ni publican.
+- Wire: trigger/result conservan serialización; scope sólo aparece en envelope.
+- E2E: deploy/undeploy existente, trigger pipeline, batch N+1 y result llevan `scope:alpha`.
+- Plataforma: consumer alpha recibe; beta no recibe; envelope conserva filtro.
+- Calidad: tests críticos primero, checks del repo y ≥95% de cobertura nueva.
+
+## Observabilidad
+
+- `routing_outcome:published|startup_invalid` sin lane como tag.
+- Métrica/health estándar para timeout processing disabled.
+- No imprimir mapa de ambiente, payload, scope completo ni IDs como tags dinámicos.
 
 ## Rollout y rollback
 
-1. Implementar y desplegar primero la resolución segura de profiles y defaults base.
-2. Crear o validar `alpha-api-nonprod` y `alpha-consumer-nonprod`; ambos deben cargar profile stage, datasource `playmkrstg` y segmento `nonprod`.
-3. Desplegar los dos producers con filtro y confirmar `routing_mode` en un smoke controlado.
-4. Ejecutar un deploy alpha multibatch y capturar evidencia de trigger inicial, result y batch N+1.
-5. Provocar un timeout controlado y verificar el retry `scope:alpha`.
+1. Confirmar gates Fury/BigQueue.
+2. Desplegar primero profile/defaults seguros.
+3. Desplegar los tres producers filtrados y timeout processing off sólo en alpha.
+4. Validar ambos trigger producers, result y batch N+1.
+5. Habilitar el consumer Flink alpha y ejecutar la vuelta lane-affine.
 
-Rollback: revertir el artefacto y la configuración de Playmaker a la versión anterior. No hay schema, backfill, estado persistido ni cambios de frontend que revertir. No se hace release productivo desde una feature branch.
+Rollback:
 
-## Limitación aceptada de la POC
+1. Cerrar route/entrada alpha.
+2. Drenar mensajes `scope:alpha` con consumers canónicos activos.
+3. Confirmar backlog cero.
+4. Revertir producers, consumers y artefactos.
 
-Las lanes nonprod comparten la base `playmkrtst` y `DeploymentRepository.findByStatusInAndTimeoutAtBefore` escanea por `status + timeout_at` sin discriminador de lane. El `DeploymentTimeoutJob` de una lane puede reclamar un deployment creado por otra y publicar el retry mediante `DeploymentTriggerProducerImpl.publish`, que estampará su propia lane runtime. Es asumible para la POC. Resolverlo requiere estado durable y una decisión separada; no se agregan columnas ni se toca `PipelineExecution` en este proyecto.
+## Design Decisions
+
+- **DD-1 — Autoridad runtime:** la lane sale sólo del scope Fury local y se resuelve al startup.
+- **DD-2 — Sin fallback:** scope inválido impide startup; nunca publica sin filtro.
+- **DD-3 — Cobertura real:** se filtran los dos trigger producers activos y el result producer.
+- **DD-4 — Retry fuera:** timeout processing se apaga en alpha; no se agrega persistencia.
+- **DD-5 — SDK intacto:** filtros mqclient existentes, payloads sin cambios.
 
 ## Definition of Done
 
-- La regla `Pipeline Environment ≠ Fury Scope` está visible y respetada por el diff.
-- Todos los scopes canónicos resuelven una lane y un Spring profile seguros según la matriz.
-- El default base usa datasource `playmkrstg` y segmento `nonprod`.
-- `DeploymentTriggerProducerImpl.publish` y `DeploymentResultProducerImpl.publish` generan exactamente `scope:alpha` en runtime alpha.
-- Trigger inicial, result, batch N+1 y retry por timeout quedan certificados en E2E.
-- Lane no resoluble mantiene el publish legacy sin filtro.
-- Payloads, SDK, controller/dispatch/consumer, modelo y persistencia del pipeline permanecen iguales.
-- La limitación cross-lane del timeout job queda documentada y no se maquilla con persistencia.
-- Checks, cobertura ≥95%, E2E y rollback generan evidencia enlazable desde el planner.
+- `alpha-api-nonprod` y `alpha-consumer-nonprod` producen `RuntimeLane(alpha)`.
+- Un scope inválido no arranca ni publica sin filtro.
+- Ambos deployment trigger producers y el result producer emiten exactamente `scope:alpha`.
+- Timeout processing está deshabilitado en alpha y no forma parte de la evidencia.
+- Payloads, SDK, controllers, dominio, DB y pipeline environment permanecen intactos.
+- Fury demuestra filtrado server-side y envelope preservado.
+- E2E lane-affine y rollback generan evidencia enlazable.
 
 ## Fuera de alcance
 
-- Cualquier cambio en pipeline environment, `PipelineExecution`, DB, migrations, idempotencia o history.
-- Lectura o validación de `X-Rio-Scope` en Playmaker.
-- Carrier transitorio o durable en controller, services, dispatch o consumers.
-- Parsing o validación de `envelope.filters` en el result consumer.
-- Campos `environment_scope`/`fury_scope` en payloads o entidades.
-- Aislamiento durable de retries entre lanes.
-- Código de infraestructura Fury dentro de este repo, topics nuevos, producción u otros eventos.
+- Timeout/retry/restart con ownership por lane.
+- Carrier HTTP/in-memory/durable.
+- Legacy dentro del artefacto canónico.
+- Campos de scope en payloads o entidades.
+- Actions, runtime status, Observability, Materializer y KMS.
+- Release productivo desde feature branch.
 
-## Dependencias y stop conditions
+## Stop conditions
 
-- Fury aplica filtros server-side por decisión cerrada del owner; no existe spike, gate ni fallback a topics separados.
-- Si los scopes canónicos no pueden usar profiles stage/production sin cargar recursos productivos incorrectos, registrar `PLAN_CONFLICT` y no crear las lanes.
-- Si mqclient no soporta el overload contratado, registrar `PLAN_CONFLICT`; no agregar campos al payload ni cambiar el SDK.
-- Si un camino de los cuatro no converge en los dos producers identificados, reabrir F1 con evidencia; no propagar scope por controllers, dispatches, consumers ni entidades.
+- Accessor Fury no confirmado.
+- BigQueue no filtra server-side o no preserva filtros.
+- Alguno de los dos trigger producers usados sigue publicando sin filtro.
+- Scope inválido cae en local/legacy.
+- Timeout processing continúa activo en alpha.
+- E2E produce un mensaje sin filtro o con lane distinta.
 
 ## Fuentes
 
-- [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599) y [[scope-naming-standard]].
-- `rio-playmaker origin/master@f350fb26091d`: `ScopeUtils`, profiles Spring, configuración base, ambos producers, avance de batch y timeout job.
-- mqclient `3.4.9`: `Producer.send(Object, Filters)` y `Filters(List<String>)`.
-- `com.fury.toolkit.shared.SegmentationUtils.getSegmentId()` como precedente del patrón runtime para el eje de segmento.
+- Review independiente del 2026-09-22 sobre `origin/develop@625f491d218e`.
+- [[scope-naming-standard]] y [[Estandarización de Scopes RIO]].
+- mqclient 3.4.9 y contratos existentes de `rio-sdk-events`.

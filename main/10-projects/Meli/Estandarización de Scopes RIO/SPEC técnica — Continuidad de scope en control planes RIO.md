@@ -26,298 +26,294 @@ updated: "2026-09-22"
 
 **Feature**: `rio-controlplane-scope-filter-continuity`
 **Owner**: Rodrigo Jara
-**Project**: Signals (`rio-controlplane-flink` como piloto; contrato reusable por los control planes RIO)
-**Status**: DRAFT
+**Piloto**: `rio-controlplane-flink`, sólo deployment trigger/result lane-affine
+**Status**: DRAFT revisado con criterio KISS/YAGNI
 **Deriva de**: [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599), [[SPEC técnica — Routing KISS por scope en rio-playmaker]] y [[scope-naming-standard]]
-**Baseline revisada**: `rio-sdk-events origin/master@ad2c98b806cf`; `rio-controlplane-flink origin/develop@c88038ea1359`; `rio-controlplane-kafka origin/develop@1595df01304a`; `rio-controlplane-clickhouse origin/develop@cc64f78b18a7`; `rio-controlplane-fury origin/develop@4c40042c102f`; `rio-controlplane-observability origin/develop@2cc4eaf3e265`; `rio-controlplane-signals origin/develop@a0ae1324466b`; corte 2026-09-21
+**Baseline revisada**: `rio-controlplane-flink origin/develop@eafad6ac57ca`; `rio-playmaker origin/develop@625f491d218e`; `rio-sdk-events origin/master@ad2c98b806cf`; corte 2026-09-22
 
 ## Propósito
 
-Garantizar continuidad de lane sin transportar estado adicional: un control plane que corre en un scope Fury canónico como `alpha-consumer-nonprod` deduce `lane=alpha` desde el scope entregado por Fury, acepta sólo un trigger con `filters.modified_fields` que contenga exactamente `scope:alpha` y publica el resultado con exactamente `scope:alpha`.
+Demostrar el contrato mínimo `scope:x` entrada → `scope:x` salida en una instancia canónica de Flink, sin agregar carrier, persistencia, configuración por lane, cambios de payload ni librería compartida.
 
-La lane local es la autoridad. El filtro entrante es una aserción que se valida contra ella. El publisher vuelve a resolver la lane desde el runtime y no depende de un carrier originado en la request. El pipeline environment, el segmento BigQueue y los DTOs de negocio permanecen intactos.
+Una instancia `alpha-consumer-nonprod` resuelve `lane=alpha` una vez al arrancar. Después acepta sólo triggers con exactamente `scope:alpha` y todos los deployment results incluidos en la POC salen con exactamente `scope:alpha`.
 
-La POC implementa el contrato en `rio-controlplane-flink` para `rio-deployment-trigger` → `rio-deployment-result`. La adopción del resto de los control planes ocurre después de certificar el piloto.
+La POC no declara resueltos retries, restart, GCP KVS/PubSub, schedulers ni reconciliadores. El patrón runtime-derived sólo es correcto cuando el trabajo no puede ser reclamado por otra lane.
 
 ## Contenido
 
-## Ubicación en el programa
+## Decisión KISS
 
-Esta es la Fase 3 del programa alpha end-to-end. La Fase 1 hace que Fury Routes seleccione el backend; la Fase 2 hace que Playmaker deduzca su lane desde el scope Fury del runtime y publique el trigger con `scope:<lane>`; la Fase 3 aplica la misma regla dentro del control plane y verifica que el filtro recibido coincida con su lane antes de procesar.
+La implementación tiene cuatro piezas y ninguna fuente de verdad duplicada:
 
-No debe confundirse con la fase interna de certificación E2E del planner de Playmaker.
+1. Fury entrega el nombre del scope al proceso.
+2. El proceso resuelve una `RuntimeLane` inmutable al startup.
+3. El controller compara el único filtro `scope:` entrante con esa lane.
+4. El publisher agrega esa misma lane mediante `sendWithFilters`.
 
-## Invariantes
+No se implementa:
 
-- `Pipeline Environment ≠ Fury Scope`: `environmentId` y `environmentName` conservan su semántica funcional y no participan en routing.
-- El scope Fury canónico sigue `<lane>-<role>[-<qualifier>]-<segment>` y la lane es el primer token normalizado.
-- El vocabulario técnico de lane es `prod | stage | alpha | beta | gamma`; cualquier otro primer token no es una lane.
-- La aplicación obtiene el scope mediante una API soportada de Fury encapsulada por `FuryRuntimeScopeProvider`; ningún controller, processor ni publisher lee directamente variables de entorno.
-- El filtro `scope:x` vive sólo en el envelope BigQueue; no se agrega a `DeploymentTriggerMessage`, `DeploymentResultMessage`, `ActionTriggerMessage` ni `ActionResultMessage`.
-- El CP procesa un mensaje scoped sólo cuando `incomingLane == runtimeLane`.
-- El publisher deriva `runtimeLane` de nuevo y publica `scope:<runtimeLane>`; no acepta una lane arbitraria como argumento.
-- El segmento Fury, `componentType`, auth scopes y tracing scopes son ejes independientes.
-- El payload se publica directamente; nunca se envuelve manualmente en `BigQueueMessage`, porque mqclient construye el envelope.
-- `ThreadLocal`, MDC, request-scoped beans, estado global y carriers in-memory no participan en la solución.
+- Modo legacy dentro del artefacto canónico.
+- `expectedScope` manual.
+- `RoutingContext` o propagación controller→processor→publisher.
+- Campo de scope en DTOs o entidades.
+- Persistencia de lane para paths que la POC no cubre.
+- Framework común para todos los control planes.
+- Release nueva de `rio-sdk-events` o `rio-core-java`.
 
-## Evidencia y puntos en común
+Las instancias legacy conservan el artefacto anterior durante la POC. No se agrega compatibilidad especulativa al código nuevo.
 
-| Punto común | Implementación vigente | Uso en la solución |
+## Alcance exacto
+
+### Incluido
+
+- Runtime Fury `alpha-consumer-nonprod` de `rio-controlplane-flink`.
+- `rio-deployment-trigger` como ingreso.
+- Guard antes de mapper, idempotencia, `CompletableFuture` y cualquier side effect.
+- Deployment results publicados por el flujo lane-affine elegido para el golden deploy.
+- Happy path alpha, mismatch beta, missing, malformed y rollback.
+- Evidencia real de filtrado BigQueue y preservación del envelope.
+
+### Excluido
+
+- GCP deployments que persisten `GcpDeploymentRecord` y finalizan desde KVS, Pub/Sub o `GcpJobTimeoutJob`.
+- Retry por timeout de Playmaker.
+- Restart/recovery, schedulers y reconciliadores con storage compartido.
+- Actions y runtime status.
+- Kafka, ClickHouse, Fury, Signals, Observability y KMS.
+- Legacy y migración masiva de scopes existentes.
+
+En la infraestructura alpha, `kvs.gcp-pending-deployments.container-name` y `rio.gcp.pubsub.subscription` deben permanecer vacíos para que los componentes GCP condicionales no se creen. El golden deploy no usa GCP. Si otro scheduler o store durable participa en el camino elegido, la POC se detiene y ese camino queda fuera.
+
+## Baseline verificada
+
+| Hecho | Evidencia | Consecuencia |
 |---|---|---|
-| Envelope tipado | `rio-sdk-events` expone `BigQueueMessage<T>` y `BigQueueFilters.modifiedFields`; Flink, Kafka, ClickHouse, Fury y Signals ya consumen contratos del SDK | Leer y validar `scope:<lane>` sin modificar el payload |
-| Publicación filtrada | `BigQueueClient.sendWithFilters(Object, List<String>)` termina en `Producer.send(message, Filters)` | Publicar el result con la lane local |
-| Naming canónico | Fase 2 usa scopes como `alpha-api-nonprod` y `alpha-consumer-nonprod` | Resolver ambos como `lane=alpha` mediante el primer token |
-| Fuente runtime | Playmaker ya encapsula el `SCOPE` entregado por Fury en `ScopeUtils.getScopeValue()` | Replicar el patrón mediante un provider inyectable y testeable |
-| Punto de ingreso | Los CPs reciben el push BigQueue en un controller/adaptor y luego ejecutan el dominio | Aplicar el guard antes de cualquier side effect |
-| Punto de egreso | Los CPs concentran resultados en publishers de deployment/actions | Resolver la lane local en el último punto antes de publicar |
-| Aislamiento server-side | Fury asocia consumer/binding con filtros BigQueue | Primera barrera; el guard local es defensa en profundidad |
+| El controller recibe `BigQueueMessage<DeploymentTriggerMessage>` pero usa sólo `msg()` | `DeploymentTriggerController` | El guard cabe en la frontera sin cambiar dominio |
+| `BigQueueMessage` contiene `BigQueueFilters` y `modifiedFields` puede ser nulo | `rio-sdk-events` | El parser debe manejar ausencia y malformed |
+| `BigQueueClient.sendWithFilters` delega a `Producer.send(message, Filters)` | `rio-sdk-events` y mqclient 3.4.9 | No se modifica el payload |
+| `BigQueueDeploymentPublisher` centraliza deployment results | Flink | Un cambio de egreso cubre el canal de la POC |
+| GCP guarda trabajo y publica desde Pub/Sub/jobs posteriores | `GcpDeploymentRecord`, registry, processors y job | GCP no puede certificarse con runtime-only |
+| Playmaker tiene dos producers activos de deployment trigger | producer legacy y producer pipeline | Ambos son prerrequisito de Fase 2 |
+| mqclient construye `msg + filters` | mqclient 3.4.9 | No prueba filtrado server-side ni preservación del push |
 
-## Hallazgo sobre Fury Toolkit
+## Gates externos obligatorios
 
-El diseño exige usar la API soportada por Fury para leer el scope y esconderla detrás de `FuryRuntimeScopeProvider`. La clase concreta no se congela todavía porque las dependencias presentes en los repos no prueban un accessor de scope uniforme: `com.fury.toolkit:java-toolkit-shared` 0.2.1–0.5.0 expone `SegmentationUtils.getSegmentId()`, pero no un equivalente `getScope`; `com.fury:furyutils` expone `FuryUtils.getEnv(String)`, pero no está declarado hoy por estos CPs y su adopción debe validarse con Fury.
+Antes de implementar o desplegar el piloto, Fury/BigQueue debe demostrar:
 
-G0 debe confirmar con Fury cuál es el accessor soportado para Java/Kotlin. La implementación no debe inventar `FuryScopeUtils`, agregar una dependencia no validada ni dispersar `System.getenv("SCOPE")` por el código. Si la API soportada termina siendo una lectura de `SCOPE`, sólo el adapter puede conocer ese detalle.
+- Cuál es el accessor soportado para obtener el scope en Java/Kotlin.
+- Si el runtime lo expone como `scope`, `SCOPE` o ambos y cuál es la precedencia.
+- Que un binding `scope:alpha` filtra server-side.
+- Que el push HTTP conserva `filters.modified_fields=["scope:alpha"]`.
+- Qué ocurre con mensajes sin filtro frente a un binding filtrado.
+
+Flink debe identificar además el componente exacto del golden deploy y trazarlo hasta el result. El gate sólo cierra si ese camino no cruza KVS, Pub/Sub, scheduler, recovery ni un store que otra lane pueda reclamar. `No GCP` por sí solo no constituye evidencia de lane-affinity.
+
+La presencia de `FuryUtils.getEnv("SCOPE")` en el classpath no lo convierte en la API elegida. `FuryUtils` agrega requisitos y fallos innecesarios para un valor plano; no se usa sin confirmación de Fury.
+
+## Contrato de naming y startup
+
+Los tokens runtime son `prod | stage | alpha | beta | gamma`. `production` y `staging` pueden existir como etiquetas funcionales, pero no son tokens del nombre materializado.
+
+El scope canónico cumple:
+
+- Todo lowercase; no se normalizan mayúsculas silenciosamente.
+- Al menos tres tokens no vacíos.
+- Primer token dentro del vocabulario de lanes.
+- Último token `nonsite` para `prod` y `nonprod` para las demás lanes.
+- Los tokens intermedios representan role/qualifiers y no se hardcodean en el resolver.
+
+Ejemplos:
+
+| Scope Fury | Resultado |
+|---|---|
+| `alpha-consumer-nonprod` | `RuntimeLane(alpha)` |
+| `beta-consumer-flink-nonprod` | `RuntimeLane(beta)` |
+| `prod-consumer-nonsite` | `RuntimeLane(prod)` |
+| `alpah-consumer-nonprod` | startup failure |
+| `Alpha-consumer-nonprod` | startup failure |
+| `alpha-consumer-nonsite` | startup failure |
+| scope ausente o error del accessor | startup failure |
+
+La lane se resuelve una vez y queda como value object inmutable de aplicación. No se consulta el ambiente en cada mensaje ni se degrada a `local` o publish sin filtro. Los tests/local usan una `RuntimeLane` provista por su configuración de test; esa comodidad no existe en un runtime Fury desplegado.
+
+## Contrato de ingreso
+
+El parser inspecciona `filters.modified_fields`, ignora tags con otros prefijos y exige exactamente un tag `scope:` lowercase cuyo valor pertenezca al vocabulario.
+
+| Runtime lane | Envelope | Resultado HTTP | Side effects |
+|---|---|---|---|
+| `alpha` | exactamente `scope:alpha` | flujo normal | sí |
+| `alpha` | `scope:beta` | `2xx` | ninguno |
+| `alpha` | sin `scope:` | `2xx` | ninguno |
+| `alpha` | duplicado, vacío, uppercase, wildcard o unknown | `2xx` | ninguno |
+
+El guard se ejecuta antes del mapper, idempotencia, dispatch async, KVS y llamadas de infraestructura. El `2xx` evita retry infinito para errores determinísticos; cada descarte emite una métrica bounded y requiere procedimiento de replay controlado. Errores transitorios posteriores mantienen la semántica actual del CP.
+
+## Contrato de salida
+
+`BigQueueDeploymentPublisher` recibe la `RuntimeLane` inmutable de la aplicación y publica siempre mediante:
+
+```java
+client.sendWithFilters(payload, List.of("scope:" + runtimeLane.value()));
+```
+
+No existe fallback a `client.send(payload)` dentro del runtime canónico. El publisher no recibe el scope desde el controller, payload o command. El mensaje de negocio no cambia.
+
+Esta regla cubre solamente resultados cuyo ownership permanece en la instancia/lane que procesó el trigger. No autoriza publicar trabajo recuperado desde un store global.
 
 ## Arquitectura objetivo
 
 ```text
-Fury runtime scope
-alpha-consumer-nonprod
-        │
-        ▼
-FuryRuntimeScopeProvider
-        │
-        ▼
-RuntimeLaneResolver ──────────────────────────┐
-lane=alpha                                      │
-        │                                           │
-        ▼                                           ▼
-DeploymentTriggerController                 DeploymentResultPublisher
-        │                                           │
-        ├─ parsea envelope: scope:alpha                   ├─ vuelve a resolver lane=alpha
-        ├─ valida incoming == runtime                    └─ sendWithFilters(result, [scope:alpha])
-        └─ recién entonces ejecuta dominio
-        │
-        ▼
-processor / handlers / payloads / DB: SIN CAMBIOS
+Fury scope: alpha-consumer-nonprod
+                 │
+                 ▼ startup
+          RuntimeLane(alpha)
+                 │
+        ┌─────────┴─────────┐
+        ▼                   ▼
+DeploymentTriggerController   BigQueueDeploymentPublisher
+        │                   │
+        ├─ exige scope:alpha └─ siempre scope:alpha
+        └─ luego ejecuta dominio
+
+payload / processor / DB / SDK: SIN CAMBIOS
 ```
 
-## Contrato de resolución de lane
+## Implementación mínima Flink
 
-`RuntimeLaneResolver` recibe el scope completo del provider, lo divide por `-`, toma el primer token no vacío, lo normaliza a lowercase y sólo devuelve un valor si pertenece a `prod | stage | alpha | beta | gamma`.
+1. Escribir tests de startup, guard y publisher antes del código.
+2. Resolver una `RuntimeLane` inmutable durante startup usando el accessor aprobado en G0.
+3. Agregar un parser/guard pequeño para `BigQueueFilters`.
+4. Invocar el guard al inicio de `DeploymentTriggerController`.
+5. Inyectar `RuntimeLane` en `BigQueueDeploymentPublisher` y reemplazar `send` por `sendWithFilters` para deployment results.
+6. No tocar processor, commands, events internos, records GCP, KVS ni SDK.
 
-| Scope Fury | Lane |
-|---|---|
-| `prod-consumer-nonsite` | `prod` |
-| `stage-consumer-nonprod` | `stage` |
-| `alpha-consumer-nonprod` | `alpha` |
-| `beta-api-nonprod` | `beta` |
-| `gamma-tp-nonprod` | `gamma` |
-| `consumer-alpha-nonprod` | ausencia; naming no canónico |
-| `test` | ausencia; runtime legacy |
-| vacío, `null` o delimitadores | ausencia |
+El nombre exacto de la clase que lee Fury se decide al cerrar G0. No se crean provider + classifier + resolver + context cuando un bean de startup y un guard alcanzan.
 
-El role y el segmento no se interpretan para reconstruir la lane. El resolver no consulta Spring profiles, pipeline environment, nombre del tópico ni configuración `expectedScope`.
+## Archivos conceptuales
 
-## Contrato del filtro entrante
-
-El parser inspecciona `filters.modified_fields` y considera tags cuyo prefijo exacto sea `scope:`. Tags como `componentType:FLINK` pueden coexistir y no cambian la resolución.
-
-| Entrada | Resultado |
-|---|---|
-| Exactamente un `scope:alpha` y runtime lane `alpha` | Procesar |
-| `scope:alpha` y runtime lane `beta` | ACK sin side effects; `scope_mismatch` |
-| Dos o más tags `scope:` | ACK sin side effects; `invalid_scope_filter` |
-| `scope:`, espacios, mayúsculas, slash, wildcard o lane fuera del vocabulario | ACK sin side effects; `invalid_scope_filter` |
-| Sin `scope:` y runtime canónico | ACK sin side effects; `missing_scope_filter` |
-| Sin `scope:` y runtime legacy/no resoluble | Procesar en modo legacy |
-| Un `scope:x` válido y runtime legacy/no resoluble | ACK sin side effects; `runtime_scope_unresolved` |
-
-El ACK evita retry storms por configuración determinísticamente inválida. Un error transitorio al consultar la fuente runtime o publicar mantiene la semántica de error/retry vigente del CP.
-
-## Contrato de salida
-
-El publisher no recibe `scope` ni `RoutingContext`. Antes de enviar, consulta `RuntimeLaneResolver`:
-
-- Runtime canónico: `sendWithFilters(result, List.of("scope:" + runtimeLane))`.
-- Runtime legacy/no resoluble: conserva el publish legacy sin filtro.
-- Error transitorio del provider: no publica como legacy; propaga error para evitar fuga silenciosa entre lanes.
-
-La igualdad verificada en el ingreso hace que `scope:x` entrante y `scope:x` saliente coincidan. La derivación local en el egreso evita depender de memoria de request y cubre ejecución asíncrona dentro de la misma lane.
-
-## Modo canónico y modo legacy
-
-No existe feature flag ni `expectedScope` manual. El naming del runtime selecciona el modo:
-
-| Runtime | Trigger aceptado | Result publicado |
+| Acción | Superficie | Cambio |
 |---|---|---|
-| Scope canónico con lane `x` | Sólo `scope:x` | Siempre `scope:x` |
-| Scope legacy/no resoluble | Sólo mensaje sin `scope:` | Sin filtro |
-
-Por eso el orden de rollout es obligatorio: Playmaker debe publicar filtros antes de activar el consumer con nombre canónico.
-
-## Implementación del piloto Flink
-
-1. Crear `FuryRuntimeScopeProvider` como puerto inyectable y una implementación de plataforma después de cerrar G0.
-2. Crear `RuntimeLaneResolver` puro con el vocabulario canónico y tests de naming.
-3. En `DeploymentTriggerController`, parsear el filtro y comparar `incomingLane` con `runtimeLane` antes del mapper, processor o cualquier llamada de infraestructura.
-4. Mantener `DeploymentProcessor`, `EventFlinkApp`, modelos y payloads sin scope ni contexto de routing.
-5. En `DeploymentResultBigQueueEventPublisher`, resolver la lane local al publicar y usar `BigQueueClient.sendWithFilters` cuando sea canónica.
-6. Mantener el path de Streams sin cambios; el contrato aplica sólo a BigQueue deployment trigger/result en la POC.
-
-Los errores de mapping que hoy publican un `FAILED` sólo pueden hacerlo después de que el guard haya validado la lane; el publisher igualmente deriva su filtro desde el runtime.
-
-## Límite de ejecución durable
-
-La derivación runtime elimina la necesidad de persistir el filtro sólo si el trabajo permanece en su lane. Un resultado diferido o reconciliado puede usar la lane local con seguridad cuando el storage, lease, queue o selector que recupera el trabajo impide que otra lane lo reclame.
-
-Si un reconciliador `beta` puede reclamar trabajo iniciado en `alpha`, publicaría `scope:beta`. Ese path no puede adoptar este diseño hasta aislar la propiedad del trabajo por lane o persistir una identidad de routing operacional separada del pipeline environment.
-
-Flink es apto para el piloto porque el flujo deployment trigger → result observado converge en el request procesado por la misma instancia. Fury queda al final de la adopción porque sus reconciliadores deben demostrar aislamiento de ownership antes de usar derivación local.
-
-## Reuso y estandarización
-
-La POC mantiene `RuntimeLaneResolver` y el parser del filtro dentro de Flink para no bloquearse por una release compartida. Después de una segunda adopción se decide la extracción:
-
-- La lectura de scope debe reutilizar la API oficial de Fury; si falta un helper estable, se solicita a Fury en vez de inventar uno por CP.
-- La convención de naming y el vocabulario pueden vivir en `rio-core-java` si más de un CP los necesita.
-- El parser de `BigQueueFilters` puede vivir en `rio-sdk-events` porque pertenece al contrato de transporte.
-- `rio-sdk-events` no debe conocer Spring, controllers, profiles, topics ni persistencia de los CPs.
-
-No se promueve una abstracción compartida con un solo consumidor.
-
-## Design Decisions
-
-### DD-1: El scope Fury local es la autoridad
-
-**Decisión**: la lane se deduce del primer token del scope canónico que Fury asigna al runtime; el filtro entrante se valida como aserción.
-
-**Fundamentación**: replica la Fase 2, elimina configuración duplicada y hace que web/consumer con nombres canónicos converjan en la misma lane.
-
-### DD-2: Sin `expectedScope` ni carrier
-
-**Decisión**: no se configura `expectedScope` y no se transporta `RoutingContext` por controller, processor o eventos internos.
-
-**Fundamentación**: ambos datos duplicarían una identidad que Fury ya entrega al proceso. La igualdad se valida al entrar y la misma regla se ejecuta al salir.
-
-### DD-3: Broker filter más guard local fail-closed
-
-**Decisión**: Fury filtra server-side y el CP compara el filtro recibido con su lane local antes de cualquier side effect.
-
-**Fundamentación**: el binding es la barrera principal; el guard detecta bindings incorrectos y evita procesar `scope:z` en la lane `x`.
-
-### DD-4: Compatibilidad determinada por naming
-
-**Decisión**: runtime canónico exige filtro coincidente; runtime legacy procesa y publica sin filtro.
-
-**Fundamentación**: permite coexistencia durante rollout sin feature flags ni config por lane, pero evita que un runtime canónico procese mensajes ambiguos.
-
-### DD-5: El publisher no acepta scope externo
-
-**Decisión**: el publisher deriva la lane local inmediatamente antes de enviar.
-
-**Fundamentación**: reduce las superficies capaces de producir `scope:z` y preserva el filtro en tareas asíncronas de la misma lane.
-
-## Archivos del piloto
-
-### Archivos nuevos
-
-| Archivo conceptual | Responsabilidad |
-|---|---|
-| `routing/FuryRuntimeScopeProvider` | Encapsular la API soportada por Fury y permitir tests sin tocar el ambiente real |
-| `routing/RuntimeLaneResolver` | Resolver el primer token canónico y el modo canonical/legacy |
-| `routing/ScopeFilterParser` | Extraer exactamente un `scope:<lane>` válido desde `BigQueueFilters` |
-
-### Archivos modificados
-
-| Superficie | Cambio |
-|---|---|
-| `deployment/DeploymentTriggerController` | Ejecutar parser y guard runtime antes de mapping/processing |
-| `deployment/DeploymentResultBigQueueEventPublisher` | Resolver la lane local y usar `sendWithFilters` |
-| Configuración Spring | Inyectar provider/resolver; no agregar `expectedScope` |
-| Tests de controller, resolver, parser y publisher | Cubrir matriz canonical/legacy, mismatch y errores del provider |
+| `new` | `routing/RuntimeLane` | Value object inmutable y validación del nombre canónico |
+| `new` | `routing/ScopeFilterGuard` | Parsear el único `scope:` y compararlo con `RuntimeLane` |
+| `modify` | configuración de startup | Leer Fury una vez y crear `RuntimeLane`; fallar cerrado |
+| `modify` | `DeploymentTriggerController` | Guard antes de cualquier side effect |
+| `modify` | `BigQueueDeploymentPublisher` | `sendWithFilters(..., [scope:<lane>])` |
+| `modify` | tests asociados | Matriz contractual |
 
 ### No tocar
 
-- `DeploymentTriggerMessage`, `DeploymentResultMessage` y demás records de `rio-sdk-events`.
-- `DeploymentProcessor`, `EventFlinkApp`, command/events internos y modelos de dominio.
-- Pipeline environment, DB, KVS, idempotencia, history, payloads y schema versions.
-- Segment IDs, topic names y bindings Fury desde el repo de aplicación.
-- Actions, runtime status, Observability, Materializer y KMS en esta POC.
+- `DeploymentTriggerMessage`, `DeploymentResultMessage` y `rio-sdk-events`.
+- `DeploymentProcessor`, `EventFlinkApp`, commands, events internos y modelos de dominio.
+- `GcpDeploymentRecord`, registry, Pub/Sub, jobs y KVS durante esta POC.
+- Pipeline environment, DB, idempotencia, history, schema versions y segment IDs.
+- Actions, runtime status y topics por lane.
 
-## Estrategia de tests
+## Matriz de tests
 
-- Resolver: matriz `prod/stage/alpha/beta/gamma`, mayúsculas normalizadas, nombres legacy, orden incorrecto, vacío y malformed.
-- Parser: un solo tag válido, coexistencia con `componentType`, duplicados, vacío, unknown, espacios y wildcard.
-- Guard canónico: runtime alpha + filtro alpha ejecuta; runtime alpha + beta/missing/malformed no llama mapper, processor ni infraestructura.
-- Guard legacy: runtime no resoluble + mensaje sin filtro ejecuta; runtime legacy + filtro scoped no ejecuta.
-- Publisher canónico: runtime alpha llama exactamente `sendWithFilters(payload, ["scope:alpha"])`.
-- Publisher legacy: runtime no resoluble conserva exactamente el publish sin filtro.
-- Error provider: no degrada a legacy ni publica sin filtro.
-- Wire: payload serializado no cambia y el scope aparece sólo en `filters.modified_fields`.
-- Integración: trigger `scope:alpha` consumido por `alpha-consumer-nonprod` produce result `scope:alpha`; un trigger `scope:beta` no genera side effects ni result.
-- No-regression: Streams y los paths legacy mantienen su comportamiento.
-- Calidad: tests críticos primero, checks del repo y ≥95% de cobertura sobre código nuevo.
+| Caso | Assert principal |
+|---|---|
+| Scope alpha canónico | Startup produce `RuntimeLane(alpha)` |
+| Scope typo/uppercase/segmento incorrecto | Startup falla |
+| Scope/accessor ausente o con error | Startup falla; nunca modo legacy |
+| Trigger alpha | Mapper y processor se invocan |
+| Trigger beta/missing/malformed/duplicado | `2xx`; cero mapper, idempotencia, async, KVS y publish |
+| Otros tags + `scope:alpha` | Procesa; otros tags no alteran la lane |
+| Result alpha | Llama exactamente `sendWithFilters(payload, ["scope:alpha"])` |
+| Payload | Serialización equivalente; scope sólo en envelope |
+| BigQueue real | Sólo consumer alpha recibe y ve el filtro intacto |
+| GCP deshabilitado | Beans condicionales no existen con container/subscription vacíos |
+| Rollback | Backlog filtrado drenado antes de volver al artefacto legacy |
 
 ## Observabilidad
 
-Métricas bounded por resultado de routing, nunca por lane dinámica:
+Métricas nuevas, sin lane como tag:
 
-- `routing_mode:canonical|legacy`
-- `routing_outcome:accepted|missing_scope_filter|invalid_scope_filter|scope_mismatch|runtime_scope_unresolved|provider_error`
+- `routing_outcome:accepted|missing|malformed|mismatch`
+- Contador de startup failure usando la señal operativa estándar de la aplicación, sin imprimir variables de entorno.
 
-Los logs pueden incluir el outcome y un identificador de mensaje ya permitido. No imprimen el mapa completo de variables de entorno ni agregan scope, IDs o payload como tags de métrica.
+Cualquier `mismatch` o startup failure bloquea la certificación. No se loguea el envelope completo, payload, mapa de ambiente ni IDs como tags dinámicos.
 
-## Gates y rollout
+## Rollout y rollback
 
-| Gate | Evidencia | Habilita |
+1. Confirmar accessor Fury y semántica BigQueue con una prueba real.
+2. Trazar y aprobar el componente Flink lane-affine del golden deploy.
+3. Corregir Fase 2 para que ambos producers activos de Playmaker publiquen filtro; retry por timeout queda fuera.
+4. Crear `alpha-consumer-nonprod` con GCP KVS/PubSub vacíos y sin tráfico de usuario.
+5. Desplegar el artefacto Flink estricto sólo en alpha.
+6. Probar alpha, mismatch, missing, malformed y payload intacto.
+7. Ejecutar el golden deploy lane-affine y capturar trigger/result.
+
+Rollback:
+
+1. Cerrar la route/entrada alpha y detener nuevos dispatches.
+2. Mantener el consumer alpha hasta drenar mensajes `scope:alpha`.
+3. Confirmar backlog cero.
+4. Recién entonces revertir artefacto y binding.
+
+No se revierte primero el consumer a legacy mientras existan mensajes filtrados.
+
+## Aplicabilidad posterior
+
+Esta SPEC no promete un diff universal. Define un criterio de elegibilidad:
+
+| Tipo de path | ¿Puede usar runtime-derived sin estado? | Siguiente paso |
 |---|---|---|
-| G0 — API Fury | Fury confirma el accessor soportado para scope Java/Kotlin; provider testeable definido sin dependencia inventada | Implementación local |
-| G1 — Contrato unitario | Resolver, parser, guard y publisher verdes; payload sin cambios | Deploy alpha |
-| G2 — Binding | Fury demuestra filtrado server-side y preservación de `filters.modified_fields` en el push | E2E |
-| G3 — Continuidad | `scope:alpha` trigger → procesamiento alpha → `scope:alpha` result; beta/missing no procesados | Segunda adopción |
+| Request/in-process lane-affine | Sí | Repetir provider, guard y publisher local |
+| Store/queue/lease aislado físicamente por lane | Sí | Probar aislamiento y restart |
+| Store/scheduler/reconciler compartido | No | Diseñar ownership durable por lane en otra fase |
+| Sin envelope de filtros | No directamente | Adaptar ingreso sólo si ese CP entra al alcance |
+| Sin BigQueue equivalente | No aplica | No forzar el patrón |
 
-Orden:
+Kafka pierde hoy el envelope, Observability usa uno propio, Fury reconcilia trabajo durable y KMS no tiene este flujo. Ninguno se modifica por anticipado.
 
-1. Confirmar G0 y cerrar la implementación del provider.
-2. Desplegar Playmaker que publica `scope:alpha`.
-3. Crear/validar `alpha-consumer-nonprod` y su binding `scope:alpha`.
-4. Desplegar Flink con guard y publisher runtime-derived.
-5. Ejecutar happy path, mismatch, missing y rollback.
+## Design Decisions
 
-Rollback: volver al artefacto y binding legacy de Flink. No hay schema, backfill, carrier ni estado persistido que revertir.
+### DD-1: Runtime lane estricta al startup
 
-## Adopción posterior
+El scope Fury local es la única autoridad. Ausencia, typo, uppercase, segmento incompatible o error del accessor impiden arrancar el runtime canónico.
 
-Orden recomendado: Kafka → Signals → ClickHouse → Fury. Los tres primeros validan adapters distintos sin reconciliación cross-lane. Fury se adopta sólo después de demostrar que cada reconciliador recupera trabajo de su propia lane o de diseñar identidad operacional durable.
+### DD-2: Sin compatibilidad legacy en el artefacto POC
 
-Actions reutiliza el mismo contrato después de deployment. Observability sólo requiere binding o envelope SDK si necesita inspección local.
+Las instancias legacy permanecen en su versión anterior. Esto elimina el fallback fail-open y evita un flag/config temporal.
+
+### DD-3: Sin carrier ni persistencia
+
+La lane inmutable de aplicación alcanza para el path lane-affine. Los paths durables quedan fuera en vez de recibir una solución parcial.
+
+### DD-4: BigQueue/Fury es gate, no supuesto
+
+La POC no avanza a tráfico hasta demostrar filtro server-side y envelope preservado.
+
+### DD-5: Generalizar sólo después de un segundo caso
+
+No se cambia `rio-sdk-events`, `rio-core-java` ni Fury Toolkit desde este piloto. La extracción se evalúa con dos implementaciones reales.
 
 ## Definition of Done
 
-- El provider usa una API de scope soportada por Fury y es la única frontera que conoce su mecanismo concreto.
-- `alpha-consumer-nonprod` deriva `alpha` desde el naming canónico sin `expectedScope`.
-- Un trigger con `scope:alpha` produce un result con `scope:alpha`.
-- `scope:beta`, filtro ausente o filtro malformed no generan side effects en un runtime alpha.
-- Runtime legacy y mensaje legacy conservan el comportamiento previo.
-- No existen carrier, cambios de payload, cambios de DB ni lectura de pipeline environment.
-- Fury demuestra filtrado server-side y preservación del envelope.
-- Tests, E2E, observabilidad, rollout y rollback quedan enlazados como evidencia.
+- `alpha-consumer-nonprod` arranca con `RuntimeLane(alpha)` y un scope inválido no arranca.
+- Trigger `scope:alpha` produce un deployment result `scope:alpha`.
+- Beta, missing, malformed y duplicado producen `2xx` sin side effects.
+- No existe publish sin filtro en el publisher incluido.
+- Payloads, SDK, processor, DB y pipeline environment permanecen intactos.
+- GCP KVS/PubSub, retry y reconciliadores no participan en el golden deploy.
+- Fury demuestra filtering server-side y preservación del envelope.
+- Rollback drena mensajes filtrados antes de retirar el consumer.
 
-## Fuera de alcance
+## Stop conditions
 
-- Configurar `expectedScope` o una lane manual por deployment.
-- Propagar el filtro por commands, events internos, `ThreadLocal`, MDC, payloads o entidades.
-- Inferir lane desde pipeline environment, segmento, role, topic o Spring profile.
-- Adoptar reconciliadores que puedan reclamar trabajo de otra lane.
-- Agregar soporte de scope a Actions, runtime status, Observability, Materializer o KMS en el piloto.
-- Crear topics, cambiar DTOs o hacer release productivo desde una feature branch.
+- Fury no confirma el accessor.
+- BigQueue no filtra server-side o no preserva el envelope.
+- No existe un componente Flink cuyo recorrido trigger→result sea demostrablemente lane-affine.
+- Algún producer Playmaker usado por el golden flow continúa publicando sin filtro.
+- Flink degrada un scope inválido a local/legacy.
+- El camino elegido entra en GCP, KVS, Pub/Sub, scheduler o recovery durable.
+- Aparece un solo mismatch o result con lane distinta.
 
 ## Fuentes
 
+- Review independiente adjunto el 2026-09-22, contrastado con las refs de baseline.
 - [[SPEC técnica — Routing KISS por scope en rio-playmaker]] y [[POC KISS — Routing de scopes en Playmaker]].
-- [[scope-naming-standard]] para `<lane>-<role>[-<qualifier>]-<segment>`.
-- `rio-sdk-events origin/master@ad2c98b806cf`: `BigQueueMessage`, `BigQueueFilters` y `BigQueueClient.sendWithFilters`.
-- Refs de control planes declaradas en la baseline para controllers, wrappers y publishers existentes.
-- `com.fury.toolkit:java-toolkit-shared` 0.2.1–0.5.0: `SegmentationUtils.getSegmentId()` como precedente, sin accessor de scope observado.
-- `com.fury:furyutils` 1.0.1: `FuryUtils.getEnv(String)` observado, pendiente de validación de soporte/adopción con Fury.
+- [[scope-naming-standard]] para el naming materializado.
+- `rio-sdk-events`: `BigQueueMessage`, `BigQueueFilters` y `BigQueueClient.sendWithFilters`.
+- `rio-controlplane-flink`: controller, publisher y flujos GCP durables.

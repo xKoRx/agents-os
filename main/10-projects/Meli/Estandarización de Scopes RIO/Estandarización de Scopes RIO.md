@@ -54,7 +54,7 @@ cssclasses:
 - Partir de una **fuente de verdad verificable del estado actual**: qué scopes existen en Fury, su segmento runtime, lifecycle/health y qué bindings tipados los referencian.
 - Convertir el resultado en una propuesta implementable: contrato de naming, reglas de compatibilidad entre Playmaker y control planes, validaciones automáticas, estrategia de migración, ownership y documentación operativa.
 - **Capability nueva (2026-08-19):** habilitar **selección independiente del scope de frontend y de backend en runtime**: Nordic/MeliLab determina el frontend y `backend` puede sobreescribir sólo el backend en test, sin acoplar el alta de scopes a un deploy del frontend. El diseño ejecutable vive en [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]].
-- **Resultado esperado:** RIO dispone del catálogo acotado de scopes Fury lógicos `production`, `staging`, `alpha`, `beta` y `gamma`, pero cada equipo habilita sólo las lanes y roles que necesita. Los scopes de frontend se llaman únicamente como la lane; el backend usa `<environment>-<rol>-<segment>`. Una operación conserva el mismo scope Fury de backend a lo largo del flujo sin modificar su pipeline environment.
+- **Resultado esperado:** RIO dispone del catálogo funcional `production`, `staging`, `alpha`, `beta` y `gamma`, materializado en runtime con los tokens `prod`, `stage`, `alpha`, `beta` y `gamma`. Cada equipo habilita sólo las lanes y roles que necesita; el backend usa `<lane>-<rol>-<segment>`. Una operación conserva la misma lane Fury a lo largo del flujo sin modificar su pipeline environment.
 
 ## 📊 Estado actual
 
@@ -62,7 +62,7 @@ cssclasses:
 - **Auditoría Fury 2026-09-03:** **91 scopes** en 9 aplicaciones con infraestructura: 87 `Active`, 4 `Inactive`; 47 con al menos una instancia `running` y 44 sin instancias observadas. [[rio-sdk-events]] sigue como librería sin runtime Fury.
 - **Evidencia operativa:** 51 scopes tienen una route, un binding activo o instancias `running`; 15 no presentan evidencia activa y 25 no son concluyentes. Estas categorías no miden tráfico y nunca autorizan un retiro sin validación del equipo.
 - **Reconciliación:** 1 consumer BigQueue pausado de [[rio-controlplane-fury]] quedó sin runtime resoluble en el service graph; se conserva explícitamente como hallazgo y no se asigna por inferencia.
-- **SPEC funcional vigente:** [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599) define un catálogo acotado de ambientes (`production`, `staging`, `alpha`, `beta`, `gamma`), no una cantidad fija de scopes. Cada equipo adopta sólo los ambientes y roles que necesita; frontend usa `<environment>` y backend usa `<environment>-<rol>-<segment>`.
+- **SPEC funcional vigente:** [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599) usa las etiquetas `production`, `staging`, `alpha`, `beta`, `gamma`; el estándar técnico fija `prod|stage|alpha|beta|gamma` para nombres runtime y filtros. Cada equipo adopta sólo las lanes y roles que necesita.
 - **Grid publicado:** el doc Grid `01KZXKPH3YAGGX89P04GTY7B7E` separa la foto Fury del contrato funcional y no agrega instrucciones, targets, routing, filtros, segmentación ni pilotos que no estén definidos por SIG-599. El HTML narrativo quedó integrado al generador.
 - **Próxima fase:** ejecutar la Fase 1 de la POC: preparar la Fury Route compartida e implementar [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]] antes de extender el recorrido a eventos, Playmaker y Flink.
 
@@ -92,14 +92,14 @@ Dependencia de inicio: cerrar la [[SPEC técnica — Routing dinámico de backen
 
 **Entregables:** [[POC KISS — Routing de scopes en Playmaker]] y [[SPEC técnica — Routing KISS por scope en rio-playmaker]].
 
-**Resultado de fase:** Fury Routes selecciona una instancia de Playmaker; Playmaker no lee ni propaga `X-Rio-Scope`. Cada producer deduce la lane desde el scope Fury local siguiendo `<lane>-<role>-<segment>` y publica el trigger/result con `scope:<lane>`. La POC no modifica pipeline environment, `PipelineExecution`, DB, idempotencia, history ni los DTOs de `rio-sdk-events`.
+**Resultado de fase:** Fury Routes selecciona una instancia de Playmaker; Playmaker no lee ni propaga `X-Rio-Scope`. Una instancia canónica resuelve su lane al startup y los dos producers activos de deployment trigger más el result producer publican `scope:<lane>` sin fallback a mensajes sin filtro. El timeout/retry queda deshabilitado en alpha y fuera de la certificación porque la DB compartida no garantiza ownership por lane.
 
 ### Fases siguientes
 
 | Orden | Unidad | Repo / superficie | Dependencia de entrada | Gate de salida |
 |---|---|---|---|---|
 | 2 | Scope Fury runtime y filtros BigQueue | `rio-playmaker` | Fase 1 aprobada + G0 del planner aceptado | G1–G3 del [[POC KISS — Routing de scopes en Playmaker]] aceptados |
-| 3 | Continuidad de scope en control planes | `rio-controlplane-flink` como piloto | contrato de filtro Playmaker aprobado + accessor de scope soportado por Fury confirmado | [[SPEC técnica — Continuidad de scope en control planes RIO]] aprobada; consumer deriva `alpha`, rechaza filtros distintos y result publica `scope:alpha` sin carrier ni cambio de payload SDK |
+| 3 | Continuidad de scope en control planes | `rio-controlplane-flink` como piloto lane-affine | contrato completo de los producers Playmaker + accessor Fury + filtro BigQueue demostrados | [[SPEC técnica — Continuidad de scope en control planes RIO]] aprobada; runtime estricto, guard antes de side effects y result `scope:alpha`; GCP/KVS/PubSub/schedulers fuera |
 | 4 | Aprovisionamiento de lane | Fury | Specs 2–3 aprobadas | scopes, config, routes y bindings listos sin tráfico |
 | 5 | Integración | todas | gates 1–4 aceptados | golden deploy, negativos, cleanup y rollback completados |
 
@@ -190,9 +190,9 @@ views:
 > - [ ] **[Fase 1 — Fury Route]** Implementar y evidenciar la dependencia externa definida en la [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend#Dependencia externa de aprobación|SPEC]] #owner/me #type/dev #area/meli
 > - [ ] **[Fase 1 — implementación Front]** Implementar la SPEC aprobada en `ads-signals-frontend` y completar checks del repo #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Fase 1 — certificación]** Ejecutar la matriz default/override/desconocido/test→prod/prod→test, probar rollback y enlazar evidencia #owner/me #type/dev #area/meli #waiting
-> - [r] **[POC alpha — SPEC técnica Playmaker]** Revisar [[SPEC técnica — Routing KISS por scope en rio-playmaker]]: `Pipeline Environment ≠ Fury Scope`, lane derivada del runtime Fury, publicación filtrada, SDK/DB intactas y limitación cross-lane explícita #owner/me #type/dev #area/meli
-> - [/] **[[POC KISS — Routing de scopes en Playmaker]]** revisar y supervisar la implementación fase a fase bajo KISS/YAGNI #owner/me #type/supervision #area/meli
-> - [r] **[POC alpha — SPEC técnica CPs/Flink]** Revisar y aprobar [[SPEC técnica — Continuidad de scope en control planes RIO]]: provider Fury validado, lane deducida del naming, guard `incomingLane == runtimeLane`, cero carrier y publicación del result con la lane local #owner/me #type/dev #area/meli
+> - [r] **[POC alpha — SPEC técnica Playmaker]** Corregir y aprobar [[SPEC técnica — Routing KISS por scope en rio-playmaker]]: runtime canónico estricto, ambos trigger producers + result filtrados, cero fallback y timeout/retry deshabilitado en alpha #owner/me #type/dev #area/meli
+> - [r] **[[POC KISS — Routing de scopes en Playmaker]]** revisar y supervisar la implementación fase a fase bajo KISS/YAGNI #owner/me #type/supervision #area/meli
+> - [r] **[POC alpha — SPEC técnica CPs/Flink]** Revisar y aprobar [[SPEC técnica — Continuidad de scope en control planes RIO]]: lane estricta al startup, guard `incomingLane == runtimeLane`, result siempre filtrado, cero carrier/legacy y GCP durable fuera #owner/me #type/dev #area/meli
 > - [ ] **[POC alpha — SPEC técnica Infra Fury]** Crear la SPEC técnica de aprovisionamiento para scopes, Fury Config, routes, consumers y manifiesto de bindings sin crear topics #owner/me #type/dev #area/meli
 > - [ ] **[POC alpha — runbook de integración]** Escribir el checklist ejecutable de orden de rollout, golden deploy, aislamiento, cleanup y rollback, sin duplicar las decisiones de las cinco SPECs técnicas #owner/me #type/dev #area/meli
 > - [ ] **[POC alpha — implementación]** Implementar las SPECs técnicas aprobadas y ejecutar la vuelta completa de deploy en alpha #owner/me #type/dev #area/meli #waiting
@@ -237,6 +237,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **2026-09-17 (Fase 2 corregida; supersedida el 2026-09-21)** — Rodrigo establece la regla `Pipeline Environment ≠ Fury Scope`. La primera corrección propuso propagar `X-Rio-Scope` sólo en memoria; la revisión posterior de la Fase 2 reemplazó ese carrier por derivación desde el scope Fury del runtime. No hay persistencia, migrations, idempotencia/history scope-aware ni cambios SDK.
 - **2026-09-21 (Fase 3 CPs diseñada; supersedida el 2026-09-22)** — La primera versión de [[SPEC técnica — Continuidad de scope en control planes RIO]] definió Flink con parser fail-closed, `expectedScope`, carrier in-memory y publicación filtrada. La comparación sobre refs remotas frescas confirmó primitivas reutilizables en `rio-sdk-events` y boundaries comunes; la revisión del día siguiente eliminó la configuración y el carrier duplicados.
 - **2026-09-22 (Fase 3 alineada con Playmaker)** — Se corrige la autoridad del routing: cada CP deduce la lane desde su scope Fury canónico y usa el filtro entrante sólo como aserción. Se eliminan `expectedScope` y el carrier in-memory; el publisher vuelve a resolver la lane local. La POC queda gated por confirmar el accessor oficial de Fury, porque `java-toolkit-shared` observado sólo expone helper de segmento. Los reconciliadores siguen requiriendo ownership aislado por lane.
+- **2026-09-22 (review independiente aplicado con KISS/YAGNI)** — Se acepta que `unresolved=legacy` era fail-open, que Playmaker tiene dos trigger producers activos y que Flink GCP/Playmaker timeout no son lane-affine. La corrección no agrega classifier de cuatro estados ni persistencia: el artefacto alpha exige scope canónico al startup, no tiene fallback, filtra ingreso/egreso y excluye/deshabilita los paths durables. Fury/BigQueue pasa a gate real de plataforma. La generalización queda postergada hasta un segundo caso.
 
 ## 🧭 Decisiones
 
@@ -259,14 +260,15 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **Retry fuera de la POC:** continuidad durable ante timeout/restart exige otro diseño; no se resuelve contaminando `PipelineExecution`.
 - **Nombre canónico:** SIG-599 define frontend `<environment>` y backend `<environment>-<rol>-<segment>`.
 - **POC end-to-end:** el CP piloto es `rio-controlplane-flink` y la cobertura obligatoria es el deploy completo; Actions, runtime status, Observability, Materializer y KMS quedan fuera.
-- **Continuidad del filtro:** el CP deriva `runtimeLane=x` desde su scope Fury, exige que el envelope contenga exactamente `scope:x` antes de ejecutar y el publisher vuelve a derivar `x` al salir. No existe `expectedScope` manual ni carrier. Un runtime canónico rechaza missing/mismatch; sólo un runtime legacy procesa y publica sin filtro.
+- **Continuidad del filtro:** el artefacto alpha deriva `runtimeLane=x` al startup, exige exactamente `scope:x` antes de ejecutar y publica siempre `scope:x`. Scope inválido no arranca; missing/mismatch se descartan sin side effects. No existe `expectedScope`, carrier, fallback legacy ni persistencia en la POC.
+- **Límite KISS de la garantía:** runtime-derived sin estado sólo aplica a paths lane-affine. Playmaker timeout, Flink GCP y reconciliadores compartidos quedan fuera y deshabilitados/aislados; no se agrega `routingLane` durable hasta que una fase específica lo requiera.
 - **Piloto KMS separado:** la remediación de segmentación de KMS conserva su propio objetivo y no certifica la POC end-to-end.
 
 ### Preguntas abiertas para el equipo / verificaciones
 1. ¿Qué decisiones de negocio y ownership se requieren para proponer retiros sin convertir bindings en una categoría genérica?
 2. ¿La unidad de alineación es una lane/celda completa de RIO y qué contrato/schema debe compartir?
 3. ¿Qué scopes especiales sobreviven como roles explícitos y cuáles son deuda transitoria?
-4. ¿Qué reconciliadores pueden reclamar trabajo creado por otra lane y qué aislamiento de storage/lease/selector se requiere antes de adoptar derivación runtime en esos paths?
+4. ¿Qué path lane-affine concreto usará el golden deploy Flink y qué configuración demuestra que GCP/KVS/PubSub/schedulers no participan?
 5. ¿Qué recursos pueden compartirse entre familias y cuáles deben aislarse por construcción?
 6. ¿Qué capability soportada por Fury implementará el aislamiento de lanes dentro de `nonprod`?
 7. ¿Dónde se versionará el manifiesto de bindings y el generador reproducible?
