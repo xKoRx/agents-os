@@ -38,7 +38,7 @@ tags:
 
 ## Fuentes usadas
 
-- La fuente es el repositorio `melisource/fury_rio-playmaker`: los commits publicados `844e2da344bc` y `19af793b591b`, los checks locales exitosos y `fury list-versions --limit 5`, que informó ambas versiones en estado `CREATING`.
+- La fuente es el repositorio `melisource/fury_rio-playmaker`: los commits publicados `844e2da344bc` y `19af793b591b`, los checks locales exitosos y `fury list-versions --limit 5`, que informó ambas versiones en estado `FINISHED`.
 
 ## Resolución aplicada
 
@@ -46,7 +46,7 @@ tags:
 
 ## Validación
 
-- Se ejecutaron los tests focalizados `AcmeClientRoleMockTest`, `ActionAuthorizationServiceTest`, `ActionServiceImplTest` y `ComponentAuthorizationIntegrationTest`; `git diff --check` y el contrato de testing pasaron. Fury confirmó la creación pendiente de `0.1.3-p3-committer-allowed` y `0.1.4-p3-viewer-denied`; la finalización remota sigue pendiente.
+- Se ejecutaron los tests focalizados `AcmeClientRoleMockTest`, `ActionAuthorizationServiceTest`, `ActionServiceImplTest` y `ComponentAuthorizationIntegrationTest`; `git diff --check` y el contrato de testing pasaron. Fury confirmó `0.1.3-p3-committer-allowed` y `0.1.4-p3-viewer-denied` en estado `FINISHED`.
 
 ## Compartibilidad
 
