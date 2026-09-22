@@ -30,13 +30,13 @@ updated: "2026-09-21"
 
 ## 📊 Estado actual
 
-- **IMPLEMENTED + TESTED (cero regresiones vs baseline `745bc8b`); PHYSICAL CERT (G7) BLOQUEADO a autoridad runtime del owner.** Branch `feature/sqx-import-task-v1` (local, sin push). SPEC congelada + 2 amendments de contratos frozen con manager review PENDIENTE (MR-1, MR-2). Campaña B especificada, NO ejecutar.
+- **PUBLISHED (branch en origin) + TESTED (cero regresiones vs baseline `745bc8b`); PHYSICAL CERT (G7) BLOQUEADO a autoridad runtime del owner.** Branch `feature/sqx-import-task-v1` publicada 2026-09-21 @ origin `5e495ae` (5 commits íntegros; merge-base con `master` = `745bc8b` — nació exactamente del master consolidado, sin rebase; scan de secretos/accidentales limpio antes del push). `master` @ `745bc8b` == release `0.2.105` (consolidación git 2026-09-21; sin commits de Import en master). SPEC congelada + 2 amendments de contratos frozen con manager review PENDIENTE (MR-1, MR-2). Campaña B especificada, NO ejecutar. Política post-consolidación: esta es la ÚNICA rama de desarrollo activa del repo.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `feature/sqx-import-task-v1` | `codex/f05-release-prep` @ `745bc8b` (release 0.2.105) | Mandato owner 2026-09-21 (IMPORT V1) | `specs/FEAT-SQX-IMPORT-TASK-V1/SPEC.md` + amendments | IMPLEMENTED · tests nuevos verdes · G6 sin regresiones · G7 pendiente RT-1 |
+| xKoRx/symphony | `feature/sqx-import-task-v1` @ origin `5e495ae` | `745bc8b` (== `master` consolidado, release 0.2.105) | Mandato owner 2026-09-21 (IMPORT V1) | `specs/FEAT-SQX-IMPORT-TASK-V1/SPEC.md` + amendments | PUBLISHED · tests nuevos verdes · G6 sin regresiones · G7 pendiente RT-1 |
 
 ## ✅ Tareas
 
@@ -47,11 +47,12 @@ updated: "2026-09-21"
 > - [x] G6: tests §14 nuevos + regresión completa (23 fallos pre-existentes idénticos al baseline, 0 nuevos) #owner/agent #type/dev
 > - [r] MR-1/MR-2: manager review de amendments a CLASSIFICATION-EVIDENCE y EARLY-PER-TYPE-RANKING #owner/me #type/pr-review
 > - [ ] G7: certificación física vertical slice (runbook listo; requiere Opción A flota o Opción B runtime aislado) #blocked
-> - [ ] G8 cierre: push branch + merge owner + release según gates #owner/me #type/dev
+> - [ ] G8 cierre: merge owner + release según gates (push hecho 2026-09-21) #owner/me #type/dev
 > - [ ] Campaña B: congelar parámetros OOS/MT5 y ejecutar tras G7 #owner/me #type/dev
 
 ## 📆 Bitácora
 
+- **2026-09-21** — Consolidación git previa a G7 (mandato owner): branch publicada en origin `5e495ae` (5 commits íntegros, push tras scan de secretos limpio); `master` promovido por FF puro a `745bc8b` (merge-base de esta rama == nuevo master, historia sin rebase); verificado vía GitHub API (`ahead=5 behind=0 merge_base=745bc8b`; sin commits de Import en master). G7 sigue bloqueado a runtime aislado del owner; MR-1/MR-2 siguen en review.
 - **2026-09-21** — Sesión ZCode/GLM: G0–G6 completos en worktree `/home/kor/go/src/github.com/xKoRx/symphony-import-v1` (4 commits). Flota con worker 0.2.105 corriendo en Zeus ⇒ G7 requiere owner gate. Runbook y receta de config listos.
 
 ## 🧭 Decisiones
