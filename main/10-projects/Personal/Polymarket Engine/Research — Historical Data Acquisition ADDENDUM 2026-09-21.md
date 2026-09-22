@@ -3,7 +3,7 @@ type: research
 schema_version: 1
 scope: project
 created: "2026-09-22"
-updated: "2026-09-21"
+updated: "2026-09-22"
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 entities:
@@ -30,6 +30,9 @@ tags:
 # Research — Historical Data Acquisition ADDENDUM (2026-09-21)
 
 ADDENDUM correctivo one-shot de adquisición y persistencia de datos históricos para Polymarket Engine. Verifica físicamente los proveedores, cierra las brechas de los informes [[2026-09-21-historical-research-m0]] (`HISTORICAL_DATA_PARTIAL`) y [[2026-09-21-historical-backtest-readiness]] (`DESCRIPTIVE_ONLY`) y deja una cohorte histórica durable y verificable. El documento original queda como registro histórico; las conclusiones que este addendum superseda se marcan en la tabla. Dataset durable: repo `xKoRx/polymarket-engine-datasets` → `hist-acq-20260921/` (manifest + SHA256SUMS). Baseline engine: `master` @ `09e8c76` (código `66486ac`). OOS 22:45Z sellado, no tocado. Sports Week intacto (sólo probe read-only de estado).
+
+> [!warning] Corrección forense posterior (2026-09-21, one-shot L2)
+> La validación forense [[Research — Historical L2 Forensic Validation 2026-09-21]] **supersa el hallazgo #6 y la etiqueta `L2_SNAPSHOT_ONLY`**: el drift de BBA 66-85% fue un artefacto del modelo de reconstrucción del cert (aditivo-sin-borrado, mismo modelo defectuoso del SQL P2 del benchmark), no de los datos. Con semántica upsert (`price_change.size` = tamaño nuevo, 0 = borrar), estado por asset y orden venue-time, la reconstrucción delta da 0% de error de BBO en 628 intervalos y 92-97% de profundidad exacta por intervalo, validada contra la traza independiente `best_bid_ask` (99,61%). Decisión vigente: **`L2_RECONSTRUCTIBLE`** con protocolo obligado (upsert + por-asset + venue-time + verificación por snapshot + ventana de incidente 22:30-22:40Z marcada). Lo que sigue de este addendum queda como registro del estado previo a esa corrección.
 
 ## Resultado en una línea
 
