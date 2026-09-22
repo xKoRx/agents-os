@@ -350,6 +350,8 @@ Reloj UTC sintético de un solo día, precios/tamaños decimales exactos; assets
 
 Pinear en el probe `MaxBookAge=5 min`, `MaxMetadataAge=1 h`, `MinAssets=1` y observación inicial de ambos assets; son parámetros del fixture, no umbrales recomendados para producción. Así el corte 12:03 no falla por antigüedad antes de ejercer la causalidad. Agregar variante que excede esos límites y debe quedar inelegible. Los subcasos de gaps y epochs comprueban cada motivo aunque otros requisitos también fallen.
 
+Para demostrar D06 sin confundir contenido y valor, el tick de M0 se observa en una revisión propia `RegimeContent{TickSizeRaw:"0.01"}` equivalente a un `tick_size_change` anterior a S0; mapping/reglas van en sus fuentes separadas. T1 y T2 usan el mismo namespace/asset y la misma estructura de contenido con valores `"0.001"` y `"0.01"`. No comparar un content inicial rico de CLOB contra un content tick-only: dos estructuras distintas no ejercen el dedup A→B→A señalado.
+
 | ID | Event time / hecho | Knowledge W1 | Knowledge W2 | Estado/expectativa |
 |---|---|---|---|---|
 | M0 | 11:58 metadata v1, tick 0.01, reglas/identidad válidas | 11:58 | 11:58 | Bootstrap anterior probado; subcaso sin M0 debe permanecer inelegible |

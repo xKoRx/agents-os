@@ -53,6 +53,8 @@ Dictamen `NOT_CERTIFIABLE_END_TO_END`, nueve findings con límites explícitos. 
 
 Lectura física y seis suites existentes con `GOPROXY=off GOSUMDB=off go test -count=1 ./internal/histimport ./internal/books ./internal/marketview ./internal/regimes ./internal/frames ./internal/replay`: 6/6 PASS (Go 1.27.1). Nuevos gates NOT_RUN. Sin patch/commit/push de código, sin backtest, sin OOS ni infraestructura. Validación documental targeted y comparación de sección M1/M2 contra versión anterior antes de entregar.
 
+Lint estricto de los cinco documentos: ERROR=0, WARN=0; `git diff --check` limpio. Se añadieron sólo los encabezados canónicos ausentes Propósito/Contenido a continuidad. Sufijo congelado del MVP desde `## M1 — ASTRA Architecture Proposal` idéntico byte a byte a `ddfd28a2`, SHA-256 `889d08dd164d7a04ca99d5c06b94c29e587771956237577be6394eef8c9dd633`. El sync automático del vault creó checkpoints intermedios de la entrega; no se alteró ni configuró ese mecanismo.
+
 ## Compartibilidad
 
 - **Scope:** local.

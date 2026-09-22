@@ -18,10 +18,14 @@ tags:
 
 # Polymarket Engine — Continuidad Five-POC (cierre 2026-09-20)
 
+## Propósito
+
 > [!important] PUNTO DE ENTRADA PARA LA PRÓXIMA SESIÓN
 > Esta nota es un **handoff de continuidad y tareas**, no una nueva SPEC ni sustituto del proyecto padre. Leer primero [[Polymarket Engine — MVP]], esta nota y [[Polymarket Engine — Five-POC Guía Operativa 2026-09-20]]. Fuente del cierre: reporte ejecutor del 2026-09-20, registrado en [[2026-09-20-polymarket-fivepoc-final-closure]] y recursos del dominio. Las evidencias ejecutables viven en **el repo local del engine**, no en este vault. Cualquier SHA/resultado se debe volver a verificar al retomar; esta nota no afirma haber corrido comandos en la sesión documental.
 
 **Actualización de autoridad 2026-09-22:** para causalidad histórica consultar §17 y [[Polymarket Engine — Historical Causality Architecture Audit]]. Allí sí se distingue la inspección física de código/tests de esta sesión de los resultados históricos reportados. Los checkpoints siguientes se preservan como historia.
+
+## Contenido
 
 ## 1. Estado canónico al cierre
 
