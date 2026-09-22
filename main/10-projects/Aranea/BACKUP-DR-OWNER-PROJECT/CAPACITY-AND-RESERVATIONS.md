@@ -65,7 +65,7 @@ related:
 
 | Concepto | Valor | Estado |
 |---|---|---|
-| Uso osd.0/osd.2 (los llenos) | banda 85,19-87,90% (21sep 08:05: 85,19/85,17%) | HEALTH_WARN; NO_GO estructural (CRUSH host + 1 OSD/host probados 19sep) |
+| Uso osd.0/osd.2 (los llenos) | banda 85,19-87,90%; lecturas 21sep: 08:05 85,19/85,17 → 17:31 85,59/85,59 → 22:39 86,56/86,60 (noche-6, aceleración vespertino ≈1,8G/OSD/h en sesión US; margen a backfillfull ≈31,7G/OSD ≈ 18-80h según ritmo) | HEALTH_WARN persistente (nearfull ×2 + slow ops BlueStore); NO_GO estructural (CRUSH host + 1 OSD/host probados 19sep) |
 | Ratios efectivos | nearfull 0,85 · backfillfull 0,90 · full 0,95 | verificados en osd dump 20sep |
 | Márgenes a backfillfull/full | ≈21,8G / ≈68G por OSD lleno | K2-CEPH-RISK |
 | Reservas | **NINGUNA asignación nueva** (D-NEW-03: sin discos nuevos ni migraciones hacia pool1) | condición de alerta K2: ≥89% ×2 lecturas ≥1h → acción gated `qm shutdown 125` |
@@ -84,7 +84,7 @@ related:
 
 | Nodo | Libre | Rol |
 |---|---|---|
-| hades | **33,4G** | NO destino de la propuesta W5 original (<64G); regla: VM ≤25G dejando ≥8G libres |
+| hades | **≈20,5G libres** (ERRATA noche-6: el 33,4G del freeze era el USADO del thinpool — 53,93G al 61,96%, medido live 21sep 22:4x) | NO destino de la propuesta W5 original (<64G); regla corregida: VM ≤12G dejando ≥8G libres |
 | zeus | 77,5G | destino válido W5 por VM |
 | hera | 91,7G | destino válido W5 por VM |
 | athena | (medir en preflight) | nodo de menor densidad; destino W4 sólo con causalidad |

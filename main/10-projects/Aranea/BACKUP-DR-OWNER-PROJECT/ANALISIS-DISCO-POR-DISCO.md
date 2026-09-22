@@ -52,7 +52,7 @@ updated: "2026-09-21"
 | UNKNOWN | 7 | (ver §6) | kafka scsi1 ×3 y argus scsi1-4 → decisión 018 |
 
 - **Techo agregado si TODAS las decisiones se ejecutaran: 1163G asignados + 200G en 5 imágenes RBD huérfanas (§5) = 1363G.**
-- **Alivio REAL esperado (thin provisioning: se libera el used, no el prov)**: medido sólo en 13/33 discos pool1 (rbd du 20sep). Subconjunto medido: MIGRATE DB/temporal/etcd-keeper ≈41G · DEFER 159 = 93G · argus data ≈72G. Los ~20 discos MIGRATE sin medir (SOs 20-50G) proyectan 5-15G c/u → **rango realista 150-350G lógicos totales**, no el techo de 1,36T. `rbd du` completo + `qm config` por VM = preflight obligatorio de cada ficha W5-post.
+- **Alivio REAL esperado (thin provisioning: se libera el used, no el prov)**: medido sólo en 13/33 discos pool1 (rbd du 20sep). Subconjunto medido: MIGRATE DB/temporal/etcd-keeper ≈41G · DEFER 159 = 93G · argus data ≈72G. Los ~20 discos MIGRATE sin medir (SOs 20-50G) proyectan 5-15G c/u → **rango realista 150-350G lógicos totales**, no el techo de 1,36T. `rbd du` completo + `qm config` por VM = preflight obligatorio de cada ficha W5-post. **[Noche-6: `rbd du` COMPLETO ejecutado — 48 imágenes, 1.503G prov / 848G usados reales. Alivio real por escenario: fase 1 W5-post ≈164G usados; escenario máximo con autorizaciones ≈572G. Baseline y clasificación por imagen: `~/aranea/work/cierre-preparatorio-20260921/RBD-DU-RESULTADOS-20260921.md`.]**
 - **Conclusión de capacidad**: el alivio estructural de pool1 NO lo dan las migraciones; lo da frenar el growth (+17G/OSD/día ≈ +51G lógico/día con ×3 — mayor que cualquier migración en <1 semana). Prioridad real: K2/P1-4 (escritores) primero; W5-post es alivio gradual y mejora de dominios de falla.
 
 ### 3. Matriz disco por disco (99 filas)
@@ -182,10 +182,13 @@ Regla de cada fila: `BACKUP_BASELINE_VERIFIED` de la unidad → ficha con `qm co
 | Imagen | Prov | Usados | Estado |
 |---|---|---|---|
 | vm-108-disk-0 | 20G | sin medir | guest sin disco pool1 en config (residual/destruido) |
-| vm-112-disk-0 | 120G | sin medir | guest sin disco pool1 en config (residual/destruido) |
-| vm-123-disk-0 | 20G | sin medir | guest sin disco pool1 en config (residual/destruido) |
-| vm-167-disk-0 | 20G | 11.0G | VMID sin guest en config actual |
-| vm-171-disk-0 | 20G | 11.0G | VMID sin guest en config actual |
+| vm-112-disk-0 | 120G | **5,9G (medido noche-6 21sep)** | guest sin disco pool1 en config (residual/destruido) — alivio real por borrarla = 5,9G, no 120G |
+| vm-108-disk-0 | 20G | 11,0G | huérfana residual (config actual) |
+| vm-123-disk-0 | 20G | 10,0G | huérfana residual (config actual) |
+| vm-167-disk-0 | 20G | 10,0G | VMID sin guest en config actual |
+| vm-171-disk-0 | 20G | 10,0G | VMID sin guest en config actual |
+
+> [!warning] ERRATA noche-6 (21sep 22:4x, verificación live por tasks de PVE): **162 y 170 YA NO EXISTEN** — el owner ejecutó ambos `qmdestroy` (root@pam) el 20sep 23:58 -03 (tasks OK en kronos y zeus; configs ausentes; RBDs ausentes de pool1). Las filas DEFER de 162 y 170 de esta matriz quedan obsoletas. Liberaciones owner del análisis: 162 ✓, 170 ✓, **112 sigue PENDIENTE** (guest stopped kronos, disco real en pool-kronos, RBD huérfana 5,9G). Huérfanas vigentes: 108/112/123/167/171 (200G prov / **46,9G usados totales**).
 
 La RBD `vm-112-disk-0` (120G, lock stale) es la huérfana ya conocida de WP-S1; 108/123 tienen su disco real en local-sqx (F-04) — la imagen residual en pool1 requiere verificación de ausencia de refs vivas; 167/171 no existen como guests en la config actual. Ninguna se borra sin identificación por VMID + evidencia + autorización independiente (regla WP-S1).
 
