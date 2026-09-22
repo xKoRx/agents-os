@@ -17,7 +17,7 @@ tags:
   - area/aranea
   - domain/backup-dr
 created: "2026-09-21"
-updated: "2026-09-21"
+updated: "2026-09-22"
 ---
 
 # MANDATOS-MIERCOLES-23SEP

@@ -8,7 +8,7 @@ slug: capacity-and-reservations
 area: "[[Aranea]]"
 project: "[[BACKUP-DR-OWNER-PROJECT]]"
 created: "2026-09-21"
-updated: "2026-09-21"
+updated: "2026-09-22"
 aliases:
   - CAPACITY-AND-RESERVATIONS
   - Presupuesto capacidad backend Aranea
