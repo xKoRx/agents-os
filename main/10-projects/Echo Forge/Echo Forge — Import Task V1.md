@@ -24,121 +24,42 @@ updated: "2026-09-21"
 
 # Echo Forge — Import Task V1
 
-%% Naming: Echo Forge — Import Task V1 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
-
-> [!info]+ Echo Forge — Import Task V1
-> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
-> _parent / sprint / repo / jira / prs son opcionales._
-
-> [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
-> `owner: me` → **proyecto humano**: la iniciativa/esfuerzo que conduces tú.
-> `owner: agent` → **proyecto de agente**: un curro delegado, con detalle pesado que escribe y sigue un agente. Casi siempre es subproyecto de uno humano y vive en la subcarpeta `agentes/` de su iniciativa.
-> `root: true` solo en **iniciativas raíz** (sin `parent`). Todo subproyecto debe setear `parent`; si no, aparece como huérfano en [[Panel de Proyectos]].
->
-> **Tarea puente:** cuando este proyecto es `owner: agent`, en su proyecto **padre** debe existir UNA sola tarea humana que lo representa (arrancar + seguimiento). Así tu cockpit ve una línea por curro delegado, no las tareas internas del agente. Ejemplo, en el padre:
-> `- [ ] [[Echo Forge — Import Task V1]] arrancar + seguimiento #owner/me #type/supervision #area/personal`
-
 ## 🎯 Objetivo
 
-- 
+- Incorporar estrategias SQX ya retesteadas (databank `Retester/databanks/import` en Zeus/Hera/Kronos) al pipeline durable de Forge SIN ejecutar Builder, mediante cuatro responsabilidades independientes: IMPORT (productor) → CLASSIFICATION (capacidad) → RANKING (capacidad) → SELECTION (task con `source_folder=01_import`), con evidencia durable y certificación física por archivos auténticos. Extensión funcional posterior a Factory V2; no reabre F05.
 
 ## 📊 Estado actual
 
-- 
+- **IMPLEMENTED + TESTED (cero regresiones vs baseline `745bc8b`); PHYSICAL CERT (G7) BLOQUEADO a autoridad runtime del owner.** Branch `feature/sqx-import-task-v1` (local, sin push). SPEC congelada + 2 amendments de contratos frozen con manager review PENDIENTE (MR-1, MR-2). Campaña B especificada, NO ejecutar.
 
 ## 🧱 Entrega de desarrollo
 
-%% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
-
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
-
-## 🧩 Subproyectos
-
-```base
-filters:
-  and:
-    - 'type == "project"'
-    - 'file.hasLink(this.file)'
-views:
-  - type: cards
-    name: Subproyectos
-    order:
-      - file.name
-      - note.status
-      - note.priority
-```
+| xKoRx/symphony | `feature/sqx-import-task-v1` | `codex/f05-release-prep` @ `745bc8b` (release 0.2.105) | Mandato owner 2026-09-21 (IMPORT V1) | `specs/FEAT-SQX-IMPORT-TASK-V1/SPEC.md` + amendments | IMPLEMENTED · tests nuevos verdes · G6 sin regresiones · G7 pendiente RT-1 |
 
 ## ✅ Tareas
 
-> [!note]+ Ownership y tarea puente
-> `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala.
-> El board es **adaptativo según `owner` del frontmatter**:
-> - **Proyecto humano** (`owner: me`): muestra tus tareas y las **tareas puente** (`#type/supervision`) que representan proyectos de agente. Las tareas de agente **no** aparecen acá; viven en su propio proyecto.
-> - **Proyecto de agente** (`owner: agent`): muestra las tareas del agente.
-
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/personal
-> - [ ] tarea delegada #owner/agent #type/dev #area/personal
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/personal
-
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-function board(tasks){const cols=[[" ","🟦 To Do"],["/","🟡 WIP"],["r","🔵 Review"]];let any=false;for(const[st,label]of cols){const c=tasks.filter(t=>t.status===st);if(c.length){any=true;dv.el('h4',label);render(c);}}const done=tasks.filter(t=>t.status==="x"||t.status==="X");if(done.length){any=true;dv.el('h4',"✅ Done");render(done);}if(!any)dv.paragraph("_Sin tareas._");}
-const owner=((dv.current().owner)==="agent")?"agent":"me";
-const all=dv.current().file.tasks.array();
-const primary=all.filter(t=>has(t,`owner/${owner}`));
-const loose=all.filter(t=>!has(t,"owner/me")&&!has(t,"owner/agent"));
-dv.header(3, owner==="agent"?"🤖 Tareas del agente":"🧍 Mis tareas");
-board(primary);
-if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
-```
-
-%% Rollup de iniciativa — descomentar solo en proyectos padre para ver las tareas #owner/me (incluye puentes) de todos los subproyectos, agrupadas por nota. Cambiar la ruta por la carpeta de esta iniciativa. Nunca muestra tareas de agente.
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-const ord={" ":0,"/":1,"r":2,"x":3,"X":3,"-":4};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-const pages=dv.pages('"10-projects/CARPETA-DE-LA-INICIATIVA"');
-for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x=>has(x,"owner/me")&&x.status!=="x"&&x.status!=="X").sort((a,b)=>(ord[a.status]??9)-(ord[b.status]??9));if(t.length){dv.el('h4',p.file.link);render(t);}}
-```
-%%
+> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. %%
+> - [x] G0/G1: auditoría contratos + topología hosts + SPEC freeze + amendments #owner/agent #type/dev
+> - [x] G2–G5: task import, registro de productores, ranking per-type, selection_snapshot_v1 #owner/agent #type/dev
+> - [x] G6: tests §14 nuevos + regresión completa (23 fallos pre-existentes idénticos al baseline, 0 nuevos) #owner/agent #type/dev
+> - [r] MR-1/MR-2: manager review de amendments a CLASSIFICATION-EVIDENCE y EARLY-PER-TYPE-RANKING #owner/me #type/pr-review
+> - [ ] G7: certificación física vertical slice (runbook listo; requiere Opción A flota o Opción B runtime aislado) #blocked
+> - [ ] G8 cierre: push branch + merge owner + release según gates #owner/me #type/dev
+> - [ ] Campaña B: congelar parámetros OOS/MT5 y ejecutar tras G7 #owner/me #type/dev
 
 ## 📆 Bitácora
 
-%% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-21** — 
+- **2026-09-21** — Sesión ZCode/GLM: G0–G6 completos en worktree `/home/kor/go/src/github.com/xKoRx/symphony-import-v1` (4 commits). Flota con worker 0.2.105 corriendo en Zeus ⇒ G7 requiere owner gate. Runbook y receta de config listos.
 
 ## 🧭 Decisiones
 
-- 
+- D1 desacople por REGISTRO de productores (builder|import), no por relajar el `if` de stage. D2 `IMPORTED` activado como rol origin (reservado por CROSS-FLOWRUN-REUSE). D3 extractor único: plugin Java EchoForgeOverviewExporter modo databank. D4 métricas import = `IMPORTED_HISTORICAL_RESULT` (nunca evaluación Forge). D5 filenames/carriers `builder_*` congelados en V1. D6 selection = task control-plane con snapshot durable insert-once. Detalle: `specs/FEAT-SQX-IMPORT-TASK-V1/TOP-DECISIONS.md`.
 
 ## 🔗 Docs / Links
 
-- 
-
-## 💡 Ideas
-
-%% Captura ideas sueltas del proyecto al final. Si maduran, promover a tarea o a nota de idea (70-templates/idea.md). %%
-
-### Backlog de ideas
-
-- 
-
-### Motivos / principios
-
-- 
-
-### Memoria pública / interna
-
-%% Opcional para proyectos de agentes o conocimiento: definir qué memoria gobierna el sistema y cuál gobierna el agente, y por qué existe cada una. %%
-- **Memoria pública:** 
-- **Memoria interna:** 
-- **Motivo:** 
+- Parent: [[Echo Forge]] · Entorno: [[Echo + Echo Forge — Environment Contract]]
+- Repo specs: `specs/FEAT-SQX-IMPORT-TASK-V1/` (SPEC, TOP-DECISIONS, RUNBOOK G7), `specs/FEAT-SQX-IMPORT-CAMPAIGN-B/SPEC.md`
+- Amendments manager review: `FEAT-SQX-DURABLE-CLASSIFICATION-EVIDENCE/AMENDMENT-IMPORT-PRODUCER.md`, `FEAT-SQX-DURABLE-EARLY-PER-TYPE-RANKING/AMENDMENT-IMPORT-PRODUCER.md`
