@@ -187,7 +187,7 @@ visible(f,F) = f pertenece al manifest y a la procedencia autorizada
                AND K_mode,observer(f) <= T es demostrable según la política
                AND la revisión no fue reemplazada antes de C
 
-Decision(F) = Strategy(prefixo_de_deliveries_completas, F, inputs_por_fase_pineados)
+Decision(F) = Strategy(prefijo_de_deliveries_completas, F, inputs_por_fase_pineados)
 
 prefix_noninterference:
   con protocolo, cortes, seed, build y estado inicial idénticos,
@@ -348,6 +348,8 @@ Por tanto, **un intervalo con tamaños aparentemente correctos pero continuidad 
 
 Reloj UTC sintético de un solo día, precios/tamaños decimales exactos; assets A y B; IDs/condition/protocol válidos según fixtures existentes. Dos datasets B separados: observador W1 y observador W2. Ambos tienen su propia sequence/boot/epoch; no concatenarlos como un flujo global. Declarar procesamiento cero como supuesto del fixture, timestamps sin incertidumbre sólo por construcción sintética. W1 autor de A en epoch e1; B tiene owner propio. Kickoff v1=12:30, tick 0.01 y mapping se publican/conocen a las 11:58. Fee permanece unresolved salvo subcaso explícito de evidencia temporal, sin certificar economía.
 
+Pinear en el probe `MaxBookAge=5 min`, `MaxMetadataAge=1 h`, `MinAssets=1` y observación inicial de ambos assets; son parámetros del fixture, no umbrales recomendados para producción. Así el corte 12:03 no falla por antigüedad antes de ejercer la causalidad. Agregar variante que excede esos límites y debe quedar inelegible. Los subcasos de gaps y epochs comprueban cada motivo aunque otros requisitos también fallen.
+
 | ID | Event time / hecho | Knowledge W1 | Knowledge W2 | Estado/expectativa |
 |---|---|---|---|---|
 | M0 | 11:58 metadata v1, tick 0.01, reglas/identidad válidas | 11:58 | 11:58 | Bootstrap anterior probado; subcaso sin M0 debe permanecer inelegible |
@@ -468,7 +470,7 @@ Todas las referencias Cxx siguientes corresponden a archivos leídos físicament
 
 | ID | Archivo y líneas de evidencia |
 |---|---|
-| C01 | `internal/histimport/import.go:28–56,132–175,214–217,235–291,302–342`; import schema, reloj, epoch, tipos y sort |
+| C01 | `internal/histimport/import.go:28–56,132–175,214–217,235–291,302–342`; `internal/histimport/describe.go:85–140`; import schema, reloj, epoch, tipos, sort y discrepancias agregadas |
 | C02 | `internal/books/reducer.go:43–48,256–273,330–469,474–498`; `internal/books/books.go:6–29`; replace/upsert, quality, gap, author y epoch |
 | C03 | `internal/marketview/projection.go:37–75,80–109,133–223,231–282`; proyección compartida sin régimen/control, deltas y provenance de depth |
 | C04 | `internal/histimport/quality.go:13–42,66–74`; `internal/histimport/anchor_test.go:92–150`; `cmd/engine/historical.go:46–59`; consumidor terminal y test de look-ahead |

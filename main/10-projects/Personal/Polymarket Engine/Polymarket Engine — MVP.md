@@ -25,7 +25,7 @@ tags:
   - tech/polymarket
   - topic/prediction-markets
 created: 2026-09-15
-updated: 2026-09-21
+updated: 2026-09-22
 ---
 
 # Polymarket Engine — MVP
@@ -51,6 +51,8 @@ North star del producto de research:
 Una vez establecido el engine, el coste marginal de probar una hipótesis nueva debe caer materialmente.
 
 ## 📊 Estado actual
+
+- **`ASTRA_HISTORICAL_CAUSALITY_AUDIT` (2026-09-22):** auditoría documental y física de código sobre `master@09e8c76` / código `66486ac`, remoto confirmado. **Backtest causal end-to-end no certificable actualmente**: lecturas de régimen latest, elegibilidad SCREEN/SHADOW divergente, controles/epochs incompletos, pérdida de procedencia y replay insuficiente; nueve findings trazados. Set/delete de deltas ya correcto en el engine. Los resultados forenses de BBO superseden el drift 66–85%, pero son resultados reportados y no prueban continuidad L2 completa. Suites existentes de seis paquetes PASS; gates correctivos nuevos NOT_RUN. SPEC integrada HCA-1, fixture, matriz M1 y mandato ONE-SHOT en [[Polymarket Engine — Historical Causality Architecture Audit]]; continuidad §17. M1 congelado intacto; modalidades idealizadas/perfil BBO relajado requieren decisión owner. No autoriza `BACKTEST_PASS`, fee cero, apertura OOS ni cambios a Sports Week.
 
 - **`L2_RECONSTRUCTIBLE` (2026-09-21), validación forense L2 one-shot:** el drift de BBA 66-85% del ADDENDUM era un artefacto del modelo de reconstrucción del cert (aditivo-sin-borrado; el generador no fue persistido), no de los datos. Con semántica upsert (`price_change.size`=tamaño nuevo, 0=borrar), estado por asset y orden venue-time: BBO mismatch 0/628 intervalos (horas completas) y 0/536 (ventana congelada), profundidad exacta en 92,04%/97,39% de intervalos (residuo: huecos ~0,1% de deltas, autodetectables al snapshot siguiente), y 99,61% de acuerdo contra la traza independiente `best_bid_ask`. Cadencia snapshot real: mediana 13,5-67,4 s, huecos máx 7,8-13,7 min. PE-005-R1 investigable a nivel BBO con el dato gratuito (ventana incidente venue 22:30-22:40Z marcada; restart CLOB 22:30→23:54Z). Decisiones: `L2_SNAPSHOT_ONLY` supersado en su fundamentación; sin compra necesaria para el era v3; MinIO operativo pero NO autorizado para el dataset (freeze storage activo) → preservación local única (raw re-descargable por sha; derivados sin segunda copia). Protocolo obligado + solicitudes de muestra PMData/PolymarketData en [[Research — Historical L2 Forensic Validation 2026-09-21]]. No es `BACKTEST_PASS` ni rentabilidad; `LIVE_DISABLED`; Sports Week intacto.
 

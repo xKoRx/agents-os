@@ -5,7 +5,7 @@ status: active
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 created: 2026-09-20
-updated: 2026-09-21
+updated: 2026-09-22
 aliases:
   - Five-POC continuity
   - Polymarket Engine handoff
@@ -20,6 +20,8 @@ tags:
 
 > [!important] PUNTO DE ENTRADA PARA LA PRÓXIMA SESIÓN
 > Esta nota es un **handoff de continuidad y tareas**, no una nueva SPEC ni sustituto del proyecto padre. Leer primero [[Polymarket Engine — MVP]], esta nota y [[Polymarket Engine — Five-POC Guía Operativa 2026-09-20]]. Fuente del cierre: reporte ejecutor del 2026-09-20, registrado en [[2026-09-20-polymarket-fivepoc-final-closure]] y recursos del dominio. Las evidencias ejecutables viven en **el repo local del engine**, no en este vault. Cualquier SHA/resultado se debe volver a verificar al retomar; esta nota no afirma haber corrido comandos en la sesión documental.
+
+**Actualización de autoridad 2026-09-22:** para causalidad histórica consultar §17 y [[Polymarket Engine — Historical Causality Architecture Audit]]. Allí sí se distingue la inspección física de código/tests de esta sesión de los resultados históricos reportados. Los checkpoints siguientes se preservan como historia.
 
 ## 1. Estado canónico al cierre
 
@@ -326,7 +328,7 @@ RESUME_STATUS_20260921_SPORTS_WEEK:
 
 ## 15. Histórico M0 — PE-005-R1 — 2026-09-21
 
-**ADDENDUM 2026-09-21 (adquisición y persistencia):** `HISTORICAL_DATA_ACQUISITION_RESULT` — objetos v3 verificados byte a byte, replay 4/4 reproducido, L2 snapshot-only certificado (deltas no reconstruyen, 66–85% mismatch), persistencia Parquet+DuckDB seleccionada con equivalencia ClickHouse, sin compra necesaria. Ver [[Research — Historical Data Acquisition ADDENDUM 2026-09-21]] y dataset `hist-acq-20260921`.
+**ADDENDUM 2026-09-21 (adquisición y persistencia; diagnóstico L2 supersedido):** `HISTORICAL_DATA_ACQUISITION_RESULT` reportó objetos v3 verificados byte a byte, replay 4/4 reproducido y selección Parquet+DuckDB con equivalencia ClickHouse, sin compra necesaria. Su conclusión de drift BBO 66–85% y fundamento de `L2_SNAPSHOT_ONLY` fueron corregidos por [[Research — Historical L2 Forensic Validation 2026-09-21]]: el reconstructor externo aplicaba mal size/delete. No reutilizar ese drift como diagnóstico vigente. Ver [[Research — Historical Data Acquisition ADDENDUM 2026-09-21]], dataset `hist-acq-20260921` y auditoría §17 para los límites de continuidad y causalidad.
 
 Mandato owner one-shot. Change log [[2026-09-21-historical-research-m0]]. Agent run [[2026-09-21-cursor-grok-4.7-historical-research-m0]]. La campaña Sports Week no se reinició, no se le cambió el binario ni se escribió su dataset. Sesión Agents-OS no cerrada.
 
@@ -405,3 +407,12 @@ HISTORICAL_BACKTEST_READINESS_RESULT: DESCRIPTIVE_ONLY
   next_action: when Internet Archive is up, fetch a pre-21:10Z snapshot of Gamma/CLOB for markets 3901945, 3901951, 3901947 and 3901949 and read tick_size and gameStartTime. Do not open the sealed OOS and do not change the quality model to backfill old_tick_size.
 ```
 
+## 17. Auditoría arquitectónica de causalidad histórica — 2026-09-22
+
+Entrega: [[Polymarket Engine — Historical Causality Architecture Audit]]. Baseline inspeccionada físicamente y confirmada en remoto `master/main@09e8c7610f29a35f8080122b7cb4219b9866ebd7`; código `66486ac99a4606d5dc2b44757ac0722a6baa5415`. **M1 parcialmente cumplido; no se puede certificar hoy backtest causal de extremo a extremo.** La lectura as-of exigida por M1.3/6 corrige implementación: la caracterización anterior como cambio del quality model no justifica usar latest. Qualities tiene contaminación interna pero salida terminal; el bypass de Strategy se demuestra separadamente en marketview de SCREEN/SHADOW.
+
+La SPEC HCA-1 y mandato de §11 proponen una corrección integrada del camino histórico usando los paquetes existentes. H01–H10 sintéticos deben demostrar causalidad por prefijos, elegibilidad común, orden/provenance, revisiones, censura, cortes completos, refs resolubles, paridad y replay significativo. H11 revalida sólo la cohorte exploratoria cuando pueda aislarse sin leer OOS. Los gates nuevos están NOT_RUN; en esta auditoría sólo se ejecutaron las suites existentes de histimport/books/marketview/regimes/frames/replay: 6/6 PASS, sin cambios de código.
+
+0/628 BBO, 514/516 BBA, ~92% de profundidad y 674 s de llegada permanecen resultados forenses reportados; esta sesión leyó sus scripts, no reejecutó datos. Snapshot posterior repara hacia adelante y permite auditar extremos anteriores, sin demostrar toda la continuidad ni reescribir decisiones. Quedan pendientes las decisiones owner OD-H1…OD-H5 de la auditoría; no se habilita modalidad idealizada, perfil relajado, fee cero ni economía. M1 congelado, OOS y Sports Week intactos. Siguiente acción: entregar el mandato ONE-SHOT HCA-1 a un coding agent; no buscar alpha para aceptar arquitectura.
+
+Registro: [[2026-09-22-polymarket-historical-causality-audit]] y [[2026-09-22-codex-unknown-polymarket-historical-causality-audit]].

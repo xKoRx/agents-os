@@ -4,11 +4,13 @@ schema_version: 1
 scope: session
 created: "2026-09-22"
 updated: "2026-09-22"
-area:
-project:
+area: "[[Personal]]"
+project: "[[Polymarket Engine — MVP]]"
 application:
 entities: []
-related: []
+related:
+  - "[[Polymarket Engine — Historical Causality Architecture Audit]]"
+  - "[[2026-09-22-codex-unknown-polymarket-historical-causality-audit]]"
 aliases: []
 confidence: verified
 source_session:
@@ -28,31 +30,34 @@ tags:
 
 ## Cambio
 
-- **Tipo:** created / updated / deleted / conflict-resolution
+- **Tipo:** created / updated / conflict-resolution
 - **Archivo(s):**
-  - 
+  - [[Polymarket Engine — Historical Causality Architecture Audit]], entrega solicitada por owner.
+  - [[Polymarket Engine — MVP]], enlace y estado vigente, sin editar M1/M2 congelado.
+  - [[Polymarket Engine — Continuidad Five-POC 2026-09-20]], §17 y aclaración del diagnóstico L2 supersedido.
+  - [[2026-09-22-codex-unknown-polymarket-historical-causality-audit]], registro de revisión/tests.
 
 ## Motivo
 
-- 
+Auditar si el camino histórico impide información futura y estados inválidos; entregar SPEC acotada y mandato de implementación sin modificar código ni ejecutar búsqueda de señales.
 
 ## Fuentes usadas
 
-- 
+MVP M0/M1 Astra-Fable/reconciliación/freeze/M2; informes históricos y forense; checkout físico `xKoRx/polymarket-engine master@09e8c76`, código `66486ac`, SHA remoto confirmado; fuentes C01–C16/F01 de la auditoría.
 
 ## Resolución aplicada
 
-- 
+Dictamen `NOT_CERTIFIABLE_END_TO_END`, nueve findings con límites explícitos. Se diferencia salida terminal de Qualities de la ruta real de Strategy; set/delete del engine correcto. Lectura as-of es cumplimiento M1 pendiente, no nueva autorización de modelo. No se resucita drift 66–85% supersedido. SPEC HCA-1 S1–S6, gates H01–H11, cinco decisiones owner abiertas. Resultados físicos de datos permanecen reportados/UNVERIFIED en este shot.
 
 ## Validación
 
-- 
+Lectura física y seis suites existentes con `GOPROXY=off GOSUMDB=off go test -count=1 ./internal/histimport ./internal/books ./internal/marketview ./internal/regimes ./internal/frames ./internal/replay`: 6/6 PASS (Go 1.27.1). Nuevos gates NOT_RUN. Sin patch/commit/push de código, sin backtest, sin OOS ni infraestructura. Validación documental targeted y comparación de sección M1/M2 contra versión anterior antes de entregar.
 
 ## Compartibilidad
 
-- **Scope:** local / team
-- **Redacción revisada:** sin identidad, paths locales, memoria interna ni secretos
+- **Scope:** local.
+- **Redacción revisada:** sin secretos ni payloads raw; referencias internas necesarias al proyecto, código y evidencia.
 
 ## Rollback
 
-- 
+Revertir sólo esta entrega documental y sus enlaces por archivo/hunk, preservando cambios concurrentes. No revertir el proyecto entero ni modificar el repo del engine.
