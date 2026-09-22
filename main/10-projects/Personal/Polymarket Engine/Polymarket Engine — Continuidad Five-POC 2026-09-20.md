@@ -326,6 +326,8 @@ RESUME_STATUS_20260921_SPORTS_WEEK:
 
 ## 15. Histórico M0 — PE-005-R1 — 2026-09-21
 
+**ADDENDUM 2026-09-21 (adquisición y persistencia):** `HISTORICAL_DATA_ACQUISITION_RESULT` — objetos v3 verificados byte a byte, replay 4/4 reproducido, L2 snapshot-only certificado (deltas no reconstruyen, 66–85% mismatch), persistencia Parquet+DuckDB seleccionada con equivalencia ClickHouse, sin compra necesaria. Ver [[Research — Historical Data Acquisition ADDENDUM 2026-09-21]] y dataset `hist-acq-20260921`.
+
 Mandato owner one-shot. Change log [[2026-09-21-historical-research-m0]]. Agent run [[2026-09-21-cursor-grok-4.7-historical-research-m0]]. La campaña Sports Week no se reinició, no se le cambió el binario ni se escribió su dataset. Sesión Agents-OS no cerrada.
 
 ```text
