@@ -23,7 +23,7 @@ tags:
   - area/meli
   - project/scopes-rio
 created: 2026-08-12
-updated: 2026-09-21
+updated: 2026-09-22
 cssclasses:
   - wide
 ---
@@ -33,7 +33,7 @@ cssclasses:
 %% Naming: Estandarización de Scopes RIO es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!danger] REGLA BÁSICA DEL PROYECTO
-> **EL `ENVIRONMENT` DEL PIPELINE NO ES LO MISMO QUE EL SCOPE DE FURY.** Este proyecto estandariza scopes de infraestructura Fury. El scope backend llega desde el frontend en `X-Rio-Scope` y Playmaker comienza a usarlo como filtro `scope:<valor>` en BigQueue. No modifica el `Environment` funcional del pipeline, no se persiste en `PipelineExecution`, no participa en idempotencia/history y no crea ningún campo `environment_scope`.
+> **EL `ENVIRONMENT` DEL PIPELINE NO ES LO MISMO QUE EL SCOPE DE FURY.** Fury Routes usa la selección del frontend para dirigir la request, pero Playmaker y cada control plane deducen su lane desde el nombre canónico de su propio scope Fury y publican `scope:<lane>` en BigQueue. El filtro entrante se valida contra esa lane. Nada de esto modifica el `Environment` funcional del pipeline, se persiste en `PipelineExecution`, participa en idempotencia/history ni crea un campo `environment_scope`.
 
 > [!info]+ Estandarización de Scopes RIO
 > **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P1 · **Plataforma:** [[RIO]]
@@ -92,14 +92,14 @@ Dependencia de inicio: cerrar la [[SPEC técnica — Routing dinámico de backen
 
 **Entregables:** [[POC KISS — Routing de scopes en Playmaker]] y [[SPEC técnica — Routing KISS por scope en rio-playmaker]].
 
-**Resultado de fase:** Playmaker captura `X-Rio-Scope: alpha`, lo propaga sólo en memoria y publica el trigger con `scope:alpha`. El control plane conserva el filtro al publicar el result. La POC no modifica pipeline environment, `PipelineExecution`, DB, idempotencia, history ni los DTOs de `rio-sdk-events`.
+**Resultado de fase:** Fury Routes selecciona una instancia de Playmaker; Playmaker no lee ni propaga `X-Rio-Scope`. Cada producer deduce la lane desde el scope Fury local siguiendo `<lane>-<role>-<segment>` y publica el trigger/result con `scope:<lane>`. La POC no modifica pipeline environment, `PipelineExecution`, DB, idempotencia, history ni los DTOs de `rio-sdk-events`.
 
 ### Fases siguientes
 
 | Orden | Unidad | Repo / superficie | Dependencia de entrada | Gate de salida |
 |---|---|---|---|---|
-| 2 | Header Fury y filtros BigQueue | `rio-playmaker` | Fase 1 aprobada + G0 del planner aceptado | G1–G3 del [[POC KISS — Routing de scopes en Playmaker]] aceptados |
-| 3 | Continuidad de scope en control planes | `rio-controlplane-flink` como piloto | contrato de filtro Playmaker aprobado | [[SPEC técnica — Continuidad de scope en control planes RIO]] aprobada; consumer y result preservan `scope:alpha` sin cambio de payload SDK |
+| 2 | Scope Fury runtime y filtros BigQueue | `rio-playmaker` | Fase 1 aprobada + G0 del planner aceptado | G1–G3 del [[POC KISS — Routing de scopes en Playmaker]] aceptados |
+| 3 | Continuidad de scope en control planes | `rio-controlplane-flink` como piloto | contrato de filtro Playmaker aprobado + accessor de scope soportado por Fury confirmado | [[SPEC técnica — Continuidad de scope en control planes RIO]] aprobada; consumer deriva `alpha`, rechaza filtros distintos y result publica `scope:alpha` sin carrier ni cambio de payload SDK |
 | 4 | Aprovisionamiento de lane | Fury | Specs 2–3 aprobadas | scopes, config, routes y bindings listos sin tráfico |
 | 5 | Integración | todas | gates 1–4 aceptados | golden deploy, negativos, cleanup y rollback completados |
 
@@ -190,9 +190,9 @@ views:
 > - [ ] **[Fase 1 — Fury Route]** Implementar y evidenciar la dependencia externa definida en la [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend#Dependencia externa de aprobación|SPEC]] #owner/me #type/dev #area/meli
 > - [ ] **[Fase 1 — implementación Front]** Implementar la SPEC aprobada en `ads-signals-frontend` y completar checks del repo #owner/me #type/dev #area/meli #waiting
 > - [ ] **[Fase 1 — certificación]** Ejecutar la matriz default/override/desconocido/test→prod/prod→test, probar rollback y enlazar evidencia #owner/me #type/dev #area/meli #waiting
-> - [r] **[POC alpha — SPEC técnica Playmaker]** Revisar [[SPEC técnica — Routing KISS por scope en rio-playmaker]]: `Pipeline Environment ≠ Fury Scope`, header transitorio, publicación filtrada, SDK/DB intactas y retry fuera de la POC #owner/me #type/dev #area/meli
+> - [r] **[POC alpha — SPEC técnica Playmaker]** Revisar [[SPEC técnica — Routing KISS por scope en rio-playmaker]]: `Pipeline Environment ≠ Fury Scope`, lane derivada del runtime Fury, publicación filtrada, SDK/DB intactas y limitación cross-lane explícita #owner/me #type/dev #area/meli
 > - [/] **[[POC KISS — Routing de scopes en Playmaker]]** revisar y supervisar la implementación fase a fase bajo KISS/YAGNI #owner/me #type/supervision #area/meli
-> - [r] **[POC alpha — SPEC técnica CPs/Flink]** Revisar y aprobar [[SPEC técnica — Continuidad de scope en control planes RIO]]: consumer alpha, guard `expectedScope`, carrier in-memory y publicación del result con el mismo `scope:x` #owner/me #type/dev #area/meli
+> - [r] **[POC alpha — SPEC técnica CPs/Flink]** Revisar y aprobar [[SPEC técnica — Continuidad de scope en control planes RIO]]: provider Fury validado, lane deducida del naming, guard `incomingLane == runtimeLane`, cero carrier y publicación del result con la lane local #owner/me #type/dev #area/meli
 > - [ ] **[POC alpha — SPEC técnica Infra Fury]** Crear la SPEC técnica de aprovisionamiento para scopes, Fury Config, routes, consumers y manifiesto de bindings sin crear topics #owner/me #type/dev #area/meli
 > - [ ] **[POC alpha — runbook de integración]** Escribir el checklist ejecutable de orden de rollout, golden deploy, aislamiento, cleanup y rollback, sin duplicar las decisiones de las cinco SPECs técnicas #owner/me #type/dev #area/meli
 > - [ ] **[POC alpha — implementación]** Implementar las SPECs técnicas aprobadas y ejecutar la vuelta completa de deploy en alpha #owner/me #type/dev #area/meli #waiting
@@ -234,8 +234,9 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **2026-09-16 (POC alpha planificada)** — La segunda parte del proyecto queda acotada a una vuelta real de deploy `ads-signals-frontend -> rio-playmaker -> rio-controlplane-flink -> rio-playmaker -> frontend`, toda en `alpha`. Se elimina el header custom como requisito de la POC, se toma el filtro BigQueue por tag como capability disponible, se mantienen `rio-deployment-trigger`/`rio-deployment-result`, se dejan Actions y Observability fuera de alcance y se divide el trabajo en cinco futuras SPECs técnicas más un runbook de integración, sin crear esos artefactos en esta sesión.
 - **2026-09-16 (Fase 1 replanteada y especificada)** — La primera implementación de la POC pasa a ser el routing dinámico de backend en `ads-signals-frontend`: el plan de ejecución queda en este proyecto y el diseño objetivo en [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]]. Se adopta una entrada test compartida por header, sin catálogo frontend de scopes; producción conserva su entrada aislada y Fury queda como gate externo de no-crossing.
 - **2026-09-16 (Fase 2 Playmaker — diseño invalidado)** — La primera versión del planner confundió el scope Fury con estado de `PipelineExecution`; esa resolución queda invalidada.
-- **2026-09-17 (Fase 2 corregida)** — Rodrigo establece la regla `Pipeline Environment ≠ Fury Scope`. [[POC KISS — Routing de scopes en Playmaker]] y [[SPEC técnica — Routing KISS por scope en rio-playmaker]] se reescriben: `X-Rio-Scope` se propaga sólo en memoria y se transforma en filtro BigQueue. No hay persistencia, migrations, idempotencia/history scope-aware ni cambios SDK; retry/restart queda fuera de la POC.
-- **2026-09-21 (Fase 3 CPs diseñada)** — [[SPEC técnica — Continuidad de scope en control planes RIO]] define Flink como piloto de `scope:x` trigger→result, con parser fail-closed, `expectedScope`, carrier in-memory y publicación filtrada. La comparación sobre refs remotas frescas confirma primitivas reutilizables en `rio-sdk-events`, boundaries comunes en Flink/Kafka/ClickHouse/Fury/Signals y la necesidad de diseño durable separado para reconciliadores de Fury.
+- **2026-09-17 (Fase 2 corregida; supersedida el 2026-09-21)** — Rodrigo establece la regla `Pipeline Environment ≠ Fury Scope`. La primera corrección propuso propagar `X-Rio-Scope` sólo en memoria; la revisión posterior de la Fase 2 reemplazó ese carrier por derivación desde el scope Fury del runtime. No hay persistencia, migrations, idempotencia/history scope-aware ni cambios SDK.
+- **2026-09-21 (Fase 3 CPs diseñada; supersedida el 2026-09-22)** — La primera versión de [[SPEC técnica — Continuidad de scope en control planes RIO]] definió Flink con parser fail-closed, `expectedScope`, carrier in-memory y publicación filtrada. La comparación sobre refs remotas frescas confirmó primitivas reutilizables en `rio-sdk-events` y boundaries comunes; la revisión del día siguiente eliminó la configuración y el carrier duplicados.
+- **2026-09-22 (Fase 3 alineada con Playmaker)** — Se corrige la autoridad del routing: cada CP deduce la lane desde su scope Fury canónico y usa el filtro entrante sólo como aserción. Se eliminan `expectedScope` y el carrier in-memory; el publisher vuelve a resolver la lane local. La POC queda gated por confirmar el accessor oficial de Fury, porque `java-toolkit-shared` observado sólo expone helper de segmento. Los reconciliadores siguen requiriendo ownership aislado por lane.
 
 ## 🧭 Decisiones
 
@@ -253,19 +254,19 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **Cantidad y nombres funcionales:** frontend se nombra con `<environment>` y backend con `<environment>-<rol>-<segment>`.
 - **Extensibilidad:** la Fase 1 debe demostrar que una lane de test nueva no exige un archivo de configuración ni un deploy frontend; las fases posteriores prueban que topics y contratos tampoco se duplican por ambiente.
 - **DB sin cambios:** sólo `test` y `prod`; el scope es routing/cómputo, no frontera de datos.
-- **Header Fury → filtro:** Playmaker captura `X-Rio-Scope`, valida sólo su sintaxis y construye `scope:<valor>` como filtro BigQueue. No lo compara con el pipeline environment ni lo persiste.
+- **Scope Fury runtime → filtro:** Fury Routes usa la selección HTTP antes de entregar la request. Playmaker y los CPs deducen la lane desde el primer token de su scope Fury canónico y publican `scope:<lane>`; no leen el header como dato de dominio ni lo persisten.
 - **Sin cambio SDK en la POC:** `DeploymentTriggerMessage` y `DeploymentResultMessage` permanecen iguales; el scope Fury viaja en `BigQueueMessage.filters`/mqclient y cualquier propuesta de agregar un campo reabre explícitamente la decisión.
 - **Retry fuera de la POC:** continuidad durable ante timeout/restart exige otro diseño; no se resuelve contaminando `PipelineExecution`.
 - **Nombre canónico:** SIG-599 define frontend `<environment>` y backend `<environment>-<rol>-<segment>`.
 - **POC end-to-end:** el CP piloto es `rio-controlplane-flink` y la cobertura obligatoria es el deploy completo; Actions, runtime status, Observability, Materializer y KMS quedan fuera.
-- **Continuidad del filtro:** el CP extrae el único `scope:x` válido del envelope y el publisher devuelve ese mismo valor; nunca lo deriva del runtime `SCOPE`. Un mismatch contra `expectedScope` falla cerrado y un envelope sin scope conserva legacy durante el rollout.
+- **Continuidad del filtro:** el CP deriva `runtimeLane=x` desde su scope Fury, exige que el envelope contenga exactamente `scope:x` antes de ejecutar y el publisher vuelve a derivar `x` al salir. No existe `expectedScope` manual ni carrier. Un runtime canónico rechaza missing/mismatch; sólo un runtime legacy procesa y publica sin filtro.
 - **Piloto KMS separado:** la remediación de segmentación de KMS conserva su propio objetivo y no certifica la POC end-to-end.
 
 ### Preguntas abiertas para el equipo / verificaciones
 1. ¿Qué decisiones de negocio y ownership se requieren para proponer retiros sin convertir bindings en una categoría genérica?
 2. ¿La unidad de alineación es una lane/celda completa de RIO y qué contrato/schema debe compartir?
 3. ¿Qué scopes especiales sobreviven como roles explícitos y cuáles son deuda transitoria?
-4. ¿Después de la POC se necesita soportar retry/restart con scope Fury y, si es así, cuál será su carrier durable sin mezclarlo con pipeline environment?
+4. ¿Qué reconciliadores pueden reclamar trabajo creado por otra lane y qué aislamiento de storage/lease/selector se requiere antes de adoptar derivación runtime en esos paths?
 5. ¿Qué recursos pueden compartirse entre familias y cuáles deben aislarse por construcción?
 6. ¿Qué capability soportada por Fury implementará el aislamiento de lanes dentro de `nonprod`?
 7. ¿Dónde se versionará el manifiesto de bindings y el generador reproducible?

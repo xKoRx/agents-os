@@ -19,7 +19,7 @@ tags:
   - tech/rio
   - project/scopes-rio
 created: 2026-08-12
-updated: 2026-09-17
+updated: 2026-09-22
 cssclasses:
   - wide
 ---
@@ -30,7 +30,7 @@ cssclasses:
 > Construir el inventario como una fuente de verdad normalizada obtenida de Fury y generar desde ella la documentación y el reporte visual. Registrar hechos tipados por runtime y binding; no existe una categoría genérica de uso, no se infiere el segmento desde el nombre y no hay score compuesto.
 
 > [!danger] Separación conceptual obligatoria
-> El `Environment` del pipeline es dominio funcional de Playmaker y no representa un scope de Fury. El scope Fury es metadata de infraestructura que llega desde el frontend por header y viaja como filtro BigQueue. El routing de scopes no modifica ni persiste nada en el pipeline environment.
+> El `Environment` del pipeline es dominio funcional de Playmaker y no representa un scope de Fury. Fury Routes usa la selección del frontend para dirigir la request; cada runtime backend deduce la lane desde su propio scope Fury canónico y la publica como filtro BigQueue. El routing de scopes no modifica ni persiste nada en el pipeline environment.
 
 ## Síntesis vigente
 
@@ -251,8 +251,8 @@ Como owner de una aplicación RIO, quiero que una operación destinada a `alpha`
 
 - El front resuelve `frontend` y `backend` por eje con `queryParam ?? cookieMeliLab ?? prod`; el queryParam pisa MeliLab sólo en su eje.
 - nginx sirve el scope/build de frontend y el front traduce `backend` al header estándar de scope que Fury routes usa para dirigir a Playmaker.
-- Playmaker valida la sintaxis del scope Fury recibido en el header y estampa directamente el tag `scope:<x>` server-side; no lo interpreta como pipeline environment ni lo persiste.
-- Un topic compartido transporta los mensajes y el consumer Fury filtra por el tag `scope:<x>`; el endpoint sólo valida la estructura del filtro como defensa en profundidad.
+- Fury Routes usa el header antes de entregar la request; Playmaker deduce `x` desde el primer token de su scope Fury canónico y estampa `scope:<x>` sin transportarlo por el dominio ni persistirlo.
+- Un topic compartido transporta los mensajes y el consumer Fury filtra por `scope:<x>`; el CP deduce su propia lane desde el scope Fury, exige `incomingLane == runtimeLane` y publica el result con la lane local.
 - `mqclient Filters`/Fury `filters.modified_fields` transporta tags de negocio arbitrarios; `scope:<x>` sigue el patrón productivo verificado en VIS. Falta confirmar si Fury aplica el filtro server-side.
 - Si el filtro no es server-side, prod usa un topic separado y los ambientes nonprod comparten topic+filtro para evitar entrega física de mensajes productivos a consumers no productivos.
 - `ProducerBuilder.withSegmentID` conserva su responsabilidad física nonprod/nonsite y no selecciona alpha/stage/prod.
@@ -273,7 +273,7 @@ Como owner de una aplicación RIO, quiero que una operación destinada a `alpha`
 12. Todo scope lleva los tres tokens `<environment>-<role>-<segment>`, sin nombres pelados: con un único runtime del tipo, `<role>` toma el valor canónico del tipo (`api`, `consumer`, `events`, ...). Más de un scope del mismo tipo+ambiente sólo se permite bajo los criterios de excepción de [[#Estándar de Nomenclatura]].
 13. Toda aplicación desplegable implementa como mínimo `prod`, `stage` y `alpha`; `beta/gamma` no sustituyen ese mínimo.
 14. Todo Stream sin sink activo lleva punto amarillo: antes de migrarlo se decide retiro o se documenta/reconecta su binding.
-15. Pipeline environment, scope Fury y segmento Fury son tres ejes distintos: el scope viaja como metadata de routing en header/filtro y nunca sustituye ni modifica el environment del pipeline.
+15. Pipeline environment, scope Fury y segmento Fury son tres ejes distintos: Fury Routes resuelve el target HTTP y cada runtime deduce la lane desde su nombre canónico; el filtro BigQueue transporta y verifica esa lane sin sustituir ni modificar el environment del pipeline.
 
 ## Current Verified Baseline
 
