@@ -45,13 +45,15 @@ updated: "2026-09-21"
 > - [x] G0/G1: auditoría contratos + topología hosts + SPEC freeze + amendments #owner/agent #type/dev
 > - [x] G2–G5: task import, registro de productores, ranking per-type, selection_snapshot_v1 #owner/agent #type/dev
 > - [x] G6: tests §14 nuevos + regresión completa (23 fallos pre-existentes idénticos al baseline, 0 nuevos) #owner/agent #type/dev
-> - [r] MR-1/MR-2: manager review de amendments a CLASSIFICATION-EVIDENCE y EARLY-PER-TYPE-RANKING #owner/me #type/pr-review
-> - [ ] G7: certificación física vertical slice (runbook listo; requiere Opción A flota o Opción B runtime aislado) #blocked
+> - [x] Review técnica MR-1/MR-2 (mandato 2026-09-21): TECHNICAL_REVIEW_CLEAN, 0 hallazgos bloqueantes, evidencia en `specs/FEAT-SQX-IMPORT-TASK-V1/REVIEW-MR1-MR2-20260921.md` #owner/agent #type/pr-review
+> - [r] MR-1/MR-2: APROBACIÓN FORMAL del manager (review técnica entregada y limpia) #owner/me #type/pr-review
+> - [ ] G7: certificación física vertical slice — BLOQUEADO a RT-1 (autorización runtime owner); runbook + candidato DEV-B preparados; será certificación PARCIAL de un host (gap multi-host declarado) #blocked
 > - [ ] G8 cierre: merge owner + release según gates (push hecho 2026-09-21) #owner/me #type/dev
 > - [ ] Campaña B: congelar parámetros OOS/MT5 y ejecutar tras G7 #owner/me #type/dev
 
 ## 📆 Bitácora
 
+- **2026-09-21 (mandato cierre)** — Review y cierre físico preparado: branch actualizada `5e495ae → 3d04d68` (1 commit, push FF; master intacto `745bc8b`). Review técnica MR-1/MR-2 limpia con evidence pack; correcciones documentales: autoridad proyecto/plugin (`EchoForgeImportExporter` proyecto SQX local + plugin `EchoForgeOverviewExporter`; SPEC §4.1/4.2/§12 corregidas, runbook ya consistente), receta runbook con `custom_analysis_plugin` (fallo cerrado sin él), gap multi-host declarado con tests de binding single-FlowRun (SPEC §4.3 + D7 precisada + runbook §5: G7 de un host = parcial). Anexo runtime candidato DEV opción B (`RUNBOOK-DEV-AISLADO-OPCION-B.md`, PREPARED/PENDING_RT1; verificado RO: namespace Temporal `sqx-dev` existe, ETCD `/symphony/development/` 40 keys, cola compartida `sqx-main-queue` excluida para el candidato). Nada arrancado ni desplegado; flota 0.2.105 intocada.
 - **2026-09-21** — Consolidación git previa a G7 (mandato owner): branch publicada en origin `5e495ae` (5 commits íntegros, push tras scan de secretos limpio); `master` promovido por FF puro a `745bc8b` (merge-base de esta rama == nuevo master, historia sin rebase); verificado vía GitHub API (`ahead=5 behind=0 merge_base=745bc8b`; sin commits de Import en master). G7 sigue bloqueado a runtime aislado del owner; MR-1/MR-2 siguen en review.
 - **2026-09-21** — Sesión ZCode/GLM: G0–G6 completos en worktree `/home/kor/go/src/github.com/xKoRx/symphony-import-v1` (4 commits). Flota con worker 0.2.105 corriendo en Zeus ⇒ G7 requiere owner gate. Runbook y receta de config listos.
 
