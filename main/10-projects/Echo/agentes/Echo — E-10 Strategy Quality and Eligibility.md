@@ -173,7 +173,7 @@ ML/meta-score/optimización continua; régimen aprendido (sólo si la política 
 
 ### Decisiones pendientes del owner (exactas, no bloquean clase A)
 
-1. **Contenido de la política de observación mínima** (calendario 3–6 meses, coverage mínimo, N trades, criterios WATCH/DEGRADED/QUARANTINED, método estadístico con supuestos declarados) y su write path (propuesta: `echo.quality_policies` 069 write-once owner-operado; alternativa ETCD). Requerida para clase C.
+1. **Contenido de la política de observación mínima** (calendario 3–6 meses, coverage mínimo, N trades, criterios WATCH/DEGRADED/QUARANTINED, método estadístico con supuestos declarados) y su write path (propuesta: `echo.quality_policies` 069 write-once owner-operado; alternativa ETCD). Requerida para clase C. **M2 C1-C (2026-09-22):** demostrado que `PutPolicy` + `ratified_at DEFAULT now()` no acredita aprobación owner (el gate M1-C se satisface por mera presencia de fila) — hasta que exista la vía owner-operated, toda fila de `quality_policies` en clase A es fixture sin autoridad real y ninguna decisión puede certificarse `RATIFIED` por un INSERT; la decisión de ese contrato de autorización es UNRESOLVED para T06/T07.
 2. **Promoción de StrategyExpectation a S0** si algún día Forge debe producir expectations end-to-end (fuera de este carril).
 3. **Aplicación 064–069 en DEV compartido** por flujo de release (precondición física de clase B/C; no forzar 061 completa — Environment Contract §7).
 4. **Corrección documental E-06:** la línea "NORMAL no lanzado" del roadmap del padre es anterior a la implementación WP-A/T09–T10 hoy presente en el baseline (commits 2026-09-17); delta docs-only registrado aquí y aplicado en la actualización del padre de esta sesión.
