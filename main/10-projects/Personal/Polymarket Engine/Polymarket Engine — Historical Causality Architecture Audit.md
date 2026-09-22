@@ -481,7 +481,7 @@ Todas las referencias Cxx siguientes corresponden a archivos leídos físicament
 | C07 | `internal/experiment/experiment.go:225–245,267–305,366–438,822–831,863–903`; SHADOW, cortes, fee latest y fills |
 | C08 | `internal/frames/frames.go:68–99`; `internal/frames/dispatcher.go:374–401,429–445,498–557,585–601`; `internal/frames/receive_clock.go:10–40`; `internal/frames/dispatcher_fanout_test.go:13–46` |
 | C09 | `internal/replay/replay.go:123–175,179–210,222–279,299–375`; `internal/replay/manifest.go:33–50,81–105`; digest, schedule, resolución y cutoff |
-| C10 | `internal/experiment/strategy_replay.go:63–111,113–223`; lectura de frames, aislamiento de observaciones y comparación de outputs |
+| C10 | `internal/experiment/strategy_replay.go:63–111,113–216`; lectura de frames, aislamiento de observaciones y comparación de outputs |
 | C11 | `internal/strategy/api.go:35–52,84–96`; `internal/strategy/runtime.go:149–184,297–357`; requisitos declarados y callbacks |
 | C12 | `internal/strategy/pocs/sports/sports.go:120–173,203–204,220–282,291–313,317–352,447–480`; kickoff, historia, reversión, calidad y fee |
 | C13 | `internal/external/external.go:44–73,78–116,135–171,175–209`; publicación, known_at y filtro por seq |
