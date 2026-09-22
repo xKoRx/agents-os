@@ -216,3 +216,16 @@ Paralelizables sin riesgo: carril documental/prep de Backup/DR ∥ diagnóstico 
 - **Ceph (pre-ventana):** osd.0/osd.2 ≥89% en 2 lecturas separadas ≥1h, o HEALTH lista `OSD_BACKFILLFULL`/`OSD_FULL`, o latencia commit ≥500ms sostenida >1h con sesiones Echo activas → escalar owner (acción preparada gated: `qm shutdown 125`; alternativas en [[K2-CEPH-RISK-20260920]]). Banda histórica 85,6-87,9% con retrocesos confirmados = NO accionar por una sola lectura ni por anticipación.
 - **Echo (ventana):** precheck `SELECT count(*) FROM echo.trade_journal WHERE closed_at IS NULL;` = 0 (SIN filtro temporal) + sin sesiones activas; si hay posición/sesión → ABORT de P0-1/P0-2 (la ventana continúa sólo con K2/K1). El cierre operativo del viernes 25 se comprueba con este criterio + prevención de nuevas entradas (acción del owner sobre su plataforma; el agente verifica y registra, no la ejecuta).
 - **PBS:** verify main TASK OK en precheck + datastore <70% antes de P0-1; el run R2 06:05 del sábado es el último por expiración natural (validar su OK, no renovar el timer).
+
+## Gate vigente de autorización (21sep noche — reemplaza TABLA-APROBACION-23SEP)
+
+Autorización PUNTUAL por operación (owner, sin aprobaciones generales): instrumento único
+`~/aranea/work/cierre-preparatorio-20260921/GATE-AUTORIZACION-PUNTUAL-22SEP.md` — contiene
+P1 (W-01 → `qm set 180 -scsi2`, errata scsi1 corregida), P2a (T-21b aplicar; hash base
+bca1d148…, sin aplicar), W-02 a/b/c separados (depende P2a), P4=D-B baseline (D-A sólo con
+6/7 + métricas 25sep + dependencia apagado nocturno resuelta), P6=G-REP-0..5 sin ninguno
+aprobado, ticket 018 con las 3 decisiones exactas (ticket NO se cierra con UNKNOWN), 020/021
+pendientes owner, K2 protocolo MARTES 22 (2 lecturas ≥1h; 21sep 22:39 = 86,56/86,60%).
+Erratas corregidas esta noche: P0-1 slot `-scsi1`→`-scsi2` (scsi1 = datastore pbs-data vivo);
+"miércoles 22"→martes 22; 112 = 5,9G usados reales (no 120G) en CAPACITY/MANDATOS;
+162/170 eliminadas del universo en MATRIZ/CAPACITY/MANDATOS con marcadores de corrección.
