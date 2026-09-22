@@ -4,7 +4,7 @@ schema_version: 1
 scope: session
 created: "2026-09-22"
 updated: "2026-09-22"
-area: "[[[Aranea]]]"
+area: "[[Aranea]]"
 project: "[[Echo — E-10 Strategy Quality and Eligibility]]"
 application:
 entities:
