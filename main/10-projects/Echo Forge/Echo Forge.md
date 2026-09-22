@@ -149,6 +149,7 @@ if(!any)dv.paragraph("_Sin tareas mías abiertas en el programa._");
 > - [x] [[Stager - Cross-Platform Deployment Lifecycle]] arrancar + seguimiento (proyecto de agente) — cerrado 2026-08-14: G3 ACCEPTED; E2E Stager PASS; F3.9 diferido; `report_not_found` es Symphony. #owner/me #type/supervision #area/echo
 > - [ ] [[Echo Forge - Etapas 5 y 7]] arrancar + seguimiento (proyecto de agente) #owner/me #type/supervision #area/echo
 > - [ ] [[Echo Forge - Etapas 8-10]] arrancar + seguimiento (proyecto de agente) #owner/me #type/supervision #area/echo
+> - [ ] [[Echo Forge — Import Task V1]] arrancar + seguimiento (proyecto de agente) #owner/me #type/supervision #area/echo
 > - [r] [[Echo Forge - Arquitectura de Datos y Migración de Persistencia]] arrancar + seguimiento (proyecto de agente) — schema-boundary fix PASS/CLOSED en `9ef5549`; T1–T5 y directed/race/vet PASS; máximo 2 archivos de repo, sin release `0.2.94`, sin Campaign física #owner/me #type/supervision #area/echo
 > - [r] [[Echo Forge - Reconciliación y Scoring MT5]] arrancar + seguimiento (proyecto de agente) — M0–M6 CLOSED (M6-TOP 2026-08-19); M7 BLOCKED; listo para review humana #owner/me #type/supervision #area/echo
 
