@@ -178,3 +178,10 @@ Precedencia estricta: B1 requiere D-piloto + 018 + crecimiento datastore; A2 req
 > MANDATO-PREP-SPEC es el **procedimiento de preparación (doc)** de los mandatos 2-6; su tarea 2 (script vzdump `nfs-vmbackup` + alta de storage como diff) es el **runbook de ejecución** de ese paso (secuencia mecánica con verificación y rollback: diff storage.cfg 5 nodos + dataset `pool0/vm-backup` + job semanal keep-weekly=4; rollback = revertir diff/no aplicar), GATED por **G-NFSVM**. Sus tareas 1/3/4/5 (payloads réplica, re-medición 7d, anexo 018, preflight extendido) quedan como doc (preparación, clase AUTO). Canónicos: [[TWO-LAYER-BACKUP-SPEC]] §1 (diseño), [[POOL0-TO-POOL2-REPLICATION-SPEC]] (autoridad réplica), [[STORAGE-ORGANIZATION-FREEZE]] (gate de completitud).
 
 **Orden actualizado (consistente con esta redirección):** AHORA (AUTO): A0→A1∥(A3,A5,S4,R7-parcial) · TRAS GATES OWNER: B1(D+018+019) → G-NFSVM (capa pool1→pool0) · RÉPLICA: G-REP-1 (scrub pool2) → G-REP-2/3 (full inicial en ventana propia) → G-REP-4 (schedule diario) — I/O de réplica JAMÁS simultáneo con B1-fulls/G1B/migraciones · CLOUD: A7 en cuanto 020/021 · CARRIL CEPH: S4→S1→S2→S3 sin cambios.
+
+### Corrección noche-5 (mandato BACKUP FIRST — secuencias y dependencias)
+
+- **Backup/DR NO espera `STORAGE_ORGANIZATION_COMPLETE`** (dependencia revocada por el owner; errata noche-5 en el [[MASTER-PLAN-STORAGE-BACKUP-DR]]): las secuencias anteriores del roadmap quedan válidas SIN ese gate como frontera.
+- Secuencia de migraciones: cada migración exige **BACKUP_BASELINE_VERIFIED de su unidad** + sus gates propios; el análisis disco por disco que las prioriza vive en [[ANALISIS-DISCO-POR-DISCO]] (ninguna se ejecuta antes de los backups).
+- Criterio de la 1ª réplica de pool0: dimensionar y ejecutar cuando SUS gates G-REP-0..5 (capacidad/integridad/ventana) estén satisfechos — no depende de completar migraciones.
+- Reglas fijas: STORAGE_OPTIMIZATION_PLANNED no es requisito de BACKUP_BASELINE_VERIFIED; BACKUP_BASELINE_VERIFIED por unidad sí es requisito de su MIGRATION_READY.

@@ -24,6 +24,9 @@ Mandato de migraciones justificadas tras la redirección: W1/W2 canceladas, W3/W
 
 > [!warning] Errata 21sep noche-3 (revisión "Placement Freeze antes de Backup/DR") — la fila W1/W2 conservaba redacción en imperativo ("reubicar…", "Alta del storage nfs-pool2"), contradictoria con su propio estado CANCELADAS. Corrección: la operación es NINGUNA y el alta `nfs-pool2` queda OBSOLETA (sin consumidor tras D-NEW-01). Clasificación canónica: [[PLACEMENT-DECISIONS-20260920]] §F.
 
+> [!warning] Errata 21sep noche-5 (mandato BACKUP FIRST) — dependencia y precondiciones corregidas
+> **STORAGE_ORGANIZATION_COMPLETE no es prerequisito de este mandato** (dependencia revocada). **BACKUP_BASELINE_VERIFIED por unidad SÍ es el requisito de cada MIGRATION_READY**: el paso 1 del preflight (vzdump + verify) se convierte en la verificación de ese baseline; ninguna migración se ejecuta antes de que la unidad tenga su protección recuperable demostrada. Análisis disco por disco (99 discos, priorización y ahorro real): [[ANALISIS-DISCO-POR-DISCO]].
+
 | Ítem | Estado | Operación |
 |---|---|---|
 | W1/W2 edge → pool2 | CANCELADAS (D-NEW-01) | ~~reubicar los 4 CTs + traefik a nfs-pool2~~ · ~~alta del storage nfs-pool2~~ → **NINGUNA**: edge queda como está (correcto hoy); `nfs-pool2` OBSOLETO (sin consumidor tras la cancelación) |

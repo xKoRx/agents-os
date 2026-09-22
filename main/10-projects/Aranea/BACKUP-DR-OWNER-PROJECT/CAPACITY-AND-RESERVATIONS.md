@@ -92,7 +92,25 @@ related:
 
 **Corrección adversarial aplicada**: la tabla original de esta nota presentaba "nuevas asignaciones W5" como asignadas; ningún destino está asignado todavía (W5 = reevaluación por VM, gate por VM). Los mismos GB libres NO se reservan simultáneamente como destino W5 y como margen de restauración — prioridad de uso: restauración > W5.
 
-## 6. Reglas transversales
+## 7. Presupuestos por fase (mandato BACKUP FIRST 21sep noche-5)
+
+Fases independientes; **cada fase se presupuesta con espacio REAL medido a su inicio — nunca con espacio que otra fase todavía no ha liberado.**
+
+**Fase 0 — Baseline (backups de la infraestructura ACTUAL):**
+- pool0: used 2,59T + libre zpool 1,64T (hoy). Réplica 2,35T NO va a pool0 (va a pool2) — pool0 sólo agrega `@repl-*` (0,27-1,09T) y la capa `vm-backup` (0,43-1,03T) cuando sus gates activen: **peor caso combinado deja ~0,12T** → orden obligatorio: activar `vm-backup` (G-NFSVM) → medir su consumo real → recién entonces fijar retención @repl final (7 vs 14d).
+- pool2: 4,08T libres − 2,4T réplica (presupuesto) = **≥1,71T margen post-full (24%)**. No compite con ninguna otra función (RESERVADO réplica).
+- PBS: 295G (18%) → +300G (W-01 opción b, pool-kronos 733,87G) = 595G → cabe T0a-d + dumps + staging con retención 7d/4w. Umbral 70%.
+- **BACKUP_BASELINE_VERIFIED es alcanzable COMPLETO sin ejecutar ninguna migración** (esta es la corrección de fondo: los presupuestos de baseline no dependen de ahorros futuros).
+
+**Fase 1 — Después de vm-backup (medición sobre pool0):**
+- `pool0/vm-backup` real = medir tras su primer ciclo (TWO-LAYER §1). Si vm-backup real > 1,03T: recortar retención @repl a 7d ANTES de activarla (no después), manteniendo los frenos vigentes (NO-SEND si pool2 <1,00T; pool0 con umbral de alerta).
+- Números de esta fila se congelan en CAPACITY-FREEZE v2 con la medición.
+
+**Fase 2 — Después de migraciones (capacidad final de pool1):**
+- pool1 recupera SOLO el `used` real liberado (thin), no el prov: rango realista 150-350G lógicos totales (techo nominal 1363G prov en [[ANALISIS-DISCO-POR-DISCO]] §2/§5) — ver aritmética en esa nota.
+- Regla: el ahorro se CONTABILIZA al verificar `rbd du` post-liberación, nunca antes; la liberación de cada disco exige BACKUP_BASELINE_VERIFIED + gate de borrado independiente.
+
+## 8. Reglas transversales
 
 1. No resolver falta de capacidad borrando datasets legacy sin autorización (F-09; limpieza pool2 = decisión owner separada — liberaría ~2T de vista y haría converger AVAIL a ~4,2T).
 2. No borrar imágenes RBD "huérfanas" sin demostrar ownership y ausencia de uso (WP-S1: identificación por VMID + evidencia + autorización independiente).

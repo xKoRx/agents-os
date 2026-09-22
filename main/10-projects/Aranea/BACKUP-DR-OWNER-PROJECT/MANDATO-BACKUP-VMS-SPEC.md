@@ -23,8 +23,9 @@ Mandato de ejecución del Mecanismo A: producción vzdump (B1) y capa nfs-vmback
 ## Objetivo
 Cobertura imagen-level de VM/LXC según [[TWO-LAYER-BACKUP-SPEC]] §1: (a) B1 producción en PBS; (b) 2ª copia local en `nfs-vmbackup` (pool0) de las unidades con discos en pool1.
 
-## Operaciones (orden)
-1. **Preflight fail-closed**: datastore PBS <70%; verify main TASK OK; `pvesm` verde 5/5; Ceph sin HEALTH_ERR (los guests a respaldar corren en pool1 — vzdump es lectura, NO escritura: NO_GO de escritura se respeta); sin sesión Echo activa en la ventana para guests T0d; 018 con lista final.
+## Operaciones (orden) — Objetivo principal: habilitar y certificar Backup/DR (mandato BACKUP FIRST 21sep noche-5)
+
+1. **Preflight fail-closed**: datastore PBS <70%; verify main TASK OK; `pvesm` verde 5/5; Ceph sin HEALTH_ERR (los guests a respaldar corren en pool1 — vzdump es lectura, NO escritura: NO_GO de escritura se respeta); sin sesión Echo activa en la ventana para guests T0d; 018 con lista final. **Estado del paquete por bloque (noche-5)**: B1 y G-NFSVM = READY_AFTER_OWNER_GATE (P4/D + P1/W-01 + 018 + 019) · capa `nfs-vmbackup` = READY_AFTER_OWNER_GATE (G-NFSVM) · T-21b/W-02 = READY_AFTER_OWNER_GATE (P2) · CouchDB A3 = BLOCKED (credencial `_reader`) · A7 off-site = BLOCKED (020/021) · W5-post/migraciones = DEFER (exigen BACKUP_BASELINE_VERIFIED por unidad; [[ANALISIS-DISCO-POR-DISCO]]) · réplica = READY_AFTER_OWNER_GATE (P6, gates G-REP-0..5 propios). Ningún bloque se fuerza a PASS.
 2. **B1 producción**: activar jobs vzdump diarios 02:00 (T0) / semanal (T1/T2) con retención según D; exclusiones = ledger de la SPEC. El horario lo fija el owner en D/019 (S-07: nunca dentro de sesión de mercado).
 3. **Capa pool1→pool0 (G-NFSVM)**: dataset `pool0/vm-backup` + export + storage `nfs-vmbackup` (diff MANDATO 1) + job vzdump semanal snapshot-mode de las unidades del anexo (140, 152, 153, 157, 133/134/144, 124, CTs 126/129/141/128/127, etcd×5, 116/113/103/137) retención keep-weekly=4.
 4. **Validación**: 1er ciclo completo + verify PBS TASK OK; 1 restore drill de 1 CT T0 a scratch + 1 VM completa a scratch (primer drill de VM completa del sistema — [[MANDATO-CERTIFICACION-SPEC]]); `pvesm list nfs-storage` intacto (baseline).
