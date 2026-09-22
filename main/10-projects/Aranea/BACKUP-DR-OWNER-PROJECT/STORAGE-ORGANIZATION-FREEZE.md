@@ -31,15 +31,13 @@ related:
 
 ## Propósito
 
-- Registrar el gate **`STORAGE_ORGANIZATION_COMPLETE`** (mandato owner "Storage Organization & Placement Freeze · Antes de iniciar Backup/DR", 21sep): la organización de recursos debe estar congelada y verificada ANTES de fijar capacidad/retención definitivas de Backup/DR y de activar jobs nuevos o la réplica pool0→pool2.
-- No sustituye a las SPECs: las reúne bajo un gate de completitud. **La preparación documental de backups puede continuar en paralelo; la ejecución de los nuevos jobs y de la réplica espera al gate.**
+- Registrar el gate **`STORAGE_ORGANIZATION_COMPLETE`** (mandato owner "Storage Organization & Placement Freeze", 21sep; **depurado por mandato correctivo 21sep noche-5 — BACKUP FIRST**): la organización de recursos queda congelada y verificada como CIERRE de la fase de optimización de storage. **NO es requisito de Backup/DR** — esa dependencia fue REVOCADA por el owner: la implementación y certificación de Backup/DR avanzan sobre el placement actual, las migraciones van DESPUÉS protegidas por backups verificados, y cada servicio migrado se recertifica.
+- Los backups certificados que ya funcionan NO se detienen. La implementación de jobs nuevos y de la réplica pool0→pool2 avanza por sus PROPIOS gates específicos (G-B1=D+018+019, G-NFSVM, G-REP-0..5) — este gate no los bloquea.
 
-## Contenido
-
-## 1. Criterios del gate (todos obligatorios)
+## Criterios del gate (todos obligatorios)
 
 1. **Placement definitivo documentado** → [[PLACEMENT-DECISIONS-20260920]] §F (v2, congelado; MIGRATE = ninguna activa).
-2. **Migraciones imprescindibles terminadas o explícitamente diferidas** → veredicto del viernes 25sep = `MIGRATIONS_NOT_READY` por diseño: ninguna migración es imprescindible para corregir una condición peligrosa; W5 queda reevaluación por VM post-activación de la réplica (§3). Diferimiento explícito ≠ deuda silenciosa.
+2. **Migraciones imprescindibles terminadas o explícitamente diferidas** → veredicto del viernes 25sep = `MIGRATIONS_NOT_READY` por diseño: ninguna migración es imprescindible para corregir una condición peligrosa; W5 queda reevaluación por VM post-activación de la réplica (§3). Diferimiento explícito ≠ deuda silenciosa. **Criterio de desbloqueo por migración (noche-5): cada migración futura exige `BACKUP_BASELINE_VERIFIED` de su unidad — nunca este gate.**
 3. **Capacidad y reservas verificadas** → [[CAPACITY-AND-RESERVATIONS]] (presupuesto por backend sin doble-asignación; re-medición en preflight de cada gate).
 4. **Ausencia de discos con propietario desconocido dentro del alcance** →UNKNOWN vigentes (kafka scsi1 ×3, argus scsi1-4, interior MT4, CouchDB) están FUERA del alcance de organización: pertenecen a 018/decisión owner y NO alteran placement de discos productivos. El gate exige "sin propietarios desconocidos dentro del alcance definido", no 0 UNKNOWN globales.
 5. **Servicios validados en sus destinos** → no hay migraciones ejecutadas: todo servicio sigue en su ubicación ya validada por operación (KEEP). Sin movimiento = sin revalidación pendiente.

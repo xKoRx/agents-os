@@ -31,7 +31,7 @@ updated: "2026-09-21"
 ---
 ## F. PLACEMENT-FREEZE-V2 — congelación final (mandato owner "Placement Freeze antes de Backup/DR", 21sep noche)
 
-> **Autoridad máxima de esta nota donde contradiga A-E** (junto con §D). Congela la clasificación por workload; las migraciones quedan condicionadas al gate [[STORAGE-ORGANIZATION-FREEZE]]. Principio: el objetivo es el placement correcto, NO llenar la ventana — sin causalidad, no se mueve nada.
+> **Autoridad máxima de esta nota donde contradiga A-E** (junto con §D). Congela la clasificación por workload; las migraciones quedan condicionadas a **BACKUP_BASELINE_VERIFIED de la unidad afectada + sus gates propios** (corrección noche-5: el gate [[STORAGE-ORGANIZATION-FREEZE]] cierra la optimización de storage y NO bloquea Backup/DR — dependencia revocada por el owner). Principio: el objetivo es el placement correcto, NO llenar la ventana — sin causalidad, no se mueve nada.
 
 ### Clasificación final por workload
 
