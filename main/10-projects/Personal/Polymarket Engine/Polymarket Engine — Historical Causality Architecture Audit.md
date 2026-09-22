@@ -137,6 +137,10 @@ Sports acepta `kickoff_ms` fijo sin registro de quién lo conoció ni cuándo; l
 
 **Clasificación:** publicación futura no filtrada = `IMPLEMENTATION_DEFECT`; admisión de metadata histórica corregida/parametrizada = `CONTRACT_AMBIGUITY`. S1/S2/S4; H01/H04/H10.
 
+#### D09 · P2 · Horizonte y episodios de Sports atraviesan observaciones inválidas
+
+En `Sports.Detect`, un asset no usable se omite sin terminar historia ni pending. Al recuperar datos, el contador puede comparar contra historia anterior al gap. En `resolvePending`, comprobar `bid>=breakeven` antes de `now-signal>=window` permite contar como revertida una señal cuyo primer BID favorable llegó fuera del horizonte [C12]. La combinación no necesita un fallo de economía: basta una señal con breakeven ya calculado y un frame posterior tardío. Es un defecto de atribución temporal frente a M1.6/9 y al `window_ms` del experimento, no evidencia de alpha. Corrección S6; H05. La igualdad exacta al límite requiere la convención de intervalo preregistrada; el contraejemplo estrictamente posterior falla bajo cualquiera de las convenciones razonables.
+
 ### 4. Ambigüedades y cambios M1 necesarios
 
 | ID | Clasificación | Decisión o precisión necesaria | Propuesta acotada |
@@ -260,6 +264,201 @@ En `SYNCING` o `SUSPECT`, conservar raw/diagnóstico; bloquear oportunidades eje
 Por tanto, **un intervalo con tamaños aparentemente correctos pero continuidad insuficiente no admite fills certificados**. Puede alimentar un escenario explícitamente acotado/UNCALIBRATED sólo si la política aprobada lo permite; la corrección mínima puede bloquearlo. No existe prueba absoluta de ausencia de pérdidas usando sólo este feed; el certificado debe decir «causal bajo observabilidad y calidad declaradas», nunca «mercado completo conocido».
 
 `Sports.Detect` ya separa ensanchamientos de fee; `Evaluate` devuelve `FEE_UNRESOLVED`. Eso es útil y no debe endurecerse hasta exigir fee para medir spreads. Su métrica `reverted` actual depende del breakeven calculado en Evaluate; sin fee no puede presentarse como reversión económica. Si se desea una reversión puramente de spread, definirla como estimando descriptivo separado y someterlo al owner, no reinterpretar el contador existente.
+
+### 9. SPEC correctiva mínima — HCA-1: frontera de entrega causal
+
+**Unidad de entrega:** una corrección integrada HCA-1 del camino histórico de observación/entrega. No construir otra arquitectura, Strategy API, base de datos analítica, simulador o replay paralelo. Reutilizar Capture, reducers propietarios, Frames, runtime, Economics V2 y Simulator. Las seis partes siguientes son dependencias de esa corrección, no proyectos independientes. La implementación puede rechazar de manera explícita capacidades cuyo contrato/datos no alcanza; no tiene que fabricar metadatos, resolver el feed remoto ni habilitar A.
+
+**Invariante común:** todo input efectivo de una decisión tiene bytes recuperables, identidad y disponibilidad autorizada al corte; todo estado inelegible llega con motivo; cambiar un sufijo futuro no cambia el prefijo. Un dato posterior sólo puede cambiar el estado posterior y una anotación de auditoría versionada. El certificado debe declarar modalidad/observador/calidad/latencias y fase exacta certificada.
+
+#### S1. Contrato de importación histórica y procedencia
+
+- **Contratos/owner:** M1.3/5/6; `internal/histimport`, `internal/replay` manifests y composición CLI; usar Capture sin reescribir journals.
+- **Actual/evidencia física:** D04/C01; Event no conserva witness, usa epoch constante, sort por tipo antes de sequence y pierde independencia BBO. D08/C13 admite disponibilidad futura.
+- **Requerido:** formato histórico v2 con referencia durable al source original, `observer_id`, `source_witness`, `source_boot/connection/epoch` cuando existan, sequence local y ordinal del registro/elemento, raw E/R/unidades/precisión, publicación opcional con estado conocido/desconocido, hash de archivo/fila o locator verificable. Campos ausentes = unknown, nunca rellenarlos con una identidad real inventada. Mantener dos hechos separados: recepción histórica y fecha de importación. Una sidecar de provenance hash-pineada puede evitar cambiar el envelope Capture, siempre que cada record resuelva inequívocamente su fuente.
+- **Orden:** preservar orden probado del flujo seleccionado; con receive timestamps iguales usar sequence/ordinal local antes de cualquier criterio convencional. Si recepción y sequence se contradicen, registrar anomalía/clock uncertainty y rechazar certificación estricta hasta política; nunca escoger en silencio. No comparar sequence entre witnesses. Un dataset multi-witness sin observador/order policy aprobado se admite sólo como diagnóstico `PROVENANCE_INSUFFICIENT`, sin Strategy causal. Conservar `best_bid_ask` como observación de BBO, no update de depth.
+- **Versionado/compatibilidad:** journals v1 siguen legibles y sus bytes/digests originales se conservan. Manifest `historical_temporal_contract=v2` pinea import/provenance/clock/order/cuts; manifests sin él son `LEGACY_CAUSALITY_UNVERIFIED`. Un binding nuevo puede recuperar provenance desde original hash-verificado, pero crea manifest/run nuevos, no altera capture_seq antiguo ni inventa pérdidas. Modalidad ausente → B estricta bloqueada cuando no cumpla; A no se activa por inferencia.
+- **Positivos:** flujo de un witness con timestamps empatados conserva delta-antes-de-base; lectura en archivos distintos con identidad inequívoca entrega mismo journal lógico; evento late conserva E y R diferentes; BBA se conserva como evidencia.
+- **Negativos:** dos payloads distintos con misma identidad; merge de clocks no calibrados; missing receive/domain; cambio de orden de archivo con colisión; source posterior presentado como histórico. Todos rechazan/censuran sin falso PASS.
+- **Gate/evidencia nueva:** H01/H03/H10; manifest v2 + tabla canonical de registros admitidos/rechazados y hashes de fixture. No se requiere recodificar todo raw v1 ni descargar datos.
+
+#### S2. Regimes y metadata conocidos al corte
+
+- **Contratos/owner:** M1.3/4/6/10; `internal/regimes`, `internal/persist` migraciones forward-only; `internal/external` para sus tiempos; wiring histimport/experiment.
+- **Actual/evidencia física:** D01/D06/D08; C04/C05/C07/C13 y test `TestFutureTickRevisionIsVisibleDuringDrain` ejecutado PASS.
+- **Requerido:** lectura histórica explícita por `(asset/entity, cut_seq, virtual_time, temporal_policy)` o equivalente mediante store aislado limitado estrictamente al prefijo. Reutilizar el reducer de Regimes sobre el journal; nunca consumir el `engine.db` final de otra run como estado causal. Tick, min-size, flags/suspect, fee observations, reglas y resolución deben resolver la revisión conocida en C. Un lector current sólo es válido si su store probado no contiene hechos posteriores a C. Registrar esa frontera en el frame. `Qualities` debe declarar scope terminal, y su reconstrucción debe usar el mismo camino temporal; no presentar transiciones contaminadas como historial.
+- **Transiciones:** idempotencia por identidad del hecho ya procesado. A→A idéntico consecutivo puede compartir contenido; A→B→A debe tener una nueva transición/revisión temporal que active A. No borrar tablas/migraciones antiguas: agregar historial de transiciones versionado que pueda referenciar contenido deduplicado, o una tabla v2 equivalente. Rebuild desde journal en DB scratch; si raw necesario falta, `NOT_REPRODUCIBLE`, no completar desde el último contenido de SQLite.
+- **Metadata:** verificar K y publicación al proyectar, con clock inyectado en admission; no reemplazar disponibilidad desconocida por reference time. Conservar target/reference futuro de forecasts si ya publicado, sin volverlo hecho realizado. Revisiones legítimas tienen version/source key explícitos; conflicto del mismo identificador inmutable sigue fallando. Config `kickoff_ms` debe vincularse a evidencia admitida o supuesto de A; sin ella B no habilita señales pre-match. Bootstrap se valida como §7.
+- **Fee:** limitar evidencia al corte y a su alcance. No modificar fórmulas V2 ni `FeeResolver` para inferir tarifa universal del trade; el consumidor impide que una POINT scoped a otro trade se presente como fee certificada del candidato. Puede devolver `UNRESOLVED` aunque exista una cifra observada posterior o ajena.
+- **Compatibilidad/versionado:** mantener lectura histórica v1 para diagnóstico con etiqueta legacy. Nueva versión del projector/manifests/refs; migración nueva con checksum y rebuild reproducible. No modificar una revisión inmutable v1 ni sus referencias. Una DB ya drenada más allá de C no puede servir como bypass del nuevo gate.
+- **Positivos:** tick conocido antes de C válido; mismo tick reobservado idempotente; retorno A→B→A produce A en el tercer corte; prueba obtenida después que demuestra disponibilidad antigua se admite con ambos tiempos.
+- **Negativos:** tick futuro no vuelve usable el book anterior; suspect futuro no contamina corte viejo; fee posterior no cambia sus métricas; metadata corregida posteriormente no reemplaza inputs pasados; raw faltante no se reconstruye desde latest.
+- **Gate/evidencia nueva:** H01/H04/H07; trazas por corte de transition ID, known_at, fuente y valor. Actualizar el test que actualmente prescribe look-ahead y mostrar rojo contra baseline, verde contra cambio.
+
+#### S3. Una semántica de Books y una elegibilidad por uso
+
+- **Contratos/owner:** M1.5/8, M2-S06/07/09; `internal/books` posee niveles/calidad; `internal/marketview` queda como adaptación/serialización del snapshot común; `internal/strategy` aplica requisitos antes de Detect/Evaluate; composición no redefine calidad.
+- **Actual/evidencia física:** D02/D03; C02/C03/C06/C07/C11/C14. No corregir size como si fuera aditivo: el set/delete ya es correcto y debe permanecer.
+- **Requerido:** compartir el paso de aplicación de eventos de Books entre inspección, frames y replay; puede extraerse una función pura interna al owner existente. marketview no debe mantener reglas divergentes de nivel, régimen, gap o frescura. Enrutar todos los controles relevantes por la misma frontera, con fan-out scoped a los assets/epochs afectados; falta de scope → invalidación conservadora explícita. Invalidar al cambiar autor/epoch; nuevo flujo sin base sigue `SYNCING`. No aceptar autor distinto con mismo número, ni volver a epoch revocado, ni sanar gap con snapshot del mismo epoch. El replay no solicita red: espera evidencia capturada o queda bloqueado.
+- **Orden/calidad:** evaluar timestamp regresivo en deltas y snapshots antes de mutar; high-water mark no se rebaja por dato rechazado. Para fixture, cualquier regresión dispara `SUSPECT`; tolerancia real requiere política identificada. Un snapshot válido posterior puede rebasar hacia adelante un nuevo epoch autorizado; no reescribe estados previos. Parse/schema/ID conflict de un flujo activo deja motivo y degradación, no simple drop que mantiene usable. Verificar freshness desde observación/check y metadata requerida; no confundir latest change con liveness ni igualdad interna de timestamps con continuidad L2.
+- **Elegibilidad:** cumplir DataRequirements existentes; separar `data_diagnostic`, `signal_eligible`, `fill_eligible` y `economics_certified` como facts/version de frame/política, sin otra Strategy API. Defaults M1 fail-closed. BBO descriptivo puede exponerse en diagnóstico sin fee ni L2, pero A4 no autoriza automáticamente nuevas oportunidades. Un consumidor no puede habilitar fills sólo por ver BBO válido. Si falta dato para comprobar un requirement, la instancia espera y queda razón durable.
+- **Compatibilidad/versionado:** no cambiar vocabulario ni significado de estados M1; nuevos facts de elegibilidad son aditivos/versionados. Journals antiguos se reproyectan en nueva run; no sobrescribir sus frames o certificados. Snapshots tardíos del archive sólo pueden iniciar un epoch de reconstrucción explícito si la política lo permite, sin fingir reconnect original.
+- **Positivos:** snapshot replace; size 10→7 resulta 7; cero elimina; aislamiento A/B; recuperación con snapshot autor/nuevo epoch permitidos; BBO corroborado permanece describible si L2 falla.
+- **Negativos:** sin tick no `OBSERVED_USABLE`; gap no llega a Detect ejecutable; late delta no altera book usable; old epoch no vuelve; datos stale no pasan; BBO exacto con size incorrecto no produce fill.
+- **Gate/evidencia nueva:** H02/H03/H05; transcript de transiciones con seq/event/knowledge/detected times y comparación Books↔Frames. Preservar suites set/delete ya verdes.
+
+#### S4. Frames completos y tiempo de decisión estable al prefijo
+
+- **Contratos/owner:** M1.5/6, FBL-008; `internal/frames` y composición `cmd/engine/screen.go`, `internal/experiment`; mismo runtime.
+- **Actual/evidencia física:** D07/D08; C06/C07/C08/C13. Barreras existentes son reutilizables.
+- **Requerido:** no admitir un corte hasta terminar todos los destinos de un capture record (incluidos control/metadata). Procesar transiciones ≤C aunque no cambien un book; owners silenciosos dan snapshot de su último estado con watermark probado. Un asset descubierto después de T no entra en F_T salvo universo ex ante explícitamente declarado que sólo lo incluya como identidad conocida, sin datos futuros. Declarar causales tanto la selección como los triggers.
+- **Cortes/reloj:** fijar política de cuts por tiempos o prefijos completos antes de evaluar; distinta concurrencia de procesamiento no puede cambiarla. Preservar grid antiguo sólo como legacy/retrospectivo. Timer permite evaluar T sin inventar eventos; no usar el reloj actual como fallback cuando el histórico carece de tiempos. No avanzar el reloj desde un evento todavía no admitido completamente. Metadata/control solos deben poder invalidar antes del siguiente callback.
+- **Dependencias:** vector completo por uso: refs por asset a estado/quality/epoch, régimen correspondiente, universo/reglas/relaciones/config/clock policy y bootstrap/external facts. Hash más locator resoluble o snapshot embebido con hash. Un slot no usado se registra `NOT_REQUIRED` y motivo/consumer profile; no etiquetar un hash de book como régimen. Incluir min/max knowledge bound usado, corte y versión temporal. Para Evaluate/fills, pinear inputs adicionales efectivos o devolver fase `NOT_REPRODUCIBLE`/bloqueada; nunca llenar con latest.
+- **Compatibilidad/versionado:** DeliveryFrame v2 o metadata versionada equivalente, reader v1 sigue mostrando evidencia sin promoción causal. Mantener formato de Strategy y métodos; la adaptación entrega sólo campos permitidos y extensiones serializadas del frame. No editar decisiones/frames viejos ni reutilizar run IDs para corregirlos.
+- **Positivos:** registro multiasset completo a ambos owners; snapshots de owners sin mutaciones correctos; metadata anterior a corte disponible; SCREEN y SHADOW con misma lista de cortes ven el mismo input.
+- **Negativos:** corte solicitado entre destinos devuelve espera/ineligible, nunca C incompleto; sufijo cambia longitud total pero no decisiones prefijo; refs >C/unknown/hash incorrecto bloquean; un clock sin dominio no habilita B.
+- **Gate/evidencia nueva:** H01/H06/H07/H08/H10; frames canónicos serializados, dependencias resueltas y tabla de admisión temporal por callback.
+
+#### S5. Prueba de replay que cubre estado y dependencias reales
+
+- **Contratos/owner:** M1.6, G-07/G-07b; `internal/replay`, `internal/experiment`, evidencia de certificación scoped. No nuevo replay paralelo.
+- **Actual/evidencia física:** D05/D07; C09/C10/C16. Los mismos tests de seis paquetes pasan con los huecos descritos.
+- **Requerido:** el replay de observación ejecuta los reducers usados por la entrega causal. Hash canónico de niveles/size/side, quality+reasons, epoch/autor, regime transitions y refs, tiempos relevantes, controles, frames y outputs de cada fase certificada. El batch schedule realmente gobierna avance/drenaje; no sólo un contador auxiliar. Comparar prefijos, no sólo final. Digests de identidad de dataset, estado y decisión deben ser distintos y tener alcance declarado.
+- **Resolución:** comprobar integridad del VerifyReport y cada dependency hash contra bytes pineados; refs faltantes/mismatch y resultado de delivery ausente son `NOT_REPRODUCIBLE`/`INCOMPLETE`. Seleccionar `(run_id, instance_id, ordinal, phase)` completo; otra run con ordinal igual no puede sobrescribir una observación. Sin frames requeridos = `NO_DELIVERIES/INCOMPLETE`, no certificado positivo. Read-only estricto sobre fuentes. Si una fase de cuenta/risk/simulación carece de inputs recuperables, fail-closed de esa fase; la aceptación mínima de señales no exige inventar un replay económico completo.
+- **Compatibilidad/versionado:** digest v2 y certificado `HCA1_CAUSAL_SIGNALS` con scope inequívoco, separado de M4/legacy y de los outputs A. Mantener hashes v1 como referencias históricas, sin compararlos como si tuvieran el mismo dominio. Capturas válidas pueden reutilizarse; evidencia insuficiente conserva ese estado.
+- **Positivos:** schedules `{1}`, `{32}`, `{7,3,1}` con misma historia lógica/cortes producen mismos estados y decisiones; reinicio desde prefijo probado reproduce; aislar dos runs con ordinal 1.
+- **Negativos:** mutar sólo size manteniendo BBO/calidad cambia estado hash; mutar tick/fee/reason detecta diferencia; hash no vacío inventado no resuelve; dependencia faltante bloquea; doble ejecución de frames contaminados no pasa gate causal.
+- **Gate/evidencia nueva:** H07/H09/H10; manifests, fixtures SHA-256, estados/decisiones esperados versus actuales por corte y pruebas de mutación. No usar igualdad con los antiguos cuatro digests de calidad como oracle de niveles.
+
+#### S6. Censura y horizonte de medición sin alterar economía
+
+- **Contratos/owner:** M1.6/9; `internal/experiment` scorecards y `internal/strategy/pocs/sports` para historia/pending. Usar Feedback/observación existentes; no agregar estimando ni Strategy API nuevos.
+- **Actual/evidencia física:** D09/C12; estados omitidos conservan historial y primera cotización favorable fuera de horizonte puede contarse como reversión. Describe cuenta discrepancias agregadas sin explicar cada intervalo temporal [C01: `describe.go:85–140`].
+- **Requerido:** censura con `(asset, epoch, interval_start/end, reason, source_ref, detected_at, evidence_acquired_at, cut_seq, policy_version)`. Distinguir invalidación que el sistema sabía en T de hallazgo ex post. Excluir del resultado certificado con denominador/motivo, sin editar la decisión original. Para continuidad desconocida, no unir historia pre-gap y post-gap como referencia continua. Pendings que cruzan gap requerido quedan censurados; nuevo warm-up es explícito. Antes de contar una reversión comprobar pertenencia al horizonte; límite exacto definido por protocolo, primera observación estrictamente posterior nunca demuestra reversión dentro de él.
+- **Compatibilidad/versionado:** scorecard/projection v2 en nueva run; parámetros congelados originales no se sobrescriben. Si se necesitan reglas de censura no aprobadas, guardar bruto y censurado y dejar outcome `INCONCLUSIVE`; no escoger la máscara que produce alpha.
+- **Positivos:** reversión observada dentro de ventana cuenta; señal madura fuera sin reversión cuenta según protocolo; diagnóstico BBO puede continuar sin fee; snapshot revela discrepancia con detected_at correcto.
+- **Negativos:** bid favorable sólo después de ventana no cuenta; silencio/gap no se interpreta como no-reversión observada; coincidencia del snapshot final no levanta fill eligibility de todo el intervalo; fee unresolved no se vuelve 0.
+- **Gate/evidencia nueva:** H05/H08/H11; registro de censuras y denominadores, sin PnL como oracle arquitectónico.
+
+### 10. Experimento determinista y gates de aceptación
+
+**Todos los gates Hxx están `NOT_RUN` en esta auditoría.** Se especifican para el coding agent; no se confunden con las suites baseline ejecutadas. La prueba central usa datos sintéticos pequeños; no carga ni ejecuta OOS. Un fixture de prueba con Strategy neutral implementando la interfaz vigente es suficiente; no crear una estrategia productiva alternativa.
+
+#### 10.1 Fixture HCA-1
+
+Reloj UTC sintético de un solo día, precios/tamaños decimales exactos; assets A y B; IDs/condition/protocol válidos según fixtures existentes. Dos datasets B separados: observador W1 y observador W2. Ambos tienen su propia sequence/boot/epoch; no concatenarlos como un flujo global. Declarar procesamiento cero como supuesto del fixture, timestamps sin incertidumbre sólo por construcción sintética. W1 autor de A en epoch e1; B tiene owner propio. Kickoff v1=12:30, tick 0.01 y mapping se publican/conocen a las 11:58. Fee permanece unresolved salvo subcaso explícito de evidencia temporal, sin certificar economía.
+
+| ID | Event time / hecho | Knowledge W1 | Knowledge W2 | Estado/expectativa |
+|---|---|---|---|---|
+| M0 | 11:58 metadata v1, tick 0.01, reglas/identidad válidas | 11:58 | 11:58 | Bootstrap anterior probado; subcaso sin M0 debe permanecer inelegible |
+| S0 | 11:59 snapshot A: bids 0.40×10 y 0.39×5; asks 0.42×10 y 0.50×8. B: 0.55×6 / 0.57×6 | 11:59 | 11:59 | Bases por asset; B no cambia por deltas de A |
+| U1 | 11:59:20 ask A 0.42 size=7 | 11:59:20 | 11:59:20 | Debe quedar 7, nunca 17; repetir asignación no suma |
+| Z1 | 11:59:30 bid A 0.39 size=0 | 11:59:30 | 11:59:30 | Nivel ausente, no cero contabilizado como liquidez |
+| L | 12:00 ask A 0.42 size=0 | **12:08** | **12:00:01** | Evento tardío para W1; W2 ve BBO diferente. A las 12:03 W1 aún tiene ask 0.42; W2 ask 0.50 |
+| U2 | 12:01 bid A 0.40 size=9 | 12:01 | 12:01 | High-water venue posterior a L. W1 no puede aplicar L tardío sobre estado más nuevo sin marcar anomalía |
+| CUT | Decisión 12:03 | 12:03 | 12:03 | Probe devuelve `WIDE` si ask>0.45 y datos elegibles. W1=`NO_SIGNAL`; W2=`WIDE`. Diferencia válida entre observadores |
+| G0 | 12:03:30 falta delta ask 0.50: 8→2; ausencia en el flujo observado | desconocido hasta comprobación | desconocido hasta comprobación | Ground truth sólo en oracle, nunca como input de Strategy. El sistema no puede conocer mágicamente la pérdida |
+| T1 | 12:04 tick 0.01→0.001 | 12:04 | 12:04 | No cambia frames de 12:03; invalida constraints/candidatos desde ahora |
+| C1 | 12:04:10 control `evidence_gap`, epoch e1 revocado | 12:04:10 | 12:04:10 | Invalidación conocida y durable. Libro puede conservarse para diagnóstico, no para fill |
+| R0 | 12:05 snapshot completo: bid 0.40×9; ask 0.50×2, nueva base e2 autorizada | 12:05 | 12:05 | Detecta discrepancia con la reconstrucción anterior; repara hacia adelante. Registra intervalo incierto y detected_at=12:05 |
+| M1 | 12:06 publicación de schedule corregido kickoff=12:20, que declara referirse al mismo partido | 12:06 | 12:06 | Lo declarado sobre el pasado no cambia K. F12:03 conserva v1; F12:06 usa v2 |
+| T2 | 12:07 tick 0.001→0.01 | 12:07 | 12:07 | Debe activar nueva transición A→B→A; nuevo snapshot necesario según política de calidad |
+| R1 | 12:07:30 snapshot actual completo e2 | 12:07:30 | 12:07:30 | Recupera constraints/base; fija watermark source mayor que L |
+| L-arrival | Llegada W1 del evento L de venue 12:00 | 12:08 | ya recibido | No reescribe CUT. W1 lo conserva raw y marca/registra regresión; no vuelve atrás el libro usable |
+| R2 | 12:09 snapshot actual e3 tras resincronización autorizada | 12:09 | 12:09 | Recuperación forward; historial/censuras anteriores conservados |
+
+Cortes explícitos mínimos: 11:59, 11:59:20, 11:59:30, 12:01, **12:03**, 12:04, 12:04:10, 12:05, 12:06, 12:07, 12:07:30, 12:08, 12:09. Usar timers explícitos para cortes sin record exactamente en ese tiempo; no inferir cortes desde el tamaño final del dataset. La rama Sports usa sus `ref_frames=10` con diez observaciones válidas de warm-up anteriores al CUT y el mismo cutoff; esos warm-ups son sintéticos y no alteran los parámetros de la cohorte existente.
+
+Subcasos deterministas del mismo bundle:
+
+1. **No tick conocido:** quitar M0.tick y conservar T1 futuro. La baseline marca usable en marketview y en el primer tramo de Qualities; el contrato corregido impide oportunidad en 12:03. Este test debe fallar en baseline aunque el resultado terminal ya sea SUSPECT.
+2. **Empate real local:** antes de la primera base de un asset C, mismo `received_us`, delta sequence=10 seguido de book sequence=11. Delta ignorado por no base; snapshot queda intacto. El sort por tipo de baseline lo invierte y cambia el nivel. Agregar variante mismo key/diferente payload → conflicto declarado, no orden de archivo accidental.
+3. **Fan-out:** un único record actualiza A y B; solicitar corte después de intentar entregar sólo A. C no se publica completo hasta B o el frame es inelegible. Repetir con schedules que fuerzan el borde del batch.
+4. **Epoch/autor:** después de C1, snapshot del mismo e1 no recupera; después de e2, delta o snapshot de e1 no reviven. Autor distinto con mismo epoch tampoco pasa. Un snapshot válido e3 sí recupera hacia adelante.
+5. **Hidden gap:** omitir G0 sin C1/T1 en una variante. El sistema puede mantener calidad best-effort hasta R0, pero no puede certificar continuidad absoluta ni afirmar que sabía la ausencia antes de R0. La censura ex post debe preservar CUT y su decision hash original.
+6. **Metadata categorías 2/3:** dos certificados obtenidos después: uno demuestra publicación y valor de M0 antes del CUT; otro sólo ofrece el valor revisado M1. El primero puede acreditar retrospectivamente un input viejo con prueba; el segundo no entra en CUT. Cambiar bytes de M1 no afecta prefijo. Un External con `AvailableAt>T` y capture seq bajo C tampoco entra.
+7. **Fee posterior:** incorporar una observación de fee después del CUT y otra revisión de régimen aplicable; ni la fee efectiva del candidato anterior ni su etiqueta de evidencia cambia. Trade fee 0 scoped nunca se transforma en tarifa universal. No evaluar rentabilidad.
+8. **BBO versus L2:** discrepancia sólo de size en nivel profundo con BBO idéntico y testigo BBA disponible. Mantener diagnóstico BBO, bloquear fill L2 insuficientemente soportado. Mutación size 10→100 con mismo BBO/calidad debe alterar state digest.
+9. **Horizonte:** señal sintética con breakeven válido; primera cotización favorable en `signal_time+window_ms+1` → nunca `reverted`. Variante favorable dentro de ventana sí; gap que cruza la ventana → censurado, no no-revert observado.
+10. **Reinicio y replay:** partir después de U2, reconstruir/reanudar con misma política y cortes; añadir sufijo T1/M1/L; comparar decisiones del prefijo. Ejecución SCREEN/SHADOW del probe con mismos cuts debe coincidir en Detect/Evaluate no económico; fills/ledger sólo existen en SHADOW y se comparan dentro de su fase.
+
+No todos los subcasos deben fallar en baseline: set/delete ya funcionan. **El suite debe fallar antes de la corrección** al menos por futuro tick, gap omitido, tie rank, A→B→A, fan-out parcial, publicación futura y digest insensible a tamaños. El agente debe registrar resultados rojos reales de esos asserts contra baseline, sin escribir al checkout canónico de captura. El caso L por sí solo no demuestra look-ahead en el importer receive-time actual; la mutación que ordena venue-time en B debe ser rechazada por H01. Esa precisión evita fabricar una regresión inexistente.
+
+#### 10.2 Gates y evidencia esperada
+
+| Gate | PASS verificable | Negativo obligatorio / FAIL |
+|---|---|---|
+| H01 — Causalidad de prefijo | Para cada frame/dependencia: K≤T y seq≤C; decisiones prefijo idénticas al cambiar sufijo futuro bajo mismos cuts/protocolo | T1/M1/L conocidos después de T cambian una decisión vieja, o K desconocido se convierte en fecha inventada |
+| H02 — Elegibilidad común | Books, SCREEN y SHADOW dan mismos estados/reasons; requirements se cumplen antes de callbacks ejecutables | Sin tick, metadata requerida, base o freshness aparece oportunidad atribuida elegible |
+| H03 — Provenance/orden/epoch | Witness y clock domain resolubles, orden local conservado, set/delete correcto, late events/autor/epoch conflict degradan | Rank por tipo invierte sequence, collectors mezclados sin prueba, old epoch rehabilitado |
+| H04 — Revisiones históricas | A→B→A produce tres transiciones; lectura por corte correcta también para suspect, metadata y fees; bootstrap probado | Latest atraviesa C; dedup borra vuelta a A; evidencia post hoc se confunde con publicación |
+| H05 — Calidad y censura | Motivo/intervalo/fuente/detected_at recuperables; recovery sólo forward; BBO y L2 separados; horizonte respetado | Fill L2 sólo por BBO coincidente; hidden gap «conocido» antes de detectar; reversión fuera de ventana; salto de historia sobre gap |
+| H06 — Corte atómico | Todos los destinos de cada record ≤C aplicados o frame ineligible; clocks/metadata/control incluidos | A actualizado y B viejo bajo el mismo C; clock adelantado por record aún parcial |
+| H07 — Inputs resolubles | Refs/snapshots correctos por asset/fase, hash↔bytes y known-at; error explícito ante dato faltante | Hash inventado no vacío produce RESOLVED; régimen=hash de book; fase incompleta recibe PASS |
+| H08 — Paridad consumidores | Mismos cuts/policy/dataset/input inicial ⇒ mismos inputs elegibles y señales SCREEN/SHADOW/REPLAY, con diferencias de ejecución declaradas | Igualdad aparente por cero oportunidades o comparación entre grids distintos |
+| H09 — Determinismo significativo | Tres schedules ejercen realmente reducers/frames; reinicio y cold rebuild reproducen todos los hashes esperados por corte | Cambiar nivel, tick, quality reason o output relevante no cambia digest; otra run pisa ordinal |
+| H10 — Compatibilidad y fallo cerrado | v1 legible no promovido; v2 completo pasa; zero-delivery/unknown clock/refs corruptos fallan; raw source sin cambios | Reescritura del journal anterior; v1 recibe certificado v2 por herencia; orden ambiguo oculto |
+| H11 — Cohorte real limitada | Se ejecuta sólo ventana exploratoria permitida, reporta discordancias por evento/intervalo y los mismos gates, sin alpha como oracle | OOS leído, fee cero inferida, censura sin provenance, concordancia 0/628 declarada sin recalcular |
+
+Cada gate deja artefacto pequeño en `testdata/historical-causality/evidence/`: ID/version, fixture hash, build/config, command, expected/actual, status, mode/observer, cuts hash, timestamp y refs al transcript por corte. El nombre y formato concretos se integran con el harness existente. No dejar suites que sólo afirman PASS ni tests que comparan el resultado consigo mismo; usar oracles numéricos y metamorfismos negativos del fixture. Resultado objetivo del correctivo mínimo: `HCA1_CAUSAL_SIGNALS_PASS` para fixture B; **no** `BACKTEST_PASS`, economía, alpha o live. H11 puede quedar `NOT_RUN/UNVERIFIED` si no hay datos admisibles; eso no se presenta como PASS del dataset.
+
+#### 10.3 Aceptación sobre cohorte existente, cuando el agente tenga los datos
+
+Usar exclusivamente los cuatro mercados exploratorios registrados: SD 3901945, NYM 3901951, TOR 3901947, SF 3901949; ventana `[2026-09-01T21:10Z, 22:40Z)`, cutoff y warm-up declarados. No leer payloads del OOS ATL/SEA 22:45Z. Los raw horarios pueden contener otros mercados: primero construir allowlist por condition/asset desde el manifest autorizado y aplicar predicados antes de materializar filas. Si no puede garantizarse el aislamiento, H11 queda `UNVERIFIED`; no abrir OOS para mejorar calidad.
+
+1. Read-only de originales y hashes contra manifest; registrar entradas SHA256SUMS stale conocidas y resolverlas por manifest/archivo existente, sin «arreglar» el original ni afirmar integridad total con paths inexistentes. Scratch externo al dataset fuente; `dataset.Guard` activo. Sin descargas, infraestructura o cambios a Sports Week bajo este mandato.
+2. Recuperar provenance witness/sequence/E/R real; si el NDJSON v1 la perdió, producir un binding derivado desde raw verificado. Seleccionar observador B y reportar qué proporción puede adjudicarse; cuando el merge original impida reconstruir esa perspectiva, bloquear B en esos intervalos, no elegir el witness conveniente.
+3. Comparar reconstrucción engine versus oracle exacto independiente del test usando set/delete por asset, en cortes idénticos y sin gates que cambien inadvertidamente la serie comparada. Separar precio BBO, tamaño del top, todos los niveles y continuidad. El forense cuenta matches en extremos; reportar también observaciones `best_bid_ask` y sus discrepancias exactas. No usar 0/628 como umbral mágico para otro orden, ventana o denominador; reproducir ese número requiere exactamente su ámbito. Excluir OOS incluso si el antiguo script leía horas completas.
+4. Reejecutar H01 cambiando sólo el sufijo de datos/revisiones de la cohorte y H08/H09 con cuts pineados. `cuts=30` previo no especifica por sí solo sus instantes: recuperar la lista efectiva y etiquetarla legacy; una nueva lista ex ante es nueva revisión de experimento, no sustitución silenciosa. Mantener `window_ms=300000`, `ref_frames=10`, `widen_min_bps=50` para checks de compatibilidad; nunca optimizarlos buscando señales.
+5. Incorporar incidente 22:30–22:40, fronteras de hora y gaps como evidencia con disponibilidad/detección separadas. Audit mask posterior puede censurar métricas certificadas; no borrar inputs o decisiones del replay original. Mantener hipótesis estadística y OOS sin ejecutar.
+6. Entregar counts de eventos/intervalos admitidos, censurados por razón, desconocidos y comparados; hashes de decisiones prefijo y divergencias. Si tick/kickoff históricamente observable no puede acreditarse, resultado `B_BLOCKED_METADATA`, aunque BBO descriptivo sea consistente. Fee unresolved no impide el diagnóstico, pero economía sigue no certificada.
+
+### 11. Mandato ONE-SHOT para coding agent
+
+> Implementa **HCA-1 — frontera causal del histórico** en `xKoRx/polymarket-engine` usando §§9–10 de esta auditoría como SPEC correctiva y M1 congelado como autoridad. El objetivo es demostrar con fixtures que ninguna decisión certificada usa conocimiento posterior, que un gap/estado inválido no se vuelve elegible por otro consumidor y que replay compara estados y dependencias efectivos. No investigar alpha ni rediseñar el engine.
+>
+> Arranca con bootstrap Agents-OS; lee el MVP, esta auditoría, continuidad y los contratos de los paquetes a tocar. Verifica HEAD vigente frente a baseline auditada `09e8c7610f29a35f8080122b7cb4219b9866ebd7` / código `66486ac99a4606d5dc2b44757ac0722a6baa5415`. Si avanzó, revisa el delta y revalida cada finding antes de corregirlo; no reviertas trabajo concurrente ni asumas que un hallazgo sigue abierto.
+>
+> Trabaja en checkout/worktree aislado, rama `codex/historical-causality-hca1` si no hay rama indicada por el owner. Mantén los datasets fuente read-only y usa scratch; no toques Sports Week ni infraestructura. Implementa S1–S6 como un correctivo integrado: provenance/policy temporal versionada, Regimes limitado al corte y transiciones recurrentes, semántica de Books compartida para Frames, controles de continuidad y eligibility, cortes completos/inputs resueltos, replay significativo y censura/horizonte. Preserva Economy V2 y la API Strategy existente. Puedes bloquear una fase no certificable con motivo explícito; no añadir otra arquitectura para hacerla pasar.
+>
+> Primero materializa el fixture de §10 y guarda la evidencia roja real contra la baseline para D01–D09 aplicables; preserva los controles positivos set/delete. Corrige las aserciones que actualmente prescriben look-ahead, mostrando la cláusula M1 que reemplaza su expectativa. Implementa por ownership; migraciones sólo nuevas/forward-only y reconstrucción scratch desde raw, sin modificar checksums de migraciones viejas. Certificados/digests nuevos tienen versión; no reselles un journal viejo como causal sin demostrar sus datos faltantes.
+>
+> No habilites modalidad A ni el perfil de oportunidades BBO relajado sin decisión registrada del owner (OD-H1/OD-H2). Mientras falte esa decisión, completa la corrección de B bajo M1 y devuelve bloqueos de metadata/calidad donde corresponda. No hace falta esa aprobación para quitar lecturas latest, propagar gaps, corregir A→B→A, cerrar fan-out, hacer cumplir publicación o reparar el verificador. No congeles fee cero, no cambies reglas económicas y no cambies el estimando de reversión.
+>
+> Ejecuta H01–H10 con oracles y los tres schedules; prueba reinicio, sufijo futuro, missing refs y compatibilidad v1. Después corre tests pertinentes con race, build/vet y regresiones de integración existentes. Coverage se mide según política vigente sobre cambios, pero ningún porcentaje reemplaza gates. Enlaza cada finding a su regresión y al artefacto de prueba. No uses resultados de alpha ni igualdad con el digest legacy como aceptación.
+>
+> Ejecuta H11 sólo si los datos exploratorios y su provenance están disponibles de forma aislada; no descargues datos ni solicites accesos para encubrir un `UNVERIFIED`. Ausencia de datos deja H11 pendiente explícito, no bloquea la prueba sintética ni habilita `BACKTEST_PASS`. No abrir OOS, enviar mensajes a terceros, comprar servicios, modificar infra, activar live, tocar Sports Week o publicar un cambio de modelo.
+>
+> Entrega un único diff revisable, comandos/results, matriz Hxx, manifest/versiones/migraciones, compatibilidad y limitaciones. Commit local del correctivo cuando esté verificado; publicación/merge del código requieren mandato de implementación/publicación aplicable del owner, no se deducen de esta auditoría documental. Actualiza sólo continuidad necesaria en Agents-OS. Si algún gate causal obligatorio falla, resultado `HCA1_NOT_ACCEPTED`; si todos H01–H10 pasan, `HCA1_CAUSAL_SIGNALS_PASS` limitado a B y al fixture, con H11 y economía separados. `LIVE_DISABLED` siempre.
+
+### 12. Decisiones que requieren aprobación del owner
+
+Estas decisiones **no se cierran** aquí y no son excusa para dejar sin corregir defectos M1. No se solicita acceso ni aprobación durante esta auditoría: la propuesta queda concreta para revisión posterior.
+
+| ID | Alternativas y consecuencias | Propuesta fundada / estado |
+|---|---|---|
+| OD-H1 — Modalidad de investigación | B conserva observabilidad de un sistema definido y puede quedar bloqueada por provenance; A permite describir mercado idealizado con otra interpretación del tiempo; mezclarlas impide interpretar resultados | Mantener B como certificado causal por defecto y A opt-in con manifest/certificado independiente. Habilitar A requiere addendum explícito a M1.5, no cambiar el freeze ni ordenar venue-time automáticamente. **PENDING_OWNER** |
+| OD-H2 — BBO descriptivo y señales sin L2 completo | Default M1 mantiene `SYNCING` sin constraints; perfil BBO admite fenómeno descriptivo sin certificar fills/economía, y eventualmente señales con requirements reducidos explícitos | Autorizar primero diagnóstico BBO separado; si se desea usarlo como señal PE-005-R1 sin tick/L2, congelar un perfil preciso y su certificado. No degradar significado de `OBSERVED_USABLE`. **PENDING_OWNER** para ampliación |
+| OD-H3 — Prueba retrospectiva y selección | Exigir observador exacto maximiza auditabilidad y reduce muestra; admitir observabilidad históricamente demostrada después puede rescatar datos sin look-ahead; asumirla sólo produce A | Admitir categoría 2 con prueba separada de valor/disponibilidad y revisar cohort selection/censura. El tick/kickoff concreto sigue sin acreditación nueva en este shot. **PENDING_OWNER** para protocolo experimental, no permiso para backfill arbitrario |
+| OD-H4 — Política de cortes, gaps y recuperación del archivo | Grid retrospectivo conserva comparabilidad legacy; grid/timers ex ante permite prefijo invariante. Censura más estricta reduce muestra; recovery por snapshot requiere epoch de reconstrucción distinguible del transporte | Pinear cortes/ventana/censura y reglas de recuperación antes de nueva corrida; conservar outputs anteriores. No cambiar `cuts=30`, horizonte o sample protocol sin revisión explícita. **PENDING_OWNER** |
+| OD-H5 — Economía/estimando | Fee desconocida mantiene fenómeno descriptivo; fee 0 universal sin evidencia o redefinir `reverted` como spread bruto cambiaría el modelo | **No aprobar en este shot.** Economía V2/REAL_FEE_READY y OOS permanecen como estaban. Cualquier nuevo estimando o hipótesis de fee va a revisión separada; 256 trades no son autorización |
+
+Propiedades `UNVERIFIED` al cierre: integridad byte-a-byte y métricas forenses de la cohorte en esta sesión; continuidad L2 entre observaciones; completitud/intra-ms del venue; sincronía entre collectors; timestamps históricos de persistencia; disponibilidad original de tick/kickoff/reglas/fees; comportamiento del binario en infraestructura; fills reales/queue, costes netos y OOS. Cada una tiene límite/gate en §§6–10; ninguna se convierte en una garantía por determinismo local o certificado M4.
+
+```text
+ASTRA_HISTORICAL_CAUSALITY_AUDIT
+baseline: master/origin/master/origin/main 09e8c7610f29a35f8080122b7cb4219b9866ebd7; code 66486ac99a4606d5dc2b44757ac0722a6baa5415
+m1_compatibility: PARTIAL_IMPLEMENTATION; M1 causal invariants remain appropriate; no freeze modified
+causal_backtest_currently_valid: NOT_CERTIFIABLE_END_TO_END; no BACKTEST_PASS
+critical_defects: D01-D08; D09 additional temporal measurement defect
+contract_ambiguities: A1,A3,A5,A6; provenance, retrospective evidence, recovery/censoring, cut policy
+m1_changes_required: A2/A4 only if idealized mode or relaxed BBO signal eligibility is authorized
+unverified_properties: original-data revalidation, continuous L2, cross-clock order, historical metadata availability, economic execution, OOS
+minimal_corrective_spec: HCA-1 / S1-S6; reuse Capture/Books/Regimes/Frames/Strategy/Replay/Simulator
+acceptance_gates: H01-H10 synthetic mandatory; H11 cohort scoped; all new gates NOT_RUN here
+owner_decisions: OD-H1..OD-H5 pending; no model decision closed
+implementation_mandate: section 11; B fail-closed; no A/fee-zero/OOS/live activation
+```
 
 ## Fuentes
 
