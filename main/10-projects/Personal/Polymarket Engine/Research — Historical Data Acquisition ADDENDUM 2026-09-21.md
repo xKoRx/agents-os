@@ -3,7 +3,7 @@ type: research
 schema_version: 1
 scope: project
 created: "2026-09-22"
-updated: "2026-09-22"
+updated: "2026-09-21"
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 entities:
