@@ -26,7 +26,7 @@ updated: "2026-09-22"
 
 ## 🎯 Objetivo
 
-- Incorporar estrategias SQX ya retesteadas (databank `Retester/databanks/import` en Zeus/Hera/Kronos) al pipeline durable de Forge SIN ejecutar Builder, mediante cuatro responsabilidades independientes: IMPORT (productor) → CLASSIFICATION (capacidad) → RANKING (capacidad) → SELECTION (task con `source_folder=01_import`), con evidencia durable y certificación física por archivos auténticos. Extensión funcional posterior a Factory V2; no reabre F05.
+- Incorporar estrategias SQX ya retesteadas —entregadas por el owner UNA vez en el paquete de campaña MinIO (`00_inputs/import` del wave, junto a `00_configs`)— al pipeline durable de Forge SIN ejecutar Builder, mediante cuatro responsabilidades independientes: IMPORT (productor) → CLASSIFICATION (capacidad) → RANKING (capacidad) → SELECTION (task con `source_folder=01_import`), con evidencia durable y certificación física por archivos auténticos. **Corrección arquitectónica 2026-09-22 (mandato owner): la entrada JAMÁS es un databank host-local (`Retester/databanks/import` rechazado); el worker asignado descarga del paquete, verifica y prepara SQX — sin afinidad de host.** Extensión funcional posterior a Factory V2; no reabre F05.
 
 ## 📊 Estado actual
 
