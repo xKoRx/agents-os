@@ -34,7 +34,9 @@ related:
 - Registrar el gate **`STORAGE_ORGANIZATION_COMPLETE`** (mandato owner "Storage Organization & Placement Freeze", 21sep; **depurado por mandato correctivo 21sep noche-5 — BACKUP FIRST**): la organización de recursos queda congelada y verificada como CIERRE de la fase de optimización de storage. **NO es requisito de Backup/DR** — esa dependencia fue REVOCADA por el owner: la implementación y certificación de Backup/DR avanzan sobre el placement actual, las migraciones van DESPUÉS protegidas por backups verificados, y cada servicio migrado se recertifica.
 - Los backups certificados que ya funcionan NO se detienen. La implementación de jobs nuevos y de la réplica pool0→pool2 avanza por sus PROPIOS gates específicos (G-B1=D+018+019, G-NFSVM, G-REP-0..5) — este gate no los bloquea.
 
-## Criterios del gate (todos obligatorios)
+## Contenido
+
+## 1. Criterios del gate (todos obligatorios)
 
 1. **Placement definitivo documentado** → [[PLACEMENT-DECISIONS-20260920]] §F (v2, congelado; MIGRATE = ninguna activa).
 2. **Migraciones imprescindibles terminadas o explícitamente diferidas** → veredicto del viernes 25sep = `MIGRATIONS_NOT_READY` por diseño: ninguna migración es imprescindible para corregir una condición peligrosa; W5 queda reevaluación por VM post-activación de la réplica (§3). Diferimiento explícito ≠ deuda silenciosa. **Criterio de desbloqueo por migración (noche-5): cada migración futura exige `BACKUP_BASELINE_VERIFIED` de su unidad — nunca este gate.**
@@ -46,11 +48,11 @@ related:
 8. **Matriz de 59 guests reconciliada** → [[MATRIZ-59-GUESTS-BACKUP]] 59/59 (drifts 125/132 corregidos; regularización formal en 018).
 9. **Sin cambios pendientes que alteren materialmente el volumen de pool0 a replicar** → tras activar réplica + capa vm-backup el árbol vivo crece respecto del envío inicial 2,35T: la retención final @repl (7 vs 14d) y el presupuesto de pool2 se fijan midiendo `pool0/vm-backup` real tras su primer ciclo (orden recomendado de la SPEC §2). Condición: decisiones owner abiertas que cambien datasets pool0 (trading_systems inclusiones, limpieza legacy, frigate RC) resueltas o explícitamente diferidas antes de G-REP-4.
 
-## 2. Qué habilita al cumplirse
+## 2. Qué es y qué NO es este gate (corrección noche-5)
 
-- Fijar capacidad y retención definitivas de Backup/DR (decisión D extendida: B1 + G-NFSVM + @repl).
-- Ejecución de jobs nuevos (MANDATO-BACKUP-VMS/DATOS) y de la réplica (G-REP-3/4).
-- La preparación documental (mandatos, diffs, runbooks, fixtures planificados) sigue en paralelo desde ya.
+- **SÍ es**: el cierre verificable de la fase de optimización de storage (placement congelado, capacidad presupuestada, matriz reconciliada, sin propietarios desconocidos en el alcance).
+- **NO es**: prerequisito de Backup/DR. Los jobs nuevos (B1/G-NFSVM) y la réplica (G-REP-0..5) avanzan por SUS gates específicos — el criterio 9 de este gate ("sin cambios pendientes que alteren materialmente el volumen de pool0 a replicar") se aplica en el preflight de G-REP-3/G-REP-4, no como bloqueo global. **Reglas fijas: STORAGE_OPTIMIZATION_PLANNED no es requisito de BACKUP_BASELINE_VERIFIED; BACKUP_BASELINE_VERIFIED por unidad sí es requisito de su MIGRATION_READY.**
+- La preparación documental de backups, los fixes gated y la implementación sobre placement actual siguen en paralelo desde ya; los backups certificados vigentes (A1/R1/R1.5/R2/G1A/G1B) no se detienen.
 
 ## 3. Migraciones: imprescindibles vs diferidas (veredicto 21sep)
 
