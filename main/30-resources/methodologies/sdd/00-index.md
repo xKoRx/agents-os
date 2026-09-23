@@ -6,7 +6,7 @@ slug: sdd-methodology-index
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-08-08
-updated: 2026-08-08
+updated: 2026-09-23
 reviewed: 2026-08-08
 aliases:
   - SDD index
@@ -62,5 +62,6 @@ cssclasses:
 ## 🔗 Links
 
 - [[30-resources/00-RESOURCE-WIKI|Reglas de la Resource Wiki]]
+- [[30-resources/agents/compounding-engineering-vision|AGENTS OS — Compounding Engineering Vision]] — north star para delivery SDD acumulativo y evidencia ejecutable.
 - [[30-resources/methodologies/00-index|Índice de metodologías]]
 - `log.md` — bitácora de ingest/query/lint
