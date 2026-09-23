@@ -7,7 +7,7 @@ slug: "skills-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-06-28
-updated: 2026-09-15
+updated: 2026-09-23
 reviewed: 2026-09-12
 aliases:
   - "skills index"
@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Core AGENTS OS:** 28 skills de comportamiento del sistema.
-- **Federadas transversales:** 13 skills curadas en `30-resources/agents/skills/`.
+- **Federadas transversales:** 15 skills curadas en `30-resources/agents/skills/`.
 - **Domain/app-owned:** se descubren mediante el registro de routers y el repo owner; no forman parte del índice always-load.
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
@@ -79,6 +79,7 @@ skills de una aplicación viven y se descubren en su repo owner.
 |---|---|---|
 | [[30-resources/agents/skills/pr-description/SKILL.md|pr-description]] | Produce descripciones de PR con evidencia real y las materializa como recurso del proyecto. | Transversal; respeta template y policy del repo activo. |
 | [[30-resources/agents/skills/human-first-technical-writing/SKILL.md|human-first-technical-writing]] | Reduce la carga cognitiva del lector mediante narrativa técnica causal. | Transversal: PRs, specs, reportes, incidentes, guías. |
+| [[30-resources/agents/skills/technical-project-manager/SKILL.md|technical-project-manager]] | Gestiona iniciativas técnicas por horizonte corto de hitos diarios atómicos, con design freeze y ciclo implementation → independent verification → correction/final gate. | Transversal; proyectos con varios días/agentes y outcomes diarios verificables. |
 | [[30-resources/agents/skills/sync-local-branch/SKILL.md|sync-local-branch]] | Sincroniza ramas Git exclusivamente locales con pull literal, merge conservador, commit y push. | Dev-workflow genérico. |
 | [[30-resources/agents/skills/sdd-workflow/SKILL.md|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclar specification, plan, tasks, implementation y verification. | Features/cambios no triviales; metodología en `30-resources/methodologies/sdd/`. |
 | [[30-resources/agents/skills/e2e-gated-validation/SKILL.md|e2e-gated-validation]] | Orquesta validaciones E2E como secuencia de gates con evidencia y criterios PASS/FAIL. | E2E, golden runs o certificaciones físicas; transferible. |
