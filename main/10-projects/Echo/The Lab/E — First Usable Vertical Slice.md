@@ -2,25 +2,58 @@
 type: doc
 schema_version: 1
 status: active
-area: "[[Personal]]"
-related: []
+area: "[[Echo]]"
+related:
+  - "[[Echo — Producto Integrado]]"
+  - "[[A — Product Contract — The Lab]]"
+  - "[[B — Architecture Decision Report]]"
+  - "[[D — Revised Roadmap]]"
 aliases: []
 tags:
   - kind/doc
+  - area/echo
 created: "2026-09-22"
 updated: "2026-09-22"
 ---
 
 # E — First Usable Vertical Slice
 
-## Propósito
+> **IMPLEMENTATION PLAN — PROPUESTA PARA APROBACIÓN DEL OWNER; no producción implementada en esta revisión.** Resuelve un producto completo sobre una StrategyVersion real, sin añadir otro engine, otra ingestión ni otro proyecto. Roadmap [[D — Revised Roadmap]], decisiones [[F — Decision Register]], gaps [[C — Reality and Gap Matrix]]. El H0 de prueba auténtica es primer hito de implementación, no condición retroactiva para este diseño.
 
--
+## Objetivo, input y output exactos
 
-## Contenido
+Input: una versión de estrategia **auténtica** de FULL Forge 2026-09-21, campaña reportada `0ce72173…` y 3 finalistas en [[Echo Forge — Factory V2 Completion]]; pin de artifact refs SQX/MT5, operación individual por fila, resumen original/digests, A/B UTC ratificadas. El ID completo se resuelve en F-05-I read surface; no se inventa en este documento. Estado previo de F-04/E-04 golden PASS preservado. Output: Echo `PromotionRecord=INGESTED` operativo sin side effects + historia analítica publicada singular por StrategyVersion con TRAINING_DATA, PRE_REAL, REAL UNKNOWN hasta hechos Reference auténticos + `TradeSet` sellado y operaciones consultables + N `CurveRun` reproducibles con indicadores compatibles + UI estrategia, trades/calendar y screener básico. La prueba de dos listas puede fallar honestamente: eso bloquea `DUAL_HISTORY_READY` y certificación física V0, pero no obliga a inventar históricos ni deshacer E04.
 
--
+## Baselines y archivos de autoridad *conocidos*
 
-## Fuentes
+- `xKoRx/echo` master comprobado `5dd998f16aea7b2821f460188718d7a6d279829c`; feature consolidada E06–E09/E04 recovery registrada @ `865532078f2c1993e7a3a542a78a9db0fad1f015`, E10 M7 registrada @ `1485baa4574b3a65fa97cf0be842ca8ac581097a`; NO iniciar código sin resolver heads reales, worktree y ownership. Archivos fuente de contrato `specs/FEAT-FORGE-INGESTION-E1/SPEC.md`, `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md`, `v3/sdk/contracts/analytics.go`, `v3/sdk/analytics/calculator/calculator.go`; PG E05 migración `063_analytics_convergence_a0`; E04 recovery mig 068 en feature y E10 reserva 069. Otros paths físicos de adapter/worker/front se eligen mediante localización puntual dentro de estos contratos, no se inventan como autoridad aquí.
+- `xKoRx/symphony` master comprobado `745bc8b94e1f6148ddc16c02eb86a755088c2666`; [[Echo Forge — Factory V2 Completion]], [[Echo Forge — F-04 Magic allocation, version seal and handoff]], [[Echo Forge — F-05-I Cohesive release and read surfaces]]. F-05-C FULL certificada release 0.2.105, 3 finalists y HTM byte verified; HTM aggregate versus individual rows NO REVISADO en esta sesión.
+- Contrato de ambientes [[Echo + Echo Forge — Environment Contract]] leido sólo como autoridad de límites; DEV no es permiso para tocar workers compartidos. Todas las pruebas del slice en DEV aislado y autorizadas por fase, no en esta sesión. No tocar PROD ni activar trading.
 
--
+## WP0 — Prueba de realidad, READ ONLY (Forge; primer gate)
+
+Choose one finalist by exact sealed StrategyVersionRef and retrieve source metadata via current F05 read surface. For each `SQX` and `MT5`: record source object ref + SHA256 + MIME/encoding/schema/timezone + exact interval + count of individual open/close/partial records + instrument/symbol contract + risk, SL/TP, pips, PnL, commission, swap and currency if present, IS/OOS/WFM labels, report totals and digest. Record whether MT5 is training-period replay or post-training evidence, compare overlap and possible duplicate economic events. Select candidate A/B from actual date coverage but do NOT silently publish policy prior to ratification. Cross-check row sum against original report under documented rounding and economics; unknown fee cannot pass as zero. Gate `AUTHENTIC_TRADE_LISTS_VERIFIED` requires **two lists of individual operations** and hashes; if HTM only aggregate or SQX lacks list, report exact missing source and limited readiness, never generate synthetic golden or assume all FULL finalists provide required artifacts. Output one concise evidence manifest and discrepancy table, not another global research cycle. A trade list from SQX with non-executable ideal signals is not equivalent to broker MT5 fills; preserve that source distinction.
+
+## WP1 — Producer contract + same E04 consumer (Forge owner then Echo owner)
+
+Forge extends existing versioned HandoffManifest/capability to refer to source SQX and MT5 trade-list artifacts separately with digests, validated strategy/version and run lineage, source time range, row count, encoding and semantic format; reusable source artifacts remain immutable, not recomputed in Echo. Echo consumes via existing E04 authenticated endpoint, verifies semantic identity and bytes/digests; persists E04 identity/version/promotion receipt transaction exactly as before. Analytical admission is a separate durable status/step **under the same receipt/version**, queued or driven idempotently by existing write path after safe source copy, not another ingress or independent adoption of Forge database. Missing or contradictory history artifact does not retroactively make a proven operational promotion false; flag analytics unavailable/partial and block history publication. Real/unknown fields explicit; downstream must not infer `201=READY`. Define retries after copy-before-commit, before/after analytical seal, duplicate same digest, conflict different digest and zero side effects. Existing E04 golden suite must stay green; new dual-history fixture uses genuinely extracted rows from WP0, with secret-free shrink/anonymization if confidentiality demands but preserves semantics and digest evidence; synthetic fixtures allowed for unit negatives ONLY.
+
+## WP2 — Operation adapter, source authority, three periods and publication (Echo owner, single migration owner)
+
+Transform only confirmed source rows to `NormalizedOperationV1`; preserve original native identifiers and timestamps, strategy/version lineage, declared price precision and initial risk. Missing fields remain typed missing; do not derive unknown volume/stop/slippage from aggregate PnL. Use source-specific adapters at boundary only; core normalization/dedup is shared. Create exactly one E05-compatible sealed TradeSet per exact sample/question and a deterministic operation index in PG rebuilt from sealed NDJSON; do not create second analytics DB/authority. Store source evidence and excluded/rejected rows with reason; choose unique events SQX only `[−∞,A)`, MT5 only `[A,B)`, Echo Reference only `[B,+∞)` when available. Assign membership by proven open instant and sort closed points `(closed_at, operation_ref)`; crossing positions flagged, kept longitudinal but excluded from strict segment return if post-boundary PnL causes leakage as proposed pending owner ratification. IS/OOS remains training metadata, not extra periods. At same source replay, stable native IDs + digest dedup; cross-source match requires evidence-backed explicit relation, not tolerance-based implicit merge. Ambiguity fails publication of affected sample; no sum of overlapped ops. Seal immutable `HistoryRevision` with selected/excluded membership and coverage/reasons and publish one pointer via PG CAS in single transaction; older revision retained for audit/rollback. A version switch resets attribution, account switch does not. Critical tests include same timestamp ties, equality at A/B, DST America/Santiago converted UTC, open before and close after boundaries, duplicate/collision/overlap, source missing, conflict/payload changed, indexes exactly matching seal, concurrent publications, power failure before pointer commit, append-only corrections, no writes to journal or broker.
+
+## WP3 — Curve runs, calculator reuse and metrics (Echo owner)
+
+Inputs exact: `history_revision_ref`, selected ops digest, period(s), `(algo_id, version, definition_digest)`, config digest, auxiliary proof refs/digests and explicit missing data policy. Static in-process registry with narrow `Calculate` and `Describe` as [[B — Architecture Decision Report]]; no dynamic plugins/DSL/service. First algorithms cumulative R (realized net PnL divided by demonstrated initial risk with consistent currency), symbol-qualified pips (direction and pip-size required), virtual equity (explicit capital and risk sizing with constraints; conditional hypothetical only). Null risk prevents R calculation rather than default; no account lot influence on normal quality. Time coordinate actual UTC event times, stable tie break, preserve unknown observation gaps. Store `CurveRun` and full points read-only, immutable and ref from inputs; same ref differing digest -> conflict. Reuse existing E05 `calculator.Compute` for operation-based metric identities, add curve-path MDD/current DD/Sharpe etc with exact basis/frequency and same semantic MetricSet identity; do not call all indicators with identical denominator. Tests reproduce points/digests and identity across runs, changed config new ref, half-even/decimal precision, missing risk, timezone, pips for different instruments, currency conversion missing, no losses PF undefined, Sharpe sample clock, money management changing exits explicitly unsupported. Recompute from immutable set/history without reimport.
+
+## WP4 — Product UI and screener (Echo front/read owner)
+
+Reuse working Gateway/Hasura authorization and existing shell/chart infrastructure ONLY when semantically correct; new read endpoints expose strategy versions, selected history/A/B, evidence/coverage, curve algorithm/options/run, metric definitions, operation pages/calendar and cohort ranking runs. Front includes strategy version selector (multi-version view explicitly separate), 3 period bands A/B markers, real timestamp chart, gaps, promotion/start REAL/account/version annotations when proven, algorithm selector, tooltip input digests/units, per-operation trade list with provenance, calendar by `closed_at UTC` presented in chosen local timezone, metrics with status and basis, comparable screener deterministic sort/ties. Default no silent FX/USD, no ratio displayed as percentage without conversion, no x-axis ordinal replacing time. A screener with one strategy is valid product read view; cannot claim inter-strategy ranking quality with fabricated second. Tests React/frontend components and read adapters against authentic WP0 evidence, mixed currencies/units/windows rejected from comparison, raw/original digests drilldown, no false zero, no mutating endpoints. Owner acceptance: can follow original source→operation→curve point→metric and recover algorithm/version/inputs.
+
+## Integrated DEV certification and exit criteria
+
+Gate A SOURCE: contract fixtures, Go critical suites, race, deterministic replay, SQL migrations isolated, frontend tests, SHA/pins, old E04/E05/E10 critical regression unaffected; no metrics over synthetic rows called physical proof. Gate B DEV: authorized isolated workspace and migration sequence, authentic F05 finalist dual artifacts through existing E04 to sealed history and front, readback count/digests versus originals, real timeline with 3 periods, REAL visibly unknown absent evidence, R/pips/virtual with fields actually available, MetricSet calculator identity, calendar and screener read. Gate C physical product: independently repeat exact final candidate provenance and negative cases (replay 0 duplicate, conflicted digest no mutation, missing MT5 => no false ready, crash staged artifact leaves no published half state, no activation/commands). Evidence records SHA artifact, exact normalized/selected/excluded counts, time coverage, metric basis/status, UI read routes and no effects. Gate D release/PROD separate future authorization; do not promote a DEV result to deployed. If dual originals absent, report `V0_AUTHENTIC_GATE_BLOCKED` with correct degraded functions rather than rubber-stamping PASS. The only successful terminal outcome of this slice is a genuinely inspectable, reproducible strategy history, not a certificate inventory.
+
+## Completion handoff without redesign loop
+
+Source-specific format details are resolved only from WP0 artifact and existing exact Forge contracts. Already decided: S0/E05 reuse, same E04 endpoint/receipt, three periods/two boundaries proposed, single version-scoped publication, operation authority + relational index, one static Go registry, metrics semantics via E05, no live execution, no synthetic proof. Owner ratifies the explicit questions in [[F — Decision Register]] before frozen contract changes; all remaining code-path discovery is bounded to symbols reached from E04/E05/F04/F05 and existing Lab front, not a repo crawl. No new agents' prompt is required as a deliverable.
