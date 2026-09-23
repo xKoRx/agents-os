@@ -1,23 +1,25 @@
 ---
 type: project
 schema_version: 1
-owner: me
+owner: agent
 root: false
 status: active
-priority: P2
-area: "[[Personal]]"
-parent:
+priority: P0
+area: "[[Echo]]"
+parent: "[[Echo Forge — Operación Real V2]]"
 sprint:
-start:
+start: 2026-09-23
 due:
 progress: 0
-repo:
+repo: xKoRx/symphony
 jira:
 prs:
-aliases: []
+aliases:
+  - Echo Forge Campaign 001
+  - Campana 001
 tags:
   - kind/project
-  - area/personal
+  - area/echo
 created: "2026-09-23"
 updated: "2026-09-23"
 ---
@@ -27,32 +29,23 @@ updated: "2026-09-23"
 %% Naming: Echo Forge — Campaign 001 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo Forge — Campaign 001
-> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
-> _parent / sprint / repo / jira / prs son opcionales._
-
-> [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
-> `owner: me` → **proyecto humano**: la iniciativa/esfuerzo que conduces tú.
-> `owner: agent` → **proyecto de agente**: un curro delegado, con detalle pesado que escribe y sigue un agente. Casi siempre es subproyecto de uno humano y vive en la subcarpeta `agentes/` de su iniciativa.
-> `root: true` solo en **iniciativas raíz** (sin `parent`). Todo subproyecto debe setear `parent`; si no, aparece como huérfano en [[Panel de Proyectos]].
->
-> **Tarea puente:** cuando este proyecto es `owner: agent`, en su proyecto **padre** debe existir UNA sola tarea humana que lo representa (arrancar + seguimiento). Así tu cockpit ve una línea por curro delegado, no las tareas internas del agente. Ejemplo, en el padre:
-> `- [ ] [[Echo Forge — Campaign 001]] arrancar + seguimiento #owner/me #type/supervision #area/personal`
+> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P0 · **Repo:** `xKoRx/symphony`
+> Primera campaña real de [[Echo Forge — Operación Real V2]]: ejecutar el primer cohort real de estrategias end-to-end. Subproyecto de agente — tarea puente en el padre.
 
 ## 🎯 Objetivo
 
-- 
+- Ejecutar el primer cohort real de estrategias end-to-end: **Import → Classification → Ranking → Selection → revisión humana → Campaña B (SelectionSnapshot durable) → SQX Tick → MT5 → análisis del resultado.** Guardar como evidencia durable: cohort, configuración, algorithm versions, ranking, selection, revisión humana, resultado Campaña B, supervivencia SQX/MT5 y findings. NO automatizar feedback humano en esta primera campaña: la revisión del selection es una parada humana explícita.
 
 ## 📊 Estado actual
 
-- 
+- **CREATED (2026-09-23, mandato manager).** Prerrequisitos verificados en la misma ventana: Watcher Import intake con G7 PASS físico integrado en master (`9a69243`); resolver `selection_cohort` de Campaña B (CB-G2 @ `dc151e4`) integrado a master con gate 4/4; master consolidado `d07cc69`; RC 0.2.106 publicada en MinIO con binarios `vcs.revision=d07cc69, vcs.modified=false`. Pendiente de owner antes de la etapa B: CB-G1 (review manager + NORMAL) y freeze §3 (período OOS, tick model, parámetros MT5, criterios A-vs-B) — la etapa Import→Selection NO está bloqueada por eso.
+- **NEXT EXACT: procesar el primer cohort real mediante Watcher Import.** El owner deposita `flow.json` + `*.cfx` + `import/*.sqx` en el watch_dir; el watcher congela, publica el paquete bajo `watcher.import.folder` y dispara el FlowRun con `Origin: watcher_import`.
 
 ## 🧱 Entrega de desarrollo
 
-%% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
-
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
+| xKoRx/symphony | `master` @ `d07cc69` (origin) | RC 0.2.106 desplegable | Este proyecto (campaña real 001; sin código nuevo previsto — operar lo certificado) | `specs/FEAT-SQX-IMPORT-TASK-V1/SPEC.md` (intake) · `specs/FEAT-SQX-IMPORT-CAMPAIGN-B/SPEC.md` (§2.1 selection_cohort) | **OPERACIÓN — sin feature branch; defectos materiales abren fix sobre master** |
 
 ## 🧩 Subproyectos
 
@@ -72,73 +65,29 @@ views:
 
 ## ✅ Tareas
 
-> [!note]+ Ownership y tarea puente
-> `#owner/me` = tuya · `#owner/agent` = de un agente · sin owner = clasifícala.
-> El board es **adaptativo según `owner` del frontmatter**:
-> - **Proyecto humano** (`owner: me`): muestra tus tareas y las **tareas puente** (`#type/supervision`) que representan proyectos de agente. Las tareas de agente **no** aparecen acá; viven en su propio proyecto.
-> - **Proyecto de agente** (`owner: agent`): muestra las tareas del agente.
-
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/personal
-> - [ ] tarea delegada #owner/agent #type/dev #area/personal
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/personal
-
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-function board(tasks){const cols=[[" ","🟦 To Do"],["/","🟡 WIP"],["r","🔵 Review"]];let any=false;for(const[st,label]of cols){const c=tasks.filter(t=>t.status===st);if(c.length){any=true;dv.el('h4',label);render(c);}}const done=tasks.filter(t=>t.status==="x"||t.status==="X");if(done.length){any=true;dv.el('h4',"✅ Done");render(done);}if(!any)dv.paragraph("_Sin tareas._");}
-const owner=((dv.current().owner)==="agent")?"agent":"me";
-const all=dv.current().file.tasks.array();
-const primary=all.filter(t=>has(t,`owner/${owner}`));
-const loose=all.filter(t=>!has(t,"owner/me")&&!has(t,"owner/agent"));
-dv.header(3, owner==="agent"?"🤖 Tareas del agente":"🧍 Mis tareas");
-board(primary);
-if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
-```
-
-%% Rollup de iniciativa — descomentar solo en proyectos padre para ver las tareas #owner/me (incluye puentes) de todos los subproyectos, agrupadas por nota. Cambiar la ruta por la carpeta de esta iniciativa. Nunca muestra tareas de agente.
-```dataviewjs
-const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
-const ord={" ":0,"/":1,"r":2,"x":3,"X":3,"-":4};
-function linkify(s){return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="internal-link" href="${a}" data-href="${a}">${b||a}</a>`).replace(/#[\w/-]+/g,m=>`<span style="opacity:.55;font-size:12px">${m}</span>`).replace(/📅\s*(\d{4}-\d{2}-\d{2})/g,(m,d)=>`<span style="opacity:.7;font-size:12px">📅 ${d}</span>`).replace(/[⏫🔼🔽⏬🔺]/g,"").replace(/✅\s*(\d{4}-\d{2}-\d{2})/g,"");}
-function has(t,tag){return new RegExp(`(^|\\s)#${tag}(\\s|$)`).test(String(t.text));}
-function render(tasks){const el=dv.el('div','');el.innerHTML=tasks.map(t=>{const[label,fg,bg]=meta[t.status]||["?","var(--text-muted)","var(--background-modifier-border)"];return `<div style="display:flex;align-items:center;gap:8px;margin:5px 0;"><span style="font-size:11px;font-weight:600;padding:1px 9px;border-radius:999px;background:${bg};color:${fg};min-width:56px;text-align:center;flex:none;">${label}</span><span>${linkify(t.text)}</span></div>`;}).join("");}
-const pages=dv.pages('"10-projects/CARPETA-DE-LA-INICIATIVA"');
-for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x=>has(x,"owner/me")&&x.status!=="x"&&x.status!=="X").sort((a,b)=>(ord[a.status]??9)-(ord[b.status]??9));if(t.length){dv.el('h4',p.file.link);render(t);}}
-```
-%%
+> %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. %%
+> - [ ] C1: owner define y deposita el cohort real en el watch_dir (`flow.json` + `*.cfx` + `import/*.sqx`) #owner/me #type/dev #area/echo
+> - [ ] C2: Watcher Import intake — freeze doble-hash, publicación MinIO, FlowRun `watcher_import` COMPLETED con cohort durable #owner/agent #type/dev #area/echo
+> - [ ] C3: Classification → Ranking → Selection sobre el cohort real; snapshots por ref exacta #owner/agent #type/dev #area/echo
+> - [ ] C4: revisión humana del selection (parada explícita; NO automatizar) — owner ratifica o rechaza finalists #owner/me #type/pr-review #area/echo
+> - [ ] C5: Campaña B desde SelectionSnapshot durable (`selection_cohort.snapshot_ref`) — SQX Tick Retest OOS → MT5 Export → Compile → Real-Tick Backtest → Reconcile/Fidelity → Final Decision/Report #blocked (CB-G1 + freeze §3 del owner) #owner/agent #type/dev #area/echo
+> - [ ] C6: análisis del resultado — supervivencia SQX/MT5, fidelity, findings; comparación contra evidencia de la campaña de origen por refs #owner/agent #type/research #area/echo
+> - [ ] C7: guardar el paquete de evidencia completo: cohort, config, algorithm versions, ranking, selection, revisión humana, resultado Campaña B, supervivencia, findings (MinIO + refs en esta nota) #owner/agent #type/admin #area/echo
+> - [ ] C8: reporte de campaña + cierre en Agents-OS; hallazgos alimentan Track B (FUNNEL QUALITY) de [[Echo Forge — Operación Real V2]] #owner/me #type/admin #area/echo
 
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-23** — 
+- **2026-09-23** — Proyecto creado por mandato manager. Master consolidado @ `d07cc69`, RC 0.2.106 publicada (binario auténtico `d07cc69`), pipeline completo disponible en producción. Siguiente exacto: C1 (owner deposita cohort real) → C2 Watcher Import.
 
 ## 🧭 Decisiones
 
-- 
+- **D-C1-1 (2026-09-23): operar sobre master, sin feature branch.** La campaña usa el producto certificado (RC 0.2.106); sólo un defecto material observado en operación abre fix sobre master.
+- **D-C1-2 (2026-09-23): revisión humana entre Selection y Campaña B es obligatoria y manual** (mandato: no automatizar feedback humano en la primera campaña).
+- **D-C1-3 (2026-09-23): la etapa B de esta campaña hereda los gates de [[Echo Forge — Campaña B]]** (CB-G1 review + freeze §3 owner); el resto del funnel (Import→Selection) no está bloqueado por ellos.
 
 ## 🔗 Docs / Links
 
-- 
-
-## 💡 Ideas
-
-%% Captura ideas sueltas del proyecto al final. Si maduran, promover a tarea o a nota de idea (70-templates/idea.md). %%
-
-### Backlog de ideas
-
-- 
-
-### Motivos / principios
-
-- 
-
-### Memoria pública / interna
-
-%% Opcional para proyectos de agentes o conocimiento: definir qué memoria gobierna el sistema y cuál gobierna el agente, y por qué existe cada una. %%
-- **Memoria pública:** 
-- **Memoria interna:** 
-- **Motivo:** 
+- Parent: [[Echo Forge — Operación Real V2]] · Predecesores: [[Echo Forge — Import Task V1]] · [[Echo Forge — Campaña B]]
+- Entidad: [[echo-forge]] · Intake: `watcher.import` (SPEC FEAT-SQX-IMPORT-TASK-V1) · Entrada B: `selection_cohort` (SPEC FEAT-SQX-IMPORT-CAMPAIGN-B §2.1)
