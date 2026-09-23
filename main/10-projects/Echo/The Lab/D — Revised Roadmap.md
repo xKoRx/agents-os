@@ -23,6 +23,19 @@ La integración con Forge es **contract-first y desacoplada de implementación**
 
 North star de la semana: **foundation Echo sólida el miércoles 23, historia auténtica integrada cuando el productor esté conforme, dashboard con curva real el viernes 25, REAL desde journal el sábado 26 y V3 usable con screener/calendario el domingo 27**. Los gates separan capacidad Echo de disponibilidad de productores externos.
 
+## Paquete de ejecución D1 — autoridad para desarrollo
+
+La implementación de D1 se ejecuta contra el paquete congelado en `main/10-projects/Echo/The Lab/D1 — Echo Foundation/`:
+
+- `A — Technical SPEC D1.md`
+- `B — Implementation Plan D1.md`
+- `C — Test Plan D1.md`
+- `D — Acceptance Gate D1.md`
+- `E — Architectural Impact D1.md`
+- `F — Continuity D1.md`
+
+Para D1, este paquete tiene prioridad sobre descripciones más antiguas del roadmap cuando exista una diferencia de detalle. Las decisiones M01-M12 siguen siendo autoridad de producto/arquitectura.
+
 ## Principios operativos ratificados
 
 - Una sola autoridad durable de operaciones: Echo.
