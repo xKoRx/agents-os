@@ -62,7 +62,7 @@ Use 1-5, where 1 is poor and 5 is excellent.
 ## Most Useful Part Of Sistema 1
 
 - What helped: la sub-rutina "¿por qué no copia?" de [[echo-production-operational-audit]] + el [[Echo + Echo Forge — Environment Contract]].
-- Why it she helped: la sub-rutina trae las queries y patrones exactos ya validados (WARNs execution_planner/mm_engine, symbol_mappings, riesgo silencioso); el contrato fijó DEV vs PROD y evitó tocar mt4-real sin autorización.
+- Why it helped: la sub-rutina trae las queries y patrones exactos ya validados (WARNs execution_planner/mm_engine, symbol_mappings, riesgo silencioso); el contrato fijó DEV vs PROD y evitó tocar mt4-real sin autorización.
 - Keep/change: keep; añadir a la skill de auditoría el discriminador Loki `{service_name="echo-bridge"} |= "detransformed"` (broker de sesión por command_id) como paso estándar.
 
 ## Least Useful Or Noisy Part
