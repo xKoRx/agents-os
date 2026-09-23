@@ -10,6 +10,7 @@ entities: []
 related:
   - "[[agents-os-implementation-planning]]"
   - "[[sdd-workflow]]"
+  - "[[sdd-developer]]"
   - "[[e2e-gated-validation]]"
   - "[[release-certification]]"
   - "[[deployment-proof]]"
@@ -93,9 +94,26 @@ Before dispatching implementation:
 
 Every dispatched shot MUST be a self-contained one-shot mandate. It must carry enough authority and boundaries for a fresh agent to execute without relying on conversational memory.
 
+Each mandate MUST use these literal semantic sections:
+
+```text
+/goal
+/authorities
+/baseline
+/frozen
+/scope
+/execute
+/verify
+/reuse
+/improve
+/close
+```
+
+These are prompt sections, not assumed IDE commands.
+
 Each mandate MUST include:
 
-- exact goal and final status vocabulary;
+- `/goal`: exact observable outcome and final status vocabulary;
 - authorities and certified baseline;
 - frozen decisions and explicit non-goals;
 - bounded discovery/allowed write scope;
@@ -103,7 +121,9 @@ Each mandate MUST include:
 - mandatory tests/evidence;
 - exact Agents-OS persistence and closeout;
 - structured final response;
-- reusable-asset harvest and repeatable-behavior feedback requirements.
+- `/reuse`: reusable-asset harvest requirements;
+- `/improve`: explicit evaluation of repeatable behavior/process/tooling improvements; `NONE` is valid and must not fabricate feedback;
+- `/close`: exact Agents-OS persistence/agent-run/feedback/closeout and structured response.
 
 Do not use a chain of conversational micro-prompts to complete one shot. Routine technical obstacles belong to the agent; only a genuine frozen-decision contradiction returns to the owner.
 
