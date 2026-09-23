@@ -1,5 +1,13 @@
 # Agents resource log
 
+## [2026-09-23] create | sdd-developer
+
+- Se creó `sdd-developer` para el tramo de entrega de SDD cuando SPEC/PLAN/TASKS ya están ready: Shot 1 implementación, Shot 2 verificación adversarial independiente y Shot 3 corrección + gate final.
+- Todo mandato es one-shot y usa secciones semánticas obligatorias `/goal`, `/authorities`, `/baseline`, `/frozen`, `/scope`, `/execute`, `/verify`, `/reuse`, `/improve`, `/close`.
+- La SPEC posee lógicamente su verificación mediante `VERIFICATION.md` (AC → test path → escenario → status), pero el código ejecutable vive en el owner canónico: package/integration/E2E/toolkit. Para repos que lo adopten, los cross-component E2E pueden agruparse como `<e2e-root>/specs/<SPEC-ID>/`.
+- `sdd-workflow` quedó como router/lifecycle y deriva a `sdd-developer` sólo después del gate TASKS→IMPLEMENT.
+- `technical-project-manager` quedó alineada para que todo Prompt Maestro incluya siempre `/goal` y `/improve`; la evaluación de mejora es obligatoria, pero `NONE` es válido y no crea feedback artificial.
+
 ## [2026-09-23] refine | technical-project-manager reusable harvest
 
 - Se reforzó la skill para que todo Shot 1/2/3 sea un mandato one-shot autocontenido, ejecutable por contexto fresco y cerrado con evidencia propia.
