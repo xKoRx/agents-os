@@ -81,9 +81,11 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] primera tarea #owner/me #type/dev #area/personal
-> - [ ] tarea delegada #owner/agent #type/dev #area/personal
-> - [ ] [[Subproyecto de agente]] arrancar + seguimiento #owner/me #type/supervision #area/personal
+> - [ ] [[Echo Forge — Campaign 001]] arrancar + seguimiento #owner/me #type/supervision #area/echo
+> - [ ] **Track A — REAL CAMPAIGNS**: ejecutar campañas reales end-to-end (Import → Classification → Ranking → Selection → Campaign B → SQX Tick → MT5); cada campaña = subproyecto con evidencia durable #owner/agent #type/dev #area/echo
+> - [ ] **Track B — FUNNEL QUALITY**: versionar y comparar classification, ranking algorithms, weights, thresholds y selection policies; toda iteración conserva input/output y versión (comparación por refs, sin reescritura) #owner/agent #type/dev #area/echo
+> - [ ] **Track C — INTEGRATION V2**: definir e implementar el nuevo boundary Forge → Echo (históricos SQX + MT5 + operaciones + evidence → ingestion/normalization Echo → canonical operations → The Lab curves/analytics/portfolios). Forge NO es autoridad de curvas finales. Reemplaza la integración histórica (SUPERSEDED_BY_INTEGRATION_V2); requiere SPEC funcional nueva aprobada por owner antes de implementar #owner/me #type/dev #area/echo
+> - [ ] Pendientes owner heredados de Campaña B: CB-G1 review manager + freeze §3 (período OOS, tick model, parámetros MT5, criterios A-vs-B) — gate de ejecución física de Campaña B en [[Echo Forge — Campaign 001]] #owner/me #blocked #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -115,15 +117,18 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-09-23** — 
+- **2026-09-23** — Proyecto creado por mandato manager (cierre Echo Forge V1 → operación real V2). Misma ventana: master consolidado @ `d07cc69` (Campaña B integrada con gate 4/4, ramas/worktrees cerrados eliminados, manifiesto 0.2.105 preservado), RC 0.2.106 publicada, V1 cerrado como FOUNDATION COMPLETE, integración histórica marcada SUPERSEDED_BY_INTEGRATION_V2, [[Echo Forge — Campaign 001]] creado. Siguiente exacto: primer cohort real vía Watcher Import.
 
 ## 🧭 Decisiones
 
-- 
+- **D-V2-1 (2026-09-23): no reabrir features históricas sin defecto material.** El roadmap de construcción queda cerrado con V1; todo trabajo nuevo nace de una campaña real o de un defecto material observado en operación.
+- **D-V2-2 (2026-09-23): integración Forge→Echo histórica = SUPERSEDED_BY_INTEGRATION_V2.** No se termina bajo el contrato Echo SDK V1; Track C diseña el boundary nuevo compatible con The Lab V3, donde Forge no es autoridad de curvas finales.
+- **D-V2-3 (2026-09-23): Campaña B arranca de un SelectionSnapshot durable.** No reimporta ni reselecciona: SelectionSnapshot → SQX Tick Retest OOS → MT5 Export → Compile → Real-Tick Backtest → Reconcile/Fidelity → Final Decision/Report. El resolver `selection_cohort` (CB-G2 @ `dc151e4`) ya está en master.
 
 ## 🔗 Docs / Links
 
-- 
+- Predecesor: [[Echo Forge]] (V1 CLOSED / FOUNDATION COMPLETE) · Subproyecto: [[Echo Forge — Campaign 001]] · Campaña B: [[Echo Forge — Campaña B]] · Import: [[Echo Forge — Import Task V1]]
+- Entidad: [[echo-forge]] · Integración histórica: [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] (SUPERSEDED para integración) · Boundary nuevo por diseñar en Track C
 
 ## 💡 Ideas
 
