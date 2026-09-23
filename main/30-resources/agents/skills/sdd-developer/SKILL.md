@@ -9,6 +9,7 @@ updated: "2026-09-23"
 entities: []
 related:
   - "[[sdd-workflow]]"
+  - "[[compounding-engineering-vision]]"
   - "[[technical-project-manager]]"
   - "[[e2e-gated-validation]]"
   - "[[agents-os-agent-run-register]]"
