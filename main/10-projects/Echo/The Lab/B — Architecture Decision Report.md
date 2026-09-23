@@ -9,17 +9,18 @@ related:
 aliases: []
 tags:
   - kind/doc
+  - area/echo
 created: "2026-09-22"
 updated: "2026-09-22"
 ---
 
 # B — Architecture Decision Report
 
-## Propósito
+> **PROPUESTA, NO RATIFICADA.** Arquitectura de producto y transición, sin cambios de código, infraestructura ni datos. Las decisiones frozen se conservan salvo reapertura acotada justificada en [[F — Decision Register]]. Contrato de producto: [[A — Product Contract — The Lab]].
 
 Informe de decisiones arquitectónicas, 22-09-2026, **PROPUESTA PENDIENTE DE RATIFICACIÓN**. La base Echo/Forge es reutilizable; se necesita completar y corregir la cadena analítica, no una reescritura global. No cambia el estado de contratos o certificaciones existentes. Producto: [[A — Product Contract — The Lab]]. Estado verificable: [[C — Reality and Gap Matrix]].
 
-## Contenido
+La arquitectura presente sirve como foundation, pero NO entrega The Lab como producto: S0 define tipos y sellos, E-05 produce TradeSet/MetricSet con calculator de métricas y persistencia write-once, E-04 acepta promociones y copia artefactos operativos; ninguno prueba el ensamblado de dos históricos de operaciones, una única historia publicada, N curvas por algoritmo y front usable. E-10 M7 desarrolla Strategy Quality Reference-forward y eligibility, no sustituye ese producto. Evitar tanto el rewrite de Echo como seguir agregando subsistemas de elegibilidad antes del primer vertical slice. Fuente: `xKoRx/echo@5dd998f1`, `specs/FEAT-FORGE-INGESTION-E1/SPEC.md`, `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md`, `v3/sdk/contracts/analytics.go`, `v3/sdk/analytics/calculator/calculator.go`; proyecto [[Echo — E-10 Strategy Quality and Eligibility]] actualizado 2026-09-22.
 
 ### Diagnóstico y diseño objetivo
 
@@ -191,6 +192,29 @@ Retención: operaciones, fuentes elegidas, manifests y decisiones sin TTL por de
 
 En recuperación manual, una transacción de lectura consistente evita mezclar hechos que cambian durante la evaluación. M7 usa REPEATABLE READ; una snapshot SQL por sí sola no reproduce mañana el input: persistir referencias y contenido exacto. Véase [PostgreSQL 17, aislamiento de transacciones](https://www.postgresql.org/docs/17/transaction-iso.html).
 
-## Fuentes
+```text
+FORGE (xKoRx/symphony)
+  Generator + SQX evidence + MT5 validation/trade-list evidence
+  StrategyVersion seal + finalist promotion + HandoffManifestV1
+                   |
+                   v existing E-04 ingress, verified artifact copy, receipt
+ECHO identity/promotion + immutable source evidence reference
+                   |
+                   v one analytics-admission extension (same ingestion path)
+ECHO analytics: normalize individual operations + provenance + quality
+                   |
+                   v deterministic period/source selection, corrections audit
+ONE published HistoryRevision per selected StrategyVersion/A/B/policy
+                   |
+                   v ordered operations -> versioned CurveCalculators
+CurveRun + exact CurvePoints + quality/coverage
+                   |
+                   v reusable E-05 MetricCalculator + curve-specific metrics
+MetricSet (key+basis+unit+formula/window/inputs exact)
+                   |
+                   v existing Gateway/Hasura READ + adapted Lab front
+Strategy detail / real-time-axis curves / trades calendar / screener
+                   |
+                   v LATER: portfolio research -> PortfolioVersion -> Echo apply
 
 Source principal `xKoRx/echo@1485baa4574b3a65fa97cf0be842ca8ac581097a`: `v3/sdk/contracts/{analytics,trading}.go`, `v3/sdk/postgres/{canonical_writer.go,migrations/063_analytics_convergence_a0.up.sql}`, `v3/sdk/analytics/{calculator/calculator.go,formulas/closed_ops.go}`, `v3/sdk/lab/{curves,segments}`, `v3/lab-worker/internal/builders/recompute.go`, `v3/front/src/components/lab/StrategyEquityCurveLabCleanChart.vue`. Forge `xKoRx/symphony@745bc8b94e1f6148ddc16c02eb86a755088c2666`: `core/forge/handoff_producer.go`, `adapters/mt5/normalization/types.go` y extractor SQX. Autoridades: [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]], [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]], [[Echo + Echo Forge — Environment Contract]]. Disposición ejecutable: [[D — Revised Roadmap]], [[E — First Usable Vertical Slice]], [[F — Decision Register]].
