@@ -8,7 +8,7 @@ slug: backup-dr-roadmap-wp
 area: "[[Aranea]]"
 project: "[[BACKUP-DR-OWNER-PROJECT]]"
 created: "2026-09-20"
-updated: "2026-09-21"
+updated: "2026-09-23"
 aliases:
   - ROADMAP WP Backup DR
   - WPs storage backup DR
@@ -185,3 +185,9 @@ Precedencia estricta: B1 requiere D-piloto + 018 + crecimiento datastore; A2 req
 - Secuencia de migraciones: cada migración exige **BACKUP_BASELINE_VERIFIED de su unidad** + sus gates propios; el análisis disco por disco que las prioriza vive en [[ANALISIS-DISCO-POR-DISCO]] (ninguna se ejecuta antes de los backups).
 - Criterio de la 1ª réplica de pool0: dimensionar y ejecutar cuando SUS gates G-REP-0..5 (capacidad/integridad/ventana) estén satisfechos — no depende de completar migraciones.
 - Reglas fijas: STORAGE_OPTIMIZATION_PLANNED no es requisito de BACKUP_BASELINE_VERIFIED; BACKUP_BASELINE_VERIFIED por unidad sí es requisito de su MIGRATION_READY.
+
+### Freeze final de ejecución 25-27 SEP (23sep, mandato owner)
+
+- La ejecución del fin de semana queda congelada en `~/aranea/work/cierre-preparatorio-20260921/PAQUETE-FREEZE-25-27SEP.md` (v3 FREEZE, tabla única con preflight/PASS/ABORT/rollback/dependencia por operación); el paquete v2 de 22sep queda SUPERSEDED. Freeze T-24 adelantado y ejecutado el 23 (`FREEZE-T24.md`).
+- Ventanas válidas: días hábiles ≥07:00 CLST + madrugada sábado/domingo (V3 domingo = contingencia). Sin dependencias de ejecuciones 04:00: la certificación de P2a es UNA ejecución real post-fix en horario hábil.
+- Estado del camino crítico: P2a y P1-v3 READY_AFTER_OWNER_GATE (preflight P1-v3 re-verificado PASS el 23sep); W-02 implementable el fin de semana independiente de B1 (depende solo de P2a); P4=D-B (serie máxima posible 4/7 tras 3ª noche de apagado de hermes); K1/K2/prechecks AUTO; P6/G-REP-0..5 fuera de 25-27 (sólo staging); 018 espera firma.
