@@ -5,14 +5,14 @@ owner: me
 root: true
 cssclasses:
   - wide
-status: active
+status: closed
 priority: P1
 area: "[[Echo]]"
 parent:
 sprint: "[[A26Q2S7]]"
 start: 2026-06-12
 due:
-progress: 41
+progress: 100
 repo: symphony
 jira:
 prs:
@@ -27,14 +27,17 @@ aliases:
 # Echo Forge
 
 > [!info]+ Echo Forge
-> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Sprint:** [[A26Q2S7]]
-> Programa general para el desarrollo y puesta en marcha de **Echo Forge** (SQX Adaptive E2E Pipeline).
+> **Área:** [[Echo]] · **Estado:** **closed / FOUNDATION COMPLETE** · **Prioridad:** P1 · **Sprint:** [[A26Q2S7]]
+> Programa de construcción de **Echo Forge** (SQX Adaptive E2E Pipeline). **CERRADO 2026-09-23 por mandato manager** — la operación continúa en [[Echo Forge — Operación Real V2]].
 
 ## 🎯 Objetivo
 
 - Desarrollar la fábrica/admisor de estrategias upstream para el ecosistema Echo. Automatizar el flujo completo desde la generación en frío en StrategyQuant hasta el despliegue automático en cuentas demo MT5 e ingesta de finalistas en Echo Core vía API.
 
 ## 📊 Estado actual
+
+- **PROYECTO CERRADO — FOUNDATION COMPLETE (2026-09-23, mandato manager).** La etapa de construcción queda cerrada; el desarrollo futuro es dirigido por campañas reales desde [[Echo Forge — Operación Real V2]]. Entregado como fundación durable: foundation durable (evidencia inmutable, identidad canónica, magic/version seal, persistence), SQX workflows (generic + WFM durable), Import Intake (Watcher Import, G7 PASS físico), Classification, Ranking, Selection (SelectionSnapshots por ref), Campaña B (resolver `selection_cohort` @ `dc151e4` integrado), MT5 pipeline (export → compile → real-tick backtest → reconcile + fidelity shadow), recovery/idempotence (insert-once, resume-convergente, fail-closed), campañas/orchestration (Temporal, batch fanout), observabilidad (telemetría + surfaces) y certificaciones físicas vigentes (CERT-F04-01/02, F-01…F-05-I, Import G7, Factory V2). **La integración Forge→Echo histórica (Echo SDK Contract V1) queda `SUPERSEDED_BY_INTEGRATION_V2`** — no se termina bajo el contrato viejo; el boundary nuevo se diseña en el Track C de V2 con Forge NO-autoridad de curvas finales. Consolidación final en esta misma ventana: `origin/master @ d07cc69` (master único; 14 ramas cerradas eliminadas, 19 worktrees eliminados, cero pérdida; manifiesto 0.2.105 committeado @ `d07cc69`; RC 0.2.106 publicada). Deuda heredada documentada: secretos en historial y sdk `c7f1149` sin merge (quedan registrados, no bloquean operación).
+- **CAMPAÑA B INTEGRADA A MASTER (2026-09-23, cierre del programa).** `feature/sqx-campaign-b` @ `3847cad` (código `dc151e4` + SPEC §2.1) integrada a `origin/master` por FF con gate 4/4: build PASS (só `sqx/tools` roto preexistente, intocado por el delta), tests del delta PASS (`sqx/core/runtime` y `sqx/activities/watcher` verdes), fail-set 37/37 idéntico al baseline `9a69243` por nombre (workflows 21 + worker 16), review scoped PASS. Rama y worktree eliminados. Control operativo: [[Echo Forge — Campaña B]].
 
 - **CAMPAÑA B ARRANCADA — CB-G2 IMPLEMENTADO (2026-09-23).** `feature/sqx-campaign-b` @ `3847cad` (código `dc151e4` + SPEC §2.1) sobre `origin/master @ 9a69243` (verificado; rama local sin push; worktree externo `~/aranea/work/campaign-b-20260923/symphony`). Entrada de cohorte seleccionado = sección `selection_cohort.snapshot_ref` + bootstrap interno (`resolve_selection_cohort`, membresía REPROCESSED insert-once); stages B reutilizan tipos vigentes (retester durable tick OOS → mt5_exporter → compiler → backtester → reconcile+fidelidad → ranking → promotion); seal V2 (handoff Echo) congelado fuera de B sin linaje Apply+Compile/magic. Regresión = fail-sets idénticos al baseline (workflows 21, worker 16). Bloqueos de ejecución: owner congela §3 (OOS/tick/MT5/criterios) + CB-G1 review/NORMAL. Control: [[Echo Forge — Campaña B]].
 - **TOP GIT CONSOLIDATION — 2 RAMAS (2026-09-21, previa a G7 de Import).** `origin/master` promovido por **fast-forward puro** `0b9742b→745bc8b` (38/0; sin force/rebase/squash; asociación release `0.2.105` conservada; checks del baseline: 13/18 paquetes build OK y tests verdes — los únicos fallos, `pebbe/zmq4` sin libzmq-dev local y `Test_LoadEnvVars` sin `.env`, son ambientales y idénticos en `0b9742b`, cero regresiones). GitHub queda en **exactamente 2 ramas**: `master` @ `745bc8b` + `feature/sqx-import-task-v1` @ `5e495ae` (5 commits íntegros; merge-base `745bc8b` — nació exactamente del nuevo master, sin rebase; push tras scan de secretos/accidentales limpio). 21 ramas remotas históricas eliminadas con prueba **LOST_COMMITS=0** (22 SHAs inventariadas alcanzables): 16 contenidas en el baseline; 5 líneas con commits exclusivos preservadas en tags anotados `archive/f05-post-cert-delta`→`145d6be`, `archive/forge-explorer-v0`→`648d5e6`, `archive/f05-r3-integration`→`3f6cd11` (7 commits NO contenidos en nada — capturado por el chequeo previo al borrado), `archive/e06-attestation-r1`→`b738a6d`, `archive/e06-attestation-r3`→`5d55c6b` (contiene a r2 `a1f62a6`); lanes E-06 con ownership documentado y worktrees/ramas locales `symphony-e06-*` intactos. 14 ramas locales ocupadas por worktrees NO borradas (regla: worktree manda); 3 locales merged sin worktree sí eliminadas. Sin releases de GitHub, sin PRs abiertos, sin protección de master; **flota y workers intactos** (mover master no es un deploy). Dirty del checkout principal preservado sin commit: `deploy/manifest.json` (registro deploy `0.2.96→0.2.105` a MinIO) + 2 artefactos de tests. Deuda de migración restante: secretos versionados en historial (historia intacta por diseño) y sdk `c7f1149` sin merge. **Política vigente: una rama activa por desarrollo; trabajo no integrado = tag `archive/*` + baja de rama.**
@@ -221,6 +224,8 @@ hide task count
 - [ ] [[echo-forge]] Evaluar y ejecutar migración de Echo Forge a un repositorio nuevo/limpio o al repositorio de Echo Core — evaluación COMPLETA 2026-09-21: destino recomendado monorepo `xKoRx/echo` (módulo hermano `forge/`), baseline `0.2.105` @ `745bc8b`, fases M0–M5 con rollback por Stager; pendiente autorización owner para ejecutar #owner/me #type/admin #area/echo
 
 ## 📆 Bitácora
+
+- **2026-09-23 (cierre)** — **CIERRE DEL PROGRAMA por mandato manager:** V1 CLOSED / FOUNDATION COMPLETE; sucesor [[Echo Forge — Operación Real V2]] + primera campaña real [[Echo Forge — Campaign 001]]. Consolidación final: `codex/f05-release-prep` clasificada SUPERSEDED (ya ancestro de master), `feature/sqx-campaign-b` integrada por FF con gate 4/4 (build, delta tests, fail-set 37/37 == baseline `9a69243`, review scoped) → master `d07cc69` (incluye commit de promoción del manifiesto 0.2.105 que quedó sin commitear en f05-release-prep). Barrido: 14 ramas cerradas eliminadas (7 ancestros de master + 6 recuperables vía tags `archive/*` + campaign-b integrada), 19 worktrees cerrados eliminados, cero pérdida (todos los tips verificados alcanzables; material no trackeado único preservado en `~/aranea/work/forge-consolidation-20260923/preserved/`: `zz_audit_h04_h05_test.go`, tools `extract-canonical-bodies`/`goldenrecompute-run`, patch del dirty de runbooks). RC **0.2.106** publicada release-only (binarios `vcs.revision=d07cc69, modified=false`; manifest confirmado por MinIO; flujo NO disparado). Integración histórica = SUPERSEDED_BY_INTEGRATION_V2. Siguiente exacto: primer cohort real vía Watcher Import (Campaign 001).
 
 - **2026-09-23** — Campaña B (mandato owner: recuperación + diseño + inicio): baseline `9a69243` verificado; SPEC `FEAT-SQX-IMPORT-CAMPAIGN-B` encontrada en repo; arquitectura congelada (SPEC §2.1: bootstrap `selection_cohort`, cero tipos nuevos de task, seal V2 diferido); CB-G2 implementado y commiteado (`dc151e4`+`3847cad` en `feature/sqx-campaign-b`, local); regresión fail-sets == baseline. Siguiente: CB-G1 review + freeze §3 del owner. Control: [[Echo Forge — Campaña B]].
 
