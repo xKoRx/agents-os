@@ -21,9 +21,10 @@ The skill was placed in the federated transversal catalog rather than `80-agents
 ## Contract checks
 
 - Classification: PASS — repeatable multi-judgment orchestration = skill.
-- Scope placement: PASS — transversal/federated.
+- Scope placement: PASS — federated transversal by location/usage; canonical S1 `scope: global` and `scope/global` tag per executable schema.
 - Required sections: PASS — Purpose, Minimal Read, Procedure, Output, Hard Rules.
 - Strict YAML frontmatter parse: PASS.
+- Targeted strict schema/lint-equivalent check against the current executable `skill` contract: PASS — 0 findings (required fields, allowed scope, field types, canonical tags, wikilink lists, forbidden fields and required sections).
 - Trigger-specific description: PASS.
 - Minimal Read: PASS — references project reality and neighboring skills instead of duplicating them.
 - No duplicated methodology: PASS — SDD, implementation planning, release/deploy and E2E remain owned by their existing skills.
@@ -41,8 +42,8 @@ The always-load skills index now lists 15 federated transversal skills including
 
 ## Validation note
 
-The canonical file was written through the connected GitHub surface. Strict YAML and contract/activation checks were executed in-session. The repository-local AGENTS OS Doctor/materializer could not be executed from this connector-only runtime, so no claim is made about a local Doctor run; no contract field was removed or weakened to bypass that limitation.
+The canonical file was written through the connected GitHub surface. The current executable schema and strict-lint rules for the `skill` type were fetched from the repository and applied to the exact target: 0 findings. The full repository Doctor was not run because this surface has no repository checkout; this is not reported as a Doctor PASS.
 
 ## Result
 
-`READY` for use as a federated transversal skill. A future repository-local Doctor/hygiene cycle may provide an additional mechanical lint signal; it is not a semantic dependency of the skill contract.
+`READY` for use as a federated transversal skill.
