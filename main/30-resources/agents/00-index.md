@@ -24,7 +24,7 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas curadas:** 27
+- **Páginas curadas:** 28
 - **Última ingesta:** 2026-09-23
 - **Estado:** active
 
@@ -35,6 +35,7 @@ tags:
 | [[agent-executor]] | Prompt reusable para encargar una fase acotada sin sustituir el planificador canónico. | target: agent · v1 |
 | [[f3-skill-migration]] | Inventario, checksums y rollback del movimiento de skills de Fase 3. | migration record |
 | [[domain-router-registry]] | Registro opcional y fail-closed que enlaza áreas con routers scoped sin hardcodear dominios en el core. | routing contract |
+| [[compounding-engineering-vision|AGENTS OS — Compounding Engineering Vision]] | Visión de ingeniería: cada iteración debe mejorar producto, evidencia ejecutable, tooling y capacidad futura de los agentes. | doc · visión · north star |
 | [[30-resources/agents/skills/meli-agent-dev/SKILL|meli-agent-dev]] | Router del dominio Meli: boundary, preferencias scoped y skill especializada por tarea. | skill · Meli-only |
 | [[30-resources/agents/skills/aranea-agent-dev/SKILL|aranea-agent-dev]] | Router del dominio Aranea (homelab); puerta única del acceso MCP vía aranea-mcps-expert y routing al operador Hermes cuando Hermes es el target. | skill · Aranea-only |
 | [[30-resources/agents/skills/hermes-agent-operator/SKILL|hermes-agent-operator]] | Operación y triage del runtime Hermes: perfiles, dashboard/serve, gateways, systemd user, updates y recovery. | skill · Aranea/Hermes |
