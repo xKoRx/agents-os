@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Core AGENTS OS:** 28 skills de comportamiento del sistema.
-- **Federadas transversales:** 15 skills curadas en `30-resources/agents/skills/`.
+- **Federadas transversales:** 16 skills curadas en `30-resources/agents/skills/`.
 - **Domain/app-owned:** se descubren mediante el registro de routers y el repo owner; no forman parte del índice always-load.
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
@@ -82,6 +82,7 @@ skills de una aplicación viven y se descubren en su repo owner.
 | [[30-resources/agents/skills/technical-project-manager/SKILL.md|technical-project-manager]] | Gestiona iniciativas técnicas por horizonte corto de hitos diarios atómicos, con design freeze y ciclo implementation → independent verification → correction/final gate. | Transversal; proyectos con varios días/agentes y outcomes diarios verificables. |
 | [[30-resources/agents/skills/sync-local-branch/SKILL.md|sync-local-branch]] | Sincroniza ramas Git exclusivamente locales con pull literal, merge conservador, commit y push. | Dev-workflow genérico. |
 | [[30-resources/agents/skills/sdd-workflow/SKILL.md|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclar specification, plan, tasks, implementation y verification. | Features/cambios no triviales; metodología en `30-resources/methodologies/sdd/`. |
+| [[30-resources/agents/skills/sdd-developer/SKILL.md|sdd-developer]] | Entrega una SPEC SDD ready mediante implementación one-shot, verificación adversarial independiente y corrección/gate final, preservando regresiones/E2E reutilizables. | Transversal; IMPLEMENT+VERIFY de features SDD listas. |
 | [[30-resources/agents/skills/e2e-gated-validation/SKILL.md|e2e-gated-validation]] | Orquesta validaciones E2E como secuencia de gates con evidencia y criterios PASS/FAIL. | E2E, golden runs o certificaciones físicas; transferible. |
 | [[30-resources/agents/skills/release-certification/SKILL.md|release-certification]] | Certifica que release/binario corresponde al source autorizado (baseline, blob equality, SHA256). | Antes de certificar/probar sobre una release. |
 | [[30-resources/agents/skills/deployment-proof/SKILL.md|deployment-proof]] | Demuestra por jerarquía de evidencia que el runtime ejecuta la release nueva, sin aceptar exit 0. | Tras cualquier deploy que participe en una validación. |
