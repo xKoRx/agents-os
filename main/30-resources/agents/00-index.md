@@ -24,7 +24,7 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas curadas:** 26
+- **Páginas curadas:** 27
 - **Última ingesta:** 2026-09-23
 - **Estado:** active
 
@@ -49,6 +49,7 @@ tags:
 | [[30-resources/agents/skills/rio-sunset-update/SKILL|rio-sunset-update]] | Remedia sunsets RIO próximos mediante gates fail-closed, un único PR por aplicación y deploy confirmado sólo a test. | skill · Meli-only · manual |
 | [[30-resources/agents/skills/sync-local-branch/SKILL|sync-local-branch]] | Sincroniza ramas Git exclusivamente locales con merge conservador. | skill · transversal |
 | [[30-resources/agents/skills/sdd-workflow/SKILL|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclarlas. | skill · transversal |
+| [[30-resources/agents/skills/sdd-developer/SKILL|sdd-developer]] | Implementa y certifica una feature SDD ready con tres shots, E2E/regression harvest y feedback reusable. | skill · transversal |
 | [[30-resources/agents/skills/e2e-gated-validation/SKILL|e2e-gated-validation]] | Validación E2E como secuencia de gates con evidencia y PASS/FAIL por gate. | skill · transversal |
 | [[30-resources/agents/skills/release-certification/SKILL|release-certification]] | Certifica que release/binario corresponde al source autorizado. | skill · transversal |
 | [[30-resources/agents/skills/deployment-proof/SKILL|deployment-proof]] | Demuestra que el runtime ejecuta la release nueva; exit 0 no es prueba. | skill · transversal |
