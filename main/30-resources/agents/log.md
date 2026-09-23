@@ -1,5 +1,12 @@
 # Agents resource log
 
+## [2026-09-23] refine | technical-project-manager reusable harvest
+
+- Se reforzó la skill para que todo Shot 1/2/3 sea un mandato one-shot autocontenido, ejecutable por contexto fresco y cerrado con evidencia propia.
+- Se añadió harvest técnico obligatorio de tests/probes/fixtures/harnesses, clasificándolos como regresión permanente, candidato E2E, candidato toolkit/harness o reproducer descartable.
+- Se añadió harvest de comportamiento repetible vía agent-run + feedback dirigido; la promoción a skill/runbook/pattern queda diferida a Hygiene/Kaizen, evitando crear reglas compartidas desde una sola sesión.
+- La regla de frontera queda explícita: comportamiento del producto se preserva en tests/harnesses; comportamiento del agente se preserva en skills/runbooks/patterns.
+
 ## [2026-09-23] create | technical-project-manager
 
 - Se creó `technical-project-manager` como skill transversal para convertir una iniciativa acotada en un horizonte corto de hitos diarios observables, atómicos y verificables.
