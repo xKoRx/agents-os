@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: completed
 priority: P0
 area: "[[Personal]]"
 parent: "[[Echo Forge]]"
 sprint:
 start: 2026-09-21
 due:
-progress: 75
+progress: 100
 repo: xKoRx/symphony
 jira:
 prs:
@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/personal
 created: "2026-09-21"
-updated: "2026-09-22"
+updated: "2026-09-23"
 ---
 
 # Echo Forge — Import Task V1
@@ -30,6 +30,7 @@ updated: "2026-09-22"
 
 ## 📊 Estado actual
 
+- **PROJECT CLOSED / OWNER ACCEPTED (2026-09-23).** Watcher Import Intake V1 quedó físicamente certificado, integrado en `master` y pasa a operación real. Ajustes futuros por estrategias auténticas pertenecen a [[Echo Forge — Operación Real V2]]; este planner no se reabre.
 - **G7 FÍSICO PASS + INTEGRADO EN MASTER + LIMPIEZA COMPLETA (2026-09-23): `origin/master` @ `9a69243` (FF puro `745bc8b..9a69243`, 35 commits; feature branch remota/local y worktree ELIMINADOS; `ls-remote` = sólo `refs/heads/master`). RESULT = G7 PASS.** CONFIRMED del owner sobre RT-1 v5 @ `a2b4bbd` (Kronos, ventana 2h, universo 8 USATECHIDXUSD_darwinex H1 L+S ratificado; `L` = etiqueta de bucket). Ejecución en VM 111 Kronos con SQX candidate-local (copia rsync del install de `kor` sin zip ni databanks ajenos; aislamiento reforzado: cero writes en `/home/kor/sqx`) bajo operador `echo-dev`. **7 defectos materiales de integración detectados EN VENTANA, todos fail-closed, corregidos con red→green y re-pins (`a6eab94` deadline ctx del intake · `ba8eb53` fallback request_id del dispatch · `d0f9748` verify write-once gateado a stream consumido · `172d514` task path del bootstrap = slot reservado `root/0` · `0a15e0b` identidad del carrier (fuente vs publicado) en persist · `b697815` alias `USATECHIDXUSD_darwinex→usatechidxusd` en CanonicalSymbol · `ca83947` restauración de Keys en la salida del bootstrap).** Campaña certificadora final = `g7r7`: FlowRun `7e2f4c05` COMPLETED, workflow `sqx-main-v1-5f6a0a08` COMPLETED, StageExecution `import@sqx-import.v1` COMPLETED; 8 evaluaciones `import@sqx-import.v1` `IMPORTED_HISTORICAL_RESULT` con provenance `minio_package` (keys+SHA256 exactos); 1 classification snapshot (indicator_signature.v1) → 3 ranking snapshots (imported_ranking per-type) → 1 selection snapshot con 6 finalists, refs exactas; config persistida sin ningún TaskSpec type=import. Read-back MinIO 8/8 objetos byte-exact contra el manifest congelado. Drill de idempotencia: resume de crash pre-publish converge mismo FlowRun + cohort 8; sondas `IMPORT_FROZEN_INPUT_EXTRA`/`MISSING`/`MUTATED` fallan cerrado sin tocar el cohort. Negativos de cierre: flota mismo PID 1400507/binario; `passed` 200 files/0 nuevos/bytes exactos; ETCD production 110 claves sin cambios de mod_revision; 0 pollers en `sqx-main-queue`; Echo 0 POST (fail-closed). Teardown: procesos detenidos, prefixes ETCD candidatos eliminados (34+26), proyecto efímero + databank `input` eliminados; watch_dir + MinIO + PG/Mongo conservados como evidencia. Binarios finales @ `ca83947` (`vcs.modified=false`): sqx-watcher `80bd7ec4…`, sqx-worker `2aa58ec0…`, copias durables `~/aranea/work/import-cert-g7-v5-20260922/`. Puerta abierta: campaña B (SELECTED COHORT → SQX TICK RETEST → MT5) y adopción formal de `usatechidxusd` en el catálogo Echo (owner).
 
 - **CIERRE OPERACIONAL OWNER APLICADO (2026-09-22, pre-CONFIRMED): RT-1 v5 definitiva @ `a2b4bbd` (FF `4f00f65..a2b4bbd`, docs-only; pins @ `dd3eedb` conservados): estado corregido a `G7 BLOCKED / NOT CERTIFIED / NOT MERGE_READY` sin CONFIRMED (el "CERTIFIED/MERGE_READY" del v5 original era un defecto); registro de aprobaciones técnicas (MR-1/MR-2 ronda 3) separado explícitamente de la ratificación owner; negativo de databanks precisado (prohibido Retester/flota; única excepción = databank `input` interno del proyecto efímero `EchoForgeImportExporter` con aislamiento y teardown documentados); independencia worker/watcher precisada (sólo ArtifactRefs de MinIO, sin `watch_dir/import`, host compartido posible — independencia contractual, no física).**
@@ -63,13 +64,15 @@ updated: "2026-09-22"
 > - [-] RT-1 **v4**: superseded por D10 (era receta del paquete `00_inputs/import` para la task import abandonada) #owner/me #canceled
 > - [x] Mandato fixes finales (2026-09-22): G1 wiring `import_intake` en `GetDefaultPipeline` + test de integración del pipeline completo; G2 freeze exacto con manifest técnico bajo `config_folder` (5 escenarios fail-closed/convergencia); G3 naming canónico S5 con `SanitizePublishedFilename` compartida; no-regresión ⊆ baseline; ronda 3 independiente APROBADA sin BLOCKER @ `4f00f65` #owner/agent #type/dev
 > - [x] RT-1 **v5**: EMITIDA (`RT1-REQUEST-G7-V5.md`) sobre el contrato Watcher Import Intake; binarios @ `dd3eedb` congelados (watcher `d9a0602d…`, worker `e44c321e…`); preflight host/ETCD/cola/licencia de la v3 como insumo #owner/agent #type/dev
-> - [ ] **CONFIRMED del owner para RT-1 v5** (host + ventana + universo calificado): única acción pendiente para ejecutar G7 físico #owner/me #blocked
-> - [ ] G7: BLOCKED a CONFIRMED RT-1 v5. Demostraciones: watcher única frontera filesystem, worker sin acceso al filesystem del watcher, folder configurable, sin `TaskSpec type=import`, bootstrap interno antes de Classification, processed como unidad, drill idempotencia (kill/restart + added/removed/mutated fail-closed) #blocked
-> - [ ] G8 cierre: merge owner + release según gates (push hecho 2026-09-21) #owner/me #type/dev
+> - [x] **CONFIRMED del owner para RT-1 v5** — obtenido; G7 físico ejecutado y PASS #owner/me
+> - [x] G7 físico PASS: Watcher Import → MinIO → Temporal → bootstrap SQX → Classification → Ranking → Selection con estrategias auténticas #owner/me
+> - [x] G8 cierre: integrado a master; feature branch/worktree eliminados; remoto consolidado #owner/me #type/dev
 > - [x] D10 (2026-09-22, mandato one-shot): watcher import intake implementado end-to-end; regresiones == baseline; push FF `492250b..1a2fe34` #owner/agent #type/dev
-> - [ ] Campaña B: congelar parámetros OOS/MT5 y ejecutar tras G7 #owner/me #type/dev
+> - [-] Campaña B como continuación de este planner — absorbida por [[Echo Forge — Operación Real V2]] #owner/me #canceled
 
 ## 📆 Bitácora
+
+- **2026-09-23 — CIERRE OWNER.** Proyecto aceptado como completed tras G7 físico PASS, integración a master y limpieza de branch/worktree. Continuidad operacional: [[Echo Forge — Operación Real V2]].
 
 - **2026-09-22 (mandato fixes finales — G1/G2/G3 + cert + RT-1 v5; sesión ZCode/GLM)** — Baseline revalidado (`master @ 745bc8b` local==origin; branch `1a2fe34` local==origin; worktree limpio; merge-base == master ⇒ FF posible). **G1:** `GetDefaultPipeline` añadía `import_intake` faltante (el binario real despachaba `BatchKeys{}`); test nuevo `TestGetDefaultPipeline_Order` (secuencia exacta) + `TestGetDefaultPipeline_ExecutesImportIntakeAndDispatchesImportedBatch` (pipeline REAL `RegisterSteps`+`GetDefaultPipeline` con fakes uploader/registry/control/storage: con import ⇒ `Input{Keys=2, StrategyArtifacts=2, Origin=watcher_import}` y processed como unidad; sin import ⇒ Input vacío, 0 objetos). **G2:** defecto confirmado — `verifyFrozenMembership` sólo chequeaba presencia ⇒ admitía crecimiento tras crash parcial; además `SourceDigest` de membresía NO es el SHA del artefacto y la fila estrategia no persiste digest ⇒ sin registro pre-publicación la mutación local pre-upload era indetectable. Fix: manifest técnico `watcher-import-freeze-manifest.v1` sellado write-once ANTES del primer upload bajo `config_folder|root` con `request_id` en el filename (nuevo puerto estrecho `WatcherFreezeManifestStore` implementado por el adapter MinIO reusando `putObjectIfAbsentAndReconcile`; SPEC §14.3 corregida + D11 justifican la insuficiencia); retry compara exactamente cantidad/filenames/SHA256/output keys (`EXTRA`/`MISSING`/`MUTATED`/divergencia ⇒ `CONTRACT_CONFLICT`); tests de los 5 escenarios del mandato con fail-injection (crash tras 5/10 → retry converge 10/10, mismo FlowRun, sin duplicados). **G3:** `ExactOutputName` pasaba el basename fuente crudo; fix: `PublishedName = SanitizePublishedFilename(CanonicalStrategyFilename(basename))` con la autoridad movida verbatim a `domain` (adapter MinIO delega; harness diferencial del revisor: 25 inputs idénticos) — la key pre-congelada del manifest coincide byte a byte con la publicada (`Strategy 4.53.669.sqx` → `Strategy_4.53.669.sqx`); canonical key ahora usa `canonical_strategy_id` (identidad, no nombre fuente); colisión canónica con bytes distintos ⇒ fail-closed; test con atributos de spec ≠ filename fuente demuestra nombre/key publicados y provenance del basename en el manifest. **No-regresión (G4):** comparación por pares (paquete, test) branch vs baseline en worktree detached `745bc8b` con `../sdk` sincronizado: fail-set del branch (22) ⊆ baseline (102); hallazgo ambiental diagnosticado y documentado (cuota tmpfs de /tmp + fetch de PG embebido 429 UA-dependiente ⇒ `registry-postgres` rojo espurio; con cache sembrado/`TEST_POSTGRES_DSN`: verde en ambos lados; 1 flake preexistente `TestDurableSelect_GroupSelectedCarrier`, 30 reps fallan en ambos lados, paquete no tocado por el delta). **Review independiente ronda 3** (verificador adversarial contexto fresco, 8 claims, tests propios): APROBADO SIN BLOCKER; hallazgos resueltos en ronda (F2: RT-1 v5 re-pinneada; F3: fórmula docs refrescada; NOTE-1/3/4: aserción de carriers, fake sanitiza, condición muerta eliminada). **RT-1 v5 emitida** (`RT1-REQUEST-G7-V5.md`): host Kronos propuesto (preflight v3 como insumo, re-verificación en ventana), sin databank/sin `cp -n`/sin `00_inputs/import`, watch_dir candidate-local con `import/` de 8 auténticas, cola `sqx-import-cert-v1`@`sqx-dev`, lista cerrada de recursos, drill idempotencia ampliado, aborto/teardown; binarios @ `dd3eedb` (`vcs.modified=false`): watcher `d9a0602d…`, worker `e44c321e…`, copias en `~/aranea/work/import-cert-g7-v5-20260922/`. **CONFIRMED del owner NO existe en ningún canal ⇒ G7 NO EJECUTADO**; cero writes en ETCD/MinIO/PG/Mongo/Temporal DEV; flota intocada. Limpieza: worktree baseline propio eliminado (fixtures restaurados antes), PGs embebidos huérfanos de las corridas terminados, /tmp limpio. Push FF `1a2fe34..4f00f65` (5 commits); master intacto. Siguiente acción exacta: CONFIRMED del owner sobre RT-1 v5.
 
