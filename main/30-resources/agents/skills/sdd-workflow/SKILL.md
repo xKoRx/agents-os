@@ -2,18 +2,18 @@
 type: skill
 name: sdd-workflow
 description: Clasifica y ejecuta trabajo de software mediante Spec-Driven Development, manteniendo separadas specification, plan, tasks, implementation y verification. Usar al crear o cambiar una feature no trivial, hacer backfill brownfield, producir/revisar artefactos SDD, retomar una fase, generar un handoff o corregir gaps de trazabilidad. No usar para consultas aisladas ni para imponer SDD completo a cambios triviales que el repo autorice por fast path.
-scope: transversal
+scope: global
 schema_version: 1
 load_policy: manual
 indexable: true
 index_priority: high
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-23
 tags:
   - kind/skill
   - action/sdd
   - tech/sdd
-  - scope/transversal
+  - scope/global
 ---
 
 # SDD Workflow
@@ -32,6 +32,7 @@ metodología vive en `30-resources/methodologies/sdd/`; esta skill sólo orquest
    de la feature. Sus reglas locales mandan sobre defaults metodológicos.
 4. Código/tests sólo cuando la fase permita inspección; escribir únicamente
    dentro de sus permisos.
+5. `30-resources/agents/skills/sdd-developer/SKILL.md` cuando SPEC/PLAN/TASKS ya estén ready y el owner pida implementación autónoma + verificación independiente hasta commit certificado.
 
 No cargar todo el dominio ni copiar sus páginas dentro del repo.
 
@@ -71,6 +72,8 @@ local.
 
 Usar los nombres de archivo del repo. La responsabilidad semántica importa más
 que `SPEC.md` vs `requirements.md` o `PLAN.md` vs `design.md`.
+
+Cuando SPEC/PLAN/TASKS estén ready y el pedido sea entregar la feature/slice completa, hacer handoff a `sdd-developer`: esa skill posee el loop IMPLEMENT → VERIFY adversarial → CORRECT/final gate, el harvest de tests y el commit certificado. `sdd-workflow` sigue siendo dueño del lifecycle y del retorno al artefacto upstream cuando aparece un gap.
 
 ### 3. Aplicar gates y retornar al dueño del gap
 
