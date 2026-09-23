@@ -15,7 +15,9 @@ updated: "2026-09-23"
 ---
 # D — Revised Roadmap — The Lab V3 / Echo-first
 
-**PLAN VIGENTE (owner 2026-09-23) · PLANNED, NO IMPLEMENTADO.**
+**PLAN VIGENTE (owner 2026-09-23).**
+
+> **Estado D1 — Echo Foundation = PASS (2026-09-23, HEAD `64b616ff` en `feature/d1-echo-foundation-final`).** Gate final 18 criterios + G19/G20 en [[K — Final Correction and Gate D1 (Shot 3)]]; verde salvo 2 regresiones preexistentes certificadas ajenas a D1. D2 sigue siendo carril de integración posterior: **no** se marca D2 PASS ni se afirma integración Forge.
 
 The Lab es un subproducto analítico de Echo. La autoridad durable de estrategia e historia pertenece a Echo; Lab consume operaciones canónicas y posee únicamente curvas, puntos, métricas, dashboard/screener y derivados posteriores.
 

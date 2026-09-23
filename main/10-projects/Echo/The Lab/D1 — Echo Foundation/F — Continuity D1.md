@@ -49,3 +49,7 @@ Each agent MUST:
 ## Manager rule
 
 The manager/TL (this planning session) evaluates each returned report against [[D — Acceptance Gate D1]] and writes the next one-shot mandate. Agent claims are evidence inputs, not automatic PASS.
+
+## Outcome (2026-09-23)
+
+Three-shot model completado. Shot 3 cerró F-S2-01 y F-S2-02 con regresiones permanentes (rojo contra `e35d4347`, verde con fix) y re-ejecutó el gate completo: **D1_FINAL_PASS** @ `64b616ff` (`feature/d1-echo-foundation-final`, sin push). Evidencia canónica: [[K — Final Correction and Gate D1 (Shot 3)]]. D2 (integración/certificación con productor) es el siguiente hito del roadmap; no hereda PASS.
