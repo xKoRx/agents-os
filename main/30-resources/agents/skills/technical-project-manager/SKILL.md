@@ -9,6 +9,7 @@ updated: "2026-09-23"
 entities: []
 related:
   - "[[agents-os-implementation-planning]]"
+  - "[[compounding-engineering-vision]]"
   - "[[sdd-workflow]]"
   - "[[sdd-developer]]"
   - "[[e2e-gated-validation]]"
