@@ -5,7 +5,7 @@ owner: me
 root: true
 cssclasses:
   - wide
-status: closed
+status: completed
 priority: P1
 area: "[[Echo]]"
 parent:
