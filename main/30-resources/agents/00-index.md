@@ -7,7 +7,7 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-09-17"
+updated: "2026-09-23"
 reviewed: "2026-09-17"
 aliases:
   - "00-index index"
@@ -24,8 +24,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas curadas:** 25
-- **Última ingesta:** 2026-09-17
+- **Páginas curadas:** 26
+- **Última ingesta:** 2026-09-23
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -44,6 +44,7 @@ tags:
 | [[30-resources/agents/skills/signals-tech-spec-authoring/SKILL|signals-tech-spec-authoring]] | Specs técnicas de Signals/Ads y design docs backend RIO (DD-N, marcadores de cambio). | skill · Meli-only |
 | [[30-resources/agents/skills/pr-description/SKILL|pr-description]] | Descripciones de PR con evidencia real, materializadas como recurso del proyecto. | skill · transversal |
 | [[30-resources/agents/skills/human-first-technical-writing/SKILL|human-first-technical-writing]] | Narrativa técnica causal que reduce la carga cognitiva del lector. | skill · transversal |
+| [[30-resources/agents/skills/technical-project-manager/SKILL|technical-project-manager]] | Orquesta proyectos cortos como hitos diarios atómicos y verificables con tres shots y gate final. | skill · transversal |
 | [[30-resources/agents/skills/fury-lib-consumer-deploy/SKILL|fury-lib-consumer-deploy]] | Publica versiones test de librerías Java con Fury e importa las versiones en consumidores. | skill · Meli-only |
 | [[30-resources/agents/skills/rio-sunset-update/SKILL|rio-sunset-update]] | Remedia sunsets RIO próximos mediante gates fail-closed, un único PR por aplicación y deploy confirmado sólo a test. | skill · Meli-only · manual |
 | [[30-resources/agents/skills/sync-local-branch/SKILL|sync-local-branch]] | Sincroniza ramas Git exclusivamente locales con merge conservador. | skill · transversal |
