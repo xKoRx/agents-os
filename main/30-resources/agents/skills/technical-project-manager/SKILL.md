@@ -46,6 +46,7 @@ Read only:
 3. `80-agents/skills/agents-os-implementation-planning/SKILL.md` when the initiative or today's slice still needs implementation architecture.
 4. `30-resources/agents/skills/sdd-workflow/SKILL.md` when the repo uses SDD or specification/plan/tasks must remain separated.
 5. Release/deployment/validation skills only when today's gate includes promotion beyond source code.
+6. `80-agents/skills/agents-os-agent-run-register/SKILL.md` and `80-agents/skills/agents-os-session-feedback/SKILL.md` when dispatching or closing one-shot agents.
 
 ## Inputs
 
@@ -88,7 +89,25 @@ Before dispatching implementation:
 4. Persist a daily execution package appropriate to the repo: SPEC/design, implementation plan, test plan, acceptance gate, impact/continuity. Use existing SDD/project artifacts instead of duplicating them.
 5. Do not start Shot 1 while a business/architecture decision required by today's implementation remains open.
 
-### 3. Execute the three-shot day
+### 3. Build one-shot mandates
+
+Every dispatched shot MUST be a self-contained one-shot mandate. It must carry enough authority and boundaries for a fresh agent to execute without relying on conversational memory.
+
+Each mandate MUST include:
+
+- exact goal and final status vocabulary;
+- authorities and certified baseline;
+- frozen decisions and explicit non-goals;
+- bounded discovery/allowed write scope;
+- technical freedom and blocker policy;
+- mandatory tests/evidence;
+- exact Agents-OS persistence and closeout;
+- structured final response;
+- reusable-asset harvest and repeatable-behavior feedback requirements.
+
+Do not use a chain of conversational micro-prompts to complete one shot. Routine technical obstacles belong to the agent; only a genuine frozen-decision contradiction returns to the owner.
+
+### 4. Execute the three-shot day
 
 #### Shot 1 — Implementation
 
@@ -110,6 +129,8 @@ Use a fresh context/agent. It MUST:
 
 Manager/TL reviews findings and freezes the accepted correction scope.
 
+The verifier MUST also classify any new independent test/probe it created as `PERMANENT_REGRESSION`, `E2E_CANDIDATE`, `HARNESS_TOOLKIT_CANDIDATE`, or `DISPOSABLE_REPRODUCER`, with a short reason. Classification is evidence, not automatic promotion.
+
 #### Shot 3 — Correction + final gate
 
 Use a fresh implementation context to:
@@ -118,11 +139,45 @@ Use a fresh implementation context to:
 - convert valuable reproducers into permanent regression tests;
 - rerun the complete affected gate;
 - review the final diff against the Shot 1 candidate;
-- emit the final day verdict and exact certified commit.
+- emit the final day verdict and exact certified commit;
+- promote accepted verifier tests into permanent regression/E2E/toolkit assets when they encode durable behavior and have an existing canonical home.
 
 If Shot 2 finds no defects, Shot 3 becomes reconciliation + full final gate. Do not plan a fourth shot; normal defects discovered in Shot 3 are corrected within that shot. Escalate only a genuine contradiction requiring an owner decision.
 
-### 4. Close or promote the day
+### 5. Harvest reusable technical assets
+
+Before final day acceptance:
+
+1. Inventory non-production artifacts created by all shots: tests, probes, fixtures, harnesses, scripts, builders, seeders and diagnostic helpers.
+2. Classify each:
+   - `PERMANENT_REGRESSION`: guards one product invariant close to the owning package.
+   - `E2E_CANDIDATE`: exercises a stable cross-component behavior that future migrations/releases must preserve.
+   - `HARNESS_TOOLKIT_CANDIDATE`: reusable infrastructure for building/running many tests; belongs in an existing toolkit/test-support owner when one exists.
+   - `DISPOSABLE_REPRODUCER`: useful only to prove the closed defect; keep only if audit value justifies it.
+3. Promote only when ownership is clear and the asset is deterministic enough for CI/local repeatability. Do not move a test into an E2E package merely because it is large or impressive.
+4. Prefer preserving independent-verifier tests that caught real defects; they become regression assets during Shot 3 unless there is a concrete reason not to.
+5. Record promoted assets and rejected candidates in the final evidence so migrations do not rediscover the same verification strategy.
+
+### 6. Harvest repeatable agent behavior
+
+At the end of every shot:
+
+1. Register the material execution with `agents-os-agent-run-register` when applicable.
+2. Ask the agent to report `REUSABLE_BEHAVIOR_CANDIDATES`: repeated discovery steps, verification strategies, failure guards, prompt patterns, missing tooling or useful orchestration patterns.
+3. `NONE` is valid and preferred over speculative advice.
+4. If a candidate is concrete enough to help a future session, persist it through session feedback with exact evidence and a proposed artifact class: `skill`, `runbook`, `pattern`, `known_error`, `tooling`, or `test_harness`.
+5. Do NOT create or edit the reusable skill/runbook in the same shot unless that was the shot's explicit scope or the missing behavior is a severe blocker.
+6. Leave promotion to `agents-os-hygiene-cycle` / Kaizen, which requires repeated evidence or a strong forward-test before changing shared behavior.
+
+This creates a deliberate learning loop:
+
+```text
+one-shot work → agent_run + targeted feedback → hygiene/Kaizen
+             → promote repeated evidence → skill/runbook/pattern/tooling
+             → future one-shot loads reusable behavior instead of rediscovering
+```
+
+### 7. Close or promote the day
 
 1. Final status is one of:
    - `DAY_PASS`: capability certified at an exact commit.
@@ -137,7 +192,7 @@ If Shot 2 finds no defects, Shot 3 becomes reconciliation + full final gate. Do 
    - `e2e-gated-validation` for the production/physical product gate.
 5. Update project/roadmap with outcome, certified baseline, evidence, unresolved external risks and the next day's exact milestone.
 
-### 5. Manage the horizon continuously
+### 8. Manage the horizon continuously
 
 At each new day:
 
@@ -166,6 +221,8 @@ Today:
   Final status: DAY_PASS|DAY_FAIL|DAY_BLOCKED_DECISION|DAY_BLOCKED_EXTERNAL
   Certified commit:
   Promotion state:
+  Reusable technical assets:
+  Reusable behavior candidates:
 
 Next exact milestone:
 Residual external risks:
@@ -184,3 +241,7 @@ Residual external risks:
 - Do not carry an unaccepted implementation forward as the next baseline.
 - `DAY_PASS` does not mean production. Production claims require the applicable release/deployment/E2E evidence and explicit authorization.
 - Do not manufacture PASS with synthetic evidence when the gate explicitly requires authentic/runtime evidence.
+- Every manager-dispatched shot is one-shot: fresh-context executable, authority-complete and closed by its own evidence/report.
+- Do not let high-value verifier tests die in temporary branches; classify them explicitly and promote durable invariants during final correction.
+- Do not turn every useful observation into a skill. Capture candidates first; shared behavior is promoted only with repeated evidence, a severe blocker, or a convincing forward-test.
+- Tests and skills solve different reuse problems: product behavior belongs in executable tests/harnesses; agent behavior belongs in skills/runbooks/patterns. Do not substitute one for the other.
