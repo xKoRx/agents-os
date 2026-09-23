@@ -10,7 +10,7 @@ parent:
 sprint:
 start: 2026-09-14
 due:
-progress: 80
+progress: 90
 repo: https://github.com/melisource/fury_rio-playmaker
 jira:
 prs:
@@ -26,7 +26,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-09-14"
-updated: "2026-09-22"
+updated: "2026-09-23"
 ---
 
 # SIG-616 — Autorización de operaciones por equipo
@@ -53,10 +53,11 @@ updated: "2026-09-22"
 ## 📊 Estado actual
 
 - **Slice 2 publicado:** `feature/operation-authorization-by-team-f2@2e1d1c8955e`, con base `develop@625f491d218e`, está actualizado en [PR #1172](https://github.com/melisource/fury_rio-playmaker/pull/1172). Tiger publica username, `ActionService` no conserva overloads ni revalida headers, y `catalog-signal + start|stop` exige `DEV_AND_UP` mediante un provider config-backed. No se agregaron reglas para imports, precreation o pares desconocidos. Los comentarios de Ale y Feli fueron respondidos y resueltos; el smoke Tiger/ACME no productivo pasó y su captura quedó adjunta al PR.
-- **Slice 3 publicado:** `feature/operation-authorization-by-team-f3@119207a71`, con base F2, está publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178). Protege las siete rutas de mutación/deploy de componentes con `DEV_AND_UP`; `/data-products/v2` conserva explícitamente el comportamiento pre-F3. Gate de datos productivos y smoke Tiger/ACME no productivo siguen pendientes.
-- **Variantes de test Slice 3:** `feature/sig-616-auth-p3-committer-test3-v17@844e2da344bc` y `feature/sig-616-auth-p3-viewer-test3-v18@19af793b591b` están publicadas; Fury creó exitosamente `0.1.3-p3-committer-allowed` y `0.1.4-p3-viewer-denied` (ambas `FINISHED`). La primera mockea `committer` para permitir `DEV_AND_UP`; la segunda mockea `viewer` para denegar antes de side effects. Ninguna se desplegó.
-- **Slice 4 publicado:** `feature/operation-authorization-by-team-f4@ccce34382`, con base F3, está publicado en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181). Protege relaciones directas y mutaciones de pipeline, incluido deploy, con ownership persistido y `DEV_AND_UP`. Gate de datos y smoke externo siguen pendientes por falta de acceso.
-- **Slice 5 publicado:** `feature/operation-authorization-by-team-f5@6363d7e0e`, con base F4, está listo para review en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182). Agrega a la configuración los pares mutantes existentes de Flink y ClickHouse; no clasifica reads, no aplica default-deny y no cambia imports ni precreation.
+- **Slice 3 mergeado:** [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178) fue mergeado a `develop` como `19d70a6cf`; su rama remota fue eliminada. Todos sus threads quedaron resueltos. El cascade señalado por Ale fue trasladado explícitamente a Slice 4; no quedan comentarios de F3 pendientes para Slice 5.
+- **Variantes de test Slice 3:** `feature/sig-616-auth-p3-committer-test3-v17@70604efa8` y `feature/sig-616-auth-p3-viewer-test3-v18@c1f6829a0` quedaron publicadas. Fury terminó [0.1.11-p3-committer-matrix](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.11-p3-committer-matrix) y [0.1.12-p3-viewer-denied](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.12-p3-viewer-denied). Ninguna se desplegó.
+- **Slice 4 en review:** `feature/operation-authorization-by-team-f4@e75ca90d9`, con base `develop` y merge-base funcional `19d70a6cf`, está sin conflictos en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181). El comentario nuevo de compatibilidad era válido: el guard cascade anulaba el bypass histórico de equipos plataforma. La corrección publicada conserva ese bypass y deja el guard configurado para el resto. Pasaron 3.995 tests locales, contratos y coverage diferencial 98,95%; los checks visibles de CI, coverage, dependencies y workflow terminaron `SUCCESS`, el review está `APPROVED` y queda smoke manual. GitHub aún informa `mergeStateStatus=BLOCKED` pese a `MERGEABLE`.
+- **Variantes de test Slice 4:** `feature/sig-616-auth-p4-committer-test3-v19@632ce2bf9` y `feature/sig-616-auth-p4-viewer-test3-v20@a4ddafb86` incorporan `e75ca90d9`. Fury terminó [0.1.15-p4-committer-allowed](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.15-p4-committer-allowed) y [0.1.16-p4-viewer-denied](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.16-p4-viewer-denied) en `FINISHED`. El mock `ml-ads-signals` se excluyó del bypass de plataforma sólo en esas ramas; `0.1.13`/`0.1.14` quedaron superadas. No hubo deploy.
+- **Slice 5 sincronizado y publicado:** `feature/operation-authorization-by-team-f5@a89fcffcb` integró F4 `e75ca90d9` y corrigió la matriz Flink en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182), con base vigente y `MERGEABLE`. Los permisos `start/stop` se configuran por familias abstractas `flink-sql` y `flink-job` en YAML; sus miembros concretos son `flink-sql`/`gcp-flink-sql` y `aws-flink-job`/`gcp-flink-job`. Quitar la regla familiar desactiva el guard adicional para ambos proveedores. Conserva F2–F4 y agrega sólo validación a Actions existentes, sin cambiar casos de uso, reads, imports ni precreation. Pasaron 25 selectores, ambos checks L0/LOCAL_STACK con cleanup, contratos y `./gradlew check` (4.086 tests, 0 fallas, 2 skips preexistentes). La [CI #5490](https://rp-ci-java.furycloud.io/job/rio-playmaker/5490/) falló antes del checkout por certificado no confiable al descargar el repositorio de pipelines; cobertura y dependencias se abortaron. Smoke Tiger/ACME no productivo pendiente. La descripción actualizada está en [[Descripción PR — rio-playmaker — Slice 5]].
 - **Evidencia de Slice 1:** commit `fbf05159e` en `feature/operation-authorization-by-team-f1`, sincronizado con `origin/develop@073f6a190` mediante el merge `9310ab7b5`; los cuatro tests afectados y `./gradlew check` pasaron, con `2` skips preexistentes. CI, cobertura, dependencias, análisis estático y workflow remoto terminaron correctamente. El feedback útil del review quedó aplicado sin mezclar la precondición legacy `systemId` con el autorizador transversal.
 - **Evidencia no productiva:** los smokes ACME/Data Product de Slices 1 y 2 se ejecutaron exitosamente; la evidencia de Slice 2 está adjunta en [PR #1172](https://github.com/melisource/fury_rio-playmaker/pull/1172).
 - **Persistencia acordada:** esta nota conserva la continuidad interna. En Spellbook, [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) es la SPEC funcional padre y [SIG-622](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) / [SIG-623](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) son sus SPECs técnicas hijas.
@@ -80,9 +81,9 @@ updated: "2026-09-22"
 |---|---|---|---|---|---|
 | `rio-playmaker` | `feature/operation-authorization-by-team-f1` | `origin/develop@073f6a190` sincronizada por merge | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621), iniciativa derivada de [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | [SIG-622 — Slice 1](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) | Mergeado en `develop`; smoke no productivo ejecutado exitosamente |
 | `rio-playmaker` | `feature/operation-authorization-by-team-f2@2e1d1c8955e` | `develop@625f491d218e` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | Implementado y publicado en [PR #1172](https://github.com/melisource/fury_rio-playmaker/pull/1172); review comments resueltos y smoke no productivo aprobado |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f3@119207a71` | `feature/operation-authorization-by-team-f2` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] | Implementado y publicado en [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178); gate de datos y smoke Tiger/ACME pendientes |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f4@ccce34382` | `feature/operation-authorization-by-team-f3` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | Publicado y listo para review en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181); gates externos pendientes |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f5@6363d7e0e` | `feature/operation-authorization-by-team-f4` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 5 — Actions restantes]] | Publicado y listo para review en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182); matriz config-backed y documentación alineadas; smoke pendiente |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f3` | `develop` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] | Mergeado por [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178) como `19d70a6cf`; todos los threads resueltos |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f4@e75ca90d9` | `develop` (F3 `19d70a6cf`; tip observado `9a559dfb3`) | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181) sin conflictos; checks visibles y review aprobados; deploy/smoke manual pendientes; merge state `BLOCKED` |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f5@a89fcffcb` | `feature/operation-authorization-by-team-f4@e75ca90d9` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 5 — Actions restantes]] | Publicado en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182); familias Flink en YAML y pruebas locales completas aprobadas; CI bloqueada por certificado y smoke pendiente |
 
 ## 🧠 Diseño técnico consolidado
 
@@ -159,7 +160,7 @@ Playmaker es el enforcement point. Los handlers y Control Planes no consultarán
 | Slice 1 | Extraer autorizador desde PR 1126 y migrar delete/inactivate | Ninguno: refactor compatible de la política existente |
 | Slice 2 | Corregir principal Tiger e integrar `catalog-signal + start/stop` | Sólo Signals agrega una restricción nueva |
 | Slice 3 | Mutaciones y deployments de componentes | `DEV_AND_UP` en todas las rutas enumeradas; tests y rollout en el mismo PR |
-| Slice 4 | Relaciones y pipelines, incluido pipeline deploy | `DEV_AND_UP`, same-DP y tests/rollout en el mismo PR |
+| Slice 4 | Relaciones y pipelines, pipeline deploy y cascade de Data Product | Guards exactos config-backed; `DEV_AND_UP` salvo cascade `DEPLOYER_AND_UP`; sin same-DP ni ownership inmutable nuevos |
 | Slice 5 | Actions mutantes restantes de Flink y ClickHouse | Agrega pares y niveles a la configuración sin modificar otras Actions |
 
 ### Niveles ACME
@@ -379,11 +380,27 @@ Objetivo: integrar `DEV_AND_UP` en las cinco mutaciones de `ComponentController`
 
 La implementación, tests, gate de datos, smoke no productivo y evidencia de coverage viven en [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] y se entregan en un único PR.
 
+##### Casos manuales para probar Slice 3 en test3
+
+Precondición común: desplegar sólo en `jarita-test3`, usar un Data Product de prueba con `teamName=ml-ads-signals` y `projectCode=authorization-smoke-test`, identidad Tiger válida y recursos propios identificables para cleanup. No ejecutar estas variantes en production, staging ni otro scope.
+
+| Caso | Versión | Acción | Resultado esperado |
+|---|---|---|---|
+| Allow de mutaciones | `0.1.7-p3-committer-allowed` | Crear, actualizar, eliminar, modificar design y ejecutar el patch compatible de nombre/código/template sobre un componente del Data Product de prueba | La operación conserva su respuesta y efectos previos; ACME permite por `committer` (`DEV_AND_UP`) |
+| Allow de deployment | `0.1.7-p3-committer-allowed` | Deploy y undeploy por la ruta component-centric y por cada ruta deprecated/compatible cubierta por F3 | La operación se ejecuta una sola vez y conserva el contrato previo |
+| Deny sin efectos | `0.1.8-p3-viewer-denied` | Repetir los nueve entrypoints cubiertos por los siete casos de uso | `403`; no hay save/update/delete, attach de definition, dispatch, KVS, BigQueue ni llamadas externas posteriores al guard |
+| Jerarquía inválida | Ambas | Usar `componentId` persistido bajo otro `dataProductId` en delete y patch compatible | Rechazo antes de ACME y antes de cualquier efecto; nunca `204` silencioso |
+| Identidad inválida | Ambas | Omitir Tiger o usar token inválido sobre un entrypoint autenticado | `401`; no se consulta ACME ni se ejecutan efectos |
+| Ownership incompleto | Ambas | Probar un recurso legacy sin `teamName` o `projectCode` | Se preserva exactamente el comportamiento pre-F3; sólo se omite el guard nuevo |
+| Fuera de alcance | Ambas | `POST /data-products/v2`, cascade de `DELETE /data-products/{id}`, relaciones/pipelines y Actions no listadas | No atribuir un cambio a F3; el cascade requiere seguimiento explícito y no se valida con estas versiones |
+
+Evidencia mínima: versión y commit desplegados, request sanitizado, status/response, comprobación de side effects o de su ausencia y cleanup de todos los recursos creados.
+
 #### Slice 4 — Relaciones y pipelines
 
-Objetivo: proteger create/update/delete de relaciones con same-DP y owner persistido, y migrar PUT/design/relations/component-create/pipeline-deploy al autorizador común con `DEV_AND_UP`.
+Objetivo: proteger create/update/delete de relaciones con owners persistidos, migrar PUT/design/relations/component-create/pipeline-deploy al autorizador común con `DEV_AND_UP` y cubrir el cascade de Data Product con `DEPLOYER_AND_UP`, todo por configuración exacta y sin regla same-DP nueva.
 
-La implementación, tests cross-DP, verificación de cero side effects, gate de datos, smoke y coverage viven en [[SPEC técnica — Slice 4 — Relaciones y pipelines]] y se entregan en un único PR.
+La implementación, compatibilidad cross-DP heredada, verificación de cero side effects, smoke y coverage viven en [[SPEC técnica — Slice 4 — Relaciones y pipelines]] y se entregan en un único PR.
 
 #### Slice 5 — Actions restantes
 
@@ -596,6 +613,11 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-16** — Slice 5 se publicó como `feature/operation-authorization-by-team-f5@d721b908e` con base F4 y [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182) listo para review. La revisión confirmó el flujo Tiger/ACME de la SPEC; no quedan findings propios de F5. Se documentó el inventario nominal y los gates de inventario vivo/smoke no productivo.
 - **2026-09-21** — Se corrigió el alcance de la iniciativa en toda la cadena: autorización estrictamente aditiva, sin reglas nuevas para imports, precreation o pares no configurados y sin default deny. Slice 2 quedó en `90667a5db` con `ActionPermissionProvider` y adapter de configuración por scope; Slice 3 en `119207a71`, Slice 4 en `ccce34382` y Slice 5 en `6363d7e0e`. Se actualizaron las descripciones de PR, se respondieron y resolvieron los comentarios de Ale y Feli en PR #1172 y se alinearon la SPEC técnica y este proyecto.
 - **2026-09-22** — El smoke no productivo Tiger/ACME de Slice 2 pasó; la captura de evidencia quedó adjunta en [PR #1172](https://github.com/melisource/fury_rio-playmaker/pull/1172). Se actualizó la descripción del PR y el estado del proyecto con el head `2e1d1c8955e`.
+- **2026-09-22** — Slice 3 se sincronizó con `develop@e26cf2baa` y quedó publicado en `8f9482210`. Se resolvieron los dos findings válidos del bot agregando validación de jerarquía previa en delete y patch compatible; la suite completa, los 17 selectores focalizados y todos los checks remotos pasaron. Las variantes test3 quedaron en `bfe69310f`/`c4a493fb5`, y Fury terminó exitosamente `0.1.7-p3-committer-allowed` y `0.1.8-p3-viewer-denied`. Los dos checks `LOCAL_STACK` no corrieron por Docker no disponible; no hubo deploy ni smoke mutable.
+- **2026-09-23** — Slice 3 fue mergeado a `develop@19d70a6cf` y su rama remota se eliminó. Slice 4 se regularizó de forma aditiva/config-backed, incorporó el cascade pedido por Ale y quedó en `d792b902b` tras merges conservadores `7c9195a65` y `d792b902b`. Pasaron 20 selectores, ambos checks `LOCAL_STACK`, suite forzada, 100% de coverage diferencial y todos los checks remotos; los threads de #1178/#1181 fueron clasificados, respondidos y resueltos. Las variantes `test3` `0.1.13-p4-committer-allowed` y `0.1.14-p4-viewer-denied` terminaron `FINISHED`, sin deploy.
+- **2026-09-23** — Un comentario posterior de #1181 detectó una regresión real: el cascade configurado denegaba a miembros plataforma sin grant del owner. Se publicó `e75ca90d9`, que conserva el bypass heredado, con tests que cargan `application.yml` y `DataProductAccessService` reales. La suite forzada pasó con 3.995 tests (0 fallas, 2 skips), coverage diferencial 98,95%. Se actualizaron las ramas test3; las versiones `0.1.15`/`0.1.16` terminaron `FINISHED`, sin deploy. Los checks visibles y el review quedaron aprobados; smoke manual pendiente y merge state `BLOCKED`.
+- **2026-09-23** — F5 incorporó el último HEAD F4 `e75ca90d9` en `dfc26fda7`, resolviendo sólo los conflictos de la lista config-backed y `ActionAuthorizationServiceTest`. Se conservaron los diez pares F5, las reglas F4 y el bypass plataforma. La diferencia F4→F5 queda en nueve archivos sin cambios en los casos de uso; pasaron 24 selectores, dos checks locales con cleanup, contratos y 4.077 tests completos (0 fallas, 2 skips). Se publicó la rama y se actualizó [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182), cuya base y mergeability quedaron correctas. Smoke Tiger/ACME no productivo pendiente.
+- **2026-09-23** — El comentario humano de [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182#discussion_r4038849416) señaló que la matriz F5 tenía aliases Flink no reconocidos por Control Plane y omitía GCP. F5 `a89fcffcb` reemplazó los permisos concretos Flink por familias `flink-sql`/`flink-job` y un mapa explícito de miembros en YAML; F2–F4 siguen en `permissions`. Se confirmó la semántica aditiva: pares no configurados no activan ACME nuevo. La diferencia F4→F5 afecta 11 archivos, sin cambiar casos de uso. Pasaron 25 selectores, dos checks locales con cleanup, contratos y 4.086 tests completos (0 fallas, 2 skips); el PR se publicó y permanece `MERGEABLE`. La CI #5490 falló antes del checkout por certificado no confiable del repositorio de pipelines; cobertura y dependencias se abortaron. Smoke Tiger/ACME no productivo pendiente.
 
 ## 🧭 Decisiones
 

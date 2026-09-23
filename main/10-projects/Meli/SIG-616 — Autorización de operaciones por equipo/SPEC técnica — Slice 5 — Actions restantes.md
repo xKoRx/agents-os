@@ -8,7 +8,7 @@
 
 ## Objetivo
 
-Configurar autorización `DEV_AND_UP` para las Actions mutantes existentes de Flink y ClickHouse materialized views. Slice 5 reutiliza el mecanismo config-backed de Slice 2 y no agrega lógica al caso de uso genérico.
+Configurar autorización `DEV_AND_UP` para las Actions mutantes existentes de Flink y ClickHouse materialized views. Slice 5 reutiliza el mecanismo config-backed de Slice 2 y no agrega lógica al caso de uso genérico. Las reglas Flink se expresan por familia abstracta en YAML y los tipos concretos se declaran como miembros de esa familia.
 
 El cambio es aditivo: no crea Actions, no clasifica lecturas, no rechaza pares desconocidos y no modifica precreation, imports, polling, eventos ni Control Planes.
 
@@ -17,9 +17,9 @@ El cambio es aditivo: no crea Actions, no clasifica lecturas, no rechaza pares d
 ```text
 ActionServiceImpl [UNCHANGED]
   └── ActionAuthorizationService [UNCHANGED]
-      └── ActionPermissionProvider [UNCHANGED PORT]
-          └── ConfiguredActionPermissionProvider [UNCHANGED ADAPTER]
-              └── app.action-authorization.permissions [MODIFIED]
+      └── ActionPermissionProvider [PORT; DOCUMENTATION UPDATED]
+          └── ConfiguredActionPermissionProvider [FAMILY RESOLUTION ADDED]
+              └── app.action-authorization [YAML: permissions, component-families, family-permissions]
 
 OperationAuthorizationService [UNCHANGED]
   └── DEV_AND_UP antes de deployment context, KVS y BigQueue
@@ -30,16 +30,14 @@ Discovery / bootstrap dinámico [FUTURE, OUT OF SCOPE]
 
 ## Matriz configurada
 
-| Tipo persistido | Action | Access level |
-|---|---|---|
-| `catalog-signal` | `start`, `stop` | `DEV_AND_UP` heredado de Slice 2 |
-| `flink-sql` | `start`, `stop` | `DEV_AND_UP` |
-| `flink-job` | `start`, `stop` | `DEV_AND_UP` |
-| `aws-flink-sql` | `start`, `stop` | `DEV_AND_UP` |
-| `aws-flink-job` | `start`, `stop` | `DEV_AND_UP` |
-| `clickhouse-mat-view` | `start-materialized-view`, `stop-materialized-view` | `DEV_AND_UP` |
+| Regla YAML | Tipos persistidos alcanzados | Action | Access level |
+|---|---|---|---|
+| Permiso exacto `catalog-signal` | `catalog-signal` | `start`, `stop` | `DEV_AND_UP` heredado de Slice 2 |
+| Familia `flink-sql` | `flink-sql`, `gcp-flink-sql` | `start`, `stop` | `DEV_AND_UP` |
+| Familia `flink-job` | `aws-flink-job`, `gcp-flink-job` | `start`, `stop` | `DEV_AND_UP` |
+| Permiso exacto `clickhouse-mat-view` | `clickhouse-mat-view` | `start-materialized-view`, `stop-materialized-view` | `DEV_AND_UP` |
 
-La comparación de tipo y Action es exacta. Un par ausente de la configuración conserva su comportamiento y no recibe una validación ACME nueva.
+La comparación de tipo y Action es exacta para los permisos previos; las familias sólo incluyen los miembros concretos listados en YAML. `flink-job` es nombre de familia, no tipo persistido. `aws-flink-sql` no figura como miembro. Un par ausente de la configuración conserva su comportamiento y no recibe una validación ACME nueva. Retirar una regla de `family-permissions` desactiva el guard adicional para todos los miembros de esa familia y Action.
 
 ## Comportamiento preservado
 
@@ -51,11 +49,11 @@ La comparación de tipo y Action es exacta. Un par ausente de la configuración 
 
 ## Design Decisions
 
-### DD-1: Slice 5 sólo agrega datos de configuración
+### DD-1: Slice 5 configura permisos por familia Flink
 
-**Decisión**: incorporar los pares y niveles en `app.action-authorization.permissions` sin crear una policy Java adicional.
+**Decisión**: definir familias, miembros concretos y permisos por familia en `app.action-authorization` de YAML. ClickHouse y las reglas F2–F4 permanecen en `permissions`. El adapter resuelve permiso exacto, luego familiar y finalmente wildcard.
 
-**Fundamentación**: `ActionPermissionProvider` ya separa el enforcement del origen de los permisos. Duplicar la matriz en constantes o en una segunda policy generaría dos fuentes de verdad.
+**Fundamentación**: `ActionPermissionProvider` ya separa el enforcement del origen de los permisos. El mapa explícito evita inferir una familia desde nombres y permite apagar AWS y GCP con una sola regla abstracta. Duplicar la matriz en constantes o en una segunda policy generaría dos fuentes de verdad.
 
 ### DD-2: Pares ausentes no implican deny
 
@@ -75,7 +73,10 @@ La comparación de tipo y Action es exacta. Un par ausente de la configuración 
 
 | Archivo | Cambio |
 |---|---|
-| `src/main/resources/application.yml` | Agrega los pares mutantes de Slice 5 |
+| `src/main/resources/application.yml` | Agrega familias y permisos Flink, y el par ClickHouse |
+| `config/ConfiguredActionPermissionProvider.java` | Resuelve miembros de familia configurados antes del wildcard |
+| `service/ActionPermissionProvider.java` | Documenta la resolución de familias |
+| `config/ConfiguredActionPermissionProviderTest.java` | Verifica binding YAML, miembros concretos y apagado de familia |
 | `service/ActionAuthorizationServiceTest.java` | Verifica delegación de los pares configurados |
 | `service/impl/ActionServiceImplTest.java` | Verifica autorización previa a side effects y preservación de otros flujos |
 | `controller/ActionController.java` | Documenta `403` para denegaciones de pares configurados |
@@ -108,9 +109,9 @@ El smoke no productivo debe ejecutar un par configurado permitido y denegado, un
 
 ## Rollout y rollback
 
-La lista base se aplica a todos los scopes y puede reemplazarse desde `application-{scope}.yml`. Antes de rollout se contrastan los tipos configurados con los contratos efectivos de los Control Planes y el ownership persistido con ACME.
+Las listas YAML base se aplican a todos los scopes y pueden reemplazarse desde `application-{scope}.yml`. Antes de rollout se contrastan los miembros configurados con los contratos efectivos de los Control Planes y el ownership persistido con ACME.
 
-Rollback: retirar las entradas del scope o revertir el PR. No hay migración de datos ni cambio de eventos.
+Rollback: retirar los permisos familiares del scope o revertir el PR. No hay migración de datos ni cambio de eventos.
 
 ## Fuera de alcance
 
@@ -128,3 +129,7 @@ Rollback: retirar las entradas del scope o revertir el PR. No hay migración de 
 - Pares no configurados, lecturas, imports y precreation conservan su comportamiento.
 - `ActionServiceImpl` permanece genérico y no conoce tipos concretos.
 - Una futura fuente Discovery puede implementar `ActionPermissionProvider` sin modificar consumidores.
+
+## Estado de implementación — 2026-09-23
+
+F5 `a89fcffcb` integra F4 `e75ca90d9` en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182). La matriz combinada mantiene los guards configurados de F2–F4 y suma los diez pares F5: ocho combinaciones Flink por familia y dos ClickHouse exactas. El diff F4→F5 no modifica `ActionServiceImpl` ni otros casos de uso. Pasaron 25 selectores focalizados, dos checks L0/LOCAL_STACK con cleanup, contratos y `./gradlew check` con 4.086 tests, 0 fallas y 2 skips preexistentes. La [CI #5490](https://rp-ci-java.furycloud.io/job/rio-playmaker/5490/) falló antes del checkout por certificado no confiable del repositorio de pipelines, por lo que no aporta validación remota de este HEAD. El smoke Tiger/ACME no productivo permanece pendiente.

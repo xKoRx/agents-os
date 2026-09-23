@@ -1,230 +1,248 @@
-# SIG-616 — Slice 4: relaciones y pipelines
+# SIG-616 — Slice 4: relaciones, pipelines y cascade de Data Product
 
 ## Metadatos
 
 - Tipo: Technical SPEC
-- Estado inicial: Draft
+- Estado: Corrección de compatibilidad publicada; checks visibles y aprobación en verde; pruebas manuales pendientes
 - SPEC funcional: [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621)
-- Requerimiento de origen: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
-- Dependencia: Slice 3 aprobado e implementado
+- Requerimiento: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
 - Aplicación: `rio-playmaker`
+- PR: [#1181](https://github.com/melisource/fury_rio-playmaker/pull/1181)
+- Rama: `feature/operation-authorization-by-team-f4`
+- Base del PR: `develop`; F3 fue incorporado en `19d70a6cf` y el tip observado al cierre es
+  `9a559dfb3` (cambio posterior sólo de metadata de agentes, sin conflictos con F4)
+- Merge inicial de F3: `7c9195a65`
+- Implementación regularizada: `e8b957c47`
+- Merge final de `develop`, sin cambio de árbol: `d792b902b`
+- Corrección del bypass de plataforma: `e75ca90d9`
+- HEAD vigente: `e75ca90d98fba2dc4e4ef35686e2f38cf8462402`
 
-## Objetivo
+## Objetivo y límites
 
-Aplicar autorización por equipo a relaciones y mutaciones de pipeline. Las relaciones resuelven sus extremos persistidos, exigen un único Data Product y autorizan `DEV_AND_UP` contra su owner. Pipeline resuelve el Data Product por nombre y autoriza antes de versionar, persistir, crear componentes o iniciar un deploy. El deploy se autoriza una vez antes de calcular deltas `DEPLOY`/`UNDEPLOY`, crear ejecuciones o despachar trabajo.
+Fase 4 agrega guards configurables a casos de uso existentes de relaciones y pipeline, más el
+cascade iniciado por `DELETE /data-products/{id}` trasladado desde el review de F3. Es aditiva:
 
-## Alcance
+- no crea endpoints ni casos de uso nuevos;
+- no cambia reglas funcionales de relaciones, topology, ownership, estados o errores HTTP;
+- no agrega same-DP ni vuelve inmutable el ownership de una relación;
+- un par no configurado conserva el flujo anterior y no invoca ACME por el guard nuevo;
+- el nivel exigido sale sólo de `app.action-authorization.permissions`;
+- los guards nuevos con `teamName` o `projectCode` incompletos se omiten por compatibilidad;
+- los consumidores anteriores a F3 conservan su semántica fail-closed;
+- component delete e inactivate de F1 continúan en `DEPLOYER_AND_UP` sin cambios.
 
-### Relaciones directas
+Los headers Tiger se propagan porque `AcmeClient` los necesita. La identidad de los casos migrados
+se obtiene de `Authentication.getName()` en el controller y se pasa explícitamente; los services de
+F4 no vuelven a extraerla desde headers.
 
-| Operación | Ruta | Caso de uso | Requisito |
-|---|---|---|---|
-| Crear relación | `POST /component-relations` | `ComponentRelationServiceImpl.create` | Misma DP + Tiger + `DEV_AND_UP` |
-| Actualizar relación | `PUT /component-relations/{componentRelationId}` | `ComponentRelationServiceImpl.update` | Relación persistida + misma DP + Tiger + `DEV_AND_UP` |
-| Eliminar relación | `DELETE /component-relations/{componentRelationId}` | `ComponentRelationServiceImpl.delete` | Relación persistida + misma DP + Tiger + `DEV_AND_UP` |
+## Alcance exacto y matriz configurada
 
-### Pipeline
+| Scope | Operación | Endpoint | Caso de uso | Nivel inicial |
+|---|---|---|---|---|
+| `component-relation` | `create` | `POST /component-relations` | `ComponentRelationServiceImpl.create` | `DEV_AND_UP` |
+| `component-relation` | `update` | `PUT /component-relations/{componentRelationId}` | `ComponentRelationServiceImpl.update` | `DEV_AND_UP` |
+| `component-relation` | `delete` | `DELETE /component-relations/{componentRelationId}` | `ComponentRelationServiceImpl.delete` | `DEV_AND_UP` |
+| `pipeline` | `replace-topology` | `PUT /data-products/{name}/environments/{envName}/pipeline` | `PipelineWriteServiceImpl.writePipeline` | `DEV_AND_UP` |
+| `pipeline` | `update-design` | `PATCH /data-products/{name}/pipeline/design` | `PipelineDesignServiceImpl.updateDesign` | `DEV_AND_UP` |
+| `pipeline` | `update-relations` | `PATCH /data-products/{name}/pipeline/relations` | `PipelineRelationsServiceImpl.updateRelations` | `DEV_AND_UP` |
+| `pipeline` | `create-component` | `POST /data-products/{name}/pipeline/components` | `ComponentCreateServiceImpl.createComponent` | `DEV_AND_UP` |
+| `pipeline` | `deploy` | `POST /data-products/{name}/environments/{envName}/pipeline/deploy` | `PipelineDeployServiceImpl.deploy` | `DEV_AND_UP` |
+| `data-product` | `cascade-delete-components` | `DELETE /data-products/{id}` | `DataProductServiceImpl.delete` | `DEPLOYER_AND_UP` |
 
-| Operación | Ruta | Caso de uso | Requisito |
-|---|---|---|---|
-| Reemplazar topología/configuración | `PUT /data-products/{name}/environments/{envName}/pipeline` | `PipelineWriteServiceImpl.writePipeline` | Tiger + `DEV_AND_UP` |
-| Modificar diseño | `PATCH /data-products/{name}/pipeline/design` | `PipelineDesignServiceImpl.updateDesign` | Tiger + `DEV_AND_UP` |
-| Modificar relaciones | `PATCH /data-products/{name}/pipeline/relations` | `PipelineRelationsServiceImpl.updateRelations` | Tiger + `DEV_AND_UP` |
-| Crear componente | `POST /data-products/{name}/pipeline/components` | `ComponentCreateServiceImpl.createComponent` | Tiger + `DEV_AND_UP` |
-| Desplegar pipeline | `POST /data-products/{name}/environments/{envName}/pipeline/deploy` | `PipelineDeployServiceImpl.deploy` | Tiger + `DEV_AND_UP` |
+No incluye config patch, rename, reads, Actions, precreation, polling, imports ni endpoints legacy
+adicionales.
 
-Pipeline component delete e inactivate permanecen en `DEPLOYER_AND_UP` mediante el autorizador común de Slice 1.
-
-### No incluye
-
-- Mutaciones de componentes y component deployment cubiertas por Slice 3.
-- Actions, precreation, polling o service-level actions.
-- Reparar o migrar relaciones cross-DP ya persistidas.
-- Permitir relaciones cross-DP: se rechazan como inválidas.
-- `PATCH /data-products/{name}/environments/{envName}/pipeline/components/{componentName}/config`, que no forma parte del inventario de rutas de SIG-616.
-- Remover `platformTeams` o `tempAllCanEdit` de comportamientos ajenos; ninguno puede conceder acceso en las rutas de este slice.
-- Nuevas tablas, cambios de schema, cache ACME, annotations o AOP.
-
-## Arquitectura objetivo
+## Arquitectura config-backed
 
 ```text
-HTTP request
-  -> Spring Security / CustomAuthorizationFilter [UNCHANGED]
-       publica username en Authentication.principal
-  -> controllers de relations o pipeline [MODIFIED]
-       pasan username + headers
-  -> repositorios Playmaker [UNCHANGED]
-       resuelven DataProduct, relation, components, environment y pipeline
-  -> validación de consistencia [MODIFIED]
-       relation.source.dp == relation.destination.dp
-       request source/destination pertenecen al mismo DataProduct
-       environment y pipeline pertenecen al DataProduct del path
-  -> OperationAuthorizationService [UNCHANGED]
-       require(username, teamName, projectCode, headers, DEV_AND_UP)
-  -> mutación o dispatch [MODIFIED]
+app.action-authorization.permissions
+  -> ConfiguredActionPermissionProvider.findExactAccessLevel(scope, operation)
+    -> ActionAuthorizationService.requireOperationIfConfigured(...)
+      -> OperationAuthorizationService.require(..., accessLevel)
+        -> AcmeClient.getOwnerProjectGrants(...)
 ```
+
+`findExactAccessLevel` no aplica el fallback `component-type: "*"`. Por eso entradas heredadas como
+`*:create`, `*:update`, `*:delete`, `*:update-design` o `*:deploy` no activan por accidente una
+relación, un pipeline o un Data Product. Remover una de las nueve entradas desactiva sólo ese guard.
+La lista puede reemplazarse por scope sin modificar consumidores.
+
+No existe un segundo provider ni un motor de policies. No hay niveles hardcodeados dentro de los
+casos de uso F4.
 
 ## Contrato de relaciones
 
 ### Create
 
-1. Resolver los Data Products y componentes indicados por el request.
-2. Comprobar que ambos componentes están activos y pertenecen a los Data Products declarados.
-3. Exigir `sourceDataProductId == destinationDataProductId`.
-4. Autorizar `DEV_AND_UP` contra ese Data Product persistido.
-5. Mapear y guardar la relación.
+1. Conserva las validaciones previas de existencia, soft delete, self-loop y pertenencia de cada
+   component al Data Product declarado.
+2. Usa los Data Products persistidos resueltos por esas validaciones.
+3. Autoriza cada owner distinto con `component-relation:create`.
+4. Sólo después mapea, completa auditoría con el username propagado y guarda.
 
 ### Update
 
-1. Resolver la relación activa por `componentRelationId`.
-2. Resolver sus extremos persistidos y comprobar que pertenecen al mismo Data Product.
-3. Resolver los extremos solicitados y aplicar la misma validación.
-4. Exigir que la relación actual y la resultante pertenezcan al mismo Data Product; cambiar una relación hacia otro owner se rechaza en vez de autorizar sólo con el scope nuevo.
-5. Autorizar contra el owner persistido y recién entonces actualizar y guardar.
+1. Conserva el lookup de la relación y el rechazo si ya fue borrada.
+2. Conserva las validaciones previas de los extremos solicitados.
+3. Autoriza los owners persistidos distintos del estado actual y del solicitado con
+   `component-relation:update`.
+4. Sólo después ejecuta el mapper existente, auditoría y save.
+
+F3 permitía cambiar source/destination Data Product. F4 mantiene ese contrato: no agrega ownership
+inmutable ni regla same-DP. Proteger el owner actual y los solicitados evita autorizar contra un
+owner incorrecto sin redefinir qué updates son válidos.
 
 ### Delete
 
-1. Resolver la relación activa.
-2. Resolver source y destination persistidos, sin aceptar IDs cliente alternativos.
-3. Comprobar same-DP y autorizar contra ese owner.
-4. Recién entonces establecer `deletedAt/deletedBy` y guardar.
-
-Las relaciones cross-DP devuelven error de validación y no generan llamada ACME ni escritura. Un recurso inexistente o una relación cuyos extremos no pueden verificarse falla cerrado.
+1. Resuelve la relación persistida y conserva el rechazo si ya fue borrada.
+2. Autoriza sus owners persistidos distintos con `component-relation:delete`.
+3. Sólo después completa `deletedAt/deletedBy` y guarda.
 
 ## Contrato de pipeline
 
-Cada caso de uso resuelve `DataProductModel` por el nombre del path y utiliza su `teamName + projectCode`. `PipelineAuthorizationService.assertWriteAccess`, basado en `DataProductAccessService.canAccess`, no participa en las rutas migradas porque sus compatibilidades históricas no implementan el contrato ACME exacto de SIG-616.
+Cada caso conserva `PipelineAuthorizationService.assertWriteAccess` y todas las validaciones de
+negocio previas. F4 agrega el guard exacto contra el `DataProductModel` persistido antes del primer
+side effect. Si la entrada no está configurada, la llamada es no-op y el orden relativo entre las
+validaciones existentes no cambia.
 
-El orden común es:
+- `replace-topology`: antes de `checkAndIncrementVersion` y cualquier persistencia.
+- `update-design`: después de resolver todos los components pedidos y antes de mutar metadata.
+- `update-relations`: después de versión, components, engine guard y self-loop; antes de add/remove
+  o incrementar versión.
+- `create-component`: después de lookups y duplicate pre-check; antes de versionar o guardar.
+- `deploy`: después de resolver Data Product, environment y pipeline; antes de freeze, rollback,
+  delta, desired-state hash, execution, runs, groups o dispatch.
 
-1. Resolver Data Product y recursos necesarios para demostrar consistencia del path.
-2. Autorizar `DEV_AND_UP` mediante `OperationAuthorizationService`.
-3. Ejecutar validaciones de versión y precondiciones funcionales sin mutar estado antes del allow.
-4. Recién entonces incrementar versiones, crear/eliminar componentes o relaciones, guardar snapshots, crear ejecuciones y despachar.
+Pipeline deploy autoriza una sola vez el Data Product completo; no autoriza component por component.
 
-El guard precede a `checkAndIncrementVersion`, `computeDiff`, `designMetadata`, `applyAdd/applyRemove`, duplicate checks con efectos y cualquier `save`. Sólo la resolución necesaria para identificar el target y verificar el path puede ocurrir antes; no se devuelve detalle sensible a un caller no autorizado.
+## Cascade de `DELETE /data-products/{id}`
 
-## Pipeline deploy
+Ale señaló en PR #1178 que `DataProductServiceImpl.delete()` podía llamar
+`ComponentServiceImpl.deleteByDataProductId(...)` sin pasar por la autorización del delete
+individual. F4 lo corrige sin cambiar el contrato del delete:
 
-`PipelineDeployServiceImpl.deploy` resuelve Data Product, environment y pipeline, autoriza `DEV_AND_UP` y sólo después ejecuta:
+1. `DataProductController.delete` toma el username de `Authentication.getName()`.
+2. `DataProductServiceImpl.delete` conserva blockers, lookup, status/deleted checks, snapshots y la
+   precondición histórica `assertPrivilegedRole`.
+3. Si el precheck histórico autorizó por pertenencia a un equipo plataforma, conserva ese bypass.
+   Para los demás usuarios ejecuta una vez `data-product:cascade-delete-components` contra el
+   Data Product persistido.
+4. Sólo después inicia el cascade, borra notifications, publica el evento y guarda el soft delete.
+5. `ComponentServiceImpl.deleteByDataProductId` recibe username explícito para auditoría; conserva
+   headers sólo para cancelaciones downstream existentes.
 
-- `DeploymentFreezeService.enforcePipelineDeploy` y el freeze por component types.
-- Resolución de rollback configs.
-- Cálculo y filtrado de deltas.
-- Cálculo del desired-state hash e idempotency checks.
-- Creación de `PipelineExecution` y `ComponentRun`.
-- Enriquecimiento de services y dispatch por `DeploymentGroupService`.
+Un deny impide delete de components, notifications, evento y save. Si la entrada no existe o el
+ownership está incompleto, sólo se omite el guard nuevo y permanece la semántica previa, incluida la
+precondición heredada del delete del Data Product.
 
-La autorización se evalúa una vez para el Data Product completo antes de calcular los deltas `DEPLOY`, `UNDEPLOY` o `SKIP`. No se autoriza por componente ni se repite ACME dentro del loop.
+El comentario de compatibilidad en #1181 detectó que, antes de `e75ca90d9`, el guard adicional
+anulaba el bypass de `cross-dps-rio`/`ml-ads-signals`. El precheck ahora informa si autorizó por
+equipo plataforma y sólo el cascade omite su guard en ese caso. Los demás consumidores del precheck
+conservan su flujo. En scopes Fury de test, el bypass preexistente por `FURY_IS_TEST_SCOPE` sigue
+omitiendo el precheck histórico; el guard F4 permanece activo para poder probarlo con mocks.
 
-## Identidad
+## Identidad y compatibilidad
 
-Los handlers mutantes reciben username desde `Authentication`; los services lo incorporan y no vuelven a invocar `TigerTokenService`. `PipelineTopologyController` puede conservar esa dependencia sólo para lecturas no migradas.
+- Controllers de relaciones, topology mutante, pipeline deploy y Data Product delete usan el
+  principal autenticado.
+- Los services usan el username propagado para auditoría cuando corresponde.
+- `PipelineTopologyController` conserva `TigerTokenService` sólo para el GET no migrado.
+- Headers Tiger siguen llegando a `OperationAuthorizationService`/ACME.
+- Ownership incompleto no convierte el guard nuevo de F4 en deny.
 
-## Decisiones de diseño
+## Comentarios de review
 
-### DD-1: Same-DP se valida con modelos persistidos antes del guard
+| Origen | Clasificación | Decisión |
+|---|---|---|
+| PR #1178, Ale: cascade elude delete individual | Válido, trasladado a F4 | Implementado con guard único antes del cascade y tests de cero side effects; respuesta publicada en el thread original. |
+| PR #1181, bot: ownership inmutable en relation update | No aplicable | F3 ya permitía modificar esos campos con `ComponentRelationMapper.updateModelFields`. Prohibirlo sería lógica nueva. Se conserva el baseline y se autorizan owners actual y solicitados. |
+| PR #1181, kmontero: plataforma pierde bypass en cascade | Válido; regresión F4 | Corregido en `e75ca90d9`: el guard nuevo respeta el bypass histórico sólo para miembros plataforma. Test con `application.yml` real, `DataProductAccessService` real, sin owner grant, más casos deny/allow y cero side effects. |
+| PR #1178, comentarios restantes | Heredados/ya corregidos en F3 | La base sincronizada ya contiene las correcciones; no se duplican. Hallazgos fuera de alcance van a F5. |
 
-**Decisión**: Source y destination se resuelven desde `ComponentRepository`, se comprueba su Data Product real y sólo entonces se selecciona el scope de autorización.
+## Archivos productivos
 
-**Fundamentación**: Los IDs del body son referencias de entrada, no ownership. Autorizar primero con `sourceDataProductId` cliente permitiría escoger un team conveniente y mutar una relación perteneciente a otro owner.
+- Config/provider: `application.yml`, `ActionPermissionProvider`,
+  `ConfiguredActionPermissionProvider`, `ActionAuthorizationService`.
+- HTTP: `ComponentRelationController`, `PipelineTopologyController`,
+  `PipelineDeploymentController`, `DataProductController`.
+- Implementación: `ComponentRelationServiceImpl`, `PipelineWriteServiceImpl`,
+  `PipelineDesignServiceImpl`, `PipelineRelationsServiceImpl`, `ComponentCreateServiceImpl`,
+  `PipelineDeployServiceImpl`, `DataProductServiceImpl`, `ComponentServiceImpl` y sus interfaces.
 
-### DD-2: Update de relación no permite trasladar ownership
+No hay endpoints, modelos, tablas, migraciones ni reglas de dominio nuevas.
 
-**Decisión**: La relación persistida y la relación resultante deben pertenecer al mismo Data Product.
+## Evidencia automatizada
 
-**Fundamentación**: Autorizar únicamente el estado nuevo omite el permiso sobre el recurso que se está modificando; exigir permisos sobre dos owners agregaría un caso cross-DP que SIG-616 declara inválido.
+Evidencia inicial sobre `d792b902b` y regresión final sobre `e75ca90d9`:
 
-### DD-3: Las rutas migradas consumen `OperationAuthorizationService` directamente
-
-**Decisión**: Los services de esta SPEC invocan el autorizador común con `DEV_AND_UP`; no agregan un segundo guard de pipeline ni reutilizan `DataProductAccessService.canAccess`.
-
-**Fundamentación**: `platformTeams` y `tempAllCanEdit` son compatibilidades históricas que no conceden autorización bajo SIG-616. Mantenerlas en el camino protegido crearía dos fuentes de policy.
-
-### DD-4: Pipeline deploy se autoriza una vez antes del delta
-
-**Decisión**: Un allow por Data Product precede el cálculo del delta y cubre todos los efectos de la ejecución.
-
-**Fundamentación**: El pipeline es el recurso solicitado y todos sus componentes pertenecen al mismo Data Product. Autorizar cada delta multiplica llamadas ACME sin aumentar la precisión del scope.
-
-## Archivos afectados
-
-### Archivos modificados
-
-| Archivo | Cambio |
+| Evidencia | Resultado |
 |---|---|
-| `controller/ComponentRelationController.java`, `controller/PipelineTopologyController.java`, `controller/PipelineDeploymentController.java` | Propagar username a las operaciones protegidas. |
-| `service/ComponentRelationService.java`, `service/PipelineWriteService.java`, `service/PipelineDesignService.java`, `service/PipelineRelationsService.java`, `service/ComponentCreateService.java`, `service/PipelineDeployService.java` | Incorporar el username explícito en los contratos tocados. |
-| `service/impl/ComponentRelationServiceImpl.java` | Same-DP, owner persistido y guard antes de save. |
-| `service/impl/PipelineWriteServiceImpl.java` | `DEV_AND_UP` antes de versionado y escrituras. |
-| `service/impl/PipelineDesignServiceImpl.java` | `DEV_AND_UP` antes de modificar diseño. |
-| `service/impl/PipelineRelationsServiceImpl.java` | `DEV_AND_UP` antes de cambios de versión/relaciones. |
-| `service/impl/ComponentCreateServiceImpl.java` | `DEV_AND_UP` antes de versionado y create. |
-| `service/impl/PipelineDeployServiceImpl.java` | `DEV_AND_UP` antes de freeze, delta, ejecución y dispatch. |
+| 20 selectores focalizados de `.testing/impact.json` | PASS |
+| `./scripts/validate-repository-contract.sh --staged` | PASS |
+| `./scripts/validate-testing-contract.sh --staged` | PASS |
+| `./scripts/run-agentic-testing-contract.sh` | PASS |
+| `AT-000-S01:L0-LOCAL_STACK` | PASS, MySQL/app local y cleanup certificado |
+| `AT-180-S18:L0-LOCAL_STACK` | PASS, success/failure/timeout y cleanup certificado |
+| `./gradlew check --rerun-tasks --no-daemon --no-build-cache` | PASS sobre `e75ca90d9`: 3.995 tests, 0 fallas, 0 errores, dos skips preexistentes |
+| `./gradlew jacocoTestReport --no-daemon --no-build-cache` | PASS |
+| Coverage de líneas ejecutables agregadas contra F3 | 94/95, 98,95% |
+| Coverage global de líneas | 14.350/14.784, 97,06% |
+| Test de compatibilidad plataforma con configuración real | PASS: `application.yml` real, `DataProductAccessService` real y owner grant ausente |
+| `git diff --check` | PASS |
 
-### Tests modificados o nuevos
+El primer intento local detectó Docker inactivo y luego Compose no registrado como plugin. Se
+inició Colima y se registró el plugin Homebrew ya instalado; la ejecución final completa pasó. No se
+ejecutó smoke remoto ni se desplegó ninguna versión.
 
-| Archivo | Cobertura esperada |
-|---|---|
-| `service/impl/ComponentRelationServiceImplTest.java` y `integration/ComponentRelationControllerIntegrationTest.java` | Create/update/delete, same-DP, owner persistido y ausencia de save. |
-| `unit/service/PipelineWriteServiceImplTest.java`, `unit/service/PipelineDesignServiceImplTest.java`, `unit/service/PipelineRelationsServiceImplTest.java`, `unit/service/ComponentCreateServiceTest.java` | Guard antes de versión, mutación y persistencia. |
-| `integration/PipelineComponentCreateControllerIntegrationTest.java`, `integration/PipelineDeployControllerIntegrationTest.java`, `integration/PipelineDeployFlowIntegrationTest.java`, `unit/service/PipelineDeployServiceImplTest.java` | Contrato HTTP y guard antes de freeze/delta/lifecycle/dispatch. |
+## Matriz manual para variantes mock
 
-## Errores
+| Operación | Endpoint | Precondiciones | Mock/rol | Entrada | Resultado esperado y side effects |
+|---|---|---|---|---|---|
+| Crear relación | `POST /component-relations` | Components existentes; payload válido | committer | `component-relation:create=DEV_AND_UP` | Allow; relación creada. |
+| Crear relación | mismo endpoint | Mismo dataset aislado | viewer | misma | `403`; no save ni auditoría. |
+| Pipeline deploy | `POST /data-products/{name}/environments/{env}/pipeline/deploy` | Pipeline con delta | committer | `pipeline:deploy=DEV_AND_UP` | `202`/flujo vigente; execution/run/dispatch según delta. |
+| Pipeline deploy | mismo endpoint | Mismo fixture | viewer | misma | `403`; sin freeze posterior, delta, execution, run ni dispatch. |
+| Cascade delete | `DELETE /data-products/{id}` | DP borrable, sin blockers; grant histórico admin/maintainer y grant del owner suficiente | admin/maintainer | `data-product:cascade-delete-components=DEPLOYER_AND_UP` | Allow; cascade/event/save vigentes. |
+| Cascade delete | mismo endpoint | DP borrable; pertenencia a equipo plataforma | miembro plataforma sin grant del owner | misma | Allow por bypass histórico; cascade/event/save vigentes. |
+| Cascade delete | mismo endpoint | DP borrable, sin blockers; actor no-plataforma en `test3` | committer o viewer | misma | `403`; cero mutaciones posteriores. |
+| Operación sin entrada | cualquiera anterior | Quitar sólo el par en scope test | cualquiera | ausente | Flujo previo; el guard nuevo no llama ACME. |
+| Ownership incompleto | operación F4 | DP sin team o project | cualquiera | presente | Se omite sólo el guard nuevo; continúa el flujo heredado. |
 
-| Condición | Respuesta |
-|---|---|
-| Tiger ausente o inválido | `401` desde Spring Security |
-| Data Product, relation, component, environment o pipeline inexistente/inconsistente | `404` |
-| Source y destination iguales o pertenecientes a Data Products diferentes | Error de validación sin llamada ACME ni side effects |
-| Update intenta trasladar una relación a otro Data Product | Error de validación sin side effects |
-| Scope owner incompleto | `403` fail-closed sin llamada ACME |
-| Rol insuficiente, grant cruzado o ACME no verificable | `403` |
-| Version conflict o precondición funcional posterior al allow | Conserva el status actual (`409`, `412` o `422`) |
+## Variantes no productivas
 
-## Observabilidad
+- `feature/sig-616-auth-p4-committer-test3-v19@632ce2bf9`, versión
+  [`0.1.15-p4-committer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.15-p4-committer-allowed).
+- `feature/sig-616-auth-p4-viewer-test3-v20@a4ddafb86`, versión
+  [`0.1.16-p4-viewer-denied`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.16-p4-viewer-denied).
 
-- Reutilizar las causas de baja cardinalidad del autorizador y agregar `cross_data_product_relation` para rechazos locales de relaciones.
-- No registrar username, token, grants ni headers Tiger.
-- No registrar como mutation/deploy exitoso ningún request rechazado por autorización.
-- Los logs de pipeline execution y dispatch sólo aparecen después del allow.
+Ambas ramas incorporan `e75ca90d9`; los mocks están restringidos al profile `test3` y no forman
+parte de la rama del PR. La configuración de prueba excluye al team mock `ml-ads-signals` de
+`app.acmeClient.platform-teams` para que el smoke ejercite el guard; un test valida esa separación.
+Las versiones anteriores `0.1.13`/`0.1.14` quedaron superadas por esta corrección. Los nuevos
+builds terminaron `FINISHED` y aún no se desplegaron; las pruebas manuales no se declaran ejecutadas.
+El caso real de bypass plataforma está cubierto por test automatizado con configuración real; las
+variantes mock `test3` excluyen deliberadamente al team mock de plataforma. Si
+`FURY_IS_TEST_SCOPE=true`, además se omite la precondición histórica antes de evaluar membresía
+plataforma, por lo que esas variantes no sirven como prueba manual de dicho bypass.
 
-## Estrategia de pruebas y gate del PR
+## Riesgos y gates pendientes
 
-Los tests pertenecen al PR de este slice. El PR no queda listo para merge sin la matriz crítica verde y al menos 95% de coverage del código nuevo.
-
-- Relaciones: allow para los cuatro roles `DEV_AND_UP`; deny para rol inferior, grant cruzado, scope incompleto y ACME fallido.
-- Relaciones: create/update/delete same-DP; cross-DP; self-loop; extremos inexistentes; update que intenta cambiar de owner; delete con relación borrada.
-- Ausencia de side effects: deny no llama `save`, `saveAll`, update de versión ni auditoría de delete.
-- Pipeline: cada una de las cinco rutas invoca una sola vez el autorizador con el Data Product persistido.
-- Pipeline: deny no llama `checkAndIncrementVersion`, `componentSaveHelper.save`, `applyAdd/applyRemove`, lifecycle, repositories de execution/run ni `DeploymentGroupService`.
-- Pipeline deploy: allow conserva idempotencia, filtros, `force`, freezes y deltas; deny ocurre antes de todos ellos.
-- Verificar que `platformTeams` y `tempAllCanEdit` no conceden acceso.
-- Ejecutar regresión de pipeline component delete e inactivate para asegurar que continúan en `DEPLOYER_AND_UP`.
-- Ejecutar integración HTTP de `401/403/404` y los status funcionales preexistentes.
-
-## Gate de datos y rollout
-
-Antes del rollout se mide la completitud de `teamName + projectCode` en los Data Products que poseen relaciones, pipelines activos o ejecuciones recientes. Los cross-DP existentes no se migran, pero deben cuantificarse para confirmar que el nuevo guard no intenta normalizarlos ni modificarlos accidentalmente.
-
-El smoke incluye una relación same-DP permitida, una cross-DP rechazada y un pipeline deploy permitido/denegado con identidades reales. La evidencia forma parte del PR.
-
-Rollback: revert del PR. No hay migraciones de datos ni cambios en el contrato de eventos.
-
-## Tasks ejecutables
-
-1. Propagar username autenticado por controllers e interfaces de relaciones y pipeline.
-2. Implementar same-DP y owner persistido en create/update/delete de `ComponentRelationServiceImpl`.
-3. Reemplazar el acceso histórico por `OperationAuthorizationService + DEV_AND_UP` en PUT pipeline, design, relations y component create.
-4. Integrar pipeline deploy antes de freeze, delta, lifecycle y dispatch.
-5. Agregar tests unitarios e integración para allow/deny, cross-DP, resource consistency y cero side effects.
-6. Ejecutar gate de datos, smoke no productivo, regresión focalizada y coverage como parte del mismo PR.
+- Checks visibles del nuevo HEAD (`continuous-integration`, `code-coverage`, `dependencies`, `workflow`) en `SUCCESS`; review `APPROVED`. GitHub aún informa `mergeStateStatus=BLOCKED`, sin conflictos (`MERGEABLE`); no se infiere habilitación para merge.
+- Builds Fury test3 terminados `FINISHED`; falta deploy no productivo.
+- Pruebas manuales sobre esas variantes; no se declaran aprobadas antes de ejecutarlas.
+- No se realizará versión estable ni deployment productivo.
+- AppSec especializado no estaba disponible; se hizo revisión manual de identidad, scope
+  persistido, precedencia, wildcard y side effects, más la regresión completa.
 
 ## Criterios de aceptación
 
-- Create, update y delete de relaciones resuelven ambos extremos persistidos, exigen same-DP y autorizan `DEV_AND_UP` contra ese owner.
-- Las cinco mutaciones de pipeline autorizan contra `teamName + projectCode` persistidos antes de modificar versiones, topología, relaciones, componentes o ejecuciones.
-- Pipeline deploy se autoriza una vez antes de calcular deltas y no crea execution/run ni publica cuando rechaza.
-- `platformTeams` y `tempAllCanEdit` no habilitan ninguna ruta protegida.
-- Pipeline component delete e inactivate conservan `DEPLOYER_AND_UP`.
-- Los tests, smoke y verificaciones de este slice se entregan en el mismo PR; no existe un gate final separado.
+- Las nueve operaciones usan configuración para activación y nivel.
+- Wildcards de components no activan relation/pipeline/Data Product.
+- Ausencia de entrada u ownership incompleto conserva compatibilidad aditiva.
+- Deny ocurre antes del primer side effect.
+- Relation update conserva cambios de endpoints/owners permitidos por F3.
+- Cascade autoriza una vez el Data Product persistido y no muta al denegar.
+- El bypass heredado de equipos plataforma permite el cascade sin owner grant adicional.
+- Username proviene del principal; headers quedan por ACME/downstreams existentes.
+- Delete/inactivate heredados continúan en `DEPLOYER_AND_UP`.
+- El diff contra F3 contiene sólo F4 y el cascade trasladado.

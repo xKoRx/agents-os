@@ -23,7 +23,7 @@ tags:
   - area/meli
   - project/scopes-rio
 created: 2026-08-12
-updated: 2026-09-22
+updated: 2026-09-23
 cssclasses:
   - wide
 ---
@@ -64,7 +64,7 @@ cssclasses:
 - **Reconciliación:** 1 consumer BigQueue pausado de [[rio-controlplane-fury]] quedó sin runtime resoluble en el service graph; se conserva explícitamente como hallazgo y no se asigna por inferencia.
 - **SPEC funcional vigente:** [SIG-599](https://spellbook.adminml.com/projects/SIG/specs/SIG-599) usa las etiquetas `production`, `staging`, `alpha`, `beta`, `gamma`; el estándar técnico fija `prod|stage|alpha|beta|gamma` para nombres runtime y filtros. Cada equipo adopta sólo las lanes y roles que necesita.
 - **Grid publicado:** el doc Grid `01KZXKPH3YAGGX89P04GTY7B7E` separa la foto Fury del contrato funcional y no agrega instrucciones, targets, routing, filtros, segmentación ni pilotos que no estén definidos por SIG-599. El HTML narrativo quedó integrado al generador.
-- **Próxima fase:** ejecutar la Fase 1 de la POC: preparar la Fury Route compartida e implementar [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]] antes de extender el recorrido a eventos, Playmaker y Flink.
+- **POC publicada para integración:** las ramas `feature/poc-scope-routing` de `ads-signals-frontend`, `rio-playmaker` y `rio-controlplane-flink` contienen el slice lane-affine y sus tres versiones Fury `0.0.1-poc-scopes-standard` están `FINISHED`. El scope frontend creado por Fury es `alpha-nonprod`; el BFF elimina sólo el sufijo materializado `-nonprod` para enviar `X-Rio-Scope: alpha`. Quedan pendientes la Fury Route, el aprovisionamiento y deploy de los runtimes backend y la certificación real de aislamiento.
 
 ## 🧪 POC alpha end-to-end — plan de implementación
 
@@ -82,7 +82,7 @@ La POC debe demostrar un deploy completo en el scope Fury `alpha` y probar que n
 |---|---|---|---|
 | 1.1 Cerrar diseño y revisión | Rodrigo | `DRAFT listo` | SPEC aprobada; ninguna decisión de negocio abierta |
 | 1.2 Preparar Fury Route compartida | Rodrigo / Fury | `pending` | satisfacer la dependencia externa definida en la SPEC |
-| 1.3 Implementar frontend | Rodrigo | `pending` | PR cumple la SPEC y checks del repo |
+| 1.3 Implementar frontend | Rodrigo | `branch publicada` | PR cumple la SPEC y checks del repo |
 | 1.4 Certificar aislamiento | Rodrigo | `pending` | matriz default/override/desconocido/test→prod/prod→test con evidencia |
 | 1.5 Rollout controlado | Rodrigo | `pending` | canary test estable y rollback probado |
 
@@ -188,7 +188,7 @@ views:
 > - [-] **[POC alpha — SPEC técnica SDK]** Cancelada: el contrato existente de `BigQueueMessage.filters`/mqclient ya transporta `scope:alpha`; la POC no agrega campos de scope a los DTOs #owner/me #type/dev #area/meli
 > - [x] **[Fase 1 — SPEC técnica Front]** Crear [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend]] con entrypoint test compartido, scope backend dinámico, aislamiento test/prod y particionado de estado/cache #owner/me #type/dev #area/meli ✅ 2026-09-16
 > - [ ] **[Fase 1 — Fury Route]** Implementar y evidenciar la dependencia externa definida en la [[SPEC técnica — Routing dinámico de backend en ads-signals-frontend#Dependencia externa de aprobación|SPEC]] #owner/me #type/dev #area/meli
-> - [ ] **[Fase 1 — implementación Front]** Implementar la SPEC aprobada en `ads-signals-frontend` y completar checks del repo #owner/me #type/dev #area/meli #waiting
+> - [x] **[Fase 1 — implementación Front]** Implementar la SPEC aprobada en `ads-signals-frontend` y completar checks del repo; rama `feature/poc-scope-routing` publicada y versión Fury `0.0.1-poc-scopes-standard` finalizada #owner/me #type/dev #area/meli ✅ 2026-09-23
 > - [ ] **[Fase 1 — certificación]** Ejecutar la matriz default/override/desconocido/test→prod/prod→test, probar rollback y enlazar evidencia #owner/me #type/dev #area/meli #waiting
 > - [r] **[POC alpha — SPEC técnica Playmaker]** Corregir y aprobar [[SPEC técnica — Routing KISS por scope en rio-playmaker]]: runtime canónico estricto, ambos trigger producers + result filtrados, cero fallback y timeout/retry deshabilitado en alpha #owner/me #type/dev #area/meli
 > - [r] **[[POC KISS — Routing de scopes en Playmaker]]** revisar y supervisar la implementación fase a fase bajo KISS/YAGNI #owner/me #type/supervision #area/meli
@@ -238,6 +238,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **2026-09-21 (Fase 3 CPs diseñada; supersedida el 2026-09-22)** — La primera versión de [[SPEC técnica — Continuidad de scope en control planes RIO]] definió Flink con parser fail-closed, `expectedScope`, carrier in-memory y publicación filtrada. La comparación sobre refs remotas frescas confirmó primitivas reutilizables en `rio-sdk-events` y boundaries comunes; la revisión del día siguiente eliminó la configuración y el carrier duplicados.
 - **2026-09-22 (Fase 3 alineada con Playmaker)** — Se corrige la autoridad del routing: cada CP deduce la lane desde su scope Fury canónico y usa el filtro entrante sólo como aserción. Se eliminan `expectedScope` y el carrier in-memory; el publisher vuelve a resolver la lane local. La POC queda gated por confirmar el accessor oficial de Fury, porque `java-toolkit-shared` observado sólo expone helper de segmento. Los reconciliadores siguen requiriendo ownership aislado por lane.
 - **2026-09-22 (review independiente aplicado con KISS/YAGNI)** — Se acepta que `unresolved=legacy` era fail-open, que Playmaker tiene dos trigger producers activos y que Flink GCP/Playmaker timeout no son lane-affine. La corrección no agrega classifier de cuatro estados ni persistencia: el artefacto alpha exige scope canónico al startup, no tiene fallback, filtra ingreso/egreso y excluye/deshabilita los paths durables. Fury/BigQueue pasa a gate real de plataforma. La generalización queda postergada hasta un segundo caso.
+- **2026-09-23 (ramas y versiones POC publicadas; scope frontend real reconciliado)** — Fury materializó el nuevo scope frontend como `alpha-nonprod`. El default del BFF deriva la lane lógica removiendo exclusivamente `-nonprod`, por lo que emite `X-Rio-Scope: alpha`; los overrides explícitos no se reescriben y un scope `*-nonsite` con routing test habilitado falla cerrado. Front, Playmaker y Flink publicaron `feature/poc-scope-routing` y sus versiones Fury `0.0.1-poc-scopes-standard` finalizaron correctamente. Playmaker incorporó `develop`; en Flink se corrigió la lectura del scope para no confundir la variable de pipeline `APPLICATION` con el scope Fury. El primer build de Front se reintentó por tres timeouts Jest no reproducibles localmente y el de Flink por esa regresión; ambos reintentos quedaron verdes. No se cerraron los gates de deploy, route, bindings ni certificación E2E.
 
 ## 🧭 Decisiones
 

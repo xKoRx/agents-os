@@ -16,7 +16,7 @@ tags:
   - project/scopes-rio
   - tech/nordic
 created: "2026-09-16"
-updated: "2026-09-16"
+updated: "2026-09-23"
 ---
 
 # Technical Specification — Routing dinámico de backend en `ads-signals-frontend`
@@ -36,7 +36,7 @@ Desacoplar el scope del frontend Nordic del target físico de Playmaker en ambie
 
 ### Contexto
 
-`frontend-config` carga `config/<SCOPE>-production.js`, y `test2`, `test3`, `beta` y `staging` fijan distintos hosts de Playmaker. Nordic publica el scope MeliLab efectivo en `env.SCOPE`; las 61 integraciones BFF convergen en `api/lib/playmaker.ts`, por lo que no se migra cada servicio.
+`frontend-config` carga `config/<SCOPE>-production.js`, y `test2`, `test3`, `beta` y `staging` fijan distintos hosts de Playmaker. Nordic publica en `env.SCOPE` el nombre materializado por Fury; el alta alpha real expone `alpha-nonprod`, donde `nonprod` es segmento y `alpha` es la lane lógica. Las 61 integraciones BFF convergen en `api/lib/playmaker.ts`, por lo que no se migra cada servicio.
 
 Hay un entrypoint test. El frontend valida sintaxis; Fury decide si el scope existe y a qué target resuelve.
 
@@ -44,17 +44,17 @@ Hay un entrypoint test. El frontend valida sintaxis; Fury decide si el scope exi
 
 | Runtime | `frontendScope` | Override `backend` | `backendScope` efectivo | Host Playmaker | Header |
 |---|---|---|---|---|---|
-| Fury test | `env.SCOPE` | ausente | `env.SCOPE` | `http://rio-playmaker-test.melisystems.com` | `X-Rio-Scope: <env.SCOPE>` |
+| Fury test | `env.SCOPE` | ausente | `logicalScope(env.SCOPE)` | `http://rio-playmaker-test.melisystems.com` | `X-Rio-Scope: <logicalScope>` |
 | Fury test | `env.SCOPE` | `?backend=<scope>` | `<scope>` | `http://rio-playmaker-test.melisystems.com` | `X-Rio-Scope: <scope>` |
 | Fury production | `env.SCOPE` | cualquiera | no aplica | `http://rio-playmaker-prod.melisystems.com` | ausente |
 
 Precedencia en test:
 
 ```text
-query.backend válido > override de sesión válido > env.SCOPE
+query.backend válido > override de sesión válido > logicalScope(env.SCOPE)
 ```
 
-`backend=` vacío elimina el override y vuelve a `env.SCOPE`. Un valor explícito usa `^[a-z0-9][a-z0-9-]{0,62}$`; no existe catálogo frontend. Un scope bien formado que Fury no reconoce falla sin retry al default ni a producción.
+`backend=` vacío elimina el override y vuelve al default derivado del runtime. Para un scope frontend segmentado de test, `logicalScope` elimina una sola vez el sufijo final `-nonprod`: `alpha-nonprod` produce `alpha`; los nombres legacy sin ese sufijo se conservan. Los overrides explícitos no se normalizan. Un `env.SCOPE` terminado en `-nonsite` con routing test habilitado falla con `500`, sin header ni llamada a Playmaker. Un valor explícito usa `^[a-z0-9][a-z0-9-]{0,62}$`; no existe catálogo frontend. Un scope bien formado que Fury no reconoce falla sin retry al default ni a producción.
 
 El override se conserva en la cookie de sesión host-only y `HttpOnly` `rio_backend_scope_override`, con `Secure` y `SameSite=Lax`. `app/server/index.ts` la actualiza antes de SSR; `playmaker(req)` usa `req.query.backend` en el primer request y la cookie en `/api`. Sólo el BFF construye `X-Rio-Scope`.
 
@@ -110,7 +110,7 @@ Los datos persistidos o compartidos se aíslan por `backendScope` efectivo:
 ### Design Decisions
 
 - **DD-1 — cliente único:** extender `playmaker(req)` y mantener su API pública; todos los verbos y consumidores convergen allí, mientras un cliente paralelo dejaría cobertura parcial.
-- **DD-2 — default Nordic:** `env.SCOPE` representa MeliLab ya materializado y `backend` altera sólo el backend; no se interpreta otra cookie privada ni se duplica Nordic.
+- **DD-2 — default Nordic:** `env.SCOPE` representa MeliLab ya materializado; el BFF separa el sufijo físico `-nonprod` de la lane lógica antes de construir el header y `backend` altera sólo el backend. No se interpreta otra cookie privada ni se duplica Nordic.
 - **DD-3 — entradas aisladas:** test usa `rio-playmaker-test.melisystems.com` + `X-Rio-Scope`; producción usa `rio-playmaker-prod.melisystems.com` sin header. `meliDomain` cumple Nordic en Fury, pero la seguridad proviene del destino estático y de la topología separada.
 - **DD-4 — existencia en Fury:** el frontend no incorpora enum, allowlist ni archivo por scope; validar una lane en UI convertiría cada alta en un deploy y crearía dos autoridades.
 - **DD-5 — override de sesión + reload:** se persiste sólo la intención explícita y el default sigue siendo `env.SCOPE`; una navegación completa evita mezclar SSR y XHR, cosa que `sessionStorage` no resuelve.
