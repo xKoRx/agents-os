@@ -3,7 +3,7 @@ type: skill
 schema_version: 1
 name: technical-project-manager
 description: Plan and drive a bounded technical initiative as a short delivery horizon of daily atomic milestones, each independently verifiable and ideally promotable, then manage each day through frozen design plus one-shot implementation, independent verification, and correction/final gate. Use when the owner asks an agent to act as technical manager/TL across multiple days or coordinate autonomous development agents toward same-day measurable outcomes. Do not use for a trivial single change, a validation-only session, or release/deployment certification by itself.
-scope: transversal
+scope: global
 created: "2026-09-23"
 updated: "2026-09-23"
 entities: []
@@ -25,7 +25,7 @@ indexable: true
 index_priority: critical
 tags:
   - kind/skill
-  - scope/transversal
+  - scope/global
   - tech/agents-os
   - action/project-management
   - action/orchestrate
