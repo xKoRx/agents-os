@@ -1,5 +1,12 @@
 # Agents resource log
 
+## [2026-09-23] ingest | Compounding Engineering Vision
+
+- Se formalizó `compounding-engineering-vision.md` como visión de ingeniería de Agents-OS, separada de la constitución ejecutable del sistema.
+- El north star queda definido como progreso acumulativo: producto mejorado + evidencia ejecutable + tooling reusable + conocimiento de agente destilable.
+- La visión documenta hitos diarios atómicos, ciclo de tres shots, ownership lógico de verificación por SPEC, harvest de tests/E2E/toolkit, separación product knowledge vs agent knowledge, contrato de Prompt Maestro (`/goal`…`/close`) y promoción selectiva vía Hygiene/Kaizen.
+- Declaración resumida: `build → break → fix → certify → preserve → learn → compound`.
+
 ## [2026-09-23] create | sdd-developer
 
 - Se creó `sdd-developer` para el tramo de entrega de SDD cuando SPEC/PLAN/TASKS ya están ready: Shot 1 implementación, Shot 2 verificación adversarial independiente y Shot 3 corrección + gate final.
