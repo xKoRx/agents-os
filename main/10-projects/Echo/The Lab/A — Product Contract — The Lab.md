@@ -17,52 +17,89 @@ updated: "2026-09-22"
 
 # A — Product Contract — The Lab
 
-> **Estado: PROPUESTA PARA RATIFICACIÓN DEL OWNER, 2026-09-22.** Este documento no sustituye las autoridades frozen ni autoriza implementación o trading. Es un entregable de [[Echo — Producto Integrado]]; no crea un tercer proyecto. Documento complementario: [[B — Architecture Decision Report]], [[C — Reality and Gap Matrix]], [[D — Revised Roadmap]], [[E — First Usable Vertical Slice]] y [[F — Decision Register]].
+## Propósito
 
-## Propósito y resultado observable
+Propuesta de contrato de producto para Rodrigo Jara, 22-09-2026. Estado: **PROPUESTA PENDIENTE DE RATIFICACIÓN**. El mandato del owner ratifica los objetivos indicados abajo; las elecciones técnicas de esta nota no sustituyen contratos frozen ni autorizan código, despliegues o trading. Pertenece a [[Echo — Producto Integrado]] y a su discovery existente. Implementación seguirá en los dos tracks Live Platform y Forge Factory; The Lab no constituye un tercer producto.
 
-The Lab es la superficie analítica central de Echo. Permite elegir una StrategyVersion, reconstruir una historia publicada única desde operaciones originales de Forge SQX, Forge MT5 y hechos observados en Echo, derivar N curvas reproducibles, calcular métricas compatibles y ofrecer un screener comparable. Los portfolios versionados y su asignación a cuentas son un endgame separado, nunca prerrequisito del primer producto. Su objetivo medible es reducir TIME_TO_USABLE_TRADING_SYSTEM, no incrementar el número de componentes. La capacidad de Forge para generar/promover y la aceptación E-04 no equivalen a historia analítica lista.
+## Contenido
 
-## Decisiones de producto RATIFICADAS por el mandato del owner
+### Resultado de producto y autoridad
 
-- Una estrategia se analiza con identidad de estrategia y versión explícitas; cambiar de cuenta no crea nueva StrategyVersion. Cambios efectivos de reglas, código, parámetros o stops que alteren la lógica requieren versionado apropiado. Una vista familiar longitudinal puede reunir versiones SOLO etiquetada como proyección multi-versión; nunca atribuye sus operaciones a una versión individual.
-- Exactamente dos fechas A y B y tres períodos principales. SQX y MT5 son dos evidencias históricas Forge diferentes; IS/OOS/WFM son etiquetas internas al TRAINING_DATA, no períodos principales. Desde B, REAL se nutre de operaciones Reference efectivamente observadas por Echo. Execution es otra serie atribuible por cuenta, separada de Strategy Quality.
-- Las operaciones individuales y hechos son la autoridad; curvas, métricas y rankings son derivados versionados. Fuentes originales se preservan aunque se rechacen o no seleccionen. No concatenar trade lists superpuestas ni inferir operaciones desde un reporte agregado.
-- Forge produce evidencia, versiones selladas y handoffs; Echo acepta, valida, normaliza, selecciona y persiste analítica. Forge no escribe en PostgreSQL Echo ni posee curvas finales, elegibilidad, capital o activación. INGESTION ≠ disponibilidad analítica ≠ enrollment ≠ observación ≠ activación.
-- No construir backtester OHLC, intrabar, recuperación histórica automática, motor genérico de portfolios, framework de plugins/DSL, microservicio analítico nuevo o ingesta macroeconómica genérica en este ciclo.
+The Lab reconstruye una historia seleccionada por StrategyVersion, preserva operaciones individuales y permite analizarla mediante N algoritmos reproducibles. Secuencia de autoridad: evidencia original → operaciones canónicas durables → selección de historia → curvas → métricas → screener/rankings → portfolios → asignación mediante Echo. Ninguna capa derivada reescribe hechos de una capa anterior.
 
-## Semántica propuesta de historia única: requiere ratificación técnica
+**Ratificado por el mandato:** exactamente TRAINING_DATA, PRE_REAL y REAL; dos fronteras A/B; SQX y MT5 entregados por Forge con operaciones verificables; una historia oficial seleccionada; IS/OOS dentro del entrenamiento; Reference observada desde B y Execution separada; corrección manual auditable ante interrupciones; N curvas; calidad separada de sizing; UI temporal, operaciones, calendario y screener; portfolios como destino. Sin backtesting de velas, simulación intrabar ni recuperación histórica automática en esta iteración.
 
-Todas las fronteras son instantes UTC ISO-8601, no fechas locales sin offset: `TRAINING_DATA = [−∞, A)`, `PRE_REAL = [A, B)`, `REAL = [B, +∞)`, con A < B. Las horas visualizadas en America/Santiago no cambian pertenencia ni identidad. `history_revision_ref` selecciona la publicación inmutable única para `(strategy_version_ref, A, B, selection_policy_version)`; sólo una revisión tiene estado PUBLICADA para esta selección, y las anteriores permanecen consultables como auditoría, no como historias oficiales paralelas.
+**Propuesto para ratificación:** reglas de frontera y selección siguientes; EVENT_TIME validado en históricos; modelo de revisiones; algoritmos y fórmulas versionadas; estados de disponibilidad; extensión de handoff; secuencia del roadmap. Sus decisiones numeradas están en [[F — Decision Register]].
 
-La operación pertenece al período determinado por `opened_at` observado, nunca por hora de importación, de recepción o por el cierre utilizado para graficar. Orden cronológico de puntos de curvas de operaciones cerradas: `(closed_at UTC, operation_ref)` estable; eje X = tiempo real. Para una operación que atraviese A o B, se conserva íntegra y se marca `CROSSES_BOUNDARY`; permanece visible en la historia longitudinal, pero se excluye de métricas estrictamente segmentadas si su realización posterior genera fuga temporal o existe evidencia parcial. No fragmentar arbitrariamente su PnL ni asumir rentabilidad cero. En B, una posición carry-in anterior a REAL no se certifica como performance REAL completa sin hechos de ciclo íntegro; la primera muestra REAL certificable comienza con entradas observadas desde B. Este es un criterio conservador propuesto, no un hecho ya ratificado.
+### Una historia publicada, no una historia inmutable para siempre
 
-La asignación por fuente es estricta y configurable SOLO mediante nueva versión explícita de política de selección: SQX para TRAINING_DATA con validación de límites/IS/OOS; MT5 para PRE_REAL sólo si existe lista de operaciones individuales genuina; hechos Reference Echo para REAL y `strategy_version_ref` pineada al OPEN. Solapamientos de fuentes se conservan como evidencia, nunca se suman. En caso de colisión de identidad o match económico ambiguo, cuarentena sin elegir arbitrariamente. La clave de deduplicación exige identidad nativa estable + namespace de fuente y reconciliación identificada al evento económico; coincidencia aproximada por timestamp/precio no es prueba de igualdad. Una ausencia de MT5 no permite que SQX rellene PRE_REAL por defecto.
+Cada StrategyVersion tiene una sola revisión publicada de historia analítica. Puede tener revisiones anteriores retenidas para auditoría y candidatos sin publicar. El puntero publicado se cambia explícitamente y nunca hay dos revisiones vigentes para la misma versión. Todas las consultas pinnean la revisión; una página no combina la curva de una revisión con métricas de otra.
 
-## Contrato mínimo de operación
+Identidad de estrategia, StrategyVersion, versión de datos y cuenta son conceptos distintos. Mover la Reference de cuenta crea un binding con su intervalo y conserva la misma versión si reglas/código/parámetros efectivos no cambian. Un cambio de reglas o ejecutable requiere la clasificación de versión existente; un cambio de sizing se identifica por su política. No se asignan trades históricos de un ejecutable a otro para llenar huecos.
 
-`NormalizedOperationV1` de Echo SDK es el wire canónico inicial; extender únicamente campos/capabilities demostrablemente ausentes y de manera aditiva, nunca fabricar defaults. Para cada operación se necesita: `operation_ref`, `strategy_ref`, `strategy_version_ref`, `economic_event_ref`/linaje nativo, `source_ref`/digest y fuente, `opened_at`, `closed_at` cuando exista, estado abierta/cerrada/parcial, instrumento y especificación de pip, side, entrada/salida, riesgo inicial documentado (distancia y/o moneda con FX documentado), PnL bruto/neto, comisiones/swap/spread si existen, moneda, volumen observado y calidad/ausencias tipadas. Señal original (entry/SL/TP) se preserva como objeto separado de la operación ejecutada si existe; SL observado no equivale necesariamente al SL inicial. `DEAL` es hecho operacional irreducible; una operación analítica reconstruida puede tener N DEALs y no los reemplaza.
+La vista inicial exige seleccionar una StrategyVersion. La futura vista longitudinal de la estrategia será una proyección identificada de versiones e intervalos, con miembros explícitos y fronteras visibles; no será una fusión anónima. Cada versión conserva su propio par A/B. No se introduce una cuarta etapa para una nueva versión.
 
-Una importación tiene estados independientes: `EVIDENCE_VERIFIED` (bytes y contenido original), `INGESTED` (receipt E-04 operativo), `ANALYTICAL_HISTORY_READY` (historia publicada completa o explícitamente parcial con matriz de coverage) y `REFERENCE_OBSERVING` (hechos físicos Reference con evidencia). Estos nombres describen capacidades y no introducen enums si los estados E-04/E-06 existentes bastan. `READY` no se adjudica a un período sin trade list comprobable, cobertura ni digests. Interrupción excepcional de Echo: registrar `OBSERVATION_GAP`, conciliar manualmente con broker e incorporar corrección auditada en nueva revisión, jamás interpretar silencio como cero.
+### Dos fechas y tres períodos
 
-## Curvas, money management y métricas
+Todas las fronteras se guardan como instantes UTC; la UI puede mostrarlas en America/Santiago junto con el timezone. La pertenencia se determina por **closed_at_event validado** de la operación completa:
 
-Cada curva = `(published_history_revision, ordered operations digest, period selection, algorithm id/version, config digest, basis, unit, inputs auxiliares verificados)`; misma pregunta produce la misma referencia y el mismo content digest, o conflicto de determinismo. Los algoritmos iniciales son acumulado R, pips, equity virtual con capital inicial explícito y políticas monetarias calculables con evidencia suficiente. La curva real de cuenta usa sus deals/equity propios, no se etiqueta curva de calidad normalizada. R exige riesgo inicial probado, pips exige definición de pip/instrumento y precios/dirección, equity virtual exige capital y política de escalado; `R`, `pips`, `money` y `percent` nunca son intercambiables. Reescalar resultados cerrados sólo sirve para políticas que no alteran camino, señal, entrada/salida, costos ni restricciones de capital no modeladas; trailing, SL dinámico y salidas alternativas requieren simulación futura con mercado/path, NO disponible aquí.
+| Período | Intervalo | Fuente seleccionada por defecto |
+|---|---|---|
+| TRAINING_DATA | t < A | TradeSet SQX final elegido, correspondiente a la versión y resultado correctos |
+| PRE_REAL | A ≤ t < B | TradeSet MT5 de la misma versión, posterior al corte de entrenamiento |
+| REAL | B ≤ t | Reference realmente observada por Echo, con binding y cobertura demostrados |
 
-MetricSet conserva identidad semántica `(key, basis, unit, formula id/version/digest, sample/window, frequency, currency cuando aplica)`, input exacto de curva + operaciones si la métrica es trade-based. Métricas candidatas: retorno, drawdown, Return/DD, PF, Sharpe, expectancy, SQN, win rate, recovery, DD actual, duración, frecuencia y cobertura. `INSUFFICIENT/UNKNOWN` son resultados explícitos; jamás convertir divisiones indefinidas, cero pérdidas, FX ausente o ventana insuficiente en cero numérico. El screener sólo ordena valores bajo mismo período, algoritmo/configuración, unidad, ventana y política de inclusión; rankings Forge/finalistas/analítica son autoridades distintas, y no predicen rentabilidad futura.
+A es el primer instante posterior a **todo dato utilizado para generar, ajustar o seleccionar** esa versión, no el inicio de un OOS al que ya se miró para elegir finalistas. B es el inicio autorizado y demostrado de observación de esa versión por Reference; no es fecha de promoción, POST ni creación de una cuenta. A debe poder reconstruirse desde datos/configuración de investigación. B puede permanecer PENDING antes de observar: se representa como ausencia explícita, sin inventar fecha futura; PRE_REAL queda abierto hasta el as_of y REAL aparece «aún no iniciado». Si A no está probado, no se publica una partición oficial: se permite inspección de fuentes como evidencia provisional.
 
-## Primer front usable y endgame
+Propuesta semántica a ratificar: REAL significa **operativa observada**, incluyendo una Reference DEMO; el campo de entorno DEMO/REAL es obligatorio y visible. No presentar DEMO como dinero real. Si el owner reserva REAL exclusivamente a dinero real, hay que resolver primero dónde vive la observación DEMO sin romper los tres períodos del mandato.
 
-Una pantalla READ selecciona estrategia/versión, A/B y tres bandas; escoge curva, muestra puntos en tiempo real, métricas y procedencia, tabla individual, calendario por fecha de cierre y screener de cohorte comparable. Marcar creación/promoción, cambio cuenta/versión, inicio real y gaps sólo con evidencia; macroeventos contextuales únicamente si se dispone de referencia fechada comprobable. Un gap se visualiza como gap, no como línea horizontal de retorno cero.
+Operación que abre antes de A/B y cierra después: se conserva completa y pertenece al intervalo de cierre. No se inventan una salida o un reparto de PnL en la frontera. La fuente designada para el intervalo debe demostrar el OPEN original, su riesgo y el cierre; el replay puede incluir warmup anterior a A. Un binding nuevo no presume observar una posición que nunca identificó. Las abiertas se muestran aparte y no entran en curvas de resultados cerrados hasta su cierre. Saldo realizado no equivale a equity marcada a mercado.
 
-El modelo de identidad y series temporales debe admitir después `PortfolioVersion` con miembros versionados, pesos, superposición temporal, correlaciones sobre ventanas comunes, restricciones/riesgo agregado, curvas de cartera, rebalanceo y mapping de ejecución por cuenta. Ni ranking individual ni suma ingenua de curvas no alineadas constituye cartera elegible.
+IS/OOS/WFM son anotaciones identificadas por evaluación/configuración/rango dentro de TRAINING_DATA. OOS no es sinónimo de PRE_REAL. Un replay MT5 retrospectivo posterior a A es validación histórica, no evidencia de que la selección se hubiera decidido prospectivamente.
 
-## Criterios de aceptación de producto
+### Selección, overlap y correcciones
 
-Primer hito: una StrategyVersion auténtica de la campaña FULL pasa de SQX+MT5 con dos listas de operaciones y digest hasta Echo; una única historia A/B selecciona cada evento como máximo una vez, conserva exclusiones, produce R/pips/virtual sólo donde los inputs lo permiten, muestra curva temporal y operaciones, métricas y una comparación básica en screener. Cuando aún no hay Reference REAL, REAL aparece sin datos/UNKNOWN, nunca cero ni serie sintética. Replay conserva refs/filas, conflicto no altera datos, cambiar algoritmo recalcula sin reimportar. La certificación es física en DEV con esa misma estrategia; `SOURCE_PASS` no satisface el gate. Activar dinero real exige decisión humana independiente.
+1. Validar versión, scope, símbolo normalizado y especificación del instrumento, timezone, artefactos y contenido. La ausencia de estos datos no se cura cambiando labels.
+2. Seleccionar un set autorizado por fuente/período en el manifiesto de historia. Cortar con intervalos semiabiertos. Los otros sets siguen siendo evidencia inspeccionable, sin sumar sus operaciones a la historia.
+3. Dedupe dentro del origen mediante OperationRef estable; revisiones del mismo hecho se distinguen por record_digest. Misma referencia y contenido diferente sin cadena de corrección = conflicto.
+4. Entre fuentes, sólo afirmar equivalencia de evento si existe prueba de la misma identidad económica: servidor/cuenta/registro de broker/deal o mapeo explícito validado. SQX y un backtest MT5 pueden producir caminos distintos; proximidad temporal y PnL similar no prueban equivalencia. La selección exclusiva por período evita concatenarlos; no fabrica un pareo.
+5. En REAL, un cambio de Reference exige bindings no superpuestos o autoridad explícita para el overlap. Un evento observado por dos collectors conserva una sola selección. Execution continúa como serie por cuenta y no rellena Reference.
+6. Una corrección manual aporta evidencia original, actor, motivo, supersedes y revisión nueva. Se recalculan derivados; la revisión anterior sigue resoluble. Un hueco de observación se representa como desconocido, nunca como días de retorno cero.
 
-## Fuentes y límites de evidencia
+La publicación exige ausencia de conflictos de identidad en los miembros seleccionados. Cobertura parcial conocida puede publicarse con cortes y huecos visibles, pero bloquea algoritmos o métricas que requieren completitud. No todo dato incompleto impide consultar trades; sí impide afirmar comparabilidad donde falta la prueba.
 
-- [[Echo — Producto Integrado]]; [[Echo — Live Platform V1]]; [[Echo Forge — Factory V2 Completion]]; [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]] y freeze review Fable; [[Echo — E-04 Forge Ingestion E1]]; [[Echo — E-05 Analytics Convergence A0]]; [[Echo — E-10 Strategy Quality and Eligibility]].
-- `xKoRx/echo@5dd998f16aea7b2821f460188718d7a6d279829c`: `specs/FEAT-FORGE-INGESTION-E1/SPEC.md`, `specs/FEAT-ANALYTICS-CONVERGENCE-A0/SPEC.md`, `v3/sdk/contracts/analytics.go`, `v3/sdk/analytics/calculator/calculator.go`. `xKoRx/symphony@745bc8b94e1f6148ddc16c02eb86a755088c2666`: factory F-05-C certificada según nota canónica fechada, NO prueba aún dual trade list por versión. Baselines son SHA de master consultados, no HEAD de features.
-- No se accedió a broker, bases físicas, MinIO ni flota. La prueba de operaciones auténticas duales se planifica como primer gate, no se declara superada. Graphify no disponible en esta superficie; Markdown vía GitHub y documentos disponibles en Library. Todas las extensiones y políticas no ratificadas son propuestas.
+### Curvas y significado económico
+
+Cada CurveRun fija operaciones exactas, revisión, período/ventana, algoritmo y versión, configuración, basis/unidades, especificaciones y as_of. Se puede recalcular otra configuración sin reimportar operaciones. Reproducir la misma pregunta produce el mismo resultado y digest; un resultado distinto no sobrescribe uno anterior.
+
+| Familia | Pregunta | Límite |
+|---|---|---|
+| Acumulado R | Resultado por riesgo inicial demostrado | Riesgo cero/desconocido → insuficiente; no SL final |
+| Acumulado pips o ticks declarados | Movimiento capturado en un instrumento | No comparar unidades de activos diferentes como si fueran retorno |
+| Capital virtual normalizado | Transformación de resultados con riesgo estándar | Política identificada; no depende del lotaje real cuando pretende normalizar |
+| Capital por política de sizing | Contrafactual de tamaño sobre el mismo camino de trades | Concurrencia y costos explícitos; sin entradas/salidas alternativas |
+| PnL/capital observado de cuenta | Impacto económico efectivamente observado | Incluye sizing, costos y flujos; no es ranking de calidad |
+
+R no demuestra independencia matemática total de la gestión: el stop que define riesgo también es parte de la estrategia, los costos y restricciones pueden depender del tamaño. Preservar señal original, observación, riesgo inicial, política aplicada y escenario contrafactual como identidades distintas. Cambiar stop/trailing/entrada/salida necesita información de camino y un futuro simulador; los resultados finales no bastan.
+
+### Métricas, screener y ranking
+
+Las métricas fijan key+basis+unit+formula/version, CurveRun, ventana, frecuencia, costos, muestra y política de datos faltantes. La UI muestra cobertura, motivos de insuficiencia y procedencia. Nunca NULL→0; ningún ranking mezcla pips, R, USD y porcentaje sin receta declarada.
+
+Primer screener: estrategia/versión, período, algoritmo/configuración, rango común, filtros y ordenamiento de métricas comparables. Un ordenamiento persistido se identifica mediante contrato Ranking existente y sus inputs; Score sólo si hay receta explícita. No inventar pesos «científicos» ni umbral de rentabilidad. Ranking de Forge = selección de fabricación; ranking de Lab = consulta analítica; elegibilidad y asignación = decisiones separadas. Se puede analizar un finalista perdedor sin habilitarlo para operar.
+
+### Experiencia mínima verificable
+
+Seleccionar versión → ver fuentes y estado → historia con A/B y tres franjas → escoger normalización → curva con eje temporal real → métricas → drilldown a operaciones → calendario de trades → screener con ordenamiento reproducible. Deben verse cambios de cuenta/versión, creación/promoción, inicio observado y gaps. Eventos macro sólo con fuente y fecha verificadas; son contexto, no causalidad automática. Sin feed macro no se bloquea este producto.
+
+La curva inicial es de resultados realizados, con punto inicial y saltos de cierre; no suavizar inventando excursiones entre trades. El calendario distingue «cobertura completa sin cierres» de «sin observación». Permitir TRAINING_DATA/PRE_REAL/REAL y vista de toda la historia; métricas de período se recalculan en su ventana, no promedian métricas de subperíodos.
+
+**Primer hito:** una estrategia auténtica y correctamente atribuida entrega ambos históricos, incluye datos PRE_REAL reales del replay posterior a A, publica su selección, produce al menos una curva normalizada soportada con métricas verificables, trades, calendario y screener. REAL puede estar pendiente. Recibir dos archivos superpuestos o mostrar todos los algoritmos como insuficientes no completa el hito.
+
+### Endgame compatible
+
+PortfolioVersion conserva miembros StrategyVersion/HistoryRevision/CurveRun, pesos, restricciones y policy refs. Correlaciones requieren grilla temporal común y cobertura; pesos y rebalanceos tienen vigencia. Su curva se calcula sobre contribuciones sincronizadas, no como promedio de DD individuales. Assignment a cuenta es otro objeto con autorización y ejecución E-08/E-09/E-12, seguimiento y retiro explícitos. Nada en una consulta o ranking activa trading.
+
+## Fuentes
+
+Mandato del owner de 22-09-2026; [[Echo SDK — Canonical Forge Integration and Analytics Contract V1]]; [[Echo SDK — Canonical Contract Final Freeze Review — Fable 5.1]]; [[Echo — Live Platform V1]]; [[Echo Forge — Factory V2 Completion]]. Evidencia física y contradicciones: [[C — Reality and Gap Matrix]]. Arquitectura: [[B — Architecture Decision Report]]. Implementación propuesta: [[D — Revised Roadmap]] y [[E — First Usable Vertical Slice]].
