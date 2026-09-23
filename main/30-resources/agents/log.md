@@ -1,5 +1,12 @@
 # Agents resource log
 
+## [2026-09-23] create | technical-project-manager
+
+- Se creó `technical-project-manager` como skill transversal para convertir una iniciativa acotada en un horizonte corto de hitos diarios observables, atómicos y verificables.
+- Cada día congela diseño/contratos justo a tiempo y ejecuta tres shots: implementación autónoma, verificación independiente adversarial y corrección + gate final.
+- La skill separa `DAY_PASS` de promoción a producción y deriva release/deploy/E2E a `release-certification`, `deployment-proof` y `e2e-gated-validation`; no duplica SDD ni implementation planning.
+- Forward-test de activación: proyecto multi-día con varios agentes → aplica; cambio trivial aislado → no aplica; certificación/deploy puro → handoff a las skills de release/validation.
+
 ## [2026-09-17] create | rio-sunset-update
 
 - Se curó en el vault la propuesta `feat/rio-sunset-update@a7872cd` de `ads-signals-skills-marketplace`, incluyendo referencias y gates ejecutables de input, binding build→SHA y scope de test.
