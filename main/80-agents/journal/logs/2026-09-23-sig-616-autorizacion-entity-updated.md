@@ -48,6 +48,7 @@ tags:
   CI y versiones de prueba. Esa información cambia el estado vigente del proyecto.
 - F5 requería incorporar la corrección F4 `e75ca90d9` y actualizar su evidencia y base efectiva.
 - El comentario humano de PR #1182 detectó tipos Flink inválidos y cobertura GCP faltante; el usuario pidió familias abstractas y configuración YAML sin ampliar los casos de uso.
+- El usuario pidió crear versiones de prueba F5 para committer y viewer, siguiendo el patrón `test3` de las fases anteriores.
 
 ## Fuentes usadas
 
@@ -57,6 +58,7 @@ tags:
 - Resultados locales de Gradle, contrato ejecutable, JaCoCo y Fury CLI.
 - Rama publicada `feature/operation-authorization-by-team-f5@dfc26fda7`, PR #1182 y resultados locales de 24 selectores, dos checks L0/LOCAL_STACK y `./gradlew check`.
 - Tipos admitidos por Control Plane en `develop` consultados desde GitHub; F5 corregida y publicada como `a89fcffcb`, PR #1182 con base F4 `e75ca90d9` y `MERGEABLE`.
+- Ramas publicadas `feature/sig-616-auth-p5-committer-test3-v21@ca35f0b04` y `feature/sig-616-auth-p5-viewer-test3-v22@6c7260690`; catálogo Fury con versiones `0.1.17-p5-committer-allowed` y `0.1.18-p5-viewer-denied` en `FINISHED`.
 
 ## Resolución aplicada
 
@@ -68,6 +70,7 @@ tags:
   test3 nuevas que incorporan `e75ca90d9`.
 - Se registró el merge de F4 en F5, la matriz combinada, el diff F4→F5 acotado a nueve archivos, la base y descripción actualizadas de PR #1182 y el smoke aún pendiente.
 - Se agregaron `component-families` y `family-permissions` a YAML: `flink-sql` agrupa `flink-sql`/`gcp-flink-sql`; `flink-job` agrupa `aws-flink-job`/`gcp-flink-job`. Las reglas F2–F4 siguen exactas o wildcard como antes. Eliminar un permiso familiar apaga el guard adicional de la Action para sus miembros sin alterar el caso de uso.
+- Las variantes F5 heredaron exactamente `a89fcffcb`; el mock ACME `@Profile("test3")` otorga committer o viewer según la rama. Se excluyó el equipo mock del bypass plataforma sólo en `application-test3.yml`. Los mocks quedaron fuera del PR F5; se registraron links y hashes en SPEC, nota del PR y proyecto.
 
 ## Validación
 
@@ -77,6 +80,7 @@ tags:
 - La corrección F5 pasó los contratos, 25 selectores, ambos checks locales con cleanup y `./gradlew check` con 4.086 tests (0 fallas, 0 errores, 2 skips). El nuevo HEAD remoto y la base F4 se verificaron; el smoke Tiger/ACME no productivo sigue pendiente.
 - JaCoCo local pasó y reportó 31/31 líneas cubiertas en `ConfiguredActionPermissionProvider`; este dato no sustituye el check remoto de cobertura abortado.
 - [CI #5490](https://rp-ci-java.furycloud.io/job/rio-playmaker/5490/) falló antes del checkout de la aplicación: Git no confió en el certificado al obtener `fury_rp-ci-pipelines.git`. Los checks de cobertura y dependencias fueron abortados por ese fallo; la solicitud GitHub de reejecución devolvió 404. La descripción del PR se actualizó con esta limitación.
+- En ambas variantes pasaron los contratos del repositorio y testing, los tests focalizados del mock y provider, y `./gradlew check --no-daemon` con 4.101 tests, 0 fallas y 2 skips. Los builds remotos terminaron `FINISHED`; no hubo deploy ni smoke mutable.
 
 ## Compartibilidad
 

@@ -133,3 +133,30 @@ Rollback: retirar los permisos familiares del scope o revertir el PR. No hay mig
 ## Estado de implementación — 2026-09-23
 
 F5 `a89fcffcb` integra F4 `e75ca90d9` en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182). La matriz combinada mantiene los guards configurados de F2–F4 y suma los diez pares F5: ocho combinaciones Flink por familia y dos ClickHouse exactas. El diff F4→F5 no modifica `ActionServiceImpl` ni otros casos de uso. Pasaron 25 selectores focalizados, dos checks L0/LOCAL_STACK con cleanup, contratos y `./gradlew check` con 4.086 tests, 0 fallas y 2 skips preexistentes. La [CI #5490](https://rp-ci-java.furycloud.io/job/rio-playmaker/5490/) falló antes del checkout por certificado no confiable del repositorio de pipelines, por lo que no aporta validación remota de este HEAD. El smoke Tiger/ACME no productivo permanece pendiente.
+
+## Variantes de prueba test3 — 2026-09-23
+
+| Rol mock | Rama y commit | Versión Fury | Expectativa F5 |
+|---|---|---|---|
+| committer | `feature/sig-616-auth-p5-committer-test3-v21@ca35f0b04` | [`0.1.17-p5-committer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.17-p5-committer-allowed) | Permite los pares `DEV_AND_UP` configurados. |
+| viewer | `feature/sig-616-auth-p5-viewer-test3-v22@6c7260690` | [`0.1.18-p5-viewer-denied`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.18-p5-viewer-denied) | Deniega los pares `DEV_AND_UP` configurados antes de side effects. |
+
+Ambas ramas parten de F5 `a89fcffcb`, limitan `AcmeClientRoleMock` al profile `test3` y excluyen al team mock `ml-ads-signals` del bypass de plataforma sólo en esas variantes. Sus pruebas cargan el YAML real F5 para los diez pares. Pasaron contratos y `./gradlew check --no-daemon` con 4.101 tests, 0 fallas y 2 skips en cada rama. Fury informa `FINISHED` para ambos builds. No se desplegaron ni se ejecutó smoke remoto.
+
+## Addendum aprobado por el owner — cierre de mutaciones de Signals, 2026-09-23
+
+El owner amplió F5 después de detectar que el rol viewer aún podía editar descripción, visibilidad y configuración de componentes en test3. Las secciones anteriores describen el alcance original de Actions; este addendum las supersede para el cierre de F5. Se revisó `ads-signals-frontend@origin/develop:9bf76ffc` y se exigió autorización configurable en YAML para los casos de uso de Playmaker que crean, modifican o eliminan estado del agregado desde esa UI. No se agregan endpoints, Actions ni casos de uso.
+
+| Mutación incorporada al guard de F5 | Scope/operación YAML | Owner |
+|---|---|---|
+| Crear/editar/cambiar estado de Data Product | `data-product:create/update/update-status` | Nuevo scope en create; owner persistido en update; también destino si cambia owner |
+| Eliminar Data Product | `data-product:cascade-delete-components` de F4 | Owner persistido, sin bypass de platform team bajo el guard |
+| Patch de configuración o rename en pipeline | `pipeline:update-component-config/rename-component` | Data Product persistido |
+| Crear/editar/activar/eliminar definición | `component-definition:create/update/activate/delete` | Data Product del componente persistido |
+| Solicitar/resolver import authorization | `import-authorization:request/resolve` | DP solicitante o DP de origen persistido, respectivamente |
+
+Permanecen los guards de F2–F4 para componentes, relaciones, topología, deploy, undeploy, inactivation y Actions. El nivel es `DEV_AND_UP` para escrituras ordinarias y `DEPLOYER_AND_UP` para delete destructivo y resolve; las reglas exactas viven en `application.yml`. Un scope incompleto deniega. Las operaciones sin regla conservan sus checks anteriores. Algunos checks legacy de Data Product pueden exigir un rol más alto en producción.
+
+Los POST de lookup/peek y generación de SQL son lecturas. Favoritos personales y freezes mantienen sus controles propios; Entities pertenece a Rio Entity Service, por lo que no puede autorizarse desde Playmaker. La ruta Flink `POST /v2/services/:id/actions/code` existe en el proxy, pero la UI actual sólo usa GET; precreation con `serviceId=0` carece de owner persistido y sigue excluida por la SPEC. La matriz exacta está en `docs/sig-616-slice-5-verification.md` del repositorio.
+
+F5 quedó en `feature/operation-authorization-by-team-f5@141eacbc5` y [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182). Pasaron 31 selectores focalizados, ambos checks L0/LOCAL_STACK con cleanup y `./gradlew test --rerun-tasks --no-daemon` con 4.107 pruebas, 0 fallas, 0 errores y 2 skips preexistentes. El smoke F1 y la aprobación humana del PR siguen pendientes. Se crearon dos nuevas ramas temporales test3: `feature/sig-616-auth-p5-committer-test3-v23@9b2b7d1f2` y `feature/sig-616-auth-p5-viewer-test3-v24@8f91234e4`; ambas pasaron las pruebas focalizadas. Sus versiones Fury son `0.1.19-p5-committer-allowed` y `0.1.20-p5-viewer-denied`, ambas en `FINISHED`. No se desplegaron.
