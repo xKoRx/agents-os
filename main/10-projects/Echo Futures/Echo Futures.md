@@ -683,6 +683,163 @@ A strong Monte Carlo result is necessary but not sufficient because the stochast
 The simulator must identify which assumptions drive profitability and survive pessimistic scenarios. A real-money pilot, if authorized later, starts as a calibration experiment rather than jumping directly from synthetic simulation to a large synchronized cohort.
 
 
+## 🧮 D3 matemática — qué hace realmente un add en un mercado aleatorio
+
+### Resultado central
+
+La intuición correcta es:
+
+> después de un add existe una nueva probabilidad condicional.
+
+La intuición incorrecta sería:
+
+> después de un add vuelve a existir una moneda 50/50 independiente.
+
+Bajo un random walk/Brownian sin drift, el futuro desde el nuevo precio es memoryless, pero la probabilidad de tocar TP antes que SL depende de **dónde quedó el precio actual entre ambas barreras**.
+
+Para un precio actual `x`, barrera inferior `L` y superior `U`:
+
+`P(hit U before L) = (x - L) / (U - L)`
+
+### Ejemplo canónico
+
+Entrada inicial:
+
+- price = 0;
+- qty = 1;
+- TP monetario = +100;
+- SL monetario = -100;
+- add trigger = -30.
+
+Si se llega a -30 y se agrega otro contrato igual:
+
+- entradas: 0 y -30;
+- average = -15;
+- qty total = 2;
+- para conservar +100/-100 monetarios, cada banda queda a 50 unidades del average;
+- nuevo TP de precio = +35;
+- nuevo SL de precio = -65.
+
+Desde el precio actual -30:
+
+- distancia al TP = 65;
+- distancia al SL = 35.
+
+Por tanto, bajo random walk sin drift:
+
+`P(win | reached add) = 35 / (65 + 35) = 35%`
+
+No 50%.
+
+Antes del add:
+
+`P(hit +100 before -30 | start 0) = 30 / 130 = 23.0769%`
+
+y:
+
+`P(reach -30 first) = 76.9231%`
+
+Probabilidad total de acabar en +100:
+
+`23.0769% + 76.9231% * 35% = 50%`
+
+Exactamente la misma probabilidad inicial.
+
+### Interpretación
+
+El add sí transforma qué paths ganan y cuáles pierden.
+
+Puede existir un path que:
+
+- habría terminado en -100 con la operación original;
+- pero después del add toca el TP comprimido antes;
+- por tanto el recovery lo convierte en ganador.
+
+Pero existe el conjunto complementario:
+
+- paths que la operación original habría soportado y finalmente llevado a +100;
+- el nuevo SL comprimido los corta antes;
+- por tanto el recovery convierte esos winners originales en losses.
+
+En un proceso perfectamente aleatorio ambos efectos se compensan.
+
+### Principio general
+
+Si el PnL es una martingala y una política de sizing:
+
+- sólo usa información pasada/presente;
+- no aporta forecasting edge;
+- conserva resultados terminales fijos `+G` y `-L`;
+- no tiene costes ni overshoot material;
+
+entonces:
+
+`P(win) = L / (G + L)`
+
+independientemente de cómo se cambie el size durante el camino.
+
+Para:
+
+- +100 / -100 -> 50%;
+- +1500 / -2000 -> 2000/3500 = 57.1429%;
+- +500 / -2000 -> 80%.
+
+El sizing dinámico puede cambiar:
+
+- tiempo hasta resolución;
+- máximo size;
+- distribución de MAE/MFE;
+- qué paths concretos ganan;
+- exposición a slippage/costes;
+- comportamiento frente a reglas path-dependent de una prop;
+
+pero **no crea edge desde una martingala por sí solo**.
+
+### Por qué no es Monty Hall
+
+Monty Hall entrega información adicional correlacionada con un estado oculto fijo: el presentador sabe dónde está el premio y abre deliberadamente una puerta perdedora.
+
+En un random walk memoryless no existe un resultado final preseleccionado de la primera entrada.
+
+Llegar a -30 informa que el path pasado fue adverso, pero no revela que “la primera operación iba a perder”. Desde -30, los incrementos futuros siguen siendo simétricos bajo el null model.
+
+Por eso la comparación útil no es Monty Hall sino **first-passage probabilities con barreras móviles**.
+
+### Cuándo Gerard sí puede mejorar el resultado
+
+El recovery puede mejorar materialmente la probabilidad o EV si al menos una de estas condiciones rompe el null model:
+
+1. **Conditional mean reversion:** después de una excursión adversa, la probabilidad real de rebote es superior a la del random walk.
+2. **Entry edge:** la señal inicial induce drift/estructura favorable.
+3. **Asymmetric terminal payoff:** TP/SL monetarios no permanecen constantes; se intercambia win rate por tamaño de tail loss.
+4. **Path-dependent exits:** scratches, BE, partials o pyramiding producen más de dos outcomes terminales.
+5. **Prop nonlinearities:** evaluation fee, trailing drawdown, consistency, payout caps y limited liability del trader hacen que el valor económico externo no sea igual al PnL esperado dentro de la cuenta.
+
+Por tanto, el simulador debe separar dos preguntas:
+
+**Q1 — Trading null:** ¿negative recovery por sí solo crea algo bajo random walk?
+Expected answer teórico: no; debe reproducir la invariancia anterior. Esto es un test del simulador.
+
+**Q2 — Economic/conditional edge:** ¿qué nivel de mean reversion, signal edge o rule asymmetry hace rentable la política completa?
+Ésta es la pregunta útil para Echo Futures.
+
+### Nuevo acceptance test obligatorio del simulador
+
+Antes de simular props:
+
+- random walk;
+- +100/-100;
+- cualquier número de adds;
+- cualquier sizing predictivo válido;
+- barriers monetarias finales fijas.
+
+El Monte Carlo debe converger aproximadamente a 50% win rate y EV 0 antes de costes.
+
+Con +1500/-2000 debe converger aproximadamente a 57.1429% winners y EV 0.
+
+Si el simulador muestra mejora material sólo por aumentar size, contiene un bug o una asunción oculta que debe declararse.
+
+
 ## 🧾 D1 — Gerard García: extracción del curso v0
 
 **Fuente:** brain dump + re-visionado reciente del curso privado por el owner + captura de la tabla de riesgo variable. Estado: `GERARD_V1_EXTRACTED / OBJECTIVIZATION_REQUIRED`.
@@ -1002,6 +1159,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — D2 PASS tras revisar los tres DR. Gerard público y Tradesfera son PARTIAL con inferencias excesivas; Psicólogo NO_GO por corpus insuficiente. Se cierra research amplio. Pasan a D3: C0 random-direction control, S1 NQ/MNQ ORB30 y S2 H4 trend + 5m Bollinger pullback. Negative hardscalping se prueba como módulo separado antes de positive pyramiding y variable risk.
 - **2026-09-24** — D3 diseño abstracto iniciado: separadas SignalModel, IntraTradeManager, InterTradeRiskPolicy, PropRuleSet, ExecutionCostModel, BacktestEngine y PropEconomicsSimulator.
 - **2026-09-24** — D3 replanteado a simulation-first: se pospone market data. Primero se probará toda la tesis con L0 Bernoulli, L1 random-walk y L2 synthetic-edge, luego lifecycle de props, variable risk y cohort correlation. Backtest histórico queda como herramienta posterior de calibración/falsificación, no prerrequisito.
+- **2026-09-24** — Cerrada discusión matemática del add bajo null model: nueva probabilidad condicional sí, nueva moneda 50/50 no. Ejemplo +100/-100 con add en -30 y size 1+1 produce TP +35, SL -65; desde -30 la probabilidad condicional es 35%, y la probabilidad total sigue exactamente 50%. Se añade este resultado como acceptance test del simulador.
 
 ## 🧭 Decisiones
 
@@ -1019,6 +1177,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Backtest de dos niveles:** queda DEFERRED tras revisión simulation-first; si se ejecuta después, 1m será screening y 1s/tick certification.
 - **2026-09-24 — Simulation-first:** antes de datos reales se construye un Monte Carlo completo con Bernoulli ladder como upper-bound, random-walk path como null model canónico, edge sintético 55–65%, hardscalping, prop lifecycle y cohort correlation.
 - **2026-09-24 — No asumir independencia por add ni por cuenta:** escaladas dentro del mismo path son condicionales; cuentas copiadas desde la misma Reference están altamente correlacionadas.
+- **2026-09-24 — Invariante martingala:** con mercado sin drift y outcomes monetarios terminales fijos +G/-L, el sizing dinámico no cambia la probabilidad total de éxito; `P(win)=L/(G+L)`. El recovery sólo puede aportar edge si existe estructura condicional, cambia la distribución terminal o explota no-linealidades de la prop.
 
 ## 🔗 Docs / Links
 
