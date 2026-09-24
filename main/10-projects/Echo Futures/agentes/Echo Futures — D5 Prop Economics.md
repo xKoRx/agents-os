@@ -47,7 +47,7 @@ updated: "2026-09-24"
 - FTMO Futures: KEEP_WATCHLIST. Producto lanzado oficialmente el 2026-09-17; Growth/Pro 50K ya tienen reglas y payout lifecycle públicos, pero sólo llevan 7 días en mercado al corte D5 y no reemplazan todavía una Tier-1 madura.
 - Lucid/Alpha Futures/TradeDay/etc.: fuera del primer corte salvo evidencia que justifique reemplazar una Tier-1.
 - No existe todavía evidencia de `q_withdraw` real para ninguna prop. El `q=10%` de D4 es fixture matemático, no benchmark.
-- **D5.2A/D5.2B capturadas 2026-09-24 (REVIEW).** Paquetes de reglas Topstep 50K Standard y TPT 50K Test→PRO completos con fuente oficial, capturados por agentes de research y verificados verbatim por el manager en las páginas load-bearing. 2 RULE_CONFLICT abiertos (TS-1 cap de payout 50K XFA Standard $2,000 vs "$5,000*"; TPT-1 reloj 60 días inside-buffer calendario vs trading days) + 2 tensiones resueltas documentalmente (TS-3 consistencia XFA Standard, TPT-2 semántica EOD-trailing/enforcement intradía). Contrato normalizado candidato y gap matrix de simulator como drafts en este planner. Sin código; D4 intacto; Tier-2 no investigado.
+- **D5.2A/D5.2B capturadas 2026-09-24 (REVIEW).** Paquetes oficiales reutilizados. En D5.3 el mandato owner resuelve TS-1 a cap $2,000 y TPT-1 a 60 trading days; TS-3 y TPT-2 ya estaban resueltos. TS-2 queda histórico fuera del scope sin recovery. Contrato y gap matrix anteriores son drafts parcialmente superseded por §D5.3 Session Model Review; allí están los bloqueos vigentes. Sin código; D4 intacto; Tier-2 no investigado.
 
 ## 🧱 Entrega de desarrollo
 
@@ -277,10 +277,10 @@ Producto congelado: **50K Test** (evaluación) → **50K PRO** (sim-funded con p
 
 | id | provider | tema | fuente A | fuente B | estado |
 |---|---|---|---|---|---|
-| TS-1 | Topstep | cap de payout por request en XFA 50K Standard: $2,000 (tabla por tamaño del Payout Policy; $5,000 coincide con el cap 150K) vs "$5,000*" sin calificar tamaño (headline de XFA Parameters) y "$5,000" (topstep.com/express-funded-account-rules) | help.topstep.com/en/articles/8284233 | help.topstep.com/en/articles/8284215 · topstep.com/express-funded-account-rules | RULE_CONFLICT ABIERTO — evidencia favorece $2,000 para 50K (tabla por tamaño + footnote de Parameters que remite al Payout Policy). Adjudica owner/manager. |
+| TS-1 | Topstep | cap por tamaño frente a headline genérico de XFA | help.topstep.com/en/articles/8284233 | help.topstep.com/en/articles/8284215 · topstep.com/express-funded-account-rules | RESUELTO por mandato owner D5.3: $2,000 para 50K XFA Standard sin DLL add-on; no hay conflicto material del path congelado. |
 | TS-2 | Topstep | ventana de decisión Back2Funded: 30 días calendario (Help Center 12060405, actualizado 2026-08-14, ampliado desde 2026-05-29) vs 7 días (topstep.com/express-funded-account-rules, actualizado 2025-06-26) | help.topstep.com/en/articles/12060405 | topstep.com/express-funded-account-rules | RULE_CONFLICT ABIERTO (página marketing stale) — Help Center más nuevo gana por jerarquía §regla comercial 8; no material para first withdrawal (recuperación post-failure). |
 | TS-3 | Topstep | consistencia en XFA Standard: frase del artículo de consistency ("choose Standard or Consistency as your Payout path") vs tabla de Parameters (Standard: ❌) | help.topstep.com/en/articles/8284208 | help.topstep.com/en/articles/8284215 | RESUELTO — Standard no tiene consistency target (tabla + eligibility del Payout Policy sin consistencia). |
-| TPT-1 | TPT | reloj inside-buffer: tabla "≤ 60 días since account opening → 50%" (lectura calendario) vs nota inmediata "Please note it is 60 trading days" en el MISMO artículo | zendesk 15172219527581 (tabla) | zendesk 15172219527581 (nota) | RULE_CONFLICT ABIERTO (intrapágina) — decide el split 50/80 del cierre inside-buffer. Default propuesto: trading days (frase explícita). Adjudica owner/manager. |
+| TPT-1 | TPT | reloj inside-buffer, tabla abreviada frente a nota explícita de trading days | zendesk 15172219527581 (tabla) | zendesk 15172219527581 (nota) | RESUELTO por mandato owner D5.3: trading days; ≤60 split 50%, >60 split 80%. No reabrir como días calendario. |
 | TPT-2 | TPT | Test drawdown: "calculated only at the end of the trading day" vs liquidación inmediata intradía incl. unrealized (mismo artículo) | zendesk 15170265979165 | zendesk 15170265979165 | RESUELTO como semántica normalizada: el trailing se ACTUALIZA EOD; el breach se ENFORCEA intradía incl. unrealized. |
 
 SECONDARY_FLAGS: ninguno que contradiga fuente oficial (secundarias Topstep consultadas corroboran $3,000/$2,000/EOD-lock; TPT no usó secundarias).
@@ -373,6 +373,8 @@ tpt:                                # extensiones específicas
 Regla de fidelidad: ningún campo común recibe semántica que no le corresponda; toda excepción material vive en `topstep:`/`tpt:`. Balances nominales y personal cash permanecen separados en todo el contrato.
 
 ## D5.4 draft — Simulator capability gap matrix (base: D4 certificado d4f42a4)
+
+**Delta D5.3:** sesiones/flatten obligatorio y compatibility TPT ya no son DEFER: se diseñan en §D5.3 Session Model Review. Trading fees quedan excluidos explícitamente del structural null; pricing sale de PropRuleSet. La matriz siguiente conserva el diagnóstico inicial, no autoriza implementación desde sus simplificaciones.
 
 | capability requerida por Tier-1 | clasificación | detalle / consecuencia de simulador |
 |---|---|---|
