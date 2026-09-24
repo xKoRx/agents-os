@@ -515,6 +515,174 @@ D3 PASS cuando:
 - ninguna decisión pendiente impide que un agente implemente D4 sin reinterpretar la tesis.
 
 
+## 🎲 D3 revisión — Simulation-first, market-data deferred
+
+**Decisión:** antes de cualquier backtest histórico, construir un simulador estocástico completo de operativa + prop lifecycle. El objetivo inmediato no es probar una estrategia concreta, sino responder si la asimetría económica puede funcionar bajo supuestos explícitos y conservadores.
+
+### Tres niveles de abstracción
+
+#### L0 — Bernoulli ladder (sanity / optimistic bound)
+
+Modelo deliberadamente simple:
+
+- cada nodo de decisión tiene probabilidad `p` de resolver favorablemente;
+- si falla, alcanza el siguiente trigger adverso y permite un add;
+- máximo `N` adds;
+- si ninguno resuelve, termina en full stop.
+
+Con independencia artificial:
+
+`P(sequence_win) = 1 - (1-p)^(N+1)`
+
+Este modelo sirve para intuición y upper-bound, **no como simulación final**, porque los nodos dentro de un mismo path no son realmente independientes.
+
+#### L1 — Stochastic price path (canonical null model)
+
+Simular un precio sin datos históricos:
+
+- random walk / Brownian discretizado;
+- baseline sin drift = mercado martingala;
+- ticks/pasos suficientemente pequeños;
+- SL, TP y add levels son barreras reales;
+- al tocar un add se agrega size, se recalcula average price y se vuelven a calcular las bandas monetarias;
+- la probabilidad de resolver favorablemente emerge del path, no de una nueva moneda independiente.
+
+Para un proceso sin drift y barreras lower/upper, la probabilidad de tocar upper antes que lower depende de la posición actual dentro de ambas barreras. Por tanto, una escalada puede modificar la probabilidad al cambiar average/SL/TP, pero no crea edge gratis.
+
+#### L2 — Synthetic strategy edge
+
+Inyectar una ventaja controlada sin datos reales:
+
+- baseline 50%;
+- escenarios equivalentes a 52.5%, 55%, 57.5%, 60%, 65% de éxito para una operación simple;
+- representar ese edge mediante drift/conditional probabilities calibradas;
+- recovery posterior sigue condicionado al path, no se vuelve mágicamente independiente.
+
+Esto permite preguntar:
+
+> Si tengo una estrategia genuina de 55% o 60%, ¿qué hace Gerard encima de esa ventaja?
+
+### Componentes del simulador
+
+```text
+MarketProcess
+  BernoulliLadder | RandomWalk | BiasedRandomWalk | optional RegimeSwitch
+
+SignalQuality
+  target simple-trade win probability / calibrated drift
+
+TradePolicy
+  initial money risk
+  initial money target
+  direction
+
+RecoveryPolicy
+  add triggers
+  add sizes
+  max adds
+  average-price recalculation
+  constant/variable money SL
+  constant/variable money TP
+
+PositivePyramidPolicy
+  initially OFF
+
+InterTradeRiskPolicy
+  fixed | geometric | bounded recovery
+  initially OFF for first experiments
+
+PropRuleSet
+  Topstep | Lucid | Apex | future adapter
+
+AccountLifecycle
+  evaluation -> funded -> payout eligible -> payout | burned
+
+CohortPolicy
+  account count
+  synchronized/correlated vs staggered/independent states
+
+MonteCarloRunner
+  seeds
+  runs
+  sensitivity grid
+```
+
+### Critical distinction — attempts vs correlated copies
+
+`10 accounts` only approximate ten independent attempts if their outcomes are materially decorrelated.
+
+If all 10 accounts execute the same Reference, same risk state and same trades, correlation approaches 1: a bad sequence can burn all 10 simultaneously. The simulator MUST support:
+
+- `rho=1`: fully synchronized copies;
+- staggered lifecycle/risk states;
+- independent strategies/seeds as a theoretical bound;
+- mixed cohorts.
+
+The metric `1 payout per 10 accounts` must therefore be measured as **payouts / purchased evaluations**, not inferred from count of simultaneously copied accounts.
+
+### Metrics
+
+Trade/recovery:
+- sequence win rate;
+- full-stop probability;
+- expected sequence PnL;
+- max/additional contracts;
+- average number of adds;
+- tail loss frequency;
+- expected path length.
+
+Account:
+- evaluation pass probability;
+- pass -> funded probability;
+- funded -> first-payout probability;
+- purchase -> first-payout probability;
+- expected accounts burned per payout;
+- expected activation fees per payout;
+- expected time/trades to payout.
+
+Business:
+- gross payouts;
+- net payouts after split;
+- total eval/reset/activation cost;
+- commissions/slippage scenario cost;
+- net cash per 10/20/50/100 purchased evaluations;
+- probability cohort ends net positive;
+- P5/P50/P95 net cash;
+- max cash outlay before first payout;
+- break-even payout conversion.
+
+### Prop adapters — initial scope
+
+Use current official rules as versioned configuration. Rules are inputs dated by capture; never hard-code them into strategy logic.
+
+Initial adapters:
+- Topstep 50K Standard;
+- Lucid 50K candidate(s);
+- Apex 50K EOD candidate.
+
+Other props enter only after these produce insight.
+
+### Revised validation order
+
+1. **L0:** Bernoulli ladder to sanity-check the intuition and calculate optimistic bounds.
+2. **L1:** driftless random-walk market + Gerard negative recovery.
+3. **L2:** inject 55/60% strategy edge and repeat.
+4. Add prop lifecycle rules.
+5. Add variable inter-trade risk.
+6. Add cohort correlation/staggering.
+7. Stress parameters and produce sensitivity surfaces.
+8. Only after this decide whether historical backtest adds enough information.
+9. Before a material multi-account spend, use a small live/paper/evaluation calibration cohort to measure model error.
+
+Historical backtesting is now **DEFERRED**, not mandatory for the first economic verdict.
+
+### Gate before real-money pilot
+
+A strong Monte Carlo result is necessary but not sufficient because the stochastic process is an assumption, not empirical market evidence.
+
+The simulator must identify which assumptions drive profitability and survive pessimistic scenarios. A real-money pilot, if authorized later, starts as a calibration experiment rather than jumping directly from synthetic simulation to a large synchronized cohort.
+
+
 ## 🧾 D1 — Gerard García: extracción del curso v0
 
 **Fuente:** brain dump + re-visionado reciente del curso privado por el owner + captura de la tabla de riesgo variable. Estado: `GERARD_V1_EXTRACTED / OBJECTIVIZATION_REQUIRED`.
@@ -788,7 +956,7 @@ views:
 > - [-] Investigar y mecanizar operativa relevante de Tradesfera — research amplio cerrado; sólo principios explícitos pasan a D2 #owner/me #type/research #area/echo
 > - [-] Investigar y mecanizar operativa relevante de Psicólogo del Trading — NO_GO por corpus técnico insuficiente; no gastar más tiempo sin video concreto #owner/me #type/research #area/echo
 > - [x] D2: síntesis adversarial — pasan C0 random, S1 ORB30 y S2 H4+Bollinger; research amplio cerrado #owner/agent #type/research #area/echo
-> - [/] D3: congelar S1 ORB30 + S2 H4/Bollinger + C0 random y negative hardscalping parametrizado #owner/me #type/research #area/echo
+> - [/] D3: congelar simulador estocástico L0/L1/L2 + hardscalping + prop lifecycle + cohort correlation; backtest histórico deferred #owner/me #type/research #area/echo
 > - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
 > - [ ] D5: modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
 > - [ ] D3: elegir primer instrumento y dataset después de cruzar microestructura + estrategia + rules de prop #owner/me #type/research #area/echo
@@ -832,7 +1000,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — Recibido primer brain dump del curso de Gerard + captura de risk table. Se separan tres motores: recovery adverso intra-trade, pyramiding positivo y variable-risk inter-trade. Derivado modelo provisional de bandas sobre average price y detectada contradicción útil en tabla 1.20/1:1.5: tras dos pérdidas, el siguiente win ya no recupera la secuencia.
 - **2026-09-24** — Entrevista Gerard v1 suficientemente cerrada para avanzar: discrecionalidad pasa a parametrización experimental. Confirmado riesgo/TP monetario recalculado sobre average price. Derivada fórmula m=1+1/b para recovery geométrico constante y refrescada economía Topstep vigente; pricing path pasa a variable del simulador.
 - **2026-09-24** — D2 PASS tras revisar los tres DR. Gerard público y Tradesfera son PARTIAL con inferencias excesivas; Psicólogo NO_GO por corpus insuficiente. Se cierra research amplio. Pasan a D3: C0 random-direction control, S1 NQ/MNQ ORB30 y S2 H4 trend + 5m Bollinger pullback. Negative hardscalping se prueba como módulo separado antes de positive pyramiding y variable risk.
-- **2026-09-24** — D3 diseño abstracto iniciado: separadas SignalModel, IntraTradeManager, InterTradeRiskPolicy, PropRuleSet, ExecutionCostModel, BacktestEngine y PropEconomicsSimulator. Se decide simulación dual: economía sintética de prop puede avanzar sin market data; strategy backtest reemplaza luego sus distribuciones. Política de datos: 1m screening, 1s/tick finalists, NinjaTrader para verification/replay. Databento histórico CME queda como fuente preferida del sprint.
+- **2026-09-24** — D3 diseño abstracto iniciado: separadas SignalModel, IntraTradeManager, InterTradeRiskPolicy, PropRuleSet, ExecutionCostModel, BacktestEngine y PropEconomicsSimulator.
+- **2026-09-24** — D3 replanteado a simulation-first: se pospone market data. Primero se probará toda la tesis con L0 Bernoulli, L1 random-walk y L2 synthetic-edge, luego lifecycle de props, variable risk y cohort correlation. Backtest histórico queda como herramienta posterior de calibración/falsificación, no prerrequisito.
 
 ## 🧭 Decisiones
 
@@ -847,7 +1016,9 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Cierre de research amplio:** los DR son insumos, no autoridades. D3 trabaja con dos señales mecanizables y un random control; no se abre otra ronda de búsqueda salvo evidencia concreta que cierre un blocker.
 - **2026-09-24 — Diseño experimental secuencial:** entry edge → negative recovery → positive hardscalping → variable risk/prop economics. Prohibido mezclar todo desde el inicio porque impediría atribuir el edge.
 - **2026-09-24 — Arquitectura conceptual reemplazable:** señal, gestión intra-trade, política inter-trade y prop lifecycle son componentes independientes; ningún influencer forma parte del contrato.
-- **2026-09-24 — Backtest de dos niveles:** 1m sólo para screening; cualquier finalist con adds/SL/TP intrabar requiere 1s/tick y verificación posterior en NinjaTrader.
+- **2026-09-24 — Backtest de dos niveles:** queda DEFERRED tras revisión simulation-first; si se ejecuta después, 1m será screening y 1s/tick certification.
+- **2026-09-24 — Simulation-first:** antes de datos reales se construye un Monte Carlo completo con Bernoulli ladder como upper-bound, random-walk path como null model canónico, edge sintético 55–65%, hardscalping, prop lifecycle y cohort correlation.
+- **2026-09-24 — No asumir independencia por add ni por cuenta:** escaladas dentro del mismo path son condicionales; cuentas copiadas desde la misma Reference están altamente correlacionadas.
 
 ## 🔗 Docs / Links
 
