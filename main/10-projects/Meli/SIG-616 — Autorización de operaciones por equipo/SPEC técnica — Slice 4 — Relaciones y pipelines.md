@@ -3,7 +3,7 @@
 ## Metadatos
 
 - Tipo: Technical SPEC
-- Estado: Corrección de compatibilidad publicada; checks visibles y aprobación en verde; pruebas manuales pendientes
+- Estado: Ajuste same-DP y tests de review en curso; pruebas manuales pendientes
 - SPEC funcional: [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621)
 - Requerimiento: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
 - Aplicación: `rio-playmaker`
@@ -23,8 +23,8 @@ Fase 4 agrega guards configurables a casos de uso existentes de relaciones y pip
 cascade iniciado por `DELETE /data-products/{id}` trasladado desde el review de F3. Es aditiva:
 
 - no crea endpoints ni casos de uso nuevos;
-- no cambia reglas funcionales de relaciones, topology, ownership, estados o errores HTTP;
-- no agrega same-DP ni vuelve inmutable el ownership de una relación;
+- conserva las reglas funcionales de topology, ownership y estados; en relaciones exige same-DP como pide SIG-616 y rechaza cross-DP con `400`;
+- no vuelve inmutable el ownership de una relación: update puede cambiar endpoints dentro del mismo Data Product;
 - un par no configurado conserva el flujo anterior y no invoca ACME por el guard nuevo;
 - el nivel exigido sale sólo de `app.action-authorization.permissions`;
 - los guards nuevos con `teamName` o `projectCode` incompletos se omiten por compatibilidad;
@@ -74,29 +74,26 @@ casos de uso F4.
 
 ### Create
 
-1. Conserva las validaciones previas de existencia, soft delete, self-loop y pertenencia de cada
-   component al Data Product declarado.
-2. Usa los Data Products persistidos resueltos por esas validaciones.
-3. Autoriza cada owner distinto con `component-relation:create`.
+1. Conserva las validaciones previas de existencia, soft delete, self-loop y pertenencia de cada component al Data Product declarado.
+2. Exige que los Data Products persistidos de source y destination tengan el mismo ID; cross-DP retorna `400` antes de ACME o save.
+3. Autoriza el owner persistido con `component-relation:create`.
 4. Sólo después mapea, completa auditoría con el username propagado y guarda.
 
 ### Update
 
 1. Conserva el lookup de la relación y el rechazo si ya fue borrada.
-2. Conserva las validaciones previas de los extremos solicitados.
-3. Autoriza los owners persistidos distintos del estado actual y del solicitado con
-   `component-relation:update`.
+2. Conserva las validaciones previas de los extremos solicitados y exige que ambos pertenezcan al mismo Data Product antes de ACME o save.
+3. Autoriza los owners persistidos distintos del estado actual y del solicitado con `component-relation:update`.
 4. Sólo después ejecuta el mapper existente, auditoría y save.
 
-F3 permitía cambiar source/destination Data Product. F4 mantiene ese contrato: no agrega ownership
-inmutable ni regla same-DP. Proteger el owner actual y los solicitados evita autorizar contra un
-owner incorrecto sin redefinir qué updates son válidos.
+F3 permitía cambiar source/destination Data Product; el ajuste solicitado por el owner aplica la invariante same-DP de SIG-616 a la relación solicitada. Update puede trasladar ambos extremos juntos a otro Data Product, autorizando el owner anterior y el nuevo. Una relación cross-DP histórica puede actualizarse a una relación válida dentro de un solo Data Product; su delete queda rechazado hasta reparar el dato.
 
 ### Delete
 
 1. Resuelve la relación persistida y conserva el rechazo si ya fue borrada.
-2. Autoriza sus owners persistidos distintos con `component-relation:delete`.
-3. Sólo después completa `deletedAt/deletedBy` y guarda.
+2. Exige same-DP en los extremos persistidos antes de ACME o save.
+3. Autoriza su owner persistido con `component-relation:delete`.
+4. Sólo después completa `deletedAt/deletedBy` y guarda.
 
 ## Contrato de pipeline
 
@@ -157,6 +154,8 @@ omitiendo el precheck histórico; el guard F4 permanece activo para poder probar
 | PR #1178, Ale: cascade elude delete individual | Válido, trasladado a F4 | Implementado con guard único antes del cascade y tests de cero side effects; respuesta publicada en el thread original. |
 | PR #1181, bot: ownership inmutable en relation update | No aplicable | F3 ya permitía modificar esos campos con `ComponentRelationMapper.updateModelFields`. Prohibirlo sería lógica nueva. Se conserva el baseline y se autorizan owners actual y solicitados. |
 | PR #1181, kmontero: plataforma pierde bypass en cascade | Válido; regresión F4 | Corregido en `e75ca90d9`: el guard nuevo respeta el bypass histórico sólo para miembros plataforma. Test con `application.yml` real, `DataProductAccessService` real, sin owner grant, más casos deny/allow y cero side effects. |
+| PR #1181, dmuena: same-DP en relaciones | Válido por SIG-616; reemplaza la decisión local previa de compatibilidad cross-DP | Se exige same-DP en create/update/delete antes de autorización y mutación; el rechazo es `400`. El rollout requiere comprobar relaciones cross-DP persistidas antes de desplegar. |
+| PR #1181, dmuena: `FURY_IS_TEST_SCOPE` cambia el flujo | Válido como cambio observable; esperado para probar el guard por scope | El precheck histórico se omite en test scope y el guard F4 sigue gobernado por la configuración efectiva; se agregan tests de allow/deny con ACME simulado. |
 | PR #1178, comentarios restantes | Heredados/ya corregidos en F3 | La base sincronizada ya contiene las correcciones; no se duplican. Hallazgos fuera de alcance van a F5. |
 
 ## Archivos productivos
@@ -169,7 +168,7 @@ omitiendo el precheck histórico; el guard F4 permanece activo para poder probar
   `PipelineDesignServiceImpl`, `PipelineRelationsServiceImpl`, `ComponentCreateServiceImpl`,
   `PipelineDeployServiceImpl`, `DataProductServiceImpl`, `ComponentServiceImpl` y sus interfaces.
 
-No hay endpoints, modelos, tablas, migraciones ni reglas de dominio nuevas.
+No hay endpoints, modelos, tablas ni migraciones nuevos. La invariante same-DP de SIG-616 pasa a validarse en el servicio de relaciones.
 
 ## Evidencia automatizada
 
@@ -240,7 +239,7 @@ plataforma, por lo que esas variantes no sirven como prueba manual de dicho bypa
 - Wildcards de components no activan relation/pipeline/Data Product.
 - Ausencia de entrada u ownership incompleto conserva compatibilidad aditiva.
 - Deny ocurre antes del primer side effect.
-- Relation update conserva cambios de endpoints/owners permitidos por F3.
+- Create/update/delete de relaciones rechazan cross-DP antes de ACME y persistencia; update conserva cambios de endpoints cuando ambos pertenecen al mismo Data Product.
 - Cascade autoriza una vez el Data Product persistido y no muta al denegar.
 - El bypass heredado de equipos plataforma permite el cascade sin owner grant adicional.
 - Username proviene del principal; headers quedan por ACME/downstreams existentes.

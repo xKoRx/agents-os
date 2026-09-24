@@ -162,7 +162,7 @@ Playmaker es el enforcement point. Los handlers y Control Planes no consultarán
 | Slice 1 | Extraer autorizador desde PR 1126 y migrar delete/inactivate | Ninguno: refactor compatible de la política existente |
 | Slice 2 | Corregir principal Tiger e integrar `catalog-signal + start/stop` | Sólo Signals agrega una restricción nueva |
 | Slice 3 | Mutaciones y deployments de componentes | `DEV_AND_UP` en todas las rutas enumeradas; tests y rollout en el mismo PR |
-| Slice 4 | Relaciones y pipelines, pipeline deploy y cascade de Data Product | Guards exactos config-backed; `DEV_AND_UP` salvo cascade `DEPLOYER_AND_UP`; sin same-DP ni ownership inmutable nuevos |
+| Slice 4 | Relaciones y pipelines, pipeline deploy y cascade de Data Product | Guards exactos config-backed; `DEV_AND_UP` salvo cascade `DEPLOYER_AND_UP`; relaciones same-DP obligatorias por SIG-616 y sin ownership inmutable |
 | Slice 5 | Actions mutantes restantes de Flink y ClickHouse | Agrega pares y niveles a la configuración sin modificar otras Actions |
 
 ### Niveles ACME
@@ -400,9 +400,9 @@ Evidencia mínima: versión y commit desplegados, request sanitizado, status/res
 
 #### Slice 4 — Relaciones y pipelines
 
-Objetivo: proteger create/update/delete de relaciones con owners persistidos, migrar PUT/design/relations/component-create/pipeline-deploy al autorizador común con `DEV_AND_UP` y cubrir el cascade de Data Product con `DEPLOYER_AND_UP`, todo por configuración exacta y sin regla same-DP nueva.
+Objetivo: proteger create/update/delete de relaciones con owners persistidos y exigir same-DP antes de autorizar, migrar PUT/design/relations/component-create/pipeline-deploy al autorizador común con `DEV_AND_UP` y cubrir el cascade de Data Product con `DEPLOYER_AND_UP`, todo por configuración exacta.
 
-La implementación, compatibilidad cross-DP heredada, verificación de cero side effects, smoke y coverage viven en [[SPEC técnica — Slice 4 — Relaciones y pipelines]] y se entregan en un único PR.
+La implementación, rechazo cross-DP, verificación de cero side effects, smoke y coverage viven en [[SPEC técnica — Slice 4 — Relaciones y pipelines]] y se entregan en un único PR. La decisión del 2026-09-24 reemplaza la compatibilidad cross-DP que se había documentado para F4; antes del deploy hay que comprobar si existen relaciones cross-DP persistidas y planificar su reparación.
 
 #### Slice 5 — Actions restantes
 
@@ -648,6 +648,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **D22 — Encadenamiento secuencial.** Slice 3 parte del head aprobado de Slice 2, Slice 4 del head aprobado de Slice 3 y Slice 5 del head aprobado de Slice 4. Ninguna entrega recrea el autorizador ni se basa directamente en `develop` mientras dependa de cambios aún no mergeados.
 - **D23 — Sólo mutaciones comprobadas en Slice 5.** Los pares mutantes existentes de Flink y ClickHouse se agregan a la configuración. Reads, aliases y `ping` no adquieren autorización ACME ni bloquean por ausencia en configuración.
 - **D24 — Configuración por scope, contrato estable.** `app.action-authorization.permissions` es la fuente actual por ambiente/scope. Los consumidores dependen de `ActionPermissionProvider`; una carga futura desde Discovery, job o bootstrap reemplaza el adapter sin cambiar `ActionServiceImpl` ni `ActionAuthorizationService`.
+- **D25 — Same-DP en relaciones.** El owner indicó el 2026-09-24 aplicar la invariante explícita de SIG-616 pese a la decisión previa de F4 de preservar cross-DP. Create/update/delete rechazan extremos de Data Products distintos antes de autorización y mutación; update puede mover ambos extremos juntos a otro Data Product con autorización de owner actual y solicitado. Esta decisión requiere auditar datos cross-DP antes del rollout.
 
 ## 🔗 Docs / Links
 
