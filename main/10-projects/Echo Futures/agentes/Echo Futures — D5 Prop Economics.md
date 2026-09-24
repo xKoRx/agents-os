@@ -1593,3 +1593,21 @@ Required portfolio outputs:
 At linked `p_objective_hit=0.50`, a +150/-2000 qualification objective has negative nominal expectancy; this experiment is intentionally testing whether Topstep's external payoff asymmetry can overcome that at the personal-cash level. Do not label it a fair-market trading result.
 
 The accepted Brownian/session model is not deleted; it remains the later realism bridge. This P150 discrete policy is the immediate three-shot economics experiment.
+
+
+## Manager Dispatch Override — Shot A P150 — 2026-09-24
+
+The prior Shot A package using +$500 harvest targets is SUPERSEDED. The only authorized active assignment is D5-M1A-P150.
+
+Shot A must implement the discrete policy from §Owner Policy Correction — D5-M1A-P150, including:
+- Combine +1500/+1500;
+- first XFA bulto +4000/-2000;
+- qualification target +150;
+- configurable qualification loss;
+- payout #1 with 1 bulto day + 4 additional +150 days;
+- payout #2/#3 with +2000 reload bulto + 4 additional +150 days, with five new winning days per cycle;
+- natural CONTINUE_IF_ALIVE after non-terminal losses;
+- STOP_AFTER_3 primary;
+- 5-pipeline monthly runner and independent/perfect-copy extremes.
+
+Gate remains `D5_TOPSTEP_POLICY_IMPL_A = REVIEW`.
