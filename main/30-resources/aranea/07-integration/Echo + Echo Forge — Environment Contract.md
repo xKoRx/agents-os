@@ -63,10 +63,10 @@ Fuente canónica **de los modelos de ambiente de Echo y Echo Forge** en Aranea: 
 | Componente | Destino objetivo | Estado físico de esta decisión |
 |---|---|---|
 | Workspace, coding agents, builds, Echo Core y Gateway DEV, componentes auxiliares requeridos, Forge Go | **Daedalus** | **AS-BUILT completo 2026-09-21** (ver §5.1): Core y Gateway DEV `RUNNING / PHYSICALLY_VERIFIED` (health, restart, kill-recovery; PG DEV conectada tras rotación de credencial por owner); sin unidades de sistema (sin root interactivo) se usó `systemd --user` de `kor` con linger demostrado. |
-| SQX DEV y plugins/worker de investigación rápida | **Daedalus**, preferencia por instalación nativa | `TARGET / FEASIBILITY_AND_AS_BUILT_PENDING`: licencia, recursos, plugin, proceso y job real pendientes de evidencia. Si resulta inviable, alternativa DEV autorizada y documentada; no nueva VM por inercia. |
-| MT4/MT5, MetaEditor, Strategy Tester y MT5 worker DEV | **Windows `192.168.31.132`**, nombre lógico `dev-win`; clon designado de `mt5-win` | `OWNER_DESIGNATED / ISOLATION_AND_AS_BUILT_PENDING`: no asumir SSH, perfiles MCP, worker, cuenta demo ni backtest habilitados hasta smoke real. |
+| SQX DEV y plugins/worker de investigación rápida | ~~**Daedalus**, preferencia por instalación nativa~~ → **SUPERSEDED_BY_OWNER_ENVIRONMENT_CORRECTION (2026-09-24, §0)** | La premisa “SQX DEV en Daedalus” quedó sin efecto: no hay requisito de SQX, licencia ni worker Forge DEV en Daedalus; Forge ejecuta sus validaciones sobre su flota operacional (§0). El prework de 2026-09-24 (§5.8) se realizó bajo la premisa corregida y se conserva como evidencia histórica del runtime candidato, no como requisito. |
+| MT4/MT5, MetaEditor, Strategy Tester y MT5 worker DEV | **Windows `192.168.31.132`**, nombre lógico `dev-win`; clon designado de `mt5-win` | **Vigente sólo como decisión del track Echo.** Para Forge NO es requisito (SUPERSEDED como requisito Forge): la validación MT5 de Forge corre en el worker Windows **worker-kronos** del ambiente operacional (§0), hoy asociada al stage C6. Para Echo sigue `OWNER_DESIGNATED / ISOLATION_AND_AS_BUILT_PENDING`: no asumir SSH, perfiles MCP, worker, cuenta demo ni backtest habilitados hasta smoke real. |
 | PostgreSQL, Hasura, Kafka, Flink/StateFun, MongoDB y dependencias efectivas | Instancias **DEV ya existentes** en Aranea, no duplicarlas en Daedalus | Inventario y capacidades documentadas; cada consumidor debe demostrar endpoint/recurso DEV y conectividad actual. |
-| Workers SQX/MT5 actuales de Zeus, Hera y Kronos | Recursos **compartidos actualmente entre DEV y PROD**, según owner | `SHARED / ISOLATION_NOT_INFERRED`: preservar jobs activos, releases, locks y procesos; no reiniciar, drenar, actualizar ni intervenir sin autoridad propia. |
+| Workers SQX/MT5 de Zeus, Hera y Kronos | **Runtime operacional de Echo Forge** (ambiente único, §0); para Echo permanecen fuera de DEV | Operables y certificados ([[aranea-ssh-mcp]]: operator 2026-09-13; releases Stager 0.2.98 observadas 2026-09-13; worker 0.2.105 con PID 1400507 en Kronos al 2026-09-22; G7 físico PASS 2026-09-23 en Kronos VM 111). Preservar jobs activos, releases, locks y procesos; no reiniciar, drenar, actualizar ni intervenir sin ownership/ventana propia. |
 
 La topología define objetivos, **no** autoriza que un clon Windows arranque automáticamente tareas heredadas. Verificar y neutralizar en `dev-win`, sin tocar la VM original, cualquier identidad, host key, tarea, servicio, Stager, worker, terminal, conexión, credencial de broker o autostart productivo antes de habilitarlo. Cuenta real y órdenes reales prohibidas en DEV; cuenta demo solo si autorizada y verificada. Credenciales/llaves privadas únicamente en stores autorizados, nunca en el vault.
 
@@ -76,13 +76,15 @@ La topología define objetivos, **no** autoriza que un clon Windows arranque aut
 |---|---|---|
 | Echo Core / Gateway | Matriz [[Echo — Access & Physical Capability Matrix]]: procesos PROD observados en host `.71` al **2026-09-15**. | **Snapshot histórico**; no afirmar que siguen ejecutándose hoy sin lectura nueva. Perfil `echo-runtime-prod` viewer RO; no restart/deploy. |
 | Echo Bridge | La misma matriz registra `NOT_DEPLOYED` al **2026-09-15**. | No inferir su estado presente ni arrancarlo en PROD. |
-| SQX Linux y MT5 workers Zeus/Hera/Kronos | [[aranea-ssh-mcp]] describe perfiles y permisos de esa flota, y el owner indica uso compartido actual. | No equivalen a workers exclusivos DEV. La autoridad del profile y del SO se verifica por separado. |
+| SQX Linux y MT5 workers Zeus/Hera/Kronos | [[aranea-ssh-mcp]] describe perfiles y permisos de esa flota; para Forge son su runtime operacional (§0). | Para Echo no equivalen a workers DEV (no se usan como atajo de desarrollo). La autoridad del profile y del SO se verifica por separado. |
 | PostgreSQL/Mongo/Hasura PROD | [[aranea-mcps-expert]] y sus runbooks definen perfiles RO y alcance. | Sin DML/DDL, credenciales RW, mutaciones indirectas o fallback desde DEV. |
 | Kafka/Flink PROD y otras capacidades | Revisar inventario actual de [[aranea-mcps-expert]]; nombres planeados no prueban capabilities desplegadas. | No reutilizar capacidades DEV para operar PROD. |
 
 El mapa PROD detallado de hosts, releases, datasets, terminales y cuentas se completa exclusivamente a partir de despliegues/runtime y evidencias verificadas. `UNKNOWN` no significa ausente ni autoriza descubrirlo mediante una mutación.
 
 ### 4. Matriz de aislamiento por recurso
+
+Alcance: esta matriz expresa exigencias del lado **Echo DEV** y de recursos compartidos. Para **Echo Forge** el modelo es el de §0 (ambiente operacional único con aislamiento de candidatos por cola/prefijo/instancia candidate-local), no la exigencia de un entorno DEV por recurso.
 
 | Recurso | Exigencia DEV |
 |---|---|
@@ -93,8 +95,8 @@ El mapa PROD detallado de hosts, releases, datasets, terminales y cuentas se com
 | Temporal | Namespace `sqx-dev` existente en inventario documentado; verificar al ejecutar el namespace real, task queues exclusivas, workflow IDs y workers antes de registrar consumidores o iniciar jobs. `aranea-temporal-ro` no autoriza start/cancel. |
 | MinIO | Buckets o prefijos DEV concretos y autorización específica; nunca usar amplitud de una capability RW como permiso para tocar objetos PROD o backups. |
 | etcd | Prefijos, leases, locks y owner DEV exclusivos; nunca competir con lock productivo ni saltar el access plane. |
-| MT4/MT5 | Terminal portable/data directory/worker/artifacts/cuenta demo DEV separados. Una VM clonada no demuestra separación. |
-| SQX | Instalación, licencia, plugins, datasets, worker identity y artefactos DEV verificables; no reemplazar JAR en flota compartida para probar desarrollo local. |
+| MT4/MT5 | Terminal portable/data directory/worker/artifacts/cuenta demo DEV separados. Una VM clonada no demuestra separación. (Echo DEV; Forge usa el worker-kronos operacional, §0.) |
+| SQX | Instalación, licencia, plugins, datasets, worker identity y artefactos DEV verificables; no reemplazar JAR en flota compartida para probar desarrollo local. (Echo DEV. Para Forge: la instalación/licencia/plugins/datasets de la flota operacional son los canónicos; candidatos con copia candidate-local y prefijos propios — patrón G7 —, nunca mutando flota.) |
 | Runtime integrado | Worktrees por agente; un único owner/lock operativo para cambios al runtime DEV compartido y pruebas físicas en curso. |
 | Secrets | Solo referencias a stores/identidades/perfiles; ninguna contraseña, bearer, token o llave privada en este documento ni en `AGENTS.md`. |
 
@@ -108,7 +110,7 @@ Estados por componente: `TARGET` (decisión), `CONFIGURED` (configuración aplic
 
 - Identidad del clon, separación de la VM original y negativos de PROD; clave SSH de host propia y perfiles `dev-win`/`dev-win-operator` comprobados desde el consumidor real.
 - Echo Core y Gateway DEV compilados, arrancados y capaces de acceder a las dependencias DEV; puertos, logs, health, arranque y recuperación evidenciados.
-- Forge Go y SQX DEV (o alternativa explícita) con build/plugin/worker, fixture y resultado real.
+- ~~Forge Go y SQX DEV (o alternativa explícita) con build/plugin/worker, fixture y resultado real.~~ **SUPERSEDED_BY_OWNER_ENVIRONMENT_CORRECTION (2026-09-24, §0):** Forge no requiere SQX DEV; sus capacidades se demuestran sobre el ambiente operacional único (build/plugin/worker/fixture con resultado real en flota, como el G7 de [[Echo Forge — Import Task V1]]).
 - MT5 DEV con compilación MQ5→EX5, Strategy Tester, HTM, SHA256 y destino de resultados DEV.
 - Smoke de conectividad/handoff de infraestructura; no declarar F-04/E-04/E-06 ni cross-lane `CERTIFIED` por una prueba de infraestructura.
 - Evidencia de que los workers compartidos y PROD quedaron intactos; todo componente no verificado permanece pendiente.
