@@ -242,6 +242,279 @@ D3 debe terminar con una SPEC experimental, no con código productivo. Debe cong
 Una vez todo eso sea determinista, **G0 puede pasar** aunque no coincida exactamente con el “ojo” de Gerard: la finalidad es validar la idea, no clonar su discrecionalidad.
 
 
+## 🧩 D3 — Modelo abstracto de la tesis y estrategia de backtest
+
+### Principios que sobreviven a cualquier estrategia concreta
+
+La tesis de Echo Futures se descompone en componentes reemplazables. Ningún creador es parte del diseño; sólo aportó principios/hipótesis.
+
+#### P1 — Prop asymmetry
+
+El capital económico realmente arriesgado no es el nominal de la cuenta, sino:
+
+`evaluation fees + activation + resets + data/platform + commissions + opportunity cost`.
+
+El upside es el cash efectivamente retirado.
+
+Objetivo:
+
+`max E[cash_withdrawn - real_costs]`
+
+por intento y por cohorte de cuentas.
+
+#### P2 — Signal is replaceable
+
+La señal puede ser ORB, pullback, mean reversion, momentum, random control o cualquier estrategia futura. El resto del sistema no debe depender de ella.
+
+Contrato conceptual:
+
+`MarketData → SignalIntent(direction, confidence/context, invalidation)`
+
+#### P3 — Intra-trade management is replaceable
+
+Motor independiente que recibe una posición abierta y decide:
+
+- HOLD
+- ADD_ADVERSE
+- ADD_FAVORABLE
+- MOVE_STOP
+- MOVE_TARGET
+- EXIT
+
+Gerard inspira dos políticas iniciales:
+
+- `negative_recovery`
+- `positive_pyramiding`
+
+pero no son parte de la señal.
+
+#### P4 — Inter-trade risk is replaceable
+
+El riesgo del siguiente trade es una política separada:
+
+`nextRisk = f(previousResults, accountState, propRules)`
+
+Ejemplos:
+
+- fixed;
+- geometric recovery;
+- bounded recovery;
+- state-based.
+
+#### P5 — Prop lifecycle is a state machine
+
+`EVALUATION → FUNDED_PRE_PAYOUT → PAYOUT_ELIGIBLE → WITHDRAWN | BURNED`
+
+Las reglas de Topstep/TPT/etc. son adapters/configuración, no lógica de estrategia.
+
+#### P6 — Account inventory is a portfolio
+
+20 cuentas copiando una Reference no son 20 muestras independientes. Son una cohorte altamente correlacionada con costes multiplicados. El modelo debe medir:
+
+- burn rate;
+- pass rate;
+- funded-to-payout conversion;
+- payout rate;
+- cash net;
+- capital lock;
+- expected attempts per withdrawal.
+
+#### P7 — High win rate is an instrument, not the objective
+
+El win rate se usa para aumentar la probabilidad de atravesar la state machine de la prop. La métrica final sigue siendo cash neto por capital real y tiempo.
+
+### Contratos conceptuales
+
+```text
+SignalModel
+  market data -> entry intent
+
+IntraTradeManager
+  position + market path -> adds/stops/targets/exits
+
+InterTradeRiskPolicy
+  trade history + account state -> risk budget
+
+PropRuleSet
+  account state + PnL path -> violations/eligibility/transitions
+
+ExecutionCostModel
+  fills -> commissions/slippage
+
+BacktestEngine
+  market path + above components -> trade/account/cohort events
+
+PropEconomicsSimulator
+  trade/account event distribution -> attempt/payout/cash distributions
+```
+
+Todos deben ser intercambiables.
+
+### Dos simuladores, no uno
+
+#### A — Prop Economics Simulator
+
+Se puede construir **antes** de tener datos de mercado.
+
+Inputs sintéticos:
+
+- win probability;
+- win payoff;
+- loss payoff;
+- trade frequency;
+- distribution/tail assumptions;
+- variable-risk policy;
+- prop rules;
+- fees/activation/reset/payout.
+
+Pregunta que responde:
+
+> ¿Qué payout conversion mínima hace rentable una cohorte y cuánto podemos pagar por intento?
+
+EV simplificado por attempt:
+
+`EV = p_payout * (net_payout - success_only_costs) - always_paid_costs`
+
+Break-even:
+
+`p_payout* = always_paid_costs / (net_payout - success_only_costs)`
+
+Esto permite validar la asimetría de negocio independientemente del edge.
+
+#### B — Market Strategy Backtester
+
+Produce distribuciones auténticas de trades/secuencias para sustituir los inputs sintéticos de A.
+
+Orden:
+
+1. C0 random / S1 ORB / S2 pullback con gestión simple.
+2. Añadir negative recovery.
+3. Sólo finalists: positive hardscalping.
+4. Pasar secuencias resultantes al Prop Economics Simulator.
+5. Aplicar variable-risk allí o en una capa superior reproducible.
+
+### Resolución de datos — política
+
+**1m sirve para screening, no para certificar hardscalping.**
+
+Con adds + SL + TP dinámicos, una vela de 1m puede tocar múltiples niveles sin indicar el orden. Por tanto:
+
+- **Tier 1 — discovery:** OHLCV 1m para desarrollar señales, regimes y descartar ideas malas rápidamente.
+- **Tier 2 — finalist:** 1s o trades/tick para reconstruir path intrabar y secuencias de adds.
+- **Tier 3 — execution proof:** NinjaTrader High Fill Resolution / Market Replay para confirmar comportamiento del finalist en la plataforma de destino.
+
+Un resultado final basado sólo en 1m no puede cerrar G2 si el orden intrabar cambia el outcome.
+
+### Fuente de datos recomendada para el sprint
+
+**Databento historical CME** es el candidato preferido:
+
+- PAYG histórico, sin necesidad de suscripción para empezar;
+- CME/CBOT/NYMEX/COMEX;
+- histórico amplio;
+- OHLCV 1m y 1s;
+- trades/tick y L1 disponibles si el finalist lo requiere;
+- API permite estimar coste antes de descargar.
+
+Estrategia de gasto:
+
+1. bajar primero NQ/MNQ 1m para varios años;
+2. D4 screening;
+3. identificar periodos/configuraciones finalists;
+4. descargar 1s/trades sólo para finalists y periodos de validación;
+5. evitar L2/PCAP salvo evidencia de que el modelo realmente lo necesita.
+
+CME DataMine queda como alternativa autoritativa pero no como primera opción por coste/complejidad.
+
+### Backtest stack recomendado
+
+#### Research harness — recomendado
+
+Un runner pequeño y desechable, independiente de NinjaTrader.
+
+Responsabilidades:
+
+- ingest normalizado;
+- continuous/contract-aware futures series;
+- session calendar/timezone;
+- deterministic signal modules;
+- event-driven position/recovery engine;
+- commissions/slippage;
+- event log completo;
+- parameter grid acotado;
+- outputs Parquet/CSV.
+
+No debe implementar prop rules profundamente; emite eventos para el simulator económico.
+
+**Lenguaje:** elegir por velocidad de entrega, no por producción. Python tiene menor fricción con Databento y análisis; Go sigue siendo válido si reutilizarlo compensa. El harness no define arquitectura futura de Echo.
+
+#### NinjaTrader Strategy Analyzer — verificación secundaria
+
+Útil para reconstruir el finalist cerca del runtime futuro:
+
+- soporta backtest/optimization/walk-forward;
+- puede incluir comisiones y slippage;
+- High Order Fill Resolution permite usar una serie secundaria más granular, incluso 1-tick.
+
+No usar como única verdad del research porque acoplaría la exploración a NinjaScript y hace más incómodo separar strategy/management/prop economics.
+
+#### NinjaTrader Playback / Market Replay — prueba final de ejecución
+
+Usarlo después para reproducir periodos concretos y comparar el event log del harness con el comportamiento NinjaScript.
+
+### Output mínimo por secuencia
+
+```text
+sequence_id
+strategy_id
+parameter_set_id
+contract
+session
+entry_ts
+direction
+entry_price
+initial_qty
+initial_money_risk
+initial_money_target
+
+adds[]
+  ts
+  price
+  qty
+  adverse_or_favorable
+  avg_price_after
+  total_qty_after
+  stop_after
+  target_after
+
+exit_ts
+exit_reason
+exit_price
+gross_pnl
+commission
+slippage
+net_pnl
+mae_money
+mfe_money
+duration
+max_qty
+max_adverse_distance
+```
+
+El Prop Simulator añade posteriormente account_id, lifecycle state, fees, violations, eligibility y payouts.
+
+### D3 acceptance gate
+
+D3 PASS cuando:
+
+- P1–P7 quedan aceptados como abstracciones;
+- C0/S1/S2 tienen reglas exactas;
+- negative recovery tiene un espacio pequeño de parámetros;
+- se elige dataset y runner;
+- se define el event schema;
+- ninguna decisión pendiente impide que un agente implemente D4 sin reinterpretar la tesis.
+
+
 ## 🧾 D1 — Gerard García: extracción del curso v0
 
 **Fuente:** brain dump + re-visionado reciente del curso privado por el owner + captura de la tabla de riesgo variable. Estado: `GERARD_V1_EXTRACTED / OBJECTIVIZATION_REQUIRED`.
@@ -559,6 +832,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — Recibido primer brain dump del curso de Gerard + captura de risk table. Se separan tres motores: recovery adverso intra-trade, pyramiding positivo y variable-risk inter-trade. Derivado modelo provisional de bandas sobre average price y detectada contradicción útil en tabla 1.20/1:1.5: tras dos pérdidas, el siguiente win ya no recupera la secuencia.
 - **2026-09-24** — Entrevista Gerard v1 suficientemente cerrada para avanzar: discrecionalidad pasa a parametrización experimental. Confirmado riesgo/TP monetario recalculado sobre average price. Derivada fórmula m=1+1/b para recovery geométrico constante y refrescada economía Topstep vigente; pricing path pasa a variable del simulador.
 - **2026-09-24** — D2 PASS tras revisar los tres DR. Gerard público y Tradesfera son PARTIAL con inferencias excesivas; Psicólogo NO_GO por corpus insuficiente. Se cierra research amplio. Pasan a D3: C0 random-direction control, S1 NQ/MNQ ORB30 y S2 H4 trend + 5m Bollinger pullback. Negative hardscalping se prueba como módulo separado antes de positive pyramiding y variable risk.
+- **2026-09-24** — D3 diseño abstracto iniciado: separadas SignalModel, IntraTradeManager, InterTradeRiskPolicy, PropRuleSet, ExecutionCostModel, BacktestEngine y PropEconomicsSimulator. Se decide simulación dual: economía sintética de prop puede avanzar sin market data; strategy backtest reemplaza luego sus distribuciones. Política de datos: 1m screening, 1s/tick finalists, NinjaTrader para verification/replay. Databento histórico CME queda como fuente preferida del sprint.
 
 ## 🧭 Decisiones
 
@@ -572,6 +846,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-23 — Piloto “~20 cuentas de 10K” es una hipótesis ilustrativa, no una decisión:** cantidad, nominal, prop y presupuesto se dimensionan en D7 desde reglas y economía verificadas.
 - **2026-09-24 — Cierre de research amplio:** los DR son insumos, no autoridades. D3 trabaja con dos señales mecanizables y un random control; no se abre otra ronda de búsqueda salvo evidencia concreta que cierre un blocker.
 - **2026-09-24 — Diseño experimental secuencial:** entry edge → negative recovery → positive hardscalping → variable risk/prop economics. Prohibido mezclar todo desde el inicio porque impediría atribuir el edge.
+- **2026-09-24 — Arquitectura conceptual reemplazable:** señal, gestión intra-trade, política inter-trade y prop lifecycle son componentes independientes; ningún influencer forma parte del contrato.
+- **2026-09-24 — Backtest de dos niveles:** 1m sólo para screening; cualquier finalist con adds/SL/TP intrabar requiere 1s/tick y verificación posterior en NinjaTrader.
 
 ## 🔗 Docs / Links
 
