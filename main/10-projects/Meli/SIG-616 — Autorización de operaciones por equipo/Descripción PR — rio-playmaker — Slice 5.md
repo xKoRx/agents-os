@@ -18,7 +18,7 @@ updated: "2026-09-23"
 
 # Descripción PR — rio-playmaker — Slice 5
 
-**Identidad:** `melisource/fury_rio-playmaker` · branch `feature/operation-authorization-by-team-f5@141eacbc5` · base `feature/operation-authorization-by-team-f4@e75ca90d9` · [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182) · SPEC [[SPEC técnica — Slice 5 — Actions restantes]].
+**Identidad:** `melisource/fury_rio-playmaker` · branch `feature/operation-authorization-by-team-f5@85a0c3bfc` · base `feature/operation-authorization-by-team-f4@40d5f9b22` · [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182) · SPEC [[SPEC técnica — Slice 5 — Actions restantes]].
 
 ## Propósito
 
@@ -70,7 +70,7 @@ La auditoría distingue las rutas de Entities (Rio Entity Service), favoritos pe
     * Integration testing is recommended
 * [x] New and existing unit tests pass locally with my changes
 * [ ] Any dependent changes have been merged and published in downstream modules — F4 sigue abierto como base de este PR.
-* [x] I have updated my current branch with changes made in develop/master previously — incorpora F4 `e75ca90d9`, que incluye el merge de develop.
+* [x] I have updated my current branch with changes made in develop/master previously — incorpora F4 `40d5f9b22` mediante merge commit.
 * [ ] I already deployed this branch in the pre-production environment
 
 ## Code Review checklist (must be completed by the code reviewer)
@@ -108,21 +108,28 @@ La auditoría distingue las rutas de Entities (Rio Entity Service), favoritos pe
 
 ## How Has This Been Tested?
 
-HEAD: `141eacbc5` · base F4: `e75ca90d9`.
+HEAD: `85a0c3bfc` · merge de F4: `40d5f9b22`.
+
+* El merge publicado integra los comentarios aplicados a F4 sobre relaciones same-DP y cascade sin equipo; se conservaron las reglas F5 existentes y se combinaron las matrices YAML de permisos.
+* La verificación local del merge fue estructural (`git merge-tree`, diffs y checks de whitespace/conflictos); no se ejecutaron pruebas localmente. La CI #5498 de PR #1182 terminó con sus cinco checks en `SUCCESS`.
+
+Evidencia local heredada del HEAD anterior `141eacbc5` (previa al merge F4→F5):
 
 * L0/UNIT + H2_INTEGRATION + CONTRACT: `./scripts/run-agentic-testing-contract.sh` pasó 31 selectores focalizados. `./scripts/validate-testing-contract.sh --staged`, `./scripts/validate-repository-contract.sh --staged` y `git diff --cached --check` pasaron.
 * L0/LOCAL_STACK: `AT-000-S01` y `AT-180-S18` pasaron con MySQL aislado; el runner eliminó contenedores, redes y volúmenes propios.
 * L0/FULL_REGRESSION: `./gradlew test --rerun-tasks --no-daemon` pasó con 4.107 tests, 0 fallas, 0 errores y 2 skips preexistentes.
 * Formato/estático: `pretty-format-java` y `checkstyle` pasaron. PMD mantiene 30 advertencias previas (34 en baseline), sin reglas nuevas detectadas.
-* CI del HEAD: `continuous-integration`, `code-coverage`, `dependencies`, `static-analyzer` y `workflow` terminaron en `pass` ([build #5492](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/5492/pipeline/)).
+* CI del HEAD anterior: `continuous-integration`, `code-coverage`, `dependencies`, `static-analyzer` y `workflow` terminaron en `pass` ([build #5492](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/5492/pipeline/)).
+* CI del merge F4→F5 publicado: los cinco checks de PR #1182 terminaron `SUCCESS` en el build #5498.
 * F1/SMOKE: pendiente. Prueba sugerida en `test3` con un Data Product propio de `ml-ads-signals/authorization-smoke-test`: con la versión viewer, editar descripción/visibilidad, config y componente debe retornar 403 sin cambios persistidos; con committer, las operaciones `DEV_AND_UP` deben continuar. Validar delete por separado con rol `DEPLOYER_AND_UP`. Requiere aprobación del scope y dataset antes de desplegar.
 
 ### Versiones de prueba
 
-* [`0.1.19-p5-committer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.19-p5-committer-allowed), rama `feature/sig-616-auth-p5-committer-test3-v23@9b2b7d1f2`.
-* [`0.1.20-p5-viewer-denied`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.20-p5-viewer-denied), rama `feature/sig-616-auth-p5-viewer-test3-v24@8f91234e4`.
+* [`0.1.21-p5-committer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.21-p5-committer-allowed), rama `feature/sig-616-auth-p5-committer-test3-v25@edff29c26`; build #1740.
+* [`0.1.22-p5-viewer-denied`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.22-p5-viewer-denied), rama `feature/sig-616-auth-p5-viewer-test3-v26@4f1e29e6`; build #1741.
+* [`0.1.23-p5-deployer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.23-p5-deployer-allowed), rama `feature/sig-616-auth-p5-deployer-test3-v27@d5ef6d48c`; build #1743 (`FINISHED`). Mock pensado para verificar inactivación/undeploy con `DEPLOYER_AND_UP`.
 
-Ambas ramas incorporan F5 `141eacbc5`, activan el mock ACME sólo con profile `test3` y pasaron sus pruebas focalizadas. Los dos builds Fury terminaron `FINISHED`. Son artefactos de prueba; no se desplegaron.
+Las ramas incorporan F5 `85a0c3bfc` y activan el mock ACME sólo con profile `test3`; committer/viewer preservan sus escenarios y deployer permite además probar inactivación. Los builds #1740/#1741/#1743 terminaron `FINISHED`. Son artefactos de prueba; no se desplegaron.
 
 ## Testing contract
 
