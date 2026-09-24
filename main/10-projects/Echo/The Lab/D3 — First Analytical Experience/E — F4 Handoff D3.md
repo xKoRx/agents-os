@@ -26,6 +26,10 @@ tags:
 
 # E — F4 Handoff D3
 
+## Baseline certificado para Fase 4
+
+Fase 4 debe comenzar desde el SHA exacto `372af59a7b83604781346613da01e3d510ea1360` (branch `feature/d3-shot3-correction`; = candidate Shot 1 `6a111c9e` + corrección F-D3-01..07 del Shot 3, ver [[G — Correction Record D3 (Shot 3)]]). El boundary no cambió de firma respecto del Shot 1; el Shot 3 añadió el guard de identidad fail-closed en el propio boundary (un lote con specs de identidad ajena ⇒ error pre-transacción, cero publicación).
+
 ## Boundary que Fase 4 debe invocar
 
 ```go
