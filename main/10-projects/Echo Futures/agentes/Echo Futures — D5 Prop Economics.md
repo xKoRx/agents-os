@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint: 2026-09-24--2026-09-30
 start: 2026-09-24
 due: 2026-09-30
-progress: 15
+progress: 40
 repo: "xKoRx/echo-futures"
 jira:
 prs:
@@ -45,6 +45,7 @@ updated: "2026-09-24"
 - FTMO Futures: KEEP_WATCHLIST. Producto lanzado oficialmente el 2026-09-17; Growth/Pro 50K ya tienen reglas y payout lifecycle públicos, pero sólo llevan 7 días en mercado al corte D5 y no reemplazan todavía una Tier-1 madura.
 - Lucid/Alpha Futures/TradeDay/etc.: fuera del primer corte salvo evidencia que justifique reemplazar una Tier-1.
 - No existe todavía evidencia de `q_withdraw` real para ninguna prop. El `q=10%` de D4 es fixture matemático, no benchmark.
+- **D5.2A/D5.2B capturadas 2026-09-24 (REVIEW).** Paquetes de reglas Topstep 50K Standard y TPT 50K Test→PRO completos con fuente oficial, capturados por agentes de research y verificados verbatim por el manager en las páginas load-bearing. 2 RULE_CONFLICT abiertos (TS-1 cap de payout 50K XFA Standard $2,000 vs "$5,000*"; TPT-1 reloj 60 días inside-buffer calendario vs trading days) + 2 tensiones resueltas documentalmente (TS-3 consistencia XFA Standard, TPT-2 semántica EOD-trailing/enforcement intradía). Contrato normalizado candidato y gap matrix de simulator como drafts en este planner. Sin código; D4 intacto; Tier-2 no investigado.
 
 ## 🧱 Entrega de desarrollo
 
