@@ -34,7 +34,7 @@ updated: "2026-09-24"
 
 ## 📊 Estado actual
 
-- **G4A_REVIEW (Shot 1 completo, esperando aceptación del owner).** Código implementado, tests y validación 1M verde; sin remote (no autorizado).
+- **SHOT 2 (auditoría independiente) en curso (T2.1 WIP).** G4A aceptado por owner (despacho Shot 2, 2026-09-24); commit bajo auditoría `ad7fe609c8b6503cdc7b803d5c33d8eb3efdcff9`.
 - Matemática cerrada en [[echo-futures-astra-math-review]].
 - Funcional congelado en [[D4 — Simulator v0 Functional SPEC]].
 - Técnico congelado en [[D4 — Simulator v0 Technical SPEC]].
@@ -78,7 +78,7 @@ updated: "2026-09-24"
 
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
-| G4A — Implementation | **review** | implement, run all tests, move to review | T1–T8 + invariants + coverage + commit | Shot 2 |
+| G4A — Implementation | **accepted** (owner dispatch Shot 2, 2026-09-24) | implement, run all tests, move to review | T1–T8 + invariants + coverage + commit | Shot 2 |
 | G4B — Independent audit | pending | adversarially review code/results, move to review | audit findings/reproduction | Shot 3 |
 | G4C — Certified v0 | pending | fix only accepted findings, rerun evidence, move to review | clean T1–T8 + audit closure | D5 |
 
@@ -278,7 +278,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 > - [x] T1.6 implementar T1–T8 + invariants #owner/agent #type/dev #area/echo
 > - [x] T1.7 ejecutar test/race/coverage/1M validation y commit #owner/agent #type/dev #area/echo
 > - [x] T1.8 dejar G4A review + handoff #owner/agent #type/dev #area/echo
-> - [ ] T2.1 auditoría independiente Shot 2 #owner/agent #type/pr-review #area/echo #blocked
+> - [/] T2.1 auditoría independiente Shot 2 #owner/agent #type/pr-review #area/echo
 > - [ ] T3.1 corrección/certificación Shot 3 #owner/agent #type/dev #area/echo #blocked
 
 ## 📆 Bitácora
