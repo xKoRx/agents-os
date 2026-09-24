@@ -1316,3 +1316,63 @@ S09/S10/S21/S23/S24 (existen sólo para soporte `(e,m)` PRO), S07/S13/S17 (lifec
 - Aceptación owner ⇒ habilita SHOT A (paquete en Technical SPEC §14.1) con baseline `d4f42a4` + commit de freeze; Shot B verifica el commit exacto de Shot A sin arreglar producto; Shot C absorbe sólo regresiones aceptadas.
 - La ejecución de la matriz de 30 puntos NO es parte del cierre de Shot C; se autoriza por separado con tamaños de corrida congelados antes de observar resultados (C2.iv).
 - Agents-OS actualizado: sí — 2 SPECs nuevas en el proyecto, planner actualizado (estado, tareas, gates, bitácora, links, esta sección), change_log en `80-agents/journal/logs/`. D4, Echo y Forge intactos. **STOP.**
+
+
+## Manager Erratum — Multi-Payout Economics Required — 2026-09-24
+
+Owner clarified the actual D5 economic thesis: the experiment must not stop at first withdrawal. A fair per-trade process may have poor first-withdrawal conversion but positive personal cash EV through repeated XFA payout cycles. Therefore first-withdrawal remains a diagnostic KPI, not the complete Topstep economic verdict.
+
+### Required Topstep M1A extension before Shot A
+
+Model XFA Standard payout cycles through at least:
+- payout #1;
+- payout #2;
+- payout #3;
+- payout #4;
+
+with an optional #5 sensitivity if the current rules permit the account to remain XFA.
+
+After each payout:
+- apply actual account-balance debit;
+- MLL remains locked at 0;
+- reset the five-winning-day counter;
+- require positive net profit since previous payout;
+- apply 50%-of-balance rule, 50K Standard cap and 90/10 split;
+- preserve account until MLL breach, vendor transition/call-up, or explicit experiment horizon.
+
+Add outcomes/state:
+- PAYOUT_1_RECEIVED ... PAYOUT_4_RECEIVED;
+- XFA_BURNED;
+- CALLED_UP_LIVE / VENDOR_TRANSITION as a censoring/transition state where applicable;
+- INCOMPLETE.
+
+### Current-rule correction
+
+Topstep does NOT guarantee or require a fixed “5 payouts then Live” transition. Current official rule states Live call-up is case-by-case by Risk Team and may occur earlier or later; number of payouts is not a deterministic threshold. Therefore “take 3–4 payouts to avoid Live” cannot be encoded as a factual rule.
+
+For structural economics, provide scenarios:
+1. NO_CALLUP_BEFORE_PAYOUT_N (N=1..4) — conditional scenario, explicitly not a rule claim;
+2. CALLUP_CENSORING — once an externally supplied/vendor-calibrated call-up model exists;
+3. STOP_AFTER_N_PAYOUTS — trader policy, not vendor avoidance guarantee.
+
+### New required metrics
+
+In addition to q_first_withdraw:
+- P(reach payout k | evaluation purchased), k=1..4;
+- P(reach payout k | XFA activated);
+- expected payout count per evaluation;
+- expected payout count per activated XFA;
+- expected net external cash over payout horizon N;
+- EV per evaluation for N=1,2,3,4;
+- marginal EV contribution of payout #2/#3/#4;
+- cash distribution / 100 evaluations for each horizon N;
+- account survival after each payout;
+- payout-cycle duration and winning-day count.
+
+### Gate impact
+
+The existing Topstep SPEC freeze must be amended before implementation.
+`D5_TOPSTEP_SPEC_PASS` remains REVIEW.
+Shot A is BLOCKED until the Functional/Technical SPECs include multi-payout lifecycle and call-up censoring semantics.
+
+This erratum does not change D5.3 stochastic mathematics; after first payout Topstep remains a 1D locked-floor process.
