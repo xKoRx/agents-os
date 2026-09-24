@@ -68,7 +68,9 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 
 | Métrica | Valor actual | Regla |
 |---|---:|---|
-| Cash gastado bruto identificado | **US$6.068,86 parcial** | TTP/contexto US$2.237,35 + WSF US$717,50 + Orion estimado US$2.614,01 + The5ers estimado US$500; faltan Axi/FTMO y otros gastos |
+| Cash gastado bruto identificado | **US$6.068,86 parcial** | TTP/contexto US$2.237,35 + WSF US$717,50 + Orion estimado US$2.614,01 + The5ers estimado US$500; falta FTMO y otros gastos |
+| Capital desplegado recuperable | **~US$2.200 Axi Select** | Se trata como inversión/activo recuperable, no como costo hundido mientras mantenga recuperabilidad |
+| Cash desplegado total conocido | **~US$8.268,86 + FTMO pendiente** | Costos identificados + capital Axi recuperable |
 | Cash recibido acreditado | **US$7.870,86** | Incluye payouts/rewards y refunds; se descompone antes de calcular trading profit |
 | Refunds acreditados | **2 eventos TTP, monto pendiente** | Reducen costo económico, no cuentan como trading profit |
 | Trading payouts confirmados | **≥ US$3.961,13** | Axi US$2.178,87 + Orion US$1.782,26; TTP/FTMO requieren clasificación por tipo |
@@ -86,7 +88,7 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 
 | Firma / venue | Cuentas | Estado del inventario | Notas |
 |---|---:|---|---|
-| Axi Select | Pendiente | Por levantar | Broker/programa |
+| Axi Select | Pendiente | Parcial | Aproximadamente US$2.200 de capital desplegado recuperable; no clasificar como gasto hundido |
 | FTMO | Pendiente | Por levantar | Prop |
 | TTP | **2 funded de 50k** | Parcial | Ambas cuentas han generado refund; montos exactos por asociar a movimientos |
 | Orion | **6 históricas / 5 activas** | Parcial | 2×100k + 3×50k + 1×25k Flash; 1×50k lost por inactividad; payouts reales informados US$1.782,26 |
@@ -340,6 +342,7 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 
 ## 📆 Bitácora
 
+- **2026-09-23** — Axi reclasificado por instrucción del owner: ~US$2.200 corresponden a capital desplegado recuperable, no a gasto hundido. Cash-out bruto consumido conocido se mantiene en US$6.068,86 + FTMO pendiente; cash desplegado total conocido pasa a ~US$8.268,86 + FTMO pendiente.
 - **2026-09-23** — Inventario histórico ampliado con The5ers: 1 cuenta High Growth 10k perdida. Costo recordado por el owner entre US$400–500; se registra provisionalmente **US$500** bajo criterio pesimista. Cash-out bruto identificado sube a US$6.068,86. Pendiente reconciliar si esta cuenta estaba incluida o no dentro del universo inicial de 17.
 - **2026-09-23** — Segunda carga F0: gastos visibles TTP/contexto US$2.237,35 y WSF US$717,50; Orion inventariado con 6 cuentas históricas, 5 activas y US$325k de notional activo. Se estimó costo Orion en US$2.614,01 con precios actuales y criterio conservador, marcado explícitamente como estimación. Orion cash real corregido a US$1.782,26; el certificado US$2.417,58 deja de contar como retiro. TTP: 2×50k funded con 2 refunds pendientes de asociación. FTMO: cuatro movimientos Pagado por US$2.290,15 pendientes de clasificar como reward/refund.
 - **2026-09-23** — Primera evidencia de payouts cargada: 6 pagos Axi Select por US$2.178,87; 4 pagos Completed por US$1.619,58 con firma aún no visible; certificado Orion Overall Rewards por US$2.417,58. Para no inflar resultados, Orion se mantiene como acumulado reconciliable y el lote no identificado no se suma hasta resolver posible solapamiento. Cash-in conservador confirmado: US$4.596,45; máximo provisional si el lote es independiente: US$6.216,03.
@@ -353,6 +356,7 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 - **Realizado separado de potencial.** Los payouts cobrados pertenecen al P&L; escenarios futuros pertenecen a planificación.
 - **Refund separado de payout.** Ambos son cash-in, pero refund reduce costo económico y no se contabiliza como trading profit.
 - **Estimaciones nunca se disfrazan de gasto probado.** Orion usa por ahora precios actuales como proxy conservador por instrucción del owner; cuando aparezca evidencia histórica, reemplaza la estimación.
+- **Capital recuperable separado del gasto.** Axi Select se registra como capital desplegado recuperable (~US$2.200), no como costo hundido mientras conserve esa recuperabilidad.
 - **Identidad estable por cuenta.** Cada cuenta recibe `ACC-NNN` para poder seguir cambios de firma, nombre o estado sin perder historia.
 
 ## 🔗 Docs / Links
