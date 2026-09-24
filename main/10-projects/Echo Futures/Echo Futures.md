@@ -77,7 +77,7 @@ El riesgo principal es de cola: una técnica con win rate muy alto puede esconde
 | D3 | Tesis matemática + contrato abstracto del simulador | Invariantes, estados, políticas y métricas definidos |
 | D3.1 | **Astra/GOD valida exclusivamente la matemática del simulador** | **PASS — MATH_GO**; claims auditados + acceptance tests analíticos + condiciones de optional stopping |
 | D4 | Simulador estocástico v0 implementado y verificado | Null model reproduce benchmarks analíticos antes de aceptar escenarios con edge |
-| D5 | Rulesets versionados de Topstep/Lucid/Apex + lifecycle completo | `evaluation purchase → first real withdrawal | burn` reproducible; pass/funded sólo estados intermedios diagnósticos |
+| D5 | Tier-1 Topstep + TPT rulesets y economics certificados; Tier-2 después | `evaluation purchase → first real withdrawal | burn` reproducible bajo reglas reales; pass/funded sólo estados intermedios diagnósticos |
 | D6 | Monte Carlo + sensitivity surfaces + cohort correlation | Break-even regions y assumptions dominantes identificados |
 | D7 | Decisión `GO | ITERATE | NO_GO` para piloto de calibración | Presupuesto, tamaño de cohorte, reglas de aborto y supuestos que el piloto debe medir |
 
@@ -1308,7 +1308,7 @@ views:
 > - [x] [[Echo Futures — Simulator v0]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [/] [[Echo Futures — D5 Prop Economics]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [-] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa — absorbido por [[Echo Futures — D5 Prop Economics]] #owner/me #type/research #area/echo
-> - [ ] D5: modelar `evaluation comprada → primer retiro real` con pass/funded intermedios, fees, activation, resets, drawdown, consistency, payout eligibility y cash neto #owner/me #type/research #area/echo
+> - [/] D5: modelar Tier-1 Topstep + TPT `evaluation comprada → primer retiro real` con pass/funded intermedios, fees, activation, resets, drawdown, consistency, payout eligibility y cash neto #owner/me #type/research #area/echo
 > - [-] Elegir instrumento/dataset — DEFERRED; simulation-first no requiere market data en v0 #owner/me #type/research #area/echo
 > - [-] Backtest/replay histórico — DEFERRED hasta decisión posterior a D6/piloto de calibración #owner/agent #type/research #area/echo
 > - [ ] D6: ejecutar validación adversarial y robustness #owner/agent #type/research #area/echo
@@ -1383,7 +1383,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Math authority:** `[[echo-futures-astra-math-review]]` es autoridad del simulator v0 para kernel, optional stopping, lifecycle abstracto, economics y acceptance tests T1–T8.
 - **2026-09-24 — D4 scope freeze:** primero certificar null engine exacto; synthetic edge v0 se aplica como perturbación de hitting probability en un adverse state acotado. Edge por múltiples adverse states queda para extensión posterior, no para Shot 1.
 - **2026-09-24 — D4 technical freeze:** Go CLI event-driven, exact hitting kernel, standard library first, deterministic single-threaded RNG, JSON scenarios/results, lifecycle abstracto, cohort IID y T1–T8. Repo separado `xKoRx/echo-futures`; Echo/Forge/NinjaTrader fuera de scope.
-- **2026-09-24 — Tier-1 D5:** validar primero Topstep, Apex Trader Funding, MyFundedFutures, Tradeify y Take Profit Trader. FTMO Futures queda watchlist por lanzamiento reciente; Lucid/Alpha/TradeDay y otras no entran al primer corte salvo evidencia que justifique sustituir una Tier-1.
+- **2026-09-24 — Tiering D5 owner:** Tier-1 = Topstep + Take Profit Trader y define el primer vertical slice funcional. Tier-2 = Apex Trader Funding + MyFundedFutures + Tradeify y entra sólo después de certificar el motor/rule contract Tier-1. FTMO Futures queda watchlist por lanzamiento reciente.
 
 ## 🔗 Docs / Links
 
