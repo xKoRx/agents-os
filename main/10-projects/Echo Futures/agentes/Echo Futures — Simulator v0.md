@@ -291,7 +291,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 > - [x] T1.7 ejecutar test/race/coverage/1M validation y commit #owner/agent #type/dev #area/echo
 > - [x] T1.8 dejar G4A review + handoff #owner/agent #type/dev #area/echo
 > - [x] T2.1 auditoría independiente Shot 2 #owner/agent #type/pr-review #area/echo
-> - [ ] T3.1 corrección/certificación Shot 3 #owner/agent #type/dev #area/echo
+> - [/] T3.1 corrección/certificación Shot 3 #owner/agent #type/dev #area/echo
 
 ## 📆 Bitácora
 
