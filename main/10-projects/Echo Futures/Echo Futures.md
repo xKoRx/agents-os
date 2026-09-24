@@ -128,6 +128,66 @@ Una estrategia no gana por parecer sofisticada. Para entrar a D3 debe cumplir si
 - posibilidad de probar separadamente **entry edge**, **recovery** y **money management**.
 
 
+## 🧾 D1 — Gerard García: extracción del curso v0
+
+**Fuente:** brain dump del owner a partir del curso privado + captura de la tabla de riesgo variable. Estado: `PARTIAL / INTERVIEW_REQUIRED`.
+
+### Estrategias/entradas recordadas
+
+- **Nasdaq Opening Range:** observar los primeros 30 minutos y operar en 5m la ruptura del rango a favor de la dirección de ruptura, sin exigir cierre de vela. Asociada por el owner a hard scalping positivo.
+- **H4 trend + LTF pullback:** identificar tendencia clara en H4 y buscar en temporalidad inferior entradas de pullback; ejemplo alcista: precio alcanza banda inferior de Bollinger en 5m y se busca recorrido hacia banda superior.
+- **Nasdaq momentum por sesión:** sumarse a tendencia/momentum en sesión de Londres y en sesión de Nueva York, tratándolas como contextos separados.
+- **Range breakout genérico:** formar rango durante un periodo X y entrar inmediatamente al romper, sin esperar confirmación de cierre.
+- **Relevant high/low continuation/reversal:** si cierra por debajo de un mínimo relevante, entrar buscando continuación; si la vela rompe el mínimo pero recupera y cierra por encima, considerar entrada contraria. Simétrico para máximos.
+
+Gerard prioriza la gestión sobre el edge de entrada y, según el recuerdo del owner, sostiene que la dirección inicial podría incluso decidirse aleatoriamente. Esto queda como afirmación a contrastar, no como edge certificado.
+
+### Tres motores de gestión que deben probarse por separado
+
+**A. Negative hardscalping / recovery intra-trade.** Ante movimiento adverso, agrega contratos y acerca las barreras de salida. Ejemplo recordado: 3 micros + 3 + 3. La intención declarada es conservar aproximadamente el riesgo monetario y el objetivo monetario mientras aumenta el tamaño total, por lo que el SL/TP en precio se comprimen alrededor del nuevo precio medio. Trigger, número máximo de adds y sizing exacto siguen `UNKNOWN`.
+
+**B. Positive hardscalping / pyramiding.** Cuando la operación ya avanza con fuerza a favor, agrega exposición, mueve la protección hacia breakeven y deja correr una extensión grande; el owner recuerda objetivos del orden de 1:6. Debe tratarse como motor independiente del recovery adverso.
+
+**C. Variable risk progression entre trades.** Captura suministrada: riesgo inicial 300, multiplicador 1.20 y reward:risk 1:1.5. La tabla visible muestra aproximadamente 300→360→432→518→622→746→896→1075 de riesgo por intento. Esta progresión no es equivalente al hardscalping intra-trade y requiere aclarar regla de reset, lotaje y objetivo real.
+
+### Modelo matemático provisional del recovery
+
+Si después de cada add el objetivo monetario (P) y la pérdida monetaria máxima (R) permanecen constantes, para una posición long agregada con cantidad total (Q), precio medio ponderado (ar p) y valor monetario por punto/unidad (v):
+
+- (SL = ar p - R/(Qv))
+- (TP = ar p + P/(Qv))
+
+Para short, los signos se invierten. Al aumentar (Q), ambas distancias en precio se reducen. Esto reproduce exactamente la intuición de “las bandas se juntan” descrita por el owner, pero queda `INFERRED` hasta confirmar que Gerard conserva dólares constantes y recalcula sobre el average price.
+
+### Hallazgo sobre la tabla de riesgo variable
+
+Con (R_0=300), multiplicador (m=1.20) y payoff (1.5R), la secuencia visible implica:
+
+- win inmediato: +450 acumulado;
+- una pérdida y luego win: +240;
+- dos pérdidas y luego win: -12;
+- tres pérdidas y luego win: aproximadamente -314;
+- cuatro pérdidas y luego win: aproximadamente -677.
+
+Por tanto, **esa tabla por sí sola no puede significar “cualquier siguiente win recupera todo y deja positivo”**. A 1:1.5, un multiplicador asintótico superior a ~1.667 sería necesario para garantizar recuperación total de una cadena arbitraria de pérdidas. Debe existir otra regla, un objetivo distinto o el recuerdo mezcla dos modelos. Además, la última pérdida acumulada visible en la captura no sigue limpiamente la progresión 1.20, por lo que esa fila requiere explicación antes de usarla.
+
+### Modelo económico de prop recordado
+
+- **Topstep 50K:** el owner recuerda coste aproximado 89 USD, sin activación, profit target 3K y pérdida permitida 2K. Todo debe verificarse contra reglas oficiales vigentes antes de simular dinero.
+- **Evaluation:** filosofía sacrificial/agresiva. Ejemplo recordado: buscar +1.5K con -2K de riesgo; secuencias posteriores de +500/+1K y cambios de riesgo todavía requieren explicar qué regla de la prop las origina.
+- **Funded:** buscar un primer día de beneficio muy grande (orden 3K–4K) y luego varios días pequeños (ejemplo 500×4) para llegar a retiro. El motivo reglamentario exacto está `UNKNOWN`.
+- **Account inventory:** mantener cuentas suplentes y rotar/replicar operaciones. Las cuentas se tratan económicamente como intentos desechables si el coste real de burn es bajo frente al payout potencial.
+- Props mencionadas: Topstep y Take Profit Trader como principales; Alpha Futures, Tradeify y Lucid como secundarias. Ninguna regla actual queda congelada hasta research oficial.
+
+### Implicación económica importante
+
+Debe distinguirse **trading EV dentro de la cuenta** de **cash EV del negocio de prop**. Una operativa puede tener expectancy mediocre o incluso negativa sobre PnL nominal y aun así ser económicamente interesante para el owner si el downside real por evaluation está limitado al fee mientras un camino exitoso habilita payouts mucho mayores. El simulador G1 debe modelar ambos niveles y nunca usar el balance nominal de 50K como capital real invertido.
+
+### Bloqueos de entrevista
+
+Para cerrar Gerard/G0 faltan: trigger exacto y máximo de adds; sizing de cada add; significado preciso de “mantener riesgo/TP”; regla de salida tras cada add; contrato exacto de positive hardscalping; reset de variable risk; significado de la primera columna de la tabla; asociación entre cada entry model y cada motor de gestión; e interpretación exacta de la secuencia evaluation/funded.
+
+
 ## 🔬 M0 — Forense de operativa
 
 ### Fuentes iniciales
@@ -311,6 +371,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
 - **2026-09-23** — Proyecto creado y alcance corregido hacia operativa-first. Se registran como hipótesis: estrategias de alto win rate y TF bajo, hardscalping/recovery con aumento de exposición, gestión agresiva orientada a challenge/funded/payout y escalado futuro a decenas de cuentas. G0/G1 bloquean desarrollo hasta demostrar reglas mecánicas y economía positiva.
 - **2026-09-23** — Activado management por `technical-project-manager`: horizonte máximo 7 días. Discovery se limita a tres one-shots paralelos (Gerard/Tradesfera/Psicólogo) bajo contrato común + entrevista Gerard; D2 síntesis, D3 mecanización, D4 backtest, D5 prop simulation, D6 robustness, D7 decisión y eventual freeze MVP.
+- **2026-09-24** — Recibido primer brain dump del curso de Gerard + captura de risk table. Se separan tres motores: recovery adverso intra-trade, pyramiding positivo y variable-risk inter-trade. Derivado modelo provisional de bandas sobre average price y detectada contradicción útil en tabla 1.20/1:1.5: tras dos pérdidas, el siguiente win ya no recupera la secuencia. D1 sigue WIP pendiente de entrevista dirigida.
 
 ## 🧭 Decisiones
 
