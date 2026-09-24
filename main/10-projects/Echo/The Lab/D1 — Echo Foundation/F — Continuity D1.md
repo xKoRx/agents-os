@@ -52,4 +52,11 @@ The manager/TL (this planning session) evaluates each returned report against [[
 
 ## Outcome (2026-09-23)
 
-Three-shot model completado. Shot 3 cerró F-S2-01 y F-S2-02 con regresiones permanentes (rojo contra `e35d4347`, verde con fix) y re-ejecutó el gate completo: **D1_FINAL_PASS** @ `64b616ff` (`feature/d1-echo-foundation-final`, sin push). Evidencia canónica: [[K — Final Correction and Gate D1 (Shot 3)]]. D2 (integración/certificación con productor) es el siguiente hito del roadmap; no hereda PASS.
+Three-shot model completado y cerrado.
+
+- Shot 3 cerró F-S2-01 y F-S2-02 con regresiones permanentes: **D1_FINAL_PASS** @ `64b616ff`.
+- El harvest posterior recuperó el valor reusable de Shot 2 y lo convirtió en 8 regresiones permanentes + suite E2E por SPEC: **D1_E2E_HARVEST_PASS** @ `22b26716`.
+- La integración final preservó el fix Bridge vigente y llevó el paquete certificado a remoto: **D1_MASTER_INTEGRATION_PASS** @ `master@8adce7ec98fc20517950635537e515e07c931144`.
+- Evidencia canónica: [[K — Final Correction and Gate D1 (Shot 3)]], [[M — Reusable Verification and E2E Harvest D1]], [[N — Master Integration D1]] y [[O — D1 Closure and D2 Handoff]].
+
+**D1 queda CLOSED a nivel source.** No está desplegado; migración 064 no está aplicada a DEV compartida ni PROD. D2 comienza desde `master@8adce7ec` y no hereda PASS.
