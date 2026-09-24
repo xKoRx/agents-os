@@ -1266,7 +1266,7 @@ No se compra escala ni se construye fan-out multi-account hasta que exista una r
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| Echo Futures simulator v0 (repo por definir) | TBD | TBD | [[Echo Futures]] D3/D3.1 | [[echo-futures-astra-math-review]] | READY_TO_PLAN |
+| Echo Futures simulator v0 / xKoRx/echo-futures (create) | master | empty/new repo | [[D4 — Simulator v0 Functional SPEC]] | [[D4 — Simulator v0 Technical SPEC]] | FROZEN / READY_FOR_SHOT_1 |
 | Echo Futures runtime | TBD tras G0/G1 | TBD | BLOCKED — congelar después de G0/G1 | BLOCKED — congelar después de G0/G1 | NOT STARTED |
 
 ## 🧩 Subproyectos
@@ -1305,7 +1305,7 @@ views:
 > - [x] D2: síntesis adversarial — pasan C0 random, S1 ORB30 y S2 H4+Bollinger; research amplio cerrado #owner/agent #type/research #area/echo
 > - [x] D3: congelar simulador estocástico null + synthetic conditional edge + lifecycle abstracto; backtest histórico deferred #owner/me #type/research #area/echo
 > - [x] D3.1: Astra/GOD mathematical review — MATH_GO; autoridad persistida en [[echo-futures-astra-math-review]] #owner/me #type/research #area/echo
-> - [/] D4: implementar simulator v0 null + synthetic edge mínimo y certificar T1–T8 con verificación independiente #owner/agent #type/dev #area/echo
+> - [ ] [[Echo Futures — Simulator v0]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
 > - [ ] D5: modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
 > - [-] Elegir instrumento/dataset — DEFERRED; simulation-first no requiere market data en v0 #owner/me #type/research #area/echo
@@ -1355,6 +1355,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — Reformulada tesis alrededor de `purchase→first-payout conversion`. Bajo null model estático +3000/-2000, first-passage da 40% de pass; encadenar estados evaluation/funded puede producir conversiones del orden 10–16% aun sin asumir edge, antes de reglas/costes reales. El simulador deberá medir cuánto destruyen o mejoran ese bound las reglas reales y conditional mean reversion.
 - **2026-09-24** — D3.1 agregado: un único shot Astra/GOD actuará como mathematical reviewer con herramientas explícitamente prohibidas. Debe validar/corregir 10 claims, fijar el modelo estocástico mínimo y entregar acceptance tests analíticos. D4 queda bloqueado hasta `MATH_GO` o incorporación explícita de correcciones.
 - **2026-09-24** — Astra/GOD devuelve `MATH_GO`. Claims 1–10 aceptados con condiciones; optional stopping/overshoot/finite-horizon quedan delimitados. Autoridad persistida en `30-resources/futures/echo-futures-astra-math-review.md`. D3 y D3.1 PASS; D4 desbloqueado.
+- **2026-09-24** — D4 congelado para ejecución hoy: Functional SPEC + Technical SPEC aprobadas; target aislado `xKoRx/echo-futures` (new repo/local if remote absent); proyecto de agente [[Echo Futures — Simulator v0]] creado con Shots 1 implementación, 2 auditoría independiente y 3 corrección/certificación. No queda diseño abierto para Shot 1.
 
 ## 🧭 Decisiones
 
@@ -1377,6 +1378,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Astra no investiga:** su único rol es falsificar/corregir el contrato matemático antes de implementación; ningún acceso a repos, MCPs, web, logs o infraestructura está autorizado.
 - **2026-09-24 — Math authority:** `[[echo-futures-astra-math-review]]` es autoridad del simulator v0 para kernel, optional stopping, lifecycle abstracto, economics y acceptance tests T1–T8.
 - **2026-09-24 — D4 scope freeze:** primero certificar null engine exacto; synthetic edge v0 se aplica como perturbación de hitting probability en un adverse state acotado. Edge por múltiples adverse states queda para extensión posterior, no para Shot 1.
+- **2026-09-24 — D4 technical freeze:** Go CLI event-driven, exact hitting kernel, standard library first, deterministic single-threaded RNG, JSON scenarios/results, lifecycle abstracto, cohort IID y T1–T8. Repo separado `xKoRx/echo-futures`; Echo/Forge/NinjaTrader fuera de scope.
 
 ## 🔗 Docs / Links
 
@@ -1385,6 +1387,9 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - [[Echo — Producto Integrado]] — producto vigente; Echo Futures se mantiene independiente para no alterar sus dos tracks congelados.
 - [[Echo + Echo Forge — Environment Contract]] — será autoridad de ambiente si Echo Futures reutiliza infraestructura Echo/Aranea; no concede autorización de ejecución.
 - [[echo-futures-astra-math-review]] — autoridad matemática del simulator v0 (`MATH_GO`).
+- [[D4 — Simulator v0 Functional SPEC]] — contrato funcional congelado D4.
+- [[D4 — Simulator v0 Technical SPEC]] — contrato técnico congelado D4.
+- [[Echo Futures — Simulator v0]] — proyecto de agente/planificador único para Shots 1–3.
 
 ## 💡 Ideas
 
