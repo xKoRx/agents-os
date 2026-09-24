@@ -755,3 +755,265 @@ R1–R6 del review anterior: R1 resuelto por freeze; R2 clasificado ECONOMICS_ON
 
 `D5_SESSION_MODEL_PASS` remains **REVIEW**.
 Next action: **GOD_MATH_REVIEW**.
+
+## GOD Mathematical Review — D5.3
+
+### Baseline, alcance y decisión — 2026-09-24
+
+**Verdict: MATH_REVISE. Recommended next action: CORRECT_AND_REVIEW. `D5_SESSION_MODEL_PASS = REVIEW`.** La clase de modelo es viable. El kernel 1D, la condición diagonal del máximo y la composición analítica de S10 son correctos bajo las condiciones precisadas abajo. No hay contradicción material que reabra D4. Sí hay correcciones obligatorias en el contrato del oráculo multisesión, el presupuesto de error global, las cotas con censura y la definición del indicador de activación. No congelar SPEC hasta incorporar y revisar estas correcciones.
+
+Autoridades leídas: [[Echo Futures]], este planner —especialmente §D5.3 y §Manager Decision—, [[Echo Futures — Simulator v0]], ambas SPECs D4 y [[echo-futures-astra-math-review]]. Baseline D4 `d4f42a41946f12231b75e4eb65b90d132731be0d` comprobado por `git rev-parse HEAD` en su checkout, sin cambios locales. Baseline documental del planner antes de esta revisión: commit `0ddb83ce`. Esta sección es la disposición vigente de la revisión; los bloques anteriores se conservan como propuesta e historia, no como aceptación posterior.
+
+Método: derivaciones independientes de flujo, Itô, problemas backward y cambio de tiempo; contraejemplos deterministas y pequeñas evaluaciones numéricas de fórmulas, sin implementar ni ejecutar un simulador. La única consulta externa fue la referencia matemática primaria ya citada para S10; no se investigaron firmas, precios ni marketing. Ningún resultado de implementación, convergencia PDE o Monte Carlo nuevo se declara certificado.
+
+### Blocking findings
+
+No se encontró un BLOCKER de inviabilidad de la difusión elegida. **G53-01 a G53-04 son MAJOR y bloquean SPEC freeze** porque todavía permiten contratos de validación o identidades falsas. No son defectos que autoricen sustituir el modelo por retornos diarios. Las condiciones técnicas de G53-06 y los teoremas de las secciones siguientes deben quedar explícitos en el handoff.
+
+### Major findings
+
+**G53-01 — Dimensión real del oráculo de consistencia. Severity: MAJOR.**
+
+- **Claim audited:** §E propone PDE/cadena 1D para EOD o 2D `(e,m)` para PRO, con backward induction sobre «estados diarios discretos», para comparar ciclos de 2–7 sesiones con consistencia/retiros.
+- **Expected mathematics:** 1D/2D describe la difusión local entre acciones, condicionada a los demás estados. El valor económico multisesión depende también de variables continuas de historia, además de los contadores discretos.
+- **Problem found:** el contrato no especifica la representación ni el error del best day A, máximo EOD H, balance inicial diario y estado de trade/policy. No son todos discretos. Contraejemplo: días `[1700,700,600]` y `[1400,900,700]` producen igual P=3000, N=3, H_EOD=3000 y F=0, pero A=1700 frente a 1400. El primero falla ambas consistencias; el segundo las satisface. Sus vecindades contienen el mismo desacuerdo, no es sólo una igualdad de probabilidad cero.
+- **Corrected formulation:** declarar por separado el semigrupo local condicionado y el estado suficiente de la recursión de valor. Conservar/integrar las variables continuas de historia, mediante cuadratura, mallas adicionales o condicionamiento que mantenga su ley conjunta; refinar también esas dimensiones. No sumar P como estado independiente de e cuando son idénticos en el snapshot, pero tampoco omitir A. Un oráculo 1D/2D sin esa extensión sólo certifica fixtures locales o sin consistencia.
+- **Impact on D5:** evitar que dos motores compartan una reducción de estado incorrecta y coincidan en un q sesgado; reconocer la complejidad adicional sin exigir una PDE monolítica de todas las dimensiones.
+- **Blocks SPEC freeze:** sí; cerrar el alcance de validación y la representación matemática de la historia antes del freeze. No se exige implementarla en esta revisión.
+
+**G53-02 — Error numérico local, global y de cash no son intercambiables. Severity: MAJOR.**
+
+- **Claim audited:** §E propone `ε_num≤10⁻⁴` para probabilidades y `≤$0.01` para medias cash, comparando sampler y oráculo mediante tolerancia MC adicional.
+- **Expected mathematics:** cada tolerancia debe identificar observable, horizonte, norma, acumulación por composición y fuentes de error separadas; un presupuesto por probabilidad no determina el error de una expectativa monetaria.
+- **Problem found:** no se fija si 10⁻⁴ corresponde a una llamada, una sesión o al resultado completo. Con reaperturas ilimitadas no hay un número determinista fijo de llamadas. Tampoco 10⁻⁴ implica un centavo: aun disponiendo de una cota de distancia de variación total de 10⁻⁴, un payoff de rango $2,000 admite error de $0.20. Controlar sólo una probabilidad escalar es todavía más débil. Renovaciones sin horizonte acotado dan costes no acotados.
+- **Corrected formulation:** fijar presupuestos globales por fixture/observable y separar `ε_prod`, `ε_oracle`, `ε_trunc`, `ε_history`, `ε_tail` y error estadístico. Con K llamadas y cotas uniformes δ_i de variación total, el error de ley se acota por `Σ_i δ_i`; con número aleatorio, justificar una cota esperada equivalente o truncar K y conservar explícitamente su masa residual. Para payoff g en `[g_min,g_max]`, `|E_P g−E_Q g|≤(g_max−g_min)·TV(P,Q)`; para costes no acotados se necesita además una cota de momento/cola monetaria. Alternativamente, controlar directamente el error débil del observable de cash.
+- **Impact on D5:** un kernel preciso o una coincidencia MC no certifican automáticamente q ni el centavo prometido. Mantener las metas para fixtures acotadas es razonable; prometerlas para toda economía infinita sin una cota adicional no lo es.
+- **Blocks SPEC freeze:** sí; adoptar el contrato de aceptación desglosado de §Numerical oracle verdict. El trabajo numérico posterior deberá demostrarlo.
+
+**G53-03 — S18 confunde censura de la muestra con incertidumbre sobre q. Severity: MAJOR.**
+
+- **Claim audited:** para N intentos simulados, S recibidos y U sin resolver, `q∈[S/N,(S+U)/N]`.
+- **Expected mathematics:** ese intervalo encierra la proporción final de esa muestra, no necesariamente el parámetro poblacional q. La incertidumbre de Monte Carlo permanece cuando U=0.
+- **Problem found:** con N=1, S=1, U=0 se publicaría `q=1`, aunque un modelo con q=1/2 produce exactamente esa observación con probabilidad 1/2. Es una falsificación directa de la afirmación literal.
+- **Corrected formulation:** escribir `q_hat_completed∈[S/N,(S+U)/N]`. Para N fijo de attempts IID, un intervalo conservador de confianza `1−α` para q es `[max(0,S/N−η), min(1,(S+U)/N+η)]`, `η=sqrt(log(2/α)/(2N))`; también sirve la envolvente de límites binomiales exactos para todos los conteos finales entre S y S+U. Añadir incertidumbre numérica por separado. Si S y U son masas exactas de un solver, entonces sí `q∈[p_received,p_received+p_unresolved]` es una cota poblacional determinista. Tamaño muestral elegido adaptativamente exige una confidence sequence o diseño equivalente, no reutilizar sin más el intervalo de N fijo.
+- **Impact on D5:** no sobrecertificar q, `1/q` ni probabilidades de no retiro. No se asume censura independiente para la envolvente pathwise; sí se requiere el muestreo declarado para su capa estadística.
+- **Blocks SPEC freeze:** sí; reemplazar S18 y el contrato de reporting correspondiente.
+
+**G53-04 — Activación ocurrida ≠ fee positivo pagado. Severity: MAJOR.**
+
+- **Claim audited:** §B3 define I como «activación pagada» y exige `J≤I`; §C/S14 usa I en la identidad promo/lista.
+- **Expected mathematics:** todo retiro implica una activación/funding anterior, aunque la tarifa de activación sea cero. El indicador de lifecycle debe ser independiente del precio.
+- **Problem found:** en `TPT_NOFEE40_SNAPSHOT`, fee de activación=0. Si «pagada» significa desembolso positivo, un retiro produce J=1 e I=0; `J≤I` es falso y `ΔK=68(1+n)+130I` pierde el ahorro de activación. Si se pretendía «activación ocurrida», la definición escrita debe corregirse.
+- **Corrected formulation:** `I_act=1{activación completada}`, `J≤I_act`; `C_path=F_initial+ΣF_renewal+I_act·a_snapshot+C_other`. El cash pagado por activación es `I_act·a_snapshot`, no el indicador. Para mismos paths sin restricciones de presupuesto: `K_NOFEE40−K_LIST=68(1+n)+130 I_act`. Usar otro símbolo para la tarifa evita colisión con A=best day.
+- **Impact on D5:** conservar separación nominal/cash y comparaciones de pricing; ninguna modificación a D4 ni al modelo de difusión.
+- **Blocks SPEC freeze:** sí; corregir definición y fixtures S12/S14. Es una corrección contractual, no investigación de pricing.
+
+### Minor / informational findings
+
+**G53-05 — Los empates no son universalmente de probabilidad cero. Severity: MINOR.** **Claim audited:** §A5 dice que «un empate exacto tiene probabilidad cero en el modelo regular». **Expected mathematics:** el tiempo de hitting de una barrera separada de un punto inicial interior no tiene átomo en un deadline determinista positivo; barreras coincidentes sí se alcanzan juntas con probabilidad positiva. **Problem found:** una barrera de SL puede coincidir exactamente con el floor; TP con lock también. La frase es demasiado amplia, aunque la prioridad ya propuesta es correcta. **Corrected formulation:** limitar el argumento de probabilidad cero al empate tiempo aleatorio/deadline bajo no degeneración; definir todos los empates geométricos y los estados iniciales sobre frontera mediante operadores deterministas. **Impact on D5:** conservar phase-loss > close > add; en hard close no add ni reapertura; lock se actualiza aunque coincida con TP. **Blocks SPEC freeze:** no por sí solo; incorporar la precisión sin relajar prioridades.
+
+**G53-06 — Máximo correcto, pero ley conjunta potencialmente mixta. Severity: INFO.** **Claim audited:** §A4 usa `(e,m)`, `L=(h²/2)∂ee` y `∂m u=0` en diagonal. **Expected mathematics:** son correctos para h constante entre eventos y estado de policy condicionado; el kernel es una medida, no necesariamente una densidad 2D ordinaria. **Problem found:** ninguno en esas fórmulas. Hay una trampa de implementación: partiendo de e<m, sobrevivir sin volver a m tiene probabilidad positiva y deja masa en `m_final=m_initial`. Con h=0 aparece además una masa puntual de identidad. **Corrected formulation:** preservar explícitamente esas componentes, fronteras de evento y transición al lock; no normalizar sólo una densidad respecto de `de dm`. **Impact on D5:** requisito del sampler/oráculo, detallado abajo. **Blocks SPEC freeze:** no es una refutación del modelo; el contrato de realización debe incluirlo.
+
+**G53-07 — S10 es exacto con dos tiempos de muerte diferentes. Severity: INFO.** **Claim audited:** cola exponencial del máximo y `e⁻¹D/T` tras lock. **Expected mathematics:** la exponencial para todo m pertenece al drawdown sin cap; el proceso con floor bloqueado cambia esa cola después de D. **Problem found:** la composición propuesta para T≥D es correcta; no debe convertir la primera expresión en un test del proceso capped para m>D. **Corrected formulation:** usar `τ_D` para drawdown sin lock y `ζ` para muerte con lock; fórmulas y extensión a T<D abajo. **Impact on D5:** conservar S10 como control independiente, con nombres y condiciones explícitos. **Blocks SPEC freeze:** no por sí solo.
+
+**G53-08 — Martingala nominal local, no identidad de lifecycle con resets/retiros. Severity: INFO.** **Claim audited:** media nominal cero con adds, sesiones y flatten. **Expected mathematics:** verdadera para la integral de trading detenida; evaluar condicionalmente desde el inicio de cada fase o llevar ganancias acumuladas sin borrar historia. **Problem found:** ninguno para el proceso declarado; sería falso aplicarlo al saldo que se reinicia al activar o se debita al retirar, o al subconjunto de sobrevivientes. **Corrected formulation:** exposición predecible, acotada y sin anticipación; transferencias/reset separados de `∫H dS`; condiciones de stopping explicadas abajo. **Impact on D5:** sizing puede cambiar q sin crear drift. **Blocks SPEC freeze:** no.
+
+**G53-09 — Consistencia determinista válida; igualdad exige contrato explícito. Severity: INFO.** **Claim audited:** Topstep `P≥3000,N≥2,A≤.55P`; TPT `P≥3000,N≥3,A<.50P`. **Expected mathematics:** predicados válidos sobre snapshot cerrado. **Problem found:** ninguno en los predicados. Brownian continuo no garantiza que toda variable derivada carezca de átomos: killing, stopping por policy, redondeo de requests y días sin exposición pueden crearlos. **Corrected formulation:** conservar exactamente `<` frente a `≤`; no usar probabilidad cero ni epsilon favorable para borrar la diferencia. **Impact on D5:** S06–S08 siguen obligatorios, incluida igualdad exacta. **Blocks SPEC freeze:** no.
+
+**G53-10 — ν es familia de relojes, no calibración implícita. Severity: MINOR.** **Claim audited:** `q_withdraw(ν,TradePolicy,WithdrawalPolicy,calendar,settlement)`. **Expected mathematics:** depende de la varianza por ventana y su correspondencia con decisiones de calendario; un único escalar basta sólo bajo una forma temporal y asignación entre ventanas ya congeladas. **Problem found:** la notación abreviada puede ocultar grados de libertad que §A3 sí admite al definir σ piecewise constant. **Corrected formulation:** interpretar ν como vector/perfil de varianzas de ventanas, o como multiplicador de un perfil determinista versionado. **Impact on D5:** sensibilidad reproducible sin inventar volatilidad; matriz mínima abajo. **Blocks SPEC freeze:** no como fórmula abreviada; sí deben declararse los inputs de cualquier experimento concreto.
+
+### 1D kernel verdict
+
+**Aceptado.** Sea `ℓ=b−a`, `r=(x−a)/ℓ`, `λ_n=n²π²/(2ℓ²)`. En reloj de varianza de PRECIO, el generador es `½∂yy` y:
+
+`k_V(x,y)=(2/ℓ) Σ_{n≥1} sin(nπr) sin[nπ(y−a)/ℓ] exp(−λ_n V)`.
+
+Es una densidad subprobabilidad, no una densidad ya normalizada a 1. La ortogonalidad de los senos produce la identidad inicial en sentido débil. Para V>0 la serie resuelve la ecuación de calor con Dirichlet en a,b. Su masa es:
+
+`Q_x(V)=∫_a^b k_V(x,y)dy=(2/π) Σ_{n≥1} [(1−(−1)^n)/n] sin(nπr) exp(−λ_n V)`.
+
+Los flujos propuestos tienen signos y factores correctos. En forma explícita, por unidad de varianza:
+
+`f_a(v|x)=+(1/2)∂_y k_v(x,a+)=(π/ℓ²) Σ_{n≥1} n sin(nπr) exp(−λ_n v)`.
+
+`f_b(v|x)=−(1/2)∂_y k_v(x,b−)=(π/ℓ²) Σ_{n≥1} (−1)^(n+1) n sin(nπr) exp(−λ_n v)`.
+
+Aunque los sumandos cambien de signo, las funciones completas son no negativas. `Q'_x(v)=−f_a(v|x)−f_b(v|x)`; por tanto `Q_x(V)+∫_0^V(f_a+f_b)dv=1`. La normalización incluye ambas masas de salida, no sólo el endpoint.
+
+Las probabilidades acumuladas, útiles para evitar integrar una serie mal condicionada en v=0, son:
+
+`U_x(V)=P(τ≤V,exit=b)=r−(2/π)Σ_{n≥1}[(−1)^(n+1)/n]sin(nπr)exp(−λ_n V)`.
+
+`L_x(V)=P(τ≤V,exit=a)=1−r−(2/π)Σ_{n≥1}[1/n]sin(nπr)exp(−λ_n V)`.
+
+Así `U_x(∞)=r` y `L_x(∞)=1−r`, recuperando D4. La integración término a término hasta v=0 requiere límite/regularización; no justificarla por convergencia absoluta allí. El tiempo medio de salida es `(x−a)(b−x)` en varianza de precio. En coordenadas de EQUITY con `de=h dW_v`, usar `h²V` en el kernel unitario o coeficiente `h²/2`; en calendario, el flujo se multiplica por `σ²(t)`. No multiplicar dos veces por h² ni confundir varianza de precio con varianza de equity.
+
+**Ley conjunta suficiente:** es una mezcla disjunta de `f_a(v)dv δ_a`, `f_b(v)dv δ_b`, para `0<v≤V`, y `k_V(x,y)dy` con etiqueta `τ>V`. No existe un endpoint superviviente que haya que muestrear también en la rama de salida. Muestrear primero esas tres masas y luego tiempo condicionado al lado, o primero tiempo condicionado a salida y lado según `f_b(v)/(f_a(v)+f_b(v))`, da la ley correcta. En la rama superviviente usar `k_V/Q_x(V)`. No usar r para elegir el lado independientemente de la duración finita.
+
+**Límites:** V↓0 desde x interior da Q→1 y `k_V dy⇒δ_x`; las masas de salida tienden a 0. V→∞ da Q→0 y salida eventual cierta con masas r,1−r; el endpoint condicionado a supervivencia rara converge a `(π/(2ℓ))sin[π(y−a)/ℓ]dy`. Para V>0 fijo y x↓a, salida lower→1, tiempo→0, Q→0; x↑b es simétrico. Exactamente en una frontera, absorber a tiempo 0 antes de llamar al kernel interior. Los límites conjuntos x→frontera y V→0 no son uniformes: no sustituirlos por una tolerancia de empate.
+
+**Evidencia aritmética independiente, no certificación de sampler:** a=0,b=1,x=.25,V=.1 da Q=.553175891850086, L=.429195269138053 y U=.0176288390118612; suman 1 a precisión de máquina. La masa upper eventual es .25, muy distinta de su masa antes de V. Con V=1, Q=.0064749699291492, L=.746762514183855, U=.246762515886996. Evaluaciones de las series con 1,000 términos; no prueban estabilidad uniforme para V pequeño o puntos casi absorbidos. La realización deberá cambiar de representación, por ejemplo imágenes para tiempos cortos y espectral para largos, con cotas de truncación y sin clipping silencioso.
+
+### Session composition / event semantics verdict
+
+**Aceptado con estado aumentado.** Brownian tiene strong Markov en los tiempos de hitting. En cada tramo se congela h y el estado que determina barreras; al ocurrir un evento se aplica la acción no anticipativa, se consume su τ de varianza y se vuelve a condicionar desde el estado alcanzado. El calendario, fase, trade/add index, floor, historial diario y policy tienen que formar parte del estado de control. `(e,m)` solo no vuelve Markov a cualquier estrategia adaptada con memoria omitida.
+
+Los resets de precio relativo `s←0` al reabrir son cambios de coordenadas; no resetean equity de fase, máximo, reloj ni historial de días. Al hard close, una supervivencia se liquida en su endpoint condicionado. En una frontera meramente observacional se aplica Chapman–Kolmogorov; al liquidar y reiniciar trade/adds se compone semigrupo con un operador económico, y no se exige la misma igualdad que sin esa acción.
+
+La política de referencia de G,L positivos fijos, h acotado, lista finita de adds y cortes exógenos localmente finitos no explota en una sesión: cada trade completo mueve la equity continua desde su apertura por G o −L. La continuidad uniforme en un horizonte compacto impide infinitos movimientos consecutivos de tamaño al menos `min(G,L)>0`; hay sólo finitos adds por cada trade. Una futura política con targets decrecientes a cero no hereda esta prueba y necesita una condición de no explosión propia. Un guard informático no puede etiquetar el resto como burn.
+
+En EOD, breach frente al floor vigente se resuelve antes de flatten/snapshot. El ratchet `F_new=max(F_old,min(0,B_close−D))` no crea PnL. Para un sobreviviente con D>0 tampoco lo quema por sí solo: si el candidato nuevo es B_close−D está debajo del saldo; si llega a 0, B_close≥D; si no sube, el sobreviviente ya estaba sobre F_old. La revalidación sigue siendo útil como invariante y para transferencias separadas. PRO no recibe un segundo ratchet EOD.
+
+### TPT PRO running-max verdict
+
+**Aceptado; no corregir la diagonal a reflexión normal.** Antes de lock, `Ω={(e,m):0≤m<D, m−D<e≤m}`. Con coeficiente h fijo entre eventos:
+
+`dE_v=h dW_v`, `M_v=max(m,sup_{s≤v}E_s)`, `dM_v≥0`, `1{E_v<M_v}dM_v=0`.
+
+El par es strong Markov para el segmento condicionado. Para u suave, Itô da `du=h u_e dW_v+(h²/2)u_ee dv+u_m dM_v`. Puesto que dM vive en E=M, el dominio backward tiene `u_m(m,m)=0`. **No** es `u_e=0`, ni `u_e+u_m=0`, ni una condición de flujo forward que pueda copiarse sin derivación. Para valor terminal g y tiempo restante v, la ecuación interior es `∂_v u=(h²/2)u_ee`, con dato inicial g, dato absorbente/cemetery en `e=m−D` y datos de evento/continuación donde corresponda. En formulación por tiempo calendario hacia delante del contrato, es `∂_t u+(h²σ²(t)/2)u_ee=0`.
+
+Control de coordenadas: para gap `d=m−e` y `w(d,m)=u(m−d,m)`, la condición es `w_d(0,m)+w_m(0,m)=0`; imponer `w_d=0` salvo que w sea independiente de m cambiaría el proceso. Esta identidad es útil para auditar una formulación alternativa del oráculo.
+
+Al llegar por primera vez a m=D, la continuidad exige E=D. Desde `(D,D)` el floor queda en 0. El valor se empalma con la solución locked 1D; para límites desde estados `(e,m)` con m↑D y e<D, la traza compatible es el valor locked iniciado en e. No se absorbe el path como éxito salvo que un target analítico independiente lo mande. El máximo puede descartarse para reglas de primera extracción sólo si ninguna policy retenida lo consulta; floor/locked y demás historia relevante permanecen.
+
+Adds y close/reopen conservan E, por tanto M. Cambiar h cambia la velocidad de varianza futura, no el máximo ya recorrido. Un reset de fase sí inicializa una cuenta/fase nueva según contrato; no confundirlo con cerrar un trade. En flat, E y M quedan constantes. Retiros son saltos de débito separados y no reducen el floor histórico.
+
+**Competencia de eventos:** detener en el primer hit del conjunto drawdown ∪ SL ∪ TP ∪ add ∪ lock, o integrar lock como transición interna equivalente. Evaluar el máximo hasta ese instante, no el máximo hipotético posterior de toda la sesión. El floor móvil puede interceptar un descenso antes del add que era elegible al inicio; no basta calcular un floor estático al abrir el segmento. En un empate de pérdida con SL/add, domina pérdida. En TP=lock, conservar lock además de cerrar; en el deadline no reabrir. Las condiciones de boundary rewards se ponen sólo en las fronteras alcanzables antes de otras absorciones.
+
+**Realización viable sin tiny Euler:** resolver/invertir el semigrupo o resolvente con esas fronteras y sus medidas de salida, o usar una construcción de excursiones/bridges con control del primer cruce. El dominio pre-lock está acotado (`−D<e<D`, `0≤m<D`), aunque la PDE es degenerada. Eso hace viable el problema local; no prueba un coste uniforme para todos los ν, policies o todos los estados diarios. Una malla PDE determinista puede aproximar la ley continua sin pasos Euler de paths, siempre declarando su error.
+
+**Componente singular que debe preservarse:** si e0<m0, los paths que no vuelven a m0 mantienen M=m0. Sin otras barreras intermedias, la masa superviviente en esa línea a tiempo V es `k^{(m0−D,m0)}_{h²V}(e0,y)dy δ_{m0}(dm)`. Se añade la componente que sí actualizó el máximo y las medidas de salida. Ignorar la línea elimina probabilidad real. Desde e0=m0 y h≠0, en tiempo positivo el máximo aumenta inmediatamente casi seguramente; ello no permite ignorar la línea después de un add o una caída que deja e<m. Para h=0 el operador es identidad mientras no haya un evento determinista.
+
+### S10 analytical oracle verdict
+
+**Aceptado como igualdad exacta, no aproximación.** Definir por separado `τ_D=inf{v:M_v−E_v=D}` para Brownian sin cap y `ζ=inf{v:E_v≤min(0,M_v−D)}` para el proceso con lock. Sin otros stops ni horizonte finito, empezando E=M=0:
+
+`P(M_{τ_D}≥z)=exp(−z/D)`, z≥0.
+
+La cola del máximo al primer drawdown en Brownian sin drift está corroborada por [Landriault, Li y Zhang, §2, ecuaciones (2.6)–(2.7)](https://arxiv.org/html/1403.1183v1#S2). La siguiente derivación y el empalme capped se verifican aquí de forma independiente.
+
+Para alcanzar un nivel c antes de drawdown, desde `m−D<e≤m<c`, la solución armónica es `u_c(e,m)=((e−m+D)/D) exp(−(c−m)/D)`. Es lineal en e, vale 0 en el floor, 1 en `(c,c)`, y cumple `u_m(m,m)=0`. En `(0,0)` da `exp(−c/D)`. Para c=D coincide con el proceso capped hasta lock, de modo que `P(lock before burn)=e⁻¹`.
+
+Para target intradía T≥D, la continuidad obliga a pasar primero por `(D,D)`. Strong Markov da la probabilidad condicional locked `P_D(hit T before 0)=D/T`. Por tanto:
+
+`P_0(hit T before ζ)=e⁻¹ D/T`, T≥D.
+
+El caso T=D incluye el factor 1. Para `0<T<D`, el target puede ganar antes del lock y la fórmula correcta es `exp(−T/D)`. Para el máximo del proceso capped al morir:
+
+`P(M_ζ≥z)=exp(−z/D)` si `0≤z≤D`; `P(M_ζ≥z)=e⁻¹D/z` si `z≥D`.
+
+No exigir la cola exponencial más allá de D al motor capped. Con D=2000,T=3000, la probabilidad analítica de este fixture es `.24525296078096157`; la probabilidad de lock es `.36787944117144233`. Ninguna es q_withdraw del ruleset EOD.
+
+**Condiciones:** equity continua, drift y costes nominales cero, ningún reset del máximo, target observado continuamente, sin retiro/cancelación anticipada ni gates de día. El target T≥D no puede ocurrir antes del lock; un target EOD, cambiante o condicionado a consistencia sí invalida ese argumento. Con h constante no nulo el resultado no depende de h. Con exposición predecible variable, se conserva por cambio de tiempo de martingala continua si el reloj cuadrático tiene suficiente recorrido para alcanzar la absorción —por ejemplo, exposición total en varianza infinita en paths no terminados— y no hay interrupciones de policy que eliminen outcomes. Acotación superior sola no basta: exposición apagada para siempre puede dejar paths sin resolver. h=0, deadline finito y calendario con oportunidad finita no satisfacen el fixture. Pure equity hitting/drawdown sin relojes ni otras reglas conserva esa invariancia; no atribuir un efecto de sizing a cualquier regla de path indistintamente.
+
+**Oracle adicional sensible al tiempo, derivado del mismo boundary-value problem:** para h constante, `κ=sqrt(2λ)/|h|`, T≥D y λ>0, en reloj v de varianza de precio:
+
+`E_0[exp(−λτ_T);τ_T<ζ]=exp[−κD coth(κD)]·sinh(κD)/sinh(κT)`.
+
+La parte pre-lock se obtiene con `u(e,m)=[sinh(κ(e−m+D))/sinh(κD)] exp[−κ coth(κD)(D−m)]`, que satisface `Lu=λu`, kill y diagonal; la parte locked es el resolvente de hitting en (0,T). Su límite λ↓0 recupera S10. Este control sí detecta algunas leyes de duración incorrectas que el mero pass rate no detectaría. No es una fórmula directa de probabilidad antes de una sesión: obtener esa CDF requeriría inversión adicional validada. Para D=h=1,T=1.5, los valores son `.21477390832873927` en λ=.125 y `.14846893086020618` en λ=.5; calculados por evaluación de la fórmula, sin paths.
+
+### Martingale / optional-stopping verdict
+
+**Aceptado a horizonte finito.** Escribir la riqueza nominal de trading como `X_t=X_0+∫_0^t H_s σ(s)dW_s`. Para `|H_s|≤hMax`, exposición predecible y `∫_0^Tσ²(s)ds<∞`, la integral es una martingala cuadrado-integrable. Para cualquier stopping time τ:
+
+`E[X_{T∧τ}]=X_0`, `E[(X_{T∧τ}−X_0)²]=E[∫_0^{T∧τ}H_s²σ²(s)ds]≤hMax²ν_[0,T]`.
+
+«Adaptado» solo no es el contrato completo del integrando. Las decisiones de add en hitting times continuos se ejecutan con información actual y el nuevo h actúa después del evento; una exposición simple `H=Σh_i·1_(τ_i,τ_{i+1}]`, con h_i medible en `F_{τ_i}`, cumple el contrato. No usar el endpoint futuro de una bridge para decidir el add pasado.
+
+`b'=b−Δh s`, `h'=h+Δh` da algebraicamente `b'+h's=b+hs`. El flatten sin coste cambia holdings/cash interno de trading a igual mark y desde entonces H=0. No crea drift. Reapertura self-financing conserva esa propiedad, incluida exposición adaptativa y simetría short si se habilitase. Se puede alterar la distribución y el promedio condicionado a sobrevivir; eso no es drift de la población completa.
+
+D4 conserva la invariancia de hitting con sólo dos valores terminales fijos y stopping válido. D5 ya tiene valores interiores al EOD, trailing, gates y transferencias, de modo que `P(win)=L/(G+L)` no se obtiene de media cero para todo experimento. El sizing puede cambiar varianza realizada por sesión, distribución diaria y q_withdraw sin producir edge en la integral nominal.
+
+No extrapolar `E[X_{T∧τ}]=X_0` a T=∞ sólo porque τ sea finito casi seguramente. Hace falta UI, stopping acotado u otra condición suficiente. Contraejemplo pertinente: una vez lockeado, Brownian desde D y floor 0, sin target ni retiro, toca 0 a.s. pero `E[X_ζ]=0≠D`; el tiempo medio de hitting es infinito y no hay UI. La familia detenida a cada horizonte finito sí tiene media D. Fees personales, resets de fase y débitos de payout son operaciones distintas y no satisfacen por sí mismos esa identidad nominal.
+
+### Consistency / day-state verdict
+
+**Aceptados los predicados propuestos.** En evaluación sin transferencias, `P=Σd_j`, `A=max(0,d_1,…,d_N)` con días finalizados; N cuenta sólo sesiones con actividad. Topstep permite `[1650,1350]`; TPT rechaza `[1500,1000,500]` y admite `[1400,900,700]`. `P≥max(3000,2A)` es incorrecto para TPT: se requieren separadamente `P≥3000` y `P>2A`.
+
+No hay patología de definición al reentrar sin costes: el número de trades completos es finito a.s. bajo la política fija y la ganancia del día es la suma del realizado más el flatten final. Cien trades de un día siguen contando como un día. No se puede obtener N≥3 subdividiendo artificialmente una ventana, ni definir una sesión por el número de cierres. N cuenta actividad, no rentabilidad.
+
+Para una política fija no degenerada y observaciones a tiempos deterministas, las distribuciones vivas de profit suelen tener densidad, lo que puede hacer nula la masa en la igualdad relevante. Ese argumento no es una licencia universal: stopping diario en un profit exacto crea un átomo, flat crea ganancia 0, los burns crean masas de frontera y las fixtures fuerzan igualdades. El contrato debe resolverlas aun cuando sean nulas en una subfamilia. No redondear equity/consistencia a centavos; el redondeo explícito de requests pertenece a otra operación.
+
+### ν / scaling verdict
+
+**Aceptada la familia de escenarios; rechazado un q null universal.** Dependen materialmente del reloj: exits por sesión, supervivencia/kill antes de cada close, adds ejecutados, PnL y best day, hitting del máximo/lock, winning days, p_pass, q_withdraw, duración, renovaciones y distribución de cash. El costo de compra fijo o una identidad aritmética de ledger no dependen por sí mismos de ν; el número de veces que se cobra sí puede depender.
+
+Sea D una escala de equity y h_ref una exposición de referencia legal. Usar `ẽ=e/D`, `m̃=m/D`, `ṽ=h_ref²v/D²`, `h̃=h/h_ref`. Por ventana i, `ρ_i=h_ref²ν_i/D²` es adimensional. Permanecen ratios `G/D`, `L/D`, distancias de add `h_ref Δs/D`, profit target/D, winning-day threshold/D, buffer/D, caps/D y ratios de size. Por sí sola, `ν/D²` sería dimensionalmente incorrecta si ν está en unidades de precio² y h no se ha normalizado.
+
+Escalar todos los niveles monetarios nominales por c y las distancias de precio por c con h fijo exige escalar ν por c²; entonces se conserva la ley de estados normalizados en las mismas sesiones. Escalar h por c y ν por 1/c² con barreras monetarias fijas también conserva la ley equivalente si se reescalan los add levels en precio y se conserva la policy normalizada. Los límites de contratos, enteros de size, tick/centavo, fees y umbrales que no se escalen rompen la invariancia. Los fees personales fijos no alteran q si las policies no consultan presupuesto, pero sí alteran cash normalizado/EV; mantener barreras y ν equivalentes no convierte snapshots económicos diferentes en idénticos.
+
+**Grid mínimo propuesto, puramente adimensional:** para cada policy/exposición frozen, `sqrt(ρ_full)∈{0.1,0.25,0.5,1,2,4}` —equivalentemente `ρ_full∈{.01,.0625,.25,1,4,16}`— con la misma forma temporal declarada. Comparar no-add y cada política de adds requerida, y WAIT/CLOSE donde corresponda. Añadir el control h=0 sólo como fixture matemática de no exposición, no como default válido del scenario. Refinar donde cambien q o las colas de días; seis puntos no certifican monotonicidad, y q no tiene por qué ser monótono en ν bajo consistencia/ratchet.
+
+Para early close usar el ν de la ventana realmente operable, sin renormalizar. Con noticias o publication waits, mantener un vector de ventanas y sus varianzas: igual varianza total repartida distinto entre dos ventanas con flatten/reset intermedio puede cambiar resultados. Un σ(t) distinto dentro de una única ventana sin decisiones temporales internas da la misma ley de outcomes en varianza, pero cambia el mapa a timestamps de eventos; éste importa cuando compite con billing o settlement. El grid no inventa una volatilidad empírica ni una escala de mercado.
+
+### Numerical oracle verdict
+
+**Independencia potencial, no certificación ya conseguida.** Un finite-volume/CTMC implementado independientemente puede falsificar un sampler espectral/semigrupo. Si producción también usa la misma PDE, stencil, interpolación o crossing routine, llamarlo «otro solver» no garantiza independencia; necesitan otra representación y controles analíticos separados. Compartir las reglas escritas es necesario; compartir un operador de transición incorrecto como única evidencia deja un fallo común. Los fixtures deterministas de ledger/consistencia y S10 deben impedirlo.
+
+El oráculo local PRO puede construirse con saltos simétricos de equity y actualización `m←max(m,e_new)`, killing al floor y lock correcto, sin reutilizar probabilities del production kernel. Su límite debe reproducir la condición backward demostrada. No modelar el máximo mediante un Brownian independiente ni reflexión normal de un proceso 2D ordinario. Su resolución de historia multisesión es la obligación G53-01.
+
+**Contrato de convergencia obligatorio:**
+
+1. Refinar espacio Δ,Δ/2,Δ/4; refinar independientemente paso temporal/cuadratura/inversión y las dimensiones continuas de historia. Mostrar estimaciones y diferencias; añadir nivel si no hay régimen estable. Richardson sólo con orden observado y justificado, no asumido en esquinas/discontinuidades.
+2. Alinear floor, diagonal, lock, TP/SL/add y umbrales del fixture. Cuando no sea posible, desplazar ambas direcciones y medir sensibilidad. Las barreras de supervivencia anidadas dan cotas por inclusión; mover una frontera de policy/consistencia puede no ordenar q y no debe presentarse automáticamente como bracket riguroso.
+3. Pre-lock tiene dominio acotado. Para el locked/EOD no acotado, aumentar el dominio truncado y llevar masa de escape como desconocida o acotarla. No convertir un borde artificial superior en retiro ni reflejarlo sin control. Repetir con dominio ampliado y separar cola monetaria de probabilidad de escape.
+4. Verificar conservación/positividad, medidas de frontera y masa singular `M=m0`; identidad a tiempo 0; semigrupo sin acciones; first-event ordering; empalme locked. Una renormalización o clipping de probabilidad no sustituye una cota.
+5. Comparar distribución conjunta: sub-CDF `P(τ≤v,side=a/b)`, supervivencia/endpoint, ley de M y dependencia con E, además de q final. El mean-zero no detecta todos los errores de killing.
+6. Llevar un presupuesto global de error de composición, historia, truncación y horizonte. Tres mallas estables son evidencia empírica; sin enclosure/error theorem no decir «cota rigurosa» ni «sampler exacto».
+
+**Aceptación numérica:** conservar `ε_num_global≤10⁻⁴` en probabilidades de los fixtures locales/finito-horizonte expresamente definidos. Para cash de fixtures acotadas, `≤$0.01` es una meta separada: exigir control directo de la expectativa o distancia de ley compatible con su rango. Identidades de ledger y casos deterministas deben coincidir a la precisión aritmética del contrato, no consumir una tolerancia MC de un centavo. Una tolerancia exploratoria mayor para q completo, por ejemplo 10⁻³ absoluto, puede declararse antes de correr como screening; no satisface por sustitución el gate 10⁻⁴ ni autoriza un ranking cuya diferencia esté dentro de incertidumbre. El presupuesto de un resultado completo debe congelarse según su uso, no heredarse de un kernel.
+
+Con referencia analítica p, usar test binomial exacto o intervalo con cobertura declarada; la regla 5σ es una aproximación aceptable cuando Np y N(1−p) son suficientemente grandes. Para p cercano a 0/1 no usar una banda degenerada de plug-in. Si el oráculo entrega `[p_o−ε_o,p_o+ε_o]`, exigir compatibilidad con el intervalo MC ampliado por el presupuesto del production sampler, manteniendo además las anchuras máximas predefinidas. Reportar por separado sesgo numérico y SE; elegir niveles/ajuste por múltiples fixtures antes de inspeccionar resultados. Para medias cash, usar SE sólo con varianza finita y un régimen estadístico defendible, o intervalos conservadores para payoffs acotados; no imponer normalidad de colas pesadas.
+
+El 10⁻⁴ numérico NO exige SE Monte Carlo de 10⁻⁴. A modo de coste, `5 sqrt(.25/N)≤10⁻⁴` requeriría N≥625,000,000 en el peor p; MC de tamaño menor puede validar con su incertidumbre explícita, pero no demostrar por sí solo ausencia de sesgo 10⁻⁴. El presupuesto pequeño se sustenta en análisis/convergencia/control independiente, no en aceptar una banda 5σ ancha.
+
+### Censoring / infinite attempt horizons verdict
+
+**Aceptados pending/live separados de BURNED y el requisito IID; corregir G53-03.** Un receipt pendiente después de cerrar cuenta no es burn, ni success antes de cash. Si un settlement ideal asegura receipt eventual, puede contarse como éxito eventual lógicamente probado para un observable de horizonte infinito, pero sigue pendiente para cash recibido antes de un deadline. No mezclar esos dos observables.
+
+Para usar geometric en ejecuciones secuenciales, cada attempt debe terminar/resolverse a.s., tener probabilidad de éxito común q>0, ser independiente de los anteriores y no depender de presupuesto/entitlements/calendario heredados. El lifecycle completo, incluidas renovaciones y settlement, forma parte del attempt. Un intento que permanece vivo para siempre puede impedir iniciar el siguiente: una sucesión hipotética de Bernoulli independientes no representa entonces la operación secuencial.
+
+Si `N*=inf{i:J_i=1}` y los pares `(J_i,K_i)` son IID, donde `K_i=J_i c_i−C_i` incluye el intento exitoso, `E[N*]=1/q`, `P(N*>n)=(1−q)^n` y, si `E|K_i|<∞`, `E[Σ_{i=1}^{N*}K_i]=E[K_i]/q`. No hace falta independencia entre coste y éxito dentro del mismo attempt. La prueba usa que `{N*≥i}` depende sólo de attempts anteriores. Sin presupuesto suficiente para comprar indefinidamente o con purchase times dependientes de duración, no trasladar estas expresiones automáticamente al calendario real.
+
+Para hazards de éxito variables, `P(no success through n)=∏_{i=1}^n(1−q_i^cond)`, donde `q_i^cond=P(J_i=1 | J_1=…=J_{i−1}=0)` corresponde al experimento de attempts realmente iniciables. No usar probabilidades marginales ni asumir que renovación/mes/promo preserve q. Cohortes simultáneas/copiadas requieren su dependencia conjunta.
+
+Tiempo finito casi seguro no garantiza duración media, número medio de renovaciones ni cash medio finitos. Para cash acumulado hasta retiro se requieren integrabilidad absoluta de los costes/rewards y control de colas, además de eventual receipt y reinicio. Una pequeña masa pendiente no da un pequeño error monetario si puede seguir pagando renovaciones ilimitadas. `q_L=0` impide una cota superior finita de `1/q`; con `0<q_L≤q≤q_U`, el intervalo transformado es `[1/q_U,1/q_L]`. Para cuantiles cash con censura se necesitan bounds de CDF o masa residual suficiente; no reportar cuantiles sólo entre paths resueltos como si fueran incondicionales.
+
+### Required corrections before SPEC
+
+1. **G53-01:** separar dimensión de difusión local de historia multisesión; fijar estado suficiente y dimensiones/cuadraturas que el oráculo debe validar. Incluir el par de historiales con igual P,N,H,F y distinto A como negativo obligatorio.
+2. **G53-02:** definir presupuestos globales de probabilidad y cash por fixture/observable; límites de composición y colas, cobertura MC, fuentes de incertidumbre separadas y qué evidencia será empírica frente a rigurosa. No exigir un sampler ya implementado para aprobar la matemática, pero sí un contrato verificable.
+3. **G53-03:** reemplazar la cota literal de q en S18 por cota de completación muestral más intervalo estadístico; preservar la alternativa de masas exactas del solver.
+4. **G53-04:** definir I_act por activación ocurrida independientemente de la tarifa; propagar a ledger, S12 y S14.
+5. Incorporar G53-05/06: empates geométricos, componentes singulares del máximo, h=0, fronteras iniciales y endpoint condicionado. Conservar la diagonal `u_m=0`; cambiarla a Neumann normal sería un error.
+6. Separar τ_D de ζ en S10; conservar condiciones de cambio de tiempo y añadir al menos un control de duración conjunta. Mantener el límite D4 sólo al desactivar efectivamente deadlines/flatten/gates pertinentes.
+
+### Accepted analytical tests
+
+- **S01–S03:** correctos con reloj/unidades explícitos, supervivencia más ambos flujos, y semigrupo sólo sin acción económica en el corte. Añadir sub-CDF por lado para detectar coupling incorrecto, puntos próximos a cada frontera y régimen V pequeño/grande.
+- **S04–S09:** ratchets, lock, consistency, winning days y máximo continuo aceptados. Igualdades, estados iniciales de frontera y prioridades siguen siendo fixtures deterministas aunque una subfamilia tenga densidad.
+- **S10:** aceptado para drawdown sin cap y composición capped tal como se distingue arriba; añadir T<D y T=D, y resolvente con λ>0. No es un oracle del q EOD completo.
+- **S11:** aceptado para trading nominal de una fase o ganancias acumuladas sin resets, con exposición predecible acotada, horizonte fijo y todos los paths detenidos incluidos.
+- **S12–S14:** identidades y cronología monetarias aceptadas después de corregir I_act; fixture adicional obligatoria: activación exenta, receipt positivo, `J=I_act=1`, fee de activación=0.
+- **S15–S16:** cronología/determinismo y aislamiento delta aceptados. Calendario/tolerancias son inputs versionados, no una fuente de drift.
+- **S17:** inclusión de éxitos WAIT dentro de CLOSE aceptada con mismo path hasta divergencia, decision schedule idéntico, fallback idéntico y settlement ideal que asegura cash positivo en cada cierre elegido. No implica dominancia de importe/EV ni sigue siendo universal con denegaciones dependientes de ruta.
+- **S18:** separación de outcomes y geometric IID aceptados después de corregir el intervalo y exigir terminación/resolución de cada attempt.
+- **Controles nuevos:** oráculo del máximo no actualizado, prueba de coordenadas de diagonal, invariancia de escala adimensional y negativo de estado A omitido. Son contratos analíticos para implementación futura, no tests ejecutados en esta revisión.
+
+### Rejected/replaced analytical tests
+
+- Rechazado `q∈[S/N,(S+U)/N]` como garantía poblacional de una muestra MC. Reemplazo: G53-03.
+- Rechazado `J≤1{fee_activation>0}`. Reemplazo: `J≤I_act` incluso con waiver.
+- Rechazada cualquier certificación de q con consistencia basada sólo en e o `(e,m)` y contadores enteros omitiendo historia continua. Reemplazo: semigrupos locales condicionados más recursión de estado suficiente.
+- Rechazado inferir error global/cash del 10⁻⁴ de una llamada o de un pass rate; sustituir por presupuestos observables y control de composición/cola.
+- Rechazados como ampliaciones indebidas, no como fórmulas realmente demostradas por el draft: cola exponencial capped para m>D; `e⁻¹D/T` a deadline EOD; invariancia general de q frente a sizing; martingala de saldos reiniciados o cash; igualdad de ley diaria inferida de mean-zero; normal incondicional en supervivencia; tiempos y lado independientes.
+
+### Exact residual blockers / handoff
+
+**Bloqueos matemáticos residuales de freeze:** incorporar G53-01 a G53-04 en el contrato propuesto y revisar su cierre; incluir las condiciones de realización y tests precisados. Esta revisión aporta las fórmulas corregidas, pero no marca la propuesta anterior como corregida/aceptada automáticamente. No se encontró necesidad de rediseñar la clase de proceso ni de reabrir D4.
+
+**Inputs de escenario aún requeridos:** perfil/vector ν y grid, TradePolicy/WithdrawalPolicy, calendario de ventanas/publicación/billing/settlement y criterio de horizonte/tail. `AllowedRequests` TPT y mínimos/settlement siguen bloqueando certificación de reglas completas/cash real; no invalidan los kernels ni impiden estudiar un escenario hipotético etiquetado `RETAIN_BUFFER`/`IDEAL_COMPLIANT`. Integración TPT permanece `ECONOMICS_ONLY` y fuera de esta revisión.
+
+**Owner gate:** no aceptado. **Gate:** `D5_SESSION_MODEL_PASS = REVIEW`. **Recommended next action:** `CORRECT_AND_REVIEW`. No Functional SPEC, Technical SPEC ni código autorizados o creados.
+
+**Agents-OS actualizado: sí.** Change_log de esta revisión y continuidad quedan exclusivamente en esta sección del planner por mandato de alcance: dictamen, evidencia, correcciones y blockers persistidos; core, journal externo, tarea puente y baseline D4 intactos. **STOP.**
