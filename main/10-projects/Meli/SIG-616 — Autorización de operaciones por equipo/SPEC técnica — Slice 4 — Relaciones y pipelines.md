@@ -3,7 +3,7 @@
 ## Metadatos
 
 - Tipo: Technical SPEC
-- Estado: Ajuste same-DP y tests de review en curso; pruebas manuales pendientes
+- Estado: Corrección de review publicada en `40d5f9b22`, comentarios respondidos y CI aprobada; review humano, sub-SPEC F4 y pruebas manuales pendientes
 - SPEC funcional: [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621)
 - Requerimiento: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
 - Aplicación: `rio-playmaker`
@@ -15,7 +15,7 @@
 - Implementación regularizada: `e8b957c47`
 - Merge final de `develop`, sin cambio de árbol: `d792b902b`
 - Corrección del bypass de plataforma: `e75ca90d9`
-- HEAD vigente: `e75ca90d98fba2dc4e4ef35686e2f38cf8462402`
+- Corrección de review publicada: `40d5f9b22`
 
 ## Objetivo y límites
 
@@ -66,6 +66,8 @@ app.action-authorization.permissions
 `*:create`, `*:update`, `*:delete`, `*:update-design` o `*:deploy` no activan por accidente una
 relación, un pipeline o un Data Product. Remover una de las nueve entradas desactiva sólo ese guard.
 La lista puede reemplazarse por scope sin modificar consumidores.
+
+`FURY_IS_TEST_SCOPE` sólo omite el precheck heredado del cascade; el guard nuevo sigue la configuración efectiva del scope. Para dejarlo sin guard en un scope de prueba se quita el par exacto de esa configuración. El `*` existente es un wildcard de tipos de componente y no afecta a estas operaciones. `VIEWER_AND_UP` no existe en el enum actual y requeriría una decisión e implementación aparte.
 
 No existe un segundo provider ni un motor de policies. No hay niveles hardcodeados dentro de los
 casos de uso F4.
@@ -190,6 +192,10 @@ Evidencia inicial sobre `d792b902b` y regresión final sobre `e75ca90d9`:
 El primer intento local detectó Docker inactivo y luego Compose no registrado como plugin. Se
 inició Colima y se registró el plugin Homebrew ya instalado; la ejecución final completa pasó. No se
 ejecutó smoke remoto ni se desplegó ninguna versión.
+
+Corrección de review del 2026-09-24: `./scripts/run-agentic-testing-contract.sh` pasó con 20 selectores y ambos checks L0/LOCAL_STACK con cleanup; `./gradlew check --rerun-tasks --no-daemon --no-build-cache` pasó con 4.009 tests, 0 fallas, 0 errores y 2 skips preexistentes; `./gradlew test --rerun-tasks jacocoTestReport --no-daemon --no-build-cache` pasó con cobertura global 14.357/14.790 líneas (97,07%); `GenerateDocTest` pasó sin diff de OpenAPI. El test scope se cubrió con deny/allow, y el delete sin equipo con `null` y blank. La evidencia local no sustituye CI ni smoke Fury. El push, la descripción del PR y los nueve hilos inline de David se verificaron en GitHub; el review general recibió una respuesta separada.
+
+La CI #5496 del HEAD `40d5f9b22` terminó en `SUCCESS`; también pasaron code-coverage, dependencies, static-analyzer y workflow. GitHub mantiene `REVIEW_REQUIRED` y `mergeStateStatus=BLOCKED`; falta review humano y no se ejecutó smoke remoto.
 
 ## Matriz manual para variantes mock
 

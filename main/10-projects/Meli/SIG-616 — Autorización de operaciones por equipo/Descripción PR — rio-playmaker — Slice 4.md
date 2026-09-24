@@ -67,13 +67,13 @@ Cambios:
 - F3 fue mergeado a develop como `19d70a6cf` y la rama se eliminó; GitHub retargeteó #1181 a
   `develop`.
 - Merge final sin cambio de árbol: `d792b902b`. El PR está sin conflictos.
-- Corrección de compatibilidad: `e75ca90d9`; es el HEAD vigente del PR.
+- Corrección previa de compatibilidad: `e75ca90d9`; corrección de review publicada: `40d5f9b22`.
 - Después de ese merge, `develop` avanzó a `9a559dfb3` con metadata de agentes; el merge-tree sigue
   limpio. Las variantes de prueba nuevas incorporan `e75ca90d9`.
 
 ## Dev checklist
 
-- [x] Implementación, documentación, tests y publicación de la rama completados.
+- [x] Implementación, documentación, tests y publicación de la corrección completados.
 - [x] Commits convencionales, self-review y estilo del repositorio.
 - [x] Documentación canónica y `.testing/impact.json` actualizados.
 - [x] Build, tests focalizados, regresión completa y coverage local pasaron.
@@ -86,13 +86,12 @@ Cambios:
 - `./scripts/validate-testing-contract.sh --staged` — PASS.
 - `./scripts/run-agentic-testing-contract.sh` — PASS; 20 selectores focalizados y dos checks
   `L0/LOCAL_STACK`, ambos con cleanup certificado.
-- `./gradlew check --rerun-tasks --no-daemon --no-build-cache` — PASS sobre `e75ca90d9`:
-  3.995 tests, 0 fallas, 0 errores y dos skips preexistentes.
-- `./gradlew jacocoTestReport --no-daemon --no-build-cache` — PASS.
-- Coverage diferencial contra F3: 94/95 líneas ejecutables, 98,95%. Global:
-  14.350/14.784, 97,06%.
+- `./gradlew check --rerun-tasks --no-daemon --no-build-cache` — PASS con la corrección de review: 4.009 tests, 0 fallas, 0 errores y dos skips preexistentes.
+- `./gradlew test --rerun-tasks jacocoTestReport --no-daemon --no-build-cache` — PASS; cobertura global 14.357/14.790 líneas, 97,07%.
+- `./gradlew test --tests com.mercadolibre.rio.playmaker.integration.GenerateDocTest --no-daemon --no-build-cache` — PASS; OpenAPI generado sin diff.
 - Con `application.yml` real y `DataProductAccessService` real: plataforma sin owner grant permite;
   usuario común sin grant deniega antes de efectos; grant suficiente permite.
+- En `FURY_IS_TEST_SCOPE=true`, el guard configurado deniega sin grant y permite con grant. Con `teamName` ausente, el delete omite ACME y completa el cascade. Create/update/delete de relaciones cross-DP rechazan antes de ACME o save.
 - `git diff --check origin/develop...HEAD` — PASS.
 
 ### Versiones de prueba
@@ -115,12 +114,12 @@ antes de evaluar la membresía plataforma.
   bypass histórico (cobertura automatizada; requiere otro entorno para smoke real); committer/viewer
   no-plataforma deniega sin mutaciones.
 - Entrada removida: conserva comportamiento previo y no llama ACME por F4.
-- Ownership incompleto: omite sólo el guard nuevo, compatible con F3.
+- Ownership incompleto: omite el guard nuevo; en delete de Data Product sin equipo omite también el precheck ACME heredado.
 - Data Product sin `teamName`: el delete conserva blockers/status checks y completa el cascade sin consulta ACME; se verificó con `null` y blank.
 
 ## Riesgos y pendientes externos
 
-- Checks visibles del nuevo HEAD (`continuous-integration`, `code-coverage`, `dependencies`, `workflow`) en `SUCCESS`; review `APPROVED`. GitHub aún informa `mergeStateStatus=BLOCKED`, sin conflictos (`MERGEABLE`).
+- CI #5496, cobertura, dependencias, análisis estático y workflow pasaron sobre `40d5f9b22`; GitHub mantiene `REVIEW_REQUIRED` y `mergeStateStatus=BLOCKED` hasta nuevo review humano.
 - Deploy de las variantes terminadas y ejecución manual no productiva.
 - Antes del deploy de F4, verificar si hay relaciones cross-DP persistidas y planificar su reparación; el delete de esas relaciones responde `400` hasta corregir los endpoints.
 - No se ejecutó smoke remoto ni se modificaron datos externos.

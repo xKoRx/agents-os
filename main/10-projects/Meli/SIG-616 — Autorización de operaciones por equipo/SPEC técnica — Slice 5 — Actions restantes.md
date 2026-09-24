@@ -1,5 +1,7 @@
 # Technical Specification — Slice 5: configuración de Actions mutantes restantes
 
+> Seguimiento de review F4 (2026-09-24): evaluar en F5 si las dos variantes `require*IfConfigured` de `ActionAuthorizationService` admiten un helper privado sin mezclar lookup exacto de operaciones con fallback `*` de tipos de componente. No cambia la política ni agrega un segundo provider.
+
 **Feature**: SIG-616 / Slice 5  
 **Owner**: rjara  
 **Project**: Signals (`rio-playmaker`)  
