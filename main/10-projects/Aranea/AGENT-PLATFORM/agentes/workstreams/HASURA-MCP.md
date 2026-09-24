@@ -159,13 +159,13 @@ Evidencia material:
 
 - request sin bearer a `:3005/mcp` → `401`;
 - `initialize` autenticado → `HTTP 200` + session id;
-- `tools/list` server-side → exactamente las 4 tools RO;
+- `tools/list` server-side → exactamente las 3 tools RO vigentes (desde H1 fix 2026-09-15; HISTORICAL 2026-09-12: 4 tools con `export_metadata`);
 - backend MCP sin host port;
 - Cursor real → `get_version`: Hasura CE `v2.38.0`;
 - Cursor real → `get_inconsistent_metadata`: metadata consistente;
 - capability vista por Cursor: `user-aranea-hasura-prod-ro`.
 
-Cursor también reportó `mcp_auth` en el inventario cliente. No apareció en `tools/list` server-side; por tanto no forma parte de la superficie Hasura PROD certificada ni amplía su autoridad.
+Cursor también reportó `mcp_auth` en el inventario cliente. No apareció en `tools/list` server-side; por tanto no forma parte de la superficie Hasura PROD certificada (3 tools desde H1 2026-09-15) ni amplía su autoridad.
 
 Cliente Daedalus:
 

@@ -38,7 +38,7 @@ tags:
 - **Archivo(s):**
   - `80-agents/journal/logs/2026-09-18-pbs-identity-conflict.md` (este log; único archivo nuevo en el vault)
   - `80-agents/memory/internal/agent-memory/2026-09-17-backup-dr-doc-consistency-continuity.md` (delta interno in-place en el checkpoint activo: identidad PBS=180 cacheada)
-- **Cero cambios** en artefactos operativos Backup/DR (índice, CONTRACT, DESIGN, RUNBOOK, CHECKLIST, ap-02, owner project, tickets, R0).
+- **Cero cambios** en artefactos operativos Backup/DR al momento de escribir este log (mañana). [Corrección de la tarde]: RUNBOOK, ap-02, R0 (anotación inline) e ITER4 (banner) sí se corrigieron por la dimensión IP — ver «Resolución aplicada», último bullet.
 
 ## Motivo
 
@@ -64,13 +64,15 @@ tags:
 - **No se ejecutó** el procedimiento PBS anterior (adopción R2) ni se tocó infraestructura: 0 comandos de mutación, canal read-only únicamente. Sin `qm create/destroy`, sin reinstalaciones, sin cambios de discos/datastore; recursos SQX y Ceph intactos.
 - **Interpretación probable de la premisa:** lectura apresurada de `discrepancies.md` §A/§B, donde «123» y «PBS 180» aparecen en tablas adyacentes (renombres SQX y alta de PBS). La línea exacta de H0 dice: «renombres SQX 108/111/112/123; … PBS 180 nuevo».
 - **Identidad demostrada (par completo):**
-  - PBS = VMID **180**, hostname de inventario `pbs`, nodo **kronos**; 192.168.31.180 es la IP planificada/documentada (UI :8007 en RUNBOOK; R0: sin respuesta ping/22/8007 desde Hermes — host-up solo para backends; estado de servicio interno sigue UNKNOWN hasta el gate de adopción).
+  - PBS = VMID **180**, hostname de inventario `pbs`, nodo **kronos**. [CORREGIDO 18sep tarde]: 192.168.31.180 NO es ninguna IP efectiva — era la IP del plan julio y NO hay host en .180 (ARP INCOMPLETE). La IP efectiva de PBS es **192.168.31.123:8007** (UI «pbs - Proxmox Backup Server», PTR `pbs.lab.aranea`); el «sin ping/22/8007» de R0 sondeó la IP del plan. VMID e IP son identificadores independientes y en Aranea NO coinciden numéricamente.
   - VMID **123** = `sqx-hera`, SQX runtime en hera (70 vCPU / 100 GiB). NO PBS, NO renumerada, NO renombrada.
+
+- **Corrección de la tarde (mismo día, mandato owner tras STOP):** este log registró «.180 = IP planificada», ambiguo y consistente con una lectura errada VMID=IP. Evidencia de red 18sep tarde: **.123 = PBS** (:8007 UI viva, PTR pbs.lab.aranea, ARP presente), **.111 = sqx-hera** (fib_trie interno del guest vía ssh-mcp `sqx-hera` + PTR worker.hera.lab.aranea + DNS sqx-hera.lab.aranea.cl), **.180 = sin host en la LAN**. GAP wrapper: network no expone MACs de taps ni vecinos (registrado, no rodeado). Corregidos: RUNBOOK (§1/§1.3/§4), ap-02 (status_detail/objetivo/pvesm/validation), R0 (anotación inline, preservada), ITER4 (nota en banner deprecated). DESIGN frozen: limpio, 0 refs IP. VMIDs/nodos/estados de la mañana: sin cambios, re-verificados.
 
 ## Validación
 
 - Mapeo consistente en 5 canales: kronos live ×2 (14:22 y 14:37), hera live, athena captura 17sep, inventario H0 (`inventory_59.json` + `discrepancies.md`).
-- Búsquedas vault: 0 archivos donde 123 aparezca como PBS; ~161 refs PBS/180 coherentes; `sqx-hera`=123 coherente en topología, storage y tools.
+- Búsquedas vault (mañana): 0 archivos presentaban 123 como PBS; ~161 refs PBS/180 coherentes con el VMID; `sqx-hera`=123 coherente en topología, storage y tools. [Nota tarde: tras la corrección IP, los docs operativos citan 192.168.31.123 como IP de PBS — el número es ahora también una IP; la identidad VMID 123=sqx-hera sigue intacta.]
 - Evidencia histórica preservada sin alteración: 17sep y H0 no fueron editados; todas las referencias históricas (PBS=180) resultaron legítimas, no errores.
 - Backups R1.5 y bundle R1.6 (preparado, NO ejecutado): intactos; ninguno depende de la identidad refutada.
 
