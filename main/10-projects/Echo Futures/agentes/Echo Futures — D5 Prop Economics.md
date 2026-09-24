@@ -1017,3 +1017,32 @@ Tiempo finito casi seguro no garantiza duración media, número medio de renovac
 **Owner gate:** no aceptado. **Gate:** `D5_SESSION_MODEL_PASS = REVIEW`. **Recommended next action:** `CORRECT_AND_REVIEW`. No Functional SPEC, Technical SPEC ni código autorizados o creados.
 
 **Agents-OS actualizado: sí.** Change_log de esta revisión y continuidad quedan exclusivamente en esta sección del planner por mandato de alcance: dictamen, evidencia, correcciones y blockers persistidos; core, journal externo, tarea puente y baseline D4 intactos. **STOP.**
+
+
+## Manager Decision — GOD MATH_REVISE accepted — 2026-09-24
+
+**Manager verdict:** ACCEPT_FINDINGS_AND_CORRECT. D5.3 model class remains accepted in principle; SPEC freeze remains blocked only by incorporation and review of G53-01..G53-04 plus the minor contractual clarifications already enumerated by the GOD review.
+
+### Findings disposition
+
+- **G53-01 ACCEPTED / REQUIRED:** multisesion oracle state must carry sufficient continuous history beyond local diffusion state, including best-day history A and any other continuous path statistic consumed by consistency/policy.
+- **G53-02 ACCEPTED / REQUIRED:** freeze observable-level global error budgets; local kernel tolerance cannot be promoted to end-to-end probability/cash guarantees.
+- **G53-03 ACCEPTED / REQUIRED:** S18 must distinguish sample-completion bounds from population-probability uncertainty; exact-mass solver bounds remain a separate valid case.
+- **G53-04 ACCEPTED / REQUIRED:** lifecycle indicator becomes `I_act=1{activation completed}`; activation cash cost is `I_act * activation_fee(snapshot)`, which may be zero.
+- **G53-05/G53-06 ACCEPTED as contract clarifications:** geometric ties and singular maximum mass must be explicit in the implementation contract.
+- **G53-07..G53-10 ACCEPTED as conditions/constraints:** preserve exact S10 scope, finite-horizon martingale scope, strict consistency predicates, and ν as a vector/profile or scaled deterministic shape.
+
+### Reuse / no-redesign constraint
+
+The correction agent MUST reuse the GOD formulas and findings. It is not authorized to select a new stochastic model, new oracle family, or alternative prop lifecycle. If a required correction cannot be integrated without changing the selected model class, return `PLAN_CONFLICT` instead of redesigning.
+
+### Next gate
+
+Correction target:
+`D5_SESSION_MODEL_CORRECTIONS = REVIEW`
+
+After manager review of the corrected contract:
+- if all G53-01..04 are closed exactly and no new math is introduced, manager may accept `D5_SESSION_MODEL_PASS` without another GOD shot;
+- if the correction changes kernel mathematics, TPT-PRO maximum dynamics, S10, martingale claims, or numerical-oracle model class, a second GOD review is mandatory.
+
+No Functional SPEC / Technical SPEC / implementation before this correction review.
