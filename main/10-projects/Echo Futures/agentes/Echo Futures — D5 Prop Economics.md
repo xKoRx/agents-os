@@ -1050,3 +1050,153 @@ After manager review of the corrected contract:
 - if the correction changes kernel mathematics, TPT-PRO maximum dynamics, S10, martingale claims, or numerical-oracle model class, a second GOD review is mandatory.
 
 No Functional SPEC / Technical SPEC / implementation before this correction review.
+
+
+## D5.3 GOD Findings Correction — 2026-09-24
+
+### Alcance, autoridad y resultado
+
+Esta sección incorpora al contrato D5.3 los findings G53-01..G53-04 aceptados por el manager (§Manager Decision — GOD MATH_REVISE accepted) y las precisiones contractuales G53-05..G53-10. Supersede exclusivamente las cláusulas afectadas de §D5.3 Session Model Review (§B3 indicador de activación, §C identidad de pricing, §E contratos S10/S12/S14/S18 y presupuesto del oráculo numérico); todo lo demás del diseño permanece. La disposición matemática vigente sigue siendo §GOD Mathematical Review; aquí no se corrige ninguna fórmula del GOD review, se incorpora. Baseline certificado D4 `d4f42a41946f12231b75e4eb65b90d132731be0d` intacto; baseline documental del planner antes de esta corrección: commit `58c66326`. Clase de modelo: **SIN CAMBIO**. No hay código, Functional SPEC, Technical SPEC, ejecución de simulador, research nuevo de props ni Tier-2. No se requiere segundo GOD shot según la regla del manager: ninguna corrección toca kernel, dinámica `(e,m)`, condición diagonal, S10, semántica de martingala ni clase del oráculo. La aceptación es del manager; `D5_SESSION_MODEL_CORRECTIONS = REVIEW`.
+
+### C1 — G53-01 CLOSED_BY_CONTRACT: estado local de difusión vs estado suficiente multisesión
+
+Se separan dos niveles de estado que el contrato anterior dejaba implícitos.
+
+**LOCAL DIFFUSION STATE — consumido por el kernel por llamada, entre acciones económicas:**
+
+| Fase | Estado local mínimo |
+|---|---|
+| EOD/static-floor (Topstep Combine, TPT Test, XFA, PRO ya locked) | `e` (equity de fase relativa), `current_floor` F vigente, `current_trade_state` (posición h, book b, próximo add elegible, barreras TP/SL del tramo), `time_remaining` V en reloj de varianza hasta el próximo corte exógeno |
+| TPT PRO pre-lock | `e`, `m` (running maximum), `current_trade_state`, `time_remaining` |
+
+**MULTISESSION ECONOMIC/POLICY STATE — estado suficiente consumido por las reglas de lifecycle y por la recursión de valor del oráculo:** cumulative phase PnL `P`; trading-day count `N`; best closed-day profit `A`; Topstep XFA winning-day count `W`; trailing floor/lock vigentes; fase actual; activation state `I_act`; payout eligibility state; renewal/billing state; PRO age donde aplique; withdrawal/settlement state (request/aprobación/wallet/receipt pendientes).
+
+Cláusulas contractuales:
+
+1. `(e,m)` —ni su marginal 1D— es suficiente para el lifecycle completo. La composición strong-Markov exige el estado de control completo (calendario, fase, índice de trade/add, floor, historial diario, policy) según el GOD verdict de composición; omitir memoria hace no-Markov cualquier estrategia adaptada que la consulte.
+2. Las dimensiones continuas de historia (`P`, `A`, `H_EOD`, `B_open`, relojes de edad/renovación) se representan y refinan INDEPENDIENTEMENTE de la malla de difusión local: el oráculo debe conservar/integrar su ley conjunta mediante cuadratura, mallas adicionales o condicionamiento, y refinar también esas dimensiones (Δ, Δ/2, Δ/4) en el estudio de convergencia. La elección de representación es decisión de SPEC/implantación: este contrato exige conservar la ley, no fija un algoritmo.
+3. No se duplica estado: `P` no se añade como coordenada independiente de `e` cuando son idénticas en el snapshot; `A` nunca se omite.
+4. **Fixture negativa obligatoria (GOD):** historiales `[1700,700,600]` y `[1400,900,700]` comparten `P=3000`, `N=3`, `H_EOD=3000`, `F=0`, pero `A=1700` vs `A=1400`; el primero falla ambas consistencias (1700>1650; 1700≥1500) y el segundo las satisface (1400≤1650; 1400<1500). Deben permanecer distinguibles (S19). Un oráculo 1D/2D sin la dimensión de historia sólo certifica fixtures locales o sin consistencia.
+
+### C2 — G53-02 CLOSED_BY_CONTRACT: presupuesto global de error
+
+Se elimina cualquier implicación «error local del kernel ≤1e-4 ⇒ error final de q ≤1e-4». Componentes declarados por separado: `ε_kernel` (llamada/solver local), `ε_history` (representación de historia continua), `ε_composition` (acumulación sobre K transiciones compuestas), `ε_truncation` (truncamiento de dominio), `ε_horizon` (masa no resuelta a horizonte), `ε_oracle` (residuo del oráculo independiente), `ε_MC` (incertidumbre estadística Monte Carlo).
+
+Cada observable certificado exige un presupuesto GLOBAL declarado. Mínimo: (A) probabilidades de fixtures analíticas/locales; (B) `q_withdraw` end-to-end; (C) expected cash; (D) outputs de cola/cuantiles.
+
+Inequality del GOD para payoff acotado g: `|E_P[g]−E_Q[g]| ≤ (sup g − inf g)·TV(P,Q)`. Una distancia de ley de 1e-4 sobre un payoff de rango $2,000 admite $0.20: NO se afirma precisión de un centavo desde un error de probabilidad 1e-4 salvo que el rango del payoff lo soporte matemáticamente.
+
+Composición: con K llamadas y cotas uniformes δ_i de variación total, el error de ley se acota por `Σδ_i`; NO se asume cancelación. Con K aleatorio o no acotado se exige control de cola/truncamiento con masa residual explícita.
+
+Targets semánticos congelados (no implementación): (i) fixtures analíticas locales de probabilidad retienen error global de fixture ≤1e-4; (ii) identidades deterministas de cash son EXACTAS hasta la representación aritmética y no consumen tolerancia; (iii) `q` end-to-end exploratorio puede usar una tolerancia separada declarada de 1e-3 SOLO etiquetada exploratoria/screening; no sustituye el gate de certificación; (iv) la tolerancia de certificación final se congela ANTES de observar resultados.
+
+Todo error reportado lleva etiqueta: `RIGOROUS_BOUND` (enclosure/error theorem), `EMPIRICAL_CONVERGENCE` (estudio de refinamiento) o `MONTE_CARLO_UNCERTAINTY` (SE/IC). Sin enclosure theorem no se declara «cota rigurosa» ni «sampler exacto».
+
+### C3 — G53-03 CLOSED_BY_CONTRACT: censura de muestra vs incertidumbre poblacional
+
+Se reemplaza la afirmación poblacional `q∈[S/N,(S+U)/N]` por tres objetos distintos:
+
+1. **Fracción de completación muestral:** `qhat_final_sample ∈ [S/N, (S+U)/N]` — propiedad de la muestra, nunca del parámetro poblacional q.
+2. **Incertidumbre poblacional IID (q desconocido):** para N fijo de attempts IID, la envolvente conservadora 1−α del GOD queda retenida como contrato conservador válido pero NO como único método permitido: `η=sqrt(log(2/α)/(2N))`, IC poblacional `[max(0, S/N−η), min(1, (S+U)/N+η)]` con unresolved asignados conservadoramente; alternativa igualmente válida: envolvente binomial exacta sobre todos los conteos finales entre S y S+U. Tamaño muestral elegido adaptativamente exige confidence sequence o diseño equivalente, no reutilizar el intervalo de N fijo.
+3. **Masas exactas de solver:** cuando S y U son masas de probabilidad reales de un solver numérico (no frecuencias muestrales), `q ∈ [p_received, p_received+p_unresolved]` SÍ es cota poblacional determinista.
+
+Propagación obligatoria de la distinción a: evaluaciones por retiro, probabilidad de no retiro, cash acumulado y horizontes censurados. Con `0<q_L≤q≤q_U` el intervalo transformado es `[1/q_U, 1/q_L]`; JAMÁS se divide por una cota inferior `q_L=0` para emitir una estimación finita de attempts; la masa pendiente/incomplete se reporta explícita.
+
+### C4 — G53-04 CLOSED_BY_CONTRACT: lifecycle de activación vs precio
+
+Definiciones corregidas: `I_act = 1{activación completada}` (indicador de lifecycle, independiente del precio); `J = 1{WITHDRAWAL_RECEIVED}`; `J ≤ I_act` siempre. El débito personal de activación es `I_act · activation_fee(pricing_snapshot)`, que puede ser cero. Identidad económica corregida: `C_path = initial_purchase + renewals + I_act·activation_fee + other_personal_costs`. Fixture de pricing: bajo path de lifecycle idéntico y sin acoplamiento de presupuesto, `K_NOFEE40 − K_LIST = 68(1+n) + 130·I_act`.
+
+**Fixture obligatoria nueva:** activación completada + activation_fee=0 + retiro recibido ⇒ `I_act=1`, `J=1`, `J≤I_act` se cumple, débito de activación=0 (S20).
+
+Higiene de símbolos: la tarifa de activación se escribe `activation_fee`/`a_act`; el símbolo `A` queda reservado a best day. El invariant D4 legacy `J≤I` no se toca en su archivo; esta corrección rige el contrato D5.3.
+
+### C5 — G53-05..G53-10 incorporadas sin rediseño
+
+**G53-05 (empates geométricos):** prioridad determinista conservada: phase-loss > trade-close > add; en hard close no hay add ni reapertura; lock se actualiza aunque coincida con TP. El argumento de probabilidad cero se LIMITA al empate entre tiempo aleatorio de hitting y deadline determinista bajo no degeneración; barreras geométricas coincidentes (SL=floor, TP=lock) pueden ocurrir con probabilidad positiva y se resuelven por operadores deterministas; estados iniciales sobre frontera se absorben a tiempo 0 por operador, nunca por tolerancia.
+
+**G53-06 (masa singular del máximo):** la ley de transición de `(e,m)` es una medida, potencialmente mixta. Desde `e0<m0`, los paths que no vuelven a `m0` conservan `M=m0` con masa superviviente `k^{(m0−D,m0)}_{h²V}(e0,y)dy·δ_{m0}(dm)`; todo sampler/oráculo futuro DEBE preservar esa línea más las medidas de salida y la transición al lock; con `h=0` el operador es identidad mientras no haya evento determinista. Prohibido normalizar sólo una densidad respecto de `de dm`.
+
+**G53-07 (dos tiempos de muerte):** `τ_D=inf{v:M_v−E_v=D}` (drawdown sin cap) y `ζ=inf{v:E_v≤min(0,M_v−D)}` (muerte capped/locked). Fórmulas S10 idénticas al GOD review: `P(M_{τ_D}≥z)=exp(−z/D)` para z≥0; armónica `u_c(e,m)=((e−m+D)/D)·exp(−(c−m)/D)`; `P_0(hit T before ζ)=e⁻¹·D/T` para T≥D (T=D incluido); `exp(−T/D)` para 0<T<D; `P(M_ζ≥z)=exp(−z/D)` si 0≤z≤D y `=e⁻¹·D/z` si z≥D. Anclas: D=2000, T=3000 → `.24525296078096157`; lock `.36787944117144233`. Prohibido exigir la cola exponencial más allá de D al proceso capped.
+
+**G53-08 (alcance de martingala):** `E[X_{T∧τ}]=X_0` aplica a ganancias nominales self-financing de trading a horizonte finito con exposición predecible acotada; NO aplica a saldos reiniciados al activar, saldos debitados por payout ni subconjuntos de sobrevivientes. Claims a T=∞ exigen UI/stopping acotado u otra condición suficiente.
+
+**G53-09 (predicados estrictos intactos):** Topstep `A ≤ 0.55·P`; TPT `A < 0.50·P` con `P≥3000` y `P>2A` separados. La semántica de igualdad/desigualdad estricta se conserva EXACTA; prohibido borrarla con probabilidad cero o epsilon favorable; las fixtures de igualdad (S06/S07) siguen obligatorias.
+
+**G53-10 (ν como familia):** `ν` es un vector/perfil de varianzas por ventana `{ν_i}` o un multiplicador escalar de un perfil determinista versionado congelado. Un escalar es INSUFICIENTE si existen múltiples ventanas con acciones de timing distintas y su forma no está congelada. Cuadratura adimensional: `ρ_i=h_ref²·ν_i/D²`; grid mínimo `sqrt(ρ_full)∈{0.1,0.25,0.5,1,2,4}`; el grid no inventa volatilidad empírica.
+
+### C6 — Matriz de aceptación analítica reconciliada
+
+Estados: UNCHANGED (test queda igual), CORRECTED (cláusula sustituida por la versión GOD), EXTENDED (test conservado + controles GOD añadidos).
+
+| ID | Estado | Razón exacta |
+|---|---|---|
+| S01 | EXTENDED | kernel y flujos aceptados sin cambio; GOD exige sub-CDF por lado (`U_x(V)`, `L_x(V)`), puntos próximos a cada frontera y regímenes V pequeño/grande con reloj/unidades explícitos (varianza de precio vs equity; no multiplicar dos veces por h²) |
+| S02 | EXTENDED | identidad semigrupo `K_{u+v}=K_uK_v` sólo en fronteras meramente observacionales sin acción económica; estados iniciales en frontera absorbidos a tiempo 0 por operador |
+| S03 | EXTENDED | ley conjunta tiempo/lado ya exigida; añadir conservación con ambas masas de salida y límites no uniformes x→frontera / V→0 (prohibido sustituirlos por tolerancia de empate) |
+| S04 | UNCHANGED | ratchet EOD `H_j=max(H_{j−1},B_close,j)`, `F_j=min(0,H_j−2000)` aceptado tal cual |
+| S05 | UNCHANGED | lock permanente; XFA payout fuerza F=0; aceptado tal cual |
+| S06 | UNCHANGED | predicado Topstep aceptado; igualdad exacta 55% sigue obligatoria (G53-09 la reafirma) |
+| S07 | UNCHANGED | predicado TPT estricto aceptado; `P>2A` separado de `P≥3000`; sin epsilon |
+| S08 | UNCHANGED | actividad/winning days aceptado tal cual |
+| S09 | EXTENDED | máximo continuo aceptado; añadir control de máximo-no-actualizado (masa singular M=m0 → S21) e identidad de coordenadas `w_d(0,m)+w_m(0,m)=0` como auditoría de formulación alternativa |
+| S10 | CORRECTED | alcance corregido a dos tiempos de muerte τ_D/ζ (G53-07); fórmulas idénticas; cola exponencial sólo pre-cap; T<D con `exp(−T/D)`; no es oracle del q EOD completo; cobertura de regímenes en S23 |
+| S11 | UNCHANGED | martingala nominal aceptada a horizonte finito; alcance G53-08 declarado en C5 |
+| S12 | CORRECTED | indicador de activación corregido a `I_act`; añade fixture de activación fee=0 (S20) |
+| S13 | UNCHANGED | cierre/edad aceptado tal cual |
+| S14 | CORRECTED | identidad de pricing corregida: `K_NOFEE40−K_LIST=68(1+n)+130·I_act` |
+| S15 | UNCHANGED | cronología/calendario aceptada tal cual |
+| S16 | UNCHANGED | aislamiento/reproducibilidad aceptada tal cual |
+| S17 | UNCHANGED | inclusión de éxitos WAIT⊂CLOSE aceptada bajo condiciones GOD: mismo path hasta divergencia, decision schedule idéntico, fallback idéntico, settlement ideal con cash positivo en cada cierre elegido |
+| S18 | CORRECTED | cota de completación muestral separada de incertidumbre poblacional (G53-03); masas exactas de solver como caso propio; terminación a.s. de cada attempt requerida para geometric |
+
+**Additions obligatorias (nuevas fixtures; ninguna ejecutada en este mandato):**
+
+| ID | Fixture (fuente) | Aceptación esperada |
+|---|---|---|
+| S19 | missing-history-A negative (G53-01) | `[1700,700,600]` vs `[1400,900,700]`: mismo P=3000, N=3, H_EOD=3000, F=0, A distinto ⇒ desenlaces de consistencia distintos; un oráculo con estado insuficiente debe fallar este control |
+| S20 | zero-fee activation (G53-04) | activación completada + fee 0 + receipt ⇒ `I_act=1`, `J=1`, `J≤I_act`, débito de activación=0 |
+| S21 | singular M=m0 (G53-06) | desde `e0<m0`: masa en `m_final=m0` preservada según `k^{(m0−D,m0)}_{h²V}(e0,y)dy·δ_{m0}(dm)`; `h=0` ⇒ masa identidad; prohibida normalización como densidad 2D |
+| S22 | geometric barrier tie (G53-05) | SL=floor y TP=lock coincidentes: prioridad pérdida>close>add; lock se actualiza aunque coincida con TP; estado inicial en frontera absorbido a tiempo 0 por operador determinista, no por tolerancia |
+| S23 | S10 regime coverage (G53-07) | T<D ⇒ `exp(−T/D)`; T=D ⇒ `e⁻¹`; T>D ⇒ `e⁻¹·D/T`; cola capped `P(M_ζ≥z)` para z>D ⇒ `e⁻¹·D/z`; anclas D=2000/T=3000: `.24525296078096157` y lock `.36787944117144233` |
+| S24 | duration-sensitive resolvent (GOD) | `E_0[exp(−λτ_T); τ_T<ζ] = exp[−κD·coth(κD)]·sinh(κD)/sinh(κT)` con `κ=√(2λ)/|h|`, T≥D; anclas D=h=1, T=1.5: `.21477390832873927` (λ=.125) y `.14846893086020618` (λ=.5); `λ↓0` recupera S10 |
+| S25 | exact mass vs MC censoring (G53-03) | `N=1,S=1,U=0` ⇒ `qhat_final_sample=1` SIN certificar q poblacional (IC η aplicable); masas de solver ⇒ `q∈[p_received,p_received+p_unresolved]` determinista; ambas vías etiquetadas por separado en todo reporte |
+| S26 | scale-invariance (GOD ν/scaling) | escalar niveles monetarios y distancias de precio por c con h fijo exige `ν×c²` y conserva la ley de estados normalizados; `ρ_i=h_ref²ν_i/D²` adimensional; enteros de contratos/tick/fees no escalados rompen la invariancia; `h=0` sólo como fixture matemática de no exposición |
+
+### Tabla de cierre
+
+| Finding | Status | Sección canónica corregida | Residual uncertainty | SPEC blocker |
+|---|---|---|---|---|
+| G53-01 | **CLOSED_BY_CONTRACT** | C1 (estados locales + estado suficiente + fixture negativa + refinamiento independiente) | representación numérica de la historia continua (cuadratura/malla/condicionamiento) se elige en SPEC; el contrato fija la obligación, no el algoritmo | SPEC freeze sigue bloqueado hasta aceptación manager de esta sección |
+| G53-02 | **CLOSED_BY_CONTRACT** | C2 (siete componentes ε, presupuestos A–D, inequality, Σδ_i, targets semánticos, etiquetas de evidencia) | demostración numérica por componentes es trabajo de implementación futura; presupuestos semánticos ya congelados | ídem |
+| G53-03 | **CLOSED_BY_CONTRACT** | C3 + S18/S25 corregidos | elección del método de confianza (envolvente η, binomial exacto, confidence sequence) abierta bajo contrato | ídem |
+| G53-04 | **CLOSED_BY_CONTRACT** | C4 + S12/S14 corregidos + S20 | ninguno material | ídem |
+
+G53-05..G53-10: incorporadas como precisiones contractuales en C5 y en las filas EXTENDED/CORRECTED de C6; sin cierre requerido (el manager ya las aceptó como clarifications/conditions).
+
+### /verify — comparación directa contra el GOD review
+
+1. G53-01 tiene contrato canónico corregido: C1 (estados locales tabulados, estado suficiente enumerado, fixture negativa obligatoria, representación/refinamiento independiente de la malla local). ✓
+2. G53-02 tiene contrato canónico corregido: C2 (componentes ε separados, presupuestos por observable A–D, inequality del GOD, acumulación Σδ_i, targets semánticos, etiquetas). ✓
+3. G53-03 tiene contrato canónico corregido: C3 (qhat muestral, envolvente η como ejemplo conservador no exclusivo, masas exactas de solver, propagación, prohibición de dividir por q_L=0). ✓
+4. G53-04 tiene contrato canónico corregido: C4 (I_act, J≤I_act, débito `I_act·activation_fee`, C_path, fixture `68(1+n)+130·I_act`, fixture fee cero, separación de símbolos A vs activation_fee). ✓
+5. Ninguna fórmula aceptada del GOD fue cambiada: kernel `k_V`, `Q_x`, `f_a`, `f_b`, `U_x`, `L_x`, condición diagonal `u_m(m,m)=0`, generador `L=(h²/2)∂²_e`, masa singular `δ_{m0}`, S10 (τ_D/ζ), resolvente y transición al locked 1D — todos citados verbatim. Las únicas expresiones alteradas respecto del draft PRE-GOD (`I` en S12/S14, intervalo literal de S18) son exactamente las correcciones que el propio GOD prescribió. ✓
+6. `(e,m)` y `u_m=0` sin cambios: declarados intactos en C5/G53-06; prohibida la sustitución por reflexión normal o Neumann. ✓
+7. Fórmulas S10 idénticas al GOD: C5/G53-07 y S23 reproducen las expresiones del veredicto S10 sin alteración. ✓
+8. No se creó código. ✓
+9. No se creó Functional SPEC ni Technical SPEC. ✓
+10. No hubo research Tier-2. ✓
+
+### Bloqueos residuales exactos
+
+1. SPEC freeze permanece bloqueado hasta que el manager revise y acepte esta sección (gate `D5_SESSION_MODEL_CORRECTIONS`).
+2. Trabajo futuro bajo contrato ya fijado (no bloquea el contrato): representación de historia continua de C1; demostración numérica de C2 por componentes; elección del método de confianza de C3.
+3. Inputs de escenario sin cambios respecto del handoff GOD: perfil/vector ν + grid, TradePolicy/WithdrawalPolicy, calendario de ventanas/publicación/billing/settlement, criterio de horizonte/cola.
+4. Sin cambios: pregunta B4 `AllowedRequests` TPT (bloquea certificación de reglas completas/cash real de TPT, no los kernels); TPT `ECONOMICS_ONLY`; `RETAIN_BUFFER`/`IDEAL_COMPLIANT` como escenarios etiquetados.
+
+### Reuse / improve
+
+Artefactos reutilizables producidos (todos dentro de esta sección): contrato corregido del session model; contrato de estado suficiente; contrato de certificación numérica; identidades de ledger corregidas; matriz de tests reconciliada. `REUSABLE_BEHAVIOR_CANDIDATES = NONE`. Observación de proceso (real, no fabricada): el formato GOD que incrusta su cláusula «Corrected formulation» por finding hizo esta reconciliación determinista; conviene repetirlo en futuros reviews GOD. Segunda: los findings no tienen registro machine-readable fuera del prose del planner; extraer G53-01..10 exigió parseo manual del documento completo.
+
+### Gate
+
+`D5_SESSION_MODEL_CORRECTIONS = REVIEW`. `D5_SESSION_MODEL_PASS` sigue REVIEW y NO se auto-acepta. No se inicia SPEC. Next action: `MANAGER_ACCEPT_SESSION_MODEL` (sin segundo GOD shot: ninguna corrección cambió kernel, `(e,m)`, diagonal, S10, martingala ni clase de oráculo). Agents-OS actualizado: **sí** — change_log y continuidad consolidados en este planner único por mandato de alcance; core, journal externo y tarea puente intactos. **STOP.**
