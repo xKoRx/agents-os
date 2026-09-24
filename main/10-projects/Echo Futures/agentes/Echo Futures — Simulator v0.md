@@ -70,7 +70,7 @@ updated: "2026-09-24"
 | Behavior v0 | done | [[D4 — Simulator v0 Functional SPEC]] |
 | Technical contract v0 | done | [[D4 — Simulator v0 Technical SPEC]] |
 | Repo code | done | `echo-futures` @ master ad7fe60 (kernel/trade/lifecycle/cohort/CLI + README + scenarios) |
-| Independent audit | blocked | Shot 2 after G4A review |
+| Independent audit | done | Shot 2 @ ad7fe60: sin blockers/majors; findings SF2-01/02 (MINOR) y SF2-03/04/05 (INFO); G4B review |
 | Corrections/certification | blocked | Shot 3 after G4B review |
 
 ## Decisiones
@@ -89,7 +89,7 @@ updated: "2026-09-24"
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
 | G4A — Implementation | **accepted** (owner dispatch Shot 2, 2026-09-24) | implement, run all tests, move to review | T1–T8 + invariants + coverage + commit | Shot 2 |
-| G4B — Independent audit | pending | adversarially review code/results, move to review | audit findings/reproduction | Shot 3 |
+| G4B — Independent audit | **review** | adversarially review code/results, move to review | findings SF2-01..05 + reproducción + arnés 11/11 (2026-09-24) | Shot 3 |
 | G4C — Certified v0 | pending | fix only accepted findings, rerun evidence, move to review | clean T1–T8 + audit closure | D5 |
 
 ## Roadmap / phase packages
@@ -288,7 +288,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 > - [x] T1.6 implementar T1–T8 + invariants #owner/agent #type/dev #area/echo
 > - [x] T1.7 ejecutar test/race/coverage/1M validation y commit #owner/agent #type/dev #area/echo
 > - [x] T1.8 dejar G4A review + handoff #owner/agent #type/dev #area/echo
-> - [/] T2.1 auditoría independiente Shot 2 #owner/agent #type/pr-review #area/echo
+> - [x] T2.1 auditoría independiente Shot 2 #owner/agent #type/pr-review #area/echo
 > - [ ] T3.1 corrección/certificación Shot 3 #owner/agent #type/dev #area/echo #blocked
 
 ## 📆 Bitácora
@@ -296,6 +296,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 - **2026-09-24** — Proyecto de agente materializado para ejecución D4. Math/functional/technical contracts frozen. READY_FOR_SHOT_1; no código ejecutado todavía.
 - **2026-09-24** — SHOT 1 iniciado (T1.1 WIP). Autoridades leídas en orden (math review, functional, técnico, proyecto padre); sin contradicciones detectadas. Baseline: Go 1.27.1 linux/amd64; no existe checkout local previo de `echo-futures` (sin conflicto); repo nuevo aislado en workspace externo `~/aranea/work/echo-futures-simulator-v0-20260924/echo-futures`, módulo `github.com/xKoRx/echo-futures`, branch `master`. Tarea puente del padre movida a WIP.
 - **2026-09-24** — SHOT 1 COMPLETO, **G4A → review**. Commit `ad7fe609c8b6503cdc7b803d5c33d8eb3efdcff9` (21 archivos, árbol limpio, sin remote/push). Gates: `go test ./...` PASS; `go test -race ./...` PASS; coverage `internal/sim` 96.0%; `sim validate --runs 1000000 --seed 42` 47/47 PASS (~6.5 s) y reproducible byte-identical. Samples: simulate t2 1M (pWin 0.4995 / reach 0.7694 / cond 0.3495), simulate lifecycle 200k (pPass 0.401, q 0.0997), cohort 100k (meanAttempts 10.009, P50 7, P95 29). Nota de corrección durante el shot: el .gitignore inicial (`sim` sin anclar) había excluido `cmd/sim` e `internal/sim` del primer commit; detectado y corregido vía amend del commit raíz (repo nuevo, sin remote). Sin desviaciones de SPEC; el único caso ambiguo resuelto fue clasificar salidas de barrera por dirección del evento + equidad alcanzada con epsilon relativo (empates → fase, según prioridad congelada). Shot 2 (auditoría) queda BLOQUEADO hasta aceptación owner de G4A.
+- **2026-09-24** — SHOT 2 COMPLETO (T2.1 DONE), **G4B → review**. G4A aceptado por owner vía despacho; commit auditado `ad7fe60` (árbol congelado, único delta = arnés de auditoría untracked). Reproducción completa: tests/race/coverage 96.0%/validate 1M byte-idéntico. Falsificación fallida: DP independiente de primer paso reproduce T2/T3/T8 al 1e-12, identidad de cash por buckets exacta, empates y epsilon verificados, edge semántica correcta (sin arming en add inalcanzable, sin fuga entre trades, delta=0 byte-null), cohort con identidades exactas y censura correcta, config 100% fail-closed, optional stopping con escaleras aleatorias verde. Findings: **SF2-01 MINOR** `stubRng` con receptor por valor no avanza por la interfaz `randomSource` (scripts multi-valor repiten `values[0]`; hoy invisible porque todos los usos existentes pasan un solo valor; trampa latente para tests futuros); **SF2-02 MINOR** `PFundedGivenPass = 0/0 = NaN` con 0 passes (texto imprime NaN exit 0; JSON falla con mensaje opaco; repro `--runs 1 --seed 1`); **SF2-03 INFO** re-arm del edge es por trade (consistente con SPEC §8.11+§9, documentar en certificación); **SF2-04 INFO** epsilon de empates clasifica diferencias <1e-9 relativo como tie (degenerado, money ≤ tol); **SF2-05 INFO** wrap uint64→int64 en seeds ≥2^63. qBE 0.0866726 explicado: fórmula analítica con `pPass` Monte Carlo observado del stream 6 (0.400177), delta-tolerance correcta → aceptable. Veredicto: **PASS_FOR_SHOT_3**; no se corrigió ningún finding (fuera de scope del shot).
 
 ## 🔗 Docs / Links
 
