@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint: 2026-09-24--2026-09-30
 start: 2026-09-24
 due: 2026-09-30
-progress: 40
+progress: 45
 repo: "xKoRx/echo-futures"
 jira:
 prs:
@@ -34,6 +34,8 @@ updated: "2026-09-24"
 - Consumir el simulator v0 certificado de D4 sin reabrir su matemática.
 
 ## 📊 Estado actual
+
+- **D5.3 SESSION MODEL REVIEW — 2026-09-24.** Diseño entregado en §D5.3 Session Model Review: Brownian sin drift con reloj de varianza y kernel conjunto de primer evento/supervivencia a horizonte finito; running maximum para TPT PRO. `WithdrawalPolicy` y `PricingSnapshot` separados de reglas. TPT = `ECONOMICS_ONLY` para el target automatizado. `D5_SESSION_MODEL_PASS = REVIEW`; siguiente acción `MATH_REVIEW`. No hay código, nuevas SPECs ni aceptación del owner. Esta sección D5.3 prevalece sobre drafts anteriores en los seis puntos del mandato; ver bloqueos precisos al final.
 
 - **D5.1 CLOSED / D5_RULE_UNIVERSE_PASS ACCEPTED por owner.** Tiering congelado: Tier-1 = Topstep + Take Profit Trader; Tier-2 = Apex Trader Funding + MyFundedFutures + Tradeify.
 - D4 cerrado con `G4C accepted` sobre simulator v0 `d4f42a41946f12231b75e4eb65b90d132731be0d`.
@@ -60,13 +62,15 @@ updated: "2026-09-24"
 > - [x] D5.2B extraer rules oficiales TPT 50K hasta cash withdrawal (REVIEW a aceptación owner) #owner/agent #type/research #area/echo
 > - [ ] D5.2C capturar Tier-2 Apex/MFFU/Tradeify después del Tier-1 vertical slice #owner/agent #type/research #area/echo
 > - [ ] D5.2 extraer rules oficiales versionadas hasta cash withdrawal #owner/agent #type/research #area/echo
-> - [ ] D5.3 normalizar rule contract común sin perder excepciones materiales #owner/agent #type/research #area/echo
+> - [r] D5.3 diseñar session-aware null model, contratos de retiro/precios y clasificación TPT; diseño persistido, gate REVIEW a revisión matemática y aceptación owner #owner/agent #type/research #area/echo
 > - [ ] D5.4 definir experiments null + conditional-edge + recovery sobre cada ruleset #owner/agent #type/research #area/echo
 > - [ ] D5.5 congelar SPEC técnica mínima de adapters/rules simulator #owner/agent #type/dev #area/echo
 > - [ ] D5.6 implementar/ejecutar simulaciones sólo después de SPEC freeze #owner/agent #type/dev #area/echo #blocked
 > - [ ] D5.7 emitir comparación factual por `q_withdraw`, attempts/withdrawal, cash burn y EV #owner/agent #type/research #area/echo #blocked
 
 ## 📆 Bitácora
+
+- **2026-09-24 — D5.3 diseño, change_log consolidado en el planner.** Seleccionado kernel Brownian conjunto con horizonte finito y máximo para PRO; definidas actualizaciones EOD, consistencia estricta TPT, winning days, políticas de retiro, tres snapshots de precios y pruebas analíticas/oráculo independiente. TS-1 resuelto a $2,000 y TPT-1 a 60 trading days por mandato owner. TPT permanece Tier-1 económica, sin permiso de automatización. Verificaciones documentales y fuentes oficiales focalizadas; no se ejecutó simulación ni se reabrió D4. Por instrucción expresa de editar sólo este archivo, no se modifica tarea puente, memoria, journal externo ni Agents-OS core; la continuidad queda aquí. `D5_SESSION_MODEL_PASS = REVIEW`, `Next action = MATH_REVIEW`.
 
 - **2026-09-24 — D5-M1 Tier-1 rule capture (RESEARCH + CONTRACT DISCOVERY).** Bootstrap Agents-OS + autoridades (planner D5, SPECs D4, matemática MATH_GO, proyecto padre, contrato de ambientes) cargados; ninguna operación de infraestructura. Captura por dos agentes de research con contrato de evidencia (sólo fuentes oficiales topstep.com/help.topstep.com y takeprofittrader.com/try.takeprofittrader.com/zendesk oficial; secundarias sólo SECONDARY_FLAG) + verificación adversarial del manager con re-fetch verbatim de las 6 páginas load-bearing Topstep y 5 páginas load-bearing TPT (WebFetch 403 en Zendesk ⇒ reader MCP; el artículo de suscripciones TPT 15141145057053 no re-fetchable en sesión ⇒ cita del agente + doble corroboración cruzada). Resultado: paquetes D5.2A/D5.2B completos, economics ledger por prop (account balance ≠ personal cash), registro RULE_CONFLICT (TS-1, TS-2, TS-3 resuelto, TPT-1, TPT-2 resuelto), unknowns consolidados (8 Topstep + 9 TPT), contrato normalizado candidato `PropRuleSet` y gap matrix de simulator con 4 SUPPORTED, 7 SMALL_EXTENSION, 7 MATERIAL_EXTENSION, 8 DEFER. Hallazgo material para D5: ambos drawdowns Tier-1 son trailing (EOD Topstep/TPT-Test, intraday TPT-PRO) ⇒ la barrera estática de D4 sobreestimaría p_pass bajo null ⇒ MATERIAL_EXTENSION de capa de sesiones. Gate `D5_TIER1_RULES_CAPTURED` → REVIEW. Sin código; D4 intocado; Tier-2 no investigado.
 - **2026-09-24 — Owner freeze D5.1.** Owner redefine tiers: Tier-1 = Topstep + Take Profit Trader; Tier-2 = Apex + MyFundedFutures + Tradeify. `D5_RULE_UNIVERSE_PASS` aceptado. Estrategia de entrega cambia a Tier-1-first: primer hito funcional = reglas reales Topstep/TPT + lifecycle purchase→WITHDRAWAL_RECEIVED + null-model economics reproducible; Tier-2 no bloquea este hito.
