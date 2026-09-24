@@ -265,7 +265,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 
 ## ✅ Tareas
 
-> - [ ] T1.1 verificar baseline/repo local y toolchain #owner/agent #type/dev #area/echo
+> - [/] T1.1 verificar baseline/repo local y toolchain #owner/agent #type/dev #area/echo
 > - [ ] T1.2 implementar kernel + model + validation #owner/agent #type/dev #area/echo
 > - [ ] T1.3 implementar trade/recovery event loop #owner/agent #type/dev #area/echo
 > - [ ] T1.4 implementar lifecycle/economics/cohort #owner/agent #type/dev #area/echo
@@ -279,6 +279,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 ## 📆 Bitácora
 
 - **2026-09-24** — Proyecto de agente materializado para ejecución D4. Math/functional/technical contracts frozen. READY_FOR_SHOT_1; no código ejecutado todavía.
+- **2026-09-24** — SHOT 1 iniciado (T1.1 WIP). Autoridades leídas en orden (math review, functional, técnico, proyecto padre); sin contradicciones detectadas. Baseline: Go 1.27.1 linux/amd64; no existe checkout local previo de `echo-futures` (sin conflicto); repo nuevo aislado en workspace externo `~/aranea/work/echo-futures-simulator-v0-20260924/echo-futures`, módulo `github.com/xKoRx/echo-futures`, branch `master`. Tarea puente del padre movida a WIP.
 
 ## 🔗 Docs / Links
 
