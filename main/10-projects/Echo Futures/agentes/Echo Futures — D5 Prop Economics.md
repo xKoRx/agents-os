@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint: 2026-09-24--2026-09-30
 start: 2026-09-24
 due: 2026-09-30
-progress: 10
+progress: 15
 repo: "xKoRx/echo-futures"
 jira:
 prs:
@@ -35,12 +35,13 @@ updated: "2026-09-24"
 
 ## 📊 Estado actual
 
-- **D5.1 RESEARCH COMPLETE / GATE IN REVIEW.** Universe actual contrastado contra fuentes oficiales al 2026-09-24; falta aceptación del owner para `D5_RULE_UNIVERSE_PASS`.
+- **D5.1 CLOSED / D5_RULE_UNIVERSE_PASS ACCEPTED por owner.** Tiering congelado: Tier-1 = Topstep + Take Profit Trader; Tier-2 = Apex Trader Funding + MyFundedFutures + Tradeify.
 - D4 cerrado con `G4C accepted` sobre simulator v0 `d4f42a41946f12231b75e4eb65b90d132731be0d`.
 - KPI primario: `q_withdraw = P(evaluation comprada → primer retiro real recibido)`.
 - Pass/funded son estados diagnósticos, no éxito final.
-- Universo Tier-1 propuesto para freeze: Topstep, Apex Trader Funding, MyFundedFutures, Tradeify y Take Profit Trader. Las cinco mantienen hoy un lifecycle oficial evaluation→funded/sim-funded→payout.
-- Productos concretos propuestos: Topstep 50K Trading Combine Standard Path → XFA Standard; Apex 50K EOD Evaluation → EOD PA; MyFundedFutures 50K Builder Default; Tradeify 50K Growth Evaluation → Growth Sim Funded; Take Profit Trader 50K Test → PRO.
+- Tier-1 congelado por owner: **Topstep** y **Take Profit Trader**. Estas dos props definen el primer vertical slice funcional D5.
+- Tier-2 congelado por owner: **Apex Trader Funding**, **MyFundedFutures** y **Tradeify**. Se investigan/modelan después de certificar Tier-1, salvo conflicto que afecte el contract común.
+- Productos concretos: Topstep 50K Trading Combine Standard Path → XFA Standard; Take Profit Trader 50K Test → PRO; Tier-2 mantiene provisionalmente Apex 50K EOD→EOD PA, MFFU 50K Builder Default y Tradeify 50K Growth.
 - FTMO Futures: KEEP_WATCHLIST. Producto lanzado oficialmente el 2026-09-17; Growth/Pro 50K ya tienen reglas y payout lifecycle públicos, pero sólo llevan 7 días en mercado al corte D5 y no reemplazan todavía una Tier-1 madura.
 - Lucid/Alpha Futures/TradeDay/etc.: fuera del primer corte salvo evidencia que justifique reemplazar una Tier-1.
 - No existe todavía evidencia de `q_withdraw` real para ninguna prop. El `q=10%` de D4 es fixture matemático, no benchmark.
@@ -53,7 +54,10 @@ updated: "2026-09-24"
 
 ## ✅ Tareas
 
-> - [r] D5.1 validar universo Tier-1 y congelar planes concretos por firma #owner/agent #type/research #area/echo
+> - [x] D5.1 validar universo y tiering; congelar paths concretos #owner/agent #type/research #area/echo
+> - [/] D5.2A extraer rules oficiales Topstep 50K hasta cash withdrawal #owner/agent #type/research #area/echo
+> - [/] D5.2B extraer rules oficiales TPT 50K hasta cash withdrawal #owner/agent #type/research #area/echo
+> - [ ] D5.2C capturar Tier-2 Apex/MFFU/Tradeify después del Tier-1 vertical slice #owner/agent #type/research #area/echo
 > - [ ] D5.2 extraer rules oficiales versionadas hasta cash withdrawal #owner/agent #type/research #area/echo
 > - [ ] D5.3 normalizar rule contract común sin perder excepciones materiales #owner/agent #type/research #area/echo
 > - [ ] D5.4 definir experiments null + conditional-edge + recovery sobre cada ruleset #owner/agent #type/research #area/echo
@@ -63,6 +67,7 @@ updated: "2026-09-24"
 
 ## 📆 Bitácora
 
+- **2026-09-24 — Owner freeze D5.1.** Owner redefine tiers: Tier-1 = Topstep + Take Profit Trader; Tier-2 = Apex + MyFundedFutures + Tradeify. `D5_RULE_UNIVERSE_PASS` aceptado. Estrategia de entrega cambia a Tier-1-first: primer hito funcional = reglas reales Topstep/TPT + lifecycle purchase→WITHDRAWAL_RECEIVED + null-model economics reproducible; Tier-2 no bloquea este hito.
 - **2026-09-24 — D5.1 manager start.** Bootstrap y skill `technical-project-manager` cargados; D4 confirmado documentalmente CLOSED/G4C accepted @ `d4f42a41946f12231b75e4eb65b90d132731be0d`. Checkout local reportado en D4 no está montado en esta sesión, por lo que no se reejecutó Git/tests físicos; no existe contradicción material y el baseline certificado se conserva. Web oficial actual valida las cinco Tier-1 propuestas. Freeze propuesto: Topstep 50K Trading Combine Standard→XFA Standard; Apex 50K EOD→EOD PA; MFFU 50K Builder Default; Tradeify 50K Growth→Growth Sim Funded; TPT 50K Test→PRO. FTMO Futures KEEP_WATCHLIST por lanzamiento 2026-09-17. D5.1 queda en REVIEW a aceptación del owner.
 - **2026-09-24** — D5 creado tras cierre/certificación de D4. Scope corregido: success = primer retiro real, no funded. Primer corte Tier-1 = Topstep, Apex, MyFundedFutures, Tradeify y Take Profit Trader; FTMO Futures watchlist por lanzamiento reciente.
 
@@ -81,6 +86,9 @@ updated: "2026-09-24"
 - Tradeify: Growth 50K, no Select, porque Growth tiene funded payout path fijo; Select introduce elección Flex/Daily después del pass.
 - TPT: Test 50K → PRO; PRO+ live es transición posterior y no requisito para first withdrawal.
 - FTMO Futures no entra al Tier-1 D5 inicial hasta tener más madurez del producto futures.
+- **Tiering owner 2026-09-24:** Tier-1 = Topstep + Take Profit Trader. Tier-2 = Apex Trader Funding + MyFundedFutures + Tradeify.
+- **Delivery strategy:** certificar primero un vertical slice Tier-1 completo; Tier-2 se monta sobre el contract/engine certificado sin ampliar arquitectura por adelantado.
+- **Primer hito funcional D5-M1:** Topstep 50K y TPT 50K deben poder simular `PURCHASE_EVALUATION → ... → WITHDRAWAL_RECEIVED | BURNED` bajo null model, con reglas reales versionadas y outputs económicos obligatorios.
 
 ## 🔗 Docs / Links
 
@@ -91,7 +99,7 @@ updated: "2026-09-24"
 - [[echo-futures-astra-math-review]]
 
 
-## D5.1 — Universe freeze package (REVIEW)
+## D5.1 — Universe freeze package (ACCEPTED)
 
 Captured at: 2026-09-24.
 
@@ -120,8 +128,66 @@ Common output contract for every provider: exact product/path; every material ru
 
 | Gate | State | Acceptance |
 |---|---|---|
-| D5_RULE_UNIVERSE_PASS | REVIEW | Owner accepts/rejects the five concrete paths + FTMO watchlist |
-| D5_RULES_CAPTURED | BLOCKED | Requires D5_RULE_UNIVERSE_PASS |
-| D5_RULE_CONTRACT_PASS | BLOCKED | Requires five complete official rule packets |
-| D5_SIM_GAP_PASS | BLOCKED | Requires normalized contract |
-| D5_SPEC_PASS | BLOCKED | Requires accepted simulator gap classification |
+| D5_RULE_UNIVERSE_PASS | **ACCEPTED** | Owner froze Tier-1=Topstep/TPT and Tier-2=Apex/MFFU/Tradeify |
+| D5_TIER1_RULES_CAPTURED | WIP | Complete official Topstep + TPT rule packets through actual cash receipt |
+| D5_TIER1_RULE_CONTRACT_PASS | BLOCKED | Normalize only Tier-1 first, preserving prop-specific exceptions |
+| D5_TIER1_SIM_GAP_PASS | BLOCKED | Classify every Tier-1 rule as SUPPORTED/SMALL_EXTENSION/MATERIAL_EXTENSION/DEFER |
+| D5_TIER1_SPEC_PASS | BLOCKED | Freeze minimum functional+technical extension for Tier-1 lifecycle |
+| D5_TIER1_IMPL_PASS | BLOCKED | Three-shot implementation/audit/correction on exact certified baseline |
+| D5_TIER1_ECON_PASS | BLOCKED | Null-model Monte Carlo produces required q_withdraw/cash/burn/tail metrics |
+| D5_TIER2_EXPANSION | BLOCKED | Only after Tier-1 engine/spec is certified |
+
+
+## D5-M1 — Tier-1 Prop Economics Vertical Slice
+
+### Observable outcome
+
+Using the certified D4 simulator baseline, reproduce the complete real-rule lifecycle for:
+- Topstep 50K Trading Combine Standard → XFA Standard;
+- Take Profit Trader 50K Test → PRO;
+
+from evaluation purchase until either:
+- `WITHDRAWAL_RECEIVED`; or
+- `BURNED`.
+
+The first milestone is **not** “support prop rules generically”. It is a bounded research capability that answers, under the null model, for each Tier-1:
+- `P(pass evaluation)`;
+- `P(funded | pass)`;
+- `P(payout eligible | funded)`;
+- `P(first withdrawal | funded)`;
+- `q_withdraw`;
+- expected evaluations / first withdrawal;
+- burn/activation counts;
+- no-withdrawal probability after 5/10/20/50 evaluations;
+- expected cash per evaluation;
+- cumulative cash before first withdrawal;
+- cash P5/P50/P95;
+- net cash per 10 and 100 evaluations;
+- minimum/trading-day path where the rules make time relevant.
+
+### Delivery sequence
+
+1. **Rules capture — Topstep and TPT only.**
+   Official sources, exact 50K path, capture date, conflicts and ambiguities.
+2. **Normalization.**
+   Create a common lifecycle/rule contract plus explicit prop-specific exceptions.
+3. **Simulator gap analysis.**
+   Map every required rule to `SUPPORTED | SMALL_EXTENSION | MATERIAL_EXTENSION | DEFER`.
+4. **SPEC freeze.**
+   Functional + technical SPEC for the minimum D4 extension required by Topstep/TPT.
+5. **Three development shots.**
+   Shot A implementation; Shot B fresh independent falsification; Shot C accepted corrections + certification.
+6. **Null experiments.**
+   No synthetic edge first. Produce Tier-1 economics from real rules.
+7. **Owner gate.**
+   Only after M1 passes, expand to Tier-2 and conditional edge/hardscalping sensitivities.
+
+### Explicit non-goals M1
+
+- Apex/MFFU/Tradeify implementation.
+- FTMO Futures.
+- empirical strategy edge.
+- NinjaTrader/Echo integration.
+- historical futures backtest.
+- multi-prop generic framework beyond what Topstep/TPT force.
+- payout #2+ optimization unless a rule is required to compute first withdrawal correctly.
