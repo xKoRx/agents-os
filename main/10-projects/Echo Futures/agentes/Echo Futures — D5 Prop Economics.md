@@ -409,6 +409,36 @@ Sobreviven como autoridad: paquete de reglas Topstep (§D5.2A), paquete TPT (§D
 
 REUSABLE_BEHAVIOR_CANDIDATES (para rule-capture Tier-2 futuro): (1) capturar schedule de comisiones/data fees explícitamente — quedó MISSING en Topstep; (2) extraer precio list desde la tabla/API de pricing cuando el HTML es JS-rendered (caso TPT $170 derivado); (3) registrar `updated_at` de cada artículo vía API del help desk cuando la página no muestra fecha; (4) fetch cruzado marketing site + help desk siempre — las páginas marketing se desactualizan (causa de TS-2); (5) snapshot archive (p.ej. Wayback) de cada URL citada en captured_at para inmunidad ante ediciones futuras.
 
+
+## Manager Review — D5.2 Tier-1 Rule Capture — 2026-09-24
+
+Status: **REVIEW_WITH_FINDINGS**. El paquete de research es materialmente bueno y suficiente para continuar el diseño, pero NO está listo para `D5_TIER1_RULES_CAPTURED=ACCEPTED` todavía.
+
+### Findings
+
+1. **TS-1 no es un RULE_CONFLICT material.** La página XFA usa un headline genérico "up to $5,000*" y remite explícitamente al Payout Policy para el cap por account size. El Payout Policy vigente fija 50K XFA Standard = **$2,000**. Resolver TS-1 a `$2,000` para el path congelado sin DLL add-on.
+2. **TPT automation compatibility = BLOCKER de producto, no DEFER.** PRO Rules prohíbe trading bots/algos y exige ejecución manual. La Trade Copier Policy sí permite copiar entre cuentas propias, pero sólo mediante copiers aprobados/platform-native; un copier custom no está aprobado por defecto. Antes de invertir en soporte TPT para Echo Futures debe determinarse si el target operativo será manual-reference + approved copier, o si TPT queda economics-only / NO_GO para automation.
+3. **WithdrawalPolicy falta como contrato separado.** Las reglas no determinan por sí solas cash EV. Topstep permite elegir requested amount dentro de min/cap; TPT permite dos rutas materialmente distintas: esperar buffer y retirar 80%, o retirar dentro del buffer cerrando PRO con split 50%/80% según antigüedad. D5 debe modelar `WithdrawalPolicy` separada de `PropRuleSet`.
+4. **TPT inside-buffer path es material para q_withdraw.** Como success = primer cash real, cerrar dentro del buffer puede lograr WITHDRAWAL_RECEIVED antes de alcanzar $52K. No se puede ignorar sin congelar explícitamente una policy.
+5. **TPT pricing debe ser snapshot/scenario.** List price 50K = $170/month; homepage vigente muestra $102/month bajo 40% promo y promo docs indican activation $130 waived para cuentas elegibles. No mezclar precio promocional con regla estructural.
+6. **Principal gap matemático: session boundary.** D4 no tiene tiempo/días. EOD trailing, consistency y winning-days necesitan una definición estocástica del estado al cierre de sesión; no basta agregar contadores. Antes de Shot A debe congelarse un session-aware null model o una abstracción equivalente validada matemáticamente.
+7. **Commissions/costs:** no mezclar schedules incompletos. O capturar schedules comparables de ambas props o congelar explícitamente `execution_cost_model=0` para el primer structural-null result y correr sensibilidad después.
+
+### Required resolutions before SPEC freeze
+
+- R1: Topstep 50K Standard payout cap = $2,000 for the frozen path.
+- R2: Decide TPT operational compatibility posture: `AUTOMATION_COMPATIBLE | MANUAL_REFERENCE_ONLY | ECONOMICS_ONLY | DROP_TIER1`.
+- R3: Freeze first-withdrawal policies to simulate; minimum required: `MAX_ELIGIBLE` and TPT `CLOSE_INSIDE_BUFFER` vs `WAIT_FOR_BUFFER`.
+- R4: Freeze pricing scenarios: list/base vs current promo snapshot.
+- R5: Produce a mathematically reviewed session-aware extension design before implementation.
+- R6: Resolve execution-cost posture for M1.
+
+### Gate
+
+`D5_TIER1_RULES_CAPTURED` remains **REVIEW_WITH_FINDINGS**.
+Do not start implementation. Next action: resolve R1–R6, then freeze Functional/Technical SPEC.
+
+
 ## D5-M1 — Tier-1 Prop Economics Vertical Slice
 
 ### Observable outcome
