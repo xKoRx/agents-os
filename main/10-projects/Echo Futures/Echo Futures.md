@@ -7,9 +7,9 @@ status: active
 priority: P1
 area: "[[Echo]]"
 parent:
-sprint:
+sprint: 2026-09-23--2026-09-30
 start: 2026-09-23
-due:
+due: 2026-09-30
 progress: 2
 repo:
 jira:
@@ -29,7 +29,7 @@ updated: "2026-09-23"
 %% Naming: Echo Futures es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo Futures
-> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Sprint:** —
+> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Sprint:** 2026-09-23 → 2026-09-30
 > _parent / sprint / repo / jira / prs son opcionales._
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
@@ -63,6 +63,70 @@ La idea no se congela como “martingala” ni como “promediar pérdidas” ha
 La ventaja que se quiere validar combina cuatro piezas: una entrada base de alta probabilidad, permanencia corta en mercado, capacidad de aumentar exposición bajo condiciones concretas cuando el trade va adverso y un modelo económico de prop donde el downside real por intento está acotado por el coste del challenge/cuenta y sus reglas. La fuerza bruta viene del volumen y de la repetición; no reemplaza la necesidad de demostrar valor esperado positivo.
 
 El riesgo principal es de cola: una técnica con win rate muy alto puede esconder pérdidas raras pero suficientemente grandes para destruir la cuenta. Por eso el KPI principal no será win rate sino **distribución completa de resultados y cash extraído después de cuentas fallidas**.
+
+## 🗓️ Horizonte de entrega — máximo 7 días
+
+**Outcome de horizonte:** terminar la semana con al menos una operativa mecanizable seleccionada, un backtest/replay reproducible con supuestos explícitos, simulación de challenge→funded→payout sobre reglas reales de al menos una prop candidata y un veredicto `GO | ITERATE | NO_GO` para congelar o no el MVP Echo Futures.
+
+**No-goals de esta semana:** desarrollar integración Echo/NinjaTrader productiva, construir copier multi-account, soportar múltiples props, comprar una cohorte grande de cuentas o optimizar infraestructura. Si el research no demuestra una operativa suficientemente concreta, la semana termina en `NO_GO` o `ITERATE`, no en código por inercia.
+
+| Día | Outcome observable | Gate |
+|---|---|---|
+| D1 | Contrato común de research congelado + entrevista Gerard realizada + tres mandatos one-shot listos/ejecutándose | Cada fuente tiene corpus delimitado y output contractual idéntico |
+| D2 | Gerard + Tradesfera + Psicólogo del Trading reducidos a reglas mecánicas y 1–3 estrategias candidatas comparables | Cero regla material aceptada sin evidencia; ambigüedades marcadas |
+| D3 | 1–2 estrategias seleccionadas y expresadas como máquina de estados; gestión hardscalping parametrizada | Entrada, add, sizing, SL/TP, salida y pérdida máxima son simulables |
+| D4 | Backtest/replay reproducible sobre datos adecuados al path intratrade | Resultados incluyen trades, MAE/MFE, costs y sensibilidad básica |
+| D5 | Simulador de prop + Monte Carlo sobre al menos un rule set real | Challenge→funded→primer payout, burn rate y cash neto reproducibles |
+| D6 | Validación adversarial: OOS/periodos, slippage, comisiones, rachas, parameter sensitivity y reglas de prop | La tesis no depende de un único parámetro frágil ni de fills irreales |
+| D7 | Decisión `GO | ITERATE | NO_GO`; si GO, SPEC MVP congelada y piloto económico dimensionado | Presupuesto, cuenta/plan, instrumento, estrategia y criterios de aborto definidos |
+
+### Estrategia de research — tres one-shots + síntesis
+
+No se investigará “todo el contenido” de cada creador. Cada one-shot buscará **extraer operativas automatizables** y deberá responder el mismo contrato. Esto permite comparar ideas y evita que el agente entregue una biografía o un resumen de YouTube.
+
+1. **Gerard García — híbrido privado+público.** Primero el owner entrega libremente lo aprendido del curso. Luego se realiza una entrevista dirigida para cerrar huecos. En paralelo, un deep research público busca confirmar, refutar o completar parámetros usando videos, ejemplos y material accesible. El curso del owner tiene más peso para describir la técnica enseñada; evidencia pública sirve para contraste, no para sobreescribirla por popularidad.
+2. **Tradesfera — deep research público one-shot.** Buscar setups repetidos, indicadores/parámetros, timing, gestión, pérdidas y evidencia de ejecución. Ignorar contenido motivacional/general salvo que cambie una regla.
+3. **Psicólogo del Trading — deep research público one-shot.** Mismo contrato y mismo criterio de evidencia.
+4. **Síntesis adversarial.** Un cuarto análisis recibe solo los tres outputs estructurados, no vuelve a navegar todo el corpus. Separa componentes compatibles: edge de entrada, filtros, recovery, sizing y salida; no crea un “Frankenstein” mezclando reglas sin evidencia.
+
+### Contrato común de salida de cada deep research
+
+Cada investigación debe entregar:
+
+- Lista de videos/fuentes realmente usadas con URL/título/fecha o identificador reproducible y timestamp cuando exista.
+- Instrumentos, sesiones y timeframes observados.
+- Indicadores con parámetros exactos si son demostrables.
+- Setup de entrada LONG y SHORT expresado condicionalmente.
+- Condiciones de NO TRADE.
+- SL/TP inicial y cualquier modificación posterior.
+- Gestión monetaria inicial.
+- Si existe averaging/add/recovery: trigger exacto, tamaño, cantidad máxima, precio medio y salida después de cada escalón.
+- Pérdida máxima de una secuencia y criterio de abandono.
+- Evidencia de operaciones ganadoras y perdedoras.
+- Diferenciar `EXPLICIT` (el creador lo dice), `OBSERVED` (se ve repetidamente), `INFERRED` (deducción) y `UNKNOWN`.
+- Una o más estrategias candidatas en pseudoreglas deterministas, sin código.
+- Lista de ambigüedades que impedirían automatizar.
+- Qué necesitaría validarse con datos antes de confiar en el edge.
+- Veredicto por estrategia: `MECHANIZABLE | PARTIAL | DISCARDED`, sin puntajes subjetivos.
+
+### Entrevista Gerard — método
+
+La entrevista no parte preguntando veinte detalles aislados. El owner primero hace un **brain dump libre** de lo que recuerda del curso: cómo detecta setup, cómo entra, qué mira cuando va a favor/en contra, cuándo agrega, cómo cambia tamaño/SL/TP, cuándo acepta la pérdida y qué ejemplos recuerda. Después el entrevistador recorre el contrato G0 y pregunta únicamente lo que siga ambiguo.
+
+El objetivo de la entrevista es convertir conocimiento tácito del owner en reglas falsables. Si algo se recuerda como “cuando parece que rebota”, queda `UNKNOWN` hasta precisar qué observable produce esa decisión.
+
+### Criterio de selección rápida
+
+Una estrategia no gana por parecer sofisticada. Para entrar a D3 debe cumplir simultáneamente:
+
+- suficientemente mecánica para simularla sin interpretación visual humana;
+- frecuencia suficiente para obtener muestra útil rápido;
+- datos disponibles con resolución compatible con sus entradas/adds/salidas;
+- costes de trading tolerables para su holding time;
+- riesgo de cola cuantificable;
+- compatible en principio con al menos una prop plausible;
+- posibilidad de probar separadamente **entry edge**, **recovery** y **money management**.
+
 
 ## 🔬 M0 — Forense de operativa
 
@@ -198,16 +262,22 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [/] Inventariar y organizar corpus de Gerard García: cursos/videos disponibles + material público relevante #owner/me #type/research #area/echo
+> - [/] D1: hacer brain dump + entrevista dirigida de Gerard y congelar su knowledge contract #owner/me #type/research #area/echo
+> - [ ] D1: ejecutar research one-shot Gerard público para contraste #owner/agent #type/research #area/echo
+> - [ ] D1: ejecutar research one-shot Tradesfera con contrato común #owner/agent #type/research #area/echo
+> - [ ] D1: ejecutar research one-shot Psicólogo del Trading con contrato común #owner/agent #type/research #area/echo
 > - [ ] Reconstruir una estrategia Gerard completa con evidencia y reglas mecánicas, incluyendo add/recovery y pérdida total #owner/me #type/research #area/echo
 > - [ ] Investigar y mecanizar operativa relevante de Tradesfera #owner/me #type/research #area/echo
 > - [ ] Investigar y mecanizar operativa relevante de Psicólogo del Trading #owner/me #type/research #area/echo
-> - [ ] Comparar setups y seleccionar 1–3 candidatos de alto win rate / TF bajo para validación #owner/me #type/research #area/echo
-> - [ ] Definir modelo matemático del hardscalping: triggers, escalera de contratos, promedio, SL/TP agregado y pérdida máxima #owner/me #type/research #area/echo
-> - [ ] Construir shortlist inicial de prop firms/planes y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
-> - [ ] Modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
-> - [ ] Elegir primer instrumento solo después de cruzar microestructura + estrategia + rules de prop #owner/me #type/research #area/echo
-> - [ ] Cerrar G0 y G1 antes de autorizar SPEC/implementación NinjaTrader/Echo #owner/me #type/supervision #area/echo
+> - [ ] D2: síntesis adversarial de los tres outputs y seleccionar 1–3 candidatos mecanizables #owner/agent #type/research #area/echo
+> - [ ] D3: congelar 1–2 máquinas de estado + modelo matemático del hardscalping #owner/me #type/research #area/echo
+> - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
+> - [ ] D5: modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
+> - [ ] D3: elegir primer instrumento y dataset después de cruzar microestructura + estrategia + rules de prop #owner/me #type/research #area/echo
+> - [ ] D4: obtener backtest/replay reproducible de candidatos #owner/agent #type/research #area/echo
+> - [ ] D6: ejecutar validación adversarial y robustness #owner/agent #type/research #area/echo
+> - [ ] D7: emitir GO/ITERATE/NO_GO y, solo si GO, congelar SPEC del MVP #owner/me #type/supervision #area/echo
+> - [ ] Cerrar G0 y G1 antes de autorizar implementación NinjaTrader/Echo #owner/me #type/supervision #area/echo
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -240,6 +310,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
 - **2026-09-23** — Proyecto creado y alcance corregido hacia operativa-first. Se registran como hipótesis: estrategias de alto win rate y TF bajo, hardscalping/recovery con aumento de exposición, gestión agresiva orientada a challenge/funded/payout y escalado futuro a decenas de cuentas. G0/G1 bloquean desarrollo hasta demostrar reglas mecánicas y economía positiva.
+- **2026-09-23** — Activado management por `technical-project-manager`: horizonte máximo 7 días. Discovery se limita a tres one-shots paralelos (Gerard/Tradesfera/Psicólogo) bajo contrato común + entrevista Gerard; D2 síntesis, D3 mecanización, D4 backtest, D5 prop simulation, D6 robustness, D7 decisión y eventual freeze MVP.
 
 ## 🧭 Decisiones
 
@@ -249,6 +320,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-23 — No etiquetar la técnica de Gerard como martingala sin evidencia:** reconstruir trigger, sizing, límites y salida exactos.
 - **2026-09-23 — Escala 40–80 cuentas es target de capacidad, no MVP:** el sistema escala por cohortes después de obtener evidencia real de payout.
 - **2026-09-23 — Reference/Execution de Echo se conserva como dirección arquitectónica, pero su SPEC queda bloqueada hasta G0/G1.**
+- **2026-09-23 — Horizonte máximo inicial = 7 días:** discovery operativo se comprime a 48h mediante tres research one-shot paralelos + entrevista Gerard; el resto del horizonte se dedica a mecanización, backtest/replay, prop simulation y validación adversarial.
+- **2026-09-23 — Piloto “~20 cuentas de 10K” es una hipótesis ilustrativa, no una decisión:** cantidad, nominal, prop y presupuesto se dimensionan en D7 desde reglas y economía verificadas.
 
 ## 🔗 Docs / Links
 
