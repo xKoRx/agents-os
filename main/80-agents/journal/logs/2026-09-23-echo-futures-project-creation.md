@@ -52,7 +52,7 @@ tags:
 
 - Duplicado `Echo Futures` buscado antes de crear: sin resultados.
 - Frontmatter generado desde el template canónico vigente y ajustado al schema project v1.
-- Relectura del archivo persistido pendiente en la siguiente verificación de commit.
+- Relectura del proyecto y del change log en `master`: PASS; contenido persistido y routing verificados.
 
 ## Compartibilidad
 
