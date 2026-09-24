@@ -10,7 +10,7 @@ parent:
 sprint: 2026-09-23--2026-09-30
 start: 2026-09-23
 due: 2026-09-30
-progress: 28
+progress: 36
 repo:
 jira:
 prs:
@@ -75,7 +75,7 @@ El riesgo principal es de cola: una técnica con win rate muy alto puede esconde
 | D1 | Entrevista Gerard + tres DR completados | Corpus delimitado y outputs comparables |
 | D2 | Síntesis adversarial de los DR | Principios útiles separados de inferencias; research amplio cerrado |
 | D3 | Tesis matemática + contrato abstracto del simulador | Invariantes, estados, políticas y métricas definidos |
-| D3.1 | **Astra/GOD valida exclusivamente la matemática del simulador** | Claims correctos/corregidos + acceptance tests analíticos + blockers explícitos |
+| D3.1 | **Astra/GOD valida exclusivamente la matemática del simulador** | **PASS — MATH_GO**; claims auditados + acceptance tests analíticos + condiciones de optional stopping |
 | D4 | Simulador estocástico v0 implementado y verificado | Null model reproduce benchmarks analíticos antes de aceptar escenarios con edge |
 | D5 | Rulesets versionados de Topstep/Lucid/Apex + lifecycle completo | purchase→pass→funded→payout/burn y cash costs reproducibles |
 | D6 | Monte Carlo + sensitivity surfaces + cohort correlation | Break-even regions y assumptions dominantes identificados |
@@ -1266,7 +1266,8 @@ No se compra escala ni se construye fan-out multi-account hasta que exista una r
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| Echo Futures runtime (repo por definir) | TBD tras G0/G1 | TBD | BLOCKED — congelar después de G0/G1 | BLOCKED — congelar después de G0/G1 | NOT STARTED |
+| Echo Futures simulator v0 (repo por definir) | TBD | TBD | [[Echo Futures]] D3/D3.1 | [[echo-futures-astra-math-review]] | READY_TO_PLAN |
+| Echo Futures runtime | TBD tras G0/G1 | TBD | BLOCKED — congelar después de G0/G1 | BLOCKED — congelar después de G0/G1 | NOT STARTED |
 
 ## 🧩 Subproyectos
 
@@ -1302,13 +1303,13 @@ views:
 > - [-] Investigar y mecanizar operativa relevante de Tradesfera — research amplio cerrado; sólo principios explícitos pasan a D2 #owner/me #type/research #area/echo
 > - [-] Investigar y mecanizar operativa relevante de Psicólogo del Trading — NO_GO por corpus técnico insuficiente; no gastar más tiempo sin video concreto #owner/me #type/research #area/echo
 > - [x] D2: síntesis adversarial — pasan C0 random, S1 ORB30 y S2 H4+Bollinger; research amplio cerrado #owner/agent #type/research #area/echo
-> - [/] D3: congelar simulador estocástico L0/L1/L2 + hardscalping + prop lifecycle + cohort correlation; backtest histórico deferred #owner/me #type/research #area/echo
-> - [ ] D3.1: ejecutar un único shot Astra/GOD para validar matemática y acceptance tests; herramientas prohibidas #owner/me #type/research #area/echo
-> - [ ] D4: implementar simulator v0 sólo después de MATH_GO o correcciones incorporadas #owner/agent #type/dev #area/echo
+> - [x] D3: congelar simulador estocástico null + synthetic conditional edge + lifecycle abstracto; backtest histórico deferred #owner/me #type/research #area/echo
+> - [x] D3.1: Astra/GOD mathematical review — MATH_GO; autoridad persistida en [[echo-futures-astra-math-review]] #owner/me #type/research #area/echo
+> - [/] D4: implementar simulator v0 null + synthetic edge mínimo y certificar T1–T8 con verificación independiente #owner/agent #type/dev #area/echo
 > - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
 > - [ ] D5: modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
-> - [ ] D3: elegir primer instrumento y dataset después de cruzar microestructura + estrategia + rules de prop #owner/me #type/research #area/echo
-> - [ ] D4: obtener backtest/replay reproducible de candidatos #owner/agent #type/research #area/echo
+> - [-] Elegir instrumento/dataset — DEFERRED; simulation-first no requiere market data en v0 #owner/me #type/research #area/echo
+> - [-] Backtest/replay histórico — DEFERRED hasta decisión posterior a D6/piloto de calibración #owner/agent #type/research #area/echo
 > - [ ] D6: ejecutar validación adversarial y robustness #owner/agent #type/research #area/echo
 > - [ ] D7: emitir GO/ITERATE/NO_GO y, solo si GO, congelar SPEC del MVP #owner/me #type/supervision #area/echo
 > - [ ] Cerrar G0 y G1 antes de autorizar implementación NinjaTrader/Echo #owner/me #type/supervision #area/echo
@@ -1353,6 +1354,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — Cerrada discusión matemática del add bajo null model: nueva probabilidad condicional sí, nueva moneda 50/50 no. Ejemplo +100/-100 con add en -30 y size 1+1 produce TP +35, SL -65; desde -30 la probabilidad condicional es 35%, y la probabilidad total sigue exactamente 50%. Se añade este resultado como acceptance test del simulador.
 - **2026-09-24** — Reformulada tesis alrededor de `purchase→first-payout conversion`. Bajo null model estático +3000/-2000, first-passage da 40% de pass; encadenar estados evaluation/funded puede producir conversiones del orden 10–16% aun sin asumir edge, antes de reglas/costes reales. El simulador deberá medir cuánto destruyen o mejoran ese bound las reglas reales y conditional mean reversion.
 - **2026-09-24** — D3.1 agregado: un único shot Astra/GOD actuará como mathematical reviewer con herramientas explícitamente prohibidas. Debe validar/corregir 10 claims, fijar el modelo estocástico mínimo y entregar acceptance tests analíticos. D4 queda bloqueado hasta `MATH_GO` o incorporación explícita de correcciones.
+- **2026-09-24** — Astra/GOD devuelve `MATH_GO`. Claims 1–10 aceptados con condiciones; optional stopping/overshoot/finite-horizon quedan delimitados. Autoridad persistida en `30-resources/futures/echo-futures-astra-math-review.md`. D3 y D3.1 PASS; D4 desbloqueado.
 
 ## 🧭 Decisiones
 
@@ -1373,6 +1375,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Invariante martingala:** con mercado sin drift y outcomes monetarios terminales fijos +G/-L, el sizing dinámico no cambia la probabilidad total de éxito; `P(win)=L/(G+L)`. El recovery sólo puede aportar edge si existe estructura condicional, cambia la distribución terminal o explota no-linealidades de la prop.
 - **2026-09-24 — Tesis matemática principal:** Echo Futures se modela primero como gambler's ruin + absorbing Markov chain + stochastic control sobre reglas de fondeo. La métrica crítica es `purchase→first-payout conversion`; 10% equivale a 10 evaluations esperadas por payout bajo intentos independientes. Costes deben separar `p_pass` de `p_payout`: activation se pondera por cuentas aprobadas, no sólo por payouts.
 - **2026-09-24 — Astra no investiga:** su único rol es falsificar/corregir el contrato matemático antes de implementación; ningún acceso a repos, MCPs, web, logs o infraestructura está autorizado.
+- **2026-09-24 — Math authority:** `[[echo-futures-astra-math-review]]` es autoridad del simulator v0 para kernel, optional stopping, lifecycle abstracto, economics y acceptance tests T1–T8.
+- **2026-09-24 — D4 scope freeze:** primero certificar null engine exacto; synthetic edge v0 se aplica como perturbación de hitting probability en un adverse state acotado. Edge por múltiples adverse states queda para extensión posterior, no para Shot 1.
 
 ## 🔗 Docs / Links
 
@@ -1380,6 +1384,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - [[Trading]] — área relacionada para operativa, prop firms y riesgo.
 - [[Echo — Producto Integrado]] — producto vigente; Echo Futures se mantiene independiente para no alterar sus dos tracks congelados.
 - [[Echo + Echo Forge — Environment Contract]] — será autoridad de ambiente si Echo Futures reutiliza infraestructura Echo/Aranea; no concede autorización de ejecución.
+- [[echo-futures-astra-math-review]] — autoridad matemática del simulator v0 (`MATH_GO`).
 
 ## 💡 Ideas
 
