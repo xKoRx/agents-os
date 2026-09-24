@@ -1484,3 +1484,112 @@ Correct only accepted Shot B findings, promote useful reproducers to regression 
 
 ### Manager acceptance rule
 Only the owner/manager accepts A/B/C gates. The next active assignment is Shot A only.
+
+
+## Owner Policy Correction — D5-M1A-P150 — 2026-09-24
+
+This section SUPERSEDES the prior D5-M1A-P harvest target of +$500. The correct owner policy uses the minimum Standard-XFA winning-day threshold: **+$150** on qualification days.
+
+### Probability semantics
+
+Primary sensitivity input:
+`p_objective_hit = P(session policy hits its positive target before its declared loss cap)`.
+
+This is NOT automatically raw per-trade win rate. A future hardscalping submodel may map `p_trade` and intra-session management into `p_objective_hit`; that mapping is outside this discrete-policy milestone.
+
+Linked primary grid:
+`p_objective_hit ∈ {0.50, 0.51, 0.525, 0.55, 0.575, 0.60, 0.625, 0.65, 0.70, 0.75}`.
+
+Optional stage overrides remain allowed:
+`p_eval`, `p_bulto`, `p_qualify`.
+
+### Frozen owner policy
+
+#### Trading Combine 50K
+- Day 1 objective: +$1,500 before loss cap / MLL failure.
+- Day 2 objective: +$1,500 before loss cap / MLL failure.
+- Any natural MLL breach burns the evaluation.
+- Two successful days yield total +$3,000 with largest-day share 50%, inside Topstep's 55% consistency target.
+- Under linked p and one objective event/day, analytical fixture: `P(pass)=p²`.
+
+#### XFA payout cycle #1
+- XFA starts balance 0, MLL -$2,000.
+- First funded session "bulto": target +$4,000 before $2,000 loss / MLL breach.
+- Bulto success: balance=$4,000; this is winning day #1; at EOD MLL locks to $0.
+- Bulto failure: natural XFA burn.
+- Then require FOUR additional winning days with target +$150 each, because Topstep Standard requires five winning days >=$150 and the +$4,000 day already counts as day #1.
+- Qualification-day loss amount is an explicit config. Primary owner case: `qualify_loss=2000`; sensitivities: 150, 300, 500, 1000, 1500, 2000.
+- A qualification loss does NOT automatically mean burn unless balance reaches the MLL floor. Apply the actual balance debit and continue if alive.
+- Once 5 winning days are complete, request the fixed $2,000 gross only when balance >=$4,000. If eligibility is complete but balance<4,000, continue the same qualification policy until balance>=4,000 or natural burn.
+
+Expected no-loss path:
+0 → +4000 → +150 → +150 → +150 → +150 = 4600;
+request 2000 gross; post-payout balance=2600.
+
+#### XFA payout cycle #2
+- Winning-day counter resets to zero after payout #1.
+- First post-payout session "reload bulto": target +$2,000; primary loss cap $2,000.
+- If success from balance 2600: balance=4600 and counts as winning day #1.
+- Then require FOUR additional +$150 winning days to reach five new winning days.
+- Expected no-loss balance before request: 5200.
+- Request fixed $2,000 gross; expected no-loss post-payout balance=3200.
+- If reload bulto loses $2,000 but account remains above MLL, primary policy is `CONTINUE_IF_ALIVE`; do not invent an intentional burn. Continue qualification/recovery until eligibility + balance>=4000 or natural burn.
+
+#### XFA payout cycle #3
+- Same mechanics: counter reset; reload bulto target +$2,000 / primary loss cap $2,000; four additional +$150 winning days; then fixed $2,000 gross if eligible and balance>=4000.
+- Expected no-loss balance path: 3200 → 5200 → 5800 → payout 2000 → 3800.
+- Primary owner policy: `STOP_AFTER_3_PAYOUTS`.
+- Payout #4 remains sensitivity only if requested by owner; no deterministic vendor call-up threshold is assumed.
+
+### Official-rule semantics preserved
+
+Current Topstep Standard XFA requires:
+- 5 winning days of at least $150;
+- days need not be consecutive;
+- the payout-request trading day does not count toward the next five-day cycle;
+- after each payout the 5-day count restarts;
+- after the first payout there must be positive net profit since the previous payout;
+- payout request is 50% of account balance up to the 50K Standard cap of $2,000;
+- profit split is 90/10;
+- MLL resets/locks at $0 after payout.
+
+### Required experiment axes
+
+Primary matrix:
+- linked `p_objective_hit` grid above;
+- `qualify_loss ∈ {150,300,500,1000,1500,2000}`;
+- payout horizon = 3;
+- payout #4 sensitivity;
+- 5 account pipelines;
+- 20-session normalized month plus explicit-calendar mode;
+- INDEPENDENT vs PERFECT_COPY account correlation.
+
+Required stage-level outputs:
+- `P(pass)`;
+- `P(bulto1 success | XFA)`;
+- `P(payout1 | XFA)`;
+- `P(payout1 | evaluation purchased)`;
+- `P(payout2 | payout1)`;
+- `P(payout3 | payout2)`;
+- natural-burn probability in each stage;
+- expected sessions in each stage;
+- expected account balance entering/leaving each payout cycle.
+
+Required portfolio outputs:
+- evaluations/month;
+- activations/month;
+- XFA burns/month;
+- payout1/2/3 counts;
+- external cash/month;
+- total fees/month;
+- net cash/month;
+- P(month>0), P5/P50/P95;
+- active/stopped XFA slot occupancy;
+- same-day multi-MLL diagnostics;
+- break-even contour in (`p_objective_hit`, `qualify_loss`).
+
+### Interpretation
+
+At linked `p_objective_hit=0.50`, a +150/-2000 qualification objective has negative nominal expectancy; this experiment is intentionally testing whether Topstep's external payoff asymmetry can overcome that at the personal-cash level. Do not label it a fair-market trading result.
+
+The accepted Brownian/session model is not deleted; it remains the later realism bridge. This P150 discrete policy is the immediate three-shot economics experiment.
