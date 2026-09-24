@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: completed
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Futures]]"
@@ -34,7 +34,7 @@ updated: "2026-09-24"
 
 ## 📊 Estado actual
 
-- **G4C_REVIEW / SHOT 3 COMPLETO.** Commit de certificación `d4f42a41946f12231b75e4eb65b90d132731be0d` sobre `ad7fe60`: SF2-01 y SF2-02 corregidos, SF2-05 resuelto vía validación CLI, SF2-03/04 documentados, arnés de auditoría Shot 2 adoptado como tests permanentes. Sólo el owner puede aceptar G4C.
+- **D4 CLOSED / G4C ACCEPTED por owner (2026-09-24).** Simulator v0 certificado en `d4f42a41946f12231b75e4eb65b90d132731be0d`: T1–T8 verdes, auditoría independiente cerrada, fixes Shot 3 incorporados. Este proyecto queda completado; D5 puede consumir este commit sin reabrir la matemática.
 - **Evidencia Shot 3 (2026-09-24, HEAD `d4f42a4`):**
   - `go fmt` limpio · `go vet` limpio · `go test ./...` PASS · `go test -race ./...` PASS · coverage `internal/sim` **96.1%**.
   - `sim validate --runs 1000000 --seed 42`: **47/47 PASS**; dos corridas JSON 1M byte-identical (sha256 `c703a37d…`).
@@ -102,7 +102,7 @@ updated: "2026-09-24"
 |---|---|---|---|---|
 | G4A — Implementation | **accepted** (owner dispatch Shot 2, 2026-09-24) | implement, run all tests, move to review | T1–T8 + invariants + coverage + commit | Shot 2 |
 | G4B — Independent audit | **accepted** (owner, 2026-09-24) | adversarially review code/results, move to review | findings SF2-01..05 + reproducción + arnés 11/11 | Shot 3 |
-| G4C — Certified v0 | **review** (agent, 2026-09-24 @ d4f42a4) | fix only accepted findings, rerun evidence, move to review | clean T1–T8 + audit closure | D5 |
+| G4C — Certified v0 | **accepted** (owner, 2026-09-24 @ d4f42a4) | fix only accepted findings, rerun evidence, move to review | clean T1–T8 + audit closure | D5 |
 
 ## Roadmap / phase packages
 
@@ -358,3 +358,5 @@ GATE_REQUERIDO=G4B accepted by owner
 TAREAS=T3.1
 SALIDA=certified v0 + G4C review
 STOP=G4C review; forbidden D5
+
+- **2026-09-24 — D4 CLOSED por owner.** G4C accepted sobre `d4f42a41946f12231b75e4eb65b90d132731be0d`. Simulator v0 queda certificado como baseline matemática/Monte Carlo para D5; no reabrir salvo contradicción material reproducible.
