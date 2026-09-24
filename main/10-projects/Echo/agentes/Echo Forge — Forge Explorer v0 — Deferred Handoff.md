@@ -1,7 +1,7 @@
 ---
 type: doc
 schema_version: 1
-status: active
+status: superseded
 area: "[[Echo]]"
 related:
   - "[[Echo Forge — Forge Explorer v0]]"
@@ -13,10 +13,13 @@ tags:
   - area/forge
   - action/handoff
 created: "2026-09-21"
-updated: "2026-09-21"
+updated: "2026-09-23"
 ---
 
 # Forge Explorer v0 — decisión de diferimiento y handoff
+
+> [!warning] SUPERSEDED 2026-09-23
+> El diferimiento quedó cerrado por el gate de consolidación final: [[Echo Forge — Forge Explorer v0]] pasa a **SUPERSEDED_BY_FLOWKIT** (superficie canónica = `sqx-flowkit` F-05-I, mandato owner). No hay merge pendiente ni decisión abierta; la línea archivada (`archive/forge-explorer-v0` @ `648d5e6`) fue eliminada local y en origin. Este documento se conserva sólo como registro histórico de la decisión de diferimiento.
 
 **Decisión del owner, 2026-09-21: DEFERRED / NOT PRIORITY.** La idea es útil y necesaria a futuro, pero no corresponde ejecutarla ahora. Fue introducida como propuesta nueva por el manager del carril Echo, NO proviene del roadmap original Echo ni del alcance congelado F-01…F-05 de Factory V2. El ownership exclusivo de la eventual implementación pertenece al **manager de Forge**; el manager de Echo NO despacha agentes, revisa código ni certifica Explorer. El parent no debe incluirla en el critical path de Factory V2 ni F-05-C.
 
