@@ -10,7 +10,7 @@ parent:
 sprint: 2026-09-23--2026-09-30
 start: 2026-09-23
 due: 2026-09-30
-progress: 20
+progress: 28
 repo:
 jira:
 prs:
@@ -72,13 +72,14 @@ El riesgo principal es de cola: una técnica con win rate muy alto puede esconde
 
 | Día | Outcome observable | Gate |
 |---|---|---|
-| D1 | Contrato común de research congelado + entrevista Gerard realizada + tres mandatos one-shot listos/ejecutándose | Cada fuente tiene corpus delimitado y output contractual idéntico |
-| D2 | Gerard + Tradesfera + Psicólogo del Trading reducidos a reglas mecánicas y 1–3 estrategias candidatas comparables | Cero regla material aceptada sin evidencia; ambigüedades marcadas |
-| D3 | 1–2 estrategias seleccionadas y expresadas como máquina de estados; gestión hardscalping parametrizada | Entrada, add, sizing, SL/TP, salida y pérdida máxima son simulables |
-| D4 | Backtest/replay reproducible sobre datos adecuados al path intratrade | Resultados incluyen trades, MAE/MFE, costs y sensibilidad básica |
-| D5 | Simulador de prop + Monte Carlo sobre al menos un rule set real | Challenge→funded→primer payout, burn rate y cash neto reproducibles |
-| D6 | Validación adversarial: OOS/periodos, slippage, comisiones, rachas, parameter sensitivity y reglas de prop | La tesis no depende de un único parámetro frágil ni de fills irreales |
-| D7 | Decisión `GO | ITERATE | NO_GO`; si GO, SPEC MVP congelada y piloto económico dimensionado | Presupuesto, cuenta/plan, instrumento, estrategia y criterios de aborto definidos |
+| D1 | Entrevista Gerard + tres DR completados | Corpus delimitado y outputs comparables |
+| D2 | Síntesis adversarial de los DR | Principios útiles separados de inferencias; research amplio cerrado |
+| D3 | Tesis matemática + contrato abstracto del simulador | Invariantes, estados, políticas y métricas definidos |
+| D3.1 | **Astra/GOD valida exclusivamente la matemática del simulador** | Claims correctos/corregidos + acceptance tests analíticos + blockers explícitos |
+| D4 | Simulador estocástico v0 implementado y verificado | Null model reproduce benchmarks analíticos antes de aceptar escenarios con edge |
+| D5 | Rulesets versionados de Topstep/Lucid/Apex + lifecycle completo | purchase→pass→funded→payout/burn y cash costs reproducibles |
+| D6 | Monte Carlo + sensitivity surfaces + cohort correlation | Break-even regions y assumptions dominantes identificados |
+| D7 | Decisión `GO | ITERATE | NO_GO` para piloto de calibración | Presupuesto, tamaño de cohorte, reglas de aborto y supuestos que el piloto debe medir |
 
 ### Estrategia de research — tres one-shots + síntesis
 
@@ -967,6 +968,67 @@ Es:
 Sólo después se necesita encontrar una estrategia de mercado que produzca empíricamente ese edge condicional.
 
 
+## 🧠 D3.1 — Astra/GOD mathematical review
+
+**Objetivo:** usar un único shot corto de Astra como revisor matemático adversarial antes de congelar la SPEC e implementar. No es una sesión de research, arquitectura ni operaciones.
+
+### Scope permitido
+
+Astra recibe todo el modelo matemático necesario dentro del prompt y sólo debe:
+
+- validar/corregir first-passage/gambler's ruin;
+- validar condiciones de optional stopping/martingala para sizing dinámico;
+- revisar el ejemplo del add en -30;
+- validar composition evaluation→funded→payout;
+- validar expected attempts y cash-EV;
+- recomendar el **modelo estocástico mínimo coherente** para null + synthetic conditional mean reversion;
+- producir acceptance tests analíticos para el simulador.
+
+### Scope prohibido
+
+- NO MCPs.
+- NO web.
+- NO GitHub.
+- NO Agents-OS.
+- NO logs.
+- NO archivos.
+- NO implementación.
+- NO arquitectura Echo/NinjaTrader.
+- NO investigación de props.
+- NO backtesting.
+- NO búsqueda de estrategias.
+- NO extender el problema a portfolio optimization sofisticada.
+
+Si falta una regla concreta de una prop, debe tratarla como variable simbólica; no buscarla.
+
+### Claims que debe auditar
+
+1. Driftless Brownian/random walk entre barreras fijas: `P(hit U before L)=(x-L)/(U-L)`, con condiciones y matices discrete/continuous.
+2. Ejemplo: entry 0, qty 1, terminal PnL +100/-100, add qty 1 al llegar price -30; tras add, average -15, TP +35, SL -65, `P(win|-30)=35%`, total desde 0 = 50%.
+3. Generalización: bajo precio martingala, estrategia self-financing/predictable, terminal wealth exactamente `+G/-L`, absorción y condiciones de optional stopping, sizing dinámico no crea expectancy y `P(win)=L/(G+L)`.
+4. Evaluation abstracta +3000/-2000 bajo wealth martingale continuo: `P(pass)=40%`.
+5. `P(purchase→payout)=P(pass)*P(payout|pass)`; no requiere independencia si la segunda probabilidad es condicional correctamente.
+6. Para attempts IID con conversion `q`: expected attempts until payout `1/q`, expected failed attempts `(1-q)/q`, `P(>=1 payout in n)=1-(1-q)^n`.
+7. First-payout economics: `EV_attempt=q_payout*W - F - p_pass*A - E[other costs]`; distinguir payout neto, activation y cuentas que pasan pero mueren antes de retirar.
+8. El concepto “game theory” es secundario mientras las reglas de la prop sean exógenas; el modelo principal es stochastic control/MDP sobre un mecanismo fijo.
+9. Negative recovery puede generar valor sólo si aparece conditional edge, cambia terminal payoff/state outcomes, o interactúa favorablemente con reglas path-dependent; size puro bajo null no crea edge.
+10. Para synthetic mean reversion, revisar si conviene representar el edge como state-dependent transition probability / drift y cómo hacerlo sin contradecir el null model.
+
+### Entregable esperado
+
+Astra debe producir:
+
+- tabla `CLAIM → CORRECT | CORRECT_WITH_CONDITIONS | WRONG`;
+- corrección/proof sketch corto por claim;
+- SPEC matemática mínima del simulador v0;
+- acceptance tests con resultados analíticos esperados y tolerancias Monte Carlo;
+- lista de hidden assumptions/counterexamples;
+- qué NO modelar en v0;
+- verdict final `MATH_GO | MATH_REVISE`.
+
+No debe producir código.
+
+
 ## 🧾 D1 — Gerard García: extracción del curso v0
 
 **Fuente:** brain dump + re-visionado reciente del curso privado por el owner + captura de la tabla de riesgo variable. Estado: `GERARD_V1_EXTRACTED / OBJECTIVIZATION_REQUIRED`.
@@ -1241,6 +1303,8 @@ views:
 > - [-] Investigar y mecanizar operativa relevante de Psicólogo del Trading — NO_GO por corpus técnico insuficiente; no gastar más tiempo sin video concreto #owner/me #type/research #area/echo
 > - [x] D2: síntesis adversarial — pasan C0 random, S1 ORB30 y S2 H4+Bollinger; research amplio cerrado #owner/agent #type/research #area/echo
 > - [/] D3: congelar simulador estocástico L0/L1/L2 + hardscalping + prop lifecycle + cohort correlation; backtest histórico deferred #owner/me #type/research #area/echo
+> - [ ] D3.1: ejecutar un único shot Astra/GOD para validar matemática y acceptance tests; herramientas prohibidas #owner/me #type/research #area/echo
+> - [ ] D4: implementar simulator v0 sólo después de MATH_GO o correcciones incorporadas #owner/agent #type/dev #area/echo
 > - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
 > - [ ] D5: modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
 > - [ ] D3: elegir primer instrumento y dataset después de cruzar microestructura + estrategia + rules de prop #owner/me #type/research #area/echo
@@ -1288,6 +1352,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — D3 replanteado a simulation-first: se pospone market data. Primero se probará toda la tesis con L0 Bernoulli, L1 random-walk y L2 synthetic-edge, luego lifecycle de props, variable risk y cohort correlation. Backtest histórico queda como herramienta posterior de calibración/falsificación, no prerrequisito.
 - **2026-09-24** — Cerrada discusión matemática del add bajo null model: nueva probabilidad condicional sí, nueva moneda 50/50 no. Ejemplo +100/-100 con add en -30 y size 1+1 produce TP +35, SL -65; desde -30 la probabilidad condicional es 35%, y la probabilidad total sigue exactamente 50%. Se añade este resultado como acceptance test del simulador.
 - **2026-09-24** — Reformulada tesis alrededor de `purchase→first-payout conversion`. Bajo null model estático +3000/-2000, first-passage da 40% de pass; encadenar estados evaluation/funded puede producir conversiones del orden 10–16% aun sin asumir edge, antes de reglas/costes reales. El simulador deberá medir cuánto destruyen o mejoran ese bound las reglas reales y conditional mean reversion.
+- **2026-09-24** — D3.1 agregado: un único shot Astra/GOD actuará como mathematical reviewer con herramientas explícitamente prohibidas. Debe validar/corregir 10 claims, fijar el modelo estocástico mínimo y entregar acceptance tests analíticos. D4 queda bloqueado hasta `MATH_GO` o incorporación explícita de correcciones.
 
 ## 🧭 Decisiones
 
@@ -1307,6 +1372,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — No asumir independencia por add ni por cuenta:** escaladas dentro del mismo path son condicionales; cuentas copiadas desde la misma Reference están altamente correlacionadas.
 - **2026-09-24 — Invariante martingala:** con mercado sin drift y outcomes monetarios terminales fijos +G/-L, el sizing dinámico no cambia la probabilidad total de éxito; `P(win)=L/(G+L)`. El recovery sólo puede aportar edge si existe estructura condicional, cambia la distribución terminal o explota no-linealidades de la prop.
 - **2026-09-24 — Tesis matemática principal:** Echo Futures se modela primero como gambler's ruin + absorbing Markov chain + stochastic control sobre reglas de fondeo. La métrica crítica es `purchase→first-payout conversion`; 10% equivale a 10 evaluations esperadas por payout bajo intentos independientes. Costes deben separar `p_pass` de `p_payout`: activation se pondera por cuentas aprobadas, no sólo por payouts.
+- **2026-09-24 — Astra no investiga:** su único rol es falsificar/corregir el contrato matemático antes de implementación; ningún acceso a repos, MCPs, web, logs o infraestructura está autorizado.
 
 ## 🔗 Docs / Links
 
