@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint: 2026-09-24
 start: 2026-09-24
 due: 2026-09-24
-progress: 0
+progress: 80
 repo: "xKoRx/echo-futures"
 jira:
 prs:
@@ -270,14 +270,14 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 
 ## ✅ Tareas
 
-> - [/] T1.1 verificar baseline/repo local y toolchain #owner/agent #type/dev #area/echo
-> - [ ] T1.2 implementar kernel + model + validation #owner/agent #type/dev #area/echo
-> - [ ] T1.3 implementar trade/recovery event loop #owner/agent #type/dev #area/echo
-> - [ ] T1.4 implementar lifecycle/economics/cohort #owner/agent #type/dev #area/echo
-> - [ ] T1.5 implementar CLI/scenarios #owner/agent #type/dev #area/echo
-> - [ ] T1.6 implementar T1–T8 + invariants #owner/agent #type/dev #area/echo
-> - [ ] T1.7 ejecutar test/race/coverage/1M validation y commit #owner/agent #type/dev #area/echo
-> - [ ] T1.8 dejar G4A review + handoff #owner/agent #type/dev #area/echo
+> - [x] T1.1 verificar baseline/repo local y toolchain #owner/agent #type/dev #area/echo
+> - [x] T1.2 implementar kernel + model + validation #owner/agent #type/dev #area/echo
+> - [x] T1.3 implementar trade/recovery event loop #owner/agent #type/dev #area/echo
+> - [x] T1.4 implementar lifecycle/economics/cohort #owner/agent #type/dev #area/echo
+> - [x] T1.5 implementar CLI/scenarios #owner/agent #type/dev #area/echo
+> - [x] T1.6 implementar T1–T8 + invariants #owner/agent #type/dev #area/echo
+> - [x] T1.7 ejecutar test/race/coverage/1M validation y commit #owner/agent #type/dev #area/echo
+> - [x] T1.8 dejar G4A review + handoff #owner/agent #type/dev #area/echo
 > - [ ] T2.1 auditoría independiente Shot 2 #owner/agent #type/pr-review #area/echo #blocked
 > - [ ] T3.1 corrección/certificación Shot 3 #owner/agent #type/dev #area/echo #blocked
 
@@ -285,6 +285,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 
 - **2026-09-24** — Proyecto de agente materializado para ejecución D4. Math/functional/technical contracts frozen. READY_FOR_SHOT_1; no código ejecutado todavía.
 - **2026-09-24** — SHOT 1 iniciado (T1.1 WIP). Autoridades leídas en orden (math review, functional, técnico, proyecto padre); sin contradicciones detectadas. Baseline: Go 1.27.1 linux/amd64; no existe checkout local previo de `echo-futures` (sin conflicto); repo nuevo aislado en workspace externo `~/aranea/work/echo-futures-simulator-v0-20260924/echo-futures`, módulo `github.com/xKoRx/echo-futures`, branch `master`. Tarea puente del padre movida a WIP.
+- **2026-09-24** — SHOT 1 COMPLETO, **G4A → review**. Commit `ad7fe609c8b6503cdc7b803d5c33d8eb3efdcff9` (21 archivos, árbol limpio, sin remote/push). Gates: `go test ./...` PASS; `go test -race ./...` PASS; coverage `internal/sim` 96.0%; `sim validate --runs 1000000 --seed 42` 47/47 PASS (~6.5 s) y reproducible byte-identical. Samples: simulate t2 1M (pWin 0.4995 / reach 0.7694 / cond 0.3495), simulate lifecycle 200k (pPass 0.401, q 0.0997), cohort 100k (meanAttempts 10.009, P50 7, P95 29). Nota de corrección durante el shot: el .gitignore inicial (`sim` sin anclar) había excluido `cmd/sim` e `internal/sim` del primer commit; detectado y corregido vía amend del commit raíz (repo nuevo, sin remote). Sin desviaciones de SPEC; el único caso ambiguo resuelto fue clasificar salidas de barrera por dirección del evento + equidad alcanzada con epsilon relativo (empates → fase, según prioridad congelada). Shot 2 (auditoría) queda BLOQUEADO hasta aceptación owner de G4A.
 
 ## 🔗 Docs / Links
 
