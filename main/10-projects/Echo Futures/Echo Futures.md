@@ -130,7 +130,7 @@ Una estrategia no gana por parecer sofisticada. Para entrar a D3 debe cumplir si
 
 ## 🧾 D1 — Gerard García: extracción del curso v0
 
-**Fuente:** brain dump del owner a partir del curso privado + captura de la tabla de riesgo variable. Estado: `PARTIAL / INTERVIEW_REQUIRED`.
+**Fuente:** brain dump + re-visionado reciente del curso privado por el owner + captura de la tabla de riesgo variable. Estado: `GERARD_V1_EXTRACTED / OBJECTIVIZATION_REQUIRED`.
 
 ### Estrategias/entradas recordadas
 
@@ -144,11 +144,59 @@ Gerard prioriza la gestión sobre el edge de entrada y, según el recuerdo del o
 
 ### Tres motores de gestión que deben probarse por separado
 
-**A. Negative hardscalping / recovery intra-trade.** Ante movimiento adverso, agrega contratos y acerca las barreras de salida. Ejemplo recordado: 3 micros + 3 + 3. La intención declarada es conservar aproximadamente el riesgo monetario y el objetivo monetario mientras aumenta el tamaño total, por lo que el SL/TP en precio se comprimen alrededor del nuevo precio medio. Trigger, número máximo de adds y sizing exacto siguen `UNKNOWN`.
+**A. Negative hardscalping / recovery intra-trade.** Ante movimiento adverso, agrega contratos y acerca las barreras de salida. Ejemplo recordado: 3 micros + 3 + 3. La intención declarada es conservar aproximadamente el riesgo monetario y el objetivo monetario mientras aumenta el tamaño total, por lo que el SL/TP en precio se comprimen alrededor del nuevo precio medio. Gerard decide trigger, distancia y sizing de forma altamente discrecional según volatilidad/espacio disponible; por tanto el proyecto no intentará copiar su ojo, sino parametrizar esos grados de libertad y buscar regiones robustas.
 
 **B. Positive hardscalping / pyramiding.** Cuando la operación ya avanza con fuerza a favor, agrega exposición, mueve la protección hacia breakeven y deja correr una extensión grande; el owner recuerda objetivos del orden de 1:6. Debe tratarse como motor independiente del recovery adverso.
 
 **C. Variable risk progression entre trades.** Captura suministrada: riesgo inicial 300, multiplicador 1.20 y reward:risk 1:1.5. La tabla visible muestra aproximadamente 300→360→432→518→622→746→896→1075 de riesgo por intento. Esta progresión no es equivalente al hardscalping intra-trade y requiere aclarar regla de reset, lotaje y objetivo real.
+
+
+### Entrevista Gerard — decisiones cerradas v1
+
+- **Recovery trigger original:** discrecional. En directos agrega exposición en distintos momentos para acelerar el retorno; no existe una condición mecánica única observada por el owner.
+- **Sizing intra-trade:** variable. Parte pequeño y suma progresivamente; `3 + 3 + 3 micros` es un ejemplo habitual, no una constante. La distancia disponible depende de volatilidad, timeframe, riesgo monetario y expectativa de movimiento.
+- **Autoridad del riesgo:** confirmada en dólares. Si la secuencia tiene riesgo máximo de, por ejemplo, 2K, cada aumento de contratos obliga a recalcular la distancia del SL desde el nuevo precio medio para que la pérdida monetaria siga aproximadamente en 2K. Lo mismo aplica al objetivo monetario; por eso las bandas se comprimen.
+- **Positive hardscalping:** también discrecional. Debe objetivizarse con reglas medibles —persistencia direccional, velas consecutivas, desplazamiento ATR/R, breakout estructural o MFE— en vez de copiar decisiones visuales.
+- **Variable risk:** tras un win vuelve al primer escalón y la intención declarada es que el siguiente ganador recupere todas las pérdidas previas y además termine positivo. La foto fue tomada mientras la hoja se modificaba; sus valores no son autoridad de fórmula.
+- **Entry edge:** Gerard usa distintos modelos en vivo y prioriza la gestión sobre la precisión de entrada. La tesis “podría entrar con una moneda” queda como hipótesis experimental.
+- **Fondeada:** el curso prioriza un arranque agresivo, buscando rápidamente profit grande o burn, y posteriormente sesiones menores para satisfacer payout/consistency. La regla exacta debe venir siempre de la prop vigente.
+- **Instrumento/lotaje:** no congelar 3 micros, 30 micros ni MNQ/NQ como constantes. El contrato correcto es riesgo monetario + espacio de precio + límite de contratos.
+- **Account size inicial:** 50K es el candidato actual. 150K queda como fase posterior si la economía mejora al escalar.
+
+### Parámetros a objetivizar
+
+- trigger de add por movimiento adverso: puntos/ticks, ATR, fracción del SL inicial, estructura o combinación;
+- número máximo de adds;
+- fracción de exposición usada en cada add;
+- spacing fijo vs. progresivo;
+- target monetario fijo vs. variable tras cada add;
+- stop monetario fijo vs. reducido;
+- criterio de positive hardscalping;
+- condición de BE;
+- extensión de target tras momentum favorable;
+- multiplicador de variable risk entre trades;
+- reset tras win y stop de secuencia/cuenta.
+
+**Principio de validación:** una solución válida debe sobrevivir en un rango de parámetros. Si sólo funciona con un punto exacto de spacing/multiplicador, falla robustness.
+
+### Baseline experimental obligatoria
+
+1. **Random direction:** dirección 50/50 + gestión Gerard parametrizada.
+2. **Entry-only:** cada entry model con SL/TP simple, sin recovery ni variable risk.
+3. **Recovery delta:** mismo entry + hardscalping adverso.
+4. **Positive hardscalping delta:** agregar pyramiding favorable.
+5. **Variable-risk delta:** progresión entre trades.
+6. **Full stack:** combinación final.
+
+Esto permite localizar si el edge proviene de la entrada, del recovery, de la asimetría económica de la prop o de una mezcla.
+
+### Fórmula útil para variable risk
+
+Si el riesgo sigue `R_n = R_0 * m^n` y el ganador paga `b * R_n`, exigir que cualquier primer win tras una cadena de pérdidas recupere todo y deje siempre el mismo beneficio inicial conduce a:
+
+`m = 1 + 1/b`
+
+Para `b=1.5`, `m=1.6667`. Con `R_0=300`, una cadena idealizada sería aproximadamente `300 → 500 → 833 → 1389...`, y cualquier win dejaría aproximadamente +450 neto. Es una derivación matemática del objetivo descrito por el owner; no se atribuye a Gerard hasta confirmar su hoja.
 
 ### Modelo matemático provisional del recovery
 
@@ -179,13 +227,36 @@ Por tanto, **esa tabla por sí sola no puede significar “cualquier siguiente w
 - **Account inventory:** mantener cuentas suplentes y rotar/replicar operaciones. Las cuentas se tratan económicamente como intentos desechables si el coste real de burn es bajo frente al payout potencial.
 - Props mencionadas: Topstep y Take Profit Trader como principales; Alpha Futures, Tradeify y Lucid como secundarias. Ninguna regla actual queda congelada hasta research oficial.
 
+
+### Topstep — contraste oficial vigente 2026-09-24
+
+El curso no es autoridad de reglas comerciales. Primer contraste con documentación oficial vigente:
+
+- Trading Combine 50K: profit target 3K, Maximum Loss Limit 2K y consistency target 55%; puede aprobarse en dos días si el mejor día no supera 55% del beneficio total.
+- Límite Combine 50K: 5 minis / 50 micros.
+- No hay límite de Trading Combines activos publicado; sí hay máximo de **5 Express Funded Accounts activas**.
+- Precio 50K actual: **49 USD/mes Standard** + 149 USD de activación sólo al pasar, o **95 USD/mes No Activation Fee**. El 89 USD del curso/recuerdo está desactualizado.
+- XFA Standard: 5 winning days de 150+ para payout. XFA Consistency: mínimo 3 días y largest day <=40% del net profit.
+- Para traders nuevos aplica split 90/10. El request es hasta 50% del balance y el cap 50K es 2K Standard / 3K Consistency, salvo promociones/configuraciones específicas.
+- El patrón “gran primer día + varios días pequeños” encaja mejor con Standard actual; con Consistency 40%, un día de 4K exige al menos 10K netos para que represente <=40%.
+- La economía `1 payout / 20 attempts` depende del pricing path. Ejemplo simplificado: 20×95 = 1,900 USD; un request de 2K con split 90/10 entrega 1,800 antes de otros costes, por lo que no alcanza break-even. Con Standard: 20×49 + 149 de activación de la única cuenta aprobada = 1,129; 1,800 netos dejan ~671 USD antes de otros costes.
+
+**Conclusión:** el pricing path es una variable del modelo de estrategia, no una decisión administrativa.
+
 ### Implicación económica importante
 
 Debe distinguirse **trading EV dentro de la cuenta** de **cash EV del negocio de prop**. Una operativa puede tener expectancy mediocre o incluso negativa sobre PnL nominal y aun así ser económicamente interesante para el owner si el downside real por evaluation está limitado al fee mientras un camino exitoso habilita payouts mucho mayores. El simulador G1 debe modelar ambos niveles y nunca usar el balance nominal de 50K como capital real invertido.
 
-### Bloqueos de entrevista
+### Bloqueos restantes Gerard/G0
 
-Para cerrar Gerard/G0 faltan: trigger exacto y máximo de adds; sizing de cada add; significado preciso de “mantener riesgo/TP”; regla de salida tras cada add; contrato exacto de positive hardscalping; reset de variable risk; significado de la primera columna de la tabla; asociación entre cada entry model y cada motor de gestión; e interpretación exacta de la secuencia evaluation/funded.
+La entrevista de conocimiento queda suficientemente cerrada para avanzar. Ya no buscamos una regla secreta para los puntos discrecionales: pasan a ser parámetros experimentales.
+
+Pendientes:
+- confirmar, si aporta valor, la fórmula exacta de la hoja de variable risk;
+- extraer 3–5 ejemplos completos para calibrar rangos razonables de spacing/adds;
+- seleccionar dos entry models para D3;
+- ejecutar research público de contraste, especialmente pérdidas y límites;
+- cerrar una configuración como máquina de estados simulable antes de PASS G0.
 
 
 ## 🔬 M0 — Forense de operativa
@@ -371,7 +442,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
 - **2026-09-23** — Proyecto creado y alcance corregido hacia operativa-first. Se registran como hipótesis: estrategias de alto win rate y TF bajo, hardscalping/recovery con aumento de exposición, gestión agresiva orientada a challenge/funded/payout y escalado futuro a decenas de cuentas. G0/G1 bloquean desarrollo hasta demostrar reglas mecánicas y economía positiva.
 - **2026-09-23** — Activado management por `technical-project-manager`: horizonte máximo 7 días. Discovery se limita a tres one-shots paralelos (Gerard/Tradesfera/Psicólogo) bajo contrato común + entrevista Gerard; D2 síntesis, D3 mecanización, D4 backtest, D5 prop simulation, D6 robustness, D7 decisión y eventual freeze MVP.
-- **2026-09-24** — Recibido primer brain dump del curso de Gerard + captura de risk table. Se separan tres motores: recovery adverso intra-trade, pyramiding positivo y variable-risk inter-trade. Derivado modelo provisional de bandas sobre average price y detectada contradicción útil en tabla 1.20/1:1.5: tras dos pérdidas, el siguiente win ya no recupera la secuencia. D1 sigue WIP pendiente de entrevista dirigida.
+- **2026-09-24** — Recibido primer brain dump del curso de Gerard + captura de risk table. Se separan tres motores: recovery adverso intra-trade, pyramiding positivo y variable-risk inter-trade. Derivado modelo provisional de bandas sobre average price y detectada contradicción útil en tabla 1.20/1:1.5: tras dos pérdidas, el siguiente win ya no recupera la secuencia.
+- **2026-09-24** — Entrevista Gerard v1 suficientemente cerrada para avanzar: discrecionalidad pasa a parametrización experimental. Confirmado riesgo/TP monetario recalculado sobre average price. Derivada fórmula m=1+1/b para recovery geométrico constante y refrescada economía Topstep vigente; pricing path pasa a variable del simulador.
 
 ## 🧭 Decisiones
 
