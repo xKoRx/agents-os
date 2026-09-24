@@ -840,6 +840,131 @@ Con +1500/-2000 debe converger aproximadamente a 57.1429% winners y EV 0.
 Si el simulador muestra mejora material sólo por aumentar size, contiene un bug o una asunción oculta que debe declararse.
 
 
+## 🎯 D3 tesis matemática — funding as a stochastic control problem
+
+### Disciplina matemática correcta
+
+La idea toca teoría de juegos, pero el núcleo cuantitativo inicial es:
+
+- **gambler's ruin / first-passage probabilities**;
+- **absorbing Markov chains** para evaluation/funded/payout/burn;
+- **stochastic control / MDP** para elegir size, adds y riesgo según estado;
+- **risk of ruin** y Monte Carlo para capital requerido;
+- teoría de juegos entra después porque prop y trader tienen incentivos opuestos y reglas que cambian la estrategia óptima.
+
+### Null model de una cuenta
+
+Para un proceso justo sin drift, partiendo entre una barrera de pérdida `-L` y un objetivo `+G`:
+
+`P(hit +G before -L) = L / (G + L)`
+
+Ejemplo abstracto de evaluation:
+
+- target +3000;
+- burn -2000.
+
+Entonces:
+
+`P(pass before burn) = 2000 / 5000 = 40%`
+
+y el número esperado de evaluations por pass bajo este modelo ideal es:
+
+`1 / 0.40 = 2.5`
+
+Esto NO modela todavía trailing drawdown, consistency, daily rules, commissions ni discrete overshoot.
+
+### Evaluation + funded como dos estados absorbentes consecutivos
+
+Si evaluation tiene probabilidad `p_eval` de alcanzar FUNDED y desde funded existe probabilidad `p_funded` de llegar al primer payout antes de burn:
+
+`p_purchase_to_payout = p_eval * p_funded`
+
+Ejemplo puramente ilustrativo con `p_eval=40%`:
+
+| Funded barrier abstracta | p_funded bajo random walk | p_purchase_to_payout | attempts esperados / payout |
+|---|---:|---:|---:|
+| +3000 / -2000 | 40.00% | 16.00% | 6.25 |
+| +4000 / -2000 | 33.33% | 13.33% | 7.50 |
+| +5000 / -2000 | 28.57% | 11.43% | 8.75 |
+| +6000 / -2000 | 25.00% | 10.00% | 10.00 |
+
+Por tanto, **1 payout cada 10 evaluations compradas no requiere necesariamente un edge enorme** en un modelo idealizado. Puede emerger de la geometría de targets/drawdowns. Las reglas reales decidirán cuánto se aleja el producto de este bound.
+
+### Qué significa q = 10%
+
+Si la conversión real purchase→first payout es `q=0.10` y los intentos son independientes:
+
+- intentos esperados hasta primer payout = `1/q = 10`;
+- cuentas fallidas esperadas antes del payout = `(1-q)/q = 9`;
+- probabilidad de >=1 payout dentro de 10 intentos = `1-(1-q)^10 ≈ 65.13%`;
+- dentro de 20 intentos ≈ `87.84%`;
+- dentro de 30 intentos ≈ `95.76%`.
+
+Esto describe intentos independientes. Cohortes copiadas/correlacionadas requieren otro modelo.
+
+### Economics break-even
+
+Si cada evaluation cuesta `F`, existe un coste success-only `A` y el cash neto de un primer payout es `W`, una aproximación de break-even es:
+
+`EV_per_attempt ≈ q*W - F - q*A - other_expected_costs`
+
+Con `q=10%`:
+
+`W_break_even ≈ (F + 0.1*A + other_expected_costs) / 0.1`
+
+El simulador debe utilizar cash real, nunca balance nominal.
+
+### Rol exacto del hardscalping
+
+Bajo martingala pura y terminales monetarios fijos, los adds no aumentan hit probability. Sí pueden:
+
+- reducir tiempo hasta absorción;
+- cambiar qué paths concretos ganan/pierden;
+- adaptar el path a reglas temporales/de consistencia de la prop;
+- aprovechar **conditional mean reversion** si existe.
+
+La hipótesis Gerard relevante pasa a ser:
+
+`P(rebound before tightened stop | adverse state) > fair first-passage probability`
+
+No basta con “el mercado eventualmente revierte”. Debe revertir **antes del stop comprimido y dentro del horizonte permitido**.
+
+### Variable experimental de mean reversion
+
+En cada add state el simulador conoce la probabilidad fair teórica `p_fair`.
+
+Debe poder inyectar:
+
+`delta_reversion = p_real - p_fair`
+
+y barrer, por ejemplo:
+
+- 0 pp — null;
+- +2 pp;
+- +5 pp;
+- +10 pp;
+- +15 pp.
+
+Así se descubre cuánto edge condicional necesita realmente Gerard para cambiar materialmente:
+
+- sequence win probability;
+- pass probability;
+- purchase→payout conversion;
+- cash EV.
+
+### Pregunta central del proyecto
+
+La primera pregunta ya no es:
+
+> ¿Qué estrategia tiene mejor backtest?
+
+Es:
+
+> ¿Qué combinación mínima de geometría de prop + control de riesgo + edge condicional produce una conversión purchase→payout superior al break-even económico?
+
+Sólo después se necesita encontrar una estrategia de mercado que produzca empíricamente ese edge condicional.
+
+
 ## 🧾 D1 — Gerard García: extracción del curso v0
 
 **Fuente:** brain dump + re-visionado reciente del curso privado por el owner + captura de la tabla de riesgo variable. Estado: `GERARD_V1_EXTRACTED / OBJECTIVIZATION_REQUIRED`.
@@ -1160,6 +1285,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — D3 diseño abstracto iniciado: separadas SignalModel, IntraTradeManager, InterTradeRiskPolicy, PropRuleSet, ExecutionCostModel, BacktestEngine y PropEconomicsSimulator.
 - **2026-09-24** — D3 replanteado a simulation-first: se pospone market data. Primero se probará toda la tesis con L0 Bernoulli, L1 random-walk y L2 synthetic-edge, luego lifecycle de props, variable risk y cohort correlation. Backtest histórico queda como herramienta posterior de calibración/falsificación, no prerrequisito.
 - **2026-09-24** — Cerrada discusión matemática del add bajo null model: nueva probabilidad condicional sí, nueva moneda 50/50 no. Ejemplo +100/-100 con add en -30 y size 1+1 produce TP +35, SL -65; desde -30 la probabilidad condicional es 35%, y la probabilidad total sigue exactamente 50%. Se añade este resultado como acceptance test del simulador.
+- **2026-09-24** — Reformulada tesis alrededor de `purchase→first-payout conversion`. Bajo null model estático +3000/-2000, first-passage da 40% de pass; encadenar estados evaluation/funded puede producir conversiones del orden 10–16% aun sin asumir edge, antes de reglas/costes reales. El simulador deberá medir cuánto destruyen o mejoran ese bound las reglas reales y conditional mean reversion.
 
 ## 🧭 Decisiones
 
@@ -1178,6 +1304,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Simulation-first:** antes de datos reales se construye un Monte Carlo completo con Bernoulli ladder como upper-bound, random-walk path como null model canónico, edge sintético 55–65%, hardscalping, prop lifecycle y cohort correlation.
 - **2026-09-24 — No asumir independencia por add ni por cuenta:** escaladas dentro del mismo path son condicionales; cuentas copiadas desde la misma Reference están altamente correlacionadas.
 - **2026-09-24 — Invariante martingala:** con mercado sin drift y outcomes monetarios terminales fijos +G/-L, el sizing dinámico no cambia la probabilidad total de éxito; `P(win)=L/(G+L)`. El recovery sólo puede aportar edge si existe estructura condicional, cambia la distribución terminal o explota no-linealidades de la prop.
+- **2026-09-24 — Tesis matemática principal:** Echo Futures se modela primero como gambler's ruin + absorbing Markov chain + stochastic control sobre reglas de fondeo. La métrica crítica es `purchase→first-payout conversion`; 10% equivale a 10 evaluations esperadas por payout bajo intentos independientes.
 
 ## 🔗 Docs / Links
 
