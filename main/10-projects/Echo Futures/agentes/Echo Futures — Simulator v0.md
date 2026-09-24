@@ -34,7 +34,7 @@ updated: "2026-09-24"
 
 ## 📊 Estado actual
 
-- **SHOT 2 (auditoría independiente) en curso (T2.1 WIP).** G4A aceptado por owner (despacho Shot 2, 2026-09-24); commit bajo auditoría `ad7fe609c8b6503cdc7b803d5c33d8eb3efdcff9`.
+- **G4B_REVIEW (Shot 2 auditoría independiente completa, esperando aceptación del owner).** Código congelado en `ad7fe609c8b6503cdc7b803d5c33d8eb3efdcff9` (sin cambios; sin remote). Veredicto auditoría: sin blockers ni majors; 2 MINOR + 3 INFO; PASS_FOR_SHOT_3.
 - Matemática cerrada en [[echo-futures-astra-math-review]].
 - Funcional congelado en [[D4 — Simulator v0 Functional SPEC]].
 - Técnico congelado en [[D4 — Simulator v0 Technical SPEC]].
@@ -44,6 +44,16 @@ updated: "2026-09-24"
   - `sim validate --runs 1000000 --seed 42`: **47/47 PASS** (T1–T8 + invariantes) en ~6.5 s; dos corridas byte-identical (JSON).
   - Sample `simulate` (t2, 1M): pWin 0.4995, pReachAdd 0.7694 (10/13), pWinGivenAdd 0.3495. Sample `simulate` lifecycle (200k): pPass 0.401, pFundedGivenPass 0.2487, q 0.0997, meanCash 19.55. Sample `cohort` (100k): meanAttempts 10.009, meanFailures 9.009, P50=7, P95=29, payoutWithin10 0.6523.
   - Limitations documentadas en README (null driftless sin costes/slippage, barreras estáticas, edge one-shot, cohort IID, float64, sólo first payout).
+- **Evidencia Shot 2 (2026-09-24, auditoría independiente @ ad7fe60):**
+  - Reproducción: `go test ./...` PASS, `go test -race ./...` PASS, coverage 96.0% `internal/sim`, `validate` 1M seed 42 → 47/47 PASS y **byte-idéntico** (texto diff vacío, JSON `cmp` idéntico) en dos corridas; `go vet` limpio.
+  - Checks independientes con DP exacto de primer paso escrito desde cero (sin código del engine): T2 total 1/2, condicional 35/100, reach 10/13; T3 total 1/2, post-add1 0.4, post-add2 1/5, barreras 40/3 y −160/3, reach escalera completa 5/8, AddsUsed=2; T8 total 15/26, condicional 0.45, E[X]=200/13, reach invariante 10/13; todos contra MC 200k dentro de 5σ.
+  - Lifecycle: identidad por buckets `meanCash == (failEval·(−110) + passThenFail·(−160) + payouts·1340)/runs` exacta; ledgers forzados −110/−160/+1340; activación cobrada al PASAR; J≤I.
+  - Cohort: `meanFailures == meanAttempts − payoutFraction` exacto; identidad `meanCash = meanAttempts·(−(F+C)) + meanActivations·(−A) + payoutFraction·W` exacta; censura al cap correcta; payoutWithin sobre todos los cohortes; ledger enumerado 3 intentos (cash 1070).
+  - Event priority: empates exactos fase>trade>add verificados; frontera epsilon medida (0.5×tol → fase, 2×tol → trade; ~1e-7 absoluto a escala 100).
+  - Synthetic edge: armado sólo tras último add ejecutado (add inalcanzable + delta=1.0 corre limpio y byte-igual a null); delta=0 mismo consumo RNG; pEff fuera de [0,1] hard-error en ambos signos sin clipping; sin fuga entre trades; re-arm por trade documentado.
+  - Config: matriz 50+ casos NaN/Inf/órdenes/deltas/caps/JSON estricto → todo fail-closed.
+  - Property tests: self-financing aleatorio 5000/5000, kernel bounds 10k/10k, optional stopping con 3 escaleras aleatorias ×100k (pWin 0.5, E[X] 0) — PASS.
+  - Arnés de auditoría: `internal/sim/audit_shot2_test.go` (UNTRACKED, sha256 prefijo 63fbfaa19d249c2e; 11/11 tests PASS; no toca código congelado; candidata a adopción en Shot 3 o descarte).
 - Echo, Echo Forge, NinjaTrader y market data están fuera de scope. No se tocó ningún otro repo.
 
 ## 🧱 Entrega de desarrollo
