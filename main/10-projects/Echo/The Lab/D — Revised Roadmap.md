@@ -17,7 +17,9 @@ updated: "2026-09-23"
 
 **PLAN VIGENTE (owner 2026-09-23).**
 
-> **Estado D1 — Echo Foundation = PASS (2026-09-23, HEAD `64b616ff` en `feature/d1-echo-foundation-final`).** Gate final 18 criterios + G19/G20 en [[K — Final Correction and Gate D1 (Shot 3)]]; verde salvo 2 regresiones preexistentes certificadas ajenas a D1. D2 sigue siendo carril de integración posterior: **no** se marca D2 PASS ni se afirma integración Forge.
+> **Estado D1 — Echo Foundation = PASS (2026-09-23, HEAD `64b616ff` en `feature/d1-echo-foundation-final`).** Gate final 18 criterios + G19/G20 en [[K — Final Correction and Gate D1 (Shot 3)]]; verde salvo 2 regresiones preexistentes certificadas ajenas a D1.
+>
+> **D1 SOURCE INTEGRATED TO MASTER (2026-09-23): `master@8adce7ec`** en `xKoRx/echo` (remoto). Integración conservadora sin history rewrite del harvest certificado `22b26716` (implementación + Shot 3 + regresiones + E2E por SPEC) junto al fix Bridge vigente; gates G1–G10 verdes sobre el SHA exacto pusheado; detalles y evidencia en [[N — Master Integration D1]]. **No marcado:** deployed, runtime DEV verificado, PROD, migración 064 aplicada a bases reales, ni D2 PASS. D2 sigue siendo carril de integración posterior: **no** se marca D2 PASS ni se afirma integración Forge.
 
 The Lab es un subproducto analítico de Echo. La autoridad durable de estrategia e historia pertenece a Echo; Lab consume operaciones canónicas y posee únicamente curvas, puntos, métricas, dashboard/screener y derivados posteriores.
 
