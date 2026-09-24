@@ -5,7 +5,7 @@ status: active
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 created: 2026-09-20
-updated: 2026-09-22
+updated: 2026-09-23
 aliases:
   - Five-POC continuity
   - Polymarket Engine handoff
@@ -19,6 +19,9 @@ tags:
 # Polymarket Engine — Continuidad Five-POC (cierre 2026-09-20)
 
 ## Propósito
+
+> [!danger] PROJECT_FROZEN_OWNER_2026_09_23 — NO CONTINUAR AUTOMÁTICAMENTE
+> El owner congeló Polymarket Engine el 2026-09-23 y prioriza [[Echo Futures]]. El engine queda preservado en `master@09e8c7610f29a35f8080122b7cb4219b9866ebd7` / código `66486ac99a4606d5dc2b44757ac0722a6baa5415`. HCA-1 de Astra no fue implementado; H01–H11 siguen NOT_RUN; OOS sellado; `REAL_FEE_READY=false`; `LIVE_DISABLED`. Esta nota conserva historial, pero ya no define “próxima sesión” activa. Para retomar, leer primero el freeze del padre y [[Polymarket Engine — Historical Causality Architecture Audit]] y exigir mandato explícito del owner. No reactivar POCs, Sports Week, research, compra de datos, backtests ni live por inferencia.
 
 > [!important] PUNTO DE ENTRADA PARA LA PRÓXIMA SESIÓN
 > Esta nota es un **handoff de continuidad y tareas**, no una nueva SPEC ni sustituto del proyecto padre. Leer primero [[Polymarket Engine — MVP]], esta nota y [[Polymarket Engine — Five-POC Guía Operativa 2026-09-20]]. Fuente del cierre: reporte ejecutor del 2026-09-20, registrado en [[2026-09-20-polymarket-fivepoc-final-closure]] y recursos del dominio. Las evidencias ejecutables viven en **el repo local del engine**, no en este vault. Cualquier SHA/resultado se debe volver a verificar al retomar; esta nota no afirma haber corrido comandos en la sesión documental.
