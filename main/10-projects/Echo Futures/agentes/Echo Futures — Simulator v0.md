@@ -34,18 +34,23 @@ updated: "2026-09-24"
 
 ## 📊 Estado actual
 
-- READY_FOR_SHOT_1.
+- **G4A_REVIEW (Shot 1 completo, esperando aceptación del owner).** Código implementado, tests y validación 1M verde; sin remote (no autorizado).
 - Matemática cerrada en [[echo-futures-astra-math-review]].
 - Funcional congelado en [[D4 — Simulator v0 Functional SPEC]].
 - Técnico congelado en [[D4 — Simulator v0 Technical SPEC]].
-- Repo remoto `xKoRx/echo-futures` no existe al congelar el plan; Shot 1 puede crear un repo/módulo local aislado. No crear/push remote sin autoridad explícita o remote preexistente.
-- Echo, Echo Forge, NinjaTrader y market data están fuera de scope.
+- **Evidencia Shot 1 (2026-09-24):**
+  - Repo local aislado: `~/aranea/work/echo-futures-simulator-v0-20260924/echo-futures`, branch `master`, HEAD `ad7fe609c8b6503cdc7b803d5c33d8eb3efdcff9`, Go 1.27.1 linux/amd64, módulo `github.com/xKoRx/echo-futures`, sin dependencias externas, sin remote.
+  - `go test ./...` PASS · `go test -race ./...` PASS · coverage `internal/sim` **96.0%** (core nuevo; total 95.9%).
+  - `sim validate --runs 1000000 --seed 42`: **47/47 PASS** (T1–T8 + invariantes) en ~6.5 s; dos corridas byte-identical (JSON).
+  - Sample `simulate` (t2, 1M): pWin 0.4995, pReachAdd 0.7694 (10/13), pWinGivenAdd 0.3495. Sample `simulate` lifecycle (200k): pPass 0.401, pFundedGivenPass 0.2487, q 0.0997, meanCash 19.55. Sample `cohort` (100k): meanAttempts 10.009, meanFailures 9.009, P50=7, P95=29, payoutWithin10 0.6523.
+  - Limitations documentadas en README (null driftless sin costes/slippage, barreras estáticas, edge one-shot, cohort IID, float64, sólo first payout).
+- Echo, Echo Forge, NinjaTrader y market data están fuera de scope. No se tocó ningún otro repo.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo-futures (create/local if remote absent) | master | empty/new repo | [[D4 — Simulator v0 Functional SPEC]] | [[D4 — Simulator v0 Technical SPEC]] | READY_FOR_SHOT_1 |
+| xKoRx/echo-futures (local, sin remote) | master | empty/new repo | [[D4 — Simulator v0 Functional SPEC]] | [[D4 — Simulator v0 Technical SPEC]] | G4A_REVIEW @ ad7fe60 |
 
 ## Matriz requirement → evidence
 
@@ -54,7 +59,7 @@ updated: "2026-09-24"
 | Matemática first-passage/optional stopping | done | [[echo-futures-astra-math-review]] MATH_GO |
 | Behavior v0 | done | [[D4 — Simulator v0 Functional SPEC]] |
 | Technical contract v0 | done | [[D4 — Simulator v0 Technical SPEC]] |
-| Repo code | missing | Shot 1 |
+| Repo code | done | `echo-futures` @ master ad7fe60 (kernel/trade/lifecycle/cohort/CLI + README + scenarios) |
 | Independent audit | blocked | Shot 2 after G4A review |
 | Corrections/certification | blocked | Shot 3 after G4B review |
 
@@ -73,7 +78,7 @@ updated: "2026-09-24"
 
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
-| G4A — Implementation | pending | implement, run all tests, move to review | T1–T8 + invariants + coverage + commit | Shot 2 |
+| G4A — Implementation | **review** | implement, run all tests, move to review | T1–T8 + invariants + coverage + commit | Shot 2 |
 | G4B — Independent audit | pending | adversarially review code/results, move to review | audit findings/reproduction | Shot 3 |
 | G4C — Certified v0 | pending | fix only accepted findings, rerun evidence, move to review | clean T1–T8 + audit closure | D5 |
 
