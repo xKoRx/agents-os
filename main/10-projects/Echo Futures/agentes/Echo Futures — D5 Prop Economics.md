@@ -725,3 +725,33 @@ A horizonte no acotado, reportar masa pendiente y extender horizonte hasta cota 
 R1–R6 del review anterior: R1 resuelto por freeze; R2 clasificado ECONOMICS_ONLY; R3 contratos y policies propuestos con B4 abierto; R4 snapshots definidos; R5 diseño entregado, revisión matemática pendiente; R6 structural null zero execution cost propuesto explícitamente. Ningún resultado económico ni ranking de policies fue calculado. Permanece el estado del gate de captura D5.2 hasta aceptación owner; este trabajo no lo acepta por sustitución.
 
 **Handoff autorizado ahora:** revisar matemáticamente esta sección y resolver los inputs/fuentes materiales listados. **No iniciar Functional/Technical SPEC, código ni experimentos en este mandato.** `D5_SESSION_MODEL_PASS = REVIEW`. `Next action = MATH_REVIEW`. Agents-OS actualizado: **sí, continuidad y change_log dentro del planner único; core/journal externo/tarea puente intactos por alcance expreso**.
+
+
+## Manager Decision — D5.3 ready for GOD math review — 2026-09-24
+
+**Verdict:** READY_FOR_GOD_MATH_REVIEW. No implementation authorized.
+
+### Manager assessment
+
+- The selected 1D finite-horizon killed-Brownian kernel is the correct class of model to preserve first-event/survival semantics at EOD; counters layered on D4 would be invalid.
+- The technically dangerous surface is the TPT PRO process `(equity, running_max)` with intraday trailing floor and the diagonal/max boundary condition. This must be independently validated before any SPEC freeze.
+- D5 introduces a new sensitivity input absent from D4: session variance `ν`. Under finite horizons, q and day-count outcomes depend on `ν`; D4 cannot identify it. D5 results must therefore be reported as `q_withdraw(ν, TradePolicy, WithdrawalPolicy, calendar, settlement)` until a calibration source is explicitly introduced.
+- The proposed always-in-market/reopen-until-session-close policy is a **scenario trading policy**, not a prop rule. It may be used for structural null experiments only if frozen and labeled as such.
+- TPT remains `ECONOMICS_ONLY` for the automated Echo target; this does not block mathematical comparison but forbids interpreting TPT as an integration candidate.
+- `AllowedRequests` TPT and vendor settlement details do not block the kernel review; they do block final rules completeness / cash-EV certification for TPT.
+- No code, Functional SPEC or Technical SPEC is authorized before math review.
+
+### GOD review must decide
+
+1. correctness/normalization of the finite-horizon 1D killed Brownian kernel and boundary flux formulas;
+2. whether the proposed event-time + surviving-endpoint sampling contract is sufficient and unbiased;
+3. correctness of the `(e,m)` running-maximum formulation for TPT PRO, including the diagonal boundary condition and lock transition;
+4. validity of analytical test S10 and other claimed invariants;
+5. optional-stopping/martingale claims under finite sessions + adaptive bounded adds + forced EOD liquidation;
+6. whether the proposed independent numerical oracle can falsify the production sampler with a defensible error budget;
+7. whether the model is implementable with bounded complexity or should be simplified before SPEC freeze.
+
+### Gate
+
+`D5_SESSION_MODEL_PASS` remains **REVIEW**.
+Next action: **GOD_MATH_REVIEW**.
