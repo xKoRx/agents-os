@@ -73,7 +73,7 @@ sim simulate / sim cohort                                          # D4, unchang
 New D5 commands:
 
 ```text
-sim topstep --scenario <file.json> [--runs N] [--seed N] [--format text|json]
+sim topstep --scenario <file.json> [--runs N] [--cohorts M] [--seed N] [--format text|json]
 sim validate-d5 [--format text|json]        # full D5 fixture suite (S-subset + TS-F01..16)
 sim experiment --matrix <file.json> [--seed N] [--format json]    # 30-point matrix driver
 ```
