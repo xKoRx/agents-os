@@ -57,8 +57,9 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 > **17 cuentas conocidas** entre Axi Select, FTMO, TTP, Orion y WSF.
 > **Inventario detallado:** pendiente de levantar.
 > **Gastos históricos:** pendiente de consolidar.
-> **Retiros / payouts:** pendiente de consolidar.
-> **P&L realizado neto:** no calculable todavía.
+> **Retiros / payouts:** evidencia parcial cargada — Axi Select US$2.178,87 + lote no identificado US$1.619,58 + certificado acumulado Orion US$2.417,58.
+> **Cash-in confirmado sin doble conteo:** **US$4.596,45 mínimo**; **US$6.216,03 máximo provisional** si el lote de 4 pagos no pertenece a Orion.
+> **P&L realizado neto:** no calculable todavía porque faltan gastos históricos y resolver el origen del lote no identificado.
 > **Expansión:** posible compra de aproximadamente 10 cuentas adicionales; se registra como pipeline, **no como activo existente**.
 
 > [!warning]+ Regla contable clave
@@ -69,7 +70,7 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 | Métrica | Valor actual | Regla |
 |---|---:|---|
 | Cash gastado acumulado | Pendiente | Compras + resets + activaciones + fees + tooling atribuible |
-| Cash retirado acumulado | Pendiente | Sólo payouts efectivamente recibidos |
+| Cash retirado acumulado | **US$4.596,45 mínimo confirmado** | Axi US$2.178,87 + Orion acumulado US$2.417,58; lote no identificado de US$1.619,58 no se suma hasta descartar solapamiento |
 | **P&L realizado neto** | Pendiente | retiros − gastos |
 | Capital propio comprometido | Pendiente | dinero propio aún expuesto/no recuperado |
 | Cuentas existentes | **17** | inventario físico, cualquier estado |
@@ -87,7 +88,7 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 | Axi Select | Pendiente | Por levantar | Broker/programa |
 | FTMO | Pendiente | Por levantar | Prop |
 | TTP | Pendiente | Por levantar | The Trading Pit |
-| Orion | Pendiente | Por levantar | Prop |
+| Orion | Pendiente | Payout acumulado acreditado | Certificado Overall Rewards: **US$2.417,58** al 2026-09-23; falta desglose por pago |
 | WSF | Pendiente | Por levantar | Nombre/entidad exacta a normalizar al inventariar |
 | **Total conocido** | **17** | Parcial | Distribución por firma pendiente |
 
@@ -191,7 +192,35 @@ Categorías iniciales: `challenge`, `activation`, `reset`, `subscription`, `comm
 
 | Fecha | Firma | Cuenta / grupo | Tipo | Moneda original | Bruto | Fees | Neto recibido | Medio | Evidencia | Nota |
 |---|---|---|---|---|---:|---:|---:|---|---|---|
-| — | — | — | payout | — | — | — | — | — | — | Pendiente de carga |
+| 2026-01 | Axi Select | Pendiente | payout | USD | 1.038,72 | Pendiente | 1.038,72* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *monto visible tratado como neto provisional |
+| 2026-02 | Axi Select | Pendiente | payout | USD | 43,90 | Pendiente | 43,90* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
+| 2026-03 | Axi Select | Pendiente | payout | USD | 592,30 | Pendiente | 592,30* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
+| 2026-04 | Axi Select | Pendiente | payout | USD | 436,79 | Pendiente | 436,79* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
+| 2026-07 | Axi Select | Pendiente | payout | USD | 63,56 | Pendiente | 63,56* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
+| 2026-08 | Axi Select | Pendiente | payout | USD | 3,60 | Pendiente | 3,60* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
+| 2026-04-01 | **Firma pendiente** | Pago 132082 | payout | USD | 80,92 | Pendiente | 80,92* | Pendiente | Captura listado de pagos, estado Completed | ID 132082; firma no visible en la evidencia |
+| 2026-05-11 | **Firma pendiente** | Pago 133971 | payout | USD | 652,60 | Pendiente | 652,60* | Pendiente | Captura listado de pagos, estado Completed | ID 133971; firma no visible en la evidencia |
+| 2026-08-24 | **Firma pendiente** | Pago 136965 | payout | USD | 571,22 | Pendiente | 571,22* | Pendiente | Captura listado de pagos, estado Completed | ID 136965; firma no visible en la evidencia |
+| 2026-09-16 | **Firma pendiente** | Pago 137652 | payout | USD | 314,84 | Pendiente | 314,84* | Pendiente | Captura listado de pagos, estado Completed | ID 137652; firma no visible en la evidencia |
+
+**Subtotal Axi Select visible:** **US$2.178,87**.
+
+**Subtotal lote de 4 pagos con firma pendiente:** **US$1.619,58**.
+
+> [!warning]+ Control de doble conteo — Orion
+> El certificado de Orion del 2026-09-23 acredita **Overall Rewards = US$2.417,58**. Se registra como **total acumulado reconciliable**, no como una quinta transacción del ledger, porque todavía no sabemos si los cuatro pagos con IDs 132082/133971/136965/137652 pertenecen a Orion y están incluidos en ese acumulado.
+
+### Reconciliaciones de payouts
+
+| Firma / fuente | Corte | Total acreditado | Tratamiento actual | Pendiente |
+|---|---|---:|---|---|
+| Axi Select | 2026-08 | **US$2.178,87** | Suma de 6 pagos visibles; aditivo | Asociar a cuentas y confirmar fees/neto |
+| Orion | 2026-09-23 | **US$2.417,58** | Total acumulado certificado; aditivo respecto de Axi, no desglosado | Obtener eventos individuales |
+| Firma pendiente — pagos 132082/133971/136965/137652 | 2026-09-16 | **US$1.619,58** | **No aditivo todavía** por posible solapamiento con Orion | Identificar firma |
+
+**Cash-in confirmado conservador sin doble conteo:** **US$4.596,45** = Axi US$2.178,87 + Orion US$2.417,58.
+
+**Cash-in provisional máximo si el lote pendiente es de otra firma:** **US$6.216,03**.
 
 ### Pipeline de compras
 
@@ -272,7 +301,8 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 
 - [/] Levantar inventario de las 17 cuentas actuales #owner/me #type/admin #area/personal
 - [ ] Cargar compras, activaciones, resets y otros gastos históricos #owner/me #type/admin #area/personal
-- [ ] Cargar payouts/retiros históricos con monto neto efectivamente recibido #owner/me #type/admin #area/personal
+- [/] Cargar payouts/retiros históricos con monto neto efectivamente recibido #owner/me #type/admin #area/personal
+- [ ] Identificar la firma de los pagos 132082, 133971, 136965 y 137652 y descartar/confirmar solapamiento con Orion #owner/me #type/admin #area/personal
 - [ ] Reconciliar gastos e ingresos y calcular P&L realizado + break-even #owner/me #type/admin #area/personal
 - [ ] Clasificar cuentas por estado y separar capacidad nominal de valor líquido #owner/me #type/admin #area/personal
 - [ ] Definir moneda base del dashboard y política de conversión histórica #owner/me #type/admin #area/personal
@@ -281,6 +311,7 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 
 ## 📆 Bitácora
 
+- **2026-09-23** — Primera evidencia de payouts cargada: 6 pagos Axi Select por US$2.178,87; 4 pagos Completed por US$1.619,58 con firma aún no visible; certificado Orion Overall Rewards por US$2.417,58. Para no inflar resultados, Orion se mantiene como acumulado reconciliable y el lote no identificado no se suma hasta resolver posible solapamiento. Cash-in conservador confirmado: US$4.596,45; máximo provisional si el lote es independiente: US$6.216,03.
 - **2026-09-23** — Proyecto creado. Se conoce un universo inicial de 17 cuentas repartidas entre Axi Select, FTMO, TTP, Orion y WSF; detalle por cuenta, gastos y payouts pendiente de inventario. Se deja pipeline separado para una posible expansión de ~10 cuentas.
 
 ## 🧭 Decisiones
