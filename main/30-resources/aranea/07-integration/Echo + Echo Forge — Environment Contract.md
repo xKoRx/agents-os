@@ -58,7 +58,7 @@ Fuente canónica **de los modelos de ambiente de Echo y Echo Forge** en Aranea: 
 
 **Operacional (Forge):** ejecutar campañas, certificaciones y validaciones físicas de Forge sobre su ambiente operacional único (§0) es el uso normal del sistema, no una mutación PROD a justificar. Lo que sigue gated: intervenir recursos de flota activa (reinicios, drenes, reemplazo de releases/instalaciones compartidas, keys y datasets de flota) exige ownership/ventana propia; y trading live, cuentas reales u órdenes económicas exigen autorización owner independiente (§0).
 
-### 2. Topología objetivo DEV — decisiones del owner; no certificación AS-BUILT
+### 2. Topología objetivo DEV (track Echo y workspace/builds) — decisiones del owner; no certificación AS-BUILT; el runtime operacional de Forge se rige por §0
 
 | Componente | Destino objetivo | Estado físico de esta decisión |
 |---|---|---|
