@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint: 2026-09-24
 start: 2026-09-24
 due: 2026-09-24
-progress: 90
+progress: 100
 repo: "xKoRx/echo-futures"
 jira:
 prs:
@@ -34,7 +34,17 @@ updated: "2026-09-24"
 
 ## 📊 Estado actual
 
-- **G4B ACCEPTED / READY_FOR_SHOT_3.** Auditoría independiente sobre `ad7fe609c8b6503cdc7b803d5c33d8eb3efdcff9`: cero BLOCKER/MAJOR; SF2-01 y SF2-02 MINOR aceptados para corrección; SF2-03..05 INFO documentales. Owner acepta G4B el 2026-09-24 y habilita Shot 3.
+- **G4C_REVIEW / SHOT 3 COMPLETO.** Commit de certificación `d4f42a41946f12231b75e4eb65b90d132731be0d` sobre `ad7fe60`: SF2-01 y SF2-02 corregidos, SF2-05 resuelto vía validación CLI, SF2-03/04 documentados, arnés de auditoría Shot 2 adoptado como tests permanentes. Sólo el owner puede aceptar G4C.
+- **Evidencia Shot 3 (2026-09-24, HEAD `d4f42a4`):**
+  - `go fmt` limpio · `go vet` limpio · `go test ./...` PASS · `go test -race ./...` PASS · coverage `internal/sim` **96.1%**.
+  - `sim validate --runs 1000000 --seed 42`: **47/47 PASS**; dos corridas JSON 1M byte-identical (sha256 `c703a37d…`).
+  - SF2-01: `stubRng` stateful con pointer receiver (`internal/sim/validation.go`); regresiones `TestStubRngStatefulMultiValue` ([0.2, 0.9] → 0.2 luego 0.9) y `TestStubRngMultiValueForcedLifecyclePath` (path forzado PASS_THEN_FAIL cash −160).
+  - SF2-02: `pFundedGivenPass = 0` cuando `passes = 0` (`internal/sim/lifecycle.go`); regresiones `TestZeroPassPundedGivenPassIsZero` y `TestCLIZeroPassLifecycleJSON` (runs=1 seed=1 → exit 0, JSON válido sin NaN).
+  - SF2-05: `validateSeed` rechaza seed > MaxInt64 con error preciso en validate/simulate/cohort (flag y scenario JSON); frontera MaxInt64 aceptada; límite documentado en README.
+  - SF2-03: re-arm del edge por trade documentado (README + comentario contractual en `internal/sim/trade.go`) y protegido por `TestAuditSyntheticEdgeSemantics` (sin fuga a trade 2; re-arm sólo con escalera propia).
+  - SF2-04: limitación del epsilon de empates documentada en README (frontera medida ~1e-7 absoluto a escala 100; prioridad congelada phase > trade > add intacta).
+  - Arnés Shot 2 adoptado en `internal/sim/audit_shot2_test.go` (trackeado): 11/11 PASS (T2/T3/T8 exactos con DP independiente, T6 cash identities, event priority/epsilon, edge semantics, cohort identities, matriz de config, propiedades self-financing/kernel/optional-stopping).
+  - Samples idénticos a Shot 1 (sin cambio estadístico material): t2 1M seed 42 pWin 0.499499 / reach 0.769441 / cond 0.349526; lifecycle 200k pPass 0.401025 / pFundedGivenPass 0.2487 / q 0.099735 / meanCash 19.5512; cohort 100k meanAttempts 10.0093 / P50 7 / P95 29 / payoutWithin10 0.65234.
 - Matemática cerrada en [[echo-futures-astra-math-review]].
 - Funcional congelado en [[D4 — Simulator v0 Functional SPEC]].
 - Técnico congelado en [[D4 — Simulator v0 Technical SPEC]].
@@ -291,7 +301,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 > - [x] T1.7 ejecutar test/race/coverage/1M validation y commit #owner/agent #type/dev #area/echo
 > - [x] T1.8 dejar G4A review + handoff #owner/agent #type/dev #area/echo
 > - [x] T2.1 auditoría independiente Shot 2 #owner/agent #type/pr-review #area/echo
-> - [/] T3.1 corrección/certificación Shot 3 #owner/agent #type/dev #area/echo
+> - [x] T3.1 corrección/certificación Shot 3 #owner/agent #type/dev #area/echo
 
 ## 📆 Bitácora
 
