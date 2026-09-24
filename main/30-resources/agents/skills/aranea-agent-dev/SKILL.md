@@ -5,7 +5,7 @@ name: aranea-agent-dev
 description: Router exclusivo del dominio Aranea homelab para trabajo de desarrollo y operación del agente. Cargar para Echo, Echo Forge, Hermes, mcps, backups o red; acceso MCP sólo por aranea-mcps-expert, nunca MELI.
 scope: area
 created: "2026-09-12"
-updated: "2026-09-20"
+updated: "2026-09-24"
 area: "[[Aranea]]"
 entities:
   - "[[Aranea]]"
@@ -39,7 +39,7 @@ tags:
 
 Dominio exclusivo del homelab Aranea. Fija boundary del dominio, carga preferencias scoped y enruta hacia acceso MCP y skills de dominio. Las capabilities `aranea-*` (13 registradas al 2026-09-17: SSH, PostgreSQL RO/RW, Mongo Forge RO/RW, Hasura PROD/DEV, Kafka DEV, Flink DEV, observabilidad ARGUS RO, Temporal RO, MinIO RO, etcd RO) pertenecen **exclusivamente** a este dominio; selección, estado y procedimientos en [[aranea-mcps-expert]], no duplicar el inventario aquí ni habilitar en MELI. El gateway Telegram de Hermes NO es automáticamente un MCP Telegram para coding agents.
 
-**Trigger:** trabajo sobre hosts/servicios Aranea, Hermes Agent, Echo/Echo Forge DEV o PROD, appliance `mcps`, backups/DR, red del homelab o capability `aranea-*`. **No trigger:** MELI/corporativo (→ [[meli-agent-dev]]) ni trabajo puramente local sin infra Aranea.
+**Trigger:** trabajo sobre hosts/servicios Aranea, Hermes Agent, Echo (DEV/PROD), Echo Forge (ambiente operacional único), appliance `mcps`, backups/DR, red del homelab o capability `aranea-*`. **No trigger:** MELI/corporativo (→ [[meli-agent-dev]]) ni trabajo puramente local sin infra Aranea.
 
 ## Minimal Read
 
@@ -55,7 +55,7 @@ Dominio exclusivo del homelab Aranea. Fija boundary del dominio, carga preferenc
 1. Confirmar que el target es Aranea. Si es MELI/corporativo, STOP antes de cargar documentación/conectar y swap explícito a [[meli-agent-dev]].
 2. Si la entidad/tarea es Echo o Echo Forge, **MUST READ** [[Echo + Echo Forge — Environment Contract]] en cold start o entity swap, incluso para planificación, review o análisis que pueda orientar operaciones. La lectura sigue al bootstrap canónico y no lo reemplaza; no repetirla en cada turno cálido salvo invalidación. Si la nota falta, es contradictoria o no se puede recuperar, permitir lectura/trabajo local pero bloquear la mutación de infraestructura afectada hasta resolver ambiente y autoridad.
 3. Cargar preferencias scoped, luego página de dominio pertinente desde índice; no escanear todo el vault.
-4. Antes de cualquier operación Echo/Forge, determinar DEV/PROD, target, permisos OS/MCP, resources/queues/identidad, ownership, blast radius y estado runtime real. DEV es default para desarrollo; PROD nunca es fallback. Si una configuración DEV o una ruta de worker compartido no demuestra aislamiento, STOP de la mutación afectada. La lectura del contrato no concede permiso de ejecución.
+4. Antes de cualquier operación Echo/Forge, resolver ambiente según el modelo de producto del contrato §0, más target, permisos OS/MCP, resources/queues/identidad, ownership, blast radius y estado runtime real. **Echo:** DEV es default para desarrollo y PROD nunca es fallback. **Echo Forge:** tiene UN solo ambiente operacional (production, flota SQX Zeus/Hera/Kronos + worker Windows Kronos); `ENV=production` es su ambiente canónico, no un fallback/defecto, y sus pruebas físicas se ejecutan ahí — no se construye un DEV paralelo ni se exige SQX/licencia en Daedalus (Daedalus es workspace/builds). La seguridad la da el scope y el ownership del recurso (aislamiento de candidatos por cola/prefijo/instancia, flota activa intacta); el dinero real sigue siendo gate owner independiente. Si una configuración o una ruta de worker compartido no demuestra lo que el contrato exige, STOP de la mutación afectada. La lectura del contrato no concede permiso de ejecución.
 5. Hermes como runtime/target: [[hermes-agent-operator]]. Si Hermes sólo opera `mcps`/Daedalus/otro servicio, usar skill del target y no confundir actor con target.
 6. Acceso MCP: activar [[aranea-mcps-expert]], elegir ambiente PROD/DEV/runtime ANTES de capability y autoridad mínima, verificar cliente concreto Cursor/ZCode/Codex, cargar runbook de familia. Esta skill no abre MCP por su cuenta.
 7. Para plugins SQX/troubleshooting Echo Forge/WFM, usar skills app-owned de `xKoRx/symphony/.agents/skills/`; delegan MCP al router aquí y no duplican tokens/endpoints. Runbooks operativos son lazy-load, no parte de lectura mínima.
@@ -65,7 +65,7 @@ Dominio exclusivo del homelab Aranea. Fija boundary del dominio, carga preferenc
 ```text
 Dominio:            aranea
 Target:             <host/servicio/app> | NO_DEMOSTRADO
-Ambiente Echo/Forge:<DEV|PROD|NO_DETERMINADO|no aplica>
+Ambiente Echo/Forge:<DEV|PROD|FORGE_OPERACIONAL|NO_DETERMINADO|no aplica>
 Contrato Echo/Forge:<leído|reutilizado|bloqueado|no aplica>
 Prefs:              aranea-operations
 Hermes target:       <sí → hermes-agent-operator | no>
@@ -79,7 +79,7 @@ Dominio rechazado:  <ninguno | meli/local + motivo>
 - Todas las `aranea-*` pasan por [[aranea-mcps-expert]] y quedan fuera de MELI/corporativo.
 - Echo/Forge exige lectura scoped del contrato de ambientes en cada sesión nueva o cambio de entidad; no duplicar su topología ni cargarla globalmente para otros proyectos.
 - Hermes como target usa [[hermes-agent-operator]]; no activarla sólo porque Hermes opera otro target.
-- Ambiente antes que autoridad; RO PROD no se amplía ni se sustituye con DEV para obtener permiso. PROD no es fallback de DEV. `approvalPolicy=auto` no es aprobación humana.
+- Ambiente antes que autoridad; RO PROD no se amplía ni se sustituye con DEV para obtener permiso. PROD no es fallback de DEV. `approvalPolicy=auto` no es aprobación humana. Para Forge, “producción” es su único ambiente operacional (contrato §0): no se clasifica como defecto ni se evita construyendo DEV; lo gated es flota activa sin ownership y cualquier autorización económica.
 - Un worker compartido, un clon Windows o un endpoint aparentemente DEV no implican aislamiento certificado. La ausencia de evidencia no autoriza mutación.
 - No mezclar documentación/bearers/repos MELI y Aranea; hacer swap explícito de dominio.
 - No copiar skills/router/runbooks federados a `80-agents/skills/` ni a repos de clientes; el vault cura y el repo owner posee su documentación específica.
