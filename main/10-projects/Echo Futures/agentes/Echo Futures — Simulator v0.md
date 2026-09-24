@@ -70,7 +70,7 @@ updated: "2026-09-24"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo-futures (local, sin remote) | master | empty/new repo | [[D4 — Simulator v0 Functional SPEC]] | [[D4 — Simulator v0 Technical SPEC]] | G4A_REVIEW @ ad7fe60 |
+| xKoRx/echo-futures (local, sin remote) | master | empty/new repo | [[D4 — Simulator v0 Functional SPEC]] | [[D4 — Simulator v0 Technical SPEC]] | G4C_REVIEW @ d4f42a4 |
 
 ## Matriz requirement → evidence
 
@@ -80,8 +80,8 @@ updated: "2026-09-24"
 | Behavior v0 | done | [[D4 — Simulator v0 Functional SPEC]] |
 | Technical contract v0 | done | [[D4 — Simulator v0 Technical SPEC]] |
 | Repo code | done | `echo-futures` @ master ad7fe60 (kernel/trade/lifecycle/cohort/CLI + README + scenarios) |
-| Independent audit | done | Shot 2 @ ad7fe60: sin blockers/majors; findings SF2-01/02 (MINOR) y SF2-03/04/05 (INFO); G4B review |
-| Corrections/certification | blocked | Shot 3 after G4B review |
+| Independent audit | done | Shot 2 @ ad7fe60: sin blockers/majors; findings SF2-01/02 (MINOR) y SF2-03/04/05 (INFO); G4B accepted |
+| Corrections/certification | done | Shot 3 @ d4f42a4: fixes SF2-01/02 + SF2-05 validado + SF2-03/04 documentados + arnés adoptado; gate completo verde; G4C review |
 
 ## Decisiones
 
@@ -102,7 +102,7 @@ updated: "2026-09-24"
 |---|---|---|---|---|
 | G4A — Implementation | **accepted** (owner dispatch Shot 2, 2026-09-24) | implement, run all tests, move to review | T1–T8 + invariants + coverage + commit | Shot 2 |
 | G4B — Independent audit | **accepted** (owner, 2026-09-24) | adversarially review code/results, move to review | findings SF2-01..05 + reproducción + arnés 11/11 | Shot 3 |
-| G4C — Certified v0 | pending | fix only accepted findings, rerun evidence, move to review | clean T1–T8 + audit closure | D5 |
+| G4C — Certified v0 | **review** (agent, 2026-09-24 @ d4f42a4) | fix only accepted findings, rerun evidence, move to review | clean T1–T8 + audit closure | D5 |
 
 ## Roadmap / phase packages
 
@@ -310,6 +310,7 @@ Corregir únicamente findings válidos de Shot 2 y certificar v0.
 - **2026-09-24** — SHOT 1 COMPLETO, **G4A → review**. Commit `ad7fe609c8b6503cdc7b803d5c33d8eb3efdcff9` (21 archivos, árbol limpio, sin remote/push). Gates: `go test ./...` PASS; `go test -race ./...` PASS; coverage `internal/sim` 96.0%; `sim validate --runs 1000000 --seed 42` 47/47 PASS (~6.5 s) y reproducible byte-identical. Samples: simulate t2 1M (pWin 0.4995 / reach 0.7694 / cond 0.3495), simulate lifecycle 200k (pPass 0.401, q 0.0997), cohort 100k (meanAttempts 10.009, P50 7, P95 29). Nota de corrección durante el shot: el .gitignore inicial (`sim` sin anclar) había excluido `cmd/sim` e `internal/sim` del primer commit; detectado y corregido vía amend del commit raíz (repo nuevo, sin remote). Sin desviaciones de SPEC; el único caso ambiguo resuelto fue clasificar salidas de barrera por dirección del evento + equidad alcanzada con epsilon relativo (empates → fase, según prioridad congelada). Shot 2 (auditoría) queda BLOQUEADO hasta aceptación owner de G4A.
 - **2026-09-24** — SHOT 2 COMPLETO (T2.1 DONE), **G4B → review**. G4A aceptado por owner vía despacho; commit auditado `ad7fe60` (árbol congelado, único delta = arnés de auditoría untracked). Reproducción completa: tests/race/coverage 96.0%/validate 1M byte-idéntico. Falsificación fallida: DP independiente de primer paso reproduce T2/T3/T8 al 1e-12, identidad de cash por buckets exacta, empates y epsilon verificados, edge semántica correcta (sin arming en add inalcanzable, sin fuga entre trades, delta=0 byte-null), cohort con identidades exactas y censura correcta, config 100% fail-closed, optional stopping con escaleras aleatorias verde. Findings: **SF2-01 MINOR** `stubRng` con receptor por valor no avanza por la interfaz `randomSource` (scripts multi-valor repiten `values[0]`; hoy invisible porque todos los usos existentes pasan un solo valor; trampa latente para tests futuros); **SF2-02 MINOR** `PFundedGivenPass = 0/0 = NaN` con 0 passes (texto imprime NaN exit 0; JSON falla con mensaje opaco; repro `--runs 1 --seed 1`); **SF2-03 INFO** re-arm del edge es por trade (consistente con SPEC §8.11+§9, documentar en certificación); **SF2-04 INFO** epsilon de empates clasifica diferencias <1e-9 relativo como tie (degenerado, money ≤ tol); **SF2-05 INFO** wrap uint64→int64 en seeds ≥2^63. qBE 0.0866726 explicado: fórmula analítica con `pPass` Monte Carlo observado del stream 6 (0.400177), delta-tolerance correcta → aceptable. Veredicto: **PASS_FOR_SHOT_3**; no se corrigió ningún finding (fuera de scope del shot).
 - **2026-09-24** — **G4B ACCEPTED por owner.** Shot 3 desbloqueado. Correcciones obligatorias: SF2-01 (`stubRng` multi-value) y SF2-02 (`pFundedGivenPass` con 0 passes). SF2-03 queda congelado como comportamiento intencional: synthetic edge se rearma por trade después de ejecutar el último adverse add. SF2-04/05 se documentan; no requieren cambio de engine.
+- **2026-09-24** — SHOT 3 COMPLETO (T3.1 DONE), **G4C → review**. Commit de certificación `d4f42a41946f12231b75e4eb65b90d132731be0d` sobre `ad7fe60` (11 archivos, +897/−15, árbol limpio, sin remote/push). Gate de entrada verificado (G4A/G4B accepted, delta permitido = sólo el arnés untracked). Cierre de findings: **SF2-01** `stubRng` convertido a stateful con pointer receiver + 10 call sites a `&stubRng{}` (el arnés usa su propio auditRng y no cambió); regresiones [0.2, 0.9] en orden y path forzado PASS_THEN_FAIL. **SF2-02** guard `passes == 0 ⇒ pFundedGivenPass = 0` con semántica congelada (el count `passes` conserva la info del denominador); repro runs=1/seed=1 verificado: exit 0, JSON válido, sin NaN. **SF2-05** `validateSeed` en los 3 comandos CLI (flag y scenario JSON): seed > MaxInt64 rechazado con error preciso, frontera MaxInt64 aceptada; sin cambio de firma de librería. **SF2-03/04** documentados (README + comentario en trade.go). Arnés Shot 2 adoptado trackeado (header actualizado a evidencia permanente, import json eliminado; 11/11 PASS). Calidad: fmt/vet limpios, test PASS, race PASS, coverage internal/sim 96.1%, validate 1M seed 42 47/47 PASS, dos JSON 1M byte-identical (sha256 c703a37d…). Samples vs Shot 1: sin cambio estadístico material (t2 pWin 0.499499/reach 0.769441/cond 0.349526; lifecycle pPass 0.401025/pFunded 0.2487/q 0.099735/meanCash 19.5512; cohort meanAttempts 10.0093/P50 7/P95 29/payoutWithin10 0.65234). Limitaciones residuales: funciones de librería aceptan uint64 (el bound MaxInt64 se aplica en el CLI, superficie v0; documentado); epsilon de empates relativo sin aritmética exacta. G4C queda en review — sólo el owner certifica.
 
 ## 🔗 Docs / Links
 
