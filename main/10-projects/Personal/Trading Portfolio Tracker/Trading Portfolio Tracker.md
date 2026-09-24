@@ -55,11 +55,10 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 
 > [!summary]+ Snapshot inicial — 2026-09-23
 > **17 cuentas conocidas** entre Axi Select, FTMO, TTP, Orion y WSF.
-> **Inventario detallado:** pendiente de levantar.
-> **Gastos históricos:** pendiente de consolidar.
-> **Retiros / payouts:** evidencia parcial cargada — Axi Select US$2.178,87 + lote no identificado US$1.619,58 + certificado acumulado Orion US$2.417,58.
-> **Cash-in confirmado sin doble conteo:** **US$4.596,45 mínimo**; **US$6.216,03 máximo provisional** si el lote de 4 pagos no pertenece a Orion.
-> **P&L realizado neto:** no calculable todavía porque faltan gastos históricos y resolver el origen del lote no identificado.
+> **Inventario detallado:** parcial — Orion 6 cuentas históricas / 5 activas; TTP 2 cuentas funded de 50k; resto pendiente.
+> **Gastos históricos:** evidencia parcial cargada — facturas TTP/contexto US$2.237,35 + WSF US$717,50 + Orion estimado conservador US$2.614,01; FTMO/Axi y otros gastos aún faltan.
+> **Cash recibido acreditado en evidencia:** Axi Select US$2.178,87 + TTP/contexto US$1.619,58 + Orion real US$1.782,26 + FTMO pagos visibles US$2.290,15 = **US$7.870,86**. La clasificación payout vs refund sigue parcial.
+> **P&L realizado neto:** todavía no calculable de forma fiable porque faltan gastos históricos completos y separar refunds de trading payouts.
 > **Expansión:** posible compra de aproximadamente 10 cuentas adicionales; se registra como pipeline, **no como activo existente**.
 
 > [!warning]+ Regla contable clave
@@ -69,8 +68,10 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 
 | Métrica | Valor actual | Regla |
 |---|---:|---|
-| Cash gastado acumulado | Pendiente | Compras + resets + activaciones + fees + tooling atribuible |
-| Cash retirado acumulado | **US$4.596,45 mínimo confirmado** | Axi US$2.178,87 + Orion acumulado US$2.417,58; lote no identificado de US$1.619,58 no se suma hasta descartar solapamiento |
+| Cash gastado bruto identificado | **US$5.568,86 parcial** | TTP/contexto US$2.237,35 + WSF US$717,50 + Orion estimado US$2.614,01; faltan Axi/FTMO y otros gastos |
+| Cash recibido acreditado | **US$7.870,86** | Incluye payouts/rewards y refunds; se descompone antes de calcular trading profit |
+| Refunds acreditados | **2 eventos TTP, monto pendiente** | Reducen costo económico, no cuentan como trading profit |
+| Trading payouts confirmados | **≥ US$3.961,13** | Axi US$2.178,87 + Orion US$1.782,26; TTP/FTMO requieren clasificación por tipo |
 | **P&L realizado neto** | Pendiente | retiros − gastos |
 | Capital propio comprometido | Pendiente | dinero propio aún expuesto/no recuperado |
 | Cuentas existentes | **17** | inventario físico, cualquier estado |
@@ -87,9 +88,9 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 |---|---:|---|---|
 | Axi Select | Pendiente | Por levantar | Broker/programa |
 | FTMO | Pendiente | Por levantar | Prop |
-| TTP | Pendiente | Por levantar | The Trading Pit |
-| Orion | Pendiente | Payout acumulado acreditado | Certificado Overall Rewards: **US$2.417,58** al 2026-09-23; falta desglose por pago |
-| WSF | Pendiente | Por levantar | Nombre/entidad exacta a normalizar al inventariar |
+| TTP | **2 funded de 50k** | Parcial | Ambas cuentas han generado refund; montos exactos por asociar a movimientos |
+| Orion | **6 históricas / 5 activas** | Parcial | 2×100k + 3×50k + 1×25k Flash; 1×50k lost por inactividad; payouts reales informados US$1.782,26 |
+| WSF | Pendiente | Parcial | Compras visibles por US$717,50; estados actuales por levantar |
 | **Total conocido** | **17** | Parcial | Distribución por firma pendiente |
 
 ## 🧮 Modelo económico
@@ -162,14 +163,14 @@ Cada cuenta tendrá un ID interno estable aunque cambie su nombre visible.
 
 | ID | Firma | Tipo | Tamaño nominal | Moneda | Fecha compra | Costo inicial | Costos extra | Estado | Balance/equity | Payout eligible | Payout acumulado | Último evento | Evidencia / nota |
 |---|---|---|---:|---|---|---:|---:|---|---:|---|---:|---|---|
-| ACC-001 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
-| ACC-002 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
-| ACC-003 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
-| ACC-004 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
-| ACC-005 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
-| ACC-006 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
-| ACC-007 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
-| ACC-008 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
+| ACC-001 | Orion | Evaluación/programa histórico | 100.000 | USD | — | Est. 569,00 | — | funded | — | — | — | — | Costo estimado con promedio conservador de precios actuales comparables |
+| ACC-002 | Orion | Evaluación/programa histórico | 100.000 | USD | — | Est. 569,00 | — | funded | — | — | — | — | Costo estimado |
+| ACC-003 | Orion | Evaluación/programa histórico | 50.000 | USD | — | Est. 325,67 | — | funded | — | — | — | — | Costo estimado |
+| ACC-004 | Orion | Evaluación/programa histórico | 50.000 | USD | — | Est. 325,67 | — | funded | — | — | — | — | Costo estimado |
+| ACC-005 | Orion | Evaluación/programa histórico | 50.000 | USD | — | Est. 325,67 | — | lost | — | no | — | Inactividad | Cuenta perdida por inactividad; costo se conserva históricamente |
+| ACC-006 | Orion | Flash / proxy actual Zero | 25.000 | USD | — | Est. 499,00 | — | funded | — | — | — | — | Flash no existe como programa actual comparable; se usa Orion Zero 25k como proxy pesimista |
+| ACC-007 | TTP | Funded | 50.000 | USD | — | Pendiente | — | funded | — | — | — | — | Refund recibido; monto por asociar |
+| ACC-008 | TTP | Funded | 50.000 | USD | — | Pendiente | — | funded | — | — | — | — | Refund recibido; monto por asociar |
 | ACC-009 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
 | ACC-010 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
 | ACC-011 | Pendiente | Pendiente | — | — | — | — | — | unknown | — | — | — | — | — |
@@ -184,7 +185,20 @@ Cada cuenta tendrá un ID interno estable aunque cambie su nombre visible.
 
 | Fecha | Firma | Cuenta / grupo | Categoría | Moneda original | Monto original | Monto base | Medio | Evidencia | Nota |
 |---|---|---|---|---|---:|---:|---|---|---|
-| — | — | — | — | — | — | — | — | — | Pendiente de carga |
+| 2025-10-13 | TTP/contexto | Factura 275046 | challenge/fee | USD | 314,10 | 314,10 | Pendiente | Captura factura Paid | Firma inferida por contexto de esta tanda; confirmar |
+| 2025-11-02 | TTP/contexto | Factura 290910 | challenge/fee | USD | 261,75 | 261,75 | Pendiente | Captura factura Paid | Confirmar cuenta asociada |
+| 2025-11-02 | TTP/contexto | Factura 290911 | challenge/fee | USD | 261,75 | 261,75 | Pendiente | Captura factura Paid | Confirmar cuenta asociada |
+| 2025-11-02 | TTP/contexto | Factura 290913 | challenge/fee | USD | 261,75 | 261,75 | Pendiente | Captura factura Paid | Confirmar cuenta asociada |
+| 2025-12-01 | TTP/contexto | Factura 313946 | challenge/fee | USD | 398,30 | 398,30 | Pendiente | Captura factura Paid | Confirmar cuenta asociada |
+| 2025-12-01 | TTP/contexto | Factura 313948 | challenge/fee | USD | 398,30 | 398,30 | Pendiente | Captura factura Paid | Confirmar cuenta asociada |
+| 2025-12-14 | TTP/contexto | Factura 324210 | challenge/fee | USD | 341,40 | 341,40 | Pendiente | Captura factura Paid | Confirmar cuenta asociada |
+| 2026-04-01 | WSF | Ultra Two Phase 100K Step-1 #190343 | challenge | USD | 264,50 | 264,50 | Bridgerpay/WSFunded | Captura Paid | |
+| 2026-05-03 | WSF | Elite Two Phase 100K Step-1 #205523 | challenge | USD | 377,40 | 377,40 | Bridgerpay/WSFunded | Captura Paid | |
+| 2026-09-19 | WSF | Ultra Two Phase 25K Step-1 #282609 | challenge | USD | 75,60 | 75,60 | Bridgerpay | Captura Paid | |
+| 2026-09-21 | WSF | Ultra Two Phase 100K Step-2 #283675 | phase_transition | USD | 0,00 | 0,00 | No payment required | Captura Paid | Sin cash-out |
+| Estimación 2026-09-23 | Orion | 2×100k | estimated_challenge_cost | USD | 1.138,00 | 1.138,00 | — | Precios actuales consultados | 2 × promedio Standard/Select/Nova 100k = US$569,00 |
+| Estimación 2026-09-23 | Orion | 3×50k | estimated_challenge_cost | USD | 977,01 | 977,01 | — | Precios actuales consultados | 3 × promedio Standard/Select/Nova 50k = US$325,67 |
+| Estimación 2026-09-23 | Orion | 1×25k Flash | estimated_challenge_cost | USD | 499,00 | 499,00 | — | Precio actual Orion Zero 25k como proxy | Estimación pesimista; no es gasto histórico probado |
 
 Categorías iniciales: `challenge`, `activation`, `reset`, `subscription`, `commission`, `tooling`, `other`.
 
@@ -198,29 +212,40 @@ Categorías iniciales: `challenge`, `activation`, `reset`, `subscription`, `comm
 | 2026-04 | Axi Select | Pendiente | payout | USD | 436,79 | Pendiente | 436,79* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
 | 2026-07 | Axi Select | Pendiente | payout | USD | 63,56 | Pendiente | 63,56* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
 | 2026-08 | Axi Select | Pendiente | payout | USD | 3,60 | Pendiente | 3,60* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
-| 2026-04-01 | **Firma pendiente** | Pago 132082 | payout | USD | 80,92 | Pendiente | 80,92* | Pendiente | Captura listado de pagos, estado Completed | ID 132082; firma no visible en la evidencia |
-| 2026-05-11 | **Firma pendiente** | Pago 133971 | payout | USD | 652,60 | Pendiente | 652,60* | Pendiente | Captura listado de pagos, estado Completed | ID 133971; firma no visible en la evidencia |
-| 2026-08-24 | **Firma pendiente** | Pago 136965 | payout | USD | 571,22 | Pendiente | 571,22* | Pendiente | Captura listado de pagos, estado Completed | ID 136965; firma no visible en la evidencia |
-| 2026-09-16 | **Firma pendiente** | Pago 137652 | payout | USD | 314,84 | Pendiente | 314,84* | Pendiente | Captura listado de pagos, estado Completed | ID 137652; firma no visible en la evidencia |
+| 2026-04-01 | TTP/contexto | Pago 132082 | cash_in_pending_classification | USD | 80,92 | Pendiente | 80,92* | Pendiente | Captura listado de pagos, estado Completed | Firma asignada por contexto; determinar si corresponde a refund o payout |
+| 2026-05-11 | TTP/contexto | Pago 133971 | cash_in_pending_classification | USD | 652,60 | Pendiente | 652,60* | Pendiente | Captura listado de pagos, estado Completed | Determinar refund vs payout |
+| 2026-08-24 | TTP/contexto | Pago 136965 | cash_in_pending_classification | USD | 571,22 | Pendiente | 571,22* | Pendiente | Captura listado de pagos, estado Completed | Determinar refund vs payout |
+| 2026-09-16 | TTP/contexto | Pago 137652 | cash_in_pending_classification | USD | 314,84 | Pendiente | 314,84* | Pendiente | Captura listado de pagos, estado Completed | Existen 2 refunds TTP según owner; asociar IDs exactos |
+| 2025-10-04 | FTMO | Cuenta 22170650 | cash_in_pending_classification | USD | 520,59 | Pendiente | 520,59* | Pendiente | Captura estado Pagado | Puede ser reward o refund; clasificar |
+| 2025-11-02 | FTMO | Cuenta 22353341 | cash_in_pending_classification | USD | 632,63 | Pendiente | 632,63* | Pendiente | Captura estado Pagado | Puede ser reward o refund; clasificar |
+| 2025-11-02 | FTMO | Cuenta 22353358 | cash_in_pending_classification | USD | 632,63 | Pendiente | 632,63* | Pendiente | Captura estado Pagado | Puede ser reward o refund; clasificar |
+| 2025-11-26 | FTMO | Cuenta 22501235 | cash_in_pending_classification | USD | 504,30 | Pendiente | 504,30* | Pendiente | Captura estado Pagado | Puede ser reward o refund; clasificar |
+| Fecha pendiente | Orion | Retiro informado por owner | payout | USD | 1.365,82 | Pendiente | 1.365,82 | Pendiente | Declaración directa owner | Cash realmente retirado |
+| Fecha pendiente | Orion | Retiro informado por owner | payout | USD | 416,44 | Pendiente | 416,44 | Pendiente | Declaración directa owner | Cash realmente retirado |
 
 **Subtotal Axi Select visible:** **US$2.178,87**.
 
-**Subtotal lote de 4 pagos con firma pendiente:** **US$1.619,58**.
+**Subtotal TTP/contexto visible:** **US$1.619,58**. El owner confirma que existen **2 refunds** asociados a sus dos cuentas funded de 50k; falta identificar cuáles movimientos son refunds y cuáles payouts.
 
-> [!warning]+ Control de doble conteo — Orion
-> El certificado de Orion del 2026-09-23 acredita **Overall Rewards = US$2.417,58**. Se registra como **total acumulado reconciliable**, no como una quinta transacción del ledger, porque todavía no sabemos si los cuatro pagos con IDs 132082/133971/136965/137652 pertenecen a Orion y están incluidos en ese acumulado.
+**Subtotal FTMO visible:** **US$2.290,15** en cuatro movimientos con estado Pagado; tipo económico exacto pendiente de clasificar.
 
-### Reconciliaciones de payouts
+**Orion cash realmente retirado:** **US$1.782,26** = US$1.365,82 + US$416,44.
+
+> [!warning]+ Certificado Orion ≠ cash retirado
+> El certificado Orion `Overall Rewards = US$2.417,58` se conserva sólo como evidencia de rewards/acumulado de plataforma. **No se usa como cash-in**. La autoridad para retiros reales es la corrección del owner: **US$1.782,26**.
+
+### Reconciliaciones de cash-in
 
 | Firma / fuente | Corte | Total acreditado | Tratamiento actual | Pendiente |
 |---|---|---:|---|---|
-| Axi Select | 2026-08 | **US$2.178,87** | Suma de 6 pagos visibles; aditivo | Asociar a cuentas y confirmar fees/neto |
-| Orion | 2026-09-23 | **US$2.417,58** | Total acumulado certificado; aditivo respecto de Axi, no desglosado | Obtener eventos individuales |
-| Firma pendiente — pagos 132082/133971/136965/137652 | 2026-09-16 | **US$1.619,58** | **No aditivo todavía** por posible solapamiento con Orion | Identificar firma |
+| Axi Select | 2026-08 | **US$2.178,87** | Payouts visibles; trading cash-in provisional | Asociar a cuentas y confirmar fees/neto |
+| Orion | 2026-09-23 | **US$1.782,26** | Dos retiros reales informados por owner | Fechas/fees |
+| TTP/contexto | 2026-09-16 | **US$1.619,58** | Cash-in real; mezcla de al menos 2 refunds y posibles payouts | Clasificar IDs |
+| FTMO | 2025-11-26 | **US$2.290,15** | Cash-in visible con estado Pagado | Clasificar reward vs refund |
 
-**Cash-in confirmado conservador sin doble conteo:** **US$4.596,45** = Axi US$2.178,87 + Orion US$2.417,58.
+**Cash recibido total acreditado actualmente:** **US$7.870,86**.
 
-**Cash-in provisional máximo si el lote pendiente es de otra firma:** **US$6.216,03**.
+**Trading payouts confirmados mínimos:** **US$3.961,13** = Axi US$2.178,87 + Orion US$1.782,26. TTP y FTMO quedan fuera del trading-profit hasta separar refunds/rewards.
 
 ### Pipeline de compras
 
@@ -302,7 +327,8 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 - [/] Levantar inventario de las 17 cuentas actuales #owner/me #type/admin #area/personal
 - [ ] Cargar compras, activaciones, resets y otros gastos históricos #owner/me #type/admin #area/personal
 - [/] Cargar payouts/retiros históricos con monto neto efectivamente recibido #owner/me #type/admin #area/personal
-- [ ] Identificar la firma de los pagos 132082, 133971, 136965 y 137652 y descartar/confirmar solapamiento con Orion #owner/me #type/admin #area/personal
+- [ ] Clasificar los pagos TTP/contexto 132082, 133971, 136965 y 137652: identificar exactamente los 2 refunds y los posibles payouts #owner/me #type/admin #area/personal
+- [ ] Clasificar los 4 movimientos FTMO pagados: reward vs refund #owner/me #type/admin #area/personal
 - [ ] Reconciliar gastos e ingresos y calcular P&L realizado + break-even #owner/me #type/admin #area/personal
 - [ ] Clasificar cuentas por estado y separar capacidad nominal de valor líquido #owner/me #type/admin #area/personal
 - [ ] Definir moneda base del dashboard y política de conversión histórica #owner/me #type/admin #area/personal
@@ -311,6 +337,7 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 
 ## 📆 Bitácora
 
+- **2026-09-23** — Segunda carga F0: gastos visibles TTP/contexto US$2.237,35 y WSF US$717,50; Orion inventariado con 6 cuentas históricas, 5 activas y US$325k de notional activo. Se estimó costo Orion en US$2.614,01 con precios actuales y criterio conservador, marcado explícitamente como estimación. Orion cash real corregido a US$1.782,26; el certificado US$2.417,58 deja de contar como retiro. TTP: 2×50k funded con 2 refunds pendientes de asociación. FTMO: cuatro movimientos Pagado por US$2.290,15 pendientes de clasificar como reward/refund.
 - **2026-09-23** — Primera evidencia de payouts cargada: 6 pagos Axi Select por US$2.178,87; 4 pagos Completed por US$1.619,58 con firma aún no visible; certificado Orion Overall Rewards por US$2.417,58. Para no inflar resultados, Orion se mantiene como acumulado reconciliable y el lote no identificado no se suma hasta resolver posible solapamiento. Cash-in conservador confirmado: US$4.596,45; máximo provisional si el lote es independiente: US$6.216,03.
 - **2026-09-23** — Proyecto creado. Se conoce un universo inicial de 17 cuentas repartidas entre Axi Select, FTMO, TTP, Orion y WSF; detalle por cuenta, gastos y payouts pendiente de inventario. Se deja pipeline separado para una posible expansión de ~10 cuentas.
 
@@ -320,6 +347,8 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 - **Ledger sobre memoria.** Cash-in y cash-out se reconstruyen como eventos; los totales son derivados.
 - **Nominal prop separado del patrimonio.** El tamaño financiado mide capacidad operativa, no riqueza.
 - **Realizado separado de potencial.** Los payouts cobrados pertenecen al P&L; escenarios futuros pertenecen a planificación.
+- **Refund separado de payout.** Ambos son cash-in, pero refund reduce costo económico y no se contabiliza como trading profit.
+- **Estimaciones nunca se disfrazan de gasto probado.** Orion usa por ahora precios actuales como proxy conservador por instrucción del owner; cuando aparezca evidencia histórica, reemplaza la estimación.
 - **Identidad estable por cuenta.** Cada cuenta recibe `ACC-NNN` para poder seguir cambios de firma, nombre o estado sin perder historia.
 
 ## 🔗 Docs / Links
