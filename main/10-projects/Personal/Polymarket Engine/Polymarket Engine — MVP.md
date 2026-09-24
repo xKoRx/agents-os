@@ -3,8 +3,8 @@ type: project
 schema_version: 1
 owner: me
 root: true
-status: active
-priority: P1
+status: paused
+priority: P4
 area: "[[Personal]]"
 parent:
 sprint:
@@ -25,13 +25,13 @@ tags:
   - tech/polymarket
   - topic/prediction-markets
 created: 2026-09-15
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # Polymarket Engine — MVP
 
 > [!info]+ Polymarket Engine — MVP
-> **Área:** [[Personal]] · **Estado:** active · **Prioridad:** P1 · **Engine:** MVP durable · **Strategies:** POCs · **Tiny-live inicial:** US$300 totales
+> **Área:** [[Personal]] · **Estado:** paused / frozen por owner · **Prioridad:** P4 · **Engine:** preservado · **Strategies:** POCs congeladas · **Live:** deshabilitado
 
 ## 🎯 Objetivo
 
@@ -51,6 +51,8 @@ North star del producto de research:
 Una vez establecido el engine, el coste marginal de probar una hipótesis nueva debe caer materialmente.
 
 ## 📊 Estado actual
+
+- **`PROJECT_FROZEN_OWNER_2026_09_23` — PAUSA ESTRATÉGICA INDEFINIDA:** el owner congela Polymarket Engine exactamente en `xKoRx/polymarket-engine master@09e8c7610f29a35f8080122b7cb4219b9866ebd7` (código `66486ac99a4606d5dc2b44757ac0722a6baa5415`). Motivo de producto: la combinación de complejidad de investigación/backtesting, deuda causal pendiente y potencial monetizable percibido no justifica más tiempo ahora; el foco pasa a [[Echo Futures]]. No es `NO_GO` técnico ni descarte definitivo: es una decisión de asignación de tiempo/capital. HCA-1 queda **NO IMPLEMENTADO**, H01–H11 **NOT_RUN**, OOS sellado, `REAL_FEE_READY=false`, `LIVE_DISABLED`. Ningún agente debe continuar research, coding, compra de datos, apertura OOS, tuning de estrategias, publicación live o reactivación de Sports/POCs salvo mandato explícito posterior del owner. Ver sección `Freeze estratégico — 2026-09-23` y [[Polymarket Engine — Historical Causality Architecture Audit]].
 
 - **`ASTRA_HISTORICAL_CAUSALITY_AUDIT` (2026-09-22):** auditoría documental y física de código sobre `master@09e8c76` / código `66486ac`, remoto confirmado. **Backtest causal end-to-end no certificable actualmente**: lecturas de régimen latest, elegibilidad SCREEN/SHADOW divergente, controles/epochs incompletos, pérdida de procedencia y replay insuficiente; nueve findings trazados. Set/delete de deltas ya correcto en el engine. Los resultados forenses de BBO superseden el drift 66–85%, pero son resultados reportados y no prueban continuidad L2 completa. Suites existentes de seis paquetes PASS; gates correctivos nuevos NOT_RUN. SPEC integrada HCA-1, fixture, matriz M1 y mandato ONE-SHOT en [[Polymarket Engine — Historical Causality Architecture Audit]]; continuidad §17. M1 congelado intacto; modalidades idealizadas/perfil BBO relajado requieren decisión owner. No autoriza `BACKTEST_PASS`, fee cero, apertura OOS ni cambios a Sports Week.
 
@@ -78,6 +80,102 @@ Una vez establecido el engine, el coste marginal de probar una hipótesis nueva 
 - **M2-BARRIER-A → `M2_S02_S03_INTEGRATION_PASS` — M3-A CERRADO (2026-09-17):** barrera de integración S02×S03 certificada por mandato owner sobre árbol estable (snapshot SHA-256 del baseline verificado antes y después; sin escritores concurrentes). Seam verificado en imports y símbolos: capture consume exclusivamente `Identify/Redact/PolicyV1/ParseSurface` de S02, sin DTOs; redacción aplicada en admisión antes de cualquier byte persistido, con escaneo de todos los bytes del journal por marcadores sintéticos y cero secretos reales en repo/evidencias/logs; envelope conserva policy/versiones/hash del payload sanitizado y el round-trip mantiene la sanitización. Durabilidad: `durable_seq` avanza sólo tras fsync (faults before/after cubiertos), `Records` clampea al frontier, saturación EVIDENCE declara `evidence_gap` durable con `after_seq/resumed_at/refusal_events` exactos vía reserva de control sin presupuesto, saturación RUNTIME pausa sin tocar reserva EVIDENCE ni revocar epochs, y recovery sella el boot muerto, abre boot nuevo y persiste `boot_start` + anomalías de control por cada discontinuidad antes de retornar — la pérdida no persistida queda declarada, jamás cuantificada. SQLite×recovery reejecutado verde (cursors, regresión→CONTRACT_DRIFT, `applied_seq > durable_seq` imposible, rollback, replay de prefijo, manifest corrupto fail-closed, huérfanos adoptados, sufijo preservado, checksums de migraciones). Regresión global: build/vet/test/race verdes, tidy sin diff, diff-check limpio; CLI `journal verify` verificado físicamente (limpio exit 0; byte corrupto exit 1 FAIL explicado). Coverage: módulo 95.4% (capture 95.7/persist 95.5/protocol 95.3/cmd 91.6 por seam os.Exit; combinado S03 95.3%); defecto de coverage de persist (92.8% por paquete) corregido dentro del ownership S03 con 13 tests útiles; 12 statements defensivos inalcanzables por API quedan como excepción técnica registrada pendiente de aprobación manager (no bloquea). Gates: G-03 PASS, G-01 porción wire PASS, G-06 y G-02b PARTIAL (cierres S06/S11), G-14 insumos (S12), G-15b porciones. Checkpoints `af77074` (S02) y `2ac8985` (barrera) en `main` sin push. **M2-S04 habilitado, no iniciado.**
 - **`M2_S04_PARTIAL` — M2-S04 implementado y certificado en su alcance (2026-09-18):** primer checkpoint vertical operativo (`catalog sync → captura durable → revisiones persistidas → catalog inspect`) con G-04 PASS 16/16 sobre fixtures deterministas; 1 blocker upstream documentado con contraejemplo (parser de fechas Gamma de S02) que deja la proyección real en cuarentena honesta hasta su corrección. Detalle completo en la bitácora de abajo y en el agent run registrado.
 - **`M2_S04_PASS` — M2-S04-C1 cierre correctivo (2026-09-18):** FASE A corrigió el parser de fechas Gamma de S02 (`internal/protocol`, checkpoint `81aadb5`) con gramática cerrada Gamma-scoped (separador espacio, offsets ±HH, fracciones 1–9 dígitos exactas; zona explícita obligatoria; G-03 PASS 47 fixtures). FASE B re-ejecutó el sync real read-only en 3 pasadas — sin cuarentenas por el defecto temporal, idempotencia demostrada sobre datos vivos (pass 3 de markets: 0 revisiones nuevas; las revisiones nuevas restantes atribuidas a cambio real vía `updatedAt`/precios con diff completo), known-at sin regresión (0 en 83,956 entidades), G-04 PASS 20/20 con 4 escenarios correctivos nuevos, coverage catalog 95.0–95.1/gamma 97.5/cmd 89.6 (excepción heredada)/módulo 95.1, regresión global build/vet/test/race/tidy/diff-check verde. Techo upstream no documentado: Gamma rechaza `offset > 2000` (HTTP 422) — caminata del universo activo queda partial honesta; gap documentado. Cinco defectos demostrados por el wire vivo fueron corregidos y probados durante el cierre (oscilación de dedup en revisiones y relaciones, corte de `source_at` por bytes, reporte de drain fallido oculto, record cap de capture para `/events`, y `segPaths` de capture tras sellado — única desviación del scope nominal, root-cause de 1 línea, disclosed para revisión manager). Checkpoints `81aadb5` + `527dc73` en `main` sin push. G-06 sigue PARTIAL hasta S06; `LIVE_DISABLED` sin cambios. Detalle en bitácora y agent run.
+
+## 🧊 Freeze estratégico — 2026-09-23
+
+**Marker canónico:** `PROJECT_FROZEN_OWNER_2026_09_23`.
+
+### Decisión del owner
+
+El proyecto queda **pausado por tiempo indefinido** y no debe consumir más capacidad de research o desarrollo mientras no exista una decisión explícita de reactivación. El volantón es deliberado: el owner prioriza [[Echo Futures]] porque necesita concentrar tiempo en una línea con una ruta más directa a ingresos; Polymarket Engine pasó de experimento entretenido/prometedor a iniciativa con demasiadas dependencias de datos, causalidad histórica, contratos y certificaciones para el potencial económico inmediato percibido. Esta decisión no invalida lo construido ni afirma que Polymarket carezca de oportunidades; congela la inversión adicional.
+
+### Punto exacto de congelación
+
+- **Engine repo:** `xKoRx/polymarket-engine`.
+- **Branch canónica:** `master`.
+- **HEAD verificado al freeze:** `09e8c7610f29a35f8080122b7cb4219b9866ebd7`.
+- **Commit de código certificado por el recibo:** `66486ac99a4606d5dc2b44757ac0722a6baa5415`.
+- **M4:** `M4_CERTIFIED_NON_LIVE`, 27 PASS / 0 FAIL / 0 in-scope NOT_RUN / 5 live diferidos en el alcance previo; este certificado **no certifica causalidad histórica end-to-end**.
+- **Estado live:** `LIVE_DISABLED`.
+- **Economía real:** `REAL_FEE_READY=false`.
+- **Backtest:** sin `BACKTEST_PASS`, sin `OOS_PASS`, sin `HYPOTHESIS_VALIDATED`.
+- **HCA-1:** especificado por Astra, **no implementado**.
+- **Gates H01–H10:** sintéticos obligatorios, **NOT_RUN**.
+- **Gate H11:** cohorte histórica real, **NOT_RUN**.
+- **OOS:** permanece sellado; no abrir al retomar hasta que HCA-1 y gates previos estén aceptados.
+
+### Qué se construyó y queda preservado
+
+El engine llegó a un monolito Go Polymarket-native con foundation numérica, protocolo/wire, catálogo, capture journal durable, persistencia SQLite, Regimes/Resolution, libros L2, Frame Builder, Replay, Strategy API/SCREEN, Economics/Simulator, Account/Risk, Supervisor/Backup-Restore, Experiments/SHADOW y harness M4 no-live. Las auditorías M4 corrigieron defectos reales de outbox, books snapshot replace-all, replay schedule y cobertura, dejando un baseline de ingeniería no-live fuerte. Five-POC integró NegRisk, Sports Reversion, Sports Combinatorial, Weather y New Market Maturation como consumidores del engine sin afirmar alpha.
+
+### Qué se investigó sobre históricos
+
+Se cambió la metodología desde forward-only a **historical-first / live-last**. Se auditó disponibilidad histórica, se implementó `internal/histimport`, se descargaron y verificaron Parquet originales de PendulumFlow v3 para la cohorte MLB del 2026-09-01, se recalcularon SHA-256 completos, se reprodujeron extracciones y journals, y se obtuvieron digests de replay deterministas 4/4. El benchmark de persistencia favoreció **Parquet + DuckDB** para M0 de backtesting; ClickHouse funcionó como alternativa pero no justificó complejidad adicional, y TimescaleDB quedó sin benchmark físico. La copia de dataset reportada `hist-acq-20260921/` es ~2,1 GB y quedó local sin segunda copia autorizada en MinIO por el storage freeze de Aranea; raw es re-descargable por hash, derivados requieren preservación si se retoma.
+
+### Resultado forense L2 preservado
+
+La auditoría forense corrigió una conclusión previa equivocada: el supuesto drift BBA 66–85% provenía del reconstructor del certificado anterior, no de una semántica aditiva en el engine. El engine ya implementa `price_change.size` como tamaño absoluto y `size=0` como borrado. El forense reportó BBO 0/628 mismatch contra snapshots en horas completas, 514/516 coincidencia con `best_bid_ask`, y profundidad exacta en aproximadamente 92% de intervalos / 97,39% en la ventana congelada; esas cifras fueron **reportadas por el agente forense** y Astra no las revalidó físicamente. También quedaron gaps reales de tamaños, múltiples witnesses/relojes y límites de queue/fill que impiden convertir esa evidencia directamente en ejecución económica certificada.
+
+### Respuesta final de Astra — autoridad antes de retomar backtesting
+
+[[Polymarket Engine — Historical Causality Architecture Audit]] concluyó `NOT_CERTIFIABLE_END_TO_END` sobre `master@09e8c76`. M1 sigue siendo mayormente válido; no hay motivo para rehacer el monolito, la Strategy API, Simulator o Replay desde cero. El bloqueo es una frontera causal incompleta entre importación/journal, reducers, frames, elegibilidad y decisión. Astra dejó la corrección integrada **HCA-1 / S1–S6** y un fixture sintético de aceptación; la corrección debe reutilizar los owners existentes y fallar cerrado.
+
+### Findings Astra pendientes D01–D09
+
+- **D01:** Regimes/metadata pueden leerse como estado latest al reconstruir pasado; existe look-ahead interno demostrado y SHADOW puede consultar fee/regime final para candidato histórico.
+- **D02:** SCREEN/SHADOW usan una elegibilidad distinta a Books y pueden promover un book sin tick/regime/continuidad/freshness equivalentes.
+- **D03:** gaps, epochs, author fencing y regresiones temporales no se propagan de forma uniforme a la vista que consume Strategy.
+- **D04:** `histimport` pierde identidad de witness/collector y puede desempatar eventos de forma incompatible con el orden demostrado del flujo.
+- **D05:** el replay/digest vigente no cubre suficientemente niveles, regimes y dependencias reales; determinismo del digest legacy no demuestra causalidad.
+- **D06:** revisiones recurrentes A→B→A y estado suspect/latest no tienen una historia temporal suficientemente correcta para lecturas as-of.
+- **D07:** fan-out/cuts y referencias de frames pueden quedar incompletos o no resolver bytes/dependencias exactas por fase.
+- **D08:** metadata externa como kickoff, publicación/disponibilidad y otros facts puede entrar por seq/config sin un contrato temporal completo de knowledge time.
+- **D09:** Sports puede puentear historia a través de datos inválidos/gaps y contar una reversión cuyo primer BID favorable aparece fuera de `window_ms`.
+
+### SPEC HCA-1 congelada sin implementar
+
+- **S1 — Historical provenance/import v2:** conservar observer, witness, source boot/connection/epoch, sequence/ordinal local, E/R/publication, clock domain, hashes/locators y política de orden; legacy queda `LEGACY_CAUSALITY_UNVERIFIED`.
+- **S2 — Regimes/metadata as-of:** lectura por corte/virtual time/policy, historia A→B→A, suspect/fees/metadata por prefijo, jamás latest global para decisiones pasadas.
+- **S3 — Books/eligibility común:** una sola semántica de Books para Frames/SCREEN/SHADOW/replay; propagación de gaps/epochs/freshness; separar diagnóstico, signal eligibility, fill eligibility y economics certification.
+- **S4 — Frames/cuts causales:** fan-out completo antes del corte, cuts preregistrados y estables al prefijo, dependencias resolubles/hash-pineadas y knowledge bounds por frame.
+- **S5 — Replay significativo:** digests v2 de dataset/estado/decisión que incluyan niveles, sizes, quality reasons, epochs, regimes, refs, tiempos, frames y outputs; schedules deben gobernar realmente el procesamiento y comparar prefijos.
+- **S6 — Censura/horizonte:** registrar intervalos censurados y detected/evidence time; no unir historia sobre gaps; resolver reversión dentro de horizonte antes de aceptar una observación favorable tardía; economía V2 queda fuera.
+
+### Gates de aceptación que quedaron NOT_RUN
+
+H01 causalidad de prefijo; H02 elegibilidad común; H03 provenance/orden/epoch; H04 revisiones históricas; H05 gaps/horizonte; H06 fan-out/cuts; H07 dependencias/replay; H08 metadata/publicación/censura; H09 determinismo por schedules con estado completo; H10 compatibilidad/reinicio/mutaciones y refs. H11 sólo después sobre una cohorte histórica exploratoria con provenance disponible; H11 no abre OOS ni certifica economía.
+
+### Decisiones owner OD-H1–OD-H5 que quedaron deliberadamente sin cerrar
+
+- **OD-H1:** modalidad B causal del observador/recolector como candidato default versus modalidad A idealizada separada; Astra propone B default y A opt-in con certificado distinto.
+- **OD-H2:** permitir BBO descriptivo separado versus relajar elegibilidad para señales BBO; Astra sólo propone autorizar diagnóstico primero y no degradar `OBSERVED_USABLE`.
+- **OD-H3:** uso de evidencia retrospectiva: separar demostración posterior del valor histórico de la demostración de que ese valor era disponible al observador; no backfill arbitrario.
+- **OD-H4:** cortes, gaps, censura, recovery y warm-up deben preregistrarse antes de nuevas corridas; no cambiar `cuts=30`, horizonte o sample protocol mirando resultados.
+- **OD-H5:** economía queda sin decisión: no fee cero universal, no reinterpretar `reverted`; `REAL_FEE_READY=false` y OOS cerrado.
+
+### Estado de las POCs al freeze
+
+- **PE-002 NegRisk / S01:** ingeniería/fixtures reproducibles, sin alpha, book/fee/liquidez real suficientes no demostrados para una estrategia certificada.
+- **PE-005-R1 Sports Reversion / S02:** histórico real explorado, datos L2/BBO prometedores, pero backtest causal y economía no certificables hasta HCA-1; campañas/capturas previas no equivalen a validación.
+- **PE-001 Sports Combinatorial / S03:** casos lógicos investigados; WNBA ML/SP tuvo ambigüedades de OT/tie y no produjo candidato semántico-temporal válido; sin alpha.
+- **PE-030 Weather / S04:** contratos/estaciones y arquitectura investigados; faltan forecast vintages point-in-time y calibración; sin alpha.
+- **PE-004 New Market Maturation / S05:** catálogo y `first_known_at` investigados, pero creación/publicación/discovery point-in-time no quedó certificada para una cohorte de mercados nuevos; sin alpha.
+
+### Estado operacional conocido que NO se modifica con este freeze documental
+
+Sports Week fue reportado activo/capturando en sesiones anteriores con un binario pinneado distinto del master; esta actualización de Agents-OS **no tiene autoridad ni acceso host para detener ese servicio** y por tanto no afirma que esté detenido hoy. Al retomar o al hacer limpieza operativa, verificar primero el runtime real antes de tocarlo. No asumir que sigue activo sólo porque la última evidencia lo decía. Ningún agente debe reutilizar, reiniciar o modificar esa campaña por inferencia a partir de esta nota.
+
+### Política durante el freeze
+
+No implementar HCA-1, no ejecutar H01–H11, no abrir OOS, no ampliar cohortes, no buscar/tunear estrategias, no comprar datos, no desplegar bases analíticas nuevas, no habilitar live, no operar wallet/signing, no alterar Economics V2, no interpretar captures previas como alpha y no continuar POCs por iniciativa del agente. Se permite únicamente preservación no destructiva, lectura documental, backup autorizado o verificación de que un recurso operativo no esté generando riesgo/coste, siempre bajo mandato explícito.
+
+### Condiciones mínimas para reactivar el proyecto
+
+La reactivación requiere una decisión explícita del owner y una nueva comparación de oportunidad/coste frente a los proyectos prioritarios. Si se reactiva con objetivo de backtesting serio, el orden congelado es: verificar repo/datasets/runtime → revisar si datos/proveedores siguen accesibles → cerrar OD-H1–OD-H4 → implementar HCA-1 S1–S6 en un único correctivo → ejecutar H01–H10 → H11 sobre cohorte no-OOS → congelar pipeline histórico → recién después hacer backtests amplios/walk-forward → mantener OOS sellado hasta protocolo estable → tratar ejecución/economía como certificación posterior separada. No volver a investigación de estrategias al voleo ni usar forward testing como sustituto del histórico.
+
+### Motivo para conservar y no archivar/destruir
+
+El proyecto deja activos valiosos reutilizables: engine Polymarket-native bien probado en no-live, contratos de capture/replay/risk, corpus de research, datasets históricos hash-verificados, experiencia con PendulumFlow/Polymarket APIs, cinco POCs, investigación protocol/fees, y una auditoría Astra que define exactamente qué falta para un backtest causal serio. El freeze conserva este capital intelectual sin seguir pagando su coste de oportunidad ahora.
 
 ## 🧭 Autoridad documental y economía de tokens
 
@@ -661,6 +759,9 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - **Sports Reversion:** E2 entregado 2026-09-21 con **cero código**; nada que mergear. Worktree `feature/five-poc-integration` conservado para esa sesión.
 
 ## 📆 Bitácora
+
+- **2026-09-23 — `PROJECT_FROZEN_OWNER_2026_09_23`:** owner pausa Polymarket Engine por tiempo indefinido y prioriza [[Echo Futures]] por relación esfuerzo/complejidad versus potencial monetizable inmediato. Freeze exacto en engine `master@09e8c761` / code `66486ac`; Astra HCA audit vigente, HCA-1 no implementado, H01–H11 NOT_RUN, OOS sellado, `REAL_FEE_READY=false`, `LIVE_DISABLED`. Se preserva todo el historial y se prohíbe avance autónomo hasta mandato de reactivación. Ver `## 🧊 Freeze estratégico — 2026-09-23`.
+
 
 - **2026-09-21 — `DESCRIPTIVE_ONLY` — readiness histórica PE-005-R1 (`66486ac` → recibo `09e8c76`, publicado, LIVE_DISABLED):** barrido remoto de 367 horas sin errores. El primer `tick_size_change` de SD/NYM/TOR/SF es posterior al kickoff y declara `old=0.0100` → `new=0.0010`; no hay cambio intermedio desde el `new_market` del 2026-08-26T13Z. Ese ancla no se escribió hacia atrás. Kickoff sigue post hoc. SCREEN `cuts=30` entrega 30/30, 0 inelegibles, 0 oportunidades. Replay `{1}`=`{32,7,1}`. Shadow `INCONCLUSIVE`, 0 fills, fee `UNRESOLVED`. OOS sellado. `histimport` 95.0%. Sports Week: mismo proceso desde 14:15:20 -03, `NRestarts=0`, binario `bfa6eaf`; la campaña pasó a `CAPTURING` a las 21:05:20Z sin intervención. Continuidad §16 y [[2026-09-21-historical-backtest-readiness]].
 - **2026-09-21 — `HISTORICAL_L2_FORENSIC_RESULT` = `L2_RECONSTRUCTIBLE` (one-shot forense, cero código engine, LIVE_DISABLED, Sports Week intacto, OOS sellado):** validación del hallazgo #6 del addendum sin asumir correcto el reconstructor previo. El generador de `reconstruction_cert.json` no fue persistido (sólo el JSON hasheado; `SHA256SUMS.txt` con 3 entradas stale de ruta, integridad 18/18 restante OK); reproducción con reconstructor propio desde parquets crudos re-verificados (sha=publicador). Causa del drift 66-85% demostrada: modelo aditivo-sin-borrado del cert (reproduce sus `levels_diff` 1.242-2.148 vs 1.191-2.072, Δ≤8%; el SQL P2 del benchmark codifica el mismo modelo); mezcla cross-asset descartada (~100% mismatch, no 66-85%). Con semántica upsert correcta (6.134 size=0 = borrado, 0 negativos), per-asset y venue-time: BBO 0% mismatch en 628 intervalos (2h) y 536 (ventana), profundidad exacta 92,04%/97,39%, residuo = 66 niveles con huecos de captura ~0,1% (ejemplo: BUY 0.02 de `1fc6d5c6` 15.290,55→30,55 sin delta entre 21:45:38Z→21:49:36Z; autocurado por snapshot), cross-validación `best_bid_ask` 514/516 (99,61%; 2 discrepancias = 1 tick en 1 instante). Dedup limpia (0 duplicados, 0 secuencias repetidas/hora); `sequence` collector-local confirmado (rangos 2,81e14 vs 5,3e16); books de witnesses ajenos llegan hasta 674 s tarde → replay por venue-time obligado. Incidente venue `db-replica-lag`: restart CLOB 22:30→23:54Z intersecta los últimos 10 min de la ventana (2 de 7 residuos; sin concentración anómala). Cadencia snapshot: mediana 13,5-67,4 s, máx 7,8-13,7 min; kickoff 22:40Z con deltas densos en 4/4 mercados y books densos sólo en 2 (2 mercados con 2 books, `9f9a19e8` sin book 22:40-22:45Z) → PE-005-R1 ejecutable a nivel BBO reconstruido, profundidad sigue snapshot-as-of + upper bound touch-fill. Benchmark cadena completa con digests: extracción 89.718 eventos → reconstrucción correcta 0,335 s (digest `c5f3b52b…`, 240 cut_states) → frames `67efe361…` → engine `09e8c761` replay 4/4 COHORT sin huecos → sweep 3 umbrales `30d78294…` (metodología, no edge); DuckDB baseline intacto, sin bases nuevas. Almacenamiento: MinIO homelab operativo (12 buckets) pero NO autorizado para este dataset y freeze `STORAGE_ORGANIZATION` activo → preservación local única sin git/remote (raw re-descargable del archive por sha). Solicitudes de muestra PMData (requiere key owner) y polymarketdata.co preparadas con los mismos 4 condition ids y timestamps. Workspace forense: `~/aranea/work/hist-l2-forensic-20260922/`. Detalle: [[Research — Historical L2 Forensic Validation 2026-09-21]].
