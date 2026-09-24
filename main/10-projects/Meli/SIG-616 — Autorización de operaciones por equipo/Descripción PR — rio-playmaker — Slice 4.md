@@ -10,16 +10,14 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-09-23"
-updated: "2026-09-23"
+updated: "2026-09-24"
 ---
 
 # Descripción PR — rio-playmaker — Slice 4
 
 ## Propósito
 
-Regularizar F4 como un delta completamente aditivo sobre F3/develop: autorización config-backed
-para relaciones, pipeline y el cascade de Data Product reportado por Ale, sin endpoints ni reglas de
-negocio nuevas.
+Proteger las operaciones de relaciones, pipeline y cascade de Data Product con autorización configurable, y aplicar la regla same-DP de SIG-616 a las relaciones. Los Data Products sin equipo pueden borrarse sin consultar ACME para un owner que no existe.
 
 ## Contenido
 
@@ -33,22 +31,16 @@ mantiene y no se invoca ACME por ese guard.
 
 Cambios:
 
-- Relaciones: `create`, `update` y `delete` con scope `component-relation`, `DEV_AND_UP` y owners
-  persistidos distintos. Update conserva el comportamiento de F3, incluido cambiar endpoints/Data
-  Products; no se agregó same-DP ni ownership inmutable.
+- Relaciones: `create`, `update` y `delete` con scope `component-relation` y `DEV_AND_UP`. Source y destination deben pertenecer al mismo Data Product; cross-DP responde `400` antes de ACME o persistencia. Update conserva el cambio de endpoints cuando ambos terminan bajo un mismo Data Product y autoriza owners anterior y solicitado.
 - Pipeline: `replace-topology`, `update-design`, `update-relations`, `create-component` y `deploy`
   con scope `pipeline` y `DEV_AND_UP`, antes del primer side effect.
-- Cascade: `DELETE /data-products/{id}` autoriza una vez el Data Product persistido mediante
-  `data-product:cascade-delete-components=DEPLOYER_AND_UP` antes de borrar components,
-  notifications, publicar eventos o guardar. El bypass histórico de miembros de equipos plataforma
-  sigue vigente; el guard nuevo aplica a los demás actores.
+- Cascade: `DELETE /data-products/{id}` autoriza una vez el Data Product persistido mediante `data-product:cascade-delete-components=DEPLOYER_AND_UP` antes de borrar components, notifications, publicar eventos o guardar. El bypass histórico de miembros de equipos plataforma sigue vigente. Si el Data Product no tiene `teamName`, se omiten el precheck ACME heredado y el guard nuevo.
 - Resolución exacta: los scopes no-component no usan el wildcard `component-type: "*"`, evitando
   colisiones con nombres como `create`, `update`, `delete`, `update-design` o `deploy`.
-- Compatibilidad: ownership incompleto omite sólo los guards nuevos de F4; F1/F2/F3 mantienen su
-  semántica previa. Component delete/inactivate siguen en `DEPLOYER_AND_UP`.
+- Compatibilidad: ownership incompleto omite los guards nuevos de F4; en cascade sin equipo también se omite el precheck ACME heredado. Component delete/inactivate siguen en `DEPLOYER_AND_UP`.
 - Identidad: los controllers toman `Authentication.getName()` y la propagan; headers Tiger se
   conservan únicamente para ACME y cancelaciones downstream existentes.
-- No se agregaron endpoints, casos de uso, schema, estados, reglas de ownership ni nuevos status.
+- No se agregaron endpoints, casos de uso, schema ni estados. El rechazo `400` de cross-DP y el skip de ACME sin equipo son cambios de comportamiento deliberados.
 
 ### Permisos configurados
 
@@ -66,6 +58,7 @@ Cambios:
   el baseline, se corrigió la documentación y se resolvió el thread.
 - El comentario de kmontero sobre el cascade era válido: el guard inicial anulaba el bypass de
   equipos plataforma. Se corrigió en `e75ca90d9` y se agregó regresión con la configuración real.
+- Los comentarios de David llevaron a aplicar same-DP y a cubrir test scope, configuración real y Data Products sin equipo. Se quitó el self-loop redundante y se aclaró el Javadoc de las interfaces. Los helpers duplicados y la abstracción del provider se mantienen para otro cambio sólo si aparece una necesidad concreta; el doble llamado ACME pertenece a dos chequeos de política diferentes.
 - Los demás comentarios de F3 estaban corregidos en la base mergeada; no se duplicó lógica en F4.
 
 ### Sincronización
@@ -84,7 +77,7 @@ Cambios:
 - [x] Commits convencionales, self-review y estilo del repositorio.
 - [x] Documentación canónica y `.testing/impact.json` actualizados.
 - [x] Build, tests focalizados, regresión completa y coverage local pasaron.
-- [x] No se agregó lógica de negocio ni se debilitó seguridad heredada.
+- [x] Los cambios de autorización y same-DP se cubrieron con tests de allow, deny y cero efectos al rechazar.
 - [x] No se desplegó en preproducción ni producción.
 
 ## How Has This Been Tested?
@@ -123,11 +116,13 @@ antes de evaluar la membresía plataforma.
   no-plataforma deniega sin mutaciones.
 - Entrada removida: conserva comportamiento previo y no llama ACME por F4.
 - Ownership incompleto: omite sólo el guard nuevo, compatible con F3.
+- Data Product sin `teamName`: el delete conserva blockers/status checks y completa el cascade sin consulta ACME; se verificó con `null` y blank.
 
 ## Riesgos y pendientes externos
 
 - Checks visibles del nuevo HEAD (`continuous-integration`, `code-coverage`, `dependencies`, `workflow`) en `SUCCESS`; review `APPROVED`. GitHub aún informa `mergeStateStatus=BLOCKED`, sin conflictos (`MERGEABLE`).
 - Deploy de las variantes terminadas y ejecución manual no productiva.
+- Antes del deploy de F4, verificar si hay relaciones cross-DP persistidas y planificar su reparación; el delete de esas relaciones responde `400` hasta corregir los endpoints.
 - No se ejecutó smoke remoto ni se modificaron datos externos.
 - AppSec especializado no estaba disponible; se hizo auditoría manual y regresión completa.
 
