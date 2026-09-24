@@ -47,13 +47,14 @@ updated: "2026-09-23"
 ## 📊 Estado actual
 
 - **CREADO (2026-09-23, mandato manager).** Consolidación completada en la misma ventana: `origin/master @ e41569b` (consolidación `d07cc69` + manifiesto RC; master único local y remoto; 14 ramas cerradas eliminadas, 19 worktrees eliminados, cero pérdida — tips verificados en master o tags `archive/*`; material no trackeado único preservado en `~/aranea/work/forge-consolidation-20260923/preserved/`). Campaña B CB-G2 (resolver `selection_cohort`) integrada a master con gate 4/4 (build PASS, tests del delta PASS, fail-set 37/37 idéntico al baseline `9a69243`, review scoped PASS). Release candidate **0.2.106** publicada desde master consolidado (`deploy_release.sh --release-only`). La integración Forge→Echo histórica (contrato Echo SDK V1) queda `SUPERSEDED_BY_INTEGRATION_V2` — no se termina bajo el contrato viejo (ver Track C).
+- **GATE DE CONSOLIDACIÓN FINAL PASS (2026-09-23, mandato owner): `master` = `origin/master` = `d9032ff8c5ee0f5f5d68d70994a9f4dc660e33aa` — cero pendientes.** Única rama local y remota, un solo worktree, 0 PRs, 0 stash, 0 tags `archive/*` (los 5 eliminados local y en origin tras resolver cada línea). Delta post-cert A1 integrado (`9665c73` F-INT-04 + pin contracts `5dd998f` + release matrix; `d9032ff` stdout puro flowkit vía sdk `c7f11496`); atestación E-06 y magic-width R3 = SUPERSEDED (refutadas por los artefactos certificados de V2); Forge Explorer v0 = SUPERSEDED_BY_FLOWKIT; `preserved/` resuelto y eliminado. La tabla de abajo quedó en `d07cc69`: el baseline exacto para C0 es `d9032ff8`, y el runtime RC 0.2.106 desplegado fue construido desde `d07cc69` (sin el delta A1) — revalidar antes de Campaign 001.
 - **NEXT EXACT: procesar el primer cohort real mediante Watcher Import** (= arrancar [[Echo Forge — Campaign 001]]).
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/symphony | `master` @ `d07cc69` (origin, único) | RC 0.2.106 publicada | Mandato manager 2026-09-23 (cierre V1 → operación real V2) + mandatos por campaña | `specs/FEAT-SQX-IMPORT-TASK-V1/SPEC.md` · `specs/FEAT-SQX-IMPORT-CAMPAIGN-B/SPEC.md` · specs F-0x vigentes | **Fundación completa; operación dirigida por campañas** |
+| xKoRx/symphony | `master` @ `d9032ff8` (origin, único; gate de consolidación final PASS) | RC 0.2.106 publicada desde `d07cc69` (sin delta A1); revalidar runtime en C0 | Mandato manager 2026-09-23 (cierre V1 → operación real V2) + mandatos por campaña | `specs/FEAT-SQX-IMPORT-TASK-V1/SPEC.md` · `specs/FEAT-SQX-IMPORT-CAMPAIGN-B/SPEC.md` · specs F-0x vigentes | **Fundación completa; operación dirigida por campañas** |
 
 ## 🧩 Subproyectos
 
