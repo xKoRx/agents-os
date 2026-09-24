@@ -17,6 +17,8 @@ updated: "2026-09-23"
 
 **PLAN VIGENTE (owner 2026-09-23).**
 
+> **D3 Shot 1 (24-09): SHOT1_CANDIDATE implementado y publicado** — `origin/feature/d3-lab-v3-first-analytical@6a111c9e` sobre baseline `8adce7ec`; curve engine + migración 065 derivados + servicio F4 + read model Hasura (source artifact) + tab front Curve Lab V3; certificado sólo con fixture determinista (sin historia auténtica: Forge pendiente). Pendiente Shot 2 (verificación independiente) y Shot 3 (gate). Paquete en [[A — Technical SPEC D3]], record [[B — Implementation Record D3 (Shot 1)]], evidencia [[C — Evidence D3 (Shot 1)]], deuda [[D — Debt Ledger D3]], handoff [[E — F4 Handoff D3]].
+
 > **Estado D1 — Echo Foundation = PASS (2026-09-23, HEAD `64b616ff` en `feature/d1-echo-foundation-final`).** Gate final 18 criterios + G19/G20 en [[K — Final Correction and Gate D1 (Shot 3)]]; verde salvo 2 regresiones preexistentes certificadas ajenas a D1.
 >
 > **D1 SOURCE CLOSED / INTEGRATED TO MASTER (2026-09-23): `master@8adce7ec`** en `xKoRx/echo` (remoto). Integración conservadora sin history rewrite del harvest certificado `22b26716` (implementación + Shot 3 + regresiones + E2E por SPEC) junto al fix Bridge vigente; gates G1–G10 verdes sobre el SHA exacto pusheado. Cierre y handoff en [[O — D1 Closure and D2 Handoff]]. **No marcado:** deployed, runtime DEV verificado, PROD, migración 064 aplicada a bases reales, ni D2 PASS. D2 parte explícitamente desde este baseline y no hereda PASS.
