@@ -10,7 +10,7 @@ parent:
 sprint: 2026-09-23--2026-09-30
 start: 2026-09-23
 due: 2026-09-30
-progress: 2
+progress: 20
 repo:
 jira:
 prs:
@@ -21,7 +21,7 @@ tags:
   - kind/project
   - area/echo
 created: "2026-09-23"
-updated: "2026-09-23"
+updated: "2026-09-24"
 ---
 
 # Echo Futures
@@ -126,6 +126,120 @@ Una estrategia no gana por parecer sofisticada. Para entrar a D3 debe cumplir si
 - riesgo de cola cuantificable;
 - compatible en principio con al menos una prop plausible;
 - posibilidad de probar separadamente **entry edge**, **recovery** y **money management**.
+
+
+## 🧪 D2 — Síntesis adversarial de los tres Deep Research
+
+**Estado:** `D2_PASS` para avanzar a mecanización. El research amplio se cierra aquí salvo que aparezca una fuente concreta que resuelva un UNKNOWN material.
+
+### Calidad real de los informes
+
+| Informe | Resultado operativo | Calidad de evidencia | Uso permitido |
+|---|---|---|---|
+| Gerard García | PARTIAL | **Débil públicamente / fuerte vía curso del owner** | Usar la entrevista/curso como autoridad primaria. El DR público sólo aporta ideas de parametrización; no usar HardScalping EA como prueba de que Gerard hace algo. |
+| Tradesfera | PARTIAL | **Media para principios, baja para reglas** | Aceptar sólo lo explícito: mean reversion, TP corto, alto win rate/selectividad y economía de prop. VWAP/RSI/ATR/fade ORB son propuestas del investigador, no estrategia demostrada de Vicente. |
+| Psicólogo del Trading | NO_GO | **Corpus técnico insuficiente** | No extraer estrategia. Cerrar investigación salvo que el owner aporte un video técnico concreto. |
+
+### Hallazgos de auditoría
+
+- **Gerard DR sobreafirma evidencia:** su única fuente pública técnica es un producto/EA de terceros llamado HardScalping. No demuestra metodología de Gerard. Sus secuencias “observadas” son en realidad ilustrativas. Se conservan como ejemplos de modelado, no evidencia.
+- **Tradesfera DR inventa demasiado detalle:** pasar de “mean reversion + TP corto” a “VWAP + RSI(14) + ATR” no está sustentado. Esos candidatos pueden investigarse como estrategias nuestras, pero no etiquetarse como Tradesfera.
+- **Psicólogo NO_GO no prueba que no existan estrategias:** prueba que el one-shot no accedió a corpus técnico suficiente. Por restricción de tiempo, no se rescata ahora.
+- La mayor evidencia útil sigue siendo el **curso de Gerard revisado por el owner**, especialmente el motor monetario de recovery y la filosofía prop.
+- Los influencers dejan de ser autoridades desde este punto. D3 busca **estrategias Echo Futures**, no réplicas de una persona.
+
+### Candidatos que pasan a D3
+
+#### C0 — Random-direction control
+
+Control obligatorio para medir cuánto valor aporta realmente la señal.
+
+- misma sesión/ventana que la estrategia bajo prueba;
+- misma frecuencia aproximada;
+- dirección aleatoria 50/50;
+- mismo SL/TP y mismo motor de gestión;
+- comparar distribución completa contra la señal técnica.
+
+No pretende ser estrategia de producción.
+
+#### S1 — NQ/MNQ Opening Range Breakout 30m
+
+Fuente principal: curso Gerard recordado por el owner.
+
+- construir rango con primeros 30m de la sesión objetivo;
+- entrada inmediata al romper high/low, sin exigir cierre;
+- señal debe ejecutarse con resolución intrabar;
+- LONG y SHORT simétricos;
+- primero probar entry-only;
+- después aplicar negative hardscalping.
+
+**Por qué pasa:** extremadamente mecánica, barata de implementar, no requiere interpretación gráfica y sirve como señal momentum/breakout opuesta a S2.
+
+#### S2 — H4 trend + 5m Bollinger pullback
+
+Fuente principal: curso Gerard; conceptualmente consistente con la familia mean-reversion explicitada por Tradesfera, pero **no se atribuye a Tradesfera**.
+
+Ejemplo LONG:
+
+- régimen H4 alcista definido mecánicamente en D3;
+- en 5m el precio alcanza/atraviesa banda inferior;
+- entrada de pullback;
+- salida base hacia una referencia Bollinger predefinida;
+- SHORT simétrico.
+
+**Por qué pasa:** representa un setup de alta probabilidad potencial, opera pullbacks/reversión sin pelear contra la tendencia mayor y es objetivizable con pocos parámetros.
+
+### Candidatos que NO pasan esta semana
+
+- Relevant high/low continuation/reversal: “relevante” sigue ambiguo.
+- Momentum Londres/NY genérico: falta trigger exacto; ORB ya cubre un experimento direccional mecánico.
+- VWAP+RSI atribuido a Tradesfera: no tiene evidencia suficiente.
+- Fade de ORB atribuido a Tradesfera: inferencia del investigador.
+- Psicólogo: cero candidato con evidencia.
+- Positive hardscalping como estrategia completa: se conserva como módulo posterior, no como primera variable a introducir.
+
+### Orden experimental para evitar explosión combinatoria
+
+No hacer un full-factorial gigante desde el comienzo.
+
+**Fase A — Entry edge**
+- C0, S1, S2.
+- gestión simple fija.
+- medir frecuencia, win rate, payoff, MAE/MFE, duración y costes.
+
+**Fase B — Negative hardscalping**
+- aplicar exactamente el mismo motor a C0/S1/S2;
+- mantener riesgo monetario máximo de la secuencia;
+- variar sólo pocos parámetros de add/spacing/size;
+- medir delta contra Fase A.
+
+**Fase C — Positive hardscalping**
+- sólo si Fase B deja uno o más candidatos vivos;
+- agregar en favorable + protección BE + extensión;
+- medir incrementalmente.
+
+**Fase D — Variable risk + prop economics**
+- operar sobre la distribución de trades/secuencias ya obtenida;
+- simular progression/reset y lifecycle de evaluation/funded/payout;
+- no mezclar variable risk dentro del backtest de señal antes de conocer el retorno base.
+
+### Gate para D3
+
+D3 debe terminar con una SPEC experimental, no con código productivo. Debe congelar:
+
+- definición exacta H4 trend;
+- Bollinger period/deviation/source;
+- definición exacta ORB y timezone/session;
+- política de re-entry y máximo de trades por sesión;
+- money SL/TP base;
+- negative recovery: trigger, size, max adds, recalculation exacta;
+- resolución mínima de datos;
+- instrumento/contrato y roll handling;
+- costes/slippage;
+- backtest runner y dataset;
+- output schema para que D5 pueda simular prop rules.
+
+Una vez todo eso sea determinista, **G0 puede pasar** aunque no coincida exactamente con el “ojo” de Gerard: la finalidad es validar la idea, no clonar su discrecionalidad.
 
 
 ## 🧾 D1 — Gerard García: extracción del curso v0
@@ -394,14 +508,14 @@ views:
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [x] D1: hacer brain dump + entrevista dirigida de Gerard y congelar su knowledge contract #owner/me #type/research #area/echo
-> - [ ] D1: ejecutar research one-shot Gerard público para contraste #owner/agent #type/research #area/echo
-> - [ ] D1: ejecutar research one-shot Tradesfera con contrato común #owner/agent #type/research #area/echo
-> - [ ] D1: ejecutar research one-shot Psicólogo del Trading con contrato común #owner/agent #type/research #area/echo
+> - [x] D1: ejecutar research one-shot Gerard público para contraste #owner/agent #type/research #area/echo
+> - [x] D1: ejecutar research one-shot Tradesfera con contrato común #owner/agent #type/research #area/echo
+> - [x] D1: ejecutar research one-shot Psicólogo del Trading con contrato común #owner/agent #type/research #area/echo
 > - [ ] Reconstruir una estrategia Gerard completa con evidencia y reglas mecánicas, incluyendo add/recovery y pérdida total #owner/me #type/research #area/echo
-> - [ ] Investigar y mecanizar operativa relevante de Tradesfera #owner/me #type/research #area/echo
-> - [ ] Investigar y mecanizar operativa relevante de Psicólogo del Trading #owner/me #type/research #area/echo
-> - [ ] D2: síntesis adversarial de los tres outputs y seleccionar 1–3 candidatos mecanizables #owner/agent #type/research #area/echo
-> - [ ] D3: congelar 1–2 máquinas de estado + modelo matemático del hardscalping #owner/me #type/research #area/echo
+> - [-] Investigar y mecanizar operativa relevante de Tradesfera — research amplio cerrado; sólo principios explícitos pasan a D2 #owner/me #type/research #area/echo
+> - [-] Investigar y mecanizar operativa relevante de Psicólogo del Trading — NO_GO por corpus técnico insuficiente; no gastar más tiempo sin video concreto #owner/me #type/research #area/echo
+> - [x] D2: síntesis adversarial — pasan C0 random, S1 ORB30 y S2 H4+Bollinger; research amplio cerrado #owner/agent #type/research #area/echo
+> - [/] D3: congelar S1 ORB30 + S2 H4/Bollinger + C0 random y negative hardscalping parametrizado #owner/me #type/research #area/echo
 > - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
 > - [ ] D5: modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
 > - [ ] D3: elegir primer instrumento y dataset después de cruzar microestructura + estrategia + rules de prop #owner/me #type/research #area/echo
@@ -444,6 +558,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-23** — Activado management por `technical-project-manager`: horizonte máximo 7 días. Discovery se limita a tres one-shots paralelos (Gerard/Tradesfera/Psicólogo) bajo contrato común + entrevista Gerard; D2 síntesis, D3 mecanización, D4 backtest, D5 prop simulation, D6 robustness, D7 decisión y eventual freeze MVP.
 - **2026-09-24** — Recibido primer brain dump del curso de Gerard + captura de risk table. Se separan tres motores: recovery adverso intra-trade, pyramiding positivo y variable-risk inter-trade. Derivado modelo provisional de bandas sobre average price y detectada contradicción útil en tabla 1.20/1:1.5: tras dos pérdidas, el siguiente win ya no recupera la secuencia.
 - **2026-09-24** — Entrevista Gerard v1 suficientemente cerrada para avanzar: discrecionalidad pasa a parametrización experimental. Confirmado riesgo/TP monetario recalculado sobre average price. Derivada fórmula m=1+1/b para recovery geométrico constante y refrescada economía Topstep vigente; pricing path pasa a variable del simulador.
+- **2026-09-24** — D2 PASS tras revisar los tres DR. Gerard público y Tradesfera son PARTIAL con inferencias excesivas; Psicólogo NO_GO por corpus insuficiente. Se cierra research amplio. Pasan a D3: C0 random-direction control, S1 NQ/MNQ ORB30 y S2 H4 trend + 5m Bollinger pullback. Negative hardscalping se prueba como módulo separado antes de positive pyramiding y variable risk.
 
 ## 🧭 Decisiones
 
@@ -455,6 +570,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-23 — Reference/Execution de Echo se conserva como dirección arquitectónica, pero su SPEC queda bloqueada hasta G0/G1.**
 - **2026-09-23 — Horizonte máximo inicial = 7 días:** discovery operativo se comprime a 48h mediante tres research one-shot paralelos + entrevista Gerard; el resto del horizonte se dedica a mecanización, backtest/replay, prop simulation y validación adversarial.
 - **2026-09-23 — Piloto “~20 cuentas de 10K” es una hipótesis ilustrativa, no una decisión:** cantidad, nominal, prop y presupuesto se dimensionan en D7 desde reglas y economía verificadas.
+- **2026-09-24 — Cierre de research amplio:** los DR son insumos, no autoridades. D3 trabaja con dos señales mecanizables y un random control; no se abre otra ronda de búsqueda salvo evidencia concreta que cierre un blocker.
+- **2026-09-24 — Diseño experimental secuencial:** entry edge → negative recovery → positive hardscalping → variable risk/prop economics. Prohibido mezclar todo desde el inicio porque impediría atribuir el edge.
 
 ## 🔗 Docs / Links
 
