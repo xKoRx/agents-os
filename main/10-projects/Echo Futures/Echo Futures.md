@@ -1266,7 +1266,7 @@ No se compra escala ni se construye fan-out multi-account hasta que exista una r
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| Echo Futures simulator v0 / xKoRx/echo-futures (create) | master | empty/new repo | [[D4 — Simulator v0 Functional SPEC]] | [[D4 — Simulator v0 Technical SPEC]] | FROZEN / READY_FOR_SHOT_1 |
+| Echo Futures simulator v0 / xKoRx/echo-futures (local) | master | `d4f42a41946f12231b75e4eb65b90d132731be0d` | [[D4 — Simulator v0 Functional SPEC]] | [[D4 — Simulator v0 Technical SPEC]] | D4 CERTIFIED / G4C ACCEPTED |
 | Echo Futures runtime | TBD tras G0/G1 | TBD | BLOCKED — congelar después de G0/G1 | BLOCKED — congelar después de G0/G1 | NOT STARTED |
 
 ## 🧩 Subproyectos
@@ -1305,7 +1305,7 @@ views:
 > - [x] D2: síntesis adversarial — pasan C0 random, S1 ORB30 y S2 H4+Bollinger; research amplio cerrado #owner/agent #type/research #area/echo
 > - [x] D3: congelar simulador estocástico null + synthetic conditional edge + lifecycle abstracto; backtest histórico deferred #owner/me #type/research #area/echo
 > - [x] D3.1: Astra/GOD mathematical review — MATH_GO; autoridad persistida en [[echo-futures-astra-math-review]] #owner/me #type/research #area/echo
-> - [r] [[Echo Futures — Simulator v0]] arrancar + seguimiento #owner/me #type/supervision #area/echo
+> - [x] [[Echo Futures — Simulator v0]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
 > - [ ] D5: modelar `evaluation comprada → primer retiro real` con pass/funded intermedios, fees, activation, resets, drawdown, consistency, payout eligibility y cash neto #owner/me #type/research #area/echo
 > - [-] Elegir instrumento/dataset — DEFERRED; simulation-first no requiere market data en v0 #owner/me #type/research #area/echo
@@ -1358,6 +1358,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — D4 congelado para ejecución hoy: Functional SPEC + Technical SPEC aprobadas; target aislado `xKoRx/echo-futures` (new repo/local if remote absent); proyecto de agente [[Echo Futures — Simulator v0]] creado con Shots 1 implementación, 2 auditoría independiente y 3 corrección/certificación. No queda diseño abierto para Shot 1.
 - **2026-09-24** — Shot 2 independiente PASS_FOR_SHOT_3: cero BLOCKER/MAJOR, dos MINOR (`stubRng` multi-value y NaN con 0 passes) + tres INFO. G4B accepted por owner; Shot 3 desbloqueado. Edge sintético queda explícitamente per-trade.
 - **2026-09-24 — Withdrawal KPI correction:** el owner corrige una posible sobrelectura del fixture `q=10%`. No existe todavía evidencia de una tasa real de retiro. La métrica primaria desde D5 es `q_withdraw = retiros reales / evaluations compradas`; `pass` y `funded` son estados intermedios. Cualquier `q≈0.10` de D4 se etiqueta como fixture abstracto de testing.
+- **2026-09-24 — D4 CLOSED / G4C accepted:** simulator v0 certificado en `d4f42a41946f12231b75e4eb65b90d132731be0d`; D5 puede usarlo como baseline sin reabrir matemática.
 
 ## 🧭 Decisiones
 
@@ -1381,6 +1382,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Math authority:** `[[echo-futures-astra-math-review]]` es autoridad del simulator v0 para kernel, optional stopping, lifecycle abstracto, economics y acceptance tests T1–T8.
 - **2026-09-24 — D4 scope freeze:** primero certificar null engine exacto; synthetic edge v0 se aplica como perturbación de hitting probability en un adverse state acotado. Edge por múltiples adverse states queda para extensión posterior, no para Shot 1.
 - **2026-09-24 — D4 technical freeze:** Go CLI event-driven, exact hitting kernel, standard library first, deterministic single-threaded RNG, JSON scenarios/results, lifecycle abstracto, cohort IID y T1–T8. Repo separado `xKoRx/echo-futures`; Echo/Forge/NinjaTrader fuera de scope.
+- **2026-09-24 — Tier-1 D5:** validar primero Topstep, Apex Trader Funding, MyFundedFutures, Tradeify y Take Profit Trader. FTMO Futures queda watchlist por lanzamiento reciente; Lucid/Alpha/TradeDay y otras no entran al primer corte salvo evidencia que justifique sustituir una Tier-1.
 
 ## 🔗 Docs / Links
 
