@@ -35,6 +35,7 @@ updated: "2026-09-24"
 
 ## 📊 Estado actual
 
+- **D5-M1A TOPSTEP SPEC FREEZE — 2026-09-24.** SPEC funcional + técnica del fast track Topstep congeladas en [[D5-M1A — Topstep Functional SPEC]] y [[D5-M1A — Topstep Technical SPEC]] sobre el modelo D5.3 ACEPTADO: lifecycle PURCHASE_EVALUATION→WITHDRAWAL_RECEIVED|BURNED|INCOMPLETE, kernel 1D finite-horizon (sin `(e,m)`), MLL EOD trailing+lock, consistencia 55%, winning days, MAX_ELIGIBLE 90/10 cap $2,000, ledger con `I_act`, presupuesto de error C2, matriz `sqrt(ρ_full)∈{0.1,0.25,0.5,1,2,4}×adds{0..4}` delta=0, aceptancia T1–T8 intactos + S-subset Topstep (S09/S10/S13/S17/S21/S23/S24 DEFERRED a M1B) + fixtures TS-F01..16, y paquetes Shot A/B/C preparados sin ejecutar. Sin código, sin simulación, sin TPT, sin Tier-2. `D5_TOPSTEP_SPEC_PASS = REVIEW`; next action `MANAGER_ACCEPT_AND_DISPATCH_SHOT_A` (la aceptación debe ratificar SD-1..SD-4). Detalle canónico en §D5-M1A Topstep Spec Freeze.
 - **D5.3 GOD FINDINGS CORRECTION — 2026-09-24.** G53-01..04 cerrados por contrato (estado suficiente multisesión con historia continua; presupuesto global de error por observable; censura de muestra separada de incertidumbre poblacional; `I_act=1{activación completada}` con débito `I_act·activation_fee`) y G53-05..10 incorporadas; matriz S01–S18 reconciliada (4 CORRECTED, 4 EXTENDED, 10 UNCHANGED) + fixtures obligatorios S19–S26. Verificado contra GOD review: kernel, flujos, `(e,m)`, `u_m(m,m)=0`, S10 y martingala finite-horizon sin cambios. Sin código, sin SPEC, sin Tier-2, sin cambio de clase de modelo. `D5_SESSION_MODEL_CORRECTIONS = REVIEW`; siguiente acción `MANAGER_ACCEPT_SESSION_MODEL`. Detalle canónico en §D5.3 GOD Findings Correction.
 - **D5.3 SESSION MODEL REVIEW — 2026-09-24.** Diseño entregado en §D5.3 Session Model Review: Brownian sin drift con reloj de varianza y kernel conjunto de primer evento/supervivencia a horizonte finito; running maximum para TPT PRO. `WithdrawalPolicy` y `PricingSnapshot` separados de reglas. TPT = `ECONOMICS_ONLY` para el target automatizado. GOD review devolvió `MATH_REVISE` (ver §GOD Mathematical Review); su incorporación es la sección D5.3 GOD Findings Correction, que prevalece donde las corrige. No hay código, nuevas SPECs ni aceptación del owner. Esta sección D5.3 prevalece sobre drafts anteriores en los seis puntos del mandato; ver bloqueos precisos al final.
 
@@ -54,7 +55,7 @@ updated: "2026-09-24"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| xKoRx/echo-futures | master | `d4f42a41946f12231b75e4eb65b90d132731be0d` | TBD D5 after rules research | TBD D5 after rules normalization | RESEARCH/PLANNING |
+| xKoRx/echo-futures | master / feature/d5-m1a-topstep (por crear) | `d4f42a41946f12231b75e4eb65b90d132731be0d` | [[D5-M1A — Topstep Functional SPEC]] (REVIEW) | [[D5-M1A — Topstep Technical SPEC]] (REVIEW) | M1A SPEC FREEZE a aceptación owner; implementación no autorizada |
 
 ## ✅ Tareas
 
@@ -64,6 +65,8 @@ updated: "2026-09-24"
 > - [ ] D5.2C capturar Tier-2 Apex/MFFU/Tradeify después del Tier-1 vertical slice #owner/agent #type/research #area/echo
 > - [ ] D5.2 extraer rules oficiales versionadas hasta cash withdrawal #owner/agent #type/research #area/echo
 > - [r] D5.3 diseñar session-aware null model, contratos de retiro/precios y clasificación TPT; diseño persistido, gate REVIEW a revisión matemática y aceptación owner #owner/agent #type/research #area/echo
+> - [x] D5-M1A congelar SPEC funcional+técnica Topstep fast track (kernel 1D, lifecycle, matriz, fixtures, Shot A/B/C); `D5_TOPSTEP_SPEC_PASS=REVIEW` a aceptación owner #owner/agent #type/research #area/echo
+> - [ ] D5-M1A Shot A/B/C implementación→verificación adversarial→certificación sobre SPEC freeze aceptado #owner/agent #type/dev #area/echo #blocked
 > - [ ] D5.4 definir experiments null + conditional-edge + recovery sobre cada ruleset #owner/agent #type/research #area/echo
 > - [ ] D5.5 congelar SPEC técnica mínima de adapters/rules simulator #owner/agent #type/dev #area/echo
 > - [ ] D5.6 implementar/ejecutar simulaciones sólo después de SPEC freeze #owner/agent #type/dev #area/echo #blocked
