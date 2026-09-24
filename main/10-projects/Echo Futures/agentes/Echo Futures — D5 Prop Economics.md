@@ -1200,3 +1200,85 @@ Artefactos reutilizables producidos (todos dentro de esta sección): contrato co
 ### Gate
 
 `D5_SESSION_MODEL_CORRECTIONS = REVIEW`. `D5_SESSION_MODEL_PASS` sigue REVIEW y NO se auto-acepta. No se inicia SPEC. Next action: `MANAGER_ACCEPT_SESSION_MODEL` (sin segundo GOD shot: ninguna corrección cambió kernel, `(e,m)`, diagonal, S10, martingala ni clase de oráculo). Agents-OS actualizado: **sí** — change_log y continuidad consolidados en este planner único por mandato de alcance; core, journal externo y tarea puente intactos. **STOP.**
+
+
+## Manager Acceptance — D5.3 Session Model PASS — 2026-09-24
+
+**Decision:** ACCEPTED.
+
+Evidence:
+- GOD review returned `MATH_REVISE`, not NO_GO.
+- G53-01..G53-04 are now `CLOSED_BY_CONTRACT`.
+- G53-05..G53-10 were incorporated as constraints/clarifications.
+- Correction pass explicitly changed no accepted kernel mathematics, no `(e,m)` dynamics, no diagonal condition, no S10, no martingale semantics, and no oracle model class.
+- A second GOD shot is therefore NOT required by the frozen manager rule.
+
+Gate:
+- `D5_SESSION_MODEL_CORRECTIONS = ACCEPTED`
+- `D5_SESSION_MODEL_PASS = ACCEPTED`
+
+### Owner priority override — Topstep results first
+
+Owner priority for the next delivery is to obtain a decision-quality Topstep economic experiment as soon as possible, while continuing the broader D5 project afterward.
+
+Delivery is therefore split:
+
+#### D5-M1A — TOPSTEP FAST TRACK
+
+Goal:
+simulate **Topstep 50K Trading Combine Standard → XFA Standard → first withdrawal received | burned** under the accepted structural-null session model and produce decision-quality economics.
+
+This milestone MUST NOT implement TPT PRO running-maximum support.
+
+Required Topstep capabilities only:
+- finite-horizon 1D killed-Brownian session kernel;
+- session clock / EOD boundary;
+- forced EOD flat;
+- EOD trailing MLL with lock;
+- evaluation consistency 55%;
+- minimum trading-day requirement;
+- XFA winning-day counting;
+- XFA payout eligibility;
+- payout cap/min/split;
+- purchase/renewal/activation cash ledger;
+- first withdrawal receipt state;
+- cohort statistics / censoring / error reporting;
+- explicit `nu` sensitivity grid.
+
+Explicit defer from M1A:
+- TPT PRO `(e,m)` kernel;
+- TPT inside-buffer policies;
+- Tier-2 providers;
+- empirical market edge;
+- synthetic delta;
+- execution commissions/slippage;
+- Echo/NinjaTrader integration.
+
+#### D5-M1B — TPT / full Tier-1 completion
+
+Runs after M1A unless a Topstep result or defect changes the project decision.
+
+### D5-M1A decision outputs
+
+At minimum for every declared `nu` / TradePolicy scenario:
+- `P(pass evaluation)`;
+- `P(first withdrawal | funded)`;
+- `q_withdraw`;
+- expected evaluations / first withdrawal;
+- no-withdrawal probability after 5/10/20/50 purchased evaluations;
+- expected cash per evaluation;
+- expected cumulative cash before first withdrawal;
+- cash P5/P50/P95 before first withdrawal;
+- net cash / 10 and /100 evaluations;
+- expected trading days / first withdrawal;
+- unresolved/censored mass;
+- numerical + Monte Carlo uncertainty separately.
+
+### Decision use
+
+M1A is a **structural-null decision surface**, not an empirical profitability claim. It can answer whether Topstep contractual asymmetry alone produces positive personal cash EV under the frozen null/session policies and which `nu` regions are viable. It does NOT prove that the eventual real strategy has those `nu`, edge, fill quality or operational compatibility.
+
+Next action:
+`TOPSTEP_SPEC_FREEZE`.
+
+No coding authorized until Topstep Functional/Technical SPECs are frozen.
