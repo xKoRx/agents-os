@@ -1376,3 +1376,96 @@ The existing Topstep SPEC freeze must be amended before implementation.
 Shot A is BLOCKED until the Functional/Technical SPECs include multi-payout lifecycle and call-up censoring semantics.
 
 This erratum does not change D5.3 stochastic mathematics; after first payout Topstep remains a 1D locked-floor process.
+
+
+## Owner Policy Override — D5-M1A-P Topstep Discrete Policy Economics — 2026-09-24
+
+This override is owner-authorized and supersedes the previous immediate M1A experiment matrix, without deleting the accepted Brownian/session model. The Brownian kernel remains the later realism path; the next 3-shot milestone is a bounded discrete-policy economics experiment designed to answer the owner's exact Topstep question quickly and reproducibly.
+
+### Primary policy
+
+Provider/product:
+- Topstep 50K Trading Combine Standard → XFA Standard.
+- pricing: $49 evaluation, $149 activation.
+- payout: 50% of XFA balance capped at $2,000 gross, 90/10 split.
+- Chile reference settlement: Wire/SWIFT fee $30; report gross, trader-after-split, and external-cash-received separately.
+
+Trading Combine:
+- target day 1: +$1,500 before max loss / MLL failure;
+- target day 2: +$1,500 before max loss / MLL failure;
+- both successful days satisfy 50% best-day share, inside the 55% consistency target;
+- a loss outcome in either day is BURNED for this policy;
+- pass probability under linked Bernoulli hit-rate p is analytically p².
+
+XFA payout cycle #1:
+- first funded trading day: target +$4,000 before $2,000 loss; success counts as winning day #1 and locks MLL at $0 at EOD;
+- then require 4 additional winning days to reach the first five-day requirement;
+- harvest-day win = +$500;
+- harvest-day loss cap is configurable and is a FIRST-CLASS experiment input, not fixed: $500 / $1,000 / $1,500 / $2,000;
+- after winning-day eligibility is satisfied, continue until XFA balance >= $4,000 if necessary, then request exactly $2,000 gross;
+- first payout external reference cash = $2,000 - 10% split - $30 Wire/SWIFT fee = $1,770.
+
+XFA payout cycles #2+:
+- after each payout, MLL remains $0 and the winning-day counter resets;
+- require FIVE NEW winning days >= $150, not four;
+- same +$500 / configurable-loss harvest process;
+- require positive net profit since previous payout and balance >= $4,000 before requesting the fixed $2,000 gross;
+- payout request day does not count toward the next five-day cycle.
+
+Payout horizon:
+- primary owner policy: STOP_AFTER_3_PAYOUTS;
+- hard configurable maximum: 4;
+- payout #4 is sensitivity only;
+- never intentionally burn an XFA to free a slot; STOP means stop trading that account. Vendor call-up remains external/censored because Topstep does not publish a deterministic payout-count threshold.
+
+Probability inputs:
+- primary linked hit-rate p applies to the abstract daily objective event in all stages;
+- grid: 0.50, 0.51, 0.525, 0.55, 0.575, 0.60, 0.625, 0.65;
+- implementation MAY expose stage-specific p_eval / p_bulto / p_harvest overrides, but primary reports keep them linked;
+- p is explicitly "probability that the session policy hits its positive target before its loss cap", NOT raw per-trade win rate and NOT a claim of market edge.
+
+Portfolio:
+- normalized month = 20 trading sessions plus actual-calendar mode;
+- 5 concurrent account pipelines;
+- modes: INDEPENDENT and PERFECT_COPY;
+- after evaluation/XFA natural burn, a new Combine may start next trading session;
+- after STOP_AFTER_N, that XFA remains stopped and continues occupying an XFA slot unless an external closure/call-up is supplied;
+- report same-day multiple-MLL events because Topstep currently identifies multiple accounts hitting MLL in one day / account stacking patterns as responsible-trading/compliance risk.
+
+### Required output
+
+For every (p, harvest_loss, max_payouts, correlation_mode):
+- p_pass;
+- P(payout #1/#2/#3/#4 | evaluation);
+- P(payout #1/#2/#3/#4 | activated XFA);
+- evaluations purchased;
+- activations;
+- XFA burns;
+- payout count;
+- external cash received;
+- evaluation + activation costs;
+- net economic P&L;
+- 20-session expected monthly P&L with 5 pipelines;
+- P(month > 0), P5/P50/P95;
+- probability of >=1 payout;
+- account-days / payout;
+- same-day multi-MLL count/rate;
+- stopped-XFA slot occupancy;
+- requested/approved/received amounts separately;
+- settlement-latency sensitivity for international Wire/SWIFT.
+
+### Interpretation guard
+
+This is a synthetic POLICY hit-rate experiment. At p=0.50, asymmetric outcomes such as +$500/-$2,000 are NOT zero-EV trading; their nominal one-day expectancy is negative. The experiment asks whether prop contractual asymmetry can nevertheless make PERSONAL CASH EV positive. It must not be labeled a fair-market Brownian result or empirical strategy evidence.
+
+### Three-shot delivery
+
+Exactly three shots:
+A. implement discrete policy engine + exact/DP reference + MC/monthly portfolio runner;
+B. independently falsify probabilities, ledger, payout cycles, correlation and official-rule semantics; no product fixes;
+C. correct accepted findings, certify, and RUN the full p × harvest_loss × payout_horizon × correlation matrix. Shot C must deliver the final decision table; no fourth shot.
+
+Gate:
+`D5_TOPSTEP_POLICY_SPEC_PASS = ACCEPTED_BY_OWNER`.
+`D5_TOPSTEP_POLICY_IMPL_PASS = PENDING`.
+Next action: DISPATCH_SHOT_A.
