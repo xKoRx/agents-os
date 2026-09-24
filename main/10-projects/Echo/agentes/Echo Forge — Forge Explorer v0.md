@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: cancelled
 priority: P2
 area: "[[Echo]]"
 parent: "[[Echo Forge — Factory V2 Completion]]"
@@ -22,7 +22,7 @@ tags:
   - area/echo
   - agent/owner
 created: "2026-09-21"
-updated: "2026-09-21"
+updated: "2026-09-23"
 ---
 
 # Echo Forge — Forge Explorer v0
@@ -30,7 +30,8 @@ updated: "2026-09-21"
 %% Naming: Echo Forge — Forge Explorer v0 es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo Forge — Forge Explorer v0
-> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P2 · **Parent:** [[Echo Forge — Factory V2 Completion]] · **Repo:** `xKoRx/symphony`
+> **Área:** [[Echo]] · **Estado:** **SUPERSEDED (2026-09-23)** · **Prioridad:** P2 · **Parent:** [[Echo Forge — Factory V2 Completion]] · **Repo:** `xKoRx/symphony`
+> **SUPERSEDED_BY_FLOWKIT 2026-09-23 (gate de consolidación final, mandato owner):** la superficie canónica de inspección de Forge es `sqx-flowkit` (read surface F-05-I), mandato owner 2026-09-21 ("no más funcionalidades opcionales"). El Explorer era un visor alternativo sobre esa misma superficie, jamás aceptado ni certificado físicamente ni desplegado, y está fuera del roadmap de [[Echo Forge — Operación Real V2]]. Resolución definitiva en la consolidación final del repo: rama archivada eliminada, tag `archive/forge-explorer-v0` (`648d5e6`, 8 commits EX0–EX6) borrado local y en origin; el código queda fuera del árbol de master por decisión formal, no por pendiente. **Ya no existe ningún estado DEFERRED para esta feature.**
 > Visor LOCAL y READ-ONLY de los resultados de Echo Forge: un binario Go nuevo (`sqx/cmd/forge-explorer`) que renderiza HTML server-rendered en loopback consumiendo exclusivamente los seis comandos read de `sqx-flowkit` (contrato F-05-I). Sin SQL propio, sin segunda autoridad, sin escrituras, sin HTTP público, sin certificaciones. SPEC/PLAN/NORMAL-PROMPT frozen en `specs/FEAT-FORGE-EXPLORER-V0/` @ `codex/forge-explorer-v0` `cc36c39` (base `745bc8b` = release `0.2.105`). IMPLEMENTADO 2026-09-21: EX0–EX6 con commits atómicos `01ceaa8`→`648d5e6` (push FF a origin); gates §6 GREEN; smoke real read-only contra production PASS. `PHYSICAL CERTIFICATION NOT RUN`.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
