@@ -77,7 +77,7 @@ El riesgo principal es de cola: una técnica con win rate muy alto puede esconde
 | D3 | Tesis matemática + contrato abstracto del simulador | Invariantes, estados, políticas y métricas definidos |
 | D3.1 | **Astra/GOD valida exclusivamente la matemática del simulador** | **PASS — MATH_GO**; claims auditados + acceptance tests analíticos + condiciones de optional stopping |
 | D4 | Simulador estocástico v0 implementado y verificado | Null model reproduce benchmarks analíticos antes de aceptar escenarios con edge |
-| D5 | Rulesets versionados de Topstep/Lucid/Apex + lifecycle completo | purchase→pass→funded→payout/burn y cash costs reproducibles |
+| D5 | Rulesets versionados de Topstep/Lucid/Apex + lifecycle completo | `evaluation purchase → first real withdrawal | burn` reproducible; pass/funded sólo estados intermedios diagnósticos |
 | D6 | Monte Carlo + sensitivity surfaces + cohort correlation | Break-even regions y assumptions dominantes identificados |
 | D7 | Decisión `GO | ITERATE | NO_GO` para piloto de calibración | Presupuesto, tamaño de cohorte, reglas de aborto y supuestos que el piloto debe medir |
 
@@ -1307,7 +1307,7 @@ views:
 > - [x] D3.1: Astra/GOD mathematical review — MATH_GO; autoridad persistida en [[echo-futures-astra-math-review]] #owner/me #type/research #area/echo
 > - [r] [[Echo Futures — Simulator v0]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
-> - [ ] D5: modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
+> - [ ] D5: modelar `evaluation comprada → primer retiro real` con pass/funded intermedios, fees, activation, resets, drawdown, consistency, payout eligibility y cash neto #owner/me #type/research #area/echo
 > - [-] Elegir instrumento/dataset — DEFERRED; simulation-first no requiere market data en v0 #owner/me #type/research #area/echo
 > - [-] Backtest/replay histórico — DEFERRED hasta decisión posterior a D6/piloto de calibración #owner/agent #type/research #area/echo
 > - [ ] D6: ejecutar validación adversarial y robustness #owner/agent #type/research #area/echo
@@ -1352,11 +1352,12 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — D3 diseño abstracto iniciado: separadas SignalModel, IntraTradeManager, InterTradeRiskPolicy, PropRuleSet, ExecutionCostModel, BacktestEngine y PropEconomicsSimulator.
 - **2026-09-24** — D3 replanteado a simulation-first: se pospone market data. Primero se probará toda la tesis con L0 Bernoulli, L1 random-walk y L2 synthetic-edge, luego lifecycle de props, variable risk y cohort correlation. Backtest histórico queda como herramienta posterior de calibración/falsificación, no prerrequisito.
 - **2026-09-24** — Cerrada discusión matemática del add bajo null model: nueva probabilidad condicional sí, nueva moneda 50/50 no. Ejemplo +100/-100 con add en -30 y size 1+1 produce TP +35, SL -65; desde -30 la probabilidad condicional es 35%, y la probabilidad total sigue exactamente 50%. Se añade este resultado como acceptance test del simulador.
-- **2026-09-24** — Reformulada tesis alrededor de `purchase→first-payout conversion`. Bajo null model estático +3000/-2000, first-passage da 40% de pass; encadenar estados evaluation/funded puede producir conversiones del orden 10–16% aun sin asumir edge, antes de reglas/costes reales. El simulador deberá medir cuánto destruyen o mejoran ese bound las reglas reales y conditional mean reversion.
+- **2026-09-24** — Reformulada tesis alrededor de `purchase→first-withdrawal conversion`. El 40% de pass del null model +3000/-2000 es sólo una propiedad del fixture abstracto y NO implica ninguna tasa real de retiro. D5 debe medir directamente `q_withdraw` bajo reglas reales; funded/pass se conserva sólo como estado intermedio diagnóstico.
 - **2026-09-24** — D3.1 agregado: un único shot Astra/GOD actuará como mathematical reviewer con herramientas explícitamente prohibidas. Debe validar/corregir 10 claims, fijar el modelo estocástico mínimo y entregar acceptance tests analíticos. D4 queda bloqueado hasta `MATH_GO` o incorporación explícita de correcciones.
 - **2026-09-24** — Astra/GOD devuelve `MATH_GO`. Claims 1–10 aceptados con condiciones; optional stopping/overshoot/finite-horizon quedan delimitados. Autoridad persistida en `30-resources/futures/echo-futures-astra-math-review.md`. D3 y D3.1 PASS; D4 desbloqueado.
 - **2026-09-24** — D4 congelado para ejecución hoy: Functional SPEC + Technical SPEC aprobadas; target aislado `xKoRx/echo-futures` (new repo/local if remote absent); proyecto de agente [[Echo Futures — Simulator v0]] creado con Shots 1 implementación, 2 auditoría independiente y 3 corrección/certificación. No queda diseño abierto para Shot 1.
 - **2026-09-24** — Shot 2 independiente PASS_FOR_SHOT_3: cero BLOCKER/MAJOR, dos MINOR (`stubRng` multi-value y NaN con 0 passes) + tres INFO. G4B accepted por owner; Shot 3 desbloqueado. Edge sintético queda explícitamente per-trade.
+- **2026-09-24 — Withdrawal KPI correction:** el owner corrige una posible sobrelectura del fixture `q=10%`. No existe todavía evidencia de una tasa real de retiro. La métrica primaria desde D5 es `q_withdraw = retiros reales / evaluations compradas`; `pass` y `funded` son estados intermedios. Cualquier `q≈0.10` de D4 se etiqueta como fixture abstracto de testing.
 
 ## 🧭 Decisiones
 
@@ -1375,7 +1376,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Simulation-first:** antes de datos reales se construye un Monte Carlo completo con Bernoulli ladder como upper-bound, random-walk path como null model canónico, edge sintético 55–65%, hardscalping, prop lifecycle y cohort correlation.
 - **2026-09-24 — No asumir independencia por add ni por cuenta:** escaladas dentro del mismo path son condicionales; cuentas copiadas desde la misma Reference están altamente correlacionadas.
 - **2026-09-24 — Invariante martingala:** con mercado sin drift y outcomes monetarios terminales fijos +G/-L, el sizing dinámico no cambia la probabilidad total de éxito; `P(win)=L/(G+L)`. El recovery sólo puede aportar edge si existe estructura condicional, cambia la distribución terminal o explota no-linealidades de la prop.
-- **2026-09-24 — Tesis matemática principal:** Echo Futures se modela primero como gambler's ruin + absorbing Markov chain + stochastic control sobre reglas de fondeo. La métrica crítica es `purchase→first-payout conversion`; 10% equivale a 10 evaluations esperadas por payout bajo intentos independientes. Costes deben separar `p_pass` de `p_payout`: activation se pondera por cuentas aprobadas, no sólo por payouts.
+- **2026-09-24 — Tesis matemática principal:** Echo Futures se modela primero como gambler's ruin + absorbing Markov chain + stochastic control sobre reglas de fondeo. La métrica crítica es `purchase→first-withdrawal conversion`, definida como `q_withdraw = P(evaluation comprada → primer retiro real)`. `p_pass`/funded es una métrica intermedia, no el objetivo. Los escenarios con `q=10%` usados en D3/D4 son fixtures matemáticos de validación, NO hipótesis ni benchmark de una prop real. Costes deben separar `p_pass` de `q_withdraw`: activation se pondera por cuentas aprobadas, no sólo por retiros.
 - **2026-09-24 — Astra no investiga:** su único rol es falsificar/corregir el contrato matemático antes de implementación; ningún acceso a repos, MCPs, web, logs o infraestructura está autorizado.
 - **2026-09-24 — Math authority:** `[[echo-futures-astra-math-review]]` es autoridad del simulator v0 para kernel, optional stopping, lifecycle abstracto, economics y acceptance tests T1–T8.
 - **2026-09-24 — D4 scope freeze:** primero certificar null engine exacto; synthetic edge v0 se aplica como perturbación de hitting probability en un adverse state acotado. Edge por múltiples adverse states queda para extensión posterior, no para Shot 1.
