@@ -906,11 +906,13 @@ Esto describe intentos independientes. Cohortes copiadas/correlacionadas requier
 
 Si cada evaluation cuesta `F`, existe un coste success-only `A` y el cash neto de un primer payout es `W`, una aproximación de break-even es:
 
-`EV_per_attempt ≈ q*W - F - q*A - other_expected_costs`
+`EV_per_attempt ≈ q_payout*W - F - p_pass*A - other_expected_costs`
 
-Con `q=10%`:
+Donde `p_pass` es evaluation→funded y `q_payout` es purchase→first-payout. Como normalmente `p_pass > q_payout`, usar `q_payout*A` subestima el coste de activaciones de cuentas que pasan y mueren antes de retirar.
 
-`W_break_even ≈ (F + 0.1*A + other_expected_costs) / 0.1`
+Con `q_payout=10%`:
+
+`W_break_even ≈ (F + p_pass*A + other_expected_costs) / 0.10`
 
 El simulador debe utilizar cash real, nunca balance nominal.
 
@@ -1304,7 +1306,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24 — Simulation-first:** antes de datos reales se construye un Monte Carlo completo con Bernoulli ladder como upper-bound, random-walk path como null model canónico, edge sintético 55–65%, hardscalping, prop lifecycle y cohort correlation.
 - **2026-09-24 — No asumir independencia por add ni por cuenta:** escaladas dentro del mismo path son condicionales; cuentas copiadas desde la misma Reference están altamente correlacionadas.
 - **2026-09-24 — Invariante martingala:** con mercado sin drift y outcomes monetarios terminales fijos +G/-L, el sizing dinámico no cambia la probabilidad total de éxito; `P(win)=L/(G+L)`. El recovery sólo puede aportar edge si existe estructura condicional, cambia la distribución terminal o explota no-linealidades de la prop.
-- **2026-09-24 — Tesis matemática principal:** Echo Futures se modela primero como gambler's ruin + absorbing Markov chain + stochastic control sobre reglas de fondeo. La métrica crítica es `purchase→first-payout conversion`; 10% equivale a 10 evaluations esperadas por payout bajo intentos independientes.
+- **2026-09-24 — Tesis matemática principal:** Echo Futures se modela primero como gambler's ruin + absorbing Markov chain + stochastic control sobre reglas de fondeo. La métrica crítica es `purchase→first-payout conversion`; 10% equivale a 10 evaluations esperadas por payout bajo intentos independientes. Costes deben separar `p_pass` de `p_payout`: activation se pondera por cuentas aprobadas, no sólo por payouts.
 
 ## 🔗 Docs / Links
 
