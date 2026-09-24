@@ -1469,3 +1469,18 @@ Gate:
 `D5_TOPSTEP_POLICY_SPEC_PASS = ACCEPTED_BY_OWNER`.
 `D5_TOPSTEP_POLICY_IMPL_PASS = PENDING`.
 Next action: DISPATCH_SHOT_A.
+
+
+## D5-M1A-P — Three-shot execution package — 2026-09-24
+
+### Shot A — Policy simulator implementation
+Implement the owner-frozen discrete Topstep policy only. Required: exact finite-state/DP reference where tractable + Monte Carlo portfolio runner; linked/stage-specific hit probabilities; 50K Combine 2-day policy; XFA $4k bulto + $500 harvest cycles; configurable harvest loss; 3-payout primary / 4 max; 5-pipeline 20-session and actual-calendar modes; independent/perfect-copy correlation modes; current Topstep fee/payout ledger; compliance counters. No Brownian kernel implementation in this shot. Gate: `D5_TOPSTEP_POLICY_IMPL_A = REVIEW`.
+
+### Shot B — Independent adversarial audit
+Fresh context, exact Shot A commit immutable. Independently recompute closed-form/DP controls: Combine pass = p_eval² under the frozen two-day policy; winning-day/reset semantics; fixed-$2k payout eligibility; payout-cycle state transitions; ledger; month accounting; independent vs perfect-copy distributions; censoring. Verify current-rule mappings against official captured rules. Create adversarial boundary fixtures. No product fixes. Gate: `D5_TOPSTEP_POLICY_AUDIT_B = REVIEW`.
+
+### Shot C — Correction, certification and experiment
+Correct only accepted Shot B findings, promote useful reproducers to regression tests, rerun complete quality gate, then execute the FULL frozen matrix. Required final report includes primary STOP_AFTER_3 and payout#4 sensitivity; p grid; harvest-loss grid; 5-pipeline monthly economics; correlation extremes; international settlement sensitivity; P5/P50/P95; compliance counters; break-even contours. This shot MUST return the actual decision table and certified commit. No fourth shot. Gate: `D5_TOPSTEP_POLICY_RESULT_C = REVIEW`.
+
+### Manager acceptance rule
+Only the owner/manager accepts A/B/C gates. The next active assignment is Shot A only.
