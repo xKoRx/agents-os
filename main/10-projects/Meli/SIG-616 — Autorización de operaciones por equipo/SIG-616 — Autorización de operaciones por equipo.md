@@ -26,7 +26,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-09-14"
-updated: "2026-09-23"
+updated: "2026-09-24"
 ---
 
 # SIG-616 — Autorización de operaciones por equipo
@@ -649,6 +649,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **D23 — Sólo mutaciones comprobadas en Slice 5.** Los pares mutantes existentes de Flink y ClickHouse se agregan a la configuración. Reads, aliases y `ping` no adquieren autorización ACME ni bloquean por ausencia en configuración.
 - **D24 — Configuración por scope, contrato estable.** `app.action-authorization.permissions` es la fuente actual por ambiente/scope. Los consumidores dependen de `ActionPermissionProvider`; una carga futura desde Discovery, job o bootstrap reemplaza el adapter sin cambiar `ActionServiceImpl` ni `ActionAuthorizationService`.
 - **D25 — Same-DP en relaciones.** El owner indicó el 2026-09-24 aplicar la invariante explícita de SIG-616 pese a la decisión previa de F4 de preservar cross-DP. Create/update/delete rechazan extremos de Data Products distintos antes de autorización y mutación; update puede mover ambos extremos juntos a otro Data Product con autorización de owner actual y solicitado. Esta decisión requiere auditar datos cross-DP antes del rollout.
+- **D26 — Data Products sin equipo en el cascade.** El owner aclaró el 2026-09-24 que un DP sin `teamName` no debe exigir equipo ni validación ACME. En `DELETE /data-products/{id}` se omiten el precheck heredado y el guard F4 cuando el equipo persistido está vacío, incluso si existe `projectCode`; blockers, estado y demás efectos conservan su flujo. Con equipo y sin proyecto se mantiene el precheck heredado y sólo se omite el guard F4.
 
 ## 🔗 Docs / Links
 

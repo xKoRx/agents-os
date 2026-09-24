@@ -27,7 +27,7 @@ cascade iniciado por `DELETE /data-products/{id}` trasladado desde el review de 
 - no vuelve inmutable el ownership de una relación: update puede cambiar endpoints dentro del mismo Data Product;
 - un par no configurado conserva el flujo anterior y no invoca ACME por el guard nuevo;
 - el nivel exigido sale sólo de `app.action-authorization.permissions`;
-- los guards nuevos con `teamName` o `projectCode` incompletos se omiten por compatibilidad;
+- los guards nuevos con `teamName` o `projectCode` incompletos se omiten por compatibilidad; el delete de Data Products sin `teamName` omite también el precheck ACME heredado, porque no existe owner de equipo que validar;
 - los consumidores anteriores a F3 conservan su semántica fail-closed;
 - component delete e inactivate de F1 continúan en `DEPLOYER_AND_UP` sin cambios.
 
@@ -119,8 +119,7 @@ Ale señaló en PR #1178 que `DataProductServiceImpl.delete()` podía llamar
 individual. F4 lo corrige sin cambiar el contrato del delete:
 
 1. `DataProductController.delete` toma el username de `Authentication.getName()`.
-2. `DataProductServiceImpl.delete` conserva blockers, lookup, status/deleted checks, snapshots y la
-   precondición histórica `assertPrivilegedRole`.
+2. `DataProductServiceImpl.delete` conserva blockers, lookup, status/deleted checks y snapshots. Con `teamName` informado, conserva la precondición histórica `assertPrivilegedRole`; sin equipo omite esa consulta y el guard nuevo.
 3. Si el precheck histórico autorizó por pertenencia a un equipo plataforma, conserva ese bypass.
    Para los demás usuarios ejecuta una vez `data-product:cascade-delete-components` contra el
    Data Product persistido.
@@ -128,9 +127,7 @@ individual. F4 lo corrige sin cambiar el contrato del delete:
 5. `ComponentServiceImpl.deleteByDataProductId` recibe username explícito para auditoría; conserva
    headers sólo para cancelaciones downstream existentes.
 
-Un deny impide delete de components, notifications, evento y save. Si la entrada no existe o el
-ownership está incompleto, sólo se omite el guard nuevo y permanece la semántica previa, incluida la
-precondición heredada del delete del Data Product.
+Un deny impide delete de components, notifications, evento y save. Si la entrada no existe se omite sólo el guard nuevo. Si el DP carece de `teamName`, no se exige equipo ni se consulta ACME para autorizar el owner; las demás precondiciones del delete permanecen. Con equipo y `projectCode` incompleto, permanece el precheck histórico y se omite sólo el guard nuevo.
 
 El comentario de compatibilidad en #1181 detectó que, antes de `e75ca90d9`, el guard adicional
 anulaba el bypass de `cross-dps-rio`/`ml-ads-signals`. El precheck ahora informa si autorizó por
@@ -156,6 +153,7 @@ omitiendo el precheck histórico; el guard F4 permanece activo para poder probar
 | PR #1181, kmontero: plataforma pierde bypass en cascade | Válido; regresión F4 | Corregido en `e75ca90d9`: el guard nuevo respeta el bypass histórico sólo para miembros plataforma. Test con `application.yml` real, `DataProductAccessService` real, sin owner grant, más casos deny/allow y cero side effects. |
 | PR #1181, dmuena: same-DP en relaciones | Válido por SIG-616; reemplaza la decisión local previa de compatibilidad cross-DP | Se exige same-DP en create/update/delete antes de autorización y mutación; el rechazo es `400`. El rollout requiere comprobar relaciones cross-DP persistidas antes de desplegar. |
 | PR #1181, dmuena: `FURY_IS_TEST_SCOPE` cambia el flujo | Válido como cambio observable; esperado para probar el guard por scope | El precheck histórico se omite en test scope y el guard F4 sigue gobernado por la configuración efectiva; se agregan tests de allow/deny con ACME simulado. |
+| PR #1181, dmuena: Data Products sin `teamName` | Válido para el cascade | El delete omite el precheck ACME histórico y el guard F4 si no hay equipo, incluso cuando hay `projectCode`; se agregan regresiones para `null` y blank. |
 | PR #1178, comentarios restantes | Heredados/ya corregidos en F3 | La base sincronizada ya contiene las correcciones; no se duplican. Hallazgos fuera de alcance van a F5. |
 
 ## Archivos productivos
@@ -205,7 +203,7 @@ ejecutó smoke remoto ni se desplegó ninguna versión.
 | Cascade delete | mismo endpoint | DP borrable; pertenencia a equipo plataforma | miembro plataforma sin grant del owner | misma | Allow por bypass histórico; cascade/event/save vigentes. |
 | Cascade delete | mismo endpoint | DP borrable, sin blockers; actor no-plataforma en `test3` | committer o viewer | misma | `403`; cero mutaciones posteriores. |
 | Operación sin entrada | cualquiera anterior | Quitar sólo el par en scope test | cualquiera | ausente | Flujo previo; el guard nuevo no llama ACME. |
-| Ownership incompleto | operación F4 | DP sin team o project | cualquiera | presente | Se omite sólo el guard nuevo; continúa el flujo heredado. |
+| Ownership incompleto | operación F4 | DP sin team o project | cualquiera | presente | Se omite el guard nuevo; en delete de DP sin team también se omite el precheck ACME heredado. |
 
 ## Variantes no productivas
 
@@ -237,7 +235,7 @@ plataforma, por lo que esas variantes no sirven como prueba manual de dicho bypa
 
 - Las nueve operaciones usan configuración para activación y nivel.
 - Wildcards de components no activan relation/pipeline/Data Product.
-- Ausencia de entrada u ownership incompleto conserva compatibilidad aditiva.
+- Ausencia de entrada omite el guard nuevo; ownership incompleto omite el guard nuevo y delete de DP sin equipo omite además el precheck ACME heredado.
 - Deny ocurre antes del primer side effect.
 - Create/update/delete de relaciones rechazan cross-DP antes de ACME y persistencia; update conserva cambios de endpoints cuando ambos pertenecen al mismo Data Product.
 - Cascade autoriza una vez el Data Product persistido y no muta al denegar.
