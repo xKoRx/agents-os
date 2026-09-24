@@ -1305,7 +1305,7 @@ views:
 > - [x] D2: síntesis adversarial — pasan C0 random, S1 ORB30 y S2 H4+Bollinger; research amplio cerrado #owner/agent #type/research #area/echo
 > - [x] D3: congelar simulador estocástico null + synthetic conditional edge + lifecycle abstracto; backtest histórico deferred #owner/me #type/research #area/echo
 > - [x] D3.1: Astra/GOD mathematical review — MATH_GO; autoridad persistida en [[echo-futures-astra-math-review]] #owner/me #type/research #area/echo
-> - [r] [[Echo Futures — Simulator v0]] arrancar + seguimiento #owner/me #type/supervision #area/echo
+> - [/] [[Echo Futures — Simulator v0]] arrancar + seguimiento #owner/me #type/supervision #area/echo
 > - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
 > - [ ] D5: modelar challenge→funded→primer payout con fees, resets, drawdown, consistency, slippage y comisiones #owner/me #type/research #area/echo
 > - [-] Elegir instrumento/dataset — DEFERRED; simulation-first no requiere market data en v0 #owner/me #type/research #area/echo
@@ -1356,6 +1356,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **2026-09-24** — D3.1 agregado: un único shot Astra/GOD actuará como mathematical reviewer con herramientas explícitamente prohibidas. Debe validar/corregir 10 claims, fijar el modelo estocástico mínimo y entregar acceptance tests analíticos. D4 queda bloqueado hasta `MATH_GO` o incorporación explícita de correcciones.
 - **2026-09-24** — Astra/GOD devuelve `MATH_GO`. Claims 1–10 aceptados con condiciones; optional stopping/overshoot/finite-horizon quedan delimitados. Autoridad persistida en `30-resources/futures/echo-futures-astra-math-review.md`. D3 y D3.1 PASS; D4 desbloqueado.
 - **2026-09-24** — D4 congelado para ejecución hoy: Functional SPEC + Technical SPEC aprobadas; target aislado `xKoRx/echo-futures` (new repo/local if remote absent); proyecto de agente [[Echo Futures — Simulator v0]] creado con Shots 1 implementación, 2 auditoría independiente y 3 corrección/certificación. No queda diseño abierto para Shot 1.
+- **2026-09-24** — Shot 2 independiente PASS_FOR_SHOT_3: cero BLOCKER/MAJOR, dos MINOR (`stubRng` multi-value y NaN con 0 passes) + tres INFO. G4B accepted por owner; Shot 3 desbloqueado. Edge sintético queda explícitamente per-trade.
 
 ## 🧭 Decisiones
 
