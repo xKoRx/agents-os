@@ -74,6 +74,7 @@ updated: "2026-09-24"
 
 ## 📆 Bitácora
 
+- **2026-09-24 — D5-M1A Topstep spec freeze (SPEC_FREEZE ejecutado, sin código).** Bootstrap Agents-OS + router aranea + contrato de ambientes; autoridades leídas completas (§D5.2A, §D5.3 con GOD review y correcciones C1–C6, aceptación Manager con override Topstep-first, SPECs D4, math review) y baseline certificado verificado físicamente: checkout local en `d4f42a41946f12231b75e4eb65b90d132731be0d`, tree limpio, master. Creadas [[D5-M1A — Topstep Functional SPEC]] y [[D5-M1A — Topstep Technical SPEC]]: lifecycle completo con BURNED/INCOMPLETE, structural null (drift 0, delta 0, execution cost 0, cash personal activo), semántica Combine (sesión 17:00→15:10 CT, ratchet EOD + lock, consistencia 55% con igualdad dura, renovación FIXED_30D con tie SD-3) y XFA (I_act, reset a 0, MLL −2000→lock 0, winning days 5×150 con publicación 16:00, MAX_ELIGIBLE floor_cent(min(0.5·B,2000))≥125, 90/10 Aeropay, MLL→0 tras primer payout), TradePolicy de referencia SD-1 (G=L=100, h0=1, escaleras prefijo de {−30,−50,−70,−90}), kernel 1D verbatim del GOD con muestreo de ley conjunta, representación dual imágenes/espectral sin Euler de producción, estado suficiente C1 (A jamás omitido), presupuesto de error C2 (7 componentes + etiquetas), S14 adaptado a identidad general de snapshots, matriz 6×5=30 puntos delta=0, aceptancia T1–T8 intactos + S01–S08/S11–S12/S14–S20/S22/S25–S26 (S07/S13/S17/S09/S10/S21/S23/S24 DEFERRED explícitos a M1B) + TS-F01..TS-F16, paquetes Shot A (implementación), B (verificación adversarial contra commit exacto, sin arreglar código) y C (corrección+certificación) listos sin ejecutar. Cambios al vault: 2 SPECs nuevas + este planner; change_log en journal. `D5_TOPSTEP_SPEC_PASS = REVIEW`; no se acepta el gate; sin implementación. Next action `MANAGER_ACCEPT_AND_DISPATCH_SHOT_A`.
 - **2026-09-24 — D5.3 GOD findings correction (CORRECT_AND_REVIEW ejecutado).** Mandato de corrección de contrato: incorporar fielmente los findings aceptados del GOD review sin cambiar la clase de modelo. C1: separación estado local de difusión / estado suficiente económico-de-política multisesión con dimensión continua de historia (fixture negativa `[1700,700,600]` vs `[1400,900,700]`). C2: presupuesto global de error con ε_kernel/ε_history/ε_composition/ε_truncation/ε_horizon/ε_oracle/ε_MC, inequality `(sup g − inf g)·TV(P,Q)`, acumulación Σδ_i sin cancelación y etiquetas RIGOROUS_BOUND/EMPIRICAL_CONVERGENCE/MONTE_CARLO_UNCERTAINTY. C3: `qhat_final_sample∈[S/N,(S+U)/N]` como cota muestral, envolvente η=sqrt(log(2/α)/(2N)) como contrato conservador no exclusivo, masas exactas de solver como caso determinista propio. C4: `I_act=1{activación completada}`, débito `I_act·activation_fee`, identidad de pricing `68(1+n)+130·I_act`. C5: G53-05..10 incorporadas (empates geométricos deterministas, masa singular `δ_{m0}`, τ_D vs ζ, martingala finite-horizon, predicados estrictos sin epsilon, ν como perfil/vector). C6: S01–S18 reconciliados (4 CORRECTED: S10/S12/S14/S18; 4 EXTENDED: S01–S03/S09; 10 UNCHANGED) + S19–S26. /verify 10/10 contra GOD review: ninguna fórmula aceptada alterada. `D5_SESSION_MODEL_CORRECTIONS = REVIEW`, sin segundo GOD shot requerido por regla del manager; next action `MANAGER_ACCEPT_SESSION_MODEL`. Sin código, SPEC, simulación ni Tier-2; change_log consolidado en este planner por alcance expreso.
 
 - **2026-09-24 — D5.3 diseño, change_log consolidado en el planner.** Seleccionado kernel Brownian conjunto con horizonte finito y máximo para PRO; definidas actualizaciones EOD, consistencia estricta TPT, winning days, políticas de retiro, tres snapshots de precios y pruebas analíticas/oráculo independiente. TS-1 resuelto a $2,000 y TPT-1 a 60 trading days por mandato owner. TPT permanece Tier-1 económica, sin permiso de automatización. Verificaciones documentales y fuentes oficiales focalizadas; no se ejecutó simulación ni se reabrió D4. Por instrucción expresa de editar sólo este archivo, no se modifica tarea puente, memoria, journal externo ni Agents-OS core; la continuidad queda aquí. `D5_SESSION_MODEL_PASS = REVIEW`, `Next action = MATH_REVIEW`.
@@ -108,6 +109,8 @@ updated: "2026-09-24"
 - [[Echo Futures — Simulator v0]]
 - [[D4 — Simulator v0 Functional SPEC]]
 - [[D4 — Simulator v0 Technical SPEC]]
+- [[D5-M1A — Topstep Functional SPEC]]
+- [[D5-M1A — Topstep Technical SPEC]]
 - [[echo-futures-astra-math-review]]
 
 
@@ -143,6 +146,7 @@ Common output contract for every provider: exact product/path; every material ru
 | D5_RULE_UNIVERSE_PASS | **ACCEPTED** | Owner froze Tier-1=Topstep/TPT and Tier-2=Apex/MFFU/Tradeify |
 | D5_TIER1_RULES_CAPTURED | **REVIEW** | Complete official Topstep + TPT rule packets through actual cash receipt (paquetes D5.2A/D5.2B + conflictos + unknowns en este planner, captured_at 2026-09-24) |
 | D5_SESSION_MODEL_CORRECTIONS | **REVIEW** | G53-01..04 cerrados por contrato y G53-05..10 incorporadas sin cambio de clase de modelo; revisión directa contra §GOD Mathematical Review en §D5.3 GOD Findings Correction |
+| D5_TOPSTEP_SPEC_PASS | **REVIEW** | SPEC funcional+técnica M1A congeladas (kernel 1D, lifecycle Topstep, matriz 6ν×5adds, S-subset + TS-F01..16, Shot A/B/C preparados); aceptación owner ratifica SD-1..SD-4 y habilita Shot A |
 | D5_TIER1_RULE_CONTRACT_PASS | BLOCKED | Normalize only Tier-1 first, preserving prop-specific exceptions |
 | D5_TIER1_SIM_GAP_PASS | BLOCKED | Classify every Tier-1 rule as SUPPORTED/SMALL_EXTENSION/MATERIAL_EXTENSION/DEFER |
 | D5_TIER1_SPEC_PASS | BLOCKED | Freeze minimum functional+technical extension for Tier-1 lifecycle |
@@ -1285,3 +1289,30 @@ Next action:
 `TOPSTEP_SPEC_FREEZE`.
 
 No coding authorized until Topstep Functional/Technical SPECs are frozen.
+
+
+## D5-M1A Topstep Spec Freeze — 2026-09-24
+
+### Alcance y resultado
+
+Ejecutado el mandato `TOPSTEP_SPEC_FREEZE` del override owner (Topstep results first). Productos: [[D5-M1A — Topstep Functional SPEC]] (comportamiento observable: lifecycle, Evaluation, XFA, TradePolicy SD-1, modos 0–4 adds, outputs obligatorios, matriz, aceptancia, prohibiciones de interpretación) y [[D5-M1A — Topstep Technical SPEC]] (extensión mínima de D4: paquete `internal/topstep` con zero-diff de `internal/sim`, kernel 1D finite-horizon con la ley aceptada verbatim y muestreo de ley conjunta, motor de sesiones, estado suficiente C1, ledger `I_act`, presupuesto de error C2, reproducibilidad versionada, y paquetes SHOT A/B/C preparados). Sin código, sin ejecutar simulación ni Monte Carlo, sin TPT PRO `(e,m)`, sin Tier-2, sin research de otras props. D4 permanece CLOSED y verificado físicamente en su checkout (`d4f42a41946f12231b75e4eb65b90d132731be0d`, tree limpio).
+
+### Decisiones embebidas que la aceptación del gate debe ratificar
+
+| SD | Decisión propuesta | Alternativa registrada |
+|---|---|---|
+| SD-1 | TradePolicy de referencia: G=L=100, h0=1, adds qty 1 en prefijos de {−30,−50,−70,−90} (k=0..4) | k=2 vía T3 {−20,−40}; cualquier otra escalera requiere mandato owner |
+| SD-2 | Perfil ν: σ constante dentro de la ventana activa única; input adimensional `ρ_full` con `ν_E=ρ_full·D²`, D=2000; grid `sqrt(ρ_full)∈{0.1,0.25,0.5,1,2,4}` | otra forma temporal exige `νProfileId` nuevo y re-freeze |
+| SD-3 | Billing: FIXED_30D desde compra; empate rebill/cancelación gana cancelación; sensibilidad de un cargo reportada | orden inverso de empate |
+| SD-4 | Método de payout de referencia: Aeropay fee 0 | ACH/Wire $30 como sensibilidad fuera de la matriz |
+
+### Defer explícito (M1B o fuera)
+
+S09/S10/S21/S23/S24 (existen sólo para soporte `(e,m)` PRO), S07/S13/S17 (lifecycle/policy TPT), TPT completo, Tier-2, delta≠0, execution costs, resets/Back2Funded in-attempt, DLL add-on, variantes No Activation Fee/Consistency XFA, payouts #2+.
+
+### Gate y handoff
+
+- `D5_TOPSTEP_SPEC_PASS = REVIEW` (no auto-aceptado).
+- Aceptación owner ⇒ habilita SHOT A (paquete en Technical SPEC §14.1) con baseline `d4f42a4` + commit de freeze; Shot B verifica el commit exacto de Shot A sin arreglar producto; Shot C absorbe sólo regresiones aceptadas.
+- La ejecución de la matriz de 30 puntos NO es parte del cierre de Shot C; se autoriza por separado con tamaños de corrida congelados antes de observar resultados (C2.iv).
+- Agents-OS actualizado: sí — 2 SPECs nuevas en el proyecto, planner actualizado (estado, tareas, gates, bitácora, links, esta sección), change_log en `80-agents/journal/logs/`. D4, Echo y Forge intactos. **STOP.**
