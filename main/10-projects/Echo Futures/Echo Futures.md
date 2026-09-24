@@ -393,7 +393,7 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [/] D1: hacer brain dump + entrevista dirigida de Gerard y congelar su knowledge contract #owner/me #type/research #area/echo
+> - [x] D1: hacer brain dump + entrevista dirigida de Gerard y congelar su knowledge contract #owner/me #type/research #area/echo
 > - [ ] D1: ejecutar research one-shot Gerard público para contraste #owner/agent #type/research #area/echo
 > - [ ] D1: ejecutar research one-shot Tradesfera con contrato común #owner/agent #type/research #area/echo
 > - [ ] D1: ejecutar research one-shot Psicólogo del Trading con contrato común #owner/agent #type/research #area/echo
