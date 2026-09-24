@@ -11,6 +11,7 @@ related:
   - "[[Echo + Echo Forge — Deferred Certification Backlog]]"
   - "[[aranea-agent-dev]]"
   - "[[aranea-mcps-expert]]"
+  - "[[Echo Forge — Operación Real V2]]"
 aliases:
   - Echo Forge environment contract
   - Echo DEV PROD contract
@@ -20,7 +21,7 @@ tags:
   - area/echo
   - tech/environment
 created: "2026-09-20"
-updated: "2026-09-21"
+updated: "2026-09-24"
 ---
 
 # Echo + Echo Forge — Environment Contract
