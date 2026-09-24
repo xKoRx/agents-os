@@ -200,6 +200,8 @@ Sesión ZCode/GLM-5.3-Flash sobre Daedalus (`kor`, ejecución local). **Sin toca
 
 
 
+### 6. Lectura y operación para cada sesión
+
 - **Cold start o cambio de entidad a Echo/Forge:** `agents-os-bootstrap` → router `aranea-agent-dev` → leer este contrato **antes de elegir ambiente o actuar**. No añadirlo al stack global ni cambiar el bootstrap.
 - **Warm turn de la misma sesión:** reutilizarlo; leer solo el delta cuando cambió la fuente, cambió el ambiente o existe evidencia de drift.
 - **Entrada directa por `AGENTS.md` de repositorio:** debe remitir a este contrato; la federación en los repos es un cambio separado de la presente edición Agents-OS.
@@ -217,7 +219,7 @@ Sesión ZCode/GLM-5.3-Flash sobre Daedalus (`kor`, ejecución local). **Sin toca
 | Front DEV (echo-backoffice) en Daedalus | **AS-BUILT 2026-09-22 en §5.7** — `echo-front-dev` RUNNING (`vite preview :4173`), datos vivos vía `VITE_HASURA_ADMIN_SECRET`, control ops sin prompt vía `VITE_GATEWAY_CONTROL_TOKEN`, propagación de configs reparada (tokens auth ETCD + triggers Hasura a `.161`), commit local `3596fc48` sin push | Owner: revisar/decidir destino del commit local `3596fc48` (push o revert); rotar secret/tokens DEV si su exposición por LAN no se acepta. Rebuild ⇒ `vite build` con env override + restart de la unidad. |
 | Gateway forge_ingest DEV + mig 061/064 en `echo-develop` | Gateway `3d260e81`; CHECK platform incluye `MetaTrader5`; identity tables + GRANT UPDATE vigentes; migración E-04 renumerada a 068 en source (`4aad647b`); sin tabla de control de migraciones | No forzar 061 completa. No revertir el CHECK con filas Forge. Merge/deploy de la migración por flujo de release. |
 | CERT-E04-01 / CERT-F04-03 | **PASS 2026-09-21T04:18Z** sobre golden F04-02 + Gateway DEV | F-INT-03 sigue backlog propio. ~~Echo feature commits no pusheados.~~ **→ PUBLICADOS 2026-09-21T13:0xZ @ `4aad647b` (§5.6).** |
-| SQX local / Windows MT5 | Target owner; no certificado aquí | Registrar instalación/licencia permitida, worker, tests, HTM y aislación. |
+| SQX local / Windows MT5 | **SQX DEV en Daedalus: BLOCKED por decisión owner** (§5.8 2026-09-24: sin distribución Build 142 ni licencia; watcher/worker DEV operables y aislados; watcher ETCD DEV corregido a `sqx-dev`/`sqx-main-queue`) | Owner: proveer distribución SQX + autorizar licencia DEV en Daedalus; luego smoke real `sqcli` (worker DEV ya valida fail-closed). MT5 sigue `DEFERRED_UNTIL_C6`. |
 | Mapa PROD actual | Snapshot parcial de 2026-09-15 | Leer deployment/runtime actual RO antes de cualquier decisión operacional. |
 | Repositorios Echo y Symphony `AGENTS.md` | Fuera del alcance de esta escritura | Añadir puntero breve al contrato en cambio independiente; retirar credenciales versionadas mediante gestión segura y rotación correspondiente. |
 
