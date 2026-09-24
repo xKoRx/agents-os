@@ -56,9 +56,9 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 > [!summary]+ Snapshot inicial — 2026-09-23
 > **17 cuentas conocidas** entre Axi Select, FTMO, TTP, Orion y WSF.
 > **Inventario detallado:** parcial — Orion 6 cuentas históricas / 5 activas; TTP 2 cuentas funded de 50k; The5ers 1 cuenta High Growth 10k perdida; resto pendiente.
-> **Gastos históricos:** evidencia parcial cargada — facturas TTP/contexto US$2.237,35 + WSF US$717,50 + Orion estimado conservador US$2.614,01; FTMO/Axi y otros gastos aún faltan.
-> **Cash recibido acreditado en evidencia:** Axi Select US$2.178,87 + TTP/contexto US$1.619,58 + Orion real US$1.782,26 + FTMO pagos visibles US$2.290,15 = **US$7.870,86**. La clasificación payout vs refund sigue parcial.
-> **P&L realizado neto:** todavía no calculable de forma fiable porque faltan gastos históricos completos y separar refunds de trading payouts.
+> **Gastos históricos:** evidencia parcial cargada — TTP/contexto US$2.237,35 + FTMO US$2.290,15 + WSF US$717,50 + Orion estimado conservador US$2.614,01 + The5ers estimado US$500 = **US$8.359,01** de costo consumido conocido.
+> **Cash recibido acreditado en evidencia:** Axi Select US$2.178,87 + TTP/contexto US$1.619,58 + Orion real US$1.782,26 = **US$5.580,71**. TTP mezcla refunds y posibles payouts.
+> **P&L realizado neto:** aún no es final porque falta separar refunds TTP y confirmar si faltan otros gastos históricos, pero ya no falta FTMO.
 > **Expansión:** posible compra de aproximadamente 10 cuentas adicionales; se registra como pipeline, **no como activo existente**.
 
 > [!warning]+ Regla contable clave
@@ -68,10 +68,10 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 
 | Métrica | Valor actual | Regla |
 |---|---:|---|
-| Cash gastado bruto identificado | **US$6.068,86 parcial** | TTP/contexto US$2.237,35 + WSF US$717,50 + Orion estimado US$2.614,01 + The5ers estimado US$500; falta FTMO y otros gastos |
+| Cash gastado bruto identificado | **US$8.359,01 parcial** | TTP/contexto US$2.237,35 + FTMO US$2.290,15 + WSF US$717,50 + Orion estimado US$2.614,01 + The5ers estimado US$500 |
 | Capital desplegado recuperable | **~US$2.200 Axi Select** | Se trata como inversión/activo recuperable, no como costo hundido mientras mantenga recuperabilidad |
-| Cash desplegado total conocido | **~US$8.268,86 + FTMO pendiente** | Costos identificados + capital Axi recuperable |
-| Cash recibido acreditado | **US$7.870,86** | Incluye payouts/rewards y refunds; se descompone antes de calcular trading profit |
+| Cash desplegado total conocido | **~US$10.559,01** | Costos identificados + capital Axi recuperable |
+| Cash recibido acreditado | **US$5.580,71** | Axi + TTP/contexto + Orion; incluye refunds TTP pendientes de separar |
 | Refunds acreditados | **2 eventos TTP, monto pendiente** | Reducen costo económico, no cuentan como trading profit |
 | Trading payouts confirmados | **≥ US$3.961,13** | Axi US$2.178,87 + Orion US$1.782,26; TTP/FTMO requieren clasificación por tipo |
 | **P&L realizado neto** | Pendiente | retiros − gastos |
@@ -89,7 +89,7 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 | Firma / venue | Cuentas | Estado del inventario | Notas |
 |---|---:|---|---|
 | Axi Select | Pendiente | Parcial | Aproximadamente US$2.200 de capital desplegado recuperable; no clasificar como gasto hundido |
-| FTMO | Pendiente | Por levantar | Prop |
+| FTMO | **4 históricas de 100k visibles** | Parcial | Costos confirmados por captura: US$2.290,15 total |
 | TTP | **2 funded de 50k** | Parcial | Ambas cuentas han generado refund; montos exactos por asociar a movimientos |
 | Orion | **6 históricas / 5 activas** | Parcial | 2×100k + 3×50k + 1×25k Flash; 1×50k lost por inactividad; payouts reales informados US$1.782,26 |
 | WSF | Pendiente | Parcial | Compras visibles por US$717,50; estados actuales por levantar |
@@ -199,6 +199,10 @@ Cada cuenta tendrá un ID interno estable aunque cambie su nombre visible.
 | 2026-05-03 | WSF | Elite Two Phase 100K Step-1 #205523 | challenge | USD | 377,40 | 377,40 | Bridgerpay/WSFunded | Captura Paid | |
 | 2026-09-19 | WSF | Ultra Two Phase 25K Step-1 #282609 | challenge | USD | 75,60 | 75,60 | Bridgerpay | Captura Paid | |
 | 2026-09-21 | WSF | Ultra Two Phase 100K Step-2 #283675 | phase_transition | USD | 0,00 | 0,00 | No payment required | Captura Paid | Sin cash-out |
+| 2025-10-04 | FTMO | 100k cuenta 22170650 | challenge/fee | USD | 520,59 | 520,59 | Pendiente | Captura FTMO estado Pagado | Gasto confirmado |
+| 2025-11-02 | FTMO | 100k cuenta 22353341 | challenge/fee | USD | 632,63 | 632,63 | Pendiente | Captura FTMO estado Pagado | Gasto confirmado |
+| 2025-11-02 | FTMO | 100k cuenta 22353358 | challenge/fee | USD | 632,63 | 632,63 | Pendiente | Captura FTMO estado Pagado | Gasto confirmado |
+| 2025-11-26 | FTMO | 100k cuenta 22501235 | challenge/fee | USD | 504,30 | 504,30 | Pendiente | Captura FTMO estado Pagado | Gasto confirmado |
 | Estimación 2026-09-23 | Orion | 2×100k | estimated_challenge_cost | USD | 1.138,00 | 1.138,00 | — | Precios actuales consultados | 2 × promedio Standard/Select/Nova 100k = US$569,00 |
 | Estimación 2026-09-23 | Orion | 3×50k | estimated_challenge_cost | USD | 977,01 | 977,01 | — | Precios actuales consultados | 3 × promedio Standard/Select/Nova 50k = US$325,67 |
 | Estimación 2026-09-23 | Orion | 1×25k Flash | estimated_challenge_cost | USD | 499,00 | 499,00 | — | Precio actual Orion Zero 25k como proxy | Estimación pesimista; no es gasto histórico probado |
@@ -220,18 +224,12 @@ Categorías iniciales: `challenge`, `activation`, `reset`, `subscription`, `comm
 | 2026-05-11 | TTP/contexto | Pago 133971 | cash_in_pending_classification | USD | 652,60 | Pendiente | 652,60* | Pendiente | Captura listado de pagos, estado Completed | Determinar refund vs payout |
 | 2026-08-24 | TTP/contexto | Pago 136965 | cash_in_pending_classification | USD | 571,22 | Pendiente | 571,22* | Pendiente | Captura listado de pagos, estado Completed | Determinar refund vs payout |
 | 2026-09-16 | TTP/contexto | Pago 137652 | cash_in_pending_classification | USD | 314,84 | Pendiente | 314,84* | Pendiente | Captura listado de pagos, estado Completed | Existen 2 refunds TTP según owner; asociar IDs exactos |
-| 2025-10-04 | FTMO | Cuenta 22170650 | cash_in_pending_classification | USD | 520,59 | Pendiente | 520,59* | Pendiente | Captura estado Pagado | Puede ser reward o refund; clasificar |
-| 2025-11-02 | FTMO | Cuenta 22353341 | cash_in_pending_classification | USD | 632,63 | Pendiente | 632,63* | Pendiente | Captura estado Pagado | Puede ser reward o refund; clasificar |
-| 2025-11-02 | FTMO | Cuenta 22353358 | cash_in_pending_classification | USD | 632,63 | Pendiente | 632,63* | Pendiente | Captura estado Pagado | Puede ser reward o refund; clasificar |
-| 2025-11-26 | FTMO | Cuenta 22501235 | cash_in_pending_classification | USD | 504,30 | Pendiente | 504,30* | Pendiente | Captura estado Pagado | Puede ser reward o refund; clasificar |
 | Fecha pendiente | Orion | Retiro informado por owner | payout | USD | 1.365,82 | Pendiente | 1.365,82 | Pendiente | Declaración directa owner | Cash realmente retirado |
 | Fecha pendiente | Orion | Retiro informado por owner | payout | USD | 416,44 | Pendiente | 416,44 | Pendiente | Declaración directa owner | Cash realmente retirado |
 
 **Subtotal Axi Select visible:** **US$2.178,87**.
 
 **Subtotal TTP/contexto visible:** **US$1.619,58**. El owner confirma que existen **2 refunds** asociados a sus dos cuentas funded de 50k; falta identificar cuáles movimientos son refunds y cuáles payouts.
-
-**Subtotal FTMO visible:** **US$2.290,15** en cuatro movimientos con estado Pagado; tipo económico exacto pendiente de clasificar.
 
 **Orion cash realmente retirado:** **US$1.782,26** = US$1.365,82 + US$416,44.
 
@@ -245,11 +243,10 @@ Categorías iniciales: `challenge`, `activation`, `reset`, `subscription`, `comm
 | Axi Select | 2026-08 | **US$2.178,87** | Payouts visibles; trading cash-in provisional | Asociar a cuentas y confirmar fees/neto |
 | Orion | 2026-09-23 | **US$1.782,26** | Dos retiros reales informados por owner | Fechas/fees |
 | TTP/contexto | 2026-09-16 | **US$1.619,58** | Cash-in real; mezcla de al menos 2 refunds y posibles payouts | Clasificar IDs |
-| FTMO | 2025-11-26 | **US$2.290,15** | Cash-in visible con estado Pagado | Clasificar reward vs refund |
 
-**Cash recibido total acreditado actualmente:** **US$7.870,86**.
+**Cash recibido total acreditado actualmente:** **US$5.580,71**.
 
-**Trading payouts confirmados mínimos:** **US$3.961,13** = Axi US$2.178,87 + Orion US$1.782,26. TTP y FTMO quedan fuera del trading-profit hasta separar refunds/rewards.
+**Trading payouts confirmados mínimos:** **US$3.961,13** = Axi US$2.178,87 + Orion US$1.782,26. TTP queda fuera del trading-profit hasta separar refunds de posibles payouts.
 
 ### Pipeline de compras
 
@@ -332,7 +329,6 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 - [ ] Cargar compras, activaciones, resets y otros gastos históricos #owner/me #type/admin #area/personal
 - [/] Cargar payouts/retiros históricos con monto neto efectivamente recibido #owner/me #type/admin #area/personal
 - [ ] Clasificar los pagos TTP/contexto 132082, 133971, 136965 y 137652: identificar exactamente los 2 refunds y los posibles payouts #owner/me #type/admin #area/personal
-- [ ] Clasificar los 4 movimientos FTMO pagados: reward vs refund #owner/me #type/admin #area/personal
 - [ ] Confirmar costo histórico real de The5ers High Growth 10k si aparece factura/cargo #owner/me #type/admin #area/personal
 - [ ] Reconciliar gastos e ingresos y calcular P&L realizado + break-even #owner/me #type/admin #area/personal
 - [ ] Clasificar cuentas por estado y separar capacidad nominal de valor líquido #owner/me #type/admin #area/personal
@@ -342,7 +338,8 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 
 ## 📆 Bitácora
 
-- **2026-09-23** — Axi reclasificado por instrucción del owner: ~US$2.200 corresponden a capital desplegado recuperable, no a gasto hundido. Cash-out bruto consumido conocido se mantiene en US$6.068,86 + FTMO pendiente; cash desplegado total conocido pasa a ~US$8.268,86 + FTMO pendiente.
+- **2026-09-23** — Corrección FTMO: la captura de cuatro movimientos "Pagado" correspondía a gastos, no cash-in. Se reclasifican US$2.290,15 como costo histórico confirmado. Cash-out consumido conocido sube a US$8.359,01; cash desplegado total incluyendo Axi recuperable queda ~US$10.559,01; cash recibido acreditado baja a US$5.580,71.
+- **2026-09-23** — Axi reclasificado por instrucción del owner: ~US$2.200 corresponden a capital desplegado recuperable, no a gasto hundido.
 - **2026-09-23** — Inventario histórico ampliado con The5ers: 1 cuenta High Growth 10k perdida. Costo recordado por el owner entre US$400–500; se registra provisionalmente **US$500** bajo criterio pesimista. Cash-out bruto identificado sube a US$6.068,86. Pendiente reconciliar si esta cuenta estaba incluida o no dentro del universo inicial de 17.
 - **2026-09-23** — Segunda carga F0: gastos visibles TTP/contexto US$2.237,35 y WSF US$717,50; Orion inventariado con 6 cuentas históricas, 5 activas y US$325k de notional activo. Se estimó costo Orion en US$2.614,01 con precios actuales y criterio conservador, marcado explícitamente como estimación. Orion cash real corregido a US$1.782,26; el certificado US$2.417,58 deja de contar como retiro. TTP: 2×50k funded con 2 refunds pendientes de asociación. FTMO: cuatro movimientos Pagado por US$2.290,15 pendientes de clasificar como reward/refund.
 - **2026-09-23** — Primera evidencia de payouts cargada: 6 pagos Axi Select por US$2.178,87; 4 pagos Completed por US$1.619,58 con firma aún no visible; certificado Orion Overall Rewards por US$2.417,58. Para no inflar resultados, Orion se mantiene como acumulado reconciliable y el lote no identificado no se suma hasta resolver posible solapamiento. Cash-in conservador confirmado: US$4.596,45; máximo provisional si el lote es independiente: US$6.216,03.
