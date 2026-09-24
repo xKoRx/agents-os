@@ -22,7 +22,7 @@ updated: "2026-09-24"
 
 **`SHOT2_VERIFIED_WITH_FINDINGS`** (nunca `DAY_PASS`; ni Fase 3 ni Shot 3 quedan cerrados).
 
-El candidate implementa realmente la capacidad analítica declarada y la mayoría de sus invariantes resistieron la falsificación: determinismo, exactitud decimal, separación de bases, períodos D1, trazabilidad, atomicidad de publicación, reemplazo/staleness, migración 065 y ausencia de dependencias prohibidas. Los hallazgos F-D3-01…F-D3-07 (ninguno BLOCKER) quedan como input de corrección para Shot 3; el manager congela el alcance.
+El candidate implementa realmente la capacidad analítica declarada y la mayoría de sus invariantes resistieron la falsificación: determinismo, exactitud decimal, separación de bases, períodos D1, trazabilidad, atomicidad de publicación, reemplazo/staleness, migración 065 y ausencia de dependencias prohibidas. Los hallazgos F-D3-01…F-D3-07 (2 HIGH, 2 MEDIUM, 3 LOW; ninguno BLOCKER) quedan como input de corrección para Shot 3; el manager congela el alcance.
 
 ## Candidate auditado
 
@@ -71,9 +71,9 @@ candidate_mutated:    NO (probes desechables eliminados; git status limpio al ci
 - CLASSIFICATION: PERMANENT_REGRESSION.
 - MINIMAL_CORRECTION: `countMetric` usa `Basis: BasisClosedOperations` (1 línea).
 
-### F-D3-04 — Bandas visuales de períodos ausentes: dos líneas A/B no son las tres regiones · MEDIUM
+### F-D3-04 — Bandas visuales de períodos ausentes: dos líneas A/B no son las tres regiones · HIGH
 
-- SEVERITY: MEDIUM (hipótesis manager H2: CONFIRMADA)
+- SEVERITY: HIGH (rompe G08, capacidad obligatoria congelada del día; el subtítulo del componente afirma "bandas" que no renderiza — engañoso. Hipótesis manager H2: CONFIRMADA)
 - AREA: `v3/front/src/components/lab/v3/CurveV3Chart.vue`
 - EXPECTED: representación visual distinguible de TRAINING_DATA / PRE_REAL / REAL (contrato UI congelado; SPEC D3 declara "bandas A/B y períodos").
 - ACTUAL: el chart dibuja exactamente 2 annotations verticales (`x` con `x2: null`) en A y B, y la serie es una sola línea de un color; los períodos no existen como regiones distinguibles en el gráfico (los períodos sólo son visibles como badges de color en la tabla de operaciones). El subtítulo del propio componente dice "bandas = …", que es engañoso respecto de lo que renderiza. El test del chart sólo afirma las 2 annotations — el patrón exacto que el protocolo prohibió aceptar como prueba de bandas.
