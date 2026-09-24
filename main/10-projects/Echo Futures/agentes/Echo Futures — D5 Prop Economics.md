@@ -290,7 +290,9 @@ SECONDARY_FLAGS: ninguno que contradiga fuente oficial (secundarias Topstep cons
 Topstep: status list-vs-promo del precio $49; inactividad en Combine; deadline de activación XFA; si el día de trading requiere ≥1 trade (implícito); tabla completa de scaling tiers (imagen no textual); frequency cap de payouts (ninguno declarado); población exacta del legacy "100% primeros $10K"; schedule de comisiones por trade (no capturado en ninguna página oficial).
 TPT: list price $170 no impreso directamente (derivado triple-consistente); deadline de activación PRO; destino del $130 si el PRO falla después; mínimo PRO→wallet; "no daily loss" explícito en PRO; frase textual del efecto del retiro sobre el drawdown lockeado; inactividad Test; número de reintentos de pago; cutoff horario fijo de payout request.
 
-## D5.3 draft — Contrato normalizado candidato (PropRuleSet)
+## D5.3 draft histórico — Contrato normalizado candidato (PropRuleSet)
+
+**Superseded parcialmente por §D5.3 Session Model Review.** Los importes de compra/activación/renovación pertenecen a `PricingSnapshot`; el momento y monto elegido de retiro pertenecen a `WithdrawalPolicy`. El draft se conserva como antecedente, no como contrato implementable. Cap Topstep congelado = $2,000; reloj inside-buffer TPT = trading days. No implementar desde este bloque.
 
 ```text
 PropRuleSet
@@ -496,3 +498,228 @@ The first milestone is **not** “support prop rules generically”. It is a bou
 - historical futures backtest.
 - multi-prop generic framework beyond what Topstep/TPT force.
 - payout #2+ optimization unless a rule is required to compute first withdrawal correctly.
+
+## D5.3 Session Model Review — 2026-09-24
+
+### Mandato, autoridad y decisiones que prevalecen
+
+Diseño matemático, no Functional/Technical SPEC. Baseline certificado: `d4f42a41946f12231b75e4eb65b90d132731be0d`; [[D4 — Simulator v0 Functional SPEC]], [[D4 — Simulator v0 Technical SPEC]] y [[echo-futures-astra-math-review]] permanecen CLOSED/intactos. Esta sección sustituye los drafts D5.3/D5.4 sólo donde afectan sesiones, trailing, contadores/consistencia, retiro, precios y compatibilidad TPT. Los paquetes D5.2 se reutilizan; no se repite research de firmas ni se amplía Tier-1.
+
+| Decisión | Resultado de este diseño |
+|---|---|
+| Modelo v1 recomendado | `CLOCKED_BROWNIAN_SESSION_KERNEL`: Brownian continuo sin drift, reloj de varianza explícito, kernel conjunto de primer evento/supervivencia a fin de intervalo; máximo intradía para TPT PRO |
+| Costes de ejecución M1 estructural | `execution_cost_model = ZERO_STRUCTURAL_NULL`, explícito y separado de cash fees; no representa ejecución neta real |
+| Synthetic edge en sesiones | Sólo `delta=0`; rechazar `delta≠0` en este modelo. D4 legacy retiene su contrato synthetic y T7/T8 |
+| TS-1 | RESUELTO por mandato owner: Topstep 50K XFA Standard sin DLL add-on, cap bruto $2,000/request |
+| TPT-1 | RESUELTO por mandato owner: ≤60 trading days → 50%; >60 trading days → 80% al cerrar dentro del buffer |
+| TPT para el target Echo automatizado | `ECONOMICS_ONLY`; permanece comparación económica Tier-1, no candidato aprobado para ejecutar bots |
+| Éxito | `WITHDRAWAL_RECEIVED` con cash externo neto positivo; request, aprobación y wallet son estados intermedios |
+| Gate / próximo paso | `D5_SESSION_MODEL_PASS = REVIEW` / `MATH_REVIEW`; sólo el owner acepta |
+
+### A1 — Qué información falta y por qué contadores no bastan
+
+D4 entrega `P(τ_U<τ_L)=(x−L)/(U−L)` sin modelar `τ`. La misma probabilidad corresponde a cualquier volatilidad positiva constante, pero cambiar la volatilidad cambia radicalmente cuántos eventos ocurren antes del cierre. No se puede inferir de D4 una distribución de PnL diario, cantidad de días, coste de renovaciones ni winning days. Tampoco se puede muestrear una duración independiente del lado de salida: ambos están correlacionados.
+
+En cada tramo de posición constante se necesita la ley conjunta de `(τ, tipo_de_evento, estado_en_τ)` si un evento ocurre antes del próximo límite temporal, o `(estado_al_límite | ningún_evento_previo)` y su probabilidad de supervivencia. El endpoint sin condicionar puede pertenecer a un path que ya quebró. En TPT PRO, además hace falta el running maximum y el orden temporal de sus incrementos y descensos: un máximo y un mínimo de sesión sin orden no determinan si hubo drawdown. Se requiere kernel con absorción continua, no reconstruir un camino ficticio desde el retorno diario.
+
+### A2 — Alternativas examinadas
+
+| Candidato | Compatibilidad con D4 y adds | Sesgo / auditoría null | Complejidad / reproducibilidad | Decisión |
+|---|---|---|---|---|
+| A. Brownian continuo, horizonte finito, implementado con pasos Euler/retornos Gaussianos | Mismo proceso en el límite; una malla finita pierde primeros cruces y orden de adds | Ignora cruces entre nodos, típicamente sobreestima supervivencia y subestima ratchet. Media gaussiana cero no demuestra null para el proceso detenido implementado | Media; reproducible con seed+malla, pero resultados dependen de malla y correcciones | Rechazado como motor de referencia v1; útil sólo como contraste con convergencia |
+| B. Kernel Brownian conjunto de sesión/primer evento, extendido a `(equity, máximo)` cuando corresponde | D4 es su marginal de salida sin deadline. Conserva precios de adds y bookkeeping, tiempo correlacionado y censura correcta | Cero sesgo estructural de discretización temporal en la ley matemática; aproximación numérica exige error declarado. Martingala auditable | Media para barreras fijas; alta pero acotada para PRO antes del lock. Seed + versión de kernel/tolerancias/calendario determinan resultado | **SELECCIONADO**: una ley continua con dos estados mínimos de kernel según fase |
+| C. Una distribución de retorno diario encima de los wins/losses D4 | Generalmente incompatible: dobla fuentes de PnL o pierde la relación entre exposición, adds y duración | Puede forzar media cero diaria y aun así sesgar ruina, consistencia y q. Calibrar varianza no recupera el orden del path | Baja y reproducible, pero la reproducción no valida la ley | Rechazado. Si la distribución incluye exactamente todos los eventos y máximos condicionados, ya es B |
+| D. CTMC/random walk en retícula o reloj de número fijo de trades por día | Admite adds sólo con estados alineados; las duraciones implícitas dependen de política. Retícula no preserva Brownian/D4 salvo límites controlados | Overshoot, redondeo de barreras y muestreo artificial de EOD cambian la probabilidad. Puede ser martingala de otro modelo | Media; excelente como oráculo independiente de refinamiento | Rechazado para producción v1; aceptado como oráculo numérico con límites y refinamiento |
+
+Un Brownian bridge es una forma de realizar B, no una licencia para muestrear endpoint, máximo y cruces independientemente. Una bridge bajo dos barreras debe condicionarse a supervivencia y respetar el primer evento; PRO requiere también el máximo continuo y su dependencia con la absorción. El contrato elegido fija esa ley aunque la futura revisión técnica elija una representación numérica equivalente.
+
+### A3 — Proceso, tiempo y política de exposición mínimos
+
+Usar unidades normalizadas de precio de D4: `dS_t = σ_z(t) dW_t`, drift cero, con reloj `v(t)=∫σ_z(u)²du`. `σ_z(t)` es determinista, piecewise constant y positivo en ventanas activas; fuera de ellas no hay posición ni exposición. Para referencia puede expresarse `ν_session=∫session σ_z²dt`, pero no se debe identificar un día calendario con una unidad Brownian sin declarar esa escala. Una sesión más corta reduce `ν` bajo la misma tasa por hora; no se renormaliza silenciosamente a un día completo.
+
+`σ`, `G`, `L`, `h0`, lista finita de adds y `hMax` son inputs hipotéticos identificados en cada escenario. No hay estimación empírica, cifra base de q ni escala de volatilidad inferible de D4. La familia `q_withdraw(ν, TradePolicy, WithdrawalPolicy, calendario, settlement)` es la salida correcta hasta congelar escenarios; variar ν es sensibilidad estructural, no edge. Los límites de posición y unidades de contrato deben validarse en el escenario; no introducir scaling ficticio. Una v1 puede usar exposición siempre dentro del mínimo límite permitido y dejar scaling variable fuera.
+
+Política de trading de referencia propuesta: abrir al inicio de cada ventana activa; cerrar por TP/SL o breach; reabrir inmediatamente tras TP/SL mientras la ventana siga abierta; ningún límite artificial de trades/día. Usar el último evento antes de cada corte determinista y liquidar la posición superviviente a su precio condicionado. No llevar posición ni add pendiente a la sesión siguiente. Cortes de noticias/early close son ventanas exógenas versionadas, con flat obligatorio y reapertura posterior; no crean trading days adicionales. No se impone un profit stop diario implícito ni se deja de operar por tocar $3,000 intradía. Las decisiones de pass/retiro de esta v1 se evalúan sobre el snapshot diario completo; es una política EOD explícita, no afirmación de que la firma prohíba terminar antes.
+
+La política EOD puede perder ganancias logradas intradía antes de que se reconozca pass/eligibility; esa diferencia frente a una política de flatten temprano es real y debe etiquetarse. Optimizar stopping intradía sería otro escenario, no un arreglo que pueda inventar el coding agent. El modelo continuo tiene tiempos de decisión discretos para retiros: evita la política patológica «cerrar en el primer instante con ganancia >0», cuyo ínfimo en Brownian puede ser cero sin un primer beneficio positivo bien definido.
+
+El proceso nominal self-financing sigue siendo `E_t = E_0 + ∫H_u dS_u`. Con `0<h0≤H≤hMax<∞` durante exposición, un número finito de adds por trade y horizontes acotados, `E[E_{t∧τ}]=E_0` y `E[(E_{t∧τ}−E_0)²]=E[∫_0^{t∧τ}H_u²σ_z(u)²du]`. Cierre/reapertura sin costes no cambia equity. Para un tiempo de éxito ilimitado, no basta invocar optional stopping: verificar absorción/integrabilidad o reportar censura y cotas; no asegurar media terminal cero sin esas condiciones.
+
+Los adds mantienen exactamente `Y=b+h·s`, `h'=h+Δh`, `b'=b−Δh·s`, `Y'=Y`. Son acciones adaptadas al estado actual, nunca al futuro endpoint de una bridge; conservar orden y exclusión de adds fuera de barreras D4. **Lo que no se conserva como claim universal es la invariancia de p frente a sizing:** con sesiones, trailing y day gates, cambiar H cambia duración y distribución diaria aun sin drift. Tampoco se aplica `D/(T+D)` al ruleset real.
+
+### A4 — Contrato matemático del kernel seleccionado
+
+Para cada estado Z y tiempo de varianza restante V hasta el próximo corte exógeno, definir `τ = inf{v≥0: ocurre una barrera económica o un evento de trading}`. El kernel devuelve exactamente una de estas ramas, con su masa conjunta:
+
+- `EVENT`: `(τ≤V, tipo, Z_τ)`, con tiempo, precio, equity y máximo si corresponde. Se consume τ del reloj; un trade nuevo no reinicia el tiempo restante.
+- `SURVIVED_TO_BOUNDARY`: `(τ>V, Z_V)`. Se conserva toda la masa superviviente; no se sustituye `Z_V` por una normal incondicional ni por la barrera que se habría tocado después.
+
+En Topstep y TPT Test el loss floor es constante dentro de cada sesión. Entre eventos, los niveles de precio son los de D4 reemplazando `−Drawdown` por el floor vigente; el phase upper absorbente está desactivado en modo prop EOD. `lowerEvent` es el siguiente add elegible o la barrera inferior terminal; `upperEvent` es TP. Con `a<x<b`, `ℓ=b−a` y varianza V, la densidad subprobabilidad de endpoint superviviente es:
+
+`k_V(x,y) = (2/ℓ) Σ_{n≥1} sin[nπ(x−a)/ℓ] sin[nπ(y−a)/ℓ] exp[−n²π²V/(2ℓ²)]`, para `a<y<b`.
+
+Su integral es supervivencia. Las densidades conjuntas de salida por unidad de varianza son `f_a(v|x)=½ ∂_y k_v(x,y)|_{a+}` y `f_b(v|x)=−½ ∂_y k_v(x,y)|_{b−}`. Integrar salidas hasta V más supervivencia da 1. La mezcla fija el evento y su duración; si sobrevive se usa `k_V/∫k_V`. Al integrar `f_b` hasta infinito se recupera exactamente `(x−a)/(b−a)`. El cambio de tiempo determinista convierte v en hora de calendario; no se muestrea una duración independiente. Esta formulación es derivación matemática del modelo propuesto y queda sujeta a revisión.
+
+Para TPT PRO antes del lock usar equity `e` y máximo `m`, ambos relativos al inicio de fase, con `m≥max(0,e)` y `F(m)=min(0,m−D)`, D=$2,000. Entre acciones `de=h·dW_v`, `dm` sólo aumenta cuando e marca máximo; matar el proceso al tocar `e≤F(m)`. Los TP/SL/adds se mapean a niveles de e con el bookkeeping vigente y compiten con ese killing. La ley requerida es la distribución conjunta del primer evento `(τ,tipo,e_τ,m_τ)` o supervivencia `(e_V,m_V)`, nunca dos draws marginales independientes.
+
+Caracterización suficiente para revisión/realización numérica: semigrupo detenido de `(e,m)` con generador interior `𝓛=(h²/2)∂²_e`, frontera absorbente `e=F(m)` y fronteras de trading etiquetadas según el primer evento. En la diagonal `e=m<D`, las funciones backward del dominio cumplen `∂_m u(e,m)|_{e=m}=0`; al alcanzar `m=D` se empalma al kernel 1D con floor fijo 0. Condición inicial de semigrupo identidad y datos de frontera de cada evento fijan la ley; las acciones add/close cambian coeficientes/estado sólo después del evento. El máximo no se resetea al cerrar trades ni al terminar días. Tras lock, almacenarlo completo deja de ser necesario para reglas de primera extracción: bastan `locked=true` y F=0.
+
+La ley es exacta; una implementación de series/inversión/PDE puede ser aproximada. El gate no promete un sampler exacto de PRO aún construido ni una solución cerrada para q. No se admite anunciar «exacto» si el evaluador usa malla sin cota de error. La revisión matemática debe aceptar la realización y presupuesto de error antes de SPEC freeze; si no resulta viable, volver a REVIEW del diseño, no sustituirlo silenciosamente por retornos diarios.
+
+### A5 — Estado de sesión y orden de eventos
+
+Estado mínimo adicional al de D4: identificadores de fase/sesión; timestamp y tiempo de varianza restante; balance realizado relativo B; equity E; balance inicial del día `B_open`; PnL realizado del día y provisional; flag de entrada/round-trip; siguiente add; máximo EOD `H_EOD`; floor F y flag lock; máximo intradía M sólo para PRO no lockeado; trading days `N`; winning days `W`; best locked day `A`; snapshot publicado y su session_id; ledger de retiros/settlement; próxima fecha de renovación. Phase equity 0 representa 50,000 nominales en Combine/Test/PRO y 0 en XFA. La referencia nominal nunca es depósito personal.
+
+| Boundary | Modelo y etiqueta |
+|---|---|
+| Topstep | Sesión abre 17:00 `America/Chicago`, flatten/lock del PnL diario 15:10 del siguiente día habilitado; winning-day publication 16:00. El intervalo 15:10–16:00 no añade PnL ni otra sesión |
+| TPT | Trading day 18:00–17:00 `America/New_York`; hard flatten 16:55. Mantener plano hasta el corte. Snapshot de dashboard posterior, publicado en ventana 20:00–21:00 Eastern; no es una segunda sesión |
+| Holidays / DST | Calendario de sesiones versionado, IANA timezone y versión tzdb; incluir early close y fines de semana. No usar UTC−5 fijo ni timezone de Chile |
+| TPT publicación durante sesión siguiente | Si el snapshot previo aún no está publicado, la policy espera plana antes de request. No combinar balance de ayer con PnL abierto de hoy. Fijar latencia de publicación en el escenario; 21:00 Eastern es supuesto conservador posible, no SLA |
+| Inactividad / edad | Días de actividad son por session_id con ejecución, no por fecha civil ni número de trades. PRO age se reinicia al activar; los días Test no cuentan. El contador PRO usa ≥1 round-trip; la liquidación EOD del trade abierto completa el round-trip |
+
+Secuencia de cierre de sesión para sobrevivientes:
+
+1. Resolver cualquier breach intradía, incluido tocar floor al límite: tiene prioridad absoluta y no puede ser rescatado por el endpoint final ni por un retiro. Conservar prioridad D4 phase-loss > trade-close > add; en empate con hard close, cerrar antes de ejecutar un add o reabrir. Un empate exacto tiene probabilidad cero en el modelo regular, pero las fixtures deben ser deterministas.
+2. Liquidar posición superviviente a `S_close` condicionado, cancelar órdenes y fijar `B_close=E_close`. No generar precio ni PnL adicionales durante publication lag.
+3. Calcular `d=B_close−B_open` en fases sin transferencias; en general excluir débitos de payout/deposit de d. Comisiones nominales entrarían aquí y en equity cuando se devenguen; M1 estructural usa 0. No mezclar fees personales de compra/activación con PnL del día.
+4. Actualizar `N←N+1{actividad}`, `A←max(A,d,0)` y, sólo XFA, `W←W+1{actividad y d≥150}`. Cada session_id una vez; los contadores se publican cuando corresponde. Pérdidas no borran best day ni W. Sin actividad no hay winning day, aunque exista un crédito externo.
+5. Aplicar ratchet EOD donde corresponda y volver a validar solvencia frente al nuevo floor. Registrar lock. En PRO no hacer un segundo ratchet EOD: ya se aplicó continuamente.
+6. Evaluar pass EOD y transicionar sólo después de publicación/activación; reset de variables de fase y del historial diario, sin transferir profit de evaluación. Primer funded trade en una nueva ventana completa elegible de esta policy. Publicar eligibility XFA sólo a las 16:00; retirar usando snapshot autorizado y cuenta flat.
+
+Para EOD trailing: `H_j=max(H_{j−1},B_close,j)`, `H_0=0`, `F_j=min(0,H_j−2000)`, `F_0=−2000`; dentro del día j se aplica `F_{j−1}`. Equivalente `F_j=max(F_{j−1},min(0,B_close,j−2000))`. Nunca decrece; lock permanente cuando H alcanza 2000. Para PRO: `M_t=max(0,sup_{u≤t}E_u)`, `F_t=min(0,M_t−2000)` continuamente, incluso ganancias no realizadas. Un add self-financing no produce nuevo máximo por sí mismo. Un retiro tampoco baja F/M. En XFA el primer payout fuerza F=0 aunque el ratchet no hubiese llegado allí.
+
+### A6 — Consistencia y winning days
+
+Definir `P=B_close` como net profit acumulado relativo de evaluación y `A=max(0,d_1,…,d_N)` con días cerrados. La evaluación permanece activa si falta consistencia; no quema la cuenta ni borra pérdidas.
+
+- **Topstep Combine:** `N≥2`, `P≥3000` y `A≤0.55·P`. Target efectivo `T_TS=max(3000,A/0.55)` sin redondeo de elegibilidad. El provisional intradía usa `max(A_locked,d_current,0)`; se congela al cierre, no se sustituye por máximo intradía de equity. Más profit en el mismo día eleva también ese día y puede elevar el target. El diseño EOD no adelanta el pass por haber tocado el target viejo. Fuente focal: [Consistency at Topstep](https://help.topstep.com/en/articles/8284208-consistency-at-topstep).
+- **TPT Test:** `N≥3`, `P≥3000` y `A<0.50·P`, estrictamente. Registrar frontera `P>2A`; `max(3000,2A)` solo no basta porque admitiría igualdad cuando `P=2A`. Comparar mediante productos cruzados con reglas numéricas explícitas; no reemplazar `<` por `≤` ni por un epsilon favorable. Fuente focal: [Rule 5: Be Consistent](https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent).
+- **Topstep XFA Standard:** no consistency gate. W cuenta días con PnL neto final ≥150; cinco días no consecutivos habilitan el componente de días. Una ganancia intradía de 150 que termina en 149.99 no cuenta. El primer request está exento de profit positivo desde un payout previo; no está exento de balance suficiente, mínimo, cap ni receipt.
+
+### A7 — Compatibilidad exacta y límites de D4
+
+Preservado: proceso null sin drift, bookkeeping self-financing, barreras continuas sin overshoot, adds finitos adversos, prioridad de eventos de D4, aislamiento cash/nominal, seed explícita y fixtures legacy. Superseded sólo para el modo D5: ausencia de tiempo, phase-upper como pass instantáneo, resultados terminales siempre ±target/stop, cash W constante y fees C deterministas. Un cierre por horario produce un PnL interior; los fees recurrentes y el cash retirado son variables del path.
+
+La compatibilidad de barreras estáticas se exige al desactivar gates y trailing **y también** quitar liquidaciones forzadas/reset de trade por sesión, o llevar el primer horizonte a infinito. Entonces el marginal de eventos es D4 y la probabilidad de evaluación +3000/−2000 es 0.4. Mantener un cierre finito puede alterar el trade win rate y no tiene por qué recuperar T1–T3; exigirlo ocultaría una contradicción.
+
+Un intervalo matemático de duración cero es identidad de kernel (`K_0=I`), no un trade instantáneo ni un día ganado. Una sesión configurada con duración cero se rechaza; la fixture K0 no ejecuta business events. Desactivar `EOD_update` congela el floor, pero no elimina automáticamente flatten, day gates o reloj. Separar boundaries de mera observación de cierres económicos permite verificar `K_{u+v}=K_uK_v` sin introducir resets. El modo legacy D4 sigue accesible y no necesita simular días para sus T1–T8.
+
+`delta` de D4 perturba un lado terminal sin definir tiempos ni paths condicionados. No existe una extensión única a sesiones: censurar una salida alterada antes de EOD puede crear sesgo inadvertido. Por eso D5 v1 acepta sólo null; `delta≠0` en sesiones es configuración inválida. Un futuro modelo de edge necesitará una ley temporal propia y revisión independiente; no reinterpretar delta como drift físico.
+
+Reproducibilidad: seed + configuración normalizada + IDs/versiones de RuleSet, TradePolicy, WithdrawalPolicy, PricingSnapshot, calendario/tzdb, kernel y tolerancias. Determinismo de orden RNG y serialización. D5 debe repetir sus propios bytes en el mismo entorno soportado; no se promete igualdad bit a bit de muestras D4 vs D5, pues muestrear tiempos consume RNG adicional. La igualdad requerida entre motores es de ley; D4 legacy conserva su contrato original.
+
+### B1 — WithdrawalPolicy separada de reglas
+
+`PropRuleSet` determina una correspondencia legal `AllowedRequests(state)`, mínimos/caps/split/buffer, flatness, ventanas y efectos en cuenta. `WithdrawalPolicy` elige dentro de ella. El contrato conceptual mínimo es: `policy_id/version`; `decision_schedule`; `eligibility_state`; `requested_amount_policy(state, allowed_set)`; `close_account_if_required`; `continuation_policy`; `minimum_positive_external_cash`; `settlement_profile_id`. Estado de elegibilidad distingue `NOT_ELIGIBLE`, `ELIGIBLE_ABOVE_BUFFER`, `ELIGIBLE_CLOSE_REQUIRED`, `AWAITING_DAY_LOCK`, `AWAITING_PUBLICATION`, `PENDING_REQUEST`, `PENDING_RECEIPT` y `UNKNOWN_RULE`. Un campo material desconocido invalida el escenario de reglas completas; nunca se interpreta como permitido.
+
+Convención monetaria: R es débito **bruto** de profit nominal autorizado por la firma; `w=s·R` es entitlement del trader tras split; `c=w−f(w,method)−external_fees` es cash recibido. Seleccionar sólo requests que dejan `c>0`, respetan unidad monetaria de retiro y mínimos oficiales; `minimum_positive_external_cash=0.01 USD` es decisión de policy, no mínimo de firma. Redondear R hacia abajo a centavos para requests; no redondear el proceso Brownian ni los gates de consistencia. Los tests analíticos de martingala preceden el redondeo de retiro.
+
+| Policy | Trigger y requested_amount_policy | close_account_if_required / continuación |
+|---|---|---|
+| Topstep `MAX_ELIGIBLE` | Primer snapshot/ventana permitida con W≥5, R=`floor_cent(min(0.5·B,2000))`≥125 y cash externo positivo. B es balance XFA relativo, no 50,000+profit | false; flat mientras se procesa. Al aprobar: B←B−R, F←0, reset del ciclo de winning days; cuenta sigue abierta. Absorber experimento sólo en receipt |
+| TPT `WAIT_FOR_BUFFER` | Primer snapshot con profit retirable sobre buffer y cash positivo; en escenario `RETAIN_BUFFER`, R=`floor_cent(max(B−2000,0))`, s=0.8. B=2000 exacto da R=0 y **no** éxito | false; conservar buffer, flat mientras request/settlement; registrar cuenta abierta al receipt |
+| TPT `CLOSE_INSIDE_BUFFER` | Primer snapshot de PRO con 0<B≤2000 y R=`floor_cent(B)` que produce cash positivo; split s=0.5 si N_PRO≤60, s=0.8 si N_PRO>60. No esperar al día 61 de forma implícita. Si el primer snapshot disponible ya tiene B>2000, usar la misma extracción sobre buffer de WAIT para totalizar la policy, sin cierre | true sólo cuando la ruta lo exige; confirmar cierre total antes de request inside-buffer. Cuenta `CLOSED_FOR_WITHDRAWAL`, nunca confundir con BURNED. Sin reapertura/reset; receipt aún puede ser éxito |
+
+Estas son políticas de decisión en snapshots EOD, no máximos globales de EV ni claims de óptimo. En `CLOSE_INSIDE_BUFFER`, si el neto es cero/negativo por fees, continuar al siguiente día; no fabricar success por un retiro de $1 que no llega como cash. La ruta conservadora sobre buffer es una hipótesis explícita `RETAIN_BUFFER` pendiente de precisión documental del monto máximo, como se indica en B4; no convierte una interpretación en regla permanente.
+
+### B2 — Request no equivale a cash
+
+Lifecycle mínimo: `PURCHASE_EVALUATION → EVALUATION → PASSED → FUNDED → ELIGIBLE → WITHDRAWAL_REQUESTED → APPROVED/DEBITED → WALLET_CREDITED (TPT) → WITHDRAWAL_RECEIVED`. Ramas: `BURNED`, `CLOSED_FOR_WITHDRAWAL`, `RETRYABLE_OPERATIONAL_FAILURE`, `DENIED`, `INCOMPLETE`. El estado económico terminal de cuenta y el estado de liquidación del cobro son ejes distintos: cerrar PRO para retirar no quema el entitlement; un cash pendiente no se contabiliza como recibido. No sumar a K una cuenta de prop ni saldo wallet aún no remitido.
+
+Policy v1: permanecer flat desde decisión hasta receipt; no reutilizar wallet para comprar otra evaluación. Reintentar errores transitorios sin recrear el débito ni recontar el retiro; un rejection definitivo no se convierte en burn matemático. `SettlementProfile=IDEAL_COMPLIANT` puede fijar aprobación/remesa eventual cierta, compliance/KYC satisfechos y latencia explícita, pero resultados se etiquetan **condicionales a settlement ideal**, no probabilidades empíricas de recibir dinero. Latencias/fallos operativos alternativos deben ser inputs, sin porcentajes inventados. Nunca inferir probabilidad 1 real por documentación de plazo típico.
+
+Para TPT, `w≤250` incurre fee de wallet 50; `w>250`, fee de firma 0, más posibles costes del método. El test aplica al monto wallet→externo, no a R antes del split. Sin cartera previa y primera remesa completa, w es el importe de esa remesa. Ejemplos aritméticos, sin calibración: R=200 y s=.5 ⇒ w=100, c=50; R=300 y s=.8 ⇒ w=240, c=190; R=400 y s=.8 ⇒ w=320, c=320, todos con external_fees=0. [Withdrawal Fees](https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172354954525-Withdrawal-Fees) y [PRO→Wallet](https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172253980061-How-to-Withdraw-from-PRO-Account-to-the-Wallet) respaldan separar split, wallet y remesa.
+
+### B3 — Efecto económico que sí puede afirmarse sin simular
+
+Sea `J=1{receipt externo positivo}`, I=activación pagada y `C_path` todos los costes personales del attempt. Entonces `q_π=P(J=1)`, `W_π=E[c|J=1]`, `EV_attempt,π=E[Jc−C_path]=q_πW_π−E[C_path]`; J≤I. La factorización de fases usa probabilidades **condicionales**, no presume independencia entre ellas. Registrar por separado `P(account_open_at_receipt|J=1)`; no equivale a survival indefinida.
+
+| Policy | q y expected attempts | Cash condicional / survival / EV |
+|---|---|---|
+| MAX_ELIGIBLE | El monto máximo no crea eligibility; bajo mismos tiempos y settlement flat, cambiar R dentro del allowed set no cambia q antes del primer receipt | Mayor R aumenta cash en ese mismo estado si fees netos son monótonos; deja menos colchón y el payout fuerza F=0. No deducir de esto optimalidad global ante otros tiempos/policies |
+| WAIT_FOR_BUFFER | Expone más tiempo a ruina antes de retirar; un threshold de buffer no es payout por sí mismo | Busca split 80% y continuidad; cash condicional depende del exceso observado al decision time y fees. Survival al receipt bajo flat/sin fallos operativos se conserva; survival posterior no modelada |
+| CLOSE_INSIDE_BUFFER | Puede convertir caminos que fallarían antes de buffer en éxitos. Sólo bajo mismo path acoplado, mismos decision times y settlement ideal, con fallback sobre buffer idéntico, el evento de éxito de WAIT está contenido en el de CLOSE | En rutas de cierre, survival de cuenta =0 aunque haya cash; split 50%/80% y fees pueden producir menos cash condicional. La selección de paths cambia W; no hay ranking general de EV |
+
+Con attempts IID y q>0, `E[N_attempts]=1/q`, `E[failures_before_success]=(1−q)/q`, `P(no withdrawal in n)=(1−q)^n`. Con costes de duración aleatoria, no reemplazar `E[C_path]` por F+A constantes. Si rewards/costs por attempt son integrables y los attempts son IID hasta éxito, `E[cash acumulado hasta éxito]=EV_attempt/q`; incluye el coste del intento exitoso. q=0 ⇒ espera infinita, no dividir por cero. Cohortes con fechas progresivas, promociones que expiran, distintos calendarios o presupuesto limitado no son IID; reportar simulación/recursión por calendario y no usar geometric por defecto.
+
+### B4 — Límite documental del buffer
+
+La fuente oficial fija buffer 52,000 y cierre obligatorio para retirar dentro de él, pero la frase sobre 80% del total no da una ecuación inequívoca del monto máximo conservando cuenta. El draft anterior tampoco aportaba una frase explícita del balance/floor post-retiro. Por eso `R=B−2000` queda como escenario conservador `RETAIN_BUFFER`, no certificación de todo `AllowedRequests`. [Profit Split & Withdrawal Rules](https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172219527581-PRO-Account-Profit-Split-Withdrawal-Rules).
+
+Pregunta concreta antes de certificar la fila TPT de reglas completas: **«En un PRO 50K con balance $52,500 y MAB ya fijo en $50,000, ¿cuál es el máximo débito bruto retirable manteniendo el PRO abierto: $500 o más? ¿Qué balance y MAB quedan después? Con balance exactamente $52,000, ¿hay algún monto positivo retirable sin cerrar? Confirmen también el mínimo PRO→wallet y que las tablas ≤60/>60 cuentan días con trading efectivo desde activación PRO».** No se contactó al vendor. La unidad trading days y el corte 60/61 ya están congelados por owner; se pide definición operativa fina, no reabrir ese freeze.
+
+### C — PricingSnapshot y contabilidad temporal
+
+Contrato conceptual separado: `snapshot_id/version`, provider/product, `captured_at=2026-09-24`, currency USD, source_refs, confidence, evaluation_initial, renewal_amount, renewal_calendar, activation_amount, taxes/other_personal_costs, promo_code, purchase_eligibility_window, entitlement_scope, evidence_status. `PropRuleSet` referencia eventos de cobro/cancelación y entitlement; no contiene precios promocionales como semántica permanente. Una compra conserva su snapshot/entitlement; nuevos attempts no heredan descuentos salvo que el escenario lo declare elegible.
+
+| Snapshot requerido | Compra | Renovación mientras evaluación siga activa | Activación | Semántica |
+|---|---:|---|---:|---|
+| `TOPSTEP_STANDARD_CURRENT` | 49 | 49 cada 30 días desde compra | 149 | Snapshot actual del path Standard; no afirmar tarifa eterna ni plan sin activation. No DLL add-on |
+| `TPT_LIST` | 170 | 170 cada mes calendario | 130 | Escenario list congelado; evidencia original MEDIUM, derivado de promos oficiales, no promover a captura directa |
+| `TPT_NOFEE40_SNAPSHOT` | 102 | 102 cada mes calendario para compra elegible | 0 | NOFEE40, descuento y waiver ligados al entitlement comprado; no extender automáticamente a futuras compras |
+
+Fuentes reutilizadas de D5.2: [Topstep pricing](https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions) y [NOFEE40 FAQ](https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/29660646764445). No se vuelve a validar todo el pricing de firmas; estos son escenarios al corte, no cotizaciones futuras. Reset/recovery queda fuera del attempt base: después de burn, cancelar evaluación y comprar un attempt nuevo. La firma no siempre cancela por burn; la cancelación es una acción de policy que evita renovaciones posteriores, no un hecho de RuleSet.
+
+`C_path = F_initial + Σ_{r∈renewals_before_cancellation}F_r + I·A + other_personal_costs`. La activación sólo se cobra cuando ocurre; PnL nominal no paga fees personales. El reloj de renovación es calendario, aunque no se haya operado ese día. Declarar timestamps, cancelación por pass y por burn, timezone de billing y convención de aniversarios de meses cortos. Si la fuente no fija simultaneidad exacta entre pass/cancel y rebill, el escenario debe fijar `billing_tie_order` y reportar sensibilidad de un cargo; no decidirlo por orden accidental del event loop.
+
+Identidad de control en el mismo path TPT y misma policy, con n renovaciones, activación I y misma remesa: `K_NOFEE40−K_LIST=68·(1+n)+130·I`. Cambiar sólo pricing conserva todos los estados nominales, días y q cuando no hay restricción de presupuesto y las policies no dependen de cash personal. Si cambia q, hay acoplamiento indebido o un budget rule que debe declararse. No restar los $130 waived otra vez como rebate. Fees de payout pertenecen al settlement/fee schedule referenciado; no son comisiones de trading.
+
+El structural null v1 **excluye comisiones/slippage nominales en ambas firmas** para preservar la auditoría de martingala y comparabilidad, como permite R6 del manager. Se conservan fees personales de compra, renovación, activación y remesa. Resultado se etiqueta `STRUCTURAL_NULL_ZERO_EXECUTION_COST`; no llamarlo cash EV real neto de ejecución. Un futuro coste nominal convierte la martingala gross en supermartingala neta y requiere schedule comparable, cuándo se cobra por fill/add/close y test de contabilización única.
+
+### D — TPT operational compatibility gate
+
+**Clasificación para el target actual Echo Futures: `ECONOMICS_ONLY`.** El proyecto busca ejecución automatizada y escalable; las reglas PRO prohíben bots/algos y requieren ejecución manual. Una autorización limitada de copia entre cuentas propias mediante herramientas aprobadas no aprueba señales ejecutadas automáticamente, adds algorítmicos ni un copier custom de Echo. Evidencia oficial reconsultada el 2026-09-24: [PRO Account Rules](https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules), actualizado 2026-09-22, y [Trade Copier Policy](https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431176505245-Trade-Copier-Policy).
+
+No se elige `DROP_TIER1`: la comparación económica solicitada sigue siendo útil. `MANUAL_REFERENCE_ONLY` requeriría que el owner adopte un objetivo manual y una herramienta aprobada concreta; no se asume ese cambio. `AUTOMATION_COMPATIBLE` carece de respaldo. Esta clasificación económica es final para el scope actual y no necesita inventar permiso ni esperar al vendor. Para una futura propuesta de integración, el gate de esa **variante** será `BLOCKED_VENDOR_CLARIFICATION` hasta respuesta escrita: **«¿Permiten en PRO 50K que Echo/NinjaTrader genere y ejecute automáticamente entradas, adds, exits y gestión de órdenes? Si sólo admiten referencia manual, ¿qué acciones de gestión pueden automatizarse y está aprobado explícitamente nuestro copier custom/versionado, o debemos usar uno de su lista?»** Sin respuesta afirmativa específica se mantiene exclusión de automatización; no se envió la pregunta.
+
+### E — Acceptance tests nuevos, evidencia y oráculo
+
+Son requisitos propuestos; **ninguno se declara ejecutado** en este mandato sin código. Mantener T1–T8 sobre D4 legacy; añadir los siguientes sin cambiar sus resultados certificados.
+
+| ID | Caso / oracle | Aceptación esperada |
+|---|---|---|
+| S01 static-barrier limit | Sesiones/gates/trailing/flatten off o primer V→∞; conservar política D4 | Integral de flujo upper = `(x−a)/(b−a)`; media de tiempo de salida Brownian en varianza `(x−a)(b−x)`; T1–T4 recuperados, eval +3000/−2000 =0.4 |
+| S02 zero/no-update | K0; boundaries sólo de observación; floor-update off | K0 identidad, sin contador ni RNG/acción de negocio; `K_{u+v}=K_uK_v`; floor fijo. No exigir equivalencia D4 si todavía hay liquidación forzada |
+| S03 finite-horizon mass | Kernel 1D serie/flujo, varios x y V | `∫k_V+∫_0^V(f_a+f_b)=1`, no masa negativa, endpoints condicionados interiores. Validar ley conjunta tiempo/lado, no sólo win rate |
+| S04 EOD monotonic | B EOD: 0→800→300→2200→1000, sin breach previo | F: −2000→−1200→−1200→0→0. Ganancia unrealized que se pierde antes de EOD no eleva floor EOD |
+| S05 locked trail | Alcanzar lock en EOD o PRO y luego subir/bajar equity sin breach | F=0 permanentemente; trades/días/payout no lo bajan. XFA payout fuerza 0 aun si antes era negativo |
+| S06 Topstep consistency | Días [1650,1350]; [1800,1200]; luego +300; fixture provisional de día aún abierto | Primer caso pass por igualdad 55%; segundo no pass con P=3000; tercero P=3300, A=1800 sí. Pérdidas no reducen A; target ≥3000 y fórmula A/.55 sin redondeo |
+| S07 TPT consistency | Días [1500,1000,500] vs [1500,1000,500.01]; [1400,900,700] | 50% exacto no pass; >3000 en segundo sí; tercero P=3000 y best<1500 sí. Dos días nunca bastan; target no es absorción intradía |
+| S08 activity/winning | XFA días netos [150,−50,149.99,200,150,150,150] | W=5 tras siete días; una sesión con 100 trades sólo incrementa una vez. Pico intradía≥150 y EOD<150 no cuenta; quinto día no elegible antes de publication. Día sin actividad/transferencia no cuenta |
+| S09 PRO intraday max | Path E:0→1000 unrealized→500 realizado→−1000; otro path llega a 2000 | F:−2000→−1000→−1000 y breach en −1000, aunque EOD posterior hipotético recupere. En segundo lock0 al tocar 2000, sin esperar EOD. Add/close preservan M |
+| S10 drawdown analytical | Equity Brownian constante, sin EOD/fees ni controles intermedios, M0=E0=0 | Antes de drawdown D, `P(M_τ≥m)=exp(−m/D)`; llegar al lock m=D tiene prob. e⁻¹. Con target T≥D y lock floor0, `P(hit T before burn)=e⁻¹·D/T`. No confundir con q del ruleset |
+| S11 self-financing/null | Adds de T2/T3 con cierres finitos; comparar balance antes/después y martingala detenida a horizonte fijo | Y_before=Y_after; `E[E_{t∧τ}]=E0`; segundo momento igual a varianza integrada esperada. No exigir p_trade=.5 si terminal ahora incluye EOD interior |
+| S12 cash identity | TS B=5000 ⇒ R=2000, split .9 y fee0; TPT ejemplos B2; dos callbacks del mismo request | TS B'=3000, c=1800, F'=0. En todos `K=−C_path+Jc`, sin 50K como cash; un solo débito y crédito. Request/aprobación/wallet con J=0; receipt externo positivo J=1 |
+| S13 closure/age | PRO age 60 vs61, profit positivo, misma petición inside-buffer; fines de semana y días Test | Split .5 vs .8, PRO cerrado para siempre, cash puede recibirse; días calendario, Test e inactividad no inflan edad. Ningún cierre se etiqueta éxito antes del receipt |
+| S14 pricing identity | TPT list vs promo, paths y stream emparejados, n renovaciones | `ΔK=68(1+n)+130I`; q, equity y días idénticos sin budget. TS 30d ≠ TPT mes calendario; burn cancela por policy, no por cancelación ficticia de firma |
+| S15 chronology | DST, early close, news cut, carry a publicación en sesión siguiente, snapshot repetido | Flat en cortes, sin eventos fantasma ni día duplicado; tiempos RNG conservados; nunca operar con snapshot obsoleto al solicitar |
+| S16 isolation/reproducibility | Mismo seed+versiones; delta0 vs null; delta≠0 con session model | D5 idéntico consigo mismo; delta0 misma ruta null; delta≠0 rechazado. D4 legacy T7/T8 intactos |
+| S17 policy coupling | Mismos paths/decision schedule/settlement ideal para WAIT y CLOSE con fallback idéntico | Cada path exitoso WAIT también exitoso CLOSE, salvo fallo de implementación del coupling. No imponer orden a W ni EV; supervivencia de rutas cerradas=0 |
+| S18 incomplete/IID | Guard de tiempo antes de terminar; cohortes IID fixture q=.1 y calendario progresivo distinto | No convertir alive/pending en BURNED ni excluirlos del denominador. Para N intentos, S recibidos y U sin resolver: q∈[S/N,(S+U)/N]. Geometric sólo en modo IID; q=.1 exclusivamente fixture |
+
+S10 se deriva de la distribución del máximo antes de drawdown Brownian y del hitting estático después de lock; referencia primaria de control: Landriault, Li y Zhang, [On the Frequency of Drawdowns for Brownian Motion Processes, §2](https://arxiv.org/abs/1403.1183). La composición `e⁻¹D/T` es derivación de este diseño, no cifra de la firma. Hace falsable el tratamiento del máximo incluso cuando los endpoints de sesión parezcan razonables.
+
+**Límite de validación analítica:** las piezas 1D, martingala a horizonte fijo, ratchets deterministas, contadores/consistencia, ledger y límite S10 son analíticamente comprobables. No se dispone aquí de fórmula cerrada para el q completo de sesiones + adds + trailing + políticas + calendario. Una comprobación del ledger y de media cero no certifica ese q.
+
+**Oráculo numérico independiente propuesto:** resolver la ecuación backward de difusión mediante cadena Markov/finite-volume en retícula de `(e,m)` para PRO, y 1D para EOD, con operadores explícitos de add/close/fin de día y backward induction sobre los estados diarios discretos. No reutilizar el sampler ni su función de crossing probability. Comparar primero sin adds, luego un add y finalmente ciclos cortos de 2–7 sesiones con consistencia/withdrawal. Las ventanas deterministas y estados de políticas son los mismos; la representación del proceso y RNG deben ser independientes. Alternativa de contraste adicional: Brownian bridges condicionadas en malla refinada, conservando orden y máximos; un Euler de pasos más pequeños solo no certifica ausencia de cruces omitidos.
+
+Para cada oracle usar mallas Δ, Δ/2, Δ/4 y ampliar dominios truncados; imponer barreras absorbentes desplazadas hacia dentro/fuera para acotar sensibilidad a no alineación. Si no se demuestra una cota rigurosa, etiquetar la estimación de error como empírica, no exacta. Las políticas sobre regiones abiertas (consistencia `<`) requieren ensayos de ambos lados. Congelar presupuesto propuesto `ε_num≤10⁻⁴` para probabilidades y `≤$0.01` para medias cash de fixtures acotadas; validar que el resultado sea estable dentro de él antes de usarlo. Para comparación Monte Carlo analítica aceptar `|p_hat−p|≤5√[p(1−p)/N]+ε_num`; con oracle usar incertidumbre del oracle más MC, sin absorber un sesgo sistemático aumentando sólo N. La revisión puede ajustar presupuestos por justificación, pero el coding agent no puede eliminarlos.
+
+A horizonte no acotado, reportar masa pendiente y extender horizonte hasta cota declarada, o dejar `INCOMPLETE`. Un technical guard de D4 no se transforma en timeout económico. Si el experimento introduce un plazo de abandono, es otra policy con outcome `ABANDONED` y costes explícitos. No publicar `1/q`, cash hasta primer retiro ni EV infinito-horizonte desde runs censurados como si todos hubieran terminado.
+
+### F — Bloqueos remanentes y handoff sin matemática implícita
+
+| Pendiente | Impacto y responsable de resolución |
+|---|---|
+| Revisión del kernel conjunto, frontera de máximo, sampler/evaluador y presupuesto de error | `MATH_REVIEW` antes de freeze; diseño propuesto, no certificación numérica. Elegir método técnico que realice la ley ya definida; si no viable, devolver al diseño |
+| Aceptación owner de v1 | Gate sigue REVIEW; incluye policy de trading/retiro EOD, structural null con coste nominal0 y TPT economics-only. Ninguna SPEC ni implementación autorizada por este gate |
+| Escenarios concretos de ν/TradePolicy/calendario | Inputs obligatorios sin defaults inferidos del hitting kernel D4; congelar matriz de sensibilidad y calendario/tzdb antes de ejecutar resultados. No requiere suponer edge |
+| `AllowedRequests` TPT sobre/en buffer y mínimo PRO→wallet | Pregunta B4 pendiente; puede estudiarse `RETAIN_BUFFER` como escenario declarado, pero no certificar como regla completa ni elegir policy económicamente superior |
+| Billing y publicación/settlement | Fijar timestamps/perfil, convención meses cortos y empates rebill/cancel; snapshot TPT usa balance publicado. Latencias/fallos no medidos sólo pueden ser escenarios condicionados, no «q real» |
+| Schedules de ejecución comparables / scaling completo | No bloquean structural null explícito con exposición conservadora; sí bloquean proclamar economics neta real o implementar scaling no capturado |
+| Integración TPT automatizada | Excluida por `ECONOMICS_ONLY`; no bloquea research matemático. Una variante manual o custom necesita gate propio y permiso vendor explícito donde no esté documentado |
+
+R1–R6 del review anterior: R1 resuelto por freeze; R2 clasificado ECONOMICS_ONLY; R3 contratos y policies propuestos con B4 abierto; R4 snapshots definidos; R5 diseño entregado, revisión matemática pendiente; R6 structural null zero execution cost propuesto explícitamente. Ningún resultado económico ni ranking de policies fue calculado. Permanece el estado del gate de captura D5.2 hasta aceptación owner; este trabajo no lo acepta por sustitución.
+
+**Handoff autorizado ahora:** revisar matemáticamente esta sección y resolver los inputs/fuentes materiales listados. **No iniciar Functional/Technical SPEC, código ni experimentos en este mandato.** `D5_SESSION_MODEL_PASS = REVIEW`. `Next action = MATH_REVIEW`. Agents-OS actualizado: **sí, continuidad y change_log dentro del planner único; core/journal externo/tarea puente intactos por alcance expreso**.
