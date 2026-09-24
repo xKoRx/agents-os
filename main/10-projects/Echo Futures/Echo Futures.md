@@ -1306,7 +1306,8 @@ views:
 > - [x] D3: congelar simulador estocástico null + synthetic conditional edge + lifecycle abstracto; backtest histórico deferred #owner/me #type/research #area/echo
 > - [x] D3.1: Astra/GOD mathematical review — MATH_GO; autoridad persistida en [[echo-futures-astra-math-review]] #owner/me #type/research #area/echo
 > - [x] [[Echo Futures — Simulator v0]] arrancar + seguimiento #owner/me #type/supervision #area/echo
-> - [ ] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa #owner/me #type/research #area/echo
+> - [ ] [[Echo Futures — D5 Prop Economics]] arrancar + seguimiento #owner/me #type/supervision #area/echo
+> - [-] D3–D5: construir shortlist mínima de prop/plan y normalizar rules que afectan la operativa — absorbido por [[Echo Futures — D5 Prop Economics]] #owner/me #type/research #area/echo
 > - [ ] D5: modelar `evaluation comprada → primer retiro real` con pass/funded intermedios, fees, activation, resets, drawdown, consistency, payout eligibility y cash neto #owner/me #type/research #area/echo
 > - [-] Elegir instrumento/dataset — DEFERRED; simulation-first no requiere market data en v0 #owner/me #type/research #area/echo
 > - [-] Backtest/replay histórico — DEFERRED hasta decisión posterior a D6/piloto de calibración #owner/agent #type/research #area/echo
@@ -1394,6 +1395,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - [[D4 — Simulator v0 Functional SPEC]] — contrato funcional congelado D4.
 - [[D4 — Simulator v0 Technical SPEC]] — contrato técnico congelado D4.
 - [[Echo Futures — Simulator v0]] — proyecto de agente/planificador único para Shots 1–3.
+- [[Echo Futures — D5 Prop Economics]] — proyecto de agente para rulesets de props principales y validación `evaluation→withdrawal`.
 
 ## 💡 Ideas
 
