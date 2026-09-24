@@ -42,6 +42,11 @@ tags:
 
 NINGUNA bloqueante. Notas: (1) `rpips_cumulative` registrado sin implementación — deliberado (F6/F7), requiere autoridad de spec de instrumento; (2) orden de `lab_job_runs.result` del builder nuevo agrega vocabulario `recalculate_lab_curves_v3` — infraestructura existente reutilizada; (3) front `Number(p.value)` sólo para eje del chart (display), la semántica vive en el backend.
 
+## Deuda Shot 3 (corrección F-D3-01..07 @ 372af59a)
+
+- `CONCURRENT_REPUBLISH_PAGINATION_SNAPSHOT = DEFERRED` (F-D3-05): la paginación offset del front bajo republicación concurrente de la misma curva puede duplicar o saltar puntos; la corrección Shot 3 hace fail-closed toda carga incompleta (página vacía prematura, página fallida, total final distinto ⇒ error, jamás parcial presentado como completo), pero el snapshot transaccional de lectura / keyset queda pospuesto por decisión de alcance del manager. Cerrarlo pertenece a un shot posterior con diseño de paginación, no a D3.
+- `D3_DEV_INTEGRATION = UNVERIFIED_EXTERNAL`: PG DEV carece de la base D1 (064 sin aplicar a bases reales); aplicar 065+metadata D3 en DEV requiere primero el despliegue D1 gated (Environment Contract §5.6). No es defecto D3.
+
 ## Limitaciones verificadas
 
 - Dataset de certificación: FIXTURE determinista vía mecanismos correctos (PUT D1 + SQL de prueba declarado para REFERENCE). Sin historia auténtica (D2/Forge pendiente) el gate D3 auténtico con estrategia real queda para la integración.
