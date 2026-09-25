@@ -1866,3 +1866,42 @@ Fuentes: [[gerard-garcia-dr]] (RESEARCH_PASS), [[tradesfera-dr]] (RESEARCH_PARTI
 **Manager recommendation: NEEDS_MARKET_DATA.** La decisión económica está bloqueada por dos preguntas que sólo datos responden: (a) el régimen de ν real (σ√T de sesión vs loss cap — la Part B muestra que el signo del null depende de eso), y (b) la estimación empírica de p_eval/p_bulto/p_reload/p_qualify con ICs de la estrategia seleccionada (Parte D: 8 hipótesis, ninguna con datos hoy). Con datos: estimar p por etapa → comparar contra esta superficie y la de break-even de Shot C → entonces GO_REAL_STRATEGY_VALIDATION o NO_GO. Verificaciones respetadas: linked p=0.50 nunca llamado zero-edge; ningún edge empírico inventado; policy P150 intocada; fair-null y calibración de mercado separados.
 
 Gate: `D5_FAIR_NULL_PASS = REVIEW`. Next action: `MANAGER_REVIEW_D54` → decisión de adquisición de datos de mercado (tick/1m NQ-MNQ-ES-MES con timestamps y sesiones versionadas, per Parte D/§10 gerard-garcia-dr).
+
+
+## Manager Decision — D5.4 Fair-Null accepted; market calibration now binding — 2026-09-25
+
+**Verdict:** `D5_FAIR_NULL_PASS = ACCEPTED_BOUNDED`.
+
+Accepted evidence:
+- stage-specific fair-null semantics correct the linked-p=.50 simplification;
+- certified P150 engine with p_eval=4/7, p_bulto=1/3, p_reload=p_qualify=1/2 remains positive in the discrete eventual-resolution experiment (~+$691/month IND, 5 pipelines, 20 sessions, ql=150);
+- sensitivity/elasticity identifies qualify/reload as the highest-value stage to improve;
+- no empirical edge was invented;
+- source remained on certified commit and the verifier remained external.
+
+Critical limitation:
+- the positive fair-null result is NOT robust to arbitrary finite-session variance. D5.4 Part B is a diagnostic bracket, not a certified market-calibrated cash forecast.
+- `rho` must be calibrated from actual instrument/session/exposure data. A common dimensionless rho across stages is a sensitivity device, not a claim that real dollar variance scales with each stage loss cap.
+- unresolved-to-EOD paths must be represented using actual session data / the accepted session-aware model before capital deployment.
+
+Manager interpretation:
+- structural prop asymmetry under a truly driftless first-hitting process: **SUPPORTED**;
+- monthly profitability under real NQ/MNQ/ES/MES sessions: **UNKNOWN UNTIL DATA**;
+- Gerard/mean-reversion edge requirement appears modest in the low-ql regime, but stage probabilities must be estimated empirically with confidence intervals;
+- no further generic simulator architecture is authorized before calibration.
+
+New gate:
+- `D5_MARKET_CALIBRATION_PASS = BLOCKED_DATA`.
+
+Mandatory next work:
+1. acquire/identify historical futures data for the exact target instruments and trading windows;
+2. measure realized variance-clock distributions by session/window;
+3. map those distributions to stage-specific `rho_eval`, `rho_bulto`, `rho_reload`, `rho_qualify`;
+4. replay the P150 lifecycle with TARGET/LOSS/SURVIVED_TO_EOD rather than diagnostic bracketing;
+5. only after that, test Gerard/Tradesfera entry/management rules and estimate empirical stage hit probabilities with confidence intervals and costs.
+
+Capital decision remains:
+`REAL_MONEY_MVP = WAIT_FOR_D5_MARKET_CALIBRATION`.
+
+Next action:
+`D5.5_MARKET_DATA_AND_SESSION_CALIBRATION`.
