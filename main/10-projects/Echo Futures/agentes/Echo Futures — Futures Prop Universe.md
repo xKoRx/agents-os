@@ -25,6 +25,11 @@ updated: "2026-09-25"
 
 # Echo Futures — Futures Prop Universe
 
+## Execution gate — canonical Echo Futures
+
+Este track forma parte de **D1 Analysis** del nuevo [[Echo Futures]]. A fecha 2026-09-25 queda preparado pero **no debe ejecutarse fuera del manager de D1**. Su output será evidencia para diseñar Provider/Program/RuleSet; no congela por sí mismo arquitectura ni selección comercial de props.
+
+
 ## Goal
 
 Build and maintain the authoritative universe of credible futures prop firms relevant to Echo Futures, including firms we can automate, firms that are conditional, firms that are economically unattractive, and firms that are excluded by automation/compliance constraints.
