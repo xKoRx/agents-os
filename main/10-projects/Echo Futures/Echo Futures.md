@@ -10,7 +10,7 @@ parent:
 sprint: 2026-09-25--2026-10-02
 start: 2026-09-25
 due: 2026-10-02
-progress: 12
+progress: 0
 repo:
 jira:
 prs:
@@ -97,6 +97,14 @@ No implementar ahora:
 - locates/borrow;
 - corporate actions;
 - routing entre mercados de acciones.
+
+### Deuda obligatoria cross-market — reglas de props Forex
+
+**DT-EF-FX-PROP-01 — DEFERRED_MANDATORY.** Echo actual también opera cuentas de props Forex y esas cuentas tienen restricciones operativas reales. Echo Futures no implementará ahora el enforcement completo de reglas Forex, pero el diseño de `Provider`, `ProviderProgram`, `ProviderRuleSet`, account policy, trading windows, news/copy/automation/drawdown constraints y provenance **no debe quedar artificialmente futures-only cuando una abstracción común sea simple y demostrable**.
+
+Esta deuda debe atacarse en un track posterior obligatorio: auditar las props Forex actuales, formalizar sus reglas first-party y aplicar el mismo enforcement donde corresponda al Echo existente. No convertir esto en scope creep de V1 Futures.
+
+**Política de deuda en código:** cuando una implementación futura deje una limitación temporal, compatibility shim o camino futures-only relacionado con esta deuda, el source propietario debe llevar un marcador explícito con ID canónico —por ejemplo `DT-EF-FX-PROP-01` o un sub-ID— y enlace/comentario suficiente para encontrar el debt register. No usar `TODO` genérico sin owner/debt ID. La documentación canónica sigue siendo la autoridad; el comentario en código hace visible la deuda justo en el seam donde importa.
 
 ### Escala
 
@@ -310,30 +318,32 @@ Cada pregunta tiene un **día máximo de resolución**. No puede arrastrarse sil
 | Q15 | **Trade/Lab compatibility:** qué campos existentes se preservan, cuáles se extienden y cómo se distinguen live vs simulated. | **D2** | Contrato Trade→trade_journal→Lab y provenance/mode resueltos. |
 | Q16 | **Blocking refactor:** si Echo actual impide alguna capacidad, ¿se resuelve ahora o queda DT/Core V3? | **D2** | Cada gap de D1 queda clasificado como adaptación/refactor <=1 día o DT no bloqueante con impacto explícito. |
 
-### Readiness después de D1 — 2026-09-25
+### Estado D1 después de corrección del owner — 2026-09-25
 
-D1 cerró el discovery requerido sin congelar arquitectura. Autoridad de evidencia: [[Echo Futures — D1 Analysis Pack]].
+El intento inicial de cierre fue prematuro: el manager ejecutó demasiado discovery/research y avanzó readiness sin recorrer el gate con el owner. [[Echo Futures — D1 Analysis Pack]] se conserva como **PRELIMINARY MANAGER ADVANCE**, no como cierre.
 
-| Q | Estado | Resultado D1 |
+| Q | Estado actual | Nota |
 |---|---|---|
-| Q1 | **RESOLVED** | Echo V3 inspeccionado físicamente; matriz REUSE/EXTEND/ADAPT/REPLACE/NEW/DEFERRED_DEBT cerrada. |
-| Q2 | **READY_FOR_D2** | Position físico/reconciliado y evidencia de partial fills disponibles para decidir attribution. |
-| Q3 | **READY_FOR_D2** | Gap del lifecycle actual + evidencia ProjectX/NinjaTrader suficientes para definir Order/Fill. |
-| Q4 | **READY_FOR_D2** | Patrones de hot state, ownership, warmup/restart y persistence contrastados en engines maduros. |
-| Q5 | **READY_FOR_D2** | Inputs de forming/closed bar, timestamps, aggregation y ordering suficientes. |
-| Q6 | **READY_FOR_D2** | Instrument/Contract y mapping físico/hot preparados; pinning de Operation sigue como propuesta a resolver. |
-| Q7 | **READY_FOR_D2** | Exchange calendar + timezone/DST/holiday/early-close + overlays de provider identificados. |
-| Q8 | **READY_FOR_D2** | Primary/backup authority y recovery/failover research completado. |
-| Q9 | **READY_FOR_D2** | ProjectX, NinjaTrader, Tradovate y Rithmic evaluados; existe ruta real técnicamente viable para V1. |
-| Q10 | **READY_FOR_D2** | Cohorte multi-prop demuestra necesidad de Provider + Program/fase + RuleSet versionado. |
-| Q11 | **READY_FOR_D2** | StrategyConfig actual distinguido de Strategy runtime; event inputs necesarios identificados. |
-| Q12 | **READY_FOR_D4** | Se mantiene en D4 según owner_day; no afecta arquitectura necesaria para cerrar D1. |
-| Q13 | **READY_FOR_D4** | Se mantiene en D4 según owner_day; D1 dejó los event inputs necesarios para CapitalManagement. |
-| Q14 | **READY_FOR_D2** | Boundary reutilizable Strategy/CapitalManagement/domain vs infraestructura live concretado como input. |
-| Q15 | **READY_FOR_D2** | TradeJournalFn → trade_journal → Lab inspeccionado; provenance/mode/run_id queda para diseño D2. |
-| Q16 | **READY_FOR_D2** | Blocking/deferred refactor register completo; no apareció necesidad material de reescribir Core V3. |
+| Q1 | **CANDIDATE_FOR_OWNER_REVIEW** | Source audit V3 y matriz preliminar existen; deben revisarse con el owner antes de cerrar. |
+| Q2 | **OPEN_D1_INPUTS_AVAILABLE** | Inputs preliminares disponibles para preparar D2; no readiness aceptada todavía. |
+| Q3 | **OPEN_D1_INPUTS_AVAILABLE** | Inputs preliminares; completar corpus de transport/lifecycle según plan D1. |
+| Q4 | **OPEN_D1_RESEARCH_REQUIRED** | Scouting LEAN/Nautilus existe; falta deep research dedicado. |
+| Q5 | **OPEN_D1_RESEARCH_REQUIRED** | Debe cerrarse evidence contract de bars/live/replay mediante research delegado. |
+| Q6 | **OPEN_D1_INPUTS_AVAILABLE** | Contract/mapping preliminar; considerar reuse posterior en Forex/otros mercados. |
+| Q7 | **OPEN_D1_INPUTS_AVAILABLE** | Sessions/calendar preliminar; falta review guiada. |
+| Q8 | **OPEN_D1_RESEARCH_REQUIRED** | Feed authority/failover necesita research delegado. |
+| Q9 | **OPEN_D1_RESEARCH_REQUIRED** | Families preliminares encontradas; feasibility final depende del corpus real de props. |
+| Q10 | **OPEN_D1_RESEARCH_REQUIRED** | El sample del manager NO sustituye [[Echo Futures — Futures Prop Universe]]. |
+| Q11 | **OPEN_D1_INPUTS_AVAILABLE** | Source audit preliminar; diseño sigue en D2. |
+| Q12 | **READY_FOR_D4** | Owner day permanece D4. |
+| Q13 | **READY_FOR_D4** | Owner day permanece D4. |
+| Q14 | **OPEN_D1_RESEARCH_REQUIRED** | Backtest boundary debe contrastarse con market-data/runtime research. |
+| Q15 | **OPEN_D1_INPUTS_AVAILABLE** | Trade/Lab source audit preliminar; diseño queda D2. |
+| Q16 | **OPEN_D1_INPUTS_AVAILABLE** | Refactor register preliminar; sólo se cierra después de revisar todos los frentes D1. |
 
-No existe `UNKNOWN_WITHOUT_OWNER_DAY` al cierre de D1.
+**Gate actual:** `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
+
+D1 se cierra únicamente después de revisar el checklist completo con el owner. El manager puede declarar `READY_FOR_OWNER_REVIEW`; no self-accept.
 
 ### Closure policy de preguntas
 
@@ -657,26 +667,28 @@ No se optimiza por máximo paralelismo. Se paralelizan sólo tareas independient
 
 **Manager goal:** terminar el día entendiendo exactamente qué estamos construyendo y qué ya existe.
 
-Trabajo coordinado:
-- recuperar en detalle dominio/source de Echo actual;
+Trabajo coordinado por el manager, recorrido **global → workstream → detalle** con el owner:
+- revisar el source/domain audit preliminar de Echo actual y decidir si Q1 requiere auditoría adicional;
 - contrastar Strategy/Signal/Operation/Order/Fill/Position/Trade con contratos físicos;
-- recuperar S1/S2 y Gerard +/- desde evidencia previa;
-- iniciar/ejecutar census Prop Universe;
-- research dirigido de market-data/bar-state implementations;
-- inventario de feeds/execution technologies existentes;
-- feasibility de al menos un execution transport real;
-- contract identity/mapping hot y semántica manual de rollover;
+- recuperar S1/S2 y Gerard +/- desde evidencia previa sólo hasta el nivel necesario para arquitectura;
+- ejecutar [[Echo Futures — Futures Prop Universe]] mediante **deep research dedicado first-party**; el sample preliminar del manager es sólo seed;
+- preparar y ejecutar **deep research dedicado de market-data / quant-engine implementations** para extraer patrones implementables, trade-offs y failure modes; el scouting LEAN/Nautilus ya hecho es input, no conclusión;
+- derivar del corpus real de props el inventario de plataformas/execution technologies y luego ejecutar research de transports;
+- demostrar feasibility de al menos un execution transport real a nivel de evidencia D1, sin seleccionar arquitectura todavía;
+- contract identity/mapping hot y semántica manual de rollover, considerando la futura reutilización en el Echo Forex actual;
 - trading sessions/timezone/DST/calendar;
 - blocker discovery explícito para Position attribution, Order lifecycle y backtest reuse boundary;
-- registrar gaps y contradicciones, no diseñar aún alrededor de supuestos.
+- registrar gaps, deuda y contradicciones; no diseñar aún alrededor de supuestos.
+
+Cada frente sustancial termina con un **prompt maestro exacto** para el deep researcher/auditor/documentador que corresponda. Los outputs vuelven al manager, quien los revisa con el owner antes de integrarlos.
 
 Deliverable:
 `D1 Analysis Pack`.
 
-Gate:
+Gate objetivo:
 `EF_D1_ANALYSIS_PASS = REVIEW`.
 
-**Resultado 2026-09-25:** D1 terminado y persistido en [[Echo Futures — D1 Analysis Pack]]. Q1 = RESOLVED; Q2–Q11 y Q14–Q16 = READY_FOR_D2; Q12–Q13 = READY_FOR_D4. Baselines usados: Agents-OS `79477c8367d30acf1e19ee3967273feaad76ca79`, Echo V3 `372af59a7b83604781346613da01e3d510ea1360`, experimento histórico `d4f42a41946f12231b75e4eb65b90d132731be0d`. No se modificó source productivo.
+**Estado actual 2026-09-25:** `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`. Existe [[Echo Futures — D1 Analysis Pack]] como adelanto preliminar generado por el manager, incluyendo source audit y scouting útil, pero el owner corrigió explícitamente que D1 **no está cerrado**. Debe continuarse workstream por workstream, delegando deep research/auditorías y revisando los resultados con el owner.
 
 No código productivo.
 
@@ -959,18 +971,18 @@ Debe demostrar, según SPEC congelada:
 
 ## Session close — 2026-09-25
 
-Estado al cierre:
-- proyecto canónico nuevo [[Echo Futures]] creado y reencuadrado;
-- experimento económico anterior preservado como [[Echo Futures — Prop Economics Experiment]];
-- modelo de dominio actual permanece como propuesta, no freeze;
-- Critical Design Register activo;
-- D1 Analysis Pack persistido y Q1 resuelta;
-- Q2–Q11 y Q14–Q16 quedaron READY_FOR_D2; Q12–Q13 READY_FOR_D4;
-- no existe UNKNOWN_WITHOUT_OWNER_DAY;
-- no se modificó código productivo y D2 no fue iniciado.
+Estado corregido al cierre:
+- proyecto canónico [[Echo Futures]] activo;
+- D1 permanece **IN_PROGRESS** y `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`;
+- [[Echo Futures — D1 Analysis Pack]] se conserva como **PRELIMINARY MANAGER ADVANCE**, no como cierre;
+- Q1 tiene source audit/matriz candidata pendiente de review con el owner;
+- market-data LEAN/Nautilus fue scouting para sacar ideas/patrones, no selección ni research suficiente; queda deep research dedicado;
+- futures-prop sample fue scouting prematuro y NO reemplaza [[Echo Futures — Futures Prop Universe]];
+- execution transports preliminares son seeds; el research formal debe derivarse del corpus real de props;
+- `DT-EF-FX-PROP-01` registra deuda obligatoria de aplicar provider rules al Echo Forex actual y evitar lock-in futures-only;
+- la skill [[technical-project-manager]] fue corregida para manager-mode: owner authority, global→detalle, delegación por prompts maestros y no self-accept de gates;
+- no se modificó código productivo y D2 NO comenzó.
 
-**Gate actual:** `EF_D1_ANALYSIS_PASS = REVIEW`.
+**Next exact milestone:** continuar D1 con un nuevo manager session: revisar globalmente los frentes, acordar orden con el owner y tomar el primer workstream hasta producir su prompt maestro/delegación.
 
-**Next exact milestone:** D2 — DESIGN / Domain + Technical Architecture.
-
-D2 sólo comienza después de la aceptación del gate D1 por owner/manager y debe usar [[Echo Futures — D1 Analysis Pack]] como input directo, sin repetir discovery general salvo contradicción material nueva.
+D2 sólo se habilita después de que el manager recorra el checklist D1 completo con el owner y éste acepte el gate.
