@@ -110,6 +110,213 @@ Requirement de arquitectura desde V1:
 
 QA deberá incluir carga representativa de 200 cuentas y una prueba de headroom superior si el diseño lo permite.
 
+
+## ♻️ Reutilización obligatoria para Backtesting / Research Runtime
+
+La V1 live **no implementa todavía el módulo completo de backtesting**, pero la arquitectura debe quedar preparada para construirlo inmediatamente después del primer vertical multi-prop/shadow sin reescribir Strategy ni CapitalManagement.
+
+Objetivo posterior inmediato a V1:
+- operar una primera cohorte pequeña de cuentas en shadow/demo;
+- estabilizar runtime live;
+- construir un módulo independiente de backtesting/replay reutilizando las mismas abstracciones;
+- reutilizar sus outputs posteriormente en The Lab y en futuros workflows de construcción/selección de portfolios.
+
+### Restricción de diseño
+
+Las siguientes piezas deben ser reutilizables fuera del proceso live:
+
+- Strategy;
+- Signal;
+- CapitalManagement;
+- Operation lifecycle;
+- Order/Fill semantics;
+- Bar/market-event semantics;
+- Instrument/Session definitions;
+- Trade final.
+
+El backtester futuro debe poder ejecutar conceptualmente:
+
+```text
+HistoricalMarketData
+    -> same Market/Bar semantics
+    -> same Strategy
+    -> same Signal
+    -> simulated AccountStrategy
+    -> same CapitalManagement
+    -> SimExecution
+    -> Order/Fills
+    -> Operation
+    -> Trade
+    -> Research/Lab outputs
+```
+
+No se permite crear una segunda implementación tipo:
+- `strategy_live` vs `strategy_backtest`;
+- `capital_management_live` vs `capital_management_backtest`.
+
+La infraestructura de Core (Kafka/StateFun/bridges/etc.) puede diferir del runner de backtest. **La lógica de dominio no.**
+
+### Lab / journal
+
+El objetivo es preservar el valor de `Trade` como resultado común reutilizable por The Lab.
+
+Debe diseñarse explícitamente cómo distinguir:
+- LIVE;
+- SHADOW/DEMO;
+- REPLAY;
+- BACKTEST;
+
+sin contaminar evidencia real con resultados simulados.
+
+La forma física de persistencia queda abierta para D2, pero el modelo debe soportar `run_id/mode/source` o equivalente.
+
+Esto es una **constraint arquitectónica de V1**, no scope de implementación completa del backtester.
+
+## 🗺️ Símbolos canónicos y contrato físico — REQUISITO OWNER
+
+Echo trabaja internamente con **símbolos canónicos**.
+
+Para futuros V1 se requiere un mapping configurable en caliente:
+
+```text
+canonical: NQ
+    -> execution/feed contract: NQZ6
+
+HOT UPDATE
+
+canonical: NQ
+    -> execution/feed contract: NQH7
+```
+
+Objetivo operativo:
+- el owner controla manualmente el rollover en V1;
+- Echo NO decide automáticamente cuándo rolar;
+- el mapping puede cambiar sin redeploy;
+- una nueva Signal/Operation posterior al cambio debe resolver inmediatamente al nuevo mapping.
+
+### Invariante propuesto a validar en D1/D2
+
+Una Operation ya creada debe conservar/pinear el contrato físico resuelto al momento de creación. Un hot mapping posterior **no debe mutar retroactivamente una Operation abierta**.
+
+D1/D2 deben confirmar:
+- entidad `Instrument` vs `Contract`;
+- cuándo se resuelve canonical -> physical;
+- cómo se persiste el mapping efectivo en Signal/Operation/Order;
+- mapping separado para reference feed y execution venue cuando sea necesario;
+- comportamiento con una Operation abierta durante un cambio manual.
+
+Automatic rollover queda explícitamente fuera de V1.
+
+## 🕒 Trading Sessions / Calendario — REQUISITO
+
+El sistema debe poder definir y reutilizar sesiones nombradas, por ejemplo:
+- New York;
+- London;
+- CME/RTH/ETH u otras ventanas relevantes.
+
+Una Strategy debe poder referenciar una Session/TradingWindow configurada sin hardcodear offsets locales.
+
+D1/D2 deben resolver:
+- timezone authority;
+- DST;
+- holidays/early closes;
+- session date;
+- opening/closing boundaries;
+- relación session -> bar buckets;
+- igualdad semántica LIVE/REPLAY/BACKTEST.
+
+Esto es especialmente crítico para S1 NY Opening Range 30m.
+
+## 🔌 Execution transport — REQUISITO DE V1
+
+La V1 no puede terminar sólo con interfaces/mocks.
+
+D1 debe investigar varias alternativas reales asociadas a las plataformas/servicios de futures prop firms y D2 seleccionar la alternativa inicial siguiendo KISS/YAGNI/CLEAN/SOLID.
+
+D6 debe demostrar **al menos un transporte real funcional** en shadow/demo/sim o ambiente equivalente autorizado, además del SimExecution usado para tests.
+
+La selección debe considerar como mínimo:
+- capacidad de automatización real;
+- market/account/order events;
+- MARKET/LIMIT/STOP;
+- partial fills;
+- cancel/replace;
+- reconnect/reconciliation;
+- API/rate limits;
+- disponibilidad de entorno de prueba;
+- esfuerzo de integración;
+- posibilidad de reutilizar el mismo bridge/adapter entre varias prop firms.
+
+No se obliga todavía a implementar un adapter por prop firm.
+
+## ⚠️ Critical Design Register
+
+Este registro distingue requisitos ya definidos, propuestas pendientes de validación y preguntas bloqueantes.
+
+### Requisitos/decisiones del owner ya establecidos
+
+- Futures V1 corre sobre/extendiendo Echo; no crear un segundo sistema independiente.
+- Strategy vive lógicamente en Core y emite Signal.
+- Signal incluye direction + entry type `MARKET|LIMIT|STOP` + entry/trigger cuando corresponda + SL + TP.
+- Signal no define sizing ni provider/account.
+- Strategy se asocia a cuentas mediante AccountStrategy.
+- Una Signal fan-out a todas las AccountStrategy habilitadas que referencian esa Strategy.
+- Echo no corrige automáticamente duplicados/conflictos causados por una mala configuración de estrategias.
+- AccountStrategy V1 selecciona un CapitalManagement.
+- CapitalManagement administra la Operation completa, no sólo sizing inicial, y puede reaccionar a market bars/events.
+- V1 debe poder expresar hardscalping Gerard negativo y positivo.
+- Trade continúa siendo el resultado cerrado consumido por `trade_journal` / The Lab.
+- Escala de arquitectura V1: 100–200 cuentas sin rediseño.
+- Símbolos internos canónicos + mapping físico actualizable hot.
+- Rollover automático fuera de V1; lo administra manualmente el owner.
+- Sesiones deben ser configurables y consistentes entre live/replay/backtest.
+- La arquitectura debe permitir un módulo independiente de backtesting posterior reutilizando Strategy + CapitalManagement.
+- V1 debe demostrar al menos un execution transport real.
+- Dynamic portfolios, smallcaps y multi-CapitalManagement por AccountStrategy quedan fuera de V1.
+
+### Propuestas fuertes a validar en D1/D2
+
+- `Operation = Signal × Account`.
+- Operation existe desde que se materializa la intención de esa cuenta, incluso con entry order WORKING sin fill.
+- `Operation 1 -> N Orders`.
+- `Order 1 -> N Fills`.
+- Fill es un hecho de ejecución inmutable.
+- Position representa exposición física/reconciliada Account×Instrument y no es sinónimo de Operation.
+- `Operation 1 -> 0..1 Trade` al cerrar.
+- una Operation pinnea el contrato físico resuelto al crearse;
+- live y backtest comparten domain semantics pero no necesariamente runtime/infrastructure;
+- modo/source/run-id diferencia trades live vs simulated para Lab/research.
+
+### Preguntas críticas aún sin responder
+
+1. **Echo fit físico:** ¿qué abstractions/source actuales de Core/SDK/Bridge/Gateway se REUSE/EXTEND/ADAPT/REPLACE?
+2. **Position attribution:** ¿cómo se atribuyen fills y exposición a múltiples Operations sobre el mismo instrumento bajo netting/hedging?
+3. **Order lifecycle:** estados exactos y comportamiento de partial fill/reject/cancel/replace.
+4. **Market hot state:** dónde viven ticks/bars/indicators, ownership/concurrency, warmup/restart y persistence.
+5. **Bar semantics:** timestamps, bucket boundaries, volume, forming/closed, late/out-of-order events.
+6. **Contract mapping:** momento exacto de canonical->physical resolution y comportamiento de Operations abiertas durante hot mapping.
+7. **Session semantics:** timezone/DST/holidays/early closes y cómo impactan bars/strategies.
+8. **Feed authority:** fuente primaria/backups, failover y gap reconciliation.
+9. **Execution transport:** qué alternativa real mínima se selecciona para V1 y qué provider cohort puede reutilizarla.
+10. **Provider model:** Provider/Program/RuleSet y taxonomía real después del Prop Universe census.
+11. **Strategy runtime:** cuándo corren Strategy y CapitalManagement (tick, forming bar, closed bar, other events), state ownership e interfaces.
+12. **S2:** confirmar o reemplazar H4 trend + 5m Bollinger pullback.
+13. **Gerard +/- exacto:** parámetros/config/state transitions necesarios para una primera implementación determinista.
+14. **Backtest boundary:** qué paquetes/contratos deben quedar libres de dependencias live para que el runner independiente sea barato de construir.
+15. **Trade/Lab compatibility:** qué campos existentes se preservan, cuáles se extienden y cómo se distinguen live vs simulated.
+16. **Blocking refactor:** si Echo actual impide alguna de estas capacidades, ¿se resuelve <=1 día o se registra DT/Core V3?
+
+### Blocker policy
+
+D1 no debe cerrar mientras exista un UNKNOWN que pueda cambiar:
+- domain identities/lifecycles;
+- hot-path architecture;
+- execution feasibility;
+- mapping/session semantics;
+- backtest reuse boundary.
+
+Los UNKNOWN de parámetros concretos de Strategy S1/S2/Gerard pueden cerrarse en D2/D4 siempre que no cambien las abstracciones.
+
 ## 🧠 Modelo de dominio — PROPUESTA A VALIDAR
 
 > [!warning]+ No está frozen
@@ -417,6 +624,10 @@ Trabajo coordinado:
 - iniciar/ejecutar census Prop Universe;
 - research dirigido de market-data/bar-state implementations;
 - inventario de feeds/execution technologies existentes;
+- feasibility de al menos un execution transport real;
+- contract identity/mapping hot y semántica manual de rollover;
+- trading sessions/timezone/DST/calendar;
+- blocker discovery explícito para Position attribution, Order lifecycle y backtest reuse boundary;
 - registrar gaps y contradicciones, no diseñar aún alrededor de supuestos.
 
 Deliverable:
@@ -431,7 +642,7 @@ No código productivo.
 
 **Manager goal:** convertir D1 en una arquitectura candidata completa y simple.
 
-Debe congelar como candidato:
+Debe producir primero un **Domain & Data Model Candidate** (identities, cardinalities, lifecycle, authority, persistence/hot/derived) y luego congelar como candidato:
 - domain model;
 - entity lifecycles/cardinalities;
 - Strategy/Signal contract;
@@ -440,14 +651,17 @@ Debe congelar como candidato:
 - Operation/Order/Fill/Position/Trade semantics;
 - market-data runtime;
 - bar semantics/storage/warmup/recovery;
+- canonical Instrument/Contract mapping + hot-update semantics;
+- named TradingSession/calendar/timezone/DST semantics;
 - provider/program/rules model;
 - feed authority/failover;
 - execution adapter/bridge boundaries;
 - persistence/journal/Lab continuity;
 - concurrency/state ownership;
 - scale model 200 accounts;
-- replay/backtest path;
-- migration/reuse map sobre Echo.
+- replay/backtest path y explicit reusable-domain boundary para el futuro módulo independiente;
+- migration/reuse map sobre Echo;
+- capacity model que haga explícito qué trabajo escala por instrument, strategy, operation y account.
 
 Deliverable:
 `Echo Futures Architecture Candidate V1`.
@@ -479,7 +693,10 @@ Astra debe buscar:
 - acoplamiento futures-only accidental;
 - overengineering/YAGNI violations;
 - provider-rule gaps;
-- replay/live divergence.
+- replay/live divergence;
+- imposibilidad de reutilizar Strategy/CapitalManagement en un backtester independiente;
+- contract mapping/session/roll semantics;
+- 200-account capacity assumptions.
 
 Deliverable:
 `Astra Architecture Review`.
@@ -536,7 +753,8 @@ Gate:
 **Manager goal:** convertir foundations en un runtime integrado operativo.
 
 Trabajo:
-- execution adapters/bridges necesarios para primera cohorte;
+- al menos un execution transport real funcional en shadow/demo/sim autorizado;
+- execution adapters/bridges adicionales necesarios para primera cohorte;
 - provider/program configs;
 - account fan-out;
 - reconciliation;
@@ -623,6 +841,23 @@ Si D1 demuestra que un refactor bloqueante rompe el ETA:
 - cuantificar;
 - elegir adaptación, refactor acotado o cambio explícito de ETA.
 
+
+## 🔜 Fase inmediata post-V1 — Backtesting Module
+
+No forma parte del gate de implementación V1, pero es el siguiente proyecto previsto una vez exista una primera cohorte multi-prop operando establemente en shadow/demo.
+
+Objetivo:
+- runner independiente;
+- ingestión de histórico/recorded market data;
+- mismas Strategy;
+- mismo CapitalManagement;
+- mismas Signal/Operation/Order/Fill/Trade semantics;
+- SimExecution determinista;
+- outputs utilizables por The Lab;
+- base futura para research y construcción de portfolios.
+
+El coste esperado debe ser bajo precisamente porque V1 habrá preservado estas abstracciones. Si después de V1 el backtester exige reescribir Strategy o CapitalManagement, se considera un defecto de arquitectura de V1.
+
 ## ✅ Definition of Done V1
 
 V1 no termina porque compile.
@@ -639,8 +874,9 @@ Debe demostrar, según SPEC congelada:
 - Operation cerrada→Trade→trade_journal→Lab;
 - multi-prop rule/config model;
 - varios execution adapters/bridges según cohorte;
-- replay/backtest same-path;
+- contracts/domain reutilizables por futuro backtester independiente, demostrado mediante SimExecution/replay;
 - live/shadow/demo path según autorización;
+- al menos un execution transport real certificado en ambiente no-real-money autorizado;
 - fail-closed safety;
 - restart/recovery;
 - feed handling definido/certificado;
