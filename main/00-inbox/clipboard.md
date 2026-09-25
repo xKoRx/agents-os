@@ -13,25 +13,6 @@ takeprofittrader
 apex
 
 
-
-y si el wn no muere:
-
-```bash
-sudo kill -KILL <PID>
-```
-
-Para cachar **servicios/containers/cgroups** que están chupando memoria, este es particularmente bueno:
-
-```bash
-systemd-cgtop
-```
-
-⚠️ No hagas `swapoff -a` a ciegas si estás corto de RAM; ahí sí puedes hacer pico Daedalus.
-
-Si me pegas la salida de:
-
-```bash
-free -h; ps -eo pid,user,%mem,rss,cmd --sort=-rss | head -20
-```
-
-te digo inmediatamente qué wea está comiéndose la máquina.
+|                                                                                                                                                                                                                                                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \|                   \|                         \|<br>\| ----------------- \| ----------------------- \|<br>\| Número de cuenta: \| 3000109201              \|<br>\| Contraseña:       \| Adf80#4FHKT             \|<br>\| Servidor:         \| demoUK-mt5.darwinex.com \| |
