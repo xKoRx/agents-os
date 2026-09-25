@@ -54,7 +54,7 @@ updated: "2026-09-24"
 - Hipótesis económica: aceptar una tasa alta de cuentas quemadas si el ciclo completo challenge/evaluation → funded → retiro mantiene valor esperado neto positivo después de fees, activaciones, resets, comisiones, slippage y restricciones de payout.
 - El sistema debe distinguir **pasar la evaluación**, **sobrevivir funded** y **retirar dinero**; optimizar una sola de esas etapas puede empeorar la economía total.
 - El target de 40–80 cuentas es un objetivo de capacidad futura, **no scope del MVP**. El primer vertical slice será una estrategia, una prop/configuración, un instrumento, una Reference y una Execution.
-- **Gate actual: RESEARCH_ONLY.** No desarrollar bots NinjaTrader ni integración Echo hasta cerrar G0 Operativa y G1 Economía.
+- **Gate histórico RESEARCH_ONLY: SUPERSEDED 2026-09-25.** D4/D5 economics cerraron suficiente incertidumbre para autorizar M0 Algo Execution MVP. Real-money continúa bloqueado hasta un gate explícito posterior.
 
 ## 🧠 Hipótesis operativa inicial
 
@@ -1425,3 +1425,43 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **Memoria pública:** por definir cuando G0/G1 produzcan reglas reutilizables verificadas.
 - **Memoria interna:** no requerida para crear el proyecto; continuidad vive en esta nota hasta que exista delta durable específico.
 - **Motivo:** evitar convertir hipótesis tempranas en memoria canónica.
+
+
+## Manager Direction — M0 Algo Execution MVP — 2026-09-25
+
+The owner explicitly ends the research-only phase for the immediate weekend and authorizes implementation of an algorithmic execution MVP.
+
+### Frozen direction
+
+- The existing D4/D5 simulator and certified Topstep P150 economics are retained as research/economics infrastructure; they are NOT rewritten into the execution runtime.
+- Weekend goal is a runnable vertical slice, not a production multi-prop platform.
+- Real-money deployment is NOT part of M0 acceptance. M0 may run replay, shadow, demo/sim, and provider-authorized simulated accounts.
+- Every provider must have explicit current algorithmic-trading permission before its account can be enabled for automated execution.
+- Provider rules and execution transport are separate abstractions.
+- Backtesting/replay is included as a first-class module by feeding the same strategy/position-management code from recorded market events.
+- No frontend is required this weekend.
+- No Echo v3 integration is required this weekend; integration follows after the standalone runtime is proven.
+
+### Provider disposition at freeze
+
+- TOPSTEP: PRIMARY. Custom bots are currently allowed through TopstepX/ProjectX API subject to standard/HFT/prohibited-conduct rules; ProjectX API is not available for Live Funded Accounts, so Live is a distinct future venue path.
+- LUCID: PRIMARY SECOND PROVIDER. Current help center permits automated strategies/trade copiers and supports NinjaTrader/Tradovate/Rithmic-class platforms; HFT/microscalping restrictions remain.
+- MYFUNDEDFUTURES: NEXT. Current official rules permit automated strategies tailored to the trader; HFT/sim-fill exploitation prohibited.
+- TRADEIFY: CONDITIONAL ONLY. Personal algorithms are allowed, but current policy requires exclusive ownership/use and says the bot must not be used across other firms. Do not route the shared Echo Futures strategy to Tradeify without an explicit compatible policy decision.
+- APEX: EXCLUDED. Current official rules prohibit automation/algorithms on PA/live accounts.
+- TAKE PROFIT TRADER: EXCLUDED from automated execution unless a current first-party rule explicitly authorizes autonomous bots; existing project capture classifies it economics-only.
+
+### Weekend acceptance
+
+A successful weekend ends with:
+1. one deterministic strategy contract used unchanged by replay and live/shadow runtime;
+2. one deterministic position-management contract capable of the future hardscalping/add workflow;
+3. account inventory + stage-aware risk/policy state;
+4. provider/plan compliance guard;
+5. ProjectX/Topstep execution adapter at least through authenticated read/shadow/demo path;
+6. a generic NinjaTrader bridge contract suitable for Lucid;
+7. append-only event/journal + deterministic replay;
+8. kill switch, reconciliation, idempotent order intents, and fail-closed behavior;
+9. no real-money order enabled by default.
+
+See [[Echo Futures — M0 Algo Execution MVP]].
