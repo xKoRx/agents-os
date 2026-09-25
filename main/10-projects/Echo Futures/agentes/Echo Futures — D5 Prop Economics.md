@@ -1635,3 +1635,26 @@ Repo/branch: `xKoRx/echo-futures` @ `feature/d5-m1a-p150` (local, sin push). Bas
 | resource evidence | RESOURCE PLAN en stderr de todo comando no trivial; caps `ECHO_FUTURES_MAX_RUNS/MAX_COHORTS`; scaling N/2N/4N/8N acotado; leak test 10× estable; race 103 MB pico dentro de cgroup 6G |
 
 Root cause incidentes (owner-observed ~128 GB; kernel-verificado): swarm externo node/vite/esbuild del front Echo v3 (fuera de este repo; acción de contención sugerida: cgroup propio o eliminar el loop de rebuild). Por qué falló el recovery #1: los guards internos aún no estaban certificados ni eran externos; el árbol ni siquiera compilaba al momento del incidente #2 y quedaba un binario viejo no-acotado en /tmp (eliminado). Complejidad vieja cohort: O(N) residente (3×8 B×N) + sort in-place; nueva: O(workers×batch + bounded aggregators) — plateau medido 84 MB @1e6 → 64 MB @2e6.
+
+
+## Manager Review — D5-M1A-P150 Shot A provisional — 2026-09-24
+
+**Verdict:** TECHNICALLY_PROMISING / SOURCE_FREEZE_REQUIRED.
+
+The Shot A handoff is internally coherent and shows no immediate semantic blocker: P150 state machine implemented, DP and MC cross-check, deterministic output restored, bounded-resource contract, D4 regression suite reported green, race reported green, and sample cells discriminate negative vs positive economic regions as expected.
+
+However, manager acceptance of `D5_TOPSTEP_POLICY_IMPL_A` is NOT yet granted because the implementation branch is reported as local-only and is not inspectable through the repository authority from this manager session.
+
+Mandatory pre-Shot-B correction:
+1. publish/push `feature/d5-m1a-p150` without additional source mutation;
+2. report the exact remote HEAD;
+3. the immutable Shot B baseline MUST be the final code commit after formatting, currently reported as `1dc1fa6`, not the intermediate implementation commit `1103002`;
+4. if pushing produces or requires any source/content change, report the new final HEAD and do not silently preserve `1dc1fa6` as the audit target.
+
+Process note:
+- `D5_RESOURCE_SAFETY_PASS` is supported by strong reported evidence and the owner-observed host recovery, but the external front-v3 Vite/esbuild swarm is a separate Echo-front incident and should receive its own durable containment outside Echo Futures.
+- The D4 cohort memory change touches a certified component. Shot B MUST explicitly verify semantic equivalence / RNG-order invariance and D4 T1–T8 / 47-47 regression evidence rather than treating the plumbing claim as trusted.
+
+Gate:
+- `D5_TOPSTEP_POLICY_IMPL_A = REVIEW`
+- next action: `PUBLISH_AND_FREEZE_SHOT_A_HEAD`, then independent Shot B against that exact commit.
