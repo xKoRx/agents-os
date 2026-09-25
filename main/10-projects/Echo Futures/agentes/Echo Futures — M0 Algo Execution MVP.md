@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: paused
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Futures]]"
@@ -25,6 +25,10 @@ updated: "2026-09-25"
 ---
 
 # Echo Futures — M0 Algo Execution MVP
+
+> [!warning]+ SUPERSEDED AS AUTHORITY — 2026-09-25
+> Este documento fue una exploración previa al reframe del proyecto. **No congela arquitectura ni decisiones**. Sus ideas sólo son inputs/propuestas para D1/D2 del nuevo [[Echo Futures]]. La autoridad vigente es el proyecto canónico y su futura Architecture Freeze D4.
+
 
 ## Goal
 
