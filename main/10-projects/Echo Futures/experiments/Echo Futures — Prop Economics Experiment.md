@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint: 2026-09-23--2026-09-30
 start: 2026-09-23
 due: 2026-09-30
-progress: 36
+progress: 100
 repo:
 jira:
 prs:
@@ -33,7 +33,7 @@ updated: "2026-09-25"
 %% Naming: Echo Futures es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Echo Futures
-> **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Sprint:** 2026-09-23 → 2026-09-30
+> **Área:** [[Echo]] · **Estado:** completed · **Prioridad histórica:** P1 · **Sprint:** 2026-09-23 → 2026-09-30
 > _parent / sprint / repo / jira / prs son opcionales._
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
