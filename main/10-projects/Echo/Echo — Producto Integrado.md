@@ -22,7 +22,7 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 # Echo — Producto Integrado
 
@@ -41,16 +41,16 @@ Forge fabrica y entrega finalistas junto con operaciones SQX y MT5. Echo ingiere
 - Entregar primero dashboard auténtico durante 23–27 septiembre. Cada día inicia con planificación técnica de su hito, luego implementación, pruebas, corrección y evidencia; no terminar una jornada por mera entrega de código. Owner mantiene gates de trading/PROD separados.
 
 ## Estado y realidad
-- **The Lab D3 Shot 1 (24-09): CANDIDATE implementado — NO certificado.** Vertical analítico completo sobre la autoridad D1 (engine `v3/sdk/analytics/curve`, migración 065 derivados, servicio F4 `RecalculateStrategyVersion`, CLI, Hasura source artifacts, tab front Curve Lab V3). Candidate `6a111c9e` en `origin/feature/d3-lab-v3-first-analytical` (baseline `8adce7ec`); fixture determinista, sin historia auténtica (Forge pendiente); verificación independiente (Shot 2) y gate final (Shot 3) pendientes. Paquete: [[A — Technical SPEC D3]], evidencia [[C — Evidence D3 (Shot 1)]], handoff [[E — F4 Handoff D3]]. `FORGE_DUAL_HISTORY_INTEGRATION = PENDING`.
+- **The Lab D3 (24-09): CLOSED / DAY_PASS.** Baseline certificado y promovido a `master@372af59a7b83604781346613da01e3d510ea1360`. Shot 2 adversarial encontró y Shot 3 corrigió F-D3-01..07; source/fixture PASS. Certificación física DEV posterior: schema D1+D3, Hasura readonly, Front Curve Lab V3, MONEY/R, períodos A/B, drill-down, stale→recalculate→publish y rollback PASS; PROD quedó intocado. `D3_AUTHENTIC_DATA_PASS` no se declara porque `FORGE_DUAL_HISTORY_INTEGRATION = PENDING`: el dataset DEV fue de verificación por la interfaz canónica, no historia Forge auténtica. Hallazgos de integración para el siguiente día: el `StrategyHistoryHandler` existe pero no está montado en el mux real del Gateway; metadata Hasura debe aplicar limpiamente sin permisos `admin` incompatibles; `--triggered-by` y polish de chart son menores. Autoridades: [[G — Correction Record D3 (Shot 3)]], [[E — F4 Handoff D3]].
 - Forge F05-C FULL: tres finalistas certificados según notas del 21-09; **no demuestra** todavía dos listas individuales SQX/MT5 con las ventanas correctas. E04 join DEV certificado para handoff operativo, **no** para Lab. E05 S0 y PG063 existen, **no** constituyen Lab V3 usable. Evidencia: [[C — Reality and Gap Matrix]]. No se ejecutaron tests, cambios de source ni consultas PROD en esta actualización documental.
 - La implementación puede conservar identidad/contratos S0 y piezas correctas del worker, pero el producto V3 tendrá UNA autoridad analítica activa: no coexistencia permanente de `canonical_trade_sets` como segundo write-master y `lab_operations`. Resolver consumidores E05/E10 mediante adaptación explícita antes del retiro de tablas.
 - Echo E10 M7 pendiente revisión/ratificación sample policy: no bloquear historia/curvas ni avanzar elegibilidad por inercia. E06/E07 son fuentes para REAL; E08/E09 controlan seguridad/fidelidad económica, no son prerequisito de curvas históricas. No asumir que master=PROD.
 
 ## Plan y supervisión
 - **23/09:** modelo SQL/contrato Forge+Echo congelado con evidencia de operación auténtica.
-- **24/09:** dos históricos ingeridos, tres períodos definidos, base única consultable.
-- **25/09:** curva auténtica visible en dashboard DEV con algoritmo versionado y métricas mínimas.
-- **26/09:** job journal→Lab idempotente + calendario/detalle y curvas actualizadas.
+- **24/09:** D3 cerrado: primera experiencia analítica certificada en source/fixture y físicamente en Echo DEV; baseline `master@372af59a`. Historia Forge auténtica sigue como gate externo separado.
+- **25/09:** D4 — Live Analytical Refresh. Primero cerrar wiring físico del endpoint de history y metadata Hasura reproducible; luego `history changed → dirty → automatic recalculate → atomic publish → UI refreshed` sin CLI manual.
+- **26/09:** gate de historia auténtica Forge cuando el producer esté disponible + calendario/detalle, sin bloquear D4 interno por dependencia externa.
 - **27/09:** screener, pruebas E2E, diagnóstico de brechas y primera aceptación de producto; limpieza legacy inventariada y priorizada.
 - **Inmediatamente después de V3 usable:** limpieza Lab V1/V2 de código/SQL/jobs/front con prueba de cero consumidores; luego múltiples gestiones de riesgo, portfolio research, portfolio allocation/apply, dashboards portfolio y backtesting futuro con velas según [[D — Revised Roadmap]]. No afirmar limpieza ejecutada aún.
 
