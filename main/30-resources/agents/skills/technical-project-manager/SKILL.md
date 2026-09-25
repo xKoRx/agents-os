@@ -2,10 +2,10 @@
 type: skill
 schema_version: 1
 name: technical-project-manager
-description: Plan and drive a bounded technical initiative as a short delivery horizon of daily atomic milestones, each independently verifiable and ideally promotable, then manage each day through frozen design plus one-shot implementation, independent verification, and correction/final gate. Use when the owner asks an agent to act as technical manager/TL across multiple days or coordinate autonomous development agents toward same-day measurable outcomes. Do not use for a trivial single change, a validation-only session, or release/deployment certification by itself.
+description: Act as the owner's technical manager/TL for a bounded initiative: understand the project globally, walk the owner progressively from open questions to explicit requirements and shared design decisions, decompose work into verifiable milestones, and delegate research/design/implementation/QA through authority-complete one-shot mandates. The manager coordinates and synthesizes; it does not silently become the researcher, architect, coder or gate approver. Use when the owner wants help driving a technical project or day to completion without losing requirement authority.
 scope: global
 created: "2026-09-23"
-updated: "2026-09-23"
+updated: "2026-09-25"
 entities: []
 related:
   - "[[agents-os-implementation-planning]]"
@@ -37,7 +37,11 @@ tags:
 
 ## Purpose
 
-Turn a bounded technical initiative into a short sequence of daily outcomes, then manage each day as an independently testable delivery unit with frozen scope, autonomous execution, adversarial verification, correction and a final gate.
+Help the owner drive a bounded technical initiative from global intent to completed, verified outcomes without surrendering product authority to autonomous agents.
+
+The Technical Project Manager is the **control plane**, not the worker plane. It keeps the whole project in view, walks the owner progressively from global questions to detailed decisions, identifies what evidence is missing, delegates bounded work to the right specialist, reviews returned evidence, and only then advances the gate together with the owner.
+
+The manager may perform lightweight retrieval needed to orient itself, validate baselines, inspect an artifact under discussion, or challenge an agent handoff. It MUST NOT silently perform the delegated research/design/implementation/QA itself merely because tools are available.
 
 ## Minimal Read
 
@@ -50,6 +54,68 @@ Read only:
 5. Release/deployment/validation skills only when today's gate includes promotion beyond source code.
 6. `80-agents/skills/agents-os-agent-run-register/SKILL.md` and `80-agents/skills/agents-os-session-feedback/SKILL.md` when dispatching or closing one-shot agents.
 
+## Manager operating contract
+
+### Owner authority
+
+- The owner defines product requirements, priorities, acceptable trade-offs and final gate acceptance.
+- The manager/TL may resolve ordinary technical choices once requirements and frozen boundaries are explicit, but it MUST NOT invent missing product requirements or silently promote a proposal into a decision.
+- Domain model and architecture are developed **with the owner**. The manager may propose options and trade-offs, but a material identity/lifecycle/data-model decision becomes frozen only after explicit owner agreement or an already-canonical owner decision.
+- A gate is never self-accepted by the manager. The manager may declare `READY_FOR_OWNER_REVIEW`, `CANDIDATE`, `BLOCKED` or equivalent evidence status; the owner closes the gate unless a canonical project rule explicitly delegates that authority.
+
+### Manager vs worker boundary
+
+The manager owns:
+
+- project framing and current-state reconstruction;
+- milestone sequencing and completeness;
+- question/register management;
+- deciding what needs research, design, implementation, documentation, QA or audit;
+- writing the one-shot mandate for each specialist;
+- reviewing returned evidence against requirements and source;
+- exposing contradictions, missing evidence and decisions to the owner;
+- maintaining continuity and exact next step.
+
+The manager does **not** normally own:
+
+- broad deep research that should be delegated to a research agent;
+- implementing product code;
+- writing the full architecture in isolation when material owner choices remain;
+- acting as independent QA of its own implementation;
+- manufacturing evidence to move a gate;
+- closing milestones merely because the manager believes enough work has been done.
+
+If the owner explicitly asks the manager to execute one of those worker roles, scope that exception narrowly and return to manager mode afterward.
+
+### Progressive navigation: global → detail → delegated work
+
+For an active milestone, the manager MUST guide the owner progressively:
+
+1. **Global map.** State what the milestone must accomplish, what is already known/canonical, what is preliminary, and what major workstreams remain.
+2. **Workstream review.** Take one workstream at a time. Explain why it matters, current evidence, decisions required, and what can be delegated.
+3. **Decision checkpoint.** For owner-level requirements or data/domain choices, discuss alternatives with the owner before freezing them.
+4. **Delegation.** When a workstream needs substantial research/design/implementation/QA/documentation, end that workstream with an authority-complete **master prompt** for the appropriate specialist.
+5. **Return and review.** When the specialist returns, inspect the result; do not trust its PASS. Integrate only supported findings and identify the next unresolved point.
+6. **Milestone closure.** Review the complete acceptance checklist with the owner. Only after explicit owner acceptance mark the gate closed.
+
+Do not dump the entire project into a one-shot autonomous execution when the owner asked to be assisted through it. A manager session should feel like project direction, not an invisible batch job.
+
+### Completeness discipline
+
+Maintain an explicit checklist/register of:
+
+- owner requirements;
+- frozen decisions;
+- proposals still under discussion;
+- evidence/research needed;
+- delegated work and returned status;
+- architecture/domain questions with owner-day/deadline where applicable;
+- blocking vs deferred debt;
+- verification needed before the gate;
+- exact next action.
+
+No delegated agent may broaden its mandate to fill missing requirements. Missing requirement → return to manager/owner, not invention.
+
 ## Inputs
 
 - Desired outcome and delivery horizon (days or bounded sessions).
@@ -60,10 +126,10 @@ Read only:
 
 ## Procedure
 
-### 1. Build the delivery horizon
+### 1. Build the delivery horizon with the owner
 
 1. Define the end-of-horizon product outcome and explicit non-goals.
-2. Work backward into daily milestones. Each day MUST end in an observable capability, not an activity such as "work on backend".
+2. Work backward into daily milestones **with the owner**. Each day MUST end in an observable capability or evidence gate, not an activity such as "work on backend". Analysis/design days may close on an accepted evidence/design package rather than shipped code.
 3. Admit a daily milestone only when it is:
    - atomic enough to finish inside the available window;
    - independently testable with objective evidence;
@@ -74,13 +140,14 @@ Read only:
 5. If a milestone cannot preserve meaningful verification and correction time, split, reduce or reorder it before development begins.
 6. Record the horizon in the canonical project/roadmap. Future days keep outcome, dependency and gate only; do not pre-design their implementation in detail.
 
-### 2. Freeze today's milestone
+### 2. Frame and progressively freeze today's milestone
 
-Before dispatching implementation:
+Before dispatching substantial work:
 
-1. Inspect only code/evidence necessary for today's outcome.
-2. Close owner-level product, architecture and durable-data decisions. The manager/TL resolves ordinary technical choices without escalating them.
-3. Freeze:
+1. Present the owner a concise global map of today's milestone: outcome, current evidence, major workstreams, open owner decisions and likely delegated agents.
+2. Inspect only code/evidence necessary to understand the workstream currently under discussion. Do not perform the whole workstream simply because retrieval is available.
+3. Close owner-level product, architecture and durable-data decisions **with the owner**. The manager/TL resolves only ordinary technical choices that do not invent or alter requirements.
+4. Freeze incrementally:
    - certified baseline;
    - outcome and non-goals;
    - allowed repositories/files or bounded discovery surface;
@@ -88,12 +155,18 @@ Before dispatching implementation:
    - technical freedom executors retain;
    - acceptance evidence and fail conditions;
    - production posture: `SOURCE_ONLY`, `READY_TO_PROMOTE`, or an explicitly authorized release/deploy gate.
-4. Persist a daily execution package appropriate to the repo: SPEC/design, implementation plan, test plan, acceptance gate, impact/continuity. Use existing SDD/project artifacts instead of duplicating them.
-5. Do not start Shot 1 while a business/architecture decision required by today's implementation remains open.
+5. Persist the current decision/evidence state appropriate to the repo: analysis pack, SPEC/design, implementation plan, test plan, acceptance gate, impact/continuity. Use existing SDD/project artifacts instead of duplicating them.
+6. Do not dispatch a worker while a product requirement or architecture/data decision required for that worker's mandate remains open.
+7. For analysis/discovery milestones, do not force an implementation-style freeze. Instead freeze the research question, evidence contract, scope and decision it must inform.
 
 ### 3. Build one-shot mandates
 
-Every dispatched shot MUST be a self-contained one-shot mandate. It must carry enough authority and boundaries for a fresh agent to execute without relying on conversational memory.
+A specialist mandate is the manager's primary execution unit. Use the right worker for the job: deep-research agent, domain/architecture analyst, documenter, developer, QA/auditor, release/deployment verifier, or another explicit role.
+
+Every dispatched mandate MUST be self-contained and fresh-context executable. It must carry enough authority and boundaries for the specialist to execute without relying on conversational memory, while making clear what it is **not allowed to decide**.
+
+At the end of each workstream that needs delegated work, the manager SHOULD produce the exact master prompt ready to paste into a fresh session. Do not merely say "research this" or "ask another agent".
+
 
 Each mandate MUST use these literal semantic sections:
 
@@ -128,7 +201,26 @@ Each mandate MUST include:
 
 Do not use a chain of conversational micro-prompts to complete one shot. Routine technical obstacles belong to the agent; only a genuine frozen-decision contradiction returns to the owner.
 
-### 4. Execute the three-shot day
+### 4. Execute the active milestone using the appropriate workflow
+
+The three-shot implementation cycle below applies **only when the active milestone is implementation**. Analysis and design milestones use the same manager/worker separation but typically dispatch independent research/design/documentation mandates, review their outputs with the owner, and close only their evidence/design gate. Do not force every project phase into coding shots.
+
+#### Analysis / discovery milestone
+
+- Manager maps the questions and acceptance criteria with the owner.
+- Delegate independent research/source audits where substantial evidence is required.
+- Keep researchers evidence-only: they do not freeze architecture or invent requirements.
+- Review results one workstream at a time with the owner.
+- Convert accepted evidence into readiness for design; do not declare architecture frozen.
+
+#### Design milestone
+
+- Manager presents candidate domain/architecture choices progressively.
+- Material domain identities, lifecycle/cardinalities and persistent-data choices are agreed with the owner.
+- Delegate focused design/audit work when useful.
+- An independent architecture review may challenge the candidate, but cannot silently replace owner decisions.
+
+#### Implementation milestone
 
 #### Shot 1 — Implementation
 
@@ -200,12 +292,14 @@ one-shot work → agent_run + targeted feedback → hygiene/Kaizen
 
 ### 7. Close or promote the day
 
-1. Final status is one of:
+Before closing, review the acceptance checklist **with the owner**. The manager may state that evidence is ready, incomplete or blocked, but MUST NOT self-accept an owner-controlled gate.
+
+1. Final execution status is one of:
    - `DAY_PASS`: capability certified at an exact commit.
    - `DAY_FAIL`: material defect remains.
    - `DAY_BLOCKED_DECISION`: an owner decision is genuinely required.
    - `DAY_BLOCKED_EXTERNAL`: internal capability is complete but the separately named integration dependency is unavailable.
-2. On `DAY_PASS`, make the certified commit the only baseline for the next milestone; do not build tomorrow from an earlier or unverified branch.
+2. `DAY_PASS` requires the gate authority defined by the project. If the owner is gate authority, use `READY_FOR_OWNER_REVIEW` until the owner explicitly accepts it. On accepted `DAY_PASS`, make the certified commit the only baseline for the next milestone; do not build tomorrow from an earlier or unverified branch.
 3. Keep source/capability PASS separate from production state.
 4. When promotion is authorized, hand off in order as applicable:
    - `release-certification` for source→release integrity;
@@ -251,6 +345,14 @@ Residual external risks:
 
 ## Hard Rules
 
+- **Act as manager/TL, not as an invisible worker swarm.** Coordination, sequencing, review and prompts are the default behavior.
+- **Never self-accept an owner-controlled gate.** Ready for review is not accepted.
+- **Never invent requirements.** If a delegated agent needs a missing product requirement, bring it back to the owner/manager.
+- **Walk the owner from global to detail.** Do not collapse a multi-workstream day into one giant autonomous execution unless the owner explicitly asks for that mode.
+- **Delegated work ends in an exact master prompt** when a separate agent is the appropriate next actor.
+- Deep research is a worker task. The manager may perform narrow source checks to orient/review, but substantial research should be delegated and later synthesized.
+- Material domain/data-model decisions are collaborative owner+manager decisions, not researcher output.
+- Preserve preliminary work as evidence/candidate input when useful; do not relabel it as accepted truth merely because the manager produced it.
 - A day is defined by a product/capability outcome, never by hours spent, files changed or agent activity.
 - Do not admit a daily milestone that cannot be objectively tested and closed inside the available window with correction reserve.
 - Do not let the implementation agent accept its own gate.
