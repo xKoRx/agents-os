@@ -1,28 +1,18 @@
-Para **liberar RAM al tiro** en Daedalus:
+my fundedfutres
+tradefy
+sin consistencia en real
 
-```bash
-sudo sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'
-```
 
-Eso libera **page cache + dentries + inodes**. No mata procesos.
 
-Pero si una wea realmente se está comiendo la RAM, encuentra al culpable:
 
-```bash
-ps -eo pid,user,%mem,rss,cmd --sort=-rss | head -20
-```
 
-Y mira el estado real:
+topstep
+ludic
 
-```bash
-free -h
-```
+takeprofittrader
+apex
 
-Si pillas un proceso descontrolado, mejor córtalo limpiamente:
 
-```bash
-sudo kill -TERM <PID>
-```
 
 y si el wn no muere:
 
