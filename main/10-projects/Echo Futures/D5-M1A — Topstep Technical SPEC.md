@@ -424,3 +424,54 @@ Required portfolio outputs:
 At linked `p_objective_hit=0.50`, a +150/-2000 qualification objective has negative nominal expectancy; this experiment is intentionally testing whether Topstep's external payoff asymmetry can overcome that at the personal-cash level. Do not label it a fair-market trading result.
 
 The accepted Brownian/session model is not deleted; it remains the later realism bridge. This P150 discrete policy is the immediate three-shot economics experiment.
+
+
+## Simulation Resource Safety Contract — 2026-09-24 (binding, project-wide)
+
+Status: BINDING for every Echo Futures test, simulator, validator, experiment
+and benchmark (incidents 2026-09-24 #1 and #2: owner-observed ~128 GB RAM
+exhaustion, two VM reboots of daedalus; kernel forensics attributed the global
+OOMs to an external node/vite/esbuild process swarm of the Echo v3 front
+worktree, with this repo's legacy cohort retention — 3 x O(N) float64 slices,
+~24 B/cohort measured — as the one in-repo unbounded vector).
+
+1. **External cgroup (first line of defense).** Every command that can
+   execute Go code, tests, simulations or subprocesses runs inside the
+   systemd user scope created by `scripts/safe-run` (defaults
+   MemoryHigh=4G, MemoryMax=6G, MemorySwapMax=1G, TasksMax=128,
+   CPUQuota=400%, GOMEMLIMIT=3GiB, GOMAXPROCS=4; configurable ONLY via
+   explicit `SAFE_*` variables). The wrapper self-verifies every mandated
+   property on the actual cgroup inside the scope and FAILS CLOSED — there
+   is no unlimited fallback. Wrappers: `safe-test` (go test),
+   `safe-sim` (build+run), `safe-validate` (D4 gate). Internal guards NEVER
+   substitute the cgroup.
+2. **Internal contract (second line).** `internal/resources` provides
+   Budget/Plan/Guard/RunBatched/WorkerBudget/QuantileStore: resource plans
+   printed to stderr before any non-trivial run; fail-closed scale caps
+   (`ECHO_FUTURES_MAX_RUNS`, `ECHO_FUTURES_MAX_COHORTS`, `..._EXACT_QUANTILE_LIMIT`,
+   `..._BATCH_SIZE`, `..._MAX_WORKERS` <= 4, default 1); guard checkpoints
+   between batches enforce SIGINT/SIGTERM cancellation and the hard memory
+   fuse (ErrResourceLimit; no OOM-killer dependence); quantiles bounded
+   (exact arrays below the exact-sample limit, fixed-bin histogram above,
+   documented bin error); ONE global worker budget — no goroutine-per-path,
+   no nested pools; streaming aggregates only.
+3. **Complexity law.** Memory must scale O(workers x batch_size + bounded
+   aggregators), never O(total_iterations). No structure may retain one
+   sample per path beyond the exact-sample threshold. Regression tests
+   (`TestQuantileStoreMemoryBoundedAcrossScales`,
+   `TestCohortMemoryBoundedAcrossScales`) fail if an O(total_paths) store
+   reappears.
+4. **Test policy.** `go test ./...` must stay safe on a workstation: heavy
+   statistical executions stay bounded (current max 1e6 runs per fixture,
+   pinned seeds) and race runs happen in their own cgroup invocation
+   (certified peak 103 MB against the 6 GiB cap; never raised automatically).
+5. **Certification (D5_RESOURCE_SAFETY_PASS = PASS, 2026-09-24).** In-cgroup
+   evidence: cgroup self-check green; N/2N/4N/8N bounded growth; scenarios
+   1/2/4/8 flat (~8 MB); repeated-run leak test stable (10 x cohort 1e6,
+   72-86 MB); trade-only flat ~4 MB up to 1e7 runs; cohort plateaus
+   (84 MB at 1e6 exact, 64 MB at 2e6 histogram); full suite + race green.
+
+The P150 simulator (`internal/p150`) is built ON this contract (batched MC,
+bounded quantile stores, plans, caps). It does not weaken any D4-certified
+mathematical contract: RNG consumption order is unchanged and the D4 gate
+remains 47/47.
