@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: paused
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Futures]]"
