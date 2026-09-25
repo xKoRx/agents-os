@@ -287,24 +287,39 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 - live y backtest comparten domain semantics pero no necesariamente runtime/infrastructure;
 - modo/source/run-id diferencia trades live vs simulated para Lab/research.
 
-### Preguntas críticas aún sin responder
+### Preguntas críticas aún sin responder — OWNER DAY OBLIGATORIO
 
-1. **Echo fit físico:** ¿qué abstractions/source actuales de Core/SDK/Bridge/Gateway se REUSE/EXTEND/ADAPT/REPLACE?
-2. **Position attribution:** ¿cómo se atribuyen fills y exposición a múltiples Operations sobre el mismo instrumento bajo netting/hedging?
-3. **Order lifecycle:** estados exactos y comportamiento de partial fill/reject/cancel/replace.
-4. **Market hot state:** dónde viven ticks/bars/indicators, ownership/concurrency, warmup/restart y persistence.
-5. **Bar semantics:** timestamps, bucket boundaries, volume, forming/closed, late/out-of-order events.
-6. **Contract mapping:** momento exacto de canonical->physical resolution y comportamiento de Operations abiertas durante hot mapping.
-7. **Session semantics:** timezone/DST/holidays/early closes y cómo impactan bars/strategies.
-8. **Feed authority:** fuente primaria/backups, failover y gap reconciliation.
-9. **Execution transport:** qué alternativa real mínima se selecciona para V1 y qué provider cohort puede reutilizarla.
-10. **Provider model:** Provider/Program/RuleSet y taxonomía real después del Prop Universe census.
-11. **Strategy runtime:** cuándo corren Strategy y CapitalManagement (tick, forming bar, closed bar, other events), state ownership e interfaces.
-12. **S2:** confirmar o reemplazar H4 trend + 5m Bollinger pullback.
-13. **Gerard +/- exacto:** parámetros/config/state transitions necesarios para una primera implementación determinista.
-14. **Backtest boundary:** qué paquetes/contratos deben quedar libres de dependencias live para que el runner independiente sea barato de construir.
-15. **Trade/Lab compatibility:** qué campos existentes se preservan, cuáles se extienden y cómo se distinguen live vs simulated.
-16. **Blocking refactor:** si Echo actual impide alguna de estas capacidades, ¿se resuelve <=1 día o se registra DT/Core V3?
+Cada pregunta tiene un **día máximo de resolución**. No puede arrastrarse silenciosamente al día siguiente.
+
+| # | Pregunta | Día máximo | Qué significa RESUELTA |
+|---|---|---|---|
+| Q1 | **Echo fit físico:** ¿qué abstractions/source actuales de Core/SDK/Bridge/Gateway se REUSE/EXTEND/ADAPT/REPLACE? | **D1** | Source real inspeccionado y matriz de fit completa, incluyendo gaps que puedan alterar arquitectura. |
+| Q2 | **Position attribution:** ¿cómo se atribuyen fills y exposición a múltiples Operations sobre el mismo instrumento bajo netting/hedging? | **D2** | Semántica e invariantes elegidos, incluyendo reconciliación y ownership lógico/físico. |
+| Q3 | **Order lifecycle:** estados exactos y comportamiento de partial fill/reject/cancel/replace. | **D2** | Lifecycle candidato completo y consistente con al menos el transport seleccionado. |
+| Q4 | **Market hot state:** dónde viven ticks/bars/indicators, ownership/concurrency, warmup/restart y persistence. | **D2** | Arquitectura de estado caliente + recuperación + persistencia definida. |
+| Q5 | **Bar semantics:** timestamps, bucket boundaries, volume, forming/closed, late/out-of-order events. | **D2** | Contrato de Bar único para LIVE/REPLAY/BACKTEST. |
+| Q6 | **Contract mapping:** momento exacto de canonical→physical resolution y comportamiento de Operations abiertas durante hot mapping. | **D2** | Instrument/Contract/mapping semantics congeladas como candidato; rollover automático sigue fuera de V1. |
+| Q7 | **Session semantics:** timezone/DST/holidays/early closes y cómo impactan bars/strategies. | **D2** | TradingSession/Calendar contract definido y aplicable a S1. |
+| Q8 | **Feed authority:** fuente primaria/backups, failover y gap reconciliation. | **D2** | Authority/failover/recovery contract elegido. |
+| Q9 | **Execution transport:** qué alternativa real mínima se selecciona para V1 y qué provider cohort puede reutilizarla. | **D2** | D1 demuestra feasibility real; D2 selecciona transport inicial y boundary adapter/bridge. |
+| Q10 | **Provider model:** Provider/Program/RuleSet y taxonomía real después del Prop Universe census. | **D2** | Modelo candidato soporta el corpus relevante sin giant switch/overengineering. |
+| Q11 | **Strategy runtime:** cuándo corren Strategy y CapitalManagement (tick, forming bar, closed bar, other events), state ownership e interfaces. | **D2** | Interfaces/event model/state ownership definidos. |
+| Q12 | **S2:** confirmar o reemplazar H4 trend + 5m Bollinger pullback. | **D4** | Segunda estrategia mecánica exacta incluida en SPEC de desarrollo. |
+| Q13 | **Gerard +/- exacto:** parámetros/config/state transitions necesarios para una primera implementación determinista. | **D4** | CapitalManagement V1 completamente mecanizable; cero decisión humana ambigua requerida para desarrollo. |
+| Q14 | **Backtest boundary:** qué paquetes/contratos deben quedar libres de dependencias live para que el runner independiente sea barato de construir. | **D2** | Boundary explícito que permite reutilizar Strategy/CapitalManagement/domain sin Core live. |
+| Q15 | **Trade/Lab compatibility:** qué campos existentes se preservan, cuáles se extienden y cómo se distinguen live vs simulated. | **D2** | Contrato Trade→trade_journal→Lab y provenance/mode resueltos. |
+| Q16 | **Blocking refactor:** si Echo actual impide alguna capacidad, ¿se resuelve ahora o queda DT/Core V3? | **D2** | Cada gap de D1 queda clasificado como adaptación/refactor <=1 día o DT no bloqueante con impacto explícito. |
+
+### Closure policy de preguntas
+
+- **D1 no pasa con Q1 abierta.**
+- D1 además debe producir evidencia suficiente para que Q2–Q11 y Q14–Q16 puedan resolverse en D2 sin volver a discovery general.
+- **D2 no pasa con ninguna Q2–Q11 o Q14–Q16 abierta.**
+- D3/Astra puede descubrir findings nuevos, pero éstos no se convierten en deuda abierta: cada finding aceptado debe quedar asignado a **D4**.
+- **D4 no pasa con Q12/Q13 ni con ningún finding aceptado de Astra sin resolver.**
+- Desde D5 en adelante **no se permiten preguntas de arquitectura/producto abiertas**. Cualquier contradicción nueva produce `DAY_BLOCKED_DECISION` o `DAY_FAIL`; nunca se arrastra silenciosamente.
+- Toda pregunta nueva descubierta por un manager debe registrarse inmediatamente con `owner_day`. Si afecta una decisión que ya debía estar frozen, bloquea el gate activo.
+- El proyecto no puede llegar a D5 con “TBD”, “por definir”, “pendiente investigar” o equivalente en contratos necesarios para implementar V1.
 
 ### Blocker policy
 
@@ -913,3 +928,20 @@ Debe demostrar, según SPEC congelada:
 - [[Echo Futures — Futures Prop Universe]] — census de providers/reglas para D1.
 - [[Echo Futures — M0 Algo Execution MVP]] — exploración arquitectónica previa; **no authority**, superseded por este proyecto.
 - [[Echo]] — plataforma base.
+
+
+## Session close — 2026-09-25
+
+Estado al cierre:
+- proyecto canónico nuevo [[Echo Futures]] creado y reencuadrado;
+- experimento económico anterior preservado como [[Echo Futures — Prop Economics Experiment]];
+- modelo de dominio actual registrado como propuesta, no freeze;
+- Critical Design Register activo;
+- todas las preguntas abiertas tienen día máximo obligatorio;
+- ningún research/desarrollo de D1 ejecutado todavía.
+
+**Next exact milestone:** D1 — ANALYSIS / Problem & Domain Discovery.
+
+**Urgencia owner:** `EF_D1_ANALYSIS_PASS` debe cerrarse **hoy 2026-09-25**.
+
+D1 debe ser dirigido por un Manager Agent usando la skill `technical-project-manager`. No comenzar D2 ni implementación antes de que el owner/manager acepte el gate D1.
