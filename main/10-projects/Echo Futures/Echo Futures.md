@@ -1465,3 +1465,9 @@ A successful weekend ends with:
 9. no real-money order enabled by default.
 
 See [[Echo Futures — M0 Algo Execution MVP]].
+
+
+## New active tracks — 2026-09-25
+
+- [[Echo Futures — M0 Algo Execution MVP]] — Core-centered futures execution runtime, futures-first but market-extensible.
+- [[Echo Futures — Futures Prop Universe]] — current full futures-prop census, automation eligibility and rule/platform evidence; includes operable and explicitly blocked firms.
