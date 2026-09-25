@@ -30,7 +30,7 @@ updated: "2026-09-23"
 
 ## Propósito
 
-Desacoplar el scope del frontend Nordic del target físico de Playmaker en ambientes de test. Todo frontend desplegado en un scope Fury de test usa `rio-playmaker-test.melisystems.com`; el BFF envía el scope backend efectivo en `X-Rio-Scope` y Fury Routes selecciona la infraestructura destino. Producción conserva su host dedicado, no acepta overrides y nunca emite el header.
+Desacoplar el scope del frontend Nordic del target físico de Playmaker en ambientes de test. El BFF de test usa `rio-playmaker-test.melisystems.com` y envía el scope backend efectivo en `X-Rio-Scope`; Fury Routes selecciona la infraestructura destino **dentro del segmento de origen**. Producción conserva su host dedicado, no acepta overrides y nunca emite el header.
 
 ## Contenido
 
@@ -39,6 +39,8 @@ Desacoplar el scope del frontend Nordic del target físico de Playmaker en ambie
 `frontend-config` carga `config/<SCOPE>-production.js`, y `test2`, `test3`, `beta` y `staging` fijan distintos hosts de Playmaker. Nordic publica en `env.SCOPE` el nombre materializado por Fury; el alta alpha real expone `alpha-nonprod`, donde `nonprod` es segmento y `alpha` es la lane lógica. Las 61 integraciones BFF convergen en `api/lib/playmaker.ts`, por lo que no se migra cada servicio.
 
 Hay un entrypoint test. El frontend valida sintaxis; Fury decide si el scope existe y a qué target resuelve.
+
+**Gate de segmento confirmado el 2026-09-25:** `ads-signals-frontend/test3` está en Legacy y `rio-playmaker/alpha-api-nonprod` está en Non-production. La route del dominio compartido tiene un fallback Legacy sin condición hacia `rio-playmaker/test` y una regla Non-production con `x-rio-scope: alpha` hacia `alpha-api-nonprod`. El editor de Fury no ofrece `alpha-api-nonprod` como target de una regla Legacy. Desde el host de oficina Legacy, `/ping` respondió `200` tanto con `x-rio-scope: alpha` como con `x-rio-scope: nonexistent-poc`: el valor del header no produce fail-closed en ese segmento. Por eso `test3` no puede certificar `backend=alpha` aunque el BFF envíe el header y use el host sin número. La matriz de integración debe distinguir origen Legacy y Non-production.
 
 ### Contrato de selección
 
@@ -154,7 +156,7 @@ Los datos persistidos o compartidos se aíslan por `backendScope` efectivo:
 - Cliente unitario: GET/POST/PUT/PATCH/DELETE incluyen header sólo en test; un caller no puede inyectarlo en prod y dos o más `component_template_code` llegan como parámetros repetidos.
 - Middleware/SSR: el primer request con `?backend=beta` pasa los schemas de página, consulta beta, persiste el override y los XHR posteriores resuelven el mismo scope; `backend=` vuelve al scope Nordic.
 - Aislamiento: grants, history coalescing, page store y deploy sessions no reutilizan entradas entre `test2` y `test3`.
-- Integración Fury: matriz `test2→test2`, `test2→test3`, scope inexistente, `test→production`, `prod→test` y prod con query. Los pares test sólo se certifican si comparten contrato de templates; los cruces fallan o se ignoran según la frontera de origen.
+- Integración Fury: matriz por segmento de origen, comenzando por `alpha-nonprod→alpha-api-nonprod`; agregar pares test sólo cuando origen y target compartan segmento y contrato de templates. Verificar explícitamente que `test3` Legacy con `X-Rio-Scope: alpha` no llegue a `alpha-api-nonprod`, además de scope inexistente, `test→production`, `prod→test` y prod con query.
 
 ### Rollout y rollback
 
@@ -174,7 +176,11 @@ Rollback: desactivar `playmaker_scope_routing_enabled` y volver a usar los `play
 
 ### Dependencia externa de aprobación
 
-Fury debe confirmar que `X-Rio-Scope` puede usarse como clave exacta de route en `rio-playmaker-test`, que una clave sin target falla sin fallback y que la route test no puede referenciar targets productivos. La implementación frontend puede avanzar con tests unitarios, pero el gate de integración exige evidencia de esas tres propiedades.
+Fury debe confirmar por segmento que `X-Rio-Scope` puede usarse como clave exacta de route en `rio-playmaker-test`, que una clave sin target falla sin fallback y que la route test no puede referenciar targets productivos. El gate de fail-closed **no se cumple en Legacy**: su regla `/` sin condición responde aun cuando el header contiene un scope desconocido. La implementación frontend puede avanzar, pero la certificación requiere que ese comportamiento se corrija o que las pruebas de la POC usen exclusivamente un ingreso Non-production cuya route sí falle cerrado.
+
+**Evidencia de ingreso frontend (2026-09-25):** `signals.adminml.com` con cookie `meliLab=test3` respondió desde `x-nginx-pool: test3.ads-signals-frontend.melifrontends.com` y `x-api-server-segment: legacy`. Con `meliLab=alpha-nonprod` o `meliLab=test-alpha-nonprod` cayó al pool `production`; `?frontend=alpha-nonprod` mantuvo el pool `test3`. El scope `ads-signals-frontend/alpha-nonprod` existe y tiene réplica sana, pero el ingreso de `signals.adminml.com` aún no lo selecciona. Su acceso directo devolvió `401`; el host `alpha-nonprod.ads-signals-frontend.melifrontends.com` presentó un certificado sólo válido para `*.furyapps.io`. Conectar y autenticar ese frontend Non-production es un gate adicional antes de certificar tráfico E2E hacia Playmaker alpha.
+
+**Excepción de integración para la POC en `test3` (2026-09-25):** el usuario fijó `ads-signals-frontend/test3` Legacy como frontend de despliegue. El dominio `rio-playmaker-test.melisystems.com` tiene exposición Internal, limitada al mismo segmento: su regla Legacy `/` sin condición absorbe las llamadas de `test3` aunque envíen `x-rio-scope: alpha`, y la regla Non-production no recibe esas llamadas. Fury permite crear un dominio Inter segment en Non-production cuyo hostname es `rio-playmaker-test.nonprod.melisystems.com`. El cliente Playmaker de `test3` necesita un `baseURL` explícito para ese host, porque `meliDomain` sólo admite una etiqueta sin puntos; conserva `X-Rio-Scope: alpha` para todos los verbos. El parche está preparado localmente y se verificó la configuración efectiva de `test3`; dominio, route, nueva versión desplegable y tráfico real permanecen pendientes. Esta excepción reemplaza para esta POC el gate de ingreso del frontend `alpha-nonprod` descrito arriba; no cambia la decisión general de segmentación ni certifica el comportamiento final hasta una request efectiva desde `test3`.
 
 ## Fuentes
 
