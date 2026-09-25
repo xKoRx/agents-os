@@ -1,0 +1,440 @@
+---
+type: doc
+schema_version: 1
+status: active
+area: "[[Echo]]"
+related:
+  - "[[Echo Futures]]"
+  - "[[Echo Futures — Futures Prop Universe]]"
+  - "[[Echo Futures — Prop Economics Experiment]]"
+aliases:
+  - Echo Futures D1
+  - EF D1 Analysis Pack
+tags:
+  - kind/doc
+  - area/echo
+  - echo-futures
+  - architecture-analysis
+  - research
+created: "2026-09-25"
+updated: "2026-09-25"
+---
+
+# Echo Futures — D1 Analysis Pack
+
+## Gate
+
+EF_D1_ANALYSIS_PASS = REVIEW
+
+Este artefacto cierra discovery general de D1. No es Architecture Freeze, no acepta el gate por cuenta propia y no autoriza implementación de D2. Su función es entregar a D2 evidencia suficiente para resolver las decisiones del Critical Design Register sin volver a auditar Echo completo, el mercado de props ni los transports desde cero.
+
+## Baselines de evidencia
+
+| Autoridad / repo | Baseline usado | Rol |
+| --- | --- | --- |
+| Agents-OS | xKoRx/agents-os master@79477c8367d30acf1e19ee3967273feaad76ca79 | Proyecto canónico, frozen owner decisions, roadmap y Critical Design Register. Incluye 493ca539cba7f031f2cc015b51916948ebc0ae00 y feedback posterior 79477c83. |
+| Echo Core | xKoRx/echo master@372af59a7b83604781346613da01e3d510ea1360 | Source físico V3. |
+| Echo SDK/domain | xKoRx/echo master@372af59a7b83604781346613da01e3d510ea1360 | Source físico V3. |
+| Echo Bridge | xKoRx/echo master@372af59a7b83604781346613da01e3d510ea1360 | Source físico V3. |
+| Echo Gateway | xKoRx/echo master@372af59a7b83604781346613da01e3d510ea1360 | Source físico V3. |
+| Echo Futures experiment repo | xKoRx/echo-futures master@d4f42a41946f12231b75e4eb65b90d132731be0d | Evidencia histórica/simulador; NO autoridad de arquitectura. |
+
+Los README/RFC V1/V2 y el antiguo M0 se trataron como evidencia histórica. Cuando discrepan con V3, manda el source V3.
+
+## 1. Resultado Q1 — Echo physical/source fit
+
+Q1 = RESOLVED.
+
+Conclusión: Echo Futures debe extender Echo V3 incrementalmente. No apareció ningún bloqueo material que obligue a reescribir Core V3. Sí aparecen boundaries de dominio que no deben resolverse reciclando nombres actuales con semántica incorrecta: Signal no es ReferenceEvent; Operation no es trade_id; Order no es CoreCommand; Fill no es ExecutionResult; Strategy ejecutable no es StrategyConfig; CapitalManagement no es solamente MMEngine.
+
+### Source/domain map físico
+
+| Concepto / owner actual | Source V3 | Semántica real / lifecycle | Identity / state owner / persistence | Evidencia y deuda D1 |
+| --- | --- | --- | --- | --- |
+| ExecutionPlannerFn | v3/core/internal/functions/execution_planner.go — blob 371bf5e337b97dcc6188688e7e377e1a3dcb095c | Recibe ReferenceEvent, resuelve policies por strategy y fan-out a requests de MM por execution account. | StateFun keyed por trade/correlation; StrategyConfig/Kache entrega policies. | Test físico execution_planner_test.go blob d7e47b43. Reutilizable como patrón de fan-out, no como Strategy runtime. |
+| StrategyConfigFn | v3/core/internal/functions/strategy_config.go — blob b89a9a1a61f71c1e1bae0876504589d5844543cd | KVS de ExecutionPolicy[] por strategy_id; procesa POLICY_UPDATE/DELETE y lookups. | StateFun ValueSpec StateStrategyConfig. | Test blob a2fbd342. El nombre strategy no implica código ejecutable de Strategy. |
+| MMEngineFn | v3/core/internal/functions/mm_engine.go — blob e725ceb0bd056f3312365b96fbd93e6f52fdde5f | Junta AccountSnapshot + InstrumentSnapshot, calcula fixed-lot/fixed-risk y produce CoreCommand con offsets SL/TP. | StateFun pending MM keyed por account:strategy:trade; snapshots son inputs. | Test blob 2e54d438. Sirve como primitive de sizing/risk; no administra el lifecycle completo de Operation. |
+| ExecutionStoreFn | v3/core/internal/functions/execution_store.go — blob d8c61700e8d3a97e286a485aae896c30632c372d | Mantiene ejecuciones abiertas por trade_id; agrega un OpenExecution por ExecutionResult exitoso y remueve al cerrar. | StateFun ExecutionStore {TradeID, []OpenExecution}. | Test blob d0628164. Su modelo actual asume un resultado/fill simplificado y no representa bien Order 1:N Fill. |
+| PositionSyncFn | v3/core/internal/functions/position_sync.go — blob b7d8657e4a38126afc591b7fea0706512ffade79 | Replica el estado físico observado de posiciones activas y elimina las ausentes. | PositionSnapshot reportado por execution edge; persiste active_positions en PostgreSQL. | Evidencia fuerte de que Position es estado físico/reconciliado, no la intención lógica de una Operation. |
+| TradeJournalFn | v3/core/internal/functions/trade_journal.go — blob d37a6bd10ce9898944988ce374aa2ae2619b5cdf | Ledger OPEN/CLOSED/FAILED para reference, executions, native/import y cierres; alimenta analytics/Lab. | PostgreSQL echo.trade_journal + quarantine; TradeJournalEntry en SDK. | Test SQL/mock blob 0c4bed93. Debe preservarse como boundary analítico, no elevar la fila del journal a aggregate Operation. |
+| ReferenceEvent | v3/sdk/domain/reference_event.go — blob 7d514a79ad0fc8aafb35877ad45a3679cf16ede1 | Evento de una operación ya ejecutada en cuenta reference: trae account, broker, ticket, lot, precio, SL/TP, MM metadata. | TradeID + ReferenceAccountID + ReferenceTicket. | No cumple frozen Signal: contiene sizing/account/provider/execution y carece de MARKET/LIMIT/STOP como intención. |
+| CoreCommand | v3/sdk/domain/reference_event.go — mismo blob | DTO de comando por execution account: lot, broker symbol, SL/TP físicos, delay y metadata. | CommandID + TradeID + ExecutionAccountID; enviado a edge. | Es transporte/comando, no Order aggregate. Puede adaptarse como wire DTO. |
+| ExecutionResult | v3/sdk/domain/reference_event.go — mismo blob | Resultado éxito/fallo de un comando, ticket y un FillPrice. | CommandID + TradeID + ExecutionAccountID + ticket. | Colapsa lifecycle a single result; no modela múltiples fills parciales ni eventos de cambio de orden. |
+| ExecutionPolicy | v3/sdk/domain/execution_policy.go — blob 295f7ea2c6058d05540988eea23c1c2d5e5cfa84 | Asociación strategy→execution account con fixed lot/risk, offsets, delays, magic override y StrategyDefinition. | StrategyID + ExecutionAccountID + version. | Es el precursor más cercano a AccountStrategy, pero mezcla binding, risk/MM y knobs de ejecución. |
+| OpenExecution / CloseCommand / CloseResult | v3/sdk/domain/trade_close.go — blob 3ffe13e69d993cbaecba6f2107017230c247e42d | OpenExecution representa posición abierta derivada de un command; CloseCommand cierra ticket/lot y CloseResult reporta cierre enriquecido. | CommandID / TradeID / ExecutionAccountID / ExecutionTicket. | CloseCommand ya comenta cierre parcial como futuro; no existe Order lifecycle general. |
+| PositionSnapshot | v3/sdk/domain/position_snapshot.go — blob 443b6ba2f27ad4468fd45d372c254471a1a073a1 | Estado físico actual: ticket, symbol, qty/lot, avg/open price, PnL, SL/TP, origin, strategy/ref trade. | AccountID + Ticket/platform position; snapshot periódico. | Test blob 4db2e28f. Reusar como reconciled physical position, extendido a Contract/provider semantics. |
+| AccountSnapshot / InstrumentSnapshot | v3/sdk/domain/snapshots.go — blob d319d0a3587a3d5ec56ed68911cd60d86b096da8 | Estado de cuenta y specs de símbolo/broker: bid/ask, tick, lot, stop level, contract size. | AccountID; Broker + CanonicalSymbol. | Buenos primitives; InstrumentSnapshot aún mezcla instrumento económico y símbolo físico de broker y no tiene expiry/exchange/session. |
+| TradeJournalEntry | v3/sdk/domain/trade_journal.go — blob 99a4f809678742f60916b25c4caff140dce8c393 | Ledger por cuenta con strategy/ticket/symbol/side/size/open-close/risk/PnL/source/status. | TradeID + AccountID + ticket y source. | REUSE/EXTEND para Lab; falta provenance explícita de replay/backtest/run_id para futuro runtime compartido. |
+| Bridge V3 | v3/bridge/internal/bridge.go — blob 53cbcfe8b33b09a1586f0c599c3c31524fdd4937 y config_cache.go blob 1f461333... | Edge Windows: register, Named Pipes, sessions, hot ClientConfig, Kafka, snapshots/results, symbol mapping y telemetry. | Bridge/process + execution account sessions; Kafka/Kache y local caches. | Reutilizar host/control/reconciliation patterns; adapter actual es MetaTrader-specific. |
+| Gateway V3 | v3/gateway/internal/server.go — blob 2987db5c5b8b74ff066b8278add3d07410c13bee | Control plane Hasura/Postgres/Kafka: config, webhooks, close/manual actions. | HTTP/Hasura events; Kafka topics. | REUSE/EXTEND; no debe convertirse en market-data hot path. |
+| Hot symbol mapping | v3/gateway/internal/symbol_mapping_handler.go — blob a9364d4a8e40a13bb4562b2870784545293a39c5 | Hasura/Postgres update → Kafka compactado → Bridge cache. | Key broker:symbol; canonical_symbol payload; tombstones para delete. | Patrón hot-update reutilizable. Futures necesita canonical Instrument→physical Contract, no sólo broker symbol rename. |
+| Day boundary | v3/core/internal/functions/account_sync.go — blob b0f8f1ce426ce9f5ac6285bd97a990624bd6ca9e | Detecta reset diario por timezone/reset time para reglas/account HWM. | Cache por accountID; fallback UTC 23:00. | NO es TradingSession/calendar: no expresa exchange holidays, early close, product hours ni DST-aware session templates de mercado. |
+
+### REUSE / EXTEND / ADAPT / REPLACE / NEW / DEFERRED_DEBT
+
+| Modelo candidato | D1 disposition | Base física / motivo |
+| --- | --- | --- |
+| Strategy | NEW | StrategyConfig/StrategyDefinition son metadata/policy, no runtime ejecutable. Reusar sólo IDs/config helpers. |
+| Signal | NEW | Frozen contract distinto de ReferenceEvent. Puede existir adapter legacy ReferenceEvent→compatibility path, pero no contaminar Signal. |
+| AccountStrategy | ADAPT | Extraer binding explícito desde ExecutionPolicy; mantener version/config hot. |
+| CapitalManagement | ADAPT + EXTEND | Reusar SDK mm calculators y parte de MMEngine; agregar lifecycle stateful de Operation y callbacks de Bar/event/fill. |
+| Operation | NEW | Reusar correlation/fan-out mechanics, no usar TradeID actual como semántica completa por accidente. |
+| Order | NEW | CoreCommand queda como DTO de transporte; hace falta aggregate/lifecycle normalizado. |
+| Fill | NEW | ExecutionResult debe adaptarse a emitir facts de fill; un Order puede producir múltiples fills. |
+| Position | ADAPT + EXTEND | Reusar PositionSnapshot/PositionSync como physical/reconciled state; añadir Contract/provider/venue identity. |
+| Trade | EXTEND | Preservar trade_journal/The Lab; definir Trade lógico cerrado y proyectarlo al ledger. |
+| Account | REUSE + EXTEND | Reusar account/snapshots/rules plumbing; añadir provider/program/trader scope cuando corresponda. |
+| Provider | NEW | Broker actual no representa prop firm ni policy owner. |
+| ProviderProgram | NEW | Reglas cambian por programa y fase dentro del mismo provider. |
+| ProviderRuleSet | NEW/ADAPT | Reusar day-boundary/risk-rule primitives donde sean genéricos; typed rule set versionado es nuevo dominio. |
+| Instrument | EXTEND | Partir de canonical symbol/specs; representar root/economic instrument independiente del contrato vigente. |
+| Contract | NEW | Expiry/physical futures contract y provider/platform contract id no existen como entidad separada. |
+| Bar | NEW | No existe un market-data/bar engine canónico en Echo V3. |
+| Session | NEW | DayBoundary de account no sirve como exchange TradingSession/calendar. |
+
+REPLACE explícito: ExecutionStore no debe seguir siendo autoridad del nuevo lifecycle si D2 confirma Operation→Order→Fill. Puede sobrevivir temporalmente como compatibility/reconciliation projection durante migración. No requiere reescribir Core.
+
+## 2. Market-data / quant engine research
+
+### Sistemas contrastados
+
+1. QuantConnect LEAN.
+   - Warm-up usa historia y fast-forward del mismo algoritmo; live y backtest preparan state antes de habilitar trading.
+   - Consolidators agregan ticks/small bars a bars mayores; RollingWindow guarda estado reciente.
+   - Live multiple data providers usa precedence order; no mezcla feeds arbitrariamente.
+   - Continuous futures mapping expone el physical mapped contract y eventos de symbol change; para live se recomienda ordenar el contrato físico.
+   - Referencias:
+     - https://www.quantconnect.com/docs/v2/writing-algorithms/historical-data/warm-up-periods
+     - https://www.quantconnect.com/docs/v2/writing-algorithms/consolidating-data/getting-started
+     - https://www.quantconnect.com/docs/v2/writing-algorithms/indicators/rolling-window
+     - https://www.quantconnect.com/docs/v2/writing-algorithms/historical-data/live-trading
+     - https://www.quantconnect.com/docs/v2/writing-algorithms/universes/futures
+     - https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/quantconnect/us-futures-security-master
+
+2. NautilusTrader.
+   - Cache central in-memory guarda order books, bounded quotes/trades/bars, orders, positions, accounts e instruments; DataEngine actualiza antes de handlers de estrategia.
+   - BarType explicita instrument + aggregation + price type + source; Bar separa ts_event/ts_init.
+   - Backtest usa los mismos core components/strategies/execution algorithms que live; las diferencias live quedan en venue, transport, timing, persistence y reconciliation.
+   - Live execution reconciliation alinea estado interno con venue en startup y recupera missing events.
+   - ParquetDataCatalog separa durable historical data del hot state.
+   - Referencias:
+     - https://nautilustrader.io/docs/latest/concepts/cache/
+     - https://nautilustrader.io/docs/latest/concepts/data/bar/
+     - https://nautilustrader.io/docs/latest/concepts/backtesting/
+     - https://nautilustrader.io/docs/latest/concepts/execution/reconciliation/
+     - https://nautilustrader.io/docs/latest/getting_started/backtest_high_level/
+     - https://nautilustrader.io/docs/latest/how_to/loading_external_data/
+
+### Patrones maduros extraídos para D2
+
+- Hot state acotado e in-memory; durable historical store separado.
+- Un owner determinístico de estado por instrument/stream/partition; evitar shared mutable state arbitrario entre Strategy instances.
+- Tick/quote/trade normalizado primero; BarBuilder stateful después; indicadores incrementales se alimentan del mismo stream.
+- Multi-timeframe derivado explícitamente de una fuente canónica o de barras menores, con BarType/source y boundary claro.
+- Warm-up/recovery debe reconstruir exactamente el state necesario antes de habilitar nuevas señales; no ejecutar History queries lentas en hot path.
+- Forming bar y closed bar son eventos distintos; el timestamp que hace visible una barra completa debe impedir look-ahead.
+- Feed PRIMARY/BACKUP: una sola autoridad de decisión en un instante; failover explícito con gap/latency/contract checks. Precedence es preferible a mezclar ticks heterogéneos.
+- Restart live: durable history + gap fill + reconciliation de venue; snapshots pueden optimizar, no reemplazar la autoridad externa.
+- Live/replay equivalence significa compartir Strategy/CapitalManagement/domain callbacks y semántica temporal, no forzar el mismo process/runtime físico.
+- Error frecuente: usar un continuous future como orden física o permitir que un mapping cambie el target de una Operation ya viva.
+
+### Inputs que D2 ya tiene
+
+D2 puede decidir Q4/Q5/Q8 con un menú concreto de trade-offs: owner del hot state, input granularity, bar timestamp/finality, indicator storage, MTF derivation, warm-up contract, durable store, primary/backup policy y recovery semantics. No requiere otro discovery general.
+
+## 3. Futures Prop Universe
+
+### Cohorte D1
+
+| Provider | Automation | Programa/fase relevante | Platforms / technology | Restricción material para el domain |
+| --- | --- | --- | --- | --- |
+| Topstep | ALLOWED con scope | Trading Combine / Express sim; Live Funded distinto | TopstepX → ProjectX Gateway REST + SignalR | API permite bots, pero order flow debe originar en dispositivo personal: no VPS/VPN/remote relay. ProjectX API no disponible para Live Funded. Flat diario y holiday early-close rules. |
+| Lucid Trading | ALLOWED | LucidDaily/Flex/Pro/Direct/Live varían | NinjaTrader/Tradovate CQG y Rithmic ecosystem | Automation/copy permitted; HFT/microscalping restrictions. News y drawdown cambian por programa/fase; Live puede usar límites/scaling distintos. |
+| MyFundedFutures | ALLOWED / CONDITIONAL | Builder/Rapid/Pro + sim-funded/live | NinjaTrader, Tradovate, TradingView y otros | Automated strategy propia permitida, HFT/sim-fill exploitation prohibido. News restrictions pueden cambiar por plan/fase; EOD vs intraday drawdown. |
+| TradeDay | ALLOWED / CONDITIONAL | Eval/funded según programa | NinjaTrader, Tradovate, TradingView, Jigsaw, Quantower; CQG/Rithmic ecosystem | Bots permitidos vía plataformas soportadas, pero NO entrega platform APIs/Tradovate API; third-party purchased bots prohibidos. |
+| FundedNext Futures | ALLOWED | Challenge + FundedNext Account; varios modelos | Integraciones conectadas a Tradovate; NinjaTrader/Tradovate/TradingView | Bots permitidos; latency abuse/order flooding/HFT prohibidos. Copy sólo entre cuentas del mismo owner; DCA permitido con plan estructurado. Consistency cambia por modelo/fase. |
+| Tradeify | CONDITIONAL | Eval/sim funded según plan | Tradovate, Rithmic, WealthCharts; NinjaTrader disponible con Tradovate | Bot sólo si se prueba sole ownership y nadie más/otra firma usa la misma estrategia; similarity scans/video. Hedging/correlated products y microscalping/payout constraints. |
+| Alpha Futures | FORBIDDEN para full automation | Evaluation/Qualified | Varias plataformas, copy manual posible | AI/bots/full automation prohibidos; semi-auto signals con ejecución/gestión manual sí. |
+| TakeProfitTrader | FORBIDDEN | Test/PRO/PRO+ | Transport irrelevante para V1 automatizado | Universal policy: no bots/algo; manual execution. |
+
+### First-party evidence principal
+
+- Topstep API: https://help.topstep.com/en/articles/11187768-topstepx-api-access
+- Topstep trading times: https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade
+- Topstep holidays: https://help.topstep.com/en/articles/13350348-topstep-holiday-trading-hours
+- Lucid automation: https://support.lucidtrading.com/en/articles/11404728-other-trading-activities
+- Lucid times: https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times
+- Lucid drawdown example: https://support.lucidtrading.com/en/articles/15998425-luciddaily-drawdown
+- MFFU automation: https://help.myfundedfutures.com/en/articles/8444599-fair-play-and-prohibited-trading-practices
+- MFFU platforms: https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu
+- MFFU news: https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy
+- TradeDay automation/API: https://tradeday.freshdesk.com/en/support/solutions/articles/103000085101-automated-algo-and-bot-trading
+- FundedNext automation: https://helpfutures.fundednext.com/en/articles/14298560-is-the-usage-of-automated-trading-systems-eas-and-bots-allowed-in-fundednext-futures
+- FundedNext copy: https://helpfutures.fundednext.com/en/articles/14298572-what-is-copy-group-trading-policy-at-fundednext-futures
+- FundedNext general futures rules: https://fundednext.com/general-rules/futures/what-is-allowed
+- Tradeify rules: https://help.tradeify.co/en/articles/10468318-guidelines-for-traders
+- Tradeify platforms: https://help.tradeify.co/en/articles/10468221-supported-platforms
+- Alpha automation: https://help.alpha-futures.com/en/articles/9508585-prohibited-trading-practices
+- TPT no algo: https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP
+
+### Rule families demostradas
+
+ProviderRuleSet/ProgramRuleSet debe poder representar al menos:
+- automation permission + automation ownership/exclusivity;
+- lifecycle/environment: evaluation, sim-funded, live, transition;
+- platform/API entitlement;
+- trader/account/household/cross-provider scope;
+- max position/contracts + product groups;
+- MLL/drawdown: fixed, EOD trailing, intraday trailing, lock;
+- daily loss: hard/soft/optional;
+- consistency/profit contribution;
+- trading day/min days/inactivity;
+- allowed sessions, forced flatten, holiday early-close;
+- news windows;
+- HFT/microscalping/min-hold/order-frequency/system-exploitation;
+- DCA/scaling/martingale semantics;
+- hedging/correlated product restrictions;
+- copy/group/cross-provider restrictions;
+- payout eligibility/caps/splits;
+- account-count limits;
+- allowed instruments/exchanges;
+- rule severity: deny new risk, soft pause, hard breach, forced flatten.
+
+Conclusión de domain discovery: Provider no alcanza. Program/fase modifica reglas materialmente dentro del mismo provider, por lo que D2 debe mantener Provider + ProviderProgram + versioned RuleSet. Esto es evidencia para diseñar, no freeze de la forma exacta.
+
+## 4. Execution transport feasibility
+
+### ProjectX / TopstepX direct
+
+- REST order API + SignalR/WebSocket realtime.
+- MARKET/LIMIT/STOP explícitos; además stop-limit/trailing/join.
+- cancel y modify endpoints.
+- user hub entrega account/order/position/trade events; market hub quote/trade/depth.
+- Order trae fillVolume; Trade es un hecho separado con orderId, size y price.
+- ejemplo oficial usa automatic reconnect y resubscribe.
+- rate limit actual: history 50/30s; otros endpoints 200/60s.
+- Topstep autoriza bots en sim/Express/Combine por esta API, pero no Live Funded y prohíbe que order flow venga desde VPS/remote server.
+- Ruta V1 técnicamente viable: shadow/demo/sim autorizado desde máquina personal/edge local.
+
+Refs:
+- https://gateway.docs.projectx.com/docs/api-reference/order/order-place/
+- https://gateway.docs.projectx.com/docs/realtime/
+- https://gateway.docs.projectx.com/docs/getting-started/rate-limits/
+- https://help.topstep.com/en/articles/11187768-topstepx-api-access
+
+### NinjaTrader local bridge
+
+- OnExecutionUpdate define execution == fill; una orden puede producir múltiples executions/partial fills.
+- Account/NinjaScript APIs proveen order/account events y command path; Sim101 entrega una cuenta simulada realista.
+- Encaja como adapter local para varias props que permiten automation y soportan NinjaTrader: Lucid, MFFU, TradeDay, FundedNext.
+- D1 no afirma que la misma licencia/conexión funcione en toda prop: ese entitlement es provider/program data.
+- Ruta técnicamente viable en sim y candidata fuerte a multi-provider reuse; D2 debe decidir si vale el costo C#/NT bridge frente a APIs directas.
+
+Refs:
+- https://docs.ninjatrader.com/ninjascript/onexecutionupdate
+- https://ninjatrader.com/support/helpGuides/nt8/the_sim101_account.htm
+
+### Tradovate direct API
+
+- REST + WebSocket/market-data services, demo engine separado y order placement.
+- Es technology común en varias props.
+- No asumir portabilidad del API entitlement: TradeDay declara explícitamente que no expone Tradovate API; para otras firmas el login de plataforma no prueba developer API.
+- D2 puede mantenerlo como transport family, condicionado a entitlement por ProviderProgram.
+
+Refs:
+- https://api.tradovate.com/
+- https://partner.tradovate.com/api/rest-api-endpoints/orders/place-order
+- https://tradeday.freshdesk.com/en/support/solutions/articles/103000085101-automated-algo-and-bot-trading
+
+### Rithmic direct
+
+- R|API+ C++/.NET y R|Protocol language-agnostic; market data, reference, order management y execution reports.
+- Exchange Simulator con live exchange data + simulated fills; soporta market/limit/stop/brackets/OCO.
+- Production access exige conformance; test no.
+- Reutilizable potencialmente entre props Rithmic, pero credentials de plataforma no equivalen a developer entitlement.
+
+Refs:
+- https://www.rithmic.com/apis
+- https://www.rithmic.com/products/exchange-simulator
+
+### Feasibility result
+
+Existe al menos una ruta real para V1: Topstep simulated via ProjectX direct; adicionalmente NinjaTrader Sim101 ofrece un path de bridge local para la familia NT. No hay bloqueo de feasibility. D2 debe seleccionar la primera ruta productiva según cobertura, compliance de deployment, live-transition path y costo operacional.
+
+## 5. Futures semantics / inputs D2
+
+### Instrument vs Contract
+
+- CME futures tienen ticker/root, contract specs, expiry/month contract y trading hours.
+- LEAN separa continuous symbol del physical Mapped contract y advierte que live orders deben usar el underlying physical.
+- ProjectX también separa symbolId del contractId.
+- Input D2: Instrument debe representar el económico/canonical root; Contract debe representar expiry/physical tradable + venue identifiers/specs.
+- La propuesta de que una Operation pinnee Contract al crearse queda READY_FOR_D2: evita que un hot mapping rollover retargetee una orden/posición viva.
+- Rollover automático sigue fuera V1 por owner decision; mapping manual hot sí es requerido.
+
+Refs:
+- https://www.quantconnect.com/docs/v2/writing-algorithms/universes/futures
+- https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/quantconnect/us-futures-security-master
+- https://gateway.docs.projectx.com/docs/realtime/
+
+### TradingSession / calendar
+
+- Echo DayBoundary actual sólo representa reset de cuenta por timezone/hora.
+- CME publica regular hours + 2026/2027 holiday schedules/early closes y los horarios varían por producto.
+- Props agregan encima forced-flat cutoffs propios: Topstep 3:10 PM CT y early-close offsets; Lucid 4:45 PM ET en varias cuentas y distintos horarios live según connection.
+- Input D2: Session necesita exchange/product calendar, timezone/IANA + DST, regular open/close/breaks, holiday overrides/early close y provider/program trading-window overlays. No hardcodear un UTC reset como session de mercado.
+
+Refs:
+- https://www.cmegroup.com/trading-hours.html
+- https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade
+- https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times
+
+### Order / Fill / Position / Operation
+
+- NinjaTrader prueba que una Order puede generar múltiples Fill executions y que partial fills son normales.
+- ProjectX publica Order y Trade como entidades/eventos separados; Trade referencia orderId; Position es account+contract+size+averagePrice.
+- Echo actual ExecutionResult de single FillPrice no alcanza para este lifecycle.
+- Evidencia lista para Q2/Q3:
+  - Order necesita identity estable + status transitions + submit/change/cancel + requested qty/prices/type.
+  - Fill debe ser immutable execution fact con order id, qty, price, timestamp/provider execution id.
+  - Position debe reflejar estado físico neto/reconciliado del account/contract; no debe ser igual a Operation.
+  - Operation sigue siendo una candidata lógica para gestionar Signal×Account y sus Orders/Fills; D2 debe confirmar cardinalidades exactas y attribution rules.
+- Netting/hedging no debe resolverse con supuestos MT4. Transport reporta el estado físico real; domain debe poder reconciliarlo.
+
+Refs:
+- https://docs.ninjatrader.com/ninjascript/onexecutionupdate
+- https://gateway.docs.projectx.com/docs/realtime/
+
+### Trade → trade_journal → Lab
+
+- Echo V3 ya tiene boundary estable: TradeJournalFn → echo.trade_journal → The Lab.
+- Conservarlo evita reescribir Lab.
+- D2 debe definir projection de Trade lógico cerrado hacia journal y provenance para LIVE/REPLAY/BACKTEST, source/run_id; no mezclar una simulación con live sin identificación.
+- Journal es projection/ledger analítico, no state owner del live Operation.
+
+### Backtest/replay reuse boundary
+
+- Frozen owner constraint es compatible con patrones LEAN/Nautilus: compartir Strategy + CapitalManagement + domain event semantics y deterministic clock/event ordering.
+- Live-only: feed adapters, sockets/API auth, retries/backpressure, reconciliation, provider connectivity, remote order IDs.
+- Reusable pure/domain: Strategy, Signal, CapitalManagement decisions/state transitions, Operation/Order/Fill semantics, Instrument/Contract/Session normalization, ProviderRule evaluation cuando sea determinista.
+- Sim-only adapter: simulated execution/fill model, slippage/commission model y historical/recorded feed.
+- Esto deja Q14 READY_FOR_D2 sin exigir que backtester y Core live sean el mismo proceso.
+
+### Event cadence para Strategy / CapitalManagement
+
+D1 no congela callback API, pero D2 ya tiene el set completo que debe resolver:
+- tick/quote/trade;
+- forming bar update cuando una estrategia lo solicite;
+- closed bar;
+- multi-timeframe closed/forming semantics;
+- fill/partial fill;
+- order accepted/rejected/cancelled/replaced;
+- position/reconciliation change;
+- account/risk/provider rule event;
+- session open/close/holiday transition;
+- contract mapping update para nuevas Operations, sin mutar las ya pinned.
+
+## 6. Blocking refactor register
+
+### Blocking para implementar el diseño una vez que D2 lo congele
+
+1. Signal boundary limpio separado de ReferenceEvent.
+2. Operation/Order/Fill identities y lifecycle; adaptar CoreCommand/ExecutionResult como wire contracts, no domain aggregates.
+3. Instrument/Contract + hot mapping semantics.
+4. TradingSession/calendar separado de account day boundary.
+5. CapitalManagement contract stateful sobre Operation, reutilizando MM calculators.
+6. Provider/ProviderProgram/versioned RuleSet domain.
+7. Trade projection/provenance para Lab live/replay/backtest.
+
+Estos son blocking design/refactors, no evidencia de que haya que reescribir Core V3.
+
+### Non-blocking deferred debt
+
+- ExecutionStore puede mantenerse como compatibility projection mientras migra la autoridad al nuevo lifecycle.
+- Bridge tiene patrones muy reutilizables pero adapter MetaTrader-specific; no necesita eliminarse para introducir NT/ProjectX adapters.
+- Gateway/Hasura siguen como control plane; no deben entrar al hot path.
+- ConfigCache consume topics compactados desde inicio: aceptable hoy; medir startup/capacity antes de escalar.
+- Fan-out por account y topic/consumer topology a 100–200 cuentas requiere benchmark/capacity test, no rediseño preventivo.
+- Legacy V2 source/docs pueden limpiarse después; no son prerrequisito.
+- DayBoundaryCache actual no reemplaza calendar/session y su fallback UTC no debe propagarse a Futures.
+
+## 7. Critical Questions readiness
+
+| Q | Estado D1 | Evidencia entregada / D2 action |
+| --- | --- | --- |
+| Q1 Echo fit | RESOLVED | Source V3 + matrix REUSE/EXTEND/ADAPT/REPLACE/NEW/DEFERRED_DEBT. |
+| Q2 Position attribution | READY_FOR_D2 | Physical PositionSnapshot + NT partial fills + ProjectX position/order/trade separation. |
+| Q3 Order lifecycle | READY_FOR_D2 | CoreCommand/ExecutionResult gap identificado; NT/ProjectX lifecycle evidence. |
+| Q4 Market hot state | READY_FOR_D2 | LEAN + Nautilus bounded cache/state owner/recovery patterns. |
+| Q5 Bar semantics | READY_FOR_D2 | Consolidators + BarType/source + ts_event/ts_init + forming/closed constraints. |
+| Q6 Contract mapping | READY_FOR_D2 | LEAN mapped physical futures + ProjectX contractId + Echo hot mapping pattern. |
+| Q7 Session semantics | READY_FOR_D2 | CME calendar + prop forced-flat overlays + Echo day-boundary limitation. |
+| Q8 Feed authority | READY_FOR_D2 | Primary/precedence pattern; failover constraints defined, no feed blending. |
+| Q9 Execution transport | READY_FOR_D2 | ProjectX, NinjaTrader bridge, Tradovate direct, Rithmic direct feasible families; ProjectX sim route proven. |
+| Q10 Provider model | READY_FOR_D2 | 8-provider cohort + program/fase-specific rule families. |
+| Q11 Strategy runtime | READY_FOR_D2 | Current StrategyConfig is not runtime; shared live/replay Strategy pattern established. |
+| Q12 S2 | READY_FOR_D4 | Owner roadmap keeps strategy mechanics validation in D4; no reason to pull into D1/D2. |
+| Q13 Gerard +/- | READY_FOR_D4 | Owner roadmap keeps CapitalManagement strategy mechanics validation in D4; D1 preserved required event cadence. |
+| Q14 Backtest boundary | READY_FOR_D2 | Shared domain/Strategy/CapitalManagement vs live adapters/reconciliation boundary concretely researched. |
+| Q15 Trade/Lab | READY_FOR_D2 | Physical TradeJournalFn/schema path understood; required provenance/projection gap explicit. |
+| Q16 Blocking refactor | READY_FOR_D2 | Register above; no Core rewrite blocker found. |
+
+No existe UNKNOWN_WITHOUT_OWNER_DAY.
+
+## 8. Evidence gaps reales
+
+Estos gaps no bloquean D1 y están scoped para D2/implementation:
+
+- No se hizo credentialed smoke contra ninguna prop/provider. D1 requería feasibility, no operar ni usar credenciales. ProjectX/NT simulator paths están documentados oficialmente.
+- Tradovate developer API entitlement NO está demostrado para MFFU/FundedNext; login Tradovate no equivale a API key. Mantener capability UNKNOWN/conditional por ProviderProgram hasta confirmación.
+- Rithmic production access requiere conformance; no se intentó solicitar kit ni credenciales.
+- No se benchmarkeó fan-out 100–200 cuentas sobre Echo V3. Es capacity verification posterior, no identity/lifecycle discovery.
+- No se eligió market-data vendor concreto. D2 elige architecture/capabilities; vendor procurement queda posterior si no cambia el domain.
+- No se definió una tabla completa de contract rollover dates. V1 es manual rollover; D2 sólo necesita modelar Contract + mapping hot + pinned operation.
+- No se reauditaron economics del proyecto histórico; no son autoridad para D1 architecture.
+
+## 9. Reusable assets para D2
+
+- Este D1 Analysis Pack.
+- Source/domain map V3 con blob SHAs.
+- Q1 reuse matrix.
+- Provider cohort + first-party references.
+- Rule-family catalog.
+- Transport feasibility matrix.
+- Market-data comparison LEAN/Nautilus.
+- Futures semantics evidence set.
+- Blocking/deferred refactor register.
+- Terminology mapping:
+  - ReferenceEvent = legacy executed-reference input, no Signal.
+  - ExecutionPolicy = current binding/risk/execution config precursor, no final AccountStrategy.
+  - CoreCommand = transport DTO, no Order aggregate.
+  - ExecutionResult = legacy command result, no Fill aggregate.
+  - PositionSnapshot = physical/reconciled state precursor.
+  - TradeJournalEntry = analytical ledger projection, no Operation aggregate.
+
+## 10. Reusable behavior candidates
+
+NONE.
+
+D1 produjo assets reutilizables pero no apareció un patrón operacional suficientemente novedoso y repetible como para justificar otra skill. El workflow ya está cubierto por technical-project-manager + Agents-OS bootstrap/close.
+
+## 11. Gate verification
+
+- Q1 resuelta: PASS.
+- Physical source map: PASS.
+- REUSE matrix: PASS.
+- Unknown que cambie domain identity/lifecycle antes de D2: NONE.
+- Market-data research suficiente: PASS.
+- Prop diversity suficiente: PASS.
+- Execution route real técnicamente viable: PASS.
+- Contract/session/mapping discovery suficiente para Q6/Q7: PASS.
+- Position/Order/Fill evidence suficiente para Q2/Q3: PASS.
+- Backtest reuse inputs suficientes para Q14: PASS.
+- Trade/Lab entendido para Q15: PASS.
+- Blocking refactor inputs para Q16: PASS.
+- No Architecture Freeze D2 iniciado: PASS.
+- Product source mutation: NONE.
+
+Resultado manager D1: EF_D1_ANALYSIS_PASS = REVIEW.
+
+Next exact milestone: D2 — DESIGN / Domain + Technical Architecture. D2 debe cerrar Q2–Q11 y Q14–Q16 contra este pack, producir Architecture Freeze candidato para review del owner y no repetir discovery general salvo contradicción material nueva.
