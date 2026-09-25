@@ -22,7 +22,7 @@ tags:
   - echo-futures
   - prop-economics
 created: "2026-09-24"
-updated: "2026-09-24"
+updated: "2026-09-25"
 ---
 
 # Echo Futures — D5 Prop Economics
@@ -1797,3 +1797,72 @@ Manager disposition:
 - simulator/three-shot milestone: **CLOSED SUCCESSFULLY**.
 
 Next action: `D5.4_FAIR_NULL_REALISM_BRIDGE`.
+
+## D5.4 Fair-Null + Realism Bridge — EJECUTADO 2026-09-25
+
+**Verdict: ejecutado completo bajo protocolo congelado pre-ejecución; `D5_FAIR_NULL_PASS = REVIEW` (no self-accepted).** Producto certificado `xKoRx/echo-futures @ cdef2b6b29502285b904fbe067d4e6aadd7d2419` (árbol limpio, source intacto; verificador externo en `/home/kor/aranea/work/d5-m1a-shotd-fairnull-20260925/` — PROTOCOL.md congelado antes de observar, configs, outputs, `verifier/partb_kernel.py`, `verifier/partc_driver.py`). Sin implementación de estrategia real, sin market calibration, sin cambio de policy P150.
+
+### Semántica verificada
+
+El producto expone overrides `p_eval`, `p_bulto`, `p_qualify`; la etapa reload comparte `p_qualify` (`internal/p150/account.go`, `StageProb` rama default — evidencia en source). Para ql=150 el fair reload = 1/2 coincide exactamente con el fair qualify, por lo que el override existente basta y NO se cambió source.
+
+### Parte A — True fair null (engine certificado, seed 424244, N=100k, 5 pipelines, 20 sesiones, K=3, ql=150)
+
+| campo | linked p=0.50 (Shot C, seed 424242) | FAIR NULL stage-specific (IND) | FAIR NULL (PERFECT_COPY) |
+|---|---|---|---|
+| EV mensual | +$1,838.5 | +$691.3 | +$723.6 |
+| P(month>0) | 0.737 | 0.565 | 0.395 |
+| P5 / P50 / P95 | −2,511 / 1,909 / 6,731 | −3,989 / 337 / 6,035 | −5,675 / −2,715 / 16,220 |
+| evals / activaciones / mes | 34.2 / 8.3 | 34.9 / 11.1 | 34.9 / 11.0 |
+| pay1 / pay2 / pay3 | 2.298 / 0.385 / 0.004 | 1.966 / 0.318 / 0.003 | 1.978 / 0.320 / 0.003 |
+| cash externo / fees totales | $4,755 / $80.6 (settlement) | $4,048 / $3,425 (eval 1,709 + act 1,648 + settle 69) | $4,073 / $3,419 |
+| DP exacto p_pass | (0.5)² = 0.25 | (4/7)² = 0.3265306… | idéntico |
+
+Lectura: con probabilidades de primer-hit por etapa (eval 4/7, bulto 1/3, qualify/reload 1/2) el null fair MANTIENE EV positivo (+$691/mes) pero cae 62% respecto de la celda linked p=0.50: p_bulto 0.5→0.333 reduce pay1 (2.30→1.97) y p_eval 0.571>0.5 encarece activaciones (8.3→11.1 × $149) — las fees de activación consumen casi la mitad del edge aparente del linked null. Esto CERTIFICA la corrección semántica del manager: linked p=0.50 NO es zero-edge; el fair null verdadero es otra celda y es menos generosa, aunque sigue positiva por la asimetría de barreras estáticas (target más cercano que loss en eval, y cap de payout $2,000 contra fees fijos).
+
+### Parte B — Finite session realism (kernel D5.3 exacto)
+
+Modelo: BM driftless en reloj de varianza con barreras estáticas +G/−L; por sesión de presupuesto ν_s = ρ·L², leyes exactas de dos barreras en tiempo finito (series del kernel de calor en intervalo). Identidades PASS: conservación ≤1.1e-16; límite ν→∞ recupera los fair nulls exactos; martingala p_T·G − p_L·L + S·E[Y|surv] = 0 a ≤5e-13; límite ν→0 acotado por truncación de serie (<1e-6). Enmienda pre-ejecución registrada: por concatenación de segmentos Brownianos (Markov fuerte + barreras estáticas), P_stage_hit(n,ρ) = p_TARGET(n·ν_s) — sin DP de retícula. E[sesiones a resolución de etapa] = (G/L)/ρ.
+
+Superficie (p_TARGET de UNA sesión, por etapa, sobre la grilla adimensional D5.3 sqrt(ρ) = σ√T / L):
+
+| sqrt(ρ) | eval (fair .5714) | bulto (fair .3333) | qualify/reload (fair .5) | E[sesiones] eval / bulto / qual |
+|---|---|---|---|---|
+| 0.1 | ~0 | ~0 | ~0 | 75 / 200 / 100 |
+| 0.25 | 0.0027 | ~0 | 0.0001 | 12 / 32 / 16 |
+| 0.5 | 0.1336 | 0.0001 | 0.0455 | 3 / 8 / 4 |
+| 1.0 | 0.4473 | 0.0454 | 0.3146 | 0.75 / 2 / 1 |
+| 2.0 | 0.5704 | 0.2719 | 0.4954 | 0.19 / 0.5 / 0.25 |
+| 4.0 | 0.5714 | 0.3332 | 0.5000 | 0.05 / 0.12 / 0.06 |
+
+Traducción mensual de diagnóstico (SÓLO aproximaciones etiquetadas, no economía certificada): brazo pesimista FIRST_SESSION_RESOLVED (supervivientes tratados como pérdida completa) y brazo optimista RESOLUTION_CONDITIONAL (masa no resuelta eliminada; el proceso carried verdadero queda entre ambos): sqrt(ρ)=1 → [−$4,467, −$2,569]/mes (ambos negativos); sqrt(ρ)=2 → [−$252, +$368] (cruce de signo); sqrt(ρ)≥4 → ≈ fair null (+$691); sqrt(ρ)≤0.25 → piso de quema de fees ≈−$4.9k/−$6.8k. Conclusión: la positividad del fair null discreto NO es robusta a duración finita de sesión; se sostiene sólo cuando la sesión típicamente resuelve (σ√T ≳ 1.5–2 × loss cap). Cuál régimen es el real es una pregunta de DATOS, no de modelo. Nota declarada: las etapas con winning-day counting (qualify/reload) son además ν-sensibles en probabilidad eventual (día ganador exige PnL diario ≥$150; su probabilidad por sesión cae con ν), efecto de segundo orden no simulado aquí.
+
+### Parte C — Edge requirement (bisección en espacio MC mensual, CRN seed 424245, N=50k, tol $25)
+
+Margen de deterioro hasta break-even (el fair null ya está sobre 0, el break-even informativo es hacia abajo): eval −7.4pp (p_eval 0.5714→0.4974, prácticamente moneda), bulto −4.9pp, qualify −4.2pp, uniforme −1.84pp en las tres etapas. Edge ASCENDENTE sobre el fair null para objetivos mensuales (5 pipelines):
+
+| objetivo/mes | sólo eval | sólo bulto | sólo qualify (incl. reload) | uniforme | combinado (greedy) |
+|---|---|---|---|---|---|
+| break-even | ya positivo (margen −7.4pp) | ya positivo (−4.9pp) | ya positivo (−4.2pp) | ya positivo (−1.84pp) | = qualify |
+| +$1k | +3.7pp → p 0.608 | +2.3pp → 0.356 | +2.1pp → 0.521 | +0.84pp | +2.1pp en qualify |
+| +$2k | +17.1pp → 0.742 | +10.6pp → 0.439 | +7.9pp → 0.579 | +3.2pp | +7.9pp en qualify |
+| +$5k | INALCANZABLE (satura +$3,417 con p_eval→1) | +44.7pp → 0.780 | +28.8pp → 0.788 | +9.6pp | +28.8pp en qualify |
+
+Elasticidad (marginal $/mes por +1pp, Δ=+0.01, N=100k seed 424244): qualify +$171 > bulto +$138 > eval +$89; uniforme +$406 (superaditivo). **Etapa más valiosa: qualify/reload** (parámetro compartido en el producto; se satura última; con asignación greedy todo el presupuesto de edge va ahí). El brazo sólo-eval no puede llegar a +$5k/mes ni con evaluación perfecta: el throughput de payouts lo limita p_bulto=1/3.
+
+### Parte D — Gerard bridge (consumo de reports; ningún claim asumido)
+
+Fuentes: [[gerard-garcia-dr]] (RESEARCH_PASS), [[tradesfera-dr]] (RESEARCH_PARTIAL), [[psicologo-del-trading-dr]] (RESEARCH_NO_GO — sin reglas mecanizables, excluido). Hipótesis falsables mecanizables sobre (p_eval, p_bulto, p_reload, p_qualify): (1) NEG_REC DCA adverso con stop a promedio [OBSERVED media] → reduce P(pérdida completa de sesión) pero aumenta frecuencia de burn al floor; medible en p_loss de etapa vs burn rate; NO_DATA. (2) Killzones / filtro time-of-day [OBSERVED media] → condiciona ν por sesión: p_T(ν_kz) > p_T(ν_all) es falsable con datos tick; NEEDS_MARKET_DATA. (3) POS_PYR piramidado con stop BE [OBSERVED media] → sesga el reparto TARGET/LOSS/SURVIVED a favor de target con cola izquierda recortada; NO_DATA. (4) VAR_RISK progresión tras pérdida [UNKNOWN] → cambia p efectiva por intento; falsable A/B contra riesgo plano; NO_DATA. (5) RAND_ENTRY "entradas al azar con gestión" [UNKNOWN, el propio report lo marca especulación] → si fuera cierto, el fair null de la Parte A ES el modelo económico directo; NO_DATA. (6) Tradesfera mean-reversion con TP corto y win-rate alto [EXPLÍCITO] → mapea a mejora de p_qualify (ventana chica 150/150) y quizá p_eval; target empírico: p_qualify ≥ 0.521 da +$1k/mes sobre fair null; el 26.7% de funding rate es self-reported (sesgo declarado); NEEDS_MARKET_DATA. (7) Selectividad "cuando no, quietos" [EXPLÍCITO] → menos sesiones/mes con p por sesión mayor; interactúa con el reloj de 20 sesiones; falsable con datos; NEEDS_MARKET_DATA. (8) R4 stop-loss desconocido → la elección de qualify_loss ya tiene superficie certificada (Shot C); la estimación empírica debe reportarse junto al ql elegido; NEEDS_MARKET_DATA.
+
+### Decisión (bloque fijo)
+
+- **FAIR_NULL_EV:** +$691/mes INDEPENDENT (+$724 PERFECT_COPY); 5 pipelines, 20 sesiones, K=3, ql=150, seed 424244, N=100k — positivo pero −62% vs linked p=0.50.
+- **FAIR_NULL_P_POS:** 0.565 IND (0.395 PC).
+- **FINITE_SESSION_RANGE:** bracket de diagnóstico [−$4,467, −$2,569]/mes en sqrt(ρ)=1; [−$252, +$368] en sqrt(ρ)=2; ≈+$691 en sqrt(ρ)≥4; piso ≈−$4.9k a −$6.8k en sqrt(ρ)≤0.25. Cruce de signo entre sqrt(ρ)≈1.4 y 2 — bracket no riguroso, etiquetado diagnóstico.
+- **BREAK_EVEN_EDGE_REQUIRED:** ya sobre break-even; margen de deterioro: eval −7.4pp / bulto −4.9pp / qualify −4.2pp / uniforme −1.84pp. Ascendente: +$1k exige +2.1pp (qualify) a +3.7pp (eval); +$2k exige +7.9pp (qualify) a +17.1pp (eval); +$5k inalcanzable por eval solo.
+- **MOST_VALUABLE_STAGE_TO_IMPROVE:** qualify/reload (+$171/pp; comparte parámetro con reload en el producto).
+- **EMPIRICAL_TARGETS:** p_bulto ≥ 0.356 (+$1k/mes) y ≥ 0.439 (+$2k); p_qualify/reload ≥ 0.521 y ≥ 0.579; p_eval ≥ 0.608 y ≥ 0.742; uniforme fair+0.84pp / +3.2pp / +9.6pp para +1k/+2k/+5k. Toda estimación empírica debe venir con IC y ejecución/fees reales antes de comparar contra esta superficie.
+
+**Manager recommendation: NEEDS_MARKET_DATA.** La decisión económica está bloqueada por dos preguntas que sólo datos responden: (a) el régimen de ν real (σ√T de sesión vs loss cap — la Part B muestra que el signo del null depende de eso), y (b) la estimación empírica de p_eval/p_bulto/p_reload/p_qualify con ICs de la estrategia seleccionada (Parte D: 8 hipótesis, ninguna con datos hoy). Con datos: estimar p por etapa → comparar contra esta superficie y la de break-even de Shot C → entonces GO_REAL_STRATEGY_VALIDATION o NO_GO. Verificaciones respetadas: linked p=0.50 nunca llamado zero-edge; ningún edge empírico inventado; policy P150 intocada; fair-null y calibración de mercado separados.
+
+Gate: `D5_FAIR_NULL_PASS = REVIEW`. Next action: `MANAGER_REVIEW_D54` → decisión de adquisición de datos de mercado (tick/1m NQ-MNQ-ES-MES con timestamps y sesiones versionadas, per Parte D/§10 gerard-garcia-dr).
