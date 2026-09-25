@@ -10,7 +10,7 @@ parent:
 sprint: 2026-09-25--2026-10-02
 start: 2026-09-25
 due: 2026-10-02
-progress: 0
+progress: 12
 repo:
 jira:
 prs:
@@ -309,6 +309,31 @@ Cada pregunta tiene un **día máximo de resolución**. No puede arrastrarse sil
 | Q14 | **Backtest boundary:** qué paquetes/contratos deben quedar libres de dependencias live para que el runner independiente sea barato de construir. | **D2** | Boundary explícito que permite reutilizar Strategy/CapitalManagement/domain sin Core live. |
 | Q15 | **Trade/Lab compatibility:** qué campos existentes se preservan, cuáles se extienden y cómo se distinguen live vs simulated. | **D2** | Contrato Trade→trade_journal→Lab y provenance/mode resueltos. |
 | Q16 | **Blocking refactor:** si Echo actual impide alguna capacidad, ¿se resuelve ahora o queda DT/Core V3? | **D2** | Cada gap de D1 queda clasificado como adaptación/refactor <=1 día o DT no bloqueante con impacto explícito. |
+
+### Readiness después de D1 — 2026-09-25
+
+D1 cerró el discovery requerido sin congelar arquitectura. Autoridad de evidencia: [[Echo Futures — D1 Analysis Pack]].
+
+| Q | Estado | Resultado D1 |
+|---|---|---|
+| Q1 | **RESOLVED** | Echo V3 inspeccionado físicamente; matriz REUSE/EXTEND/ADAPT/REPLACE/NEW/DEFERRED_DEBT cerrada. |
+| Q2 | **READY_FOR_D2** | Position físico/reconciliado y evidencia de partial fills disponibles para decidir attribution. |
+| Q3 | **READY_FOR_D2** | Gap del lifecycle actual + evidencia ProjectX/NinjaTrader suficientes para definir Order/Fill. |
+| Q4 | **READY_FOR_D2** | Patrones de hot state, ownership, warmup/restart y persistence contrastados en engines maduros. |
+| Q5 | **READY_FOR_D2** | Inputs de forming/closed bar, timestamps, aggregation y ordering suficientes. |
+| Q6 | **READY_FOR_D2** | Instrument/Contract y mapping físico/hot preparados; pinning de Operation sigue como propuesta a resolver. |
+| Q7 | **READY_FOR_D2** | Exchange calendar + timezone/DST/holiday/early-close + overlays de provider identificados. |
+| Q8 | **READY_FOR_D2** | Primary/backup authority y recovery/failover research completado. |
+| Q9 | **READY_FOR_D2** | ProjectX, NinjaTrader, Tradovate y Rithmic evaluados; existe ruta real técnicamente viable para V1. |
+| Q10 | **READY_FOR_D2** | Cohorte multi-prop demuestra necesidad de Provider + Program/fase + RuleSet versionado. |
+| Q11 | **READY_FOR_D2** | StrategyConfig actual distinguido de Strategy runtime; event inputs necesarios identificados. |
+| Q12 | **READY_FOR_D4** | Se mantiene en D4 según owner_day; no afecta arquitectura necesaria para cerrar D1. |
+| Q13 | **READY_FOR_D4** | Se mantiene en D4 según owner_day; D1 dejó los event inputs necesarios para CapitalManagement. |
+| Q14 | **READY_FOR_D2** | Boundary reutilizable Strategy/CapitalManagement/domain vs infraestructura live concretado como input. |
+| Q15 | **READY_FOR_D2** | TradeJournalFn → trade_journal → Lab inspeccionado; provenance/mode/run_id queda para diseño D2. |
+| Q16 | **READY_FOR_D2** | Blocking/deferred refactor register completo; no apareció necesidad material de reescribir Core V3. |
+
+No existe `UNKNOWN_WITHOUT_OWNER_DAY` al cierre de D1.
 
 ### Closure policy de preguntas
 
@@ -651,6 +676,8 @@ Deliverable:
 Gate:
 `EF_D1_ANALYSIS_PASS = REVIEW`.
 
+**Resultado 2026-09-25:** D1 terminado y persistido en [[Echo Futures — D1 Analysis Pack]]. Q1 = RESOLVED; Q2–Q11 y Q14–Q16 = READY_FOR_D2; Q12–Q13 = READY_FOR_D4. Baselines usados: Agents-OS `79477c8367d30acf1e19ee3967273feaad76ca79`, Echo V3 `372af59a7b83604781346613da01e3d510ea1360`, experimento histórico `d4f42a41946f12231b75e4eb65b90d132731be0d`. No se modificó source productivo.
+
 No código productivo.
 
 ### D2 — DESIGN / Domain + Technical Architecture
@@ -935,13 +962,15 @@ Debe demostrar, según SPEC congelada:
 Estado al cierre:
 - proyecto canónico nuevo [[Echo Futures]] creado y reencuadrado;
 - experimento económico anterior preservado como [[Echo Futures — Prop Economics Experiment]];
-- modelo de dominio actual registrado como propuesta, no freeze;
+- modelo de dominio actual permanece como propuesta, no freeze;
 - Critical Design Register activo;
-- todas las preguntas abiertas tienen día máximo obligatorio;
-- ningún research/desarrollo de D1 ejecutado todavía.
+- D1 Analysis Pack persistido y Q1 resuelta;
+- Q2–Q11 y Q14–Q16 quedaron READY_FOR_D2; Q12–Q13 READY_FOR_D4;
+- no existe UNKNOWN_WITHOUT_OWNER_DAY;
+- no se modificó código productivo y D2 no fue iniciado.
 
-**Next exact milestone:** D1 — ANALYSIS / Problem & Domain Discovery.
+**Gate actual:** `EF_D1_ANALYSIS_PASS = REVIEW`.
 
-**Urgencia owner:** `EF_D1_ANALYSIS_PASS` debe cerrarse **hoy 2026-09-25**.
+**Next exact milestone:** D2 — DESIGN / Domain + Technical Architecture.
 
-D1 debe ser dirigido por un Manager Agent usando la skill `technical-project-manager`. No comenzar D2 ni implementación antes de que el owner/manager acepte el gate D1.
+D2 sólo comienza después de la aceptación del gate D1 por owner/manager y debe usar [[Echo Futures — D1 Analysis Pack]] como input directo, sin repetir discovery general salvo contradicción material nueva.
