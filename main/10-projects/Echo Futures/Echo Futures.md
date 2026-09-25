@@ -104,6 +104,8 @@ No implementar ahora:
 
 Esta deuda debe atacarse en un track posterior obligatorio: auditar las props Forex actuales, formalizar sus reglas first-party y aplicar el mismo enforcement donde corresponda al Echo existente. No convertir esto en scope creep de V1 Futures.
 
+**DT-EF-CROSS-MARKET-INSTRUMENT-02 — DEFERRED_REUSE_REVIEW.** Evaluar después de congelar Futures si el nuevo split `Instrument → physical tradable binding/Contract` puede sustituir o enriquecer el mapping físico del Echo Forex/CFD actual. El objetivo es evitar dos modelos incompatibles si una abstracción común resulta limpia. No se debe forzar expiry/rollover de futures sobre Forex/CFD: D2 sólo debe dejar un seam suficientemente general si hacerlo no agrega complejidad innecesaria.
+
 **Política de deuda en código:** cuando una implementación futura deje una limitación temporal, compatibility shim o camino futures-only relacionado con esta deuda, el source propietario debe llevar un marcador explícito con ID canónico —por ejemplo `DT-EF-FX-PROP-01` o un sub-ID— y enlace/comentario suficiente para encontrar el debt register. No usar `TODO` genérico sin owner/debt ID. La documentación canónica sigue siendo la autoridad; el comentario en código hace visible la deuda justo en el seam donde importa.
 
 ### Escala
