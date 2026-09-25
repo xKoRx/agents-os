@@ -1703,3 +1703,37 @@ Gate:
 Gate:
 - `D5_TOPSTEP_POLICY_AUDIT_B = REVIEW`
 - next action: `PUBLISH_AND_VERIFY_REMOTE_SHA` → `MANAGER_REVIEW_FOR_SHOT_C`
+
+
+## Manager Decision — Shot B substantive acceptance — 2026-09-24
+
+**Verdict:** AUDIT_SUBSTANTIVELY_ACCEPTED / REMOTE_FREEZE_PENDING.
+
+Shot B independently validated the frozen P150 implementation semantics and economic smoke results against commit `1dc1fa6afaaabe99ac8648f8c11e293fa9acd17c` in a read-only export:
+- D4 regression PASS;
+- state machine PASS;
+- independent DP PASS;
+- Monte Carlo agreement PASS;
+- portfolio clock PASS;
+- correlation semantics PASS;
+- ledger PASS;
+- resource safety PASS;
+- sample claims PASS;
+- captured-rule semantics PASS.
+
+No BLOCKER or MAJOR product defect was found.
+
+Finding disposition:
+- B-01 MAJOR process: ACCEPTED as publication/chain-of-custody defect only. It does NOT invalidate the mathematical/product audit because the exact local commit was frozen and audited read-only. It MUST be closed before Shot C by publishing the branch and verifying the remote SHA is byte-identical to `1dc1fa6afaaabe99ac8648f8c11e293fa9acd17c`.
+- B-02/B-03 MINOR: carry to Shot C only if source/content changes are required; B-02 has zero economic impact.
+- B-04/B-05/B-06 INFO: documented limitations/observations; not blockers.
+
+Manager gate:
+- `D5_TOPSTEP_POLICY_AUDIT_B = ACCEPTED_SUBSTANTIVE`
+- `D5_TOPSTEP_POLICY_RESULT_C = BLOCKED_REMOTE_FREEZE`
+
+Interpretation:
+The synthetic P150 model now has independent verification. Therefore the existence of both negative and positive economic regions in the reported smoke cells is confirmed **within the frozen synthetic model**. This is not yet an empirical trading-profit claim. The final economic decision requires Shot C's complete frozen matrix and break-even contours.
+
+Next action:
+`PUBLISH_AND_VERIFY_REMOTE_SHA` → if remote HEAD equals audited SHA exactly, immediately dispatch Shot C; otherwise re-freeze/audit the changed head before Shot C.
