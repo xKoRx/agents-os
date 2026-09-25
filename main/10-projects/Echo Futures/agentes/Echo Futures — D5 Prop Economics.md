@@ -1756,3 +1756,43 @@ Experimento ejecutado bajo protocolo congelado ANTES de ejecutar (artefactos y l
 **Horizonte de payout:** contrafactual exacto K=4−K=3 (40 sesiones, semilla común 424242): +$230/mes (p=0.50/ql=150), +$565 (0.55/150), +$1,123 (0.60/150), +$1,908 (0.65/150), +$3,669 (0.75/150); +$5.5 (0.55/ql=2000), +$74.8 (0.60/ql=500). En el mes de 20 sesiones payout #4 es imposible por el reloj de política (22 sesiones mínimas, Shot B). Marginales per-attempt exactos (DP): en ql=150 el margen de dejar vivir a los sobrevivientes crece con p (pay3: $56→$703 por attempt de p=0.50→0.75): en el rango alto de p la rentabilidad SÍ depende de los payouts #2/#3; en ql≥1000 los horizontes son casi irrelevantes (d4 ≈ $0.01). Desviación de protocolo registrada: el dominio congelado del producto restringe max_payouts∈{3,4} (validación fail-closed), por lo que no existen corridas MC de STOP_AFTER_1/2 sin cambio de source prohibido en Shot C; los marginales #2/#3 se reportan como atribución de eventos (1770×E[pay_k]) + DP exacto K=1..4, etiquetados ATTRIBUTION_NOT_COUNTERFACTUAL.
 
 **No probado / guardas:** modelo sintético de hit-rate (null estructural: drift 0, delta 0, sin costos de ejecución); `p_objective_hit` NO es win-rate de mercado ni evidencia empírica; settlement contado al request con fee Wire −30 y latencia diferida (B-04); renovaciones $49/30d fuera del mes normalizado; reset/Back2Funded fuera de scope; PERFECT_COPY degenera a lockstep total sin estados divergentes (B-05); qualify_loss se debita completo aunque el remanente al floor sea menor (B-06, cosmético). Compliance: same-day multi-MLL llega a 14.0 eventos/37.8 cuentas por mes en ql=2000 — señal material del patrón account-stacking que Topstep vigila. Next action: `MANAGER_REVIEW_SHOT_C` con recomendación CONDITIONAL_GO hacia el puente de realismo (estimación empírica de p_objective_hit y sesiones antes de capital).
+
+
+## Manager Decision — Shot C accepted as synthetic economics result — 2026-09-25
+
+**Verdict:** `D5_TOPSTEP_POLICY_RESULT_C = ACCEPTED_SYNTHETIC`.
+
+The complete P150 matrix, chain of custody, independent Shot B audit, D4 regression, DP/MC consistency, resource safety, and final certified commit `cdef2b6b29502285b904fbe067d4e6aadd7d2419` are accepted as sufficient evidence for the following claim:
+
+> Within the frozen discrete P150 policy model, Topstep economics contain a material positive-EV region. In the primary five-pipeline/20-session experiment, ql=150 is positive throughout the tested linked-p grid, including p_objective_hit=0.50 (+~$1.84k/month expected), and the break-even contour worsens sharply as qualification loss increases.
+
+This gate does **not** authorize capital deployment or claim empirical profitability.
+
+### Mandatory semantic correction before real-world GO
+
+`p_objective_hit=0.50` is a synthetic session-objective probability, not a universal zero-edge/fair-market condition when target/loss distances are asymmetric.
+
+For a driftless continuous fair process with static absorbing barriers, the candidate fair-hitting probabilities for the owner's ql=150 policy are stage-specific:
+- evaluation +1500 / -2000: `p_eval,fair = 2000/(1500+2000) = 4/7 ≈ 0.5714286`;
+- first XFA bulto +4000 / -2000: `p_bulto,fair = 2000/(4000+2000) = 1/3`;
+- reload +2000 / -2000: `p_reload,fair = 1/2`;
+- qualification +150 / -150: `p_qualify,fair = 1/2`.
+
+Therefore the linked-p=.50 cell is NOT itself proof that a zero-edge market process beats the prop.
+
+### Next mandatory gate — D5.4 FAIR-NULL / REALISM BRIDGE
+
+Before GO_MVP/capital:
+1. run a stage-specific fair-null experiment using the accepted session-aware model, not linked p;
+2. incorporate finite-session/EOD unresolved probability rather than assuming every session hits target or loss;
+3. then estimate empirical `p_eval`, `p_bulto`, `p_reload`, and `p_qualify` from the selected Gerard/mean-reversion/hardscalping strategy;
+4. compare empirical confidence intervals to the certified break-even surface;
+5. include execution costs and current provider compliance constraints before deployment.
+
+Manager disposition:
+- synthetic economics hypothesis: **PASS**;
+- "coin/no-edge beats Topstep" hypothesis: **PROMISING, NOT YET CERTIFIED**;
+- real-money MVP: **CONDITIONAL / WAIT FOR D5.4**;
+- simulator/three-shot milestone: **CLOSED SUCCESSFULLY**.
+
+Next action: `D5.4_FAIR_NULL_REALISM_BRIDGE`.
