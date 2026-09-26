@@ -60,7 +60,7 @@ updated: "2026-09-26"
 > - El dominio nuevo no puede usar pips como unidad universal. Futures V1 requiere unidades genéricas basadas en instrument/contract specs; el legacy Forex puede adaptarse. La limpieza total de campos/workarounds pips queda como deuda candidata pendiente de ID/alcance final del owner.
 > - Política de refactor: si el cambio correcto es acotado se hace en V1; si amenaza V1, seam limpio + DT explícita de Iteración 2. KISS **no** justifica romper SOLID/Clean boundaries.
 > - Regla obligatoria del manager: ante una brecha material de requisitos, identities, lifecycle, ownership o semántica de dominio, **preguntar al owner antes de decidir; no asumir**.
-> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position = D1_OWNER_REVIEW_ACCEPTED**; detalles exactos de Order lifecycle quedan Q3/D2; Trade/The Lab = **DEFERRED_TO_THE_LAB**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
+> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position = D1_OWNER_REVIEW_ACCEPTED**; detalles exactos de Order lifecycle quedan Q3/D2; Trade/The Lab = **DEFERRED_TO_THE_LAB**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = READY_FOR_OWNER_REVIEW`.
 
 
 ## Gate
@@ -617,7 +617,7 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 
 | Q | Estado actual | Nota |
 | --- | --- | --- |
-| Q1 Echo fit | CANDIDATE_FOR_OWNER_REVIEW | Source audit preliminar existe; owner/manager debe revisarlo antes de cerrar. |
+| Q1 Echo fit | D1_OWNER_ACCEPTED | Owner accepted extending Echo V3 incrementally: no rewrite and no separate Futures runtime. |
 | Q2 Position attribution | D1_INPUT_SUFFICIENT_FOR_D2 | A2 owner review froze Position as physical observed Account state, distinct from Operation; exact attribution/cardinality remains D2. |
 | Q3 Order lifecycle | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Front D proves submit/modify/cancel, async status, partial/multi-fill and reconciliation patterns across real transports. |
 | Q4 Market hot state | D1_INPUT_SUFFICIENT_FOR_D2 | Formal Front B accepted with corrections; exact owner/topology remains D2. |
@@ -671,6 +671,28 @@ Estos gaps no bloquean D1 y están scoped para D2/implementation:
 
 - **technical-project-manager manager/worker boundary**: esta sesión demostró un defecto concreto en la skill. El manager ejecutó discovery/research y autoavanzó el gate en vez de coordinar con el owner. La skill fue corregida el 2026-09-25 para obligar manager mode, owner checkpoints, global→detalle, delegación mediante master prompts y no self-accept.
 
+## 10A. Final D1 manager checklist — 2026-09-26
+
+Q1 was explicitly accepted by the Owner after review of the physical/source fit.
+
+`Q1_ECHO_FIT = D1_OWNER_ACCEPTED`
+
+Final manager assessment:
+
+- Q1 is owner-accepted.
+- Q2–Q11 have enough accepted D1 evidence to enter D2 without repeating general discovery.
+- Q12/Q13 intentionally remain assigned to D4.
+- Q14 has sufficient D1 evidence.
+- Q15 is `DEFERRED_TO_THE_LAB` by owner decision and removed from the Echo Futures D2 gate.
+- Q16 has enough evidence/register for D2 to choose exact refactor/adapt/debt disposition.
+- No remaining D1 UNKNOWN meets the blocker-policy threshold.
+
+Therefore:
+
+`EF_D1_ANALYSIS_PASS = READY_FOR_OWNER_REVIEW`
+
+This status is a manager readiness verdict, not gate acceptance.
+
 ## 11. Gate status after owner correction
 
 D1 no está cerrado.
@@ -693,7 +715,8 @@ Trabajo que debe continuar bajo conducción owner+manager:
 - Q2/Q11 evidence is sufficient for D2 based on the owner-reviewed A2/A1 boundaries;
 - Q15 Trade/Lab = DEFERRED_TO_THE_LAB by owner decision;
 - Q16 evidence/register = sufficient for D2; exact refactor choices remain D2;
-- review Q1 Echo fit with the owner;
-- execute the final D1 acceptance checklist with the owner and only then propose `EF_D1_ANALYSIS_PASS = REVIEW`.
+- Q1 Echo fit = OWNER ACCEPTED;
+- final D1 checklist = manager-reviewed and READY_FOR_OWNER_REVIEW;
+- await explicit Owner acceptance of D1 before beginning D2.
 
-Next exact milestone: **D1 final owner review — Q1 Echo fit + complete acceptance checklist**.
+Next exact milestone: **Owner decision on EF_D1_ANALYSIS_PASS; if accepted, begin D2 Domain + Technical Architecture**.
