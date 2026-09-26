@@ -395,6 +395,29 @@ ProviderRuleSet/ProgramRuleSet debe poder representar al menos:
 
 Conclusión de domain discovery: Provider no alcanza. Program/fase modifica reglas materialmente dentro del mismo provider, por lo que D2 debe mantener Provider + ProviderProgram + versioned RuleSet. Esto es evidencia para diseñar, no freeze de la forma exacta.
 
+## 4A. Manager review — formal Front D transport research — 2026-09-26
+
+Worker artifact: `main/30-resources/futures/EXECUTION TRANSPORT FEASIBILITY — MULTI-PROP EVIDENCE.md`.
+
+`D_EXECUTION_TRANSPORT_RESEARCH = ACCEPTED_WITH_MANAGER_CORRECTIONS`.
+
+Authoritative corrections:
+- ProjectX public docs exist and directly prove API-key/JWT auth, Account search, MARKET/LIMIT/STOP, modify/cancel, realtime Account/Order/Position/Trade events, reconnect/resubscribe and explicit 200/60s non-history rate limit.
+- ProjectX therefore proves an E2E non-real-money execution path for Topstep eligible simulated programs; Topstep's personal-device/no-VPS and no-Live-Funded-API policy remains a deployment constraint.
+- NinjaTrader Desktop Account API supports multiple Account objects plus CreateOrder/Submit/Change/Cancel and Order/Execution/Position events; OnExecutionUpdate proves partial/multi-fill. Do not assume one account per instance.
+- Tradovate capability is strong and includes `clOrdId`, OCO/OSO and demo/live; current Partner API access requires Organization Admin/API Key/CID. Prop-user API entitlement remains UNKNOWN unless provider first-party grants it.
+- Rithmic production access requires conformance; worker claims about OAuth2, exactly-once, throughput and multi-account capacity are unsupported.
+- CQG WebAPI is secure WebSocket/protobuf and language-agnostic with simulated environment; production requires conformance. Do not reduce it to COM/Windows.
+- No transport is certified for 100–200 accounts by this research. Explicit rate/session/capacity benchmarks remain D2/D6 work.
+
+Readiness:
+- Q9 = `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS`.
+- Q3 = `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS`.
+- Front D = `D1_MANAGER_REVIEW_CLOSED`.
+- ProjectX eligible simulated Topstep path = `PROVEN_E2E_FEASIBILITY`.
+- NinjaTrader = `CAPABILITY_PROVEN`, provider entitlement conditional.
+- Tradovate/Rithmic/CQG = `TRANSPORT_CAPABILITY_PROVEN`, ProviderProgram direct entitlement stays UNKNOWN where not first-party granted.
+
 ## 4. Execution transport feasibility — PRELIMINARY
 
 ### ProjectX / TopstepX direct
@@ -557,13 +580,13 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | --- | --- | --- |
 | Q1 Echo fit | CANDIDATE_FOR_OWNER_REVIEW | Source audit preliminar existe; owner/manager debe revisarlo antes de cerrar. |
 | Q2 Position attribution | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar disponible; decisión pertenece a D2. |
-| Q3 Order lifecycle | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar disponible; completar research/transport corpus según manager. |
+| Q3 Order lifecycle | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Front D proves submit/modify/cancel, async status, partial/multi-fill and reconciliation patterns across real transports. |
 | Q4 Market hot state | D1_INPUT_SUFFICIENT_FOR_D2 | Formal Front B accepted with corrections; exact owner/topology remains D2. |
 | Q5 Bar semantics | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Formal Front B sufficient after manager corrections; forming/closed and late/out-of-order policy remain D2 design details. |
 | Q6 Contract mapping | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; incluir futura reutilización cross-market/FX en la discusión. |
 | Q7 Session semantics | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; falta revisión guiada del scope requerido. |
 | Q8 Feed authority | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | B2 provides CME/Databento authority, liveness and recovery evidence; exact policy/topology remains D2. |
-| Q9 Execution transport | READY_FOR_FRONT_D_RESEARCH | Front C operational corpus is now sufficient; formal transport feasibility research can execute. |
+| Q9 Execution transport | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | ProjectX eligible simulated path proves E2E feasibility; other transport capabilities proven with entitlement/conformance caveats. |
 | Q10 Provider model | D1_INPUT_SUFFICIENT_FOR_D2 | Provider+Program/Phase + versioned RuleSet need is sufficiently evidenced; Front C operational matrix still requires repair before D. |
 | Q11 Strategy runtime | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar; diseño pertenece a D2. |
 | Q12 S2 | READY_FOR_D4 | Owner day permanece D4. |
@@ -626,7 +649,7 @@ Trabajo que debe continuar bajo conducción owner+manager:
 - revisar Q1 con el owner antes de cerrarla;
 - Front B market-data research + B2 feed-authority review = CLOSED for D1;
 - ejecutar el track Futures Prop Universe como research formal, no como muestra improvisada;
-- research de execution transports apoyado en el corpus real de props;
+- Front D execution transport feasibility = CLOSED for D1 with manager corrections;
 - revisar futures semantics y backtest boundary contra esos outputs;
 - revisar blocking/deferred debt;
 - ejecutar checklist D1 completo y recién entonces proponer `EF_D1_ANALYSIS_PASS = REVIEW`.
