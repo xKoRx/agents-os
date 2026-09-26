@@ -287,7 +287,12 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 - TradeJournal puede seguir consumiendo/persistiendo `ReferenceEvent` como evidencia legacy mientras el execution path migra progresivamente.
 - Una Strategy puede producir **0..N Signals** a lo largo del tiempo y más de una Signal como resultado de una misma evaluación.
 - `Signal` representa intent, no sólo entry. Intents conceptuales aceptados para el modelo: `OPEN`, `REDUCE`, `CLOSE`, `CLOSE_ALL`; el enum definitivo queda para D2.
-- Strategy decide **qué** quiere hacer; MoneyManagement decide **cuánto y cómo** ejecutarlo para cada AccountStrategy. Strategy nunca hace sizing.
+- **Boundary owner:** Strategy contiene la lógica **técnica** de trading; MoneyManagement contiene la lógica **económica/de dinero y riesgo** por AccountStrategy.
+- Strategy decide **qué** quiere hacer y puede emitir contexto técnico de ejecución: dirección, entry intent/tipo/precio cuando corresponda y **puede** proponer niveles técnicos de SL/TP. Strategy nunca hace sizing ni decide riesgo monetario de la cuenta.
+- MoneyManagement decide **cuánto y cómo** materializar la intención para esa cuenta: sizing, riesgo monetario, exposición, adds/reductions, protección/targets ejecutables y gestión posterior de la Operation.
+- Ejemplo conceptual: Strategy puede decir `OPEN LONG ahora; technical SL=P1; technical TP=P2`; MoneyManagement puede resolver `riesgo=$200; objetivo=$300; quantity=N` y generar/gestionar las Orders correspondientes.
+- **OPEN pendiente:** cuando Strategy entrega SL/TP técnicos y MoneyManagement aplica reglas monetarias/hardscalping, la precedencia exacta y si MoneyManagement puede alterar los niveles técnicos iniciales **no se congela todavía**. Se resolverá al mecanizar hardscalping/Q13; no asumir override ni immutability.
+- Es válido que exista una Strategy con lógica técnica de hardscalping y un MoneyManagement con lógica monetaria de hardscalping: son responsabilidades distintas mientras no dupliquen ownership de la misma decisión.
 - Cuando una misma evaluación emite varias Signals y el orden cambia el resultado —por ejemplo `CLOSE_ALL` seguido de `OPEN` para reversal— el procesamiento debe ser determinístico.
 - Signal tiene ventana explícita de validez (`created_at` + `valid_until` o equivalente). Una Signal expirada **no puede materializar una Operation**. El legacy `MaxOpenDelaySeconds` puede adaptarse a esta semántica sin convertirse en autoridad del nuevo dominio.
 
@@ -362,7 +367,7 @@ Revisión explícita del proyecto The Lab V3 y source Echo `master@372af59a7b836
 
 - Futures V1 corre sobre/extendiendo Echo; no crear un segundo sistema independiente.
 - Strategy vive lógicamente en Core y emite Signal.
-- Signal incluye direction + entry type `MARKET|LIMIT|STOP` + entry/trigger cuando corresponda + SL + TP.
+- Signal incluye direction + entry type `MARKET|LIMIT|STOP` + entry/trigger cuando corresponda. Puede incluir SL/TP técnicos; la obligatoriedad/combinaciones exactas quedan para el contrato D2 y hardscalping Q13.
 - Signal no define sizing ni provider/account.
 - Strategy se asocia a cuentas mediante AccountStrategy.
 - Una Signal fan-out a todas las AccountStrategy habilitadas que referencian esa Strategy.
