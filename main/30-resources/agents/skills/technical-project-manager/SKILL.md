@@ -228,7 +228,9 @@ SUBMANAGER is **not a capability tier and not a junior Primary Manager**. It is 
 
 Its main purpose is **context isolation**: keep large external corpora, repeated research passes and token-heavy evidence processing out of the Primary Manager session so the Primary Manager preserves a compact, high-level project context.
 
-**SUBMANAGER is an orchestrator, not an executor.** Its normal worker plane is:
+**SUBMANAGER is an orchestrator, not an executor, and it does not launch workers itself.** The Owner is the transport/control surface between the SUBMANAGER and specialist sessions.
+
+Normal worker plane:
 
 ```text
 DEEPRESEARCH -> broad/deep external corpus
@@ -236,7 +238,7 @@ RESEARCH     -> targeted verification / source repair / gap filling
 TOP          -> only when bounded internal source evidence is materially needed
 ```
 
-Typical flow:
+Actual coordination flow:
 
 ```text
 PRIMARY MANAGER
@@ -245,43 +247,92 @@ PRIMARY MANAGER
         | bounded research question + Context Capsule
         v
 SUBMANAGER
-  owns research orchestration for that subtask
+  decides next specialist/evidence need
         |
-        +--> DEEPRESEARCH
-        +--> RESEARCH follow-ups
-        +--> TOP only if bounded internal evidence is required
+        | exact master prompt
+        v
+OWNER
+  runs specialist in a fresh session
+        |
+        | returned artifact / handoff
+        v
+SUBMANAGER
+  reviews -> accepts as evidence OR requests repair/follow-up
+        |
+        | next exact master prompt when needed
+        v
+OWNER
+        ...
         |
         v
-compact reconciled synthesis
+SUBMANAGER compact synthesis
         |
         v
 PRIMARY MANAGER
 ```
 
+The Owner is not expected to manually orchestrate the research logic. The SUBMANAGER owns that orchestration and must give the Owner the **exact next master prompt** to run.
+
 A SUBMANAGER may:
-- receive a Primary-Manager-authored Context Capsule;
-- decompose the bounded research subtask into DEEPRESEARCH / RESEARCH / optional TOP tasks;
-- write exact specialist prompts or invoke the designated specialist when supported;
-- review research outputs for relevance, missing evidence and overclaims;
-- issue targeted follow-up research to repair or deepen weak areas;
-- reconcile returned external evidence with the small internal context supplied by the Primary Manager;
+- receive a Primary-Manager-authored Context Capsule and CURRENT_TASK_STATE;
+- decide which evidence lane is needed next: DEEPRESEARCH, RESEARCH or optional bounded TOP;
+- write the exact fresh-context specialist prompt for the Owner;
+- review returned artifacts for relevance, freshness, provenance, missing evidence and overclaims;
+- accept an artifact as current evidence, downgrade it to reference-only, reject it, or request bounded repair;
+- issue targeted follow-up prompts until the bounded question is sufficiently evidenced;
+- reconcile accepted evidence with the small internal context supplied by the Primary Manager;
 - maintain a subtask-local evidence/question register;
 - return a compact synthesis with FACTS, implications, contradictions, UNKNOWNs and decisions still required.
 
 ### Primary Manager -> SUBMANAGER mandate contract
 
-The Primary Manager defines **what question must be answered and what evidence must come back**. It should not prescribe the SUBMANAGER's research choreography unless an ordering constraint is itself a frozen requirement.
+The Primary Manager defines **what question must be answered, what state the task is actually in, and what evidence must come back**. It should not prescribe the SUBMANAGER's research choreography unless an ordering constraint is itself a frozen requirement.
 
 A good SUBMANAGER mandate contains:
 
 - **BOUNDED QUESTION / OBJECTIVE** — the research-heavy subtask, never the day/milestone itself;
 - **WHY IT MATTERS** — which later manager/owner decision this evidence informs;
+- **CURRENT_TASK_STATE** — whether this subtask is genuinely new, in progress, repair, or continuation, plus exactly what prior work counts;
+- **PRIOR_ARTIFACTS** — explicit status for every material existing document/result that the SUBMANAGER may encounter;
 - **CONTEXT CAPSULE** — only the frozen internal facts and candidates needed to interpret external evidence;
 - **AUTHORITIES / BASELINE** — canonical internal references the SUBMANAGER may rely on;
 - **KNOWN UNKNOWNS** — what is genuinely unresolved;
 - **EVIDENCE EXPECTATIONS** — preferred source classes, freshness/first-party requirements and proof quality;
 - **BOUNDARIES** — what the SUBMANAGER/research workers may not decide or broaden;
 - **OUTPUT CONTRACT** — the compact synthesis the Primary Manager needs back.
+
+Use this minimum task-state shape:
+
+```text
+CURRENT_TASK_STATE:
+  status: NOT_STARTED | IN_PROGRESS | REPAIR | CONTINUATION
+
+PRIOR_ARTIFACTS:
+  - artifact: <path/id/title>
+    status: ACCEPTED_INPUT | REFERENCE_ONLY | REJECTED_EVIDENCE | SUPERSEDED | UNREVIEWED
+    reason: <short reason>
+    provenance: <run/session/date/agent if known>
+
+CURRENT_WORK_ALREADY_COMPLETED:
+  - <only work that explicitly counts for the current task>
+
+WORK_STILL_REQUIRED:
+  - <evidence/work that must still be produced>
+```
+
+Artifact-state semantics:
+
+- **ACCEPTED_INPUT** — may satisfy current evidence requirements.
+- **REFERENCE_ONLY** — useful context/history, but does not count as current evidence.
+- **REJECTED_EVIDENCE** — preserved for traceability and failure analysis; MUST NOT satisfy current evidence requirements.
+- **SUPERSEDED** — historically valid or useful, but replaced by a newer authority/result.
+- **UNREVIEWED** — exists but has not been accepted; MUST NOT be silently promoted.
+
+**Existence is not progress.** A document, handoff or prior research artifact does not count toward the current subtask unless the Primary Manager explicitly marks it as accepted current work or the SUBMANAGER reviews it and the mandate permits such promotion.
+
+Do not delete rejected/superseded artifacts merely to avoid confusion. Preserve them for traceability; classify them.
+
+If CURRENT_TASK_STATE or artifact status is missing, the SUBMANAGER must conservatively treat prior artifacts as **UNREVIEWED / REFERENCE_ONLY**, not as completed work.
 
 The mandate SHOULD NOT normally specify:
 - a mandatory number of research passes;
@@ -291,18 +342,31 @@ The mandate SHOULD NOT normally specify:
 - a mandatory TOP phase unless a specific internal fact must be established first;
 - a phase-by-phase recipe merely to make the prompt feel complete.
 
-Those are SUBMANAGER orchestration decisions. The SUBMANAGER chooses DEEPRESEARCH, RESEARCH follow-ups and optional bounded TOP work according to evidence quality and remaining uncertainty.
+Those are SUBMANAGER orchestration decisions. The SUBMANAGER chooses the next worker and follow-up sequence according to evidence quality and remaining uncertainty, then gives the Owner the exact next prompt.
 
 The Primary Manager may impose sequencing only when there is a real dependency, for example: an internal identifier must be established before external provider mapping can be researched meaningfully.
 
 ### SUBMANAGER worker-boundary invariants
 
-1. **MUST DELEGATE SPECIALIST WORK.** It does not perform DEEPRESEARCH, targeted RESEARCH, TOP audits, implementation or QA itself.
-2. **NO ROLE COLLAPSE.** Having tools capable of search/code inspection does not authorize the SUBMANAGER to become the worker.
-3. **LIGHTWEIGHT INSPECTION ONLY.** It may verify a baseline or spot-check a small artifact to review a worker output, but must not expand that check into the delegated task.
-4. **NO WORKER AVAILABLE = ORCHESTRATION BLOCKER.** Return the exact specialist mandate instead of silently replacing the worker.
-5. **SYNTHESIS REQUIRES RETURNED EVIDENCE.** The SUBMANAGER may reason over worker outputs; it may not manufacture the missing evidence plane itself.
-6. **CONTEXT COMPRESSION IS THE PRODUCT.** Its final output to the Primary Manager should be materially smaller and more decision-ready than the accumulated research corpus.
+1. **MUST DELEGATE SPECIALIST WORK THROUGH THE OWNER.** The SUBMANAGER produces the exact master prompt; the Owner runs the specialist session and returns the artifact.
+2. **NO DIRECT WORKER INVOCATION ASSUMPTION.** The SUBMANAGER must never pretend that it launched DEEPRESEARCH/RESEARCH/TOP itself or fabricate a worker lane/run that did not occur.
+3. **NO ROLE COLLAPSE.** It does not perform DEEPRESEARCH, targeted RESEARCH, TOP audits, implementation or QA itself merely because tools are available.
+4. **LIGHTWEIGHT INSPECTION ONLY.** It may verify a baseline or spot-check a small artifact to review a worker output, but must not expand that check into the delegated task.
+5. **WAIT FOR RETURNED ARTIFACTS.** After emitting a worker prompt, the normal state is waiting for the Owner to return that worker's output. It must not fill the gap by doing the worker's task itself.
+6. **PROVENANCE BEFORE CREDIT.** No artifact counts as current-run evidence unless its status/provenance is known and it is accepted for the current task.
+7. **SYNTHESIS REQUIRES ACCEPTED RETURNED EVIDENCE.** The SUBMANAGER may reason over accepted worker outputs; it may not manufacture the missing evidence plane itself.
+8. **CONTEXT COMPRESSION IS THE PRODUCT.** Its final output to the Primary Manager should be materially smaller and more decision-ready than the accumulated research corpus.
+
+Interim SUBMANAGER outputs are valid and expected:
+
+```text
+NEXT_ACTION = OWNER_RUN_PROMPT
+<exact master prompt>
+
+WAITING_FOR = <DEEPRESEARCH | RESEARCH | TOP result>
+```
+
+A final synthesis is produced only when the required evidence lanes are complete enough for the bounded question.
 
 A SUBMANAGER MUST NOT:
 - own or close the day's milestone;
@@ -356,6 +420,11 @@ A Context Capsule contains only:
 ```text
 QUESTION TO RESEARCH
 
+CURRENT_TASK_STATE
+PRIOR_ARTIFACTS + STATUS
+CURRENT_WORK_ALREADY_COMPLETED
+WORK_STILL_REQUIRED
+
 INTERNAL FACTS — FROZEN / DO NOT REINTERPRET
 
 INTERNAL CANDIDATES — NOT FROZEN
@@ -378,34 +447,38 @@ Rules:
 
 For research-heavy project questions:
 
-1. **Primary Manager frames the subtask.**
-   Define the bounded question, why it matters to the project, frozen internal facts, and the output needed for a later manager/owner decision.
+1. **Primary Manager frames the subtask and its real state.**
+   Define the bounded question, why it matters, frozen internal facts, CURRENT_TASK_STATE, and the status of all material prior artifacts. Historical/rejected work remains visible but does not silently count as current progress.
 
 2. **Primary Manager protects its context budget.**
    If resolving the question requires large corpora, repeated searches, or many evidence passes, delegate the subtask to SUBMANAGER instead of absorbing that work into the manager session.
 
-3. **SUBMANAGER dispatches DEEPRESEARCH.**
-   DEEPRESEARCH builds the broad external evidence base. It does not reconstruct the project or decide architecture.
+3. **SUBMANAGER chooses the next evidence lane.**
+   Based on the bounded question and current evidence register, decide whether the next step is DEEPRESEARCH, targeted RESEARCH, or a narrowly scoped TOP check.
 
-4. **SUBMANAGER reviews and repairs with RESEARCH.**
-   Use targeted RESEARCH passes to inspect specific first-party sources, verify weak claims, resolve contradictions, or fill gaps left by DEEPRESEARCH.
+4. **SUBMANAGER gives the Owner the exact master prompt.**
+   The SUBMANAGER does not launch the worker itself. The Owner runs the prompt in a fresh specialist session and returns the resulting artifact/handoff.
 
-5. **TOP is optional and bounded.**
-   Use TOP only when the external findings must be checked against a specific internal source/code fact. Do not turn the subtask into a general internal audit.
+5. **SUBMANAGER reviews the returned artifact.**
+   Classify it for the current task: accepted evidence, reference-only, rejected, superseded, or still unreviewed. Do not equate existence with acceptance.
 
-6. **SUBMANAGER compresses and reconciles.**
-   Return only decision-ready output:
-   - supported external facts;
+6. **SUBMANAGER iterates only where evidence quality requires it.**
+   If the broad research is good enough, stop. If material claims are weak, contradictory or incomplete, give the Owner a targeted RESEARCH/TOP repair prompt. Avoid repeating broad research unnecessarily.
+
+7. **SUBMANAGER compresses and reconciles.**
+   Once sufficient current evidence exists, return only decision-ready output:
+   - supported facts;
    - evidence quality/limitations;
    - implications for the exact assigned question;
    - contradictions;
    - UNKNOWNs;
-   - decisions that remain with Primary Manager/Owner.
+   - decisions that remain with Primary Manager/Owner;
+   - provenance/status of the evidence used.
 
-7. **Primary Manager resumes project control.**
+8. **Primary Manager resumes project control.**
    The Primary Manager decides what enters architecture, roadmap, milestone state and owner discussion.
 
-This prevents two failure modes:
+This prevents three failure modes:
 
 ```text
 FAILURE A
@@ -419,10 +492,17 @@ DEEPRESEARCH
 -> guesses how it maps to the project
 -> produces coherent but contextually wrong conclusions
 
+FAILURE C
+SUBMANAGER
+-> finds old research artifacts
+-> assumes they are current/accepted work
+-> synthesizes stale or rejected evidence as if newly executed
+
 DESIRED
-PRIMARY MANAGER -> bounded question
-SUBMANAGER -> orchestrated deep research + targeted repair
-SUBMANAGER -> compact project-aware synthesis
+PRIMARY MANAGER -> bounded question + explicit task/artifact state
+SUBMANAGER -> exact next specialist prompt
+OWNER -> runs specialist and returns artifact
+SUBMANAGER -> review / repair prompt / compact synthesis
 PRIMARY MANAGER -> project decision
 ```
 
@@ -531,6 +611,7 @@ These are prompt sections, not assumed IDE commands.
 Each mandate MUST include:
 
 - `/goal`: exact observable outcome and final status vocabulary;
+- **CURRENT_TASK_STATE** when prior attempts/artifacts may exist: status, prior-artifact classification, current accepted progress, and work still required;
 - authorities and certified baseline;
 - frozen decisions and explicit non-goals;
 - bounded discovery/allowed write scope;
@@ -698,6 +779,9 @@ Residual external risks:
 - **Never invent requirements.** If a delegated agent needs a missing product requirement, bring it back to the owner/manager.
 - **Walk the owner from global to detail.** Do not collapse a multi-workstream day into one giant autonomous execution unless the owner explicitly asks for that mode.
 - **Delegated work ends in an exact master prompt** when a separate agent is the appropriate next actor.
+- **SUBMANAGER delegation is Owner-mediated.** The SUBMANAGER selects the next worker and gives the Owner the exact master prompt; it does not claim to have launched specialist sessions itself.
+- **Existence is not progress.** Prior documents/results must be explicitly classified before they count toward the current task. Preserve rejected/superseded artifacts for traceability rather than deleting them.
+- **Unclassified prior artifacts are not accepted evidence.** Default them to UNREVIEWED/REFERENCE_ONLY until reviewed.
 - Deep research is a worker task. The manager may perform narrow source checks to orient/review, but substantial research should be delegated and later synthesized.
 - **Deep research is external-evidence-first.** Do not use RESEARCHER as the authority for reconstructing project truth from Vault/repos while simultaneously researching the Internet.
 - **Use Context Capsules.** Pass researchers a small set of frozen internal facts and the exact external question; keep cross-reconciliation with Manager/SUBMANAGER/TOP.
