@@ -798,9 +798,32 @@ El artefacto NO cumple todavía el mandato C ni el gate del track `FUTURES_PROP_
 - rule values/phase details sin source exacta.
 
 **Readiness:**
-- Q10 Provider model = `RESEARCH_REPAIR_REQUIRED`.
-- Front C = `OPEN`.
-- No ejecutar Front D transport research todavía: depende de una cohort/program matrix corregida.
+- Q10 Provider model = `D1_INPUT_SUFFICIENT_FOR_D2`: la necesidad de `Provider + Program/Phase + versioned RuleSet` está suficientemente demostrada.
+- Front C operational corpus = `REPAIR_REQUIRED_BEFORE_D`.
+- No ejecutar Front D transport research todavía: depende de una cohort/program/platform/API matrix corregida.
+
+### Front C repair V2 manager review — 2026-09-26
+
+Research artifact: `main/30-resources/futures/FUTURES PROP UNIVERSE — FIRST-PARTY DOMAIN FORENSICS V2.md`.
+
+**Verdict:** `C_PROP_UNIVERSE_RESEARCH = BLOCKED_EVIDENCE` nuevamente.
+
+La V2 no ejecutó el mandato C-R1 de reparación. Defectos materiales:
+
+- **Topstep** queda casi omitido/UNKNOWN aunque la documentación oficial vigente expone TopstepX/ProjectX API, bots/custom automated strategies, API keys y la restricción de que Live Funded no puede operar vía ProjectX API.
+- **MFFU** queda UNKNOWN aunque su Fair Play policy vigente permite automated trading strategies propias y prohíbe HFT/explotación de fills simulados.
+- **FundedNext Futures** queda UNKNOWN aunque su Help Center vigente permite EAs/bots tanto en Challenge como FundedNext Account, prohibiendo latency abuse/order flooding.
+- **Tradeify** queda UNKNOWN aunque su guideline vigente permite bots/algorithms bajo sole ownership, exclusive use dentro de Tradeify y no-HFT; además prohíbe uso cross-firm.
+- **TakeProfitTrader** queda UNKNOWN aunque su UTP vigente aplica a Test/PRO/PRO+ y prohíbe automated trading systems/bots/algorithmic execution.
+- **TradeDay** queda mal clasificado como “automation FORBIDDEN”: su first-party dice que para usar un ATS hay que hacerlo mediante plataformas soportadas; lo que prohíbe son third-party purchased bots y acceso API directo/Tradovate API.
+- La V2 vuelve a incumplir el requisito de claim-level evidence: anuncia un “anexo” pero no entrega URLs/títulos/fechas por claim.
+- Persiste lenguaje prohibido/inferencial: “probablemente”, “se presume”, “según cada plataforma”, “sin fuente”.
+- La cohorte `>=5` vuelve a fallar por error de investigación, no por falta de mercado. La evidencia disponible ya muestra al menos Topstep (sim/Express), Lucid, MFFU, TradeDay, FundedNext y Tradeify como automation-compatible/conditional bajo scopes distintos.
+
+**Separación manager:**
+- El **modelo de dominio Q10** ya no necesita más discovery general.
+- El **corpus operacional** sí necesita una reparación final estrictamente tabular antes de D, porque D depende de automation + platform + API entitlement por ProviderProgram.
+- No volver a pedir un informe narrativo amplio. La siguiente reparación debe ser un evidence table cerrado sobre fuentes ya conocidas.
 
 ## 🏦 Futures Prop Universe
 
