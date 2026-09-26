@@ -754,6 +754,54 @@ Preguntas que el diseño debe responder:
 
 El diseño final debe respetar un hot path sin I/O remoto cuando sea necesario para cumplir el presupuesto de latencia, pero la estructura exacta queda abierta hasta D2.
 
+## 🏦 Futures Prop Universe — D1 Front C manager review — 2026-09-26
+
+Research artifact: `main/30-resources/futures/FUTURES PROP UNIVERSE — FIRST-PARTY DOMAIN FORENSICS.md`.
+
+**Manager verdict:** `C_PROP_UNIVERSE_RESEARCH = BLOCKED_EVIDENCE`.
+
+El artefacto NO cumple todavía el mandato C ni el gate del track `FUTURES_PROP_UNIVERSE_PASS`. Se conserva como evidence draft parcial; no sustituye el corpus first-party requerido.
+
+**Defectos materiales confirmados:**
+- Omite proveedores requeridos y relevantes con evidencia first-party disponible: **TradeDay, Tradeify, Alpha Futures y TakeProfitTrader**.
+- Afirma que no encontró providers que prohíban bots; es falso: **Alpha Futures** prohíbe AI/bots/full automation en todos los account types y **TakeProfitTrader** prohíbe bots/algo en Test/PRO/PRO+.
+- Clasifica **Lucid Trading** como automation UNKNOWN/plausible, pero su Help Center oficial dice que automated trading systems y trade copiers están permitted.
+- Clasifica **MyFundedFutures** como automation UNKNOWN, pero su first-party Fair Play policy permite automated trading strategies propias, prohibiendo HFT/exploitation.
+- Afirma que **Topstep** no documenta API externa; el Help Center oficial documenta TopstepX/ProjectX API, automated strategies/bots, API keys y la restricción material de que ProjectX API no está disponible para Live Funded.
+- La “cohorte de al menos 5” no se cumple: el documento entrega cuatro nombres parcialmente sustentados y un placeholder “otra firma / FX”, contrario al mandato.
+- No entrega por material claim la fuente exacta + fecha prometida; no existe el evidence packet/anexo verificable al que alude.
+- Usa inferencias explícitamente prohibidas por el mandato: API “implícita”, bots “plausibles”, tecnología “se sabe internamente”, etc.
+- Mezcla platform support con API entitlement, justamente el error que el mandato exigía evitar.
+- Algunas afirmaciones de producto/mercado son semánticamente defectuosas (por ejemplo referirse a futuros CME como “CFDs”).
+
+**Evidence first-party revalidada por manager como mínimo de reparación:**
+- Topstep API/bots: `https://help.topstep.com/en/articles/11187768-topstepx-api-access`
+- Lucid automation: `https://support.lucidtrading.com/en/articles/11404728-other-trading-activities`
+- MFFU automation: `https://help.myfundedfutures.com/en/articles/8444599-fair-play-and-prohibited-trading-practices`
+- TradeDay automation/API: `https://tradeday.freshdesk.com/en/support/solutions/articles/103000085101-automated-algo-and-bot-trading`
+- Tradeify automation: `https://help.tradeify.co/en/articles/10468318-guidelines-for-traders`
+- Alpha automation prohibition: `https://help.alpha-futures.com/en/articles/9508585-prohibited-trading-practices`
+- TakeProfitTrader no bots/algo: `https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP`
+- FundedNext automation: `https://helpfutures.fundednext.com/en/articles/14298560-is-the-usage-of-automated-trading-systems-eas-and-bots-allowed-in-fundednext-futures`
+
+**Reusable del draft:**
+- La conclusión `Provider` solo no alcanza; `ProviderProgram/Phase` es material.
+- Las familias de rule-domain identificadas son un buen seed: drawdown/DLL, max contracts, consistency, sessions/forced flatten, automation, HFT/microscalping, copy/hedging, account limits, payout/elegibility.
+- Los scopes ACCOUNT/TRADER/HOUSEHOLD/CROSS_ACCOUNT/CROSS_PROVIDER siguen siendo relevantes.
+
+**No reusable como autoridad hasta reparación:**
+- automation matrix;
+- provider/platform/API matrix;
+- cohort V1;
+- blocked/excluded list;
+- claims de API entitlement;
+- rule values/phase details sin source exacta.
+
+**Readiness:**
+- Q10 Provider model = `RESEARCH_REPAIR_REQUIRED`.
+- Front C = `OPEN`.
+- No ejecutar Front D transport research todavía: depende de una cohort/program matrix corregida.
+
 ## 🏦 Futures Prop Universe
 
 El producto debe diseñarse con conocimiento de un universo amplio de futures prop firms, no sólo Topstep.
