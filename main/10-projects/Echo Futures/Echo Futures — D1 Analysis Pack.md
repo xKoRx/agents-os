@@ -35,7 +35,12 @@ updated: "2026-09-26"
 > - El adapter `ReferenceEvent -> Signal` vive en **Echo Core**, en un boundary explícito antes del motor genérico. Bridge permanece edge/transport dummy.
 > - La migración completa del execution path reference queda en **DT-EF-REFERENCE-SIGNAL-03 — DEFERRED_MANDATORY**; lo incremental es la migración legacy, no crear dos motores finales.
 > - Signal puede representar intents `OPEN`, `REDUCE`, `CLOSE`, `CLOSE_ALL` (enum final D2). Strategy puede emitir 0..N Signals y varias por una misma evaluación; si el orden altera el resultado, debe existir procesamiento determinístico.
-> - Strategy decide **qué** hacer y nunca sizing. MoneyManagement decide **cuánto/cómo** ejecutar para cada AccountStrategy.
+> - Boundary owner: Strategy = lógica **técnica**; MoneyManagement = lógica **económica/de dinero y riesgo** por AccountStrategy.
+> - Strategy decide qué hacer y puede proponer direction/entry intent/precio y SL/TP técnicos. Nunca hace sizing ni decide riesgo monetario.
+> - MoneyManagement decide cuánto/cómo materializar la intención: sizing, riesgo monetario, exposición, adds/reductions y protección/targets ejecutables; luego gestiona la Operation durante su lifecycle.
+> - Ejemplo conceptual: Strategy puede emitir OPEN LONG con SL/TP técnicos; MoneyManagement puede resolver riesgo monetario/target monetario + quantity y producir las Orders físicas.
+> - OPEN: la precedencia entre SL/TP técnicos de Strategy y ajustes monetarios/hardscalping de MoneyManagement NO está congelada; resolver en Q13. No asumir que MM siempre overridea ni que Strategy levels son inmutables.
+> - Puede existir hardscalping técnico en Strategy y hardscalping monetario en MoneyManagement si cada uno conserva ownership distinto.
 > - Signal debe tener expiración explícita; una señal expirada no materializa Operation. `MaxOpenDelaySeconds` legacy puede adaptarse a esa semántica.
 > - MoneyManagement administra la Operation durante todo el lifecycle y debe poder reaccionar a fills/orders, account/instrument state, lifecycle/session events y market data/bars MTF. La topología física/state owner no se congela en D1.
 > - Un Signal de apertura aceptado **materializa la Operation antes de MoneyManagement y antes de cualquier Order/Fill**.
