@@ -655,6 +655,33 @@ Debe soportar desde el primer release los dos comportamientos Gerard que se deci
 
 Los triggers, tamaños y movimientos exactos se diseñarán y validarán antes de desarrollo.
 
+## 📈 Market data — D1 Front B manager review — 2026-09-26
+
+Research artifact: `main/30-resources/futures/MARKET DATA + QUANT ENGINE FORENSICS.md`.
+
+**Manager verdict:** `B_MARKET_DATA_RESEARCH = ACCEPTED_WITH_CORRECTIONS`.
+
+El research aporta patrones suficientes para preparar D2 en Q4/Q5/Q14, pero contiene inferencias presentadas como hechos y no cierra Q8. Correcciones de autoridad:
+
+- LEAN sí soporta múltiples live data providers con **precedence order**; esto sirve como evidencia de source authority por cobertura, pero NO demuestra health-based automatic failover para el mismo stream.
+- LEAN consolidators pueden agregar ticks o barras menores en barras mayores y existen sequential consolidators. Además exponen working/current data; por tanto no asumir que “forming bars nunca son visibles”. Echo debe modelar forming vs closed explícitamente.
+- El requisito Echo NO es “usar sólo closed bars”: Strategy/MoneyManagement pueden requerir forming bars. El invariante correcto es impedir look-ahead accidental y reproducir la misma semántica temporal en replay/backtest.
+- Nautilus `Cache` es un store in-memory central por nodo con backing opcional. El backing NO restaura bounded market-data histories ni convierte varios nodos en cache distribuida coherente.
+- Nautilus comparte Strategy/ExecutionAlgorithm y core components entre backtest/live, pero live añade venue/transport/timing/persistence/external activity/reconciliation. No inferir “live determinista” ni exigir misma infraestructura física.
+- Event sourcing/event store de Nautilus es evidencia de una opción de replay/audit, NO requisito para Echo. No introducir event-sourcing por inercia.
+- Claims sobre “buffering por instrumento”, auto-ordering de out-of-order events, live state-ready automático y automatic feed failover no quedaron demostrados por el artefacto y se consideran `UNVERIFIED`.
+- Las comparaciones Lean-vs-Nautilus para 100–200 cuentas son heurísticas arquitectónicas, no benchmark/evidencia de capacidad.
+- “feed compartido vs uno por cuenta” NO es owner question: Echo ya exige no multiplicar feed/strategy evaluation innecesariamente por account.
+- “StateFun vs microservice” es decisión técnica D2 del manager, no decisión de producto del owner.
+
+**Readiness tras review:**
+- Q4 Market hot state: `D1_INPUT_SUFFICIENT_FOR_D2`.
+- Q5 Bar semantics: `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS`.
+- Q14 Backtest boundary: `D1_INPUT_SUFFICIENT_FOR_D2`.
+- Q8 Feed authority/failover: `TARGETED_RESEARCH_REQUIRED`.
+
+Q8 requiere un follow-up acotado sobre authority, gap detection, reconnect/resubscribe, health-based failover y recovery. No repetir el research completo de quant engines.
+
 ## 📈 Market data — PREGUNTA ABIERTA PRIORITARIA
 
 No se congela aún almacenamiento/cache de velas.
