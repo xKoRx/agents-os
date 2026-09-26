@@ -137,6 +137,37 @@ Conclusión: Echo Futures debe extender Echo V3 incrementalmente. No apareció n
 
 REPLACE explícito: ExecutionStore no debe seguir siendo autoridad del nuevo lifecycle si D2 confirma Operation→Order→Fill. Puede sobrevivir temporalmente como compatibility/reconciliation projection durante migración. No requiere reescribir Core.
 
+## 2A. Manager review — formal Front B research — 2026-09-26
+
+Formal worker artifact: `main/30-resources/futures/MARKET DATA + QUANT ENGINE FORENSICS.md`.
+
+`B_MARKET_DATA_RESEARCH = ACCEPTED_WITH_CORRECTIONS`.
+
+Accepted evidence/patterns:
+- normalized market events before Strategy;
+- bounded hot state in-memory; durable history separate;
+- one market stream can fan out to multiple strategies without work per account;
+- incremental bars/indicators;
+- explicit event-time semantics and warmup;
+- same Strategy/domain code can be reused across live/backtest while adapters/clock/execution/reconciliation differ;
+- source precedence is a valid authority pattern.
+
+Manager corrections:
+- LEAN supports multiple providers with explicit precedence; do not state “single provider only”.
+- LEAN can build larger bars from smaller bars and exposes working/current consolidator state.
+- forming bars are allowed when explicitly requested; the prohibition is accidental look-ahead, not forming data itself.
+- Nautilus cache backing is recovery/persistence, not distributed coherent hot cache, and does not restore bounded market-data histories.
+- do not claim deterministic live behavior, per-instrument message-bus buffering, adapter sorting of out-of-order data, automatic readiness or automatic feed failover without source evidence.
+- do not infer that Echo needs an event store.
+- 100–200 account claims in the report are design heuristics, not capacity evidence.
+- feed sharing is already an Echo requirement; StateFun-vs-other ownership is D2 technical design.
+
+Readiness:
+- Q4 = `D1_INPUT_SUFFICIENT_FOR_D2`
+- Q5 = `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS`
+- Q14 = `D1_INPUT_SUFFICIENT_FOR_D2`
+- Q8 = `TARGETED_RESEARCH_REQUIRED`
+
 ## 2. Market-data / quant engine scouting — PRELIMINARY
 
 Este bloque fue **scouting de patrones e implementaciones maduras**, no selección de arquitectura ni research suficiente para cerrar el frente. La intención correcta para D1 es usarlo como seed y preparar un deep research dedicado que extraiga patrones implementables para Echo: ownership de state, tick ingestion, bar aggregation, MTF, warmup/recovery, durable history, live/replay equivalence, latency y feed authority.
@@ -412,17 +443,17 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | Q1 Echo fit | CANDIDATE_FOR_OWNER_REVIEW | Source audit preliminar existe; owner/manager debe revisarlo antes de cerrar. |
 | Q2 Position attribution | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar disponible; decisión pertenece a D2. |
 | Q3 Order lifecycle | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar disponible; completar research/transport corpus según manager. |
-| Q4 Market hot state | OPEN_D1_RESEARCH_REQUIRED | Scouting LEAN/Nautilus disponible; deep research dedicado recomendado. |
-| Q5 Bar semantics | OPEN_D1_RESEARCH_REQUIRED | Scouting disponible; debe incluir contrato live/replay y edge cases antes de D1. |
+| Q4 Market hot state | D1_INPUT_SUFFICIENT_FOR_D2 | Formal Front B accepted with corrections; exact owner/topology remains D2. |
+| Q5 Bar semantics | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Formal Front B sufficient after manager corrections; forming/closed and late/out-of-order policy remain D2 design details. |
 | Q6 Contract mapping | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; incluir futura reutilización cross-market/FX en la discusión. |
 | Q7 Session semantics | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; falta revisión guiada del scope requerido. |
-| Q8 Feed authority | OPEN_D1_RESEARCH_REQUIRED | Scouting disponible; deep research debe cubrir authority/failover/recovery. |
+| Q8 Feed authority | TARGETED_RESEARCH_REQUIRED | Formal Front B did not establish health-based failover/gap recovery evidence; run narrow B2 follow-up. |
 | Q9 Execution transport | OPEN_D1_RESEARCH_REQUIRED | Varias familias identificadas; falta research/verification coordinado. |
 | Q10 Provider model | OPEN_D1_RESEARCH_REQUIRED | Cohorte preliminar NO sustituye Futures Prop Universe deep research. |
 | Q11 Strategy runtime | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar; diseño pertenece a D2. |
 | Q12 S2 | READY_FOR_D4 | Owner day permanece D4. |
 | Q13 Gerard +/- | READY_FOR_D4 | Owner day permanece D4. |
-| Q14 Backtest boundary | OPEN_D1_RESEARCH_REQUIRED | Patrones preliminares; debe revisarse con market-data/runtime research. |
+| Q14 Backtest boundary | D1_INPUT_SUFFICIENT_FOR_D2 | Formal Front B supports shared domain/strategy semantics with different live/sim infrastructure. |
 | Q15 Trade/Lab | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar disponible; diseño pertenece a D2. |
 | Q16 Blocking refactor | OPEN_D1_INPUTS_AVAILABLE | Register preliminar; sólo se cierra después de revisar todos los frentes D1. |
 
