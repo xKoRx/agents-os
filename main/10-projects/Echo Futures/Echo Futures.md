@@ -317,6 +317,26 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 - A2 Operation/Order/Fill/Position/Trade: **IN_PROGRESS**.
 - D1 completo sigue **IN_PROGRESS** y `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
 
+### A2 evidence review — Trade / trade_journal / The Lab — 2026-09-26
+
+Revisión explícita del proyecto The Lab V3 y source Echo `master@372af59a7b83604781346613da01e3d510ea1360`.
+
+**Hechos actuales:**
+- `echo.trade_journal` es un ledger operacional **por cuenta**, con identidad `trade_id + account_id`, roles REFERENCE/EXECUTION y lifecycle persistido OPEN/CLOSED/FAILED. No deriva trades desde `Position`.
+- The Lab V3 ratificó para su historia canónica analítica: **una fila por trade completo**, sólo trades cerrados; D1-M08 lo expresa como `1 operación = 1 cierre = 1 trade = 1 row`. Ese contrato inicial excluye open trades, partial closes, deals y legs.
+- REAL de The Lab consume exclusivamente trades REFERENCE cerrados; EXECUTION/copy queda fuera de la historia de calidad de estrategia y se reserva para análisis posterior de fidelity/slippage.
+- `echo.canonical_operations` ya existe como autoridad durable de historia canónica cerrada para SQX/MT5 y luego REFERENCE. The Lab consume canonical operations; no posee el lifecycle live.
+- D4 de The Lab actual aún no ingiere `trade_journal`; esa convergencia REAL/journal quedó desplazada al siguiente hito.
+
+**Implicación para Echo Futures — NO congelada todavía:**
+- `Position -> Trade` **no encaja naturalmente** como boundary general porque Position es estado físico de Account y puede contener exposición agregada/netted proveniente de múltiples Operations/Strategies.
+- `Operation -> Trade` es el candidato más alineado con el modelo analítico actual: una Operation lógica termina y puede proyectar un Trade cerrado. Position participa como evidencia/reconciliación física, no como autoridad de identidad del Trade.
+- Pero el runtime Futures introduce adds/reductions/partial fills mientras el contrato analítico The Lab V3 inicial fue deliberadamente simplificado a un solo trade completo sin partial-close model. **No se debe asumir que el schema analítico actual puede representar sin pérdida toda la microestructura de una Operation compleja.**
+- Posible seam a evaluar en D2: conservar Order/Fill como detalle operacional y proyectar al cierre un Trade/resumen por Operation para journal/canonical history. La semántica exacta de entry/exit/volume agregados y tratamiento de partial reductions queda abierta.
+- Pregunta adicional material: para estrategias internas sin Reference externo, definir qué resultado constituye la historia canónica de estrategia que alimentará The Lab. No asumir que una AccountStrategy de ejecución cualquiera se convierte automáticamente en la autoridad analítica de Strategy Quality.
+
+**Estado:** evidencia suficiente para descartar `Position` como autoridad primaria de identidad de Trade, pero **Trade boundary exacto permanece OPEN en A2** hasta decisión owner sobre Operation->Trade y compatibilidad con The Lab/strategy history.
+
 ### Requisitos/decisiones del owner ya establecidos
 
 - Futures V1 corre sobre/extendiendo Echo; no crear un segundo sistema independiente.
