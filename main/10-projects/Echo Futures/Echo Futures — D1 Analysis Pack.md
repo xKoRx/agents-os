@@ -584,7 +584,7 @@ Non-blocking unknowns passed to D2:
 Readiness:
 - Q6 = `D1_INPUT_SUFFICIENT_FOR_D2`.
 - Q7 = `D1_INPUT_SUFFICIENT_FOR_D2`.
-- Front E = `READY_FOR_PRIMARY_MANAGER_REVIEW`.
+- Front E = `D1_MANAGER_REVIEW_CLOSED`.
 - D1 remains `IN_PROGRESS`.
 
 The detailed claim matrix, rejected claims, sources, repair history and D2-enabled decisions live only in [[CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE]]; this pack intentionally keeps only the manager-level synthesis.
@@ -597,7 +597,7 @@ The detailed claim matrix, rejected claims, sources, repair history and D2-enabl
 2. Operation/Order/Fill identities y lifecycle; adaptar CoreCommand/ExecutionResult como wire contracts, no domain aggregates.
 3. Instrument/Contract + hot mapping semantics.
 4. TradingSession/calendar separado de account day boundary.
-5. CapitalManagement contract stateful sobre Operation, reutilizando MM calculators.
+5. MoneyManagement contract stateful sobre Operation, reutilizando MM calculators.
 6. Provider/ProviderProgram/versioned RuleSet domain.
 7. Trade projection/provenance para Lab live/replay/backtest.
 
@@ -618,7 +618,7 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | Q | Estado actual | Nota |
 | --- | --- | --- |
 | Q1 Echo fit | CANDIDATE_FOR_OWNER_REVIEW | Source audit preliminar existe; owner/manager debe revisarlo antes de cerrar. |
-| Q2 Position attribution | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar disponible; decisión pertenece a D2. |
+| Q2 Position attribution | D1_INPUT_SUFFICIENT_FOR_D2 | A2 owner review froze Position as physical observed Account state, distinct from Operation; exact attribution/cardinality remains D2. |
 | Q3 Order lifecycle | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Front D proves submit/modify/cancel, async status, partial/multi-fill and reconciliation patterns across real transports. |
 | Q4 Market hot state | D1_INPUT_SUFFICIENT_FOR_D2 | Formal Front B accepted with corrections; exact owner/topology remains D2. |
 | Q5 Bar semantics | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Formal Front B sufficient after manager corrections; forming/closed and late/out-of-order policy remain D2 design details. |
@@ -626,13 +626,13 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | Q7 Session semantics | D1_INPUT_SUFFICIENT_FOR_D2 | Front E formal accepted after targeted repair. CME timezone/session/trade-date/maintenance/holiday semantics plus Topstep ProviderProgram overlay are sufficiently evidenced. Authority: [[CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE]]. |
 | Q8 Feed authority | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | B2 provides CME/Databento authority, liveness and recovery evidence; exact policy/topology remains D2. |
 | Q9 Execution transport | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | ProjectX eligible simulated path proves E2E feasibility; other transport capabilities proven with entitlement/conformance caveats. |
-| Q10 Provider model | D1_INPUT_SUFFICIENT_FOR_D2 | Provider+Program/Phase + versioned RuleSet need is sufficiently evidenced; Front C operational matrix still requires repair before D. |
-| Q11 Strategy runtime | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar; diseño pertenece a D2. |
+| Q10 Provider model | D1_INPUT_SUFFICIENT_FOR_D2 | Provider+Program/Phase + versioned RuleSet need is sufficiently evidenced; Front C is closed and its operational corpus already enabled/was consumed by Front D. |
+| Q11 Strategy runtime | D1_INPUT_SUFFICIENT_FOR_D2 | A1 owner/manager review established StrategyEngine boundary, Signal convergence and Strategy vs MoneyManagement responsibilities; callback/state topology remains D2. |
 | Q12 S2 | READY_FOR_D4 | Owner day permanece D4. |
 | Q13 Gerard +/- | READY_FOR_D4 | Owner day permanece D4. |
 | Q14 Backtest boundary | D1_INPUT_SUFFICIENT_FOR_D2 | Formal Front B supports shared domain/strategy semantics with different live/sim infrastructure. |
-| Q15 Trade/Lab | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar disponible; diseño pertenece a D2. |
-| Q16 Blocking refactor | OPEN_D1_INPUTS_AVAILABLE | Register preliminar; sólo se cierra después de revisar todos los frentes D1. |
+| Q15 Trade/Lab | DEFERRED_TO_THE_LAB | Owner explicitly removed Trade/Lab integration from Echo Futures critical path. Reopen in The Lab after runtime abstractions stabilize. |
+| Q16 Blocking refactor | D1_INPUT_SUFFICIENT_FOR_D2 | All D1 fronts are now available; blocking seams vs deferred debt are identified. Exact refactor/adapt decisions belong to D2. |
 
 No existe cierre de D1 todavía; por lo tanto no corresponde afirmar que todos los UNKNOWN relevantes están eliminados.
 
@@ -687,10 +687,13 @@ Trabajo que debe continuar bajo conducción owner+manager:
 - recorrer D1 globalmente y acordar orden de frentes;
 - revisar Q1 con el owner antes de cerrarla;
 - Front B market-data research + B2 feed-authority review = CLOSED for D1;
-- ejecutar el track Futures Prop Universe como research formal, no como muestra improvisada;
+- Front C Futures Prop Universe = CLOSED for D1 with manager corrections;
 - Front D execution transport feasibility = CLOSED for D1 with manager corrections;
-- Front E Contract + Session Semantics = evidence sufficient for D2; integrate its conclusions during final D1 review;
-- revisar blocking/deferred debt;
-- ejecutar checklist D1 completo y recién entonces proponer `EF_D1_ANALYSIS_PASS = REVIEW`.
+- Front E Contract + Session Semantics = CLOSED for D1 after Primary Manager integration;
+- Q2/Q11 evidence is sufficient for D2 based on the owner-reviewed A2/A1 boundaries;
+- Q15 Trade/Lab = DEFERRED_TO_THE_LAB by owner decision;
+- Q16 evidence/register = sufficient for D2; exact refactor choices remain D2;
+- review Q1 Echo fit with the owner;
+- execute the final D1 acceptance checklist with the owner and only then propose `EF_D1_ANALYSIS_PASS = REVIEW`.
 
-Next exact milestone: **continuar D1 — manager-guided Problem + Domain Discovery**.
+Next exact milestone: **D1 final owner review — Q1 Echo fit + complete acceptance checklist**.
