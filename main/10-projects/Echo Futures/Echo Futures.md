@@ -313,6 +313,10 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 - `PENDING_ENTRY` es distinto de `CREATED`: una LIMIT/STOP working en el mercado ya constituye una situación operacional material aunque aún no exista Position.
 - Un estado de Order (REJECTED/CANCELLED/EXPIRED/etc.) **no termina automáticamente** la Operation; MoneyManagement puede decidir retry, reemplazo u otra acción.
 - Volver a exposición lógica cero **no implica TERMINAL por sí solo**. Para terminar deben cumplirse al menos: exposición lógica cero, ninguna Order viva asociada y decisión de MoneyManagement de no continuar el lifecycle. Los nombres exactos de terminal reasons quedan abiertos.
+- La **dirección de una Operation es inmutable** durante todo su lifecycle.
+- La exposición lógica de una Operation se deriva de sus Fills asociados; puede aumentar, reducirse y llegar temporalmente a cero.
+- Una Operation **no puede cruzar de LONG a SHORT ni de SHORT a LONG**. Un reversal se expresa como cierre/reducción de la Operation existente + una nueva `OPEN Signal` que materializa otra Operation en dirección opuesta.
+- `Position` continúa siendo la exposición física observada de la Account y puede agregar/netear múltiples Operations; no se usa como sustituto de la exposición lógica por Operation.
 - Order es una instrucción concreta de execution; Order puede producir 0..N Fills.
 - Fill es un hecho de ejecución inmutable.
 - `Position` NO es Operation. Position es una **proyección/snapshot del estado físico observado en una Account**, usada para reconciliación y superficies como el front.
