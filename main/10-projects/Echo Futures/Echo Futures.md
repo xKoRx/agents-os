@@ -300,7 +300,9 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 - Strategy tiene acceso **READ ONLY** a las Operations relevantes. MoneyManagement también accede al estado de sus Operations; la topología/cache/state owner físico se decide después y no se asume en D1.
 
 **Operation / Order / Fill / Position / Trade**
-- Un `OPEN`-like Signal aceptado para una AccountStrategy puede materializar una **Operation nueva por cuenta**.
+- Un `OPEN`-like Signal aceptado para una AccountStrategy **materializa la Operation antes de ejecutar MoneyManagement y antes de cualquier Order/Fill**.
+- La Operation existe aunque MoneyManagement no consiga resolver una acción ejecutable, rechace la entrada, falle, o la Signal/entry expire antes de obtener Fill. En esos casos termina como Operation terminal con motivo explícito para trazabilidad.
+- Una Operation sin Fill **no implica Position física**; Position continúa representando sólo estado físico observado/reconciliado de la Account.
 - Signals posteriores de gestión/salida (`REDUCE`, `CLOSE`, `CLOSE_ALL`) actúan sobre Operations existentes y no crean una Operation nueva por defecto.
 - Operation es la unidad lógica administrada por MoneyManagement y puede producir N Orders.
 - Order es una instrucción concreta de execution; Order puede producir 0..N Fills.
