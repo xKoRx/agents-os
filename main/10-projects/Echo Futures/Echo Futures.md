@@ -1456,3 +1456,55 @@ Decisión congelada:
 - Casos borde que requieran coupling específico entre una Strategy y un MoneyManagement concreto se permiten de forma explícita antes que contaminar las abstracciones generales de V1. La compatibilidad Strategy↔MoneyManagement debe validarse/configurarse, no asumirse universal.
 
 Rationale owner: una operación representa el ciclo completo desde la primera apertura hasta el cierre de la última exposición; nuevas oportunidades dentro del mismo ciclo son Signals/Orders adicionales de la misma Operation. Si una oportunidad requiere comportamiento independiente, se modela como otra Strategy, no como múltiples Operations simultáneas de la misma Strategy.
+
+### D2-03 — Signal contract + Strategy/MM responsibility boundary — OWNER CLOSED — 2026-09-26
+
+**Status:** `OWNER_CLOSED`
+
+D2 congela un único contrato canónico de salida por evaluación de Strategy: `Signal`. No se crea `StrategyAction`, `SignalAction` ni otra entidad separada. La Signal contiene un único campo `details` que agrupa el contexto técnico específico de la Strategy para mantener toda la decisión relacionada en una sola respuesta.
+
+### Signal V1
+
+Intents congelados:
+
+- `OPEN`
+- `REDUCE`
+- `CLOSE`
+- `CLOSE_ALL`
+
+Semántica:
+
+- `OPEN`: inicia/materializa el ciclo lógico de la Strategy cuando no existe Operation activa para esa AccountStrategy.
+- `REDUCE`: expresa intención técnica de reducción sobre la Operation activa; MoneyManagement decide la materialización económica concreta para esa cuenta mediante 0..N Orders.
+- `CLOSE`: expresa cierre de la Operation lógica activa de esa Strategy.
+- `CLOSE_ALL`: panic/flatten de toda exposición/Orders/Operations pertenecientes a **esa Strategy dentro de esa AccountStrategy**. No autoriza cerrar Operations de otras Strategies ni se convierte en un comando global de cuenta. Un account-wide/provider-wide emergency flatten pertenece al plano de safety/provider enforcement.
+
+### Signal.details
+
+- `details` es parte de la Signal y no una nueva entidad de dominio.
+- Contiene el payload técnico específico de la Strategy: triggers, niveles, contexto técnico, indicadores u otros datos necesarios para que un MoneyManagement compatible interprete la intención.
+- El Core/domain trata `details` como un payload acotado de Strategy; no se diseña un mega-schema universal con campos opcionales para todas las estrategias.
+- La representación física exacta puede ser un objeto/struct/map serializable según el contrato de implementación, pero debe conservar un único payload relacionado con la Signal y validación explícita de compatibilidad Strategy↔MoneyManagement.
+
+### Boundary Strategy vs MoneyManagement
+
+- Strategy es autoridad de **lógica técnica de mercado**: cuándo abrir/reducir/cerrar, dirección, condiciones y niveles técnicos de precio.
+- MoneyManagement es autoridad de **riesgo y materialización monetaria/account-specific**: riesgo monetario, sizing, quantity, exposición, distribución de Orders, adds/reductions y gestión económica de la Operation.
+- SL/TP de Strategy y SL/TP de MoneyManagement **no son reglas competidoras ni existe precedencia winner/loser**.
+- Strategy expresa SL/TP técnicos como niveles/distancias del activo en unidades propias del instrumento (precio/ticks/puntos o equivalente; no `pips` universales).
+- MoneyManagement toma esos niveles técnicos junto con Account/Provider/Instrument state y resuelve su consecuencia monetaria: riesgo, quantity y Orders ejecutables.
+- Ambos representan el mismo concepto desde contextos distintos —técnico y monetario— y deben permanecer separados por responsabilidad.
+
+### Compatibility
+
+- No se exige compatibilidad universal entre cualquier Strategy y cualquier MoneyManagement.
+- `AccountStrategy` sólo puede configurarse con combinaciones Strategy↔MoneyManagement declaradas/validadas como compatibles.
+- Casos especiales se resuelven mediante coupling local y explícito entre esa Strategy y ese MoneyManagement antes que contaminar los contratos genéricos del runtime.
+
+### Contract placement
+
+- Strategy y Signal permanecen agnósticas del `execution contract_id` físico.
+- La resolución `Instrument -> Contract` y el pinning de `contract_id` permanecen en la materialización account-specific de `Operation`, según D2-01.
+- No se agrega complejidad adicional de contrato a Strategy/Signal en V1 salvo provenance mínima si una necesidad real de replay/auditoría lo exige posteriormente.
+
+Rationale owner: mantener una única respuesta de Strategy, separar claramente técnica vs dinero, permitir compatibilidad explícita Strategy/MM y evitar que edge cases o ejecución física deformen las abstracciones generales de V1.
