@@ -864,6 +864,85 @@ El artefacto todavía incumple formalmente parte del mandato C-R2 —declara no 
 
 No se congela aquí selección de provider, transport ni cohort comercial.
 
+## 🔌 Execution transport — D1 Front D manager review — 2026-09-26
+
+Research artifact: `main/30-resources/futures/EXECUTION TRANSPORT FEASIBILITY — MULTI-PROP EVIDENCE.md`.
+
+**Manager verdict:** `D_EXECUTION_TRANSPORT_RESEARCH = ACCEPTED_WITH_MANAGER_CORRECTIONS`.
+
+El worker encontró las familias correctas, pero mezcló evidencia física con inferencias y contiene varios errores materiales. El manager revalidó documentación oficial y conserva sólo claims demostrables.
+
+**ProjectX / TopstepX — PROVEN E2E FEASIBILITY**
+- La documentación pública oficial SÍ existe.
+- Auth = API key -> JWT/session token; no OAuth2.
+- `Account/search` devuelve las cuentas activas asociadas al user.
+- Orders oficiales: MARKET, LIMIT, STOP, además TrailingStop/JoinBid/JoinAsk; place/modify/cancel/search/searchOpen están documentados.
+- Real-time oficial SignalR entrega account/order/position/**trade** updates; trade referencia `orderId`. Market hub entrega quote/trade/depth.
+- `customTag` existe en Order y sirve como correlation primitive, aunque no se eleva todavía a garantía de idempotencia.
+- Reconnect example oficial usa `onreconnected` + resubscribe.
+- Rate limits oficiales: history 50/30s; resto 200/60s. Esto es input de capacity D2 y evita afirmar 100–200 accounts sin benchmark.
+- Topstep policy restringe el order-flow automatizado a dispositivo personal y ProjectX API no está disponible en Live Funded. Por tanto capability cloud del protocolo NO implica deployment cloud autorizado para Topstep.
+- Resultado D1: existe un transport real, documentado y autorizable en Trading Combine/Express simulated suficiente para demostrar Q9 feasibility.
+
+**NinjaTrader Desktop bridge — CAPABILITY PROVEN / PROVIDER ENTITLEMENT VARIES**
+- NinjaScript/AddOn `Account` expone `Account.All`, CreateOrder/Submit/Change/Cancel/Flatten, Orders/Executions/Positions y eventos AccountItem/Order/Execution/Position.
+- `OnExecutionUpdate` documenta explícitamente que una Order puede producir múltiples executions/partial fills.
+- Sim101 es un environment simulado oficial.
+- No aceptar el claim “1 account por instance/connection”: el SDK expone múltiples Account objects; el límite práctico por connection/provider queda para D2/benchmark.
+- El bridge debe basarse en NinjaTrader **Desktop/NinjaScript**. La existencia de NinjaTrader Web no prueba que Web/Mac sea una superficie equivalente para un bridge programable.
+- Reutilizable como edge local potencial para ProviderPrograms que permiten ATS sobre NT; entitlement específico sigue siendo ProviderProgram data.
+
+**Tradovate — CAPABILITY PROVEN / PROP ENTITLEMENT UNKNOWN**
+- REST + WebSocket, demo/live separados, user sync realtime, MARKET/LIMIT/STOP y tipos avanzados, OCO/OSO/brackets.
+- `clOrdId` y `customTag50` existen: correlation/idempotency primitives mejores de lo que afirmó el worker.
+- Partner API oficial requiere Organization Admin credentials + API Key + CID; no confundir esto con tener login Tradovate de una prop.
+- La API documenta conformance/WebSocket management para partner integration; direct entitlement por MFFU/FundedNext/Tradeify permanece UNKNOWN salvo first-party explícita.
+- TradeDay direct Tradovate API continúa FORBIDDEN por su propia policy.
+
+**Rithmic — CAPABILITY PROVEN / ENTITLEMENT + CONFORMANCE REQUIRED**
+- R|API+ / R|Protocol son transports oficiales de data + order management.
+- R|Protocol example oficial usa user/password; no hay evidencia para el claim OAuth2 del worker.
+- Rithmic Test no requiere conformance; production/Rithmic 01/Paper/FCM IDs **sí requieren conformance**.
+- Exchange Simulator oficial sirve a developers con live market data y market/limit/stop/brackets/OCO.
+- No aceptar sin evidencia: exactly-once guarantees, throughput figures, multi-account socket capacity o automatic duplicate handling.
+- Credentials de plataforma Rithmic no equivalen a developer API entitlement.
+
+**CQG — CAPABILITY PROVEN / ENTITLEMENT + CONFORMANCE REQUIRED**
+- CQG WebAPI es secure WebSocket + protobuf, language-agnostic y expone market data, order execution, account summary, order history y post-trade.
+- Environment simulado oficial disponible.
+- Production requiere formal conformance test.
+- Por tanto el worker es incorrecto al caracterizar CQG API como esencialmente COM/.NET/Windows o “sin certificación”; WebAPI es la surface relevante a evaluar.
+- Lucid soportar CQG no demuestra entitlement a CQG WebAPI; permanece UNKNOWN.
+
+**Claims rechazados del worker**
+- ProjectX “sin docs públicas”, OAuth2 y capability inferida por analogía con Tradovate.
+- ProjectX/Tradovate/Rithmic/CQG “cloud/server autorizado” por capability técnica sin considerar ProviderProgram policy.
+- NinjaTrader “Mac bridge”, “1 account por instance” y multi-account scaling sin evidencia.
+- Tradovate ~50 req/s, socket para 200 accounts y generic prop API access sin source.
+- Rithmic exactly-once, no-conformance production y cifras de throughput sin source.
+- CQG COM/Windows-only, no-conformance y otras features no respaldadas.
+- WealthCharts = TradeStation.
+- cualquier afirmación de que 100–200 accounts “ya escala” sin capacity test.
+
+**Q3 Order lifecycle inputs ya suficientes para D2**
+- transport Order ID + optional client/correlation tag;
+- asynchronous order status transitions;
+- submit/modify/cancel;
+- Order 1 -> 0..N immutable execution/fill events;
+- Position/account state separado;
+- reconnect requiere resubscribe + authoritative state refresh/reconciliation;
+- exact normalized OrderStatus enum y idempotency policy pertenecen a D2.
+
+**Front D final readiness**
+- Q9 Execution transport = `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS`.
+- Q3 Order lifecycle = `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS`.
+- At least one authorized non-real-money path = **PROVEN** via TopstepX/ProjectX Trading Combine/Express path; NinjaTrader Sim101 proves a second generic simulation surface but not provider entitlement.
+- Direct Tradovate/Rithmic/CQG provider entitlement remains UNKNOWN where first-party does not grant it.
+- 100–200 account capacity remains a D2/D6 capacity requirement, not a D1 proven fact.
+- **FRONT D = D1_MANAGER_REVIEW_CLOSED**.
+
+No transport winner is selected in D1.
+
 ## 🏦 Futures Prop Universe
 
 El producto debe diseñarse con conocimiento de un universo amplio de futures prop firms, no sólo Topstep.
