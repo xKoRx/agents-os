@@ -55,11 +55,12 @@ updated: "2026-09-26"
 > - Signals posteriores de gestión/salida pueden actuar sobre Operations existentes sin crear una nueva Operation.
 > - Operation puede producir N Orders; Order puede producir 0..N Fills; Fill es inmutable.
 > - Position pertenece a **Account** y representa una proyección/snapshot del estado físico observado/reconciliado; no es Operation ni se eleva a aggregate rico sin requisito concreto.
-> - Trade sigue siendo resultado analítico cerrado derivado de Operation y alimenta trade_journal/The Lab.
+> - `DT-EF-POSITION-RECONCILIATION-05 — DEFERRED_EDGE_CASE`: no diseñar ahora política de mismatch lógico↔físico, auto-repair ni subsystem dedicado. Reabrir sólo con evidencia real o si un transport/provider demuestra que es un caso material.
+> - Trade/The Lab queda fuera de A2 y diferido al proyecto The Lab; el runtime nuevo no se deforma para conservar el modelo analítico actual.
 > - El dominio nuevo no puede usar pips como unidad universal. Futures V1 requiere unidades genéricas basadas en instrument/contract specs; el legacy Forex puede adaptarse. La limpieza total de campos/workarounds pips queda como deuda candidata pendiente de ID/alcance final del owner.
 > - Política de refactor: si el cambio correcto es acotado se hace en V1; si amenaza V1, seam limpio + DT explícita de Iteración 2. KISS **no** justifica romper SOLID/Clean boundaries.
 > - Regla obligatoria del manager: ante una brecha material de requisitos, identities, lifecycle, ownership o semántica de dominio, **preguntar al owner antes de decidir; no asumir**.
-> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position = IN_PROGRESS**; Trade/The Lab = **DEFERRED_TO_THE_LAB**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
+> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position = D1_OWNER_REVIEW_ACCEPTED**; detalles exactos de Order lifecycle quedan Q3/D2; Trade/The Lab = **DEFERRED_TO_THE_LAB**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
 
 
 ## Gate
