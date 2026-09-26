@@ -302,6 +302,35 @@ However, provider discovery is no longer needed to justify the D2 domain dimensi
 Remaining blocker is narrower:
 authoritative `ProviderProgram -> automation -> platform -> connectivity -> API entitlement` matrix for Front D.
 
+### 3C. Manager review — Authoritative Evidence Matrix — 2026-09-26
+
+Artifact: `main/30-resources/futures/FUTURES PROP UNIVERSE — AUTHORITATIVE EVIDENCE MATRIX.md`.
+
+`C_PROP_UNIVERSE_RESEARCH = ACCEPTED_WITH_MANAGER_CORRECTIONS`.
+
+Formal defects remain in the worker artifact:
+- contradiction ledger falsely says V1/V2 were unavailable;
+- evidence appendix references [N] rather than literal URLs per claim;
+- Lucid and Tradeify were left UNKNOWN despite first-party sources supplied by the mandate;
+- some connectivity labels remain inferred rather than proven.
+
+Manager directly revalidated the first-party anchors and corrected the operational matrix:
+- Topstep sim/Express: automation + ProjectX API allowed conditionally; Live Funded ProjectX API forbidden.
+- Lucid: automation/trade copiers allowed; CQG and Rithmic platform families first-party confirmed; direct API entitlement UNKNOWN.
+- MFFU: own automated strategies allowed conditionally; HFT/sim-fill exploitation forbidden.
+- TradeDay: ATS allowed through supported platforms; direct platform/Tradovate API forbidden; purchased third-party bots forbidden.
+- FundedNext: bots/EAs allowed in Challenge and FundedNext Accounts; latency abuse/order flooding forbidden.
+- Tradeify: bots conditional on sole ownership/exclusive Tradeify use/no-HFT; cross-firm use forbidden; Tradovate/Rithmic/WealthCharts platform families confirmed; direct API entitlement UNKNOWN.
+- Alpha: full automation forbidden.
+- TakeProfitTrader: bots/algo execution forbidden across Test/PRO/PRO+.
+
+This is sufficient to feed transport feasibility research without pretending UNKNOWN API entitlements are allowed.
+
+**Front C final = `D1_MANAGER_REVIEW_CLOSED`.**
+**Front D = `READY_TO_EXECUTE`.**
+Q10 remains `D1_INPUT_SUFFICIENT_FOR_D2`.
+
+
 
 
 ## 3. Futures Prop Universe — PRELIMINARY BREADTH SAMPLE
@@ -534,7 +563,7 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | Q6 Contract mapping | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; incluir futura reutilización cross-market/FX en la discusión. |
 | Q7 Session semantics | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; falta revisión guiada del scope requerido. |
 | Q8 Feed authority | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | B2 provides CME/Databento authority, liveness and recovery evidence; exact policy/topology remains D2. |
-| Q9 Execution transport | OPEN_D1_RESEARCH_REQUIRED | Varias familias identificadas; falta research/verification coordinado. |
+| Q9 Execution transport | READY_FOR_FRONT_D_RESEARCH | Front C operational corpus is now sufficient; formal transport feasibility research can execute. |
 | Q10 Provider model | D1_INPUT_SUFFICIENT_FOR_D2 | Provider+Program/Phase + versioned RuleSet need is sufficiently evidenced; Front C operational matrix still requires repair before D. |
 | Q11 Strategy runtime | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar; diseño pertenece a D2. |
 | Q12 S2 | READY_FOR_D4 | Owner day permanece D4. |
