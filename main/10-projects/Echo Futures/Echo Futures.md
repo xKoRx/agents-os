@@ -1530,3 +1530,16 @@ Required corrections before D2-04 can be frozen:
 9. Reassess optional `order_events`/`operation_events` audit tables and extra function/topic surface under KISS/YAGNI. Keep only pieces required for correctness/recovery; OTel/current-state persistence + immutable Fills may be enough for some audit concerns.
 
 No owner decision is requested by this review. Return the same workstream to TOP for a targeted repair; do not advance to D2-05 until re-review.
+
+#### D2-04 — Manager second review — CORRECTION REQUIRED — 2026-09-26
+
+**Status:** `D2_04_MANAGER_REVIEW_2 = CORRECTION_REQUIRED`
+
+The R1–R9 repair materially improved D2-04 and the StateFun 3.2 Kafka egress EXACTLY_ONCE premise is supported by official Apache documentation when explicitly configured. The workstream is still not frozen because four correctness/recovery boundaries remain unresolved:
+
+1. **Adapter external-side-effect idempotency is incomplete.** An in-memory submission registry rebuilt only from open venue orders cannot suppress a redelivered command if the first physical order already became terminal (especially a fast MARKET fill) before an adapter crash/offset commit. D2-04 must require a restart-safe idempotency contract: durable submission journal plus authoritative lookup/reconciliation by `client_order_id` across live/history, or native venue idempotency. A transport unable to prove this cannot claim exactly-once physical submission.
+2. **Async PostgreSQL projection cannot be an authoritative recovery source for StateFun state.** PG writes are not checkpoint-atomic. It can be ahead of a rolled-back checkpoint or behind a committed one. Normal recovery authority must remain Flink/StateFun checkpoint + Kafka replay; PG is an eventual/query projection. Cold recovery beyond checkpoint availability must fail closed or use an explicitly designed bootstrap/reconciliation path, not silently reconstruct authoritative MM state from async PG.
+3. **`operation_event_seq` does not by itself create a replayable ordered event stream.** Persisting only the latest seq on Operation/Order/Fill cannot reconstruct Signals, order-status/ack events, termination intents or market inputs that produced MM state. Either scope the sequence to runtime diagnostics and leave deterministic replay ordering to the later Replay/Market design, or persist the required event stream. Do not claim exact live-operation replay from records that do not contain the events.
+4. **Post-terminal execution/duplicate routing needs an explicit boundary.** Evicting Fill dedup at TERMINAL is safe only if a later event for an old `operation_id` can never mutate the current new Operation on the same `account:strategy` key. A genuinely new late Fill after terminal must not be discarded as a duplicate nor silently revive/contaminate the next Operation; it must preserve the execution fact and surface a post-terminal execution breach/reconciliation path. Define the minimal operation-id guard/tombstone or equivalent adapter/state-owner contract.
+
+These remain technical corrections; no owner decision is required. Return D2-04 to the same TOP for a narrow repair only. Do not advance to D2-05.
