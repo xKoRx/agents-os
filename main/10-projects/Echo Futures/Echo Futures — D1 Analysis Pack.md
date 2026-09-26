@@ -137,6 +137,39 @@ Conclusión: Echo Futures debe extender Echo V3 incrementalmente. No apareció n
 
 REPLACE explícito: ExecutionStore no debe seguir siendo autoridad del nuevo lifecycle si D2 confirma Operation→Order→Fill. Puede sobrevivir temporalmente como compatibility/reconciliation projection durante migración. No requiere reescribir Core.
 
+## 2B. Manager review — B2 Feed Authority / Recovery — 2026-09-26
+
+Formal worker artifact: `main/30-resources/futures/MARKET DATA + QUANT ENGINE FORENSICS V2.md`.
+
+`B2_FEED_AUTHORITY_RESEARCH = ACCEPTED_WITH_CORRECTIONS`.
+
+Accepted:
+- CME dual-feed A/B arbitration is evidence for redundant equivalent-source handling.
+- CME sequence/recovery/snapshot primitives establish concrete gap/recovery patterns.
+- Databento heartbeats, reconnect callbacks, intraday replay, natural refresh and MBO snapshots establish concrete liveness/recovery mechanisms.
+- Databento recovery recipe (`ts_event` + count per schema/instrument + duplicate filtering) is sufficient evidence that recovery can be deterministic without generic event sourcing.
+
+Corrections:
+- Databento exposes original venue `sequence`; worker statement denying visible sequence is false.
+- CME MDP 3.0 has Admin Heartbeat messages; worker statement denying explicit heartbeat is false.
+- Timestamp discontinuity alone is not a gap detector.
+- Fixed “no ticks in X seconds” is not a universal health rule; liveness/freshness must account for session/schema.
+- Do not assume CME recovery is only startup/rest-time.
+- Do not freeze “closed bars never corrected” from this corpus.
+- Final OWNER questions in B2 are technical D2 decisions unless implementation exposes a real product/operability trade-off.
+
+D2 requirement inputs:
+- explicit logical authority per canonical stream;
+- equivalent-feed arbitration allowed within one authority;
+- heterogeneous source switching explicit, never silent blending;
+- health dimensions separated: connection/session liveness, continuity/gap evidence, market freshness;
+- adapter-specific recovery;
+- readiness barrier after recovery;
+- reconstructable affected hot state;
+- source/recovery provenance sufficient for diagnosis.
+
+**Front B final:** `D1_MANAGER_REVIEW_CLOSED`.
+
 ## 2A. Manager review — formal Front B research — 2026-09-26
 
 Formal worker artifact: `main/30-resources/futures/MARKET DATA + QUANT ENGINE FORENSICS.md`.
@@ -447,7 +480,7 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | Q5 Bar semantics | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Formal Front B sufficient after manager corrections; forming/closed and late/out-of-order policy remain D2 design details. |
 | Q6 Contract mapping | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; incluir futura reutilización cross-market/FX en la discusión. |
 | Q7 Session semantics | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; falta revisión guiada del scope requerido. |
-| Q8 Feed authority | TARGETED_RESEARCH_REQUIRED | Formal Front B did not establish health-based failover/gap recovery evidence; run narrow B2 follow-up. |
+| Q8 Feed authority | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | B2 provides CME/Databento authority, liveness and recovery evidence; exact policy/topology remains D2. |
 | Q9 Execution transport | OPEN_D1_RESEARCH_REQUIRED | Varias familias identificadas; falta research/verification coordinado. |
 | Q10 Provider model | OPEN_D1_RESEARCH_REQUIRED | Cohorte preliminar NO sustituye Futures Prop Universe deep research. |
 | Q11 Strategy runtime | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar; diseño pertenece a D2. |
@@ -509,7 +542,7 @@ Trabajo útil preservado:
 Trabajo que debe continuar bajo conducción owner+manager:
 - recorrer D1 globalmente y acordar orden de frentes;
 - revisar Q1 con el owner antes de cerrarla;
-- preparar/ejecutar deep research dedicado de market-data architecture;
+- Front B market-data research + B2 feed-authority review = CLOSED for D1;
 - ejecutar el track Futures Prop Universe como research formal, no como muestra improvisada;
 - research de execution transports apoyado en el corpus real de props;
 - revisar futures semantics y backtest boundary contra esos outputs;
