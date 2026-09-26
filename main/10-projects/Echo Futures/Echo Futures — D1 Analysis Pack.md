@@ -284,9 +284,25 @@ Not authoritative until repair:
 - technical feasibility cohort;
 - exclusion/block list.
 
-Q10 = `RESEARCH_REPAIR_REQUIRED`.
-Front C remains OPEN.
+Q10 domain model = `D1_INPUT_SUFFICIENT_FOR_D2`.
+Front C operational corpus = `REPAIR_REQUIRED_BEFORE_D`.
 Front D remains blocked by corrected C output.
+
+### 3B. Manager review — Front C repair V2 — 2026-09-26
+
+Artifact: `main/30-resources/futures/FUTURES PROP UNIVERSE — FIRST-PARTY DOMAIN FORENSICS V2.md`.
+
+`C_PROP_UNIVERSE_RESEARCH = BLOCKED_EVIDENCE`.
+
+The repair failed again. Current first-party evidence directly contradicts V2 on Topstep, MFFU, FundedNext, Tradeify, TakeProfitTrader and TradeDay. V2 also failed to produce the requested claim-level evidence appendix and still uses unsupported inference language.
+
+However, provider discovery is no longer needed to justify the D2 domain dimension:
+`Provider + Program/Phase + versioned RuleSet` is sufficiently evidenced.
+
+Remaining blocker is narrower:
+authoritative `ProviderProgram -> automation -> platform -> connectivity -> API entitlement` matrix for Front D.
+
+
 
 ## 3. Futures Prop Universe — PRELIMINARY BREADTH SAMPLE
 
@@ -519,7 +535,7 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | Q7 Session semantics | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; falta revisión guiada del scope requerido. |
 | Q8 Feed authority | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | B2 provides CME/Databento authority, liveness and recovery evidence; exact policy/topology remains D2. |
 | Q9 Execution transport | OPEN_D1_RESEARCH_REQUIRED | Varias familias identificadas; falta research/verification coordinado. |
-| Q10 Provider model | RESEARCH_REPAIR_REQUIRED | Formal C draft failed evidence/coverage checks; Provider+Program need is supported, but automation/program/transport corpus must be repaired. |
+| Q10 Provider model | D1_INPUT_SUFFICIENT_FOR_D2 | Provider+Program/Phase + versioned RuleSet need is sufficiently evidenced; Front C operational matrix still requires repair before D. |
 | Q11 Strategy runtime | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar; diseño pertenece a D2. |
 | Q12 S2 | READY_FOR_D4 | Owner day permanece D4. |
 | Q13 Gerard +/- | READY_FOR_D4 | Owner day permanece D4. |
