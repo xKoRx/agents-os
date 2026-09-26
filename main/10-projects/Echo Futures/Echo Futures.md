@@ -108,6 +108,8 @@ Esta deuda debe atacarse en un track posterior obligatorio: auditar las props Fo
 
 **DT-EF-REFERENCE-SIGNAL-03 — DEFERRED_MANDATORY.** `ReferenceEvent` permanece temporalmente como contrato legacy/source-specific y como evidencia del hecho ocurrido en la cuenta reference, pero **no** es el `Signal` canónico. El nuevo motor genérico debe nacer consumiendo `Signal`; el flujo legacy se adapta dentro de Echo Core mediante un boundary explícito `ReferenceEvent -> Signal`. Bridge sigue siendo edge/transport dummy y no adquiere lógica de dominio. Iteración 2 debe completar la migración del execution path reference al boundary canónico y retirar el coupling legacy que ya no sea necesario.
 
+**DT-EF-POSITION-RECONCILIATION-05 — DEFERRED_EDGE_CASE.** La política para una divergencia entre exposición lógica derivada de Operations/Fills y Position física reportada por la Account queda fuera del camino crítico de Futures V1. No diseñar ahora auto-repair, synthetic fills, forced remapping ni un subsystem específico de reconciliation mismatch. Reabrir sólo ante evidencia física real de que el caso ocurre o ante un transport/provider donde sea comportamiento normal/material. Mientras tanto, Operation/Fills conservan la verdad lógica y PositionSync/Position conserva la observación física independiente.
+
 **Unidades cross-market — constraint V1.** El dominio nuevo no puede usar `pips` como unidad universal. Futures V1 necesita semántica genérica de precio/riesgo basada en instrument/contract specs (tick size, tick/point value, contract multiplier o equivalentes). El legacy Forex puede adaptarse desde pips a esas unidades. La limpieza completa de campos/schemas/workarounds legacy expresados en pips queda como deuda candidata de Iteración 2; **el ID y alcance final de esa deuda aún requieren ratificación explícita del owner**.
 
 **Política de deuda en código:** cuando una implementación futura deje una limitación temporal, compatibility shim o camino futures-only relacionado con esta deuda, el source propietario debe llevar un marcador explícito con ID canónico —por ejemplo `DT-EF-FX-PROP-01` o un sub-ID— y enlace/comentario suficiente para encontrar el debt register. No usar `TODO` genérico sin owner/debt ID. La documentación canónica sigue siendo la autoridad; el comentario en código hace visible la deuda justo en el seam donde importa.
@@ -327,11 +329,12 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 - `Position` NO es Operation. Position es una **proyección/snapshot del estado físico observado en una Account**, usada para reconciliación y superficies como el front.
 - Position pertenece a `Account`; provider/broker/venue es contexto de esa cuenta. Su identidad/cardinalidad exacta depende del execution model y queda para D2.
 - No se promoverá Position a aggregate rico si no existe un requisito concreto: su función mínima es responder qué exposición física tiene realmente una Account y permitir contrastarla contra el estado lógico de Operations.
-- Trade sigue siendo el resultado analítico cerrado derivado de una Operation y continúa proyectándose hacia `trade_journal` / The Lab.
+- La resolución de mismatches entre exposición lógica y Position física queda diferida en `DT-EF-POSITION-RECONCILIATION-05`; no bloquea D1/D2/V1.
+- Trade/The Lab permanece fuera de A2 y diferido al proyecto The Lab; no condiciona este lifecycle runtime.
 
 **Estado de revisión**
 - A1 Strategy/Signal/AccountStrategy/MoneyManagement: **MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**.
-- A2 Operation/Order/Fill/Position: **IN_PROGRESS**. Trade/Lab integration: **DEFERRED_TO_THE_LAB**.
+- A2 Operation/Order/Fill/Position: **D1_OWNER_REVIEW_ACCEPTED**. Los detalles exactos de Order lifecycle/transport quedan para Q3/D2. Trade/Lab integration: **DEFERRED_TO_THE_LAB**.
 - D1 completo sigue **IN_PROGRESS** y `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
 
 ### A2 evidence review — Trade / trade_journal / The Lab — 2026-09-26
