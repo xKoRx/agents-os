@@ -193,7 +193,9 @@ GOD remains a worker/auditor. It does not replace owner authority or the primary
 
 #### SUBMANAGER — bounded workstream coordinator
 
-SUBMANAGER is **not a fifth capability tier**. It is a temporary delegation of manager mechanics for one complex workstream.
+SUBMANAGER is **not a fifth capability tier**. It is a temporary delegation of **manager mechanics** for one complex workstream.
+
+**SUBMANAGER is an orchestrator, not an executor.** Its execution unit is the specialist worker. It coordinates RESEARCHER / NORMAL / TOP / GOD work when needed; it does not substitute for those roles.
 
 Use a SUBMANAGER only when a workstream contains multiple evidence planes or multiple specialist outputs that would otherwise overload the primary manager session, for example:
 
@@ -209,12 +211,20 @@ bounded synthesis
 
 A SUBMANAGER may:
 - receive a manager-authored Context Capsule;
-- decompose one workstream into RESEARCHER / NORMAL / TOP tasks;
-- write exact specialist prompts;
-- review returned worker artifacts;
+- decompose one workstream into RESEARCHER / NORMAL / TOP / GOD tasks;
+- write exact specialist prompts or invoke the designated specialist when the environment supports delegation;
+- review returned worker artifacts and request bounded repair;
 - contrast external findings with a bounded set of internal authorities;
 - maintain a workstream-local question/evidence register;
 - return a synthesis and explicit unresolved decisions to the primary manager.
+
+### SUBMANAGER worker-boundary invariants
+
+1. **MUST DELEGATE SPECIALIST WORK.** If a phase is classified as RESEARCHER, NORMAL, TOP or GOD work, the SUBMANAGER must delegate it to that worker role. It MUST NOT execute that phase itself merely because it has tools capable of doing so.
+2. **NO ROLE COLLAPSE.** SUBMANAGER + specialist execution in the same role is forbidden unless the Owner or Primary Manager explicitly grants a narrow exception.
+3. **LIGHTWEIGHT INSPECTION ONLY.** The SUBMANAGER may verify a baseline, open a small number of artifacts, or spot-check evidence to orient itself or review a handoff. That inspection MUST NOT expand into the delegated research, source audit, implementation or QA task.
+4. **NO WORKER AVAILABLE = ORCHESTRATION BLOCKER.** If the required specialist cannot be invoked in the current environment, the SUBMANAGER returns an explicit orchestration blocker plus the exact ready-to-run specialist mandate. It MUST NOT silently replace the missing worker.
+5. **SYNTHESIS REQUIRES RETURNED EVIDENCE.** The SUBMANAGER synthesizes specialist outputs after they exist; it does not manufacture the missing evidence plane itself.
 
 A SUBMANAGER MUST NOT:
 - redefine project outcome/roadmap;
@@ -223,7 +233,28 @@ A SUBMANAGER MUST NOT:
 - accept project or day gates;
 - change canonical architecture without primary-manager/owner review;
 - ask a RESEARCHER to reconstruct the whole project;
-- become a hidden autonomous project manager.
+- become a hidden autonomous project manager;
+- become a hidden worker swarm.
+
+Anti-pattern:
+
+```text
+WRONG
+SUBMANAGER
+  -> audits source itself
+  -> performs deep research itself
+  -> implements or QA-checks delegated work itself
+  -> synthesizes its own evidence
+
+CORRECT
+SUBMANAGER
+  -> TOP audits internal source
+  -> reviews TOP result
+  -> RESEARCHER gathers external evidence
+  -> reviews RESEARCHER result
+  -> reconciles returned evidence
+  -> reports synthesis to PRIMARY MANAGER
+```
 
 The primary manager remains responsible for cross-workstream consistency and final synthesis.
 
