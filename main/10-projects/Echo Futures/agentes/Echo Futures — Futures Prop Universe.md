@@ -3,13 +3,13 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: paused
+status: active
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Futures]]"
 start: 2026-09-25
 due: 2026-10-02
-progress: 0
+progress: 45
 repo: "xKoRx/echo-futures"
 aliases:
   - Echo Futures Prop Universe
@@ -142,6 +142,21 @@ Capture rule scope:
 - CROSS_PROVIDER.
 
 Later use by another household member/user must be evaluated from each provider's explicit policies; do not assume software-level separation makes coordinated/copy trading permitted.
+
+## Manager review — 2026-09-26
+
+Research draft received:
+`main/30-resources/futures/FUTURES PROP UNIVERSE — FIRST-PARTY DOMAIN FORENSICS.md`
+
+Verdict:
+`C_PROP_UNIVERSE_RESEARCH = BLOCKED_EVIDENCE`
+
+The draft is useful only as a taxonomy seed. It failed the acceptance gate because it omitted required providers with available first-party evidence, materially misclassified automation/API status, failed to produce five verified automation-compatible candidates, and did not provide claim-level source/date evidence.
+
+Repair must revalidate at minimum:
+Topstep, Lucid, MFFU, TradeDay, FundedNext, Tradeify, Alpha Futures, TakeProfitTrader.
+
+Do not progress to execution transport selection/research D until the corrected program/platform/API matrix is accepted.
 
 ## Gate
 
