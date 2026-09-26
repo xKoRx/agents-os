@@ -38,7 +38,10 @@ updated: "2026-09-26"
 > - Strategy decide **qué** hacer y nunca sizing. MoneyManagement decide **cuánto/cómo** ejecutar para cada AccountStrategy.
 > - Signal debe tener expiración explícita; una señal expirada no materializa Operation. `MaxOpenDelaySeconds` legacy puede adaptarse a esa semántica.
 > - MoneyManagement administra la Operation durante todo el lifecycle y debe poder reaccionar a fills/orders, account/instrument state, lifecycle/session events y market data/bars MTF. La topología física/state owner no se congela en D1.
-> - Un Signal de apertura aceptado puede materializar una Operation por AccountStrategy. Signals posteriores de gestión/salida pueden actuar sobre Operations existentes sin crear una nueva Operation.
+> - Un Signal de apertura aceptado **materializa la Operation antes de MoneyManagement y antes de cualquier Order/Fill**.
+> - Si MoneyManagement no puede resolver una acción ejecutable, rechaza/falla, o la Signal/entry expira sin Fill, la Operation igualmente termina con motivo explícito para trazabilidad.
+> - Una Operation sin Fill no implica Position física.
+> - Signals posteriores de gestión/salida pueden actuar sobre Operations existentes sin crear una nueva Operation.
 > - Operation puede producir N Orders; Order puede producir 0..N Fills; Fill es inmutable.
 > - Position pertenece a **Account** y representa una proyección/snapshot del estado físico observado/reconciliado; no es Operation ni se eleva a aggregate rico sin requisito concreto.
 > - Trade sigue siendo resultado analítico cerrado derivado de Operation y alimenta trade_journal/The Lab.
