@@ -54,6 +54,53 @@ updated: "2026-09-26"
 - **Fase 1 Shot 1 (2026-09-24/25):** baseline operacional = **release 0.2.107 desde `d9032ff8`** (commit release `6482173`); runtime flota 0.2.107 verificado 3/3. **CORRECCIÓN DE MANDATO (2026-09-25): Cohort 001 = 727 estrategias NDX H1 LONG de Zeus/Retester/"in retest cross"** (la interpretación previa 11 XAUUSD running portfolio quedó `INVALIDATED_AS_COHORT001_BY_OWNER`); grupo resuelto **BR_G1** (`Build_BR_G1_H1.cfx`, `STRONGLY_CORROBORATED` por cobertura 15/15 del universo de bloques de las 727; el Builder ACTUAL == plantilla G4, estado posterior que no originó la cohorte — divergencia documentada para decisión owner). C1 = CANDIDATE: 727/727 publicados+adoptados, manifest sellado 727/727 SHA verificado, FlowRun `1a4d66d6`, wave técnica `wave1b`. C2 = BLOCKED_EXTERNAL: licencia flota RENOVADA 2026-09-24 21:37 local pero las GUI SQX del owner abiertas en 3/3 hosts impiden `sqcli` CLI (single-instance) ⇒ enriquecimiento en retry. Findings abiertos: go.work.sum (SHOT2/SHOT3); deployer/watcher sin supervisión durable (BEFORE_C6); deadline del import_intake no alcanza para cohorts grandes + watchdog auto-upgrade mata binarios candidate-local (fix en rama `fix/watcher-import-intake-deadline` pusheada, 2 knobs con defaults intactos — review owner). Detalle: `~/aranea/work/forge-shot1-cohort001-fix-20260925/EVIDENCE-COHORT001-FIX.md` y `forge-shot1-20260924/EVIDENCE-SHOT1.md`.
 - **Prework ambiente Fase 1 (2026-09-24, corrección del owner): `PREWORK_DAEDALUS_SQX_LICENSE = SUPERSEDED_BY_OWNER_ENVIRONMENT_CORRECTION` — la licencia SQX en Daedalus ya no es blocker.** El owner corrigió el modelo de ambientes ([[Echo + Echo Forge — Environment Contract]] §0): **Echo Forge tiene un único ambiente operacional** —actualmente configurado como production, con flota SQX Zeus/Hera/Kronos + worker Windows Kronos— y sus pruebas físicas, campañas y certificaciones se ejecutan allí; no existe obligación de SQX/worker/licencia DEV en Daedalus ni de `dev-win`, y `ENV=production` de Forge es el ambiente canónico, no un defecto. Campaign 001 no requiere SQX local en Daedalus: se ejecuta usando el runtime operacional Forge existente según la capacidad que cada stage requiera. Las tres sesiones de prework del 2026-09-24 se conservan en Bitácora como investigación realizada bajo una premisa de ambiente posteriormente corregida. Estado resultante del prework: **`PREWORK_REQUIRES_RUNTIME_REVALIDATION`** — la infraestructura operacional está lista (flota operable y certificada; G7 físico PASS sobre Kronos) y la única revalidación pendiente (runtime desplegado RC 0.2.106 @ `d07cc69` vs baseline `d9032ff8`) pertenece a C0, primer hito de Fase 1; no se abre otro prework. `PREWORK_MT5 = DEFERRED_UNTIL_C6` se mantiene por alcance de stage (C0–C2 sólo requieren SQX), no por ambiente. Dinero real intacto: “Forge production” ≠ autorización económica. **NEXT EXACT: iniciar Shot 1 de Fase 1 de Echo Forge — Operación Real V2 sobre el ambiente operacional Forge canónico. Shot 1 trabaja el milestone único C0+C1+C2. No avanzar C3.**
 
+
+## 🧪 Funnel operativo congelado — Precision → Top5 → Full+Optimizer (owner 2026-09-26)
+
+**Objetivo económico/operacional:** evitar ejecutar validaciones SQX caras sobre toda la cohorte. `Retester Full` puede costar ~1 hora por estrategia; por lo tanto **NO se ejecuta sobre las 727**.
+
+Flujo congelado para la próxima campaña:
+
+```text
+Cohort 001 / estrategias elegibles
+        ↓
+Retester Precision — GLOBAL sobre TODAS
+        ↓
+evidence/métricas Precision
+        ↓
+Ranking Precision — PER_LOGICAL_TYPE
+        ↓
+TopProjection top_n=5 por logical type
+        ↓
+GROUP / batch_size=1
+        ├─ Retester Full
+        └─ Optimizer
+              ↓
+          evaluate_wfm
+              ↓
+        select_robust_run
+```
+
+Decisiones owner congeladas:
+
+- **Precision es global:** toda estrategia elegible del cohort debe pasar por `RetesterPrecision.cfx`; no se usa el ranking histórico/importado para reducir antes de Precision.
+- **Existe un único ranking cross-strategy antes del subflujo caro:** usa las métricas recalculadas por Precision y selecciona **top_n=5 por logical type**.
+- **NO existe un segundo ranking cross-strategy entre Retester Full y Optimizer.** Cada estrategia seleccionada entra al mismo subflujo `Retester Full → Optimizer`.
+- El ranking Precision arranca con el baseline existente `weighted_combination_minmax.v1@1.0.0` (PF BENEFIT 30 / Sharpe BENEFIT 30 / DD COST 40) para poder probar comportamiento antes de iterarlo; cualquier cambio posterior será versionado.
+- Después del Optimizer la decisión es **intra-strategy**, no ranking cross-strategy: `evaluate_wfm → select_robust_run` usa la política robusta vigente (`wfm_robust_selection@1.0.0`) para elegir un set de parámetros/run robusto.
+- **Auditoría obligatoria del Optimizer:** por cada StrategyRef que entra, Forge debe exponer/preservar **≥10 candidatos de optimización** con parámetros + métricas + WFM/evidencia suficiente para revisar qué entró, qué produjo el Optimizer, qué fue descartado y por qué se eligió el run final. Si el Optimizer produce <10 candidatos válidos, se reporta explícitamente; no se oculta detrás del selected run.
+- STOP de la próxima prueba: después de `select_robust_run` y del packet de auditoría. **No Final Reretester, no MT5** todavía.
+
+**Gap técnico confirmado antes de ejecutar:** el ranking temprano vigente sólo registra como producers durables a Builder e Import. Un Retester Precision aún no puede alimentar directamente Classification/Ranking como producer contractual. La próxima prueba debe demostrar y, si hace falta, implementar la extensión mínima para que la evidence del Retester Precision alimente el mismo ranking sin reimport hacks ni pipeline paralelo.
+
+Artifacts owner pendientes de freeze al inicio de la próxima ejecución:
+
+- `RetesterPrecision.cfx`
+- `RetesterFull.cfx`
+- `Optimizer.cfx`
+
+Cada uno se congela por host/path exacto + SHA256 + size antes de dispatch.
+
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
@@ -148,6 +195,8 @@ La comparación clave es qué predijo C4/C5, qué sobrevivió C6 y qué métrica
 > - [ ] **C3** Revisar Classification real y aceptar/iterar sus clases #owner/me #type/research #area/echo
 > - [ ] **C4** Revisar Ranking real: top/bottom/cutoffs/explicaciones y aceptar o iterar scoring #owner/me #type/research #area/echo
 > - [ ] **C5** Revisar Selection real: selected/rejected/falsos positivos-negativos y aceptar SelectionSnapshot #owner/me #type/research #area/echo
+> - [ ] **C5.1** Retester Precision global + ranking sobre métricas Precision + TopProjection top_n=5 por logical type #owner/me #type/dev #area/echo — FROZEN 2026-09-26; requiere CFX owner + habilitar Retester Precision como producer contractual del ranking si el audit confirma el gap.
+> - [ ] **C5.2** Subflujo caro sólo sobre TopProjection: Retester Full → Optimizer → evaluate_wfm → select_robust_run #owner/me #type/dev #area/echo — exigir ≥10 optimizer candidates auditables por StrategyRef y packet entradas/salidas; STOP antes de Final Reretester/MT5.
 > - [ ] **C6** Ejecutar Campaña B sobre el SelectionSnapshot aceptado (SQX tick OOS → MT5 real ticks) #owner/me #type/dev #area/echo
 > - [ ] **C7** Iterar Classification/Ranking/Selection hasta baseline empírico aceptado #owner/me #type/research #area/echo
 > - [ ] **C8** Diseñar e implementar Integration V2 Forge→Echo según necesidades observadas del nuevo The Lab #owner/me #type/dev #area/echo
@@ -169,6 +218,8 @@ La comparación clave es qué predijo C4/C5, qué sobrevivió C6 y qué métrica
 - **2026-09-24/25 (5.ª sesión — Fase 1 Shot 1: C0+C1+C2): `SHOT1_BLOCKED_EXTERNAL` — C0=CANDIDATE_PASS, C1=CANDIDATE_PASS, C2=BLOCKED_EXTERNAL.** Sesión ZCode/GLM-5.3-Flash en Daedalus; evidence pack `~/aranea/work/forge-shot1-20260924/EVIDENCE-SHOT1.md`. **C0:** runtime alineado al source aceptado — release **0.2.107** construida desde `d9032ff8` por mecanismo canónico (`deploy_release.sh --release-only`; screen `deployer` estaba muerto desde 17:47Z, re-levantado), publicada a MinIO y aplicada por stager en Zeus/Hera/Kronos 3/3 (CURRENT=0.2.107, SHA `6dccbde3…` idéntico build/MinIO/flota, workers polling `sqx-prop/sqx-main-queue`); commit de release `6482173` pusheado (master=origin/master=6482173; delta = sólo `deploy/manifest.json`). **C1:** Cohort 001 = **11 estrategias XAUUSD L H1 auténticas del portafolio running del owner** (MinIO `running/wave_2/xau/base/`, 2025-10-09; interpretación de "elegidas por el owner" declarada explícitamente para review; NO fue la cohorte G7); Watcher Import real con el binario 0.2.107 sobre ambiente operacional (ETCD production): pipeline watcher 7/7, freeze manifest `watcher-import-freeze-manifest.v1` sellado write-once, publicación byte-exacta 11/11 (etags == source), adopción IMPORTED + membership, lineage N/N = 11/11 verificado (MinIO + PG + manifest); FlowRun `f87fde30-7730-4619-a308-b225714811f4`, workflow `sqx-main-v1-660c32f1…` — **ese Cohort 001 y su FlowRun quedan INVALIDATED_AS_COHORT001_BY_OWNER (corrección de mandato, 6.ª sesión)**. **C2:** enrichment físico (stage `import@sqx-import.v1` → sqcli → EchoForgeOverviewExporter) **BLOQUEADO: la licencia SQX de la flota está vencida vendor-side** ("Trial license expired" en Zeus/Hera/Kronos, license.db intacto desde sep-10, verificación online; pasó G7 el 09-23) — blocker externo único, sólo el owner puede renovarla; el workflow queda en RUNNING con retry y el enrichment se completa solo al renovar. Entregado igualmente: inventario de datos SQX→Forge (code-derived, etiquetado; TradeList = MISSING por diseño en este stage), sample de 5 estrategias con checks exactos del owner y trust matrix provisional. Findings: go.work.sum stale reproducido con causa exacta (go1.27.1 normaliza ⇒ vcs.modified=true; resolución canónica = commitear sum normalizado, SHOT2/SHOT3); deployer/watcher sin servicio durable (BEFORE_C6); OTEL .45 caído; Mongo RO MCP caído; jar del plugin difiere Zeus≠Hera. Repo sin delta de producto; helpers efímeros eliminados. **NEXT EXACT: (1) owner renueva la licencia SQX de flota; (2) verificar que el FlowRun `f87fde30` complete el enrichment (o re-despachar el flujo); (3) ejecutar el sample C2 y llenar trust matrix + diferencias reales; (4) ejecutar Shot 2 — Independent Verification de Fase 1 sobre el candidate C0+C1(+C2) de esta sesión: falsificar runtime/source exactness, lineage N/N y SQX evidence trust; no corregir producto durante Shot 2.**
 - **2026-09-24 (4.ª sesión — corrección canónica de ambientes, mandato owner one-shot): `ENVIRONMENT_MODEL_CORRECTED`.** El owner corrigió el modelo conceptual: Echo y Echo Forge NO comparten modelo de ambientes. Echo conserva DEV/PROD; **Forge tiene UN solo ambiente operacional** (production) — flota SQX Zeus/Hera/Kronos + worker Windows Kronos + dependencias persistentes del runtime real — y sus pruebas físicas, campañas y certificaciones se ejecutan allí; Daedalus queda como workspace/coding agents/builds, no como runtime SQX/MT5 de Forge; `ENV=production` de Forge es canónico, no fallback/leak/defecto; y “Forge production” no autoriza dinero real (gates económicos independientes). Corregido: [[Echo + Echo Forge — Environment Contract]] (§0 nuevo, §1 selección de ambiente, §2 topología, §3, §4 matriz, §5 gates, §5.8 banner SUPERSEDED + corrección factual de SHAs de binarios `35821eb9…/251f25e2…` → vigentes `7af048f0…/b2e9c227…`, §7 reconciliación), router `aranea-agent-dev` (selección de ambiente por producto) y esta nota (estado, decisión R9, bitácora). `PREWORK_BLOCKED_AUTHORITY` y la licencia Daedalus = `SUPERSEDED_BY_OWNER_ENVIRONMENT_CORRECTION`; `PREWORK_MT5 = DEFERRED_UNTIL_C6` se mantiene por alcance de stage (C0–C2 sólo requieren SQX). Estado del prework = `PREWORK_REQUIRES_RUNTIME_REVALIDATION`, con esa revalidación absorbida por C0 (RC 0.2.106 @ `d07cc69` vs baseline `d9032ff8`). Sin mutación de infraestructura, ETCD, workers ni repos de producto. **NEXT EXACT: iniciar Shot 1 de Fase 1 de Echo Forge — Operación Real V2 sobre el ambiente operacional Forge canónico. Shot 1 trabaja el milestone único C0+C1+C2. No avanzar C3.**
 
+- **2026-09-26 (freeze owner — siguiente campaña Precision→Full+Optimizer):** owner valida funcionalmente la pieza de ranking wave1c y congela el siguiente funnel por costo: **Retester Precision GLOBAL sobre toda la cohorte elegible → ranking sobre las métricas Precision → top_n=5 por logical type → subflujo caro por estrategia seleccionada: Retester Full → Optimizer → evaluate_wfm → select_robust_run**. Se elimina la idea de un “segundo ranking” entre Full y Optimizer: esa etapa no existe en el flujo canónico y no aporta al objetivo. El ranking Precision partirá con `weighted_combination_minmax.v1@1.0.0` 30/30/40 como baseline experimental; la selección post-Optimizer es distinta e intra-strategy (`wfm_robust_selection@1.0.0`). Requirement owner: **≥10 optimizer candidates auditables por StrategyRef cuando existan**, con params/métricas/WFM y trazabilidad entrada→candidatos→selected; STOP antes de Final Reretester/MT5. Gap técnico previo: ranking durable actual acepta producer Builder|Import, no Retester; próxima ejecución debe cerrar ese boundary correctamente. Owner preparará `RetesterPrecision.cfx`, `RetesterFull.cfx` y `Optimizer.cfx` y se congelarán por SHA/path antes del dispatch.
+
 ## 🧭 Decisiones
 
 - **R1 — Real campaign = product authority.** Los tests certifican contratos y regresiones; no certifican por sí solos la utilidad del algoritmo.
@@ -180,6 +231,9 @@ La comparación clave es qué predijo C4/C5, qué sobrevivió C6 y qué métrica
 - **R7 — Branches cortas.** Findings de campañas reales → branch acotada → implementación → verificación independiente → master. No acumular ramas largas.
 - **R8 — No optimizar antes de observar.** No crear dashboards, feedback automation o nuevos scores antes de que C2–C5 demuestren una necesidad concreta.
 - **R9 — Modelo de ambientes Forge (decisión owner 2026-09-24).** Forge tiene un único ambiente operacional (production) y sus pruebas físicas se ejecutan allí: flota SQX Zeus/Hera/Kronos + worker Windows Kronos, según la capacidad que el stage requiera. No se construye una separación DEV/PROD para Forge; no hay requisito de SQX, licencia ni worker DEV en Daedalus ni de `dev-win`; `ENV=production` es el ambiente canónico, no un defecto. La seguridad la determinan el scope y el ownership del recurso (aislamiento de candidatos por cola/prefijo/instancia candidate-local, flota activa intacta — patrón G7), y el dinero real sigue siendo gate owner independiente. Detalle canónico: [[Echo + Echo Forge — Environment Contract]] §0.
+
+- **R10 — Funnel económico Precision→Full+Optimizer (owner 2026-09-26).** Precision corre global sobre toda la cohorte elegible; recién sus métricas alimentan el ranking cross-strategy. El corte caro es `top_n=5 PER_LOGICAL_TYPE`; sólo esa TopProjection entra al subflujo `Retester Full → Optimizer`. No existe un segundo ranking cross-strategy entre Full y Optimizer.
+- **R11 — Optimizer debe ser auditable, no caja negra.** Por cada estrategia que entra al Optimizer se deben preservar/exponer al menos 10 candidatos válidos cuando existan, con parámetros, métricas y evidencia WFM; `select_robust_run` es una selección intra-strategy distinta del ranking 30/30/40 y debe poder explicarse. La siguiente campaña se detiene después de esta selección; Final Reretester/MT5 quedan posteriores.
 
 ## 🔗 Docs / Links
 
