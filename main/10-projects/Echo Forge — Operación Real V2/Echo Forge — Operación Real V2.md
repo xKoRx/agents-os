@@ -186,6 +186,7 @@ La comparación clave es qué predijo C4/C5, qué sobrevivió C6 y qué métrica
 - Predecesor: [[Echo Forge]]
 - Import certificado: [[Echo Forge — Import Task V1]]
 - Capacidad Campaña B: [[Echo Forge — Campaña B]]
+- **Referencia manager — Shot 1 wave1c (2026-09-26):** `artifacts/shot1-wave1c-20260926/` → `RANKING-AUDIT.csv` (727 filas, SHA256 `de942ff1f5e3e88b…`) y `RANKING-REVIEW.md` (review owner, SHA256 `6576cfe14e1f50f9…`). Copias íntegras del packet; los complementos (`RANKING-PRE-RETESTER.md`, `RETESTER-RESULTS.csv`, `RANKING-AUDIT.json`, `EVIDENCE-WAVE1C.md`) viven en `~/aranea/work/forge-shot1-wave1c-20260926/artifacts/`.
 - Área: [[Echo]]
 - Repos: `xKoRx/symphony` · `xKoRx/echo`
 - Symphony specs: `FEAT-SQX-IMPORT-TASK-V1` · `FEAT-SQX-IMPORT-CAMPAIGN-B` · `FEAT-SQX-CROSS-FLOWRUN-REUSE`
