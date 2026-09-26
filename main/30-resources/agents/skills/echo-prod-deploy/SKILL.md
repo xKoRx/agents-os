@@ -27,6 +27,7 @@ tags:
   - scope/area
   - area/aranea
   - area/echo
+  - tech/agents-os
   - action/deploy
 ---
 
