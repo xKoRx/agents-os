@@ -825,6 +825,45 @@ La V2 no ejecutó el mandato C-R1 de reparación. Defectos materiales:
 - El **corpus operacional** sí necesita una reparación final estrictamente tabular antes de D, porque D depende de automation + platform + API entitlement por ProviderProgram.
 - No volver a pedir un informe narrativo amplio. La siguiente reparación debe ser un evidence table cerrado sobre fuentes ya conocidas.
 
+### Front C authoritative matrix manager review — 2026-09-26
+
+Research artifact: `main/30-resources/futures/FUTURES PROP UNIVERSE — AUTHORITATIVE EVIDENCE MATRIX.md`.
+
+**Manager verdict:** `C_PROP_UNIVERSE_RESEARCH = ACCEPTED_WITH_MANAGER_CORRECTIONS`.
+
+El artefacto todavía incumple formalmente parte del mandato C-R2 —declara no tener acceso a V1/V2 aunque existen en la misma carpeta, su evidence appendix no contiene URLs literales por claim y deja Lucid/Tradeify como UNKNOWN pese a fuentes first-party vigentes—, pero esos defectos ya no justifican otro worker: el manager revalidó directamente las fuentes oficiales y la matriz es suficiente para habilitar Front D con UNKNOWNs honestos donde corresponde.
+
+**Correcciones manager autoritativas:**
+- **Lucid Trading automation = ALLOWED.** First-party: `https://support.lucidtrading.com/en/articles/11404728-other-trading-activities` — “Automated trading systems and trade copiers are permitted”.
+- **Lucid platforms/connectivity:** CQG: NinjaTrader, Tradovate, TradingView; Rithmic: MotiveWave, Quantower, Tradesea, Sierra Chart, Jigsaw, Bookmap, ATAS, R|Trader Pro, MultiCharts. First-party: `https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms`. Direct developer API entitlement permanece `UNKNOWN`.
+- **Tradeify automation = CONDITIONAL.** Bots/algorithms permitidos sólo con sole ownership demostrable, exclusive use dentro de Tradeify y no-HFT; uso cross-firm prohibido. First-party: `https://help.tradeify.co/en/articles/10468318-guidelines-for-traders`.
+- **Tradeify platforms/connectivity:** broker choice Tradovate, Rithmic o WealthCharts; Tradovate da Tradovate/NinjaTrader/TradingView; Rithmic da Tradesea/Quantower/Sierra Chart/R|Trader. First-party: `https://help.tradeify.co/en/articles/10468221-supported-platforms`. Direct developer API entitlement permanece `UNKNOWN`.
+- **Topstep:** Trading Combine/Express simulated = automation/API `ALLOWED_CONDITIONAL`; Live Funded ProjectX API = `FORBIDDEN`; personal-device/no-VPS order-flow constraint. First-party: `https://help.topstep.com/en/articles/11187768-topstepx-api-access`.
+- **MFFU:** automated strategies propias = `ALLOWED_CONDITIONAL`; HFT y simulated-fill exploitation prohibidos. First-party: `https://help.myfundedfutures.com/en/articles/8444599-fair-play-and-prohibited-trading-practices`.
+- **TradeDay:** automation/ATS = `ALLOWED_CONDITIONAL` mediante plataformas soportadas; direct platform/Tradovate API = `FORBIDDEN`; third-party purchased bots prohibidos. First-party: `https://tradeday.freshdesk.com/en/support/solutions/articles/103000085101-automated-algo-and-bot-trading`.
+- **FundedNext Futures:** Challenge + FundedNext Account automation = `ALLOWED`; latency abuse/order flooding prohibidos. First-party: `https://helpfutures.fundednext.com/en/articles/14298560-is-the-usage-of-automated-trading-systems-eas-and-bots-allowed-in-fundednext-futures`.
+- **Alpha Futures:** full automation/AI/bots = `FORBIDDEN`; semi-auto signals con ejecución/gestión manual permitidos. First-party: `https://help.alpha-futures.com/en/articles/9508585-prohibited-trading-practices`.
+- **TakeProfitTrader:** Test/PRO/PRO+ bots/automated/algo execution = `FORBIDDEN`. First-party: `https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP`.
+
+**Operational cohort suficiente para Front D:**
+- Topstep Trading Combine / Express Funded — ProjectX direct candidate.
+- Lucid — CQG/Rithmic platform families; direct API entitlement UNKNOWN.
+- MFFU — automation allowed; supported platforms proven; direct API entitlement UNKNOWN.
+- TradeDay — automation through supported platforms; direct API forbidden.
+- FundedNext — automation allowed; platform path includes Tradovate ecosystem; direct API entitlement UNKNOWN.
+- Tradeify — automation conditional; Tradovate/Rithmic/WealthCharts; direct API entitlement UNKNOWN.
+- Alpha/TPT quedan explícitamente fuera de la cohorte full-auto V1 por rule incompatibility.
+
+**Final Front C readiness:**
+- Q10 Provider model = `D1_INPUT_SUFFICIENT_FOR_D2`.
+- Provider rule-family discovery = `D1_INPUT_SUFFICIENT_FOR_D2`.
+- Operational automation/platform/connectivity corpus = `SUFFICIENT_FOR_FRONT_D`.
+- Direct API entitlement conserva `UNKNOWN` donde no existe first-party; Front D debe resolver feasibility por transport sin promocionar platform access a API.
+- **FRONT C = D1_MANAGER_REVIEW_CLOSED**.
+- **FRONT D = READY_TO_EXECUTE**.
+
+No se congela aquí selección de provider, transport ni cohort comercial.
+
 ## 🏦 Futures Prop Universe
 
 El producto debe diseñarse con conocimiento de un universo amplio de futures prop firms, no sólo Topstep.
