@@ -17,13 +17,36 @@ tags:
   - architecture-analysis
   - research
 created: "2026-09-25"
-updated: "2026-09-25"
+updated: "2026-09-26"
 ---
 
 # Echo Futures — D1 Analysis Pack
 
 > [!warning]+ OWNER CORRECTION — PRELIMINARY MANAGER ADVANCE
 > Este pack **NO cierra D1, NO resuelve Q1 por autoridad del owner y NO habilita D2**. Fue producido prematuramente por el manager al ejecutar trabajo que debía haber coordinado/delegado. Se conserva íntegramente como adelanto de evidencia y como input crítico para revisión, pero todas sus conclusiones y readiness labels son **CANDIDATE/PRELIMINARY** hasta que el manager las recorra con el owner, despache los deep researches/auditorías que correspondan y cierre el checklist D1 en conjunto.
+
+> [!important]+ OWNER REVIEW ADDENDUM — 2026-09-26
+> Este addendum **tiene precedencia** sobre terminología/propuestas anteriores dentro de este pack cuando exista contradicción.
+>
+> - Nombre canónico: **MoneyManagement**, no CapitalManagement. Cualquier mención previa a CapitalManagement en este pack debe leerse como antecedente histórico del mismo concepto, salvo que el contexto hable específicamente del nombre legacy.
+> - **StrategyEngine** queda aceptado como nombre del runtime de estrategias internas. La forma/nombre de la implementación concreta de cada estrategia queda abierta para D2.
+> - Echo debe converger a motores genéricos cross-market; no debe existir lógica de dominio separada Forex/Futures. Los motores transversales identificados son StrategyEngine y Market Feed Engine.
+> - El nuevo generic execution path nace desde **canonical Signal**. `ReferenceEvent` sigue siendo legacy/source-specific y evidencia de una operación reference ya ejecutada.
+> - El adapter `ReferenceEvent -> Signal` vive en **Echo Core**, en un boundary explícito antes del motor genérico. Bridge permanece edge/transport dummy.
+> - La migración completa del execution path reference queda en **DT-EF-REFERENCE-SIGNAL-03 — DEFERRED_MANDATORY**; lo incremental es la migración legacy, no crear dos motores finales.
+> - Signal puede representar intents `OPEN`, `REDUCE`, `CLOSE`, `CLOSE_ALL` (enum final D2). Strategy puede emitir 0..N Signals y varias por una misma evaluación; si el orden altera el resultado, debe existir procesamiento determinístico.
+> - Strategy decide **qué** hacer y nunca sizing. MoneyManagement decide **cuánto/cómo** ejecutar para cada AccountStrategy.
+> - Signal debe tener expiración explícita; una señal expirada no materializa Operation. `MaxOpenDelaySeconds` legacy puede adaptarse a esa semántica.
+> - MoneyManagement administra la Operation durante todo el lifecycle y debe poder reaccionar a fills/orders, account/instrument state, lifecycle/session events y market data/bars MTF. La topología física/state owner no se congela en D1.
+> - Un Signal de apertura aceptado puede materializar una Operation por AccountStrategy. Signals posteriores de gestión/salida pueden actuar sobre Operations existentes sin crear una nueva Operation.
+> - Operation puede producir N Orders; Order puede producir 0..N Fills; Fill es inmutable.
+> - Position pertenece a **Account** y representa una proyección/snapshot del estado físico observado/reconciliado; no es Operation ni se eleva a aggregate rico sin requisito concreto.
+> - Trade sigue siendo resultado analítico cerrado derivado de Operation y alimenta trade_journal/The Lab.
+> - El dominio nuevo no puede usar pips como unidad universal. Futures V1 requiere unidades genéricas basadas en instrument/contract specs; el legacy Forex puede adaptarse. La limpieza total de campos/workarounds pips queda como deuda candidata pendiente de ID/alcance final del owner.
+> - Política de refactor: si el cambio correcto es acotado se hace en V1; si amenaza V1, seam limpio + DT explícita de Iteración 2. KISS **no** justifica romper SOLID/Clean boundaries.
+> - Regla obligatoria del manager: ante una brecha material de requisitos, identities, lifecycle, ownership o semántica de dominio, **preguntar al owner antes de decidir; no asumir**.
+> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position/Trade = IN_PROGRESS**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
+
 
 ## Gate
 
