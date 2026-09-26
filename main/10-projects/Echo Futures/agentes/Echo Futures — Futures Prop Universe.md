@@ -3,13 +3,13 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: complete
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Futures]]"
 start: 2026-09-25
 due: 2026-10-02
-progress: 65
+progress: 100
 repo: "xKoRx/echo-futures"
 aliases:
   - Echo Futures Prop Universe
@@ -176,9 +176,33 @@ The remaining gate is operational evidence for transport research:
 
 Next repair must be table-first, evidence-only, and should not repeat broad provider research.
 
+### Authoritative matrix review — 2026-09-26
+
+Received:
+`main/30-resources/futures/FUTURES PROP UNIVERSE — AUTHORITATIVE EVIDENCE MATRIX.md`
+
+Manager verdict:
+`C_PROP_UNIVERSE_RESEARCH = ACCEPTED_WITH_MANAGER_CORRECTIONS`.
+
+The matrix still had formal evidence-pack defects and left Lucid/Tradeify incorrectly UNKNOWN. Manager revalidated the supplied first-party sources directly and corrected those rows.
+
+Accepted operational set for subsequent transport research:
+- Topstep simulated / Express: automation + ProjectX API conditional; Live API forbidden.
+- Lucid: automation allowed; CQG/Rithmic platforms; direct API UNKNOWN.
+- MFFU: automation allowed conditional; API entitlement UNKNOWN.
+- TradeDay: ATS via supported platform allowed; direct API forbidden.
+- FundedNext: automation allowed; direct API entitlement UNKNOWN.
+- Tradeify: automation conditional; Tradovate/Rithmic/WealthCharts; direct API UNKNOWN.
+- Alpha and TakeProfitTrader: full automation forbidden and excluded from V1 full-auto transport cohort.
+
+No further provider census is required for D1. UNKNOWN API entitlement is preserved as UNKNOWN and becomes a transport-feasibility question, not permission-by-inference.
+
+**Front C = D1_MANAGER_REVIEW_CLOSED.**
+**Front D = READY_TO_EXECUTE.**
+
 ## Gate
 
-`FUTURES_PROP_UNIVERSE_PASS = REVIEW`
+`FUTURES_PROP_UNIVERSE_PASS = D1_MANAGER_REVIEW_CLOSED`
 
 Acceptance requires:
 - broad current census;
