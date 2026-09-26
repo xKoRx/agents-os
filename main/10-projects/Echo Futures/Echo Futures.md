@@ -314,7 +314,7 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 
 **Estado de revisión**
 - A1 Strategy/Signal/AccountStrategy/MoneyManagement: **MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**.
-- A2 Operation/Order/Fill/Position/Trade: **IN_PROGRESS**.
+- A2 Operation/Order/Fill/Position: **IN_PROGRESS**. Trade/Lab integration: **DEFERRED_TO_THE_LAB**.
 - D1 completo sigue **IN_PROGRESS** y `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
 
 ### A2 evidence review — Trade / trade_journal / The Lab — 2026-09-26
@@ -335,7 +335,16 @@ Revisión explícita del proyecto The Lab V3 y source Echo `master@372af59a7b836
 - Posible seam a evaluar en D2: conservar Order/Fill como detalle operacional y proyectar al cierre un Trade/resumen por Operation para journal/canonical history. La semántica exacta de entry/exit/volume agregados y tratamiento de partial reductions queda abierta.
 - Pregunta adicional material: para estrategias internas sin Reference externo, definir qué resultado constituye la historia canónica de estrategia que alimentará The Lab. No asumir que una AccountStrategy de ejecución cualquiera se convierte automáticamente en la autoridad analítica de Strategy Quality.
 
-**Estado:** evidencia suficiente para descartar `Position` como autoridad primaria de identidad de Trade, pero **Trade boundary exacto permanece OPEN en A2** hasta decisión owner sobre Operation->Trade y compatibilidad con The Lab/strategy history.
+**Estado superseded por owner — 2026-09-26:** el análisis de `Trade` y su proyección hacia `trade_journal` / `canonical_operations` / The Lab queda **DEFERRED_TO_THE_LAB**. No bloquea Echo Futures D1/D2 ni el runtime V1. The Lab está en construcción y puede romper/rediseñar su modelo para alinearse posteriormente con las nuevas abstracciones canónicas de Echo.
+
+**Decisión vigente:**
+- A2 continúa sólo con `Operation / Order / Fill / Position`.
+- No se congela todavía `Operation -> Trade`, `Position -> Trade` ni el shape de Trade.
+- No se adapta el nuevo runtime para conservar el modelo analítico simplificado actual de The Lab.
+- `trade_journal` y `canonical_operations` actuales se consideran contexto/legacy analytical boundaries, no autoridad sobre el nuevo lifecycle.
+- La integración Trade/The Lab se reabre en el propio proyecto The Lab cuando Echo Futures haya estabilizado las abstracciones de runtime.
+- El futuro análisis debe partir del nuevo modelo de Echo, no del supuesto histórico Reference→Execution/MetaTrader.
+- La arquitectura Futures debe seguir siendo **cross-market**, evitando semántica específica de Futures en el Core común cuando no sea necesaria, para permitir una evolución posterior hacia mercados como US smallcaps sin crear otro motor.
 
 ### Requisitos/decisiones del owner ya establecidos
 
@@ -1059,6 +1068,6 @@ Estado corregido al cierre:
 - la skill [[technical-project-manager]] fue corregida para manager-mode: owner authority, global→detalle, delegación por prompts maestros y no self-accept de gates;
 - no se modificó código productivo y D2 NO comenzó.
 
-**Next exact milestone:** continuar D1/A2 con owner+manager: definir el lifecycle de `Operation` (momento de nacimiento, estados mínimos, entry que no llena/reject/expiry y criterio de cierre) sin asumir decisiones no dadas por el owner.
+**Next exact milestone:** continuar D1/A2 con owner+manager sobre `Operation / Order / Fill / Position`: completar lifecycle de Operation y luego Order/Fill semantics. Trade/The Lab queda fuera del camino crítico hasta reabrirse en el proyecto The Lab.
 
 D2 sólo se habilita después de que el manager recorra el checklist D1 completo con el owner y éste acepte el gate.
