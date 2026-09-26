@@ -41,6 +41,7 @@ updated: "2026-09-26"
 > - Un Signal de apertura aceptado **materializa la Operation antes de MoneyManagement y antes de cualquier Order/Fill**.
 > - Si MoneyManagement no puede resolver una acción ejecutable, rechaza/falla, o la Signal/entry expira sin Fill, la Operation igualmente termina con motivo explícito para trazabilidad.
 > - Una Operation sin Fill no implica Position física.
+> - Lifecycle conceptual aceptado hasta ahora: `CREATED` → `PENDING_ENTRY` → `ACTIVE` → `TERMINAL`, permitiendo terminales anticipados desde CREATED/PENDING_ENTRY. `PENDING_ENTRY` significa que existe una Order de entrada viva/working pero todavía no existe Fill; el trigger exacto de ACTIVE y partial-fill semantics siguen en checkpoint owner.
 > - Signals posteriores de gestión/salida pueden actuar sobre Operations existentes sin crear una nueva Operation.
 > - Operation puede producir N Orders; Order puede producir 0..N Fills; Fill es inmutable.
 > - Position pertenece a **Account** y representa una proyección/snapshot del estado físico observado/reconciliado; no es Operation ni se eleva a aggregate rico sin requisito concreto.
@@ -48,7 +49,7 @@ updated: "2026-09-26"
 > - El dominio nuevo no puede usar pips como unidad universal. Futures V1 requiere unidades genéricas basadas en instrument/contract specs; el legacy Forex puede adaptarse. La limpieza total de campos/workarounds pips queda como deuda candidata pendiente de ID/alcance final del owner.
 > - Política de refactor: si el cambio correcto es acotado se hace en V1; si amenaza V1, seam limpio + DT explícita de Iteración 2. KISS **no** justifica romper SOLID/Clean boundaries.
 > - Regla obligatoria del manager: ante una brecha material de requisitos, identities, lifecycle, ownership o semántica de dominio, **preguntar al owner antes de decidir; no asumir**.
-> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position/Trade = IN_PROGRESS**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
+> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position = IN_PROGRESS**; Trade/The Lab = **DEFERRED_TO_THE_LAB**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
 
 
 ## Gate
