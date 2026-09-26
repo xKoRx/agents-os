@@ -1435,3 +1435,24 @@ Decisión congelada:
 - `ProviderRuleSet` puede conservar versión/provenance cuando la regla vigente de la prop sea material para decisiones/auditoría; esto **no crea un framework de versionado universal**.
 
 Rationale owner: extensible sin construir hoy extensiones no requeridas; KISS/YAGNI sin hipotecar el modelo ni acoplar rollover de contratos al sistema completo.
+
+### D2-02 — Signal fan-out + single Operation semantics — OWNER CLOSED — 2026-09-26
+
+**Status:** `OWNER_CLOSED`
+
+V1 mantiene una semántica deliberadamente simple: **una Strategy puede tener como máximo una operación lógica activa a la vez**. No se introducen `operation_key`, `StrategyTrade`, `StrategyAction` como entidad ni otra capa intermedia para correlacionar múltiples operaciones concurrentes.
+
+Decisión congelada:
+
+- `Strategy` permanece account-agnostic y mantiene en su propio estado sólo lo necesario para saber si su operación lógica está abierta/cerrada y el contexto técnico requerido por su lógica.
+- `Signal` es el evento canónico emitido por Strategy. Puede llevar un `action`/detail técnico embebido si la estrategia concreta lo necesita; esto es parte del contrato de Signal, **no una nueva entidad de dominio obligatoria**.
+- Mientras la Strategy tiene una operación lógica activa, nuevas Signals de esa misma Strategy **no crean una nueva Operation**. Representan nuevas decisiones/acciones técnicas sobre la operación existente.
+- El fan-out/coordinator toma cada Signal y la entrega de forma aislada por `AccountStrategy`; no entrega al MoneyManagement acceso global a todas las cuentas.
+- Para cada `AccountStrategy` existe como máximo **una `Operation` no terminal por Strategy**. Esa Operation agrupa todo el movimiento económico desde la primera apertura hasta que se cierra la última exposición asociada.
+- Múltiples entradas, adds, parciales, reducciones o salidas son múltiples `Order`/`Fill` dentro de **la misma Operation**, no nuevas Operations.
+- `MoneyManagement` procesa una Signal en el contexto de una única `AccountStrategy` y su única Operation activa (si existe). Puede decidir emitir 0..N Orders para abrir, aumentar, reducir o cerrar exposición según su política, sin administrar cuentas ajenas.
+- El runtime debe asegurar aislamiento/serialización por `AccountStrategy`/Operation para impedir contaminación cross-account. La topología física exacta (StateFun/Kafka/workers/etc.) se resuelve en el diseño técnico, no como responsabilidad del dominio.
+- La Strategy es consciente de su **estado lógico canónico** abierto/cerrado; no conoce la materialización física de cada cuenta. Divergencias por reject, provider rules o execution failures permanecen responsabilidad del camino account-specific/MM/execution.
+- Casos borde que requieran coupling específico entre una Strategy y un MoneyManagement concreto se permiten de forma explícita antes que contaminar las abstracciones generales de V1. La compatibilidad Strategy↔MoneyManagement debe validarse/configurarse, no asumirse universal.
+
+Rationale owner: una operación representa el ciclo completo desde la primera apertura hasta el cierre de la última exposición; nuevas oportunidades dentro del mismo ciclo son Signals/Orders adicionales de la misma Operation. Si una oportunidad requiere comportamiento independiente, se modela como otra Strategy, no como múltiples Operations simultáneas de la misma Strategy.
