@@ -7,7 +7,7 @@ slug: "skills-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-06-28
-updated: 2026-09-23
+updated: 2026-09-25
 reviewed: 2026-09-12
 aliases:
   - "skills index"
@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Core AGENTS OS:** 28 skills de comportamiento del sistema.
-- **Federadas transversales:** 16 skills curadas en `30-resources/agents/skills/`.
+- **Federadas transversales:** 17 skills curadas en `30-resources/agents/skills/`.
 - **Domain/app-owned:** se descubren mediante el registro de routers y el repo owner; no forman parte del índice always-load.
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
@@ -93,6 +93,7 @@ skills de una aplicación viven y se descubren en su repo owner.
 | [[30-resources/agents/skills/observability-metrics-standard/SKILL.md|observability-metrics-standard]] | Diseña, audita, migra o revisa métricas custom (nombre/tipo/tags/emisión) con un método portable, sin grammar de Meli. | Aranea/homelab o proyectos personales; nunca Meli/RIO/Signals (→ meli-agent-dev). |
 | [[30-resources/agents/skills/operational-healthcheck-policy/SKILL.md|operational-healthcheck-policy]] | Diferencia cuándo validar manualmente componentes vigilables y cuándo confiar en la automatización. | Ante una señal concreta de problema o antes de acciones masivas. |
 | [[30-resources/agents/skills/echo-production-operational-audit/SKILL.md|echo-production-operational-audit]] | Auditoría operacional E2E read-only de Echo PROD: gates G1–G10, trazas E2E reales y veredicto OPERATIONAL_*. | Al auditar el funcionamiento real de Echo PROD tras una ventana de cambios. |
+| [[30-resources/agents/skills/echo-prod-deploy/SKILL.md|echo-prod-deploy]] | Despliegue autorizado de Echo a PROD (BD, ETCD, Hasura, deploy-prod.sh, front) con verificación y rollback. **Owner-gated**: sólo por pedido explícito del owner de usarla. | Única vía para mutar PROD Echo desde el agente; requiere autorización y secretos de cada corrida. |
 
 ## 🔗 Links
 
