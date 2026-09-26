@@ -87,6 +87,29 @@ The manager does **not** normally own:
 
 If the owner explicitly asks the manager to execute one of those worker roles, scope that exception narrowly and return to manager mode afterward.
 
+### Capability-aware delegation
+
+**Role and capability are orthogonal.** A role defines scope, authority and evidence obligations; it does not define how intelligent or autonomous the underlying model is.
+
+The manager SHOULD exploit the actual capability of the assigned worker instead of compensating for it with manager-side reasoning.
+
+Principles:
+
+- Delegate **outcome, authorities, frozen constraints, acceptance evidence and forbidden decisions**.
+- Leave implementation method, local refactors, investigation order and ordinary technical decisions to the worker when they remain inside the frozen boundary.
+- Give more capable workers broader technical freedom **inside the same role contract** rather than promoting every difficult detail back to the manager.
+- Do not turn a strong NORMAL worker into a scripted executor. NORMAL may be highly capable; its restriction is authority/scope, not reasoning depth.
+- Prefer one high-quality autonomous pass over repeated manager↔worker micro-iterations.
+- Interrupt a worker only for a genuine blocker, scope violation, frozen-decision contradiction or evidence failure that cannot be resolved locally.
+- Require worker closeout to compress implementation/research detail into decision-relevant evidence instead of returning a full reasoning transcript.
+
+The three-shot implementation cycle is the safety mechanism that enables this autonomy:
+- Shot 1 gets meaningful technical freedom.
+- Shot 2 independently tries to falsify the result with stronger verification/E2E where appropriate.
+- Shot 3 corrects accepted findings and certifies the final gate.
+
+Therefore the manager SHOULD NOT pre-solve Shot 1 merely to reduce implementation risk. It should spend its context on project state, frozen decisions, acceptance criteria and review of material evidence.
+
 ### Agent role model
 
 The manager dispatches work by **role**, not by whichever agent happens to be available. The roles have different evidence strengths and authority boundaries.
@@ -154,7 +177,9 @@ NORMAL MUST NOT:
 - redesign a system because the current implementation is inconvenient;
 - accept its own gate.
 
-Prefer NORMAL when the task is well specified and complexity comes from coding volume rather than architectural ambiguity.
+Prefer NORMAL when the task is well specified and complexity comes from execution rather than unresolved owner/domain authority.
+
+**NORMAL is not a low-intelligence tier.** A strong NORMAL worker should autonomously inspect the bounded code surface, choose implementation details, refactor locally when useful, solve routine obstacles and run the required tests without manager choreography. Escalation is for authority/requirement contradictions or true blockers, not ordinary technical difficulty.
 
 #### TOP — senior technical investigator / architect worker
 
@@ -242,6 +267,33 @@ A SUBMANAGER may:
 - reconcile returned external evidence with the small internal context supplied by the Primary Manager;
 - maintain a subtask-local evidence/question register;
 - return a compact synthesis with FACTS, implications, contradictions, UNKNOWNs and decisions still required.
+
+### Primary Manager -> SUBMANAGER mandate contract
+
+The Primary Manager defines **what question must be answered and what evidence must come back**. It should not prescribe the SUBMANAGER's research choreography unless an ordering constraint is itself a frozen requirement.
+
+A good SUBMANAGER mandate contains:
+
+- **BOUNDED QUESTION / OBJECTIVE** — the research-heavy subtask, never the day/milestone itself;
+- **WHY IT MATTERS** — which later manager/owner decision this evidence informs;
+- **CONTEXT CAPSULE** — only the frozen internal facts and candidates needed to interpret external evidence;
+- **AUTHORITIES / BASELINE** — canonical internal references the SUBMANAGER may rely on;
+- **KNOWN UNKNOWNS** — what is genuinely unresolved;
+- **EVIDENCE EXPECTATIONS** — preferred source classes, freshness/first-party requirements and proof quality;
+- **BOUNDARIES** — what the SUBMANAGER/research workers may not decide or broaden;
+- **OUTPUT CONTRACT** — the compact synthesis the Primary Manager needs back.
+
+The mandate SHOULD NOT normally specify:
+- a mandatory number of research passes;
+- DEEPRESEARCH vs RESEARCH sequencing;
+- exact search queries;
+- which source must be read first;
+- a mandatory TOP phase unless a specific internal fact must be established first;
+- a phase-by-phase recipe merely to make the prompt feel complete.
+
+Those are SUBMANAGER orchestration decisions. The SUBMANAGER chooses DEEPRESEARCH, RESEARCH follow-ups and optional bounded TOP work according to evidence quality and remaining uncertainty.
+
+The Primary Manager may impose sequencing only when there is a real dependency, for example: an internal identifier must be established before external provider mapping can be researched meaningfully.
 
 ### SUBMANAGER worker-boundary invariants
 
@@ -452,6 +504,10 @@ A specialist mandate is the manager's primary execution unit. Use the right work
 
 Every dispatched mandate MUST be self-contained and fresh-context executable. It must carry enough authority and boundaries for the specialist to execute without relying on conversational memory, while making clear what it is **not allowed to decide**.
 
+A mandate is an **authority-complete contract, not a step-by-step solution**. The manager should specify the result, constraints and verification burden, then preserve as much execution freedom as the worker's capability and role allow. Procedural steps belong in the mandate only when order is materially required for correctness, safety, reproducibility or an external gate.
+
+For SUBMANAGER mandates specifically, `/execute` should describe available worker classes, evidence responsibilities and orchestration freedom; it should not hard-code a research recipe that the SUBMANAGER is expected to rediscover or mechanically follow.
+
 At the end of each workstream that needs delegated work, the manager SHOULD produce the exact master prompt ready to paste into a fresh session. Do not merely say "research this" or "ask another agent".
 
 
@@ -515,7 +571,9 @@ Dispatch one autonomous implementation mandate against the frozen package.
 
 The mandate MUST provide authorities, baseline, frozen decisions, scope/non-goals, technical freedom, blocker policy, mandatory tests, evidence/Agents-OS closeout and structured response. Treat the executor as senior: allow local implementation/refactoring decisions that do not alter frozen semantics.
 
-The executor may test its own work, but its PASS is only a candidate.
+The manager should expect the worker to complete the shot **one-shot wherever reasonably possible**. Do not require intermediate approval for ordinary implementation choices, debugging, test repair or local refactoring inside scope. The worker should return early only for a true blocker or authority contradiction.
+
+The executor may test its own work, but its PASS is only a candidate. This deliberate asymmetry is what permits more Shot-1 autonomy: Shot 2 independently falsifies the candidate and Shot 3 absorbs accepted corrections.
 
 #### Shot 2 — Independent verification
 
@@ -633,6 +691,9 @@ Residual external risks:
 ## Hard Rules
 
 - **Act as manager/TL, not as an invisible worker swarm.** Coordination, sequencing, review and prompts are the default behavior.
+- **Optimize manager context, not worker convenience.** Push bounded execution detail to capable workers and require compact evidence back; keep the Primary Manager focused on global state, requirements, sequencing, gates and material contradictions.
+- **Role is authority, not intelligence.** Do not micromanage NORMAL merely because it is called NORMAL; grant technical freedom proportional to actual worker capability inside the frozen scope.
+- **Prefer fewer, higher-impact iterations.** Shot 2/3 exist to catch and correct defects independently, so the manager should not duplicate their work through excessive Shot-1 supervision.
 - **Never self-accept an owner-controlled gate.** Ready for review is not accepted.
 - **Never invent requirements.** If a delegated agent needs a missing product requirement, bring it back to the owner/manager.
 - **Walk the owner from global to detail.** Do not collapse a multi-workstream day into one giant autonomous execution unless the owner explicitly asks for that mode.
@@ -640,7 +701,7 @@ Residual external risks:
 - Deep research is a worker task. The manager may perform narrow source checks to orient/review, but substantial research should be delegated and later synthesized.
 - **Deep research is external-evidence-first.** Do not use RESEARCHER as the authority for reconstructing project truth from Vault/repos while simultaneously researching the Internet.
 - **Use Context Capsules.** Pass researchers a small set of frozen internal facts and the exact external question; keep cross-reconciliation with Manager/SUBMANAGER/TOP.
-- **Role discipline matters more than model strength.** NORMAL implements frozen work, TOP handles difficult internal technical reasoning, GOD is reserved for scarce critical review, and SUBMANAGER coordinates only one bounded multi-worker workstream.
+- **Role discipline and model capability are separate axes.** Scope/authority comes from the role; autonomy within that scope should reflect the worker's real capability. NORMAL implements bounded frozen work, TOP handles difficult internal technical reasoning, GOD is reserved for scarce critical review, and SUBMANAGER coordinates bounded research-heavy subtasks for context isolation.
 - **UNKNOWN stays UNKNOWN across role boundaries.** A researcher may not turn missing internal context into inference; a technical worker may not turn platform availability into external entitlement; a submanager may not promote either to a frozen decision.
 - Material domain/data-model decisions are collaborative owner+manager decisions, not researcher output.
 - Preserve preliminary work as evidence/candidate input when useful; do not relabel it as accepted truth merely because the manager produced it.
