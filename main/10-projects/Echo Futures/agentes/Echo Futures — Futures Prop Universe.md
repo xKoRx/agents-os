@@ -9,7 +9,7 @@ area: "[[Echo]]"
 parent: "[[Echo Futures]]"
 start: 2026-09-25
 due: 2026-10-02
-progress: 45
+progress: 65
 repo: "xKoRx/echo-futures"
 aliases:
   - Echo Futures Prop Universe
@@ -157,6 +157,24 @@ Repair must revalidate at minimum:
 Topstep, Lucid, MFFU, TradeDay, FundedNext, Tradeify, Alpha Futures, TakeProfitTrader.
 
 Do not progress to execution transport selection/research D until the corrected program/platform/API matrix is accepted.
+
+### Repair V2 review — 2026-09-26
+
+Received:
+`main/30-resources/futures/FUTURES PROP UNIVERSE — FIRST-PARTY DOMAIN FORENSICS V2.md`
+
+Verdict remains:
+`C_PROP_UNIVERSE_RESEARCH = BLOCKED_EVIDENCE`.
+
+V2 still misclassifies/omits first-party-known automation status for Topstep, MFFU, FundedNext, Tradeify, TakeProfitTrader and TradeDay, and still lacks the mandated claim-level evidence appendix.
+
+Domain discovery result is now sufficient for D2:
+`Provider + Program/Phase + versioned RuleSet`.
+
+The remaining gate is operational evidence for transport research:
+`ProviderProgram -> automation -> platform -> connectivity -> API entitlement`.
+
+Next repair must be table-first, evidence-only, and should not repeat broad provider research.
 
 ## Gate
 
