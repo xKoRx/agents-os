@@ -41,7 +41,9 @@ updated: "2026-09-26"
 > - Un Signal de apertura aceptado **materializa la Operation antes de MoneyManagement y antes de cualquier Order/Fill**.
 > - Si MoneyManagement no puede resolver una acción ejecutable, rechaza/falla, o la Signal/entry expira sin Fill, la Operation igualmente termina con motivo explícito para trazabilidad.
 > - Una Operation sin Fill no implica Position física.
-> - Lifecycle conceptual aceptado hasta ahora: `CREATED` → `PENDING_ENTRY` → `ACTIVE` → `TERMINAL`, permitiendo terminales anticipados desde CREATED/PENDING_ENTRY. `PENDING_ENTRY` significa que existe una Order de entrada viva/working pero todavía no existe Fill; el trigger exacto de ACTIVE y partial-fill semantics siguen en checkpoint owner.
+> - Lifecycle conceptual aceptado: `CREATED` → `PENDING_ENTRY` → `ACTIVE` → `TERMINAL`, permitiendo terminales anticipados desde CREATED/PENDING_ENTRY. `PENDING_ENTRY` significa que existe una Order de entrada viva/working pero todavía no existe Fill. El **primer Fill que genere exposición**, incluso parcial, hace la Operation `ACTIVE`.
+> - Un Order REJECTED/CANCELLED/EXPIRED no termina automáticamente la Operation: MoneyManagement puede retry/reemplazar/continuar.
+> - Volver a exposición lógica cero tampoco implica TERMINAL por sí solo. TERMINAL requiere al menos exposición lógica cero, ninguna Order viva asociada y decisión de MoneyManagement de no continuar.
 > - Signals posteriores de gestión/salida pueden actuar sobre Operations existentes sin crear una nueva Operation.
 > - Operation puede producir N Orders; Order puede producir 0..N Fills; Fill es inmutable.
 > - Position pertenece a **Account** y representa una proyección/snapshot del estado físico observado/reconciliado; no es Operation ni se eleva a aggregate rico sin requisito concreto.
