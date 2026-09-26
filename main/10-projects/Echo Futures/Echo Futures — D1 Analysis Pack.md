@@ -60,7 +60,7 @@ updated: "2026-09-26"
 > - El dominio nuevo no puede usar pips como unidad universal. Futures V1 requiere unidades genéricas basadas en instrument/contract specs; el legacy Forex puede adaptarse. La limpieza total de campos/workarounds pips queda como deuda candidata pendiente de ID/alcance final del owner.
 > - Política de refactor: si el cambio correcto es acotado se hace en V1; si amenaza V1, seam limpio + DT explícita de Iteración 2. KISS **no** justifica romper SOLID/Clean boundaries.
 > - Regla obligatoria del manager: ante una brecha material de requisitos, identities, lifecycle, ownership o semántica de dominio, **preguntar al owner antes de decidir; no asumir**.
-> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position = D1_OWNER_REVIEW_ACCEPTED**; detalles exactos de Order lifecycle quedan Q3/D2; Trade/The Lab = **DEFERRED_TO_THE_LAB**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = READY_FOR_OWNER_REVIEW`.
+> - Estado: **A1 Strategy/Signal/AccountStrategy/MoneyManagement = MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**. **A2 Operation/Order/Fill/Position = D1_OWNER_REVIEW_ACCEPTED**; detalles exactos de Order lifecycle quedan Q3/D2; Trade/The Lab = **DEFERRED_TO_THE_LAB**. D1 completo sigue `IN_PROGRESS`; `EF_D1_ANALYSIS_PASS = PASS`.
 
 
 ## Gate
@@ -689,9 +689,9 @@ Final manager assessment:
 
 Therefore:
 
-`EF_D1_ANALYSIS_PASS = READY_FOR_OWNER_REVIEW`
+`EF_D1_ANALYSIS_PASS = PASS`
 
-This status is a manager readiness verdict, not gate acceptance.
+Owner explicitly accepted D1 on 2026-09-26. Gate is closed; D2 may begin.
 
 ## 11. Gate status after owner correction
 
@@ -719,4 +719,24 @@ Trabajo que debe continuar bajo conducción owner+manager:
 - final D1 checklist = manager-reviewed and READY_FOR_OWNER_REVIEW;
 - await explicit Owner acceptance of D1 before beginning D2.
 
-Next exact milestone: **Owner decision on EF_D1_ANALYSIS_PASS; if accepted, begin D2 Domain + Technical Architecture**.
+Next exact milestone: **D2 — Domain + Technical Architecture**.
+
+
+## 12. D1 owner closure — 2026-09-26
+
+Owner explicitly accepted the complete D1 checklist.
+
+`EF_D1_ANALYSIS_PASS = PASS`
+
+D1 is closed. This pack is the accepted D1 evidence baseline for D2.
+
+D2 must not repeat general D1 discovery. It may request targeted RESEARCH/TOP evidence only when a concrete design decision encounters a material contradiction or evidence gap.
+
+Active next milestone:
+`D2 — DESIGN / Domain + Technical Architecture`
+
+Target deliverable:
+`Echo Futures Architecture Candidate V1`
+
+Target gate:
+`EF_D2_DESIGN_PASS = REVIEW`
