@@ -550,6 +550,45 @@ D1 no congela callback API, pero D2 ya tiene el set completo que debe resolver:
 - session open/close/holiday transition;
 - contract mapping update para nuevas Operations, sin mutar las ya pinned.
 
+## 5A. Manager review — Front E Contract + Session Semantics — 2026-09-26
+
+Formal research authority: `main/30-resources/futures/CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE.md`.
+
+`E_CONTRACT_SESSION_SEMANTICS = ACCEPTED_WITH_MANAGER_NORMALIZATION`.
+
+Front E was executed as a formal deep research followed by a targeted repair. The initial artifact was NOT accepted directly: ClusterDelta was removed as normative authority, ProjectX contract identity/execution evidence was added, NQ session hours were corrected against CME first-party material, LEAN was demoted to pattern-only evidence, contract settlement was separated from executable contract identity, expiry/lifecycle was separated from monetary MM inputs, and the ProviderProgram overlay was proven with Topstep.
+
+Accepted conclusions:
+
+- canonical/economic Instrument/root and expiry-specific tradable Contract are distinct concepts;
+- ProjectX proves execution against an expiry-specific `contractId` and preserves contract identity through Order/Position/Trade;
+- no external identifier such as `NQZ6`, ProjectX `symbolId`, ProjectX `contractId` or LEAN Symbol should be treated as a universal global contract ID;
+- LEAN continuous/`Mapped` behavior is a PATTERN, not exchange authority;
+- mapping change does not itself prove position migration; the documented LEAN rollover example explicitly closes old exposure and opens the new contract;
+- `OPERATION_CONTRACT_PINNING = STRONGLY_SUPPORTED_INFERENCE`: a live Operation should retain the Contract resolved when materialized unless an explicit rollover/migration action exists;
+- monetary MM inputs are tick size/value, contract unit/multiplier, currency/price denomination and provider quantity semantics; expiry/last-trade/active status belong to Contract lifecycle instead;
+- NQ CME schedule is Sunday 5:00 PM CT → Friday 4:00 PM CT with daily maintenance 4:00–5:00 PM CT;
+- trade/session date can differ from civil date; CME explicitly documents Sunday sessions with Monday trade date;
+- timezone authority must preserve CT/Chicago semantics rather than a fixed UTC offset;
+- holidays/early closes override regular schedules and may vary by product/group;
+- ExchangeSession, ProviderProgram allowed window/forced-flat and Account DayBoundary are separate authorities;
+- Topstep proves the ProviderProgram overlay concretely by requiring flat at 3:10 PM CT while normal NQ CME availability continues to 4:00 PM CT;
+- deterministic LIVE/REPLAY/BACKTEST requires applying the same session/calendar semantics to market-event interpretation and bar boundaries.
+
+Non-blocking unknowns passed to D2:
+
+- authoritative source for exact lifecycle timestamps such as expiration/last-trade when required;
+- ProjectX stale/inactive-contract close edge behavior;
+- no universal single CME trade-date formula was established or needed.
+
+Readiness:
+- Q6 = `D1_INPUT_SUFFICIENT_FOR_D2`.
+- Q7 = `D1_INPUT_SUFFICIENT_FOR_D2`.
+- Front E = `READY_FOR_PRIMARY_MANAGER_REVIEW`.
+- D1 remains `IN_PROGRESS`.
+
+The detailed claim matrix, rejected claims, sources, repair history and D2-enabled decisions live only in [[CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE]]; this pack intentionally keeps only the manager-level synthesis.
+
 ## 6. Blocking refactor register
 
 ### Blocking para implementar el diseño una vez que D2 lo congele
@@ -583,8 +622,8 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | Q3 Order lifecycle | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Front D proves submit/modify/cancel, async status, partial/multi-fill and reconciliation patterns across real transports. |
 | Q4 Market hot state | D1_INPUT_SUFFICIENT_FOR_D2 | Formal Front B accepted with corrections; exact owner/topology remains D2. |
 | Q5 Bar semantics | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | Formal Front B sufficient after manager corrections; forming/closed and late/out-of-order policy remain D2 design details. |
-| Q6 Contract mapping | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; incluir futura reutilización cross-market/FX en la discusión. |
-| Q7 Session semantics | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; falta revisión guiada del scope requerido. |
+| Q6 Contract mapping | D1_INPUT_SUFFICIENT_FOR_D2 | Front E formal accepted after targeted repair. Instrument/root vs expiry-specific Contract, ProjectX contract-bound execution, lifecycle/monetary spec separation and Operation→Contract pinning are sufficiently evidenced. Authority: [[CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE]]. |
+| Q7 Session semantics | D1_INPUT_SUFFICIENT_FOR_D2 | Front E formal accepted after targeted repair. CME timezone/session/trade-date/maintenance/holiday semantics plus Topstep ProviderProgram overlay are sufficiently evidenced. Authority: [[CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE]]. |
 | Q8 Feed authority | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | B2 provides CME/Databento authority, liveness and recovery evidence; exact policy/topology remains D2. |
 | Q9 Execution transport | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | ProjectX eligible simulated path proves E2E feasibility; other transport capabilities proven with entitlement/conformance caveats. |
 | Q10 Provider model | D1_INPUT_SUFFICIENT_FOR_D2 | Provider+Program/Phase + versioned RuleSet need is sufficiently evidenced; Front C operational matrix still requires repair before D. |
@@ -618,7 +657,7 @@ Estos gaps no bloquean D1 y están scoped para D2/implementation:
 - Rule-family catalog.
 - Transport feasibility matrix.
 - Market-data comparison LEAN/Nautilus.
-- Futures semantics evidence set.
+- Front E contract/session authority: [[CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE]].
 - Blocking/deferred refactor register.
 - Terminology mapping:
   - ReferenceEvent = legacy executed-reference input, no Signal.
@@ -650,7 +689,7 @@ Trabajo que debe continuar bajo conducción owner+manager:
 - Front B market-data research + B2 feed-authority review = CLOSED for D1;
 - ejecutar el track Futures Prop Universe como research formal, no como muestra improvisada;
 - Front D execution transport feasibility = CLOSED for D1 with manager corrections;
-- revisar futures semantics y backtest boundary contra esos outputs;
+- Front E Contract + Session Semantics = evidence sufficient for D2; integrate its conclusions during final D1 review;
 - revisar blocking/deferred debt;
 - ejecutar checklist D1 completo y recién entonces proponer `EF_D1_ANALYSIS_PASS = REVIEW`.
 
