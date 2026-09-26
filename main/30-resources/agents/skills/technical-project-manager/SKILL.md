@@ -91,34 +91,42 @@ If the owner explicitly asks the manager to execute one of those worker roles, s
 
 The manager dispatches work by **role**, not by whichever agent happens to be available. The roles have different evidence strengths and authority boundaries.
 
-#### RESEARCHER — external evidence specialist
+#### RESEARCHER / DEEPRESEARCH — external evidence specialists
 
-Use for:
-- deep Internet research;
-- first-party documentation discovery;
-- broad vendor/protocol/market/product research;
-- comparing external systems;
-- condensing large external corpora;
-- building evidence tables with citations.
+External research has two complementary modes:
 
-RESEARCHER is strongest when the question is externally bounded and the internal context is supplied as a **small explicit Context Capsule**.
+**DEEPRESEARCH** is the high-context, high-token worker for:
+- deep Internet research across a broad external corpus;
+- first-party documentation discovery at scale;
+- vendor/protocol/market/product reconstruction;
+- comparing many external systems or claims;
+- building a large cited evidence base.
 
-RESEARCHER MUST NOT be treated as authority for:
+**RESEARCHER** is the targeted web-research worker for:
+- verifying one claim or source;
+- following a specific first-party documentation trail;
+- filling a narrow evidence gap;
+- checking freshness/current behavior;
+- repairing or challenging a DEEPRESEARCH result.
+
+Both are strongest when the question is externally bounded and internal context is supplied as a **small explicit Context Capsule**.
+
+Neither RESEARCHER nor DEEPRESEARCH is authority for:
 - reconstructing the whole project from Vault/Agents-OS;
 - deciding which internal artifact supersedes another;
 - deep source-code forensics across repositories;
 - reconciling many historical owner decisions;
-- freezing Echo architecture/domain;
+- freezing architecture/domain;
 - changing roadmap/gates;
 - promoting inference into internal truth.
 
-The manager SHOULD NOT ask RESEARCHER to simultaneously:
-1. discover/reconstruct internal state,
+Do not ask one research worker to simultaneously:
+1. reconstruct internal project state,
 2. research the external world,
 3. reconcile both,
 4. and decide architecture.
 
-That is a manager/submanager synthesis task.
+When external research is large enough to threaten the Primary Manager's context budget, delegate the research-heavy subtask to a SUBMANAGER. The SUBMANAGER coordinates DEEPRESEARCH plus targeted RESEARCH follow-ups, then returns a compact synthesis.
 
 A research mandate should normally contain:
 - the external research question;
@@ -126,8 +134,6 @@ A research mandate should normally contain:
 - explicit things the researcher must not reinterpret;
 - first-party evidence requirements;
 - FACT / PATTERN / UNKNOWN separation.
-
-If the result needs to be contrasted with the Vault/repo, RESEARCHER returns external evidence first; the manager or a SUBMANAGER performs the cross-reconciliation afterward.
 
 #### NORMAL — bounded implementation worker
 
@@ -191,104 +197,103 @@ GOD SHOULD NOT be spent on:
 
 GOD remains a worker/auditor. It does not replace owner authority or the primary manager.
 
-#### SUBMANAGER — bounded workstream coordinator
+#### SUBMANAGER — research-heavy subtask coordinator
 
-SUBMANAGER is **not a fifth capability tier**. It is a temporary delegation of **manager mechanics** for one complex workstream.
+SUBMANAGER is **not a capability tier and not a junior Primary Manager**. It is a temporary delegation of manager mechanics for one **bounded, research-heavy subtask**.
 
-**SUBMANAGER is an orchestrator, not an executor.** Its execution unit is the specialist worker. It coordinates RESEARCHER / NORMAL / TOP / GOD work when needed; it does not substitute for those roles.
+Its main purpose is **context isolation**: keep large external corpora, repeated research passes and token-heavy evidence processing out of the Primary Manager session so the Primary Manager preserves a compact, high-level project context.
 
-Use a SUBMANAGER only when a workstream contains multiple evidence planes or multiple specialist outputs that would otherwise overload the primary manager session, for example:
+**SUBMANAGER is an orchestrator, not an executor.** Its normal worker plane is:
 
 ```text
-external first-party research
-        +
-internal source audit
-        +
-existing project constraints
-        ↓
-bounded synthesis
+DEEPRESEARCH -> broad/deep external corpus
+RESEARCH     -> targeted verification / source repair / gap filling
+TOP          -> only when bounded internal source evidence is materially needed
+```
+
+Typical flow:
+
+```text
+PRIMARY MANAGER
+  owns project / milestone / day / owner decisions
+        |
+        | bounded research question + Context Capsule
+        v
+SUBMANAGER
+  owns research orchestration for that subtask
+        |
+        +--> DEEPRESEARCH
+        +--> RESEARCH follow-ups
+        +--> TOP only if bounded internal evidence is required
+        |
+        v
+compact reconciled synthesis
+        |
+        v
+PRIMARY MANAGER
 ```
 
 A SUBMANAGER may:
-- receive a manager-authored Context Capsule;
-- decompose one workstream into RESEARCHER / NORMAL / TOP / GOD tasks;
-- write exact specialist prompts or invoke the designated specialist when the environment supports delegation;
-- review returned worker artifacts and request bounded repair;
-- contrast external findings with a bounded set of internal authorities;
-- maintain a workstream-local question/evidence register;
-- return a synthesis and explicit unresolved decisions to the primary manager.
+- receive a Primary-Manager-authored Context Capsule;
+- decompose the bounded research subtask into DEEPRESEARCH / RESEARCH / optional TOP tasks;
+- write exact specialist prompts or invoke the designated specialist when supported;
+- review research outputs for relevance, missing evidence and overclaims;
+- issue targeted follow-up research to repair or deepen weak areas;
+- reconcile returned external evidence with the small internal context supplied by the Primary Manager;
+- maintain a subtask-local evidence/question register;
+- return a compact synthesis with FACTS, implications, contradictions, UNKNOWNs and decisions still required.
 
 ### SUBMANAGER worker-boundary invariants
 
-1. **MUST DELEGATE SPECIALIST WORK.** If a phase is classified as RESEARCHER, NORMAL, TOP or GOD work, the SUBMANAGER must delegate it to that worker role. It MUST NOT execute that phase itself merely because it has tools capable of doing so.
-2. **NO ROLE COLLAPSE.** SUBMANAGER + specialist execution in the same role is forbidden unless the Owner or Primary Manager explicitly grants a narrow exception.
-3. **LIGHTWEIGHT INSPECTION ONLY.** The SUBMANAGER may verify a baseline, open a small number of artifacts, or spot-check evidence to orient itself or review a handoff. That inspection MUST NOT expand into the delegated research, source audit, implementation or QA task.
-4. **NO WORKER AVAILABLE = ORCHESTRATION BLOCKER.** If the required specialist cannot be invoked in the current environment, the SUBMANAGER returns an explicit orchestration blocker plus the exact ready-to-run specialist mandate. It MUST NOT silently replace the missing worker.
-5. **SYNTHESIS REQUIRES RETURNED EVIDENCE.** The SUBMANAGER synthesizes specialist outputs after they exist; it does not manufacture the missing evidence plane itself.
+1. **MUST DELEGATE SPECIALIST WORK.** It does not perform DEEPRESEARCH, targeted RESEARCH, TOP audits, implementation or QA itself.
+2. **NO ROLE COLLAPSE.** Having tools capable of search/code inspection does not authorize the SUBMANAGER to become the worker.
+3. **LIGHTWEIGHT INSPECTION ONLY.** It may verify a baseline or spot-check a small artifact to review a worker output, but must not expand that check into the delegated task.
+4. **NO WORKER AVAILABLE = ORCHESTRATION BLOCKER.** Return the exact specialist mandate instead of silently replacing the worker.
+5. **SYNTHESIS REQUIRES RETURNED EVIDENCE.** The SUBMANAGER may reason over worker outputs; it may not manufacture the missing evidence plane itself.
+6. **CONTEXT COMPRESSION IS THE PRODUCT.** Its final output to the Primary Manager should be materially smaller and more decision-ready than the accumulated research corpus.
 
 A SUBMANAGER MUST NOT:
-- redefine project outcome/roadmap;
-- broaden scope beyond its named workstream;
-- freeze owner-level domain/product decisions;
-- accept project or day gates;
-- change canonical architecture without primary-manager/owner review;
-- ask a RESEARCHER to reconstruct the whole project;
-- become a hidden autonomous project manager;
-- become a hidden worker swarm.
+- own or close the day's milestone;
+- redefine project outcome or roadmap;
+- become responsible for cross-workstream project state;
+- freeze owner-level product/domain/identity/lifecycle decisions;
+- accept project/day gates;
+- broaden the assigned research question into a general project audit;
+- dump the full research corpus back into the Primary Manager when a compact synthesis is sufficient;
+- become a hidden autonomous project manager or hidden worker swarm.
 
-Anti-pattern:
+The objective assigned to a SUBMANAGER must therefore be a **subtask/question**, not the milestone itself. Good examples:
 
 ```text
-WRONG
-SUBMANAGER
-  -> audits source itself
-  -> performs deep research itself
-  -> implements or QA-checks delegated work itself
-  -> synthesizes its own evidence
+GOOD:
+- determine external contract/session semantics needed to inform Q6/Q7
+- establish first-party evidence for provider entitlement and API limitations
+- reconcile conflicting external evidence about broker order identifiers
 
-CORRECT
-SUBMANAGER
-  -> TOP audits internal source
-  -> reviews TOP result
-  -> RESEARCHER gathers external evidence
-  -> reviews RESEARCHER result
-  -> reconciles returned evidence
-  -> reports synthesis to PRIMARY MANAGER
+BAD:
+- close D1
+- deliver today's milestone
+- redesign Echo Futures
+- certify the release
 ```
 
-The primary manager remains responsible for cross-workstream consistency and final synthesis.
+The Primary Manager remains responsible for project sequencing, owner interaction, architecture-level integration, milestone/gate state and cross-workstream synthesis.
 
 #### Role selection heuristic
 
 Use the cheapest role that can produce trustworthy evidence:
 
 ```text
-external web / first-party corpus        -> RESEARCHER
-closed code task                         -> NORMAL
-internal cross-component reasoning       -> TOP
-critical adversarial architecture review -> GOD
-multi-worker bounded workstream          -> SUBMANAGER
+broad/high-token external corpus          -> DEEPRESEARCH
+narrow external verification/gap repair   -> RESEARCHER
+closed code task                          -> NORMAL
+internal cross-component reasoning        -> TOP
+critical adversarial architecture review  -> GOD
+research-heavy bounded subtask that would
+pollute/overflow Primary Manager context   -> SUBMANAGER
 ```
 
-When the task spans internal + external evidence:
-
-```text
-PRIMARY MANAGER
-    │
-    ├── Context Capsule
-    │
-    └── SUBMANAGER (optional)
-          ├── RESEARCHER -> external facts
-          └── TOP        -> internal facts
-                    ↓
-              bounded synthesis
-                    ↓
-              PRIMARY MANAGER
-                    ↓
-                  OWNER
-```
-
-Do not use SUBMANAGER when the primary manager can cheaply perform the synthesis itself. Orchestration is justified by complexity, not ceremony.
+Use SUBMANAGER primarily as a **context-protection boundary**. If the Primary Manager can absorb the research result cheaply without losing high-level project coherence, do not introduce a SUBMANAGER.
 
 ### Context Capsule contract
 
@@ -319,37 +324,54 @@ Rules:
 
 ### Research orchestration pattern
 
-For hybrid research work, prefer:
+For research-heavy project questions:
 
-1. **Manager frames the decision.**
-   Define exactly what future design decision the research must inform.
+1. **Primary Manager frames the subtask.**
+   Define the bounded question, why it matters to the project, frozen internal facts, and the output needed for a later manager/owner decision.
 
-2. **Manager curates internal context.**
-   Produce the Context Capsule from canonical project/source evidence.
+2. **Primary Manager protects its context budget.**
+   If resolving the question requires large corpora, repeated searches, or many evidence passes, delegate the subtask to SUBMANAGER instead of absorbing that work into the manager session.
 
-3. **RESEARCHER investigates the external world.**
-   First-party sources, broad search, comparisons, contradictions, UNKNOWNs.
+3. **SUBMANAGER dispatches DEEPRESEARCH.**
+   DEEPRESEARCH builds the broad external evidence base. It does not reconstruct the project or decide architecture.
 
-4. **TOP audits internal reality when needed.**
-   Repo/source/tests/schema/current behavior; no broad web research unless explicitly scoped.
+4. **SUBMANAGER reviews and repairs with RESEARCH.**
+   Use targeted RESEARCH passes to inspect specific first-party sources, verify weak claims, resolve contradictions, or fill gaps left by DEEPRESEARCH.
 
-5. **SUBMANAGER synthesizes only if the workstream is large enough.**
-   It compares the two evidence planes and returns:
-   - supported implications;
+5. **TOP is optional and bounded.**
+   Use TOP only when the external findings must be checked against a specific internal source/code fact. Do not turn the subtask into a general internal audit.
+
+6. **SUBMANAGER compresses and reconciles.**
+   Return only decision-ready output:
+   - supported external facts;
+   - evidence quality/limitations;
+   - implications for the exact assigned question;
    - contradictions;
-   - D2/owner decisions still open;
-   - what must not be inferred.
+   - UNKNOWNs;
+   - decisions that remain with Primary Manager/Owner.
 
-6. **Primary Manager decides what enters canonical project state.**
-   Architecture, roadmap, DTs and gate readiness stay here.
+7. **Primary Manager resumes project control.**
+   The Primary Manager decides what enters architecture, roadmap, milestone state and owner discussion.
 
-This avoids the failure mode:
+This prevents two failure modes:
+
 ```text
-one giant prompt
--> researcher reconstructs project
--> researcher browses web
--> researcher guesses missing internal context
--> coherent but unreliable synthesis
+FAILURE A
+PRIMARY MANAGER
+-> consumes huge research corpus
+-> loses high-level context / token budget
+
+FAILURE B
+DEEPRESEARCH
+-> learns external topic deeply
+-> guesses how it maps to the project
+-> produces coherent but contextually wrong conclusions
+
+DESIRED
+PRIMARY MANAGER -> bounded question
+SUBMANAGER -> orchestrated deep research + targeted repair
+SUBMANAGER -> compact project-aware synthesis
+PRIMARY MANAGER -> project decision
 ```
 
 ### Progressive navigation: global → detail → delegated work
