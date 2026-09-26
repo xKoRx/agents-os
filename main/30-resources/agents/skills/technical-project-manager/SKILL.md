@@ -299,7 +299,7 @@ A good SUBMANAGER mandate contains:
 - **KNOWN UNKNOWNS** — what is genuinely unresolved;
 - **EVIDENCE EXPECTATIONS** — preferred source classes, freshness/first-party requirements and proof quality;
 - **BOUNDARIES** — what the SUBMANAGER/research workers may not decide or broaden;
-- **OUTPUT CONTRACT** — the compact synthesis the Primary Manager needs back.
+- **OUTPUT CONTRACT** — both (a) the durable detailed Agents-OS research artifact and (b) the compact handoff the Primary Manager needs back.
 
 Use this minimum task-state shape:
 
@@ -346,6 +346,96 @@ Those are SUBMANAGER orchestration decisions. The SUBMANAGER chooses the next wo
 
 The Primary Manager may impose sequencing only when there is a real dependency, for example: an internal identifier must be established before external provider mapping can be researched meaningfully.
 
+### SUBMANAGER durable research artifact contract
+
+A research-heavy subtask MUST NOT close only with a chat handoff.
+
+Before returning `READY_FOR_PRIMARY_MANAGER_REVIEW`, the SUBMANAGER must persist a **durable detailed research artifact** in the canonical Agents-OS location for that project/workstream. The chat handoff is only the compact index into that artifact.
+
+The durable artifact is the authoritative record of the iteration and should contain enough detail that a future Manager/SUBMANAGER can understand **what was investigated, what evidence was accepted/rejected, what changed, and why the synthesis says what it says** without reconstructing the original chat.
+
+Minimum durable artifact content:
+
+```text
+TITLE / SUBTASK ID
+DATE / BASELINES
+CURRENT_TASK_STATE
+
+OBJECTIVE
+WHY THIS RESEARCH WAS NEEDED
+SCOPE / NON-GOALS
+
+PRIOR ARTIFACT REGISTER
+- artifact
+- status
+- provenance
+- why accepted/reference-only/rejected/superseded
+
+WORKER ITERATION LOG
+- worker type
+- prompt/artifact reference
+- question assigned
+- returned result
+- review verdict
+- repair/follow-up triggered
+
+EVIDENCE BY QUESTION / CLAIM
+- claim or research question
+- evidence/source
+- evidence quality
+- accepted interpretation
+- limitations / contradictions
+
+REJECTED OR SUPERSEDED FINDINGS
+- what was rejected
+- why
+- what replaced it
+
+SYNTHESIS
+- findings
+- conclusions
+- reasoning/rationale visible at decision level
+- implications for the bounded project question
+- UNKNOWNs
+- contradictions
+- deferred edges / reopen triggers
+
+DECISIONS ENABLED
+- technical decisions now enabled
+- owner decisions still required
+- what this artifact explicitly does NOT decide
+
+SOURCE / EVIDENCE INDEX
+- worker artifacts
+- first-party sources/citations
+- internal authorities
+
+FINAL SUBTASK STATUS
+```
+
+"Reasoning/rationale" means concise, inspectable justification linking evidence to conclusions. It does **not** require private chain-of-thought.
+
+The artifact may be long. That is intentional: detailed research belongs in durable project documentation, not in the Primary Manager's live context.
+
+The artifact should be stored as a project resource/research artifact according to the project's existing Agents-OS structure. Do not dump it into the primary project note unless that note is already the canonical home for detailed research.
+
+### SUBMANAGER handoff contract
+
+After persisting the durable artifact, return a **short manager handoff** containing only:
+
+- subtask ID and final status;
+- canonical artifact path/title;
+- exact Agents-OS commit/SHA when available;
+- 5–10 line executive summary;
+- major evidence changes versus prior state;
+- remaining UNKNOWNs/blockers;
+- decisions now enabled;
+- explicit next action for the Primary Manager.
+
+The handoff MUST reference the durable artifact and MUST NOT attempt to replace it.
+
+A handoff such as only "Q6 evidence sufficient / Q7 evidence sufficient" is inadequate if it does not point to a persisted artifact containing the detailed investigation and evidence trail.
+
 ### SUBMANAGER worker-boundary invariants
 
 1. **MUST DELEGATE SPECIALIST WORK THROUGH THE OWNER.** The SUBMANAGER produces the exact master prompt; the Owner runs the specialist session and returns the artifact.
@@ -356,6 +446,7 @@ The Primary Manager may impose sequencing only when there is a real dependency, 
 6. **PROVENANCE BEFORE CREDIT.** No artifact counts as current-run evidence unless its status/provenance is known and it is accepted for the current task.
 7. **SYNTHESIS REQUIRES ACCEPTED RETURNED EVIDENCE.** The SUBMANAGER may reason over accepted worker outputs; it may not manufacture the missing evidence plane itself.
 8. **CONTEXT COMPRESSION IS THE PRODUCT.** Its final output to the Primary Manager should be materially smaller and more decision-ready than the accumulated research corpus.
+9. **DETAIL MUST SURVIVE OUTSIDE CHAT.** Before final handoff, persist the complete research/evidence record in Agents-OS; compression applies to the handoff, not to the durable artifact.
 
 Interim SUBMANAGER outputs are valid and expected:
 
@@ -622,6 +713,7 @@ Each mandate MUST include:
 - `/reuse`: reusable-asset harvest requirements;
 - `/improve`: explicit evaluation of repeatable behavior/process/tooling improvements; `NONE` is valid and must not fabricate feedback;
 - `/close`: exact Agents-OS persistence/agent-run/feedback/closeout and structured response.
+- For SUBMANAGER research subtasks, `/close` MUST require a detailed persistent research artifact plus a short handoff that references its canonical path and commit/SHA.
 
 Do not use a chain of conversational micro-prompts to complete one shot. Routine technical obstacles belong to the agent; only a genuine frozen-decision contradiction returns to the owner.
 
@@ -782,6 +874,8 @@ Residual external risks:
 - **SUBMANAGER delegation is Owner-mediated.** The SUBMANAGER selects the next worker and gives the Owner the exact master prompt; it does not claim to have launched specialist sessions itself.
 - **Existence is not progress.** Prior documents/results must be explicitly classified before they count toward the current task. Preserve rejected/superseded artifacts for traceability rather than deleting them.
 - **Unclassified prior artifacts are not accepted evidence.** Default them to UNREVIEWED/REFERENCE_ONLY until reviewed.
+- **Research detail belongs in durable Agents-OS artifacts.** Do not compress a multi-pass research subtask into a pamphlet and discard the evidence trail.
+- **Handoff != research artifact.** SUBMANAGER handoffs stay compact and must reference the full persisted artifact; the Manager should not need the original chat to recover the investigation.
 - Deep research is a worker task. The manager may perform narrow source checks to orient/review, but substantial research should be delegated and later synthesized.
 - **Deep research is external-evidence-first.** Do not use RESEARCHER as the authority for reconstructing project truth from Vault/repos while simultaneously researching the Internet.
 - **Use Context Capsules.** Pass researchers a small set of frozen internal facts and the exact external question; keep cross-reconciliation with Manager/SUBMANAGER/TOP.
