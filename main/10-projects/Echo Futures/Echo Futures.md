@@ -23,7 +23,7 @@ tags:
   - echo-futures
   - algorithmic-trading
 created: "2026-09-25"
-updated: "2026-09-25"
+updated: "2026-09-26"
 ---
 
 # Echo Futures
@@ -106,6 +106,10 @@ Esta deuda debe atacarse en un track posterior obligatorio: auditar las props Fo
 
 **DT-EF-CROSS-MARKET-INSTRUMENT-02 — DEFERRED_REUSE_REVIEW.** Evaluar después de congelar Futures si el nuevo split `Instrument → physical tradable binding/Contract` puede sustituir o enriquecer el mapping físico del Echo Forex/CFD actual. El objetivo es evitar dos modelos incompatibles si una abstracción común resulta limpia. No se debe forzar expiry/rollover de futures sobre Forex/CFD: D2 sólo debe dejar un seam suficientemente general si hacerlo no agrega complejidad innecesaria.
 
+**DT-EF-REFERENCE-SIGNAL-03 — DEFERRED_MANDATORY.** `ReferenceEvent` permanece temporalmente como contrato legacy/source-specific y como evidencia del hecho ocurrido en la cuenta reference, pero **no** es el `Signal` canónico. El nuevo motor genérico debe nacer consumiendo `Signal`; el flujo legacy se adapta dentro de Echo Core mediante un boundary explícito `ReferenceEvent -> Signal`. Bridge sigue siendo edge/transport dummy y no adquiere lógica de dominio. Iteración 2 debe completar la migración del execution path reference al boundary canónico y retirar el coupling legacy que ya no sea necesario.
+
+**Unidades cross-market — constraint V1.** El dominio nuevo no puede usar `pips` como unidad universal. Futures V1 necesita semántica genérica de precio/riesgo basada en instrument/contract specs (tick size, tick/point value, contract multiplier o equivalentes). El legacy Forex puede adaptarse desde pips a esas unidades. La limpieza completa de campos/schemas/workarounds legacy expresados en pips queda como deuda candidata de Iteración 2; **el ID y alcance final de esa deuda aún requieren ratificación explícita del owner**.
+
 **Política de deuda en código:** cuando una implementación futura deje una limitación temporal, compatibility shim o camino futures-only relacionado con esta deuda, el source propietario debe llevar un marcador explícito con ID canónico —por ejemplo `DT-EF-FX-PROP-01` o un sub-ID— y enlace/comentario suficiente para encontrar el debt register. No usar `TODO` genérico sin owner/debt ID. La documentación canónica sigue siendo la autoridad; el comentario en código hace visible la deuda justo en el seam donde importa.
 
 ### Escala
@@ -123,7 +127,7 @@ QA deberá incluir carga representativa de 200 cuentas y una prueba de headroom 
 
 ## ♻️ Reutilización obligatoria para Backtesting / Research Runtime
 
-La V1 live **no implementa todavía el módulo completo de backtesting**, pero la arquitectura debe quedar preparada para construirlo inmediatamente después del primer vertical multi-prop/shadow sin reescribir Strategy ni CapitalManagement.
+La V1 live **no implementa todavía el módulo completo de backtesting**, pero la arquitectura debe quedar preparada para construirlo inmediatamente después del primer vertical multi-prop/shadow sin reescribir Strategy ni MoneyManagement.
 
 Objetivo posterior inmediato a V1:
 - operar una primera cohorte pequeña de cuentas en shadow/demo;
@@ -137,7 +141,7 @@ Las siguientes piezas deben ser reutilizables fuera del proceso live:
 
 - Strategy;
 - Signal;
-- CapitalManagement;
+- MoneyManagement;
 - Operation lifecycle;
 - Order/Fill semantics;
 - Bar/market-event semantics;
@@ -152,7 +156,7 @@ HistoricalMarketData
     -> same Strategy
     -> same Signal
     -> simulated AccountStrategy
-    -> same CapitalManagement
+    -> same MoneyManagement
     -> SimExecution
     -> Order/Fills
     -> Operation
@@ -162,7 +166,7 @@ HistoricalMarketData
 
 No se permite crear una segunda implementación tipo:
 - `strategy_live` vs `strategy_backtest`;
-- `capital_management_live` vs `capital_management_backtest`.
+- `money_management_live` vs `money_management_backtest`.
 
 La infraestructura de Core (Kafka/StateFun/bridges/etc.) puede diferir del runner de backtest. **La lógica de dominio no.**
 
@@ -263,6 +267,54 @@ No se obliga todavía a implementar un adapter por prop firm.
 
 Este registro distingue requisitos ya definidos, propuestas pendientes de validación y preguntas bloqueantes.
 
+### Owner decisions — D1 A1/A2 review — 2026-09-26
+
+**Regla operativa del manager:** ante una brecha material de requisitos, identidad, lifecycle, ownership o semántica de dominio, el manager **pregunta al owner antes de decidir**. No completa huecos por inferencia. Puede resolver decisiones técnicas ordinarias sólo cuando los requisitos y boundaries ya están claros.
+
+**Arquitectura común / cross-market**
+- Echo debe converger a motores genéricos; no habrá un motor lógico Forex y otro Futures.
+- Los dos motores transversales identificados son **Strategy Engine** y **Market Feed Engine**.
+- El motor genérico nuevo se diseña correctamente desde V1; lo incremental es la migración de productores/paths legacy, no mantener dos arquitecturas finales.
+- KISS no habilita shortcuts que rompan SOLID/Clean boundaries. Si el refactor correcto es pequeño se hace; si amenaza V1 se usa un seam limpio + DT explícita para Iteración 2.
+
+**Strategy / Signal**
+- `Strategy` es identidad/definición/configuración canónica.
+- **StrategyEngine** es el nombre aceptado para el runtime que ejecuta estrategias cuya lógica vive dentro de Echo. El nombre/forma de la implementación concreta de cada estrategia queda abierto para D2; no se congela `StrategyAlgo`.
+- Echo debe aceptar dos orígenes indistinguibles aguas abajo: estrategias internas ejecutadas por StrategyEngine y estrategias externas/reference.
+- Ambos orígenes convergen al **mismo canonical `Signal`** antes del generic execution path.
+- `ReferenceEvent` NO es `Signal`: representa un hecho ya ejecutado en una reference y conserva ticket, lotaje, broker, precio y metadata legacy.
+- El adapter `ReferenceEvent -> Signal` vive en **Echo Core**, en un boundary explícito antes del motor genérico. Bridge no genera Signals ni recibe lógica de dominio.
+- TradeJournal puede seguir consumiendo/persistiendo `ReferenceEvent` como evidencia legacy mientras el execution path migra progresivamente.
+- Una Strategy puede producir **0..N Signals** a lo largo del tiempo y más de una Signal como resultado de una misma evaluación.
+- `Signal` representa intent, no sólo entry. Intents conceptuales aceptados para el modelo: `OPEN`, `REDUCE`, `CLOSE`, `CLOSE_ALL`; el enum definitivo queda para D2.
+- Strategy decide **qué** quiere hacer; MoneyManagement decide **cuánto y cómo** ejecutarlo para cada AccountStrategy. Strategy nunca hace sizing.
+- Cuando una misma evaluación emite varias Signals y el orden cambia el resultado —por ejemplo `CLOSE_ALL` seguido de `OPEN` para reversal— el procesamiento debe ser determinístico.
+- Signal tiene ventana explícita de validez (`created_at` + `valid_until` o equivalente). Una Signal expirada **no puede materializar una Operation**. El legacy `MaxOpenDelaySeconds` puede adaptarse a esta semántica sin convertirse en autoridad del nuevo dominio.
+
+**AccountStrategy / MoneyManagement**
+- El nombre canónico es **MoneyManagement**, no CapitalManagement.
+- `AccountStrategy` vincula Account + Strategy + MoneyManagement y debe evolucionar a partir del binding/policies actuales sin mezclar responsabilidades legacy innecesarias.
+- MoneyManagement administra una Operation durante todo su lifecycle, no sólo el sizing inicial.
+- Debe poder abrir, añadir exposición, reducir, mover stop/target y cerrar según su lógica.
+- Debe poder reaccionar a Signal, fills/order events, account/instrument state, lifecycle/session events y market state/bars, incluyendo múltiples timeframes cuando la estrategia de gestión lo requiera.
+- Strategy tiene acceso **READ ONLY** a las Operations relevantes. MoneyManagement también accede al estado de sus Operations; la topología/cache/state owner físico se decide después y no se asume en D1.
+
+**Operation / Order / Fill / Position / Trade**
+- Un `OPEN`-like Signal aceptado para una AccountStrategy puede materializar una **Operation nueva por cuenta**.
+- Signals posteriores de gestión/salida (`REDUCE`, `CLOSE`, `CLOSE_ALL`) actúan sobre Operations existentes y no crean una Operation nueva por defecto.
+- Operation es la unidad lógica administrada por MoneyManagement y puede producir N Orders.
+- Order es una instrucción concreta de execution; Order puede producir 0..N Fills.
+- Fill es un hecho de ejecución inmutable.
+- `Position` NO es Operation. Position es una **proyección/snapshot del estado físico observado en una Account**, usada para reconciliación y superficies como el front.
+- Position pertenece a `Account`; provider/broker/venue es contexto de esa cuenta. Su identidad/cardinalidad exacta depende del execution model y queda para D2.
+- No se promoverá Position a aggregate rico si no existe un requisito concreto: su función mínima es responder qué exposición física tiene realmente una Account y permitir contrastarla contra el estado lógico de Operations.
+- Trade sigue siendo el resultado analítico cerrado derivado de una Operation y continúa proyectándose hacia `trade_journal` / The Lab.
+
+**Estado de revisión**
+- A1 Strategy/Signal/AccountStrategy/MoneyManagement: **MANAGER_REVIEW_ACCEPTED_WITH_OWNER_CORRECTIONS**.
+- A2 Operation/Order/Fill/Position/Trade: **IN_PROGRESS**.
+- D1 completo sigue **IN_PROGRESS** y `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`.
+
 ### Requisitos/decisiones del owner ya establecidos
 
 - Futures V1 corre sobre/extendiendo Echo; no crear un segundo sistema independiente.
@@ -272,21 +324,21 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 - Strategy se asocia a cuentas mediante AccountStrategy.
 - Una Signal fan-out a todas las AccountStrategy habilitadas que referencian esa Strategy.
 - Echo no corrige automáticamente duplicados/conflictos causados por una mala configuración de estrategias.
-- AccountStrategy V1 selecciona un CapitalManagement.
-- CapitalManagement administra la Operation completa, no sólo sizing inicial, y puede reaccionar a market bars/events.
+- AccountStrategy V1 selecciona un MoneyManagement.
+- MoneyManagement administra la Operation completa, no sólo sizing inicial, y puede reaccionar a market bars/events.
 - V1 debe poder expresar hardscalping Gerard negativo y positivo.
 - Trade continúa siendo el resultado cerrado consumido por `trade_journal` / The Lab.
 - Escala de arquitectura V1: 100–200 cuentas sin rediseño.
 - Símbolos internos canónicos + mapping físico actualizable hot.
 - Rollover automático fuera de V1; lo administra manualmente el owner.
 - Sesiones deben ser configurables y consistentes entre live/replay/backtest.
-- La arquitectura debe permitir un módulo independiente de backtesting posterior reutilizando Strategy + CapitalManagement.
+- La arquitectura debe permitir un módulo independiente de backtesting posterior reutilizando Strategy + MoneyManagement.
 - V1 debe demostrar al menos un execution transport real.
-- Dynamic portfolios, smallcaps y multi-CapitalManagement por AccountStrategy quedan fuera de V1.
+- Dynamic portfolios, smallcaps y multi-MoneyManagement por AccountStrategy quedan fuera de V1.
 
 ### Propuestas fuertes a validar en D1/D2
 
-- `Operation = Signal × Account`.
+- Para Signals de apertura: una Signal aceptada puede materializar una Operation por AccountStrategy. Signals de gestión/salida pueden apuntar a Operations existentes y no implican una nueva Operation.
 - Operation existe desde que se materializa la intención de esa cuenta, incluso con entry order WORKING sin fill.
 - `Operation 1 -> N Orders`.
 - `Order 1 -> N Fills`.
@@ -313,10 +365,10 @@ Cada pregunta tiene un **día máximo de resolución**. No puede arrastrarse sil
 | Q8 | **Feed authority:** fuente primaria/backups, failover y gap reconciliation. | **D2** | Authority/failover/recovery contract elegido. |
 | Q9 | **Execution transport:** qué alternativa real mínima se selecciona para V1 y qué provider cohort puede reutilizarla. | **D2** | D1 demuestra feasibility real; D2 selecciona transport inicial y boundary adapter/bridge. |
 | Q10 | **Provider model:** Provider/Program/RuleSet y taxonomía real después del Prop Universe census. | **D2** | Modelo candidato soporta el corpus relevante sin giant switch/overengineering. |
-| Q11 | **Strategy runtime:** cuándo corren Strategy y CapitalManagement (tick, forming bar, closed bar, other events), state ownership e interfaces. | **D2** | Interfaces/event model/state ownership definidos. |
+| Q11 | **Strategy runtime:** cuándo corren Strategy y MoneyManagement (tick, forming bar, closed bar, other events), state ownership e interfaces. | **D2** | Interfaces/event model/state ownership definidos. |
 | Q12 | **S2:** confirmar o reemplazar H4 trend + 5m Bollinger pullback. | **D4** | Segunda estrategia mecánica exacta incluida en SPEC de desarrollo. |
-| Q13 | **Gerard +/- exacto:** parámetros/config/state transitions necesarios para una primera implementación determinista. | **D4** | CapitalManagement V1 completamente mecanizable; cero decisión humana ambigua requerida para desarrollo. |
-| Q14 | **Backtest boundary:** qué paquetes/contratos deben quedar libres de dependencias live para que el runner independiente sea barato de construir. | **D2** | Boundary explícito que permite reutilizar Strategy/CapitalManagement/domain sin Core live. |
+| Q13 | **Gerard +/- exacto:** parámetros/config/state transitions necesarios para una primera implementación determinista. | **D4** | MoneyManagement V1 completamente mecanizable; cero decisión humana ambigua requerida para desarrollo. |
+| Q14 | **Backtest boundary:** qué paquetes/contratos deben quedar libres de dependencias live para que el runner independiente sea barato de construir. | **D2** | Boundary explícito que permite reutilizar Strategy/MoneyManagement/domain sin Core live. |
 | Q15 | **Trade/Lab compatibility:** qué campos existentes se preservan, cuáles se extienden y cómo se distinguen live vs simulated. | **D2** | Contrato Trade→trade_journal→Lab y provenance/mode resueltos. |
 | Q16 | **Blocking refactor:** si Echo actual impide alguna capacidad, ¿se resuelve ahora o queda DT/Core V3? | **D2** | Cada gap de D1 queda clasificado como adaptación/refactor <=1 día o DT no bloqueante con impacto explícito. |
 
@@ -429,16 +481,16 @@ Relación propuesta:
 AccountStrategy
   account_id
   strategy_id
-  capital_management_id
+  money_management_id
   enabled
   config
 ```
 
-V1: una relación AccountStrategy usa un CapitalManagement.
+V1: una relación AccountStrategy usa un MoneyManagement.
 
-Múltiples CapitalManagement simultáneos por relación quedan YAGNI/futuro.
+Múltiples MoneyManagement simultáneos por relación quedan YAGNI/futuro.
 
-### CapitalManagement
+### MoneyManagement
 
 Objeto/política stateful configurable que administra una Operation desde la entrada hasta quedar cerrada.
 
@@ -467,14 +519,14 @@ Debe poder expresar desde V1 la familia Gerard de hardscalping negativo y positi
 
 Concepto lógico propuesto:
 
-> realización de una Signal concreta sobre una Account concreta.
+> lifecycle lógico de una oportunidad/intención materializada para una AccountStrategy concreta y administrada por MoneyManagement.
 
 Se crea aunque una orden de entrada quede pendiente, por ejemplo una LIMIT aún sin fill.
 
 Una Operation:
-- pertenece a Signal + Account + AccountStrategy;
+- conserva provenance hacia la Signal que la originó y pertenece a Account + AccountStrategy;
 - mantiene lifecycle propio;
-- es administrada por CapitalManagement;
+- es administrada por MoneyManagement;
 - puede producir múltiples Orders;
 - puede sobrevivir a partial fills/adds/reductions/modificaciones;
 - termina cuando su exposición lógica queda cerrada/flat.
@@ -570,7 +622,7 @@ D1 debe investigar cómo engines cuantitativos/trading systems maduros resuelven
 
 Preguntas que el diseño debe responder:
 - dónde viven las closed/forming bars;
-- cómo acceden Strategy y CapitalManagement a ellas por tick/bar sin latencia de segundos;
+- cómo acceden Strategy y MoneyManagement a ellas por tick/bar sin latencia de segundos;
 - qué se mantiene en memoria;
 - qué se persiste y cuándo;
 - cómo se reconstruye estado después de restart;
@@ -703,7 +755,7 @@ Debe producir primero un **Domain & Data Model Candidate** (identities, cardinal
 - entity lifecycles/cardinalities;
 - Strategy/Signal contract;
 - AccountStrategy;
-- CapitalManagement contract;
+- MoneyManagement contract;
 - Operation/Order/Fill/Position/Trade semantics;
 - market-data runtime;
 - bar semantics/storage/warmup/recovery;
@@ -750,7 +802,7 @@ Astra debe buscar:
 - overengineering/YAGNI violations;
 - provider-rule gaps;
 - replay/live divergence;
-- imposibilidad de reutilizar Strategy/CapitalManagement en un backtester independiente;
+- imposibilidad de reutilizar Strategy/MoneyManagement en un backtester independiente;
 - contract mapping/session/roll semantics;
 - 200-account capacity assumptions.
 
@@ -791,7 +843,7 @@ Carriles paralelos permitidos después del freeze, según SPEC:
 - market-data ingestion/state/bars;
 - Strategy runtime + S1/S2;
 - domain/lifecycles;
-- CapitalManagement Gerard +/-;
+- MoneyManagement Gerard +/-;
 - provider rule runtime;
 - execution contracts/adapters;
 - journal/replay foundations.
@@ -906,13 +958,13 @@ Objetivo:
 - runner independiente;
 - ingestión de histórico/recorded market data;
 - mismas Strategy;
-- mismo CapitalManagement;
+- mismo MoneyManagement;
 - mismas Signal/Operation/Order/Fill/Trade semantics;
 - SimExecution determinista;
 - outputs utilizables por The Lab;
 - base futura para research y construcción de portfolios.
 
-El coste esperado debe ser bajo precisamente porque V1 habrá preservado estas abstracciones. Si después de V1 el backtester exige reescribir Strategy o CapitalManagement, se considera un defecto de arquitectura de V1.
+El coste esperado debe ser bajo precisamente porque V1 habrá preservado estas abstracciones. Si después de V1 el backtester exige reescribir Strategy o MoneyManagement, se considera un defecto de arquitectura de V1.
 
 ## ✅ Definition of Done V1
 
@@ -922,7 +974,7 @@ Debe demostrar, según SPEC congelada:
 - dos estrategias V1 ejecutables;
 - Signal sin sizing/provider;
 - Strategy→Signal→todas las AccountStrategy asociadas;
-- CapitalManagement stateful incluyendo Gerard +/- congelado;
+- MoneyManagement stateful incluyendo Gerard +/- congelado;
 - MARKET/LIMIT/STOP;
 - Operation→N Orders;
 - Order→N Fills;
@@ -944,7 +996,7 @@ Debe demostrar, según SPEC congelada:
 - smallcaps/equities implementation;
 - dynamic portfolios;
 - resolver automáticamente señales duplicadas/conflictivas;
-- múltiples CapitalManagement simultáneos por AccountStrategy;
+- múltiples MoneyManagement simultáneos por AccountStrategy;
 - HFT;
 - optimizador masivo de estrategias;
 - soportar todas las props del mercado antes del primer release;
@@ -985,6 +1037,6 @@ Estado corregido al cierre:
 - la skill [[technical-project-manager]] fue corregida para manager-mode: owner authority, global→detalle, delegación por prompts maestros y no self-accept de gates;
 - no se modificó código productivo y D2 NO comenzó.
 
-**Next exact milestone:** continuar D1 con un nuevo manager session: revisar globalmente los frentes, acordar orden con el owner y tomar el primer workstream hasta producir su prompt maestro/delegación.
+**Next exact milestone:** continuar D1/A2 con owner+manager: definir el lifecycle de `Operation` (momento de nacimiento, estados mínimos, entry que no llena/reject/expiry y criterio de cierre) sin asumir decisiones no dadas por el owner.
 
 D2 sólo se habilita después de que el manager recorra el checklist D1 completo con el owner y éste acepte el gate.
