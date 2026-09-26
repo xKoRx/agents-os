@@ -1586,3 +1586,31 @@ Implementation/certification requirements carried forward:
 - certify 100–200 account capacity later; no architecture redesign is implied.
 
 No owner decision remains open in D2-04. This closes Q2/Q3 at D2 design level. It does **not** close D2 globally.
+
+
+### D2-05 — Instrument / Session / Provider — SUBMANAGER READY FOR MANAGER REVIEW — 2026-09-26
+
+**Status:** `D2-05 = READY_FOR_MANAGER_REVIEW`
+
+Integrated authority candidate: [[Echo Futures — D2-05 Instrument Session Provider]].
+
+Child design inputs:
+- [[Echo Futures — D2-05A Instrument Contract]]
+- [[Echo Futures — D2-05B Session Calendar]]
+- [[Echo Futures — D2-05C Provider Program Rules]]
+
+Submanager integration resolves Q6/Q7/Q10 at D2 candidate level without closing the gate. Main conclusions submitted for Primary Manager review:
+
+- canonical Instrument is separate from expiry-specific physical Contract; vendor/platform identifiers are mappings;
+- Operation resolves and pins Contract at creation; manual hot rollover is prospective only and never retargets a live Operation;
+- ExchangeCalendar/ExchangeSession, ProviderProgram trading overlays and Account DayBoundary are three distinct authorities;
+- Strategy uses named trading windows/calendar semantics without fixed UTC offsets; LIVE/REPLAY/BACKTEST share the same calendar contract;
+- Provider -> ProviderProgram -> ProgramPhase -> versioned ProviderRuleSet is explicit, while execution transport/capability remains a separate Account binding concern;
+- Account owns ProviderProgram/phase/rules/transport binding; AccountStrategy remains Account + Strategy + MoneyManagement;
+- provider enforcement is split into pre-materialization admission, post-MM Order admission for quantity/exposure rules, and asynchronous safety intents for live Operations;
+- ProviderRuleSet hot updates are dynamically authoritative for safety/new decisions and do not mutate pinned Contract or MM snapshot;
+- D2-04 remains lifecycle authority: provider forced-flat is a termination intent, never instant TERMINAL.
+
+`OWNER_DECISIONS_REQUIRED = NONE`.
+
+Do not advance to D2-06 until Primary Manager review of D2-05.
