@@ -305,6 +305,12 @@ Este registro distingue requisitos ya definidos, propuestas pendientes de valida
 - Una Operation sin Fill **no implica Position física**; Position continúa representando sólo estado físico observado/reconciliado de la Account.
 - Signals posteriores de gestión/salida (`REDUCE`, `CLOSE`, `CLOSE_ALL`) actúan sobre Operations existentes y no crean una Operation nueva por defecto.
 - Operation es la unidad lógica administrada por MoneyManagement y puede producir N Orders.
+- Lifecycle conceptual mínimo aceptado hasta ahora:
+  - `CREATED`: la Operation ya existe; MoneyManagement aún está resolviendo qué hacer.
+  - `PENDING_ENTRY`: existe al menos una Order de entrada viva/working intentando obtener exposición, pero todavía no existe Fill.
+  - `ACTIVE`: estado reservado para cuando exista exposición real; el trigger exacto y semántica con partial fills se cierra en el siguiente checkpoint owner.
+  - `TERMINAL`: la Operation ya no puede producir nuevas acciones; debe conservar reason explícito.
+- `PENDING_ENTRY` es distinto de `CREATED`: una LIMIT/STOP working en el mercado ya constituye una situación operacional material aunque aún no exista Position.
 - Order es una instrucción concreta de execution; Order puede producir 0..N Fills.
 - Fill es un hecho de ejecución inmutable.
 - `Position` NO es Operation. Position es una **proyección/snapshot del estado físico observado en una Account**, usada para reconciliación y superficies como el front.
