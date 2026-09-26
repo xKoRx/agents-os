@@ -1508,3 +1508,25 @@ Semántica:
 - No se agrega complejidad adicional de contrato a Strategy/Signal en V1 salvo provenance mínima si una necesidad real de replay/auditoría lo exige posteriormente.
 
 Rationale owner: mantener una única respuesta de Strategy, separar claramente técnica vs dinero, permitir compatibilidad explícita Strategy/MM y evitar que edge cases o ejecución física deformen las abstracciones generales de V1.
+
+### D2-04 — Manager review — CORRECTION REQUIRED — 2026-09-26
+
+**Status:** `D2_04_MANAGER_REVIEW = CORRECTION_REQUIRED`
+
+Primary Manager reviewed the durable artifact `[[Echo Futures — D2-04 Operation Order Fill Position]]` against D2-01/02/03 and `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360`.
+
+Accepted direction, pending repair: Operation as account-specific aggregate; isolated keyed ownership per AccountStrategy; Order 1→0..N Fill; Position as physical Account+Contract observation distinct from Operation; no global mutable MM store; reuse/adapt of Echo V3 StateFun/Kafka patterns.
+
+Required corrections before D2-04 can be frozen:
+
+1. Remove hidden AccountStrategy revision/version coupling from Operation snapshot. D2-01 permits only the effective configuration/state actually required by a live Operation; no implicit revision entity/framework.
+2. Operation `direction` must be fixed from the accepted OPEN Signal/Strategy technical intent when Operation is materialized, not inferred later from the first execution Order.
+3. `ForceClose`/safety flatten is a close intent/process, not an immediate transition to TERMINAL. TERMINAL still requires zero logical exposure + zero live Orders + explicit decision not to continue.
+4. Fill truth cannot be clamped. If a venue over-reduces and signed Fill exposure crosses zero, preserve the immutable Fill-derived truth and surface an execution/invariant breach; do not silently normalize it back to zero.
+5. The claim that final runtime/MM state is independent of event arrival order is too strong. Fill arithmetic is commutative; stateful MM decisions are not necessarily. The design must specify deterministic serialization/recorded processing order and replay semantics rather than claiming order-independence globally.
+6. Prove or repair crash/idempotency semantics around side effects. UUIDv7 generated Orders + async PG/checkpointing do not by themselves prove that a crash after emitting a venue command but before durable state cannot create a second physical Order on replay. The design needs a concrete durable/deterministic command identity / StateFun-Kafka guarantee / adapter idempotency contract, with evidence for whichever mechanism is relied upon.
+7. TTL-only in-memory Fill dedup plus async PG is insufficient if a duplicate execution can reappear after TTL and mutate hot exposure before the DB PK rejects persistence. Fill identity must remain idempotent for the relevant Operation/recovery horizon without synchronous DB dependency in the hot path.
+8. Reclassify current MT-oriented `PositionSnapshot` domain shape carefully. Source is ticket/trade-level (`account_id,ticket,TradeID,StrategyID`), while Futures Position is net `Account+Contract`; reuse the synchronization pattern where useful, but do not claim a simple field extension if it would preserve wrong semantics.
+9. Reassess optional `order_events`/`operation_events` audit tables and extra function/topic surface under KISS/YAGNI. Keep only pieces required for correctness/recovery; OTel/current-state persistence + immutable Fills may be enough for some audit concerns.
+
+No owner decision is requested by this review. Return the same workstream to TOP for a targeted repair; do not advance to D2-05 until re-review.
