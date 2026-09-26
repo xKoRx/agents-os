@@ -243,6 +243,24 @@ D1/D2 deben resolver:
 
 Esto es especialmente crítico para S1 NY Opening Range 30m.
 
+## 🧭 Front E — Contract + Session Semantics manager integration — 2026-09-26
+
+Authority: `main/30-resources/futures/CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE.md`.
+
+Primary Manager review accepts the returned evidence state:
+
+- `E_CONTRACT_SESSION_SEMANTICS = ACCEPTED_WITH_MANAGER_NORMALIZATION`
+- Q6 Contract mapping = `D1_INPUT_SUFFICIENT_FOR_D2`
+- Q7 Session semantics = `D1_INPUT_SUFFICIENT_FOR_D2`
+- `OPERATION_CONTRACT_PINNING = STRONGLY_SUPPORTED_INFERENCE`
+- Front E = `D1_MANAGER_REVIEW_CLOSED`
+
+Accepted D1 evidence is limited to the authority resource's FACT/PATTERN/INFERENCE distinctions. Exact Instrument/Contract structs, resolver/cache, lifecycle metadata authority, TradingSession/calendar representation, ProviderProgram overlays and deterministic session→bar mechanics remain D2 technical design.
+
+Residual unknowns about exact lifecycle timestamps, stale/inactive-contract close edges and a universal CME trade-date formula are non-blocking for D1 and must not be generalized by inference.
+
+Front E does not close D1 by itself.
+
 ## 🔌 Execution transport — REQUISITO DE V1
 
 La V1 no puede terminar sólo con interfaces/mocks.
