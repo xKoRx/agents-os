@@ -1543,3 +1543,15 @@ The R1–R9 repair materially improved D2-04 and the StateFun 3.2 Kafka egress E
 4. **Post-terminal execution/duplicate routing needs an explicit boundary.** Evicting Fill dedup at TERMINAL is safe only if a later event for an old `operation_id` can never mutate the current new Operation on the same `account:strategy` key. A genuinely new late Fill after terminal must not be discarded as a duplicate nor silently revive/contaminate the next Operation; it must preserve the execution fact and surface a post-terminal execution breach/reconciliation path. Define the minimal operation-id guard/tombstone or equivalent adapter/state-owner contract.
 
 These remain technical corrections; no owner decision is required. Return D2-04 to the same TOP for a narrow repair only. Do not advance to D2-05.
+
+#### D2-04 — Manager third review — FINAL CORRECTION REQUIRED — 2026-09-26
+
+**Status:** `D2_04_MANAGER_REVIEW_3 = FINAL_CORRECTION_REQUIRED`
+
+The second repair R10–R13 is accepted in substance: restart-safe adapter idempotency, checkpoint/Kafka recovery authority, scoped replay claims and post-terminal operation identity guards are now coherent. One remaining durability contradiction blocks freeze:
+
+- The artifact treats `echo.operations`, `echo.orders` and especially immutable `echo.fills` as durable facts/projections, while the proposed implementation writes them through an async best-effort PG writer embedded in `echo/operation`. Because PG is not checkpoint-atomic and the Kafka ingress offset may advance with the StateFun checkpoint before that writer flushes, a crash can permanently lose a terminal projection or Fill after the source event is considered processed. This does not corrupt live aggregate correctness, but it violates the claimed durable Fill/history contract.
+
+Required final repair: explicitly provide a durable projection source/barrier decoupled from live correctness. Prefer the smallest KISS mechanism: transactionally emit the required Operation/Order/Fill projection records/facts to Kafka as part of the same StateFun checkpoint/egress boundary, then project asynchronously/idempotently into PG; or prove an equivalent mechanism with no loss window. PG remains query projection and never recovery authority. Do not reintroduce event sourcing or a full operation event log. Late/post-terminal fills must use the same durable fact path rather than a direct best-effort PG-only insert.
+
+No owner decision required. After this narrow repair, D2-04 should be eligible to freeze.
