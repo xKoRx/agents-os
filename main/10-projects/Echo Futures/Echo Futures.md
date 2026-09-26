@@ -682,6 +682,50 @@ El research aporta patrones suficientes para preparar D2 en Q4/Q5/Q14, pero cont
 
 Q8 requiere un follow-up acotado sobre authority, gap detection, reconnect/resubscribe, health-based failover y recovery. No repetir el research completo de quant engines.
 
+### B2 — Feed Authority / Failover manager review — 2026-09-26
+
+Research artifact: `main/30-resources/futures/MARKET DATA + QUANT ENGINE FORENSICS V2.md`.
+
+**Manager verdict:** `B2_FEED_AUTHORITY_RESEARCH = ACCEPTED_WITH_CORRECTIONS`.
+
+El B2 aporta evidencia suficiente para cerrar el gap D1 de Q8 y pasar la decisión técnica a D2.
+
+**Evidencia aceptada:**
+- CME MDP usa arquitectura dual-feed A/B y recomienda arbitration simultánea entre ambos feeds equivalentes para mitigar packet loss/missed messages; esto es redundancia dentro de una misma autoridad lógica, no blending de vendors heterogéneos.
+- CME dispone de sequence/gap/recovery primitives y feeds de snapshot/replay para reconstrucción.
+- Databento expone heartbeat configurable, reconnect policy, reconnect callback con rango temporal de desconexión, intraday replay, natural refresh y MBO snapshot.
+- Databento documenta recuperación exact-once-ish mediante `ts_event` + count por schema/instrument y filtrado explícito de duplicados tras replay.
+- Un stream recuperado necesita una barrera de readiness antes de volver a alimentar decisiones nuevas si el estado derivado quedó incompleto.
+
+**Correcciones manager:**
+- Databento **sí expone `sequence`** del mensaje original del venue; no registrar “Databento no tiene sequence visible”.
+- CME MDP 3.0 **sí posee Admin Heartbeat (35-MsgType=0)**; no registrar “CME no envía heartbeat”.
+- Un salto entre timestamps NO prueba por sí solo que faltó market data: mercados válidamente pueden estar sin eventos. Gap detection debe usar primitives del source cuando existan (sequence, reconnect interval, replay/snapshot status) y separar `connection/session liveness` de `market-event freshness`.
+- No congelar un timeout universal tipo “sin tick por X segundos”: depende de session/instrument/schema y es parámetro técnico/configurable, no decisión owner.
+- No aceptar como hecho que CME TCP/recovery se use “sólo en reposo/arranque”; el report no aporta evidencia suficiente para esa restricción.
+- “Closed bars son definitivas y nunca se reconstruyen” tampoco queda demostrado como regla universal. Late-event/correction policy se diseña en D2.
+- El B2 mezcla recomendaciones de Echo con hechos externos. El principio útil es preservar authority/recovery provenance; la forma física de metadata queda D2.
+- Las preguntas finales marcadas OWNER sobre blending, health thresholds, forming-bar recovery y warmup son **TECHNICAL D2** bajo los requisitos ya dados; no requieren decisión de producto del owner salvo que aparezca un trade-off operacional material.
+
+**Inputs que D2 debe resolver, ya con evidencia suficiente:**
+1. Un canonical market stream tiene una autoridad lógica explícita por Instrument/Contract/schema.
+2. Redundancia equivalente dentro de la misma autoridad (como CME A/B) puede arbitrarse/deduplicarse.
+3. Vendors/feeds heterogéneos no se mezclan silenciosamente; cualquier switchover debe ser una transición explícita de source authority.
+4. Health separa al menos connection/session liveness, source continuity/gap evidence y market freshness.
+5. Recovery es adapter-specific: replay, natural refresh o snapshot según source/schema.
+6. Durante recovery el stream puede entrar en estado no confiable; D2 define la readiness barrier y política de nuevas decisiones.
+7. Forming bars/indicators afectados por gap deben poder reconstruirse; la política exacta para closed bars/late corrections queda D2.
+8. Provenance mínima de source/recovery epoch debe permitir diagnosticar qué autoridad produjo el estado sin contaminar cada dominio con vendor-specific details.
+
+**Readiness final Front B:**
+- Q4 Market hot state = `D1_INPUT_SUFFICIENT_FOR_D2`
+- Q5 Bar semantics = `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS`
+- Q8 Feed authority/failover = `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS`
+- Q14 Backtest boundary = `D1_INPUT_SUFFICIENT_FOR_D2`
+- **FRONT B = D1_MANAGER_REVIEW_CLOSED**
+
+No se congela vendor, StateFun ownership, timeout, failover automation ni bar correction algorithm en D1.
+
 ## 📈 Market data — PREGUNTA ABIERTA PRIORITARIA
 
 No se congela aún almacenamiento/cache de velas.
