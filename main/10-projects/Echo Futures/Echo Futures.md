@@ -283,6 +283,50 @@ La selección debe considerar como mínimo:
 
 No se obliga todavía a implementar un adapter por prop firm.
 
+## ✅ D1 final manager checklist — READY FOR OWNER REVIEW — 2026-09-26
+
+Owner decision recorded for Q1:
+
+`Q1_ECHO_FIT = D1_OWNER_ACCEPTED`
+
+Accepted conclusion:
+- Echo Futures extends **Echo V3 incrementally**.
+- No Core rewrite.
+- No separate Futures runtime/system.
+- Reuse existing infrastructure/patterns where semantics fit.
+- Adapt/replace boundaries whose current semantics are incompatible with the new canonical domain.
+
+Final D1 readiness review:
+
+| Q | D1 status |
+| --- | --- |
+| Q1 Echo fit | `D1_OWNER_ACCEPTED` |
+| Q2 Position attribution | `D1_INPUT_SUFFICIENT_FOR_D2` |
+| Q3 Order lifecycle | `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS` |
+| Q4 Market hot state | `D1_INPUT_SUFFICIENT_FOR_D2` |
+| Q5 Bar semantics | `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS` |
+| Q6 Contract mapping | `D1_INPUT_SUFFICIENT_FOR_D2` |
+| Q7 Session semantics | `D1_INPUT_SUFFICIENT_FOR_D2` |
+| Q8 Feed authority | `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS` |
+| Q9 Execution transport | `D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS` |
+| Q10 Provider model | `D1_INPUT_SUFFICIENT_FOR_D2` |
+| Q11 Strategy runtime | `D1_INPUT_SUFFICIENT_FOR_D2` |
+| Q12 S2 | `READY_FOR_D4` by planned owner day |
+| Q13 Gerard +/- | `READY_FOR_D4` by planned owner day |
+| Q14 Backtest boundary | `D1_INPUT_SUFFICIENT_FOR_D2` |
+| Q15 Trade/Lab | `DEFERRED_TO_THE_LAB` by owner decision |
+| Q16 Blocking refactor | `D1_INPUT_SUFFICIENT_FOR_D2` |
+
+Manager conclusion:
+- No remaining D1 UNKNOWN changes a domain identity/lifecycle, hot-path feasibility, execution feasibility, mapping/session semantics or backtest reuse boundary.
+- Residual transport entitlement, capacity benchmark, contract lifecycle timestamp authority and edge-case recovery details are scoped to D2/implementation and are not D1 discovery blockers.
+- Q12/Q13 intentionally close in D4 and therefore do not block the D1 evidence gate.
+- Q15 is explicitly outside the Echo Futures critical path.
+
+`EF_D1_ANALYSIS_PASS = READY_FOR_OWNER_REVIEW`
+
+This is **not PASS**. The Owner remains gate authority and must explicitly accept D1 before D2 starts.
+
 ## ⚠️ Critical Design Register
 
 Este registro distingue requisitos ya definidos, propuestas pendientes de validación y preguntas bloqueantes.
