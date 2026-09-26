@@ -44,6 +44,9 @@ updated: "2026-09-26"
 > - Lifecycle conceptual aceptado: `CREATED` → `PENDING_ENTRY` → `ACTIVE` → `TERMINAL`, permitiendo terminales anticipados desde CREATED/PENDING_ENTRY. `PENDING_ENTRY` significa que existe una Order de entrada viva/working pero todavía no existe Fill. El **primer Fill que genere exposición**, incluso parcial, hace la Operation `ACTIVE`.
 > - Un Order REJECTED/CANCELLED/EXPIRED no termina automáticamente la Operation: MoneyManagement puede retry/reemplazar/continuar.
 > - Volver a exposición lógica cero tampoco implica TERMINAL por sí solo. TERMINAL requiere al menos exposición lógica cero, ninguna Order viva asociada y decisión de MoneyManagement de no continuar.
+> - La dirección de una Operation es inmutable. Su exposición lógica se deriva de sus Fills y puede aumentar, reducirse o llegar temporalmente a cero, pero nunca cruza de LONG a SHORT ni viceversa.
+> - Un reversal requiere cerrar/reducir la Operation existente y emitir una nueva `OPEN Signal` que cree otra Operation en la dirección opuesta.
+> - Position sigue siendo exposición física observada por Account y puede agregar/netear múltiples Operations; no sustituye el estado lógico de exposición por Operation.
 > - Signals posteriores de gestión/salida pueden actuar sobre Operations existentes sin crear una nueva Operation.
 > - Operation puede producir N Orders; Order puede producir 0..N Fills; Fill es inmutable.
 > - Position pertenece a **Account** y representa una proyección/snapshot del estado físico observado/reconciliado; no es Operation ni se eleva a aggregate rico sin requisito concreto.
