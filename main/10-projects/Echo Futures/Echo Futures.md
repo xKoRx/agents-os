@@ -1555,3 +1555,34 @@ The second repair R10–R13 is accepted in substance: restart-safe adapter idemp
 Required final repair: explicitly provide a durable projection source/barrier decoupled from live correctness. Prefer the smallest KISS mechanism: transactionally emit the required Operation/Order/Fill projection records/facts to Kafka as part of the same StateFun checkpoint/egress boundary, then project asynchronously/idempotently into PG; or prove an equivalent mechanism with no loss window. PG remains query projection and never recovery authority. Do not reintroduce event sourcing or a full operation event log. Late/post-terminal fills must use the same durable fact path rather than a direct best-effort PG-only insert.
 
 No owner decision required. After this narrow repair, D2-04 should be eligible to freeze.
+
+### D2-04 — Operation / Order / Fill / Position — MANAGER CLOSED — 2026-09-26
+
+**Status:** `D2_04_MANAGER_REVIEW = CLOSED`
+
+Primary Manager final review accepts `[[Echo Futures — D2-04 Operation Order Fill Position]]` after repairs R1–R14.
+
+Frozen D2-04 conclusions:
+
+- `Operation` is the account-specific aggregate and V1 allows at most one non-terminal Operation per AccountStrategy.
+- State ownership is isolated/keyed by execution account + AccountStrategy; MM executes only inside that account-specific context and never receives a global mutable account/operation store.
+- `Operation 1 -> 0..N Order`; `Order 1 -> 0..N Fill`; multiple simultaneous live Orders and partial fills are first-class.
+- Operation direction is sealed from the accepted OPEN Signal before MM/Orders; Contract is pinned at Operation creation.
+- `Fill` is immutable execution truth; logical exposure is derived from signed fills and is never silently clamped. Physical anomalies are fail-visible breaches, not synthetic repair.
+- TERMINAL requires zero real logical exposure + zero live Orders + an explicit termination intent. ForceClose is an intent/process, not an immediate terminal transition.
+- `Position` is a separate physical net observation by Account+Contract. Futures replaces the MT ticket-level domain shape while reusing the useful sync/projection pattern. Position never owns Operation lifecycle; DT-EF-POSITION-RECONCILIATION-05 remains deferred.
+- Stateful decisions are deterministic for the same ordered input sequence; fact-derived quantities are commutative. D2-04 does not claim exact live-session replay from PG.
+- Live recovery authority is Flink/StateFun checkpoint + Kafka ingress replay + transactional Kafka egress. PostgreSQL is query/eventual projection only and never recreates mm_state or decides physical Orders. Cold loss of checkpoint authority is fail-closed (`COLD_RECOVERY_REQUIRED`).
+- Command submission has two explicit correctness boundaries: StateFun state↔Kafka egress must be EXACTLY_ONCE; the execution adapter must additionally provide restart-safe external-side-effect idempotency using durable submission intent + authoritative venue/history resolution or documented native idempotency. Unsupported transports/order classes are gated rather than approximated.
+- Late execution events carry Operation/Order identity and can never mutate a successor Operation on the same keyed owner. Genuinely new post-terminal fills remain durable facts and raise a post-terminal execution breach without reviving the old aggregate.
+- Durable Operation/Order latest-state projections and immutable Fill facts are emitted through a checkpoint-coordinated transactional Kafka projection/fact egress and materialized asynchronously/idempotently into PG by a small projector. No operation/order event store, saga or event-sourcing framework is introduced.
+- Echo V3 disposition for this workstream: StateFun/Kafka/kache patterns REUSE; execution planner/MM engine ADAPT; CoreCommand/ExecutionResult remain legacy wire contracts; ExecutionStore is REPLACED as authority but retained for legacy compatibility; Position sync pattern REUSE with Futures domain-shape REPLACE.
+
+Implementation/certification requirements carried forward:
+
+- configure command and projection/fact Kafka egresses as `EXACTLY_ONCE` and consumers as committed-only where required;
+- verify adapter history/tag/native-idempotency capabilities before a transport/order class is eligible for V1;
+- size projection-topic retention and alert projector lag;
+- certify 100–200 account capacity later; no architecture redesign is implied.
+
+No owner decision remains open in D2-04. This closes Q2/Q3 at D2 design level. It does **not** close D2 globally.
