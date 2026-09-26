@@ -251,6 +251,43 @@ Este bloque fue **scouting de patrones e implementaciones maduras**, no selecci�
 
 D2 puede decidir Q4/Q5/Q8 con un menú concreto de trade-offs: owner del hot state, input granularity, bar timestamp/finality, indicator storage, MTF derivation, warm-up contract, durable store, primary/backup policy y recovery semantics. No requiere otro discovery general.
 
+## 3A. Manager review — formal Front C research — 2026-09-26
+
+Formal worker artifact: `main/30-resources/futures/FUTURES PROP UNIVERSE — FIRST-PARTY DOMAIN FORENSICS.md`.
+
+`C_PROP_UNIVERSE_RESEARCH = BLOCKED_EVIDENCE`.
+
+The worker draft is not accepted as the authoritative provider corpus.
+
+Material failures:
+- required relevant providers omitted: TradeDay, Tradeify, Alpha Futures, TakeProfitTrader;
+- direct first-party contradictions on automation status for Lucid and MFFU;
+- false claim that no researched provider explicitly forbids bots;
+- false claim that Topstep does not document trader API access;
+- fewer than five actually verified automatable candidates;
+- no claim-level source/date evidence packet despite mandate;
+- unsupported “plausible / implied / known internally” API/platform conclusions;
+- platform support conflated with developer/API entitlement.
+
+Manager revalidation confirms the preliminary D1 seed was materially more accurate on these points and supplies direct first-party anchors for repair.
+
+Reusable from worker draft only as candidate taxonomy:
+- Provider + Program/Phase requirement;
+- rule families;
+- account/trader/household/cross-account/cross-provider scope dimension;
+- runtime-vs-economics distinction.
+
+Not authoritative until repair:
+- provider automation matrix;
+- program/fase values;
+- platform/API matrix;
+- technical feasibility cohort;
+- exclusion/block list.
+
+Q10 = `RESEARCH_REPAIR_REQUIRED`.
+Front C remains OPEN.
+Front D remains blocked by corrected C output.
+
 ## 3. Futures Prop Universe — PRELIMINARY BREADTH SAMPLE
 
 La cohorte siguiente fue investigada demasiado pronto por el manager y **NO sustituye** el track [[Echo Futures — Futures Prop Universe]]. Debe tratarse como seed/evidencia preliminar para preparar deep research first-party amplio y reproducible.
@@ -482,7 +519,7 @@ Estos son blocking design/refactors, no evidencia de que haya que reescribir Cor
 | Q7 Session semantics | OPEN_D1_INPUTS_AVAILABLE | Evidencia preliminar; falta revisión guiada del scope requerido. |
 | Q8 Feed authority | D1_INPUT_SUFFICIENT_FOR_D2_WITH_CORRECTIONS | B2 provides CME/Databento authority, liveness and recovery evidence; exact policy/topology remains D2. |
 | Q9 Execution transport | OPEN_D1_RESEARCH_REQUIRED | Varias familias identificadas; falta research/verification coordinado. |
-| Q10 Provider model | OPEN_D1_RESEARCH_REQUIRED | Cohorte preliminar NO sustituye Futures Prop Universe deep research. |
+| Q10 Provider model | RESEARCH_REPAIR_REQUIRED | Formal C draft failed evidence/coverage checks; Provider+Program need is supported, but automation/program/transport corpus must be repaired. |
 | Q11 Strategy runtime | OPEN_D1_INPUTS_AVAILABLE | Source audit preliminar; diseño pertenece a D2. |
 | Q12 S2 | READY_FOR_D4 | Owner day permanece D4. |
 | Q13 Gerard +/- | READY_FOR_D4 | Owner day permanece D4. |
