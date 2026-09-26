@@ -83,3 +83,26 @@ tags:
 
 - Baseline re-verificada por fetch (`origin/master = 372af59a…`, sin delta); garantía egress citada del Javadoc oficial de `KafkaEgressBuilder` 3.2 con URL en §14; runtime desplegado confirmado `apache/flink-statefun:3.2.0` (docker-compose); casos 1–8 del mandato resueltos; grep de contradicciones internas limpio.
 
+---
+
+# 2026-09-26 — Echo Futures D2-04 second repair (R10–R13)
+
+## Cambio
+
+- **Tipo:** updated
+- **Archivo(s):**
+  - `10-projects/Echo Futures/Echo Futures — D2-04 Operation Order Fill Position.md` (second repair en el mismo archivo; commit `57e09436`).
+
+## Motivo
+
+- `D2_04_MANAGER_REVIEW_2 = CORRECTION_REQUIRED` con 4 defectos de correctness (R10–R13) registrados por el Primary Manager en [[Echo Futures]].
+
+## Resolución aplicada
+
+- R10 contrato restart-safe de idempotencia de efectos externos del adapter: journal durable write-ahead + resolución de `PENDING` ambiguos contra venue (open + history por client tag o idempotencia nativa) con gate `UNSUPPORTED_FOR_V1_EXACT_SUBMISSION`; dos boundaries EXACTLY_ONCE explícitos (state↔egress vs adapter↔venue). R11 autoridad de recovery congelada: checkpoint Flink + replay Kafka; PG proyección eventual/query-only stale-safe; `COLD_RECOVERY_REQUIRED` fail-closed para desastre frío. R12 claim de replay reducido a propiedad de dominio; `operation_event_seq` = runtime ordering/stale protection/provenance; seam de recorded streams → workstream Market/Replay. R13 guard de identidad (`operation_id` en events vs `current_operation_id`) + late-event path: duplicados viejos por PK PG, fills nuevos tardíos como hechos + `POST_TERMINAL_EXECUTION_BREACH`, sin tombstones, sin tocar la sucesora.
+
+## Validación
+
+- Baseline re-verificada (fetch, sin delta); invariantes I13–I15 añadidas; casos A–F del mandato resueltos; grep de contradicciones limpio (eliminadas referencias residuales a recovery desde PG y al registry RAM del primer repair).
+
+
