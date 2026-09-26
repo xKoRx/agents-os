@@ -105,4 +105,27 @@ tags:
 
 - Baseline re-verificada (fetch, sin delta); invariantes I13–I15 añadidas; casos A–F del mandato resueltos; grep de contradicciones limpio (eliminadas referencias residuales a recovery desde PG y al registry RAM del primer repair).
 
+---
+
+# 2026-09-26 — Echo Futures D2-04 final durability repair (R14)
+
+## Cambio
+
+- **Tipo:** updated
+- **Archivo(s):**
+  - `10-projects/Echo Futures/Echo Futures — D2-04 Operation Order Fill Position.md` (R14 en el mismo archivo; capturado por sync en commit `bbb7ff27`).
+
+## Motivo
+
+- `D2_04_MANAGER_REVIEW_3 = FINAL_CORRECTION_REQUIRED`: ventana de pérdida entre checkpoint StateFun (que avanza el offset de ingress) y el writer PG embebido — un Fill checkpointeado pero no flusheado a PG quedaba sin fuente durable, contradiciendo `Fill = immutable durable fact`.
+
+## Resolución aplicada
+
+- R14: `echo/operation` deja de tener writer PG embebido y emite `OPERATION_SNAPSHOT` / `ORDER_SNAPSHOT` / `FILL_FACT` por el mismo egress Kafka transaccional EXACTLY_ONCE (misma frontera atómica con el checkpoint) hacia `echo.operation-projections.v1`; nuevo projector dedicado `echo/operation_projector` materializa PG asincrónicamente (idempotente, stale-safe por seq; FILL_FACT insert-only por identity natural). R13 migrado al fact path durable (FILL_FACT con flag `post_terminal`; breach definitivo lo levanta el projector al materializar, telemetría Core inmediata como candidato). Invariante I16 añadida; superficie final: 2 funciones de estado + projector + position projector, 2 familias de egress transaccional, 4 ingress, 4 tablas PG. Sin event sourcing, sin tablas de eventos, `mm_state` no viaja en el topic.
+
+## Validación
+
+- Casos A–D del mandato (fill antes de crash, checkpoint abortado, PG caída 30 min, late fill post-terminal) resueltos en §13; grep de contradicciones limpio (sin referencias residuales al writer embebido como fuente durable); la garantía EXACTLY_ONCE citada (Javadoc 3.2) aplica a ambos egress; baseline `372af59a` sin delta.
+
+
 
