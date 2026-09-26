@@ -1415,3 +1415,23 @@ Estado corregido al cierre:
 **Next exact milestone:** continuar D1/A2 con owner+manager sobre `Operation / Order / Fill / Position`: completar lifecycle de Operation y luego Order/Fill semantics. Trade/The Lab queda fuera del camino crítico hasta reabrirse en el proyecto The Lab.
 
 D2 sólo se habilita después de que el manager recorra el checklist D1 completo con el owner y éste acepte el gate.
+
+## 🧱 D2 — Architecture Candidate decisions
+
+### D2-01 — Operation snapshot + Contract pinning — OWNER CLOSED — 2026-09-26
+
+**Status:** `OWNER_CLOSED`
+
+V1 mantiene el modelo KISS y **no introduce entidades genéricas `Version`/`Revision`** para `Strategy`, `MoneyManagement` ni `AccountStrategy`.
+
+Decisión congelada:
+
+- `Strategy` y `AccountStrategy` mantienen identidades/configuración actuales simples en V1.
+- Al materializar una `Operation`, ésta conserva sólo el estado/configuración efectiva que realmente necesita para que su comportamiento no cambie accidentalmente por un hot update posterior. No se copia configuración irrelevante ni se construye un framework histórico genérico.
+- `Operation.contract_id` queda pinneado explícitamente al `Contract` físico resuelto al crear la Operation.
+- Un hot update del mapping `Instrument -> Contract` afecta a nuevas Operations; **no retargetea silenciosamente** una Operation ya viva.
+- Por defecto, cambios posteriores de configuración de Strategy/MM/AccountStrategy aplican a nuevas Operations. Cualquier autoridad global de seguridad/enforcement que deba actuar sobre Operations vivas se diseña explícitamente en su boundary correspondiente, no mediante mutation implícita del snapshot.
+- Si más adelante aparece una necesidad real de auditoría histórica/promoción/reproducibilidad completa, se podrá agregar revisionado detrás de las identidades estables existentes sin cambiar los boundaries principales del dominio.
+- `ProviderRuleSet` puede conservar versión/provenance cuando la regla vigente de la prop sea material para decisiones/auditoría; esto **no crea un framework de versionado universal**.
+
+Rationale owner: extensible sin construir hoy extensiones no requeridas; KISS/YAGNI sin hipotecar el modelo ni acoplar rollover de contratos al sistema completo.
