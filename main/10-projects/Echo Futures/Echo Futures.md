@@ -323,9 +323,9 @@ Manager conclusion:
 - Q12/Q13 intentionally close in D4 and therefore do not block the D1 evidence gate.
 - Q15 is explicitly outside the Echo Futures critical path.
 
-`EF_D1_ANALYSIS_PASS = READY_FOR_OWNER_REVIEW`
+`EF_D1_ANALYSIS_PASS = PASS`
 
-This is **not PASS**. The Owner remains gate authority and must explicitly accept D1 before D2 starts.
+**Owner acceptance:** 2026-09-26. D1 is closed. D2 — Domain + Technical Architecture is the active milestone.
 
 ## ⚠️ Critical Design Register
 
@@ -1115,11 +1115,13 @@ Deliverable:
 Gate objetivo:
 `EF_D1_ANALYSIS_PASS = REVIEW`.
 
-**Estado actual 2026-09-25:** `EF_D1_ANALYSIS_PASS = NOT_EVALUATED`. Existe [[Echo Futures — D1 Analysis Pack]] como adelanto preliminar generado por el manager, incluyendo source audit y scouting útil, pero el owner corrigió explícitamente que D1 **no está cerrado**. Debe continuarse workstream por workstream, delegando deep research/auditorías y revisando los resultados con el owner.
+**Estado final 2026-09-26:** `EF_D1_ANALYSIS_PASS = PASS`. Owner aceptó el checklist completo D1. [[Echo Futures — D1 Analysis Pack]] queda como evidence authority de D1. No reabrir discovery general en D2 salvo contradicción material nueva.
 
 No código productivo.
 
 ### D2 — DESIGN / Domain + Technical Architecture
+
+**Estado:** ACTIVE / NEXT MILESTONE desde 2026-09-26. D1 baseline aceptado: `EF_D1_ANALYSIS_PASS = PASS`.
 
 **Manager goal:** convertir D1 en una arquitectura candidata completa y simple.
 
