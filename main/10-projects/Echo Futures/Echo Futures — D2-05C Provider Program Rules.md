@@ -346,87 +346,113 @@ Contradicciones a resolver por el SUBMANAGER: (1) la autoridad "ProviderProgram 
 
 ```text
 D2-05C STATUS:
-READY_FOR_SUBMANAGER_REREVIEW
+READY_FOR_INTEGRATION
+(condiciones del gate verificadas: hard-cap correctness probada — R2.1/R2.3/R2.5 con casos
+C-R2-A..F; sin contradicciones internas residuales — sweep C-R2.8 + grep de cierre; evidencia
+copy alineada a la matriz autoritativa — C-R2.7)
 
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-c7fc38e9d9bc0e5da99714cae455937d89058e62
+<PENDING_PIN>
 
 ECHO BASELINE:
-372af59a7b83604781346613da01e3d510ea1360 (HEAD verificado, sin delta; sin re-research)
+372af59a7b83604781346613da01e3d510ea1360 (sin delta; sin research nuevo en C-R2)
 
-REPAIR C-R1:
-- hard-cap concurrency: caps account-wide/instrument/grouping = RESERVA SERIALIZADA (opción A
-  del mandato): ExposureReservationRequest/Result con echo/provider_rules (key account_id, único
-  punto serializado del runtime); Order retenida en PENDING_SUBMIT hasta GRANTED; contadores
-  firm/reserved en keyed state checkpointeado; reserva vive mientras la Order no sea terminal,
-  release en toda transición, dedup por request_id; sin saga ni distributed transaction; max
-  contracts/order queda chequeo local exacto. Prueba de carrera C-R1-A incluida: con cap 5 y
-  firm 3, S1 y S2 +2 ⇒ sólo el primero es granted; no existe entrelazado que produzca 7.
-- entitlement-revocation: separación congelada en cinco conceptos (eligibility de habilitación /
-  deny de nueva exposición / capacidad técnica del adapter / acción sobre exposición viva /
-  regla que EXPLÍCITAMENTE exija flatten con provenance; corpus V1: ninguna). Revocación ⇒
-  ENTITLEMENT_REVOKED + SUSPENSIÓN DE TODA emisión automatizada (también gestión MM); Operation
-  viva ⇒ SUSPENDED_ENTITLEMENT (flag fail-visible, sin intent de terminación) + operador:
-  attestation operator_authorized_close_only (Echo emite sólo cierres, camino lógico coherente)
-  o flatten manual en la plataforma del provider (divergencia lógica/física fail-visible,
-  POSITION_MISMATCH). "Automation forbidden ⇒ ForceClose automático" RETIRADO: caso C-R1-B
-  definido sin acción automática no autorizada; TERMINAL no cambia.
-- Program vs Phase: sin evidencia aceptada de mismo-programa+fase-distinta con reglas
-  operativas distintas (cada cambio material del corpus es un producto propio: Combine/XFA/Live
-  Funded = programas; TradeDay sim/live: reglas iguales salvo payout) ⇒ fase colapsada a
-  dimensión OPCIONAL provider-local; catálogo anclado a (provider, programa); fase sólo con
-  evidencia intra-producto, no declarada ⇒ fail-closed; sin aggregate global (caso C-R1-C).
-- copy classification claim-by-claim (tabla Repair R4): TradeDay no-duplicación, MFFU copy
-  prohibido y Tradeify cross-firm (parte Echo-observable) = HARD BINDING INCOMPATIBILITY
-  (fail-closed en config + guard fan-out, misma strategy_id en cuentas prohibidas); Tradeify
-  sole ownership y Topstep no-VPS = CONFIG/ELIGIBILITY OWNER CHECK (attestation); FundedNext
-  same-owner = compliant por construcción V1 (supuesto declarado); Alpha/TPT = NOT RUNTIME
-  (fuera de cohorte); residual externo (manual/terceros/household/otras plataformas) =
-  UNKNOWN/owner, nunca warn-only genérico (caso C-R1-D).
-- binding version cleanup: ProviderAccountBinding = config corriente hot reemplazada in-place;
-  cambios ⇒ audit facts (Kafka/OTel + ProviderDecision{BINDING_UPDATED} si altera autoridad);
-  NO BindingVersion/Revision/history; rule_set_id/rule_set_version son referencia de la
-  autoridad efectiva, no versión del binding.
+REPAIR C-R2:
+- reservation finality (R2.1): el enum terminal de Order NO libera reserva; CANCELLED/EXPIRED
+  pasan a PENDING_FINALITY y sólo ORDER_EXECUTION_FINAL{venue_filled_qty} — obtenida con la
+  capacidad history-by-tag que D2-04 R10 ya exige, sin TTL — habilita el release; REJECTED
+  venue-confirmado libera; REJECTED por fallo de transporte pasa por resolución M2/R10. Fill
+  tras finalidad = contradicción venue ⇒ PROVIDER_CAP_BREACH_POST_FINALITY fail-visible, sin
+  auto-repair; claim "hard" definido respecto del estado venue-autoritativo obligatorio.
+- modify/replace (R2.2): increase reserva delta ANTES de emitir el modify; decrease libera
+  sólo tras ACK venue (ReservationAdjust); replace = nueva Order con reserva propia + vieja
+  liberada sólo por finalidad ⇒ over-count conservador durante la transición, sin hueco.
+- cap metric semantics (R2.3): cada familia tipada declara su métrica y la reserva vive en esa
+  unidad — GROSS (|delta| jamás cancela), NET_ABS (cota exacta del intervalo alcanzable:
+  max(n+R⁺, R⁻−n) ≤ cap — ambos extremos, no neting ingenuo), GROUP_WEIGHTED (pesos tipados si
+  A provee grouping); métricas exóticas = excepción tipada, sin fórmula universal.
+- physical mismatch policy (R2.4): PHYSICAL_STATE_UNTRUSTED ⇒ DENY_NEW_RISK fail-closed
+  (mismatch vigente, posición stale/ausente, breach post-finalidad) hasta reconvergencia del
+  comparador u operador; sin auto-repair, sin synthetic fills; claim hard queda honesto.
+- cross-state-owner recovery (R2.5): corregido — Order (echo/operation, key account:strategy) y
+  reserva (echo/provider_rules, key account_id) son DOS owners; protocolo
+  Request/Result/CapacityUpdate(cumulative)/Finalization/Adjust con grant↔result atómicos en
+  la frontera de checkpoint (misma 2PC de M1); replay/duplicate/crash-post-GRANT/crash-post-Fill
+  demostrados idempotentes; skew ⇒ fail-safe (deniega de más, jamás otorga de más); M1/M2 intactos.
+- denied Order lifecycle (R2.6): contradicción retirada — la Order denegada post-MM queda
+  durable como REJECTED{rejection{source: PROVIDER_GATE, decision_id}} (enum D2-04 intacto,
+  "nunca se corrige" se preserva); la denegación de materialización es previa a Order; sin
+  Proposal entity.
+- evidence cleanup (R2.7): Tradeify = UNKNOWN según la matriz ⇒ cross-firm NO activable como
+  hard rule (advisory; activación exige reconciliación de evidence authority por SUBMANAGER);
+  FundedNext "same-owner" retirado (no está en la matriz) ⇒ UNKNOWN; MFFU/TradeDay/Topstep
+  conservan clasificación soportada por la matriz; sin web research nuevo.
+- hot-update outstanding grants (§10 del repair): guard de egress congelado — antes de emitir
+  una Order reservada se re-verifica admisión (ENTITLEMENT_REVOKED / INACTIVE / CLOSE_ONLY /
+  PHYSICAL_STATE_UNTRUSTED / instrumento-forbidden / forced-flat ⇒ suprime emisión ⇒
+  REJECTED{PROVIDER_GATE} + release); cambio puro de max-cap ⇒ GRANT outstanding se HONRA
+  (regla congelada, acotado por delta concedido; envelope transitorio fail-visible, drenado
+  por finalidades).
 
-ENFORCEMENT INVARIANTS:
-I-C1 entry/add requiere reserva GRANTED de la autoridad serializada por cuenta antes del egress
-     físico; sin reserva no hay emisión.
-I-C2 firm+reserved+delta ≤ cap evaluado en el único punto serializado por cuenta; overshoot
-     físico sólo por anomalía venue (R4 D2-04), nunca por el gate.
-I-C3 la reserva vive exactamente mientras su Order no es terminal; toda transición terminal
-     libera el remanente; request_id deduplica replay/checkpoint.
-I-C4 revocación de entitlement ⇒ suspensión de emisión automatizada de la cuenta; acción
-     automática sobre exposición viva sólo con familia tipada + provenance first-party que
-     exija flatten (corpus V1: ninguna).
-I-C5 restricciones copy Echo-observables fail-closed en config + guard de fan-out; residual
-     externo = owner/UNKNOWN, jamás permitido por silencio.
-I-C6 las salidas jamás son bloqueadas por gates provider — y la semántica del gate nunca
-     constituye autorización de transporte.
+PROOFS:
+- cancel+late fill (C-R2-A): PENDING_FINALITY retiene capacidad; lookup venue autoriza release;
+  variantes con y sin fill durante la finalidad; post-finalidad ⇒ breach flag, jamás absorbido.
+- modify (C-R2-B): increase +2 con GRANTED previo ⇒ hasta 4 cubierto; decrease libera tras
+  ACK; ningún entrelazado con overshoot.
+- replace (C-R2-C): nueva reserva propia + vieja hasta finalidad ⇒ envelope ≥ peor caso en
+  ambos órdenes cancel/fill.
+- long/short (C-R2-D): n=+4, cap 5, BUY+1 y SELL−4 ⇒ NET_ABS max(5,0)=5 ⇒ ambos GRANT y
+  |net| ≤ 5 bajo cualquier ordering; cap 4 ⇒ SELL DENIED (el neting ingenuo lo habría
+  pasado); GROSS jamás cancela (SELL −4 DENIED con envelope 9); weighted demostrado (3.0).
+- mismatch (C-R2-E): POSITION_MISMATCH ⇒ PHYSICAL_STATE_UNTRUSTED ⇒ deny new risk hasta
+  reconvergencia/operador; Operations vivas siguen gestionándose.
+- crash/replay (C-R2-F): request replay dedup; duplicate result; crash post-GRANT pre-egress
+  (M1 replay, una emisión); crash post-Fill pre-update (cumulative idempotente); no double
+  reserve; no premature release.
+- entitlement-after-grant (C-R2-G): guard de egress suprime la emisión ⇒ REJECTED{PROVIDER_GATE}
+  + release; nada escapa físicamente.
+- evidence (C-R2-H): Tradeify permanece UNKNOWN ⇒ sin hard block sin authority.
+
+EVIDENCE CLEANUP:
+- Tradeify: UNKNOWN (matriz) ⇒ cross-firm degradado de HARD BINDING INCOMPATIBILITY a
+  UNKNOWN/evidence-blocked (advisory); activación futura = decisión SUBMANAGER tras reconciliar
+  matriz vs correcciones manager (que citan fuente first-party).
+- FundedNext: claim "copy sólo entre cuentas del mismo owner" RETIRADO (no está en la matriz)
+  ⇒ UNKNOWN.
+- Se conservan con soporte de matriz: TradeDay ("copiar otros (multicuentas con mismos trades)"
+  ⇒ HARD BINDING INCOMPATIBILITY Echo-observable), MFFU ("Prohíbe: HFT, copy trading /
+  compartir dispositivo" ⇒ idem), Topstep ("Restringe uso de VPS/VPN... solo PC local" ⇒ OWNER
+  CHECK / constraint D6), Alpha/TPT fuera de cohorte (NOT RUNTIME).
 
 CONTRACTS FOR A/B:
 A: instrument_id/contract_id/resolver consumidos (congelados); provider rules se scopean a
-   instrument_id, exchange y canonical product grouping PROVISTO por Instrument si existe — el
-   nombre físico lo fija el repair de A; C no crea taxonomía; sin grouping ⇒ caps por grupo no
-   existen en V1 (sólo instrument/exchange), degradación documentada.
+   instrument_id, exchange y canonical product grouping PROVISTO por Instrument si existe —
+   nombre físico lo fija el repair de A; sin grouping ⇒ GROUP_WEIGHTED no existe en V1.
 B: exchange open/closed, session/trade date, provider-clock/timezone por binding,
-   holiday/early-close; overlay provider (ventanas/cutoffs) permanece autoridad DISTINTA de
-   ExchangeSession; Account DayBoundary es autoridad propia (reset de estado provider ancla a
-   ella, caso F).
+   holiday/early-close; overlay provider ≠ ExchangeSession; Account DayBoundary autoridad
+   propia (reset de estado provider ancla a ella, caso F).
+Adapter (D6, contrato R10 existente): la resolución venue-autoritativa por orden
+  (ORDER_EXECUTION_FINAL) reutiliza el history-by-tag ya exigido; sin capacidad nueva.
 
 OWNER DECISIONS REQUIRED:
-NONE. Ratificaciones manager: mensajes del protocolo de reserva + request_id y contadores
-firm/reserved; SUSPENDED_ENTITLEMENT y attestation operator_authorized_close_only; atributo de
-fases declaradas por programa; admission_decision_id en Operation; ENTRY_REJECTED con
-provenance; enum reason; nombres functions/topics/tablas (sin cambios).
+NONE. Ratificaciones manager (§17): protocolo cross-owner completo (Request/Result,
+CapacityUpdate cumulative, VENUE_FINAL + PENDING_FINALITY, ReservationAdjust); campo aditivo
+rejection{source, decision_id} en Order; familias de métrica GROSS/NET_ABS/GROUP_WEIGHTED;
+reasons nuevos (PHYSICAL_STATE_UNTRUSTED, PROVIDER_CAP_BREACH_POST_FINALITY);
+SUSPENDED_ENTITLEMENT como condición operacional + attestation operator_authorized_close_only;
+fases declaradas por programa; admission_decision_id; ENTRY_REJECTED con provenance; nombres
+functions/topics/tablas.
 
 MATERIAL RISKS:
-hop interno de reserva añade latencia de emisión (medir en D6); contador firm lógico no incluye
-trading manual (divergencia fail-visible; caps físicos inclusivos DEFER); Echo no detecta
-revocaciones unilaterales de la firma fuera de config (procedimiento owner de refresh); fase
-colapsada ⇒ si onboarding futuro demuestra reglas intra-producto se activa la dimensión
-opcional con provenance; bloqueos copy fail-closed pueden impedir configuraciones owner
-deseadas — eso ES la restricción del provider, no un defecto del diseño.
+la finalidad venue-autoritativa retiene capacidad durante el lookup (ventana breve de
+sobre-reserva conservadora: puede denegar de más, jamás de menos); un venue que contradice su
+propio history (fill tras ORDER_EXECUTION_FINAL) produce breach post-finalidad fail-visible —
+clase de confianza del transporte, gated por R10; el fail-closed por PHYSICAL_STATE_UNTRUSTED
+puede pausar nuevas aperturas ante mismatches (resolución operador); NET_ABS con muchas Orders
+vivas exige mantener el intervalo O(#reservas vivas) (acotado: pocas Orders vivas por cuenta
+en V1); Tradeify/FundedNext sin hard rule hasta evidence authority (ventana de riesgo owner si
+opera Tradeify multi-firma con la misma Strategy en el ínterin).
 ```
