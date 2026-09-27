@@ -54,7 +54,7 @@ Físicamente C no añade NINGUNA función StateFun nueva: añade el contador `ow
 
 **De A (inmodificable):** `stream_id = (instrument_id, contract_id)` lógica estable ante switch; `serving_authority{binding_id, members, authority_epoch}`; `MarketEvent` QUOTE|TRADE con `event_ts`/`receive_ts` (jamás semántica de dominio), `source_event_position?`, `stream_seq` contiguo post-dedup jamás renumerado y cruza epochs, `authority_epoch`, `origin{source_id, recovery_provenance: LIVE|RECOVERY_REPLAY|SNAPSHOT}`; RecoveryBarrier/epoch marker inline; switch ≠ rollover; `echo.market-events.v1` transporte LIVE canónico AT_LEAST_ONCE (grabación definitiva deliberadamente dejada a C, R7 de A); `MarketHistorySource.read(stream_id, from, to) → [MarketEvent]` seam de warm-up/recovery, NO autoridad de EXACT REPLAY; capabilities con `reliable_ts`; `StreamState` compactado con readiness.
 
-**De B (inmodificable):** una sola market state compartida; guard `last_applied_stream_seq` (R1); escaleras current-state monótonas `(event_ts, stream_seq)` scoped por `authority_epoch` con demote→seed en el marker (R7); barras FORMING→CLOSED con cierre por boundary de reloj/timer jamás "próximo tick"; corrección acotada al último bucket cerrado que jamás reevalúa Strategy; **MARKET BAR PROJECTION ≠ DECISION OBSERVATION** (R3): la evaluación observó X y es hecho inmutable; autoridades de recovery congeladas — NORMAL RESTART = checkpoint, NEW RUN = warm-up, COLD = `COLD_RECOVERY_REQUIRED` salvo recorded boundary suficiente (requisito que C cierra aquí), EXACT REPLAY = requisito delegado a C; timers close por (stream, tf) con reprogramación por `NextSessionTransition`; requisitos explícitos a C: autoridad de timers LIVE=wall-clock/REPLAY=orden registrado con interleaving determinístico timer↔eventos (B §8/§22), y reproducción exacta de demote→seed en el mismo orden relativo (B §19/§30-U).
+**De B (inmodificable):** una sola market state compartida; guard `last_applied_stream_seq` (R1); escaleras current-state monótonas `(event_ts, stream_seq)` scoped por `authority_epoch` con demote→seed en el marker (R7); barras FORMING→CLOSED con cierre por boundary de reloj/timer jamás "próximo tick"; corrección acotada al último bucket cerrado que jamás reevalúa Strategy; **MARKET BAR PROJECTION ≠ DECISION OBSERVATION** (R3): la evaluación observó X y es hecho inmutable; autoridades de recovery congeladas — NORMAL RESTART = checkpoint, NEW RUN = warm-up, COLD = `COLD_RECOVERY_REQUIRED` salvo recorded boundary suficiente (requisito que C cierra aquí), EXACT REPLAY = requisito delegado a C; timers close por (stream, tf) con reprogramación por `NextSessionTransition`; requisitos explícitos a C: autoridad de timers LIVE=wall-clock/REPLAY=orden registrado con interleaving determinístico timer↔eventos (B §8/§22), y reproducción exacta de demote→seed en el mismo orden relativo (B §19/§30-U). La semántica de warm-up B §17 es además el insumo del replay anchor (R1): EXACT_REPLAY reconstruye el estado inicial re-ejecutando el corpus grabado con esa MISMA lógica — sin re-consultar `MarketHistorySource` en replay.
 
 **De D2-05:** `calendar_ref → calendar_id` única referencia runtime; resolver puro `SessionState/SessionBoundaries/NextSessionTransition` con dataset `calendar_version` + `revision_hash`; distribución hot compacted+kache (`CALENDAR_NOT_READY` fail-closed); NamedTradingWindow `EXCHANGE_SUBSET|CLOCK` con transiciones derivadas exclusivamente de `NextSessionTransition`; **LIVE consume config hot, REPLAY/BACKTEST inyecta snapshots explícitos** (Calendar/RuleSet/DayBoundary/Contract, §19 de D2-05); DayBoundary con transición prospectiva y `not_before` (R18); rollover owner-manual prospectivo jamás auto-roll.
 
@@ -66,10 +66,12 @@ Físicamente C no añade NINGUNA función StateFun nueva: añade el contador `ow
 
 ```text
 GIVEN:
-  (a) mismo run manifest inicial (§20) — config/calendar/contract/requirements pinneados;
+  (a) mismo run manifest inicial (§20) — config/calendar/contract/requirements pinneados —
+      y el mismo replay anchor (R1): el corpus inmutable de warm-up del que se
+      reconstruye el estado de dominio inicial previo a owner_input_seq=0;
   (b) misma secuencia ordenada de inputs de dominio (MarketRuntimeInput) observada por
-      cada isla — la que grabó el DeterministicInputLog en LIVE, o la sintetizada
-      canónica en BACKTEST/HISTORICAL;
+      cada isla — la que grabó el DeterministicInputLog en LIVE (con sus runtime_ts),
+      o la sintetizada canónica en BACKTEST/HISTORICAL;
   (c) mismo código de dominio (paquetes puros + mismos guards);
 THEN:
   las decisiones market-dependent de Strategy y MM son idénticas: mismos triggers de
@@ -78,7 +80,7 @@ THEN:
   de barras (incluidas correcciones en el mismo punto relativo).
 ```
 
-**Alcance — DOMAIN DETERMINISM ≠ PHYSICAL TRANSPORT TIMING.** El invariante habla de la secuencia serializada que cada isla observa, no de latencias: el desfase físico de llegada, el scheduling de goroutines, el interleave de batches Kafka y la duración de hops son transporte; su único efecto permitido es DETERMINAR (en live) el `owner_input_seq` — que se graba — jamás alterar la semántica. **NO se promete determinismo:** ante inputs distintos; ante config distinta (aunque diff mínima); ante vendor history final que no preserve el orden de llegada/timers del run live (esa historia reproduce la PROYECCIÓN final del segmento, no las observaciones — B §10); ante missing decision-state/recording (fail-closed, §23); ante concurrencia arbitraria no serializada (fuera del modelo StateFun por key). El determinismo del path de ejecución completo (signals→orders→fills) NO se promete aquí: requiere además el stream de ejecución grabado, explícitamente fuera (D2-04 R12).
+**Alcance — DOMAIN DETERMINISM ≠ PHYSICAL TRANSPORT TIMING.** El invariante habla de la secuencia serializada que cada isla observa, no de latencias: el desfase físico de llegada, el scheduling de goroutines, el interleave de batches Kafka y la duración de hops son transporte; su único efecto permitido es DETERMINAR (en live) el `owner_input_seq` — que se graba — jamás alterar la semántica. **NO se promete determinismo:** ante inputs distintos; ante config distinta (aunque diff mínima); ante vendor history final que no preserve el orden de llegada/timers del run live (esa historia reproduce la PROYECCIÓN final del segmento, no las observaciones — B §10); ante missing decision-state/anchor/recording (fail-visible/fail-closed, §18/§23); ante concurrencia arbitraria no serializada (fuera del modelo StateFun por key). El determinismo del path de ejecución completo (signals→orders→fills) NO se promete aquí: requiere además el stream de ejecución grabado, explícitamente fuera (D2-04 R12).
 
 ## 4. Runtime input model — `MarketRuntimeInput`
 
@@ -88,7 +90,7 @@ Frontera común única. El dominio (market_analytics, strategy_engine, MM market
 MarketRuntimeInput =
   | MarketEvent            # A §3, QUOTE|TRADE, con stream_seq/authority_epoch/origin
   | RecoveryBarrier        # A §12: epoch marker {stream_id, epoch_nuevo, rango|snapshot}
-  | TimerFired             # {owner_key, timer_id, deadline, fired_input_seq} (§7)
+  | TimerFired             # {owner_key, timer_id, generation, deadline} (§7)
   | SessionWindowTransition# SessionTransition {session_id, state, boundaries} |
                            # WindowTransition {window_id, context} — derivadas de
                            # NextSessionTransition D2-05, agendadas por timers (§12)
@@ -98,6 +100,8 @@ MarketRuntimeInput =
 **Decidido explícitamente qué entra y qué NO:** entran los cinco tipos anteriores y nada más. No entran: BAR_CLOSED ni BAR_UPDATED (derivados por B, §17); StreamState/readiness como tipo aparte — el efecto de gate viaja como ConfigTransition aplicada al consumidor cuando su vista de readiness cambia (§13, materiality); eventos de ejecución (D2-04); health metrics/telemetría; snapshots de posición. Los nombres son conceptuales; ratificación técnica del manager de shapes exactos.
 
 Los cinco tipos son **replay-simétricos por construcción**: cada uno tiene el mismo efecto de dominio cualquiera sea el modo que lo inyecta. Un ConfigTransition que abre/cierra el gate, un barrier que demotea current-state y seed-ea el epoch nuevo (B R7), un TimerFired que cierra barra — idéntico código en LIVE y REPLAY (misma propiedad que B §10 exige y A §19 garantiza por construcción).
+
+**`runtime_ts` no es un campo de transporte (R2):** ningún tipo de `MarketRuntimeInput` lo porta en su envelope; es un atributo que cada isla deriva al admitir el input y journala junto a la entrada (§15). El envelope canónico de A y los shapes conceptuales de arriba quedan intactos; `generation` en TimerFired es identidad del handle del timer (§7), no del transporte.
 
 ## 5. Event-time vs runtime-order
 
