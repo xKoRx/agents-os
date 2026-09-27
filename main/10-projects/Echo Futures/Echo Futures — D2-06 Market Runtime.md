@@ -1044,3 +1044,19 @@ NEXT: Return to D2-06 SUBMANAGER/MANAGER. Do not start D2-07.
 - [[Echo Futures — D2-06B Bars Hot State Warmup]]
 - [[Echo Futures — D2-06C Live Replay Market Boundary]]
 - xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360
+
+## Owner decision OD-C1 — CLOSED — 2026-09-27
+
+**Decision:** `ALWAYS_ON_V1_SELECTED_STREAMS`.
+
+Owner ratifies always-on EXACT LIVE REPLAY recording for the market streams actually selected/demanded by the run/Strategy/MM runtime, **not for the entire market universe**.
+
+Semantics:
+
+- A run captures its immutable ReplayAnchor from t0 for every selected/demanded stream required by its MarketRequirements.
+- DeterministicInputLog/journal recording is always-on for those streams and their material timers/config/session/recovery transitions.
+- Symbols/contracts not selected or demanded by the run are not recorded merely because the market-data provider can expose them.
+- Adding a new symbol/stream after the run starts creates a new material Config/MarketRequirements transition and begins recording for that stream from its activation point; it does **not** make the pre-activation history exact-replayable unless that history is explicitly part of the newly captured warm-up/anchor extension contract.
+- Retention horizon remains operational policy. Always-on means default capture at run start for selected streams, not infinite retention.
+
+This closes OD-C1 without changing the D2-06 architecture.
