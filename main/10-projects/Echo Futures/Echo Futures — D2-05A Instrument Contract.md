@@ -25,13 +25,20 @@ updated: "2026-09-26"
 > [!info]+ TOP A result
 > D2-05A — Instrument / Contract / Mapping. Diseño técnico V1 del modelo `Instrument`, `Contract`, external identifiers, mapping canónico→físico hot y rollover manual. Input de diseño para la integración D2-05 del SUBMANAGER; no cierra D2-05 ni D2. Autoridades derivadas: [[Echo Futures]] (D2-01/02/03 OWNER_CLOSED), [[Echo Futures — D2-04 Operation Order Fill Position]] (CLOSED R1–R14), [[Echo Futures — D1 Analysis Pack]] (Front E) y [[CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE]]. Baseline física verificada: `xKoRx/echo origin/master = 372af59a7b83604781346613da01e3d510ea1360` (fetch re-verificado, sin delta). No implementa código productivo.
 
+> [!warning]+ SUBMANAGER REPAIR A-R1 — 2026-09-26
+> Repair dirigido por el SUBMANAGER sobre el artefacto aceptado-en-dirección; registra dos defectos corregidos sobre la misma base de diseño (nada de lo aceptado se reabrió):
+> - **A-R1 — Mapping no representaba "context X":** `InstrumentMapping` pasaba de unicidad `(instrument_id, context)` a identidad `(mapping_context, binding_id, instrument_id)` — ahora conviven varios bindings de market-data y varios execution bindings, cada uno con su Contract corriente propio (§3, §5, casos A-R1-1/2/3).
+> - **A-R2 — Seam compartido A↔B↔C sin cerrar:** `exchange` y `product_group` migran a Instrument como única autoridad canónica de grouping (Contract pierde su campo `exchange` propio y lo hereda vía `instrument_id`); B resuelve CalendarResolver con `(calendar_ref, exchange, product_group)` y C evalúa reglas/caps con `(instrument_id, exchange, product_group)` — decisión congelada aquí, no diferida al SUBMANAGER (§2.1, §2.2, §10, caso A-R1-4).
+> - Congeladas además las dos resoluciones explícitas: current-Contract selection ≠ vendor external-identifier selection (§4, §5).
+> Sin cambios en: pin de Operation, rollover semántico, mono-contract, fail-closed, sin lifecycle timestamps, `version` sigue siendo metadato de config (no revision framework).
+
 ## 1. Verdict
 
 ```text
-D2-05A STATUS: READY_FOR_SUBMANAGER_REVIEW
+D2-05A STATUS: READY_FOR_SUBMANAGER_REREVIEW (post repair A-R1)
 ```
 
-El modelo V1 separa exactamente dos capas de identidad: **Instrument** es la identidad económica/canónica (NQ, ES, CL) que Strategy/Signal/AccountStrategy conocen; **Contract** es el contrato listado expiry-specific tradable (NQZ6) que Operation pinnnea al materializarse y que las Orders/Fills/Position físicas referencian. Los símbolos de vendors/plataformas (CME display code, ProjectX `contractId`/`symbolId`, NinjaTrader instrument string, feed symbol) son **external identifiers** con provenance por fuente, jamás identidad Echo (C-E08). El mapping `Instrument → Contract` es config hot con contexts independientes de market-data y ejecución; se resuelve **una sola vez**, dentro de `echo/operation` en la materialización (guard D2-01/D2-04), y el resultado vive embebido en el snapshot de la Operation. Rollover es owner-manual y estrictamente prospectivo.
+El modelo V1 separa exactamente dos capas de identidad: **Instrument** es la identidad económica/canónica (NQ, ES, CL) que Strategy/Signal/AccountStrategy conocen; **Contract** es el contrato listado expiry-specific tradable (NQZ6) que Operation pinnnea al materializarse y que las Orders/Fills/Position físicas referencian. Los símbolos de vendors/plataformas (CME display code, ProjectX `contractId`/`symbolId`, NinjaTrader instrument string, feed symbol) son **external identifiers** con provenance por fuente, jamás identidad Echo (C-E08). El mapping `Instrument → Contract` es config hot con identidad por **binding concreto** (`(mapping_context, binding_id, instrument_id)`): varios bindings de feed y varios bindings de ejecución pueden coexistir, cada uno con su Contract corriente y rolando en momentos distintos, sin tocar a Strategy; cada Operation lo resuelve **una sola vez**, dentro de `echo/operation` en la materialización (guard D2-01/D2-04), y el resultado vive embebido en el snapshot de la Operation. Rollover es owner-manual y estrictamente prospectivo.
 
 No se crean: ContractVersion, InstrumentRevision, rollover engine, symbol ontology, vendor subclasses, metadata framework, scheduler de rollover. La evidencia no los sustenta y D2-01 prohíbe el framework de versiones.
 
