@@ -323,12 +323,14 @@ Grabación en el punto de admisión (no en un observador lateral): el mismo guar
 ```text
 run_mode = REPLAY (formalización de D2-04 I11)
 objetivo: reproducir las decisiones market-dependent de un run live previo.
-requiere: RunManifest + DeterministicInputLog completo + contenido canónico recuperable.
+requiere: RunManifest + ReplayAnchor (R1) + DeterministicInputLog completo
+          + contenido canónico recuperable.
 ```
 
-- **Inyección (§21):** el injector re-maneja los paquetes puros de dominio con DomainClock virtual; cada isla consume SUS entradas en `owner_input_seq`; las entregas inter-isla ocurren en las posiciones `source_ref` journaladas.
+- **Anclaje (R1):** antes de `owner_input_seq=0`, el driver reconstruye el estado de dominio inicial re-ejecutando el corpus de warm-up grabado (replay anchor) con la MISMA lógica B §17 — mismos builders, calendario snapshot y requirements del manifest — y verifica el digest del corpus y la readiness assertion del anchor. Anchor ausente ⇒ `REPLAY_ANCHOR_MISSING`; digest/readiness en mismatch ⇒ `REPLAY_ANCHOR_INVALID`; ambos fail-visible. PROHIBIDO volver a consultar `MarketHistorySource` en replay y asumir igualdad.
+- **Inyección (§21):** el injector re-maneja los paquetes puros de dominio con DomainClock virtual; cada isla consume SUS entradas en `owner_input_seq` con `Now()` = `runtime_ts` journalado (R2); las entregas inter-isla ocurren en las posiciones `source_ref` journaladas.
 - **Efectos:** el replay produce registros de decisión (decision observations, Signals, decisiones MM de mercado) hacia un **sink de observación**; `run_mode=REPLAY` gatea todo egress físico (orders/venue) — un replay jamás toca un venue. Las decisiones de ejecución física (sizing monetario sobre Account state, orders) se re-derivan sólo si su input de mercado está en el boundary — el claim es market-dependent decisions, no replay económico completo (D2-04 R12).
-- **Garantía exacta:** same manifest + same journal + same code ⇒ same decisions (§3). Ante `REPLAY_SOURCE_MISSING`/`REPLAY_LOG_CORRUPT` ⇒ fail-visible; sin aproximaciones.
+- **Garantía exacta:** same manifest + same anchor + same journal + same code ⇒ same decisions (§3). Ante `REPLAY_SOURCE_MISSING`/`REPLAY_LOG_CORRUPT` ⇒ fail-visible; sin aproximaciones.
 - **Relación con recovery:** EXACT REPLAY es re-ejecución para reproducción/forense/verificación; **NO es la autoridad de recovery del path de ejecución** — un `COLD_RECOVERY_REQUIRED` de D2-04 no se levanta por replay (§23).
 
 ## 19. HISTORICAL / BACKTEST / NEW_RUN (modo 2)
@@ -339,7 +341,7 @@ objetivo: evaluar Strategy/MM sobre historia canónica; NUNCA clona un run live.
 ```
 
 - Fuente: `MarketHistorySource` (A §16) / historia canónica — **raw normalized MarketEvents** event-time ordenado (contrato B §18: clases A/B con identidad, cutover capability-driven R4).
-- Síntesis: la secuencia canónica se construye con la precedencia §9 sobre `event_ts`/deadlines + transiciones del calendario snapshot del manifest + config snapshots inyectados (D2-05 §19: Calendar/RuleSet/DayBoundary/Contract) + warm-up B §17 para estado inicial.
+- Síntesis: la secuencia canónica se construye con la precedencia §9 sobre `event_ts`/deadlines + transiciones del calendario snapshot del manifest + config snapshots inyectados (D2-05 §19: Calendar/RuleSet/DayBoundary/Contract) + warm-up B §17 para estado inicial + un runtime logical clock sintético no-decreciente (R2: cada input sintetizado recibe `runtime_ts = max(runtime_ts previo, su instante event-time)` — sin imitar latencia live).
 - Warm-up de un NEW RUN en vivo: mismo camino — historia canónica + misma semántica de builder (B §17); el run live arranca su `owner_input_seq` en 0 post-warm-up.
 - **Claim congelado:** NO reproduce las decisiones de un run live que tuvo arrival disorder, outages, source switches o late corrections — para eso existe EXACT_REPLAY. Las dos palabras jamás se mezclan bajo un solo "REPLAY" en docs/implementación.
 - Coexistencia: BACKTEST corre in-process/offline con los mismos paquetes puros (D2-04 §8.7, constraint D1) — sin `*_live` vs `*_backtest`.
@@ -356,6 +358,12 @@ RunManifest (uno por run, publicado al iniciar y actualizado sólo por ConfigTra
   source capability/config provenance                                   # A §11 bindings
   starting Contract/stream selection (in-force + pinneadas al arranque)
   relevant config versions/hashes    # requirements catalog digest, etc.
+  replay anchor                      # R1: {kind: WARMUP_CORPUS, corpus refs + digest,
+                                     #      readiness assertion post-warm-up} —
+                                     #      identidad inmutable del estado inicial;
+                                     #      run sin anchor ⇒ no replayable desde t0
+  run_time_origin                    # instante de arranque del run (R2: base de
+                                     # interpretación de los runtime_ts journalados)
   recording identity/range           # topic/particiones/rango del DeterministicInputLog
   MM/economic snapshots cuando el run lo exija (D2-05 §19)
 ```
