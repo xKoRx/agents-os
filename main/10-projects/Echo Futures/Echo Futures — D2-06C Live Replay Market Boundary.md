@@ -374,15 +374,25 @@ Reusa los conceptos congelados: snapshot-embebido (D2-01), snapshot-en-manifest 
 
 ```text
 ReplayDriver (proceso offline, NO microservicio):
-  in:  RunManifest + DeterministicInputLog + echo.market-events.v1 (contenido)
+  in:  RunManifest + ReplayAnchor + DeterministicInputLog + echo.market-events.v1
+       (contenido)
   hace:
-    1. valida integridad: manifest ↔ journal range; seq monotónicos; source_refs
-       resolubles — sino REPLAY_LOG_CORRUPT fail-visible
-    2. instancia los paquetes puros de dominio (analytics, strategy, MM market logic)
-       con DomainClock virtual y las mismas guards — cero código alternativo
-    3. re-maneja por isla en owner_input_seq; coordina entregas inter-isla por
-       source_ref (§10); barriers/transitions/config en posición
-    4. emite decision log al sink de observación (run_mode=REPLAY sin egress físico)
+    1. valida integridad: manifest ↔ journal range; owner_input_seq estrictamente
+       creciente (gaps = no-ops permitidos); runtime_ts no-decreciente por isla
+       (R2); source_refs resolubles — sino REPLAY_LOG_CORRUPT fail-visible
+    2. ancla (R1): re-ejecuta el corpus de warm-up del replay anchor con la MISMA
+       lógica B §17 sobre los mismos builders (calendario/requirements del
+       manifest); verifica digest del corpus + readiness assertion — ausencia/
+       mismatch ⇒ REPLAY_ANCHOR_MISSING / REPLAY_ANCHOR_INVALID fail-visible
+       (jamás MarketHistorySource)
+    3. instancia los paquetes puros de dominio (analytics, strategy, MM market
+       logic) con DomainClock virtual y las mismas guards — cero código alternativo
+    4. re-maneja por isla en owner_input_seq; DomainClock.Now() = runtime_ts
+       journalado de cada entrada (R2, JAMÁS event_ts); coordina entregas
+       inter-isla por source_ref (§10); barriers/transitions/config en posición;
+       todo TimerFired del log valida su (timer_id, generation) contra el timer
+       set virtual reconstruido (§7)
+    5. emite decision log al sink de observación (run_mode=REPLAY sin egress físico)
   fuera de alcance V1: replay distribuido multi-nodo, replay desde punto medio
     (requeriría snapshot intermedio grabado — DEFERRED_DEBT), replay de ejecución.
 ```
@@ -391,8 +401,9 @@ Fundamento físico: el patrón de contexto mock con `SendAfter`/`CancellationTok
 
 ## 22. Idempotency / redelivery
 
-- **Canonical topic AT_LEAST_ONCE:** dedup downstream por `stream_seq` guard (B R1) — intacto; un redelivery jamás se journala (change-detection §15) ni dispara trigger (guard de closure identity B §22).
-- **Journal EXACTLY_ONCE:** la entrada cruza en la transacción del checkpoint (§16): sin duplicados ni pérdidas; replay assertion de monotonicidad por isla (gaps permitidos = no-ops, regresiones = corrupto).
+- **Canonical topic AT_LEAST_ONCE:** dedup downstream por `stream_seq` guard (B R1) — intacto; un redelivery jamás se journala (§15: duplicados que guards hacen NO-OP son MAY-OMIT) ni dispara trigger (guard de closure identity B §22).
+- **Journal EXACTLY_ONCE:** la entrada cruza en la transacción del checkpoint (§16): sin duplicados ni pérdidas; replay assertion de monotonicidad por isla — `owner_input_seq` estrictamente creciente (gaps = no-ops permitidos) y `runtime_ts` no-decreciente (R2); regresiones = corrupto fail-visible.
+- **Timers (R3):** un redelivery del mismo firing es absorbido por los guards (transporte/generación) como NO-OP sin segunda entrada; en replay, todo TimerFired del journal se valida contra el timer set virtual reconstruido: generación vieja cancelada/reemplazada ⇒ NO-OP determinista idéntico al live; generación inexistente en el prefijo reproducido ⇒ `REPLAY_LOG_CORRUPT` (§7).
 - **Ingest replay post-restart:** los offsets commitean con el checkpoint (D2-04 §8.5); los inputs re-entregados encuentran `owner_input_seq ≤ restaurado` ⇒ re-absorbidos por guards, sin segunda entrada ni segunda evaluación (case L).
 - **Redelivery del propio journal en replay:** el driver consume el journal con offset propio y assertion de unicidad por `owner_input_seq` — duplicado ⇒ corrupto fail-visible.
 
@@ -401,7 +412,7 @@ Fundamento físico: el patrón de contexto mock con `SendAfter`/`CancellationTok
 | Situación | Autoridad | Qué NO se hace |
 |---|---|---|
 | **NORMAL RESTART** | checkpoint StateFun/Flink de cada isla (D2-04 R11, B R3) — incluye `owner_input_seq` y mm_state | NO se re-reproduce el journal como sustituto; NO se recalcula decision state desde historia corregida |
-| **EXACT REPLAY** | recording boundary del run (manifest+journal+contenido) | NO toca venues; NO es recovery del live; requiere recording completo |
+| **EXACT REPLAY** | recording boundary del run (manifest + replay anchor + journal + contenido) | NO toca venues; NO es recovery del live; NO re-consulta `MarketHistorySource` (R1); requiere anchor + recording completos |
 | **COLD DISASTER** | `COLD_RECOVERY_REQUIRED` fail-closed (D2-04 R11): reconciliar venue + bloquear nuevo riesgo + bootstrap operador | **incluso CON journal**: el journal cubre el input seam de mercado/strategy (el decision state analítico de Strategy ES re-derivable por replay completo), pero `mm_state` y la exposición viva dependen del stream de ejecución que D2-04 R12 no graba ⇒ el path monetario permanece fail-closed; sin continuación inventada |
 | **NEW HISTORICAL RUN** | MarketHistorySource + síntesis canónica (§19) + warm-up B §17 | NO claim de reproducir arrival disorder de un run previo |
 
@@ -439,7 +450,7 @@ echo.market-run-manifests.v1 (compacted, key run_id) ← publicado al iniciar ru
 ```
 
 - **Dónde se asigna el orden:** en cada isla, en la admisión (`owner_input_seq`, checkpointeado).
-- **Dónde se graba:** egress transaccional `echo.market-run-journal.v1` (refs+control, EXACTLY_ONCE, misma frontera de checkpoint) + `echo.market-run-manifests.v1` (compacted) + contenido canónico con retención de recording (§15/§28).
+- **Dónde se graba:** egress transaccional `echo.market-run-journal.v1` (refs+control, EXACTLY_ONCE, misma frontera de checkpoint) + `echo.market-run-manifests.v1` (compacted, con replay anchor y run_time_origin) + contenido canónico con retención de recording + replay anchor capturado una vez al iniciar el run (R1: corpus de warm-up refs+digest) (§15/§28).
 - **Dónde vive/inyecta DomainClock:** librería `sdk` pura; LIVE impl sobre SendAfter+CancellationToken; virtual impl en el ReplayDriver y en BACKTEST.
 - **Replay adapter/injector:** ReplayDriver offline (§21); cero flota nueva, cero Kafka Streams/Beam/CEP.
 - **Quién consume inputs:** las islas existentes A/B/D2-04 — sin consumidores nuevos.
@@ -457,13 +468,13 @@ echo.market-run-manifests.v1 (compacted, key run_id) ← publicado al iniciar ru
 | Paquetes de dominio puros sin infra (boundary Q14) | **REUSE convención** — los paquetes de mercado B y la lógica MM corren en LIVE y en el driver | D2-04 §8.7/§10 |
 | ValueSpec/keyed state por isla | **EXTEND aditivo**: + `owner_input_seq` (C-owned) en islas A/B/strategy_engine | patrón `v3/sdk/statefun` ValueSpec |
 | run_mode/run_id en entidades | **NEW físico** (concepto ya congelado D2-04 I11; no existe en código — verificado) | grep baseline: sólo `curve_run_id` Lab |
-| DeterministicInputLog / journal topic / manifests / DomainClock / ReplayDriver | **NEW** (no existe nada físicamente) | grep baseline sin market/replay/clock |
+| DeterministicInputLog / journal topic / manifests / replay anchor / DomainClock / ReplayDriver | **NEW** (no existe nada físicamente) | grep baseline sin market/replay/clock |
 | Archival object storage del recording; replay desde punto medio; replay multi-nodo | **DEFERRED_DEBT** | §28 |
 | Bridge MT5 / lab_curves / Forge ingest | unrelated | — |
 
 ## 27. Scale
 
-- **Recording cost ∝ streams × control-inputs** (timers/transiciones/barriers/config — NO ticks: los eventos van por ref) **+ strategies × deliveries** (journal de orden) + retention del canónico compartido. Cero multiplicación × Account (case P): 200 cuentas × S1 = 1 stream journalada, 1 strategy journal, 0 journals extra.
+- **Recording cost ∝ streams × control-inputs** (timers/transiciones/barriers/config — NO ticks: los eventos van por ref) **+ strategies × deliveries** (journal de orden) + retention del canónico compartido **+ replay anchor una vez por run** (R1: acotado por MarketRequirements — es el mismo span que el warm-up ya leyó una vez; no escala con la duración del run). Cero multiplicación × Account (case P): 200 cuentas × S1 = 1 stream journalada, 1 strategy journal, 1 anchor, 0 journals extra.
 - **Replay cost ∝ tamaño del log** (offline, sin SLA de hot path).
 - **Orden/admisión:** un contador checkpointeado por isla — O(1) por input.
 - **Timer density:** ya dimensionada por A §20/B §28-B5 (trivial en V1); el journal no añade timers.
