@@ -355,7 +355,7 @@ ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-<PENDING_PIN>
+49b76f3309d7478d0df1bfb666289848eb9effbe
 
 ECHO BASELINE:
 372af59a7b83604781346613da01e3d510ea1360 (sin delta; sin research nuevo en C-R2)
