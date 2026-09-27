@@ -407,7 +407,7 @@ ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-<PENDING_PIN>
+5da3eefc2ed0b515297f4f57fc72cd3f3010f474
 
 C-R4 CLEANUP:
 - provider-clock authority: §6 (allowed new-risk window, forced-flat cutoff, overnight/weekend)
