@@ -400,96 +400,56 @@ Autoridad de C (ProviderRuleSet / ProviderProgram): provider timezone IANA; allo
 ```text
 D2-05C STATUS:
 READY_FOR_INTEGRATION
-(gate §14 verificado: (1) sin fórmula plana normativa — §9/C-R1-I-C2/§6 en métrica tipada;
-(2) terminal Order != reservation finality — R3.1/R3.2; (3) sin estados nuevos de Order —
-R3.2/C-R3-A; (4) seam A = final A-R2 — R3.4/§14; (5) seam B = final B-R1 — R3.3/§14;
-(6) entitlement sin safety intent — R3.5; (7) grants no emitidos respetan cap vigente —
-R3.6/I-C7; (8) riesgos reconciliados con trust guard — §16; (9) grep final sin normativa
-superseded — ver SWEEP)
+(post repairs C-R1 + C-R2 + C-R3 + C-R4; gate §14 de C-R3 con sus 9 condiciones + sweep C-R4
+limpio; arquitectura C-R1/C-R2/C-R3 aceptada — este repair fue sólo cleanup normativo)
 
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-f75397095edc6587db454c2149049dfc1ab0da4d
+<PENDING_PIN>
 
-REPAIR C-R3:
-- §9 final model: max contracts/order = PER_ORDER local; caps compartidos = echo/provider_rules
-  (key account_id) decidiendo en la métrica tipada (GROSS/NET_ABS/GROUP_WEIGHTED), sin fórmula
-  plana universal; release/adjust sólo por finalidad explícita (FILLED consumiendo, REJECTED
-  venue-confirmado, ORDER_EXECUTION_FINAL/VENUE_FINAL, modify-decrease ACK); enum terminal de
-  Order por sí solo NO prueba finality.
-- reservation finality namespace: PENDING_FINALITY = reservation.finality_state (estado interno
-  del reservation record en echo/provider_rules); NO es Order.status; sin estados nuevos en el
-  enum de D2-04; Order CANCELLED/EXPIRED convive con reservation finality=PENDING hasta VENUE_FINAL.
-- A seam final (A-R2): C scopea provider rules sobre instrument_id, exchange y product_group —
-  campos congelados de Instrument; retirado todo "si existe/si A provee/degradación";
-  GROUP_WEIGHTED opcional por RuleSet (product_group no obliga weighted); sin taxonomía propia.
-- B seam final (B-R1): C obtiene calendar_ref→calendar_id desde Instrument y consume de B
-  exactamente SessionState/SessionDate/SessionBoundaries/NextSessionTransition(calendar_id,
-  instant); nada más. Autoridad provider (timezone IANA, allowed windows, forced-flat cutoff,
-  holiday/early-close provider-specific, offsets) vive en ProviderRuleSet/ProviderProgram; C
-  puede COMBINAR SessionBoundaries con policy; B jamás publica/modifica provider policy. Los
-  pedidos "provider-clock/timezone" y "holiday feed" a B quedaron retirados.
-- entitlement cleanup: sweep verificado — ninguna frase normativa deriva revocación ⇒
-  ForceClose/termination intent; semántica congelada (DENY_NEW_RISK + suspensión + flag
-  SUSPENDED_ENTITLEMENT + operador) intacta; SUSPENDED_ENTITLEMENT no es Operation.status.
-- outstanding grant revalidation (reemplaza el honramiento de C-R2): GRANT porta epoch
-  {rule_set_id, rule_set_version, cap_family, scope, reserved capacity}; antes del egress, si
-  la epoch cambió ⇒ ReservationRevalidate en el owner serializado: VALID ⇒ emitir; INVALID ⇒
-  REJECTED{PROVIDER_GATE} + release + sin egress. Una Order no emitida NO es exposición
-  existente. Exposición YA física sobre cap ⇒ fail-visible + deny adds, sin liquidación
-  inventada. Preserva hard enforceable + hot authority + no forced liquidation.
-- risk cleanup: §16 y §9 reconciliados — contadores lógicos Echo-attributables + Position física
-  como trust guard (mismatch/stale/breach ⇒ PHYSICAL_STATE_UNTRUSTED ⇒ DENY_NEW_RISK); el
-  hard-cap gate jamás opera sobre base conocida incompleta; sin reconciliation repair.
-
-LINEARIZATION:
-El punto de linearización es la cola de procesamiento serializada por key en echo/provider_rules
-(único authority owner de la cuenta); los updates de RuleSet y las requests/revalidaciones se
-ordenan en esa misma cola. GRANT v5 ⇒ v6 baja cap ⇒ Order sin emitir ⇒ egress: exactamente uno
-de dos resultados — (A) v6 procesado antes del egress-check ⇒ revalidation bajo v6 ⇒ DENY ⇒
-REJECTED{PROVIDER_GATE} + release, sin egress; (B) v6 aún no llegado al owner ⇒ la decisión v5 es
-correcta según el orden serializado y la Order emite; v6 gobierna desde que se procesa. No se
-promete simultaneidad física entre nodos: se define el punto (la cola serializada del authority
-owner, la misma base de orden de todo el gate). Un comando nunca escapa usando v5 después de
-haber detectado v6: detección y decisión ocurren en el mismo punto.
-
-CASES:
-- cancelled vs finality (C-R3-A): Order.status=CANCELLED (enum intacto, sin estados agregados);
-  reservation.finality_state=PENDING; capacidad retenida hasta VENUE_FINAL.
-- cap update pre-egress (C-R3-B): GRANT +5 bajo cap 10; v6 cap 3; qty 5 sin emitir ⇒
-  revalidation bajo v6 ⇒ INVALID ⇒ REJECTED{PROVIDER_GATE} + release; nada físico sale.
-- cap update post-egress (C-R3-C): Order qty 5 ya salió bajo cap 10; v6 cap 3 ⇒ sin
-  cancel/liquidación inventada; adds deny; PROVIDER_EXPOSURE_OVER_LIMIT fail-visible.
-- A/B seam (C-R3-D): Instrument{exchange: CME, product_group: NQ, calendar_ref: CME_EQ_INDEX} ⇒
-  rules scopeadas por product_group/exchange/instrument_id; calendar_ref consulta B; provider
-  timezone/cutoff en ProviderRuleSet; sin cross-authority leak.
+C-R4 CLEANUP:
+- provider-clock authority: §6 (allowed new-risk window, forced-flat cutoff, overnight/weekend)
+  y §8 ya no asignan provider clock/holiday/early-close a B — provider timezone IANA + policy
+  propia del ProviderRuleSet, con relación opcional contra SessionBoundaries de B (B-R1: B
+  entrega sólo SessionState/SessionDate/SessionBoundaries/NextSessionTransition por calendar_id;
+  B no entrega provider clock, no entrega provider policy, no publica provider holiday rules).
+- Tradeify automation evidence: §6 automation restrictions — "Tradeify conditional" retirado ⇒
+  Tradeify = UNKNOWN (matriz autoritativa, sin first-party suficiente). Sin inference, sin
+  research nuevo.
+- UNKNOWN corpus wording: §2 Provider ahora enumera ALLOWED / CONDITIONAL / FORBIDDEN / UNKNOWN
+  según evidence authority por ProviderProgram, sin asignar estado concreto a firmas no probadas
+  (la asignación vive en el RuleSet de onboarding con provenance).
+- Case G entitlement semantics: Caso G separa cambios (a) con safety intent (forced-flat cutoff;
+  daily-loss/news/holiday con flatten explícito) de cambios (b) sin intent (instrumento recién
+  prohibido ⇒ deny adds; cap bajado ⇒ revalidation C-R3.6 + exposición física fail-visible sin
+  liquidación inventada; entitlement revocado ⇒ suspensión + SUSPENDED_ENTITLEMENT + operador —
+  NO ProviderForceClose, NO termination intent por default).
+- ProviderDecision.phase nullable: contrato único en §12 — ProviderDecision{… phase? …},
+  presente sólo para Programs con fase provider-local; sin framework genérico de Phase.
 
 SWEEP:
-strings revisados sobre el archivo completo: "firm + reserved + delta" (sólo queda como defecto
-histórico en Repair C-R1/C-R2 — cero normativa); "toda transición terminal...libera" (retirado);
-"PENDING_FINALITY" (renombrado reservation.finality_state en §9/C-R2/§17); "product grouping si
-existe" (final A-R2 en §6/§9/§14/R2.3/C-R1-seam); "provider-clock"/"holiday feed" (retirados de
-§14/handoff); "entitlement revoked" (verificado: nunca produce ForceClose/intent); "honra/
-honran/HONRA grants outstanding" (reemplazado por ReservationRevalidate en C-R2-hot-update,
-I-C7 y handoff); "Tradeify/FundedNext" (UNKNOWN intacto); "phase" (opcional provider-local en
-info/verdict/§3/§4/§5/§7). Resultado: el cuerpo final se lee sin depender de supersessions;
-los bloques históricos de repair citan defectos sólo como historia. SWEEP CLEAN.
+strings validados sobre el archivo completo: "Tradeify conditional" / "Tradeify ALLOWED" ⇒ 0
+hits; "input de B" / "(input B)" / "input B" / "clock/session de B" / "calendario/clock" ⇒ 0
+hits normativos (Caso C reescrito a "SessionState de B: abierto" — exchange state sí es
+autoridad de B); "entitlement revocado/revoked" ⇒ sólo menciones históricas de defectos
+(C-R1/C-R2 repair blocks, marcadas como defecto) y menciones con semántica negativa correcta
+("Sin ForceClose automático", "NO ProviderForceClose, NO termination intent"); ProviderDecision
+shape con "phase?" único + "nullable" en §12/C-R2.8-E; "UNKNOWN" presente en §2 corpus, §6
+automation/copy rows, C-R1 R4/C-R2.7 y §16. Sin contradicciones residuales; menciones históricas
+sólo marcadas como historia/defecto. NO TOCAR (§7 del mandato) verificado intacto:
+ReservationRevalidate, reservation.finality_state, GROSS/NET_ABS/GROUP_WEIGHTED,
+PHYSICAL_STATE_UNTRUSTED, A-R2 seam, B-R1 resolver API, Program/fase opcional, copy MFFU/TradeDay,
+Tradeify/FundedNext copy UNKNOWN, lifecycle D2-04.
 
 OWNER DECISIONS REQUIRED:
-NONE. Ratificaciones manager (§17): protocolo cross-owner + finality_state del reservation
-record; rejection{source, decision_id} en Order; familias GROSS/NET_ABS/GROUP_WEIGHTED; reasons
-nuevos; SUSPENDED_ENTITLEMENT (condición operacional) + attestation operator_authorized_close_
-only; fases declaradas por programa; admission_decision_id; ENTRY_REJECTED con provenance;
-epoch del GRANT + ReservationRevalidate; nombres functions/topics/tablas.
+NONE
 
 MATERIAL RISKS:
-la revalidación añade un chequeo de epoch por emisión tras cambios de RuleSet (barato, en la
-misma cola serializada); la finalidad venue-autoritativa retiene capacidad durante el lookup
-(conservador: deniega de más, jamás de menos); venue que contradice su propio history ⇒ breach
-post-finalidad fail-visible (clase de confianza del transporte, gated por R10);
-PHYSICAL_STATE_UNTRUSTED puede pausar aperturas ante mismatches (operador); ventana owner si
-opera la misma Strategy multi-firma en programas copy-UNKNOWN (Tradeify/FundedNext) hasta
-evidence authority.
+ninguno nuevo — los riesgos vigentes son los ya aceptados en C-R2/C-R3 (handoff anterior):
+retención conservadora de capacidad durante finalidad venue-autoritativa; breach post-finalidad
+ante venue que contradice su propio history (gated por R10); pausa de aperturas por
+PHYSICAL_STATE_UNTRUSTED (operador); ventana owner en programas copy-UNKNOWN hasta evidence
+authority.
 ```
