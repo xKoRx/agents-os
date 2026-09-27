@@ -1657,3 +1657,11 @@ Frozen conclusions:
 - Echo V3 disposition: hot config/kache, typed automation patterns, AccountState and safety patterns REUSE; MM/ExecutionPolicy/DayBoundary mechanisms ADAPT; Futures Provider domain, Calendar resolver, Contract/mapping catalogs, provider_rules, capacity projection and routing index are NEW; legacy prop_rulesets shape is REPLACED for the Futures path while legacy remains during migration.
 
 This closes D2 design questions Q6, Q7 and Q10. No owner decision remains open in D2-05. D2 remains globally open.
+
+### D2-06 — Market Runtime — DISPATCHED — 2026-09-27
+
+**Status:** `D2_06 = ACTIVE_SUBMANAGER_DISPATCH`
+
+Primary Manager closed D2-05 and opened D2-06 to resolve Q4/Q5/Q8 at D2 design level. D2-06 scope is Market Runtime only: normalized market events/feed authority; bounded hot market state; bar/MTF/indicator/warm-up semantics; feed health/failover/recovery; deterministic LIVE/REPLAY boundary sufficient for Strategy/MM consumption. It must consume the frozen Instrument/Contract + Calendar/Session model from D2-05 and must not select the execution transport (D2-07) or finish global scale/migration/replay implementation (D2-08).
+
+Dispatch model: SUBMANAGER coordinating three TOP architecture workers: A feed authority/normalization/recovery; B bars/MTF/indicators/warm-up/hot-state; C deterministic clock/event ordering + LIVE/REPLAY market boundary. Integrated artifact required before Primary Manager review. No D2 gate may be self-accepted by the SUBMANAGER.
