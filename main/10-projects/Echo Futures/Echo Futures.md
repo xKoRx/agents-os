@@ -1588,29 +1588,33 @@ Implementation/certification requirements carried forward:
 No owner decision remains open in D2-04. This closes Q2/Q3 at D2 design level. It does **not** close D2 globally.
 
 
-### D2-05 — Instrument / Session / Provider — SUBMANAGER READY FOR MANAGER REVIEW — 2026-09-26
+### D2-05 — Instrument / Session / Provider — INTEGRATED CANDIDATE — 2026-09-26
 
-**Status:** `D2-05 = READY_FOR_MANAGER_REVIEW`
+**Status:**
 
-Integrated authority candidate: [[Echo Futures — D2-05 Instrument Session Provider]].
+`D2-05 = INTEGRATION_CANDIDATE_READY_FOR_SUBMANAGER_REVIEW`
 
-Child design inputs:
-- [[Echo Futures — D2-05A Instrument Contract]]
-- [[Echo Futures — D2-05B Session Calendar]]
-- [[Echo Futures — D2-05C Provider Program Rules]]
+Integrated candidate: [[Echo Futures — D2-05 Instrument Session Provider]].
 
-Submanager integration resolves Q6/Q7/Q10 at D2 candidate level without closing the gate. Main conclusions submitted for Primary Manager review:
+Inputs frozen (blobs verificados == aprobados por el SUBMANAGER, sin drift):
 
-- canonical Instrument is separate from expiry-specific physical Contract; vendor/platform identifiers are mappings;
-- Operation resolves and pins Contract at creation; manual hot rollover is prospective only and never retargets a live Operation;
-- ExchangeCalendar/ExchangeSession, ProviderProgram trading overlays and Account DayBoundary are three distinct authorities;
-- Strategy uses named trading windows/calendar semantics without fixed UTC offsets; LIVE/REPLAY/BACKTEST share the same calendar contract;
-- Provider -> ProviderProgram -> ProgramPhase -> versioned ProviderRuleSet is explicit, while execution transport/capability remains a separate Account binding concern;
-- Account owns ProviderProgram/phase/rules/transport binding; AccountStrategy remains Account + Strategy + MoneyManagement;
-- provider enforcement is split into pre-materialization admission, post-MM Order admission for quantity/exposure rules, and asynchronous safety intents for live Operations;
-- ProviderRuleSet hot updates are dynamically authoritative for safety/new decisions and do not mutate pinned Contract or MM snapshot;
-- D2-04 remains lifecycle authority: provider forced-flat is a termination intent, never instant TERMINAL.
+- [[Echo Futures — D2-05A Instrument Contract]] — `READY_FOR_INTEGRATION`
+- [[Echo Futures — D2-05B Session Calendar]] — `READY_FOR_INTEGRATION`
+- [[Echo Futures — D2-05C Provider Program Rules]] — `READY_FOR_INTEGRATION`
+
+Resumen de lo integrado (máximo 10 bullets):
+
+- Instrument canónico (`instrument_id/quote_currency/exchange/product_group/calendar_ref`) separado de Contract expiry-specific; external identifiers por `(source, context)`; mapping hot por binding `(mapping_context, binding_id, instrument_id)` con feed/execution contexts independientes.
+- Operation resuelve y pinnnea el Contract una sola vez en la materialización (D2-01/04); rollover owner-manual estrictamente prospectivo; cierre sobre contrato viejo nunca remapea (fail-visible).
+- UN ExchangeCalendar = una semántica completa de producto/sesión; `session_id=(calendar_id, session_date)` unívoco por construcción; resolver puro sin product_group/exchange; session_date como dato (`trade_date_shift`), sin fórmula universal CME.
+- IANA-only + tzdata embebida; ExchangeCalendar ≠ Provider overlay ≠ Account DayBoundary; el fallback UTC-23:00 legacy queda prohibido para cuentas Futures (fail-closed).
+- Strategy referencia NamedTradingWindow por id (`EXCHANGE_SUBSET | CLOCK`); disponibilidad efectiva = ventana ∩ exchange; transiciones de sesión sólo vía `NextSessionTransition`.
+- Provider → ProviderProgram → (fase opcional provider-local) → ProviderRuleSet versionado con provenance; UNKNOWN jamás es ALLOWED; transporte/entitlement separado en el binding de la Account; AccountStrategy sigue siendo Account + Strategy + MoneyManagement.
+- Enforcement en dos gates: Stage-1 admisión pre-materialización (ALLOW|DENY_NEW_RISK, sin Operation si deniega) y Stage-2 post-MM/pre-egress (PER_ORDER local; caps compartidos por reserva serializada en `echo/provider_rules` con métrica tipada GROSS/NET_ABS/GROUP_WEIGHTED; guard de egress con revalidación de epoch del grant).
+- Safety asíncrono sólo por intents (`ProviderForceClose` → ForceClose R3, jamás TERMINAL instantáneo); entitlement revocado ⇒ suspensión de emisión + operador, nunca flatten automático; `PENDING_FINALITY` = reservation state, no Order.status.
+- Hot vs pinned congelado: reglas/mapping/calendario dinámicos prospectivos jamás mutan pin ni snapshot MM; anchor histórico = snapshot+hash en el manifiesto del run (calendario y RuleSet simulado) — LIVE consume hot config, REPLAY/BACKTEST inyecta snapshots explícitos.
+- D2-04 permanece como autoridad del lifecycle: Operation antes de MM, TERMINAL sólo por guards, Position como trust guard físico.
+
+**NOT CLOSED. NOT READY_FOR_PRIMARY_MANAGER UNTIL SUBMANAGER REVIEW. DO NOT ADVANCE D2-06.**
 
 `OWNER_DECISIONS_REQUIRED = NONE`.
-
-Do not advance to D2-06 until Primary Manager review of D2-05.
