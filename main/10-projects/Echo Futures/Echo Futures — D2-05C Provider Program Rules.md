@@ -241,6 +241,10 @@ Repair FINAL y quirúrgico. C-R2 está **aceptado en sustancia** (lista congelad
 
 Cleanup normativo FINAL; C-R1/C-R2/C-R3 aceptados arquitectónicamente. Sin rediseño, sin mecanismos nuevos, sin research. Cinco residuos eliminados: **(C-R4.1)** §6 ya no asigna provider clock ni provider holiday/early-close a B — allowed-new-risk window y forced-flat cutoff declaran provider timezone IANA + policy propia del RuleSet, con relación opcional contra `SessionBoundaries` de B (idem overnight/weekend y §8); **(C-R4.2)** automation restrictions: **Tradeify = UNKNOWN** (matriz autoritativa) — retirado "conditional"; **(C-R4.3)** el corpus de §2 enumera ALLOWED / CONDITIONAL / FORBIDDEN / **UNKNOWN** según evidence authority, sin asignar estado concreto a firmas no probadas; **(C-R4.4)** Caso G separa cambios **con safety intent** (forced-flat cutoff, daily-loss/news/holiday con flatten explícito) de cambios **sin intent** (instrumento prohibido, cap bajado ⇒ revalidation C-R3.6, entitlement revocado ⇒ suspensión, nunca ForceClose/termination intent por default); **(C-R4.5)** `ProviderDecision{… phase? …}` — contrato único con `phase` nullable, presente sólo para Programs con fase provider-local. Sweep final en handoff; nada de la lista §7 (NO TOCAR) fue modificado.
 
+## SUBMANAGER REPAIR C-R5 — 2026-09-26 (evidence hygiene)
+
+Cleanup de evidencia únicamente; C-R1..C-R4 intactos. Retirado de §6 la evidencia Lucid no autorizada: "Lucid allowed trading times" y "Lucid 4:45 PM ET" — la matriz autoritativa deja a Lucid UNKNOWN en el corpus authority relevante y V2 supporting registra que no se observaron reglas forced-flat/session hours en las fuentes revisadas; no se reemplazaron por otro dato. Se conserva el ejemplo Topstep congelado de diseño (cutoff provider 3:10 PM CT vs cierre CME 4:00 PM CT) y las menciones Lucid estructurales (planes = programas) y con evidencia específica aceptada (news restriction por plan en V2 §8; platform support revalidada first-party por el manager — distinta de API entitlement).
+
 ## 2. Provider
 
 - Definición: identidad canónica de la firma prop como **owner de negocio/policy**. Es la raíz de la jerarquía de autoridad de reglas; no ejecuta, no transporta, no posee cuentas físicas de Echo.
@@ -400,56 +404,35 @@ Autoridad de C (ProviderRuleSet / ProviderProgram): provider timezone IANA; allo
 ```text
 D2-05C STATUS:
 READY_FOR_INTEGRATION
-(post repairs C-R1 + C-R2 + C-R3 + C-R4; gate §14 de C-R3 con sus 9 condiciones + sweep C-R4
-limpio; arquitectura C-R1/C-R2/C-R3 aceptada — este repair fue sólo cleanup normativo)
 
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-5da3eefc2ed0b515297f4f57fc72cd3f3010f474
+<PENDING_PIN>
 
-C-R4 CLEANUP:
-- provider-clock authority: §6 (allowed new-risk window, forced-flat cutoff, overnight/weekend)
-  y §8 ya no asignan provider clock/holiday/early-close a B — provider timezone IANA + policy
-  propia del ProviderRuleSet, con relación opcional contra SessionBoundaries de B (B-R1: B
-  entrega sólo SessionState/SessionDate/SessionBoundaries/NextSessionTransition por calendar_id;
-  B no entrega provider clock, no entrega provider policy, no publica provider holiday rules).
-- Tradeify automation evidence: §6 automation restrictions — "Tradeify conditional" retirado ⇒
-  Tradeify = UNKNOWN (matriz autoritativa, sin first-party suficiente). Sin inference, sin
-  research nuevo.
-- UNKNOWN corpus wording: §2 Provider ahora enumera ALLOWED / CONDITIONAL / FORBIDDEN / UNKNOWN
-  según evidence authority por ProviderProgram, sin asignar estado concreto a firmas no probadas
-  (la asignación vive en el RuleSet de onboarding con provenance).
-- Case G entitlement semantics: Caso G separa cambios (a) con safety intent (forced-flat cutoff;
-  daily-loss/news/holiday con flatten explícito) de cambios (b) sin intent (instrumento recién
-  prohibido ⇒ deny adds; cap bajado ⇒ revalidation C-R3.6 + exposición física fail-visible sin
-  liquidación inventada; entitlement revocado ⇒ suspensión + SUSPENDED_ENTITLEMENT + operador —
-  NO ProviderForceClose, NO termination intent por default).
-- ProviderDecision.phase nullable: contrato único en §12 — ProviderDecision{… phase? …},
-  presente sólo para Programs con fase provider-local; sin framework genérico de Phase.
+C-R5:
+retirada de §6 la evidencia Lucid no autorizada: "Lucid allowed trading times" (allowed
+new-risk window) y "Lucid 4:45 PM ET" (forced-flat cutoff) — la matriz autoritativa deja a
+Lucid UNKNOWN en el corpus authority relevante y V2 supporting registra que no se observaron
+reglas forced-flat/session hours en las fuentes revisadas; sin reemplazo inventado, sin
+research nuevo. Familias y modelado intactos; ejemplo Topstep congelado de diseño conservado
+(cutoff 3:10 PM CT vs cierre CME 4:00 PM CT). Menciones Lucid restantes verificadas y
+conservadas por estar sustentadas para su claim: estructura de planes LucidDaily/Flex/Pro =
+programas (V2 §5, C-R1 R3/§3/§4), news restriction por plan (V2 §8), platform support
+NinjaTrader/CQG/Rithmic (revalidada first-party por el manager — distinta de API entitlement).
 
 SWEEP:
-strings validados sobre el archivo completo: "Tradeify conditional" / "Tradeify ALLOWED" ⇒ 0
-hits; "input de B" / "(input B)" / "input B" / "clock/session de B" / "calendario/clock" ⇒ 0
-hits normativos (Caso C reescrito a "SessionState de B: abierto" — exchange state sí es
-autoridad de B); "entitlement revocado/revoked" ⇒ sólo menciones históricas de defectos
-(C-R1/C-R2 repair blocks, marcadas como defecto) y menciones con semántica negativa correcta
-("Sin ForceClose automático", "NO ProviderForceClose, NO termination intent"); ProviderDecision
-shape con "phase?" único + "nullable" en §12/C-R2.8-E; "UNKNOWN" presente en §2 corpus, §6
-automation/copy rows, C-R1 R4/C-R2.7 y §16. Sin contradicciones residuales; menciones históricas
-sólo marcadas como historia/defecto. NO TOCAR (§7 del mandato) verificado intacto:
-ReservationRevalidate, reservation.finality_state, GROSS/NET_ABS/GROUP_WEIGHTED,
-PHYSICAL_STATE_UNTRUSTED, A-R2 seam, B-R1 resolver API, Program/fase opcional, copy MFFU/TradeDay,
-Tradeify/FundedNext copy UNKNOWN, lifecycle D2-04.
+"4:45" ⇒ 0 hits; "Lucid allowed" ⇒ 0 hits; "Lucid 4" ⇒ 0 hits; ninguna regla forced-flat/
+session-window atribuida a Lucid (únicas apariciones restantes: lista de firms §2, ejemplo de
+producto §3, demostración program-vs-phase §4/C-R1 R3, news por plan §6 con soporte V2 §8,
+platform support §7 con soporte first-party manager); arquitectura C-R1..R4 intacta (lista
+NO TOCAR de C-R4 verificada sin cambios; único delta = celdas de evidencia de §6 + nota corta
+C-R5 + este handoff).
+
+ARCHITECTURE CHANGED:
+NO
 
 OWNER DECISIONS REQUIRED:
 NONE
-
-MATERIAL RISKS:
-ninguno nuevo — los riesgos vigentes son los ya aceptados en C-R2/C-R3 (handoff anterior):
-retención conservadora de capacidad durante finalidad venue-autoritativa; breach post-finalidad
-ante venue que contradice su propio history (gated por R10); pausa de aperturas por
-PHYSICAL_STATE_UNTRUSTED (operador); ventana owner en programas copy-UNKNOWN hasta evidence
-authority.
 ```
