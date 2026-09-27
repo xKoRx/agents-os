@@ -19,7 +19,7 @@ tags:
   - echo-futures
   - architecture-design
 created: "2026-09-26"
-updated: "2026-09-26"
+updated: "2026-09-27"
 ---
 
 # Echo Futures — D2-05 Instrument / Session / Provider (Integrated Candidate)
@@ -129,7 +129,7 @@ Tres autoridades separadas por congelación (S-E06/S-E07/S-E08), demostradas con
 |---|---|---|---|
 | **ExchangeSession/Calendar** | B (dataset + resolver) | cuándo el exchange/producto acepta negociación; session/trade date; boundaries de barras | provider policy; reset de cuenta; no muta por overlays |
 | **ProviderProgram overlay** | C (ProviderRuleSet) | allowed-new-risk window, forced-flat cutoff (tz IANA del provider), holiday/early-close policy del programa; combina opcionalmente `SessionBoundaries` de B | no escribe el calendario; no define session_date; `Exchange OPEN ∧ Provider DENY_NEW_RISK` es estado representable por construcción |
-| **Account DayBoundary** | dominio de cuenta (Echo V3: `prop_rulesets.daily_reset_timezone/time` + `DayBoundaryCache`) | reset diario contractual: daily HWM, prev_day_close, acumuladores provider diarios (C los resetea al cruzar el boundary, caso F) | no es ExchangeSession; no cambia Contract ni trade/session date; el fallback UTC-23:00 legacy está prohibido para cuentas Futures (day boundary explícito exigido, fail-closed) |
+| **Account DayBoundary** | dominio de cuenta; Futures V1: config explícita hot/readiness-safe en `ProviderAccountBinding` y estado resuelto en `echo/provider_rules(account_id)` | reset diario contractual: daily HWM, prev_day_close, acumuladores provider diarios | no es ExchangeSession; no cambia Contract ni trade/session date; `DayBoundaryCache` legacy es sólo precursor conceptual y su fallback UTC-23:00/cache-forever no participa del camino Futures |
 
 ## 12. Provider / ProviderProgram / optional Phase / ProviderRuleSet
 
@@ -525,7 +525,7 @@ INTEGRATED ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05 Instrument Session Provider.md
 
 AGENTS-OS SHA:
-<PIN_AFTER_COMMIT>
+f0373c0d8c6e33c922aaaf8058fd514a7dd40eb5
 
 R15 ADMISSION AUTHORITY:
 Stage-1 ya no acepta desde kache. AdmissionRequest/Result se lineariza en
