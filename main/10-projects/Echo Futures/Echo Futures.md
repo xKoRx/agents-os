@@ -1698,3 +1698,18 @@ Only owner decision remaining:
 Manager recommendation: `ALWAYS_ON_V1`. Rationale: ReplayAnchor must exist from run start and cannot be reconstructed retroactively; DeterministicInputLog stores primarily ordering/runtime/control plus references to canonical market content rather than duplicating that content; the architecture is identical either way, so opt-in mainly creates a class of live runs that can never be exact-replayed later. Retention remains an operational policy and may expire recordings according to the declared recording horizon.
 
 Do not open D2-07 until Owner ratifies OD-C1 and D2-06 is persisted CLOSED.
+
+### D2-06 — Market Runtime — MANAGER CLOSED — 2026-09-27
+
+**Status:** `D2_06_MANAGER_REVIEW = CLOSED`
+
+Owner ratified OD-C1 as `ALWAYS_ON_V1_SELECTED_STREAMS`: exact-live-replay recording is always enabled from run start for the market streams/symbols actually selected or demanded by the run/Strategy/MM requirements, not for the provider's full symbol universe. ReplayAnchor + deterministic journal begin at t0 for those selected streams; retention remains a separate operational policy.
+
+Primary Manager closes [[Echo Futures — D2-06 Market Runtime]]. This closes Q4 Market Hot State, Q5 Bar Semantics, Q8 Feed Authority and Q14 LIVE/REPLAY Market Boundary at D2 design level. D2 remains globally open.
+
+
+### D2-07 — Execution Runtime / Initial V1 Transport — DISPATCHED — 2026-09-27
+
+**Status:** `D2_07 = ACTIVE_SUBMANAGER_DISPATCH`
+
+Scope: execution adapter boundary, command/result/order/fill integration, external idempotency/finality/reconciliation capabilities, transport eligibility matrix, and selection recommendation for the first non-real-money V1 execution path. Must consume D2-04 Operation/Order/Fill contracts, D2-05 Provider/Account binding and D2-06 market/session semantics. It must not reopen provider research broadly, must distinguish platform support from API entitlement, and must not advance D2-08. Selection of the initial V1 execution transport remains an owner/product decision after manager review of the integrated candidate.
