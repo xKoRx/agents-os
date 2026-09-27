@@ -70,10 +70,11 @@ EffectiveConsumerReadiness(consumer c) =
   ∧ AnalyticalRequirementsReady(c)                          # AUTORIDAD B (analítica)
 ```
 
-- **Capa A — StreamReadinessFor(stream, clase de consumo):** la `StreamState` de A es feed readiness: source/authority, liveness, continuity, freshness, recovery. Se interpreta **por clase de consumo** (R6 de A): `CURRENT_STATE` (BBO/quote) está servida con stream READY y con el `last_known_state` usable de A §15.1 incluso en degradación; `HISTORY_DEPENDENT` (barras/indicadores) exige además continuidad demostrada y rebuild del epoch vigente consumado (§19). Una stream puede estar READY para current-state y NO_READY para history-dependent simultáneamente.
+- **Capa A — StreamReadinessFor(stream, clase de consumo):** la `StreamState` de A es feed readiness: source/authority, liveness, continuity, freshness, recovery. Se interpreta **por clase de consumo** (R6 de A): `CURRENT_STATE` (BBO/quote) y `HISTORY_DEPENDENT` (barras/indicadores) se gatean por la READINESS de A para su clase; el `last_known_state` de A §15.1 es **disponibilidad** (valor + `as_of` + stale flag), no readiness — legible por MM/safety bajo su propia policy con la marca visible, jamás equivalente a READY (R6). Una stream puede estar READY para current-state y NO_READY para history-dependent simultáneamente; y una feed NOT_READY puede tener last-known disponible (`available ∧ ¬ready`, §23).
 - **Capa B — AnalyticalRequirementsReady(consumer):** por consumidor, jamás global: el consumidor (Strategy por `strategy_id`; MM de una Operation en su gate de mercado) declara `MarketRequirements` (§16), consume barras/cierres por la semántica congelada hasta cubrir sus lookbacks en el epoch vigente, construye su estado privado y sólo entonces declara readiness analítica. Se computa y retiene **en el consumidor** (el market runtime no conoce lookbacks por consumidor más allá del catálogo de demandas de configuración); se publica opcionalmente para observabilidad.
 - **Propiedades obligatorias:** S2 (BBO-only) READY mientras S1 (200×1m+50×5m) aún warmupea; una Strategy nueva con lookback enorme NO baja la readiness de la stream ni de ningún otro consumidor; la feed readiness nunca incluye warm-up (§29); el gate de decisión (Signals nuevas / decisiones MM que requieren esos inputs) se abre con la composición, jamás con una capa sola.
 - **Composición por clase de input, no por Strategy binaria:** dentro de MM, los inputs ready antes que otros habilitan las decisiones que sólo los necesitan (latest quote listo antes que las barras reconstruidas → trailing por BBO puede habilitarse antes que sizing por ATR), sin bloquear el path de ejecución/safety (D2-04/D2-05).
+- **Readiness ≠ disponibilidad (R6):** el gate compuesto se abre con readiness, jamás con la existencia de un last-known: Strategies no producen nuevas technical Signals desde un stream NOT_READY (salvo semántica futura explícita que lo autorice); MM puede usar un last-known disponible para una acción concreta sólo si su policy para ESA decisión lo autoriza, con `as_of`/stale visible; el path safety/provider/execution permanece independiente (D2-04/D2-05) y Market Runtime no inventa flatten (A §15.6).
 
 ## 4. Hot-state ownership
 
@@ -97,14 +98,22 @@ LatestMarketTick {
   stream_id, contract_id, instrument_id, authority_epoch
   last_quote?  { bid_price, bid_qty, ask_price, ask_qty, quote_event_ts, quote_stream_seq }
   last_trade?  { price, qty, trade_event_ts, trade_stream_seq }
-  last_event_ts             # event_ts del último evento aceptado (max de ambos)
-  as_of, stale_flag         # display/liveness (receive-side); jamás semántica de dominio
+  last_event_ts             # máximo monotónico de event_ts de los eventos aceptados;
+                            # jamás retrocede
+  liveness { last_received_stream_seq, last_received_at }   # lado receive; sólo
+                            # telemetría/liveness — jamás semántica de mercado
+  as_of, stale_flag         # disponibilidad/frescura del last-known (A §15.1);
+                            # jamás readiness (R6, §3/§23)
 }
 ```
 
-- Actualizado en orden de stream (post-dedup de A) por **cada evento aceptado**; el último trade es el último en orden de stream, venga cuando venga (un trade tardío actualiza `last_trade` aunque sea dropped para barras, §9 — es liveness, no análisis).
-- Owner: `echo/market_stream` (A). Requisito de B sobre la superficie de A: el `last_known_state` del StreamState compactado transporta el `LatestMarketTick` utilizable (A §15.1 ya declara `last_known_state + as_of + stale flag` legibles para MM/safety; B congela que el payload es el shape de arriba). Consumo por kache del topic compactado; **no se duplica por Account/Operation**.
-- No se derivan mid/last sintéticos ni se mezclan quote y trade en un "precio actual": los consumidores eligen su input (`last_quote` para MM hardscalping, `last_trade` para ORB) y su `event_ts`.
+- **Dos planos separados (R2):** *EVENT RECEIVED / LIVENESS* — todo evento aceptado cuenta: contadores, liveness, métricas late/recovery, prueba de vida. *CURRENT MARKET STATE* — `last_quote`/`last_trade`, lo que un consumidor de current-state lee. Un evento tardío siempre existe en el primero; sólo cruza al segundo si sube la escalera.
+- **Escaleras monótonas de current-state (R2):** `last_trade` se actualiza sólo si `(trade_event_ts, trade_stream_seq)` excede lexicográficamente al vigente; ídem `last_quote` en su escalera propia — quote y trade son escaleras **independientes** (una jamás hace retroceder a la otra ni se mezclan en un "precio actual"). `last_event_ts` es máximo monotónico. Un trade tardío `event_ts=09:59:58` **jamás** convierte `last_trade.price` en su precio después de un trade `event_ts=10:00:02`: entra a la política late de barras (§9), a métricas, prueba liveness y participa del recovery según capability, pero no regresa el current-state.
+- **Idempotencia (R1):** la actualización corre tras el guard `stream_seq > last_applied_stream_seq(stream)` (§25); redelivery ⇒ NO-OP sin ningún efecto (ni current-state, ni liveness counters — el evento ya fue contado).
+- `receive_ts` jamás participa de semántica de mercado (A §3): sólo liveness/display (`as_of`/stale son la proyección de frescura de A, no orden de dominio).
+- **Fuente sin event-time fiable** (`reliable_ts=RECEIVE_ONLY`, A §11): la escalera de current-state no es demostrable ⇒ la limitación se **declara por capability/readiness** y queda visible en el estado/barras construidas de ese source (`EVENT_TS_SOURCE_UNRELIABLE`, R-B9) — no se esconde tras una semántica aparente.
+- **No se derivan mid/last sintéticos** ni se mezclan quote y trade: los consumidores eligen su input (`last_quote` para MM hardscalping, `last_trade` para ORB) y su `event_ts`.
+- **Owner:** `echo/market_stream` (A) — invariante §4 intacta. Requisito de B sobre la superficie de A: el `last_known_state` del StreamState compactado transporta el `LatestMarketTick` utilizable (payload con los `*_stream_seq` de cada lado para que todo consumidor pueda correr el guard idéntico). Consumo por kache del topic compactado; **no se duplica por Account/Operation**; toda materialización B-side del latest state corre el mismo guard R1.
 
 ## 6. Bar identity
 
@@ -113,9 +122,12 @@ BarId      = (stream_id, timeframe, bucket_open_utc)
 BarRecord  {
   bar_id                     # identidad mínima congelada
   timeframe                  # de la demanda (ej. 1m, 5m)
-  bucket_open_utc            # RFC3339Nano UTC, anclado al grid de la sesión (§7)
-  close_boundary_utc         # min(bucket_open + tf, truncamiento de sesión/break)
-  session_truncated: bool    # true si close_boundary lo impuso el calendario
+  bucket_open_utc            # open efectivo de la barra: punto del grid nominal
+                             # (session_open + k·tf) o el punto de reanudación
+                             # (break_end) si el calendario partió el bucket (§7, R5)
+  close_boundary_utc         # min(bucket_open + tf, corte de sesión/break impuesto)
+  session_truncated: bool    # true si el calendario impuso open/close off-grid
+                             # (corte de sesión o break interno)
   open/high/low/close        # price (decimal, quote_currency)
   volume                     # contracts (Σ qty trades)
   trade_count
@@ -135,7 +147,7 @@ BarRecord  {
 
 ## 7. Bucket / session semantics
 
-- **Grid anclado a la sesión:** para cada `(stream, tf)` y cada sesión del calendario (autoridad D2-05 vía `calendar_ref` del Instrument), los buckets son `[session_open + k·tf, session_open + (k+1)·tf)`; el grid **reinicia en cada apertura de sesión**. Nada de anclas de medianoche ni horas CME hardcodeadas.
+- **Grid anclado a la sesión:** para cada `(stream, tf)` y cada sesión del calendario (autoridad D2-05 vía `calendar_ref` del Instrument), los buckets son `[session_open + k·tf, session_open + (k+1)·tf)`; el grid **reinicia en cada apertura de sesión**. Nada de anclas de medianoche ni horas CME hardcodeadas. El grid permanece anclado a `session_open` durante TODA la sesión: un **BREAK interno** (que D2-05 permite dentro de la MISMA `ExchangeSession`) **no reinicia el grid** — los boundaries nominales siguen siendo `session_open + k·tf` (R5). Grid nuevo sólo con nueva `session_open` (siguiente sesión / post-holiday).
 - **Asignación por event-time:** un evento entra al bucket `floor((event_ts − session_open)/tf)` **sólo si `SessionState=OPEN`** para su `event_ts`. Fuera de sesión (gap de maintenance, holiday, pre-open) el evento **no es input de barra** y suma `EVENT_OUTSIDE_SESSION` (métrica ya congelada en D2-05 §9; prints de settlement caen aquí). Durante BREAK interno: ídem — no se fabrica trading donde el calendario dice BREAK.
 - **Truncamiento (caso obligatorio early close / bucket intersecta close / break):** si el calendario corta la sesión (close normal, early close por override, break interno) antes del boundary del bucket, la barra **cierra en el punto de corte** con `session_truncated=true` y `close_boundary_utc=corte`. El remanente del bucket no existe (no barra vacía sintética, §11). Al reabrir sesión (post-break o próxima sesión) el grid reinicia en la nueva apertura.
 - **Timeframe mayor que la sesión restante / que la sesión completa:** misma regla — una barra truncada al cierre de sesión (degenera a "barra por sesión" si `tf ≥ sesión`). Sin caso especial: la matemática es uniforme.
