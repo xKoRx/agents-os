@@ -406,7 +406,7 @@ ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-<PENDING_PIN>
+f75397095edc6587db454c2149049dfc1ab0da4d
 
 REPAIR C-R3:
 - §9 final model: max contracts/order = PER_ORDER local; caps compartidos = echo/provider_rules
