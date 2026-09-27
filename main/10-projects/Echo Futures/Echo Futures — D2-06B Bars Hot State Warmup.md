@@ -84,7 +84,7 @@ Pertenece al **Market Runtime compartido** (un solo owner por pieza, consumidore
 |---|---|---|---|
 | Latest BBO/trade (`LatestMarketTick`) | `echo/market_stream` (A) | `stream_id` | in-memory + publicado en stream-state; derivable/reconstructable |
 | Forming bars + anillo de barras cerradas por `(stream, tf)` demandado | `echo/market_analytics` (B, nueva) | `stream_id` | in-memory checkpointeada; **derivada/reconstructable** (no autoridad externa) |
-| Grid de sesión, truncamientos, `session_date` por barra, rebuild watermark | `echo/market_analytics` (B) | `stream_id` | derivado del calendario D2-05 (kache) + epoch markers |
+| Grid de sesión, truncamientos, `session_date` por barra, cutover de rebuild (capability-driven, §18) | `echo/market_analytics` (B) | `stream_id` | derivado del calendario D2-05 (kache) + epoch markers |
 | Readiness analítica del consumidor | el consumidor (`echo/strategy_engine` B; gate MM en `echo/operation`) | `strategy_id` / op key | estado privado del consumidor |
 | `MarketRequirements` resueltas + estado de indicadores/finite state de Strategy | `echo/strategy_engine` (B, nueva) | `strategy_id` | in-memory checkpointeada; reconstructable por warm-up |
 | Referencias de epoch/provenance y market quality | A (`StreamState`) | `stream_id` | compactado/kache |
@@ -356,7 +356,9 @@ echo/market_analytics   (StateFun NUEVA, key = stream_id)          [B]
   state (ValueSpec, checkpointed, acotado):
     demandas (stream, tf) del catálogo; forming bar por (stream,tf);
     anillo closed bars por (stream,tf); grid/truncamientos de sesión;
-    rebuild segment activo {rebuild_id, R, history_source, contadores}
+    rebuild segment activo {rebuild_id, cutover capability-driven (§18),
+    history_source, contadores};
+    guard idempotencia: last_applied_stream_seq por stream (R1)
   reactúa a: eventos canónicos; epoch markers/RecoveryBarrier (A);
              NextSessionTransition (timers SendAfter de cierre de bucket);
              cambios de catálogo de requirements (config hot)
@@ -368,7 +370,9 @@ echo/market_analytics   (StateFun NUEVA, key = stream_id)          [B]
 
 echo/strategy_engine    (StateFun NUEVA, key = strategy_id)        [B]
   state: MarketRequirements resueltas; readiness analítica por (stream,tf);
-         indicadores/finite state privados
+         indicadores/finite state privados; último closure aplicado por
+         (stream,tf) + guard stream_seq (R1: redelivery ⇒ NO-OP, jamás doble
+         evaluación); restaurado de checkpoint en restart normal (R3)
   inputs: BAR_CLOSED push (§22); LatestMarketTick via stream-state kache (A);
           WINDOW_TRANSITION (timers de NextSessionTransition); calendario kache
   output: Signal → echo.signals.v1 → echo/signal_fanout (D2-04)
@@ -378,7 +382,8 @@ echo/operation (D2-04, key account:strategy)
   gate de mercado por clase de input (§3); mm_state intacto (D2-04)
 
 config hot (patrón compacted+kache): catálogo de requirements (§16),
-  late_correction flag (§9), demandas MM de datos
+  demandas MM de datos  [sin toggles de semántica de barras — política V1
+  única run-pinned, §9]
 MarketHistorySource: interface A §16; adapter-side; usado SÓLO por el camino
   de rebuild/warm-up de market_analytics (§18) — jamás en hot path
 ```
@@ -415,7 +420,7 @@ Justificación owner/key/state: **owner de barras** = `echo/market_analytics` (�
 
 ## 28. Risks / debts
 
-- **R-B1 — Skew historia-vs-live (clase C):** el corte `R` hace disjunta la propiedad por event-time, pero si la historia del vendor difiere del feed live (trades que el vendor history no tiene), el rebuild difiere del "ideal". Mitigación: provenance del segmento + `correction_count` + comparación de cobertura post-rebuild (conteo eventos historia vs stream) con alerta; residuo declarado.
+- **R-B1 — Skew historia-vs-live (clase C):** el cutover capability-driven (§18/R4) exige regiones realmente disjuntas demostradas por el mecanismo; aun así, si la historia del vendor difiere del feed live (trades que el vendor history no tiene), el rebuild difiere del "ideal". Mitigación: provenance del segmento + `correction_count` + comparación de cobertura post-rebuild (conteo eventos historia vs stream) con alerta; sin mecanismo de cutover demostrable ⇒ `ANALYTICAL_REBUILD_UNPROVABLE` fail-closed; residuo declarado.
 - **R-B2 — Corrección acotada a una barra:** trades que llegan después del cierre del bucket siguiente quedan fuera de las barras (métrica fail-visible). Es la decisión V1; si la evidencia de fuentes reales mostrara colas de lateness materiales, la ventana es extensible por decisión técnica (no estructural).
 - **R-B3 — Orden timer↔eventos en restart/replay:** el valor de cierre de un bucket depende del corte exacto (eventos procesados antes de la transición). Fiel reproduce requiere el orden de timers (requisito a D2-06C, §8/§22); sin él, REPLAY puede diferir en valores de frontera. Riesgo delegado con contrato explícito.
 - **R-B4 — Grid anclado a sesión vs vendor bars:** los buckets Echo nunca coincidirán 1:1 con barras diarias vendor (anclas distintas). Irrelevante en V1 (no consumimos vendor bars; rechazadas §17); documentado para evitar confusiones futuras.
@@ -423,7 +428,8 @@ Justificación owner/key/state: **owner de barras** = `echo/market_analytics` (�
 - **R-B6 — Snapshot compactado por cierre:** cada cierre/corrección republica el anillo (key `stream|tf`); tamaño = N×OHLCV (pequeños); frecuencia = cierres (baja vs ticks). Aceptable; medir en D6 si crece.
 - **R-B7 — Strategy runtime full design:** B congela ownership/contrato market-side de `echo/strategy_engine`; el diseño completo del runtime de Strategy (definición, motor, config) no está despachado — el SUBMANAGER debe rutearlo (no bloquea integrar B).
 - **R-B8 — Empty-bar/quote-bar/forming-exposure semantics futuras:** requisitos potenciales de strategies que hoy no existen; cada uno exige semántica explícita nueva (§8/§11), nunca implícita.
-- **R-B9 — `reliable_ts=RECEIVE_ONLY` en barras:** un source así produce `event_ts` no venue-authoritative ⇒ asignación de bucket y session semantics degradadas. V1: permitido pero **flag obligatorio** `EVENT_TS_SOURCE_UNRELIABLE` en las barras construidas de ese source; el consumidor decide (A §11 declara la capability; B la hace visible).
+- **R-B9 — `reliable_ts=RECEIVE_ONLY` en barras:** un source así produce `event_ts` no venue-authoritative ⇒ asignación de bucket y session semantics degradadas. V1: permitido pero **flag obligatorio** `EVENT_TS_SOURCE_UNRELIABLE` en las barras construidas de ese source; el consumidor decide (A §11 declara la capability; B la hace visible). La misma limitación degrada la escalera de current-state de §5 (R2): se declara, no se esconde.
+- **R-B10 — Proyección corregida vs observaciones de decisión (R3):** tras correcciones, la proyección (X') difiere del snapshot (X) que evaluaciones ya emitidas observaron; la divergencia es declarada y visible (`correction_count`, provenance) y los facts de decisión son inmutables; el warm-up de un NEW RUN parte de la proyección final del segmento. No hay claim de continuidad exacta — ésa es la frontera con D2-06C (EXACT REPLAY).
 
 ## 29. A integration note
 
@@ -442,7 +448,10 @@ cada consumidor se abre con EffectiveConsumerReadiness (feed READY ∧
 analytical ready). La señal "warmup consumido" que A §21 dejó abierta no
 sube hacia el stream state: vive en los consumidores (§3); el interface
 B↔engine se reduce a: epoch markers/RecoveryBarrier inline (ya congelados
-por A) + el último evento aceptado como watermark R para rebuilds.
+por A) + la información de cutover que la capability del source habilite
+(identidad/cursor/posición canónica para clases A/B; para clase C el
+boundary debe ser garantizado por el history/live source — §18/R4: `R` es
+nombre conceptual del cutover, no "último event_ts" universal).
 ```
 
 Esto NO reabre A: cierra el seam A→B con la reinterpretación que A §21 explícitamente dejó a B.
