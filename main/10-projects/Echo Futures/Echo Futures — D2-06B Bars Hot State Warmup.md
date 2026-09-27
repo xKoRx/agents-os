@@ -460,31 +460,43 @@ Esto NO reabre A: cierra el seam A→B con la reinterpretación que A §21 expl�
 
 - **A — CLOSED BAR / NO LOOK-AHEAD:** bar 09:30–09:31, strategy closed-bars-only: antes de la transición de cierre (natural o timer) no existe para ella (no push, no "closed" en snapshot); en la transición: exactamente una evaluación (trigger = el propio cierre); correcciones posteriores no reevalúan (§8/§9/§10). **PASS.**
 - **B — NO NEXT TICK:** último trade 09:30:50; sin trades al boundary ⇒ close timer del boundary cierra la barra con datos hasta 09:30:50; sin forming eterno (§8). **PASS.**
-- **C — LATE EVENT:** `event_ts=09:30:59.900` llegando post-boundary: corrección de la 09:30 si sigue siendo el último bucket cerrado (sin reevaluación), drop-a-métrica si la 09:31 ya cerró; el evento permanece en el stream canónico y actualiza `last_trade`; LIVE/REPLAY reproducen el mismo resultado con orden+timers (§9). **PASS.**
-- **D — SESSION BREAK:** bucket que intersecta BREAK: cierre truncado al inicio del break (`session_truncated=true`), sin trading fabricado; grid reinicia al reabrir; breaks/huecos distinguidos por el calendario D2-05, no hardcode (§7). **PASS.**
+- **C — LATE EVENT:** `event_ts=09:30:59.900` llegando post-boundary: corrección de la 09:30 si sigue siendo el último bucket cerrado (sin reevaluación), drop-a-métrica si la 09:31 ya cerró; el evento permanece en el stream canónico y toca el current-state sólo si su `(event_ts, stream_seq)` excede el `last_trade` vigente — `last_trade` jamás regresa (§5, R2); LIVE/REPLAY reproducen el mismo resultado con orden+timers (§9). **PASS.**
+- **D — SESSION BREAK:** bucket que intersecta BREAK: cierre truncado al inicio del break (`session_truncated=true`), sin trading fabricado; al reabrir se retoma el MISMO grid de `session_open` (barra corta si `break_end` cae dentro de un bucket nominal); boundaries futuros sin desplazar; hueco ENTRE sesiones ⇒ grid nuevo; breaks/huecos distinguidos por el calendario D2-05, no hardcode (§7, R5). **PASS.**
 - **E — EARLY CLOSE:** el calendario corta antes del boundary ⇒ última barra cierra en el corte del `SessionBoundaries`/override; sin schedule hardcodeado (§7). **PASS.**
 - **F — EMPTY PERIOD:** OPEN sin trades en el bucket ⇒ no hay barra; sin synthetic OHLC; distinción CLOSED/BREAK vs OPEN-sin-trades consultable vía session context (§11). **PASS.**
 - **G — MTF:** S1 requiere 1m+5m ⇒ un evento se procesa una vez por timeframe builder (2 merges), jamás × Account; las 5m usan el mismo grid/session/boundary/truncation/correction semantics congelados (§12). **PASS.**
-- **H — WARMUP:** S1 (200×1m+50×5m) tras restart: rebuild §17 por la misma semántica; `AnalyticalRequirementsReady` al cubrir lookbacks + boundary live; sin Signal antes del gate compuesto (§3); una Strategy BBO-only puede estar READY antes (gate independiente); una nueva strategy con lookback enorme no baja la readiness de nadie (§3/§17). **PASS.**
+- **H — WARMUP:** NEW RUN / nueva S1 (200×1m+50×5m): warm-up §17 con la misma semántica del builder; `AnalyticalRequirementsReady` al cubrir lookbacks + boundary live; sin Signal antes del gate compuesto (§3); una Strategy BBO-only puede estar READY antes (gate independiente); una nueva strategy con lookback enorme no baja la readiness de nadie. **NORMAL RESTART** de una S1 viva: decision state desde checkpoint, sin re-warmup silencioso (§24, R3). **PASS.**
 - **I — ROLLOVER MID-SESSION:** NQZ6→NQH7: barras de streams distintas por contract (jamás mezcla); S1 evalúa sobre H7 sólo con requirements H7 READY; Operation vieja sobre Z6 conserva latest+anillos de Z6 hasta RELEASE (§21). **PASS.**
 - **J — AUTHORITY SWITCH MID-BAR:** epoch 7→8: forming descartada (sin mezcla de autoridades), closed bars viejas inmutables por epoch, rebuild con historia de la autoridad nueva + lookbacks de demandas, readiness de vuelta por composición; sin corrección retrospectiva de Signals (§20). **PASS.**
 - **K — RECOVERY CLASS C:** BBO recuperado ⇒ consumidor BBO-only recupera readiness (current-state, §3/§19); consumidor bars/history-dependent NO se declara ready sin rebuild suficiente; sin historia autoritativa del hueco ⇒ `NOT_READY(ANALYTICAL_REBUILD_UNPROVABLE)` fail-closed (§19). **PASS.**
 - **L — LIVE OPERATION RESTART:** `mm_state` de checkpoint D2-04; market/analytical inputs reconstruidos independientes; MM sin actuar con inputs requeridos non-ready; readiness por input (BBO antes que barras); ejecución/safety viven (§24). **PASS.**
 - **M — 200 ACCOUNTS:** 200 AccountStrategies × S1 ⇒ 1 stream, 1 builder set, 1 warm-up de historia por stream, 1 evaluación por trigger, fan-out posterior; cero 200 builders/ATRs/warmups de mercado (§14/§27). **PASS.**
 - **N — STRATEGY CADENCE:** strategy bars-only no recibe el firehose: el builder consume eventos; triggers sólo los declarados (BAR_CLOSE/WINDOW_TRANSITION/MARKET_EVENT-declarado); evaluación 1×/trigger/strategy (§22). **PASS.**
+- **O — KAFKA REDELIVERY (R1):** TRADE `stream_seq=500` llega dos veces por redelivery del canónico: merge/volume/trade_count/bar values cambian **una vez**; el segundo es NO-OP del guard (`seq ≤ last_applied`); ningún trigger de cierre/evaluación duplicado; telemetría cuenta el no-op. Tras restore de checkpoint el mismo guard absorbe el replay (misma frontera atómica guard/estado). **PASS.**
+- **P — LATE EVENT DOES NOT REGRESS CURRENT PRICE (R2):** `last_trade` vigente: `event_ts=10:00:02, price=20001`; llega trade `event_ts=09:59:58, price=19980`: `last_trade` sigue 20001 (escalera monótona `(event_ts, stream_seq)`); el evento tardío entra a la política late de barras (§9), a métricas y liveness, y conserva su tratamiento recovery según capability. **PASS.**
+- **Q — LIVE DECISION VS CORRECTED BAR (R3):** la Strategy evaluó el BAR_CLOSE snapshot X; luego una corrección lleva la proyección a X': sin Signal retrospectiva, sin reevaluación; el hecho "esa evaluación usó X" es inmutable; un restart normal recupera el decision state desde checkpoint — jamás lo recalcula silenciosamente desde X'. **PASS.**
+- **R — CLASS C REBUILD (R4):** source sin identidad nativa ni cursor garantizado, overlap event-time ambiguo: NO stitch heurístico por `event_ts`; el rebuild exige un mecanismo capability-safe (cursor/boundary garantizado, pausa+cutover con buffer disjunto, snapshot replacement o full rebuild) o queda `ANALYTICAL_REBUILD_UNPROVABLE` fail-closed; ningún evento live se dropea por `event_ts < R`. **PASS.**
+- **S — INTERNAL BREAK GRID (R5):** session_open 09:30, tf=60m, BREAK interno 10:00–10:15: la barra 09:30 se trunca en 10:00 (`session_truncated=true`); ninguna barra durante el break; en 10:15 se retoma el MISMO grid — barra corta `[10:15,10:30)`; el próximo boundary nominal 10:30 sigue derivado de `session_open + k·tf` (sin desplazamiento permanente); los buckets 10:30+ quedan intactos. **PASS.**
+- **T — STALE BBO (R6):** feed NOT_READY con último BBO existente: MarketContext expone `last_known.present=true` + `as_of`/stale visible ∧ `stream NOT_READY`; MM usa el last-known sólo si su policy para ESA decisión lo permite; strategies sin Signals técnicas nuevas; safety/provider/execution independientes; sin flatten. **PASS.**
 
 ## 31. Owner decisions
 
-`OWNER DECISIONS REQUIRED: NONE`. Todas las decisiones de este artefacto (dos fases + ventana de corrección de una barra; cierre por timer/boundary; grid anclado a sesión; sin barras sintéticas; MTF Option A; indicadores strategy-side sin servicio compartido; warm-up con eventos crudos; readiness en dos capas) viven dentro de las autoridades congeladas A/D2-05/D2-04 y de los correcciones D1. Quedan **ratificaciones técnicas ordinarias del manager**: nombres físicos de functions/topics/campos (`echo/market_analytics`, `echo/strategy_engine`, `echo.market-bars.v1`, shapes `BarRecord`/`MarketRequirements`/`MarketContext`/`LatestMarketTick`), default `bars.late_correction=ON`, headroom de anillos (32), y el ruteo del diseño completo del runtime de Strategy (R-B7).
+`OWNER DECISIONS REQUIRED: NONE`. Todas las decisiones de este artefacto —incluidas las del repair R1 (guard de idempotencia downstream, escaleras monótonas de current-state, separación proyección/observación con autoridades de recovery, cutover capability-driven, grid fijo vía breaks internos, disponibilidad ≠ readiness, eliminación del toggle de corrección)— viven dentro de las autoridades congeladas A/D2-05/D2-04 y de las correcciones D1; la eliminación de `bars.late_correction` aplica la preferencia KISS del manager (una policy V1 run-pinned). Quedan **ratificaciones técnicas ordinarias del manager**: nombres físicos de functions/topics/campos (`echo/market_analytics`, `echo/strategy_engine`, `echo.market-bars.v1`, shapes `BarRecord`/`MarketRequirements`/`MarketContext`/`LatestMarketTick`, incluidos los campos de guard/liveness R1/R2), headroom de anillos (32), y el ruteo del diseño completo del runtime de Strategy (R-B7).
 
 ## Handoff
 
 ```text
 D2-06B STATUS:
-READY_FOR_SUBMANAGER_REVIEW
+READY_FOR_SUBMANAGER_REVIEW  (post-repair R1 — Manager Repair D2-06B-R1 aplicado)
 
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-06B Bars Hot State Warmup.md
+
+AGENTS-OS SHA:
+(__VAULT_SHA__ — vault sync que contiene el artefacto reparado)
+
+ECHO BASELINE:
+372af59a7b83604781346613da01e3d510ea1360 (HEAD == origin/master, sin delta)
 
 NEXT:
 Return to D2-06 SUBMANAGER. Do not start D2-06C.
