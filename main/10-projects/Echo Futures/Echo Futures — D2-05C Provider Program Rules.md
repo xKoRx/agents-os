@@ -252,78 +252,87 @@ Contradicciones a resolver por el SUBMANAGER: (1) la autoridad "ProviderProgram 
 
 ```text
 D2-05C STATUS:
-READY_FOR_SUBMANAGER_REVIEW
+READY_FOR_SUBMANAGER_REREVIEW
 
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-4cd85d357e395eb36f62ef3123b8898d7b6844d9
+<PENDING_PIN>
 
 ECHO BASELINE:
-372af59a7b83604781346613da01e3d510ea1360 (HEAD verificado, worktree limpio)
+372af59a7b83604781346613da01e3d510ea1360 (HEAD verificado, sin delta; sin re-research)
 
-PROVIDER MODEL:
-Provider (policy owner, provider_id canónico, 1→0..N programas) → ProviderProgram (producto real,
-nombre libre, sin enums de negocio) → fase (atributo del binding + dimensión del catálogo, NO
-aggregate) → ProviderRuleSet versionado por (provider, programa, fase) con version/effective_at/
-provenance obligatoria; ≤1 versión efectiva; cero autoridad ⇒ fail-closed. Account 1→0..1
-ProviderAccountBinding (programa, fase, RuleSet resuelto, transport entitlement separado de
-platform support, day_boundary por referencia); AccountStrategy intacta (Account+Strategy+MM).
-Scope honesto: runtime enforcea sólo ACCOUNT-scoped; trader/household/cross = eligibility.
-Legacy prop_rulesets = REUSE concepto / REPLACE shape (enums de fase y firmas-por-nombre son
-los anti-patrones corregidos).
+REPAIR C-R1:
+- hard-cap concurrency: caps account-wide/instrument/grouping = RESERVA SERIALIZADA (opción A
+  del mandato): ExposureReservationRequest/Result con echo/provider_rules (key account_id, único
+  punto serializado del runtime); Order retenida en PENDING_SUBMIT hasta GRANTED; contadores
+  firm/reserved en keyed state checkpointeado; reserva vive mientras la Order no sea terminal,
+  release en toda transición, dedup por request_id; sin saga ni distributed transaction; max
+  contracts/order queda chequeo local exacto. Prueba de carrera C-R1-A incluida: con cap 5 y
+  firm 3, S1 y S2 +2 ⇒ sólo el primero es granted; no existe entrelazado que produzca 7.
+- entitlement-revocation: separación congelada en cinco conceptos (eligibility de habilitación /
+  deny de nueva exposición / capacidad técnica del adapter / acción sobre exposición viva /
+  regla que EXPLÍCITAMENTE exija flatten con provenance; corpus V1: ninguna). Revocación ⇒
+  ENTITLEMENT_REVOKED + SUSPENSIÓN DE TODA emisión automatizada (también gestión MM); Operation
+  viva ⇒ SUSPENDED_ENTITLEMENT (flag fail-visible, sin intent de terminación) + operador:
+  attestation operator_authorized_close_only (Echo emite sólo cierres, camino lógico coherente)
+  o flatten manual en la plataforma del provider (divergencia lógica/física fail-visible,
+  POSITION_MISMATCH). "Automation forbidden ⇒ ForceClose automático" RETIRADO: caso C-R1-B
+  definido sin acción automática no autorizada; TERMINAL no cambia.
+- Program vs Phase: sin evidencia aceptada de mismo-programa+fase-distinta con reglas
+  operativas distintas (cada cambio material del corpus es un producto propio: Combine/XFA/Live
+  Funded = programas; TradeDay sim/live: reglas iguales salvo payout) ⇒ fase colapsada a
+  dimensión OPCIONAL provider-local; catálogo anclado a (provider, programa); fase sólo con
+  evidencia intra-producto, no declarada ⇒ fail-closed; sin aggregate global (caso C-R1-C).
+- copy classification claim-by-claim (tabla Repair R4): TradeDay no-duplicación, MFFU copy
+  prohibido y Tradeify cross-firm (parte Echo-observable) = HARD BINDING INCOMPATIBILITY
+  (fail-closed en config + guard fan-out, misma strategy_id en cuentas prohibidas); Tradeify
+  sole ownership y Topstep no-VPS = CONFIG/ELIGIBILITY OWNER CHECK (attestation); FundedNext
+  same-owner = compliant por construcción V1 (supuesto declarado); Alpha/TPT = NOT RUNTIME
+  (fuera de cohorte); residual externo (manual/terceros/household/otras plataformas) =
+  UNKNOWN/owner, nunca warn-only genérico (caso C-R1-D).
+- binding version cleanup: ProviderAccountBinding = config corriente hot reemplazada in-place;
+  cambios ⇒ audit facts (Kafka/OTel + ProviderDecision{BINDING_UPDATED} si altera autoridad);
+  NO BindingVersion/Revision/history; rule_set_id/rule_set_version son referencia de la
+  autoridad efectiva, no versión del binding.
 
-ENFORCEMENT MODEL:
-Tres planos reconciliados con D2-04: (1) pre-materialización: guard de admisión dentro de
-echo/operation (autoritativo, kache-fed, fail-closed stale) + pre-filtro en signal_fanout;
-ALLOW | DENY_NEW_RISK antes de crear Operation (C: exchange abierto + provider bloquea ⇒ no
-Operation); (2) order-level: entre decisión MM y egreso transaccional de comandos; max/order,
-max exposure account/instrument/grupo usando exposición propia exacta + agregado cross-key
-mantenido por echo/provider_rules vía Sends checkpoint-atómicos (eventualmente consistente,
-fail-visible); DENY_ORDER ⇒ no egress, MM decide, entradas todas denegadas ⇒
-TERMINAL(ENTRY_REJECTED) con provenance, nunca delete silencioso; salidas jamás bloqueadas;
-(3) safety asíncrono: echo/provider_rules (keyed account_id, patrón RFC-005) emite
-ProviderForceClose como intent SAFETY_PLANE a cada key viva; TERMINAL(SAFETY_FLATTEN) sólo por
-guards R3. Familias tipadas + params + excepciones provider-specific registradas; sin DSL.
-
-HOT UPDATE:
-Regla general prospectiva: nueva versión ⇒ reevaluación inmediata; decisiones nuevas usan la
-regla vigente con provenance de versión; contract pin y MM snapshot jamás mutan; safety es la
-autoridad dinámica y actúa sólo vía intents. Casos: cutoff adelantado ya pasado ⇒ deny+flatten
-inmediatos, sin retroactivo; cap bajo exposición ⇒ adds denegados, sin liquidación inventada
-(sólo flatten si la regla tipada lo declara, default no); instrumento prohibido ⇒ deny new risk,
-cierres siempre pasan; entitlement revocado ⇒ DENY_NEW_RISK permanente + ForceClose de vivas +
-alerta + re-habilitación manual; daily-loss cambia ⇒ recálculo prospectivo, breach actual dispara
-al evaluarse.
-
-ECHO V3 REUSE/ADAPT:
-Patrones REUSE: cadena RFC-005 (AutomationEvaluatorFn 9503410ef0af) para echo/provider_rules;
-EvaluatorRegistry + configs tipadas (bf97b13ae0df/25dcfbdc0b31) como forma de las familias;
-AutomationCache/kache + topics compactados (39a461e3f740, faf0f7e9d48f) para catálogos;
-AccountState/TradingWhitelist (587eb5c4db63) como input del gate; CloseHandlerFn (8dba9731bbce)
-como precursor del ForceClose path; webhook→topic (42048c05fa34) como transporte de catálogos.
-ADAPT: ExecutionPolicy (295f7ea2c605) se separa; DayBoundaryCache (b0f8f1ce426c) ancla reset
-provider (fallback UTC no propaga). REPLACE shape: prop_rulesets (a186be357e9a). NEW: dominio
-provider + gates + decisiones; sin concepto Provider previo en V3 (grep verificado).
+ENFORCEMENT INVARIANTS:
+I-C1 entry/add requiere reserva GRANTED de la autoridad serializada por cuenta antes del egress
+     físico; sin reserva no hay emisión.
+I-C2 firm+reserved+delta ≤ cap evaluado en el único punto serializado por cuenta; overshoot
+     físico sólo por anomalía venue (R4 D2-04), nunca por el gate.
+I-C3 la reserva vive exactamente mientras su Order no es terminal; toda transición terminal
+     libera el remanente; request_id deduplica replay/checkpoint.
+I-C4 revocación de entitlement ⇒ suspensión de emisión automatizada de la cuenta; acción
+     automática sobre exposición viva sólo con familia tipada + provenance first-party que
+     exija flatten (corpus V1: ninguna).
+I-C5 restricciones copy Echo-observables fail-closed en config + guard de fan-out; residual
+     externo = owner/UNKNOWN, jamás permitido por silencio.
+I-C6 las salidas jamás son bloqueadas por gates provider — y la semántica del gate nunca
+     constituye autorización de transporte.
 
 CONTRACTS FOR A/B:
-A: consume instrument_id/contract_id/resolver (congelados); REQUIERE Instrument.exchange +
-product_group para caps por grupo (si A no lo tiene, degradación documentada o escalado).
-B: consume exchange open/closed, session/trade date, provider-clock/timezone por binding,
-holiday/early-close; exigencia: provider overlay (ventanas/cutoffs) permanece autoridad DISTINTA
-de ExchangeSession; Account DayBoundary es autoridad propia (C sólo la referencia; reset de
-estado provider se ancla a ella, caso F). Escalados al SUBMANAGER: atributo exchange/product_group
-en A; ownership del calendar/holiday feed; verificar que B no fusionó overlay con session.
+A: instrument_id/contract_id/resolver consumidos (congelados); provider rules se scopean a
+   instrument_id, exchange y canonical product grouping PROVISTO por Instrument si existe — el
+   nombre físico lo fija el repair de A; C no crea taxonomía; sin grouping ⇒ caps por grupo no
+   existen en V1 (sólo instrument/exchange), degradación documentada.
+B: exchange open/closed, session/trade date, provider-clock/timezone por binding,
+   holiday/early-close; overlay provider (ventanas/cutoffs) permanece autoridad DISTINTA de
+   ExchangeSession; Account DayBoundary es autoridad propia (reset de estado provider ancla a
+   ella, caso F).
 
 OWNER DECISIONS REQUIRED:
-NONE. Ratificaciones técnicas manager: nombres functions/topics/tablas; enum reason;
-admission_decision_id en Operation; ENTRY_REJECTED con provenance para denegaciones provider;
-atributo exchange/product_group de A.
+NONE. Ratificaciones manager: mensajes del protocolo de reserva + request_id y contadores
+firm/reserved; SUSPENDED_ENTITLEMENT y attestation operator_authorized_close_only; atributo de
+fases declaradas por programa; admission_decision_id en Operation; ENTRY_REJECTED con
+provenance; enum reason; nombres functions/topics/tablas (sin cambios).
 
 MATERIAL RISKS:
-Order gate cross-key eventualmente consistente (headroom + fail-visible; alternativa rompe
-D2-04); valores por programa exigen onboarding verificado (UNKNOWN fail-closed); news depende
-del feed RFC-007; fases/entitlement son policy unilateral de firms (procedimiento owner de
-refresh); transiciones de fase manuales V1 (binding stale posible); consistency/copy warn-only.
+hop interno de reserva añade latencia de emisión (medir en D6); contador firm lógico no incluye
+trading manual (divergencia fail-visible; caps físicos inclusivos DEFER); Echo no detecta
+revocaciones unilaterales de la firma fuera de config (procedimiento owner de refresh); fase
+colapsada ⇒ si onboarding futuro demuestra reglas intra-producto se activa la dimensión
+opcional con provenance; bloqueos copy fail-closed pueden impedir configuraciones owner
+deseadas — eso ES la restricción del provider, no un defecto del diseño.
 ```
