@@ -101,6 +101,21 @@ Perfil `.71` `echo-dev`, viewer/RO, keyRef plane existente, host-key pinning. Ow
 
 **Staging byte exact:** `sftp-upload` transporta `content` string, normaliza saltos de línea y NO reemplaza fiable un path existente (puede reportar éxito dejando bytes previos); para scripts/binaries byte-exactos: base64 sin newlines→`certutil -decode` target→comparar sha256 local/remoto completo. Evitar ensayos ACL en Temp que quiten herencia al directorio y bloqueen después al propio `echo-dev`.
 
+## Triage de reportes "perdí el acceso operator" — 2026-09-26
+
+Evidencia física de la verificación del 2026-09-26 (tras reporte de un agente de pérdida de operator en `sqx-zeus/hera/kronos` y workers SQX de Forge). **Veredicto: PLANO EXONERADO — operator FUNCIONA.** El orden de triage probado, en este orden:
+
+1. `/status` autenticado (`Bearer` del plano): lista TODOS los perfiles con `role`/`readOnly` efectivos — es la verdad viva y manda sobre lecturas del config o del vault. El 26-sep mostró los 9 perfiles correctos (SQX operator, `readOnly:false`).
+2. Probes funcionales del perfil reportado: `read-command whoami` + `run-command id` (clase operator) vía helper de sesión. El 26-sep: PASS en los 3 SQX desde hermes-vm Y desde Daedalus con bearer canónico piped (init 200, 11 tools) — dos canales independientes.
+3. Recién entonces el lado consumidor. `~/.codex/config.toml` mtime 2026-09-24 18:27 (ZCode intacto desde 18-sep) = hipótesis principal del síntoma; causa exacta UNVERIFIED (owner ejecutó el inspector tri-client kor: chain 13/13 OK, sección CODEX del output no compartida).
+
+Trampas medidas durante este triage (no repetirlas):
+
+- Falso 401 del chain kor bajo identidad ajena: el guard `[ -r ... ]` resuelve la variable VACÍA como hermes-ops ⇒ probe con ese valor = 401 que parece drift. Distinguir ENOENT (archivo falta; stat dice "No such file") de EACCES (archivo existe 600 kor; stat dice "Permission denied") ANTES de atribuir ausencia.
+- `docker events` puede devolver vacío en el LXC aunque haya eventos — la verdad de lifecycle va por `docker inspect .State.StartedAt`.
+- La recreación del contenedor del 2026-09-25 00:03 local NO dejó registro en el audit log de `mcps-ops` ⇒ ocurrió fuera del management path (misma imagen `2.8.0-d2d7696-h2fix`, mismos mounts, mismo config ⇒ sin efecto funcional; actor sin identificar, pendiente owner). Un agente que tenía sesiones in-flight en ese momento vive el corte como "perdí el acceso".
+- Rechazos `Approval request failed … dev-win-operator` por elicitation no soportada = el guard funcionando (deny destructivos), no un defecto del plano.
+
 ## Operación, validación y rollback del plano SSH
 
 - Pool ssh-mcp de 64 sesiones: probes init-per-call agotan pool ⇒ 503 `Server is at its session limit`; prevenir abriendo UNA sesión por probe y reutilizando `Mcp-Session-Id`, cerrándola. Recovery management-path sólo cuando confirmado: `docker restart ssh-mcp`, después health/consumer smoke; nunca reiniciar producto por fallo MCP. El 503 puede presentarse con cuerpo vacío aparente y con `/status` 200 `running` y `connections:[]` — esa firma es pool agotado, no capability caída (confirmado 2026-09-18); diagnosticar pool antes de declarar NOT_RUN/BLOCKED y jamás interpretar un Permission denied de SSH directo como inexistencia de la capability o de su perfil. No atribuir defectos Hasura mcp-proxy a SSH.
