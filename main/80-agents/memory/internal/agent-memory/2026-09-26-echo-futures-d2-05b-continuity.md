@@ -42,4 +42,4 @@ tags:
 
 ## Próxima acción
 
-- SUBMANAGER: re-review del artefacto reparado (gate `READY_FOR_SUBMANAGER_REREVIEW`); re-derivar D2-05C con TOP worker (seam §7 de D2-05B fija las primitivas que C debe consumir, ya sin parámetro de grupo), luego integrar D2-05 con pasada de consistencia de seams A↔B↔C y recién entonces Primary Manager review. No cerrar D2-05 desde los carriles TOP.
+- D2-05 INTEGRATION: el mismo TOP worker (rol Integration Scribe) produjo el candidato integrado [[Echo Futures — D2-05 Instrument Session Provider]] (blob `f7d87442`, HEAD vault `c68c2098`) a partir de A/B/C verificados por blob (6eb671f2/8058aec0/637c62b8, sin drift); sin contradicciones cross-TOP; project note actualizada a `D2-05 = INTEGRATION_CANDIDATE_READY_FOR_SUBMANAGER_REVIEW`. Sigue: SUBMANAGER review del candidate (decide gate hacia Primary Manager). No cerrar D2-05 ni avanzar D2-06 desde los carriles TOP.
