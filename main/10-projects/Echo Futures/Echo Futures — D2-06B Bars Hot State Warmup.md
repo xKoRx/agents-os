@@ -151,7 +151,7 @@ BarRecord  {
 - **Asignación por event-time:** un evento entra al bucket `floor((event_ts − session_open)/tf)` **sólo si `SessionState=OPEN`** para su `event_ts`. Fuera de sesión (gap de maintenance, holiday, pre-open) el evento **no es input de barra** y suma `EVENT_OUTSIDE_SESSION` (métrica ya congelada en D2-05 §9; prints de settlement caen aquí). Durante BREAK interno: ídem — no se fabrica trading donde el calendario dice BREAK.
 - **Truncamiento (caso obligatorio early close / bucket intersecta close / break):** si el calendario corta la sesión (close normal, early close por override, break interno) antes del boundary del bucket, la barra **cierra en el punto de corte** con `session_truncated=true` y `close_boundary_utc=corte`. El remanente del bucket no se fabrica como barra vacía (§11). Al `break_end` se retoma el **MISMO grid de la sesión** (R5): si `break_end` cae estrictamente dentro de un bucket nominal, puede existir una **barra corta** `[break_end, próximo boundary nominal del grid)` con `session_truncated=true` (su open es impuesto por el calendario); si cae en un boundary nominal, la barra siguiente es normal. Los boundaries futuros **jamás se desplazan** por un break interno. Una nueva sesión (post-holiday / siguiente sesión) sí abre grid nuevo anclado a su `session_open`; early close trunca y termina la sesión.
 - **Timeframe mayor que la sesión restante / que la sesión completa:** misma regla — una barra truncada al cierre de sesión (degenera a "barra por sesión" si `tf ≥ sesión`). Sin caso especial: la matemática es uniforme.
-- **Primer evento tras una frontera (apertura, post-break, post-holiday):** abre el bucket correspondiente del grid nuevo; si su `event_ts` cae en un bucket ya cubierto por un cierre truncado anterior, es evento de la sesión nueva (el corte anterior ya cerró).
+- **Primer evento tras una frontera (apertura, post-break, post-holiday):** abre el bucket del grid que corresponda: post-break, el MISMO grid de la sesión (barra corta `[break_end, próximo boundary nominal)` si `break_end` cae dentro de un bucket nominal, R5); en apertura de sesión nueva, el grid nuevo anclado a su `session_open`. Si su `event_ts` cae en un bucket ya cubierto por un cierre truncado anterior, es evento de la región nueva (el corte anterior ya cerró).
 - Todas las transiciones de sesión que B necesita (`open`, `break`, `close`, `early close`, holiday) llegan exclusivamente de `NextSessionTransition`/`SessionBoundaries` del resolver D2-05 (timers calculados, §22); B no re-deriva session semantics y jamás usa Account DayBoundary.
 
 ## 8. Forming / closed / final model
@@ -493,7 +493,7 @@ ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-06B Bars Hot State Warmup.md
 
 AGENTS-OS SHA:
-(__VAULT_SHA__ — vault sync que contiene el artefacto reparado)
+35909976 (HEAD del vault al aplicar el repair; el artefacto reparado viaja en el sync siguiente)
 
 ECHO BASELINE:
 372af59a7b83604781346613da01e3d510ea1360 (HEAD == origin/master, sin delta)
