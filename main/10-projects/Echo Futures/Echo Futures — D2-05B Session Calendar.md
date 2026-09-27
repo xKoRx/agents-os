@@ -104,7 +104,7 @@ ResolvedSession(calendar_id, instant) →
 ```
 
 - `CLOSED` distingue `in_break` (pertenece a la sesión que lo contiene; session_date asignado) de `no_session` (ninguna sesión lo posee; `session_date` nulo). `next_transition_utc` es la materia prima para timers de cierre de sesión y para el seam de provider (§7), **calculada siempre desde el dataset — prohibido un timer live con horas hardcodeadas**.
-- Identidad de sesión: `session_id = (calendar_id, session_date)`. Con la constraint una-sesión-por-trade-date es unívoca y es la clave que D2-06 usará para barras session-scoped.
+- Identidad de sesión: `session_id = (calendar_id, session_date)`. Con la cardinalidad repair B-R1 (un calendario = un grupo semántico; una sesión por trade date por calendario) es **unívoca por construcción**: dos sesiones semánticamente distintas viven en `calendar_id` distintos y jamás comparten session identity, aunque compartan la misma session_date civil/trade date (caso B-R1-CASE-1). Es la clave que D2-06 usará para barras session-scoped.
 
 ### 3.3 Distribución (igual al patrón existente)
 
@@ -129,7 +129,7 @@ event instant (UTC)
 
 ## 5. Holiday / early-close / maintenance — precedencia (congelada)
 
-- Precedencia completa: `override fechado > weekly base` (§3.2), con `applicable_groups` para que un early close de un product group (equity index) no contamine otro (S-E05). No existe tercer nivel (p. ej. override de contract): la granularidad mínima es el product group del calendario; nada material en la evidencia exige per-contract.
+- Precedencia completa: `override fechado > weekly base` (§3.2). La exigencia S-E05 (schedules pueden diferir por product group) se satisface **por cardinalidad** (repair B-R1): cada grupo que difiere tiene su propio `calendar_id` con sus propias filas; no existe contaminación posible porque no hay semántica por-group dentro de un calendario. No existe tercer nivel (p. ej. override de contract): la granularidad mínima es el calendario del grupo; nada material en la evidencia exige per-contract.
 - Los overrides son **filas fechadas**: el row de ayer no cambia cuando se agrega el de mañana (§10 determinismo). CME finaliza su calendario ~2 semanas antes del feriado (Front E §16): la ventana de corrección real es corta y la política congelada es: overrides de fechas futuras son editables libremente; una corrección sobre una fecha ya operada se aplica como nueva versión de la fila con `corrected_at` y bump de `calendar_version` — visible por hash, nunca reescrita en silencio.
 - Early close: el override define `close_local` (y opcionalmente breaks); todo lo que sigue al close temprano es `CLOSED`. Holiday: `kind = HOLIDAY_CLOSED` cierra la fecha; la sesión siguiente es la del próximo weekly start (u otro override). Special session (p. ej. apertura dominical adelantada con trade date post-feriado): `kind = SPECIAL_SESSION` con open/close/`session_date` completos.
 - Los horarios concretos de cada feriado son **datos owner-managed** con CME first-party como autoridad externa (`cmegroup.com/trading-hours` + notices); este diseño no congela ninguna fecha específica. Los valores usados en los casos §13 son ilustrativos del mecanismo, no afirmaciones de calendario real 2026.
@@ -162,10 +162,10 @@ NamedTradingWindow {
 - Lo que `CalendarResolver` ofrece al provider rule gate (read-only, determinístico, idéntico en los tres modos):
 
 ```text
-SessionState(calendar_id, instant, group)        → OPEN | BREAK | CLOSED(+detalle)
-SessionDate(calendar_id, instant, group)         → session_date | null
-SessionBoundaries(calendar_id, instant, group)   → open_utc, close_utc, breaks_utc[]
-NextSessionTransition(calendar_id, instant, group) → (utc, OPEN_START | SESSION_END | BREAK_START | BREAK_END)
+SessionState(calendar_id, instant)          → OPEN | BREAK | CLOSED(+detalle)
+SessionDate(calendar_id, instant)           → session_date | null
+SessionBoundaries(calendar_id, instant)     → open_utc, close_utc, breaks_utc[]
+NextSessionTransition(calendar_id, instant) → (utc, OPEN_START | SESSION_END | BREAK_START | BREAK_END)
 ```
 
 - Lo que el provider posee y compone por fuera del calendario (datos de TOP C): su allowed window (absoluta o como offsets sobre boundaries del exchange), su forced-flat cutoff y su resume time. Ejemplos de composición legal con las primitivas: "flat 15:10 CT todos los días" = cutoff propio del provider, el gate consulta `SessionState` en ese instant para saber si el exchange estará abierto; "flat 15 min antes del close" = cutoff derivado de `SessionBoundaries(...).close_utc`; early-close day con auto-liquidación (Topstep holiday policy) = el provider lee el close temprano desde `SessionBoundaries` y aplica su política de offset sobre él.
