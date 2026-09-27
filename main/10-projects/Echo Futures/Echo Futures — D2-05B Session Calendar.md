@@ -277,19 +277,42 @@ Run original R1 (replay/backtest) inyectó el snapshot S1 (hash h1) de `CME_EQUI
 ## Handoff
 
 ```text
-D2-05B STATUS: READY_FOR_SUBMANAGER_REVIEW
+D2-05B STATUS: READY_FOR_SUBMANAGER_REREVIEW
 
 ARTIFACT: main/10-projects/Echo Futures/Echo Futures — D2-05B Session Calendar.md
 
 ECHO BASELINE: 372af59a7b83604781346613da01e3d510ea1360 (sin delta, fetch re-verificado)
 
-CALENDAR MODEL: ExchangeCalendar = dataset config owner-managed (weekly_base recurrente +
-overrides fechados HOLIDAY_CLOSED/EARLY_CLOSE/SPECIAL_SESSION con applicable_groups; key de
-override = civil date local de inicio de sesión) + resolver puro sdk/calendar sin I/O.
-Precedencia congelada: override fechado > weekly base > CLOSED(NO_SESSION) fail-closed.
-Sesión = [open, close] con breaks internos opcionales; una sesión por trade date (V1).
-session_id = (calendar_id, session_date); distribución hot = patrón symbol-mapping
-(Gateway → topic compactado + tombstone → kache). Sin microservice, sin segundo runtime.
+REPAIR B-R1:
+- final calendar/product-group cardinality: UN ExchangeCalendar = UN grupo producto/sesión
+  semántico; la dimensión product_group desaparece del shape, de los overrides y del API;
+  dos semánticas distintas = dos calendar_id distintos (N Instruments comparten calendar_id
+  sólo si son el mismo grupo semántico; divergencia futura = calendario nuevo + rebind hot
+  prospectivo). Sin ontology/taxonomía.
+- final session_id: (calendar_id, session_date) — unívoco por construcción (1 calendario =
+  1 grupo + 1 sesión por trade date); la colisión B-R1 es estructuralmente imposible
+  (caso B-R1-CASE-1).
+- historical anchor semantic: el anchor NO es un puntero que el resolver resuelva; es el
+  snapshot grabado en el manifiesto del run — {calendar_id → (revision_hash, snapshot_payload)}
+  + secuencia ordenada de transiciones (hash, snapshot, effective_from) si el run consumió
+  >1 versión. Registro obligatorio para todo proceso que consuma calendarios para decisiones
+  (run offline al inyectar; live al arrancar y en cada hot update consumida, como provenance).
+  Recuperar el anchor = leer el manifiesto; retention = la del run artifact; sin servicio de
+  revisiones ni framework.
+- exact replay guarantee: re-inyectar el snapshot grabado en el mismo resolver produce
+  byte-idénticas session boundaries / session_dates / bar boundaries / resoluciones de
+  ventanas del run original. NO garantiza: procesos sin provenance registrada (no retroactivo);
+  tzdata/regla civil entre releases distintas (visible por identifier de release en manifiesto);
+  persistencia más allá del retention del run artifact. El API del resolver recibe un dataset
+  inyectado, nunca un anchor — no existe resolver(anchor).
+
+CALENDAR MODEL: ExchangeCalendar = dataset owner-managed por grupo semántico (weekly_base
+recurrente + overrides fechados HOLIDAY_CLOSED/EARLY_CLOSE/SPECIAL_SESSION; key de override =
+civil date local de inicio de sesión) + resolver puro sdk/calendar sin I/O. Precedencia
+congelada: override fechado > weekly base > CLOSED(NO_SESSION) fail-closed. Sesión =
+[open, close] con breaks internos opcionales; una sesión por trade date (V1). Distribución
+hot = patrón symbol-mapping (Gateway → topic compactado + tombstone → kache). Sin
+microservice, sin segundo runtime.
 
 FROZEN TIME SEMANTICS: IANA-only (prohibido offset fijo; tzdata embebida por release).
 Event-time del evento/Core para toda resolución (skew = implementación). Cuatro conceptos
@@ -298,9 +321,10 @@ sin fórmula universal) / account_day (reset del ruleset). S-E01 cubierto por da
 (Sunday 17:00 CT → session_date lunes). Entre sesiones = CLOSED(no_session): nada fabrica
 bucket; BREAK interno conserva session_date.
 
-BAR CONTRACT FOR D2-06: session-scoped bars usan session_id (prohibido midnight/civil sin
-session context); ningún bucket cruza open/close/break (break cierra forming; resume lo
-decide D2-06); feriados/early-close sólo via dataset; misma autoridad+anchor en
+BAR CONTRACT FOR D2-06 (sin cambios por el repair salvo identidad ya colisión-free):
+session-scoped bars usan session_id = (calendar_id, session_date) (prohibido midnight/civil
+sin session context); ningún bucket cruza open/close/break (break cierra forming; resume lo
+decide D2-06); feriados/early-close sólo via dataset; mismo resolver + dataset anclado en
 LIVE/REPLAY/BACKTEST; CLOSED(no_session) no fabrica bucket (métrica fail-visible);
 transiciones de sesión sólo vía next_transition_utc (timers calculados, no hardcodeados).
 NO congelado (decide D2-06): alineación intra-sesión, forming visibility, late/corrections,
@@ -313,17 +337,28 @@ REUSE intacto; kache/ConfigCache ready-channel REUSE como distribución+readines
 symbol_mapping_handler REUSE como patrón hot-update; strategy_history IANA/RFC3339Nano
 REUSE como precedente; calendario/sesión/ventanas = NEW (no existen en V3).
 
-CONTRACTS FOR A/C: TOP A — binding (exchange, product_group)→calendar_id a nivel Instrument
-(sin session data en Contract; sin pin de calendario en Operation; CALENDAR_UNRESOLVED
-fail-closed). TOP C — gate provider consume sólo primitivas read-only del resolver
-(SessionState/SessionDate/SessionBoundaries/NextSessionTransition); allowed window y
-forced-flat son datos ProviderProgram; forced-flat = intent ForceClose D2-04 (R3), jamás
-TERMINAL instantáneo; reglas diarias del provider usan account_day, no session_date.
+CONTRACT FOR A: binding resoluble 1:1 Instrument → calendar_id (forma del campo la fija
+TOP A: calendar_ref directo o (exchange, product_group) → calendar_id mapeado — equivalentes;
+D2-05B no impone nombres); resoluble en el mismo hot-config snapshot que el mapping
+Instrument→Contract (un solo join en kache); N Instruments pueden compartir calendar_id sólo
+si son el mismo grupo semántico; prohibido re-introducir dimensión de grupo dentro del
+calendario; Contract sin session data; Operation no pinnea calendario; sin binding resoluble
+⇒ CALENDAR_UNRESOLVED fail-closed.
+
+CONTRACT FOR C: gate provider consume sólo las primitivas read-only del resolver SIN
+parámetro de grupo — SessionState(calendar_id, instant) / SessionDate / SessionBoundaries /
+NextSessionTransition; allowed window y forced-flat cutoff son datos del ProviderProgram
+(propia config, propia tz/offsets); Exchange OPEN ∧ Provider NO_NEW_RISK representable sin
+mutar ExchangeSession; forced-flat = intent ForceClose D2-04 (R3), jamás TERMINAL instantáneo;
+reglas diarias del provider usan account_day, no session_date.
 
 OWNER DECISIONS REQUIRED: NONE (ratificaciones técnicas manager: nombres físicos, firma
-del resolver, tzdata embebida, revision_hash como run anchor).
+del resolver, tzdata embebida, snapshot-en-manifiesto como anchor de run).
 
 MATERIAL RISKS: dataset owner-managed incorrecto no auto-detectable (hash/anchor lo hace
-visible); tzdata residual ante cambio de regla civil; composición de cutoffs heterogéneos
-es carga de TOP C; eventos en tiempo cerrado requieren tratamiento en feed path (D2-06).
+visible); tzdata residual ante cambio de regla civil entre releases (visible, no recuperable);
+procesos que consuman calendario sin registrar provenance quedan fuera de la garantía exacta
+(registro obligatorio por contrato); divergencia entre grupos que compartían calendario =
+calendario nuevo + rebind (prospectivo); composición de cutoffs heterogéneos es carga de
+TOP C; eventos en tiempo cerrado requieren tratamiento en feed path (D2-06).
 ```
