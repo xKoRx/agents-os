@@ -1658,26 +1658,29 @@ Frozen conclusions:
 
 This closes D2 design questions Q6, Q7 and Q10. No owner decision remains open in D2-05. D2 remains globally open.
 
-### D2-06 — Market Runtime — DISPATCHED — 2026-09-27
+### D2-06 — Market Runtime — READY FOR MANAGER REVIEW — 2026-09-27
 
-**Status:** `D2_06 = ACTIVE_SUBMANAGER_DISPATCH`
+**Status:** D2_06 = READY_FOR_MANAGER_REVIEW
 
-Primary Manager closed D2-05 and opened D2-06 to resolve Q4/Q5/Q8 at D2 design level. D2-06 scope is Market Runtime only: normalized market events/feed authority; bounded hot market state; bar/MTF/indicator/warm-up semantics; feed health/failover/recovery; deterministic LIVE/REPLAY boundary sufficient for Strategy/MM consumption. It must consume the frozen Instrument/Contract + Calendar/Session model from D2-05 and must not select the execution transport (D2-07) or finish global scale/migration/replay implementation (D2-08).
+[[Echo Futures — D2-06 Market Runtime]] integra los tres children ya aceptados [[Echo Futures — D2-06A Market Feed Authority]], [[Echo Futures — D2-06B Bars Hot State Warmup]] y [[Echo Futures — D2-06C Live Replay Market Boundary]] sobre baseline Echo 372af59a7b83604781346613da01e3d510ea1360 re-verificada sin delta. Es la autoridad única de lectura de D2-06 para Q4/Q5/Q8/Q14; los children quedan como evidence/design depth.
 
-Dispatch model: SUBMANAGER coordinating three TOP architecture workers: A feed authority/normalization/recovery; B bars/MTF/indicators/warm-up/hot-state; C deterministic clock/event ordering + LIVE/REPLAY market boundary. Integrated artifact required before Primary Manager review. No D2 gate may be self-accepted by the SUBMANAGER.
+Modelo integrado vigente:
 
-### D2-06A — Market Feed Authority — WORKER CANDIDATE DELIVERED — 2026-09-27
+- **Logical market identity:** stream_id = (instrument_id, contract_id). binding/source vive en serving_authority {binding_id, members, authority_epoch, provenance}; no forma parte de stream identity.
+- **Market demand:** Operation declara {operation_id, instrument_id, contract_id, ACQUIRE|RELEASE}; Market Runtime resuelve esa necesidad contra la MARKET_DATA authority activa. Operation pinnea Contract, nunca market source.
+- **Source switch ≠ rollover:** switch preserva Contracts, incrementa epoch y ejecuta barrier/rebuild; rollover es acción owner explícita que cambia el Contract in-force prospectivo y crea/demanda otra logical stream. Nunca auto-roll ni silent blend.
+- **Readiness layering:** feed/stream readiness = A; analytical/consumer readiness = B. EffectiveConsumerReadiness = StreamReadinessFor(required input class) AND AnalyticalRequirementsReady(consumer). WARMUP_INCOMPLETE queda exclusivamente como estado analítico downstream, nunca feed-global; una Strategy BBO-only puede quedar READY antes que otra en warm-up sin degradar la stream.
+- **Current vs last-known:** current state es monotónico por (event_ts, stream_seq) sólo dentro del mismo authority_epoch. Epoch change demotea previous current a last-known stale/provenance y seed-ea current nuevo desde el primer dato válido; stream_seq cruza epochs. Availability != READY.
+- **Bars/hot state:** echo/market_analytics key stream_id posee forming+bounded closed bars; BarId=(stream_id,timeframe,bucket_open_utc), TRADE bars V1, grid session_open, breaks no desplazan grid, timer/event boundary cierra, no synthetic empty bars. Projection puede corregir X→X' pero la decision observation X es inmutable: no reevaluation ni retrospective Signal.
+- **MTF/indicators/scale:** cada timeframe agrega directamente desde canonical events; indicators strategy-side en echo/strategy_engine key strategy_id; una Strategy evaluation y fan-out posterior. 200 Accounts no crean 200 subscriptions/builders/indicator sets/evaluations.
+- **Deterministic boundary:** event_ts, stream_seq, owner_input_seq y runtime_ts son identidades separadas. DomainClock.Now() usa runtime_ts monotónico; todo TimerFired admitido se journala con timer_id+generation; no total order global, sólo per-island ordering y Strategy merge journalado.
+- **Recording/EXACT_REPLAY:** Initial RunManifest inmutable + ReplayAnchor inmutable + DeterministicInputLog + canonical content. El anchor conserva el corpus exacto de warm-up y se re-ejecuta antes de owner_input_seq=0; BAR_CLOSED no se graba como autoridad, se re-deriva. Hot config posterior vive como ConfigTransition ordenada; el manifest compactado puede acumular metadata operacional pero jamás reemplazar la sección initial por latest-effective-config.
+- **EXACT_REPLAY vs BACKTEST:** exact replay reproduce un live real y su arrival/timer order; backtest crea un run histórico nuevo con canonical synthesis order y clock sintético. Execution event sourcing/recovery monetario permanece autoridad D2-04.
 
-**Status:** `D2-06A = READY_FOR_SUBMANAGER_REVIEW`
+Parent Acceptance A–L: PASS en los 12 casos por mecanismo explícito. Child acceptance inherited: A-R1..R7; B-R1..R7 + O..U; C-R1..R3 + Q..T.
 
-TOP worker A entregó [[Echo Futures — D2-06A Market Feed Authority]] (baseline Echo `372af59a` re-verificada, HEAD == origin/master). Aporte conceptual congelado como candidato (no cerrado, sujeto a review del SUBMANAGER e integración con B/C):
+**OWNER_DECISIONS_REQUIRED:** OD-C1 solamente — recording de EXACT LIVE REPLAY ALWAYS-ON V1 versus OPT-IN por run. La arquitectura no cambia; un run sin ReplayAnchor capturado desde el inicio no es retroactivamente exact-replayable. Recomendación técnica heredada: ALWAYS-ON. OD-C1 no bloquea manager review.
 
-- **Binding = autoridad lógica:** el stream canónico es `(MARKET_DATA binding_id, contract_id)`; los feeds equivalentes (CME A/B o vendor) son *members* dentro de un binding arbitrados first-wins por venue sequence; los sources heterogéneos son bindings distintos que sólo cambian por source switch explícito con pérdida de readiness y rebuild — nunca silent blend.
-- **MarketEvent mínimo:** QUOTE (BBO) + TRADE; identidades separadas transport / semantic (venue seq o content tuple) / `stream_seq` engine-contiguo post-arbitraje (idempotencia downstream); `authority_epoch` + `origin{source_id, feed_kind}` como provenance; `receive_ts` jamás es semántica de dominio.
-- **Subscription = demand sets** sin reference counting framework: config catalog (Strategy vía active binding) ∪ operation demand (`MarketDemand` ACQUIRE/RELEASE transaccional desde `echo/operation` en la frontera de checkpoint, idempotente por operation_id); RETIRING mantiene vivo el contract pinneado de una Operation tras rollover y UNSUBSCRIBE sólo con demand vacío.
-- **Health en tres dimensiones** (liveness por member con heartbeat/inactividad sólo bajo sesión OPEN; continuity sólo por primitivas del source — timestamp jump no es evidencia; freshness por config por source/instrument): ExchangeCalendar CLOSED ⇒ silencio esperado, jamás failure; prohibido timeout universal.
-- **Adapter capability contract** declarado por source (sequence kind, gap detection, replay modes/bounds, snapshot, heartbeat, reliable timestamps, dedup identity); combos inválidos fail-closed; recovery = máquina conceptual única con ejecución capability-specific (replay/snapshot/natural-refresh → dedup overlap → RecoveryBarrier → rebuild downstream (contrato D2-06B) → READY con epoch nueva).
-- **Física:** nuevo StateFun `echo/market_stream` (key stream_id) + adapters → `echo.market-feed-candidates.v1` → canónico `echo.market-events.v1` (AT_LEAST_ONCE + stream_seq; transporte y recorded stream) + control compactado `echo.market-stream-state.v1`; egress de `MarketDemand` vía el fact path transaccional D2-04; catálogo/config por patrón compacted+kache; Account jamás es key.
-- `OWNER_DECISIONS_REQUIRED = NONE`; riesgos declarados (throughput StateFun por tick → benchmark D6 con fallback in-process; AT_LEAST_ONCE exige dedup `stream_seq` en todos los consumers).
+Material risks/debts: benchmark StateFun/journal en D6; retention de canonical content+anchor+journal; class-C rebuild puede quedar fail-closed; golden replay debe certificar ReplayDriver; transactional journal config debe verificarse; heterogeneous backup puede bloquear switch si no sirve Contracts pinneados.
 
-NO CLOSED. Integración B/C + artefacto integrado D2-06 pendientes antes de Primary Manager review. No avanza D2-07.
+NO PASS/CLOSED global. NO D2-07. Siguiente gate: Primary Manager review de D2-06.
