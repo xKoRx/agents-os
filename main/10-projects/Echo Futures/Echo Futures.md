@@ -1631,3 +1631,29 @@ Primary Manager reviewed `[[Echo Futures — D2-05 Instrument Session Provider]]
 4. **Current DayBoundaryCache cannot satisfy the new hot binding semantics as classified.** Physical source `v3/core/internal/functions/account_sync.go@b0f8f1ce` caches DayBoundary per account forever and explicitly assumes phase/program changes create a new account_id. D2-05 instead freezes ProviderAccountBinding re-binding in-place on the same account and makes day_boundary a current authority. Reclassify/adapt the Futures path so DayBoundary is hot-updatable/invalidation-safe and fail-closed; do not claim the existing cache unchanged as authority. Legacy behavior may remain for legacy accounts.
 
 These are technical integration repairs; no owner decision is required. Return the integrated artifact to the same SUBMANAGER for a targeted repair. Child A/B/C do not need to be reopened unless the SUBMANAGER discovers a contradiction; do not advance D2-06.
+
+### D2-05 — Instrument / Session / Provider — MANAGER CLOSED — 2026-09-27
+
+**Status:** `D2_05_MANAGER_REVIEW = CLOSED`
+
+Primary Manager accepts `[[Echo Futures — D2-05 Instrument Session Provider]]` after integrated repairs R15–R18.
+
+Frozen conclusions:
+
+- Canonical `Instrument` is separate from expiry-specific `Contract`; external provider/feed identifiers are mappings, never global identity.
+- Contract resolution is single-shot at Operation materialization. Operation pins `contract_id` + required economic specs; hot rollover is owner-manual, prospective only and never silently retargets a live Operation.
+- Cross-market economic units use price/ticks/points/contracts/tick-size/point-value/currency; pips are legacy-only, not a universal unit.
+- ExchangeCalendar/Session, Provider policy overlay and Account DayBoundary are three separate authorities. Calendar uses IANA timezone + dated overrides and produces session/trade date via a pure resolver shared by LIVE/REPLAY/BACKTEST.
+- Strategy windows are named config over calendar/clock semantics, never fixed offsets. Exchange availability always bounds Strategy trading availability.
+- Provider is business/policy owner and is separate from technological transport. Account binds to ProviderProgram + optional provider-local phase + current ProviderRuleSet authority + transport entitlement. AccountStrategy remains Account + Strategy + MoneyManagement.
+- ProviderRuleSet is the deliberate exception where explicit version/provenance is required. Runtime rules are typed families + parameters/provider-specific typed exceptions; no DSL.
+- Stage-1 OPEN admission is linearized through the account-keyed `echo/provider_rules` authority via AdmissionRequest/Result before Operation materialization. Admission kache is only prefilter/read model. Rule/binding/account/risk/DayBoundary updates share that account-keyed ordering point.
+- Stage-2 runs after MM and before physical egress. Shared account/instrument/group caps use serialized reservations at the account owner; outstanding grants revalidate against current authority before egress.
+- Account capacity keeps `firm_by_operation` plus live reservations. Every Echo Fill, including REDUCE/EXIT/safety/late fills, emits a cumulative signed Operation exposure update. This supports NET_ABS/GROSS/GROUP_WEIGHTED without a portfolio aggregate and without moving lifecycle ownership away from Operation.
+- Provider safety acts via asynchronous termination intents. Account-wide ForceClose fans out deterministically over the retained AccountStrategy routing set, including disabled/close-only identities that can still own live Operations; empty keys no-op. PG is never used for safety discovery.
+- Entitlement revocation does not invent an automated flatten: it denies new risk, suspends automated emission and requires operator handling unless an explicitly authorized close-only path exists.
+- Futures DayBoundary is explicit, hot and account-keyed; missing/invalid authority is fail-closed. The current DayBoundaryCache is only a conceptual precursor and its cache-forever/UTC-fallback mechanism is ADAPT/REPLACE for Futures.
+- LIVE consumes hot config; REPLAY/BACKTEST inject explicit Calendar/RuleSet/DayBoundary/Contract inputs and reuse the same pure domain semantics. D2-05 does not solve recorded market-stream ordering; that remains for later D2 work.
+- Echo V3 disposition: hot config/kache, typed automation patterns, AccountState and safety patterns REUSE; MM/ExecutionPolicy/DayBoundary mechanisms ADAPT; Futures Provider domain, Calendar resolver, Contract/mapping catalogs, provider_rules, capacity projection and routing index are NEW; legacy prop_rulesets shape is REPLACED for the Futures path while legacy remains during migration.
+
+This closes D2 design questions Q6, Q7 and Q10. No owner decision remains open in D2-05. D2 remains globally open.
