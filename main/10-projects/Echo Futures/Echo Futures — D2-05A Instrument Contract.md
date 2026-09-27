@@ -19,6 +19,10 @@ created: "2026-09-26"
 updated: "2026-09-26"
 ---
 
+> [!danger]+ SUBMANAGER PROCESS INVALIDATION — 2026-09-26
+> **NON-AUTHORITATIVE DRAFT. DO NOT USE FOR MANAGER REVIEW OR IMPLEMENTATION.**
+> This file was self-authored by the D2-05 Submanager instead of being produced by the required independent TOP worker. It remains only as a contaminated draft until the corresponding TOP worker independently re-derives the design from canonical authorities and replaces this content. No conclusion below is accepted by process.
+
 # Echo Futures — D2-05A Instrument Contract
 
 > [!info]+ TOP A result
