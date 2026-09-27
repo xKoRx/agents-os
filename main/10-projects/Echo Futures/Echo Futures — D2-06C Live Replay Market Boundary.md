@@ -298,7 +298,7 @@ y el replay la re-absorbe idénticamente porque los guards son determinísticos.
 
 Cobertura mínima exigida (checklist del mandato): eventos canónicos aceptados ✓ (ref al canónico); runtime/order identity ✓ (`owner_input_seq`); runtime logical time ✓ (`runtime_ts`, R2); epoch markers/RecoveryBarriers ✓ (inline); timer firings ✓ (inline, completos — R3); calendar/session authority/version ✓ (manifest + ConfigTransition); config changes materiales ✓ (§13); source-switch/rollover ✓ (§14); run manifest/semantic versions ✓ (§20); replay anchor / estado inicial ✓ (R1: corpus de warm-up + digest + readiness assertion). **NO se graba:** operation/fill event sourcing (D2-04 tiene sus authorities; R12 intacto), todo Echo, eventos crudos vendor pre-normalización (rompería vendor-independence), barras derivadas (dual authority), estado derivado serializado (el anchor es corpus + digest, no snapshot de estado — R1).
 
-`echo.market-events.v1` SOLO es **insuficiente y se declara**: carece de timers, config, transiciones y del orden entre islas — un replay desde el topic canónico reconstruye la proyección final, no las observaciones (B §10 ya lo declaró; aquí se cierra). Y **retención ≠ recording contract**: la correctez exige que la combinación manifest+journal+contenido sea recuperable por el horizonte de replay del run; la retención física de Kafka es config (days) y el archival a object storage es DEFERRED_DEBT (§28). Un run grabado cuyo contenido canónico fue purgado ⇒ `REPLAY_SOURCE_MISSING` fail-visible en replay attempt (§18) — jamás replay parcial silencioso.
+`echo.market-events.v1` SOLO es **insuficiente y se declara**: carece de timers, config, transiciones, del orden entre islas y del estado inicial — un replay desde el topic canónico reconstruye la proyección final, no las observaciones (B §10 ya lo declaró; aquí se cierra). Y **retención ≠ recording contract**: la correctez exige que la combinación manifest+anchor+journal+contenido sea recuperable por el horizonte de replay del run; la retención física de Kafka es config (days) y el archival a object storage es DEFERRED_DEBT (§28). Un run grabado cuyo contenido canónico fue purgado ⇒ `REPLAY_SOURCE_MISSING` fail-visible en replay attempt (§18) — jamás replay parcial silencioso.
 
 ## 16. Recording point
 
@@ -533,7 +533,7 @@ NEW RUN/NEW STRATEGY y del rebuild de epoch.
 
 Ambos notes son adiciones sobre superficies existentes; ninguna re-classifica decisión de A/B. La integración D2-06 (A+B+C) debe presentar estos tres puntos como los únicos campos de estado nuevos del bloque.
 
-## 30. Acceptance cases A–P
+## 30. Acceptance cases A–T
 
 - **A — SAME INPUT SAME DECISION:** invariante §3; misma manifest + mismo orden journalado/canónico + mismo código ⇒ mismas decisiones/observaciones/triggers. Estructura PASS; certificación física = golden replay D6 (§21).
 - **B — LATE AFTER BAR CLOSE:** live: TimerFired pos i → evaluación observa X → trade pos i+1 → corrección X' sin reevaluación. Replay: mismas posiciones journaladas ⇒ re-derivación idéntica (X, decisión, X'). **PASS** (§17).
