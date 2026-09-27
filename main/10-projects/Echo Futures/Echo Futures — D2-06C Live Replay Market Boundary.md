@@ -483,13 +483,15 @@ echo.market-run-manifests.v1 (compacted, key run_id) ← publicado al iniciar ru
 ## 28. Risks / debts
 
 - **R-C1 — Fidelity in-process vs runtime:** el ReplayDriver re-maneja paquetes puros, no el runtime StateFun completo; la equivalencia (mismas guards, mismos sends) es obligación de certificación D6 con golden replay (§21). Riesgo de implementación, no de contrato.
-- **R-C2 — Retention como prerequisito del recording:** la purga del contenido canónico destruye la replayabilidad aunque el journal sobreviva; `REPLAY_SOURCE_MISSING` es fail-visible pero no recupera nada. Mitigación V1: retención config explícita por horizonte + alerta; archival = deuda.
+- **R-C2 — Retention como prerequisito del recording:** la purga del contenido canónico destruye la replayabilidad aunque el journal sobreviva; el replay anchor (R1) comparte la retención del recording — purgar el recording purga el anchor. `REPLAY_SOURCE_MISSING` es fail-visible pero no recupera nada. Mitigación V1: retención config explícita por horizonte + alerta; archival = deuda.
 - **R-C3 — Cobertura del recording de gates:** si una superficie futura afecta decisiones sin pasar por MarketRuntimeInput (nuevo tipo de gate no clasificado material), el recording la pierde silenciosamente. Mitigación congelada: toda nueva superficie de gate DEBE clasificarse en la tabla §13 en su design review — requisito de proceso, verificable en review.
 - **R-C4 — Timer visibilidad en LIVE:** el `owner_input_seq` captura el interleave físico real; runs con interleavings patológicos (timer visible muy tarde por backpressure) se reproducen fieles pero pueden diferir del canónico — comportamiento correcto, documentado para no confundir con bug.
 - **R-C5 — Throughput del journal egress:** una entrada por input state-changing; en régimen normal domina el ref de eventos (pequeño). Riesgo bajo; medir en D6 junto al benchmark de A §20.
 - **R-C6 — gaps de `owner_input_seq`:** los gaps (= no-ops absorbidos) son legítimos; la distinción gap-legítimo vs entrada-perdida descansa en la atomicidad del egress transaccional (R14 pattern). Si esa config no se certifica (D2-04 R2 carried), el recording no es auditable — dependencia explícita.
 - **R-C7 — Decision state re-derivado en cold:** el re-anclaje analítico post-cold por replay completo existe como capacidad conceptual pero su procedimiento operacional no se diseña en V1 (queda con el DR de D2-04 R9); el fail-closed manda mientras tanto.
 - **R-C8 — Run manifest distribution:** el manifest es local al run; su consulta operacional (¿qué runs están grabados y completos?) necesita un índice — V1: topic compacted + query operacional manual; debt de superficie si crece.
+- **R-C9 — Runs sin anchor no son replayables (R1):** un run que arrancó sin capturar el replay anchor queda permanentemente sin EXACT REPLAY desde t0 (`REPLAY_ANCHOR_MISSING`); la captura debe ocurrir AL INICIAR el run — no existe anclaje tardío sin asumir igualdad de historia (prohibido). Decisión que interactúa con OD-C1: opt-in diferido = compromiso en el arranque del run, no retroactivo.
+- **R-C10 — Monotonía de `runtime_ts` es obligación de implementación (R2):** la derivación `max(previo, wall clock)` protege contra regresión de NTP/reinicio de reloj; una implementación wall-only violaría el invariante. Verificación barata: assertion de no-decreciente por isla en el driver (§21) + telemetría live. Residual declarado: un reloj de pared congelado no es detectable como corrupto — `runtime_ts` seguiría avanzando sólo por admisiones (degradación visible en telemetría, no corrupción del recording).
 
 ## 29. A/B integration notes
 
@@ -499,8 +501,9 @@ C NO reabre A. Sobre la topología congelada de A añade, aditivamente:
 (1) owner_input_seq checkpointeado en echo/market_stream y echo/market_analytics
     (campo de estado C-owned, sin cambios semánticos A);
 (2) journal egress transaccional EXACTLY_ONCE desde ambas islas (refs de eventos +
-    control inline: barriers ya emitidos por A, health-ticks con cambio, config
-    aplicada) — nueva spec de egress en module.yaml, mismo mecanismo de registro;
+    control inline: barriers ya emitidos por A, TODO TimerFired admitido incl.
+    health/freshness — R3 —, config aplicada) — nueva spec de egress en module.yaml,
+    mismo mecanismo de registro;
 (3) respuesta a la pregunta abierta A §21: el replay NO inyecta health/readiness
     desde el manifest — lo RE-DERIVA de los inputs journalados con la maquinaria
     normal de A (readiness es función determinística de events+health+config
@@ -520,9 +523,12 @@ C NO reabre B y cierra sus dos requisitos declarados:
 Añade aditivamente: owner_input_seq + journal de ORDEN (source_refs) en
 echo/strategy_engine; MM timers bajo DomainClock; y los read models de B (bars
 snapshot/current state) quedan como las superficies que la evaluación observó en la
-posición journalada — sin cambio de contrato. El warm-up B §17 de un NEW RUN es el
-camino de inicialización previo a owner_input_seq=0 del run; EXACT REPLAY jamás pasa
-por warm-up (reproduce desde t0 del log).
+posición journalada — sin cambio de contrato. El warm-up B §17 de un NEW RUN sigue
+siendo el camino de inicialización previo a owner_input_seq=0 del run; EXACT REPLAY
+re-ejecuta el CORPUS de warm-up grabado (replay anchor, R1) con esa MISMA lógica B
+para reconstruir el estado inicial antes de seq=0, y jamás re-consulta
+MarketHistorySource en replay — el seam live de historia queda exclusivo de
+NEW RUN/NEW STRATEGY y del rebuild de epoch.
 ```
 
 Ambos notes son adiciones sobre superficies existentes; ninguna re-classifica decisión de A/B. La integración D2-06 (A+B+C) debe presentar estos tres puntos como los únicos campos de estado nuevos del bloque.
@@ -545,6 +551,10 @@ Ambos notes son adiciones sobre superficies existentes; ninguna re-classifica de
 - **N — NEW HISTORICAL RUN:** MarketHistorySource + síntesis canónica + warm-up; sin claim de reproducción del disorder previo (§19). **PASS**.
 - **O — COLD LOSS:** `COLD_RECOVERY_REQUIRED` (D2-04 R11) para el path de ejecución incluso con journal; estado analítico de mercado/strategy re-derivable sólo por replay completo del recording; sin journal suficiente ⇒ fail-visible; sin continuación inventada (§23). **PASS**.
 - **P — 200 ACCOUNTS:** costo de recording/orden scoped por stream/strategy; cero multiplicación por cuenta (§27). **PASS**.
+- **Q — INITIAL REPLAY ANCHOR (R1):** S1 (200×1m + 50×5m). LIVE: warm-up corpus W → indicator/finite state S → `owner_input_seq=0` → primera decisión D. EXACT_REPLAY: anchor W re-ejecutado con la misma lógica B §17 → mismo S → seq=0 → misma D. Run grabado sin anchor ⇒ `REPLAY_ANCHOR_MISSING` fail-visible; digest/readiness en mismatch ⇒ `REPLAY_ANCHOR_INVALID` (§18/§21). **PASS** (estructural; golden replay físico = obligación D6).
+- **R — MONOTONIC RUNTIME CLOCK WITH LATE EVENT (R2):** live: TimerFired admitido con runtime 09:31:00 → después MarketEvent `event_ts=09:30:59.900`: `DomainClock.Now()` jamás retrocede (`runtime_ts` del evento ≥ 09:31:00), y el evento entra igualmente a la barra 09:30 por su `event_ts` (asignación/corrección B §9). Replay: `Now()` tras el evento ≥ 09:31:00 con event-time semantics intactas — ambas propiedades simultáneas por construcción (§5/§6). **PASS**.
+- **S — NO-OP TIMER CHAIN (R3):** timer t1 dispara, sin cambio inmediato de estado de negocio, y agenda t2: t1 y t2 son ambos TimerFired admitidos ⇒ ambos journalados (§15 ALWAYS); el replay ejecuta t1 → re-agenda t2 → t2 dispara: la cadena de control flow reproduce idéntica. t1 no puede desaparecer del recording porque un enum no cambió. **PASS**.
+- **T — TIMER REPLACEMENT (R3):** timer X generation 7 cancelado/reemplazado por generation 8; llega firing tardío de gen 7: el guard de generación lo absorbe como NO-OP determinista (no ejecuta dominio, jamás se confunde con el firing vigente de gen 8); replay valida (X,7) contra el timer set virtual reconstruido y absorbe idéntico; un firing de generación jamás existida ⇒ `REPLAY_LOG_CORRUPT` fail-visible (§7/§22). **PASS**.
 
 ## 31. Owner decisions
 
