@@ -24,7 +24,7 @@ tags:
   - project/aranea-agent-platform
   - tech/mcp
 created: "2026-09-07"
-updated: "2026-09-17"
+updated: "2026-09-27"
 ---
 
 # AGENT-PLATFORM - MCP Access Plane
