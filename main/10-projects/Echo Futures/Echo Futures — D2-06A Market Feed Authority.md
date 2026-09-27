@@ -505,7 +505,7 @@ ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-06A Market Feed Authority.md
 
 AGENTS-OS SHA:
-<pending-sync>
+2431864b (vault sync 02:02 que contiene el artefacto reparado; los archivos de cierre viajan en el sync siguiente)
 
 ECHO BASELINE:
 372af59a7b83604781346613da01e3d510ea1360 (HEAD == origin/master, sin delta)
