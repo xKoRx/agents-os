@@ -103,17 +103,20 @@ Los cinco tipos son **replay-simétricos por construcción**: cada uno tiene el 
 
 **`runtime_ts` no es un campo de transporte (R2):** ningún tipo de `MarketRuntimeInput` lo porta en su envelope; es un atributo que cada isla deriva al admitir el input y journala junto a la entrada (§15). El envelope canónico de A y los shapes conceptuales de arriba quedan intactos; `generation` en TimerFired es identidad del handle del timer (§7), no del transporte.
 
-## 5. Event-time vs runtime-order
+## 5. Event-time vs runtime-order vs runtime logical time
 
-Tres identidades, una por responsabilidad, jamás colapsadas:
+Cuatro identidades, una por responsabilidad, jamás colapsadas:
 
 | Identidad | Asignador | Gobierna | Jamás |
 |---|---|---|---|
-| `event_ts` | venue/source (A §3) | semántica técnica: bucket de barra, OHLC, escaleras current-state, session semantics | orden de observación de decisión |
+| `event_ts` | venue/source (A §3) | semántica técnica: bucket de barra, OHLC, escaleras current-state, session semantics | orden de observación de decisión; fuente de `DomainClock.Now()` |
 | `stream_seq` | engine A, post-arbitraje | orden canónico del transporte por stream; idempotencia downstream (guard B R1) | orden entre islas; no cruza streams comparables |
 | `owner_input_seq` | cada isla de dominio, checkpointeado | **runtime ordering identity**: el orden en que ESA isla observó inputs — el que EXACT REPLAY reproduce | identidad de negocio; no sale del run |
+| `runtime_ts` | cada isla de dominio, derivado en la admisión (R2) | **runtime logical time**: `DomainClock.Now()`, schedules relativos, timers, lógica time-based de Strategy/MM | retroceder; derivarse de `event_ts` |
 
 `receive_ts` permanece liveness/telemetría (A §3). El caso raíz congelado: dos MarketEvents con `event_ts A < event_ts B` pueden ser observados `B then A` — y esa observación es MATERIAL (B tiene late corrections, BAR_CLOSE observation, no reevaluación retrospectiva). Por lo tanto **EXACT REPLAY jamás ordena por event_ts**: ordena por `owner_input_seq` grabado. En síntesis (BACKTEST), el orden no proviene de llegada física sino de la regla canónica §9 sobre `event_ts`/deadlines — y por eso BACKTEST no es EXACT REPLAY.
+
+**R2 — caso raíz del runtime logical time:** un TimerFired admitido con runtime 09:31:00 seguido de un MarketEvent `event_ts=09:30:59.900`: `DomainClock.Now()` JAMÁS retrocede (el `runtime_ts` del evento es ≥ el del timer), mientras el evento entra igualmente a la barra 09:30 por su `event_ts` (asignación/corrección B §9). El evento tardío no atrasa el reloj: retrasa sólo su propio contenido. Event time y runtime logical time gobiernan cosas distintas y viajan separados en cada entrada del journal (§15).
 
 ## 6. DomainClock
 
@@ -122,22 +125,34 @@ Librería inyectable (`sdk`, paquete puro sin I/O — patrón D2-04 §8.7), úni
 ```text
 DomainClock {
   Now() → Instant
-      # LIVE: wall clock del runtime etiquetado en el input corriente (event-time de
-      #   decisión; el dominio jamás llama time.Now() — extiende D2-05 R18 y B §8).
-      # REPLAY/BACKTEST: instante lógico del input corriente (event_ts del MarketEvent,
-      #   deadline del TimerFired, instante de la transición). El reloj ES la secuencia.
-  Schedule(timer_id, deadline, msg) → TimerHandle
+      # ÚNICA fuente de tiempo para decisiones market-dependent; el dominio jamás
+      #   llama time.Now() (extiende D2-05 R18 y B §8).
+      # LIVE: runtime_ts del input corriente (R2): derivado por la isla en la
+      #   admisión como max(runtime_ts previo, wall clock de admisión) — monotónico
+      #   por construcción, owner_input_seq como tie-break — JAMÁS event_ts.
+      # REPLAY: el runtime_ts journalado de la entrada corriente (§15/§21):
+      #   reproduce la progresión real del run — incluido un timer ya vencido
+      #   seguido de un evento atrasado — y el reloj nunca retrocede.
+      # BACKTEST/HISTORICAL: reloj sintético no-decreciente derivado de la
+      #   precedencia canónica §9 (max(runtime_ts previo, instante event-time del
+      #   input sintetizado)); no imita latencia live.
+  Schedule(timer_id, deadline, msg) → TimerHandle{timer_id, generation}
+      # deadline en runtime logical time. Re-Schedule con el mismo timer_id =
+      #   REPLACE: la generación vieja queda cancelada y el handle nuevo porta una
+      #   generation distinta (§7).
       # LIVE: ctx.SendAfter durable (StateFun) — el firing regresa como TimerFired.
-      # REPLAY: registro en el timer set virtual; el firing ocurre SOLO cuando el log/
-      #   la síntesis lo entrega — jamás por espera real (cero sleeps).
+      # REPLAY: registro en el timer set virtual; el firing ocurre SOLO cuando el
+      #   log/la síntesis lo entrega — jamás por espera real (cero sleeps).
   Cancel(handle)
       # LIVE: CancellationToken del SDK (verificado: statefun_sdk_go v3).
-      # REPLAY: remoción del timer set virtual. Un timer cancelado jamás dispara ni
-      #   se journala.
+      # REPLAY: remoción del timer set virtual. La generación cancelada JAMÁS
+      #   ejecuta dominio: un firing tardío de una generación ya cancelada o
+      #   reemplazada (race físico en LIVE) es absorbido determinísticamente por
+      #   el guard de generación (§7) — no es el firing vigente.
 }
 ```
 
-Semántica de identidad/cancelación: `timer_id` es explícito y namespaced por dueño (`bar_close:{stream}:{tf}`, `window:{window_id}:{boundary}`, `session:{calendar_id}:{session_date}`, `strategy:{strategy_id}:{purpose}` si V1 lo necesita, `mm:{op_key}:{purpose}` si aplica); re-Schedule con el mismo `timer_id` = replace (cancel+new) — es exactamente la reprogramación de B §8 (`el timer se reprograma con NextSessionTransition`) y de D2-05 R18 (`next_reset_at` con piso prospectivo). NO es un framework de scheduling: sólo los usos enumerados por A/B/D2-05 (bar close, transiciones de sesión/ventana, health ticks de A, timer de Strategy/MM si sus requirements V1 los declaran).
+Semántica de identidad/cancelación: `timer_id` es explícito y namespaced por dueño (`bar_close:{stream}:{tf}`, `window:{window_id}:{boundary}`, `session:{calendar_id}:{session_date}`, `strategy:{strategy_id}:{purpose}` si V1 lo necesita, `mm:{op_key}:{purpose}` si aplica); el handle porta además una **`generation`** (R3): re-Schedule con el mismo `timer_id` = replace (cancela la generación vieja + nueva generation), de modo que un firing tardío de la generación vieja es reconocible y absorbible sin confundirse con el vigente — es exactamente la reprogramación de B §8 (`el timer se reprograma con NextSessionTransition`) y de D2-05 R18 (`next_reset_at` con piso prospectivo). NO es un framework de scheduling: sólo los usos enumerados por A/B/D2-05 (bar close, transiciones de sesión/ventana, health ticks de A, timer de Strategy/MM si sus requirements V1 los declaran).
 
 ## 7. Timer semantics — BAR CLOSE (decisión del mandato)
 
