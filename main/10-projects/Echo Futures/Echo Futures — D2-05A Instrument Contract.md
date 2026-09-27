@@ -51,8 +51,10 @@ No se crean: ContractVersion, InstrumentRevision, rollover engine, symbol ontolo
 | `instrument_id` | **AUTHORITY** | Identidad canónica Echo, owner-controlled (ej. `NQ`). Es el único identificador de instrumento que Strategy/Signal/AccountStrategy conocen. No es un símbolo de venue. |
 | `quote_currency` | **CONFIG** (inicializada de spec venue/exchange) | Denominación del precio (NQ → `USD`). Base del modelo de unidades; no se duplica en Contract. |
 | `calendar_ref` | **CONFIG** (nullable) | Referencia nominal a la autoridad Session/Calendar de D2-05B (ej. `CME-GLOBEX-EQINDEX`). Es un puntero, no una definición: Instrument/Contract **no embuten** sesiones, horas ni holidays. |
+| `exchange` | **AUTHORITY (config-of-record)** | Exchange de listado del producto económico (ej. `CME`). Única copia en el modelo (repair A-R1: migrada desde Contract); dimensión de reglas de C y parte de la identidad calendario de B. |
+| `product_group` | **AUTHORITY (config-of-record)** | Único agrupador canónico del modelo (ej. `NQ` para la familia NQ/MNQ, `ES` para ES/MES, `CL`). owner-curated y estable. Es la llave de grouping que B usa para overrides de calendario por grupo (S-E05) y C para permitted-instruments/caps. |
 
-Sin taxonomía ornamental: no `asset_class`, no `display_name`, no exchange en Instrument. `asset_class` queda como seam implícito para `DT-EF-CROSS-MARKET-INSTRUMENT-02` (el modelo ya es genérico; nada en V1 necesita un switch). Instrument no tiene lifecycle runtime: es config referencial con tombstone.
+Sin taxonomía ornamental: no `asset_class`, no `display_name`, no segundo eje de grouping. **Full-vs-micro no es un campo de dominio V1** (repair A-R2): NQ y MNQ comparten `product_group`; cuando una regla de C necesite distinguir tamaño, se expresa en la config del RuleSet (sets de instrumentos explícitos o cantidades scopeadas al grupo), porque no existe evidencia de una taxonomía universal de size-class — agregar ese eje sería el taxonomy framework que se quiere evitar. Si un requirement real multi-provider lo demuestra, `product_group` admite extensión de valores sin cambio de identidad. Instrument no tiene lifecycle runtime: es config referencial con tombstone.
 
 ### 2.2 Contract (tradable expiry-specific)
 
@@ -66,8 +68,9 @@ Sin taxonomía ornamental: no `asset_class`, no `display_name`, no exchange en I
 | `point_value` | **CONFIG-of-record** | Valor monetario de 1.0 punto de precio por contrato en `quote_currency` (NQ $20; evidencia C-E06: contract unit $20 × Nasdaq-100). |
 | `tick_value` | **DERIVED** | `tick_size × point_value` (NQ $5). Se deriva para eliminar la clase de inconsistencia de dos números configurables que pueden discrepar; ProjectX `tickSize`/`tickValue` sirven de cross-check (mismatch ⇒ telemetría, §8). |
 | `qty_min`, `qty_step` | CONFIG | Mínimo e incremento de quantity en contratos enteros (cohorte V1: 1/1; ProjectX `size` integer, evidencia D1). |
-| `exchange` | CONFIG | Exchange de listado (ej. `CME`); contexto para identifiers y para el binding de calendario de B. |
 | `active` | CONFIG (operacional) | Elegible para nuevos mappings (análogo operativo de ProjectX `activeContract`, C-E07). Tombstone = delete. |
+
+Repair A-R1: Contract ya no porta campo `exchange` propio — el exchange de listado se hereda de su Instrument vía `instrument_id` (§2.1), única autoridad, cero duplicación contradictoria. `calendar_ref`/`product_group` tampoco se duplican en Contract: todo atributo de grouping vive en Instrument.
 
 **Lifecycle timestamps NO autoritativos en V1.** La evidencia lo dice explícitamente: ProjectX no expone `expirationAt`/`lastTradeAt` estructurados y Front E dejó la autoridad de esos timestamps como unknown no bloqueante (C-E07, unknown §22.1). V1 no inventa `first_trade_date`/`last_trade_date`; expiración se gestiona por rollover manual + rechazo del venue (§6). `DEFERRED_DEBT`: el backtester futuro necesitará resolución histórica por fecha — se abre cuando exista el requisito real, sin cambiar identidad.
 
@@ -76,7 +79,7 @@ Sin taxonomía ornamental: no `asset_class`, no `display_name`, no exchange en I
 ```text
 Instrument 1 ──▶ 0..N Contract          (expiry-specific; identity = contract_id)
 Contract 1 ──▶ 0..N ExternalIdentifier  (identity = (source, context); §4)
-Instrument 1 ──▶ 0..1 Mapping por context (MARKET_DATA | EXECUTION; §5)
+Instrument 1 ──▶ 0..N Mapping           (identity = (mapping_context, binding_id, instrument_id); §5)
 Operation ──▶ exactamente 1 contract_id (pinned al materializar; D2-01/D2-04)
 Order/Fill/Position ──▶ contract_id heredado del pin de la Operation (D2-04 §2.2/§2.3/§2.4)
 ```
@@ -102,6 +105,7 @@ ContractIdentifier {
 - `source` es la clave de configuración de un adapter/fuente declarada (mismo namespace que usarán los adapters futures de D6); **no** es `Provider` (§10, seam C). Dos hubs/gateways del mismo family con IDs distintos = dos `source`.
 - Los identifiers no participan del mapping Instrument→Contract (§5); se resuelven en un segundo paso, local al adapter/source que los consume. Un Contract sin identifier para el `(source, context)` requerido = fail-closed (§8).
 - Provenance/layer preservada (C-E08, capas §11 de Front E): ningún `external_id` se promue a `contract_id`, y `symbolId` de ProjectX no se asume family ID (claim rechazado en Front E).
+- **Dos resoluciones distintas, jamás fusionadas (repair A-R1):** (1) *current-Contract selection* — qué contrato listado está corriente para un binding (§5); (2) *vendor external-identifier selection* — qué string literal usa un source concreto para ese Contract. El mismo Contract resuelto por dos bindings distintos puede —y va a— tener identifiers distintos por source (ej. ProjectX `CON.F.US.ENQ.H25` vs NinjaTrader `NQ 12-26` para el mismo `NQH7`); no se duplica el Contract ni se colapsan las capas.
 
 ## 5. Mapping canónico → físico (hot)
 

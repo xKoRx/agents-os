@@ -24,9 +24,14 @@ updated: "2026-09-26"
 > [!info]+ Workstream D2-05B
 > Diseño técnico V1 de `ExchangeCalendar / ExchangeSession / session (trade) date / NamedTradingWindow` y sus seams con `ProviderProgram` (TOP C), `Instrument/Contract` (TOP A), Account DayBoundary y el contrato de barras para D2-06. Autoridad de evidencia: `main/30-resources/futures/CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE.md` (Front E, `Q7_EVIDENCE = SUFFICIENT`). Respeta sin reabrir D2-01 (snapshot + contract pinning), D2-02 (fan-out + single Operation), D2-03 (Signal + Strategy/MM boundary) y el lifecycle congelado de [[Echo Futures — D2-04 Operation Order Fill Position]]. Baseline físico verificada: `xKoRx/echo origin/master = 372af59a7b83604781346613da01e3d510ea1360` (fetch re-verificado, sin delta). No implementa código productivo, no cierra D2-05 y no avanza a D2-06. Este artefacto REEMPLAZA el draft auto-autorizado previo del SUBMANAGER (marcado inválido en commits `ce05b46b`/`e536718e` del vault); su contenido fue descartado y ninguna conclusión de este documento proviene de él.
 
+## SUBMANAGER REPAIR — 2026-09-26 (B-R1 / B-R2)
+
+- **R-B1 (session identity vs product-group overrides):** la versión review introducía `product_groups[]` en el calendario y `applicable_groups[]` en los overrides, con resolver `(calendar_id, instant, group)` pero `session_id = (calendar_id, session_date)` — dos groups con early closes/special sessions/breaks distintos producían dos `ResolvedSession` distintos con el MISMO session_id. Reparado por la **familia A**: un `ExchangeCalendar` representa exactamente UN grupo producto/sesión semántico; la dimensión `product_group` desaparece del calendario y del API del resolver. Dos semánticas distintas = dos `calendar_id` distintos ⇒ la colisión de identidad es estructuralmente imposible. Ediciones: §3.1 (shape + cardinalidad), §3.2 (precedencia + resolver sin `group`), §5, §7 (primitivas sin `group`), §12 (seam TOP A/C), §13 (caso B-R1-CASE-1; ejemplo del caso E ajustado), §14-R5.
+- **R-B2 (revision_hash: pin real vs drift detection):** la versión review afirmaba a la vez que el run registra `{calendar_id → revision_hash}` y que "el resolver acepta el anchor como pin de dataset", sin mecanismo que recupere el dataset antiguo — un hash sólo detecta drift. Reparado cerrando la semántica del anchor por la vía SÍ-reproducible: **el anchor es el par `(revision_hash, snapshot_payload)`** (más la secuencia de transiciones si el run consumió >1 versión) **grabado en el manifiesto del run**; el resolver nunca recibe un anchor — recibe un **dataset inyectado**; recuperar el anchor = leer el manifiesto. Garantía exacta definida y acotada; sin servicio de revisiones ni framework (§10, caso B-R2-CASE-2).
+
 ## 1. Verdict
 
-`D2-05B_STATUS: READY_FOR_SUBMANAGER_REVIEW`
+`D2-05B_STATUS: READY_FOR_SUBMANAGER_REREVIEW` (repair B-R1/B-R2 incorporado; partes aceptadas del review no reabiertas)
 
 - El modelo V1 es un **calendar dataset configurado por el owner + un resolver puro en proceso**. No hay calendar microservice, no hay segundo market runtime, no hay engine de exchange-calendar ontology, no hay framework genérico de revisiones (espíritu D2-01).
 - Las tres autoridades del mandato quedan congeladas por separado y nunca se fusionan: **ExchangeSession/ExchangeCalendar** (cuándo acepta negociación el exchange/producto), **ProviderProgram trading window/forced-flat** (overlay restrictivo del prop, TOP C) y **Account DayBoundary** (reset diario contractual de la cuenta, dominio Echo existente). La evidencia S-E06/S-E07/S-E08 lo exige; el caso Topstep (flat 3:10 PM CT con NQ abierto hasta 4:00 PM CT) lo demuestra.
@@ -35,7 +40,7 @@ updated: "2026-09-26"
 - `NamedTradingWindow` es **config referenciable por `window_id`** desde Strategy (dos kinds: subset de calendario exchange, o ventana de reloj propia), resuelta por fecha/DST vía IANA; la disponibilidad efectiva de una Strategy es la **intersección** ventana ∩ exchange, y un exchange cerrado siempre gana.
 - El seam de Provider es **read-only**: el provider rule gate (TOP C) consume primitivas del `CalendarResolver` (estado de sesión, session_date, próxima transición) y compone sus propias ventanas/cutoffs; el overlay jamás muta `ExchangeSession` ni el calendario.
 - Account DayBoundary permanece siendo la autoridad existente de Echo (`prop_rulesets.daily_reset_timezone` IANA + `daily_reset_time` + `DayBoundaryCache`); se reutiliza, se mantiene fuera del calendario de exchange, y el **fallback silencioso UTC-23:00 queda prohibido para cuentas Futures** (fail-closed).
-- Determinismo LIVE/REPLAY/BACKTEST: resolución pura de `(calendar_id, instant)` sobre el dataset vigente; los datos son append-fechados con hash de snapshot y el **run** (replay/backtest) registra el anchor `{calendar_id → revision_hash}` en su manifiesto; una corrección posterior del calendario nunca cambia silenciosamente un replay ya corrido.
+- Determinismo LIVE/REPLAY/BACKTEST: resolución pura de `(calendar_id, instant)` sobre un dataset inyectado; los datos son append-fechados con hash de snapshot y el anchor de un run es **el snapshot grabado en su manifiesto** (hash + payload), no un puntero: una rerun puede re-materializar exactamente el dataset histórico, y una corrección posterior del calendario nunca cambia silenciosamente un replay ya corrido (§10).
 - `OWNER DECISIONS REQUIRED: NONE`. Toda la decisión es técnica bajo los requisitos owner ya congelados ([[Echo Futures]] §Trading Sessions/Calendario, Q7). Quedan ratificaciones técnicas ordinarias para el manager: nombres físicos de tablas/topics/campos (§10), nombres del API del resolver (§3/§7) y el requisito de tzdata embebida en el build (§2).
 
 ## 2. Time authority (congelado)
@@ -62,18 +67,18 @@ updated: "2026-09-26"
 ExchangeCalendar {
   calendar_id          — identidad canónica (ej: "CME_GLOBEX_EQUITY_INDEX")
   exchange             — ej: "CME"
-  product_groups       — conjuntos de producto que usan este calendario (ej: ["EQUITY_INDEX"]) 
   timezone             — IANA del calendario (ej: "America/Chicago")
   weekly_base[]        — schedule recurrente semanal:
       { start_weekday, start_local_time, close_local_time(|+días), breaks[], trade_date_shift }
   overrides{}          — overrides fechados, key = civil date local de INICIO de sesión:
       { kind: HOLIDAY_CLOSED | EARLY_CLOSE | SPECIAL_SESSION,
-        open_local?, close_local?, breaks[]?, session_date?, applicable_groups[]?,
+        open_local?, close_local?, breaks[]?, session_date?,
         corrected_at }
   calendar_version     — monotónico; revision_hash = sha256 del snapshot completo
 }
 ```
 
+- **Cardinalidad congelada (repair B-R1): un ExchangeCalendar representa exactamente UN grupo producto/sesión semántico.** No existe la dimensión `product_group` dentro del calendario ni selectors por grupo en overrides/resolver: dos product groups con schedules que difieren (o pueden diferir) son **dos `calendar_id` distintos**, cada uno con su dataset completo. N Instruments pueden compartir un `calendar_id` sólo si son el mismo grupo semántico; si divergen, el owner crea un calendario nuevo y rebindea (hot, prospectivo — §14-R5). Esta cardinalidad es lo que hace sesuda la identidad de §3.2 sin ontology ni taxonomía de groups.
 - `trade_date_shift` es el dato que resuelve el trade date sin fórmula universal: para NQ todas las filas weekly_base llevan `trade_date_shift = +1` (sesión que arranca domingo 17:00 CT → trade date lunes), cubriendo S-E01 con data en lugar de regla. Un override que define una sesión especial debe llevar `session_date` explícito.
 - `breaks[]` son ventanas cerradas **internas** a una sesión (productos con lunch/mid-session break). Los gaps entre sesiones (p. ej. el maintenance CME 16:00–17:00 CT de NQ) NO se modelan como break interno: en el dataset NQ cada sesión es `[17:00 → 16:00(+1)]` y el maintenance es simplemente el hueco entre sesiones consecutivas. El estado BREAK queda en el modelo para productos que lo necesiten; para el calendario equity index CME el dataset no define breaks internos.
 - Constraints V1 (congeladas, declaradas en el modelo): **una sesión por trade date por calendario**; sesiones consecutivas pueden quedar separadas por gaps de mantenimiento. Un producto futuro que exigiera dos sesiones por trade date extiende el modelo con `session_seq`, sin cambiar el resto.
@@ -82,8 +87,8 @@ ExchangeCalendar {
 ### 3.2 Precedencia de resolución (congelada)
 
 ```text
-para (calendar_id, civil_date D local de inicio, product_group P):
-  1. overrides[D] aplicable a P (o sin applicable_groups) → esa fila gana completa
+para (calendar_id, civil_date D local de inicio de sesión):
+  1. overrides[D] si existe → esa fila gana completa
   2. si no existe override → weekly_base por start_weekday = weekday(D)
   3. si ninguna fila aplica → CLOSED (NO_SESSION) para esa fecha
 ```
@@ -93,7 +98,7 @@ para (calendar_id, civil_date D local de inicio, product_group P):
 
 ```text
 SessionState = { OPEN | BREAK | CLOSED }
-ResolvedSession(calendar_id, instant, group) →
+ResolvedSession(calendar_id, instant) →
   { state, session_id, session_open_utc, session_close_utc, session_date,
     breaks_utc[], next_transition_utc, next_transition_kind }
 ```
