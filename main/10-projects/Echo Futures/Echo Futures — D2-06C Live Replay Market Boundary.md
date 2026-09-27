@@ -494,6 +494,12 @@ READY_FOR_SUBMANAGER_REVIEW
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-06C Live Replay Market Boundary.md
 
+AGENTS-OS SHA:
+84c5fc49 (commit que contiene el artefacto [b66d50a2] + continuidad y feedback [84c5fc49]; el bloque handoff ampliado viaja en el sync siguiente)
+
+ECHO BASELINE:
+372af59a7b83604781346613da01e3d510ea1360 (origin/master re-verificado en ventana, fetch sin delta)
+
 NEXT:
 Return to D2-06 SUBMANAGER. Do not start D2-07.
 ```
