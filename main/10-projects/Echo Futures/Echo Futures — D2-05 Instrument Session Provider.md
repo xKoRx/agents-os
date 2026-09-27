@@ -130,16 +130,30 @@ Strategy (evalúa cuando window ∩ exchange availability OPEN)
 fan-out echo/signal_fanout (key strategy_id; pre-filtro kache: AccountState + DENY_NEW_RISK — optimización, no autoridad)
   ↓ por cada AccountStrategy habilitada
 echo/operation (key account_id:account_strategy_id) — guards de materialización (D2-04 §3.1 + C §8):
-  1. signal válida (valid_until)            2. compatibilidad Strategy↔MM
-  3. Stage-1 provider admission (autoridad: echo/provider_rules vía admission snapshot kache-fed;
-     evalúa AccountState, programa/fase/RuleSet efectivo, automation entitlement, permitted
-     instruments, Contract/calendar resolvability, allowed new-risk window (tz provider +
-     SessionState de B), daily-loss/trailing/news state) → ALLOW | DENY_NEW_RISK
-  4. resolución Instrument + Account.execution_binding_id → current Contract (binding EXECUTION)
-  5. pin contract_id + specs económicas embebidas + sello direction (R2)
-  ↓ ALLOW ⇒ Operation CREATED (existe ANTES de MM/Orders; DENY ⇒ ProviderDecision durable, sin Operation)
+  1. signal válida (valid_until) ∧ compatibilidad Strategy↔MM
+  2. resolución del input de calendario (autoridad B):
+     Instrument.calendar_ref → calendar_id → CalendarResolver → SessionState/boundaries;
+     calendario ausente/no resoluble ⇒ CALENDAR_UNRESOLVED ⇒ sin Operation
+  3. Stage-1 provider admission (autoridad C: echo/provider_rules vía admission snapshot kache-fed)
+     CONSUME: instrument_id, exchange, product_group (llaves de Instrument, A-R2) + primitivas
+     de sesión de B (paso 2) + estado de cuenta/provider/riesgo
+     EVALÚA: AccountState; programa/fase/RuleSet efectivo; automation entitlement; permitted
+     instruments (scopeado a instrument_id/exchange/product_group — NUNCA lookup de Contract
+     físico); allowed new-risk window (tz provider + primitivas de sesión); daily/trailing/news
+     RESULTADO: ALLOW | DENY_NEW_RISK — la admisión NO resuelve Contract
+  4. resolución ÚNICA del Contract de ejecución (autoridad A, dentro de echo/operation):
+     ResolveExecutionContract(Instrument, Account.execution_binding_id) → ResolvedContract
+     validación + resolución en UNA llamada: el objeto retornado es el que se pinnnea;
+     mapping/Contract/identifier prerequisitos ausentes/inactivos/malformados ⇒
+     CONTRACT_RESOLUTION_FAILED ⇒ sin Operation
+     (NO existe pre-check "CanResolve" + segunda lookup posterior — sin TOCTOU)
+  5. pin: contract_id del ResolvedContract + specs económicas requeridas por MM + sello direction (R2)
+  6. materialización: Operation CREATED (existe ANTES de MM/Orders)
+  ↓ cualquier guard fallida (calendario/provider/Contract) ⇒ sin Operation
 MoneyManagement (plugin en echo/operation; snapshot de cuenta/instrumento; decide 0..N Orders)
 ```
+
+Autoridades inequívocas (repair I-R1.1): la resolución de calendario pertenece a **B** vía `Instrument.calendar_ref`; la admisión provider pertenece a **C** y consume primitivas/estado — jamás resuelve Contract ni consulta el mapping; la resolución Instrument→Contract pertenece a **A** y corre **exactamente una vez** dentro de `echo/operation` (guard D2-01/D2-04). El orden 2↔3 puede expresarse distinto si el gate necesita el `SessionState` del paso 2 (el listado lo muestra consumiéndolo); ninguna variante altera las autoridades ni el invariante de resolución única. La guard de materialización **como conjunto** puede fallar porque la resolución de Contract falla — eso no convierte la resolución de Contract en una regla provider.
 
 La denegación de materialización (Stage 1) es la única denegación sin Order: ocurre antes de construirla. Una Operation recién creada con TODAS sus entry orders denegadas en Stage 2 no se borra: si MM desiste, `TERMINAL(ENTRY_REJECTED)` con la causa provider en provenance.
 
@@ -163,10 +177,21 @@ MM produce Order request (qty, side, tipo)
   ↓
 egress transaccional EXACTLY_ONCE → echo.order-commands.{account_id}.v1 → adapter (M2 idempotencia) → venue
   ↓
-Fill(s) inmutables → firm += q / reserved(request) −= q (piso 0) en el mismo checkpoint
+venue Fill
   ↓
-Operación/Order/Position proyecciones + provider capacity updates (protocolo R2.5:
-CapacityUpdate cumulative, ReservationFinalization{VENUE_FINAL}, ReservationAdjust)
+echo/operation (key account:strategy — operation owner):
+  - persiste el update lógico Fill/Order/Operation
+  - emite CapacityUpdate{order_id, cumulative_filled_qty}
+    [el cambio de estado del Fill y la EMISIÓN del CapacityUpdate ocurren en la MISMA
+    frontera de checkpoint del operation owner — C-R2.5]
+  ↓ (mensajería checkpointeada idempotente; la aplicación puede atrasarse)
+echo/provider_rules (key account_id — capacity owner, estado separado):
+  - aplica CapacityUpdate idempotentemente (cumulative ⇒ redelivery/replay seguro)
+  - convierte capacidad reservada → capacidad firme en su PROPIO keyed state
+    [owner de cuenta-key distinto — NUNCA una mutación atómica cross-owner/cross-key]
+  ↓
+skew transitorio ⇒ over-reservación conservadora ⇒ posible false DENY ⇒ jamás unsafe extra GRANT
+Operación/Order/Position proyecciones + ReservationFinalization{VENUE_FINAL} / ReservationAdjust (protocolo R2.5)
 ```
 
 Finalidad de reserva venue-autoritativa: sólo `FILLED` (consume), `REJECTED` venue-confirmado (release inmediato), `ORDER_EXECUTION_FINAL/VENUE_FINAL` (resolución por tag sobre open+history, capacidad ya exigida por R10/M2), modify-decrease ACK (`ReservationAdjust`) liberan — **el enum terminal CANCELLED/EXPIRED por sí solo nunca libera**; `PENDING_FINALITY` es `reservation.finality_state` (estado interno del reservation record en `echo/provider_rules`), **no** `Order.status` y sin estados nuevos de Order. Modify-increase reserva antes de emitir el modify; modify-decrease libera sólo tras ACK; replace = nueva reserva para la Order nueva + finalidad de la vieja (over-count conservador). Fill post-finality ⇒ `PROVIDER_CAP_BREACH_POST_FINALITY` fail-visible, sin auto-repair. Linearization point de hot updates: la cola serializada por key de `echo/provider_rules` — detección y decisión ocurren en el mismo punto; un comando nunca escapa con una autoridad ya detectada como vieja. Salidas (REDUCE/EXIT/close-orders del safety) **bypassan el gate** (I-C6) y pasan por M1/M2 intactos; el bypass nunca es autorización de transporte. DOS state owners: `echo/operation` (key `account:strategy`) posee Order/Operation/exposición lógica; `echo/provider_rules` (key `account_id`) posee reserva/capacidad/admisión — protocolo checkpoint-atómico idempotente entre ambos, skew siempre en dirección fail-safe (deniega de más, jamás otorga de más).
