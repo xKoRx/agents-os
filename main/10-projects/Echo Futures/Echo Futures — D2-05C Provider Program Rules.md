@@ -198,7 +198,7 @@ ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-<see git log below>
+4cd85d357e395eb36f62ef3123b8898d7b6844d9
 
 ECHO BASELINE:
 372af59a7b83604781346613da01e3d510ea1360 (HEAD verificado, worktree limpio)
