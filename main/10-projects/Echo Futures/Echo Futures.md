@@ -1665,3 +1665,19 @@ This closes D2 design questions Q6, Q7 and Q10. No owner decision remains open i
 Primary Manager closed D2-05 and opened D2-06 to resolve Q4/Q5/Q8 at D2 design level. D2-06 scope is Market Runtime only: normalized market events/feed authority; bounded hot market state; bar/MTF/indicator/warm-up semantics; feed health/failover/recovery; deterministic LIVE/REPLAY boundary sufficient for Strategy/MM consumption. It must consume the frozen Instrument/Contract + Calendar/Session model from D2-05 and must not select the execution transport (D2-07) or finish global scale/migration/replay implementation (D2-08).
 
 Dispatch model: SUBMANAGER coordinating three TOP architecture workers: A feed authority/normalization/recovery; B bars/MTF/indicators/warm-up/hot-state; C deterministic clock/event ordering + LIVE/REPLAY market boundary. Integrated artifact required before Primary Manager review. No D2 gate may be self-accepted by the SUBMANAGER.
+
+### D2-06A — Market Feed Authority — WORKER CANDIDATE DELIVERED — 2026-09-27
+
+**Status:** `D2-06A = READY_FOR_SUBMANAGER_REVIEW`
+
+TOP worker A entregó [[Echo Futures — D2-06A Market Feed Authority]] (baseline Echo `372af59a` re-verificada, HEAD == origin/master). Aporte conceptual congelado como candidato (no cerrado, sujeto a review del SUBMANAGER e integración con B/C):
+
+- **Binding = autoridad lógica:** el stream canónico es `(MARKET_DATA binding_id, contract_id)`; los feeds equivalentes (CME A/B o vendor) son *members* dentro de un binding arbitrados first-wins por venue sequence; los sources heterogéneos son bindings distintos que sólo cambian por source switch explícito con pérdida de readiness y rebuild — nunca silent blend.
+- **MarketEvent mínimo:** QUOTE (BBO) + TRADE; identidades separadas transport / semantic (venue seq o content tuple) / `stream_seq` engine-contiguo post-arbitraje (idempotencia downstream); `authority_epoch` + `origin{source_id, feed_kind}` como provenance; `receive_ts` jamás es semántica de dominio.
+- **Subscription = demand sets** sin reference counting framework: config catalog (Strategy vía active binding) ∪ operation demand (`MarketDemand` ACQUIRE/RELEASE transaccional desde `echo/operation` en la frontera de checkpoint, idempotente por operation_id); RETIRING mantiene vivo el contract pinneado de una Operation tras rollover y UNSUBSCRIBE sólo con demand vacío.
+- **Health en tres dimensiones** (liveness por member con heartbeat/inactividad sólo bajo sesión OPEN; continuity sólo por primitivas del source — timestamp jump no es evidencia; freshness por config por source/instrument): ExchangeCalendar CLOSED ⇒ silencio esperado, jamás failure; prohibido timeout universal.
+- **Adapter capability contract** declarado por source (sequence kind, gap detection, replay modes/bounds, snapshot, heartbeat, reliable timestamps, dedup identity); combos inválidos fail-closed; recovery = máquina conceptual única con ejecución capability-specific (replay/snapshot/natural-refresh → dedup overlap → RecoveryBarrier → rebuild downstream (contrato D2-06B) → READY con epoch nueva).
+- **Física:** nuevo StateFun `echo/market_stream` (key stream_id) + adapters → `echo.market-feed-candidates.v1` → canónico `echo.market-events.v1` (AT_LEAST_ONCE + stream_seq; transporte y recorded stream) + control compactado `echo.market-stream-state.v1`; egress de `MarketDemand` vía el fact path transaccional D2-04; catálogo/config por patrón compacted+kache; Account jamás es key.
+- `OWNER_DECISIONS_REQUIRED = NONE`; riesgos declarados (throughput StateFun por tick → benchmark D6 con fallback in-process; AT_LEAST_ONCE exige dedup `stream_seq` en todos los consumers).
+
+NO CLOSED. Integración B/C + artefacto integrado D2-06 pendientes antes de Primary Manager review. No avanza D2-07.
