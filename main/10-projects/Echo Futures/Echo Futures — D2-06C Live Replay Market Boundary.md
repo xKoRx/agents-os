@@ -156,9 +156,10 @@ Semántica de identidad/cancelación: `timer_id` es explícito y namespaced por 
 
 ## 7. Timer semantics — BAR CLOSE (decisión del mandato)
 
-**OPTION 1 elegida: TimerFired se graba como input determinístico.** No se graban advances continuos de reloj (Option 2) ni mecanismos híbridos (Option 3). Justificación KISS: el scheduling de un timer es función determinística de los inputs previos (boundary del grid, `NextSessionTransition`, config), así que la única información no-derivable es CUÁNDO fue visible el firing al runtime — y eso es exactamente una posición en `owner_input_seq`. Reglas congeladas:
+**OPTION 1 elegida: TimerFired se graba como input determinístico.** No se graban advances continuos de reloj (Option 2) ni mecanismos híbridos (Option 3). Justificación KISS: el scheduling de un timer es función determinística de los inputs previos (boundary del grid, `NextSessionTransition`, config), así que la única información no-derivable es CUÁNDO fue visible el firing al runtime — y eso es exactamente una posición en `owner_input_seq` (+ su `runtime_ts`, R2). Reglas congeladas:
 
-- El firing se journala en su posición de admisión (§15) si muta estado observable o dispara delivery; ticks de health sin cambio de estado no se journalan (§15, regla de no-op).
+- **Journalado completo (R3):** TODO TimerFired admitido por el dominio (que pasa el guard de generación) se journala en su posición de admisión con su `runtime_ts` — **sin change-detection para timers**. Razón: un firing puede programar el próximo timer, reemplazar/cancelar otro, avanzar el control flow o ser prerequisito de un firing futuro sin mutar estado observable ahora (health tick que re-agenda = ejemplo raíz: si t1 no está en el journal, el replay no ejecuta t1 → t2 puede no existir → divergencia futura). Esto cubre bar-close, session/window, health/freshness y los timers declarados de Strategy/MM. Redelivery del MISMO firing absorbido por guards (transporte/generación) sigue siendo NO-OP no journalado (§15).
+- **Identidad + generación (R3):** un firing porte `(timer_id, generation)`. Si la generación ya no es la vigente (cancelada/reemplazada antes de procesarse), NO ejecuta dominio: el guard la absorbe determinísticamente (gap del contador, §15) y jamás se confunde con el firing vigente. EXACT_REPLAY valida cada TimerFired contra el timer set virtual reconstruido: generación que nunca existió en el prefijo reproducido ⇒ `REPLAY_LOG_CORRUPT` fail-visible; generación vieja ya cancelada/reemplazada ⇒ NO-OP determinista idéntico al live.
 - En REPLAY el DomainClock virtual entrega el `TimerFired` del log en la posición grabada; el re-Schedule interno de la isla (que re-ejecuta lógica idéntica) crea el timer virtual y el firing inyectado lo absorbe — sin doble disparo (un timer virtual disparado se consume; el guard de closure identity de B hace el resto).
 - "Que el timer existió" es derivable (lógica + inputs previos); "cuándo fue visible" es la posición grabada; su "ordering contra market events" es esa misma posición. Los tres requisitos de B §8 quedan cubiertos.
 - El mismo mecanismo sirve Session/WindowTransition (§12): son timers cuyo payload dispara la transición; se journalan con la regla idéntica.
@@ -252,15 +253,25 @@ Sin framework de revisiones nuevo (D2-01/PROHIBICIÓN D2-04): la ConfigTransitio
 ## 15. Recorded deterministic boundary — qué DEBE persistirse
 
 ```text
-Run Recording (conceptual) = RunManifest + DeterministicInputLog + contenido canónico
+Run Recording (conceptual) = RunManifest + ReplayAnchor (R1) + DeterministicInputLog
+                             + contenido canónico
+
+ReplayAnchor (R1): identidad inmutable del estado inicial del run — el corpus EXACTO
+  de MarketEvents normalizados + snapshots de calendario/config que el warm-up B §17
+  del run consumió, capturado UNA vez al iniciar el run grabado; refs + digest en el
+  RunManifest (§20); misma retención que el recording; jamás se re-deriva de
+  MarketHistorySource en replay.
 
 DeterministicInputLog (per run, per isla consumidora):
   entry {
     run_id, owner_key            # isla: stream_id | strategy_id | (op key MM timers)
     owner_input_seq              # runtime ordering identity (contiguo permitiendo
                                  # gaps = no-ops absorbidos por guards, §22)
+    runtime_ts                   # runtime logical time derivado en la admisión (R2):
+                                 # monotónico no-decreciente por isla; JAMÁS event_ts
     input:                       # MarketRuntimeInput, en una de dos formas:
-      inline                     # RecoveryBarrier, ConfigTransition, TimerFired,
+      inline                     # RecoveryBarrier, ConfigTransition, TimerFired
+                                 # {timer_id, generation, deadline},
                                  # SessionWindowTransition, readiness-ref — pequeños,
                                  # autosuficientes
       ref                        # MarketEvent → (stream_id, stream_seq) — contenido
@@ -271,13 +282,21 @@ DeterministicInputLog (per run, per isla consumidora):
                                  # (§10: journal de orden sin contenido)
   }
 
-Regla de journalado (change-detection): se journala todo input admitido que muta
-estado observable de la isla o dispara delivery; redeliveries absorbidos por guards
-y ticks de salud sin cambio NO se journalan (el gap de owner_input_seq los evidencia;
-el replay los re-absorbe idénticamente porque los guards son determinísticos).
+Regla de journalado (repair R1, criterio de materialidad): se journala todo input
+admitido cuya omisión podría cambiar una observación de dominio presente o futura —
+el criterio es "CAN THIS INPUT AFFECT PRESENT OR FUTURE DOMAIN OBSERVATION?", NO
+"muta estado ahora". ALWAYS JOURNAL: todo TimerFired admitido (R3: sin
+change-detection para timers); ConfigTransition material (§13); RecoveryBarrier;
+Session/WindowTransition cuando son inputs separados; refs de MarketEvent canónicos
+que pasan guards y afectan la isla; deliveries/refs cross-island necesarios (§10).
+MAY OMIT: redeliveries de transporte absorbidos ANTES del dominio; duplicados exactos
+que guards hacen NO-OP (stream_seq, generación de timer); facts telemetry-only sin
+efecto presente NI futuro sobre control flow. La omisión es segura por construcción
+(lo omitido es no-observable para el dominio); el gap de owner_input_seq la evidencia
+y el replay la re-absorbe idénticamente porque los guards son determinísticos.
 ```
 
-Cobertura mínima exigida (checklist del mandato): eventos canónicos aceptados ✓ (ref al canónico); runtime/order identity ✓ (`owner_input_seq`); epoch markers/RecoveryBarriers ✓ (inline); timer firings ✓ (inline, §7); calendar/session authority/version ✓ (manifest + ConfigTransition); config changes materiales ✓ (§13); source-switch/rollover ✓ (§14); run manifest/semantic versions ✓ (§20). **NO se graba:** operation/fill event sourcing (D2-04 tiene sus authorities; R12 intacto), todo Echo, eventos crudos vendor pre-normalización (rompería vendor-independence), barras derivadas (dual authority).
+Cobertura mínima exigida (checklist del mandato): eventos canónicos aceptados ✓ (ref al canónico); runtime/order identity ✓ (`owner_input_seq`); runtime logical time ✓ (`runtime_ts`, R2); epoch markers/RecoveryBarriers ✓ (inline); timer firings ✓ (inline, completos — R3); calendar/session authority/version ✓ (manifest + ConfigTransition); config changes materiales ✓ (§13); source-switch/rollover ✓ (§14); run manifest/semantic versions ✓ (§20); replay anchor / estado inicial ✓ (R1: corpus de warm-up + digest + readiness assertion). **NO se graba:** operation/fill event sourcing (D2-04 tiene sus authorities; R12 intacto), todo Echo, eventos crudos vendor pre-normalización (rompería vendor-independence), barras derivadas (dual authority), estado derivado serializado (el anchor es corpus + digest, no snapshot de estado — R1).
 
 `echo.market-events.v1` SOLO es **insuficiente y se declara**: carece de timers, config, transiciones y del orden entre islas — un replay desde el topic canónico reconstruye la proyección final, no las observaciones (B §10 ya lo declaró; aquí se cierra). Y **retención ≠ recording contract**: la correctez exige que la combinación manifest+journal+contenido sea recuperable por el horizonte de replay del run; la retención física de Kafka es config (days) y el archival a object storage es DEFERRED_DEBT (§28). Un run grabado cuyo contenido canónico fue purgado ⇒ `REPLAY_SOURCE_MISSING` fail-visible en replay attempt (§18) — jamás replay parcial silencioso.
 
@@ -285,7 +304,7 @@ Cobertura mínima exigida (checklist del mandato): eventos canónicos aceptados 
 
 **Opción E elegida (combinación mínima): post-arbitración (C) + control inputs journalados en la frontera de admisión de cada isla.** Evaluación de las opciones del mandato: **(A) vendor packets pre-normalización** — rechazado: acoplaría el replay a la normalización del vendor y violaría vendor-independence; **(B) candidatos post-normalización** — rechazado: incluye lo que el arbitraje suprimió (doble evaluación en replay); **(C) aceptados post-arbitraje** — base correcta (es lo que el dominio observó) pero insuficiente solo (sin timers/config — §15); **(D) barras derivadas** — prohibido como autoridad (dual authority, §17); **(E) C + control** — elegido. Cumple los cuatro requisitos del mandato: exact technical replay ✓; vendor-independent ✓ (el dominio re-consume el envelope canónico, no el vendor); no double evaluation ✓ (una entrada por input admitido); reproduce epoch y late arrival order ✓ (barrier inline + posiciones).
 
-Grabación en el punto de admisión (no en un observador lateral): el mismo guard `stream_seq`/`owner_input_seq` que aplica el input emite la entrada del journal por **egress transaccional EXACTLY_ONCE en la misma frontera de checkpoint** (patrón R14/I16 de D2-04) — un input checkpointeado es una entrada durable; un checkpoint abortado aborta la transacción (entrada jamás visible) y el replay del ingress la re-admite idempotentemente. Sin ventana de pérdida, sin writer lateral.
+Grabación en el punto de admisión (no en un observador lateral): el mismo guard `stream_seq`/`owner_input_seq` que aplica el input emite la entrada del journal por **egress transaccional EXACTLY_ONCE en la misma frontera de checkpoint** (patrón R14/I16 de D2-04) — un input checkpointeado es una entrada durable; un checkpoint abortado aborta la transacción (entrada jamás visible) y el replay del ingress la re-admite idempotentemente. Sin ventana de pérdida, sin writer lateral. El replay anchor (R1) es la excepción natural: se captura UNA vez al iniciar el run grabado (los eventos normalizados exactos que el warm-up B §17 consumió, refs inmutables + digest + readiness assertion post-warm-up), queda inmutable y muere con la retención del recording (§28-R-C2); el hot path de decisiones no cambia.
 
 ## 17. BAR_CLOSED authority decision — **B: re-derivado**
 
