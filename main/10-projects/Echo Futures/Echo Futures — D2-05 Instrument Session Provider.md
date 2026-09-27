@@ -27,10 +27,21 @@ updated: "2026-09-26"
 > [!info]+ Integration Scribe
 > Candidato integrado por el TOP worker de D2-05B actuando como **D2-05 Integration Scribe** (no es un cuarto TOP). Inputs exclusivos: [[Echo Futures — D2-05A Instrument Contract]] (`READY_FOR_INTEGRATION`, blob `6eb671f2`), [[Echo Futures — D2-05B Session Calendar]] (`READY_FOR_INTEGRATION`, blob `8058aec0`), [[Echo Futures — D2-05C Provider Program Rules]] (`READY_FOR_INTEGRATION`, blob `637c62b8`), más las decisiones congeladas [[Echo Futures]] D2-01..03 y [[Echo Futures — D2-04 Operation Order Fill Position]] (R1–R14). Verificación física: los tres blobs observados en HEAD `76836cae` del vault coinciden exactamente con los aprobados por el SUBMANAGER (sin input drift); baseline Echo re-verificada `origin/master = 372af59a7b83604781346613da01e3d510ea1360` (fetch, sin delta). Este archivo REEMPLAZA completamente el draft autoescrito invalidado; ninguna conclusión proviene de él. No implementa código, no cierra D2-05, no avanza a D2-06.
 
+## Primary Manager Repair — R15–R18
+
+Primary Manager review marcó `D2_05_MANAGER_REVIEW = CORRECTION_REQUIRED` sobre el candidato integrado. Este repair es **targeted integration repair**: no reabre A/B/C, no cambia D2-04, no implementa código y no avanza D2-06.
+
+- **R15 — Stage-1 admission authority:** el snapshot kache deja de ser autoridad de aceptación. Toda OPEN candidata se lineariza mediante `AdmissionRequest → echo/provider_rules(account_id) → AdmissionResult`. El owner account-keyed serializa el request contra RuleSet/binding/account-state/risk/time updates. Kache queda sólo como pre-filtro/read model. ALLOW es válido según el orden de esa cola; si una actualización se procesa antes, el request ve la autoridad nueva. El guard Stage-2/egress permanece como defensa posterior.
+- **R16 — capacity projection completa:** `echo/provider_rules(account_id)` mantiene `firm_by_operation[operation_id]` + `live_reservations`, no un net opaco por Contract. Después de **todo Fill Echo** — ENTRY, ADD, REDUCE, EXIT, safety close y late/reconciled Fill — `echo/operation` emite un update cumulativo con identidad y exposición firmada de la Operation. Así GROSS = suma de absolutos por Operation, NET_ABS = net firmado por scope y GROUP_WEIGHTED aplica pesos del RuleSet, sin portfolio aggregate. Replay no duplica porque el update es cumulativo y monotónico por `operation_event_seq`.
+- **R17 — deterministic ForceClose fan-out:** `echo/provider_rules` enumera el catálogo/routing index completo de AccountStrategies de la Account (ACTIVE, disabled y close-only incluidos) y envía el mismo intent a cada key `account:account_strategy`. Una key sin Operation es no-op idempotente. V1 usa soft-disable/retención de la routing identity; no se hard-tombstonea una AccountStrategy mientras pueda poseer una Operation no terminal. PG jamás participa de correctness.
+- **R18 — DayBoundary Futures hot:** el `DayBoundaryCache` físico actual es sólo precursor conceptual. Su contrato real es lazy DB + cache forever sin invalidación por account_id y fallback UTC 23:00, incompatible con re-binding in-place. Futures usa config explícita hot/readiness-safe dentro del owner `echo/provider_rules(account_id)`; falta/invalid config ⇒ `DAY_BOUNDARY_UNRESOLVED` + DENY_NEW_RISK. Un update se lineariza en la misma cola account-keyed, preserva acumuladores actuales y reprograma prospectivamente el próximo boundary sin retro-recalcular días pasados ni reutilizar el cache mutable legacy como autoridad de dominio.
+
+`OWNER_DECISIONS_REQUIRED = NONE`.
+
 ## 1. Executive verdict
 
 ```text
-D2-05 INTEGRATION STATUS: READY_FOR_SUBMANAGER_REVIEW
+D2-05 REPAIR STATUS: READY_FOR_MANAGER_REVIEW
 ```
 
 La integración de A+B+C produce una arquitectura única y legible sin agregar una cuarta capa ni resolver contradicciones por invención: **A aporta la identidad económica y su resolución física** (Instrument canónico → Contract expiry-specific pinneado una vez por Operation, con mapping hot por binding y external identifiers por fuente); **B aporta la autoridad temporal de mercado** (ExchangeCalendar como dataset owner-managed + resolver puro en proceso, session/trade date como dato, ventanas nombradas para Strategy, account day separado); **C aporta la autoridad de negocio/reglas** (Provider → ProviderProgram → (fase opcional provider-local) → ProviderRuleSet versionado, binding en la Account, enforcement en dos gates + plano safety asíncrono). D2-04 conserva íntegro el ownership del lifecycle: la Operation sigue materializándose antes de MM, la terminación sigue exigiendo guards, y ningún gate provider cambia un solo estado del aggregate.
@@ -41,22 +52,28 @@ Los tres seams cruzados quedaron cerrados y congelados en los repairs A-R1/A-R2,
 
 ## 2. Minimal entity model
 
-| Entidad | Autoridad | Una línea |
+| Entidad / state | Autoridad | Una línea |
 |---|---|---|
-| `Instrument` | A | Identidad económica/canónica: `instrument_id`, `quote_currency`, `exchange` (metadata/reglas), `product_group` (único agrupador de caps/reglas C), `calendar_ref` (único binding runtime hacia B). Sin taxonomía adicional. |
-| `Contract` | A | Contrato listado expiry-specific tradable: `contract_id`, año/mes, `tick_size`, `point_value` (`tick_value` derivado), `qty_min/step`, `active`. Hereda exchange/grouping de su Instrument; no duplica nada. |
-| `ContractIdentifier` | A | External identifier por `(contract_id, source, context)`; `source` es namespace de adapter/transporte, jamás identidad Provider. |
-| `InstrumentMapping` | A | Fila corriente `(mapping_context, binding_id, instrument_id) → contract_id`; hot; `MARKET_DATA` (feed) y `EXECUTION` (Account vía `execution_binding_id`) por separado. |
-| `ExchangeCalendar` | B | Dataset owner-managed: `calendar_id` (= una semántica completa de producto/sesión), tz IANA, `weekly_base` + overrides fechados (`HOLIDAY_CLOSED/EARLY_CLOSE/SPECIAL_SESSION`), `calendar_version` + `revision_hash`. |
-| `NamedTradingWindow` | B | Config referenciable por `window_id` (`EXCHANGE_SUBSET` sobre un calendario, o `CLOCK` en tz propia); Strategy referencia id, nunca offsets. |
-| `Provider` | C | Owner de negocio/policy de la firma; NO transport. |
-| `ProviderProgram` | C | Producto real de la firma; punto de anclaje estable de reglas y bindings. |
-| `ProviderRuleSet` | C | Única pieza con version/provenance explícita: familias tipadas de reglas por `(provider, programa[, fase])`; UNKNOWN jamás es ALLOWED. |
-| `ProviderAccountBinding` | C | Config corriente de la Account (1:1): provider, programa, `phase?`, autoridad RuleSet resuelta, transporte+entitlement, `day_boundary` reference. |
-| `Operation/Order/Fill/Position` | D2-04 | Aggregate por `account:strategy`; lifecycle congelado; Position física neta `(account, contract)`. |
-| `AccountStrategy` | D2-01..03 | `Account + Strategy + MoneyManagement`, intacto; el binding provider es de la Account, no del AccountStrategy. |
-| Resolvers de dominio | B/A | `sdk/calendar` (resolver puro, dataset inyectado) y resolución Instrument→Contract→identifier; paquetes Go puros sin infra (boundary Q14). |
-| State owners | D2-04+C | `echo/operation` (key `account_id:account_strategy_id`), `echo/signal_fanout` (key `strategy_id`), `echo/provider_rules` (key `account_id`) — tres funciones StateFun con keys distintas; jamás se fusionan. |
+| `Instrument` | A | Identidad económica/canónica: `instrument_id`, `quote_currency`, `exchange`, `product_group`, `calendar_ref`. |
+| `Contract` | A | Tradable expiry-specific; Operation lo resuelve y pinnea una vez. |
+| `ContractIdentifier` | A | External identifier por fuente/contexto; jamás identidad Echo/Provider. |
+| `InstrumentMapping` | A | `(mapping_context, binding_id, instrument_id) → contract_id`, hot y prospectivo. |
+| `ExchangeCalendar` / `NamedTradingWindow` | B | Autoridad temporal de exchange/Strategy; resolver puro por `calendar_id`. |
+| `Provider` / `ProviderProgram` / `ProviderRuleSet` | C | Autoridad business/policy; RuleSet es la única pieza con version/provenance explícita. |
+| `ProviderAccountBinding` | C | Config account-scoped corriente: provider/program/phase?, RuleSet authority, transport entitlement y DayBoundary explícito. |
+| `AccountStrategy` | D2-01..03 | Sigue siendo `Account + Strategy + MoneyManagement`; provider config no entra aquí. |
+| `Operation/Order/Fill/Position` | D2-04 | Lifecycle congelado; `echo/operation` key `account_id:account_strategy_id`. |
+| `echo/provider_rules` state | C + R15–R18 | Owner key `account_id` de Stage-1 admission, RuleSet/binding/account/risk state, DayBoundary efectivo, `firm_by_operation`, `live_reservations` y routing index de AccountStrategies. Es una proyección/autoridad de enforcement, NO owner del lifecycle de Operation. |
+| `AccountStrategyRoutingIndex` | R17 | Read model/config completo por Account para fan-out safety. Incluye disabled/close-only; no usa PG. |
+| Resolvers puros | A/B/R18 | Contract resolver, CalendarResolver y DayBoundary resolver/config semantics inyectables en LIVE/REPLAY/BACKTEST. |
+
+State owners congelados:
+```text
+echo/signal_fanout   key strategy_id
+echo/operation       key account_id:account_strategy_id
+echo/provider_rules  key account_id
+```
+No se crea portfolio aggregate ni se fusionan owners.
 
 ## 3. Identities + cardinalities
 
@@ -120,332 +137,440 @@ De C final: `Provider` es identidad canónica de la firma como **policy owner** 
 
 ## 13. Account binding + execution transport separation
 
-`ProviderAccountBinding` (config corriente de la Account, 1:1, reemplazo in-place + audit facts, sin framework de versiones — C-R1 R5): `account_id`; `provider_id + program_id (+ phase? declarada)`; `rule_set_id + rule_set_version` (provenance de la autoridad resuelta, hot); `transport {transport_id: PROJECTX|NINJATRADER_BRIDGE|TRADOVATE_API|RITHMIC|CQG|SIM_EXECUTION, entitlement: ALLOWED|CONDITIONAL|FORBIDDEN|UNKNOWN, conditions[]}`; `day_boundary` (referencia a la autoridad de reset de la cuenta); `enabled`. **AccountStrategy permanece exactamente `Account + Strategy + MoneyManagement`**; el binding es de la Account y todas sus AccountStrategies comparten la autoridad provider. Separaciones congeladas: platform support ≠ API entitlement (Lucid soporta NT/CQG/Rithmic sin entitlement direct-API conocido); entitlement UNKNOWN/FORBIDDEN ⇒ binding no habilitable para automatización y, si deviene en caliente, semántica de revocación (§16); `AccountState` de Echo (ACTIVE/CLOSE_ONLY/INACTIVE) es autoridad independiente que se conjunciona con la admisión provider (`AcceptsOpens() ∧ provider_admission == ALLOW`), sin fusionarse.
+`ProviderAccountBinding` sigue siendo config corriente 1:1 de la Account, reemplazada in-place con audit facts y sin revision framework:
+
+```text
+account_id
+provider_id
+program_id
+phase?                    # sólo si ese programa declara fase provider-local
+rule_set_id/rule_set_version   # provenance/autoridad corriente, no versión del binding
+transport {
+  transport_id
+  entitlement
+  conditions[]
+}
+day_boundary {
+  timezone                # IANA
+  reset_time              # local wall clock
+  reset_semantics         # familias que resetean / no resetean
+}
+enabled
+```
+
+`AccountStrategy` permanece exactamente `Account + Strategy + MoneyManagement`. Todas las AccountStrategies de la cuenta comparten ProviderProgram/RuleSet/DayBoundary y transport entitlement; ninguna de esas cosas se embute en AccountStrategy.
+
+Separaciones congeladas:
+
+- Provider business identity ≠ transport.
+- platform support ≠ API entitlement; UNKNOWN/FORBIDDEN nunca se interpreta como permitido.
+- `AccountState` de Echo y provider admission son autoridades distintas, ambas procesadas por el owner account-keyed para Stage-1.
+- DayBoundary ≠ ExchangeSession ≠ Provider trading overlay.
+- Para Futures V1 el DayBoundary efectivo es **config explícita obligatoria**. Falta, timezone inválida, reset inválido o config aún no ready ⇒ `DAY_BOUNDARY_UNRESOLVED` y `DENY_NEW_RISK`. No existe fallback UTC 23:00 en el camino nuevo.
+
+### DayBoundary hot/update semantics
+
+El source legacy `DayBoundaryCache` no es autoridad canónica para Futures: físicamente hace lazy-load desde PG y cachea forever por `account_id`, asumiendo que un cambio de fase crea otra account; D2-05 congela re-binding in-place con el mismo account_id. Para Futures, `echo/provider_rules(account_id)` recibe la config DayBoundary por el mismo control-plane hot/readiness-safe de binding/rules y la procesa en su cola serializada.
+
+Estado mínimo: `effective_day_boundary`, `last_reset_at`, `next_reset_at` y acumuladores diarios. Un update de config:
+
+1. se lineariza como evento en la cola `account_id`;
+2. preserva los acumuladores actuales — no resetea al aplicar config ni reconstruye días pasados;
+3. sustituye la autoridad para decisiones futuras;
+4. recalcula `next_reset_at` con la nueva timezone/reset y un `not_before` que no precede al `next_reset_at` ya comprometido bajo la autoridad anterior; así un cambio después de un reset no introduce un segundo reset inmediato y un cambio antes del próximo reset no ejecuta el boundary viejo después de activarse la autoridad nueva;
+5. el siguiente crossing qualifying bajo la nueva autoridad ejecuta un único reset y actualiza `last_reset_at/next_reset_at`.
+
+El mismo resolver/config-transition contract es inyectable en replay/backtest; el cache mutable legacy de live no forma parte del dominio reproducible.
 
 ## 14. Integrated OPEN/materialization flow
 
 ```text
-Strategy (evalúa cuando window ∩ exchange availability OPEN)
-  ↓ Signal{instrument_id, …} (D2-03, sin contract/provider/sizing)
-fan-out echo/signal_fanout (key strategy_id; pre-filtro kache: AccountState + DENY_NEW_RISK — optimización, no autoridad)
-  ↓ por cada AccountStrategy habilitada
-echo/operation (key account_id:account_strategy_id) — guards de materialización (D2-04 §3.1 + C §8):
-  1. signal válida (valid_until) ∧ compatibilidad Strategy↔MM
-  2. resolución del input de calendario (autoridad B):
-     Instrument.calendar_ref → calendar_id → CalendarResolver → SessionState/boundaries;
-     calendario ausente/no resoluble ⇒ CALENDAR_UNRESOLVED ⇒ sin Operation
-  3. Stage-1 provider admission (autoridad C: echo/provider_rules vía admission snapshot kache-fed)
-     CONSUME: instrument_id, exchange, product_group (llaves de Instrument, A-R2) + primitivas
-     de sesión de B (paso 2) + estado de cuenta/provider/riesgo
-     EVALÚA: AccountState; programa/fase/RuleSet efectivo; automation entitlement; permitted
-     instruments (scopeado a instrument_id/exchange/product_group — NUNCA lookup de Contract
-     físico); allowed new-risk window (tz provider + primitivas de sesión); daily/trailing/news
-     RESULTADO: ALLOW | DENY_NEW_RISK — la admisión NO resuelve Contract
-  4. resolución ÚNICA del Contract de ejecución (autoridad A, dentro de echo/operation):
-     ResolveExecutionContract(Instrument, Account.execution_binding_id) → ResolvedContract
-     validación + resolución en UNA llamada: el objeto retornado es el que se pinnnea;
-     mapping/Contract/identifier prerequisitos ausentes/inactivos/malformados ⇒
-     CONTRACT_RESOLUTION_FAILED ⇒ sin Operation
-     (NO existe pre-check "CanResolve" + segunda lookup posterior — sin TOCTOU)
-  5. pin: contract_id del ResolvedContract + specs económicas requeridas por MM + sello direction (R2)
-  6. materialización: Operation CREATED (existe ANTES de MM/Orders)
-  ↓ cualquier guard fallida (calendario/provider/Contract) ⇒ sin Operation
-MoneyManagement (plugin en echo/operation; snapshot de cuenta/instrumento; decide 0..N Orders)
+Strategy
+  ↓ Signal{instrument_id,...}
+echo/signal_fanout (key strategy_id)
+  - kache AccountState/admission snapshot puede prefiltrar
+  - es OPTIMIZATION/read model, nunca authority
+  ↓ candidate OPEN por AccountStrategy
+echo/operation (key account_id:account_strategy_id)
+  1. guards locales baratos: signal válida, AccountStrategy existente, compatibilidad Strategy↔MM
+  2. Instrument.calendar_ref → CalendarResolver(B)
+     falta/no ready ⇒ CALENDAR_UNRESOLVED ⇒ sin Operation
+  3. AdmissionRequest{
+       request_id, account_id, account_strategy_id, signal_id,
+       instrument_id, exchange, product_group,
+       calendar_id/session_state/session_date/session_boundaries,
+       evaluated_event_time
+     }
+     ↓
+     echo/provider_rules(account_id)   # LINEARIZATION POINT Stage-1
+       serializa request contra:
+       - RuleSet efectivo / binding / entitlement
+       - AccountState corriente
+       - provider timezone/window/cutoff policy
+       - daily/trailing/news risk state
+       - DayBoundary authority/readiness
+       - permitted instrument scopes
+     ↓
+     AdmissionResult{ALLOW|DENY_NEW_RISK, decision_id, rule_set_id/version, reason}
+  4. DENY ⇒ ProviderDecision durable; NO Operation
+  5. ALLOW ⇒ echo/operation re-chequea guards locales que pueden haber expirado mientras esperaba
+     (valid_until / existencia del binding local de AccountStrategy); AdmissionResult conserva
+     provenance de su punto de linearización
+  6. ResolveExecutionContract(Instrument, Account.execution_binding_id) → ResolvedContract
+     una sola lookup/validación; fallo ⇒ CONTRACT_RESOLUTION_FAILED ⇒ sin Operation
+  7. pin contract_id + specs económicas + direction
+  8. Operation CREATED (antes de MM/Orders)
+  ↓
+MoneyManagement
 ```
 
-Autoridades inequívocas (repair I-R1.1): la resolución de calendario pertenece a **B** vía `Instrument.calendar_ref`; la admisión provider pertenece a **C** y consume primitivas/estado — jamás resuelve Contract ni consulta el mapping; la resolución Instrument→Contract pertenece a **A** y corre **exactamente una vez** dentro de `echo/operation` (guard D2-01/D2-04). El orden 2↔3 puede expresarse distinto si el gate necesita el `SessionState` del paso 2 (el listado lo muestra consumiéndolo); ninguna variante altera las autoridades ni el invariante de resolución única. La guard de materialización **como conjunto** puede fallar porque la resolución de Contract falla — eso no convierte la resolución de Contract en una regla provider.
+### R15 — authority y orden
 
-La denegación de materialización (Stage 1) es la única denegación sin Order: ocurre antes de construirla. Una Operation recién creada con TODAS sus entry orders denegadas en Stage 2 no se borra: si MM desiste, `TERMINAL(ENTRY_REJECTED)` con la causa provider en provenance.
+`echo/provider_rules(account_id)` es la **única autoridad de aceptación provider**. El admission snapshot compactado/kache-fed sigue existiendo para fan-out temprano, observabilidad y reducción de carga, pero una lectura fresca de ese snapshot nunca reemplaza `AdmissionRequest`.
+
+RuleSet/binding/account/risk/DayBoundary updates y AdmissionRequests se procesan en la misma cola account-keyed:
+
+- `AdmissionRequest` procesado antes de `RuleSetUpdate v6` ⇒ ALLOW/DENY bajo v5 es válido y queda con provenance v5.
+- `RuleSetUpdate v6` procesado primero ⇒ el request debe evaluar v6.
+- no se promete simultaneidad física global: la cola del owner es el punto de linearización.
+
+Un ALLOW no congela provider safety para siempre. Si la autoridad cambia después del result, Stage-2 + guard de egress + epoch/`ReservationRevalidate` siguen vigentes antes de cualquier efecto físico. Por eso un OPEN puede materializarse válidamente bajo v5 y luego no emitir ninguna Order bajo v6; eso no contradice Stage-1 porque el ALLOW fue correcto en su linearization point.
 
 ## 15. Integrated Order/reservation/egress flow
 
 ```text
-MM produce Order request (qty, side, tipo)
-  ↓ Stage-2 gate (dentro de echo/operation, después de MM, antes del egress transaccional):
-  a. PER_ORDER (max contracts/order): chequeo local exacto, |delta| ≤ cap
-  b. caps compartidos (max exposure account/instrument/product_group):
-     ExposureReservationRequest → echo/provider_rules (key account_id, ÚNICO punto serializado)
-     retiene la Order en PENDING_SUBMIT (estado D2-04 existente) hasta ExposureReservationResult
-     decisión en la MÉTRICA TIPADA de la familia (GROSS: Σ|firm|+Σ|reserved|+|delta| ≤ cap;
-     NET_ABS: max(n+R⁺, R⁻−n) ≤ cap; GROUP_WEIGHTED: pesos sobre product_group) — sin fórmula plana
-     GRANTED ⇒ {rule_set_id, rule_set_version, cap_family, scope} como epoch del grant
-  c. guard de egress: (1) estado de cuenta — ENTITLEMENT_REVOKED/INACTIVE/CLOSE_ONLY/
-     PHYSICAL_STATE_UNTRUSTED/instrumento-forbidden/forced-flat activo ⇒ suprime emisión ⇒
-     Order REJECTED{source: PROVIDER_GATE, decision_id} + release; (2) epoch del grant — si la
-     autoridad cambió desde el GRANT ⇒ ReservationRevalidate en el owner serializado:
-     VALID ⇒ emitir; INVALID ⇒ REJECTED{PROVIDER_GATE} + release, sin egreso
+MM produce Order request
   ↓
-egress transaccional EXACTLY_ONCE → echo.order-commands.{account_id}.v1 → adapter (M2 idempotencia) → venue
-  ↓
-venue Fill
-  ↓
-echo/operation (key account:strategy — operation owner):
-  - persiste el update lógico Fill/Order/Operation
-  - emite CapacityUpdate{order_id, cumulative_filled_qty}
-    [el cambio de estado del Fill y la EMISIÓN del CapacityUpdate ocurren en la MISMA
-    frontera de checkpoint del operation owner — C-R2.5]
-  ↓ (mensajería checkpointeada idempotente; la aplicación puede atrasarse)
-echo/provider_rules (key account_id — capacity owner, estado separado):
-  - aplica CapacityUpdate idempotentemente (cumulative ⇒ redelivery/replay seguro)
-  - convierte capacidad reservada → capacidad firme en su PROPIO keyed state
-    [owner de cuenta-key distinto — NUNCA una mutación atómica cross-owner/cross-key]
-  ↓
-skew transitorio ⇒ over-reservación conservadora ⇒ posible false DENY ⇒ jamás unsafe extra GRANT
-Operación/Order/Position proyecciones + ReservationFinalization{VENUE_FINAL} / ReservationAdjust (protocolo R2.5)
+Stage-2 dentro de echo/operation
+  a. PER_ORDER local
+  b. shared caps:
+     ExposureReservationRequest
+       → echo/provider_rules(account_id)
+       → decisión serializada en GROSS | NET_ABS | GROUP_WEIGHTED
+       → GRANTED / DENIED
+  c. GRANTED retiene Order PENDING_SUBMIT
+  d. egress guard:
+     account/entitlement/safety/trust state
+     + epoch RuleSet/cap authority
+     si epoch cambió → ReservationRevalidate en provider_rules
+  e. VALID → egress EXACTLY_ONCE → adapter → venue
+     INVALID → REJECTED{PROVIDER_GATE} + release
 ```
 
-Finalidad de reserva venue-autoritativa: sólo `FILLED` (consume), `REJECTED` venue-confirmado (release inmediato), `ORDER_EXECUTION_FINAL/VENUE_FINAL` (resolución por tag sobre open+history, capacidad ya exigida por R10/M2), modify-decrease ACK (`ReservationAdjust`) liberan — **el enum terminal CANCELLED/EXPIRED por sí solo nunca libera**; `PENDING_FINALITY` es `reservation.finality_state` (estado interno del reservation record en `echo/provider_rules`), **no** `Order.status` y sin estados nuevos de Order. Modify-increase reserva antes de emitir el modify; modify-decrease libera sólo tras ACK; replace = nueva reserva para la Order nueva + finalidad de la vieja (over-count conservador). Fill post-finality ⇒ `PROVIDER_CAP_BREACH_POST_FINALITY` fail-visible, sin auto-repair. Linearization point de hot updates: la cola serializada por key de `echo/provider_rules` — detección y decisión ocurren en el mismo punto; un comando nunca escapa con una autoridad ya detectada como vieja. Salidas (REDUCE/EXIT/close-orders del safety) **bypassan el gate** (I-C6) y pasan por M1/M2 intactos; el bypass nunca es autorización de transporte.
-- **Dos owners, semántica exacta del Fill/CapacityUpdate (repair I-R1.2, C-R2.5):** `echo/operation` (key `account:strategy`) posee Order/Operation/exposición lógica; `echo/provider_rules` (key `account_id`) posee reserva/capacidad/admisión. **No existe mutación atómica cross-owner**: cuando el operation owner acepta un Fill, (1) actualiza el estado lógico Operation/Order/Fill, (2) emite `CapacityUpdate{order_id, cumulative_filled_qty}` — el cambio de estado y la emisión son atómicos **en la frontera de checkpoint del operation owner**; (3) `echo/provider_rules` recibe y aplica el update **después**, idempotentemente, en su propio keyed state (convierte capacidad reservada → firme). Hasta que provider_rules lo aplica puede existir skew; ese skew es intencionalmente fail-safe: el estado stale retiene DEMASIADA capacidad reservada ⇒ puede denegar de más (false DENY), jamás puede otorgar capacidad extra por el retraso.
-- **Contrato crash/replay que hace seguro el sistema pese a dos owners (C-R2.5 preservado):** request dedup por `request_id`; resultado duplicado seguro; Fill + emisión del CapacityUpdate atómicos en la frontera del operation owner; `CapacityUpdate` cumulative ⇒ redelivery idempotente; la aplicación en provider_rules puede atrasarse (skew permitido, § anterior); el release de reserva exige finalidad venue-autoritativa; sin release prematuro inseguro. El grant↔result es atómico en la propia frontera de `echo/provider_rules` (reserved+=delta commitea con la entrega del result — un solo owner); M1/M2 no se reabren: el protocolo los usa, no los sustituye.
+### Capacity authority — R16
+
+`echo/provider_rules(account_id)` mantiene conceptualmente:
+
+```text
+firm_by_operation[operation_id] = {
+  instrument_id,
+  contract_id,
+  product_group,
+  cumulative_signed_exposure,
+  last_operation_event_seq
+}
+
+live_reservations[request_id/order_id] = {
+  operation_id,
+  cap_family,
+  scope,
+  signed_requested_capacity,
+  cumulative_filled_qty,
+  finality_state,
+  grant_epoch
+}
+```
+
+La capacidad firme NO se infiere sólo de una Order que tuvo reserva. Después de **cada Fill Echo aceptado por D2-04**, sea ENTRY, ADD, REDUCE, EXIT, safety close o late/reconciled Fill, el operation owner emite en la misma frontera de checkpoint de ese Fill:
+
+```text
+CapacityStateUpdate {
+  operation_id
+  operation_event_seq
+  instrument_id
+  contract_id
+  product_group
+  cumulative_signed_exposure
+  reservation_order_id?             # sólo si ese Order posee reserva
+  reservation_cumulative_filled_qty?
+}
+```
+
+El mensaje es cumulativo. `echo/provider_rules` guarda `last_operation_event_seq` por Operation e ignora replay/stale updates; cuando existe reservation component, actualiza **en la misma invocación account-keyed** la exposición firme y el consumo de esa reserva. Un Fill de salida no necesita reserva previa: el `cumulative_signed_exposure` basta para cambiar `firm_by_operation`. Partial exit sólo modifica capacity por el Fill real recibido; el intent de Order nunca libera firm capacity.
+
+Métricas derivadas desde esa proyección, sin portfolio aggregate:
+
+- **NET_ABS:** suma firmada por scope y aplica el envelope de reservas vivas de la familia.
+- **GROSS:** `Σ abs(cumulative_signed_exposure por Operation)` por scope + contribución conservadora de reservas vivas. Dos Strategies opuestas `+4/-3` ⇒ NET_ABS 1 y GROSS 7.
+- **GROUP_WEIGHTED:** las mismas contribuciones por Operation/reserva multiplicadas por pesos tipados del RuleSet sobre `product_group`.
+
+La Operation sigue siendo owner de su lifecycle/exposición lógica. `firm_by_operation` es una **capacity projection autoritativa para enforcement** dentro del owner account-keyed, no otro aggregate.
+
+### Reservation finality / modify / replace
+
+Se conserva C-R2/C-R3: `CANCELLED/EXPIRED` no liberan por enum; `reservation.finality_state=PENDING_FINALITY` permanece hasta `VENUE_FINAL/ORDER_EXECUTION_FINAL`; FILLED consume; REJECTED venue-confirmado libera; modify-increase reserva delta antes de emitir; modify-decrease libera sólo tras ACK; replace usa reserva propia y mantiene la vieja hasta finality. `PENDING_FINALITY` NO es `Order.status`.
+
+### Idempotency / skew
+
+- request/result dedup por `request_id`;
+- `CapacityStateUpdate` cumulativo + `operation_event_seq` ⇒ duplicate Fill replay no duplica firm capacity;
+- Fill + emisión del CapacityStateUpdate son atómicos en la frontera del operation owner; aplicación ocurre después en provider_rules;
+- grant/result es atómico dentro del owner provider_rules;
+- ningún release ocurre por intención de salida, sólo por Fill/finality/ACK autorizados;
+- skew conocido que vuelva la proyección física/lógica no confiable activa `PHYSICAL_STATE_UNTRUSTED` y corta NEW_RISK; no hay reconciliation repair.
+
+Ejemplos: OPEN +4 seguido de exit Fill -2 ⇒ `firm_by_operation=+2`; S1 +4 y S2 -3 ⇒ NET_ABS=1/GROSS=7; reentrega del mismo update seq/cumulative ⇒ capacity idéntica.
 
 ## 16. Provider safety flow
 
 ```text
-clock/calendar/account/risk/rules update → echo/provider_rules reevalúa (autoridad corriente)
-  ├─ regla con flatten explícito disparada (forced-flat cutoff, daily-loss declarado con
-  |  flatten, news/holiday con flatten declarado):
-  |    ProviderForceClose{account_id, reason, rule_ref, decision_id}
-  |      → hacia cada key account:strategy viva de la cuenta
-  |      → intent de terminación requested_by=SAFETY_PLANE (R3 D2-04)
-  |      → cancela Orders vivas + emite close-orders por el path normal (gate no aplica a salidas)
-  |      → TERMINAL(SAFETY_FLATTEN) SÓLO cuando guards D2-04: exposure==0 ∧ 0 live orders ∧ intent
-  └─ cambios sin safety intent: instrumento prohibido ⇒ deny adds; cap bajado ⇒ ReservationRevalidate/
-  |  denegación de nuevas reservas + PROVIDER_EXPOSURE_OVER_LIMIT fail-visible sin liquidación;
-  └─ entitlement revocado (re-binding a programa FORBIDDEN/UNKNOWN):
-       DENY_NEW_RISK permanente + SUSPENSIÓN de TODA emisión automatizada (incluida gestión MM)
-       + SUSPENDED_ENTITLEMENT (flag operacional sobre Operations afectadas — NO Operation.status,
-       NO termination intent) + operador: (a) attestation operator_authorized_close_only ⇒
-       re-emisión sólo de cierres; (b) flatten manual en la plataforma del provider ⇒
-       POSITION_MISMATCH fail-visible resuelta por operador. Re-habilitación: manual del binding.
-       NUNCA ForceClose automático (emitirlo podría ser en sí la actividad prohibida).
+clock/calendar/account/risk/rule update
+  → echo/provider_rules(account_id)
+
+regla con flatten explícito
+  → ProviderForceClose{account_id, decision_id, reason, rule_ref}
+  → enumerate AccountStrategyRoutingIndex(account_id)
+  → Send intent to EVERY echo/operation(account_id:account_strategy_id)
+       ACTIVE binding
+       DISABLED binding
+       CLOSE_ONLY binding
+     key sin Operation → no-op idempotente
+     key con Operation → termination intent requested_by=SAFETY_PLANE
+                        → cancel live Orders + close path
+                        → TERMINAL sólo por guards D2-04
 ```
 
-El estado físico no confiable también corta new risk: `POSITION_MISMATCH` vigente, observación stale/ausente o breach ⇒ `PHYSICAL_STATE_UNTRUSTED` ⇒ `DENY_NEW_RISK` hasta reconvergencia del comparador D2-04 §7.3 u operador; sin reconciliation repair (`DT-EF-POSITION-RECONCILIATION-05` diferido). El plano safety del owner (automations RFC-005, emergency close) sigue operando en paralelo, intacto.
+### R17 — deterministic fan-out
+
+No existe wildcard StateFun y PG no participa de correctness. El fan-out usa el catálogo/config routing completo de AccountStrategies para la Account, disponible en el control-plane/kache que ya alimenta fan-out. V1 congela una regla de lifecycle simple: **disable es soft; la routing identity de una AccountStrategy no se hard-tombstonea mientras pueda poseer una Operation no terminal**. En práctica, el registro se conserva para safety fan-out durante la vida operativa de la Account; GC físico queda fuera del hot path y sólo puede ocurrir tras certificar que no existe Operation viva. Así provider_rules no necesita descubrir "sólo las vivas": envía a todas las keys conocidas y las vacías hacen no-op.
+
+Caso obligatorio: Account A con AS1 ACTIVE+Operation, AS2 sin Operation y AS3 disabled+Operation. Forced-flat envía el mismo `decision_id` a AS1/AS2/AS3; AS1 y AS3 registran el termination intent, AS2 no-op. Replay es idempotente por `decision_id`/intent identity; ninguna Operation viva se omite.
+
+Cambios sin safety intent siguen separados: instrumento prohibido/cap bajado ⇒ deny adds y revalidation; entitlement revoked ⇒ DENY_NEW_RISK + suspensión de emisión + `SUSPENDED_ENTITLEMENT` + operador, **sin ForceClose automático**. `ForceClose != TERMINAL` permanece literal.
 
 ## 17. Hot vs pinned semantics
 
 | Clase | Elementos |
 |---|---|
-| **PINNED / SNAPSHOTTED** (inmutable en la vida de la entidad) | `Operation.contract_id` (pin al materializar, D2-01); specs económicas del Contract embebidas en el snapshot de Operation (`tick_size`, `point_value`/`tick_value`, `qty_min/step`); `direction` sellada por la Signal (R2); config MM efectiva del snapshot (D2-01/04, sin revisiones); calendar snapshot input de un run histórico (manifiesto: `revision_hash` + payload + transiciones); RuleSet snapshot inyectado cuando un run simula un ProviderProgram |
-| **DYNAMIC / HOT** (vigencia prospectiva) | `InstrumentMapping` corriente por binding (afecta sólo materializaciones futuras); `ProviderRuleSet` autoridad corriente (reevaluación inmediata al publicarse; safety actúa en vivo sólo vía intents); `ProviderAccountBinding` corriente (re-binding in-place); `ExchangeCalendar` live config (dataset append-fechado, overrides corrigen como nueva versión); estado de Account (AccountState); estado de admisión provider (admission snapshot); estado de riesgo provider (daily/trailing/news) |
-| **PROVENANCE-ONLY** (registro, no autoridad) | `rule_set_id/rule_set_version` en cada `ProviderDecision` y en el epoch de cada GRANT; `admission_decision_id` en Operation (referencia a la decisión que la admitió); `calendar revision_hash`/metadata de snapshots del manifiesto del run; `rejection{source: PROVIDER_GATE, decision_id}` en Orders denegadas; audit facts de re-binding (Kafka/OTel) |
+| **PINNED / SNAPSHOTTED** | `Operation.contract_id`; specs económicas del Contract embebidas en Operation; `direction`; config MM efectiva; snapshots de Calendar/RuleSet/DayBoundary inyectados en un run histórico. |
+| **DYNAMIC / HOT** | InstrumentMapping corriente por binding; ProviderRuleSet; ProviderAccountBinding; AccountState; ExchangeCalendar live config; provider risk state; **DayBoundary efectivo Futures**; routing catalog de AccountStrategies. |
+| **READ MODEL / OPTIMIZATION** | admission snapshot compactado/kache: prefilter + observabilidad, nunca linearization authority de Stage-1. |
+| **PROVENANCE-ONLY** | `ProviderDecision.rule_set_id/version`, `admission_decision_id`, grant epoch, calendar/run hashes/snapshots, binding audit facts, DayBoundary config transition facts. |
 
-Ninguna provenance crea un framework genérico de versiones (D2-01): son referencias/payloads puntuales con retención de topics/OTel o del run artifact.
+### R15 hot admission ordering
+
+`AdmissionRequest`, RuleSet/binding/account-state/risk/DayBoundary updates se serializan en `echo/provider_rules(account_id)`. El orden procesado define la autoridad efectiva del request. Un result ALLOW conserva esa provenance aunque un update posterior cambie la cuenta; Stage-2/egress es la defensa para comandos todavía no emitidos.
+
+### R18 DayBoundary update ordering
+
+El update de DayBoundary se procesa en esa misma cola. Al activarlo:
+
+- acumuladores diarios actuales permanecen;
+- no existe reset retroactivo ni reset provocado sólo por cambiar config;
+- la config vieja deja de gobernar crossings futuros desde el linearization point;
+- `next_reset_at` se recalcula prospectivamente con la nueva config usando como piso el boundary futuro ya comprometido/activation watermark, evitando ejecutar un segundo reset del mismo estado inmediatamente después de un reset anterior;
+- el primer crossing qualifying bajo la nueva autoridad ejecuta un único reset.
+
+Ejemplo: misma Account, reset viejo 16:00 CT, re-binding a 17:00 CT. Si el update se procesa antes de las 16:00, 16:00 viejo no se ejecuta y el próximo qualifying es 17:00. Si se procesa después de que 16:00 ya reseteó, no se crea un segundo reset a las 17:00 ese mismo ciclo; la próxima frontera nueva se agenda para el siguiente qualifying 17:00. La autoridad nueva jamás usa timezone vieja después de activarse.
+
+No se crea `DayBoundaryVersion`: esto es config hot + estado mínimo del owner.
 
 ## 18. Provenance
 
-Contrato único `ProviderDecision {decision_id UUIDv7; account_id; account_strategy_id?; operation_id?; kind: ADMIT_OPERATION|DENY_NEW_RISK|ADMIT_ORDER|DENY_ORDER|SAFETY_FORCE_CLOSE; provider_id; program_id; phase?; rule_set_id; rule_set_version; rule_family; reason tipado; evaluated_at; exposure_state_as_of?}`. Persistencia en dos canales, ambos checkpoint-atómicos: decisiones de `echo/provider_rules` por su egress transaccional `echo.provider-decisions.v1` (projector PG eventual); decisiones dentro de `echo/operation` (admisión de materialización, DENY_ORDER) como record `PROVIDER_DECISION` por el egress de proyecciones/facts R14 (`echo.operation-projections.v1`). Operation guarda **sólo referencias** (`admission_decision_id` aditivo; `termination` conserva su shape D2-04 con el decision_id del intent). Calendar provenance: manifiesto del run con `{calendar_id → (revision_hash, snapshot_payload[, transiciones])}` — el anchor es el snapshot grabado, no un puntero; el resolver recibe dataset inyectado, nunca un anchor (B-R2). OTel complementa, no sustituye los facts durables. Sin history engine genérico, sin tablas de eventos (R9 intacto).
+`ProviderDecision` sigue siendo el fact mínimo con `decision_id, account_id, account_strategy_id?, operation_id?, kind, provider/program/phase?, rule_set_id/version, rule_family, reason, evaluated_at`.
+
+Con R15, la decisión **Stage-1** nace en `echo/provider_rules` junto con `AdmissionResult` y sale por su egress transaccional; `echo/operation` sólo referencia el `decision_id` si finalmente materializa. Los DENY de shared-cap también nacen en provider_rules; un PER_ORDER local puede registrar su ProviderDecision en la frontera transaccional de operation. Operation guarda referencias, no snapshots de history.
+
+DayBoundary re-binding/config update produce audit/provenance fact con config efectiva y activation instant; no crea entidad versionada. Calendar/run provenance y RuleSet snapshot-in-manifest permanecen como estaban. PG sigue siendo proyección eventual, nunca correctness/recovery authority.
 
 ## 19. LIVE / REPLAY / BACKTEST contract
 
-Misma lógica de dominio (paquetes Go puros, sin infra — boundary Q14) para: identidad Instrument; semántica económica Contract; CalendarResolver y session_date; NamedTradingWindow; reglas provider tipadas cuando el run simula un ProviderProgram; Strategy/Signal; MM; semántica Operation. **LIVE** consume hot config vigente (kache). **REPLAY/BACKTEST** inyecta snapshots/config inputs explícitos del run: el calendario se resuelve contra el **snapshot payload del manifiesto del run**, nunca contra la config mutable actual; una rerun what-if puede inyectar el dataset actual — la divergencia de hashes es visible, jamás silenciosa. **Provider RuleSet histórico:** A/B/C congelan familias+parámetros y version/provenance del RuleSet, pero no una política completa de grabación de RuleSet histórico para sesiones live; el seam mínimo congelado aquí (sin inventar entidad): un run que simula un ProviderProgram declara en su manifiesto el input de autoridad — `{provider, programa[, fase]} → (rule_set_id, rule_set_version, snapshot payload/hash)` — con el **mismo patrón run-input provenance del calendario** (anchor = snapshot grabado; registro obligatorio en el proceso consumidor; sin servicio de revisiones); riesgo residual declarado en §23 (procesos sin provenance registrada y drift de valores owner-managed). D2-04 ya acotó el claim general: mismo stream ordenado ⇒ mismas decisiones; recorded streams/ordering es del workstream D2 Market/Replay — no se reabre.
+La misma lógica de dominio pura se usa en los tres modos para Instrument/Contract, CalendarResolver/session_date, NamedTradingWindow, ProviderRuleSet evaluators, DayBoundary resolver, Strategy/Signal/MM y Operation semantics.
+
+**LIVE** consume config hot. Stage-1 no acepta desde un snapshot eventual: siempre lineariza en `echo/provider_rules(account_id)`. DayBoundary live usa la config explícita del binding/rules, no el `DayBoundaryCache` mutable legacy.
+
+**REPLAY/BACKTEST** inyecta inputs explícitos del run:
+
+- Calendar snapshot payload + revision hash/transitions;
+- ProviderRuleSet snapshot/provenance si se simula un programa;
+- DayBoundary config inicial + transiciones efectivas de re-binding/reset authority;
+- Contract/catalog inputs necesarios.
+
+El resolver DayBoundary es el mismo concepto en live y offline: timezone IANA + reset local + reset semantics + transición prospectiva. Un replay nunca consulta el cache live ni el fallback UTC 23:00. Recorded streams/ordering general sigue siendo seam de D2 Market/Replay y no se diseña aquí.
 
 ## 20. D2-04 lifecycle integration
 
-Intacto y verificado punto por punto: la Operation se materializa ANTES de MM (la admisión provider Stage-1 es un guard más de la materialización, al nivel de `valid_until`/pin/direction); el order gate Stage-2 vive después de MM y antes del egress (una Order denegada nunca entra al command topic: sin comando físico, sin journal de adapter, sin pregunta M2); `ForceClose != TERMINAL` (intents R3; TERMINAL exige guards); el pin de Contract y el snapshot MM de una Operation viva jamás son mutados por hot updates de reglas/calendario/mapping; **no se agregó ningún `Order.status`** (`PENDING_FINALITY` es `reservation.finality_state`; `SUSPENDED_ENTITLEMENT` es flag operacional; `REJECTED{PROVIDER_GATE}` reutiliza el enum existente con provenance estructural aditiva); `TERMINAL(ENTRY_REJECTED)` reutilizado para entradas denegadas con causa en provenance; fills post-terminal siguen el path R13; Position sigue siendo observación física neta `(account, contract)` y trust guard del gate, jamás mutador del lifecycle; la familia de egress/projections R14 transporta también los `PROVIDER_DECISION` internos.
+D2-04 permanece intacto:
+
+- Operation se materializa antes de MM. Stage-1 es un **request/response de aceptación** previo a materialización; no crea otro aggregate.
+- Operation owner sigue `account_id:account_strategy_id`; provider_rules no posee lifecycle, sólo admission/capacity/safety projection account-scoped.
+- Stage-2 vive después de MM y antes de egress.
+- Capacity updates derivados de Fills no mutan Operation: Operation emite su exposición cumulativa; provider_rules mantiene una proyección para enforcement.
+- exits/safety closes siguen el lifecycle normal y sus Fills actualizan la capacity projection igual que entradas/adds.
+- ForceClose sigue siendo termination intent; TERMINAL exige guards.
+- Contract/MM snapshot permanece pinneado; hot rule/day-boundary/calendar/mapping updates no lo mutan.
+- `PENDING_FINALITY` es reservation state, no Order.status; `SUSPENDED_ENTITLEMENT` es flag operacional.
+- Fill truth sigue inmutable; late/reconciled fills actualizan Operation y capacity projection, nunca synthetic repair.
+- Position sigue `Account+Contract` y trust guard; no se transforma en portfolio aggregate.
 
 ## 21. Echo V3 REUSE/EXTEND/ADAPT/REPLACE map
 
-Integrado de los tres TOPs (sólo piezas ya verificadas por ellos; blobs @ `372af59a`):
-
-| Pieza V3 | Disposición | Evidencia (path · blob) |
+| Pieza V3 | Disposición final | Evidencia / razón |
 |---|---|---|
-| InstrumentSnapshot | REUSE (path legacy) / no es fuente de specs del dominio nuevo | `v3/sdk/domain/snapshots.go` · `d319d0a3` |
-| MMEngineFn | ADAPT → resolución explícita + pin en `echo/operation` | `v3/core/internal/functions/mm_engine.go` · `e725ceb0` |
-| SymbolMappingHandler (+topic `echo.symbol-mappings.v1`) | REUSE/EXTEND — patrón hot config (Hasura→topic compactado→tombstone) para todos los catálogos nuevos | `v3/gateway/internal/symbol_mapping_handler.go` · `a9364d4a` |
-| ConfigCache / kache | REUSE (ready channel + lectura in-process) / EXTEND con caches instrument/contract/mapping/calendars/windows/provider | `v3/core/internal/config_cache.go` · `eecc6f9e`; `v3/sdk/kache/account_configs.go` · `2991979b` |
-| DayBoundaryCache + `prop_rulesets.daily_reset_*` | REUSE (autoridad account_day separada) / EXTEND fail-closed (day boundary explícito Futures; fallback UTC-23:00 prohibido en camino nuevo) | `v3/core/internal/functions/account_sync.go` · `b0f8f1ce`; `001_schema_baseline.up.sql` · `a186be35` |
-| ExecutionPolicy | ADAPT (separa binding/MM/knobs; pips legacy-only) | `v3/sdk/domain/execution_policy.go` · `295f7ea2` |
-| StrategyConfigFn | REUSE (patrón KVS config) | `v3/core/internal/functions/strategy_config.go` · `b89a9a1a` |
-| AutomationEvaluatorFn + typed evaluators/registry + AutomationCache/TriggerCache | REUSE (patrón chain snapshot→evaluación sin I/O→egress exactly-once; familias tipadas) — `echo/provider_rules` replica la forma, autoridad distinta | `automation_evaluator.go` · `9503410e`; `core/internal/automation/evaluator.go` · `bf97b13a`; `cache.go` · `39a461e3` |
-| ClientConfig / AccountState / TradingWhitelist | REUSE (autoridad operacional de cuenta + whitelist canónica, complementa permitted-instruments) | `v3/sdk/domain/client_config.go` · `587eb5c4` |
-| Gateway CloseHandler (CloseBatch/CloseAll) | REUSE (patrón safety account-wide) → apunta a intents R3 del aggregate nuevo | `v3/core/internal/functions/close_handler.go` · `8dba9731` |
-| Gateway automation handlers/news evaluator | REUSE/ADAPT (transporte webhook→Kafka de catálogos; precedentes de familias news) | `v3/gateway/internal/automation/handler.go` · `5f0a99e2`; `news_blackout_evaluator.go` · `4bda7e10` |
-| Gateway automation ScheduleActionExecutor (MEN-1) | REUSE (precedente LoadLocation tz-safe) | `v3/gateway/internal/automation/executor.go` (LoadLocation line ~396) |
-| strategy_history contracts (IANA validation, RFC3339Nano) | REUSE (precedente de validación tz e instants UTC) | `v3/sdk/contracts/strategy_history.go` · `e43bc48b` |
-| `echo.prop_rulesets` (legacy) | REUSE (concepto) / REPLACE (shape): identity `prop_firm` + enum `phase_type` + columnas planas sin version/provenance = anti-patrón corregido; su FK alimenta el DayBoundary durante la transición | `001_schema_baseline.up.sql` · `a186be35` |
-| Bridge mapper/symbol_mapping_cache | REUSE legacy (detransform edge); unificación futura = `DT-EF-CROSS-MARKET-INSTRUMENT-02` | `v3/bridge/internal/mapper.go` · `76a1b1de` |
-| Provider/Program/RuleSet/Binding + `echo/provider_rules` + CalendarResolver + catálogos calendario/ventanas | NEW (no existen en V3; grep 0 hits en ambos TOPs) | — |
+| InstrumentSnapshot | REUSE legacy observation / no source-of-truth de specs nuevas | `v3/sdk/domain/snapshots.go` · `d319d0a3` |
+| MMEngineFn | ADAPT hacia Contract pin explícito | `v3/core/internal/functions/mm_engine.go` · `e725ceb0` |
+| SymbolMappingHandler / compacted config pattern | REUSE/EXTEND para nuevos catálogos | `symbol_mapping_handler.go` · `a9364d4a` |
+| ConfigCache / kache | REUSE patrón readiness/read model; **admission kache no es authority Stage-1** | caches actuales |
+| **DayBoundaryCache + prop_rulesets.daily_reset_*** | **REUSE concepto/cálculo local; ADAPT/REPLACE mecanismo para Futures** | `v3/core/internal/functions/account_sync.go` · blob `b0f8f1ce`: comentarios físicos dicen cache forever, sin TTL/invalidation porque fase nueva⇒account_id nuevo; además fallback UTC 23:00. Incompatible con ProviderAccountBinding re-binding in-place del mismo account_id. Futures usa hot config account-keyed en provider_rules, explicit/readiness-safe, sin fallback. |
+| ExecutionPolicy | ADAPT/SPLIT | binding/MM/knobs legacy mezclados |
+| StrategyConfigFn | REUSE patrón KVS config | `b89a9a1a` |
+| AutomationEvaluatorFn / typed evaluators | REUSE patrón typed evaluation + egress | precursor de provider rules, autoridad distinta |
+| ClientConfig / AccountState | REUSE input operativo; AccountState update debe llegar al owner provider_rules para R15 | `587eb5c4` |
+| CloseHandler account-wide | REUSE patrón de acción safety, **no** descubrimiento de keys | fan-out nuevo usa routing index AccountStrategy, no PG/wildcard |
+| `echo.prop_rulesets` legacy | REUSE concepto / REPLACE shape | sin program/version/provenance y acoplado al DayBoundary legacy |
+| Provider domain / provider_rules / CalendarResolver / capacity projection / AccountStrategyRoutingIndex | NEW | no existen como dominio V3 |
+
+La corrección R18 es explícita: ya no se clasifica DayBoundaryCache como REUSE directo de autoridad/cache. Sólo se reaprovechan semánticas/calculadores útiles; el cache/update contract se reemplaza para Futures.
 
 ## 22. Migration implications
 
-Transición conceptual (orden compatible con legacy V3, sin big bang): (1) nuevos catálogos/config en PG (instruments/contracts/identifiers/mappings; exchange_calendars; trading_windows; providers/programs/rule_sets/bindings) — alta owner via Hasura; (2) hot distribution: handlers Gateway + topics compactados + kache (patrón existente); (3) Instrument/Contract mapping con bindings (`MARKET_DATA`/`EXECUTION`) conviviendo con `symbol_mappings` legacy (el bridge MT sigue su path); (4) CalendarResolver + readiness fail-closed (sin calendario no se opera Instrument Futures; el legacy MT no consulta el resolver); (5) Provider binding/RuleSet (onboarding con provenance; sin RuleSet efectivo ⇒ cuenta no admite riesgo); (6) Stage-1 admission como guard de materialización en el aggregate nuevo (no toca ExecutionPlannerFn legacy); (7) Contract pinning + snapshot specs (dominio puro + `echo/operation`); (8) Order reservation/gate con `echo/provider_rules` (protocolo R2.5); (9) safety intents (`ProviderForceClose`) en paralelo con el CloseHandler legacy; (10) coexistencia temporal: `symbol_mappings` y `prop_rulesets` legacy permanecen para el path Forex/CFD/Reference hasta su migración (deudas `DT-EF-FX-PROP-01`/`DT-EF-CROSS-MARKET-INSTRUMENT-02`); `prop_rulesets` alimenta el DayBoundary existente mientras dure. Ningún paso exige reescritura de Core (Q1 owner-accepted).
+Secuencia conceptual, sin big bang:
+
+1. crear catálogos A/B/C y distribución hot/readiness-safe;
+2. mantener symbol mappings/prop_rulesets legacy sólo para el path actual;
+3. introducir CalendarResolver y ContractResolver Futures;
+4. introducir `echo/provider_rules(account_id)` con RuleSet/binding/account-state/DayBoundary state;
+5. publicar `AdmissionRequest/AdmissionResult`; kache admission queda prefilter/read model;
+6. añadir capacity projection `firm_by_operation` + `live_reservations` y `CapacityStateUpdate` cumulativo desde cada Fill de Operation;
+7. conservar reservation finality/modify/replace/egress revalidation;
+8. materializar `AccountStrategyRoutingIndex` desde config y congelar soft-disable/routability para safety fan-out;
+9. adaptar el DayBoundary Futures: dejar de usar lazy immutable cache/fallback; binding hot explícito → provider_rules;
+10. safety intents account-wide se fan-out determinísticamente a todas las AccountStrategy keys;
+11. replay/backtest recibe snapshots/transiciones de Calendar/RuleSet/DayBoundary, nunca caches live.
+
+No se modifica el path legacy MT/Forex en este workstream. No se crea portfolio aggregate, workflow engine ni calendar service.
 
 ## 23. Risks/debts (consolidado)
 
-- **Curación owner de `product_group`/`calendar_ref`/calendarios/RuleSets:** datos owner-managed incorrectos degradan caps/sesiones sin error runtime (el resolver resolvería "correctamente" un calendario equivocado); mitigaciones: validación de config, fail-closed de readiness/unresolved, hash visible en runs; residual de la misma clase que el symbol mapping de hoy. (A R-G, B R1, C fidelidad de valores.)
-- **FX para MM:** cuentas no-USD sobre contracts USD exigen conversión FX en MoneyManagement — seam declarado, bloqueante de sizing fixed-risk, no de identidad. (A R-B.)
-- **Old Contract venue behavior:** cierre sobre contrato expirado/inactivo depende del venue (`ContractNotActive` etc.); fail-visible por diseño; el borde exacto post-deactivation sigue UNKNOWN no bloqueante (Front E §22). (A R-E/Caso H.)
-- **Calendar/tzdata historical provenance:** tzdata/regla civil entre releases — visible por identifier en manifiesto, no recuperable; correcciones de fechas ya operadas sólo como nueva versión (`corrected_at`) — hash hace la divergencia visible. (B R2.)
-- **Venue finality trust:** release de reservas exige finalidad venue-autoritativa (open+history por tag); un venue que contradice su propio history rompe a cualquier cliente — `PROVIDER_CAP_BREACH_POST_FINALITY` fail-visible, sin repair. (C R2.1.)
-- **PHYSICAL_STATE_UNTRUSTED:** mientras la base física esté inconsistente/stale, los opens quedan pausados fail-closed (las salidas fluyen); reconvergencia u operador reabre. (C R2.4.)
-- **Provider policy ingestion/drift:** las firmas cambian política unilateralmente; Echo depende del refresh owner del catálogo (no auto-detección); binding stale = riesgo operacional del owner, mitigado por fail-closed de admisión y alertas. (C §16.)
-- **UNKNOWN evidence:** Tradeify automation/copy y FundedNext copy = UNKNOWN (no activables como hard rules; advisory); Lucid allowed-window/4:45 retirado por C-R5; activar hard rules exige reconciliación de evidence authority (decisión SUBMANAGER). (C R2.7/C-R5.)
-- **Latencia del reservation hop:** un hop interno adicional in-process en la emisión (mensajería entre funciones del mismo runtime); a medir en D6. (C R1.)
-- **Deuda legacy:** migración pips/symbol_mappings/prop_rulesets (`DT-EF-FX-PROP-01`, `DT-EF-CROSS-MARKET-INSTRUMENT-02`, limpieza pips pendiente de ratificación owner); resolución histórica de contratos por fecha para el backtester (sin lifecycle timestamps); caps físicos inclusivos (Position como input de reserva) DEFER. (A/B/C.)
+- **Admission hop R15:** Stage-1 agrega un request/response account-keyed antes de materializar. Es costo de correctness; kache prefilter evita carga inútil. Medir latencia en D6.
+- **Capacity projection R16:** `firm_by_operation` puede ir detrás del operation owner durante tránsito de mensajes. Updates son cumulativos/idempotentes; cualquier estado físico/lógico conocido como stale/mismatch activa `PHYSICAL_STATE_UNTRUSTED` y corta NEW_RISK. No auto-repair.
+- **Opposite Operations:** GROSS requiere per-Operation exposure; NET_ABS y GROUP_WEIGHTED deben usar la métrica tipada del RuleSet. La proyección account-keyed puede crecer con #Operations vivas/históricas retenidas, acotable por cleanup después de terminal+finality.
+- **Safety routing R17:** retener routing identities de AccountStrategy implica soft-delete/GC diferido. Es deuda operacional pequeña a cambio de cobertura determinista; hard GC no pertenece al hot path.
+- **DayBoundary R18:** cambios de timezone/reset in-place requieren transición prospectiva y run provenance. El source legacy no sirve como autoridad hot; cualquier fallback UTC 23:00 en el camino Futures es defect.
+- **Provider policy drift:** sigue siendo owner-managed; Echo no descubre cambios de firma automáticamente.
+- **Venue finality trust:** unchanged; un venue que contradice history-by-tag produce breach fail-visible.
+- **FX MM, old-contract behavior, calendar/tzdata history, UNKNOWN provider claims y deudas legacy pips/symbol mappings** permanecen como en los child artifacts; ninguna cambia por R15–R18.
 
 ## 24. Owner decisions
 
-`OWNER DECISIONS REQUIRED: NONE` — los tres TOPs declaran NONE y la integración no descubrió contradicción nueva (§20 del mandato). Ratificaciones técnicas ordinarias para el manager (no owner, no cambian semántica): (1) nombres físicos de functions/topics/tablas nuevos (`echo/provider_rules`, topics config/decisions/admission, tablas catálogo — C §17; `echo.exchange-calendars.v1`, `echo.trading-windows.v1`, `echo.exchange_calendars`, `echo.trading_windows` — B; instruments/contracts/identifiers/mappings — A); (2) firma del API del resolver y primitivas provider (`SessionState/SessionDate/SessionBoundaries/NextSessionTransition` por `calendar_id`); (3) requisito de build `_ "time/tzdata"`; (4) snapshot-en-manifiesto como anchor de run (calendario y RuleSet simulado); (5) enums/flags/campos aditivos de C §17 (`reason` tipado, `admission_decision_id`, `rejection{PROVIDER_GATE}`, `SUSPENDED_ENTITLEMENT`, `phase?` nullable, epoch del GRANT + `ReservationRevalidate`).
+`OWNER DECISIONS REQUIRED: NONE`.
 
-## 25. Acceptance cases A–H
+R15–R18 son correcciones técnicas dentro de autoridades ya congeladas. Quedan sólo ratificaciones de implementación: nombres físicos de mensajes/functions/topics/tables; shape exacto de `AdmissionRequest/Result`, `CapacityStateUpdate`, routing index y config DayBoundary; enums/reasons/provenance fields. Ninguna cambia identidad, lifecycle ni autoridad de producto.
 
-- **A — rollover manual (PASS-BY-DESIGN):** mapping `(EXECUTION, projectx-topstep, NQ)→NQZ6`; Operation A materializa (pin `NQZ6` + specs embebidas); owner rola la fila a `NQH7`; Operation B nueva resuelve `NQH7`; A sigue `NQZ6` en adds/reduces/fills y su Position vive en `(account, NQZ6)`. Ningún retarget (A Caso A).
-- **B — feed/execution identifiers differ (PASS-BY-DESIGN):** Strategy emite `instrument_id=NQ` agnóstica; el feed resuelve `(MARKET_DATA, databento-main, NQ)→NQZ6` + identifier `(databento, MARKET_DATA)=X`; la Account resuelve `(EXECUTION, projectx-topstep, NQ)→NQZ6` + identifier `(projectx, EXECUTION)=CON.F.US.ENQ.H25 (Y)`; X≠Y, mismo Contract Echo; rollover de feed y ejecución en momentos distintos sin tocar Operations. (A Casos B/A-R1-1/2/3.)
-- **C — Exchange open, Provider blocks (PASS-BY-DESIGN):** `SessionState(CME_EQ_INDEX, t)=OPEN` y `AccountState=ACTIVE`, pero admission snapshot `DENY_NEW_RISK` (p. ej. ventana provider cerrada, `WINDOW_CLOSED`) ⇒ la OPEN no se acepta: **no hay Operation, ni MM, ni Orders**; `ProviderDecision{DENY_NEW_RISK}` durable; los cierres de otras Operations de la cuenta siguen fluyendo. (C Caso C.)
-- **D — forced flat (PASS-BY-DESIGN):** RuleSet declara cutoff 3:10 PM CT; `echo/provider_rules` dispara `ProviderForceClose` hacia cada key viva ⇒ intent `requested_by=SAFETY_PLANE`; cancela Orders working, emite close-orders (gate no aplica a salidas); `TERMINAL(SAFETY_FLATTEN)` sólo al cumplirse guards D2-04 — **no instant TERMINAL**; un fill tardío post-terminal va al path R13. (C Caso D.)
-- **E — early close (PASS-BY-DESIGN):** override fechado `EARLY_CLOSE 13:15 CT` en `CME_EQUITY_INDEX`; LIVE: 13:14 OPEN, 13:16 CLOSED(no_session), `NextSessionTransition` → apertura dominical; REPLAY con el snapshot anclado del manifiesto: mismas resoluciones byte-idénticas (mismo resolver + mismo dataset inyectado); barras cierran el día en 13:15 por el contrato D2-06. (B Casos E/B-R2-CASE-2.)
-- **F — Account DayBoundary (PASS-BY-DESIGN):** al cruzar el boundary de la cuenta (tz+reset del binding, vía DayBoundaryCache), `echo/provider_rules` resetea acumuladores diarios (daily HWM, prev-day-close, deny por daily-loss expira) con `reset_semantics` tipado; no toca ExchangeSession/trade-date de B ni Contract; una Operation viva no muta. (B Caso F, C Caso F.)
-- **G — live RuleSet update (PASS-BY-DESIGN):** nueva versión ACTIVE ⇒ reevaluación inmediata; decisiones nuevas portan `rule_set_version` nueva; Operations vivas conservan pin+snapshot. Con safety intent (cutoff alcanzado, daily-loss con flatten declarado): `ProviderForceClose` ⇒ intents. Sin intent: instrumento prohibido ⇒ deny adds; cap bajado ⇒ grants outstanding `ReservationRevalidate` (epoch cambió ⇒ INVALID ⇒ `REJECTED{PROVIDER_GATE}` + release, sin egreso; C-R3-B), exposición ya física ⇒ `PROVIDER_EXPOSURE_OVER_LIMIT` fail-visible sin liquidación; entitlement revocado ⇒ suspensión de emisión + `SUSPENDED_ENTITLEMENT` + operador, **nunca ForceClose automático**. (C Caso G/C-R3-B/C.)
-- **H — old Contract edge (PASS-BY-DESIGN):** Operation A (pin `NQZ6`) activa tras el rollover; MM emite CLOSE con `contract_id=NQZ6` + identifier corriente de `NQZ6`; el venue ejecuta o rechaza (`REJECTED` fail-visible); **jamás** current mapping, jamás remap silencioso; la migración de exposición es decisión owner explícita. (A Caso H.)
+## 25. Acceptance cases A–H + Primary Manager R15–R18
 
-### Pruebas de integración I-R1
+### A–H originales
 
-- **I-R1-A — sin TOCTOU en la resolución de Contract:** un mapping hot cambia entre los pasos conceptuales de la guard de materialización y NO puede producir un Contract distinto al pinneado, porque no existe pre-check + segunda lookup: `ResolveExecutionContract(Instrument, Account.execution_binding_id) → ResolvedContract` es una única llamada que valida y resuelve, y su valor retornado es exactamente el objeto pinnneado en el paso 5; no hay segundo lookup del mapping en ningún path posterior del aggregate.
-- **I-R1-B — skew entre owners fail-safe:** un Fill se aplica en el operation owner mientras `echo/provider_rules` aún no consumió el `CapacityUpdate`: provider_rules retiene la reserva vieja (over-reservación); una nueva solicitud de exposición en esa ventana puede ser **over-denied** (false DENY conservador); **no puede ser over-granted**, porque la capacidad liberada/consumida recién existe para el gate cuando el update cumulative se aplica idempotentemente en su propio keyed state. Cuando el update llega, el estado converge; los releases exigen finalidad venue-autoritativa en ambos owners.
+- **A — rollover manual:** Operation A pin NQZ6; mapping hot a NQH7 sólo afecta B nueva; A nunca retargetea.
+- **B — feed/execution IDs:** Strategy usa NQ; feed/exec bindings e identifiers difieren sin contaminar Strategy.
+- **C — exchange open/provider blocks:** Session OPEN no basta. Stage-1 `AdmissionRequest` se lineariza en provider_rules; DENY ⇒ no Operation.
+- **D — forced flat:** intent fan-out determinista a todas las AccountStrategy keys; Operation TERMINAL sólo por guards D2-04.
+- **E — early close:** Calendar override + snapshot de run reproducen session boundary/date.
+- **F — Account DayBoundary:** reset account-scoped no modifica ExchangeSession ni Contract; Futures usa config hot explícita, no cache forever.
+- **G — RuleSet update:** decisiones nuevas ven la versión según orden account-keyed; grants no emitidos revalidan; Operation conserva Contract/MM snapshot.
+- **H — old Contract:** REDUCE/CLOSE sigue contract pinneado; venue rejection visible; nunca remap.
+
+### R15-A — hot deny before OPEN
+
+`provider_rules` procesa v6=DENY y luego `AdmissionRequest`. La cola account-keyed evalúa v6 ⇒ DENY; no Operation.
+
+### R15-B — OPEN linearizes before update
+
+`AdmissionRequest` procesa ALLOW bajo v5; después llega v6. El result conserva v5 provenance y Operation puede materializar si sus guards locales siguen válidos. Antes de efecto físico, Stage-2/egress usa autoridad corriente/epoch; v6 puede impedir la Order. Race semánticamente definida.
+
+### R16-A — reduction updates capacity
+
+Operation firm +4. EXIT Fill -2 actualiza exposición lógica a +2 y emite `CapacityStateUpdate{cumulative_signed_exposure:+2}`; provider_rules reemplaza el valor cumulativo ⇒ firm capacity +2. Intent sin Fill no cambia capacity.
+
+### R16-B — opposite Strategies
+
+S1 exposure +4 y S2 -3 bajo la misma Account: `firm_by_operation={S1:+4,S2:-3}`. NET_ABS = |+1| = 1; GROSS = |4|+|−3| = 7. No portfolio aggregate.
+
+### R16-C/D — replay + partial exit
+
+Mismo `operation_event_seq`/cumulative update reaplicado ⇒ no cambio. Partial exit sólo reduce `cumulative_signed_exposure` por la qty realmente filled.
+
+### R17 — forced-flat full coverage
+
+AS1 ACTIVE+live, AS2 empty, AS3 disabled+live. Routing index contiene las tres identities; ForceClose se envía a las tres. AS1/AS3 registran intent, AS2 no-op. Replay mismo decision_id es idempotente. PG no se consulta.
+
+### R18 — binding changes DayBoundary
+
+Mismo account_id: old 16:00 CT → re-binding 17:00 CT. Update se lineariza en provider_rules, preserva acumuladores y reemplaza autoridad prospectiva; no se vuelve al cache legacy. Si 16:00 aún no ocurrió, el boundary viejo deja de gobernar y el próximo qualifying es 17:00. Si 16:00 ya reseteó, el update no dispara otro reset a 17:00 ese mismo ciclo; agenda el siguiente qualifying 17:00. Falta/invalid config ⇒ DAY_BOUNDARY_UNRESOLVED + DENY_NEW_RISK. Replay inyecta la misma transición.
 
 ## Evidencia
 
-- Children integrados (blobs verificados en HEAD `76836cae` del vault, idénticos a los aprobados por el SUBMANAGER): [[Echo Futures — D2-05A Instrument Contract]] · `6eb671f2`; [[Echo Futures — D2-05B Session Calendar]] · `8058aec0`; [[Echo Futures — D2-05C Provider Program Rules]] · `637c62b8`. Los detalles, repairs y casos de cada TOP viven en sus artefactos; este candidato integra, no duplica ni reabre.
-- Autoridades congeladas: [[Echo Futures]] (D2-01/02/03 OWNER_CLOSED; Q6/Q7/Q10 `D1_INPUT_SUFFICIENT_FOR_D2`), [[Echo Futures — D2-04 Operation Order Fill Position]] (CLOSED R1–R14), [[Echo Futures — D1 Analysis Pack]] (Front E/C/D synthesis), [[CONTRACT + SESSION SEMANTICS — AUTHORITATIVE EVIDENCE]] (S-E01..S-E09, C-E01..C-E08), [[FUTURES PROP UNIVERSE — AUTHORITATIVE EVIDENCE MATRIX]] (matriz autoritativa de automatización/copy — sólo como provenance de afirmaciones de C).
-- Baseline Echo re-verificada para esta integración: `xKoRx/echo origin/master = 372af59a7b83604781346613da01e3d510ea1360` (fetch re-hecho, sin delta). Blobs de source citados en §21 tal como los verificaron los TOPs.
+- Child artifacts A/B/C permanecen sin cambios en este repair; se consumen como autoridad congelada.
+- Echo baseline físico re-verificado: `372af59a7b83604781346613da01e3d510ea1360`.
+- R18 contrastado contra `v3/core/internal/functions/account_sync.go` blob `b0f8f1ce`: `DayBoundaryEntry` documenta "Cache forever" porque fase nueva implica account_id nuevo; `DayBoundaryCache` es lazy DB sin invalidación y cuentas sin ruleset usan UTC 23:00. Esa semántica es incompatible con re-binding Futures in-place y queda clasificada ADAPT/REPLACE para el path nuevo.
+- D2-04 R1–R14 permanece autoridad de Operation/Order/Fill/Position, M1/M2, finality y recovery.
 
 ## Handoff
 
 ```text
-D2-05 INTEGRATION STATUS: READY_FOR_SUBMANAGER_REREVIEW (repair I-R1 incorporado)
+D2-05 REPAIR STATUS:
+READY_FOR_MANAGER_REVIEW
 
-INTEGRATED ARTIFACT: main/10-projects/Echo Futures/Echo Futures — D2-05 Instrument Session Provider.md
+INTEGRATED ARTIFACT:
+main/10-projects/Echo Futures/Echo Futures — D2-05 Instrument Session Provider.md
 
-CHILD INPUTS (blobs verificados == aprobados, sin drift):
-A: main/10-projects/Echo Futures/Echo Futures — D2-05A Instrument Contract.md · 6eb671f2466c5d89ba71686b45f2e4c32d1b033f (READY_FOR_INTEGRATION)
-B: main/10-projects/Echo Futures/Echo Futures — D2-05B Session Calendar.md · 8058aec0edbf852b38fb5bce92304a2a032dd56a (READY_FOR_INTEGRATION)
-C: main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md · 637c62b810ec8723dd421267ffccc583691a584e (READY_FOR_INTEGRATION)
+AGENTS-OS SHA:
+<PIN_AFTER_COMMIT>
 
-ECHO BASELINE: 372af59a7b83604781346613da01e3d510ea1360 (fetch re-verificado, sin delta)
+R15 ADMISSION AUTHORITY:
+Stage-1 ya no acepta desde kache. AdmissionRequest/Result se lineariza en
+echo/provider_rules(account_id), en la misma cola que RuleSet/binding/account/risk/DayBoundary
+updates. Kache queda prefilter/read model. Request antes de update usa autoridad vieja con
+provenance; update primero obliga autoridad nueva. Stage-2/egress revalidation permanece.
 
-I-R1.1 (materialización autoridad única):
-§14 reescrito — guard de materialización: (1) señal/compatibilidad; (2) input de calendario por
-autoridad B (calendar_ref → CalendarResolver; falta ⇒ CALENDAR_UNRESOLVED); (3) Stage-1 provider
-admission por autoridad C — consume instrument_id/exchange/product_group + primitivas de sesión
-de B + estado cuenta/provider/riesgo; permitted instruments scopeado a llaves de Instrument,
-NUNCA lookup de Contract; resultado ALLOW|DENY_NEW_RISK, la admisión NO resuelve Contract;
-(4) resolución ÚNICA del Contract de ejecución por autoridad A dentro de echo/operation:
-ResolveExecutionContract(Instrument, Account.execution_binding_id) → ResolvedContract —
-validación+resolución en una llamada, sin pre-check + segunda lookup (sin TOCTOU); fallo ⇒
-CONTRACT_RESOLUTION_FAILED ⇒ sin Operation; (5) pin del objeto retornado (contract_id + specs +
-direction); (6) Operation CREATED. Ningún guard failure crea Operation.
+R16 CAPACITY PROTOCOL:
+provider_rules mantiene firm_by_operation + live_reservations. Cada Fill Echo, incluidos
+REDUCE/EXIT/safety/late fills, produce CapacityStateUpdate cumulativo con operation_id,
+operation_event_seq, instrument/contract/product_group y cumulative_signed_exposure; replay
+es idempotente. NET_ABS deriva net firmado; GROSS suma abs por Operation; GROUP_WEIGHTED
+aplica pesos. Reservation consumption/finality sigue por Order sin portfolio aggregate.
 
-I-R1.2 (dos owners, Fill/CapacityUpdate):
-§15 reescrito — NO existe mutación atómica cross-owner: echo/operation (account:strategy)
-persiste el Fill y EMITE CapacityUpdate{order_id, cumulative_filled_qty} atómicamente en la MISMA
-frontera de checkpoint del operation owner; echo/provider_rules (account_id) aplica el update
-DESPUÉS, idempotentemente, en su propio keyed state (reservada→firme). Skew transitorio
-intencionalmente fail-safe: over-reservación ⇒ posible false DENY ⇒ jamás unsafe extra GRANT.
-Contrato crash/replay preservado (C-R2.5): dedup por request_id, resultado duplicado seguro,
-Fill+emisión atómicos en la frontera del operation owner, cumulative ⇒ idempotente, aplicación
-puede atrasarse, release sólo por finalidad venue-autoritativa, sin release prematuro. El
-grant↔result sigue siendo atómico en la propia frontera de provider_rules (un solo owner).
-M1/M2 intactos.
+R17 FORCE-CLOSE FANOUT:
+provider_rules enumera AccountStrategyRoutingIndex completo por account (ACTIVE/disabled/
+close-only) y envía el intent a cada key account:strategy. Key sin Operation = no-op;
+disabled+Operation recibe intent. Routing identity se retiene/soft-disable mientras pueda
+existir Operation viva. PG no participa; replay por decision_id es idempotente.
 
-SWEEP:
-"Contract/calendar resolvability" en Stage-1 ⇒ eliminado; "firm += q / reserved −= q en el mismo
-checkpoint" ⇒ reemplazado por la semántica de dos owners; "checkpoint-atómico" cross-owner en
-§1/§15/Handoff ⇒ reformulado a mensajería checkpointeada idempotente (C-R2.5); únicas
-ocurrencias restantes de "checkpoint-atómicos" (§18) = egress transaccional propio de CADA owner
-con su propia frontera (correcto); §17/§20/casos A-H no contenían ninguna de las dos formulaciones
-defectuosas (sin cambios); project note 0 hits de ambas fórmulas — intocada, status sin promover.
+R18 DAYBOUNDARY:
+DayBoundaryCache legacy = REUSE conceptual / ADAPT-REPLACE mecanismo. Futures exige config
+DayBoundary explícita hot/readiness-safe en provider_rules; sin autoridad => DAY_BOUNDARY_UNRESOLVED
++ DENY_NEW_RISK, sin UTC 23:00. Re-binding se lineariza account-keyed, preserva acumuladores,
+recalcula próximo qualifying boundary prospectivamente y no usa timezone vieja después de
+activarse. Mismo resolver/config transitions son inyectables en replay/backtest.
 
-CHILD INPUTS CHANGED: NO (A 6eb671f2 / B 8058aec0 / C 637c62b8 intactos)
-ARCHITECTURE CHANGED: NO (sólo wording normativo de autoridad y semántica cross-owner ya
-congelada en C-R2.5; pruebas de integración I-R1-A/I-R1-B añadidas a §25)
-ACCEPTANCE A-H: UNCHANGED / ALL PASS-BY-DESIGN
+CHILD ARTIFACTS CHANGED:
+NO
 
-INTEGRATED MODEL:
-A aporta identidad: Instrument canónico (instrument_id, quote_currency, exchange, product_group,
-calendar_ref) → Contract expiry-specific con specs económicas; mapping hot por binding
-(mapping_context, binding_id, instrument_id); external identifiers por (source, context);
-pin único en materialización; rollover owner-manual prospectivo. B aporta tiempo de mercado:
-ExchangeCalendar = dataset por semántica de producto (weekly_base + overrides fechados,
-precedencia override>base>fail-closed) + resolver puro sdk/calendar; session_date como dato;
-session_id=(calendar_id, session_date) unívoco; NamedTradingWindow (∩ exchange); account_day
-separado; IANA-only + tzdata embebida. C aporta negocio/reglas: Provider→Program→(fase opcional
-provider-local)→RuleSet versionado con provenance; binding en la Account (entitlement de
-transporte separado); enforcement Stage-1 (guard de materialización, ALLOW|DENY_NEW_RISK) +
-Stage-2 (gate post-MM/pre-egress con reserva serializada en echo/provider_rules) + safety
-asíncrono por intents. D2-04 conserva el lifecycle íntegro. Tres state owners con keys
-distintas (operation account:strategy / provider_rules account_id / signal_fanout strategy_id).
-
-CROSS-TOP CONSISTENCY:
-calendar_ref único binding runtime A→B; resolver sin product_group/exchange (B-R1/A-R2);
-session_id=(calendar_id,session_date) colisión-imposible por cardinalidad;
-(exchange, product_group, instrument_id) = llaves de reglas de C, ortogonales a la sesión;
-C consume de B exactamente SessionState/SessionDate/SessionBoundaries/NextSessionTransition
-por calendar_id y jamás recibe provider policy de B; dos resoluciones separadas
-(current Contract ≠ vendor identifier); dos state owners de enforcement sin fusión
-(protocolo R2.5: mensajería checkpointeada idempotente entre los dos owners, skew fail-safe). Sin contradicción cross-TOP nueva.
-
-ENFORCEMENT:
-Stage-1 = guard de materialización (sin Operation si DENY; AccountState ∧ provider = conjunción
-de autoridades independientes). Stage-2 = post-MM/pre-egress: PER_ORDER local; caps compartidos
-por reserva serializada en métrica tipada (GROSS/NET_ABS/GROUP_WEIGHTED), PENDING_SUBMIT hasta
-GRANT; guard de egress doble (estado de cuenta + epoch del grant con ReservationRevalidate);
-finalidad venue-autoritativa libera (PENDING_FINALITY = reservation.finality_state, nunca
-Order.status); salidas jamás bloqueadas; PHYSICAL_STATE_UNTRUSTED fail-closed; safety con
-flatten sólo vía intents; entitlement revocado ⇒ suspensión, jamás ForceClose automático.
-
-HOT/PINNED:
-PINNED: contract_id + specs económicas + direction + config MM del snapshot de Operation;
-calendar snapshot input de run; RuleSet snapshot inyectado en runs que simulan ProviderProgram.
-HOT: mapping por binding, RuleSet corriente, binding de cuenta, calendario live, AccountState,
-admission/risk state — todo prospectivo, jamás muta pinned. PROVENANCE-ONLY: rule_set epoch en
-decisiones/grants, admission_decision_id, revision_hash/snapshots del manifiesto,
-rejection{PROVIDER_GATE}. Sin generic revision framework.
-
-LIVE/REPLAY/BACKTEST:
-Misma lógica de dominio pura (identity, contract economics, resolver, ventanas, reglas provider
-tipadas, Strategy/MM/Operation). LIVE consume hot config vigente. REPLAY/BACKTEST inyecta los
-snapshots explícitos del run: calendario contra snapshot payload del manifiesto (anchor =
-snapshot grabado, no puntero; byte-idéntico al re-inyectar); RuleSet simulado declara
-{programa → (rule_set_id, version, snapshot)} con el mismo patrón run-input provenance (seam
-mínimo congelado, sin entidad nueva). Divergencias de hash visibles, nunca silenciosas.
-
-ECHO V3 REUSE/ADAPT:
-REUSE: kache/ConfigCache, SymbolMappingHandler (patrón hot config), DayBoundaryCache+prop_rulesets
-(account_day separado; EXTEND fail-closed sin fallback UTC), automation chain/typed evaluators,
-ClientConfig/AccountState/whitelist, CloseHandler (patrón safety), strategy_history (IANA/UTC),
-MMEngineFn/ExecutionPolicy (ADAPT). REPLACE de shape: prop_rulesets (identity por prop_firm +
-enum de fase) → catálogos provider versionados. NEW: Provider/Program/RuleSet/Binding,
-echo/provider_rules, CalendarResolver, catálogos calendario/ventanas, catálogos
-Instrument/Contract/mapping. Migration en 10 pasos compatibles con legacy, sin big bang,
-sin reescritura de Core.
-
-ACCEPTANCE A-H:
-A PASS-BY-DESIGN (rollover manual, pin intacto)
-B PASS-BY-DESIGN (bindings feed/execution, identifiers distintos, Strategy agnóstica)
-C PASS-BY-DESIGN (exchange OPEN ∧ provider DENY_NEW_RISK ⇒ sin Operation)
-D PASS-BY-DESIGN (ProviderForceClose = intent; TERMINAL sólo por guards)
-E PASS-BY-DESIGN (early close via override; LIVE/REPLAY idénticos con snapshot anclado)
-F PASS-BY-DESIGN (account day reset independiente; sin tocar sesión ni Contract)
-G PASS-BY-DESIGN (reglas nuevas prospectivas; revalidación de grants; revocación = suspensión)
-H PASS-BY-DESIGN (cierre sobre contrato viejo pinneado; venue rejection fail-visible)
+ARCHITECTURE DELTA:
+Stage-1 correctness pasa al owner account-keyed; capacity state pasa de per-order implícito a
+proyección cumulativa por Operation + reservas; safety fan-out deja de asumir discovery de
+keys vivas; DayBoundary Futures deja de depender del cache legacy immutable. Instrument,
+Contract, Calendar, Provider domain, Operation lifecycle, pinning y AccountStrategy no cambian.
 
 OWNER DECISIONS REQUIRED:
-NONE (ratificaciones técnicas manager: nombres físicos, firma del resolver, tzdata embebida,
-anchor snapshot-en-manifiesto, enums/campos aditivos de provenance)
+NONE
 
-MATERIAL RISKS:
-curación owner de catálogos (product_group/calendar_ref/calendarios/valores de reglas) sin
-error runtime; FX para MM no-USD (seam); old-contract venue behavior UNKNOWN de borde;
-tzdata/regla civil entre releases (visible, no recuperable); venue finality trust
-(post-finality contradiction = fail-visible); PHYSICAL_STATE_UNTRUSTED pausa opens;
-provider policy drift owner-managed; UNKNOWN evidence (Tradeify/FundedNext copy) no activable;
-latencia del reservation hop (medir D6); deuda legacy pips/symbol_mappings/prop_rulesets.
+RESIDUAL RISKS:
+latencia de Admission/Reservation hops; lag de capacity projection se vuelve fail-closed cuando
+la base física/lógica es untrusted; routing identities requieren GC diferido; DayBoundary hot
+transitions requieren tests de DST/re-binding; provider policy drift sigue owner-managed.
 
-PROJECT NOTE:
-D2-05 = INTEGRATION_CANDIDATE_READY_FOR_SUBMANAGER_REVIEW (reemplaza el estado contaminado
-READY_FOR_MANAGER_REVIEW). NOT CLOSED. NOT READY_FOR_PRIMARY_MANAGER UNTIL SUBMANAGER REVIEW.
-DO NOT ADVANCE D2-06.
-
-NEXT: SUBMANAGER review only.
+NEXT:
+Primary Manager review only.
 ```
+
