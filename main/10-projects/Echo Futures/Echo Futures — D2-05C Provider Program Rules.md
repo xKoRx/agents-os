@@ -409,7 +409,7 @@ ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md
 
 AGENTS-OS SHA:
-<PENDING_PIN>
+7d0fd120c7cc4f5feed19f09b87c77c1f8c19645
 
 C-R5:
 retirada de §6 la evidencia Lucid no autorizada: "Lucid allowed trading times" (allowed
