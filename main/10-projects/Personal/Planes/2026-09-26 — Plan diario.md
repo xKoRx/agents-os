@@ -19,7 +19,9 @@ tags:
 
 ### Compromisos
 - [ ] tarea de ensayo G4 (borrar tras ventana) #plan/own
+- [ ] [[Tareas Origen — G4 (ensayo)#^task-g4-alfa]] — compromiso real del ensayo G4 #plan/ref
 
 ### Reprogramadas
+- [ ] [[Tareas Origen — G4 (ensayo)#^task-g4-beta]] → 2026-09-27 #plan/moved
 
 ### Notas del día
