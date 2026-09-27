@@ -561,22 +561,26 @@ Ambos notes son adiciones sobre superficies existentes; ninguna re-classifica de
 `OWNER DECISIONS REQUIRED: 1` — decisión de producto/operación real (ejemplo explícitamente calificado por el mandato), no de naming:
 
 - **OD-C1 — ¿Es EXACT LIVE REPLAY una capacidad de producto V1 con recording always-on, o una capacidad diferida con recording opt-in por run?** La frontera congelada (§1..§27) es idéntica en ambos casos. La decisión define: (a) default operacional de recording para LIVE/SHADOW/DEMO (always-on recomendado: costo marginal bajo — refs+control, §27 — y habilita forense de decisiones, verificación del caso duro B/C y la prueba D3 AUTHENTIC_DATA futura); (b) retención mínima contractual del contenido canónico para runs grabados (§28-R-C2); (c) alcance de la certificación golden replay en D6. Si el owner elige diferido, el recording queda habilitado por config de run y el resto del artifact no cambia.
+- **Impacto del repair R1 en el costo material de OD-C1:** el recording debe conservar además el replay anchor — el corpus de warm-up del run, capturado UNA vez al iniciar y acotado por MarketRequirements (es el mismo span que el warm-up ya lee una vez; no escala con la duración del run), con la misma retención del recording (§28-R-C2/R-C9). El delta es marginal frente a la retención del contenido canónico ya exigida y NO cambia la arquitectura. Sí endurece la semántica de la opción diferida: un run arrancado sin anchor es permanentemente no-replayable desde t0, así que opt-in = compromiso tomado AL INICIAR cada run — lo que refuerza la recomendación always-on sin resolverla por cuenta del worker. `OWNER DECISIONS REQUIRED: 1` (sin cambios).
 - **Explícitamente NO elevados a owner** (ratificación técnica ordinaria del manager): nombres físicos (`owner_input_seq`, `echo.market-run-journal.v1`, `echo.market-run-manifests.v1`, `DomainClock`, `ReplayDriver`), shapes exactos de `MarketRuntimeInput`/`RunManifest`/entradas de journal, namespacing de `timer_id`, reglas de materialidad finas de §13, defaults de retención, integración del contador en ValueSpec. Dos questions históricas del mandato ya quedan congeladas por autoridades previas y no se reabren: streams sintéticas continuas multi-contract (PROHIBIDO V1, A §9/§14 — rollover explícito) y corrección retrospectiva de decisiones emitidas (PROHIBIDA, B R3).
 
 ## Handoff
 
 ```text
-D2-06C STATUS:
-READY_FOR_SUBMANAGER_REVIEW
+D2-06C-R1 STATUS:
+READY_FOR_SUBMANAGER_REVIEW  (post-repair R1 — Manager Repair D2-06C-R1 aplicado;
+BLOCKED_OWNER_DECISION: OD-C1 sigue abierta y no bloquea review)
 
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-06C Live Replay Market Boundary.md
 
 AGENTS-OS SHA:
-84c5fc49 (commit que contiene el artefacto [b66d50a2] + continuidad y feedback [84c5fc49]; el bloque handoff ampliado viaja en el sync siguiente)
+ae960a6f (HEAD del vault al aplicar el repair R1; el artefacto reparado y los archivos
+de cierre viajan en el sync siguiente)
 
 ECHO BASELINE:
-372af59a7b83604781346613da01e3d510ea1360 (origin/master re-verificado en ventana, fetch sin delta)
+372af59a7b83604781346613da01e3d510ea1360 (origin/master re-verificado en la ventana
+del repair, fetch sin delta)
 
 NEXT:
 Return to D2-06 SUBMANAGER. Do not start D2-07.
