@@ -1684,3 +1684,17 @@ Parent Acceptance A–L: PASS en los 12 casos por mecanismo explícito. Child ac
 Material risks/debts: benchmark StateFun/journal en D6; retention de canonical content+anchor+journal; class-C rebuild puede quedar fail-closed; golden replay debe certificar ReplayDriver; transactional journal config debe verificarse; heterogeneous backup puede bloquear switch si no sirve Contracts pinneados.
 
 NO PASS/CLOSED global. NO D2-07. Siguiente gate: Primary Manager review de D2-06.
+
+### D2-06 — Primary Manager review — APPROVED / PENDING OWNER OD-C1 — 2026-09-27
+
+**Status:** `D2_06_MANAGER_REVIEW = APPROVED_PENDING_OWNER_DECISION`
+
+Primary Manager reviewed `[[Echo Futures — D2-06 Market Runtime]]` against D2-04/D2-05 and the accepted D1 market-data evidence. No additional architectural defect remains open. Parent Acceptance A–L is accepted by mechanism; Q4/Q5/Q8/Q14 are technically ready to close.
+
+Only owner decision remaining:
+
+- `OD-C1 — EXACT LIVE REPLAY recording default`: `ALWAYS_ON_V1` vs `OPT_IN_PER_RUN`.
+
+Manager recommendation: `ALWAYS_ON_V1`. Rationale: ReplayAnchor must exist from run start and cannot be reconstructed retroactively; DeterministicInputLog stores primarily ordering/runtime/control plus references to canonical market content rather than duplicating that content; the architecture is identical either way, so opt-in mainly creates a class of live runs that can never be exact-replayed later. Retention remains an operational policy and may expire recordings according to the declared recording horizon.
+
+Do not open D2-07 until Owner ratifies OD-C1 and D2-06 is persisted CLOSED.
