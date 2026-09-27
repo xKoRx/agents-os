@@ -313,7 +313,7 @@ Transición conceptual (orden compatible con legacy V3, sin big bang): (1) nuevo
 ## Handoff
 
 ```text
-D2-05 INTEGRATION STATUS: READY_FOR_SUBMANAGER_REVIEW
+D2-05 INTEGRATION STATUS: READY_FOR_SUBMANAGER_REREVIEW (repair I-R1 incorporado)
 
 INTEGRATED ARTIFACT: main/10-projects/Echo Futures/Echo Futures — D2-05 Instrument Session Provider.md
 
@@ -323,6 +323,43 @@ B: main/10-projects/Echo Futures/Echo Futures — D2-05B Session Calendar.md · 
 C: main/10-projects/Echo Futures/Echo Futures — D2-05C Provider Program Rules.md · 637c62b810ec8723dd421267ffccc583691a584e (READY_FOR_INTEGRATION)
 
 ECHO BASELINE: 372af59a7b83604781346613da01e3d510ea1360 (fetch re-verificado, sin delta)
+
+I-R1.1 (materialización autoridad única):
+§14 reescrito — guard de materialización: (1) señal/compatibilidad; (2) input de calendario por
+autoridad B (calendar_ref → CalendarResolver; falta ⇒ CALENDAR_UNRESOLVED); (3) Stage-1 provider
+admission por autoridad C — consume instrument_id/exchange/product_group + primitivas de sesión
+de B + estado cuenta/provider/riesgo; permitted instruments scopeado a llaves de Instrument,
+NUNCA lookup de Contract; resultado ALLOW|DENY_NEW_RISK, la admisión NO resuelve Contract;
+(4) resolución ÚNICA del Contract de ejecución por autoridad A dentro de echo/operation:
+ResolveExecutionContract(Instrument, Account.execution_binding_id) → ResolvedContract —
+validación+resolución en una llamada, sin pre-check + segunda lookup (sin TOCTOU); fallo ⇒
+CONTRACT_RESOLUTION_FAILED ⇒ sin Operation; (5) pin del objeto retornado (contract_id + specs +
+direction); (6) Operation CREATED. Ningún guard failure crea Operation.
+
+I-R1.2 (dos owners, Fill/CapacityUpdate):
+§15 reescrito — NO existe mutación atómica cross-owner: echo/operation (account:strategy)
+persiste el Fill y EMITE CapacityUpdate{order_id, cumulative_filled_qty} atómicamente en la MISMA
+frontera de checkpoint del operation owner; echo/provider_rules (account_id) aplica el update
+DESPUÉS, idempotentemente, en su propio keyed state (reservada→firme). Skew transitorio
+intencionalmente fail-safe: over-reservación ⇒ posible false DENY ⇒ jamás unsafe extra GRANT.
+Contrato crash/replay preservado (C-R2.5): dedup por request_id, resultado duplicado seguro,
+Fill+emisión atómicos en la frontera del operation owner, cumulative ⇒ idempotente, aplicación
+puede atrasarse, release sólo por finalidad venue-autoritativa, sin release prematuro. El
+grant↔result sigue siendo atómico en la propia frontera de provider_rules (un solo owner).
+M1/M2 intactos.
+
+SWEEP:
+"Contract/calendar resolvability" en Stage-1 ⇒ eliminado; "firm += q / reserved −= q en el mismo
+checkpoint" ⇒ reemplazado por la semántica de dos owners; "checkpoint-atómico" cross-owner en
+§1/§15/Handoff ⇒ reformulado a mensajería checkpointeada idempotente (C-R2.5); únicas
+ocurrencias restantes de "checkpoint-atómicos" (§18) = egress transaccional propio de CADA owner
+con su propia frontera (correcto); §17/§20/casos A-H no contenían ninguna de las dos formulaciones
+defectuosas (sin cambios); project note 0 hits de ambas fórmulas — intocada, status sin promover.
+
+CHILD INPUTS CHANGED: NO (A 6eb671f2 / B 8058aec0 / C 637c62b8 intactos)
+ARCHITECTURE CHANGED: NO (sólo wording normativo de autoridad y semántica cross-owner ya
+congelada en C-R2.5; pruebas de integración I-R1-A/I-R1-B añadidas a §25)
+ACCEPTANCE A-H: UNCHANGED / ALL PASS-BY-DESIGN
 
 INTEGRATED MODEL:
 A aporta identidad: Instrument canónico (instrument_id, quote_currency, exchange, product_group,
