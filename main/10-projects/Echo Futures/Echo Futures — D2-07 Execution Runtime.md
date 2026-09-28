@@ -92,7 +92,7 @@ ExecutionAdapter  (componente interno transport-specific, journal M2)
 Platform / Venue
 ```
 
-Retorno:
+Retorno (routing por familia — tres caminos, §8/§17):
 
 ```text
 Platform / Venue
@@ -100,15 +100,22 @@ Platform / Venue
 ExecutionAdapter
    ↓
 Futures Bridge
-   ↓
-normalized execution observations  (cinco familias D2-07A §9)
-   ↓
-Kafka  (echo.execution-events.v1, key op key)
-   ↓
-Core / Operation
+   ├─ OrderObservation / OrderActionObservation / Fill   (correlacionados con Order Echo)
+   │     ↓
+   │   Kafka  echo.execution-events.v1   (key op key)
+   │     ↓
+   │   Core / Operation
+   ├─ PositionObservation   (account + contract, SIN operation_id)
+   │     ↓
+   │   Kafka  echo.position-observations.v1   (key account)
+   │     ↓
+   │   proyección Position / reconciliation
+   └─ ExecutionSessionObservation   (runtime/readiness account-scoped)
+         ↓
+       runtime/readiness observation path   (naming físico = IMPLEMENTATION DETAIL / D6)
 ```
 
-Market Runtime permanece separado (D2-06): el adapter no es autoridad de barras, replay ni logical market stream. El Bridge nunca es autoridad de dominio: no posee Strategy, MM, reglas provider, sizing, rollover ni lifecycle; su única "verdad" local es el journal M2 y las observaciones físicas. La correlación evento→operación es adapter-owned (D2-04 §8.2): los eventos llegan a `echo/operation` ya correlacionados con `operation_id` + `order_id`, sin función router en Core.
+Market Runtime permanece separado (D2-06): el adapter no es autoridad de barras, replay ni logical market stream. El Bridge nunca es autoridad de dominio: no posee Strategy, MM, reglas provider, sizing, rollover ni lifecycle; su única "verdad" local es el journal M2 y las observaciones físicas. La correlación evento→operación es adapter-owned (D2-04 §8.2): sólo los execution facts operation-correlated (`OrderObservation`/`OrderActionObservation`/`Fill` de una Order Echo) llegan a `echo/operation` ya correlacionados con `operation_id` + `order_id`, sin función router en Core; `PositionObservation`, `ExecutionSessionObservation` y la actividad venue sin origen Echo **no entran a ese aggregate** — cada familia sigue su camino de routing (§14, §17), sin fabricar `operation_id`.
 
 ## 5. Futures Bridge decision
 
@@ -140,10 +147,14 @@ La ejecución futures vive en un proceso propio (nombre conceptual `v3/futures-b
    │   └─ DesktopHostedAdapter           (futuro: conector + componente         │
    │                                      platform-side dentro del desktop)     │
    └────────────────────────────────────────────────────────────────────────────┘
-                        │  echo.execution-events.v1 (key=op key, correlacionado)
+                        │  echo.execution-events.v1   (key=op key; sólo Order/Action/Fill
+                        │                              correlacionados con Order Echo)
                         │  echo.position-observations.v1 (key=account, shape neto)
+                        │  session/readiness observations → runtime/readiness path
+                        │                                   account-scoped (naming D6)
                         ▼
-                     Core (ingress → echo/operation / proyección Position)
+                     Core (ingress echo/operation · proyección Position/reconciliation
+                           · readiness runtime account-scoped)
 ```
 
 **Bridge = shell** (bootstrap/config ETCD, sesiones per-account, consumo Kafka, egress de observaciones, telemetría, health). **ExecutionAdapter = componente interno transport-specific** que implementa D2-07A: secuencia de submit con `PREPARED/SUBMITTING` durables antes del point-of-no-return, resolución de ambiguos, cinco familias de eventos, finality evidence, reconnect sequence, capability declaration. **No existe `ExecutionAdapterHost` como servicio extra ni cuarto servicio**: si hace falta nombrar el rol que aloja adapters, es un rol del propio Bridge; en la familia desktop-hosted el componente platform-side (análogo al EA MetaTrader) es parte del adapter, sin identidad de dominio propia.
@@ -187,7 +198,9 @@ ExecutionSessionObservation  # conexión/auth/binding/event-stream/reconciliatio
 
 **Fill es inmutable; partial/multi-fill first-class; Fill puede preceder al Order ACK** (un MARKET puede llenar antes del ACK; el Fill es la primera evidencia autoritativa y el Order state se reconstruye desde fill/history — nunca se descarta ni retrasa esperando "orden bonito"). BUY 3 con executions `+1,+1,+1` produce tres Fill facts y una sola Order; `filled_qty`/avg son derivados de Core.
 
-Alineación con D2-04 (nota de integración): el `status` de `OrderObservation` es una **observación del venue**; el estado del aggregate Order en Core sigue siendo el de D2-04 §3.2 (`PENDING_SUBMIT/SUBMITTED/WORKING/FILLED/REJECTED/CANCELLED/EXPIRED`, partial fill = `WORKING` con `filled_qty > 0`). Un `PARTIALLY_FILLED` de observación se materializa en Core como `WORKING` + fills; no se crea un estado de aggregate nuevo. Las familias de eventos entran por las guards monótonas e idempotentes de D2-04 (I7/I15); el `ExecutionSessionObservation` es runtime, no evento del aggregate. La actividad venue sin origen Echo va a observación/proyección, jamás al state owner.
+Alineación con D2-04 (nota de integración): el `status` de `OrderObservation` es una **observación del venue**; el estado del aggregate Order en Core sigue siendo el de D2-04 §3.2 (`PENDING_SUBMIT/SUBMITTED/WORKING/FILLED/REJECTED/CANCELLED/EXPIRED`, partial fill = `WORKING` con `filled_qty > 0`). Un `PARTIALLY_FILLED` de observación se materializa en Core como `WORKING` + fills; no se crea un estado de aggregate nuevo.
+
+**Routing de las cinco familias (congelado, corrección Primary Manager — detalle en §17):** las cinco familias son semánticas de emisión del adapter, no un único stream op-key. Sólo los execution facts operation-correlated (`OrderObservation`/`OrderActionObservation`/`Fill` de una Order Echo) entran por las guards monótonas e idempotentes de D2-04 (I7/I15) hacia `echo/operation`; `PositionObservation` sigue el camino physical position/reconciliation (§14) y `ExecutionSessionObservation` el camino runtime/readiness account-scoped — ambos fuera de `echo/operation`, sin `operation_id` obligatoria. La actividad venue sin origen Echo va a observación/proyección, jamás al state owner (§14).
 
 ## 9. M1 / M2 boundary
 
@@ -278,7 +291,13 @@ mientras el legado MT conserva `echo.commands.{execution_account_id}.v1` intacto
 
 Garantías de routing: el bridge consume sólo las cuentas de su config/binding con validación defence-in-depth `payload execution_account_id == session account`; key/account/topic/journal en la misma identidad; **no transport branching en Core** — la resolución de transporte vive en la config del `ProviderAccountBinding` (D2-05); redelivery ≠ physical retry (el commit del side effect es el journal, nunca el offset). No se crean topic por Order, topic por transport ni function type por vendor.
 
-**Retorno normalized:** familia `echo.execution-events.v1` (nombre por D2-04 §8.3; semántica congelada: cinco familias, key = op key, ingress directo a `echo/operation`, eventos ya correlacionados con `operation_id`+`order_id`) + `echo.position-observations.v1` (key account, shape neto). Los DTOs legacy (`ExecutionResult`/`CloseResult`/`PositionSnapshot`) no se promueven al camino futures; coexisten para el legado.
+**Retorno normalized — routing por familia, congelado (corrección Primary Manager):** el retorno se separa en **tres caminos** según la identidad de la observación; está prohibido promover las cinco familias a un único stream op-key con ingress a `echo/operation`:
+
+1. **Operation-correlated execution facts** — `OrderObservation`, `OrderActionObservation` y `Fill` **cuando corresponden a una Order Echo**: familia `echo.execution-events.v1` (nombre heredado de D2-04 §8.3), key = op key, ingress directo a `echo/operation`, eventos ya correlacionados con `operation_id` + `order_id` (correlación adapter-owned, D2-04 §8.2). Una observación de orden/actividad del venue **no correlacionable con Echo no se fabrica como evento de Operation**: entra a un path de observación/reconciliation hasta que history/client identity demuestre correlación real, y sólo entonces se emiten los canonical correlated facts (§14).
+2. **Physical position observation** — `PositionObservation`: identidad `(execution_account_id, contract_id)`, **sin `operation_id`**; familia `echo.position-observations.v1` (key account, shape neto) → camino physical position/reconciliation / proyección Position (D2-04 §7). **No entra a `echo/operation`; no genera Fill por delta de Position; no fabrica Operation** (I9/I10).
+3. **Execution session / readiness observation** — `ExecutionSessionObservation`: connection, authentication, binding, event stream, reconciliation/readiness, session generation, degradation. Scope: `execution account / physical binding / session`; **no tiene Operation obligatoria**. Va a un runtime/readiness observation path account-scoped; el nombre físico exacto del transporte (topic) es **IMPLEMENTATION DETAIL / D6** — las autoridades no lo congelan. Propiedad congelada: `ExecutionSessionObservation` **jamás requiere un `operation_id` fabricado y jamás enruta como fact del aggregate Operation**.
+
+Los DTOs legacy (`ExecutionResult`/`CloseResult`/`PositionSnapshot`) no se promueven al camino futures; coexisten para el legado.
 
 ## 18. ProviderAccountBinding hot changes
 
