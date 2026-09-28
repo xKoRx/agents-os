@@ -1879,3 +1879,22 @@ No owner decisions abiertas en Q11. Próximo frente: **Q16 — Blocking Refactor
 - **`DT-EF-REFERENCE-SIGNAL-03` confirmado `DEFERRED_MANDATORY / Iteration 2`:** V1 Futures no depende del planner Reference legacy (camino canónico nace en `echo/strategy_engine`; adapter `ReferenceEvent → Signal` es seam hacia el mismo camino).
 - **Artefactos creados:** [[Echo Futures — D2-09 Blocking Refactors]] (Q16: veredicto, register reconciliado, auditoría de identidades, clasificación por área, matriz A–G, debts Iteration 2, obligaciones D5/D6) y [[Echo Futures Architecture Candidate V1]] — **nueva autoridad de lectura primaria de D2** (arquitectura ejecutiva, domain model, ownership matrix, lifecycles, market/strategy/provider/execution runtime, hot vs pinned, LIVE/EXACT_REPLAY/BACKTEST, persistencia, escala, reuse/refactor map, obligations, Q gate table completa: Q2–Q11+Q14 CLOSED, Q15 DEFERRED_TO_THE_LAB_BY_OWNER, Q16 CLOSED; Q12/Q13 → D4).
 - `OWNER_DECISIONS_REQUIRED = NONE`. No declara D2 PASS ni cierra D2 global. Siguiente gate: **Primary Manager review** de D2-09 + Architecture Candidate.
+
+
+### D2 — Architecture Candidate — PRIMARY MANAGER PASS — 2026-09-28
+
+**Gate:** `EF_D2_DESIGN_PASS = PASS`
+
+Primary Manager reviewed [[Echo Futures — D2-09 Blocking Refactors]] + [[Echo Futures Architecture Candidate V1]] against D2-04..08 and the physical Echo baseline `372af59a`.
+
+Final review result:
+
+- **Q16 CLOSED / D2-09 CLOSED.** No `BLOCKING_ARCHITECTURE`; no Core rewrite required.
+- **Architecture Candidate V1 accepted** as the primary D2 authority entering D3/Astra.
+- **Replay identity decision accepted:** `signal_id` is deterministic/replay-stable; `operation_id/order_id/decision/action ids` may remain run-local UUIDv7 in V1 because EXACT_REPLAY does not re-execute the physical execution domain. If replay scope later expands to execution, those IDs must migrate to replay-stable derivation.
+- **Reference compatibility repair:** V1 Futures does **not** implement `ReferenceEvent → Signal`. D2 freezes only the eventual Core boundary; physical adapter + migration remain `DT-EF-REFERENCE-SIGNAL-03 — DEFERRED_MANDATORY / Iteration 2`.
+- **Futures execution:** `FUTURES_BRIDGE_SIBLING + SimExecutionAdapter` first; external adapter selected/certified in D6. Product rollout remains Topstep → Lucid → incremental ~6 props.
+- **Implementation guarantees not yet claimed:** EXACTLY_ONCE/read_committed/transaction timeout, real M2 transport, 100–200 account capacity, journal fsync/corruption and ReplayDriver golden remain D5/D6 obligations.
+- **Q12/Q13 remain D4 by roadmap**, not D2 blockers. Q15 remains `DEFERRED_TO_THE_LAB_BY_OWNER`.
+
+D2 is now frozen for validation. **Next gate: D3 — single GOD/Astra adversarial review.** D3 must not repair the architecture; it produces findings only. Accepted findings are resolved in D4.
