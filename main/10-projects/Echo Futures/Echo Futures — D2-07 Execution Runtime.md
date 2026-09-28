@@ -35,7 +35,7 @@ No implementa código, no ejecuta ProjectX, no certifica vendors, no elige store
 ## 1. Executive verdict
 
 ```text
-D2-07 STATUS: READY_FOR_MANAGER_REVIEW
+D2-07-R1 STATUS: READY_FOR_MANAGER_REVIEW
 
 BRIDGE DECISION: FUTURES_BRIDGE_SIBLING
 INITIAL V1 TRANSPORT CANDIDATE: PROJECTX_DIRECT (recommendation only)
@@ -46,7 +46,9 @@ Los tres children están `ACCEPTED_FOR_INTEGRATION`; sus repairs críticos (R1 d
 
 La recomendación `PROJECTX_DIRECT` no rebaja el contrato: `PROJECTX M2 = NOT_PROVEN`, `REAL_MONEY_CERTIFICATION = NOT_DONE`, y los gaps vendor-specific permanecen como certification gates D6. `NOT_PROVEN` no bloquea el diseño D2 ni autoriza declarar submission física exacta certificada, production safe o real-money ready.
 
-Baselines: Agents-OS `b45e9328c0217e77c4f91103bb5f3a422d9cd5b6` (verificado al inicio del worker, HEAD real). Echo `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360` — los tres children la verificaron sin delta; por regla de integración no se re-auditó source salvo necesidad de contradicción, y no surgió ninguna.
+**Corrección del Primary Manager aplicada (normalized event routing):** el wording integrado promovía indebidamente las cinco familias a un único stream `echo.execution-events.v1` con key op-key e ingress directo a `echo/operation`, atribuyendo a la Operation observaciones que no la portan (`PositionObservation`, identidad `(execution_account_id, contract_id)`) o que no son eventos del aggregate (`ExecutionSessionObservation`, runtime/readiness de cuenta/sesión). El artifact congela ahora el routing de **tres caminos** por identidad de la observación (§8, §17): execution facts operation-correlated (`OrderObservation`/`OrderActionObservation`/`Fill` de una Order Echo) → execution-events → `echo/operation`; `PositionObservation` → camino physical position/reconciliation; `ExecutionSessionObservation` → camino runtime/readiness account-scoped, jamás con `operation_id` fabricado y jamás como fact de Operation. Ningún otro cambio arquitectónico; `OD-D2-07-1` sigue pendiente.
+
+Baselines: Agents-OS **integration baseline** `b45e9328c0217e77c4f91103bb5f3a422d9cd5b6` — HEAD verificado al **inicio** del worker de integración, no el estado final persistido. La integración se persistió después en `363849568383bda8dddbe9fb6ded447e15590210` y el cierre de esa sesión quedó en `89120c64cd59719949a7af495b0a75355e18d686`; el HEAD final de esta corrección (D2-07-R1) es un SHA distinto y posterior, registrado en el handoff de sesión. Echo `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360` — los tres children la verificaron sin delta; por regla de integración no se re-auditó source salvo necesidad de contradicción, y no surgió ninguna.
 
 ## 2. Scope / authorities
 
