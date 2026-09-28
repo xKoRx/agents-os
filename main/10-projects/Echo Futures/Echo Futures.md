@@ -2008,3 +2008,32 @@ No corrections were applied in D3. [[Echo Futures Architecture Candidate V1]] an
 `EF_D3_ASTRA_PASS = REVIEW`
 
 **Next:** Owner review. If accepted, open D4 separately to classify and resolve the six supported findings.
+
+
+## D3 — OWNER ACCEPTED / CLOSED — 2026-09-28
+
+Owner accepted the real Astra D3 review and the Primary Manager QA.
+
+Final D3 state:
+- `D3 STATUS = CLOSED_BY_OWNER`.
+- `EF_D3_ASTRA_PASS = REVIEW` remains the documentary D3 gate produced by the Manager; Owner acceptance closes the milestone.
+- Accepted findings carried mandatorily into D4: `D3-01`, `D3-02`, `D3-03`, `D3-04`, `D3-05`, `D3-06`.
+- D2 remains frozen historical authority; no D2 artifact is retroactively rewritten by D3.
+- [[Echo Futures — D3 Astra Architecture Review]] remains the authoritative adversarial review artifact.
+
+**Next milestone authorized:** D4 — CORRECTION / Architecture Freeze.
+
+D4 sequencing direction:
+1. resolve/adjudicate the six accepted Astra findings and produce a coherent corrected architecture;
+2. only after those corrections are internally consistent, close Q12 (S2 exact strategy) and Q13 (Gerard/hardscalping exact MM);
+3. freeze the implementable Functional SPEC + Technical SPEC, acceptance tests, performance/resource budgets and implementation shots;
+4. no V1 product implementation begins before Owner acceptance of `EF_D4_ARCH_FREEZE = REVIEW`.
+
+Manager authority boundary for D4:
+- the Primary Manager is the control plane: reconstructs state, sequences work, prepares specialist mandates, reviews evidence, integrates decisions and presents gates;
+- the Primary Manager does **not** silently become the architect worker, researcher, coder, verifier or implementer;
+- design/forensics work that merits a specialist is delegated with authority-complete one-shot mandates and then reviewed by the Manager;
+- no delegated worker may emit Manager/Owner gates;
+- no implementation code, PR, deploy, transport certification or D5 work is authorized in D4.
+
+**D4 started:** NO. Start it in a separate Manager session.
