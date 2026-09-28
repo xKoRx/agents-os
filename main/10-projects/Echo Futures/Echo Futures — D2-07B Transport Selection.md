@@ -25,6 +25,11 @@ updated: "2026-09-27"
 
 # Echo Futures — D2-07B Transport Selection
 
+
+> **OWNER DECISION SUPERSEDES THE RECOMMENDATION IN THIS CHILD — 2026-09-28**
+>
+> Este documento conserva la evidencia/comparación que llevó a proponer `PROJECTX_DIRECT` como candidate. Esa recomendación **ya no es la decisión vigente**. El Owner resolvió en el artifact integrado D2-07: comenzar la implementación con `FUTURES_BRIDGE_SIBLING + SimExecutionAdapter` y diferir la selección del primer transport externo real a D6, cuando exista acceso autorizado efectivo. ProjectX queda como future candidate only; no selected, no preferred, no certified.
+
 ## Propósito
 
 Resolver exclusivamente D2-07B: contrastar ProjectX direct, NinjaTrader Desktop adapter, Tradovate direct, Rithmic direct y CQG WebAPI contra el contrato D2-07A, separar capability de ProviderProgram/API entitlement y determinar si existe un transport elegible para el primer E2E V1 sin dinero real. No diseña D2-07C, no implementa código, no cierra D2-07 y no avanza D2-08.
