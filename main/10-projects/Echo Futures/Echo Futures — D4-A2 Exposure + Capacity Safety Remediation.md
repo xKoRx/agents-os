@@ -276,39 +276,11 @@ Role EXIT ≠ bypass de capacity.
 
 Una Order puede reducir x_o de su Operation y a la vez aumentar NET_ABS account-wide al retirar una pata que estaba offsetting otra Operation.
 
-### 9.2 Dos vías válidas de grant
+### 9.2 Regla V1
 
-Una Order de salida puede recibir capacidad por cualquiera de estas vías:
+Para V1 no se agrega una semántica genérica de wind-down, chunking automático ni override de hard caps. Una Order que afecte un shared cap se valida contra las familias de reglas **realmente soportadas por los ProviderRuleSet V1**.
 
-1. **Dentro del hard cap:** el post-envelope de todos los constraints aplicables queda ≤ cap. Puede aumentar una métrica respecto del estado anterior y aun así ser válida si existe headroom.
-2. **WIND_DOWN no expansivo:** si la cuenta ya está sobre un cap por hot update, anomalía ya preservada o estado previo, la Order puede autorizarse aunque Env_post siga > cap cuando Env_post ≤ Env_before para **cada hard constraint afectado**. Así una policy no exige “volver bajo cap antes de poder cerrar”.
-
-WIND_DOWN se decide por matemática del envelope, no por role de Order.
-
-### 9.3 Sequencing y chunking
-
-Cuando una salida local completa no cabe por offsetting Operations, provider_rules puede calcular la cantidad máxima actualmente admisible bajo todos los constraints. Esa cantidad es un hint de capacity, no una mutación silenciosa del sizing:
-
-- provider_rules no recorta una Order ya decidida;
-- una denegación puede retornar max_admissible_qty como información;
-- MM/safety decide una nueva Order con ese quantum;
-- cada chunk obtiene su propia local direction check, reservation, grant, finality y Fill facts.
-
-Ejemplo: Operations +6 y −6 bajo NET_ABS cap 5. Cerrar una pata completa produciría net ±6 y no es admisible. Un chunk de 5 sí cabe; después de que las dos patas hayan reducido de manera segura, el remanente puede continuar. No se necesita coordinator global: provider_rules serializa cada grant account-wide y cada Operation conserva su lifecycle.
-
-### 9.4 Edge no determinado por evidencia: no-safe-unwind quantum
-
-Existe un caso de producto/riesgo que la evidencia técnica no permite decidir silenciosamente: múltiples hard caps, qty_min/qty_step o un hot cap extremo pueden producir max_admissible_qty=0 para una Operation localmente reducidora, aun cuando el owner quiera terminarla.
-
-Esto no puede resolverse simultáneamente con una frase. Las alternativas son materialmente distintas:
-
-| Opción | Semántica | Consecuencia |
-|---|---|---|
-| A — HARD_CAP_WINS | No se emite ninguna Order que agrande un hard envelope; termination queda pending y se requiere cambio explícito de policy/operator o una primitive futura de ejecución atómica certificada. | Conserva el hard envelope; no garantiza liveness automática de toda Operation. |
-| B — GUARANTEED_LIQUIDATION_OVERRIDE | EXIT/ForceClose puede exceder transitoriamente un cap cuando no existe quantum seguro, bajo un override explícito, auditable y acotado. | Garantiza más liveness, pero el cap deja de ser hard precisamente en el safety path. |
-| C — POLICY_ACTIVATION_GUARD | Una policy/hot update que dejaría una Operation sin quantum seguro no se activa como hard cap para esa exposición ya viva; entra a una fase de wind-down compatible y sólo se vuelve plenamente efectiva cuando el estado lo permite. | Preserva un camino automático y evita breach deliberado, pero cambia la semántica de hot-policy activation y debe reconciliarse con reglas externas que quizá no admitan defer. |
-
-Decisión requerida: **OD-D4-A2-01 — NO_SAFE_UNWIND_QUANTUM_POLICY**. Hasta resolverla, D3-03 queda corregido para todos los estados con quantum seguro, pero la propiedad absoluta “ninguna Operation puede quedar sin camino de salida” no puede congelarse honestamente.
+El caso teórico donde ninguna cantidad mínima permitida puede reducir una Operation sin violar otra regla queda **DEFERRED / YAGNI**. Se reabre sólo con evidencia de una prop/programa real que lo necesite. No requiere Owner Decision en D4.
 
 ## 10. Lifecycle de reservations y local claims
 
@@ -350,7 +322,7 @@ La Operation sigue exigiendo e_o=0, cero Orders con q_exec_max>0 o finality pend
 
 **A2-I4 — Reservation completeness:** toda Order que pueda mover un shared cap posee una reservation que cubre su q_exec_max antes de poder ser físicamente ejecutable; role EXIT/REDUCE/SAFETY no constituye exención.
 
-**A2-I5 — Reachability envelope:** provider_rules concede una reservation sólo si el conjunto de firm exposure + todas las live reservations satisface el envelope de cada cap aplicable o una regla WIND_DOWN explícitamente no expansiva.
+**A2-I5 — Reachability envelope:** provider_rules concede una reservation sólo si firm exposure + live reservations satisfacen las reglas/caps aplicables del ProviderRuleSet V1.
 
 **A2-I6 — Fill covered before arrival:** todo Fill normal de una Order Echo estaba contenido en el reachable set previamente reservado. Al convertirse de reservation a firm no puede ensanchar ese reachable set.
 
@@ -364,7 +336,7 @@ La Operation sigue exigiendo e_o=0, cero Orders con q_exec_max>0 o finality pend
 
 **A2-I11 — No cap-by-role:** el provider evalúa signed executable quantity y scope; no infiere riesgo de labels ENTRY/ADD/REDUCE/EXIT.
 
-**A2-I12 — No hidden resize:** provider_rules concede o deniega una cantidad exacta. max_admissible_qty puede orientar una nueva decisión, pero nunca altera silenciosamente una Order ya construida.
+**A2-I12 — No hidden resize:** provider_rules concede o deniega la cantidad exacta construida por MM; nunca redimensiona silenciosamente una Order.
 
 ## 12. Boundary de información
 
@@ -383,14 +355,22 @@ La Operation sigue exigiendo e_o=0, cero Orders con q_exec_max>0 o finality pend
 - firm_by_operation como proyección de capacity, no como aggregate alternativo.
 - live_reservations de todas las Orders relevantes para shared caps.
 - envelopes GROSS/NET_ABS/GROUP_WEIGHTED por scope.
-- grant/deny, reason, provenance y max_admissible_qty.
+- grant/deny, reason y provenance.
 - PHYSICAL_STATE_UNTRUSTED y safety/cap conditions account-wide.
+
+### ProviderRuleSet completo → MoneyManagement
+
+El `ProviderRuleSet` efectivo se expone **completo y read-only** al contexto account-specific/MM; no existe un subset filtrado “sólo para sizing”. El MM puede usar cualquier regla de la prop para decidir sizing, exposición y comportamiento de la Operation.
+
+`MoneyManagement` sigue siendo la autoridad de sizing/risk de la Operation. `echo/provider_rules(account_id)` no calcula sizing ni compite con MM: mantiene la autoridad externa de las reglas de la prop y el gate serializado necesario para constraints account-wide/concurrentes.
+
+La Strategy base permanece account-agnostic en V1. Como el ProviderRuleSet completo queda modelado y disponible en el seam account-specific, estrategias provider-aware futuras pueden agregarse de forma aditiva sin rehacer el modelo de policy.
 
 ### Debe cruzar el boundary
 
 Operation → provider_rules: request_id, operation_id, order_id, account_id, instrument/contract/product_group necesarios para resolver scope, signed side/qty, q_exec_max solicitado, kind normal/modify-increase y provenance mínima de la Order.
 
-provider_rules → Operation: grant exacto o deny, decision/grant identity, rule authority provenance, constraints evaluados, cantidad exacta reservada y opcional max_admissible_qty.
+provider_rules → Operation: grant exacto o deny, decision/grant identity, rule authority provenance, constraints evaluados y cantidad exacta reservada.
 
 Fill path Operation → provider_rules: operation_event_seq cumulativo, e_o cumulativo, order_id y cumulative filled/remaining data suficiente para mover reservation→firm idempotentemente.
 
@@ -426,13 +406,11 @@ Corregir el claim de skew: es conservador sólo si todas las Orders que pueden m
 
 Mantener PHYSICAL_STATE_UNTRUSTED como guard; no promover Position a firm_by_operation.
 
-Agregar max_admissible_qty como respuesta opcional de capacity para permitir chunking sin provider-side resizing.
-
 ### Architecture Candidate V1
 
 En §4 direction/lifecycle: sustituir la validación individual por local reachable-exposure safety.
 
-En §7 Provider runtime: eliminar “salidas nunca bloqueadas” y declarar reservation completeness + WIND_DOWN semantics.
+En §7 Provider runtime: eliminar “salidas nunca bloqueadas” y declarar reservation completeness sólo para las familias de policy V1 realmente soportadas.
 
 En §7 Capacity: definir firm + all executable live reservations como la única base demostrable del envelope.
 
@@ -504,12 +482,10 @@ La reservation fue liberada porque venue finality afirmó que no había remanent
 | A2-10 | GROUP_WEIGHTED | La evaluación usa modo weighted-GROSS o weighted-NET_ABS explícito; no hay netting implícito cross-product. |
 | A2-11 | Stale CapacityStateUpdate | Mientras el Fill no se proyecta, la reservation antigua sigue cubriendo el estado físico posible. |
 | A2-12 | Physical mismatch | Position no muta Operation; mismatch corta grants ordinarios y no fabrica attribution. |
-| A2-13 | Over-limit wind-down | Una Order con Env_post≤Env_before para todos los hard caps puede avanzar aunque Env_before>cap. |
-| A2-14 | Exit that increases NET_ABS | No recibe bypass por role; sólo avanza si cabe bajo cap o bajo la policy owner decidida para no-safe-unwind. |
+| A2-14 | Exit that affects a supported shared cap | No recibe bypass por role; se valida contra la familia de policy V1 aplicable. |
 | A2-15 | Provider grant denied | No hay side effect; reservation y claim local convergen a release, Order queda durable REJECTED{PROVIDER_GATE}. |
 | A2-16 | Late fill after finality | Fill preservado + breach visible; no clamp, no reserva retroactiva, no contaminación silenciosa. |
 | A2-17 | ForceClose multi-Operation | Cada prefix de grants account-keyed mantiene todos los envelopes; no coordinator global requerido. |
-| A2-18 | Chunking | max_admissible_qty sólo informa; una nueva Order/chunk requiere nueva decisión, local guard y grant exacto. |
 
 ## 16. Contrato que D4-A3 puede consumir sin reinterpretación
 
@@ -530,29 +506,26 @@ D4-A3 debe tomar los siguientes hechos como input congelable de este workstream 
 
 ## 17. Riesgos residuales y decisiones
 
-### OD-D4-A2-01 — NO_SAFE_UNWIND_QUANTUM_POLICY
+### Deferred V1 — no-safe-unwind edge
 
-**Owner decision required.** Cuando una Operation localmente reducible no tiene ningún quantum positivo que satisfaga simultáneamente qty rules y todos los hard envelopes actuales, debe elegirse una semántica de producto/riesgo entre A HARD_CAP_WINS, B GUARANTEED_LIQUIDATION_OVERRIDE o C POLICY_ACTIVATION_GUARD (§9.4).
-
-La decisión no afecta D3-02. Sí impide declarar completamente cerrada la promesa absoluta de D3-03 sobre “ninguna posición sin salida”, porque B y C cambian comportamiento observable/policy semantics y A sacrifica liveness automática.
+El caso donde ninguna cantidad mínima permitida puede reducir una Operation sin violar otra regla queda fuera de V1 por YAGNI. Se reabre sólo con evidencia de una prop/programa real que lo necesite; no existe Owner Decision pendiente en D4-A2.
 
 ### Riesgos que no requieren nueva arquitectura
 
 - Venue que contradice TERMINAL_EXECUTION_FINAL: breach fail-visible ya aceptado; no se puede hacer preventivamente safe contra evidencia autoritativa falsa.
 - Transport con replace/OCO/reduce-only realmente atómico: puede permitir una cota q_exec_max menor que la suma independiente, pero sólo después de certificación transport-specific. Generic V1 asume independencia; no diseña optimización hoy.
-- Cap/qty geometry con chunking frecuente: puede aumentar cantidad de Orders y latencia de ForceClose; es costo operacional medible en D6, no motivo para un coordinator.
 - CapacityStateUpdate lag: con reservation completeness pasa a ser conservador; requiere tests de fault/interleaving pero no un nuevo state owner.
 
 ## 18. Veredicto de workstream
 
 D3-02 queda corregido por contrato: el aggregate Operation deja de validar reducciones una a una contra el mismo firm exposure y pasa a demostrar un lower/upper bound conjunto sobre todas las Orders todavía ejecutables.
 
-D3-03 queda corregido en su defecto central: una EXIT que puede mover NET_ABS/GROSS/GROUP_WEIGHTED participa de live_reservations antes de poder ejecutar; firm + outstanding define el reachable envelope bajo cualquier ordering permitido. La parte absoluta de liveness ante un estado sin quantum seguro requiere OD-D4-A2-01 y no debe congelarse por inferencia técnica.
+D3-03 queda corregido para el alcance V1: una Order que pueda mover una familia shared-cap realmente soportada participa de live_reservations antes de poder ejecutar; firm + outstanding define el reachable envelope bajo cualquier ordering permitido. Casos de policy no demostrados por providers V1 se agregan después como extensiones aditivas.
 
 D3-02: CANDIDATE_RESOLVED
 
-D3-03: OWNER_DECISION_REQUIRED
+D3-03: CANDIDATE_RESOLVED
 
-OWNER_DECISIONS_REQUIRED: OD-D4-A2-01 — NO_SAFE_UNWIND_QUANTUM_POLICY
+OWNER_DECISIONS_REQUIRED: NONE
 
-CONTRACT_FOR_D4_A3: grant exacto por Order/action + signed executable qty + cap scopes/families + rule provenance; reservation account-keyed creada antes del GRANTED; EXIT/REDUCE/ForceClose incluidas cuando afectan shared caps; local direction claim pertenece a Operation y no puede ser reinterpretado; cap math y WIND_DOWN pertenecen a provider_rules; revalidation debe validar el grant exacto contra authority account-keyed vigente sin silent resize ni bypass por role; INVALID pre-egress implica cero side effect y release explícito de reservation/claim; post-egress Fill/finality siguen venue-authoritative.
+CONTRACT_FOR_D4_A3: grant exacto por Order/action + signed executable qty + cap scopes/families + rule provenance; reservation account-keyed creada antes del GRANTED; EXIT/REDUCE/ForceClose incluidas cuando afectan shared caps; local direction claim pertenece a Operation y no puede ser reinterpretado; cap math pertenece a provider_rules; revalidation debe validar el grant exacto contra authority account-keyed vigente sin silent resize ni bypass por role; INVALID pre-egress implica cero side effect y release explícito de reservation/claim; post-egress Fill/finality siguen venue-authoritative.

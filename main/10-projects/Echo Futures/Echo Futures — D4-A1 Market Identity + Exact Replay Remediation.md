@@ -39,7 +39,7 @@ La causa común de D3-01 y D3-05 es que D2 hizo durable una parte del orden obse
 La corrección candidata introduce dos seams mínimos y complementarios, sin event sourcing global ni snapshots gigantes:
 
 1. **Canonicalization Input Order:** toda entrada capaz de cambiar la canonicalización de un MarketEvent se serializa durablemente por `stream_id` antes de ejecutar `echo/market_stream`. `stream_seq` puede seguir siendo un ordinal monotónico por stream, pero pasa a ser una función determinística de un input durable y replayable; deja de depender de un merge recuperable sólo por scheduling.
-2. **Decision Observation Evidence:** cada evaluación market-dependent obtiene un `MarketContext` decision-scoped y memoizado. LIVE registra sólo los valores/versiones realmente leídos; EXACT_REPLAY consume ese read-set grabado y nunca vuelve a consultar un cache `latest` para reconstruir una observación histórica.
+2. **Captured context reads:** cada evaluación market-dependent usa un `MarketContext` estable durante esa decisión. LIVE registra sólo los valores/versiones realmente leídos en `context_reads[]`; EXACT_REPLAY consume esas mismas lecturas y nunca vuelve a consultar un cache `latest` para reconstruir una lectura histórica.
 
 El resultado separa explícitamente cuatro conceptos que D2 no puede volver a fusionar: **source identity**, **canonical event identity**, **stream ordering** y **observed context version**.
 
@@ -76,7 +76,6 @@ El contraejemplo D3-05 es suficiente: NQ cierra y dispara Strategy; ES analytics
 | `authority_epoch` | logical stream | provenance/readiness de serving/recovery | identidad de evento, orden global |
 | `owner_input_seq` | owner/key | orden de admisión observado por una isla | market-event identity |
 | `runtime_ts` | owner/key | tiempo lógico monotónico usado por DomainClock | venue/event time |
-| `DecisionObservation` | una evaluación/decisión | evidencia de las versiones realmente observadas por pull | snapshot global del sistema |
 
 `event_ts` conserva exclusivamente semántica técnica de mercado. `receive_ts` conserva liveness/telemetría. Ninguno participa como correctness identity.
 
@@ -114,7 +113,7 @@ El Kafka ingress puede exponer una `ingress_record_ref = (log_identity, partitio
 `canonical_event_id` se deriva determinísticamente de evidencia estable anterior a `stream_seq`:
 
 - clase A/B: `canonical_event_id = DeterministicID(stream_id, source_event_identity)`;
-- clase C: `canonical_event_id = DeterministicObservationID(stream_id, ingress_record_ref, expansion_index)`.
+- clase C: `canonical_event_id = DeterministicIngressID(stream_id, ingress_record_ref, expansion_index)`.
 
 Para clase C este ID significa **identidad de la observación canónica ingresada**, no prueba de identidad del evento físico. Dos ingress records distintos que pudieran corresponder al mismo evento físico no se fusionan por heurística. La recovery policy de clase C sigue siendo la de D2: cursor no solapado, snapshot/full rebuild autoritativo o fail-visible.
 
@@ -177,7 +176,7 @@ Si D5 demuestra que un input material no puede entrar por esta frontera sin romp
 
 Strategy/MM no pueden usar un `MarketContext` que signifique “lee lo último que casualmente tenga el cache” sin preservar qué fue leído.
 
-Cada evaluación/decisión market-dependent abre un **Decision Observation Scope** asociado al input owner ya serializado. Conceptualmente se identifica por:
+Cada evaluación/decisión market-dependent usa un `MarketContext` decision-scoped asociado al input owner ya serializado. Las lecturas capturadas quedan asociadas a:
 
 ```text
 (run_id, owner_key, owner_input_seq, local_decision_ordinal)
@@ -196,7 +195,7 @@ Durante LIVE, el `MarketContext` del scope:
 Durante EXACT_REPLAY, el mismo interface de dominio:
 
 1. no consulta kache/latest para lecturas históricas;
-2. resuelve cada pull desde el `DecisionObservation` grabado;
+2. resuelve cada pull desde `context_reads[]` grabado;
 3. verifica key, ordinal, version/digest y tipo;
 4. falla cerrado ante lectura faltante, extra o incompatible.
 
@@ -204,16 +203,14 @@ BACKTEST usa el mismo interface, pero lo alimenta el estado sintético determin�
 
 ### 6.2 Evidencia mínima de una lectura
 
-Cada lectura grabada necesita sólo:
+`context_reads[]` es parte del journal existente, no una entidad de dominio ni un nuevo state owner. Cada entrada necesita sólo:
 
 ```text
-ContextRead {
   read_ordinal
   logical_read_key
   observed_version
   value_ref? | inline_value?
   content_digest
-}
 ```
 
 `logical_read_key` distingue al menos el tipo de dato y su scope: current quote/trade, bar/bar-range, readiness/quality o session/calendar observation. Para bars incluye `stream_id + timeframe + BarId/range`; para current-state incluye `stream_id + contract_id + field class`; para session/readiness incluye su key natural.
@@ -225,7 +222,7 @@ Se prefiere **reference** cuando la versión exacta es immutable y durable dentr
 V2 debe exigir version identity explícita en shared read models que pueden ser decision-critical:
 
 - **current quote/trade:** ref al último `canonical_event_id + stream_seq + authority_epoch` que compone ese valor;
-- **bar snapshot:** `BarId + bar_revision + source_upto_stream_seq` o equivalente estable; la versión observada X es immutable dentro del DecisionObservation aunque el read model latest avance a X′;
+- **bar snapshot:** `BarId + bar_revision + source_upto_stream_seq` o equivalente estable; la versión observada X es immutable dentro del context_reads[] aunque el read model latest avance a X′;
 - **readiness/quality:** `stream_id + authority_epoch + readiness_version/source_ref`;
 - **session/window:** calendar snapshot/revision + transition ref cuando la observación no sea ya parte del owner state por una delivery ordenada.
 
@@ -250,13 +247,13 @@ La regla de materialidad es simple:
 
 ### 7.1 BAR_CLOSED
 
-Un `BAR_CLOSED` que dispara Strategy debe referenciar la **versión exacta del bar cerrado observada como trigger**, no “el BarId y después lee latest”.
+Un `BAR_CLOSED` que dispara Strategy debe referenciar la **versión exacta del bar cerrado usada como trigger**, no “el BarId y después lee latest”.
 
-La opción KISS es que la delivery lleve/refiera un `BarObservation` immutable para X. Una corrección late X′ puede actualizar la proyección `echo.market-bars.v1`, pero no muta X, no reevalúa retroactivamente Strategy y no reemplaza el trigger evidence ya journalado.
+La delivery lleva una referencia/version exacta e inmutable de X. Una corrección late X′ puede actualizar la proyección `echo.market-bars.v1`, pero no muta X, no reevalúa retroactivamente Strategy y no reemplaza el trigger evidence ya journalado.
 
 ### 7.2 MARKET_EVENT
 
-El trigger referencia `canonical_event_id + stream_seq`. El canonical content está dentro del recording horizon; no se duplica el tick en `DecisionObservation`.
+El trigger referencia `canonical_event_id + stream_seq`. El canonical content está dentro del recording horizon; no se duplica el tick en `context_reads[]`.
 
 ### 7.3 Timer/session/config/recovery
 
@@ -278,19 +275,19 @@ Run Recording =
   + ReplayAnchor
   + DeterministicInputLog
   + canonical content
-  + DecisionObservation evidence
+  + context_reads[] evidence
 ```
 
-`DecisionObservation` puede ser una extensión del mismo `echo.market-run-journal.v1`; no se requiere topic o servicio nuevo si el schema del journal puede expresar el read-set.
+`context_reads[]` extiende el mismo `echo.market-run-journal.v1`; no requiere topic, servicio, aggregate ni lifecycle nuevo.
 
 Para cada decisión/evaluación market-dependent el journal conserva:
 
 - owner coordinate (`owner_key`, `owner_input_seq`, local ordinal/eval seq);
 - trigger/input ref;
-- ordered `ContextRead[]` realmente consumidos;
+- ordered `context_reads[]` realmente consumidos;
 - decision/output digest ya existente o equivalente de integridad.
 
-El evidence de observación debe tener la misma frontera de commit que el estado/output que certifica. Una implementación no puede exponer una Signal replay-authoritative si el `DecisionObservation` correspondiente puede faltar después de un crash exitosamente visible. La certificación física de esta atomicidad/commit coupling queda como obligación de implementación/QA; no se asume por narrativa.
+Las lecturas capturadas deben tener la misma frontera de commit que el estado/output que certifican. Una implementación no puede exponer una Signal replay-authoritative si sus `context_reads[]` correspondientes pueden faltar después de un crash exitosamente visible. La certificación física de esta atomicidad/commit coupling queda como obligación de implementación/QA; no se asume por narrativa.
 
 La garantía EXACT_REPLAY corregida pasa a ser:
 
@@ -299,12 +296,12 @@ same initial manifest
 + same ReplayAnchor
 + same deterministic owner inputs/runtime_ts
 + same canonical content
-+ same DecisionObservation evidence
++ same context_reads[] evidence
 + same code
 ⇒ same market-dependent decisions
 ```
 
-La ecuación D2 sin `DecisionObservation evidence` queda superseded para cualquier decisión que haga pull de shared read models.
+La ecuación D2 sin las lecturas concretas de contexto queda superseded para cualquier decisión que haga pull de shared read models.
 
 ## 9. Failure walkthroughs
 
@@ -334,7 +331,7 @@ No existe el interleaving `Y/101, X/102` porque la diferencia de scheduling prev
 ### 9.3 Crash durante evaluación Strategy después de leer contexto
 
 1. NQ trigger entra como `owner_input_seq=450`.
-2. LIVE MarketContext lee ES bar X y registra `ContextRead(ES, X/v17)` en el Decision Observation Scope.
+2. LIVE MarketContext lee ES bar X y agrega `{ES, X/v17}` a `context_reads[]` de esa decisión.
 3. Strategy calcula Signal S.
 4. El job falla antes de que checkpoint/recording/output queden committed.
 5. Al retry, el mismo input 450 puede encontrar ES X′/v18 y producir S′.
@@ -347,7 +344,7 @@ Esto evita exigir que el sistema congele caches para intentar reproducir schedul
 
 Run live: BAR_CLOSED NQ Xnq dispara Strategy. La decisión además lee current BBO NQ y 5m bar NQ desde shared read models.
 
-El DecisionObservation registra únicamente BBO `canonical_event_id/stream_seq` observado y la versión exacta del bar 5m. Si durante el run el latest BBO/bar avanza antes de que termine replay, eso es irrelevante.
+`context_reads[]` registra únicamente el BBO `canonical_event_id/stream_seq` leído y la versión exacta del bar 5m. Si durante el run el latest BBO/bar avanza antes de que termine replay, eso es irrelevante.
 
 EXACT_REPLAY inyecta el mismo BAR_CLOSED trigger y el ReplayMarketContext entrega exactamente esas dos observaciones. La Strategy recibe el mismo trigger, mismo local state, mismo runtime_ts y mismo read-set, por lo que la decisión es reproducible sin snapshot global.
 
@@ -366,7 +363,7 @@ El sistema no intenta fabricar un global snapshot NQ+ES. Reproduce la mezcla rea
 
 ### 9.6 MM con notificación ligera + pull
 
-La notificación D2-08 puede seguir siendo ligera y transportar `stream_id + trigger_class + trigger_ref`. Al entrar a `echo/operation`, la decisión MM abre su Decision Observation Scope. Si el plugin consulta BBO/bar/readiness, esas lecturas se capturan exactamente igual que en Strategy.
+La notificación D2-08 puede seguir siendo ligera y transportar `stream_id + trigger_class + trigger_ref`. Al entrar a `echo/operation`, la decisión MM abre su MarketContext decision scope. Si el plugin consulta BBO/bar/readiness, esas lecturas se capturan exactamente igual que en Strategy.
 
 MM state sigue viviendo exclusivamente en Operation; no se crea un MM read model global ni se duplica feed por cuenta. El costo nuevo es proporcional a las **lecturas realmente hechas por decisiones MM que ya eran account-specific**.
 
@@ -386,13 +383,13 @@ MM state sigue viviendo exclusivamente en Operation; no se crea un MM read model
 
 **I-A7 — No global ordering:** todas las garantías son per-stream o per-owner; no existe `run_order` global ni sequencer central.
 
-**I-A8 — Decision-scoped observation:** una decisión ve un MarketContext estable dentro de su scope; repeated read de la misma logical key retorna la misma observación.
+**I-A8 — Decision-scoped context:** una decisión ve un MarketContext estable; repeated read de la misma logical key retorna la misma versión.
 
 **I-A9 — Sparse read-set:** sólo se registra shared state realmente leído y capaz de cambiar la decisión.
 
 **I-A10 — Replay no latest:** EXACT_REPLAY jamás usa un shared `latest` cache para satisfacer una lectura histórica decision-critical.
 
-**I-A11 — Trigger immutability:** el trigger exacto de la decisión queda identificado/versionado; late correction no reescribe una observación pasada ni causa retrospective Signal.
+**I-A11 — Trigger immutability:** el trigger exacto de la decisión queda identificado/versionado; late correction no reescribe la versión usada ni causa retrospective Signal.
 
 **I-A12 — Cross-stream honesty:** una decisión puede observar versiones no simultáneas de distintos streams; replay reproduce la combinación observada, no un snapshot ficticio.
 
@@ -432,7 +429,7 @@ Si esa prueba no puede cumplirse físicamente, el tramo afectado debe usar el fa
 
 Toda versión de bar que pueda ser leída por una decisión necesita una version identity estable. `echo.market-bars.v1` puede seguir compacted/latest; no se convierte en history store.
 
-Late correction X→X′ incrementa/cambia la versión observada. DecisionObservation que capturó X conserva X/ref y no se reescribe.
+Late correction X→X′ incrementa/cambia la versión observada. context_reads[] que capturó X conserva X/ref y no se reescribe.
 
 ### 11.5 Strategy Runtime / D2-08 supersede
 
@@ -448,7 +445,7 @@ La determinación de `signal_id`, `strategy_eval_seq` y fan-out permanece D2.
 
 El plugin MM sigue dentro de `echo/operation`; `mm_state` no cambia de owner.
 
-La notificación ligera de mercado sigue permitida, pero “trigger ref + leer latest y asumir reproducibilidad” queda superseded. Toda decisión MM para la cual se reclame reproducibilidad market-dependent usa el mismo Decision Observation Scope.
+La notificación ligera de mercado sigue permitida, pero “trigger ref + leer latest y asumir reproducibilidad” queda superseded. Toda decisión MM para la cual se reclame reproducibilidad market-dependent usa el mismo MarketContext decision scope.
 
 Este artifact no amplía EXACT_REPLAY hacia physical execution. Sólo cierra la evidencia del contexto de mercado observado por la lógica MM.
 
@@ -457,8 +454,7 @@ Este artifact no amplía EXACT_REPLAY hacia physical execution. Sólo cierra la 
 El journal debe poder expresar:
 
 - `trigger_ref`;
-- `DecisionObservation` asociado a owner input/eval;
-- ordered `ContextRead[]`;
+- `context_reads[]` asociado a owner input/eval;
 - version/ref o inline minimal value;
 - integrity digest.
 
@@ -468,9 +464,9 @@ No necesita guardar `BAR_CLOSED` como segunda autoridad global si el trigger sna
 
 EXACT_REPLAY reconstruye canonical streams/owner order como D2 y además instala un context provider de replay.
 
-Ante `ContextRead` no encontrado o no consumido conforme al contract, falla visible. No consulta network, DB ni cache live para “completar” evidencia.
+Ante una lectura requerida no encontrada o evidencia no consumida conforme al contract, falla visible. No consulta network, DB ni cache live para “completar” evidencia.
 
-BACKTEST no consume DecisionObservation de otro run.
+BACKTEST no consume `context_reads[]` de otro run.
 
 ## 12. Acceptance cases D4-A1
 
@@ -502,12 +498,12 @@ Los siguientes estados deben ser visibles y testeables, aunque el naming final p
 - `MARKET_IDENTITY_CONFLICT`: mismo `(stream_id, stream_seq)` con ID/digest distinto;
 - `MARKET_SOURCE_IDENTITY_INVALID`: source declaró A/B pero entregó identidad inválida/reutilizada fuera de su capability;
 - `MARKET_CANONICALIZATION_ORDER_INVALID`: un input material llegó por fuera de la frontera durable requerida;
-- `REPLAY_OBSERVATION_MISSING`: la lógica solicitó una lectura no grabada;
-- `REPLAY_OBSERVATION_MISMATCH`: key/version/digest/orden no corresponde;
-- `REPLAY_OBSERVATION_UNUSED`: evidencia grabada no consumida donde el contract exige igualdad estricta;
+- `REPLAY_CONTEXT_READ_MISSING`: la lógica solicitó una lectura no grabada;
+- `REPLAY_CONTEXT_READ_MISMATCH`: key/version/digest/orden no corresponde;
+- `REPLAY_CONTEXT_READ_UNUSED`: evidencia grabada no consumida donde el contract exige igualdad estricta;
 - `REPLAY_SOURCE_MISSING` / `REPLAY_LOG_CORRUPT`: se conservan desde D2.
 
-Métricas/telemetría mínimas para implementación: transport redeliveries absorbidos, source duplicates absorbidos, identity conflicts, clase C recovery blocks, DecisionObservation bytes/read count por decisión, replay observation mismatches y tamaño de read-set. D4 no fija budgets numéricos sin medición.
+Métricas/telemetría mínimas para implementación: transport redeliveries absorbidos, source duplicates absorbidos, identity conflicts, clase C recovery blocks, context_reads[] bytes/read count por decisión, replay observation mismatches y tamaño de read-set. D4 no fija budgets numéricos sin medición.
 
 ## 14. Impacto en performance y escala
 
@@ -543,8 +539,8 @@ No se exige persistir cada versión de `echo.market-bars.v1` globalmente. Las ve
 - Re-key material del ingress por logical `stream_id`.
 - Separar `canonical_event_id` de `stream_seq`.
 - Mantener capability-driven identity A/B/C y prohibición de fake content identity.
-- Convertir MarketContext a decision-scoped observation boundary.
-- Registrar sparse observed read-set, refs-first + inline mínimo cuando la versión histórica no es direccionable.
+- Mantener `MarketContext` decision-scoped.
+- Registrar en el journal existente sólo `context_reads[]` realmente usados, refs-first + inline mínimo cuando la versión histórica no es direccionable.
 - Hacer fail-closed el replay cuando falte evidencia.
 - Mantener BACKTEST fuera del recording live.
 
@@ -559,7 +555,7 @@ EXACTLY_ONCE canónico permanece fallback técnico si la implementación no logr
 | Finding | Defecto demostrado | Evidence principal | Candidate correction | Invariants | Acceptance |
 |---|---|---|---|---|---|
 | D3-01 | rollback puede reasignar mismo seq a otro contenido porque el merge pre-seq no era durable | D3 §3 D3-01; D2-06 §6/§18/§22; D2-06A §17 | `MarketStreamInput` durable per-stream + canonical_event_id separado + conflict guard | I-A1..I-A7 | A1-01..A1-07 |
-| D3-05 | source_ref del trigger no identifica versiones pull observadas | D3 §3 D3-05; D2-06B §§14/22/23/25; D2-06C §10; D2-08 §12 | decision-scoped MarketContext + sparse DecisionObservation read-set | I-A8..I-A15 | A1-08..A1-18 |
+| D3-05 | source_ref del trigger no identifica versiones pull observadas | D3 §3 D3-05; D2-06B §§14/22/23/25; D2-06C §10; D2-08 §12 | decision-scoped MarketContext + sparse context_reads[] read-set | I-A8..I-A15 | A1-08..A1-18 |
 
 ## 18. Evidence map
 
@@ -588,7 +584,7 @@ EXACTLY_ONCE canónico permanece fallback técnico si la implementación no logr
 Architecture Candidate V2 debe superseder las siguientes frases/claims de V1/D2:
 
 - “`stream_seq` checkpointeado + ALO basta para idempotencia” → reemplazar por durable canonicalization input order + stable seq mapping + canonical_event_id.
-- “pull cross-stream hereda exactitud del producer journal sin trabajo adicional” → reemplazar por DecisionObservation/read-set.
+- “pull cross-stream hereda exactitud del producer journal sin trabajo adicional” → reemplazar por context_reads[]/read-set.
 - “MM notification con trigger ref + current latest es replay provenance suficiente” → reemplazar por trigger ref + decision-scoped captured reads.
 - “BAR_CLOSED identificado sólo por BarId y latest projection” → precisar exact trigger version/observation.
 
@@ -597,4 +593,4 @@ No debe tocar los cierres D2 no afectados ni reescribir historia para fingir que
 D3-01: CANDIDATE_RESOLVED
 D3-05: CANDIDATE_RESOLVED
 OWNER_DECISIONS_REQUIRED: NONE
-CROSS_WORKSTREAM_ASSUMPTIONS: D4-A2/A3 e integración no deben usar stream_seq como event identity; cualquier nueva decisión MM market-dependent introducida por sus correcciones debe consumir el mismo decision-scoped MarketContext/DecisionObservation contract; no se asume ningún cambio adicional en Operation/MM/provider ownership o lifecycle.
+CROSS_WORKSTREAM_ASSUMPTIONS: D4-A2/A3 e integración no deben usar stream_seq como event identity; cualquier nueva decisión MM market-dependent introducida por sus correcciones debe consumir el mismo decision-scoped MarketContext/context_reads[] contract; no se asume ningún cambio adicional en Operation/MM/provider ownership o lifecycle.
