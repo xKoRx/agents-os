@@ -46,7 +46,7 @@ Los tres children están `ACCEPTED_FOR_INTEGRATION`; sus repairs críticos (R1 d
 
 La recomendación `PROJECTX_DIRECT` no rebaja el contrato: `PROJECTX M2 = NOT_PROVEN`, `REAL_MONEY_CERTIFICATION = NOT_DONE`, y los gaps vendor-specific permanecen como certification gates D6. `NOT_PROVEN` no bloquea el diseño D2 ni autoriza declarar submission física exacta certificada, production safe o real-money ready.
 
-**Corrección del Primary Manager aplicada (normalized event routing):** el wording integrado promovía indebidamente las cinco familias a un único stream `echo.execution-events.v1` con key op-key e ingress directo a `echo/operation`, atribuyendo a la Operation observaciones que no la portan (`PositionObservation`, identidad `(execution_account_id, contract_id)`) o que no son eventos del aggregate (`ExecutionSessionObservation`, runtime/readiness de cuenta/sesión). El artifact congela ahora el routing de **tres caminos** por identidad de la observación (§8, §17): execution facts operation-correlated (`OrderObservation`/`OrderActionObservation`/`Fill` de una Order Echo) → execution-events → `echo/operation`; `PositionObservation` → camino physical position/reconciliation; `ExecutionSessionObservation` → camino runtime/readiness account-scoped, jamás con `operation_id` fabricado y jamás como fact de Operation. Ningún otro cambio arquitectónico; `OD-D2-07-1` sigue pendiente.
+**Corrección del Primary Manager aplicada (normalized event routing):** el wording integrado promovía indebidamente las cinco familias a un único stream `echo.execution-events.v1` con key op-key e ingress directo a `echo/operation`, atribuyendo a la Operation observaciones que no la portan (`PositionUpdate`, identidad `(execution_account_id, contract_id)`) o que no son eventos del aggregate (`ExecutionSessionStatus`, runtime/readiness de cuenta/sesión). El artifact congela ahora el routing de **tres caminos** por identidad de la observación (§8, §17): execution facts operation-correlated (`OrderStatusEvent`/`OrderActionResult`/`Fill` de una Order Echo) → execution-events → `echo/operation`; `PositionUpdate` → camino physical position/reconciliation; `ExecutionSessionStatus` → camino runtime/readiness account-scoped, jamás con `operation_id` fabricado y jamás como fact de Operation. Ningún otro cambio arquitectónico; `OD-D2-07-1` sigue pendiente.
 
 Baselines: Agents-OS **integration baseline** `b45e9328c0217e77c4f91103bb5f3a422d9cd5b6` — HEAD verificado al **inicio** del worker de integración, no el estado final persistido. La integración se persistió después en `363849568383bda8dddbe9fb6ded447e15590210` y el cierre de esa sesión quedó en `89120c64cd59719949a7af495b0a75355e18d686`; el HEAD final de esta corrección (D2-07-R1) es un SHA distinto y posterior, registrado en el handoff de sesión. Echo `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360` — los tres children la verificaron sin delta; por regla de integración no se re-auditó source salvo necesidad de contradicción, y no surgió ninguna.
 
@@ -100,22 +100,22 @@ Platform / Venue
 ExecutionAdapter
    ↓
 Futures Bridge
-   ├─ OrderObservation / OrderActionObservation / Fill   (correlacionados con Order Echo)
+   ├─ OrderStatusEvent / OrderActionResult / Fill   (correlacionados con Order Echo)
    │     ↓
    │   Kafka  echo.execution-events.v1   (key op key)
    │     ↓
    │   Core / Operation
-   ├─ PositionObservation   (account + contract, SIN operation_id)
+   ├─ PositionUpdate   (account + contract, SIN operation_id)
    │     ↓
    │   Kafka  echo.position-observations.v1   (key account)
    │     ↓
    │   proyección Position / reconciliation
-   └─ ExecutionSessionObservation   (runtime/readiness account-scoped)
+   └─ ExecutionSessionStatus   (runtime/readiness account-scoped)
          ↓
        runtime/readiness observation path   (naming físico = IMPLEMENTATION DETAIL / D6)
 ```
 
-Market Runtime permanece separado (D2-06): el adapter no es autoridad de barras, replay ni logical market stream. El Bridge nunca es autoridad de dominio: no posee Strategy, MM, reglas provider, sizing, rollover ni lifecycle; su única "verdad" local es el journal M2 y las observaciones físicas. La correlación evento→operación es adapter-owned (D2-04 §8.2): sólo los execution facts operation-correlated (`OrderObservation`/`OrderActionObservation`/`Fill` de una Order Echo) llegan a `echo/operation` ya correlacionados con `operation_id` + `order_id`, sin función router en Core; `PositionObservation`, `ExecutionSessionObservation` y la actividad venue sin origen Echo **no entran a ese aggregate** — cada familia sigue su camino de routing (§14, §17), sin fabricar `operation_id`.
+Market Runtime permanece separado (D2-06): el adapter no es autoridad de barras, replay ni logical market stream. El Bridge nunca es autoridad de dominio: no posee Strategy, MM, reglas provider, sizing, rollover ni lifecycle; su única "verdad" local es el journal M2 y las observaciones físicas. La correlación evento→operación es adapter-owned (D2-04 §8.2): sólo los execution facts operation-correlated (`OrderStatusEvent`/`OrderActionResult`/`Fill` de una Order Echo) llegan a `echo/operation` ya correlacionados con `operation_id` + `order_id`, sin función router en Core; `PositionUpdate`, `ExecutionSessionStatus` y la actividad venue sin origen Echo **no entran a ese aggregate** — cada familia sigue su camino de routing (§14, §17), sin fabricar `operation_id`.
 
 ## 5. Futures Bridge decision
 
@@ -186,21 +186,23 @@ SubmitOrder {
 
 ## 8. Normalized event model
 
-Cinco familias semánticas canónicas (D2-07A §9); ningún DTO vendor-specific ni `ExecutionResult` legacy como contrato Futures canónico:
+Cinco familias semánticas canónicas; ningún DTO vendor-specific ni `ExecutionResult` legacy se promueve como contrato Futures canónico:
 
 ```text
-OrderObservation             # status/venue-state de la Order, source REALTIME|RECONCILIATION|HISTORY
-OrderActionObservation       # modify/cancel/replace: action_id, kind, outcome, evidence
-Fill                         # hecho físico inmutable
-PositionObservation          # observación neta (account, contract)
-ExecutionSessionObservation  # conexión/auth/binding/event-stream/reconciliation/readiness
+OrderStatusEvent         # estado de una Order reportado por el venue
+OrderActionResult        # resultado de cancel/modify/replace
+Fill                     # ejecución física inmutable
+PositionUpdate           # estado físico neto de account + contract
+ExecutionSessionStatus   # conexión/auth/binding/reconciliation/readiness
 ```
+
+**Nomenclatura canónica D2-07:** estos nombres reemplazan, sólo a nivel de naming, los labels usados en los children: `OrderObservation → OrderStatusEvent`, `OrderActionObservation → OrderActionResult`, `PositionObservation → PositionUpdate`, `ExecutionSessionObservation → ExecutionSessionStatus`. La semántica y el routing no cambian. Se evita deliberadamente `PositionSnapshot` porque ya existe como DTO legacy MetaTrader, y `ExecutionResult` porque también es un contrato legacy.
 
 **Fill es inmutable; partial/multi-fill first-class; Fill puede preceder al Order ACK** (un MARKET puede llenar antes del ACK; el Fill es la primera evidencia autoritativa y el Order state se reconstruye desde fill/history — nunca se descarta ni retrasa esperando "orden bonito"). BUY 3 con executions `+1,+1,+1` produce tres Fill facts y una sola Order; `filled_qty`/avg son derivados de Core.
 
-Alineación con D2-04 (nota de integración): el `status` de `OrderObservation` es una **observación del venue**; el estado del aggregate Order en Core sigue siendo el de D2-04 §3.2 (`PENDING_SUBMIT/SUBMITTED/WORKING/FILLED/REJECTED/CANCELLED/EXPIRED`, partial fill = `WORKING` con `filled_qty > 0`). Un `PARTIALLY_FILLED` de observación se materializa en Core como `WORKING` + fills; no se crea un estado de aggregate nuevo.
+Alineación con D2-04 (nota de integración): el `status` de `OrderStatusEvent` es una **observación del venue**; el estado del aggregate Order en Core sigue siendo el de D2-04 §3.2 (`PENDING_SUBMIT/SUBMITTED/WORKING/FILLED/REJECTED/CANCELLED/EXPIRED`, partial fill = `WORKING` con `filled_qty > 0`). Un `PARTIALLY_FILLED` de observación se materializa en Core como `WORKING` + fills; no se crea un estado de aggregate nuevo.
 
-**Routing de las cinco familias (congelado, corrección Primary Manager — detalle en §17):** las cinco familias son semánticas de emisión del adapter, no un único stream op-key. Sólo los execution facts operation-correlated (`OrderObservation`/`OrderActionObservation`/`Fill` de una Order Echo) entran por las guards monótonas e idempotentes de D2-04 (I7/I15) hacia `echo/operation`; `PositionObservation` sigue el camino physical position/reconciliation (§14) y `ExecutionSessionObservation` el camino runtime/readiness account-scoped — ambos fuera de `echo/operation`, sin `operation_id` obligatoria. La actividad venue sin origen Echo va a observación/proyección, jamás al state owner (§14).
+**Routing de las cinco familias (congelado, corrección Primary Manager — detalle en §17):** las cinco familias son semánticas de emisión del adapter, no un único stream op-key. Sólo los execution facts operation-correlated (`OrderStatusEvent`/`OrderActionResult`/`Fill` de una Order Echo) entran por las guards monótonas e idempotentes de D2-04 (I7/I15) hacia `echo/operation`; `PositionUpdate` sigue el camino physical position/reconciliation (§14) y `ExecutionSessionStatus` el camino runtime/readiness account-scoped — ambos fuera de `echo/operation`, sin `operation_id` obligatoria. La actividad venue sin origen Echo va a observación/proyección, jamás al state owner (§14).
 
 ## 9. M1 / M2 boundary
 
@@ -249,7 +251,7 @@ La finalidad es venue-authoritative y exige evidencia (D2-07A §16); ningún enu
 
 Static eligibility ≠ dynamic readiness (D2-07A I13/I14). Static (por ProviderProgram, D2-05): transport entitlement ALLOWED ∧ capabilities satisfacen el comportamiento Order/MM requerido ∧ contrato M2 satisfecho para las order classes requeridas; `UNKNOWN != ALLOWED`; platform support, automation permission, API entitlement y technical capability son cuatro claims separados.
 
-Dynamic readiness mantiene siete dimensiones (connection, authentication, account_binding, order_event_stream, reconciliation_authority, position_state, submission_capability). `EXECUTION_READY_NEW_RISK` sólo cuando eligibility static ELIGIBLE ∧ connected ∧ authenticated ∧ provider account bound/verified ∧ event stream LIVE ∧ reconciliation authority AUTHORITATIVE ∧ sin ambigüedad M2 no resuelta ∧ position snapshot FRESHA/suficientemente completa ∧ submit capabilities EXACT_READY. **Socket connected ≠ ready; command consumption saludable con venue unhealthy no es ready.** Degradaciones (history/lookup, event stream, position stale, socket down, ambiguous sin resolver) apagan NEW_RISK a nivel cuenta (KISS V1). CLOSE/REDUCE puede conservar gate separado sólo si el adapter demuestra target identificable, acción no-aumentadora-de-riesgo bajo la semántica disponible y finality suficiente; si no, la acción automática se bloquea y escala a operator/safety — nunca "close success" porque se encoló un command.
+Dynamic readiness mantiene siete dimensiones (connection, authentication, account_binding, order_event_stream, reconciliation_authority, position_state, submission_capability). `EXECUTION_READY_NEW_RISK` sólo cuando eligibility static ELIGIBLE ∧ connected ∧ authenticated ∧ provider account bound/verified ∧ event stream LIVE ∧ reconciliation authority AUTHORITATIVE ∧ sin ambigüedad M2 no resuelta ∧ position snapshot FRESH/suficientemente completa ∧ submit capabilities EXACT_READY. **Socket connected ≠ ready; command consumption saludable con venue unhealthy no es ready.** Degradaciones (history/lookup, event stream, position stale, socket down, ambiguous sin resolver) apagan NEW_RISK a nivel cuenta (KISS V1). CLOSE/REDUCE puede conservar gate separado sólo si el adapter demuestra target identificable, acción no-aumentadora-de-riesgo bajo la semántica disponible y finality suficiente; si no, la acción automática se bloquea y escala a operator/safety — nunca "close success" porque se encoló un command.
 
 ## 13. Reconnect / reconciliation
 
@@ -257,7 +259,7 @@ Dynamic readiness mantiene siete dimensiones (connection, authentication, accoun
 
 ## 14. Position / manual activity
 
-`PositionObservation` es shape neto `(execution_account_id, contract_id, net_qty, avg_price, as_of, source, snapshot_scope)` — D2-04 R8 — sin `operation_id` ni attribution de Strategy; una snapshot completa puede usar ausencia como evidencia de flat sólo si el transport declara completeness explícita para ese scope/as_of. Actividad física no correlacionable con Echo (orden manual, SDK externo, liquidación del provider): se preserva la physical observation, se calcula `POSITION_MISMATCH`/reconciliation debt, se marca la cuenta degraded/alertable según severidad y **jamás se crea Operation/Fill Echo por inferencia de delta de Position** (I9/I10). Si reconciliation posteriormente demuestra que la actividad pertenece a un `client_order_id` Echo, recién entonces se emiten los canonical facts con identidad real. Se mantiene la separación logical vs physical truth de D2-04; `DT-EF-POSITION-RECONCILIATION-05` sigue diferida.
+`PositionUpdate` es shape neto `(execution_account_id, contract_id, net_qty, avg_price, as_of, source, snapshot_scope)` — D2-04 R8 — sin `operation_id` ni attribution de Strategy; una snapshot completa puede usar ausencia como evidencia de flat sólo si el transport declara completeness explícita para ese scope/as_of. Actividad física no correlacionable con Echo (orden manual, SDK externo, liquidación del provider): se preserva la physical observation, se calcula `POSITION_MISMATCH`/reconciliation debt, se marca la cuenta degraded/alertable según severidad y **jamás se crea Operation/Fill Echo por inferencia de delta de Position** (I9/I10). Si reconciliation posteriormente demuestra que la actividad pertenece a un `client_order_id` Echo, recién entonces se emiten los canonical facts con identidad real. Se mantiene la separación logical vs physical truth de D2-04; `DT-EF-POSITION-RECONCILIATION-05` sigue diferida.
 
 ## 15. Side-effect ownership
 
@@ -293,9 +295,9 @@ Garantías de routing: el bridge consume sólo las cuentas de su config/binding 
 
 **Retorno normalized — routing por familia, congelado (corrección Primary Manager):** el retorno se separa en **tres caminos** según la identidad de la observación; está prohibido promover las cinco familias a un único stream op-key con ingress a `echo/operation`:
 
-1. **Operation-correlated execution facts** — `OrderObservation`, `OrderActionObservation` y `Fill` **cuando corresponden a una Order Echo**: familia `echo.execution-events.v1` (nombre heredado de D2-04 §8.3), key = op key, ingress directo a `echo/operation`, eventos ya correlacionados con `operation_id` + `order_id` (correlación adapter-owned, D2-04 §8.2). Una observación de orden/actividad del venue **no correlacionable con Echo no se fabrica como evento de Operation**: entra a un path de observación/reconciliation hasta que history/client identity demuestre correlación real, y sólo entonces se emiten los canonical correlated facts (§14).
-2. **Physical position observation** — `PositionObservation`: identidad `(execution_account_id, contract_id)`, **sin `operation_id`**; familia `echo.position-observations.v1` (key account, shape neto) → camino physical position/reconciliation / proyección Position (D2-04 §7). **No entra a `echo/operation`; no genera Fill por delta de Position; no fabrica Operation** (I9/I10).
-3. **Execution session / readiness observation** — `ExecutionSessionObservation`: connection, authentication, binding, event stream, reconciliation/readiness, session generation, degradation. Scope: `execution account / physical binding / session`; **no tiene Operation obligatoria**. Va a un runtime/readiness observation path account-scoped; el nombre físico exacto del transporte (topic) es **IMPLEMENTATION DETAIL / D6** — las autoridades no lo congelan. Propiedad congelada: `ExecutionSessionObservation` **jamás requiere un `operation_id` fabricado y jamás enruta como fact del aggregate Operation**.
+1. **Operation-correlated execution facts** — `OrderStatusEvent`, `OrderActionResult` y `Fill` **cuando corresponden a una Order Echo**: familia `echo.execution-events.v1` (nombre heredado de D2-04 §8.3), key = op key, ingress directo a `echo/operation`, eventos ya correlacionados con `operation_id` + `order_id` (correlación adapter-owned, D2-04 §8.2). Una observación de orden/actividad del venue **no correlacionable con Echo no se fabrica como evento de Operation**: entra a un path de observación/reconciliation hasta que history/client identity demuestre correlación real, y sólo entonces se emiten los canonical correlated facts (§14).
+2. **Physical position observation** — `PositionUpdate`: identidad `(execution_account_id, contract_id)`, **sin `operation_id`**; familia `echo.position-observations.v1` (key account, shape neto) → camino physical position/reconciliation / proyección Position (D2-04 §7). **No entra a `echo/operation`; no genera Fill por delta de Position; no fabrica Operation** (I9/I10).
+3. **Execution session / readiness observation** — `ExecutionSessionStatus`: connection, authentication, binding, event stream, reconciliation/readiness, session generation, degradation. Scope: `execution account / physical binding / session`; **no tiene Operation obligatoria**. Va a un runtime/readiness observation path account-scoped; el nombre físico exacto del transporte (topic) es **IMPLEMENTATION DETAIL / D6** — las autoridades no lo congelan. Propiedad congelada: `ExecutionSessionStatus` **jamás requiere un `operation_id` fabricado y jamás enruta como fact del aggregate Operation**.
 
 Los DTOs legacy (`ExecutionResult`/`CloseResult`/`PositionSnapshot`) no se promueven al camino futures; coexisten para el legado.
 
@@ -305,7 +307,7 @@ Autoridad D2-05; semántica integrada (A §19 + C §16): `ProviderAccountBinding
 
 ## 19. Degraded close / safety
 
-ForceClose/termination mientras el edge está DOWN: el **intent remains pending, not terminal** (D2-04 R3: ForceClose es intent, no transición instantánea), con alert/readiness degraded visibles vía `ExecutionSessionObservation`. Recovery: **reconcile first, then continue termination** — al recuperar el edge, la secuencia de barrier (§13) corre primero y recién después continúa la termination hacia guards; TERMINAL sólo cuando `exposure==0 ∧ 0 live orders ∧ intent` (guards D2-04). **No synthetic close success**; **no automatic emergency adapter switch** — sólo un diseño futuro explícito podría introducirlo. El gate CLOSE/REDUCE degradado sigue §12.
+ForceClose/termination mientras el edge está DOWN: el **intent remains pending, not terminal** (D2-04 R3: ForceClose es intent, no transición instantánea), con alert/readiness degraded visibles vía `ExecutionSessionStatus`. Recovery: **reconcile first, then continue termination** — al recuperar el edge, la secuencia de barrier (§13) corre primero y recién después continúa la termination hacia guards; TERMINAL sólo cuando `exposure==0 ∧ 0 live orders ∧ intent` (guards D2-04). **No synthetic close success**; **no automatic emergency adapter switch** — sólo un diseño futuro explícito podría introducirlo. El gate CLOSE/REDUCE degradado sigue §12.
 
 ## 20. SimExecution separation
 
@@ -384,7 +386,7 @@ EA command journal  (SlaveCommandJournal post-side-effect; su deuda M2 es la raz
 REPLACE_FOR_FUTURES:
 M2 journal semantics  (write-ahead en el bridge, antes del point-of-no-return)
 normalized execution events  (cinco familias; sin ExecutionResult single-result)
-Position Account+Contract shape  (PositionObservation neta, no ticket-level)
+Position Account+Contract shape  (PositionUpdate neta, no ticket-level)
 ```
 
 No se crea shared framework prematuro: día 1 se comparte sólo lo que ya es librería (`v3/sdk/*`); las piezas bridge-internal pequeñas (session/consumer/breaker/readiness) se duplican KISS en el sibling; prohibidos bridge-framework, plugin-runtime, generic-adapter-sdk, dynamic adapter loader, adapter marketplace. La extracción se reconsidera con un tercer consumidor real o cuando una corrección tenga que replicarse más de una vez.
@@ -481,8 +483,8 @@ ECHO BASELINE: 372af59a7b83604781346613da01e3d510ea1360
 CORRECTION APLICADA:
 normalized event routing — tres caminos congelados (§8/§17):
 operation-correlated facts → echo.execution-events.v1 (key op key) → echo/operation
-PositionObservation → echo.position-observations.v1 → physical position/reconciliation
-ExecutionSessionObservation → runtime/readiness path account-scoped (naming D6),
+PositionUpdate → echo.position-observations.v1 → physical position/reconciliation
+ExecutionSessionStatus → runtime/readiness path account-scoped (naming D6),
   jamás operation_id fabricado, jamás fact de Operation.
 ARCHITECTURE CHANGES: NONE beyond event-routing clarification
 ```
