@@ -30,3 +30,7 @@
 - Suite afectada: `go test ./sqx/workflows/ ./sqx/core/runtime/ ./sqx/activities/watcher/... ./sqx/cmd/sqx-worker/... ./sqx/cmd/sqx-mt5-worker/...` — todos los paquetes verdes salvo el fail-set preexistente de `sqx/workflows` (22 fallos idénticos a master limpio, diff vacío salvo timings; comparación con `git stash -u`).
 - Commits pushed a origin/master (`021ce14..b2e321d`); sin release ni rollout (la flota ya corre 0.2.129; el preflight watcher sube con la próxima release natural).
 - Nota de higiene del vault: existe una COPIA STALE del proyecto en `main/10-projects/Echo Forge/Echo Forge — Operación Real V2.md` (152 líneas, sin bitácora 14.ª); la canónica activa es `main/10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2.md`. El edit accidental en la copia stale fue revertido; recomendación: consolidar duplicados con agents-os-entity-lifecycle (no ejecutado en esta sesión, fuera de mandato).
+
+## Cierre H (post-edición inicial)
+
+- Refill natural capturado (06:55:34Z): subflow-2 COMPLETED 06:47:36.188Z → subflow-3 START_CHILD 06:47:36.239Z con subflow-0/1 aún en vuelo; firma sqcli del completion en Zeus (PID 3117769), Kronos/Hera con sqcli en vuelo. Evidence pack `~/aranea/work/forge-precision-shot1-20260926/EVIDENCE-FLEET-FANOUT-REFILL-20260928.md`. Bitácora 15.ª y agent-run actualizados con el resultado.
