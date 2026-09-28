@@ -29,6 +29,8 @@ updated: "2026-09-28"
 
 ## Propósito
 
+**Primary Manager gate — 2026-09-28:** `EF_D2_DESIGN_PASS = PASS`. Este documento queda congelado como arquitectura candidata que entra a D3/Astra. D3 puede producir findings, pero no modifica este artifact durante la auditoría; cualquier finding aceptado se corrige en D4.
+
 **Autoridad de lectura primaria de D2.** Integra las decisiones congeladas de [[Echo Futures — D2-04 Operation Order Fill Position]], [[Echo Futures — D2-05 Instrument Session Provider]], [[Echo Futures — D2-06 Market Runtime]], [[Echo Futures — D2-07 Execution Runtime]], [[Echo Futures — D2-08 Strategy Runtime]] y [[Echo Futures — D2-09 Blocking Refactors]] sobre las decisiones owner [[Echo Futures]] D2-01/02/03 y la evidencia [[Echo Futures — D1 Analysis Pack]].
 
 No copia los artifacts hijos: los integra. Ante contradicción de wording histórico, mandan los cierres congelados de cada workstream y este documento integra esa semántica vigente. No implementa código, no abre D3/Astra, no selecciona providers ni transports, no congela nombres físicos de topics/campos salvo donde la fuente ya lo hizo.
@@ -272,7 +274,7 @@ Q12 S2 / Q13 Gerard           → D4 (fuera del D2 gate por diseño del roadmap)
 `OWNER_DECISIONS_REQUIRED = NONE`. Todas las owner decisions D2 están cerradas: D2-01/02/03 (OWNER_CLOSED), OD-C1 (`ALWAYS_ON_V1_SELECTED_STREAMS`), OD-D2-07-1 (`DEFER_EXTERNAL_TRANSPORT_SELECTION_TO_D6`).
 
 ```text
-EF_D2_DESIGN_PASS = READY_FOR_MANAGER_REVIEW
+EF_D2_DESIGN_PASS = PASS
 ```
 
 Primary Manager decide el gate; este documento no se declara PASS ni cierra D2.
