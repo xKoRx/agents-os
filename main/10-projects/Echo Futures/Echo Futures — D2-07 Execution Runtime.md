@@ -28,33 +28,34 @@ updated: "2026-09-28"
 
 ## Propósito
 
-Autoridad única de lectura para D2-07, integrando sin reabrir los tres children aceptados [[Echo Futures — D2-07A Execution Adapter Contract]], [[Echo Futures — D2-07B Transport Selection]] y [[Echo Futures — D2-07C Execution Runtime Topology]]. Responde al scope D2-07 despachado: boundary del execution adapter, command/event integration, capacidades de idempotencia/finality/reconciliación externas, matriz de elegibilidad de transport y recomendación del primer camino V1 no-real-money. Los children quedan como evidence/design depth; ante contradicción de wording histórico, este artifact integrado es la autoridad vigente de D2-07.
+Autoridad única de lectura para D2-07, integrando sin reabrir los tres children aceptados [[Echo Futures — D2-07A Execution Adapter Contract]], [[Echo Futures — D2-07B Transport Selection]] y [[Echo Futures — D2-07C Execution Runtime Topology]]. Responde al scope D2-07 despachado: boundary del execution adapter, command/event integration, capacidades de idempotencia/finality/reconciliación externas, matriz de elegibilidad de transport y resolución Owner sobre cuándo seleccionar el primer transport externo real. Los children quedan como evidence/design depth; ante contradicción de wording histórico, este artifact integrado es la autoridad vigente de D2-07.
 
-No implementa código, no ejecuta ProjectX, no certifica vendors, no elige store del journal, no cierra D2-07 ni D2 global y no abre D2-08.
+No implementa código, no ejecuta ProjectX, no certifica vendors, no elige store del journal y no cierra D2 global. D2-07 queda cerrado a nivel de diseño por la decisión Owner registrada en §28; la selección/certificación del primer transport externo real pertenece a D6.
 
 ## 1. Executive verdict
 
 ```text
-D2-07-R1 STATUS: READY_FOR_MANAGER_REVIEW
+D2-07 STATUS: MANAGER_CLOSED
 
 BRIDGE DECISION: FUTURES_BRIDGE_SIBLING
-INITIAL V1 TRANSPORT CANDIDATE: PROJECTX_DIRECT (recommendation only)
-OWNER DECISIONS REQUIRED: OD-D2-07-1 — INITIAL V1 EXECUTION TRANSPORT
+D2 IMPLEMENTATION START: SIMEXECUTIONADAPTER
+INITIAL EXTERNAL TRANSPORT: NOT_SELECTED_IN_D2
+OWNER DECISION: OD-D2-07-1 = DEFER_EXTERNAL_TRANSPORT_SELECTION_TO_D6
 ```
 
 Los tres children están `ACCEPTED_FOR_INTEGRATION`; sus repairs críticos (R1 de B y la decisión C) son compatibles y la integración no descubrió una contradicción material nueva. El contrato genérico de A, la separación D2/D6 reparada de B y la topología sibling de C se integran en una sola semántica: Core sigue siendo autoridad de `Operation → Order → Fill`; el Futures Bridge es un proceso sibling que aloja el `ExecutionAdapter` como componente interno; el adapter es la frontera de side effects externos con journal M2 write-ahead, y la certificación física del transport seleccionado es trabajo D6.
 
-La recomendación `PROJECTX_DIRECT` no rebaja el contrato: `PROJECTX M2 = NOT_PROVEN`, `REAL_MONEY_CERTIFICATION = NOT_DONE`, y los gaps vendor-specific permanecen como certification gates D6. `NOT_PROVEN` no bloquea el diseño D2 ni autoriza declarar submission física exacta certificada, production safe o real-money ready.
+La recomendación previa de B por `PROJECTX_DIRECT` queda **superseded por decisión Owner**: D2 no selecciona ningún transport externo. ProjectX permanece como un candidate futuro entre varios, con `PROJECTX M2 = NOT_PROVEN` y `REAL_MONEY_CERTIFICATION = NOT_DONE`. D6 seleccionará un transport externo sólo cuando exista acceso autorizado real y cerrará sus certification gates antes de cualquier exact physical deployment.
 
-**Corrección del Primary Manager aplicada (normalized event routing):** el wording integrado promovía indebidamente las cinco familias a un único stream `echo.execution-events.v1` con key op-key e ingress directo a `echo/operation`, atribuyendo a la Operation observaciones que no la portan (`PositionUpdate`, identidad `(execution_account_id, contract_id)`) o que no son eventos del aggregate (`ExecutionSessionStatus`, runtime/readiness de cuenta/sesión). El artifact congela ahora el routing de **tres caminos** por identidad de la observación (§8, §17): execution facts operation-correlated (`OrderStatusEvent`/`OrderActionResult`/`Fill` de una Order Echo) → execution-events → `echo/operation`; `PositionUpdate` → camino physical position/reconciliation; `ExecutionSessionStatus` → camino runtime/readiness account-scoped, jamás con `operation_id` fabricado y jamás como fact de Operation. Ningún otro cambio arquitectónico; `OD-D2-07-1` sigue pendiente.
+**Corrección del Primary Manager aplicada (normalized event routing):** el wording integrado promovía indebidamente las cinco familias a un único stream `echo.execution-events.v1` con key op-key e ingress directo a `echo/operation`, atribuyendo a la Operation observaciones que no la portan (`PositionUpdate`, identidad `(execution_account_id, contract_id)`) o que no son eventos del aggregate (`ExecutionSessionStatus`, runtime/readiness de cuenta/sesión). El artifact congela ahora el routing de **tres caminos** por identidad de la observación (§8, §17): execution facts operation-correlated (`OrderStatusEvent`/`OrderActionResult`/`Fill` de una Order Echo) → execution-events → `echo/operation`; `PositionUpdate` → camino physical position/reconciliation; `ExecutionSessionStatus` → camino runtime/readiness account-scoped, jamás con `operation_id` fabricado y jamás como fact de Operation. Ningún otro cambio arquitectónico. `OD-D2-07-1` queda resuelto por Owner: comenzar con `SimExecutionAdapter` y diferir la selección del primer transport externo real a D6.
 
 Baselines: Agents-OS **integration baseline** `b45e9328c0217e77c4f91103bb5f3a422d9cd5b6` — HEAD verificado al **inicio** del worker de integración, no el estado final persistido. La integración se persistió después en `363849568383bda8dddbe9fb6ded447e15590210` y el cierre de esa sesión quedó en `89120c64cd59719949a7af495b0a75355e18d686`; el HEAD final de esta corrección (D2-07-R1) es un SHA distinto y posterior, registrado en el handoff de sesión. Echo `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360` — los tres children la verificaron sin delta; por regla de integración no se re-auditó source salvo necesidad de contradicción, y no surgió ninguna.
 
 ## 2. Scope / authorities
 
-**En scope:** frontera genérica de ejecución, decisión Bridge/Adapter, topología runtime conceptual, modelo de comandos del adapter, event model normalizado, boundary M1/M2, submission journal, finality, readiness, reconnect/reconciliación, ownership de side effects, cardinalidad proceso/sesión/cuenta, routing Kafka, cambios de binding en caliente, degraded close, separación SimExecution, comparación compacta de transports, recomendación inicial V1, reuse map V3, gates D6, escala y acceptance cases.
+**En scope:** frontera genérica de ejecución, decisión Bridge/Adapter, topología runtime conceptual, modelo de comandos del adapter, event model normalizado, boundary M1/M2, submission journal, finality, readiness, reconnect/reconciliación, ownership de side effects, cardinalidad proceso/sesión/cuenta, routing Kafka, cambios de binding en caliente, degraded close, separación SimExecution, comparación compacta de transports, política Owner de selección del primer transport externo, reuse map V3, gates D6, escala y acceptance cases.
 
-**Fuera de scope:** implementación física, store del journal, certificación M2 vendor, validación demo/shadow autorizada, benchmarks de capacidad, cierre de OD-D2-07-1, D2-08 y cierre global D2.
+**Fuera de scope:** implementación física, store del journal, selección/certificación M2 del transport externo real (D6), validación demo/shadow autorizada, benchmarks de capacidad, D2-08 y cierre global D2.
 
 Jerarquía de autoridades consumidas:
 
@@ -66,7 +67,7 @@ Jerarquía de autoridades consumidas:
 6. D2-07B — comparación de transports, separación D2/D6, gaps como gates D6.
 7. D2-07C — topología física conceptual, sibling, ownership, routing, reuse map.
 
-Children congelados para esta integración: D2-07A congela la frontera Bridge/Adapter, una sola domain Order, M1 vs M2, durable write-ahead submission intent, no blind retry, AMBIGUOUS fail-closed, finality venue-authoritative, immutable partial/multi-fill, Position = Account + Contract, static eligibility ≠ dynamic readiness, reconnect = recovery nunca resubmit, y no synthetic/heuristic execution identity. D2-07B congela (post-repair R1) `PROJECTX_DIRECT = recommended initial non-real-money implementation candidate`, no Owner freeze, no M2-certified, no real-money-certified. D2-07C congela `FUTURES_BRIDGE_SIBLING` con Bridge = process/runtime shell y ExecutionAdapter = componente interno transport-specific, sin `ExecutionAdapterHost`.
+Children congelados para esta integración: D2-07A congela la frontera Bridge/Adapter, una sola domain Order, M1 vs M2, durable write-ahead submission intent, no blind retry, AMBIGUOUS fail-closed, finality venue-authoritative, immutable partial/multi-fill, Position = Account + Contract, static eligibility ≠ dynamic readiness, reconnect = recovery nunca resubmit, y no synthetic/heuristic execution identity. D2-07B aporta la evidencia/comparación de transports; su recomendación histórica `PROJECTX_DIRECT` queda superseded por la decisión Owner de §28. No hay transport externo seleccionado en D2. D2-07C congela `FUTURES_BRIDGE_SIBLING` con Bridge = process/runtime shell y ExecutionAdapter = componente interno transport-specific, sin `ExecutionAdapterHost`.
 
 ## 3. Aclaración D2-07-R1 — execution identity
 
@@ -321,7 +322,7 @@ Dos usos que no se mezclan:
 
 ```text
 ProjectX Direct
-- recommended first non-real-money candidate
+- future external-adapter candidate from D2-07B evidence; NOT selected in D2
 - direct API / low Desktop coupling
 - Topstep simulated path (Trading Combine + Express Funded; Practice = cert env, no ProviderProgram)
 - M2 vendor certification deferred D6 (customTag retention, ambiguous-submit atomicity,
@@ -341,22 +342,20 @@ Tradovate / Rithmic / CQG
 
 Child B queda como evidence depth completa (capability matrix, first-party evidence register con fechas/URLs, entitlement constraints). Separación preservada: platform support ≠ API entitlement; "has simulator" ≠ ProviderProgram entitlement ni real-money authorization.
 
-## 22. Initial V1 recommendation
+## 22. Owner-selected implementation path
 
 ```text
-PROJECTX_DIRECT
-=
-recommended initial non-real-money implementation candidate
+D2 implementation start:
+FUTURES_BRIDGE_SIBLING + SIMEXECUTIONADAPTER
 
-semantics:
-recommendation only
-first non-real-money implementation candidate
-not transport certification
-not real-money authorization
-not Owner freeze
+Initial external/real transport:
+NOT_SELECTED_IN_D2
+
+Selection authority:
+D6, when an authorized account/API/platform path actually exists
 ```
 
-Sostenida únicamente con evidencia ya aceptada: API directa con submit/modify/cancel, observaciones realtime de orders/trades/positions, Topstep Trading Combine + Express Funded Account como ProviderPrograms simulados dentro del path aceptado, menor coupling operativo inicial que Desktop, y el Core sin volverse ProjectX-specific (el transport queda detrás del boundary Adapter/Bridge). La integración NO toma la decisión por el Owner (§28).
+Esta decisión evita casar el MVP arquitectónico con un vendor al que hoy no existe acceso autorizado garantizado. `SimExecutionAdapter` permite implementar y certificar el seam Core → Kafka → Futures Bridge → Adapter, incluyendo journal/recovery, sin credenciales externas. **Esto no elimina el requisito V1 de demostrar al menos un transport externo real:** antes del gate correspondiente, D6 debe seleccionar uno de los candidates técnicamente viables, implementar su adapter, demostrar entitlement/host autorizado y cerrar M2/E2E para ese transport. ProjectX queda como un candidate posible, no preferido ni seleccionado.
 
 ## 23. Echo V3 reuse / adapt map
 
@@ -442,20 +441,25 @@ Gate genérico por transport (B §21): durable M2 implementation antes del point
 - **R12 divergencia de duplicados V1:** las piezas duplicadas session/consumer/breaker pueden divergir del legado; aceptado bajo la regla de re-extracción de §23.
 - **R13 Topstep deployment violation:** un adapter ProjectX técnicamente correcto desplegado como relay/VPS violaría la constraint de order flow documentada (host placement = D6).
 
-## 28. Owner decision
-
-Sobrevive exactamente una decisión owner:
+## 28. Owner decision — RESOLVED
 
 ```text
 OD-D2-07-1 — INITIAL V1 EXECUTION TRANSPORT
 
-Candidate recomendado: PROJECTX_DIRECT
-Semántica: recommendation only
-           first non-real-money implementation candidate
-           not certification
+OWNER DECISION:
+DEFER_EXTERNAL_TRANSPORT_SELECTION_TO_D6
+
+D2 IMPLEMENTATION START:
+FUTURES_BRIDGE_SIBLING + SIMEXECUTIONADAPTER
+
+PROJECTX_DIRECT:
+FUTURE CANDIDATE ONLY
+NOT SELECTED
+NOT PREFERRED BY OWNER
+NOT CERTIFIED
 ```
 
-La integración NO toma la decisión por el Owner. `OD-D2-07-1` no cierra en este artifact; es el único owner decision pendiente de D2-07 y no bloquea manager review.
+Rationale Owner: la arquitectura debe quedar Bridge + Adapter y no depender de credenciales/vendor que hoy no existen en el entorno del proyecto. D6 seleccionará el primer transport externo real en función de acceso autorizado efectivo, compatibilidad con el contrato D2-07 y capacidad de cerrar sus gates M2. El requisito V1 de demostrar al menos un transport real permanece vigente en D6. `OD-D2-07-1` queda **CLOSED**.
 
 ## Fuentes
 
@@ -471,8 +475,8 @@ La integración NO toma la decisión por el Owner. `OD-D2-07-1` no cierra en est
 ## Handoff
 
 ```text
-D2-07-R1 STATUS:
-READY_FOR_MANAGER_REVIEW
+D2-07 STATUS:
+MANAGER_CLOSED
 
 TRACEABILITY:
 INTEGRATION BASELINE: b45e9328c0217e77c4f91103bb5f3a422d9cd5b6
