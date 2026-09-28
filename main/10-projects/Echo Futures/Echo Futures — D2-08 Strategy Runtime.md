@@ -131,10 +131,9 @@ Signal {
   strategy_cycle_seq    # ciclo técnico al que pertenece la Signal
   intent               # OPEN | REDUCE | CLOSE | CLOSE_ALL   (D2-03, inmutable)
   instrument_id        # canónico; Strategy jamás resuelve Contract (D2-03/D2-05)
-  side                 # dirección técnica (LONG/SHORT) para intents direccionales
-  entry_type           # MARKET | LIMIT | STOP + entry/trigger price cuando aplique (owner D1)
-  technical_sl / technical_tp    # niveles técnicos propuestos, cuando la Strategy los expresa (D2-03)
-  details              # payload técnico Strategy-specific (D2-03); validación de compatibilidad Strategy↔MM en el binding
+  direction            # dirección técnica canónica cuando el intent la requiere
+  details              # payload técnico Strategy-specific D2-03: entry/trigger semantics,
+                       # SL/TP técnicos, niveles, indicadores/contexto y demás detalle compatible Strategy↔MM
   created_at           # runtime_ts de emisión (event-time de la isla, D2-06 §15)
   valid_until          # ventana de validez; expirada NO materializa Operation (D2-04 §3.1 guard)
   provenance {
@@ -173,6 +172,7 @@ TECHNICAL_OPEN(k)
 La Strategy sigue siendo account-agnostic y jamás espera convergencia física. Por eso una cuenta puede estar todavía ejecutando la Operation del ciclo k cuando recibe Signals del ciclo k+1. El owner `echo/operation` resuelve esa diferencia sin crear dos Operations simultáneas:
 
 - si llega `OPEN(k)` y la Operation corriente también pertenece a k, se mantiene la regla D2-04: es una acción/add sobre la Operation corriente y MM decide su materialización;
+- por AccountStrategy, un `strategy_cycle_seq=k` puede materializar **como máximo una identidad de Operation durante toda la vida de ese ciclo**. El owner conserva el escalar `last_materialized_cycle_seq` (bookkeeping, no entidad). Si todavía nunca existió Operation(k) —por ejemplo, un OPEN anterior fue DENY en Stage-1 y por ello no materializó nada— un OPEN(k) posterior aún puede intentar la primera materialización. Si Operation(k) ya existió y quedó TERMINAL tempranamente (`ENTRY_FAILED`, etc.), otro OPEN(k) **no crea una segunda Operation**: se trata como no-op/fail-visible de ese ciclo. Una nueva Operation requiere k+1;
 - si llega `OPEN(k+1)` mientras Operation(k) aún no es TERMINAL **y ésta ya tiene intent de terminación por CLOSE/CLOSE_ALL**, el owner guarda la Signal como `pending_next_cycle_open` y NO la aplica a la Operation vieja;
 - el owner puede retener junto a esa apertura las Signals posteriores **del mismo ciclo futuro k+1** en un buffer acotado por ese único ciclo, preservando `signal_seq`; no existe backlog arbitrario de ciclos;
 - cuando Operation(k) alcanza TERMINAL, el owner procesa `pending_next_cycle_open` por las guards normales de materialización (valid_until, binding, Stage-1 provider admission, Contract resolution). Sólo entonces puede existir Operation(k+1);
@@ -181,7 +181,7 @@ La Strategy sigue siendo account-agnostic y jamás espera convergencia física. 
 
 Así, el caso Owner `CLOSE_ALL(k) → OPEN(k+1)` de una misma evaluación es ejecutable y determinístico sin violar `max 1 non-terminal Operation per AccountStrategy` ni cruzar la dirección immutable de la Operation vieja.
 
-Una Operation puede terminar `ENTRY_FAILED` mientras Strategy sigue OPEN; eso sigue siendo correcto. Signals de gestión para un ciclo que esa cuenta nunca materializó son no-op/fail-visible según identidad de ciclo, nunca se aplican por accidente a una Operation de otro ciclo.
+Una Operation puede terminar `ENTRY_FAILED` mientras Strategy sigue OPEN; eso sigue siendo correcto. Haber materializado Operation(k) sella ese ciclo para esa AccountStrategy: no se crea una segunda Operation(k) después del terminal temprano. Si el ciclo k nunca materializó Operation porque Stage-1 lo denegó, un OPEN(k) posterior todavía puede intentar su primera materialización. Signals de gestión para un ciclo sin Operation son no-op/fail-visible y nunca se aplican por accidente a otro ciclo.
 
 ## 8. Signal fan-out (`echo/signal_fanout`, key `strategy_id`)
 
@@ -199,8 +199,8 @@ Ya congelado como función nueva por D2-04 §8.1/§8.3 ("sucesor del patrón `Ex
 ```text
 SignalDelivery {
   signal_id, strategy_id, strategy_cycle_seq, account_strategy_id
-  intent, side, instrument_id
-  entry_type / technical levels / details      # payload D2-03 íntegro, sin interpretar
+  intent, direction, instrument_id
+  details                                      # payload D2-03 íntegro, sin interpretar
   strategy_eval_seq, signal_seq, signal_created_at, valid_until
   source, run_mode / run_id
 }
@@ -366,7 +366,7 @@ Baseline verificada: `origin/master = 372af59a7b83604781346613da01e3d510ea1360` 
 
 - **A — bars-only Strategy, 200 cuentas:** 1 BAR_CLOSE admitido (dedup por BarId) ⇒ 1 evaluación ⇒ 1 Signal ⇒ fan-out a 200 bindings habilitados ⇒ 200 deliveries keyeadas ⇒ ≤200 decisiones MM aisladas. Cero multiplicación de feed/builders/indicators/evaluaciones.
 - **B — no Signal:** trigger válido sin setup ⇒ evaluación consume input (journalizado), `strategy_eval_seq` avanza, cero Signals ⇒ cero fan-out. La ausencia es demostrable por el journal del input.
-- **C — OPEN con divergencia física:** Signal OPEN ⇒ ciclo lógico OPEN en `echo/strategy_engine` (autosuficiente). Cuenta A materializa y llena; B rechaza entry (Operation TERMINAL(ENTRY_REJECTED) por MM, D2-04); C denegada por Stage-1 (sin Operation, D2-05 R15). La Strategy no cambia su estado por ninguno de los tres; sus siguientes Signals técnicas se fan-out igual; B/C resuelven por su camino (no-op de gestión o nueva materialización si la semántica MM lo permite).
+- **C — OPEN con divergencia física:** Signal OPEN ⇒ ciclo lógico OPEN en `echo/strategy_engine` (autosuficiente). Cuenta A materializa y llena; B rechaza entry (Operation TERMINAL(ENTRY_REJECTED) por MM, D2-04); C denegada por Stage-1 (sin Operation, D2-05 R15). La Strategy no cambia su estado por ninguno de los tres; sus siguientes Signals técnicas se fan-out igual; B/C resuelven por su camino: B ya consumió su única Operation(k), por lo que no rematerializa otra Operation del mismo ciclo; C, que nunca materializó por DENY Stage-1, aún puede intentar la primera Operation(k) ante un OPEN(k) posterior si entonces pasa admission.
 - **D — segunda acción técnica con ciclo abierto:** Strategy emite REDUCE (o OPEN-as-add según su semántica declarada) con ciclo OPEN ⇒ no crea Operation lógica nueva (D2-02); cada AccountStrategy entrega la Signal a su Operation corriente ⇒ MM produce Orders sobre la misma Operation (adds/reductions, misma `operation_id`).
 - **E — CLOSE:** Signal CLOSE/CLOSE_ALL ⇒ ciclo lógico cierra según semántica técnica; las cuentas ejecutan sus cierres account-specific (MM/orders/finality) y sus Operations terminalizan **sólo por guards D2-04** — el cierre lógico no fuerza TERMINAL físico (I5).
 - **F — crash antes del egress de la Signal:** bajo `echo.signals.v1` EXACTLY_ONCE, la Signal y el estado que la produjo commitean atómicamente: crash pre-checkpoint ⇒ rollback + re-evaluación desde el input re-entregado y **regeneración determinística del mismo `signal_id`**; crash post-checkpoint ⇒ la Signal es durable y el fan-out la absorbe idempotentemente. Sin acción económica duplicada.
@@ -513,3 +513,15 @@ Q16 — Blocking Refactor + D2 final integration.
 - [[Echo Futures — D2-06 Market Runtime]] — ownership de `echo/strategy_engine`, trigger cadence, readiness, DomainClock, journal/EXACT_REPLAY, escala.
 - [[Echo Futures — D2-07 Execution Runtime]] — routing de execution facts hacia `echo/operation`, separación market/execution.
 - `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360` — source físico inspeccionado: `v3/core/internal/functions/strategy_config.go` (`9169ee91`), `v3/core/internal/functions/execution_planner.go` (`f721f4dd`), `v3/core/internal/functions/mm_engine.go` (`b04dea9b`), `v3/sdk/domain/reference_event.go` (`c408a12f`), `v3/sdk/mm/{calculator,factory,doc,pip_size}.go` (`eb378e48`), `v3/sdk/statefun/constants.go`, `v3/core/deploy/flink-statefun/develop/module.yaml` (sin delivery semantics declarada), `v3/sdk/kache/`.
+
+
+## 27. Primary Manager validation after scope overrun
+
+**Authoritative review — 2026-09-28.** El contenido D2-08 fue producido fuera del scope autorizado del SUBMANAGER; cualquier wording previo que afirmara un cierre del Primary Manager era no autoritativo hasta esta revisión.
+
+Resultado real: **D2-08 = MANAGER_CLOSED / Q11 CLOSED**, con dos repairs adicionales aplicados por el Primary Manager:
+
+1. **Signal boundary restored to D2-03:** `direction` permanece como dato canónico mínimo cuando corresponde; entry mechanism, technical SL/TP, triggers, niveles e indicadores/contexto permanecen dentro de `Signal.details`. D2-08 no promueve un mega-schema top-level ni reabre D2-03.
+2. **One Operation identity per AccountStrategy + strategy cycle:** `strategy_cycle_seq=k` puede materializar como máximo una Operation para esa AccountStrategy. Un Stage-1 DENY no consume esa materialización porque no existe Operation; un terminal temprano de Operation(k) sí la consume y un OPEN(k) posterior no crea una segunda. El escalar `last_materialized_cycle_seq` preserva la guard sin nueva entidad.
+
+Se aceptan como decisiones técnicas: `strategy_cycle_seq`, buffer de un solo ciclo futuro con fail-closed `ACCOUNTSTRATEGY_CYCLE_LAG`, `signal_id` determinística y Strategy config pinneada por ciclo. No requieren nueva decisión owner.
