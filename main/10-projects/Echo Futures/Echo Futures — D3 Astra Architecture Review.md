@@ -72,7 +72,7 @@ No se demostró que Echo necesite un rewrite, que los boundaries Strategy/MM/Ope
 **CONCRETE FAILURE SCENARIO:**
 
 1. El checkpoint conserva `stream_seq=100` y los guards downstream en 100.
-2. Dos eventos físicos distintos, X e Y, pueden llegar desde candidates/control con orden de admisión no fijado por un único log recuperable. En el primer intento se admite X y se publica `X/101`.
+2. Dos eventos físicos distintos, X e Y, llegan desde members de una autoridad con identidad EVENT estable pero sin orden total de venue exigido por esa clase. Los candidates por source y los controls no tienen un merge recuperable congelado. En el primer intento se admite X y se publica `X/101`.
 3. El job falla antes de completar el checkpoint. `X/101` permanece en Kafka; el contador y el arbitraje vuelven al checkpoint.
 4. En la restauración se admite Y antes que X y se publican `Y/101`, `X/102`. D2 no congela un orden total recuperable entre los inputs que concurren en esa isla.
 5. El consumidor restaurado lee `X/101`, descarta `Y/101` por el guard y aplica `X/102`: pierde Y y cuenta X dos veces. El journal transaccional del intento exitoso puede referenciar 101 como Y, mientras el topic también contiene X con esa identidad.
