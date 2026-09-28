@@ -31,14 +31,14 @@ Resolver `Q11 — Strategy Runtime` del gate D2: cuándo corren Strategy y Money
 ## 1. Executive verdict
 
 ```text
-D2-08 STATUS: READY_FOR_MANAGER_REVIEW
-Q11: CLOSED_CANDIDATE
+D2-08 STATUS: MANAGER_CLOSED
+Q11: CLOSED
 OWNER DECISIONS REQUIRED: NONE
 ```
 
 Decisión central: **el runtime de Strategy es una isla StateFun nueva `echo/strategy_engine` keyeada por `strategy_id`** (ownership ya congelado por D2-06 §9), que posee el estado técnico completo de la Strategy — estado finito del ciclo técnico, indicators, analytical readiness, timers, config efectiva y bookkeeping determinista — y evalúa **una única vez por trigger admitido**, emitiendo `0..N Signals` ordenadas por el egress transaccional `echo.signals.v1` hacia el fan-out ya congelado (`echo/signal_fanout` key `strategy_id`, D2-04 §8.1) y de ahí hacia `echo/operation` (key `account:strategy`), donde MoneyManagement vive como plugin de dominio con su estado (`mm_state`) dentro del aggregate Operation (D2-04 §8.1).
 
-- **El ciclo lógico Strategy es técnico, no físico.** La Strategy abre su ciclo lógico con su propia Signal `OPEN` y lo cierra con sus propias Signals `CLOSE/CLOSE_ALL` según su semántica técnica; **jamás espera convergencia física de cuentas** (D2-02 congelado). La divergencia física (reject, provider-deny, fill parcial) es territorio exclusivo del camino account-specific `echo/operation` + MM + provider gates.
+- **El ciclo lógico Strategy es técnico, no físico.** La Strategy abre/cierra ciclos propios identificados por un `strategy_cycle_seq` monotónico y **jamás espera convergencia física de cuentas**. Cada AccountStrategy puede ir físicamente detrás; el owner account-specific conserva como máximo un ciclo futuro diferido mientras termina la Operation anterior, sin crear una segunda Operation concurrente.
 - **Triggers declarativos, mínimos, sin DSL:** cada Strategy declara en su config efectiva las familias de input que necesita (`BAR_CLOSE` con timeframes, `MARKET_EVENT` sólo si su semántica lo exige, `WINDOW_TRANSITION`, `SESSION_TRANSITION` cuando material, `TIMER` declarado). Una Strategy bars-only no recibe firehose de ticks (D2-06 §14). La declaración alimenta los `MarketRequirements` de D2-06; su cambio hot es `ConfigTransition` material.
 - **MM corre por triggers de la Operation, no del mercado global:** Signal delivery, execution facts (`OrderStatusEvent`/`OrderActionResult`/`Fill` ya correlacionados por el routing de tres caminos D2-07 §17), intents de terminación (`ForceClose`), `TimerFired` y —sólo si ese MM lo declara— notificaciones de mercado. El cálculo puro de `sdk/mm` sigue siendo librería; el **estado** MM vive en el keyed state de `echo/operation` (D2-04 congelado; el `MMEngineFn` legacy con `PendingMM` TTL es REPLACE para el path Futures).
 - **Determinismo:** la propiedad congelada es de dominio — mismo stream ordenado de inputs admitidos ⇒ mismas decisiones. LIVE serializa por isla con `owner_input_seq`; EXACT_REPLAY reproduce el run live real con el boundary D2-06 (manifest + anchor + journal); BACKTEST ejecuta la misma lógica pura con driver sintético y `SimExecution` (D2-04 §8.7). Prohibido `time.Now()` en lógica de dominio; todo tiempo de dominio entra como `runtime_ts` vía `DomainClock` (D2-06 §15/§16).
@@ -71,7 +71,7 @@ Estado poseído (keyed state, checkpointeado por Flink/StateFun — categoría C
 - **Analytical readiness** (D2-06 §7): `AnalyticalRequirementsReady(strategy)` derivado de sus requirements; gate de emisión — una Strategy no emite Signal antes de readiness (warm-up D2-06 §13).
 - **Trigger requirements declarados** (§4) y **config efectiva** (§19): la config corriente que gobierna evaluación y triggers.
 - **Timers propios** (§13): manejados vía `DomainClock` (D2-06 §16) con identidad `timer_id + generation`.
-- **Bookkeeping determinista:** `owner_input_seq` (orden de admisión de la isla, D2-06 §15), `strategy_eval_seq` (monótono por evaluación emitida), identidad del último trigger procesado (dedup de redelivery por identidad de trigger/`stream_seq` guard para MARKET_EVENT, D2-06 I5), y el dedup set de triggers ya aplicados (restaurado con el checkpoint).
+- **Bookkeeping determinista:** `owner_input_seq` (orden de admisión), `strategy_eval_seq` (monótono por evaluación), `strategy_cycle_seq` (monótono por ciclo técnico), identidad del último trigger procesado y dedup de triggers. La isla mantiene además `active_cycle_config` y, si llega config nueva mientras el ciclo está OPEN, `pending_strategy_config` para activación prospectiva al próximo ciclo.
 
 Explícitamente **NO posee** (prohibido por mandato y por boundaries congelados): balances de cuentas, estado Provider/`echo/provider_rules`, estado mutable de MoneyManagement (`mm_state` vive en `echo/operation`, D2-04 §2.1), Orders físicas, Fills, Positions de cuentas, ni resultados de ejecución por AccountStrategy. La Strategy es read-only respecto del mundo físico: no consume execution events, no consume Fills, no recibe feedback de `echo/operation`. Ningún path de estado vuelve de la ejecución hacia la Strategy.
 
@@ -116,7 +116,7 @@ Resoluciones puntuales:
 - **¿Puede una evaluación producir cero Signals? Sí, y es el caso común** (trigger válido sin setup — caso B). La evaluación identidad persiste en `strategy_eval_seq` aunque no emita nada: la ausencia de Signal es una decisión determinística, no un no-evento indemonstrable (su input quedó journalizado por D2-06 §18).
 - **Cardinalidad por evaluación: `0..N` ordenadas.** D2-03 congela que `Signal` es el único contrato de salida (no `StrategyAction`); no congela cardinalidad. La decisión owner D1 ([[Echo Futures]], A1 review) acepta explícitamente "más de una Signal como resultado de una misma evaluación" con procesamiento determinístico cuando el orden cambia el resultado (`CLOSE_ALL` seguido de `OPEN` para reversal). Este artifact congela la mecánica: la evaluación retorna una **lista ordenada** sellada con `signal_seq` monótono por Strategy; el orden intra-evaluación se preserva end-to-end (§12/§17) y `echo/operation` lo aplica en orden (A1). El caso dominante es 0 o 1.
 - **Identidad de la evaluación:** `(strategy_id, trigger_identity, strategy_eval_seq)`. La `trigger_identity` es la identidad natural del input (BarId para BAR_CLOSE, `stream_seq` para MARKET_EVENT con guard I5 de D2-06, `session_id+boundary` para transiciones, `timer_id+generation` para timers). Redelivery del mismo trigger ⇒ guard de dedup por identidad ⇒ NO-OP antes de evaluar (sin doble evaluación, sin doble Signal — mismo principio que el `stream_seq` guard de D2-06 I5).
-- **Identidad de la Signal:** `signal_id` UUIDv7 generado por `echo/strategy_engine` en el momento de emisión **+ sello de orden** `(strategy_eval_seq, signal_seq)`. El `signal_id` es obligatorio: D2-04 §5.1 ya congela la dedup de Signal procesada por `(account_strategy_id, signal_id)` en `echo/operation` — sin `signal_id` estable no existe idempotencia de delivery. Su regeneración post-crash es segura por el mismo argumento M1 de D2-04 §2.1: bajo egress EXACTLY_ONCE ninguna Signal pudo haber escapado sin estado commiteado, por lo que una re-emisión post-rollback nunca convive con la original aguas abajo.
+- **Identidad de la Signal:** `signal_id` es **determinística**, derivada de la identidad estable del run + `strategy_id + strategy_eval_seq + signal_seq` (encoding concreto = implementación; puede representarse como UUID/string estable). No usa aleatoriedad ni wall clock para correctness. Esto preserva la dedup `(account_strategy_id, signal_id)` de D2-04 y permite que crash/restart y EXACT_REPLAY regeneren la **misma identidad**, no sólo una Signal semánticamente equivalente. `strategy_cycle_seq` viaja aparte para correlacionar el ciclo técnico.
 - **Evitar duplicate fan-out:** dos barreras — (1) la atomicidad estado↔egress (una Signal checkpointeada es durable en `echo.signals.v1`; una transacción abortada no deja Signal visible); (2) el replay de Kafka ingress en el fan-out se absorbe con el dedup `signal_id` + guard `(strategy_eval_seq, signal_seq)` del fan-out owner (§6). `echo/operation` aplica la tercera barrera ya congelada (D2-04 §5.1).
 - **Crash/restart:** checkpoint restaura estado técnico, indicators, readiness, bookkeeping y timers (con generation). Los triggers ya procesados no se re-evalúan (offsets del ingress commitean con el checkpoint; el replay post-checkpoint re-procesa desde Kafka con las mismas guards idempotentes).
 
@@ -126,8 +126,9 @@ D2-03 congela intents y `details`; este artifact añade sólo los campos runtime
 
 ```text
 Signal {
-  signal_id            # UUIDv7, identidad de idempotencia (D2-04 §5.1)
+  signal_id            # identidad determinística de idempotencia
   strategy_id
+  strategy_cycle_seq    # ciclo técnico al que pertenece la Signal
   intent               # OPEN | REDUCE | CLOSE | CLOSE_ALL   (D2-03, inmutable)
   instrument_id        # canónico; Strategy jamás resuelve Contract (D2-03/D2-05)
   side                 # dirección técnica (LONG/SHORT) para intents direccionales
@@ -137,7 +138,7 @@ Signal {
   created_at           # runtime_ts de emisión (event-time de la isla, D2-06 §15)
   valid_until          # ventana de validez; expirada NO materializa Operation (D2-04 §3.1 guard)
   provenance {
-    strategy_eval_seq, signal_seq     # orden canónico
+    strategy_eval_seq, signal_seq     # orden canónico; signal_id deriva de estos + run/strategy
     trigger_identity                  # qué disparó la evaluación
     run_mode / run_id                 # provenance LIVE/SHADOW/DEMO/REPLAY/BACKTEST (I11 D2-04)
     source                            # NATIVE | REFERENCE  (adapter legacy, §17)
@@ -145,23 +146,42 @@ Signal {
 }
 ```
 
-No se agregan campos "por si acaso": ni `account`, ni `contract_id` (la resolución `Instrument→Contract` es account-specific en la materialización, D2-03/D2-05), ni sizing (prohibido, D2-03), ni provider. La identidad secuencial `(strategy_eval_seq, signal_seq)` complementa pero **no reemplaza** a `signal_id`: la primera da orden y replay-provenance, la segunda da idempotencia de dedup end-to-end con el key ya congelado en D2-04 §5.1.
+No se agregan campos "por si acaso": ni `account`, ni `contract_id`, ni sizing, ni provider. `strategy_cycle_seq` es un escalar de correlación/runtime, **no una entidad nueva** ni un `operation_key`: permite distinguir una acción del ciclo corriente de una nueva apertura perteneciente al ciclo siguiente cuando una cuenta todavía está cerrando físicamente el anterior. `(strategy_eval_seq, signal_seq)` da orden/provenance y alimenta la identidad determinística `signal_id`.
 
-## 7. Logical OPEN/CLOSED vs physical accounts (§7 del mandato)
+## 7. Logical OPEN/CLOSED vs physical accounts
 
-Congelado por D2-02: `Strategy logical state ≠ physical AccountStrategy execution state`. Resolución exacta de qué abre/cierra el ciclo lógico:
+Congelado por D2-02: `Strategy logical state ≠ physical AccountStrategy execution state`. D2-08 agrega sólo una identidad escalar monotónica:
 
 ```text
-Signal OPEN emitida            → ciclo lógico OPEN  (technical_direction sellada por la Signal)
-Signal REDUCE emitida          → ciclo sigue OPEN   (contexto técnico ajustado; el sizing es territorio MM)
-Signal CLOSE emitida           → ciclo técnico en cierre; cierra cuando su semántica lo determine
-Signal CLOSE_ALL emitida       → ciclo lógico CLOSED (flatten técnico declarado)
+strategy_cycle_seq
 ```
 
-- El estado lógico es **autosuficiente y técnico**: transiciona exclusivamente por Signals emitidas por la propia Strategy (y por el input técnico que las motiva). La Strategy no observa, espera ni agrega outcomes físicos: si la Account A ejecuta, B rechaza y C es provider-denied, la Strategy sigue en su estado lógico y sus siguientes Signals (gestión/salida) se emiten igual; cada cuenta resuelve la suya en su camino aislado (MM decide retry/replace/safety dentro de `echo/operation`; provider gates dentro de `echo/provider_rules`).
-- **No se inventa agregación de cuentas** ni un "quórum físico" para cerrar el ciclo lógico. La única coupling permitido es el ya congelado (D2-02/D2-03): compatibilidad Strategy↔MoneyManagement declarada por binding, resuelta localmente, nunca como canal de feedback hacia `echo/strategy_engine`.
-- Consecuencia deliberada: puede existir una Operation account-specific que termine `TERMINAL(ENTRY_FAILED)` mientras la Strategy sigue lógicamente OPEN. Eso es correcto por diseño (D2-02): la Strategy emitirá sus siguientes Signals técnicas y cada AccountStrategy las aplica idempotentemente sobre (o sin) su Operation corriente (`REDUCE/CLOSE` sin Operation ⇒ no-op con telemetría `NO_ACTIVE_OPERATION`, D2-04 §3.1).
-- La reversión técnica se expresa como la Strategy ya lo tiene congelado: `CLOSE_ALL` + `OPEN` como Signals ordenadas de la misma o de otra evaluación (A1 determinismo); cada cuenta termina su Operation y materializa la nueva (nunca cruza dirección, D2-04).
+No es una entidad, no es `operation_key` y no crea un aggregate adicional. Identifica el ciclo técnico al que pertenece cada Signal.
+
+Semántica:
+
+```text
+TECHNICAL_CLOSED
+  OPEN emitida       → incrementa strategy_cycle_seq; ciclo k queda OPEN
+
+TECHNICAL_OPEN(k)
+  REDUCE/CLOSE       → Signal pertenece a k
+  CLOSE_ALL          → declara cierre técnico de k
+  OPEN de reversal   → abre k+1 sólo después de sellar el cierre técnico de k
+```
+
+La Strategy sigue siendo account-agnostic y jamás espera convergencia física. Por eso una cuenta puede estar todavía ejecutando la Operation del ciclo k cuando recibe Signals del ciclo k+1. El owner `echo/operation` resuelve esa diferencia sin crear dos Operations simultáneas:
+
+- si llega `OPEN(k)` y la Operation corriente también pertenece a k, se mantiene la regla D2-04: es una acción/add sobre la Operation corriente y MM decide su materialización;
+- si llega `OPEN(k+1)` mientras Operation(k) aún no es TERMINAL **y ésta ya tiene intent de terminación por CLOSE/CLOSE_ALL**, el owner guarda la Signal como `pending_next_cycle_open` y NO la aplica a la Operation vieja;
+- el owner puede retener junto a esa apertura las Signals posteriores **del mismo ciclo futuro k+1** en un buffer acotado por ese único ciclo, preservando `signal_seq`; no existe backlog arbitrario de ciclos;
+- cuando Operation(k) alcanza TERMINAL, el owner procesa `pending_next_cycle_open` por las guards normales de materialización (valid_until, binding, Stage-1 provider admission, Contract resolution). Sólo entonces puede existir Operation(k+1);
+- si la Signal expiró/queda disabled/denied, se descarta explícitamente con telemetría; jamás se materializa tarde en silencio;
+- si aparece un ciclo k+2 mientras k sigue físico y k+1 ya está diferido, el AccountStrategy entra en `ACCOUNTSTRATEGY_CYCLE_LAG`: fail-closed para new risk hasta converger. No se acumula historia ilimitada.
+
+Así, el caso Owner `CLOSE_ALL(k) → OPEN(k+1)` de una misma evaluación es ejecutable y determinístico sin violar `max 1 non-terminal Operation per AccountStrategy` ni cruzar la dirección immutable de la Operation vieja.
+
+Una Operation puede terminar `ENTRY_FAILED` mientras Strategy sigue OPEN; eso sigue siendo correcto. Signals de gestión para un ciclo que esa cuenta nunca materializó son no-op/fail-visible según identidad de ciclo, nunca se aplican por accidente a una Operation de otro ciclo.
 
 ## 8. Signal fan-out (`echo/signal_fanout`, key `strategy_id`)
 
@@ -178,7 +198,7 @@ Ya congelado como función nueva por D2-04 §8.1/§8.3 ("sucesor del patrón `Ex
 
 ```text
 SignalDelivery {
-  signal_id, strategy_id, account_strategy_id
+  signal_id, strategy_id, strategy_cycle_seq, account_strategy_id
   intent, side, instrument_id
   entry_type / technical levels / details      # payload D2-03 íntegro, sin interpretar
   strategy_eval_seq, signal_seq, signal_created_at, valid_until
@@ -234,7 +254,7 @@ D2-06 §14 congela `MarketContext` read-only consumido desde `echo/operation` y 
 
 ## 14. Config semantics (hot vs pinned)
 
-- **Strategy config:** cambia hot y aplica **prospectivamente** a evaluaciones futuras (D2-01/D2-06 §20). Si cambia mientras el ciclo lógico está OPEN, el estado técnico (ciclo, indicators) **no se resetea ni se re-deriva**: la Strategy continúa con su estado y la config nueva gobierna las decisiones siguientes. Un cambio que altera los trigger requirements o la readmission de requisitos de mercado es `ConfigTransition` material (journal) y puede cambiar el readiness gate de la isla (prospectivo, sin rebajar readiness ya adquirida para inputs ya demandados). Nunca hay re-evaluación retrospectiva ni Signal por config change (D2-06 I12 aplicado a decisiones, no sólo barras).
+- **Strategy config:** D2-01 manda prospectividad por Operation/ciclo. Si la Strategy está `TECHNICAL_CLOSED`, una config hot puede activarse para el **próximo ciclo** tras cumplir su warm-up/readiness. Si llega mientras el ciclo está `TECHNICAL_OPEN`, se registra como `pending_strategy_config` + `ConfigTransition` journalizada, pero **no gobierna decisiones del ciclo activo**: éste conserva `active_cycle_config` hasta cerrar. Al siguiente ciclo se promueve la pendiente antes de admitir un nuevo OPEN. No hay re-evaluación retrospectiva. Si una misma evaluación emite `CLOSE_ALL → OPEN`, ambas Signals pertenecen a la config que gobernó esa evaluación; una config pendiente no se aplica a mitad de evaluación.
 - **MoneyManagement config:** lo que la Operation necesita para no cambiar accidentalmente queda **pinneado en su snapshot** al materializar (config MM efectiva mínima + specs del Contract pinneado — D2-01/D2-04 §2.1 congelados). Hot updates de MM config afectan **nuevas Operations**. La única autoridad que actúa sobre Operations vivas es la ya congelada y explícita: provider rules/Stage-2/egress guard (D2-05), safety plane/`ForceClose` (D2-04 R3) — nunca mutación implícita del snapshot.
 - **AccountStrategy binding (enabled/disabled/MM elegido):** catálogo hot del fan-out con la semántica de §8 (disabled corta riesgo nuevo, no corta gestión). Cambiar el MM de un binding con Operation viva no retargetea la Operation corriente (su snapshot MM está pinneado); aplica a Operations futuras. Casos que requieran coupling especial se resuelven por el coupling local explícito ya congelado (D2-02/D2-03), no por framework de revisiones.
 - Sin universal revisions, sin config hash (D2-01); REPLAY/BACKTEST obtienen config por initial manifest + ConfigTransitions ordenadas (D2-06 §20), jamás por lectura de config corriente.
@@ -260,7 +280,7 @@ echo/provider_rules                         key account_id
 Orden material relevante por cadena:
 
 - **Market input → evaluación:** dentro de `echo/strategy_engine` el orden de admisión es `owner_input_seq` (checkpointeado, per-island); el merge multi-stream (N streams + timers + transiciones + config) se journaliza (D2-06 §17). No existe orden global entre streams: `EXACT_REPLAY` reproduce el merge observado live; `BACKTEST` usa canonical synthesis order (D2-06 §17).
-- **Evaluación → Signal emission:** sellada `(strategy_eval_seq, signal_seq)`; el egress preserva el orden intra-evaluación.
+- **Evaluación → Signal emission:** sellada `(strategy_cycle_seq, strategy_eval_seq, signal_seq)`; el egress preserva el orden intra-evaluación. En un reversal `CLOSE_ALL(k) → OPEN(k+1)`, el cambio de ciclo queda explícito en las Signals.
 - **Signal emission → fan-out delivery:** por key `strategy_id` (Kafka) + guard de seq del fan-out; el orden intra-evaluación y entre Signals sucesivas de la misma Strategy queda preservado hacia cada op key.
 - **Delivery / Fill / provider intent / MM timer → decisión:** todo entra por la cola serializada del op key `account:strategy`; el orden de llegada define el orden de decisión (§6.3-B D2-04), con guards de identidad (`operation_id`/`signal_id`) y dedup. `echo/provider_rules` serializa en paralelo por `account_id` los requests admission/capacity (R15/R16) — dos islas coordinadas por mensajería checkpointeada, jamás por memoria compartida.
 - Cross-island no hay más orden que el de los topic keys; las delivery cross-island necesarias para replay quedan journalizadas (D2-06 §18: "recorded cross-island deliveries").
@@ -283,7 +303,7 @@ DomainClock: Now()/Schedule/Cancel inyectados — jamás time.Now() dentro de l�
 ```
 
 - **LIVE:** StateFun owners + market inputs reales. El egress `echo.signals.v1` se declara `EXACTLY_ONCE` (misma garantía documentada y misma condición de SPEC que D2-04 R2; verificación física D6).
-- **EXACT_REPLAY:** reproduce el run live real con el boundary D2-06 — initial manifest (incluye strategy/mm snapshot y requirements digest) + ReplayAnchor + DeterministicInputLog (owner_input_seq/runtime_ts por isla, ConfigTransitions, RecoveryBarriers, transiciones de sesión, recorded cross-island deliveries) + canonical content + mismo código ⇒ **las mismas Signals** (garantía D2-06 K extendida a la isla strategy_engine: la señal es el output derivado de inputs journalizados; el digest de las señales emitidas queda journalizado como decision log para verificación). El fan-out es reproducible del journal + ConfigTransitions (§8); las decisiones MM son reproducibles ante el mismo stream ordenado de inputs de ejecución (D2-04 R12: propiedad de dominio, no persistencia completa desde PG).
+- **EXACT_REPLAY:** reproduce el run live real con el boundary D2-06 — initial manifest + ReplayAnchor + DeterministicInputLog + canonical content + mismo código ⇒ **las mismas Signals y los mismos `signal_id` determinísticos**. El digest de las decisiones emitidas puede verificarse contra el decision log; no depende de RNG ni de `time.Now()`. El fan-out es reproducible del journal + ConfigTransitions (§8); las decisiones MM son reproducibles ante el mismo stream ordenado de inputs de ejecución (D2-04 R12: propiedad de dominio, no persistencia completa desde PG).
 - **BACKTEST:** mismo Strategy/MM logic + driver histórico/sintético (`MarketHistorySource` + canonical synthesis order + `runtime_ts` sintético) + `SimExecution` puro (D2-04 §8.7). Cero `strategy_live` vs `strategy_backtest`; la infraestructura difiere, la lógica no.
 - El reloj de dominio es siempre `runtime_ts` (monotónico por isla, D2-06 §15); `valid_until` y TTLs usan event-time de Core, no del venue (riesgo R8 de D2-04, intacto).
 
@@ -349,7 +369,7 @@ Baseline verificada: `origin/master = 372af59a7b83604781346613da01e3d510ea1360` 
 - **C — OPEN con divergencia física:** Signal OPEN ⇒ ciclo lógico OPEN en `echo/strategy_engine` (autosuficiente). Cuenta A materializa y llena; B rechaza entry (Operation TERMINAL(ENTRY_REJECTED) por MM, D2-04); C denegada por Stage-1 (sin Operation, D2-05 R15). La Strategy no cambia su estado por ninguno de los tres; sus siguientes Signals técnicas se fan-out igual; B/C resuelven por su camino (no-op de gestión o nueva materialización si la semántica MM lo permite).
 - **D — segunda acción técnica con ciclo abierto:** Strategy emite REDUCE (o OPEN-as-add según su semántica declarada) con ciclo OPEN ⇒ no crea Operation lógica nueva (D2-02); cada AccountStrategy entrega la Signal a su Operation corriente ⇒ MM produce Orders sobre la misma Operation (adds/reductions, misma `operation_id`).
 - **E — CLOSE:** Signal CLOSE/CLOSE_ALL ⇒ ciclo lógico cierra según semántica técnica; las cuentas ejecutan sus cierres account-specific (MM/orders/finality) y sus Operations terminalizan **sólo por guards D2-04** — el cierre lógico no fuerza TERMINAL físico (I5).
-- **F — crash antes del egress de la Signal:** bajo `echo.signals.v1` EXACTLY_ONCE, la Signal y el estado que la produjo commitean atómicamente: crash pre-checkpoint ⇒ rollback + re-evaluación desde el input re-entregado (mismo `signal_id` regenerado no convive con la original — argumento M1); crash post-checkpoint ⇒ la Signal es durable y el fan-out la procesa una vez (dedup). Sin acción económica duplicada.
+- **F — crash antes del egress de la Signal:** bajo `echo.signals.v1` EXACTLY_ONCE, la Signal y el estado que la produjo commitean atómicamente: crash pre-checkpoint ⇒ rollback + re-evaluación desde el input re-entregado y **regeneración determinística del mismo `signal_id`**; crash post-checkpoint ⇒ la Signal es durable y el fan-out la absorbe idempotentemente. Sin acción económica duplicada.
 - **G — delivery duplicada/redeliverida:** el fan-out deduplica por `(strategy_id, signal_id, account_strategy_id)`; `echo/operation` aplica su dedup congelada `(account_strategy_id, signal_id)` (D2-04 §5.1) ⇒ la Signal se aplica idempotentemente, sin doble Order.
 - **H — config change durante la emisión:** el target set se linealiza en el fan-out owner (§8); binding disabled antes de la delivery ⇒ `OPEN` descartada con telemetría y sin Operation; Signals de gestión procesadas; replay reproduce el set por ConfigTransitions. Semántica determinista, sin carrera indefinida.
 - **I — Fill dispara decisión MM sin re-evaluar Strategy:** Fill llega por `echo.execution-events.v1` (key op key) ⇒ MM dentro de `echo/operation` decide (p. ej. add/protección) y emite Orders nuevas ⇒ `echo/strategy_engine` jamás se entera. Cero re-evaluación, cero nueva Signal.
@@ -362,23 +382,34 @@ Baseline verificada: `origin/master = 372af59a7b83604781346613da01e3d510ea1360` 
 - **R1 — Throughput de triggers granulares:** `MARKET_EVENT` (Strategy o MM) multiplica invocaciones por event rate; StateFun tick-throughput no está benchmarkeado (carry R-D2-06-1). Mitigación congelada: opt-in declarativo + migración de topología sin cambio de contratos; benchmark D6.
 - **R2 — Config EXACTLY_ONCE del egress de señales:** la garantía de F depende de declarar `EXACTLY_ONCE` (el `module.yaml` actual no declara delivery semantics — verificado) y de transaction timeout ≤ broker; mismo carry de configuración D2-04 R2 / D2-06 R-D2-06-5, verificación física D6.
 - **R3 — Fan-out config lag:** el catálogo/kache puede ir detrás del config source durante tránsito; la semántica es "linealización en el punto de procesamiento" (correcta pero puede diferir del intent del operador por milisegundos). Fail-safe por diseño (operador re-habilita/deshabilita); telemetría de config-change.
-- **R4 — Semántica de ciclo lógico por Strategy:** D2-08 congela el mecanismo (transición por Signals propias, autosuficiente); la semántica concreta por Strategy (cuándo S1 considera su ciclo cerrado, re-arme, re-entry) es config/lógica de cada Strategy y puede requerir refinamiento en D4 (SPEC de S1/S2) sin cambiar este boundary.
+- **R4 — Cycle lag account-specific:** una cuenta puede seguir cerrando físicamente el ciclo k cuando Strategy ya inició k+1. El owner soporta **un solo ciclo futuro diferido**; si la Strategy adelanta otro ciclo antes de converger, se declara `ACCOUNTSTRATEGY_CYCLE_LAG` y se bloquea new risk para esa cuenta hasta converger. No se construye backlog ilimitado. La semántica técnica concreta de S1/S2 se refina en D4 sin cambiar este boundary.
 - **R5 — Adapter legacy reference:** la tabla completa de traducción ReferenceEvent→Signal (parciales/modificaciones) es material de la migración (Iteración 2, DT-EF-REFERENCE-SIGNAL-03); el seam congelado no la cierra.
 - **R6 — Volumen de notificaciones MM opt-in:** un MM BBO-only sobre 200 cuentas genera 200 notificaciones por evento de mercado relevante; es costo declarado, pero debe medirse en D6 y puede motivar partición/afinidad local sin cambio de contratos.
 - **R7 — Strategy eval hot-path latency:** evaluación síncrona dentro de la invocación StateFun; estrategias con indicators pesados deben dimensionar su warm-up/timeframes; sin I/O remoto en el hot path (kache/read models only).
 - Deudas heredadas intactas: DT-EF-REFERENCE-SIGNAL-03 (migración reference→Signal), unidades pips legacy (pendiente ratificación owner), DT-EF-POSITION-RECONCILIATION-05 (diferida), R8 clock skew de D2-04.
 
-## 25. Q11 closure statement
+## 25. Primary Manager corrections
 
-`Q11 — Strategy Runtime` queda `CLOSED_CANDIDATE`: interfaces/event model/state ownership definidos. Cuándo corren Strategy y MM: Strategy corre una vez por trigger admitido de su declaración (`BAR_CLOSE`/`MARKET_EVENT` opt-in/`WINDOW_TRANSITION`/`SESSION_TRANSITION`/`TIMER`); MM corre por triggers de la Operation (Signal delivery, execution facts, termination intents, `TimerFired`, mercado opt-in declarado). Qué estado posee cada uno: `echo/strategy_engine` (key `strategy_id`) posee estado técnico/indicators/readiness/timers/config/bookkeeping y nada físico; `echo/operation` (key `account:strategy`) posee Operation/Orders/Fills/exposición/`mm_state`. Serialización: per-island `owner_input_seq` + cola por key, `signal_seq`/`(eval_seq, signal_seq)` para orden de señales, sin total order global. Producción/fan-out de Signal: evaluación → egress EXACTLY_ONCE `echo.signals.v1` → `echo/signal_fanout` (linearización del target set, semántica enabled/disabled) → `SignalDelivery` por op key → dedup `(account_strategy_id, signal_id)` en `echo/operation`. Determinismo: propiedad de dominio (mismo input ordenado ⇒ mismas decisiones) con LIVE/EXACT_REPLAY/BACKTEST sobre el boundary D2-06/D2-04 y lógica pura sin infraestructura ni wall clock.
+Primary Manager review detectó y resolvió cuatro inconsistencias sin reabrir los boundaries D2-01..07:
+
+1. **Reversal / physical lag:** `CLOSE_ALL → OPEN` podía perder el OPEN porque D2-04 prohíbe materializar una segunda Operation mientras la anterior no sea TERMINAL. Se agrega `strategy_cycle_seq` y un buffer acotado de un único ciclo futuro en el owner account-specific (§7). No nueva entidad, no backlog ilimitado.
+2. **Cycle identity:** una Signal siempre indica a qué ciclo técnico pertenece; Signals de otro ciclo nunca mutan la Operation corriente por accidente.
+3. **Deterministic Signal identity:** se elimina UUIDv7 aleatorio como authority de `signal_id`; la identidad se deriva determinísticamente de run/strategy/eval/seq, permitiendo replay/crash con la misma identidad (§5–§6).
+4. **Strategy config pinning:** un hot update durante ciclo OPEN queda pending y sólo gobierna un ciclo posterior; el ciclo activo conserva la config que lo originó, alineando D2-08 con D2-01 (§14).
+
+Con estas correcciones, Q11 no conserva blocker arquitectónico ni owner decision pendiente.
+
+## 26. Q11 closure statement
+
+`Q11 — Strategy Runtime` queda `CLOSED`: interfaces/event model/state ownership definidos. Cuándo corren Strategy y MM: Strategy corre una vez por trigger admitido de su declaración (`BAR_CLOSE`/`MARKET_EVENT` opt-in/`WINDOW_TRANSITION`/`SESSION_TRANSITION`/`TIMER`); MM corre por triggers de la Operation (Signal delivery, execution facts, termination intents, `TimerFired`, mercado opt-in declarado). Qué estado posee cada uno: `echo/strategy_engine` (key `strategy_id`) posee estado técnico/indicators/readiness/timers/config/bookkeeping y nada físico; `echo/operation` (key `account:strategy`) posee Operation/Orders/Fills/exposición/`mm_state`. Serialización: per-island `owner_input_seq` + cola por key, `signal_seq`/`(eval_seq, signal_seq)` para orden de señales, sin total order global. Producción/fan-out de Signal: evaluación → egress EXACTLY_ONCE `echo.signals.v1` → `echo/signal_fanout` (linearización del target set, semántica enabled/disabled) → `SignalDelivery` por op key → dedup `(account_strategy_id, signal_id)` en `echo/operation`. Determinismo: propiedad de dominio (mismo input ordenado ⇒ mismas decisiones) con LIVE/EXACT_REPLAY/BACKTEST sobre el boundary D2-06/D2-04 y lógica pura sin infraestructura ni wall clock.
 
 `OWNER DECISIONS REQUIRED: NONE`. Quedan ratificaciones técnicas ordinarias del manager (nombres físicos de topics/campos, shape exacto de `StrategyTriggerRequirements`/`SignalDelivery`, config `EXACTLY_ONCE` del egress — requisitos de SPEC, no decisiones de producto).
 
-## 26. Handoff
+## 27. Handoff
 
 ```text
 D2-08 STATUS:
-READY_FOR_MANAGER_REVIEW
+MANAGER_CLOSED
 
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-08 Strategy Runtime.md
@@ -458,7 +489,7 @@ Costo mercado NO ×cuenta; costo MM N por naturaleza; notificaciones de mercado 
 que las declaran (opt-in). Benchmarks D6 (carry R-D2-06-1).
 
 Q11:
-CLOSED_CANDIDATE
+CLOSED
 
 OWNER DECISIONS REQUIRED:
 NONE
