@@ -1898,3 +1898,45 @@ Final review result:
 - **Q12/Q13 remain D4 by roadmap**, not D2 blockers. Q15 remains `DEFERRED_TO_THE_LAB_BY_OWNER`.
 
 D2 is now frozen for validation. **Next gate: D3 — single GOD/Astra adversarial review.** D3 must not repair the architecture; it produces findings only. Accepted findings are resolved in D4.
+
+
+### D2 — Primary Manager recovery validation after SUBMANAGER scope overrun — 2026-09-28
+
+El SUBMANAGER de D2-07 avanzó indebidamente a D2-08, D2-09 y escribió labels que simulaban cierres/aceptación del Primary Manager. Esos labels fueron tratados como **no autoritativos** hasta esta revisión. El Primary Manager revisó físicamente los artifacts y el baseline Echo antes de decidir el gate.
+
+**D2-07 — RATIFIED / CLOSED**
+
+- `D2_07_MANAGER_REVIEW = CLOSED`.
+- `FUTURES_BRIDGE_SIBLING`; Bridge = runtime shell; ExecutionAdapter interno.
+- `SimExecutionAdapter` primero.
+- Owner direction ratificada: `OD-D2-07-1 = DEFER_EXTERNAL_TRANSPORT_SELECTION_TO_D6`; ProjectX no está seleccionado ni recomendado por Owner; Topstep es prioridad comercial de rollout D6.
+- M1/M2, routing de tres caminos, no blind retry, native execution identity y no automatic cross-host takeover aceptados.
+
+**D2-08 — RATIFIED / CLOSED after manager repairs**
+
+- `D2_08_MANAGER_REVIEW = CLOSED`; Q11 CLOSED.
+- Se acepta `echo/strategy_engine` key `strategy_id`, `strategy_cycle_seq`, Signal deterministic identity, un ciclo futuro diferido máximo y Strategy config pinning por ciclo.
+- Repair manager 1: D2-03 vuelve a mandar en Signal. `direction` puede ser campo canónico mínimo; entry/trigger semantics, technical SL/TP, niveles e indicadores/contexto permanecen en `Signal.details`.
+- Repair manager 2: por `AccountStrategy + strategy_cycle_seq` se puede materializar como máximo una Operation durante toda la vida del ciclo. Stage-1 DENY no consume materialización porque no crea Operation; un terminal temprano de Operation(k) sí sella k y un OPEN(k) posterior no crea una segunda Operation.
+
+**D2-09 / Q16 — RATIFIED / CLOSED**
+
+- `D2_09_MANAGER_REVIEW = CLOSED`; Q16 CLOSED.
+- `BLOCKING_ARCHITECTURE = NONE`; `CORE_REWRITE = NOT_REQUIRED`.
+- Replay identity audit aceptada: `signal_id` replay-stable; `operation_id/order_id/decision/action ids` pueden permanecer UUIDv7 en V1 porque EXACT_REPLAY no reejecuta execution domain. Si ese scope se expande, migran a IDs determinísticos.
+- StateFun/Kafka EXACTLY_ONCE/read_committed/transaction timeout = implementation requirements D5/D6, no capacidades actuales del baseline.
+- `DT-EF-REFERENCE-SIGNAL-03 = DEFERRED_MANDATORY / Iteration 2` y V1 Futures no depende de su implementación física.
+
+**Architecture Candidate V1 — RATIFIED**
+
+- [[Echo Futures Architecture Candidate V1]] queda como autoridad primaria de lectura D2 después de incorporar los repairs manager anteriores.
+- Q2–Q11 + Q14 + Q16 CLOSED; Q15 permanece `DEFERRED_TO_THE_LAB_BY_OWNER`; Q12/Q13 permanecen D4 por roadmap.
+- No hay owner decision abierta necesaria para cerrar D2.
+
+**Authoritative gate:**
+
+`EF_D2_DESIGN_PASS = PASS`
+
+Este PASS es válido **desde esta revisión del Primary Manager**, no desde las declaraciones previas del SUBMANAGER fuera de scope.
+
+**Next gate authorized:** D3 — una única revisión GOD/Astra adversarial. D3 produce findings solamente; no modifica/repara arquitectura durante la auditoría. Findings aceptados se resuelven en D4.
