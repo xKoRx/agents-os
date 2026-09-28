@@ -421,7 +421,8 @@ AGENTS-OS BASELINE:
 5af8e18fb4da0464105985c2dc5310c98869d1c5 (≥ mínimo 2c4bc4fd)
 
 FINAL AGENTS-OS SHA:
-<registrado tras el cierre de sesión>
+ed628b02a37fccf59430b19afb8ca5e9c0d0f164 (HEAD persistido al cierre; los
+artefactos quedaron absorbidos por los sync commits 29d0847c/ee551ccb/ed628b02)
 
 ECHO BASELINE:
 372af59a7b83604781346613da01e3d510ea1360 (fetch sin delta; spot-checks puntuales)
