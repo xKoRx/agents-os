@@ -1811,3 +1811,19 @@ Primary Manager acepta [[Echo Futures — D2-07 Execution Runtime]] después del
 - **Eventos canónicos:** `OrderStatusEvent`, `OrderActionResult`, `Fill`, `PositionUpdate`, `ExecutionSessionStatus`, con routing separado según identidad.
 
 Esto cierra D2-07 a nivel de diseño. No cierra D2 global.
+
+
+### D6 — Owner rollout strategy for prop providers — 2026-09-28
+
+Owner direction for implementation rollout:
+
+```text
+1. Topstep first
+2. Lucid as soon as the first path is operational
+3. Add the next provider incrementally
+4. Continue toward an initial cohort of approximately 6 prop firms
+```
+
+This is a **D6 rollout strategy, not a D2 architecture dependency**. Echo Futures keeps one `Futures Bridge` and adds provider/transport support through `ExecutionAdapter` implementations plus ProviderProgram/RuleSet configuration. A new prop must not trigger Core/Bridge redesign; if a provider cannot satisfy the frozen execution contract, its adapter/capability remains gated until it can.
+
+Topstep is first by product priority, not because D2 selected ProjectX. The concrete Topstep execution adapter is selected in D6 from the authorized access actually available at implementation time. Lucid and subsequent providers follow the same rule. The target ~6-provider cohort is an incremental rollout objective; it is not a requirement to implement or certify six adapters before the first E2E path works.
