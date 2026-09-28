@@ -1726,3 +1726,19 @@ D2-07B scope repair completed in [[Echo Futures — D2-07B Transport Selection]]
 ProjectX gaps are preserved as D6 certification gates: customTag retention, ambiguous-submit retry atomicity, authoritative negative/recovery semantics, Trade id scope/stability and history horizon. NinjaTrader Desktop is `NOT_RECOMMENDED_AS_FIRST_GENERIC_V1_PATH`; Tradovate, Rithmic and CQG remain future adapter candidates requiring transport-specific certification if selected.
 
 `D2-07B does not block D2-07C`. D2-07C is **UNBLOCKED**, but must not be opened in this repair session. Transport selection stays behind the Bridge/Adapter boundary; physical implementation, authorized demo/shadow/sim validation and M2 evidence closure belong to D6. Next: SUBMANAGER review only; do not start D2-07C or D2-08.
+
+### D2-07C — Execution Runtime Topology — READY FOR SUBMANAGER REVIEW — 2026-09-27
+
+**Status:** `D2-07C = READY_FOR_SUBMANAGER_REVIEW`
+
+[[Echo Futures — D2-07C Execution Runtime Topology]] resuelve la topología del execution runtime sobre baseline Echo `372af59a7b83604781346613da01e3d510ea1360` re-verificada (fetch, sin delta) y baseline Agents-OS `9f3c950b`. Veredicto central:
+
+- **BRIDGE DECISION: `FUTURES_BRIDGE_SIBLING`.** El Bridge V3 es Windows-only por Named Pipes y su transporte/handshake/journal son semántica MT; extenderlo acoplaría crash domains, deployment y hosts incompatibles (ProjectX exige order flow desde el dispositivo personal del trader). El sibling reutiliza patrones y `v3/sdk/*`, duplica las piezas bridge-internal pequeñas (KISS, sin bridge-framework) y aloja el `ExecutionAdapter` como componente interno. No se crea `ExecutionAdapterHost` ni un cuarto servicio; el componente platform-side desktop es parte del adapter (misma forma física que Bridge V3 + EA hoy).
+- **M2 journal:** write-ahead en el durability domain del side-effect owner (futures-bridge), store durable local detrás de interface (tecnología = D6), nunca Core PG ni Kafka como journal primario. La ventana M2 del legado quedó confirmada físicamente: MT5 valida journal **antes** de `g_Trade.Buy/Sell` (líneas 1764–1815) y persiste **después** (1841/1863); MT4 igual (`OrderSend` 1961 → `g_Journal.Add` 1975/2005).
+- **Side-effect authority:** una por `(execution account, physical binding)`; V1 = `NO AUTOMATIC CROSS-HOST TAKEOVER` (Kafka ownership no es fencing; fail-closed antes que HA falsa); session generation para detección de stale owner; restart in-place seguro por journal + reconciliación.
+- **Kafka routing:** familia nueva `echo.order-commands.{execution_account_id}.v1` reutilizando la convención per-account existente (`mm_engine.go:586`); sin branching de transport en Core; retorno por las cinco familias normalizadas D2-07A hacia `echo.execution-events.v1` (key op key).
+- **Reconnect/readiness, binding changes, degraded close:** barrier D2-07A §17 completa antes de `EXECUTION_READY_NEW_RISK`; Orders vivas pinneadas al binding físico original con journals por binding; ForceClose con bridge down = pendiente, reconcile-first, sin emergency switch.
+- **SimExecutionAdapter** valida el seam Core→Kafka→Bridge→Adapter sin credenciales y ejercita journal/recovery real; no es backtester ni exchange simulator.
+- Consumidores de D2-07C: D2-07 integration (SUBMANAGER) y D4/D6. Implementación física, store del journal, host placement y certificación M2 = D6.
+
+NO PASS. NO CLOSED. NO D2-07 integration. NO D2-08. Siguiente gate: SUBMANAGER review de D2-07C (junto a D2-07A/D2-07B pendientes).
