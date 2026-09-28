@@ -34,8 +34,10 @@ No implementa código, no reabre D2-01..08 sin contradicción material, no redis
 
 ## 1. Executive verdict
 
+**Primary Manager closure — 2026-09-28:** Q16 y D2-09 quedan aceptados. El único repair del review final fue reclasificar la implementación física `ReferenceEvent → Signal` como `DEFERRED_MANDATORY / Iteration 2`; V1 Futures conserva sólo el `Signal` canonical runtime y el boundary Core reservado. La auditoría de identities y la excepción replay para `operation_id/order_id` se aceptan con el alcance V1 documentado.
+
 ```text
-D2-09 STATUS: READY_FOR_MANAGER_REVIEW
+D2-09 STATUS: MANAGER_CLOSED
 
 Q16 = CLOSED
 BLOCKING_ARCHITECTURE = NONE
@@ -406,7 +408,7 @@ La hipótesis manager queda **confirmada tras desafío**: la refutación buscó 
 
 ```text
 D2-09 STATUS:
-READY_FOR_MANAGER_REVIEW
+MANAGER_CLOSED
 
 Q16:
 CLOSED
@@ -491,7 +493,7 @@ Q8 CLOSED · Q9 CLOSED · Q10 CLOSED · Q11 CLOSED · Q14 CLOSED ·
 Q15 DEFERRED_TO_THE_LAB_BY_OWNER · Q16 CLOSED (Q12/Q13 → D4)
 
 D2 STATUS:
-READY_FOR_MANAGER_REVIEW
+MANAGER_CLOSED
 
 OWNER DECISIONS REQUIRED:
 NONE
