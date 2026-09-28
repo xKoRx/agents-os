@@ -1793,4 +1793,21 @@ Sin cambio arquitectónico. La autoridad integrada [[Echo Futures — D2-07 Exec
 
 Son renames de los labels históricos de los children, no contratos nuevos. Routing permanece: OrderStatusEvent/OrderActionResult/Fill correlacionados → Operation; PositionUpdate → position/reconciliation; ExecutionSessionStatus → runtime/readiness account-scoped. Se evita `PositionSnapshot` y `ExecutionResult` para no colisionar conceptualmente con DTOs legacy MetaTrader.
 
-`D2_07 = READY_FOR_MANAGER_REVIEW`; `OD-D2-07-1` sigue pendiente. No abrir D2-08.
+`D2_07 = READY_FOR_MANAGER_REVIEW` en ese punto histórico; la decisión Owner posterior registrada abajo supersede este estado y cierra `OD-D2-07-1`.
+
+
+### D2-07 — Execution Runtime — PRIMARY MANAGER CLOSED — 2026-09-28
+
+**Status:** `D2_07_MANAGER_REVIEW = CLOSED`
+
+Primary Manager acepta [[Echo Futures — D2-07 Execution Runtime]] después del repair de routing y del cleanup de nomenclatura. La arquitectura queda congelada a nivel D2:
+
+- **Execution edge:** `FUTURES_BRIDGE_SIBLING`; Bridge = process/runtime shell, `ExecutionAdapter` = componente transport-specific interno. ProjectX/NinjaTrader/Rithmic/CQG/etc. son posibles adapters, no alternativas al Bridge.
+- **Implementación inicial D2/D6:** comenzar con `SimExecutionAdapter` para validar el seam completo Core → Kafka → Futures Bridge → Adapter → eventos normalizados, incluyendo journal/recovery real, sin depender de credenciales externas.
+- **OD-D2-07-1 — CLOSED por Owner:** `DEFER_EXTERNAL_TRANSPORT_SELECTION_TO_D6`. D2 no selecciona ningún transport externo real.
+- **ProjectX:** la recomendación histórica de D2-07B queda **SUPERSEDED**. `PROJECTX_DIRECT` permanece sólo como future external-adapter candidate; no selected, no preferred by Owner, no certified.
+- **Gate D6:** antes de completar V1, D6 debe seleccionar al menos un transport externo real para el cual exista acceso autorizado efectivo, implementar su adapter y cerrar entitlement/host + M2 + E2E shadow/demo/sim. `SimExecutionAdapter` solo no satisface el requisito V1 de transport real.
+- **M1/M2 y runtime:** permanecen congelados; no blind retry, journal write-ahead, native stable execution identity, fail-closed ambiguity, no automatic cross-host takeover.
+- **Eventos canónicos:** `OrderStatusEvent`, `OrderActionResult`, `Fill`, `PositionUpdate`, `ExecutionSessionStatus`, con routing separado según identidad.
+
+Esto cierra D2-07 a nivel de diseño. No cierra D2 global.
