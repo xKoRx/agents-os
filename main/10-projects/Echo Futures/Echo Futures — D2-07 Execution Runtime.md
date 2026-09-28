@@ -464,13 +464,27 @@ La integración NO toma la decisión por el Owner. `OD-D2-07-1` no cierra en est
 - [[Echo Futures — D2-07A Execution Adapter Contract]] — contrato del adapter (ACCEPTED_FOR_INTEGRATION).
 - [[Echo Futures — D2-07B Transport Selection]] — comparación/evidencia de transports, separación D2/D6 (ACCEPTED_FOR_INTEGRATION post-R1).
 - [[Echo Futures — D2-07C Execution Runtime Topology]] — topología sibling, ownership, routing, reuse map (ACCEPTED_FOR_INTEGRATION).
-- Baselines: Agents-OS `b45e9328c0217e77c4f91103bb5f3a422d9cd5b6` (HEAD verificado); Echo `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360` (verificada por los children sin delta; no re-auditada salvo contradicción — no surgió ninguna).
+- Baselines: Agents-OS **integration baseline** `b45e9328c0217e77c4f91103bb5f3a422d9cd5b6` (HEAD al **inicio** del integration worker; los SHA persistidos posteriores — `36384956` integración, `89120c64` cierre, HEAD final de D2-07-R1 — son estados distintos y posteriores, registrados por sesión); Echo `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360` (verificada por los children sin delta; no re-auditada salvo contradicción — no surgió ninguna).
 
 ## Handoff
 
 ```text
-D2-07 STATUS:
+D2-07-R1 STATUS:
 READY_FOR_MANAGER_REVIEW
+
+TRACEABILITY:
+INTEGRATION BASELINE: b45e9328c0217e77c4f91103bb5f3a422d9cd5b6
+  (HEAD verificado al inicio del integration worker — concepto distinto del estado final)
+FINAL AGENTS-OS SHA: <HEAD persistido tras el repair D2-07-R1; registrado en el handoff de sesión>
+ECHO BASELINE: 372af59a7b83604781346613da01e3d510ea1360
+
+CORRECTION APLICADA:
+normalized event routing — tres caminos congelados (§8/§17):
+operation-correlated facts → echo.execution-events.v1 (key op key) → echo/operation
+PositionObservation → echo.position-observations.v1 → physical position/reconciliation
+ExecutionSessionObservation → runtime/readiness path account-scoped (naming D6),
+  jamás operation_id fabricado, jamás fact de Operation.
+ARCHITECTURE CHANGES: NONE beyond event-routing clarification
 ```
 
 Siguiente gate: Primary Manager review only. No abrir D2-08; no cerrar D2 global.
