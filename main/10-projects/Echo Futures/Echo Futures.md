@@ -1713,3 +1713,10 @@ Primary Manager closes [[Echo Futures — D2-06 Market Runtime]]. This closes Q4
 **Status:** `D2_07 = ACTIVE_SUBMANAGER_DISPATCH`
 
 Scope: execution adapter boundary, command/result/order/fill integration, external idempotency/finality/reconciliation capabilities, transport eligibility matrix, and selection recommendation for the first non-real-money V1 execution path. Must consume D2-04 Operation/Order/Fill contracts, D2-05 Provider/Account binding and D2-06 market/session semantics. It must not reopen provider research broadly, must distinguish platform support from API entitlement, and must not advance D2-08. Selection of the initial V1 execution transport remains an owner/product decision after manager review of the integrated candidate.
+
+
+### D2-07B — Transport Eligibility / Initial V1 Path — WORKER COMPLETE — 2026-09-27
+
+**Status:** `D2-07B = BLOCKED_EVIDENCE`
+
+TOP Architecture Worker completed [[Echo Futures — D2-07B Transport Selection]]. No candidate is certified for D2-07A M2 exact submission yet. ProjectX remains the shortest evidence-closing path because Topstep has a proven simulated ProviderProgram/API path and Practice uses the same API surface, but `customTag` retention/retry atomicity, authoritative negative lookup/history semantics and execution-id scope are not sufficiently proven. NinjaTrader Desktop is `INELIGIBLE_V1` as a generic correctness transport because supported historical execution recovery is absent and OrderId is mutable/non-unique. Tradovate, Rithmic and CQG remain `BLOCKED_EVIDENCE` due M2 and/or direct ProviderProgram entitlement gaps. `OD-D2-07-1 = NONE — BLOCKED_EVIDENCE`. Next: SUBMANAGER review only; do not start D2-08.
