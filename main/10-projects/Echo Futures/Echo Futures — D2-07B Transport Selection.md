@@ -31,27 +31,40 @@ Resolver exclusivamente D2-07B: contrastar ProjectX direct, NinjaTrader Desktop 
 
 ## Contenido
 
+
 ## 1. Executive verdict
 
-**D2-07B STATUS: BLOCKED_EVIDENCE.**
+**D2-07B STATUS: READY_FOR_SUBMANAGER_REVIEW.**
 
-A fecha 2026-09-27, **ninguno de los cinco candidates queda certificado para M2 exact submission + ProviderProgram scope demostrado al mismo tiempo**. No se rebaja D2-07A para forzar una selección.
+D2-07B corrige la separación entre selección arquitectónica y certificación física. D2 debe comparar transports, preservar el contrato genérico D2-07A y recomendar el primer camino non-real-money; D6 implementará y certificará físicamente el transport que realmente se elija. Los gaps M2 vendor-specific siguen siendo reales y obligatorios, pero son gates de deployment/certificación D6, no un blocker para diseñar D2-07C.
 
-- **ProjectX direct = BLOCKED_EVIDENCE.** Es el camino más cercano al primer V1 porque Topstep demuestra automation/API en su entorno simulado, Practice usa los mismos endpoints/hubs sin riesgo para una Evaluation y el API tiene customTag account-unique más order/trade history. El blocker es M2: la documentación pública no define la retención de esa unicidad, no garantiza explícitamente que reintentar el mismo customTag después de un outcome ambiguo jamás pueda producir una segunda orden ejecutable, y no define authoritative negative lookup/consistency semantics.
-- **NinjaTrader Desktop adapter = INELIGIBLE_V1** como transport genérico de correctness. NinjaTrader documenta que Account.Executions contiene sólo executions de la sesión actual, que no existe método soportado para recuperar historical executions de la base local y que Order.OrderId no es único porque puede cambiar durante la vida de la orden. Sim101 sirve para capability testing, pero no corrige restart-safe M2.
-- **Tradovate direct = BLOCKED_EVIDENCE.** Tiene clOrdId, entidades con IDs únicos, fill/order entities y demo, pero la documentación pública revisada no demuestra native duplicate-submit semantics/retention ni authoritative negative lookup por stable client identity. Además, el Partner API exige Organization Admin credentials + API Key + CID; un login de una prop no demuestra entitlement directo.
-- **Rithmic direct = BLOCKED_EVIDENCE.** El vendor demuestra APIs de order management, test environment y conformance antes de production, pero la evidencia pública revisada no expone semántica suficiente de client submission identity, exact duplicate prevention, execution-history recovery ni negative lookup. Credentials de una prop/plataforma no equivalen a developer entitlement.
-- **CQG WebAPI = BLOCKED_EVIDENCE.** Es el candidate con mejores primitives públicas de recovery: cl_order_id tiene scope de unicidad documentado, trade_id es server-assigned y único dentro de account, y HistoricalOrders tiene horizonte por defecto de 30 días. Aun así, no quedó documentada la semántica exacta de reintento con el mismo cl_order_id después de ambiguous submit ni una authoritative negative lookup consistency contract; además, un ProviderProgram prop con direct WebAPI entitlement sigue sin demostrarse.
+- **ProjectX direct = RECOMMENDED_INITIAL_NON_REAL_MONEY_CANDIDATE.** La evidencia aceptada ya demuestra API directa, submit/modify/cancel, observaciones realtime, un path Topstep simulado aceptado y menor coupling operativo inicial que Desktop. Sus gaps de customTag retention, ambiguous-submit recovery, authoritative negative semantics, Trade id scope/stability e history horizon permanecen sin probar y deberán cerrarse en D6 antes de habilitar exact physical submission.
+- **NinjaTrader Desktop adapter = NOT_RECOMMENDED_AS_FIRST_GENERIC_V1_PATH.** Se conservan los findings de current-session execution history, recuperación histórica insuficiente y OrderId mutable/no-único. Eso hace débil al Desktop genérico como primer baseline de correctness, pero no declara imposible un adapter futuro provider-specific que aporte mecanismos adicionales.
+- **Tradovate direct = FUTURE_ADAPTER_CANDIDATE.** Sus gaps M2 y entitlement se conservan como certificación transport-specific si alguna vez se selecciona.
+- **Rithmic direct = FUTURE_ADAPTER_CANDIDATE.** La evidencia pública sigue siendo insuficiente para certificar M2; no bloquea D2 y no se investiga más en este frente.
+- **CQG WebAPI = FUTURE_ADAPTER_CANDIDATE.** Mantiene las mejores primitives públicas de recovery entre las alternativas, pero sus gaps de retry/negative semantics y ProviderProgram entitlement quedan para certificación transport-specific si se implementa.
 
 Por lo tanto:
 
 ~~~text
-OD-D2-07-1 — INITIAL V1 EXECUTION TRANSPORT
-candidate = none
-status = BLOCKED_EVIDENCE
+OD-D2-07-1 CANDIDATE:
+PROJECTX_DIRECT
+
+semantics:
+recommendation only
+first non-real-money implementation candidate
+not transport certification
+not real-money authorization
+not Owner freeze
 ~~~
 
-**Evidence-closing target:** PROJECTX_DIRECT. Si ProjectX demuestra la prueba M2 mínima de §14 sin relajar el contrato, pasa a ser el candidate natural para OD-D2-07-1, con ProviderProgram scope **Topstep Trading Combine + Express Funded Account, ambos simulados**, y con **Topstep Practice Account** como environment de certificación E2E sin riesgo económico. **Live Funded Account queda explícitamente fuera**.
+~~~text
+PROJECTX M2 VENDOR CERTIFICATION = DEFERRED_TO_D6
+REAL_MONEY_CERTIFICATION = NOT_DONE
+D2-07C = UNBLOCKED
+~~~
+
+La recomendación no rebaja D2-07A. Antes de cualquier exact physical deployment, D6 debe cerrar los gates del transport seleccionado y mantener fail-closed cualquier capability que no pueda demostrar la semántica requerida.
 
 ## 2. Authority and evidence policy
 
@@ -66,7 +79,7 @@ Autoridades consumidas:
 7. main/30-resources/futures/EXECUTION TRANSPORT FEASIBILITY — MULTI-PROP EVIDENCE.md.
 8. main/30-resources/futures/FUTURES PROP UNIVERSE — AUTHORITATIVE EVIDENCE MATRIX.md.
 
-Agents-OS real al inicio: master@bf7e7f3017abd4e9c4c3f755cea5744f7a7c8079. El baseline esperado post-D2-07A era aa00c6150c131697a4287d24f4a127561aa44f9a; los dos commits posteriores observados afectaban Echo Forge, no Echo Futures, por lo que no introducen drift material para este frente.
+Agents-OS real al inicio del repair: master@b53f1a254d2a777c97e927d7551088679069746f. Este HEAD supera el baseline mínimo despachado 494a2fd98c6765539617f35cad9ef0c131d80801; el repair releyó las autoridades D2-07A/B y el proyecto canónico antes de editar.
 
 D2-07A usado: main/10-projects/Echo Futures/Echo Futures — D2-07A Execution Adapter Contract.md, blob ab978a389714f739d67ee4374eb025581504eec5.
 
@@ -80,9 +93,29 @@ Reglas aplicadas:
 - Un ACK de cancel/replace no se interpreta como execution finality.
 - Para evidence gaps que cambian eligibility se usó sólo first-party vendor/provider material.
 
+
 ## 3. D2-07A qualification contract
 
-Un candidate sólo puede declararse V1 exact-submission eligible si demuestra como mínimo:
+D2-07A permanece íntegro y define el estándar para **exact physical submission**. Esta revisión no cambia M1/M2, durable write-ahead intent, stable client_order_id, no blind retry, reconciliation, AMBIGUOUS fail-closed, Fill identity ni la separación readiness/connectivity.
+
+La separación de fases es:
+
+~~~text
+D2
+=
+architecture + adapter/bridge boundary
++ transport feasibility/comparison
++ recommendation del first non-real-money path
+
+D6
+=
+physical implementation
++ transport-specific certification
++ authorized demo/shadow/sim validation
++ M2 evidence closure for the transport actually implemented
+~~~
+
+Por ello, un candidate puede ser recomendado en D2 como primer camino non-real-money sin estar aún certificado para exact physical submission. Antes de declarar un transport exact-submission eligible en un environment implementado, D6 debe demostrar como mínimo:
 
 ~~~text
 supported_order_types
@@ -106,11 +139,12 @@ ProviderProgram automation permission
 direct developer/API entitlement
 ~~~
 
-Además deben conocerse cuando apliquen: idempotency scope/retention, history horizon/cursor, negative consistency window, execution-id scope, session constraints, rate limits, host/device constraints y conformance requirements.
+Además deben conocerse cuando apliquen: idempotency scope/retention, history horizon/cursor, negative consistency window, execution-id scope, session constraints, rate limits, host/device constraints y conformance requirements. NOT_PROVEN en estas semánticas significa **certification gate**, no autorización para relajar el contrato ni razón automática para bloquear el diseño D2.
+
 
 ## 4. Candidate comparison
 
-Leyenda: PROVEN = demostrado por evidencia first-party suficiente para la fila; CONDITIONAL = capability demostrada pero falta una condición externa/enforceable; NOT_PROVEN = evidencia insuficiente para el contrato; NO = evidencia first-party demuestra ausencia/incompatibilidad.
+Leyenda: PROVEN = demostrado por evidencia first-party suficiente para la fila; CONDITIONAL = capability demostrada pero falta una condición externa/enforceable; NOT_PROVEN = evidencia insuficiente para el contrato; NO = evidencia first-party demuestra ausencia/incompatibilidad. Estas filas describen evidencia disponible, no certificación productiva.
 
 | Capability / transport | ProjectX direct | NinjaTrader Desktop | Tradovate direct | Rithmic direct | CQG WebAPI |
 | --- | --- | --- | --- | --- | --- |
@@ -125,7 +159,8 @@ Leyenda: PROVEN = demostrado por evidencia first-party suficiente para la fila; 
 | ProviderProgram scope | PROVEN* | CONDITIONAL | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN |
 | Direct developer/API entitlement | PROVEN* | CONDITIONAL | NOT_PROVEN | CONDITIONAL | CONDITIONAL |
 | Host constraints | Personal device; no VPS/VPN/remote order flow | Desktop host + C# adapter lifecycle | Web/API; Partner organization credentials | API runtime; production conformance | WebSocket/protobuf; production conformance |
-| Major blocker | M2 idempotency-retention / authoritative recovery semantics | Historical execution recovery + unstable OrderId | M2 + prop-user entitlement | Public M2 semantics + entitlement | M2 retry/negative semantics + ProviderProgram entitlement |
+| D2-07B disposition | **RECOMMENDED_INITIAL_NON_REAL_MONEY_CANDIDATE** | **NOT_RECOMMENDED_AS_FIRST_GENERIC_V1_PATH** | FUTURE_ADAPTER_CANDIDATE | FUTURE_ADAPTER_CANDIDATE | FUTURE_ADAPTER_CANDIDATE |
+| Certification note | D6 must close ProjectX M2 gates before exact physical submission | Provider-specific future adapter would need additional recovery/identity proof | D6 certification required if selected | D6 certification required if selected | D6 certification required if selected |
 
 *ProjectX scope:* Topstep API access is demonstrated for eligible simulated TopstepX accounts and excludes Live Funded. D1 accepted scope for the first path is **Trading Combine + Express Funded Account**; Topstep first-party material independently confirms Trading Combine and XFA are simulated. Practice is a safe testing account, not a ProviderProgram.
 
@@ -182,10 +217,12 @@ Verdict:
 
 ~~~text
 PROJECTX M2 = NOT_PROVEN
-candidate classification = BLOCKED_EVIDENCE
+D2-07B disposition = RECOMMENDED_INITIAL_NON_REAL_MONEY_CANDIDATE
+M2_VENDOR_CERTIFICATION = DEFERRED_TO_D6
+REAL_MONEY_CERTIFICATION = NOT_DONE
 ~~~
 
-The existing uniqueness rule is strong evidence and makes ProjectX the shortest closure path, but D2-07A explicitly requires idempotency scope/retention or authoritative lookup semantics. “Unique across the account” is not silently expanded into an undocumented retention contract.
+The existing uniqueness rule is sufficient to support ProjectX as the first non-real-money implementation candidate, but not to certify exact physical submission. D2-07A still requires idempotency scope/retention or authoritative lookup semantics; “unique across the account” is not silently expanded into an undocumented retention contract. Those claims move to the D6 certification gate.
 
 ### 5.3 Finality
 
@@ -235,10 +272,10 @@ Verdict:
 
 ~~~text
 NINJATRADER M2 = NO
-candidate classification = INELIGIBLE_V1
+D2-07B disposition = NOT_RECOMMENDED_AS_FIRST_GENERIC_V1_PATH
 ~~~
 
-A future provider-specific NinjaTrader connection could expose stronger broker-native recovery underneath the platform, but then the correctness proof belongs to that provider transport/binding, not to NinjaTrader Desktop generically.
+A future provider-specific NinjaTrader connection could expose stronger broker-native recovery underneath the platform; in that case the correctness proof belongs to that provider transport/binding and its D6 certification, not to NinjaTrader Desktop generically. This worker does not declare NinjaTrader permanently unusable.
 
 ### 6.3 ProviderProgram / host implications
 
@@ -264,7 +301,8 @@ Therefore:
 
 ~~~text
 TRADOVATE M2 = NOT_PROVEN
-candidate classification = BLOCKED_EVIDENCE
+D2-07B disposition = FUTURE_ADAPTER_CANDIDATE
+TRANSPORT_SPECIFIC_CERTIFICATION = REQUIRED_IN_D6_IF_SELECTED
 ~~~
 
 Fill.id/entity IDs are materially better than heuristic fill identity, so execution identity is CONDITIONAL; D2-07-R1 still requires the exact scope/realtime-history stability to be part of the certification.
@@ -287,7 +325,8 @@ Therefore:
 
 ~~~text
 RITHMIC M2 = NOT_PROVEN
-candidate classification = BLOCKED_EVIDENCE
+D2-07B disposition = FUTURE_ADAPTER_CANDIDATE
+TRANSPORT_SPECIFIC_CERTIFICATION = REQUIRED_IN_D6_IF_SELECTED
 ~~~
 
 A dev kit / protocol specification may contain the missing claims, but D2-07B does not invent them from product marketing.
@@ -326,7 +365,8 @@ Therefore:
 
 ~~~text
 CQG WEBAPI M2 = NOT_PROVEN
-candidate classification = BLOCKED_EVIDENCE
+D2-07B disposition = FUTURE_ADAPTER_CANDIDATE
+TRANSPORT_SPECIFIC_CERTIFICATION = REQUIRED_IN_D6_IF_SELECTED
 ~~~
 
 Stable execution identity itself is PROVEN: trade_id is native, server-assigned and unique within account. History is also PROVEN for the documented order-history surface/horizon. Those strengths make CQG the preferred **second-adapter evidence target**, not a reason to waive the remaining M2/entitlement gaps.
@@ -371,41 +411,49 @@ No request ACK is treated as finality.
 | Rithmic | Dev kit/Test available; production conformance | Specific prop direct developer entitlement not proven |
 | CQG WebAPI | WebAPITest demo + production conformance path | Specific prop direct WebAPI entitlement not proven |
 
-## 14. Minimal blocking evidence to unblock ProjectX
 
-D2-07B does **not** require another broad survey. The shortest path is one focused ProjectX M2 certification.
+## 14. ProjectX D6 certification gates
 
-Required evidence, all on Topstep Practice / ProjectX and preserving the same customTag as Echo client_order_id:
+Los gaps ProjectX encontrados por B se conservan, pero se reclasifican como **PROJECTX D6 CERTIFICATION GATES**. No ejecutar PX1 ni pruebas credentialed en este repair.
 
-1. **Uniqueness retention:** first-party statement or credentialed evidence proving how long customTag uniqueness survives after terminal/filled orders and across reconnect/restart.
-2. **Ambiguous-submit duplicate prevention:** submit MARKET with customTag=X, make the response outcome intentionally unknown, restart/reconnect, submit the exact same customTag=X; prove only one executable order can exist. Capture raw request/response/order/trade evidence.
-3. **Original-order recovery:** prove the original terminal/fast-filled MARKET can be recovered and correlated through Order history by the round-tripped customTag and provider order ID.
-4. **Negative path:** prove what happens when customTag=X truly never existed and the same key is submitted after recovery. If the implementation relies on negative lookup rather than duplicate prevention, obtain the vendor's consistency window/authoritative-negative semantics.
-5. **Execution identity:** prove the same native Trade id identifies a fill across realtime delivery and Trade history after reconnect, and record its uniqueness scope.
-6. **Horizon:** establish the usable Order/Trade history horizon or the operational maximum outage after which V1 must stay AMBIGUOUS/not-ready.
+Antes de habilitar ProjectX para exact physical submission, D6 debe cerrar como mínimo:
 
-Passing this set would allow:
+1. **customTag retention / uniqueness scope:** demostrar cuánto sobrevive la unicidad después de terminal/fill y a través de reconnect/restart.
+2. **Ambiguous-submit recovery:** demostrar que un outcome desconocido no puede terminar en blind retry ni en dos órdenes ejecutables; si se reutiliza customTag, probar su atomicidad real.
+3. **Authoritative negative / recovery semantics:** demostrar cuándo “no existe” es autoritativo o qué mecanismo nativo evita depender de una lectura eventualmente consistente.
+4. **Execution identity:** demostrar scope y estabilidad del Trade id entre realtime e history/reconnect.
+5. **History horizon:** establecer el horizonte usable o el máximo outage a partir del cual el adapter debe permanecer AMBIGUOUS/not-ready.
 
-~~~text
-OD-D2-07-1 candidate = PROJECTX_DIRECT
-ProviderProgram = Topstep Trading Combine | Express Funded Account
-Certification environment = Topstep Practice Account
-Live Funded = unsupported by ProjectX API
-Host = personal device only
-~~~
+Estos gaps **no bloquean D2-07C**. Sí bloquean cualquier declaración de M2_VENDOR_CERTIFICATION = PASS, cualquier autorización real-money y cualquier deployment que habilite exact physical submission sin cerrar el gate.
 
-Failing any duplicate-prevention/identity item leaves ProjectX UNSUPPORTED_FOR_V1_EXACT_SUBMISSION.
 
 ## 15. Recommended initial V1 candidate
 
-**No candidate is recommended for owner selection yet because M2 is not certified.**
+~~~text
+PROJECTX_DIRECT
+=
+RECOMMENDED_INITIAL_NON_REAL_MONEY_CANDIDATE
+~~~
 
-The decision-ready evidence sequence is:
+La recommendation se sostiene únicamente con la evidencia ya aceptada:
 
-- **Close ProjectX M2 first** because it is the only candidate with a proven Topstep simulated ProviderProgram path plus an official no-risk Practice environment using the same API surface.
-- If ProjectX passes, surface PROJECTX_DIRECT to the owner as OD-D2-07-1.
-- If ProjectX fails, do not weaken M2; next investigate CQG WebAPI because its native trade_id and 30-day order history test the adapter contract against a materially different and stronger recovery substrate.
-- Do not use NinjaTrader Desktop as the fallback correctness baseline unless a provider-specific transport underneath it supplies the missing external identity/history contract.
+- API directa con submit/modify/cancel.
+- Observaciones realtime de orders/trades/positions.
+- Topstep Trading Combine + Express Funded Account como ProviderPrograms simulados dentro del path aceptado; Practice como environment seguro de certificación, no ProviderProgram.
+- Menor coupling operativo inicial que NinjaTrader Desktop.
+- El Core no necesita volverse ProjectX-specific; el transport queda detrás del boundary Adapter/Bridge.
+
+Semántica explícita:
+
+~~~text
+recommendation only
+first non-real-money implementation candidate
+M2 vendor certification deferred to D6
+real-money certification not done
+not Owner freeze
+~~~
+
+No se selecciona un segundo adapter en D2-07B. Los candidatos restantes permanecen disponibles para trabajos futuros sin exigir pre-certificar todo el universo antes de avanzar.
 
 ## 16. Exact ProviderProgram scope
 
@@ -436,32 +484,41 @@ No exact prop ProviderProgram direct-API entitlement was proven in this worker f
 - **Rithmic:** API family supports multiple OS/runtime options; production use requires conformance and broker/FCM credentials.
 - **CQG WebAPI:** WebSocket/protobuf is language-agnostic; WebAPITest is available before production conformance.
 
-These constraints belong to D2-07C only after a transport passes D2-07B. No topology is frozen here.
+These constraints are inputs for D2-07C topology and later D6 certification; they do not require vendor M2 certification to be complete before D2-07C can be designed. Transport selection must remain behind the Bridge/Adapter boundary. No topology is frozen here.
+
 
 ## 18. Non-real-money feasibility
 
-| Candidate | Non-real-money environment | V1 result |
+| Candidate | Non-real-money environment | D2-07B result |
 | --- | --- | --- |
-| ProjectX | Topstep Practice; Trading Combine/XFA are simulated programs | Best evidence-closure path, still M2 blocked |
-| NinjaTrader | Sim101 | Capability-only; generic M2 ineligible |
-| Tradovate | demo/staging simulation engines | Requires Partner/API credentials; M2 blocked |
-| Rithmic | Rithmic Test / Exchange Simulator | Useful integration test, not ProviderProgram entitlement |
-| CQG WebAPI | WebAPITest / demoapi | Strong transport test, not ProviderProgram entitlement |
+| ProjectX | Topstep Practice; Trading Combine/XFA are simulated programs | **RECOMMENDED_INITIAL_NON_REAL_MONEY_CANDIDATE**; M2 vendor certification deferred to D6 |
+| NinjaTrader | Sim101 | Capability testing only; NOT_RECOMMENDED_AS_FIRST_GENERIC_V1_PATH |
+| Tradovate | demo/staging simulation engines | FUTURE_ADAPTER_CANDIDATE; certification required if selected |
+| Rithmic | Rithmic Test / Exchange Simulator | FUTURE_ADAPTER_CANDIDATE; certification required if selected |
+| CQG WebAPI | WebAPITest / demoapi | FUTURE_ADAPTER_CANDIDATE; certification required if selected |
 
-“Has simulator” is not equivalent to “eligible initial ProviderProgram transport”.
+“Has simulator” is not equivalent to real-money authorization or ProviderProgram entitlement.
 
-## 19. Second-adapter implications
 
-D2-07A should remain vendor-neutral. The second adapter should prove that the contract is not accidentally ProjectX-shaped.
+## 19. SimExecution, Bridge boundary and future adapters
 
-- **CQG WebAPI** is the strongest contrast because it has explicit client-order uniqueness rules, stable per-account trade identity and bounded historical order retrieval.
+D2 domain/runtime design does **not** require a real vendor transport to validate the generic execution contract. SimExecution may exercise the D2-07A contract for architecture/testing; a real transport is an additional V1 implementation/certification step required in D6.
+
+Transport selection must remain behind the Bridge/Adapter boundary. D2-07B does **not** design ExecutionAdapterHost, Futures Bridge, process topology, Kafka routing or sessions; those belong to D2-07C.
+
+D2-07A should remain vendor-neutral. A future second adapter should prove that the contract is not accidentally ProjectX-shaped:
+
+- **CQG WebAPI** remains the strongest contrast because it has explicit client-order uniqueness rules, stable per-account trade identity and bounded historical order retrieval.
 - Adapter abstractions should expose idempotency scope/retention, history horizon, execution-ID scope, finality evidence and negative-lookup capability as declared capabilities, not hidden booleans inferred from endpoints.
 - NinjaTrader Desktop can remain an integration surface later, but its local session/history semantics should not define the canonical M2 model.
 - No adapter is allowed to replace external identity with Echo-local sequence, Position deltas or transport-specific heuristics.
 
+
 ## 20. Residual evidence gaps
 
-### ProjectX — decision blocking
+These gaps are preserved as transport-specific certification or future-adapter work. They do not block D2-07C.
+
+### ProjectX — D6 certification gates
 
 - customTag uniqueness retention.
 - Duplicate retry atomicity after ambiguous submit.
@@ -469,38 +526,68 @@ D2-07A should remain vendor-neutral. The second adapter should prove that the co
 - Trade id scope and realtime/history stability.
 - explicit history horizon.
 
-### NinjaTrader — structural
+### NinjaTrader — first-path structural risk
 
-- Historical executions are not available through supported local API.
+- Historical executions are not available through the supported generic local API.
 - OrderId is mutable/not unique.
+- A future provider-specific adapter must prove additional recovery/identity semantics rather than inherit a generic PASS.
 
-### Tradovate — decision blocking
+### Tradovate — future adapter certification
 
 - clOrdId idempotency/uniqueness/retention.
 - lookup by client identity and authoritative negative.
 - direct ProviderProgram entitlement.
 
-### Rithmic — decision blocking
+### Rithmic — future adapter certification
 
 - protocol-level M2 semantics from dev kit/spec.
 - execution identity/history/recovery semantics.
 - direct ProviderProgram entitlement and conformance/account path.
 
-### CQG — decision blocking
+### CQG — future adapter certification
 
 - same-cl_order_id retransmission semantics.
 - authoritative negative lookup/consistency.
 - direct ProviderProgram entitlement for an in-scope prop.
 
-## 21. Owner decision candidate
+
+## 21. D6 TRANSPORT CERTIFICATION GATE
+
+Before ProjectX —or any future transport— may be declared eligible for exact physical submission in an implemented environment, D6 must verify on the transport actually selected:
+
+- durable M2 implementation before the physical point-of-no-return;
+- stable client identity behavior and retention/scope;
+- ambiguous submit recovery with no blind retry;
+- exact execution identity and scope;
+- history/recovery horizon and authoritative recovery semantics;
+- reconnect/resubscribe and gap recovery behavior;
+- terminal finality, including cancel/fill and late-fill edges;
+- ProviderProgram/account entitlement for the concrete environment;
+- authorized host/environment constraints;
+- actual E2E shadow/demo/sim validation.
+
+Only investigate these claims for the transport actually implemented. Do not pre-certify every candidate.
+
+## 22. Owner decision candidate
 
 ~~~text
-OD-D2-07-1 = NONE — BLOCKED_EVIDENCE
+OD-D2-07-1 CANDIDATE:
+PROJECTX_DIRECT
 ~~~
 
-This worker intentionally does not freeze PROJECTX_DIRECT. The exact next decision gate is the targeted ProjectX M2 proof in §14.
+Semantics:
 
-## 22. Material risks
+~~~text
+recommendation only
+first non-real-money implementation candidate
+not transport certification
+not real-money authorization
+not Owner freeze
+~~~
+
+The Owner/Primary Manager still decides. This candidate does not bypass the D6 certification gate.
+
+## 23. Material risks
 
 - **False idempotency from a client tag.** A unique-looking tag without documented retention/retry semantics can still leave a crash window.
 - **Eventual negative lookup.** “Not found” before indexing completes can convert one physical MARKET into two.
@@ -511,7 +598,7 @@ This worker intentionally does not freeze PROJECTX_DIRECT. The exact next decisi
 - **History horizon mismatch.** Recovery after the provider's retained horizon must fail closed, never infer “flat/no order”.
 - **Cancel/fill race simplification.** Cancel acceptance cannot release reservations until fill/finality evidence converges.
 
-## 23. First-party evidence register
+## 24. First-party evidence register
 
 Evidence date: **2026-09-27**.
 
@@ -552,11 +639,12 @@ Evidence date: **2026-09-27**.
 - Logon — https://help.cqg.com/apihelp/Documents/logon.htm — WebApiTest before production; production app identity after conformance.
 - WebAPI Conformance Test — https://help.cqg.com/apihelp/Documents/webapiconformancetestandtestplan1.htm — required production conformance.
 
-## 24. Final worker status
+
+## 25. Final worker status
 
 ~~~text
 D2-07B STATUS:
-BLOCKED_EVIDENCE
+READY_FOR_SUBMANAGER_REVIEW
 
 ARTIFACT:
 main/10-projects/Echo Futures/Echo Futures — D2-07B Transport Selection.md
@@ -568,39 +656,44 @@ D2-07A CONTRACT USED:
 main/10-projects/Echo Futures/Echo Futures — D2-07A Execution Adapter Contract.md
 blob ab978a389714f739d67ee4374eb025581504eec5
 
+INITIAL NON-REAL-MONEY TRANSPORT CANDIDATE:
+PROJECTX_DIRECT
+
+WHY:
+direct API + submit/modify/cancel + realtime observations
+Topstep simulated ProviderProgram path already accepted
+lower initial operational coupling than Desktop
+vendor-specific logic remains behind Adapter/Bridge boundary
+
 PROJECTX M2:
-NOT_PROVEN — customTag uniqueness exists, but retention/retry atomicity/authoritative recovery contract is incomplete.
+NOT_PROVEN — customTag retention, ambiguous-submit retry atomicity, authoritative recovery/negative semantics, Trade id scope/stability and history horizon remain open.
 
-NINJATRADER M2:
-NO — current-session-only executions + no supported historical execution retrieval; OrderId is mutable/non-unique.
+CERTIFICATION PHASE:
+D6
 
-OTHER TRANSPORTS:
-Tradovate BLOCKED_EVIDENCE; Rithmic BLOCKED_EVIDENCE; CQG WebAPI BLOCKED_EVIDENCE.
+REAL-MONEY CERTIFICATION:
+NOT_DONE
 
-RECOMMENDED INITIAL V1 TRANSPORT:
-none
+OD-D2-07-1:
+PROJECTX_DIRECT — CANDIDATE ONLY
 
-SUPPORTED PROVIDERPROGRAM SCOPE:
-Topstep Trading Combine + Express Funded Account are the only direct API ProviderProgram path demonstrated for the leading candidate; Practice is the safe test environment; Live Funded excluded.
+D2-07C:
+UNBLOCKED
 
-ENVIRONMENT:
-Topstep Practice / simulated, personal device only, after M2 proof.
-
-NOT PROVEN:
-ProjectX M2 retention/negative/recovery/execution-id scope; direct prop API entitlement for Tradovate/Rithmic/CQG; generic NT restart-safe exact recovery.
-
-OWNER DECISION CANDIDATE:
-OD-D2-07-1 = NONE — BLOCKED_EVIDENCE
-
-BLOCKING EVIDENCE:
-Targeted ProjectX M2 certification in §14.
+MATERIAL RISKS:
+false idempotency from client tags
+eventual negative lookup
+realtime-only fill identity
+Topstep personal-device order-flow constraint
+history-horizon mismatch and cancel/fill finality edges
 
 NEXT:
-SUBMANAGER review only.
+SUBMANAGER review.
+Do not start D2-07C.
 Do not start D2-08.
 ~~~
 
 ## Fuentes
 
 - Autoridades Agents-OS listadas en §2.
-- First-party evidence register §23.
+- First-party evidence register §24.
