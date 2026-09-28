@@ -500,9 +500,8 @@ D4-A3 debe tomar los siguientes hechos como input congelable de este workstream 
 7. **Revalidation trabaja sobre el grant original.** Debe preservar grant/request/order/operation identity, signed qty, scope/family y rule provenance. Si la policy vigente cambia el resultado, la respuesta es VALID o INVALID para esa cantidad; no silent resize.
 8. **INVALID antes de egress significa cero side effect.** Operation lleva la Order a REJECTED{PROVIDER_GATE}, libera provider reservation mediante el protocolo owner-to-owner y libera el claim local sólo porque se ha demostrado que esa Order nunca quedó físicamente ejecutable. Si era safety, termination intent permanece pending.
 9. **Fill/finality siguen gobernando después de egress.** Una vez el command puede haber alcanzado el venue, A3 no revoca capacity “por config”; reservation→firm/finality usa los facts M2 ya definidos.
-10. **WIND_DOWN es un resultado de capacity authority, no un atajo local.** Si D4-A3 necesita distinguirlo, consume la clasificación/provenance del grant; no decide por role EXIT.
-11. **Position no es input para reatribuir Operation.** A3 puede respetar PHYSICAL_STATE_UNTRUSTED/account safety state de provider_rules, pero no calcula exposición de Operation desde Position.
-12. **D3-04 permanece abierto.** Este artifact deliberadamente no decide el protocolo que garantiza que la revalidation observa la authority más reciente; sólo fija qué debe revalidarse y quién posee la matemática.
+10. **Position no es input para reatribuir Operation.** A3 puede respetar PHYSICAL_STATE_UNTRUSTED/account safety state de provider_rules, pero no calcula exposición de Operation desde Position.
+11. **D3-04 permanece abierto.** Este artifact deliberadamente no decide el protocolo que garantiza que la revalidation observa la authority más reciente; sólo fija qué debe revalidarse y quién posee la matemática.
 
 ## 17. Riesgos residuales y decisiones
 
