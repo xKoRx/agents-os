@@ -1846,3 +1846,22 @@ Topstep is first by product priority, not because D2 selected ProjectX. The conc
 - **Reuse map físico:** `strategy_config.go` = KVS pattern REUSE / contenido LEGACY_ONLY (es execution-policy config, no runtime de Strategy); `execution_planner.go` = ADAPT patrón / REPLACE flujo; `mm_engine.go` = ADAPT patrones / REPLACE estado; `sdk/mm` = REUSE/EXTEND; `Signal` y `echo/strategy_engine` = NEW (cero `type Signal` en `v3/` — verificado en baseline).
 
 `OWNER_DECISIONS_REQUIRED = NONE`. Q11 = `CLOSED_CANDIDATE`. Ratificaciones técnicas ordinarias: naming físico de topics/campos, shape exacto de `StrategyTriggerRequirements`/`SignalDelivery`, config `EXACTLY_ONCE` del egress. NO PASS/CLOSED. NO Q16/D2 final integration. Siguiente gate: Primary Manager review de D2-08.
+
+
+### D2-08 — Strategy Runtime — PRIMARY MANAGER CLOSED — 2026-09-28
+
+**Status:** `D2_08_MANAGER_REVIEW = CLOSED`
+
+Primary Manager acepta [[Echo Futures — D2-08 Strategy Runtime]] después de un repair técnico localizado. Q11 queda CLOSED.
+
+Correcciones manager aplicadas antes del cierre:
+
+- **Cycle identity:** `strategy_cycle_seq` escalar y monotónico identifica el ciclo técnico de cada Signal sin introducir una entidad nueva.
+- **Reversal / physical lag:** `CLOSE_ALL(k) → OPEN(k+1)` no puede materializar dos Operations simultáneas. `echo/operation` conserva como máximo un ciclo futuro diferido mientras termina físicamente k; al llegar TERMINAL procesa k+1 por las guards normales. Un segundo ciclo futuro antes de converger produce `ACCOUNTSTRATEGY_CYCLE_LAG` y fail-closed para new risk, sin backlog ilimitado.
+- **Deterministic Signal identity:** `signal_id` no usa UUIDv7 aleatorio como authority; deriva determinísticamente de run + strategy + eval + signal sequence, de modo que crash/replay reproduce la misma identidad.
+- **Strategy config pinning:** config nueva durante ciclo OPEN queda pending y sólo gobierna un ciclo posterior; el ciclo activo conserva su config efectiva, alineado con D2-01.
+- **D2-04 alignment:** Operation guarda `strategy_cycle_seq`; OPEN del mismo ciclo puede ser acción/add sobre la Operation actual, OPEN de ciclo posterior nunca muta la Operation vieja. También se eliminó el wording histórico que permitía `orderId:seq` como Fill identity; rige D2-07-R1: provider execution identity nativa estable.
+
+Arquitectura aceptada: `echo/strategy_engine` key `strategy_id` posee estado técnico/indicators/readiness/timers/config; `echo/signal_fanout` fan-out una sola evaluación a N AccountStrategies; `echo/operation` key account:strategy posee Operation + MM mutable state y serializa Signal/execution/safety/timer triggers. Strategy/MM domain logic permanece reusable en LIVE/EXACT_REPLAY/BACKTEST.
+
+No owner decisions abiertas en Q11. Próximo frente: **Q16 — Blocking Refactor + D2 final integration**. Ese frente debe incluir un chequeo transversal de identities aleatorias (`operation_id`, `order_id/client_order_id` y cualquier otra) contra EXACT_REPLAY antes del freeze global; no asumir que UUIDv7 runtime-generated es replay-stable.
