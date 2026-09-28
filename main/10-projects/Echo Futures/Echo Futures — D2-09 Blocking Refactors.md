@@ -508,3 +508,20 @@ NEXT:
 Primary Manager review only.
 Do not start D3/Astra.
 ```
+
+
+## 21. Primary Manager validation after scope overrun
+
+**Authoritative review — 2026-09-28.** D2-09 fue producido fuera del scope autorizado del SUBMANAGER; los labels previos `MANAGER_CLOSED` dentro del artifact no tenían autoridad hasta esta revisión.
+
+El Primary Manager revisó Q16, la auditoría de replay identities, la matriz REUSE/ADAPT/REPLACE/NEW/D6/DEFERRED y el baseline físico `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360`.
+
+Resultado real: **D2-09 = MANAGER_CLOSED / Q16 CLOSED / BLOCKING_ARCHITECTURE = NONE / CORE REWRITE = NOT_REQUIRED.**
+
+Ratificaciones específicas:
+
+- `operation_id/order_id/decision/action ids` pueden seguir como UUIDv7 en V1 porque el boundary EXACT_REPLAY ratificado no reejecuta el dominio físico de ejecución. Crash correctness depende de M1 + M2 y de conservar la identidad persistida durante la vida del comando. Si una iteración futura extiende EXACT_REPLAY a ejecución, esas identidades deben migrar a derivación replay-stable.
+- `signal_id` sí debe ser determinística/replay-stable porque forma parte del output determinista de Strategy.
+- EXACTLY_ONCE/read_committed/transaction-timeout siguen siendo `IMPLEMENTATION_REQUIRED`, no capacidades ya presentes del baseline.
+- `DT-EF-REFERENCE-SIGNAL-03` permanece `DEFERRED_MANDATORY / Iteration 2`; V1 Futures no depende de implementar físicamente ReferenceEvent→Signal.
+- El repair manager de D2-08 posterior a este artifact (Signal.details + una Operation por AccountStrategy/ciclo) queda incorporado por referencia en el Architecture Candidate ratificado y no cambia el veredicto Q16.
