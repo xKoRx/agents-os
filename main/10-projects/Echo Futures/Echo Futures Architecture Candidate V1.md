@@ -225,12 +225,12 @@ NEW (V1): domain package puro · echo/{operation,signal_fanout,operation_project
         strategy_engine,market_stream,market_analytics,provider_rules} · DomainClock ·
         MarketHistorySource · ReplayDriver+recording · catálogos Instrument/Contract/
         Calendar · provider domain · Futures Bridge + ExecutionAdapter +
-        SimExecutionAdapter + journal M2 · adapter ReferenceEvent→Signal · PG migrations
+        SimExecutionAdapter + journal M2 · PG migrations
 LEGACY_ONLY: ReferenceEvent/CoreCommand/ExecutionResult/CloseResult/ExecutionPolicy ·
         Bridge MT/pipes/EA · pip_size.go · DayBoundaryCache legacy · trade_journal content
 D6:     EXACTLY_ONCE config · transport real M2/entitlement · benchmarks ·
         ReplayDriver golden · journal store · retentions
-DEFERRED (Iteración 2): DT-EF-REFERENCE-SIGNAL-03 · DT-EF-FX-PROP-01 · pips cleanup ·
+DEFERRED (Iteración 2): DT-EF-REFERENCE-SIGNAL-03 (incluye implementación física del adapter ReferenceEvent→Signal + migración del path Reference; el boundary Core ya queda reservado en D2) · DT-EF-FX-PROP-01 · pips cleanup ·
         DT-EF-CROSS-MARKET-INSTRUMENT-02 · DT-EF-POSITION-RECONCILIATION-05 ·
         recording archival/midpoint/distributed/depth
 BLOCKING_ARCHITECTURE: NONE · CORE REWRITE: NOT_REQUIRED
@@ -243,6 +243,8 @@ BLOCKING_ARCHITECTURE: NONE · CORE REWRITE: NOT_REQUIRED
 **D6 — Multi-Prop E2E + Scale (certificar):** selección del primer transport externo real con acceso autorizado efectivo + implementación de su adapter + gates M2 del transport (customTag retention, ambiguous-submit atomicity, negative/recovery semantics, execution identity, history horizon) + entitlement/host; certificación física de la config EXACTLY_ONCE/read_committed; benchmarks (100–200 cuentas, throughput StateFun/tick, reconnect storm, journal I/O, latencia admission/reservation); ReplayDriver con golden recording; store del journal con fsync/corruption semantics; retentions + lag del projector; E2E shadow/demo/sim autorizado. El requisito V1 de transport real y la capacidad 200-account se pagan aquí.
 
 ## 15. Deferred debt (sólo deuda explícita)
+
+**Aclaración V1/Iteration 2:** el contrato `Signal` y el canonical runtime sí son V1. El path Reference actual permanece LEGACY_ONLY en V1 Futures. D2 congela dónde convergerá en el futuro, pero no exige implementar `ReferenceEvent → Signal` hasta `DT-EF-REFERENCE-SIGNAL-03`.
 
 `DT-EF-REFERENCE-SIGNAL-03` (migración reference path, Iteración 2 mandatoria) · `DT-EF-FX-PROP-01` (provider rules Forex) · limpieza pips legacy (ID/alcance pendiente ratificación owner; absorbe `DT-EF-UNITS-04`) · `DT-EF-CROSS-MARKET-INSTRUMENT-02` · `DT-EF-POSITION-RECONCILIATION-05` (edge case, reabrir con evidencia) · recording archival/replay-midpoint/distributed replay/depth-book · cleanup legacy V1/V2 y retiro de compatibility paths · nota de migración de identidades si el replay de ejecución se extiende (D2-09 §4.2).
 
