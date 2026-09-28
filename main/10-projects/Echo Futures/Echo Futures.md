@@ -1940,3 +1940,44 @@ El SUBMANAGER de D2-07 avanzó indebidamente a D2-08, D2-09 y escribió labels q
 Este PASS es válido **desde esta revisión del Primary Manager**, no desde las declaraciones previas del SUBMANAGER fuera de scope.
 
 **Next gate authorized:** D3 — una única revisión GOD/Astra adversarial. D3 produce findings solamente; no modifica/repara arquitectura durante la auditoría. Findings aceptados se resuelven en D4.
+
+
+## D3 — Astra Architecture Review — PRIMARY MANAGER REVIEW — 2026-09-28
+
+**Status:** `D3 STATUS = READY_FOR_OWNER_REVIEW`
+
+Single adversarial review completed and persisted at [[Echo Futures — D3 Astra Architecture Review]].
+
+Baseline verification:
+- Agents-OS entering D3: `b0cb38fae36dfc8f7098bf9c96d1a7a57a245a0e`
+- D2 authoritative gate: `57bdfac228d88e8c662b44cdddb665bff4c8ac20`
+- Architecture Candidate ratification: `7c628fa8ce9afd91678ac4cf0089613fdf85c367`
+- Echo baseline: `372af59a7b83604781346613da01e3d510ea1360`
+- Echo `master` remained identical to the frozen baseline at D3 start.
+
+Astra findings:
+- CRITICAL: 0
+- HIGH: 3
+- MEDIUM: 1
+- LOW: 0
+
+Manager QA:
+- `SUPPORTED`: D3-ASTRA-01, D3-ASTRA-02, D3-ASTRA-03, D3-ASTRA-04
+- `UNSUPPORTED_BY_EVIDENCE`: NONE
+- `DUPLICATE`: NONE
+- `KNOWN_IMPLEMENTATION_OBLIGATION`: NONE
+- `KNOWN_DEFERRED_DEBT`: NONE
+- `OWNER_DECISION_REQUIRED`: NONE
+- `EVIDENCE_GAP`: NONE
+
+Material findings:
+1. concurrent REDUCE/EXIT Orders lack an Operation-level aggregate reducing-quantity reservation;
+2. the single deferred future-cycle mechanism buffers OPEN but leaves later management Signals for that same future cycle undefined;
+3. post-terminal late Fill handling conflicts with provider `firm_by_operation` capacity authority;
+4. EXACT_REPLAY wording is broader than its recorded execution-input boundary for MM decisions.
+
+D3 performed QA only. No finding was repaired. [[Echo Futures Architecture Candidate V1]] was not modified. D4 was not started.
+
+`EF_D3_ASTRA_PASS = REVIEW`
+
+**Next:** Owner review. If accepted, open D4 separately.
