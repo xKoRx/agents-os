@@ -1715,8 +1715,14 @@ Primary Manager closes [[Echo Futures — D2-06 Market Runtime]]. This closes Q4
 Scope: execution adapter boundary, command/result/order/fill integration, external idempotency/finality/reconciliation capabilities, transport eligibility matrix, and selection recommendation for the first non-real-money V1 execution path. Must consume D2-04 Operation/Order/Fill contracts, D2-05 Provider/Account binding and D2-06 market/session semantics. It must not reopen provider research broadly, must distinguish platform support from API entitlement, and must not advance D2-08. Selection of the initial V1 execution transport remains an owner/product decision after manager review of the integrated candidate.
 
 
-### D2-07B — Transport Eligibility / Initial V1 Path — WORKER COMPLETE — 2026-09-27
+### D2-07B — Transport Eligibility / Initial V1 Path — CORRECTED — 2026-09-27
 
-**Status:** `D2-07B = BLOCKED_EVIDENCE`
+**Status:** `D2-07B = READY_FOR_SUBMANAGER_REVIEW`
 
-TOP Architecture Worker completed [[Echo Futures — D2-07B Transport Selection]]. No candidate is certified for D2-07A M2 exact submission yet. ProjectX remains the shortest evidence-closing path because Topstep has a proven simulated ProviderProgram/API path and Practice uses the same API surface, but `customTag` retention/retry atomicity, authoritative negative lookup/history semantics and execution-id scope are not sufficiently proven. NinjaTrader Desktop is `INELIGIBLE_V1` as a generic correctness transport because supported historical execution recovery is absent and OrderId is mutable/non-unique. Tradovate, Rithmic and CQG remain `BLOCKED_EVIDENCE` due M2 and/or direct ProviderProgram entitlement gaps. `OD-D2-07-1 = NONE — BLOCKED_EVIDENCE`. Next: SUBMANAGER review only; do not start D2-08.
+D2-07B scope repair completed in [[Echo Futures — D2-07B Transport Selection]]. The previous worker accidentally promoted transport-specific M2 certification from a D6 deployment gate to a D2 architecture blocker. D2-07A remains unchanged and strict: M1/M2 separation, durable intent, stable client identity, no blind retry, reconciliation, AMBIGUOUS fail-closed and exact Fill identity are still mandatory for exact physical submission.
+
+`PROJECTX_DIRECT` is now the **recommended initial non-real-money implementation candidate** because the accepted evidence already demonstrates direct API capability, submit/modify/cancel, realtime execution observations, an accepted Topstep simulated ProviderProgram path and lower initial operational coupling than Desktop. This is recommendation only: `PROJECTX M2 VENDOR CERTIFICATION = DEFERRED_TO_D6`, `REAL_MONEY_CERTIFICATION = NOT_DONE`, and `OD-D2-07-1 = PROJECTX_DIRECT — CANDIDATE ONLY`.
+
+ProjectX gaps are preserved as D6 certification gates: customTag retention, ambiguous-submit retry atomicity, authoritative negative/recovery semantics, Trade id scope/stability and history horizon. NinjaTrader Desktop is `NOT_RECOMMENDED_AS_FIRST_GENERIC_V1_PATH`; Tradovate, Rithmic and CQG remain future adapter candidates requiring transport-specific certification if selected.
+
+`D2-07B does not block D2-07C`. D2-07C is **UNBLOCKED**, but must not be opened in this repair session. Transport selection stays behind the Bridge/Adapter boundary; physical implementation, authorized demo/shadow/sim validation and M2 evidence closure belong to D6. Next: SUBMANAGER review only; do not start D2-07C or D2-08.
