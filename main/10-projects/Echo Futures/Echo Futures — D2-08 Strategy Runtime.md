@@ -433,9 +433,11 @@ window_transitions[window_id], session_transitions, timers}. Alimenta MarketRequ
 declaración = ConfigTransition material. Bars-only no recibe tick firehose.
 
 SIGNAL IDENTITY:
-signal_id UUIDv7 (idempotencia, key de dedup D2-04 §5.1) + sello (strategy_eval_seq, signal_seq)
-(orden/replay). Evaluación ⇒ 0..N Signals ordenadas (0 es el caso común; >1 por decisión owner D1,
-p. ej. CLOSE_ALL→OPEN). created_at/valid_until en runtime_ts; expirada no materializa.
+signal_id determinístico derivado de run + strategy_id + strategy_eval_seq + signal_seq;
+strategy_cycle_seq identifica el ciclo técnico. Evaluación ⇒ 0..N Signals ordenadas
+(0 es el caso común; >1 por decisión owner D1, p. ej. CLOSE_ALL(k)→OPEN(k+1)).
+created_at/valid_until usan runtime_ts; expirada no materializa. EXACT_REPLAY regenera
+la misma identidad, sin RNG ni wall clock.
 
 FAN-OUT:
 echo/signal_fanout (key strategy_id, ya congelado D2-04): target set = catálogo AccountStrategy
@@ -500,7 +502,7 @@ fan-out config lag (semántica de linearización, fail-safe); semántica de cicl
 refina en D4 sin cambiar boundary; tabla de traducción reference→Signal = Iteración 2.
 
 NEXT:
-Primary Manager review only. Do not start Q16/D2 final integration.
+Q16 — Blocking Refactor + D2 final integration.
 ```
 
 ## Fuentes
