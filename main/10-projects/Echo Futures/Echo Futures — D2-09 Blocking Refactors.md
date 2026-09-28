@@ -77,7 +77,7 @@ El register D1 (7 ítems "blocking para implementar el diseño") se actualiza co
 
 | # | Ítem D1 | Estado tras D2 | Clasificación Q16 |
 |---|---|---|---|
-| 1 | Signal boundary limpio separado de ReferenceEvent | Resuelto por diseño: contrato `Signal` D2-03 + seam adapter `ReferenceEvent → Signal` (D2-08 §20); `ReferenceEvent` queda LEGACY_ONLY. | NEW (Signal + adapter) + LEGACY_ONLY (path Reference) |
+| 1 | Signal boundary limpio separado de ReferenceEvent | Resuelto por diseño: contrato `Signal` D2-03 + boundary Core reservado para futura compatibilidad Reference; `ReferenceEvent` queda LEGACY_ONLY en V1 Futures. La implementación física `ReferenceEvent → Signal` pertenece a DT-EF-REFERENCE-SIGNAL-03 / Iteration 2. | NEW (Signal/runtime) + DEFERRED_MANDATORY (adapter/migración Reference) + LEGACY_ONLY (path Reference actual) |
 | 2 | Operation/Order/Fill identities + lifecycle | Resuelto por D2-04 (aggregate, guards, M1/M2, recovery). `CoreCommand`/`ExecutionResult` permanecen wire legacy. | NEW (domain package + `echo/operation`) |
 | 3 | Instrument/Contract + hot mapping | Resuelto por D2-05 (catálogos, binding contexts, pin único). Patrón symbol-mapping REUSE/EXTEND. | NEW (catálogos) + REUSE (patrón hot) |
 | 4 | TradingSession/calendar separado de Account DayBoundary | Resuelto por D2-05B/§11 (tres autoridades separadas). Mecanismo DayBoundary legacy incompatible ⇒ reemplazo acotado del camino Futures. | NEW (Calendar) + ADAPT/REPLACE (DayBoundary mechanism, R18) |
@@ -168,7 +168,7 @@ DeterministicDomainID(
 
 ### 5.2 Signal / ReferenceEvent migration (mandato §13)
 
-- Target congelado: `ReferenceEvent → Core compatibility adapter → Signal → canonical runtime` (D2-08 §20). El adapter traduce a `source=REFERENCE` y entra al **mismo** camino canónico; no hay segundo runtime económico permanente.
+- Target final congelado: `ReferenceEvent → Core compatibility adapter → Signal → canonical runtime` (D2-08 §20). **En V1 Futures sólo se reserva ese boundary; el adapter físico no es requisito de implementación.** Cuando se ejecute DT-EF-REFERENCE-SIGNAL-03 en Iteration 2, traducirá a `source=REFERENCE` y convergerá al mismo camino canónico; no habrá segundo runtime económico permanente.
 - **V1 Futures no depende del planner Reference legacy:** el camino canónico nace en `echo/strategy_engine`; el path legacy `ExecutionPlanner→MMEngine→CoreCommand→Bridge` sigue para MT/Forex sin ser prerequisito del camino nuevo. Verificado en D2-08 §20/§21 y §23 (reuse map): ninguna pieza NEW del camino Futures consume ReferenceEvent.
 - `DT-EF-REFERENCE-SIGNAL-03` queda **DEFERRED_MANDATORY / Iteration 2** (migración completa del execution path reference y tabla de traducción de acciones reference→intent). No bloquea V1.
 
@@ -296,7 +296,7 @@ Categorías: **A** NEW_REQUIRED_FOR_V1 · **B** ADAPT_REQUIRED_FOR_V1 · **C** R
 | 5 | Catálogos Instrument/Contract/Calendar + distribución hot | A |
 | 6 | Provider domain + `echo/provider_rules` + capacity projection + routing index | A |
 | 7 | Futures Bridge sibling + `ExecutionAdapter` + `SimExecutionAdapter` + journal M2 | A |
-| 8 | Adapter seam `ReferenceEvent → Signal` (Core) | A (pequeño; path legacy intacto) |
+| 8 | Boundary/seam Core para futura compatibilidad `ReferenceEvent → Signal` | E — placement/contract congelado en D2; implementación del adapter + migración física = DT-EF-REFERENCE-SIGNAL-03 / Iteration 2 |
 | 9 | Migraciones PG `operations/orders/fills/contract_positions` + projector materialization | A |
 | 10 | Patrones `MMEngineFn` (join/SendAfter/egress per-account) → dentro de `echo/operation` | B |
 | 11 | Patrón `ExecutionPlannerFn` → `echo/signal_fanout` (Signal, event-time) | B |
@@ -453,7 +453,7 @@ domain package puro; echo/{operation,signal_fanout,operation_projector,
 strategy_engine,market_stream,market_analytics,provider_rules}; DomainClock;
 MarketHistorySource; ReplayDriver+recording; catálogos Instrument/Contract/
 Calendar; provider domain; Futures Bridge sibling + ExecutionAdapter +
-SimExecutionAdapter + journal M2; adapter ReferenceEvent→Signal; migraciones PG.
+SimExecutionAdapter + journal M2; migraciones PG. El adapter físico ReferenceEvent→Signal NO es obligación V1 Futures (Iteration 2).
 
 ADAPT_REQUIRED_FOR_V1:
 patrones MMEngineFn (join/SendAfter/egress per-account); ExecutionPlannerFn→
