@@ -29,13 +29,13 @@ tags:
 
 ## Continuidad
 
-- D2-07B one-shot completado con status `BLOCKED_EVIDENCE`. Artifact: [[Echo Futures — D2-07B Transport Selection]].
-- Ningún candidate certifica simultáneamente D2-07A M2 exact submission y ProviderProgram/API entitlement suficiente.
-- ProjectX es el evidence-closing target: Topstep Trading Combine + Express Funded Account tienen path API simulado demostrado y Practice usa la misma superficie sin riesgo; no congelar `PROJECTX_DIRECT` hasta cerrar customTag retention/retry atomicity, authoritative negative/recovery semantics, Trade id scope y history horizon.
-- NinjaTrader Desktop genérico queda `INELIGIBLE_V1`: executions sólo de sesión actual, sin historical execution retrieval soportado y OrderId mutable/no-unique.
-- Tradovate, Rithmic y CQG WebAPI quedan `BLOCKED_EVIDENCE`; CQG es el siguiente evidence target si ProjectX falla por su native trade_id scoped + historical order surface.
-- `OD-D2-07-1 = NONE — BLOCKED_EVIDENCE`.
-- No iniciar D2-07C ni D2-08 desde este worker. Siguiente paso: SUBMANAGER review de D2-07B y decisión sobre la prueba ProjectX M2 focalizada.
+- D2-07B-R1 corrigió exclusivamente el scope/conclusión de [[Echo Futures — D2-07B Transport Selection]]; status vigente: `READY_FOR_SUBMANAGER_REVIEW`.
+- Desvío reparado: `transport certification accidentally promoted from D6 gate to D2 blocker`. D2-07A permanece ACCEPTED y estricto; M1/M2, durable intent, stable client identity, no blind retry, reconciliation, AMBIGUOUS fail-closed y exact Fill identity no se rebajaron.
+- `PROJECTX_DIRECT = RECOMMENDED_INITIAL_NON_REAL_MONEY_CANDIDATE`. Es recommendation only; `M2_VENDOR_CERTIFICATION = DEFERRED_TO_D6`, `REAL_MONEY_CERTIFICATION = NOT_DONE`, `OD-D2-07-1 = PROJECTX_DIRECT — CANDIDATE ONLY`.
+- ProjectX conserva cinco gates D6: customTag retention, ambiguous-submit retry atomicity, authoritative negative/recovery semantics, Trade id scope/stability e history horizon.
+- NinjaTrader Desktop genérico = `NOT_RECOMMENDED_AS_FIRST_GENERIC_V1_PATH`; Tradovate, Rithmic y CQG = `FUTURE_ADAPTER_CANDIDATE` con transport-specific certification si se seleccionan.
+- `D2-07C = UNBLOCKED`, pero este worker NO lo abrió. D2-08 tampoco fue iniciado. Transport selection debe permanecer detrás del Bridge/Adapter boundary.
+- Próximo paso: SUBMANAGER review de D2-07B-R1 y decisión owner/manager sobre `OD-D2-07-1`; la implementación/certificación física del transport seleccionado pertenece a D6.
 
 ## Señales de carga
 
@@ -43,4 +43,4 @@ tags:
 
 ## Próxima acción
 
-- SUBMANAGER revisa [[Echo Futures — D2-07B Transport Selection]]; si acepta el blocker, despacha sólo la certificación ProjectX M2 descrita en §14.
+- SUBMANAGER revisa [[Echo Futures — D2-07B Transport Selection]]. Si acepta el repair, puede continuar a D2-07C sin ejecutar certificación ProjectX M2 en D2; los gates físicos quedan reservados para D6.
