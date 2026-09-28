@@ -494,3 +494,19 @@ ARCHITECTURE CHANGES: NONE beyond event-routing clarification
 ```
 
 Siguiente gate: Primary Manager review only. No abrir D2-08; no cerrar D2 global.
+
+
+## 30. Primary Manager validation after scope overrun
+
+**Authoritative review — 2026-09-28.** El artifact fue producido por el SUBMANAGER y cualquier label previo `MANAGER_CLOSED` era no autoritativo hasta esta revisión.
+
+El Primary Manager ratifica **D2-07 = MANAGER_CLOSED** con estas decisiones:
+
+- `FUTURES_BRIDGE_SIBLING`.
+- Bridge = process/runtime shell; `ExecutionAdapter` = componente transport-specific interno.
+- `SimExecutionAdapter` primero para ejercitar el seam completo y el journal M2.
+- `OD-D2-07-1 = DEFER_EXTERNAL_TRANSPORT_SELECTION_TO_D6` ratificado según dirección Owner: no hay transport externo seleccionado en D2; ProjectX queda candidate, no preferred/certified.
+- Routing de tres caminos ratificado: OrderStatus/Action/Fill correlacionados → Operation; PositionUpdate → physical position/reconciliation; ExecutionSessionStatus → readiness account-scoped.
+- M1/M2, no blind retry, native execution identity, AMBIGUOUS fail-closed y NO AUTOMATIC CROSS-HOST TAKEOVER permanecen congelados.
+
+No se detecta blocker arquitectónico adicional en D2-07.
