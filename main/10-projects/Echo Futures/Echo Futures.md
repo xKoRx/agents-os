@@ -1966,3 +1966,45 @@ Manager preflight completed:
 
 **Architecture mutated:** NO  
 **D4 started:** NO
+
+
+## D3 — Astra Architecture Review — PRIMARY MANAGER QA — 2026-09-28
+
+**Status:** `D3 STATUS = READY_FOR_OWNER_REVIEW`
+
+Real Astra review received and physically verified at [[Echo Futures — D3 Astra Architecture Review]].
+
+Baseline/scope verification:
+- Astra reviewed Agents-OS baseline `abc030d91cb69ff2907474b929af6397dbef9ed6`.
+- The exact D2 blobs declared by Astra still match current authorities: project `8792b61ad4dc`; Architecture Candidate `983b2ca0ad53`; D2-04 `2ca3abcd7f4e`; D2-05 `c40a4cac90e6`; D2-06 `8bbf97f9c511`; D2-07 `29561e6ac675`; D2-08 `ae736caf27cb`; D2-09 `8447a00e730a`.
+- Echo `master` remains identical to `372af59a7b83604781346613da01e3d510ea1360` at Manager QA.
+- Astra persistence commits touched only the D3 artifact and its D3 change log; no D2 authority or Echo source was modified by the review.
+
+Astra result:
+- CRITICAL: 0
+- HIGH: 5
+- MEDIUM: 1
+- LOW: 0
+
+Primary Manager QA disposition:
+- `SUPPORTED`: D3-01, D3-02, D3-03, D3-04, D3-05, D3-06.
+- `UNSUPPORTED_BY_EVIDENCE`: NONE.
+- `DUPLICATE`: NONE.
+- `KNOWN_IMPLEMENTATION_OBLIGATION`: NONE.
+- `KNOWN_DEFERRED_DEBT`: NONE.
+- `OWNER_DECISION_REQUIRED`: NONE.
+- `EVIDENCE_GAP`: NONE.
+
+Manager QA notes:
+- D3-01 is a real identity/recovery hole: AT_LEAST_ONCE canonical market egress permits duplicate external records while `stream_seq` is restored with checkpointed state; the frozen contract does not prove stable content↔seq mapping across a different valid replay interleaving.
+- D3-02 is a real Operation-local correctness hole: independent REDUCE/EXIT Orders can each satisfy `qty <= logical_exposure` and collectively cross the intended direction.
+- D3-03 is a direct contradiction in provider-cap guarantees: under NET_ABS, closing one side of offsetting Operations can increase account net absolute exposure while exits are intentionally unreserved/unblocked; the claimed safe envelope is therefore incomplete.
+- D3-04 is a real ownership/protocol hole: a local egress guard cannot safely decide that provider authority has not changed merely because its local epoch view is stale; the authoritative state lives in `echo/provider_rules(account_id)`.
+- D3-05 is not merely a ReplayDriver certification task: the exact-replay contract omits the version/read-set of pull-based shared MarketContext observations, so identical journaled triggers can observe different cache versions.
+- D3-06 is a real lifecycle ambiguity before Operation materialization: an OPEN awaiting Stage-1 admission has no frozen continuation semantics for a later CLOSE/CLOSE_ALL before ALLOW returns.
+
+No corrections were applied in D3. [[Echo Futures Architecture Candidate V1]] and all D2 artifacts remain frozen. D4 was not started.
+
+`EF_D3_ASTRA_PASS = REVIEW`
+
+**Next:** Owner review. If accepted, open D4 separately to classify and resolve the six supported findings.
