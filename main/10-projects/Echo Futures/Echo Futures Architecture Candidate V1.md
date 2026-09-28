@@ -84,7 +84,7 @@ Proyecciones durables: `echo.operation-projections.v1` (OPERATION_SNAPSHOT / ORD
 | Entidad | Identidad / notas |
 |---|---|
 | `Strategy` | `strategy_id`; account-agnostic; definición/config; 0..N Signals por evaluación. |
-| `Signal` | `signal_id` determinística = f(run, strategy_id, strategy_eval_seq, signal_seq); intents `OPEN/REDUCE/CLOSE/CLOSE_ALL`; `entry_type MARKET/LIMIT/STOP`; SL/TP técnicos; `details`; `valid_until`; `source NATIVE/REFERENCE`. Sin sizing ni account/contract. |
+| `Signal` | `signal_id` determinística = f(run, strategy_id, strategy_eval_seq, signal_seq); intents `OPEN/REDUCE/CLOSE/CLOSE_ALL`; `direction` canónica cuando corresponde; `details` contiene entry/trigger semantics, SL/TP técnicos y contexto Strategy-specific; `valid_until`; provenance/source. Sin sizing ni account/contract. |
 | `AccountStrategy` | `Account + Strategy + MoneyManagement` + enabled; catálogo hot; máx 1 Operation no terminal. |
 | `MoneyManagement` | Plugin de dominio dentro de `echo/operation`; `mm_state` duradero; autoridad de sizing/riesgo/exposición; triggers de Operation. |
 | `Operation` | Aggregate account-specific; `operation_id` UUIDv7; dirección sellada por la Signal OPEN aceptada; `strategy_cycle_seq`; `contract_id` + specs económicas pinneados; máx 1 ciclo futuro diferido. |
@@ -118,7 +118,7 @@ Sin estado mutable cruzado entre islas: coordinación por mensajería checkpoint
 
 **Strategy cycle (lógico, no físico):** `TECHNICAL_CLOSED/OPEN(k)` gobernado por las propias Signals; `strategy_cycle_seq` monotónico; jamás espera convergencia física de cuentas; config nueva durante ciclo OPEN = `pending_strategy_config` para ciclo posterior.
 
-**Operation:** `CREATED` → (MM emite entry Order que sale) `PENDING_ENTRY` → (primer Fill con exposición) `ACTIVE` → `TERMINAL{reason}`. Guards TERMINAL: exposición lógica firmada real = 0 ∧ 0 Orders vivas ∧ intent de terminación registrado. ForceClose = intent, no transición. La exposición deriva de Fills firmados sin clamp (breach = fail-visible `EXPOSURE_INVARIANT_BREACH`); direction immutable; reversal = terminal + nueva Operation del ciclo siguiente; máx 1 Operation no terminal por AccountStrategy; `CLOSE_ALL(k)→OPEN(k+1)` difiere como máximo un ciclo (`ACCOUNTSTRATEGY_CYCLE_LAG` si llega un segundo).
+**Operation:** `CREATED` → (MM emite entry Order que sale) `PENDING_ENTRY` → (primer Fill con exposición) `ACTIVE` → `TERMINAL{reason}`. Guards TERMINAL: exposición lógica firmada real = 0 ∧ 0 Orders vivas ∧ intent de terminación registrado. ForceClose = intent, no transición. La exposición deriva de Fills firmados sin clamp (breach = fail-visible `EXPOSURE_INVARIANT_BREACH`); direction immutable; reversal = terminal + nueva Operation del ciclo siguiente. Cada AccountStrategy puede materializar como máximo una Operation por `strategy_cycle_seq` durante toda la vida de ese ciclo (Stage-1 DENY sin materialización no consume esa oportunidad); `CLOSE_ALL(k)→OPEN(k+1)` difiere como máximo un ciclo (`ACCOUNTSTRATEGY_CYCLE_LAG` si llega un segundo).
 
 **Order:** `PENDING_SUBMIT → SUBMITTED → WORKING → FILLED | CANCELLED | EXPIRED | REJECTED`; partial fill = `WORKING` + `filled_qty`; modify nativo incrementa `order_version`; replace = cancel+new con cadena auditable; única corrección forward: `CANCELLED/EXPIRED → FILLED` por fills tardíos que la completan; un estado de Order jamás termina la Operation.
 
@@ -286,3 +286,15 @@ Primary Manager decide el gate; este documento no se declara PASS ni cierra D2.
 - [[Echo Futures — D2-09 Blocking Refactors]] — Q16, auditoría de identidades, matriz de clasificación.
 - [[Echo Futures — D1 Analysis Pack]] — evidencia D1 aceptada.
 - `xKoRx/echo@372af59a7b83604781346613da01e3d510ea1360` — baseline físico.
+
+
+## Primary Manager validation after SUBMANAGER scope overrun
+
+**Authoritative review — 2026-09-28.** El `EF_D2_DESIGN_PASS = PASS` escrito inicialmente dentro de este artifact por el SUBMANAGER no tenía autoridad porque fue producido fuera de scope. El Primary Manager revisó posteriormente D2-07, D2-08, D2-09, este candidato y el baseline físico Echo.
+
+Repairs aplicados antes de ratificar el candidate:
+
+- D2-08 vuelve a respetar D2-03: `Signal.details` conserva entry/trigger semantics, SL/TP técnicos y payload Strategy-specific; no se promueven esos detalles a campos top-level universales.
+- Se cierra la identidad de ciclo account-specific: máximo una Operation materializada por `AccountStrategy + strategy_cycle_seq`; un Stage-1 DENY no materializa/consume ciclo, pero un terminal temprano de Operation(k) impide crear una segunda Operation(k).
+
+Con esos repairs, el Primary Manager **ratifica** D2-07, D2-08, D2-09 y este Architecture Candidate. El gate `EF_D2_DESIGN_PASS = PASS` pasa a ser autoritativo desde esta revisión, no desde el wording previo del worker.
