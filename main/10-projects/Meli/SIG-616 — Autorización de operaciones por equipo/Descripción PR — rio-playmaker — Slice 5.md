@@ -13,12 +13,12 @@ tags:
   - kind/doc
   - project/sig-616-operation-authorization
 created: "2026-09-16"
-updated: "2026-09-23"
+updated: "2026-09-28"
 ---
 
 # Descripción PR — rio-playmaker — Slice 5
 
-**Identidad:** `melisource/fury_rio-playmaker` · branch `feature/operation-authorization-by-team-f5@85a0c3bfc` · base `feature/operation-authorization-by-team-f4@40d5f9b22` · [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182) · SPEC [[SPEC técnica — Slice 5 — Actions restantes]].
+**Identidad:** `melisource/fury_rio-playmaker` · branch `feature/operation-authorization-by-team-f5@8be97883` · base `feature/operation-authorization-by-team-f4@40d5f9b22` · [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182) · SPEC [[SPEC técnica — Slice 5 — Actions restantes]].
 
 ## Propósito
 
@@ -28,30 +28,37 @@ Mantener la descripción publicada del PR de F5 y su evidencia local junto al pr
 
 ## Description
 
-fix(auth): guard remaining Signals mutations by configured owner permissions
+fix(auth): cerrar autorización de mutaciones y Actions de Signals
 
-Fase 5 cierra las mutaciones de Data Products, componentes y pipelines usadas por el frontend de Signals (`origin/develop@9bf76ffc`). El viewer podía editar metadata y configuración porque esos flujos dependían de checks legacy que no evaluaban el nivel del `OwnerProjectGrant` o se omitían en test scopes. Ahora una operación declarada en YAML valida el rol ACME del owner antes de persistir o despachar. Se mantienen los casos de uso y endpoints existentes.
+Fase 5 cierra las mutaciones de Data Products, componentes y pipelines usadas por el frontend de Signals (`origin/develop@9bf76ffc`). Las operaciones configuradas validan el rol ACME del owner persistido antes de persistir o despachar. Las Actions component-bound se clasifican por par exacto `component_type + actionName`: mutaciones declaradas exigen ACME, lecturas declaradas conservan Tiger y pares desconocidos reciben 403 antes de KVS o BigQueue. Se mantienen los casos de uso y endpoints existentes.
 
 Changes:
 
 * Agrega reglas exactas en `app.action-authorization` para crear/editar/cambiar estado de Data Product, PATCH de config/rename de pipeline, CRUD/activación de definiciones y request/resolve de import authorizations. Los permisos de componentes, relaciones, topología, deploy y Actions existentes siguen configurados en el mismo YAML.
-* Las familias abstractas `flink-job` y `flink-sql` conservan miembros AWS/GCP explícitos en YAML. Retirar una regla familiar desactiva su guard para todos los miembros.
-* Exige team/project del owner persistido para toda regla configurada. Un owner incompleto o un viewer recibe 403; la pertenencia a platform team no sustituye el grant del owner en el cascade delete. Una operación sin regla exacta conserva su flujo previo. Los checks legacy siguen vigentes, por lo que algunas operaciones de Data Product pueden exigir un rol más alto en producción.
-* Añade pruebas de denegación antes de efectos y una integración HTTP con provider YAML y ACME reales (grants simulados), más la matriz de rutas auditadas en `docs/sig-616-slice-5-verification.md` y escenarios AT.
+* Las familias abstractas `flink-job` y `flink-sql` conservan miembros AWS/GCP explícitos en YAML. Si se retira una regla mutante, esa Action pasa a ser desconocida y se deniega.
+* Exige team/project del owner persistido para toda regla configurada. Un owner incompleto o un viewer recibe 403; la pertenencia a platform team no sustituye el grant del owner en el cascade delete. Las operaciones que no son Actions conservan su flujo previo cuando no tienen regla. Los checks legacy siguen vigentes.
+* Declara las lecturas permitidas por par exacto, incluido `clickhouse-mergetree + get-schemas` para precreation. Precreation sólo permite lecturas declaradas; `ping` y otros pares desconocidos se deniegan.
+* Serializa la autorización de Actions con transferencias de owner mediante el lock del Data Product; el dispatch autoriza contra el owner leído con lock antes de escribir en KVS o publicar.
+* Añade pruebas de denegación antes de efectos, una integración HTTP con provider YAML y ACME reales (grants simulados), una prueba concurrente H2 del lock, la matriz de rutas auditadas en `docs/sig-616-slice-5-verification.md` y escenarios AT.
 
 ```mermaid
 flowchart LR
   UI[Signals] --> API[Playmaker]
   API --> Owner[Owner persistido]
-  Owner --> Rule{Regla YAML exacta}
+  Owner --> Kind{Action component-bound}
+  Kind -->|Sí| Pair{Par exacto declarado}
+  Pair -->|Lectura| Tiger[Despacho con Tiger]
+  Pair -->|Desconocido| Deny[403 sin escritura]
+  Pair -->|Mutación| ACME[Grant ACME team/project]
+  Kind -->|No| Rule{Regla YAML exacta}
   Rule -->|Ausente| Legacy[Flujo existente]
-  Rule -->|Presente| ACME[Grant ACME team/project]
+  Rule -->|Presente| ACME
   ACME -->|Insuficiente o scope incompleto| Deny[403 sin escritura]
   ACME -->|Permitido| Legacy
   Legacy --> Write[Validaciones y mutación existente]
 ```
 
-La auditoría distingue las rutas de Entities (Rio Entity Service), favoritos personales, freezes con checks propios y POST de lookup/peek que no mutan el agregado. `POST /v2/services/:id/actions/code` no se invoca desde la UI actual; precreation con `serviceId=0` no tiene owner persistido y sigue fuera del guard de Actions de la SPEC.
+La auditoría distingue las rutas de Entities (Rio Entity Service), favoritos personales y freezes con checks propios. Las lecturas `peek` y `execute-query` sólo se permiten en los pares declarados por la SPEC. `POST /v2/services/:id/actions/code` no se invoca desde la UI actual; precreation con `serviceId=0` carece de componente de origen persistido y sólo admite lecturas declaradas.
 
 ## Dev checklist (should be completed by the developer assigned to the issue)
 
@@ -64,13 +71,13 @@ La auditoría distingue las rutas de Entities (Rio Entity Service), favoritos pe
 * [x] I have commented portions of my code, particularly in hard-to-understand areas
 * [x] I updated the applicable canonical documentation (`docs/architecture.md`, `testing-scenarios.md` y documento de verificación). El Swagger generado no cambió; el 403 usa el handler existente.
 * [x] After my changes were applied the app is still buildable
-* [x] My changes generate no new warnings — formatter y Checkstyle pasan; PMD reporta 30 advertencias existentes frente a 34 en el HEAD anterior.
+* [ ] My changes generate no new warnings — `static-analyzer` pasó; no se comparó el conteo de advertencias con la base.
 * [x] I have added tests that prove my fix is effective or that my feature works
     * Unit testing is a must
     * Integration testing is recommended
 * [x] New and existing unit tests pass locally with my changes
 * [ ] Any dependent changes have been merged and published in downstream modules — F4 sigue abierto como base de este PR.
-* [x] I have updated my current branch with changes made in develop/master previously — incorpora F4 `40d5f9b22` mediante merge commit.
+* [x] I have updated my current branch with changes made in develop/master previously — incorpora F4 `e75ca90d9`, que incluye el merge de develop.
 * [ ] I already deployed this branch in the pre-production environment
 
 ## Code Review checklist (must be completed by the code reviewer)
@@ -108,28 +115,22 @@ La auditoría distingue las rutas de Entities (Rio Entity Service), favoritos pe
 
 ## How Has This Been Tested?
 
-HEAD: `85a0c3bfc` · merge de F4: `40d5f9b22`.
+HEAD: `8be97883` · base F4: `40d5f9b22`.
 
-* El merge publicado integra los comentarios aplicados a F4 sobre relaciones same-DP y cascade sin equipo; se conservaron las reglas F5 existentes y se combinaron las matrices YAML de permisos.
-* La verificación local del merge fue estructural (`git merge-tree`, diffs y checks de whitespace/conflictos); no se ejecutaron pruebas localmente. La CI #5498 de PR #1182 terminó con sus cinco checks en `SUCCESS`.
-
-Evidencia local heredada del HEAD anterior `141eacbc5` (previa al merge F4→F5):
-
-* L0/UNIT + H2_INTEGRATION + CONTRACT: `./scripts/run-agentic-testing-contract.sh` pasó 31 selectores focalizados. `./scripts/validate-testing-contract.sh --staged`, `./scripts/validate-repository-contract.sh --staged` y `git diff --cached --check` pasaron.
+* L0/UNIT + H2_INTEGRATION + CONTRACT: `./scripts/run-agentic-testing-contract.sh` pasó 38 selectores focalizados, incluida la contención real entre dos transacciones H2. `./scripts/validate-testing-contract.sh --staged`, `./scripts/validate-repository-contract.sh --staged` y `git diff --cached --check` pasaron.
 * L0/LOCAL_STACK: `AT-000-S01` y `AT-180-S18` pasaron con MySQL aislado; el runner eliminó contenedores, redes y volúmenes propios.
-* L0/FULL_REGRESSION: `./gradlew test --rerun-tasks --no-daemon` pasó con 4.107 tests, 0 fallas, 0 errores y 2 skips preexistentes.
-* Formato/estático: `pretty-format-java` y `checkstyle` pasaron. PMD mantiene 30 advertencias previas (34 en baseline), sin reglas nuevas detectadas.
-* CI del HEAD anterior: `continuous-integration`, `code-coverage`, `dependencies`, `static-analyzer` y `workflow` terminaron en `pass` ([build #5492](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/5492/pipeline/)).
-* CI del merge F4→F5 publicado: los cinco checks de PR #1182 terminaron `SUCCESS` en el build #5498.
+* L0/FULL_REGRESSION + COVERAGE: `./gradlew test jacocoTestReport` pasó con 0 fallas y 2 skips preexistentes; JaCoCo cubrió 335/337 líneas ejecutables cambiadas frente a `develop` (99,41%).
+* Formato/estático local: `git diff --cached --check` y contrato del repositorio pasaron; revisión estática de CI pendiente.
+* CI del HEAD: build [#5565](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/5565/pipeline/) terminó con `continuous-integration`, `dependencies`, `static-analyzer`, `code-coverage` y `workflow` en `SUCCESS`. Fury reportó **98,00% de cobertura del PR** ([detalle](https://web.furycloud.io/rio-playmaker/code-coverage/pr-coverage/1235a2f5-dfac-4171-9350-113a995bf5cb)).
 * F1/SMOKE: pendiente. Prueba sugerida en `test3` con un Data Product propio de `ml-ads-signals/authorization-smoke-test`: con la versión viewer, editar descripción/visibilidad, config y componente debe retornar 403 sin cambios persistidos; con committer, las operaciones `DEV_AND_UP` deben continuar. Validar delete por separado con rol `DEPLOYER_AND_UP`. Requiere aprobación del scope y dataset antes de desplegar.
 
 ### Versiones de prueba
 
-* [`0.1.21-p5-committer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.21-p5-committer-allowed), rama `feature/sig-616-auth-p5-committer-test3-v25@edff29c26`; build #1740.
-* [`0.1.22-p5-viewer-denied`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.22-p5-viewer-denied), rama `feature/sig-616-auth-p5-viewer-test3-v26@4f1e29e6`; build #1741.
-* [`0.1.23-p5-deployer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.23-p5-deployer-allowed), rama `feature/sig-616-auth-p5-deployer-test3-v27@d5ef6d48c`; build #1743 (`FINISHED`). Mock pensado para verificar inactivación/undeploy con `DEPLOYER_AND_UP`.
+* [`0.1.21-p5-committer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.21-p5-committer-allowed), rama `feature/sig-616-auth-p5-committer-test3-v25@edff29c26`.
+* [`0.1.22-p5-viewer-denied`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.22-p5-viewer-denied), rama `feature/sig-616-auth-p5-viewer-test3-v26@4f1e29e6`.
+* [`0.1.23-p5-deployer-allowed`](https://web.furycloud.io/rio-playmaker/versions/detail/0.1.23-p5-deployer-allowed), rama `feature/sig-616-auth-p5-deployer-test3-v27@d5ef6d48c`.
 
-Las ramas incorporan F5 `85a0c3bfc` y activan el mock ACME sólo con profile `test3`; committer/viewer preservan sus escenarios y deployer permite además probar inactivación. Los builds #1740/#1741/#1743 terminaron `FINISHED`. Son artefactos de prueba; no se desplegaron.
+Estas ramas de prueba son snapshots anteriores al HEAD `8be97883`; activan el mock ACME sólo con profile `test3` y sus builds Fury terminaron `FINISHED`. No se desplegaron. El smoke F1 de este HEAD requiere una nueva versión de prueba y aprobación del scope.
 
 ## Testing contract
 
