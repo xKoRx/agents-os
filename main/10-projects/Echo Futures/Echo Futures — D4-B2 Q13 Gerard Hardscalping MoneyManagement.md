@@ -132,10 +132,12 @@ Una DENIED/INVALID de ENTRY termina el intento inicial sin retry V1. Una DENIED/
 
 Se fija una sola vez al crear mm_state y no cambia después de adds, pyramids, partial fills ni movimientos de stop.
 
-Default Echo:
+GerardMMConfig debe declarar explícitamente `initial_risk_fraction` para uso LIVE/DEMO. No existe fallback económico silencioso en producción.
+
+Seed determinista de research/test:
 
 ~~~text
-initial_risk_fraction = 0.005    # 0.5% de equity; ECHO DESIGN DECISION
+initial_risk_fraction = 0.005    # 0.5% de equity; RESEARCH/TEST SEED, no risk appetite global
 R_equity = account_equity * initial_risk_fraction
 R_provider = H
 R0 = min(R_equity, R_provider)
@@ -264,7 +266,9 @@ Si Strategy no entrega target, no existe target inventado.
 
 ## 10. Negative hardscalping exact rules
 
-Defaults Echo:
+GerardMMConfig debe declarar estos parámetros para LIVE/DEMO.
+
+Seed determinista de research/test:
 
 ~~~text
 adverse_step_R = 0.25
@@ -322,7 +326,9 @@ Esto es un desired envelope de MM, no una autorización provider.
 
 ## 11. Positive hardscalping exact rules
 
-Defaults Echo:
+GerardMMConfig debe declarar estos parámetros para LIVE/DEMO.
+
+Seed determinista de research/test:
 
 ~~~text
 positive_step_R = 0.50
@@ -534,7 +540,7 @@ Cambiar cualquiera de estos puntos constituye otra política MM o una V2 semánt
 
 ### 18.2 Tunable parameters
 
-| Parameter | Default Echo V1 | Semántica |
+| Parameter | Research/test seed | Semántica |
 | --- | ---: | --- |
 | initial_risk_fraction | 0.005 | fracción de equity para R_equity |
 | adverse_step_R | 0.25 | separación fija de adverse thresholds |
@@ -786,7 +792,7 @@ No se agrega timer porque QUOTE + execution facts + termination intents alcanzan
 
 OWNER_DECISIONS_REQUIRED = NONE.
 
-Los defaults numéricos de V1 son tunables de research y quedan explícitamente etiquetados como decisiones Echo. No cambian la arquitectura ni afirman evidencia que no existe.
+Los valores numéricos documentados son seeds deterministas de research/test. LIVE/DEMO requiere configuración explícita por AccountStrategy/GerardMMConfig, evitando convertir un seed en una decisión silenciosa de risk appetite. No cambian la arquitectura ni afirman evidencia que no existe.
 
 Una decisión Owner sólo sería necesaria si el producto quisiera convertir en requirement una progresión de riesgo entre Operations, un bypass/override de hard provider caps, una promesa distinta de pérdida máxima o un scope de liquidación que contradiga los boundaries congelados. Ninguna de esas decisiones es necesaria para cerrar Q13 V1.
 
