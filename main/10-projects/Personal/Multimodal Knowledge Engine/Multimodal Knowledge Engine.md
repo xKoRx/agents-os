@@ -25,15 +25,17 @@ tags:
   - kind/project
   - area/personal
 created: "2026-09-17"
-updated: "2026-09-20"
+updated: "2026-09-28"
 ---
 
 # Multimodal Knowledge Engine
 
-> [!important]+ Estado canónico al pausar · 2026-09-20
-> **PAUSA OPERATIVA / LIVE_READY_WITH_LIMITATIONS. M0 = BLOCKED físico, NO certificado.** Implementación y recovery sintético desarrollados; la última rama dev verificada es `fix/m0-live-readiness` @ `974f74818d1a298497fff77e297f64b1dd327f61` (**NO hay merge a `master` confirmado**). NO hubo GLM live, video autorizado certificado ni SPEC-04 G0–G9 real. El owner retomará posiblemente en semanas; su «listoooo» no certifica recursos ni M0.
+> [!important]+ Estado canónico al cerrar · 2026-09-28
+> **CERTIFICACIÓN M0 REAL EJECUTADA: `M0_NO_GO`.** El producto y la ruta física quedaron probados de punta a punta; el fallo está acotado a acreditación/evaluación, no a media/evidence foundation. Corrida formal reportada: 26/26 ventanas, 348 llamadas, ~5.2M tokens, G1/G3/G4/G8 PASS; G2 falló con 7/7 reglas críticas sin acreditar y G5 con 6 excepciones ocultas. QA posterior verificó que las 7 reglas estaban presentes en el material recuperado.
 >
-> **Entrada obligatoria para cualquier agente nuevo:** [[M0 Execution]] es el planificador único de ejecución; [[MKE — Handoff técnico y certificación M0]] reúne SHAs, resultados, evidencia, límites, seguridad y protocolo de reinicio. No utilizar entradas históricas anteriores como estado presente. No reiniciar implementación desde SPEC-00A, reabrir arquitectura ni diseñar M1.
+> **Workstream vigente: `M0-R1 — Bounded Remediation + Local Runtime Completion`.** Scope autorizado por Owner: corregir grounding audio-only, evaluación cross-language y robustez de verdicts/runbook; además dejar Whisper local operativo detrás de `ASRProvider` y recertificar G0–G9 sobre el mismo source/golden cuando sea válido. No reabrir arquitectura, no M1/M2, no usar C para esconder un baseline A roto.
+>
+> Repo de continuidad: `fix/m0-live-readiness` @ `974f74818d1a298497fff77e297f64b1dd327f61` es el último HEAD remoto verificado. El ejecutor anterior reportó cambios locales no commiteados de OpenRouter/runbook; un nuevo agente debe inspeccionar worktree/HEAD reales antes de tocar nada.
 
 ## 🎯 Objetivo
 
@@ -47,19 +49,21 @@ Transformar **fuentes multimodales heterogéneas** en conocimiento estructurado 
 
 ## 📊 Estado actual — autoridad temporal más reciente
 
-1. **2026-09-17 — Freeze:** ADR-001 y arquitectura + seis SPECs en repo de código, base `e5f9e9757d0e42b00c831e57920174428397d3b5`. Scope y gates congelados.
-2. **2026-09-20 — implementación:** siete etapas implementadas, `m0-implementation` @ `77b8d6f21ca3496457c523840d62c9eb105f158e`; 16/16 paquetes y QA reportados; benchmark sintético inicial detectó fallos materiales, certificación real no ejecutada.
-3. **2026-09-20 — recovery sintético:** `fix/m0-synthetic-recovery` @ `b48822d5a2be1c805bc8eff52457cea71a7d708e`. `mke plan`, cobertura de interpretación, hints de contradicciones, evaluador v2 con errata del matcher. Tres benchmarks ejecutables corrigieron omisiones y A pasa sobre recorded scripts corregidos; **C aportó 0 conocimiento correcto incremental en 3/3 con más costo**. No extrapolar a inferencia live.
-4. **2026-09-20 — live readiness:** `fix/m0-live-readiness` @ `974f74818d1a298497fff77e297f64b1dd327f61` (seis commits sobre recovery; commit comprobado en GitHub). Se descubrió que benchmark de recovery NO usaba `mke plan`: requests y ventanas eran manuales. Se integró `media → plan → acquire → windows → pipeline → documentación`; E2E prueba trazabilidad desde mp4 original. Holdout nuevo con golden separado 6/6 A usando recorded provider; contrato GLM probado con servidor HTTP simulado, **sin llamada real**. Último agente reporta suite 16/16 verde y `LIVE_READY_WITH_LIMITATIONS`.
-5. **Estado final M0:** `BLOCKED` para certificación física. SPEC-00A criterio 8 GLM live y SPEC-04 video real + golden ciego + G0–G9 NO certificados. Video/credencial/transcript no confirmados en este handoff. Pausado por decisión de calendario del owner, no por fallo nuevo de arquitectura. No cambiar `status` a done.
+1. **2026-09-17 — Freeze:** ADR-001 y arquitectura + seis SPECs congeladas en repo, base `e5f9e9757d0e42b00c831e57920174428397d3b5`.
+2. **2026-09-20 — implementación/recovery/readiness:** rama de continuidad llegó a `fix/m0-live-readiness @ 974f74818d1a298497fff77e297f64b1dd327f61`; ruta `media → plan → acquire → windows → pipeline` y holdout recorded quedaron listos, todavía sin certificación física.
+3. **2026-09-28 — certificación física real:** source autorizado y credencial VLM estuvieron disponibles y se ejecutó el pipeline real completo. Resultado formal `M0_NO_GO`, no `BLOCKED`. G1/G3/G4/G8 pasaron; G2/G5 fallaron.
+4. **Diagnóstico aceptado R1:** (a) grounding reviewer recibe referencias de transcript sin texto suficiente: 0/147 audio-only soportados vs 65/176 con imagen; (b) golden español vs publicación mayormente inglesa hace fallar equivalencia lexical; (c) ~15.7% verdicts malformados fallan cerrado correctamente pero erosionan recall/costo; (d) runbook/budget tuvo erratas físicas detectadas al ejecutar.
+5. **Producto demostrado:** frames/PTS/provenance, multimodalidad visual y honestidad del grounding quedaron físicamente evidenciados; QA reportó 10/10 afirmaciones soportadas honestas y cero alucinaciones publicadas como soportadas en la muestra.
+6. **Objetivo operacional refinado por Owner:** Whisper/local ASR deja de ser opcional para este workstream. M0-R1 debe dejar ASR local funcional detrás de `ASRProvider`, sin acoplar dominio ni abrir routing/infra nueva.
+7. **Siguiente gate único:** ejecutar el prompt/mandato M0-R1 ya definido, preservar source/golden/baseline, aplicar invalidation mínima y volver a certificar G0–G9. Sólo `M0_R1_PASS` habilita cierre M0 y planificación M1.
 
-**Prueba de verdad:** resultados reported por agentes y commits Git no equivalen a reejecución de tests ni disponibilidad del entorno en esta sesión de documentación. Revalidar al reiniciar. Los artefactos bajo `~/mke/evidence/` y `artifacts/` son locales reportados, no respaldos Git confirmados.
+La certificación y los artefactos físicos fueron reportados en Daedalus bajo `~/mke/m0-20260928/`; esa ruta es evidencia local y debe revalidarse en el host antes de asumir persistencia. Los cambios no commiteados reportados por el ejecutor no son autoridad Git hasta ser inspeccionados y committeados.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch activo de continuidad | Base verificable | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| MKE / `xKoRx/multimodal-knowledge-engine` | `fix/m0-live-readiness` @ `974f74818d1a298497fff77e297f64b1dd327f61` (remote commit comprobado; re-fetch obligatorio) | freeze `e5f9e97` → implementación `77b8d6f` → recovery `b48822d` → readiness `974f748` | esta nota y [[MKE — Handoff técnico y certificación M0]] | `docs/architecture/architecture.md`; SPEC-00A/00B/01/02/03/04; `docs/runbooks/m0-live-certification.md` | dev listo según reports, QA real BLOCKED; no merge a master verificado |
+| MKE / `xKoRx/multimodal-knowledge-engine` | `fix/m0-live-readiness` @ `974f74818d1a298497fff77e297f64b1dd327f61` (último HEAD remoto verificado; inspeccionar posibles cambios locales antes de modificar) | freeze `e5f9e97` → implementación `77b8d6f` → recovery `b48822d` → readiness `974f748` | esta nota + [[M0 Execution]] | `docs/architecture/architecture.md`; SPEC-00A/00B/01/02/03/04; `docs/runbooks/m0-live-certification.md` | certificación real ejecutada: `M0_NO_GO`; remediation M0-R1 + Whisper local pendientes |
 
 ## 1. Contrato funcional y boundaries vigentes
 
@@ -121,9 +125,10 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 - [x] Fijar objetivo de conocimiento, QA delegado, contratos visuales y milestones. #owner/me #type/admin #area/personal
 - [x] Renombrar Course Intelligence Engine → MKE, vincular repo y alias histórico. #owner/me #type/admin #area/personal
 - [x] Autorizar y despachar implementación M0 con gates; recovery y live readiness quedaron entregados por el agente (NO certificación física). #owner/me #type/admin #area/personal
-- [r] [[M0 Execution]] arrancar + seguimiento — implementación/recovery/readiness entregados; en REVIEW del owner, certificación M0 real pendiente; no marcar Done antes de aceptación final. #owner/me #type/supervision #area/personal
-- [ ] Disponer o identificar legítimamente video autorizado, transcript SHA-bound o ASR aceptado y GLM API key por canal seguro; no guardar credenciales/material privado en vault. #owner/me #type/admin #area/personal #blocked
-- [ ] Tras M0 PASS físico, decidir alcance y delegar SPECs M1 (luego M2) con evidencia; no anticipar. #owner/me #type/supervision #area/personal #blocked
+- [r] [[M0 Execution]] seguimiento — certificación física original ejecutada con `M0_NO_GO`; planificador ahora conduce M0-R1 hasta recertificación. Mantener en Review; no Done antes de `M0_R1_PASS` y aceptación humana. #owner/me #type/supervision #area/personal
+- [x] Inputs físicos de certificación original disponibles: source autorizado + credencial VLM + transcript/ASR aceptado permitieron corrida real; secretos/material privado permanecen fuera del vault. ✅2026-09-28 #owner/me #type/admin #area/personal
+- [ ] Ejecutar `M0-R1 — Bounded Remediation + Local Runtime Completion`: corregir R1-01..04, dejar Whisper local funcional vía `ASRProvider`, revalidar contra source/golden preservados y cerrar G0–G9. #owner/agent #type/dev #area/personal
+- [ ] Tras `M0_R1_PASS`, decidir alcance y delegar SPECs M1 (luego M2) con evidencia; no anticipar. #owner/me #type/supervision #area/personal #blocked
 
 ## 📆 Bitácora
 
@@ -132,6 +137,9 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 - **2026-09-20 — recovery:** `b48822d`, 3 benchmarks A PASS sobre recorded corregido y golden congelado; C 0/3 incremental. Hints/errata/evidencia de interpretación incorporados, NO prueba de GLM real.
 - **2026-09-20 — readiness:** `974f748`, ruta planificador integrada `media→plan→acquire→windows→pipeline`, holdout 6/6 recorded, HTTP GLM simulado, runbook añadido, 16/16 suites reportadas verdes; LIVE_READY_WITH_LIMITATIONS, M0 BLOCKED físico.
 - **2026-09-20 — pausa y handoff intersesión:** owner pide conservar absolutamente todo para retomarlo posiblemente en semanas con nuevos agentes. Se crea [[MKE — Handoff técnico y certificación M0]] en recursos: autoridades, SHAs, pruebas y limitaciones, mapa de evidencia, four runbook erratas, dependencias físicas y protocolo exacto. Tarea puente en Review, nunca Done. No se ejecuta nuevo M0 E2E en esta documentación. Fecha de próxima sesión NO fijada.
+
+- **2026-09-28 — certificación física M0:** corrida real completa reportada sobre source autorizado: 26/26 ventanas, 348 VLM calls, ~5.2M tokens, costo reportado 0. Resultado `M0_NO_GO`: G1/G3/G4/G8 PASS; G2 7/7 critical recoverable sin acreditar; G5 6 excepciones ocultas. QA determinó que los 7 ítems estaban presentes en material recuperado, apuntando a grounding/evaluación y no a acquisition.
+- **2026-09-28 — remediation owner:** se autoriza workstream acotado `M0-R1` y se eleva Whisper/local ASR a requisito operacional. Mandato entregado para IMPLEMENT→TEST→QA→recertificación, sin M1/M2 ni rediseño general.
 
 ## 🧭 Decisiones
 
@@ -142,6 +150,8 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 - QA no auto-certificado, golden blind, replay ≠ live, no afirmaciones falsas de verdad humana/externa, JSONL canónico.
 - Historial sintético anterior NO_GO conservado; recovery PASS sobre tres casos y holdout 6/6 no son certificación M0. Gate definitivo físico/spec basado en evidencia.
 - Roadmap de oportunidades diferido y ya persistido, sin scope creep M0.
+- Para M0-R1, el golden existente se preserva hash-identical; corregir evaluación cross-language NO autoriza traducir/regenerar golden ni relajar valores/condiciones/negaciones/excepciones.
+- Whisper/local ASR es ahora requisito operacional del Owner para cerrar M0-R1, pero sigue detrás de `ASRProvider`; este refinement no autoriza acoplar media/pipeline a Whisper ni crear routing/infra adicional.
 
 ## 🔗 Docs / Links
 
