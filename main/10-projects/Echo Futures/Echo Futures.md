@@ -2037,3 +2037,63 @@ Manager authority boundary for D4:
 - no implementation code, PR, deploy, transport certification or D5 work is authorized in D4.
 
 **D4 started:** NO. Start it in a separate Manager session.
+
+
+## D4 — Architecture Freeze — PRIMARY MANAGER FINAL QA — 2026-09-29
+
+**Status:** `D4 STATUS = READY_FOR_OWNER_REVIEW`
+
+**Gate:** `EF_D4_ARCH_FREEZE = REVIEW`
+
+Primary Manager completed the cross-artifact QA of the corrected D4 architecture and final freeze pack.
+
+Final D4 state:
+
+- D3-01 market identity / rollback: **RESOLVED**.
+- D3-02 concurrent reducing Orders: **RESOLVED**.
+- D3-03 NET_ABS / exits: **RESOLVED for V1 supported policy scope**; speculative no-safe-unwind machinery remains YAGNI.
+- D3-04 provider authoritative revalidation: **RESOLVED**.
+- D3-05 EXACT_REPLAY + pull MarketContext: **RESOLVED**.
+- D3-06 OPEN pending admission lifecycle: **RESOLVED**.
+- Q12 / S2 exact Strategy: **CLOSED**.
+- S1 exact Strategy: **CLOSED**.
+- Q13 / Gerard hardscalping MoneyManagement: **CLOSED** with Owner monetary account-day model.
+- Owner evaluation economics: business day 1 and 2 = **SL USD 2000 / TP USD 1500**.
+- FUNDED economics: schema frozen, numeric values remain required configuration; absence fails closed for new risk and is not an architecture blocker.
+- Strategy profit-target ownership: **NONE**; Strategy owns technical lifecycle/stop, GerardMM owns monetary objective.
+- ProviderRuleSet remains complete/read-only to account-specific/MM context; `echo/provider_rules(account_id)` remains final account-wide policy authority.
+
+Final consolidated artifacts:
+
+- [[Echo Futures Architecture Candidate V2]]
+- [[Echo Futures — Functional SPEC V1]]
+- [[Echo Futures — Technical SPEC V1]]
+- [[Echo Futures — Acceptance Test Plan V1]]
+- [[Echo Futures — Performance Resource Budgets V1]]
+- [[Echo Futures — D5 Implementation Shots]]
+
+Final Manager correction before gate:
+- Technical SPEC wording aligned with D4-A3: the provider-authority cutoff is the successful `ReservationRevalidate -> egress_authorized` linearization point. M1 command publication is a distinct later boundary. Commit `55f338b4d420dcd53385c8224256335fae9ec8b3`.
+
+KISS/YAGNI final sweep passed. V1 does not include:
+- `DecisionObservation` / `BarObservation`;
+- generic saga/workflow or global coordinator/sequencer;
+- `WIND_DOWN`, `max_admissible_qty`, `HARD_CAP_WINS` or generic liquidation override;
+- inter-Operation martingale;
+- provider-specific MoneyManagement subclasses;
+- Strategy monetary/fixed profit target;
+- arbitrary pending-cycle backlog;
+- automatic cross-host execution takeover.
+
+Performance/resource budgets distinguish hard architectural acceptance bounds from measurements that must be certified in D6; no benchmark result or unsupported latency SLO is invented.
+
+**Primary Manager conclusion:**
+- `D3_FINDINGS_INTEGRATED = 6/6`
+- `Q12 = CLOSED`
+- `Q13 = CLOSED`
+- `S1 = CLOSED`
+- `OWNER_DECISIONS_REQUIRED = NONE`
+- `NEW_UNRESOLVED_ARCHITECTURE = NONE`
+- `EF_D4_ARCH_FREEZE = REVIEW`
+
+D4 is technically complete and ready for Owner acceptance. **D5 implementation remains NOT AUTHORIZED until the Owner accepts this gate.**
