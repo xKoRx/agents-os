@@ -16,7 +16,7 @@ agent_model: GLM-5.3-Flash
 model_source: plan
 task_type: coding
 task_complexity: high
-outcome: partial
+outcome: success
 verification: run
 evaluator: agent
 user_rework: unknown
@@ -52,3 +52,9 @@ tags:
 ## Siguiente
 
 Owner re-vive Hera → verificar rollout 3/3 → despachar paquete wave2a (runbook exacto en RECOVERY-STATUS.md) → monitorear hasta `select_robust_run` → exportar OPTIMIZER-CANDIDATES/OPTIMIZER-FUNNEL/ROBUST-SELECTION-AUDIT.csv + FUNNEL-REVIEW.md → STOP antes de Final Retester/MT5.
+
+## Cierre (2026-09-29, misma sesión)
+
+- **PARTE B EJECUTADA Y COMPLETADA:** owner revivió Hera → rollout 0.2.130 certificado 3/3 (transición de release visible en Hera: 0.2.129+0.2.130 en paralelo ~5 min, drenaje del stager) → wave2a despachada (FlowRun `80647dc2-848a-4150-842e-cc6947eed87c`) → **COMPLETED** con funnel 34→34→34 (1.836 celdas)→10 WARN/24 FAIL→**10/10 SELECTED** (`WFM_WARN_TOP_PICK`, PG `sqx.decisions`). STOP verificado (sin folders post-05_robust en MinIO). Desglose por tipo lógico en FUNNEL-REVIEW.md (KELTNER y 2 variantes BB = 0 sobrevivientes; 8 `SEVERE_WARNING` con picks excluidas por gate — decisión owner abierta).
+- **Despliegue a databanks Zeus (pedido owner, con corrección):** limpiar→copiar (regla nueva en feedback); `Results`=34, `selected`=10, SHAs verificados contra Mongo; 64 antiguas en `/home/kor/backup-databanks-20260929/`. Feedback: [[2026-09-29-echo-forge-databank-copy-feedback]].
+- **Veredicto sesión: C5_2_RECOVERY_CANDIDATE_READY.** Siguiente: decisión owner sobre los 10 candidatos → Final Retester/MT5 (C6) o iteración.
