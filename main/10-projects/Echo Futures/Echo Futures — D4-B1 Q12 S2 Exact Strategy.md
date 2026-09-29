@@ -96,7 +96,8 @@ Cada cierre de vela 5m:
 3. si la tendencia es SHORT, hace el espejo sobre la banda superior;
 4. cuando ocurre el recovery válido emite un OPEN MARKET en dirección de la tendencia;
 5. adjunta stop técnico detrás del extremo de la vela gatillo y target técnico en la media de Bollinger;
-6. no vuelve a emitir otra entrada del mismo pullback hasta que el precio haya regresado a la media o la tendencia haya dejado de ser esa dirección.
+6. cuando el precio vuelve a la media o la tendencia deja de ser válida, emite CLOSE_ALL para cerrar técnicamente el ciclo;
+7. sólo después puede abrir un nuevo ciclo en un pullback posterior.
 
 No existe decisión humana.
 
@@ -473,7 +474,7 @@ THEN
   emit OPEN LONG MARKET
   technical_stop = low(t) - 1 tick
   technical_target = basis(t)
-  state = DISARMED_LONG
+  state = OPEN_CYCLE_LONG
 ELSE
   no Signal
 ~~~
@@ -504,7 +505,7 @@ THEN
   emit OPEN SHORT MARKET
   technical_stop = high(t) + 1 tick
   technical_target = basis(t)
-  state = DISARMED_SHORT
+  state = OPEN_CYCLE_SHORT
 ELSE
   no Signal
 ~~~
@@ -513,9 +514,9 @@ Una evaluación produce como máximo una entry Signal.
 
 ---
 
-## 14. Re-entry semantics
+## 14. Technical cycle close / re-entry semantics
 
-Objetivo: evitar múltiples OPEN consecutivos mientras el precio permanece pegado a la banda durante el mismo pullback.
+Objetivo: evitar múltiples OPEN consecutivos sobre el mismo pullback y mantener coherencia con el lifecycle técnico congelado por D2-08.
 
 ### 14.1 Initial state
 
@@ -528,56 +529,90 @@ state = ARMED
 ### 14.2 After LONG signal
 
 ~~~text
-state = DISARMED_LONG
+state = OPEN_CYCLE_LONG
 ~~~
 
-Mientras la H4 trend siga LONG, se rearma sólo cuando una 5m cerrada cumpla:
+Mientras el ciclo técnico LONG(k) está abierto, S2 no emite otro OPEN.
+
+Cuando una 5m cerrada cumple:
 
 ~~~text
 close >= basis
 ~~~
 
-El BAR_CLOSE que rearma NO puede simultáneamente emitir una nueva LONG.
+S2 emite:
 
-La siguiente 5m bar es la primera elegible para un nuevo pullback LONG.
+~~~text
+CLOSE_ALL(k)
+~~~
+
+y pasa a:
+
+~~~text
+state = ARMED
+~~~
+
+Ese BAR_CLOSE cierra técnicamente el ciclo k y NO puede simultáneamente emitir OPEN(k+1).
 
 ### 14.3 After SHORT signal
 
 ~~~text
-state = DISARMED_SHORT
+state = OPEN_CYCLE_SHORT
 ~~~
 
-Mientras la H4 trend siga SHORT, se rearma sólo cuando una 5m cerrada cumpla:
+Mientras el ciclo técnico SHORT(k) está abierto, S2 no emite otro OPEN.
+
+Cuando una 5m cerrada cumple:
 
 ~~~text
 close <= basis
 ~~~
 
-El BAR_CLOSE que rearma NO puede simultáneamente emitir una nueva SHORT.
+S2 emite:
+
+~~~text
+CLOSE_ALL(k)
+~~~
+
+y pasa a:
+
+~~~text
+state = ARMED
+~~~
+
+Ese BAR_CLOSE cierra técnicamente el ciclo k y NO puede simultáneamente emitir OPEN(k+1).
 
 ### 14.4 Trend invalidation / flip
 
-Si estando DISARMED_LONG el trend deja de ser LONG:
+Si OPEN_CYCLE_LONG y el trend deja de ser LONG antes de volver a basis:
 
 ~~~text
+emit CLOSE_ALL(k)
 state = ARMED
 ~~~
 
-Si estando DISARMED_SHORT el trend deja de ser SHORT:
+Si OPEN_CYCLE_SHORT y el trend deja de ser SHORT antes de volver a basis:
 
 ~~~text
+emit CLOSE_ALL(k)
 state = ARMED
 ~~~
 
-No se emite Signal por el simple cambio de trend.
+El cambio de trend no abre automáticamente el ciclo opuesto.
 
-### 14.5 Maximum entries
+### 14.5 Account convergence
+
+Strategy permanece account-agnostic.
+
+CLOSE_ALL(k) expresa únicamente el cierre técnico del ciclo k. Una AccountStrategy puede haber cerrado antes por MoneyManagement/SL/TP; en ese caso la Signal converge como no-op/fail-visible según el lifecycle existente y nunca crea una nueva Operation.
+
+### 14.6 Maximum entries
 
 No existe límite hardcoded por día/session.
 
 El límite natural es:
 
-> máximo un OPEN por excursión Bollinger antes de re-arm.
+> máximo un OPEN por ciclo técnico; el ciclo debe cerrar técnicamente antes de que exista OPEN(k+1).
 
 Agregar max trades/day pertenece a MoneyManagement/provider/risk policy, no a Strategy S2.
 
@@ -589,10 +624,10 @@ Estado Strategy-specific mínimo:
 
 ~~~text
 S2State {
-  arm_state:
+  cycle_state:
     ARMED
-    | DISARMED_LONG
-    | DISARMED_SHORT
+    | OPEN_CYCLE_LONG
+    | OPEN_CYCLE_SHORT
 
   trend_indicator_state:
     rolling last 51 closed H4 closes
@@ -622,21 +657,28 @@ No se persiste Account, Provider, Contract execution state ni MoneyManagement st
 
 ## 16. Strategy cycle semantics
 
-S2 trata cada OPEN técnico como un ciclo técnico one-shot.
+S2 trata cada OPEN técnico como apertura de un ciclo técnico explícito.
 
 Al emitir OPEN:
 
 ~~~text
 strategy_cycle_seq = current cycle k
 emit OPEN(k)
-seal entry decision for k
+state = OPEN_CYCLE_LONG | OPEN_CYCLE_SHORT
 ~~~
 
-El re-arm técnico descrito en §14 habilita el siguiente ciclo:
+El ciclo k permanece técnicamente abierto hasta que S2 emite:
 
 ~~~text
-next valid pullback after re-arm
--> OPEN(k+1)
+CLOSE_ALL(k)
+~~~
+
+por retorno a basis o invalidación del trend según §14.
+
+Sólo después de sellar ese cierre técnico el siguiente pullback válido puede abrir:
+
+~~~text
+OPEN(k+1)
 ~~~
 
 S2 no espera que las Accounts terminen físicamente k.
@@ -645,7 +687,7 @@ No observa fills ni Position por Account.
 
 Esto preserva el boundary account-agnostic y deja a echo/operation resolver lag físico, pending admission y materialización por ciclo según D2/D4-A3.
 
-S2 V1 no emite REDUCE/CLOSE/CLOSE_ALL.
+S2 V1 emite únicamente OPEN y CLOSE_ALL.
 
 technical_stop y technical_target viajan como contexto técnico del OPEN para que MoneyManagement decida su materialización.
 
@@ -847,7 +889,7 @@ pullback_semantics =
   + close back inside
   + close remains between outer band and basis
 
-rearm_semantics =
+cycle_close_semantics =
   return to basis
   OR trend invalidation
 
@@ -1002,7 +1044,7 @@ state ARMED
 => OPEN LONG MARKET
 => technical_stop = low - 1 tick
 => technical_target = basis
-=> DISARMED_LONG
+=> OPEN_CYCLE_LONG
 ~~~
 
 ### A2 — LONG trend but no pullback
@@ -1059,7 +1101,7 @@ La vela ya completó el retorno a la media; no se persigue el movimiento.
 
 ~~~text
 previous valid LONG emitted
-state DISARMED_LONG
+state OPEN_CYCLE_LONG
 
 next 5m:
 again touches lower and recovers
@@ -1071,7 +1113,7 @@ but close < basis
 ### A7 — LONG re-arm
 
 ~~~text
-state DISARMED_LONG
+state OPEN_CYCLE_LONG
 trend still LONG
 
 5m closes >= basis
@@ -1099,7 +1141,7 @@ state ARMED
 => OPEN SHORT MARKET
 => technical_stop = high + 1 tick
 => technical_target = basis
-=> DISARMED_SHORT
+=> OPEN_CYCLE_SHORT
 ~~~
 
 ### A9 — SHORT touch without recovery
