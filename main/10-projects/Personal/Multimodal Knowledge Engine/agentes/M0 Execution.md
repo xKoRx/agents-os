@@ -37,6 +37,8 @@ Entregar M0: fuente original autorizada → adquisición audiovisual independien
 
 ## 📊 Estado actual — lo más reciente prevalece
 
+**2026-09-29 — M0-R1 SHOT 1 (IMPLEMENTATION) COMPLETADO: `M0_R1_SHOT1_IMPLEMENTATION_PASS`.** Branch `fix/m0-live-readiness` @ `dad38913` (6 commits sobre la baseline de certificación `f522cbe`, worktree limpio, suites verdes, golden intacto — content hash `91c3dd57…` verificado antes/después). R1-01: el reviewer de grounding recibe el texto real de los segmentos citados (`mke.ground04.v1`). R1-03: un corrective reissue bounded con identidad defect-independiente, fail-closed preservado. R1-02: pase semántico cross-language opt-in del benchmark (`"semantic"` en config; determinista idéntico si se omite; valores con dígitos pineados a nivel plumbing; fail-closed por elemento). ASR: ruta operacional `mke media --asr whisper` vía `ASRProvider` con fixture canónico `<run>/transcript.json`, deadline policy (60s + 4x duración, single-attempt) y clamping errata-7; smoke físico PASS contra el runtime real (evidencia `~/mke/asr-smoke-20260929/`). R1-04: runbook con revisión 2026-09-29. Review adversarial independiente ejecutado: 3 MAJOR + menores corregidos en `dad38913`. PENDIENTE: Shot 2 (adversarial) y Shot 3 (recertificación G0–G9); la recertificación requiere rerun del engine completo (el cambio de prompt invalida grounding/consolidación/publicación); D4 (descomposición atómica) sigue FUERA de scope y puede mantener G2 en falla — decisión owner.
+
 **2026-09-28 OVERRIDE CANÓNICO.** La pausa/BLOCKED físico de 2026-09-20 quedó superseded por ejecución real.
 
 La certificación formal procesó el source autorizado completo y reportó 26/26 ventanas, 348 llamadas de modelo y ~5.2M tokens. Resultado: `M0_NO_GO`.
@@ -81,14 +83,14 @@ La certificación formal procesó el source autorizado completo y reportó 26/26
 
 ### M0-R1 — remediation + local runtime (workstream vigente)
 
-- [ ] Preflight: inspeccionar branch/HEAD/worktree/remotos y preservar cambios locales válidos antes de modificar. #owner/agent #type/admin #area/personal
-- [ ] R1-01: corregir grounding audio-only para que el reviewer reciba la evidencia textual realmente citada; regression positiva/negativa + QA adversarial. #owner/agent #type/dev #area/personal
-- [ ] R1-02: corregir evaluación cross-language sin tocar/regenerar el golden; equivalencia semántica estricta con números/condiciones/negaciones/excepciones protegidos. #owner/agent #type/dev #area/personal
-- [ ] R1-03: reducir verdicts malformados con mecanismo bounded/auditable, preservando fail-closed y sin normalización semántica silenciosa. #owner/agent #type/dev #area/personal
-- [ ] R1-04: reconciliar runbook/budget contra ejecución real y dejar comandos físicamente verificados. #owner/agent #type/dev #area/personal
-- [ ] Whisper local: elegir backend mínimo correcto para Daedalus, exponerlo tras `ASRProvider`, probar fixture + audio real + timestamps/error/cancel, documentar exact model/runtime. #owner/agent #type/dev #area/personal
+- [x] Preflight: inspeccionar branch/HEAD/worktree/remotos y preservar cambios locales válidos antes de modificar. #owner/agent #type/admin #area/personal ✅2026-09-29 (HEAD limpio en `f522cbe`; commits posteriores a `974f748` eran trabajo legítimo publicado)
+- [x] R1-01: corregir grounding audio-only para que el reviewer reciba la evidencia textual realmente citada; regression positiva/negativa + QA adversarial. #owner/agent #type/dev #area/personal ✅2026-09-29 (`3320221`)
+- [x] R1-02: corregir evaluación cross-language sin tocar/regenerar el golden; equivalencia semántica estricta con números/condiciones/negaciones/excepciones protegidos. #owner/agent #type/dev #area/personal ✅2026-09-29 (`f0cbaee` + guardas `dad38913`)
+- [x] R1-03: reducir verdicts malformados con mecanismo bounded/auditable, preservando fail-closed y sin normalización semántica silenciosa. #owner/agent #type/dev #area/personal ✅2026-09-29 (`b8a7df2` + identidad determinista `dad38913`)
+- [x] R1-04: reconciliar runbook/budget contra ejecución real y dejar comandos físicamente verificados. #owner/agent #type/dev #area/personal ✅2026-09-29 (`ed4499a`; `mke media --asr whisper` y health endpoint verificados físicamente)
+- [x] Whisper local: elegir backend mínimo correcto para Daedalus, exponerlo tras `ASRProvider`, probar fixture + audio real + timestamps/error/cancel, documentar exact model/runtime. #owner/agent #type/dev #area/personal ✅2026-09-29 (`6f9eeae`; prework Ariadna `WHISPER_DAEDALUS_PASS` + smoke físico del Shot sobre fragmento del source certificado, evidencia `~/mke/asr-smoke-20260929/`)
 - [ ] Reusar/invalidate sólo etapas dependientes; preservar source identity, golden frozen y baseline anterior para comparación. #owner/agent #type/testing #area/personal
-- [ ] Ejecutar recertificación completa del mismo source bajo G0–G9, A primero; C sólo según ADR-001 y reglas SPEC-04. #owner/agent #type/testing #area/personal
+- [ ] Shot 2 adversarial sobre la candidate implementation y luego recertificación completa del mismo source bajo G0–G9, A primero; C sólo según ADR-001 y reglas SPEC-04. #owner/agent #type/testing #area/personal
 - [ ] Persistir resultado `M0_R1_PASS|M0_R1_NO_GO|M0_R1_BLOCKED`, exact HEAD, delta de calidad/costo y estado Whisper; actualizar padre/Agents-OS. #owner/agent #type/admin #area/personal
 
 ### Certificación física original — completada 2026-09-28
