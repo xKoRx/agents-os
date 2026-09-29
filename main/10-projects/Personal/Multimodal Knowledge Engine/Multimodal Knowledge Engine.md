@@ -30,10 +30,12 @@ updated: "2026-09-28"
 
 # Multimodal Knowledge Engine
 
-> [!important]+ Estado canónico al cerrar · 2026-09-28
+> [!important]+ Estado canónico al cerrar · 2026-09-29
 > **CERTIFICACIÓN M0 REAL EJECUTADA: `M0_NO_GO`.** El producto y la ruta física quedaron probados de punta a punta; el fallo está acotado a acreditación/evaluación, no a media/evidence foundation. Corrida formal reportada: 26/26 ventanas, 348 llamadas, ~5.2M tokens, G1/G3/G4/G8 PASS; G2 falló con 7/7 reglas críticas sin acreditar y G5 con 6 excepciones ocultas. QA posterior verificó que las 7 reglas estaban presentes en el material recuperado.
 >
-> **Workstream vigente: `M0-R1 — Bounded Remediation + Local Runtime Completion`.** Scope autorizado por Owner: corregir grounding audio-only, evaluación cross-language y robustez de verdicts/runbook; además dejar Whisper local operativo detrás de `ASRProvider` y recertificar G0–G9 sobre el mismo source/golden cuando sea válido. No reabrir arquitectura, no M1/M2, no usar C para esconder un baseline A roto.
+> **Shot 3 de M0-R1 completado 2026-09-29: `M0_R1_REMEDIATION_PASS_D4_DECISION_REQUIRED`** @ `fix/m0-live-readiness` `640d000` (remediación íntegra de Shot 2, aceptación adversarial independiente PASS, golden intacto). Única decisión pendiente antes de la recertificación física G0–G9: **D4** — los 7 críticos del golden son multi-cláusula y ningún record individual concentra su regla; el owner elige entre acreditar composición en el evaluador, consolidar reglas en el engine, o aceptar la limitación (evidencia en `~/mke/m0-shot3-20260929/D4-EVIDENCE.md`). La recert requiere además credencial OpenRouter por-corrida y el smoke semántico live.
+
+**Workstream vigente: `M0-R1 — Bounded Remediation + Local Runtime Completion`.** Scope autorizado por Owner: corregir grounding audio-only, evaluación cross-language y robustez de verdicts/runbook; además dejar Whisper local operativo detrás de `ASRProvider` y recertificar G0–G9 sobre el mismo source/golden cuando sea válido. No reabrir arquitectura, no M1/M2, no usar C para esconder un baseline A roto.
 >
 > Repo de continuidad: `fix/m0-live-readiness` @ `974f74818d1a298497fff77e297f64b1dd327f61` es el último HEAD remoto verificado. El ejecutor anterior reportó cambios locales no commiteados de OpenRouter/runbook; un nuevo agente debe inspeccionar worktree/HEAD reales antes de tocar nada.
 
@@ -140,6 +142,7 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 
 - **2026-09-28 — certificación física M0:** corrida real completa reportada sobre source autorizado: 26/26 ventanas, 348 VLM calls, ~5.2M tokens, costo reportado 0. Resultado `M0_NO_GO`: G1/G3/G4/G8 PASS; G2 7/7 critical recoverable sin acreditar; G5 6 excepciones ocultas. QA determinó que los 7 ítems estaban presentes en material recuperado, apuntando a grounding/evaluación y no a acquisition.
 - **2026-09-28 — remediation owner:** se autoriza workstream acotado `M0-R1` y se eleva Whisper/local ASR a requisito operacional. Mandato entregado para IMPLEMENT→TEST→QA→recertificación, sin M1/M2 ni rediseño general.
+- **2026-09-29 — M0-R1 Shots 1–3:** Shot 1 implementación (`dad3891`), Shot 2 revisión adversarial (8 MAJOR/13 MINOR/12 NOTE, sin CRITICAL), Shot 3 remediación completa + aceptación adversarial independiente PASS @ `640d000` (8 commits). Golden intacto `91c3dd57…`. D4 = CONTRACT_DECISION_REQUIRED (composición multi-record); recertificación G0–G9 pendiente de decisión owner + credencial por-corrida + smoke live. Planificador: [[M0 Execution]].
 
 ## 🧭 Decisiones
 
