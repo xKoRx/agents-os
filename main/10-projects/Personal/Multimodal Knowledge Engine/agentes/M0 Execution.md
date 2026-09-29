@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/personal
 created: "2026-09-17"
-updated: "2026-09-28"
+updated: "2026-09-29"
 ---
 
 # M0 Execution
@@ -61,7 +61,7 @@ La certificación formal procesó el source autorizado completo y reportó 26/26
 
 | Repo | Branch y HEAD de continuidad | Baseline/origen | SPEC funcional | SPEC técnica | Gate |
 |---|---|---|---|---|---|
-| `xKoRx/multimodal-knowledge-engine` | `fix/m0-live-readiness` @ `974f74818d1a298497fff77e297f64b1dd327f61` (último HEAD remoto verificado; inspeccionar cambios locales reportados) | freeze `e5f9e9757d0e42b00c831e57920174428397d3b5` → implementación `77b8d6f21ca3496457c523840d62c9eb105f158e` → recovery `b48822d5a2be1c805bc8eff52457cea71a7d708e` → readiness `974f748` | padre + este planificador | `docs/architecture/architecture.md`, `docs/specs/SPEC-00A…04`, `docs/runbooks/m0-live-certification.md` | cert física `M0_NO_GO`; M0-R1 + Whisper local pendientes |
+| `xKoRx/multimodal-knowledge-engine` | `fix/m0-live-readiness` @ `dad38913` (Shot 1 M0-R1 implementado y pusheado 2026-09-29, HEAD remoto verificado) | freeze `e5f9e9757d0e42b00c831e57920174428397d3b5` → implementación `77b8d6f21ca3496457c523840d62c9eb105f158e` → recovery `b48822d5a2be1c805bc8eff52457cea71a7d708e` → readiness `974f748` | padre + este planificador | `docs/architecture/architecture.md`, `docs/specs/SPEC-00A…04`, `docs/runbooks/m0-live-certification.md` | cert física `M0_NO_GO`; M0-R1 + Whisper local pendientes |
 
 ## ✅ Tareas
 
@@ -109,6 +109,7 @@ La certificación formal procesó el source autorizado completo y reportó 26/26
 
 - **2026-09-28 — certificación real:** `M0_NO_GO` tras corrida completa. G1/G3/G4/G8 PASS; G2 7/7 critical omissions de acreditación y G5 6 excepciones ocultas. QA demostró que los 7 ítems estaban en el material recuperado.
 - **2026-09-28 — M0-R1 autorizado:** Owner delega remediation acotada + local runtime completion. Whisper pasa a requisito operacional; golden/source/baseline deben preservarse y no se permite M1/M2 ni rediseño general.
+- **2026-09-29 — M0-R1 Shot 1 implementado:** `fix/m0-live-readiness` @ `dad38913`, 6 commits (`3320221` R1-01 · `b8a7df2` R1-03 · `f0cbaee` R1-02 · `6f9eeae` ASR · `ed4499a` runbook · `dad38913` fixes del review adversarial). Golden verificado byte/hash-equivalente antes y después (`91c3dd57…` / file-SHA `ed3ba925…`). Suites completas verdes por paquete post-fix; go vet limpio. Smoke ASR físico: muestra 30.07s del source certificado (SHA derivado `38102ec7…`), 1 segmento `es` model `large-v3`, deadline policy impresa, fixture canónico válido, exit 0; evidencia en `~/mke/asr-smoke-20260929/`. Veredicto del Shot: `M0_R1_SHOT1_IMPLEMENTATION_PASS`, `READY_FOR_SHOT_2 = YES` (reporte completo en la sesión del agente). Limitaciones declaradas: D4 descomposición atómica fuera de scope; comportamiento live del modelo en el pase semántico pinado por prompt/contrato, prueba física en recertificación; runtime Whisper corre como proceso de `hermes-ops` (unit systemd inactive) — supervisión es asunto ops.
 
 ## 🧭 Decisiones
 
