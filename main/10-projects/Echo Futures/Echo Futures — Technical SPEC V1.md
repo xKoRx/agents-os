@@ -883,7 +883,7 @@ On reconnect/restart new risk remains off through the full reconciliation barrie
 - calendar/window snapshots through ordered material transitions;
 - Strategy config according to technical-cycle activation rules.
 
-A hot provider update can invalidate a still-pending exact grant at final revalidation. It cannot retroactively revoke a grant that already passed provider authorization and M1 publication; subsequent safety/update behavior follows new authority prospectively.
+A hot provider update can invalidate a still-pending exact grant at final revalidation. Once `ReservationRevalidate` returns VALID and the exact grant becomes `egress_authorized`, later provider-authority updates are prospective for that grant even if M1 publication has not happened yet. M1 remains a separate later Core command-visibility boundary; subsequent safety/update behavior follows new authority prospectively.
 
 ---
 
