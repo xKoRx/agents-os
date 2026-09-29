@@ -3,7 +3,7 @@ type: feedback
 schema_version: 1
 scope: session
 created: 2026-09-28
-updated: 2026-09-28
+updated: 2026-09-29
 project: "[[Echo Futures]]"
 entities:
   - "[[Echo Futures]]"
@@ -102,3 +102,32 @@ tags:
 ## One Next Improvement
 
 - Hacer que hygiene/doctor valide que cada mandatory read declarado por un router/skill resuelva a una nota real.
+
+
+---
+
+## D4 Manager Close Addendum — 2026-09-29
+
+### Context
+
+- D4 final integration/QA completed and accepted by Owner.
+- D4 closed with Architecture V2 + Functional/Technical SPEC + Acceptance Test Plan + Performance/Resource Budgets + D5 Implementation Shots.
+- Next continuity target: D5 Manager, implementation under frozen contracts.
+
+### What Worked
+
+- Repeated KISS/YAGNI sweeps materially improved the architecture: speculative `DecisionObservation`, `BarObservation`, `WIND_DOWN`, `max_admissible_qty`, generic hard-cap overrides and async workflow abstractions were removed before freeze.
+- Manager review of specialist artifacts caught cross-artifact contradictions that isolated worker QA missed: S2 cycle closure, GerardMM account-day TP semantics, and provider authorization cutoff naming.
+- Treating D4 artifacts as forensic deltas and V2 as the consolidated authority kept D2 history intact without carrying obsolete terminology into implementation.
+
+### Friction / Improvement
+
+- Long multi-worker architecture programs can leave the canonical project note stale even while artifacts advance; Echo Futures still carried an old `D4 started: NO` historical line until final integration.
+- Some TOP outputs tended to solve hypothetical future cases rather than the concrete V1 requirement, requiring Manager-side YAGNI cleanup.
+- Suggested improvement: before a phase gate, run a lightweight cross-artifact consistency sweep over canonical status, ownership vocabulary, rejected concepts and current gate state; specialists should explicitly label speculative additions as DEFER instead of promoting them into V1 contracts.
+
+### Pain Pattern Candidate
+
+- Cross-artifact semantic drift after multiple specialist handoffs.
+- Suggested severity: medium-high.
+- Candidate mitigation: mandatory Manager integration sweep before phase freeze; no worker self-gate substitutes for this step.

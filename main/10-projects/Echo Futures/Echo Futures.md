@@ -2097,3 +2097,28 @@ Performance/resource budgets distinguish hard architectural acceptance bounds fr
 - `EF_D4_ARCH_FREEZE = REVIEW`
 
 D4 is technically complete and ready for Owner acceptance. **D5 implementation remains NOT AUTHORIZED until the Owner accepts this gate.**
+
+
+## D4 — OWNER ACCEPTED / CLOSED — 2026-09-29
+
+Owner accepted the Primary Manager final D4 QA and the architecture freeze candidate.
+
+Final authoritative state:
+
+- `D4 STATUS = CLOSED_BY_OWNER`
+- `EF_D4_ARCH_FREEZE = REVIEW` is accepted by Owner and closes D4.
+- Architecture Candidate V2, Functional SPEC V1, Technical SPEC V1, Acceptance Test Plan V1, Performance Resource Budgets V1 and D5 Implementation Shots are the implementation authorities entering D5.
+- D3 findings integrated: **6/6**.
+- Q12 / S2: **CLOSED**.
+- S1 exact Strategy: **CLOSED**.
+- Q13 / GerardMM: **CLOSED**.
+- `OWNER_DECISIONS_REQUIRED = NONE`.
+- `NEW_UNRESOLVED_ARCHITECTURE = NONE`.
+- KISS/YAGNI sweep accepted: rejected speculative abstractions remain outside V1.
+- No new architecture was introduced after the final Owner corrections; the only final Manager delta was wording alignment of the provider-authority cutoff in Technical SPEC.
+- D5 implementation is now **AUTHORIZED** under the frozen D5 Implementation Shots and acceptance contracts.
+- Any contradiction discovered during D5 is a Manager stop/escalation condition; implementation agents must not redesign frozen behavior locally.
+
+**Next milestone:** D5 — DEVELOPMENT I / Foundations.
+
+**Next Manager action:** bootstrap D5 from the frozen V2/SPEC/ATP/budgets/shots, verify physical Echo baseline before source mutation, then execute bounded implementation shots with evidence-driven QA.
