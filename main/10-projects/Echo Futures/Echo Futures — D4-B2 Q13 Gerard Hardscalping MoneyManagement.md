@@ -790,6 +790,7 @@ Los defaults numéricos de V1 son tunables de research y quedan explícitamente 
 
 Una decisión Owner sólo sería necesaria si el producto quisiera convertir en requirement una progresión de riesgo entre Operations, un bypass/override de hard provider caps, una promesa distinta de pérdida máxima o un scope de liquidación que contradiga los boundaries congelados. Ninguna de esas decisiones es necesaria para cerrar Q13 V1.
 
+```text
 Q13_GERARD_MM: CANDIDATE_RESOLVED
 
 NEGATIVE_HARDSCALPING:
@@ -818,3 +819,4 @@ NO
 
 READY_FOR_MANAGER_QA:
 YES
+```
