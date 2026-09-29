@@ -69,7 +69,7 @@ Operation
 
 La request SIEMPRE atraviesa provider_rules. Ningún snapshot/kache/epoch observado por Operation decide si puede omitirla.
 
-El linearization point es el procesamiento de esa ReservationRevalidate en la cola serializada del owner account-keyed. VALID no es sólo una lectura: en esa misma transición provider_rules marca la live_reservation como egress-committed para ese grant exacto y conserva la authority provenance usada.
+El linearization point es el procesamiento de esa ReservationRevalidate en la cola serializada del owner account-keyed. VALID no es sólo una lectura: en esa misma transición provider_rules marca la live_reservation como egress-authorized para ese grant exacto y conserva la authority provenance usada.
 
 Después de ese commit, una authority update posterior está ordenada después de la autorización de esa Order y no la revoca retroactivamente. Esto evita dos errores opuestos:
 
@@ -170,16 +170,16 @@ No existe silent resize.
 
 No existe recalculation de NET_ABS/GROSS/GROUP_WEIGHTED en Operation.
 
-### 4.3 VALID es un egress commit, no un lease
+### 4.3 VALID es un egress authorization, no un lease
 
 Cuando provider_rules decide VALID:
 
 - la live_reservation ya existente permanece viva;
-- en la misma transición autoritativa se registra egress_committed para ese grant;
+- en la misma transición autoritativa se registra egress_authorized para ese grant;
 - se conserva la provenance de authority usada en el commit;
 - el resultado VALID se vuelve idempotente para redelivery del mismo grant.
 
-egress_committed es un atributo pequeño de la reservation existente. No crea entidad, aggregate, coordinator ni timer.
+egress_authorized es un atributo pequeño de la reservation existente. No crea entidad, aggregate, coordinator ni timer.
 
 Su semántica es one-shot:
 
@@ -245,7 +245,7 @@ A. v6 procesada antes de ReservationRevalidate
 → Operation no puede “quedarse” en v5.
 
 B. ReservationRevalidate se procesa antes de v6
-→ si resulta VALID, el grant queda egress-committed bajo la authority anterior
+→ si resulta VALID, el grant queda egress-authorized bajo la authority anterior
 → v6 está ordenada después
 → no revoca retrospectivamente esa Order.
 
@@ -255,11 +255,11 @@ No existe tercer caso donde v6 ya fue procesada por la authority pero Operation 
 
 Hay dos fronteras distintas y no deben confundirse.
 
-Provider revocation cutoff de A3:
+Provider authority cutoff de A3:
 
-> cuando el command de esa Order queda committed/visible en el egress M1 de Core.
+> el linearization point de `ReservationRevalidate(grant_id)` que retorna `VALID` y marca ese grant exacto como `egress_authorized`.
 
-A partir de ahí provider_rules no puede liberar o invalidar la reservation por un cambio de config porque el Futures Bridge puede consumir inmediatamente el command.
+Una authority update procesada después de ese punto es prospectiva para ese grant exacto. Esto no significa que el command ya haya salido de Core.
 
 Physical point-of-no-return de M2:
 
@@ -267,7 +267,7 @@ Physical point-of-no-return de M2:
 
 A3 no mueve ni redefine M2.
 
-El provider commit ocurre antes del cutoff M1. Después del cutoff M1, cualquier cambio de policy actúa mediante los mecanismos normales posteriores: deny de nuevas decisiones, safety intents cuando una familia real los declare, cancel/reconciliation/finality. Nunca mediante revocación retroactiva de capacity que ya puede estar físicamente en vuelo.
+La provider authorization ocurre antes de M1. M1 sigue siendo una frontera distinta: el momento en que el command queda committed/visible y puede escapar de Core. Después de M1, cualquier cambio de policy actúa mediante los mecanismos normales posteriores: deny de nuevas decisiones, safety intents cuando una familia real los declare, cancel/reconciliation/finality.
 
 ## 5. Reconstrucción precisa — D3-06
 
@@ -313,7 +313,6 @@ pending_admission? {
   opening_signal_id
   strategy_cycle_seq
   opening_signal_delivery
-  deferred_same_cycle_signals[]   # reutiliza el buffer acotado por un solo ciclo
 }
 ~~~
 
@@ -357,7 +356,6 @@ No se introduce continuation_id adicional.
 8. materializa Operation(k);
 9. actualiza last_materialized_cycle_seq;
 10. limpia pending_admission;
-11. entrega en orden cualquier deferred_same_cycle_signals retenida.
 
 El ALLOW no autoriza Orders futuras. Toda Order sigue Stage-2 + commit final D3-04.
 
@@ -367,7 +365,7 @@ DENY con request_id activo:
 
 - produce/retiene la ProviderDecision ya definida;
 - no crea Operation;
-- limpia pending_admission y su buffer;
+- limpia pending_admission;
 - NO avanza last_materialized_cycle_seq porque no existió Operation.
 
 Por lo tanto un OPEN(k) distinto, posterior y todavía válido puede intentar la primera materialización del ciclo, tal como D2-08 ya congeló.
@@ -377,7 +375,6 @@ Por lo tanto un OPEN(k) distinto, posterior y todavía válido puede intentar la
 Cuando CLOSE(k) es serializada por echo/operation mientras pending_admission.strategy_cycle_seq == k:
 
 - invalida y elimina pending_admission;
-- descarta su deferred_same_cycle_signals con reason fail-visible;
 - no crea termination intent porque no existe Operation;
 - no necesita enviar cancel al provider: Stage-1 no posee reservation ni recurso account-wide.
 
@@ -406,7 +403,7 @@ strategy_cycle_seq es monotónico y Strategy sólo abre k+1 después de cerrar t
 Por lo tanto, si OPEN(k+1) es serializada mientras k sólo existe como pending_admission:
 
 - k queda superseded;
-- se elimina pending_admission(k) y su buffer;
+- se elimina pending_admission(k);
 - no se crea Operation(k);
 - OPEN(k+1) comienza su propio flujo Stage-1 en el mismo único slot;
 - el resultado posterior del request k se ignora por request_id mismatch.
@@ -419,16 +416,13 @@ Un salto incoherente o una acumulación que exceda las guards de cycle lag ya co
 
 ### 6.8 Signals del mismo ciclo mientras admission espera
 
-No se permite que la latencia del provider cambie silenciosamente la semántica de Signals ya recibidas.
+Mientras `pending_admission(k)` está activo:
 
-Mientras pending_admission(k) está activo:
+- `CLOSE/CLOSE_ALL(k)` invalidan inmediatamente la continuación;
+- cualquier otra management Signal que requiera una Operation mantiene la semántica existente: no-op/fail-visible mientras no exista Operation;
+- A3 no agrega un buffer nuevo para estas Signals.
 
-- CLOSE/CLOSE_ALL(k) invalidan inmediatamente;
-- otras Signals válidas del mismo ciclo que sólo pueden aplicarse tras materialización se retienen en el buffer acotado por ese único ciclo, preservando signal_seq;
-- ALLOW materializa y luego las aplica en orden;
-- DENY/supersede las descarta explícitamente porque no existe Operation a la cual aplicarlas.
-
-Esto reutiliza la capacidad de buffer por un único ciclo ya aceptada en D2-08. No crea una queue genérica.
+Si Q12/Q13 o evidencia posterior demuestra que una clase concreta de Signal debe sobrevivir a esta espera, esa capacidad se agrega de forma aditiva.
 
 ### 6.9 Config/binding/provider state mientras admission espera
 
@@ -452,7 +446,7 @@ El ALLOW fue válido en su linearization point de Stage-1 y no se convierte retr
 
 Puede todavía materializar Operation si la continuation local sigue activa.
 
-Eso NO concede derecho de egress: antes de cualquier command, la Order debe superar el ReservationRevalidate obligatorio de D3-04 contra la authority corriente. Si la nueva provider state prohíbe la emisión, el final egress commit es INVALID y no existe side effect físico.
+Eso NO concede derecho de egress: antes de cualquier command, la Order debe superar el ReservationRevalidate obligatorio de D3-04 contra la authority corriente. Si la nueva provider state prohíbe la emisión, el final egress authorization es INVALID y no existe side effect físico.
 
 Así A3 evita reintroducir el mismo error de D3-04 dentro de Stage-1: un snapshot local nunca pretende decir si provider authority cambió.
 
@@ -478,7 +472,6 @@ La similitud termina ahí. No hay motivo para fusionar ambos mensajes en un prot
 Estado nuevo mínimo:
 
 - pending_admission? nullable;
-- buffer same-cycle ya conceptualmente permitido por D2-08, reutilizado mientras no exista Operation.
 
 Estado existente reutilizado:
 
@@ -497,7 +490,7 @@ Operation NO guarda una copia autoritativa de provider caps.
 Estado nuevo mínimo dentro de live_reservation:
 
 ~~~text
-egress_committed
+egress_authorized
 egress_commit_decision_id
 egress_commit_authority_provenance
 ~~~
@@ -603,7 +596,7 @@ La vista local atrasada deja de ser relevante.
 
 grant v5
 → ReservationRevalidate
-→ provider_rules decide VALID y marca egress_committed
+→ provider_rules decide VALID y marca egress_authorized
 → provider_rules procesa v6
 → Operation consume VALID y publica command M1.
 
@@ -617,7 +610,7 @@ provider_rules procesa ReservationRevalidate y el checkpoint no committea
 → se reevalúa bajo el orden restaurado.
 
 O el checkpoint committea
-→ egress_committed/result quedan durables juntos
+→ egress_authorized/result quedan durables juntos
 → redelivery devuelve el mismo outcome por grant identity.
 
 No hay double reservation ni segundo commit.
@@ -645,7 +638,7 @@ No existe ventana de autorización de más.
 
 ### W6 — local cancel después de provider VALID pero antes de command
 
-provider grant queda egress-committed
+provider grant queda egress-authorized
 → antes de publicar command, Operation procesa una causa local que vuelve la Order no elegible
 → no publica
 → ejecuta release pre-egress explícito
@@ -734,11 +727,11 @@ Revalidation nunca cambia qty, direction, Order/action identity ni cap scopes. V
 
 ### A3-I4 — One final provider commit
 
-Un grant puede alcanzar egress_committed una sola vez. Redelivery es idempotente por grant identity.
+Un grant puede alcanzar egress_authorized una sola vez. Redelivery es idempotente por grant identity.
 
 ### A3-I5 — Post-commit updates are prospective
 
-Una authority update posterior al egress commit no revoca retroactivamente ese grant. Puede afectar decisiones posteriores y safety normal.
+Una authority update posterior al egress authorization no revoca retroactivamente ese grant. Puede afectar decisiones posteriores y safety normal.
 
 ### A3-I6 — Pre-egress INVALID has zero physical effect
 
@@ -821,9 +814,9 @@ Nuevo contrato:
 
 - grant exacto siempre atraviesa ReservationRevalidate antes de egress;
 - provider owner decide bajo authority corriente;
-- VALID marca egress_committed en live_reservation;
+- VALID marca egress_authorized en live_reservation;
 - INVALID retira/invalida reservation pre-egress;
-- authority update posterior a egress_committed es prospectiva para ese grant;
+- authority update posterior a egress_authorized es prospectiva para ese grant;
 - no local epoch detection como correctness condition.
 
 Preservar sin cambios las familias/cap math de D4-A2 y el ProviderRuleSet completo read-only para MM.
@@ -846,7 +839,7 @@ Extender §7:
 - pending admission pre-Operation participa del lifecycle del mismo AccountStrategy;
 - CLOSE/CLOSE_ALL del ciclo pendiente invalidan la continuation;
 - OPEN(k+1) supersede pending k sin segunda Operation;
-- deferred Signals del mismo ciclo pueden usar el buffer acotado ya congelado;
+- no se agrega un buffer same-cycle nuevo mientras Stage-1 está pendiente;
 - no backlog arbitrario.
 
 No cambiar Strategy ni hacerla account-aware.
@@ -890,7 +883,7 @@ referenciar el cutoff M1 de A3 sin alterar M2.
 | A3-13 | binding disabled mientras pending | old ALLOW no materializa |
 | A3-14 | request/result redelivery | no segunda admission, Operation ni side effect |
 | A3-15 | RuleSet cambia después de Stage-1 ALLOW | Stage-1 puede conservar su historical decision; final egress authority usa estado actual |
-| A3-16 | same-cycle Signals mientras pending | orden preservado por buffer acotado; CLOSE/CLOSE_ALL invalidan inmediatamente |
+| A3-16 | same-cycle management Signals mientras pending | CLOSE/CLOSE_ALL invalidan; otras Signals que requieren Operation permanecen no-op/fail-visible; no se agrega buffer nuevo |
 | A3-17 | Position mismatch/provider trust invalid | final revalidation puede INVALID según provider authority; Operation no recalcula Position/exposure |
 
 ## 14. Cross-workstream constraints
@@ -948,7 +941,7 @@ No mueve side-effect authority al Core/provider_rules.
 ### Conceptos que sí sobreviven
 
 1. pending_admission: necesario porque sin state pre-Operation CLOSE/CLOSE_ALL puede perderse frente al callback.
-2. reservation egress commit marker: necesario porque sin él un VALID final no tiene un punto finito después del cual updates posteriores sean prospectivas.
+2. reservation egress authorization marker: necesario porque sin él un VALID final no tiene un punto finito después del cual updates posteriores sean prospectivas.
 
 Ambos viven en owners ya existentes.
 
@@ -976,7 +969,7 @@ Ambos viven en owners ya existentes.
 
 Un lease agregaría clock, expiry, renewal y otra carrera.
 
-V1 no lo necesita: la reservation ya conserva capacity y el egress commit es one-shot. Si una implementación futura demuestra que un Operation owner puede quedar vivo indefinidamente después del VALID sin poder completar M1, se puede agregar una política de liveness posteriormente. No se diseña hoy.
+V1 no lo necesita: la reservation ya conserva capacity y el egress authorization es one-shot. Si una implementación futura demuestra que un Operation owner puede quedar vivo indefinidamente después del VALID sin poder completar M1, se puede agregar una política de liveness posteriormente. No se diseña hoy.
 
 ### Por qué no se cancela Stage-1 en provider_rules
 
@@ -1008,12 +1001,12 @@ NONE
 
 NEW_V1_CONCEPTS:
 - pending_admission: slot nullable pre-Operation dentro de echo/operation; no entidad ni aggregate nuevo
-- reservation egress commit: marker one-shot dentro de live_reservation, producido por ReservationRevalidate obligatorio
+- reservation egress authorization: marker one-shot dentro de live_reservation, producido por ReservationRevalidate obligatorio
 
 DEFERRED_YAGNI:
 - generic async workflow / saga / continuation framework
 - múltiples pending admissions o queue arbitraria de ciclos
-- lease/TTL/renewal del egress commit sin evidencia de necesidad
+- lease/TTL/renewal del egress authorization sin evidencia de necesidad
 - provider-specific no-safe-unwind/liquidation edge cases ya diferidos por D4-A2
 
 READY_FOR_MANAGER_QA: YES
