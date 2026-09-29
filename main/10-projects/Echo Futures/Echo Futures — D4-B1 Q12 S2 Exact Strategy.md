@@ -2,8 +2,10 @@
 # S2 EXACT MECHANICAL STRATEGY
 
 **Workstream:** D4-B1 / Q12  
-**Status:** CANDIDATE COMPLETE — READY FOR MANAGER QA  
+**Status:** OWNER-CORRECTED CANDIDATE — READY FOR MANAGER QA  
 **Scope:** Strategy only. No MoneyManagement, no provider logic, no implementation, no D4 gate.
+
+**Owner correction D4-B3:** Strategy no posee profit target. Bollinger basis permanece exclusivamente como condición técnica de lifecycle para CLOSE_ALL; el OPEN entrega technical_stop pero no entrega target monetario ni target price a GerardMM.
 
 ---
 
@@ -43,7 +45,7 @@ El research de El Psicólogo del Trading no entrega una estrategia técnica meca
 Conclusión de evidencia:
 
 - H4 + Bollinger NO es SOURCE-SUPPORTED como estrategia de Gerard.
-- Bollinger period, deviation, trend MA, trigger, stop, target y re-entry NO provienen de una fuente externa.
+- Bollinger period, deviation, trend MA, trigger, stop y re-entry NO provienen de una fuente externa.
 - La selección de esta S2 es una decisión de diseño de Echo para obtener una Strategy V1 exacta, no una reconstrucción histórica.
 
 ### 2.2 ECHO DESIGN DECISION
@@ -58,7 +60,6 @@ Todo lo siguiente se congela en este artifact como definición de Echo Futures S
 - trigger por cierre;
 - MARKET entry intent;
 - stop técnico;
-- target técnico;
 - re-arm;
 - defaults;
 - warm-up;
@@ -79,7 +80,6 @@ No necesitamos resolver para Q12:
 - mejor sesión;
 - mejores parámetros;
 - interacción final con hardscalping;
-- precedencia final entre technical SL/TP y MoneyManagement Gerard.
 
 Esos puntos no impiden implementar y backtestear S2.
 
@@ -95,8 +95,8 @@ Cada cierre de vela 5m:
 2. si la tendencia es LONG, espera que la vela 5m toque/perfore la banda inferior de Bollinger y cierre nuevamente dentro de la banda, pero todavía bajo la media;
 3. si la tendencia es SHORT, hace el espejo sobre la banda superior;
 4. cuando ocurre el recovery válido emite un OPEN MARKET en dirección de la tendencia;
-5. adjunta stop técnico detrás del extremo de la vela gatillo y target técnico en la media de Bollinger;
-6. cuando el precio vuelve a la media o la tendencia deja de ser válida, emite CLOSE_ALL para cerrar técnicamente el ciclo;
+5. adjunta únicamente el stop técnico detrás del extremo de la vela gatillo;
+6. cuando una 5m cerrada vuelve a la media de Bollinger o la tendencia deja de ser válida, emite CLOSE_ALL para cerrar técnicamente el ciclo; la basis no es un target de profit;
 7. sólo después puede abrir un nuevo ciclo en un pullback posterior.
 
 No existe decisión humana.
@@ -302,7 +302,7 @@ Interpretación mecánica:
 
 - el precio tocó/perforó la banda inferior durante la vela;
 - al cierre volvió dentro de Bollinger;
-- al cierre todavía está bajo la media, por lo que el target técnico hacia basis permanece del lado correcto.
+- al cierre todavía está bajo la media, por lo que la basis permanece delante como condición técnica futura de cierre del ciclo.
 
 ### 9.2 SHORT setup
 
@@ -414,35 +414,15 @@ S2 no calcula:
 
 ---
 
-## 12. Technical target
+## 12. Bollinger basis como lifecycle condition — no profit target
 
-S2 sí produce un target técnico porque el setup se define como pullback con retorno a la media.
+S2 no produce profit target ni fixed target price.
 
-Para ambos lados:
+La Bollinger basis pertenece exclusivamente a la máquina técnica de Strategy. Durante un ciclo LONG abierto, una 5m cerrada con close >= basis de esa evaluación emite CLOSE_ALL(k). Durante un ciclo SHORT abierto, una 5m cerrada con close <= basis emite CLOSE_ALL(k).
 
-~~~text
-technical_target = basis(trigger_bar)
-~~~
+La basis no se congela en el OPEN, no viaja como campo de target y GerardMM no la interpreta como objetivo económico. Los valores Bollinger que permanezcan en Signal.details son provenance del setup técnico; el contrato GerardMM consume entry semantics + technical_stop, no un target de Strategy.
 
-Por las condiciones de setup:
-
-LONG:
-
-~~~text
-technical_target > trigger_close
-~~~
-
-SHORT:
-
-~~~text
-technical_target < trigger_close
-~~~
-
-El target queda congelado al valor basis observado en la trigger evaluation. No se mueve con Bollinger posteriores.
-
-Esto evita introducir trailing/dynamic target dentro de S2.
-
-La forma en que MoneyManagement Gerard futuro acepta, reemplaza o combina technical_stop / technical_target pertenece a Q13 y no se decide aquí.
+La authority de profit-taking pertenece a GerardMM y es monetaria según D4-B3/Q13.
 
 ---
 
@@ -473,7 +453,6 @@ AND close(t) < basis(t)
 THEN
   emit OPEN LONG MARKET
   technical_stop = low(t) - 1 tick
-  technical_target = basis(t)
   state = OPEN_CYCLE_LONG
 ELSE
   no Signal
@@ -504,7 +483,6 @@ AND close(t) > basis(t)
 THEN
   emit OPEN SHORT MARKET
   technical_stop = high(t) + 1 tick
-  technical_target = basis(t)
   state = OPEN_CYCLE_SHORT
 ELSE
   no Signal
@@ -604,7 +582,7 @@ El cambio de trend no abre automáticamente el ciclo opuesto.
 
 Strategy permanece account-agnostic.
 
-CLOSE_ALL(k) expresa únicamente el cierre técnico del ciclo k. Una AccountStrategy puede haber cerrado antes por MoneyManagement/SL/TP; en ese caso la Signal converge como no-op/fail-visible según el lifecycle existente y nunca crea una nueva Operation.
+CLOSE_ALL(k) expresa únicamente el cierre técnico del ciclo k. Una AccountStrategy puede haber cerrado antes por GerardMM monetario, protective stop o safety; en ese caso la Signal converge como no-op/fail-visible según el lifecycle existente y nunca crea una nueva Operation.
 
 ### 14.6 Maximum entries
 
@@ -689,7 +667,7 @@ Esto preserva el boundary account-agnostic y deja a echo/operation resolver lag 
 
 S2 V1 emite únicamente OPEN y CLOSE_ALL.
 
-technical_stop y technical_target viajan como contexto técnico del OPEN para que MoneyManagement decida su materialización.
+technical_stop viaja como referencia técnica del OPEN. S2 no entrega profit target a MoneyManagement; la basis permanece state/context de Strategy para decidir CLOSE_ALL.
 
 ---
 
@@ -845,7 +823,6 @@ details {
   }
 
   technical_stop
-  technical_target
 }
 ~~~
 
@@ -1043,7 +1020,6 @@ state ARMED
 
 => OPEN LONG MARKET
 => technical_stop = low - 1 tick
-=> technical_target = basis
 => OPEN_CYCLE_LONG
 ~~~
 
@@ -1140,7 +1116,6 @@ state ARMED
 
 => OPEN SHORT MARKET
 => technical_stop = high + 1 tick
-=> technical_target = basis
 => OPEN_CYCLE_SHORT
 ~~~
 
@@ -1265,7 +1240,7 @@ Todos pueden evaluarse después sólo si evidencia/backtest demuestra que hacen 
 | close must remain before basis | ECHO DESIGN DECISION | prevents chasing completed reversion |
 | MARKET on 5m close | ECHO DESIGN DECISION | exact non-intrabar trigger |
 | stop beyond trigger extreme | ECHO DESIGN DECISION | technical invalidation |
-| target at trigger basis | ECHO DESIGN DECISION | frozen technical mean |
+| basis closes technical cycle | ECHO DESIGN DECISION + Owner boundary | lifecycle condition only; not MM profit target |
 | one entry per excursion / basis re-arm | ECHO DESIGN DECISION | prevents repeated spam |
 | no session filter | ECHO DESIGN DECISION | YAGNI for V1 |
 | profitability / optimality | UNKNOWN / NOT REQUIRED | validation later |
@@ -1274,11 +1249,9 @@ Todos pueden evaluarse después sólo si evidencia/backtest demuestra que hacen 
 
 ## 27. Owner decisions required
 
-**NONE for Q12.**
+NONE for Q12.
 
-No owner decision is required to make S2 implementable.
-
-The already-known open question about exact precedence between Strategy technical SL/TP and future Gerard MoneyManagement belongs to Q13. It does not prevent S2 from emitting technical_stop and technical_target as Strategy context today.
+D4-B3 ya resolvió la frontera que antes estaba abierta: Strategy no posee profit target. S2 conserva technical_stop; Bollinger basis sólo gobierna lifecycle técnico y CLOSE_ALL. GerardMM posee el objetivo monetario y su ejecución.
 
 No architecture change is required.
 
@@ -1309,7 +1282,7 @@ An implementer can decide every 5m BAR_CLOSE with the following closed sequence:
 
 7. if valid
    emit one OPEN MARKET Signal
-   attach frozen technical stop + target
+   attach frozen technical stop; no profit target
    set disarmed side
 
 8. otherwise
