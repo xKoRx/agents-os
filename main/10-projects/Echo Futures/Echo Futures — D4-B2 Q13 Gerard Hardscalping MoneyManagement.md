@@ -96,7 +96,6 @@ GerardMMInput {
     funded_mode?                   # INITIAL | STEADY, required for FUNDED
 
     account_day_id
-    account_day_realized_pnl_money
     account_day_current_pnl_money
     pnl_snapshot_version
   }
@@ -114,9 +113,7 @@ GerardMMInput {
 
 account_day_id y sus PnL usan la DayBoundary authority ya congelada por D2-05/provider_rules; no usan ExchangeSession date como sustituto.
 
-account_day_realized_pnl_money es PnL realizado account-wide del day corriente según la observación autoritativa disponible. Incluye realized de Operations previas y partial exits de la Operation actual.
-
-account_day_current_pnl_money es PnL corriente account-wide del mismo day, incluyendo realized + unrealized observado por la Account. GerardMM lo usa para loss safety; no intenta atribuir el unrealized de otras Operations.
+account_day_current_pnl_money es PnL corriente account-wide del mismo day, incluyendo realized + unrealized observado por la Account. Es la authority económica tanto para el SL como para el TP diario Owner. GerardMM no reconstruye ni atribuye por sí mismo el PnL de otras Operations; consume el snapshot account-wide.
 
 Si los inputs económicos requeridos están ausentes, stale o en currency no convertible de forma determinista, new risk falla cerrado. Salidas/safety no se bloquean por falta de datos de new risk.
 
@@ -157,9 +154,25 @@ current_profit_objective_money =
 
 Sea T=current_profit_objective_money.
 
-Sea D=account_day_realized_pnl_money.
+Sea P_day=account_day_current_pnl_money, snapshot account-wide corriente del mismo account day.
 
-Para la Operation viva, con direction sign d (+1 LONG, -1 SHORT), open quantity Q>0, fill-derived average open price A y point_value V en account currency, el unrealized de esta Operation al exit-side mark M es:
+~~~text
+current_profit_progress_money =
+  P_day
+
+remaining_profit_objective_money =
+  max(0, T - P_day)
+~~~
+
+Si P_day>=T antes de crear new risk, GerardMM no abre una nueva Order para ese account day.
+
+Si una Operation está viva y remaining_profit_objective_money=0, profit termination gana precedencia sobre cualquier ADD/PYRAMID: bloquea new risk y entra al exit path de §18.
+
+GerardMM no necesita convertirse en portfolio manager para esto: el PnL agregado ya llega como Account state authority. No reconstruye PnL de otras Operations ni posee estado cross-Operation.
+
+### Dynamic implicit target mark
+
+Para una Operation viva, con direction sign d (+1 LONG, -1 SHORT), open quantity Q>0, fill-derived average open price A, point_value V y current exit-side mark M, su unrealized corriente es:
 
 ~~~text
 U_op(M) =
@@ -168,29 +181,11 @@ U_op(M) =
 
 M usa bid para LONG y ask para SHORT.
 
-El realized de cualquier partial exit de esta Operation ya pertenece a D. GerardMM no suma unrealized de otras Operations al profit objective; eso evita convertir Q13 en portfolio manager. Cuando esas exposiciones realizan PnL, su resultado entra a D por Account state.
-
-~~~text
-current_profit_progress_money =
-  D + U_op(M)
-
-remaining_profit_objective_money =
-  max(0, T - current_profit_progress_money)
-~~~
-
-Si no existe exposición Q, U_op=0.
-
-Si D>=T antes de crear new risk, GerardMM no abre una nueva Order para ese account day.
-
-Si una Operation está viva y remaining_profit_objective_money=0, profit termination gana precedencia sobre cualquier ADD/PYRAMID: bloquea new risk y entra al exit path de §18.
-
-### Dynamic implicit target mark
-
-No se persiste fixed target price. Para observabilidad y trigger determinista, la marca implícita que haría D+U_op=T es:
+No se persiste fixed target price. Manteniendo constante el resto del PnL account-wide observado en ese snapshot, la marca implícita necesaria para que esta Operation complete el remaining objective es:
 
 ~~~text
 target_mark_raw =
-  A + d * ((T - D) / (Q * V))
+  M + d * (remaining_profit_objective_money / (Q * V))
 ~~~
 
 Tick rounding conservador:
@@ -408,7 +403,7 @@ current_loss_budget_candidate =
 remaining_profit_candidate =
   max(
     0,
-    T - (D + U_candidate(M))
+    T - P_day_candidate
   )
 ~~~
 
@@ -647,13 +642,14 @@ evaluation day 2:
 ### 21.1 Remaining objective
 
 ~~~text
-D = +400 realized day PnL
-current Operation U_op = +350
+account_day_current_pnl_money = +750
 T = 1500
 
 current_profit_progress_money = 750
 remaining_profit_objective_money = 750
 ~~~
+
+Ese +750 puede contener realized y unrealized de varias Operations; GerardMM consume el snapshot account-wide y no reconstruye sus componentes.
 
 ### 21.2 Prior loss reduces Owner headroom; prior profit does not enlarge configured SL
 
@@ -687,11 +683,13 @@ Contract/PER_ORDER/shared provider limits aún pueden reducir o negar la acción
 
 ### 21.4 Dynamic target after quantity changes
 
-LONG, V=20 USD/point, D=400, T=1500.
+LONG, V=20 USD/point, T=1500.
 
-Antes del add:
+En current mark M=20000:
 
 ~~~text
+account_day_current_pnl_money = +400
+remaining_profit_objective_money = 1100
 Q = 4
 A = 20000
 
@@ -700,18 +698,17 @@ target_mark_raw =
   = 20013.75
 ~~~
 
-Después de hypothetical adverse add 4 @ 19998:
+Luego el mercado cae a M=19998. Antes del add, el account-day snapshot cae a +240. Un hypothetical adverse add 4 @ 19998 deja Q_candidate=8 y A_candidate=19999; al mismo mark, el unrealized total de la Operation sigue siendo -160, por lo que P_day_candidate permanece +240:
 
 ~~~text
-Q_candidate = 8
-A_candidate = 19999
+remaining_profit_candidate = 1500 - 240 = 1260
 
 target_mark_raw_candidate =
-  19999 + 1100/(8*20)
+  19998 + 1260/(8*20)
   = 20005.875
 ~~~
 
-El target económico implícito se movió por quantity/average. No fue entregado por Strategy ni persistido.
+El target económico implícito se mueve por el PnL account-wide corriente y por la quantity efectiva. No fue entregado por Strategy ni persistido.
 
 ## 22. Invariants
 
@@ -719,7 +716,7 @@ El target económico implícito se movió por quantity/average. No fue entregado
 - GMM-I2 — Owner economic objective y provider hard rule son constraints separados.
 - GMM-I3 — current_loss_budget_money=min(owner remaining, provider hard monetary headroom).
 - GMM-I4 — Owner loss budget es account-day scoped; prior loss reduce remaining budget y prior profit no lo amplía por sobre L.
-- GMM-I5 — remaining_profit_objective_money usa account-day realized + current Operation unrealized; no unrealized de otras Operations.
+- GMM-I5 — remaining_profit_objective_money usa el account-day current PnL autoritativo, incluyendo realized + unrealized account-wide; GerardMM no reconstruye sus componentes.
 - GMM-I6 — target_mark es derivado/dinámico; no state authority.
 - GMM-I7 — technical_stop nunca se aleja; protective stop es monotónico hacia más protección.
 - GMM-I8 — Fill truth domina projected quantity.
@@ -793,7 +790,7 @@ Sin cambios: q_exec_max, local claims, reservation completeness, exact grant, no
 - AC-Q13-02: evaluation business day 2 resuelve SL=2000 USD y TP=1500 USD.
 - AC-Q13-03: evaluation day sin row explícita falla cerrado para new risk.
 - AC-Q13-04: FUNDED_INITIAL/FUNDED_STEADY schema resuelve sólo con valores configurados; hoy no inventa números.
-- AC-Q13-05: D=400 y U=350 con T=1500 produce remaining objective=750.
+- AC-Q13-05: account_day_current_pnl_money=750 con T=1500 produce remaining objective=750.
 - AC-Q13-06: D>=T antes de entry produce cero new risk.
 - AC-Q13-07: current account-day loss reduce owner_remaining_loss_budget_money.
 - AC-Q13-08: prior account-day profit no amplía Owner loss budget sobre L.
