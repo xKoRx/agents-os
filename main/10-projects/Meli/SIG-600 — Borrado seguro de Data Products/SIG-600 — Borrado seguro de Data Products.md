@@ -148,6 +148,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 - **2026-09-30** — Descripción del PR #1228 traducida al español y reducida 53%, conservando las tres versiones/capturas y colapsando checklists. Comentario de ownership confirmado: DELETE autoriza un snapshot sin lock y UPDATE puede cambiar de equipo; corrección de concurrencia pendiente antes del merge. Sin cambios de código ni respuesta publicada al reviewer; Ready y cinco checks SUCCESS verificados en el mismo HEAD.
 
+- **2026-09-30** — Se contrastaron los dos comentarios del PR #1228 contra HEAD 37dc1f2d3: carrera de ownership confirmada y falta de mock Kraken en integración confirmada. El verde previo no garantiza aislamiento; un test anterior deja grants ACME en el mock compartido sin reset, posible dependencia del orden. Pendientes coordinar ownership y aislar los providers con fixtures explícitos. Sin cambios de código ni comentarios publicados.
+
 ## 🧭 Decisiones
 
 - Playmaker es la autoridad de las reglas de borrado en el `DELETE`; no se diseña un endpoint `delete-validation`. Los blockers responden HTTP 409 con código específico y prevalece producción sobre infraestructura activa cuando aplican ambas. Fuente: [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643).
