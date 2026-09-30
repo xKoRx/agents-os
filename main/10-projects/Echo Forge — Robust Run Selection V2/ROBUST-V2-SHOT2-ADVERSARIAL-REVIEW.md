@@ -190,11 +190,11 @@ SHOT_3_REQUIRED:
 
 ARTIFACT:
 path: main/10-projects/Echo Forge — Robust Run Selection V2/ROBUST-V2-SHOT2-ADVERSARIAL-REVIEW.md
-commit: (vault, sincronizado por sync.sh)
-blob: (registrado tras sync)
+commit: a2e3fd01 (vault, sync 13:57; blob 4e9be2f84f05dd36b2a6dc14534c347afd945727)
+blob: 4e9be2f84f05dd36b2a6dc14534c347afd945727
 
 PROJECT:
-commit: (vault, sincronizado por sync.sh)
+commit: a2e3fd01 (blob f11c9fe5b96731eaab12ee0c9653eb6d69758302; agent-run 8363b642)
 
 NEXT EXACT:
 Return to Primary Technical Manager.
