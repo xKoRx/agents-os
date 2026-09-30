@@ -1,5 +1,8 @@
 # ROBUST-V2-DURABLE-REPLAY
 
+> **AUTHORITY NOTE — HISTORICAL EVIDENCE ONLY (2026-09-30):** This report documents the missing historical CELL/MetricSet replay authority. It is **not an implementation blocker** and does not reopen the V2 design. The zero-byte `cells.tsv` finding is deferred to later evidence/certification work. Canonical implementation authority is [[ROBUST-V2-DESIGN-FREEZE]].
+
+
 Status: `DURABLE_REPLAY_BLOCKED_EVIDENCE`
 
 Date: 2026-09-30
