@@ -19,7 +19,7 @@ updated: "2026-09-30"
 `rio-playmaker` · branch `feature/operation-authorization-by-team-f4@1c9f1aba7` + fix staged · base PR `develop@621167382` · 52 commits existentes · diff local total 47 archivos, +1623/-380 · SIG-616/SIG-621 · sin dependencias nuevas entre repos · suite PASS el 2026-09-30.
 
 > [!warning] Bloqueantes
-> **Corrección local sin commit/push:** el PR remoto todavía conserva el rechazo cross-DP en delete. **Gate MySQL previo fallido:** el orden de migraciones impide bootstrap; dos checks del stack quedaron sin ejecutar. **Conflictos contra develop:** GitHub CONFLICTING/DIRTY. **Política sin owner:** riesgo del cascade pendiente de elección. Review humano, sub-SPEC F4 y smoke remoto pendientes.
+> **Corrección local sin commit/push:** el PR remoto todavía conserva el rechazo cross-DP en delete. **Gate MySQL previo fallido:** el orden de migraciones impide bootstrap; dos checks del stack quedaron sin ejecutar. **Conflictos contra develop:** GitHub CONFLICTING/DIRTY. Review humano, sub-SPEC F4 y smoke remoto pendientes.
 
 ## Propósito
 
@@ -37,7 +37,7 @@ Este PR agrega autorización configurable a nueve operaciones existentes de F4. 
 
 * Relaciones: create/update exigen source y destination en el mismo DP y responden `400` antes de ACME o persistencia si son cross-DP. Delete permite limpiar relaciones cross-DP históricas aplicando `component-relation:delete` a cada owner persistido distinto antes del soft delete. Con ownership completo y regla configurada, ambos deben autorizar; deny o falla ACME impiden toda mutación. Update autoriza owners actual y solicitado al cambiar endpoints.
 * Pipeline: replace-topology, update-design, update-relations, create-component y deploy usan el scope `pipeline` antes del primer side effect. Relaciones y pipeline usan `DEV_AND_UP` en la configuración efectiva.
-* Cascade: `DELETE /data-products/{id}` conserva blockers y bypass histórico de plataforma; los demás usuarios con ownership completo pasan por `data-product:cascade-delete-components=DEPLOYER_AND_UP`. Actualmente sin `teamName` se omiten tanto el precheck ACME heredado como el guard F4; con equipo y sin proyecto se conserva el precheck. Ese riesgo sigue pendiente de una alternativa de compatibilidad, sin backfill masivo.
+* Cascade: `DELETE /data-products/{id}` conserva blockers y bypass histórico de plataforma; los demás usuarios con ownership completo pasan por `data-product:cascade-delete-components=DEPLOYER_AND_UP`. Actualmente sin `teamName` se omiten tanto el precheck ACME heredado como el guard F4; con equipo y sin proyecto se conserva el precheck. La excepción sin equipo y el riesgo de borrado por usuarios autenticados sin grants se mantienen por decisión explícita del owner para F4, sin exigir backfill masivo ni reservar el acceso a plataforma.
 * No se agregan endpoints, modelos, schema ni estados. Se actualizan arquitectura, escenarios y `.testing/impact.json`; no hubo cambios de OpenAPI al regenerarlo.
 
 ## Dev checklist (should be completed by the developer assigned to the issue)
@@ -91,5 +91,5 @@ Evidencia del 2026-09-30: HEAD `1c9f1aba77c0fd749924b879d3ad55982e16b56d` más e
 ## Notas internas — NO van al PR
 
 - D25 fue ajustada por el owner el 2026-09-30: same-DP se exige en create/update; delete histórico aplica guards a ambos owners persistidos. La SPEC técnica local está alineada. No se comprobó aprobación formal de una sub-SPEC en Spellbook.
-- D26 sigue implementada sin cambios. Se propuso usar `systemId` persistido con `SystemsByUserService.getTeamCodeFromSystem` o un scope ACME fijo de compatibilidad para usuarios comunes. Son alternativas, no políticas aprobadas ni código aplicado. No se asume que todos los DPs tienen `systemId`.
-- La descripción remota y los hilos de review no se modificaron. El texto anterior de GitHub sigue describiendo el rechazo de delete cross-DP hasta publicar esta corrección. No se resolvieron conflictos ni se editaron migraciones.
+- D26 se mantiene sin cambios productivos y fue ratificada por el owner el 2026-09-30 con riesgo explícitamente aceptado. El comentario propone conservar el precheck o denegar hasta otra autorización; el owner decide mantener compatibilidad. Los respaldos por `systemId` o scope ACME fijo no se adoptaron. [Respuesta publicada](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952).
+- La descripción remota no se modificó. Se respondió sólo al hilo sobre ausencia de `teamName`, sin resolverlo. El texto anterior de GitHub sigue describiendo el rechazo de delete cross-DP hasta publicar esta corrección. No se resolvieron conflictos ni se editaron migraciones.

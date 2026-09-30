@@ -41,8 +41,8 @@ tags:
 ## Resolución aplicada
 
 - D25 y la SPEC distinguen create/update same-DP de delete histórico con guards de ambos owners persistidos.
-- D26 permanece sin cambios y con decisión de alternativa pendiente; se documentan opciones por systemId y scope de compatibilidad, sin afirmar inventario de datos ni permisos disponibles para todos los usuarios.
-- Descripción local reescrita con evidencia actual y bloqueantes visibles; no se alteraron la descripción ni los comentarios remotos.
+- D26 permanece sin cambios productivos y el owner ratificó su excepción de compatibilidad, aceptando expresamente que Tiger-only no prueba permiso de borrado. No se adoptan los respaldos alternativos ni se exige backfill masivo.
+- Descripción local alineada con la decisión. La descripción remota no se alteró; se publicó y verificó una respuesta al comentario sobre falta de equipo, autorizada explícitamente por el owner, sin resolver el hilo: [respuesta](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952).
 
 ## Validación
 

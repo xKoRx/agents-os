@@ -3,7 +3,7 @@
 ## Metadatos
 
 - Tipo: Technical SPEC
-- Estado: Corrección de delete cross-DP local staged sobre `1c9f1aba7` el 2026-09-30, sin commit/push; regresión completa PASS; check MySQL bloqueado por migración previa; política sin owner, review humano, sub-SPEC F4 y smoke pendientes
+- Estado: Corrección de delete cross-DP local staged sobre `1c9f1aba7` el 2026-09-30, sin commit/push; regresión completa PASS; check MySQL bloqueado por migración previa; excepción sin equipo ratificada por el owner; review humano, sub-SPEC F4 y smoke pendientes
 - SPEC funcional: [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621)
 - Requerimiento: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
 - Aplicación: `rio-playmaker`
@@ -131,6 +131,8 @@ individual. F4 lo corrige sin cambiar el contrato del delete:
 
 Un deny impide delete de components, notifications, evento y save. Si la entrada no existe se omite sólo el guard nuevo. Si el DP carece de `teamName`, no se exige equipo ni se consulta ACME para autorizar el owner; las demás precondiciones del delete permanecen. Con equipo y `projectCode` incompleto, permanece el precheck histórico y se omite sólo el guard nuevo.
 
+Decisión ratificada por el owner el 2026-09-30: se mantiene expresamente esta excepción de compatibilidad en F4. Sin equipo, Tiger autentica pero no se verifica un permiso de borrado; un usuario autenticado sin grants puede borrar el DP y sus componentes si pasan los blockers y checks de estado. Ese riesgo está aceptado para esta fase. La propuesta del reviewer de conservar el precheck o devolver `403` no se aplica porque bloquearía esos DPs a usuarios fuera de plataforma; no se condiciona la entrega a regularizar masivamente ownership ni se adopta todavía un scope alternativo. [Declaración en el comentario](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952).
+
 El comentario de compatibilidad en #1181 detectó que, antes de `e75ca90d9`, el guard adicional
 anulaba el bypass de `cross-dps-rio`/`ml-ads-signals`. El precheck ahora informa si autorizó por
 equipo plataforma y sólo el cascade omite su guard en ese caso. Los demás consumidores del precheck
@@ -157,7 +159,7 @@ omitiendo el precheck histórico; el guard F4 permanece activo para poder probar
 | PR #1181, dmuena: `FURY_IS_TEST_SCOPE` cambia el flujo | Válido como cambio observable; esperado para probar el guard por scope | El precheck histórico se omite en test scope y el guard F4 sigue gobernado por la configuración efectiva; se agregan tests de allow/deny con ACME simulado. |
 | PR #1181, dmuena: Data Products sin `teamName` | Válido para el cascade | El delete omite el precheck ACME histórico y el guard F4 si no hay equipo, incluso cuando hay `projectCode`; se agregan regresiones para `null` y blank. |
 | PR #1181, marellanoqui_meli: delete cross-DP histórico bloqueado | Válido; corrección autorizada el 2026-09-30 | Se elimina sólo el check same-DP en delete. Tests con autorizador real permiten con ambos grants, deniegan sin cualquiera de ellos o ante falla ACME; tests HTTP verifican 200/403 y estado persistido. Fix local, sin publicar. |
-| PR #1181, marellanoqui_meli: delete sin `teamName` queda sin autorización | Riesgo válido; decisión D26 pendiente de revisión del owner | No se cambió el cascade. El owner descarta backfill masivo y plataforma-only; se propusieron resolución de equipo por `systemId` y scope ACME fijo de compatibilidad para usuarios comunes. Ninguna alternativa fue aún elegida o implementada. |
+| PR #1181, marellanoqui_meli: delete sin `teamName` queda sin autorización | Riesgo válido; excepción de compatibilidad ratificada por el owner el 2026-09-30 | Se mantiene D26. El owner acepta que un usuario autenticado sin grants pueda borrar si pasan las demás precondiciones; descarta conservar el precheck o denegar en esta fase porque bloquea usuarios no-plataforma y no exige un backfill masivo. [Respuesta publicada](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952); hilo dejado abierto para review. |
 | PR #1178, comentarios restantes | Heredados/ya corregidos en F3 | La base sincronizada ya contiene las correcciones; no se duplican. Hallazgos fuera de alcance van a F5. |
 
 ## Archivos productivos
