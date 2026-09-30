@@ -30,12 +30,12 @@ updated: "2026-09-29"
 
 # Multimodal Knowledge Engine
 
-> [!important]+ Estado canónico · 2026-09-29
+> [!important]+ Estado canónico · 2026-09-30
 > **V1 / M0-R1 = CLOSED_AS_REMEDIATED** @ `fix/m0-live-readiness` `640d000eb6993de2e0181a64e7a693021f364a1a`. `M0_R1_REMEDIATION = PASS`, golden preservado, `M0 = NOT_RECERTIFIED` y la recertificación completa G0–G9 no se ejecutó.
 >
 > **D4 = DEFERRED_TO_V3.** El gap de scoring multi-record queda preservado como evidencia histórica; V2 no modifica el golden ni hace composition-aware benchmark scoring.
 >
-> **V2 = ACTIVE / SHOT 1 ACCEPTED.** `V2_DESIGN = ACCEPTED`, `ARCHITECTURE = FROZEN`, `V2_SHOT1_IMPLEMENTATION = PASS`, `READY_FOR_V2_SHOT_2 = YES`. Branch: `feature/v2-layered-knowledge-model` @ `8ad46c8`, baseline V1 `640d000`, Design Pack congelado @ `618043e`. Próximo gate: Shot 2 independent adversarial review.
+> **V2 = SHOT 3 COMPLETE / FINAL CERTIFICATION PASS.** `V2_DESIGN = ACCEPTED`, `ARCHITECTURE = FROZEN`, `SHOT2_REVIEW = FINDINGS (1C/6MA/10MI/12NOTE)` @ `8ad46c8`, `SHOT3_REMEDIATION = PASS`, `V2_FINAL_CERTIFICATION = PASS` @ `cc13a121cebbddf153f283a3df0f4197dfb92cc1` (push FF a origin). V1 baseline/golden intactos, `D4_TOUCHED = NO`, sin entrada a V3. Limitación real documentada: la certificación física corre sobre fuente real con adapter recorded (CLI `--vlm recorded:`); no hubo smoke live con modelo real en Shot 3 (sin credencial por-corrida; el intento live de Shot 1 con OpenRouter quedó como evidencia previa). Artefactos: `~/mke/v2-shot3-cert-20260930/`.
 
 **Workstream vigente: MKE V2 — Layered Knowledge Model.** V1 queda como baseline preservada y evidencia del porqué existe V2; no reabrir findings M0-R1 salvo regresión concreta.
 ## 🎯 Objetivo
@@ -56,7 +56,9 @@ Transformar **fuentes multimodales heterogéneas** en conocimiento estructurado 
 4. **V2 Design aceptado:** L0 reutiliza source/media/evidence/coverage V1; L1 introduce claims explícitamente atómicos; L2 agrega SKOs compuestos sólo desde L1 válido.
 5. **KISS/YAGNI preservado:** sin nueva DB, queue, graph/vector store, RAG, search, intent/questions, cross-source composition ni SKO nesting.
 6. **Design Pack físico:** `docs/v2/V2-ARCHITECTURE.md`, `V2-FUNCTIONAL-CONTRACT.md`, `V2-TECHNICAL-CONTRACT.md`, `V2-ACCEPTANCE-PLAN.md`, `V2-IMPLEMENTATION-PLAN.md` sobre `feature/v2-layered-knowledge-model @ 618043e`.
-7. **Shot 1 aceptado:** implementation + focused remediation `MGR-S1-01` cerrados @ `8ad46c8`; próximo gate: Shot 2 independent adversarial review → Shot 3 remediation + final certification.
+7. **Shot 1 aceptado:** implementation + focused remediation `MGR-S1-01` cerrados @ `8ad46c8`.
+8. **Shot 2 ejecutado:** review adversarial independiente `SHOT2_REVIEW = FINDINGS` @ `8ad46c8` (1 CRITICAL / 6 MAJOR / 10 MINOR / 12 NOTE, `READY_FOR_SHOT3 = YES`); repros físicos en harnesses `zz_shot2_*` de 5 worktrees de review.
+9. **Shot 3 completado:** adjudicación + remediation + certificación final `PASS` @ `cc13a12`; 7 mandatorios cerrados (A-01, C-01, B-01, E-01, G-01, G-02, T-01), minors acotados cerrados (A-03, D-01, J-03, K-01, T-03), acceptance adversarial independiente PASS (0 defectos nuevos), replay físico byte-idéntico, provenance física resuelta a SHA real.
 La certificación y los artefactos físicos fueron reportados en Daedalus bajo `~/mke/m0-20260928/`; esa ruta es evidencia local y debe revalidarse en el host antes de asumir persistencia. Los cambios no commiteados reportados por el ejecutor no son autoridad Git hasta ser inspeccionados y committeados.
 
 ## 🧱 Entrega de desarrollo
