@@ -251,7 +251,8 @@ NONE beyond the already accepted derived-finiteness and V2 config-validity amend
 
 ARTIFACT:
 main/10-projects/Echo Forge — Robust Run Selection V2/ROBUST-V2-FINITENESS-VERIFICATION.md
-<commit + blob after persistence>
+commit: 0f76076630c4d5546dbe50aa7098026ff302f728
+blob: 28cbbf7952bcecea7044deddef4fe70acb89b72b
 
 NEXT EXACT:
 Return to Primary Technical Manager.
