@@ -108,7 +108,12 @@ Re-pins de S12 (justificados, ninguno para "poner verde"): (1) F-B-03 demostró 
 
 ## G. ATP matrix
 
-Veredicto final caso-por-caso con evidencia corriente en el árbol final: **`atp-final-matrix.md`** (mismo directorio). Reglas aplicadas: ningún PASS heredado de Shot 1/2 sin test corriente; items vendor/físicos = DEFERRED_TO_D6; límites conocidos documentados como INCOMPLETE/nota (BreakEnd delivery, 066 equal-seq siblings, sin productor QUOTE en V1, Kafka real por seam).
+Veredicto final caso-por-caso con evidencia corriente en el árbol final: **`atp-final-matrix.md`** (mismo directorio). **115 casos: 111 PASS · 0 FAIL · 2 INCOMPLETE · 2 DEFERRED_TO_D6** (más mitades D6 anotadas en REC-03, EXE-01/02/04/08, MKT-11/13 y Budgets §20). Los 212 nombres de tests citados fueron verificados mecánicamente contra el árbol (existen como `func Test...`); toda fila PASS lleva tests corridos verdes en esta sesión.
+
+- **INCOMPLETE (2)**: MKT-07 (rollover ≠ source switch: la propiedad exacta sin fixture dedicado; evidencia cercana verde en pin de contrato + MKT-06) y TERM-03 (ForceClose con bridge caído → reconexión reconcile-first: escenario exacto sin test; evidencia cercana EXE-09 + BridgeRestart + F4).
+- **DEFERRED_TO_D6 (2)**: EXE-14 y SCL-03 (ítems vendor/físicos).
+- **Cambios de veredicto vs Shot 2**: MKT-14/15 FAIL→PASS, MKT-12 loudness FAIL→PASS (F-TOP-02), S1 11/13→13/13, SIG 3/4→4/4, ADM 4/5→5/5, EXP→8/8, PRV→11/11, MM 14/18→18/18, EXE→13 PASS (+EXE-14 D6), REC-03 INCOMPLETE→PASS como seam software.
+- **Abiertos reflejados**: lineage físico REC-03 = D6; Kafka real seam-tested (F-F-02); gap BreakEnd-delivery (F-B-06, sin fix por decisión) anotado en MKT-15; 066 equal-seq siblings anotado en REC-02; sin productor QUOTE en V1 (casos QUOTE estructurales).
 
 ## H. Adversarial regression (rerun sobre el árbol final)
 
