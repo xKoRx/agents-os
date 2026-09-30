@@ -19,7 +19,7 @@ updated: "2026-09-30"
 `rio-playmaker` · branch `feature/operation-authorization-by-team-f4@99c51fe8b` · base `develop@0c9e9e3ee` · 53 commits · 53 files changed, 1724 insertions(+), 393 deletions(-) · SIG-616/SIG-621 · sin dependencias nuevas entre repos · suite y stacks locales PASS el 2026-09-30.
 
 > [!warning] Pendientes
-> **Aprobación humana, sub-SPEC formal y smoke no productivo.** checks remotos en ejecución. GitHub `MERGEABLE` / `BLOCKED` / `REVIEW_REQUIRED`. La excepción sin equipo conserva el riesgo reconocido por el reviewer y aceptado expresamente por el owner.
+> **Aprobación humana, sub-SPEC formal y smoke no productivo.** dependencies FAIL; los demás checks publicados pasaron. GitHub `MERGEABLE` / `BLOCKED` / `REVIEW_REQUIRED`. La excepción sin equipo conserva el riesgo reconocido por el reviewer y aceptado expresamente por el owner.
 
 ## Propósito
 
@@ -53,7 +53,7 @@ Los comentarios quedaron contestados y resueltos, incluyendo la actualización d
 * [x] I have commented portions of my code, particularly in hard-to-understand areas.
 * [x] I updated the applicable canonical documentation (`docs/architecture.md`, `testing.md`, `testing-scenarios.md`, Swagger and `.testing/impact.json`).
 * [x] After my changes were applied the app is still buildable.
-* [ ] My changes generate no new warnings (linters, code quality) — permanecen avisos preexistentes de JVM/Gradle; checks remotos en ejecución.
+* [ ] My changes generate no new warnings (linters, code quality) — permanecen avisos preexistentes de JVM/Gradle; dependencies FAIL; los demás checks publicados pasaron.
 * [x] I have added tests that prove my fix is effective or that my feature works — autorizador real y HTTP/H2.
 * [x] New and existing unit tests pass locally with my changes.
 * [x] Any dependent changes have been merged and published in downstream modules — sin dependencias downstream nuevas.
@@ -76,7 +76,7 @@ Evidencia local del 2026-09-30 sobre el árbol publicado en `99c51fe8bd3da2e73ed
 * `./gradlew check jacocoTestReport --offline --no-daemon` — PASS: 4.129 tests en 372 suites, cero fallas/errores y 2 skips preexistentes; 14,781/15,209 líneas cubiertas (97,19%).
 * Relaciones: 51 casos entre las clases unit e integración; grants de ambos owners antes de save, deny de cualquiera y ACME unavailable sin mutación. HTTP/H2 persiste relaciones históricas y comprueba `200`/`403` y estado persistido. Create/update same-DP y deduplicación de owner siguen cubiertos.
 * `GenerateDocTest` regenera OpenAPI desde las anotaciones; el resultado generado queda publicado. `git diff --check`, validadores de contrato y `bash -n local/01-mysql.sh scripts/run-local-kafka-stack-check.sh` — PASS.
-* Checks remotos del mismo HEAD: checks remotos en ejecución — [ejecución CI](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/5625/pipeline/). Code Reviewer requiere revisión humana; no equivale a aprobación.
+* Checks remotos del mismo HEAD: dependencies FAIL; los demás checks publicados pasaron — [ejecución CI](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/5625/pipeline/). GitHub mantiene `REVIEW_REQUIRED`; resolver comentarios no equivale a aprobación.
 * Sin Zord por instrucción explícita del owner; sin L1/F1, smoke remoto ni deployment. Las variantes test3 anteriores `0.1.15-p4-committer-allowed` / `0.1.16-p4-viewer-denied` no incluyen este nuevo HEAD y no certifican esta corrección.
 
 ## Testing contract

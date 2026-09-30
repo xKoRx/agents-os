@@ -16,7 +16,7 @@ model_source: unknown
 task_type: coding
 task_complexity: high
 outcome: partial
-verification: passed
+verification: failed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -39,7 +39,7 @@ tags:
 ## Evidencia
 
 - **Validaciones ejecutadas:** contrato staged y plan, 53 selectores y tres checks L0/LOCAL_STACK, `check jacocoTestReport`, OpenAPI generado, bash syntax y diff whitespace. Regresión final: 4.129 tests, cero fallas/errores, dos skips, 97,19% de cobertura; 51 casos de relaciones unit/HTTP. Cleanup certificado en los tres stacks.
-- **Resultado observable:** commit `99c51fe8bd3da2e73ede96ae717a1ab1fae723c7` publicado y verificado, develop integrado, worktree limpio; doce hilos respondidos y resueltos y descripción remota verificada. CI #5625 sigue en ejecución. GitHub MERGEABLE, REVIEW_REQUIRED.
+- **Resultado observable:** commit `99c51fe8bd3da2e73ede96ae717a1ab1fae723c7` publicado y verificado, develop integrado, worktree limpio; doce hilos respondidos y resueltos y descripción remota verificada. CI #5625 SUCCESS; code-coverage, static-analyzer y workflow SUCCESS; dependencies FAILURE sin diagnóstico en GitHub. GitHub MERGEABLE, REVIEW_REQUIRED.
 - **Limitaciones de la evidencia:** Zord omitido por instrucción del owner. Sin L1/F1, smoke, deploy o merge del PR. La excepción sin equipo conserva el riesgo expresamente aceptado; no se afirma que Tiger otorgue permiso de borrado. La aprobación humana y la sub-SPEC formal permanecen pendientes. El auto-review bloqueó el navegador al redirigir Jenkins al sitio de autenticación; se continuó con los checks accesibles de GitHub.
 
 ## Evaluación
@@ -48,6 +48,6 @@ tags:
 
 ## Resultado
 
-- **Outcome:** parcial mientras termina la CI remota; código y respuestas publicados.
+- **Outcome:** parcial: código y respuestas publicados; check de dependencias remoto fallido, pendiente de diagnóstico.
 - **Rework posterior:** unknown.
 - **Aprendizaje para comparar herramientas:** un contrato local completo permitió detectar fallos previos de bootstrap MySQL y detección Tomcat/Jetty que la regresión H2 no podía demostrar. Se corrigieron los runners sin omitir assertions ni cambiar migraciones SQL; no se atribuyeron esos fallos al guard de autorización.

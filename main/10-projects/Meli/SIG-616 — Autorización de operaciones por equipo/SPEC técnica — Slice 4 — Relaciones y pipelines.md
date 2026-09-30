@@ -3,7 +3,7 @@
 ## Metadatos
 
 - Tipo: Technical SPEC
-- Estado: Publicado en `99c51fe8b`; checks remotos en ejecución; sin conflictos (MERGEABLE); hilos respondidos y resueltos; aprobación humana, sub-SPEC formal y smoke pendientes
+- Estado: Publicado en `99c51fe8b`; dependencies FAIL; los demás checks publicados pasaron; sin conflictos (MERGEABLE); hilos respondidos y resueltos; aprobación humana, sub-SPEC formal y smoke pendientes
 - SPEC funcional: [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621)
 - Requerimiento: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
 - Aplicación: `rio-playmaker`
@@ -14,7 +14,7 @@
 - Implementación regularizada: `e8b957c47`
 - Merge final de `develop`, sin cambio de árbol: `d792b902b`
 - Corrección del bypass de plataforma: `e75ca90d9`
-- Corrección de review publicada: `40d5f9b22`; ajuste de delete histórico y sincronización final: `99c51fe8b`
+- Corrección de review publicada: `40d5f9b22`; ajuste de delete histórico y sincronización final: `99c51fe8b`; ajuste de delete histórico y sincronización final: `99c51fe8b`
 
 ## Objetivo y límites
 
@@ -175,7 +175,7 @@ No hay endpoints, modelos, tablas ni migraciones nuevos. La invariante same-DP d
 
 ## Evidencia automatizada
 
-Corrección publicada el 2026-09-30 en `99c51fe8bd3da2e73ede96ae717a1ab1fae723c7`, tras integrar `develop@0c9e9e3ee`: `./gradlew check jacocoTestReport --offline --no-daemon` PASS con 4.129 tests en 372 suites, cero fallas/errores, 2 skips preexistentes y 14,781/15,209 líneas cubiertas (97,19%). `run-agentic-testing-contract.sh` PASS con 53 selectores y tres checks L0/LOCAL_STACK (MySQL/app, deployment loopback y Kafka), con cleanup certificado; Kafka publicó `CLEANUP_CERTIFIED` y los tres checks finalizaron sin recursos propios restantes. Los 51 casos de relaciones (26 unit, 25 H2/HTTP) cubren ambos grants, deny de cada owner, falla ACME y estado persistido. El fix funcional retira el check same-DP sólo en delete; create/update siguen rechazando cross-DP. Los fallos iniciales revelaron dos problemas del runner local: el CHECK debe reemplazarse antes del DROP histórico, y el servidor actual es Jetty. Ambos se corrigieron sin modificar SQL de migraciones ni reducir assertions. OpenAPI se regeneró desde las anotaciones del catálogo/importación integrados de develop. checks remotos en ejecución; Code Reviewer queda sujeto a aprobación humana. Sin Zord por instrucción expresa del owner, sin smoke remoto ni deployment.
+Corrección publicada el 2026-09-30 en `99c51fe8bd3da2e73ede96ae717a1ab1fae723c7`, tras integrar `develop@0c9e9e3ee`: `./gradlew check jacocoTestReport --offline --no-daemon` PASS con 4.129 tests en 372 suites, cero fallas/errores, 2 skips preexistentes y 14,781/15,209 líneas cubiertas (97,19%). `run-agentic-testing-contract.sh` PASS con 53 selectores y tres checks L0/LOCAL_STACK (MySQL/app, deployment loopback y Kafka), con cleanup certificado; Kafka publicó `CLEANUP_CERTIFIED` y los tres checks finalizaron sin recursos propios restantes. Los 51 casos de relaciones (26 unit, 25 H2/HTTP) cubren ambos grants, deny de cada owner, falla ACME y estado persistido. El fix funcional retira el check same-DP sólo en delete; create/update siguen rechazando cross-DP. Los fallos iniciales revelaron dos problemas del runner local: el CHECK debe reemplazarse antes del DROP histórico, y el servidor actual es Jetty. Ambos se corrigieron sin modificar SQL de migraciones ni reducir assertions. OpenAPI se regeneró desde las anotaciones del catálogo/importación integrados de develop. dependencies FAIL; los demás checks publicados pasaron; aprobación humana pendiente (REVIEW_REQUIRED). Sin Zord por instrucción expresa del owner, sin smoke remoto ni deployment.
 
 Evidencia inicial sobre `d792b902b` y regresión final sobre `e75ca90d9`:
 
@@ -235,7 +235,7 @@ plataforma, por lo que esas variantes no sirven como prueba manual de dicho bypa
 
 ## Riesgos y gates pendientes
 
-- Estado observado el 2026-09-30: Publicado en `99c51fe8b`; checks remotos en ejecución; sin conflictos (MERGEABLE); hilos respondidos y resueltos; aprobación humana, sub-SPEC formal y smoke pendientes. El riesgo de D26 sigue aceptado y documentado; resolver el hilo no significa que el riesgo desaparezca. Los tres checks del stack local pasaron y no sustituyen el smoke Fury.
+- Estado observado el 2026-09-30: Publicado en `99c51fe8b`; dependencies FAIL; los demás checks publicados pasaron; sin conflictos (MERGEABLE); hilos respondidos y resueltos; aprobación humana, sub-SPEC formal y smoke pendientes. El riesgo de D26 sigue aceptado y documentado; resolver el hilo no significa que el riesgo desaparezca. Los tres checks del stack local pasaron y no sustituyen el smoke Fury.
 - Builds Fury test3 terminados `FINISHED`; falta deploy no productivo.
 - Pruebas manuales sobre esas variantes; no se declaran aprobadas antes de ejecutarlas.
 - No se realizará versión estable ni deployment productivo.
