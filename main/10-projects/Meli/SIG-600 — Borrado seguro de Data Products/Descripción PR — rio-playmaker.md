@@ -79,7 +79,7 @@ flowchart TD
 * [x] I have commented portions of my code, particularly in hard-to-understand areas
 * [x] I updated the applicable canonical documentation (`testing-scenarios.md`); the API route did not change.
 * [x] After my changes were applied the app is still buildable
-* [ ] My changes generate no new warnings (linters, code quality) — tracked against the current HEAD in GitHub checks.
+* [ ] My changes generate no new warnings (linters, code quality) — GitHub quality checks passed; Gradle/JDK deprecation warnings remain.
 * [x] I have added tests that prove my fix is effective or that my feature works
     * Unit testing is a must
     * Integration testing is recommended
@@ -131,6 +131,7 @@ HEAD: `37dc1f2d3aaa17e612271126013dbac14fd41bfa`. Base: `develop@0c9e9e3ee0415b9
 | L0 / repository contract | `./scripts/validate-repository-contract.sh --staged` | Passed |
 | L0 / testing contract | `./scripts/validate-testing-contract.sh --staged` | Passed |
 | Diff checks | `git diff --cached --check` and `git diff --check` | Passed |
+| GitHub / CI + quality gates | `workflow`, `continuous-integration`, `code-coverage`, `dependencies`, `static-analyzer` | **All five passed for the current HEAD** |
 
 Authorization tests cover Kraken-only access, ACME team membership without an Admin/Maintainer project role, both sources denying, a provider failure while the other allows, and `503` when no independent allow can be resolved. Service tests exercise the existing delete blockers and successful deletion.
 
