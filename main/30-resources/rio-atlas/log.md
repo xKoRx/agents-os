@@ -52,3 +52,7 @@ Append-only, cronológico. Formato: `## [YYYY-MM-DD] <op> | <detalle>` con `<op>
 
 ## [2026-08-25] ingest | Hotfix del listener y refactor durable de avance de batches
 - Se actualizó [[playmaker-deployment-idempotency-and-cp-kvs]] con la decisión en dos tracks: hotfix sin schema/estados/CPs mediante mutex KVS en `BatchCompletedEventListener`, espera con backoff y detección `already_materialized` por deployments del group; luego refactor durable con tópico externo, publicación recuperable y lógica atómica/consistente. `ComponentRun.DISPATCHING` quedó deprecated/superseded.
+
+## [2026-09-30] ingest | Implementaciones locales RIO y recomendación para Kafka
+
+- Se agregó [[Ambientes locales RIO — Comparativa de implementaciones]] con fuente [[Repositorios RIO — Ambientes locales (2026-09-30)]], contrastando siete CP, Playmaker, Materializer y SDK Events. El stack Kafka de Playmaker ya existe; falta integrar CP, acciones/PEEK y KVS real. Se creó [[Kafka — Ambiente local con servicios reales]] para iterar la entrega; el funcionamiento del stack y la configuración de KVS sandbox siguen sin verificar.
