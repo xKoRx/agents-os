@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: me
 root: false
-status: review
+status: active
 priority: P1
 area: "[[Echo]]"
 parent: "[[Echo Forge — Operación Real V2]]"
@@ -36,23 +36,18 @@ updated: "2026-09-29"
 
 ## 📊 Estado actual
 
-- **DURABLE_REPLAY_BLOCKED_EVIDENCE — 2026-09-30.** El exact durable replay se detuvo en el evidence gate: el `cells.tsv` versionado sigue en 0 bytes aunque `SHA256SUMS.txt` declara `3e0dac89805df320d416820cf57f067d8bddf766fb74b151bc64c88cb81a76d1`; la historia Git demuestra que el bundle entró en `8385041a88c17ed0aaba577115bac0c45b429012` sin payload CELL recuperable, y la búsqueda en Library no encontró una copia exacta independiente. `aggregates.tsv`, `picks.tsv` y el audit preservan outputs V1, pero no reemplazan la autoridad de las 1.836 CELL/MetricSet. V1 replay = NOT_RUN; V2 replay/sensitivity = NOT_RUN. Próximo exacto: recuperar read-only las 1.836 CELL + 34 AGGREGATE del FlowRun `80647dc2-848a-4150-842e-cc6947eed87c` desde su lineage durable original y recién entonces reanudar V1→V2. Sin valores Owner congelados, sin SPEC ni product code. Artefacto: [[ROBUST-V2-DURABLE-REPLAY]].
-
-- **DESIGN_ALGORITHM_CLOSED_PENDING_DURABLE_REPLAY — PRIMARY MANAGER 2026-09-29.** El Primary Manager acepta el focused verification: no quedan defectos conceptuales materiales en la policy V2. El diseño algorítmico queda cerrado; sólo faltan evidence replay y decisiones Owner de materialidad. Focused final verification PASS: el derived-finiteness gate cierra el único fail-open material sin cambiar la policy finita de Iteration 2. Todo candidate con `R_retdd`, `R_sharpe`, `R_profit`, `R_aux` o `cliff` no finito queda analytical-ineligible antes de cualquier mínimo; empty set => analytical FAIL. `cliff_threshold`, `epsilon_ret` y `epsilon_aux` se validan sólo en V2 como finitos y >= 0; config inválido es contract/config failure. Casos all-nonfinite, mixed finite/nonfinite, auxiliary nonfinite, cliff nonfinite, near-zero finite, zero-scale/zero-variation, raw invalid, config invalid, finite-corpus non-regression y V1 compatibility quedaron PASS.
-- Candidate V2 recomendado: `R_x = max(normalized MAD_x, normalized |center_x - median_x|)`; cliff Ret/DD permanece hard gate separado; stability authority se implementa conceptualmente mediante dos indifference bands ancladas a mínimos intra-strategy: primero `R_retdd <= min(R_retdd)+epsilon_ret`, luego `R_aux=max(R_sharpe,R_profit) <= min(R_aux)+epsilon_aux`. Quality sólo decide después de ambas equivalencias.
-- La topología V2 se mantiene KISS: se agrega center representativeness porque el CELL aplicado físicamente es el centro; no se agregan edge weights, surface fitting ni pesos distintos para corner/direct neighbor sin evidencia.
-- Quality se mantiene deliberadamente lexicográfica después de stability equivalence: median Ret/DD → median Sharpe → median Net Profit. No se agrega quality band en V2; el replay adversarial no encontró en los probes realizados un caso donde <1% de ventaja median Ret/DD dentro de los stability bands ocultara >5% de Sharpe o >10% de Net Profit.
-- Cliff threshold sigue abierto. Replay Optimizer correctamente separado: 18/34 Strategies son pre-cliff eligible; cliff 25% elimina todos los candidates de 4, 30% de 3, 35% de 0 y 40% de 0. Por tanto 35% sigue candidate, no frozen.
-- `epsilon_ret`, `epsilon_aux` y cliff threshold son decisiones semánticas Owner; no deben ajustarse mirando qué winner gusta más.
-- Exact durable replay sigue pendiente: Optimizer y WFM pueden diferir por re-evaluación. Antes de SPEC freeze se exige reproducir V1 desde CELL/MetricSet durable exacto y aplicar la V2 corregida offline sobre la misma autoridad.
-- **Evidence integrity finding del Manager:** `artifacts/c52-wave2a-20260929/cells.tsv` actualmente versionado en Agents-OS se lee con **0 bytes**, mientras `SHA256SUMS.txt` declara para `cells.tsv` el SHA256 `3e0dac89805df320d416820cf57f067d8bddf766fb74b151bc64c88cb81a76d1`. Por tanto ese archivo Git no puede usarse como bundle durable exacto. El replay debe recuperar/materializar la autoridad CELL/MetricSet original desde la evidencia durable real (DB/MinIO/export original), verificar lineage/hash/count y no rerunear SQX sólo para reconstruir V1.
-- Artefacto vigente: [[ROBUST-V2-FINITENESS-VERIFICATION]].
-- Manager pre-review: Iteration 2 resuelve el defecto principal de Pareto y queda aceptada como candidato para adversarial final, no frozen. El adversarial debe atacar especialmente (1) la semántica de que el auxiliary band pueda excluir al exact Ret/DD-stability winner una vez dentro de `epsilon_ret`; (2) sensibilidad de cliff a nivel candidate/winner, no sólo Strategy survival; (3) parámetros `epsilon_ret/epsilon_aux` como materiality semantics y no tuning; y (4) compatibilidad: V2 debe ser un algoritmo nuevo seleccionable por config sin cambiar V1.
-- Próximo exacto: **exact durable replay + Owner decision pack**: recuperar la autoridad durable CELL/MetricSet faltante, reproducir V1 exactamente, aplicar V2 corregida offline y producir breakpoints/sensitivity para `cliff_threshold`, `epsilon_ret` y `epsilon_aux`. El worker NO congela números; vuelve al Primary Manager/Owner. No SPEC ni implementación todavía.
+- **READY_FOR_SHOT_1 — KISS DESIGN FREEZE 2026-09-30.** Diseño algorítmico cerrado y autoridad canónica: [[ROBUST-V2-DESIGN-FREEZE]].
+- V2 es **otro algoritmo seleccionable mediante el mecanismo de configuración WFM existente**. No crear `evaluation_policy`, registry ni una segunda arquitectura de policies.
+- V1 permanece semánticamente intacto: mismos identificadores/defaults/config digest/ranking y mismo `select_robust_run` consumidor de `rank == 1`.
+- V2 congelado conceptualmente: normalized MAD + center deviation → `R_x=max(D_x,C_x)`; Ret/DD cliff; derived fail-closed; Ret/DD indifference band; `R_aux=max(R_sharpe,R_profit)`; auxiliary band; quality por median Ret/DD → Sharpe → Net Profit; tie-break determinista.
+- Config V2 mínima: nuevo algorithm id + `cliff_threshold` + `epsilon_ret` + `epsilon_aux`. Parámetros explícitos, finitos y >=0. Sin defaults silenciosos.
+- El problema histórico de `cells.tsv`/durable replay queda **deferred a certificación/evidencia**. No bloquea Shot 1.
+- Los artefactos [[ROBUST-V2-FINAL-ADVERSARIAL-REVIEW]], [[ROBUST-V2-FINITENESS-VERIFICATION]] y [[ROBUST-V2-DURABLE-REPLAY]] son historia/evidencia. Cualquier recomendación allí de `evaluation_policy` o durable replay como gate de implementación queda **SUPERSEDED** por [[ROBUST-V2-DESIGN-FREEZE]].
+- Próximo exacto: **Shot 1 implementación mínima en `xKoRx/symphony`**. No rediseñar.
 
 ## 🧱 Entrega de desarrollo
 
-_No aplica todavía — esta fase es exclusivamente diseño pre-implementación. Repo objetivo futuro: `xKoRx/symphony`; branch/base y SPECs se congelarán sólo después de la aceptación del diseño._
+_Diseño cerrado. Shot 1 autorizado: implementación mínima del nuevo algoritmo sobre el extension point de config/evaluator existente. Sin arquitectura nueva._
 
 ## 🧩 Subproyectos
 
@@ -69,12 +64,12 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 > - [x] Ejecutar fresh TOP final adversarial review del candidate V2 #owner/me #type/research #area/echo
 > - [x] Integrar corrección bounded: non-finite derived stability => analytical ineligible #owner/me #type/supervision #area/echo
 > - [x] Verificar focalizadamente derived-finiteness + validity de parámetros semánticos #owner/me #type/research #area/echo
-> - [ ] Ejecutar exact durable replay V1→V2 sobre autoridad CELL/MetricSet verificada #owner/me #type/research #area/echo — **BLOCKED_EVIDENCE**: la autoridad exacta CELL/MetricSet de wave2a no está recuperable desde Git/Library; requiere lectura RO del durable store original.
-> - [ ] Resolver decisiones Owner: epsilon_ret, epsilon_aux, cliff threshold y ratificación quality order #owner/me #type/supervision #area/echo
-> - [ ] Congelar SPEC funcional/técnica sólo después de aceptar el diseño #owner/me #type/dev #area/echo #blocked
-> - [ ] Implementar y certificar V2 sólo después del SPEC freeze #owner/me #type/dev #area/echo #blocked
+> - [ ] Recuperar durable replay histórico sólo como verificación/certificación posterior si vuelve a estar disponible la evidencia original #owner/me #type/research #area/echo
+> - [ ] Ejecutar Shot 1 — nuevo algoritmo V2 + config mínima + tests + regresión V1 #owner/me #type/dev #area/echo
 
 ## 📆 Bitácora
+
+- **2026-09-30 — KISS design freeze / contamination cleanup.** Se corrige contaminación documental posterior al diseño: `evaluation_policy + version` y durable replay como gate de implementación quedan explícitamente superseded. Autoridad única de implementación: [[ROBUST-V2-DESIGN-FREEZE]]. V2 = nuevo algoritmo sobre config WFM existente; V1 intacto; Shot 1 READY.
 
 - **2026-09-30 — Durable replay evidence gate.** Veredicto `DURABLE_REPLAY_BLOCKED_EVIDENCE`. Se verificó el bundle wave2a, su historia Git y Library: `cells.tsv` fue incorporado vacío en `8385041a...` mientras el manifest conserva el SHA256 no-vacío `3e0dac...`; no existe payload histórico recuperable en Git ni copia exacta encontrada en Library. Los 34 aggregates y 46 picks quedan sólo como outputs de referencia. No se ejecutaron V1/V2 replay, shuffle, cliff/epsilon sensitivity ni Owner decision pack. Reporte: [[ROBUST-V2-DURABLE-REPLAY]]; commit de creación `65e73a1b6b15ad6943dfb9f31e4be7e0c218f1f3`. Próximo: acceso RO al lineage durable exacto del FlowRun y materialización verificable de las 1.836 CELL/MetricSet.
 
@@ -100,11 +95,13 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 - Mantener selección estrictamente intra-strategy.
 - Tratar stability y performance level como conceptos separados.
 - No usar weights search ni profit histórico para elegir la policy.
-- V2 es **aditiva**, no una mutación de V1: debe exponerse como algoritmo/policy nuevo seleccionable por configuración; V1 permanece disponible y semánticamente estable.
+- V2 es **aditiva**, no una mutación de V1: debe exponerse como **nuevo algoritmo en el mecanismo de configuración WFM existente**; V1 permanece disponible y semánticamente estable. No introducir `evaluation_policy` ni otra capa de dispatch.
 - Derived V2 non-finite values are rejection sentinels, never comparable stability values: any non-finite `R_retdd/R_sharpe/R_profit/R_aux/cliff` => analytical-ineligible before minima; no remaining candidates => analytical FAIL.
 - V2 semantic parameters `cliff_threshold`, `epsilon_ret`, `epsilon_aux` must be finite and >=0. Invalid configured values are contract/config errors, not analytical Strategy outcomes.
 
 ## 🔗 Docs / Links
+
+- [[ROBUST-V2-DESIGN-FREEZE]] — **autoridad canónica de implementación**
 
 - [[Echo Forge — Operación Real V2]]
 - [[ROBUST-V2-DESIGN-CANDIDATE]]
