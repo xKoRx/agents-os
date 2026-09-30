@@ -23,13 +23,14 @@ application: "[[rio-playmaker]]"
 
 # Spec Funcional: Context transversal en RIO — retry, deprovision y desactivación
 
-**Estado:** borrador · **Fecha:** 2026-09-30 · **Dueño:** rjara (Signals) · **Aplicación:** rio-playmaker
+**Estado:** en revisión · **Fecha:** 2026-09-30 · **Dueño:** rjara (Signals) · **Aplicación:** rio-playmaker
 
 **Spellbook:** [SIG-645 — Context transversal en RIO](https://spellbook.adminml.com/projects/SIG/specs/SIG-645) · **ID:** `b3b0fb05-d64f-4119-b98e-6aac9b36ca3c`
 
 ## Propósito
 
 Estandarizar Context como capacidad transversal de RIO para aportar información adicional a los flujos que la necesitan. Esta entrega incorpora su publicación en retry por timeout, undeploy/deprovision y desactivación de componente.
+
 
 ## Contenido
 
@@ -51,16 +52,19 @@ Los flujos que necesitan información adicional utilizan Context con un contrato
 | Undeploy/deprovision | Context del componente y su estado desplegado conocido; incluye las variantes genérica, Fury→Kafka y Kafka→Fury. |
 | Desactivación de componente | Context del componente que se retira, conservando la identidad y el ciclo de su ejecución. |
 
-```mermaid
-flowchart LR
-    R[Retry por timeout] --> P[Playmaker]
-    D[Undeploy / deprovision] --> P
-    I[Desactivación de componente] --> P
-    P --> C{Context disponible y dentro del límite}
-    C -->|Sí| M[Mensaje existente más Context]
-    C -->|No| N[Mensaje existente sin Context y causa registrada]
-    M --> CP[Control plane]
-    N --> CP
+```text
+Retry por timeout ---------+
+Undeploy / deprovision ----+--> Playmaker
+Desactivacion ------------+        |
+                                   v
+              Context disponible y mensaje dentro del limite?
+                         /                     \
+                       SI                       NO
+                       |                        |
+             Mensaje con Context     Mensaje sin Context
+                                      + causa registrada
+                       |                        |
+                       +----> Control plane <---+
 ```
 
 ## Historias de Usuario
@@ -108,7 +112,7 @@ flowchart LR
 - **E2E-1 — Retry:** **Dado** un deployment elegible y Context resoluble, **cuando** se dispara el retry por timeout, **entonces** el consumidor recibe Context de la definición reintentada y el seguimiento conserva la correlación vigente.
 - **E2E-2 — Deprovision:** **Dado** un recurso desplegado, **cuando** se solicita su retiro por cada variante admitida, **entonces** llega Context con su estado conocido y los parámetros de retiro originales, y el resultado se asocia a la operación correcta.
 - **E2E-3 — Desactivación:** **Dado** un componente elegible sin conexiones activas, **cuando** se solicita desactivación, **entonces** llega Context con relaciones vacías, el envío ocurre con la ejecución confirmada y su resultado conserva el ciclo de desactivación.
-- **E2E-4 — Degradación:** **Dado** un fallo de construcción, un candidato excesivo o una medición fallida en cada flujo, **cuando** se envía la operación, **entonces** llega sin Context, se observa la causa y el seguimiento mantiene su comportamiento.
+- **E2E-4 — Política común de degradación (RF-6 y RF-7):** **Dado** un fallo de construcción, un candidato excesivo o una medición fallida en cada flujo, **cuando** se envía la operación, **entonces** llega sin Context, se observa la causa y el seguimiento mantiene su comportamiento.
 
 ## Decisiones cerradas
 
