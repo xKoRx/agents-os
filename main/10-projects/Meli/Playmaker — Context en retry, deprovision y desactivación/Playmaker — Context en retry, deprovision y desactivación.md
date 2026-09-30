@@ -41,19 +41,21 @@ related:
 
 > [!info]+ Playmaker — Context en retry, deprovision y desactivación
 > **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P2 · **Sprint:** —
-> **Fase:** preparación de SPECs · **Próximo paso:** SPEC funcional en Spellbook.
+> **Fase:** revisión funcional · **Próximo paso:** revisar SIG-645 antes de crear la SPEC técnica.
 
 ## 🎯 Objetivo
 
 Extender la publicación de `DeploymentTriggerMessage.context` en Playmaker a los tres flujos declarados por Bren: retry por timeout, undeploy/deprovision y desactivación de componente, manteniendo la configuración de la operación en `params`, las identidades y correlaciones existentes, y la derivación de Context como información opcional que no bloquea el envío.
 
+El motivo es estandarizar Context como capacidad transversal de RIO: aporta información adicional a los flujos que la necesitan y comparte criterios de disponibilidad, coherencia y degradación. Esta entrega aplica ese principio a los tres flujos incluidos.
+
 La secuencia de trabajo es **SPEC funcional → SPEC técnica → tareas → implementación → validación**. Este proyecto es una nueva entrega de cambio; reutiliza el contrato de [[Crear Context]] y coordina la prueba del consumidor con [[Adopción de Context en Control Planes]].
 
 ## 📊 Estado actual
 
-- **Fase:** preparación de SPECs. La evaluación inicial está completa; las SPECs, las tareas técnicas y la implementación aún no comienzan. `progress: 0` corresponde a la entrega pendiente.
-- **Próximo paso:** redactar la SPEC funcional en Spellbook para los tres flujos incluidos y definir criterios de aceptación antes de diseñar la solución técnica. El owner ya cerró el alcance: lo declarado por Bren ahora; los hallazgos adicionales quedan para después.
-- **Base inspeccionada:** `rio-playmaker @ c4ac43da4a1c7222e4cdbceaff666978c96e0811`; comparación read-only con `develop @ 6e37608bca25cc15c8c413b55d6dd91e5b2e831d` el 2026-09-30. Los emisores y el builder revisados no cambiaron entre esos commits. Revalidar la base al comenzar las SPECs y la implementación.
+- **Fase:** revisión funcional. La evaluación y el borrador de la SPEC funcional están completos; [SIG-645](https://spellbook.adminml.com/projects/SIG/specs/SIG-645) sigue en estado `draft`, pendiente de revisión del owner. La SPEC técnica, las tareas técnicas y la implementación aún no comienzan. `progress: 0` corresponde a la entrega pendiente.
+- **Próximo paso:** revisar [[SPEC Funcional — Context transversal en RIO]] antes de diseñar la solución técnica. El owner ya cerró el alcance y el motivo: los tres flujos declarados por Bren y la estandarización de Context; los hallazgos adicionales quedan para después.
+- **Base inspeccionada:** `rio-playmaker @ c4ac43da4a1c7222e4cdbceaff666978c96e0811`; comparación read-only con `develop @ 6e37608bca25cc15c8c413b55d6dd91e5b2e831d` el 2026-09-30. Los emisores y el builder revisados no cambiaron entre esos commits. Revalidar la base al comenzar la SPEC técnica y la implementación.
 - **Resultado de la evaluación:** cambio acotado en Playmaker, con riesgo medio en retry y en la selección de la versión de deprovision. El SDK 1.5.0 ya está disponible y consumido por Playmaker; el alcance aditivo no requiere cambiar el contrato ni migrar datos.
 - **Origen y alcance confirmado:** conversación aportada por el owner con Bren Kikuta y aclaración del owner el 2026-09-30. Se incluyen retry, deprovision y desactivación, aunque esta última no sea habitual en ClickHouse. Deploy individual y correcciones adicionales detectadas durante la evaluación quedan fuera de esta entrega.
 - No se modificó código de aplicaciones ni se ejecutaron pruebas durante la evaluación. Falta validar recepción y consumo en la versión concreta de ClickHouse que participará en la prueba.
@@ -62,7 +64,7 @@ La secuencia de trabajo es **SPEC funcional → SPEC técnica → tareas → imp
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-playmaker]] / `fury_rio-playmaker` | Pendiente de definir y verificar al iniciar implementación | `develop`; referencia evaluada `6e37608b`, revalidar antes de trabajar | Pendiente de crear en Spellbook y enlazar | Pendiente de crear en Spellbook y enlazar | Preparación; implementación pendiente de SPECs, tareas y branch/base verificadas |
+| [[rio-playmaker]] / `fury_rio-playmaker` | Pendiente de definir y verificar al iniciar implementación | `develop`; referencia evaluada `6e37608b`, revalidar antes de trabajar | [SIG-645](https://spellbook.adminml.com/projects/SIG/specs/SIG-645) · borrador; [[SPEC Funcional — Context transversal en RIO]] | Pendiente de crear en Spellbook y enlazar | Revisión funcional; implementación pendiente de SPECs, tareas y branch/base verificadas |
 
 `rio-sdk-events:1.5.0` es una dependencia existente; no hay entrega nueva de SDK planificada. ClickHouse participa como consumidor de validación: cualquier modificación de su código debe definirse como alcance propio y tener sus SPECs y branch/base.
 
@@ -82,7 +84,7 @@ Esta entrega cubre los tres flujos declarados por Bren. Las variantes genérica 
 ## ⚠️ Impacto y riesgos
 
 - **Limitación heredada del retry:** hoy envía `params = Map.of()`. Se registra como riesgo de validación, pero su corrección queda diferida por la instrucción del owner de abordar sólo la ausencia de Context declarada por Bren. Agregar Context no recupera por sí solo los params solicitados; `latestVersion` describe un deployment completado anterior y puede faltar en un primer deployment. No atribuir a esta entrega una corrección de la equivalencia del retry.
-- **Semántica temporal del retry:** el Context existente es efímero y se deriva desde estado consultado al enviarlo. Definir qué identidad, versión, ambiente y usuario conserva el reintento y reconocer que recalcular Context no reproduce un snapshot idéntico al original.
+- **Semántica temporal del retry:** la SPEC funcional conserva la definición y el usuario conocidos del intento original; el estado y las relaciones se consultan al nuevo envío. Context es efímero: recalcularlo no reproduce un snapshot idéntico al original.
 - **Versión de deprovision:** `ComponentContextService.build` busca el último deployment no eliminado con estado `deploy_completed`. Construir Context antes de cambiar el deployment a `undeploy_requested`; validar también que la versión y los outputs seleccionados correspondan al recurso objetivo.
 - **Compatibilidad:** conservar `params`, operación, campos planos de identidad y correlación. En Fury se deben preservar `mappingId` y los descriptores `source`/`destination` que necesita deprovision.
 - **Disponibilidad y payload:** reutilizar la derivación tolerante a fallas y el límite existente de 200 KiB sobre el mensaje completo. Si la derivación o medición falla, o el candidato excede el límite, publicar el trigger sin Context y registrar la causa.
@@ -119,7 +121,7 @@ views:
 ## ✅ Tareas
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
-> - [ ] Crear y revisar la SPEC funcional en Spellbook para retry, deprovision y desactivación: semántica de Context y criterios de aceptación #owner/me #type/dev #area/meli
+> - [r] Crear y revisar la SPEC funcional en Spellbook para retry, deprovision y desactivación: [[SPEC Funcional — Context transversal en RIO|SIG-645]] creada en borrador, pendiente de revisión #owner/me #type/dev #area/meli
 > - [ ] Crear y revisar la SPEC técnica en Spellbook: integración de los tres flujos, derivación compartida, guard de tamaño, versión de deprovision, publicación/correlación de desactivación, métricas y plan de pruebas #owner/me #type/dev #area/meli
 > - [ ] Desglosar las tareas técnicas desde las SPECs y enlazar sus IDs de Spellbook en el proyecto #owner/me #type/dev #area/meli
 > - [ ] Registrar y verificar branch y base de Playmaker antes de implementar #owner/me #type/dev #area/meli
@@ -145,13 +147,15 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 📆 Bitácora
 
+- **2026-09-30 — SPEC funcional creada:** el owner aprueba el motivo de capacidad transversal y estandarización y solicita crear la SPEC. Se guarda [SIG-645](https://spellbook.adminml.com/projects/SIG/specs/SIG-645) en Spellbook, tipo funcional y estado `draft`, con tres historias, nueve requisitos, nueve criterios de aceptación y cuatro escenarios E2E. El contenido guardado se verifica contra el borrador local. La revisión funcional queda pendiente; no se crean la SPEC técnica, tareas técnicas ni cambios de código.
 - **2026-09-30 — Ajuste de alcance:** el owner confirma que quiere abordar ahora los tres flujos declarados por Bren y dejar cualquier hallazgo adicional para después. Se incluye desactivación, se excluyen deploy individual y corrección de params del retry, y se renombra el proyecto conservando el título anterior como alias. Se actualizan objetivo, alcance, tareas y criterios de validación; las SPECs e implementación siguen pendientes.
 - **2026-09-30** — El owner solicita una iniciativa nueva para extender Context, con SPECs antes de implementación. Se materializa el proyecto con evaluación read-only, alcance inicial de retry y tres variantes de deprovision, extensiones pendientes de decidir, riesgos, criterios de validación y checklist secuencial. No se crean SPECs, ramas ni cambios de código en esta etapa.
 
 ## 🧭 Decisiones
 
 - Crear una iniciativa propia de [[Meli]], `owner: me` y `root: true`, sin reabrir [[Crear Context]] ni convertir este proyecto en el owner de la adopción del consumidor.
-- Seguir Spellbook/SDD: SPEC funcional, SPEC técnica, tareas e implementación. La próxima etapa es la SPEC funcional; las SPECs aún no existen.
+- Seguir Spellbook/SDD: SPEC funcional, SPEC técnica, tareas e implementación. SIG-645 está creada en borrador; su revisión precede a la SPEC técnica.
+- **Motivo confirmado por el owner:** Context es una herramienta transversal para los flujos que necesitan información adicional. Esta entrega también estandariza su disponibilidad, coherencia y degradación en los tres flujos incluidos.
 - **Alcance cerrado por el owner el 2026-09-30:** incluir únicamente los tres flujos declarados por Bren: retry por timeout, undeploy/deprovision y desactivación de componente. Deprovision incluye sus emisores genérico y específicos de Fury. Deploy individual y cualquier hallazgo adicional se postergan; no abrir tareas para resolverlos en esta entrega.
 - Mantener Context como campo opcional y aditivo, con `params` como configuración de la operación. No retirar `params`, persistir snapshots de Context, modificar operaciones ni introducir una nueva versión del SDK como parte del alcance inicial.
 - Reutilizar builder, métricas y protección de tamaño existentes. El diseño concreto se cerrará en la SPEC técnica.
@@ -162,7 +166,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - [[rio-playmaker]], [[rio-sdk-events]] y [[rio-controlplane-clickhouse]].
 - [[Crear Context]] — contrato iteración 1.5 y entrega previa; evitar usar sus secciones históricas como diseño vigente.
 - [[Adopción de Context en Control Planes]] — iniciativa relacionada del consumidor; su estado histórico no reemplaza la verificación de código actual.
-- SPEC funcional, SPEC técnica y tareas: pendientes de creación en Spellbook; agregar enlaces e IDs reales cuando existan.
+- [[SPEC Funcional — Context transversal en RIO]] — copia local de [SIG-645](https://spellbook.adminml.com/projects/SIG/specs/SIG-645), ID `b3b0fb05-d64f-4119-b98e-6aac9b36ca3c`, en borrador y pendiente de revisión. SPEC técnica y tareas técnicas pendientes de creación.
 - [Retry por timeout — constructor sin Context y params vacío](https://github.com/melisource/fury_rio-playmaker/blob/c4ac43da4a1c7222e4cdbceaff666978c96e0811/src/main/java/com/mercadolibre/rio/playmaker/service/pipeline/DeploymentTimeoutJob.java#L333-L360).
 - [Deprovision — los tres emisores](https://github.com/melisource/fury_rio-playmaker/blob/c4ac43da4a1c7222e4cdbceaff666978c96e0811/src/main/java/com/mercadolibre/rio/playmaker/service/impl/UndeployServiceImpl.java#L562-L673).
 - [Selección de última versión completada en ComponentContextService](https://github.com/melisource/fury_rio-playmaker/blob/c4ac43da4a1c7222e4cdbceaff666978c96e0811/src/main/java/com/mercadolibre/rio/playmaker/service/pipeline/ComponentContextService.java#L79-L118).

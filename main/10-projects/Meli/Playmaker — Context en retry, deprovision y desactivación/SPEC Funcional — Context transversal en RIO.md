@@ -10,6 +10,7 @@ related:
 aliases: 
   - Estandarización de Context en flujos RIO
   - SPEC funcional Context en retry, deprovision y desactivación
+  - SIG-645 — Context transversal en RIO
 tags: 
   - kind/doc
   - area/meli
@@ -23,6 +24,8 @@ application: "[[rio-playmaker]]"
 # Spec Funcional: Context transversal en RIO — retry, deprovision y desactivación
 
 **Estado:** borrador · **Fecha:** 2026-09-30 · **Dueño:** rjara (Signals) · **Aplicación:** rio-playmaker
+
+**Spellbook:** [SIG-645 — Context transversal en RIO](https://spellbook.adminml.com/projects/SIG/specs/SIG-645) · **ID:** `b3b0fb05-d64f-4119-b98e-6aac9b36ca3c`
 
 ## Propósito
 
