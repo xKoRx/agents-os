@@ -36,7 +36,7 @@ updated: "2026-09-29"
 
 ## 📊 Estado actual
 
-- **DESIGN_ITERATION_REQUIRED — FINAL ADVERSARIAL REVIEW 2026-09-29.** Iteration 2 sobrevive los ataques centrales de stability/quality, nested indifference, center topology, auxiliary minimax y quality ordering. Se detectó un único defecto material fail-closed: los `+Inf` derivados pueden atravesar `ret_best/aux_best` cuando todo el set es no-finito. Corrección requerida: rechazar candidatos con `R_retdd`, `R_sharpe`, `R_profit`, `R_aux` o `cliff` no finitos antes de calcular mínimos.
+- **DESIGN_AMENDMENT_READY_FOR_FOCUSED_VERIFY — 2026-09-29.** El Primary Manager acepta la única corrección material del adversarial y la integra al candidate: todo candidate con `R_retdd`, `R_sharpe`, `R_profit`, `R_aux` o `cliff` no finito queda analytical-ineligible **antes** de `ret_best/aux_best`. Si no queda ninguno, la Strategy termina en analytical FAIL. Además, los parámetros semánticos `cliff_threshold`, `epsilon_ret` y `epsilon_aux` deben validarse como finitos y >= 0; un config inválido es contract/config error, no analytical FAIL. No cambia ninguna otra semántica de Iteration 2.
 - Candidate V2 recomendado: `R_x = max(normalized MAD_x, normalized |center_x - median_x|)`; cliff Ret/DD permanece hard gate separado; stability authority se implementa conceptualmente mediante dos indifference bands ancladas a mínimos intra-strategy: primero `R_retdd <= min(R_retdd)+epsilon_ret`, luego `R_aux=max(R_sharpe,R_profit) <= min(R_aux)+epsilon_aux`. Quality sólo decide después de ambas equivalencias.
 - La topología V2 se mantiene KISS: se agrega center representativeness porque el CELL aplicado físicamente es el centro; no se agregan edge weights, surface fitting ni pesos distintos para corner/direct neighbor sin evidencia.
 - Quality se mantiene deliberadamente lexicográfica después de stability equivalence: median Ret/DD → median Sharpe → median Net Profit. No se agrega quality band en V2; el replay adversarial no encontró en los probes realizados un caso donde <1% de ventaja median Ret/DD dentro de los stability bands ocultara >5% de Sharpe o >10% de Net Profit.
@@ -45,7 +45,7 @@ updated: "2026-09-29"
 - Exact durable replay sigue pendiente: Optimizer y WFM pueden diferir por re-evaluación. Antes de SPEC freeze se exige reproducir V1 desde CELL/MetricSet durable exacto y aplicar la V2 corregida offline sobre la misma autoridad.
 - Artefacto vigente: [[ROBUST-V2-FINAL-ADVERSARIAL-REVIEW]].
 - Manager pre-review: Iteration 2 resuelve el defecto principal de Pareto y queda aceptada como candidato para adversarial final, no frozen. El adversarial debe atacar especialmente (1) la semántica de que el auxiliary band pueda excluir al exact Ret/DD-stability winner una vez dentro de `epsilon_ret`; (2) sensibilidad de cliff a nivel candidate/winner, no sólo Strategy survival; (3) parámetros `epsilon_ret/epsilon_aux` como materiality semantics y no tuning; y (4) compatibilidad: V2 debe ser un algoritmo nuevo seleccionable por config sin cambiar V1.
-- Próximo exacto: **Primary Technical Manager integra la corrección bounded de derived-finiteness; luego verificación focalizada. No freeze de parámetros, SPEC ni implementación todavía.**
+- Próximo exacto: **fresh TOP focused verification del Manager amendment**: probar derived-finiteness + config-parameter validity y confirmar que no alteran casos finitos válidos ni V1. Si pasa, el diseño queda listo para Owner freeze sujeto al exact durable replay. No SPEC ni implementación todavía.
 
 ## 🧱 Entrega de desarrollo
 
@@ -64,12 +64,15 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 > - [x] Ejecutar segunda iteración TOP focalizada en autoridad de stability, Pareto trade-offs y MAD 3×3 #owner/me #type/research #area/echo
 > - [x] Revisar [[ROBUST-V2-DESIGN-ITERATION-2]] con Primary Technical Manager #owner/me #type/supervision #area/echo
 > - [x] Ejecutar fresh TOP final adversarial review del candidate V2 #owner/me #type/research #area/echo
-> - [ ] Integrar corrección bounded: non-finite derived stability => analytical ineligible #owner/me #type/research #area/echo
+> - [x] Integrar corrección bounded: non-finite derived stability => analytical ineligible #owner/me #type/supervision #area/echo
+> - [ ] Verificar focalizadamente derived-finiteness + validity de parámetros semánticos #owner/me #type/research #area/echo
 > - [ ] Resolver decisiones Owner: epsilon_ret, epsilon_aux y cliff threshold #owner/me #type/supervision #area/echo
 > - [ ] Congelar SPEC funcional/técnica sólo después de aceptar el diseño #owner/me #type/dev #area/echo #blocked
 > - [ ] Implementar y certificar V2 sólo después del SPEC freeze #owner/me #type/dev #area/echo #blocked
 
 ## 📆 Bitácora
+
+- **2026-09-29 — Primary Manager amendment.** Se acepta e integra la única corrección material del adversarial: derived non-finite => analytical-ineligible antes de mínimos; empty set => analytical FAIL. Se añade validación contractual KISS para los tres parámetros configurables de V2: deben ser finitos y >=0; config inválido es error técnico/config, no resultado analítico. No se reabre `R_x`, nested indifference, cliff semantics, auxiliary minimax, quality order ni config identity. Gate: `DESIGN_AMENDMENT_READY_FOR_FOCUSED_VERIFY`.
 
 - **2026-09-29 — Final adversarial design review.** Veredicto `DESIGN_ITERATION_REQUIRED`. Iteration 2 sobrevive las superficies centrales: Ret/DD indifference puede ceder autoridad a auxiliary stability dentro de la banda; la no-monotonicidad end-to-end en `epsilon_ret` es real y semánticamente intencional; `R_x=max(D,C)`, `R_aux=max(R_sharpe,R_profit)` y quality lexicográfica se mantienen. Cliff 35% sí es material a nivel candidate: rechaza 26/214 neighborhoods (12.15%), afecta 6 Strategies y cambia el primary stability anchor en 2. Defecto material nuevo: los sentinels `+Inf` pueden sobrevivir las bandas si todo el set es no-finito. Corrección mínima obligatoria: derived-finiteness gate antes de `ret_best/aux_best`. Config identity recomendado: selector explícito `evaluation_policy + version`, preservando exacto el path/digest V1 legacy. Artefacto: [[ROBUST-V2-FINAL-ADVERSARIAL-REVIEW]].
 
@@ -88,6 +91,8 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 - Tratar stability y performance level como conceptos separados.
 - No usar weights search ni profit histórico para elegir la policy.
 - V2 es **aditiva**, no una mutación de V1: debe exponerse como algoritmo/policy nuevo seleccionable por configuración; V1 permanece disponible y semánticamente estable.
+- Derived V2 non-finite values are rejection sentinels, never comparable stability values: any non-finite `R_retdd/R_sharpe/R_profit/R_aux/cliff` => analytical-ineligible before minima; no remaining candidates => analytical FAIL.
+- V2 semantic parameters `cliff_threshold`, `epsilon_ret`, `epsilon_aux` must be finite and >=0. Invalid configured values are contract/config errors, not analytical Strategy outcomes.
 
 ## 🔗 Docs / Links
 
