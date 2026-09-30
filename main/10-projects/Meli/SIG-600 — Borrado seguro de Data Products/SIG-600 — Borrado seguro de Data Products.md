@@ -150,7 +150,7 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 - **2026-09-30** — Se contrastaron los dos comentarios del PR #1228 contra HEAD 37dc1f2d3: carrera de ownership confirmada y falta de mock Kraken en integración confirmada. El verde previo no garantiza aislamiento; un test anterior deja grants ACME en el mock compartido sin reset, posible dependencia del orden. Pendientes coordinar ownership y aislar los providers con fixtures explícitos. Sin cambios de código ni comentarios publicados.
 
-- **2026-09-30** — Punto 2 del review corregido y subido en b0c5bf952: SDK Kraken mock en integración, reset automático de ACME/Kraken y permisos explícitos por caso. Cinco DELETE pasan aislados, 78 tests en la clase completa y 4.098 de regresión sin fallas (2 skips); once selectores focalizados aprobados. Stack local bloqueado por migración previa, cleanup verificado. CI del nuevo commit en ejecución. Para el punto 1 se propuso coordinar locks de DELETE/ownership conservando 410; no se implementó.
+- **2026-09-30** — Punto 2 del review corregido y subido en b0c5bf952: SDK Kraken mock en integración, reset automático de ACME/Kraken y permisos explícitos por caso. Cinco DELETE pasan aislados, 78 tests en la clase completa y 4.098 de regresión sin fallas (2 skips); once selectores focalizados aprobados. Stack local bloqueado por migración previa, cleanup verificado. Resultado final del CI pendiente de verificación: GitHub bloquea la IP por allow list de melisource; último snapshot con workflow SUCCESS y CI IN_PROGRESS. Para el punto 1 se propuso coordinar locks de DELETE/ownership conservando 410; no se implementó.
 
 ## 🧭 Decisiones
 
