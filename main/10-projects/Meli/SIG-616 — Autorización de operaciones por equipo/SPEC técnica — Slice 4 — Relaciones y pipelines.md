@@ -3,7 +3,7 @@
 ## Metadatos
 
 - Tipo: Technical SPEC
-- Estado: Corrección de review publicada en `40d5f9b22`, comentarios respondidos y CI aprobada; review humano, sub-SPEC F4 y pruebas manuales pendientes
+- Estado: Corrección de delete cross-DP local staged sobre `1c9f1aba7` el 2026-09-30, sin commit/push; regresión completa PASS; check MySQL bloqueado por migración previa; política sin owner, review humano, sub-SPEC F4 y smoke pendientes
 - SPEC funcional: [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621)
 - Requerimiento: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
 - Aplicación: `rio-playmaker`
@@ -23,7 +23,7 @@ Fase 4 agrega guards configurables a casos de uso existentes de relaciones y pip
 cascade iniciado por `DELETE /data-products/{id}` trasladado desde el review de F3. Es aditiva:
 
 - no crea endpoints ni casos de uso nuevos;
-- conserva las reglas funcionales de topology, ownership y estados; en relaciones exige same-DP como pide SIG-616 y rechaza cross-DP con `400`;
+- conserva las reglas funcionales de topology, ownership y estados; en create/update de relaciones exige same-DP como pide SIG-616 y rechaza cross-DP con `400`; delete admite limpiar relaciones cross-DP históricas;
 - no vuelve inmutable el ownership de una relación: update puede cambiar endpoints dentro del mismo Data Product;
 - un par no configurado conserva el flujo anterior y no invoca ACME por el guard nuevo;
 - el nivel exigido sale sólo de `app.action-authorization.permissions`;
@@ -88,13 +88,13 @@ casos de uso F4.
 3. Autoriza los owners persistidos distintos del estado actual y del solicitado con `component-relation:update`.
 4. Sólo después ejecuta el mapper existente, auditoría y save.
 
-F3 permitía cambiar source/destination Data Product; el ajuste solicitado por el owner aplica la invariante same-DP de SIG-616 a la relación solicitada. Update puede trasladar ambos extremos juntos a otro Data Product, autorizando el owner anterior y el nuevo. Una relación cross-DP histórica puede actualizarse a una relación válida dentro de un solo Data Product; su delete queda rechazado hasta reparar el dato.
+F3 permitía cambiar source/destination Data Product; el ajuste solicitado por el owner aplica la invariante same-DP de SIG-616 a la relación solicitada. Update puede trasladar ambos extremos juntos a otro Data Product, autorizando el owner anterior y el nuevo. Una relación cross-DP histórica puede actualizarse a una relación válida dentro de un solo Data Product o borrarse después de aplicar los guards configurados de ambos owners persistidos, sin reparar previamente los endpoints.
 
 ### Delete
 
 1. Resuelve la relación persistida y conserva el rechazo si ya fue borrada.
-2. Exige same-DP en los extremos persistidos antes de ACME o save.
-3. Autoriza su owner persistido con `component-relation:delete`.
+2. Permite extremos persistidos de Data Products distintos para limpiar relaciones históricas; same-DP sigue siendo obligatorio en create/update.
+3. Aplica `component-relation:delete` a cada owner persistido distinto. Con ownership completo y regla configurada, un deny o falla ACME en cualquiera impide toda mutación. La deduplicación evita repetir la autorización si ambos extremos pertenecen al mismo DP.
 4. Sólo después completa `deletedAt/deletedBy` y guarda.
 
 ## Contrato de pipeline
@@ -153,9 +153,11 @@ omitiendo el precheck histórico; el guard F4 permanece activo para poder probar
 | PR #1178, Ale: cascade elude delete individual | Válido, trasladado a F4 | Implementado con guard único antes del cascade y tests de cero side effects; respuesta publicada en el thread original. |
 | PR #1181, bot: ownership inmutable en relation update | No aplicable | F3 ya permitía modificar esos campos con `ComponentRelationMapper.updateModelFields`. Prohibirlo sería lógica nueva. Se conserva el baseline y se autorizan owners actual y solicitados. |
 | PR #1181, kmontero: plataforma pierde bypass en cascade | Válido; regresión F4 | Corregido en `e75ca90d9`: el guard nuevo respeta el bypass histórico sólo para miembros plataforma. Test con `application.yml` real, `DataProductAccessService` real, sin owner grant, más casos deny/allow y cero side effects. |
-| PR #1181, dmuena: same-DP en relaciones | Válido por SIG-616; reemplaza la decisión local previa de compatibilidad cross-DP | Se exige same-DP en create/update/delete antes de autorización y mutación; el rechazo es `400`. El rollout requiere comprobar relaciones cross-DP persistidas antes de desplegar. |
+| PR #1181, dmuena: same-DP en relaciones | Válido por SIG-616; reemplaza la decisión local previa de compatibilidad cross-DP | Se exige same-DP en create/update antes de autorización y mutación; el rechazo es `400`. El owner autorizó el 2026-09-30 exceptuar el delete histórico, que aplica los guards a ambos owners persistidos antes de borrar. |
 | PR #1181, dmuena: `FURY_IS_TEST_SCOPE` cambia el flujo | Válido como cambio observable; esperado para probar el guard por scope | El precheck histórico se omite en test scope y el guard F4 sigue gobernado por la configuración efectiva; se agregan tests de allow/deny con ACME simulado. |
 | PR #1181, dmuena: Data Products sin `teamName` | Válido para el cascade | El delete omite el precheck ACME histórico y el guard F4 si no hay equipo, incluso cuando hay `projectCode`; se agregan regresiones para `null` y blank. |
+| PR #1181, marellanoqui_meli: delete cross-DP histórico bloqueado | Válido; corrección autorizada el 2026-09-30 | Se elimina sólo el check same-DP en delete. Tests con autorizador real permiten con ambos grants, deniegan sin cualquiera de ellos o ante falla ACME; tests HTTP verifican 200/403 y estado persistido. Fix local, sin publicar. |
+| PR #1181, marellanoqui_meli: delete sin `teamName` queda sin autorización | Riesgo válido; decisión D26 pendiente de revisión del owner | No se cambió el cascade. El owner descarta backfill masivo y plataforma-only; se propusieron resolución de equipo por `systemId` y scope ACME fijo de compatibilidad para usuarios comunes. Ninguna alternativa fue aún elegida o implementada. |
 | PR #1178, comentarios restantes | Heredados/ya corregidos en F3 | La base sincronizada ya contiene las correcciones; no se duplican. Hallazgos fuera de alcance van a F5. |
 
 ## Archivos productivos
@@ -168,9 +170,11 @@ omitiendo el precheck histórico; el guard F4 permanece activo para poder probar
   `PipelineDesignServiceImpl`, `PipelineRelationsServiceImpl`, `ComponentCreateServiceImpl`,
   `PipelineDeployServiceImpl`, `DataProductServiceImpl`, `ComponentServiceImpl` y sus interfaces.
 
-No hay endpoints, modelos, tablas ni migraciones nuevos. La invariante same-DP de SIG-616 pasa a validarse en el servicio de relaciones.
+No hay endpoints, modelos, tablas ni migraciones nuevos. La invariante same-DP de SIG-616 se valida en create/update; delete conserva la limpieza de relaciones históricas bajo los guards configurados de sus owners.
 
 ## Evidencia automatizada
+
+Corrección local del 2026-09-30, sobre `1c9f1aba7` más el diff staged de seis archivos: La regresión `./gradlew check jacocoTestReport --offline --no-daemon` pasó: 4.097 tests en 371 suites, cero fallas/errores, dos skips y 14.689/15.118 líneas cubiertas (97,16%). Los 51 selectores de `run-agentic-testing-contract.sh` pasaron; su primer check L0/LOCAL_STACK falló en el bootstrap MySQL por la migración previa que elimina `component_type` antes de reemplazar el CHECK que lo referencia. Los otros dos checks no se ejecutaron por ese bloqueo común. El runner eliminó contenedores, volúmenes y red propios, comprobados vacíos por labels. Los 51 casos de las clases de relaciones (26 unit, 25 H2/HTTP) pasaron. No hay líneas productivas añadidas: el cambio funcional retira dos líneas del check same-DP en delete. `GenerateDocTest` dentro de la regresión no produjo cambios de OpenAPI. Sin Zord por instrucción expresa del owner, sin smoke remoto ni publicación del fix.
 
 Evidencia inicial sobre `d792b902b` y regresión final sobre `e75ca90d9`:
 
@@ -230,7 +234,7 @@ plataforma, por lo que esas variantes no sirven como prueba manual de dicho bypa
 
 ## Riesgos y gates pendientes
 
-- Checks visibles del nuevo HEAD (`continuous-integration`, `code-coverage`, `dependencies`, `workflow`) en `SUCCESS`; review `APPROVED`. GitHub aún informa `mergeStateStatus=BLOCKED`, sin conflictos (`MERGEABLE`); no se infiere habilitación para merge.
+- Estado observado el 2026-09-30: GitHub marca el PR CONFLICTING/DIRTY contra develop; no se resolvieron conflictos. La corrección cross-DP permanece local, por lo que no tiene checks remotos nuevos. El gate L0/LOCAL_STACK falla en el bootstrap MySQL preexistente; los dos checks posteriores comparten esa dependencia y quedaron sin ejecutar. No se presenta la regresión H2 como sustituto del stack.
 - Builds Fury test3 terminados `FINISHED`; falta deploy no productivo.
 - Pruebas manuales sobre esas variantes; no se declaran aprobadas antes de ejecutarlas.
 - No se realizará versión estable ni deployment productivo.
@@ -243,7 +247,7 @@ plataforma, por lo que esas variantes no sirven como prueba manual de dicho bypa
 - Wildcards de components no activan relation/pipeline/Data Product.
 - Ausencia de entrada omite el guard nuevo; ownership incompleto omite el guard nuevo y delete de DP sin equipo omite además el precheck ACME heredado.
 - Deny ocurre antes del primer side effect.
-- Create/update/delete de relaciones rechazan cross-DP antes de ACME y persistencia; update conserva cambios de endpoints cuando ambos pertenecen al mismo Data Product.
+- Create/update de relaciones rechazan cross-DP antes de ACME y persistencia; update conserva cambios de endpoints cuando ambos pertenecen al mismo Data Product. Delete admite relaciones cross-DP históricas y aplica el guard configurado a ambos owners distintos antes de mutar.
 - Cascade autoriza una vez el Data Product persistido y no muta al denegar.
 - El bypass heredado de equipos plataforma permite el cascade sin owner grant adicional.
 - Username proviene del principal; headers quedan por ACME/downstreams existentes.

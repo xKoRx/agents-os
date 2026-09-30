@@ -26,7 +26,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-09-14"
-updated: "2026-09-28"
+updated: "2026-09-30"
 ---
 
 # SIG-616 — Autorización de operaciones por equipo
@@ -88,7 +88,7 @@ updated: "2026-09-28"
 | `rio-playmaker` | `feature/operation-authorization-by-team-f1` | `origin/develop@073f6a190` sincronizada por merge | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621), iniciativa derivada de [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) | [SIG-622 — Slice 1](https://spellbook.adminml.com/projects/SIG/specs/SIG-622) | Mergeado en `develop`; smoke no productivo ejecutado exitosamente |
 | `rio-playmaker` | `feature/operation-authorization-by-team-f2@2e1d1c8955e` | `develop@625f491d218e` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [SIG-623 — Slice 2](https://spellbook.adminml.com/projects/SIG/specs/SIG-623) | Implementado y publicado en [PR #1172](https://github.com/melisource/fury_rio-playmaker/pull/1172); review comments resueltos y smoke no productivo aprobado |
 | `rio-playmaker` | `feature/operation-authorization-by-team-f3` | `develop` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 3 — Mutaciones y deployments de componentes]] | Mergeado por [PR #1178](https://github.com/melisource/fury_rio-playmaker/pull/1178) como `19d70a6cf`; todos los threads resueltos |
-| `rio-playmaker` | `feature/operation-authorization-by-team-f4@40d5f9b22` | `develop` (F3 `19d70a6cf`; tip observado `9a559dfb3`) | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181) actualizado; David respondido; CI #5496 y demás checks en verde; review humano, sub-SPEC y smoke pendientes |
+| `rio-playmaker` | `feature/operation-authorization-by-team-f4@1c9f1aba7` + fix local staged | `develop@621167382` (base informada por el PR; develop remoto avanzó) | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 4 — Relaciones y pipelines]] | [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181): corrección de delete cross-DP local, sin commit/push; regresión completa PASS, gate MySQL bloqueado por migración previa. GitHub CONFLICTING/DIRTY; política de DP sin owner, review humano, sub-SPEC y smoke pendientes |
 | `rio-playmaker` | `feature/operation-authorization-by-team-f5@8be97883` | `feature/operation-authorization-by-team-f4@40d5f9b22` | [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621) | [[SPEC técnica — Slice 5 — Actions restantes]] | Publicado en [PR #1182](https://github.com/melisource/fury_rio-playmaker/pull/1182); CI #5565 `SUCCESS`; cobertura PR 98,00%; smoke F1 y aprobación humana pendientes; sin deploy |
 
 ## 🧠 Diseño técnico consolidado
@@ -166,7 +166,7 @@ Playmaker es el enforcement point. Los handlers y Control Planes no consultarán
 | Slice 1 | Extraer autorizador desde PR 1126 y migrar delete/inactivate | Ninguno: refactor compatible de la política existente |
 | Slice 2 | Corregir principal Tiger e integrar `catalog-signal + start/stop` | Sólo Signals agrega una restricción nueva |
 | Slice 3 | Mutaciones y deployments de componentes | `DEV_AND_UP` en todas las rutas enumeradas; tests y rollout en el mismo PR |
-| Slice 4 | Relaciones y pipelines, pipeline deploy y cascade de Data Product | Guards exactos config-backed; `DEV_AND_UP` salvo cascade `DEPLOYER_AND_UP`; relaciones same-DP obligatorias por SIG-616 y sin ownership inmutable |
+| Slice 4 | Relaciones y pipelines, pipeline deploy y cascade de Data Product | Guards exactos config-backed; `DEV_AND_UP` salvo cascade `DEPLOYER_AND_UP`; create/update de relaciones same-DP por SIG-616; delete admite limpieza histórica cross-DP y sin ownership inmutable |
 | Slice 5 | Mutaciones pendientes y Actions de Signals | Agrega guards a mutaciones declaradas, clasifica cada Action component-bound por par exacto y deniega pares desconocidos |
 
 ### Niveles ACME
@@ -404,9 +404,9 @@ Evidencia mínima: versión y commit desplegados, request sanitizado, status/res
 
 #### Slice 4 — Relaciones y pipelines
 
-Objetivo: proteger create/update/delete de relaciones con owners persistidos y exigir same-DP antes de autorizar, migrar PUT/design/relations/component-create/pipeline-deploy al autorizador común con `DEV_AND_UP` y cubrir el cascade de Data Product con `DEPLOYER_AND_UP`, todo por configuración exacta.
+Objetivo: proteger create/update/delete de relaciones con owners persistidos, exigir same-DP en create/update y permitir limpiar relaciones cross-DP históricas después de los guards de ambos owners, migrar PUT/design/relations/component-create/pipeline-deploy al autorizador común con `DEV_AND_UP` y cubrir el cascade de Data Product con `DEPLOYER_AND_UP`, todo por configuración exacta.
 
-La implementación, rechazo cross-DP, verificación de cero side effects, smoke y coverage viven en [[SPEC técnica — Slice 4 — Relaciones y pipelines]] y se entregan en un único PR. La decisión del 2026-09-24 reemplaza la compatibilidad cross-DP que se había documentado para F4; antes del deploy hay que comprobar si existen relaciones cross-DP persistidas y planificar su reparación.
+La implementación, rechazo cross-DP, verificación de cero side effects, smoke y coverage viven en [[SPEC técnica — Slice 4 — Relaciones y pipelines]] y se entregan en un único PR. La decisión del 2026-09-30 mantiene same-DP para create/update y permite borrar relaciones cross-DP históricas sin una reparación previa de endpoints, con los guards configurados de ambos owners persistidos.
 
 #### Slice 5 — Actions restantes
 
@@ -593,6 +593,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 ## 📆 Bitácora
 
+- **2026-09-30** — Se validaron los dos nuevos comentarios de [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181). El owner autorizó corregir el delete de relaciones cross-DP históricas; fix local staged en `feature/operation-authorization-by-team-f4`, sin commit/push. La regresión `./gradlew check jacocoTestReport --offline --no-daemon` pasó: 4.097 tests en 371 suites, cero fallas/errores, dos skips y 14.689/15.118 líneas cubiertas (97,16%). Los 51 selectores de `run-agentic-testing-contract.sh` pasaron; su primer check L0/LOCAL_STACK falló en el bootstrap MySQL por la migración previa que elimina `component_type` antes de reemplazar el CHECK que lo referencia. Los otros dos checks no se ejecutaron por ese bloqueo común. El runner eliminó contenedores, volúmenes y red propios, comprobados vacíos por labels. Se actualizó [[Descripción PR — rio-playmaker — Slice 4]] con el estado local y los bloqueantes. D26 no se modificó: se evaluaron respaldo por `systemId` y un scope ACME fijo de compatibilidad para usuarios comunes, sin backfill masivo. Sin Zord por instrucción expresa del owner, sin smoke ni mutaciones remotas.
+
 - **2026-09-24** — Review de David en [PR #1181](https://github.com/melisource/fury_rio-playmaker/pull/1181): se aplicó same-DP a create/update/delete de relaciones y se omitieron ambos chequeos ACME del cascade para Data Products sin equipo. Se agregaron tests de test scope, YAML real, cross-DP y no-team, más la corrección de Javadoc/self-loop. Se publicó F4 `40d5f9b22`, se actualizó la descripción y se respondieron los nueve hilos inline y el review general. Pasaron 20 selectores, ambos checks L0/LOCAL_STACK con cleanup, suite de 4.009 tests (0 fallas, 2 skips) y 97,07% de cobertura global. CI #5496, cobertura, dependencias, análisis estático y workflow pasaron. Review humano, sub-SPEC F4, smoke y auditoría de relaciones cross-DP persistidas pendientes. F5 #1182 aún no incorpora este commit de F4.
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
@@ -656,7 +658,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **D22 — Encadenamiento secuencial.** Slice 3 parte del head aprobado de Slice 2, Slice 4 del head aprobado de Slice 3 y Slice 5 del head aprobado de Slice 4. Ninguna entrega recrea el autorizador ni se basa directamente en `develop` mientras dependa de cambios aún no mergeados.
 - **D23 — Sólo mutaciones comprobadas en Slice 5.** Los pares mutantes existentes de Flink y ClickHouse se agregan a la configuración. Reads, aliases y `ping` no adquieren autorización ACME ni bloquean por ausencia en configuración.
 - **D24 — Configuración por scope, contrato estable.** `app.action-authorization.permissions` es la fuente actual por ambiente/scope. Los consumidores dependen de `ActionPermissionProvider`; una carga futura desde Discovery, job o bootstrap reemplaza el adapter sin cambiar `ActionServiceImpl` ni `ActionAuthorizationService`.
-- **D25 — Same-DP en relaciones.** El owner indicó el 2026-09-24 aplicar la invariante explícita de SIG-616 pese a la decisión previa de F4 de preservar cross-DP. Create/update/delete rechazan extremos de Data Products distintos antes de autorización y mutación; update puede mover ambos extremos juntos a otro Data Product con autorización de owner actual y solicitado. Esta decisión requiere auditar datos cross-DP antes del rollout.
+- **D25 — Same-DP en relaciones.** El owner indicó el 2026-09-24 aplicar la invariante de SIG-616. El 2026-09-30 autorizó corregir el delete para limpiar relaciones cross-DP históricas: create/update siguen rechazando extremos de Data Products distintos antes de autorización y mutación; delete aplica el guard configurado a ambos owners persistidos distintos antes del soft delete, conservando la compatibilidad del autorizador aditivo. Update puede mover ambos extremos juntos a otro Data Product con autorización de owner actual y solicitado. El delete deja de exigir reparar endpoints antes de borrar.
 - **D26 — Data Products sin equipo en el cascade.** El owner aclaró el 2026-09-24 que un DP sin `teamName` no debe exigir equipo ni validación ACME. En `DELETE /data-products/{id}` se omiten el precheck heredado y el guard F4 cuando el equipo persistido está vacío, incluso si existe `projectCode`; blockers, estado y demás efectos conservan su flujo. Con equipo y sin proyecto se mantiene el precheck heredado y sólo se omite el guard F4.
 
 ## 🔗 Docs / Links
