@@ -22,7 +22,7 @@ tags:
   - echo-forge
   - robust-run-selection
 created: "2026-09-29"
-updated: "2026-09-29"
+updated: "2026-09-30"
 ---
 
 # Echo Forge — Robust Run Selection V2
@@ -68,7 +68,8 @@ _Diseño cerrado. Shot 1 autorizado: implementación mínima del nuevo algoritmo
 > - [x] Verificar focalizadamente derived-finiteness + validity de parámetros semánticos #owner/me #type/research #area/echo
 > - [ ] Recuperar durable replay histórico sólo como verificación/certificación posterior si vuelve a estar disponible la evidencia original #owner/me #type/research #area/echo
 > - [x] Ejecutar Shot 1 — nuevo algoritmo V2 + config mínima + tests + regresión V1 #owner/me #type/dev #area/echo
-> - [ ] Review Shot 1 por Primary Technical Manager (branch `feature/robust-selection-v2-shot1` local, sin push) #owner/me #type/supervision #area/echo
+> - [x] Ejecutar Shot 1R — eliminar scalar RobustnessScore inventado + verificar semántica honesta de ranking_metric/value + sweep drift #owner/me #type/dev #area/echo
+> - [ ] Review Shot 1 (post Shot 1R) por Primary Technical Manager (branch `feature/robust-selection-v2-shot1` local, sin push) #owner/me #type/supervision #area/echo
 
 ## 📆 Bitácora
 
