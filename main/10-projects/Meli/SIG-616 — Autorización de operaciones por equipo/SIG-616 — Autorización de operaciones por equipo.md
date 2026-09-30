@@ -125,7 +125,7 @@ Reglas transversales heredadas:
 - `team-dev-and-up` equivale a `admin`, `maintainer`, `deployer`, `committer`.
 - Los componentes importados conservan el comportamiento existente; la autorización adicional usa el team/project persistido del Data Product.
 - Precreation conserva su comportamiento y queda fuera de la autorización component-bound.
-- Origen y destino de una relación deben pertenecer al mismo Data Product; cross-DP es inválido.
+- Origen y destino solicitados en create/update de una relación deben pertenecer al mismo Data Product; cross-DP es inválido. Delete permite limpiar relaciones cross-DP históricas después de los guards configurados de ambos owners persistidos (D25, ajustada el 2026-09-30).
 - `platformTeams` y `tempAllCanEdit` no conceden autorización bajo el nuevo guard.
 - Tiger ausente/inválido, ownership faltante, rol insuficiente, ACME no verificable o recursos inconsistentes rechazan sin side effects.
 

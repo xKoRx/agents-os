@@ -43,7 +43,7 @@ Este PR agrega autorización configurable a nueve operaciones existentes de F4. 
 ## Dev checklist (should be completed by the developer assigned to the issue)
 
 * [ ] I have met the definition of done — review humano, sub-SPEC y smoke pendientes.
-* [x] I have used conventional commits — commits previos del PR; esta corrección todavía no está commiteada.
+* [ ] I have used conventional commits — los commits previos del PR cumplen; esta corrección todavía no está commiteada.
 * [x] My code follows the style guidelines of this project.
 * [x] I have performed a self-review of my own code.
 * [x] I have commented portions of my code, particularly in hard-to-understand areas — no se necesitó un comentario productivo nuevo para retirar el check de delete.
