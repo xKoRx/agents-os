@@ -44,6 +44,8 @@ tags:
 
 - **Continuación documental:** descripción traducida, sintetizada y publicada por instrucción del owner. Lectura completa de comentarios, reviews y comentarios del commit no encuentra feedback posterior a los dos findings de marellanoqui del 2026-09-30, ya contestados y resueltos. Se solicitó el enlace exacto del comentario adicional para identificarlo sin inventar su contenido.
 
+- **Diagnóstico del rojo:** el usuario retomó la investigación del PR. La consulta nueva de GitHub fue rechazada por la IP allowlist de melisource; el conector de checks solicita conectar GitHub. La última evidencia verificable conserva dependencies FAILURE en CI #5625 y los otros cuatro checks SUCCESS. El check publica sólo un mensaje de nodo abortado, sin resumen, texto ni anotaciones. build.gradle, settings/propiedades, locks, wrapper y .fury no cambiaron entre 1c9f1aba7 y 99c51fe8b; la configuración previa había pasado el gate. Esto no confirma una causa de infraestructura ni descarta una alerta actualizada. Se pidió VPN corporativa o el error de la etapa para continuar; sin cambios de código o librerías durante esta investigación.
+
 ## Evaluación
 
 - Sin scores autoevaluados; el estado se fundamenta en pruebas, readback de GitHub y limpieza observable.
