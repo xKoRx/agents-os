@@ -34,10 +34,11 @@ tags:
 - **Archivo(s):**
   - `10-projects/Echo Forge — Robust Run Selection V2/Echo Forge — Robust Run Selection V2.md`
   - `10-projects/Echo Forge — Robust Run Selection V2/ROBUST-V2-DESIGN-CANDIDATE.md`
+  - `10-projects/Echo Forge — Robust Run Selection V2/ROBUST-V2-DESIGN-ITERATION-2.md`
 
 ## Motivo
 
-- Persistir el proyecto de diseño y su candidato matemático V2 antes de cualquier SPEC o implementación.
+- Persistir el proyecto de diseño, el primer candidate y la segunda iteración de stability authority antes de cualquier SPEC o implementación.
 
 ## Fuentes usadas
 
@@ -47,13 +48,16 @@ tags:
 
 ## Resolución aplicada
 
-- Proyecto quedó en `status: review`, `progress: 50`, con `DESIGN_CANDIDATE_READY_FOR_MANAGER_REVIEW`.
-- No se modificó product code ni se declaró implementación lista.
+- Iteration 2 rechaza plain Pareto como authority y propone nested stability indifference bands con center representativeness, manteniendo cliff separado.
+- Proyecto quedó en `status: review`, `progress: 70`, con `DESIGN_V2_CANDIDATE_READY` y gate siguiente de final adversarial design review.
+- No se modificó product code ni se declaró SPEC/implementación lista.
 
 ## Validación
 
 - Read-back vía GitHub de las fuentes y artifacts relevantes.
 - Source reconstruction de ranking V1 y replay offline de sensitivity/counterexamples.
+- Mandatory walkthroughs de Strategy_1.8.669, Strategy_6.40.536, Strategy_8.10.634, Strategy_2.17.581 y Strategy_6.39.493.
+- Pre-cliff/cliff separation verificada: 18 pre-cliff eligible; all-candidate rejection = 4/3/0/0 para cliff 25/30/35/40%.
 - Limitación conocida: replay durable exacto de `cells.tsv` queda pendiente por tooling de lectura en esta superficie.
 
 ## Compartibilidad
