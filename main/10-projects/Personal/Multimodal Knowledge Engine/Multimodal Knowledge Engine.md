@@ -35,7 +35,7 @@ updated: "2026-09-29"
 >
 > **D4 = DEFERRED_TO_V3.** El gap de scoring multi-record queda preservado como evidencia histórica; V2 no modifica el golden ni hace composition-aware benchmark scoring.
 >
-> **V2 = ACTIVE / DESIGN ACCEPTED.** El modelo congelado separa `L0 Source Evidence → L1 Grounded Claims → L2 Semantic Knowledge Objects (SKO)`. Branch de diseño: `feature/v2-layered-knowledge-model`, baseline exacta `640d000`, Design Pack @ `68640d5`. Próximo gate: Shot 1 de implementación; no hay product code V2 aún.
+> **V2 = ACTIVE / DESIGN FROZEN.** `V2_DESIGN = ACCEPTED`, `ARCHITECTURE = FROZEN`, `READY_FOR_V2_SHOT_1 = YES`. El modelo separa `L0 Source Evidence → L1 Grounded Claims → L2 Semantic Knowledge Objects (SKO)`. Branch: `feature/v2-layered-knowledge-model`, baseline exacta `640d000`, Design Pack final @ `618043e`. Próximo gate: Shot 1 de implementación; no hay product code V2 aún.
 
 **Workstream vigente: MKE V2 — Layered Knowledge Model.** V1 queda como baseline preservada y evidencia del porqué existe V2; no reabrir findings M0-R1 salvo regresión concreta.
 ## 🎯 Objetivo
@@ -55,7 +55,7 @@ Transformar **fuentes multimodales heterogéneas** en conocimiento estructurado 
 3. **D4 diferido:** el desacople entre records atómicos y reglas multi-cláusula del golden no se corrige en V2; queda para V3 junto con composition-aware evaluation.
 4. **V2 Design aceptado:** L0 reutiliza source/media/evidence/coverage V1; L1 introduce claims explícitamente atómicos; L2 agrega SKOs compuestos sólo desde L1 válido.
 5. **KISS/YAGNI preservado:** sin nueva DB, queue, graph/vector store, RAG, search, intent/questions, cross-source composition ni SKO nesting.
-6. **Design Pack físico:** `docs/v2/V2-ARCHITECTURE.md`, `V2-FUNCTIONAL-CONTRACT.md`, `V2-TECHNICAL-CONTRACT.md`, `V2-ACCEPTANCE-PLAN.md`, `V2-IMPLEMENTATION-PLAN.md` sobre `feature/v2-layered-knowledge-model @ 68640d5`.
+6. **Design Pack físico:** `docs/v2/V2-ARCHITECTURE.md`, `V2-FUNCTIONAL-CONTRACT.md`, `V2-TECHNICAL-CONTRACT.md`, `V2-ACCEPTANCE-PLAN.md`, `V2-IMPLEMENTATION-PLAN.md` sobre `feature/v2-layered-knowledge-model @ 618043e`.
 7. **Próximo gate:** ejecutar exactamente Shot 1 implementation → Shot 2 independent adversarial review → Shot 3 remediation + final certification.
 La certificación y los artefactos físicos fueron reportados en Daedalus bajo `~/mke/m0-20260928/`; esa ruta es evidencia local y debe revalidarse en el host antes de asumir persistencia. Los cambios no commiteados reportados por el ejecutor no son autoridad Git hasta ser inspeccionados y committeados.
 
@@ -63,7 +63,7 @@ La certificación y los artefactos físicos fueron reportados en Daedalus bajo `
 
 | Aplicación / repo | Branch activo de continuidad | Base verificable | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| MKE / `xKoRx/multimodal-knowledge-engine` | V1: `fix/m0-live-readiness @ 640d000`; V2 design: `feature/v2-layered-knowledge-model @ 68640d5` | V2 parte exactamente de `640d000` | `docs/v2/V2-FUNCTIONAL-CONTRACT.md` | `docs/v2/V2-TECHNICAL-CONTRACT.md` + `V2-ARCHITECTURE.md` | `V2_DESIGN = ACCEPTED`; Shot 1 todavía no ejecutado |
+| MKE / `xKoRx/multimodal-knowledge-engine` | V1: `fix/m0-live-readiness @ 640d000`; V2 design: `feature/v2-layered-knowledge-model @ 618043e` | V2 parte exactamente de `640d000` | `docs/v2/V2-FUNCTIONAL-CONTRACT.md` | `docs/v2/V2-TECHNICAL-CONTRACT.md` + `V2-ARCHITECTURE.md` | `V2_DESIGN = ACCEPTED`; `ARCHITECTURE = FROZEN`; `READY_FOR_V2_SHOT_1 = YES`; Shot 1 todavía no ejecutado |
 
 ## 1. Contrato funcional y boundaries vigentes
 
@@ -143,7 +143,9 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 
 - **2026-09-28 — certificación física M0:** corrida real completa reportada sobre source autorizado: 26/26 ventanas, 348 VLM calls, ~5.2M tokens, costo reportado 0. Resultado `M0_NO_GO`: G1/G3/G4/G8 PASS; G2 7/7 critical recoverable sin acreditar; G5 6 excepciones ocultas. QA determinó que los 7 ítems estaban presentes en material recuperado, apuntando a grounding/evaluación y no a acquisition.
 - **2026-09-28 — remediation owner:** se autoriza workstream acotado `M0-R1` y se eleva Whisper/local ASR a requisito operacional. Mandato entregado para IMPLEMENT→TEST→QA→recertificación, sin M1/M2 ni rediseño general.
-- **2026-09-29 — M0-R1 Shots 1–3:** Shot 1 implementación (`dad3891`), Shot 2 revisión adversarial (8 MAJOR/13 MINOR/12 NOTE, sin CRITICAL), Shot 3 remediación completa + aceptación adversarial independiente PASS @ `640d000` (8 commits). Golden intacto `91c3dd57…`. D4 = CONTRACT_DECISION_REQUIRED (composición multi-record); recertificación G0–G9 pendiente de decisión owner + credencial por-corrida + smoke live. Planificador: [[M0 Execution]].\n- **2026-09-29 — cierre V1 + Design V2:** Owner congela V1/M0-R1 como `CLOSED_AS_REMEDIATED`, mantiene `M0 = NOT_RECERTIFIED` y difiere D4 a V3. Manager verifica `fix/m0-live-readiness @ 640d000`, inspecciona contracts/source V1 y concluye que L0 ya existe mayormente, mientras V1 knowledge mezcla atomicidad y composición. Se crea `feature/v2-layered-knowledge-model` desde `640d000` y se congela Design Pack L0/L1/L2 @ `68640d5`, sin product code.
+- **2026-09-29 — M0-R1 Shots 1–3:** Shot 1 implementación (`dad3891`), Shot 2 revisión adversarial (8 MAJOR/13 MINOR/12 NOTE, sin CRITICAL), Shot 3 remediación completa + aceptación adversarial independiente PASS @ `640d000` (8 commits). Golden intacto `91c3dd57…`. D4 = CONTRACT_DECISION_REQUIRED (composición multi-record); recertificación G0–G9 pendiente de decisión owner + credencial por-corrida + smoke live. Planificador: [[M0 Execution]].
+- **2026-09-29 — cierre V1 + Design V2:** Owner congela V1/M0-R1 como `CLOSED_AS_REMEDIATED`, mantiene `M0 = NOT_RECERTIFIED` y difiere D4 a V3. Manager verifica `fix/m0-live-readiness @ 640d000`, inspecciona contracts/source V1 y concluye que L0 ya existe mayormente, mientras V1 knowledge mezcla atomicidad y composición. Se crea `feature/v2-layered-knowledge-model` desde `640d000` y se congela Design Pack L0/L1/L2 @ `618043e`, sin product code.
+- **2026-09-29 — finalización Design V2:** review final cierra D-FIX-01..04: atomicidad operacional L1, bounded direct-relation closure L2, boundary de run journal preservada e invocación `mke pipeline` con config schema v1/v2 explícita. Adversarial read final verifica merge-base `640d000`, branch behind=0 y diff limitado a cinco `docs/v2/*`. Design Pack final @ `618043e`; `ARCHITECTURE = FROZEN`, `READY_FOR_V2_SHOT_1 = YES`.
 
 ## 🧭 Decisiones
 
@@ -153,14 +155,16 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 - Product-first 00A, SQLite+FS cuando necesario 02; nada de infraestructura por anticipación.
 - QA no auto-certificado, golden blind, replay ≠ live, no afirmaciones falsas de verdad humana/externa, JSONL canónico.
 - Historial sintético anterior NO_GO conservado; recovery PASS sobre tres casos y holdout 6/6 no son certificación M0. Gate definitivo físico/spec basado en evidencia.
-- Roadmap de oportunidades diferido y ya persistido, sin scope creep M0.\n- V2: L0 reutiliza source/media/evidence; L1 son Grounded Claims atómicos; L2 son SKOs con provenance transitiva. `D4 = DEFERRED_TO_V3`; intent/questions, RAG/search, cross-source composition y SKO nesting quedan fuera.
+- Roadmap de oportunidades diferido y ya persistido, sin scope creep M0.
+- V2: L0 reutiliza source/media/evidence; L1 son Grounded Claims atómicos; L2 son SKOs con provenance transitiva. `D4 = DEFERRED_TO_V3`; intent/questions, RAG/search, cross-source composition y SKO nesting quedan fuera.
 - Para M0-R1, el golden existente se preserva hash-identical; corregir evaluación cross-language NO autoriza traducir/regenerar golden ni relajar valores/condiciones/negaciones/excepciones.
 - Whisper/local ASR es ahora requisito operacional del Owner para cerrar M0-R1, pero sigue detrás de `ASRProvider`; este refinement no autoriza acoplar media/pipeline a Whisper ni crear routing/infra adicional.
 
 ## 🔗 Docs / Links
 
 - **Punto de entrada para nuevo agente:** [[MKE — Handoff técnico y certificación M0]].
-- **Historial V1/M0:** [[M0 Execution]].\n- **V2 Design Pack:** repo `xKoRx/multimodal-knowledge-engine`, branch `feature/v2-layered-knowledge-model`, `docs/v2/` @ `68640d5`.
+- **Historial V1/M0:** [[M0 Execution]].
+- **V2 Design Pack:** repo `xKoRx/multimodal-knowledge-engine`, branch `feature/v2-layered-knowledge-model`, `docs/v2/` @ `618043e`.
 - [Rama de código de continuidad](https://github.com/xKoRx/multimodal-knowledge-engine/tree/fix/m0-live-readiness) y [commit verificable `974f748`](https://github.com/xKoRx/multimodal-knowledge-engine/commit/974f74818d1a298497fff77e297f64b1dd327f61).
 - [Arquitectura congelada](https://github.com/xKoRx/multimodal-knowledge-engine/blob/fix/m0-live-readiness/docs/architecture/architecture.md); [SPEC-00A](https://github.com/xKoRx/multimodal-knowledge-engine/blob/fix/m0-live-readiness/docs/specs/SPEC-00A-product-spike.md); [SPEC-04](https://github.com/xKoRx/multimodal-knowledge-engine/blob/fix/m0-live-readiness/docs/specs/SPEC-04-integration-benchmark.md).
 - [Runbook físico (leer erratas en recurso antes de usar)](https://github.com/xKoRx/multimodal-knowledge-engine/blob/fix/m0-live-readiness/docs/runbooks/m0-live-certification.md).
