@@ -637,6 +637,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 
 - **2026-09-30** — Se publicó F4 `99c51fe8b` tras integrar `develop@0c9e9e3ee`. Quedó corregido el delete histórico cross-DP y conservada D26 con aceptación explícita del riesgo. Se respondió el finding nuevo y se actualizaron las respuestas antiguas de same-DP; todos los hilos quedaron contestados y resueltos. Se repararon bootstrap local MySQL y descubrimiento Jetty sin cambiar SQL ni omitir constraints. Pasaron 4.129 tests (97,19% coverage), 53 selectores y tres checks locales con cleanup; dependencies FAIL; los demás checks publicados pasaron. PR MERGEABLE; faltan aprobación humana, sub-SPEC formal y smoke. Sin Zord ni deploy.
 
+- **2026-09-30** — Por instrucción del owner, se sintetizó la descripción del PR #1181 y se tradujo al español sobre `99c51fe8b`, conservando la excepción sin equipo y los pendientes. La consulta completa de GitHub muestra los dos findings de marellanoqui del 2026-09-30 como último feedback humano; no aparece otro comentario posterior. Se solicitó el enlace para identificar el comentario adicional que menciona el owner.
+
 ## 🧭 Decisiones
 
 - **D1 — Primer cambio funcional sólo Signals.** La primera restricción nueva protege `catalog-signal + start/stop` sobre componentes existentes; el refactor previo de delete/inactivate no cambia su política. Legacy, otras tecnologías, polling, imports y precreation conservan su comportamiento.

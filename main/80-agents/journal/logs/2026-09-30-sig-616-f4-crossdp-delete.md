@@ -51,6 +51,8 @@ tags:
 - Publicación verificada en `99c51fe8bd3da2e73ede96ae717a1ab1fae723c7`; dependencies FAIL; los demás checks publicados pasaron; PR MERGEABLE / BLOCKED / REVIEW_REQUIRED.
 - Sin Zord por instrucción del owner; sin smoke remoto, merge del PR ni deploy. Los fallos iniciales del runner se resolvieron antes de publicar.
 
+- Descripción resumida y traducida al español por instrucción explícita del owner; pendiente identificar el comentario nuevo mediante su enlace, ya que GitHub no devuelve otro posterior a los dos findings de marellanoqui.
+
 ## Compartibilidad
 
 - **Scope:** local.

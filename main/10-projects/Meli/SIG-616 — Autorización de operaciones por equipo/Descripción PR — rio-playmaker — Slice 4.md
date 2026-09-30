@@ -29,63 +29,42 @@ Guardar la descripción verificable del PR como recurso de la iniciativa y publi
 
 ---
 
-## Description
+## Descripción
 
-feat(sig-616): authorize configured relation, pipeline and cascade operations
+feat(sig-616): autorización de operaciones de relaciones, pipeline y borrado en cascada
 
-Este PR agrega guards configurables a nueve operaciones existentes de F4. Cada guard usa el par exacto de `app.action-authorization.permissions`; quitarlo conserva el flujo previo sin la consulta ACME nueva. F5 y el smoke remoto completan las fases posteriores. La rama integra `develop@0c9e9e3ee`; la corrección final quedó publicada en `99c51fe8b`.
+Fase 4 de SIG-616: agrega autorización configurable a nueve operaciones existentes. El control nuevo se activa por un par exacto de configuración cuando el DP tiene equipo y proyecto completos.
 
-* Relaciones: create/update exigen same-DP y rechazan cross-DP con `400` antes de ACME o persistencia. Delete permite limpiar relaciones cross-DP históricas aplicando `component-relation:delete` a cada owner persistido distinto antes del soft delete. Con ownership completo y regla configurada, ambos owners deben autorizar; deny o falla ACME impiden toda mutación. Update autoriza el owner actual y el solicitado al mover ambos endpoints a otro DP válido.
-* Pipeline: replace-topology, update-design, update-relations, create-component y deploy aplican el guard `pipeline` antes del primer side effect. La configuración efectiva de relaciones y pipeline usa `DEV_AND_UP`.
-* Cascade: `DELETE /data-products/{id}` mantiene los blockers y el bypass histórico de plataforma. Los demás usuarios con ownership completo requieren `data-product:cascade-delete-components=DEPLOYER_AND_UP`. Si falta `teamName`, se omiten tanto el precheck ACME heredado como el guard F4. Con equipo y sin `projectCode`, permanece el precheck de pertenencia al equipo y se omite sólo el guard nuevo.
-* **Excepción y riesgo aceptados para F4:** un usuario autenticado sin grants puede borrar un DP sin equipo y sus componentes si pasan las precondiciones de estado y blockers. Tiger autentica; no sustituye el permiso de borrado. El owner ratificó mantener esta compatibilidad sin backfill masivo ni restringir esos DP a plataforma. [Decisión respondida al reviewer](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952).
-* Los scopes no-component usan lookup exacto, sin heredar el wildcard de componentes. Configuración ausente y ownership incompleto conservan el contrato aditivo; las rutas legacy retienen sus políticas. Los controllers pasan `Authentication.getName()` y mantienen los headers necesarios para ACME/downstreams.
-* Se corrigió el bootstrap local para aplicar la sustitución del CHECK antes del DROP histórico y se ajustó la detección de puerto a Jetty/Tomcat. No se cambiaron SQL de migraciones ni se omitieron constraints. La metadata OpenAPI incorporada desde develop se genera ahora desde sus anotaciones; no cambia el comportamiento de esos endpoints.
+- **Relaciones:** crear/actualizar exige extremos del mismo DP. Eliminar permite limpiar relaciones cross-DP históricas, aplicando los controles configurados de cada owner persistido antes de modificar la relación; una denegación o falla de ACME impide el borrado.
+- **Pipeline:** protege reemplazo de topología, diseño, relaciones, creación de componentes y despliegue con `DEV_AND_UP`.
+- **Cascada:** exige `DEPLOYER_AND_UP` para el owner completo y conserva el bypass histórico de plataforma. Con equipo y sin proyecto, mantiene la comprobación heredada de pertenencia al equipo.
+- **Validación local:** corrige el orden CHECK/DROP del bootstrap y la detección de puerto Jetty/Tomcat; OpenAPI se genera desde las anotaciones.
 
-Los comentarios quedaron contestados y resueltos, incluyendo la actualización de las respuestas previas sobre delete cross-DP. Las observaciones opcionales de refactor y consolidación de políticas siguen documentadas como mejoras posteriores. Falta aprobación humana, publicación/aprobación formal de la sub-SPEC F4 bajo SIG-621 y smoke no productivo; la decisión local del owner no se presenta como aprobación de Spellbook.
+**Excepción acordada:** sin `teamName`, el borrado del DP omite ambos controles ACME. Un usuario autenticado sin grants puede borrar si pasan los blockers y validaciones de estado. El owner acepta este riesgo para F4, sin exigir regularización masiva de DPs. [Decisión documentada](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952).
 
-## Dev checklist (should be completed by the developer assigned to the issue)
+**Pendientes:** falló el check remoto de dependencias; build, cobertura, análisis estático y workflow pasaron. Faltan aprobación humana, sub-SPEC formal y pruebas de humo no productivas.
 
-* [ ] I have met the definition of done — aprobación humana, sub-SPEC formal y smoke pendientes.
-* [x] I have used conventional commits.
-* [x] My code follows the style guidelines of this project.
-* [x] I have performed a self-review of my own code.
-* [x] I have commented portions of my code, particularly in hard-to-understand areas.
-* [x] I updated the applicable canonical documentation (`docs/architecture.md`, `testing.md`, `testing-scenarios.md`, Swagger and `.testing/impact.json`).
-* [x] After my changes were applied the app is still buildable.
-* [ ] My changes generate no new warnings (linters, code quality) — permanecen avisos preexistentes de JVM/Gradle; dependencies FAIL; los demás checks publicados pasaron.
-* [x] I have added tests that prove my fix is effective or that my feature works — autorizador real y HTTP/H2.
-* [x] New and existing unit tests pass locally with my changes.
-* [x] Any dependent changes have been merged and published in downstream modules — sin dependencias downstream nuevas.
-* [x] I have updated my current branch with changes made in develop/master previously — merge de `0c9e9e3ee`, sin reescritura de historia.
-* [ ] I already deployed this branch in the pre-production environment — no se desplegó.
+## Lista del desarrollador
 
-## Code Review checklist (must be completed by the code reviewer)
+- [x] Código, documentación, escenarios y manifiesto actualizados; cambios publicados en `99c51fe8b`.
+- [x] Revisión propia, commits convencionales y sincronización con `develop`, sin conflictos.
+- [x] Pruebas locales y limpieza de recursos verificadas.
+- [ ] Definición de terminado y todos los checks remotos completos.
+- [ ] Despliegue y pruebas de humo en preproducción.
 
-* [ ] Is it the issue being completed?
-* [ ] Is the code good in style? (Easy to read, follows good practices and our style guide)
-* [ ] The code runs correctly? (Optional)
-* [ ] Is this a good enough implementation?
+## Revisión de código
 
-## How Has This Been Tested?
+- [ ] Aprobación humana del alcance y la implementación.
 
-Evidencia local del 2026-09-30 sobre el árbol publicado en `99c51fe8bd3da2e73ede96ae717a1ab1fae723c7`:
+## Pruebas realizadas
 
-* `./scripts/run-agentic-testing-contract.sh --plan` — L0/CONTRACT PASS: 53 selectores y tres checks declarados; manifiesto y catálogo combinados sin perder los escenarios de develop.
-* `./scripts/run-agentic-testing-contract.sh` — PASS: 53 selectores L0/UNIT + H2_INTEGRATION y los tres checks L0/LOCAL_STACK (MySQL/app, deployment loopback y Kafka). Los tres completaron cleanup certificado; Kafka publicó `CLEANUP_CERTIFIED`. Sin recursos Compose propios restantes.
-* `./gradlew check jacocoTestReport --offline --no-daemon` — PASS: 4.129 tests en 372 suites, cero fallas/errores y 2 skips preexistentes; 14,781/15,209 líneas cubiertas (97,19%).
-* Relaciones: 51 casos entre las clases unit e integración; grants de ambos owners antes de save, deny de cualquiera y ACME unavailable sin mutación. HTTP/H2 persiste relaciones históricas y comprueba `200`/`403` y estado persistido. Create/update same-DP y deduplicación de owner siguen cubiertos.
-* `GenerateDocTest` regenera OpenAPI desde las anotaciones; el resultado generado queda publicado. `git diff --check`, validadores de contrato y `bash -n local/01-mysql.sh scripts/run-local-kafka-stack-check.sh` — PASS.
-* Checks remotos del mismo HEAD: dependencies FAIL; los demás checks publicados pasaron — [ejecución CI](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/5625/pipeline/). GitHub mantiene `REVIEW_REQUIRED`; resolver comentarios no equivale a aprobación.
-* Sin Zord por instrucción explícita del owner; sin L1/F1, smoke remoto ni deployment. Las variantes test3 anteriores `0.1.15-p4-committer-allowed` / `0.1.16-p4-viewer-denied` no incluyen este nuevo HEAD y no certifican esta corrección.
+- `./gradlew check jacocoTestReport --offline --no-daemon` — L0/UNIT + H2_INTEGRATION: 4.129 pruebas, cero fallas, dos omisiones preexistentes; cobertura de líneas 97,19%.
+- `./scripts/run-agentic-testing-contract.sh` — 53 selectores y tres checks L0/LOCAL_STACK aprobados, con limpieza certificada.
+- 51 casos de relaciones verifican autorización de ambos owners, denegación, falla ACME y persistencia HTTP/H2. OpenAPI, contratos, sintaxis shell y diff verificados.
 
-## Testing contract
+## Contrato de pruebas
 
-* [x] I added or updated `.testing/impact.json`, or this PR does not change an observable-behavior surface.
-* [x] The impacted/new AT scenarios and focused tests are declared in the manifest — AT-050-S16 cubre delete histórico; AT-000-S10 cubre bootstrap y descubrimiento del puerto local.
-* [ ] If behavior is unchanged, the manifest includes the reviewed scenarios and a concrete justification — no aplica: cambia delete cross-DP.
-* [x] Evidence distinguishes environment (`L0`, `L1`, `F1`) from layer (`UNIT`, `H2_INTEGRATION`, `CONTRACT`, `LOCAL_STACK`, `ECOSYSTEM_STACK`, `SMOKE`).
-* [x] Any mutable run published cleanup evidence; blocked L1/F1 capabilities are declared rather than replaced with L0 evidence.
+`.testing/impact.json` y el catálogo incluyen AT-050-S16 (limpieza cross-DP histórica) y AT-000-S10 (bootstrap y puerto local). La evidencia local no sustituye las pruebas de humo remotas. Zord omitido por instrucción del owner; sin despliegue.
 
 ## Issue
 
@@ -98,3 +77,5 @@ Evidencia local del 2026-09-30 sobre el árbol publicado en `99c51fe8bd3da2e73ed
 - D25: create/update conservan same-DP; delete admite limpieza histórica aplicando guards de owners persistidos distintos. D26: se mantiene explícitamente la excepción sin equipo y su riesgo, sin exigir backfill masivo. La SPEC local quedó alineada; no se afirma aprobación formal de Spellbook.
 - La descripción y las respuestas de GitHub se actualizaron por autorización explícita del owner. Los hilos se resolvieron por fix probado o decisión documentada; la resolución no equivale a aprobación del reviewer.
 - El merge de develop preservó escenarios y tests de ambas ramas. Se reparó el runner local sin alterar las migraciones SQL; también se corrigió su descubrimiento de puerto Jetty. Swagger deriva de las anotaciones y refleja la regla real de importación.
+
+- El 2026-09-30 el owner pidió descripción en español y sintetizada. Se tradujeron las secciones y se agruparon los checklists del template por esa instrucción explícita; se conservaron alcance, excepción/riesgo, evidencia y pendientes reales.
