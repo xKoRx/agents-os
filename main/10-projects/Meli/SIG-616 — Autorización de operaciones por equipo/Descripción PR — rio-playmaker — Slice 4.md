@@ -35,12 +35,12 @@ feat(sig-616): autorización de operaciones de relaciones, pipeline y borrado en
 
 Fase 4 de SIG-616: agrega autorización configurable a nueve operaciones existentes. El control nuevo se activa por un par exacto de configuración cuando el DP tiene equipo y proyecto completos.
 
-- **Relaciones:** crear/actualizar exige extremos del mismo DP. Eliminar permite limpiar relaciones cross-DP históricas, aplicando los controles configurados de cada owner persistido antes de modificar la relación; una denegación o falla de ACME impide el borrado.
+- **Relaciones:** crear/actualizar exige extremos del mismo DP. Eliminar permite limpiar relaciones cross-DP históricas, aplicando los controles configurados de cada responsable persistido antes de modificar la relación; una denegación o falla de ACME impide el borrado.
 - **Pipeline:** protege reemplazo de topología, diseño, relaciones, creación de componentes y despliegue con `DEV_AND_UP`.
-- **Cascada:** exige `DEPLOYER_AND_UP` para el owner completo y conserva el bypass histórico de plataforma. Con equipo y sin proyecto, mantiene la comprobación heredada de pertenencia al equipo.
+- **Cascada:** exige `DEPLOYER_AND_UP` para el responsable completo y conserva el excepción histórico de plataforma. Con equipo y sin proyecto, mantiene la comprobación heredada de pertenencia al equipo.
 - **Validación local:** corrige el orden CHECK/DROP del bootstrap y la detección de puerto Jetty/Tomcat; OpenAPI se genera desde las anotaciones.
 
-**Excepción acordada:** sin `teamName`, el borrado del DP omite ambos controles ACME. Un usuario autenticado sin grants puede borrar si pasan los blockers y validaciones de estado. El owner acepta este riesgo para F4, sin exigir regularización masiva de DPs. [Decisión documentada](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952).
+**Excepción acordada:** sin `teamName`, el borrado del DP omite ambos controles ACME. Un usuario autenticado sin permisos puede borrar si pasan los restricciones previas y validaciones de estado. El responsable acepta este riesgo para F4, sin exigir regularización masiva de DPs. [Decisión documentada](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952).
 
 **Pendientes:** falló el check remoto de dependencias; build, cobertura, análisis estático y workflow pasaron. Faltan aprobación humana, sub-SPEC formal y pruebas de humo no productivas.
 
@@ -60,13 +60,12 @@ Fase 4 de SIG-616: agrega autorización configurable a nueve operaciones existen
 
 - `./gradlew check jacocoTestReport --offline --no-daemon` — L0/UNIT + H2_INTEGRATION: 4.129 pruebas, cero fallas, dos omisiones preexistentes; cobertura de líneas 97,19%.
 - `./scripts/run-agentic-testing-contract.sh` — 53 selectores y tres checks L0/LOCAL_STACK aprobados, con limpieza certificada.
-- 51 casos de relaciones verifican autorización de ambos owners, denegación, falla ACME y persistencia HTTP/H2. OpenAPI, contratos, sintaxis shell y diff verificados.
 
 ## Contrato de pruebas
 
-`.testing/impact.json` y el catálogo incluyen AT-050-S16 (limpieza cross-DP histórica) y AT-000-S10 (bootstrap y puerto local). La evidencia local no sustituye las pruebas de humo remotas. Zord omitido por instrucción del owner; sin despliegue.
+`.testing/impact.json` y el catálogo incluyen AT-050-S16 (limpieza cross-DP histórica) y AT-000-S10 (bootstrap y puerto local). La evidencia local no sustituye las pruebas de humo remotas. Zord omitido por instrucción del responsable; sin despliegue.
 
-## Issue
+## Referencias
 
 [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616) · [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621).
 
