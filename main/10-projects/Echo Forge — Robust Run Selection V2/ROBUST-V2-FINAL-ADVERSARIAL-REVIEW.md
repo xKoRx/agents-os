@@ -1,4 +1,7 @@
 ---
+
+> **AUTHORITY NOTE — SUPERSEDED FOR IMPLEMENTATION (2026-09-30):** This document is retained as adversarial design history. Its mathematical findings remain evidence, including the derived-finiteness defect. The recommendation to introduce `evaluation_policy + evaluation_policy_version` is **rejected/superseded**. Canonical implementation authority is [[ROBUST-V2-DESIGN-FREEZE]]: V2 is another algorithm in the existing WFM config mechanism. Durable replay is not an implementation gate.
+
 type: doc
 schema_version: 1
 status: active
