@@ -3,7 +3,7 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: active
+status: archived
 priority: P1
 area: "[[Meli]]"
 parent: "[[Crear Context]]"
@@ -24,7 +24,7 @@ tags:
   - agent/discovery
   - priority/p1
 created: "2026-08-25"
-updated: "2026-08-25"
+updated: "2026-09-29"
 ---
 
 # Crear Context - Discovery de Params en CPs
@@ -32,7 +32,7 @@ updated: "2026-08-25"
 %% Naming: Crear Context - Discovery de Params en CPs es el link canónico del proyecto; aliases guarda variantes humanas; tags/slugs son solo automatización. %%
 
 > [!info]+ Crear Context - Discovery de Params en CPs
-> **Área:** [[Meli]] · **Estado:** active · **Prioridad:** P1 · **Parent:** [[Crear Context]] · **Owner:** agent · **Progreso:** 28%
+> **Área:** [[Meli]] · **Estado:** archived · **Prioridad:** P1 · **Parent:** [[Crear Context]] · **Owner:** agent · **Progreso:** 28%
 > Este es un proyecto de comprensión: documenta dónde se consumen los datos hoy para habilitar una futura adopción de Context en los control planes. No modifica código de repos.
 
 > [!abstract]- Ownership del proyecto (`owner`) — humano vs agente
@@ -54,7 +54,7 @@ El entregable debe separar consumo real de configuración, aliases, defaults, va
 - Alcance inicial congelado en 13 repos del ecosistema RIO: 2 frontends, Playmaker, SDK, 7 control planes, materializer y catálogo.
 - Primera pasada verificada en los 7 repos de control plane contra sus HEAD locales del 2026-08-25. No se modificó ningún repositorio externo.
 - Hallazgo principal: `properties_map` generado por el front tiene un consumidor directo inequívoco en `rio-controlplane-flink`; ClickHouse, Fury y Kafka hacen consumo operativo de otras formas de `params`; Observability usa únicamente prefijos para identidad; KMS y Signals no muestran consumidor de deployment params en el HEAD auditado.
-- El reporte aún no está cerrado: falta completar la matriz field-level de los caminos legacy/materializer, validar fixtures/tests y repetir el corte contra los commits finales posteriores al merge de Context.
+- El owner deprecó este proyecto el 2026-09-29 con 28% de progreso. El discovery se detiene sin reporte final; las tareas incompletas quedan canceladas y no representan trabajo activo.
 
 ## 🧱 Entrega de desarrollo
 
@@ -223,10 +223,10 @@ views:
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [x] Crear proyecto de agente, scope y corte inicial de repos #owner/agent #type/research #area/meli
 > - [x] Verificar consumidores directos en los 7 repos de control plane #owner/agent #type/research #area/meli
-> - [/] Completar la matriz field-level de front, Playmaker, SDK y materializer #owner/agent #type/research #area/meli
-> - [ ] Auditar paths legacy, outputs, fixtures y operaciones UPDATE/DEPROVISION #owner/agent #type/research #area/meli
-> - [ ] Revalidar todos los hallazgos contra los commits finales post-Context #owner/agent #type/research #area/meli
-> - [ ] Entregar reporte final con lista de repos/archivos afectados y handoff al rollout de CPs #owner/agent #type/research #area/meli
+> - [-] Completar la matriz field-level de front, Playmaker, SDK y materializer #owner/agent #type/research #area/meli — cancelado por deprecación del owner (2026-09-29)
+> - [-] Auditar paths legacy, outputs, fixtures y operaciones UPDATE/DEPROVISION #owner/agent #type/research #area/meli — cancelado por deprecación del owner (2026-09-29)
+> - [-] Revalidar todos los hallazgos contra los commits finales post-Context #owner/agent #type/research #area/meli — cancelado por deprecación del owner (2026-09-29)
+> - [-] Entregar reporte final con lista de repos/archivos afectados y handoff al rollout de CPs #owner/agent #type/research #area/meli — cancelado por deprecación del owner (2026-09-29)
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -256,6 +256,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 %%
 
 ## 📆 Bitácora
+
+- **2026-09-29 — Proyecto deprecado por el owner:** se archiva con el progreso real conservado en 28%; se cancelan las tareas restantes y no se presenta el discovery como finalizado.
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
 - **2026-08-25** — Proyecto materializado como `owner: agent` bajo [[Crear Context]]; se definió la tarea puente y se congeló el universo de 13 repos sin copiar clones ni dumps al vault.

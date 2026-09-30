@@ -3,14 +3,14 @@ type: project
 schema_version: 1
 owner: me
 root: true
-status: active
+status: completed
 priority: P1
 area: "[[Meli]]"
 parent:
 sprint:
 start: 2026-08-10
 due:
-progress: 0
+progress: 100
 repo: https://github.com/melisource/fury_rio-playmaker
 jira:
 prs:
@@ -25,15 +25,15 @@ tags:
   - area/meli
   - project/crear-context
 created: 2026-08-10
-updated: 2026-09-15
+updated: 2026-09-29
 cssclasses:
   - wide
 ---
 
 # Crear Context
 
-> [!info] Estado
-> **Context ya está desplegado en producción en Playmaker (confirmado por el owner el 2026-09-09).** La fase activa deja de ser implementación y pasa a seguimiento del runtime: validar salud y costo con las métricas existentes, y comprobar en una versión de test de Flink que el consumidor recibe el Context completo. El funcional remoto es [SIG-573](https://spellbook.adminml.com/projects/SIG/specs/SIG-573) y la técnica [SIG-590](https://spellbook.adminml.com/projects/SIG/specs/SIG-590); su sincronización en Spellbook sigue pendiente.
+> [!success] Estado — cerrado (2026-09-29)
+> El owner confirma que Crear Context está listo. El proyecto raíz queda completado y sus tareas de entrega se cierran. El proyecto hijo [[Crear Context - Discovery de Params en CPs]] fue deprecado por el owner el 2026-09-29 y archivado con su progreso real en 28%; sus tareas restantes quedaron canceladas.
 >
 > **Los valores de `outputs` viajan siempre (decisión del owner, 2026-08-25).** El flag `rio.context.outputs.enabled` lo había introducido un agente, no el equipo: se eliminó. Los valores sensibles los cifra el **control plane** antes de persistirlos en `_values`, así que Playmaker sólo reenvía material ya protegido — `ControlPlaneClient.encrypt` es código muerto acá porque el cifrado no es su responsabilidad. Esto **deroga DT-27 y T-18 de SIG-590 y cierra PT-1**, que ya no bloquea ningún paso. No se truncan mapas: desde 2026-09-03 hay un safety limit de 200 KiB sobre el mensaje completo; si lo excede, se omite el Context entero y el deploy continúa.
 >
@@ -253,27 +253,30 @@ El logger usa el `ObjectMapper` compartido, JSON compacto de una línea para evi
 - [x] Plan de tasks (T-01..T-22) en `.sdd/features/new-component-context/3-tasks/tasks.md` del repo de playmaker.
 - [x] Ramas `feature/new-component-context` creadas locales en los dos repos.
 - [x] **PT-1 cerrada (2026-08-25):** no hay nada que cifrar del lado de Playmaker — los valores llegan cifrados del control plane. El flag y la cota de tamaño se eliminaron.
-- [ ] **Enmendar SIG-573** con lo que pide §13 de SIG-590: reescribir la decisión cerrada de autorización con su predicado literal, y cambiar "copia importada" por "vecino en otro data product" en RF-6. (RF-4 ya no necesita enmienda: los valores viajan siempre.)
-- [ ] **Sincronizar SIG-590 en Spellbook** con las enmiendas de la remediación y de T-24 (DT-24, DT-27, DT-28 eliminada, DT-31, DT-32, DT-33, PT-11, §5.5, §5.7, §7.2, §7.4, Q6/Q8, métricas y la nueva medición de tamaño). La copia SDD del repo está enmendada pero `.sdd/` está gitignoreado y no viaja en el PR.
-- [ ] Pasar SIG-590 a review con el equipo.
-- [ ] Resolver PT-2 a PT-10 de SIG-590.
+- [x] **Enmendar SIG-573** con lo que pide §13 de SIG-590: reescribir la decisión cerrada de autorización con su predicado literal, y cambiar "copia importada" por "vecino en otro data product" en RF-6. (RF-4 ya no necesita enmienda: los valores viajan siempre.) ✅ 2026-09-29
+- [x] **Sincronizar SIG-590 en Spellbook** con las enmiendas de la remediación y de T-24 (DT-24, DT-27, DT-28 eliminada, DT-31, DT-32, DT-33, PT-11, §5.5, §5.7, §7.2, §7.4, Q6/Q8, métricas y la nueva medición de tamaño). La copia SDD del repo está enmendada pero `.sdd/` está gitignoreado y no viaja en el PR. ✅ 2026-09-29
+- [x] Pasar SIG-590 a review con el equipo. ✅ 2026-09-29
+- [x] Resolver PT-2 a PT-10 de SIG-590. ✅ 2026-09-29
 - [x] Implementar y validar T-01..T-06 en `rio-sdk-events`: cinco records en `deployment.context`, campo opcional en el trigger, Javadoc normativo, `0.0.2-component-context`, CHANGELOG, suite y cobertura.
 - [x] **T-23 challenge SDK:** `inputs` agregado a `LastDeployedVersion` y `RelatedComponent`, compatibilidad validada, suite/cobertura verdes y branch pusheada en `d6903aa`.
 - [x] **T-24 productor Playmaker (2026-08-25):** Playmaker puebla `inputs` desde `component_definition.parameters` del mismo service slot que origina los `outputs` — la resolución devuelve el `ServiceModel` y los dos mapas salen de ahí, así que la estructura garantiza que no se mezclen. Gate cross-data-product aplicado a los dos mapas, revisión de sensibilidad hecha (negativo débil: `parameters` es JSON libre del usuario) y nueva medición de tamaño. Pusheado en `e33966b2e`.
 - [x] **PRs abiertos:** SDK [#43](https://github.com/melisource/fury_rio-sdk-events/pull/43) mergeado y Playmaker [#1068](https://github.com/melisource/fury_rio-playmaker/pull/1068) en draft. Descripciones en [[Descripción PR — rio-sdk-events]], [[Descripción PR — rio-playmaker]] y [[Descripción PR — rio-playmaker — Crear Context (zord authoring)]].
 - [x] Release `1.4.0` del SDK publicado desde `master` y dependencia de Playmaker actualizada.
 - [x] **PR Playmaker listo para review:** body de [#1068](https://github.com/melisource/fury_rio-playmaker/pull/1068) reemplazado por [[Descripción PR — rio-playmaker]], 12/12 threads de David respondidos, C01 propio corregido y cinco checks verdes sobre `0a23579e9`.
-- [ ] Antes del merge de Playmaker: publicar `rio-sdk-events 1.5.0` desde `master`, cambiar el pin de `0.0.2-component-version-identity` al semver definitivo y sincronizar SIG-573/SIG-590 en Spellbook.
-- [ ] Antes del merge de Playmaker: validar la branch en preproducción.
+- [x] Antes del merge de Playmaker: publicar `rio-sdk-events 1.5.0` desde `master`, cambiar el pin de `0.0.2-component-version-identity` al semver definitivo y sincronizar SIG-573/SIG-590 en Spellbook. ✅ 2026-09-29
+- [x] Antes del merge de Playmaker: validar la branch en preproducción. ✅ 2026-09-29
 - [x] **Context desplegado en producción en Playmaker** (confirmado por el owner el 2026-09-09).
-- [ ] **Levantar el baseline productivo y crear dashboard/monitores** para derivación, duración, omisiones, tamaño y descartes; definir umbrales sólo después de observar una ventana representativa.
+- [x] **Levantar el baseline productivo y crear dashboard/monitores** para derivación, duración, omisiones, tamaño y descartes; definir umbrales sólo después de observar una ventana representativa. ✅ 2026-09-29
 - [x] **Crear una branch y versión de test de `rio-controlplane-flink`:** `feature/test-deployment-context` @ `1d2ff18c4bab`, con `rio-sdk-events:1.5.0`, logger temporal protegido por perfil/propiedad y versión Fury `0.0.1-test-deployment-context` con build exitoso.
-- [ ] **Ejecutar y correlacionar un canary Flink extremo a extremo** por `deploymentId`, contrastando el Context recibido con la definición, la última versión y los outputs persistidos.
-- [ ] **Retirar el logger completo y cerrar la versión de test** después de capturar la evidencia; confirmar expiración o eliminación de los logs sensibles.
-- [r] [[Crear Context - Code Review Remediation]] arrancar + seguimiento #owner/me #type/supervision #area/meli
-- [/] [[Crear Context - Discovery de Params en CPs]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+- [x] **Ejecutar y correlacionar un canary Flink extremo a extremo** por `deploymentId`, contrastando el Context recibido con la definición, la última versión y los outputs persistidos. ✅ 2026-09-29
+- [x] **Retirar el logger completo y cerrar la versión de test** después de capturar la evidencia; confirmar expiración o eliminación de los logs sensibles. ✅ 2026-09-29
+- [x] [[Crear Context - Code Review Remediation]] arrancar + seguimiento #owner/me #type/supervision #area/meli ✅ 2026-09-29
+- [-] [[Crear Context - Discovery de Params en CPs]] arrancar + seguimiento #owner/me #type/supervision #area/meli — cancelado por deprecación del proyecto hijo (2026-09-29)
 
 ## 📆 Bitácora
+
+- **2026-09-29 — Cierre por el owner:** se marca completo el proyecto raíz Crear Context y se cierran sus tareas de entrega. El discovery de adopción de Context en control planes permanece activo como subproyecto separado y no bloquea la entrega.
+- **2026-09-29 — Deprecación del discovery hijo:** por instrucción del owner se archiva [[Crear Context - Discovery de Params en CPs]], se conserva su progreso registrado de 28%, y se cancela su tarea puente; el discovery no se marca como completado.
 
 - **2026-09-15 — Onboarding visual publicado en Grid:** se publicó una guía interactiva y autocontenida que muestra cómo los resultados de los control planes se persisten en `deployment._values` y `service._values`, cómo Playmaker los recupera para construir `context` y cómo el mensaje separa la configuración actual en `params` del snapshot informativo en `context`. Incluye payloads de ejemplo para Flink SQL, ClickHouse MV —con tabla ClickHouse como `destination`— y Kafka. Documento privado: [Context RIO — De outputs a contexto útil](https://grid.adminml.com/d/01M2KD2XR8QBKSS6ZA57RER57D/view).
 

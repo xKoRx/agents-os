@@ -55,8 +55,8 @@ updated: "2026-09-28"
 
 ## 📊 Estado actual
 
-- **Permisos definidos en la técnica; CA-1 abierto.** SIG-600 (`review`) conserva su redacción original. SIG-643 (`draft`) ahora asigna a Playmaker la autorización de borrado con Kraken `delete-data-products` o membresía ACME, y responde 403 si ninguna aplica. Para que Kraken funcione a través del frontend, la técnica requiere retirar `requireDpOwnerRole` solo del proxy BFF, sin trasladarle la decisión de permisos. Sigue pendiente conciliar la validación previa de CA-1 con la validación dentro del `DELETE`, confirmar la integración Java de Kraken y cerrar las rutas de deploy concurrentes antes de `ready_to_code`.
-- No hay ramas de esta iniciativa creadas ni implementación iniciada. Los dos checkouts locales están ocupados por otros trabajos; definir branch y base actualizadas para cada repo antes de tocar código.
+- **Autorización Playmaker en PR draft [#1228](https://github.com/melisource/fury_rio-playmaker/pull/1228), CI verde y [versión TEST `0.0.1-test-sig600-delete-auth`](https://web.furycloud.io/engineering/applications/rio-playmaker/versions/detail/0.0.1-test-sig600-delete-auth) terminada; CA-1 abierto.** SIG-600 (`review`) conserva su redacción original. SIG-643 (`draft`) asigna a Playmaker la autorización con Kraken `delete-data-products` o membresía del equipo dueño en ACME, con 403 si ninguna aplica y 503 cuando no se puede decidir. La rama usa el SDK Java oficial (`com.mercadolibre.library:kraken-client-java:5.0.0`) con LDAP extraído de Tiger. La regresión local pasó (4.037 tests, 0 fallas, 2 omitidos); el check LOCAL_STACK quedó bloqueado por falta de Docker. Queda por habilitar el access group de tráfico Fury a Kraken, revisar la dependencia con el MCP de seguridad (no disponible en esta sesión), retirar `requireDpOwnerRole` del proxy BFF para admitir usuarios Kraken-only, y alinear la visibilidad de la UI.
+- SIG-600 CA-1 aún pide prevalidar antes del `DELETE`; SIG-643 valida dentro. También queda pendiente coordinar las rutas de deploy concurrentes y las demás reglas de bloqueo antes de considerar lista la iniciativa completa.
 
 ## 🧱 Entrega de desarrollo
 
@@ -64,7 +64,7 @@ updated: "2026-09-28"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-playmaker]] | Pendiente de crear | `origin/master@2e5f0b22c` (baseline leído para SIG-643; base de trabajo por definir) | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | Kraken Java y concurrencia de deploys por cerrar; sin implementación |
+| [[rio-playmaker]] | `feature/sig-600-delete-auth` · `/Users/rjara/fuentes/rio-playmaker-sig-600-delete-auth` | `origin/develop@c4ac43da4` | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | [PR draft #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228), commit `73fabcfb9`; autorización Kraken OR ACME, 4.037 tests locales sin fallas, CI verde y [versión TEST](https://web.furycloud.io/engineering/applications/rio-playmaker/versions/detail/0.0.1-test-sig600-delete-auth) lista para desplegar; acceso Fury y revisión de seguridad pendientes; reglas de bloqueo restantes sin implementar |
 | [[ads-signals-frontend]] | Pendiente de crear | `origin/master@791f79dd8` (baseline leído para SIG-643; base de trabajo por definir) | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | Retirar guard duplicado del proxy; CA-1 abierto; sin implementación |
 
 ## 🧩 Subproyectos
@@ -94,10 +94,12 @@ views:
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
 > - [ ] Resolver la discrepancia de CA-1 entre SIG-600 y SIG-643 antes de implementar #owner/me #type/admin #area/meli
-> - [ ] Confirmar SDK o API Java de Kraken para consultar `delete-data-products` con identidad Tiger #owner/me #type/research #area/meli
+> - [x] Confirmar SDK o API Java de Kraken para consultar `delete-data-products` con identidad Tiger #owner/me #type/research #area/meli ✅ 2026-09-29
+> - [ ] Habilitar tráfico Fury de rio-playmaker a Kraken (`kraken_for_applications_external-kraken-all`) y revisar nueva dependencia con el MCP de seguridad #owner/me #type/admin #area/meli
+> - [r] Implementar autorización Kraken OR ACME en Playmaker; [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228) en revisión y CI #owner/me #type/dev #area/meli
 > - [x] Fijar precedencia de bloqueos, producción por `EnvironmentModel.type` y HTTP 409 con códigos #owner/me #type/admin #area/meli ✅ 2026-09-28
 > - [ ] Relevar rutas de deploy que crean blockers, cerrar su protocolo transaccional y llevar SIG-643 a review #owner/me #type/research #area/meli
-> - [ ] Elegir branch y base actualizadas para Playmaker y frontend; completar la tabla de entrega #owner/me #type/dev #area/meli
+> - [/] Elegir branch y base actualizadas para Playmaker y frontend; Playmaker en `develop`, frontend pendiente #owner/me #type/dev #area/meli
 > - [ ] Implementar en Playmaker los tres bloqueos, coordinar importaciones y rutas de deploy, y emitir códigos estables #owner/me #type/dev #area/meli
 > - [ ] Propagar códigos en el BFF y compartir modal/flujo entre listado y detalle con resultado incierto separado de éxito #owner/me #type/dev #area/meli
 > - [ ] Verificar los CA de SIG-600, el `DELETE` directo, permisos y ambas órdenes de carrera; preparar PRs #owner/me #type/dev #area/meli
@@ -122,12 +124,14 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
 - **2026-09-28** — Proyecto creado a partir de SIG-600 y SIG-643. Se actualizó SIG-643 con precedencia de bloqueos, HTTP 409, resultado incierto de UI y coordinación de importaciones. Una edición no solicitada de SIG-600 fue revertida y se verificó que su contenido volvió a coincidir exactamente con la versión anterior. Sigue abierta la discrepancia entre ambas SPECs y el protocolo de las rutas de deploy. No se creó branch ni se modificó código.
 - **2026-09-28** — SIG-643 actualizada: Playmaker autoriza el borrado con permiso Kraken o membresía ACME, tras Tiger y antes de los bloqueos; falta de permiso devuelve 403. El guard ACME duplicado del proxy BFF debe retirarse para admitir Kraken. SIG-600 no se editó. Quedan abiertos CA-1, la integración Java de Kraken y la concurrencia de deploys.
+- **2026-09-29** — Se creó un worktree aislado de Playmaker y se implementó la autorización del `DELETE` con el SDK Java oficial de Kraken 5.0.0 o grants ACME del equipo dueño. Se configuró sandbox para test/test2/test3/local y producción por defecto; `compileJava` y `compileTestJava` pasaron sin ejecutar tests. Pendiente habilitar acceso de tráfico Fury, revisar la dependencia con el MCP de seguridad y alinear BFF/UI. SIG-600 no se editó.
+- **2026-09-29** — La rama se rebasó sobre `develop` y se abrió el [PR draft #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228). Pasaron 4.037 tests locales, los cinco tests focalizados y ambos validadores de contrato; el health check LOCAL_STACK no pudo arrancar por falta de Docker. El primer intento contra `master` fue rechazado por el workflow de Fury y se corrigió la base a `develop`. CI quedó verde y Fury terminó la [versión TEST `0.0.1-test-sig600-delete-auth`](https://web.furycloud.io/engineering/applications/rio-playmaker/versions/detail/0.0.1-test-sig600-delete-auth) del commit `73fabcfb9`; aún no se desplegó.
 
 ## 🧭 Decisiones
 
 - Playmaker es la autoridad de las reglas de borrado en el `DELETE`; no se diseña un endpoint `delete-validation`. Los blockers responden HTTP 409 con código específico y prevalece producción sobre infraestructura activa cuando aplican ambas. Fuente: [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643).
 - Playmaker también es la autoridad de permisos para el borrado: Kraken `delete-data-products` o membresía ACME; 401 sin autenticación, 403 sin autorización, 503 cuando no se puede verificar. Fuente: [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643).
-- Esta es una iniciativa humana (`owner: me`, `root: true`) de dos repos. La elección de ramas y bases de implementación permanece abierta.
+- Esta es una iniciativa humana (`owner: me`, `root: true`) de dos repos. La rama Playmaker parte de `origin/develop@c4ac43da4`; la rama frontend sigue pendiente.
 
 ## 🔗 Docs / Links
 
