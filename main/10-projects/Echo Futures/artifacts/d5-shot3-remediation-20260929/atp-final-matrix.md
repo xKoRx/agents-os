@@ -1,15 +1,17 @@
 # Echo Futures — D5 ATP Final Matrix (Macro Shot 3, remediation complete)
 
+> **AMENDED 2026-09-30 — FINAL GATE AMENDMENT** (MKT-07, TERM-03, F-MGR-02, F-MGR-03; Primary Manager gate). Amendment baseline: branch `feature/d5-shot3-remediation`, final SHA `e607b4183e041f8c7603d9b5d0db82c6f09d29a7` (prior `5f9fadde`, +3 commits, tree clean). The rows below reflect the amended tree; the amendment delta is marked per row.
+
 **Baseline:** branch `feature/d5-shot3-remediation`, final SHA `5f9fadde190c3cd85637f746fd45bb703736a7f4` (`git rev-parse HEAD`, tree clean, all Shot 3 fixes merged).
 **Method:** every PASS verdict is backed by at least one test that was executed green in this session on the final tree (package `-count=1` runs plus targeted `-run '<Regex>' -v` runs; exact commands under "Commands"). No Shot 1/2 PASS label was inherited.
 
 ## Verdict counts (115 rows)
 
-| Verdict | Count |
+| Verdict | Count (amended) |
 |---|---|
-| **PASS** | **111** |
+| **PASS** | **113** |
 | **FAIL** | **0** |
-| **INCOMPLETE** | **2** (MKT-07, TERM-03) |
+| **INCOMPLETE** | **0** (MKT-07 and TERM-03 closed by the amendment) |
 | **DEFERRED_TO_D6** | **2** full rows (EXE-14, SCL-03) + deferred halves noted on REC-03, EXE-01/02/04/08, MKT-11/13, Budgets §20 |
 
 Counting convention: REC-03 is counted once under PASS for the implemented software fail-visible seam; its physical checkpoint-lineage introspection half is DEFERRED_TO_D6 as instructed.
@@ -26,7 +28,7 @@ Counting convention: REC-03 is counted once under PASS for the implemented softw
 | MKT-04 packet with N entries | PASS | `TestStreamSequencer_SourceIdentityDedupConsumesNoSeq_MKT04` | Class-B packet with 2 positional entries → 2 canonical events with distinct seq; equivalent-member replay absorbed pre-canonical, consumes no seq |
 | MKT-05 legitimate identical trades | PASS | `TestStreamSequencer_LegitimateIdenticalTradesPreserved_MKT05`; `TestFuturesMarketStream_ClassCIngressIdentityOnly_MKT05` | Identity-only dedup for class C; no content-hash suppression |
 | MKT-06 authority switch | PASS | `TestFuturesMarketStream_EpochBarrierDemotesAndSeeds_MKT06`; `TestCurrentStateLadders_EpochDemoteSeed_MKT06`; `TestBuilder_EpochDiscipline_MKT06`; `TestFuturesMarketAnalytics_EpochBarrierDiscardsForming_MKT06` | Same stream_id, new epoch, no Contract rollover; forming state discarded, current state seeded independently |
-| MKT-07 rollover ≠ source switch | INCOMPLETE | No current test exercises Contract rollover (old Operation pinned to old Contract while new demand uses new Contract). Closest existing: contract pinned at materialization (`TestADM01_OpenAllowMaterializesOnce`), epoch tests of MKT-06 | Rollover property has no dedicated fixture on the final tree — needs a test before D5 sign-off |
+| MKT-07 rollover ≠ source switch | PASS (**amended**: was INCOMPLETE) | `TestFuturesVertical_MKT07_ContractRolloverDiffersFromSourceSwitch` (futuresvertical, executed green on the amended tree): Operation O live pinned to NQZ6; a serving-authority SOURCE SWITCH on the same contract leaves O live, pinned and TRADING (fresh quote → bounded add with A's identity); the owner mapping rolls NQ→NQH7: O stays pinned to A through the rollover and closes on A, and the new demand materializes on B (ContractSnapshot + pinned external ref + M1 commands carry B). Reuses the frozen pinning seams (`ResolveContract` at materialization, `PinnedBinding`); no rollover service, no migration, no new owner | Dedicated deterministic fixture executed on the final tree |
 | MKT-08 crash/recovery ordering | PASS | `TestJournalBuilder_OrderAssertions`; `TestFuturesVertical_BridgeRestart_NoDuplicateSubmit`; `TestFuturesVertical_CoreRedelivery_Idempotent`; `TestFuturesMarketStream_RuntimeClockNeverRegresses` | Same accepted facts, same order, no duplicated canonical fact across restart/redelivery |
 | MKT-09 late correction | PASS | `TestFuturesMarketAnalytics_LateCorrectionProjectionOnly_MKT09`; `TestBuilder_LateCorrectionWindow_MKT09`; `TestS1_AcS118_LateCorrection_DoesNotReevaluate`; `TestS2_A10_LateCorrection_NoReevaluation` | Projection moves to X′; prior decision on X retained; no retroactive Signal |
 | MKT-10 ContextRead capture | PASS | `TestLiveScope_CaptureMemoizationSparseReadSet_MKT10` (sdk/futures/marketctx); `TestS12_LiveDecision_EvidenceFromJournal_ReplaysExactly` | Capture-as-consumed, dense ordinals, memoization, foreign-stream absent |
@@ -35,7 +37,7 @@ Counting convention: REC-03 is counted once under PASS for the implemented softw
 | MKT-13 replay anchor | PASS | `TestReplayAnchor_FailVisible_MKT13`; `TestS12_ReplayAnchor_MissingCorruptWrongDigest`; `TestRunManifest_ImmutableInitial_DigestVerified`; `TestS12_RunJournal_OrderedRecordingLive` | Missing anchor / corrupt digest fail-visible; anchor sealed in live manifest; physical golden run = D6 |
 | MKT-14 timer close without next tick | PASS | `TestFuturesMarketAnalytics_BarClosedDeliveryOnNaturalClose_MKT01_MKT14`; `TestBuilder_NaturalCloseAndTimerClose_MKT14` (sdk/futures/bars); `TestFuturesVertical_TimerFiresAtBoundary_BoundedQuiescence` | **Changed vs Shot 2 (was FAIL F-A-01/02)**: real SendAfter timers with generation cancel; bar closes on time, delivered on the production path |
 | MKT-15 internal break grid | PASS | `TestFuturesMarketAnalytics_InternalBreakTruncatesAndResumesGrid_MKT15`; `TestBuilder_InternalBreakTruncation_MKT15` | **Changed vs Shot 2 (was FAIL mechanism)**: truncation at break, no bars during break, same grid resumes, no reset. Open note (F-B-06, left unfixed by decision): the analytics side fires the BreakEnd session transition (`futures_market_analytics.go` `deliver(..., calendar.TransitionBreakEnd)`), but no strategy module ever receives/consumes a BreakEnd delivery — bar-grid semantics unaffected; strategy-side BreakEnd delivery remains an open gap |
-| MKT-16 stale last-known ≠ READY | PASS | `TestFuturesMarketAnalytics_ReadinessMirroredFromFeed_MKT16`; `TestFuturesMarketStream_ReadinessEventsInOrder_MKT16`; `TestCurrentStateLadders_MonotonicInsideEpoch_MKT16`; `TestS1_NotReady_FailClosedForNewRisk` | New Signals blocked while not-ready; stale exposed as-of. QUOTE-ladder part structural only: V1 has no QUOTE producer (`TestFuturesMarketAnalytics_CanonicalForward_QuoteNeverForwarded` proves QUOTE class is never even forwarded) |
+| MKT-16 stale last-known ≠ READY | PASS | `TestFuturesMarketAnalytics_ReadinessMirroredFromFeed_MKT16`; `TestFuturesMarketStream_ReadinessEventsInOrder_MKT16`; `TestCurrentStateLadders_MonotonicInsideEpoch_MKT16`; `TestS1_NotReady_FailClosedForNewRisk` | New Signals blocked while not-ready; stale exposed as-of. **Amended (F-MGR-03)**: the QUOTE ladder now has a producer path — stale/last-known quotes are absorbed fail-visibly by the owner before any MM evaluation (`TestQuoteNotif03_StaleAndFutureEvidenceAbsorbed`, `TestQuoteTrigger_NotReadyOrMissingMarkFailsClosed`); readiness ladder remains feed-authority |
 
 ## Calendar/session (CAL-01..04)
 
@@ -105,10 +107,10 @@ Counting convention: REC-03 is counted once under PASS for the implemented softw
 | MM-07 loss headroom | PASS | `TestEntry_PriorLossShrinksPriorProfitDoesNotEnlarge`; `TestEntry_ProviderHardHeadroomConstrains` | −600 → 1400 headroom |
 | MM-08 prior profit doesn't enlarge SL | PASS | `TestEntry_PriorLossShrinksPriorProfitDoesNotEnlarge` | +1000 → 2000, not 3000 |
 | MM-09 account-wide PnL moves objective | PASS | `TestFormulas_ObjectiveAndHeadroom` + `TestAccountEconomicsTrigger_BelowObjectiveNoTermination` (economics delivered as account-wide `AccountDayCurrentPnLMoney` input; no portfolio reconstruction exists in the module) | Objective varies with account-wide P_day by input contract; MM holds no per-Operation portfolio state |
-| MM-10 dynamic target mark | PASS | `TestTargetMarkDerivedAndNeverPersisted`; quote-evidence sizing `TestEntry_LongSizesFromAsk`/`TestEntry_ShortSizesFromBid` | Formula + conservative rounding; never persisted authority. Note: in V1 there is no QUOTE producer — Q input is the documented-mark fallback path, structural only |
+| MM-10 dynamic target mark | PASS | `TestTargetMarkDerivedAndNeverPersisted`; quote-evidence sizing `TestEntry_LongSizesFromAsk`/`TestEntry_ShortSizesFromBid` | Formula + conservative rounding; never persisted authority. **Amended (F-MGR-03)**: the QUOTE notification seam now serves authoritative/current quote evidence through the decision-scoped MarketContext (`TestQuoteNotif01_InvokesMMWithScopedMid`, vertical quote E2E); real external feed certification stays D6 |
 | MM-11 initial sizing exactness | PASS | `TestEntry_LongSizesFromAsk`; `TestEntry_ShortSizesFromBid`; exact-quantity invalid→deny via `TestEXP08_NoSilentResize` (sdk/futures/operation); production sizing path `TestFuturesVertical_PartialFill` | No silent clipping |
-| MM-12 adverse branch bounded | PASS | `TestAdverseBranchBoundedNoTopUp` | Bounded exact adds, branch lock, no inter-Operation state |
-| MM-13 favorable branch bounded | PASS | `TestFavorableBranchBounded` | Symmetric |
+| MM-12 adverse branch bounded | PASS | `TestAdverseBranchBoundedNoTopUp`; **amended (F-MGR-03)**: `TestQuoteTrigger_AdverseThresholdExactlyOneBoundedAdd` + vertical quote E2E | Bounded exact adds, branch lock, no inter-Operation state; reachable on the QUOTE trigger between Fill/OrderFinal events |
+| MM-13 favorable branch bounded | PASS | `TestFavorableBranchBounded`; **amended (F-MGR-03)**: `TestQuoteTrigger_FavorableThresholdExactlyOneBoundedPyramid` + vertical favorable E2E | Symmetric; one bounded pyramid per ordinal, branch-locked |
 | MM-14 partial add no top-up | PASS | `TestAdverseBranchBoundedNoTopUp` (partial fill consumes the ordinal; no top-up while executable quantity remains) | Per GMM-I10 |
 | MM-15 protective stop never loosens | PASS | `TestProtectiveStopNeverLoosens`; `TestProtectiveBreakEvenAfterFavorableFill` | Only toward lower risk |
 | MM-16 provider denied add | PASS | `TestProviderDeniedAddLocksNewRisk`; revalidation conflict absorbed `TestFC08_RevalidateConflictIsAbsorbed` (+ malformed-observation variant `TestFC08_Dup_MalformedModifyObservationAbsorbedNotPoison`, Shot 3 F-C-08) | No physical command; new-risk progression blocked |
@@ -150,7 +152,7 @@ Counting convention: REC-03 is counted once under PASS for the implemented softw
 |---|---|---|---|
 | TERM-01 ForceClose is intent | PASS | `TestFuturesVertical_ProviderForceClose` (intent recorded, never instant terminality, real safety exit through M1); `TestTerminalViaMMIntent`; `TestForceCloseTriggerFanout` (sdk/futures/provider) | Non-terminal until guards complete |
 | TERM-02 terminal guards | PASS | `TestTERM02_TerminalGuards`; `TestTERM02_TerminalBlockedByPendingFinality` (sdk/futures/operation) | Each missing guard independently blocks |
-| TERM-03 bridge down | INCOMPLETE | No current test exercises the exact scenario (ForceClose while execution edge down → pending termination + readiness alert, reconnect → reconcile first, then continue closure). Closest existing green tests: `TestEXE09_ReconnectBarrierOrderAndGating`, `TestFuturesVertical_BridgeRestart_NoDuplicateSubmit`, `TestF4_PreTransportCrashRecoveryDoesNotLivelock` | The reconcile-first-on-reconnect property is covered by these; the edge-down ForceClose path itself is not |
+| TERM-03 bridge down | PASS (**amended**: was INCOMPLETE) | `TestFuturesVertical_TERM03_ForceCloseWhileBridgeDown` (futuresvertical, executed green on the amended tree): active Operation + nonzero exposure + SimExecution edge NOT READY (`Adapter.SimulateDisconnect`) + ForceClose → termination intent persists (never instant terminality), NO synthetic success/fabricated Fill/blind submit (exposure + venue order counts unchanged, the in-flight command refused fail-visibly), readiness condition visible. Reconnect → reconciliation barrier FIRST (frozen 11-step order), the journaled cancel reconciled against the physical venue state, at-least-once M1 topic replay continues the closure → TERMINAL(SAFETY_FLATTEN), zero exposure, exactly one exit fill. EXE-09/restart tests reused as infrastructure, not as substitutes | Exact SimExecution integration evidence executed on the final tree; harness seam fix: the events→Core finality surface no longer fabricates TERMINAL_EXECUTION_FINAL for an order the venue never saw (fabricated finality released the claim and looped the §19 safety replan against a dead edge) |
 | TERM-04 direction immutable | PASS | `TestTERM04_DirectionImmutableOnBreach` | Breach visible, direction unchanged, no synthetic reversal |
 | TERM-05 terminal not revived | PASS | `TestTERM05_TerminalNotRevived`; `TestTerminalOperationAlwaysNoAction` (sdk/futures/gerardmm) | Late physical fact preserved; aggregate stays terminal |
 
@@ -215,7 +217,7 @@ Counting convention: REC-03 is counted once under PASS for the implemented softw
 2. **F-F-02**: real-Kafka at-least-once redelivery/commit semantics are seam-tested only (`adapters/kafka` TestF2_* — no broker in D5); real broker = D6 (noted on EXE-01/EXE-02).
 3. **BreakEnd strategy-delivery gap** (F-B-06, MINOR, left unfixed by decision): analytics fires the BreakEnd session transition; strategies never receive a BreakEnd delivery (noted on MKT-15).
 4. **Projector migration-066**: equal-seq sibling snapshots of one event can be dropped until the next event; converges; frozen migration constraint, documented (noted on REC-02).
-5. **No QUOTE producer in V1**: QUOTE-class market inputs don't exist; QUOTE-ladder cases are structural only (noted on MKT-16, MM-10).
+5. **QUOTE producer (amended by F-MGR-03)**: the runtime seam now exists — market_analytics fans accepted canonical QUOTE rungs to config-declared operation routes, the owner gates staleness/dedup, and MM evaluates through the decision-scoped MarketContext; deterministic Sim/in-process evidence only, per the amendment. Real external market-feed certification remains D6.
 
 ## D6 carry (unchanged from ATP §15, plus Shot 3 deferrals)
 
@@ -256,4 +258,14 @@ cd v3/futures-bridge                 && GOTMPDIR=/home/kor/aranea/gotmp go test 
 cd v3/futures-projector              && GOTMPDIR=/home/kor/aranea/gotmp go test -count=1 -v ./core/projector/ ./adapters/pgstore/
 ```
 
-**Status: D5 ATP FINAL MATRIX COMPLETE — 111 PASS / 0 FAIL / 2 INCOMPLETE (MKT-07, TERM-03) / 2 DEFERRED_TO_D6 full rows (EXE-14, SCL-03), over 115 cases, + D6 halves on REC-03, EXE-01/02/04/08, MKT-11/13, Budgets §20.**
+### Amendment evidence commands (2026-09-30, executed against `e607b418`)
+
+```text
+cd v3/core/internal/futuresvertical && GOTMPDIR=/home/kor/aranea/gotmp go test -count=1 -v -run 'TestFuturesVertical_MKT07|TestFuturesVertical_TERM03|TestFuturesVertical_ProfitExitContinues|TestFuturesVertical_QuoteTrigger|TestFuturesVertical_EconomicsUpdate' ./
+cd v3/sdk/futures/gerardmm          && GOTMPDIR=/home/kor/aranea/gotmp go test -count=1 -v -run 'TestFMGR02|TestQuoteTrigger' ./
+cd v3/sdk/futures/operation         && GOTMPDIR=/home/kor/aranea/gotmp go test -count=1 -v -run 'TestEngineFinality|TestQuoteNotif' ./
+cd v3/core/internal/futuresvertical && GOTMPDIR=/home/kor/aranea/gotmp go test -count=1 -v -run 'TestS12' ./          # 13/13
+# full regression §9: sdk futures 13 pkgs, core functions/vertical/runtime, futures-bridge, futures-projector — all ok
+```
+
+**Status (amended): D5 ATP FINAL MATRIX — 113 PASS / 0 FAIL / 0 INCOMPLETE / 2 DEFERRED_TO_D6 full rows (EXE-14, SCL-03), over 115 cases, + D6 halves on REC-03, EXE-01/02/04/08, MKT-11/13, Budgets §20.** Amendment closure: MKT-07 PASS, TERM-03 PASS, F-MGR-02 CLOSED, F-MGR-03 CLOSED @ `e607b418` (every amended verdict backed by tests executed green on the final tree).
