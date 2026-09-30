@@ -56,7 +56,7 @@ tags:
 ## Validación
 
 - Relectura remota inicial válida por UUID; se preserva el contenido existente fuera del reemplazo visual, la referencia E2E-4 y el estado textual.
-- No quedan bloques Mermaid en la copia local. El cuerpo local se verifica contra el contenido preparado para publicar y se ejecuta lint estricto sobre el delta.
+- No quedan bloques Mermaid en la copia local. El cuerpo local coincide con el contenido preparado para publicar. Lint estricto sobre la SPEC, el proyecto y esta bitácora: ERROR=0, WARN=0. Graphify refrescó el índice derivado y recuperó una única nota por el alias SIG-645.
 - Validación remota posterior a la edición pendiente por autenticación; no se declara publicado el ajuste.
 
 ## Compartibilidad
