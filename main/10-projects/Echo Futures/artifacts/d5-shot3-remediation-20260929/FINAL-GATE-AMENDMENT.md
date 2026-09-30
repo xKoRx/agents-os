@@ -169,8 +169,17 @@ dirty      = clean (git status: 0 entradas)
 commits    = e0cb7b53 (F-MGR-02) · eb8edbfb (F-MGR-03) · e607b418 (MKT-07 + TERM-03)
 ```
 
-## Observaciones para el Manager (fuera del alcance autorizado, sólo reporte)
+## FINAL SURGICAL FIX — F-MGR-04 (2026-09-30, Manager BLOCKER)
 
-1. **CLOSE (estrategia) con ADD order vivo** — edge preexistente expuesto por el E2E de QUOTE: el camino de management-signal CLOSE cancela el protective pero no un ADD aún vivo; con el ADD sin ejecutar, `evaluateTerminality` no converge (el ForceClose del safety plane sí cancela todo order vivo). El E2E de MKT-07 llena el add antes del stop-hit para mantenerse en alcance. Decisión owner (fix mínimo = cancelar live new-risk orders al registrar la intent, GMM-I15-consistente).
+La observación 1 de abajo fue clasificada **F-MGR-04 = BLOCKER** por el Primary Manager y **CLOSED** @ `13e087a3bb762f65b060d3b3200fb00a67c6ff1d` (prior `e607b418`, +1 commit enfocado, pusheado, tree clean).
+
+- **Fix**: `onManagementSignal` CLOSE/CLOSE_ALL cancela todo ENTRY/ADD con `q_exec_max > 0` vía el path existente de OrderAction (patrón D4-A2 §5.4 extendido al close técnico; AC-Q13-18). Claims retenidos hasta finality venue (F-C-01); exit sólo por el reducible NO reclamado (sin close competidor inseguro); roles reductores (EXIT/REDUCE) jamás cancelados; la continuación corre por los lifecycle facts con el `exitMaintenance` de F-MGR-02 (sin timers, polling, ni coordinación nueva).
+- **Evidencia**: reproducer vertical ROJO→VERDE (`TestFuturesVertical_F_MGR04_CloseAllNeutralizesLiveAdd`: QUOTE→ADD WORKING→CLOSE_ALL→cancel→claims→finality→exit exacto→TERMINAL); suite sdk gerardmm 7 tests (LONG/SHORT, CLOSE y CLOSE_ALL, exit sólo unclaimed, roles reductores intactos, idempotencia, ENTRY ejecutable neutralizado — el estado PENDING_ENTRY+CLOSE es estructuralmente posible en el lifecycle frozen); engine race matrix (Case A cancel-finality, Case B late full fill → verdad + continuación acotada por claims 5+5, Case C partial fill → claim remanente retenido + exit no-reclamado, Case E finalidad duplicada idempotente).
+- **Regresión (§17, sobre `13e087a3`)**: sdk futures 13/13 ok · core functions/futuresvertical/futuresruntime ok · futures-bridge 7/7 ok · futures-projector 3/3 ok · S12 13/13 · reproducers F-C-01 / F-E-01 / F-MGR-02 / F-MGR-03 / TERM-03 / MKT-07 → 23/23 PASS, 0 FAIL.
+- **ATP se mantiene**: 113 PASS / 0 FAIL / 0 INCOMPLETE / 2 DEFERRED_TO_D6 (F-MGR-04 = evidencia adicional del gate Manager, sin fila nueva).
+
+## Observaciones históricas (del amendment anterior)
+
+1. ~~CLOSE (estrategia) con ADD order vivo~~ → **CERRADO por F-MGR-04** (ver arriba).
 2. La finalidad no-forzada del harness ahora exige registro del venue — el comportamiento del producto (replan §19 por finalidad) quedó validado como correcto; el artefacto era evidencia fabricada del seam de test.
 ```
