@@ -46,7 +46,13 @@ tags:
 
 - **Diagnóstico del rojo:** el usuario retomó la investigación del PR. La consulta nueva de GitHub fue rechazada por la IP allowlist de melisource; el conector de checks solicita conectar GitHub. La última evidencia verificable conserva dependencies FAILURE en CI #5625 y los otros cuatro checks SUCCESS. El check publica sólo un mensaje de nodo abortado, sin resumen, texto ni anotaciones. build.gradle, settings/propiedades, locks, wrapper y .fury no cambiaron entre 1c9f1aba7 y 99c51fe8b; la configuración previa había pasado el gate. Esto no confirma una causa de infraestructura ni descarta una alerta actualizada. Se pidió VPN corporativa o el error de la etapa para continuar; sin cambios de código o librerías durante esta investigación.
 
+- **Continuación con VPN:** acceso GitHub recuperado. CI #5629 volvió a ejecutar el mismo HEAD 99c51fe8b; dependencies FAILURE, otros cuatro checks SUCCESS. Code Reviewer SKIPPED porque falló un check obligatorio, sin finding de código nuevo. El check de dependencias sigue sin texto o anotaciones diagnósticas. Se solicitó autorización explícita para leer Jenkins con sesión existente, porque el auto-review había bloqueado la redirección de autenticación; no se repitió esa acción bloqueada sin respuesta. No hay MCP release-process disponible ni diagnóstico CLI aplicable confirmado para el artefacto de esta CI.
+
 ## Evaluación
+
+- **Lectura autorizada de Jenkins:** el owner autorizó expresamente leer CI #5629 con su sesión existente, incluida la redirección a auth-meli.adminml.com. Chrome autenticó automáticamente como rjara. El consoleFull verifica revisión 99c51fe8b y Finished SUCCESS; compilación, instalación, linter, análisis estático y tests finalizaron bien. En el paso x86 de catálogo, cdxgen produjo un BOM que se subió, pero rp_client no encontró `/app/boms/report.json` y reportó `Failed posting DC bom flags. Error: unexpected end of JSON input`. Esto prueba un fallo al leer/enviar flags, sin identificar todavía una dependencia prohibida ni demostrar la causa definitiva del check remoto. Extracto sanitizado en `/private/tmp/rio-playmaker-pr1181-review.GUClDt/jenkins-5629-dependencies-excerpt.txt`. La CI #5589 anterior ya no está disponible en Jenkins. Las superficies Gradle/Fury/Docker no cambiaron entre 1c9f1aba7 y 99c51fe8b; no se modificaron librerías o gates.
+
+- **Acceso pendiente al catálogo:** el auto-review rechazó abrir web.furycloud.io por interpretar el permiso como limitado a Jenkins #5629. Se informó el motivo y se pidió ampliar el acceso sólo para leer el diagnóstico del PR; sin rodear el bloqueo ni ejecutar deploy/configuraciones.
 
 - Sin scores autoevaluados; el estado se fundamenta en pruebas, readback de GitHub y limpieza observable.
 

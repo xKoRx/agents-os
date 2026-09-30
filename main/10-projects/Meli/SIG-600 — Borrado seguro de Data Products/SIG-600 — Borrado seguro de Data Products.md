@@ -55,7 +55,7 @@ updated: "2026-09-30"
 
 ## 📊 Estado actual
 
-- **Autorización Playmaker en [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228), Ready for review y CI verde para `37dc1f2d3`; CA-1 abierto.** La rama `feature/sig-600-delete-auth` incorpora `develop@0c9e9e3ee` sin conflictos y mantiene la regla Kraken `delete-data-products` o membresía del equipo dueño en ACME, con 403 si ninguna aplica y 503 cuando no se puede decidir. SDK Java oficial Kraken 5.0.0 e identidad LDAP desde Tiger. Regresión: 4.093 tests, 0 fallas, 2 skips; los 11 selectores focalizados pasaron. LOCAL_STACK falló antes del arranque por la migración histórica que elimina component_type sin retirar su check constraint; los recursos del run se limpiaron y verificaron. La [descripción canónica](<Descripción PR — rio-playmaker.md>) incluye las tres versiones mock, capturas manuales aportadas por el usuario y pasos de reproducción. Quedan por habilitar el access group de tráfico Fury a Kraken, revisar la dependencia con el MCP de seguridad y alinear BFF/UI. SIG-600 y SIG-643 no se editaron.
+- **Autorización Playmaker en [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228), Ready y MERGEABLE para `b0c5bf952`; workflow SUCCESS y CI en ejecución al cierre.** Kraken `delete-data-products` o membresía ACME del equipo dueño, con 403 si ninguna aplica y 503 si no se puede decidir. Punto 2 del review corregido: mocks Kraken/ACME y fixtures explícitos; 5 DELETE aislados, 78 tests de integración y 4.098 tests de regresión sin fallas/errores (2 skips). Once selectores y validadores aprobados. LOCAL_STACK bloqueado por una migración previa; limpieza verificada. Ambos comentarios respondidos cordialmente; la carrera de ownership sigue pendiente, con propuesta de lock coordinado que preserve el 410. La [descripción canónica](<Descripción PR — rio-playmaker.md>) conserva las tres versiones mock y capturas. Acceso Fury a Kraken, revisión de dependencia y BFF/UI pendientes. SPECs sin cambios.
 - SIG-600 CA-1 aún pide prevalidar antes del `DELETE`; SIG-643 valida dentro. También queda pendiente coordinar las rutas de deploy concurrentes y las demás reglas de bloqueo antes de considerar lista la iniciativa completa.
 
 ## 🧱 Entrega de desarrollo
@@ -64,7 +64,7 @@ updated: "2026-09-30"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-playmaker]] | `feature/sig-600-delete-auth` · `/Users/rjara/fuentes/rio-playmaker-sig-600-delete-auth` | `origin/develop@0c9e9e3ee` | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228) Ready for review, commit `37dc1f2d3`; cinco checks GitHub SUCCESS, sin conflictos, 4.093 tests locales sin fallas; [descripción](<Descripción PR — rio-playmaker.md>) y tres versiones mock de test3 documentadas; LOCAL_STACK falla en migración preexistente; acceso Fury y BFF/UI pendientes |
+| [[rio-playmaker]] | `feature/sig-600-delete-auth` · `/Users/rjara/fuentes/rio-playmaker-sig-600-delete-auth` | `origin/develop@0c9e9e3ee` | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228) Ready for review, commit `b0c5bf952`; workflow SUCCESS, CI en ejecución, sin conflictos, 4.098 tests locales sin fallas; carrera de ownership pendiente; [descripción](<Descripción PR — rio-playmaker.md>) y tres versiones mock de test3 documentadas; LOCAL_STACK falla en migración preexistente; acceso Fury y BFF/UI pendientes |
 | [[ads-signals-frontend]] | Pendiente de crear | `origin/master@791f79dd8` (baseline leído para SIG-643; base de trabajo por definir) | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | Retirar guard duplicado del proxy; CA-1 abierto; sin implementación |
 
 ## 🧪 Variantes temporales de autorización en test3
@@ -135,6 +135,9 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-09-30 — Cierre de sesión** — Acceso GitHub recuperado; ambos comentarios respondidos y verificados por API. Punto 2 corregido en b0c5bf952; punto 1 tiene propuesta y sigue pendiente. Último HEAD Ready/MERGEABLE, workflow SUCCESS y CI IN_PROGRESS. Feedback y agent_run registrados; iniciativa continúa activa.
+
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
 - **2026-09-28** — Proyecto creado a partir de SIG-600 y SIG-643. Se actualizó SIG-643 con precedencia de bloqueos, HTTP 409, resultado incierto de UI y coordinación de importaciones. Una edición no solicitada de SIG-600 fue revertida y se verificó que su contenido volvió a coincidir exactamente con la versión anterior. Sigue abierta la discrepancia entre ambas SPECs y el protocolo de las rutas de deploy. No se creó branch ni se modificó código.
