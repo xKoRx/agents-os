@@ -29,7 +29,7 @@ tags:
   - area/meli
   - project/sig-600
 created: "2026-09-28"
-updated: "2026-09-28"
+updated: "2026-09-30"
 ---
 
 # SIG-600 — Borrado seguro de Data Products
@@ -67,6 +67,20 @@ updated: "2026-09-28"
 | [[rio-playmaker]] | `feature/sig-600-delete-auth` · `/Users/rjara/fuentes/rio-playmaker-sig-600-delete-auth` | `origin/develop@c4ac43da4` | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | [PR draft #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228), commit `73fabcfb9`; autorización Kraken OR ACME, 4.037 tests locales sin fallas, CI verde y [versión TEST](https://web.furycloud.io/engineering/applications/rio-playmaker/versions/detail/0.0.1-test-sig600-delete-auth) lista para desplegar; acceso Fury y revisión de seguridad pendientes; reglas de bloqueo restantes sin implementar |
 | [[ads-signals-frontend]] | Pendiente de crear | `origin/master@791f79dd8` (baseline leído para SIG-643; base de trabajo por definir) | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | Retirar guard duplicado del proxy; CA-1 abierto; sin implementación |
 
+## 🧪 Variantes temporales de autorización en test3
+
+| Escenario | Branch | Versión TEST | HEAD | Estado |
+|---|---|---|---|---|
+| Sin ACME ni Kraken | `feature/sig-600-delete-auth-mock-denied-test3` | [0.0.5-test-sig600-denied](https://web.furycloud.io/engineering/applications/rio-playmaker/versions/detail/0.0.5-test-sig600-denied) | `4633cee05` | FINISHED, tests habilitados |
+| Solo ACME | `feature/sig-600-delete-auth-mock-acme-test3` | [0.0.3-test-sig600-acme](https://web.furycloud.io/engineering/applications/rio-playmaker/versions/detail/0.0.3-test-sig600-acme) | `ebe2807e3` | FINISHED, tests habilitados |
+| Solo Kraken | `feature/sig-600-delete-auth-mock-kraken-test3` | [0.0.4-test-sig600-kraken](https://web.furycloud.io/engineering/applications/rio-playmaker/versions/detail/0.0.4-test-sig600-kraken) | `252b2324c` | FINISHED, tests habilitados |
+
+- Base funcional: PR #1228 `73fabcfb9`. Worktrees bajo `/Users/rjara/fuentes/rio-playmaker-sig-600-delete-auth-mock-*`.
+- Solo DELETE usa respuestas sintéticas de providers; Tiger y blockers existentes siguen activos. ACME_ONLY simula membresía del equipo actual del DP sin modificar DB. Los clients globales no se reemplazan. Ningún perfil distinto de test3 activa los mocks; también se excluyen perfiles production/staging combinados con test3.
+- Con deployments activos: NONE devuelve 403 `DP_DELETE_FORBIDDEN` antes de consultar blockers; ACME_ONLY y KRAKEN_ONLY llegan al bloqueo existente 409. Probar directamente en Playmaker, porque el BFF conserva su guard ACME real.
+- Cada variante pasó 4.056 tests locales, 0 fallas, 2 skips preexistentes. Gate focalizado y validadores pasan; LOCAL_STACK bloqueado por Docker apagado. Se corrigió un test de fecha que fallaba al cruzar un segundo: ahora exige que deletedAt esté dentro del intervalo real del DELETE.
+- [Runbook](</Users/rjara/fuentes/rio-playmaker-sig-600-delete-auth-mock-test3/docs/runbook-sig600-delete-auth-mock-test3.md>). La versión inicial `0.0.2-test-sig600-denied` queda reemplazada por `0.0.5-test-sig600-denied`, que incluye la corrección del test temporal. No se desplegó ni se modificaron datos de DPs/remotos. Los mocks no forman parte del PR funcional ni completan las reglas nuevas de SIG-600.
+
 ## 🧩 Subproyectos
 
 ```base
@@ -103,6 +117,7 @@ views:
 > - [ ] Implementar en Playmaker los tres bloqueos, coordinar importaciones y rutas de deploy, y emitir códigos estables #owner/me #type/dev #area/meli
 > - [ ] Propagar códigos en el BFF y compartir modal/flujo entre listado y detalle con resultado incierto separado de éxito #owner/me #type/dev #area/meli
 > - [ ] Verificar los CA de SIG-600, el `DELETE` directo, permisos y ambas órdenes de carrera; preparar PRs #owner/me #type/dev #area/meli
+> - [x] Crear ramas y versiones TEST3 con mocks NONE/ACME_ONLY/KRAKEN_ONLY; builds FINISHED y regresión local verde #owner/me #type/dev #area/meli ✅ 2026-09-30
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -126,6 +141,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **2026-09-28** — SIG-643 actualizada: Playmaker autoriza el borrado con permiso Kraken o membresía ACME, tras Tiger y antes de los bloqueos; falta de permiso devuelve 403. El guard ACME duplicado del proxy BFF debe retirarse para admitir Kraken. SIG-600 no se editó. Quedan abiertos CA-1, la integración Java de Kraken y la concurrencia de deploys.
 - **2026-09-29** — Se creó un worktree aislado de Playmaker y se implementó la autorización del `DELETE` con el SDK Java oficial de Kraken 5.0.0 o grants ACME del equipo dueño. Se configuró sandbox para test/test2/test3/local y producción por defecto; `compileJava` y `compileTestJava` pasaron sin ejecutar tests. Pendiente habilitar acceso de tráfico Fury, revisar la dependencia con el MCP de seguridad y alinear BFF/UI. SIG-600 no se editó.
 - **2026-09-29** — La rama se rebasó sobre `develop` y se abrió el [PR draft #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228). Pasaron 4.037 tests locales, los cinco tests focalizados y ambos validadores de contrato; el health check LOCAL_STACK no pudo arrancar por falta de Docker. El primer intento contra `master` fue rechazado por el workflow de Fury y se corrigió la base a `develop`. CI quedó verde y Fury terminó la [versión TEST `0.0.1-test-sig600-delete-auth`](https://web.furycloud.io/engineering/applications/rio-playmaker/versions/detail/0.0.1-test-sig600-delete-auth) del commit `73fabcfb9`; aún no se desplegó.
+
+- **2026-09-30** — Se crearon tres ramas test3 derivadas del PR #1228 para NONE/ACME_ONLY/KRAKEN_ONLY. Regresión verde en cada una (4.056 tests, 0 fallas, 2 skips); test temporal estabilizado sin cambiar la lógica de borrado. Versiones finales verificadas en Fury como FINISHED, con tests habilitados y commit igual al HEAD remoto de cada rama; sin deploy. SIG-600 y SIG-643 no se editaron.
 
 ## 🧭 Decisiones
 
