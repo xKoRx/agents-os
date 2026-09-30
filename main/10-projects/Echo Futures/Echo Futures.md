@@ -23,7 +23,7 @@ tags:
   - echo-futures
   - algorithmic-trading
 created: "2026-09-25"
-updated: "2026-09-28"
+updated: "2026-09-30"
 ---
 
 # Echo Futures
@@ -2130,3 +2130,38 @@ Final authoritative state:
 - **Findings: 4 BLOCKER · 32 MAJOR · 28 MINOR** (1 refutado). Máximo riesgo: F-A-01 (timers de barra/sesión = sends inmediatos; semántica de barras inservible en runtime Flink real; MKT-14/15 con falsa confianza estructural) y F-C-01 (ventana cancel-ACK→finality libera el claim: double-spend + inversión física demostrada). Otros blockers: F-D-01 (caps GROSS/NET_ABS scopeados evaluados account-wide) y F-E-01 (terminación por profit inalcanzable: no existe trigger QUOTE/PnL para GerardMM).
 - Package completo: [[Echo Futures/artifacts/d5-shot2-adversarial-20260929/MACRO-SHOT-2-REVIEW|MACRO-SHOT-2-REVIEW]] (findings register, ATP matrix, hard-budget review, tests desafiados, inputs Shot 3).
 - **No se emite** `EF_D5_FOUNDATION_PASS` ni `D5 CLOSED`; no se inicia Shot 3. Sigue: decisión del Primary Manager sobre los blockers.
+
+
+## D5 — OWNER ACCEPTED / CLOSED — 2026-09-30
+
+Owner accepted the Primary Manager final D5 gate.
+
+Final authoritative state:
+
+- `D5 STATUS = CLOSED_BY_OWNER`.
+- `EF_D5_FOUNDATION_PASS = REVIEW` is accepted by Owner and closes D5.
+- Final Echo implementation baseline: `xKoRx/echo@13e087a3bb762f65b060d3b3200fb00a67c6ff1d` on `feature/d5-shot3-remediation`.
+- Macro Shot 1 implementation: **CLOSED**.
+- Macro Shot 2 adversarial review: **CLOSED**.
+- Macro Shot 3 remediation + final amendments: **CLOSED**.
+- Manager blockers `F-A-01`, `F-C-01`, `F-D-01`, `F-E-01`, `F-MGR-01`, `F-MGR-02`, `F-MGR-03`, `F-MGR-04`: **CLOSED**.
+- ATP final: **113 PASS / 0 FAIL / 0 INCOMPLETE / 2 DEFERRED_TO_D6**.
+- S12 exact replay/backtest acceptance: **13/13 PASS**.
+- D5 remains frozen at the accepted baseline; D6 must integrate/certify real provider + transport without reopening architecture unless physical evidence proves a contradiction.
+
+**Next milestone authorized:** D6 — DEVELOPMENT II / Multi-Prop E2E + Scale.
+
+## D6 — OWNER DIRECTION / EARN2TRADE MVP — 2026-09-30
+
+Owner selects **Earn2Trade as the first real prop target for the Echo Futures MVP**, taking advantage of the current commercial discount.
+
+Direction entering D6:
+
+- Earn2Trade is the primary provider/program to onboard and certify first; exact program, account size, promotion terms and current rules must be re-verified from first-party sources at D6 start before purchase/config freeze.
+- Owner operating policy for Earn2Trade: **one Earn2Trade account active at a time**. Echo Futures is not designed as leader/follower trade copying; Strategy fan-out materializes account-specific decisions through each account's MoneyManagement and ProviderRuleSet. D6 still must verify Earn2Trade automation/usage terms and not assume policy exemptions.
+- D6 must distinguish evaluation, LiveSim and Live rule profiles where they differ; no provider-specific logic belongs in Strategy or GerardMM.
+- D6 must select and certify the minimum viable real execution path supported/authorized for the selected Earn2Trade account. Transport entitlement is a first-class preflight question.
+- KISS/YAGNI remains binding: no D5 redesign, no provider-specific MM subclass, no generic plugin framework, no multi-provider implementation before the first Earn2Trade vertical is physically proven.
+- The first D6 gate is evidence-driven: exact Earn2Trade program/rules + exact execution transport + account/environment availability + delta against the frozen ProviderRuleSet/ExecutionAdapter contracts.
+
+**Next Manager action:** bootstrap D6 from the D5 frozen baseline and perform an Earn2Trade-first preflight. Produce a bounded D6 execution plan and specialist prompts only after resolving first-party rules and real transport entitlement.
