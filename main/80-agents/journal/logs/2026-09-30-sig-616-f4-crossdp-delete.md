@@ -42,13 +42,14 @@ tags:
 
 - D25 y la SPEC distinguen create/update same-DP de delete histórico con guards de ambos owners persistidos.
 - D26 permanece sin cambios productivos y el owner ratificó su excepción de compatibilidad, aceptando expresamente que Tiger-only no prueba permiso de borrado. No se adoptan los respaldos alternativos ni se exige backfill masivo.
-- Descripción local alineada con la decisión. La descripción remota no se alteró; se publicó y verificó una respuesta al comentario sobre falta de equipo, autorizada explícitamente por el owner, sin resolver el hilo: [respuesta](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952).
+- Descripción local y remota alineadas con la decisión final, publicadas sobre `99c51fe8b`. Respuestas verificadas y todos los hilos resueltos; aprobación humana pendiente.
+- Merge de `develop@0c9e9e3ee` sin reescribir historia. Runner MySQL aplica la migración CHECK antes del DROP histórico; runner Kafka detecta Jetty/Tomcat. No se cambió SQL ni se desactivaron constraints o tests. OpenAPI sincronizado con anotaciones de catálogo/importación.
 
 ## Validación
 
-- Regresión: 4.097 tests, cero fallas/errores, dos skips; 97,16% de cobertura. Los 51 selectores pasaron.
-- Gate MySQL falló por orden de migraciones previo; cleanup propio verificado. Corrección de seis archivos staged, sin commit/push; conflictos contra develop pendientes.
-- Sin Zord por instrucción del owner; sin smoke ni mutaciones remotas.
+- Regresión final: 4.129 tests, cero fallas/errores, 2 skips; 97,19% de cobertura. Los 53 selectores y tres checks L0/LOCAL_STACK pasaron, con cleanup certificado.
+- Publicación verificada en `99c51fe8bd3da2e73ede96ae717a1ab1fae723c7`; checks remotos en ejecución; PR MERGEABLE / BLOCKED / REVIEW_REQUIRED.
+- Sin Zord por instrucción del owner; sin smoke remoto, merge del PR ni deploy. Los fallos iniciales del runner se resolvieron antes de publicar.
 
 ## Compartibilidad
 

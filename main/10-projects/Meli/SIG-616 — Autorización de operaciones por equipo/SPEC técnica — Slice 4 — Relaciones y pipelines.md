@@ -3,19 +3,18 @@
 ## Metadatos
 
 - Tipo: Technical SPEC
-- Estado: Corrección de delete cross-DP local staged sobre `1c9f1aba7` el 2026-09-30, sin commit/push; regresión completa PASS; check MySQL bloqueado por migración previa; excepción sin equipo ratificada por el owner; review humano, sub-SPEC F4 y smoke pendientes
+- Estado: Publicado en `99c51fe8b`; checks remotos en ejecución; sin conflictos (MERGEABLE); hilos respondidos y resueltos; aprobación humana, sub-SPEC formal y smoke pendientes
 - SPEC funcional: [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621)
 - Requerimiento: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
 - Aplicación: `rio-playmaker`
 - PR: [#1181](https://github.com/melisource/fury_rio-playmaker/pull/1181)
 - Rama: `feature/operation-authorization-by-team-f4`
-- Base del PR: `develop`; F3 fue incorporado en `19d70a6cf` y el tip observado al cierre es
-  `9a559dfb3` (cambio posterior sólo de metadata de agentes, sin conflictos con F4)
+- Base del PR: `develop@0c9e9e3ee`, integrado por merge en `99c51fe8b` el 2026-09-30; sin conflictos.
 - Merge inicial de F3: `7c9195a65`
 - Implementación regularizada: `e8b957c47`
 - Merge final de `develop`, sin cambio de árbol: `d792b902b`
 - Corrección del bypass de plataforma: `e75ca90d9`
-- Corrección de review publicada: `40d5f9b22`
+- Corrección de review publicada: `40d5f9b22`; ajuste de delete histórico y sincronización final: `99c51fe8b`
 
 ## Objetivo y límites
 
@@ -158,8 +157,8 @@ omitiendo el precheck histórico; el guard F4 permanece activo para poder probar
 | PR #1181, dmuena: same-DP en relaciones | Válido por SIG-616; reemplaza la decisión local previa de compatibilidad cross-DP | Se exige same-DP en create/update antes de autorización y mutación; el rechazo es `400`. El owner autorizó el 2026-09-30 exceptuar el delete histórico, que aplica los guards a ambos owners persistidos antes de borrar. |
 | PR #1181, dmuena: `FURY_IS_TEST_SCOPE` cambia el flujo | Válido como cambio observable; esperado para probar el guard por scope | El precheck histórico se omite en test scope y el guard F4 sigue gobernado por la configuración efectiva; se agregan tests de allow/deny con ACME simulado. |
 | PR #1181, dmuena: Data Products sin `teamName` | Válido para el cascade | El delete omite el precheck ACME histórico y el guard F4 si no hay equipo, incluso cuando hay `projectCode`; se agregan regresiones para `null` y blank. |
-| PR #1181, marellanoqui_meli: delete cross-DP histórico bloqueado | Válido; corrección autorizada el 2026-09-30 | Se elimina sólo el check same-DP en delete. Tests con autorizador real permiten con ambos grants, deniegan sin cualquiera de ellos o ante falla ACME; tests HTTP verifican 200/403 y estado persistido. Fix local, sin publicar. |
-| PR #1181, marellanoqui_meli: delete sin `teamName` queda sin autorización | Riesgo válido; excepción de compatibilidad ratificada por el owner el 2026-09-30 | Se mantiene D26. El owner acepta que un usuario autenticado sin grants pueda borrar si pasan las demás precondiciones; descarta conservar el precheck o denegar en esta fase porque bloquea usuarios no-plataforma y no exige un backfill masivo. [Respuesta publicada](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952); hilo dejado abierto para review. |
+| PR #1181, marellanoqui_meli: delete cross-DP histórico bloqueado | Válido; corrección autorizada el 2026-09-30 | Se elimina sólo el check same-DP en delete. Tests con autorizador real permiten con ambos grants, deniegan sin cualquiera de ellos o ante falla ACME; tests HTTP verifican 200/403 y estado persistido. Publicado en `99c51fe8b`; hilo respondido y resuelto. |
+| PR #1181, marellanoqui_meli: delete sin `teamName` queda sin autorización | Riesgo válido; excepción de compatibilidad ratificada por el owner el 2026-09-30 | Se mantiene D26. El owner acepta que un usuario autenticado sin grants pueda borrar si pasan las demás precondiciones; descarta conservar el precheck o denegar en esta fase porque bloquea usuarios no-plataforma y no exige un backfill masivo. [Respuesta publicada](https://github.com/melisource/fury_rio-playmaker/pull/1181#discussion_r4146982952); hilo resuelto por decisión explícita del owner, con el riesgo vigente y documentado. |
 | PR #1178, comentarios restantes | Heredados/ya corregidos en F3 | La base sincronizada ya contiene las correcciones; no se duplican. Hallazgos fuera de alcance van a F5. |
 
 ## Archivos productivos
@@ -176,7 +175,7 @@ No hay endpoints, modelos, tablas ni migraciones nuevos. La invariante same-DP d
 
 ## Evidencia automatizada
 
-Corrección local del 2026-09-30, sobre `1c9f1aba7` más el diff staged de seis archivos: La regresión `./gradlew check jacocoTestReport --offline --no-daemon` pasó: 4.097 tests en 371 suites, cero fallas/errores, dos skips y 14.689/15.118 líneas cubiertas (97,16%). Los 51 selectores de `run-agentic-testing-contract.sh` pasaron; su primer check L0/LOCAL_STACK falló en el bootstrap MySQL por la migración previa que elimina `component_type` antes de reemplazar el CHECK que lo referencia. Los otros dos checks no se ejecutaron por ese bloqueo común. El runner eliminó contenedores, volúmenes y red propios, comprobados vacíos por labels. Los 51 casos de las clases de relaciones (26 unit, 25 H2/HTTP) pasaron. No hay líneas productivas añadidas: el cambio funcional retira dos líneas del check same-DP en delete. `GenerateDocTest` dentro de la regresión no produjo cambios de OpenAPI. Sin Zord por instrucción expresa del owner, sin smoke remoto ni publicación del fix.
+Corrección publicada el 2026-09-30 en `99c51fe8bd3da2e73ede96ae717a1ab1fae723c7`, tras integrar `develop@0c9e9e3ee`: `./gradlew check jacocoTestReport --offline --no-daemon` PASS con 4.129 tests en 372 suites, cero fallas/errores, 2 skips preexistentes y 14,781/15,209 líneas cubiertas (97,19%). `run-agentic-testing-contract.sh` PASS con 53 selectores y tres checks L0/LOCAL_STACK (MySQL/app, deployment loopback y Kafka), con cleanup certificado; Kafka publicó `CLEANUP_CERTIFIED` y los tres checks finalizaron sin recursos propios restantes. Los 51 casos de relaciones (26 unit, 25 H2/HTTP) cubren ambos grants, deny de cada owner, falla ACME y estado persistido. El fix funcional retira el check same-DP sólo en delete; create/update siguen rechazando cross-DP. Los fallos iniciales revelaron dos problemas del runner local: el CHECK debe reemplazarse antes del DROP histórico, y el servidor actual es Jetty. Ambos se corrigieron sin modificar SQL de migraciones ni reducir assertions. OpenAPI se regeneró desde las anotaciones del catálogo/importación integrados de develop. checks remotos en ejecución; Code Reviewer queda sujeto a aprobación humana. Sin Zord por instrucción expresa del owner, sin smoke remoto ni deployment.
 
 Evidencia inicial sobre `d792b902b` y regresión final sobre `e75ca90d9`:
 
@@ -236,7 +235,7 @@ plataforma, por lo que esas variantes no sirven como prueba manual de dicho bypa
 
 ## Riesgos y gates pendientes
 
-- Estado observado el 2026-09-30: GitHub marca el PR CONFLICTING/DIRTY contra develop; no se resolvieron conflictos. La corrección cross-DP permanece local, por lo que no tiene checks remotos nuevos. El gate L0/LOCAL_STACK falla en el bootstrap MySQL preexistente; los dos checks posteriores comparten esa dependencia y quedaron sin ejecutar. No se presenta la regresión H2 como sustituto del stack.
+- Estado observado el 2026-09-30: Publicado en `99c51fe8b`; checks remotos en ejecución; sin conflictos (MERGEABLE); hilos respondidos y resueltos; aprobación humana, sub-SPEC formal y smoke pendientes. El riesgo de D26 sigue aceptado y documentado; resolver el hilo no significa que el riesgo desaparezca. Los tres checks del stack local pasaron y no sustituyen el smoke Fury.
 - Builds Fury test3 terminados `FINISHED`; falta deploy no productivo.
 - Pruebas manuales sobre esas variantes; no se declaran aprobadas antes de ejecutarlas.
 - No se realizará versión estable ni deployment productivo.
