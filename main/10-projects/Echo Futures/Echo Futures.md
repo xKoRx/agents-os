@@ -2122,3 +2122,11 @@ Final authoritative state:
 **Next milestone:** D5 — DEVELOPMENT I / Foundations.
 
 **Next Manager action:** bootstrap D5 from the frozen V2/SPEC/ATP/budgets/shots, verify physical Echo baseline before source mutation, then execute bounded implementation shots with evidence-driven QA.
+
+### D5 progress — 2026-09-29
+
+- **Macro Shot 1** implementado y remediado: baseline integrado `4c41ee77` en `feature/d5-foundations` (== origin; A ratificado, B topología §17, C GROUP_WEIGHTED + fix signo, TRADE forward producción, projector 066), a la espera de aceptación del Primary Manager.
+- **Macro Shot 2 — ADVERSARIAL REVIEW = COMPLETE** (`ADVERSARIAL_RESULT = FINDINGS`): 8 reviewers adversariales (A–H) sobre `4c41ee77` + consolidación TOP; rama de review `feature/d5-shot2-adversarial` @ `9275fa74` con S12 COMPLETE (test-only; product code congelado): MKT-10..13, REC-04, goldens S1/S2, GerardMM same-input/same-decision con referencia independiente, BACKTEST determinismo ×2 byte-idéntico, journal vivo con RUN_START.
+- **Findings: 4 BLOCKER · 32 MAJOR · 28 MINOR** (1 refutado). Máximo riesgo: F-A-01 (timers de barra/sesión = sends inmediatos; semántica de barras inservible en runtime Flink real; MKT-14/15 con falsa confianza estructural) y F-C-01 (ventana cancel-ACK→finality libera el claim: double-spend + inversión física demostrada). Otros blockers: F-D-01 (caps GROSS/NET_ABS scopeados evaluados account-wide) y F-E-01 (terminación por profit inalcanzable: no existe trigger QUOTE/PnL para GerardMM).
+- Package completo: [[Echo Futures/artifacts/d5-shot2-adversarial-20260929/MACRO-SHOT-2-REVIEW|MACRO-SHOT-2-REVIEW]] (findings register, ATP matrix, hard-budget review, tests desafiados, inputs Shot 3).
+- **No se emite** `EF_D5_FOUNDATION_PASS` ni `D5 CLOSED`; no se inicia Shot 3. Sigue: decisión del Primary Manager sobre los blockers.
