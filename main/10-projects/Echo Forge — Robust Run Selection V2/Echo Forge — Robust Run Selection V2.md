@@ -10,7 +10,7 @@ parent: "[[Echo Forge — Operación Real V2]]"
 sprint:
 start: 2026-09-29
 due:
-progress: 80
+progress: 90
 repo: "xKoRx/symphony"
 jira:
 prs:
@@ -36,16 +36,16 @@ updated: "2026-09-29"
 
 ## 📊 Estado actual
 
-- **DESIGN_AMENDMENT_READY_FOR_FOCUSED_VERIFY — 2026-09-29.** El Primary Manager acepta la única corrección material del adversarial y la integra al candidate: todo candidate con `R_retdd`, `R_sharpe`, `R_profit`, `R_aux` o `cliff` no finito queda analytical-ineligible **antes** de `ret_best/aux_best`. Si no queda ninguno, la Strategy termina en analytical FAIL. Además, los parámetros semánticos `cliff_threshold`, `epsilon_ret` y `epsilon_aux` deben validarse como finitos y >= 0; un config inválido es contract/config error, no analytical FAIL. No cambia ninguna otra semántica de Iteration 2.
+- **DESIGN_READY_FOR_DURABLE_REPLAY_AND_OWNER_FREEZE — 2026-09-29.** Focused final verification PASS: el derived-finiteness gate cierra el único fail-open material sin cambiar la policy finita de Iteration 2. Todo candidate con `R_retdd`, `R_sharpe`, `R_profit`, `R_aux` o `cliff` no finito queda analytical-ineligible antes de cualquier mínimo; empty set => analytical FAIL. `cliff_threshold`, `epsilon_ret` y `epsilon_aux` se validan sólo en V2 como finitos y >= 0; config inválido es contract/config failure. Casos all-nonfinite, mixed finite/nonfinite, auxiliary nonfinite, cliff nonfinite, near-zero finite, zero-scale/zero-variation, raw invalid, config invalid, finite-corpus non-regression y V1 compatibility quedaron PASS.
 - Candidate V2 recomendado: `R_x = max(normalized MAD_x, normalized |center_x - median_x|)`; cliff Ret/DD permanece hard gate separado; stability authority se implementa conceptualmente mediante dos indifference bands ancladas a mínimos intra-strategy: primero `R_retdd <= min(R_retdd)+epsilon_ret`, luego `R_aux=max(R_sharpe,R_profit) <= min(R_aux)+epsilon_aux`. Quality sólo decide después de ambas equivalencias.
 - La topología V2 se mantiene KISS: se agrega center representativeness porque el CELL aplicado físicamente es el centro; no se agregan edge weights, surface fitting ni pesos distintos para corner/direct neighbor sin evidencia.
 - Quality se mantiene deliberadamente lexicográfica después de stability equivalence: median Ret/DD → median Sharpe → median Net Profit. No se agrega quality band en V2; el replay adversarial no encontró en los probes realizados un caso donde <1% de ventaja median Ret/DD dentro de los stability bands ocultara >5% de Sharpe o >10% de Net Profit.
 - Cliff threshold sigue abierto. Replay Optimizer correctamente separado: 18/34 Strategies son pre-cliff eligible; cliff 25% elimina todos los candidates de 4, 30% de 3, 35% de 0 y 40% de 0. Por tanto 35% sigue candidate, no frozen.
 - `epsilon_ret`, `epsilon_aux` y cliff threshold son decisiones semánticas Owner; no deben ajustarse mirando qué winner gusta más.
 - Exact durable replay sigue pendiente: Optimizer y WFM pueden diferir por re-evaluación. Antes de SPEC freeze se exige reproducir V1 desde CELL/MetricSet durable exacto y aplicar la V2 corregida offline sobre la misma autoridad.
-- Artefacto vigente: [[ROBUST-V2-FINAL-ADVERSARIAL-REVIEW]].
+- Artefacto vigente: [[ROBUST-V2-FINITENESS-VERIFICATION]].
 - Manager pre-review: Iteration 2 resuelve el defecto principal de Pareto y queda aceptada como candidato para adversarial final, no frozen. El adversarial debe atacar especialmente (1) la semántica de que el auxiliary band pueda excluir al exact Ret/DD-stability winner una vez dentro de `epsilon_ret`; (2) sensibilidad de cliff a nivel candidate/winner, no sólo Strategy survival; (3) parámetros `epsilon_ret/epsilon_aux` como materiality semantics y no tuning; y (4) compatibilidad: V2 debe ser un algoritmo nuevo seleccionable por config sin cambiar V1.
-- Próximo exacto: **fresh TOP focused verification del Manager amendment**: probar derived-finiteness + config-parameter validity y confirmar que no alteran casos finitos válidos ni V1. Si pasa, el diseño queda listo para Owner freeze sujeto al exact durable replay. No SPEC ni implementación todavía.
+- Próximo exacto: **exact durable replay + Owner freeze**: reproducir V1 desde la misma autoridad durable CELL/MetricSet, aplicar V2 corregida offline con audit completo y congelar `cliff_threshold`, `epsilon_ret` y `epsilon_aux` sólo con esa evidencia. No SPEC ni implementación todavía.
 
 ## 🧱 Entrega de desarrollo
 
@@ -65,12 +65,14 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 > - [x] Revisar [[ROBUST-V2-DESIGN-ITERATION-2]] con Primary Technical Manager #owner/me #type/supervision #area/echo
 > - [x] Ejecutar fresh TOP final adversarial review del candidate V2 #owner/me #type/research #area/echo
 > - [x] Integrar corrección bounded: non-finite derived stability => analytical ineligible #owner/me #type/supervision #area/echo
-> - [ ] Verificar focalizadamente derived-finiteness + validity de parámetros semánticos #owner/me #type/research #area/echo
+> - [x] Verificar focalizadamente derived-finiteness + validity de parámetros semánticos #owner/me #type/research #area/echo
 > - [ ] Resolver decisiones Owner: epsilon_ret, epsilon_aux y cliff threshold #owner/me #type/supervision #area/echo
 > - [ ] Congelar SPEC funcional/técnica sólo después de aceptar el diseño #owner/me #type/dev #area/echo #blocked
 > - [ ] Implementar y certificar V2 sólo después del SPEC freeze #owner/me #type/dev #area/echo #blocked
 
 ## 📆 Bitácora
+
+- **2026-09-29 — Focused final finiteness verification.** Gate PASS: `DESIGN_READY_FOR_DURABLE_REPLAY_AND_OWNER_FREEZE`. El amendment es fail-closed y behaviorally transparent sobre corpus finito; no introduce cutoff near-zero, no rechaza scale=0/variation=0 y no toca V1. Config inválido V2 queda separado de Strategy analytical FAIL. Artefacto: [[ROBUST-V2-FINITENESS-VERIFICATION]]. Próximo gate exacto: durable replay + Owner freeze; sin SPEC/product code.
 
 - **2026-09-29 — Primary Manager amendment.** Se acepta e integra la única corrección material del adversarial: derived non-finite => analytical-ineligible antes de mínimos; empty set => analytical FAIL. Se añade validación contractual KISS para los tres parámetros configurables de V2: deben ser finitos y >=0; config inválido es error técnico/config, no resultado analítico. No se reabre `R_x`, nested indifference, cliff semantics, auxiliary minimax, quality order ni config identity. Gate: `DESIGN_AMENDMENT_READY_FOR_FOCUSED_VERIFY`.
 
