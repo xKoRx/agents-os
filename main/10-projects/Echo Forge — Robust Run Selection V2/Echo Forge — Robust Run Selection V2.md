@@ -10,7 +10,7 @@ parent: "[[Echo Forge — Operación Real V2]]"
 sprint:
 start: 2026-09-29
 due:
-progress: 50
+progress: 70
 repo: "xKoRx/symphony"
 jira:
 prs:
@@ -35,16 +35,15 @@ updated: "2026-09-29"
 
 ## 📊 Estado actual
 
-- **DESIGN_ITERATION_REQUIRED — MANAGER REVIEW 2026-09-29.** El primer candidato queda parcialmente aceptado como base conceptual, pero **Pareto layers + quality lexicográfica NO queda frozen**. La revisión independiente del Manager encontró trade-offs donde una mejora mínima de median Ret/DD puede comprar una degradación material de estabilidad dentro de la misma Pareto layer. Se requiere una segunda iteración TOP focalizada antes de llevar la filosofía de ranking al Owner.
-- Reconstrucción V1 verificada en `xKoRx/symphony`: `dispersion_cov` usa Sharpe CoV + Net Profit CoV, pero el durable ranking ordena primero por `ranking_metric(center)` y sólo después usa `robustness_score` como tie-break; wave2a usa `sharpe_ratio`.
-- El candidato V2 propone separar tail-risk Ret/DD, dispersión robusta y nivel de performance: cliff Ret/DD contra la mediana local; normalized MAD por métrica; capas de estabilidad no-dominadas; calidad de meseta por medianas Ret/DD → Sharpe → Net Profit; tie-break técnico determinista.
-- El umbral exacto del cliff sigue abierto. Importante corrección de interpretación del Manager: en el export Optimizer, sólo **18/34** Strategies tienen al menos un neighborhood 3×3 con las 9 CELLs `cell_passed=true` antes de aplicar cliff; con cliff 35%, las mismas 18 conservan al menos un candidate. Por lo tanto, el 34→18 observado NO debe atribuirse al threshold 35%.
-- Replay independiente del Manager sobre el mismo export a cliff 35%: la Pareto layer 1 ocupa una mediana aproximada de **32.1%** de los candidates por Strategy, llega hasta **7 candidates**, y el winner Pareto+quality difiere del mejor scalar diagnóstico 50/25/25 en **9/18** Strategies. Esto no invalida Pareto, pero demuestra que no puede congelarse sin revisar sus trade-offs.
-- Counterexample material: en `Strategy_1.8.669`, el ranking candidato Pareto+quality elegiría 9/26 (median Ret/DD≈21.9858, D_retdd≈3.07%) sobre 8/28 (median Ret/DD≈21.8314, D_retdd≈1.34%): ~0.71% de mejora de quality compra ~2.3× dispersión Ret/DD. Esa semántica debe ser explícitamente aceptada o corregida.
-- Los pesos 40/30/30, 50/25/25 y 60/20/20 siguen sólo como sensibilidad/diagnóstico, no como autoridad frozen.
-- Replay wave2a de diseño completado sobre el export disponible. Existe un gap de evidencia: los valores del Optimizer pueden diferir levemente de la re-evaluación WFM durable (ejemplo documentado 1.33 vs 1.35 de Sharpe para la misma CELL 7/32), por lo que la certificación final de la policy debe replayear `cells.tsv`/MetricSets WFM exactos.
-- Artefacto principal: [[ROBUST-V2-DESIGN-CANDIDATE]].
-- Próximo exacto: ejecutar una **segunda iteración TOP de diseño**, focalizada en (a) Pareto-layer width y trade-offs, (b) relación stability→quality sin volver a center-first ni scalar-weight tuning, y (c) failure modes de normalized MAD en 3×3. No SPEC ni implementación todavía.
+- **DESIGN_V2_CANDIDATE_READY — ITERATION 2 2026-09-29.** Segunda iteración TOP completada. Plain Pareto queda rechazado como stability authority: non-dominance no expresa magnitud ni materialidad y permite trade-offs como el caso 9/26 vs 8/28 de `Strategy_1.8.669`.
+- Candidate V2 recomendado: `R_x = max(normalized MAD_x, normalized |center_x - median_x|)`; cliff Ret/DD permanece hard gate separado; stability authority se implementa conceptualmente mediante dos indifference bands ancladas a mínimos intra-strategy: primero `R_retdd <= min(R_retdd)+epsilon_ret`, luego `R_aux=max(R_sharpe,R_profit) <= min(R_aux)+epsilon_aux`. Quality sólo decide después de ambas equivalencias.
+- La topología V2 se mantiene KISS: se agrega center representativeness porque el CELL aplicado físicamente es el centro; no se agregan edge weights, surface fitting ni pesos distintos para corner/direct neighbor sin evidencia.
+- Quality se mantiene deliberadamente lexicográfica después de stability equivalence: median Ret/DD → median Sharpe → median Net Profit. No se agrega quality band en V2; el replay adversarial no encontró en los probes realizados un caso donde <1% de ventaja median Ret/DD dentro de los stability bands ocultara >5% de Sharpe o >10% de Net Profit.
+- Cliff threshold sigue abierto. Replay Optimizer correctamente separado: 18/34 Strategies son pre-cliff eligible; cliff 25% elimina todos los candidates de 4, 30% de 3, 35% de 0 y 40% de 0. Por tanto 35% sigue candidate, no frozen.
+- `epsilon_ret`, `epsilon_aux` y cliff threshold son decisiones semánticas Owner; no deben ajustarse mirando qué winner gusta más.
+- Exact durable replay sigue pendiente: Optimizer y WFM pueden diferir por re-evaluación. Esta limitación bloquea freeze/certificación final de la policy, pero no bloquea la revisión adversarial final del diseño.
+- Artefacto vigente: [[ROBUST-V2-DESIGN-ITERATION-2]].
+- Próximo exacto: **Return to Primary Technical Manager for final adversarial design review. Do not start SPEC or implementation.**
 
 ## 🧱 Entrega de desarrollo
 
@@ -60,12 +59,15 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 > - [x] Analizar el corpus wave2a y buscar contraejemplos a las políticas candidatas #owner/me #type/research #area/echo
 > - [x] Diseñar contrato matemático candidato V2 sin product code #owner/me #type/research #area/echo
 > - [x] Revisar [[ROBUST-V2-DESIGN-CANDIDATE]] con Primary Technical Manager #owner/me #type/supervision #area/echo
-> - [ ] Ejecutar segunda iteración TOP focalizada en autoridad de stability, Pareto trade-offs y MAD 3×3 #owner/me #type/research #area/echo
-> - [ ] Resolver decisiones Owner sólo después de la segunda iteración de diseño #owner/me #type/supervision #area/echo
+> - [x] Ejecutar segunda iteración TOP focalizada en autoridad de stability, Pareto trade-offs y MAD 3×3 #owner/me #type/research #area/echo
+> - [r] Revisar [[ROBUST-V2-DESIGN-ITERATION-2]] con Primary Technical Manager / adversarial final review #owner/me #type/supervision #area/echo
+> - [ ] Resolver decisiones Owner: epsilon_ret, epsilon_aux y cliff threshold #owner/me #type/supervision #area/echo
 > - [ ] Congelar SPEC funcional/técnica sólo después de aceptar el diseño #owner/me #type/dev #area/echo #blocked
 > - [ ] Implementar y certificar V2 sólo después del SPEC freeze #owner/me #type/dev #area/echo #blocked
 
 ## 📆 Bitácora
+
+- **2026-09-29 — TOP Design Iteration 2.** Plain Pareto rechazado como authority. Se introduce la abstracción faltante de stability indifference: `R_x=max(normalized MAD, normalized center deviation)`; Ret/DD band primero, auxiliary worst-dimension band después, quality sólo entre candidates stability-equivalent. Center topology se incorpora sin devolver performance authority al center. Se preserva cliff como hard gate separado y se rechaza corner/direct weighting por YAGNI. Gate: `DESIGN_V2_CANDIDATE_READY`; próximo paso Primary Technical Manager final adversarial review; no SPEC/product code.
 
 - **2026-09-29 — Manager review.** Primer candidate parcialmente aceptado. Se mantienen arquitectura, separación stability/quality, cliff Ret/DD local, fail-closed y prohibición de center-first/weight optimization. Pareto como authority queda abierto: replay independiente mostró layer-1 suficientemente amplia y trade-offs concretos donde una mejora marginal de median Ret/DD domina una diferencia material de stability. Se corrige además que 18/34 Strategies ya era el máximo con 3×3 completamente passed antes del cliff 35%. Gate: `DESIGN_ITERATION_REQUIRED`; no SPEC/product code.
 - **2026-09-29** — Diseño one-shot ejecutado sobre source de `xKoRx/symphony` y corpus wave2a. Se rechazó como autoridad de ranking tanto el center metric V1 como la scalarización estricta por robustness: el candidato usa cliff Ret/DD + normalized MAD + capas de estabilidad no-dominadas + calidad de meseta. Se detectó discrepancia de evidencia Optimizer-vs-WFM que obliga a un replay durable exacto antes de implementación/certificación. Estado: `DESIGN_CANDIDATE_READY_FOR_MANAGER_REVIEW`.
@@ -81,6 +83,7 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 
 - [[Echo Forge — Operación Real V2]]
 - [[ROBUST-V2-DESIGN-CANDIDATE]]
+- [[ROBUST-V2-DESIGN-ITERATION-2]]
 - `xKoRx/symphony:specs/FEAT-SQX-DURABLE-WFM/SPEC.md`
 - `xKoRx/symphony:specs/FEAT-SQX-DURABLE-ROBUST-SELECTION/SPEC.md`
 
