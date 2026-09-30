@@ -32,6 +32,7 @@ updated: "2026-09-29"
 - Diseñar y revisar una política V2 intra-strategy para seleccionar el robust run desde neighborhoods 3×3, priorizando mesetas paramétricas robustas sin volver a un ranking encubierto por pico central.
 - Separar explícitamente estabilidad paramétrica de nivel de performance y mantener `select_robust_run` como consumidor de `rank == 1`, salvo defecto material demostrado.
 - No implementar product code hasta que el Primary Technical Manager y el Owner revisen y congelen el contrato.
+- **Compatibilidad frozen por Owner:** V2 será un **algoritmo/policy nuevo seleccionable desde la configuración inicial**. No se modificará retroactivamente la semántica del algoritmo V1 existente. Con el tiempo podrán coexistir múltiples algoritmos seleccionables según necesidad.
 
 ## 📊 Estado actual
 
@@ -43,7 +44,8 @@ updated: "2026-09-29"
 - `epsilon_ret`, `epsilon_aux` y cliff threshold son decisiones semánticas Owner; no deben ajustarse mirando qué winner gusta más.
 - Exact durable replay sigue pendiente: Optimizer y WFM pueden diferir por re-evaluación. Esta limitación bloquea freeze/certificación final de la policy, pero no bloquea la revisión adversarial final del diseño.
 - Artefacto vigente: [[ROBUST-V2-DESIGN-ITERATION-2]].
-- Próximo exacto: **Return to Primary Technical Manager for final adversarial design review. Do not start SPEC or implementation.**
+- Manager pre-review: Iteration 2 resuelve el defecto principal de Pareto y queda aceptada como candidato para adversarial final, no frozen. El adversarial debe atacar especialmente (1) la semántica de que el auxiliary band pueda excluir al exact Ret/DD-stability winner una vez dentro de `epsilon_ret`; (2) sensibilidad de cliff a nivel candidate/winner, no sólo Strategy survival; (3) parámetros `epsilon_ret/epsilon_aux` como materiality semantics y no tuning; y (4) compatibilidad: V2 debe ser un algoritmo nuevo seleccionable por config sin cambiar V1.
+- Próximo exacto: **fresh TOP final adversarial design review. Do not start SPEC or implementation.**
 
 ## 🧱 Entrega de desarrollo
 
@@ -60,12 +62,15 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 > - [x] Diseñar contrato matemático candidato V2 sin product code #owner/me #type/research #area/echo
 > - [x] Revisar [[ROBUST-V2-DESIGN-CANDIDATE]] con Primary Technical Manager #owner/me #type/supervision #area/echo
 > - [x] Ejecutar segunda iteración TOP focalizada en autoridad de stability, Pareto trade-offs y MAD 3×3 #owner/me #type/research #area/echo
-> - [r] Revisar [[ROBUST-V2-DESIGN-ITERATION-2]] con Primary Technical Manager / adversarial final review #owner/me #type/supervision #area/echo
+> - [x] Revisar [[ROBUST-V2-DESIGN-ITERATION-2]] con Primary Technical Manager #owner/me #type/supervision #area/echo
+> - [ ] Ejecutar fresh TOP final adversarial review del candidate V2 #owner/me #type/research #area/echo
 > - [ ] Resolver decisiones Owner: epsilon_ret, epsilon_aux y cliff threshold #owner/me #type/supervision #area/echo
 > - [ ] Congelar SPEC funcional/técnica sólo después de aceptar el diseño #owner/me #type/dev #area/echo #blocked
 > - [ ] Implementar y certificar V2 sólo después del SPEC freeze #owner/me #type/dev #area/echo #blocked
 
 ## 📆 Bitácora
+
+- **2026-09-29 — Primary Manager pre-adversarial review.** Iteration 2 aceptada como candidato fuerte: stability indifference resuelve el trade-off oculto de Pareto. No se congela aún. Se agregan cuatro ataques obligatorios para el review final: prioridad Ret/DD vs auxiliary band, cliff sensitivity a nivel candidate/winner, semántica de epsilons y backward compatibility. Owner aclaró además un contrato durable: V2 será un algoritmo nuevo seleccionable por config; V1 conserva su comportamiento y podrán coexistir algoritmos futuros.
 
 - **2026-09-29 — TOP Design Iteration 2.** Plain Pareto rechazado como authority. Se introduce la abstracción faltante de stability indifference: `R_x=max(normalized MAD, normalized center deviation)`; Ret/DD band primero, auxiliary worst-dimension band después, quality sólo entre candidates stability-equivalent. Center topology se incorpora sin devolver performance authority al center. Se preserva cliff como hard gate separado y se rechaza corner/direct weighting por YAGNI. Gate: `DESIGN_V2_CANDIDATE_READY`; próximo paso Primary Technical Manager final adversarial review; no SPEC/product code.
 
@@ -78,6 +83,7 @@ _No aplica todavía — esta fase es exclusivamente diseño pre-implementación.
 - Mantener selección estrictamente intra-strategy.
 - Tratar stability y performance level como conceptos separados.
 - No usar weights search ni profit histórico para elegir la policy.
+- V2 es **aditiva**, no una mutación de V1: debe exponerse como algoritmo/policy nuevo seleccionable por configuración; V1 permanece disponible y semánticamente estable.
 
 ## 🔗 Docs / Links
 
