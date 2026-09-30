@@ -146,6 +146,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 - **2026-09-30** — Se mejoró y publicó la descripción del PR #1228 usando human-first-technical-writing y el template del repo: tabla con tres versiones/capturas y pasos de prueba. Se resolvió el conflicto del manifiesto al sincronizar develop, se portó el arreglo del test temporal y se publicaron 4.093 tests locales sin fallas. Los cinco checks del HEAD 37dc1f2d3 pasaron; PR marcado Ready for review y MERGEABLE, con review humana pendiente. El stack MySQL local falló en una migración previa y se verificó cleanup. Texto canónico: [[Descripción PR — rio-playmaker]].
 
+- **2026-09-30** — Descripción del PR #1228 traducida al español y reducida 53%, conservando las tres versiones/capturas y colapsando checklists. Comentario de ownership confirmado: DELETE autoriza un snapshot sin lock y UPDATE puede cambiar de equipo; corrección de concurrencia pendiente antes del merge. Sin cambios de código ni respuesta publicada al reviewer; Ready y cinco checks SUCCESS verificados en el mismo HEAD.
+
 ## 🧭 Decisiones
 
 - Playmaker es la autoridad de las reglas de borrado en el `DELETE`; no se diseña un endpoint `delete-validation`. Los blockers responden HTTP 409 con código específico y prevalece producción sobre infraestructura activa cuando aplican ambas. Fuente: [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643).
