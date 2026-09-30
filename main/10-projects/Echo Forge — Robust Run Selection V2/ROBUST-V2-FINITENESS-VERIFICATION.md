@@ -1,5 +1,8 @@
 # ROBUST-V2-FINITENESS-VERIFICATION
 
+> **AUTHORITY NOTE — SUPERSEDED FOR IMPLEMENTATION (2026-09-30):** Keep the finiteness proof and fail-closed semantics. References to an explicit `evaluation_policy` selector and durable replay/Owner freeze as a prerequisite to implementation are **superseded** by [[ROBUST-V2-DESIGN-FREEZE]]. V2 uses the existing algorithm/config extension point; historical replay is deferred verification, not a Shot 1 gate.
+
+
 Status: DESIGN_READY_FOR_DURABLE_REPLAY_AND_OWNER_FREEZE
 
 Date: 2026-09-29
