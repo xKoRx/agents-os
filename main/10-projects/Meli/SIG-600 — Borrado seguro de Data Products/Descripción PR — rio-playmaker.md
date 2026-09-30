@@ -16,7 +16,7 @@ updated: "2026-09-30"
 
 # Descripción PR — rio-playmaker
 
-Repo `melisource/fury_rio-playmaker` · branch `feature/sig-600-delete-auth@37dc1f2d3` · base `develop@0c9e9e3ee` · 2 commits sobre la base · 17 archivos, +458/−29 · SPECs [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) y [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) · suite 2026-09-30: 4.093 tests, 0 fallas, 0 errores, 2 skips; 11 selectores focalizados exitosos.
+Repo `melisource/fury_rio-playmaker` · branch `feature/sig-600-delete-auth@b0c5bf952` · base `develop@0c9e9e3ee` · 3 commits sobre la base · 19 archivos, +527/−33 · SPECs [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) y [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) · suite 2026-09-30: 4.098 tests, 0 fallas, 0 errores, 2 skips; 11 selectores focalizados exitosos.
 
 > [!warning] Brecha de validación LOCAL_STACK
 > **La cadena histórica de migraciones de develop falla en MySQL** al intentar borrar component_type mientras chk_deployment_freeze_reach todavía lo referencia. Recursos del run local eliminados y teardown verificado. El runner no llegó al check posterior de deployment-loopback.
@@ -79,12 +79,13 @@ Para Kraken real se debe habilitar el tráfico Fury y configurar la aplicación/
 
 ## Pruebas
 
-**HEAD `37dc1f2d3` · base `develop@0c9e9e3ee` · 30/09/2026.**
+**HEAD `b0c5bf952` · base `develop@0c9e9e3ee` · 30/09/2026.**
 
-- `./gradlew test jacocoTestReport`: **4.093 tests, 0 fallas, 0 errores y 2 skips preexistentes** (L0).
+- `./gradlew test jacocoTestReport`: **4.098 tests, 0 fallas, 0 errores y 2 skips preexistentes** (L0). La primera ejecución abortó el executor; la ejecución diagnóstica con `--stacktrace` completó la suite sin modificar los tests.
+- Integración H2: SDK Kraken reemplazado por un mock, reset automático de ACME/Kraken y permisos explícitos por caso. **5 DELETE originales pasan aislados; 78 tests pasan en la clase completa**, incluida la matriz 403/409 y fallos 503/fallback ACME.
 - `./scripts/run-agentic-testing-contract.sh`: **11 selectores focalizados aprobados** (UNIT/H2_INTEGRATION/CONTRACT). LOCAL_STACK falló antes de iniciar la app: la migración `20260922153217845_drop_deployment_freeze_component_type.sql` intenta borrar una columna usada por un constraint. Limpieza local verificada; el check posterior de deployment-loopback no se ejecutó.
 - `./scripts/validate-repository-contract.sh --staged`, `./scripts/validate-testing-contract.sh --staged` y `git diff --check`: aprobados.
-- GitHub: **workflow, CI, cobertura, dependencias y análisis estático verdes**. Code Reviewer solicita aprobación humana.
+- GitHub: checks del nuevo commit **en ejecución**. Code Reviewer y la revisión de ownership requieren aprobación humana.
 
 ### Tres versiones para probar en `test3`
 
@@ -121,6 +122,8 @@ Los mocks están en ramas separadas, basadas en `73fabcfb9`; no forman parte de 
 ---
 
 ## Notas internas — NO van al PR
+
+- Punto 2 corregido en b0c5bf952: IntegrationTest reemplaza krakenUsersClient por @MockitoBean antes de iniciar Spring; DataProductControllerIntegrationTest usa @MockitoBean ACME con reset automático y fixtures explícitos. Pasaron cinco DELETE originales aislados, 78 casos de la clase completa y 4.098 tests de regresión (0 fallas/errores, 2 skips). Once selectores focalizados y los validadores pasaron; LOCAL_STACK reprodujo la migración previa y cleanup certificado del proyecto rio-playmaker-agentic-18561. Primera regresión interrumpida por el executor sin fallas de assertions registradas; ejecución diagnóstica --stacktrace completó la suite sin cambios ni debilitamiento de tests. No se confirmó causa del primer aborto. CLI/MCP de release-process y MCP seguridad no están disponibles; se ejecutaron comandos canónicos y formatter local existente, sin agregar dependencias. Se restauró únicamente ruido Swagger generado y ajeno al fix. CI remoto del nuevo commit en ejecución.
 
 - Propuesta solicitada para el primer comentario: adquirir un lock de la fila del DP dentro de las transacciones existentes de DELETE y las rutas que cambian ownership, antes de leer el equipo. En DELETE debe preservarse el 410 de DP ya borrado; el método findByIdForUpdate actual filtra deletedAt IS NULL y no se puede reutilizar sin cuidar ese contrato. Es una corrección pequeña de coordinación, sin nuevo endpoint ni migración de @Version. No se implementó porque el usuario pidió propuesta para el punto 1 y corrección para el punto 2.
 
