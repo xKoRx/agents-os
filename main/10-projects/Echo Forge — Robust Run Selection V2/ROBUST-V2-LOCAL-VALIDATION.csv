@@ -1,0 +1,35 @@
+strategy,v1_verdict,v1_reason,v1_rank1,v2_verdict,v2_reason,v2_rank1,changed,v2_rank1_median_retdd,v2_rank1_median_sharpe,v2_rank1_median_net_profit,v2_R_retdd,v2_R_aux,v2_cliff,reason
+Strategy_1.13.611.sqx,WARN,STABILITY_WARNINGS,7/34,WARN,STABILITY_WARNINGS,7/34,SAME,14.6618,1.1100,10745.70,0.0413,0.0541,0.2676,same rank1; V1 center is a V2 survivor
+Strategy_1.37.569.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_1.38.707.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_1.8.669.sqx,WARN,STABILITY_WARNINGS,7/32,WARN,STABILITY_WARNINGS,8/28,CHANGED,21.8314,1.2200,13578.40,0.0134,0.0197,0.1220,"V1 center CLIFF_REJECTED in V2 (R_retdd 0.057, cliff 0.392); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_1.83.581.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_2.17.503.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_2.17.581.sqx,WARN,STABILITY_WARNINGS,6/22,WARN,STABILITY_WARNINGS,6/34,CHANGED,17.3419,1.3000,18479.75,0.0703,0.0462,0.1163,"V1 center PRIMARY_BAND in V2 (R_retdd 0.258, cliff 0.128); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_2.25.400.sqx,WARN,STABILITY_WARNINGS,6/22,WARN,STABILITY_WARNINGS,6/22,SAME,15.6320,1.1300,14085.04,0.1430,0.0531,0.3497,same rank1; V1 center is a V2 survivor
+Strategy_2.27.756.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_2.30.706.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_2.41.524.sqx,WARN,STABILITY_WARNINGS,6/26,WARN,STABILITY_WARNINGS,6/26,SAME,15.5464,1.0900,11817.00,0.3157,0.0528,0.3157,same rank1; V1 center is a V2 survivor
+Strategy_2.55.692.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_2.73.608.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_2.75.621.sqx,WARN,STABILITY_WARNINGS,6/28,WARN,STABILITY_WARNINGS,6/28,SAME,13.1296,1.1800,13089.05,0.0346,0.0763,0.1535,same rank1; V1 center is a V2 survivor
+Strategy_2.76.686.sqx,WARN,STABILITY_WARNINGS,6/28,WARN,STABILITY_WARNINGS,6/30,CHANGED,21.9071,1.2600,14585.90,0.0317,0.2860,0.1662,"V1 center PRIMARY_BAND in V2 (R_retdd 0.112, cliff 0.068); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_3.18.626.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_3.31.576.sqx,WARN,STABILITY_WARNINGS,8/34,WARN,STABILITY_WARNINGS,7/22,CHANGED,11.2598,1.0200,10105.55,0.0476,0.0292,0.1305,"V1 center PRIMARY_BAND in V2 (R_retdd 0.440, cliff 0.239); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_4.57.731.sqx,WARN,STABILITY_WARNINGS,6/22,WARN,STABILITY_WARNINGS,8/26,CHANGED,12.8567,1.1900,19130.60,0.0148,0.0127,0.1390,"V1 center PRIMARY_BAND in V2 (R_retdd 0.216, cliff 0.219); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_5.38.585.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_6.24.638.sqx,FAIL,SEVERE_WARNING,6/24,WARN,STABILITY_WARNINGS,6/28,CHANGED,13.5422,1.2400,14242.55,0.0835,0.0968,0.3153,"V1 center CLIFF_REJECTED in V2 (R_retdd 0.317, cliff 0.364); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_6.32.425.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_6.39.493.sqx,FAIL,SEVERE_WARNING,7/28,WARN,STABILITY_WARNINGS,6/24,CHANGED,18.1205,1.3100,17236.19,0.0145,0.0153,0.0145,"V1 center PRIMARY_BAND in V2 (R_retdd 0.314, cliff 0.084); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_6.40.536.sqx,WARN,STABILITY_WARNINGS,7/24,WARN,STABILITY_WARNINGS,6/32,CHANGED,20.8536,1.1700,16907.97,0.0111,0.0342,0.2719,"V1 center PRIMARY_BAND in V2 (R_retdd 0.058, cliff 0.155); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_6.41.479.sqx,FAIL,SEVERE_WARNING,8/22,WARN,STABILITY_WARNINGS,9/22,CHANGED,21.5341,1.3400,17663.35,0.0195,0.0326,0.0875,"V1 center PRIMARY_BAND in V2 (R_retdd 0.100, cliff 0.102); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_7.2.741.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_7.46.731.sqx,FAIL,SEVERE_WARNING,8/34,WARN,STABILITY_WARNINGS,8/22,CHANGED,15.4297,1.0500,15294.65,0.0173,0.0173,0.0411,"V1 center PRIMARY_BAND in V2 (R_retdd 0.069, cliff 0.326); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_7.51.646.sqx,WARN,STABILITY_WARNINGS,8/34,WARN,STABILITY_WARNINGS,8/32,CHANGED,15.3174,1.1700,13391.90,0.1424,0.0562,0.1582,"V1 center CLIFF_REJECTED in V2 (R_retdd 0.459, cliff 0.403); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_8.10.634.sqx,FAIL,SEVERE_WARNING,7/22,WARN,STABILITY_WARNINGS,6/34,CHANGED,11.3986,1.2000,12683.03,0.0243,0.0250,0.2589,"V1 center PRIMARY_BAND in V2 (R_retdd 0.041, cliff 0.065); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_8.11.487.sqx,FAIL,SEVERE_WARNING,6/26,WARN,STABILITY_WARNINGS,8/22,CHANGED,15.2925,1.0300,16416.49,0.0062,0.0097,0.0365,"V1 center PRIMARY_BAND in V2 (R_retdd 0.096, cliff 0.028); V2 picks stability-equivalent plateau with highest median Ret/DD"
+Strategy_8.25.708.sqx,WARN,STABILITY_WARNINGS,6/28,WARN,STABILITY_WARNINGS,6/28,SAME,11.5050,1.0000,8999.55,0.1897,0.0938,0.3090,same rank1; V1 center is a V2 survivor
+Strategy_8.26.438.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_8.46.640.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_8.62.460.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
+Strategy_8.67.447.sqx,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,FAIL,NO_ACCEPTABLE_NEIGHBORHOOD,REJECT,SAME,,,,,,,no complete 3x3 of all-passed eligible cells (V1==V2)
