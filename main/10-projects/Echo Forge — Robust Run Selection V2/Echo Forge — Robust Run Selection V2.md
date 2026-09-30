@@ -36,6 +36,7 @@ updated: "2026-09-29"
 
 ## 📊 Estado actual
 
+- **SHOT_1_IMPLEMENTED_LOCAL (2026-09-30) — pendiente review del Primary Technical Manager.** Implementación en `xKoRx/symphony` branch `feature/robust-selection-v2-shot1` (commits `b696b3a` core + `a149a34` binding, baseline master `ca07f72`, sin push).
 - **READY_FOR_SHOT_1 — KISS DESIGN FREEZE 2026-09-30.** Diseño algorítmico cerrado y autoridad canónica: [[ROBUST-V2-DESIGN-FREEZE]].
 - V2 es **otro algoritmo seleccionable mediante el mecanismo de configuración WFM existente**. No crear `evaluation_policy`, registry ni una segunda arquitectura de policies.
 - V1 permanece semánticamente intacto: mismos identificadores/defaults/config digest/ranking y mismo `select_robust_run` consumidor de `rank == 1`.
@@ -65,9 +66,12 @@ _Diseño cerrado. Shot 1 autorizado: implementación mínima del nuevo algoritmo
 > - [x] Integrar corrección bounded: non-finite derived stability => analytical ineligible #owner/me #type/supervision #area/echo
 > - [x] Verificar focalizadamente derived-finiteness + validity de parámetros semánticos #owner/me #type/research #area/echo
 > - [ ] Recuperar durable replay histórico sólo como verificación/certificación posterior si vuelve a estar disponible la evidencia original #owner/me #type/research #area/echo
-> - [ ] Ejecutar Shot 1 — nuevo algoritmo V2 + config mínima + tests + regresión V1 #owner/me #type/dev #area/echo
+> - [x] Ejecutar Shot 1 — nuevo algoritmo V2 + config mínima + tests + regresión V1 #owner/me #type/dev #area/echo
+> - [ ] Review Shot 1 por Primary Technical Manager (branch `feature/robust-selection-v2-shot1` local, sin push) #owner/me #type/supervision #area/echo
 
 ## 📆 Bitácora
+
+- **2026-09-30 — Shot 1 implementado (local).** V2 = algoritmo `robust_run_selection_v2` sobre el extension point existente (`wfm_params.algorithm` → `scoring_algorithm`). Core: `sqx/core/wfm/robust_v2.go` (math pura median/MAD/D/C/R/cliff, `SelectRobustV2` finiteness→cliff→bandas→quality order, validación fail-closed de `cliff_threshold`/`epsilon_ret`/`epsilon_aux`) + dispatch en `EvaluateNeighborhood`; el switch V1 `scoreNeighborhood` quedó intocado. Binding durable: `EvaluatorConfigFromWFMParams` acepta el nuevo id con versión `v2`; parámetros V2 tipados como punteros `omitempty` (JSON/digest de toda config V1 byte-idéntico, probado en test); `durableCell.eligible` exige las 3 métricas OBSERVED finitas en las 9 celdas; `evaluateNeighborhoods` despacha V2 conservando verdict/reasons/stats/warnings existentes (NO_ACCEPTABLE_NEIGHBORHOOD/RULES_FAIL/SEVERE); picks V2 registran `ranking_metric=ret_dd` + `ranking_metric_value=median Ret/DD`; `select_robust_run` intacto (rank==1). Tests: 14 core (plateau, center peak, cliff single tail, broad dispersion, zero/zero, zero-scale→+Inf ineligible, mixed non-finite, boundary epsilon_ret/epsilon_aux, nested-indifference, quality order, tie-break, shuffle, params inválidos, legacy path) + 10 binding (config válida/inválida, digest V1, PASS plateau con scope `scoring_algorithm_version=v2`, cliff gate e2e, +Inf e2e NO_ACCEPTABLE_NEIGHBORHOOD, quality order e2e, RULES_FAIL, config directa sin params, shuffle determinista). `V1_REGRESSION = PASS`: `go test ./sqx/core/wfm/... ./sqx/adapters/wfm/binding/...` y WFM-slice de `./sqx/activities/worker/` verdes sin modificar expectations. Branch `feature/robust-selection-v2-shot1` (base `ca07f72`, commits `b696b3a`+`a149a34`), sin push; decisión push = owner/manager.
 
 - **2026-09-30 — KISS design freeze / contamination cleanup.** Se corrige contaminación documental posterior al diseño: `evaluation_policy + version` y durable replay como gate de implementación quedan explícitamente superseded. Autoridad única de implementación: [[ROBUST-V2-DESIGN-FREEZE]]. V2 = nuevo algoritmo sobre config WFM existente; V1 intacto; Shot 1 READY.
 
