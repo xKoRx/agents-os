@@ -56,7 +56,7 @@ tags:
 
 - Relectura de Spellbook confirmó título, tipo funcional, estado draft y contenido idéntico al cuerpo publicado (11.029 caracteres).
 - La copia local añade metadata de enlace y la sección Contenido requerida por el schema del vault; mantiene el contrato funcional publicado.
-- Lint estricto e índice derivado se verifican sobre el delta de esta creación.
+- Lint estricto sobre la SPEC, el proyecto y esta bitácora: ERROR=0, WARN=0. Graphify refrescó el índice derivado y recuperó exactamente una nota tanto por título canónico como por alias SIG-645. La deuda global del vault no afecta el delta validado.
 
 ## Compartibilidad
 
