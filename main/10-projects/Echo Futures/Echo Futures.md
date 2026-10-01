@@ -2325,6 +2325,20 @@ Implementation sequencing:
 
 **Next Manager action:** dispatch D6-N1 Shot 1 under the read-only/no-orders boundary.
 
+### D6 N1-R1 — OWNER-ORDERED REMEDIATION / UNAUTHORIZED OWNER-RISK MODEL REMOVED — 2026-10-01
+
+El owner rechazó explícitamente el modelo `OwnerRiskAcceptance` introducido en C1-R1 F2: fue una decisión arquitectónica no autorizada por el owner y **no forma parte de Echo Futures**. Orden: eliminarlo completamente del producto y la configuración preservando el trabajo válido N1. Ejecutado como remediation quirúrgico N1-R1 (artifact `artifacts/d6-ninjatrader-n1-20261001/N1-R1-REMOVE-UNAUTHORIZED-OWNER-RISK-MODEL.md`):
+
+- Eliminado del código (`feature/d6-n1-readonly-vertical` @ `7af6210a`, FF sobre `36a083a`): `OwnerRiskAcceptance`, `PhysicalEgressApproved`, predicates `AutomationAuthorized`/`PhysicalEgressAuthorized`, degradación permanente `ENTITLEMENT_UNCONFIRMED_OWNER_ACCEPTED`, dimensión readiness `PHYSICAL_EGRESS_NOT_APPROVED`, campo `Status.EntitlementDegradation` y los dos test files F2. Domain (`provider.go`), admission, readiness, session y bridge main quedaron byte-idénticos al baseline congelado D5 (`13e087a3`): `ALLOWED|CONDITIONAL` permitido, `UNKNOWN|FORBIDDEN` fail-closed.
+- Preservado N1 válido: canal ntfeed (`echo.ntfeed.v1`), relay, AddOn read-only, publisher JSON crudo, ingress `echo.futures.market-feed-candidates.v1`, observaciones account/positions/orders, defence-in-depth hello↔binding y tests ntfeed intactos.
+- ETCD DEV: eliminadas `owner-risk-accepted-{ref,at,egress}` de `/echo/development/futures-bridge/accounts/E2T-GAU50-01/binding/` (read-back doble: writer + MCP RO). `entitlement=UNKNOWN` intacto; no se seteó a `ALLOWED`.
+- Relay read-only redesplegado en Daedalus (release `7af6210a`, unidad `echo-nt-feed-relay` activa, `vcs.revision=7af6210a`, `vcs.modified=false`): surface sin attrs owner-risk; binding `E2T-GAU50-01` fail-closed visible (`cannot be enabled with UNKNOWN automation entitlement`); lane de mercado operativa en `:9770`.
+
+Consecuencia bloqueante declarada, sin resolver: con la semántica D5 restaurada, el binding `E2T-GAU50-01` con `entitlement=UNKNOWN` no es enableable ni carga sesión — requiere decisión del owner (confirmación externa del entitlement Earn2Trade hacia `ALLOWED|CONDITIONAL`); el lane de cuenta del relay queda degradado fail-closed mientras tanto. `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0` (estructural: AddOn sin llamadas de órdenes, protocolo sin familia de comandos, relay sin escritura al AddOn).
+
+**Next Manager action:** comunicar al owner la decisión pendiente del entitlement Earn2Trade (UNKNOWN no enableable bajo D5); no continuar instalación del AddOn ni certificación física en este remediation; no emitir N1 PASS ni D6 PASS.
+
+
 
 
 
