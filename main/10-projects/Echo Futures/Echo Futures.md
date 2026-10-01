@@ -2221,5 +2221,28 @@ Shot TOP certifier sobre `dev-win` (192.168.31.132) vía `aranea-ssh` (perfiles 
 - Pendiente owner: checklist GUI §8 del artifact (≈5 min) + elegir camino de evidencia para el adapter (NT bajo echo-dev | ACL lectura del folder `Documents\NinjaTrader 8` | publisher estilo worker-kronos).
 - Con la checklist ejecutada, un shot de re-clasificación puede emitir `D6_C0_NINJATRADER = PASS`; no se emite `EF_D6_E2E_PASS` desde C0.
 
+### D6 C0 — PRIMARY MANAGER RECLASSIFICATION / OWNER PHYSICAL EVIDENCE — 2026-09-30
+
+Primary Manager accepts the C0 artifact as `ACCEPTED_INPUT` with one scope correction: the remaining block is an **agent-observability/access limitation**, not evidence of transport failure or an Echo MVP blocker.
+
+Owner physical observation added:
+
+- One Earn2Trade/Tradovate login in NinjaTrader Desktop exposes **all 5 purchased GAU50 Evaluation accounts** simultaneously.
+- Therefore `EVALUATION_ACCOUNT_VISIBLE = PASS (OWNER_OBSERVED)`.
+- Therefore `GAU50_VISIBLE = PASS (OWNER_OBSERVED, count=5)`.
+- The current topology baseline is `1 NinjaTrader Desktop + 1 Tradovate connection/login + 5 GAU50 Accounts`.
+- Execution authorization remains one active account at a time; GUI selection is not accepted as the future Echo authority boundary.
+
+Manager disposition:
+
+- `NINJATRADER_PHYSICAL_TRANSPORT = PASS` for installation/process/network/session establishment.
+- `D6_C0_NINJATRADER = PARTIAL_PASS_PENDING_GUI_OBSERVABLES`; C0 is not a product blocker.
+- Remaining C0 evidence: NQ realtime market data, account/balance state, Orders/Positions observability, and later reconnect/restart recovery.
+- Reconnect/restart do not block starting C1 adapter-fit analysis; they remain mandatory before final physical execution certification.
+- ACL access for `echo-dev` is not selected as architecture. C1 must determine the minimum evidence/runtime integration path before any ACL/service-identity change.
+
+**Next Manager action:** dispatch C1 as a TOP source/API fit analysis against the frozen D5 `ExecutionAdapter` and NinjaTrader/NinjaScript reality. No implementation in C1.
+
+
 
 
