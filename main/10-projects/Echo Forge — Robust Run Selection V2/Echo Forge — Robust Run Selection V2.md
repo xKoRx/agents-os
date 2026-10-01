@@ -22,7 +22,7 @@ tags:
   - echo-forge
   - robust-run-selection
 created: "2026-09-29"
-updated: "2026-09-30"
+updated: "2026-10-01"
 ---
 
 # Echo Forge — Robust Run Selection V2
@@ -78,9 +78,12 @@ _Diseño cerrado. Shot 1 autorizado: implementación mínima del nuevo algoritmo
 > - [x] Ejecutar Shot 2 — fresh adversarial implementation review de `ca07f72..bc50bbb` contra el freeze #owner/me #type/research #area/echo
 > - [x] Ejecutar Shot 3 — certificación final + close de delivery (drift, freeze, regresiones V1/V2, build/static, clean tree, contratos score/config/output) #owner/me #type/research #area/echo
 > - [x] Ejecutar validación local real-data V1 vs V2 sobre la cohorte wave2a (trial 0.35/0.01/0.01, sin tuning ni product code) #owner/me #type/research #area/echo
+> - [x] Ejecutar Hera full-flow E2E — V2 por el flujo canónico en la flota (wave2b, release 0.2.131, FlowRun 0cbd0f34) #owner/me #type/dev #area/echo
 > - [ ] Aceptación final e integración por Primary Technical Manager (branch `feature/robust-selection-v2-shot1` local @ `bc50bbb`, sin push; READY_TO_PUSH) #owner/me #type/supervision #area/echo
 
 ## 📆 Bitácora
+
+- **2026-10-01 — Hera full-flow E2E (wave2b): `HERA_FULL_FLOW_PASS_WITH_FIX`.** Sesión one-shot ZCode/GLM-5.3-Flash en Daedalus. Fase 1 reconstruyó el flujo canónico desde source (wfm_params va en `wave_config` top-level; el cohort histórico exige productor anidado; la evidencia V2 queda en scope/payload del aggregate y en PG decisions). Fase 2 determinó el dataset: no existe dataset pre-stageado en Hera — el corpus operativo es el cohort wave1z de 34 estrategias con CELLs generadas en vivo por sqcli en la flota (participación Hera medida: 39 invocaciones sqcli). Fase 3 probó la propagación desde source + digest efectivo pre-dispatch. El único fix (runtime): release 0.2.131 desde `bc50bbb` (rama E2E `15ce01e`, pusheada), rollout 3/3 por Prometheus. Despacho wave2b espejo de wave2a + V2; 21h de corrida monitoreada; 0 errores de stage; funnel 21 SELECTED / 13 rechazadas; decisiones durables con contrato V2 íntegro. Comparación V1 con caveat de materialización. Artefactos: [[ROBUST-V2-HERA-E2E]] + CSV + `artifacts/hera-e2e-20261001/` (SHA256SUMS). Agent-run: `2026-10-01-zcode-glm53-robust-v2-hera-e2e`.
 
 - **2026-09-30 — Local validation V1 vs V2 sobre wave2a real: `LOCAL_VALIDATION_PASS`.** Ejecución local en Daedalus con el código de producto real (worktree @ `bc50bbb`, probe temporal eliminado, tree limpio, regresiones verdes). Dataset: `cells.tsv` del bundle c52-wave2a (1.836 CELLs, SHA `3e0dac…` == manifest; el payload declarado "vacío" en el replay histórico existe íntegro — finding que además desbloquea a futuro la tarea deferred de durable replay). Config V1 = defaults durables (spec sin `wfm_params`); V2 trial `0.35/0.01/0.01`. Aggregates: V1 18 con picks (12 WARN + 6 FAIL-SEVERE) vs V2 18 WARN; 16 rechazadas idénticas en ambos; 5 rank1 iguales, 13 cambiados (13/13 a menor `R_retdd`; 7 sacrifican mediana Ret/DD mediana −1,24, 5 mejoran, 1 empata); 6 verdict-flips FAIL→WARN por no elegir el pico aislado. Rejections V2: 0 por cliff/bandas a nivel Strategy. 5 casos: 7.51.646 (cliff protege, −12,5% mediana por 3× estabilidad), 8.11.487 (pico 3,07σ → meseta R_retdd 0,006), 3.31.576 (sin sacrificio: +2,04 mediana y 9× estabilidad), 2.76.686 (nested indifference: R_aux 6× peor aceptado dentro de la banda primaria), 6.41.479 (mediana idéntica, movimiento puro por estabilidad). Sanity: sin defecto; caso borde 2.25.400 cliff 0,3497 vs umbral 0,35 anotado como sensibilidad para el Owner. Artefactos: [[ROBUST-V2-LOCAL-VALIDATION]] + CSV + `artifacts/local-validation-20260930/`. Siguiente exacto: Primary Technical Manager + Owner (aceptación/integración y decisión sobre parámetros trial).
 
@@ -126,6 +129,7 @@ _Diseño cerrado. Shot 1 autorizado: implementación mínima del nuevo algoritmo
 
 - [[ROBUST-V2-DESIGN-FREEZE]] — **autoridad canónica de implementación**
 - [[ROBUST-V2-LOCAL-VALIDATION]] — validación local real-data V1 vs V2 (wave2a, trial 0.35/0.01/0.01)
+- [[ROBUST-V2-HERA-E2E]] — E2E full-flow en la flota con V2 (wave2b, FlowRun 0cbd0f34)
 
 - [[Echo Forge — Operación Real V2]]
 - [[ROBUST-V2-DESIGN-CANDIDATE]]
