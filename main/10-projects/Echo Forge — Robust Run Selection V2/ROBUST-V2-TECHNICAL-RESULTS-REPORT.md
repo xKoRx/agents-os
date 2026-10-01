@@ -452,7 +452,7 @@ Todas las cifras de esta tabla salen de `ROBUST-V2-HERA-E2E.csv` / `results_v2.j
 | Strategy | Prefix | Verdict E2E | Selected | Rank1 runs/OOS | Reason | Median nbhd Ret/DD |
 |---|---|---|---|---|---|---:|
 | Strategy_1.13.611 | 1 | WARN | SELECTED | 7/30 | STABILITY_WARNINGS | 9,1168 |
-| Strategy_1.37.569 | 1 | FAIL | REJECTED | — | NO_ACCEPTABLE_NEIGHBORHOOD | — |
+| Strategy_1.37.569 | 1 | WARN | SELECTED | 7/30 | STABILITY_WARNINGS | 8,3406 |
 | Strategy_1.38.707 | 1 | FAIL | REJECTED | — | NO_ACCEPTABLE_NEIGHBORHOOD | — |
 | Strategy_1.8.669 | 1 | WARN | SELECTED | 9/34 | STABILITY_WARNINGS | 12,2781 |
 | Strategy_1.83.581 | 1 | FAIL | REJECTED | — | NO_ACCEPTABLE_NEIGHBORHOOD | — |
