@@ -27,9 +27,26 @@ Nada se arregló por ensayo conceptual: primero inspección física de la API re
 
 Preservado sin cambios: read-only estructural (sin loop de lectura, protocolo sin familia de comandos), discovery `Account.All`, resolución por `Id`(Int64)+cross-check `Name`, snapshots balances/positions/orders/executions (dedup `ExecutionId`), QUOTE (BBO emparejado) / TRADE tick-a-tick, heartbeat, reconnect exponencial, cola acotada, `echo.ntfeed.v1`, shapes de todos los payloads (verificados byte-level §4).
 
-## 3. Bloqueo owner vigente (re-probeado hoy)
+## 3. Bloqueo owner resuelto (historia)
 
-`Test-Path` sobre `C:\Users\KoR\Documents\NinjaTrader 8\{bin\Custom\AddOns, bin\Custom\AddOns\EchoFeed, echo, log, trace}` ⇒ **Access denied** (lectura) para `dev-win\echo-dev`; sin admin sobre Program Files; NT en sesión interactiva ajena. La compilación NinjaScript real (arranque de NT o F5 del editor) es therefore un paso owner: bundle entregado en `kor@daedalus:/home/kor/opt/echo-dev/var/nt-feed/owner-install/n1-r3/` (`EchoFeedAddOn.cs` SHA256 `1f34ab1ead8319f01bfd168519b8a1199c40650ead5f07bae4ea0aa2f5394620` + `OWNER-CHECKLIST-R3.md`: reemplazar archivo → restart NT/F5 → devolver output del compilador; ~2 min).
+Al momento del remediation, `Test-Path` sobre `C:\Users\KoR\Documents\NinjaTrader 8\{bin\Custom\AddOns, bin\Custom\AddOns\EchoFeed, echo, log, trace}` ⇒ **Access denied** (lectura) para `dev-win\echo-dev`; sin admin sobre Program Files; NT en sesión interactiva ajena. La compilación NinjaScript real (arranque de NT o F5 del editor) era therefore un paso owner: bundle entregado en `kor@daedalus:/home/kor/opt/echo-dev/var/nt-feed/owner-install/n1-r3/` (`EchoFeedAddOn.cs` SHA256 `1f34ab1ead8319f01bfd168519b8a1199c40650ead5f07bae4ea0aa2f5394620` + `OWNER-CHECKLIST-R3.md`: reemplazar archivo → restart NT/F5 → devolver output del compilador) y, a pedido del owner, también directamente en dev-win `C:\Temp\EchoFeedAddOn.cs`. El owner ejecutó el checklist y el closeout físico de esta sesión (§7) consumó el gate.
+
+## 7. Closeout físico (2026-10-01, 19:47Z) — evidencia de compilación y carga real
+
+El mandato de esta fase exige evidencia de compilación física real antes de commit. La evidencia completa:
+
+| # | Evidencia | Método | Resultado |
+|---|---|---|---|
+| C1 | `C:\Temp\EchoFeedAddOn.cs` (el archivo entregado al owner para instalar) SHA256 = `1f34ab1ead8319f01bfd168519b8a1199c40650ead5f07bae4ea0aa2f5394620` | `certutil -hashfile` en dev-win | Byte-idéntico al source del worktree (hash idéntico verificado en ambos lados) |
+| C2 | NinjaTrader reiniciado por el owner (PID nuevo **984**, sesión SI=2 owner; el PID 3464 de Shot 1 ya no existe) y compila el AddOn: **el owner reporta 0 errores de compilación visibles**; la compilación exitosa está además probada físicamente por la carga: la versión pre-R3 del archivo no compilaba (múltiples CS0246/CS0103/CS0117/CS1002 demostrados), por lo que **ningún AddOn podría estar instanciado y corriendo si el source instalado no fuera el R3** | Get-Process dev-win + runtime | `NINJATRADER_COMPILE_ERRORS = 0` (output textual del compilador no recuperable desde el boundary del agente: perfil owner ACL-denied, re-probeado hoy) |
+| C3 | Comportamiento runtime específico del R3 observado en vivo: hello con `auth_token` en envelope enviado inmediato (fix #6) → `ntfeed addon session opened` único a las 16:23:45 -03; init en `State.Active` (fix #5) → discovery y heartbeat fluyendo; `nt_version: 8.1.8.3` resuelto vía `Globals.ProductVersion` (fix #3); subscripción `NQ 12-26` viva (fix #4) | journal del relay (real AddOn session `6e6eb8b665b4422495826c6f9c97e364`) | PASS |
+| C4 | Conexión TCP ESTABLISHED `192.168.31.132:65181 → 192.168.31.161:9770` perteneciente a **NinjaTrader.exe PID 984** (no a otro proceso): la conexión originate del AddOn real, no de un cliente sintético | `netstat -ano` en dev-win + `ss` en Daedalus | PASS |
+| C5 | Hello real aceptado con auth: `hello` seq=1 con `{"addon_version":"1.0.0","expected_account_id":"","expected_account_name":"","instruments":["NQ 12-26"],"nt_version":"8.1.8.3"}` (espejo exacto del config discovery-only); `malformed=0` | journal del relay | `REAL_HELLO = PASS`, `CONFIG_LOADED = PASS` |
+| C6 | Heartbeats reales continuos con contadores crecientes (`frames_sent` 4703→14112+, `market_events` 4652→14112+~, `order_events: 0`, `sessions: 1`, sesión continua ~70 min mismo puerto remoto 65181; el `reconnects:1` del AddOn = su connect inicial) | journal del relay + evidence file 0600 | `REAL_HEARTBEAT = PASS`, `ADDON_INSTANTIATED = PASS`, `RELAY_CONNECTED = PASS` |
+
+Lectura directa del archivo instalado en el perfil owner: ACL-denied (boundary B1 vigente, re-probeado hoy). La identidad byte-level del source instalado queda probada por la cadena C1 + C2 (pre-R3 no compilaba ⇒ lo instalado y compilado es el R3) + C3 (comportamiento exclusivo del R3 observado en vivo).
+
+## 8. Commit y push (post-evidencia, per mandato)
 
 ## 4. Pre-verificación (evidencia antes del ciclo físico)
 
