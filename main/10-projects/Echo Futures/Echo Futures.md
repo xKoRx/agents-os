@@ -2180,3 +2180,22 @@ Current decision:
 
 **Next Manager action:** use GAU50 as the single program baseline for the remaining Earn2Trade preflight and D6 execution planning.
 
+### D6 — GAU50 PURCHASE / EVALUATION CAPACITY — 2026-09-30
+
+Owner purchased **5 × Earn2Trade Gauntlet Mini 50K (GAU50)** evaluations.
+
+Commercial capacity:
+
+- 5 purchased GAU50 evaluations.
+- 1 free reset included per purchased evaluation.
+- Effective capacity: **up to 10 evaluation attempts total** if each free reset is used.
+- This is not 10 simultaneous funded/evaluation accounts; it is 5 purchased accounts plus 5 reset opportunities.
+
+Current D6 inventory baseline:
+
+- `D6_E2T_PROGRAM = GAU50`.
+- `D6_E2T_PURCHASED_EVALUATIONS = 5`.
+- `D6_E2T_FREE_RESETS = 5`.
+- `D6_E2T_MAX_EVALUATION_ATTEMPTS = 10`.
+
+
