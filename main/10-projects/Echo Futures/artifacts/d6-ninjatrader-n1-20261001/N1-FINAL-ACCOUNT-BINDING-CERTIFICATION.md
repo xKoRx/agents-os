@@ -1,11 +1,11 @@
 # Echo Futures — D6 N1 — Final Account Binding Certification
 
-**Fecha:** 2026-10-01 (evidencia 20:35–20:50Z / local -03)
+**Fecha:** 2026-10-01 (fase blocked: evidencia 20:35–20:50Z / local -03; fase final tras ciclo owner: evidencia 21:15–21:27Z)
 **Role:** TOP Physical Integration Certifier / N1 Finalization Worker (no Manager, no Owner, no arquitecto)
 **Base:** [[N1-PHYSICAL-READONLY-CERTIFICATION]] (PARTIAL_BLOCKED_OWNER, OD-2 pendiente) + [[N1-R3-NINJATRADER-PHYSICAL-COMPILE-REPAIR]] + [[N1-R2-CORRECT-EARN2TRADE-ENTITLEMENT]] + [[N1-R1-REMOVE-UNAUTHORIZED-OWNER-RISK-MODEL]] + [[N1-SHOT1-READONLY-VERTICAL]]
 **Owner decision ejecutada (OD-2, final para N1):** `E2T-GAU50-01` → NinjaTrader account `Name = RJARA114411201551`
-**Echo branch:** `origin/feature/d6-n1-readonly-vertical` @ `f0c82905d4eaf825c08e04f0bb97cab73e616ba5` (verificado al iniciar; worktree limpio antes y después; sin commits en esta certificación)
-**Veredicto:** `D6_N1_FINAL_ACCOUNT_BINDING = BLOCKED_OWNER_ACTION` — todo el trabajo dentro del boundary del agente quedó ejecutado y verificado en PASS (identidad rediscovery vivo, binding ETCD fijado y cargado por el relay, market lane regredido OK, safety intacto); el paso restante (escribir `account_id`/`account_name` en el config del AddOn + restart de NinjaTrader) vive físicamente en la sesión interactiva del owner en dev-win (ACL denegada re-probeada hoy; NT PID 984 en SI=2 owner) y queda **stageado byte-verificable para un ciclo owner de ~2 minutos** (§6). `D6_N1 = NOT_PASS` hasta ese ciclo + shot corto de re-verificación.
+**Echo branch:** `origin/feature/d6-n1-readonly-vertical` @ `f0c82905d4eaf825c08e04f0bb97cab73e616ba5` (verificado al iniciar ambas fases; worktree limpio antes y después; sin commits en esta certificación)
+**Veredicto final:** `D6_N1_FINAL_ACCOUNT_BINDING = PASS` y **`D6_N1 = PASS`** — el owner ejecutó el ciclo stageado (instaló el config final y reinició NinjaTrader); la sesión AddOn nueva `2f6a4d5375714a13b237f5ab65ba1fd6` (21:16:11Z, PID 1876) resuelve `RJARA114411201551` → `Id "3"` con `match=RESOLVED`, `binding_loaded=true`, `binding_error=""`, `binding_match=RESOLVED`, observaciones de cuenta completas (balances reales $50,000 NLV, positions/orders EMPTY_OBSERVED, executions NOT_OBSERVED) y market lane PASS con QUOTE/TRADE físicos en el ingress canónico. Id estable entre restarts (2/2 sesiones hoy). `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0`. Fases anteriores (§1–§8) se preservan como historia; el estado final vive en §9–§15. N2 sigue NOT AUTHORIZED; no se emite `EF_D6_E2E_PASS`.
 
 ## 0. Hard safety
 
