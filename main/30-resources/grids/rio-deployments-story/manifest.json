@@ -4,27 +4,27 @@
   "slides": [
     {
       "file": "01.html",
-      "title": "El click expresa intención; Playmaker decide el cambio"
+      "title": "Un click: del front al delta"
     },
     {
       "file": "02.html",
-      "title": "La intención se convierte en entidades, en orden"
+      "title": "Cuándo nace cada entidad"
     },
     {
       "file": "03.html",
-      "title": "El commit habilita el dispatch y el routing"
+      "title": "Commit, mensaje y routing"
     },
     {
       "file": "04.html",
-      "title": "El resultado vuelve y actualiza el estado observado"
+      "title": "Resultado, correlación y estado"
     },
     {
       "file": "05.html",
-      "title": "Una completion habilita el engine; la última cierra"
+      "title": "Del topic al engine y al cierre"
     },
     {
       "file": "06.html",
-      "title": "El polling devuelve esa historia al front"
+      "title": "Polling, respuesta y cierre de la UI"
     }
   ],
   "sources": {
@@ -62,8 +62,8 @@
     }
   ],
   "validation": {
-    "native_viewer": "six slides checked",
-    "layout": "1280x720, no clipped content or overlapping blocks",
-    "code": "source excerpts omit comments/logs, source links use immutable commits"
-  }
+    "status": "pending native viewer",
+    "budget": "under 110 visible words per slide including header/punch; no prose panels"
+  },
+  "format": "Visual narrative; short labels, causal diagrams; technical detail in guion/code"
 }
