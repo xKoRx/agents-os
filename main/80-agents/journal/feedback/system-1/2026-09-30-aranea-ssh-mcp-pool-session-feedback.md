@@ -95,3 +95,4 @@ tags:
 ## Pain Pattern Candidate
 
 - Pool del ssh-mcp sin GC de sesiones: recurrencia documentada (2026-09-18 y 2026-10-01) con la misma firma y la misma cura manual; merece promoción a known-error o fix server-side si vuelve.
+- Refuerzo material (2026-10-01T03:33:09Z): un reinicio de `ssh-mcp` por un tercero cortó el poller de esta sesión a mitad de ventana y produjo 305 ticks vacíos que podrían leerse como "NT desconectado" — sólo el puerto local persistente + `docker inspect StartedAt` lo desmintieron. Los monitores largos sobre este plano deben registrar el StartedAt del contenedor como parte de su evidencia o terminar interpretando cortes ajenos como eventos del target.

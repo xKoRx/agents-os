@@ -80,3 +80,8 @@ USER: "vale cierra sesion y deja feedback con agents os"
 - Workspace fuera del vault: `~/aranea/work/d6-nt-cert-20260930/` (mcp.py, poller.sh, nt-conn-poll.log, netstat.txt, netstat2.txt, displaydns.txt, dnscache.txt).
 - Plano MCP: `http://mcps.lab.aranea.cl:3000/` (perfiles dev-win / dev-win-operator, versión ssh-mcp 2.8.0-d2d7696-h2fix).
 - Credenciales Tradovate del owner: NO persistidas en ningún archivo (verificado grep tras redacción).
+
+## Post-cierre (2026-10-01T~05:2xZ) — corrección del poller
+
+- El poller terminó su ventana (540 ticks, exit 0) con 305 ticks vacíos desde 03:33:16Z. Verificado después: `docker inspect ssh-mcp` → `StartedAt=2026-10-01T03:33:09Z` (reiniciado por un tercero; healthy 2 h después) ⇒ el gap es **artefacto de monitoreo** (sesión MCP expirada), NO desconexión de NinjaTrader.
+- Re-chequeo directo ~05:22Z: PID 3464 vivo y las MISMAS conexiones Tradovate con idénticos puertos locales (49960/53464/63089/63260) ⇒ continuidad NT real ≈3.5 h (01:52Z–05:22Z) sin cortes. Artifact E5 corregido; verdict C0 sin cambio.
