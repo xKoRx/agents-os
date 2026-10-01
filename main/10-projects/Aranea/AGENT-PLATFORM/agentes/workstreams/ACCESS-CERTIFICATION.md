@@ -4,7 +4,7 @@ status: active
 area: "[[Aranea]]"
 parent: "[[AGENT-PLATFORM - MCP Access Plane]]"
 created: "2026-09-14"
-updated: "2026-09-16"
+updated: "2026-10-01"
 tags:
   - area/aranea
   - tech/mcp
@@ -26,9 +26,16 @@ Echo runtime observation: RESUELTO 2026-09-15 — GAP-ECHO-004 CLOSED (owner see
 recertificación viewer echo-runtime-prod PASS end-to-end desde Daedalus; detalle abajo)
 GAP-ECHO-010: REPAIRED_AND_CERTIFIED 2026-09-16 (causa raíz mcp-proxy 6.7.16 hijo stdio
 compartido, familia hasura; fix g010; detalle § Remediation run 2026-09-16 c)
+ssh-mcp pool-64: REPAIRED_AND_CERTIFIED 2026-10-01 (causa estructural de fuga de sesiones
+en http.ts; fix idle-TTL reap + logging de 503; 47/47 tests + cert consumer SDK PASS;
+detalle § Remediation run 2026-10-01)
 ```
 
 Ninguna superficie obtiene PASS incondicional: al momento de la run (2026-09-14) había dos hallazgos HIGH — boundary viewer SSH no aplicado (H2) y credenciales upstream expuestas por `export_metadata` (H1) — y varias superficies con verbos no demostrables o no ejercidos por diseño. **Estado vigente: H1 RESOLVED 2026-09-15 y H2 RESOLVED 2026-09-15 (remediation run más abajo); los HIGH ya no existen como estado vigente.** No se declara ningún acceso nuevo certificado más allá de lo listado; el trigger de reactivación del [[Echo + Echo Forge — Deferred Certification Backlog]] **no** queda abierto por esta run.
+
+## Remediation run 2026-10-01 — ssh-mcp pool-64 idle-TTL reap REPAIRED_AND_CERTIFIED
+
+Defecto estructural cerrado: el Map de sesiones MCP de `src/transport/http.ts` (v2.8.0) sólo encogía con DELETE del cliente o cierre de transporte — toda clase de consumidor real fuga sesiones (conversaciones terminadas sin DELETE, probes init-only, clientes muertos) y el cap 64 degradaba a outage lenta con 503 **sin logging** (la saturación era invisible en logs). Fix server-side (patch determinista de 5 bloques, backup `/tmp/http.ts.pre-idlereap-913a966d0695` en mcps): idle-TTL 30 min (`SSH_MCP_SESSION_TTL_MS`), sweep 60 s (`SSH_MCP_SESSION_REAP_INTERVAL_MS`), reap-antes-de-rechazar en el chequeo del cap, y logging de eventos `[sessions] reaped|refusing`. Contexto del mandato: "unable to connect" en agentes ZCode — triage exoneró plano/bearers/configs kor (transporte PASS desde Daedalus; LITERAL config sha16 `99dc4525366f21a2` == canónico; chain 13/13); el síntoma inmediato fueron sesiones muertas en clientes de larga vida tras un ciclo interno del server (30-sep 22:51, sin restart de contenedor, fuera del audit — anomalía abierta). Validación: tsc + 43 tests upstream + 4 nuevos (TTL, refresh, DELETE intacto, 64→503→recuperación sin restart) = 47/47; cert consumer SDK (11 tools, viewer+operator reads, H2 POLICY_DENIED, DELETE release) PASS; regresión 401 en los 13 puertos PASS. Artefacto: `local/ssh-mcp:2.8.0-d2d7696-idlereap` (rollback: tag `-h2fix` intacto + backup del source). El restart por pool saturado queda como recovery residual, no requerido. Detalle: [[aranea-ssh-mcp]] § Pool sessions.
 
 ## Remediation run 2026-09-16 (c) — GAP-ECHO-010 REPAIRED_AND_CERTIFIED
 

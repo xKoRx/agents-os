@@ -5,7 +5,7 @@ name: aranea-mcps-expert
 description: Selecciona y gobierna capabilities MCP Aranea para agentes de desarrollo bajo aranea-agent-dev; ambiente, autoridad, estado certificado y runbook. Nunca se activa para MELI/corporativo.
 scope: area
 created: "2026-09-11"
-updated: "2026-09-17"
+updated: "2026-10-01"
 area: "[[Aranea]]"
 entities:
   - "[[Aranea]]"
@@ -90,7 +90,7 @@ Si el target es MELI/corporativo, STOP. Para Aranea, elegir ambiente antes de au
 | MinIO S3 **RW** | `aranea-minio-rw` | 9 tools; identidad = key owner **FULL** (todos los buckets, incl. `sqx-strategies`), wrapper sin read-only ext (tag `-rw`). **ACTIVE/RW certificado 2026-09-18 noche** (put/delete reales 4/4 + smoke chain 6/6). Ex `aranea-minio-ro` (IAM acotado, put/delete bloqueados) — menciones del nombre viejo = históricas. |
 | etcd acotado | `aranea-etcd-ro` | 4 tools RO, 8 prefixes, exclusión secret-name, caps 200 keys/4KB; sin write/watch. **ACTIVE/server+Cursor certificado 2026-09-17**; cluster sin auth/TLS es deuda separada, nunca bypass directo. |
 
-Las 13 capacidades son 1 SSH + 2 PostgreSQL + 2 MongoDB + 2 Hasura + Kafka + Flink + observabilidad + Temporal + MinIO + etcd. `aranea-minio-rw` (rename de `aranea-minio-ro`, 2026-09-18 noche) y `aranea-etcd-ro` **ya existen**; cualquier nota previa que las declara BLOCKED era histórica antes de su despliegue. Su alcance sigue limitado a los runbooks citados.
+Las 13 capacidades son 1 SSH + 2 PostgreSQL + 2 MongoDB + 2 Hasura + Kafka + Flink + observabilidad + Temporal + MinIO + etcd. `aranea-minio-rw` (rename de `aranea-minio-ro`, 2026-09-18 noche) y `aranea-etcd-ro` **ya existen**; cualquier nota previa que las declara BLOCKED era histórica antes de su despliegue. Su alcance sigue limitado a los runbooks citados. **Server `ssh-mcp` actualizado 2026-10-01** (imagen canónica `local/ssh-mcp:2.8.0-d2d7696-idlereap`): el pool MCP de 64 sesiones reapea sesiones idle >30 min (`SSH_MCP_SESSION_TTL_MS`) y loguea los rechazos — un 503 `session limit` se auto-recupera en ≤30 min sin restart; triage y certificación en [[aranea-ssh-mcp]] § Pool sessions.
 
 Kafka PROD (`aranea-kafka-prod-ro`, `aranea-kafka-prod-ops`) y Flink PROD (`aranea-flink-prod-ro`) son nombres/planes diferidos, NO capabilities certificadas; no usar DEV como sustituto. Jaeger directa por MCP no tiene capability certificada, aunque el datasource Jaeger sea visible en Grafana. Telegram no figura como MCP certificado para agentes Daedalus: el gateway Telegram de Hermes es separado y no prueba acceso de coding agents; definir operación real antes de diseñar wrapper/MCP. Ninguna ausencia por sí sola bloquea Echo/Forge si existe otro camino autorizado que ya satisface el contrato.
 
