@@ -69,8 +69,14 @@ STOP antes de Final Retester/MT5: VERIFICADO (MinIO wave2b sólo 03_optimizer/04
 
 CSV completo: `ROBUST-V2-HERA-E2E.csv` (este directorio; una fila por Strategy con verdict/runs/OOS/selected/reason/median_retdd). Raw por estrategia: `artifacts/hera-e2e-20261001/results_v2.jsonl` (incluye subject_ref, aggregate ref, digest).
 
-- **21 seleccionadas** (rank1 runs/OOS, mediana Ret/DD del vecindario): 1.13.611 (7/30, 9.12), 1.37.569 (7/30, 8.34), 1.8.669 (9/34, 12.28), 2.27.756 (9/28, 7.13), 2.41.524 (8/36, 10.35), 2.75.621 (9/30, 13.83), 2.76.686 (6/30, 17.35), 3.15.781 (8/24, 8.09), 3.31.576→ver fila, 4.57.731, 5.38.585, 6.24.638, 6.39.493, 6.40.536, 6.41.479 (8/28, 12.65), 7.46.731, 8.10.634, 8.11.487, 8.25.708, 8.26.438, 8.62.460, 8.67.447 — ver CSV para la lista exacta y valores.
-- **13 rechazadas** por `NO_ACCEPTABLE_NEIGHBORHOOD` (sin 3×3 elegible): 1.38.707, 1.83.581, 2.17.503, 2.17.581, 3.31.576, 3.42.961, 3.44.150, 4.22.309, 4.23.222, 5.23.512, 7.51.646, 8.12.552, 8.13.720 (ver CSV).
+- **21 seleccionadas** (rank1 runs/OOS, mediana Ret/DD del vecindario; todas WARN/STABILITY_WARNINGS con decision SELECTED):
+  - Strategy_1.13.611 — 7/30, 9.12 · Strategy_1.37.569 — 7/30, 8.34 · Strategy_1.8.669 — 9/34, 12.28
+  - Strategy_2.27.756 — 8/22, 7.95 · Strategy_2.41.524 — 6/28, 8.14 · Strategy_2.75.621 — 8/22, 6.54 · Strategy_2.76.686 — 6/32, 8.83
+  - Strategy_4.57.731 — 8/32, 9.90 · Strategy_5.38.585 — 8/22, 7.71
+  - Strategy_6.24.638 — 6/22, 7.68 · Strategy_6.39.493 — 8/24, 12.62 · Strategy_6.40.536 — 9/30, 14.61 · Strategy_6.41.479 — 8/28, 12.65
+  - Strategy_7.46.731 — 9/24, 12.77 · Strategy_7.51.646 — 6/28, 8.45
+  - Strategy_8.10.634 — 8/28, 8.06 · Strategy_8.11.487 — 7/26, 11.65 · Strategy_8.25.708 — 8/22, 10.63 · Strategy_8.26.438 — 7/34, 7.09 · Strategy_8.62.460 — 7/30, 9.96 · Strategy_8.67.447 — 9/30, 8.25
+- **13 rechazadas** por `NO_ACCEPTABLE_NEIGHBORHOOD` (sin 3×3 elegible; sin decisión downstream): Strategy_1.38.707, 1.83.581, 2.17.503, 2.17.581, 2.25.400, 2.30.706, 2.55.692, 2.73.608, 3.18.626, 3.31.576, 6.32.425, 7.2.741, 8.46.640.
 - Columnas `R_retdd/R_aux/cliff/median_sharpe/median_profit` en blanco: el contrato durable V2 NO emite esas cantidades (sólo `ranking_metric=ret_dd` + mediana Ret/DD del vecindario como quality key; R_aux/cliff son cantidades internas de selección). Se deja blank en vez de derivar fuera del flujo.
 - `robustness_score=0` en los picks: contrato congelado (V2 no define score escalar; la autoridad es rank==1).
 
@@ -88,7 +94,7 @@ Lectura: consistente con la clase de comportamiento certificada en la validació
 
 ## Fallos / fixes
 
-- **INTEGRATION DEFECTS FOUND: NONE de V2.** Cero errores de stage en 92 stage executions; ninguna corrección de producto fue necesaria; el algoritmo V2, su binding durable, el select por rank==1 y el output contract operaron tal cual en el flujo real.
+- **INTEGRATION DEFECTS FOUND: NONE de V2.** Cero errores de stage en 89 stage executions (34+34+21); ninguna corrección de producto fue necesaria; el algoritmo V2, su binding durable, el select por rank==1 y el output contract operaron tal cual en el flujo real.
 - Fix aplicado (runtime, no producto): rollout de la release 0.2.131 construida desde el SHA certificado (`bc50bbb`) porque la flota estaba en 0.2.130 (sin V2 → `EvaluatorConfigFromWFMParams` habría fallado cerrado). Branch `feature/robust-selection-v2-hera-e2e` = `bc50bbb` + commit de manifest `15ce01e` (pusheada a origin). Binarios: worker `f6354373…`, watcher `0c811b9d…` (`vcs.revision=bc50bbb…`, `vcs.modified=false`).
 - Hallazgos operacionales (no bloqueantes): SSH kor@ roto 3/3 (verificación de rollout por Prometheus, canal certificado); ambos MCPs Mongo (ro/rw) caídos durante la sesión (fallback: helper efímero read-only con el cliente del repo); watcher legacy de wave2a aún vivo en Daedalus (eliminado antes del despacho); OTEL collector .45 caído (preexistente).
 
