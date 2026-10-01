@@ -2258,6 +2258,36 @@ Shot TOP source forensics sobre Echo `13e087a3` + reflexión física de `NinjaTr
 
 **Next Manager action:** integrar handoff C1 y despachar D6-N1; no emitir `EF_D6_E2E_PASS` desde C1.
 
+### D6 C1 — PRIMARY MANAGER QA / REPAIR REQUIRED — 2026-10-01
+
+Primary Manager reviewed the persisted C1 artifact against the frozen Echo baseline and current NinjaTrader order semantics.
+
+Disposition:
+
+- Worker artifact remains evidence, but `D6_C1_ADAPTER_FIT = PASS` is **NOT ACCEPTED**.
+- `D6_C1_MANAGER_QA = REPAIR_REQUIRED`.
+- The general NinjaTrader AddOn / bridge seam remains plausible and reusable; two material conclusions require repair before implementation authorization.
+
+Accepted C1 findings:
+
+- NinjaScript AddOn is a credible minimal platform-side surface.
+- Explicit programmatic Account selection is compatible with the one-active-account policy.
+- Realtime market-data and recovery APIs are materially compatible with the frozen seam.
+- D6 still requires runtime market ingress, warm-up/rebuild wiring and transport implementation/certification.
+
+Manager findings requiring repair:
+
+1. **Protective-order semantics:** frozen GerardMM currently creates `OrderRoleProtective` as `OrderTypeLimit` at the protective price. For a LONG this is a SELL LIMIT below the live market, and for a SHORT a BUY LIMIT above the live market. On a real venue these are marketable limit orders, not stop-loss orders. Therefore C1's conclusion that STOP support is unnecessary and MARKET/LIMIT map 1:1 to NinjaTrader is not accepted. The D5 simulator does not model price-driven matching and therefore did not prove physical correctness of this order shape.
+2. **Transport entitlement gate:** `ProviderAccountBinding.Validate()` forbids `Enabled=true` when `Transport.Entitlement` is `UNKNOWN` or `FORBIDDEN`. The current Earn2Trade automation entitlement remains externally unconfirmed. Owner acceptance of policy risk does not automatically satisfy the frozen D5 binding invariant; this must be explicitly adjudicated before execution egress is enabled.
+
+Implementation status:
+
+- D6-N1 read-only implementation is **NOT YET AUTHORIZED** by this Manager QA; first perform a focused C1 repair so the implementation slice does not encode the wrong protective-order contract or silently bypass the entitlement invariant.
+- No D5 code is changed by this QA.
+
+**Next Manager action:** dispatch one focused TOP repair limited to protective-order physical semantics + entitlement/binding authority. It must recommend the minimum correction and identify whether the protective-order issue is a true D5 contract correction or can be solved strictly inside the transport adapter without violating frozen semantics.
+
+
 
 
 
