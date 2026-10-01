@@ -87,3 +87,31 @@ tags:
 ### Validación
 
 - Commit de la entidad: `e3946baf7fae5ec24deced2d8cfc8d799fe7a0f0`.
+
+
+## Additional change — NinjaTrader certification target
+
+### Cambio
+
+- **Tipo:** updated
+- **Archivo:** `10-projects/Echo Futures/Echo Futures.md`
+
+### Motivo
+
+- El Owner confirmó que las GAU50 compradas usan Tradovate / NinjaTrader y autorizó comenzar la certificación.
+
+### Resolución aplicada
+
+- Se fijó `D6_E2T_TRANSPORT_CERT_TARGET = NINJATRADER_TRADOVATE`.
+- La certificación comienza por prueba física sin órdenes antes de cualquier implementación.
+- Tradovate REST/WebSocket directo queda fuera del primer camino D6.
+- La ambigüedad pública de policy/entitlement se conserva como riesgo aceptado por Owner, no como permiso confirmado.
+
+### Fuente
+
+- Confirmación explícita del Owner en sesión.
+- Evidencia oficial Earn2Trade sobre NinjaTrader–Tradovate y setup de Evaluation.
+
+### Validación
+
+- Commit de la entidad: `4e953c3abe4d0697b88b064656bbf641c7440664`.
