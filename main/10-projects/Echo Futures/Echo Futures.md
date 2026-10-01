@@ -2289,6 +2289,9 @@ Implementation status:
 
 ### D6 C1-R1 — PRIMARY MANAGER QA / ACCEPTED WITH F2 AMENDMENT — 2026-10-01
 
+> [!warning] SUPERSEDED_BY_OWNER_ORDER (2026-10-01, N1-R1)
+> El owner rechazó el modelo `OwnerRiskAcceptance`/`PhysicalEgressApproved` (decisión arquitectónica no autorizada) y ordenó eliminarlo del producto y la configuración: ver sección D6 N1-R1 al final. Las conclusiones de esta sección que dependen del modelo F2 (amendment, `ENTITLEMENT_UNCONFIRMED_OWNER_ACCEPTED`, acceptance read-only) quedan superseded; la historia se preserva. Los ítems F1 (STOP_MARKET) y F2-core (entitlement factual `UNKNOWN`/`FORBIDDEN` fail-closed, jamás override) siguen vigentes.
+
 Primary Manager accepts the focused C1-R1 repair as the technical resolution of the two C1 findings, with one binding-safety amendment before implementation.
 
 Accepted:
