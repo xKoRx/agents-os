@@ -495,7 +495,7 @@ Por contrato durable, cada fila tiene: verdict WARN (reason `STABILITY_WARNINGS`
 | Strategy | Family | Runs/OOS rank1 | Median nbhd Ret/DD | Verdict | Decision |
 |---|---|---|---:|---:|---|
 | Strategy_1.13.611 | 1 | 7/30 | 9,1168 | WARN | SELECTED |
-| Strategy_1.37.569→(no) — ver §15 | — | — | — | — | — |
+| Strategy_1.37.569 | 1 | 7/30 | 8,3406 | WARN | SELECTED |
 | Strategy_1.8.669 | 1 | 9/34 | 12,2781 | WARN | SELECTED |
 | Strategy_2.27.756 | 2 | 8/22 | 7,9534 | WARN | SELECTED |
 | Strategy_2.41.524 | 2 | 6/28 | 8,1405 | WARN | SELECTED |
@@ -516,7 +516,7 @@ Por contrato durable, cada fila tiene: verdict WARN (reason `STABILITY_WARNINGS`
 | Strategy_8.62.460 | 8 | 7/30 | 9,9595 | WARN | SELECTED |
 | Strategy_8.67.447 | 8 | 9/30 | 8,2452 | WARN | SELECTED |
 
-La vigésima-primera es `Strategy_1.13.611` (primera fila); la fila marcada "(no)" es un placeholder de lectura — las 21 seleccionadas son exactamente las filas con Decision SELECTED de la tabla §13. No se fabrican explicaciones matemáticas por estrategia (R-values no emitidos en wave2b); el análisis fino de comportamiento V2 por estrategia vive en el universo B (§10).
+Las 21 filas anteriores son exactamente el set de decisiones SELECTED de la tabla §13 (3 de family 1, 4 de family 2, 1 de family 4, 1 de family 5, 4 de family 6, 2 de family 7 y 6 de family 8). No se fabrican explicaciones matemáticas por estrategia (R-values no emitidos en wave2b); el análisis fino de comportamiento V2 por estrategia vive en el universo B (§10).
 
 ---
 
@@ -635,7 +635,7 @@ Opinión del autor (separada de los hechos): el diseño resultó conservador don
 
 ## 21. Next Functional Step
 
-El próximo paso natural del pipeline (sin ejecutar en este mandato): **Final Retester** sobre las **21 Strategies seleccionadas** por wave2b. El wave design de wave2b replicó el funnel de wave2a con STOP explícito antes de Final Retester/MT5 (verificado por MinIO: sin tasks de promotion/apply/MT5), así que el funnel queda esperando exactamente esa etapa con las 21 seleccionadas como entrada (evidencia: 21 decisiones PG SELECTED, `artifacts/herae2e/…/results_v2.jsonl`, MinIO `sqx-strategies/wave_wave2b/`). No se propone trabajo adicional de diseño de Robust Selection.
+El próximo paso natural del pipeline (sin ejecutar en este mandato): **Final Retester** sobre las **21 Strategies seleccionadas** por wave2b. El wave design de wave2b replicó el funnel de wave2a con STOP explícito antes de Final Retester/MT5 (verificado por MinIO: sin tasks de promotion/apply/MT5), así que el funnel queda esperando exactamente esa etapa con las 21 seleccionadas como entrada (evidencia: 21 decisiones PG SELECTED, `artifacts/hera-e2e-20261001/results_v2.jsonl`, MinIO `sqx-strategies/wave_wave2b/`). No se propone trabajo adicional de diseño de Robust Selection.
 
 ---
 
