@@ -1,0 +1,162 @@
+# Echo Futures — D6 N1 — Final Account Binding Certification
+
+**Fecha:** 2026-10-01 (evidencia 20:35–20:50Z / local -03)
+**Role:** TOP Physical Integration Certifier / N1 Finalization Worker (no Manager, no Owner, no arquitecto)
+**Base:** [[N1-PHYSICAL-READONLY-CERTIFICATION]] (PARTIAL_BLOCKED_OWNER, OD-2 pendiente) + [[N1-R3-NINJATRADER-PHYSICAL-COMPILE-REPAIR]] + [[N1-R2-CORRECT-EARN2TRADE-ENTITLEMENT]] + [[N1-R1-REMOVE-UNAUTHORIZED-OWNER-RISK-MODEL]] + [[N1-SHOT1-READONLY-VERTICAL]]
+**Owner decision ejecutada (OD-2, final para N1):** `E2T-GAU50-01` → NinjaTrader account `Name = RJARA114411201551`
+**Echo branch:** `origin/feature/d6-n1-readonly-vertical` @ `f0c82905d4eaf825c08e04f0bb97cab73e616ba5` (verificado al iniciar; worktree limpio antes y después; sin commits en esta certificación)
+**Veredicto:** `D6_N1_FINAL_ACCOUNT_BINDING = BLOCKED_OWNER_ACTION` — todo el trabajo dentro del boundary del agente quedó ejecutado y verificado en PASS (identidad rediscovery vivo, binding ETCD fijado y cargado por el relay, market lane regredido OK, safety intacto); el paso restante (escribir `account_id`/`account_name` en el config del AddOn + restart de NinjaTrader) vive físicamente en la sesión interactiva del owner en dev-win (ACL denegada re-probeada hoy; NT PID 984 en SI=2 owner) y queda **stageado byte-verificable para un ciclo owner de ~2 minutos** (§6). `D6_N1 = NOT_PASS` hasta ese ciclo + shot corto de re-verificación.
+
+## 0. Hard safety
+
+`ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0`, estructural y observado: grep `\.Submit(|\.Change(|\.Cancel(|\.Flatten(|\.CreateOrder(` sobre `EchoFeedAddOn.cs` @ `f0c82905` = **0 matches** (re-verificado al cierre de esta certificación; la única mención es el comentario negativo línea 18); el protocolo `echo.ntfeed.v1` mantiene exactamente 8 familias de observación sin familia de comandos; el relay nunca escribe al AddOn (única escritura: evidence file local 0600); el execution bridge sigue sin arrancar; los heartbeats reales del AddOn reportan `order_events: 0` durante toda la sesión incluida la ventana de esta certificación. No se generó orden alguna para fabricar evidencia. Únicas mutaciones de esta certificación: 1 clave ETCD DEV (provider-external-account-id, dentro del binding E2T-GAU50-01) + restart controlado de `echo-nt-feed-relay` (unidad systemd --user propia de este vertical, release intacta). Master intocado, PROD intocado.
+
+## 1. Rediscovery del account seleccionado (sesión real viva)
+
+Método: frames de discovery full-fidelity del AddOn real en el evidence sink del relay (`/home/kor/opt/echo-dev/var/nt-feed/evidence.jsonl`, 0600), NO el valor histórico del artefacto previo.
+
+- Sesión AddOn real vigente: `6e6eb8b665b4422495826c6f9c97e364` (la misma de la certificación física; sin restart de NT: PID 984 sesión SI=2 y TCP ESTABLISHED `192.168.31.132:65181 → 192.168.31.161:9770` propiedad de NinjaTrader.exe verificados por netstat dev-win 20:36Z).
+- Frame account más reciente al momento del rediscovery: `ts_utc 2026-10-01T20:39:48.574Z`, seq 81992, `match: DISCOVERY_ONLY`.
+- `RJARA114411201551`: **exactly 1 cuenta** con ese Name entre las 8 descubiertas (5 GAU50 + Backtest/Playback101/Sim101).
+- **Current NinjaTrader `Account.Id` = `"3"`** — confirmado independientemente por la sesión actual viva (no reutilizado por supuesto desde el artefacto previo).
+
+## 2. Binding ETCD DEV (paso 3 del mandato)
+
+- Estado pre: `/echo/development/futures-bridge/accounts/E2T-GAU50-01/` con 10 keys; `provider-external-account-id` **ausente** (estado N1 declarado; read plano MCP ETCD RO `found=false`).
+- Escritura con herramienta efímera SDK (patrón N1-R2: `etcd.New(WithApp("echo"), WithEnv("development"))` = namespace idéntico al del relay; guardas: pre-lectura exige ABSENT con abort ante cualquier otro valor, `SetVar`, read-back exige valor exacto). Salida: `before: ABSENT → after: "3" → WRITE_VERIFIED`. Herramienta y binario eliminados del worktree inmediatamente (nunca commiteados; `git status` = 0 entradas después).
+- Post: conteo del prefijo = **11 keys** (10 → 11, exactamente la clave nueva; cero hermanas creadas o eliminadas); `entitlement=ALLOWED`, `enabled=true`, `provider-id=EARN2TRADE`, `nt-feed/active-account=E2T-GAU50-01` verificados intactos; read-back doble (writer + MCP ETCD RO: `value "3", size 1`).
+- Clave: `futures-bridge/accounts/E2T-GAU50-01/provider-external-account-id` (hermana del prefijo `binding/`, schema existente D5/N1; **sin** schema nuevo).
+
+## 3. Relay: binding cargado + defence-in-depth (pasos 5 y 7)
+
+`systemctl --user restart echo-nt-feed-relay` a las 20:43:00Z (PID 1083756→1276323; release `7af6210a` intacta — correcto: `f0c82905` sólo cambió el C# del AddOn, cero código Go desde `7af6210a`).
+
+- **`BINDING_LOADED = PASS`** (plano binding): journal del proceso nuevo: `"echo.ntfeed.binding_loaded":true, "echo.ntfeed.binding_error":""` — el binding `E2T-GAU50-01` carga con `entitlement=ALLOWED` + `provider-external-account-id="3"` (fin del estado fail-closed `binding_loaded=false`/`provider-external-account-id is empty` de Shot 1 E4 / R2 §5).
+- **`ACCOUNT_MATCH = MISMATCH` (fail-closed correcto, causa exacta conocida):** el AddOn reconectó de inmediato (nuevo puerto remoto 65432, mismo AddOn session id) y su hello lleva `expected_account=""` porque su config sigue discovery-only ⇒ `ntfeed.binding_match=MISMATCH`, detail `addon expects ****, binding authority is ****`. Ésta es la defensa defence-in-depth operando según diseño: sin config del AddOn alineada, la lane de cuenta no resuelve — jamás una resolución parcial o inventada.
+- **Market lane regression = PASS:** contador del relay post-restart `published` 131→275 en 30 s (creciente), `publish_errors=0`, `malformed=0`, `rejected=1` (frame seq-0 post-reconnect, disciplina de seq fail-safe OK — mismo patrón que la certificación previa); heartbeats reales post-restart con `frames_sent` 89258+ creciente, `order_events=0`, `reconnects=2` (connect inicial + el reconnect real provocado por el restart del relay — primera demostración física de reconnect del AddOn contra relay real); heartbeat NQ vivo.
+- **Ingress canónico con frames reales post-restart:** registros físicos en `echo.futures.market-feed-candidates.v1` (20:48Z, p4 offsets 87584+): QUOTE con BBO real (`bid 30774.5×4 / ask 30775×1` → evolución a `30775.5×2/30776×2`) y TRADE tick-a-tick (`price 30775.5 qty 1`, offsets 87730/87733/87738/87741/87752/87755), envelope congelado intacto (`stream_id=NQ:NQZ6`, `source_id=NINJATRADER_ADDON`, `log_identity=ninjatrader-addon/6e6eb8b665b4422495826c6f9c97e364`, `offset=seq` del AddOn).
+
+## 4. Observaciones de cuenta (paso 6) — NOT_OBSERVABLE, fail-closed
+
+Balances, positions, orders y executions de `RJARA114411201551` **no se publican** en este estado: el AddOn sólo publica snapshot/balances/positions/orders/executions cuando resuelve la cuenta configurada (`ResolveAccount`: `Id` esperado + cross-check `Name`), y su config sigue discovery-only. Es `NOT_OBSERVABLE` (la lane ni corre para la cuenta), **no** `EMPTY_OBSERVED`; no se fabricó evidencia con órdenes ni con configs parciales. La no-publicación es la degradación fail-closed diseñada, visible en journal (`MISMATCH`) — no un defecto.
+
+## 5. Verificación de matriz (/verify)
+
+| Item | Valor | Evidencia |
+|---|---|---|
+| OWNER_SELECTED_ACCOUNT_NAME | RJARA114411201551 | OD-2 owner (autoridad final N1) |
+| CURRENT_NT_ACCOUNT_ID | "3" | Rediscovery vivo §1 (sesión 6e6eb8b6, frame 20:39:48Z seq 81992) |
+| ACCOUNT_MATCH_COUNT | 1 | Mismo frame: 1 Name `RJARA114411201551` entre 8 descubiertas |
+| ETCD_PROVIDER_EXTERNAL_ACCOUNT_ID | "3" | Escritura verificada §2 (read-back doble; 11 keys) |
+| ADDON_ACCOUNT_ID | BLOCKED_OWNER (stageado "3") | §6: escritura del config vive en perfil owner (ACL denegada re-probeada 20:36Z: `Get-Content`/`Get-Acl` sobre `Documents\NinjaTrader 8\echo\` = Access denied) |
+| ADDON_ACCOUNT_NAME | BLOCKED_OWNER (stageado "RJARA114411201551") | Ídem |
+| BINDING_LOADED | **PASS** (plano relay/binding) | §3: `binding_loaded=true`, `binding_error=""` |
+| ACCOUNT_MATCH | **MISMATCH** (fail-closed correcto; requiere ciclo owner) | §3: hello `expected_account=""` vs binding `"3"` |
+| ACCOUNT_STATE | NOT_OBSERVABLE (fail-closed) | §4 |
+| BALANCES | NOT_OBSERVABLE (fail-closed) | §4 |
+| POSITIONS | NOT_OBSERVABLE (fail-closed) | §4 |
+| ORDERS | NOT_OBSERVABLE (fail-closed) | §4 |
+| EXECUTIONS | NOT_OBSERVED (sin orden generada) | §4 |
+| REAL_HEARTBEAT | **PASS** | §3: heartbeats reales continuos post-restart, `frames_sent` 89258+, `order_events=0` |
+| MARKET_LANE | **PASS** | §3: published creciente 0 errores, QUOTE/TRADE en el ingress |
+| QUOTE_TO_ECHO | **PASS** | §3: registros QUOTE físicos p4 87584+ |
+| TRADE_TO_ECHO | **PASS** | §3: registros TRADE físicos (price 30775.5 qty 1) |
+| ORDERS_SENT | 0 | Estructural + heartbeats toda la sesión |
+| ORDERS_MODIFIED | 0 | Ídem |
+| ORDERS_CANCELLED | 0 | Ídem |
+
+## 6. Bundle owner stageado (camino de cierre, ~2 min)
+
+El config final del AddOn quedó construido y verificado sin tocar el perfil owner:
+
+- **Archivo:** `kor@daedalus:/home/kor/opt/echo-dev/var/nt-feed/owner-install/n1-final/echo-feed-addon.json` (0600) — **idéntico al bundle original excepto `account_id: "3"` y `account_name: "RJARA114411201551"`** (diferencia demostrada por diff de campos); SHA256 `cc7bf7fac22ac1f730960dae95bf74092a4a4b77f4b67e88f80723438af313cf`.
+- **Token verificado sin exponerlo:** tool efímero que compara el token del archivo vs `futures-bridge/nt-feed/auth-token` ETCD imprimiendo sólo `EQUAL` → **EQUAL** (el token del bundle = token ETCD = token desplegado, éste último probado por la auth real del hello 17:43:01Z). Eliminado tras la corrida.
+- **Checklist owner:** `OWNER-CHECKLIST-N1-FINAL.md` SHA256 `17258d9c9d7f5ff15944d4592a52fd29a544a76e08f86ab05dd75a7d447b7cc7` — copiar `C:\Temp\echo-feed-addon.json` → `Documents\NinjaTrader 8\echo\` + restart NT; nada más.
+- **Push físico a dev-win:** ambos archivos en `C:\Temp\` con hash idéntico verificado por `certutil` en dev-win vs `sha256sum` en Daedalus (transporte http.server local efímero + curl.exe, servidor apagado al cierre).
+
+Tras ese ciclo owner, el reconnect del AddOn ya demostrado (§3) entrega automáticamente el nuevo hello con `expected_account="3"` ⇒ `binding_match=RESOLVED` + snapshots/balances/positions/orders/executions de la cuenta, sin ninguna acción Echo-side adicional. Un shot corto de re-verificación clasifica entonces los NOT_OBSERVABLE y cierra `D6_N1 = PASS`.
+
+## 7. D6 DESIGN INPUT — ACCOUNT IDENTITY (registrado, NO resuelto aquí)
+
+Observado en esta certificación (input para el Design Freeze, decisión Primary Manager):
+
+- Echo necesita su propia representación/referencia durable de una cuenta; la identidad de negocio seleccionada por el owner es el `Name` Tradovate-embebido `RJARA114411201551` (autoridad `E2T-GAU50-01 → Name`).
+- El `Account.Id` de NinjaTrader es un entero pequeño runtime-local (`"0"`–`"7"`: 3 cuentas locales + 5 GAU50, enumeradas en esta sesión); su estabilidad entre restarts de NT **no está demostrada** (observado `"3"` en una sola sesión NT; la de hoy comenzó post-restart del owner). Un drift de Ids post-restart rompería el binding actual — el diseño fallaría SEGURO (el cross-check `Name` del AddOn produciría `MISMATCH`, jamás datos de la cuenta equivocada), pero exigiría re-discovery + re-config: exactamente el costo que el freeze debe evaluar.
+- Estado actual del binding (para contexto del freeze): la autoridad ETCD guarda el Id (`"3"`); el AddOn resuelve por `Id` con cross-check `Name`; el hello compara `Id` contra la autoridad (defence-in-depth Id↔Id). No se cambió nada de esto en esta certificación (mandato: usar el modelo D5 existente, sin nuevo schema).
+- El diseño futuro no debe depender ciegamente de un identificador efímero de colección/runtime de NinjaTrader; la referencia business/provider durable hoy es el `Name`.
+
+## 8. Handoff
+
+```text
+D6_N1_FINAL_ACCOUNT_BINDING =
+BLOCKED_OWNER_ACTION (último ciclo físico owner: config AddOn + restart NT; stageado y verificado, ~2 min)
+
+OWNER_SELECTED_ACCOUNT:
+RJARA114411201551 (E2T-GAU50-01; OD-2 ejecutado)
+
+CURRENT_NT_ACCOUNT_ID:
+"3" (rediscovery vivo 2026-10-01T20:39:48Z, sesión 6e6eb8b665b4422495826c6f9c97e364, seq 81992; match count = 1)
+
+PROVIDER_EXTERNAL_ACCOUNT_ID:
+"3" (ETCD DEV /echo/development/futures-bridge/accounts/E2T-GAU50-01/provider-external-account-id; escritura guardada + read-back doble; 10→11 keys, hermanas intactas)
+
+ADDON_ACCOUNT_ID:
+BLOCKED_OWNER (stageado "3" en n1-final bundle; SHA cc7bf7fa…313cf; token verificado EQUAL contra ETCD sin imprimirlo)
+
+ADDON_ACCOUNT_NAME:
+BLOCKED_OWNER (stageado "RJARA114411201551", mismo bundle)
+
+BINDING_LOADED:
+PASS (relay release 7af6210a, PID 1276323: echo.ntfeed.binding_loaded=true, binding_error="")
+
+ACCOUNT_MATCH:
+MISMATCH (fail-closed correcto: hello del AddOn discovery-only expected_account="" vs binding "3"; se resuelve solo tras el ciclo owner)
+
+ACCOUNT_STATE:
+NOT_OBSERVABLE (lane fail-closed por diseño; no EMPTY_OBSERVED)
+
+BALANCES:
+NOT_OBSERVABLE (ídem)
+
+POSITIONS:
+NOT_OBSERVABLE (ídem)
+
+ORDERS:
+NOT_OBSERVABLE (ídem)
+
+EXECUTIONS:
+NOT_OBSERVED (ninguna orden generada para fabricar evidencia)
+
+MARKET_LANE_REGRESSION:
+PASS (post-restart: published creciente, publish_errors=0, malformed=0, rejected=1 seq-disciplina fail-safe; reconnect físico del AddOn demostrado; heartbeats frames_sent 89258+ order_events=0)
+
+QUOTE_TO_ECHO:
+PASS (ingress p4 87584+ BBO real 20:48Z)
+
+TRADE_TO_ECHO:
+PASS (ingress TRADE price 30775.5 qty 1, 20:48Z)
+
+ORDERS_SENT:
+0
+
+ORDERS_MODIFIED:
+0
+
+ORDERS_CANCELLED:
+0
+
+ACCOUNT_IDENTITY_DESIGN_INPUT:
+NT Account.Id = entero runtime-local ("0"-"7" en esta sesión); estabilidad entre restarts no demostrada; Name = identidad business durable hoy; diseño actual falla SEGURO ante drift Id (cross-check Name ⇒ MISMATCH, nunca cuenta equivocada) pero exige re-config; no resolver aquí — D6 Design Freeze (Primary Manager)
+
+MUTATIONS_THIS_CERTIFICATION:
+1 clave ETCD DEV (provider-external-account-id="3") + restart controlado de echo-nt-feed-relay (unidad propia del vertical, release intacta 7af6210a); cero cambios de código; worktree limpio antes y después; master y PROD intocados
+
+BLOCKERS:
+B-FINAL (único): escribir account_id/account_name en Documents\NinjaTrader 8\echo\echo-feed-addon.json + restart NT — sesión interactiva owner dev-win (ACL lectura+escritura denegadas a dev-win\echo-dev, re-probeada 2026-10-01T20:36Z; NT PID 984 SI=2). Todo stageado byte-verificado en C:\Temp + owner-install/n1-final con checklist (~2 min)
+
+OWNER_DECISION_REQUIRED:
+NINGUNA decisión nueva (OD-2 ejecutado); sólo ejecutar el checklist stageado OWNER-CHECKLIST-N1-FINAL.md
+
+NEXT_MANAGER_ACTION:
+comunicar al owner el checklist n1-final (copiar C:\Temp\echo-feed-addon.json → Documents\NinjaTrader 8\echo\ + restart NT); tras el restart, disparar el shot corto de re-verificación N1: hello binding_match=RESOLVED automático + clasificar ACCOUNT_STATE/BALANCES/POSITIONS/ORDERS (EMPTY_OBSERVED o datos reales) + smoke mercado → recién entonces D6_N1 = PASS. N2 sigue NOT AUTHORIZED (F1 STOP_MARKET + re-affirm owner de egress físico). No emitir EF_D6_E2E_PASS.
+```
