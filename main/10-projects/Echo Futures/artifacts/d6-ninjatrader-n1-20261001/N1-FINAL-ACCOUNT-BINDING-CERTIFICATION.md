@@ -160,3 +160,146 @@ NINGUNA decisión nueva (OD-2 ejecutado); sólo ejecutar el checklist stageado O
 NEXT_MANAGER_ACTION:
 comunicar al owner el checklist n1-final (copiar C:\Temp\echo-feed-addon.json → Documents\NinjaTrader 8\echo\ + restart NT); tras el restart, disparar el shot corto de re-verificación N1: hello binding_match=RESOLVED automático + clasificar ACCOUNT_STATE/BALANCES/POSITIONS/ORDERS (EMPTY_OBSERVED o datos reales) + smoke mercado → recién entonces D6_N1 = PASS. N2 sigue NOT AUTHORIZED (F1 STOP_MARKET + re-affirm owner de egress físico). No emitir EF_D6_E2E_PASS.
 ```
+
+---
+
+# FASE FINAL — CICLO OWNER EJECUTADO Y VERIFICADO (2026-10-01 21:15–21:27Z / local -03)
+
+El owner ejecutó el checklist stageado §6: instaló `echo-feed-addon.json` final (`account_id: "3"`, `account_name: "RJARA114411201551"`) en `Documents\NinjaTrader 8\echo\` y reinició NinjaTrader Desktop. Shot corto de verificación ejecutado sobre esa realidad física, sin ninguna acción Echo-side adicional (relay y ETCD quedaron exactamente como en §2–§3).
+
+## 9. Sesión física nueva (fresh NinjaTrader + AddOn)
+
+- **NINJATRADER_FRESH_SESSION = PASS:** `NinjaTrader.exe` **PID 1876** (el de la fase blocked era 984), con **exactamente un** TCP `ESTABLISHED 192.168.31.132:49166 → 192.168.31.161:9770` (netstat dev-win, propiedad del PID 1876); el journal del relay registra `ntfeed addon session opened` a las 21:16:11.346Z desde `192.168.31.132:49166` — mismo puerto, cadena física PID↔conexión↔sesión coherente. La sesión previa `6e6eb8b6…` queda `stale=true` en la estadística del relay (tabla de sesiones, no conexión viva).
+- **Nueva AddOn session id: `2f6a4d5375714a13b237f5ab65ba1fd6`** — hello (seq 0, evidence sink 0600, fidelidad completa): `addon_version 1.0.0`, `nt_version 8.1.8.3`, `expected_account_id: "3"`, `expected_account_name: "RJARA114411201551"`, `instruments: ["NQ 12-26"]`. El hello autenticado es el espejo en runtime del config instalado por el owner (la lectura directa del archivo sigue bloqueada por ACL del perfil owner; el hello ES la prueba física de lo que el AddOn cargó).
+- **TRADOVATE_CONNECTED = PASS:** el PID 1876 mantiene `ESTABLISHED` a `34.117.68.229:443` ×2 (demo.tradovateapi.com, mismos endpoints certificados en C0/E9) + gateway de market data `3.140.144.89:31655` + `34.8.154.29:443`, `104.17.158.117:443`, `76.223.31.44:443`; frames `session` del AddOn: conexión `"Simulación"` Connecting (21:16:22.374Z) → Connected (21:16:25.387Z).
+- **REAL_HELLO = PASS** (hello real autenticado, `session opened` 21:16:11.346Z) y **REAL_HEARTBEAT = PASS** (heartbeats reales continuos: `frames_sent` 3 → 759+ creciente al cierre, `reconnects: 1` = su connect inicial).
+
+## 10. Rediscovery del account tras el restart
+
+- Discovery vivo de la sesión nueva (frames `account`, ciclo ~10 s, sink full-fidelity): 8 cuentas — Backtest "0", Playback101 "1", Sim101 "2", **RJARA114411201551 "3"**, RJARA114411201571 "4", RJARA114411201541 "5", RJARA114411201491 "6", RJARA114411201521 "7". `RJARA114411201551` aparece **exactamente 1 vez** (resolución por Name única; match count = 1).
+- **CURRENT_NT_ACCOUNT_ID = "3"** — observado en la sesión nueva post-restart, NO asumido del artefacto previo. `resolved = {id: "3", name: "RJARA114411201551"}` y **`match: RESOLVED` en todos** los frames `account` de la sesión (60+ al cierre).
+- **NT_ACCOUNT_ID_STABLE_ACROSS_RESTART = YES** (acotado): `"3"` antes (sesión 6e6eb8b6, frame 20:39:48Z) y `"3"` después (sesión 2f6a4d53) del restart del owner — 2/2 sesiones de hoy. No es garantía general de estabilidad del enumerador runtime de NT; sigue siendo input de diseño (§7), no un supuesto del producto.
+- **ETCD_PROVIDER_EXTERNAL_ACCOUNT_ID = "3"** — re-verificado por lectura plana MCP ETCD RO (`/echo/development/futures-bridge/accounts/E2T-GAU50-01/provider-external-account-id`, value "3", size 1; 11 keys en el prefijo, hermanas intactas). Sin escritura en esta fase.
+
+## 11. Relay: binding cargado y resuelto
+
+Journal del relay (release `7af6210a` intacta, PID 1276323, restart 20:43Z de la fase anterior): línea `ntfeed relay binding state` al arranque con `echo.execution_account: "E2T-GAU50-01"`, **`echo.ntfeed.binding_loaded: true`, `echo.ntfeed.binding_error: ""`**; la línea `session opened` del hello nuevo (21:16:11Z) lleva **`ntfeed.binding_match: "RESOLVED"`**. La única línea `binding_match: "MISMATCH"` de la ventana corresponde al `session opened` de la sesión vieja discovery-only (20:43Z, `expected_account=""`) — el fail-closed correcto de la fase anterior, ya superado. En los logs del relay los Ids de cuenta van enmascarados (`****`, sanitización de logs); la fidelidad completa vive en el evidence sink 0600.
+
+## 12. Observaciones de cuenta (cuenta resuelta)
+
+- **ACCOUNT_STATE = PASS:** frame `account` con `match: RESOLVED`, `resolved = {id: "3", name: "RJARA114411201551"}` — identifica inequívocamente la cuenta seleccionada.
+- **BALANCES = PASS:** valores reales expuestos por la conexión Tradovate — `net_liquidation 50000`, `cash_value 50000`, `unrealized_profit_loss 0`, `realized_profit_loss 0`, `buying_power 0` (los cinco campos soportados con valores; no se exige ningún AccountItem no soportado). Progresión real observada: los primeros frames de la sesión traen 0/0 hasta que llegan los datos del proveedor (~5 s), luego los valores finales se estabilizan.
+- **POSITIONS = PASS | EMPTY_OBSERVED:** `"positions": []` en todas las observaciones de la sesión (60+ frames).
+- **ORDERS = PASS | EMPTY_OBSERVED:** `"orders": []` en todas las observaciones (60+ frames).
+- **EXECUTIONS = NOT_OBSERVED:** no existe ningún frame de la familia `executions` en la sesión; el AddOn publica executions sólo por `ExecutionId` nuevo post-priming (el primer snapshot prima la historia sin publicarla) y en todos los heartbeats `order_events == account_events` exactamente — cero ejecuciones nuevas. No se generó actividad alguna para fabricar evidencia.
+- **Semántica del contador (clasificación honesta, ver código @ f0c82905):** `order_events` es un contador de *observaciones* ("orders+executions observations", línea 83): +1 por cada publicación de la colección orders (línea 757) aunque esté vacía, +1 sólo por ejecución nueva (línea 796). Por eso en discovery-only era 0 (sesión vieja) y con cuenta resuelta crece 1:1 con `account_events` sin significar creación de órdenes. `orders: []` en todas las observaciones es la evidencia de ausencia de órdenes.
+
+## 13. Market lane — regresión acotada
+
+- **MARKET_LANE = PASS:** `market_ok: 525` frames de mercado procesados por el relay para la sesión nueva con `anomalies: []`, `stale: false`; contadores globales post-restart `published: 19707`, `publish_errors: 0`, `malformed: 0`, `rejected: 12` (disciplina de seq fail-safe: 11 anomalías de la sesión vieja + 1 del arranque; `malformed=0`). El burst de mercado ocurrió al inicio de la sesión (~21:16:29Z) y el venue demo quedó quieto después; la sesión sigue viva (frames_sent 759+ y frames de cuenta fluyendo al cierre). `NQ 12-26` suscripto (hello + frames procesados).
+- **QUOTE_TO_ECHO = PASS / TRADE_TO_ECHO = PASS:** registros físicos en `echo.futures.market-feed-candidates.v1` p4 offsets 102123–102128 con `log_identity: ninjatrader-addon/2f6a4d5375714a13b237f5ab65ba1fd6` — QUOTE con BBO real (`bid 30770.25×1 / ask 30771.25×2` → evolución `30760×2/30810×1`) y TRADE tick-a-tick (`price 30770.25 qty 1`, `30771.25 qty 1`), envelope congelado intacto (`stream_id=NQ:NQZ6`, `source_id=NINJATRADER_ADDON`, `ingress_ref.offset` = seq del AddOn 526–531). El delay ~600 s de `event_ts` (feed demo) persiste — hallazgo 1 de la certificación previa, vigente, no bloquea N1.
+- Observación ambiental no bloqueante: `failed to upload metrics ... 192.168.31.45:4317 connection refused` (OTEL dev caído, preexistente e ignorado por el lane).
+
+## 14. Safety final
+
+`grep -nE '\.Submit\(|\.Change\(|\.Cancel\(|\.Flatten\(|\.CreateOrder\('` sobre `v3/futures-bridge/addon-ninjatrader/EchoFeedAddOn.cs` @ `f0c82905` (worktree limpio) = **0 matches** (única mención: comentario negativo línea 18). El protocolo `echo.ntfeed.v1` mantiene exactamente las familias de observación sin familia de comandos; el relay nunca escribe al AddOn; el execution bridge sigue sin arrancar. `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0`, estructural y observado (colecciones orders/positions vacías en todas las observaciones, cero ejecuciones nuevas, heartbeats sin eventos de orden). Mutaciones de la fase final: **ninguna** (cero escrituras ETCD, cero restarts, cero cambios de código; master y PROD intocados).
+
+## 15. Matriz final (/verify) y handoff
+
+| Item | Valor | Evidencia |
+|---|---|---|
+| NINJATRADER_FRESH_SESSION | **PASS** | PID 1876 ≠ 984; sesión nueva `2f6a4d53…`; TCP :49166 → :9770 propiedad de NinjaTrader.exe; session opened 21:16:11.346Z |
+| TRADOVATE_CONNECTED | **PASS** | PID 1876 ESTABLISHED demo.tradovateapi.com ×2 + MD gateway :31655 + 3 endpoints; frames session "Simulación" Connected |
+| ADDON_LOADED | **PASS** | AddOn compilado corriendo y publicando frames en la sesión nueva |
+| REAL_HELLO | **PASS** | hello seq 0 autenticado 21:16:11.333Z con identidad de cuenta configurada |
+| REAL_HEARTBEAT | **PASS** | frames_sent 3→759+ creciente, reconnects 1 |
+| OWNER_SELECTED_ACCOUNT | RJARA114411201551 | OD-2 owner (autoridad final N1) |
+| CURRENT_NT_ACCOUNT_ID | **"3"** | Rediscovery vivo sesión nueva (match count 1 de 8) |
+| NT_ACCOUNT_ID_STABLE_ACROSS_RESTART | **YES (acotado 2/2 sesiones hoy)** | §10; sigue siendo input de diseño |
+| ETCD_PROVIDER_EXTERNAL_ACCOUNT_ID | "3" | MCP ETCD RO read-back (11 keys, sin escritura en esta fase) |
+| HELLO_EXPECTED_ACCOUNT_ID | "3" | hello frame sesión nueva |
+| HELLO_EXPECTED_ACCOUNT_NAME | RJARA114411201551 | hello frame sesión nueva |
+| BINDING_LOADED | **PASS** | `binding_loaded=true`, `binding_error=""` (journal relay) |
+| BINDING_MATCH | **RESOLVED** | línea `session opened` 21:16:11Z; todos los frames account `match=RESOLVED` |
+| ACCOUNT_STATE | **PASS** | resolved {id "3", name RJARA114411201551} + balances |
+| BALANCES | **PASS** | NLV 50000 / cash 50000 / UP 0 / RL 0 / buying_power 0 (lo que expone la conexión) |
+| POSITIONS | **PASS \| EMPTY_OBSERVED** | `[]` en todas las observaciones |
+| ORDERS | **PASS \| EMPTY_OBSERVED** | `[]` en todas las observaciones |
+| EXECUTIONS | **NOT_OBSERVED** | 0 ejecuciones nuevas post-priming; sin actividad fabricada |
+| MARKET_LANE | **PASS** | market_ok 525, anomalies=[], published 19707, errs 0, malformed 0 |
+| QUOTE_TO_ECHO | **PASS** | ingress p4 102123+ BBO real, log_identity sesión nueva |
+| TRADE_TO_ECHO | **PASS** | ingress p4 102124+ price/qty reales, log_identity sesión nueva |
+| ORDERS_SENT | 0 | estructural + observado |
+| ORDERS_MODIFIED | 0 | ídem |
+| ORDERS_CANCELLED | 0 | ídem |
+
+```text
+D6_N1_FINAL_ACCOUNT_BINDING =
+PASS
+
+D6_N1 =
+PASS
+
+OWNER_SELECTED_ACCOUNT:
+RJARA114411201551
+
+NT_ACCOUNT_ID_BEFORE_RESTART:
+3 (sesión 6e6eb8b665b4422495826c6f9c97e364, rediscovery vivo 20:39:48Z)
+
+NT_ACCOUNT_ID_AFTER_RESTART:
+3 (sesión 2f6a4d5375714a13b237f5ab65ba1fd6, rediscovery vivo post-restart 21:16Z+, match count 1 de 8)
+
+ACCOUNT_ID_STABILITY_OBSERVATION:
+YES acotado — "3" en 2/2 sesiones de NT de hoy (pre y post restart del owner); el Id sigue siendo un entero runtime-local de NT sin garantía general de estabilidad; la referencia business durable es el Name RJARA114411201551; cross-check Name del AddOn permanece como defensa ante drift (MISMATCH fail-closed, nunca cuenta equivocada). Decisión de representación durable de Account = D6 Design Freeze (Primary Manager), no se resuelve aquí.
+
+BINDING_LOADED:
+PASS (binding_loaded=true, binding_error="", journal relay release 7af6210a PID 1276323)
+
+BINDING_MATCH:
+RESOLVED (session opened 21:16:11Z; match=RESOLVED en todos los frames account de la sesión nueva)
+
+ACCOUNT_STATE:
+PASS (resolved {id "3", name RJARA114411201551}, match RESOLVED, balances incluidos)
+
+BALANCES:
+PASS (net_liquidation 50000, cash_value 50000, unrealized 0, realized 0, buying_power 0 — campos soportados expuestos por la conexión Tradovate demo; progresión real 0/0→valores observada)
+
+POSITIONS:
+PASS | EMPTY_OBSERVED ([] en todas las observaciones)
+
+ORDERS:
+PASS | EMPTY_OBSERVED ([] en todas las observaciones)
+
+EXECUTIONS:
+NOT_OBSERVED (0 ejecuciones nuevas post-priming; order_events==account_events en todos los heartbeats, sin frames executions; ninguna orden generada para fabricar evidencia)
+
+MARKET_LANE:
+PASS (market_ok 525 anomalies=[], published 19707 publish_errors=0 malformed=0; QUOTE/TRADE físicos en ingress con log_identity=ninjatrader-addon/2f6a4d53…; delay ~600 s del feed demo persiste, no bloquea)
+
+QUOTE_TO_ECHO:
+PASS (p4 102123+ BBO real, envelope congelado intacto)
+
+TRADE_TO_ECHO:
+PASS (p4 102124+ price/qty reales, envelope congelado intacto)
+
+ORDERS_SENT:
+0
+
+ORDERS_MODIFIED:
+0
+
+ORDERS_CANCELLED:
+0
+
+MUTATIONS_THIS_PHASE:
+NINGUNA (cero ETCD, cero restarts, cero código; sólo lectura física y este artefacto)
+
+BLOCKERS:
+NONE
+
+OWNER_DECISION_REQUIRED:
+NONE
+
+NEXT_MANAGER_ACTION:
+Registrar D6_N1 = PASS en la verdad del proyecto y pasar a la planificación D6-N2, que sigue NOT AUTHORIZED hasta que (a) F1 STOP_MARKET esté implementado/certificado y (b) el owner re-affirme explícitamente la autorización de egress físico para la cuenta GAU50 seleccionada. El input de identidad de cuenta (§7 + estabilidad observada 2/2) queda para el D6 Design Freeze del Primary Manager. No emitir EF_D6_E2E_PASS.
+```
