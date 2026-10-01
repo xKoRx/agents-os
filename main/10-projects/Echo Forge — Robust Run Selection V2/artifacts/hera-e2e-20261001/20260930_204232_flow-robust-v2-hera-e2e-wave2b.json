@@ -1,0 +1,51 @@
+{
+    "instrument": "NDX",
+    "direction": "L",
+    "timeframe": "H1",
+    "strategy": "SQX",
+    "version": "v1",
+    "wave": "wave2b",
+    "wave_config": {
+        "wfm_params": {
+            "algorithm": "robust_run_selection_v2",
+            "params": {
+                "cliff_threshold": 0.35,
+                "epsilon_ret": 0.01,
+                "epsilon_aux": 0.01
+            }
+        }
+    },
+    "tasks": [
+        {
+            "type": "group",
+            "name": "03_optimizer_v2_group",
+            "folder": "03_optimizer",
+            "batch_size": 1,
+            "cohort_wave": "wave1z",
+            "cohort_flow_run": "c329a546-800b-494b-bace-c87fd81dae10",
+            "source_folder": "02_full_retester",
+            "tasks": [
+                {
+                    "type": "project",
+                    "name": "03_optimizer",
+                    "stage": "optimizer",
+                    "folder": "03_optimizer",
+                    "config": "Optimizer.cfx",
+                    "upload_prefix_filter": "WF_Matrix",
+                    "source_folder": "02_full_retester"
+                },
+                {
+                    "type": "evaluate_wfm",
+                    "name": "04_evaluate_wfm",
+                    "folder": "04_wfm"
+                },
+                {
+                    "type": "select_robust_run",
+                    "name": "05_select_robust",
+                    "folder": "05_robust"
+                }
+            ],
+            "max_parallel": 3
+        }
+    ]
+}

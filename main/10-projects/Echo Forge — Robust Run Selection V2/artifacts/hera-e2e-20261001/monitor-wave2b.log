@@ -1,0 +1,917 @@
+[2026-09-30T23:48:44Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+[2026-09-30T23:58:44Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+[2026-10-01T00:08:44Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+[2026-10-01T00:18:44Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+[2026-10-01T00:28:44Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+[2026-10-01T00:38:44Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+[2026-10-01T00:48:45Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+[2026-10-01T00:52:47Z] STAGE_TRANSITION: STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+[2026-10-01T00:58:45Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 1
+DECISION SELECTED: 1
+[2026-10-01T00:59:30Z] STAGE_TRANSITION: STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 1
+DECISION SELECTED: 1
+[2026-10-01T01:08:45Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 1
+DECISION SELECTED: 1
+[2026-10-01T01:10:31Z] STAGE_TRANSITION: STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 1
+DECISION SELECTED: 1
+[2026-10-01T01:18:45Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 1
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 1
+DECISION SELECTED: 1
+[2026-10-01T01:28:45Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 1
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 2
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 1
+DECISION SELECTED: 1
+[2026-10-01T01:38:45Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 2
+STAGE project@sqx-optimizer.v1 COMPLETED: 2
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 1
+DECISION SELECTED: 1
+[2026-10-01T01:48:46Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 2
+STAGE project@sqx-optimizer.v1 COMPLETED: 2
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 1
+DECISION SELECTED: 1
+[2026-10-01T01:55:52Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 2
+[2026-10-01T01:58:46Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 2
+DECISION SELECTED: 2
+[2026-10-01T02:08:46Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 2
+DECISION SELECTED: 2
+[2026-10-01T02:18:46Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 2
+DECISION SELECTED: 2
+[2026-10-01T02:28:46Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 2
+DECISION SELECTED: 2
+[2026-10-01T02:38:46Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 2
+DECISION SELECTED: 2
+[2026-10-01T02:48:46Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 2
+DECISION SELECTED: 2
+[2026-10-01T02:58:47Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 2
+DECISION SELECTED: 2
+[2026-10-01T03:08:47Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 COMPLETED: 3
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 2
+DECISION SELECTED: 2
+[2026-10-01T03:18:39Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 3
+[2026-10-01T03:18:47Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 4
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 5
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 3
+DECISION SELECTED: 3
+[2026-10-01T03:28:47Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 5
+STAGE project@sqx-optimizer.v1 COMPLETED: 5
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 3
+DECISION SELECTED: 3
+[2026-10-01T03:38:47Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 5
+STAGE project@sqx-optimizer.v1 COMPLETED: 5
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 3
+DECISION SELECTED: 3
+[2026-10-01T03:48:47Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 5
+STAGE project@sqx-optimizer.v1 COMPLETED: 5
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 3
+DECISION SELECTED: 3
+[2026-10-01T03:58:47Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 5
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 3
+DECISION SELECTED: 3
+[2026-10-01T04:08:47Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 4
+DECISION SELECTED: 4
+[2026-10-01T04:11:53Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 4
+[2026-10-01T04:18:48Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 4
+DECISION SELECTED: 4
+[2026-10-01T04:28:48Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 4
+DECISION SELECTED: 4
+[2026-10-01T04:38:48Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 4
+DECISION SELECTED: 4
+[2026-10-01T04:48:48Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 COMPLETED: 6
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 4
+DECISION SELECTED: 4
+[2026-10-01T04:58:48Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 6
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 7
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 4
+DECISION SELECTED: 4
+[2026-10-01T05:08:48Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 7
+STAGE project@sqx-optimizer.v1 COMPLETED: 7
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 5
+DECISION SELECTED: 5
+[2026-10-01T05:18:48Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 7
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 5
+DECISION SELECTED: 5
+[2026-10-01T05:34:01Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 5
+DECISION SELECTED: 5
+[2026-10-01T05:44:01Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 5
+DECISION SELECTED: 5
+[2026-10-01T05:54:01Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 5
+DECISION SELECTED: 5
+[2026-10-01T06:04:01Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 5
+DECISION SELECTED: 5
+[2026-10-01T06:14:01Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 COMPLETED: 8
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 5
+DECISION SELECTED: 5
+[2026-10-01T06:23:02Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 6
+[2026-10-01T06:24:01Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 9
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 6
+DECISION SELECTED: 6
+[2026-10-01T06:34:01Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 6
+DECISION SELECTED: 6
+[2026-10-01T06:44:02Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 6
+DECISION SELECTED: 6
+[2026-10-01T06:54:02Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 6
+DECISION SELECTED: 6
+[2026-10-01T07:04:02Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 6
+DECISION SELECTED: 6
+[2026-10-01T07:14:02Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 6
+DECISION SELECTED: 6
+[2026-10-01T07:24:02Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 COMPLETED: 10
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 6
+DECISION SELECTED: 6
+[2026-10-01T07:34:02Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 11
+STAGE project@sqx-optimizer.v1 COMPLETED: 11
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 7
+DECISION SELECTED: 7
+[2026-10-01T07:34:34Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 7
+[2026-10-01T07:44:02Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 8
+DECISION SELECTED: 8
+[2026-10-01T07:54:02Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 8
+DECISION SELECTED: 8
+[2026-10-01T08:04:03Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 8
+DECISION SELECTED: 8
+[2026-10-01T08:14:03Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 8
+DECISION SELECTED: 8
+[2026-10-01T08:24:03Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 8
+DECISION SELECTED: 8
+[2026-10-01T08:34:03Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 COMPLETED: 12
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 8
+DECISION SELECTED: 8
+[2026-10-01T08:44:03Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 13
+STAGE project@sqx-optimizer.v1 COMPLETED: 13
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 9
+DECISION SELECTED: 9
+[2026-10-01T08:47:37Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 9
+[2026-10-01T08:54:03Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 13
+STAGE project@sqx-optimizer.v1 COMPLETED: 13
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 9
+DECISION SELECTED: 9
+[2026-10-01T09:04:03Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 13
+STAGE project@sqx-optimizer.v1 COMPLETED: 13
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 9
+DECISION SELECTED: 9
+[2026-10-01T09:14:03Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 13
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 14
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 9
+DECISION SELECTED: 9
+[2026-10-01T09:22:31Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 10
+[2026-10-01T09:24:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 14
+STAGE project@sqx-optimizer.v1 COMPLETED: 14
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T09:34:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 14
+STAGE project@sqx-optimizer.v1 COMPLETED: 14
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T09:44:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 14
+STAGE project@sqx-optimizer.v1 COMPLETED: 14
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T09:54:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 14
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T10:04:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T10:14:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T10:24:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T10:34:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 COMPLETED: 15
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T10:44:04Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 15
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 16
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T10:54:05Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 16
+STAGE project@sqx-optimizer.v1 COMPLETED: 16
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T11:04:05Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 16
+STAGE project@sqx-optimizer.v1 COMPLETED: 16
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 10
+DECISION SELECTED: 10
+[2026-10-01T11:14:05Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 11
+DECISION SELECTED: 11
+[2026-10-01T11:16:33Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 11
+[2026-10-01T11:24:05Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 11
+DECISION SELECTED: 11
+[2026-10-01T11:34:05Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 11
+DECISION SELECTED: 11
+[2026-10-01T11:44:05Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 11
+DECISION SELECTED: 11
+[2026-10-01T11:54:05Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 11
+DECISION SELECTED: 11
+[2026-10-01T12:04:06Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 11
+DECISION SELECTED: 11
+[2026-10-01T12:14:06Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 COMPLETED: 17
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 11
+DECISION SELECTED: 11
+[2026-10-01T12:24:06Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 18
+STAGE project@sqx-optimizer.v1 COMPLETED: 18
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 12
+DECISION SELECTED: 12
+[2026-10-01T12:27:39Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 12
+[2026-10-01T12:34:06Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 18
+STAGE project@sqx-optimizer.v1 COMPLETED: 18
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 12
+DECISION SELECTED: 12
+[2026-10-01T12:44:06Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 18
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 19
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 12
+DECISION SELECTED: 12
+[2026-10-01T12:54:06Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 18
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 19
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 12
+DECISION SELECTED: 12
+[2026-10-01T13:04:06Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 18
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 19
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 12
+DECISION SELECTED: 12
+[2026-10-01T13:14:07Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 18
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 19
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 12
+DECISION SELECTED: 12
+[2026-10-01T13:24:07Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 18
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 2
+STAGE project@sqx-optimizer.v1 COMPLETED: 20
+STAGE project@sqx-optimizer.v1 RUNNING: 1
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 12
+DECISION SELECTED: 12
+[2026-10-01T13:30:49Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 13
+[2026-10-01T13:34:07Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 19
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 20
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 13
+DECISION SELECTED: 13
+[2026-10-01T13:41:55Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 14
+[2026-10-01T13:44:07Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 20
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 21
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T13:54:07Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 20
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 21
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T14:04:07Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 20
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 21
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T14:14:07Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 20
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 21
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T14:24:07Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 20
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 21
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T14:34:08Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 20
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 2
+STAGE project@sqx-optimizer.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 RUNNING: 1
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T14:44:08Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T14:54:08Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T15:04:08Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T15:14:08Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T15:24:09Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T15:34:09Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 COMPLETED: 22
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T15:44:09Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 23
+STAGE project@sqx-optimizer.v1 COMPLETED: 23
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T15:54:09Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 23
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 14
+DECISION SELECTED: 14
+[2026-10-01T15:54:50Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 15
+[2026-10-01T15:57:28Z] CHECKPOINT: FLOW_RUN_STATUS: RUNNING
+DECISION SELECTED: 15
+[2026-10-01T16:04:09Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 15
+DECISION SELECTED: 15
+[2026-10-01T16:14:09Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 15
+DECISION SELECTED: 15
+[2026-10-01T16:24:09Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 15
+DECISION SELECTED: 15
+[2026-10-01T16:34:10Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 15
+DECISION SELECTED: 15
+[2026-10-01T16:44:10Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 COMPLETED: 24
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 15
+DECISION SELECTED: 15
+[2026-10-01T16:54:10Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 16
+DECISION SELECTED: 16
+[2026-10-01T17:04:10Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 16
+DECISION SELECTED: 16
+[2026-10-01T17:14:10Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 16
+DECISION SELECTED: 16
+[2026-10-01T17:24:10Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 16
+DECISION SELECTED: 16
+[2026-10-01T17:34:10Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 COMPLETED: 25
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 16
+DECISION SELECTED: 16
+[2026-10-01T17:44:10Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 25
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 26
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 16
+DECISION SELECTED: 16
+[2026-10-01T17:54:11Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 26
+STAGE project@sqx-optimizer.v1 COMPLETED: 26
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 17
+DECISION SELECTED: 17
+[2026-10-01T18:04:11Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 27
+STAGE project@sqx-optimizer.v1 COMPLETED: 27
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 17
+DECISION SELECTED: 17
+[2026-10-01T18:14:11Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 27
+STAGE project@sqx-optimizer.v1 COMPLETED: 27
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 17
+DECISION SELECTED: 17
+[2026-10-01T18:24:11Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 28
+STAGE project@sqx-optimizer.v1 COMPLETED: 28
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 18
+DECISION SELECTED: 18
+[2026-10-01T18:34:11Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 28
+STAGE project@sqx-optimizer.v1 COMPLETED: 28
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 18
+DECISION SELECTED: 18
+[2026-10-01T18:44:11Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 28
+STAGE evaluate_wfm@sqx-wfm.v1 RUNNING: 1
+STAGE project@sqx-optimizer.v1 COMPLETED: 29
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 18
+DECISION SELECTED: 18
+[2026-10-01T18:54:12Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 29
+STAGE project@sqx-optimizer.v1 COMPLETED: 29
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 18
+DECISION SELECTED: 18
+[2026-10-01T19:04:12Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 29
+STAGE project@sqx-optimizer.v1 COMPLETED: 29
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 18
+DECISION SELECTED: 18
+[2026-10-01T19:14:12Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 30
+STAGE project@sqx-optimizer.v1 COMPLETED: 30
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 19
+DECISION SELECTED: 19
+[2026-10-01T19:24:12Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 30
+STAGE project@sqx-optimizer.v1 COMPLETED: 30
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 19
+DECISION SELECTED: 19
+[2026-10-01T19:34:12Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 30
+STAGE project@sqx-optimizer.v1 COMPLETED: 30
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 19
+DECISION SELECTED: 19
+[2026-10-01T19:44:12Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 30
+STAGE project@sqx-optimizer.v1 COMPLETED: 30
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 19
+DECISION SELECTED: 19
+[2026-10-01T19:54:13Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 31
+STAGE project@sqx-optimizer.v1 COMPLETED: 31
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 20
+DECISION SELECTED: 20
+[2026-10-01T20:04:13Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 31
+STAGE project@sqx-optimizer.v1 COMPLETED: 31
+STAGE project@sqx-optimizer.v1 RUNNING: 3
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 20
+DECISION SELECTED: 20
+[2026-10-01T20:14:13Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 32
+STAGE project@sqx-optimizer.v1 COMPLETED: 32
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 21
+DECISION SELECTED: 21
+[2026-10-01T20:24:13Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 32
+STAGE project@sqx-optimizer.v1 COMPLETED: 32
+STAGE project@sqx-optimizer.v1 RUNNING: 2
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 21
+DECISION SELECTED: 21
+[2026-10-01T20:34:13Z] FLOW_RUN_STATUS: RUNNING
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 33
+STAGE project@sqx-optimizer.v1 COMPLETED: 33
+STAGE project@sqx-optimizer.v1 RUNNING: 1
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 21
+DECISION SELECTED: 21
+[2026-10-01T20:44:13Z] FLOW_RUN_STATUS: COMPLETED
+MEMBERSHIP REPROCESSED: 34
+STAGE evaluate_wfm@sqx-wfm.v1 COMPLETED: 34
+STAGE project@sqx-optimizer.v1 COMPLETED: 34
+STAGE select_robust_run@sqx-robust-selection.v1 COMPLETED: 21
+DECISION SELECTED: 21
+[2026-10-01T20:44:13Z] TERMINAL
