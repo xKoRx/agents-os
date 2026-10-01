@@ -2287,6 +2287,42 @@ Implementation status:
 
 **Next Manager action:** dispatch one focused TOP repair limited to protective-order physical semantics + entitlement/binding authority. It must recommend the minimum correction and identify whether the protective-order issue is a true D5 contract correction or can be solved strictly inside the transport adapter without violating frozen semantics.
 
+### D6 C1-R1 — PRIMARY MANAGER QA / ACCEPTED WITH F2 AMENDMENT — 2026-10-01
+
+Primary Manager accepts the focused C1-R1 repair as the technical resolution of the two C1 findings, with one binding-safety amendment before implementation.
+
+Accepted:
+
+- F1 is accepted: the frozen GerardMM protective intent requires a real `STOP_MARKET` primitive. The current protective `LIMIT` is physically incorrect on a real venue because it is marketable on installation. This is a bounded D5 contract correction, not a redesign.
+- The NinjaTrader adapter must map the protective order to native/server-held `StopMarket`; PC-simulated/client-side stops are not acceptable for V1 protection.
+- F2's core separation is accepted: provider entitlement remains factual (`ALLOWED|CONDITIONAL|FORBIDDEN|UNKNOWN`) and Owner risk acceptance is separate, explicit, auditable local policy. `FORBIDDEN` can never be overridden.
+
+Manager amendment to F2:
+
+- A single undifferentiated `OwnerRiskAccepted` flag is insufficient because the Owner has accepted the uncertainty for certification/read-only work but physical order egress requires a separate explicit authorization boundary.
+- `OwnerRiskAcceptance` must carry an explicit physical-egress dimension (e.g. `PhysicalEgressApproved bool`) or equivalent scope.
+- Binding load/observation may proceed for `UNKNOWN` with a recorded Owner decision while `PhysicalEgressApproved=false`.
+- Admission/new-risk readiness/physical submit must remain fail-closed until either provider entitlement is `ALLOWED|CONDITIONAL` or `UNKNOWN` has a recorded Owner acceptance with `PhysicalEgressApproved=true`.
+- `FORBIDDEN` remains fail-closed regardless of Owner risk acceptance.
+- Status/readiness must expose `ENTITLEMENT_UNCONFIRMED_OWNER_ACCEPTED`; read-only acceptance must not silently become physical-egress authorization.
+
+Final Manager disposition:
+
+- `D6_C1_R1_MANAGER_QA = ACCEPTED_WITH_AMENDMENT`.
+- `D6_C1_FINAL_STATUS = PASS` once the F2 amendment above is treated as implementation authority.
+- `D6-N1 = AUTHORIZED` as a read-only implementation shot. It may implement the F2 representation/predicate split required to load the binding and observe the account, but must keep physical egress impossible.
+- `D6-N2 = NOT AUTHORIZED` until F1 is implemented/certified and the Owner explicitly approves physical egress for the selected GAU50.
+
+Implementation sequencing:
+
+1. D6-N1 Shot 1: read-only NinjaTrader AddOn vertical + safe entitlement/Owner-risk representation with egress hard-disabled.
+2. Fresh independent N1 verification.
+3. N1 correction/final gate if findings exist.
+4. Only afterward prepare N2 execution implementation.
+
+**Next Manager action:** dispatch D6-N1 Shot 1 under the read-only/no-orders boundary.
+
+
 
 
 
