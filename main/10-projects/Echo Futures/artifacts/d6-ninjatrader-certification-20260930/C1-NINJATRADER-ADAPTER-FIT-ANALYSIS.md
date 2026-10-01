@@ -176,7 +176,7 @@ ARTIFACT:
 main/10-projects/Echo Futures/artifacts/d6-ninjatrader-certification-20260930/C1-NINJATRADER-ADAPTER-FIT-ANALYSIS.md
 
 AGENTS_OS_SHA:
-<registered-at-close>
+6833ef1161961687a539e3c75274da9c66f9c042
 
 ECHO_BASELINE:
 13e087a3bb762f65b060d3b3200fb00a67c6ff1d
