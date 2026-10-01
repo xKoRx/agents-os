@@ -115,3 +115,33 @@ tags:
 ### Validación
 
 - Commit de la entidad: `4e953c3abe4d0697b88b064656bbf641c7440664`.
+
+
+## Additional change — C0 manager reclassification
+
+### Cambio
+
+- **Tipo:** updated
+- **Archivo:** `10-projects/Echo Futures/Echo Futures.md`
+
+### Motivo
+
+- El artifact C0 certificó transporte físico pero quedó bloqueado por límites de observabilidad de la identidad local.
+- El Owner aportó evidencia física adicional: un único login Tradovate en NinjaTrader Desktop expone las 5 GAU50 compradas.
+
+### Resolución aplicada
+
+- Se registró `EVALUATION_ACCOUNT_VISIBLE = PASS (OWNER_OBSERVED)`.
+- Se registró `GAU50_VISIBLE = PASS (OWNER_OBSERVED, count=5)`.
+- Se re-clasificó el estado como `D6_C0_NINJATRADER = PARTIAL_PASS_PENDING_GUI_OBSERVABLES`.
+- El acceso ACL de `echo-dev` no se promovió a decisión arquitectónica.
+- Reconnect/restart permanece pendiente para certificación física final, pero no bloquea C1.
+
+### Fuente
+
+- Artifact C0 de certificación NinjaTrader/Tradovate.
+- Observación física explícita del Owner en sesión.
+
+### Validación
+
+- Commit de la entidad: `4f8de1222b561ae0dd6d714f1234d636c0aba86c`.
