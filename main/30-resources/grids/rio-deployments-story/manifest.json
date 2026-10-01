@@ -62,8 +62,10 @@
     }
   ],
   "validation": {
-    "status": "pending native viewer",
-    "budget": "under 110 visible words per slide including header/punch; no prose panels"
+    "local_canvas": "6 scenes checked in fixed 1280x720 iframe; 44px headlines, no clipping or overflow",
+    "native_viewer": "pending — Grid API connection unavailable",
+    "reading_budget": "73–108 visible words per slide, including header, subtitle, diagram labels and conclusion; no paragraphs",
+    "grid_upload_status": "pending visual redesign; remote deck still contains previous text version"
   },
   "format": "Visual narrative; short labels, causal diagrams; technical detail in guion/code"
 }

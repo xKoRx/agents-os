@@ -26,7 +26,7 @@ Explicar completamente el recorrido de un deploy de pipeline dentro de Playmaker
 
 ## Recorrido acotado
 
-Seis paradas en código, siguiendo el mismo caso de principio a fin. Como presupuesto orientativo se mantienen 20–25 minutos; el tiempo definitivo queda por ajustar al ensayar. La propuesta Grid de seis capítulos sirve de apoyo visual. Este guion es la fuente del recorrido actual.
+Seis paradas en código, siguiendo el mismo caso de principio a fin. Como presupuesto orientativo se mantienen 20–25 minutos; el tiempo definitivo queda por ajustar al ensayar. La propuesta visual de seis capítulos sirve de apoyo: diagramas, estados y etiquetas cortas. El detalle se explica oralmente y al abrir código; no se copia el guion dentro de las slides. Este guion es la fuente del recorrido actual.
 
 Caso ilustrativo: un pipeline tiene un topic y un engine que requieren deploy, más un componente sin cambios. El topic entra al primer batch, el engine al segundo y el componente sin cambios queda SKIP. El ejemplo permite explicar entidades, outputs y avance sin recorrer por separado cada control plane.
 
@@ -139,6 +139,8 @@ El polling encadena delays de 2, 4, 8, 16 y hasta 30 segundos. Los errores reini
 **Fuente del front:** `melisource/fury_ads-signals-frontend`, `origin/master` local `791f79dd8050e1432bdc5c936539b22dbaa4e35d`, contrastado el 2026-10-01. [Grid propuesto — request a polling](https://grid.adminml.com/d/01M3VWJ9GQ1FHABT2GJZEN1VPA/view), seis slides Dark Theme con extractos y enlaces a las refs verificadas.
 
 ## Preparación para la meet
+
+En la segunda escena, preguntar si el Deployment del engine ya existe; revelar que sólo nació su ComponentRun. En la quinta, volver a ese engine y mostrar qué habilitó su Deployment. En el cierre, preguntar si detener el polling cancela el trabajo: el backend continúa.
 
 Ensayar las seis paradas con el mismo ejemplo, dejando abiertas las clases principales y saltando a los helpers sólo para mostrar la línea que sostiene cada decisión. Usar los diagramas existentes cuando ayuden a reconocer entidades o transportes. Las preguntas sobre implementaciones internas de cada CP, incidencia de fallas y posibles correcciones se responden con el documento de referencia después del recorrido.
 

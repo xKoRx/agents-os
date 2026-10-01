@@ -63,3 +63,12 @@ tags:
 ## Rollback
 
 - Recuperar las versiones anteriores de las tres notas si se decide volver al guion por slides; conservar la aclaración del objetivo del usuario como evidencia del cambio de alcance. El Grid nuevo es un artefacto privado independiente; el Grid anterior quedó preservado.
+
+
+## Rediseño visual por feedback del usuario
+
+- La primera propuesta fue rechazada por exceso de texto. Se reemplazó su HTML local por seis escenas visuales: request/delta, nacimiento de entidades, commit/dispatch, correlación de resultados, avance al engine y polling/UI. Se conservan Dark Theme, el caso, las fuentes verificadas y el mismo Grid remoto como destino.
+- Se eliminaron párrafos y extractos largos de las slides; se usan vectores, rutas, estados y etiquetas breves. El guion y los enlaces sostienen el detalle técnico. Se corrigió también la ubicación visual de RUNNING: execution/group pasan a ese estado tras el primer dispatch, no dentro del lifecycle inicial.
+- QA local de las seis escenas en iframe fijo 1280×720: títulos 44px, contenido completo, sin desbordes ni clipping. Entre 73 y 108 palabras visibles por slide contando todo el encabezado y cierre.
+- La API `grid.melioffice.com` no responde desde la conexión actual; el visor abre pero los controles de edición no completan la acción. No se actualizó el contenido remoto. Se dejó preview local y se consultó la conexión VPN; quedan pendientes upload con versión y revisión nativa.
+- Rollback local disponible en la copia temporal de la propuesta de texto; el Grid remoto conserva esa versión. Sin cambios en repos ni producción.
