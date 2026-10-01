@@ -2,18 +2,20 @@
 type: feedback
 schema_version: 1
 scope: session
-created: 2026-10-01
-updated: 2026-10-01
+created: "2026-10-01"
+updated: "2026-10-01"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 entities:
   - "[[AGENTS OS]]"
-related: []
+related:
+  - "[[Loom]]"
+  - "[[2026-10-01-zcode-glm53-loom-home-lab-certification]]"
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash
+agent_run: "[[2026-10-01-zcode-glm53-loom-home-lab-certification]]"
+session_goal: "Certificación runtime del Home Lab de Loom (gates, coverage, smoke real, matriz visual, verificación adversarial en dos pasadas)"
 source_session:
 confidence: high
 load_policy: manual
@@ -22,93 +24,36 @@ index_priority: low
 tags:
   - kind/feedback
   - scope/session
-  - project/agents-os
-  - agent/system1
 ---
 
-# Session Feedback - 2026-10-01 - short-topic
+# Session Feedback - 2026-10-01 - loom-home-lab
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Agent surface: ZCode
+- Agent model: GLM-5.3-Flash
+- Agent run: [[2026-10-01-zcode-glm53-loom-home-lab-certification]]
+- Session goal: ver session_goal en frontmatter
+- Main entity: [[Loom]]
+- Skills used: control-browser (browser-use), agents-os-session-close, agents-os-agent-run-register
+- Retrieval mode: cold start + retrieval dirigido por entidad
+- Artifacts changed: repo Loom (rama feature), journal (run/log/feedback), bitácora de Loom
 
 ## Scores
 
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+- Startup clarity: 5
+- Retrieval usefulness: 5
+- Skill fit: 4
+- Template fit: 5
+- Closeout friction: 4
+- Overall confidence: 5
 
 ## What Complicated The Session Most
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+- Observation: la superficie browser IAB falló de forma intermitente (`browser screenshot activity capture failed for guest` 3×, y `getByRole(...).click()` con timeout sobre filas profundas de catálogo).
+- Why it was hard: las capturas de la matriz visual y el click de foco requerían reintentos y degradar a `evaluate`/`dispatchEvent` (MouseEvent con `button:0`, keydown con `key:'Enter'`) para no bloquear el mandato.
+- Proposed improvement: captura de screenshots con reintento nativo y un helper de click robusto (MouseEvent completo) documentado en el skill control-browser.
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+- La continuidad previa de [[Loom]] (workspace, flujo canónico make/e2e, disciplina SSR renderToHtml) permitió arrancar el runtime sin discovery.
