@@ -47,6 +47,6 @@ Sin recomendación final. Sólo hechos observados del gate.
 ## Hotspots potenciales para el Primary Manager
 
 1. **Equivalence review sin ejercicio live** — decidir si se requiere un gate dedicado que garantice colisiones (p.ej. mayor solapamiento entre ventanas) antes de liberar el capítulo completo.
-2. **Tasa de output inválido del modelo** (2 recon + 6 grounding + 1 transport failure en 92 llamadas ≈ 10%) —直接影响 throughput real y estimación de presupuesto del capítulo completo.
+2. **Tasa de output inválido del modelo** (2 recon + 6 grounding + 1 transport failure en 92 llamadas ≈ 10%) — impacto directo en throughput real y estimación de presupuesto del capítulo completo.
 3. **Composition frágil ante transport errors** — el catálogo grande puede exceder el tamaño de respuesta estable del modelo; una única unavailable mata todo L2 del run (por diseño actual).
 4. **Claims COMPOSITE degradadas por atomicidad** (1 caso observado) — comportamiento contractual, pero sugiere que el reviewer de grounding y el atomicity check pueden discrepar; ver frecuencia en el capítulo completo.
