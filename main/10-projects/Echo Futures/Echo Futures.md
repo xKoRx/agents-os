@@ -2198,4 +2198,18 @@ Current D6 inventory baseline:
 - `D6_E2T_FREE_RESETS = 5`.
 - `D6_E2T_MAX_EVALUATION_ATTEMPTS = 10`.
 
+### D6 — TRANSPORT CERTIFICATION TARGET / NINJATRADER — 2026-09-30
+
+Owner confirms the purchased GAU50 evaluations use the **Tradovate / NinjaTrader** access path.
+
+Manager disposition:
+
+- `D6_E2T_TRANSPORT_CERT_TARGET = NINJATRADER_TRADOVATE`.
+- First certification target is NinjaTrader Desktop connected with the Earn2Trade-provisioned Tradovate credentials.
+- Direct Tradovate REST/WebSocket is not the first D6 path.
+- Automation/API policy ambiguity is accepted by Owner as a risk for proceeding with certification; it is not reclassified as externally confirmed permission.
+- Certification starts with no-order physical proof: account visibility, connection, market data, account state, instrument visibility, logs/reconnect behavior.
+- No Echo product implementation is authorized by this transport selection alone.
+
+
 
