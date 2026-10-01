@@ -63,3 +63,33 @@ tags:
 ## Rollback
 
 - Revertir el commit del project note sólo si un repair posterior refuta ambos findings y el Primary Manager emite un nuevo QA.
+
+
+## Additional change — C1-R1 manager acceptance with egress amendment
+
+### Cambio
+
+- **Tipo:** updated
+- **Archivo:** `10-projects/Echo Futures/Echo Futures.md`
+
+### Motivo
+
+- C1-R1 resolvió la semántica física del protective order y propuso una representación separada para la aceptación local de riesgo sobre entitlement UNKNOWN.
+- Primary Manager aceptó el repair con una enmienda de seguridad: la aceptación de riesgo para certificación/read-only no puede habilitar automáticamente egress físico.
+
+### Resolución aplicada
+
+- F1 accepted: protective order requiere `STOP_MARKET` nativo/server-held.
+- F2 accepted with amendment: `OwnerRiskAcceptance` debe distinguir explícitamente autorización de egress físico.
+- `FORBIDDEN` permanece no-overridable.
+- D6-N1 read-only autorizado; D6-N2 sigue no autorizado.
+
+### Fuente
+
+- Artifact `C1-R1-PHYSICAL-ORDER-AND-ENTITLEMENT-REPAIR.md`.
+- Echo baseline `xKoRx/echo@13e087a3bb762f65b060d3b3200fb00a67c6ff1d`.
+- QA del Primary Manager.
+
+### Validación
+
+- Project note actualizada en commit `1e3fef82a3d9aa803f7e456edb1eeaf813b5c7f6`.
