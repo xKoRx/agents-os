@@ -1,0 +1,127 @@
+{
+ "gate": "LIVE_EQUIVALENCE_STRESS_GATE",
+ "verdict": "PASS_WITH_FINDINGS",
+ "date_utc": "2026-10-01",
+ "mke_sha": "ef53530756a27009517030a1bd29f0472bb3ad48",
+ "source_sha256": "4de8f12d4841c63022a03e7450e0b54c4947ed9c8fc8c408606dde79dd3d289b",
+ "provider": {
+  "adapter": "openrouter",
+  "model_requested": "stealth/space-bunny-alpha",
+  "model_observed": "stealth/space-bunny-alpha",
+  "probe": "6/7 (1 inconclusive conocido)"
+ },
+ "l0": {
+  "reused": true,
+  "evidence_rows": 1040,
+  "evidence_verified": 1040,
+  "transcript_segments": 323
+ },
+ "windows": {
+  "total": 4,
+  "accepted": 2,
+  "rejected": 2,
+  "reconstruction_valid": 4,
+  "reconstruction_rejected_bad_evidence_ref": 0,
+  "other_reconstruction_rejections": 2,
+  "invalid_evidence_refs": []
+ },
+ "identity_ladder": {
+  "claims_proposed": 102,
+  "relations_proposed": 4,
+  "exact_duplicate_hits": 1,
+  "identity_collisions": 4,
+  "deterministic_equivalent_accumulations": 0,
+  "semantic_equivalent_merges_decided": 2,
+  "semantic_equivalent_merges_applied": 0,
+  "divergent_collisions": 2,
+  "semantic_equivalence_reviews": 3,
+  "semantic_equivalence_reviews_live": 3,
+  "equivalent_verdicts": 2,
+  "divergent_verdicts": 1,
+  "rejected_windows_by_ladder": 2,
+  "evidence_accumulations_applied": 0,
+  "provenance_accumulations_applied": 0
+ },
+ "canonical": {
+  "claims": 47,
+  "relations": 1,
+  "skos": 5
+ },
+ "grounding": {
+  "supported": 49,
+  "insufficient": 3,
+  "contradicted": 1,
+  "superseded": 0,
+  "corrective_reissues": 5,
+  "composite_degraded": 0,
+  "unavailable": 0
+ },
+ "l2": {
+  "reached": true,
+  "composition_calls": 1,
+  "composition_review_calls": 5,
+  "skos_supported": 5,
+  "skos_total": 5
+ },
+ "language": {
+  "claims_es": 47,
+  "claims_en": 0,
+  "claims_other": 0,
+  "method": "heuristic-stopword"
+ },
+ "tokens": {
+  "provider_calls_total": 66,
+  "calls_by_task": {
+   "claims.reconstruction": 4,
+   "claims.equivalence_review": 3,
+   "claims.grounding_review": 53,
+   "sko.composition": 1,
+   "sko.composition_review": 5
+  },
+  "input_tokens": 235876,
+  "output_tokens": 76124,
+  "total_tokens": 312000,
+  "tokens_by_task": {
+   "claims.reconstruction": 151661,
+   "claims.equivalence_review": 1506,
+   "claims.grounding_review": 146660,
+   "sko.composition": 7504,
+   "sko.composition_review": 4669
+  },
+  "equivalence_live_calls": 3,
+  "reported_cost": null
+ },
+ "budget": {
+  "max_vlm_calls": 2400,
+  "used_vlm_calls": 66,
+  "max_vlm_images": 8000,
+  "used_vlm_images": 68,
+  "max_vlm_tokens": 60000000,
+  "used_vlm_tokens": 312000
+ },
+ "wall_time": "27m53s (2026-10-01T18:31:14Z -> ~18:59:07Z)",
+ "terminal": {
+  "status": "INCOMPLETE",
+  "exit_code": 4,
+  "supported": 49,
+  "non_supported": 4,
+  "class_fatal": 0,
+  "provider_errors": 0
+ },
+ "atomicity": {
+  "whole_window": "PASS",
+  "residue_o2": 0,
+  "residue_o4": 0,
+  "dependency_edges": 90,
+  "edges_unresolved": 0
+ },
+ "replay": {
+  "result": "PASS",
+  "fixtures": 61,
+  "remote_calls": 0,
+  "claims_semantic_identical": true,
+  "skos_semantic_identical": true,
+  "documentation_identical_after_normalization": true,
+  "budget_delta_explained": "5 correctivos no representables 1-fixture-por-(task,target)"
+ }
+}
