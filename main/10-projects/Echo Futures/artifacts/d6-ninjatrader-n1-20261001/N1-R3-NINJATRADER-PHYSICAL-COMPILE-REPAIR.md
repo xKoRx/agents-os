@@ -31,7 +31,7 @@ Preservado sin cambios: read-only estructural (sin loop de lectura, protocolo si
 
 Al momento del remediation, `Test-Path` sobre `C:\Users\KoR\Documents\NinjaTrader 8\{bin\Custom\AddOns, bin\Custom\AddOns\EchoFeed, echo, log, trace}` ⇒ **Access denied** (lectura) para `dev-win\echo-dev`; sin admin sobre Program Files; NT en sesión interactiva ajena. La compilación NinjaScript real (arranque de NT o F5 del editor) era therefore un paso owner: bundle entregado en `kor@daedalus:/home/kor/opt/echo-dev/var/nt-feed/owner-install/n1-r3/` (`EchoFeedAddOn.cs` SHA256 `1f34ab1ead8319f01bfd168519b8a1199c40650ead5f07bae4ea0aa2f5394620` + `OWNER-CHECKLIST-R3.md`: reemplazar archivo → restart NT/F5 → devolver output del compilador) y, a pedido del owner, también directamente en dev-win `C:\Temp\EchoFeedAddOn.cs`. El owner ejecutó el checklist y el closeout físico de esta sesión (§7) consumó el gate.
 
-## 7. Closeout físico (2026-10-01, 19:47Z) — evidencia de compilación y carga real
+## 6. Closeout físico (2026-10-01, 19:47Z) — evidencia de compilación y carga real
 
 El mandato de esta fase exige evidencia de compilación física real antes de commit. La evidencia completa:
 
@@ -45,8 +45,6 @@ El mandato de esta fase exige evidencia de compilación física real antes de co
 | C6 | Heartbeats reales continuos con contadores crecientes (`frames_sent` 4703→14112+, `market_events` 4652→14112+~, `order_events: 0`, `sessions: 1`, sesión continua ~70 min mismo puerto remoto 65181; el `reconnects:1` del AddOn = su connect inicial) | journal del relay + evidence file 0600 | `REAL_HEARTBEAT = PASS`, `ADDON_INSTANTIATED = PASS`, `RELAY_CONNECTED = PASS` |
 
 Lectura directa del archivo instalado en el perfil owner: ACL-denied (boundary B1 vigente, re-probeado hoy). La identidad byte-level del source instalado queda probada por la cadena C1 + C2 (pre-R3 no compilaba ⇒ lo instalado y compilado es el R3) + C3 (comportamiento exclusivo del R3 observado en vivo).
-
-## 8. Commit y push (post-evidencia, per mandato)
 
 ## 4. Pre-verificación (evidencia antes del ciclo físico)
 
@@ -64,50 +62,41 @@ Go tests: **no ejecutados — ningún código Go cambió** (regla del mandato).
 
 `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0`, estructural: el AddOn reparado mantiene cero llamadas a `Account.Submit/Change/Cancel/Flatten/CreateOrder` (P4) y el protocolo sigue sin familia de comandos; el relay nunca escribe al AddOn; el execution bridge sigue sin arrancar. Ningún cambio de Go, ETCD, Kafka, ACLs ni identidades. El lado NT no llegó a ejecutarse (compilación pendiente owner).
 
-## 6. Handoff
+## 7. Commit y push (post-evidencia, per mandato)
+
+- Commit `f0c82905d4eaf825c08e04f0bb97cab73e616ba5` — `fix(futures): EchoFeedAddOn compiles and loads on NinjaTrader 8.1.8.3 (physical R3)` — 1 archivo, +322/−116, ejecutado SÓLO tras la evidencia física de §7.
+- Push FF `7af6210a..f0c82905` a `origin/feature/d6-n1-readonly-vertical`; worktree limpio post-push; master intocado.
+- Hard-safety re-verificado sobre el source final pre-commit: `grep -E '\.(Submit|Change|Cancel|Flatten|CreateOrder)\('` = 0 matches; 8 familias de observación en el protocolo, sin familia de comandos.
+
+## 8. Handoff
 
 ```text
 D6_N1_R3_NINJATRADER_COMPILE =
-BLOCKED_OWNER_ACTION
+PASS
 
-ECHO_BEFORE:
-feature/d6-n1-readonly-vertical @ 7af6210a (worktree limpio); relay 36a083a-release activo :9770; binding E2T-GAU50-01 ALLOWED (N1-R2) con provider-external-account-id pendiente discovery (OD-2, fail-closed visible)
-
-ECHO_AFTER:
-idéntico + 1 archivo modificado SIN commit (EchoFeedAddOn.cs; commit/push diferido a evidencia de compilación física por mandato); relay/ETCD/Kafka intocados
+R3_ECHO_COMMIT:
+f0c82905d4eaf825c08e04f0bb97cab73e616ba5 (origin/feature/d6-n1-readonly-vertical, FF push; worktree limpio)
 
 NINJATRADER:
-8.1.8.3 (dev-win 192.168.31.132, sesión owner SI=2; ProductVersion verificado por reflection y por runtime del harness)
+8.1.8.3 (dev-win 192.168.31.132, PID 984 sesión owner SI=2 tras restart del owner; ProductVersion verificado runtime en el hello real)
 
-ROOT_CAUSES:
-(1) Newtonsoft.Json no referenciada por el compilador NinjaScript → eliminada, JSON mínimo propio, sin dependencias nuevas; (2) AccountItemCurrency inexistente → Account.Get(AccountItem, Currency); (3) Globals.Version inexistente → Globals.ProductVersion; (4) GetInstrument 1-arg inexistente en 8.1.8.3 → GetInstrument(name, false); (5) init en State.Realtime (muerto para AddOns, Active-state system) → State.Active; (6) hello sin auth_token en envelope y sujeto a carrera del auth deadline de 5s → hello inmediato con auth_token; (7) 2 CS1002 preexistentes (paréntesis sobrantes heartbeat/session) → corregidos
-
-FILES_CHANGED:
-v3/futures-bridge/addon-ninjatrader/EchoFeedAddOn.cs (sólo ese; +322/−116; sin commit)
-
-EXTERNAL_DEPENDENCIES_ADDED:
-NONE
-
-NINJATRADER_COMPILE_ERRORS_BEFORE:
-múltiples (CS0246 JObject/JArray/JToken/Formatting; CS0103 Formatting/AccountItemCurrency; CS0117 Globals.Version; + CS1002 x2 y CS1501 GetInstrument latentes demostrados)
-
-NINJATRADER_COMPILE_ERRORS_AFTER:
-shadow-compile (csc C#5 vs DLLs físicas): 0. Compilador NinjaScript físico: PENDIENTE owner (replace + restart NT → devolver output)
+NINJATRADER_COMPILE_ERRORS:
+0 (owner-reportado + probado por carga física: el pre-R3 no compilaba y el AddOn R3 está instanciado y corriendo; output textual del compilador no recuperable desde el boundary del agente por ACL del perfil owner)
 
 ADDON_INSTANTIATED:
-NOT_VERIFIED (requiere compilación física owner)
+PASS (frames reales del AddOn en el canal; conexión TCP al relay propiedad de NinjaTrader.exe PID 984)
 
 CONFIG_LOADED:
-NOT_VERIFIED (schema config sin cambios; el config existente se reutiliza)
+PASS (hello real = espejo del config discovery-only: expected_account_id "", instruments ["NQ 12-26"])
 
 RELAY_CONNECTED:
-NOT_VERIFIED (relay activo y lane operativa; espera sesión AddOn real)
+PASS (ESTAB 192.168.31.132:65181 → daedalus:9770, sesión única continua desde 16:23:45 -03, 25.7k+ frames, 0 malformed)
 
 REAL_HELLO:
-NOT_VERIFIED
+PASS (hello seq=1 aceptado con auth_token en envelope; session opened 16:23:45.727 -03)
 
 REAL_HEARTBEAT:
-NOT_VERIFIED
+PASS (heartbeats reales con contadores crecientes: frames_sent 4703→14112+; order_events=0)
 
 ORDERS_SENT:
 0
@@ -118,12 +107,15 @@ ORDERS_MODIFIED:
 ORDERS_CANCELLED:
 0
 
+CODE_FIXES:
+los 7 defectos de §2 (commit f0c82905); ninguna corrección adicional en el closeout físico
+
 OWNER_ACTION_REQUIRED:
-reemplazar Documents\NinjaTrader 8\bin\Custom\AddOns\EchoFeed\EchoFeedAddOn.cs por kor@daedalus:/home/kor/opt/echo-dev/var/nt-feed/owner-install/n1-r3/EchoFeedAddOn.cs (SHA256 1f34ab1e…) → reiniciar NinjaTrader (o F5 en NinjaScript Editor) → devolver output del compilador (OWNER-CHECKLIST-R3.md, ~2 min)
+NINGUNA para R3 (cerrado). Pendiente preexistente: OD-2 selección de la GAU50 activa (N1-PHYSICAL-READONLY-CERTIFICATION)
 
 BLOCKERS:
-B1 (único): compilación NinjaScript real y carga del AddOn viven en la sesión interactiva del owner en dev-win (ACL echo-dev sobre perfil KoR denegada lectura+escritura, re-probeado hoy; NT SI=2). Nada más bloquea.
+NINGUNO
 
 NEXT_MANAGER_ACTION:
-al devolver el owner el output: si 0 errores → shot corto de verificación N1 (hello/heartbeat reales en journal del relay, ADDON_INSTANTIATED/CONFIG_LOADED/RELAY_CONNECTED → PASS|FAIL, commit/push del repair con esa evidencia, y fijación de provider-external-account-id + account_id según discovery — OD-2); si errores → iterar el loop con inspección física adicional según el error listado. No emitir N1 PASS ni avanzar N2 desde este remediation.
+seguir en N1-PHYSICAL-READONLY-CERTIFICATION (D6_N1_PHYSICAL_CERTIFICATION = PARTIAL_BLOCKED_OWNER): comunicar al owner OD-2 y, tras la selección, disparar el shot corto de binding + observaciones de cuenta. No iniciar N2.
 ```
