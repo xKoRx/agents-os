@@ -2243,6 +2243,21 @@ Manager disposition:
 
 **Next Manager action:** dispatch C1 as a TOP source/API fit analysis against the frozen D5 `ExecutionAdapter` and NinjaTrader/NinjaScript reality. No implementation in C1.
 
+### D6 C1 — NinjaTrader/NinjaScript adapter fit analysis — 2026-09-30
+
+Shot TOP source forensics sobre Echo `13e087a3` + reflexión física de `NinjaTrader.Core.dll` 8.1.8.3 (dev-win) + docs oficiales NinjaScript. Artifact: `main/10-projects/Echo Futures/artifacts/d6-ninjatrader-certification-20260930/C1-NINJATRADER-ADAPTER-FIT-ANALYSIS.md`.
+
+- `D6_C1_ADAPTER_FIT = PASS`. `MATERIAL_D5_CONTRADICTIONS = NONE`. ORDERS_SENT = 0; sin cambios de ACL/identidad ni product code.
+- Superficie mínima recomendada: **NinjaScript AddOn** (`NinjaTrader.NinjaScript.AddOnBase`, presente en el binario 8.1.8.3) como componente platform-side del adapter; journal M2, guards, readiness y barrier permanecen bridge-side según topología congelada (`DesktopHostedAdapter` = conector + componente desktop).
+- Identity: las 5 GAU50 son `Account` objects en `Account.All` con `Id` Int64 estable; selección programática por objeto explícito (GUI selector irrelevante); autoridad de cuenta activa = binding ETCD + verificación bind-time (ya implementado en el bridge D5).
+- Market data: realtime PASS (`MarketData.Update` Bid/Ask/Last + identidad FullName→`external_contract_identifier`); histórico PARTIAL (warm-up S1/S2 exacto vía síntesis de corpus 5m desde `BarsRequest` minute; NT = fuente one-shot, corpus pinneado en manifest; ruta de ingestión REBUILD por construir en D6).
+- Order lifecycle: MARKET/LIMIT mapean nativo (el dominio congelado D5 sólo emite MARKET/LIMIT — el "protective stop" de GerardMM es un LIMIT en reposo; STOP ni siquiera es constructible); partial fills/event ordering tolerados por el diseño congelado; sin idempotencia nativa de submit en NT ⇒ M2 via journal + reconciliación (diseño ya contempla transports sin native idempotency); identidad nativa candidata `Execution.ExecutionId` (String) + `Order.OrderId` (String) + client identity vía `order.Name`.
+- Recovery: observables post-reconnect completos (Orders re-sync, Executions history con `LookbackDays*`, Positions, AccountItem) mapean 1:1 a la barrier congelada; horizon/retention = gates D6.
+- Deltas: REUSE total del seam D5; SMALL_D6_ADAPTER_WORK (transport branch, adapter NT bridge-side); D6_RUNTIME_WIRING (AddOn, canal AddOn↔bridge, productor de market stream, publicación del corpus warm-up — D5 no tiene ningún productor real de market data ni ejecución de REBUILD); D6_CERTIFICATION_ONLY (ExecutionId/Name retention, horizon, Account.Id stability, headless, GUI checklist C0, entitlement vigente en preflight).
+- Shots propuestos: N1 AddOn read-only (cierra observables C0 vía evidencia del AddOn), N2 ejecución con journal M2, N3 warm-up + S2 demo. C0 queda BLOCKED→absorbible por N1.
+
+**Next Manager action:** integrar handoff C1 y despachar D6-N1; no emitir `EF_D6_E2E_PASS` desde C1.
+
 
 
 
