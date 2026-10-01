@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-09-27"
+updated: "2026-10-01"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
@@ -60,7 +60,7 @@ Inspección y operación remota de hosts Aranea por `aranea-ssh` (endpoint `http
 
 ## Tool surface y procedimiento
 
-Surface `ssh-mcp` v2.8.0: `list-connections`, `list-sessions`, `open-session`, `close-session`, `read-session-output`, `read-command`, `run-command`, `privileged-command`, `signal-process`, `sftp-upload`, `sftp-download` (disponibilidad efectiva por policy/profile; listado no equivale a permiso).
+Surface `ssh-mcp` v2.8.0 (patches locales acumulados: `h2fix` + `idlereap`, imagen canónica `local/ssh-mcp:2.8.0-d2d7696-idlereap`): `list-connections`, `list-sessions`, `open-session`, `close-session`, `read-session-output`, `read-command`, `run-command`, `privileged-command`, `signal-process`, `sftp-upload`, `sftp-download` (disponibilidad efectiva por policy/profile; listado no equivale a permiso).
 
 1. Descubrir conexión exacta por `list-connections`; confirmar identidad remota (`whoami`/`id`) con lectura autorizada y no inferir root.
 2. Inspección: `read-command`, preferentemente comando único allowlisted (`ls`, `cat`, `grep`, `find`, `stat`, `df`, etc. según profile). Compuestos/pipelines/clases 'safe' pueden ser denegados: dividir, no cambiar a operator o saltarse policy.
@@ -101,6 +101,10 @@ Perfil `.71` `echo-dev`, viewer/RO, keyRef plane existente, host-key pinning. Ow
 
 **Staging byte exact:** `sftp-upload` transporta `content` string, normaliza saltos de línea y NO reemplaza fiable un path existente (puede reportar éxito dejando bytes previos); para scripts/binaries byte-exactos: base64 sin newlines→`certutil -decode` target→comparar sha256 local/remoto completo. Evitar ensayos ACL en Temp que quiten herencia al directorio y bloqueen después al propio `echo-dev`.
 
+### Pool sessions: idle-TTL reap server-side — 2026-10-01 ACTIVE (fix a nivel código)
+
+Defecto: el Map de sesiones MCP de `http.ts` sólo encogía con DELETE del cliente o cierre de transporte — toda clase de consumidor real fuga sesiones y el cap 64 degradaba a outage lenta (503 invisible: el server no logueaba el rechazo). **Fix aplicado 2026-10-01** en `src/transport/http.ts` (patch determinista, 5 bloques, backup `/tmp/http.ts.pre-idlereap-913a966d0695` en mcps): TTL de inactividad 30 min (`SSH_MCP_SESSION_TTL_MS`, default `1800000`) + sweep cada 60 s (`SSH_MCP_SESSION_REAP_INTERVAL_MS`, default `60000`, adjustable por env del contenedor, sin tocar config); el chequeo del cap hace reap-antes-de-rechazar; los eventos quedan logueados (`[sessions] reaped N idle MCP session(s)...`, `[sessions] refusing initialize: ...`). Validación: tsc + 43 tests upstream + 4 tests nuevos (`http.idle-reap.test.ts`, `http.reap-before-refuse.test.ts`: expiración, refresh por actividad, DELETE intacto, llenado 64→503→recuperación sin restart) = 47/47; certificación consumer-side SDK (11 tools, sshread viewer, sshrun operator, POLICY_DENIED H2, DELETE release) PASS; regresión 401 en los 13 puertos del plano PASS. Artefacto: imagen thin `local/ssh-mcp:2.8.0-d2d7696-idlereap` (commit del contenedor con `build/` nuevo; Entrypoint/Cmd heredados byte-idénticos). Rollback code-level: restaurar el backup de `http.ts` + rebuild, o recrear el contenedor desde `local/ssh-mcp:2.8.0-d2d7696-h2fix` (tag intacto). El restart por pool saturado queda como recovery histórico, no requerido con el TTL activo.
+
 ## Triage de reportes "perdí el acceso operator" — 2026-09-26
 
 Evidencia física de la verificación del 2026-09-26 (tras reporte de un agente de pérdida de operator en `sqx-zeus/hera/kronos` y workers SQX de Forge). **Veredicto: PLANO EXONERADO — operator FUNCIONA.** El orden de triage probado, en este orden:
@@ -118,7 +122,7 @@ Trampas medidas durante este triage (no repetirlas):
 
 ## Operación, validación y rollback del plano SSH
 
-- Pool ssh-mcp de 64 sesiones: probes init-per-call agotan pool ⇒ 503 `Server is at its session limit`; prevenir abriendo UNA sesión por probe y reutilizando `Mcp-Session-Id`, cerrándola. Recovery management-path sólo cuando confirmado: `docker restart ssh-mcp`, después health/consumer smoke; nunca reiniciar producto por fallo MCP. El 503 puede presentarse con cuerpo vacío aparente y con `/status` 200 `running` y `connections:[]` — esa firma es pool agotado, no capability caída (confirmado 2026-09-18); diagnosticar pool antes de declarar NOT_RUN/BLOCKED y jamás interpretar un Permission denied de SSH directo como inexistencia de la capability o de su perfil. No atribuir defectos Hasura mcp-proxy a SSH.
+- Pool ssh-mcp de 64 sesiones: DESDE 2026-10-01 con idle-TTL reap activo (30 min default, ver certificación) las sesiones abandonadas se liberan solas y el 503 se auto-recupera; el rechazo queda logueado en `docker logs` (`[sessions] refusing initialize`). La disciplina de UNA sesión por campaña con DELETE al cierre sigue siendo la práctica correcta (el helper `session-steps-client.py` libera solo). Recovery `docker restart ssh-mcp` queda para el caso residual de 64 sesiones vivas <30 min (campaña real masiva), no para sesiones zombis. Histórico: el 503 podía presentarse con cuerpo vacío aparente y con `/status` 200 `running` y `connections:[]` — esa firma era pool agotado, no capability caída (confirmado 2026-09-18); jamás interpretar un Permission denied de SSH directo como inexistencia de la capability o de su perfil. No atribuir defectos Hasura mcp-proxy a SSH.
 - Config bind-mounted `ssh-mcp` debe ser mode `600`, owner uid/gid `65532:65532`; con `644 root` server rechaza world-accessible y con `600 root:root` falla EACCES. Restaurar config y verificar before restart si hubo drift.
 - Rollback promoción SQX: revertir profiles a `viewer`+`readOnly=true`, reiniciar sólo ssh-mcp y certificar status/read-command, backup original cuando se requiera byte equality. Rollback profile `echo-runtime-prod` desde backup `/tmp/config.toml.pre-echo-runtime-prod` en mcps con owner/mode `65532:65532/600`, reiniciar ssh-mcp y revalidar perfiles/health. Rollback Windows publisher: procedimiento elevado y bundle owner descritos arriba. Docker DEV lifecycle: seguir runbook Flink, no usar `compose up -d` como rollback implícito.
 
