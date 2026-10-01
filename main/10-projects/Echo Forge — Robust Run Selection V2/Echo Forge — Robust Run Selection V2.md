@@ -127,6 +127,7 @@ _Diseño cerrado. Shot 1 autorizado: implementación mínima del nuevo algoritmo
 
 ## 🔗 Docs / Links
 
+- [[ROBUST-V2-TECHNICAL-RESULTS-REPORT]] — **reporte técnico canónico y exhaustivo V1→V2** (resultados, decision register, cohortes, E2E, rollout; 2026-10-01)
 - [[ROBUST-V2-DESIGN-FREEZE]] — **autoridad canónica de implementación**
 - [[ROBUST-V2-LOCAL-VALIDATION]] — validación local real-data V1 vs V2 (wave2a, trial 0.35/0.01/0.01)
 - [[ROBUST-V2-HERA-E2E]] — E2E full-flow en la flota con V2 (wave2b, FlowRun 0cbd0f34)
