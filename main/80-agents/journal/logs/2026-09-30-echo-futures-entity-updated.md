@@ -61,3 +61,29 @@ tags:
 ## Rollback
 
 - Revertir el commit de actualización del proyecto si el Owner cambia la selección de programa.
+
+
+## Additional change — GAU50 evaluation inventory
+
+### Cambio
+
+- **Tipo:** updated
+- **Archivo:** `10-projects/Echo Futures/Echo Futures.md`
+
+### Motivo
+
+- El Owner confirmó la compra de 5 evaluaciones GAU50, cada una con un reset gratuito.
+
+### Resolución aplicada
+
+- Se registraron 5 evaluaciones compradas + 5 resets gratuitos.
+- Capacidad operacional registrada: hasta 10 intentos de evaluación totales.
+- Se evitó modelarlo como 10 cuentas simultáneas.
+
+### Fuente
+
+- Confirmación explícita del Owner en sesión.
+
+### Validación
+
+- Commit de la entidad: `e3946baf7fae5ec24deced2d8cfc8d799fe7a0f0`.
