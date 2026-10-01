@@ -2334,6 +2334,9 @@ El owner rechazó explícitamente el modelo `OwnerRiskAcceptance` introducido en
 - ETCD DEV: eliminadas `owner-risk-accepted-{ref,at,egress}` de `/echo/development/futures-bridge/accounts/E2T-GAU50-01/binding/` (read-back doble: writer + MCP RO). `entitlement=UNKNOWN` intacto; no se seteó a `ALLOWED`.
 - Relay read-only redesplegado en Daedalus (release `7af6210a`, unidad `echo-nt-feed-relay` activa, `vcs.revision=7af6210a`, `vcs.modified=false`): surface sin attrs owner-risk; binding `E2T-GAU50-01` fail-closed visible (`cannot be enabled with UNKNOWN automation entitlement`); lane de mercado operativa en `:9770`.
 
+> [!warning] SUPERSEDED_BY_OWNER_CORRECTION (2026-10-01, N1-R2)
+> La consecuencia bloqueante de esta sección (entitlement `UNKNOWN` pendiente de decisión owner / OD-1) quedó resuelta por la corrección owner en N1-R2: Earn2Trade permite automatización/estrategia propia y el binding `E2T-GAU50-01` quedó con `entitlement=ALLOWED` en ETCD DEV. Ver sección D6 N1-R2 al final. La historia N1-R1 se preserva.
+
 Consecuencia bloqueante declarada, sin resolver: con la semántica D5 restaurada, el binding `E2T-GAU50-01` con `entitlement=UNKNOWN` no es enableable ni carga sesión — requiere decisión del owner (confirmación externa del entitlement Earn2Trade hacia `ALLOWED|CONDITIONAL`); el lane de cuenta del relay queda degradado fail-closed mientras tanto. `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0` (estructural: AddOn sin llamadas de órdenes, protocolo sin familia de comandos, relay sin escritura al AddOn).
 
 **Next Manager action:** comunicar al owner la decisión pendiente del entitlement Earn2Trade (UNKNOWN no enableable bajo D5); no continuar instalación del AddOn ni certificación física en este remediation; no emitir N1 PASS ni D6 PASS.
