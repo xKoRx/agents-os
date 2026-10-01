@@ -26,7 +26,7 @@ tags:
   - topic/prop-firms
   - topic/portfolio-tracking
 created: 2026-09-23
-updated: 2026-09-23
+updated: 2026-10-01
 ---
 
 # Trading Portfolio Tracker
@@ -53,12 +53,13 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 
 ## 📊 Estado actual
 
-> [!summary]+ Snapshot inicial — 2026-09-23
-> **17 cuentas conocidas** entre Axi Select, FTMO, TTP, Orion y WSF.
+> [!summary]+ Snapshot actualizado — 2026-10-01
+> **17 cuentas conocidas en el inventario canónico** entre Axi Select, FTMO, TTP, Orion y WSF; el inventario físico sigue pendiente de reconciliar con las altas recientes.
 > **Inventario detallado:** parcial — Orion 6 cuentas históricas / 5 activas; TTP 2 cuentas funded de 50k; The5ers 1 cuenta High Growth 10k perdida; resto pendiente.
 > **Gastos históricos:** evidencia parcial cargada — TTP/contexto US$2.237,35 + FTMO US$2.290,15 + WSF US$717,50 + Orion estimado conservador US$2.614,01 + The5ers estimado US$500 = **US$8.359,01** de costo consumido conocido.
-> **Cash recibido acreditado en evidencia:** Axi Select US$2.178,87 + TTP/contexto US$1.619,58 + Orion real US$1.782,26 = **US$5.580,71**. TTP mezcla refunds y posibles payouts.
-> **P&L realizado neto:** aún no es final porque falta separar refunds TTP y confirmar si faltan otros gastos históricos, pero ya no falta FTMO.
+> **Cash recibido acreditado:** Axi Select US$2.302,45 + Orion US$1.782,26 + TTP payouts US$993,18 + TTP refunds US$523,50 = **US$5.601,39**.
+> **Trading payouts confirmados:** **US$5.077,89**. Refunds TTP siguen separados y no cuentan como trading profit.
+> **P&L realizado neto:** aún no es final porque faltan gastos históricos por reconciliar.
 > **Expansión:** posible compra de aproximadamente 10 cuentas adicionales; se registra como pipeline, **no como activo existente**.
 
 > [!warning]+ Regla contable clave
@@ -71,9 +72,9 @@ La primera entrega es deliberadamente KISS: **Markdown canónico en Agents-OS, a
 | Cash gastado bruto identificado | **US$8.359,01 parcial** | TTP/contexto US$2.237,35 + FTMO US$2.290,15 + WSF US$717,50 + Orion estimado US$2.614,01 + The5ers estimado US$500 |
 | Capital desplegado recuperable | **~US$2.200 Axi Select** | Se trata como inversión/activo recuperable, no como costo hundido mientras mantenga recuperabilidad |
 | Cash desplegado total conocido | **~US$10.559,01** | Costos identificados + capital Axi recuperable |
-| Cash recibido acreditado | **US$4.484,63** | Axi US$2.178,87 + Orion US$1.782,26 + TTP refunds US$523,50 |
+| Cash recibido acreditado | **US$5.601,39** | Axi US$2.302,45 + Orion US$1.782,26 + TTP payouts US$993,18 + TTP refunds US$523,50 |
 | Refunds acreditados | **US$523,50 TTP provisional** | 2 × US$261,75; reducen costo económico, no cuentan como trading profit |
-| Trading payouts confirmados | **≥ US$3.961,13** | Axi US$2.178,87 + Orion US$1.782,26; TTP/FTMO requieren clasificación por tipo |
+| Trading payouts confirmados | **US$5.077,89** | Axi US$2.302,45 + Orion US$1.782,26 + TTP US$993,18 |
 | **P&L realizado neto** | Pendiente | retiros − gastos |
 | Capital propio comprometido | Pendiente | dinero propio aún expuesto/no recuperado |
 | Cuentas existentes | **17** | inventario físico, cualquier estado |
@@ -220,12 +221,17 @@ Categorías iniciales: `challenge`, `activation`, `reset`, `subscription`, `comm
 | 2026-04 | Axi Select | Pendiente | payout | USD | 436,79 | Pendiente | 436,79* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
 | 2026-07 | Axi Select | Pendiente | payout | USD | 63,56 | Pendiente | 63,56* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
 | 2026-08 | Axi Select | Pendiente | payout | USD | 3,60 | Pendiente | 3,60* | Pendiente | Captura "Tus pagos" Axi Select | Fecha disponible sólo a nivel mes; *neto provisional |
+| 2026-10 | Axi Select | Pendiente | payout | USD | 123,58 | Pendiente | 123,58* | Pendiente | Declaración directa owner 2026-10-01 | *Monto informado tratado como neto provisional |
+| 2026-10 | TTP | Pendiente | payout | USD | 314,84 | Pendiente | 314,84* | Pendiente | Declaración directa owner 2026-10-01 | *Monto informado tratado como neto provisional; cuenta por asociar |
+| 2026-10 | TTP | Pendiente | payout | USD | 678,34 | Pendiente | 678,34* | Pendiente | Declaración directa owner 2026-10-01 | *Monto informado tratado como neto provisional; cuenta por asociar |
 | Fecha pendiente | TTP | Refund cuenta 50k #1 | refund | USD | 261,75 | 0,00* | 261,75 | Pendiente | Declaración directa owner + facturas TTP | *Fee no informado; refund provisional igual al costo de una factura 50k |
 | Fecha pendiente | TTP | Refund cuenta 50k #2 | refund | USD | 261,75 | 0,00* | 261,75 | Pendiente | Declaración directa owner + facturas TTP | *Fee no informado; refund provisional igual al costo de una factura 50k |
 | Fecha pendiente | Orion | Retiro informado por owner | payout | USD | 1.365,82 | Pendiente | 1.365,82 | Pendiente | Declaración directa owner | Cash realmente retirado |
 | Fecha pendiente | Orion | Retiro informado por owner | payout | USD | 416,44 | Pendiente | 416,44 | Pendiente | Declaración directa owner | Cash realmente retirado |
 
-**Subtotal Axi Select visible:** **US$2.178,87**.
+**Subtotal Axi Select acreditado:** **US$2.302,45**.
+
+**Payouts TTP confirmados en octubre 2026:** **US$993,18** = US$314,84 + US$678,34. Las cuentas exactas quedan pendientes de asociación.
 
 **Refund TTP provisional:** **US$523,50** = 2 × US$261,75, asociado a las dos cuentas funded de 50k. Se usa el valor de las facturas 50k por instrucción del owner hasta tener evidencia exacta del abono.
 
@@ -238,13 +244,14 @@ Categorías iniciales: `challenge`, `activation`, `reset`, `subscription`, `comm
 
 | Firma / fuente | Corte | Total acreditado | Tratamiento actual | Pendiente |
 |---|---|---:|---|---|
-| Axi Select | 2026-08 | **US$2.178,87** | Payouts visibles; trading cash-in provisional | Asociar a cuentas y confirmar fees/neto |
+| Axi Select | 2026-10-01 | **US$2.302,45** | Payouts acreditados; incluye nuevo pago US$123,58 | Asociar a cuentas y confirmar fees/neto |
 | Orion | 2026-09-23 | **US$1.782,26** | Dos retiros reales informados por owner | Fechas/fees |
-| TTP | Fecha pendiente | **US$523,50** | Refund provisional de 2 cuentas funded de 50k | Confirmar fechas/abonos exactos |
+| TTP payouts | 2026-10-01 | **US$993,18** | Dos payouts informados por owner: US$314,84 + US$678,34 | Asociar a cuentas y confirmar fees/neto |
+| TTP refunds | Fecha pendiente | **US$523,50** | Refund provisional de 2 cuentas funded de 50k | Confirmar fechas/abonos exactos |
 
-**Cash recibido total acreditado actualmente:** **US$4.484,63** = Axi US$2.178,87 + Orion US$1.782,26 + TTP refunds US$523,50.
+**Cash recibido total acreditado actualmente:** **US$5.601,39** = Axi US$2.302,45 + Orion US$1.782,26 + TTP payouts US$993,18 + TTP refunds US$523,50.
 
-**Trading payouts confirmados mínimos:** **US$3.961,13** = Axi US$2.178,87 + Orion US$1.782,26. TTP US$523,50 se registra como refund y no como trading profit.
+**Trading payouts confirmados:** **US$5.077,89** = Axi US$2.302,45 + Orion US$1.782,26 + TTP US$993,18. Los refunds TTP US$523,50 se mantienen separados y no cuentan como trading profit.
 
 ### Pipeline de compras
 
@@ -336,6 +343,7 @@ No hay subproyectos todavía. Si la integración en Loom crece lo suficiente, de
 
 ## 📆 Bitácora
 
+- **2026-10-01** — Nuevos payouts informados por el owner: **Axi US$123,58** y **TTP US$314,84 + US$678,34 = US$993,18**. El cash recibido acreditado sube a **US$5.601,39** y los trading payouts confirmados a **US$5.077,89**. Los dos refunds TTP por US$523,50 permanecen separados del trading profit; cuentas/fees de los payouts nuevos quedan pendientes de asociación.
 - **2026-09-23** — TTP corregido por instrucción del owner: las 7 facturas mostradas son gastos. Los dos refunds de las cuentas funded 50k se registran provisionalmente como **US$261,75 × 2 = US$523,50**. Se eliminan los cuatro pagos TTP/contexto previamente inferidos como cash-in. Cash recibido acreditado queda en US$4.484,63; trading payouts mínimos siguen en US$3.961,13.
 - **2026-09-23** — Corrección FTMO: la captura de cuatro movimientos "Pagado" correspondía a gastos, no cash-in. Se reclasifican US$2.290,15 como costo histórico confirmado. Cash-out consumido conocido sube a US$8.359,01; cash desplegado total incluyendo Axi recuperable queda ~US$10.559,01; cash recibido acreditado baja a US$5.580,71.
 - **2026-09-23** — Axi reclasificado por instrucción del owner: ~US$2.200 corresponden a capital desplegado recuperable, no a gasto hundido.
