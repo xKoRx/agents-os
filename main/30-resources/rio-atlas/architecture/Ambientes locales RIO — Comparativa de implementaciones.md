@@ -3,13 +3,13 @@ type: resource
 schema_version: 1
 status: active
 area: "[[Meli]]"
-sources: ["[[Repositorios RIO — Ambientes locales (2026-09-30)]]"]
-last_verified: "2026-09-30"
+sources: ["[[Repositorios RIO — Ambientes locales (2026-09-30)]]", "[[Kafka local — Historia y prueba de arranque (2026-10-01)]]"]
+last_verified: "2026-10-01"
 confidence: "high"
 aliases: ["Ambientes locales RIO", "Comparativa control planes locales", "Research Kafka local real"]
 tags: ["kind/resource", "area/meli", "app/rio-controlplane-kafka"]
 created: "2026-09-30"
-updated: "2026-09-30"
+updated: "2026-10-01"
 ---
 
 # Ambientes locales RIO — Comparativa de implementaciones
@@ -18,7 +18,11 @@ updated: "2026-09-30"
 
 **Recomendación:** extender `local,local-integration` de Playmaker para conectar [[rio-controlplane-kafka]] real y ejecutar su lógica existente sobre un cluster Apache Kafka en Docker Compose. La base ya existe; falta completar la integración del control plane, acciones/PEEK e idempotencia. Para cubrir replicación 1–3 se proponen tres brokers. Usar KVS real de Fury sandbox inicialmente, tomando el precedente de KMS, sujeto a demostrar la configuración del cliente Toolkit de Kafka.
 
-La evidencia de código fue contrastada el **2026-09-30**. La propuesta todavía no tiene validación de ejecución. Su entrega se gestiona en [[Kafka — Ambiente local con servicios reales]].
+La evidencia de código fue contrastada el **2026-09-30**. El **2026-10-01** se comprobó arranque y PEEK real de Kafka CP con configuración temporal; la propuesta integrada con Playmaker todavía no tiene validación de ejecución. Su entrega se gestiona en [[Kafka — Ambiente local con servicios reales]].
+
+### Prueba parcial de Kafka CP
+
+El Compose se agregó el 25 de febrero de 2026 y entró a develop el 2 de marzo. En una copia limpia, el broker `apache/kafka:3.9.0` falla con SIGILL en esta máquina ARM64 y el CP falla porque falta `profiles/local/cloud-provider.json`. Agregando temporalmente `JAVA_TOOL_OPTIONS=-XX:UseSVE=0` al broker y routing AWS hacia `localhost:9092`, ambos arrancan y PEEK devuelve cinco mensajes reales publicados con el script existente. El warmup GCP sin credenciales registra una advertencia y continúa; no bloqueó ese arranque. Los resultados siguen a archivos y la idempotencia sigue no-op. La evidencia y sus límites están en [[Kafka local — Historia y prueba de arranque (2026-10-01)]].
 
 ### Implementaciones encontradas
 
@@ -60,6 +64,7 @@ La arquitectura del mismo repo declara explícitamente pendiente el nivel L1: un
 5. **Acciones y PEEK en Playmaker:** su `BigQueueActionsProducerLocal` es no-op y `KafkaControlPlaneClientImplLocal` devuelve un mensaje sintético incluso cuando se combina `local` con `local-integration`. Ambos necesitan selección/configuración específica para el CP real.
 6. **Contratos:** Playmaker declara SDK Events `1.5.0`; Kafka `1.3.1`. Verificar JSON producido/consumido y campos desconocidos con esas versiones antes de decidir si una actualización del SDK resulta necesaria.
 7. **Semántica de transporte:** Kafka es un sustituto local real del transporte. BigQueue usa entrega HTTP push, redelivery y configuración propias; el broker Kafka no demuestra equivalencia operacional. Preservar los handlers de negocio y registrar la brecha de ACK anticipado/procesamiento asíncrono que aparezca en los escenarios.
+8. **Arranque reproducible en ARM:** resolver y documentar la compatibilidad JVM de la imagen elegida, incluyendo el SIGILL observado con `apache/kafka:3.9.0`. Incluir el routing local en el launcher; actualmente la copia limpia no lo trae. El ajuste temporal comprobado no fue incorporado al repo.
 
 ### Recomendación de diseño
 
@@ -91,6 +96,7 @@ Apache distribuye la imagen JVM `apache/kafka`, también para la familia 3.9 uti
 ## Evidencia y provenance
 
 - [[Repositorios RIO — Ambientes locales (2026-09-30)]] conserva commits exactos, ramas, archivos seleccionados y estado de actualización.
+- [[Kafka local — Historia y prueba de arranque (2026-10-01)]] conserva historia y evidencia runtime parcial del broker y de PEEK del CP.
 - Los archivos de base `develop` de los CP/Playmaker y `master` del SDK se leyeron directamente desde las versiones registradas. También se inspeccionaron los candidatos de branches locales de Signals después del pull.
 - La compatibilidad JSON, la conectividad KVS sandbox, las imágenes y el funcionamiento integrado aún requieren prueba de ejecución.
 

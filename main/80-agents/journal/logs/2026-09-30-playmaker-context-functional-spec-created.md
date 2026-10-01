@@ -3,14 +3,14 @@ type: change_log
 schema_version: 1
 scope: session
 created: "2026-09-30"
-updated: "2026-09-30"
+updated: "2026-10-01"
 area: "[[Meli]]"
-project: "[[Playmaker — Context en retry, deprovision y desactivación]]"
+project: "[[Playmaker — Context en emisores existentes]]"
 application: "[[rio-playmaker]]"
 entities:
   - "[[SPEC Funcional — Context transversal en RIO]]"
 related:
-  - "[[Playmaker — Context en retry, deprovision y desactivación]]"
+  - "[[Playmaker — Context en emisores existentes]]"
 aliases: []
 confidence: verified
 source_session:

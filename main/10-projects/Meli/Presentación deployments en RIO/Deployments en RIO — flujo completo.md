@@ -17,12 +17,15 @@ tags:
   - area/meli
   - project/presentacion-deployments-rio
 created: 2026-09-01
-updated: 2026-09-08
+updated: 2026-10-01
 cssclasses:
   - wide
 ---
 
 # Deployments en RIO — flujo completo
+
+> [!info] Alcance de esta referencia
+> Este documento conserva la investigación de septiembre de 2026 y sus refs al pie. Para la meet y el código revisado el 2026-10-01, usar [[Guion presentación — Deployments en RIO]]: actualiza el momento de creación del deadline y distingue DeploymentGroup de batch. Las afirmaciones de recuperación de este documento requieren revalidación antes de presentarlas como comportamiento vigente.
 
 ## Propósito
 

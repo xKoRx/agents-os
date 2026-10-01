@@ -29,7 +29,7 @@ tags:
   - area/meli
   - project/sig-600
 created: "2026-09-28"
-updated: "2026-09-30"
+updated: "2026-10-01"
 ---
 
 # SIG-600 — Borrado seguro de Data Products
@@ -55,7 +55,7 @@ updated: "2026-09-30"
 
 ## 📊 Estado actual
 
-- **Autorización Playmaker en [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228), Ready y MERGEABLE para `b0c5bf952`; workflow SUCCESS y CI en ejecución al cierre.** Kraken `delete-data-products` o membresía ACME del equipo dueño, con 403 si ninguna aplica y 503 si no se puede decidir. Punto 2 del review corregido: mocks Kraken/ACME y fixtures explícitos; 5 DELETE aislados, 78 tests de integración y 4.098 tests de regresión sin fallas/errores (2 skips). Once selectores y validadores aprobados. LOCAL_STACK bloqueado por una migración previa; limpieza verificada. Ambos comentarios respondidos cordialmente; la carrera de ownership sigue pendiente, con propuesta de lock coordinado que preserve el 410. La [descripción canónica](<Descripción PR — rio-playmaker.md>) conserva las tres versiones mock y capturas. Acceso Fury a Kraken, revisión de dependencia y BFF/UI pendientes. SPECs sin cambios.
+- **Autorización Playmaker en [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228), MERGEABLE en `635f0f2c4`, ownership corregido y develop integrado; workflow, CI #5744, cobertura, dependencias y análisis estático SUCCESS.** DELETE toma un lock de fila antes de autorizar; update y updateStatus comparten el lock y la transacción. Las tres regresiones concurrentes H2 fallan con las lecturas anteriores sin lock y pasan con la corrección: transferencia primero exige autorización del owner nuevo (403 para el actor anterior), DELETE primero impide updates sobre el borrado (404), y repetir DELETE autorizado conserva 410. `develop@54c788ba3` actualizó SDKs durante las pruebas; se conservaron esas versiones y Kraken al resolver build.gradle. El primer merge pasó CI #5729 y luego se integró `develop@dc56a3de4`, que reduce recursos de la suite; se conservó el heap validado de 2 GB. La combinación final pasó 4.166 tests de regresión, sin fallas ni errores (2 skips preexistentes), y los 61 selectores enfocados. Validadores de contrato aprobados. LOCAL_STACK conserva el fallo preexistente de migración de component_type; cleanup Docker verificado. Permisos Kraken OR ACME y errores 403/503 conservados. La carrera de ownership está corregida en código; review humana pendiente. La [descripción canónica](<Descripción PR — rio-playmaker.md>) conserva las tres versiones mock y capturas. Acceso Fury a Kraken, revisión especializada de dependencia, coordinación de blockers concurrentes y BFF/UI pendientes. SPECs sin cambios.
 - SIG-600 CA-1 aún pide prevalidar antes del `DELETE`; SIG-643 valida dentro. También queda pendiente coordinar las rutas de deploy concurrentes y las demás reglas de bloqueo antes de considerar lista la iniciativa completa.
 
 ## 🧱 Entrega de desarrollo
@@ -64,7 +64,7 @@ updated: "2026-09-30"
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-playmaker]] | `feature/sig-600-delete-auth` · `/Users/rjara/fuentes/rio-playmaker-sig-600-delete-auth` | `origin/develop@0c9e9e3ee` | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228) Ready for review, commit `b0c5bf952`; workflow SUCCESS, CI en ejecución, sin conflictos, 4.098 tests locales sin fallas; carrera de ownership pendiente; [descripción](<Descripción PR — rio-playmaker.md>) y tres versiones mock de test3 documentadas; LOCAL_STACK falla en migración preexistente; acceso Fury y BFF/UI pendientes |
+| [[rio-playmaker]] | `feature/sig-600-delete-auth` · `/Users/rjara/fuentes/rio-playmaker-sig-600-delete-auth` | `develop@dc56a3de4` | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228), commit `635f0f2c4`; ownership corregido, MERGEABLE y cinco checks SUCCESS (CI #5744); 4.166 tests locales sin fallas y tres casos concurrentes H2; 61 selectores aprobados; aprobación humana requerida; LOCAL_STACK falla en migración preexistente; acceso Fury y BFF/UI pendientes |
 | [[ads-signals-frontend]] | Pendiente de crear | `origin/master@791f79dd8` (baseline leído para SIG-643; base de trabajo por definir) | [SIG-600](https://spellbook.adminml.com/projects/SIG/specs/SIG-600) | [SIG-643](https://spellbook.adminml.com/projects/SIG/specs/SIG-643) | Retirar guard duplicado del proxy; CA-1 abierto; sin implementación |
 
 ## 🧪 Variantes temporales de autorización en test3
@@ -135,6 +135,10 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-10-01 — Ownership concurrente** — Se corrigió el hallazgo del bot: DELETE usa la lectura bloqueada que incluye soft-deleted, mientras update y updateStatus adquieren el mismo lock para filas activas. Tres tests con transacciones H2 reales detectan las lecturas sin lock y pasan con la corrección. Commit `d97a5500f` publicado; disparó CI #5726. Develop avanzó a `54c788ba3` con SDKs actualizados, generó un conflicto en build.gradle y se resolvió localmente conservando ambas necesidades. Regresión posterior al merge: 4.166 tests, 0 fallas/errores, 2 skips; 58 selectores aprobados. Merge commit `3a9542cdf` publicado, MERGEABLE y CI #5729 SUCCESS. Develop avanzó después a `dc56a3de4` con aislamiento de recursos de tests; se resolvió el nuevo conflicto del manifiesto conservando ambos grupos de pruebas, el aislamiento y el heap de 2 GB. Segunda regresión: 4.166 tests sin fallas/errores y 2 skips; 61 selectores aprobados. Merge `635f0f2c4` publicado, MERGEABLE; CI #5744 SUCCESS. LOCAL_STACK falla en la migración previa, con cleanup Docker verificado; no hubo F1 ni deploy. Review humana pendiente.
+
+- **2026-10-01** — Se corrigieron los conflictos del PR #1228 mediante merge de `develop@f087e4b7c`; el manifiesto conserva los escenarios, tests y checks de ambas ramas. Se reprodujo `OutOfMemoryError: Java heap space` con el executor de 512 MiB y se configuró el heap de tests en 2 GiB. Regresión: 4.163 tests, 0 fallas/errores y 2 skips preexistentes; 50 selectores aprobados y validadores verdes. LOCAL_STACK falla en la migración preexistente de `component_type`, idéntica a develop; los checks dependientes no llegaron a ejecutarse y cleanup Docker quedó verificado. Commit `bec2648b7` subido y MERGEABLE; CI #5697, workflow, cobertura, dependencies y static-analyzer SUCCESS verificados en el mismo SHA. Cobertura global 94,75% y del PR 91,17%. GitHub conserva REVIEW_REQUIRED; dependencies aprueba con avisos de deprecación, el más próximo a 27 días. Sin merge del PR ni deploy; review de ownership pendiente.
 
 - **2026-09-30 — Cierre de sesión** — Acceso GitHub recuperado; ambos comentarios respondidos y verificados por API. Punto 2 corregido en b0c5bf952; punto 1 tiene propuesta y sigue pendiente. Último HEAD Ready/MERGEABLE, workflow SUCCESS y CI IN_PROGRESS. Feedback y agent_run registrados; iniciativa continúa activa.
 

@@ -7,7 +7,7 @@ slug: "rio-atlas-index"
 area: "[[Meli]]"
 project: "[[Onboarding Signals]]"
 created: 2026-08-10
-updated: 2026-09-30
+updated: 2026-10-01
 reviewed: 2026-08-12
 aliases:
   - RIO Atlas
@@ -27,7 +27,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Páginas:** 8 vistas activas ([[system-map]], [[integration-map]], [[deploy-component]], [[signals-context-flow]], [[deploy-request-path]], [[playmaker-deployment-idempotency-and-cp-kvs]], [[scope-inventory]], [[Ambientes locales RIO — Comparativa de implementaciones]]) + herramienta [[rio-inspector]]
-- **Última ingesta:** 2026-09-30 — [[Ambientes locales RIO — Comparativa de implementaciones]]: siete control planes, Playmaker y precedentes; recomendación para Kafka con servicios reales.
+- **Última ingesta:** 2026-10-01 — [[Kafka local — Historia y prueba de arranque (2026-10-01)]]: historia del Compose, fallas de arranque limpio y prueba real de PEEK con configuración temporal; integrada en [[Ambientes locales RIO — Comparativa de implementaciones]].
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -41,7 +41,7 @@ tags:
 | [[deploy-request-path]] | Diagrama end-to-end del camino de un request de deploy (front→playmaker→BigQueue→CP→result) + fork de ruteo a materializer; corrige el transporte del trigger. | resource |
 | [[playmaker-deployment-idempotency-and-cp-kvs]] | Delimita la idempotencia de CPs y documenta dos tracks para Playmaker: hotfix KVS en `BatchCompletedEventListener` sin DB/estados/CPs y refactor durable con tópico externo y atomicidad. | resource · high confidence · 2026-08-25 |
 | [[scope-inventory]] | Inventario live de 87 scopes backend RIO: estado Fury, consumidores BigQueue, clasificación de uso, owner técnico, perfil efectivo y riesgos de naming/configuración. | resource · verified 2026-08-12 |
-| [[Ambientes locales RIO — Comparativa de implementaciones]] | Compara infraestructura/adaptadores locales de los siete CP y Playmaker; recomienda completar el stack Kafka real existente, con replicación y KVS real. | resource · high confidence · 2026-09-30 |
+| [[Ambientes locales RIO — Comparativa de implementaciones]] | Compara infraestructura/adaptadores locales de los siete CP y Playmaker; incluye prueba parcial de arranque/PEEK de Kafka y recomienda completar integración e idempotencia. | resource · high confidence · 2026-10-01 |
 | [[rio-inspector]] | Herramienta que genera el Integration Map desde código/config de los repos RIO. | tool |
 
 ### ⬜ Vistas pendientes (backlog Atlas — ver [[Onboarding Signals]])

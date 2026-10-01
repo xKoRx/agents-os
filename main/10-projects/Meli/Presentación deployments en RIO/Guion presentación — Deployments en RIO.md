@@ -15,200 +15,131 @@ tags:
   - area/meli
   - project/presentacion-deployments-rio
 created: "2026-09-08"
-updated: "2026-09-08"
+updated: "2026-10-01"
 ---
 
 # Guion presentación — Deployments en RIO
 
 ## Propósito
 
-Entregar un speech verificable para recorrer el flujo completo de deployments en RIO, explicar su modelo de datos y revisar después las fronteras de recuperación sin convertir la sesión en un pitch.
+Explicar completamente el recorrido de un deploy de pipeline dentro de Playmaker: qué decide, qué entidades crea y cuándo, cómo entrega el trabajo y cómo procesa su resultado, cierra la execution y devuelve ese progreso mediante el polling del front. La meet se apoya en código y en las decisiones que explican ese recorrido.
 
-## Contenido
+## Recorrido acotado
 
-El documento organiza el relato slide por slide, conserva respuestas a preguntas probables y separa hechos verificados de configuración viva todavía pendiente de contraste.
+Seis paradas en código, siguiendo el mismo caso de principio a fin. Como presupuesto orientativo se mantienen 20–25 minutos; el tiempo definitivo queda por ajustar al ensayar. La propuesta Grid de seis capítulos sirve de apoyo visual. Este guion es la fuente del recorrido actual.
 
-## Formato
+Caso ilustrativo: un pipeline tiene un topic y un engine que requieren deploy, más un componente sin cambios. El topic entra al primer batch, el engine al segundo y el componente sin cambios queda SKIP. El ejemplo permite explicar entidades, outputs y avance sin recorrer por separado cada control plane.
 
-- Duración objetivo: 20 a 25 minutos, más conversación.
-- Artefacto visual: `30-resources/grids/rio-deployments-critical-flow.html`.
-- Propósito: mostrar mi lectura actual del flujo después del primer mes en el equipo, contrastarla con quienes conocen el sistema y después revisar las fronteras de recuperación.
-- Tono: revisión técnica entre pares; describir lo verificado, separar las inferencias y dejar abiertas las configuraciones de producción todavía no contrastadas.
-- Frase ancla: **un ACK confirma transporte; no necesariamente confirma que el trabajo quedó recuperablemente aceptado.**
+**Apertura:** “Voy a seguir una solicitud de deploy desde el front, a través de Playmaker y hasta la vuelta del polling: qué compara, qué guarda, cuándo sale cada mensaje y cómo una respuesta del CP hace que el pipeline continúe.”
 
-## Slide 1 — Flujo completo de deployments
+**Base de código:** `melisource/fury_rio-playmaker`, `origin/master` local `3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1`, revisado el 2026-10-01. El checkout está en otra revisión: para mostrar este recorrido, abrir los archivos de esa ref. La evidencia es de código local; configuración y release efectivas de producción siguen pendientes.
 
-### Speech
+Los archivos Java indicados abajo son relativos a `src/main/java/com/mercadolibre/rio/playmaker/` dentro de ese repo. Abrirlos antes de la meet y mostrar sólo los métodos señalados.
 
-“La idea de esta presentación es mostrar cómo entiendo hoy el flujo completo de deployments en RIO. Voy a partir por Playmaker: cómo calcula el cambio, qué guarda, qué mensaje construye y cómo lo distribuye. Después voy a seguir el efecto dentro del control plane y el regreso del resultado. Recién con ese mapa compartido voy a marcar las fronteras donde una caída podría dejar el flujo sin una continuación recuperable. Hay partes verificadas en código local y otras, como el routing vivo, que quiero validar con ustedes.”
+## 1. Entra la solicitud: ¿qué hay que cambiar?
 
-### Transición
+**Mostrar:** `service/impl/PipelineDeployServiceImpl.java`, método `deploy`; saltar a `service/pipeline/impl/DeltaComputationServiceImpl.java`, `evaluateComponent`, para explicar la comparación. El endpoint está en `controller/PipelineDeploymentController.java#deployPipeline`: `POST /data-products/{name}/environments/{envName}/pipeline/deploy`.
 
-“Este es el recorrido completo, desde el delta hasta el siguiente batch.”
+Antes de entrar a Playmaker, `useDeployPipeline` activa `isDeploying` y envía el POST desde el browser con `components`, `force` y `sourcePipelineExecutionId` opcionales. `api/pipeline/index.ts` valida membresía, path, body y freezes; llama a Playmaker y normaliza la respuesta. Una execution nueva vuelve con 202; COMPLETED reutilizada vuelve con 200 y no inicia polling. El BFF normaliza el 409 de execution equivalente en curso a una respuesta CONFLICT con su ID.
 
-## Slide 2 — Del delta al siguiente batch
+Playmaker busca DataProduct, Environment activo y Pipeline, obtiene al caller y aplica freezes. Esas entidades, los Component y sus ComponentDefinition ya existen; esta solicitud parte de esa configuración.
 
-### Puntos que deben quedar claros
+El delta se calcula por componente y environment. La definición deseada se resuelve desde rollback si se pidió, desde el Service de ese environment o desde la última definición global para el primer deploy. Se compara contra la definición del Deployment activo del Service. Sin Service o con definición distinta, resulta DEPLOY; con la misma definición, se evalúan remoción, fallo previo o Service terminado antes de decidir SKIP. Mostrar el orden real de los `if`, porque cambia qué condición prevalece.
 
-- `DeltaComputationService` compara el estado deseado con el estado desplegado por componente y environment. Devuelve `DEPLOY`, `UNDEPLOY` o `SKIP` y calcula el `desiredStateHash`.
-- Playmaker crea primero la `PipelineExecution`, los `ComponentRun` y los `DeploymentGroup` en MySQL.
-- El `Deployment` se crea después, cuando se despacha el batch: queda `REQUESTED` con correlation UUID dentro de una transacción. Después del commit, el listener `AFTER_COMMIT` llama al adapter.
-- Playmaker, no BigQueue, estructura el trigger: el adapter construye el `DeploymentTriggerMessage` final, persiste `timeout_at` y publica.
-- BigQueue transporta el mensaje por `rio-deployment-trigger`; no define el payload de negocio.
-- Hay seis CPs sin contar KMS: Kafka, Flink, ClickHouse, Fury, Signals y Observability. Los cinco primeros son owners de efectos terminales; Observability consume una copia lateral.
-- Todos usan algún KVS, pero con roles distintos: Kafka, Flink, ClickHouse y Signals usan Fury KVS; Fury CP usa QKVS; Observability usa KVS para capacidades laterales, no para cerrar el deployment.
-- El resultado vuelve por `rio-deployment-result`. Playmaker actualiza el estado, agrega un `DeploymentLog` y mezcla los outputs en `Deployment.values` y `Service.values`.
+Después se aplican el filtro opcional de componentes y `force`: puede convertir SKIP con configuración conocida en DEPLOY. El hash se calcula con las parejas `componentId:configId` de entradas no-SKIP. Se puede reutilizar una execution COMPLETED del mismo pipeline y hash; se rechaza una equivalente PENDING/RUNNING incluso con force. Si no hay entradas desplegables, se devuelve un error antes de crear la execution.
 
-### Speech
+**Decisión a explicar:** el delta distingue configuración deseada por environment y configuración desplegada. El hash evita ciertas ejecuciones equivalentes; no equivale a un lock de todo el pipeline.
 
-“La solicitud llega por HTTP y Playmaker calcula el delta con `DeltaComputationService`. Este servicio mira el estado deseado y lo compara con el estado activo por componente y environment; para cada componente decide `DEPLOY`, `UNDEPLOY` o `SKIP`. También construye el hash del estado deseado que identifica la reconciliación.”
+**Transición:** “Ya sabemos qué cambia. Ahora eso se convierte en registros de ejecución.”
 
-“Con ese resultado, Playmaker persiste en MySQL la execution, los component runs y los grupos de despliegue. Cuando llega el turno de un batch, resuelve los parámetros y crea el `Deployment` como `REQUESTED`, con su correlation UUID. Esa transacción hace commit y recién entonces corre el listener Spring `AFTER_COMMIT` y `@Async`. El adapter arma el `DeploymentTriggerMessage`, escribe el deadline `timeout_at` y lo publica. BigQueue sólo lo transporta al CP correspondiente.”
+## 2. Nace la ejecución: ¿qué registros aparecen antes del envío?
 
-“Sin contar KMS, aparecen seis CPs: Kafka, Flink, ClickHouse, Fury, Signals y Observability. Kafka, Flink, ClickHouse y Signals usan Fury KVS; Fury CP usa QKVS con desired/observed state; Observability también usa KVS, pero para administración lateral de observabilidad. No es owner del resultado terminal.”
+**Mostrar:** las llamadas `lifecycleService.create`, `enrichWithServiceIds` y `deploymentGroupService.create` en `deploy`; abrir `service/impl/DeploymentGroupServiceImpl.java#create` para ver el orden del primer dispatch. Como apoyo, `service/pipeline/impl/PipelineExecutionLifecycleServiceImpl.java#create` muestra los inserts.
 
-“El CP realiza el efecto contra su tecnología: topics de Kafka en AWS o GCP, aplicaciones Flink, tablas o materialized views de ClickHouse, recursos Fury o signals en Catalog y collectors. Cuando publica el resultado, Playmaker lo consolida. `DeploymentLog` no son los logs generales de la app: es el historial de estados, outputs y mensajes de ese deployment. `Service.values` son los outputs técnicos acumulados del slot componente por environment, por ejemplo identificadores o endpoints que devolvió el CP.”
+| Momento | Registro | Qué representa en nuestro caso |
+|---|---|---|
+| `lifecycleService.create` | Una PipelineExecution PENDING | La reconciliación completa de ese pipeline y environment |
+| Dentro del mismo create | Un ComponentRun PENDING por entrada no-SKIP | Topic y engine dentro de esa execution, con su definición y `runOrder`; el componente SKIP no genera run |
+| `enrichWithServiceIds` | Service si falta | El slot `component × environment`; en siguientes deploys se reutiliza |
+| `deploymentGroupService.create` | Un DeploymentGroup PENDING | La orquestación asociada a la execution: criticidad, estrategia, DP y environment |
+| Dispatch del primer batch | Deployment por componente despachado | En este punto nace el del topic; el del engine todavía no existe |
 
-### Cómo leer los marcadores
+`TopologicalSortServiceImpl` calcula los batches. En esta ref está activo `FORCE_CONFIG_ORDER`: orden 0 para no-engines y 1 para engines, en lugar de usar el orden topológico del DAG. Tras despachar el primer batch, group y execution pasan a RUNNING. El método de entrada es transaccional: las llamadas participan de la transacción antes de que el trigger externo salga.
 
-“Los tres marcadores rojos agrupan tres familias: pérdida durante el dispatch de Playmaker, aceptación no durable dentro del CP y separación entre efecto, resultado y continuación. En la slide de detalle la última familia se divide en dos fronteras.”
+**Distinción clave:** DeploymentGroup y batch son conceptos distintos. Este camino crea un group para la execution; los batches se reconocen por `ComponentRun.runOrder`. Los Deployments de los siguientes batches usarán ese mismo group.
 
-## Slide 3 — Entidades y relaciones del deployment
+**Transición:** “La execution ya conoce todos sus runs, pero sólo el batch habilitado obtiene Deployments.”
 
-### Speech
+### Dentro de la segunda parada: nace el Deployment: ¿qué queda listo para despachar?
 
-“Este es el modelo que usa Playmaker. Un `DataProduct` tiene un `Pipeline` versionado y componentes lógicos. Cada `Component` apunta a una `ComponentDefinition`, que es una versión concreta de su configuración. Un `Service` representa el slot de ese componente en un environment: conserva qué definición está activa y los outputs observados en `values`.”
+**Mostrar:** `service/pipeline/impl/BatchDispatchServiceImpl.java#dispatchItem`; abrir `service/pipeline/impl/DeploymentAttemptFactory.java#create` y `resolveCorrelationId` para ver los campos persistidos.
 
-“Una `PipelineExecution` representa una reconciliación completa de ese pipeline en un environment. Para cada componente cuyo delta no es `SKIP`, se crea un `ComponentRun`: es el estado de ese componente dentro de esa execution. Los `DeploymentGroup` organizan esos runs en batches.”
+El dispatcher carga las definiciones y Services, valida los Deployments activos y, cuando corresponde, desactiva el anterior. Crea el nuevo Deployment ligado a Service, ComponentDefinition y group: estado REQUESTED, activo, `retryCount=0` y deadline corto de dispatch. Después genera o recupera la correlation UUID persistida.
 
-“Un `Deployment` es el registro del dispatch concreto hacia un Service y una definición dentro de un grupo. En el primer envío normalmente hay un ComponentRun y un Deployment para ese componente. No existe una FK directa entre ambos: al volver el resultado se relacionan a través del group y la execution, más el `Service.componentId`. Además, un retry automático de un `REQUESTED` puede reutilizar la misma fila Deployment, incrementar `retryCount` y publicar con otro UUID; por eso Deployment tampoco equivale exactamente a un único intento de transporte.”
+Recién entonces resuelve los parámetros de la definición y arma el DispatchRequest. Los outputs guardados en los Services pueden alimentar parámetros de componentes posteriores. Finalmente publica `DeploymentDispatchRequestedEvent` dentro de Spring; todavía no es un trigger BigQueue.
 
-“La correlation UUID es el identificador del mensaje asíncrono: permite unir el trigger y el resultado con el Deployment. No es la identidad del componente ni de la execution.”
+**Identidades a mostrar:** el ID de la fila Deployment identifica el registro de MySQL; la correlation UUID identifica el intercambio asíncrono; el ID del group vincula la orquestación. ComponentRun representa el componente dentro de la execution y no tiene FK directa al Deployment.
 
-### Pifias o deuda de abstracción a mencionar
+**Decisión a explicar:** crear el Deployment antes de enviar permite encontrarlo si el resultado vuelve muy rápido. El deadline ya existe antes del listener: en esta ref dejó de ser correcto explicar que el Deployment nuevo nace con `timeout_at=null`.
 
-- `DataProduct` conserva un campo `environment` legacy, aunque el modelo actual permite varias entidades `Environment` por DP. Que un DP aparezca en más de un environment es una huella del modelo anterior, no la regla nueva que queremos comunicar.
-- `ComponentRun` y `Deployment` expresan niveles distintos, pero su relación es indirecta.
-- `Service.values` mezcla outputs técnicos sucesivos en un JSON; sirve para resolver parámetros posteriores, pero no es una entidad tipada por recurso.
+**Transición:** “Hasta aquí construimos intención y request. El commit habilita el envío externo.”
 
-### Transición
+## 3. Sale de Playmaker: ¿quién decide la ruta y arma el mensaje?
 
-“Hasta aquí el camino BigQueue. Materializer sigue representando el camino anterior y hoy convive con esta máquina de estados.”
+**Mostrar:** `service/pipeline/impl/DeploymentDispatchEventListener.java#onDispatchRequested`; seguir `DeploymentTransportRegistry.resolve` y terminar en `service/pipeline/impl/BigQueueDispatchAdapter.java#dispatch` / `buildTriggerMessage`.
 
-## Slide 4 — Materializer acepta por REST y termina asíncronamente
+El listener corre con `AFTER_COMMIT` y `@Async`: usa un thread distinto y la transacción de creación ya terminó. Primero reclama el dispatch y renueva su deadline corto; si el claim ya no aplica, omite ese evento. El registry elige adapter por tipo de componente y versión. `config/DeploymentRoutingConfig.java#resolveFor` usa primera coincidencia, con catch-all; la tabla base está en `src/main/resources/application.yml`, sección `controlplane.deployment-routing`.
 
-### Speech
+Para BigQueue, Playmaker construye el DeploymentTriggerMessage con UUID, group, componente, DP, environment, operación, criticidad, parámetros y contexto opcional. Actualiza metadata y timeout de ejecución y publica en `rio-deployment-trigger`. BigQueue transporta al CP, que es el dueño del efecto sobre infraestructura. El ACK de entrega y el resultado de negocio son momentos distintos.
 
-“Históricamente este flujo pasaba por Materializer vía REST. Para los tipos que todavía usan esa ruta, así funciona hoy: Playmaker construye el request y agrega una callback URL. El POST a `/materializations/` no espera a que exista la infraestructura; Materializer persiste una materialization y su stack como `PENDING`, encola trabajo y responde 201 con un `materializationId`.”
+La otra ruta configurada es Materializer REST: `MaterializerRestAdapter.dispatch` llama a `materializerService.doMaterialize`; al aceptar la llamada actualiza el timeout de ejecución. El trabajo termina después mediante callback HTTP. `DeploymentLogController.create` procesa ese callback y `LegacyCallbackResultAdapter.adapt` publica un DeploymentResultMessage en el bus de resultados. El registry también soporta un adapter stream, pero el YAML base leído no selecciona esa ruta.
 
-“La ejecución continúa después mediante WorkQueue y un worker que llega a Terraform o Cloud Controller. Cuando hay avances o un terminal, Materializer hace otro request HTTP, un POST a `/deployments/{id}/logs` de Playmaker. Playmaker normaliza ese callback legacy a un `DeploymentResultMessage` y desde ahí usa la misma consolidación que el camino BigQueue.”
+**Decisión a explicar:** el transporte se decide en Playmaker; la capacidad de un CP por sí sola no determina el routing. Aquí basta seguir la salida y vuelta del trabajo externo para continuar el recorrido de Playmaker.
 
-“Sobre el estado actual, el YAML base deja S3 y GCS como owners explícitos de Materializer y mantiene un catch-all legacy. No afirmaría todavía que sólo queda storage: `gcp-kafka-topic` no aparece en las rutas BigQueue del YAML base, aunque Kafka CP sí lo implementa. Puede haber configuración viva que cambie esa resolución y eso lo tenemos que confirmar.”
+**Transición:** “El CP ejecuta el efecto. Volvamos al momento en que Playmaker recibe el resultado.”
 
-### Respuesta corta a la duda REST
+## 4. Vuelve el resultado: ¿qué entidad cambia y cómo encuentra el run?
 
-“No ocurre todo dentro del request de Playmaker. El request síncrono sólo acepta y devuelve `PENDING`; el efecto y los callbacks ocurren después.”
+**Mostrar:** `service/impl/DeploymentResultHandlerImpl.java#handle`, `resolveComponentRun` y las ramas de `routeByStatus`. La entrada BigQueue es `controller/DeploymentResultConsumerController.java#consumeDeploymentResult`, `POST /events/deployment/result`, seguida de `DeploymentResultConsumerServiceImpl.consume`.
 
-## Slide 5 — Dónde puede quedar un gap
+El handler busca el Deployment por la correlation UUID del mensaje y conserva `materializationId` como fallback legacy. Resuelve el run usando dos relaciones: group → execution y Service → component. Con esa pareja busca el ComponentRun; no usa una FK directa Deployment → ComponentRun. Si el run ya es terminal, descarta el resultado tardío.
 
-### Speech
+Dentro de la transacción, STARTED mueve el run a RUNNING y el Deployment a STARTED; IN_PROGRESS registra output sin avanzar el estado principal. COMPLETED cierra run y Deployment, limpia timeout y, cuando corresponde, deja Service RUNNING y Component ACTIVE. FAILED persiste el fallo y lo propaga a la orquestación.
 
-“Después de entender el recorrido, estas son las cuatro fronteras concretas que me parece útil revisar, agrupadas en las tres familias de la slide 2. La primera está entre el commit de MySQL y la publicación del trigger. `AFTER_COMMIT` significa que la transacción que creó el Deployment ya terminó correctamente; el listener corre después y cualquier escritura posterior usa otra transacción. `timeout_at` es el deadline para detectar un Deployment sin resultado. Nace en null y el adapter lo completa antes de publicar. Si Playmaker muere antes de que corra el adapter, el scanner de vencidos nunca selecciona esa fila.”
+Los outputs se integran en `Deployment.values` y `Service.values`. DeploymentLog aparece en el procesamiento de resultados: guarda output nuevo y los terminales que requieren registro; la deduplicación significa que no cada mensaje recibido crea otra fila. No son logs generales de la aplicación.
 
-“La segunda está entre el HTTP 200 del CP y el trabajo real. Si el handler responde y luego desprende un executor local, la instancia puede morir después del ACK sin que BigQueue tenga motivo para redeliver.”
+**Decisión a explicar:** el resultado actualiza progreso de ejecución y estado del Service. Un componente completado todavía no implica que todo el pipeline haya terminado.
 
-“La tercera separa el efecto del resultado: el recurso o el KVS pueden quedar terminales y la publicación fallar. La cuarta separa la consolidación del resultado del siguiente batch: Fury Lock evita dos avances concurrentes, pero no reconstruye un evento Spring perdido.”
+**Transición:** “El topic terminó y dejó sus outputs. Veamos qué permite enviar ahora el engine.”
 
-“Fury CP es un ejemplo útil porque separa `reportedDeploymentId` de `publishedDeploymentId`. QKVS guarda desired y observed state; el reconciler adquiere un lease, ejecuta el efecto y marca `reportedDeploymentId`. Sólo después de publicar el resultado marca `publishedDeploymentId`. Si los marcadores quedan distintos, otro tick vuelve a intentar la publicación incluso después de un reinicio.”
+## 5. Continúa o termina: ¿quién habilita el próximo batch?
 
-“En la slide dejé sólo las fronteras y el mecanismo de Fury como contraste. Las alternativas generales —outbox, inbox durable, WorkQueue o reconciler— quedan para la conversación posterior, porque requieren decidir qué garantía buscamos en cada frontera.”
+**Mostrar:** `service/pipeline/impl/OrchestrationServiceImpl.java#checkPrerequisites`, `checkGroupCompletion` y `propagateFailure`. Como puente, `BatchCompletedEventListener.onBatchCompleted` toma el evento emitido por COMPLETED después del commit.
 
-## Slide 6 — La inconsistencia depende del momento de la caída
+El listener intenta serializar el avance por execution y próximo `runOrder` mediante Fury Lock y luego llama a la orquestación en otra transacción. Si encuentra contención, programa retries; si Fury Lock está indisponible, esta ref tiene un fallback que intenta avanzar sin esa serialización. La orquestación también comprueba qué componentes del siguiente batch ya tienen Deployment para evitar materializarlos de nuevo.
 
-### Speech
+Lee los runs del `runOrder` actual. Mientras falten terminales, espera. Si hay fallo, propaga FAILED a group y execution y cancela runs pendientes de órdenes posteriores. Si el batch terminó correctamente, busca los PENDING del siguiente orden y vuelve a BatchDispatchService: ahí nace el Deployment del engine, dentro del mismo group. Si todos los runs están COMPLETED, cierra group y execution.
 
-“La muerte súbita de un CP es un caso, pero Playmaker puede caer en la misma clase de problema. Si muere durante el fan-out posterior al commit, pueden quedar todos los Deployments persistidos y sólo una parte de los triggers publicados. Los que nunca llegaron al adapter incluso pueden seguir sin timeout.”
+Cerrar con `service/pipeline/DeploymentTimeoutJob.java#processTimeout`: escanea deadlines vencidos y un backlog legacy sin deadline. Reintenta sólo DEPLOY en REQUESTED por BigQueue cuando cumple edad, intentos y relaciones necesarias; reutiliza la fila y publica otra UUID guardada en `materializationId`. STARTED vencido se falla sin reenviar para evitar un posible doble efecto. El timeout es una decisión de Playmaker sobre su espera, no una prueba de que el recurso externo no exista.
 
-“En el CP, el corte puede ocurrir después del HTTP 200 y antes de persistir o terminar el trabajo. Y más adelante el recurso puede existir sin que Playmaker reciba el resultado, o Playmaker puede guardar el resultado y perder el evento que debía iniciar el siguiente batch.”
+**Transición hacia el front:** “Una solicitud crea la execution y los runs; cada batch habilitado crea sus Deployments; cada resultado actualiza Deployment, Service y run; la orquestación vuelve a despachar o cierra el pipeline. Esos son los puntos donde Playmaker transforma intención en trabajo y trabajo en progreso.”
 
-“Por eso el síntoma no siempre es el mismo: podemos ver intención sin trigger, sólo parte de los componentes enviados, infraestructura real sin terminal en Playmaker, o un batch completo sin continuación. Mi pregunta para la revisión es qué estado durable existe hoy en cada corte y quién reconstruye la próxima acción después de un reinicio.”
+## 6. Vuelve a la UI: ¿qué lee el polling y cuándo termina?
 
-### Cierre
+**Mostrar:** `PipelineHistoryServiceImpl#getExecution` en Playmaker, `api/pipeline/index.ts` y `pipelineUtils.normalizeExecution` en el BFF, `useDeployPipeline.fetchExecution` / `startPolling` y `src/entities/Deployment.ts#isExecutionFullyTerminal` en el front.
 
-“Hasta acá llega mi lectura del código y la documentación. Me interesa validar primero si el modelo del flujo es correcto y, sobre esa base, cuáles de estas fronteras ya tienen mitigaciones operacionales o configuración que no alcancé a ver.”
+El front guarda el ID recibido y hace un primer GET inmediato a `/data-products/{name}/environments/{env}/pipeline/history/{executionId}`. El BFF valida los parámetros y proxya la consulta. Playmaker comprueba que la execution pertenece al pipeline y environment consultados, ejecuta `resolveTimeoutsForExecution` y lee los runs ordenados por runOrder. Este GET es transaccional y puede escribir al resolver timeouts; el polling también participa de esa resolución lazy.
 
-## Slides 7 a 12 — Profundización por transición
+El DTO devuelve execution ID, pipeline, tipo, estado, timestamps y component runs con componente, definición, estado, orden y error. El BFF adapta snake_case a camelCase y run_order a order. El hook valida el ID de la respuesta y la generación vigente de la observación antes de actualizar la execution en React.
 
-### Slide 7 — Solicitud y delta
+El polling encadena delays de 2, 4, 8, 16 y hasta 30 segundos. Los errores reinician el delay a 2 segundos; tres errores consecutivos detienen la observación. Al llegar a 10 minutos se detiene la ventana local, conservando el ID para retomar. Ninguna de estas detenciones cancela el trabajo del backend.
 
-La solicitud no crea infraestructura en ese instante. Playmaker autentica, valida el DataProduct, Environment, Pipeline y freezes; después `DeltaComputationServiceImpl` compara la definición deseada contra el `Service` que representa el slot `component × environment`. Un Service inexistente, una ComponentDefinition distinta, un Service pendiente de remoción o un run previo terminal pueden producir una acción. `SKIP` no genera ComponentRun ni entra a los batches. El `desiredStateHash` identifica la reconciliación y evita tener dos equivalentes en vuelo.
+**Condición final:** `isExecutionFullyTerminal` exige estado agregado terminal (COMPLETED, FAILED o PARTIAL_FAILURE) y todos los runs terminales (COMPLETED, FAILED o CANCELLED). Entonces el hook detiene polling, limpia el ID activo y libera `isDeploying`. El cierre de la historia es la respuesta HTTP convertida en estado visible de la UI.
 
-### Slide 8 — Creación de entidades
+**Fuente del front:** `melisource/fury_ads-signals-frontend`, `origin/master` local `791f79dd8050e1432bdc5c936539b22dbaa4e35d`, contrastado el 2026-10-01. [Grid propuesto — request a polling](https://grid.adminml.com/d/01M3VWJ9GQ1FHABT2GJZEN1VPA/view), seis slides Dark Theme con extractos y enlaces a las refs verificadas.
 
-Explicar el momento y el owner de cada registro: Playmaker crea `PipelineExecution` para toda la reconciliación; crea un `ComponentRun` por cambio distinto de `SKIP`; ordena esos runs en `DeploymentGroup`; y recién cuando despacha un group crea el `Deployment`. `DeploymentLog` aparece al recibir una transición de resultado. Subrayar que `ComponentRun` expresa el componente en la execution, mientras `Deployment` expresa un dispatch concreto para Service, ComponentDefinition y group.
+## Preparación para la meet
 
-### Slide 9 — Construcción del dispatch
+Ensayar las seis paradas con el mismo ejemplo, dejando abiertas las clases principales y saltando a los helpers sólo para mostrar la línea que sostiene cada decisión. Usar los diagramas existentes cuando ayuden a reconocer entidades o transportes. Las preguntas sobre implementaciones internas de cada CP, incidencia de fallas y posibles correcciones se responden con el documento de referencia después del recorrido.
 
-`BatchDispatchServiceImpl` resuelve parámetros y persiste el Deployment como `REQUESTED`, con action, UUID de correlación, `retry_count = 0` y `timeout_at = null`. El commit hace visible esa intención. Después, `DeploymentDispatchRequestedEvent` corre con `AFTER_COMMIT` y `@Async`; el adapter elige la ruta, arma el `DeploymentTriggerMessage`, persiste el deadline y publica. La separación explica tanto por qué un resultado rápido puede resolverse como por qué hay una ventana entre intención durable y publicación.
-
-### Slide 10 — BigQueue y control planes
-
-BigQueue entrega por HTTP push y cada CP filtra los tipos que reconoce. Kafka, Flink y ClickHouse responden 2xx antes de terminar el efecto en un executor o cadena asíncrona local. Fury modela desired/observed state, leases y un reconciler, por lo que puede reconstruir trabajo desde estado durable. Signals conserva redelivery al propagar errores retryables. Observability consume el trigger como copia lateral para gobierno y telemetría, sin cerrar el deployment.
-
-### Slide 11 — Resultado de vuelta
-
-El CP publica `DeploymentResultMessage` con `STARTED`, `IN_PROGRESS`, `COMPLETED` o `FAILED`. Playmaker encuentra primero el Deployment por correlation UUID y conserva `materializationId` como compatibilidad legacy. Una transacción actualiza Deployment, DeploymentLog, Service.values y ComponentRun. Contrastar los CP: Kafka y ClickHouse pueden marcar terminal antes de un publish best effort; Signals publica antes de cerrar KVS; Fury conserva por separado que el efecto fue reportado y que el resultado fue publicado, de modo que el reconciler puede completar una publicación interrumpida.
-
-### Slide 12 — Avance y recuperación
-
-El commit del resultado emite otro evento `AFTER_COMMIT` para evaluar el batch. Fury Lock evita que dos callbacks avancen a la vez, pero no guarda la obligación de hacerlo si el evento se pierde. El timeout job sólo puede reintentar `REQUESTED` cuando el adapter ya persistió `timeout_at`; frente a `STARTED` falla cerrado para no duplicar un efecto cuyo estado real desconoce. La pregunta de cierre para cada frontera es qué acción queda durable, quién la reconstituye tras un reinicio y cómo mantiene idempotencia.
-
-## Preguntas probables
-
-### ¿BigQueue no debería redeliver automáticamente?
-
-Sí, mientras el consumidor no haya confirmado la entrega. El problema aparece cuando el CP responde 2xx antes de aceptar el trabajo en un storage durable. Después de ese ACK, la muerte del executor local ya no pertenece al dominio de recuperación de BigQueue.
-
-### ¿El trigger sólo envía o también estructura el mensaje?
-
-BigQueue sólo transporta. Playmaker resuelve parámetros, crea el Deployment y arma el payload del `DeploymentTriggerMessage` en el adapter usando el contrato de `rio-sdk-events`.
-
-### ¿KVS participa en el flujo de deployment?
-
-Sí, principalmente dentro de los CP para idempotencia, claims, desired/observed state o gestión lateral. No reemplaza MySQL de Playmaker ni la entrega de BigQueue.
-
-### ¿KVS no resuelve toda la recuperación?
-
-No. Puede evitar repetir un efecto, pero no garantiza que la continuación o el resultado lleguen al siguiente actor. Si el terminal se guarda antes de publicar y una redelivery descarta estados terminales, KVS incluso puede bloquear la recuperación de la publicación perdida.
-
-### ¿Qué es exactamente un ComponentRun?
-
-Es la representación del estado de un componente lógico dentro de una `PipelineExecution`. Se crea uno por componente con delta distinto de `SKIP`. El `Deployment` registra el dispatch de ese componente hacia su Service y definición dentro de un grupo; no existe una FK directa entre ambos.
-
-### ¿Qué son `DeploymentLog` y `Service.values`?
-
-`DeploymentLog` es historia de resultados del deployment, no los logs generales de la aplicación. `Service.values` es el JSON con outputs técnicos acumulados del componente en ese environment, actualizado a partir de las respuestas de los CP.
-
-### ¿Por qué no reintentar todo lo que queda en `STARTED`?
-
-Porque `STARTED` indica que el CP aceptó o comenzó el efecto. Repetir sin reconciliar puede crear recursos duplicados o ejecutar dos veces una operación no idempotente. Se necesita consultar el estado durable del CP o del proveedor.
-
-### ¿Tenemos evidencia de que estos incidentes ocurren?
-
-Hay reportes operacionales de flujos detenidos y las ventanas de pérdida existen en el diseño observado. Falta instrumentación que atribuya frecuencia real a cada ventana. Conviene separar causalidad técnicamente posible de incidencia medida.
-
-## Datos que conviene pedir después de la presentación
-
-- Cantidad y edad máxima de deployments `REQUESTED` con `timeout_at = null`.
-- Executions `RUNNING` cuyo batch actual está terminal y no tienen deployments en el siguiente batch.
-- Diferencias entre terminales en KVS/QKVS y terminales recibidos por Playmaker.
-- Timeouts `STARTED` que después generaron recursos o callbacks tardíos.
-- Sagas de Materializer pendientes por más tiempo que su SLA.
-- Routing vivo efectivo de `gcp-kafka-topic`, scopes y overrides por componente.
-- Reinicios de instancias en Playmaker y CPs correlacionados con executions varadas.
-
-## Fuentes
-
-- [[Deployments en RIO — flujo completo]] contiene el detalle técnico y las fronteras de evidencia.
-- [[Revisión de ads-signals-knowledge-library]] conserva las diferencias entre documentación y código.
-- El Grid resume estos documentos; no reemplaza la fuente técnica ni afirma configuración viva de producción.
+[[Deployments en RIO — flujo completo]] y el Grid anterior conservan la investigación de septiembre; algunas afirmaciones quedaron atrás del código actual. Para esta meet usar las entidades, deadlines y transiciones verificadas en este guion. El routing vivo y la release que corre en producción requieren otra evidencia.

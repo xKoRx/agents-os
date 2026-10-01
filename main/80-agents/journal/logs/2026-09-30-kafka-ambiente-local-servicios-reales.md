@@ -3,7 +3,7 @@ type: change_log
 schema_version: 1
 scope: session
 created: "2026-09-30"
-updated: "2026-09-30"
+updated: "2026-10-01"
 area: "[[Meli]]"
 project: "[[Kafka — Ambiente local con servicios reales]]"
 application: "[[rio-controlplane-kafka]]"
@@ -55,6 +55,18 @@ El owner pidió buscar implementaciones vigentes en todos los control planes y P
 
 - **Scope:** local.
 - **Redacción:** sin secretos, material privado del agente ni paths absolutos de máquina en los artefactos persistidos.
+
+## Ampliación — 2026-10-01
+
+- **Motivo:** el owner pidió precisar cuándo se agregó el ambiente local y si funciona.
+- **Fuente nueva:** [[Kafka local — Historia y prueba de arranque (2026-10-01)]], materializada desde el template contratado v1.
+- **Historia:** Compose creado el 2026-02-25; merge a develop el 2026-03-02 por PR #1.
+- **Prueba original:** broker falla con SIGILL en ARM; CP compila y falla por routing local ausente.
+- **Repetición de diagnóstico:** misma imagen con `JAVA_TOOL_OPTIONS=-XX:UseSVE=0` y CP con routing AWS hacia localhost. Broker saludable, ping HTTP 200, seed de cinco mensajes y PEEK HTTP 200 con claves e IDs comprobados. No se modificó código de los repositorios.
+- **Precisión:** el warmup GCP sin credenciales registra WARN y continúa en este arranque; no se probaron operaciones GCP. Permanecen resultados a archivos, KVS no-op y ciclo de deployment/integración Playmaker pendientes.
+- **Actualizaciones:** proyecto, recurso comparativo e índice reflejan la nueva evidencia. Se conservó la captura estática del 2026-09-30.
+- **Limpieza:** se retiraron el proceso del CP y el Compose de prueba. Los checkouts originales conservaron su estado.
+- **Validación documental:** lint estricto de las cinco notas tocadas con ERROR=0 y WARN=0; Graphify recuperó una única fuente por el alias `Prueba Kafka local 2026-10-01`. El refresco global informó deuda ajena al gate dirigido y actualizó correctamente el índice derivado.
 
 ## Rollback
 

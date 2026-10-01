@@ -3,18 +3,18 @@
 ## Metadatos
 
 - Tipo: Technical SPEC
-- Estado: Publicado en `99c51fe8b`; dependencies FAIL; los demás checks publicados pasaron; sin conflictos (MERGEABLE); hilos respondidos y resueltos; aprobación humana, sub-SPEC formal y smoke pendientes
+- Estado: Publicado en `226f21fb1`; conflictos resueltos y local PASS; MERGEABLE; nueva CI iniciándose; aprobación humana, sub-SPEC formal y smoke pendientes
 - SPEC funcional: [SIG-621](https://spellbook.adminml.com/projects/SIG/specs/SIG-621)
 - Requerimiento: [SIG-616](https://spellbook.adminml.com/projects/SIG/specs/SIG-616)
 - Aplicación: `rio-playmaker`
 - PR: [#1181](https://github.com/melisource/fury_rio-playmaker/pull/1181)
 - Rama: `feature/operation-authorization-by-team-f4`
-- Base del PR: `develop@0c9e9e3ee`, integrado por merge en `99c51fe8b` el 2026-09-30; sin conflictos.
+- Base del PR: `develop@dc56a3de4`, integrado por merge en `226f21fb1` el 2026-10-01; sin conflictos.
 - Merge inicial de F3: `7c9195a65`
 - Implementación regularizada: `e8b957c47`
 - Merge final de `develop`, sin cambio de árbol: `d792b902b`
 - Corrección del bypass de plataforma: `e75ca90d9`
-- Corrección de review publicada: `40d5f9b22`; ajuste de delete histórico y sincronización final: `99c51fe8b`; ajuste de delete histórico y sincronización final: `99c51fe8b`
+- Corrección de review publicada: `40d5f9b22`; ajuste de delete histórico: `99c51fe8b`; merge de herencia de entidades y autorización: `372af0bac`.
 
 ## Objetivo y límites
 
@@ -254,3 +254,15 @@ plataforma, por lo que esas variantes no sirven como prueba manual de dicho bypa
 - Username proviene del principal; headers quedan por ACME/downstreams existentes.
 - Delete/inactivate heredados continúan en `DEPLOYER_AND_UP`.
 - El diff contra F3 contiene sólo F4 y el cascade trasladado.
+
+## Verificación del merge de develop — 2026-10-01
+
+`372af0bacc0b577debbde3fc693e9bdbac7e1d2f` integra #1219 (`develop@f087e4b7cc`). Los tres conflictos quedaron resueltos manteniendo el guard configurado antes de conectar/desconectar la herencia signal→Kafka y usando el username autenticado para auditoría. Tests verifican el orden permitido y ausencia de side effects ante deny en ambas operaciones. El HTTP test nuevo utiliza el filtro de seguridad. El escenario F4 se renombró a AT-090-S21 para conservar AT-090-S17 de develop.
+
+Validación: 61 selectores focalizados PASS; health, MySQL loopback y Kafka PASS con cleanup. El check MySQL expuso una carrera entre scheduler local cada segundo y timeout manual del test; se controla la frecuencia sólo en esa clase y se mantienen las assertions. Regresión completa: 4.195 tests / 377 suites, cero fallas/errores, dos skips preexistentes, 97,21% de líneas (15.043/15.474). Push remoto y worktree limpio comprobados; MERGEABLE / REVIEW_REQUIRED.
+
+CI #5696 está en curso; reproduce sobre este SHA el fallo de `report.json` ausente y publicación de flags SBOM observado en #5629. Fury reporta nueve avisos low y ninguno bloqueante en la ejecución investigada. La causa interna downstream no está demostrada. Reporte y estado vigente: [[2026-10-01-sig-616-f4-merge-dependencies-report]]. No hubo Zord, deploy ni merge del PR.
+
+## Segunda sincronización con develop — 2026-10-01
+
+Merge `226f21fb12ff439a827f0e33a7c1015f14d8b573` con padres `7ee9e67da` (merge remoto de dependencias) y `dc56a3de4` (#1246, aislamiento de recursos de suite). Conflicto único del manifiesto resuelto uniendo selecciones; tres archivos cambiaron, sin modificar código de autorización. Contrato completo PASS con 64 selectores y tres stacks con cleanup; regresión 4.195 tests / 377 suites, cero fallas/errores, dos skips preexistentes y 97,21% de líneas. Push y readback remoto verificados, MERGEABLE y worktree limpio. Nueva CI iniciándose; esta sincronización no afirma un resultado final remoto ni reemplaza evidencia histórica de los HEAD anteriores.

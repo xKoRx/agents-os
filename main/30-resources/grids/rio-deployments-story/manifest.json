@@ -1,0 +1,69 @@
+{
+  "title": "Deployments en Playmaker — del request al polling",
+  "theme": "darkTheme",
+  "slides": [
+    {
+      "file": "01.html",
+      "title": "El click expresa intención; Playmaker decide el cambio"
+    },
+    {
+      "file": "02.html",
+      "title": "La intención se convierte en entidades, en orden"
+    },
+    {
+      "file": "03.html",
+      "title": "El commit habilita el dispatch y el routing"
+    },
+    {
+      "file": "04.html",
+      "title": "El resultado vuelve y actualiza el estado observado"
+    },
+    {
+      "file": "05.html",
+      "title": "Una completion habilita el engine; la última cierra"
+    },
+    {
+      "file": "06.html",
+      "title": "El polling devuelve esa historia al front"
+    }
+  ],
+  "sources": {
+    "rio-playmaker": "3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1",
+    "ads-signals-frontend": "791f79dd8050e1432bdc5c936539b22dbaa4e35d"
+  },
+  "evidence": "Refs origin/master locales; producción no verificada",
+  "updated": "2026-10-01",
+  "presentation_id": "01M3VWJ9GQ1FHABT2GJZEN1VPA",
+  "view_url": "https://grid.adminml.com/d/01M3VWJ9GQ1FHABT2GJZEN1VPA/view",
+  "grid_slides": [
+    {
+      "id": "01M3VWJAEW3QQYV8M6J6VBJREH",
+      "artifact_id": "01M3VWJ9GQ1FHABT2GJZEN1VPB"
+    },
+    {
+      "id": "01M3VWJAHNSX4J2CDBNGA0RVM7",
+      "artifact_id": "01M3VWJ9M8FA7K94SGQ83HS5A3"
+    },
+    {
+      "id": "01M3VWJAMVFNEC0T2ERKFHM6AJ",
+      "artifact_id": "01M3VWJ9S1VEXBX8DNC7KZSSR5"
+    },
+    {
+      "id": "01M3VWJASMC3VAE8PGDK6YWC3V",
+      "artifact_id": "01M3VWJ9X1Q73Z6WV88SJCEGAV"
+    },
+    {
+      "id": "01M3VWJB0D3WC8KPSK5YT79R2F",
+      "artifact_id": "01M3VWJA25HC049R5VZ422ZER0"
+    },
+    {
+      "id": "01M3VWJB4R1KPT84JSBCA8PR21",
+      "artifact_id": "01M3VWJA657V309CS6QFGM4TAG"
+    }
+  ],
+  "validation": {
+    "native_viewer": "six slides checked",
+    "layout": "1280x720, no clipped content or overlapping blocks",
+    "code": "source excerpts omit comments/logs, source links use immutable commits"
+  }
+}

@@ -22,7 +22,7 @@ tags:
   - area/meli
   - project/presentacion-deployments-rio
 created: "2026-09-01"
-updated: "2026-09-08"
+updated: "2026-10-01"
 ---
 
 # Presentación deployments en RIO
@@ -33,18 +33,17 @@ updated: "2026-09-08"
 
 ## 🎯 Objetivo
 
-- Preparar una explicación corta, precisa y completa del flujo de deployments en RIO: intención, orquestación, modelo de datos, mensajes, routing por control plane, materialización, resultados, avance de batches y fallas de diseño.
-- Dejar un guion técnico verificable para explicar primero el flujo vigente y luego profundizar en sus puntos críticos, mecanismos de recuperación y deuda técnica.
+- Explicar en la meet el recorrido completo del deployment dentro de Playmaker: por dónde pasa, qué entidades crea y cuándo, qué decisiones condicionan el envío y cómo procesa resultados y avanza batches.
+- Mantener un relato acotado con seis paradas en código, siguiendo un mismo caso y desde el request de front hasta el polling, con Grid técnico como apoyo.
 
 ## 📊 Estado actual
 
-- Knowledge del vault reemplazada: `ads-signals-knowledge-library` es el puntero canónico y `signals-knowledge` quedó deprecada.
-- Flujo revalidado contra los `origin/master` locales de Playmaker, SDK Events, Materializer y los control planes Kafka, Flink, ClickHouse, Fury, Signals y Observability.
-- Documento principal reestructurado en tres partes: funcionamiento vigente y tecnologías; zoom causal sobre nueve puntos críticos; backlog priorizado de deuda técnica.
-- Grid local de seis slides rearmado como revisión técnica: flujo completo, modelo de datos, Materializer actual, fronteras de recuperación y estados inconsistentes según el momento exacto de la caída.
-- Speech de 10 a 12 minutos documentado con definiciones de Delta service, ComponentRun, Deployment, correlation UUID, KVS, DeploymentLog y Service.values.
-- Grid local profundizado a 12 slides: entrada y delta, creación de entidades de MySQL, construcción del dispatch, ruta BigQueue, comportamiento por control plane, publicación y consolidación del resultado, avance del batch y retries.
-- Pendiente ensayar el relato y confirmar configuración viva de producción para las afirmaciones de routing que dependan de scopes u overrides.
+- Guion y nueva propuesta Grid siguen seis capítulos: request/delta, entidades y creación del Deployment, dispatch, resultado, continuación/cierre y polling/UI. Se sigue el mismo ejemplo de topic y engine.
+- Recorrido contrastado con `rio-playmaker origin/master` local `3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1` el 2026-10-01; producción y routing vivo no verificados.
+- Corregidas dos distinciones para la exposición: DeploymentGroup contiene la orquestación y los batches se determinan por `ComponentRun.runOrder`; los nuevos Deployments ya nacen con un deadline de dispatch.
+- [Propuesta Grid vigente](https://grid.adminml.com/d/01M3VWJ9GQ1FHABT2GJZEN1VPA/view): seis slides Dark Theme privadas, con extractos de código y enlaces a decisiones. Fuente local: `30-resources/grids/rio-deployments-story/`. El documento y Grid anteriores conservan el snapshot de septiembre.
+- Request, BFF, normalización y polling contrastados con `ads-signals-frontend origin/master` local `791f79dd8050e1432bdc5c936539b22dbaa4e35d`.
+- Pendiente ensayar el recorrido y ajustar el tiempo definitivo; el guion conserva un presupuesto orientativo de 20–25 minutos.
 
 ## 🧱 Entrega de desarrollo
 
@@ -64,10 +63,14 @@ _Sin subproyectos._
 - [x] Reestructurar [[Deployments en RIO — flujo completo]] como guion técnico con tecnologías, puntos críticos, recuperación y deuda #owner/me #type/research #area/meli
 - [x] Crear [[Guion presentación — Deployments en RIO]] y Grid visual local #owner/me #type/research #area/meli
 - [x] Reencuadrar el Grid para revisión entre expertos, reducirlo a seis slides y agregar el modelo de datos visual #owner/me #type/research #area/meli
-- [ ] Ensayar el relato final y ajustar profundidad al tiempo disponible #owner/me #type/research #area/meli
+- [x] Reenfocar el guion a seis paradas verificadas en código de Playmaker, con entidades y decisiones en su momento del flujo #owner/me #type/research #area/meli
+- [x] Crear propuesta Grid técnica de seis capítulos desde el request de front hasta la vuelta del polling #owner/me #type/research #area/meli
+- [ ] Ensayar el recorrido por código y ajustar profundidad al tiempo disponible #owner/me #type/research #area/meli
 - [ ] Confirmar configuración viva de routing y suscripciones para distinguir código base de tráfico real #owner/me #type/research #area/meli #waiting
 
 ## 📆 Bitácora
+
+- **2026-10-01** — Por aclaración del usuario, la meet se centra en profundizar el flujo de Playmaker dentro de un recorrido acotado con código. Se reemplazó el guion por seis paradas verificadas contra `origin/master` local y se corrigieron group versus batch y deadline inicial; se creó una propuesta Grid Dark Theme de seis slides y se verificó también el front/BFF/polling.
 
 - **2026-09-08** — Segunda revisión visual: se ubicó la creación del Deployment explícitamente en el dispatch del batch, se reemplazaron A–D por tres marcadores de familias de corte, se rehízo la slide 3 como diagrama entidad–relación, se explicitó que Materializer termina mediante otro POST HTTP y se simplificó la slide 5 eliminando las cuatro cajas de mecanismos. Fury CP y `timeout_at` quedaron explicados dentro de la propia slide.
 - **2026-09-14** — Se expandió el Grid local de seis a doce slides para una revisión más específica: el recorrido distingue qué entidad crea Playmaker en cada momento, las dos transacciones de dispatch, el contrato e identidades del trigger, la aceptación y efecto de cada CP, la publicación y consolidación de resultados, y la continuación del batch. La evidencia sigue limitada a código/documentación local; routing vivo e incidencia real permanecen pendientes.
@@ -79,19 +82,20 @@ _Sin subproyectos._
 ## 🧭 Decisiones
 
 - Para comportamiento vigente, `origin/master` del servicio dueño prevalece sobre la knowledge library; la librería sirve como mapa y provenance, no como sustituto de verificación.
-- La guía principal contiene el modelo mínimo necesario para presentar; la evidencia de drift y el detalle forense viven separados en [[Revisión de ads-signals-knowledge-library]].
+- El guion contiene el recorrido vigente para la meet; la investigación de septiembre y la auditoría de la knowledge conservan sus fuentes y fechas de verificación como referencia.
 - Actions y runtime status se explican como protocolos adyacentes, no como estados del deployment, para no mezclar máquinas de estado distintas.
-- La presentación muestra primero el flujo y el modelo, y recién después usa cuatro fronteras para revisar recuperación; no intenta vender una solución ni asignar incidencia sin datos.
-- Materializer se presenta como owner explícito de storages y catch-all legacy, no como camino exclusivo de storage mientras `gcp-kafka-topic` siga fuera de la allowlist BigQueue de Playmaker.
+- El recorrido sigue una solicitud completa por Playmaker; las entidades y decisiones se explican cuando aparecen en el código. Los detalles internos de CPs y el backlog de recuperación quedan para preguntas posteriores.
+- Materializer se presenta en el punto de routing como camino REST con vuelta por callback y normalización al bus de resultados. El YAML local no prueba routing vivo.
 
 ## 🔗 Docs / Links
 
-- [[Deployments en RIO — flujo completo]] — documento principal para la presentación.
-- [[Guion presentación — Deployments en RIO]] — speech, transiciones, preguntas probables y datos a pedir.
-- `30-resources/grids/rio-deployments-critical-flow.html` — presentación Grid local autocontenida.
+- [[Deployments en RIO — flujo completo]] — investigación de septiembre; consultar el guion para el recorrido verificado en octubre.
+- [[Guion presentación — Deployments en RIO]] — recorrido actual por código, entidades por momento y decisiones importantes.
+- [Propuesta Grid — request a polling](https://grid.adminml.com/d/01M3VWJ9GQ1FHABT2GJZEN1VPA/view) — versión actual, seis capítulos con código; HTML y manifest en `30-resources/grids/rio-deployments-story/`.
+- `30-resources/grids/rio-deployments-critical-flow.html` — Grid anterior de septiembre.
 - [[Revisión de ads-signals-knowledge-library]] — auditoría de cobertura, integridad y frescura.
 - [[ads-signals-knowledge-library]] · [[RIO]] · [[rio-playmaker]] · [[rio-sdk-events]]
 
 ## 💡 Ideas
 
-- Usar el futuro Grid para contrastar visualmente el camino feliz con las ventanas de pérdida: `commit → evento en memoria`, `ACK → trabajo en background` y `estado terminal → publicación best effort`.
+- Usar un mismo caso ilustrativo para seguir el nacimiento de entidades, la salida del trigger, la vuelta de outputs y la habilitación del próximo batch.
