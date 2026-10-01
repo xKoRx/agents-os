@@ -2211,5 +2211,15 @@ Manager disposition:
 - Certification starts with no-order physical proof: account visibility, connection, market data, account state, instrument visibility, logs/reconnect behavior.
 - No Echo product implementation is authorized by this transport selection alone.
 
+### D6 C0 — NinjaTrader physical transport certification — 2026-09-30
+
+Shot TOP certifier sobre `dev-win` (192.168.31.132) vía `aranea-ssh` (perfiles `dev-win`/`dev-win-operator`). Artifact: `main/10-projects/Echo Futures/artifacts/d6-ninjatrader-certification-20260930/C0-NINJATRADER-PHYSICAL-TRANSPORT-CERTIFICATION.md`.
+
+- `D6_C0_NINJATRADER = BLOCKED` (bloqueo accionable, no fallo de transporte). ORDERS_SENT = 0; nada D5/D6 congelado fue tocado.
+- PASS físico: NinjaTrader Desktop 8.1.8.3 instalado y corriendo (PID en sesión interactiva del owner); conexión estable a `demo.tradovateapi.com:443` (2×) + gateway market data Tradovate AWS :31655 + endpoints licencia NT; estabilidad demostrada con poller (workspace externo `~/aranea/work/d6-nt-cert-20260930/nt-conn-poll.log`, ~3 h).
+- BLOCKED: visibilidad de cuenta GAU50, balance, NQ en GUI, market data observable, posiciones/órdenes y logs — viven en la sesión GUI del owner (perfil KoR, ACL denegada para `dev-win\echo-dev`, demostrada). NOT_TESTABLE_NOW: disconnect/reconnect y restart (requieren operación GUI del owner; poller armado para capturarlos).
+- Pendiente owner: checklist GUI §8 del artifact (≈5 min) + elegir camino de evidencia para el adapter (NT bajo echo-dev | ACL lectura del folder `Documents\NinjaTrader 8` | publisher estilo worker-kronos).
+- Con la checklist ejecutada, un shot de re-clasificación puede emitir `D6_C0_NINJATRADER = PASS`; no se emite `EF_D6_E2E_PASS` desde C0.
+
 
 
