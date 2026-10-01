@@ -25,7 +25,7 @@ tags:
   - kind/project
   - area/personal
 created: "2026-09-17"
-updated: "2026-09-29"
+updated: "2026-10-01"
 ---
 
 # Multimodal Knowledge Engine
@@ -134,6 +134,7 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 - [x] Ejecutar V2 Shot 1 — minimum complete implementation según `docs/v2/V2-IMPLEMENTATION-PLAN.md`; manager recheck final PASS @ `8ad46c8`, `MGR-S1-01 = CLOSED`. ✅2026-09-30 #owner/agent #type/dev #area/personal
 - [x] Ejecutar V2 Shot 2 — independent adversarial review, sin fixes de producto: `SHOT2_REVIEW = FINDINGS` @ `8ad46c8` (1C/6MA/10MI/12NOTE), repros físicos en worktrees de review. ✅2026-09-30 #owner/agent #type/testing #area/personal
 - [x] Ejecutar V2 Shot 3 — adjudicación, remediation y final certification: `V2_FINAL_CERTIFICATION = PASS` @ `cc13a12`, acceptance independiente PASS, suites 20/20, físico completo sobre fuente real. ✅2026-09-30 #owner/agent #type/testing #area/personal
+- [x] Ejecutar primera extracción full real live (Clutifx ch01) con V2 `cc13a12`: L0 COMPLETE, L1 `BLOCKED` por FATAL contractual de identidad (S2-B-01) @ w0003; review bundle en `evaluations/clutifx/chapter-01/`; decisión Owner+Manager pendiente. ✅2026-10-01 #owner/agent #type/testing #area/personal
 
 ## 📆 Bitácora
 
