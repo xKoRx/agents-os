@@ -1,0 +1,50 @@
+{
+ "result": "BLOCKED_L1_IDENTITY_CORRUPTION_FROZEN_CONTRACT",
+ "source_duration_seconds": 2043.933333333,
+ "source_size_bytes": 136600238,
+ "wall_time_total_seconds": 13193.5,
+ "wall_time_l0_seconds": 12712.5,
+ "wall_time_l1_l2_seconds": 481.0,
+ "asr_wall_seconds": 6463.6,
+ "media_wall_seconds": 2995.0,
+ "acquire_wall_seconds": 3248.9,
+ "frames_inspected": 2044,
+ "frames_persisted": 531,
+ "evidence_persisted": 1040,
+ "evidence_requests": 1040,
+ "transcript_segments": 323,
+ "transcript_spoken_seconds": 1979.8,
+ "windows_total": 130,
+ "windows_reconstructed": 3,
+ "provider_calls_total": 3,
+ "provider_calls_by_task": {
+  "claims.reconstruction": 3
+ },
+ "provider_calls_projected_full_chapter": {
+  "claims.reconstruction": 130,
+  "grounding_reviews_estimate": "~2500-2800",
+  "note": "proyecci\u00f3n desde 56 claims+4 relations en 3 ventanas; no observado"
+ },
+ "input_tokens": 70052,
+ "output_tokens": 30671,
+ "total_tokens": 100723,
+ "reported_cost": null,
+ "retries": 0,
+ "provider_failures": 0,
+ "fatal_errors": 1,
+ "claims_total": 0,
+ "claims_supported": 0,
+ "claims_non_supported": 0,
+ "relations_total": 0,
+ "relations_supported": 0,
+ "relations_non_supported": 0,
+ "skos_total": 0,
+ "skos_supported": 0,
+ "skos_non_supported": 0,
+ "proposals_not_committed": {
+  "claims": 56,
+  "relations": 4
+ },
+ "output_bytes": 0,
+ "review_bundle_bytes": null
+}

@@ -1,0 +1,9 @@
+{"kind": "vlm_call", "delta": 1, "state": "consumed", "request_id": "w0001"}
+{"kind": "vlm_image", "delta": 8, "state": "consumed", "request_id": "w0001"}
+{"kind": "vlm_token", "delta": 28162, "state": "consumed", "request_id": "w0001"}
+{"kind": "vlm_call", "delta": 1, "state": "consumed", "request_id": "w0002"}
+{"kind": "vlm_image", "delta": 8, "state": "consumed", "request_id": "w0002"}
+{"kind": "vlm_token", "delta": 39922, "state": "consumed", "request_id": "w0002"}
+{"kind": "vlm_call", "delta": 1, "state": "consumed", "request_id": "w0003"}
+{"kind": "vlm_image", "delta": 8, "state": "consumed", "request_id": "w0003"}
+{"kind": "vlm_token", "delta": 32639, "state": "consumed", "request_id": "w0003"}

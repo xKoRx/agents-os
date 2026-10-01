@@ -1,0 +1,136 @@
+{
+ "schema": "mke.recorded-response.v1",
+ "model": "stealth/space-bunny-alpha",
+ "provider_request_id": "2a411cc4f17069264d2da1e2fb9babc34729deaa20461ce36db36dbdd7070af7",
+ "response_id": "gen-1790821661-kP1BUcqlX71r9bJd44ms",
+ "usage": {
+  "prompt_tokens": 23274,
+  "completion_tokens": 4888,
+  "total_tokens": 28162
+ },
+ "warnings": [],
+ "structured": {
+  "schema": "mke.claims.v1",
+  "claims": [
+   {
+    "id": "cl-welcome-complete-course",
+    "kind": "claim",
+    "statement": "El instructor da la bienvenida a la audiencia al curso completo.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001",
+     "frame-4de8f12d4841c630-s0-p270000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-strategy-explored-in-depth",
+    "kind": "claim",
+    "statement": "El curso completo permitirá descubrir la estrategia en profundidad.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "cl-audience-likely-took-intermediate-course",
+    "kind": "claim",
+    "statement": "El instructor supone que la audiencia ya realizó su curso intermedio.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "cl-intermediate-course-provided-foundation",
+    "kind": "claim",
+    "statement": "El curso intermedio sirvió como base.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "cl-complete-course-will-expand-material",
+    "kind": "claim",
+    "statement": "El instructorAmpliará el material existente en el curso completo.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "cl-course-website-address",
+    "kind": "parameter",
+    "statement": "La dirección web mostrada es WWW.CURSOSDIGITALES701.COM.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p270000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-visit-website-for-more-courses",
+    "kind": "procedure_step",
+    "statement": "La pantalla indica que se visite el sitio web para obtener más cursos.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p270000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-symbol-is-eurusd",
+    "kind": "parameter",
+    "statement": "El símbolo mostrado en la gráfica es EURUSD.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-timeframe-is-five-minutes",
+    "kind": "parameter",
+    "statement": "La gráfica está configurada en intervalos de cinco minutos.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-uses-candlesticks",
+    "kind": "observation",
+    "statement": "La pantalla muestra una gráfica de precios con velas.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-displays-forex-com",
+    "kind": "observation",
+    "statement": "El nombre FOREX.com aparece en la interfaz de la gráfica.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+    ]
+   }
+  ],
+  "relations": [
+   {
+    "id": "rel-expansion-depends-on-foundation",
+    "type": "DEPENDS_ON",
+    "subject_id": "cl-complete-course-will-expand-material",
+    "object_id": "cl-intermediate-course-provided-foundation",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   }
+  ]
+ }
+}

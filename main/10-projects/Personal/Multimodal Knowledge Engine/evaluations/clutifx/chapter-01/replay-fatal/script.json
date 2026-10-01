@@ -1,0 +1,20 @@
+{
+ "schema": "mke.recorded-script.v1",
+ "entries": [
+  {
+   "task": "claims.reconstruction",
+   "target": "w0001",
+   "fixture": "script-fx/claims-reconstruction-w0001.json"
+  },
+  {
+   "task": "claims.reconstruction",
+   "target": "w0002",
+   "fixture": "script-fx/claims-reconstruction-w0002.json"
+  },
+  {
+   "task": "claims.reconstruction",
+   "target": "w0003",
+   "fixture": "script-fx/claims-reconstruction-w0003.json"
+  }
+ ]
+}

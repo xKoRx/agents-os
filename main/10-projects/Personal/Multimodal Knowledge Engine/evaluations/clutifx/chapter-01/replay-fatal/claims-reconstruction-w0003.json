@@ -1,0 +1,164 @@
+{
+ "schema": "mke.recorded-response.v1",
+ "model": "stealth/space-bunny-alpha",
+ "provider_request_id": "e05318c662138cd14c868aaa19208fc28d98518d83444c75ce2c5abef0b20d7f",
+ "response_id": "gen-1790822008-GML2mOO8MeKjTpQDFa5t",
+ "usage": {
+  "prompt_tokens": 23337,
+  "completion_tokens": 9302,
+  "total_tokens": 32639
+ },
+ "warnings": [],
+ "structured": {
+  "schema": "mke.claims.v1",
+  "claims": [
+   {
+    "id": "cl-proceed-directly-to-main-point",
+    "kind": "procedure_step",
+    "statement": "The instructor will proceed directly to the main point.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   },
+   {
+    "id": "cl-format-similar-to-intermediate-course",
+    "kind": "parameter",
+    "statement": "The instructor will use a presentation format somewhat similar to the one used in the intermediate course.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   },
+   {
+    "id": "cl-intermediate-course-omission-not-a-problem",
+    "kind": "rule",
+    "statement": "Not having followed the intermediate course is not a problem.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   },
+   {
+    "id": "cl-omitted-intermediate-info-not-fully-relevant",
+    "kind": "rule",
+    "statement": "None of the intermediate-course information omitted in this presentation is fully relevant to understanding the current topic.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   },
+   {
+    "id": "cl-chart-instrument-eurusd",
+    "kind": "parameter",
+    "statement": "The displayed chart instrument is EURUSD.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-source-forex-com",
+    "kind": "parameter",
+    "statement": "The displayed chart uses FOREX.com as its data source.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-timeframe-five-minutes",
+    "kind": "parameter",
+    "statement": "The displayed chart uses a five-minute bar interval.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-currency-usd",
+    "kind": "parameter",
+    "statement": "The displayed price scale is denominated in USD.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-visible-date-june-24-2025",
+    "kind": "parameter",
+    "statement": "The visible chart date is 24 June 2025.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-blue-rectangular-zones",
+    "kind": "observation",
+    "statement": "The chart contains translucent blue rectangular zones.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3420000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-horizontal-lines",
+    "kind": "observation",
+    "statement": "The chart contains horizontal lines extending across the price area.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3420000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-candles-upward-move-before-peak",
+    "kind": "observation",
+    "statement": "The visible candles make a substantial upward move before the local peak.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3420000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3510000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-candles-downward-move-after-peak",
+    "kind": "observation",
+    "statement": "The visible candles make a sharp downward move after the local peak.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3420000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3510000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-viewport-shifts-right",
+    "kind": "observation",
+    "statement": "The chart viewport shifts progressively to the right across the frame sequence.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3420000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3510000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3600000-canonical-v1"
+    ]
+   }
+  ],
+  "relations": [
+   {
+    "id": "rel-intermediate-course-omission-depends-on-relevance",
+    "type": "DEPENDS_ON",
+    "subject_id": "cl-intermediate-course-omission-not-a-problem",
+    "object_id": "cl-omitted-intermediate-info-not-fully-relevant",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   }
+  ]
+ }
+}

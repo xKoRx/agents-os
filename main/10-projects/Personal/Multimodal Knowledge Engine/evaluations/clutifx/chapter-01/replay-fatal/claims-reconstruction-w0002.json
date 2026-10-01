@@ -1,0 +1,325 @@
+{
+ "schema": "mke.recorded-response.v1",
+ "model": "stealth/space-bunny-alpha",
+ "provider_request_id": "d166a548bd273d4cb607e78e100714ab65a81e3497ce3059a47f8b013e4bfbb5",
+ "response_id": "gen-1790821706-Etr93KlPSDVTC02EIJQX",
+ "usage": {
+  "prompt_tokens": 23441,
+  "completion_tokens": 16481,
+  "total_tokens": 39922
+ },
+ "warnings": [],
+ "structured": {
+  "schema": "mke.claims.v1",
+  "claims": [
+   {
+    "id": "cl-complete-course-strategy-in-depth",
+    "kind": "claim",
+    "statement": "The complete course will explain the strategy in depth.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "cl-learners-may-have-intermediate-course",
+    "kind": "claim",
+    "statement": "The instructor expects that some learners may already have taken the intermediate course.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "cl-intermediate-course-lays-foundation",
+    "kind": "claim",
+    "statement": "The intermediate course laid the foundation for the complete course.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "cl-complete-course-expands-intermediate-content",
+    "kind": "claim",
+    "statement": "The complete course will expand on the material from the intermediate course.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "cl-first-course-chapter",
+    "kind": "claim",
+    "statement": "The material shown is the first chapter of the course.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-first-chapter-is-introduction",
+    "kind": "claim",
+    "statement": "The first chapter functions partly as an introduction.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-first-chapter-covers-everything",
+    "kind": "claim",
+    "statement": "The instructor says the first chapter will cover the full scope being introduced.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-chapter-covers-strategy",
+    "kind": "claim",
+    "statement": "The first chapter will cover the strategy.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-chapter-covers-bias",
+    "kind": "claim",
+    "statement": "The first chapter will cover BIAS.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-chapter-covers-entries",
+    "kind": "claim",
+    "statement": "The first chapter will cover entries.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-chapter-covers-risk",
+    "kind": "claim",
+    "statement": "The first chapter will cover risk.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-chapter-covers-unknown-concepts",
+    "kind": "claim",
+    "statement": "The first chapter will cover concepts that learners may not yet know.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-chapter-covers-news-trading",
+    "kind": "claim",
+    "statement": "The first chapter will cover how to trade news.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00002"
+    ]
+   },
+   {
+    "id": "cl-instructor-goes-directly-to-essentials",
+    "kind": "procedure_step",
+    "statement": "The instructor says he will go directly to the essentials.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   },
+   {
+    "id": "cl-format-similar-to-intermediate",
+    "kind": "claim",
+    "statement": "The complete course will follow a format somewhat similar to the intermediate course.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   },
+   {
+    "id": "cl-intermediate-course-not-required",
+    "kind": "rule",
+    "statement": "Learners who have not taken the intermediate course need not be concerned about proceeding.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   },
+   {
+    "id": "cl-intermediate-content-not-fully-relevant",
+    "kind": "claim",
+    "statement": "The instructor says no information from the intermediate course is fully relevant to understanding the current material.",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   },
+   {
+    "id": "cl-chart-instrument-eurusd",
+    "kind": "parameter",
+    "statement": "The displayed chart instrument is EUR/USD.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-timeframe-five-minutes",
+    "kind": "parameter",
+    "statement": "The chart uses a five-minute timeframe.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-feed-forexcom",
+    "kind": "observation",
+    "statement": "The chart header labels the feed as FOREX.com.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-date-2025-06-24",
+    "kind": "parameter",
+    "statement": "The chart displays the date 24 June 2025.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-chart-price-scale-usd",
+    "kind": "observation",
+    "statement": "The chart's right-hand price scale is denominated in USD.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-eurusd-sharp-upward-move",
+    "kind": "observation",
+    "statement": "The displayed EUR/USD price rises sharply from around 1.1535 to above 1.1620.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-eurusd-sharp-downward-move",
+    "kind": "observation",
+    "statement": "After reaching above 1.1620, the displayed EUR/USD price falls sharply toward 1.15880-1.15900.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-eurusd-quote-range",
+    "kind": "parameter",
+    "statement": "The displayed EUR/USD quote ranges from 1.15879 to 1.15903 across the supplied frames.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p1440000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p1800000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p2160000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p2520000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p2880000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p3240000-canonical-v1",
+     "frame-4de8f12d4841c630-s0-p810000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-sell-side-position-overlay",
+    "kind": "observation",
+    "statement": "A shaded sell-side position-tool overlay is displayed on the right side of the chart.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-overlay-upper-boundary",
+    "kind": "parameter",
+    "statement": "The position overlay's upper edge is near 1.1620.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-overlay-central-level",
+    "kind": "parameter",
+    "statement": "The position overlay has a central horizontal level near 1.16050.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-overlay-lower-boundary",
+    "kind": "parameter",
+    "statement": "The position overlay's lower edge is near 1.15744.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-solid-reference-level-116148",
+    "kind": "observation",
+    "statement": "A solid horizontal reference line is visible at 1.16148.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   },
+   {
+    "id": "cl-dashed-guide-115797",
+    "kind": "observation",
+    "statement": "A dashed horizontal guide is visible at 1.15797.",
+    "epistemic": "VIDEO_OBSERVED",
+    "evidence_ids": [
+     "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+    ]
+   }
+  ],
+  "relations": [
+   {
+    "id": "rel-course-expansion-depends-on-intermediate-foundation",
+    "type": "DEPENDS_ON",
+    "subject_id": "cl-complete-course-expands-intermediate-content",
+    "object_id": "cl-intermediate-course-lays-foundation",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00001"
+    ]
+   },
+   {
+    "id": "rel-intermediate-optional-depends-on-current-relevance",
+    "type": "DEPENDS_ON",
+    "subject_id": "cl-intermediate-course-not-required",
+    "object_id": "cl-intermediate-content-not-fully-relevant",
+    "epistemic": "INSTRUCTOR_SAID",
+    "evidence_ids": [
+     "asr-00003"
+    ]
+   }
+  ]
+ }
+}

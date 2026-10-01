@@ -1,0 +1,46 @@
+{
+ "windows": [
+  {
+   "window": "w0001",
+   "claims": 11,
+   "relations": 1,
+   "tokens": 28162
+  },
+  {
+   "window": "w0002",
+   "claims": 31,
+   "relations": 2,
+   "tokens": 39922
+  },
+  {
+   "window": "w0003",
+   "claims": 14,
+   "relations": 1,
+   "tokens": 32639
+  }
+ ],
+ "totals": {
+  "claims": 56,
+  "relations": 4
+ },
+ "kinds": {
+  "claim": 20,
+  "parameter": 16,
+  "procedure_step": 3,
+  "observation": 14,
+  "rule": 3
+ },
+ "epistemic": {
+  "INSTRUCTOR_SAID": 26,
+  "VIDEO_OBSERVED": 30
+ },
+ "evidence_kinds": {
+  "asr": 26,
+  "frame": 54
+ },
+ "statement_languages": {
+  "other": 1,
+  "es-like": 10,
+  "en": 45
+ }
+}

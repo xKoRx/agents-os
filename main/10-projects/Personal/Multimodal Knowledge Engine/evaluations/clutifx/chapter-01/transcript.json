@@ -1,0 +1,1944 @@
+{
+  "schema": "mke.transcript.v1",
+  "source_sha256": "4de8f12d4841c63022a03e7450e0b54c4947ed9c8fc8c408606dde79dd3d289b",
+  "segments": [
+    {
+      "id": "asr-00001",
+      "start_ms": 5810,
+      "end_ms": 19820,
+      "text": "Hola, bienvenido al curso completo. Aquí vas a descubrir la estrategia en profundidad y nada, sé que probablemente vengas ya de mi curso intermedio, así que eso sirvió para sentar la base y voy a ampliar ya todo."
+    },
+    {
+      "id": "asr-00002",
+      "start_ms": 19820,
+      "end_ms": 34850,
+      "text": "Este va a ser el primer capítulo, un poco así introducción, pero vamos a cubrir todo. La estrategia, el BIAS, las entradas, el riesgo, conceptos que aún no conoces, cómo operar noticias, ¿vale? Todo."
+    },
+    {
+      "id": "asr-00003",
+      "start_ms": 34850,
+      "end_ms": 49400,
+      "text": "Así que nada, vamos directamente al grano. El formato que voy a seguir va a ser un poco similar al del curso intermedio y si no lo has hecho, tranquilo, no pasa nada porque no hay información que sea totalmente relevante para ahora entender esto."
+    },
+    {
+      "id": "asr-00004",
+      "start_ms": 49620,
+      "end_ms": 61640,
+      "text": "Voy a empezar desde cero aquí también. Así que nada, vamos a empezar con los conceptos. Primero de todo, vamos a inculcar un concepto nuevo que a lo mejor no conocéis vosotros, que es el concepto de rango."
+    },
+    {
+      "id": "asr-00005",
+      "start_ms": 61640,
+      "end_ms": 81320,
+      "text": "¿Vale? El concepto de rango se refiere, voy a pintar la vela ahora, a las velas que la siguiente vela nos toma, o no tiene porque es la siguiente, otra vela, nos toma un extremo de esta vela y cierra dentro del anterior, ¿vale?"
+    },
+    {
+      "id": "asr-00006",
+      "start_ms": 81320,
+      "end_ms": 84540,
+      "text": "Esta sería una vela bajista probablemente, así que la pintaremos en negro."
+    },
+    {
+      "id": "asr-00007",
+      "start_ms": 85580,
+      "end_ms": 89520,
+      "text": "O sea, esto sería nosotros lo que consideramos un rango."
+    },
+    {
+      "id": "asr-00008",
+      "start_ms": 89920,
+      "end_ms": 98170,
+      "text": "Una vez el precio, toma uno de los dos extremos de la vela y cierra adentro."
+    },
+    {
+      "id": "asr-00009",
+      "start_ms": 98470,
+      "end_ms": 101310,
+      "text": "Ahora esto lo llamaríamos rango."
+    },
+    {
+      "id": "asr-00010",
+      "start_ms": 101950,
+      "end_ms": 103070,
+      "text": "Lo pongo aquí arriba."
+    },
+    {
+      "id": "asr-00011",
+      "start_ms": 103650,
+      "end_ms": 106390,
+      "text": "Este de aquí sería un rango alcista, en este caso."
+    },
+    {
+      "id": "asr-00012",
+      "start_ms": 107370,
+      "end_ms": 110680,
+      "text": "Ahora vamos a ver cómo se vería uno bajista."
+    },
+    {
+      "id": "asr-00013",
+      "start_ms": 110680,
+      "end_ms": 115250,
+      "text": "es lo mismo pero al revés, no tiene mucho misterio"
+    },
+    {
+      "id": "asr-00014",
+      "start_ms": 115250,
+      "end_ms": 118710,
+      "text": "sería esto de aquí, probablemente una vela positiva"
+    },
+    {
+      "id": "asr-00015",
+      "start_ms": 118710,
+      "end_ms": 122850,
+      "text": "no tiene por qué, pero la mayoría de veces vais a ver que sí que es así"
+    },
+    {
+      "id": "asr-00016",
+      "start_ms": 122850,
+      "end_ms": 127310,
+      "text": "y una vela negativa"
+    },
+    {
+      "id": "asr-00017",
+      "start_ms": 127310,
+      "end_ms": 134420,
+      "text": "o lo mismo, tampoco tiene que ser negativa como tal"
+    },
+    {
+      "id": "asr-00018",
+      "start_ms": 134420,
+      "end_ms": 139790,
+      "text": "pero normalmente pasa que nos toma"
+    },
+    {
+      "id": "asr-00019",
+      "start_ms": 139790,
+      "end_ms": 145040,
+      "text": "el extremo de la vela anterior y nos crea lo que sería"
+    },
+    {
+      "id": "asr-00020",
+      "start_ms": 145040,
+      "end_ms": 152600,
+      "text": "este rango vale vais a ver que la estrategia se basa principalmente en los rangos y esto no está"
+    },
+    {
+      "id": "asr-00021",
+      "start_ms": 152600,
+      "end_ms": 158800,
+      "text": "mencionado en el curso intermedio y es muy importante para encontrar las entradas para"
+    },
+    {
+      "id": "asr-00022",
+      "start_ms": 158800,
+      "end_ms": 165200,
+      "text": "encontrar el bias para todo así que esto sería rango alcista y este aquí sería un rango bajista"
+    },
+    {
+      "id": "asr-00023",
+      "start_ms": 165200,
+      "end_ms": 171300,
+      "text": "que tenemos vale este es el concepto de rango vamos a ir ahora un momento a gráfico que lo"
+    },
+    {
+      "id": "asr-00024",
+      "start_ms": 171300,
+      "end_ms": 179900,
+      "text": "vais a ver más claro y va a ser mucho más fácil de entender ya veréis vamos un momento aquí déjame"
+    },
+    {
+      "id": "asr-00025",
+      "start_ms": 179900,
+      "end_ms": 188660,
+      "text": "borrar esto porque ya ha quedado claro ejemplos reales de rangos vale por ejemplo este de aquí"
+    },
+    {
+      "id": "asr-00026",
+      "start_ms": 188660,
+      "end_ms": 199000,
+      "text": "esto aquí es un rango en el gráfico de 4 horas porque vemos como el precio toma el high de esta"
+    },
+    {
+      "id": "asr-00027",
+      "start_ms": 199000,
+      "end_ms": 205480,
+      "text": "vela y cierra adentro lo que forma un rango bajista es como el precio va a completarlo"
+    },
+    {
+      "id": "asr-00028",
+      "start_ms": 205480,
+      "end_ms": 215740,
+      "text": "este de aquí esta vela es un rango alcista en este caso porque la vela va por debajo cierra"
+    },
+    {
+      "id": "asr-00029",
+      "start_ms": 215740,
+      "end_ms": 228940,
+      "text": "adentro va a completarlo más ejemplos este aquí es un rango bajista la vela toma el alto cierra"
+    },
+    {
+      "id": "asr-00030",
+      "start_ms": 228940,
+      "end_ms": 234460,
+      "text": "dentro este se parece mucho al dibujo que se ha hecho y va para abajo directamente vale y ya es"
+    },
+    {
+      "id": "asr-00031",
+      "start_ms": 234460,
+      "end_ms": 241310,
+      "text": "la idea esto pasa en todas las temporalidades vamos al día y este es un rango diario vale"
+    },
+    {
+      "id": "asr-00032",
+      "start_ms": 241310,
+      "end_ms": 249740,
+      "text": "porque como al extremo cierra dentro otra vez parece que va por fuera cierra dentro otra vez"
+    },
+    {
+      "id": "asr-00033",
+      "start_ms": 249740,
+      "end_ms": 255260,
+      "text": "fuera sigue dentro esto es un rango alcista y podemos utilizar esto como target ya lo veréis"
+    },
+    {
+      "id": "asr-00034",
+      "start_ms": 255260,
+      "end_ms": 261470,
+      "text": "en el vídeo del bias pero para que quede claro el concepto de rango vale ahora dentro de los"
+    },
+    {
+      "id": "asr-00035",
+      "start_ms": 261470,
+      "end_ms": 269600,
+      "text": "rangos tenemos más tipos de rangos que nosotros hemos llamado así básicamente importante todo"
+    },
+    {
+      "id": "asr-00036",
+      "start_ms": 269600,
+      "end_ms": 275000,
+      "text": "este tema los rangos que lo vais a ver pero para lo que hemos encontrado nosotros es que el precio"
+    },
+    {
+      "id": "asr-00037",
+      "start_ms": 275000,
+      "end_ms": 281060,
+      "text": "se mueve en función de rangos siempre vale el precio actúa como una cadena donde el precio"
+    },
+    {
+      "id": "asr-00038",
+      "start_ms": 281060,
+      "end_ms": 286680,
+      "text": "forma un rango por aquí y que va a hacer sigue seguidamente el precio va a ir a completarlo"
+    },
+    {
+      "id": "asr-00039",
+      "start_ms": 286680,
+      "end_ms": 293000,
+      "text": "vale esto es la importancia de los rangos y es como la base de la estrategia que es como intentar"
+    },
+    {
+      "id": "asr-00040",
+      "start_ms": 293000,
+      "end_ms": 299680,
+      "text": "seguir por esta cadena que va haciendo el precio esto aquí nos forma un rango alcista lo completa"
+    },
+    {
+      "id": "asr-00041",
+      "start_ms": 299680,
+      "end_ms": 306860,
+      "text": "a partir de aquí a lo mejor nos forma ahora un rango bajista tomando el alto de esta vela lo"
+    },
+    {
+      "id": "asr-00042",
+      "start_ms": 306860,
+      "end_ms": 310720,
+      "text": "Lo que va a hacer el precio es ir a completar el rango bajista ahora."
+    },
+    {
+      "id": "asr-00043",
+      "start_ms": 311200,
+      "end_ms": 317960,
+      "text": "Es como que el precio utiliza esta manera como para ir completando las órdenes y aparejando todo."
+    },
+    {
+      "id": "asr-00044",
+      "start_ms": 318760,
+      "end_ms": 320440,
+      "text": "Y aquí tenemos un nuevo objetivo."
+    },
+    {
+      "id": "asr-00045",
+      "start_ms": 320960,
+      "end_ms": 324200,
+      "text": "Después de tomar un rango alcista se nos forma un rango bajista."
+    },
+    {
+      "id": "asr-00046",
+      "start_ms": 324780,
+      "end_ms": 326540,
+      "text": "Pues lo que iríamos es para aquí."
+    },
+    {
+      "id": "asr-00047",
+      "start_ms": 326540,
+      "end_ms": 331900,
+      "text": "Para que sepáis la importancia de los rangos es esto."
+    },
+    {
+      "id": "asr-00048",
+      "start_ms": 332160,
+      "end_ms": 335700,
+      "text": "Es asumir que los rangos que se nos van formando se van a completar."
+    },
+    {
+      "id": "asr-00049",
+      "start_ms": 335700,
+      "end_ms": 347660,
+      "text": "Ya vais a ver que hay matices, obviamente. En los siguientes vídeos, cuando veáis el bias y la explicación de la estrategia, ya vais a entender qué rangos se van a completar, qué no se van a completar y cómo navegar por ellos."
+    },
+    {
+      "id": "asr-00050",
+      "start_ms": 348000,
+      "end_ms": 353920,
+      "text": "Pero que sepáis que la importancia de estos es que normalmente nos van a decir hacia dónde va el precio."
+    },
+    {
+      "id": "asr-00051",
+      "start_ms": 354380,
+      "end_ms": 362440,
+      "text": "Completamos un alcista, se nos forma uno bajista, completamos el bajista y es ir completando los rangos."
+    },
+    {
+      "id": "asr-00052",
+      "start_ms": 362440,
+      "end_ms": 381560,
+      "text": "Es un ejercicio fácil si vamos, por ejemplo, a la temporalidad diaria, ir viendo cómo se van formando rangos y cómo se van completando, ¿vale? Por ejemplo, este de aquí, abajo hay un failure swing, vais a ver el concepto más tarde qué significa en este vídeo, ¿vale?"
+    },
+    {
+      "id": "asr-00053",
+      "start_ms": 381560,
+      "end_ms": 407710,
+      "text": "Vamos a ir, por ejemplo, a este rango de aquí, ¿vale? Esto de aquí. Normalmente si vemos cómo nos toma el alto y cierra adentro, este cierra un poco fuera, tenía ahí una mecha dibujada, este de aquí, por ejemplo, este bullish, vemos cómo si normalmente toma un extremo y cierra adentro, lo que va a hacer el precio es ir hacia el otro extremo."
+    },
+    {
+      "id": "asr-00054",
+      "start_ms": 407710,
+      "end_ms": 421350,
+      "text": "Lo podéis comprobar con vosotros mismos en muchas temporalidades cómo va pasando eso, ¿vale? Es que puedo buscar muchos ejemplos. Este de aquí también. Y esto es solo el diario, obviamente."
+    },
+    {
+      "id": "asr-00055",
+      "start_ms": 421870,
+      "end_ms": 429810,
+      "text": "No es suficiente esto para operar, sino el curso sería muy rápido. Pero para que veáis un poco la lógica de esto de los rangos, es que el precio se va moviendo así, ¿vale?"
+    },
+    {
+      "id": "asr-00056",
+      "start_ms": 429810,
+      "end_ms": 437310,
+      "text": "tal cual va formando rangos los va completando y va como haciendo su sus cosas pues en funciona"
+    },
+    {
+      "id": "asr-00057",
+      "start_ms": 437310,
+      "end_ms": 444030,
+      "text": "como los rangos están formados lo estáis viendo ahí muchos que os estoy pintando los rangos más"
+    },
+    {
+      "id": "asr-00058",
+      "start_ms": 444030,
+      "end_ms": 449870,
+      "text": "clean podrías hasta operar solo viendo el gráfico diario pero si quieres hacer este ejercicio por"
+    },
+    {
+      "id": "asr-00059",
+      "start_ms": 449870,
+      "end_ms": 457070,
+      "text": "vuestra parte de ir viendo un poco como los rangos se te van completando siempre no siempre por esto"
+    },
+    {
+      "id": "asr-00060",
+      "start_ms": 457070,
+      "end_ms": 461450,
+      "text": "estáis aquí también para ver por qué a veces no se completan pero para que pilléis la lógica de"
+    },
+    {
+      "id": "asr-00061",
+      "start_ms": 461450,
+      "end_ms": 466570,
+      "text": "qué importancia tienen los rangos de nuestra estrategia es básicamente navegar al precio y"
+    },
+    {
+      "id": "asr-00062",
+      "start_ms": 466570,
+      "end_ms": 474530,
+      "text": "saber pues hacia dónde va por qué hacia dónde puede ir después hay señales de reversión hay"
+    },
+    {
+      "id": "asr-00063",
+      "start_ms": 474530,
+      "end_ms": 481460,
+      "text": "señales de continuación vale normalmente si la vela cierra fuera y no te forma un rango bajista"
+    },
+    {
+      "id": "asr-00064",
+      "start_ms": 481460,
+      "end_ms": 486780,
+      "text": "lo que puedes esperar es que continúe teníamos un objetivo aquí arriba pues tú ves como esta"
+    },
+    {
+      "id": "asr-00065",
+      "start_ms": 486780,
+      "end_ms": 491560,
+      "text": "vela cierra con fuerza, no forma ningún rango bajista, pues puedes anticipar que esta lo"
+    },
+    {
+      "id": "asr-00066",
+      "start_ms": 491560,
+      "end_ms": 497060,
+      "text": "que va a seguir siendo es alcista hasta el objetivo, ¿vale? Ahora que se nos forman rangos"
+    },
+    {
+      "id": "asr-00067",
+      "start_ms": 497060,
+      "end_ms": 503540,
+      "text": "bearish otra vez, que en Libra están formados, ya lo vais a ver en el tema de la SMT, ahora"
+    },
+    {
+      "id": "asr-00068",
+      "start_ms": 503540,
+      "end_ms": 508840,
+      "text": "que se formó el rango bearish aquí arriba, es cuando el precio empezó a revertir, ¿vale?"
+    },
+    {
+      "id": "asr-00069",
+      "start_ms": 509540,
+      "end_ms": 514419,
+      "text": "Otra vez, rango bullish en Libra, teníamos este objetivo para hoy. ¿Por qué? Cierra"
+    },
+    {
+      "id": "asr-00070",
+      "start_ms": 514419,
+      "end_ms": 516220,
+      "text": "con fuerza este, no teníamos"
+    },
+    {
+      "id": "asr-00071",
+      "start_ms": 516220,
+      "end_ms": 519039,
+      "text": "rango bajista"
+    },
+    {
+      "id": "asr-00072",
+      "start_ms": 519039,
+      "end_ms": 520880,
+      "text": "que ha hecho a la libra ir directamente"
+    },
+    {
+      "id": "asr-00073",
+      "start_ms": 520880,
+      "end_ms": 522020,
+      "text": "hasta su objetivo."
+    },
+    {
+      "id": "asr-00074",
+      "start_ms": 523169,
+      "end_ms": 524110,
+      "text": "Aquí lo veis claro."
+    },
+    {
+      "id": "asr-00075",
+      "start_ms": 525900,
+      "end_ms": 527380,
+      "text": "Bueno, lástima"
+    },
+    {
+      "id": "asr-00076",
+      "start_ms": 527380,
+      "end_ms": 529240,
+      "text": "que llegó antes de que pudiésemos entrar"
+    },
+    {
+      "id": "asr-00077",
+      "start_ms": 529240,
+      "end_ms": 531120,
+      "text": "en la sesión, pero el objetivo de libra"
+    },
+    {
+      "id": "asr-00078",
+      "start_ms": 531120,
+      "end_ms": 533600,
+      "text": "estaba ahí arriba. Esta es un poco la importancia"
+    },
+    {
+      "id": "asr-00079",
+      "start_ms": 533600,
+      "end_ms": 534660,
+      "text": "de los rangos."
+    },
+    {
+      "id": "asr-00080",
+      "start_ms": 535400,
+      "end_ms": 536720,
+      "text": "Asumir que se van a completar"
+    },
+    {
+      "id": "asr-00081",
+      "start_ms": 536720,
+      "end_ms": 539220,
+      "text": "y que el precio funciona de esta manera. De un rango"
+    },
+    {
+      "id": "asr-00082",
+      "start_ms": 539220,
+      "end_ms": 540720,
+      "text": "a otro, llega uno bullish,"
+    },
+    {
+      "id": "asr-00083",
+      "start_ms": 541160,
+      "end_ms": 542780,
+      "text": "forma uno bearish, completa el bearish"
+    },
+    {
+      "id": "asr-00084",
+      "start_ms": 542780,
+      "end_ms": 545280,
+      "text": "y todo esto basado en las temporalidades"
+    },
+    {
+      "id": "asr-00085",
+      "start_ms": 545280,
+      "end_ms": 547140,
+      "text": "que vais a ver en el siguiente capítulo"
+    },
+    {
+      "id": "asr-00086",
+      "start_ms": 547140,
+      "end_ms": 549480,
+      "text": "pero para que entendáis un poco la base"
+    },
+    {
+      "id": "asr-00087",
+      "start_ms": 549480,
+      "end_ms": 550560,
+      "text": "de qué es un rango"
+    },
+    {
+      "id": "asr-00088",
+      "start_ms": 550560,
+      "end_ms": 553560,
+      "text": "y para qué van a ser importantes en esta mentoría"
+    },
+    {
+      "id": "asr-00089",
+      "start_ms": 553560,
+      "end_ms": 554870,
+      "text": "está"
+    },
+    {
+      "id": "asr-00090",
+      "start_ms": 554870,
+      "end_ms": 557790,
+      "text": "vamos a hacer un rango grande"
+    },
+    {
+      "id": "asr-00091",
+      "start_ms": 557790,
+      "end_ms": 559790,
+      "text": "ahora, os vais a imaginar que"
+    },
+    {
+      "id": "asr-00092",
+      "start_ms": 559790,
+      "end_ms": 561430,
+      "text": "esto es un rango de"
+    },
+    {
+      "id": "asr-00093",
+      "start_ms": 561430,
+      "end_ms": 563570,
+      "text": "temporalidad un día"
+    },
+    {
+      "id": "asr-00094",
+      "start_ms": 563570,
+      "end_ms": 566790,
+      "text": "¿vale? o sea"
+    },
+    {
+      "id": "asr-00095",
+      "start_ms": 566790,
+      "end_ms": 568830,
+      "text": "tendríamos nuestro objetivo ahí arriba"
+    },
+    {
+      "id": "asr-00096",
+      "start_ms": 568830,
+      "end_ms": 570950,
+      "text": "esto ya vamos a llegar más adelante pero"
+    },
+    {
+      "id": "asr-00097",
+      "start_ms": 570950,
+      "end_ms": 572710,
+      "text": "ponemos que el objetivo es aquí arriba"
+    },
+    {
+      "id": "asr-00098",
+      "start_ms": 572710,
+      "end_ms": 594750,
+      "text": "¿Por qué? Porque ahora vamos a lo que podría ser 4 horas, ha tomado el low de este rango, así, ¿vale? Luego hace otra vela por aquí, vamos a dibujarlo con mechas también que se vea un poco más real, ¿sí?"
+    },
+    {
+      "id": "asr-00099",
+      "start_ms": 594750,
+      "end_ms": 620320,
+      "text": "Y la nueva vela que abre va a abrir por aquí y si nos toma este low por aquí y cierra adentro o reacciona en la otra vela, o sea, toma el low de la vela anterior y sube, esto es lo que llamaremos un rango pendiente."
+    },
+    {
+      "id": "asr-00100",
+      "start_ms": 620780,
+      "end_ms": 626780,
+      "text": "¿Por qué? Rango pendiente significa que es un rango que se forma a favor de nuestra tendencia."
+    },
+    {
+      "id": "asr-00101",
+      "start_ms": 629160,
+      "end_ms": 652440,
+      "text": "Déjame repetirlo que quede claro. El objetivo es alcista porque tenemos este rango diario que es alcista, diario, y luego, por ejemplo, en cuatro horas estamos subiendo y ves como este rango abre por debajo del rango anterior, lo que significa que toma el low de la vela anterior."
+    },
+    {
+      "id": "asr-00102",
+      "start_ms": 652440,
+      "end_ms": 661680,
+      "text": "perdón, esto se llama rango pendiente, porque es un rango que va a favor de nuestro objetivo, ¿vale?"
+    },
+    {
+      "id": "asr-00103",
+      "start_ms": 662140,
+      "end_ms": 670680,
+      "text": "¿Qué sería el otro caso? Vamos a verlo. Sería lo que vamos a llamar rango reiniciado, ¿vale?"
+    },
+    {
+      "id": "asr-00104",
+      "start_ms": 671280,
+      "end_ms": 676080,
+      "text": "Podemos copiar esto de aquí igual, vamos a moverlo ahí."
+    },
+    {
+      "id": "asr-00105",
+      "start_ms": 676080,
+      "end_ms": 696980,
+      "text": "En el mismo caso, tenemos el rango diario aquí, tenemos el objetivo arriba, pero ¿cómo sería un rango reiniciado? Pues que la siguiente vela abre por arriba y toma el high, ¿vale?"
+    },
+    {
+      "id": "asr-00106",
+      "start_ms": 696980,
+      "end_ms": 711540,
+      "text": "Lo que ahora mismo, si vemos que esta vela abre, toma el high y nos cierra adentro, lo que está pasando ahora es que se nos está formando un rango bajista aquí, ¿vale?"
+    },
+    {
+      "id": "asr-00107",
+      "start_ms": 711760,
+      "end_ms": 718480,
+      "text": "Este es un rango que se nos forma altista, por lo tanto todo perfecto, pero este es un rango que se nos forma bajista."
+    },
+    {
+      "id": "asr-00108",
+      "start_ms": 720020,
+      "end_ms": 725600,
+      "text": "Pues esto es lo que vamos a llamarle rango reiniciado, ¿vale?"
+    },
+    {
+      "id": "asr-00109",
+      "start_ms": 725600,
+      "end_ms": 751040,
+      "text": "La palabra reiniciado significa, pues, que hay como que reiniciar antes de ir hacia el objetivo. Rango reiniciado. ¿Vale? Estos serían un poco los tipos de rangos. Es importante que lo sepáis porque en los reviews se va a hablar de rango reiniciado o rango pendiente y tenéis que entender que se refiere a esto."
+    },
+    {
+      "id": "asr-00110",
+      "start_ms": 751040,
+      "end_ms": 768600,
+      "text": "En resumen, rango reiniciado nos abre en contra de nuestro doble, en contra significa que abre por arriba creando un posible rango bajista y el pendiente nos abre en dirección a nuestro doble, creando un rango alcista con un doble alcista, ¿vale?"
+    },
+    {
+      "id": "asr-00111",
+      "start_ms": 768600,
+      "end_ms": 788180,
+      "text": "Espero que haya quedado claro. Vamos a ver algún ejemplo de esto en el gráfico ahora. Así que vamos allá. ¿Vale? Vamos a buscar, por ejemplo, teníamos el objetivo este diario de aquí arriba, que es el mismo que estaba explicando de ejemplo."
+    },
+    {
+      "id": "asr-00112",
+      "start_ms": 788180,
+      "end_ms": 799700,
+      "text": "vamos a ver si teníamos algo por aquí. Correcto, tenemos bastantes ejemplos. Primero, el rango este es un rango reiniciado, ¿vale?"
+    },
+    {
+      "id": "asr-00113",
+      "start_ms": 800020,
+      "end_ms": 808500,
+      "text": "Porque el objetivo está arriba, tú quieres comprar, comprar, comprar, comprar, pero se te forma un rango en contra y para abajo."
+    },
+    {
+      "id": "asr-00114",
+      "start_ms": 809240,
+      "end_ms": 818800,
+      "text": "Vamos a buscar ahora un rango pendiente, que ya recuerdo que lo tenemos en 12 horas. Tenemos, bueno, este es un reiniciado también, como veis,"
+    },
+    {
+      "id": "asr-00115",
+      "start_ms": 818800,
+      "end_ms": 840040,
+      "text": "Y luego este es un rango pendiente que se nos creó. Aquí veis como la vela ya lo toma y sube directamente, pero esto visto a tiempo real, vimos como tomaba el low y empezaba a reaccionar, o sea que se podía anticipar de que se estaba creando un rango antes de que cerrar."
+    },
+    {
+      "id": "asr-00116",
+      "start_ms": 840040,
+      "end_ms": 846120,
+      "text": "Es un poco ya más avanzado eso, ya lo iréis viendo conforme practiquéis la estrategia, pero sería esto."
+    },
+    {
+      "id": "asr-00117",
+      "start_ms": 846280,
+      "end_ms": 853780,
+      "text": "Creo que en 8 horas sí que se ve como rango. En 8 horas el rango que tendríamos es este, pendiente también."
+    },
+    {
+      "id": "asr-00118",
+      "start_ms": 854260,
+      "end_ms": 865810,
+      "text": "¿Ves cómo no toma este extremo? Pues lo que hace es abrir por debajo, cerrar dentro del rango, creando un rango a favor de nuestra tendencia para ir para arriba."
+    },
+    {
+      "id": "asr-00119",
+      "start_ms": 865810,
+      "end_ms": 882140,
+      "text": "En el mismo caso, este era un reiniciado porque va en contra de nuestra tendencia. Rango bajista con el objetivo bullish, reiniciado. Rango a favor, o sea, alcista con el objetivo bullish, rango pendiente."
+    },
+    {
+      "id": "asr-00120",
+      "start_ms": 882140,
+      "end_ms": 892160,
+      "text": "No tiene mucha más importancia los nombres, es simplemente para referirnos a los rangos de una forma que quede más, como para concretar más."
+    },
+    {
+      "id": "asr-00121",
+      "start_ms": 892280,
+      "end_ms": 894380,
+      "text": "Pero la idea viene a ser lo mismo."
+    },
+    {
+      "id": "asr-00122",
+      "start_ms": 895280,
+      "end_ms": 903770,
+      "text": "La estrategia ya veréis que es un poco como una cadena de rangos que se van completando en dirección a los objetivos."
+    },
+    {
+      "id": "asr-00123",
+      "start_ms": 905030,
+      "end_ms": 912260,
+      "text": "Tartel sub es muy conocido, pero tengo que mencionarlo también porque es una frase que va a aparecer mucho en la mentoría."
+    },
+    {
+      "id": "asr-00124",
+      "start_ms": 912620,
+      "end_ms": 925960,
+      "text": "Tartel sub básicamente se refiere a tomar el alto para crear un rango o para completarlo y tener la reacción después de tomar este alto hacia el otro lado."
+    },
+    {
+      "id": "asr-00125",
+      "start_ms": 925960,
+      "end_ms": 932310,
+      "text": "Esto sería un poco la definición de tartel sub."
+    },
+    {
+      "id": "asr-00126",
+      "start_ms": 932510,
+      "end_ms": 936490,
+      "text": "En este caso, esto sería un tartel sub bajista."
+    },
+    {
+      "id": "asr-00127",
+      "start_ms": 937270,
+      "end_ms": 939690,
+      "text": "Vamos a verlo con velas y con ejemplos, que se vea más claro."
+    },
+    {
+      "id": "asr-00128",
+      "start_ms": 939690,
+      "end_ms": 954040,
+      "text": "vale vamos a hacerlo así de otros nombres como toma de liquidez o simplemente pues toma del"
+    },
+    {
+      "id": "asr-00129",
+      "start_ms": 954040,
+      "end_ms": 960690,
+      "text": "alto del bajo pero bueno queda así un poco mejor esto sería una vela pongámosle de cuatro horas"
+    },
+    {
+      "id": "asr-00130",
+      "start_ms": 960690,
+      "end_ms": 976240,
+      "text": "vale siguiente vela hace esto así toma el low reacciona entonces es un tartel sub vale si esto"
+    },
+    {
+      "id": "asr-00131",
+      "start_ms": 976240,
+      "end_ms": 984900,
+      "text": "en lugar de reaccionar, sigue bajando, no es ningún tartle sub, ¿vale? O sea, el tartle sub tiene que ser una toma de liquidez"
+    },
+    {
+      "id": "asr-00132",
+      "start_ms": 984900,
+      "end_ms": 994320,
+      "text": "y mostrar un tipo de reacción hacia la dirección contraria, ¿vale? Puede ser que te haga una finta, que baje, que parece que suba"
+    },
+    {
+      "id": "asr-00133",
+      "start_ms": 994320,
+      "end_ms": 999880,
+      "text": "y tú te confundas viendo que es un tartle sub y quizá no lo es. Puede pasar, ¿vale? Son errores que pueden pasar."
+    },
+    {
+      "id": "asr-00134",
+      "start_ms": 999880,
+      "end_ms": 1007360,
+      "text": "Pero la idea es esta, ¿vale? Toma del bajo, reacción bullish, pues tenemos Tartle Sup."
+    },
+    {
+      "id": "asr-00135",
+      "start_ms": 1007540,
+      "end_ms": 1013480,
+      "text": "Concepto muy importante porque el Tartle Sup es lo que marca que el inicio del movimiento se puede dar ya."
+    },
+    {
+      "id": "asr-00136",
+      "start_ms": 1013900,
+      "end_ms": 1022220,
+      "text": "O sea, tú, si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Tartle Sup, ¿vale?"
+    },
+    {
+      "id": "asr-00137",
+      "start_ms": 1022220,
+      "end_ms": 1031520,
+      "text": "que es aquí abajo. No tendría por qué pasar que el precio vuelva a bajar, a hacer otro Tartel Sub para ir para arriba."
+    },
+    {
+      "id": "asr-00138",
+      "start_ms": 1032800,
+      "end_ms": 1040540,
+      "text": "Dicho esto, hay un nuevo concepto que se llama Intra Tartel Sub, que es cuando hace un Tartel Sub extra, ¿vale?"
+    },
+    {
+      "id": "asr-00139",
+      "start_ms": 1041460,
+      "end_ms": 1049870,
+      "text": "No tiene por qué hacerlo, pero hay veces que puede pasar algo así. Son veces que puedes tener un stop loss"
+    },
+    {
+      "id": "asr-00140",
+      "start_ms": 1049870,
+      "end_ms": 1051830,
+      "text": "utilizando esta estrategia"
+    },
+    {
+      "id": "asr-00141",
+      "start_ms": 1051830,
+      "end_ms": 1053290,
+      "text": "y no pasa nada, porque"
+    },
+    {
+      "id": "asr-00142",
+      "start_ms": 1053290,
+      "end_ms": 1055750,
+      "text": "la lógica está bien, la lógica está correcta"
+    },
+    {
+      "id": "asr-00143",
+      "start_ms": 1055750,
+      "end_ms": 1057630,
+      "text": "como veis, la vela"
+    },
+    {
+      "id": "asr-00144",
+      "start_ms": 1057630,
+      "end_ms": 1059190,
+      "text": "sigue cerrando dentro, por lo tanto"
+    },
+    {
+      "id": "asr-00145",
+      "start_ms": 1059190,
+      "end_ms": 1062020,
+      "text": "este rango sigue estando"
+    },
+    {
+      "id": "asr-00146",
+      "start_ms": 1062020,
+      "end_ms": 1062940,
+      "text": "operativo, ¿vale?"
+    },
+    {
+      "id": "asr-00147",
+      "start_ms": 1064440,
+      "end_ms": 1066760,
+      "text": "así que son cosas que tenéis que aceptar"
+    },
+    {
+      "id": "asr-00148",
+      "start_ms": 1066760,
+      "end_ms": 1069020,
+      "text": "que pueden pasar, porque si no tendríamos un 100%"
+    },
+    {
+      "id": "asr-00149",
+      "start_ms": 1069020,
+      "end_ms": 1070880,
+      "text": "de winrate y tampoco es plan"
+    },
+    {
+      "id": "asr-00150",
+      "start_ms": 1070880,
+      "end_ms": 1072840,
+      "text": "¿no? o sea que esto sería"
+    },
+    {
+      "id": "asr-00151",
+      "start_ms": 1072840,
+      "end_ms": 1074540,
+      "text": "el intratartel sub que hace"
+    },
+    {
+      "id": "asr-00152",
+      "start_ms": 1074540,
+      "end_ms": 1076100,
+      "text": "un tartel sub"
+    },
+    {
+      "id": "asr-00153",
+      "start_ms": 1076100,
+      "end_ms": 1079270,
+      "text": "otro tartel sub de un tartel sub que ya está hecho"
+    },
+    {
+      "id": "asr-00154",
+      "start_ms": 1079270,
+      "end_ms": 1081020,
+      "text": "¿pasa muchas veces?"
+    },
+    {
+      "id": "asr-00155",
+      "start_ms": 1081020,
+      "end_ms": 1099350,
+      "text": "No. Algunas veces pasa, sí. ¿Cómo se puede intentar predecir? Que lo vais a ver más adelante. Pero si esto es una vela, digamos, de un día y en cuatro horas tenemos, pues, algo así, como que se nos forma un rango contrario, ¿vale?"
+    },
+    {
+      "id": "asr-00156",
+      "start_ms": 1099350,
+      "end_ms": 1112970,
+      "text": "a nuestra dirección, puede pasar que el precio vaya a completar rangos antes de subir. Por lo tanto, aquí si nosotros hemos comprado, podríamos poner un break even"
+    },
+    {
+      "id": "asr-00157",
+      "start_ms": 1112970,
+      "end_ms": 1122470,
+      "text": "al ver que se nos están formando rangos en contra y luego una vez pasa esto, vuelve a reaccionar, podríamos poner nuestra entrada ahí otra vez. Lo vais a ver mucho más fácil"
+    },
+    {
+      "id": "asr-00158",
+      "start_ms": 1122470,
+      "end_ms": 1127930,
+      "text": "cuando os enseñe en el gráfico ya en el siguiente capítulo cómo funciona la estrategia y todo pero"
+    },
+    {
+      "id": "asr-00159",
+      "start_ms": 1127930,
+      "end_ms": 1136720,
+      "text": "para que si yo hablo de intentarte el show sepáis que es es esto un tarde el sub una vez ya se ha"
+    },
+    {
+      "id": "asr-00160",
+      "start_ms": 1136720,
+      "end_ms": 1143660,
+      "text": "dado el otro tarde vale lo mismo tiene que ser tomar y reacción y cerrar dentro del mismo rango"
+    },
+    {
+      "id": "asr-00161",
+      "start_ms": 1143660,
+      "end_ms": 1153410,
+      "text": "para que sea considerado intentarte su sitio si cierra fuera del primer rango así vale este rango"
+    },
+    {
+      "id": "asr-00162",
+      "start_ms": 1153410,
+      "end_ms": 1157090,
+      "text": "y ya se puede eliminar, ya no se consideraría más un rango"
+    },
+    {
+      "id": "asr-00163",
+      "start_ms": 1157090,
+      "end_ms": 1161050,
+      "text": "y tendríamos a lo mejor un nuevo rango que podría ser este."
+    },
+    {
+      "id": "asr-00164",
+      "start_ms": 1161750,
+      "end_ms": 1166610,
+      "text": "O sea, esto ya no sería un intertartel sub, sino que sería un tartel sub de este rango"
+    },
+    {
+      "id": "asr-00165",
+      "start_ms": 1166610,
+      "end_ms": 1170510,
+      "text": "y este lo podríamos ya eliminar porque la vela cierra fuera, ¿vale?"
+    },
+    {
+      "id": "asr-00166",
+      "start_ms": 1170790,
+      "end_ms": 1174750,
+      "text": "Importante este concepto también, que una vez el rango se nos completa,"
+    },
+    {
+      "id": "asr-00167",
+      "start_ms": 1175840,
+      "end_ms": 1179620,
+      "text": "completa significa que toma tanto el low como el alto, ¿vale?"
+    },
+    {
+      "id": "asr-00168",
+      "start_ms": 1179620,
+      "end_ms": 1197440,
+      "text": "Este rango ya se puede eliminar y del mismo caso, si cierra afuera, esto ya no es un rango. Si tenemos una idea alcista, tendremos que esperar ahora a que una nueva vela, bueno, la dejo aquí marcada, en este caso, ello, esto ya no es un rango."
+    },
+    {
+      "id": "asr-00169",
+      "start_ms": 1197440,
+      "end_ms": 1208710,
+      "text": "¿Y qué tenemos que esperar ahora? Que la nueva vela abra, tome el low, así, forme nuevo rango y tenemos el objetivo aquí."
+    },
+    {
+      "id": "asr-00170",
+      "start_ms": 1209230,
+      "end_ms": 1212910,
+      "text": "Ya no aquí, ¿vale? Porque esto ya está borrado, sino este."
+    },
+    {
+      "id": "asr-00171",
+      "start_ms": 1213530,
+      "end_ms": 1219830,
+      "text": "Y a partir de aquí, pues, podríamos seguir hasta ahí arriba."
+    },
+    {
+      "id": "asr-00172",
+      "start_ms": 1221730,
+      "end_ms": 1226210,
+      "text": "¿Vale? Y sería un poco esto la idea. Este ya no importaría, este sí."
+    },
+    {
+      "id": "asr-00173",
+      "start_ms": 1226210,
+      "end_ms": 1245430,
+      "text": "Una vez pasa esto, ya puedes eliminar este rango, olvidarte de él y volver a analizar lo que está haciendo el precio, mirar a ver si hay un objetivo más arriba y bueno, ya no me adelanto mucho que lo vais a ver ya en el siguiente capítulo explicando ya un poco más la estrategia, ¿vale? Así que nada, seguimos."
+    },
+    {
+      "id": "asr-00174",
+      "start_ms": 1245430,
+      "end_ms": 1283400,
+      "text": "Vamos a seguir. Concepto SMT. Ya está explicado también en el curso intermedio. Muchos venís a SMT. Ya sabéis qué es. La SMT que conocemos nosotros o que conocíais vosotros anteriormente es esta. Por ejemplo, esto es el euro. Y esto es la libra. Esta sería la SMT que conocíamos, que conocíais, perdón, hasta ahora."
+    },
+    {
+      "id": "asr-00175",
+      "start_ms": 1283400,
+      "end_ms": 1285320,
+      "text": "nuevo alto en euro"
+    },
+    {
+      "id": "asr-00176",
+      "start_ms": 1285320,
+      "end_ms": 1289680,
+      "text": "no hace nuevo alto en libra"
+    },
+    {
+      "id": "asr-00177",
+      "start_ms": 1289680,
+      "end_ms": 1292420,
+      "text": "por lo tanto podría ser una señal de reversión"
+    },
+    {
+      "id": "asr-00178",
+      "start_ms": 1292420,
+      "end_ms": 1293900,
+      "text": "esto es lo que os han enseñado hasta ahora"
+    },
+    {
+      "id": "asr-00179",
+      "start_ms": 1293900,
+      "end_ms": 1296240,
+      "text": "con la estrategia va a cambiar un poco"
+    },
+    {
+      "id": "asr-00180",
+      "start_ms": 1296240,
+      "end_ms": 1297760,
+      "text": "el concepto de SMT"
+    },
+    {
+      "id": "asr-00181",
+      "start_ms": 1297760,
+      "end_ms": 1298600,
+      "text": "lo vais a ver ahora"
+    },
+    {
+      "id": "asr-00182",
+      "start_ms": 1298600,
+      "end_ms": 1302320,
+      "text": "va a haber un capítulo solo de SMT"
+    },
+    {
+      "id": "asr-00183",
+      "start_ms": 1302320,
+      "end_ms": 1303760,
+      "text": "donde va a quedar mucho más claro"
+    },
+    {
+      "id": "asr-00184",
+      "start_ms": 1303760,
+      "end_ms": 1305680,
+      "text": "pero para hacer una pequeña introducción"
+    },
+    {
+      "id": "asr-00185",
+      "start_ms": 1305680,
+      "end_ms": 1306420,
+      "text": "voy a hacerlo ahora"
+    },
+    {
+      "id": "asr-00186",
+      "start_ms": 1306420,
+      "end_ms": 1309450,
+      "text": "como ya sabéis esto podría ser con el DXI también"
+    },
+    {
+      "id": "asr-00187",
+      "start_ms": 1309450,
+      "end_ms": 1312030,
+      "text": "pero bueno, ya lo vais a ver entero"
+    },
+    {
+      "id": "asr-00188",
+      "start_ms": 1312030,
+      "end_ms": 1313210,
+      "text": "en el capítulo de la SMT"
+    },
+    {
+      "id": "asr-00189",
+      "start_ms": 1313210,
+      "end_ms": 1315270,
+      "text": "esto es lo que conocíais antes"
+    },
+    {
+      "id": "asr-00190",
+      "start_ms": 1315270,
+      "end_ms": 1345680,
+      "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+    },
+    {
+      "id": "asr-00191",
+      "start_ms": 1345680,
+      "end_ms": 1359310,
+      "text": "¿Vale? Pues vais a ver que hay como dos tipos de SMT, ¿vale? La que vamos a ver nosotros, en este caso, por ejemplo, podías tener este objetivo alcista en euro,"
+    },
+    {
+      "id": "asr-00192",
+      "start_ms": 1360720,
+      "end_ms": 1374580,
+      "text": "esto sería lo mismo de antes, tomar el low y formar el rango y todo, mismo en libra, pero luego en libra puede pasarte algo así, no llega al objetivo, ¿vale?"
+    },
+    {
+      "id": "asr-00193",
+      "start_ms": 1374580,
+      "end_ms": 1395310,
+      "text": "Y luego puede pasarte pues algo así, que esta vela haga algo así sin llegar al objetivo, ¿vale? Este es un tipo de SMT que si no conoces la estrategia no vas a poder ver de ningún modo porque a veces estos datos están un poco ocultos, ¿vale?"
+    },
+    {
+      "id": "asr-00194",
+      "start_ms": 1395310,
+      "end_ms": 1409220,
+      "text": "Pues esto sería un SMT. En el caso de un objetivo, que euro pueda llegar a completar y el par correlacionado, ya sea JP o DXY, no llegue a su objetivo y pase el reversal directamente."
+    },
+    {
+      "id": "asr-00195",
+      "start_ms": 1409520,
+      "end_ms": 1415120,
+      "text": "Por lo tanto, tú aquí tendrías que estar atento a los dos pares para que no te pase esto, ¿vale?"
+    },
+    {
+      "id": "asr-00196",
+      "start_ms": 1415520,
+      "end_ms": 1422440,
+      "text": "Tú estás en un long en libra, pero euro ya ves que llega a los objetivos, puede haber una SMT ahí arriba y se te gire el precio directamente."
+    },
+    {
+      "id": "asr-00197",
+      "start_ms": 1422440,
+      "end_ms": 1451830,
+      "text": "No es que tenga que ser una SMT entre estas dos velas, como se ve muchas veces. Puede ser una SMT en el tema de llegar a los objetivos, ¿vale? Del mismo modo puede haber una SMT para formar el rango. ¿Qué significa esto? Que el rango de libra sea así. Bueno, lo haremos con mecha, que quede más real. Que esto sea así. Por lo tanto, no ha tomado el extremo del rango. Y el de euro que sea así, ¿vale?"
+    },
+    {
+      "id": "asr-00198",
+      "start_ms": 1452390,
+      "end_ms": 1460680,
+      "text": "Entonces, esto es una SMT que nos indica que esto de GIP es un rango también, ¿vale?"
+    },
+    {
+      "id": "asr-00199",
+      "start_ms": 1461220,
+      "end_ms": 1465220,
+      "text": "Si simplemente no se ve como un rango es porque en euros sí lo ha tomado y en GIP no."
+    },
+    {
+      "id": "asr-00200",
+      "start_ms": 1465220,
+      "end_ms": 1474340,
+      "text": "Por lo tanto, esta sería una SMT, lo que convertiría esto en un rango y convertiría esto en un objetivo también, ¿vale?"
+    },
+    {
+      "id": "asr-00201",
+      "start_ms": 1474660,
+      "end_ms": 1482620,
+      "text": "O sea, ya habéis visto, puede ser la SMT para llegar al objetivo o puede ser la SMT para crear el rango."
+    },
+    {
+      "id": "asr-00202",
+      "start_ms": 1482620,
+      "end_ms": 1490720,
+      "text": "no tiene por qué también ser solo el rango inicial, puede ser también en tema rangos pendientes, como he enseñado antes, ¿vale?"
+    },
+    {
+      "id": "asr-00203",
+      "start_ms": 1490780,
+      "end_ms": 1495880,
+      "text": "Puede ser que la Libra nos crea este de aquí para poder llegar hasta el target, ¿vale?"
+    },
+    {
+      "id": "asr-00204",
+      "start_ms": 1496620,
+      "end_ms": 1502160,
+      "text": "Y que en cambio Euro no consiga crear el rango para ir hasta el target, ¿vale?"
+    },
+    {
+      "id": "asr-00205",
+      "start_ms": 1502220,
+      "end_ms": 1508980,
+      "text": "Pero esto lo podemos ver como un rango que sí que se ha creado, ya que la Libra lo ha hecho, ¿vale?"
+    },
+    {
+      "id": "asr-00206",
+      "start_ms": 1508980,
+      "end_ms": 1535940,
+      "text": "O sea, esto sería otro caso de S&T que muchas veces no se ve a simple vista, pero si esto es un gráfico de 4 horas y tú estás esperando que se te forme un rango para poder comprar, ¿vale? Pues, solo viendo que la libra está creándolo, puede ser que euro no tenga que crearlo y pueda llegar hasta arriba, ¿vale? Me estoy anticipando ya mucho, pero para que quede claro el concepto de SMT en la estrategia."
+    },
+    {
+      "id": "asr-00207",
+      "start_ms": 1535940,
+      "end_ms": 1552160,
+      "text": "Luego, concepto de failure swing, ya lo visteis también un poco en el curso intermedio. El failure swing es cuando el precio no consigue hacer un nuevo bajo y puede darse por varios casos."
+    },
+    {
+      "id": "asr-00208",
+      "start_ms": 1552160,
+      "end_ms": 1553960,
+      "text": "por la SMT"
+    },
+    {
+      "id": "asr-00209",
+      "start_ms": 1553960,
+      "end_ms": 1555930,
+      "text": "puede darse por"
+    },
+    {
+      "id": "asr-00210",
+      "start_ms": 1555930,
+      "end_ms": 1558430,
+      "text": "que ha hecho el alto"
+    },
+    {
+      "id": "asr-00211",
+      "start_ms": 1558430,
+      "end_ms": 1560870,
+      "text": "al final, o en este caso el bajo"
+    },
+    {
+      "id": "asr-00212",
+      "start_ms": 1560870,
+      "end_ms": 1564680,
+      "text": "al final de la vela"
+    },
+    {
+      "id": "asr-00213",
+      "start_ms": 1564680,
+      "end_ms": 1566320,
+      "text": "va a haber un capítulo de Felur Swing"
+    },
+    {
+      "id": "asr-00214",
+      "start_ms": 1566320,
+      "end_ms": 1568460,
+      "text": "donde voy a enseñar ejemplos y lo voy a enseñar mejor"
+    },
+    {
+      "id": "asr-00215",
+      "start_ms": 1568460,
+      "end_ms": 1570960,
+      "text": "pero bueno, Felur Swing es cuando"
+    },
+    {
+      "id": "asr-00216",
+      "start_ms": 1570960,
+      "end_ms": 1572760,
+      "text": "el precio no consigue hacer"
+    },
+    {
+      "id": "asr-00217",
+      "start_ms": 1572760,
+      "end_ms": 1573880,
+      "text": "el nuevo bajo"
+    },
+    {
+      "id": "asr-00218",
+      "start_ms": 1573880,
+      "end_ms": 1576780,
+      "text": "pero el rango se daría por creado y empieza a ir"
+    },
+    {
+      "id": "asr-00219",
+      "start_ms": 1576780,
+      "end_ms": 1577660,
+      "text": "arriba directamente"
+    },
+    {
+      "id": "asr-00220",
+      "start_ms": 1577660,
+      "end_ms": 1580400,
+      "text": "he puesto un poco de ejemplo, sería algo así"
+    },
+    {
+      "id": "asr-00221",
+      "start_ms": 1580400,
+      "end_ms": 1583880,
+      "text": "como lo que habéis visto antes"
+    },
+    {
+      "id": "asr-00222",
+      "start_ms": 1583880,
+      "end_ms": 1585060,
+      "text": "abre vela aquí"
+    },
+    {
+      "id": "asr-00223",
+      "start_ms": 1585060,
+      "end_ms": 1602810,
+      "text": "que pase algo así, ¿vale? No se lleva a tomar el low, pero podemos darlo esto como un rango igualmente por estos motivos, ¿vale? Y falta el último, que es que en otro"
+    },
+    {
+      "id": "asr-00224",
+      "start_ms": 1602810,
+      "end_ms": 1618010,
+      "text": "broker sí ha hecho el low, ¿vale? Por ejemplo, esto es Forexcom, pues a lo mejor a FXCM sí que se lleva el low este. Va a haber veces que lo vas a ver así, que esto se queda"
+    },
+    {
+      "id": "asr-00225",
+      "start_ms": 1618010,
+      "end_ms": 1630490,
+      "text": "aquí y te quedas haciendo zoom pensando si se lo lleva o no y luego te das cuenta que es prácticamente igual y que en otro broker esto realmente se ve así, ¿vale?"
+    },
+    {
+      "id": "asr-00226",
+      "start_ms": 1630490,
+      "end_ms": 1640330,
+      "text": "Por lo tanto, sería el rango por creado igualmente. Esto es el failure swing. Vale, hemos hablado de rango pendiente, rango reiniciado, SMT, failure swing."
+    },
+    {
+      "id": "asr-00227",
+      "start_ms": 1640330,
+      "end_ms": 1642330,
+      "text": "queda el concepto de order block"
+    },
+    {
+      "id": "asr-00228",
+      "start_ms": 1642330,
+      "end_ms": 1644280,
+      "text": "que es"
+    },
+    {
+      "id": "asr-00229",
+      "start_ms": 1644280,
+      "end_ms": 1646780,
+      "text": "voy a ir directamente, bueno lo puedo explicar aquí también"
+    },
+    {
+      "id": "asr-00230",
+      "start_ms": 1646780,
+      "end_ms": 1648280,
+      "text": "el de order block"
+    },
+    {
+      "id": "asr-00231",
+      "start_ms": 1648280,
+      "end_ms": 1650560,
+      "text": "es importante para"
+    },
+    {
+      "id": "asr-00232",
+      "start_ms": 1650560,
+      "end_ms": 1652020,
+      "text": "el cambio de"
+    },
+    {
+      "id": "asr-00233",
+      "start_ms": 1652020,
+      "end_ms": 1654880,
+      "text": "en inglés se llama change instead of delivery"
+    },
+    {
+      "id": "asr-00234",
+      "start_ms": 1654880,
+      "end_ms": 1656860,
+      "text": "que sería como el cambio de tendencia un poco"
+    },
+    {
+      "id": "asr-00235",
+      "start_ms": 1656860,
+      "end_ms": 1658880,
+      "text": "y lo uso yo un poco para"
+    },
+    {
+      "id": "asr-00236",
+      "start_ms": 1658880,
+      "end_ms": 1660300,
+      "text": "mis entradas, el order block"
+    },
+    {
+      "id": "asr-00237",
+      "start_ms": 1660300,
+      "end_ms": 1662540,
+      "text": "para mis confirmaciones en temporalidad más baja"
+    },
+    {
+      "id": "asr-00238",
+      "start_ms": 1662540,
+      "end_ms": 1664380,
+      "text": "esto es una tendencia bajista"
+    },
+    {
+      "id": "asr-00239",
+      "start_ms": 1664380,
+      "end_ms": 1666580,
+      "text": "¿vale? pues en el momento"
+    },
+    {
+      "id": "asr-00240",
+      "start_ms": 1666580,
+      "end_ms": 1669160,
+      "text": "en que vamos a tener una vela"
+    },
+    {
+      "id": "asr-00241",
+      "start_ms": 1669160,
+      "end_ms": 1671320,
+      "text": "alcista que"
+    },
+    {
+      "id": "asr-00242",
+      "start_ms": 1671320,
+      "end_ms": 1683380,
+      "text": "cierra por fuera de la última vela bajista algo así cierra por fuera cuando pasa esto se nos forma"
+    },
+    {
+      "id": "asr-00243",
+      "start_ms": 1683380,
+      "end_ms": 1690890,
+      "text": "esto que lo llamamos orden lo sería un poco esto esto sí vamos a ir a gráfico lo veáis claro y es"
+    },
+    {
+      "id": "asr-00244",
+      "start_ms": 1690890,
+      "end_ms": 1695390,
+      "text": "como utilizarlo como una pequeña confirmación de que si yo estoy buscando lo vamos a esperar esto"
+    },
+    {
+      "id": "asr-00245",
+      "start_ms": 1695390,
+      "end_ms": 1700850,
+      "text": "en m15 para subir ya lo vais a ver el capítulo entradas pero para que no tenga que explicar"
+    },
+    {
+      "id": "asr-00246",
+      "start_ms": 1700850,
+      "end_ms": 1706390,
+      "text": "otra vez que es un order block. Vamos a ir ahora mismo a buscar alguno. Por ejemplo,"
+    },
+    {
+      "id": "asr-00247",
+      "start_ms": 1706630,
+      "end_ms": 1713020,
+      "text": "este de aquí es un order block. En el momento en que esta vela cierra afuera, es un poco"
+    },
+    {
+      "id": "asr-00248",
+      "start_ms": 1713020,
+      "end_ms": 1717900,
+      "text": "exagerado porque está cerrado muy fuera, pero es un gráfico de 8 horas. Si vamos a"
+    },
+    {
+      "id": "asr-00249",
+      "start_ms": 1717900,
+      "end_ms": 1723940,
+      "text": "M15 va a ser mucho más fácil encontrar order blocks. Por ejemplo, la venta que he tomado"
+    },
+    {
+      "id": "asr-00250",
+      "start_ms": 1723940,
+      "end_ms": 1735100,
+      "text": "hoy, 15 no se ve, a ver si en 10, no se ve muy claro. Vamos a buscar una donde se vea"
+    },
+    {
+      "id": "asr-00251",
+      "start_ms": 1735100,
+      "end_ms": 1747880,
+      "text": "Por ejemplo, aquí, una vez esta vela se cierra por fuera, aquí tú ya puedes tomar tu long para ir para arriba."
+    },
+    {
+      "id": "asr-00252",
+      "start_ms": 1748400,
+      "end_ms": 1749920,
+      "text": "Esto sería un poco el concepto de order block."
+    },
+    {
+      "id": "asr-00253",
+      "start_ms": 1750940,
+      "end_ms": 1761660,
+      "text": "O aquí, en esta, cuando esta cierra aquí, otra vez, order block aquí, ya podrías poner tu long."
+    },
+    {
+      "id": "asr-00254",
+      "start_ms": 1762000,
+      "end_ms": 1765810,
+      "text": "Este fue exactamente el long que tomé el día 23 de junio."
+    },
+    {
+      "id": "asr-00255",
+      "start_ms": 1765810,
+      "end_ms": 1770430,
+      "text": "espero que se formará el orden block porque como veis el precio está bajando muchísimo pues se"
+    },
+    {
+      "id": "asr-00256",
+      "start_ms": 1770430,
+      "end_ms": 1776200,
+      "text": "informa esto entras en el short podrías hacer lo mismo veis el orden bloque aquí arriba esta"
+    },
+    {
+      "id": "asr-00257",
+      "start_ms": 1776200,
+      "end_ms": 1785690,
+      "text": "vela de aquí cierra por fuera lo tomas vale esto lo miró en 15 pero si queréis utilizar 10 25 30"
+    },
+    {
+      "id": "asr-00258",
+      "start_ms": 1785690,
+      "end_ms": 1792270,
+      "text": "se puede hacer también y aquí abajo long también para ver el orden block es como esta vela cierra"
+    },
+    {
+      "id": "asr-00259",
+      "start_ms": 1792270,
+      "end_ms": 1799230,
+      "text": "por fuera, pues long aquí. Este es el concepto de order block. Y creo que los conceptos básicos"
+    },
+    {
+      "id": "asr-00260",
+      "start_ms": 1799230,
+      "end_ms": 1808620,
+      "text": "ya estarían todos, que son los rangos, la SMT aplicada a la estrategia, el failure swing,"
+    },
+    {
+      "id": "asr-00261",
+      "start_ms": 1809020,
+      "end_ms": 1816000,
+      "text": "el order block y... déjame pensar que no me quiero dejar nada. Ah, bueno, un poco del"
+    },
+    {
+      "id": "asr-00262",
+      "start_ms": 1816000,
+      "end_ms": 1819360,
+      "text": "concepto del power of three también, que ya lo expliqué también en el curso intermedio,"
+    },
+    {
+      "id": "asr-00263",
+      "start_ms": 1819360,
+      "end_ms": 1825900,
+      "text": "pero para que lo veáis bien, el Power 3 se refiere a cómo se forma una vela, ¿vale?"
+    },
+    {
+      "id": "asr-00264",
+      "start_ms": 1826340,
+      "end_ms": 1836050,
+      "text": "Entonces, la vela se conforma de apertura, manipulación, distribución y cierre, ¿vale?"
+    },
+    {
+      "id": "asr-00265",
+      "start_ms": 1836670,
+      "end_ms": 1845970,
+      "text": "Esto sería una vela, os he hecho como todo el... imagínate una vela de 4 horas, pues durante 4 horas lo que ha pasado es esto, ¿vale?"
+    },
+    {
+      "id": "asr-00266",
+      "start_ms": 1845970,
+      "end_ms": 1856890,
+      "text": "Entonces, esto de aquí es a la 1, por ejemplo, hora New York, y luego esto de aquí arriba sería a las 5, hora New York, ¿vale?"
+    },
+    {
+      "id": "asr-00267",
+      "start_ms": 1856970,
+      "end_ms": 1857790,
+      "text": "Que es el cierre."
+    },
+    {
+      "id": "asr-00268",
+      "start_ms": 1858130,
+      "end_ms": 1859390,
+      "text": "Entonces, ¿cómo se vería esta vela?"
+    },
+    {
+      "id": "asr-00269",
+      "start_ms": 1859770,
+      "end_ms": 1862370,
+      "text": "Esta vela pintada se vería así."
+    },
+    {
+      "id": "asr-00270",
+      "start_ms": 1862930,
+      "end_ms": 1883530,
+      "text": "Abre, manipula, entonces esto ahora es una mecha ya, así, sube y baja un poco más hasta cerrar, dejando la mecha ahí arriba, ¿vale?"
+    },
+    {
+      "id": "asr-00271",
+      "start_ms": 1883530,
+      "end_ms": 1906420,
+      "text": "Esto de aquí y cierra aquí, ¿vale? A las 5. Esto es el concepto de Power 3. ¿Por qué es importante esto? Para saber, pues, si tú estás buscando compras en un contexto alcista, las compras ideales siempre, siempre, siempre van a estar en esta etapa de manipulación de la vela, ¿vale?"
+    },
+    {
+      "id": "asr-00272",
+      "start_ms": 1906420,
+      "end_ms": 1919200,
+      "text": "Por lo tanto, es importante para saber, imagínate, son las 4.30 y tú quieres entrar en un long, pues lo que vas a hacer es esperar a que abra la nueva vela de 4 horas a las 5 para en el power of 3 entrar en el punto óptimo."
+    },
+    {
+      "id": "asr-00273",
+      "start_ms": 1919580,
+      "end_ms": 1925600,
+      "text": "Vas a la vela anterior, si esto abre aquí, significa que la vela anterior ha cerrado aquí, ¿vale?"
+    },
+    {
+      "id": "asr-00274",
+      "start_ms": 1926200,
+      "end_ms": 1929620,
+      "text": "¿Qué te es mejor, entrar aquí arriba o entrar aquí abajo?"
+    },
+    {
+      "id": "asr-00275",
+      "start_ms": 1930260,
+      "end_ms": 1934420,
+      "text": "Obviamente, será mejor entrar en el power of 3 de la nueva vela, ¿vale?"
+    },
+    {
+      "id": "asr-00276",
+      "start_ms": 1934420,
+      "end_ms": 1937180,
+      "text": "es básicamente esto"
+    },
+    {
+      "id": "asr-00277",
+      "start_ms": 1937180,
+      "end_ms": 1938420,
+      "text": "concepto muy importante"
+    },
+    {
+      "id": "asr-00278",
+      "start_ms": 1938420,
+      "end_ms": 1940700,
+      "text": "más que nada para tener"
+    },
+    {
+      "id": "asr-00279",
+      "start_ms": 1940700,
+      "end_ms": 1943920,
+      "text": "noción de cómo se mueve el mercado"
+    },
+    {
+      "id": "asr-00280",
+      "start_ms": 1943920,
+      "end_ms": 1944900,
+      "text": "y de lo que está haciendo el precio"
+    },
+    {
+      "id": "asr-00281",
+      "start_ms": 1944900,
+      "end_ms": 1947860,
+      "text": "imagínate que tú tienes que"
+    },
+    {
+      "id": "asr-00282",
+      "start_ms": 1947860,
+      "end_ms": 1949700,
+      "text": "buscar un rango alcista para comprar"
+    },
+    {
+      "id": "asr-00283",
+      "start_ms": 1949700,
+      "end_ms": 1952190,
+      "text": "pues es lógico que"
+    },
+    {
+      "id": "asr-00284",
+      "start_ms": 1952190,
+      "end_ms": 1953510,
+      "text": "durante el power three de la vela"
+    },
+    {
+      "id": "asr-00285",
+      "start_ms": 1953510,
+      "end_ms": 1956270,
+      "text": "si te hace esto, pues es lo ideal"
+    },
+    {
+      "id": "asr-00286",
+      "start_ms": 1956270,
+      "end_ms": 1958530,
+      "text": "porque te está creando un rango alcista"
+    },
+    {
+      "id": "asr-00287",
+      "start_ms": 1958530,
+      "end_ms": 1960310,
+      "text": "así imagínate"
+    },
+    {
+      "id": "asr-00288",
+      "start_ms": 1960310,
+      "end_ms": 1962230,
+      "text": "te está creando un rango alcista"
+    },
+    {
+      "id": "asr-00289",
+      "start_ms": 1962230,
+      "end_ms": 1964150,
+      "text": "y a la vez está haciendo"
+    },
+    {
+      "id": "asr-00290",
+      "start_ms": 1964150,
+      "end_ms": 1966050,
+      "text": "el power 3 de una vela"
+    },
+    {
+      "id": "asr-00291",
+      "start_ms": 1966050,
+      "end_ms": 1968030,
+      "text": "que tú anticipas que va a ser alcista."
+    },
+    {
+      "id": "asr-00292",
+      "start_ms": 1968550,
+      "end_ms": 1969950,
+      "text": "Por lo tanto, tú aquí"
+    },
+    {
+      "id": "asr-00293",
+      "start_ms": 1969950,
+      "end_ms": 1971990,
+      "text": "tienes unos longs brutales para llegar"
+    },
+    {
+      "id": "asr-00294",
+      "start_ms": 1971990,
+      "end_ms": 1974010,
+      "text": "ahí arriba. ¿Vale? Sería"
+    },
+    {
+      "id": "asr-00295",
+      "start_ms": 1974010,
+      "end_ms": 1975110,
+      "text": "un poco esto la lógica."
+    },
+    {
+      "id": "asr-00296",
+      "start_ms": 1975890,
+      "end_ms": 1977450,
+      "text": "También importante para saber"
+    },
+    {
+      "id": "asr-00297",
+      "start_ms": 1977450,
+      "end_ms": 1979310,
+      "text": "un poco de noción de qué está pasando."
+    },
+    {
+      "id": "asr-00298",
+      "start_ms": 1979750,
+      "end_ms": 1982050,
+      "text": "Si esto es una vela de 4 horas, tú vas"
+    },
+    {
+      "id": "asr-00299",
+      "start_ms": 1982050,
+      "end_ms": 1984150,
+      "text": "a ir a 15 minutos y esto"
+    },
+    {
+      "id": "asr-00300",
+      "start_ms": 1984150,
+      "end_ms": 1985990,
+      "text": "lo vas a ver como una bajada así, muy"
+    },
+    {
+      "id": "asr-00301",
+      "start_ms": 1985990,
+      "end_ms": 1988010,
+      "text": "agresiva. ¿Vale? Esto te puede"
+    },
+    {
+      "id": "asr-00302",
+      "start_ms": 1988010,
+      "end_ms": 1989810,
+      "text": "liar mucho si tienes el foco en la"
+    },
+    {
+      "id": "asr-00303",
+      "start_ms": 1989810,
+      "end_ms": 1991790,
+      "text": "temporalidad más baja. Si tú te alejas"
+    },
+    {
+      "id": "asr-00304",
+      "start_ms": 1991790,
+      "end_ms": 1994090,
+      "text": "y pones el foco en lo que está pasando en 4 horas,"
+    },
+    {
+      "id": "asr-00305",
+      "start_ms": 1994150,
+      "end_ms": 1996270,
+      "text": "tú vas a decir, bueno, si es solo"
+    },
+    {
+      "id": "asr-00306",
+      "start_ms": 1996270,
+      "end_ms": 1998210,
+      "text": "la naturaleza de la vela"
+    },
+    {
+      "id": "asr-00307",
+      "start_ms": 1998210,
+      "end_ms": 2000730,
+      "text": "que tiene que manipular para luego ir a mi dirección"
+    },
+    {
+      "id": "asr-00308",
+      "start_ms": 2000730,
+      "end_ms": 2002510,
+      "text": "es como que lo vas a ver de un modo"
+    },
+    {
+      "id": "asr-00309",
+      "start_ms": 2002510,
+      "end_ms": 2003830,
+      "text": "mucho más calmado, ¿sabes?"
+    },
+    {
+      "id": "asr-00310",
+      "start_ms": 2004450,
+      "end_ms": 2006610,
+      "text": "sería un poco esto, la lógica detrás"
+    },
+    {
+      "id": "asr-00311",
+      "start_ms": 2006610,
+      "end_ms": 2008590,
+      "text": "del Power 3, importante para que lo"
+    },
+    {
+      "id": "asr-00312",
+      "start_ms": 2008590,
+      "end_ms": 2010230,
+      "text": "sepáis que muchas veces se va a mencionar"
+    },
+    {
+      "id": "asr-00313",
+      "start_ms": 2010230,
+      "end_ms": 2012370,
+      "text": "el tema del Power 3, ya sea en las"
+    },
+    {
+      "id": "asr-00314",
+      "start_ms": 2012370,
+      "end_ms": 2014630,
+      "text": "entradas, ya sea en las salidas"
+    },
+    {
+      "id": "asr-00315",
+      "start_ms": 2014630,
+      "end_ms": 2014910,
+      "text": "¿vale?"
+    },
+    {
+      "id": "asr-00316",
+      "start_ms": 2015800,
+      "end_ms": 2018670,
+      "text": "y ya está, sería un poco"
+    },
+    {
+      "id": "asr-00317",
+      "start_ms": 2018670,
+      "end_ms": 2020670,
+      "text": "esto, ahora sí que creo que está todo"
+    },
+    {
+      "id": "asr-00318",
+      "start_ms": 2020670,
+      "end_ms": 2023310,
+      "text": "temas, salidas"
+    },
+    {
+      "id": "asr-00319",
+      "start_ms": 2023310,
+      "end_ms": 2025550,
+      "text": "basadas en el tiempo y en traspasadas en el tiempo"
+    },
+    {
+      "id": "asr-00320",
+      "start_ms": 2025550,
+      "end_ms": 2027030,
+      "text": "ya lo voy a explicar también más adelante"
+    },
+    {
+      "id": "asr-00321",
+      "start_ms": 2027030,
+      "end_ms": 2028670,
+      "text": "es un concepto como tal"
+    },
+    {
+      "id": "asr-00322",
+      "start_ms": 2028670,
+      "end_ms": 2030970,
+      "text": "así que nada, este es el primer capítulo"
+    },
+    {
+      "id": "asr-00323",
+      "start_ms": 2030970,
+      "end_ms": 2033190,
+      "text": "y nos vemos en el siguiente"
+    }
+  ]
+}
