@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>RIO · El polling devuelve esa historia al front</title>
+<title>RIO · Polling, respuesta y cierre de la UI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;0,900&family=Inter:wght@400;500;600;700&display=swap"/>
@@ -649,61 +649,84 @@ body {
 
 </style>
 <style>
-/* grid-space-opt: system=B fixed 1280x720; spacing fitted to 390px content; template tokens preserved. */
-html,body{width:1280px!important;height:720px!important;position:relative!important;overflow:hidden!important}
-.slide{width:1280px;height:720px;position:relative;overflow:hidden;box-sizing:border-box}
-.slide .slide-content{width:1280px;height:720px;padding:26px 38px 24px;gap:10px;overflow:hidden}
-.slide .slide-title{font-size:42px!important;line-height:1.08!important;opacity:1;letter-spacing:-.03em}
-.slide .slide-subtitle{font-size:18px!important;color:var(--txt2);opacity:1;line-height:1.3;margin:5px 0 0}
-.slide .title-divider{width:100%;margin:8px 0 0;opacity:1}
-.story-top{display:flex;justify-content:space-between;font-size:14px;letter-spacing:.08em;color:var(--txt2);height:22px;flex-shrink:0}
-.story-top b{color:var(--accent)}
-.story-rail{display:flex;gap:7px;height:31px;flex-shrink:0}
-.story-rail span{flex:1;padding:6px 7px;background:var(--bg2);border:1px solid var(--bdr);font-size:14px;line-height:18px;color:var(--txt3);border-radius:5px}
-.story-rail span.now{border-color:var(--accent);color:var(--accent);background:var(--pill-bg)}
-.slide .content-frame{display:grid!important;grid-template-columns:740px 444px;gap:20px;height:389px!important;flex:none!important;padding:0!important;margin:0!important;min-height:0;overflow:visible}
-.story-main{display:flex;flex-direction:column;gap:7px;min-width:0;height:389px}
-.story-card{background:var(--card-bg);border:1px solid var(--card-bdr);border-radius:10px;padding:10px 14px;overflow:visible}
-.slide .story-h{font-size:19px!important;line-height:1.2!important;color:var(--txt);margin:0 0 4px;font-weight:700}
-.slide .story-copy,.slide .story-copy p{font-size:17px!important;line-height:1.25!important;color:var(--txt2);margin:0}
-.story-copy b{color:var(--txt)}
-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.91em;color:var(--accent);overflow-wrap:anywhere}
-.story-code{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;padding:12px 16px;display:flex;flex-direction:column;gap:6px;overflow:hidden;min-width:0;height:389px}
-.slide .story-code-h{font-size:16px!important;color:var(--accent);font-weight:700;line-height:1.25}
-pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.27;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--txt);margin:0}
-.story-code p{font-size:16px;line-height:1.25;color:var(--txt2);margin:0}
-.story-code hr{border:0;border-top:1px solid var(--bdr);margin:4px 0}
-.story-flow{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.story-flow>div{flex:1;padding:9px 10px;border:1px solid var(--card-bdr);border-radius:7px;background:var(--bg2);font-size:16px;line-height:1.25;color:var(--txt);text-align:center}
-.story-arrow{color:var(--accent);font-size:20px}
-.story-table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.25}
-.story-table td,.story-table th{text-align:left;padding:6px 9px;border-bottom:1px solid var(--bdr);vertical-align:top;color:var(--txt2)}
-.story-table th{font-size:14px;color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
-.story-table b{color:var(--txt)}
-.story-table code{font-size:14px}
-.story-case{font-size:16px;line-height:1.25;color:var(--txt2);padding:8px 12px;border-left:3px solid var(--ch-blue);background:var(--ch-blue-bg);border-radius:4px}
-.story-state{color:var(--ch-green);font-weight:600}
-.story-wait{color:var(--accent);font-weight:600}
-.story-decision{padding:12px 16px;border:1px solid var(--conc-bdr);border-left:3px solid var(--accent);border-radius:6px;background:var(--conc-bg);font-size:18px;line-height:1.28;min-height:57px;flex-shrink:0;color:var(--txt)}
-.story-decision b{color:var(--accent)}
-.story-links{display:flex;gap:14px;align-items:center;font-size:13px;flex-wrap:wrap;line-height:1.2}
-.story-links a{color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--txt3)}
-.story-links a:hover{color:var(--accent)}
-.story-evidence{font-size:12px;color:var(--txt3);margin-top:auto;line-height:1.2}
-.story-legend{font-size:13px;color:var(--txt2)}
-</style></head><body class="active native-child"><section class="slide"><!--
-GRID_PRESENTATION_FORMAT_GUIDE
-Type: dark
-Style: Dark #06070B canvas; Proxima Nova from original template; yellow #FFE600 accent, blue/green semantic highlights.
-Layout: native 1280x720 adaptation of template .slide-content, .title-block, .content-frame and .slide-footer. One causal transition per slide, 3–5 content blocks.
-Components: template background grid and title-divider; technical cards, code excerpts and entity tables use template --bg/--txt/--accent/--sz tokens.
-Typography: title≥28px · subtitle≥13px · body≥13px · table≥12px; title is largest.
-Rules: preserve Dark Theme font/colors; keep story order, case and evidence boundary; child HTML has no navigation, timers, notes or Grid SDK initialization.
-END_GRID_PRESENTATION_FORMAT_GUIDE
---><div class="bg-grid"></div><div class="slide-content"><div class="story-top"><span>RIO · <b>UN DEPLOYMENT, DE PUNTA A PUNTA</b></span><span>PROPUESTA TÉCNICA · 06 / 06</span></div><div class="title-block"><div class="slide-title">El polling devuelve esa historia al front</div><div class="slide-subtitle">La UI consulta la execution por su ID, recibe los runs y decide cuándo liberar el estado “deploying”.</div><div class="title-divider"></div></div><div class="story-rail"><span class="">1 · Request / delta</span><span class="">2 · Entidades</span><span class="">3 · Dispatch</span><span class="">4 · Resultado</span><span class="">5 · Continuación</span><span class="now">6 · Polling / UI</span></div><div class="content-frame"><div class="story-main"><div class="story-flow"><div><b>Front</b><br>GET history/{E}</div><span class="story-arrow">→</span><div><b>BFF</b><br>proxy + normalize</div><span class="story-arrow">→</span><div><b>Playmaker</b><br>getExecution</div></div><article class="story-card"><h3 class="story-h">Cada lectura valida el scope y puede resolver timeouts</h3><div class="story-copy"><code>GET /data-products/{name}/environments/{env}/pipeline/history/{executionId}</code>. Playmaker verifica pipeline/environment de la execution, ejecuta <code>resolveTimeoutsForExecution</code> y lee los runs por runOrder. <b>Este GET puede escribir</b> por la resolución lazy de timeouts.</div></article><article class="story-card"><h3 class="story-h">DTO → BFF → estado de React</h3><div class="story-copy">Playmaker devuelve <code>execution_id</code>, status, type, timestamps y <code>component_runs</code> con componente, config, estado, run_order y error. El BFF normaliza snake_case → camelCase y run_order → order. El hook valida que el ID sea el esperado y actualiza la execution de la UI.</div></article><div class="story-case"><b>Observación:</b> primer GET inmediato, luego delays 2 → 4 → 8 → 16 → 30 s. Tres errores consecutivos o 10 min detienen la observación local; no cancelan el trabajo del backend. Guarda el ID para retomar.</div></div><aside class="story-code"><div class="story-code-h">La consulta arma el detalle después del timeout check</div><pre>timeoutJob.resolveTimeoutsForExecution(executionId);
-final var runs = componentRunRepository.findByPipelineExecutionIdOrderByRunOrder(executionId);
-return toDetail(execution, runs);</pre><hr><div class="story-code-h">El front espera terminalidad completa</div><pre>export const isExecutionFullyTerminal = (
-  execution: PipelineExecution,
-): boolean =&gt;
-  isExecutionTerminal(execution.status) &amp;&amp;
-  execution.componentRuns.every((run) =&gt; isComponentRunTerminal(run.status));</pre><p><b>Execution:</b> COMPLETED / FAILED / PARTIAL_FAILURE.<br><b>Runs:</b> COMPLETED / FAILED / CANCELLED.</p></aside></div><div class="story-decision"><b>La vuelta final:</b> sólo al ver execution y todos sus runs terminales, el hook detiene polling, limpia el ID activo y libera “deploying”.</div><div class="story-links"><a href="https://github.com/melisource/fury_rio-playmaker/blob/3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1/src/main/java/com/mercadolibre/rio/playmaker/service/impl/PipelineHistoryServiceImpl.java#L87" target="_blank" rel="noopener">GET + DTO ↗</a><a href="https://github.com/melisource/fury_ads-signals-frontend/blob/791f79dd8050e1432bdc5c936539b22dbaa4e35d/api/pipeline/pipelineUtils.ts#L498" target="_blank" rel="noopener">normalización ↗</a><a href="https://github.com/melisource/fury_ads-signals-frontend/blob/791f79dd8050e1432bdc5c936539b22dbaa4e35d/src/features/deploy-pipeline/model/useDeployPipeline.ts#L667" target="_blank" rel="noopener">polling + cierre ↗</a></div><div class="story-evidence">Código local · 01 oct 2026 · Playmaker 3cd0daf / Front 791f79d · routing y release de producción pendientes de contraste.</div></div></section></body></html>
+/* grid-space-opt: system=B; mode=visual-redesign; 1280x720; scene=420px; no body overrides; fill via diagram scale, not more copy. */
+html,body{width:1280px;height:720px;margin:0;overflow:hidden;background:var(--bg);font-family:var(--fn)}
+.slide{position:relative;width:1280px;height:720px;overflow:hidden;display:block;box-sizing:border-box;background:var(--bg);color:var(--txt)}
+.slide *, .slide *:before,.slide *:after{box-sizing:border-box}
+.slide .bg-grid{opacity:.16}
+.v-glow{position:absolute;left:290px;top:160px;width:750px;height:440px;background:radial-gradient(ellipse,rgba(54,162,235,.055),transparent 72%);pointer-events:none}
+.v-header{position:absolute;left:54px;right:54px;top:28px;display:flex;justify-content:space-between;font-size:14px;letter-spacing:.12em;color:var(--txt3)}
+.v-header b{color:var(--accent);font-weight:600}
+.v-title{position:absolute;left:54px;right:54px;top:62px;font-size:44px;line-height:1.08;letter-spacing:-.025em;font-weight:700;color:var(--txt)}
+.v-title em{font-style:normal;color:var(--accent)}
+.v-sub{position:absolute;left:56px;top:119px;font-size:20px;line-height:1.3;color:var(--txt2)}
+.scene{position:absolute;left:54px;top:167px;width:1172px;height:420px;overflow:hidden}
+.v-at{position:absolute;z-index:2;min-width:0}
+.wires{position:absolute;inset:0;width:1172px;height:420px;z-index:1;overflow:visible}
+.wires>path{fill:none;stroke-width:2.5;stroke-linejoin:round}
+.vicon{width:56px;height:56px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.hero-node{height:100%;border:1px solid var(--bdr);background:var(--bg2);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;box-shadow:0 15px 45px rgba(0,0,0,.2)}
+.hero-node .vicon{width:64px;height:64px;color:var(--accent)}
+.hero-name{font-size:28px;line-height:1.05;font-weight:700;letter-spacing:-.02em}
+.caption{font-size:18px;line-height:1.25;color:var(--txt2)}
+.tiny{font-size:14px;line-height:1.3;color:var(--txt3)}
+.micro{font:14px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--txt2)}
+.label{font-size:18px;line-height:1.25;color:var(--txt2)}
+.label strong{color:var(--txt)}
+.center{text-align:center}
+.yellow{color:var(--accent)} .blue{color:var(--ch-blue)} .orange{color:var(--ch-orange)} .green{color:var(--ch-green)}
+.badge{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--bdr);border-radius:7px;padding:6px 9px;font-size:14px;line-height:1;font-weight:600;white-space:nowrap;color:var(--txt2);background:var(--bg3)}
+.badge.yellow{background:var(--ch-yellow-bg);border-color:rgba(255,230,0,.2)}
+.badge.blue{background:var(--ch-blue-bg);border-color:rgba(54,162,235,.3);color:var(--ch-blue)}
+.badge.orange{background:var(--ch-orange-bg);border-color:rgba(255,159,64,.3);color:var(--ch-orange)}
+.badge.green{background:var(--ch-green-bg);border-color:rgba(72,199,116,.3);color:var(--ch-green)}
+.component{height:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid var(--bdr);background:var(--bg2);border-radius:14px}
+.component .vicon{width:39px;height:39px}
+.component>div{flex:1;min-width:0}.component b{display:block;font-size:23px;line-height:1.1;color:var(--txt)}
+.component span:not(.badge){display:block;font-size:15px;color:var(--txt3);line-height:1.25;margin-top:4px}
+.component.blue{border-color:rgba(54,162,235,.3)}.component.orange{border-color:rgba(255,159,64,.3)}
+.ghost{opacity:.5;border-style:dashed}
+.panel{height:100%;background:var(--bg2);border:1px solid var(--bdr);border-radius:18px;padding:20px}
+.panel-title{font-size:22px;font-weight:700;line-height:1.15;color:var(--txt)}
+.panel .micro{margin-top:7px}
+.token{padding:11px 12px;border:1px solid var(--bdr);border-radius:10px;background:var(--bg3);font-size:18px;line-height:1.1;color:var(--txt)}
+.token b{display:block;font-size:21px;font-weight:600}.token small{display:block;font-size:14px;margin-top:5px;color:var(--txt2)}
+.token+.token{margin-top:10px}
+.pillrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.punch{position:absolute;left:54px;right:54px;top:601px;height:49px;border-top:1px solid var(--bdr);padding-top:14px;display:flex;align-items:baseline;gap:14px;font-size:24px;line-height:1.25;color:var(--txt)}
+.punch .hint{font-size:14px;color:var(--accent);letter-spacing:.08em;white-space:nowrap}
+.footer{position:absolute;left:54px;right:54px;top:669px;display:flex;justify-content:space-between;align-items:center;font-size:14px;line-height:1.2;color:var(--txt3)}
+.footer a{color:var(--txt2);text-decoration:none;margin-right:17px;border-bottom:1px solid var(--bdr)}
+.footer a:hover{color:var(--accent)}
+.journey{display:flex;gap:7px;align-items:center}.journey i{display:block;width:23px;height:4px;background:var(--bg3);border-radius:2px}.journey i.past{background:var(--txt3)}.journey i.now{background:var(--accent)}
+.step-n{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--ch-yellow-bg);color:var(--accent);font-size:18px;font-weight:700;margin-bottom:10px}
+.browser-shell{height:100%;border-radius:16px;border:1px solid var(--bdr);background:var(--bg2);overflow:hidden;box-shadow:0 18px 50px #0005}
+.browser-bar{height:29px;border-bottom:1px solid var(--bdr);display:flex;gap:5px;align-items:center;padding-left:12px}.browser-bar i{width:5px;height:5px;border-radius:50%;background:var(--txt3)}
+.browser-body{padding:25px 22px}.deploy-button{padding:14px 26px;background:var(--accent);color:var(--bg);border-radius:10px;font-size:24px;line-height:1.1;font-weight:700;display:inline-flex;gap:12px;align-items:center;box-shadow:0 0 35px #ffe60012}
+.deploy-button.done{background:var(--ch-green)}
+.busy{font-size:16px;line-height:1.2;color:var(--txt2);margin-top:16px;display:flex;gap:8px;align-items:center}
+.busy:before{content:'';width:10px;height:10px;border:2px solid var(--accent);border-right-color:transparent;border-radius:50%}
+.receipt{height:100%;background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px}
+.receipt .num{font-size:30px;color:var(--accent);font-weight:700}.receipt b{font-size:20px}.receipt small{display:block;font-size:15px;margin-top:3px;color:var(--txt2)}
+.commit-line{height:100%;border-left:2px dashed var(--accent);position:relative}
+.commit-gate{position:absolute;left:-40px;top:110px;width:80px;height:80px;border:2px solid var(--accent);border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.commit-gate .vicon{width:42px;height:42px}
+.result{height:100%;border:1px solid rgba(72,199,116,.4);border-radius:16px;background:var(--ch-green-bg);padding:22px;text-align:center}
+.result .vicon{color:var(--ch-green);width:52px;height:52px}.result b{display:block;font-size:25px;line-height:1.1;margin-top:8px}.result .micro{color:var(--ch-green)}
+.band{height:100%;border-radius:12px;background:var(--bg2);border:1px solid var(--bdr);padding:15px 18px;display:flex;align-items:center;gap:12px;font-size:18px;line-height:1.2}
+.band .vicon{width:35px;height:35px}.band b{color:var(--txt)}
+.checkpoint{height:100%;border:1px solid var(--bdr);background:var(--bg2);border-radius:18px;padding:20px;text-align:center}
+.checkpoint .vicon{color:var(--accent);width:52px;height:52px}.checkpoint b{display:block;font-size:24px;margin:12px 0 8px}
+.checkpoint .guard{font-size:17px;line-height:1.6;color:var(--txt2)}
+.bracket{height:100%;border:1px dashed var(--txt3);border-top:0;border-radius:0 0 14px 14px;text-align:center;padding-top:15px;font-size:18px;color:var(--txt2)}
+.and{font-size:30px;font-weight:700;color:var(--accent);display:flex;height:100%;align-items:center;justify-content:center}
+.condition{height:100%;border:1px solid rgba(72,199,116,.3);border-radius:14px;padding:15px;text-align:center;background:var(--ch-green-bg);display:flex;flex-direction:column;justify-content:center;gap:8px;font-size:22px;color:var(--txt)}
+.condition small{font-size:15px;color:var(--txt2)}
+</style></head><body class="active native-child"><section class="slide"><!-- GRID_PRESENTATION_FORMAT_GUIDE
+Type: dark · full visual redesign explicitly requested on 2026-10-01.
+Style: original Dark Theme #06070B, embedded Proxima Nova, yellow accent; blue topic, orange engine, green completion.
+Layout: 1280x720; causal scene occupies 420px; fixed header and source links; one question and one reveal per chapter.
+Components: vector technical diagrams and entity tokens; no charts, notes, navigation, SDK or prose panels.
+Typography: title≥28px · subtitle≥13px · body≥13px · kpi-value≥34px · table≥12px. Main labels enlarged for live presentation.
+Rules: diagrams carry meaning; speaker/code carries detail; keep same topic/engine case and six chapters. No more than 100 visible words per slide, excluding source links.
+END_GRID_PRESENTATION_FORMAT_GUIDE --><div class="bg-grid"></div><div class="v-glow"></div><div class="v-header"><span>DEPLOYMENTS / <b>PLAYMAKER</b></span><span>06 / 06 · MISMO CASO, SIGUIENTE PASO</span></div><div class="v-title">La UI recibe la historia. <em>Y cierra el círculo.</em></div><div class="v-sub">El polling observa la execution completa, no sólo el estado de un componente.</div><div class="scene"><svg class="wires" viewBox="0 0 1172 420" aria-hidden="true"><defs><marker id="y" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="var(--accent)"/></marker><marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="var(--ch-blue)"/></marker><marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="var(--ch-orange)"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="var(--ch-green)"/></marker><marker id="m" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="var(--txt3)"/></marker></defs><path d="M279 82H421" stroke="var(--accent)" marker-end="url(#y)" /><path d="M669 82H830" stroke="var(--accent)" marker-end="url(#y)" /><path d="M1119 109V215H899" stroke="var(--ch-green)" marker-end="url(#g)" /><path d="M844 289H417V226H279" stroke="var(--ch-green)" marker-end="url(#g)" /></svg><div class="v-at " style="left:0px;top:3px;width:279px;height:263px"><div class="browser-shell"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div class="panel-title">Front</div><div class="busy">observando execution ID</div><div style="margin-top:29px" class="deploy-button done">✓ Listo</div><div class="tiny" style="margin-top:15px">isDeploying = false</div></div></div></div><div class="v-at " style="left:295px;top:24px;width:112px;height:70px"><div class="micro center">GET<br>history/{id}</div></div><div class="v-at " style="left:421px;top:3px;width:248px;height:154px"><div class="panel"><div class="panel-title">BFF</div><div class="caption" style="margin-top:24px">snake_case<br>↓<br>camelCase</div></div></div><div class="v-at label center" style="left:702px;top:29px;width:111px;height:54px">consulta</div><div class="v-at " style="left:830px;top:3px;width:289px;height:154px"><div class="panel"><div class="panel-title">Playmaker</div><div class="caption" style="margin-top:19px">scope + timeouts<br>↓<br>DTO + runs</div></div></div><div class="v-at " style="left:1118px;top:174px;width:54px;height:54px"><div class="micro center">200<br>JSON</div></div><div class="v-at " style="left:493px;top:212px;width:230px;height:104px"><div class="condition">Execution terminal<small>COMPLETED / FAILED /<br>PARTIAL_FAILURE</small></div></div><div class="v-at and" style="left:735px;top:212px;width:48px;height:104px">∧</div><div class="v-at " style="left:795px;top:212px;width:324px;height:104px"><div class="condition">Todos los runs terminales<small>COMPLETED / FAILED / CANCELLED</small></div></div><div class="v-at tiny center" style="left:421px;top:165px;width:248px;height:32px">respuesta → estado React</div><div class="v-at " style="left:0px;top:324px;width:279px;height:47px"><div class="pillrow"><span class="badge green">stop polling</span><span class="badge green">limpia ID</span></div></div><div class="v-at " style="left:421px;top:341px;width:698px;height:30px"><div class="pillrow"><span class="badge ">inmediato → 2 → 4 → 8 → 16 → 30 s</span><span class="tiny">El GET puede resolver timeouts.</span></div></div><div class="v-at label" style="left:421px;top:386px;width:698px;height:32px">3 errores / 10 min → pausa la observación; backend continúa.</div></div><div class="punch"><span class="hint">LA ÚLTIMA DECISIÓN</span><span>Dejar de observar no cancela el deployment.</span></div><div class="footer"><div><span style="margin-right:18px">CÓDIGO</span><a href="https://github.com/melisource/fury_rio-playmaker/blob/3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1/src/main/java/com/mercadolibre/rio/playmaker/service/impl/PipelineHistoryServiceImpl.java#L87" target="_blank" rel="noopener">GET / timeouts ↗</a><a href="https://github.com/melisource/fury_ads-signals-frontend/blob/791f79dd8050e1432bdc5c936539b22dbaa4e35d/api/pipeline/pipelineUtils.ts#L498" target="_blank" rel="noopener">DTO ↗</a><a href="https://github.com/melisource/fury_ads-signals-frontend/blob/791f79dd8050e1432bdc5c936539b22dbaa4e35d/src/entities/Deployment.ts#L160" target="_blank" rel="noopener">Terminalidad ↗</a><a href="https://github.com/melisource/fury_ads-signals-frontend/blob/791f79dd8050e1432bdc5c936539b22dbaa4e35d/src/features/deploy-pipeline/model/useDeployPipeline.ts#L667" target="_blank" rel="noopener">Polling ↗</a></div><div class="journey"><i class="past"></i><i class="past"></i><i class="past"></i><i class="past"></i><i class="past"></i><i class="now"></i></div></div></section></body></html>
