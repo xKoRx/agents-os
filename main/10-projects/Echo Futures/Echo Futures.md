@@ -2165,3 +2165,18 @@ Direction entering D6:
 - The first D6 gate is evidence-driven: exact Earn2Trade program/rules + exact execution transport + account/environment availability + delta against the frozen ProviderRuleSet/ExecutionAdapter contracts.
 
 **Next Manager action:** bootstrap D6 from the D5 frozen baseline and perform an Earn2Trade-first preflight. Produce a bounded D6 execution plan and specialist prompts only after resolving first-party rules and real transport entitlement.
+
+## D6 — OWNER PROGRAM SELECTION / GAU50 — 2026-09-30
+
+Owner selects **Gauntlet Mini 50K (GAU50)** as the canonical Earn2Trade account for the D6 MVP.
+
+Current decision:
+
+- `D6_E2T_PROGRAM = GAU50`.
+- TCP50 is not selected for this MVP because its growth-path value is not relevant to the Owner's objective.
+- D6 should optimize for proving Echo Futures against the GAU50 Evaluation/LiveSim/Live rule lifecycle without adding TCP-specific scope.
+- Reaching Live is not an MVP objective; Live behavior remains a certification concern only if the provider transitions the account there.
+- This decision does **not** clear the unresolved automation/API entitlement blocker and does not authorize implementation yet.
+
+**Next Manager action:** use GAU50 as the single program baseline for the remaining Earn2Trade preflight and D6 execution planning.
+
