@@ -26,7 +26,6 @@ tags:
   - area/personal
 created: "2026-09-17"
 updated: "2026-10-01"
-reviewed: "2026-10-01"
 ---
 
 # Multimodal Knowledge Engine
