@@ -62,9 +62,11 @@
     }
   ],
   "validation": {
-    "local_canvas": "6 scenes checked in fixed 1280x720 iframe; 44px headlines, no clipping or overflow",
+    "local_canvas": "6 scenes at fixed 1280x720; no internal overflow",
+    "preview": "checked in the actual in-app panel at 610px and expanded view at 1800px; full slide visible, document scrollWidth equals viewport width",
+    "layout": "uniform entity columns; centered arrow endpoints; shared POST response separated from component delta; connected run/result and terminality branches",
+    "reading_budget": "70–110 visible words including header/labels/conclusion",
     "native_viewer": "pending — Grid API connection unavailable",
-    "reading_budget": "73–108 visible words per slide, including header, subtitle, diagram labels and conclusion; no paragraphs",
     "grid_upload_status": "pending visual redesign; remote deck still contains previous text version"
   },
   "format": "Visual narrative; short labels, causal diagrams; technical detail in guion/code"

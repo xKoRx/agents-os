@@ -1,1 +1,25 @@
-<!doctype html><html lang="es"><meta charset="utf-8"><title>Deployments — propuesta visual</title><style>body{margin:0;background:#06070b;color:#e4e4e8;font:16px system-ui}header{height:66px;display:flex;align-items:center;justify-content:center;gap:14px}button{background:#161820;border:1px solid #333;border-radius:8px;color:#bbb;padding:9px 15px;font:inherit;cursor:pointer}button.active{color:#ffe600;border-color:#ffe600}iframe{display:block;width:1280px;height:720px;border:0;margin:auto}small{color:#6c6e7a}</style><header><b>Un deployment, de punta a punta</b> <button data-s="1" class="active">1</button><button data-s="2">2</button><button data-s="3">3</button><button data-s="4">4</button><button data-s="5">5</button><button data-s="6">6</button><small>Preview visual · Dark Theme</small></header><iframe id="stage" src="01.html" title="Deployment — capítulo 1"></iframe><script>let n=1;function go(v){n=Math.max(1,Math.min(6,v));document.getElementById('stage').src=String(n).padStart(2,'0')+'.html';document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',Number(b.dataset.s)===n));}document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.s))));document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(n+1);if(e.key==='ArrowLeft')go(n-1);});</script></html>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deployments — propuesta visual</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#06070b;color:#e4e4e8;font:14px system-ui}body{min-width:280px;overflow-x:hidden}header{min-height:62px;padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:16px;border-bottom:1px solid #ffffff0b}header b{font-size:14px;white-space:nowrap;color:#a0a2ac}nav{display:flex;gap:6px}button{height:34px;min-width:34px;background:#101219;border:1px solid #ffffff12;border-radius:7px;color:#a0a2ac;padding:0 10px;font:inherit;cursor:pointer}button.active{color:#ffe600;border-color:#ffe60075;background:#ffe6000b}button:hover{color:#e4e4e8;border-color:#ffffff35}button:focus-visible{outline:2px solid #ffe600;outline-offset:3px}main{padding:18px 12px;display:flex;justify-content:center;align-items:flex-start}.viewport{position:relative;overflow:hidden;border-radius:8px;box-shadow:0 15px 50px #0005}.canvas{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0}iframe{display:block;width:1280px;height:720px;border:0;margin:0}#full{font-size:12px;color:#6c6e7a;white-space:nowrap}:fullscreen main{align-items:center;min-height:calc(100vh - 62px)}@media(max-width:520px){header{gap:10px;padding:10px 8px}header b{display:none}nav{gap:5px}#full{padding:0 8px}}
+</style>
+</head>
+<body>
+<header><b>Deployments</b><nav aria-label="Capítulos"><button data-s="1" class="active" aria-label="Capítulo 1">1</button><button data-s="2" aria-label="Capítulo 2">2</button><button data-s="3" aria-label="Capítulo 3">3</button><button data-s="4" aria-label="Capítulo 4">4</button><button data-s="5" aria-label="Capítulo 5">5</button><button data-s="6" aria-label="Capítulo 6">6</button></nav><button id="full">Pantalla completa ↗</button></header>
+<main><div class="viewport"><div class="canvas"><iframe id="stage" src="01.html" title="Deployment — capítulo 1"></iframe></div></div></main>
+<script>
+let n=1;
+const frame=document.getElementById('stage'),canvas=document.querySelector('.canvas'),viewport=document.querySelector('.viewport');
+function fit(){const width=Math.max(260,document.documentElement.clientWidth-24);const height=Math.max(180,window.innerHeight-document.querySelector('header').getBoundingClientRect().height-36);const scale=Math.min(width/1280,height/720,1.5);viewport.style.width=(1280*scale)+'px';viewport.style.height=(720*scale)+'px';canvas.style.transform='scale('+scale+')';}
+function go(value){n=Math.max(1,Math.min(6,value));frame.src=String(n).padStart(2,'0')+'.html';frame.title='Deployment — capítulo '+n;document.querySelectorAll('[data-s]').forEach(b=>{const selected=Number(b.dataset.s)===n;b.classList.toggle('active',selected);b.setAttribute('aria-current',selected?'step':'false');});}
+document.querySelectorAll('[data-s]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.s))));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(n+1);}if(e.key==='ArrowLeft'){e.preventDefault();go(n-1);}});
+document.getElementById('full').addEventListener('click',()=>{if(document.fullscreenElement){document.exitFullscreen();}else{document.documentElement.requestFullscreen().catch(()=>{});}});
+window.addEventListener('resize',fit);document.addEventListener('fullscreenchange',fit);fit();
+</script>
+</body>
+</html>

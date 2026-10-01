@@ -42,6 +42,7 @@ updated: "2026-10-01"
 - Recorrido contrastado con `rio-playmaker origin/master` local `3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1` el 2026-10-01; producción y routing vivo no verificados.
 - Corregidas dos distinciones para la exposición: DeploymentGroup contiene la orquestación y los batches se determinan por `ComponentRun.runOrder`; los nuevos Deployments ya nacen con un deadline de dispatch.
 - El usuario rechazó la primera propuesta de Grid por su densidad de texto. Se rediseñaron las seis escenas con diagramas causales, iconos, estados y etiquetas cortas; topic y engine mantienen identidad visual. El detalle técnico queda en el guion y en enlaces a código.
+- Preview corregida tras detectar que el iframe fijo de 1280 px se recortaba dentro del panel real de 610 px. Ahora escala manteniendo proporción, con navegación compacta y pantalla completa; se revisaron las seis escenas en el panel real y la vista ampliada de 1800 px. Se igualaron columnas y se alinearon conexiones.
 - Rediseño local revisado en canvas 1280×720: `30-resources/grids/rio-deployments-story/index.html`. Actualización del [Grid existente](https://grid.adminml.com/d/01M3VWJ9GQ1FHABT2GJZEN1VPA/view) pendiente por falta de conexión a la API; allí sigue la versión de texto.
 - Request, BFF, normalización y polling contrastados con `ads-signals-frontend origin/master` local `791f79dd8050e1432bdc5c936539b22dbaa4e35d`.
 - Pendiente ensayar el recorrido y ajustar el tiempo definitivo; el guion conserva un presupuesto orientativo de 20–25 minutos.

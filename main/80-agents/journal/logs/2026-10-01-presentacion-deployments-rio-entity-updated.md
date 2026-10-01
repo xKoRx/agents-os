@@ -72,3 +72,11 @@ tags:
 - QA local de las seis escenas en iframe fijo 1280×720: títulos 44px, contenido completo, sin desbordes ni clipping. Entre 73 y 108 palabras visibles por slide contando todo el encabezado y cierre.
 - La API `grid.melioffice.com` no responde desde la conexión actual; el visor abre pero los controles de edición no completan la acción. No se actualizó el contenido remoto. Se dejó preview local y se consultó la conexión VPN; quedan pendientes upload con versión y revisión nativa.
 - Rollback local disponible en la copia temporal de la propuesta de texto; el Grid remoto conserva esa versión. Sin cambios en repos ni producción.
+
+
+## Corrección del encuadre y la geometría
+
+- Feedback del usuario: preview cortada y composición desalineada. Causa verificada en el browser integrado: iframe de 1280 px dentro de un panel de 610 px, sin escala. La QA anterior cubría el canvas interno, pero no el encuadre del consumidor real.
+- Se corrigió el harness local con escala proporcional por ancho/alto disponibles, navegación compacta y pantalla completa. Los hijos nativos siguen en 1280×720; la escala vive sólo en el harness.
+- Se igualaron las cuatro columnas de entidades; se centraron las ramas del delta, las conexiones del commit, ComponentRun y terminalidad. La respuesta 202 pasó a una banda compartida para no asociarla visualmente a un componente particular.
+- Evidencia: las seis escenas caben completas en el panel integrado de 610 px, con scrollWidth=610 y sin overflow interno. También se comprobó la vista ampliada de 1800 px y la salida de ese modo. No se modifica el estado de upload remoto pendiente.

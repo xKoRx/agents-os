@@ -10,7 +10,7 @@ parent:
 sprint:
 start: "2026-09-30"
 due:
-progress: 0
+progress: 25
 repo: "https://github.com/melisource/fury_rio-controlplane-kafka"
 jira:
 prs:
@@ -23,7 +23,7 @@ updated: "2026-10-01"
 # Kafka — Ambiente local con servicios reales
 
 > [!info]+ Kafka — Ambiente local con servicios reales
-> **Área:** [[Meli]] · **Estado:** active · **Owner:** Rodrigo · **Fase:** propuesta lista para iterar; implementación pendiente.
+> **Área:** [[Meli]] · **Estado:** active · **Owner:** Rodrigo · **Fase:** ejecución E2E; implementación multiagente y gates externos pendientes.
 
 ## 🎯 Objetivo
 
@@ -33,11 +33,21 @@ El resultado esperado es un comando de inicio documentado, configuración reprod
 
 ## 📊 Estado actual
 
+- **Gate de implementación:** SPEC funcional → SPEC técnica → tareas guardadas en `rio-controlplane-kafka/meli/features/20261001-real-e2e/`; autorización autónoma del owner aplicada, publicación SIG todavía bloqueada por sesión expirada. Matriz versionada de 319 escenarios, iniciales NOT_EXECUTED. Decisión: suites dentro del CP, extensión del local-integration real de Playmaker, cinco brokers por RF AWS1–5/GCP1–3.
+- **Evidencia actual:** cinco brokers reales en runtime propio `colima-rio-kafka-e2e-01a0f8e0` (6GiB/4CPU), topics RF1–5 con réplicas/ISR verificados y cleanup certificado. Primer ensayo encontró OOM real con heap192MiB; heap512MiB/límite768MiB por broker corrigió el arranque. CP Java25: 701 tests PASS/0 skips, incluidos 10 regressions de fallos Kafka/null config; nuevas suites compilan. Ningún PASS E2E CP/KVS/Playmaker acreditado aún. Tasks reales y gate de configuración ausente verificados con fallo explícito. Knowledge: 15 páginas, estructural689/193 PASS y históricos PASS; formal global mantiene exactamente937 defectos de baseline, cero nuevos. Revisión independiente produjo 2 correcciones de precisión canónica ya aplicadas y varios fixes del harness.
+- **Código candidato:** CP real-e2e con publishers Kafka, bridge Kafka→HTTP, guard Toolkit real y seam GCP conectiva; launchers de cinco brokers y MySQL/Playmaker propio; suites físicas de CRUD/PEEK/KVS/publicación/restart en preparación. Se implementa fail-closed MSK y seam GCP actions; estado WORK_BRANCH_PENDING, no producción. Infra incorpora adapters PM de acciones/KVS/peek preservando Tiger/ACME.
+- **Continuidad:** proyecto y SPECs son control único; evidencia compacta temporal en `/private/tmp/kafka-e2e-discovery/` y física en `rio-controlplane-kafka-e2e/build/real-e2e/`. Próximo paso: terminar mappings y validadores, congelar candidato, reproducir desde checkout limpio y ejecutar todas las familias cuando Fury/Tiger/GCP/BigQueue permitan recursos propios. Tokens/coste desconocidos.
+
+- **Ejecución activa 2026-10-01:** coordinador más roles acotados de dominio, infraestructura y knowledge. Checkouts originales preservados. Refs remotos actualizados mediante `fetch origin`; bases limpias actualizadas con `pull --ff-only`. Control durable de ejecución en esta nota; inventario y matriz319 en `rio-controlplane-kafka/meli/features/20261001-real-e2e/`, con mapping executable y NOT_EXECUTED explícito.
+- **Baselines vigentes:** Kafka master `f74e856ef3de881e2d504c6cb1ced573681c1058`, develop `4302481c69300074a85ea5eb051a27bbd505cdce`; Playmaker master `3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1`, develop `7673f4bffc286f0f24d4214938df53c4c5eb9c38`; SDK Events master `ad2c98b806cffb88b23513f87785932aa1707ea4`; knowledge master `de7cde85f7dd83a673c918e22ae9f08a0f7e05bd`. El ensayo anterior se conserva como evidencia histórica parcial, no certificación.
+- **Fronteras y bloqueos comprobados:** Spellbook `Session expired`; Fury requiere login/SSO. Se pidió al owner renovar sesiones y preparar Tiger/team/project en archivo0600, sin secretos en chat. GCP OAuth/BigQueue propios/cleanup y runner corporativo todavía no verificados. GitHub runners API respondió404 (no demuestra ausencia). Zord preparado sobre diffs congelados; auto-review rechazó envío a reviewers externos/configurados y cursor persistente hasta autorización explícita, solicitada. Trabajo independiente continúa.
+- **Asignación de escritores:** root: SPEC/build/suite Playmaker/launcher PM; domain: matrix/inventario/suite física y fixes de provisioning; infra: Compose/launcher CP/adapters CP+PM/CI; knowledge: documentación KL entregada, ahora correcciones por root en fase posterior. Reviewer independiente sólo inspecciona/reproduce; no certifica su propio código. El brief por archivos y evidencia vive en las SPECs y artefactos compactos.
+
 - **Investigación terminada el 2026-09-30:** se contrastaron los siete control planes, Playmaker, Materializer y SDK Events con commits identificados. Fuentes y límites en [[Repositorios RIO — Ambientes locales (2026-09-30)]].
 - **Base encontrada:** Playmaker ya tiene MySQL real y transporte Kafka real en `local,local-integration`. Su propia arquitectura declara pendiente un control plane real conectado. Kafka ya tiene Compose con un broker, pero su publicación local usa archivos y su KVS sin configuración funciona en modo degradado.
-- **Recomendación:** extender esa base con tres brokers Apache Kafka en KRaft, el control plane real y KVS real de Fury en sandbox. Usar adaptadores locales de transporte y conexión que deleguen a los procesadores productivos. La configuración del SDK Toolkit con el sandbox debe demostrarse antes de dar por cubierta la idempotencia.
+- **Recomendación histórica (30/09, superada por decisión RF1–5):** extender esa base con tres brokers Apache Kafka en KRaft, el control plane real y KVS real de Fury en sandbox. Usar adaptadores locales de transporte y conexión que deleguen a los procesadores productivos. La configuración del SDK Toolkit con el sandbox debe demostrarse antes de dar por cubierta la idempotencia.
 - **Alcance confirmado por el owner:** el CP debe funcionar completo localmente, incluido KVS, con pruebas automáticas. KVS real de Fury Sandbox está aceptado; el ambiente puede depender de conectividad corporativa. El backend KVS queda definido, y su configuración con el cliente Toolkit actual sigue por comprobar.
-- **Estado de entrega:** propuesta documental lista; código, SPEC funcional, SPEC técnica y ramas de implementación todavía pendientes. Progreso de implementación: 0%.
+- **Estado histórico previo al encargo:** propuesta documental, implementación 0%. Estado vigente: ramas/SPEC/tareas/código candidato presentes; verificación real E2E todavía pendiente, sin declarar entrega completa.
 - **Actualización de repos:** diez bases locales actualizadas con `git pull`: siete control planes, Playmaker, Materializer y SDK Events. Kafka y Playmaker se actualizaron desde worktrees limpios de sus ramas `develop` existentes, preservando ramas y cambios de los checkouts originales. ClickHouse volvió a su rama original después de actualizar su base. Las fuentes remotas examinadas coincidieron con los SHAs finales de esas bases.
 - **Validación realizada:** investigación estática el 2026-09-30; prueba runtime parcial el 2026-10-01. La copia limpia falla en este Mac ARM por SIGILL del broker y falta de routing del CP. Con `JAVA_TOOL_OPTIONS=-XX:UseSVE=0` en el broker y routing AWS a localhost, ambos arrancan: `/ping` responde y PEEK devuelve cinco mensajes reales. Los resultados siguen a archivos y KVS sigue no-op. No se probaron deployments ni integración con Playmaker. Evidencia: [[Kafka local — Historia y prueba de arranque (2026-10-01)]].
 
@@ -45,8 +55,9 @@ El resultado esperado es un comando de inicio documentado, configuración reprod
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-controlplane-kafka]] · `melisource/fury_rio-controlplane-kafka` | Pendiente; todavía no creada | `develop@c9355395ef4b2bf438f0eb44528e24fa76ca498c` al investigar; refrescar antes de implementar | Pendiente | Pendiente | Propuesta; implementación no iniciada |
-| [[rio-playmaker]] · `melisource/fury_rio-playmaker` | Pendiente; todavía no creada | `develop@f087e4b7cc185d93618de4bdeaeb76b53486ac47` al investigar; refrescar antes de implementar | Pendiente | Pendiente | Extensión del perfil existente; implementación no iniciada |
+| [[rio-controlplane-kafka]] · `melisource/fury_rio-controlplane-kafka` | `feature/kafka-real-e2e` · worktree hermano `rio-controlplane-kafka-e2e` | `develop@4302481c69300074a85ea5eb051a27bbd505cdce` | `meli/features/20261001-real-e2e/1-functional/spec.md` lista; publicación SIG bloqueada por sesión | `meli/features/20261001-real-e2e/2-technical/spec.md` lista | Implementación/suites compiladas; real E2E pendiente |
+| [[rio-playmaker]] · `melisource/fury_rio-playmaker` | `feature/kafka-real-e2e` · worktree hermano `rio-playmaker-kafka-e2e` | `develop@7673f4bffc286f0f24d4214938df53c4c5eb9c38` | Funcional E2E del CP compartido, lista | Técnica E2E del CP compartida, lista | Adapters acciones/peek/KVS y launcher propios implementados; gates de ejecución pendientes |
+| [[ads-signals-knowledge-library]] · `melisource/fury_ads-signals-knowledge-library` | `docs/kafka-real-e2e` · worktree hermano `ads-signals-knowledge-library-kafka-e2e` | `master@de7cde85f7dd83a673c918e22ae9f08a0f7e05bd` | Contrato de auditoría del prompt maestro | Correcciones canónicas y documentación pendiente de E2E | Auditoría y correcciones verificadas en curso |
 
 El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks → implementación. Completar ramas y ambas SPEC antes de modificar código. Incluir otro repositorio en esta tabla sólo si el diseño demuestra que necesita un cambio.
 
@@ -64,6 +75,8 @@ El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks 
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > - [x] Confirmar KVS real de Fury Sandbox y permitir la dependencia de conectividad corporativa #owner/me #type/research #area/meli
+> - [x] Preparar [[Prompt maestro — E2E completo de CP Kafka]] con cobertura exhaustiva, subagentes, pruebas reales y actualización de la knowledge library #owner/me #type/research #area/meli
+> - [/] Ejecutar el prompt maestro con un agente y completar el sistema E2E, la auditoría documental y la evidencia de cada capacidad #owner/me #type/dev #area/meli
 > - [ ] Comprobar el cliente Toolkit contra un sandbox propio y verificar create/CAS, versiones y TTL #owner/me #type/dev #area/meli
 > - [ ] Identificar un runner de CI con Docker y acceso al KVS sandbox; documentar configuración y aislamiento por corrida #owner/me #type/dev #area/meli
 > - [ ] Crear la SPEC funcional en Spellbook con la matriz de capacidades y los criterios de aceptación de esta nota #owner/me #type/dev #area/meli
@@ -78,9 +91,16 @@ El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks 
 
 ## 📆 Bitácora
 
+- **2026-10-01 — gates y reproducción:** runtime propio creado sin activar ni reiniciar Colima compartido; Kafka RF1–5 físico PASS/cleanup. OOM detectado y corregido. CP701 tests PASS. Revisión independiente arregló precisión P/U/D GCP y fallo GCP null operation sin claim; harness corregido para claves, routing, cleanup y evidencia. Configuración sandbox/auth/runner aún bloquea suites completas.
+
+- **2026-10-01 — implementación:** SPECs y tareas listas; writers aislados. Dominio incorporó inventario/matriz y candidato de fix MSK fail-closed con regresiones pendientes. Infra implementa adapters sólo conexión/transporte y launcher propio. Verificador independiente activado para docs congelados y luego código/checkout limpio. Playmaker develop avanzó a7673f4bff durante pull; congelado ese nuevo baseline y master canónico separado.
+
+- **2026-10-01 — ejecución:** bootstrap y reglas scoped leídos; tres subagentes en discovery. Kafka develop avanzó respecto al ensayo. Ramas limpias creadas; cambios ajenos no copiados ni staged. Claims/publicación de deployments, errores MSK, seam GCP PEEK y validación de envelopes se investigan como riesgos críticos antes de fijar los escenarios. Spellbook requiere login del owner; trabajo independiente continúa.
+
 - **2026-09-30** — Búsqueda y contraste de implementaciones vigentes completados; diez bases actualizadas; los checkouts originales de Kafka y Playmaker se preservaron usando worktrees limpios. Se creó esta iniciativa con la recomendación de extender `local-integration`, tres brokers y KVS sandbox real. Implementación pendiente de las SPEC y ramas.
 - **2026-10-01** — Historia verificada: Compose creado el 25 de febrero y mergeado a develop el 2 de marzo de 2026. Arranque y PEEK reales comprobados con dos ajustes temporales de configuración. El warmup GCP sin credenciales avisa y permite arrancar; operaciones GCP pendientes. La prueba se hizo sin modificar los repos y sus procesos se retiraron. El ambiente completo sin mocks continúa pendiente.
 - **2026-10-01** — El owner confirmó el requisito de CP completo localmente, incluido KVS y automatización, y eligió KVS real de Fury Sandbox. Se concretó una propuesta de suites JUnit/Testcontainers/Awaitility, cobertura y fases de entrega; configuración del SDK y disponibilidad del runner quedan como primeras comprobaciones técnicas.
+- **2026-10-01** — Se entregó [[Prompt maestro — E2E completo de CP Kafka]] para ejecución futura multiagente y actualización obligatoria de [[ads-signals-knowledge-library]]. Cierre de AGENTS OS solicitado; feedback y ejecución de depuración registrados. Próximo paso: ejecutar el encargo desde baselines limpios y actuales. Implementación E2E sigue pendiente.
 
 ## 🧭 Decisiones
 
@@ -139,6 +159,7 @@ Fuentes oficiales verificadas el 2026-10-01: [Sandbox Services, servicios soport
 - [[Ambientes locales RIO — Comparativa de implementaciones]] — evidencia comparada, herramientas comunes, alternativas y recomendación.
 - [[Repositorios RIO — Ambientes locales (2026-09-30)]] — commits y archivos fuente verificables.
 - [[Kafka local — Historia y prueba de arranque (2026-10-01)]] — fecha de incorporación, fallas originales y prueba real de arranque/PEEK con configuración temporal.
+- [[Prompt maestro — E2E completo de CP Kafka]] — encargo completo para el agente ejecutor.
 - [Testcontainers — Kafka](https://java.testcontainers.org/modules/kafka/) — soporte oficial de contenedores Apache Kafka y listeners adicionales.
 - [Gradle — Testing](https://docs.gradle.org/current/userguide/java_testing.html) — suites separadas y reportes de ejecución.
 - [[RIO]] · [[rio-controlplane-kafka]] · [[rio-playmaker]] · [[rio-controlplane-kms]] · [[rio-sdk-events]].
