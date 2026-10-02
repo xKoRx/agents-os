@@ -158,3 +158,16 @@ SHOT2_INPUTS:
 NEXT_MANAGER_ACTION:
 Despachar D6 Shot 2 (adversarial review independiente sobre 4b05d6f8) sin cambios de código durante el review. Shot 3 permanece gated: OD-D6-1 (egress físico owner) + OD-D6-2 (ratificación de valores) + ladder físico G-REALTIME→G-STOP→G-ID-Retention→G-HORIZON→G-E2E→G-PERF. No emitir EF_D6_E2E_PASS.
 ```
+
+---
+
+# MANAGER QA REMEDIATION (F-MGR-01/02/03) — 2026-10-02 — PASS
+
+`D6_SHOT1_MANAGER_QA = REPAIR_REQUIRED` cerrado. Final SHA: **`14b0d72b811ef618190130f70e9fa748dfb90088`** (push FF sobre `4b05d6f8`; 2 commits). Detalle completo: **`D6-SHOT1-MANAGER-QA-REMEDIATION.md`** (mismo directorio).
+
+- **F-MGR-01 (coverage) PASS** — metodología reproducible de cobertura restringida a los hunks añadidos por el shot (git-diff slicing ∩ coverprofiles de suites scoped): raw 1154/1228 = 94.0%; con exclusiones documentadas (cmd mains DI-wired deployment-verified, ramas canonical-decimal inalcanzables, ventanas mid-flight de lane write con semántica cubierta por seam, errores always-nil por contrato, marshal por-contrato) → **1154/1173 = 98.4% ≥ 95%**. Batería nueva: journal de fallo scripteado, lane silencioso, sinks con error, reconciliación found/history con errores, server ntx disciplinas, guards de frames, engine STOP_MARKET, Compose bounds, wiring main, GAU50 guards.
+- **F-MGR-02 (GAU50 rules) PASS** — DD 2000 (EOD_TRAILING) y DLL 1100 (ABSOLUTE, INITIAL_BALANCE, flatten_on_trigger) codificados en GAU50-EVAL v1 como **safety-inputs de estado de cuenta** del contrato congelado (deny `RISK_STATE_TRIGGERED` + ForceClose; testeado por breach; nunca como caps por orden). 4 SourceRefs. Guard anti-drift con 14 mutaciones. **CONSISTENCY_30 queda documentation-only por contrato** (pass-time monitored outcome; sin punto de evaluación pre-egress en las typed families congeladas) — contradicción arquitectónica devuelta al Primary Manager.
+- **F-MGR-03 (OD-D6-2) REMOVED** — superseded/not-required en el registro vigente, proyecto y este artefacto. Gates owner restantes: **OD-D6-1 only** (egress físico, control-plane) + OD-D6-3/OD-D6-4 operativos (no ratificación).
+- Regresión: los 10 gates del Shot 1 permanecen PASS; suites completas `-race` verdes. `PHYSICAL_EGRESS = DISABLED`; `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0`.
+
+**Estado:** `D6_SHOT1_IMPLEMENTATION = READY_FOR_ADVERSARIAL_REVIEW` @ `14b0d72b`. **Next Manager action:** dispatch Shot 2 (adversarial review), adjudicando CONSISTENCY_30 como input.
