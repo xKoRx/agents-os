@@ -1,0 +1,119 @@
+[
+ {
+  "record": "cl-grafica-eurusd@1",
+  "windows_observed": [
+   "w0002",
+   "w0130"
+  ],
+  "first_window": "w0002",
+  "canonical_statement": "La pantalla muestra una gráfica del par EUR/USD.",
+  "first_statement": "La pantalla muestra una gráfica del par EUR/USD.",
+  "statement_is_first_rendering": true,
+  "evidence_union_matches": true,
+  "invocation_union_matches": true,
+  "all_invocations_resolve": true,
+  "edges_cover_evidence": true,
+  "PASS": true
+ },
+ {
+  "record": "cl-grafico-eurusd@1",
+  "windows_observed": [
+   "w0031",
+   "w0057",
+   "w0070",
+   "w0082",
+   "w0086",
+   "w0119"
+  ],
+  "first_window": "w0031",
+  "canonical_statement": "El gráfico mostrado es de EUR/USD.",
+  "first_statement": "El gráfico mostrado es de EUR/USD.",
+  "statement_is_first_rendering": true,
+  "evidence_union_matches": true,
+  "invocation_union_matches": true,
+  "all_invocations_resolve": true,
+  "edges_cover_evidence": true,
+  "PASS": true
+ },
+ {
+  "record": "cl-instrumento-eurusd@1",
+  "windows_observed": [
+   "w0017",
+   "w0024",
+   "w0042"
+  ],
+  "first_window": "w0017",
+  "canonical_statement": "El instrumento mostrado es EURUSD.",
+  "first_statement": "El instrumento mostrado es EURUSD.",
+  "statement_is_first_rendering": true,
+  "evidence_union_matches": true,
+  "invocation_union_matches": true,
+  "all_invocations_resolve": true,
+  "edges_cover_evidence": true,
+  "PASS": true
+ },
+ {
+  "record": "cl-instrumento-grafico-eurusd@1",
+  "windows_observed": [
+   "w0004",
+   "w0097"
+  ],
+  "first_window": "w0004",
+  "canonical_statement": "El instrumento mostrado en el gráfico es EURUSD.",
+  "first_statement": "El instrumento mostrado en el gráfico es EURUSD.",
+  "statement_is_first_rendering": true,
+  "evidence_union_matches": true,
+  "invocation_union_matches": true,
+  "all_invocations_resolve": true,
+  "edges_cover_evidence": true,
+  "PASS": true
+ },
+ {
+  "record": "cl-stop-loss-long-debajo-turtle-soup@1",
+  "windows_observed": [
+   "w0068",
+   "w0069"
+  ],
+  "first_window": "w0068",
+  "canonical_statement": "Si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Turtle Soup.",
+  "first_statement": "Si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Turtle Soup.",
+  "statement_is_first_rendering": true,
+  "evidence_union_matches": true,
+  "invocation_union_matches": true,
+  "all_invocations_resolve": true,
+  "edges_cover_evidence": true,
+  "PASS": true
+ },
+ {
+  "record": "cl-temporalidad-grafico-15m@1",
+  "windows_observed": [
+   "w0042",
+   "w0115"
+  ],
+  "first_window": "w0042",
+  "canonical_statement": "La temporalidad del gráfico es de 15 minutos.",
+  "first_statement": "La temporalidad del gráfico es de 15 minutos.",
+  "statement_is_first_rendering": true,
+  "evidence_union_matches": true,
+  "invocation_union_matches": true,
+  "all_invocations_resolve": true,
+  "edges_cover_evidence": true,
+  "PASS": true
+ },
+ {
+  "record": "cl-temporalidad-grafico-8h@1",
+  "windows_observed": [
+   "w0082",
+   "w0097"
+  ],
+  "first_window": "w0082",
+  "canonical_statement": "La temporalidad configurada del gráfico es de 8 horas.",
+  "first_statement": "La temporalidad configurada del gráfico es de 8 horas.",
+  "statement_is_first_rendering": true,
+  "evidence_union_matches": true,
+  "invocation_union_matches": true,
+  "all_invocations_resolve": true,
+  "edges_cover_evidence": true,
+  "PASS": true
+ }
+]

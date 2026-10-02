@@ -1,0 +1,2082 @@
+{
+ "coverage": [
+  {
+   "window": "w0001",
+   "start": "00:00",
+   "end": "00:08",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-audiencia-curso-intermedio@1",
+    "cl-bienvenida-curso-completo@1",
+    "cl-curso-completo-estrategia-profundidad@1",
+    "cl-curso-intermedio-base@1",
+    "cl-dos-zonas-rectangulares-azules@1",
+    "cl-grafico-identificacion-forex-com@1",
+    "cl-grafico-par-eurusd@1",
+    "cl-grafico-temporalidad-5m@1",
+    "cl-nivel-azul-115728@1",
+    "cl-nivel-horizontal-115797@1",
+    "cl-nivel-horizontal-116148@1",
+    "cl-nivel-negro-115744@1",
+    "cl-ponente-ampliacion-curso-intermedio@1",
+    "cl-sitio-cursosdigitales701@1",
+    "cl-visitar-sitio-mas-cursos@1",
+    "rel-ampliacion-requiere-base-intermedia@1",
+    "rel-visita-sitio-requiere-url-mostrada@1"
+   ]
+  },
+  {
+   "window": "w0002",
+   "start": "00:09",
+   "end": "00:36",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-audiencia-procedente-intermedio@1",
+    "cl-capitulo-cubre-bias@1",
+    "cl-capitulo-cubre-entradas@1",
+    "cl-capitulo-cubre-estrategia@1",
+    "cl-capitulo-cubre-riesgo@1",
+    "cl-capitulo-explica-noticias@1",
+    "cl-capitulo-incluye-conceptos-desconocidos@1",
+    "cl-curso-completo-amplia-intermedio@1",
+    "cl-curso-completo@1",
+    "cl-curso-intermedio-sienta-base@1",
+    "cl-descenso-reciente-eurusd@1",
+    "cl-dos-bandas-azules@1",
+    "cl-estrategia-en-profundidad@1",
+    "cl-fecha-grafica@1",
+    "cl-formato-similar-intermedio@1",
+    "cl-grafica-eurusd@1",
+    "cl-info-intermedio-no-totalmente-relevante@1",
+    "cl-nivel-1-15728@1",
+    "cl-nivel-1-15744@1",
+    "cl-nivel-1-15797@1",
+    "cl-nivel-1-16148@1",
+    "cl-no-requiere-curso-intermedio@1",
+    "cl-primer-capitulo-introduccion@1",
+    "cl-primer-capitulo@1",
+    "cl-temporalidad-cinco-minutos@1",
+    "rel-continuidad-sin-curso-intermedio@1"
+   ]
+  },
+  {
+   "window": "w0003",
+   "start": "00:37",
+   "end": "00:44",
+   "disposition": "rejected",
+   "rejection_category": "other",
+   "records_introduced": []
+  },
+  {
+   "window": "w0004",
+   "start": "00:48",
+   "end": "01:04",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-curso-intermedio-no-supone-problema@1",
+    "cl-empezar-explicacion-desde-cero@1",
+    "cl-empezar-por-los-conceptos@1",
+    "cl-formato-parecido-curso-intermedio@1",
+    "cl-informacion-curso-intermedio-poca-relevancia@1",
+    "cl-instrumento-grafico-eurusd@1",
+    "cl-introducir-concepto-rango@1",
+    "cl-pintar-vela-en-grafico@1",
+    "cl-rango-otra-vela-toma-extremo-cierra-dentro@1",
+    "cl-rango-vela-tomante-puede-no-ser-siguiente@1",
+    "cl-temporalidad-grafico-cinco-minutos@1",
+    "cl-vela-representada-por-rectangulo-vertical@1",
+    "rel-no-hacer-curso-intermedio-depende-de-relevancia@1",
+    "rel-vela-no-siguiente-excepcion-a-definicion-rango@1"
+   ]
+  },
+  {
+   "window": "w0005",
+   "start": "01:05",
+   "end": "01:15",
+   "disposition": "rejected",
+   "rejection_category": "other",
+   "records_introduced": []
+  },
+  {
+   "window": "w0006",
+   "start": "01:16",
+   "end": "01:29",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cuerpo-derecho-dentro-rango-izquierdo@1",
+    "cl-mecha-derecha-rebasa-extremo-inferior@1",
+    "cl-pintar-vela-izquierda-negro@1",
+    "cl-rango-vela-cierra-dentro@1",
+    "cl-rango-vela-no-siguiente@1",
+    "cl-rango-vela-toma-extremo@1",
+    "cl-rectangulo-horizontal-es-rango@1",
+    "cl-vela-izquierda-bajista-probable@1",
+    "rel-pintado-negro-debajo-de-bajista@1"
+   ]
+  },
+  {
+   "window": "w0007",
+   "start": "01:30",
+   "end": "01:48",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-demo-rango-bajista@1",
+    "cl-etiqueta-rango-arriba@1",
+    "cl-rango-alcista-mostrado@1",
+    "cl-rango-cierre-adentro@1",
+    "rel-rango-alcista-depende-rango@1"
+   ]
+  },
+  {
+   "window": "w0008",
+   "start": "01:51",
+   "end": "01:58",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-configuracion-sin-mucho-misterio@1",
+    "cl-estructura-igual-pero-al-reves@1",
+    "cl-figura-blanca-vela-positiva-probable@1",
+    "cl-rango-etiquetado-alcista@1",
+    "cl-segundo-rectangulo-oscuro-a-la-derecha@1"
+   ]
+  },
+  {
+   "window": "w0009",
+   "start": "01:59",
+   "end": "02:08",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-rango-alcista-etiquetado@1",
+    "cl-vela-negativa-mayoria@1",
+    "cl-vela-no-necesariamente-negativa@1"
+   ]
+  },
+  {
+   "window": "w0010",
+   "start": "02:12",
+   "end": "02:28",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-anotacion-rango-alcista@1",
+    "cl-estrategia-se-basa-principalmente-en-rangos@1",
+    "cl-rango-formado-tomando-extremo-vela-anterior@1"
+   ]
+  },
+  {
+   "window": "w0011",
+   "start": "02:29",
+   "end": "02:42",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-entradas-sirven-para-encontrar-bias@1",
+    "cl-rango-derecho-es-bajista@1",
+    "cl-rango-izquierdo-es-alcista@1",
+    "cl-rangos-importantes-para-encontrar-entradas@1",
+    "cl-uso-principal-rangos-no-mencionado-curso-intermedio@1"
+   ]
+  },
+  {
+   "window": "w0012",
+   "start": "02:44",
+   "end": "02:55",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-encontrar-bias@1",
+    "cl-esquema-representa-concepto-rango@1",
+    "cl-estructura-derecha-rango-bajista@1",
+    "cl-estructura-izquierda-rango-alcista@1",
+    "cl-ir-al-grafico@1",
+    "cl-rango-mas-claro-en-grafico@1",
+    "cl-rango-mas-facil-en-grafico@1"
+   ]
+  },
+  {
+   "window": "w0013",
+   "start": "02:56",
+   "end": "03:03",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-borrar-anotaciones-rango@1",
+    "cl-cambio-marco-temporal-5m-4h@1",
+    "cl-comprension-sera-mas-facil@1",
+    "cl-comprension-visual-mas-clara@1",
+    "cl-desaparicion-anotaciones-rango@1",
+    "cl-esquema-etiquetado-rango-alcista@1",
+    "cl-esquema-etiquetado-rango-bajista@1",
+    "cl-grafico-real-etiquetado-rango-alcista@1",
+    "cl-grafico-real-etiquetado-rango-bajista@1",
+    "cl-material-ya-claro@1",
+    "cl-mostrar-ejemplos-reales-rangos@1",
+    "cl-seleccion-rango-bajista@1",
+    "rel-borrado-porque-material-claro@1"
+   ]
+  },
+  {
+   "window": "w0014",
+   "start": "03:04",
+   "end": "03:17",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-borrar-linea-superior-senalada@1",
+    "cl-ejemplos-reales-rangos-claros@1",
+    "cl-precio-toma-high-zona-senalada@1",
+    "cl-zona-senalada-es-rango-grafico-4h@1",
+    "rel-borrar-linea-razon-ejemplos-claros@1",
+    "rel-rango-razon-toma-high@1"
+   ]
+  },
+  {
+   "window": "w0015",
+   "start": "03:20",
+   "end": "03:32",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cierre-rango-bajista-completa-rango@1",
+    "cl-esta-vela-rango-alcista@1"
+   ]
+  },
+  {
+   "window": "w0016",
+   "start": "03:36",
+   "end": "03:48",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-rango-bajista-ejemplo@1",
+    "cl-vela-toma-alto-rango@1"
+   ]
+  },
+  {
+   "window": "w0017",
+   "start": "03:49",
+   "end": "04:00",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-area-rectangular-4h@1",
+    "cl-cambio-a-temporalidad-diaria@1",
+    "cl-descenso-directo@1",
+    "cl-instrumento-eurusd@1",
+    "cl-presencia-en-todas-temporalidades@1",
+    "cl-rango-diario@1",
+    "cl-similitud-al-dibujo@1",
+    "cl-temporalidad-inicial-4h@1",
+    "cl-temporalidad-posterior-diaria@1"
+   ]
+  },
+  {
+   "window": "w0018",
+   "start": "04:03",
+   "end": "04:17",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-precio-cierra-dentro-otra-vez@1",
+    "cl-precio-va-por-fuera@1",
+    "cl-rango-es-alcista@1",
+    "cl-rango-extremo-inferior-114748@1",
+    "cl-rango-extremo-superior-115803@1",
+    "cl-usar-rango-como-target@1",
+    "cl-uso-target-se-vera-en-video-bias@1",
+    "rel-uso-target-depende-rango-alcista@1"
+   ]
+  },
+  {
+   "window": "w0019",
+   "start": "04:20",
+   "end": "04:28",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-apertura-dialogo-cambiar-intervalo@1",
+    "cl-dialogo-muestra-un-minuto@1",
+    "cl-existen-mas-tipos-de-rango@1",
+    "cl-grafico-inicial-1d@1",
+    "cl-grafico-posterior-15m@1",
+    "cl-rectangulo-en-zona-de-mayo@1",
+    "cl-simbolo-mostrado-eurusd@1",
+    "cl-vista-final-sin-velas@1"
+   ]
+  },
+  {
+   "window": "w0020",
+   "start": "04:29",
+   "end": "04:37",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-hay-mas-tipos-de-rangos@1",
+    "cl-limites-del-rectangulo@1",
+    "cl-precio-actua-como-una-cadena@1",
+    "cl-precio-se-mueve-en-funcion-de-rangos@1",
+    "cl-rectangulo-cambia-de-blanco-a-negro@1",
+    "cl-se-ajusta-acercamiento-grafica@1",
+    "cl-se-dibuja-rectangulo-vertical@1"
+   ]
+  },
+  {
+   "window": "w0021",
+   "start": "04:40",
+   "end": "04:50",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-price-acts-as-chain@1",
+    "cl-price-completes-range@1",
+    "cl-price-forms-range@1",
+    "cl-price-moves-in-ranges@1",
+    "cl-range-rectangle-levels@1",
+    "cl-range-rectangle-white-border@1",
+    "cl-ranges-are-strategy-base@1",
+    "cl-rectangle-marks-indicated-range@1",
+    "rel-range-completion-depends-on-range-formation@1"
+   ]
+  },
+  {
+   "window": "w0022",
+   "start": "04:51",
+   "end": "05:00",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cadena-forma-rango-alcista@1",
+    "cl-posible-rango-bajista-desde-aqui@1",
+    "cl-rangos-base-estrategia@1",
+    "cl-seguir-cadena-precio@1",
+    "cl-tomar-alto-vela-para-rango-bajista@1",
+    "rel-rango-bajista-requiere-alto-vela@1"
+   ]
+  },
+  {
+   "window": "w0023",
+   "start": "05:04",
+   "end": "05:16",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-completar-rango-bajista-ahora@1",
+    "cl-posible-rango-bajista@1",
+    "cl-precio-apareja-todo@1",
+    "cl-precio-completa-ordenes@1",
+    "cl-rango-usa-alto-vela@1",
+    "cl-rectangulo-vela-eurusd-15m@1",
+    "rel-alto-vela-depende-rango-bajista@1",
+    "rel-completar-rango-depende-formacion@1"
+   ]
+  },
+  {
+   "window": "w0024",
+   "start": "05:18",
+   "end": "05:28",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-ejemplo-importancia-rangos@1",
+    "cl-movimiento-hacia-objetivo@1",
+    "cl-objetivo-115160@1",
+    "cl-rango-bajista-tras-toma-alcista@1",
+    "cl-temporalidad-15m@1",
+    "rel-movimiento-depende-objetivo@1"
+   ]
+  },
+  {
+   "window": "w0025",
+   "start": "05:29",
+   "end": "05:44",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-asumir-completacion-rangos@1",
+    "cl-comprender-navegacion-por-rangos@1",
+    "cl-comprender-rangos-que-no-se-completan@1",
+    "cl-comprender-rangos-que-se-completan@1",
+    "cl-instrumento-mostrado-eurusd@1",
+    "cl-intervalo-mostrado-15-minutos@1",
+    "cl-linea-en-minimo-vela-blanca@1",
+    "cl-matices-completacion-rangos@1",
+    "cl-minimo-vela-negra-por-encima-blanca@1",
+    "cl-rangos-que-no-se-completan@1",
+    "cl-rangos-son-importantes@1",
+    "cl-seleccion-vela-blanca-grande@1",
+    "cl-seleccion-vela-negra-derecha@1",
+    "rel-excepcion-rangos-que-no-se-completan@1"
+   ]
+  },
+  {
+   "window": "w0026",
+   "start": "05:48",
+   "end": "05:56",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-proceso-consiste-en-completar-rangos@1",
+    "cl-rangos-indican-direccion-del-precio@1",
+    "cl-se-completa-rango-alcista@1",
+    "cl-se-completa-rango-bajista@1",
+    "cl-se-forma-rango-bajista@1"
+   ]
+  },
+  {
+   "window": "w0027",
+   "start": "05:58",
+   "end": "06:05",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cambio-temporalidad-15m-a-diaria@1",
+    "cl-failure-swing-explicacion-posterior@1",
+    "cl-failure-swing-parte-inferior@1",
+    "cl-observacion-rangos-ejercicio-facil@1",
+    "cl-observar-completacion-rangos@1",
+    "cl-observar-formacion-rangos@1",
+    "cl-rango-alcista-completado@1",
+    "cl-rango-bajista-completado@1",
+    "cl-rango-bajista-formado-despues@1",
+    "cl-rangos-completados-sucesivamente@1",
+    "cl-temporalidad-ejemplo-diaria@1",
+    "rel-facilidad-observacion-rangos-temporalidad-diaria@1"
+   ]
+  },
+  {
+   "window": "w0028",
+   "start": "06:06",
+   "end": "06:13",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0029",
+   "start": "06:14",
+   "end": "06:26",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-daily-range-exercise-is-easy@1",
+    "cl-example-closes-slightly-outside@1",
+    "cl-example-wick-drawn@1",
+    "cl-explain-failure-swing-later@1",
+    "cl-extreme-close-inside-go-opposite@1",
+    "cl-failure-swing-below@1",
+    "cl-observe-daily-range-formation@1",
+    "cl-observe-range-completion@1",
+    "cl-shown-range-bullish@1",
+    "rel-close-outside-exception@1"
+   ]
+  },
+  {
+   "window": "w0030",
+   "start": "06:28",
+   "end": "06:48",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-example-close-slightly-outside@1",
+    "cl-example-has-drawn-wick@1",
+    "cl-example-labeled-bullish@1",
+    "cl-examples-daily-only@1",
+    "cl-pattern-checkable-many-timeframes@1",
+    "cl-pattern-many-examples@1",
+    "cl-sweep-extreme-close-inside-target-opposite-end@1"
+   ]
+  },
+  {
+   "window": "w0031",
+   "start": "06:52",
+   "end": "07:01",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-comprobar-eso-temporalidades@1",
+    "cl-extension-temporal-visible-cambia@1",
+    "cl-grafico-actual-es-ejemplo@1",
+    "cl-grafico-eurusd@1",
+    "cl-puedo-buscar-muchos-ejemplos@1",
+    "cl-temporalidad-1d@1"
+   ]
+  },
+  {
+   "window": "w0032",
+   "start": "07:02",
+   "end": "07:16",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-chart-is-eurusd@1",
+    "cl-chart-timeframe-is-daily@1",
+    "cl-course-would-be-fast@1",
+    "cl-price-completes-ranges@1",
+    "cl-price-forms-ranges@1",
+    "cl-rectangles-drawn-around-candle-groups@1",
+    "cl-rectangles-mark-price-ranges@1",
+    "cl-this-is-insufficient-to-trade@1"
+   ]
+  },
+  {
+   "window": "w0033",
+   "start": "07:19",
+   "end": "07:30",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-observar-completado-rangos@1",
+    "cl-operar-solo-grafico-diario@1",
+    "cl-rangos-visibles-grafico@1",
+    "cl-temporalidad-diaria-grafico@1"
+   ]
+  },
+  {
+   "window": "w0034",
+   "start": "07:32",
+   "end": "07:42",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0035",
+   "start": "07:43",
+   "end": "07:56",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-existen-senales-continuacion@1",
+    "cl-existen-senales-reversion@1",
+    "cl-grafica-activo-eurusd@1",
+    "cl-grafica-rangos-recuadrados@1",
+    "cl-grafica-timeframe-diario@1",
+    "cl-importancia-rangos-navegar-precio@1",
+    "cl-objetivo-conocer-destino-potencial@1",
+    "cl-objetivo-conocer-direccion-precio@1"
+   ]
+  },
+  {
+   "window": "w0036",
+   "start": "08:00",
+   "end": "08:21",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-continuacion-alcista-hasta-objetivo@1",
+    "cl-objetivo-1-16148@1",
+    "cl-rangos-bajistas-en-smt@1",
+    "cl-rangos-bajistas-libra@1",
+    "cl-rangos-bajistas-otra-vez@1",
+    "cl-senal-continuacion-cierra-fuera@1",
+    "cl-senal-continuacion-sin-rango-bajista@1",
+    "cl-vela-cierra-fuerte@1",
+    "cl-vela-sin-rango-bajista@1",
+    "rel-alcista-depende-cierra-fuerte@1",
+    "rel-alcista-depende-objetivo@1",
+    "rel-alcista-depende-sin-rango-bajista@1",
+    "rel-rango-bajista-excepcion-alcista@1"
+   ]
+  },
+  {
+   "window": "w0037",
+   "start": "08:22",
+   "end": "08:33",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-comparacion-diaria-eurusd-gbpusd@1",
+    "cl-gbpusd-seleccionado@1",
+    "cl-objetivo-hoy-rango-bullish-libra@1",
+    "cl-rango-bearish-libra-formado@1",
+    "cl-rango-bullish-libra-formado@1",
+    "cl-reversion-tras-rango-bearish-libra@1",
+    "rel-objetivo-depende-rango-bullish-libra@1",
+    "rel-reversion-depende-rango-bearish-libra@1"
+   ]
+  },
+  {
+   "window": "w0038",
+   "start": "08:34",
+   "end": "08:44",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-ausencia-rango-bajista@1",
+    "cl-cierre-fuerte-libra@1",
+    "cl-gbpusd-cierra-sobre-135843@1",
+    "cl-libra-directo-al-objetivo@1",
+    "cl-objetivo-libra-135843@1",
+    "cl-rango-bullish-en-libra@1",
+    "rel-trayecto-directo-sin-rango-bajista@1"
+   ]
+  },
+  {
+   "window": "w0039",
+   "start": "08:45",
+   "end": "08:57",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cambio-marco-15m-a-1h@1",
+    "cl-eurusd-alcanzo-116148@1",
+    "cl-eurusd-rango-superior-116148@1",
+    "cl-gbpusd-rango-superior-135843@1",
+    "cl-gbpusd-supero-135843@1",
+    "cl-movimiento-llego-antes-de-entrada@1",
+    "cl-objetivo-libra-zona-superior@1",
+    "cl-situacion-muestra-importancia-rangos@1",
+    "cl-suponer-rangos-se-completan@1"
+   ]
+  },
+  {
+   "window": "w0040",
+   "start": "09:00",
+   "end": "09:10",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cambio-rangos-basado-temporalidades@1",
+    "cl-completa-rango-bearish@1",
+    "cl-eurusd-temporalidad-1h-4h@1",
+    "cl-explicacion-base-rango@1",
+    "cl-forma-rango-bearish@1",
+    "cl-gbpusd-temporalidad-1h-4h@1",
+    "cl-llega-rango-bullish@1",
+    "cl-temporalidades-siguiente-capitulo@1",
+    "rel-rango-bearish-completo-requiere-formado@1"
+   ]
+  },
+  {
+   "window": "w0041",
+   "start": "09:11",
+   "end": "09:20",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-hacer-rango-grande@1",
+    "cl-imaginar-esto-como-rango@1",
+    "cl-rango-rectangular-vertical@1",
+    "cl-vista-eurusd-15m@1"
+   ]
+  },
+  {
+   "window": "w0042",
+   "start": "09:21",
+   "end": "09:32",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-linea-horizontal-borde-superior@1",
+    "cl-objetivo-parte-superior-rango@1",
+    "cl-opacidad-relleno-83@1",
+    "cl-punto-se-retomara-mas-adelante@1",
+    "cl-rango-dibujado-rectangulo@1",
+    "cl-rango-temporalidad-un-dia@1",
+    "cl-relleno-rango-oscuro@1",
+    "cl-selector-color-rango@1",
+    "cl-temporalidad-grafico-15m@1"
+   ]
+  },
+  {
+   "window": "w0043",
+   "start": "09:36",
+   "end": "09:46",
+   "disposition": "rejected",
+   "rejection_category": "other",
+   "records_introduced": []
+  },
+  {
+   "window": "w0044",
+   "start": "09:48",
+   "end": "10:12",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-dibujar-vela-siguiente-con-mechas@1",
+    "cl-duracion-posible-cuatro-horas@1",
+    "cl-mecas-para-realismo-visual@1",
+    "cl-nueva-vela-abre-aqui@1",
+    "cl-rango-pendiente-cierra-dentro@1",
+    "cl-rango-pendiente-reacciona-otra-vela@1",
+    "cl-rango-pendiente-take-low-sube@1",
+    "cl-vela-toma-low-rango-cuatro-horas@1",
+    "rel-cierra-adentro-base-rango-pendiente@1",
+    "rel-mechas-proposito-realismo@1",
+    "rel-reaccion-otra-base-rango-pendiente@1"
+   ]
+  },
+  {
+   "window": "w0045",
+   "start": "10:16",
+   "end": "10:32",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0046",
+   "start": "10:36",
+   "end": "10:54",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-bullish-daily-range@1",
+    "cl-bullish-target@1",
+    "cl-current-range-aligns-with-target@1",
+    "cl-current-range-is-pending@1",
+    "cl-current-range-opens-below-previous@1",
+    "cl-current-range-takes-previous-low@1",
+    "cl-four-hour-upward-move@1",
+    "cl-opening-below-indicates-low-take@1",
+    "rel-bullish-target-depends-on-daily-range@1",
+    "rel-bullish-target-depends-on-four-hour-rise@1",
+    "rel-pending-range-label-depends-on-target-alignment@1",
+    "rel-prior-low-take-depends-on-interpretation-rule@1",
+    "rel-prior-low-take-depends-on-opening-below@1"
+   ]
+  },
+  {
+   "window": "w0047",
+   "start": "10:56",
+   "end": "11:07",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-rango-pendiente-favorece-objetivo@1",
+    "cl-rango-pendiente-nombre@1",
+    "cl-rango-reiniciado-nombre@1"
+   ]
+  },
+  {
+   "window": "w0048",
+   "start": "11:08",
+   "end": "11:16",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-copiar-grupo-velas-seleccionado@1",
+    "cl-mover-grupo-copiado-derecha@1",
+    "cl-rango-pendiente-rotulado@1",
+    "cl-rango-reiniciado@1",
+    "rel-mover-requiere-copia@1"
+   ]
+  },
+  {
+   "window": "w0049",
+   "start": "11:18",
+   "end": "11:27",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0050",
+   "start": "11:28",
+   "end": "11:43",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-bearish-range-forming@1",
+    "cl-current-candle-closes-inside@1",
+    "cl-current-candle-opens@1",
+    "cl-current-candle-takes-high@1",
+    "cl-daily-range@1",
+    "cl-pending-range-label@1",
+    "cl-reset-range-open-above@1",
+    "cl-reset-range-take-high@1",
+    "cl-target-above-daily-range@1",
+    "rel-bearish-range-depends-on-current-close@1",
+    "rel-bearish-range-depends-on-current-high@1",
+    "rel-bearish-range-depends-on-current-open@1"
+   ]
+  },
+  {
+   "window": "w0051",
+   "start": "11:44",
+   "end": "11:59",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-rango-altista-en-formacion@1",
+    "cl-rango-bajista-en-formacion@1",
+    "cl-rango-pendiente@1",
+    "cl-todo-perfecto@1",
+    "cl-vela-abre-toma-high-cierra-adentro@1",
+    "rel-perfecto-tras-rango-altista@1",
+    "rel-rango-bajista-depende-configuracion-vela@1"
+   ]
+  },
+  {
+   "window": "w0052",
+   "start": "12:00",
+   "end": "12:16",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-casos-presentados-tipos-rango@1",
+    "cl-esquema-mostrado-rango-reiniciado@1",
+    "cl-grafico-rotulado-rango-pendiente@1",
+    "cl-importante-comprender-terminos-rango@1",
+    "cl-rango-pendiente-esquema-mostrado@1",
+    "cl-rectangulo-zona-velas-derechas@1",
+    "cl-reiniciado-reinicio-antes-objetivo@1",
+    "cl-reviews-rangos-reiniciado-pendiente@1",
+    "rel-comprender-rangos-depende-reviews@1",
+    "rel-reiniciado-pendiente-mismo-esquema@1"
+   ]
+  },
+  {
+   "window": "w0053",
+   "start": "12:20",
+   "end": "12:44",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-importancia-entender-rangos@1",
+    "cl-rango-pendiente-direccion-doble@1",
+    "cl-rango-pendiente-doble-alcista@1",
+    "cl-rango-pendiente-rango-alcista@1",
+    "cl-rango-pendiente-tipo-rango@1",
+    "cl-rango-reiniciado-apertura-arriba@1",
+    "cl-rango-reiniciado-contra-doble@1",
+    "cl-rango-reiniciado-rango-bajista-posible@1",
+    "cl-rango-reiniciado-reinicio-antes-objetivo@1",
+    "cl-rango-reiniciado-tipo-rango@1",
+    "cl-reviews-temas-rangos@1",
+    "cl-video-rotulo-rango-pendiente@1",
+    "cl-video-rotulo-rango-reiniciado@1",
+    "rel-rango-alcista-depende-direccion-doble@1",
+    "rel-rango-bajista-depende-apertura-arriba@1"
+   ]
+  },
+  {
+   "window": "w0054",
+   "start": "12:45",
+   "end": "12:57",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0055",
+   "start": "12:58",
+   "end": "13:07",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-1d-rectangulos-velas@1",
+    "cl-4h-rectangulo-velas@1",
+    "cl-activo-eurusd@1",
+    "cl-buscar-objetivo-diario@1",
+    "cl-cambio-intervalo-a-1d@1",
+    "cl-cambio-intervalo-a-4h@1",
+    "cl-dialogo-opcion-4h@1",
+    "cl-intervalo-inicial-15m@1",
+    "cl-linea-horizontal-113572@1",
+    "cl-mostrar-ejemplo-grafico@1",
+    "cl-objetivo-diario-115803@1",
+    "cl-objetivo-diario-mismo-ejemplo@1"
+   ]
+  },
+  {
+   "window": "w0056",
+   "start": "13:08",
+   "end": "13:20",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-grafico-bastantes-ejemplos@1",
+    "cl-objetivo-diario-ejemplo-explicado@1",
+    "cl-objetivo-diario-parte-alta@1",
+    "cl-rango-mostrado-recuadrado@1",
+    "cl-rango-mostrado-reiniciado@1"
+   ]
+  },
+  {
+   "window": "w0057",
+   "start": "13:21",
+   "end": "13:36",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-buscar-rango-pendiente-ahora@1",
+    "cl-cambio-intervalo-4h-a-12h@1",
+    "cl-comprar-repetidamente@1",
+    "cl-existe-rango-pendiente@1",
+    "cl-objetivo-arriba@1",
+    "cl-rango-en-contra@1",
+    "cl-rango-para-abajo@1",
+    "cl-rango-pendiente-en-12h@1",
+    "cl-rango-pendiente-reiniciado@1",
+    "rel-compras-dependen-objetivo-arriba@1",
+    "rel-rango-abajo-depende-rango-contra@1"
+   ]
+  },
+  {
+   "window": "w0058",
+   "start": "13:39",
+   "end": "13:56",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0059",
+   "start": "14:00",
+   "end": "14:12",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0060",
+   "start": "14:14",
+   "end": "14:29",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-apertura-por-debajo-rango@1",
+    "cl-caso-contra-tendencia@1",
+    "cl-caso-reiniciado@1",
+    "cl-cierre-dentro-rango@1",
+    "cl-extremo-no-tomado@1",
+    "cl-rango-a-favor-alcista@1",
+    "cl-rango-alcista-bullish-pendiente@1",
+    "cl-rango-bajista-bullish-reiniciado@1",
+    "cl-rango-creado-favorable@1",
+    "cl-rango-objetivo-arriba@1",
+    "cl-rango-rectangular-grafico@1",
+    "rel-pendiente-requiere-rango-alcista@1",
+    "rel-reiniciado-contra-tendencia@1"
+   ]
+  },
+  {
+   "window": "w0061",
+   "start": "14:30",
+   "end": "14:40",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-rango-limite-inferior-14565@1",
+    "cl-rango-limite-superior-15325@1",
+    "cl-rango-pendiente-a-favor@1",
+    "cl-rango-pendiente-direccion-alcista@1",
+    "cl-rango-pendiente-estado@1",
+    "cl-rango-pendiente-objetivo-bullish@1",
+    "cl-rango-reiniciado-contra-tendencia@1",
+    "cl-rango-reiniciado-direccion-bajista@1",
+    "cl-rango-reiniciado-estado@1",
+    "cl-rango-reiniciado-objetivo-bullish@1",
+    "rel-rango-a-favor-equivale-alcista@1",
+    "rel-reiniciado-porque-contra-tendencia@1"
+   ]
+  },
+  {
+   "window": "w0062",
+   "start": "14:41",
+   "end": "14:56",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0063",
+   "start": "14:58",
+   "end": "15:12",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-estrategia-cadena-rangos@1",
+    "cl-grafico-muestra-rangos-rectangulares@1",
+    "cl-mencionar-tartel-sub@1",
+    "cl-rangos-completan-hacia-objetivos@1",
+    "cl-tartel-sub-aparece-mentoria@1",
+    "cl-tartel-sub-es-frase@1",
+    "cl-tartel-sub-muy-conocido@1",
+    "cl-vista-inicial-grafico-8h@1",
+    "cl-vistas-posteriores-grafico-15m@1"
+   ]
+  },
+  {
+   "window": "w0064",
+   "start": "15:16",
+   "end": "15:42",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-caso-tartel-sub-bajista@1",
+    "cl-descripcion-es-definicion-aproximada@1",
+    "cl-ejemplo-descenso-tras-maximo@1",
+    "cl-ejemplo-toma-maximo-anterior@1",
+    "cl-explicacion-con-velas-y-ejemplos@1",
+    "cl-objetivo-aclarar-concepto@1",
+    "cl-reaccion-hacia-otro-lado@1",
+    "cl-reaccion-tras-toma-alto@1",
+    "cl-tartel-sub-toma-alto@1",
+    "cl-tartel-sub-toma-de-liquidez@1",
+    "cl-toma-alto-completa-rango@1",
+    "cl-toma-alto-crea-rango@1",
+    "rel-caso-bajista-depende-descenso@1",
+    "rel-caso-bajista-depende-toma-maximo@1"
+   ]
+  },
+  {
+   "window": "w0065",
+   "start": "15:44",
+   "end": "15:57",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0066",
+   "start": "16:00",
+   "end": "16:23",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-caso-no-es-turtlesoup@1",
+    "cl-caso-no-reacciona@1",
+    "cl-caso-sigue-bajando@1",
+    "cl-dibujo-es-vela@1",
+    "cl-toma-y-reaccion-es-turtlesoup@1",
+    "cl-turtlesoup-requiere-toma-liquidez@1",
+    "cl-vela-cuatro-horas@1",
+    "cl-vela-reacciona-tras-low@1",
+    "cl-vela-siguiente-toma-low@1",
+    "rel-no-reaccion-contradice-reaccion@1",
+    "rel-no-turtlesoup-depende-continuacion@1",
+    "rel-no-turtlesoup-depende-no-reaccion@1",
+    "rel-turtlesoup-depende-reaccion@1",
+    "rel-turtlesoup-depende-toma-low@1"
+   ]
+  },
+  {
+   "window": "w0067",
+   "start": "16:24",
+   "end": "16:44",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-low-sweep-bullish-reaction-is-turtle-soup@1",
+    "cl-move-not-turtle-soup@1",
+    "cl-movement-can-be-mistaken-for-turtle-soup@1",
+    "cl-price-can-feign-upward-move@1",
+    "cl-price-continues-down@1",
+    "cl-turtle-soup-reacts-opposite@1",
+    "cl-turtle-soup-takes-liquidity@1",
+    "rel-misidentification-depends-on-feint@1",
+    "rel-not-turtle-soup-depends-on-continued-decline@1",
+    "rel-turtle-soup-pattern-depends-on-liquidity@1",
+    "rel-turtle-soup-pattern-depends-on-opposite-reaction@1"
+   ]
+  },
+  {
+   "window": "w0068",
+   "start": "16:47",
+   "end": "17:00",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-stop-loss-long-debajo-turtle-soup@1",
+    "cl-turtle-soup-concepto-importante@1",
+    "cl-turtle-soup-indicia-inicio-movimiento@1",
+    "cl-turtle-soup-tras-toma-bajo-bullish@1",
+    "rel-indicio-inicio-movimiento-requiere-patron@1",
+    "rel-stop-loss-long-requiere-patron@1"
+   ]
+  },
+  {
+   "window": "w0069",
+   "start": "17:01",
+   "end": "17:12",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-sin-nuevo-turtle-soup-para-subida@1",
+    "cl-turtle-soup-aqui-abajo@1"
+   ]
+  },
+  {
+   "window": "w0070",
+   "start": "17:16",
+   "end": "17:32",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cantidad-1550387@1",
+    "cl-forma-negra-zonas-posicion@1",
+    "cl-grafico-temporalidad-15m@1",
+    "cl-herramienta-posicion-larga@1",
+    "cl-intra-turtle-soup-concepto-nuevo@1",
+    "cl-intra-turtle-soup-turtle-soup-extra@1",
+    "cl-objetivo-0-00834@1",
+    "cl-pyg-apertura-0-01497@1",
+    "cl-relacion-riesgo-beneficio-3-23@1",
+    "cl-stop-0-00258@1",
+    "cl-stop-loss-ocurre-esta-estrategia@1",
+    "cl-stop-loss-sin-consecuencia@1",
+    "cl-turtle-soup-extra-no-obligatorio@1",
+    "cl-turtle-soup-extra-ocurre-a-veces@1",
+    "rel-stop-loss-sin-consecuencia-depende-de-ocurrencia@1"
+   ]
+  },
+  {
+   "window": "w0071",
+   "start": "17:33",
+   "end": "17:44",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-este-rango-sigue-operativo@1",
+    "cl-la-logica-es-correcta@1",
+    "cl-la-vela-sigue-cerrando-dentro-del-rango@1",
+    "cl-no-pasa-nada@1",
+    "rel-no-pasa-nada-depende-de-la-logica@1",
+    "rel-rango-operativo-depende-del-cierre-dentro@1"
+   ]
+  },
+  {
+   "window": "w0072",
+   "start": "17:47",
+   "end": "18:03",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0073",
+   "start": "18:04",
+   "end": "18:24",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-break-even-si-hemos-comprado@1",
+    "cl-rango-contrario-en-cuatro-horas@1",
+    "cl-rangos-completos-antes-de-subir@1",
+    "cl-vela-diaria-del-ejemplo@1",
+    "rel-break-even-segun-espera-de-rangos@1",
+    "rel-rangos-antes-de-subir-en-rango-contrario@1"
+   ]
+  },
+  {
+   "window": "w0074",
+   "start": "18:25",
+   "end": "18:52",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0075",
+   "start": "18:56",
+   "end": "19:16",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cierre-fuera-rango-invalida@1",
+    "cl-intrabar-turtle-soup-requiere-cierre-rango@1",
+    "cl-intrabar-turtle-soup-requiere-reaccion@1",
+    "cl-intrabar-turtle-soup-requiere-toma@1",
+    "cl-rango-cierre-fuera-eliminable@1",
+    "cl-vela-negativa-fuera-rango-marcado@1",
+    "rel-cierre-fuera-contradice-cierre-dentro@1",
+    "rel-eliminacion-depende-cierre-fuera@1"
+   ]
+  },
+  {
+   "window": "w0076",
+   "start": "19:20",
+   "end": "19:40",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cierre-fuera-deja-de-ser-rango@1",
+    "cl-es-turtle-soup-de-este-rango@1",
+    "cl-idea-alcista-esperar-nueva-vela@1",
+    "cl-no-es-interturtle-soup@1",
+    "cl-nueva-vela-marcada-en-el-grafico@1",
+    "cl-nuevo-rango-posible@1",
+    "cl-rango-completo-se-puede-eliminar@1",
+    "cl-rango-completo-toma-low-y-alto@1",
+    "cl-rango-se-puede-eliminar-por-cierre-fuera@1",
+    "cl-recuadro-grande-desaparece@1",
+    "rel-eliminacion-requiere-rango-completo@1"
+   ]
+  },
+  {
+   "window": "w0077",
+   "start": "19:41",
+   "end": "19:53",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cierre-fuera-invalida-rango@1",
+    "cl-idea-alcista-requiere-nueva-vela@1",
+    "cl-nueva-vela-marcada-en-grafico@1",
+    "cl-rango-actual-puede-eliminarse@1",
+    "rel-eliminacion-rango-depende-cierre-fuera@1"
+   ]
+  },
+  {
+   "window": "w0078",
+   "start": "19:54",
+   "end": "20:07",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0079",
+   "start": "20:08",
+   "end": "20:20",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-continuacion-precio-hasta-arriba@1",
+    "cl-elemento-ya-borrado@1",
+    "cl-esperar-apertura-nueva-vela@1",
+    "cl-esperar-nuevo-rango@1",
+    "cl-esperar-toma-low-nueva-vela@1",
+    "cl-objetivo-corregido-es-este@1",
+    "cl-objetivo-indicado-aqui@1",
+    "cl-objetivo-ya-no-aqui@1",
+    "cl-vela-dibujada-se-alarga-arriba@1",
+    "rel-cambio-ubicacion-tras-borrado@1",
+    "rel-correccion-ubicacion-objetivo@1",
+    "rel-nuevo-rango-requiere-toma-low@1",
+    "rel-toma-low-requiere-apertura@1"
+   ]
+  },
+  {
+   "window": "w0080",
+   "start": "20:22",
+   "end": "20:38",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-buscar-objetivo-mas-arriba@1",
+    "cl-eliminar-rango-tras-paso@1",
+    "cl-explicacion-estrategia-siguiente-capitulo@1",
+    "cl-olvidar-rango-tras-paso@1",
+    "cl-precio-supera-rango-resaltado@1",
+    "cl-reanalizar-accion-precio-tras-paso@1",
+    "cl-rectangulo-resaltado-desaparece@1",
+    "rel-eliminar-rango-tras-supera-rango@1",
+    "rel-olvidar-rango-tras-supera-rango@1",
+    "rel-reanalizar-tras-supera-rango@1"
+   ]
+  },
+  {
+   "window": "w0081",
+   "start": "20:40",
+   "end": "20:51",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-buscar-objetivo-superior@1",
+    "cl-comparacion-temporalidad-8h@1",
+    "cl-dejar-de-considerar-rango@1",
+    "cl-estrategia-capitulo-siguiente@1",
+    "cl-grafico-derecho-libra@1",
+    "cl-grafico-derecho-xauusd@1",
+    "cl-grafico-izquierdo-euro@1",
+    "cl-reanalizar-precio@1",
+    "cl-smt-conocido-audiencia@1",
+    "cl-smt-explicado-curso-intermedio@1",
+    "cl-smt-mostrada-conocida@1",
+    "rel-libra-contradice-xauusd@1",
+    "rel-objetivo-depende-reanalisis@1",
+    "rel-reanalizar-depende-rango@1"
+   ]
+  },
+  {
+   "window": "w0082",
+   "start": "20:52",
+   "end": "21:08",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-dibujo-zigzag@1",
+    "cl-etiqueta-eurusd@1",
+    "cl-presentar-concepto-smt@1",
+    "cl-smt-ejemplo-euro@1",
+    "cl-smt-ejemplo-libra@1",
+    "cl-smt-explicado-en-curso-intermedio@1",
+    "cl-smt-previamente-conocida-por-asistentes@1",
+    "cl-temporalidad-grafico-8h@1",
+    "cl-zigzag-termina-flecha-descendente@1"
+   ]
+  },
+  {
+   "window": "w0083",
+   "start": "21:09",
+   "end": "21:24",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-audiencia-sabe-smt@1",
+    "cl-eurusd-ejemplo-smt@1",
+    "cl-eurusd-nuevo-alto@1",
+    "cl-gbpusd-ejemplo-smt@1",
+    "cl-muchos-venis-a-smt@1",
+    "cl-smt-curso-intermedio@1"
+   ]
+  },
+  {
+   "window": "w0084",
+   "start": "21:26",
+   "end": "21:44",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-capitulo-smt-exclusivo@1",
+    "cl-estrategia-cambia@1",
+    "cl-eurusd-segundo-maximo-mayor@1",
+    "cl-gbpusd-sin-nuevo-alto@1",
+    "cl-introduccion-pequena-smt@1",
+    "cl-reversion-ensenada-hasta-ahora@1",
+    "cl-sin-nuevo-alto-senal-reversion@1",
+    "cl-smt-mas-claro-en-capitulo@1",
+    "cl-smt-ver-ahora@1",
+    "rel-claridad-smt-depende-capitulo@1",
+    "rel-reversion-ensenada-depende-senal@1",
+    "rel-senal-reversion-depende-sin-nuevo-alto@1"
+   ]
+  },
+  {
+   "window": "w0085",
+   "start": "21:47",
+   "end": "21:57",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-eurusd-linea-tendencia-ascendente@1",
+    "cl-eurusd-trayectoria-termina-flecha-abajo@1",
+    "cl-gbpusd-linea-tendencia-descendente@1",
+    "cl-gbpusd-trayectoria-termina-flecha-abajo@1",
+    "cl-grafico-temporalidad-8h@1",
+    "cl-smt-derecha-representa-gbpusd@1",
+    "cl-smt-ejemplos-capitulo-aparte@1",
+    "cl-smt-esquema-conocido-antes@1",
+    "cl-smt-forma-posible-esquema@1",
+    "cl-smt-izquierda-representa-eurusd@1",
+    "cl-smt-tambien-posible-dxi@1"
+   ]
+  },
+  {
+   "window": "w0086",
+   "start": "21:58",
+   "end": "22:09",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-ejemplos-capitulo-aparte@1",
+    "cl-sin-ejemplos-aqui@1",
+    "cl-smt-aplicada-estrategia@1",
+    "cl-smt-zona-rectangular@1",
+    "cl-temporalidad-8h@1",
+    "cl-zona-identificada-euro@1",
+    "cl-zona-identificada-libra@1",
+    "cl-zona-smt-rellena-negro@1",
+    "rel-ejemplos-trasladados-capitulo@1"
+   ]
+  },
+  {
+   "window": "w0087",
+   "start": "22:10",
+   "end": "22:17",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-chart-8h@1",
+    "cl-chart-eurusd@1",
+    "cl-chart-two-black-blocks@1",
+    "cl-examples-separate-chapter@1",
+    "cl-no-example-detail-here@1",
+    "cl-smt-one-zone-euro@1",
+    "cl-smt-other-zone-pound@1",
+    "cl-smt-possible-example@1",
+    "rel-omission-depends-on-separate-chapter@1"
+   ]
+  },
+  {
+   "window": "w0088",
+   "start": "22:18",
+   "end": "22:28",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0089",
+   "start": "22:29",
+   "end": "22:40",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-eurusd-bloques-blancos-ascendentes@1",
+    "cl-gbpusd-bloques-blancos-ascendentes@1",
+    "cl-smt-hay-como-dos-tipos@1",
+    "cl-smt-objetivo-alcista-eurusd@1"
+   ]
+  },
+  {
+   "window": "w0090",
+   "start": "22:41",
+   "end": "23:04",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-datos-smt-ocultos-a-veces@1",
+    "cl-gbpusd-linea-desde-maximo-vela-negra@1",
+    "cl-gbpusd-vela-no-alcanza-objetivo@1",
+    "cl-rango-libra-desde-low@1",
+    "cl-smt-no-visible-sin-conocer-estrategia@1",
+    "cl-vela-libra-puede-no-llegar-objetivo@1",
+    "cl-vela-sin-llegar-objetivo-es-smt@1",
+    "rel-vela-no-alcanza-objetivo-depende-linea@1",
+    "rel-visibilidad-smt-depende-ocultamiento@1"
+   ]
+  },
+  {
+   "window": "w0091",
+   "start": "23:07",
+   "end": "23:16",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-alternativas-par-correlado-jp-dxy@1",
+    "cl-datos-smt-ocultos@1",
+    "cl-eurusd-alcanza-objetivo@1",
+    "cl-formacion-correlada-es-smt@1",
+    "cl-par-correlado-no-alcanza-objetivo@1",
+    "cl-par-correlado-pasa-reversal-directamente@1",
+    "cl-smt-no-visible-sin-estrategia@1",
+    "rel-no-visible-depende-datos-ocultos@1",
+    "rel-smt-requiere-eurusd-objetivo@1",
+    "rel-smt-requiere-fallo-objetivo-correlado@1",
+    "rel-smt-requiere-reversal-directo@1"
+   ]
+  },
+  {
+   "window": "w0092",
+   "start": "23:18",
+   "end": "23:36",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0093",
+   "start": "23:37",
+   "end": "23:54",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-euro-llega-objetivos@1",
+    "cl-mecha-rango-mas-real@1",
+    "cl-precio-gira-directamente-en-zona-smt@1",
+    "cl-precio-no-ha-tomado-extremo-rango@1",
+    "cl-rango-euro-segun-rango-libra@1",
+    "cl-rango-libra-con-mecha@1",
+    "cl-rango-libra-segun-grafico@1",
+    "cl-smt-al-llegar-objetivos@1",
+    "cl-smt-no-requerida-entre-dos-velas@1",
+    "cl-smt-para-formar-rango@1",
+    "cl-smt-suele-verse-entre-dos-velas@1",
+    "cl-usuario-long-en-libra@1",
+    "rel-giro-directo-zona-smt@1",
+    "rel-no-extremo-rango-con-mecha@1",
+    "rel-rango-euro-referencia-rango-libra@1",
+    "rel-smt-entre-velas-excepcion@1",
+    "rel-smt-objetivos-condicion-llegada@1"
+   ]
+  },
+  {
+   "window": "w0094",
+   "start": "23:56",
+   "end": "24:12",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0095",
+   "start": "24:15",
+   "end": "24:32",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-esto-es-smt@1",
+    "cl-eurusd-rango-tomado@1",
+    "cl-gbpusd-es-rango@1",
+    "cl-gbpusd-rango-no-tomado@1",
+    "cl-smt-convierte-en-objetivo@1",
+    "cl-smt-convierte-en-rango@1",
+    "rel-conversion-rango-depende-de-smt@1",
+    "rel-objetivo-depende-de-smt@1",
+    "rel-rango-gbpusd-depende-de-smt@1"
+   ]
+  },
+  {
+   "window": "w0096",
+   "start": "24:36",
+   "end": "24:52",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-diagrama-compara-eurusd-gbpusd@1",
+    "cl-libra-crea-smt-para-target@1",
+    "cl-linea-une-maximos-eurusd-gbpusd@1",
+    "cl-smt-no-solo-rango-inicial@1",
+    "cl-smt-puede-crear-el-rango@1",
+    "cl-smt-puede-llegar-al-objetivo@1",
+    "cl-smt-rangos-pendientes@1"
+   ]
+  },
+  {
+   "window": "w0097",
+   "start": "24:56",
+   "end": "25:24",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-anticipo-escenario@1",
+    "cl-caso-rango-ya-creado@1",
+    "cl-caso-st-actual@1",
+    "cl-casos-st-no-visibles-simple-vista@1",
+    "cl-ejemplo-aclara-smt@1",
+    "cl-escenario-euro-sin-rango-para-target@1",
+    "cl-espera-rango-grafico-4h@1",
+    "cl-euro-puede-llegar-arriba@1",
+    "cl-libra-creo-rango@1",
+    "cl-rango-libra-indica-no-necesidad-euro@1",
+    "cl-rectangulo-seleccionado-grafico@1",
+    "rel-indicacion-libra-depends-creacion-rango@1",
+    "rel-llegada-arriba-depends-no-necesidad-rango@1",
+    "rel-rango-creado-depends-creacion-libra@1",
+    "rel-rango-libra-exception-to-espera-rango-4h@1"
+   ]
+  },
+  {
+   "window": "w0098",
+   "start": "25:25",
+   "end": "25:37",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0099",
+   "start": "25:39",
+   "end": "25:48",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-failure-swing-definition@1",
+    "cl-failure-swing-has-multiple-cases@1",
+    "cl-failure-swing-seen-in-intermediate-course@1"
+   ]
+  },
+  {
+   "window": "w0100",
+   "start": "25:50",
+   "end": "26:05",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-capitulo-failure-swing@1",
+    "cl-failure-swing-alto-final-vela@1",
+    "cl-failure-swing-bajo-final-vela@1",
+    "cl-failure-swing-curso-intermedio@1",
+    "cl-failure-swing-por-smt@1",
+    "cl-failure-swing-sin-nuevo-bajo@1",
+    "cl-failure-swing-varios-casos@1",
+    "rel-failure-swing-alto-final-depende-definicion@1",
+    "rel-failure-swing-bajo-final-depende-definicion@1",
+    "rel-failure-swing-smt-depende-definicion@1"
+   ]
+  },
+  {
+   "window": "w0101",
+   "start": "26:06",
+   "end": "26:18",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-capitulo-felur-swing@1",
+    "cl-ejemplo-flecha-ascendente@1",
+    "cl-ejemplo-grafico-anadido@1",
+    "cl-ejemplo-rotulo-bajo-alto-final-vela@1",
+    "cl-ejemplo-rotulo-smt@1",
+    "cl-ejemplos-capitulo-felur-swing@1",
+    "cl-felur-swing-rango-creado@1",
+    "cl-felur-swing-sin-nuevo-bajo@1",
+    "cl-felur-swing-subida-directa@1",
+    "rel-rango-creado-depende-sin-nuevo-bajo@1",
+    "rel-subida-directa-depende-sin-nuevo-bajo@1"
+   ]
+  },
+  {
+   "window": "w0102",
+   "start": "26:19",
+   "end": "26:32",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0103",
+   "start": "26:36",
+   "end": "26:52",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-alto-a-final-de-vela@1",
+    "cl-bajo-a-final-de-vela@1",
+    "cl-diagrama-etiqueta-otro-broker@1",
+    "cl-diagrama-etiquetado-como-smt@1",
+    "cl-fxcm-quiza-se-lleva-low@1",
+    "cl-grafico-es-forexcom@1",
+    "cl-otro-broker-ha-hecho-low@1",
+    "cl-rango-aunque-no-se-tome-low@1"
+   ]
+  },
+  {
+   "window": "w0104",
+   "start": "26:54",
+   "end": "27:08",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-broker-si-ha-hecho-el-low@1",
+    "cl-brokers-pueden-mostrar-lows-distintos@1",
+    "cl-fxcm-puede-tomar-el-low-de-forexcom@1",
+    "cl-lows-comparados-son-practicamente-iguales@1",
+    "cl-zoom-puede-generar-duda-sobre-el-low@1",
+    "rel-duda-zoom-depende-de-lows-casi-iguales@1"
+   ]
+  },
+  {
+   "window": "w0105",
+   "start": "27:10",
+   "end": "27:23",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-configuracion-es-failure-swing@1",
+    "cl-duda-al-hacer-zoom@1",
+    "cl-ejemplo-etiquetado-smt@1",
+    "cl-hemos-hablado-failure-swing@1",
+    "cl-hemos-hablado-rango-pendiente@1",
+    "cl-hemos-hablado-rango-reiniciado@1",
+    "cl-hemos-hablado-smt@1",
+    "cl-marca-bajo-alto-final-vela@1",
+    "cl-pendiente-order-block@1",
+    "cl-rango-creado-igualmente@1",
+    "cl-representacion-marcada-otro-broker@1",
+    "cl-visual-practicamente-igual-otro-broker@1",
+    "rel-failure-swing-clasifica-configuracion@1",
+    "rel-rango-creado-segun-visual-igual@1"
+   ]
+  },
+  {
+   "window": "w0106",
+   "start": "27:24",
+   "end": "27:36",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cambio-oferta-demanda-parecido-cambio-tendencia@1",
+    "cl-cambio-oferta-demanda-termino-ingles@1",
+    "cl-dibuja-zona-rectangular@1",
+    "cl-grafico-instrumento-eurusd@1",
+    "cl-grafico-temporalidad-ocho-horas@1",
+    "cl-order-block-importante-cambio-oferta-demanda@1",
+    "cl-zona-rectangular-limites-precios@1",
+    "cl-zona-rectangular-relleno-negro@1"
+   ]
+  },
+  {
+   "window": "w0107",
+   "start": "27:37",
+   "end": "27:51",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-tendencia-bajista@1",
+    "cl-uso-order-block-confirmaciones-temporalidad-baja@1",
+    "cl-uso-order-block-entradas@1",
+    "cl-vela-alicista-futura@1"
+   ]
+  },
+  {
+   "window": "w0108",
+   "start": "27:52",
+   "end": "28:04",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-anade-mecha-superior-vela-final@1",
+    "cl-cierre-fuera-forma-orden@1",
+    "cl-ir-al-grafico-para-ver-claro@1",
+    "cl-recambia-vela-final-a-blanco@1",
+    "cl-tres-velas-bajistas-antes-vela-final@1",
+    "cl-vela-final-cierra-fuera-ultima-bajista@1"
+   ]
+  },
+  {
+   "window": "w0109",
+   "start": "28:08",
+   "end": "28:19",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0110",
+   "start": "28:20",
+   "end": "28:28",
+   "disposition": "rejected",
+   "rejection_category": "bad evidence ref",
+   "records_introduced": []
+  },
+  {
+   "window": "w0111",
+   "start": "28:32",
+   "end": "28:41",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cambio-vista-8h-a-m15@1",
+    "cl-grafico-mostrado-8-horas@1",
+    "cl-m15-facilita-encontrar-order-blocks@1",
+    "cl-order-block-cierre-exagerado@1",
+    "cl-vela-cerrada-muy-fuera@1",
+    "cl-venta-tomada@1",
+    "cl-zona-senalada-es-order-block@1",
+    "rel-exageracion-depende-cierre-lejano@1"
+   ]
+  },
+  {
+   "window": "w0112",
+   "start": "28:42",
+   "end": "28:51",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-busqueda-venta-order-block-visible@1",
+    "cl-grafico-eurusd-m10-a-m30@1",
+    "cl-grafico-eurusd-m15-a-m10@1",
+    "cl-m15-order-blocks-mas-faciles@1",
+    "cl-order-block-venta-hoy-no-visible-m15@1",
+    "cl-order-block-venta-hoy-poco-claro-m10@1",
+    "cl-revision-order-block-m10@1",
+    "cl-venta-hoy-ejemplo-order-block@1",
+    "cl-venta-tomada-hoy@1",
+    "rel-m10-review-after-m15@1",
+    "rel-m10-visibility-uses-example@1",
+    "rel-m15-visibility-exception@1",
+    "rel-m15-visibility-uses-example@1",
+    "rel-visible-order-block-search-after-m10@1"
+   ]
+  },
+  {
+   "window": "w0113",
+   "start": "28:52",
+   "end": "29:04",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-15-no-se-ve-muy-claro@1",
+    "cl-buscar-una-donde-se-vea@1",
+    "cl-long-tras-cierre-por-fuera@1"
+   ]
+  },
+  {
+   "window": "w0114",
+   "start": "29:05",
+   "end": "29:13",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-concepto-order-block@1",
+    "cl-long-en-order-block-vespera@1",
+    "cl-long-tras-cierre-fuera@1",
+    "cl-order-block-cierre-vespera@1",
+    "rel-long-vespera-depende-order-block@1"
+   ]
+  },
+  {
+   "window": "w0115",
+   "start": "29:16",
+   "end": "29:25",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-activo-grafico-eurusd@1",
+    "cl-cierre-referencia-en-order-block@1",
+    "cl-distancia-inicial-stop-00337@1",
+    "cl-distancia-intermedia-stop-00200@1",
+    "cl-entrada-mostrada-long-114697@1",
+    "cl-long-mostrado-es-long-tomado@1",
+    "cl-long-tomado-23-junio@1",
+    "cl-long-tras-cierre-en-order-block@1",
+    "cl-nivel-final-stop-114521@1",
+    "cl-objetivo-mostrado-long-115034@1",
+    "cl-precio-supera-objetivo-115034@1",
+    "cl-relacion-final-riesgo-beneficio-191@1",
+    "cl-relacion-inicial-riesgo-beneficio-1@1",
+    "rel-long-depende-cierre-order-block@1"
+   ]
+  },
+  {
+   "window": "w0116",
+   "start": "29:26",
+   "end": "29:38",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0117",
+   "start": "29:39",
+   "end": "29:48",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0118",
+   "start": "29:52",
+   "end": "30:08",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0119",
+   "start": "30:10",
+   "end": "30:19",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-cotizacion-usd@1",
+    "cl-fuente-forexcom@1",
+    "cl-incluir-power-of-three@1",
+    "cl-linea-horizontal-115803@1",
+    "cl-marco-temporal-15m@1",
+    "cl-no-dejar-nada-fuera@1",
+    "cl-power-of-three-curso-intermedio@1",
+    "cl-precio-reciente-sobre-115803@1"
+   ]
+  },
+  {
+   "window": "w0120",
+   "start": "30:20",
+   "end": "30:40",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-dibujo-movimiento-cuatro-horas@1",
+    "cl-dibujo-representa-vela@1",
+    "cl-power-3-forma-vela@1",
+    "cl-vela-apertura@1",
+    "cl-vela-cierre@1",
+    "cl-vela-distribucion@1",
+    "cl-vela-ejemplo-cuatro-horas@1",
+    "cl-vela-manipulacion@1"
+   ]
+  },
+  {
+   "window": "w0121",
+   "start": "30:42",
+   "end": "30:54",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-esquema-representa-ocurrencias-cuatro-horas@1",
+    "cl-esquema-representa-vela@1",
+    "cl-linea-inferior-una-hora-new-york@1",
+    "cl-linea-superior-cinco-hora-new-york@1",
+    "cl-vela-periodo-cuatro-horas@1"
+   ]
+  },
+  {
+   "window": "w0122",
+   "start": "30:56",
+   "end": "31:16",
+   "disposition": "rejected",
+   "rejection_category": "identity divergence",
+   "records_introduced": []
+  },
+  {
+   "window": "w0123",
+   "start": "31:20",
+   "end": "31:40",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-apertura-vela-0100@1",
+    "cl-cierre-vela-0500@1",
+    "cl-compras-ideales-manipulacion-alcista@1",
+    "cl-configuracion-es-power-3@1",
+    "cl-etapa-manipulacion-vela@1",
+    "cl-mecha-superior-al-cierre@1",
+    "cl-vela-baja-antes-cierre@1",
+    "cl-vela-sube-antes-cierre@1",
+    "cl-ventana-cuatro-horas@1"
+   ]
+  },
+  {
+   "window": "w0124",
+   "start": "31:44",
+   "end": "32:07",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-apertura-nueva-igual-cierre-anterior@1",
+    "cl-apertura-nueva-vela-4h-0500@1",
+    "cl-comparacion-entrada-arriba-abajo@1",
+    "cl-compras-ideales-manipulacion-contexto-alcista@1",
+    "cl-espera-long-0430-apertura-nueva@1",
+    "cl-long-punto-optimo-power3@1",
+    "cl-power3-0100-0500-vela-4h@1",
+    "rel-compras-ideales-en-power3@1",
+    "rel-espera-long-busca-punto-optimo@1",
+    "rel-espera-long-usa-apertura-0500@1"
+   ]
+  },
+  {
+   "window": "w0125",
+   "start": "32:08",
+   "end": "32:24",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-anotacion-cuatro-horas-0100-0500@1",
+    "cl-determinar-mejor-entrada-arriba-o-abajo@1",
+    "cl-esto-es-concepto-muy-importante@1",
+    "cl-flecha-derecha-desde-0500@1",
+    "cl-mejor-entrada-power3-nueva-vela@1",
+    "cl-proposito-nocion-accion-precio@1",
+    "cl-proposito-nocion-movimiento-mercado@1"
+   ]
+  },
+  {
+   "window": "w0126",
+   "start": "32:25",
+   "end": "32:40",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-buscar-rango-alcista-para-comprar@1",
+    "cl-configuracion-crea-rango-alcista@1",
+    "cl-configuracion-power-three-ideal@1",
+    "cl-diferencia-cuatro-horas-0100-0500@1",
+    "cl-rango-alcista-durante-power-three@1",
+    "rel-ideal-depende-rango-alcista@1"
+   ]
+  },
+  {
+   "window": "w0127",
+   "start": "32:41",
+   "end": "32:54",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-ajuste-del-objetivo-hacia-arriba@1",
+    "cl-apertura-1-14968@1",
+    "cl-cantidad-4761904@1",
+    "cl-longs-brutales-para-llegar-arriba@1",
+    "cl-objetivo-final-1-15849@1",
+    "cl-objetivo-final-diferencia-0-00881@1",
+    "cl-objetivo-final-importe-141952-38@1",
+    "cl-objetivo-inicial-1-15052@1",
+    "cl-objetivo-inicial-diferencia-0-00084@1",
+    "cl-objetivo-inicial-importe-104000@1",
+    "cl-objetivo-intermedio-1-15695@1",
+    "cl-objetivo-intermedio-diferencia-0-00727@1",
+    "cl-objetivo-intermedio-importe-134619-05@1",
+    "cl-posicion-larga-configurada@1",
+    "cl-power-3-de-una-vela@1",
+    "cl-rango-alcista-en-formacion@1",
+    "cl-relacion-riesgo-beneficio-final-10-49@1",
+    "cl-relacion-riesgo-beneficio-intermedia-8-65@1",
+    "cl-stop-diferencia-0-00084@1",
+    "cl-stop-importe-96000@1",
+    "cl-vela-anticipada-alcista@1",
+    "cl-ventana-de-0100-a-0500@1",
+    "cl-ventana-de-cuatro-horas@1",
+    "rel-longs-dependen-de-vela-alcista@1",
+    "rel-rr-final-depende-del-objetivo@1",
+    "rel-rr-final-depende-del-stop@1"
+   ]
+  },
+  {
+   "window": "w0128",
+   "start": "32:55",
+   "end": "33:12",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-alejar-vista-de-temporalidad-baja@1",
+    "cl-focar-lo-que-pasa-en-4h@1",
+    "cl-foco-temporalidad-baja-puede-liar@1",
+    "cl-ir-a-15m-para-vela-4h@1",
+    "cl-nocion-importante-sobre-que-pasa@1",
+    "cl-vela-4h-aparece-como-bajada-agresiva-en-15m@1",
+    "rel-apariencia-agresiva-depende-vista-15m@1"
+   ]
+  },
+  {
+   "window": "w0129",
+   "start": "33:16",
+   "end": "33:44",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-esquema-logica-power-3@1",
+    "cl-importancia-conocer-logica-power-3@1",
+    "cl-linea-ascendente-2230-0115@1",
+    "cl-linea-descendente-2000-2230@1",
+    "cl-power-3-mencion-entradas@1",
+    "cl-power-3-mencion-frecuente@1",
+    "cl-power-3-mencion-salidas@1",
+    "cl-salidas-basadas-en-tiempo@1",
+    "cl-temas-tratados@1",
+    "cl-vela-calmada-al-manipular-naturaleza@1",
+    "cl-ventana-cuatro-horas-0100-0500@1"
+   ]
+  },
+  {
+   "window": "w0130",
+   "start": "33:48",
+   "end": "34:02",
+   "disposition": "accepted",
+   "rejection_category": null,
+   "records_introduced": [
+    "cl-capitulo-primero@1",
+    "cl-concepto-como-tal@1",
+    "cl-despedida-al-siguiente@1",
+    "cl-duracion-cuatro-horas@1",
+    "cl-gracias-cierre@1",
+    "cl-llamado-visitar-mas-cursos@1",
+    "cl-marcador-0100@1",
+    "cl-marcador-0500@1",
+    "cl-temporalidad-15-minutos@1",
+    "cl-web-cursos-digitales-7@1"
+   ]
+  }
+ ],
+ "sko_coverage": []
+}

@@ -1,0 +1,42 @@
+{
+ "claims.jsonl": {
+  "live_rows": 934,
+  "replay_rows": 934,
+  "identical": false,
+  "diff_first": null
+ },
+ "skos.jsonl": {
+  "live_rows": 1,
+  "replay_rows": 1,
+  "identical": true,
+  "diff_first": null
+ },
+ "documentation.md": {
+  "identical": false,
+  "diff_lines": [
+   "--- ",
+   "+++ ",
+   "@@ -15,7 +15,7 @@",
+   " - status: INCOMPLETE",
+   "-- reason: window w0003: claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt",
+   "-- reason: window w0005: claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt",
+   "+- reason: window w0003: claims reconstruction output rejected: claims reconstruction proposal rejected: record cl-ir-directamente-al-grano cites unknown evidence ref \"asr-00003 [34850-49400]\"",
+   "+- reason: window w0005: claims reconstruction output rejected: claims reconstruction proposal rejected: record cl-rango-extremo-tomado-cierra-dentro-anterior cites unknown evidence ref \"asr-00005 [61640-81320]\"",
+   " - reason: window w0028: claims reconstruction output rejected: record cl-observar-formacion-rangos@1 identity collision: window w0027 proposed \"Hay que ir viendo cómo se forman los rangos.\" and window w0028 proposed \"Observar cómo se forman los rangos.\": claims.equivalence_review returned DIVERGENT; window rejected closed",
+   " - reason: window w0034: claims reconstruction output rejected: record cl-grafico-eurusd@1 identity collision: kind differs (observation vs parameter) (window w0031, then window w0034); deterministic divergence, window rejected closed without an equivalence review",
+   "-- reason: window w0043: claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt",
+   "+- reason: window w0043: claims reconstruction output rejected: claims reconstruction proposal rejected: record cl-transicion-temporalidad-cuatro-horas cites unknown evidence ref \"asr-00098 [572710-594750]\"",
+   " - reason: window w0045: claims reconstruction output rejected: record cl-nueva-vela-abre-aqui@1 identity collision: kind differs (observation vs claim) (window w0044, then window w0045); deterministic divergence, window rejected closed without an equivalence review",
+   "@@ -44,6 +44,6 @@",
+   " - reason: record cl-linea-une-maximos-eurusd-gbpusd@1: GROUNDING_SUPPORTED (atomicity COMPOSITE): Las dos imágenes muestran una línea horizontal alineada con los máximos de velas en las zonas rotuladas EURUSD y GBPUSD.",
+   "-- reason: record cl-rango-rectangular-vertical@1: REVIEW_UNAVAILABLE (atomicity none): reviewer failed: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object",
+   "+- reason: record cl-rango-rectangular-vertical@1: REVIEW_UNAVAILABLE (atomicity none): reviewer failed: vlm provider grounding [fatal]: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object",
+   " - reason: record cl-rango-se-puede-eliminar-por-cierre-fuera@1: GROUNDING_SUPPORTED (atomicity COMPOSITE): La transcripción citada enuncia literalmente que el rango se puede eliminar porque la vela cierra fuera.",
+   " - reason: record cl-vela-abre-toma-high-cierra-adentro@1: GROUNDING_SUPPORTED (atomicity COMPOSITE): La transcripción cited statement says explicitly: «esta vela abre, toma el high y nos cierra adentro».",
+   "-- reason: L2 composition unavailable: vlm provider read-body [retry-exhausted]: retry budget of 2 exhausted; last failure: response body read failed",
+   "+- reason: L2 composition unavailable: vlm provider composition [retry-exhausted]: vlm provider read-body [retry-exhausted]: retry budget of 2 exhausted; last failure: response body read failed",
+   " - reason: claim cl-busqueda-venta-order-block-visible@1: UNSUPPORTED_INSUFFICIENT"
+  ]
+ },
+ "REPLAY_COMPARISON": "DIFFERENCES"
+}

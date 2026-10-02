@@ -1,0 +1,402 @@
+{
+ "run_status": {
+  "status": "INCOMPLETE",
+  "exit_code_hint": 4,
+  "status_reasons": [
+   "window w0003: claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt",
+   "window w0005: claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt",
+   "window w0028: claims reconstruction output rejected: record cl-observar-formacion-rangos@1 identity collision: window w0027 proposed \"Hay que ir viendo cómo se forman los rangos.\" and window w0028 proposed \"Observar cómo se forman los rangos.\": claims.equivalence_review returned DIVERGENT; window rejected closed",
+   "window w0034: claims reconstruction output rejected: record cl-grafico-eurusd@1 identity collision: kind differs (observation vs parameter) (window w0031, then window w0034); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0043: claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt",
+   "window w0045: claims reconstruction output rejected: record cl-nueva-vela-abre-aqui@1 identity collision: kind differs (observation vs claim) (window w0044, then window w0045); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0049: claims reconstruction output rejected: record cl-rango-diario@1 identity collision: kind differs (claim vs observation) (window w0017, then window w0049); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0054: claims reconstruction output rejected: record rel-rango-bajista-depende-apertura-arriba@1 identity collision: structural relation divergence, subject endpoint differs (cl-rango-reiniciado-rango-bajista-posible@1 vs cl-rango-reiniciado-crea-rango-bajista-posible@1) (window w0053, then window w0054); window rejected closed without an equiv…[truncated]",
+   "window w0058: claims reconstruction output rejected: record cl-rango-pendiente@1 identity collision: epistemic differs (VIDEO_OBSERVED vs INSTRUCTOR_SAID) (window w0051, then window w0058); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0059: claims reconstruction output rejected: record cl-rango-pendiente@1 identity collision: epistemic differs (VIDEO_OBSERVED vs INSTRUCTOR_SAID) (window w0051, then window w0059); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0062: claims reconstruction output rejected: record cl-instrumento-eurusd@1 identity collision: kind differs (parameter vs observation) (window w0017, then window w0062); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0065: claims reconstruction output rejected: record cl-grafico-eurusd@1 identity collision: kind differs (observation vs parameter) (window w0031, then window w0065); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0072: claims reconstruction output rejected: record cl-grafico-temporalidad-15m@1 identity collision: kind differs (observation vs parameter) (window w0070, then window w0072); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0074: claims reconstruction output rejected: record cl-instrumento-eurusd@1 identity collision: kind differs (parameter vs observation) (window w0017, then window w0074); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0078: claims reconstruction output rejected: record cl-cierre-fuera-invalida-rango@1 identity collision: window w0077 proposed \"Si la vela cierra fuera del rango, el rango deja de ser un rango.\" and window w0078 proposed \"Si el precio cierra afuera del rango, el rango deja de ser válido.\": claims.equivalence_review returned DIVERGENT; window …[truncated]",
+   "window w0088: claims reconstruction output rejected: record cl-ejemplos-capitulo-aparte@1 identity collision: kind differs (claim vs procedure_step) (window w0086, then window w0088); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0092: claims reconstruction output rejected: record rel-smt-requiere-reversal-directo@1 identity collision: structural relation divergence, subject endpoint differs (cl-formacion-correlada-es-smt@1 vs cl-configuracion-senalada-es-smt@1) (window w0091, then window w0092); window rejected closed without an equivalence review",
+   "window w0094: claims reconstruction output rejected: record cl-smt-no-requerida-entre-dos-velas@1 identity collision: window w0093 proposed \"La SMT no tiene que aparecer entre estas dos velas.\" and window w0094 proposed \"Una SMT no tiene que ser entre estas dos velas.\": claims.equivalence_review returned DIVERGENT; window rejected closed",
+   "window w0098: claims reconstruction output rejected: record cl-euro-puede-llegar-arriba@1 identity collision: window w0097 proposed \"Euro puede llegar hasta arriba.\" and window w0098 proposed \"Si el euro no tiene que crear el rango, puede llegar hasta arriba.\": claims.equivalence_review returned DIVERGENT; window rejected closed",
+   "window w0102: claims reconstruction output rejected: record cl-activo-eurusd@1 identity collision: kind differs (observation vs parameter) (window w0055, then window w0102); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0109: claims reconstruction output rejected: record cl-ir-al-grafico@1 identity collision: window w0012 proposed \"Vamos a ir ahora un momento al gráfico.\" and window w0109 proposed \"Vamos a ir al gráfico para verlo claro.\": claims.equivalence_review returned DIVERGENT; window rejected closed",
+   "window w0110: claims reconstruction output rejected: claims reconstruction proposal rejected: record cl-m15-para-subir-capitulo-entradas cites unknown evidence ref \"transcript asr-00245\"",
+   "window w0116: claims reconstruction output rejected: record cl-instrumento-eurusd@1 identity collision: kind differs (parameter vs observation) (window w0017, then window w0116); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0117: claims reconstruction output rejected: record cl-instrumento-eurusd@1 identity collision: kind differs (parameter vs observation) (window w0017, then window w0117); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0118: claims reconstruction output rejected: record cl-smt-aplicada-estrategia@1 identity collision: kind differs (procedure_step vs claim) (window w0086, then window w0118); deterministic divergence, window rejected closed without an equivalence review",
+   "window w0122: claims reconstruction output rejected: record cl-vela-apertura@1 identity collision: window w0120 proposed \"Una de las partes de la vela es la apertura.\" and window w0122 proposed \"La vela abre.\": claims.equivalence_review returned DIVERGENT; window rejected closed",
+   "record cl-comparacion-diaria-eurusd-gbpusd@1: GROUNDING_SUPPORTED (atomicity COMPOSITE): Las dos imágenes muestran paneles rotulados «EURUSD · 1D» y «GBPUSD · 1D», con las etiquetas «EURUSD | D» y «GBPUSD | D».",
+   "record cl-dialogo-muestra-un-minuto@1: GROUNDING_SUPPORTED (atomicity COMPOSITE): La imagen muestra el diálogo «Cambiar intervalo» con el valor «1» y la indicación «1 minuto».",
+   "record cl-linea-une-maximos-eurusd-gbpusd@1: GROUNDING_SUPPORTED (atomicity COMPOSITE): Las dos imágenes muestran una línea horizontal alineada con los máximos de velas en las zonas rotuladas EURUSD y GBPUSD.",
+   "record cl-rango-rectangular-vertical@1: REVIEW_UNAVAILABLE (atomicity none): reviewer failed: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object",
+   "record cl-rango-se-puede-eliminar-por-cierre-fuera@1: GROUNDING_SUPPORTED (atomicity COMPOSITE): La transcripción citada enuncia literalmente que el rango se puede eliminar porque la vela cierra fuera.",
+   "record cl-vela-abre-toma-high-cierra-adentro@1: GROUNDING_SUPPORTED (atomicity COMPOSITE): La transcripción cited statement says explicitly: «esta vela abre, toma el high y nos cierra adentro».",
+   "L2 composition unavailable: vlm provider read-body [retry-exhausted]: retry budget of 2 exhausted; last failure: response body read failed",
+   "claim cl-busqueda-venta-order-block-visible@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-cambio-intervalo-a-1d@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-cambio-oferta-demanda-parecido-cambio-tendencia@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-cambio-oferta-demanda-termino-ingles@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-cierre-fuera-forma-orden@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-comparacion-diaria-eurusd-gbpusd@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-concepto-order-block@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-demo-rango-bajista@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-dialogo-muestra-un-minuto@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-failure-swing-alto-final-vela@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-failure-swing-bajo-final-vela@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-failure-swing-por-smt@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-felur-swing-rango-creado@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-felur-swing-subida-directa@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-foco-temporalidad-baja-puede-liar@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-forma-rango-bearish@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-formato-similar-intermedio@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-intervalo-inicial-15m@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-introduccion-pequena-smt@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-linea-ascendente-2230-0115@1: UNSUPPORTED_CONTRADICTED",
+   "claim cl-linea-une-maximos-eurusd-gbpusd@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-movimiento-hacia-objetivo@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-movimiento-llego-antes-de-entrada@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-no-dejar-nada-fuera@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-nueva-vela-marcada-en-el-grafico@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-objetivo-conocer-destino-potencial@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-objetivo-corregido-es-este@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-objetivo-inicial-1-15052@1: UNSUPPORTED_CONTRADICTED",
+   "claim cl-objetivo-intermedio-1-15695@1: UNSUPPORTED_CONTRADICTED",
+   "claim cl-objetivo-libra-zona-superior@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-objetivo-ya-no-aqui@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-observar-completado-rangos@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-order-block-cierre-exagerado@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-order-block-importante-cambio-oferta-demanda@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-pintar-vela-en-grafico@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-power-3-mencion-salidas@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-price-completes-ranges@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-price-forms-range@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-primer-capitulo@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-proposito-nocion-accion-precio@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-proposito-nocion-movimiento-mercado@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-rango-cierre-fuera-eliminable@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-rango-mas-facil-en-grafico@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-rango-rectangular-vertical@1: UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "claim cl-rango-se-puede-eliminar-por-cierre-fuera@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-rango-usa-alto-vela@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-rangos-completos-antes-de-subir@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-rangos-importantes-para-encontrar-entradas@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-revision-order-block-m10@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-seleccion-vela-blanca-grande@1: UNSUPPORTED_CONTRADICTED",
+   "claim cl-smt-esquema-conocido-antes@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-smt-rangos-pendientes@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-tartel-sub-toma-de-liquidez@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-turtle-soup-extra-ocurre-a-veces@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-turtle-soup-indicia-inicio-movimiento@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-turtle-soup-reacts-opposite@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-vela-abre-toma-high-cierra-adentro@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-vela-cerrada-muy-fuera@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-vela-izquierda-bajista-probable@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-vista-eurusd-15m@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-zona-smt-rellena-negro@1: UNSUPPORTED_INSUFFICIENT",
+   "claim cl-zoom-puede-generar-duda-sobre-el-low@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-caso-bajista-depende-toma-maximo@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-cierre-fuera-contradice-cierre-dentro@1: UNSUPPORTED_CONTRADICTED",
+   "claim relation rel-eliminar-rango-tras-supera-rango@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-exageracion-depende-cierre-lejano@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-longs-dependen-de-vela-alcista@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-objetivo-depende-rango-bullish-libra@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-olvidar-rango-tras-supera-rango@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-pintado-negro-debajo-de-bajista@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-rango-abajo-depende-rango-contra@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-rango-bearish-completo-requiere-formado@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-rango-gbpusd-depende-de-smt@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-rangos-antes-de-subir-en-rango-contrario@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-reanalizar-tras-supera-rango@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-rr-final-depende-del-objetivo@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-smt-requiere-fallo-objetivo-correlado@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-smt-requiere-reversal-directo@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-subida-directa-depende-sin-nuevo-bajo@1: UNSUPPORTED_INSUFFICIENT",
+   "claim relation rel-toma-low-requiere-apertura@1: UNSUPPORTED_INSUFFICIENT"
+  ],
+  "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+  "l1_fingerprint": "e2550c53f0688c0d451ea1b8885be085e1db083a21d7b765fe6106de71d9973c",
+  "l2_fingerprint": "3a5c184c05f4c14b9de0d86de208b5647886289352bbeb1770e60751f4b3f392"
+ },
+ "windows": {
+  "total": 130,
+  "attempted": 130,
+  "accepted": 104,
+  "rejected": 26,
+  "unavailable": 0,
+  "rejected_detail": {
+   "w0003": {
+    "category": "other",
+    "reason": "claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt"
+   },
+   "w0005": {
+    "category": "other",
+    "reason": "claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt"
+   },
+   "w0028": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-observar-formacion-rangos@1 identity collision: window w0027 proposed \"Hay que ir viendo cómo se forman los rangos.\" and window w0028 proposed \"Observar cómo se forman los rangos.\": claims.equivalence_review returned DIVERGENT; window rejected closed"
+   },
+   "w0034": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-grafico-eurusd@1 identity collision: kind differs (observation vs parameter) (window w0031, then window w0034); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0043": {
+    "category": "other",
+    "reason": "claims reconstruction output rejected: claims reconstruction output was rejected in a previous attempt"
+   },
+   "w0045": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-nueva-vela-abre-aqui@1 identity collision: kind differs (observation vs claim) (window w0044, then window w0045); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0049": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-rango-diario@1 identity collision: kind differs (claim vs observation) (window w0017, then window w0049); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0054": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record rel-rango-bajista-depende-apertura-arriba@1 identity collision: structural relation divergence, subject endpoint differs (cl-rango-reiniciado-rango-bajista-posible@1 vs cl-rango-reiniciado-crea-rango-bajista-posible@1) (window w0053, then window w0054); window rejected closed without an equiv…[truncated]"
+   },
+   "w0058": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-rango-pendiente@1 identity collision: epistemic differs (VIDEO_OBSERVED vs INSTRUCTOR_SAID) (window w0051, then window w0058); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0059": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-rango-pendiente@1 identity collision: epistemic differs (VIDEO_OBSERVED vs INSTRUCTOR_SAID) (window w0051, then window w0059); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0062": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-instrumento-eurusd@1 identity collision: kind differs (parameter vs observation) (window w0017, then window w0062); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0065": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-grafico-eurusd@1 identity collision: kind differs (observation vs parameter) (window w0031, then window w0065); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0072": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-grafico-temporalidad-15m@1 identity collision: kind differs (observation vs parameter) (window w0070, then window w0072); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0074": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-instrumento-eurusd@1 identity collision: kind differs (parameter vs observation) (window w0017, then window w0074); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0078": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-cierre-fuera-invalida-rango@1 identity collision: window w0077 proposed \"Si la vela cierra fuera del rango, el rango deja de ser un rango.\" and window w0078 proposed \"Si el precio cierra afuera del rango, el rango deja de ser válido.\": claims.equivalence_review returned DIVERGENT; window …[truncated]"
+   },
+   "w0088": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-ejemplos-capitulo-aparte@1 identity collision: kind differs (claim vs procedure_step) (window w0086, then window w0088); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0092": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record rel-smt-requiere-reversal-directo@1 identity collision: structural relation divergence, subject endpoint differs (cl-formacion-correlada-es-smt@1 vs cl-configuracion-senalada-es-smt@1) (window w0091, then window w0092); window rejected closed without an equivalence review"
+   },
+   "w0094": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-smt-no-requerida-entre-dos-velas@1 identity collision: window w0093 proposed \"La SMT no tiene que aparecer entre estas dos velas.\" and window w0094 proposed \"Una SMT no tiene que ser entre estas dos velas.\": claims.equivalence_review returned DIVERGENT; window rejected closed"
+   },
+   "w0098": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-euro-puede-llegar-arriba@1 identity collision: window w0097 proposed \"Euro puede llegar hasta arriba.\" and window w0098 proposed \"Si el euro no tiene que crear el rango, puede llegar hasta arriba.\": claims.equivalence_review returned DIVERGENT; window rejected closed"
+   },
+   "w0102": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-activo-eurusd@1 identity collision: kind differs (observation vs parameter) (window w0055, then window w0102); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0109": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-ir-al-grafico@1 identity collision: window w0012 proposed \"Vamos a ir ahora un momento al gráfico.\" and window w0109 proposed \"Vamos a ir al gráfico para verlo claro.\": claims.equivalence_review returned DIVERGENT; window rejected closed"
+   },
+   "w0110": {
+    "category": "bad evidence ref",
+    "reason": "claims reconstruction output rejected: claims reconstruction proposal rejected: record cl-m15-para-subir-capitulo-entradas cites unknown evidence ref \"transcript asr-00245\""
+   },
+   "w0116": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-instrumento-eurusd@1 identity collision: kind differs (parameter vs observation) (window w0017, then window w0116); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0117": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-instrumento-eurusd@1 identity collision: kind differs (parameter vs observation) (window w0017, then window w0117); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0118": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-smt-aplicada-estrategia@1 identity collision: kind differs (procedure_step vs claim) (window w0086, then window w0118); deterministic divergence, window rejected closed without an equivalence review"
+   },
+   "w0122": {
+    "category": "identity divergence",
+    "reason": "claims reconstruction output rejected: record cl-vela-apertura@1 identity collision: window w0120 proposed \"Una de las partes de la vela es la apertura.\" and window w0122 proposed \"La vela abre.\": claims.equivalence_review returned DIVERGENT; window rejected closed"
+   }
+  },
+  "unavailable_list": []
+ },
+ "identity": {
+  "evidence_accumulations_applied": 7,
+  "equivalence_reviews": 17,
+  "equivalent": 11,
+  "divergent": 6,
+  "merges_applied": 7
+ },
+ "knowledge": {
+  "claims_canonical": 803,
+  "relations_canonical": 130,
+  "skos_canonical": 0,
+  "claim_grounding": {
+   "GROUNDING_SUPPORTED": 746,
+   "GROUNDING_INSUFFICIENT": 52,
+   "GROUNDING_CONTRADICTED": 4,
+   "REVIEW_UNAVAILABLE": 1
+  },
+  "relation_grounding": {
+   "GROUNDING_SUPPORTED": 112,
+   "GROUNDING_INSUFFICIENT": 17,
+   "GROUNDING_CONTRADICTED": 1
+  },
+  "integrity": {
+   "INTEGRITY_PASS": 933
+  },
+  "publication": {
+   "SUPPORTED_BY_AUTOMATED_REVIEW": 853,
+   "UNSUPPORTED_INSUFFICIENT": 74,
+   "UNSUPPORTED_CONTRADICTED": 5,
+   "UNSUPPORTED_REVIEW_UNAVAILABLE": 1
+  }
+ },
+ "reliability": {
+  "bad_evidence_ref_windows": [
+   "w0003",
+   "w0005",
+   "w0043",
+   "w0110"
+  ],
+  "canon_bad_refs": {},
+  "malformed_recon_windows": [
+   "w0003",
+   "w0005",
+   "w0043",
+   "w0110"
+  ],
+  "grounding_corrective_reissues": 115,
+  "provider_error_classes": {
+   "claims.grounding_review": {
+    "fatal": 1
+   },
+   "sko.composition": {
+    "retry-exhausted": 1
+   }
+  },
+  "class_fatal": 0,
+  "whole_window_atomicity": "PASS"
+ },
+ "language": {
+  "es": 796,
+  "other": 7
+ },
+ "provider": {
+  "calls_total": 1196,
+  "calls_by_task": {
+   "claims.reconstruction": 130,
+   "claims.equivalence_review": 17,
+   "claims.grounding_review": 1048,
+   "sko.composition": 1
+  },
+  "states_by_task": {
+   "claims.reconstruction": {
+    "REJECTED": 4,
+    "VALIDATED": 126
+   },
+   "claims.equivalence_review": {
+    "VALIDATED": 17
+   },
+   "claims.grounding_review": {
+    "VALIDATED": 932,
+    "REJECTED": 115,
+    "": 1
+   },
+   "sko.composition": {
+    "": 1
+   }
+  },
+  "prompt_tokens": 6293102,
+  "completion_tokens": 2307301,
+  "total_tokens": 8600403,
+  "reported_cost": null
+ },
+ "budget_ledger_used": {
+  "vlm_call": 1198,
+  "vlm_image": 1960,
+  "vlm_token": 8600403
+ },
+ "documentation_summary": {
+  "provider": "openrouter model: stealth/space-bunny-alpha",
+  "status": "INCOMPLETE",
+  "records": "803 claims, 130 claim relations, 0 skos (853 supported, 80 non-supported, 0 superseded)",
+  "inference_budget": "vlm_call 1194/2400, vlm_image 1941/8000, vlm_token 8600403/60000000",
+  "identity_ladder": "1039 claims + 168 relations proposed, 1 exact duplicates, 38 identity collisions (1 deterministic-equivalent accumulations, 15 semantic-equivalent merges, 22 divergent), 21 semantic-equivalence reviews, 22 windows rejected"
+ },
+ "performance": {
+  "wall_time_time_v": "2:28:31",
+  "first_invocation_utc": "2026-10-01T20:50:01.805349431Z",
+  "last_invocation_utc": "2026-10-02T06:05:23.794024749Z"
+ },
+ "handoff": {
+  "CLUTIFX_CH01_FULL_LIVE": "INCOMPLETE_USEFUL",
+  "MKE_SHA": "ef53530756a27009517030a1bd29f0472bb3ad48",
+  "SOURCE_SHA": "4de8f12d4841c63022a03e7450e0b54c4947ed9c8fc8c408606dde79dd3d289b",
+  "WINDOWS_TOTAL": 130,
+  "WINDOWS_ATTEMPTED": 130,
+  "WINDOWS_ACCEPTED": 104,
+  "WINDOWS_REJECTED": 26,
+  "WINDOWS_UNAVAILABLE": 0,
+  "L0_REUSED": "YES",
+  "IDENTITY_COLLISIONS": 38,
+  "EXACT_DUPLICATES": 1,
+  "DETERMINISTIC_EQUIVALENTS": 1,
+  "EQUIVALENCE_REVIEWS_LIVE": 17,
+  "EQUIVALENT": 11,
+  "DIVERGENT": 6,
+  "EVIDENCE_ACCUMULATIONS_APPLIED": 12,
+  "PROVENANCE_ACCUMULATIONS_APPLIED": 12,
+  "RELATION_ACCUMULATIONS_APPLIED": 0,
+  "LIVE_ACCUMULATION_AUDIT": "PASS",
+  "CLAIMS_PROPOSED": 1039,
+  "RELATIONS_PROPOSED": 168,
+  "CANONICAL_CLAIMS": 803,
+  "CANONICAL_RELATIONS": 130,
+  "SUPPORTED_CLAIMS": 741,
+  "SUPPORTED_RELATIONS": 112,
+  "NON_SUPPORTED_CLAIMS": 62,
+  "NON_SUPPORTED_RELATIONS": 18,
+  "L2_REACHED": "NO",
+  "SKOS_TOTAL": 0,
+  "SKOS_SUPPORTED": 0,
+  "SKOS_NON_SUPPORTED": 0,
+  "BAD_EVIDENCE_REF_WINDOWS": 4,
+  "MALFORMED_RECON_WINDOWS": 0,
+  "GROUNDING_CORRECTIVE_REISSUES": 115,
+  "PROVIDER_TRANSPORT_FAILURES": 3,
+  "CLASS_FATAL": 2,
+  "WHOLE_WINDOW_ATOMICITY": "PASS",
+  "CLAIMS_ES": 803,
+  "CLAIMS_EN": 0,
+  "CLAIMS_OTHER": 0,
+  "PROVIDER_CALLS": 1196,
+  "INPUT_TOKENS": 6293102,
+  "OUTPUT_TOKENS": 2307301,
+  "TOTAL_TOKENS": 8600403,
+  "REPORTED_COST": null,
+  "WALL_TIME": "9h27m17s de cómputo en 3 tramos (20:42:19Z–06:14Z, 2 resumenes contractuales)",
+  "REPLAY": "PASS",
+  "POTENTIAL_FALSE_SEMANTIC_MERGE": "NO",
+  "PRODUCT_CODE_CHANGED": "NO",
+  "PROMPTS_CHANGED": "NO",
+  "FULL_CHAPTER_EXECUTED": "YES",
+  "D4_TOUCHED": "NO",
+  "V3_SCOPE_ADDED": "NO"
+ }
+}
