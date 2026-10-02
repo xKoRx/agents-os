@@ -159,3 +159,42 @@ READY_FOR_ADVERSARIAL_REVIEW
 NEXT_MANAGER_ACTION:
 Dispatch D6 Shot 2 adversarial review sobre 14b0d72b (adjudicar CONSISTENCY_30 como input del review). No iniciar Shot 2 desde esta sesión.
 ```
+
+---
+
+# F-MGR-02B — CONSISTENCY_30 IN THE ENGINE — 2026-10-02 — PASS
+
+**Observación restante cerrada:** `CONSISTENCY_30` ya no es `DOCUMENTATION_ONLY` — el engine la conoce, la representa, la evalúa cuando existe el estado requerido y expone el resultado.
+
+## Cambio (commit `0e9741a5`, sobre `14b0d72b`; push FF)
+
+1. **domain (aditivo, congelado-safe):** familia tipada `ConsistencyRule{Kind: MAX_DAY_SHARE, Percent: 30, Basis: TOTAL_PNL_AT_PASS, Monitoring: true}` + `ProviderRuleSet.Consistency` + `Validate()` fail-closed en la semántica V1 (una consistency no-monitoring no tiene punto de enforcement y jamás valida into existence).
+2. **provider (monitor, no gate):** inputs aditivos en `AccountSnapshot` (`ConsistencyTotalPnL`/`ConsistencyBestDayPnL`, nil = estado ausente) + evaluador exacto sin división (`breached ⟺ best_day×100 ≥ percent×total`) + hook en `handleAccountSnapshot`: cada vez que el account-state plane entrega los inputs, el engine evalúa y expone `COMPLIANT | BREACHED | UNDETERMINED` (total ≤ 0, nunca fabricado a compliant) como telemetría `echo.futures.provider.consistency_monitor`. **Nunca gatea:** un outcome BREACHED deja admission/reservation intactos (testeado).
+3. **materialization:** `gau50-eval-v1.json` gana `consistency{30, monitoring}` + 5ª SourceRef (semántica pass-time FACT); guard exige la familia con valores exactos y rechaza removal/non-monitoring/percent drift (15 mutaciones totales).
+4. **Disposition superseded:** el "documented-not-encoded" del freeze §9 para CONSISTENCY queda superseded por la autoridad Owner/Manager (todas las reglas materiales viven en el engine); la semántica monitorizada respeta la razón del freeze (jamás se pretiende un enforcement pre-egress que no existe).
+
+## Cobertura post-F-MGR-02B
+
+Raw 1205/1281 = **94.1%**; el archivo nuevo (`consistency.go`) y la familia están al 100% funcional (compliant/breached/==30%/undetermined/absente/no-gate). Con las exclusiones documentadas de F-MGR-01 (+ `CanonicalStringUnchecked` panic-branch por contrato): ≈ **98.7%** del conjunto medible.
+
+## Handoff incremental
+
+```text
+F_MGR_02B:
+PASS (CONSISTENCY_30 = ENGINE, monitored outcome family)
+
+DOCUMENTATION_ONLY_PROVIDER_RULES:
+NONE (restan sólo hechos informativos del programa, no rules de enforcement)
+
+FINAL_SHA:
+0e9741a56afe6911e52480fb9f2fe86a47aae427
+
+CONTRADICTIONS:
+NONE
+
+D6_SHOT1_IMPLEMENTATION:
+READY_FOR_ADVERSARIAL_REVIEW
+
+NEXT_MANAGER_ACTION:
+Dispatch D6 Shot 2 adversarial review sobre 0e9741a5.
+```
