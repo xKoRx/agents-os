@@ -184,8 +184,7 @@ Estándar aplicado: sólo defectos que amenazan materialmente correctness / safe
 
 ## 5. Tests y harnesses ejecutados
 
-- `go test -race -count=1` `v3/futures-bridge/...` — **13 pkgs ok, exit 0** (reproducido en este review).
-- `go test -race -count=1` `v3/sdk/futures/...` y `v3/core` (functions, futuresruntime, futuresvertical, config/futures) — en curso al cierre del análisis; los mismos paquetes corrieron limpios (0 FAIL, Go 1.27.1) durante la reproducción de cobertura del frente N (con profile), que es la evidencia primaria de suites verdes usada aquí.
+- `go test -race -count=1` del candidato, corridas completas del review: `v3/futures-bridge/...` **13 pkgs ok, exit 0**; `v3/sdk/futures/...` **ok, exit 0**; `v3/core` (functions, futuresruntime, futuresvertical [508s], config/futures) **4 pkgs ok, exit 0** — cero FAILs, Go 1.27.1.
 - Reproducción independiente de cobertura changed-logic (script propio del reviewer, `/tmp/d6cov-shot2/`): 3 coverprofiles + git-diff slicing; raw 1202/1279 = 94.0%, ajustado 98.4% ≥ 95% — **COVERAGE_CLAIM: PASS**.
 - ETCD RO: 18 claves del subtree `futures-bridge` listadas por existencia exacta; `futures-bridge/accounts` ABSENT; `binding/provider-account-ref` exacta (17 bytes); `binding/day-boundary-tz = America/New_York` (F-S2-05).
 - Deployment RO: `ps` + `systemctl list-units` — sin proceso ni unit de futures-bridge; relay feed en release `170a4581` (lane N1 read-only operativo).
