@@ -2431,3 +2431,14 @@ Implementación del delta D6 completo sobre el baseline certificado `f0c82905` (
 - **Owner:** `OWNER_DECISION_REQUIRED = NONE` para este shot; OD-D6-1 (egress físico) y OD-D6-2 (ratificación valores GAU50-EVAL) siguen REQUIRED para Shot 3. Master y PROD intocados.
 
 **Next Manager action:** despachar D6 Shot 2 (adversarial review independiente sobre `4b05d6f8`, sin cambios de código durante el review). No emitir `EF_D6_E2E_PASS`.
+
+### D6 Shot 1 — MANAGER QA REMEDIATION (F-MGR-01/02/03) — PASS — 2026-10-02
+
+`D6_SHOT1_MANAGER_QA = REPAIR_REQUIRED` cerrado de forma acotada. Branch `origin/feature/d6-shot1-execution-vertical` @ **`14b0d72b811ef618190130f70e9fa748dfb90088`** (push FF sobre `4b05d6f8`; 2 commits). Artifact: `artifacts/d6-shot1-20261001/D6-SHOT1-MANAGER-QA-REMEDIATION.md` + sección de remediación añadida a `D6-SHOT1-IMPLEMENTATION.md`.
+
+- **F-MGR-01 PASS:** cobertura reproducible del código añadido por el shot (git-diff hunk slicing ∩ coverprofiles scoped): raw 1154/1228 = 94.0% → con exclusiones documentadas (cmd mains DI-wired deployment-verified, ramas canonical-decimal inalcanzables, ventanas mid-flight de lane write con semántica cubierta por seam, always-nil por contrato, marshal por-contrato) **1154/1173 = 98.4% ≥ 95%**. Batería nueva de tests de fallo (journal scripteado, lane silencioso, sinks, reconciliación found/history, server ntx, engine STOP_MARKET, Compose bounds, wiring main, GAU50 guards).
+- **F-MGR-02 PASS:** DD 2000 (EOD_TRAILING) + DLL 1100 (ABSOLUTE) codificados en GAU50-EVAL v1 como **safety-inputs de estado de cuenta** (deny `RISK_STATE_TRIGGERED` + ForceClose; testeados por breach; nunca caps por orden), con 4ª SourceRef y guard anti-drift extendido (14 mutaciones). **CONSISTENCY_30 queda documentation-only por contrato** (pass-time monitored outcome; sin punto de evaluación pre-egress en las typed families congeladas) — contradicción arquitectónica devuelta al Primary Manager.
+- **F-MGR-03 REMOVED:** OD-D6-2 (ratificación owner de valores) eliminada del registro vigente, proyecto y artefacto — la evidencia ya es autoritativa y no contested. Gates owner restantes: **OD-D6-1 only** (egress físico, control-plane); OD-D6-3 condicional y OD-D6-4 standing siguen operativos sin ser gates de ratificación.
+- Regresión: los 10 gates del Shot 1 permanecen PASS (suites `-race` verdes). `PHYSICAL_EGRESS = DISABLED`; `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0`. Master y PROD intocados.
+
+**Estado:** `D6_SHOT1_MANAGER_REMEDIATION = PASS`; `D6_SHOT1_IMPLEMENTATION = READY_FOR_ADVERSARIAL_REVIEW` @ `14b0d72b`. **Next Manager action:** dispatch D6 Shot 2 (adversarial review), adjudicando CONSISTENCY_30 como input del review. No emitir `EF_D6_E2E_PASS`.
