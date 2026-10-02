@@ -2442,3 +2442,14 @@ Implementación del delta D6 completo sobre el baseline certificado `f0c82905` (
 - Regresión: los 10 gates del Shot 1 permanecen PASS (suites `-race` verdes). `PHYSICAL_EGRESS = DISABLED`; `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0`. Master y PROD intocados.
 
 **Estado:** `D6_SHOT1_MANAGER_REMEDIATION = PASS`; `D6_SHOT1_IMPLEMENTATION = READY_FOR_ADVERSARIAL_REVIEW` @ `14b0d72b`. **Next Manager action:** dispatch D6 Shot 2 (adversarial review), adjudicando CONSISTENCY_30 como input del review. No emitir `EF_D6_E2E_PASS`.
+
+### D6 Shot 1 — F-MGR-02B: CONSISTENCY_30 en el engine — PASS — 2026-10-02
+
+Observación restante del Manager cerrada. Final SHA **`0e9741a56afe6911e52480fb9f2fe86a47aae427`** (push FF sobre `14b0d72b`).
+
+- **Familia tipada `ConsistencyRule`** (aditiva, domain): `{MAX_DAY_SHARE, 30, TOTAL_PNL_AT_PASS, monitoring}` — la consistency como el outcome monitorizado que es; Validate fail-closed en la semántica V1 (no-monitoring jamás valida: no existe punto de enforcement por orden).
+- **Monitor en `provider_rules`:** inputs aditivos en `AccountSnapshot` (total/best-day PnL; nil = estado ausente, el monitor no corre ni fabrica outcome); evaluador exacto sin división (`breached ⟺ best_day×100 ≥ 30×total`); outcome expuesto como telemetría `echo.futures.provider.consistency_monitor` (`COMPLIANT | BREACHED | UNDETERMINED` con total ≤ 0). **Nunca gatea una orden** (testeado: BREACHED ⇒ admission ALLOW).
+- **Materialization:** `gau50-eval-v1.json` += `consistency` + 5ª SourceRef; guard exige la familia exacta (removal/non-monitoring/percent = drift). `DOCUMENTATION_ONLY_PROVIDER_RULES = NONE`.
+- Cobertura raw 94.1% / ≈98.7% ajustada (exclusiones F-MGR-01 + panic-branch por contrato de `CanonicalStringUnchecked`). Suites `-race` verdes. `PHYSICAL_EGRESS = DISABLED`; 0 órdenes.
+
+**Estado:** `D6_SHOT1_IMPLEMENTATION = READY_FOR_ADVERSARIAL_REVIEW` @ `0e9741a5`. **Next Manager action:** dispatch D6 Shot 2 (adversarial review sobre `0e9741a5`). No emitir `EF_D6_E2E_PASS`.

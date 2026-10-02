@@ -171,3 +171,17 @@ Despachar D6 Shot 2 (adversarial review independiente sobre 4b05d6f8) sin cambio
 - Regresión: los 10 gates del Shot 1 permanecen PASS; suites completas `-race` verdes. `PHYSICAL_EGRESS = DISABLED`; `ORDERS_SENT = ORDERS_MODIFIED = ORDERS_CANCELLED = 0`.
 
 **Estado:** `D6_SHOT1_IMPLEMENTATION = READY_FOR_ADVERSARIAL_REVIEW` @ `14b0d72b`. **Next Manager action:** dispatch Shot 2 (adversarial review), adjudicando CONSISTENCY_30 como input.
+
+---
+
+# F-MGR-02B — CONSISTENCY_30 IN THE ENGINE — 2026-10-02 — PASS
+
+Cierre de la observación restante (todas las demás aceptadas). Final SHA: **`0e9741a56afe6911e52480fb9f2fe86a47aae427`** (push FF sobre `14b0d72b`).
+
+- **domain (aditivo):** `ConsistencyRule{MAX_DAY_SHARE, 30, TOTAL_PNL_AT_PASS, monitoring}` + `ProviderRuleSet.Consistency` + Validate fail-closed en la semántica V1 (no-monitoring jamás valida).
+- **provider:** monitor de outcome — inputs aditivos en `AccountSnapshot` (total/best-day PnL, nil = ausente), evaluador exacto (`breached ⟺ best_day×100 ≥ 30×total`, sin división), hook en snapshot ingestion, outcome expuesto como telemetría (`COMPLIANT | BREACHED | UNDETERMINED`). **Nunca gatea una orden** (testeado: BREACHED deja admission ALLOW).
+- **materialization:** `gau50-eval-v1.json` += `consistency` + 5ª SourceRef; guard exige la familia (removal/non-monitoring = drift).
+- `DOCUMENTATION_ONLY_PROVIDER_RULES = NONE` (sólo restan hechos informativos sin enforcement). Contradicción previa de CONSISTENCY_30: **resuelta**.
+- Cobertura raw 94.1% / ajustada ≈ 98.7% (exclusiones F-MGR-01 + panic-branch por contrato). Suites `-race` verdes. `PHYSICAL_EGRESS = DISABLED`; 0 órdenes.
+
+**Estado:** `D6_SHOT1_IMPLEMENTATION = READY_FOR_ADVERSARIAL_REVIEW` @ `0e9741a5`. **Next Manager action:** dispatch Shot 2.
