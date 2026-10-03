@@ -5,7 +5,7 @@
 **Date:** 2026-10-02
 **Project:** [[Echo Futures]]
 **Baseline before:** `xKoRx/echo@0e9741a56afe6911e52480fb9f2fe86a47aae427` (`feature/d6-shot1-execution-vertical`, candidato Shot 2, re-verificado al iniciar: worktree limpio, HEAD == baseline)
-**Final SHA:** `5001ec2cce259cfee2d9656d19a1187061315809` (9 commits FF sobre `0e9741a5`; push FF verificado `origin == local HEAD`)
+**Final SHA:** `40102ea5a44be9a618ac12529e6f0e9fdfd46d34` (10 commits FF sobre `0e9741a5`; push FF verificado `origin == local HEAD`)
 **Trigger:** `D6_SHOT2_ADVERSARIAL = REMEDIATION_REQUIRED` (0 BLOCKER · 2 HIGH · 8 MEDIUM, aceptados por el Primary Manager)
 **Authorities:** D6 Final Design Freeze §4.2/§5/§6/§9/§10/§11/§14; Shot 1 + Manager QA (F-MGR-01/02/02B); D6-SHOT2-ADVERSARIAL-REVIEW (los 10 findings adjudicados); D4/D5 frozen contracts; Earn2Trade first-party corpus (preflight 2026-09-30 + bounded evidence repair 2026-10-02).
 **Verdict:** `D6_SHOT3_REMEDIATION = READY_FOR_OWNER_PHYSICAL_EGRESS_GATE`
@@ -109,7 +109,7 @@ Método Shot 1 (transporte efímero http.server + `curl.exe` + SHA256 byte-verif
 
 ## 4. Regresión de invariants aceptados (adversarial coverage re-run)
 
-Suites completas `go test -race -count=1` verdes sobre el FINAL_SHA: `v3/futures-bridge/...` (15 pkgs ok) · `v3/sdk/futures/...` (ok) · `v3/core` functions + futuresruntime + config/futures + futuresvertical completa `-timeout 30m` (ok). Cobertura adversarial re-ejecutada: wrong account (`TestVerifyBindingDriftFailsClosed`, `TestVerifyBindingNameMismatchFailsClosed`, hello defence), double submit (`DUPLICATE_SUBMIT_SUPPRESSED`, exactamente-1-comando), M1/M2 (ciclo de barrera, journal fsync paths), STOP_MARKET (matriz domain/engine/wire, rechazo pre-journal, protective resting), cancel/replace/late-fill (fill-gana-carrera, replace dup, tighten), reconciliation (found/absent/history/quarantine), account identity (3 capas, ref durable), provider rules (GAU50 cap/ventana/safety-inputs/consistency + guard 16 mutaciones), warm-up (fidelidad S09 + coverage/densidad), EXACT_REPLAY/BACKTEST (s12 byte-idéntico + aislamiento F-S2-08), market freshness (s07 vertical + suites de functions), session fencing (2 tests nuevos). Sin rediseño de componentes aceptados.
+Suites completas `go test -race -count=1` verdes sobre el FINAL_SHA: `v3/futures-bridge/...` (15 pkgs ok) · `v3/sdk/futures/...` (ok) · `v3/core` functions + futuresruntime + config/futures + futuresvertical completa `-timeout 30m` (ok). Hallazgo de la regresión completa: el decay de silencio (F-S2-02) marcó STALE un stream con 60s sin hechos y MM denegó correctamente el new risk del escenario de rollover MKT07 — **fail-closed correcto según el modelo congelado §4.2** (verificado por bisect: el gate es AnalyticalReady degradada por frescura en `readModelMarket.Ready`, jamás un defecto del decay); el escenario del test se ajustó para modelar la realidad de un feed vivo (hecho canónico fresco del stream A durante el rollover), sin tocar producto. Cobertura adversarial re-ejecutada: wrong account (`TestVerifyBindingDriftFailsClosed`, `TestVerifyBindingNameMismatchFailsClosed`, hello defence), double submit (`DUPLICATE_SUBMIT_SUPPRESSED`, exactamente-1-comando), M1/M2 (ciclo de barrera, journal fsync paths), STOP_MARKET (matriz domain/engine/wire, rechazo pre-journal, protective resting), cancel/replace/late-fill (fill-gana-carrera, replace dup, tighten), reconciliation (found/absent/history/quarantine), account identity (3 capas, ref durable), provider rules (GAU50 cap/ventana/safety-inputs/consistency + guard 16 mutaciones), warm-up (fidelidad S09 + coverage/densidad), EXACT_REPLAY/BACKTEST (s12 byte-idéntico + aislamiento F-S2-08), market freshness (s07 vertical + suites de functions), session fencing (2 tests nuevos). Sin rediseño de componentes aceptados.
 
 ## 5. Estado ETCD DEV (única mutación de infraestructura)
 
@@ -129,7 +129,7 @@ BASELINE:
 0e9741a56afe6911e52480fb9f2fe86a47aae427
 
 FINAL_SHA:
-5001ec2cce259cfee2d9656d19a1187061315809 (9 commits FF sobre el baseline; origin == HEAD verificado)
+40102ea5a44be9a618ac12529e6f0e9fdfd46d34 (10 commits FF sobre el baseline; origin == HEAD verificado)
 
 FINDINGS_CLOSED:
 F-S2-01 PASS (reconnect = nueva sesión por conexión + seq 0; contrato Go congelado; C# compila contra 8.1.8.3 real)
