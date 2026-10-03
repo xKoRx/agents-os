@@ -1,0 +1,7 @@
+{
+ "nonsupported_claims": 62,
+ "nonsupported_relations": 18,
+ "supported_claims": 741,
+ "supported_relations": 112,
+ "sample_size": 30
+}
