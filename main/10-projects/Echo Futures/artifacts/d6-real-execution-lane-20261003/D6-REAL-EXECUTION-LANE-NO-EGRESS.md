@@ -409,3 +409,183 @@ Una sola acción exacta (§R9): reemplazar el echo-execution-addon.json del perf
 NEXT_MANAGER_ACTION:
 Veredicto FAIL ⇒ no certificar lane ni ejecutar ladder hasta el fix §R9. Domingo 2026-10-04 ≥17:00 CT: certificar G-REALTIME con el runbook §M (feed-lane-only, NO depende del fix). Tras la señal de éxito del AddOn: re-despachar C–K (~5 min, dentro de ventana) y ejecutar el ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. OD-D6-1 vigente sin consumir. No emitir EF_D6_E2E_PASS.
 ```
+
+---
+---
+
+# POST CONFIG FIX / FINAL C–K CERTIFICATION — 2026-10-03 (noche, evidencia UTC ≈22:15Z–23:00Z, local -03 ≈19:15–20:00)
+
+**Nota de esquema:** el despacho C→K pedía certificar sobre la config corregida (verdad física nueva del owner: `C:\Temp` → destino con SHA `9ca3fddc…` en ambos, `ntx_port = 9771` parseado, NT reiniciado después). La certificación **NO se completó**: el runtime real del nuevo proceso NT **contradice** la corrección atestiguada — el EchoExecutionAddOn del PID 4576 **no hizo NI UN intento de conexión** a `:9771` contra un listener vivo durante 18+ minutos, con cadencia de diseño ≤10 s desde ~1 s tras su activación. Es la MISMA firma conductual del incidente puerto-0 (o bien el AddOn no cargó en este boot; indistinguible para el agente por ACL del log NT). Por mandato C0 (`If runtime still says :0: STOP. Return exact contradiction`) la fase física se detuvo ahí; C1 (producto) SÍ se cerró con fix acotado. Veredicto: **REMEDIATION_REQUIRED**.
+
+## C0 — VERIFY EXECUTION ADDON CONFIG RELOAD: FAIL (contradicción exacta)
+
+1. **Owner ciclo (atestiguado, no agent-verificable en destino):** config corregida al destino con SHA `9ca3fddc…`; NT reiniciado después. **Fuente verificada por el agente HOY:** `C:\Temp\echo-execution-addon.json` → SHA256 `9ca3fddc31330b2d5b485fd0869801b486b1443972bbf5ba50c56862feeea71b` ✔ (certutil dev-win).
+2. **Restart físico confirmado:** NinjaTrader PID **11412 → 4576** (netstat dev-win: `192.168.31.132:52883 → 192.168.31.161:9770 ESTABLISHED, PID 4576`; `Get-Process 4576` = NinjaTrader, StartTime no accesible por ACL). Instante del boot fijado por el hello feed: sesión nueva `f2756ae6a27c4a5fad67954c2fb9f9a1` a las **2026-10-03T22:13:09.941Z** (`reconnects:1`). Hubo un boot intermedio brevísimo (`de38c5f2…`, 23 frames, ≈22:12Z) — el owner reinició dos veces en ≈1 min; ambos boots son post-fix.
+3. **FEED_ADDON_LOADED = PASS (físico):** la sesión `f2756ae6…` publica hello/account/positions/orders/heartbeat cada 10 s (seq 1→334+ durante la ventana); rediscovery 8 cuentas, 1 match, RESOLVED.
+4. **EXECUTION_ADDON_LOADED + effective port 9771 = FAIL (conductual, decisivo):** con el bridge LISTENING en `*:9771` ininterrumpidamente desde las **22:29:32Z** (PID 2155952, verificado con `ss` en tomas repetidas):
+   - El barrier falló a los **10.015 s** exactos del built (`22:29:32.617Z` → `22:29:42.632Z`, razón literal `session: recovery barrier failed for E2T-GAU50-01: barrier: connect: ninjatrader: no authenticated AddOn session on the execution lane`) — **3.ª demostración fail-closed**.
+   - **CERO sockets con puerto 9771 de cualquier estado en dev-win** en 2 ventanas de muestreo (7×2 s + 10×2.2 s) y cero ESTABLISHED lado servidor (`ss`) en todo el runtime. Contra un listener ACTIVO un dial del AddOn queda ESTABLISHED persistente (backlog del kernel) — no haySampling que se escape.
+   - El listener quedó disponible **≥18 minutos** ⇒ ≥100 ciclos de retry esperados según el diseño (primer dial ~1 s tras Active, backoff 10 s, `EchoExecutionAddOn.cs:271-297/:407-430`); **0 intentos**. Un AddOn cargado con `ntx_port=9771` NO puede comportarse así.
+5. **Discriminación no posible por el agente (ACL 7.ª/8.ª re-probe):** log NT (`Documents\NinjaTrader 8\log`) no accesible; `Get-Process .StartTime` vacío; `tasklist /m /fi "PID eq 4576"` = `Access is denied`. Las dos hipótesis restantes — (a) la config efectiva cargada en el PID 4576 sigue sin puerto dialable (firma puerto-0 idéntica al retry) o (b) el AddOn de ejecución no cargó/compiló en ESTE boot — requieren el log NT owner. **La evidencia conductual contradice la atestación del owner; mandato C0 ⇒ STOP físico.**
+
+## C1 — CONFIG FAIL-CLOSED REPAIR: PASS (código acotado, commit `d361008b`)
+
+El hallazgo residual §R8 del retry quedó **CERRADO como fix de producto** (no residual): con este guard, el incidente de hoy habría sido unívoco desde el log.
+
+- **Fix (11 líneas, `EchoExecutionAddOn.cs` `LoadConfig`):** tras parsear, valida `ntx_host` no vacío, `ntx_port > 0`, `auth_token`, `account_id`, `account_name`, `contracts` no vacíos, `snapshot_seconds/heartbeat_seconds > 0`. En fallo: **resetea `ntxHost/ntxPort/authToken` a inertes** (los guards de ambos lanes exigen host+puerto+token ⇒ hard-down), loguea `EchoExecutionAddOn config FAILED: invalid/missing required fields …; execution lane stays down` en **LogLevel.Error**, y **retorna ANTES del log de éxito** — jamás imprime `config loaded` sobre una config fatal.
+- **Test estructural enfocado:** `v3/futures-bridge/addon-ninjatrader/config_guard_test.go` (`TestExecAddOnConfigLoadFailsClosedOnInvalid`) — fija el contrato a nivel source dentro de la región `LoadConfig`: rama `config FAILED` existe, precede al log de éxito, cubre port/token/account/contracts, resetea a inerte y usa `LogLevel.Error`. Suite del paquete **5/5 PASS** (los 4 guards G-EGRESS-0 previos intactos). `go build ./v3/futures-bridge/...` OK.
+- **Shadow-compile físico contra DLL reales 8.1.8.3 (dev-win):** transporte efímero http.server+`curl.exe`+SHA byte-verify (`72d97ad6c776ba56ea0d8aadfd44be2caa12ab884602c29995ffe5e75e92653f` idéntico ambos lados); **EXEC_EXIT=0, 0 errores**, exactamente los 3 warnings PREEXISTENTES de Shot 1/3 (CS0612 CreateOrder, 2× CS0649); **ningún warning nuevo**. DLL sólo en `C:\Users\TEMP`; servidor apagado; **NADA instalado en NT**.
+- **Commit:** `d361008bfe4aa54fe3d8b6380d290bf92e1f1c08` sobre `feature/d6-shot1-execution-vertical` (FF `40102ea5..d361008b`, **push a origin verificado**). Cobertura de changed-code: el cambio ejecutable es C# (no CI-ejecutable sin runtime NT); la evidencia medible máxima = test estructural + shadow-compile (documentado como tal). El binario del bridge desplegado sigue siendo `40102ea5` (SHA `484b550b…`): el commit no toca código Go de producto (sólo .cs + test), comportamiento del bridge idéntico.
+- **Pickup físico:** el AddOn instalado en NT sigue siendo la build `b2a29a36…` (40102ea5). El fix entra en vigencia física en el PRÓXIMO ciclo de instalación owner (W1) — ver gate 0 del handoff.
+
+## D — REAL EXECUTION TRANSPORT: FAIL (sin AddOn; preflight íntegro re-verificado)
+
+Preflight completo PASS: release desplegada `40102ea5` (SHA binario `484b550b…`, unit ExecStart apuntando al release dir); journal M2 **0 registros**; `futures-bridge/ntx/auth-token` presente (64 B, meta cruda, no impreso); binding ETCD **12/12 valores exactos por lectura cruda** (`enabled=true, ALLOWED, GAU50, EARN2TRADE, RJARA114411201551, GAU50-EVAL/1, America/Chicago, 17:00, NQ 12-26, "3", NINJATRADER_BRIDGE`); clave de sesión `futures-bridge/accounts` AUSENTE pre-write; topic `echo.order-commands.E2T-GAU50-01.v1` NO existe (list_topics completo ⇒ 0 comandos replayables). Escritura guardada: `--expect-absent` → put → read-back `E2T-GAU50-01`. Bridge: **PID 2155952**, `account session built` <0.1 s tras el start (22:29:32.617Z, `echo.execution_account E2T-GAU50-01`, topic `echo.order-commands.E2T-GAU50-01.v1`, transport NINJATRADER_BRIDGE), listener `*:9771`. **NT → AddOn → TCP :9771 → echo.ntx.v1 → bridge: NO OCURRIÓ** (§C0). NT PID 4576; bridge PID 2155952; SESSION_A: **NINGUNA**; release SHA lane = binario `484b550b…` (release 40102ea5) + AddOn instalado `b2a29a36…`. No synthetic probe en D.
+
+## E — ACCOUNT BINDING
+
+- **Por el exec AddOn real: NOT_RUN** (nunca hubo sesión).
+- **Identidad viva del mismo perfil/proceso (feed AddOn, sink sin máscara, sesión `f2756ae6…` @ 22:27Z):** discovery 8 cuentas (`Backtest, Playback101, Sim101, 5×RJARA…`), **exactamente 1 match** `RJARA114411201551`, `match RESOLVED`, **NT `Account.Id "3"` == hint ETCD — 7.ª sesión consecutiva**. Binding Name-primary intacto, `E2T-GAU50-01` ↔ `RJARA114411201551` sin drift.
+
+## F — REAL ACCOUNT OBSERVATION
+
+- **Por el exec lane: NOT_RUN** (sin datos fabricados).
+- **Feed lane real (mismo proceso NT):** positions `[]`, orders `[]` en todos los ciclos; balances `NLV/cash 50000/50000`, `BP/uPnL/rPnL 0/0/0` (variante demo, 3.ª sesión consecutiva documentándola). Las observaciones alcanzan el runtime (Kafka p4: el replay estático del boot corto `de38c5f2` a las 22:12:29Z, offset 5476470, ingress_ref del propio mensaje).
+
+## G — REAL RECOVERY BARRIER: FAIL (fail-closed correcto, 3.ª demostración)
+
+`account session exited` a los **10.015 s** del built con razón exacta `barrier: connect: ninjatrader: no authenticated AddOn session on the execution lane`. Sin observaciones venue del exec lane el barrier se negó a completar; reconciliación no debilitada; `UnknownLiveOrders = 0`, `AccountMismatch = 0` (`ambiguous_orders=0 mismatches=0 dropped_commands=0` en las 28 tomas de readiness), journal M2 vacío (0 non-terminal), **0 command replay**.
+
+## H — REAL RECONNECT + SESSION FENCING: NOT_RUN
+
+Requieren una sesión del AddOn real que fencear/reconectar; no existió. El probe weekend (`scratch-weekend ntx-probe`, modes connect/badtoken/rewind, token vía ETCD) quedó listo y NO se usó — sin SESSION_A no hay fencing que ejercitar. Lado server/transporte: F-S2-01/04 permanecen certificados weekend (mismos binarios).
+
+## I — BRIDGE RESTART RECOVERY: NOT_RUN con AddOn real
+
+Evidencia parcial de hoy: arranque limpio (journal 0 registros, built <0.1 s, barrier fail-closed determinista, unidad `Restart=on-failure` intacta); weekend §8 mantiene el PASS de transporte (2× restart, 0-phantom, reconexión <1.5 s). El bridge corrió una sola vez en esta corrida (22:29:32Z → teardown ~23:00Z) sin recibir jamás una conexión.
+
+## J — G_HORIZON REAL PRECHECK
+
+`G_HORIZON_PRECHECK = PARTIAL_NEEDS_CREATED_ORDER` (sin cambio, 3.ª vez): la cuenta GAU50 no tiene historial de la vertical y las superficies `LookbackDays*`/historia sólo son inspectables desde NT con el exec AddOn funcional. No se creó orden.
+
+## K — READINESS COMPOSITION (capturada con bridge corriendo, 28 tomas cada 30 s)
+
+`ready_new_risk=false`; blockers exactamente los esperados para AddOn-inerte + mercado cerrado: `[NOT_AUTHENTICATED NOT_CONNECTED ORDER_EXECUTION_EVENT_STREAM_NOT_HEALTHY POSITION_NOT_FRESH PROVIDER_ACCOUNT_BINDING_NOT_VERIFIED RECONCILIATION_AUTHORITY_UNAVAILABLE STATIC_ELIGIBILITY_NOT_ELIGIBLE SUBMISSION_CAPABILITIES_NOT_EXACT_READY]`, `ambiguous_orders=0 mismatches=0 dropped_commands=0 recovered=false`. Separación: **EXECUTION_TRANSPORT_READY = NO** (endpoint AddOn no resuelto; bridge-side certificado y listo para re-enable en ~1 min) · **ACCOUNT_READY = YES** (feed-side RESOLVED vivo) · **RECOVERY_READY = NO** (sin exec lane) · **MARKET_FRESHNESS = STALE** (`kafka-last` p4 5476470 @ 22:12:29Z = replay estático del boot corto `de38c5f2`; último event_ts real `2026-10-02T21:38:25.95Z`, edad ≈24 h >> bound 30 s — F-S2-02) · **NEW_RISK_READY = NO** (doble fail-closed: freshness + ventana GAU50-EVAL L–V, sábado cerrado).
+
+## L — SUNDAY G-REALTIME HANDOFF
+
+`SUNDAY_G_REALTIME_RUNBOOK = READY` (sin cambios; herramienta `kafka-last` re-ejecutada HOY con resultado reproducible — ver §K). G-REALTIME es **feed-lane-only** ⇒ certificable domingo ≥17:00 CT (22:00Z) INDEPENDIENTE del fix del exec AddOn. Runbook determinista completo en §M del intento 1 (Kafka offsets, event_ts/receive_ts, age/lag, stream canónico NQ:NQZ6, FRESH ⇔ event_age < 30 s en 2 tomas, transporte vivo; alternativa `kafka-last -n 1`).
+
+## /final_safety_state — probado al cierre (no asumido)
+
+- **G-EGRESS-0 restaurado y verificado:** unidad `echo-futures-bridge` **inactive + reset-failed + disabled**; `:9771` FREE (`ss`); clave ETCD `futures-bridge/accounts` **eliminada con ciclo guardado** (pre-read exacta `E2T-GAU50-01` → delete → read-back ausente → cross-check MCP RO **21 claves == baseline pre-shot**); journal M2 **0 registros**; **0 COMMAND_FRAME** en todo el runtime (histograma completo de msgs del bridge verificado: sólo init/built/exited/readiness); topic de comandos inexistente.
+- **Feed lane conectado y observando** (relay `:9770` + AddOn feed, sesión `f2756ae6…`): permitido por final_safety_state; cuenta observable RESOLVED.
+- **AddOns lado owner:** binarios de la build `b2a29a36…` instalados (agente no puede verificar bytes por ACL); exec AddOn INERTE en el PID 4576 (causa en diagnóstico §C0.5 — config efectiva sin puerto dialable o AddOn no cargado este boot).
+- **New-risk configurationally disabled** (sin sesión habilitada + sin topic M1 + STALE + sábado fuera de ventana).
+- Nota: el exec AddOn, aún si se corriese con config válida, sólo dials a `:9771` — hoy sin listener = refusal sin estado ni riesgo.
+
+## /close — Final handoff (POST CONFIG FIX / FINAL C–K)
+
+```text
+D6_REAL_EXECUTION_LANE_NO_EGRESS =
+REMEDIATION_REQUIRED (3.er intento consecutivo; la certificación física C–K NO se completó: el runtime del nuevo NT PID 4576 contradice la corrección atestiguada — cero intentos de conexión a :9771 en ≥18 min contra listener vivo con cadencia de diseño ≤10 s; C0 STOP por mandato; C1 de producto SÍ cerrado)
+
+BASELINE_SHA:
+40102ea5a44be9a618ac12529e6f0e9fdfd46d34
+
+FINAL_SHA:
+d361008bfe4aa54fe3d8b6380d290bf92e1f1c08 (FF sobre 40102ea5, PUSHED a origin; fix C1 = EchoExecutionAddOn.cs LoadConfig fail-closed + config_guard_test.go; el binario del bridge físico sigue siendo release 40102ea5 / SHA 484b550b — el commit no toca código Go de producto)
+
+CONFIG_FIX:
+PASS lado bundle (C:\Temp SHA 9ca3fddc… re-verificado por agente hoy; atestación owner de destino con mismo SHA) · CONTRADICHO por el runtime del PID 4576 (cero dials) ⇒ el estado efectivo del lane NO cambió; causa residual (config no efectiva vs AddOn no cargado este boot) indistinguible sin log NT owner
+
+NTX_EFFECTIVE_ENDPOINT:
+NINGUNO (el AddOn del PID 4576 no dialing; endpoint requerido 192.168.31.161:9771 NO efectivo)
+
+CONFIG_FAIL_CLOSED_REPAIR:
+PASS (commit d361008b: guard fail-closed + test estructural 5/5 + shadow-compile físico 8.1.8.3 EXIT=0 sin warnings nuevos; pickup físico pendiente al próximo ciclo de instalación owner)
+
+NINJATRADER_COMPILE:
+FEED PASS (físico: sesión f2756ae6 publicando desde el boot 22:13:09Z) · EXEC DESCONOCIDO este boot (sin señal runtime; sombra de la build corregida 72d97ad6… compila EXIT=0)
+
+FEED_ADDON_LOADED:
+PASS (sesión f2756ae6a27c4a5fad67954c2fb9f9a1, hello 22:13:09.941Z, frames cada 10 s, rediscovery RESOLVED)
+
+EXECUTION_ADDON_LOADED:
+FAIL/UNKNOWN (cero dials en ≥18 min vs listener vivo = firma puerto-0 o no-carga; indistinguible por ACL del log NT — discriminación = diagnóstico owner §OWNER_DECISION_REQUIRED)
+
+EXECUTION_LANE_REAL:
+FAIL (sin sesión; 0 hellos [ntx], 0 sockets, 0 líneas de auth; lado bridge/transporte permanece certificado weekend — mismo binario)
+
+REAL_SESSION_ID_INITIAL:
+NONE (ningún cliente autenticó jamás en :9771 en esta corrida)
+
+ACCOUNT_BINDING:
+PASS feed-side vivo (RESOLVED 1/8, RJARA114411201551 = NT id "3" == hint ETCD, 7.ª sesión consecutiva) · exec-side NOT_RUN
+
+CURRENT_NT_ACCOUNT_ID:
+"3"
+
+ACCOUNT_OBSERVATION:
+PASS como observación real del feed lane (positions []/orders [] todos los ciclos; balances NLV/cash 50000/50000 demo, 3.ª sesión; discovery 8 cuentas sin máscara) · por el exec lane NOT_RUN (sin datos fabricados)
+
+REAL_RECOVERY_BARRIER:
+FAIL — fail-closed correcto 3.ª demostración: "no authenticated AddOn session on the execution lane" a los 10.015 s exactos con listener activo; reconciliación no debilitada; 0 UnknownLiveOrders / 0 AccountMismatch / journal 0 / 0 replay
+
+REAL_SESSION_RECONNECT:
+FAIL (NOT_RUN — sin AddOn funcional; probe listo y NO usado)
+
+REAL_SESSION_FENCING:
+FAIL (NOT_RUN — ídem; F-S2-01/04 server-side certificados weekend)
+
+BRIDGE_RESTART_RECOVERY:
+FAIL (NOT_RUN con AddOn real; arranque de hoy limpio: journal 0, built <0.1 s, barrier fail-closed determinista; weekend §8 PASS de transporte vigente)
+
+G_HORIZON_PRECHECK:
+PARTIAL_NEEDS_CREATED_ORDER (sin historial de la vertical; superficies LookbackDays* requieren exec AddOn funcional; NO se creó orden)
+
+EXECUTION_TRANSPORT_READY:
+NO (G-EGRESS-0 al cierre; bridge-side certificado, re-enable ~1 min tras la señal de éxito del AddOn)
+
+CURRENT_MARKET_FRESHNESS:
+STALE (event_ts real 2026-10-02T21:38:25.95Z, edad ≈24 h >> bound 30 s; p4 5476470 @ 22:12:29Z = replay estático del boot corto de38c5f2, no refresca evidencia — F-S2-02)
+
+NEW_RISK_READY:
+NO
+
+SUNDAY_G_REALTIME_RUNBOOK:
+READY (feed-lane-only ⇒ certificable dom 2026-10-04 ≥17:00 CT INDEPENDIENTE del fix del exec AddOn)
+
+LIVE_PHYSICAL_LADDER_RUNBOOK:
+READY con gate 0 ACTUALIZADO = diagnóstico owner del runtime NT (log de boot 22:13:09Z) + corrección + pickup del fix C1 (reinstalar EchoExecutionAddOn.cs desde HEAD d361008b, bytes 72d97ad6…) + señal de éxito observable; ventana admisible lun 2026-10-05 00:00–15:50 CT / evening 17:10–23:59 CT
+
+FIRST_PHYSICAL_CERT_SCENARIO:
+FULLY_DEFINED (freeze §14.13; NQ/NQZ6; cap GROSS 6; SL/TP 2000/1500 day1; side/qty = output frozen)
+
+MISSING_PHYSICAL_PARAMETERS:
+NONE
+
+FINAL_SAFETY_STATE:
+G-EGRESS-0 PROBADO (unidad inactive+reset-failed+disabled, :9771 FREE, accounts key eliminada con ciclo guardado — cross-check MCP RO 21 claves == baseline; journal M2 0 registros; 0 COMMAND_FRAME; feed lane conectado observando; exec AddOn inerte; 0 LIVE run; 0 comandos; 0 ambigüedad; new-risk configurationally disabled)
+
+PHYSICAL_ORDERS_SENT:
+0
+
+PHYSICAL_ORDERS_MODIFIED:
+0
+
+PHYSICAL_ORDERS_CANCELLED:
+0
+
+PRODUCT_CODE_CHANGES:
+1 commit acotado: d361008b (LoadConfig fail-closed + test estructural; sin cambios Go de producto; shadow-compile físico EXIT=0; NO instalado en NT — pickup en próximo W1)
+
+RESIDUAL_FINDINGS:
+1) Causa raíz NT-side indeterminada agente-side (config efectiva sin puerto dialable vs AddOn no cargado en el boot 22:13:09Z — el log NT owner discrimina en 1 minuto) · 2) variante demo de balances 50000/50000 persistente (re-observar en ventana) · 3) ACL owner (7.ª/8.ª re-probe: log NT, StartTime, módulos del proceso — todos denegados; verificación conductual es la única vía agente) · 4) boot intermedio brevísimo de38c5f2 (≈22:12Z, 23 frames) no explicado — owner reinició 2× en ~1 min
+
+OWNER_DECISION_REQUIRED:
+Un solo ciclo diagnóstico+fix (standing OD-D6-4): (1) en su sesión, abrir el log de NT del boot 19:13 local (C:\Users\KoR\Documents\NinjaTrader 8\log\NinjaTrader_2026-10-03…) y reportar cuál de estas líneas apareció: "EchoExecutionAddOn config loaded: ntx=****.161:9771 account=…" + "started (dual channel…)" ⇒ hipótesis (a) refutada, escalar a red/firewall del perfil NT (no visto: Test-NetConnection 9771=True físico en intento 1); sólo "started" sin "config loaded" o ausencia total de líneas EchoExecutionAddOn ⇒ el AddOn no cargó este boot: re-verificar los 2 .cs en "...\NinjaTrader 8\bin\Custom\AddOns\" + recompilar NinjaScript (F5) + revisar C:\Temp\compile-errors.txt; (2) en CUALQUIER rama, para el próximo ciclo de instalación reinstalar EchoExecutionAddOn.cs desde HEAD d361008b (bytes 72d97ad6…) para que una config fatal quede visible como "config FAILED"; (3) reiniciar NT y dejar el bridge en marcha — señal de éxito observable por el agente sin intervención owner: ESTABLISHED del PID NT → 192.168.31.161:9771 + hello [ntx] autenticado en journal ≤10 s.
+
+NEXT_MANAGER_ACTION:
+Veredicto REMEDIATION_REQUIRED ⇒ no certificar lane ni ejecutar ladder. Domingo 2026-10-04 ≥17:00 CT: certificar G-REALTIME (runbook §M intento 1 — feed-lane-only, no depende del fix). Tras la señal de éxito del AddOn: re-despachar C–K (~5 min dentro de ventana; preflight de este artifact es re-ejecutable tal cual) y ejecutar el ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. OD-D6-1 AUTHORIZED vigente sin consumir (0 órdenes en 3 intentos). No emitir EF_D6_E2E_PASS.
+```
