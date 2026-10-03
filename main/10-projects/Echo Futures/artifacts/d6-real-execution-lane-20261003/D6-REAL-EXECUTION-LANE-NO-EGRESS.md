@@ -222,3 +222,190 @@ Repetir W1 CON VERIFICACIÓN (no decisión nueva — mismo ciclo standing OD-D6-
 NEXT_MANAGER_ACTION:
 Veredicto FAIL ⇒ no certificar lane ni ejecutar ladder hasta el fix. Tras la señal de éxito del AddOn: re-despachar pasos C–K de este artifact (~5 min, dentro de ventana), luego domingo G-REALTIME con el runbook §M, luego ladder congelado §N en la primera ventana admisible lun 2026-10-05. OD-D6-1 AUTHORIZED vigente sin consumir. No emitir EF_D6_E2E_PASS.
 ```
+
+---
+---
+
+# POST OWNER FIX / RETRY — 2026-10-03 (tarde, evidencia UTC ≈21:25Z–21:50Z, local -03 ≈18:25–18:50)
+
+**Nota de esquema:** el despacho pide una sección "SUCCESSFUL RETRY"; el retry NO completó la certificación (veredicto sigue FAIL), así que se titula RETRY a secas para no falsificar el resultado. Lo que SÍ se resolvió: el hallazgo anterior (`EXECUTION_ADDON_LOADED = FAIL`) quedó **SUPERSEDED** — ambos AddOns ahora cargan en NinjaTrader real. El nuevo hallazgo, raíz única y accionable: **la config JSON instalada para el AddOn de ejecución parsea `ntx_port = 0`** ⇒ ambos lanes del AddOn quedan inertes por diseño de guards y el endpoint efectivo NO existe.
+
+## R0 — /critical_precheck RESUELTO: `ntx=****.161:0` es puerto REAL 0 (opción B), no redacción de log
+
+Cadena de evidencia completa:
+
+1. **Fuente @ HEAD** (`EchoExecutionAddOn.cs`, SHA256 `b2a29a36…` == bundle == instalado): el log de carga imprime el puerto parseado SIN máscara — `ntx={MaskId(ntxHost)}:{ntxPort}` (`EchoExecutionAddOn.cs:134-137`); `MaskId` se aplica sólo a host y cuenta. ⇒ `:0` **es el valor parseado**, no comportamiento de render.
+2. **Host parseó bien:** `****.161` ⇒ el archivo de config EXISTE en el path fijo (`UserDataDir\echo\echo-execution-addon.json`, `:117-119`) y su `ntx_host` = `192.168.31.161`. El defecto queda aislado a `ntx_port`: ausente, con comillas (`"9771"` es string ⇒ `GetNumber` no escanea dígitos tras la comilla ⇒ default 0) o no numérico (`GetNumber(json,"ntx_port",0)`, `:127`).
+3. **Guards silenciosos:** `EnsureMarketLane` (`:271`) y `EnsureExecLane` (`:407`) arrancan con `if (... || ntxPort <= 0) return;` — puerto 0 ⇒ ni un syscall de conexión, sin warning, sin reintento, para siempre (determinista).
+4. **Físico decisivo (listener activo):** bridge release `40102ea5` con sesión habilitada y **`*:9771` LISTEN continuo >2.5 min** (18:40:03→18:43+ local): **0 conexiones, 0 ESTABLISHED, 0 líneas `[ntx]`** en journal, cubriendo ≥7 fases del retry de diseño (≤10 s). Contra un listener ACTIVO un dial exitoso es ESTABLISHED persistente (no el SYN_SENT sub-milisegundo que se escapa al sampling contra puerto cerrado). Muestreo adicional pre-bridge (8 tomas × ~3 s): 0 sockets. AddOn cargado (evidencia owner + §R1) + cero dials vs listener ⇒ **puerto efectivo 0 confirmado físicamente**.
+5. **El bundle correcto está intacto y NO es lo que el AddOn cargó:** `C:\Temp\echo-execution-addon.json` re-verificado hoy (304 B, SHA256 `9ca3fddc…` == HEAD/weekend) con `"ntx_host": "192.168.31.161", "ntx_port": 9771` numérico. ⇒ el archivo en el target del perfil KoR difiere del bundle (copiado de otra fuente, editado a mano, o variante con puerto string/ausente).
+6. **ACL (6.ª re-probe):** `dir "C:\Users\KoR\Documents\NinjaTrader 8\echo"` → `Access is denied` + `PathNotFound` (deny de raíz del perfil) ⇒ el archivo instalado sigue siendo **no verificable por el agente**; la corrección es ciclo owner.
+
+**Clasificación: defecto CONFIG-ONLY (archivo instalado), NO defecto de parser de producto.** El parser sobre la entrada válida (el bundle) produce 9771 (misma familia de parser que lleva 6 sesiones cargando bien la config del feed AddOn; lógica verificada línea a línea). Observación de producto residual registrada (no elevada, ver §R8).
+
+## R1 — AddOn load / NinjaTrader restart (reutilizado como evidencia I)
+
+- **NT reiniciado de nuevo HOY ≈21:25Z** (PID **8700 → 11412**, netstat dev-win: `TCP 192.168.31.132:65168 → 192.168.31.161:9770 ESTABLISHED, PID 11412`; StartTime no consultable por ACL; instante fijado por: sesión feed nueva con seq ~430 a las 21:43:00Z ⇒ arranque ≈21:25Z, consistente con replay estático a Kafka `2026-10-03T21:25:21.358Z`).
+- **NINJATRADER_COMPILE = PASS y FEED_ADDON_LOADED = PASS (físico):** sesión feed nueva `2e031cd240b445ab8f2bc0251389c6ea`, `reconnects:1`, familias account/positions/orders/heartbeat cada 10 s (seq 430→474+ durante la ventana; sink sin máscara `evidence.jsonl`). Un AddOn que no compila no carga ni publica.
+- **EXECUTION_ADDON_LOADED = PASS (evidencia owner log, SUPERSEDE el FAIL del intento 1):** log NT visible por el Owner: `EchoExecutionAddOn config loaded: ntx=****.161:0 account=… contracts=…` + `EchoExecutionAddOn started (dual channel; execution lane STAGED build)` — formato exacto del source @ HEAD ⇒ los bytes instalados son la build correcta y el AddOn ejecuta su ciclo Active (LoadConfig + timers). El incidente de fuente duplicada NinjaScript quedó **RESOLVED** (compila y ambos cargan; sin síntomas).
+
+## R2 — C REAL EXECUTION TRANSPORT (ejecutado al máximo posible sin endpoint)
+
+- Preflight PASS completo (re-verificado hoy): release exacta `40102ea5` (binario desplegado SHA256 `484b550b…`, `vcs.revision` weekend, BUILD.md); journal M2 con **0 registros**; `ntx/auth-token` presente (64 hex, cliente crudo, no impreso); binding ETCD **12/12 valores exactos** por lectura cruda (`enabled=true, ALLOWED, RJARA114411201551, id "3", GAU50-EVAL/1, EARN2TRADE/GAU50, America/Chicago, 17:00, NQ 12-26, NINJATRADER_BRIDGE`); clave de sesión `futures-bridge/accounts` AUSENTE pre-write; topic `echo.order-commands.E2T-GAU50-01.v1` NO existe (list_topics completo) ⇒ **0 comandos replayables, 0 ambigüedad**.
+- Escritura guardada: `futures-bridge/accounts = E2T-GAU50-01` (pre-read ausente → put → read-back writer `"E2T-GAU50-01"` → cross-check MCP RO independiente found/size 12/value exacto).
+- Bridge arrancado: **PID 1798251**, `account session built` (`echo.execution_account E2T-GAU50-01`, topic `echo.order-commands.E2T-GAU50-01.v1`, transport `NINJATRADER_BRIDGE`) a los 1.0 s, **listener `*:9771`**.
+- **EchoExecutionAddOn → TCP 192.168.31.161:9771 → echo.ntx.v1 → bridge: NO OCURRIÓ** — authenticated hello/session ID/seq del exec lane: **NINGUNO** (0 líneas `[ntx]` en todo el runtime del bridge). El transporte bridge-side (auth, fencing, seq, publisher) permanece certificado weekend §3/§5 — mismo binario y SHA. Con el endpoint no resuelto, el mandato prohíbe seguir: nada de D–K del exec lane fue intentado ni simulado.
+
+## R3 — REAL RECOVERY BARRIER (F)
+
+**FAIL — fail-closed correcto, 2.ª demostración con listener activo:** `account session exited` a los **10.0 s** exactos del built (`18:40:13.075 local`): `barrier: connect: ninjatrader: no authenticated AddOn session on the execution lane`. Sin observaciones venue del exec lane el barrier se negó a completar; reconciliación no debilitada; `UnknownLiveOrders = 0` (`ambiguous_orders=0 mismatches=0 dropped_commands=0` en toda la sesión), journal M2 vacío (0 non-terminal), **0 command replay**.
+
+## R4 — D / E (binding y observación por el exec lane)
+
+- **Por el EchoExecutionAddOn real: NOT_RUN** (nunca hubo sesión; no se fabrican snapshots).
+- **Identidad viva del mismo perfil y proceso NT (feed AddOn, sink sin máscara):** discovery 8 cuentas, **exactamente 1 match** `RJARA114411201551`, `match RESOLVED`, **`resolved id "3"` == hint ETCD — 6.ª sesión consecutiva** (2/2 N1 + intento 1 + weekend + intento 1 del lane + hoy). Positions `[]` y orders `[]` observados en todos los ciclos; balances `NLV/cash 50000/50000`, `BP/uPnL/rPnL 0/0/0` (variante demo documentada). `CURRENT_NT_ACCOUNT_ID = "3"`.
+
+## R5 — G / H (reconnect-fencing y bridge restart con AddOn real)
+
+- **REAL_SESSION_RECONNECT / REAL_SESSION_FENCING: NOT_RUN** — requieren sesión del AddOn real; probe prohibido y no usado. Lado server/transporte (F-S2-01/F-S2-04) permanece certificado weekend §5 con los mismos binarios.
+- **BRIDGE_RESTART_RECOVERY: NOT_RUN con AddOn real.** Evidencia parcial de hoy: arranque limpio con journal 0 registros, session built 1.0 s, barrier fail-closed determinista; weekend §8 mantiene el PASS de transporte (2× restart, journal reload 0-phantom, reconnect <1.5 s).
+
+## R6 — I NINJATRADER RESTART EVIDENCE
+
+**PASS (reutilizado, permitido por despacho):** el restart owner de ≈21:25Z demostró sobre runtime real: feed AddOn compiló/cargó/recuperó (sesión nueva, rediscovery RESOLVED 1/8, sin corrupción observable); exec AddOn cargó y arrancó (log owner); **el exec lane no recuperó por la config puerto 0** — causa única aislada, no mecánica del restart.
+
+## R7 — K READINESS (capturada con bridge corriendo, cada 30 s)
+
+`ready_new_risk=false` con blockers exactamente los esperados para AddOn-inerte + mercado cerrado: `[NOT_AUTHENTICATED NOT_CONNECTED ORDER_EXECUTION_EVENT_STREAM_NOT_HEALTHY POSITION_NOT_FRESH PROVIDER_ACCOUNT_BINDING_NOT_VERIFIED RECONCILIATION_AUTHORITY_UNAVAILABLE STATIC_ELIGIBILITY_NOT_ELIGIBLE SUBMISSION_CAPABILITIES_NOT_EXACT_READY]`, `ambiguous_orders=0 mismatches=0 dropped_commands=0 recovered=false`. Separación: **EXECUTION_TRANSPORT_READY = NO** (endpoint AddOn no resuelto; bridge-side certificado y listo) · **ACCOUNT_READY = YES** (feed-side RESOLVED vivo) · **RECOVERY_READY = NO** (sin exec lane) · **MARKET_FRESHNESS = STALE** (último `event_ts 2026-10-02T21:38:25.95Z`, edad ≈24 h >> bound 30 s; el replay estático de la sesión nueva a las 21:25:21Z, offsets p4 5476462→5476468, NO refresca evidencia de evento — disciplina F-S2-02: heartbeats/transporte jamás pliegan) · **NEW_RISK_READY = NO** (doble fail-closed: freshness + ventana GAU50-EVAL L–V, sábado cerrado). Sin manipulación de timestamps.
+
+## R8 — G_HORIZON (J) y hallazgo de producto residual
+
+- **G_HORIZON_PRECHECK = PARTIAL_NEEDS_CREATED_ORDER** (sin cambio): la cuenta GAU50 no tiene historial de la vertical y las superficies `LookbackDays*` sólo son inspectables desde NT con el exec AddOn funcional. No se creó orden.
+- **Observación de producto residual (registrada, NO elevada a REMEDIATION_REQUIRED):** `LoadConfig` acepta una config con `ntx_port` inválida/ausente — incumple la disciplina declarada en su propio comentario ("any deviation = load failed fail-closed", `EchoExecutionAddOn.cs:104-106`): hace default 0 silencioso y loguea `config loaded` en Information; combinado con los guards silenciosos, una config fatal queda indistinguible de idle sin correlar con el bridge. Reproducción exacta: instalar `echo-execution-addon.json` con `ntx_port` ausente o string ⇒ log `config loaded: ntx=****.161:0`, cero dials vs listener activo (probado hoy). Misma clase que la nota no-elevada "robustez AddOn stageada" de Shot 3; candidato de adjudicación para el Manager; **sin cambios de código en este shot** (mandato: no ocultar, no rediseñar).
+
+## R9 — Owner action exacta (config-only, ACL exige ciclo owner)
+
+1. En sesión owner de dev-win: `copy /Y C:\Temp\echo-execution-addon.json "C:\Users\KoR\Documents\NinjaTrader 8\echo\echo-execution-addon.json"` — reemplazo completo desde el bundle; **NO editar a mano**.
+2. Verificar hash en su consola: `certutil -hashfile "C:\Users\KoR\Documents\NinjaTrader 8\echo\echo-execution-addon.json" SHA256` == `9ca3fddc31330b2d5b485fd0869801b486b1443972bbf5ba50c56862feeea71b` (el artefacto de quoting sólo afecta al transporte del agente; en la consola owner las comillas funcionan).
+3. (Opcional) abrir el JSON y confirmar `"ntx_port": 9771` **numérico** (sin comillas).
+4. **Reiniciar NinjaTrader** (la config se lee una sola vez en State.Active).
+Señal de éxito observable por el agente, sin intervención owner: con el bridge en marcha, ESTABLISHED del PID NT → `192.168.31.161:9771` + hello `[ntx]` autenticado en journal ≤10 s tras el arranque de NT.
+
+## /final_safety_state — probado al cierre (no asumido)
+
+- **G-EGRESS-0 restaurado y verificado:** unidad `echo-futures-bridge` **inactive + reset-failed + disabled**; `:9771` FREE (sin listener ni sockets); clave ETCD `futures-bridge/accounts` **eliminada** con ciclo guardado (pre-read exacta `E2T-GAU50-01` → delete → read-back ausente → cross-check MCP RO count **21 claves** == baseline pre-shot); journal M2 **0 registros**; topic de comandos inexistente; **0 LIVE run, 0 comandos, 0 ambigüedad** en toda la sesión.
+- **Feed lane conectado y observando** (relay `:9770` + AddOn feed, sesión `2e031cd2…`): permitido por final_safety_state; cuenta observable RESOLVED.
+- **AddOns lado owner:** binarios correctos y cargados; exec AddOn INERTE por config (con o sin listener, puerto 0 ⇒ jamás conecta; tras el fix owner, sin listener recibe refusal sin estado ni riesgo).
+- **New-risk configurationally disabled** (sin sesión habilitada + sin topic M1 + STALE + ventana cerrada sábado).
+
+## /close — Final handoff (POST OWNER FIX / RETRY)
+
+```text
+D6_REAL_EXECUTION_LANE_NO_EGRESS =
+FAIL (2.º consecutivo, ahora con RAÍZ ÚNICA identificada y acción owner exacta: el EchoExecutionAddOn SÍ carga —supersede del hallazgo previo— pero la config JSON instalada parsea ntx_port=0 ⇒ lanes inertes por guards; defecto config-only, no de producto; todo lo agent-side re-verificado fail-closed)
+
+BASELINE_SHA:
+40102ea5a44be9a618ac12529e6f0e9fdfd46d34
+
+FINAL_SHA:
+40102ea5a44be9a618ac12529e6f0e9fdfd46d34 (cero commits; worktree limpio al cierre; herramienta efímera ETCD eliminada; delta infra neto CERO)
+
+OWNER_W1:
+PASS (compilación y carga de AMBOS AddOns verificadas: log owner formato exacto de la build HEAD + lane feed físico activo; incidente fuente-duplicada RESOLVED. Excepción registrada aparte: el echo-execution-addon.json instalado ≠ bundle ⇒ puerto 0)
+
+NINJASCRIPT_DUPLICATE_SOURCE_INCIDENT:
+RESOLVED
+
+NINJATRADER_COMPILE:
+PASS (ambos AddOns cargan y ejecutan; feed publica frames físicos; exec publica su ciclo Active — un AddOn sin compilar no carga)
+
+FEED_ADDON_LOADED:
+PASS (sesión 2e031cd240b445ab8f2bc0251389c6ea, ESTABLISHED PID 11412→:9770, frames cada 10 s, reconnects 1)
+
+EXECUTION_ADDON_LOADED:
+PASS (carga probada: log owner config loaded + started; SUPERSEDE el FAIL del intento 1 — pero sus lanes quedaron inertes por ntx_port=0)
+
+NTX_EFFECTIVE_ENDPOINT:
+NINGUNO (config cargada = 192.168.31.161:0 ⇒ guards `ntxPort<=0 ⇒ return` ⇒ cero dials; endpoint requerido 192.168.31.161:9771 NO efectivo)
+
+NTX_PORT_ZERO_LOG_EXPLAINED:
+YES — opción B: el puerto 0 es REAL. El format string imprime el valor parseado sin máscara (MaskId sólo aplica a host/cuenta); host parseó OK ⇒ archivo existe con ntx_host correcto y ntx_port ausente/string/no-numérico; bundle correcto (9ca3fddc, 9771 numérico) intacto en C:\Temp ⇒ el instalado difiere; confirmado físicamente: cero conexiones contra listener *:9771 activo >2.5 min (≥7 fases de retry)
+
+EXECUTION_LANE_REAL:
+FAIL (sin sesión; hello/session ID/seq del exec lane: NINGUNO; lado bridge/transporte permanece certificado weekend — mismo binario y SHA)
+
+REAL_SESSION_ID_INITIAL:
+NONE (ningún cliente autenticó jamás en :9771 en esta corrida)
+
+ACCOUNT_BINDING:
+PASS feed-side vivo (RESOLVED 1/8, RJARA114411201551 = NT id "3" == hint ETCD, 6.ª sesión consecutiva) · exec-side NOT_RUN
+
+CURRENT_NT_ACCOUNT_ID:
+"3"
+
+ACCOUNT_OBSERVATION:
+PASS como observación real del feed lane (positions []/orders [] todos los ciclos; balances NLV/cash 50000/50000, BP/uPnL/rPnL 0/0/0, variante demo; discovery 8 cuentas con sink sin máscara) · por el exec lane NOT_RUN (sin datos fabricados)
+
+REAL_RECOVERY_BARRIER:
+FAIL — fail-closed correcto 2.ª demostración: "no authenticated AddOn session on the execution lane" a los 10.0 s exactos con listener activo; reconciliación no debilitada; 0 UnknownLiveOrders / 0 AccountMismatch / journal 0 non-terminal
+
+REAL_SESSION_RECONNECT:
+FAIL (NOT_RUN — sin AddOn funcional; probe prohibido y no usado; F-S2-01/04 server-side certificados weekend)
+
+REAL_SESSION_FENCING:
+FAIL (NOT_RUN — ídem)
+
+BRIDGE_RESTART_RECOVERY:
+FAIL (NOT_RUN con AddOn real; arranque de hoy limpio: journal 0, built 1.0 s, barrier fail-closed determinista; weekend §8 PASS de transporte vigente)
+
+NINJATRADER_RESTART_EVIDENCE:
+PASS (restart owner ≈21:25Z reutilizado, PID 8700→11412: feed recuperó ✔ rediscovery RESOLVED 1/8; exec cargó y arrancó ✔; exec lane no recuperó por config — causa única aislada)
+
+G_HORIZON_PRECHECK:
+PARTIAL_NEEDS_CREATED_ORDER (sin historial de la vertical; superficies LookbackDays* requieren exec AddOn funcional; NO se creó orden)
+
+EXECUTION_TRANSPORT_READY:
+NO (endpoint AddOn no resuelto; bridge-side certificado y listo para re-enable en ~1 min tras el fix)
+
+CURRENT_MARKET_FRESHNESS:
+STALE (event_ts 2026-10-02T21:38:25.95Z, edad ≈24 h >> bound 30 s; replay estático de la sesión nueva a las 21:25:21Z — offsets p4 5476462→5476468 — no refresca evidencia de evento, F-S2-02)
+
+NEW_RISK_READY:
+NO
+
+SUNDAY_G_REALTIME_RUNBOOK:
+READY (§M del intento 1, determinista y ya probado; NOTA: G-REALTIME es feed-lane-only ⇒ certificable domingo 17:00 CT INDEPENDIENTE del fix owner del exec AddOn)
+
+LIVE_PHYSICAL_LADDER_RUNBOOK:
+READY (§N del intento 1; gate 0 ACTUALIZADO = fix config §R9 + restart NT + señal de éxito observable; resto sin cambios)
+
+FIRST_PHYSICAL_CERT_SCENARIO:
+FULLY_DEFINED (freeze §14.13; NQ/NQZ6; cap GROSS 6; SL/TP 2000/1500 day1; side/qty = output frozen)
+
+MISSING_PHYSICAL_PARAMETERS:
+NONE
+
+FINAL_SAFETY_STATE:
+G-EGRESS-0 PROBADO (unidad inactive+disabled, :9771 FREE, accounts key eliminada — cross-check MCP RO 21 claves == baseline; journal M2 0 registros; feed lane conectado observando; exec AddOn inerte por config; 0 LIVE run; 0 comandos; 0 ambigüedad; new-risk configurationally disabled)
+
+PHYSICAL_ORDERS_SENT:
+0
+
+PHYSICAL_ORDERS_MODIFIED:
+0
+
+PHYSICAL_ORDERS_CANCELLED:
+0
+
+PRODUCT_CODE_CHANGES:
+NONE
+
+RESIDUAL_FINDINGS:
+1) LoadConfig acepta ntx_port inválida con default silencioso 0 + log "config loaded" (contradice su disciplina declarada fail-closed; repro exacta §R8) — clase "robustez AddOn", adjudicación Manager, sin cambio en este shot · 2) variante demo de balances 50000/50000 persistente (re-observar en ventana) · 3) ACL owner 6.ª re-probe: instalados no agent-verificables (verificación de corrección = señal conductual §R9.4)
+
+OWNER_DECISION_REQUIRED:
+Una sola acción exacta (§R9): reemplazar el echo-execution-addon.json del perfil KoR con la copia íntegra de C:\Temp (hash 9ca3fddc…; "ntx_port": 9771 numérico; NO editar a mano) y REINICIAR NinjaTrader. No es decisión nueva: mismo ciclo standing OD-D6-4. Señal de éxito observable por el agente: ESTABLISHED→:9771 + hello [ntx] autenticado ≤10 s tras el arranque de NT con el bridge en marcha.
+
+NEXT_MANAGER_ACTION:
+Veredicto FAIL ⇒ no certificar lane ni ejecutar ladder hasta el fix §R9. Domingo 2026-10-04 ≥17:00 CT: certificar G-REALTIME con el runbook §M (feed-lane-only, NO depende del fix). Tras la señal de éxito del AddOn: re-despachar C–K (~5 min, dentro de ventana) y ejecutar el ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. OD-D6-1 vigente sin consumir. No emitir EF_D6_E2E_PASS.
+```
