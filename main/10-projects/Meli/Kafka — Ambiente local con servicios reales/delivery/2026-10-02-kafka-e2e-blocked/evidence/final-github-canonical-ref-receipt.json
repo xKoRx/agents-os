@@ -1,0 +1,18 @@
+{
+  "timestamp_utc": "2026-10-02T01:15:25.885649+00:00",
+  "authority": "GitHub API explicit refs/heads/master, not local origin assumption",
+  "observed": {
+    "cp": "f74e856ef3de881e2d504c6cb1ced573681c1058",
+    "pm": "0c83575c54cb198d238be7d83f3b4d8de27abbc8",
+    "sdk": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+    "knowledge": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd"
+  },
+  "expected": {
+    "cp": "f74e856ef3de881e2d504c6cb1ced573681c1058",
+    "pm": "0c83575c54cb198d238be7d83f3b4d8de27abbc8",
+    "sdk": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+    "knowledge": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd"
+  },
+  "drift": [],
+  "scope": "canonical source freshness only; no deployment or business proof"
+}

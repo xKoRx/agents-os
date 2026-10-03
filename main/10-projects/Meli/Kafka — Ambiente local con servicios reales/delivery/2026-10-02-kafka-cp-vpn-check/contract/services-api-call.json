@@ -1,0 +1,43 @@
+{
+  "scope": "STATIC_PRIMARY_SOURCE_CONFIRMATION_ONLY",
+  "utc": "2026-10-02T20:13:02.462537+00:00",
+  "caller_class": "cli_services.services_commands.rest.servicesapi.ServicesApi",
+  "why": "The installed KVS service module imports this class and constructs service_api=ServicesApi(); list_KVS calls GET application/{application}/kvs.",
+  "same_default_proxy": true,
+  "base_url_constant": "https://web.furycloud.io/api/proxy/cli_services_wrapper",
+  "call_for_root_not_executed_by_reader": "from cli_services.services_commands.rest.servicesapi import ServicesApi\nheaders = lifecycle.stored_auth_headers()\npayload, status = ServicesApi().make_api_call(\n    'application/rio-controlplane-kafka/kvs', method='GET', authenticate=False, retry=False,\n    headers=headers, timeout=30)\n",
+  "existing_lifecycle_required": "Use the already validated lifecycle/stored_auth_headers object; no new login/renew or auth values exposed.",
+  "method": "GET",
+  "resource": "application/rio-controlplane-kafka/kvs",
+  "authenticate": false,
+  "retry": false,
+  "timeout_seconds": 30,
+  "safe_projection": [
+    "alias_match_count",
+    "status",
+    "container_type",
+    "test_container"
+  ],
+  "sources": [
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/configs/config.py",
+      "sha256": "1558674efe741093dd929302ff64402a8c829cc245034820f6c5ec6ec0d21e9d"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/configs/config.py",
+      "sha256": "4fff6879537c689b54be7ab90d7b9320d6a722f0ef39b0651a8e584350d82c15"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/rest/servicesapi.py",
+      "sha256": "7100ef86d3128e2aa4c7114c4d7b42f001354fa24eda2402f177d3c47f39e711"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/services/kvs_service.py",
+      "sha256": "931aaca10f301e71dcca3f402598a90b6ca5268b926550c4045b6ba949093ae2"
+    }
+  ],
+  "network_calls": 0,
+  "SDK_runtime_calls": 0,
+  "external_writes": 0,
+  "original_lookup_unchanged_sha256": "5d25a47d512aaa0074a765e5f0ad6288dfaf218b7b297d0961bc58963778a0bb"
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/README.md",
+    "before_sha256": "dc412d68520f13d5661a79a32e399b9bbb64ca62324c8b60a58e35e89df63ca0",
+    "after_file": "/var/folders/tn/tq2n8znx1nq4rjpwmp53bp940000gp/T/kafka-cp-vpn-recheck-8bhgsf89/doc-update-0.after",
+    "after_sha256": "a8cfa5d6d81e2eeecc7a17b7eda82e92611a03a5b220333870417bb0e1359bfc"
+  },
+  {
+    "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+    "before_sha256": "fdd9354ca7b9ddaaea4244efc6b37269b31a1f1e90666670d12db9c021cdbad8",
+    "after_file": "/var/folders/tn/tq2n8znx1nq4rjpwmp53bp940000gp/T/kafka-cp-vpn-recheck-8bhgsf89/doc-update-1.after",
+    "after_sha256": "19b8cc9ea1183e23d84bac4fac918ac114b4a5a299d48ea4402c4e7b3d1ce692"
+  },
+  {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/runtime-gate-vpn-2026-10-02.json",
+    "must_be_absent": true,
+    "after_file": "/var/folders/tn/tq2n8znx1nq4rjpwmp53bp940000gp/T/kafka-cp-vpn-recheck-8bhgsf89/runtime-gate-vpn-2026-10-02.json",
+    "after_sha256": "24113c2c94da11a12e6943c9fe9f2ca25ce844045b3e645b5c316ac487300389"
+  }
+]

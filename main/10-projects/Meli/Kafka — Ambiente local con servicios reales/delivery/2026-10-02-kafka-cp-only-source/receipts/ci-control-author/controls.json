@@ -1,0 +1,83 @@
+{
+  "kind": "SHELL_METADATA_API_SHAPE_CONTROL_ONLY",
+  "bash": {
+    "path": "/bin/bash",
+    "version": "GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)"
+  },
+  "source_extraction": "exact clear_family_runtime through before record_sources; no helpers/family/EXIT guards replaced",
+  "candidate_controls": 11,
+  "syntax_files": 1,
+  "CI_bash_syntax_exit": 0,
+  "results": [
+    {
+      "name": "baseline-3bea",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/e2e/tests/ci-family-scope-contract.py"
+      ],
+      "CI_source": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-04-ci.sh.before",
+      "CI_sha256": "fe41df4bc35e63b82cfe64f0d7f278ab89d3388a08e770a94dd816427dfbc174",
+      "exit": 1,
+      "expected_exit": 1,
+      "log": "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/baseline-3bea.log",
+      "log_sha256": "ee18b5342394b87a963feac019a3dd27dadc97dafe0b09a9a616117fbe7cf214"
+    },
+    {
+      "name": "scoped-before-trap-fix",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/e2e/tests/ci-family-scope-contract.py"
+      ],
+      "CI_source": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-2-ci.sh.before",
+      "CI_sha256": "d4b84b9b103c4694a1e5627cc4eaf297c8827dae38c38f222803bbae7c81b876",
+      "exit": 1,
+      "expected_exit": 1,
+      "log": "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/scoped-before-trap-fix.log",
+      "log_sha256": "32b62a458e84cf3906cadad609bd1aea48fe3a3b6fd03aa2a2ea14aec5ec1564"
+    },
+    {
+      "name": "bare-declaration-red",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/e2e/tests/ci-family-scope-contract.py",
+        "CiFamilyScopeContract.test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure"
+      ],
+      "CI_source": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-2-ci-bare-variable.before",
+      "CI_sha256": "5c0ac3072ded34dde0f0d27c8eb05769baf8d31a38d41bb1bed8eb29f1842046",
+      "exit": 1,
+      "expected_exit": 1,
+      "log": "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/bare-declaration-red.log",
+      "log_sha256": "0d93fc1c1370a56c4b5bd4c7852efac10c6312473b282cf0a72ce57fb91002d5"
+    },
+    {
+      "name": "candidate",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/e2e/tests/ci-family-scope-contract.py"
+      ],
+      "CI_source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "CI_sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+      "exit": 0,
+      "expected_exit": 0,
+      "log": "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/candidate.log",
+      "log_sha256": "28b5355d3679a19e8acf91b3413a5cd287e6c0f22909298f2a6d6278f9b58cb7"
+    }
+  ],
+  "real_context": {
+    "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/reconciliation-status.py": {
+      "sha256": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243",
+      "usage": "unaltered private copy"
+    },
+    "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/bind-ci-family-inputs.py": {
+      "sha256": "e19105ad815ac04e9d9644ce4660c8bbead4aa806b2de60d86858c2a819548e7",
+      "usage": "unaltered private copy"
+    }
+  },
+  "remote_API_calls": 0,
+  "Docker": 0,
+  "Gradle": 0,
+  "commits": 0,
+  "business": "NOT_EXECUTED",
+  "private_cwd_enforced": true,
+  "first_control_logs_preserved": true
+}

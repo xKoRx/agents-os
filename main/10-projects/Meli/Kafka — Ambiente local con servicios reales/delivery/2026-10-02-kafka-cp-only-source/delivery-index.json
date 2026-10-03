@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "utc": "2026-10-02T16:14:15.458650+00:00",
+  "state": "SOURCE_CP_READY_FOR_AUTH_GATED_EXECUTION",
+  "full_cp_e2e": "NOT_EXECUTED",
+  "repos": {
+    "cp": {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "parent": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+      "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+      "branch": "feature/kafka-real-e2e",
+      "patches": {
+        "delta": {
+          "file": "cp-delta.patch",
+          "base": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+          "bytes": 70168,
+          "sha256": "0c30756fd02e9ee01066d0d2f295501dc87754e9cc6ee6ea6853dfc7f3c0907c"
+        },
+        "complete": {
+          "file": "cp-complete.patch",
+          "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+          "bytes": 2624476,
+          "sha256": "8f98bf2ccf9605dc6f5197956adaf36b1006cad7a6f0b07e1f3c47c8dfe4eb25"
+        }
+      }
+    },
+    "knowledge": {
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "parent": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+      "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+      "branch": "docs/kafka-real-e2e",
+      "patches": {
+        "delta": {
+          "file": "knowledge-delta.patch",
+          "base": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+          "bytes": 18253,
+          "sha256": "6c4a1f8b55f99ac1d96d72c583076951a0cb6daac747a0e365b397f087c0ab91"
+        },
+        "complete": {
+          "file": "knowledge-complete.patch",
+          "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+          "bytes": 228581,
+          "sha256": "0ba3c8d06cca667e508d10b5f3bb28d7dc78e84b30bfd0606920c400d1ff65c1"
+        }
+      }
+    }
+  },
+  "prior_bundle": "../2026-10-02-kafka-e2e-blocked",
+  "scope": "CP_LOCAL_FIRST_ECOSYSTEM_LATER",
+  "external_gate": "FURY_LOGIN_REQUIRED_THEN_OWN_KVS_CLONE_RECHECK",
+  "business_certification": false,
+  "formal_review_publication": "PENDING_NOT_A_LOCAL_CP_EXECUTION_DEPENDENCY",
+  "tokens_and_cost": "UNKNOWN_PLATFORM_NOT_ATTRIBUTABLE"
+}

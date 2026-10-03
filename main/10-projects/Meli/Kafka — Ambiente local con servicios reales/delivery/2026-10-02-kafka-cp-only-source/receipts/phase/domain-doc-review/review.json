@@ -1,0 +1,96 @@
+{
+  "outcome": "CHANGES_REQUESTED_THREE_DOCUMENTATION_CONSISTENCY_EDITS",
+  "reviewed_at_utc": "2026-10-02T16:02:40.770397+00:00",
+  "reviewer": "domain",
+  "scope": "READ_ONLY_CP_ONLY_DOCUMENTATION_DELTA_AND_CP_SCOPE_1_TASK_TAIL",
+  "heads": {
+    "CP": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+    "KL": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5"
+  },
+  "documents": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/README.md",
+      "sha256": "dc412d68520f13d5661a79a32e399b9bbb64ca62324c8b60a58e35e89df63ca0",
+      "planned_after_sha256": "dc412d68520f13d5661a79a32e399b9bbb64ca62324c8b60a58e35e89df63ca0",
+      "reviewed_delta_matches_plan": true
+    },
+    {
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+      "sha256": "f12abae97c8206b31c1afd0d2d810088cc8c9238b1937b85b1e48b84d5764701",
+      "planned_after_sha256": "f12abae97c8206b31c1afd0d2d810088cc8c9238b1937b85b1e48b84d5764701",
+      "reviewed_delta_matches_plan": true
+    }
+  ],
+  "tasks": {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+    "sha256": "061303791370bffe1ea180c4e784a6c2230b11aa42528b1ab2a78c79b3a89306",
+    "read_scope": "Only CP-SCOPE-1 tail lines72–79",
+    "task_tail_sha256": "56997978190cae967443097907f6c760b28685d338994d3e7f134363dc1b2b4b"
+  },
+  "confirmed": [
+    "The CP introduction explicitly says the implementation compiles and the complete physical suite is unexecuted.",
+    "No changed paragraph claims production availability, complete E2E success, actual KVS execution, managed transport certification, or a real CI job.",
+    "CP provisioning commands use sandbox.py up --scope cp with only the own CP alias; ecosystem requires a fresh ecosystem run and its distinct aliases.",
+    "The captured launcher/direct Gradle preflights forward cp for realIntegrationTest and ecosystem for e2eTest. Their nonzero neutral-verifier exits are control outcomes, not executed suites.",
+    "Root harness receipt reports72 source/metadata controls, matching25+8+11+5+16+7; compileCP receipt is compile-only. This peer inspected those receipts and did not rerun them.",
+    "The current read-only stored-auth guard at2026-10-02T15:31:37.712085Z requires Fury login, makeszero network calls and does not renew. The earlier clone403 is historical pending revalidation."
+  ],
+  "findings": [
+    {
+      "id": "CPDOC-1",
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+      "line": 77,
+      "quote": "Guardar checkpoint/knowledge/commits con CP BLOCKED por clone403; ejecutar suite física únicamente al habilitar ese permiso.",
+      "issue": "The task presents the old403 permission error as the current blocker although the current guard cannot make remote calls until login is renewed.",
+      "recommended": "Record current login required, then recheck clone of the own CP alias; permission remediation is conditional on a repeated403. Keep suite NOT_EXECUTED until the actual KVS allocation and preflight succeed."
+    },
+    {
+      "id": "CPDOC-2",
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+      "line": 99,
+      "quote": "El checkpoint de 351 filas todavía conserva diez PM NONE",
+      "issue": "This current-tense assertion conflicts with the updated3bea checkpoint304FULL/29PARTIAL/18NONE and the stated seven FULL/three PARTIAL T24 frontier preparation. The ten PM NONE are the prior checkpoint, not the newly classified frontier.",
+      "recommended": "Make the ten NONE explicitly historical toeee5b909, or replace the sentence with current seven FULL/three PARTIAL preparation and all NOT_EXECUTED. Do not promote business execution."
+    },
+    {
+      "id": "CPDOC-3",
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+      "line": 116,
+      "quote": "El owner debe habilitar clonación Sandbox 403 y renovar Spellbook",
+      "issue": "The escalation paragraph unconditionally carries the old403 and mixes the current CP auth-first path with the separate formal/ecosystem Spellbook and corporate runner actions.",
+      "recommended": "Lead CP escalation with Fury login and own clone recheck; require permission remediation only if403 persists. Keep Spellbook/formal review and ecosystem identity/runner gates explicitly separate."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/doc-update-plan.json",
+      "sha256": "121238996bb0032b14419538b5a9fb87222b2dbef15f6f5d0efdbb3e98efb22e"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/harness-with-ci-controls.json",
+      "sha256": "50ac0cbc476d06ced2c681dd42412c12e07d16ebd1ad40921d63882f41db5126"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/compile-cp.json",
+      "sha256": "0917c5ea45754bb7a9c4b3928d7bd2ad975299042d3be1cfc295fa8836922440"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls/report.json",
+      "sha256": "be67b4b431d233e418f798b370363e78c499d8ca8175ccba49882a7545d84170"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/current-auth-read.json",
+      "sha256": "b655135e1288c7e9224c91310ac968d905976b100e36565a1e9f54ab537cf26e"
+    }
+  ],
+  "no_external_actions": [
+    "No SDK inspection or client invocation",
+    "No API/network/auth/login calls",
+    "No Docker",
+    "No Gradle/tests",
+    "No repository file edits"
+  ],
+  "business": "NOT_EXECUTED",
+  "implementation_review": "OUT_OF_SCOPE",
+  "pending_independent_source_review": "Sandbox2 and CI source controls remain the separate Fault review, not certified by this document review"
+}

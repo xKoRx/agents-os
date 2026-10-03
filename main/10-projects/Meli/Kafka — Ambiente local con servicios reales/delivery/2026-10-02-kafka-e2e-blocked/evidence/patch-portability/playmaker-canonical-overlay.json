@@ -1,0 +1,251 @@
+{
+  "name": "playmaker-canonical-overlay",
+  "base": "0c83575c54cb198d238be7d83f3b4d8de27abbc8",
+  "head": "47df54fe1e341be6b1c2304a2c098b0c01d626e1",
+  "patch_sha256": "de989851f2f02eb34c96853f72b76830d5142d6feb31dbc435392e6f501f232d",
+  "patch_bytes": 79073,
+  "scope": "PATCH_PORTABILITY_ONLY_NO_BACKEND_CERTIFICATION",
+  "apply_check": "PASS",
+  "apply": "PASS",
+  "tree": "PASS",
+  "source_refs_before_sha256": "2958b281d1d2d916a08f979748206e86c6104d3cc5c095f85840eaaade6cb1a3",
+  "expected_head_tree": "fcd2d99a15ed73b9af32bb62d99b9571a8efe3fa",
+  "resulting_tree": "fcd2d99a15ed73b9af32bb62d99b9571a8efe3fa",
+  "original_refs_unchanged": "PASS",
+  "status": "PASS",
+  "own_clone_cleanup": "PASS",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "exit_status": 0,
+      "duration_seconds": 0.148,
+      "output_sha256": "a5df01cb64b774e86ead022410c9df831ae0fe058ae9f4bf4087c5ddaee2885e",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/source-head-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "0c83575c54cb198d238be7d83f3b4d8de27abbc8^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "exit_status": 0,
+      "duration_seconds": 0.019,
+      "output_sha256": "ec82d9ba4a00151283c25c2a81d533024341e4151aa087547fe94e8f70834016",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/source-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "47df54fe1e341be6b1c2304a2c098b0c01d626e1^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "exit_status": 0,
+      "duration_seconds": 0.02,
+      "output_sha256": "a5df01cb64b774e86ead022410c9df831ae0fe058ae9f4bf4087c5ddaee2885e",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/source-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "exit_status": 0,
+      "duration_seconds": 0.023,
+      "output_sha256": "242eccb4ac2fe1a58b689faaa103c76a99e7f8ee44528d105c1da37ac0ada293",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/source-refs-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "clone",
+        "--local",
+        "--no-hardlinks",
+        "--no-checkout",
+        "--quiet",
+        "--",
+        "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4",
+      "exit_status": 0,
+      "duration_seconds": 0.545,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/clone-local-isolated-objects.log"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/empty-hooks",
+        "checkout",
+        "--detach",
+        "0c83575c54cb198d238be7d83f3b4d8de27abbc8"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.537,
+      "output_sha256": "251f16e6b1db671103e736eeb8150e7a5d07237edc06d0794f217c1d5ac48016",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/checkout-exact-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.026,
+      "output_sha256": "ec82d9ba4a00151283c25c2a81d533024341e4151aa087547fe94e8f70834016",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/clone-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "symbolic-ref",
+        "-q",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 1,
+      "duration_seconds": 0.021,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/detached-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.098,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/clone-clean-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "47df54fe1e341be6b1c2304a2c098b0c01d626e1^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.02,
+      "output_sha256": "1c02bff46876b1c3f631f9d9b2c0e16e63f1b6335d77a6431c64b407891c4b8f",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "47df54fe1e341be6b1c2304a2c098b0c01d626e1^{tree}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "exit_status": 0,
+      "duration_seconds": 0.026,
+      "output_sha256": "1c02bff46876b1c3f631f9d9b2c0e16e63f1b6335d77a6431c64b407891c4b8f",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/source-exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.028,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/apply-check.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--index",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.077,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/apply-index-own-clone.log"
+    },
+    {
+      "command": [
+        "git",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.05,
+      "output_sha256": "1c02bff46876b1c3f631f9d9b2c0e16e63f1b6335d77a6431c64b407891c4b8f",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/applied-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "47df54fe1e341be6b1c2304a2c098b0c01d626e1",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.058,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/working-tree-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--exit-code",
+        "47df54fe1e341be6b1c2304a2c098b0c01d626e1",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay-30ppmaf4/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.013,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/index-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "exit_status": 0,
+      "duration_seconds": 0.013,
+      "output_sha256": "a5df01cb64b774e86ead022410c9df831ae0fe058ae9f4bf4087c5ddaee2885e",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/source-head-after.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "exit_status": 0,
+      "duration_seconds": 0.017,
+      "output_sha256": "242eccb4ac2fe1a58b689faaa103c76a99e7f8ee44528d105c1da37ac0ada293",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-canonical-overlay/source-refs-after.log"
+    }
+  ]
+}

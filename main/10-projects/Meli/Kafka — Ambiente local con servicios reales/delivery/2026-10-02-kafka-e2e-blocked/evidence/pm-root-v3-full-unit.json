@@ -1,0 +1,12 @@
+{
+  "scope": "FULL_UNIT_ONLY_NOT_BUSINESS_E2E",
+  "baseline_skips_expected": 2,
+  "junit": {
+    "tests": 4386,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "classes": 382
+  },
+  "log_sha256": "d31476a5dd2173e7f248228c66f80861340a4642cf78f7d56a6718daecb61599"
+}

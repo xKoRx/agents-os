@@ -1,0 +1,67 @@
+{
+  "kind": "METADATA_API_SIMULATOR_PREPARATION_ONLY",
+  "results": [
+    {
+      "name": "baseline-original",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/baseline-original/e2e/tests/sandbox-contract.py"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "log": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/baseline-original.log",
+      "sha256": "ceea5e339bfb84b2653af263ee2fe0a0e2de2bfaed2f3efd00a6d42b42fde502"
+    },
+    {
+      "name": "baseline-regression",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/baseline-regression/e2e/tests/sandbox-contract.py",
+        "ScopeControlContract.test_cp_receipt_verifies_only_CP_fresh_configuration_without_PM",
+        "ScopeControlContract.test_cp_rejects_PM_API_call_and_mutation_receipt"
+      ],
+      "exit": 1,
+      "expected_exit": 1,
+      "log": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/baseline-regression.log",
+      "sha256": "c1959fe8390078468be772a8c2864da447955fa7c6bee1a2320b3cb72e840eaf"
+    },
+    {
+      "name": "candidate",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/e2e/tests/sandbox-contract.py"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "log": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/candidate.log",
+      "sha256": "21d0ceac4e062ada93cd6e0a15ea28bcadb9e308151d41b1e2aa5adb04498d8a"
+    },
+    {
+      "name": "help",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/e2e/sandbox.py",
+        "--help"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "log": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/help.log",
+      "sha256": "70b9a1ab2b2831d178f144902c94346044d3532d1c712587fd6a6b52c3cabf67"
+    },
+    {
+      "name": "syntax-and-legacy-tests-source",
+      "syntax_files": 2,
+      "legacy_methods_bytecode_input_AST_unchanged": 10,
+      "exit": 0
+    }
+  ],
+  "business": "NOT_EXECUTED",
+  "remote_API_calls": 0,
+  "Docker": 0,
+  "Gradle": 0,
+  "commits": 0,
+  "first_red_preserved": {
+    "path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/baseline-regression-http201-first.log",
+    "scope": "CONTROL_API_STATUS_EXPECTATION_REFINED_ONLY"
+  }
+}

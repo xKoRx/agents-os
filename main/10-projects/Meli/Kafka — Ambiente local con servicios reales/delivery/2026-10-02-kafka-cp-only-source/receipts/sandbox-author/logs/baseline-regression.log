@@ -1,0 +1,28 @@
+EF
+======================================================================
+ERROR: test_cp_receipt_verifies_only_CP_fresh_configuration_without_PM (__main__.ScopeControlContract.test_cp_receipt_verifies_only_CP_fresh_configuration_without_PM)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/baseline-regression/e2e/tests/sandbox-contract.py", line 212, in test_cp_receipt_verifies_only_CP_fresh_configuration_without_PM
+    self.verify()
+    ~~~~~~~~~~~^^
+  File "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/baseline-regression/e2e/tests/sandbox-contract.py", line 207, in verify
+    fixture.lifecycle.verify()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/baseline-regression/e2e/sandbox.py", line 191, in verify
+    raise RuntimeError("SANDBOX_PROVENANCE_REQUIRES_BOTH_APPLICATIONS")
+RuntimeError: SANDBOX_PROVENANCE_REQUIRES_BOTH_APPLICATIONS
+
+======================================================================
+FAIL: test_cp_rejects_PM_API_call_and_mutation_receipt (__main__.ScopeControlContract.test_cp_rejects_PM_API_call_and_mutation_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/baseline-regression/e2e/tests/sandbox-contract.py", line 304, in test_cp_rejects_PM_API_call_and_mutation_receipt
+    with self.assertRaisesRegex(RuntimeError, 'SANDBOX_APPLICATION_NOT_OWNED'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.003s
+
+FAILED (failures=1, errors=1)

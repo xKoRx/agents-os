@@ -1,0 +1,63 @@
+{
+  "status": "PASS_TWO_EXACT_DOCUMENTARY_REPLACEMENTS_ONLY",
+  "timestamp_utc": "2026-10-02T08:05:06.646562+00:00",
+  "prior_review_sha256": "fef33e6ff87f87876c8911a2e64e5834389052620e0a3a58cc66a015930cdbe9",
+  "before_sha256": "97430db2c24e8bf46d9f3163363620e50fc2f8383d71495204b6d4af1072d81d",
+  "after_sha256": "fed4e0752548b6feb215a9606928ab6727dbffbf5e09aad0bde060827c400516",
+  "index_sha256": "2c07bf10c2d2f181824b32957521d7b6d46522d91127d21e1a1fb87a408f1926",
+  "root_apply_receipt_sha256": "1f7ed8a0ca46cf280e0ce26fb48734a5f85fa0e1dbf4cb69640f20976d788f4a",
+  "checks": [
+    {
+      "name": "original_backup_exact_private_before",
+      "status": "PASS"
+    },
+    {
+      "name": "old_fragment_unique_HANDOFF_AUTH_PREPARATION_VERB",
+      "status": "PASS"
+    },
+    {
+      "name": "old_fragment_unique_HANDOFF_MYSQL_FIXTURES_SCOPE",
+      "status": "PASS"
+    },
+    {
+      "name": "only_two_exact_replacements",
+      "status": "PASS"
+    },
+    {
+      "name": "HANDOFF_after_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "index_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "finding_closed_HANDOFF_AUTH_PREPARATION_VERB",
+      "status": "PASS"
+    },
+    {
+      "name": "finding_closed_HANDOFF_MYSQL_FIXTURES_SCOPE",
+      "status": "PASS"
+    }
+  ],
+  "findings_closed": [
+    {
+      "id": "HANDOFF_AUTH_PREPARATION_VERB",
+      "status": "CLOSED_EXACT_DOC_DELTA"
+    },
+    {
+      "id": "HANDOFF_MYSQL_FIXTURES_SCOPE",
+      "status": "CLOSED_EXACT_DOC_DELTA"
+    }
+  ],
+  "remaining_findings": [],
+  "scope": "DELTA_RECONSTRUCTION_AND_INDEX_HASH_ONLY",
+  "prior58_checks": "NOT_RERUN_SCOPE_UNCHANGED",
+  "source_certification": false,
+  "business": "BLOCKED_NOT_EXECUTED_UNCHANGED",
+  "repo_or_vault_writes": 0,
+  "Gradle_runs": 0,
+  "API_calls": 0,
+  "backend_execution": 0,
+  "discovery": 0
+}

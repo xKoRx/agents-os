@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-02T16:16:43.206402+00:00",
+  "scope": "ORIGINAL_FOUR_REFS_AND_STATUS_ONLY",
+  "records": [
+    {
+      "repo": "/Users/rjara/fuentes/rio-controlplane-kafka",
+      "head": "1595df01304a0f28e250bc294b3c4163a454c151",
+      "branch": "feature/rio-sunset-update-rio-controlplane-kafka",
+      "status": "M .gitignore\n M build.gradle\n M settings.gradle\n M src/test/java/com/mercadolibre/rio_controlplane_kafka/integration/ActionEventsIntegrationTest.java\n M src/test/java/com/mercadolibre/rio_controlplane_kafka/integration/ApplicationStartupSmokeTest.java\n M src/test/java/com/mercadolibre/rio_controlplane_kafka/integration/ControllerExceptionHandlerTest.java\n M src/test/java/com/mercadolibre/rio_controlplane_kafka/integration/ControllerTest.java\n M src/test/java/com/mercadolibre/rio_controlplane_kafka/integration/GenerateDocTest.java\n M src/test/java/com/mercadolibre/rio_controlplane_kafka/integration/KafkaTopicControllerTest.java\n M src/test/java/com/mercadolibre/rio_controlplane_kafka/integration/PingControllerTest.java\n M src/test/java/com/mercadolibre/rio_controlplane_kafka/integration/ProvisioningEventsIntegrationTest.java",
+      "baseline_refs_status_match": true,
+      "operation": "READ_ONLY_GIT_OPTIONAL_LOCKS_0"
+    },
+    {
+      "repo": "/Users/rjara/fuentes/rio-playmaker",
+      "head": "1c2601f96d582fa5058b5f84c41395e10113d412",
+      "branch": "feature/sig-610-inactivate-component-run",
+      "status": "?? .claude/settings.local.json\n?? .claude/skills/aoc-management/\n?? graphify-out/\n?? scripts/inactivate-probe/",
+      "baseline_refs_status_match": true,
+      "operation": "READ_ONLY_GIT_OPTIONAL_LOCKS_0"
+    },
+    {
+      "repo": "/Users/rjara/fuentes/rio-sdk-events",
+      "head": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+      "branch": "master",
+      "status": "?? graphify-out/",
+      "baseline_refs_status_match": true,
+      "operation": "READ_ONLY_GIT_OPTIONAL_LOCKS_0"
+    },
+    {
+      "repo": "/Users/rjara/fuentes/ads-signals-knowledge-library",
+      "head": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "branch": "master",
+      "status": "",
+      "baseline_refs_status_match": true,
+      "operation": "READ_ONLY_GIT_OPTIONAL_LOCKS_0"
+    }
+  ],
+  "result": "PASS",
+  "not_claimed": "No fresh original file-content byte audit was performed in this delta."
+}

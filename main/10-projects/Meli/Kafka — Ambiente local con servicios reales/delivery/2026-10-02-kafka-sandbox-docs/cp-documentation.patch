@@ -1,0 +1,85 @@
+diff --git a/e2e/README.md b/e2e/README.md
+index ac3d9e0..4049bda 100644
+--- a/e2e/README.md
++++ b/e2e/README.md
+@@ -43,6 +43,9 @@ Use `--cp-segment` only when actual CP mappings require it. `--pm-segment` belon
+ aliases, segments, BC/instance and exclusive-run provenance. Routes/body fields are verified from
+ the installed CLI. Stored authentication and two partial remote lifecycles were observed: own BC create200, service clone403, delete200 and absence404. Instance/config allocation and actual KVS remain NOT_EXECUTED gates.
+ The API helper requires valid stored credentials and fails rather than initiating SSO or renewal.
++
++Official docs checked on 2026-10-02 document [real KVS through Sandbox](https://furydocs.io/kvs-docs/2.0.43/guide/#/kvs_sandbox?id=sandbox-key-value-store) and require [Commiter or higher](https://furydocs.io/sandbox-services-docs/1.3.12/guide/#/notes). [Sandbox supports KVS but excludes KVS Vault](https://furydocs.io/sandbox-services-docs/1.3.12/guide/#/). The source service must already belong to the CP application and its name is case-sensitive. No beta label was found in the inspected pages; this establishes neither GA nor account-specific eligibility. Confirm the effective role, source eligibility and backend rejection reason for clone403. Approved/database/test metadata does not establish those conditions or exclude Vault. See the [documentation lookup receipt](../meli/features/20261001-real-e2e/evidence/sandbox-documentation-2026-10-02.json).
++
+ Before local startup **and direct Gradle suite execution**, verification fetches fresh configuration
+ and requires every consumed Toolkit export plus alias/segment/run/BC/instance to match exactly.
+ Extra inherited Toolkit mappings fail. A receipt or `sbox` prefix alone cannot prove exclusivity.
+diff --git a/meli/features/20261001-real-e2e/evidence/sandbox-documentation-2026-10-02.json b/meli/features/20261001-real-e2e/evidence/sandbox-documentation-2026-10-02.json
+new file mode 100644
+index 0000000..3b3fd8f
+--- /dev/null
++++ b/meli/features/20261001-real-e2e/evidence/sandbox-documentation-2026-10-02.json
+@@ -0,0 +1,65 @@
++{
++  "schema": 1,
++  "observed_at_utc": "2026-10-02T21:03:20Z",
++  "scope": "OFFICIAL_DOCUMENTATION_LOOKUP_ONLY",
++  "cp_source_head": "45ff4504cadeb3b8271a0c9020e610edad11ab77",
++  "knowledge_source_head": "e89a2a58b7ff06b368f2820b60ed0ec4f0b7e28d",
++  "sources": [
++    {
++      "url": "https://furydocs.io/sandbox-services-docs/1.3.12/guide/#/",
++      "observation": "Browser-rendered official guide: KVS supported; KVS Vault unsupported; services belong to the same application; instances expire within 12 hours."
++    },
++    {
++      "url": "https://furydocs.io/sandbox-services-docs/1.3.12/guide/#/notes",
++      "observation": "Browser-rendered official Notes: Commiter and up required; not intended for performance/stress testing."
++    },
++    {
++      "url": "https://furydocs.io/sandbox-services-docs/1.3.12/guide/#/commands/bc?id=add",
++      "observation": "Browser-rendered BC commands: add an existing service from the application; name is case-sensitive; no beta flag documented."
++    },
++    {
++      "url": "https://furydocs.io/kvs-docs/2.0.43/guide/#/kvs_sandbox?id=sandbox-key-value-store",
++      "observation": "Browser-rendered KVS guide explicitly documents real Fury services through Sandbox."
++    },
++    {
++      "url": "https://furydocs.io/client/5.24.0/guide/#/references/sandbox",
++      "observation": "Browser-rendered CLI reference describes real replicas with lifecycle/throughput/operation-permission limits."
++    }
++  ],
++  "beta": {
++    "status": "NOT_ESTABLISHED",
++    "guide_ui_searches": [
++      {
++        "guide": "sandbox-services-docs/1.3.12",
++        "query": "beta",
++        "visible_result": "No Results!"
++      },
++      {
++        "guide": "kvs-docs/2.0.43",
++        "query": "beta",
++        "visible_result": "No Results!"
++      }
++    ],
++    "limit": "No beta label in inspected pages and no search results do not establish GA or account-specific eligibility. KVS Release Notes page remained Loading and is not used as evidence.",
++    "cli_beta_enrollment": "Installed Fury CLI beta enrollment concerns CLI version requests; it does not prove Sandbox beta."
++  },
++  "clone_403": {
++    "cause": "UNKNOWN",
++    "runtime_receipt": "runtime-gate-vpn-2026-10-02.json",
++    "auth": "VALID_AT_RUNTIME_CHECK",
++    "own_app_role": "NOT_VERIFIED",
++    "own_source_vault_flag": "NOT_VERIFIED",
++    "source_sandbox_eligibility": "NOT_VERIFIED",
++    "inventory_limit": "approved/database/test=true establishes visibility, not Sandbox eligibility; database alone does not exclude Vault.",
++    "next_action": "Confirm effective Commiter-or-higher role and eligibility of the own CP alias; obtain the backend reason for clone403. No account permission or service setting was changed."
++  },
++  "full_cp_e2e": "NOT_EXECUTED",
++  "kvs_business_writes": 0,
++  "network_mutations_during_lookup": 0,
++  "credential_values_exposed": 0,
++  "independent_review": {
++    "agent": "fault_controls",
++    "scope": "Inference classification only; not independent browser reading or full E2E certification",
++    "finding": "No beta/GA or role/Vault/test causation claim is justified by current evidence."
++  }
++}

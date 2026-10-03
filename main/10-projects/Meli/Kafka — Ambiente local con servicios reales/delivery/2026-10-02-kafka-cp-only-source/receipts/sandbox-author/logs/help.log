@@ -1,0 +1,26 @@
+usage: sandbox.py [-h] [--directory DIRECTORY] [--scope {cp,ecosystem}]
+                  [--cp-service CP_SERVICE]
+                  [--pm-results-service PM_RESULTS_SERVICE]
+                  [--pm-locks-service PM_LOCKS_SERVICE]
+                  [--cp-segment CP_SEGMENT] [--pm-segment PM_SEGMENT]
+                  {up,verify,down}
+
+Own Fury Sandbox lifecycle using installed CLI API routes, never KMS
+configuration. Help/syntax checks are preparation only. Server schema,
+permissions and generated Toolkit configuration must pass against the real
+service before certification.
+
+positional arguments:
+  {up,verify,down}
+
+options:
+  -h, --help            show this help message and exit
+  --directory DIRECTORY
+  --scope {cp,ecosystem}
+                        up defaults to ecosystem; verify/down use the receipt
+                        unless explicitly constrained
+  --cp-service CP_SERVICE
+  --pm-results-service PM_RESULTS_SERVICE
+  --pm-locks-service PM_LOCKS_SERVICE
+  --cp-segment CP_SEGMENT
+  --pm-segment PM_SEGMENT

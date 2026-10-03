@@ -1,0 +1,171 @@
+{
+  "utc": "2026-10-02T06:52:54.104003+00:00",
+  "phase": "FINAL_ROOT_SOURCE_AND_NEUTRAL_PEER_ACCEPTED_BUSINESS_BLOCKED",
+  "paths": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealE2eKvsObservationConfiguration.java",
+      "sha256": "f56eb592671bfd0d76d5b99c3f51da3b1f11cdcfb48dce509300546255e6fc30",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/00-RealE2eKvsObservationConfiguration.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eKvsObservationConfiguration.java",
+      "sha256": "4d3ce1983085de3c049b06f8fe65ee7181ecdf77f9b226023f9d1ff3493503e4",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/01-RealE2eKvsObservationConfiguration.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eOwnedProcessLeaseVerifier.java",
+      "sha256": "d1f9e979ee3c59d9661628410ef8efead72ac0939e0de3305818312d6501a228",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/02-RealE2eOwnedProcessLeaseVerifier.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2ePlaymakerConfiguration.java",
+      "sha256": "d37b1f1eb3a4f49b4129cdb5b6cf87f369a0928a96eae5e4d836461e1201077d",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/03-RealE2ePlaymakerConfiguration.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e/src/main/resources/META-INF/spring.factories",
+      "sha256": "6f85961745d1c4cf7eced99eaf408912fa75c4fded33a4fc1be0534e17e9d9a8",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/04-spring.factories"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/playmaker-artifact.py",
+      "sha256": "c0ac3eaf522f98e89353ded974f4025583e76bd6f7b2bf2a086122c5d6b71ae8",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/05-playmaker-artifact.py"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/kvs-mutation-proof.py",
+      "sha256": "cef90ae5ef3b710e9a55c782f5b4d2a6a16760f85abe8fab5d63ab152f4540ef",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/06-kvs-mutation-proof.py"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/verify-primary-service.py",
+      "sha256": "a61a6eede486e128ff13ed634d2500b67700cce9c03dfe8152b1ba6e6f7e3295",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/07-verify-primary-service.py"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/e2eTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/playmaker/PlaymakerMutationReceiptVerifier.java",
+      "sha256": "7c467449867e3d22f67109e569992e498ea4af102dcd2b46d69f1969b0416ceb",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/08-PlaymakerMutationReceiptVerifier.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/e2eTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/playmaker/PlaymakerPrimaryEvidenceVerifier.java",
+      "sha256": "353398a69b8c5e930261cec5367d22d9513012a6a96fb7f46c66dd4b05d55300",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/09-PlaymakerPrimaryEvidenceVerifier.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/process-exit-proof.py",
+      "sha256": "714f12feedb98cc21aa650856bb7e0dd11e18d78b24df086624b721d806e96b2",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/10-process-exit-proof.py"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/build.gradle",
+      "sha256": "1d43e859cd9a93e4ee11942f4199257c4f13ef5637cb0ea1bfe147d1fb781e92",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/11-build.gradle"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/run.sh",
+      "sha256": "f82e2096ac762cd8f1cd8e2d742e450f6860d699ced216ae44e3ed914c1910ef",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/12-run.sh"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/managed.sh",
+      "sha256": "8481d558f9700a6bcc120b836f801752256050ec22f1312ea871b84a34bd683b",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/13-managed.sh"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/OwnedProcessExitReceipt.java",
+      "sha256": "1e71c159d631d74951b3621954ada6a220968e2671844c674e804422fa708548",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/14-OwnedProcessExitReceipt.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/RealControlplaneProcess.java",
+      "sha256": "825c0bb9c0f75f10308943f99fa60b24cc879295b6f5ea129a72a1c7b6acfaa8",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/15-RealControlplaneProcess.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/PlaymakerProcessOwner.java",
+      "sha256": "43f25ca0194d36f6e3d6449776716a66d707f0755192038f9ddef90db16d3bab",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/16-PlaymakerProcessOwner.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/playmaker-runner.sh",
+      "sha256": "3ca09971497eb84039fbf83429179c085fb93d2dc775f02a4d634b2ca2659713",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/17-playmaker-runner.sh"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/e2eTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/playmaker/OwnedPlaymakerLifecycle.java",
+      "sha256": "fdcdf4a9b350f9913e8f804a3fa1ad5a8e485838773e8c1dc0b372ce95e2eecc",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/18-OwnedPlaymakerLifecycle.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/e2eTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/playmaker/PlaymakerKafkaE2ETest.java",
+      "sha256": "b31f9081a7f9eb3e1df471fabf0f28d7f6933d58a5d9807e82c4357e32380e72",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/19-PlaymakerKafkaE2ETest.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/e2eTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/playmaker/PlaymakerResultTransportE2ETest.java",
+      "sha256": "b8361354b511fa93f87f76844dc22ead53ae4db35b4f6360463720db3a204332",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/20-PlaymakerResultTransportE2ETest.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/playmaker-lifecycle-contract.py",
+      "sha256": "23e138d70ac0287b40ae3fbb578264321a54cd584361b879fa3d6488888f1d84",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/21-playmaker-lifecycle-contract.py"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/main/resources/application-real-e2e.yml",
+      "sha256": "c78314e1c48856b9f3d89bf6db508292044fe06d7290d50a95aa7fcc1be411b2",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/22-application-real-e2e.yml"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e/src/main/resources/application-real-e2e.yml",
+      "sha256": "0bb95820bee5d35438edee04d317aad3f11663dd9b1d13a98e20cb77cc308b23",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/23-application-real-e2e.yml"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/gradle-worker-exit.gradle",
+      "sha256": "279847f7ae4f6fd3b5b269f4819dbe980e6eb38075c046dd0787791d6ed5e06c",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/24-gradle-worker-exit.gradle"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/retain-unverified-work.py",
+      "sha256": "be23da5b9916629b7e3c0cf0cad8c6f90026f72b815004610508b95069e7f3ae",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/25-retain-unverified-work.py"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/OwnedTestWorkerRegistration.java",
+      "sha256": "8834807f0db38caeced3b3bbd37cf193afaabd9896bcf7fd198b889e7b017f37",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/26-OwnedTestWorkerRegistration.java"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/src/realIntegrationTest/resources/META-INF/services/org.junit.jupiter.api.extension.Extension",
+      "sha256": "c15f8f4c5025b99c476dcd3cda97a46e392116a3ed5cb5033e96a7ad48c94903",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/27-org.junit.jupiter.api.extension.Extension"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/owned_test_worker_proof.py",
+      "sha256": "902b604aba2e641eef53743aaa53a33bd73c20d7d90572a4cc9fc07ca77baef7",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/28-owned_test_worker_proof.py"
+    }
+  ],
+  "delta_from_v4_1": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/playmaker-lifecycle-contract.py",
+      "before_sha256": "aec959b2977c4c03a09a4ada71c232350b9cc090876b7019e0dc08166fd18a70",
+      "after_sha256": "23e138d70ac0287b40ae3fbb578264321a54cd584361b879fa3d6488888f1d84"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/owned_test_worker_proof.py",
+      "before_sha256": "bbfa298c3474a348c369446a3ced6059abf0750ec0ce2d534c17c6250a301250",
+      "after_sha256": "902b604aba2e641eef53743aaa53a33bd73c20d7d90572a4cc9fc07ca77baef7"
+    }
+  ],
+  "prior_v4_1_freeze_sha256": "2be8b9deead072c1d8b8373ed8e4b7052b5073deb263d0965a12c2dbdafd2944",
+  "core_peer_sha256": "f7c6c8068a55b6ebc42bb82cce421ddd165fc2d853cb082ae18fce6bad1fec01",
+  "r2_source_neutral_peer_sha256": "dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d",
+  "typed_helper_sha256": "902b604aba2e641eef53743aaa53a33bd73c20d7d90572a4cc9fc07ca77baef7",
+  "driver_sha256": "23e138d70ac0287b40ae3fbb578264321a54cd584361b879fa3d6488888f1d84",
+  "all_previous_failures_retained": true,
+  "business": "NOT_EXECUTED",
+  "formal_zord": "BLOCKED_PENDING_AUTHORIZATION"
+}

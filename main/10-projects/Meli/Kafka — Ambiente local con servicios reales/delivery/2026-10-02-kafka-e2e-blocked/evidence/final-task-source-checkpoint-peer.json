@@ -1,0 +1,371 @@
+{
+  "status": "PASS_TASK_CHECKPOINT_DOC_FIDELITY_SOURCE_COMPONENT_ONLY",
+  "timestamp_utc": "2026-10-02T07:20:59.946062+00:00",
+  "findings": [],
+  "source_implementation_self_certification": false,
+  "documents": [
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+      "before_sha256": "c5e89d0c7ee15fb46aa774d4181c6cf5a44775231dff7d8b2989e839ba908b9f",
+      "after_sha256": "e7e525ec429a63b1e932509a985c0b9e81d5a10bb83d706225a94c05e170a2d9",
+      "new_checkmarks": 0
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-pm-real-frontiers/3-tasks/tasks.md",
+      "before_sha256": "845b2f189af57ae341690ef299de7c1fc9a12d75131a139f4e0116e4b78444e3",
+      "after_sha256": "124c73c3a79a0b367cb25ff7b4d613d92e378c8157ec296aa2eca73b6ff16abe",
+      "new_checkmarks": 6
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-pm-e2e-cleanup/3-tasks/tasks.md",
+      "before_sha256": "293e3e369a856fe90f7255f3de5fdc721c7dee3b647559dfaa80c74113eff837",
+      "after_sha256": "f7f61d4e12a692f9b12fcd2caffa6a8a7273966ff6dced16bb0b6aff7d55917a",
+      "new_checkmarks": 16
+    }
+  ],
+  "checked_markings": [
+    {
+      "doc": 1,
+      "line": 7,
+      "task": "T24.3 Infra: implement prepared SQL/HTTP/wire fixtures and local-negative/template cases.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 1,
+      "line": 8,
+      "task": "T24.4 Infra: implement real owned EntityService lifecycle/profile seams and6 inheritance families.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 1,
+      "line": 9,
+      "task": "T24.5 Infra: implement actual deployment/context/concurrent bodies and exact budget calibration.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 1,
+      "line": 10,
+      "task": "T24.6 Infra: implement version-specific authorization bodies; preserve imported/Odin and defensive gaps.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 1,
+      "line": 11,
+      "task": "T24.7 Root: integrate only real-adapter canonical overlay, source/JAR receipts, preflights/properties, versioned tasks and CI.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 1,
+      "line": 13,
+      "task": "T24.9 Domain/Fault: independent clean source/reproduction review (no author self-certification).",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 4,
+      "task": "T25.1 Fault: implement guardian/lease/parent trap and immutable restart.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 5,
+      "task": "T25.2 Fault: implement journaled common gate and permit before all PM/CP/SQL deletes, including DLT.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 6,
+      "task": "T25.3 Fault: real FS/process negative controls and actual owned Kafka offset gates; freeze8paths.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 7,
+      "task": "T25.4 Domain: independent clean review/reproduction and resolve findings.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 8,
+      "task": "T26.1 Domain: implement dual-version journals/wrappers in exact4Java paths, freeze.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 9,
+      "task": "T26.2 Root: integrate BPP/effective clients/source receipts/checkpoints/final proof/startup lease guard; authorize any extra paths explicitly.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 10,
+      "task": "T26.3 Fault: independent journal/control and source review; productive wrapper suite execution remains Sandbox-gated.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 17,
+      "task": "Restrict seven source exemptions; reproduce both baselines and body-mutation rejections.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 18,
+      "task": "Implement native worker SPI/owner intent/task proof and actual Gradle normal/fatal79 controls.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 19,
+      "task": "Require parent task proof and durable UNKNOWN; retain on storage failure.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 25,
+      "task": "Preserve compiler failure and seven independent all-final false accepts.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 26,
+      "task": "Apply two-identifier compile correction and shared strict task proof.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 27,
+      "task": "Repeat three-family compile plus existing/fresh negative controls; obtain independent delta review before cleanup certification.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 32,
+      "task": "Preserve independent typed-owner false acceptance and both original-driver race failures.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 33,
+      "task": "Implement sole helper type guard and two neutral readiness waits with unchanged assertions/deadlines.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    },
+    {
+      "doc": 2,
+      "line": 34,
+      "task": "Reproduce source/control regressions and obtain independent Fault review; productive backend execution remains blocked.",
+      "classification": "SOURCE_IMPLEMENTATION_OR_EXPLICIT_UNIT_COMPONENT_CONTROL_ONLY"
+    }
+  ],
+  "checks": [
+    {
+      "name": "before_hash_0",
+      "status": "PASS"
+    },
+    {
+      "name": "after_hash_0",
+      "status": "PASS"
+    },
+    {
+      "name": "active_before_guard_0",
+      "status": "PASS"
+    },
+    {
+      "name": "source_only_qualification_0",
+      "status": "PASS"
+    },
+    {
+      "name": "physical_formal_acceptance_stays_open_0",
+      "status": "PASS"
+    },
+    {
+      "name": "final_peer_hashes_exact_0",
+      "status": "PASS"
+    },
+    {
+      "name": "counts_and_mock_control_limits_0",
+      "status": "PASS"
+    },
+    {
+      "name": "original_tasks_text_unchanged_except_checkmarks_0",
+      "status": "PASS"
+    },
+    {
+      "name": "before_hash_1",
+      "status": "PASS"
+    },
+    {
+      "name": "after_hash_1",
+      "status": "PASS"
+    },
+    {
+      "name": "active_before_guard_1",
+      "status": "PASS"
+    },
+    {
+      "name": "source_only_qualification_1",
+      "status": "PASS"
+    },
+    {
+      "name": "physical_formal_acceptance_stays_open_1",
+      "status": "PASS"
+    },
+    {
+      "name": "final_peer_hashes_exact_1",
+      "status": "PASS"
+    },
+    {
+      "name": "counts_and_mock_control_limits_1",
+      "status": "PASS"
+    },
+    {
+      "name": "original_tasks_text_unchanged_except_checkmarks_1",
+      "status": "PASS"
+    },
+    {
+      "name": "before_hash_2",
+      "status": "PASS"
+    },
+    {
+      "name": "after_hash_2",
+      "status": "PASS"
+    },
+    {
+      "name": "active_before_guard_2",
+      "status": "PASS"
+    },
+    {
+      "name": "source_only_qualification_2",
+      "status": "PASS"
+    },
+    {
+      "name": "physical_formal_acceptance_stays_open_2",
+      "status": "PASS"
+    },
+    {
+      "name": "final_peer_hashes_exact_2",
+      "status": "PASS"
+    },
+    {
+      "name": "counts_and_mock_control_limits_2",
+      "status": "PASS"
+    },
+    {
+      "name": "original_tasks_text_unchanged_except_checkmarks_2",
+      "status": "PASS"
+    },
+    {
+      "name": "exact22_new_source_marks",
+      "status": "PASS"
+    },
+    {
+      "name": "T24_8_10_open",
+      "status": "PASS"
+    },
+    {
+      "name": "T25_aggregate_and_physical_open",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_final_document_peer",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_r2_source_neutral_peer",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_root_source_aggregate",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_T24R3_source_FS_peer",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_T24_sole_guard_source_peer",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_T26_source_dual_compile_FS_peer",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_V4_source_policy_unknown_native_worker_peer",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_V4_1_corrections_peer",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_receipt_hash_CI_source_neutral_peer",
+      "status": "PASS"
+    },
+    {
+      "name": "end_three_after_no_drift",
+      "status": "PASS"
+    }
+  ],
+  "check_count": 37,
+  "existing_receipt_bindings": {
+    "final_document_peer": {
+      "path": "/private/tmp/kafka-e2e-discovery/independent-review/root-final-docs-infra-v2/review.json",
+      "sha256": "5ba233907d6a665e09b3a6dad230fe0893dbb67e006ef4b383cdf6031a21932b"
+    },
+    "r2_source_neutral_peer": {
+      "path": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/root-v4-1-r2-peer.json",
+      "sha256": "dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d"
+    },
+    "root_source_aggregate": {
+      "path": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/root-final-source-freeze.json",
+      "sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1"
+    },
+    "T24R3_source_FS_peer": {
+      "path": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/t24r-pipeline-peer.json",
+      "sha256": "301a1d0e6d908f0cf34d9614efcdfcfc2ca205ffb40eb356d019a48edeb4eb71"
+    },
+    "T24_sole_guard_source_peer": {
+      "path": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/t24-p2-guards-peer.json",
+      "sha256": "c9819dd8a29f50804bc6e471058b1a3da2e47270d77c7777123b60c7ce3e62fb"
+    },
+    "T26_source_dual_compile_FS_peer": {
+      "path": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/t26-journals-peer.json",
+      "sha256": "9f1efb807fba06769f73197832ca5df301cf23c1e04e713e4c865277ba28ebae"
+    },
+    "V4_source_policy_unknown_native_worker_peer": {
+      "path": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/root-v4-peer-review.json",
+      "sha256": "418e31a66d8b8e18247d3d4e56dc7aad35d86f0473f8399716559ced85f4d5b6"
+    },
+    "V4_1_corrections_peer": {
+      "path": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/root-v4-1-core-peer.json",
+      "sha256": "f7c6c8068a55b6ebc42bb82cce421ddd165fc2d853cb082ae18fce6bad1fec01"
+    },
+    "CI_source_neutral_peer": {
+      "path": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/ci-four-family-peer.json",
+      "sha256": "a4b5446dfaada1e005a27100dc015be7124daa8acd31254e3f6a83d33bef22ba"
+    }
+  },
+  "mapping": {
+    "T24.3_to_7_and_9": "Prepared SQL/HTTP/wire/Entity lifecycle/profile/context/concurrency/budget/auth bodies and Root canonical/candidate adapters/preflight/tasks/CI implementation; independent source/private javac/FS controls. No live Entity, grants, exact-budget runtime or business execution claim.",
+    "T25.1_to_4": "Guardian/lease/permit/order and actual owned FS/process/offset component controls already limited by final checkpoint; full correlated cleanup still unchecked.",
+    "T26.1_to_3": "Dual-version journal/wrapper source, productive-client-selection/BPP integration source, private dual compilation and18 FS controls; no effective remote backend mutation or zero-mutation business certificate.",
+    "V4_and_V4_1": "Seven productive body exemption source controls, native worker normal/fatal processes, durable UNKNOWN and task metadata controls. Original two P2 and REDs retained; corrections documented by narrower peers.",
+    "V4_1r2": "Exact2 source deltas with actual independent source/neutral peer; original driver REDs preserved and14/159 replays bounded. Productive runtime remains blocked."
+  },
+  "open_acceptance": [
+    "T24.8 aggregate regression/contracts/wiring acceptance",
+    "T24.10 both complete real families/repeat/cleanup",
+    "T25/T26 aggregate Root wiring/contracts and V4 acceptance line",
+    "Full physical suites, remote Toolkit server behavior and business teardown",
+    "Managed OAuth/BigQueue/Odin and actual corporate CI",
+    "Formal Meli/Zord and release/publication acceptance"
+  ],
+  "limits": [
+    "Private read-only documentary review only; no repository edits, Gradle, API, Docker, new discovery or runtime.",
+    "Own T24 implementation/matrix source not independently certified; third-party receipt status/hash context only.",
+    "Source/component checkmarks cannot substitute correlated CP/Kafka/KVS/results/MySQL/EntityService outcomes or full suites."
+  ],
+  "application_condition": "Apply exactly the three staged after bytes by their before guards. If any claim/checkmark changes, refresh plan and recheck that delta.",
+  "private_metadata_correction": "Removed one redundant self-comparison from the reported check count before handoff; preserved original private report/manifest. No source/receipt/business claim changed."
+}

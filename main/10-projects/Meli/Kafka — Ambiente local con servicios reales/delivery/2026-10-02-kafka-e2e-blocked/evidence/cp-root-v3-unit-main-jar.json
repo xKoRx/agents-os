@@ -1,0 +1,17 @@
+{
+  "scope": "FULL_UNIT_AND_BOOTJAR_ONLY_NO_BUSINESS_E2E",
+  "utc": "2026-10-02T04:10:20.665801+00:00",
+  "head": "eee5b9091b332a975c78823679a1e99b517632bc",
+  "candidate_overlay": "RootBPPv3owner-metadata and T26 journal author fivepaths; T24R e2e sources concurrently edited but excluded from this test task",
+  "command": "JAVA_HOME=corretto25 ./gradlew --offline --no-daemon cleanTest test bootJar --console=plain",
+  "exit_status": 0,
+  "junit": {
+    "tests": 822,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "classes": 64
+  },
+  "log_sha256": "645b096a1461464991b00748eb60ec0fe726c82b8f25a7693cbd05a608740399",
+  "bootjar_sha256": "1ba82908e999ca388e4ea6aeea487f83cd1ccf26c5d5dbc987b3467f6ba33d48"
+}

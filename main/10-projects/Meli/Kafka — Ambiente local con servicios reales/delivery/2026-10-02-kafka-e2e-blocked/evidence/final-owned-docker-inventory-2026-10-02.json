@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-02T06:46:05.901526+00:00",
+  "context": "colima-rio-kafka-e2e-01a0f8e0",
+  "inventories": {
+    "containers": {
+      "count": 0,
+      "names": []
+    },
+    "volumes": {
+      "count": 0,
+      "names": []
+    },
+    "networks": {
+      "count": 3,
+      "names": [
+        "bridge",
+        "host",
+        "none"
+      ]
+    }
+  },
+  "verdict": "PASS_COMPONENT_CLEANUP_ONLY",
+  "shared_default_context_not_inspected_or_changed": true,
+  "business": "NOT_EXECUTED"
+}

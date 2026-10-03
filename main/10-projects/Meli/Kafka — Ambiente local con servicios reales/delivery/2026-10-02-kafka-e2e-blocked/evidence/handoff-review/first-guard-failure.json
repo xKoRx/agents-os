@@ -1,0 +1,7 @@
+{
+  "scope": "PRIVATE_REVIEW_EXACT_FRAGMENT_ADAPTATION_ONLY",
+  "guard": "Expected phrase included redundant se before prueban; actual source says se preservan y prueban",
+  "mutation_before_guard": false,
+  "receipt_or_source_changed": false,
+  "business": "NOT_EXECUTED"
+}

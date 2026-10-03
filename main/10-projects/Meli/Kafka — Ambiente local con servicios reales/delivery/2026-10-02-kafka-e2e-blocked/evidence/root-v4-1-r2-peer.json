@@ -1,0 +1,215 @@
+{
+  "utc": "2026-10-02T06:51:28.828010+00:00",
+  "status": "PASS_TWO_ROOT_SOURCE_DELTAS_AND_OWN_NEUTRAL_REPRODUCTION_ONLY",
+  "findings": [],
+  "author_freeze_sha256": "95153ad220fbc4fd781098b9f693f20c6826ea9808c83bdb6c82014370262e0b",
+  "source_records": [
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-pm-e2e-cleanup/1-functional/spec.md",
+      "before_sha256": "abdb768465fbb60144cbb2a4fa573b4fbf071bba9a7b7591cfd4e517ee0d9966",
+      "after_sha256": "f23ad7d6ad977550ae63eba00cc3724e20b525380146fa62b0adb86fd6b7f7a6",
+      "active_sha256_at_close": "abdb768465fbb60144cbb2a4fa573b4fbf071bba9a7b7591cfd4e517ee0d9966"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-pm-e2e-cleanup/2-technical/spec.md",
+      "before_sha256": "84750f615929b16a9e2149fa316448bf6c10d3abfab7380dc818929c90184392",
+      "after_sha256": "765441b9ce3b1c1f7e7b1135750f536ad7074ec86d31f17226b0798d4553c227",
+      "active_sha256_at_close": "84750f615929b16a9e2149fa316448bf6c10d3abfab7380dc818929c90184392"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-pm-e2e-cleanup/3-tasks/tasks.md",
+      "before_sha256": "292068a26dedeb251b18b7db7fb7336076effdfe1ed1f4213b4c51df065c06c6",
+      "after_sha256": "293e3e369a856fe90f7255f3de5fdc721c7dee3b647559dfaa80c74113eff837",
+      "active_sha256_at_close": "292068a26dedeb251b18b7db7fb7336076effdfe1ed1f4213b4c51df065c06c6"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/owned_test_worker_proof.py",
+      "before_sha256": "bbfa298c3474a348c369446a3ced6059abf0750ec0ce2d534c17c6250a301250",
+      "after_sha256": "902b604aba2e641eef53743aaa53a33bd73c20d7d90572a4cc9fc07ca77baef7",
+      "active_sha256_at_close": "bbfa298c3474a348c369446a3ced6059abf0750ec0ce2d534c17c6250a301250"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/playmaker-lifecycle-contract.py",
+      "before_sha256": "aec959b2977c4c03a09a4ada71c232350b9cc090876b7019e0dc08166fd18a70",
+      "after_sha256": "23e138d70ac0287b40ae3fbb578264321a54cd584361b879fa3d6488888f1d84",
+      "active_sha256_at_close": "aec959b2977c4c03a09a4ada71c232350b9cc090876b7019e0dc08166fd18a70"
+    }
+  ],
+  "scope": {
+    "reviewed_author_source_paths": 2,
+    "staged_spec_context_paths": 3,
+    "worktree_writes": 0,
+    "new_gradle_runs": 0,
+    "SDK_calls": 0,
+    "backend": "NOT_EXECUTED",
+    "productive_guardian_certification": false
+  },
+  "pure_owner_red_green": {
+    "status": "PASS_EXPECTED_BASELINE_FALSE_ACCEPTS_AND_AFTER_REJECTION",
+    "cases": [
+      {
+        "source": "before",
+        "case": "actual_neutral_task_positive",
+        "accepted": true,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "before",
+        "case": "bool_owner",
+        "accepted": true,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "before",
+        "case": "float_owner",
+        "accepted": true,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "before",
+        "case": "string_owner",
+        "accepted": false,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "before",
+        "case": "null_owner",
+        "accepted": false,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "before",
+        "case": "zero_owner",
+        "accepted": false,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "after",
+        "case": "actual_neutral_task_positive",
+        "accepted": true,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "after",
+        "case": "bool_owner",
+        "accepted": false,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "after",
+        "case": "float_owner",
+        "accepted": false,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "after",
+        "case": "string_owner",
+        "accepted": false,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "after",
+        "case": "null_owner",
+        "accepted": false,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      },
+      {
+        "source": "after",
+        "case": "zero_owner",
+        "accepted": false,
+        "scope": "PURE_JSON_SHAPE_ONLY_NO_NATIVE_PID1_OR_SYSTEM_CERTIFICATE"
+      }
+    ],
+    "actual_task_receipt_sha256": "100508daec159025108ff25c1815de07b84115cfa24684e722ffffe4a6e86b9f",
+    "business": "NOT_EXECUTED"
+  },
+  "metadata_replay": {
+    "status": "PASS_METADATA_FORMAT_ONLY_NATIVE_NEUTRAL_IDENTITIES",
+    "controls": 50,
+    "first": 21,
+    "second": 29,
+    "new_Gradle_runs": 0,
+    "SDK_client_calls": 0,
+    "business_backend": "NOT_EXECUTED",
+    "neutral_children_exit": "ACTUAL_COMMUNICATE_RETURN0_PER_FIXTURE",
+    "fixture_metadata_retained": "PRIVATE_FORMAT_INPUTS_ONLY_NEVER_PRODUCTIVE_CERTIFICATES"
+  },
+  "driver_ast_contract": {
+    "status": "PASS_TWO_WAIT_PREDICATES_ONLY",
+    "assertions": 47,
+    "assertions_identical": true,
+    "cases": 14,
+    "case_list_identical": true,
+    "deadline_changes": 0,
+    "wait_predicate_changes": [
+      {
+        "before": "lambda: (control / 'owner.sock').exists() or owner.poll() is not None",
+        "after": "lambda: (control / 'guardian.identity').exists() or owner.poll() is not None"
+      },
+      {
+        "before": "lambda: not alive(int(pid)) and closed(port)",
+        "after": "lambda: not alive(int(pid)) and closed(port) and (json.loads(lease.read_text())['phase'] == 'STOPPED')"
+      }
+    ],
+    "freeze_entries_order": [
+      "functional",
+      "technical",
+      "tasks",
+      "worker-proof",
+      "neutral-driver"
+    ]
+  },
+  "native_lifecycle_replays": [
+    {
+      "replay": 1,
+      "exit_status": 0,
+      "elapsed_seconds": 115.423,
+      "case_pass_count": 14,
+      "last_line": "PM_LIFECYCLE_L0_TOTAL:cases=14:checks=159",
+      "scope": "EXACT_FROZEN_DRIVER_ACTUAL_OWN_NEUTRAL_JDK_PROCESS_FS_PORTS_ONLY"
+    },
+    {
+      "replay": 2,
+      "exit_status": 0,
+      "elapsed_seconds": 114.618,
+      "case_pass_count": 14,
+      "last_line": "PM_LIFECYCLE_L0_TOTAL:cases=14:checks=159",
+      "scope": "EXACT_FROZEN_DRIVER_ACTUAL_OWN_NEUTRAL_JDK_PROCESS_FS_PORTS_ONLY"
+    }
+  ],
+  "cleanup_evidence": "Each exact frozen driver case reached finally, awaited every recorded own child PID absence and asserted its loopback port closed; workers/guardians waitFor or recovery completed. Normal driver exit exits its private TemporaryDirectory context. Metadata fixture children communicate returned actual status0. This is the controls own cleanup, not productive PM/KVS/SQL cleanup.",
+  "compilation": "Private JDK25 NativeIdentity compilation and exact unchanged guardian source compilation inside each driver replay, all exit0; Python source compiled privately.",
+  "input_drift": 0,
+  "preserved_prior_peer": {
+    "sha256": "f7c6c8068a55b6ebc42bb82cce421ddd165fc2d853cb082ae18fce6bad1fec01",
+    "path": "/private/tmp/kafka-e2e-discovery/independent-review/root-wiring-domain-v4-1/review.json",
+    "seven_prior_findings": "Closed in prior Domain source/compile/metadata scope; no new productive certification",
+    "open_owner_type": "CLOSED by strict type int, positive and exact task owner equality",
+    "prior_driver_failures": [
+      {
+        "path": "prior-driver-failures/first-control-failure.json",
+        "sha256": "4c2999d40f41b61a17d1217775aabd70a9a283c185b7dbfb53ab6b5a1b123a3d",
+        "status": "PRESERVED_FAIL_CONNECTION_REFUSED"
+      },
+      {
+        "path": "prior-driver-failures/second-control-failure.json",
+        "sha256": "93615f6b3694f812530250ea6a01f8ab53862e40fbe35ae7e7bba911cab7014f",
+        "status": "PRESERVED_FAIL_IMMEDIATE_LEASE_ASSERTION_NO_CAPTURED_PAYLOAD"
+      }
+    ]
+  },
+  "log_sha256": {
+    "neutral-lifecycle-replay1.log": "7caac9458f2bd9ceb5aaab9bdfe86d2d68de05ec5fed5c89d62cdb0c452479a3",
+    "neutral-lifecycle-replay2.log": "7caac9458f2bd9ceb5aaab9bdfe86d2d68de05ec5fed5c89d62cdb0c452479a3",
+    "metadata-controls.py.log": "53f3d817b6ca5fcdf76f886ea8f1db8b53bac49df313a3e259781dee2e48b9c7",
+    "task-negative-controls.py.log": "988d303b688555063bc8e01c48e296fb1a1fbc3b318eb8e9be4bfd81e2ee7c58",
+    "native-identity-private-javac.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "limitations": [
+    "Pure PID1/bool controls are JSON shape only; no native ownership or PID1 certificate is asserted.",
+    "The positive Gradle9.3.1 receipt is preserved primary neutral evidence; no new Gradle task ran.",
+    "The 50 metadata controls use explicit synthetic FORMAT inputs plus own native neutral identities; no KVS clients/storage/business mocks were executed.",
+    "Unchanged guardian/runner/reconciliation sources support the replay. This peer evaluates Root two-file r2 delta, not a fresh independent certification of prior helper code authored by this reviewer.",
+    "Backend, PM/CP business, Sandbox, managed, SDK generation and final all-family certification remain NOT_EXECUTED/unclaimed."
+  ]
+}

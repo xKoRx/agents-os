@@ -1,0 +1,410 @@
+{
+  "status": "CHANGES_REQUESTED_TWO_DOCUMENTARY_PHRASES_ONLY",
+  "timestamp_utc": "2026-10-02T08:02:41.266938+00:00",
+  "scope": "INDEPENDENT_HANDOFF_CLAIMS_PORTABILITY_HASH_LINKS_READONLY_METADATA_ONLY",
+  "before_hashes": {
+    "HANDOFF.md": "97430db2c24e8bf46d9f3163363620e50fc2f8383d71495204b6d4af1072d81d",
+    "delivery-index.json": "2c07bf10c2d2f181824b32957521d7b6d46522d91127d21e1a1fb87a408f1926"
+  },
+  "findings": [
+    {
+      "priority": 2,
+      "id": "HANDOFF_AUTH_PREPARATION_VERB",
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/HANDOFF.md",
+      "line": 13,
+      "observation": "prueban por separado can assert current auth execution. Policy preservation and canonical/candidate scenarios are prepared; authorization runtime remains NOT_EXECUTED.",
+      "before_exact": "Las diferencias de autorización entre master Playmaker y develop se preservan y prueban por separado; no se presentan como políticas productivas nuevas.",
+      "replacement_exact": "Las diferencias de autorización entre master Playmaker y develop se preservan; se prepararon escenarios separados. No se presentan como políticas productivas nuevas.",
+      "root_disposition": "ACCEPTED_DOCUMENTARY_CORRECTION_NO_SOURCE_CHANGE"
+    },
+    {
+      "priority": 2,
+      "id": "HANDOFF_MYSQL_FIXTURES_SCOPE",
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/HANDOFF.md",
+      "line": 36,
+      "observation": "PASS físico must not include unspecified fixtures. Coexistence receipt attests37 migrations/MySQL/DLT/targeted cleanup; T24R3 excludes SQL/business runtime.",
+      "before_exact": "37 migraciones y fixtures, ACL/proxies y limpieza de componentes propios",
+      "replacement_exact": "37 migraciones, ACL/proxies y limpieza de componentes propios",
+      "root_disposition": "ACCEPTED_REMOVE_UNSUPPORTED_FIXTURES_CLAIM"
+    }
+  ],
+  "remaining_checks": "PASS",
+  "checks": [
+    {
+      "name": "patch_hash_size_kafka-cp",
+      "status": "PASS"
+    },
+    {
+      "name": "peer_tree_metadata_kafka-cp",
+      "status": "PASS"
+    },
+    {
+      "name": "patch_hash_size_playmaker-candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "peer_tree_metadata_playmaker-candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "patch_hash_size_playmaker-canonical-overlay",
+      "status": "PASS"
+    },
+    {
+      "name": "peer_tree_metadata_playmaker-canonical-overlay",
+      "status": "PASS"
+    },
+    {
+      "name": "patch_hash_size_sdk-events",
+      "status": "PASS"
+    },
+    {
+      "name": "peer_tree_metadata_sdk-events",
+      "status": "PASS"
+    },
+    {
+      "name": "patch_hash_size_knowledge-library",
+      "status": "PASS"
+    },
+    {
+      "name": "peer_tree_metadata_knowledge-library",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_root-final-source-freeze.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_root-v4-1-r2-peer.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_root-final-docs-peer.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_final-task-source-checkpoint-peer.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_kl-final-integrated-validator-peer.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_cp-root-v3-unit-main-jar.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_pm-root-v3-full-unit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_root-v4-1-three-family-compile.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_final-owned-docker-inventory-2026-10-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_verification-ledger.json",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_DELIVERY.md",
+      "status": "PASS"
+    },
+    {
+      "name": "evidence_copy_remaining-gaps.md",
+      "status": "PASS"
+    },
+    {
+      "name": "receipt_canonical_source_receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "receipt_patch_portability_review",
+      "status": "PASS"
+    },
+    {
+      "name": "five_patch_peer_scope_only",
+      "status": "PASS"
+    },
+    {
+      "name": "source_freeze_and29_current_record_bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix351_22_30429_18_NOTEXEC_copy",
+      "status": "PASS"
+    },
+    {
+      "name": "822_CP_unit_only",
+      "status": "PASS"
+    },
+    {
+      "name": "4386_PM_total4384pass2skip",
+      "status": "PASS"
+    },
+    {
+      "name": "708_SDK_unit_only",
+      "status": "PASS"
+    },
+    {
+      "name": "formal937FAIL_baseline_notapproval",
+      "status": "PASS"
+    },
+    {
+      "name": "ledger95_businessblocked",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_1",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_2",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_3",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_4",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_5",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_6",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_7",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_8",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_9",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_10",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_11",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_12",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_13",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_14",
+      "status": "PASS"
+    },
+    {
+      "name": "local_link_15",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_task_README_realIntegrationTest",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_task_README_e2eCanonicalPlaymakerTest",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_task_README_e2eCandidatePlaymakerTest",
+      "status": "PASS"
+    },
+    {
+      "name": "README_command_managed.sh all",
+      "status": "PASS"
+    },
+    {
+      "name": "README_command_check-kafka.py",
+      "status": "PASS"
+    },
+    {
+      "name": "README_command_validateRealE2eHarness",
+      "status": "PASS"
+    },
+    {
+      "name": "sandbox_CLI_flags",
+      "status": "PASS"
+    },
+    {
+      "name": "cleanup_requires_reconcile_and_retains_unknown",
+      "status": "PASS"
+    },
+    {
+      "name": "four_gates_no_CI_or_business_certification",
+      "status": "PASS"
+    },
+    {
+      "name": "unique_exact_auth_replacement",
+      "status": "PASS"
+    },
+    {
+      "name": "unique_exact_MySQL_replacement",
+      "status": "PASS"
+    }
+  ],
+  "check_count": 58,
+  "verified_patch_and_git_metadata": [
+    {
+      "name": "kafka-cp",
+      "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "head": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+      "branch": "feature/kafka-real-e2e",
+      "patch_sha256": "19b82a7826ef482df833feabc4f7abb9317b408ddccd1b8422bff8c40692873c",
+      "patch_bytes": 2564449,
+      "actual_readonly_git_head_and_branch_match": true,
+      "actual_git_status_porcelain": "",
+      "current_HEAD_tree_matches_peer": true
+    },
+    {
+      "name": "playmaker-candidate",
+      "base": "7673f4bffc286f0f24d4214938df53c4c5eb9c38",
+      "head": "acbda2f1e68ae7672de6f9571cd739da972ca07a",
+      "branch": "feature/kafka-real-e2e",
+      "patch_sha256": "5d33c5bdf94af4ed8b8220ac50f2815cbae739f18ebe872b70eafad9009d5eff",
+      "patch_bytes": 105749,
+      "actual_readonly_git_head_and_branch_match": true,
+      "actual_git_status_porcelain": "",
+      "current_HEAD_tree_matches_peer": true
+    },
+    {
+      "name": "playmaker-canonical-overlay",
+      "base": "0c83575c54cb198d238be7d83f3b4d8de27abbc8",
+      "head": "47df54fe1e341be6b1c2304a2c098b0c01d626e1",
+      "branch": "feature/kafka-real-e2e-canonical",
+      "patch_sha256": "de989851f2f02eb34c96853f72b76830d5142d6feb31dbc435392e6f501f232d",
+      "patch_bytes": 79073,
+      "actual_readonly_git_head_and_branch_match": true,
+      "actual_git_status_porcelain": "",
+      "current_HEAD_tree_matches_peer": true
+    },
+    {
+      "name": "sdk-events",
+      "base": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+      "head": "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+      "branch": "feature/kafka-e2e-publisher-fix",
+      "patch_sha256": "ca3f4cc871561e4ff4f7eda56fe82ba83e5cdfc30fdcce22439b933fac7aad2f",
+      "patch_bytes": 10974,
+      "actual_readonly_git_head_and_branch_match": true,
+      "actual_git_status_porcelain": "",
+      "current_HEAD_tree_matches_peer": true
+    },
+    {
+      "name": "knowledge-library",
+      "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "head": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+      "branch": "docs/kafka-real-e2e",
+      "patch_sha256": "8e083ce680d2643b06cb08dd58668e5a842fe4f24a8615bb06cd586a416f1e1a",
+      "patch_bytes": 225309,
+      "actual_readonly_git_head_and_branch_match": true,
+      "actual_git_status_porcelain": "",
+      "current_HEAD_tree_matches_peer": true
+    }
+  ],
+  "matrix_documentary_counts": {
+    "rows": 351,
+    "columns": 22,
+    "coverage_scope": {
+      "FULL": 304,
+      "PARTIAL": 29,
+      "NONE": 18
+    },
+    "status": {
+      "NOT_EXECUTED": 351
+    },
+    "sha256": "2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e"
+  },
+  "source_freeze_sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1",
+  "local_links": [
+    {
+      "target": "delivery-index.json",
+      "exists": true
+    },
+    {
+      "target": "original-workspace-final-state.json",
+      "exists": true
+    },
+    {
+      "target": "</Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/2-technical/spec.md>",
+      "exists": true
+    },
+    {
+      "target": "evidence/final-github-canonical-ref-receipt.json",
+      "exists": true
+    },
+    {
+      "target": "evidence/coverage-matrix.tsv",
+      "exists": true
+    },
+    {
+      "target": "evidence/remaining-gaps.md",
+      "exists": true
+    },
+    {
+      "target": "evidence/verification-ledger.json",
+      "exists": true
+    },
+    {
+      "target": "evidence/patch-portability/review.json",
+      "exists": true
+    },
+    {
+      "target": "evidence/root-final-source-freeze.json",
+      "exists": true
+    },
+    {
+      "target": "evidence/root-v4-1-r2-peer.json",
+      "exists": true
+    },
+    {
+      "target": "evidence/root-final-docs-peer.json",
+      "exists": true
+    },
+    {
+      "target": "evidence/kl-final-integrated-validator-peer.json",
+      "exists": true
+    },
+    {
+      "target": "</Users/rjara/obsidian/SecondBrain/main/80-agents/skills/signals-code-review/SKILL.md:66>",
+      "exists": true
+    },
+    {
+      "target": "</Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/README.md>",
+      "exists": true
+    },
+    {
+      "target": "evidence/final-owned-docker-inventory-2026-10-02.json",
+      "exists": true
+    }
+  ],
+  "portability_peer_sha256": "1cc2f7779d947dc1b55b6c7912e6fb49263363cfe821721282a3d58f172e0131",
+  "limitations": [
+    "Five clean current HEADs/branches/tree identities and artifact byte hashes are metadata checks, not source implementation certification.",
+    "Independent five-patch apply/tree peer read and bound, not rerun here; no clones created/refs changed/patches applied.",
+    "Own code and matrix behavior not independently certified here.",
+    "No Gradle/backend/SDK/CI/Docker runtime or external API execution.",
+    "Business/fullphysical/formal acceptance remains BLOCKED/NOT_EXECUTED.",
+    "Root-authored final-delivery-check/original-workspaces-recheck are supplementary receipts, not a new backend certification."
+  ],
+  "followup": "Apply only both exact documentary replacements, keep index unchanged, then request two-line delta/hash verification. No more discovery needed."
+}

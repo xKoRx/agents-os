@@ -1,0 +1,60 @@
+{
+  "utc": "2026-10-02T07:54:48.451321+00:00",
+  "status": "PASS_SOURCE_DELIVERY_AND_OWN_DOCKER_CLEAN_ONLY",
+  "repo_heads": [
+    {
+      "name": "kafka-cp",
+      "head": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+      "clean": true
+    },
+    {
+      "name": "playmaker-candidate",
+      "head": "acbda2f1e68ae7672de6f9571cd739da972ca07a",
+      "clean": true
+    },
+    {
+      "name": "playmaker-canonical-overlay",
+      "head": "47df54fe1e341be6b1c2304a2c098b0c01d626e1",
+      "clean": true
+    },
+    {
+      "name": "sdk-events",
+      "head": "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+      "clean": true
+    },
+    {
+      "name": "knowledge-library",
+      "head": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+      "clean": true
+    }
+  ],
+  "patches_sha256_match": 5,
+  "root_source_records": 29,
+  "root_source_drift": 0,
+  "matrix_sha256": "2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e",
+  "matrix": {
+    "rows": 351,
+    "preparation": {
+      "FULL": 304,
+      "PARTIAL": 29,
+      "NONE": 18
+    },
+    "physical_status": {
+      "NOT_EXECUTED": 351
+    }
+  },
+  "owned_docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+  "inventories": {
+    "containers": [],
+    "volumes": [],
+    "networks": [
+      "bridge",
+      "host",
+      "none"
+    ]
+  },
+  "business_verdict": "BLOCKED_NOT_EXECUTED",
+  "formal_approval": false,
+  "CI_job_executed": false,
+  "original_workspaces": "see original-workspace-final-state.json; preserved"
+}

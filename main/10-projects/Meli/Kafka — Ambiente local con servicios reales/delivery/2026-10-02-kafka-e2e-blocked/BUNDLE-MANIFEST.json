@@ -1,0 +1,244 @@
+{
+  "utc": "2026-10-02T08:06:40.331881+00:00",
+  "scope": "LOCAL_DURABLE_SOURCE_AND_EVIDENCE_DELIVERY",
+  "full_E2E": "BLOCKED",
+  "physical_capabilities_NOT_EXECUTED": 351,
+  "patch_portability": "INDEPENDENT_PASS_5_OF_5",
+  "handoff_peer": "INDEPENDENT_TWO_FINDINGS_CLOSED",
+  "records": [
+    {
+      "path": "HANDOFF.md",
+      "sha256": "fed4e0752548b6feb215a9606928ab6727dbffbf5e09aad0bde060827c400516",
+      "bytes": 11292
+    },
+    {
+      "path": "continuity-backups/HANDOFF-before-peer-correction.md",
+      "sha256": "97430db2c24e8bf46d9f3163363620e50fc2f8383d71495204b6d4af1072d81d",
+      "bytes": 11290
+    },
+    {
+      "path": "continuity-backups/agent-run-before.md",
+      "sha256": "fda3be40c8a42a3ec9048a6a4d1cbe501587bf540b1959f8fa4bbde334597b72",
+      "bytes": 13948
+    },
+    {
+      "path": "continuity-backups/project-before.md",
+      "sha256": "9c04b3671904d0a1313277065e22781c0caaf14068b33621886163bd473b6cd6",
+      "bytes": 41377
+    },
+    {
+      "path": "continuity-checkpoint.json",
+      "sha256": "2f4196ee51cda352703543bafca3c11bf0285fc3bbc23f9bd3c5f61e3d6c042a",
+      "bytes": 900
+    },
+    {
+      "path": "delivery-index-before-portability.json",
+      "sha256": "d1d6aa047a53327664b2432743a2a2c8806f4c4f41178c182470f5b597337c38",
+      "bytes": 11867
+    },
+    {
+      "path": "delivery-index.json",
+      "sha256": "2c07bf10c2d2f181824b32957521d7b6d46522d91127d21e1a1fb87a408f1926",
+      "bytes": 12314
+    },
+    {
+      "path": "evidence/DELIVERY.md",
+      "sha256": "df9d1920ada3630ed063222cee199c85c90ee6abbc6ae47daac4351a39e38f4b",
+      "bytes": 11507
+    },
+    {
+      "path": "evidence/coverage-matrix.tsv",
+      "sha256": "2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e",
+      "bytes": 323029
+    },
+    {
+      "path": "evidence/cp-root-v3-unit-main-jar.json",
+      "sha256": "334b5803e23707f51eaf5715392e8efa9d8f369d99d56b4c16f20a99143bb25f",
+      "bytes": 721
+    },
+    {
+      "path": "evidence/final-github-canonical-ref-receipt.json",
+      "sha256": "9baba9cf6bdb7847003ba0880993e26b518d72ddcaf812c367d0fbeecc82dceb",
+      "bytes": 725
+    },
+    {
+      "path": "evidence/final-owned-docker-inventory-2026-10-02.json",
+      "sha256": "54fc2070522f510fdc556321553c581dba442c64815073c90fb0b6e042c10a2a",
+      "bytes": 490
+    },
+    {
+      "path": "evidence/final-task-source-checkpoint-peer.json",
+      "sha256": "23b876206145063c2340813b1ec62b45c5c8cc801b780cee1b700508dff316e7",
+      "bytes": 14354
+    },
+    {
+      "path": "evidence/handoff-review/HANDOFF-before.md",
+      "sha256": "97430db2c24e8bf46d9f3163363620e50fc2f8383d71495204b6d4af1072d81d",
+      "bytes": 11290
+    },
+    {
+      "path": "evidence/handoff-review/delivery-index.json",
+      "sha256": "2c07bf10c2d2f181824b32957521d7b6d46522d91127d21e1a1fb87a408f1926",
+      "bytes": 12314
+    },
+    {
+      "path": "evidence/handoff-review/delta-receipt.json",
+      "sha256": "d90bbf3f066b43915f64d0e4b79b621308b9373b886833a177b1233a04c1737a",
+      "bytes": 1847
+    },
+    {
+      "path": "evidence/handoff-review/first-guard-failure.json",
+      "sha256": "b4ac1d1ba3577adf6d8795694f6191f1e5a8e1f2fb787e8d445d71aad873ab9d",
+      "bytes": 275
+    },
+    {
+      "path": "evidence/handoff-review/manifest.json",
+      "sha256": "f1f6f272308aea773cc98dfdc259b0cc95656bf3af19056af33eb53b525598ee",
+      "bytes": 529
+    },
+    {
+      "path": "evidence/handoff-review/review.json",
+      "sha256": "fef33e6ff87f87876c8911a2e64e5834389052620e0a3a58cc66a015930cdbe9",
+      "bytes": 12147
+    },
+    {
+      "path": "evidence/kl-final-integrated-validator-peer.json",
+      "sha256": "2349ddfda7053ca34dd9084414be5dc49f23065d6792bf0b1ef63f3610fb281c",
+      "bytes": 19152
+    },
+    {
+      "path": "evidence/patch-portability/index.json",
+      "sha256": "df1c477121f3e0a029304946646aaf41f10a414a697c009d8f8ca72fbf588d05",
+      "bytes": 4909
+    },
+    {
+      "path": "evidence/patch-portability/input-pins.json",
+      "sha256": "b66266857cce4c3f22ec74e55bd4e2955bdc1adf4339e577882f4a2e78baf101",
+      "bytes": 873
+    },
+    {
+      "path": "evidence/patch-portability/kafka-cp.json",
+      "sha256": "afe31fe74b3312fc1de08e46c3d64065394e4d262614e0cd1ddb51f8e4097937",
+      "bytes": 10026
+    },
+    {
+      "path": "evidence/patch-portability/knowledge-library.json",
+      "sha256": "46457423086527a89937a64f8b028467098fd7c7cd552f126b6fd009bd80c723",
+      "bytes": 10436
+    },
+    {
+      "path": "evidence/patch-portability/playmaker-candidate.json",
+      "sha256": "f8065594c76ebd191c4bce0bce11658fa0a04bb3852fa1282757f847f94c43b9",
+      "bytes": 10378
+    },
+    {
+      "path": "evidence/patch-portability/playmaker-canonical-overlay.json",
+      "sha256": "6a8417bae771f9cafd9bf0e8f2aef6554bb6c08ff72e97e5f970f1a0aeaa7817",
+      "bytes": 10726
+    },
+    {
+      "path": "evidence/patch-portability/review.json",
+      "sha256": "1cc2f7779d947dc1b55b6c7912e6fb49263363cfe821721282a3d58f172e0131",
+      "bytes": 6212
+    },
+    {
+      "path": "evidence/patch-portability/sdk-events.json",
+      "sha256": "4eef02cd726ea4ea6d9fc3580ca97e5c4ea06ad9767b034c1711ee5b0e4ddc34",
+      "bytes": 10079
+    },
+    {
+      "path": "evidence/pm-root-v3-full-unit.json",
+      "sha256": "bab534f5f80a4c9f53e3f764f0e8f93de907fc60de8f30e3d251481a6d0b0e38",
+      "bytes": 275
+    },
+    {
+      "path": "evidence/remaining-gaps.md",
+      "sha256": "907cc11943d00325bc94ff6117923f2f08993a6576256d4c824b690915ba667e",
+      "bytes": 8023
+    },
+    {
+      "path": "evidence/root-final-docs-peer.json",
+      "sha256": "5ba233907d6a665e09b3a6dad230fe0893dbb67e006ef4b383cdf6031a21932b",
+      "bytes": 47244
+    },
+    {
+      "path": "evidence/root-final-source-freeze.json",
+      "sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1",
+      "bytes": 11037
+    },
+    {
+      "path": "evidence/root-v4-1-r2-peer.json",
+      "sha256": "dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d",
+      "bytes": 9576
+    },
+    {
+      "path": "evidence/root-v4-1-three-family-compile.json",
+      "sha256": "bfe7c4b3f6ffd2e11ee9c192271d0ef3c04f4ce56be5148e4d0c76ed9e1a0e26",
+      "bytes": 735
+    },
+    {
+      "path": "evidence/verification-ledger.json",
+      "sha256": "17cf815090671d67d5bdbba136e6c231da94f63face6d5ea204dfa0302aa8f69",
+      "bytes": 54443
+    },
+    {
+      "path": "final-delivery-check.json",
+      "sha256": "76ef47dc866a93252e4adb4dda3700eac366c0705592e76529de44e81a3a9641",
+      "bytes": 1479
+    },
+    {
+      "path": "final-delivery-inventory-initial-restriction.json",
+      "sha256": "7d9f185d83dcb982879b7447b17fd60141c1bcde37df4ad252aeec826c63add0",
+      "bytes": 277
+    },
+    {
+      "path": "handoff-safe-apply.json",
+      "sha256": "1f7ed8a0ca46cf280e0ce26fb48734a5f85fa0e1dbf4cb69640f20976d788f4a",
+      "bytes": 1128
+    },
+    {
+      "path": "kafka-cp.patch",
+      "sha256": "19b82a7826ef482df833feabc4f7abb9317b408ddccd1b8422bff8c40692873c",
+      "bytes": 2564449
+    },
+    {
+      "path": "knowledge-library.patch",
+      "sha256": "8e083ce680d2643b06cb08dd58668e5a842fe4f24a8615bb06cd586a416f1e1a",
+      "bytes": 225309
+    },
+    {
+      "path": "original-export-index.json",
+      "sha256": "df1c477121f3e0a029304946646aaf41f10a414a697c009d8f8ca72fbf588d05",
+      "bytes": 4909
+    },
+    {
+      "path": "original-workspace-final-state.json",
+      "sha256": "9e5ec3d5b5ab0f6383629c4eb9ceeab5d4901488b0d3ca2359455509914d8703",
+      "bytes": 2065
+    },
+    {
+      "path": "original-workspaces-recheck.json",
+      "sha256": "d1c32b0ca89dda050a30225cb8dd010e6fe25dda20ca34a96aeeea272cf21325",
+      "bytes": 1394
+    },
+    {
+      "path": "playmaker-candidate.patch",
+      "sha256": "5d33c5bdf94af4ed8b8220ac50f2815cbae739f18ebe872b70eafad9009d5eff",
+      "bytes": 105749
+    },
+    {
+      "path": "playmaker-canonical-overlay.patch",
+      "sha256": "de989851f2f02eb34c96853f72b76830d5142d6feb31dbc435392e6f501f232d",
+      "bytes": 79073
+    },
+    {
+      "path": "sdk-events.patch",
+      "sha256": "ca3f4cc871561e4ff4f7eda56fe82ba83e5cdfc30fdcce22439b933fac7aad2f",
+      "bytes": 10974
+    }
+  ],
+  "external_publishing": false,
+  "session": "ACTIVE_PARTIAL_NO_CLOSE",
+  "tokens": "unknown",
+  "cost": "unknown"
+}

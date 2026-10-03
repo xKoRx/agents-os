@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-02T08:04:08.155012+00:00",
+  "status": "TWO_REVIEWED_DOCUMENTARY_CORRECTIONS_APPLIED_PENDING_DELTA_PEER",
+  "handoff_before_sha256": "97430db2c24e8bf46d9f3163363620e50fc2f8383d71495204b6d4af1072d81d",
+  "handoff_after_sha256": "fed4e0752548b6feb215a9606928ab6727dbffbf5e09aad0bde060827c400516",
+  "index_unchanged_sha256": "2c07bf10c2d2f181824b32957521d7b6d46522d91127d21e1a1fb87a408f1926",
+  "peer_sha256": "fef33e6ff87f87876c8911a2e64e5834389052620e0a3a58cc66a015930cdbe9",
+  "replacements": [
+    [
+      "Las diferencias de autorización entre master Playmaker y develop se preservan y prueban por separado; no se presentan como políticas productivas nuevas.",
+      "Las diferencias de autorización entre master Playmaker y develop se preservan; se prepararon escenarios separados. No se presentan como políticas productivas nuevas."
+    ],
+    [
+      "37 migraciones y fixtures, ACL/proxies y limpieza de componentes propios",
+      "37 migraciones, ACL/proxies y limpieza de componentes propios"
+    ]
+  ],
+  "scope": "NO_SOURCE_NO_TEST_NO_CONTRACT_CHANGE",
+  "business": "BLOCKED_NOT_EXECUTED"
+}

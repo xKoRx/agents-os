@@ -1,0 +1,37 @@
+{
+  "state_status": "PREPARING",
+  "cleanup": "CERTIFIED_API_ABSENCE",
+  "mutations": [
+    {
+      "method": "POST",
+      "route_class": "BC_COLLECTION",
+      "outcome": "HTTP_200"
+    },
+    {
+      "method": "POST",
+      "route_class": "OWN_BC_SERVICE_CLONE",
+      "outcome": "HTTP_403"
+    },
+    {
+      "method": "DELETE",
+      "route_class": "OWN_BC",
+      "outcome": "HTTP_200"
+    }
+  ],
+  "resources": [
+    {
+      "app": "rio-controlplane-kafka",
+      "create_outcome": "CONFIRMED",
+      "creation_observed": true,
+      "instance_assigned": false,
+      "cleanup_error": null
+    }
+  ],
+  "last_api_error": {
+    "method": "GET",
+    "http": "404",
+    "error_type": "ServicesAPIException"
+  },
+  "unknown_mutations": 0,
+  "kvs_writes": 0
+}

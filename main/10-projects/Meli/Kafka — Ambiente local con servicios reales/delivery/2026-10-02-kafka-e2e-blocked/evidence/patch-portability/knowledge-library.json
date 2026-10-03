@@ -1,0 +1,251 @@
+{
+  "name": "knowledge-library",
+  "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+  "head": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+  "patch_sha256": "8e083ce680d2643b06cb08dd58668e5a842fe4f24a8615bb06cd586a416f1e1a",
+  "patch_bytes": 225309,
+  "scope": "PATCH_PORTABILITY_ONLY_NO_BACKEND_CERTIFICATION",
+  "apply_check": "PASS",
+  "apply": "PASS",
+  "tree": "PASS",
+  "source_refs_before_sha256": "8f67e59e3cca9f9e880dab922b2f3de0e81d0a7f59d614a94fec90db4da3aae7",
+  "expected_head_tree": "d656ebfb7b7f57a86f8a04044a2a5629ee52be8c",
+  "resulting_tree": "d656ebfb7b7f57a86f8a04044a2a5629ee52be8c",
+  "original_refs_unchanged": "PASS",
+  "status": "PASS",
+  "own_clone_cleanup": "PASS",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.015,
+      "output_sha256": "77b39eb7037cd186f8e36d0dd72d7329ec979cddbbd951c6618c1f6e0c05e3cc",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/source-head-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.011,
+      "output_sha256": "2ebfed4280f30b5063aeb68b2d34d65f05c65a65de920196bdf44e4580cb8fd8",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/source-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.014,
+      "output_sha256": "77b39eb7037cd186f8e36d0dd72d7329ec979cddbbd951c6618c1f6e0c05e3cc",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/source-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.014,
+      "output_sha256": "7c6399109abd93fb139f08354650462fcac851c7e0d0b546815adcf983204d8e",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/source-refs-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "clone",
+        "--local",
+        "--no-hardlinks",
+        "--no-checkout",
+        "--quiet",
+        "--",
+        "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl",
+      "exit_status": 0,
+      "duration_seconds": 0.147,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/clone-local-isolated-objects.log"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/empty-hooks",
+        "checkout",
+        "--detach",
+        "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.148,
+      "output_sha256": "11e45bcd71f47a5c3210e32f1005d03f9356068099dc87be9246c1c17e094aec",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/checkout-exact-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.018,
+      "output_sha256": "2ebfed4280f30b5063aeb68b2d34d65f05c65a65de920196bdf44e4580cb8fd8",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/clone-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "symbolic-ref",
+        "-q",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 1,
+      "duration_seconds": 0.023,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/detached-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.083,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/clone-clean-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.018,
+      "output_sha256": "46d1304cbd13131bf1f00816349ec7e31402f8ca1eda098557a8e7eb7f4756bd",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5^{tree}"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.029,
+      "output_sha256": "46d1304cbd13131bf1f00816349ec7e31402f8ca1eda098557a8e7eb7f4756bd",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/source-exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.029,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/apply-check.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--index",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.099,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/apply-index-own-clone.log"
+    },
+    {
+      "command": [
+        "git",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.07,
+      "output_sha256": "46d1304cbd13131bf1f00816349ec7e31402f8ca1eda098557a8e7eb7f4756bd",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/applied-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.08,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/working-tree-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--exit-code",
+        "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library-bfbfm9xl/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.027,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/index-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.032,
+      "output_sha256": "77b39eb7037cd186f8e36d0dd72d7329ec979cddbbd951c6618c1f6e0c05e3cc",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/source-head-after.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.031,
+      "output_sha256": "7c6399109abd93fb139f08354650462fcac851c7e0d0b546815adcf983204d8e",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/knowledge-library/source-refs-after.log"
+    }
+  ]
+}

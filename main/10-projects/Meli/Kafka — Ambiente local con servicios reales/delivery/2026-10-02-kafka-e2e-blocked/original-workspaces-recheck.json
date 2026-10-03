@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-02T07:56:55.670693+00:00",
+  "status": "PASS_4_ORIGINAL_WORKSPACES_UNCHANGED_SINCE_FINAL_EXPORT",
+  "records": [
+    {
+      "repo": "/Users/rjara/fuentes/rio-controlplane-kafka",
+      "head": "1595df01304a0f28e250bc294b3c4163a454c151",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "prior_working_changes_unchanged": true,
+      "action": "READ_ONLY_GIT_OPTIONAL_LOCKS_0"
+    },
+    {
+      "repo": "/Users/rjara/fuentes/rio-playmaker",
+      "head": "1c2601f96d582fa5058b5f84c41395e10113d412",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "prior_working_changes_unchanged": true,
+      "action": "READ_ONLY_GIT_OPTIONAL_LOCKS_0"
+    },
+    {
+      "repo": "/Users/rjara/fuentes/rio-sdk-events",
+      "head": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "prior_working_changes_unchanged": true,
+      "action": "READ_ONLY_GIT_OPTIONAL_LOCKS_0"
+    },
+    {
+      "repo": "/Users/rjara/fuentes/ads-signals-knowledge-library",
+      "head": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "prior_working_changes_unchanged": true,
+      "action": "READ_ONLY_GIT_OPTIONAL_LOCKS_0"
+    }
+  ],
+  "not_a_content_backup": "Original changes preserved in place; no originals were cleaned or rewritten."
+}

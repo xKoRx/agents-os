@@ -1,0 +1,68 @@
+{
+  "status": "CONFIRMED_PREEXISTING_EXIT_TRAP_SCOPE_P2",
+  "bash_path": "/bin/bash",
+  "bash_version": "GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)",
+  "actual_function_cases": [
+    {
+      "phase": "baseline",
+      "task": "realIntegrationTest",
+      "exit_status": 1,
+      "gate_exists": false,
+      "api_shape_verifier_reached": false,
+      "captured_args": [],
+      "stderr": "CI_GATE_BLOCKED:cp-control:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 44: sandbox_dir: unbound variable",
+      "log_sha256": "a8b2e4a3128d4a7c0f4eb8e3ea40d31849c2d7313664fe37297841af68a09e75"
+    },
+    {
+      "phase": "baseline",
+      "task": "e2eCanonicalPlaymakerTest",
+      "exit_status": 1,
+      "gate_exists": false,
+      "api_shape_verifier_reached": false,
+      "captured_args": [],
+      "stderr": "CI_GATE_BLOCKED:cp-control:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 44: sandbox_dir: unbound variable",
+      "log_sha256": "a8b2e4a3128d4a7c0f4eb8e3ea40d31849c2d7313664fe37297841af68a09e75"
+    },
+    {
+      "phase": "candidate",
+      "task": "realIntegrationTest",
+      "exit_status": 1,
+      "gate_exists": false,
+      "api_shape_verifier_reached": true,
+      "captured_args": [
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+        "up",
+        "--scope",
+        "cp",
+        "--directory",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/ci-trap-repro-_veu91wa/cp-control/sandbox",
+        "--cp-service",
+        "own-cp-alias-control"
+      ],
+      "stderr": "/bin/bash: line 44: sandbox_dir: unbound variable",
+      "log_sha256": "99b514b85e8b0a7483ae4a3fea4f17361616aac0b5d4412568a06efa6ae46aed"
+    },
+    {
+      "phase": "candidate",
+      "task": "e2eCanonicalPlaymakerTest",
+      "exit_status": 1,
+      "gate_exists": false,
+      "api_shape_verifier_reached": false,
+      "captured_args": [],
+      "stderr": "CI_GATE_BLOCKED:cp-control:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE,E2E_PLAYMAKER_ENV_FILE,E2E_ENTITY_SERVICE_BASE_URL,E2E_ENTITY_SERVICE_TEMPLATE_RECEIPT_FILE,E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE_FILE\n/bin/bash: line 44: sandbox_dir: unbound variable",
+      "log_sha256": "d43f6c626a55bdfddda5b86c23d509db710e2ff9b2b8b9d79cbd4140b70ced2e"
+    }
+  ],
+  "minimal_native_shell": {
+    "command": [
+      "/bin/bash",
+      "-c",
+      "set -u\nf() ( local value=own; trap 'printf \"%s\\n\" \"$value\"' EXIT; exit 2; )\nf\n"
+    ],
+    "exit_status": 2,
+    "stderr": "/bin/bash: value: unbound variable"
+  },
+  "scope": "ACTUAL_FROZEN_CI_FUNCTIONS_LOCAL_SHELL_AND_PRIVATE_FILES_ONLY_NO_BACKEND_DOCKER_GRADLE",
+  "source_delta_did_not_introduce_trap": "TRUE_BOTH_BASELINE_AND_CANDIDATE_REPRODUCE",
+  "required_fix": "Trap must retain access to exact own family state for cleanup/write_gate; keep UNKNOWN/no-state mutation attempt failure retained, not certify absence."
+}

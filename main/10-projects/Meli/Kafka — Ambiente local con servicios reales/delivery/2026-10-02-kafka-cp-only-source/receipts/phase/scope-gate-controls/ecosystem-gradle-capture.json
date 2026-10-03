@@ -1,0 +1,1 @@
+{"args": ["/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/sandbox.py", "verify", "--directory", "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls", "--scope", "ecosystem"], "scope": "NEUTRAL_FORWARDING_ONLY"}

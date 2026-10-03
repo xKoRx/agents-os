@@ -1,0 +1,1054 @@
+{
+  "utc": "2026-10-02T16:19:01.043330+00:00",
+  "status": "PASS_4_EXACT_SOURCE_TREE_IMPORTS",
+  "scope": "SOURCE_TREE_PORTABILITY_ONLY_NO_BUSINESS_CERTIFICATION",
+  "index_sha256": "b652ce4980f4af0efd1acd4722ebf13adcf60cb313e094b30573519a42e25d37",
+  "cases": [
+    {
+      "name": "cp-delta",
+      "repo": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "base": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+      "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/cp-delta.patch",
+      "patch_sha256": "0c30756fd02e9ee01066d0d2f295501dc87754e9cc6ee6ea6853dfc7f3c0907c",
+      "bytes": 70168,
+      "imported_tree": "f162b837f5078a6ce32d8ea8deb17e8c58fc5352",
+      "expected_tree": "f162b837f5078a6ce32d8ea8deb17e8c58fc5352",
+      "tree_equal": true,
+      "working_tree_equals_index": true,
+      "tracked_files": 474,
+      "base_HEAD_unchanged_no_commit": true
+    },
+    {
+      "name": "cp-complete",
+      "repo": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/cp-complete.patch",
+      "patch_sha256": "8f98bf2ccf9605dc6f5197956adaf36b1006cad7a6f0b07e1f3c47c8dfe4eb25",
+      "bytes": 2624476,
+      "imported_tree": "f162b837f5078a6ce32d8ea8deb17e8c58fc5352",
+      "expected_tree": "f162b837f5078a6ce32d8ea8deb17e8c58fc5352",
+      "tree_equal": true,
+      "working_tree_equals_index": true,
+      "tracked_files": 474,
+      "base_HEAD_unchanged_no_commit": true
+    },
+    {
+      "name": "knowledge-delta",
+      "repo": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "base": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+      "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/knowledge-delta.patch",
+      "patch_sha256": "6c4a1f8b55f99ac1d96d72c583076951a0cb6daac747a0e365b397f087c0ab91",
+      "bytes": 18253,
+      "imported_tree": "9c03d5c1ec3e4236ec41bd3380ccb0d7e82b5f62",
+      "expected_tree": "9c03d5c1ec3e4236ec41bd3380ccb0d7e82b5f62",
+      "tree_equal": true,
+      "working_tree_equals_index": true,
+      "tracked_files": 386,
+      "base_HEAD_unchanged_no_commit": true
+    },
+    {
+      "name": "knowledge-complete",
+      "repo": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/knowledge-complete.patch",
+      "patch_sha256": "0ba3c8d06cca667e508d10b5f3bb28d7dc78e84b30bfd0606920c400d1ff65c1",
+      "bytes": 228581,
+      "imported_tree": "9c03d5c1ec3e4236ec41bd3380ccb0d7e82b5f62",
+      "expected_tree": "9c03d5c1ec3e4236ec41bd3380ccb0d7e82b5f62",
+      "tree_equal": true,
+      "working_tree_equals_index": true,
+      "tracked_files": 386,
+      "base_HEAD_unchanged_no_commit": true
+    }
+  ],
+  "workspace_recheck": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "category": "source_worktree",
+      "before": {
+        "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+        "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+        "branch": "feature/kafka-real-e2e",
+        "refs_sha256": "308f528f73afe09ca08bf4401589087cb54b38bd0443d195bbc6603cdbfa95b0",
+        "Git_visible_changes_sha256": "0cdffa91c4e7effd1ea79db464a8d763b084a8bc240fe81f408941080e5d152f",
+        "clean": true,
+        "untracked_nonignored_count": 0
+      },
+      "after": {
+        "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+        "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+        "branch": "feature/kafka-real-e2e",
+        "refs_sha256": "308f528f73afe09ca08bf4401589087cb54b38bd0443d195bbc6603cdbfa95b0",
+        "Git_visible_changes_sha256": "0cdffa91c4e7effd1ea79db464a8d763b084a8bc240fe81f408941080e5d152f",
+        "clean": true,
+        "untracked_nonignored_count": 0
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "category": "source_worktree",
+      "before": {
+        "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+        "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+        "branch": "docs/kafka-real-e2e",
+        "refs_sha256": "9f3d19fa6a16ea7594049cd8d31abcb06112367f194172011b9d05fe39d5038e",
+        "Git_visible_changes_sha256": "0cdffa91c4e7effd1ea79db464a8d763b084a8bc240fe81f408941080e5d152f",
+        "clean": true,
+        "untracked_nonignored_count": 0
+      },
+      "after": {
+        "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+        "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+        "branch": "docs/kafka-real-e2e",
+        "refs_sha256": "9f3d19fa6a16ea7594049cd8d31abcb06112367f194172011b9d05fe39d5038e",
+        "Git_visible_changes_sha256": "0cdffa91c4e7effd1ea79db464a8d763b084a8bc240fe81f408941080e5d152f",
+        "clean": true,
+        "untracked_nonignored_count": 0
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka",
+      "category": "original_workspace",
+      "before": {
+        "path": "/Users/rjara/fuentes/rio-controlplane-kafka",
+        "head": "1595df01304a0f28e250bc294b3c4163a454c151",
+        "branch": "feature/rio-sunset-update-rio-controlplane-kafka",
+        "refs_sha256": "308f528f73afe09ca08bf4401589087cb54b38bd0443d195bbc6603cdbfa95b0",
+        "Git_visible_changes_sha256": "011ba8e80eeee98096bb2057256e8023399fb98ee29de9fe204e25522e03dd8d",
+        "clean": false,
+        "untracked_nonignored_count": 0
+      },
+      "after": {
+        "path": "/Users/rjara/fuentes/rio-controlplane-kafka",
+        "head": "1595df01304a0f28e250bc294b3c4163a454c151",
+        "branch": "feature/rio-sunset-update-rio-controlplane-kafka",
+        "refs_sha256": "308f528f73afe09ca08bf4401589087cb54b38bd0443d195bbc6603cdbfa95b0",
+        "Git_visible_changes_sha256": "011ba8e80eeee98096bb2057256e8023399fb98ee29de9fe204e25522e03dd8d",
+        "clean": false,
+        "untracked_nonignored_count": 0
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-playmaker",
+      "category": "original_workspace",
+      "before": {
+        "path": "/Users/rjara/fuentes/rio-playmaker",
+        "head": "1c2601f96d582fa5058b5f84c41395e10113d412",
+        "branch": "feature/sig-610-inactivate-component-run",
+        "refs_sha256": "1532e711c713c18e5a77928864c1a7f1714f39c62ac61974b954e449e2f765e8",
+        "Git_visible_changes_sha256": "1f07c4bb0b69635b1252cea6e33903119cb121a68ed3015b8036f5d0c18484a5",
+        "clean": false,
+        "untracked_nonignored_count": 1713
+      },
+      "after": {
+        "path": "/Users/rjara/fuentes/rio-playmaker",
+        "head": "1c2601f96d582fa5058b5f84c41395e10113d412",
+        "branch": "feature/sig-610-inactivate-component-run",
+        "refs_sha256": "1532e711c713c18e5a77928864c1a7f1714f39c62ac61974b954e449e2f765e8",
+        "Git_visible_changes_sha256": "1f07c4bb0b69635b1252cea6e33903119cb121a68ed3015b8036f5d0c18484a5",
+        "clean": false,
+        "untracked_nonignored_count": 1713
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-sdk-events",
+      "category": "original_workspace",
+      "before": {
+        "path": "/Users/rjara/fuentes/rio-sdk-events",
+        "head": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+        "branch": "master",
+        "refs_sha256": "797f29d147d512c34c031ab0b44a5b06cc12079e98199cf1c8ab6c37fdcc1c07",
+        "Git_visible_changes_sha256": "59839ab58ebd06335a1dcf4530269bb1970052e836b873045d1089f05208bb30",
+        "clean": false,
+        "untracked_nonignored_count": 194
+      },
+      "after": {
+        "path": "/Users/rjara/fuentes/rio-sdk-events",
+        "head": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+        "branch": "master",
+        "refs_sha256": "797f29d147d512c34c031ab0b44a5b06cc12079e98199cf1c8ab6c37fdcc1c07",
+        "Git_visible_changes_sha256": "59839ab58ebd06335a1dcf4530269bb1970052e836b873045d1089f05208bb30",
+        "clean": false,
+        "untracked_nonignored_count": 194
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library",
+      "category": "original_workspace",
+      "before": {
+        "path": "/Users/rjara/fuentes/ads-signals-knowledge-library",
+        "head": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+        "branch": "master",
+        "refs_sha256": "9f3d19fa6a16ea7594049cd8d31abcb06112367f194172011b9d05fe39d5038e",
+        "Git_visible_changes_sha256": "0cdffa91c4e7effd1ea79db464a8d763b084a8bc240fe81f408941080e5d152f",
+        "clean": true,
+        "untracked_nonignored_count": 0
+      },
+      "after": {
+        "path": "/Users/rjara/fuentes/ads-signals-knowledge-library",
+        "head": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+        "branch": "master",
+        "refs_sha256": "9f3d19fa6a16ea7594049cd8d31abcb06112367f194172011b9d05fe39d5038e",
+        "Git_visible_changes_sha256": "0cdffa91c4e7effd1ea79db464a8d763b084a8bc240fe81f408941080e5d152f",
+        "clean": true,
+        "untracked_nonignored_count": 0
+      },
+      "unchanged": true
+    }
+  ],
+  "clone_cleanup": [
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "absent": true,
+      "only_private_clone_deleted": true
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "absent": true,
+      "only_private_clone_deleted": true
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "absent": true,
+      "only_private_clone_deleted": true
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "absent": true,
+      "only_private_clone_deleted": true
+    }
+  ],
+  "clone_parent_absent": true,
+  "failures": [],
+  "commands": [
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "clone",
+        "--shared",
+        "--no-checkout",
+        "--",
+        "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta"
+      ],
+      "cwd": null,
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e94820091810d846fa7df487fc711b5fb5e57a53eea1574fc985818758c7c7b9"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "checkout",
+        "--detach",
+        "3bea4809a5372d5acca3d86a6181ed2c60137f22"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3d5b6c04fcc1e4ebd342dd2bf66c53e15d74f2abbaa1b7f8ddb52d0f5edc5866"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "85115fa87f78337ec5bae16a504177860793f079c050d925c20bc7120375d833",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "apply",
+        "--check",
+        "--index",
+        "--whitespace=nowarn",
+        "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/cp-delta.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "apply",
+        "--index",
+        "--whitespace=nowarn",
+        "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/cp-delta.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "fe8f140fc1cc4a4586fcf82acc300074dc8145d083f213851e7b6321a042332b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "rev-parse",
+        "5b038f52a8bf4c11deabb86143ff4d4decaefc60^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "fe8f140fc1cc4a4586fcf82acc300074dc8145d083f213851e7b6321a042332b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "diff",
+        "--exit-code",
+        "--no-ext-diff",
+        "--no-textconv"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "ls-files",
+        "-z"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-delta",
+      "exit": 0,
+      "stdout_sha256": "e9953dc2c5c92af3d4efb98ade1d8cd4140b6315874acf209ea88b94779a9a5e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "clone",
+        "--shared",
+        "--no-checkout",
+        "--",
+        "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete"
+      ],
+      "cwd": null,
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2f336bc00a405224087fc5265e10921aa54f8ff7f580cd5ef68a7b33f4babd19"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "checkout",
+        "--detach",
+        "4302481c69300074a85ea5eb051a27bbd505cdce"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "128f1b530d6afd849185509de6b0cd37c2eedeeef0c4004ddce412da5e46e933"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "faebf44f8edcaf5a9fcb248e31dc9bfe6dfbd1b031baf15186d1a51fbcc55baa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "apply",
+        "--check",
+        "--index",
+        "--whitespace=nowarn",
+        "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/cp-complete.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "apply",
+        "--index",
+        "--whitespace=nowarn",
+        "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/cp-complete.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "fe8f140fc1cc4a4586fcf82acc300074dc8145d083f213851e7b6321a042332b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "rev-parse",
+        "5b038f52a8bf4c11deabb86143ff4d4decaefc60^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "fe8f140fc1cc4a4586fcf82acc300074dc8145d083f213851e7b6321a042332b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "diff",
+        "--exit-code",
+        "--no-ext-diff",
+        "--no-textconv"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "ls-files",
+        "-z"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/cp-complete",
+      "exit": 0,
+      "stdout_sha256": "e9953dc2c5c92af3d4efb98ade1d8cd4140b6315874acf209ea88b94779a9a5e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "clone",
+        "--shared",
+        "--no-checkout",
+        "--",
+        "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta"
+      ],
+      "cwd": null,
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f45f8f0ff7dce5c87d726181b3a61edd232e6fdc298a77cb6931c4381416dbab"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "checkout",
+        "--detach",
+        "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "11f8b5d0af58a02a3200f36c38485e5a3ba767c354a43c2d89d72fbe627a653e"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "77b39eb7037cd186f8e36d0dd72d7329ec979cddbbd951c6618c1f6e0c05e3cc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "apply",
+        "--check",
+        "--index",
+        "--whitespace=nowarn",
+        "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/knowledge-delta.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "apply",
+        "--index",
+        "--whitespace=nowarn",
+        "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/knowledge-delta.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "aea657ae666dc0d3782d1715eb64519bed7d2c46d24ad0a35e71a9ee6633f9ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "rev-parse",
+        "0c3448a14f3d8f2318a1c34d964ab57561917a20^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "aea657ae666dc0d3782d1715eb64519bed7d2c46d24ad0a35e71a9ee6633f9ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "diff",
+        "--exit-code",
+        "--no-ext-diff",
+        "--no-textconv"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "ls-files",
+        "-z"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-delta",
+      "exit": 0,
+      "stdout_sha256": "21f14dd48c18115e52c10332a88fcaad17545e8d88f5fc8c87abf44b1ffb3c86",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "clone",
+        "--shared",
+        "--no-checkout",
+        "--",
+        "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete"
+      ],
+      "cwd": null,
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e25eac77f5349e99f7286434bcfbfddd4151675093a95e854a90206e0e5ea65c"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "checkout",
+        "--detach",
+        "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "11e45bcd71f47a5c3210e32f1005d03f9356068099dc87be9246c1c17e094aec"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "2ebfed4280f30b5063aeb68b2d34d65f05c65a65de920196bdf44e4580cb8fd8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "apply",
+        "--check",
+        "--index",
+        "--whitespace=nowarn",
+        "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/knowledge-complete.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "apply",
+        "--index",
+        "--whitespace=nowarn",
+        "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/knowledge-complete.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "aea657ae666dc0d3782d1715eb64519bed7d2c46d24ad0a35e71a9ee6633f9ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "rev-parse",
+        "0c3448a14f3d8f2318a1c34d964ab57561917a20^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "aea657ae666dc0d3782d1715eb64519bed7d2c46d24ad0a35e71a9ee6633f9ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "diff",
+        "--exit-code",
+        "--no-ext-diff",
+        "--no-textconv"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "filter.lfs.required=false",
+        "-c",
+        "filter.lfs.smudge=",
+        "-c",
+        "filter.lfs.process=",
+        "ls-files",
+        "-z"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-source-portability/private-clones/knowledge-complete",
+      "exit": 0,
+      "stdout_sha256": "21f14dd48c18115e52c10332a88fcaad17545e8d88f5fc8c87abf44b1ffb3c86",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limitations": [
+    "This replay checks patch bytes and imported Git trees, not semantics or business runtime.",
+    "No own authored control is independently certified by this tree-only replay; prior Fault review remains separate.",
+    "Original recheck covers HEAD/branch/all refs and tracked plus untracked nonignored Git-visible changes; ignored files not inspected.",
+    "No SDK/API/Docker/Gradle/harness/provider/CI execution; no new commits."
+  ],
+  "business": "NOT_EXECUTED",
+  "SDK_API_Docker_Gradle_commits": 0
+}

@@ -1,0 +1,251 @@
+{
+  "name": "kafka-cp",
+  "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+  "head": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+  "patch_sha256": "19b82a7826ef482df833feabc4f7abb9317b408ddccd1b8422bff8c40692873c",
+  "patch_bytes": 2564449,
+  "scope": "PATCH_PORTABILITY_ONLY_NO_BACKEND_CERTIFICATION",
+  "apply_check": "PASS",
+  "apply": "PASS",
+  "tree": "PASS",
+  "source_refs_before_sha256": "cf53eb7b78e5cf86ed59652abe84e10bd56ee5972ed45a4cba9839c08a8cb869",
+  "expected_head_tree": "d85fc20ccd0bb50c336281532d84c14fb437fb25",
+  "resulting_tree": "d85fc20ccd0bb50c336281532d84c14fb437fb25",
+  "original_refs_unchanged": "PASS",
+  "status": "PASS",
+  "own_clone_cleanup": "PASS",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.01,
+      "output_sha256": "85115fa87f78337ec5bae16a504177860793f079c050d925c20bc7120375d833",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/source-head-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "4302481c69300074a85ea5eb051a27bbd505cdce^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.013,
+      "output_sha256": "faebf44f8edcaf5a9fcb248e31dc9bfe6dfbd1b031baf15186d1a51fbcc55baa",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/source-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "3bea4809a5372d5acca3d86a6181ed2c60137f22^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.009,
+      "output_sha256": "85115fa87f78337ec5bae16a504177860793f079c050d925c20bc7120375d833",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/source-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.015,
+      "output_sha256": "f47d15c2b547463943bbf40dc92bd915532a250ed20ce4d3f00e738754cd0b76",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/source-refs-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "clone",
+        "--local",
+        "--no-hardlinks",
+        "--no-checkout",
+        "--quiet",
+        "--",
+        "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g",
+      "exit_status": 0,
+      "duration_seconds": 0.46,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/clone-local-isolated-objects.log"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/empty-hooks",
+        "checkout",
+        "--detach",
+        "4302481c69300074a85ea5eb051a27bbd505cdce"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.127,
+      "output_sha256": "128f1b530d6afd849185509de6b0cd37c2eedeeef0c4004ddce412da5e46e933",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/checkout-exact-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.022,
+      "output_sha256": "faebf44f8edcaf5a9fcb248e31dc9bfe6dfbd1b031baf15186d1a51fbcc55baa",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/clone-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "symbolic-ref",
+        "-q",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 1,
+      "duration_seconds": 0.027,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/detached-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.068,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/clone-clean-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "3bea4809a5372d5acca3d86a6181ed2c60137f22^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.027,
+      "output_sha256": "3cab0c80b912af5660ccdde9c8dc96ddbfba2a1ff7fd9d4570c3f8be033a7bfb",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "3bea4809a5372d5acca3d86a6181ed2c60137f22^{tree}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.031,
+      "output_sha256": "3cab0c80b912af5660ccdde9c8dc96ddbfba2a1ff7fd9d4570c3f8be033a7bfb",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/source-exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.038,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/apply-check.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--index",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.169,
+      "output_sha256": "863e2411ca392bc0a1a635d6997a50e66291c9779d26e85e5ea1c9a6c2a91a9b",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/apply-index-own-clone.log"
+    },
+    {
+      "command": [
+        "git",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.052,
+      "output_sha256": "3cab0c80b912af5660ccdde9c8dc96ddbfba2a1ff7fd9d4570c3f8be033a7bfb",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/applied-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.048,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/working-tree-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--exit-code",
+        "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp-cryls31g/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.022,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/index-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.026,
+      "output_sha256": "85115fa87f78337ec5bae16a504177860793f079c050d925c20bc7120375d833",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/source-head-after.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.03,
+      "output_sha256": "f47d15c2b547463943bbf40dc92bd915532a250ed20ce4d3f00e738754cd0b76",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/kafka-cp/source-refs-after.log"
+    }
+  ]
+}

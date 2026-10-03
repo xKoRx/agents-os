@@ -34,7 +34,7 @@ tags:
 
 - **Objetivo:** Revisar nuevamente [PR 291](https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/291) y aprobar sólo si no quedan problemas materiales.
 - **Alcance atribuible a esta combinación superficie×modelo:** Reconciliación de las respuestas del autor y del diff contra develop, ocho suites relevantes, probes sobre las clases compiladas y ClickHouse aislado, y contraste del contrato con el frontend canónico.
-- **Artefactos afectados:** Head `f4098ed4c18bf319f3742f763c40cc12ab6ccfa7`; merge-base `8ec7d97d9a4334e5b510d304420c089450edf516`. Código y GitHub sin modificaciones; análisis en copia temporal externa al vault.
+- **Artefactos afectados:** Head `f4098ed4c18bf319f3742f763c40cc12ab6ccfa7`; merge-base `8ec7d97d9a4334e5b510d304420c089450edf516`. Código sin modificaciones; análisis en copia temporal externa al vault. Tras autorización explícita del owner se publicó una respuesta con la reproducción en el hilo existente.
 
 ## Evidencia
 
@@ -49,5 +49,6 @@ tags:
 ## Resultado
 
 - **Outcome:** Revisión completada con una regresión material ya reportada en [el hilo existente](https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/291#discussion_r4159356984). No se aprobó el PR ni se duplicaron comentarios; la autorización era condicional a ausencia de problemas. Zord RIO y siete reviewers estándar completados y reconciliados.
+- **Publicación posterior autorizada:** Rodrigo solicitó dejar el comentario. El primer intento quedó bloqueado por el allowlist de IP de `melisource` (HTTP 403); tras su aviso se revalidaron head, diff e hilo. Se publicó el [comentario P2](https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/291#discussion_r4160128197) como respuesta al hilo `4159356984`, con cuenta `rjara_meli` y head sin cambios. Lectura remota confirmó texto, autor, commit y vínculo. Se aclaró que el impacto sobre almacenamiento e I/O es posible y no medido en tablas reales; los valores de la reproducción permanecieron intactos.
 - **Rework posterior:** Desconocido.
 - **Aprendizaje para comparar herramientas:** Los tests que esperan remoción por omisión validan el comportamiento interno, pero no protegen compatibilidad de los productores existentes; el round-trip de metadata requiere conservar la intención del usuario.

@@ -1,0 +1,490 @@
+{
+  "utc": "2026-10-02T07:14:22.159999+00:00",
+  "status": "PASS_STRUCTURE_HISTORY_DIFF_AND_EXACT_PREEXISTING_FORMAL_FAILURE_COMPARISON",
+  "findings": [],
+  "HEAD": "a207c95478f38246b3209ab29da58d0c72941bbe",
+  "root_final_plan_sha256": "174878581d97a6f7f6b3a6a97c9e0d409e215183568b2903e8438726ba64822a",
+  "root_apply_peer_sha256": "5ba233907d6a665e09b3a6dad230fe0893dbb67e006ef4b383cdf6031a21932b",
+  "four_applied_KL_after_hashes": [
+    {
+      "path": "docs/08-governance/kafka-canonical-audit-2026-10-01.md",
+      "after_sha256": "07b5c9e704d217a3ce63e61867fbd7acbe153071f68f720cef3a0839f454bae9"
+    },
+    {
+      "path": "docs/04-troubleshooting/kafka-real-e2e.md",
+      "after_sha256": "7f74eaa78ad57412d59404a887dfb1c90e066c1bd4b495e64a8d4030d94ec622"
+    },
+    {
+      "path": "docs/08-governance/source-manifest.md",
+      "after_sha256": "94c58eabe6a938be6ec8956d7e39fc09a11740bb895f6b39a3f6bfcdd77b401d"
+    },
+    {
+      "path": "docs/09-feature-catalog/coverage-ledger.md",
+      "after_sha256": "b152f6e4418bea7ee95a3d0c87f70d3d75996dd183ddd07e1bcad164b548f139"
+    }
+  ],
+  "working_markdown_files": 17,
+  "other13_previous_peer_hashes": "UNCHANGED",
+  "active_paths": [
+    {
+      "path": "README.md",
+      "sha256": "4300cb99363c3c5e4679d0610d73bd4cff70301b82aa2f3aab45762b897a8557",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/02-flows/pipeline-deployment.md",
+      "sha256": "d1d4a87f06fe0ba3951d8fd04e0e2cdf2880199c393fadc7b9a732811dfe0f93",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/03-services/rio-controlplane-kafka.md",
+      "sha256": "33fd98ea2ef37fbfed3d67766778f5306edb00964f7a65d5fdedcc4a7a7fdac3",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/03-services/rio-playmaker.md",
+      "sha256": "a13510071f4c6388fd64819f8f84abbaffaa92b948289055eab6d9b222cb3afc",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/04-troubleshooting/kafka-real-e2e.md",
+      "sha256": "7f74eaa78ad57412d59404a887dfb1c90e066c1bd4b495e64a8d4030d94ec622",
+      "phase": "ROOT_FINAL_KL_DOC_DELTA"
+    },
+    {
+      "path": "docs/04-troubleshooting/kafka.md",
+      "sha256": "11016658f78d039564f1b6f22ea904ad2298dec09be39148bbe21b339df4d665",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/05-contracts/component-routing.md",
+      "sha256": "d12d53cd517387de8f2cafc0ef8441219f27fb73a02254e9d3584a1df0adc68a",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/05-contracts/messages-and-delivery.md",
+      "sha256": "ccbe4bcd42ae38eafbaea1177911f221baccd9dce0c02d5d8711a12f3af793dc",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/05-contracts/upstream-downstream-ledger.md",
+      "sha256": "e3c959994d3d4fdb412eca0c8a2fbbd0278aad17b54aa0f33328653d1cb9f954",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/06-skills/context-packs.md",
+      "sha256": "590fe3e328fe5eb7c9d8874cbfea08e89123c56f5a49c4c10c00fc8411c427bc",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/08-governance/README.md",
+      "sha256": "8555804e6d86699e110fbdc689c2d4f5803fb84d0c74041893912321f59b2929",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/08-governance/kafka-canonical-audit-2026-10-01.md",
+      "sha256": "07b5c9e704d217a3ce63e61867fbd7acbe153071f68f720cef3a0839f454bae9",
+      "phase": "ROOT_FINAL_KL_DOC_DELTA"
+    },
+    {
+      "path": "docs/08-governance/source-manifest.md",
+      "sha256": "94c58eabe6a938be6ec8956d7e39fc09a11740bb895f6b39a3f6bfcdd77b401d",
+      "phase": "ROOT_FINAL_KL_DOC_DELTA"
+    },
+    {
+      "path": "docs/09-feature-catalog/README.md",
+      "sha256": "9015a5bc0a8998f0aee83c85962372401441dd445d4ccf2adc78dbba81a7c786",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/09-feature-catalog/coverage-ledger.md",
+      "sha256": "b152f6e4418bea7ee95a3d0c87f70d3d75996dd183ddd07e1bcad164b548f139",
+      "phase": "ROOT_FINAL_KL_DOC_DELTA"
+    },
+    {
+      "path": "docs/09-feature-catalog/rio-controlplane-kafka.md",
+      "sha256": "58098c4d045222d97d93bf595c37e391f1dea3d5b03c8eb39543fee0009f3cdc",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    },
+    {
+      "path": "docs/09-feature-catalog/rio-playmaker.md",
+      "sha256": "8e6cd17cf7babc94e489d1bc6cf7e776075bf4ec3a0e5f1f23fe49a9069c4ed7",
+      "phase": "UNCHANGED_PREVIOUS_PEER"
+    }
+  ],
+  "validator_pins": [
+    {
+      "path": "scripts/validate_library.rb",
+      "sha256": "8eb6162fdc3771bf79262c07a7c84030d64015de8a49fd6551717cb06607d2d9",
+      "baseline_sha256": "8eb6162fdc3771bf79262c07a7c84030d64015de8a49fd6551717cb06607d2d9"
+    },
+    {
+      "path": "scripts/test_historical_snapshot_anchor_validation.rb",
+      "sha256": "8b5e54b812f370bb0a64841869294d00a9364ddfda4109882f10aa846e2f7557",
+      "baseline_sha256": "8b5e54b812f370bb0a64841869294d00a9364ddfda4109882f10aa846e2f7557"
+    },
+    {
+      "path": "scripts/render_frozen_link_views.rb",
+      "sha256": "fa7b7fa1b9c1c77cf2f9c785ed517ddc762388c6a8185a03ab93df3ba5e6d0c6",
+      "baseline_sha256": "fa7b7fa1b9c1c77cf2f9c785ed517ddc762388c6a8185a03ab93df3ba5e6d0c6"
+    },
+    {
+      "path": "scripts/evaluation_response_contract.rb",
+      "sha256": "b107d4ace963c9d7f82c18c514dd03426ef42ab0f2aad26b433b78c17b9aba5e",
+      "baseline_sha256": "b107d4ace963c9d7f82c18c514dd03426ef42ab0f2aad26b433b78c17b9aba5e"
+    }
+  ],
+  "fresh_baseline_blob_checks": 386,
+  "execution": [
+    {
+      "case": "structural",
+      "command": [
+        "ruby",
+        "scripts/validate_library.rb"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 5.236,
+      "sha256": "8207aba1b925aa5c7401f5e8851d2eaede366296bf7b9fe6e1f0da63ffe3708a",
+      "last_line": "LIBRARY_VALIDATION_PASS mode=STRUCTURAL_ONLY feature_ids=691 unique=691 markdown=194 source_anchors=0 archived_link_defects=40 projected_repairs=40 archived_link_defects_bac9127=28 projected_repairs_bac9127=28",
+      "scope": "ACTUAL_LOCAL_KL_VALIDATOR_ONLY_NO_BACKEND"
+    },
+    {
+      "case": "historical",
+      "command": [
+        "ruby",
+        "scripts/test_historical_snapshot_anchor_validation.rb"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 20.615,
+      "sha256": "917b9a78e7d9bcc16f4e166af6ba8b8a99e5b10b98460e0aff03505b0642d4c3",
+      "last_line": "HISTORICAL_SNAPSHOT_ANCHOR_VALIDATION_TEST_PASS",
+      "scope": "ACTUAL_LOCAL_KL_VALIDATOR_ONLY_NO_BACKEND"
+    },
+    {
+      "case": "diffcheck",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.042,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "last_line": "(empty)",
+      "scope": "ACTUAL_LOCAL_KL_VALIDATOR_ONLY_NO_BACKEND"
+    },
+    {
+      "case": "formal-active",
+      "command": [
+        "ruby",
+        "scripts/validate_library.rb",
+        "--formal",
+        "--sources-root",
+        "/Users/rjara/fuentes"
+      ],
+      "cwd": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "exit_status": 1,
+      "duration_seconds": 19.862,
+      "sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5",
+      "last_line": "LIBRARY_VALIDATION_FAIL errors=937",
+      "scope": "ACTUAL_LOCAL_KL_VALIDATOR_ONLY_NO_BACKEND"
+    },
+    {
+      "case": "formal-baseline",
+      "command": [
+        "ruby",
+        "scripts/validate_library.rb",
+        "--formal",
+        "--sources-root",
+        "/Users/rjara/fuentes"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/kl-final-integrated-fault-v3/baseline",
+      "exit_status": 1,
+      "duration_seconds": 16.661,
+      "sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5",
+      "last_line": "LIBRARY_VALIDATION_FAIL errors=937",
+      "scope": "ACTUAL_LOCAL_KL_VALIDATOR_ONLY_NO_BACKEND"
+    }
+  ],
+  "formal": {
+    "status": "FAIL",
+    "exit_status": 1,
+    "errors": 937,
+    "baseline_commit": "a207c95478f38246b3209ab29da58d0c72941bbe",
+    "active_sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5",
+    "baseline_sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5",
+    "byte_identical": true,
+    "introduced": 0,
+    "removed": 0,
+    "formal_approval": false
+  },
+  "applied_metadata": {
+    "active_evidence_copies": 43,
+    "active_evidence_pins": [
+      {
+        "name": "cp-root-v3-unit-main-jar.json",
+        "sha256": "334b5803e23707f51eaf5715392e8efa9d8f369d99d56b4c16f20a99143bb25f"
+      },
+      {
+        "name": "pm-root-v3-full-unit.json",
+        "sha256": "bab534f5f80a4c9f53e3f764f0e8f93de907fc60de8f30e3d251481a6d0b0e38"
+      },
+      {
+        "name": "root-v4-first-compile-failure.json",
+        "sha256": "311ee654f7dec4839a262ba922e3514b8f2e6c467d902233245379c2b350aa30"
+      },
+      {
+        "name": "root-v4-1-three-family-compile.json",
+        "sha256": "bfe7c4b3f6ffd2e11ee9c192271d0ef3c04f4ce56be5148e4d0c76ed9e1a0e26"
+      },
+      {
+        "name": "root-v4-1-source-freeze.json",
+        "sha256": "2be8b9deead072c1d8b8373ed8e4b7052b5073deb263d0965a12c2dbdafd2944"
+      },
+      {
+        "name": "root-v4-1-metadata-controls.json",
+        "sha256": "54a3628e7a3b8ca7760c10ceae908a762387a5a6733ab3d45b11e86801efef9b"
+      },
+      {
+        "name": "root-v4-1-task-negative-controls.json",
+        "sha256": "9d3847123b53d5aa27cf5b87d192e8ed7734908b6aedee8cc6ed0563e3f9b645"
+      },
+      {
+        "name": "root-v4-1-private-control-driver-first-failure.json",
+        "sha256": "c61f095cda786913eb940f36c9192fbeaa14dcbeb114cc57dbc8c2d16768c584"
+      },
+      {
+        "name": "root-v4-actual-gradle-control.json",
+        "sha256": "9381130375a6dc86d8584c25e6a73547c09b06c90eeea5810d55e85ca3150b24"
+      },
+      {
+        "name": "root-v4-seven-false-accepts.json",
+        "sha256": "db79619b7821fe875b6a1fe9f292a51abd85e60bede9f9793fb6190e0bef4937"
+      },
+      {
+        "name": "root-v4-peer-review.json",
+        "sha256": "418e31a66d8b8e18247d3d4e56dc7aad35d86f0473f8399716559ced85f4d5b6"
+      },
+      {
+        "name": "root-v4-1-pm-neutral-control.json",
+        "sha256": "2e422cd07cf3684752283ed69ef188658f4739a332c7fc44f044f558c1a6bde1"
+      },
+      {
+        "name": "root-v4-1-pm-private-pack-failure.json",
+        "sha256": "6ed91e5fd8cfdc3d9e891f60b47f9c1957f48b5ad9adf6c051fbffe15aae862b"
+      },
+      {
+        "name": "root-v4-1-pm-sandbox-denial.json",
+        "sha256": "ac215d19042f359429d0984270f303e26addb3b0fb6a9c023361f730c66ba879"
+      },
+      {
+        "name": "root-v4-worker-peer.json",
+        "sha256": "40bbc628b8d7a2cb9f592e7aa7a2a45e0be7737221b67e14420939b3635cf477"
+      },
+      {
+        "name": "cp-owner-peer.json",
+        "sha256": "060367c3d28b0a407beea866ceb28bd76dd320bfe73a5276ac21b5dded9f2903"
+      },
+      {
+        "name": "t24r-pipeline-peer.json",
+        "sha256": "301a1d0e6d908f0cf34d9614efcdfcfc2ca205ffb40eb356d019a48edeb4eb71"
+      },
+      {
+        "name": "t24-first-physical-params-peer.json",
+        "sha256": "fcfa70db891679b66f6052c42ce80dc35092877fef095b3f60cd266e8214c057"
+      },
+      {
+        "name": "t24-p2-guards-peer.json",
+        "sha256": "c9819dd8a29f50804bc6e471058b1a3da2e47270d77c7777123b60c7ce3e62fb"
+      },
+      {
+        "name": "t26-journals-peer.json",
+        "sha256": "9f1efb807fba06769f73197832ca5df301cf23c1e04e713e4c865277ba28ebae"
+      },
+      {
+        "name": "ci-four-family-peer.json",
+        "sha256": "a4b5446dfaada1e005a27100dc015be7124daa8acd31254e3f6a83d33bef22ba"
+      },
+      {
+        "name": "kl-stop-reap-delta-validator-peer.json",
+        "sha256": "9e82589d52fc6727b2c883b26546aaebeb22917db385bf66662df838754df5e8"
+      },
+      {
+        "name": "root-readme-delta-peer.json",
+        "sha256": "87ac698da6b174bd454c0018259b3785a6e2a865be12a278b3cd05824b47fc33"
+      },
+      {
+        "name": "root-readme-safe-apply.json",
+        "sha256": "373f8e831b5246659bf3aebf52c272d7ebd6fb14eba6ae9c78be886372d74141"
+      },
+      {
+        "name": "t24-matrix-final-source-freeze.json",
+        "sha256": "3dd13725d834abbec5876598e3584ff08ebe517d5aff0d5015347bfe2d07bf33"
+      },
+      {
+        "name": "t24-matrix-final-source-validation.json",
+        "sha256": "48c441c8831ef6049541d310a56013e9994b934f3b00e4f37067fd5a87053c9c"
+      },
+      {
+        "name": "t24-matrix-final-source-manifest.json",
+        "sha256": "cf4762b193c12abccefbf94142cd46c101f20b8707d8ea0841d67b98cbddb3ce"
+      },
+      {
+        "name": "root-v4-1-core-peer.json",
+        "sha256": "f7c6c8068a55b6ebc42bb82cce421ddd165fc2d853cb082ae18fce6bad1fec01"
+      },
+      {
+        "name": "root-v4-1-worker-owner-type-red.json",
+        "sha256": "d0082c04e0a9b08d7c8bcdff3d9986f5ecde202524c27a910ca2cb356c249c7d"
+      },
+      {
+        "name": "root-v4-1-r2-owner-type-red-green.json",
+        "sha256": "9d31960fd9fb6e4780f019d48c02845dff8f69fbc1d94642bea8cd18899c409a"
+      },
+      {
+        "name": "root-v4-1-r2-readiness-assertions.json",
+        "sha256": "bc7f96e3e46a3351cb521c44b20d221d32f0184d854d04bad42b2d1cf954bba9"
+      },
+      {
+        "name": "t24-matrix-preparation-peer.json",
+        "sha256": "b5360b1d397aa7f693a2b188a258ad4070fb87ff2b542bcea8348004bde954a2"
+      },
+      {
+        "name": "t24-matrix-safe-apply.json",
+        "sha256": "fdabd12317bd745f78876c7c19defa09435ab35f40acdd13e2a7abd8cbb225f3"
+      },
+      {
+        "name": "t24-matrix-final-mapping-audit.json",
+        "sha256": "e8fa924e14d1fd9e16b35f8abb704916bc93306b90a376107a9c43fd61227000"
+      },
+      {
+        "name": "final-owned-docker-inventory-2026-10-02.json",
+        "sha256": "54fc2070522f510fdc556321553c581dba442c64815073c90fb0b6e042c10a2a"
+      },
+      {
+        "name": "root-v4-1-r2-peer.json",
+        "sha256": "dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d"
+      },
+      {
+        "name": "root-v4-1-r2-author-result.json",
+        "sha256": "a9318b28453b0cf6bfd12e3f903bbe7748c601ff7e20321fa6be467419d2c005"
+      },
+      {
+        "name": "root-v4-1-r2-safe-apply.json",
+        "sha256": "067878e45e1d8d304a443781d045545430bf1c5ac5baafbcaf47bb2bf5144de4"
+      },
+      {
+        "name": "root-final-source-freeze.json",
+        "sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1"
+      },
+      {
+        "name": "root-final-matrix-portable-peer.json",
+        "sha256": "c3cfc7aefd83ccf1410c8fcd466652ef55ead5f960c5c85e9338309a46d80668"
+      },
+      {
+        "name": "root-driver-first-independent-failure.json",
+        "sha256": "4c2999d40f41b61a17d1217775aabd70a9a283c185b7dbfb53ab6b5a1b123a3d"
+      },
+      {
+        "name": "root-driver-second-independent-failure.json",
+        "sha256": "93615f6b3694f812530250ea6a01f8ab53862e40fbe35ae7e7bba911cab7014f"
+      },
+      {
+        "name": "root-final-docs-first-peer.json",
+        "sha256": "e9c1e783cea0257c80cc7c3a91861627ad45df6e680806f0f3da43db3ebc2105"
+      }
+    ],
+    "evidence_stage_manifest_sha256": "237eff869bb831b092f7aa0d9efa9a6e17da75f5de35c03b2f80b01202264aa7",
+    "ledger_active_sha256": "17cf815090671d67d5bdbba136e6c231da94f63face6d5ea204dfa0302aa8f69",
+    "ledger_records": 95,
+    "matrix_active_sha256": "2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e",
+    "matrix_ids": 351,
+    "matrix_columns": 22,
+    "matrix_coverage": {
+      "FULL": 304,
+      "PARTIAL": 29,
+      "NONE": 18
+    },
+    "all_matrix_statuses": "NOT_EXECUTED",
+    "scope": "READONLY_APPLIED_DOCUMENT_RECEIPT_HASH_BINDINGS_ONLY_NO_REPLAY_OF_BUSINESS"
+  },
+  "hash_drift": 0,
+  "private_runtime_temp_absent": true,
+  "private_runtime_cleanup": {
+    "cache_files": [
+      {
+        "path": "runtime-temp/formal-active/xcrun_db",
+        "sha256": "79f5edad1c403326bcd8ac932ac7902bbc1ac2a5c114eae07ad1d40b3f244e64",
+        "mode": "0600",
+        "owner_uid_match": true,
+        "kind": "ACTUAL_LOCAL_XCRUN_CACHE_ONLY"
+      },
+      {
+        "path": "runtime-temp/formal-baseline/xcrun_db",
+        "sha256": "79f5edad1c403326bcd8ac932ac7902bbc1ac2a5c114eae07ad1d40b3f244e64",
+        "mode": "0600",
+        "owner_uid_match": true,
+        "kind": "ACTUAL_LOCAL_XCRUN_CACHE_ONLY"
+      },
+      {
+        "path": "runtime-temp/historical/xcrun_db",
+        "sha256": "79f5edad1c403326bcd8ac932ac7902bbc1ac2a5c114eae07ad1d40b3f244e64",
+        "mode": "0600",
+        "owner_uid_match": true,
+        "kind": "ACTUAL_LOCAL_XCRUN_CACHE_ONLY"
+      },
+      {
+        "path": "runtime-temp/formal-baseline-archive-no-git/xcrun_db",
+        "sha256": "79f5edad1c403326bcd8ac932ac7902bbc1ac2a5c114eae07ad1d40b3f244e64",
+        "mode": "0600",
+        "owner_uid_match": true,
+        "kind": "ACTUAL_LOCAL_XCRUN_CACHE_ONLY"
+      },
+      {
+        "path": "runtime-temp/structural/xcrun_db",
+        "sha256": "79f5edad1c403326bcd8ac932ac7902bbc1ac2a5c114eae07ad1d40b3f244e64",
+        "mode": "0600",
+        "owner_uid_match": true,
+        "kind": "ACTUAL_LOCAL_XCRUN_CACHE_ONLY"
+      }
+    ],
+    "deletion_scope": "Exact own0600 regular single-link xcrun_db only, then verified empty own0700 dirs. Private baseline/logs/receipts retained as evidence."
+  },
+  "preserved_attempts": [
+    {
+      "path": "formal-baseline-archive-no-git.json",
+      "status": "INVALID_BASELINE_COMPARISON_SOURCE_NO_GIT_HISTORY",
+      "actual_exit_status": 1,
+      "actual_errors": 1357,
+      "source_regression_claim": false,
+      "log_sha256": "05c4019a07e0cb023d1b42ce6980fd01f013ffd9ebfaf01d8c96257ac82643a7"
+    },
+    {
+      "path": "baseline-retry-private-temp-collision.json",
+      "status": "PRIVATE_DRIVER_PREEXEC_FAILURE",
+      "validator_started": false
+    }
+  ],
+  "baseline_context_correction": {
+    "first_attempt": "PRESERVED_ARCHIVE_WITHOUT_GIT_CONTEXT_INVALID_BASELINE_COMPARISON",
+    "first_exit_status": 1,
+    "first_errors": 1357,
+    "root_cause": "Fresh git archive had no .git object history; actual validator uses git cat-file/show for frozen snapshot commitments. No active KL regression is inferred.",
+    "correction": "Added private git metadata with read-only alternates to existing local immutable source objects, exact HEAD/index a207. Private worktree git status clean. All386 archive blobs previously verified. No author repository writes and no network.",
+    "first_log_sha256": "05c4019a07e0cb023d1b42ce6980fd01f013ffd9ebfaf01d8c96257ac82643a7",
+    "source_objects": "/Users/rjara/fuentes/ads-signals-knowledge-library/.git/objects"
+  },
+  "scope": {
+    "author_repo_writes": 0,
+    "docs_or_code_edits": 0,
+    "Gradle_runs": 0,
+    "network_or_API_calls": 0,
+    "services": 0,
+    "business": "NOT_EXECUTED",
+    "SDK_or_business_source_certification": false,
+    "library_validators": "ACTUAL_LOCAL_EXECUTION"
+  }
+}

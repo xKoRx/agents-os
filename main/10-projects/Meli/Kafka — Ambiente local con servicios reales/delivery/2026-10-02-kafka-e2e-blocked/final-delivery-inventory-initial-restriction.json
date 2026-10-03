@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-02T07:54:42.343053+00:00",
+  "scope": "OWN_DOCKER_READ_ONLY_INVENTORY",
+  "context": "colima-rio-kafka-e2e-01a0f8e0",
+  "result": "SANDBOX_DOCKER_SOCKET_PERMISSION_DENIED",
+  "business": "NOT_EXECUTED",
+  "retry": "READ_ONLY_ESCALATED_TOOL_POLICY_REVIEW"
+}

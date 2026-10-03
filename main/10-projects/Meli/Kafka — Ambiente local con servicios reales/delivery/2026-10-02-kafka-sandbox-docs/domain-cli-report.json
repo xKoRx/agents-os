@@ -1,0 +1,124 @@
+{
+  "outcome": "INSTALLED_CLIENT_CONTRACT_CONFIRMED_SERVER_BETA_ELIGIBILITY_UNRESOLVED",
+  "scope": "CP only; installed CLI package and distribution metadata; no official remote documentation fetched by this agent",
+  "utc": "2026-10-02T20:56:30.167487+00:00",
+  "package": {
+    "name": "cli_sandbox",
+    "version": "1.2.16",
+    "Fury_dependency": ">=5.3.0,<7.0",
+    "wheel": "py3-none-any; poetry-core1.9.1",
+    "entry_point": "sandbox=cli_sandbox.main:sandbox"
+  },
+  "conclusions": [
+    {
+      "id": "SDK-CLONE-SHAPE",
+      "statement": "The installed clone command takes exactly BC and service-name arguments, no options. It posts {\"name\":alias} to application/{app}/bc/{bc}/services. The coordinator request matches this client contract.",
+      "source_lines": [
+        "commands/bc.py:60",
+        "commands_logic/bc_cmd_logic.py:57",
+        "services/bc_service.py:48"
+      ]
+    },
+    {
+      "id": "NO-CLIENT-BETA-FLAG",
+      "statement": "No beta/preview/availability/feature flag or permission allowlist is declared in the 24 shipped Python sources. This establishes only client absence, not server feature availability.",
+      "source": "package-corpus.json"
+    },
+    {
+      "id": "TEST-SOURCE-POLICY-UNKNOWN",
+      "statement": "cli_sandbox does not read or validate test_container and contains no shipped rule allowing or prohibiting cloning a test source KVS. The observed approved/test=true inventory entry does not resolve Sandbox eligibility.",
+      "source": "package-corpus.json"
+    },
+    {
+      "id": "CUSTOM-SOURCE-NOT-A-CLONE-OPTION",
+      "statement": "Service name is an arbitrary CLI string passed as name; no source-service/custom-source flag exists. BC creation can pass a YAML template with from_template=true, but that belongs to BC creation, not a documented required clone switch or supported workaround for 403.",
+      "source": "commands_logic/bc_cmd_logic.py:12–25/57–60"
+    },
+    {
+      "id": "HTTP403-CAUSE-UNKNOWN",
+      "statement": "The installed wrapper exposes status/message/error without a typed cause taxonomy for eligibility versus authorization. No policy or cure for the actual 403 can be inferred from this package alone.",
+      "source": "rest/sandboxsapi.py:15–44"
+    }
+  ],
+  "included_release_docs": {
+    "bundled_package_docs": [],
+    "METADATA_homepage_or_project_url": null,
+    "direct_url_json": false,
+    "distribution_lists_README": true,
+    "README_attribution": "SHARED_FILE_HASH_DOES_NOT_MATCH_SANDBOX_RECORD; not read or used as Sandbox policy",
+    "README_path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/README.md",
+    "record_sha256_base64url": "FwcYxk3XF7Z-FFHekimaLKxhg_cOjy6AwPyVfAblTJY",
+    "actual_sha256": "af61e3c560ee4fe0866ae95e0826db60f296399fa31aa64fa52aa833419be226",
+    "actual_content_not_used": true,
+    "no_release_notes_or_changelog_in_RECORD": true
+  },
+  "official_urls_emitted_by_package": [
+    "https://furydocs.io/sandbox-services-docs/guide",
+    "https://furydocs.io/sandbox-services-docs/guide/#/operations/bounded_context_services"
+  ],
+  "official_remote_docs_owner": "Coordinator and Infra; not duplicated by this installed-only lookup",
+  "primary_sources": [
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox-1.2.16.dist-info/METADATA",
+      "sha256": "11903e243504b7ff425f72e4ddad359ee948d852fe962ee1e9d22809c1bfa927",
+      "line_start": 2,
+      "line_end": 3
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox-1.2.16.dist-info/METADATA",
+      "sha256": "11903e243504b7ff425f72e4ddad359ee948d852fe962ee1e9d22809c1bfa927",
+      "line_start": 20,
+      "line_end": 20
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/commands/bc.py",
+      "sha256": "e9ee957d709554ca54f3673d9891b5ced927f2f7d932e5e1090bdf5c3902202e",
+      "line_start": 60,
+      "line_end": 64
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/commands_logic/bc_cmd_logic.py",
+      "sha256": "b3adb76703cb7547fb7f97df3a715dc0c63dbf5495061d8a904206c0d65ffca7",
+      "line_start": 57,
+      "line_end": 60
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/services/bc_service.py",
+      "sha256": "6d5652596c0278f6117a3238e79b368fd5924b2ce67b109b8dd4604483659509",
+      "line_start": 48,
+      "line_end": 53
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/commands_logic/bc_cmd_logic.py",
+      "sha256": "b3adb76703cb7547fb7f97df3a715dc0c63dbf5495061d8a904206c0d65ffca7",
+      "line_start": 12,
+      "line_end": 25
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/main.py",
+      "sha256": "d1fade47d5c42bc6bbf7e8226962964d864f79ecc0595f10208210bbdc60a8fa",
+      "line_start": 6,
+      "line_end": 6
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/commands_logic/services_cmd.py",
+      "sha256": "d3bb8cef437b96690b70bcdf849743e50f89c54b156e9b4bd6faf29e6141a93b",
+      "line_start": 9,
+      "line_end": 9
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/rest/sandboxsapi.py",
+      "sha256": "4e53c6f2d7e6a13c04619dfe69782c363d4197f51db192af3b0a5e0c2fa34f5d",
+      "line_start": 15,
+      "line_end": 44
+    }
+  ],
+  "corpus_sha256": "5c3d5fb8c0548be6fc1c2675c8dbff2ee28179e82341fa9d118ef431ad8dd062",
+  "recommended_next_evidence": "Official Sandbox server docs or a service-owner eligibility/availability contract that explicitly covers test sources and the current clone endpoint; keep actual 403 cause unresolved until obtained. Do not invent flags, alter clone body, or create a source service from this absence.",
+  "network_calls": 0,
+  "SDK_runtime_calls": 0,
+  "API_mutations": 0,
+  "repository_edits": 0,
+  "private_receipts_only": true,
+  "business": "NOT_EXECUTED"
+}

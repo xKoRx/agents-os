@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-02T15:31:37.712085+00:00",
+  "scope": "READ_ONLY_FURY_AUTH_EXPIRY_GUARD",
+  "result": "SANDBOX_FURY_LOGIN_REQUIRED",
+  "network_calls": 0,
+  "credential_values_exposed": 0,
+  "login_or_renew": false,
+  "business": "NOT_EXECUTED"
+}

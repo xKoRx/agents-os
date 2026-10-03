@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-02T06:17:40.172656+00:00",
+  "result": "PASS_COMPILE_ONLY",
+  "command": "./gradlew --offline compileRealIntegrationTestJava compileE2eTestJava compileManagedIntegrationTestJava bootJar",
+  "exit_status": 0,
+  "log": "/private/tmp/kafka-e2e-discovery/root-v4-1-stable-three-family-compile.log",
+  "log_sha256": "5b7f02dd7923f8b208416f115eae72e97d1a9ec4389a4deb658fe875ee0d35aa",
+  "families": {
+    "realIntegrationTest": {
+      "class_count": 48
+    },
+    "e2eTest": {
+      "class_count": 42
+    },
+    "managedIntegrationTest": {
+      "class_count": 16
+    }
+  },
+  "business": "NOT_EXECUTED",
+  "initial_failure": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-compiler-delta/first-compile-failure.json"
+}

@@ -1,0 +1,6 @@
+{
+  "kind": "CONTROL_GIT_NO_INDEX_EXIT_ADAPTATION_ONLY",
+  "first_assertion": "expected0; actual1 empty stdout/stderr because no-index implies exit-code for differences",
+  "business": "NOT_EXECUTED",
+  "published_controls": 11
+}

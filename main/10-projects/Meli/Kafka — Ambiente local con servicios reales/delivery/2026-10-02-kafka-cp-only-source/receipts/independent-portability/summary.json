@@ -1,0 +1,58 @@
+{
+  "status": "PASS_4_EXACT_SOURCE_TREE_IMPORTS",
+  "scope": "SOURCE_TREE_PORTABILITY_ONLY_NO_BUSINESS_CERTIFICATION",
+  "receipt_sha256": "4d6171a221a3eeef25f730b3f36ab13b059e9983d2f68695db0ba66a5cfc86a2",
+  "index_sha256": "b652ce4980f4af0efd1acd4722ebf13adcf60cb313e094b30573519a42e25d37",
+  "cases": [
+    {
+      "name": "cp-delta",
+      "base": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+      "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+      "patch_sha256": "0c30756fd02e9ee01066d0d2f295501dc87754e9cc6ee6ea6853dfc7f3c0907c",
+      "imported_tree": "f162b837f5078a6ce32d8ea8deb17e8c58fc5352",
+      "expected_tree": "f162b837f5078a6ce32d8ea8deb17e8c58fc5352",
+      "tree_equal": true
+    },
+    {
+      "name": "cp-complete",
+      "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+      "patch_sha256": "8f98bf2ccf9605dc6f5197956adaf36b1006cad7a6f0b07e1f3c47c8dfe4eb25",
+      "imported_tree": "f162b837f5078a6ce32d8ea8deb17e8c58fc5352",
+      "expected_tree": "f162b837f5078a6ce32d8ea8deb17e8c58fc5352",
+      "tree_equal": true
+    },
+    {
+      "name": "knowledge-delta",
+      "base": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+      "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+      "patch_sha256": "6c4a1f8b55f99ac1d96d72c583076951a0cb6daac747a0e365b397f087c0ab91",
+      "imported_tree": "9c03d5c1ec3e4236ec41bd3380ccb0d7e82b5f62",
+      "expected_tree": "9c03d5c1ec3e4236ec41bd3380ccb0d7e82b5f62",
+      "tree_equal": true
+    },
+    {
+      "name": "knowledge-complete",
+      "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+      "patch_sha256": "0ba3c8d06cca667e508d10b5f3bb28d7dc78e84b30bfd0606920c400d1ff65c1",
+      "imported_tree": "9c03d5c1ec3e4236ec41bd3380ccb0d7e82b5f62",
+      "expected_tree": "9c03d5c1ec3e4236ec41bd3380ccb0d7e82b5f62",
+      "tree_equal": true
+    }
+  ],
+  "unchanged_source_worktrees": 2,
+  "unchanged_original_workspaces": 4,
+  "HEAD_refs_Git_visible_changes_drift": 0,
+  "private_clones_deleted": 4,
+  "clone_parent_absent": true,
+  "frozen_patch_hashes_rechecked": 4,
+  "business": "NOT_EXECUTED",
+  "SDK_API_Docker_Gradle_harness_commits": 0,
+  "limitations": [
+    "This replay checks patch bytes and imported Git trees, not semantics or business runtime.",
+    "No own authored control is independently certified by this tree-only replay; prior Fault review remains separate.",
+    "Original recheck covers HEAD/branch/all refs and tracked plus untracked nonignored Git-visible changes; ignored files not inspected.",
+    "No SDK/API/Docker/Gradle/harness/provider/CI execution; no new commits."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-02T07:52:32.997490+00:00",
+  "status": "PARTIAL_ACTIVE_NO_SESSION_CLOSE",
+  "project_before_sha256": "9c04b3671904d0a1313277065e22781c0caaf14068b33621886163bd473b6cd6",
+  "project_after_sha256": "7b3fb09116bc5e241bc53f3950dfe666cdcf7bced5400fad00ba3daf3fe43ab8",
+  "run_before_sha256": "fda3be40c8a42a3ec9048a6a4d1cbe501587bf540b1959f8fa4bbde334597b72",
+  "run_after_sha256": "4b22a0b09e852469c8c6eaae0bd54154a6dc583c5522e8f94e9c575202dcb9a1",
+  "heads": [
+    "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+    "acbda2f1e68ae7672de6f9571cd739da972ca07a",
+    "47df54fe1e341be6b1c2304a2c098b0c01d626e1",
+    "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+    "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5"
+  ],
+  "next_gate": "OWN_CP_KVS_SANDBOX_CLONE_PERMISSION_AND_OWN_PM_RESULT_LOCK_ALIASES",
+  "feedback": "PARTIAL_EVIDENCE_ONLY_NO_SCORES",
+  "tokens": "unknown",
+  "cost": "unknown"
+}

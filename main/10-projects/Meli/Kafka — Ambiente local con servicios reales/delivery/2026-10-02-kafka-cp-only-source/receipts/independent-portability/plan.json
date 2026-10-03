@@ -1,0 +1,53 @@
+{
+  "scope": "READ_ONLY_PORTABLE_SOURCE_TREE_IMPORT_NOT_BUSINESS_REVIEW",
+  "bundle": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source",
+  "index_sha256": "b652ce4980f4af0efd1acd4722ebf13adcf60cb313e094b30573519a42e25d37",
+  "tasks": [
+    "snapshot source/original HEAD+refs+Git-visible working changes with GIT_OPTIONAL_LOCKS=0",
+    "verify all4 frozen patch hashes and byte sizes",
+    "create four private no-checkout local shared clones, checkout exact base",
+    "git apply --check --index then apply --index; write-tree equality to exact final head",
+    "snapshot originals/source unchanged; remove only four private clones",
+    "receipt commands/hashes/verdict boundaries"
+  ],
+  "cases": [
+    {
+      "name": "cp-delta",
+      "repo": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "base": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+      "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/cp-delta.patch",
+      "patch_sha256": "0c30756fd02e9ee01066d0d2f295501dc87754e9cc6ee6ea6853dfc7f3c0907c",
+      "bytes": 70168
+    },
+    {
+      "name": "cp-complete",
+      "repo": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/cp-complete.patch",
+      "patch_sha256": "8f98bf2ccf9605dc6f5197956adaf36b1006cad7a6f0b07e1f3c47c8dfe4eb25",
+      "bytes": 2624476
+    },
+    {
+      "name": "knowledge-delta",
+      "repo": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "base": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+      "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/knowledge-delta.patch",
+      "patch_sha256": "6c4a1f8b55f99ac1d96d72c583076951a0cb6daac747a0e365b397f087c0ab91",
+      "bytes": 18253
+    },
+    {
+      "name": "knowledge-complete",
+      "repo": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "head": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka \u2014 Ambiente local con servicios reales/delivery/2026-10-02-kafka-cp-only-source/knowledge-complete.patch",
+      "patch_sha256": "0ba3c8d06cca667e508d10b5f3bb28d7dc78e84b30bfd0606920c400d1ff65c1",
+      "bytes": 228581
+    }
+  ],
+  "business": "NOT_EXECUTED",
+  "SDK_API_Docker_Gradle_commits": 0
+}

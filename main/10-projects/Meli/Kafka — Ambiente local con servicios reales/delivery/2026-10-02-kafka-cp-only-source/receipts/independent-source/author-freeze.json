@@ -1,0 +1,84 @@
+{
+  "base_head": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+  "source_files": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/sandbox.py",
+      "relative": "e2e/sandbox.py",
+      "before_sha256": "0914fbd38a4f729e235693c1f3f450f2844320db542e60c5da8b3291d5ddbe84",
+      "backup": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/sandbox.py.before",
+      "candidate": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/e2e/sandbox.py",
+      "after_sha256": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9",
+      "mode": 420
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/sandbox-contract.py",
+      "relative": "e2e/tests/sandbox-contract.py",
+      "before_sha256": "3edc9f40e252028c0187965e0064978a719f582f85f0e956032c32a921d7beef",
+      "backup": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/sandbox-contract.py.before",
+      "candidate": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/e2e/tests/sandbox-contract.py",
+      "after_sha256": "cdeefbda55be982eabb9829471e2f83c91e1e9233b489ad9e4c728c77a49d31d",
+      "mode": 420
+    }
+  ],
+  "source_frozen": true,
+  "verdict": "AUTHOR_PREPARATION_CONTROLS_ONLY_PENDING_INDEPENDENT_PEER",
+  "tests": {
+    "legacy_baseline": 10,
+    "new_scope_controls": 15,
+    "published_total": 25,
+    "candidate_exit": 0,
+    "published_exit": 0,
+    "syntax_files": 2,
+    "diff_check_exit": 0,
+    "meaningful_baseline_red": 2,
+    "legacy_method_AST_unchanged": 10
+  },
+  "artifacts": {
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/freeze.sha256": {
+      "sha256": "0bb6bd2dfe0313ca513e2e7d747199ae72cad1652d4e3aa093bd313ae0d09394"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/two-files.patch": {
+      "sha256": "802292005b4613d86bf7818861ef5d6bc9ccdbe6da9f40d5f1d1ccc4fd4049cb"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/controls.json": {
+      "sha256": "0a4dbc57941d9f0d12a53e98e4799439171fc82ac2f930e5f7ddfc0d7c13225a"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/publication-receipt.json": {
+      "sha256": "58badba4b54925a0c32a71495c6aaac4fe1066ed0da4837ab495405c99455aaf"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/published-controls.log": {
+      "sha256": "785314566a653b972a5ebb3f41ba614075499fd4918420c6ca9ac431844e762f"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/baseline-regression.log": {
+      "sha256": "c1959fe8390078468be772a8c2864da447955fa7c6bee1a2320b3cb72e840eaf"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/baseline-original.log": {
+      "sha256": "ceea5e339bfb84b2653af263ee2fe0a0e2de2bfaed2f3efd00a6d42b42fde502"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/help.log": {
+      "sha256": "70b9a1ab2b2831d178f144902c94346044d3532d1c712587fd6a6b52c3cabf67"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/logs/diff-check.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "commands": {
+    "cp_up": "sandbox.py up --scope cp --cp-service <own-cp-alias>",
+    "cp_verify": "sandbox.py verify --scope cp --directory <own-private-directory>",
+    "ecosystem_up": "sandbox.py up --cp-service <own-cp-alias> --pm-results-service <own-results-alias> --pm-locks-service <own-locks-alias>",
+    "ecosystem_verify": "sandbox.py verify --scope ecosystem --directory <own-private-directory>",
+    "down": "sandbox.py down --directory <own-private-directory>"
+  },
+  "semantics": [
+    "Missing receipt.scope retains legacy ecosystem, never cp.",
+    "Persisted explicit cp or ecosystem must match optional expected --scope.",
+    "CP verifies one app/one alias with no PM export/segment/resource/mutation; ecosystem verifies both apps/three aliases.",
+    "Partial observed own provisioning can clean up; UNKNOWN and unresolved creation remain failure.",
+    "No new environment variable; generated private exports retain exact fresh binding checks."
+  ],
+  "business": "NOT_EXECUTED_BLOCKED_KVS_CLONE403",
+  "remote_API_calls": 0,
+  "Docker": 0,
+  "Gradle": 0,
+  "commits": 0
+}

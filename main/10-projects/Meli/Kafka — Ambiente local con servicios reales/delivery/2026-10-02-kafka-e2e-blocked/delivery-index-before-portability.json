@@ -1,0 +1,179 @@
+{
+  "utc": "2026-10-02T07:33:50.897059+00:00",
+  "scope": "LOCAL_REVIEWABLE_SOURCE_PATCHES_NOT_DEPLOYED",
+  "full_e2e_verdict": "BLOCKED",
+  "matrix": {
+    "rows": 351,
+    "prepared_full": 304,
+    "partial": 29,
+    "none": 18,
+    "runtime_NOT_EXECUTED": 351,
+    "sha256": "2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e"
+  },
+  "records": [
+    {
+      "name": "kafka-cp",
+      "repo": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "branch": "feature/kafka-real-e2e",
+      "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "head": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/kafka-cp.patch",
+      "patch_sha256": "19b82a7826ef482df833feabc4f7abb9317b408ddccd1b8422bff8c40692873c",
+      "patch_bytes": 2564449,
+      "commits": [
+        "3bea4809a5372d5acca3d86a6181ed2c60137f22 feat(e2e): add owned execution proofs and Kafka journey coverage",
+        "eee5b9091b332a975c78823679a1e99b517632bc fix: reject invalid trigger metadata before asynchronous work",
+        "f80ea19421518251515aae768d020f574ad255bb fix: reject invalid deployment schema versions before dispatch",
+        "d2ab41cc8619ee7bfaa4ab0f12b19bd178857223 docs: record verified E2E checkpoint and mandatory external gates",
+        "0d8e1fedd0fd6db8907b1c810dbad9d22c296312 feat: prepare real Kafka ecosystem E2E with mandatory service gates"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING",
+      "original_patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/kafka-cp.patch"
+    },
+    {
+      "name": "playmaker-candidate",
+      "repo": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "branch": "feature/kafka-real-e2e",
+      "base": "7673f4bffc286f0f24d4214938df53c4c5eb9c38",
+      "head": "acbda2f1e68ae7672de6f9571cd739da972ca07a",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/playmaker-candidate.patch",
+      "patch_sha256": "5d33c5bdf94af4ed8b8220ac50f2815cbae739f18ebe872b70eafad9009d5eff",
+      "patch_bytes": 105749,
+      "commits": [
+        "acbda2f1e68ae7672de6f9571cd739da972ca07a feat(e2e): observe productive KVS and require owned process leases",
+        "1b4b8e1554c37357e4b39e1860be6ad43f9aa640 feat: add real Kafka control-plane ecosystem gate"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING",
+      "original_patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/playmaker-candidate.patch"
+    },
+    {
+      "name": "playmaker-canonical-overlay",
+      "repo": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "branch": "feature/kafka-real-e2e-canonical",
+      "base": "0c83575c54cb198d238be7d83f3b4d8de27abbc8",
+      "head": "47df54fe1e341be6b1c2304a2c098b0c01d626e1",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/playmaker-canonical-overlay.patch",
+      "patch_sha256": "de989851f2f02eb34c96853f72b76830d5142d6feb31dbc435392e6f501f232d",
+      "patch_bytes": 79073,
+      "commits": [
+        "47df54fe1e341be6b1c2304a2c098b0c01d626e1 feat(e2e): add isolated real adapters without changing canonical policies"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING",
+      "original_patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/playmaker-canonical-overlay.patch"
+    },
+    {
+      "name": "sdk-events",
+      "repo": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "branch": "feature/kafka-e2e-publisher-fix",
+      "base": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+      "head": "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/sdk-events.patch",
+      "patch_sha256": "ca3f4cc871561e4ff4f7eda56fe82ba83e5cdfc30fdcce22439b933fac7aad2f",
+      "patch_bytes": 10974,
+      "commits": [
+        "97146e9fde6cb2d947b7978ba2ba2491d11f06b5 fix: preserve configured BigQueue producer builder"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING",
+      "original_patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/sdk-events.patch"
+    },
+    {
+      "name": "knowledge-library",
+      "repo": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "branch": "docs/kafka-real-e2e",
+      "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "head": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+      "patch": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/knowledge-library.patch",
+      "patch_sha256": "8e083ce680d2643b06cb08dd58668e5a842fe4f24a8615bb06cd586a416f1e1a",
+      "patch_bytes": 225309,
+      "commits": [
+        "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5 docs(kafka): audit canonical frontiers and record real E2E verification limits",
+        "a207c95478f38246b3209ab29da58d0c72941bbe docs: revalidate Kafka boundaries against current Playmaker master",
+        "711887892a0f9ce75e68b223f1b5740213d3d4e4 docs: link implementation checkpoint and reviewed retention evidence",
+        "5d832e047779a5f6da276371e5a9d1da481be796 docs: audit canonical Kafka contracts and real E2E limits"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING",
+      "original_patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/knowledge-library.patch"
+    }
+  ],
+  "formal_meli_review": "BLOCKED",
+  "token_usage": "unknown",
+  "cost": "unknown",
+  "durable_utc": "2026-10-02T07:45:48.259220+00:00",
+  "original_export_sha256": "df1c477121f3e0a029304946646aaf41f10a414a697c009d8f8ca72fbf588d05",
+  "original_workspaces_preserved": true,
+  "root_source_freeze_sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1",
+  "evidence_records": [
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/root-final-source-freeze.json",
+      "sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/root-final-source-freeze.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/root-v4-1-r2-peer.json",
+      "sha256": "dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/root-v4-1-r2-peer.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/root-final-docs-peer.json",
+      "sha256": "5ba233907d6a665e09b3a6dad230fe0893dbb67e006ef4b383cdf6031a21932b",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/root-final-docs-peer.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/final-task-source-checkpoint-peer.json",
+      "sha256": "23b876206145063c2340813b1ec62b45c5c8cc801b780cee1b700508dff316e7",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/final-task-source-checkpoint-peer.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/kl-final-integrated-validator-peer.json",
+      "sha256": "2349ddfda7053ca34dd9084414be5dc49f23065d6792bf0b1ef63f3610fb281c",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/kl-final-integrated-validator-peer.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/cp-root-v3-unit-main-jar.json",
+      "sha256": "334b5803e23707f51eaf5715392e8efa9d8f369d99d56b4c16f20a99143bb25f",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/cp-root-v3-unit-main-jar.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/pm-root-v3-full-unit.json",
+      "sha256": "bab534f5f80a4c9f53e3f764f0e8f93de907fc60de8f30e3d251481a6d0b0e38",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/pm-root-v3-full-unit.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/root-v4-1-three-family-compile.json",
+      "sha256": "bfe7c4b3f6ffd2e11ee9c192271d0ef3c04f4ce56be5148e4d0c76ed9e1a0e26",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/root-v4-1-three-family-compile.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/final-owned-docker-inventory-2026-10-02.json",
+      "sha256": "54fc2070522f510fdc556321553c581dba442c64815073c90fb0b6e042c10a2a",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/final-owned-docker-inventory-2026-10-02.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/verification-ledger.json",
+      "sha256": "17cf815090671d67d5bdbba136e6c231da94f63face6d5ea204dfa0302aa8f69",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/verification-ledger.json"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/DELIVERY.md",
+      "sha256": "df9d1920ada3630ed063222cee199c85c90ee6abbc6ae47daac4351a39e38f4b",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/DELIVERY.md"
+    },
+    {
+      "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/remaining-gaps.md",
+      "sha256": "907cc11943d00325bc94ff6117923f2f08993a6576256d4c824b690915ba667e",
+      "source": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/remaining-gaps.md"
+    }
+  ],
+  "canonical_source_receipt": {
+    "file": "/Users/rjara/obsidian/SecondBrain/main/10-projects/Meli/Kafka — Ambiente local con servicios reales/delivery/2026-10-02-kafka-e2e-blocked/evidence/final-github-canonical-ref-receipt.json",
+    "sha256": "9baba9cf6bdb7847003ba0880993e26b518d72ddcaf812c367d0fbeecc82dceb",
+    "later_refresh": "BLOCKED_GITHUB_IP_ALLOWLIST_403",
+    "deployment_not_inferred": true
+  },
+  "patch_portability_review": "PENDING_INDEPENDENT"
+}

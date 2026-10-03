@@ -1,0 +1,30 @@
+{
+  "index_sha256": "df1c477121f3e0a029304946646aaf41f10a414a697c009d8f8ca72fbf588d05",
+  "patches": [
+    {
+      "name": "kafka-cp",
+      "sha256": "19b82a7826ef482df833feabc4f7abb9317b408ddccd1b8422bff8c40692873c",
+      "bytes": 2564449
+    },
+    {
+      "name": "playmaker-candidate",
+      "sha256": "5d33c5bdf94af4ed8b8220ac50f2815cbae739f18ebe872b70eafad9009d5eff",
+      "bytes": 105749
+    },
+    {
+      "name": "playmaker-canonical-overlay",
+      "sha256": "de989851f2f02eb34c96853f72b76830d5142d6feb31dbc435392e6f501f232d",
+      "bytes": 79073
+    },
+    {
+      "name": "sdk-events",
+      "sha256": "ca3f4cc871561e4ff4f7eda56fe82ba83e5cdfc30fdcce22439b933fac7aad2f",
+      "bytes": 10974
+    },
+    {
+      "name": "knowledge-library",
+      "sha256": "8e083ce680d2643b06cb08dd58668e5a842fe4f24a8615bb06cd586a416f1e1a",
+      "bytes": 225309
+    }
+  ]
+}

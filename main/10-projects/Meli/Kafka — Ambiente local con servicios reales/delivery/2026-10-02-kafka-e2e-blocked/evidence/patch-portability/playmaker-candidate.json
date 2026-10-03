@@ -1,0 +1,251 @@
+{
+  "name": "playmaker-candidate",
+  "base": "7673f4bffc286f0f24d4214938df53c4c5eb9c38",
+  "head": "acbda2f1e68ae7672de6f9571cd739da972ca07a",
+  "patch_sha256": "5d33c5bdf94af4ed8b8220ac50f2815cbae739f18ebe872b70eafad9009d5eff",
+  "patch_bytes": 105749,
+  "scope": "PATCH_PORTABILITY_ONLY_NO_BACKEND_CERTIFICATION",
+  "apply_check": "PASS",
+  "apply": "PASS",
+  "tree": "PASS",
+  "source_refs_before_sha256": "2958b281d1d2d916a08f979748206e86c6104d3cc5c095f85840eaaade6cb1a3",
+  "expected_head_tree": "fad7492afb6fd54e247d25a649014c3552c34b91",
+  "resulting_tree": "fad7492afb6fd54e247d25a649014c3552c34b91",
+  "original_refs_unchanged": "PASS",
+  "status": "PASS",
+  "own_clone_cleanup": "PASS",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.245,
+      "output_sha256": "a26bac908b53c5b9c9aff7948d1bbba27c6ed46a5931b91d5c16b8e04a131dfe",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/source-head-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "7673f4bffc286f0f24d4214938df53c4c5eb9c38^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.019,
+      "output_sha256": "4598c2ff2a33df0dc79036c52e8969d5187e95f56c9df8fe1725c26fec6fcf12",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/source-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "acbda2f1e68ae7672de6f9571cd739da972ca07a^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.018,
+      "output_sha256": "a26bac908b53c5b9c9aff7948d1bbba27c6ed46a5931b91d5c16b8e04a131dfe",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/source-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.025,
+      "output_sha256": "242eccb4ac2fe1a58b689faaa103c76a99e7f8ee44528d105c1da37ac0ada293",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/source-refs-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "clone",
+        "--local",
+        "--no-hardlinks",
+        "--no-checkout",
+        "--quiet",
+        "--",
+        "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu",
+      "exit_status": 0,
+      "duration_seconds": 0.545,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/clone-local-isolated-objects.log"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/empty-hooks",
+        "checkout",
+        "--detach",
+        "7673f4bffc286f0f24d4214938df53c4c5eb9c38"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.534,
+      "output_sha256": "d45dfaf4f30cbbe77b53ebdd5011ca32f57323761295af7572645e804317a2ea",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/checkout-exact-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.028,
+      "output_sha256": "4598c2ff2a33df0dc79036c52e8969d5187e95f56c9df8fe1725c26fec6fcf12",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/clone-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "symbolic-ref",
+        "-q",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 1,
+      "duration_seconds": 0.021,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/detached-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.098,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/clone-clean-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "acbda2f1e68ae7672de6f9571cd739da972ca07a^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.023,
+      "output_sha256": "6b94a2d560a2a3454b9178f03836ea08051472d2ce1dedec68d58b58b7801d81",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "acbda2f1e68ae7672de6f9571cd739da972ca07a^{tree}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.033,
+      "output_sha256": "6b94a2d560a2a3454b9178f03836ea08051472d2ce1dedec68d58b58b7801d81",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/source-exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.023,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/apply-check.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--index",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.078,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/apply-index-own-clone.log"
+    },
+    {
+      "command": [
+        "git",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.048,
+      "output_sha256": "6b94a2d560a2a3454b9178f03836ea08051472d2ce1dedec68d58b58b7801d81",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/applied-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "acbda2f1e68ae7672de6f9571cd739da972ca07a",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.054,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/working-tree-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--exit-code",
+        "acbda2f1e68ae7672de6f9571cd739da972ca07a",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate-ea36s_cu/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.016,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/index-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.013,
+      "output_sha256": "a26bac908b53c5b9c9aff7948d1bbba27c6ed46a5931b91d5c16b8e04a131dfe",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/source-head-after.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.017,
+      "output_sha256": "242eccb4ac2fe1a58b689faaa103c76a99e7f8ee44528d105c1da37ac0ada293",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/playmaker-candidate/source-refs-after.log"
+    }
+  ]
+}

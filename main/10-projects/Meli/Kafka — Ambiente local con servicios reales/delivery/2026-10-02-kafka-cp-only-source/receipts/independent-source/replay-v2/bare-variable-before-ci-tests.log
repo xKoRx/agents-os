@@ -1,0 +1,16 @@
+Warning: could not initialize the reports module: no se pudo resolver el directorio de SBOM: could not determine user home directory: $HOME is not defined
+test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure (private_ci_test.CiFamilyScopeContract.test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure) ... FAIL
+
+======================================================================
+FAIL: test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure (private_ci_test.CiFamilyScopeContract.test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py", line 252, in test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure
+    self.assertNotIn('command not found', self.result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'command not found' unexpectedly found in '/bin/bash: line 160: kvs_run: command not found\n'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.527s
+
+FAILED (failures=1)

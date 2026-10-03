@@ -1,0 +1,251 @@
+{
+  "name": "sdk-events",
+  "base": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+  "head": "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+  "patch_sha256": "ca3f4cc871561e4ff4f7eda56fe82ba83e5cdfc30fdcce22439b933fac7aad2f",
+  "patch_bytes": 10974,
+  "scope": "PATCH_PORTABILITY_ONLY_NO_BACKEND_CERTIFICATION",
+  "apply_check": "PASS",
+  "apply": "PASS",
+  "tree": "PASS",
+  "source_refs_before_sha256": "48f40c18348eacd7e3ae606f69ad39b317588595bcfb96793e81f6cdb0e324b6",
+  "expected_head_tree": "6aa639d2fcbedbd48df737b84f9b57929c512c52",
+  "resulting_tree": "6aa639d2fcbedbd48df737b84f9b57929c512c52",
+  "original_refs_unchanged": "PASS",
+  "status": "PASS",
+  "own_clone_cleanup": "PASS",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.026,
+      "output_sha256": "3473a7478d4eb196a716b9dff0eb9aff1209c940f05cfe9c383358c669f6e08f",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/source-head-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "ad2c98b806cffb88b23513f87785932aa1707ea4^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.027,
+      "output_sha256": "8990f1ae346403fd97f805d37a5b02c3bb9384a69c850072d6bde3944cb43eca",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/source-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "97146e9fde6cb2d947b7978ba2ba2491d11f06b5^{commit}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.023,
+      "output_sha256": "3473a7478d4eb196a716b9dff0eb9aff1209c940f05cfe9c383358c669f6e08f",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/source-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.026,
+      "output_sha256": "b0d3f8cad83191059b5efd2d4feafff777f53ec51fa74e93dc08b631a76bf56d",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/source-refs-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "clone",
+        "--local",
+        "--no-hardlinks",
+        "--no-checkout",
+        "--quiet",
+        "--",
+        "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3",
+      "exit_status": 0,
+      "duration_seconds": 0.435,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/clone-local-isolated-objects.log"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/empty-hooks",
+        "checkout",
+        "--detach",
+        "ad2c98b806cffb88b23513f87785932aa1707ea4"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.109,
+      "output_sha256": "2cce7b586a534f37b82b11b5ed25c293023ac5b5caebba0b7916573f7f0089c3",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/checkout-exact-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.026,
+      "output_sha256": "8990f1ae346403fd97f805d37a5b02c3bb9384a69c850072d6bde3944cb43eca",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/clone-base.log"
+    },
+    {
+      "command": [
+        "git",
+        "symbolic-ref",
+        "-q",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 1,
+      "duration_seconds": 0.021,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/detached-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.052,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/clone-clean-before.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "97146e9fde6cb2d947b7978ba2ba2491d11f06b5^{tree}"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.029,
+      "output_sha256": "f0267f98b1a2e47ac66e47d3464eef3db284bb6424e0ff28dc36bd590459c098",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "97146e9fde6cb2d947b7978ba2ba2491d11f06b5^{tree}"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.026,
+      "output_sha256": "f0267f98b1a2e47ac66e47d3464eef3db284bb6424e0ff28dc36bd590459c098",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/source-exported-head-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.016,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/apply-check.log"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--index",
+        "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events.patch"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.043,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/apply-index-own-clone.log"
+    },
+    {
+      "command": [
+        "git",
+        "write-tree"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.035,
+      "output_sha256": "f0267f98b1a2e47ac66e47d3464eef3db284bb6424e0ff28dc36bd590459c098",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/applied-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.035,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/working-tree-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--exit-code",
+        "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+        "--"
+      ],
+      "cwd": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events-rnqxqcm3/clone",
+      "exit_status": 0,
+      "duration_seconds": 0.015,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/index-equals-exported-head.log"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.017,
+      "output_sha256": "3473a7478d4eb196a716b9dff0eb9aff1209c940f05cfe9c383358c669f6e08f",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/source-head-after.log"
+    },
+    {
+      "command": [
+        "git",
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "cwd": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "exit_status": 0,
+      "duration_seconds": 0.016,
+      "output_sha256": "b0d3f8cad83191059b5efd2d4feafff777f53ec51fa74e93dc08b631a76bf56d",
+      "log": "/private/tmp/kafka-e2e-discovery/independent-review/final-patch-portability/sdk-events/source-refs-after.log"
+    }
+  ]
+}

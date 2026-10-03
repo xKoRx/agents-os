@@ -1,0 +1,1139 @@
+{
+  "schema": 1,
+  "last_verified": "2026-10-02",
+  "implementation_status": "WORK_BRANCH_SOURCE_PEERED_FULL_BUSINESS_BLOCKED",
+  "full_e2e_verdict": "BLOCKED",
+  "canonical_sources": {
+    "cp_master": "f74e856ef3de881e2d504c6cb1ced573681c1058",
+    "pm_master": "0c83575c54cb198d238be7d83f3b4d8de27abbc8",
+    "sdk_master": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+    "knowledge_master": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd"
+  },
+  "working_bases": {
+    "cp_develop": "4302481c69300074a85ea5eb051a27bbd505cdce",
+    "pm_develop": "7673f4bffc286f0f24d4214938df53c4c5eb9c38"
+  },
+  "broker_image": {
+    "digest": "sha256:4ceccc577f03f51f6af8dbfda55194d0d892f4fa7913ffbded567ce3895622ed",
+    "physical_version": "3.9.1",
+    "jar": "/opt/kafka/libs/kafka_2.13-3.9.1.jar",
+    "architecture": "linux/arm64"
+  },
+  "records": [
+    {
+      "evidence_id": "INFRA-KAFKA-RF-60617c22",
+      "source_artifact_sha256": "3d51f3640f5c0820ba230736176e90efb84667093a2648921c66fe412dfbda5b",
+      "run_id": "60617c22160642aa8e27b84942c08378",
+      "project": "rio-kafka-e2e-smoke-60617c22160642aa8e27b84942c08378",
+      "docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+      "topics": [
+        "e2e_60617c22160642aa8e27b84942c08378_rf_1",
+        "e2e_60617c22160642aa8e27b84942c08378_rf_2",
+        "e2e_60617c22160642aa8e27b84942c08378_rf_3",
+        "e2e_60617c22160642aa8e27b84942c08378_rf_4",
+        "e2e_60617c22160642aa8e27b84942c08378_rf_5"
+      ],
+      "scope": "five real broker readiness and RF1-5 only",
+      "cp_kvs_managed_gates": "NOT_EXECUTED",
+      "live_broker_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "verdict": "PASS",
+      "cleanup": "CLEANUP_CERTIFIED"
+    },
+    {
+      "evidence_id": "INFRA-KAFKA-INITIAL-821977d5",
+      "source_artifact_sha256": "ddfa13ba2ccdb76c8757aa98572dd132a26c3e734908fdbbe6ddb9276e5a6c6a",
+      "run_id": "821977d501ab478b8e6420759d657fd3",
+      "project": "rio-kafka-e2e-smoke-821977d501ab478b8e6420759d657fd3",
+      "docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+      "topics": [],
+      "scope": "five real broker readiness and RF1-5 only",
+      "cp_kvs_managed_gates": "NOT_EXECUTED",
+      "verdict": "FAIL",
+      "failure_type": "CalledProcessError",
+      "cleanup": "CLEANUP_CERTIFIED",
+      "observed_failure": "OOM during LogManager initialization at heap192MiB; corrected to heap512MiB/limit768MiB"
+    },
+    {
+      "evidence_id": "CP-UNIT-INDEPENDENT",
+      "source_artifact_sha256": "6e1f5009ad2b18d4c596036a925d1063f65b1f269ea3a0317995171ff3aae39f",
+      "baseline": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "candidate_tree": "ed120c22c45206b61191f8ddf9135b5bcf7b4e67",
+      "patch_sha256": "07392bf768fce76aac00a224afe536edc2a2c61799a096f7d9ca8ed55b6ed1c9",
+      "command": "JAVA_HOME=corretto-21.0.6 ./gradlew --offline --no-daemon test --console=plain",
+      "exit_code": 0,
+      "junit": {
+        "tests": 707,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "scope": "frozen22main/unit paths only; build/E2E moving files excluded"
+    },
+    {
+      "evidence_id": "PM-UNIT-INDEPENDENT",
+      "source_artifact_sha256": "5f5830e44f7b4a98484a494b074bd85732d31e0261b57f7c6fff2beb242ba086",
+      "candidate_tree": "6a872e2e5810c29006bcae48df81ce2cecf265a5",
+      "command": "JAVA_HOME=corretto-25.0.4 ./gradlew --offline --no-daemon test --console=plain",
+      "exit_code": 0,
+      "counts": {
+        "tests": 4386,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "skips": [
+        {
+          "class": "com.mercadolibre.rio.playmaker.unit.service.TopologicalSortServiceImplTest",
+          "name": "whenRelationsPresent_thenTopologicalBatchesComputed()"
+        },
+        {
+          "class": "com.mercadolibre.rio.playmaker.unit.service.TopologicalSortServiceImplTest",
+          "name": "whenParallelComponents_thenGroupedInSameBatch()"
+        }
+      ],
+      "skip_source_identical_to_baseline": true
+    },
+    {
+      "evidence_id": "SDK-UNIT-INDEPENDENT",
+      "source_artifact_sha256": "c234a04fd5ce05e3eff5358021cdf3d5f3b060d97998ad94e3dd9c3ccfd85dc0",
+      "tests": {
+        "tests": 708,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_drift": [],
+      "jacoco_report_and_verification": "PASS",
+      "candidate_tree": "6aa639d2fcbedbd48df737b84f9b57929c512c52",
+      "classification": "PERMANENT_REGRESSION local mocked builder mechanics, no BigQueue delivery/release/adoption claim",
+      "jacoco_xml_sha256": "9c95e531c89b13aa33a15afe50aa1994aa745b21c5053e34fcd7634475819aa2"
+    },
+    {
+      "evidence_id": "SDK-REGRESSION-BASELINE",
+      "source_artifact_sha256": "a8079083b562fbdb33631065563be29083b84b71dc99daa9f1c8a98eedf8e8d8",
+      "exit_code": 1,
+      "cases": [
+        {
+          "name": "bufferingReachesTheProducerUsedForSending()",
+          "result": "FAIL"
+        },
+        {
+          "name": "segmentAndBufferingAreAppliedTogether()",
+          "result": "FAIL"
+        },
+        {
+          "name": "legacyFactoryMethodStillBuildsTopicAndConfiguration()",
+          "result": "PASS"
+        },
+        {
+          "name": "segmentReachesTheProducerUsedForSending()",
+          "result": "FAIL"
+        }
+      ],
+      "expected_red": true
+    },
+    {
+      "evidence_id": "INFRA-COEXIST-INDEPENDENT",
+      "source_artifact_sha256": "65a16126da2fb78d77021df712110eed707a88855712ece1573e2b3f9288555e",
+      "scope": "DISPOSABLE_REPRODUCER: real five Kafka brokers + MySQL, DLT existence and targeted cleanup only",
+      "run_id": "64ac1b7cbf714ec5b9bca5c2358b3adc",
+      "project": "rio-kafka-e2e-review-64ac1b7cbf714ec5b9bca5c2358b3adc",
+      "context": "colima-rio-kafka-e2e-01a0f8e0",
+      "status": "PASS",
+      "old_duplicate_create_exit": 1,
+      "mysql_version": "8.0.32",
+      "targeted_cleanup": "PASS_MYSQL_ABSENT_FIVE_BROKERS_AND_BOTH_DLTS_PRESENT",
+      "leftovers": {
+        "containers": [],
+        "networks": [],
+        "volumes": []
+      },
+      "cleanup": "CERTIFIED",
+      "migration_count": 37,
+      "migrations_sha256": "83d39cf67626f0c1c78f8df399c2d4380ff35b78f40f050c53a97e2e9078fc3b"
+    },
+    {
+      "evidence_id": "FAULT-COMPONENT-INDEPENDENT-1",
+      "source_artifact_sha256": "4085e3e58836a8fc94ac49a77c2733a485ee1fe27058633148586030ac94798b",
+      "baseline": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "candidate_tree": "db8ceb1735701708ec36572cfd5bf9382399e591",
+      "source_manifest_sha256": "27e6f002ef43ad9df5fed0092e26b7d041498b3ee73ca1ec13f111e0d3479c23",
+      "run_id": "017caa251089446d92353e681fb75030",
+      "project": "rio-kafka-e2e-reduction-017caa251089446d92353e681fb75030",
+      "docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+      "scope": "physical five-to-three broker reduction and RF5 restoration only",
+      "cp_kvs_pm_managed": "NOT_EXECUTED",
+      "cp_rf_adjuster_failure": "NOT_EXECUTED",
+      "assertions": [
+        "FIVE_REAL_BROKERS_READY",
+        "THREE_REAL_BROKERS_WITH_CONTROLLER_QUORUM",
+        "NATIVE_RF5_ACCEPTED_WITH_REGISTERED_OFFLINE_BROKERS_AND_REDUCED_ISR",
+        "RF5_REAL_CREATION_AND_FULL_ISR_AFTER_RESTORING_FIVE_BROKERS"
+      ],
+      "verdict": "PASS",
+      "initial_nodes": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "reduced_nodes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "rf5_create_exit_code": 0,
+      "rf5_create_error_types": [],
+      "restored_nodes": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "cleanup": "CLEANUP_CERTIFIED"
+    },
+    {
+      "evidence_id": "FAULT-COMPONENT-INDEPENDENT-2",
+      "source_artifact_sha256": "4085e3e58836a8fc94ac49a77c2733a485ee1fe27058633148586030ac94798b",
+      "baseline": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "candidate_tree": "db8ceb1735701708ec36572cfd5bf9382399e591",
+      "source_manifest_sha256": "27e6f002ef43ad9df5fed0092e26b7d041498b3ee73ca1ec13f111e0d3479c23",
+      "run_id": "bf12642d00754a8fa312bd6faf15f397",
+      "project": "rio-kafka-e2e-auth-bf12642d00754a8fa312bd6faf15f397",
+      "docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+      "scope": "Kafka ACL/RF fault controls only",
+      "cp_kvs_pm_managed": "NOT_EXECUTED",
+      "assertions": [
+        "REAL_TOPIC_AUTHORIZATION_EXCEPTION",
+        "DENIED_TOPIC_PHYSICALLY_ABSENT",
+        "REAL_ACL_RESTORATION_CREATE_AND_ISR",
+        "REAL_INVALID_REPLICATION_FACTOR_EXCEPTION"
+      ],
+      "verdict": "PASS",
+      "cleanup": "CLEANUP_CERTIFIED"
+    },
+    {
+      "evidence_id": "FAULT-COMPONENT-INDEPENDENT-3",
+      "source_artifact_sha256": "4085e3e58836a8fc94ac49a77c2733a485ee1fe27058633148586030ac94798b",
+      "baseline": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "candidate_tree": "db8ceb1735701708ec36572cfd5bf9382399e591",
+      "source_manifest_sha256": "27e6f002ef43ad9df5fed0092e26b7d041498b3ee73ca1ec13f111e0d3479c23",
+      "run_id": "e2d108af8a384b23b49a9fd21511b951",
+      "scope": "transparent HTTP/TCP transport component only",
+      "cp_kvs_pm_managed": "NOT_EXECUTED",
+      "upstream": "stdlib static HTTP file server; no KVS implementation",
+      "assertions": [
+        "REAL_HTTP_RESPONSE_BYTES_PRESERVED",
+        "HELD_REQUEST_ABORTED_WITH_ZERO_UPSTREAM_WRITES",
+        "REAL_RESPONSE_HELD_AFTER_SERVER_AND_RELEASED_UNCHANGED",
+        "THREE_BOUNDED_FAILURES_WITH_ZERO_UPSTREAM_REQUESTS",
+        "FOREIGN_CONTAINER_REJECTED_BEFORE_FORWARD",
+        "REAL_HTTP_FORWARDING_RESTORED",
+        "REAL_TCP_BYTES_FORWARDED_TO_OWN_HTTP_SERVER",
+        "HELD_REAL_TCP_CONNECTIONS_RESET_AND_REAPED"
+      ],
+      "verdict": "PASS",
+      "artifact_sha256": "6fae9fa7596d791eee7401165eb79f825c4f5d375e1f694ff2bdfffb57b99d4f",
+      "cleanup": "CLEANUP_CERTIFIED"
+    },
+    {
+      "evidence_id": "FAULT-KILL-HELD-CALLER-INDEPENDENT",
+      "source_artifact_sha256": "4085e3e58836a8fc94ac49a77c2733a485ee1fe27058633148586030ac94798b",
+      "scope": "DISPOSABLE_REPRODUCER: owned HTTP caller process killed during request HOLD; no KVS/CP/business claim",
+      "status": "PASS",
+      "caller_killed": true,
+      "held_put_never_forwarded": true,
+      "later_rule_cannot_revive_old_request": true,
+      "cleanup": "CERTIFIED"
+    },
+    {
+      "evidence_id": "LAUNCHER-CLEANUP-REGRESSION-INDEPENDENT",
+      "source_artifact_sha256": "9d551130863ae805780c57c362aac58caf5b3a819a1cfe5d158f95df8bdc69af",
+      "scope": "control-flow only; not business E2E",
+      "before": {
+        "run_sha256": "152192638bb095337ef09930c9a7e7e93ef332badc0f60104e9c126895101ee1",
+        "regression_sha256": "958b516034b6d2f55ddecd595679049c215aa4cd27d05d0536e1ada661f7d2f5",
+        "exit_code": 1,
+        "output": "CLEANUP_CONTROL_FLOW_PASS:none\nCLEANUP_CONTRACT_FAIL:container-query:exit=0\n"
+      },
+      "after": {
+        "run_sha256": "386f9a5004df88a3ed8f235c4e3b01ba100052bfe59125fe8b7d0ccee6a6a400",
+        "regression_sha256": "958b516034b6d2f55ddecd595679049c215aa4cd27d05d0536e1ada661f7d2f5",
+        "exit_code": 0,
+        "output": "CLEANUP_CONTROL_FLOW_PASS:none\nCLEANUP_CONTROL_FLOW_PASS:container-query\nCLEANUP_CONTROL_FLOW_PASS:network-query\nCLEANUP_CONTROL_FLOW_PASS:volume-query\nCLEANUP_CONTROL_FLOW_PASS:leftover\n"
+      }
+    },
+    {
+      "evidence_id": "SANDBOX-LIFECYCLE-LIVE",
+      "source_artifact_sha256": "52910b436e6174caade33cd02a7bcced1b1dff22aeb61422c0c55b2260610f4a",
+      "scope": "BC create/own metadata/clone denied/BC deletion only; no KVS writes",
+      "run_id": "4327e4ad701c42cea82c14dff2595e5b",
+      "status": "FAIL",
+      "failure": "POST own CP BC services HTTP403; privilege gate",
+      "cleanup": "CERTIFIED_API_ABSENCE",
+      "resources": [
+        {
+          "app": "rio-controlplane-kafka",
+          "bc": "e2e-4327e4ad701c42cea82c14dff2595e5b",
+          "create_intent": true,
+          "create_outcome": "CONFIRMED",
+          "logical_services": [
+            "triggers-status-nonprod"
+          ],
+          "creation_observed": true
+        }
+      ],
+      "mutations": [],
+      "kvs": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "SANDBOX-LIFECYCLE-LIVE-V2",
+      "source_artifact_sha256": "c95a42dc1dfd339549779f1950c5d6dd5b279eec1f25e18d52e00abfa426aa49",
+      "scope": "BC create/own metadata/clone denied/BC deletion only; no KVS writes",
+      "run_id": "b4d7edd9ce794edb8f606709425e9ad9",
+      "status": "FAIL",
+      "failure": "POST own CP BC services HTTP403; privilege gate",
+      "cleanup": "CERTIFIED_API_ABSENCE",
+      "resources": [
+        {
+          "app": "rio-controlplane-kafka",
+          "bc": "e2e-b4d7edd9ce794edb8f606709425e9ad9",
+          "create_intent": true,
+          "create_outcome": "CONFIRMED",
+          "logical_services": [
+            "triggers-status-nonprod"
+          ],
+          "creation_observed": true
+        }
+      ],
+      "mutations": [
+        {
+          "app": "rio-controlplane-kafka",
+          "suffix": "bc",
+          "method": "POST",
+          "outcome": "HTTP_200"
+        },
+        {
+          "app": "rio-controlplane-kafka",
+          "suffix": "bc/e2e-b4d7edd9ce794edb8f606709425e9ad9/services",
+          "method": "POST",
+          "outcome": "HTTP_403"
+        },
+        {
+          "app": "rio-controlplane-kafka",
+          "suffix": "bc/e2e-b4d7edd9ce794edb8f606709425e9ad9",
+          "method": "DELETE",
+          "outcome": "HTTP_200"
+        }
+      ],
+      "kvs": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "FAULT-PROTOCOL-AUTHOR-ec5eca20",
+      "source_artifact_sha256": "63268c921a7a9e3b1c8b2ec5ea0bf527f7b088ae264a158db83743a2c8aed4fa",
+      "scope": "real Kafka wire components only; not CP/KVS/PM/managed",
+      "run_id": "ec5eca20edcf43f9ae6c184bc2b27d7d",
+      "assertions": [
+        "REAL_ADVERTISED_PROXY_AND_SEPARATE_ADMIN_LISTENERS",
+        "HELD_CREATE_REAL_RACE_RETURNED_TOPIC_EXISTS",
+        "HELD_DELETE_REAL_RACE_RETURNED_UNKNOWN_TOPIC",
+        "HELD_DESCRIBE_CONFIGS_REALLY_TIMED_OUT_WITHOUT_MUTATION",
+        "INITIAL_DESCRIBE_PASSED_POST_CREATE_DESCRIBE_HELD_AND_RELEASED",
+        "REAL_PARTITIONS_MUTATED_BUT_REPEATED_CONFIG_RESETS_PREVENTED_CONFIG_MUTATION",
+        "CREATE_RESPONSE_HELD_AFTER_REAL_EFFECT_AND_RELEASED_UNCHANGED",
+        "COMPRESSED_RECORD_BYTES_REACHED_REAL_BROKER_BEFORE_ACK_AND_ACK_RELEASED",
+        "LIST_OFFSETS_V9_REAL_CONSUMER_HELD_AND_SECOND_ADMIN_CONNECTION_PASSED",
+        "1500_REAL_BROKER_FRAMES_PASSED_AFTER_MATCH_METADATA_BUDGET_EVICTION",
+        "UNSUPPORTED_RULE_REJECTED_AND_UNPARSED_API_PASSTHROUGH_RECORDED"
+      ],
+      "cleanup": "CLEANUP_CERTIFIED",
+      "client_version": "3.9.2",
+      "broker_version": "3.9.1 pinned digest",
+      "overall_verdict": "PASS",
+      "assertion_verdict": "PASS",
+      "initial_failure_preserved": false,
+      "candidate_java_sha256": "6254b816415bbea6dfc2cb1abbd2eff4693ac26cd3c6d78f0a8d9916fc0cd61a",
+      "candidate_python_sha256": "067e1dc5d1ebedc0de7239c213a626939f00564c6644c8360c3e49e857686f12"
+    },
+    {
+      "evidence_id": "FAULT-PROTOCOL-AUTHOR-0b7ddaba",
+      "source_artifact_sha256": "769b0e6121d84d97caf3576331c5db44525622ff2056393adcfedd2b724f6833",
+      "scope": "real Kafka wire components only; not CP/KVS/PM/managed",
+      "run_id": "0b7ddaba0f2648fb8b37250d29110953",
+      "assertions": [
+        "REAL_ADVERTISED_PROXY_AND_SEPARATE_ADMIN_LISTENERS",
+        "HELD_CREATE_REAL_RACE_RETURNED_TOPIC_EXISTS",
+        "HELD_DELETE_REAL_RACE_RETURNED_UNKNOWN_TOPIC",
+        "HELD_DESCRIBE_CONFIGS_REALLY_TIMED_OUT_WITHOUT_MUTATION",
+        "INITIAL_DESCRIBE_PASSED_POST_CREATE_DESCRIBE_HELD_AND_RELEASED",
+        "REAL_PARTITIONS_MUTATED_BUT_REPEATED_CONFIG_RESETS_PREVENTED_CONFIG_MUTATION",
+        "CREATE_RESPONSE_HELD_AFTER_REAL_EFFECT_AND_RELEASED_UNCHANGED",
+        "COMPRESSED_RECORD_BYTES_REACHED_REAL_BROKER_BEFORE_ACK_AND_ACK_RELEASED",
+        "UNSUPPORTED_RULE_REJECTED_AND_UNPARSED_API_PASSTHROUGH_RECORDED"
+      ],
+      "cleanup": "CLEANUP_FAILED",
+      "client_version": "3.9.2",
+      "broker_version": "3.9.1 pinned digest",
+      "overall_verdict": "FAIL",
+      "assertion_verdict": "PASS",
+      "initial_failure_preserved": true,
+      "candidate_java_sha256": "6254b816415bbea6dfc2cb1abbd2eff4693ac26cd3c6d78f0a8d9916fc0cd61a",
+      "candidate_python_sha256": "067e1dc5d1ebedc0de7239c213a626939f00564c6644c8360c3e49e857686f12"
+    },
+    {
+      "evidence_id": "FAULT-PROTOCOL-INDEPENDENT-90f09a1e",
+      "run_id": "90f09a1eae1a4cf88f5ee05de0b8275d",
+      "source_artifact_sha256": "ab8ed32b6846d9b233c1d751d3bfa4f158f36d003596592cabada83f91e13621",
+      "scope": "clean CP430 snapshot, real wire components and own-resource teardown only",
+      "verdict": "PASS",
+      "review": "CHANGES_REQUESTED two teardown P2 before corrected source is reproduced",
+      "findings": [],
+      "business_families": "NOT_EXECUTED",
+      "eventual_cleanup_certificate": false,
+      "raw_header_or_payload_retained": false
+    },
+    {
+      "evidence_id": "FAULT-PROTOCOL-INDEPENDENT-bb739149",
+      "run_id": "bb7391492e0d4b8da49be3726b0b0611",
+      "source_artifact_sha256": "e8377b77b42ee092d293dc702b48e012522234560146708305ff12330a09630c",
+      "scope": "clean CP430 snapshot, real wire components and own-resource teardown only",
+      "verdict": "FAIL",
+      "review": "CHANGES_REQUESTED two teardown P2 before corrected source is reproduced",
+      "findings": [
+        "InterruptedException can skip compose.down",
+        "own descendant remains after parent Process exit"
+      ],
+      "business_families": "NOT_EXECUTED",
+      "eventual_cleanup_certificate": true,
+      "raw_header_or_payload_retained": false
+    },
+    {
+      "evidence_id": "READONLY-MANAGED-CALLER-INPUTS",
+      "source_artifact_sha256": "bbc62fee309407bdeb530a0568a6d590f4e2a9d8b24f86ac71abf2279056d5e4",
+      "scope": "read-only API input preparation; body hashes independently checked, HTTP200 attested by coordinator tool result",
+      "bigqueue_templates": [
+        {
+          "kind": "topic_test",
+          "method": "GET",
+          "http_status_observed": 200,
+          "route": "application/rio-controlplane-kafka/bigq/topics/template_test",
+          "sha256": "d9a2266e65647b4bb20e1c2300a5d52f692cffa8532699b7aa4f2b4d2d4236da",
+          "fields": [
+            "description",
+            "filters",
+            "name",
+            "production_rate_limit",
+            "topic_type",
+            "version",
+            "visibility"
+          ],
+          "provider_mutations": 0,
+          "message_schema_observed": false
+        },
+        {
+          "kind": "consumer",
+          "method": "GET",
+          "http_status_observed": 200,
+          "route": "application/rio-controlplane-kafka/bigq/consumers/template",
+          "sha256": "5ab7c744caad4106e7a09eb5d36e1db8fd9fadbad72b77fc8fa7421cfe4c0bbe",
+          "fields": [
+            "bigq_scope",
+            "bulk_length",
+            "default_rate_limit",
+            "delay_delivery",
+            "delivery_mode",
+            "filter_strategy",
+            "filters",
+            "name",
+            "path",
+            "test",
+            "topic",
+            "version"
+          ],
+          "provider_mutations": 0,
+          "message_schema_observed": false
+        },
+        {
+          "kind": "scope",
+          "method": "GET",
+          "http_status_observed": 200,
+          "route": "application/rio-controlplane-kafka/bigq/scopes/templates",
+          "sha256": "f69673d5523d4f0dbee9a118f565eb4d21151cabc220fff8c61644abc46b2b0a",
+          "fields": [
+            "apdex_t",
+            "build",
+            "configuration_properties",
+            "memory",
+            "name",
+            "secrets",
+            "test",
+            "version"
+          ],
+          "provider_mutations": 0,
+          "message_schema_observed": false
+        }
+      ],
+      "acme_owner_project": {
+        "method": "GET",
+        "route": "/grants/owner-project",
+        "http_status_observed": 200,
+        "sha256": "972f673355c1997a23cae2bda8045e607d84bd14057786d07bcfa9db2fec61b0",
+        "team": "cross-dps-rio",
+        "project": "dps-rio",
+        "matching_grants": 1,
+        "matching_roles": [
+          "deployer"
+        ],
+        "runtime_tiger_validation": "NOT_EXECUTED",
+        "mutations": 0,
+        "role_filter": "Only the canonical local authorization eligible role is retained; no grant or identity IDs."
+      },
+      "provider_message_delivery": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "KNOWLEDGE-FORMAL-BASELINE-COMPARISON",
+      "source_artifact_sha256": "c9b07d6ab60983a318bc4d1ba11ae955efb2913ff34fffb5a3594fe7ef3175f3",
+      "scope": "formal validator remains FAIL; only source-root path normalization",
+      "normalization": "source-root path only; baseline source-aliases and candidate ~/fuentes",
+      "baseline_errors": 937,
+      "candidate_errors": 937,
+      "normalized_bytes_equal": true,
+      "baseline_sha256": "1c898d57dc31b579540a74fc5e631db64ce842896a93b3625fd7fd0c05c445b5",
+      "candidate_sha256": "1c898d57dc31b579540a74fc5e631db64ce842896a93b3625fd7fd0c05c445b5"
+    },
+    {
+      "evidence_id": "SANDBOX-HARNESS-V3-INDEPENDENT",
+      "source_artifact_sha256": "1825b82d59df1f18b56f4dbbbf0c2b054ee58020f254c432604c074b8f7cc606",
+      "scope": "clean CP430 snapshot; actual cleanup/parser/Gradle control regressions; no provider business",
+      "business_families": "NOT_EXECUTED",
+      "review_verdict": "SOURCE_AND_L0_PASS_ONLY"
+    },
+    {
+      "evidence_id": "MANAGED-LAUNCHER-V1-INDEPENDENT",
+      "source_artifact_sha256": "1d66797324c260cb0e1098ac6d8af2b36925d63b7b832fe616f412592963e190",
+      "scope": "clean CP430 snapshot125paths; resources baselineFAIL/candidatePASS, taskmissingconfigEXPECTED_NONZERO, 5+10+8controls; managed cleanup source P2 pending",
+      "business_families": "NOT_EXECUTED",
+      "review_verdict": "CHANGES_REQUESTED"
+    },
+    {
+      "evidence_id": "PROTOCOL-V2-INDEPENDENT",
+      "source_artifact_sha256": "7c71f7a3cf8d202af68f56620dba651e0f19265828cf5ad5f8e7431f98dd4c45",
+      "scope": "physical independent13assertions + own STOP/interruption cleanup; no business run",
+      "review_verdict": "PASS_COMPONENT_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "MANAGED-QUIESCENCE-V2-INDEPENDENT",
+      "source_artifact_sha256": "9914b673b7e0a224c9154a62f167eae47bf8b52e993e71ac3b91cdbfb193f04d",
+      "scope": "source/javac gates; P2 source resolved; managed runtime absent",
+      "review_verdict": "PASS_SOURCE_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "PROFILE-CONFIGDATA-INDEPENDENT",
+      "source_artifact_sha256": "5e6b90b272ac07b2c14fc0184d2419095e1696581077d7582c77f7b07832658e",
+      "scope": "15 actual ConfigData/Binder invocations; no Application/client/API",
+      "review_verdict": "PASS_PARTIAL_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "WORKER-OBSERVER-INDEPENDENT",
+      "source_artifact_sha256": "0a5892a4f33b4dbf4d73d0d0b25eeeab338bbdb35dee5cbeae62cc9006941617",
+      "scope": "5 frozen +4 independent wire/profile checks with real Meli executor; idle ingress gate outside scope",
+      "review_verdict": "PASS_L0_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "CP-UNIT-T20-FULL",
+      "scope": "candidate main/unit Java25 full Gradle test",
+      "verdict": "PASS",
+      "tests": 712,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "WORKER-OBSERVER-V3-INITIAL",
+      "scope": "earlystatic bean @Value did not resolve; failstartup prevented invalid identity",
+      "verdict": "FAIL",
+      "tests": 5,
+      "failures": 1,
+      "resolution": "Environment injection; v4 five PASS then full712 PASS; independent five+four PASS"
+    },
+    {
+      "evidence_id": "PM-PRECOMMIT-FINAL",
+      "scope": "staged mandatory contract focused8 commands PASS; real ecosystem capability NONZERO without mandatory Sandbox input; repository validator PASS7sources/11commands/8docs",
+      "verdict": "BLOCKED",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "PARENT-ENUM-V1-INDEPENDENT-FAIL",
+      "source_artifact_sha256": "2eb06ca914e3219ff74e0fa60fe3d04d01915eff1e8d3ec01e2a99da60400c63",
+      "scope": "four actual cleanup control flows falsely certify/erase when intent directory disappears",
+      "review_verdict": "FAIL",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "PARENT-ENUM-V2-INDEPENDENT",
+      "source_artifact_sha256": "885c02137e750447006aa76c3c3461a3938714567432ba333049adff5b894bda",
+      "scope": "46 controls + four original negatives; no destructive callbacks in UNKNOWN",
+      "review_verdict": "PASS_L0_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "PARENT-ENUM-V3-UMASK",
+      "source_artifact_sha256": "a3118dc37b285ee9f20f53bd5ce42cc93a38dc50ddcd6ea9b4d5fefe97349449",
+      "scope": "umask077 baseline fixture FAIL; explicit public chmod candidate7filesystem PASS; inspector unchanged",
+      "review_verdict": "PASS_L0_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "DOMAIN-T20-JOURNAL-INDEPENDENT",
+      "source_artifact_sha256": "fb33ee54585506dd8130665562b4b3637526a5e211de5e37108fb03acfce7207",
+      "scope": "10 hashes source journal/handshake +11 loopback gate controls; business runtime absent",
+      "review_verdict": "PASS_SOURCE_L0_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "GETTERS-METADATA-INDEPENDENT",
+      "source_artifact_sha256": "ecf3b3ab9eac5187c19e732aac4d7da8773409e160879f7fe9c3c61d4f43a9c2",
+      "scope": "getter-only javac/source delta; prior physical cleanup control tails identical",
+      "review_verdict": "PASS_SOURCE_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "BOUNDARY-ROUTING-RETENTION",
+      "source_artifact_sha256": "a673aa73b0f515b4fd1c14d56915ae56bfc63c39497622e418959c8726bb4c61",
+      "scope": "two-line source delta; final Domain support API compiled separately",
+      "review_verdict": "PASS_SOURCE_ONLY",
+      "business_families": "NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "FAMILIES-COMPILE-PROFILE-T20",
+      "verdict": "PASS_PARTIAL",
+      "scope": "Java25 Gradle all three family classes/resources compile; profileConfigDataTest15/0fail/0skip; no Application provider calls"
+    },
+    {
+      "evidence_id": "HARNESS-GRADLE-ENUM-T20",
+      "verdict": "PASS_L0_ONLY",
+      "scope": "mandatory real validateRealE2eHarness task executed; source control tests do not certify business"
+    },
+    {
+      "evidence_id": "CI-LOCAL-MISSING-SERVICES-FINAL",
+      "verdict": "EXPECTED_FAIL",
+      "exit": 1,
+      "gates": {
+        "harness": 0,
+        "sandbox": 2,
+        "cp": 2,
+        "playmaker": 2,
+        "managed": 2
+      },
+      "scope": "actual e2e/ci.sh with mandatory service inputs absent; all gates reported, no skip/no backend calls; corporate CI job not run"
+    },
+    {
+      "evidence_id": "CI-UMASK-FIXTURE-INITIAL",
+      "verdict": "FAIL",
+      "scope": "CI umask077 made mkdir0755 fixture private; explicit chmod0755 corrected test, independently baseline red/candidate green"
+    },
+    {
+      "evidence_id": "KL-FINAL-VALIDATORS",
+      "verdict": "PARTIAL",
+      "structural": "PASS689unique/194markdown",
+      "historical": "PASS",
+      "formal": "FAIL937 identical baseline bytes after source-root normalization",
+      "normalized_sha256": "1c898d57dc31b579540a74fc5e631db64ce842896a93b3625fd7fd0c05c445b5",
+      "scope": "Historical T20 knowledge validation snapshot, before current PM focal revalidation and two new IDs; retained without alteration of original outcomes",
+      "historical_only": true
+    },
+    {
+      "evidence_id": "PM-CANONICAL-REVALIDATION-0C83575",
+      "path": "pm-canonical-revalidation.json",
+      "source_artifact_sha256": "dc73ff60e0576f6545739f92d90d55e6af08cb041e9c57a43e1d8e0747f2a036",
+      "scope": "current GitHub master Kafka frontier, transport/context/entity/auth version distinction; source only",
+      "verdict": "PASS_SOURCE_ONLY"
+    },
+    {
+      "evidence_id": "CP-SCHEMA-T21-AUTHOR",
+      "path": "t21-schema-evidence.json",
+      "source_artifact_sha256": "04432b3648cdba844ed25f59d8a1bc010adb0d3330a600dc64977cc706d4c7fa",
+      "scope": "schema0/-1 normative guard: four old-source unit failures, candidate controller25 PASS; physical body prepared only",
+      "verdict": "PASS_UNIT_ONLY"
+    },
+    {
+      "evidence_id": "CP-SCHEMA-T21-INDEPENDENT",
+      "path": "t21-independent-review.json",
+      "source_artifact_sha256": "8ce0dc9da66c113b0ba2e30a574b72c4141df7f868026a8238bc0d6ba01826e6",
+      "scope": "clean430+only two Java source paths; exact four red then25 green; no backend",
+      "verdict": "PASS_UNIT_ONLY"
+    },
+    {
+      "evidence_id": "CP-T21-FULL-UNIT-ALL-COMPILE",
+      "path": "cp-t21-full-unit-compile.json",
+      "source_artifact_sha256": "9a12fb7d998f0849f44ecbe3465970cbb65264a269f4f8296cef0be9d26f3973",
+      "scope": "Java25 full722 unit/0skip; all three real family classes compile and bootJar built; no complete business run",
+      "verdict": "PASS_UNIT_AND_COMPILE_ONLY"
+    },
+    {
+      "evidence_id": "FINAL-OWN-DOCKER-INVENTORY",
+      "path": "final-owned-docker-inventory.json",
+      "source_artifact_sha256": "50b6fdb519a2ee1c76bae1dcf703fbc2ef85dfd2bb64770c00b8e21acd7638fd",
+      "scope": "read-only own Docker context:0 all containers/Compose networks/volumes; no business scope",
+      "verdict": "PASS_COMPONENT_CLEANUP"
+    },
+    {
+      "evidence_id": "KL-CURRENT-VALIDATORS-691",
+      "path": "kl-current-validation-results.json",
+      "source_artifact_sha256": "f9afa176183dc880fe63b54c1e9c5ffff748b5a8a261cd050665b9423d4c9394",
+      "verdict": "PASS_STRUCTURAL_HISTORICAL_FOCAL_ONLY_FORMAL_FAIL",
+      "scope": "current focal PM master0c validation; two source capabilities added, not runtime certification",
+      "structural": "PASS691unique/194markdown",
+      "historical": "PASS",
+      "formal": "FAIL937 byte-identical baseline711",
+      "formal_outputs_byte_identical": true,
+      "formal_output_sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5",
+      "introduced": 0,
+      "removed": 0
+    },
+    {
+      "evidence_id": "KL-CURRENT-INDEPENDENT-PEER",
+      "path": "kl-final-independent-review.json",
+      "source_artifact_sha256": "8354cac09ad53a0958cbfa2c40fabbee26ef68b4fb8c76ce7db96137e4ec38b3",
+      "scope": "clean711 plus exact seventeen-document patch; source/current/history/691ID scope checked, initial P2 corrected; formal937 remains FAIL",
+      "verdict": "PASS_FOCAL_SOURCE_STRUCTURAL_HISTORICAL_ONLY_FORMAL_FAIL"
+    },
+    {
+      "evidence_id": "T22-INDEPENDENT-METADATA-PEER",
+      "path": "t22-final-independent-review.json",
+      "source_artifact_sha256": "fa2055e6a7873a93d33749c3e49f1a191ee902d86d8b4dcea73190287cfc1613",
+      "scope": "prior46-record snapshot counts/hashes/scopes; cp alias and historical689/current691 clarified, no business replay",
+      "verdict": "PASS_METADATA_ONLY"
+    },
+    {
+      "evidence_id": "FINAL-GITHUB-CANONICAL-REFS",
+      "path": "final-github-canonical-ref-receipt.json",
+      "source_artifact_sha256": "9baba9cf6bdb7847003ba0880993e26b518d72ddcaf812c367d0fbeecc82dceb",
+      "scope": "GitHub API explicit master refs for four repositories at receipt timestamp; zero drift; no runtime/deployment proof",
+      "verdict": "PASS_SOURCE_FRESHNESS_ONLY"
+    },
+    {
+      "evidence_id": "T23-FIRST-FULL-REGRESSION",
+      "path": "cp-t23-first-full-failure.json",
+      "source_artifact_sha256": "34fd9c0804650efc3c732a8512825d95fd618d97facc932493f1b23b8137d94b",
+      "scope": "804 tests,4 unchanged positive mocked HTTP fixtures failed after correct guards; preserved before fixture metadata repair, not E2E",
+      "verdict": "FAIL_EXPECTED_FIXTURE_DRIFT"
+    },
+    {
+      "evidence_id": "T23-FINAL-FULL-REGRESSION",
+      "path": "cp-t23-full-unit-compile.json",
+      "source_artifact_sha256": "d149b30c45e64ec30b9e55a846f0c815902710bd796290b6c10a26bdb194f2fd",
+      "scope": "804 unit/component tests0failure/error/skip,3 real families compile,bootJar; f80 plus frozen T23 overlay later committed eee5b90; no physical business",
+      "verdict": "PASS_UNIT_COMPILE_ONLY"
+    },
+    {
+      "evidence_id": "T23-PEER-CLEAN-REPLAY",
+      "path": "t23-peer-review.json",
+      "source_artifact_sha256": "6890f49e0202c3da7d80f985c9c8f95f9d77292ab59aae6fc146b9b4af3bb462",
+      "scope": "cleanf80 RED64 then GREEN113 controllers+10 positive mocked HTTP; no open findings; canonical-vs-candidate GCP finding withdrawn with trace",
+      "verdict": "PASS_INDEPENDENT_SOURCE_UNIT_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-CP-ROOT-V3-UNIT-MAIN-JAR",
+      "path": "cp-root-v3-unit-main-jar.json",
+      "source_artifact_sha256": "334b5803e23707f51eaf5715392e8efa9d8f369d99d56b4c16f20a99143bb25f",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-PM-ROOT-V3-FULL-UNIT",
+      "path": "pm-root-v3-full-unit.json",
+      "source_artifact_sha256": "bab534f5f80a4c9f53e3f764f0e8f93de907fc60de8f30e3d251481a6d0b0e38",
+      "scope": "Full PMunit4386total/4384pass/2unchangedbaselineSkips/382classes, no business",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-FIRST-COMPILE-FAILURE",
+      "path": "root-v4-first-compile-failure.json",
+      "source_artifact_sha256": "311ee654f7dec4839a262ba922e3514b8f2e6c467d902233245379c2b350aa30",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-THREE-FAMILY-COMPILE",
+      "path": "root-v4-1-three-family-compile.json",
+      "source_artifact_sha256": "bfe7c4b3f6ffd2e11ee9c192271d0ef3c04f4ce56be5148e4d0c76ed9e1a0e26",
+      "scope": "Compile48/42/16classes+bootJar; no physical family executed",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-SOURCE-FREEZE",
+      "path": "root-v4-1-source-freeze.json",
+      "source_artifact_sha256": "2be8b9deead072c1d8b8373ed8e4b7052b5073deb263d0965a12c2dbdafd2944",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-METADATA-CONTROLS",
+      "path": "root-v4-1-metadata-controls.json",
+      "source_artifact_sha256": "54a3628e7a3b8ca7760c10ceae908a762387a5a6733ab3d45b11e86801efef9b",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-TASK-NEGATIVE-CONTROLS",
+      "path": "root-v4-1-task-negative-controls.json",
+      "source_artifact_sha256": "9d3847123b53d5aa27cf5b87d192e8ed7734908b6aedee8cc6ed0563e3f9b645",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-PRIVATE-CONTROL-DRIVER-FIRST-FAILURE",
+      "path": "root-v4-1-private-control-driver-first-failure.json",
+      "source_artifact_sha256": "c61f095cda786913eb940f36c9192fbeaa14dcbeb114cc57dbc8c2d16768c584",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-ACTUAL-GRADLE-CONTROL",
+      "path": "root-v4-actual-gradle-control.json",
+      "source_artifact_sha256": "9381130375a6dc86d8584c25e6a73547c09b06c90eeea5810d55e85ca3150b24",
+      "scope": "Actual Gradle9.3.1 plainJUnit1/no productive KVS generators normal0; worker79 task1 lacks success proof. No SDK/backend/business",
+      "verdict": "PASS_NEUTRAL_NORMAL_AND_FATAL_FAILURE_DETECTION_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-SEVEN-FALSE-ACCEPTS",
+      "path": "root-v4-seven-false-accepts.json",
+      "source_artifact_sha256": "db79619b7821fe875b6a1fe9f292a51abd85e60bede9f9793fb6190e0bef4937",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-PEER-REVIEW",
+      "path": "root-v4-peer-review.json",
+      "source_artifact_sha256": "418e31a66d8b8e18247d3d4e56dc7aad35d86f0473f8399716559ced85f4d5b6",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-PM-NEUTRAL-CONTROL",
+      "path": "root-v4-1-pm-neutral-control.json",
+      "source_artifact_sha256": "2e422cd07cf3684752283ed69ef188658f4739a332c7fc44f044f558c1a6bde1",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-PM-PRIVATE-PACK-FAILURE",
+      "path": "root-v4-1-pm-private-pack-failure.json",
+      "source_artifact_sha256": "6ed91e5fd8cfdc3d9e891f60b47f9c1957f48b5ad9adf6c051fbffe15aae862b",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-PM-SANDBOX-DENIAL",
+      "path": "root-v4-1-pm-sandbox-denial.json",
+      "source_artifact_sha256": "ac215d19042f359429d0984270f303e26addb3b0fb6a9c023361f730c66ba879",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-WORKER-PEER",
+      "path": "root-v4-worker-peer.json",
+      "source_artifact_sha256": "40bbc628b8d7a2cb9f592e7aa7a2a45e0be7737221b67e14420939b3635cf477",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-CP-OWNER-PEER",
+      "path": "cp-owner-peer.json",
+      "source_artifact_sha256": "060367c3d28b0a407beea866ceb28bd76dd320bfe73a5276ac21b5dded9f2903",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T24R-PIPELINE-PEER",
+      "path": "t24r-pipeline-peer.json",
+      "source_artifact_sha256": "301a1d0e6d908f0cf34d9614efcdfcfc2ca205ffb40eb356d019a48edeb4eb71",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T24-FIRST-PHYSICAL-PARAMS-PEER",
+      "path": "t24-first-physical-params-peer.json",
+      "source_artifact_sha256": "fcfa70db891679b66f6052c42ce80dc35092877fef095b3f60cd266e8214c057",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-T24-P2-GUARDS-PEER",
+      "path": "t24-p2-guards-peer.json",
+      "source_artifact_sha256": "c9819dd8a29f50804bc6e471058b1a3da2e47270d77c7777123b60c7ce3e62fb",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T26-JOURNALS-PEER",
+      "path": "t26-journals-peer.json",
+      "source_artifact_sha256": "9f1efb807fba06769f73197832ca5df301cf23c1e04e713e4c865277ba28ebae",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-CI-FOUR-FAMILY-PEER",
+      "path": "ci-four-family-peer.json",
+      "source_artifact_sha256": "a4b5446dfaada1e005a27100dc015be7124daa8acd31254e3f6a83d33bef22ba",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-KL-STOP-REAP-DELTA-VALIDATOR-PEER",
+      "path": "kl-stop-reap-delta-validator-peer.json",
+      "source_artifact_sha256": "9e82589d52fc6727b2c883b26546aaebeb22917db385bf66662df838754df5e8",
+      "scope": "691IDs/194Markdown structural/historical/diff PASS; formal937FAIL byte-identical baseline,0new; no business",
+      "verdict": "PASS_STRUCTURAL_HISTORICAL_FAIL_FORMAL_BASELINE_IDENTICAL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-README-DELTA-PEER",
+      "path": "root-readme-delta-peer.json",
+      "source_artifact_sha256": "87ac698da6b174bd454c0018259b3785a6e2a865be12a278b3cd05824b47fc33",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-README-SAFE-APPLY",
+      "path": "root-readme-safe-apply.json",
+      "source_artifact_sha256": "373f8e831b5246659bf3aebf52c272d7ebd6fb14eba6ae9c78be886372d74141",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T24-MATRIX-FINAL-SOURCE-FREEZE",
+      "path": "t24-matrix-final-source-freeze.json",
+      "source_artifact_sha256": "3dd13725d834abbec5876598e3584ff08ebe517d5aff0d5015347bfe2d07bf33",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T24-MATRIX-FINAL-SOURCE-VALIDATION",
+      "path": "t24-matrix-final-source-validation.json",
+      "source_artifact_sha256": "48c441c8831ef6049541d310a56013e9994b934f3b00e4f37067fd5a87053c9c",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T24-MATRIX-FINAL-SOURCE-MANIFEST",
+      "path": "t24-matrix-final-source-manifest.json",
+      "source_artifact_sha256": "cf4762b193c12abccefbf94142cd46c101f20b8707d8ea0841d67b98cbddb3ce",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-CORE-PEER",
+      "path": "root-v4-1-core-peer.json",
+      "source_artifact_sha256": "f7c6c8068a55b6ebc42bb82cce421ddd165fc2d853cb082ae18fce6bad1fec01",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-WORKER-OWNER-TYPE-RED",
+      "path": "root-v4-1-worker-owner-type-red.json",
+      "source_artifact_sha256": "d0082c04e0a9b08d7c8bcdff3d9986f5ecde202524c27a910ca2cb356c249c7d",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_SOURCE_OR_CONTROL"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-R2-OWNER-TYPE-RED-GREEN",
+      "path": "root-v4-1-r2-owner-type-red-green.json",
+      "source_artifact_sha256": "9d31960fd9fb6e4780f019d48c02845dff8f69fbc1d94642bea8cd18899c409a",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-R2-READINESS-ASSERTIONS",
+      "path": "root-v4-1-r2-readiness-assertions.json",
+      "source_artifact_sha256": "bc7f96e3e46a3351cb521c44b20d221d32f0184d854d04bad42b2d1cf954bba9",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T24-MATRIX-PREPARATION-PEER",
+      "path": "t24-matrix-preparation-peer.json",
+      "source_artifact_sha256": "b5360b1d397aa7f693a2b188a258ad4070fb87ff2b542bcea8348004bde954a2",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T24-MATRIX-SAFE-APPLY",
+      "path": "t24-matrix-safe-apply.json",
+      "source_artifact_sha256": "fdabd12317bd745f78876c7c19defa09435ab35f40acdd13e2a7abd8cbb225f3",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_UNIT_COMPONENT_OR_CONTROL_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-T24-MATRIX-FINAL-MAPPING-AUDIT",
+      "path": "t24-matrix-final-mapping-audit.json",
+      "source_artifact_sha256": "e8fa924e14d1fd9e16b35f8abb704916bc93306b90a376107a9c43fd61227000",
+      "scope": "SOURCE_OR_COMPONENT_CLEANUP_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_COMPONENT_METADATA_OR_DOC_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-FINAL-OWNED-DOCKER-INVENTORY-2026-10-02",
+      "path": "final-owned-docker-inventory-2026-10-02.json",
+      "source_artifact_sha256": "54fc2070522f510fdc556321553c581dba442c64815073c90fb0b6e042c10a2a",
+      "scope": "SOURCE_OR_COMPONENT_CLEANUP_ONLY_NO_BUSINESS_CERTIFICATE",
+      "verdict": "PASS_SOURCE_COMPONENT_METADATA_OR_DOC_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-R2-PEER",
+      "path": "root-v4-1-r2-peer.json",
+      "source_artifact_sha256": "dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE",
+      "verdict": "PASS_SOURCE_COMPONENT_METADATA_OR_DOC_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-R2-AUTHOR-RESULT",
+      "path": "root-v4-1-r2-author-result.json",
+      "source_artifact_sha256": "a9318b28453b0cf6bfd12e3f903bbe7748c601ff7e20321fa6be467419d2c005",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE",
+      "verdict": "PASS_SOURCE_COMPONENT_METADATA_OR_DOC_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-V4-1-R2-SAFE-APPLY",
+      "path": "root-v4-1-r2-safe-apply.json",
+      "source_artifact_sha256": "067878e45e1d8d304a443781d045545430bf1c5ac5baafbcaf47bb2bf5144de4",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE",
+      "verdict": "PASS_SOURCE_COMPONENT_METADATA_OR_DOC_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-FINAL-SOURCE-FREEZE",
+      "path": "root-final-source-freeze.json",
+      "source_artifact_sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE",
+      "verdict": "PASS_SOURCE_COMPONENT_METADATA_OR_DOC_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-FINAL-MATRIX-PORTABLE-PEER",
+      "path": "root-final-matrix-portable-peer.json",
+      "source_artifact_sha256": "c3cfc7aefd83ccf1410c8fcd466652ef55ead5f960c5c85e9338309a46d80668",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE",
+      "verdict": "PASS_SOURCE_COMPONENT_METADATA_OR_DOC_ONLY"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-DRIVER-FIRST-INDEPENDENT-FAILURE",
+      "path": "root-driver-first-independent-failure.json",
+      "source_artifact_sha256": "4c2999d40f41b61a17d1217775aabd70a9a283c185b7dbfb53ab6b5a1b123a3d",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_NEUTRAL_DRIVER_RACE"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-DRIVER-SECOND-INDEPENDENT-FAILURE",
+      "path": "root-driver-second-independent-failure.json",
+      "source_artifact_sha256": "93615f6b3694f812530250ea6a01f8ab53862e40fbe35ae7e7bba911cab7014f",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE",
+      "verdict": "FAIL_PRESERVED_NEUTRAL_DRIVER_RACE"
+    },
+    {
+      "evidence_id": "POST-T23-ROOT-FINAL-DOCS-FIRST-PEER",
+      "path": "root-final-docs-first-peer.json",
+      "source_artifact_sha256": "e9c1e783cea0257c80cc7c3a91861627ad45df6e680806f0f3da43db3ebc2105",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE",
+      "verdict": "PASS_SOURCE_COMPONENT_METADATA_OR_DOC_ONLY"
+    }
+  ],
+  "families": {
+    "local_cp_kafka_kvs": "NOT_EXECUTED",
+    "local_playmaker_journey": "NOT_EXECUTED",
+    "managed_oauth_business": "NOT_EXECUTED",
+    "managed_bigqueue_business": "NOT_EXECUTED",
+    "managed_callbacks_playmaker": "NOT_EXECUTED",
+    "corporate_ci_job": "NOT_EXECUTED",
+    "local_canonical_playmaker_journey": "NOT_EXECUTED",
+    "local_candidate_playmaker_journey": "NOT_EXECUTED"
+  },
+  "required_external_actions": [
+    "Grant current Fury identity CP-owned clone-service POST permission (actual403), or provide another own clonable test alias. Then provision distinct own CP/PM results/PM locks Sandbox instances and observe actual current Toolkit create/server version/CAS/increment/TTL.",
+    "Provide own deployed nonproduction EntityService target and fresh runtime/identity/source/API contract plus Tiger/ACME team/project/denied-caller grants. Official CLI scopes ZeroTrustUnauthorizedException and deployments400 leave target unverified;400 does not prove absence.",
+    "Provide own GCP OAuth allowed/denied principals/cluster/secrets, managed MSK endpoint, BigQueue topics/consumers/DLT/callback schemas/full windows/deletion contracts; adopt an effective compatible SDK. Current registry remains hard-closed and CP1.3.1 has not adopted factory fix.",
+    "Provide approved import/Odin workflow and explicitly authorized owned actors/recipients before any notification or approval claim.",
+    "Provide protected Docker/JDK25 corporate runner/environment/access and run actual four-gate job; independently repeat clean full physical suites and verify cleanup.",
+    "Renew Spellbook for SIG registration; existing explicit Zord destination/action authorization remains pending after auto-review rejection."
+  ],
+  "limits": [
+    "Component/unit PASS is not an E2E capacity PASS.",
+    "Prepared matrix rows remain NOT_EXECUTED until actual correlated business effects, KVS/result/Playmaker and cleanup are observed.",
+    "Mac ARM evidence does not certify Linux CI image/runtime.",
+    "SDK source fix tested; CP still consumes1.3.1, release/adoption not performed.",
+    "Seven of ten new PM joins are FULL prepared and three PARTIAL; all351 capacity-level runtime verdicts remain NOT_EXECUTED. Preparation peer is source/shape only.",
+    "Root unit/compile/process/metadata controls and neutral actual Gradle receipts cannot certify productive SDK/remote backend or full business journeys.",
+    "Formal library validation retains937 byte-identical baseline errors with0introduced; structural/historical PASS is not a formal green.",
+    "No canonical/source refresh success inferred from IP403 or source checkout; no deployed release/runtime identity certified."
+  ],
+  "token_usage": "unknown",
+  "cost": "unknown",
+  "coverage": {
+    "matrix_rows": 351,
+    "prepared_full": 304,
+    "prepared_partial": 29,
+    "missing_preparation": 18,
+    "runtime_capacity_verdicts": {
+      "NOT_EXECUTED": 351
+    },
+    "partial_config_and_worker_controls_do_not_certify_complete_capacity": true,
+    "matrix_sha256": "2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e",
+    "preparation_peer_sha256": "b5360b1d397aa7f693a2b188a258ad4070fb87ff2b542bcea8348004bde954a2",
+    "portable_ref_peer_sha256": "c3cfc7aefd83ccf1410c8fcd466652ef55ead5f960c5c85e9338309a46d80668"
+  },
+  "candidate_commits": {
+    "sdk": "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+    "playmaker": "1b4b8e1554c37357e4b39e1860be6ad43f9aa640",
+    "cp": "eee5b9091b332a975c78823679a1e99b517632bc",
+    "knowledge": "a207c95478f38246b3209ab29da58d0c72941bbe",
+    "cp_implementation_checkpoint": "eee5b9091b332a975c78823679a1e99b517632bc",
+    "cp_previous_implementation_checkpoint": "f80ea19421518251515aae768d020f574ad255bb",
+    "playmaker_canonical_overlay_base": "0c83575c54cb198d238be7d83f3b4d8de27abbc8"
+  },
+  "historical_pm_canonical_snapshot": "3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1",
+  "active_phases": {
+    "T23": "COMMITTED_EEE_REVIEWED_SOURCE_UNIT_PHYSICAL_NOT_EXECUTED",
+    "T24": "REVIEWED_PREPARATION_7FULL_3PARTIAL_TWO_PM_POLICIES_NOT_EXECUTED",
+    "T24R3": "PEER_SOURCE_FS_PASS_FOUR_FINDINGS_CLOSED_NO_ENTITY_RUNTIME",
+    "T25": "PEER_BASELINE_AND_CURRENT_SYNC_NEUTRAL14_159_X2_PASS_NO_PRODUCTIVE_PM",
+    "T26": "PEER_FS_JAVAP_18CONTROLS_PASS_NO_SANDBOX",
+    "RootV4.1": "CORE_PEER_TWO_PRIOR_P2_CLOSED_TYPED_OWNER_P2_PRESERVED",
+    "RootV4.1r2": "PEER_SOURCE_AND_NEUTRAL_PASS_TYPED_OWNER_AND_DRIVER_RACES_CLOSED_NO_BACKEND",
+    "CI": "FOUR_FAMILY_SOURCE_PEER_FAIL_CLOSED_CONTROLS_PASS_NO_JOB"
+  },
+  "active_findings": [
+    {
+      "id": "T25-P2-PM-KVS-SQL-CLEANUP-ORDER",
+      "status": "SOURCE_CONTRACT_IMPLEMENTED_AND_COMPONENT_PEERED_PHYSICAL_GATE_NOT_EXECUTED",
+      "source_evidence": "t25-playmaker-cleanup-source-review.md"
+    },
+    {
+      "id": "T24-PM-SYNTHETIC-ENTITY-CLIENT",
+      "status": "SOURCE_PROFILE_FIXED_PHYSICAL_ENTITY_TARGET_BLOCKED"
+    },
+    {
+      "id": "ROOT-V4-COMPILE_AND_MANDATORY_TASK_PROOF",
+      "status": "CLOSED_SOURCE_CONTROL_LAYER_V4_1_NOT_BUSINESS"
+    },
+    {
+      "id": "ROOT-V4_1-TYPED_OWNER_AND_DRIVER_READINESS",
+      "status": "CLOSED_R2_SOURCE_AND_NEUTRAL_PEER_ONLY_NOT_BUSINESS"
+    }
+  ],
+  "root_final_source": {
+    "aggregate_sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1",
+    "peer_sha256": "dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d",
+    "scope": "SOURCE_NEUTRAL_ONLY_NO_BACKEND",
+    "productive_runtime": "NOT_EXECUTED"
+  }
+}

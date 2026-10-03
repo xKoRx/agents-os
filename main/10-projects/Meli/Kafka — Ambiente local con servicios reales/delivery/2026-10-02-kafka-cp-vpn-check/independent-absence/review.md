@@ -1,0 +1,1 @@
+PASS: one actual installed-SDK GET returned HTTP404 for the exact run-owned CP Business Cluster. Source/state guards passed; state SHA256 unchanged. No mutation, credential output, login/renew/SSO, instances, KVS operations, Docker or Gradle. This certifies only this GET absence; clone permission and physical CP suite remain BLOCKED/NOT_EXECUTED.

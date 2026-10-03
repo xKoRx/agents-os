@@ -1,0 +1,100 @@
+{
+  "utc": "2026-10-02T07:33:50.897059+00:00",
+  "scope": "LOCAL_REVIEWABLE_SOURCE_PATCHES_NOT_DEPLOYED",
+  "full_e2e_verdict": "BLOCKED",
+  "matrix": {
+    "rows": 351,
+    "prepared_full": 304,
+    "partial": 29,
+    "none": 18,
+    "runtime_NOT_EXECUTED": 351
+  },
+  "records": [
+    {
+      "name": "kafka-cp",
+      "repo": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "branch": "feature/kafka-real-e2e",
+      "base": "4302481c69300074a85ea5eb051a27bbd505cdce",
+      "head": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+      "patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/kafka-cp.patch",
+      "patch_sha256": "19b82a7826ef482df833feabc4f7abb9317b408ddccd1b8422bff8c40692873c",
+      "patch_bytes": 2564449,
+      "commits": [
+        "3bea4809a5372d5acca3d86a6181ed2c60137f22 feat(e2e): add owned execution proofs and Kafka journey coverage",
+        "eee5b9091b332a975c78823679a1e99b517632bc fix: reject invalid trigger metadata before asynchronous work",
+        "f80ea19421518251515aae768d020f574ad255bb fix: reject invalid deployment schema versions before dispatch",
+        "d2ab41cc8619ee7bfaa4ab0f12b19bd178857223 docs: record verified E2E checkpoint and mandatory external gates",
+        "0d8e1fedd0fd6db8907b1c810dbad9d22c296312 feat: prepare real Kafka ecosystem E2E with mandatory service gates"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING"
+    },
+    {
+      "name": "playmaker-candidate",
+      "repo": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e",
+      "branch": "feature/kafka-real-e2e",
+      "base": "7673f4bffc286f0f24d4214938df53c4c5eb9c38",
+      "head": "acbda2f1e68ae7672de6f9571cd739da972ca07a",
+      "patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/playmaker-candidate.patch",
+      "patch_sha256": "5d33c5bdf94af4ed8b8220ac50f2815cbae739f18ebe872b70eafad9009d5eff",
+      "patch_bytes": 105749,
+      "commits": [
+        "acbda2f1e68ae7672de6f9571cd739da972ca07a feat(e2e): observe productive KVS and require owned process leases",
+        "1b4b8e1554c37357e4b39e1860be6ad43f9aa640 feat: add real Kafka control-plane ecosystem gate"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING"
+    },
+    {
+      "name": "playmaker-canonical-overlay",
+      "repo": "/Users/rjara/fuentes/rio-playmaker-kafka-e2e-canonical",
+      "branch": "feature/kafka-real-e2e-canonical",
+      "base": "0c83575c54cb198d238be7d83f3b4d8de27abbc8",
+      "head": "47df54fe1e341be6b1c2304a2c098b0c01d626e1",
+      "patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/playmaker-canonical-overlay.patch",
+      "patch_sha256": "de989851f2f02eb34c96853f72b76830d5142d6feb31dbc435392e6f501f232d",
+      "patch_bytes": 79073,
+      "commits": [
+        "47df54fe1e341be6b1c2304a2c098b0c01d626e1 feat(e2e): add isolated real adapters without changing canonical policies"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING"
+    },
+    {
+      "name": "sdk-events",
+      "repo": "/Users/rjara/fuentes/rio-sdk-events-kafka-e2e",
+      "branch": "feature/kafka-e2e-publisher-fix",
+      "base": "ad2c98b806cffb88b23513f87785932aa1707ea4",
+      "head": "97146e9fde6cb2d947b7978ba2ba2491d11f06b5",
+      "patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/sdk-events.patch",
+      "patch_sha256": "ca3f4cc871561e4ff4f7eda56fe82ba83e5cdfc30fdcce22439b933fac7aad2f",
+      "patch_bytes": 10974,
+      "commits": [
+        "97146e9fde6cb2d947b7978ba2ba2491d11f06b5 fix: preserve configured BigQueue producer builder"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING"
+    },
+    {
+      "name": "knowledge-library",
+      "repo": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "branch": "docs/kafka-real-e2e",
+      "base": "de7cde85f7dd83a673c918e22ae9f08a0f7e05bd",
+      "head": "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5",
+      "patch": "/private/tmp/kafka-e2e-discovery/final-patch-delivery/knowledge-library.patch",
+      "patch_sha256": "8e083ce680d2643b06cb08dd58668e5a842fe4f24a8615bb06cd586a416f1e1a",
+      "patch_bytes": 225309,
+      "commits": [
+        "65bcbb97fbf882b73dc5ae2bddbc638f3988fab5 docs(kafka): audit canonical frontiers and record real E2E verification limits",
+        "a207c95478f38246b3209ab29da58d0c72941bbe docs: revalidate Kafka boundaries against current Playmaker master",
+        "711887892a0f9ce75e68b223f1b5740213d3d4e4 docs: link implementation checkpoint and reviewed retention evidence",
+        "5d832e047779a5f6da276371e5a9d1da481be796 docs: audit canonical Kafka contracts and real E2E limits"
+      ],
+      "status": "CLEAN_LOCAL_COMMITTED_NO_PUSH",
+      "source": "WORK_BRANCH_PENDING"
+    }
+  ],
+  "formal_meli_review": "BLOCKED",
+  "token_usage": "unknown",
+  "cost": "unknown"
+}

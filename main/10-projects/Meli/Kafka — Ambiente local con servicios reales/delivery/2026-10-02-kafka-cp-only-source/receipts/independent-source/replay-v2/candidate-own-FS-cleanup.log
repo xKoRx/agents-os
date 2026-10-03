@@ -1,0 +1,6 @@
+Warning: could not initialize the reports module: no se pudo resolver el directorio de SBOM: could not determine user home directory: $HOME is not defined
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 3.309s
+
+OK

@@ -1,0 +1,1774 @@
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/config/ActionLockKvsConfig.java b/src/main/java/com/mercadolibre/rio/playmaker/config/ActionLockKvsConfig.java
+index 8c64d1242..db92be239 100644
+--- a/src/main/java/com/mercadolibre/rio/playmaker/config/ActionLockKvsConfig.java
++++ b/src/main/java/com/mercadolibre/rio/playmaker/config/ActionLockKvsConfig.java
+@@ -59,6 +59,7 @@ public class ActionLockKvsConfig {
+    * @return a no-op {@link KvsClient} implementation
+    */
+   @Bean("actionLockKvsClient")
++  @Profile("!real-e2e")
+   @ConditionalOnMissingBean(name = "actionLockKvsClient")
+   public KvsClient actionLockKvsClientNoOp() {
+     return new NoOpKvsClient();
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/config/ActionResultKvsConfig.java b/src/main/java/com/mercadolibre/rio/playmaker/config/ActionResultKvsConfig.java
+index 42200bc50..b61409df2 100644
+--- a/src/main/java/com/mercadolibre/rio/playmaker/config/ActionResultKvsConfig.java
++++ b/src/main/java/com/mercadolibre/rio/playmaker/config/ActionResultKvsConfig.java
+@@ -70,7 +70,7 @@ public class ActionResultKvsConfig {
+    *
+    * @return a no-op {@link KvsClient} implementation
+    */
+-  @Profile({"local", "integration_test"})
++  @Profile({"local & !real-e2e", "integration_test & !real-e2e"})
+   @Bean("actionResultKvsClient")
+   public KvsClient actionResultKvsClientLocal() {
+     return new NoOpKvsClient();
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/localintegration/LocalKafkaActionResultListener.java b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/LocalKafkaActionResultListener.java
+new file mode 100644
+index 000000000..14e601e9b
+--- /dev/null
++++ b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/LocalKafkaActionResultListener.java
+@@ -0,0 +1,52 @@
++package com.mercadolibre.rio.playmaker.localintegration;
++
++import com.fasterxml.jackson.core.JsonProcessingException;
++import com.fasterxml.jackson.databind.ObjectMapper;
++import com.mercadolibre.rio.playmaker.service.ActionResultConsumerService;
++import com.mercadolibre.rio.sdk.events.actions.ActionResultMessage;
++import org.springframework.context.annotation.Profile;
++import org.springframework.kafka.annotation.KafkaListener;
++import org.springframework.stereotype.Component;
++
++/** Feeds actual CP results into the production action result/KVS state machine. */
++@Component
++@Profile("local & local-integration & real-e2e")
++public class LocalKafkaActionResultListener {
++  private final ObjectMapper mapper;
++  private final ActionResultConsumerService consumer;
++
++  /** Creates a listener for raw SDK result JSON. */
++  public LocalKafkaActionResultListener(ObjectMapper mapper, ActionResultConsumerService consumer) {
++    this.mapper = mapper;
++    this.consumer = consumer;
++  }
++
++  /** Rejects invalid payloads before invoking the production result consumer. */
++  @KafkaListener(topics = "${local.integration.kafka.action-result-topic}",
++      groupId = "${spring.kafka.consumer.group-id}",
++      containerFactory = "localKafkaActionListenerContainerFactory")
++  public void consume(String payload) {
++    if (payload == null || payload.isBlank() || payload.length() > 262_144) {
++      throw new InvalidLocalActionResultException();
++    }
++    try {
++      ActionResultMessage result = mapper.readValue(payload, ActionResultMessage.class);
++      if (result == null || result.actionId() == null || result.actionId().isBlank()
++          || result.status() == null) {
++        throw new InvalidLocalActionResultException();
++      }
++      consumer.consumeActionResult(result);
++    } catch (JsonProcessingException exception) {
++      throw new InvalidLocalActionResultException();
++    }
++  }
++
++  /** A stable diagnostic that never carries the rejected broker payload. */
++  public static final class InvalidLocalActionResultException extends RuntimeException {
++    private static final long serialVersionUID = 1L;
++
++    InvalidLocalActionResultException() {
++      super("Invalid real E2E action result");
++    }
++  }
++}
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/localintegration/LocalKafkaActionTriggerProducer.java b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/LocalKafkaActionTriggerProducer.java
+new file mode 100644
+index 000000000..ea5a4176e
+--- /dev/null
++++ b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/LocalKafkaActionTriggerProducer.java
+@@ -0,0 +1,48 @@
++package com.mercadolibre.rio.playmaker.localintegration;
++
++import com.fasterxml.jackson.core.JsonProcessingException;
++import com.fasterxml.jackson.databind.ObjectMapper;
++import com.mercadolibre.rio.playmaker.exceptions.QueueException;
++import com.mercadolibre.rio.playmaker.restclient.ActionsTriggerProducer;
++import com.mercadolibre.rio.sdk.events.actions.ActionTriggerMessage;
++import java.util.concurrent.ExecutionException;
++import java.util.concurrent.TimeUnit;
++import java.util.concurrent.TimeoutException;
++import org.springframework.beans.factory.annotation.Value;
++import org.springframework.context.annotation.Profile;
++import org.springframework.kafka.core.KafkaTemplate;
++import org.springframework.stereotype.Component;
++
++/** Publishes the production SDK action payload and waits for the real broker acknowledgement. */
++@Component
++@Profile("local & local-integration & real-e2e")
++public class LocalKafkaActionTriggerProducer implements ActionsTriggerProducer {
++  private final KafkaTemplate<String, String> kafka;
++  private final ObjectMapper mapper;
++  private final String topic;
++
++  /** Creates the sender for the isolated run's action trigger topic. */
++  public LocalKafkaActionTriggerProducer(KafkaTemplate<String, String> kafka, ObjectMapper mapper,
++      @Value("${local.integration.kafka.action-trigger-topic}") String topic) {
++    this.kafka = kafka;
++    this.mapper = mapper;
++    this.topic = topic;
++  }
++
++  @Override
++  public void publish(ActionTriggerMessage message) {
++    if (message == null || message.actionId() == null || message.actionId().isBlank()) {
++      throw new IllegalArgumentException("Action trigger and actionId are required");
++    }
++    try {
++      kafka.send(topic, message.actionId(), mapper.writeValueAsString(message))
++          .get(10, TimeUnit.SECONDS);
++    } catch (InterruptedException exception) {
++      Thread.currentThread().interrupt();
++      throw new QueueException("Interrupted while publishing real E2E action trigger", null);
++    } catch (JsonProcessingException | ExecutionException | TimeoutException exception) {
++      // SDK/broker exception bodies can contain endpoints or payloads; use a bounded diagnostic.
++      throw new QueueException("Failed to publish real E2E action trigger", null);
++    }
++  }
++}
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eActionKafkaConfiguration.java b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eActionKafkaConfiguration.java
+new file mode 100644
+index 000000000..7323d9901
+--- /dev/null
++++ b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eActionKafkaConfiguration.java
+@@ -0,0 +1,38 @@
++package com.mercadolibre.rio.playmaker.localintegration;
++
++import org.apache.kafka.common.TopicPartition;
++import org.springframework.beans.factory.annotation.Value;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.context.annotation.Profile;
++import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
++import org.springframework.kafka.core.ConsumerFactory;
++import org.springframework.kafka.core.KafkaTemplate;
++import org.springframework.kafka.listener.ContainerProperties;
++import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
++import org.springframework.kafka.listener.DefaultErrorHandler;
++import org.springframework.util.backoff.FixedBackOff;
++
++/** Gives action results their own bounded retry/DLT policy without replacing deployment handling. */
++@Configuration
++@Profile("local & local-integration & real-e2e")
++public class RealE2eActionKafkaConfiguration {
++
++  /** Creates an action-only listener factory that commits each successfully consumed record. */
++  @Bean("localKafkaActionListenerContainerFactory")
++  public ConcurrentKafkaListenerContainerFactory<String, String> actionListenerFactory(
++      ConsumerFactory<String, String> consumerFactory, KafkaTemplate<String, String> kafka,
++      @Value("${local.integration.kafka.action-result-dlt-topic}") String deadLetterTopic) {
++    var recoverer = new DeadLetterPublishingRecoverer(kafka,
++        (record, exception) -> new TopicPartition(deadLetterTopic, 0));
++    recoverer.setFailIfSendResultIsError(true);
++    var handler = new DefaultErrorHandler(recoverer, new FixedBackOff(1_000, 2));
++    handler.addNotRetryableExceptions(
++        LocalKafkaActionResultListener.InvalidLocalActionResultException.class);
++    var factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
++    factory.setConsumerFactory(consumerFactory);
++    factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.RECORD);
++    factory.setCommonErrorHandler(handler);
++    return factory;
++  }
++}
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eKvsMutationJournal.java b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eKvsMutationJournal.java
+new file mode 100644
+index 000000000..801a4fe8d
+--- /dev/null
++++ b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eKvsMutationJournal.java
+@@ -0,0 +1,466 @@
++package com.mercadolibre.rio.playmaker.localintegration;
++
++import java.io.IOException;
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++import java.nio.file.Files;
++import java.nio.file.LinkOption;
++import java.nio.file.Path;
++import java.nio.file.StandardCopyOption;
++import java.nio.file.StandardOpenOption;
++import java.nio.file.attribute.BasicFileAttributes;
++import java.nio.file.attribute.PosixFilePermissions;
++import java.nio.charset.StandardCharsets;
++import java.time.Instant;
++import java.security.MessageDigest;
++import java.security.NoSuchAlgorithmException;
++import java.util.HexFormat;
++import java.util.ArrayList;
++import java.util.Collections;
++import java.util.LinkedHashMap;
++import java.util.List;
++import java.util.Map;
++import java.util.Objects;
++import java.util.UUID;
++
++/** Durable, nonsecret observation of calls to one productive Toolkit client in one JVM generation. */
++public final class RealE2eKvsMutationJournal {
++  private static final int SCHEMA_VERSION = 1;
++  private static final int MAX_ORIGIN_LENGTH = 4096;
++  private static final String PRIVATE_FILE = "rw-------";
++  private static final String PRIVATE_DIRECTORY = "rwx------";
++  private static final String INVALID_JOURNAL = "REAL_E2E_KVS_MUTATION_JOURNAL_UNVERIFIED";
++  private final Path directory;
++  private final Path receiptPath;
++  private final Identity identity;
++  private final UUID receiptId = UUID.randomUUID();
++  private final Object directoryKey;
++  private final String owner;
++  private final Map<String, Long> attemptCounts = new LinkedHashMap<>();
++  private final Map<String, Long> completionCounts = new LinkedHashMap<>();
++  private final Map<Long, Ticket> pending = new LinkedHashMap<>();
++  private final List<String> unknownReasons = new ArrayList<>();
++  private Object receiptKey;
++  private String receiptDigest;
++  private Map<String, Object> lastDurableSnapshot;
++  private Map<String, Object> lastEvent = Map.of("type", "OPEN");
++  private long sequence;
++  private long attempts;
++  private long completed;
++  private long rejected;
++  private String phase = "OPEN";
++  private boolean healthy = true;
++  private boolean closeStarted;
++  private boolean delegateClosed;
++
++  /** The five mutating API families; UPDATE preserves the caller's real CAS version. */
++  public enum Mutation { SAVE, UPDATE, DELETE, BATCH_WRITE, BULK_WRITE }
++
++  /** Identifies the exact synchronous or asynchronous API entry, without rewriting its route. */
++  public enum CallKind { SYNC, ASYNC }
++
++  /** Safe completion categories, never SDK error messages or stored values. */
++  public enum Outcome { SUCCESS, BACKEND_REJECTED, REMOTE_OUTCOME_UNKNOWN, CANCELLED, PARTIAL_ERROR }
++
++  /** Fixed reasons why a receipt cannot certify absence of mutations. */
++  public enum Reason {
++    PERSISTENCE_FAILURE, CANCELLED, NULL_FUTURE, REMOTE_OUTCOME_UNKNOWN, PARTIAL_ERROR,
++    INVALID_COMPLETION, POST_CLOSE_CALL, DELEGATE_CLOSE_FAILURE
++  }
++
++  /**
++   * Exact runtime artifact identity supplied by the profile-scoped wiring and checked by its verifier.
++   *
++   * @param version effective Toolkit version
++   * @param jarSha256 actual source jar digest
++   * @param interfaceSha256 loaded KvsClient bytecode digest
++   * @param delegateSha256 loaded productive delegate bytecode digest
++   * @param interfaceOrigin verified local code source of the interface
++   * @param delegateOrigin verified local code source of the delegate
++   * @param delegateClassName productive delegate class name
++   */
++  public record SdkIdentity(String version, String jarSha256, String interfaceSha256,
++      String delegateSha256, String interfaceOrigin, String delegateOrigin, String delegateClassName) {
++    public SdkIdentity {
++      require(version != null && version.matches("[0-9]+\\.[0-9]+\\.[0-9]+"));
++      requireDigest(jarSha256);
++      requireDigest(interfaceSha256);
++      requireDigest(delegateSha256);
++      requireOrigin(interfaceOrigin);
++      requireOrigin(delegateOrigin);
++      require("com.fury.toolkit.kvs.DefaultKvsClient".equals(delegateClassName));
++    }
++  }
++
++  /**
++   * Run, expected bean and actual JVM identity; callers cannot substitute a different process.
++   *
++   * @param runId owned run identifier
++   * @param application exact CP or PM application label
++   * @param clientName exact productive bean name
++   * @param generationId parent-planned generation UUID
++   * @param pid actual current JVM PID
++   * @param processStartInstant actual native process birth timestamp
++   * @param sdk effective artifact identity
++   */
++  public record Identity(String runId, String application, String clientName, UUID generationId,
++      long pid, String processStartInstant, SdkIdentity sdk) {
++    public Identity {
++      require(runId != null && runId.matches("[a-z0-9][a-z0-9_-]{7,63}"));
++      boolean validClient = "CP".equals(application) && "idempotencyKvsClient".equals(clientName)
++          || "PM".equals(application) && ("actionResultKvsClient".equals(clientName)
++          || "actionLockKvsClient".equals(clientName));
++      require(validClient);
++      require(generationId != null && generationId.version() == 4);
++      require(pid == ProcessHandle.current().pid());
++      String actualStart = ProcessHandle.current().info().startInstant().orElseThrow().toString();
++      require(actualStart.equals(processStartInstant));
++      require(sdk != null);
++    }
++  }
++
++  /** A single already-durable invocation, with no reference to its key, item or future value. */
++  public record Ticket(long sequence, Mutation mutation, CallKind callKind) {
++    public Ticket {
++      require(sequence > 0 && mutation != null && callKind != null);
++    }
++  }
++
++  /**
++   * Persists an OPEN receipt before the client is exposed to any productive caller.
++   *
++   * @param directory existing owned private directory
++   * @param identity exact expected client and process identity
++   * @return new durable journal
++   * @throws IOException if private ownership, identity or durability cannot be established
++   */
++  public static RealE2eKvsMutationJournal open(Path directory, Identity identity) throws IOException {
++    return new RealE2eKvsMutationJournal(directory, identity);
++  }
++
++  private RealE2eKvsMutationJournal(Path directory, Identity identity) throws IOException {
++    this.identity = Objects.requireNonNull(identity);
++    this.directory = Objects.requireNonNull(directory);
++    require(directory.isAbsolute() && directory.normalize().equals(directory));
++    owner = ProcessHandle.current().info().user().orElseThrow();
++    checkPrivateDirectory();
++    directoryKey = attributes(directory).fileKey();
++    require(directoryKey != null);
++    forceDirectory();
++    receiptPath = directory.resolve("kvs-mutations-" + identity.generationId() + "-" + identity.clientName() + ".json");
++    for (Mutation mutation : Mutation.values()) {
++      for (CallKind callKind : CallKind.values()) {
++        attemptCounts.put(counterName(mutation, callKind), 0L);
++      }
++    }
++    for (Outcome outcome : Outcome.values()) {
++      completionCounts.put(outcome.name(), 0L);
++    }
++    Files.createFile(receiptPath, PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString(PRIVATE_FILE)));
++    receiptKey = attributes(receiptPath).fileKey();
++    receiptDigest = digest(new byte[0]);
++    persist();
++  }
++
++  /** @return exact immutable process/client identity */
++  public Identity identity() { return identity; }
++
++  /** @return exact deterministic receipt path declared by the parent before startup */
++  public Path receiptPath() { return receiptPath; }
++
++  /**
++   * Forces an immutable checkpoint. A zero snapshot is provisional until the external lifecycle gate is verified.
++   *
++   * @return nonsecret snake_case receipt fields
++   * @throws IOException when the receipt cannot be durably checked and updated
++   */
++  public synchronized Map<String, Object> checkpoint() throws IOException {
++    sequence++;
++    lastEvent = Map.of("type", "CHECKPOINT");
++    persist();
++    return lastDurableSnapshot;
++  }
++
++  /**
++   * Persists the invocation before the wrapper may call its productive delegate.
++   *
++   * @param mutation API family
++   * @param callKind exact entry kind
++   * @return already-durable invocation ticket
++   * @throws IOException when the BEGIN could not persist; the delegate must not be invoked
++   */
++  public synchronized Ticket begin(Mutation mutation, CallKind callKind) throws IOException {
++    requireOpen();
++    Ticket ticket = new Ticket(++sequence, mutation, callKind);
++    pending.put(ticket.sequence(), ticket);
++    lastEvent = Map.of("type", "BEGIN", "ticket_sequence", ticket.sequence(),
++        "operation", mutation.name(), "call_kind", callKind.name());
++    attempts++;
++    String counter = counterName(mutation, callKind);
++    attemptCounts.put(counter, attemptCounts.get(counter) + 1);
++    persist();
++    return ticket;
++  }
++
++  /**
++   * Records a matching completion without exporting the response, keys or exception message.
++   *
++   * @param ticket durable invocation ticket
++   * @param outcome safe completion category
++   * @throws IOException if completion identity or durability is unverified
++   */
++  public synchronized void complete(Ticket ticket, Outcome outcome) throws IOException {
++    if (ticket == null || outcome == null || !ticket.equals(pending.get(ticket.sequence()))) {
++      unknown(Reason.INVALID_COMPLETION);
++      throw new IOException(INVALID_JOURNAL);
++    }
++    pending.remove(ticket.sequence());
++    completed++;
++    completionCounts.put(outcome.name(), completionCounts.get(outcome.name()) + 1);
++    sequence++;
++    lastEvent = Map.of("type", "END", "ticket_sequence", ticket.sequence(),
++        "operation", ticket.mutation().name(), "call_kind", ticket.callKind().name(), "outcome", outcome.name());
++    if (outcome == Outcome.BACKEND_REJECTED) {
++      rejected++;
++    } else if (outcome != Outcome.SUCCESS) {
++      markUnknown(reasonFor(outcome));
++    }
++    persist();
++  }
++
++  /**
++   * Makes uncertainty sticky; successful later persistence never restores a zero certificate.
++   *
++   * @param reason fixed nonsecret reason
++   * @throws IOException if the UNKNOWN update cannot persist
++   */
++  public synchronized void unknown(Reason reason) throws IOException {
++    markUnknown(Objects.requireNonNull(reason));
++    sequence++;
++    lastEvent = Map.of("type", "UNKNOWN", "reason", reason.name());
++    persist();
++  }
++
++  /**
++   * Rejects any read or write attempted after close began without silently calling the backend.
++   *
++   * @throws IOException when close or its receipt makes access unsafe
++   */
++  public synchronized void requireOpen() throws IOException {
++    if (closeStarted) {
++      unknown(Reason.POST_CLOSE_CALL);
++      throw new IOException(INVALID_JOURNAL);
++    }
++  }
++
++  /**
++   * Records close intent before the wrapper independently attempts actual delegate cleanup.
++   *
++   * @throws IOException when the close intent cannot be persisted
++   */
++  public synchronized void beginClose() throws IOException {
++    requireOpen();
++    closeStarted = true;
++    if (healthy) {
++      phase = "CLOSING";
++    }
++    sequence++;
++    lastEvent = Map.of("type", "CLOSE_BEGIN");
++    persist();
++  }
++
++  /**
++   * Seals only a healthy, complete receipt. External exact process death remains mandatory for final proof.
++   *
++   * @param closed true only after the actual productive delegate close returned successfully
++   * @throws IOException when final observation cannot be durably verified
++   */
++  public synchronized void finishClose(boolean closed) throws IOException {
++    if (!closeStarted) {
++      markUnknown(Reason.INVALID_COMPLETION);
++    }
++    delegateClosed = closed;
++    if (!closed) {
++      markUnknown(Reason.DELEGATE_CLOSE_FAILURE);
++    }
++    if (!pending.isEmpty()) {
++      markUnknown(Reason.REMOTE_OUTCOME_UNKNOWN);
++    }
++    if (healthy && closeStarted && delegateClosed && pending.isEmpty()) {
++      phase = "SEALED";
++    }
++    sequence++;
++    lastEvent = Map.of("type", "CLOSE_END");
++    persist();
++  }
++
++  private void markUnknown(Reason reason) {
++    healthy = false;
++    phase = "UNKNOWN";
++    if (!unknownReasons.contains(reason.name())) {
++      unknownReasons.add(reason.name());
++    }
++  }
++
++  private static Reason reasonFor(Outcome outcome) {
++    return switch (outcome) {
++      case CANCELLED -> Reason.CANCELLED;
++      case PARTIAL_ERROR -> Reason.PARTIAL_ERROR;
++      default -> Reason.REMOTE_OUTCOME_UNKNOWN;
++    };
++  }
++
++  private Map<String, Object> snapshot() {
++    Map<String, Object> receipt = new LinkedHashMap<>();
++    receipt.put("schema_version", SCHEMA_VERSION);
++    receipt.put("run_id", identity.runId());
++    receipt.put("application", identity.application());
++    receipt.put("client_name", identity.clientName());
++    receipt.put("generation_id", identity.generationId().toString());
++    receipt.put("receipt_id", receiptId.toString());
++    receipt.put("pid", identity.pid());
++    receipt.put("process_start_instant", identity.processStartInstant());
++    receipt.put("recorded_at", Instant.now().toString());
++    receipt.put("sequence", sequence);
++    receipt.put("attempt_count", attempts);
++    receipt.put("attempt_counts", Map.copyOf(attemptCounts));
++    receipt.put("completed_count", completed);
++    receipt.put("completion_counts", Map.copyOf(completionCounts));
++    receipt.put("last_event", lastEvent);
++    receipt.put("known_rejection_count", rejected);
++    receipt.put("inflight", pending.size());
++    receipt.put("pending_sequences", List.copyOf(pending.keySet()));
++    receipt.put("phase", phase);
++    receipt.put("healthy", healthy);
++    receipt.put("close_started", closeStarted);
++    receipt.put("delegate_closed", delegateClosed);
++    receipt.put("unknown_reasons", List.copyOf(unknownReasons));
++    SdkIdentity sdk = identity.sdk();
++    receipt.put("sdk", Map.of("version", sdk.version(), "jar_sha256", sdk.jarSha256(),
++        "interface_sha256", sdk.interfaceSha256(), "delegate_sha256", sdk.delegateSha256(),
++        "interface_origin", sdk.interfaceOrigin(), "delegate_origin", sdk.delegateOrigin(),
++        "delegate_class", sdk.delegateClassName(), "interface_class", "com.fury.toolkit.kvs.KvsClient"));
++    return Collections.unmodifiableMap(receipt);
++  }
++
++  private void persist() throws IOException {
++    try {
++      checkDirectoryIdentity();
++      checkReceiptIdentity();
++      Path staged = Files.createTempFile(directory, ".kvs-stage-", ".tmp",
++          PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString(PRIVATE_FILE)));
++      Map<String, Object> candidate = snapshot();
++      byte[] encoded = (json(candidate) + "\n").getBytes(StandardCharsets.UTF_8);
++      try (FileChannel channel = FileChannel.open(staged, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS)) {
++        ByteBuffer buffer = ByteBuffer.wrap(encoded);
++        while (buffer.hasRemaining()) {
++          channel.write(buffer);
++        }
++        channel.force(true);
++      }
++      checkDirectoryIdentity();
++      checkReceiptIdentity();
++      Files.move(staged, receiptPath, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
++      receiptKey = attributes(receiptPath).fileKey();
++      receiptDigest = digest(encoded);
++      forceDirectory();
++      checkDirectoryIdentity();
++      checkReceiptIdentity();
++      lastDurableSnapshot = candidate;
++    } catch (IOException | RuntimeException | Error failure) {
++      markUnknown(Reason.PERSISTENCE_FAILURE);
++      throw failure;
++    }
++  }
++
++  private void checkPrivateDirectory() throws IOException {
++    require(Files.isDirectory(directory, LinkOption.NOFOLLOW_LINKS));
++    require(Files.getOwner(directory, LinkOption.NOFOLLOW_LINKS).getName().equals(owner));
++    require(Files.getPosixFilePermissions(directory, LinkOption.NOFOLLOW_LINKS)
++        .equals(PosixFilePermissions.fromString(PRIVATE_DIRECTORY)));
++  }
++
++  private void checkDirectoryIdentity() throws IOException {
++    checkPrivateDirectory();
++    require(Objects.equals(directoryKey, attributes(directory).fileKey()));
++  }
++
++  private void checkReceiptIdentity() throws IOException {
++    require(Files.isRegularFile(receiptPath, LinkOption.NOFOLLOW_LINKS));
++    require(Files.getOwner(receiptPath, LinkOption.NOFOLLOW_LINKS).getName().equals(owner));
++    require(Files.getPosixFilePermissions(receiptPath, LinkOption.NOFOLLOW_LINKS)
++        .equals(PosixFilePermissions.fromString(PRIVATE_FILE)));
++    require(Objects.equals(receiptKey, attributes(receiptPath).fileKey()));
++    require(receiptDigest.equals(digest(Files.readAllBytes(receiptPath))));
++  }
++
++  private void forceDirectory() throws IOException {
++    try (FileChannel channel = FileChannel.open(directory, StandardOpenOption.READ, LinkOption.NOFOLLOW_LINKS)) {
++      channel.force(true);
++    }
++  }
++
++  private static BasicFileAttributes attributes(Path path) throws IOException {
++    return Files.readAttributes(path, BasicFileAttributes.class, LinkOption.NOFOLLOW_LINKS);
++  }
++
++  private static String digest(byte[] bytes) {
++    try {
++      return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
++    } catch (NoSuchAlgorithmException unavailable) {
++      throw new IllegalStateException(INVALID_JOURNAL);
++    }
++  }
++
++  private static String counterName(Mutation mutation, CallKind callKind) {
++    return mutation.name() + "_" + callKind.name();
++  }
++
++  private static void require(boolean condition) {
++    if (!condition) {
++      throw new IllegalStateException(INVALID_JOURNAL);
++    }
++  }
++
++  private static void requireDigest(String digest) {
++    require(digest != null && digest.matches("[a-f0-9]{64}"));
++  }
++
++  private static void requireOrigin(String origin) {
++    require(origin != null && origin.length() <= MAX_ORIGIN_LENGTH
++        && (origin.startsWith("file:") || origin.startsWith("jar:file:") || origin.startsWith("jar:nested:"))
++        && origin.chars().allMatch(character -> character >= 32 && character != '?' && character != '#'));
++  }
++
++  private static String json(Object value) {
++    if (value instanceof String string) {
++      return quote(string);
++    }
++    if (value instanceof Number || value instanceof Boolean) {
++      return value.toString();
++    }
++    if (value instanceof Map<?, ?> fields) {
++      List<String> entries = new ArrayList<>();
++      for (var entry : fields.entrySet()) {
++        entries.add(quote((String) entry.getKey()) + ":" + json(entry.getValue()));
++      }
++      return "{" + String.join(",", entries) + "}";
++    }
++    if (value instanceof List<?> elements) {
++      return "[" + String.join(",", elements.stream().map(RealE2eKvsMutationJournal::json).toList()) + "]";
++    }
++    throw new IllegalStateException(INVALID_JOURNAL);
++  }
++
++  private static String quote(String value) {
++    StringBuilder escaped = new StringBuilder("\"");
++    for (char character : value.toCharArray()) {
++      if (character == '\\' || character == '"') {
++        escaped.append('\\');
++      }
++      require(character >= 32);
++      escaped.append(character);
++    }
++    return escaped.append('"').toString();
++  }
++}
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eKvsObservationConfiguration.java b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eKvsObservationConfiguration.java
+new file mode 100644
+index 000000000..b0be91e08
+--- /dev/null
++++ b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eKvsObservationConfiguration.java
+@@ -0,0 +1,299 @@
++package com.mercadolibre.rio.playmaker.localintegration;
++
++import com.fury.toolkit.kvs.KvsClient;
++import com.fasterxml.jackson.databind.ObjectMapper;
++import java.io.InputStream;
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++import java.nio.file.Files;
++import java.nio.file.LinkOption;
++import java.nio.file.Path;
++import java.nio.file.StandardOpenOption;
++import java.nio.file.StandardCopyOption;
++import java.util.ArrayList;
++import java.nio.file.attribute.PosixFilePermissions;
++import java.security.MessageDigest;
++import java.util.HexFormat;
++import java.util.LinkedHashMap;
++import java.util.List;
++import java.util.Map;
++import java.util.UUID;
++import java.util.concurrent.ConcurrentHashMap;
++import java.util.zip.ZipFile;
++import org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor;
++import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
++import org.springframework.beans.factory.support.AbstractBeanDefinition;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.context.annotation.Profile;
++import org.springframework.core.env.Environment;
++
++/** Observes only the productive clients of this profile; connection and KVS semantics are unchanged. */
++@Configuration
++@Profile("real-e2e")
++public class RealE2eKvsObservationConfiguration {
++
++  /** Declares the expected client receipts durably before any of their delegates can be consumed. */
++  @Bean
++  public static DestructionAwareBeanPostProcessor realE2eObservedKvsClients(
++      Environment environment, ConfigurableListableBeanFactory beanFactory) {
++    try {
++      String run = environment.getRequiredProperty("e2e.run-id");
++      if (!run.matches("[a-z0-9][a-z0-9_-]{7,63}")) {
++        throw unverified();
++      }
++      Path directory = Path.of(environment.getRequiredProperty("e2e.kvs-observation.directory"));
++      requirePrivateDirectory(directory);
++      String configured = environment.getProperty("e2e.playmaker.lease.generation", "");
++      UUID generation = configured.isBlank() ? UUID.randomUUID() : UUID.fromString(configured);
++      if (configured.isBlank()) { throw unverified(); }
++      ProcessHandle current = ProcessHandle.current();
++      String start = current.info().startInstant().orElseThrow(
++          RealE2eKvsObservationConfiguration::unverified).toString();
++      List<String> expected = List.of("actionResultKvsClient", "actionLockKvsClient");
++      for (String name : expected) {
++        if (!(beanFactory.getBeanDefinition(name) instanceof AbstractBeanDefinition definition)) {
++          throw unverified();
++        }
++        // This observer owns exactly one close plus its successful-close receipt.
++        definition.setDestroyMethodName("");
++      }
++      Map<String, Object> manifest = new LinkedHashMap<>();
++      manifest.put("schema_version", 1);
++      manifest.put("kind", "KVS_EXPECTED_CLIENTS");
++      manifest.put("run_id", run);
++      manifest.put("application", "PM");
++      manifest.put("generation_id", generation.toString());
++      manifest.put("pid", current.pid());
++      manifest.put("process_start_instant", start);
++      ProcessHandle processOwner = current.parent().orElseThrow(RealE2eKvsObservationConfiguration::unverified);
++      manifest.put("process_owner_pid", processOwner.pid());
++      manifest.put("process_owner_start_instant", processOwner.info().startInstant()
++          .orElseThrow(RealE2eKvsObservationConfiguration::unverified).toString());
++      manifest.put("process_owner_kind", System.getProperty("org.gradle.test.worker") == null
++          ? "DIRECT_PROCESS_WAIT" : "GRADLE_TEST_WORKER_NORMAL_EXIT");
++      manifest.put("sdk_version", "0.7.4");
++      manifest.put("clients", expected);
++      manifest.put("phase", "DECLARED_BEFORE_CLIENTS");
++      String source = environment.getRequiredProperty("e2e.source-commit");
++      String sourceManifest = environment.getRequiredProperty("e2e.source-manifest-sha256");
++      if (!source.matches("[a-f0-9]{40}") || !sourceManifest.matches("[a-f0-9]{64}")) {
++        throw unverified();
++      }
++      manifest.put("source_commit", source);
++      manifest.put("source_manifest_sha256", sourceManifest);
++      declareExpectedGeneration(directory, manifest);
++      writeManifest(directory.resolve("kvs-expected-" + generation + ".json"), manifest);
++      var bindings = new ConcurrentHashMap<String, ClientBinding>();
++      return new DestructionAwareBeanPostProcessor() {
++        @Override
++        public boolean requiresDestruction(Object bean) {
++          return bindings.values().stream().anyMatch(binding -> binding.original() == bean);
++        }
++
++        @Override
++        public void postProcessBeforeDestruction(Object bean, String name) {
++          if (!expected.contains(name)) { return; }
++          ClientBinding binding = bindings.get(name);
++          if (binding == null || binding.original() != bean) {
++            Runtime.getRuntime().halt(79);
++            return;
++          }
++          RealE2eObservedKvsClient observed = binding.observed();
++          try {
++            observed.close();
++            var journal = observed.journal();
++            Map<String, Object> state = journal.checkpoint();
++            if (!"SEALED".equals(state.get("phase")) || !Boolean.TRUE.equals(state.get("healthy"))
++                || !Boolean.TRUE.equals(state.get("delegate_closed"))) {
++              throw unverified();
++            }
++            String receiptDigest;
++            try (InputStream input = Files.newInputStream(journal.receiptPath(), LinkOption.NOFOLLOW_LINKS)) {
++              receiptDigest = sha(input);
++            }
++            Map<String, Object> ack = new LinkedHashMap<>();
++            ack.put("schema_version", 1);
++            ack.put("kind", "KVS_SUCCESSFUL_CLOSE_ACK");
++            ack.put("run_id", run);
++            ack.put("application", manifest.get("application"));
++            ack.put("client_name", name);
++            ack.put("generation_id", generation.toString());
++            ack.put("pid", current.pid());
++            ack.put("process_start_instant", start);
++            ack.put("receipt_sha256", receiptDigest);
++            ack.put("sequence", state.get("sequence"));
++            ack.put("receipt_id", state.get("receipt_id"));
++            writeManifest(directory.resolve("kvs-close-ack-" + generation + "-" + name + ".json"), ack);
++          } catch (Exception exception) {
++            // Spring can swallow destroy failures. An own real-e2e JVM must expose a failed exit instead.
++            Runtime.getRuntime().halt(79);
++          }
++        }
++
++        @Override
++        public Object postProcessAfterInitialization(Object bean, String name) {
++          if (!expected.contains(name)) {
++            return bean;
++          }
++          if (!(bean instanceof KvsClient client)
++              || bean instanceof RealE2eObservedKvsClient) {
++            throw unverified();
++          }
++          try {
++            var sdk = sdkIdentity(client);
++            var identity = new RealE2eKvsMutationJournal.Identity(run, "PM", name,
++                generation, current.pid(), start, sdk);
++            var journal = RealE2eKvsMutationJournal.open(directory, identity);
++            var observed = new RealE2eObservedKvsClient(client, journal);
++            if (bindings.putIfAbsent(name, new ClientBinding(client, observed)) != null) {
++              throw unverified();
++            }
++            return observed;
++          } catch (Exception exception) {
++            throw unverified();
++          }
++        }
++      };
++    } catch (Exception exception) {
++      throw unverified();
++    }
++  }
++
++  private static RealE2eKvsMutationJournal.SdkIdentity sdkIdentity(KvsClient client) throws Exception {
++    Class<?> delegate = client.getClass();
++    if (!delegate.getName().startsWith("com.fury.toolkit.kvs.")) {
++      throw unverified();
++    }
++    String apiOrigin = KvsClient.class.getProtectionDomain().getCodeSource().getLocation().toExternalForm();
++    String delegateOrigin = delegate.getProtectionDomain().getCodeSource().getLocation().toExternalForm();
++    if (!apiOrigin.equals(delegateOrigin) || !apiOrigin.contains("java-toolkit-kvs-0.7.4.jar")) {
++      throw unverified();
++    }
++    return new RealE2eKvsMutationJournal.SdkIdentity("0.7.4", jarSha(apiOrigin),
++        classSha(KvsClient.class), classSha(delegate), apiOrigin, delegateOrigin, delegate.getName());
++  }
++
++  private static String classSha(Class<?> type) throws Exception {
++    try (InputStream input = type.getResourceAsStream("/" + type.getName().replace('.', '/') + ".class")) {
++      if (input == null) {
++        throw unverified();
++      }
++      return sha(input);
++    }
++  }
++
++  private static String jarSha(String origin) throws Exception {
++    if (origin.startsWith("file:")) {
++      try (InputStream input = Files.newInputStream(Path.of(java.net.URI.create(origin)), LinkOption.NOFOLLOW_LINKS)) {
++        return sha(input);
++      }
++    }
++    // Spring Boot nested origins name the same real entry within the running immutable bootJar.
++    String[] arguments = ProcessHandle.current().info().arguments().orElseThrow(
++        RealE2eKvsObservationConfiguration::unverified);
++    for (int index = 0; index + 1 < arguments.length; index++) {
++      if ("-jar".equals(arguments[index])) {
++        try (ZipFile jar = new ZipFile(arguments[index + 1])) {
++          var entry = jar.getEntry("BOOT-INF/lib/java-toolkit-kvs-0.7.4.jar");
++          if (entry == null || !origin.contains("BOOT-INF/lib/java-toolkit-kvs-0.7.4.jar")) {
++            throw unverified();
++          }
++          try (InputStream input = jar.getInputStream(entry)) {
++            return sha(input);
++          }
++        }
++      }
++    }
++    throw unverified();
++  }
++
++  private static String sha(InputStream input) throws Exception {
++    MessageDigest digest = MessageDigest.getInstance("SHA-256");
++    byte[] buffer = new byte[65_536];
++    for (int count; (count = input.read(buffer)) >= 0;) {
++      digest.update(buffer, 0, count);
++    }
++    return HexFormat.of().formatHex(digest.digest());
++  }
++
++  private static void requirePrivateDirectory(Path directory) throws Exception {
++    if (!directory.isAbsolute() || !Files.isDirectory(directory, LinkOption.NOFOLLOW_LINKS)
++        || !Files.getPosixFilePermissions(directory, LinkOption.NOFOLLOW_LINKS)
++            .equals(PosixFilePermissions.fromString("rwx------"))) {
++      throw unverified();
++    }
++    var owner = directory.getFileSystem().getUserPrincipalLookupService()
++        .lookupPrincipalByName(System.getProperty("user.name"));
++    if (!owner.equals(Files.getOwner(directory, LinkOption.NOFOLLOW_LINKS))) {
++      throw unverified();
++    }
++    for (Path parent = directory; parent != null; parent = parent.getParent()) {
++      if (Files.isSymbolicLink(parent)) {
++        throw unverified();
++      }
++    }
++  }
++
++  private static void declareExpectedGeneration(Path directory, Map<String, Object> manifest) throws Exception {
++    Path registry = directory.resolve("expected-generations.json");
++    Path lock = directory.resolve(".generation-registry.lock");
++    for (Path path : List.of(registry, lock)) {
++      if (!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS) || Files.isSymbolicLink(path)
++          || Files.size(path) > 1_000_000
++          || !Files.getOwner(path, LinkOption.NOFOLLOW_LINKS).equals(Files.getOwner(directory, LinkOption.NOFOLLOW_LINKS))
++          || !Files.getPosixFilePermissions(path, LinkOption.NOFOLLOW_LINKS)
++              .equals(PosixFilePermissions.fromString("rw-------"))) { throw unverified(); }
++    }
++    // A separate stable lock protects the append-only registry across own JVMs and contexts.
++    try (FileChannel channel = FileChannel.open(lock, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS);
++         var held = channel.lock()) {
++      ObjectMapper mapper = new ObjectMapper();
++      Map<?, ?> existing = mapper.readValue(Files.readAllBytes(registry), Map.class);
++      if (!Integer.valueOf(1).equals(existing.get("schema_version"))
++          || !"KVS_EXPECTED_GENERATION_REGISTRY".equals(existing.get("kind"))
++          || !"DECLARED_BEFORE_APPLICATIONS".equals(existing.get("phase"))
++          || !manifest.get("run_id").equals(existing.get("run_id"))
++          || !(existing.get("generations") instanceof List<?> declared)) { throw unverified(); }
++      List<Object> generations = new ArrayList<>(declared);
++      for (Object entry : generations) {
++        if (!(entry instanceof Map<?, ?> expected)
++            || !manifest.get("run_id").equals(expected.get("run_id"))
++            || manifest.get("generation_id").equals(expected.get("generation_id"))) { throw unverified(); }
++      }
++      generations.add(Map.copyOf(manifest));
++      Map<String, Object> next = new LinkedHashMap<>();
++      next.put("schema_version", 1);
++      next.put("kind", "KVS_EXPECTED_GENERATION_REGISTRY");
++      next.put("run_id", manifest.get("run_id"));
++      next.put("phase", "DECLARED_BEFORE_APPLICATIONS");
++      next.put("generations", generations);
++      Path staged = directory.resolve(".generation-registry-" + UUID.randomUUID());
++      writeManifest(staged, next);
++      Files.move(staged, registry, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
++      try (FileChannel parent = FileChannel.open(directory, StandardOpenOption.READ)) { parent.force(true); }
++    }
++  }
++
++  private static void writeManifest(Path path, Map<String, Object> data) throws Exception {
++    byte[] encoded = new ObjectMapper().writeValueAsBytes(data);
++    try (FileChannel file = FileChannel.open(path,
++        java.util.Set.of(StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW),
++        PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rw-------")))) {
++      ByteBuffer bytes = ByteBuffer.wrap(encoded);
++      while (bytes.hasRemaining()) {
++        file.write(bytes);
++      }
++      file.force(true);
++    }
++    try (FileChannel directory = FileChannel.open(path.getParent(), StandardOpenOption.READ)) {
++      directory.force(true);
++    }
++  }
++
++  private record ClientBinding(KvsClient original, RealE2eObservedKvsClient observed) { }
++
++  private static IllegalStateException unverified() {
++    return new IllegalStateException("REAL_E2E_KVS_OBSERVATION_UNVERIFIED");
++  }
++}
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eObservedKvsClient.java b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eObservedKvsClient.java
+new file mode 100644
+index 000000000..fb3571174
+--- /dev/null
++++ b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eObservedKvsClient.java
+@@ -0,0 +1,316 @@
++package com.mercadolibre.rio.playmaker.localintegration;
++
++import com.fury.toolkit.kvs.BulkResult;
++import com.fury.toolkit.kvs.ErrorCode;
++import com.fury.toolkit.kvs.Item;
++import com.fury.toolkit.kvs.ItemResult;
++import com.fury.toolkit.kvs.KeyResult;
++import com.fury.toolkit.kvs.KvsClient;
++import com.fury.toolkit.kvs.KvsClientException;
++import com.fury.toolkit.kvs.Operations;
++import java.io.IOException;
++import java.util.List;
++import java.util.Objects;
++import java.util.concurrent.CompletableFuture;
++import java.util.concurrent.CompletionException;
++import java.util.concurrent.ExecutionException;
++import java.util.function.Supplier;
++import com.mercadolibre.rio.playmaker.localintegration.RealE2eKvsMutationJournal.CallKind;
++import com.mercadolibre.rio.playmaker.localintegration.RealE2eKvsMutationJournal.Mutation;
++import com.mercadolibre.rio.playmaker.localintegration.RealE2eKvsMutationJournal.Outcome;
++import com.mercadolibre.rio.playmaker.localintegration.RealE2eKvsMutationJournal.Reason;
++import com.mercadolibre.rio.playmaker.localintegration.RealE2eKvsMutationJournal.Ticket;
++
++/** Observes exact productive Toolkit invocations without changing their backend or serialized inputs. */
++public final class RealE2eObservedKvsClient implements KvsClient {
++  private static final String UNVERIFIED = "REAL_E2E_KVS_MUTATION_OBSERVATION_UNVERIFIED";
++  private static final int MAX_CAUSE_DEPTH = 16;
++  private static final System.Logger LOGGER = System.getLogger(RealE2eObservedKvsClient.class.getName());
++  private final KvsClient delegate;
++  private final RealE2eKvsMutationJournal journal;
++  private boolean closeAttempted;
++  private Throwable closeFailure;
++
++  /**
++   * Wraps one already-built official Toolkit client; its qualifiers and builder remain external to this class.
++   *
++   * @param delegate productive official client
++   * @param journal durable identity of that same client
++   */
++  public RealE2eObservedKvsClient(KvsClient delegate, RealE2eKvsMutationJournal journal) {
++    this.delegate = Objects.requireNonNull(delegate);
++    this.journal = Objects.requireNonNull(journal);
++    if (!delegate.getClass().getName().equals(journal.identity().sdk().delegateClassName())) {
++      throw new IllegalArgumentException(UNVERIFIED);
++    }
++  }
++
++  /** @return durable observer, for profile-scoped checkpoints and final verification */
++  public RealE2eKvsMutationJournal journal() { return journal; }
++
++  @Override public void save(Item<byte[]> item) throws KvsClientException {
++    mutateSync(Mutation.SAVE, () -> {
++      delegate.save(item);
++      return null;
++    });
++  }
++
++  @Override public void update(Item<byte[]> item) throws KvsClientException {
++    mutateSync(Mutation.UPDATE, () -> {
++      delegate.update(item);
++      return null;
++    });
++  }
++
++  @Override public boolean delete(String key) throws KvsClientException {
++    return mutateSync(Mutation.DELETE, () -> delegate.delete(key));
++  }
++
++  @Override public void batchWrite(Operations operations) throws KvsClientException {
++    mutateSync(Mutation.BATCH_WRITE, () -> {
++      delegate.batchWrite(operations);
++      return null;
++    });
++  }
++
++  @Override public BulkResult<KeyResult> bulkWrite(Operations operations) throws KvsClientException {
++    return mutateSync(Mutation.BULK_WRITE, () -> delegate.bulkWrite(operations));
++  }
++
++  @Override public CompletableFuture<Void> saveAsync(Item<byte[]> item) {
++    return mutateAsync(Mutation.SAVE, () -> delegate.saveAsync(item));
++  }
++
++  @Override public CompletableFuture<Void> updateAsync(Item<byte[]> item) {
++    return mutateAsync(Mutation.UPDATE, () -> delegate.updateAsync(item));
++  }
++
++  @Override public CompletableFuture<Boolean> deleteAsync(String key) {
++    return mutateAsync(Mutation.DELETE, () -> delegate.deleteAsync(key));
++  }
++
++  @Override public CompletableFuture<Void> batchWriteAsync(Operations operations) {
++    return mutateAsync(Mutation.BATCH_WRITE, () -> delegate.batchWriteAsync(operations));
++  }
++
++  @Override public CompletableFuture<BulkResult<KeyResult>> bulkWriteAsync(Operations operations) {
++    return mutateAsync(Mutation.BULK_WRITE, () -> delegate.bulkWriteAsync(operations));
++  }
++
++  @Override public Item<byte[]> get(String key) throws KvsClientException {
++    checkOpen();
++    return delegate.get(key);
++  }
++
++  @Override public <T> Item<T> get(String key, Class<T> type) throws KvsClientException {
++    checkOpen();
++    return delegate.get(key, type);
++  }
++
++  @Override public CompletableFuture<Item<byte[]>> getAsync(String key) {
++    checkOpen();
++    return delegate.getAsync(key);
++  }
++
++  @Override public <T> CompletableFuture<Item<T>> getAsync(String key, Class<T> type) {
++    checkOpen();
++    return delegate.getAsync(key, type);
++  }
++
++  @Override public List<Item<byte[]>> batchRead(List<String> keys) throws KvsClientException {
++    checkOpen();
++    return delegate.batchRead(keys);
++  }
++
++  @Override public <T> List<Item<T>> batchRead(List<String> keys, Class<T> type) throws KvsClientException {
++    checkOpen();
++    return delegate.batchRead(keys, type);
++  }
++
++  @Override public CompletableFuture<List<Item<byte[]>>> batchReadAsync(List<String> keys) {
++    checkOpen();
++    return delegate.batchReadAsync(keys);
++  }
++
++  @Override public <T> CompletableFuture<List<Item<T>>> batchReadAsync(List<String> keys, Class<T> type) {
++    checkOpen();
++    return delegate.batchReadAsync(keys, type);
++  }
++
++  @Override public BulkResult<ItemResult<byte[]>> bulkRead(List<String> keys) throws KvsClientException {
++    checkOpen();
++    return delegate.bulkRead(keys);
++  }
++
++  @Override public <T> BulkResult<ItemResult<T>> bulkRead(List<String> keys, Class<T> type) throws KvsClientException {
++    checkOpen();
++    return delegate.bulkRead(keys, type);
++  }
++
++  @Override public CompletableFuture<BulkResult<ItemResult<byte[]>>> bulkReadAsync(List<String> keys) {
++    checkOpen();
++    return delegate.bulkReadAsync(keys);
++  }
++
++  @Override public <T> CompletableFuture<BulkResult<ItemResult<T>>> bulkReadAsync(List<String> keys, Class<T> type) {
++    checkOpen();
++    return delegate.bulkReadAsync(keys, type);
++  }
++
++  @Override public synchronized void close() throws Exception {
++    if (closeAttempted) {
++      rethrowCloseFailure();
++      return;
++    }
++    closeAttempted = true;
++    Throwable failure = null;
++    try {
++      journal.beginClose();
++    } catch (IOException | RuntimeException | Error observationFailure) {
++      failure = observationFailure;
++    }
++    boolean closed = false;
++    try {
++      delegate.close();
++      closed = true;
++    } catch (Exception | Error closeFailure) {
++      failure = accumulate(failure, closeFailure);
++    }
++    try {
++      journal.finishClose(closed);
++    } catch (IOException | RuntimeException | Error observationFailure) {
++      failure = accumulate(failure, observationFailure);
++    }
++    closeFailure = failure;
++    rethrowCloseFailure();
++  }
++
++  private void rethrowCloseFailure() throws Exception {
++    if (closeFailure instanceof Exception exception) {
++      throw exception;
++    }
++    if (closeFailure instanceof Error error) {
++      throw error;
++    }
++  }
++
++  private <T> T mutateSync(Mutation mutation, SyncMutation<T> call) throws KvsClientException {
++    Ticket ticket = begin(mutation, CallKind.SYNC);
++    T actual;
++    try {
++      actual = call.invoke();
++    } catch (KvsClientException | RuntimeException | Error backendFailure) {
++      auditPreservingFailure(ticket, backendFailure);
++      throw backendFailure;
++    }
++    audit(ticket, outcome(mutation, actual));
++    return actual;
++  }
++
++  private <T> CompletableFuture<T> mutateAsync(Mutation mutation, Supplier<CompletableFuture<T>> call) {
++    Ticket ticket = begin(mutation, CallKind.ASYNC);
++    CompletableFuture<T> actual;
++    try {
++      actual = call.get();
++    } catch (RuntimeException | Error backendFailure) {
++      auditPreservingFailure(ticket, backendFailure);
++      throw backendFailure;
++    }
++    if (actual == null) {
++      recordUnknown(Reason.NULL_FUTURE);
++      throw new IllegalStateException(UNVERIFIED);
++    }
++    actual.whenComplete((value, backendFailure) -> {
++      try {
++        journal.complete(ticket, backendFailure == null ? outcome(mutation, value) : failureOutcome(backendFailure));
++      } catch (IOException | RuntimeException observationFailure) {
++        // The journal is already sticky UNKNOWN; the caller retains its actual backend future.
++        LOGGER.log(System.Logger.Level.WARNING, UNVERIFIED);
++      }
++    });
++    return actual;
++  }
++
++  private Ticket begin(Mutation mutation, CallKind callKind) {
++    try {
++      return journal.begin(mutation, callKind);
++    } catch (IOException observationFailure) {
++      // No backend method has been invoked when its BEGIN could not be durably observed.
++      throw new IllegalStateException(UNVERIFIED);
++    }
++  }
++
++  private void audit(Ticket ticket, Outcome outcome) {
++    try {
++      journal.complete(ticket, outcome);
++    } catch (IOException observationFailure) {
++      throw new IllegalStateException(UNVERIFIED);
++    }
++  }
++
++  private void auditPreservingFailure(Ticket ticket, Throwable backendFailure) {
++    try {
++      journal.complete(ticket, failureOutcome(backendFailure));
++    } catch (IOException | RuntimeException observationFailure) {
++      backendFailure.addSuppressed(new IllegalStateException(UNVERIFIED));
++    }
++  }
++
++  private void recordUnknown(Reason reason) {
++    try {
++      journal.unknown(reason);
++    } catch (IOException observationFailure) {
++      throw new IllegalStateException(UNVERIFIED);
++    }
++  }
++
++  private void checkOpen() {
++    try {
++      journal.requireOpen();
++    } catch (IOException observationFailure) {
++      throw new IllegalStateException(UNVERIFIED);
++    }
++  }
++
++  private static Outcome outcome(Mutation mutation, Object actual) {
++    if (mutation == Mutation.DELETE && !(actual instanceof Boolean)) {
++      return Outcome.REMOTE_OUTCOME_UNKNOWN;
++    }
++    if (mutation == Mutation.BULK_WRITE) {
++      if (!(actual instanceof BulkResult<?> bulk)) {
++        return Outcome.REMOTE_OUTCOME_UNKNOWN;
++      }
++      return bulk.hasError() ? Outcome.PARTIAL_ERROR : Outcome.SUCCESS;
++    }
++    return Outcome.SUCCESS;
++  }
++
++  private static Outcome failureOutcome(Throwable failure) {
++    Throwable cause = failure;
++    for (int depth = 0; depth < MAX_CAUSE_DEPTH
++        && (cause instanceof CompletionException || cause instanceof ExecutionException)
++        && cause.getCause() != null && cause.getCause() != cause; depth++) {
++      cause = cause.getCause();
++    }
++    if (cause instanceof java.util.concurrent.CancellationException) {
++      return Outcome.CANCELLED;
++    }
++    if (cause instanceof KvsClientException kvsFailure && ErrorCode.CONFLICT.getCode().equals(kvsFailure.getErrorCode())) {
++      return Outcome.BACKEND_REJECTED;
++    }
++    return Outcome.REMOTE_OUTCOME_UNKNOWN;
++  }
++
++  private static Throwable accumulate(Throwable previous, Throwable next) {
++    if (previous == null) {
++      return next;
++    }
++    previous.addSuppressed(next);
++    return previous;
++  }
++
++  @FunctionalInterface
++  private interface SyncMutation<T> {
++    T invoke() throws KvsClientException;
++  }
++}
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eOwnedProcessLeaseVerifier.java b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eOwnedProcessLeaseVerifier.java
+new file mode 100644
+index 000000000..15390fb18
+--- /dev/null
++++ b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2eOwnedProcessLeaseVerifier.java
+@@ -0,0 +1,199 @@
++package com.mercadolibre.rio.playmaker.localintegration;
++
++import com.fasterxml.jackson.databind.JsonNode;
++import com.fasterxml.jackson.databind.ObjectMapper;
++import java.io.InputStream;
++import java.nio.file.Files;
++import java.nio.file.LinkOption;
++import java.nio.file.Path;
++import java.nio.file.attribute.PosixFilePermissions;
++import java.security.MessageDigest;
++import java.time.Instant;
++import java.util.HexFormat;
++import java.util.UUID;
++import java.util.concurrent.locks.LockSupport;
++import org.springframework.context.ApplicationContextInitializer;
++import org.springframework.context.ConfigurableApplicationContext;
++import org.springframework.core.env.Environment;
++import org.springframework.core.env.Profiles;
++
++/** Validates the own guardian lease before Spring creates web servers, clients or Kafka listeners. */
++public final class RealE2eOwnedProcessLeaseVerifier
++    implements ApplicationContextInitializer<ConfigurableApplicationContext> {
++
++  /** Registers an immutable witness only after an actual current-process and artifact check. */
++  @Override
++  public void initialize(ConfigurableApplicationContext context) {
++    Environment environment = context.getEnvironment();
++    if (!environment.acceptsProfiles(Profiles.of("real-e2e"))) {
++      return;
++    }
++    try {
++      if (!environment.getRequiredProperty("e2e.playmaker.lease.required", Boolean.class)) {
++        throw unavailable();
++      }
++      String run = environment.getRequiredProperty("e2e.playmaker.lease.run");
++      String generation = environment.getRequiredProperty("e2e.playmaker.lease.generation");
++      if (!run.matches("[a-z0-9][a-z0-9_-]{7,63}")) {
++        throw unavailable();
++      }
++      UUID.fromString(generation);
++      Path lease = Path.of(environment.getRequiredProperty("e2e.playmaker.lease.path"));
++      requirePrivateLease(lease);
++      Path jar = actualJar();
++      String digest = sha256(jar);
++      requireEqual(environment.getRequiredProperty("e2e.playmaker.lease.jar-sha256"), digest);
++      String source = environment.getRequiredProperty("e2e.playmaker.lease.source-commit");
++      String manifest = environment.getRequiredProperty("e2e.playmaker.lease.source-manifest-sha256");
++      if (!source.matches("[a-f0-9]{40}") || !manifest.matches("[a-f0-9]{64}")) {
++        throw unavailable();
++      }
++      ObjectMapper mapper = new ObjectMapper();
++      long deadline = System.nanoTime() + java.time.Duration.ofSeconds(30).toNanos();
++      JsonNode receipt;
++      do {
++        requirePrivateLease(lease);
++        // The private guardian directory and NOFOLLOW opening exclude an external lease target.
++        try (InputStream input = Files.newInputStream(lease, LinkOption.NOFOLLOW_LINKS)) {
++          receipt = mapper.readTree(input);
++        }
++        requireEqual(receipt, "kind", "PLAYMAKER_PROCESS_LEASE");
++        if (!receipt.path("schema_version").isIntegralNumber()
++            || receipt.path("schema_version").longValue() != 1) {
++          throw unavailable();
++        }
++        requireEqual(receipt, "run_id", run);
++        requireEqual(receipt, "generation", generation);
++        requireEqual(receipt, "jar_path", jar.toString());
++        requireEqual(receipt, "jar_sha256", digest);
++        requireEqual(receipt, "source_commit", source);
++        requireEqual(receipt, "source_manifest_sha256", manifest);
++        requireEqual(receipt, "consumer_group", "e2e_" + run + "_playmaker_results");
++        checkAlive(receipt, "parent");
++        checkAlive(receipt, "guardian");
++        String phase = receipt.path("phase").asText();
++        if ("REGISTERED".equals(phase) || "READY".equals(phase)) {
++          requireCurrent(receipt);
++          if (!receipt.path("port").isIntegralNumber()
++              || receipt.path("port").intValue() != environment.getRequiredProperty("server.port", Integer.class)) {
++            throw unavailable();
++          }
++          context.getBeanFactory().registerSingleton("realE2eOwnedProcessLeaseValidated",
++              new VerifiedLease(run, generation, lease, digest, source, manifest));
++          return;
++        }
++        if (!"STARTING".equals(phase) || System.nanoTime() >= deadline) {
++          throw unavailable();
++        }
++        if (Thread.currentThread().isInterrupted()) {
++          throw unavailable();
++        }
++        LockSupport.parkNanos(java.time.Duration.ofMillis(25).toNanos());
++      } while (true);
++    } catch (Exception exception) {
++      // Do not expose lease contents, paths, arguments or underlying SDK/file errors.
++      throw unavailable();
++    }
++  }
++
++  private static void requirePrivateLease(Path lease) throws Exception {
++    if (!lease.isAbsolute() || Files.isSymbolicLink(lease)
++        || !Files.isRegularFile(lease, LinkOption.NOFOLLOW_LINKS)
++        || Files.size(lease) > 65_536
++        || !Files.getPosixFilePermissions(lease, LinkOption.NOFOLLOW_LINKS)
++            .equals(PosixFilePermissions.fromString("rw-------"))) {
++      throw unavailable();
++    }
++    Path directory = lease.getParent();
++    if (directory == null || Files.isSymbolicLink(directory)
++        || !Files.isDirectory(directory, LinkOption.NOFOLLOW_LINKS)
++        || !Files.getPosixFilePermissions(directory, LinkOption.NOFOLLOW_LINKS)
++            .equals(PosixFilePermissions.fromString("rwx------"))
++        || !Files.getOwner(lease, LinkOption.NOFOLLOW_LINKS)
++            .equals(Files.getOwner(directory, LinkOption.NOFOLLOW_LINKS))) {
++      throw unavailable();
++    }
++    var owner = directory.getFileSystem().getUserPrincipalLookupService()
++        .lookupPrincipalByName(System.getProperty("user.name"));
++    if (!owner.equals(Files.getOwner(directory, LinkOption.NOFOLLOW_LINKS))) {
++      throw unavailable();
++    }
++    for (Path parent = directory; parent != null; parent = parent.getParent()) {
++      if (Files.isSymbolicLink(parent)) {
++        throw unavailable();
++      }
++    }
++  }
++
++  private static Path actualJar() {
++    String[] arguments = ProcessHandle.current().info().arguments().orElseThrow(
++        RealE2eOwnedProcessLeaseVerifier::unavailable);
++    for (int index = 0; index + 1 < arguments.length; index++) {
++      if ("-jar".equals(arguments[index])) {
++        Path jar = Path.of(arguments[index + 1]);
++        if (jar.isAbsolute() && Files.isRegularFile(jar, LinkOption.NOFOLLOW_LINKS)
++            && !Files.isSymbolicLink(jar)) {
++          return jar;
++        }
++      }
++    }
++    throw unavailable();
++  }
++
++  private static String sha256(Path path) throws Exception {
++    MessageDigest digest = MessageDigest.getInstance("SHA-256");
++    try (InputStream input = Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS)) {
++      byte[] bytes = new byte[65_536];
++      for (int count; (count = input.read(bytes)) >= 0;) {
++        digest.update(bytes, 0, count);
++      }
++    }
++    return HexFormat.of().formatHex(digest.digest());
++  }
++
++  private static void checkAlive(JsonNode receipt, String name) {
++    JsonNode pid = receipt.path(name + "_pid");
++    if (!pid.isIntegralNumber() || pid.longValue() <= 0) {
++      throw unavailable();
++    }
++    ProcessHandle process = ProcessHandle.of(pid.longValue()).orElseThrow(
++        RealE2eOwnedProcessLeaseVerifier::unavailable);
++    if (!process.isAlive()) {
++      throw unavailable();
++    }
++    requireEqual(receipt, name + "_start",
++        process.info().startInstant().orElseThrow(
++            RealE2eOwnedProcessLeaseVerifier::unavailable).toString());
++  }
++
++  private static void requireCurrent(JsonNode receipt) {
++    JsonNode pid = receipt.path("pm_pid");
++    if (!pid.isIntegralNumber() || pid.longValue() != ProcessHandle.current().pid()) {
++      throw unavailable();
++    }
++    Instant start = ProcessHandle.current().info().startInstant().orElseThrow(
++        RealE2eOwnedProcessLeaseVerifier::unavailable);
++    requireEqual(receipt, "pm_start", start.toString());
++  }
++
++  private static void requireEqual(JsonNode receipt, String key, String expected) {
++    if (!receipt.path(key).isTextual()) {
++      throw unavailable();
++    }
++    requireEqual(receipt.path(key).textValue(), expected);
++  }
++
++  private static void requireEqual(String actual, String expected) {
++    if (!expected.equals(actual)) {
++      throw unavailable();
++    }
++  }
++
++  private static IllegalStateException unavailable() {
++    return new IllegalStateException("REAL_E2E_PLAYMAKER_LEASE_UNVERIFIED");
++  }
++
++  /** Own current-process lease witness; a configuration flag alone cannot construct this proof. */
++  public record VerifiedLease(String runId, String generation, Path path, String jarSha256,
++                              String sourceCommit, String sourceManifestSha256) { }
++}
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2ePlaymakerConfiguration.java b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2ePlaymakerConfiguration.java
+new file mode 100644
+index 000000000..7d67b6e9a
+--- /dev/null
++++ b/src/main/java/com/mercadolibre/rio/playmaker/localintegration/RealE2ePlaymakerConfiguration.java
+@@ -0,0 +1,157 @@
++package com.mercadolibre.rio.playmaker.localintegration;
++
++import com.mercadolibre.tiger.java.helper.TigerTokenValidation;
++import com.mercadolibre.rio.playmaker.restclient.EntityServiceClient;
++import com.mercadolibre.rio.playmaker.restclient.impl.EntityServiceClientImpl;
++import com.fury.toolkit.kvs.Item;
++import com.fury.toolkit.kvs.KvsClient;
++import com.fury.toolkit.kvs.KvsClientException;
++import com.fury.toolkit.shared.SegmentationUtils;
++import java.io.IOException;
++import java.nio.file.Files;
++import java.nio.file.Path;
++import java.nio.charset.StandardCharsets;
++import java.util.Arrays;
++import java.util.Locale;
++import java.util.UUID;
++import org.springframework.beans.factory.SmartInitializingSingleton;
++import org.springframework.beans.factory.annotation.Qualifier;
++import org.springframework.beans.factory.annotation.Value;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.context.annotation.Profile;
++import org.springframework.core.env.Environment;
++import org.springframework.core.env.Profiles;
++
++/** Requires dedicated Fury Sandbox clients and proves actual read/write/delete connectivity. */
++@Configuration
++@Profile("real-e2e")
++public class RealE2ePlaymakerConfiguration {
++
++  /** Builds the official Toolkit client using the generated sandbox configuration. */
++  @Bean(name = "actionResultKvsClient", destroyMethod = "close")
++  public KvsClient actionResultKvsClient(
++      @Value("${kvs.action-results-container}") String container,
++      @Value("${kvs.segment:}") String segment) {
++    return createClient(container, segment);
++  }
++
++  /** Builds the separate official Toolkit client for atomic action locks. */
++  @Bean(name = "actionLockKvsClient", destroyMethod = "close")
++  public KvsClient actionLockKvsClient(
++      @Value("${kvs.action-lock-container}") String container,
++      @Value("${kvs.segment:}") String segment) {
++    return createClient(container, segment);
++  }
++
++  private static KvsClient createClient(String container, String segment) {
++    requireIsolatedArtifactRoot();
++    sandboxContainer(container, segment);
++    var builder = KvsClient.builder(container).withTimeout(3_000).withConnectionTimeout(3_000);
++    if (!segment.isBlank()) {
++      builder = builder.withSegmentId(segment);
++    }
++    return builder.build();
++  }
++
++  /** Fails startup before requests are accepted when profiles, targets or real KVS are unavailable. */
++  @Bean
++  public SmartInitializingSingleton realE2ePlaymakerPreflight(Environment environment,
++      @Qualifier("realE2eOwnedProcessLeaseValidated")
++      RealE2eOwnedProcessLeaseVerifier.VerifiedLease lease,
++      TigerTokenValidation tiger, EntityServiceClient entityService,
++      @Qualifier("actionResultKvsClient") KvsClient results,
++      @Qualifier("actionLockKvsClient") KvsClient locks,
++      @Value("${kvs.action-results-container}") String resultsAlias,
++      @Value("${kvs.action-lock-container}") String locksAlias,
++      @Value("${kvs.segment:}") String segment) {
++    return () -> {
++      if (tiger.getClass() != TigerTokenValidation.class
++          || !(entityService instanceof EntityServiceClientImpl)) {
++        throw new IllegalStateException("REAL_E2E_PRODUCTIVE_AUTH_ENTITY_CLIENTS_REQUIRED");
++      }
++      if (!environment.acceptsProfiles(Profiles.of("local & local-integration"))) {
++        throw new IllegalStateException("REAL_E2E_REQUIRES_LOCAL_AND_LOCAL_INTEGRATION");
++      }
++      String runId = environment.getRequiredProperty("e2e.run-id");
++      if (!runId.equals(lease.runId())) {
++        throw new IllegalStateException("REAL_E2E_PLAYMAKER_LEASE_RUN_MISMATCH");
++      }
++      if (!runId.matches("[a-z0-9][a-z0-9_-]{7,63}")) {
++        throw new IllegalStateException("REAL_E2E_INVALID_RUN_ID");
++      }
++      String baseUrl = environment.getRequiredProperty("app.kafkaControlPlaneClient.base-url");
++      if (!baseUrl.matches("http://127\\.0\\.0\\.1:[1-9][0-9]{0,4}")) {
++        throw new IllegalStateException("REAL_E2E_CP_MUST_BE_LOOPBACK");
++      }
++      for (String suffix : new String[] {"deployment-trigger-topic", "deployment-result-topic",
++          "deployment-result-dlt-topic", "action-trigger-topic", "action-result-topic",
++          "action-result-dlt-topic"}) {
++        String topic = environment.getRequiredProperty("local.integration.kafka." + suffix);
++        if (!topic.startsWith("e2e_" + runId + "_") || !topic.matches("[a-zA-Z0-9_-]{1,200}")) {
++          throw new IllegalStateException("REAL_E2E_TOPIC_MUST_BELONG_TO_RUN");
++        }
++      }
++      if (sandboxContainer(resultsAlias, segment).equals(sandboxContainer(locksAlias, segment))) {
++        throw new IllegalStateException("REAL_E2E_RESULTS_AND_LOCKS_REQUIRE_DISTINCT_CONTAINERS");
++      }
++      probe(results, runId);
++      probe(locks, runId);
++    };
++  }
++
++  private static String sandboxContainer(String alias, String segment) {
++    if (alias == null || !alias.matches("[a-zA-Z0-9_.-]{1,200}")
++        || !segment.matches("[a-zA-Z0-9_-]{0,64}")) {
++      throw new IllegalStateException("REAL_E2E_INVALID_SANDBOX_ALIAS");
++    }
++    String normalized = alias.split("__", 2)[0].replace('-', '_').replace('.', '_')
++        .toUpperCase(Locale.ROOT);
++    String base = "KEY_VALUE_STORE_" + normalized;
++    String effectiveSegment = segment.isBlank() ? SegmentationUtils.getSegmentId() : segment;
++    String versionPrefix = SegmentationUtils.isDefaultSegment(effectiveSegment)
++        ? base : base + "_" + effectiveSegment.toUpperCase(Locale.ROOT);
++    String mappingPrefix = "v2".equals(System.getenv(versionPrefix + "_SEGMENTATION_VERSION"))
++        ? base + "_" + effectiveSegment.toUpperCase(Locale.ROOT) : base;
++    String key = mappingPrefix + "_CONTAINER_NAME";
++    String physical = System.getenv(key);
++    if (physical == null || !physical.matches("sbox[a-zA-Z0-9_-]+")) {
++      throw new IllegalStateException("REAL_E2E_REQUIRES_GENERATED_FURY_SANDBOX_MAPPING");
++    }
++    return physical;
++  }
++
++  private static void requireIsolatedArtifactRoot() {
++    String root = System.getenv("ARTIFACT_DELIVERY_FILE_PREFIX");
++    if (root == null || !Path.of(root).isAbsolute() || !Files.isDirectory(Path.of(root))) {
++      throw new IllegalStateException("REAL_E2E_ISOLATED_ARTIFACT_ROOT_REQUIRED");
++    }
++    try (var entries = Files.list(Path.of(root))) {
++      if (entries.findAny().isPresent()) {
++        throw new IllegalStateException("REAL_E2E_ARTIFACT_ROOT_MUST_BE_EMPTY");
++      }
++    } catch (IOException exception) {
++      throw new IllegalStateException("REAL_E2E_ARTIFACT_ROOT_UNAVAILABLE");
++    }
++  }
++
++  private static void probe(KvsClient client, String runId) {
++    String key = "e2e:" + runId + ":preflight:" + UUID.randomUUID();
++    byte[] value = UUID.randomUUID().toString().getBytes(StandardCharsets.UTF_8);
++    try {
++      client.save(new Item<>(key, value, 60));
++      Item<byte[]> read = client.get(key);
++      if (read == null || !Arrays.equals(value, read.getValue())) {
++        throw new IllegalStateException("REAL_E2E_KVS_READBACK_FAILED");
++      }
++    } catch (KvsClientException | RuntimeException exception) {
++      throw new IllegalStateException("REAL_E2E_PLAYMAKER_KVS_UNAVAILABLE");
++    } finally {
++      try {
++        client.delete(key);
++      } catch (KvsClientException | RuntimeException exception) {
++        throw new IllegalStateException("REAL_E2E_PLAYMAKER_KVS_PROBE_CLEANUP_FAILED");
++      }
++    }
++  }
++}
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/BigQueueActionsProducerLocal.java b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/BigQueueActionsProducerLocal.java
+index 658d77c1e..85c0fc907 100644
+--- a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/BigQueueActionsProducerLocal.java
++++ b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/BigQueueActionsProducerLocal.java
+@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
+  *
+  * <p>Logs the action ID at INFO level for debugging purposes without publishing to BigQueue.
+  */
+-@Profile({"local", "integration_test"})
++@Profile({"local & !real-e2e", "integration_test & !real-e2e"})
+ @Primary
+ @Slf4j
+ @Component
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/EntityServiceClientImpl.java b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/EntityServiceClientImpl.java
+index 7444d7ae6..6eb9f1f6e 100644
+--- a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/EntityServiceClientImpl.java
++++ b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/EntityServiceClientImpl.java
+@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
+ /** Calls rio-entity-service to validate entity existence and schema revisions. */
+ @Slf4j
+ @Component
+-@Profile("!local & !integration_test")
++@Profile("(!local & !integration_test) | real-e2e")
+ public class EntityServiceClientImpl implements EntityServiceClient {
+ 
+   private static final String POOL_NAME = "entityService";
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/EntityServiceClientImplLocal.java b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/EntityServiceClientImplLocal.java
+index 263b57f08..5f3c7b0ca 100644
+--- a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/EntityServiceClientImplLocal.java
++++ b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/EntityServiceClientImplLocal.java
+@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
+ @Slf4j
+ @Component
+ @Primary
+-@Profile({"local", "integration_test"})
++@Profile("(local | integration_test) & !real-e2e")
+ public class EntityServiceClientImplLocal implements EntityServiceClient {
+ 
+   private static final int MOCK_MAX_REVISION = 100;
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/KafkaControlPlaneClientImpl.java b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/KafkaControlPlaneClientImpl.java
+index e4ddccfbd..7ce9e9fe8 100644
+--- a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/KafkaControlPlaneClientImpl.java
++++ b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/KafkaControlPlaneClientImpl.java
+@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
+ /** Calls the Kafka Control Plane to peek at topic messages. */
+ @Slf4j
+ @Component
+-@Profile("!local & !integration_test")
++@Profile("(!local & !integration_test) | (local & local-integration & real-e2e)")
+ public class KafkaControlPlaneClientImpl implements KafkaControlPlaneClient {
+ 
+   // Dedicated pool with a 30s socket timeout — see RestClientConfig#kafkaControlPlaneRestClient.
+diff --git a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/KafkaControlPlaneClientImplLocal.java b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/KafkaControlPlaneClientImplLocal.java
+index 1eee642f8..4da415045 100644
+--- a/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/KafkaControlPlaneClientImplLocal.java
++++ b/src/main/java/com/mercadolibre/rio/playmaker/restclient/impl/KafkaControlPlaneClientImplLocal.java
+@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
+ @Slf4j
+ @Component
+ @Primary
+-@Profile({"local", "integration_test"})
++@Profile({"local & !real-e2e", "integration_test & !real-e2e"})
+ public class KafkaControlPlaneClientImplLocal implements KafkaControlPlaneClient {
+ 
+   @Override
+diff --git a/src/main/resources/META-INF/spring.factories b/src/main/resources/META-INF/spring.factories
+new file mode 100644
+index 000000000..7d881e166
+--- /dev/null
++++ b/src/main/resources/META-INF/spring.factories
+@@ -0,0 +1,2 @@
++org.springframework.context.ApplicationContextInitializer=\
++com.mercadolibre.rio.playmaker.localintegration.RealE2eOwnedProcessLeaseVerifier
+diff --git a/src/main/resources/application-real-e2e.yml b/src/main/resources/application-real-e2e.yml
+new file mode 100644
+index 000000000..47f676287
+--- /dev/null
++++ b/src/main/resources/application-real-e2e.yml
+@@ -0,0 +1,47 @@
++# Activate with local,local-integration,real-e2e. All targets belong to this isolated run.
++server:
++  address: 127.0.0.1
++spring:
++  kafka:
++    bootstrap-servers: ${E2E_BOOTSTRAP_SERVERS}
++    consumer:
++      group-id: e2e_${E2E_RUN_ID}_playmaker_results
++e2e:
++  run-id: ${E2E_RUN_ID}
++  source-commit: ${E2E_PLAYMAKER_SOURCE_COMMIT}
++  source-manifest-sha256: ${E2E_PLAYMAKER_SOURCE_MANIFEST_SHA256}
++  kvs-observation:
++    directory: ${E2E_KVS_OBSERVATION_DIR}
++app:
++  actionsFramework:
++    enabled: true
++  entityServiceClient:
++    base-url: ${E2E_ENTITY_SERVICE_BASE_URL}
++  kafkaControlPlaneClient:
++    base-url: ${E2E_CP_BASE_URL}
++    msk-brokers-url: ${E2E_BOOTSTRAP_SERVERS}
++kvs:
++  action-results-container: ${E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER}
++  action-lock-container: ${E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER}
++  segment: ${E2E_PLAYMAKER_KVS_SEGMENT_ID:}
++local:
++  integration:
++    kafka:
++      deployment-trigger-topic: ${E2E_DEPLOYMENT_TRIGGER_TOPIC}
++      deployment-result-topic: ${E2E_DEPLOYMENT_RESULT_TOPIC}
++      deployment-result-dlt-topic: ${E2E_DEPLOYMENT_RESULT_DLT_TOPIC}
++      action-trigger-topic: ${E2E_ACTION_TRIGGER_TOPIC}
++      action-result-topic: ${E2E_ACTION_RESULT_TOPIC}
++      action-result-dlt-topic: ${E2E_ACTION_RESULT_DLT_TOPIC}
++controlplane:
++  deployment-routing:
++    routes:
++      - componentType: aws-msk-topic
++        version: "*"
++        transport: BIG_QUEUE
++      - componentType: kafka-topic
++        version: "*"
++        transport: BIG_QUEUE
++      - componentType: gcp-kafka-topic
++        version: "*"
++        transport: BIG_QUEUE

@@ -1,0 +1,11 @@
+{
+  "state": "CP_SOURCE_CHECKPOINT_COMPLETE_PHYSICAL_BLOCKED",
+  "delivery_index_sha256": "b652ce4980f4af0efd1acd4722ebf13adcf60cb313e094b30573519a42e25d37",
+  "handoff_sha256": "ef7018e3c9de4d5a90a1c51fb884d53c8ea1325cc0a487701c4455c105d4da97",
+  "portability": "PASS4_SOURCE_TREE_ONLY",
+  "portability_summary_sha256": "8886323583ddc73a9146f5cd7b0d953ec05a84b09cabd61c6e7c57b83129ad48",
+  "cp_real_suite": "NOT_EXECUTED",
+  "current_gate": "RENEW_FURY_THEN_OWN_KVS_CLONE_RECHECK",
+  "session": "ACTIVE_PARTIAL_NOT_CLOSED",
+  "owner_login_response": "PENDING"
+}

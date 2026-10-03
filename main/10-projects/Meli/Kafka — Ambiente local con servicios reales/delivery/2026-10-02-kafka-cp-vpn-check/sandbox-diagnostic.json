@@ -1,0 +1,24 @@
+{
+  "scope": "ALLOWLISTED_DIAGNOSTIC_CP_ONLY_REAL_SANDBOX",
+  "state_status": "PREPARING",
+  "resource_count": 1,
+  "resources": [
+    {
+      "app": "rio-controlplane-kafka",
+      "create_intent": true,
+      "create_outcome": "CONFIRMED",
+      "instance": null,
+      "cleanup": null,
+      "deleted": null,
+      "absence_verified": null
+    }
+  ],
+  "error_codes": [
+    "SANDBOX_API_FAILED",
+    "SANDBOX_GATE_FAILED"
+  ],
+  "private_log_sha256": "f3deb74e043754706f3e409d20e333a173276250a43be1c57ad1f9263a745b54",
+  "sdk_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "config_generated": false,
+  "kvs_business": "NOT_EXECUTED"
+}

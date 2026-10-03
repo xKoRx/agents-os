@@ -1,0 +1,42 @@
+{
+  "status": "PASS_REGRESSION_REPLAY",
+  "records": [
+    {
+      "case": "baseline-3bea",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "tests": 11,
+      "failures": 10,
+      "errors": 0,
+      "log_sha256": "db54b20731c3c64481247b46cf65e6a60fb30ab17212bd44f148410aeb7a46cc"
+    },
+    {
+      "case": "scoped-before-trap",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "tests": 11,
+      "failures": 10,
+      "errors": 0,
+      "log_sha256": "cf3bc28d4e2bc97be88dc485cf09cd52a5f79262191692dd29f144784672dd18"
+    },
+    {
+      "case": "bare-variable-before",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "log_sha256": "1b62bd4b5a0e0b735520f25a3b7ada908fc65148a22df210af912c293a88ba10"
+    },
+    {
+      "case": "candidate",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "log_sha256": "8203bb6bf3f4982346b84473d474e3d3213c0326fb331d4ebb9da4e9dfff8231"
+    }
+  ],
+  "business": "NOT_EXECUTED"
+}

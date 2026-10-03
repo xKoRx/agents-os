@@ -1,0 +1,1482 @@
+{
+  "status": "PASS_FINAL_DOCUMENTARY_DELTA_AND_RECEIPT_METADATA_ONLY",
+  "timestamp_utc": "2026-10-02T07:05:07.343859+00:00",
+  "findings": [],
+  "freeze_sha256": "736ce1960a4e8e90725b9eec298324156405d14ffbffaa387db2e2cf7fd69cd4",
+  "stage_plan_sha256": "174878581d97a6f7f6b3a6a97c9e0d409e215183568b2903e8438726ba64822a",
+  "evidence_manifest_sha256": "237eff869bb831b092f7aa0d9efa9a6e17da75f5de35c03b2f80b01202264aa7",
+  "ledger_after_sha256": "17cf815090671d67d5bdbba136e6c231da94f63face6d5ea204dfa0302aa8f69",
+  "doc_bindings": [
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/DELIVERY.md",
+      "before_sha256": "3d77af2d3a159f03a2f1051f2848ebf5341f4fc149831a1b59b015de078720f9",
+      "after_sha256": "df9d1920ada3630ed063222cee199c85c90ee6abbc6ae47daac4351a39e38f4b",
+      "prior_v1_sha256": "5f390128c8c139346ab0b9fd323fe78f0290a8b6a7071d9b9b546102e5a23632"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/remaining-gaps.md",
+      "before_sha256": "5a054e72d0aac8192e281066f2128e2e2b555bbb965120e97e8e197f42bf4d5e",
+      "after_sha256": "907cc11943d00325bc94ff6117923f2f08993a6576256d4c824b690915ba667e",
+      "prior_v1_sha256": "b092bae9659fd8cffff714cef66bb7591998e45df24f27187576e416aad4b72c"
+    },
+    {
+      "target": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/08-governance/kafka-canonical-audit-2026-10-01.md",
+      "before_sha256": "e575a34197bb952b8f651519216edd25a7fa0fe35a54291c0596ecb1b6cee49c",
+      "after_sha256": "07b5c9e704d217a3ce63e61867fbd7acbe153071f68f720cef3a0839f454bae9",
+      "prior_v1_sha256": "5a9d0d2af7898ced38405a4eb95b0aa1a4b49d01af0b68d6b245b92212e9e69b"
+    },
+    {
+      "target": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+      "before_sha256": "a756e45130fd243a15c054b0b1d67efb50f5b1b62b041acd42fdcbe33bc617ec",
+      "after_sha256": "7f74eaa78ad57412d59404a887dfb1c90e066c1bd4b495e64a8d4030d94ec622",
+      "prior_v1_sha256": "3ce74a64f829317b03ec0cd9fa61565d41682644abb1463650d784055b5daa73"
+    },
+    {
+      "target": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/08-governance/source-manifest.md",
+      "before_sha256": "a1b022c99be9b367ead54d69a4d9743afcb1d0ecc9689b1b860264ebcd4bbef4",
+      "after_sha256": "94c58eabe6a938be6ec8956d7e39fc09a11740bb895f6b39a3f6bfcdd77b401d",
+      "prior_v1_sha256": "67841e8a3cce0c7535c88aaf84882bf1c80cc0b4a6e5ef81d82a06678f7c1220"
+    },
+    {
+      "target": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/09-feature-catalog/coverage-ledger.md",
+      "before_sha256": "570527d996f79749bf73ae2a84e7876ab14e0337ef53d5521098f9830c7d6557",
+      "after_sha256": "b152f6e4418bea7ee95a3d0c87f70d3d75996dd183ddd07e1bcad164b548f139",
+      "prior_v1_sha256": "8fdf025c46eb1e7c34d76e01688548916e9260b3189a955f5397d6bd59986bd5"
+    }
+  ],
+  "evidence_bindings": [
+    {
+      "name": "cp-root-v3-unit-main-jar.json",
+      "source": "/private/tmp/kafka-e2e-discovery/cp-root-v3-unit-main-jar.json",
+      "sha256": "334b5803e23707f51eaf5715392e8efa9d8f369d99d56b4c16f20a99143bb25f",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "pm-root-v3-full-unit.json",
+      "source": "/private/tmp/kafka-e2e-discovery/pm-root-v3-full-unit.json",
+      "sha256": "bab534f5f80a4c9f53e3f764f0e8f93de907fc60de8f30e3d251481a6d0b0e38",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-first-compile-failure.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-compiler-delta/first-compile-failure.json",
+      "sha256": "311ee654f7dec4839a262ba922e3514b8f2e6c467d902233245379c2b350aa30",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-three-family-compile.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-compiler-delta/three-family-compile-pass.json",
+      "sha256": "bfe7c4b3f6ffd2e11ee9c192271d0ef3c04f4ce56be5148e4d0c76ed9e1a0e26",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-source-freeze.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-1-freeze/freeze.json",
+      "sha256": "2be8b9deead072c1d8b8373ed8e4b7052b5073deb263d0965a12c2dbdafd2944",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-metadata-controls.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-1-controls/metadata-controls-result.json",
+      "sha256": "54a3628e7a3b8ca7760c10ceae908a762387a5a6733ab3d45b11e86801efef9b",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-task-negative-controls.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-1-controls/task-negative-controls-result.json",
+      "sha256": "9d3847123b53d5aa27cf5b87d192e8ed7734908b6aedee8cc6ed0563e3f9b645",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-private-control-driver-first-failure.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-1-controls/author-control-first-failure.json",
+      "sha256": "c61f095cda786913eb940f36c9192fbeaa14dcbeb114cc57dbc8c2d16768c584",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-actual-gradle-control.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-author/actual-gradle-control/control-result.json",
+      "sha256": "9381130375a6dc86d8584c25e6a73547c09b06c90eeea5810d55e85ca3150b24",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-seven-false-accepts.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-wiring-domain-v4/all-final-task-red.json",
+      "sha256": "db79619b7821fe875b6a1fe9f292a51abd85e60bede9f9793fb6190e0bef4937",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-peer-review.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-wiring-domain-v4/review.json",
+      "sha256": "418e31a66d8b8e18247d3d4e56dc7aad35d86f0473f8399716559ced85f4d5b6",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-pm-neutral-control.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-v4-1-pm-lifecycle/control-result.json",
+      "sha256": "2e422cd07cf3684752283ed69ef188658f4739a332c7fc44f044f558c1a6bde1",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-pm-private-pack-failure.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-v4-1-pm-lifecycle/private-pack-failure.json",
+      "sha256": "6ed91e5fd8cfdc3d9e891f60b47f9c1957f48b5ad9adf6c051fbffe15aae862b",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-pm-sandbox-denial.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-v4-1-pm-lifecycle/sandbox-socket-denied.json",
+      "sha256": "ac215d19042f359429d0984270f303e26addb3b0fb6a9c023361f730c66ba879",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-worker-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-v4-worker-domain-v1/review.json",
+      "sha256": "40bbc628b8d7a2cb9f592e7aa7a2a45e0be7737221b67e14420939b3635cf477",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "cp-owner-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/cp-owner-v1-fault-review/review.json",
+      "sha256": "060367c3d28b0a407beea866ceb28bd76dd320bfe73a5276ac21b5dded9f2903",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24r-pipeline-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/t24r-pipeline-domain-v1/review.json",
+      "sha256": "301a1d0e6d908f0cf34d9614efcdfcfc2ca205ffb40eb356d019a48edeb4eb71",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24-first-physical-params-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/t24-preparation-gaps-fault-v1/review.json",
+      "sha256": "fcfa70db891679b66f6052c42ce80dc35092877fef095b3f60cd266e8214c057",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24-p2-guards-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/t24-p2-guards-fault-v2/review.json",
+      "sha256": "c9819dd8a29f50804bc6e471058b1a3da2e47270d77c7777123b60c7ce3e62fb",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t26-journals-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/t26-journals-v1-fault-review/review.json",
+      "sha256": "9f1efb807fba06769f73197832ca5df301cf23c1e04e713e4c865277ba28ebae",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "ci-four-family-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/ci-family-root-v1/review.json",
+      "sha256": "a4b5446dfaada1e005a27100dc015be7124daa8acd31254e3f6a83d33bef22ba",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "kl-stop-reap-delta-validator-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/kl-doc-delta-fault-v2/review.json",
+      "sha256": "9e82589d52fc6727b2c883b26546aaebeb22917db385bf66662df838754df5e8",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-readme-delta-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-doc-delta-fault-v2/review.json",
+      "sha256": "87ac698da6b174bd454c0018259b3785a6e2a865be12a278b3cd05824b47fc33",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-readme-safe-apply.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-readme-integration/safe-apply-receipt.json",
+      "sha256": "373f8e831b5246659bf3aebf52c272d7ebd6fb14eba6ae9c78be886372d74141",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24-matrix-final-source-freeze.json",
+      "source": "/private/tmp/kafka-e2e-discovery/t24-matrix-final-source/freeze.json",
+      "sha256": "3dd13725d834abbec5876598e3584ff08ebe517d5aff0d5015347bfe2d07bf33",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24-matrix-final-source-validation.json",
+      "source": "/private/tmp/kafka-e2e-discovery/t24-matrix-final-source/final-validation.json",
+      "sha256": "48c441c8831ef6049541d310a56013e9994b934f3b00e4f37067fd5a87053c9c",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24-matrix-final-source-manifest.json",
+      "source": "/private/tmp/kafka-e2e-discovery/t24-matrix-final-source/source-manifest.json",
+      "sha256": "cf4762b193c12abccefbf94142cd46c101f20b8707d8ea0841d67b98cbddb3ce",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-core-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-wiring-domain-v4-1/review.json",
+      "sha256": "f7c6c8068a55b6ebc42bb82cce421ddd165fc2d853cb082ae18fce6bad1fec01",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-worker-owner-type-red.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-wiring-domain-v4-1/worker-owner-pid-type-negative.json",
+      "sha256": "d0082c04e0a9b08d7c8bcdff3d9986f5ecde202524c27a910ca2cb356c249c7d",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-r2-owner-type-red-green.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-1-r2-author/owner-type-red-green.json",
+      "sha256": "9d31960fd9fb6e4780f019d48c02845dff8f69fbc1d94642bea8cd18899c409a",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-r2-readiness-assertions.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-1-r2-author/readiness-delta-ast.json",
+      "sha256": "bc7f96e3e46a3351cb521c44b20d221d32f0184d854d04bad42b2d1cf954bba9",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24-matrix-preparation-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/t24-matrix-final-fault-v1/review.json",
+      "sha256": "b5360b1d397aa7f693a2b188a258ad4070fb87ff2b542bcea8348004bde954a2",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24-matrix-safe-apply.json",
+      "source": "/private/tmp/kafka-e2e-discovery/t24-matrix-final-source/safe-apply-receipt.json",
+      "sha256": "fdabd12317bd745f78876c7c19defa09435ab35f40acdd13e2a7abd8cbb225f3",
+      "scope": "SOURCE_UNIT_COMPONENT_OR_METADATA_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "t24-matrix-final-mapping-audit.json",
+      "source": "/private/tmp/kafka-e2e-discovery/t24-matrix-final-source/mapping-audit.json",
+      "sha256": "e8fa924e14d1fd9e16b35f8abb704916bc93306b90a376107a9c43fd61227000",
+      "scope": "SOURCE_OR_COMPONENT_CLEANUP_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "final-owned-docker-inventory-2026-10-02.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-final-evidence-stage/final-owned-docker-inventory-2026-10-02.json",
+      "sha256": "54fc2070522f510fdc556321553c581dba442c64815073c90fb0b6e042c10a2a",
+      "scope": "SOURCE_OR_COMPONENT_CLEANUP_ONLY_NO_BUSINESS_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-r2-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-v4-1-r2-fault-v1/review.json",
+      "sha256": "dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-r2-author-result.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-1-r2-author/author-result.json",
+      "sha256": "a9318b28453b0cf6bfd12e3f903bbe7748c601ff7e20321fa6be467419d2c005",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE"
+    },
+    {
+      "name": "root-v4-1-r2-safe-apply.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-wiring-v4-1-r2-author/safe-apply-receipt.json",
+      "sha256": "067878e45e1d8d304a443781d045545430bf1c5ac5baafbcaf47bb2bf5144de4",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE"
+    },
+    {
+      "name": "root-final-source-freeze.json",
+      "source": "/private/tmp/kafka-e2e-discovery/root-final-source-freeze/freeze.json",
+      "sha256": "23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE"
+    },
+    {
+      "name": "root-final-matrix-portable-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-final-matrix-portable-fault-v1/review.json",
+      "sha256": "c3cfc7aefd83ccf1410c8fcd466652ef55ead5f960c5c85e9338309a46d80668",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE"
+    },
+    {
+      "name": "root-driver-first-independent-failure.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-wiring-domain-v4-1/lifecycle/first-control-failure.json",
+      "sha256": "4c2999d40f41b61a17d1217775aabd70a9a283c185b7dbfb53ab6b5a1b123a3d",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE"
+    },
+    {
+      "name": "root-driver-second-independent-failure.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-wiring-domain-v4-1/lifecycle/second-control-failure.json",
+      "sha256": "93615f6b3694f812530250ea6a01f8ab53862e40fbe35ae7e7bba911cab7014f",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE"
+    },
+    {
+      "name": "root-final-docs-first-peer.json",
+      "source": "/private/tmp/kafka-e2e-discovery/independent-review/root-final-docs-infra-v1/review.json",
+      "sha256": "e9c1e783cea0257c80cc7c3a91861627ad45df6e680806f0f3da43db3ebc2105",
+      "scope": "SOURCE_COMPONENT_METADATA_OR_DOCUMENT_REVIEW_ONLY_NO_BACKEND_CERTIFICATE"
+    }
+  ],
+  "counts": {
+    "documents": 6,
+    "old_records_preserved": 52,
+    "new_records": 43,
+    "total_records": 95,
+    "manifest_files_hash_verified": 43,
+    "aggregate_snapshot_metadata_hashes": 29,
+    "checks": 228
+  },
+  "checks": [
+    {
+      "name": "frozen_plan",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "frozen_evidence_manifest",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "frozen_ledger",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "prior52_preserved",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "95_unique_records",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "new43_manifest_bijection",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_cp-root-v3-unit-main-jar.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_pm-root-v3-full-unit.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-first-compile-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-three-family-compile.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-metadata-controls.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-task-negative-controls.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-private-control-driver-first-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-actual-gradle-control.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-seven-false-accepts.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-peer-review.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-pm-neutral-control.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-pm-private-pack-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-pm-sandbox-denial.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-worker-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_cp-owner-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24r-pipeline-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24-first-physical-params-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24-p2-guards-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t26-journals-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_ci-four-family-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_kl-stop-reap-delta-validator-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-readme-delta-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-readme-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24-matrix-final-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24-matrix-final-source-validation.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24-matrix-final-source-manifest.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-core-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-worker-owner-type-red.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-r2-owner-type-red-green.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-r2-readiness-assertions.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24-matrix-preparation-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24-matrix-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_t24-matrix-final-mapping-audit.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_final-owned-docker-inventory-2026-10-02.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-r2-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-r2-author-result.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-v4-1-r2-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-final-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-final-matrix-portable-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-driver-first-independent-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-driver-second-independent-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "evidence_byte_binding_root-final-docs-first-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_cp-root-v3-unit-main-jar.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_cp-root-v3-unit-main-jar.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_pm-root-v3-full-unit.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_pm-root-v3-full-unit.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-first-compile-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-first-compile-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-three-family-compile.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-three-family-compile.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-metadata-controls.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-metadata-controls.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-task-negative-controls.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-task-negative-controls.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-private-control-driver-first-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-private-control-driver-first-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-actual-gradle-control.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-actual-gradle-control.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-seven-false-accepts.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-seven-false-accepts.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-peer-review.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-peer-review.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-pm-neutral-control.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-pm-neutral-control.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-pm-private-pack-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-pm-private-pack-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-pm-sandbox-denial.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-pm-sandbox-denial.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-worker-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-worker-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_cp-owner-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_cp-owner-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24r-pipeline-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24r-pipeline-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24-first-physical-params-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24-first-physical-params-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24-p2-guards-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24-p2-guards-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t26-journals-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t26-journals-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_ci-four-family-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_ci-four-family-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_kl-stop-reap-delta-validator-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_kl-stop-reap-delta-validator-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-readme-delta-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-readme-delta-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-readme-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-readme-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24-matrix-final-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24-matrix-final-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24-matrix-final-source-validation.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24-matrix-final-source-validation.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24-matrix-final-source-manifest.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24-matrix-final-source-manifest.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-core-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-core-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-worker-owner-type-red.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-worker-owner-type-red.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-r2-owner-type-red-green.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-r2-owner-type-red-green.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-r2-readiness-assertions.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-r2-readiness-assertions.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24-matrix-preparation-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24-matrix-preparation-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24-matrix-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24-matrix-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_t24-matrix-final-mapping-audit.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_t24-matrix-final-mapping-audit.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_final-owned-docker-inventory-2026-10-02.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_final-owned-docker-inventory-2026-10-02.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-r2-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-r2-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-r2-author-result.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-r2-author-result.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-v4-1-r2-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-v4-1-r2-safe-apply.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-final-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-final-source-freeze.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-final-matrix-portable-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-final-matrix-portable-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-driver-first-independent-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-driver-first-independent-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-driver-second-independent-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-driver-second-independent-failure.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_binding_root-final-docs-first-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "ledger_narrow_verdict_root-final-docs-first-peer.json",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "business_blocked_every_family_351",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "before_hash_00-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "after_hash_00-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "active_before_00-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "NOT_EXECUTED_00-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "current_placeholders_resolved_00-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "links_unchanged_00-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "headings_unchanged_00-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "before_hash_01-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "after_hash_01-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "active_before_01-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "NOT_EXECUTED_01-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "current_placeholders_resolved_01-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "links_unchanged_01-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "headings_unchanged_01-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "before_hash_02-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "after_hash_02-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "active_before_02-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "NOT_EXECUTED_02-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "current_placeholders_resolved_02-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "links_unchanged_02-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "headings_unchanged_02-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "before_hash_03-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "after_hash_03-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "active_before_03-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "NOT_EXECUTED_03-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "current_placeholders_resolved_03-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "links_unchanged_03-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "headings_unchanged_03-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "before_hash_04-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "after_hash_04-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "active_before_04-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "NOT_EXECUTED_04-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "current_placeholders_resolved_04-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "links_unchanged_04-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "headings_unchanged_04-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "before_hash_05-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "after_hash_05-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "active_before_05-before.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "NOT_EXECUTED_05-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "current_placeholders_resolved_05-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "links_unchanged_05-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "headings_unchanged_05-after.md",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "r2_receipt_narrow_binding",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "two_independent_neutral14_159",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "two_author_neutral14_159",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "47assertions14cases_deadlines_receipt",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "prior_driver_two_red_exactcopies",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "prior_driver_reds_remain_fail_ledger",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate29_layered_peer_metadata",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate29_only2_hash_changes",
+      "status": "PASS",
+      "details": "Metadata check only, not implementation review"
+    },
+    {
+      "name": "aggregate_private_snapshot_RealE2eKvsObservationConfiguration.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_RealE2eKvsObservationConfiguration.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_RealE2eOwnedProcessLeaseVerifier.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_RealE2ePlaymakerConfiguration.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_spring.factories",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_playmaker-artifact.py",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_kvs-mutation-proof.py",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_verify-primary-service.py",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_PlaymakerMutationReceiptVerifier.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_PlaymakerPrimaryEvidenceVerifier.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_process-exit-proof.py",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_build.gradle",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_run.sh",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_managed.sh",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_OwnedProcessExitReceipt.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_RealControlplaneProcess.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_PlaymakerProcessOwner.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_playmaker-runner.sh",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_OwnedPlaymakerLifecycle.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_PlaymakerKafkaE2ETest.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_PlaymakerResultTransportE2ETest.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_playmaker-lifecycle-contract.py",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_application-real-e2e.yml",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_application-real-e2e.yml",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_gradle-worker-exit.gradle",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_retain-unverified-work.py",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_OwnedTestWorkerRegistration.java",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_org.junit.jupiter.api.extension.Extension",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "aggregate_private_snapshot_owned_test_worker_proof.py",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "independent_matrix_portable_receipt_binding_only",
+      "status": "PASS",
+      "details": "No self-certification of own OneTest/matrix"
+    },
+    {
+      "name": "current_matrix_ref_digest_and_receipt_counts",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "CP822_PM4386total4384passed2skips",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "formal937FAIL0introduced_notgreen",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "final_receipts_cited_0",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "final_receipts_cited_2",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "final_receipts_cited_4",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "final_receipts_cited_5",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "typo_removed",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "end_no_drift_plan",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "end_no_drift_manifest",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "end_no_drift_ledger",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "end_no_drift_six_docs",
+      "status": "PASS",
+      "details": null
+    }
+  ],
+  "scope": "INDEPENDENT_DOC_FIDELITY_AND_HASH_METADATA_ONLY_NOT_SOURCE_CERTIFICATION",
+  "closed_prior_conditions": [
+    "Exact r2 peer/two author/two independent14/159 receipts exist and bind substitutions; two prior REDs preserved.",
+    "Matrix preparation and portable-reference independent receipts bind counts/source/ref distinctions.",
+    "Current PENDING_SOURCE_PEER/PENDING_MATRIX_PEER markers resolved by actual receipt hashes; historical cuts retained."
+  ],
+  "final_application_conditions": [
+    "Copy/hash-bind all43 staged receipts to declared CP evidence directory during guarded final application; manifest still STAGED_NOT_YET_APPLIED.",
+    "Apply exact6after bytes with before guards; preserve old snapshots/REDs.",
+    "Run final structural/historical/diff validators and exact937 baseline comparison on applied docs. Formal remains FAIL; Zord blocked.",
+    "Any altered final documentary/ledger/receipt byte needs refreshed freeze and scoped recheck."
+  ],
+  "limitations": [
+    "No repo/source/doc edits, Gradle, API, Docker or business execution.",
+    "Own OneTest/matrix source not certified here: independent third-party receipt metadata/bytes only.",
+    "Aggregate29 snapshot/hash checks are not new source/effective Application/SDK certification.",
+    "Independent guardian replays are neutral own JDK/FS/ports only; no productive PM/CP/backend/SDK cleanup certificate.",
+    "All351 complete business capacities/allfour families/actualcorporateCI remain NOT_EXECUTED/BLOCKED.",
+    "v1 remains immutable. Private reviewer field-adaptation and staging-drift guards preserved; not business failures."
+  ],
+  "private_reviewer_first_failure": {
+    "path": "first-private-review-metadata-failure.json",
+    "cause": "KeyError path: legacy old52 records omit path; corrected RED lookup uses get(path), no receipt/source changes"
+  }
+}

@@ -1,0 +1,219 @@
+diff --git a/src/main/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImpl.java b/src/main/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImpl.java
+index 31bd044..7dfe272 100644
+--- a/src/main/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImpl.java
++++ b/src/main/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImpl.java
+@@ -115,7 +115,7 @@ public class BigQueueClientImpl implements BigQueueClient {
+       producerBuilder.withBuffering(bufferBuilder.build());
+     }
+ 
+-    this.producer = producerFactory.createProducer(this.topic, mqConfig);
++    this.producer = producerFactory.createProducer(producerBuilder);
+ 
+     log.info(
+         "BigQueue client initialized successfully for topic: {} ({})",
+diff --git a/src/main/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/ProducerFactory.java b/src/main/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/ProducerFactory.java
+index c5f457d..f621981 100644
+--- a/src/main/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/ProducerFactory.java
++++ b/src/main/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/ProducerFactory.java
+@@ -2,6 +2,8 @@ package com.mercadolibre.rio.sdk.events.bigqueue.impl;
+ 
+ import com.mercadolibre.mqclient.config.MQConfiguration;
+ import com.mercadolibre.mqclient.producer.Producer;
++import com.mercadolibre.mqclient.producer.ProducerBuilder;
++import java.util.Objects;
+ 
+ /**
+  * Factory class for creating MQ Producer instances.
+@@ -29,4 +31,15 @@ public class ProducerFactory {
+   public Producer createProducer(String topic, MQConfiguration mqConfig) {
+     return Producer.builder().withTopic(topic).withConfig(mqConfig).build();
+   }
++
++  /**
++   * Builds the same producer builder configured by the caller, preserving segment and buffering.
++   *
++   * @param configuredBuilder builder containing all topic, transport and buffering options
++   * @return the producer built with those options
++   * @throws NullPointerException if configuredBuilder is null
++   */
++  public Producer createProducer(ProducerBuilder configuredBuilder) {
++    return Objects.requireNonNull(configuredBuilder, "configuredBuilder").build();
++  }
+ }
+diff --git a/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImplTest.java b/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImplTest.java
+index 4cfbd75..4e50950 100644
+--- a/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImplTest.java
++++ b/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImplTest.java
+@@ -6,16 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.mockito.ArgumentMatchers.any;
+ import static org.mockito.ArgumentMatchers.anyList;
+-import static org.mockito.ArgumentMatchers.anyString;
+ import static org.mockito.Mockito.doThrow;
+ import static org.mockito.Mockito.mock;
+ import static org.mockito.Mockito.verify;
+ import static org.mockito.Mockito.when;
+ 
+-import com.mercadolibre.mqclient.config.MQConfiguration;
+ import com.mercadolibre.mqclient.entity.Filters;
+ import com.mercadolibre.mqclient.exception.MQClientException;
+ import com.mercadolibre.mqclient.producer.Producer;
++import com.mercadolibre.mqclient.producer.ProducerBuilder;
+ import com.mercadolibre.rio.sdk.events.bigqueue.BigQueueClientException;
+ import com.mercadolibre.rio.sdk.events.bigqueue.BigQueueTopicProperties;
+ import java.time.ZonedDateTime;
+@@ -40,7 +39,7 @@ class BigQueueClientImplTest {
+     mockProducerFactory = mock(ProducerFactory.class);
+     mockProducer = mock(Producer.class);
+ 
+-    when(mockProducerFactory.createProducer(anyString(), any(MQConfiguration.class)))
++    when(mockProducerFactory.createProducer(any(ProducerBuilder.class)))
+         .thenReturn(mockProducer);
+   }
+ 
+@@ -77,7 +76,7 @@ class BigQueueClientImplTest {
+ 
+     assertNotNull(client);
+     assertEquals("test-topic", client.getTopic());
+-    verify(mockProducerFactory).createProducer(anyString(), any(MQConfiguration.class));
++    verify(mockProducerFactory).createProducer(any(ProducerBuilder.class));
+   }
+ 
+   @Test
+diff --git a/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImplWithMockTest.java b/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImplWithMockTest.java
+index 9725e37..badf58e 100644
+--- a/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImplWithMockTest.java
++++ b/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueClientImplWithMockTest.java
+@@ -4,15 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertNotNull;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.mockito.ArgumentMatchers.any;
+-import static org.mockito.ArgumentMatchers.anyString;
+ import static org.mockito.Mockito.mock;
+ import static org.mockito.Mockito.verify;
+ import static org.mockito.Mockito.when;
+ 
+-import com.mercadolibre.mqclient.config.MQConfiguration;
+ import com.mercadolibre.mqclient.entity.Filters;
+ import com.mercadolibre.mqclient.exception.MQClientException;
+ import com.mercadolibre.mqclient.producer.Producer;
++import com.mercadolibre.mqclient.producer.ProducerBuilder;
+ import com.mercadolibre.rio.sdk.events.bigqueue.BigQueueClientException;
+ import com.mercadolibre.rio.sdk.events.bigqueue.BigQueueTopicProperties;
+ import java.time.ZonedDateTime;
+@@ -39,7 +38,7 @@ class BigQueueClientImplWithMockTest {
+     mockProducer = mock(Producer.class);
+ 
+     // Configurar o factory para retornar o Producer mockado quando createProducer for chamado
+-    when(mockProducerFactory.createProducer(anyString(), any(MQConfiguration.class)))
++    when(mockProducerFactory.createProducer(any(ProducerBuilder.class)))
+         .thenReturn(mockProducer);
+   }
+ 
+@@ -70,7 +69,7 @@ class BigQueueClientImplWithMockTest {
+     assertEquals("test-topic", client.getTopic());
+ 
+     // Verificar que createProducer foi chamado
+-    verify(mockProducerFactory).createProducer(anyString(), any(MQConfiguration.class));
++    verify(mockProducerFactory).createProducer(any(ProducerBuilder.class));
+   }
+ 
+   @Test
+diff --git a/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueProducerOptionsRegressionTest.java b/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueProducerOptionsRegressionTest.java
+new file mode 100644
+index 0000000..a6dd1ee
+--- /dev/null
++++ b/src/test/java/com/mercadolibre/rio/sdk/events/bigqueue/impl/BigQueueProducerOptionsRegressionTest.java
+@@ -0,0 +1,92 @@
++package com.mercadolibre.rio.sdk.events.bigqueue.impl;
++
++import static org.junit.jupiter.api.Assertions.assertArrayEquals;
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.ArgumentMatchers.anyString;
++import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.mockStatic;
++import static org.mockito.Mockito.never;
++import static org.mockito.Mockito.verify;
++import static org.mockito.Mockito.when;
++
++import com.mercadolibre.mqclient.config.BufferingConfiguration;
++import com.mercadolibre.mqclient.config.MQConfiguration;
++import com.mercadolibre.mqclient.producer.Producer;
++import com.mercadolibre.mqclient.producer.ProducerBuilder;
++import com.mercadolibre.rio.sdk.events.bigqueue.BigQueueTopicProperties;
++import java.time.Duration;
++import java.util.Map;
++import org.junit.jupiter.api.Test;
++import org.mockito.Answers;
++import org.mockito.ArgumentCaptor;
++
++/** Unit regression for the configured builder being discarded; does not certify BigQueue delivery. */
++class BigQueueProducerOptionsRegressionTest {
++  @Test
++  void segmentReachesTheProducerUsedForSending() throws Exception {
++    verifyUsedBuilder("unit-segment", false);
++  }
++
++  @Test
++  void bufferingReachesTheProducerUsedForSending() throws Exception {
++    verifyUsedBuilder(null, true);
++  }
++
++  @Test
++  void segmentAndBufferingAreAppliedTogether() throws Exception {
++    verifyUsedBuilder("unit-segment", true);
++  }
++
++  @Test
++  void legacyFactoryMethodStillBuildsTopicAndConfiguration() {
++    ProducerBuilder builder = mock(ProducerBuilder.class, Answers.RETURNS_SELF);
++    Producer producer = mock(Producer.class);
++    when(builder.build()).thenReturn(producer);
++    MQConfiguration config = MQConfiguration.builder().build();
++    try (var staticBuilder = mockStatic(Producer.class)) {
++      staticBuilder.when(Producer::builder).thenReturn(builder);
++      assertEquals(producer, new ProducerFactory().createProducer("unit-topic", config));
++      verify(builder).withTopic("unit-topic");
++      verify(builder).withConfig(config);
++      verify(builder).build();
++    }
++  }
++
++  private void verifyUsedBuilder(String segment, boolean buffering) throws Exception {
++    ProducerBuilder configured = mock(ProducerBuilder.class, Answers.RETURNS_SELF);
++    ProducerBuilder discardedOptions = mock(ProducerBuilder.class, Answers.RETURNS_SELF);
++    Producer selectedProducer = mock(Producer.class);
++    Producer otherProducer = mock(Producer.class);
++    when(configured.build()).thenReturn(selectedProducer);
++    when(discardedOptions.build()).thenReturn(otherProducer);
++    byte[] actualProducerMarker = new byte[] {1, 2, 3};
++    Map<String, String> input = Map.of("probe", "unit-fixture");
++    when(selectedProducer.send(input)).thenReturn(actualProducerMarker);
++    var properties = new BigQueueTopicProperties("unit", "unit-topic", "Unit regression", segment,
++        1_000, 1_000, 2, 2, 0, 1, buffering, 17, 250);
++    try (var staticBuilder = mockStatic(Producer.class)) {
++      // Different builders make the old discard observable; returning one mock twice would hide it.
++      staticBuilder.when(Producer::builder).thenReturn(configured, discardedOptions);
++      BigQueueClientImpl client = new BigQueueClientImpl(new ProducerFactory(), properties);
++      assertArrayEquals(actualProducerMarker, client.send(input));
++      verify(configured).withTopic("unit-topic");
++      verify(configured).withConfig(any(MQConfiguration.class));
++      verify(configured).build();
++      verify(discardedOptions, never()).build();
++      if (segment != null) {
++        verify(configured).withSegmentID(segment);
++      } else {
++        verify(configured, never()).withSegmentID(anyString());
++      }
++      if (buffering) {
++        ArgumentCaptor<BufferingConfiguration> config = ArgumentCaptor.forClass(BufferingConfiguration.class);
++        verify(configured).withBuffering(config.capture());
++        assertEquals(17, config.getValue().getBufferSize());
++        assertEquals(Duration.ofMillis(250), config.getValue().getAutoFlushPeriod());
++      } else {
++        verify(configured, never()).withBuffering(any(BufferingConfiguration.class));
++      }
++    }
++  }
++}

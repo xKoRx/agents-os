@@ -1,0 +1,25 @@
+{
+  "result": "PASS_SINGLE_OWNED_BC_READONLY_ABSENCE",
+  "HTTP": 404,
+  "GET_API_attempts": 1,
+  "mutating_API_calls": 0,
+  "receipt_sha256": "73b97249cf871907267497fc886c529dc16606f838c6be219c076a8e24bd80d3",
+  "state_sha256": "57319a507fac48435add0edca97d81d87f7d6ee72de51f3467f345c69c3d78dc",
+  "state_sha256_unchanged": true,
+  "cp_HEAD": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+  "private_modes": {
+    "directory": "0700",
+    "receipt": "0600",
+    "sdk_log": "0600"
+  },
+  "login_renew_SSO": false,
+  "SDK": {
+    "source_file": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/rest/sandboxsapi.py",
+    "sha256": "4e53c6f2d7e6a13c04619dfe69782c363d4197f51db192af3b0a5e0c2fa34f5d"
+  },
+  "limits": [
+    "Independent one GET absence only. Root create200/clone403/delete200 history is not independently repeated.",
+    "No instances/KVS reads or writes, shared resources, Docker, Gradle, services, business or formal certification.",
+    "Absence of this BC does not resolve the clone permission gate. Physical CP suite remains NOT_EXECUTED/BLOCKED."
+  ]
+}

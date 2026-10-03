@@ -1,0 +1,32 @@
+{
+  "functional": "A CP functional Sandbox requires only its own CP app/alias; ecosystem and legacy receipts retain both apps/three aliases.",
+  "technical": "Persist strict scope; exact optional verifier expectation; validate resource/segment/mutation inventory before API; reject extra PM mappings in CP; preserve partial own cleanup and UNKNOWN. No new environment variable.",
+  "tasks": [
+    "read complete helpers/controls and approved CP-SCOPE-1",
+    "durable backup/hash guard",
+    "prepare candidate with scoped controls in private copy",
+    "baseline red/candidate green metadata/API-shape controls",
+    "guarded publication only2 paths",
+    "freeze for independent Fault peer"
+  ],
+  "base": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+  "files": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/sandbox.py",
+      "relative": "e2e/sandbox.py",
+      "before_sha256": "0914fbd38a4f729e235693c1f3f450f2844320db542e60c5da8b3291d5ddbe84",
+      "backup": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/sandbox.py.before"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/sandbox-contract.py",
+      "relative": "e2e/tests/sandbox-contract.py",
+      "before_sha256": "3edc9f40e252028c0187965e0064978a719f582f85f0e956032c32a921d7beef",
+      "backup": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-author/sandbox-contract.py.before"
+    }
+  ],
+  "business": "NOT_EXECUTED_BLOCKED_KVS_CLONE403",
+  "remote_API_calls": 0,
+  "Docker": 0,
+  "Gradle": 0,
+  "commits": 0
+}

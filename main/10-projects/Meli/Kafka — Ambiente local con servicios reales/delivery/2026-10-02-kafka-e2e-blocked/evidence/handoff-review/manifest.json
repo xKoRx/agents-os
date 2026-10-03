@@ -1,0 +1,13 @@
+{
+  "status": "PRIVATE_REVIEW_FROZEN",
+  "files": {
+    "HANDOFF-before.md": "97430db2c24e8bf46d9f3163363620e50fc2f8383d71495204b6d4af1072d81d",
+    "delivery-index.json": "2c07bf10c2d2f181824b32957521d7b6d46522d91127d21e1a1fb87a408f1926",
+    "first-guard-failure.json": "b4ac1d1ba3577adf6d8795694f6191f1e5a8e1f2fb787e8d445d71aad873ab9d",
+    "review.json": "fef33e6ff87f87876c8911a2e64e5834389052620e0a3a58cc66a015930cdbe9"
+  },
+  "repo_or_vault_writes": 0,
+  "Gradle_runs": 0,
+  "API_calls": 0,
+  "business": "NOT_EXECUTED"
+}

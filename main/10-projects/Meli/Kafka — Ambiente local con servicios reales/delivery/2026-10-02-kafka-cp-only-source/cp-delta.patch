@@ -1,0 +1,1118 @@
+diff --git a/build.gradle b/build.gradle
+index a24ad4d8c5b034a727bb37567e85f7d0292751b9..0822393cadbd3d16759b1d70d1c5003b7235a986 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -216,10 +216,11 @@ def managedJourneyVariables = [
+ 
+ def verifyOwnedSandbox = { String suiteName ->
+     def provenance = file(System.getenv('E2E_KVS_SANDBOX_PROVENANCE'))
++    def expectedScope = suiteName == 'realIntegrationTest' ? 'cp' : 'ecosystem'
+     def ownershipVerification = providers.exec {
+         ignoreExitValue = true
+         commandLine System.getenv('E2E_FURY_PYTHON'), file('e2e/sandbox.py').absolutePath,
+-            'verify', '--directory', provenance.parentFile.absolutePath
++            'verify', '--directory', provenance.parentFile.absolutePath, '--scope', expectedScope
+     }
+     def ownershipExit = ownershipVerification.result.get().exitValue
+     if (ownershipExit != 0) {
+diff --git a/e2e/README.md b/e2e/README.md
+index cc82c6d16093b10a29e91188e87ff15d92df4175..c105a439672970a6e8ebae1da11053284ebb0c93 100644
+--- a/e2e/README.md
++++ b/e2e/README.md
+@@ -1,5 +1,7 @@
+ # Real Kafka E2E runner
+ 
++`realIntegrationTest` runs the Kafka CP independently: own Kafka, own CP Fury Sandbox KVS and real Kafka results. It does not require Playmaker, MySQL, EntityService, Tiger/ACME or managed OAuth/BigQueue. The implementation compiles; the complete physical CP suite remains unexecuted. On 2026-10-02 the stored-auth guard required a fresh Fury login. After renewal, recheck the own-KVS clone permission that previously returned403. Ecosystem suites are a separate later scope.
++
+ This pending feature uses five actual Kafka3.9.1 KRaft brokers, the actual CP HTTP controllers,
+ production processors/validators/provisioners, Kafka result transport with `acks=all`, and Fury
+ Toolkit1.0.5 against a dedicated Fury Sandbox KVS. The local adapters publish raw SDK result JSON; the inbound bridge adds the HTTP `{msg:...}` envelope. Canonical deployment transport is identified at PM master0c83575; action adapters and every real-service compatibility assertion remain separately source-bound pending work. It does
+@@ -25,23 +27,19 @@ export JAVA_HOME=/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/C
+ 
+ ## Dedicated sandbox configuration
+ 
+-Run `fury login` using the installed executable if repository pyenv does not expose the command:
++Renew Fury interactively with `fury login` when the helper reports `SANDBOX_FURY_LOGIN_REQUIRED`; use the installed executable if repository pyenv does not expose the command:
+ `/Users/rjara/.pyenv/versions/3.10.16/bin/fury login`. Missing login is a failed external capability
+ check, never a skip or local KVS fallback.
+ 
+-Use the implemented per-run lifecycle after identifying the CP's own KVS alias and Playmaker's
+-own distinct result/lock aliases through the authenticated application service inventory. Never
+-reuse a shared BC or another application's exports:
++For the CP suite, identify only the CP's own KVS alias through its authenticated application service inventory. Provision with scope `cp`; no Playmaker alias or service is required. Never reuse a shared BC or another application's exports:
+ 
+ ```sh
+ export E2E_FURY_PYTHON=<Python-runtime-of-installed-Fury>
+-"$E2E_FURY_PYTHON" e2e/sandbox.py up --cp-service <CP-own-KVS-alias> \
+-  --pm-results-service <Playmaker-own-results-alias> --pm-locks-service <Playmaker-own-locks-alias>
++"$E2E_FURY_PYTHON" e2e/sandbox.py up --scope cp --cp-service <CP-own-KVS-alias>
+ export E2E_KVS_ENV_FILE=<printed-private-directory>/sandbox.env
+ ```
+ 
+-Use `--cp-segment`/`--pm-segment` only when actual mappings require them. The helper fixes a new UUID
+-run, creates two new BCs and exports mode0600 generated `KEY_VALUE_STORE_*` values with their logical
++Use `--cp-segment` only when actual CP mappings require it. `--pm-segment` belongs only to scope `ecosystem`. The helper fixes a new UUID run, creates one CP BC for scope `cp` or two application BCs for scope `ecosystem`, and exports mode0600 generated `KEY_VALUE_STORE_*` values with their logical
+ aliases, segments, BC/instance and exclusive-run provenance. Routes/body fields are verified from
+ the installed CLI. Stored authentication and two partial remote lifecycles were observed: own BC create200, service clone403, delete200 and absence404. Instance/config allocation and actual KVS remain NOT_EXECUTED gates.
+ The API helper requires valid stored credentials and fails rather than initiating SSO or renewal.
+@@ -100,8 +98,7 @@ The caller file (`E2E_PLAYMAKER_ENV_FILE`, mode0600) contains only
+ No Tiger/ACME grant is bypassed. Canonical and candidate use separate reviewed checkouts with permitted real-e2e overlays, selected by `E2E_PLAYMAKER_CANONICAL_REPO` and `E2E_PLAYMAKER_CANDIDATE_REPO`. The legacy `e2eTest` alias selects the candidate only and cannot complete the mandatory two-policy gate. Its exact SDK event version is recorded
+ by the Gradle dependency graph; local Kafka does not certify managed BigQueue parity.
+ 
+-The same generated private file contains Playmaker's two logical aliases, effective segment,
+-BC/instance and fresh actual Toolkit exports. `sandbox.py up` creates these separately in the
++For these later ecosystem families, provision a fresh `sandbox.py up --scope ecosystem --cp-service <CP-own-KVS-alias> --pm-results-service <Playmaker-own-results-alias> --pm-locks-service <Playmaker-own-locks-alias>`. Its generated private file contains Playmaker's two logical aliases, effective segment, BC/instance and fresh actual Toolkit exports. Scope-less legacy receipts are ecosystem receipts; they cannot run the CP-only family. `sandbox.py up` creates these separately in the
+ Playmaker application; it does not create application services or invent a sandbox template.
+ 
+ The profile maps all three topic types (`aws-msk-topic`, `kafka-topic`, `gcp-kafka-topic`) to the
+diff --git a/e2e/ci.sh b/e2e/ci.sh
+index dbb520befb826d78b80ffabf33692fba0ca93d95..25705e1c4d587524fcdb71768aec87ec749afefa 100755
+--- a/e2e/ci.sh
++++ b/e2e/ci.sh
+@@ -81,9 +81,10 @@ cleanup_owned_sandbox() {
+ }
+ 
+ run_local_family() (
+-  local family_name="$1" task="$2" family_dir="${CI_PRIVATE_DIR}/$1" family_run=""
+-  local sandbox_dir="${family_dir}/sandbox" sandbox_attempted=false launcher_attempted=false launcher_status=2 family_cleanup_status=""
+-  local status=0
++  # Subshell variables survive EXIT traps on Bash3.2 and remain isolated from the parent.
++  family_name="$1" task="$2" family_dir="${CI_PRIVATE_DIR}/$1" family_run=""
++  sandbox_dir="${family_dir}/sandbox" sandbox_attempted=false launcher_attempted=false launcher_status=2 family_cleanup_status=""
++  status=0
+   clear_family_runtime
+   mkdir -m 700 "${family_dir}" "${sandbox_dir}" "${family_dir}/temporary" "${family_dir}/evidence" "${family_dir}/reconciliation" || exit 2
+   export TMPDIR="${family_dir}/temporary"
+@@ -98,11 +99,11 @@ run_local_family() (
+     exit "${original}"
+   }
+   trap finish_local_family EXIT
+-  require_inputs JAVA_HOME DOCKER_CONTEXT E2E_FURY_PYTHON E2E_CP_KVS_SERVICE E2E_PM_RESULTS_KVS_SERVICE E2E_PM_LOCKS_KVS_SERVICE || exit 2
++  require_inputs JAVA_HOME DOCKER_CONTEXT E2E_FURY_PYTHON E2E_CP_KVS_SERVICE || exit 2
+   if [[ "${task}" != realIntegrationTest ]]; then
+-    require_inputs E2E_PLAYMAKER_ENV_FILE E2E_ENTITY_SERVICE_BASE_URL E2E_ENTITY_SERVICE_TEMPLATE_RECEIPT_FILE \
++    require_inputs E2E_PM_RESULTS_KVS_SERVICE E2E_PM_LOCKS_KVS_SERVICE E2E_PLAYMAKER_ENV_FILE E2E_ENTITY_SERVICE_BASE_URL E2E_ENTITY_SERVICE_TEMPLATE_RECEIPT_FILE \
+       E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE_FILE || exit 2
+-    local checkout_variable=E2E_PLAYMAKER_CANONICAL_REPO
++    checkout_variable=E2E_PLAYMAKER_CANONICAL_REPO
+     [[ "${task}" != e2eCandidatePlaymakerTest ]] || checkout_variable=E2E_PLAYMAKER_CANDIDATE_REPO
+     require_inputs "${checkout_variable}" || exit 2
+     for private_file in "${E2E_PLAYMAKER_ENV_FILE}" "${E2E_ENTITY_SERVICE_TEMPLATE_RECEIPT_FILE}" "${E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE_FILE}"; do
+@@ -110,9 +111,12 @@ run_local_family() (
+     done
+   fi
+   sandbox_attempted=true
+-  "${E2E_FURY_PYTHON}" "${SCRIPT_DIR}/sandbox.py" up --directory "${sandbox_dir}" \
+-    --cp-service "${E2E_CP_KVS_SERVICE}" --pm-results-service "${E2E_PM_RESULTS_KVS_SERVICE}" \
+-    --pm-locks-service "${E2E_PM_LOCKS_KVS_SERVICE}" >"${family_dir}/sandbox-up.log" 2>&1 || exit 2
++  sandbox_args=(up --scope cp --directory "${sandbox_dir}" --cp-service "${E2E_CP_KVS_SERVICE}")
++  if [[ "${task}" != realIntegrationTest ]]; then
++    sandbox_args=(up --scope ecosystem --directory "${sandbox_dir}" --cp-service "${E2E_CP_KVS_SERVICE}"
++      --pm-results-service "${E2E_PM_RESULTS_KVS_SERVICE}" --pm-locks-service "${E2E_PM_LOCKS_KVS_SERVICE}")
++  fi
++  "${E2E_FURY_PYTHON}" "${SCRIPT_DIR}/sandbox.py" "${sandbox_args[@]}" >"${family_dir}/sandbox-up.log" 2>&1 || exit 2
+   export E2E_KVS_ENV_FILE="${sandbox_dir}/sandbox.env"
+   family_run="$(python3 "${SCRIPT_DIR}/bind-ci-family-inputs.py" read-run --file "${E2E_KVS_ENV_FILE}" --name E2E_RUN_ID)" || exit 2
+   export E2E_RUN_ID="${family_run}"
+@@ -131,8 +135,9 @@ run_local_family() (
+ )
+ 
+ run_managed_family() (
+-  local family_name=managed-oauth-bigqueue family_dir="${CI_PRIVATE_DIR}/managed-oauth-bigqueue"
+-  local family_run="" family_cleanup_status=""
++  # Keep family state available until the subshell EXIT trap finishes writing its gate.
++  family_name=managed-oauth-bigqueue family_dir="${CI_PRIVATE_DIR}/managed-oauth-bigqueue"
++  family_run="" family_cleanup_status=""
+   clear_family_runtime
+   mkdir -m 700 "${family_dir}" "${family_dir}/temporary" "${family_dir}/evidence" "${family_dir}/reconciliation" || exit 2
+   export TMPDIR="${family_dir}/temporary" E2E_EVIDENCE_DIR="${family_dir}/evidence"
+@@ -146,7 +151,7 @@ run_managed_family() (
+   trap finish_managed_family EXIT
+   require_inputs JAVA_HOME E2E_FURY_PYTHON E2E_MANAGED_ENV_FILE E2E_MANAGED_KVS_ENV_FILE || exit 2
+   family_run="$(python3 "${SCRIPT_DIR}/bind-ci-family-inputs.py" read-run --file "${E2E_MANAGED_ENV_FILE}" --name E2E_MANAGED_RUN_ID)" || exit 2
+-  local kvs_run
++  kvs_run=""
+   kvs_run="$(python3 "${SCRIPT_DIR}/bind-ci-family-inputs.py" read-run --file "${E2E_MANAGED_KVS_ENV_FILE}" --name E2E_RUN_ID)" || exit 2
+   [[ "${family_run}" == "${kvs_run}" ]] || exit 2
+   python3 - "${CI_PRIVATE_DIR}" "${family_run}" <<'PYDISTINCT' || exit 2
+diff --git a/e2e/managed.sh b/e2e/managed.sh
+index 273b6a90e6d9181078a2c0f8f3608e4da5487a7e..259a8d8eeb0e2e33cf8d05066133483c25942818 100755
+--- a/e2e/managed.sh
++++ b/e2e/managed.sh
+@@ -64,7 +64,7 @@ PYSANDBOX
+   [[ "${E2E_MANAGED_RUN_ID}" == "${E2E_RUN_ID}" && "${E2E_RUN_ID}" == "${E2E_KVS_EXCLUSIVE_RUN_ID}" ]] || { echo MANAGED_RUN_SANDBOX_OWNERSHIP_MISMATCH >&2; exit 2; }
+   : "${E2E_KVS_SANDBOX_PROVENANCE:?MANAGED_SANDBOX_PROVENANCE_REQUIRED}"
+   : "${E2E_FURY_PYTHON:?MANAGED_AUTHENTICATED_FURY_PYTHON_REQUIRED}"
+-  "${E2E_FURY_PYTHON}" "${SCRIPT_DIR}/sandbox.py" verify --directory "$(dirname -- "${E2E_KVS_SANDBOX_PROVENANCE}")"
++  "${E2E_FURY_PYTHON}" "${SCRIPT_DIR}/sandbox.py" verify --directory "$(dirname -- "${E2E_KVS_SANDBOX_PROVENANCE}")" --scope ecosystem
+ fi
+ export SCOPE="${E2E_MANAGED_SCOPE}" SCOPE_SUFFIX="${E2E_MANAGED_SCOPE}"
+ case "${COMPONENT}" in gcp) test_task=managedGcpOAuthTest;; bigqueue) test_task=managedBigQueueTest;; journey) test_task=managedControlplaneJourneyTest;; all) test_task=managedIntegrationTest;; esac
+diff --git a/e2e/run.sh b/e2e/run.sh
+index d521768cb184e466c117e0325c1010d369915381..ab03d19b8131412e33c9996edd00d4675c84d8ea 100755
+--- a/e2e/run.sh
++++ b/e2e/run.sh
+@@ -69,7 +69,10 @@ if [[ ! "${E2E_RUN_ID}" =~ ^[a-z0-9][a-z0-9_-]{7,63}$ ]]; then echo "REAL_E2E_IN
+ : "${E2E_KVS_EXCLUSIVE_RUN_ID:?REAL_E2E_EXCLUSIVE_SANDBOX_REQUIRED}"
+ [[ "${E2E_KVS_EXCLUSIVE_RUN_ID}" == "${E2E_RUN_ID}" ]] || { echo "REAL_E2E_EXCLUSIVE_SANDBOX_RUN_MISMATCH" >&2; exit 2; }
+ : "${E2E_FURY_PYTHON:?REAL_E2E_AUTHENTICATED_FURY_PYTHON_REQUIRED}"
+-"${E2E_FURY_PYTHON}" "${SCRIPT_DIR}/sandbox.py" verify --directory "$(dirname -- "${E2E_KVS_SANDBOX_PROVENANCE}")"
++sandbox_scope=cp
++[[ "${is_playmaker}" != true ]] || sandbox_scope=ecosystem
++"${E2E_FURY_PYTHON}" "${SCRIPT_DIR}/sandbox.py" verify --directory "$(dirname -- "${E2E_KVS_SANDBOX_PROVENANCE}")" --scope "${sandbox_scope}"
++unset sandbox_scope
+ export E2E_DEPLOYMENT_RESULT_TOPIC="e2e_${E2E_RUN_ID}_deployment_result"
+ export E2E_ACTION_RESULT_TOPIC="e2e_${E2E_RUN_ID}_action_result"
+ export E2E_DEPLOYMENT_RESULT_DLT_TOPIC="e2e_${E2E_RUN_ID}_deployment_result_dlt"
+diff --git a/e2e/sandbox.py b/e2e/sandbox.py
+index 9d370b356ff8d56391c794e4c5b03fc7f5625b41..eeda6dd4745452d78486a020f8d54998c6ac16c6 100644
+--- a/e2e/sandbox.py
++++ b/e2e/sandbox.py
+@@ -17,6 +17,31 @@ import time
+ import uuid
+ 
+ APPS = ("rio-controlplane-kafka", "rio-playmaker")
++SCOPES = ("cp", "ecosystem")
++MAPPING_EXPORTS = ("E2E_KVS_SEGMENT_ID", "E2E_PLAYMAKER_KVS_SEGMENT_ID",
++                   "E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER", "E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER",
++                   "E2E_PLAYMAKER_SANDBOX_BC", "E2E_PLAYMAKER_SANDBOX_INSTANCE")
++
++
++def receipt_scope(state, expected=None):
++    # A missing field is the existing ecosystem receipt contract, never CP-only.
++    scope = state.get("scope", "ecosystem")
++    if not isinstance(scope, str) or scope not in SCOPES:
++        raise RuntimeError("SANDBOX_PROVENANCE_SCOPE_INVALID")
++    if expected is not None and expected != scope:
++        raise RuntimeError("SANDBOX_PROVENANCE_SCOPE_MISMATCH")
++    return scope
++
++
++def applications_for_scope(scope):
++    return APPS[:1] if scope == "cp" else APPS
++
++
++def valid_aliases(app, aliases):
++    count = 1 if app == APPS[0] else 2
++    return (isinstance(aliases, list) and len(aliases) == count
++            and all(isinstance(alias, str) and re.fullmatch(r"[a-zA-Z0-9_.-]{1,100}", alias)
++                    for alias in aliases) and len(set(aliases)) == count)
+ 
+ 
+ def write_private(path, value):
+@@ -56,11 +81,40 @@ class Lifecycle:
+                 raise RuntimeError("SANDBOX_ZERO_TRUST_LOGIN_REQUIRED")
+         return {"X-Tiger-Token": "Bearer " + token}
+ 
++    def validate_scope(self, expected=None, complete=False):
++        scope = receipt_scope(self.state, expected)
++        applications = applications_for_scope(scope)
++        resources = self.state.get("resources")
++        if not isinstance(resources, list) or any(not isinstance(item, dict) for item in resources):
++            raise RuntimeError("SANDBOX_PROVENANCE_RESOURCE_NOT_OWNED")
++        apps = [item.get("app") for item in resources]
++        if any(app not in applications for app in apps) or len(set(apps)) != len(apps) or any(
++                item.get("bc") != "e2e-" + self.state["run_id"] for item in resources):
++            raise RuntimeError("SANDBOX_PROVENANCE_RESOURCE_NOT_OWNED")
++        if any(not valid_aliases(item["app"], item.get("logical_services")) for item in resources):
++            raise RuntimeError("SANDBOX_PROVENANCE_LOGICAL_MAPPING_INVALID")
++        if complete and set(apps) != set(applications):
++            code = "CP_APPLICATION" if scope == "cp" else "BOTH_APPLICATIONS"
++            raise RuntimeError("SANDBOX_PROVENANCE_REQUIRES_" + code)
++        segments = self.state.get("segments", {})
++        allowed_segments = {"E2E_KVS_SEGMENT_ID"}
++        if scope == "ecosystem":
++            allowed_segments.add("E2E_PLAYMAKER_KVS_SEGMENT_ID")
++        if not isinstance(segments, dict) or set(segments) - allowed_segments or any(
++                not isinstance(value, str) or not re.fullmatch(r"[a-zA-Z0-9_-]{1,100}", value)
++                for value in segments.values()):
++            raise RuntimeError("SANDBOX_PROVENANCE_SEGMENTS_OUTSIDE_SCOPE")
++        mutations = self.state.get("mutations", [])
++        if not isinstance(mutations, list) or any(not isinstance(item, dict)
++                or item.get("app") not in applications for item in mutations):
++            raise RuntimeError("SANDBOX_PROVENANCE_MUTATION_OUTSIDE_SCOPE")
++        return scope
++
+     def save(self):
+         write_private(self.directory / "state.json", json.dumps(self.state, indent=2) + "\n")
+ 
+     def call(self, app, suffix, method="GET", body=None, allowed=(200,)):
+-        if app not in APPS:
++        if app not in applications_for_scope(receipt_scope(self.state)):
+             raise RuntimeError("SANDBOX_APPLICATION_NOT_OWNED")
+         kwargs = {"timeout": 20, "retry": False, "authenticate": False, "headers": self.stored_auth_headers()}
+         if body is not None:
+@@ -103,6 +157,7 @@ class Lifecycle:
+         return payload
+ 
+     def base_exports(self):
++        self.validate_scope()
+         exports = {"E2E_RUN_ID": self.state["run_id"], "E2E_KVS_EXCLUSIVE_RUN_ID": self.state["run_id"],
+                    "E2E_KVS_SANDBOX_PROVENANCE": str(self.directory / "state.json")}
+         exports.update(self.state.get("segments", {}))
+@@ -142,8 +197,12 @@ class Lifecycle:
+         return physical
+ 
+     def up(self, services):
++        applications = applications_for_scope(self.validate_scope())
++        if not isinstance(services, list) or len(services) != len(applications) or any(
++                not valid_aliases(app, aliases) for app, aliases in zip(applications, services)):
++            raise RuntimeError("SANDBOX_PROVENANCE_LOGICAL_MAPPING_INVALID")
+         exports = self.base_exports()
+-        for app, aliases in zip(APPS, services):
++        for app, aliases in zip(applications, services):
+             resource = {"app": app, "bc": "e2e-" + self.state["run_id"], "create_intent": False, "create_outcome": "NOT_SENT", "logical_services": aliases}
+             inventory, _ = self.call(app, "bc")
+             if not isinstance(inventory, list) or any(item.get("name") == resource["bc"] for item in inventory):
+@@ -184,11 +243,10 @@ class Lifecycle:
+         self.save()
+         write_private(self.directory / "sandbox.env", "\n".join(f"{key}={value}" for key, value in sorted(exports.items())) + "\n")
+ 
+-    def verify(self):
++    def verify(self, expected_scope=None):
++        self.validate_scope(expected_scope, complete=True)
+         if self.state.get("status") != "OWNED_CONFIG_GENERATED_NOT_KVS_CERTIFIED":
+             raise RuntimeError("SANDBOX_PROVENANCE_INCOMPLETE")
+-        if len(self.state["resources"]) != 2 or {item.get("app") for item in self.state["resources"]} != set(APPS):
+-            raise RuntimeError("SANDBOX_PROVENANCE_REQUIRES_BOTH_APPLICATIONS")
+         exports = self.base_exports()
+         for resource in self.state["resources"]:
+             expected_alias_count = 1 if resource["app"] == APPS[0] else 2
+@@ -202,12 +260,13 @@ class Lifecycle:
+                 raise RuntimeError("SANDBOX_PROVENANCE_MAPPING_CHANGED")
+         consumed = {key: value for key, value in os.environ.items()
+                     if key.startswith("KEY_VALUE_STORE_") or key in exports
+-                    or key in ("E2E_KVS_SEGMENT_ID", "E2E_PLAYMAKER_KVS_SEGMENT_ID")}
++                    or key in MAPPING_EXPORTS}
+         if consumed != exports:
+             # Never print the differing keys/values: endpoint/token-safe stable error only.
+             raise RuntimeError("SANDBOX_CONSUMED_EXPORTS_DO_NOT_MATCH_OWNED_CONFIG")
+ 
+     def down(self):
++        self.validate_scope()  # Partial own resources are allowed; scope expansion is not.
+         errors = []
+         for resource in self.state["resources"]:
+             try:
+@@ -247,6 +306,8 @@ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("command", choices=("up", "verify", "down"))
+     parser.add_argument("--directory", type=Path)
++    parser.add_argument("--scope", choices=SCOPES,
++                        help="up defaults to ecosystem; verify/down use the receipt unless explicitly constrained")
+     parser.add_argument("--cp-service")
+     parser.add_argument("--pm-results-service")
+     parser.add_argument("--pm-locks-service")
+@@ -260,10 +321,15 @@ def main():
+     if args.command == "up":
+         if (directory / "state.json").exists():
+             raise RuntimeError("SANDBOX_STATE_EXISTS_USE_VERIFY_OR_DOWN")
+-        aliases = [args.cp_service, args.pm_results_service, args.pm_locks_service]
++        scope = args.scope or "ecosystem"
++        if scope == "cp" and any(value is not None for value in
++                (args.pm_results_service, args.pm_locks_service, args.pm_segment)):
++            raise RuntimeError("SANDBOX_CP_SCOPE_FORBIDS_PLAYMAKER_INPUTS")
++        aliases = [args.cp_service] if scope == "cp" else [args.cp_service, args.pm_results_service, args.pm_locks_service]
+         if any(alias is None or not re.fullmatch(r"[a-zA-Z0-9_.-]{1,100}", alias) for alias in aliases):
+-            raise RuntimeError("SANDBOX_THREE_OWN_APPLICATION_KVS_ALIASES_REQUIRED")
+-        if aliases[1] == aliases[2]:
++            code = "CP_OWN_KVS_ALIAS" if scope == "cp" else "THREE_OWN_APPLICATION_KVS_ALIASES"
++            raise RuntimeError("SANDBOX_" + code + "_REQUIRED")
++        if scope == "ecosystem" and aliases[1] == aliases[2]:
+             raise RuntimeError("SANDBOX_PLAYMAKER_RESULTS_LOCKS_MUST_BE_DISTINCT")
+         run = uuid.uuid4().hex
+         segments = {}
+@@ -272,7 +338,7 @@ def main():
+                 if not re.fullmatch(r"[a-zA-Z0-9_-]{1,100}", segment):
+                     raise RuntimeError("SANDBOX_INVALID_SEGMENT")
+                 segments[key] = segment
+-        state = {"schema": 1, "run_id": run, "marker": "Owned Kafka E2E " + run, "resources": [],
++        state = {"schema": 1, "scope": scope, "run_id": run, "marker": "Owned Kafka E2E " + run, "resources": [],
+                  "status": "PREPARING", "segments": segments}
+     else:
+         path = directory / "state.json"
+@@ -281,18 +347,20 @@ def main():
+         state = json.loads(path.read_text())
+         if state.get("schema") != 1 or not re.fullmatch(r"[a-f0-9]{32}", state.get("run_id", "")):
+             raise RuntimeError("SANDBOX_PROVENANCE_SCHEMA_INVALID")
+-        if any(item.get("bc") != "e2e-" + state["run_id"] or item.get("app") not in APPS for item in state["resources"]):
++        scope = receipt_scope(state, args.scope)
++        if any(item.get("bc") != "e2e-" + state["run_id"] or item.get("app") not in applications_for_scope(scope)
++                for item in state["resources"]):
+             raise RuntimeError("SANDBOX_PROVENANCE_RESOURCE_NOT_OWNED")
+     with (directory / "sdk-private.log").open("a") as private, contextlib.redirect_stdout(private), contextlib.redirect_stderr(private):
+         lifecycle = Lifecycle(directory, state)
+         if args.command == "up":
+             try:
+-                lifecycle.up([[aliases[0]], aliases[1:]])
++                lifecycle.up([[aliases[0]]] if scope == "cp" else [[aliases[0]], aliases[1:]])
+             except Exception:
+                 lifecycle.down()
+                 raise
+         elif args.command == "verify":
+-            lifecycle.verify()
++            lifecycle.verify(args.scope)
+         else:
+             lifecycle.down()
+     print("SANDBOX_" + args.command.upper() + "_PASS:" + str(directory))
+diff --git a/e2e/tests/ci-family-scope-contract.py b/e2e/tests/ci-family-scope-contract.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..844cc39fe286d7aa7b057514895c7046a6af3ea1
+--- /dev/null
++++ b/e2e/tests/ci-family-scope-contract.py
+@@ -0,0 +1,256 @@
++#!/usr/bin/env python3
++"""Execute real CI family functions in native Bash, with metadata-only API shapes.
++
++The private API executable always fails before SDK/client/service execution.
++These controls prove shell scope, gate and retention behavior, never business,
++provider ownership, KVS absence, or successful CI/backend execution.
++"""
++from pathlib import Path
++import json
++import os
++import shlex
++import subprocess
++import sys
++import tempfile
++import unittest
++
++
++ROOT = Path(os.environ.get('CI_FAMILY_CONTRACT_ROOT', Path(__file__).resolve().parents[2]))
++CI_SOURCE = Path(os.environ.get('CI_FAMILY_CONTRACT_SOURCE', ROOT / 'e2e/ci.sh')).resolve(strict=True)
++BASH = '/bin/bash'
++
++
++def family_functions():
++    source = CI_SOURCE.read_text()
++    first = source.index('clear_family_runtime() {\n')
++    return source[first:source.index('\nrecord_sources() {', first)]
++
++
++API_SHAPE = r'''from pathlib import Path
++import json,os,sys
++arguments=sys.argv[1:]
++if len(arguments)<2 or Path(arguments[0]).name!='sandbox.py':
++    raise SystemExit(91)
++operation=arguments[1]
++if operation not in ('up','down'):
++    raise SystemExit(92)
++directory=Path(arguments[arguments.index('--directory')+1]).resolve(strict=True)
++if directory.parent.parent!=Path(os.environ['CONTROL_JOB_DIR']).resolve(strict=True):
++    raise SystemExit(93)
++trace=Path(os.environ['CONTROL_TRACE'])
++with trace.open('a') as output:
++    json.dump({'kind':'CONTROL_API_SHAPE_ONLY','arguments':arguments},output)
++    output.write('\n')
++os.chmod(trace,0o600)
++mode=os.environ['CONTROL_API_MODE']
++if operation=='up':
++    if mode in ('state-down-fail','state-marker'):
++        (directory/'state.json').write_text('{"kind":"CONTROL_METADATA_ONLY"}\n')
++    if mode=='state-marker':
++        marker=Path(os.environ['E2E_RECONCILIATION_DIR'])/'control-unknown.json'
++        marker.write_text('{"kind":"CONTROL_RETAINED_MARKER_ONLY"}\n')
++    raise SystemExit(13) # No SDK, live API or launcher can be reached.
++if mode!='state-down-fail':
++    raise SystemExit(94)
++raise SystemExit(17) # Deliberately no cleanup/absence certificate.
++'''
++
++
++class CiFamilyScopeContract(unittest.TestCase):
++    def setUp(self):
++        self.temporary = tempfile.TemporaryDirectory(prefix='rio-ci-family-control-')
++        self.addCleanup(self.temporary.cleanup)
++        self.directory = Path(self.temporary.name).resolve(strict=True)
++        self.job = self.directory / 'job'
++        self.job.mkdir(mode=0o700)
++        self.trace = self.directory / 'api-shape.jsonl'
++        self.api_shape = self.directory / 'private-api-shape'
++        self.api_shape.write_text('#!' + sys.executable + '\n' + API_SHAPE)
++        self.api_shape.chmod(0o700)
++        self.script_dir = self.directory / 'scripts'
++        self.script_dir.mkdir(mode=0o700)
++        for name in ['reconciliation-status.py', 'bind-ci-family-inputs.py']:
++            (self.script_dir / name).write_bytes((ROOT / 'e2e' / name).read_bytes())
++        # Only the executable transport boundary is replaced in this private tree.
++        # The family, read-run parser, distinct-run guard and EXIT code remain real.
++        self.managed_trace = self.directory / 'managed-control.json'
++        managed_shape = self.script_dir / 'managed.sh'
++        managed_shape.write_text('#!' + sys.executable + '\n' + r'''from pathlib import Path
++import json,os,sys
++if sys.argv[1:]!=['all']:
++    raise SystemExit(95)
++Path(os.environ['CONTROL_MANAGED_TRACE']).write_text(json.dumps({
++    'kind':'CONTROL_TRANSPORT_ONLY', 'arguments':sys.argv[1:],
++    'kvs_environment_file':os.environ.get('E2E_KVS_ENV_FILE')})+'\n')
++raise SystemExit(29) # Never start SDK/services or produce business output.
++''')
++        managed_shape.chmod(0o700)
++        self.environment = {
++            'PATH': os.pathsep.join([str(Path(sys.executable).parent), '/usr/bin', '/bin']),
++            'CONTROL_JOB_DIR': str(self.job), 'CONTROL_TRACE': str(self.trace),
++            'CONTROL_API_MODE': 'no-state', 'JAVA_HOME': str(self.directory / 'unconsumed-jdk-shape'),
++            'DOCKER_CONTEXT': 'unconsumed-control-only', 'E2E_FURY_PYTHON': str(self.api_shape),
++            'E2E_CP_KVS_SERVICE': 'own-cp-control-alias',
++            'CONTROL_MANAGED_TRACE': str(self.managed_trace),
++        }
++
++    def run_family(self, family='cp-functional', task='realIntegrationTest', managed=False):
++        # Extraction is byte-exact. No CI guard or EXIT body is replaced by a fake.
++        prelude = 'set -euo pipefail\numask 077\n'
++        prelude += 'readonly SCRIPT_DIR=' + shlex.quote(str(self.script_dir)) + '\n'
++        prelude += 'readonly CI_PRIVATE_DIR=' + shlex.quote(str(self.job)) + '\n'
++        sentinels = ['family_name', 'task', 'family_dir', 'family_run', 'sandbox_dir',
++                     'sandbox_attempted', 'launcher_attempted', 'launcher_status',
++                     'family_cleanup_status', 'status', 'checkout_variable', 'kvs_run',
++                     'EVIDENCE_DIR', 'E2E_RUN_ID', 'KEY_VALUE_STORE_CONTROL_CONTAINER_NAME']
++        for variable in sentinels:
++            prelude += variable + '=parent_sentinel\n'
++        prelude += 'sandbox_args=(parent_sentinel)\n'
++        prelude += 'export E2E_RUN_ID KEY_VALUE_STORE_CONTROL_CONTAINER_NAME\n'
++        call = 'run_managed_family' if managed else ('run_local_family ' + shlex.quote(family) + ' ' + shlex.quote(task))
++        script = prelude + family_functions() + '\ncontrol_result=0\n'
++        script += call + ' || control_result=$?\n'
++        for variable in sentinels:
++            script += '[[ "${' + variable + '}" == parent_sentinel ]] || exit 85\n'
++        script += '[[ "${sandbox_args[*]}" == parent_sentinel ]] || exit 86\n'
++        script += 'printf "PARENT_SENTINELS_INTACT\\n"\nexit "${control_result}"\n'
++        self.result = subprocess.run([BASH, '-c', script], env=self.environment,
++                                     cwd=self.directory, capture_output=True, text=True, timeout=10)
++        self.family_dir = self.job / ('managed-oauth-bigqueue' if managed else family)
++        self.assertIn('PARENT_SENTINELS_INTACT', self.result.stdout)
++        gate_path = self.family_dir / 'gate.json'
++        self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)
++        self.gate = json.loads(gate_path.read_text())
++        self.calls = [json.loads(line)['arguments'] for line in self.trace.read_text().splitlines()] if self.trace.exists() else []
++        self.assertEqual(self.gate['family'], self.family_dir.name)
++        self.assertEqual(self.gate['exit_status'], self.result.returncode)
++        self.assertNotIn('unbound variable', self.result.stderr)
++
++    def assert_retained(self, state=False):
++        self.assertEqual(self.result.returncode, 1)
++        self.assertEqual(self.gate['sandbox_cleanup_status'], 1)
++        self.assertEqual((self.family_dir / 'sandbox-cleanup.status').read_text(), '1\n')
++        self.assertTrue((self.family_dir / 'sandbox').is_dir())
++        self.assertEqual((self.family_dir / 'sandbox/state.json').exists(), state)
++        self.assertIn('CI_SANDBOX_RETAINED:' + self.family_dir.name, self.result.stderr)
++        self.assertEqual(self.gate['run_id'], None)
++
++    def test_CP_without_PM_reaches_up_with_exact_cp_scope_and_writes_gate(self):
++        self.run_family()
++        self.assertEqual(len(self.calls), 1)
++        arguments = self.calls[0]
++        self.assertEqual(arguments[1:4], ['up', '--scope', 'cp'])
++        self.assertEqual(arguments[arguments.index('--cp-service') + 1], 'own-cp-control-alias')
++        self.assertFalse(any(argument.startswith('--pm-') for argument in arguments))
++        self.assert_retained()
++
++    def test_missing_CP_alias_has_no_API_and_gate_2(self):
++        del self.environment['E2E_CP_KVS_SERVICE']
++        self.run_family()
++        self.assertEqual(self.result.returncode, 2)
++        self.assertEqual(self.calls, [])
++        self.assertEqual(self.gate['sandbox_cleanup_status'], None)
++        self.assertEqual((self.family_dir / 'sandbox-cleanup.status').read_text(), 'NOT_ATTEMPTED\n')
++
++    def test_attempt_without_state_retains_unknown_and_cannot_certify_absence(self):
++        self.run_family()
++        self.assert_retained()
++        self.assertEqual([arguments[1] for arguments in self.calls], ['up'])
++        self.assertTrue((self.family_dir / 'sandbox-up.log').is_file())
++        self.assertFalse((self.family_dir / 'sandbox-down.log').exists())
++
++    def test_own_metadata_state_down_failure_is_retained_with_gate_1(self):
++        self.environment['CONTROL_API_MODE'] = 'state-down-fail'
++        self.run_family()
++        self.assert_retained(state=True)
++        self.assertEqual([arguments[1] for arguments in self.calls], ['up', 'down'])
++        self.assertEqual((self.family_dir / 'reconciliation-final.log').read_text(), 'RECONCILIATION_STATUS:CLEAN\n')
++
++    def test_retained_marker_blocks_down_and_false_absence(self):
++        self.environment['CONTROL_API_MODE'] = 'state-marker'
++        self.run_family()
++        self.assert_retained(state=True)
++        self.assertEqual([arguments[1] for arguments in self.calls], ['up'])
++        self.assertTrue((self.family_dir / 'reconciliation/control-unknown.json').is_file())
++        self.assertEqual((self.family_dir / 'reconciliation-final.log').read_text(), 'RECONCILIATION_STATUS:RETAINED\n')
++        self.assertFalse((self.family_dir / 'sandbox-down.log').exists())
++
++    def test_missing_canonical_PM_inputs_has_no_API_and_gate_2(self):
++        self.run_family('playmaker-canonical', 'e2eCanonicalPlaymakerTest')
++        self.assertEqual(self.result.returncode, 2)
++        self.assertEqual(self.calls, [])
++        self.assertIn('E2E_PM_RESULTS_KVS_SERVICE', self.result.stderr)
++        self.assertEqual((self.family_dir / 'sandbox-cleanup.status').read_text(), 'NOT_ATTEMPTED\n')
++
++    def test_missing_candidate_PM_inputs_has_no_API_and_gate_2(self):
++        self.run_family('playmaker-candidate', 'e2eCandidatePlaymakerTest')
++        self.assertEqual(self.result.returncode, 2)
++        self.assertEqual(self.calls, [])
++        self.assertIn('E2E_PM_LOCKS_KVS_SERVICE', self.result.stderr)
++
++    def test_missing_managed_inputs_has_no_API_and_gate_2(self):
++        self.run_family(managed=True)
++        self.assertEqual(self.result.returncode, 2)
++        self.assertEqual(self.calls, [])
++        self.assertIn('E2E_MANAGED_ENV_FILE', self.result.stderr)
++        self.assertEqual(self.gate['run_id'], None)
++        self.assertEqual(self.gate['sandbox_cleanup_status'], None)
++
++    def test_configured_PM_keeps_ecosystem_scope_and_three_aliases(self):
++        for name in ['caller-shape', 'entity-template-shape', 'denied-template-shape']:
++            path = self.directory / name
++            path.write_text('CONTROL_UNCONSUMED_INPUT_SHAPE_ONLY\n')
++            path.chmod(0o600)
++        self.environment.update({
++            'E2E_PM_RESULTS_KVS_SERVICE': 'own-results-control-alias',
++            'E2E_PM_LOCKS_KVS_SERVICE': 'own-locks-control-alias',
++            'E2E_PLAYMAKER_ENV_FILE': str(self.directory / 'caller-shape'),
++            'E2E_ENTITY_SERVICE_BASE_URL': 'https://unconsumed-control.invalid',
++            'E2E_ENTITY_SERVICE_TEMPLATE_RECEIPT_FILE': str(self.directory / 'entity-template-shape'),
++            'E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE_FILE': str(self.directory / 'denied-template-shape'),
++            'E2E_PLAYMAKER_CANDIDATE_REPO': str(self.directory / 'unconsumed-repo-shape'),
++        })
++        self.run_family('playmaker-candidate', 'e2eCandidatePlaymakerTest')
++        self.assert_retained()
++        self.assertEqual(len(self.calls), 1)
++        arguments = self.calls[0]
++        self.assertEqual(arguments[1:4], ['up', '--scope', 'ecosystem'])
++        for flag, expected in [('--cp-service', 'own-cp-control-alias'),
++                               ('--pm-results-service', 'own-results-control-alias'),
++                               ('--pm-locks-service', 'own-locks-control-alias')]:
++            self.assertEqual(arguments[arguments.index(flag) + 1], expected)
++
++    def test_missing_runtime_interpreter_has_no_API_and_parent_sentinels_survive(self):
++        del self.environment['E2E_FURY_PYTHON']
++        self.run_family()
++        self.assertEqual(self.result.returncode, 2)
++        self.assertEqual(self.calls, [])
++        self.assertIn('E2E_FURY_PYTHON', self.result.stderr)
++
++    def test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure(self):
++        run = 'c' * 32
++        for name in ['cp-functional', 'playmaker-canonical', 'playmaker-candidate']:
++            family = self.job / name
++            family.mkdir(mode=0o700)
++            (family / 'gate.json').write_text(json.dumps({'run_id': 'a' * 32}) + '\n')
++        managed_env = self.directory / 'managed.env'
++        managed_kvs = self.directory / 'managed-kvs.env'
++        managed_env.write_text('E2E_MANAGED_RUN_ID=' + run + '\n')
++        managed_kvs.write_text('E2E_RUN_ID=' + run + '\n')
++        for path in [managed_env, managed_kvs]:
++            path.chmod(0o600)
++        self.environment.update({'E2E_MANAGED_ENV_FILE': str(managed_env),
++                                 'E2E_MANAGED_KVS_ENV_FILE': str(managed_kvs)})
++        self.run_family(managed=True)
++        self.assertEqual(self.result.returncode, 29)
++        self.assertEqual(self.gate['run_id'], run)
++        self.assertEqual(self.gate['sandbox_cleanup_status'], None)
++        self.assertEqual(self.calls, [])
++        self.assertEqual(json.loads(self.managed_trace.read_text()), {
++            'kind': 'CONTROL_TRANSPORT_ONLY', 'arguments': ['all'],
++            'kvs_environment_file': str(managed_kvs)})
++        self.assertNotIn('command not found', self.result.stderr)
++
++
++if __name__ == '__main__':
++    unittest.main(verbosity=1)
+diff --git a/e2e/tests/harness-contract.py b/e2e/tests/harness-contract.py
+index d0977d52e504d314c12fc5a65d344204b7270ff9..750944b839b962a6cc6d56bfc2397d877f4f23e6 100644
+--- a/e2e/tests/harness-contract.py
++++ b/e2e/tests/harness-contract.py
+@@ -4,7 +4,7 @@ from pathlib import Path
+ import subprocess
+ import sys
+ 
+-for script in ('cleanup-contract.py', 'sandbox-contract.py', 'managed-launcher-contract.py', 'retention-contract.py', 'reconciliation-status-contract.py'):
++for script in ('cleanup-contract.py', 'sandbox-contract.py', 'managed-launcher-contract.py', 'retention-contract.py', 'reconciliation-status-contract.py', 'ci-family-scope-contract.py'):
+     result = subprocess.run([sys.executable, str(Path(__file__).with_name(script))], check=False)
+     if result.returncode:
+         raise SystemExit(result.returncode)
+diff --git a/e2e/tests/managed-launcher-contract.py b/e2e/tests/managed-launcher-contract.py
+index 2989d9961bbc939fb4fda6c1c720dbbd19aeda44..c7a42dc776401ffb8386181dd8ada341663275e3 100644
+--- a/e2e/tests/managed-launcher-contract.py
++++ b/e2e/tests/managed-launcher-contract.py
+@@ -87,7 +87,7 @@ class ManagedLauncherContract(unittest.TestCase):
+         result = self.invoke(extra={'L0_OBSERVED': str(observed)})
+         self.assertEqual(43, result.returncode)
+         data = json.loads(observed.read_text())
+-        self.assertEqual([str(ROOT/'e2e/sandbox.py'), 'verify', '--directory', str(self.directory)], data['args'])
++        self.assertEqual([str(ROOT/'e2e/sandbox.py'), 'verify', '--directory', str(self.directory), '--scope', 'ecosystem'], data['args'])
+         self.assertEqual(RUN, data['run'])
+         self.assertEqual('literal-gate-fixture', data['kv'])
+         self.assertNotIn('TEST_EVIDENCE_PUBLISHED', result.stdout)
+diff --git a/e2e/tests/sandbox-contract.py b/e2e/tests/sandbox-contract.py
+index ecca0505f196ac9666a733cb8271f0c6d3ed7973..a8d1abe1c2f54a724caf64e2e130c2b6fbfc1e17 100644
+--- a/e2e/tests/sandbox-contract.py
++++ b/e2e/tests/sandbox-contract.py
+@@ -1,7 +1,11 @@
+ #!/usr/bin/env python3
+ """Permanent lifecycle control-flow regressions; no Sandbox/KVS/E2E certificate."""
++import contextlib
+ import importlib.util
++import io
++import json
+ import os
++import sys
+ from pathlib import Path
+ import tempfile
+ import types
+@@ -16,15 +20,18 @@ spec.loader.exec_module(sandbox)
+ 
+ class ControlFixture:
+     """Synthetic API shape only, for ownership and unknown-outcome regression."""
+-    def __init__(self, directory):
++    def __init__(self, directory, scope=None):
+         self.lifecycle = sandbox.Lifecycle.__new__(sandbox.Lifecycle)
+         self.lifecycle.directory = Path(directory)
+         run = 'a' * 32
+         self.lifecycle.state = {'schema': 1, 'run_id': run, 'marker': 'Owned Kafka E2E ' + run,
+             'status': 'OWNED_CONFIG_GENERATED_NOT_KVS_CERTIFIED', 'segments': {}, 'resources': []}
++        if scope is not None:
++            self.lifecycle.state['scope'] = scope
+         self.configs = {}
+         self.calls = []
+-        for app, aliases, instance in zip(sandbox.APPS, [['cp'], ['results', 'locks']], ['1', '2']):
++        applications = sandbox.APPS[:1] if scope == 'cp' else sandbox.APPS
++        for app, aliases, instance in zip(applications, [['cp'], ['results', 'locks']], ['1', '2']):
+             resource = {'app': app, 'bc': 'e2e-' + run, 'instance': instance, 'create_intent': True,
+                         'create_outcome': 'CONFIRMED', 'creation_observed': True,
+                         'ownership_verified': True, 'logical_services': aliases,
+@@ -49,6 +56,48 @@ class ControlFixture:
+         return result
+ 
+ 
++class ProvisioningControlFixture(ControlFixture):
++    """API metadata simulator only: no provider, client storage or business result."""
++    def __init__(self, directory, scope=None):
++        super().__init__(directory, scope)
++        self.lifecycle.state['resources'] = []
++        self.lifecycle.state['status'] = 'PREPARING'
++        self.existing = set()
++        self.cloned = []
++        self.lifecycle.api = types.SimpleNamespace(make_api_call=self.api_call)
++        self.lifecycle.stored_auth_headers = lambda: {'X-Tiger-Token': 'Bearer synthetic-control-fixture'}
++        self.lifecycle.call = types.MethodType(sandbox.Lifecycle.call, self.lifecycle)
++
++    def api_call(self, route, method, **kwargs):
++        _, app, suffix = route.split('/', 2)
++        self.calls.append((app, suffix, method))
++        if suffix == 'bc':
++            if method == 'GET':
++                return [], 200
++            self.existing.add(app)
++            return {}, 201
++        if suffix == 'bc/e2e-' + self.lifecycle.state['run_id']:
++            if method == 'DELETE':
++                self.existing.discard(app)
++                return {}, 200
++            if app not in self.existing:
++                return None, 404
++            return {'name': 'e2e-' + self.lifecycle.state['run_id'],
++                    'description': self.lifecycle.state['marker']}, 200
++        if suffix.endswith('/services'):
++            self.cloned.append((app, json.loads(kwargs['data'])['name']))
++            return {}, 201
++        if suffix.endswith('/start'):
++            return {'response': '1' if app == sandbox.APPS[0] else '2'}, 200
++        if suffix.endswith('/configurations'):
++            return self.configs[app], 200
++        if suffix.endswith('/instances'):
++            return {'instances': [{'id': '1' if app == sandbox.APPS[0] else '2'}]}, 200
++        if suffix.endswith('/stop'):
++            return {}, 200
++        raise AssertionError('unexpected simulator API route')
++
++
+ class LifecycleControlContract(unittest.TestCase):
+     def setUp(self):
+         self.directory = tempfile.TemporaryDirectory(prefix='sandbox-control-regression-')
+@@ -143,5 +192,176 @@ class LifecycleControlContract(unittest.TestCase):
+         self.assertEqual(calls[0]['timeout'], 20)
+ 
+ 
++class ScopeControlContract(unittest.TestCase):
++    def setUp(self):
++        self.directory = tempfile.TemporaryDirectory(prefix='sandbox-scope-control-')
++        self.addCleanup(self.directory.cleanup)
++        self.fixture = ControlFixture(self.directory.name, 'cp')
++
++    def verify(self, fixture=None, expected=None, extras=None):
++        fixture = fixture or self.fixture
++        environment = fixture.exports()
++        environment.update(extras or {})
++        with patch.dict(os.environ, environment, clear=True):
++            if expected is None:
++                fixture.lifecycle.verify()
++            else:
++                fixture.lifecycle.verify(expected)
++
++    def test_cp_receipt_verifies_only_CP_fresh_configuration_without_PM(self):
++        self.verify()
++        self.assertEqual({app for app, _, _ in self.fixture.calls}, {sandbox.APPS[0]})
++        self.assertEqual(sum(path.endswith('/configurations') for _, path, _ in self.fixture.calls), 1)
++        self.assertFalse(any(key.startswith('E2E_PLAYMAKER_') for key in self.fixture.exports()))
++
++    def test_cp_up_provisions_only_CP_and_single_alias(self):
++        fixture = ProvisioningControlFixture(self.directory.name, 'cp')
++        fixture.lifecycle.up([['cp']])
++        self.assertEqual({app for app, _, _ in fixture.calls}, {sandbox.APPS[0]})
++        self.assertEqual(fixture.cloned, [(sandbox.APPS[0], 'cp')])
++        self.assertEqual(len(fixture.lifecycle.state['resources']), 1)
++        self.assertEqual(fixture.lifecycle.state['scope'], 'cp')
++        exports = dict(line.split('=', 1) for line in (Path(self.directory.name) / 'sandbox.env').read_text().splitlines())
++        self.assertFalse(any(key.startswith('E2E_PLAYMAKER_') for key in exports))
++        self.verify(fixture)
++        fixture.lifecycle.down()
++        self.assertEqual(fixture.lifecycle.state['cleanup'], 'CERTIFIED_API_ABSENCE')
++        self.assertEqual(fixture.existing, set())
++
++    def test_CLI_cp_single_alias_and_default_ecosystem_persist_scope(self):
++        for mode in ['cp', 'ecosystem']:
++            with self.subTest(mode=mode), tempfile.TemporaryDirectory(prefix='sandbox-cli-scope-') as directory:
++                fixture = ProvisioningControlFixture(directory, mode)
++                argv = ['sandbox.py', 'up', '--directory', directory, '--cp-service', 'cp']
++                if mode == 'cp':
++                    argv += ['--scope', 'cp']
++                else:
++                    argv += ['--pm-results-service', 'results', '--pm-locks-service', 'locks']
++                def construct(path, state):
++                    fixture.lifecycle.directory, fixture.lifecycle.state = path, state
++                    return fixture.lifecycle
++                with patch.object(sys, 'argv', argv), patch.object(sandbox, 'Lifecycle', side_effect=construct), contextlib.redirect_stdout(io.StringIO()):
++                    sandbox.main()
++                state = json.loads((Path(directory) / 'state.json').read_text())
++                self.assertEqual(state['scope'], mode)
++                self.assertEqual({item['app'] for item in state['resources']}, set(sandbox.APPS[:1] if mode == 'cp' else sandbox.APPS))
++                self.assertEqual(len(fixture.cloned), 1 if mode == 'cp' else 3)
++
++    def test_legacy_receipt_stays_ecosystem_and_explicit_ecosystem_passes(self):
++        legacy = ControlFixture(self.directory.name)
++        self.assertNotIn('scope', legacy.lifecycle.state)
++        self.verify(legacy, 'ecosystem')
++        self.assertEqual({app for app, _, _ in legacy.calls}, set(sandbox.APPS))
++
++    def test_expected_scope_rejects_both_cross_family_directions_and_legacy_downgrade_before_API(self):
++        for receipt, expected in [(self.fixture, 'ecosystem'),
++                                  (ControlFixture(self.directory.name, 'ecosystem'), 'cp'),
++                                  (ControlFixture(self.directory.name), 'cp')]:
++            with self.subTest(expected=expected):
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_SCOPE_MISMATCH'):
++                    self.verify(receipt, expected)
++                self.assertEqual(receipt.calls, [])
++
++    def test_invalid_persisted_scope_is_rejected(self):
++        for invalid in [None, '', 'CP', 'other', True, 1, []]:
++            with self.subTest(scope=invalid):
++                self.fixture.lifecycle.state['scope'] = invalid
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_SCOPE_INVALID'):
++                    self.fixture.lifecycle.verify()
++                self.assertEqual(self.fixture.calls, [])
++
++    def test_cp_rejects_PM_resource_and_duplicate_CP_resource_before_API(self):
++        for resource in [ControlFixture(self.directory.name).lifecycle.state['resources'][1],
++                         dict(self.fixture.lifecycle.state['resources'][0])]:
++            with self.subTest(app=resource['app']):
++                self.fixture.lifecycle.state['resources'].append(resource)
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_RESOURCE_NOT_OWNED'):
++                    self.fixture.lifecycle.verify()
++                self.assertEqual(self.fixture.calls, [])
++                self.fixture.lifecycle.state['resources'].pop()
++
++    def test_cp_rejects_extra_alias_and_PM_segment_in_receipt(self):
++        resource = self.fixture.lifecycle.state['resources'][0]
++        resource['logical_services'].append('results')
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_LOGICAL_MAPPING_INVALID'):
++            self.fixture.lifecycle.verify()
++        resource['logical_services'].pop()
++        self.fixture.lifecycle.state['segments']['E2E_PLAYMAKER_KVS_SEGMENT_ID'] = 'pm'
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_SEGMENTS_OUTSIDE_SCOPE'):
++            self.fixture.lifecycle.verify()
++        self.assertEqual(self.fixture.calls, [])
++
++    def test_cp_rejects_each_PM_mapping_consumed_from_environment(self):
++        for key in ['E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER', 'E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER',
++                    'E2E_PLAYMAKER_SANDBOX_BC', 'E2E_PLAYMAKER_SANDBOX_INSTANCE',
++                    'E2E_PLAYMAKER_KVS_SEGMENT_ID', 'KEY_VALUE_STORE_RESULTS_CONTAINER_NAME']:
++            with self.subTest(key=key):
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_CONSUMED_EXPORTS'):
++                    self.verify(extras={key: 'foreign-control-metadata'})
++
++    def test_cp_rejects_PM_API_call_and_mutation_receipt(self):
++        fixture = ProvisioningControlFixture(self.directory.name, 'cp')
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_APPLICATION_NOT_OWNED'):
++            fixture.lifecycle.call(sandbox.APPS[1], 'bc', 'POST', {}, allowed=(201,))
++        self.assertEqual(fixture.calls, [])
++        self.fixture.lifecycle.state['mutations'] = [{'app': sandbox.APPS[1], 'outcome': 'HTTP_200'}]
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_MUTATION_OUTSIDE_SCOPE'):
++            self.fixture.lifecycle.down()
++        self.assertEqual(self.fixture.calls, [])
++
++    def test_cp_up_rejects_excess_services_before_API(self):
++        fixture = ProvisioningControlFixture(self.directory.name, 'cp')
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_LOGICAL_MAPPING_INVALID'):
++            fixture.lifecycle.up([['cp'], ['results', 'locks']])
++        self.assertEqual(fixture.calls, [])
++
++    def test_cp_partial_and_ecosystem_partial_cleanup_allow_only_observed_own_resources(self):
++        for mode in ['cp', 'ecosystem']:
++            with self.subTest(mode=mode):
++                fixture = ControlFixture(self.directory.name, mode)
++                fixture.lifecycle.state['resources'] = fixture.lifecycle.state['resources'][:1]
++                fixture.lifecycle.state['status'] = 'PREPARING'
++                fixture.lifecycle.require_owned = lambda resource: None
++                fixture.lifecycle.down()
++                self.assertEqual(fixture.lifecycle.state['cleanup'], 'CERTIFIED_API_ABSENCE')
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE|SANDBOX_PROVENANCE_INCOMPLETE'):
++                    fixture.lifecycle.verify()
++
++    def test_cp_partial_unknown_creation_and_unknown_mutation_still_fail_cleanup(self):
++        for unknown in ['creation', 'mutation']:
++            with self.subTest(unknown=unknown):
++                fixture = ControlFixture(self.directory.name, 'cp')
++                fixture.lifecycle.state['status'] = 'PREPARING'
++                if unknown == 'creation':
++                    fixture.lifecycle.state['resources'][0]['creation_observed'] = False
++                    fixture.lifecycle.state['resources'][0]['create_outcome'] = 'UNKNOWN'
++                else:
++                    fixture.lifecycle.state['mutations'] = [{'app': sandbox.APPS[0], 'outcome': 'UNKNOWN'}]
++                fixture.lifecycle.require_owned = lambda resource: None
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_CLEANUP_FAILED'):
++                    fixture.lifecycle.down()
++                self.assertEqual(fixture.lifecycle.state['cleanup'], 'FAILED')
++
++    def test_CLI_cp_rejects_missing_alias_or_PM_inputs_before_auth_or_API(self):
++        for options, code in [([], 'SANDBOX_CP_OWN_KVS_ALIAS_REQUIRED'),
++                             (['--cp-service', 'cp', '--pm-results-service', 'results'], 'SANDBOX_CP_SCOPE_FORBIDS_PLAYMAKER_INPUTS'),
++                             (['--cp-service', 'cp', '--pm-locks-service', 'locks'], 'SANDBOX_CP_SCOPE_FORBIDS_PLAYMAKER_INPUTS'),
++                             (['--cp-service', 'cp', '--pm-segment', 'pm'], 'SANDBOX_CP_SCOPE_FORBIDS_PLAYMAKER_INPUTS')]:
++            with self.subTest(options=options):
++                argv = ['sandbox.py', 'up', '--scope', 'cp', '--directory', self.directory.name] + options
++                with patch.object(sys, 'argv', argv), patch.object(sandbox, 'Lifecycle') as constructor:
++                    with self.assertRaisesRegex(RuntimeError, code):
++                        sandbox.main()
++                    constructor.assert_not_called()
++
++    def test_CLI_expected_ecosystem_rejects_CP_receipt_before_auth_or_API(self):
++        self.fixture.lifecycle.save()
++        argv = ['sandbox.py', 'verify', '--scope', 'ecosystem', '--directory', self.directory.name]
++        with patch.object(sys, 'argv', argv), patch.object(sandbox, 'Lifecycle') as constructor:
++            with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_SCOPE_MISMATCH'):
++                sandbox.main()
++            constructor.assert_not_called()
++
++
+ if __name__ == '__main__':
+     unittest.main(verbosity=1)
+diff --git a/meli/features/20261001-real-e2e/1-functional/spec.md b/meli/features/20261001-real-e2e/1-functional/spec.md
+index c254a927cd623bfb2757ffe67f92ae52856cf11a..e5244efa5e2f7aaded139e01f8446b74f40e17b9 100644
+--- a/meli/features/20261001-real-e2e/1-functional/spec.md
++++ b/meli/features/20261001-real-e2e/1-functional/spec.md
+@@ -75,3 +75,8 @@ Deployment requires deployment_id, component_id, data_product_id, environment_id
+ Replace physical metadata tests that expected COMPLETED for invalid input with rejection/no-effect oracles. Separate the three compatibility cases as current compatibility with declared-contract conflicts, not input-validation success. Invalid IDs must never acquire or delete deployment:null/gcp-deployment:null/action:null/action: keys. Read them only in the authenticated run-exclusive Sandbox, observing absence before/after actual quiescence. Physical execution and retained-worker/cleanup evidence remain NOT_EXECUTED.
+ 
+ T23 scoped additions: the manual Deployment OpenAPI type now includes the three required display names and describes ACK200/ignored metadata handling; its existing group required annotation remains an explicit compatibility conflict. Swagger generation is coordinator-owned. Fixture retention has one fixed UNKNOWN/INVALID_GLOBAL_KEY_OBSERVED entry point with no key acquisition/deletion; its physical failure path remains NOT_EXECUTED and no mock/reflective constructor bypass is used for L0. Base real/managed factories and14 constructor call sites were checked for required metadata; none has a literal null required field. Boundary prefix/routing variants use valid non-null metadata except the explicit guard regression.
++
++
++## CP-SCOPE-1 — foco del owner, 2026-10-02
++
++El owner prioriza ejecutar E2E del CP Kafka y difiere el ecosistema. La familia `realIntegrationTest` debe poder preparar y verificar un Sandbox exclusivo de `rio-controlplane-kafka` sin aliases, BCs ni servicios Playmaker. Mantener Toolkit productivo, Kafka real, resultados Kafka, ownership/TTL/CAS y fallo explícito por falta de permisos. La familia ecosistema conserva sus dos aplicaciones y sus gates; una provenance CP-only no la certifica. El permiso clone403 continúa externo; fuente/controles no son evidencia de negocio ejecutado.
+diff --git a/meli/features/20261001-real-e2e/2-technical/spec.md b/meli/features/20261001-real-e2e/2-technical/spec.md
+index a36a43c8af454b98d2482417931387ef85adf322..3cc663efc0196d970cf1efa20f48d69983b87f38 100644
+--- a/meli/features/20261001-real-e2e/2-technical/spec.md
++++ b/meli/features/20261001-real-e2e/2-technical/spec.md
+@@ -177,3 +177,11 @@ RED tests bind actual SDK1.3.1 JSON:8 deployment metadata fields ×AWS MSK/GCP 
+ Null-ID physical scenarios require the real exclusive Sandbox gate and initially absent global-shaped keys, read only. Never register such keys for fixture cleanup, even after the guard. Retention/quiescence gates continue unchanged; no business mock, skip or synthetic result is allowed. Normative sources and explicit producer conflicts are per-field in /private/tmp/kafka-e2e-discovery/required-metadata-triage.md/.tsv/.json.
+ 
+ T23 scoped additions: the manual Deployment OpenAPI type now includes the three required display names and describes ACK200/ignored metadata handling; its existing group required annotation remains an explicit compatibility conflict. Swagger generation is coordinator-owned. Fixture retention has one fixed UNKNOWN/INVALID_GLOBAL_KEY_OBSERVED entry point with no key acquisition/deletion; its physical failure path remains NOT_EXECUTED and no mock/reflective constructor bypass is used for L0. Base real/managed factories and14 constructor call sites were checked for required metadata; none has a literal null required field. Boundary prefix/routing variants use valid non-null metadata except the explicit guard regression.
++
++
++## CP-SCOPE-1 — aislamiento del setup Sandbox
++
++Añadir `sandbox.py up --scope cp --cp-service <alias-propio>`; default ecosystem conserva el contrato existente. Persistir scope explícito y validar el plan de aplicaciones: CP un recurso/alias; ecosystem dos aplicaciones con results/locks distintos. Verify liga scope, metadata, ownership y exports frescos exactos; sin scope explícito soporta recibos legacy ecosystem. Cleanup conserva reconciliación de outcomes y sólo los recursos declarados propios, incluso provisión parcial. Los preflights/launchers ecosystem requieren scope ecosystem; CP acepta su Sandbox exclusivo sin requisitos Playmaker. No cambiar negocio/adapters ni relajar seguridad. Tests de controles metadata/API synthetic se etiquetan como preparación; runtime Toolkit y suite física requieren el clone permitido.
++
++
++CP-SCOPE-1 peer encontró P2 preexistente en Bash3.2: locals de `run_local_family() (...)` dejan de existir antes del EXIT trap; cleanup y gate.json fallaban por variable unbound. Mantener estado de familia en variables del subshell propio, accesible al trap; conservar locales de helpers activos y aislamiento respecto del parent. Mismo patrón metadata en managed. Conservar UNKNOWN/retención, no inferir ausencia por pérdida de contexto. Regresión debe ejecutar funciones reales y demostrar gate, cleanup/fallo, no API cuando faltan inputs y parent intacto.
+diff --git a/meli/features/20261001-real-e2e/3-tasks/tasks.md b/meli/features/20261001-real-e2e/3-tasks/tasks.md
+index de973036a5709ae1c714f15364e1774270252c4e..f159a1bb4d342044f959518c2a325940534eaab5 100644
+--- a/meli/features/20261001-real-e2e/3-tasks/tasks.md
++++ b/meli/features/20261001-real-e2e/3-tasks/tasks.md
+@@ -67,3 +67,16 @@ Matrix351:304 FULL prepared,29 PARTIAL,18 NONE; every complete capacity is NOT_E
+ Full correlated CP/Kafka/KVS/results/canonical and candidate PM suites, current Toolkit server create/version/CAS/TTL, managed OAuth/BigQueue/Odin, repeated clean business reproduction and actual corporate job remain BLOCKED. Formal Meli/Zord gate remains blocked by the recorded auto-review rejection; no reviewer publication or release occurred. See exact external actions and retained-failure rules in DELIVERY.md.
+ 
+ Checked implementation/review tasks above denote source or explicitly named unit/component controls only. Full physical acceptance and formal review tasks stay open; no checkmark certifies backend or a completed E2E family.
++
++
++## CP-SCOPE-1 — prioridad CP del owner (2026-10-02)
++
++- [x] Agregar scope CP-only a lifecycle/provenance de Sandbox con regression controls y mantener defaults ecosystem/legacy.
++- [x] Rechazar recibos CP-only en familias ecosystem y documentar comando CP independiente.
++- [x] Revisión independiente de aislamiento, ownership/cleanup y regresiones; ejecutar controles y task discovery/preflight real sin falsificar negocio.
++- [ ] Guardar checkpoint/knowledge/commits CP-only y recibos de revisión de fuente.
++- [ ] Ejecutar la suite física CP completa y repetirla desde checkout limpio: primero renovar Fury (`SANDBOX_FURY_LOGIN_REQUIRED` actual), después revalidar el clone propio que históricamente devolvió403; resolver permiso si persiste. Fuente/controles no cierran esta aceptación.
++
++- [x] Corregir P2 preexistente de contexto del EXIT trap CI en Bash3.2 y agregar regresión de funciones reales sin backend; conservar retención UNKNOWN e independencia del parent.
++
++CP-SCOPE-1 source controls: coordinator `validateRealE2eHarness`72 PASS and CP compile PASS; independent source/metadata v2 PASS,0 drift/0 findings after preserving baseline and bare-variable REDs. These checkmarks certify only the named source/neutral controls. Full business run, current Toolkit server contract, clean repeated reproduction and actual corporate CI job remain NOT_EXECUTED. Current auth gate is Fury login required; the former clone403 must be rechecked after renewal.
+diff --git a/meli/features/20261001-real-e2e/evidence/cp-only-scope-checkpoint.json b/meli/features/20261001-real-e2e/evidence/cp-only-scope-checkpoint.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..c008156efb1177928d11d0234da42f0df204107a
+--- /dev/null
++++ b/meli/features/20261001-real-e2e/evidence/cp-only-scope-checkpoint.json
+@@ -0,0 +1,112 @@
++{
++  "schema_version": 1,
++  "date": "2026-10-02",
++  "feature": "CP-SCOPE-1",
++  "branch": "feature/kafka-real-e2e",
++  "base_develop": "4302481c69300074a85ea5eb051a27bbd505cdce",
++  "source_parent": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
++  "state": "WORK_BRANCH_PENDING",
++  "scope": "CP_LOCAL_KAFKA_KVS_KAFKA_RESULTS",
++  "source_verification": "PASS",
++  "full_physical_execution": "NOT_EXECUTED",
++  "physical_gate": "BLOCKED_EXTERNAL_AUTH_THEN_OWN_KVS_CLONE_RECHECK",
++  "auth": {
++    "utc": "2026-10-02T15:31:37.712085+00:00",
++    "scope": "READ_ONLY_FURY_AUTH_EXPIRY_GUARD",
++    "result": "SANDBOX_FURY_LOGIN_REQUIRED",
++    "network_calls": 0,
++    "credential_values_exposed": 0,
++    "login_or_renew": false,
++    "business": "NOT_EXECUTED"
++  },
++  "prior_clone_observation": {
++    "http_status": 403,
++    "historical": true,
++    "recheck_after_login": true,
++    "own_alias": "triggers-status-nonprod",
++    "instance_allocated": false,
++    "kvs_writes": 0
++  },
++  "source_freeze": {
++    "sha256": "65393ccb8af0fbce63938431d7741e7fcbdc42dc296c6e2357e8c2759ff4027a",
++    "files": {
++      "build.gradle": "10bbed10e0811afe058cd4e7997e951cf260cc75c41f6f5b65b5758479e91fd5",
++      "e2e/README.md": "dc412d68520f13d5661a79a32e399b9bbb64ca62324c8b60a58e35e89df63ca0",
++      "e2e/ci.sh": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
++      "e2e/managed.sh": "1a58c8559e143afa84c99f2dce6809decf8ebf5853d83526fa9fb38430312af0",
++      "e2e/run.sh": "2332c2cc1371cf293120abd3ee6bc58b46773c5ed4692cb0bd54eac7693d1d04",
++      "e2e/sandbox.py": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9",
++      "e2e/tests/harness-contract.py": "d3a2e24401055cc3b9d0d0d92638aaa9b92a7a3610af6e76144c83c29f3061e5",
++      "e2e/tests/managed-launcher-contract.py": "66aaa38645a3a1c2f2637529ae01a2962c8c85bcda870825aa9f251287f5c3de",
++      "e2e/tests/sandbox-contract.py": "cdeefbda55be982eabb9829471e2f83c91e1e9233b489ad9e4c728c77a49d31d",
++      "e2e/tests/ci-family-scope-contract.py": "2241b997fbd08b2666fe2542e8444940707ef954c597ad41df4f2cd26011b7fd",
++      "meli/features/20261001-real-e2e/1-functional/spec.md": "974f7028fcc481f3b54c3bfef4e4958528487caf754e682553e2582d108ff59d",
++      "meli/features/20261001-real-e2e/2-technical/spec.md": "c5dcee507860086152d8c080b11d7e2e710734be1970784628d4a4f621a57abc",
++      "meli/features/20261001-real-e2e/3-tasks/tasks.md": "5b59eb88d9cc281b883342fb40d80601d354dc79af90e2935e08ae11bfb1947e"
++    }
++  },
++  "root_harness": {
++    "command": "JAVA_HOME=<verified-JDK25> ./gradlew --no-daemon validateRealE2eHarness",
++    "exit_code": 0,
++    "scope": "SOURCE_METADATA_ONLY",
++    "business": "NOT_EXECUTED",
++    "log_sha256": "dc6ef481d935cc6b952a764af03043cdded73edf9546a5f965387d628fc1f0e9",
++    "unittest_groups": [
++      25,
++      8,
++      11
++    ],
++    "custom_groups": {
++      "CLEANUP_CONTROL_FLOW_PASS": 5,
++      "RETENTION_CONTROL_FLOW_PASS": 16,
++      "RECONCILIATION_INSPECTION_PASS": 7
++    },
++    "control_count": 72
++  },
++  "root_compile": {
++    "utc": "2026-10-02T15:19:38.618923+00:00",
++    "scope": "CP_E2E_COMPILE_ONLY",
++    "command": "./gradlew --no-daemon compileRealIntegrationTestJava",
++    "status": "PASS",
++    "log_sha256": "cefa7ff074a11b099edb3c743336e0ec2efc20a12b8ac7721a6af889b605c27b",
++    "business": "NOT_EXECUTED_KVS_SANDBOX_BLOCKED"
++  },
++  "independent_reviews": {
++    "fault": {
++      "sha256": "48483269a3ae0f8c1a62cf9b3739e85697d16005cd1ec9c1cd18ba5f27df5e38",
++      "state": "PASS_SOURCE_NATIVE_BASH_PRIVATE_FILESYSTEM_METADATA_ONLY",
++      "open_findings": 0,
++      "business": "NOT_EXECUTED"
++    },
++    "documentation": {
++      "sha256": "fbf4aba8f9022459cadd1d4a919a8e1af3fd74a96fce1bd0142d57abf7f5e74a",
++      "state": "PASS_DOC_DELTA",
++      "open_findings": 0,
++      "business": "NOT_EXECUTED"
++    }
++  },
++  "coverage": {
++    "sha256": "2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e",
++    "capacity_count": 351,
++    "full_physical_not_executed": 351,
++    "unchanged_by_this_source_delta": true
++  },
++  "ci": {
++    "wrapper_controls": "PASS",
++    "actual_corporate_job": "NOT_EXECUTED",
++    "dispatcher": "FOUR_FAMILY_AGGREGATE",
++    "cp_only_dispatch_job": "NOT_IMPLEMENTED_AS_SEPARATE_JOB"
++  },
++  "limits": [
++    "No remote SDK/CP business assertion was executed by these neutral controls.",
++    "Prior RED trap/scope/bare-variable receipts remain preserved.",
++    "Playmaker/Entity/Tiger/ACME and managed OAuth/BigQueue belong to later scopes.",
++    "Independent full-suite clean-checkout reproduction and repeatability remain pending."
++  ],
++  "next": [
++    "Owner renews Fury interactively on workstation.",
++    "Recheck own CP-only Sandbox clone; resolve permission only if403 persists.",
++    "Execute production Toolkit create/server-version/CAS/version-increment/TTL and complete CP realIntegrationTest.",
++    "Independently repeat complete CP business suite from clean checkout and publish scenario evidence."
++  ]
++}
+diff --git a/meli/features/20261001-real-e2e/evidence/cp-only-scope-checkpoint.md b/meli/features/20261001-real-e2e/evidence/cp-only-scope-checkpoint.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..ab791f3bee96235b95b6d1e44a9eccf2a9cc06ac
+--- /dev/null
++++ b/meli/features/20261001-real-e2e/evidence/cp-only-scope-checkpoint.md
+@@ -0,0 +1,37 @@
++# CP-only E2E checkpoint — 2026-10-02
++
++WORK_BRANCH_PENDING, source verification PASS; complete physical CP E2E NOT_EXECUTED/BLOCKED.
++The owner prioritizes Kafka CP; ecosystem follows separately. This delta uses the same real CP
++business, five owned Kafka brokers, production Toolkit Sandbox KVS and Kafka results.
++
++`e2e/sandbox.py up --scope cp --cp-service <CP-own-alias>` provisions only CP resources.
++The launcher and direct Gradle preflight require matching scope; ecosystem requires its own
++receipt and services. Scope-less legacy receipts remain ecosystem. Required dependencies fail
++explicitly, with no no-op KVS, business mock, file result or skip.
++
++CP suite compilation PASS. Mandatory `validateRealE2eHarness` ran72 source/metadata controls
++PASS:25 Sandbox,8 managed launcher,11 CI,5 cleanup,16 retention,7 filesystem. Independent source
++review repeated baseline10/11 failures and the bare-variable1/1 failure, then candidate11/11 PASS;
++both P2 findings closed,0 drift. Documentation delta independently PASS. These controls stop
++before SDK/service business and do not certify E2E or an actual corporate CI job.
++
++Immediate external gate: stored-auth read-only guard required Fury login on
++2026-10-02T15:31:37Z, with0 network calls or exposed credentials. After interactive renewal,
++recheck the own CP alias `triggers-status-nonprod`: previous authenticated clone returned403,
++while both owned BCs were removed with DELETE200/GET404. No instance was allocated or KVS written.
++The former403 is historical, not a current authenticated recheck.
++
++After preparing the own Sandbox file, from this checkout:
++
++```sh
++E2E_KVS_ENV_FILE=/absolute/private/sandbox.env ./e2e/run.sh realIntegrationTest
++```
++
++See [runner instructions](../../../../e2e/README.md) for startup, prerequisites and cleanup.
++Run the actual Toolkit server contract and full suite; independently repeat from a clean checkout.
++Every complete capability remains NOT_EXECUTED. The wrapper CI dispatcher still aggregates four
++families; its local controls do not establish a standalone CP-only corporate job.
++
++[Machine receipt](cp-only-scope-checkpoint.json) pins sources, commands, outcomes and review hashes.
++Raw neutral RED/GREEN receipts are retained in the separate CP-only supplement under the AGENTS OS
++project delivery directory; the earlier blocked delivery bundle is historical and immutable.

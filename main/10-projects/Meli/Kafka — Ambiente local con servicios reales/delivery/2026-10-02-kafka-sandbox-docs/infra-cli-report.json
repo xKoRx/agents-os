@@ -1,0 +1,219 @@
+{
+  "utc": "2026-10-02T20:59:21.462576+00:00",
+  "scope": "READ_ONLY_PRIMARY_INSTALLED_SOURCE_AND_OBSERVED_OFFICIAL_URLS",
+  "status": "DOC_REFERENCES_CONFIRMED_BETA_AND_403_CAUSE_NOT_ESTABLISHED_BY_THIS_AUDIT",
+  "installed_versions": {
+    "furycli": "5.21.0",
+    "cli_sandbox": "1.2.16",
+    "cli_services": "1.52.0",
+    "package_publish_dates": "UNKNOWN_NOT_INFERRED_FROM_VERSIONS"
+  },
+  "official_URLs": [
+    {
+      "url": "https://furydocs.io/sandbox-services-docs/guide",
+      "observed_in": "cli_sandbox/main.py:6",
+      "web_access": "NOT_ACCESSIBLE_VIA_WEB_TOOL",
+      "root_CUA_observation": "redirects to Sandbox1.3.12; Introduction supports KVS, excludes KVS Vault; source must belong to application; instances max12h",
+      "independent_live_content_check_by_infra": false
+    },
+    {
+      "url": "https://furydocs.io/sandbox-services-docs/guide/#/operations/bounded_context_services",
+      "observed_in": "cli_sandbox/services_cmd.py:9",
+      "web_access": "NOT_ACCESSIBLE_VIA_WEB_TOOL",
+      "live_content": "root owns browser retrieval"
+    },
+    {
+      "url": "https://furydocs.io/sandbox-services-docs/1.3.12/guide/#/notes",
+      "observed_in": "root primary CUA message",
+      "root_CUA_observation": "Commiter and up for BC/instances; no performance/stress; no beta statement in Introduction/Notes inspected",
+      "independent_live_content_check_by_infra": false
+    },
+    {
+      "url": "https://furydocs.io/cli-services-docs/guide/#/",
+      "observed_in": "cli_services/main.py:6",
+      "web_access": "NOT_ACCESSIBLE_VIA_WEB_TOOL",
+      "live_content": "not available to this tool"
+    },
+    {
+      "url": "https://furydocs.io/sandbox-services-docs/1.3.11/guide/#/configuration/configurations?id=set-up-the-environment-to-use-sandbox-services",
+      "observed_in": "KMS README:75 historical reference only",
+      "web_access": "NOT_ACCESSIBLE_VIA_WEB_TOOL",
+      "scope": "HISTORICAL_URL_ONLY_NO_KMS_CONFIG_USED"
+    }
+  ],
+  "document_publish_dates": "UNKNOWN; versions observed are not dates",
+  "findings": [
+    {
+      "claim": "Installed sandbox client add-service uses only logical service name and POST application/{app}/bc/{bc}/services; no local source test/production eligibility decision.",
+      "source": "bc_cmd_logic.py:57-60 + bc_service.py:48-53"
+    },
+    {
+      "claim": "KVS formatter exposes test_container; generating nonproductive KVS selects template_test. This does not certify Sandbox clonability.",
+      "source": "kvs_cmd_logic.py:21-40 + kvs_service.py:25-32",
+      "quote": "Do you want to create a productive KVS?"
+    },
+    {
+      "claim": "KVS create403 authorization/deny_service_creation fallback belongs to KVS creation, not the Sandbox add-service route. It cannot explain this clone403.",
+      "source": "kvs_service.py:35-61"
+    },
+    {
+      "claim": "FURY_BETA_ENROLLMENT is CLI beta-version enrollment and is attached to CLI backend /version requests. It is not evidence of Sandbox/KVS beta state or a documented clone workaround.",
+      "source": "config.py:105,129,218-225,242-263,348"
+    },
+    {
+      "claim": "No beta classifier or rollout/eligibility declaration in inspected cli_sandbox metadata/source. Absence is not a stable-product certificate.",
+      "source": "cli_sandbox METADATA + focused source search"
+    },
+    {
+      "claim": "No typed current-user application-role endpoint/field in inspected cli_apps SDK. get_application GET applications/{app} returns general metadata; collaborator app listing does not prove Commiter. No invented role endpoint or users enumeration.",
+      "source": "AppApiClient:78-109 + Application.from_dict:45-55"
+    }
+  ],
+  "runtime_binding": {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/runtime-gate-vpn-2026-10-02.json",
+    "sha256": "24113c2c94da11a12e6943c9fe9f2ca25ce844045b3e645b5c316ac487300389",
+    "observed_sequence": "valid stored auth+VPN; own BC create200, clone403, delete200, absence404; instance/KVS writes0",
+    "source_inventory": "own alias approved/test, container_type database",
+    "cause": "UNDETERMINED_FROM_HTTP_STATUS_AND_CLIENT_SOURCE"
+  },
+  "next_evidence_needed": [
+    "Primary fresh current identity application role >= required Commiter, using a documented own-role UI/API shape; SDK audited here has no typed own-role oracle.",
+    "Fresh source eligibility for Sandbox including KVS-vs-Vault and test/production constraints from live official documentation/catalog; approved/test alone is insufficient.",
+    "Exact backend denial reason/code or support-owned correlation tied to own clone request; no conclusion from403 alone."
+  ],
+  "sources": [
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/main.py",
+      "lines": [
+        6,
+        6
+      ],
+      "sha256": "d1fade47d5c42bc6bbf7e8226962964d864f79ecc0595f10208210bbdc60a8fa"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/commands_logic/services_cmd.py",
+      "lines": [
+        9,
+        9
+      ],
+      "sha256": "d3bb8cef437b96690b70bcdf849743e50f89c54b156e9b4bd6faf29e6141a93b"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/commands_logic/bc_cmd_logic.py",
+      "lines": [
+        57,
+        60
+      ],
+      "sha256": "b3adb76703cb7547fb7f97df3a715dc0c63dbf5495061d8a904206c0d65ffca7"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/services/bc_service.py",
+      "lines": [
+        48,
+        53
+      ],
+      "sha256": "6d5652596c0278f6117a3238e79b368fd5924b2ce67b109b8dd4604483659509"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/rest/sandboxsapi.py",
+      "lines": [
+        40,
+        59
+      ],
+      "sha256": "4e53c6f2d7e6a13c04619dfe69782c363d4197f51db192af3b0a5e0c2fa34f5d"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/helpers/format_validator.py",
+      "lines": [
+        1,
+        29
+      ],
+      "sha256": "5419a2b28aead00d9c0ef5775627a12dc15d2ac4c7e264861fe23d72f84255fa"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/main.py",
+      "lines": [
+        6,
+        6
+      ],
+      "sha256": "4a4c3a84bfa14a92ca12ccb1861638abe0c0a25c231094884e4049bc734daa55"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/commands_logic/kvs_cmd_logic.py",
+      "lines": [
+        21,
+        40
+      ],
+      "sha256": "d14c1d26769c1af43195b4dd86c0e5a10cbb459ca275bd25939fbc820d6d98f2"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/services/kvs_service.py",
+      "lines": [
+        25,
+        61
+      ],
+      "sha256": "931aaca10f301e71dcca3f402598a90b6ca5268b926550c4045b6ba949093ae2"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/config/config.py",
+      "lines": [
+        218,
+        225
+      ],
+      "sha256": "623cda816f9145b5fc17f420dfde44ff06a0d2ae530a0fc4cc6e6a57186a9e82"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/config/config.py",
+      "lines": [
+        105,
+        129
+      ],
+      "sha256": "623cda816f9145b5fc17f420dfde44ff06a0d2ae530a0fc4cc6e6a57186a9e82"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/config/config.py",
+      "lines": [
+        242,
+        263
+      ],
+      "sha256": "623cda816f9145b5fc17f420dfde44ff06a0d2ae530a0fc4cc6e6a57186a9e82"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_apps/clients/app_api_client.py",
+      "lines": [
+        78,
+        109
+      ],
+      "sha256": "28d54fed3a65ccafed9cae24a688c92bd85682c074eccfea1dcd6db52ebd10be"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_apps/models/application.py",
+      "lines": [
+        13,
+        55
+      ],
+      "sha256": "e08e31a1059378cb329471ddf5a3f5c35903f45b97b444b7145e62e392d10ab3"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox-1.2.16.dist-info/METADATA",
+      "lines": [
+        2,
+        16
+      ],
+      "sha256": "11903e243504b7ff425f72e4ddad359ee948d852fe962ee1e9d22809c1bfa927"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli-5.21.0.dist-info/METADATA",
+      "lines": [
+        2,
+        12
+      ],
+      "sha256": "4308d5edbba4dc01707acafcb522429217ae6ae6f124742da1067ffd35395819"
+    }
+  ],
+  "remote_mutation_API_calls": 0,
+  "credential_config_values_read": 0,
+  "external_messages": 0,
+  "repo_writes": 0,
+  "business": "NOT_EXECUTED"
+}
