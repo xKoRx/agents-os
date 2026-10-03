@@ -1,0 +1,82 @@
+{
+  "outcome": "PASS_NARROW_DOCUMENTATION_DELTA_SOURCE_ONLY",
+  "reviewer": "domain",
+  "reviewed_at_utc": "2026-10-02T16:07:45.954910+00:00",
+  "scope": "Only prior CP-only document corrections, source/component and CI scope precisions, and the authorized source-only task checkmarks",
+  "prior_review_preserved": {
+    "md_path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/domain-doc-review/review.md",
+    "md_sha256": "cff7e845c1fb9c50d4234f875469eb20f28513bb7e4c309d6549994218ea4a05",
+    "json_path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/domain-doc-review/review.json",
+    "json_sha256": "9bdda557860c014391ec8a8fabadcfa61a08f17438446c362fd9425ec3635d85",
+    "outcome": "CHANGES_REQUESTED_THREE_DOCUMENTATION_CONSISTENCY_EDITS",
+    "task_hash_capture_caveat": "V1 original task-tail content is separately pinned and remains preserved. Its whole-file tasks hash was captured after the first author correction overlapped the report read, and is not used as the original baseline. The author correction plan supplies its own before hash; this delta pins the stable current bytes separately."
+  },
+  "correction_plan": {
+    "path": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/doc-review-correction-plan.json",
+    "sha256": "29992c5ba5a35650eeb93e0102225ce1f6a279e624912a4f5138627b8e2a9b75",
+    "KL_active_matches_planned_after": true,
+    "tasks_phase1_copy_matches_planned_after": true
+  },
+  "reviewed_paths": [
+    {
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+      "sha256": "fdd9354ca7b9ddaaea4244efc6b37269b31a1f1e90666670d12db9c021cdbad8",
+      "phase": "Three findings and two source-only precisions corrected"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+      "sha256": "5b59eb88d9cc281b883342fb40d80601d354dc79af90e2935e08ae11bfb1947e",
+      "phase": "Authorized follow-up marks four source-only tasks after independent Fault v2 receipt; checkpoint save and full clean physical run stay unchecked"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/README.md",
+      "sha256": "dc412d68520f13d5661a79a32e399b9bbb64ca62324c8b60a58e35e89df63ca0",
+      "phase": "Unchanged from V1; CP commands and run status still consistent"
+    }
+  ],
+  "closed_findings": [
+    {
+      "id": "CPDOC-1",
+      "line": 78,
+      "closure": "Current Fury login, then own clone recheck, conditional permission remediation and full clean repeated CP suite; physical acceptance unchecked."
+    },
+    {
+      "id": "CPDOC-2",
+      "line": 99,
+      "closure": "Current 3bea frontier has seven FULL prepared and three PARTIAL, with all physical joins still NOT_EXECUTED."
+    },
+    {
+      "id": "CPDOC-3",
+      "line": 116,
+      "closure": "Immediate CP-local login/recheck is separate from ecosystem, Spellbook and formal-review gates."
+    }
+  ],
+  "additional_precisions": [
+    {
+      "line": 103,
+      "confirmation": "Recovery closure is source/component peer review at CP3bea; physical recovery remains NOT_EXECUTED."
+    },
+    {
+      "line": 105,
+      "confirmation": "CP CI family consumes only CP alias, ecosystem adds PM aliases, and current ci.sh still dispatches all four rather than certifying an isolated CP-only job."
+    }
+  ],
+  "task_checkmarks": {
+    "source_only_checked": 4,
+    "unchecked": 2,
+    "business_acceptance_unchecked": true,
+    "source_peer_receipt": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/review-v2.json",
+    "source_peer_sha256": "48483269a3ae0f8c1a62cf9b3739e85697d16005cd1ec9c1cd18ba5f27df5e38",
+    "source_peer_status": "PASS_CP_SCOPE_1_SOURCE_AND_NEUTRAL_CONTROLS_WITH_CI_P2_CLOSED",
+    "note": "This documentary peer inspected that exact receipt and did not repeat its controls or implementation review."
+  },
+  "open_findings": [],
+  "business": "NOT_EXECUTED",
+  "implementation_review": "OUT_OF_SCOPE",
+  "actions_performed": [
+    "Read-only stable document/task bytes and deltas",
+    "Inspected current source-only peer receipt",
+    "Private review receipts only"
+  ],
+  "no_sdk_api_docker_gradle_or_repository_edits": true
+}

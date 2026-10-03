@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-02T20:04:25.572823+00:00",
+  "scope": "READ_ONLY_STORED_AUTH_AFTER_OWNER_VPN_CONNECTED",
+  "result": "STORED_AUTH_VALID",
+  "network_calls": 0,
+  "credential_values_exposed": 0,
+  "login_or_renew": false,
+  "source_sha256": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9",
+  "business": "NOT_EXECUTED"
+}

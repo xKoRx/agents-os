@@ -1,0 +1,55 @@
+{
+  "scope": "CP_SCOPE_ROOT_WIRING_DOCS",
+  "operations": [
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/build.gradle",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-00-build.gradle.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-00-build.gradle.after",
+      "before_sha256": "1d43e859cd9a93e4ee11942f4199257c4f13ef5637cb0ea1bfe147d1fb781e92",
+      "after_sha256": "10bbed10e0811afe058cd4e7997e951cf260cc75c41f6f5b65b5758479e91fd5"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/run.sh",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-01-run.sh.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-01-run.sh.after",
+      "before_sha256": "f82e2096ac762cd8f1cd8e2d742e450f6860d699ced216ae44e3ed914c1910ef",
+      "after_sha256": "2332c2cc1371cf293120abd3ee6bc58b46773c5ed4692cb0bd54eac7693d1d04"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/managed.sh",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-02-managed.sh.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-02-managed.sh.after",
+      "before_sha256": "8481d558f9700a6bcc120b836f801752256050ec22f1312ea871b84a34bd683b",
+      "after_sha256": "1a58c8559e143afa84c99f2dce6809decf8ebf5853d83526fa9fb38430312af0"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/managed-launcher-contract.py",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-03-managed-launcher-contract.py.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-03-managed-launcher-contract.py.after",
+      "before_sha256": "59c92f35cf8ab3eb91d034fefdfe70086cd5d46d5dce77a3953491d2c8cb7ff1",
+      "after_sha256": "66aaa38645a3a1c2f2637529ae01a2962c8c85bcda870825aa9f251287f5c3de"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-04-ci.sh.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-04-ci.sh.after",
+      "before_sha256": "fe41df4bc35e63b82cfe64f0d7f278ab89d3388a08e770a94dd816427dfbc174",
+      "after_sha256": "d4b84b9b103c4694a1e5627cc4eaf297c8827dae38c38f222803bbae7c81b876"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/README.md",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-05-README.md.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-05-README.md.after",
+      "before_sha256": "e0a8a1887063ba0627f7a89d12cd44f4594958e5357589323cd4eafef553d98a",
+      "after_sha256": "e042262881893870ca75e7313aacb5198c63be5a02ba5cc975e271067b90e6f2"
+    },
+    {
+      "target": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-06-kafka-real-e2e.md.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-06-kafka-real-e2e.md.after",
+      "before_sha256": "7f74eaa78ad57412d59404a887dfb1c90e066c1bd4b495e64a8d4030d94ec622",
+      "after_sha256": "7e4a7139bef54b0c9afa0c967e1904624073ed6ea7fc20ff87d1e210cbd36b08"
+    }
+  ],
+  "business": "NOT_EXECUTED_BLOCKED_KVS_CLONE_403"
+}

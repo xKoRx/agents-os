@@ -1,0 +1,48 @@
+{
+  "utc": "2026-10-02T15:34:17.735181+00:00",
+  "scope": "CP_ONLY_SETUP_REVIEW_INPUT",
+  "paths": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/build.gradle",
+      "sha256": "10bbed10e0811afe058cd4e7997e951cf260cc75c41f6f5b65b5758479e91fd5"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/run.sh",
+      "sha256": "2332c2cc1371cf293120abd3ee6bc58b46773c5ed4692cb0bd54eac7693d1d04"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/managed.sh",
+      "sha256": "1a58c8559e143afa84c99f2dce6809decf8ebf5853d83526fa9fb38430312af0"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/managed-launcher-contract.py",
+      "sha256": "66aaa38645a3a1c2f2637529ae01a2962c8c85bcda870825aa9f251287f5c3de"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "sha256": "d4b84b9b103c4694a1e5627cc4eaf297c8827dae38c38f222803bbae7c81b876"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/README.md",
+      "sha256": "e042262881893870ca75e7313aacb5198c63be5a02ba5cc975e271067b90e6f2"
+    },
+    {
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+      "sha256": "7e4a7139bef54b0c9afa0c967e1904624073ed6ea7fc20ff87d1e210cbd36b08"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/sandbox.py",
+      "sha256": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/sandbox-contract.py",
+      "sha256": "cdeefbda55be982eabb9829471e2f83c91e1e9233b489ad9e4c728c77a49d31d"
+    }
+  ],
+  "physical_E2E": "NOT_EXECUTED",
+  "current_external_gate": "FURY_LOGIN_REQUIRED_THEN_RECHECK_OWN_CP_KVS_CLONE",
+  "prior_authenticated_clone": "HTTP403",
+  "root_compile": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/compile-cp.json",
+  "root_harness": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/harness-controls.json",
+  "root_scope_forwarding": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls/report.json"
+}

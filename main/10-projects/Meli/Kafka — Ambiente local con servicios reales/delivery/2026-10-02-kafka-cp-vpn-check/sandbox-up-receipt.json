@@ -1,0 +1,11 @@
+{
+  "started_utc": "2026-10-02T20:05:23.010795+00:00",
+  "finished_utc": "2026-10-02T20:05:29.179734+00:00",
+  "scope": "CP_ONLY_REAL_FURY_SANDBOX_UP",
+  "command_redacted": "sandbox.py up --scope cp --cp-service <CP-own-alias> --directory <own-private-directory>",
+  "exit_code": 1,
+  "state_present": true,
+  "env_present": false,
+  "private_directory": "/var/folders/tn/tq2n8znx1nq4rjpwmp53bp940000gp/T/kafka-cp-vpn-recheck-8bhgsf89/sandbox",
+  "business": "NOT_EXECUTED_YET"
+}

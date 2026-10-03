@@ -1,0 +1,20 @@
+{
+  "scope": "CP_ONLY_SOURCE_CHECKPOINT",
+  "parent": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+  "files": {
+    "build.gradle": "10bbed10e0811afe058cd4e7997e951cf260cc75c41f6f5b65b5758479e91fd5",
+    "e2e/README.md": "dc412d68520f13d5661a79a32e399b9bbb64ca62324c8b60a58e35e89df63ca0",
+    "e2e/ci.sh": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+    "e2e/managed.sh": "1a58c8559e143afa84c99f2dce6809decf8ebf5853d83526fa9fb38430312af0",
+    "e2e/run.sh": "2332c2cc1371cf293120abd3ee6bc58b46773c5ed4692cb0bd54eac7693d1d04",
+    "e2e/sandbox.py": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9",
+    "e2e/tests/harness-contract.py": "d3a2e24401055cc3b9d0d0d92638aaa9b92a7a3610af6e76144c83c29f3061e5",
+    "e2e/tests/managed-launcher-contract.py": "66aaa38645a3a1c2f2637529ae01a2962c8c85bcda870825aa9f251287f5c3de",
+    "e2e/tests/sandbox-contract.py": "cdeefbda55be982eabb9829471e2f83c91e1e9233b489ad9e4c728c77a49d31d",
+    "e2e/tests/ci-family-scope-contract.py": "2241b997fbd08b2666fe2542e8444940707ef954c597ad41df4f2cd26011b7fd",
+    "meli/features/20261001-real-e2e/1-functional/spec.md": "974f7028fcc481f3b54c3bfef4e4958528487caf754e682553e2582d108ff59d",
+    "meli/features/20261001-real-e2e/2-technical/spec.md": "c5dcee507860086152d8c080b11d7e2e710734be1970784628d4a4f621a57abc",
+    "meli/features/20261001-real-e2e/3-tasks/tasks.md": "5b59eb88d9cc281b883342fb40d80601d354dc79af90e2935e08ae11bfb1947e"
+  },
+  "business": "NOT_EXECUTED"
+}

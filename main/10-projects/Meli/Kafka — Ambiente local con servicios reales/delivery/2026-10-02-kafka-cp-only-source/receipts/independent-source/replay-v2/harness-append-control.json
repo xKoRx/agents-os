@@ -1,0 +1,16 @@
+{
+  "status": "PASS_ONLY_ONE_MANDATORY_APPEND",
+  "before_sha256": "eda05f7f142d92232523b86e2a2f10d53bc0113d02b8f6f7e9764451f127bf5a",
+  "after_sha256": "d3a2e24401055cc3b9d0d0d92638aaa9b92a7a3610af6e76144c83c29f3061e5",
+  "previous_mandatory_scripts_unchanged": [
+    "cleanup-contract.py",
+    "sandbox-contract.py",
+    "managed-launcher-contract.py",
+    "retention-contract.py",
+    "reconciliation-status-contract.py"
+  ],
+  "added_mandatory_script": "ci-family-scope-contract.py",
+  "AST_outside_literal_tuple_identical": true,
+  "actual_after_bytes_match": true,
+  "Gradle_runs": 0
+}

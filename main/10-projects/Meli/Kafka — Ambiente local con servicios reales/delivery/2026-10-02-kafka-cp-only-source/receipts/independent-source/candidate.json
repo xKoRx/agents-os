@@ -1,0 +1,10 @@
+{
+  "name": "candidate",
+  "command": [
+    "python3",
+    "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/tests/sandbox-contract.py"
+  ],
+  "exit_status": 0,
+  "log_sha256": "64dae1244ed0fb876274a5066823cf80a9cd073552151c5ca4d3c12decdaf268",
+  "scope": "API_METADATA_SIMULATOR_AND_PRIVATE_FS_ONLY_NO_BACKEND"
+}

@@ -1,0 +1,98 @@
+{
+  "scope": "INSTALLED_CLI_READ_ONLY_CONTRACT_LOOKUP_NO_NETWORK",
+  "reviewed_at_utc": "2026-10-02T20:11:35.308628+00:00",
+  "query": {
+    "method": "GET",
+    "resource": "application/rio-controlplane-kafka/kvs",
+    "installed_read_only_function": "cli_services.services_commands.services.kvs_service.list_KVS(application)",
+    "cli_equivalent": "fury services kvs list from CP application context",
+    "recommended_root_invocation": "Reuse the existing stored-auth-guarded caller for app rio-controlplane-kafka, suffix kvs, method GET, retry False; do not invoke login/renew/template generation here."
+  },
+  "safe_projection": [
+    "http_status",
+    "response_is_list",
+    "exact_requested_alias_match_count",
+    "matching_item.status",
+    "matching_item.metadata.container_type",
+    "matching_item.metadata.test_container"
+  ],
+  "never_output": [
+    "Full response",
+    "Headers/auth/session values",
+    "Unrelated service names",
+    "Configuration fields",
+    "KMS names or configuration"
+  ],
+  "classification": [
+    {
+      "observation": "GET200 and exact own alias visible",
+      "supported": "Alias exists in the caller-visible own KVS inventory, with source-declared status/container_type/test_container metadata",
+      "not_supported": "Sandbox clone eligibility or permission to clone"
+    },
+    {
+      "observation": "GET200 and exact own alias absent",
+      "supported": "Alias not visible in this own inventory result",
+      "not_supported": "Definitive global nonexistent alias; permission-filtered visibility has no installed server contract here"
+    },
+    {
+      "observation": "InventoryGET403",
+      "supported": "This read is denied",
+      "not_supported": "Alias existence or eligibility"
+    },
+    {
+      "observation": "ClonePOST403 after visible alias",
+      "supported": "Clone denied for this actor/alias/BC request",
+      "not_supported": "The installed CLI does not map403 distinctly to non-sandboxable vs permission denial"
+    }
+  ],
+  "sandbox_listing_gap": "cli_sandbox contains no source-declared own clonable-services inventory route or eligibility field. BC template GET application/{app}/bc/template exists, but installed code does not define it as eligible-alias inventory. Do not invent application/{app}/services/sandbox or a sandboxable flag.",
+  "error_contract": "SandboxApi preserves HTTP status and extracts message/error, possibly nested JSON text. No installed typed error-code taxonomy maps alias not found, non-sandboxable and permission denial. Capture only safe structured code if an actual documented field is returned; do not infer from substrings or emit raw exception bodies.",
+  "sources": [
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/services/kvs_service.py",
+      "sha256": "931aaca10f301e71dcca3f402598a90b6ca5268b926550c4045b6ba949093ae2",
+      "line_start": 19,
+      "line_end": 22
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/commands_logic/kvs_cmd_logic.py",
+      "sha256": "d14c1d26769c1af43195b4dd86c0e5a10cbb459ca275bd25939fbc820d6d98f2",
+      "line_start": 22,
+      "line_end": 30
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/commands/kvs.py",
+      "sha256": "7b65e8f163aa788951268bd7c757d009437a72cbd41a9a8e6060f1c30751f5ed",
+      "line_start": 36,
+      "line_end": 45
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/services/bc_service.py",
+      "sha256": "6d5652596c0278f6117a3238e79b368fd5924b2ce67b109b8dd4604483659509",
+      "line_start": 48,
+      "line_end": 53
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/rest/sandboxsapi.py",
+      "sha256": "4e53c6f2d7e6a13c04619dfe69782c363d4197f51db192af3b0a5e0c2fa34f5d",
+      "line_start": 15,
+      "line_end": 44
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/services/bc_service.py",
+      "sha256": "6d5652596c0278f6117a3238e79b368fd5924b2ce67b109b8dd4604483659509",
+      "line_start": 9,
+      "line_end": 13
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/configs/config.py",
+      "sha256": "1558674efe741093dd929302ff64402a8c829cc245034820f6c5ec6ec0d21e9d",
+      "line_start": 1,
+      "line_end": 1
+    }
+  ],
+  "current_remote_evidence": "Coordinator reports renewed auth/VPN: ownedBC200, clone403, delete200/get404, no instance and zero KVS writes; this reader did not call or recertify the API.",
+  "network_calls": 0,
+  "writes": "Private source-contract receipt only; no repository/service mutation",
+  "backend_business": "NOT_EXECUTED"
+}

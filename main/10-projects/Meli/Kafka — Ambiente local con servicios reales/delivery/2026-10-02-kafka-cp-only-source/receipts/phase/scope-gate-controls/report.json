@@ -1,0 +1,72 @@
+{
+  "utc": "2026-10-02T15:19:07.906781+00:00",
+  "scope": "ACTUAL_LAUNCHER_AND_GRADLE_SCOPE_FORWARDING_CONTROL_ONLY",
+  "records": [
+    {
+      "name": "cp-launcher",
+      "args": [
+        "bash",
+        "e2e/run.sh",
+        "realIntegrationTest"
+      ],
+      "exit_status": 43,
+      "expected_scope": "cp",
+      "captured_args": [
+        "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/sandbox.py",
+        "verify",
+        "--directory",
+        "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls",
+        "--scope",
+        "cp"
+      ],
+      "status": "PASS",
+      "log_sha256": "4c4c5896ab6a51bf0be5979a589195e58096b1a9fbf6eac090ae5a2e8ab4ee7a",
+      "business": "NOT_EXECUTED_NEUTRAL_VERIFIER_STOPS_BEFORE_FIXTURE"
+    },
+    {
+      "name": "cp-gradle",
+      "args": [
+        "./gradlew",
+        "--no-daemon",
+        "realIntegrationTestPreflight"
+      ],
+      "exit_status": 1,
+      "expected_scope": "cp",
+      "captured_args": [
+        "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/sandbox.py",
+        "verify",
+        "--directory",
+        "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls",
+        "--scope",
+        "cp"
+      ],
+      "status": "PASS",
+      "log_sha256": "495257ab4619d19ba0001fd5f1f0e521adee0b646585d67ecb09bdf37bbed6a5",
+      "business": "NOT_EXECUTED_NEUTRAL_VERIFIER_STOPS_BEFORE_FIXTURE"
+    },
+    {
+      "name": "ecosystem-gradle",
+      "args": [
+        "./gradlew",
+        "--no-daemon",
+        "e2eTestPreflight"
+      ],
+      "exit_status": 1,
+      "expected_scope": "ecosystem",
+      "captured_args": [
+        "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/sandbox.py",
+        "verify",
+        "--directory",
+        "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls",
+        "--scope",
+        "ecosystem"
+      ],
+      "status": "PASS",
+      "log_sha256": "536b2dc77b821deb0a34b060388183df2eff876a2104ff138ad5c39b98e600d4",
+      "business": "NOT_EXECUTED_NEUTRAL_VERIFIER_STOPS_BEFORE_FIXTURE"
+    }
+  ],
+  "result": "PASS",
+  "KVS_calls": 0,
+  "business": "NOT_EXECUTED"
+}

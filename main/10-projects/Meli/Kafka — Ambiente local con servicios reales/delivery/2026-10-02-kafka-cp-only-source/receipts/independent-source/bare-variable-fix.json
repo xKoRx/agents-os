@@ -1,0 +1,9 @@
+{
+  "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+  "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-2-ci-bare-variable.before",
+  "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-2-ci-bare-variable.after",
+  "before_sha256": "5c0ac3072ded34dde0f0d27c8eb05769baf8d31a38d41bb1bed8eb29f1842046",
+  "after_sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+  "scope": "PRIVATE_METADATA_CI_BARE_DECLARATION_REGRESSION",
+  "business": "NOT_EXECUTED"
+}

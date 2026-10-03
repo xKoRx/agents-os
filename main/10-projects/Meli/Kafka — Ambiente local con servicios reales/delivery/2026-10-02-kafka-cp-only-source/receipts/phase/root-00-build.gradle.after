@@ -1,0 +1,421 @@
+plugins {
+    id 'org.springframework.boot' version '4.1.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'jacoco'
+    id 'com.mercadolibre.gradle.plugins.toolkits' version '0.0.1'
+}
+
+group = 'com.mercadolibre'
+version = '1.1.0'
+
+/** Rio cloud-provider routing — align with fury_rio-core-java releases. */
+ext.rioCloudRoutingVersion = '202609.22.2'
+/** GCP Managed Kafka OAuth auth — rio-core-java-gcp-kafka-auth-spring4. */
+ext.rioGcpKafkaAuthVersion = '202609.22.2'
+
+repositories {
+    maven {
+        name 'JavaAll'
+        url 'https://maven.artifacts.furycloud.io/repository/all'
+
+        def globalUsername = project.findProperty("JavaAllUsername")
+        def globalPassword = project.findProperty("JavaAllPassword")
+
+        if (globalUsername && globalPassword) {
+            credentials(PasswordCredentials) {
+                username = globalUsername
+                password = globalPassword
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}
+
+bootJar {
+  archiveFileName = 'application.jar'
+}
+
+// Application Security: enforce patched versions over BOM / transitive pulls (kafka-clients 3.9.1, mqclient 3.4.7)
+configurations.configureEach {
+  resolutionStrategy.force(
+      'org.apache.kafka:kafka-clients:3.9.2',
+      'com.mercadolibre:mqclient:3.4.9',
+      'com.github.luben:zstd-jni:1.5.7-14')
+}
+
+dependencies {
+  // io.spring.dependency-management forces any explicit version below, overriding higher
+  // versions Toolkit BOM 4 requests transitively (e.g. via java-toolkit-kvs/scp/telemetry). A
+  // sibling controlplane's Boot 4 migration hit a runtime NoClassDefFoundError from exactly this
+  // — the old otel pin here silently downgraded opentelemetry-semconv below what the real
+  // KvsClient needs, invisible to tests because they never exercise the real (non-NoOp) client.
+  // Kept pinned (not removed) so a future BOM bump can't silently downgrade these again without
+  // a visible version bump here; bumped to match what Toolkit BOM 4's dependency graph requests.
+  implementation("org.apache.commons:commons-lang3:3.20.0")
+  // Internal application dependencies
+  implementation platform('com.mercadolibre.library:java-melitk-bom:4.0.7')
+  implementation('com.mercadolibre.library:java-melitk-config')
+  implementation('com.mercadolibre.boot.secret:spring-boot-starter-secrets:3.0.2')
+  implementation('com.mercadolibre:threading')
+
+  // External application dependencies
+  implementation('org.springframework.boot:spring-boot-starter-webmvc') {
+    exclude module: 'spring-boot-starter-tomcat'
+  }
+  implementation('org.springframework.boot:spring-boot-starter-jetty') {
+    exclude group: 'org.eclipse.jetty.websocket', module: 'javax-websocket-server-impl'
+  }
+  implementation('org.springframework.boot:spring-boot-starter-validation')
+  implementation('org.springframework.boot:spring-boot-starter-cache')
+  implementation('com.github.ben-manes.caffeine:caffeine:3.2.0')
+  implementation('tools.jackson.module:jackson-module-blackbird')
+  runtimeOnly "javax.xml.bind:jaxb-api:2.3.1"
+  implementation('org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.3')
+  implementation('jakarta.xml.bind:jakarta.xml.bind-api:4.0.5')
+  implementation('org.glassfish.jaxb:jaxb-runtime')
+  implementation('commons-io:commons-io:2.22.0')
+  implementation('io.opentelemetry:opentelemetry-api:1.64.0')
+  implementation('io.opentelemetry.semconv:opentelemetry-semconv:1.34.0')
+  
+  // MeliRestClient dependencies
+  implementation('com.mercadolibre.restclient:meli-restclient-default')
+  
+  // Optional dependencies
+  compileOnly('org.projectlombok:lombok')
+  annotationProcessor('org.projectlombok:lombok')
+  
+  // KVS and MQ clients
+  implementation('com.fury.toolkit:java-toolkit-kvs') {
+    exclude group: 'com.google.guava', module: 'guava'
+  }
+  // mqclient — version pinned via resolutionStrategy.force() above (3.4.9, memory leak fix);
+  // forced there instead of declared here so it can't be silently downgraded by the BOM.
+  implementation('com.mercadolibre:mqclient') {
+    exclude group: 'commons-io', module: 'commons-io'
+  }
+
+  // CVE fix: upgrade above Spring Boot BOM 3.9.1 (message corruption / misrouting)
+  implementation('org.apache.kafka:kafka-clients:3.9.2')
+
+  // RIO Cloud Routing — Spring Boot 3 auto-config + ClusterRoutingEngine (transitive cloud-routing)
+  implementation("com.mercadolibre.library:rio-core-java-cloud-routing-spring4:${rioCloudRoutingVersion}")
+
+  // GCP Managed Kafka OAuth — Fury Secrets, AdminClient factory, GOOG_OAUTH2_TOKEN (replaces in-repo auth)
+  implementation("com.mercadolibre.library:rio-core-java-gcp-kafka-auth-spring4:${rioGcpKafkaAuthVersion}")
+
+  // BigQueue util DTOs — consumer envelope
+  implementation('com.mercadolibre.library:bigqueue-util-dtos:0.0.1')
+
+  // RIO SDK Events — typed control-plane event publishing via BigQueue.
+  // 1.3.0 adds @ConstructorBinding to BigQueueProperties: without it Spring Boot 3 binds an empty
+  // topics list, so the producer factory throws "Topic not found" at publish time.
+  // 1.3.1 adds componentName/dataProductName/environmentName to the trigger messages; the deployment
+  // processor uses environmentName to resolve the topic-name prefix (staging/production).
+  implementation('com.mercadolibre.library:rio-sdk-events:1.3.1')
+
+  // Test dependencies for all projects
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('uk.org.webcompere:system-stubs-jupiter:2.1.0')
+  testImplementation('com.mercadolibre.restclient:restclient-core')
+  testImplementation('com.mercadolibre.restclient:restclient-core:3.0.1:tests')
+  testImplementation('org.testcontainers:testcontainers')
+  testImplementation('org.testcontainers:testcontainers-junit-jupiter')
+  testImplementation('io.opentelemetry:opentelemetry-sdk-testing:1.64.0')
+  testImplementation('org.awaitility:awaitility:4.2.2')
+
+  testImplementation "org.springframework.boot:spring-boot-resttestclient:4.1.1"
+  // spring-boot-resttestclient's TestRestTemplate needs RestTemplateBuilder, which Boot 4 split
+  // out of spring-boot-autoconfigure into its own module — not pulled in transitively.
+  testImplementation('org.springframework.boot:spring-boot-restclient')
+    // Testcontainers Kafka module — version managed by Spring Boot BOM
+  testImplementation('org.testcontainers:testcontainers-kafka')
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+  useJUnitPlatform()
+
+  // Always run tests, even when nothing changed.
+  dependsOn 'cleanTest'
+
+  // Show test results.
+  testLogging {
+    events "passed", "skipped", "failed"
+  }
+}
+
+jacoco {
+  toolVersion = "0.8.15"
+}
+
+jacocoTestReport {
+  reports {
+    xml.required = true
+    html.required = false
+  }
+}
+
+// Plain sourceCompatibility/targetCompatibility instead of an explicit toolchain block: a
+// toolchain requires Gradle to find (or auto-download) an EXACT JDK installation, which fails in
+// Fury's CI bootstrap image (yaci-utils) — no matching JDK, no download repository configured, and
+// the network denylist blocks public toolchain-provisioning hosts anyway. Plain compatibility flags
+// only require the JVM already running Gradle to be new enough for this bytecode level — no
+// toolchain lookup/download at all. Confirmed VERSION_25 fails in that CI with "invalid source
+// release: 25" (ambient JDK there is capped below 25); VERSION_21 matches rio-controlplane-clickhouse
+// (same distroless-java-dev:25-mini deployment image), which builds green in this same CI today.
+// This is a compile-time constraint only — the deployed runtime is still the JDK 25 image.
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+test {
+    jvmArgs(["--enable-native-access=ALL-UNNAMED", "--add-opens", "java.base/java.lang=ALL-UNNAMED"])
+}
+
+// Real-service suites are opt-in tasks: missing required services fail before tests, never skip.
+sourceSets {
+    realIntegrationTest {
+        java.setSrcDirs(['src/realIntegrationTest/java'])
+        resources.setSrcDirs(['src/realIntegrationTest/resources'])
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    e2eTest {
+        java.setSrcDirs(['src/e2eTest/java'])
+        resources.setSrcDirs(['src/e2eTest/resources'])
+        compileClasspath += sourceSets.main.output + sourceSets.realIntegrationTest.output
+        runtimeClasspath += sourceSets.main.output + sourceSets.realIntegrationTest.output
+    }
+    managedIntegrationTest {
+        java.setSrcDirs(['src/managedIntegrationTest/java'])
+        resources.setSrcDirs(['src/managedIntegrationTest/resources'])
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+// Required by the full Application journey, in addition to its independent provider probes.
+def managedJourneyVariables = [
+    'E2E_MANAGED_SCOPE', 'E2E_MANAGED_RUN_ID', 'E2E_MANAGED_APPLICATION',
+    'E2E_MANAGED_GCP_BOOTSTRAP_SERVERS', 'E2E_MANAGED_GCP_CLUSTER_ID',
+    'E2E_MANAGED_GCP_SECRET_NAME', 'E2E_MANAGED_GCP_SECRET_SEGMENT',
+    'E2E_MANAGED_BIGQUEUE_SEGMENT_ID', 'E2E_MANAGED_CLOUD_PROVIDER_PROFILE_NAME',
+    'E2E_MANAGED_CLOUD_PROVIDER_CONFIG_LOCATION',
+    'E2E_MANAGED_DEPLOYMENT_RESULT_TOPIC', 'E2E_MANAGED_DEPLOYMENT_RESULT_TOPIC_NAME',
+    'E2E_MANAGED_DEPLOYMENT_RESULT_CONSUMER', 'E2E_MANAGED_ACTION_RESULT_TOPIC',
+    'E2E_MANAGED_ACTION_RESULT_TOPIC_NAME', 'E2E_MANAGED_ACTION_RESULT_CONSUMER',
+    'E2E_KVS_CONTAINER_NAME', 'E2E_KVS_SEGMENT_ID', 'E2E_RUN_ID',
+    'E2E_KVS_EXCLUSIVE_RUN_ID', 'E2E_KVS_SANDBOX_PROVENANCE', 'E2E_FURY_PYTHON',
+    'E2E_SANDBOX_BC', 'E2E_SANDBOX_INSTANCE', 'ARTIFACT_DELIVERY_FILE_PREFIX', 'SCOPE', 'SCOPE_SUFFIX', 'E2E_RECONCILIATION_DIR'
+]
+
+def verifyOwnedSandbox = { String suiteName ->
+    def provenance = file(System.getenv('E2E_KVS_SANDBOX_PROVENANCE'))
+    def expectedScope = suiteName == 'realIntegrationTest' ? 'cp' : 'ecosystem'
+    def ownershipVerification = providers.exec {
+        ignoreExitValue = true
+        commandLine System.getenv('E2E_FURY_PYTHON'), file('e2e/sandbox.py').absolutePath,
+            'verify', '--directory', provenance.parentFile.absolutePath, '--scope', expectedScope
+    }
+    def ownershipExit = ownershipVerification.result.get().exitValue
+    if (ownershipExit != 0) {
+        def stableCode = ownershipVerification.standardError.asText.get().readLines().find {
+            it ==~ /SANDBOX_GATE_FAILED:[A-Za-z0-9_:]+/
+        } ?: "SANDBOX_VERIFIER_EXIT_${ownershipExit}"
+        throw new GradleException("${suiteName} BLOCKED: ${stableCode}")
+    }
+}
+
+['realIntegrationTest', 'e2eTest', 'managedIntegrationTest'].each { suiteName ->
+    configurations.named("${suiteName}Implementation") {
+        extendsFrom configurations.testImplementation
+    }
+    configurations.named("${suiteName}RuntimeOnly") {
+        extendsFrom configurations.testRuntimeOnly
+    }
+    tasks.register("${suiteName}Preflight") {
+        dependsOn tasks.named("${suiteName}Classes")
+        doLast {
+            def requiredVariables = suiteName == 'managedIntegrationTest'
+                ? ['E2E_MANAGED_SCOPE', 'E2E_MANAGED_RUN_ID', 'E2E_MANAGED_GCP_BOOTSTRAP_SERVERS',
+                   'E2E_MANAGED_GCP_SECRET_NAME', 'E2E_MANAGED_GCP_SECRET_SEGMENT',
+                   'E2E_MANAGED_APPLICATION', 'E2E_MANAGED_BIGQUEUE_PROBE_TOPIC',
+                   'E2E_MANAGED_BIGQUEUE_PROBE_CONSUMER', 'E2E_MANAGED_BIGQUEUE_SEGMENT_ID', 'E2E_FURY_PYTHON']
+                : ['E2E_BOOTSTRAP_SERVERS', 'E2E_KVS_CONTAINER_NAME', 'E2E_RUN_ID',
+                   'E2E_DEPLOYMENT_RESULT_TOPIC', 'E2E_ACTION_RESULT_TOPIC', 'E2E_KVS_EXCLUSIVE_RUN_ID',
+                   'E2E_KVS_SANDBOX_PROVENANCE', 'E2E_FURY_PYTHON', 'E2E_RECONCILIATION_DIR',
+                   'E2E_KVS_OBSERVATION_DIR', 'E2E_PROCESS_EXIT_DIR', 'E2E_CP_SOURCE_COMMIT', 'E2E_CP_SOURCE_MANIFEST_SHA256']
+            if (suiteName == 'managedIntegrationTest') {
+                requiredVariables += managedJourneyVariables
+            }
+            if (suiteName == 'e2eTest') {
+                requiredVariables += ['E2E_PLAYMAKER_BASE_URL', 'E2E_CP_BASE_URL', 'E2E_MYSQL_CONTAINER',
+                   'E2E_PLAYMAKER_TIGER_TOKEN', 'E2E_OWNER_TEAM', 'E2E_OWNER_PROJECT', 'E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER',
+                   'E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER', 'E2E_PLAYMAKER_ARTIFACT_RECEIPT_FILE',
+                   'E2E_PLAYMAKER_CONTROL_DIR', 'E2E_PLAYMAKER_OWNER_CLASSES', 'E2E_PLAYMAKER_SOURCE_COMMIT',
+                   'E2E_PLAYMAKER_SOURCE_MANIFEST_SHA256', 'E2E_ENTITY_SERVICE_BASE_URL',
+                   'E2E_ENTITY_SERVICE_RECEIPT_FILE', 'E2E_PLAYMAKER_DENIED_IDENTITY_FILE']
+            }
+            def missingVariables = requiredVariables.unique().findAll { !System.getenv(it)?.trim() }
+            if (!missingVariables.isEmpty()) {
+                throw new GradleException("${suiteName} BLOCKED: missing required real-service configuration: "
+                    + missingVariables.join(', '))
+            }
+            verifyOwnedSandbox(suiteName)
+            if (sourceSets[suiteName].output.classesDirs.files.every { !it.exists() || fileTree(it).matching { include '**/*.class' }.isEmpty() }) {
+                throw new GradleException("${suiteName} BLOCKED: no compiled scenarios; an empty suite cannot certify E2E")
+            }
+        }
+    }
+    tasks.register(suiteName, Test) {
+        dependsOn tasks.named("${suiteName}Preflight")
+        description = "Runs ${suiteName} against explicitly configured real services; no infrastructure skips."
+        group = 'verification'
+        testClassesDirs = sourceSets[suiteName].output.classesDirs
+        classpath = sourceSets[suiteName].runtimeClasspath
+        useJUnitPlatform()
+        maxParallelForks = 1
+        systemProperty 'e2e.harness.root', projectDir.absolutePath
+        if (suiteName == 'e2eTest') { systemProperty 'e2e.playmaker.contract.mode', 'candidate' }
+        if (suiteName == 'realIntegrationTest') {
+            dependsOn tasks.named('bootJar')
+            systemProperty 'e2e.cp.jar', tasks.named('bootJar').get().archiveFile.get().asFile.absolutePath
+            systemProperty 'e2e.real.classpath', sourceSets.realIntegrationTest.runtimeClasspath.asPath
+        }
+        outputs.upToDateWhen { false }
+        jvmArgs('--enable-native-access=ALL-UNNAMED', '--add-opens', 'java.base/java.lang=ALL-UNNAMED')
+        testLogging {
+            events 'passed', 'failed'
+            exceptionFormat 'short'
+        }
+        reports {
+            junitXml.required = true
+            html.required = true
+        }
+
+    }
+}
+
+// The full gate includes every family. A managed-service blocker must remain a failed gate.
+tasks.register('completeE2e') {
+    description = 'Runs functional local, Playmaker, and real managed-provider/transport suites.'
+    group = 'verification'
+    dependsOn 'realIntegrationTest', 'e2eCanonicalPlaymakerTest', 'e2eCandidatePlaymakerTest', 'managedIntegrationTest'
+}
+
+// These component gates expose partial provider evidence without certifying the full managed journey.
+[
+    managedGcpOAuthTest: [classPattern: '*ManagedGcpOAuthIntegrationTest', variables: [
+        'E2E_MANAGED_SCOPE', 'E2E_MANAGED_GCP_BOOTSTRAP_SERVERS',
+        'E2E_MANAGED_GCP_SECRET_NAME', 'E2E_MANAGED_GCP_SECRET_SEGMENT']],
+    managedControlplaneJourneyTest: [classPattern: '*ManagedControlplaneJourneyIntegrationTest',
+        variables: managedJourneyVariables],
+    managedBigQueueTest: [classPattern: '*ManagedBigQueueTransportProbeTest', variables: [
+        'E2E_MANAGED_SCOPE', 'E2E_MANAGED_RUN_ID', 'E2E_MANAGED_APPLICATION',
+        'E2E_MANAGED_BIGQUEUE_PROBE_TOPIC', 'E2E_MANAGED_BIGQUEUE_PROBE_CONSUMER',
+        'E2E_MANAGED_BIGQUEUE_SEGMENT_ID', 'E2E_FURY_PYTHON']]
+].each { taskName, component ->
+    tasks.register("${taskName}Preflight") {
+        dependsOn tasks.named('managedIntegrationTestClasses')
+        doLast {
+            def missing = component.variables.findAll { !System.getenv(it)?.trim() }
+            if (!missing.isEmpty()) {
+                throw new GradleException("${taskName} BLOCKED: missing real provider configuration: " + missing.join(', '))
+            }
+            if (taskName == 'managedControlplaneJourneyTest') {
+                verifyOwnedSandbox(taskName)
+            }
+            def scope = System.getenv('E2E_MANAGED_SCOPE')
+            if (!(scope =~ /test|nonprod/).find() || (scope =~ /(^|[-_])(prod|production|stage|staging|stg)([-_]|$)/).find()) {
+                throw new GradleException('MANAGED_EXPLICIT_NONPROD_SCOPE_REQUIRED')
+            }
+        }
+    }
+    tasks.register(taskName, Test) {
+        dependsOn tasks.named("${taskName}Preflight")
+        group = 'verification'
+        description = 'Runs an explicit managed provider component; does not certify the complete journey.'
+        testClassesDirs = sourceSets.managedIntegrationTest.output.classesDirs
+        classpath = sourceSets.managedIntegrationTest.runtimeClasspath
+        useJUnitPlatform()
+        filter { includeTestsMatching component.classPattern }
+        maxParallelForks = 1
+        outputs.upToDateWhen { false }
+        jvmArgs('--enable-native-access=ALL-UNNAMED', '--add-opens', 'java.base/java.lang=ALL-UNNAMED')
+        testLogging { events 'passed', 'failed'; exceptionFormat 'short' }
+        reports { junitXml.required = true; html.required = true }
+    }
+}
+
+// Partial configuration evidence only: real YAML/Binder, with no Application clients or business run.
+tasks.register('profileConfigDataTest', Test) {
+    dependsOn tasks.named('realIntegrationTestClasses'), tasks.named('validateRealE2eHarness')
+    group = 'verification'
+    description = 'Loads actual profile ConfigData only; does not certify startup, providers or E2E.'
+    testClassesDirs = sourceSets.realIntegrationTest.output.classesDirs
+    classpath = sourceSets.realIntegrationTest.runtimeClasspath
+    useJUnitPlatform()
+    filter { includeTestsMatching '*RealProfileConfigDataIntegrationTest' }
+    maxParallelForks = 1
+    outputs.upToDateWhen { false }
+    jvmArgs('--enable-native-access=ALL-UNNAMED', '--add-opens', 'java.base/java.lang=ALL-UNNAMED')
+    testLogging { events 'passed', 'failed'; exceptionFormat 'short' }
+    reports { junitXml.required = true; html.required = true }
+}
+
+// Launcher command failures must never certify teardown; this is a control-flow regression only.
+tasks.register('validateRealE2eHarness', Exec) {
+    group = 'verification'
+    description = 'Verifies actual launcher cleanup control flow; does not certify business E2E.'
+    workingDir projectDir
+    commandLine 'python3', 'e2e/tests/harness-contract.py'
+}
+['realIntegrationTest', 'e2eTest', 'managedIntegrationTest', 'managedGcpOAuthTest', 'managedBigQueueTest', 'managedControlplaneJourneyTest'].each { taskName ->
+    tasks.named(taskName) { dependsOn tasks.named('validateRealE2eHarness') }
+}
+
+// Two independently pinned policy families; artifact/source mode is verified before test JVM startup.
+[canonical: 'e2eCanonicalPlaymakerTest', candidate: 'e2eCandidatePlaymakerTest'].each { mode, taskName ->
+    tasks.register("${taskName}Preflight") {
+        dependsOn tasks.named('e2eTestPreflight')
+        doLast {
+            def declaredMode = System.getenv('E2E_PLAYMAKER_CONTRACT_MODE')
+            def repo = System.getenv('E2E_PLAYMAKER_REPO')
+            if (declaredMode != mode || !repo?.trim()) {
+                throw new GradleException("${taskName} BLOCKED: exact policy mode/repository required")
+            }
+            def verification = providers.exec {
+                ignoreExitValue = true
+                commandLine 'python3', file('e2e/playmaker-artifact.py').absolutePath, 'verify',
+                    '--repo', repo, '--mode', mode, '--run', System.getenv('E2E_RUN_ID'),
+                    '--output', System.getenv('E2E_PLAYMAKER_ARTIFACT_RECEIPT_FILE')
+            }
+            if (verification.result.get().exitValue != 0) {
+                throw new GradleException("${taskName} BLOCKED: source/JAR receipt unverified")
+            }
+        }
+    }
+    tasks.register(taskName, Test) {
+        group = 'verification'
+        description = "Runs the full real Playmaker family with ${mode} source-pinned policy."
+        dependsOn tasks.named("${taskName}Preflight"), tasks.named('validateRealE2eHarness')
+        testClassesDirs = sourceSets.e2eTest.output.classesDirs
+        classpath = sourceSets.e2eTest.runtimeClasspath
+        useJUnitPlatform()
+        maxParallelForks = 1
+        outputs.upToDateWhen { false }
+        systemProperty 'e2e.harness.root', projectDir.absolutePath
+        systemProperty 'e2e.playmaker.contract.mode', mode
+        jvmArgs('--enable-native-access=ALL-UNNAMED', '--add-opens', 'java.base/java.lang=ALL-UNNAMED')
+        testLogging { events 'passed', 'failed'; exceptionFormat 'short' }
+        reports { junitXml.required = true; html.required = true }
+    }
+}
+
+// Actual native JUnit workers are registered independently from productive KVS contexts.
+apply from: 'e2e/gradle-worker-exit.gradle'

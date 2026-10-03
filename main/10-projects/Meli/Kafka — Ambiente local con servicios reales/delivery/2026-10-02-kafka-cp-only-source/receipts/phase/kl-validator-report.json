@@ -1,0 +1,51 @@
+{
+  "utc": "2026-10-02T15:29:47.757161+00:00",
+  "scope": "ONE_KL_RUNBOOK_SCOPE_CLARIFICATION",
+  "records": [
+    {
+      "name": "structural",
+      "command": [
+        "ruby",
+        "scripts/validate_library.rb"
+      ],
+      "exit_status": 0,
+      "log_sha256": "8207aba1b925aa5c7401f5e8851d2eaede366296bf7b9fe6e1f0da63ffe3708a",
+      "bytes": 210
+    },
+    {
+      "name": "historical",
+      "command": [
+        "ruby",
+        "scripts/test_historical_snapshot_anchor_validation.rb"
+      ],
+      "exit_status": 0,
+      "log_sha256": "917b9a78e7d9bcc16f4e166af6ba8b8a99e5b10b98460e0aff03505b0642d4c3",
+      "bytes": 48
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_status": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "name": "formal",
+      "command": [
+        "ruby",
+        "scripts/validate_library.rb",
+        "--formal",
+        "--sources-root",
+        "/Users/rjara/fuentes"
+      ],
+      "exit_status": 1,
+      "log_sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5",
+      "bytes": 148594
+    }
+  ],
+  "business": "NOT_EXECUTED"
+}

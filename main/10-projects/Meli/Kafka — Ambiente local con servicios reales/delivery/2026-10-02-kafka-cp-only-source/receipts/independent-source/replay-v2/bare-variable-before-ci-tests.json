@@ -1,0 +1,16 @@
+{
+  "case": "bare-variable-before",
+  "source": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/before/bare-variable-before.sh",
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "records": [
+    {
+      "test": "test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 252, in test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure\n    self.assertNotIn('command not found', self.result.stderr)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'command not found' unexpectedly found in '/bin/bash: line 160: kvs_run: command not found\\n'\n"
+    }
+  ],
+  "scope": "NATIVE_SHELL_PRIVATE_FS_METADATA_ONLY",
+  "remote_API_Docker_Gradle_business_calls": 0
+}

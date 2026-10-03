@@ -1,0 +1,59 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/rjara/.gradle/wrapper/dists/gradle-9.3.1-bin/7068vznlr5nj2qb9pjbtt2233/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :validateRealE2eHarness
+CLEANUP_CONTROL_FLOW_PASS:none
+CLEANUP_CONTROL_FLOW_PASS:container-query
+CLEANUP_CONTROL_FLOW_PASS:network-query
+CLEANUP_CONTROL_FLOW_PASS:volume-query
+CLEANUP_CONTROL_FLOW_PASS:leftover
+.........................
+----------------------------------------------------------------------
+Ran 25 tests in 0.041s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 1.686s
+
+OK
+RETENTION_CONTROL_FLOW_PASS:cp:retained
+RETENTION_CONTROL_FLOW_PASS:cp:missing
+RETENTION_CONTROL_FLOW_PASS:cp:public-mode
+RETENTION_CONTROL_FLOW_PASS:cp:symlink
+RETENTION_CONTROL_FLOW_PASS:playmaker:retained
+RETENTION_CONTROL_FLOW_PASS:playmaker:missing
+RETENTION_CONTROL_FLOW_PASS:playmaker:public-mode
+RETENTION_CONTROL_FLOW_PASS:playmaker:symlink
+RETENTION_CONTROL_FLOW_PASS:ci:retained
+RETENTION_CONTROL_FLOW_PASS:ci:missing
+RETENTION_CONTROL_FLOW_PASS:ci:public-mode
+RETENTION_CONTROL_FLOW_PASS:ci:symlink
+RETENTION_CONTROL_FLOW_PASS:managed:retained
+RETENTION_CONTROL_FLOW_PASS:managed:missing
+RETENTION_CONTROL_FLOW_PASS:managed:public-mode
+RETENTION_CONTROL_FLOW_PASS:managed:symlink
+RECONCILIATION_INSPECTION_PASS:empty-owned
+RECONCILIATION_INSPECTION_PASS:retained
+RECONCILIATION_INSPECTION_PASS:missing
+RECONCILIATION_INSPECTION_PASS:public-mode
+RECONCILIATION_INSPECTION_PASS:symlink
+RECONCILIATION_INSPECTION_PASS:file
+RECONCILIATION_INSPECTION_PASS:relative
+
+[Incubating] Problems report is available at: file:///Users/rjara/fuentes/rio-controlplane-kafka-e2e/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 8s
+1 actionable task: 1 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.3.1/userguide/configuration_cache_enabling.html

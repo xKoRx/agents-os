@@ -1,0 +1,9 @@
+{
+  "status": "PASS_BYTE_EXACT_WHITELISTED_DELTA",
+  "declarations_changed": 8,
+  "explanatory_comments_added": 2,
+  "helper_finisher_and_UNKNOWN_cleanup_bytes_unchanged": true,
+  "scoped_before_sha256": "d4b84b9b103c4694a1e5627cc4eaf297c8827dae38c38f222803bbae7c81b876",
+  "fixed_after_sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+  "bare_assignment_fix_only": true
+}

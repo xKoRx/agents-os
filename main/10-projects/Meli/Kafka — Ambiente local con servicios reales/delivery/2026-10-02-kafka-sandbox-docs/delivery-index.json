@@ -1,0 +1,17 @@
+{
+  "status": "BLOCKED_CP_KVS_CLONE403",
+  "source_heads": {
+    "cp": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+    "knowledge": "5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530"
+  },
+  "worktrees_clean": true,
+  "beta_status": "NOT_ESTABLISHED",
+  "full_cp_e2e": "NOT_EXECUTED",
+  "kvs_business_writes": 0,
+  "network_mutations_during_lookup": 0,
+  "next_step": "Confirm effective Commiter-or-higher role, own alias Sandbox eligibility and backend rejection reason; then repeat CP-only provisioning and run the mandatory full CP suite.",
+  "previous_runtime_packet": "../2026-10-02-kafka-cp-vpn-check",
+  "token_usage": "UNKNOWN",
+  "cost": "UNKNOWN",
+  "session": "ACTIVE_PARTIAL"
+}

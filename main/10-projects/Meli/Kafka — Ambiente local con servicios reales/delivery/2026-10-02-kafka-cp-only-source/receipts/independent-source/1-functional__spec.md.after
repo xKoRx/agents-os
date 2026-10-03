@@ -1,0 +1,82 @@
+# Spec Funcional: verificación completa de Kafka CP con servicios reales
+
+**Estado:** ejecución autorizada por el owner; registro en SIG pendiente de sesión Spellbook.
+**Fecha:** 2026-10-01
+**Owner:** Rodrigo Jara
+**Feature:** kafka-real-e2e
+
+## Problema
+
+El ambiente local permite arrancar y leer mensajes, pero utiliza KVS no-op y resultados a archivos. Los tests existentes sustituyen parte del negocio o del transporte y no demuestran que una solicitud atraviese el CP, cambie Kafka, publique el resultado y termine en Playmaker. Una aceptación HTTP asíncrona tampoco prueba el resultado físico.
+
+## Historias de usuario
+
+- US-1: Como responsable técnico de RIO, quiero reproducir toda capacidad del CP contra servicios reales para detectar regresiones de contratos, efectos físicos e idempotencia.
+- US-2: Como desarrollador, quiero iniciar, probar y limpiar recursos propios de manera repetible y obtener evidencia correlacionada de cada éxito y falla.
+- US-3: Como usuario de la biblioteca Signals, quiero distinguir comportamiento canónico, cambios pendientes y alcance realmente certificado.
+
+## Requisitos funcionales
+
+| ID | Requisito | Prioridad |
+|---|---|---|
+| RF-1 | Inventariar toda entrada, DTO, validación, routing, proveedor, operación, default, límite, estado, salida y error del CP en una matriz versionada con código/SHA y escenarios OK/falla. | Debe |
+| RF-2 | Ejecutar PROVISION, UPDATE y DEPROVISION AWS/GCP contra Kafka real cubriendo todo RF admitido, defaults, reconcile, campos omitidos, parámetros inválidos, topic ausente y fallas reales. | Debe |
+| RF-3 | Ejecutar PEEK REST y acción con mensajes, keys, offsets y particiones reales, todas las opciones soportadas y errores, sin cambiar offsets comprometidos ajenos. | Debe |
+| RF-4 | Usar KVS Fury Sandbox dedicado con el Toolkit productivo y verificar create exclusivo, versión inicial del servidor, CAS, incremento, TTL, duplicación, ownership, takeover y ventanas de publicación/reinicio. | Debe |
+| RF-5 | Verificar envelopes, allowlists, correlación, límites de resultados, estados y recuperación implementada con transporte observable real y CP real. | Debe |
+| RF-6 | Verificar solicitud Playmaker → trigger → CP → Kafka → resultado → estado final de Playmaker con MySQL real y DTO de las versiones efectivamente resueltas. | Debe |
+| RF-7 | Separar E2E funcional local de integración administrada OAuth GCP/BigQueue; sólo los servicios no productivos reales acreditan estas últimas fronteras. | Debe |
+| RF-8 | Automatizar inicio, suites, fallas controladas y teardown, con IDs por corrida, deadlines, evidencia redacted, reportes JUnit y runner CI con Docker/red corporativa. | Debe |
+| RF-9 | Corregir brechas documentales verificadas en ads-signals-knowledge-library contra master canónico, distinguiendo explícitamente cambios de trabajo pendientes. | Debe |
+| RF-10 | Una dependencia obligatoria ausente falla claramente; ninguna suite real usa skips, KVS no-op, memoria, archivos como transporte de resultados, efectos sintéticos o mocks de negocio. | Debe |
+
+## Criterios de aceptación
+
+- CA-1: Cada fila de la matriz tiene escenario, efecto físico, evento/estado, limpieza, evidencia y veredicto PASS/FAIL/BLOCKED/NOT_EXECUTED, sin declarar completitud por una familia parcial.
+- CA-2: Las operaciones exitosas demuestran topic/config/particiones/replicación o mensajes mediante clientes Kafka, resultado correlacionado y estado KVS; las fallas demuestran el efecto y código vigentes o una regresión del defecto.
+- CA-3: Dos workers y reinicios conservan la semántica comprobada de KVS. Se registran explícitamente degradación y ventanas de pérdida o repetición; no se promete exactly-once.
+- CA-4: El flujo Playmaker termina en el estado real persistido, incluido el resultado fallido, y se verifica compatibilidad serializada de DTO de ambos runtimes.
+- CA-5: Inicio/prueba/limpieza funcionan desde checkout limpio, aislan las corridas y preservan servicios compartidos. Un verificador independiente reproduce el flujo completo y fallas críticas; ejecuta la suite completa sin skips.
+- CA-6: CI ejecuta las familias requeridas o identifica un bloqueo externo preciso; dependencias ausentes generan fallo visible.
+- CA-7: La biblioteca supera sus validadores y enlaza capacidades, escenarios y evidencia con SHA, last_verified y estado de implementación.
+
+## Fronteras
+
+No se modifica ni se pausa un consumer compartido. OAuth/gateway/autorización externa se certifican sólo con credenciales y recursos propios de no producción. La certificación local del negocio GCP no certifica OAuth; Kafka local no certifica BigQueue. Publicar releases productivas y modificar producción queda fuera del alcance.
+
+## Delta verificado del publisher SDK
+
+El artifact CP `rio-sdk-events:1.3.1` (SHA256 `a16585a1f16a04a8b48e9cf010b6f16919a15deab3c46df9c2ee9ed10b5a600e`) configura segment/buffering en un builder que descarta al llamar otra fábrica. La corrección SDK debe construir ese mismo builder, preservar el método legacy de la fábrica y probar ambas opciones. El SDK master ad2c98b8 tiene el mismo defecto. Su rama `feature/kafka-e2e-publisher-fix` parte de master; no se publica ni sustituye silenciosamente el artifact CP1.3.1. Release/backport y entrega real BigQueue permanecen gates explícitos.
+
+## Dependencias externas
+
+KVS requiere sesión Fury/GlobalProtect y un sandbox propio. Spellbook requiere renovar sesión para registrar SPEC/tareas. Integración administrada requiere recursos BigQueue/GCP dedicados y runner con permisos. Una dependencia ausente mantiene BLOCKED su gate; el trabajo independiente continúa.
+
+
+## T21 · Minimum deployment schema version (authorized contract correction)
+
+The inbound deployment schema must be at least 1. CP develop `4302481c69300074a85ea5eb051a27bbd505cdce` publishes this minimum in `DeploymentTriggerOpenApi.java:71–72` and `swagger.yaml:261–264`; the resolved SDK 1.3.1 artifact (SHA-256 `a16585a1f16a04a8b48e9cf010b6f16919a15deab3c46df9c2ee9ed10b5a600e`) declares `@NotNull @Min(1)` on `schemaVersion`. SDK master `ad2c98b806cffb88b23513f87785932aa1707ea4`, `DeploymentTriggerMessage.java:34–36,84`, also requires consumer validation.
+
+The canonical CP controller only rejects null and future versions; versions 0 and -1 incorrectly reach provisioning. This is a defect against the published minimum, not an accepted feature. For AWS MSK and GCP, acknowledge such input with HTTP 200 and record an ignored event before asynchronous dispatch. No Kafka topic mutation, KVS claim or deployment result may occur. Preserve the existing null/future discard and current-version dispatch semantics. Validation of other DTO fields is outside this correction.
+
+The physical regression uses the actual HTTP server, owned Kafka topics/result consumers and actual Fury Sandbox KVS. Until those services run successfully, this contract remains NOT_EXECUTED regardless of unit/compile outcomes.
+
+## Delta T22: fronteras Kafka de Playmaker canónico
+
+La reconsulta de GitHub detectó master Playmaker `0c83575c54cb198d238be7d83f3b4d8de27abbc8`, posterior al corte histórico `3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1`. RF-6/RF-9 incluyen diez fronteras Kafka de herencia de entidades, slots/ambientes/concurrencia, validación, despliegue posterior, templates, contexto de pipeline y autorización por versión. Configurar entidades sólo cambia SQL; no se acredita creación Kafka ni administración de schemas por el CP. La validación positiva necesita Entity Service real y revisiones propias autorizadas. El routing `kafka`/`kafka-topic` y la exclusión GCP requieren una definición de producto; no se inventa compatibilidad. Son diez brechas NONE, no escenarios implementados ni ejecutados.
+
+
+## T23 · Required wire metadata and correlation identities
+
+The selected policy is HTTP200/ignored before executor dispatch, KVS claim or Kafka work when required wire metadata is absent/null, or blank for SDK @NotBlank fields. This is a bounded contract correction against resolved SDK1.3.1 (SHA-256 a16585a1f16a04a8b48e9cf010b6f16919a15deab3c46df9c2ee9ed10b5a600e) and canonical CP430 OpenAPI.
+
+Deployment requires deployment_id, component_id, data_product_id, environment_id, component_name, data_product_name, environment_name, criticality and published_at. Names require non-null, not nonblank. Action requires action_id and triggered_by nonblank, plus data_product_id and triggered_at non-null. Preserve the explicit legacy exceptions: deployment_group_id may be null, and Action component_id/environment_id may independently be null. Do not invent paired-null validation. Preserve processor validation/FAILED semantics for params, operation and action_name. Do not invoke global Validator.
+
+Replace physical metadata tests that expected COMPLETED for invalid input with rejection/no-effect oracles. Separate the three compatibility cases as current compatibility with declared-contract conflicts, not input-validation success. Invalid IDs must never acquire or delete deployment:null/gcp-deployment:null/action:null/action: keys. Read them only in the authenticated run-exclusive Sandbox, observing absence before/after actual quiescence. Physical execution and retained-worker/cleanup evidence remain NOT_EXECUTED.
+
+T23 scoped additions: the manual Deployment OpenAPI type now includes the three required display names and describes ACK200/ignored metadata handling; its existing group required annotation remains an explicit compatibility conflict. Swagger generation is coordinator-owned. Fixture retention has one fixed UNKNOWN/INVALID_GLOBAL_KEY_OBSERVED entry point with no key acquisition/deletion; its physical failure path remains NOT_EXECUTED and no mock/reflective constructor bypass is used for L0. Base real/managed factories and14 constructor call sites were checked for required metadata; none has a literal null required field. Boundary prefix/routing variants use valid non-null metadata except the explicit guard regression.
+
+
+## CP-SCOPE-1 — foco del owner, 2026-10-02
+
+El owner prioriza ejecutar E2E del CP Kafka y difiere el ecosistema. La familia `realIntegrationTest` debe poder preparar y verificar un Sandbox exclusivo de `rio-controlplane-kafka` sin aliases, BCs ni servicios Playmaker. Mantener Toolkit productivo, Kafka real, resultados Kafka, ownership/TTL/CAS y fallo explícito por falta de permisos. La familia ecosistema conserva sus dos aplicaciones y sus gates; una provenance CP-only no la certifica. El permiso clone403 continúa externo; fuente/controles no son evidencia de negocio ejecutado.

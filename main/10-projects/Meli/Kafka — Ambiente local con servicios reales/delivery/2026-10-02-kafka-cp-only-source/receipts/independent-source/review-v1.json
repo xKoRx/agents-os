@@ -1,0 +1,174 @@
+{
+  "utc": "2026-10-02T15:44:06.692861+00:00",
+  "status": "CHANGES_REQUESTED_CI_EXIT_TRAP_P2_SANDBOX_SCOPE_CONTROLS_PASS",
+  "scope": "SOURCE_AND_LOCAL_NEUTRAL_PREPARATION_ONLY_NO_BACKEND_CERTIFICATE",
+  "author_freeze_sha256": "5e8de40dac9dcc5d3a0d7d046e93c4bafb3e3a6f63352d9c90b5e62a7ddb28d4",
+  "root_plan_sha256": "caa51605751c61902b61a74d73f994a9239b5716474756ed78561dc868ca3733",
+  "combined_freeze_v1_sha256": "397a3db148d0b53bca9e39c75a96affde97d4c21399eedf560298222244918d9",
+  "reviewed_source_paths": 9,
+  "staged_functional_technical_tasks": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/1-functional/spec.md",
+      "after_sha256": "974f7028fcc481f3b54c3bfef4e4958528487caf754e682553e2582d108ff59d"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/2-technical/spec.md",
+      "after_sha256": "32104815e24c2a9f424df922b0559d80ff95c0a60cf32cc8799b543336b58bb5"
+    },
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+      "after_sha256": "17f9e7f0792f4339c5cafccd11c01eb896e29033fca7cb1472ec8b927a460413"
+    }
+  ],
+  "sandbox_disposition": {
+    "paths": 2,
+    "source_sha256": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9",
+    "tests_sha256": "cdeefbda55be982eabb9829471e2f83c91e1e9233b489ad9e4c728c77a49d31d",
+    "status": "PASS_SOURCE_AND_API_METADATA_CONTROL_ONLY",
+    "legacy_tests": 10,
+    "legacy_method_AST_unchanged": 10,
+    "baseline_new_tests_RED": 2,
+    "candidate_tests_PASS": 25,
+    "independent_extra_tests_PASS": 5,
+    "semantics": "CP-only one app/one alias, no PM; default and scope-less legacy ecosystem; cross-scope and inherited exports rejected; fresh mappings exact; partial observed own cleanup retained; any UNKNOWN mutation or unresolved creation leaves FAILED and configuration artifact retained."
+  },
+  "root_wiring_controls": {
+    "actual_private_run_sh_forwarding": {
+      "status": "PASS",
+      "scope": "ACTUAL_PRIVATE_LAUNCHER_NEUTRAL_REJECTING_GATE_ONLY",
+      "records": [
+        {
+          "case": "actual-private-launcher-realIntegrationTest",
+          "exit_status": 43,
+          "scope": "cp",
+          "captured_args": [
+            "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+            "verify",
+            "--directory",
+            "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/peer-launch-y1kj6_xk",
+            "--scope",
+            "cp"
+          ],
+          "real_Docker_calls": 0,
+          "L0_command_shape_checks": 1,
+          "business": "NOT_EXECUTED_REJECTED_BEFORE_FIXTURE"
+        },
+        {
+          "case": "actual-private-launcher-default",
+          "exit_status": 43,
+          "scope": "cp",
+          "captured_args": [
+            "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+            "verify",
+            "--directory",
+            "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/peer-launch-4di5xbu3",
+            "--scope",
+            "cp"
+          ],
+          "real_Docker_calls": 0,
+          "L0_command_shape_checks": 1,
+          "business": "NOT_EXECUTED_REJECTED_BEFORE_FIXTURE"
+        },
+        {
+          "case": "actual-private-launcher-e2eTest",
+          "exit_status": 43,
+          "scope": "ecosystem",
+          "captured_args": [
+            "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+            "verify",
+            "--directory",
+            "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/peer-launch-qgd0ao8r",
+            "--scope",
+            "ecosystem"
+          ],
+          "real_Docker_calls": 0,
+          "L0_command_shape_checks": 1,
+          "business": "NOT_EXECUTED_REJECTED_BEFORE_FIXTURE"
+        },
+        {
+          "case": "actual-private-launcher-e2eCanonicalPlaymakerTest",
+          "exit_status": 43,
+          "scope": "ecosystem",
+          "captured_args": [
+            "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+            "verify",
+            "--directory",
+            "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/peer-launch-zhrg5ple",
+            "--scope",
+            "ecosystem"
+          ],
+          "real_Docker_calls": 0,
+          "L0_command_shape_checks": 1,
+          "business": "NOT_EXECUTED_REJECTED_BEFORE_FIXTURE"
+        }
+      ],
+      "Docker_API_calls": 0,
+      "Gradle_calls": 0,
+      "business": "NOT_EXECUTED"
+    },
+    "managed_launcher_regressions_PASS": 8,
+    "published_actual_gradle_forwarding_report": {
+      "sha256": "be67b4b431d233e418f798b370363e78c499d8ca8175ccba49882a7545d84170",
+      "scope_sequence": [
+        "cp",
+        "cp",
+        "ecosystem"
+      ],
+      "independent_Gradle_rerun": false
+    },
+    "syntax_python": 3,
+    "syntax_shell": 3,
+    "compilation_and_harness": "Root receipts retained only, not independently rerun; no Gradle here."
+  },
+  "findings": [
+    {
+      "priority": 2,
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "refs": [
+        54,
+        84,
+        85,
+        93,
+        100
+      ],
+      "title": "EXIT trap loses own family locals before cleanup and gate persistence",
+      "trigger": "On native /bin/bash3.2.57, run_local_family exits after missing input or neutral up failure. Function-body locals have left scope when EXIT trap calls cleanup_owned_sandbox.",
+      "observed": "sandbox_dir unbound variable; no gate.json; cleanup/write_gate omitted. Candidate reaches CP up without PM before failure; baseline rejects PM missing before reaching API shape gate, but same trap error occurs.",
+      "before_after": "CONFIRMED_PREEXISTING_BOTH_BASELINE_AND_CANDIDATE",
+      "neutral_reproductions": 4,
+      "minimal_native_shell_confirmed": true,
+      "platform_limit": "Observed on this actual macOS Bash3.2; no other shell version/service runtime is claimed.",
+      "requested_fix": "Keep exact own family state accessible for EXIT in its already isolated subshell, preserving UNKNOWN and refusal of destructive cleanup without proofs. Add regression that exits the complete function body, not only direct cleanup function invocation.",
+      "owner_status": "Root acknowledged and is fixing ci.sh; Infra authors independent permanent regression; no reviewer author edits."
+    }
+  ],
+  "preserved_failure_receipts": [
+    "first-private-forwarding-control-failure.json",
+    "ci-exit-trap-finding.json",
+    "baseline-original.log",
+    "baseline-red.log",
+    "baseline-realIntegrationTest-trap-repro.log",
+    "baseline-e2eCanonicalPlaymakerTest-trap-repro.log",
+    "candidate-realIntegrationTest-trap-repro.log",
+    "candidate-e2eCanonicalPlaymakerTest-trap-repro.log"
+  ],
+  "current_external_gate": "FURY_LOGIN_REQUIRED_THEN_RECHECK_OWN_CP_KVS_CLONE",
+  "prior_authenticated_clone": "HTTP403_HISTORICAL_ONLY_NOT_RETRIED_HERE",
+  "limitations": [
+    "All API shapes and command memory responses are explicit L0 metadata fixtures, not KVS storage/clients or business results.",
+    "Shell launchers reached only the rejecting verifier. The docker-named command fixture verifies info arguments; actual Docker calls=0.",
+    "Five own tests exercise real private FS/parser/control flow with API metadata simulation; their cleanup labels are not real provider absence certificates.",
+    "Scope2 Sandbox acceptance does not certify Root CI teardown while the acknowledged P2 is open.",
+    "Root changed CI is the sole next delta; ecosystem business source was not reaudited."
+  ],
+  "execution": {
+    "original_repo_writes": 0,
+    "remotes_or_API_calls": 0,
+    "real_Docker_calls": 0,
+    "Gradle_runs": 0,
+    "SDK_or_business_clients": 0,
+    "physical_CP_suite": "NOT_EXECUTED",
+    "full_ecosystem": "NOT_EXECUTED",
+    "runtime_certification": false
+  }
+}

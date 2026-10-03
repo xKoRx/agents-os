@@ -1,0 +1,45 @@
+{
+  "source": [
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/ci.sh",
+      "sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524"
+    },
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/ci-family-scope-contract.py",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py",
+      "sha256": "2241b997fbd08b2666fe2542e8444940707ef954c597ad41df4f2cd26011b7fd"
+    },
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/harness-contract.py",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/harness-contract.py",
+      "sha256": "d3a2e24401055cc3b9d0d0d92638aaa9b92a7a3610af6e76144c83c29f3061e5"
+    },
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/reconciliation-status.py",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/reconciliation-status.py",
+      "sha256": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243"
+    },
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/bind-ci-family-inputs.py",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/bind-ci-family-inputs.py",
+      "sha256": "e19105ad815ac04e9d9644ce4660c8bbead4aa806b2de60d86858c2a819548e7"
+    }
+  ],
+  "baseline_variants": [
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/before/scoped-before-trap.sh",
+      "sha256": "d4b84b9b103c4694a1e5627cc4eaf297c8827dae38c38f222803bbae7c81b876"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/before/bare-variable-before.sh",
+      "sha256": "5c0ac3072ded34dde0f0d27c8eb05769baf8d31a38d41bb1bed8eb29f1842046"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/before/baseline-3bea.sh",
+      "sha256": "fe41df4bc35e63b82cfe64f0d7f278ab89d3388a08e770a94dd816427dfbc174"
+    }
+  ],
+  "repository_writes": 0,
+  "remote_API_Docker_Gradle_calls": 0
+}

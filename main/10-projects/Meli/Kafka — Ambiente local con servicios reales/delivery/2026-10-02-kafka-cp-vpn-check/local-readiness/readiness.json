@@ -1,0 +1,64 @@
+{
+  "utc": "2026-10-02T20:08:43.988767+00:00",
+  "status": "LOCAL_RUNTIME_READY_NO_PROVISIONING",
+  "cp_head": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+  "cp_worktree_clean": true,
+  "java": {
+    "JAVA_HOME": "/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/Contents/Home",
+    "version": "Corretto25.0.4",
+    "PATH_java": "25.0.4",
+    "PATH_javac": "25.0.4",
+    "Gradle9.3.1_wrapper_cached": true
+  },
+  "docker": {
+    "context": "colima-rio-kafka-e2e-01a0f8e0",
+    "profile_running": true,
+    "client": "29.1.2",
+    "server": "27.4.0",
+    "compose": "5.5.1",
+    "OS": "linux",
+    "architecture": "aarch64",
+    "CPUs": 4,
+    "memory_bytes": 6198358016,
+    "minimum_memory_bytes": 5368709120,
+    "containers_running": 0,
+    "containers_paused": 0,
+    "containers_stopped": 0,
+    "pinned_image_cached": true,
+    "image": "apache/kafka@sha256:4ceccc577f03f51f6af8dbfda55194d0d892f4fa7913ffbded567ce3895622ed",
+    "image_architecture": "arm64",
+    "image_ID": "sha256:793ff1e5c750c9f8723804161c211a75bcc011b7b18fa951dd514bd7646e4aaa"
+  },
+  "ports": {
+    "no_observed_LISTEN_sockets": [
+      39081,
+      39092,
+      39093,
+      39094,
+      39095,
+      39096
+    ],
+    "actual_bind": "NOT_CERTIFIED_RESTRICTED_PROBE_EPERM; launcher checks actual bind"
+  },
+  "launch_requirement": "Root generates fresh ownCP scope sandbox.env/provenance; supplies E2E_FURY_PYTHON, E2E_KVS_ENV_FILE, JAVA_HOME and explicit DOCKER_CONTEXT; run.sh realIntegrationTest verifies scope cp then owns generated runtime variables. No PM/MySQL/Tiger/Entity inputs needed.",
+  "corrections": [
+    "Initial restricted Unix socket calls yielded permission denied; escalated read-only local daemon checks PASS, not physical runtime failure.",
+    "Tag apache/kafka:4.0.0 absent; actual Compose pins digest already cached. No pull needed."
+  ],
+  "source_locations": [
+    "e2e/run.sh:21",
+    "e2e/run.sh:50",
+    "e2e/run.sh:61",
+    "e2e/run.sh:71",
+    "e2e/run.sh:74",
+    "e2e/run.sh:115",
+    "e2e/compose.yaml:2",
+    "e2e/README.md:12"
+  ],
+  "mutations": 0,
+  "credential_or_export_reads": 0,
+  "remote_API_calls": 0,
+  "Docker_resources_created": 0,
+  "Gradle_runs": 0,
+  "business": "NOT_EXECUTED"
+}

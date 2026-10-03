@@ -1,0 +1,11 @@
+# CP-only Sandbox peer v1
+
+Sandbox two-file delta PASS in source/metadata controls. Root nine-path acceptance requests one P2 correction in CI.
+
+Baseline10 controls pass and all ten test ASTs are unchanged. Two new scope tests fail on old helper (CP receipt was forced to include PM; PM API call was incorrectly allowed). Candidate25controls pass, plus5independent controls. CLI up accepts one CP alias, persists cp and only that app; defaults/scope-less legacy remain ecosystem. Scope crossings/extra PM inputs/segments/mappings/mutations are rejected. Verification still reads fresh configuration, exact exports and ownership. The independent unknown-start test observes API-shape BC absence yet FAILED cleanup and retained private env/journal; no physical KVS/provider cleanup certificate is asserted.
+
+Four actual private run.sh invocations forward cp/cp/ecosystem/ecosystem to a rejecting neutral verifier before fixtures. The eight managed-launcher regressions pass. Root real Gradle cp/cp/ecosystem forwarding logs are hash-checked as author evidence, not independently rerun. Python3 and shell3 syntax checks pass.
+
+**[P2] CI EXIT loses its exact family local variables.** ci.sh54 reads sandbox_dir, declared function-local at84–85. When the native Bash3.2.57 subshell function exits, EXIT callback93–100 sees those locals removed. Four before/after neutral function exits reproduce unbound sandbox_dir and absent gate.json; a minimal native shell confirms the mechanism. The candidate does reach up --scope cp without PM, but no cleanup or gate is persisted. This is preexisting, not introduced by the scope change. Root acknowledged it and is fixing the same CI path; no reviewer edits occurred. Keep subshell isolation and UNKNOWN rules, while making own family state available until the exit callback completes. Regression must exit the actual function body.
+
+Frozen v1 sources, first failure and four baseline/candidate logs are preserved. All evidence is L0/source only; no remote/API, Docker, Gradle, SDK/business clients or physical suite were run. Current external auth gate is FURY_LOGIN_REQUIRED, followed by a fresh own-CP clone permission check. The earlier403 is historical, not a new/current observation.

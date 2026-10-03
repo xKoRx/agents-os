@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "Independent inference/JSON/link review; no browser/API or full E2E certification",
+  "reviewer": "fault_controls",
+  "findings": 0,
+  "files": [
+    {
+      "path": "cp/e2e/README.md",
+      "sha256": "f69ff49e2f0f5da1af4bee9e64687bf347325f55715dfe870ae7ccd2cd5d1a2c"
+    },
+    {
+      "path": "cp/meli/features/20261001-real-e2e/evidence/sandbox-documentation-2026-10-02.json",
+      "sha256": "087083aa61ab31acb5f6dd3708fe08527f153b2798c25976db87551eddf216d7"
+    },
+    {
+      "path": "knowledge/docs/04-troubleshooting/kafka-real-e2e.md",
+      "sha256": "404de6ab6c5ed9039f623124e4773ec09f3dc6dad765778d175e588c2589fd84"
+    }
+  ]
+}

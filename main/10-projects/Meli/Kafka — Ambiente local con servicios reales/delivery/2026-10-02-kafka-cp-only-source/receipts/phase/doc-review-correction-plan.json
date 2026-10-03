@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+    "before_sha256": "21e47c8f35ec84aafb4478350f6004c041c95c12b406793e486be9a116abd0a9",
+    "after_file": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/doc-delta-0.after",
+    "after_sha256": "061303791370bffe1ea180c4e784a6c2230b11aa42528b1ab2a78c79b3a89306"
+  },
+  {
+    "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+    "before_sha256": "f12abae97c8206b31c1afd0d2d810088cc8c9238b1937b85b1e48b84d5764701",
+    "after_file": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/doc-delta-1.after",
+    "after_sha256": "fdd9354ca7b9ddaaea4244efc6b37269b31a1f1e90666670d12db9c021cdbad8"
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/cp-only-scope-checkpoint.json",
+    "source": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/cp-only-scope-checkpoint.json",
+    "sha256": "b31f76503665224aefdd26507a52ca38bacb509b3c587750e4ca0256614d911a"
+  },
+  {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/evidence/cp-only-scope-checkpoint.md",
+    "source": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/cp-only-scope-checkpoint.md",
+    "sha256": "53e2eee10b5884df34b7eecefeca3961928bd3323ead64dd4b7bca7bb8471c7c"
+  }
+]

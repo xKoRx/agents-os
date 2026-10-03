@@ -1,0 +1,317 @@
+#!/usr/bin/env bash
+set -euo pipefail
+umask 077
+readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+readonly ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+readonly SUITE="${1:-realIntegrationTest}"
+case "${SUITE}" in realIntegrationTest|e2eTest|e2eCanonicalPlaymakerTest|e2eCandidatePlaymakerTest) ;; *) echo "REAL_E2E_INVALID_SUITE" >&2; exit 2;; esac
+is_playmaker=false
+if [[ "${SUITE}" != realIntegrationTest ]]; then
+  is_playmaker=true
+  case "${SUITE}" in
+    e2eCanonicalPlaymakerTest)
+      export E2E_PLAYMAKER_CONTRACT_MODE=canonical
+      export E2E_PLAYMAKER_REPO="${E2E_PLAYMAKER_CANONICAL_REPO:?REAL_E2E_CANONICAL_PLAYMAKER_CHECKOUT_REQUIRED}" ;;
+    e2eCandidatePlaymakerTest)
+      export E2E_PLAYMAKER_CONTRACT_MODE=candidate
+      export E2E_PLAYMAKER_REPO="${E2E_PLAYMAKER_CANDIDATE_REPO:?REAL_E2E_CANDIDATE_PLAYMAKER_CHECKOUT_REQUIRED}" ;;
+    e2eTest) export E2E_PLAYMAKER_CONTRACT_MODE=candidate ;;
+  esac
+fi
+for required_command in docker python3 openssl curl rg pgrep; do
+  command -v "${required_command}" >/dev/null || { echo "REAL_E2E_MISSING_COMMAND:${required_command}" >&2; exit 2; }
+done
+if [[ -z "${E2E_KVS_ENV_FILE:-}" || ! -r "${E2E_KVS_ENV_FILE}" ]]; then
+  echo "REAL_E2E_KVS_CONFIG_REQUIRED: run Fury login and generate a dedicated sandbox; see e2e/README.md" >&2
+  exit 2
+fi
+# Parse only generated KEY_VALUE_STORE exports and explicit sandbox metadata; never evaluate file text.
+sandbox_exports="$(python3 - "${E2E_KVS_ENV_FILE}" <<'PYCONFIG'
+import os,re,stat,sys
+from pathlib import Path
+path=Path(sys.argv[1])
+if stat.S_IMODE(path.stat().st_mode) & 0o077:
+ raise SystemExit('REAL_E2E_KVS_FILE_MUST_BE_MODE_0600')
+for raw in path.read_text().splitlines():
+ if not raw.strip() or raw.lstrip().startswith('#'): continue
+ name,separator,value=raw.partition('=')
+ name=name.strip()
+ if not separator or not (re.fullmatch(r'KEY_VALUE_STORE_[A-Z0-9_]+',name) or name in ('E2E_KVS_CONTAINER_NAME','E2E_KVS_SEGMENT_ID','E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER','E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER','E2E_PLAYMAKER_KVS_SEGMENT_ID','E2E_PLAYMAKER_SANDBOX_BC','E2E_PLAYMAKER_SANDBOX_INSTANCE','E2E_SANDBOX_BC','E2E_SANDBOX_INSTANCE','E2E_RUN_ID','E2E_KVS_EXCLUSIVE_RUN_ID','E2E_KVS_SANDBOX_PROVENANCE')):
+  raise SystemExit('REAL_E2E_INVALID_SANDBOX_EXPORT')
+ if '\n' in value or '\r' in value: raise SystemExit('REAL_E2E_INVALID_SANDBOX_EXPORT')
+ if name=='E2E_RUN_ID' and os.environ.get(name) not in (None,'',value.strip()): raise SystemExit('REAL_E2E_SANDBOX_RUN_ID_MISMATCH')
+ print(name+'='+value.strip().strip('"').strip("'"))
+PYCONFIG
+)"
+while IFS= read -r export_line; do
+  [[ -n "${export_line}" ]] && export "${export_line}"
+done <<<"${sandbox_exports}"
+unset sandbox_exports export_line
+: "${DOCKER_CONTEXT:?REAL_E2E_EXPLICIT_DOCKER_CONTEXT_REQUIRED}"
+export DOCKER_CONTEXT
+: "${E2E_KVS_CONTAINER_NAME:?REAL_E2E_KVS_CONTAINER_REQUIRED}"
+: "${E2E_SANDBOX_BC:?REAL_E2E_DEDICATED_SANDBOX_BC_REQUIRED}"
+: "${E2E_SANDBOX_INSTANCE:?REAL_E2E_DEDICATED_SANDBOX_INSTANCE_REQUIRED}"
+if [[ "${is_playmaker}" == true ]]; then
+  : "${E2E_PLAYMAKER_SANDBOX_BC:?REAL_E2E_PLAYMAKER_DEDICATED_SANDBOX_BC_REQUIRED}"
+  : "${E2E_PLAYMAKER_SANDBOX_INSTANCE:?REAL_E2E_PLAYMAKER_DEDICATED_SANDBOX_INSTANCE_REQUIRED}"
+  : "${E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER:?REAL_E2E_PLAYMAKER_RESULTS_CONTAINER_REQUIRED}"
+  : "${E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER:?REAL_E2E_PLAYMAKER_LOCKS_CONTAINER_REQUIRED}"
+fi
+if [[ "$(docker info --format '{{.MemTotal}}')" -lt 5368709120 ]]; then
+  echo "REAL_E2E_DOCKER_MEMORY_REQUIRED: five real brokers require a dedicated Docker runtime with at least 5GiB; shared services must remain untouched" >&2
+  exit 2
+fi
+export E2E_RUN_ID="${E2E_RUN_ID:-$(python3 -c 'import uuid; print(uuid.uuid4().hex)')}"
+if [[ ! "${E2E_RUN_ID}" =~ ^[a-z0-9][a-z0-9_-]{7,63}$ ]]; then echo "REAL_E2E_INVALID_RUN_ID" >&2; exit 2; fi
+# Null-ID contract scenarios use global guard keys: only an API-verified per-run sandbox is allowed.
+: "${E2E_KVS_SANDBOX_PROVENANCE:?REAL_E2E_RUN_OWNED_SANDBOX_PROVENANCE_REQUIRED}"
+: "${E2E_KVS_EXCLUSIVE_RUN_ID:?REAL_E2E_EXCLUSIVE_SANDBOX_REQUIRED}"
+[[ "${E2E_KVS_EXCLUSIVE_RUN_ID}" == "${E2E_RUN_ID}" ]] || { echo "REAL_E2E_EXCLUSIVE_SANDBOX_RUN_MISMATCH" >&2; exit 2; }
+: "${E2E_FURY_PYTHON:?REAL_E2E_AUTHENTICATED_FURY_PYTHON_REQUIRED}"
+"${E2E_FURY_PYTHON}" "${SCRIPT_DIR}/sandbox.py" verify --directory "$(dirname -- "${E2E_KVS_SANDBOX_PROVENANCE}")"
+export E2E_DEPLOYMENT_RESULT_TOPIC="e2e_${E2E_RUN_ID}_deployment_result"
+export E2E_ACTION_RESULT_TOPIC="e2e_${E2E_RUN_ID}_action_result"
+export E2E_DEPLOYMENT_RESULT_DLT_TOPIC="e2e_${E2E_RUN_ID}_deployment_result_dlt"
+export E2E_ACTION_RESULT_DLT_TOPIC="e2e_${E2E_RUN_ID}_action_result_dlt"
+export E2E_DEPLOYMENT_TRIGGER_TOPIC="e2e_${E2E_RUN_ID}_deployment_trigger"
+export E2E_ACTION_TRIGGER_TOPIC="e2e_${E2E_RUN_ID}_action_trigger"
+export SCOPE=local SCOPE_SUFFIX=local
+export E2E_CP_PORT="${E2E_CP_PORT:-39081}"
+raw_evidence_dir="${E2E_EVIDENCE_DIR:-${ROOT}/build/real-e2e/${E2E_RUN_ID}}"
+mkdir -m 700 -p "${raw_evidence_dir}"
+readonly EVIDENCE_DIR="$(python3 -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).resolve(strict=True))' "${raw_evidence_dir}")"
+unset raw_evidence_dir
+export E2E_RECONCILIATION_DIR="${E2E_RECONCILIATION_DIR:-${EVIDENCE_DIR}/retained-work}"
+mkdir -m 700 -p "${E2E_RECONCILIATION_DIR}"
+if ! python3 "${SCRIPT_DIR}/reconciliation-status.py" "${E2E_RECONCILIATION_DIR}"; then
+  echo "REAL_E2E_RETAINED_WORK_RECONCILIATION_REQUIRED:${E2E_RECONCILIATION_DIR}" >&2
+  exit 2
+fi
+raw_run_dir="$(mktemp -d "${TMPDIR:-/tmp}/rio-kafka-e2e.XXXXXX")"
+readonly RUN_DIR="$(python3 -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).resolve(strict=True))' "${raw_run_dir}")"
+unset raw_run_dir
+readonly PROJECT="rio-kafka-e2e-${E2E_RUN_ID}"
+export E2E_KVS_OBSERVATION_DIR="${EVIDENCE_DIR}/kvs-observation"
+mkdir -m 700 "${E2E_KVS_OBSERVATION_DIR}"
+python3 "${SCRIPT_DIR}/kvs-mutation-proof.py" init --directory "${E2E_KVS_OBSERVATION_DIR}" --run "${E2E_RUN_ID}"
+export E2E_PROCESS_EXIT_DIR="${EVIDENCE_DIR}/process-exit-records"
+mkdir -m 700 "${E2E_PROCESS_EXIT_DIR}"
+export E2E_TEST_WORKER_DIR="${EVIDENCE_DIR}/test-workers"
+mkdir -m 700 "${E2E_TEST_WORKER_DIR}"
+export E2E_FINAL_PROCESS_EXIT_RECEIPT="${EVIDENCE_DIR}/process-exits.json"
+export E2E_CP_KVS_GENERATION_ID="$(python3 -c 'import uuid; print(uuid.uuid4())')"
+# Toolkit SCP has precedence over ENV; isolate its normal watcher to a fresh empty run directory.
+export ARTIFACT_DELIVERY_FILE_PREFIX="${RUN_DIR}/artifacts-${E2E_RUN_ID}"
+mkdir -p "${ARTIFACT_DELIVERY_FILE_PREFIX}"
+readonly ENV_FILE="${RUN_DIR}/compose.env"
+export E2E_COMPOSE_PROJECT="${PROJECT}"
+export E2E_COMPOSE_FILE="${SCRIPT_DIR}/compose.yaml"
+export E2E_ENV_FILE="${ENV_FILE}"
+export E2E_KRAFT_CLUSTER_ID="$(python3 -c 'import uuid,base64; print(base64.urlsafe_b64encode(uuid.uuid4().bytes).decode().rstrip("="))')"
+base_port="${E2E_KAFKA_BASE_PORT:-39092}"
+python3 - "${base_port}" "${E2E_CP_PORT}" <<'PYPORTS'
+import socket,sys
+base=int(sys.argv[1]); ports=[*range(base,base+5),int(sys.argv[2])]
+if len(set(ports))!=len(ports) or any(p<1024 or p>65535 for p in ports): raise SystemExit('REAL_E2E_INVALID_PORTS')
+for port in ports:
+ with socket.socket() as probe:
+  try: probe.bind(('127.0.0.1',port))
+  except OSError: raise SystemExit('REAL_E2E_OWNED_PORT_UNAVAILABLE')
+PYPORTS
+for broker in 1 2 3 4 5; do
+  port=$((base_port + broker - 1))
+  export "E2E_KAFKA_PORT_${broker}=${port}"
+  printf 'E2E_KAFKA_PORT_%s=%s\n' "${broker}" "${port}" >>"${ENV_FILE}"
+done
+export E2E_BOOTSTRAP_SERVERS="127.0.0.1:${base_port}"
+if [[ "$(docker info --format '{{.Architecture}}')" == aarch64 || "$(docker info --format '{{.Architecture}}')" == arm64 ]]; then
+  export E2E_JAVA_TOOL_OPTIONS=-XX:UseSVE=0
+fi
+printf 'E2E_RUN_ID=%s\nE2E_KRAFT_CLUSTER_ID=%s\nE2E_JAVA_TOOL_OPTIONS=%s\n' "${E2E_RUN_ID}" "${E2E_KRAFT_CLUSTER_ID}" "${E2E_JAVA_TOOL_OPTIONS:-}" >>"${ENV_FILE}"
+compose() { docker compose --project-name "${PROJECT}" --env-file "${ENV_FILE}" --file "${SCRIPT_DIR}/compose.yaml" "$@"; }
+stack_started=false
+cp_pid=""
+cp_owner_pid=""
+cp_started=false
+test_invoked=false
+test_command_status=99
+stop_cp_owner() {
+  [[ -n "${cp_owner_pid}" ]] || return 0
+  local status=0 tuple deadline
+  if kill -0 "${cp_owner_pid}" 2>/dev/null; then
+    # Only this parent's exact owned process gets the private, fixed stop request.
+    tuple="$(java -cp "${RUN_DIR}/cp-owner-classes" PlaymakerProcessOwner identity "${cp_owner_pid}")" || status=1
+    [[ "${tuple}" == "${cp_owner_identity}" ]] || status=1
+    if [[ "${status}" == 0 ]]; then
+      printf '%s' "${E2E_RUN_ID}" >"${RUN_DIR}/cp-owner/STOP" || status=1
+      deadline=$((SECONDS + 50))
+      while kill -0 "${cp_owner_pid}" 2>/dev/null && [[ "${SECONDS}" -lt "${deadline}" ]]; do sleep 0.1; done
+    fi
+    if kill -0 "${cp_owner_pid}" 2>/dev/null; then
+      # A hung owner is a retained failure even if its shutdown hook reaps the child.
+      status=1
+      tuple="$(java -cp "${RUN_DIR}/cp-owner-classes" PlaymakerProcessOwner identity "${cp_owner_pid}")" || tuple=""
+      if [[ "${tuple}" == "${cp_owner_identity}" ]]; then
+        kill -CONT "${cp_owner_pid}" 2>/dev/null || true
+        kill "${cp_owner_pid}" 2>/dev/null || true
+        deadline=$((SECONDS + 55))
+        while kill -0 "${cp_owner_pid}" 2>/dev/null && [[ "${SECONDS}" -lt "${deadline}" ]]; do sleep 0.1; done
+      fi
+    fi
+  fi
+  # Never let an unresponsive owner make parent teardown wait without a deadline.
+  if kill -0 "${cp_owner_pid}" 2>/dev/null; then return 1; fi
+  wait "${cp_owner_pid}" 2>/dev/null || status=1
+  return "${status}"
+}
+cleanup() {
+  local status=0 ids kind retained_work=false
+  if declare -F cleanup_playmaker_e2e >/dev/null; then cleanup_playmaker_e2e || { status=1; retained_work=true; }; fi
+  if [[ -n "${cp_owner_pid:-}" ]]; then stop_cp_owner || { status=1; retained_work=true; }; fi
+  if [[ "${cp_started:-false}" == true ]]; then
+    if ! python3 "${SCRIPT_DIR}/process-exit-proof.py" --directory "${E2E_KVS_OBSERVATION_DIR}" \
+        --exit-directory "${E2E_PROCESS_EXIT_DIR}" --run "${E2E_RUN_ID}" --command-status "${test_command_status}" --owner-status "${status}" \
+        --output "${E2E_FINAL_PROCESS_EXIT_RECEIPT}" --task "${SUITE}" \
+        || ! python3 "${SCRIPT_DIR}/kvs-mutation-proof.py" all-final --directory "${E2E_KVS_OBSERVATION_DIR}" \
+        --run "${E2E_RUN_ID}" --process-exits "${E2E_FINAL_PROCESS_EXIT_RECEIPT}" >"${EVIDENCE_DIR}/final-mutation-proof.json"; then
+      status=1; retained_work=true
+      python3 "${SCRIPT_DIR}/retain-unverified-work.py" --directory "${E2E_RECONCILIATION_DIR}" \
+        --run "${E2E_RUN_ID}" || echo "REAL_E2E_FINAL_UNKNOWN_MARKER_DURABILITY_FAILED" >&2
+      echo "REAL_E2E_FINAL_PROCESS_OR_MUTATION_PROOF_REQUIRED" >&2
+    fi
+  fi
+  if ! python3 "${SCRIPT_DIR}/reconciliation-status.py" "${E2E_RECONCILIATION_DIR:-}"; then
+    retained_work=true; status=1
+    echo "CLEANUP_RETAINED_IN_FLIGHT_WORK:${E2E_RECONCILIATION_DIR}" >&2
+  fi
+  if [[ "${stack_started}" == true && "${retained_work}" == false ]]; then
+    if declare -F cleanup_playmaker_storage_e2e >/dev/null; then
+      cleanup_playmaker_storage_e2e || { status=1; retained_work=true; }
+    fi
+    if [[ "${retained_work}" == false ]]; then compose down --volumes --remove-orphans || status=1; fi
+    for kind in container network volume; do
+      ids=""
+      if [[ "${kind}" == container ]]; then
+        if ! ids="$(docker ps --all --quiet --filter "label=com.docker.compose.project=${PROJECT}")"; then
+          echo "CLEANUP_ENUMERATION_FAILED:${kind}" >&2; status=1
+        fi
+      elif ! ids="$(docker "${kind}" ls --quiet --filter "label=com.docker.compose.project=${PROJECT}")"; then
+        echo "CLEANUP_ENUMERATION_FAILED:${kind}" >&2; status=1
+      fi
+      [[ -z "${ids}" ]] || status=1
+    done
+  fi
+  if [[ -n "${cp_pid}" ]] && kill -0 "${cp_pid}" 2>/dev/null; then status=1; fi
+  if [[ "${retained_work}" == false ]]; then
+    rm -rf -- "${RUN_DIR}" || status=1
+  else
+    printf 'RECONCILIATION_REQUIRED:%s\n' "${RUN_DIR}" >"${EVIDENCE_DIR}/retained-runtime.txt" || status=1
+  fi
+  if [[ "${status}" == 0 ]]; then
+    if printf 'CLEANUP_CERTIFIED:%s\n' "${PROJECT}" >"${EVIDENCE_DIR}/cleanup.txt"; then
+      cat "${EVIDENCE_DIR}/cleanup.txt" || status=1
+    else echo "CLEANUP_EVIDENCE_WRITE_FAILED:${PROJECT}" >&2; status=1; fi
+  else
+    printf 'CLEANUP_FAILED:%s\n' "${PROJECT}" >"${EVIDENCE_DIR}/cleanup.txt" || true
+    echo "CLEANUP_FAILED:${PROJECT}" >&2
+  fi
+  return "${status}"
+}
+publish_evidence() {
+  if [[ "${test_invoked}" == true ]]; then
+    python3 "${SCRIPT_DIR}/sanitize-evidence.py" "${ROOT}/build/test-results/${SUITE}" "${EVIDENCE_DIR}/junit"
+  fi
+  printf 'suite_execution_started=%s\n' "${test_invoked}" >>"${EVIDENCE_DIR}/ledger.txt"
+  echo "TEST_EVIDENCE_PUBLISHED:${EVIDENCE_DIR}"
+}
+on_exit() { local original="$?"; trap - EXIT; publish_evidence || original=1; cleanup || original=1; exit "${original}"; }
+trap on_exit EXIT
+printf 'run_id=%s\ncompose_project=%s\ncp_sha=%s\nsandbox_bc=%s\nsandbox_instance=%s\n'   "${E2E_RUN_ID}" "${PROJECT}" "$(git -C "${ROOT}" rev-parse HEAD)" "${E2E_SANDBOX_BC}" "${E2E_SANDBOX_INSTANCE}" >"${EVIDENCE_DIR}/ledger.txt"
+if [[ "${is_playmaker}" == true ]]; then
+  printf 'playmaker_sandbox_bc=%s\nplaymaker_sandbox_instance=%s\n' "${E2E_PLAYMAKER_SANDBOX_BC}" "${E2E_PLAYMAKER_SANDBOX_INSTANCE}" >>"${EVIDENCE_DIR}/ledger.txt"
+fi
+stack_started=true
+compose up --detach --wait --wait-timeout 180
+compose exec --no-TTY broker1 /opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server broker1:19092   >"${EVIDENCE_DIR}/broker-readiness.txt"
+if [[ "$(rg -c 'id: [1-5] rack:' "${EVIDENCE_DIR}/broker-readiness.txt")" != 5 ]]; then echo "REAL_E2E_REQUIRES_FIVE_LIVE_BROKERS" >&2; exit 1; fi
+for topic in "${E2E_DEPLOYMENT_RESULT_TOPIC}" "${E2E_ACTION_RESULT_TOPIC}" "${E2E_DEPLOYMENT_TRIGGER_TOPIC}" "${E2E_ACTION_TRIGGER_TOPIC}" "${E2E_DEPLOYMENT_RESULT_DLT_TOPIC}" "${E2E_ACTION_RESULT_DLT_TOPIC}"; do
+  compose exec --no-TTY broker1 /opt/kafka/bin/kafka-topics.sh --bootstrap-server broker1:19092     --create --topic "${topic}" --partitions 3 --replication-factor 3
+  printf 'topic=%s\n' "${topic}" >>"${EVIDENCE_DIR}/ledger.txt"
+done
+python3 - "${RUN_DIR}/cloud-provider.json" "${E2E_BOOTSTRAP_SERVERS}" <<'PYROUTING'
+import json,sys
+from pathlib import Path
+Path(sys.argv[1]).write_text(json.dumps({'cloud_provider':{'gcp':{'segmentation':{'legacy':{'clusters':[{'key':'e2e-gcp-default','component_template_code':'gcp-kafka-topic','bootstrap_servers':sys.argv[2],'teams':['all']}]}}}}}))
+PYROUTING
+export CLOUD_PROVIDER_CONFIG_LOCATION="file:${RUN_DIR}/cloud-provider.json"
+export E2E_CP_BASE_URL="http://127.0.0.1:${E2E_CP_PORT}"
+export E2E_KAFKA_BROKER_CONTAINER_PREFIX="${PROJECT}-broker"
+# Preserve raw logs privately, publish only bounded diagnostics without SDK exception bodies.
+cd "${ROOT}"
+python3 "${SCRIPT_DIR}/playmaker-artifact.py" snapshot --repo "${ROOT}" --mode cp --run "${E2E_RUN_ID}" --output "${RUN_DIR}/cp-source-before-build.json"
+./gradlew --no-daemon bootJar --console=plain >"${RUN_DIR}/build.log" 2>&1 || { echo "REAL_E2E_BUILD_FAILED" >&2; exit 1; }
+python3 "${SCRIPT_DIR}/playmaker-artifact.py" prepare --repo "${ROOT}" --mode cp --run "${E2E_RUN_ID}" --output "${RUN_DIR}/cp-artifact.json" --snapshot "${RUN_DIR}/cp-source-before-build.json"
+export E2E_CP_SOURCE_COMMIT="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_commit"])' "${RUN_DIR}/cp-artifact.json")"
+export E2E_CP_SOURCE_MANIFEST_SHA256="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_manifest_sha256"])' "${RUN_DIR}/cp-artifact.json")"
+export E2E_CP_ARTIFACT_RECEIPT_FILE="${RUN_DIR}/cp-artifact.json"
+mkdir -m 700 "${RUN_DIR}/cp-owner" "${RUN_DIR}/cp-owner-classes"
+javac -d "${RUN_DIR}/cp-owner-classes" "${SCRIPT_DIR}/ControlplaneProcessOwner.java" "${SCRIPT_DIR}/PlaymakerProcessOwner.java" \
+  >"${RUN_DIR}/cp-owner-compile.log" 2>&1 || { echo "REAL_E2E_CP_OWNER_COMPILE_FAILED" >&2; exit 1; }
+parent_identity="$(java -cp "${RUN_DIR}/cp-owner-classes" PlaymakerProcessOwner identity "$$")"
+python3 - "${RUN_DIR}/cp-owner" "${E2E_CP_ARTIFACT_RECEIPT_FILE}" "${parent_identity}" \
+    "${E2E_CP_KVS_GENERATION_ID}" "${E2E_CP_PORT}" "${E2E_PROCESS_EXIT_DIR}" "${E2E_RECONCILIATION_DIR}" <<'PYCPOWNER'
+import hashlib,json,os,sys
+from pathlib import Path
+control,artifact,parent,generation,port,exitdir,reconciliation=sys.argv[1:]
+control=Path(control); receipt=json.loads(Path(artifact).read_bytes())
+source=Path(receipt['jar_path']); jar=control/'application.jar'
+raw=source.read_bytes()
+if hashlib.sha256(raw).hexdigest()!=receipt['jar_sha256']: raise SystemExit('REAL_E2E_CP_JAR_CHANGED')
+with jar.open('xb') as output:
+ os.chmod(jar,0o600); output.write(raw); output.flush(); os.fsync(output.fileno())
+pid,start=parent.split('\t')
+fields={'run_id':receipt['run_id'],'parent_pid':pid,'parent_start':start,'jar_path':str(jar),
+ 'jar_sha256':receipt['jar_sha256'],'source_commit':receipt['source_commit'],
+ 'source_manifest_sha256':receipt['source_manifest_sha256'],'generation_id':generation,
+ 'port':port,'process_exit_directory':exitdir,'reconciliation_directory':reconciliation,'child_mode':'PRODUCTIVE_CP'}
+def escape(value):
+ if any(ord(c)<32 for c in str(value)): raise SystemExit('REAL_E2E_CP_OWNER_FIELD_INVALID')
+ return str(value).replace('\\','\\\\').replace('=','\\=').replace(':','\\:')
+with (control/'owner.properties').open('x') as output:
+ os.chmod(control/'owner.properties',0o600)
+ output.write(''.join(key+'='+escape(value)+'\n' for key,value in fields.items())); output.flush(); os.fsync(output.fileno())
+fd=os.open(control,os.O_RDONLY)
+try: os.fsync(fd)
+finally: os.close(fd)
+PYCPOWNER
+java -cp "${RUN_DIR}/cp-owner-classes" ControlplaneProcessOwner serve "${RUN_DIR}/cp-owner" \
+  >"${RUN_DIR}/cp-owner.log" 2>&1 &
+cp_owner_pid=$!
+cp_owner_identity="$(java -cp "${RUN_DIR}/cp-owner-classes" PlaymakerProcessOwner identity "${cp_owner_pid}")"
+cp_started=true
+healthy=false
+for attempt in $(seq 1 120); do
+  if ! kill -0 "${cp_owner_pid}" 2>/dev/null; then echo "REAL_E2E_CP_STARTUP_FAILED: check dedicated KVS/routing configuration" >&2; exit 1; fi
+  if curl --silent --fail --max-time 2 "${E2E_CP_BASE_URL}/ping" | grep -qx pong; then healthy=true; break; fi
+  sleep 1
+done
+[[ "${healthy}" == true ]] || { echo "REAL_E2E_CP_HEALTH_TIMEOUT" >&2; exit 1; }
+cp_pid="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["pid"])' "${RUN_DIR}/cp-owner/child.json")"
+if [[ "${is_playmaker}" == true ]]; then
+  if [[ ! -r "${SCRIPT_DIR}/playmaker-runner.sh" ]]; then
+    echo "REAL_E2E_PLAYMAKER_RUNNER_REQUIRED" >&2
+    exit 2
+  fi
+  source "${SCRIPT_DIR}/playmaker-runner.sh"
+  start_playmaker_e2e
+fi
+rm -rf -- "${ROOT}/build/test-results/${SUITE}"
+test_invoked=true
+set +e
+./gradlew --no-daemon "${SUITE}" --console=plain
+test_command_status=$?
+set -e
+exit "${test_command_status}"
+
+# The sandbox remains explicitly owned by its caller: remote teardown is a separate confirmed command.

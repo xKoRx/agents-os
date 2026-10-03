@@ -1,0 +1,12 @@
+{
+  "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/ci-family-scope-contract.py",
+  "before": "ABSENT",
+  "after_sha256": "2241b997fbd08b2666fe2542e8444940707ef954c597ad41df4f2cd26011b7fd",
+  "backup": "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/new-control-prepublication.py",
+  "writes": "EXACT_ONE_NEW_AUTHORIZED_FILE",
+  "remote_API_calls": 0,
+  "Docker": 0,
+  "Gradle": 0,
+  "commits": 0,
+  "business": "NOT_EXECUTED"
+}

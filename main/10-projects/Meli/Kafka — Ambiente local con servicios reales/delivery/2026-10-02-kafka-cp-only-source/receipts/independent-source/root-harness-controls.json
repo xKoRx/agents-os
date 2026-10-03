@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-02T15:26:59.903906+00:00",
+  "scope": "HARNESS_CONTROLS_ONLY_NO_BUSINESS",
+  "status": "PASS",
+  "script_test_counts": [
+    25,
+    8
+  ],
+  "log_sha256": "32ff16d36a0023ec5fd8ccee900c2d3062d881aeb0a64c6cb4a42d8c359a2d04",
+  "business": "NOT_EXECUTED",
+  "reported_unittest_cases": 33,
+  "custom_control_counts": {
+    "cleanup": 5,
+    "retention": 16,
+    "reconciliation": 7
+  },
+  "total_controls": 61
+}

@@ -1,0 +1,103 @@
+diff --git a/e2e/README.md b/e2e/README.md
+index c105a439672970a6e8ebae1da11053284ebb0c93..ac3d9e05da43fd881f7f27449af31567e844a46c 100644
+--- a/e2e/README.md
++++ b/e2e/README.md
+@@ -1,6 +1,6 @@
+ # Real Kafka E2E runner
+ 
+-`realIntegrationTest` runs the Kafka CP independently: own Kafka, own CP Fury Sandbox KVS and real Kafka results. It does not require Playmaker, MySQL, EntityService, Tiger/ACME or managed OAuth/BigQueue. The implementation compiles; the complete physical CP suite remains unexecuted. On 2026-10-02 the stored-auth guard required a fresh Fury login. After renewal, recheck the own-KVS clone permission that previously returned403. Ecosystem suites are a separate later scope.
++`realIntegrationTest` runs the Kafka CP independently: own Kafka, own CP Fury Sandbox KVS and real Kafka results. It does not require Playmaker, MySQL, EntityService, Tiger/ACME or managed OAuth/BigQueue. The implementation compiles; the complete physical CP suite remains unexecuted. The latest 2026-10-02 check with valid stored Fury auth and owner-connected VPN reached the API: own BC create200, own KVS clone403, delete200 and independently verified absence404. The visible source KVS is approved/test; its Sandbox clonability/authorization still needs confirmation. No instance or KVS writes occurred. See the [runtime gate receipt](../meli/features/20261001-real-e2e/evidence/runtime-gate-vpn-2026-10-02.json). Ecosystem suites are a separate later scope.
+ 
+ This pending feature uses five actual Kafka3.9.1 KRaft brokers, the actual CP HTTP controllers,
+ production processors/validators/provisioners, Kafka result transport with `acks=all`, and Fury
+diff --git a/meli/features/20261001-real-e2e/evidence/runtime-gate-vpn-2026-10-02.json b/meli/features/20261001-real-e2e/evidence/runtime-gate-vpn-2026-10-02.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..633c08deb383a7b3b3a95673f8c99792c0b2abbf
+--- /dev/null
++++ b/meli/features/20261001-real-e2e/evidence/runtime-gate-vpn-2026-10-02.json
+@@ -0,0 +1,85 @@
++{
++  "schema_version": 1,
++  "date": "2026-10-02",
++  "state": "WORK_BRANCH_PENDING_RUNTIME_GATE_BLOCKED",
++  "source_head_at_execution": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
++  "scope": "CP_ONLY_REAL_FURY_SANDBOX_DEPENDENCY_CHECK",
++  "auth_result": "STORED_AUTH_VALID",
++  "auth_utc": "2026-10-02T20:04:25.572823+00:00",
++  "owned_run_id": "f76a79f1799a420ebfe7d3dfa9b0f670",
++  "own_alias": "triggers-status-nonprod",
++  "api_outcomes": {
++    "state_status": "PREPARING",
++    "cleanup": "CERTIFIED_API_ABSENCE",
++    "mutations": [
++      {
++        "method": "POST",
++        "route_class": "BC_COLLECTION",
++        "outcome": "HTTP_200"
++      },
++      {
++        "method": "POST",
++        "route_class": "OWN_BC_SERVICE_CLONE",
++        "outcome": "HTTP_403"
++      },
++      {
++        "method": "DELETE",
++        "route_class": "OWN_BC",
++        "outcome": "HTTP_200"
++      }
++    ],
++    "resources": [
++      {
++        "app": "rio-controlplane-kafka",
++        "create_outcome": "CONFIRMED",
++        "creation_observed": true,
++        "instance_assigned": false,
++        "cleanup_error": null
++      }
++    ],
++    "last_api_error": {
++      "method": "GET",
++      "http": "404",
++      "error_type": "ServicesAPIException"
++    },
++    "unknown_mutations": 0,
++    "kvs_writes": 0
++  },
++  "inventory_projection": {
++    "utc": "2026-10-02T20:13:14.463769+00:00",
++    "scope": "READ_ONLY_OWN_CP_KVS_INVENTORY",
++    "method": "GET",
++    "route_class": "OWN_CP_KVS_INVENTORY",
++    "network_mutations": 0,
++    "credential_values_exposed": 0,
++    "login_or_renew": false,
++    "http_status": 200,
++    "payload_type": "list",
++    "payload_sha256": "27e7fd53bec8a1584d6541b70eec629032afd18d1e99e580b252f7406b02f21a",
++    "collection": "root_list",
++    "queried_own_alias": "triggers-status-nonprod",
++    "alias_match_count": 1,
++    "matches": [
++      {
++        "status": "approved",
++        "container_type": "database",
++        "test_container": true
++      }
++    ]
++  },
++  "independent_absence": {
++    "status": "PASS_HTTP404_READ_ONLY",
++    "sha256": "73b97249cf871907267497fc886c529dc16606f838c6be219c076a8e24bd80d3",
++    "state_unchanged": true,
++    "mutations": 0
++  },
++  "local_runtime": "READY_JAVA25_OWN_DOCKER5_BROKERS_IMAGE_CACHED",
++  "readiness_receipt_sha256": "2f78ee555e6fea9b866ae5e38d5ce129d8e3d5b8553c3060b31c8335547cacbf",
++  "blocker": "OWN_KVS_SANDBOX_CLONE_HTTP403_AFTER_VALID_AUTH_AND_VPN",
++  "cause_limit": "HTTP403 alone cannot distinguish clone eligibility from authorization; the visible source alias is approved/test but that does not prove Sandbox clonability.",
++  "next_action": "Enable or confirm Sandbox clone of this own CP KVS for the current Fury identity, or provide another own CP alias authorized for Sandbox.",
++  "instance_allocated": false,
++  "kvs_writes": 0,
++  "full_cp_e2e": "NOT_EXECUTED",
++  "credentials_exposed": 0
++}

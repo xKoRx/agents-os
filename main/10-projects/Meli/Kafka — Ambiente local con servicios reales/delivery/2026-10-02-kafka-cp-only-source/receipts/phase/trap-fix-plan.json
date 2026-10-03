@@ -1,0 +1,27 @@
+{
+  "scope": "PREEXISTING_CI_EXIT_TRAP_STATE_BUG",
+  "operations": [
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/2-technical/spec.md",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-0-spec.md.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-0-spec.md.after",
+      "before_sha256": "32104815e24c2a9f424df922b0559d80ff95c0a60cf32cc8799b543336b58bb5",
+      "after_sha256": "c5dcee507860086152d8c080b11d7e2e710734be1970784628d4a4f621a57abc"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-1-tasks.md.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-1-tasks.md.after",
+      "before_sha256": "17f9e7f0792f4339c5cafccd11c01eb896e29033fca7cb1472ec8b927a460413",
+      "after_sha256": "21e47c8f35ec84aafb4478350f6004c041c95c12b406793e486be9a116abd0a9"
+    },
+    {
+      "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "before": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-2-ci.sh.before",
+      "after": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-2-ci.sh.after",
+      "before_sha256": "d4b84b9b103c4694a1e5627cc4eaf297c8827dae38c38f222803bbae7c81b876",
+      "after_sha256": "5c0ac3072ded34dde0f0d27c8eb05769baf8d31a38d41bb1bed8eb29f1842046"
+    }
+  ],
+  "business": "NOT_EXECUTED"
+}

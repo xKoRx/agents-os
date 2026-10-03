@@ -1,0 +1,24 @@
+{
+  "records": [
+    {
+      "name": "structural",
+      "exit_code": 0,
+      "sha256": "8207aba1b925aa5c7401f5e8851d2eaede366296bf7b9fe6e1f0da63ffe3708a",
+      "bytes": 210
+    },
+    {
+      "name": "historical",
+      "exit_code": 0,
+      "sha256": "917b9a78e7d9bcc16f4e166af6ba8b8a99e5b10b98460e0aff03505b0642d4c3",
+      "bytes": 48
+    },
+    {
+      "name": "formal",
+      "exit_code": 1,
+      "sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5",
+      "bytes": 148594
+    }
+  ],
+  "formal_delta": "IDENTICAL_KNOWN_BASELINE_ZERO_NEW",
+  "business": "NOT_EXECUTED"
+}

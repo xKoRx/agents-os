@@ -1,0 +1,10 @@
+test_CLI_default_ecosystem_without_PM_aliases_still_rejects_before_auth (__main__.PeerExtraControls.test_CLI_default_ecosystem_without_PM_aliases_still_rejects_before_auth) ... ok
+test_CLI_down_cross_scope_rejected_before_auth_or_constructor (__main__.PeerExtraControls.test_CLI_down_cross_scope_rejected_before_auth_or_constructor) ... ok
+test_CP_fresh_mapping_change_rejected_even_if_receipt_and_environment_were_valid (__main__.PeerExtraControls.test_CP_fresh_mapping_change_rejected_even_if_receipt_and_environment_were_valid) ... ok
+test_scope_expansion_on_partial_down_never_dispatches_mutation (__main__.PeerExtraControls.test_scope_expansion_on_partial_down_never_dispatches_mutation) ... ok
+test_unknown_start_preserves_env_and_journal_after_api_shape_absence (__main__.PeerExtraControls.test_unknown_start_preserves_env_and_journal_after_api_shape_absence) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.010s
+
+OK

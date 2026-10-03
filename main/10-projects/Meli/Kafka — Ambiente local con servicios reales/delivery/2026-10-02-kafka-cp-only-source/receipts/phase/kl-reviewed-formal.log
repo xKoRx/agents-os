@@ -1,0 +1,938 @@
+checkout ausente: /Users/rjara/fuentes/fury_dps-rio-docs
+checkout ausente: /Users/rjara/fuentes/fury_dps-rio-docs
+checkout ausente: /Users/rjara/fuentes/fury_dps-rio-docs
+checkout ausente: /Users/rjara/fuentes/fury_dps-rio-docs
+checkout ausente: /Users/rjara/fuentes/fury_dps-rio-docs
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/destinations/service.go fatal: path 'internal/destinations/service.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/auth/auth.go fatal: path 'internal/auth/auth.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/signals/repository.go fatal: path 'internal/signals/repository.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/infra/config/config.go fatal: path 'internal/infra/config/config.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/modules/infra.go fatal: path 'cmd/api/modules/infra.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/infra/db/connection.go fatal: path 'internal/infra/db/connection.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/infra/db/connection_test.go fatal: path 'internal/infra/db/connection_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:migrations/mysql/signalscatalogprod/20260922192638088_create_tbl_entity_attachments.sql fatal: path 'migrations/mysql/signalscatalogprod/20260922192638088_create_tbl_entity_attachments.sql' does not exist in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/modules/app.go fatal: path 'cmd/api/modules/app.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/signals/handler.go fatal: path 'cmd/api/signals/handler.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/signals/service.go fatal: path 'internal/signals/service.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/service/OrgContextService.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/service/OrgContextService.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/config/LocalDevConfig.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/config/LocalDevConfig.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/config/LocalDevConfigTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/config/LocalDevConfigTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/core/ScopeProfileActivationEnvironmentPostProcessor.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/core/ScopeProfileActivationEnvironmentPostProcessor.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/controller/EntityController.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/controller/EntityController.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/controller/EntitySchemaContractController.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/controller/EntitySchemaContractController.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/schema/EntitySchemaContractService.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/schema/EntitySchemaContractService.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/service/EntityService.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/service/EntityService.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/service/AuditService.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/service/AuditService.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/cache/SchemaArtifactCache.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/cache/SchemaArtifactCache.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/config/SecurityConfig.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/config/SecurityConfig.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/auth/TigerTokenFilter.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/auth/TigerTokenFilter.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/fury_rio-e2e-ltp
+checkout ausente: /Users/rjara/fuentes/fury_rio-e2e-ltp
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/data-products/index.ts fatal: path 'api/data-products/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/pipeline/index.ts fatal: path 'api/pipeline/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/global-notifications/index.ts fatal: path 'api/global-notifications/index.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/actions/index.ts fatal: path 'api/actions/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/lib/rioEntityService.ts fatal: path 'api/lib/rioEntityService.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:package.json fatal: path 'package.json' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/clickhouse-mergetree fatal: path 'src/technologies/clickhouse-mergetree' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresSchemaContractRepository.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresSchemaContractRepository.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/EntityContractPanel.tsx fatal: path 'src/widgets/node-config-modal/EntityContractPanel.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:config/default.js fatal: path 'config/default.js' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/catalog-destinations-sync/destinationsBuilder.ts fatal: path 'src/features/catalog-destinations-sync/destinationsBuilder.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deploy-pipeline/model/useDeployPipeline.ts fatal: path 'src/features/deploy-pipeline/model/useDeployPipeline.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/_hooks.server.ts fatal: path 'app/nordic-pages/_hooks.server.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/registry.ts fatal: path 'api/technologies/registry.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/actions/actionsUtils.ts fatal: path 'api/actions/actionsUtils.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deployment-history/ui/PipelineNodeTooltip.tsx fatal: path 'src/features/deployment-history/ui/PipelineNodeTooltip.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deployment-history/useDeploymentLogs.ts fatal: path 'src/features/deployment-history/useDeploymentLogs.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/pipeline/pipelineUtils.ts fatal: path 'api/pipeline/pipelineUtils.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/lib/playmaker.ts fatal: path 'api/lib/playmaker.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/flink-sql/adapter.ts fatal: path 'src/technologies/flink-sql/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:cmd/api/destinations/handler.go fatal: path 'cmd/api/destinations/handler.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:cmd/api/modules/app.go fatal: path 'cmd/api/modules/app.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:internal/auth/auth.go fatal: path 'internal/auth/auth.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:cmd/api/signals/handler.go fatal: path 'cmd/api/signals/handler.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:internal/destinations/service.go fatal: path 'internal/destinations/service.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/flink-job/adapter.ts fatal: path 'src/technologies/flink-job/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/data-products/[name]/index.tsx fatal: path 'app/nordic-pages/data-products/[name]/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/app/App.tsx fatal: path 'src/app/App.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-python
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-copilot
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_rio-kc-signals-to-gcs
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/main.go fatal: path 'cmd/api/main.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/auth fatal: path 'internal/auth' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/middleware/access_log.go fatal: path 'internal/middleware/access_log.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/middleware/access_log_test.go fatal: path 'internal/middleware/access_log_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/modules/app_test.go fatal: path 'cmd/api/modules/app_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/auth/auth_test.go fatal: path 'internal/auth/auth_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/signals fatal: path 'internal/signals' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/signals/handler_test.go fatal: path 'cmd/api/signals/handler_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/signals/dtos.go fatal: path 'internal/signals/dtos.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/signals/dtos_test.go fatal: path 'internal/signals/dtos_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/signals/repository_test.go fatal: path 'internal/signals/repository_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/utils/hash.go fatal: path 'internal/utils/hash.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/utils/hash_test.go fatal: path 'internal/utils/hash_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/destinations/handler.go fatal: path 'cmd/api/destinations/handler.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/destinations fatal: path 'internal/destinations' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/destinations fatal: path 'cmd/api/destinations' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/destinations/service_test.go fatal: path 'internal/destinations/service_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/destinations/entities.go fatal: path 'internal/destinations/entities.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/schemas/handler.go fatal: path 'cmd/api/schemas/handler.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/schemas fatal: path 'internal/schemas' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/schemas fatal: path 'cmd/api/schemas' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/slos/handler.go fatal: path 'cmd/api/slos/handler.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/slos fatal: path 'internal/slos' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:cmd/api/slos fatal: path 'cmd/api/slos' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/destinations/repository.go fatal: path 'internal/destinations/repository.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/infra/db/options.go fatal: path 'internal/infra/db/options.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:migrations/mysql/signalscatalogprod/20251106184253561_add_signals_active.sql fatal: path 'migrations/mysql/signalscatalogprod/20251106184253561_add_signals_active.sql' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:migrations/mysql/signalscatalogprod/20260210194313020_add_is_transport_field_to_destinations.sql fatal: path 'migrations/mysql/signalscatalogprod/20260210194313020_add_is_transport_field_to_destinations.sql' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:migrations/mysql/signalscatalogprod/20260227145819564_add_dataproduct_identifier_to_signal.sql fatal: path 'migrations/mysql/signalscatalogprod/20260227145819564_add_dataproduct_identifier_to_signal.sql' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:migrations/mysql/signalscatalogprod/20260420222947330_add_index_signal_id_on_related_tables.sql fatal: path 'migrations/mysql/signalscatalogprod/20260420222947330_add_index_signal_id_on_related_tables.sql' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/destinations/repository_test.go fatal: path 'internal/destinations/repository_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/infra/db/options_test.go fatal: path 'internal/infra/db/options_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/signals/url_builder.go fatal: path 'internal/signals/url_builder.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:internal/infra/config/config_test.go fatal: path 'internal/infra/config/config_test.go' exists on disk, but not in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+anchor no resuelve: fury_ads-signals-catalog c6ac1321f66c021cee36066ca8c07c638b4f787d:migrations/mysql/signalscatalogtest/20260922192743507_create_tbl_entity_attachments.sql fatal: path 'migrations/mysql/signalscatalogtest/20260922192743507_create_tbl_entity_attachments.sql' does not exist in 'c6ac1321f66c021cee36066ca8c07c638b4f787d'
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+checkout ausente: /Users/rjara/fuentes/signals-sdk-sandbox-python
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/controller/PingController.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/controller/PingController.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/controller/PingControllerTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/controller/PingControllerTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/domain/EntityDocument.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/domain/EntityDocument.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/integration/CreateEntityIntegrationTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/integration/CreateEntityIntegrationTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/service/EntityServiceTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/service/EntityServiceTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresEntityRepository.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresEntityRepository.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/domain/EntitySearchTerms.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/domain/EntitySearchTerms.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/controller/EntityControllerTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/controller/EntityControllerTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresEntityRepositoryTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresEntityRepositoryTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/service/NamespaceService.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/service/NamespaceService.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/service/NamespaceServiceTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/service/NamespaceServiceTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/integration/ReadEntityIntegrationTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/integration/ReadEntityIntegrationTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/domain/EntityStatus.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/domain/EntityStatus.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/integration/UpdateEntityIntegrationTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/integration/UpdateEntityIntegrationTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/domain/EntityStatusTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/domain/EntityStatusTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/controller/dto/TransferOwnershipRequest.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/controller/dto/TransferOwnershipRequest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/integration/OwnershipTransferIntegrationTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/integration/OwnershipTransferIntegrationTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/exception/EntityDeactivatedException.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/exception/EntityDeactivatedException.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/integration/DeactivationIntegrationTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/integration/DeactivationIntegrationTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresAuditRepository.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresAuditRepository.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresAuditRepositoryTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresAuditRepositoryTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/service/AuditServiceTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/service/AuditServiceTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/domain/SchemaFormat.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/domain/SchemaFormat.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/controller/EntitySchemaContractControllerTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/controller/EntitySchemaContractControllerTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/schema/EntitySchemaContractServiceTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/schema/EntitySchemaContractServiceTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresSchemaContractRepositoryTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresSchemaContractRepositoryTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/schema/JsonSchemaContractAnalyzer.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/schema/JsonSchemaContractAnalyzer.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/schema/JsonSchemaContractAnalyzerTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/schema/JsonSchemaContractAnalyzerTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/domain/SchemaRevisionStatus.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/domain/SchemaRevisionStatus.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/domain/SchemaRevisionStatusTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/domain/SchemaRevisionStatusTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/controller/EntityBackofficeController.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/controller/EntityBackofficeController.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/service/EntitySearchTermsReindexService.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/service/EntitySearchTermsReindexService.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/integration/EntityBackofficeControllerTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/integration/EntityBackofficeControllerTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/service/EntitySearchTermsReindexServiceTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/service/EntitySearchTermsReindexServiceTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/client/AcmeClientImpl.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/client/AcmeClientImpl.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/auth/SecurityContextAccessor.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/auth/SecurityContextAccessor.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/auth fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/auth' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/service/OrgContextServiceTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/service/OrgContextServiceTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/auth/SecurityContextAccessorTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/auth/SecurityContextAccessorTest.kt' does not exist in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/resources/application.yml fatal: path 'src/main/resources/application.yml' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/config/PostgresPersistenceEnabledCondition.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/config/PostgresPersistenceEnabledCondition.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/config/PostgresRuntimeConfig.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/config/PostgresRuntimeConfig.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/config/PostgresRuntimeConfigTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/config/PostgresRuntimeConfigTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/service/AttachmentService.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/service/AttachmentService.kt' does not exist in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/integration/AttachmentIntegrationTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/integration/AttachmentIntegrationTest.kt' does not exist in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresAttachmentRepository.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresAttachmentRepository.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresAttachmentRepositoryTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/repository/PostgresAttachmentRepositoryTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/service/AttachmentAuditService.kt fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/service/AttachmentAuditService.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/service/AttachmentServiceTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/service/AttachmentServiceTest.kt' does not exist in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/test/kotlin/com/mercadolibre/rio/entity/service/service/AttachmentAuditServiceTest.kt fatal: path 'src/test/kotlin/com/mercadolibre/rio/entity/service/service/AttachmentAuditServiceTest.kt' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/fury_rio-flink-sql
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_signals-sdk-java
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-sdk-go
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+checkout ausente: /Users/rjara/fuentes/rio-e2e-ui
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/data-products/index.tsx fatal: path 'app/nordic-pages/data-products/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/pages/data-products fatal: path 'src/pages/data-products' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/data-products fatal: path 'src/__tests__/data-products' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-data-products fatal: path 'src/features/manage-data-products' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/data-products fatal: path 'tests/unit/api/data-products' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-favorites fatal: path 'src/features/manage-favorites' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/users/favorites/data-products/index.ts fatal: path 'api/users/favorites/data-products/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/data-products/DataProductsPage.favorites.spec.tsx fatal: path 'src/__tests__/data-products/DataProductsPage.favorites.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/data-products/[name]/pipeline/index.tsx fatal: path 'app/nordic-pages/data-products/[name]/pipeline/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/data-products/dpPageGetServerSideProps.spec.ts fatal: path 'src/__tests__/data-products/dpPageGetServerSideProps.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/pipeline-canvas/PipelineCanvas.tsx fatal: path 'src/widgets/pipeline-canvas/PipelineCanvas.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/pipeline-canvas/CanvasControls.tsx fatal: path 'src/widgets/pipeline-canvas/CanvasControls.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/pipeline-canvas/useCanvasGraphState.ts fatal: path 'src/widgets/pipeline-canvas/useCanvasGraphState.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/components/ComponentTypeIcon/componentStageBadge.ts fatal: path 'src/components/ComponentTypeIcon/componentStageBadge.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/PipelineCanvas.spec.tsx fatal: path 'src/__tests__/canvas/PipelineCanvas.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/CanvasControls.spec.tsx fatal: path 'src/__tests__/canvas/CanvasControls.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/app/store/canvas.store.ts fatal: path 'src/app/store/canvas.store.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/pipeline-canvas fatal: path 'src/widgets/pipeline-canvas' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/CanvasKeyboardHandler.spec.tsx fatal: path 'src/__tests__/canvas/CanvasKeyboardHandler.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-component fatal: path 'src/features/manage-component' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/components/index.ts fatal: path 'api/components/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/definitions/index.ts fatal: path 'api/definitions/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/manage-component fatal: path 'src/__tests__/features/manage-component' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/NodeConfigModal.tsx fatal: path 'src/widgets/node-config-modal/NodeConfigModal.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/VersionsPanel.tsx fatal: path 'src/widgets/node-config-modal/VersionsPanel.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/ComponentOutputsModal.tsx fatal: path 'src/widgets/node-config-modal/ComponentOutputsModal.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-component/model/useSaveComponentConfig.ts fatal: path 'src/features/manage-component/model/useSaveComponentConfig.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/useNodeConfigSubmission.ts fatal: path 'src/widgets/node-config-modal/useNodeConfigSubmission.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/useNodeConfigViewState.ts fatal: path 'src/widgets/node-config-modal/useNodeConfigViewState.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/node-config-modal/NodeConfigModal.spec.tsx fatal: path 'src/__tests__/node-config-modal/NodeConfigModal.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/node-config-modal/VersionsPanel.spec.tsx fatal: path 'src/__tests__/node-config-modal/VersionsPanel.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/node-config-modal/ComponentOutputsModal.spec.tsx fatal: path 'src/__tests__/node-config-modal/ComponentOutputsModal.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/node-config-modal/useNodeConfigSubmission.spec.ts fatal: path 'src/__tests__/node-config-modal/useNodeConfigSubmission.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/deploy-confirm-modal/DeployConfirmModal.tsx fatal: path 'src/widgets/deploy-confirm-modal/DeployConfirmModal.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/deploy-confirm-modal/DeploySelectionList.tsx fatal: path 'src/widgets/deploy-confirm-modal/DeploySelectionList.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/pages/data-products/pipeline/useDeployOrchestration.ts fatal: path 'src/pages/data-products/pipeline/useDeployOrchestration.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/DeployConfirmModal.spec.tsx fatal: path 'src/__tests__/canvas/DeployConfirmModal.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pages/pipeline/useDeployOrchestration.spec.ts fatal: path 'src/__tests__/pages/pipeline/useDeployOrchestration.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/deploy-pipeline/useDeployPipeline.spec.ts fatal: path 'src/__tests__/features/deploy-pipeline/useDeployPipeline.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/pipeline/pipelineHandlers.node.spec.ts fatal: path 'tests/unit/api/pipeline/pipelineHandlers.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/lib/playmaker.node.spec.ts fatal: path 'tests/unit/api/lib/playmaker.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deployment-history fatal: path 'src/features/deployment-history' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/data-products/[name]/deployments/index.tsx fatal: path 'app/nordic-pages/data-products/[name]/deployments/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deployment-history/ui/PipelineRunSummary.tsx fatal: path 'src/features/deployment-history/ui/PipelineRunSummary.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deployment-history/ui/DeploymentPipelineView.tsx fatal: path 'src/features/deployment-history/ui/DeploymentPipelineView.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/entities/Deployment.ts fatal: path 'src/entities/Deployment.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deployment-history/README.md fatal: path 'src/features/deployment-history/README.md' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/deployment-history fatal: path 'src/__tests__/features/deployment-history' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/deployment-history/DeploymentDetailPanel.integration.spec.tsx fatal: path 'src/__tests__/features/deployment-history/DeploymentDetailPanel.integration.spec.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/deployment-history/PipelineNode.spec.tsx fatal: path 'src/__tests__/features/deployment-history/PipelineNode.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-component/model/classifyComponentActionError.ts fatal: path 'src/features/manage-component/model/classifyComponentActionError.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-component/model/useInactivateOrchestration.ts fatal: path 'src/features/manage-component/model/useInactivateOrchestration.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/components/deletePipelineComponent.node.spec.ts fatal: path 'tests/unit/api/components/deletePipelineComponent.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/manage-component/useInactivateOrchestration.spec.ts fatal: path 'src/__tests__/features/manage-component/useInactivateOrchestration.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/InactivateModal.spec.tsx fatal: path 'src/__tests__/canvas/InactivateModal.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/lib/hooks/usePipeline.ts fatal: path 'src/lib/hooks/usePipeline.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/pipeline-canvas/ComponentNode.tsx fatal: path 'src/widgets/pipeline-canvas/ComponentNode.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pipeline/usePipeline.spec.ts fatal: path 'src/__tests__/pipeline/usePipeline.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/ComponentNode.spec.tsx fatal: path 'src/__tests__/canvas/ComponentNode.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/pipeline-canvas/useCanvasRelations.ts fatal: path 'src/widgets/pipeline-canvas/useCanvasRelations.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/relations.ts fatal: path 'src/technologies/relations.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/useCanvasRelations.spec.ts fatal: path 'src/__tests__/canvas/useCanvasRelations.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/ComponentNode.connectionHighlight.spec.ts fatal: path 'src/__tests__/canvas/ComponentNode.connectionHighlight.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/component-library/ComponentLibrary.tsx fatal: path 'src/widgets/component-library/ComponentLibrary.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/lib/useComponentTypes.ts fatal: path 'src/lib/useComponentTypes.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/entities/Component.ts fatal: path 'src/entities/Component.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/app/store/page.store.ts fatal: path 'src/app/store/page.store.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/widgets/ComponentLibrary.spec.tsx fatal: path 'src/__tests__/widgets/ComponentLibrary.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/CanvasTopbar.spec.tsx fatal: path 'src/__tests__/canvas/CanvasTopbar.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/pages/data-products/pipeline/useActiveEnvironment.ts fatal: path 'src/pages/data-products/pipeline/useActiveEnvironment.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/data-products/pipeline/useActiveEnvironment.spec.ts fatal: path 'src/__tests__/data-products/pipeline/useActiveEnvironment.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/store/page.store.spec.ts fatal: path 'src/__tests__/store/page.store.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/deploy-confirm-modal/resolveDeploySelection.ts fatal: path 'src/widgets/deploy-confirm-modal/resolveDeploySelection.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/resolveDeploySelection.spec.ts fatal: path 'src/__tests__/canvas/resolveDeploySelection.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/registry.ts fatal: path 'src/technologies/registry.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/bigqueue/adapter.ts fatal: path 'src/technologies/bigqueue/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/bigqueue/adapter.spec.ts fatal: path 'src/__tests__/technologies/bigqueue/adapter.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/catalog-signal/schema.ts fatal: path 'src/technologies/catalog-signal/schema.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/catalog-signal/adapter.ts fatal: path 'src/technologies/catalog-signal/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/catalog-destinations-sync/syncCatalogDestinations.ts fatal: path 'src/features/catalog-destinations-sync/syncCatalogDestinations.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/catalog-signal/CatalogSignalOperationsSection.tsx fatal: path 'src/technologies/catalog-signal/CatalogSignalOperationsSection.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/signal-adapter.spec.ts fatal: path 'src/__tests__/technologies/signal-adapter.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/catalog-destinations-sync/syncCatalogDestinations.spec.ts fatal: path 'src/__tests__/features/catalog-destinations-sync/syncCatalogDestinations.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/catalog-signal/CatalogSignalOperationsSection.spec.tsx fatal: path 'src/__tests__/technologies/catalog-signal/CatalogSignalOperationsSection.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/clickhouse-mergetree/ClickhouseMergetreeForm.tsx fatal: path 'src/technologies/clickhouse-mergetree/ClickhouseMergetreeForm.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/clickhouse-mergetree/ui/Step1TableSetup.tsx fatal: path 'src/technologies/clickhouse-mergetree/ui/Step1TableSetup.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/clickhouse-mergetree fatal: path 'api/technologies/clickhouse-mergetree' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/run-clickhouse-query fatal: path 'src/features/run-clickhouse-query' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/ClickhouseMergetreeForm.spec.tsx fatal: path 'src/__tests__/technologies/ClickhouseMergetreeForm.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/Step1TableSetup.spec.tsx fatal: path 'src/__tests__/technologies/Step1TableSetup.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/technologies/registry.node.spec.ts fatal: path 'tests/unit/api/technologies/registry.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/clickhouse-matview fatal: path 'src/technologies/clickhouse-matview' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/ClickhouseMatviewForm.spec.tsx fatal: path 'src/__tests__/technologies/ClickhouseMatviewForm.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/clickhouse-matview/ClickhouseMatviewForm.tsx fatal: path 'src/technologies/clickhouse-matview/ClickhouseMatviewForm.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/entities/Status.ts fatal: path 'src/entities/Status.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/flink-job fatal: path 'src/technologies/flink-job' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/flink-properties-sync fatal: path 'src/features/flink-properties-sync' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/FlinkJobForm.spec.tsx fatal: path 'src/__tests__/technologies/FlinkJobForm.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/flink-sql fatal: path 'src/technologies/flink-sql' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/flink/service.ts fatal: path 'api/technologies/flink/service.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/flink/action-schemas.ts fatal: path 'api/technologies/flink/action-schemas.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/FlinkSqlForm.spec.tsx fatal: path 'src/__tests__/technologies/FlinkSqlForm.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-stream/adapter.ts fatal: path 'src/technologies/fury-stream/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/fury-stream-sync/useFuryStreamSync.ts fatal: path 'src/features/fury-stream-sync/useFuryStreamSync.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/fury-stream-adapter.spec.ts fatal: path 'src/__tests__/technologies/fury-stream-adapter.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/fury-stream-sync/useFuryStreamSync.spec.ts fatal: path 'src/__tests__/features/fury-stream-sync/useFuryStreamSync.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-stream/useFuryStreamKafkaTopics.ts fatal: path 'src/technologies/fury-stream/useFuryStreamKafkaTopics.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-stream/FuryStreamForm.tsx fatal: path 'src/technologies/fury-stream/FuryStreamForm.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/_base/useKafkaTopicSelect.ts fatal: path 'src/technologies/_base/useKafkaTopicSelect.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/_base/useKafkaTopicSourceOptions.ts fatal: path 'src/technologies/_base/useKafkaTopicSourceOptions.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/fury-stream/useFuryStreamKafkaTopics.spec.ts fatal: path 'src/__tests__/technologies/fury-stream/useFuryStreamKafkaTopics.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/fury-stream/FuryStreamForm.spec.tsx fatal: path 'src/__tests__/technologies/fury-stream/FuryStreamForm.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-streams-kafka/adapter.ts fatal: path 'src/technologies/fury-streams-kafka/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/fury-streams-sink-sync/useFuryStreamsSinkSync.ts fatal: path 'src/features/fury-streams-sink-sync/useFuryStreamsSinkSync.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/shared/lib/shouldPatchKafkaTopicName.ts fatal: path 'src/shared/lib/shouldPatchKafkaTopicName.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/fury-streams-sink-sync/useFuryStreamsSinkSync.spec.ts fatal: path 'src/__tests__/features/fury-streams-sink-sync/useFuryStreamsSinkSync.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/relations.spec.ts fatal: path 'src/__tests__/technologies/relations.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/gcp-bucket/adapter.ts fatal: path 'src/technologies/gcp-bucket/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/gcp-bucket-adapter.spec.ts fatal: path 'src/__tests__/technologies/gcp-bucket-adapter.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/gcp-kafka-topic/adapter.ts fatal: path 'src/technologies/gcp-kafka-topic/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/gcpKafkaTopicAdapter.spec.ts fatal: path 'src/__tests__/technologies/gcpKafkaTopicAdapter.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/kafka-topic fatal: path 'src/technologies/kafka-topic' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/peek-kafka-messages fatal: path 'src/features/peek-kafka-messages' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/kafka-topic fatal: path 'api/technologies/kafka-topic' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pipeline/usePeekMessages.spec.ts fatal: path 'src/__tests__/pipeline/usePeekMessages.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/s3-bucket/adapter.ts fatal: path 'src/technologies/s3-bucket/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/s3-bucket-adapter.spec.ts fatal: path 'src/__tests__/technologies/s3-bucket-adapter.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/stream/adapter.ts fatal: path 'src/technologies/stream/adapter.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/stream/adapter.spec.ts fatal: path 'src/__tests__/technologies/stream/adapter.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/kafka-fury-bigqueue/adapter.ts fatal: path 'src/technologies/kafka-fury-bigqueue/adapter.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/kafka-fury-bigqueue/schema.ts fatal: path 'src/technologies/kafka-fury-bigqueue/schema.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/kafka-fury-bigqueue-adapter.spec.ts fatal: path 'src/__tests__/technologies/kafka-fury-bigqueue-adapter.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/kafka-fury-bigqueue/KafkaFuryBigqueueForm.spec.tsx fatal: path 'src/__tests__/technologies/kafka-fury-bigqueue/KafkaFuryBigqueueForm.spec.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/kafka-fury-kvs/adapter.ts fatal: path 'src/technologies/kafka-fury-kvs/adapter.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/kafka-fury-kvs/schema.ts fatal: path 'src/technologies/kafka-fury-kvs/schema.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/kafka-fury-kvs/KafkaFuryKvsForm.tsx fatal: path 'src/technologies/kafka-fury-kvs/KafkaFuryKvsForm.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/kafka-fury-kvs-adapter.spec.ts fatal: path 'src/__tests__/technologies/kafka-fury-kvs-adapter.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/kafka-fury-kvs/KafkaFuryKvsForm.spec.tsx fatal: path 'src/__tests__/technologies/kafka-fury-kvs/KafkaFuryKvsForm.spec.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-bigqueue-kafka/adapter.ts fatal: path 'src/technologies/fury-bigqueue-kafka/adapter.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/fury-bigqueue-kafka-adapter.spec.ts fatal: path 'src/__tests__/technologies/fury-bigqueue-kafka-adapter.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-stream/partitionKeyPolicy.ts fatal: path 'src/technologies/fury-stream/partitionKeyPolicy.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-stream/types.ts fatal: path 'src/technologies/fury-stream/types.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/fury-stream-schema.spec.ts fatal: path 'src/__tests__/technologies/fury-stream-schema.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/lib/api/pollAction.ts fatal: path 'src/lib/api/pollAction.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/actions/actionResult.node.spec.ts fatal: path 'tests/unit/api/actions/actionResult.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/actions/actions.node.spec.ts fatal: path 'tests/unit/api/actions/actions.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/actions/triggerAction.node.spec.ts fatal: path 'tests/unit/api/actions/triggerAction.node.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pipeline/pollAction.spec.ts fatal: path 'src/__tests__/pipeline/pollAction.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-stream/lifecycle.ts fatal: path 'src/technologies/fury-stream/lifecycle.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/fury-stream/FuryStreamsOperationsSection.tsx fatal: path 'src/technologies/fury-stream/FuryStreamsOperationsSection.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/_base/startStopConfirmation.ts fatal: path 'src/technologies/_base/startStopConfirmation.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/fury-streams/action-schemas.ts fatal: path 'api/technologies/fury-streams/action-schemas.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pipeline/buildActionDefs.spec.ts fatal: path 'src/__tests__/pipeline/buildActionDefs.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/fury-stream/FuryStreamsOperationsSection.spec.tsx fatal: path 'src/__tests__/technologies/fury-stream/FuryStreamsOperationsSection.spec.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/startStopConfirmation.spec.ts fatal: path 'src/__tests__/technologies/startStopConfirmation.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/entities/NodeAction.ts fatal: path 'src/entities/NodeAction.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/pages/data-products/pipeline/useNodeActions.ts fatal: path 'src/pages/data-products/pipeline/useNodeActions.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/clickhouse-shared/nodeActions.ts fatal: path 'src/technologies/clickhouse-shared/nodeActions.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/pipeline-canvas/componentNode.utils.tsx fatal: path 'src/widgets/pipeline-canvas/componentNode.utils.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pages/pipeline/useNodeActions.spec.ts fatal: path 'src/__tests__/pages/pipeline/useNodeActions.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pages/pipeline/PipelineModals.spec.tsx fatal: path 'src/__tests__/pages/pipeline/PipelineModals.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-component/model/useComponentActionOperation.ts fatal: path 'src/features/manage-component/model/useComponentActionOperation.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/pages/data-products/pipeline/PipelineModals.tsx fatal: path 'src/pages/data-products/pipeline/PipelineModals.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/catalog-signal/action-schemas.ts fatal: path 'api/technologies/catalog-signal/action-schemas.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pipeline/useComponentActionOperation.spec.ts fatal: path 'src/__tests__/pipeline/useComponentActionOperation.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/registry-new-types.spec.ts fatal: path 'src/__tests__/technologies/registry-new-types.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/registry.spec.ts fatal: path 'src/__tests__/technologies/registry.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/flink-sql/FlinkSqlForm.tsx fatal: path 'src/technologies/flink-sql/FlinkSqlForm.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/_base/ScalingSection.tsx fatal: path 'src/technologies/_base/ScalingSection.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/entities/kafkaPartitions.ts fatal: path 'src/entities/kafkaPartitions.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/flink-sql/schema.ts fatal: path 'src/technologies/flink-sql/schema.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/_base/validateSemver.ts fatal: path 'src/technologies/_base/validateSemver.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies fatal: path 'src/__tests__/technologies' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/flinkSqlSchema.spec.ts fatal: path 'src/__tests__/technologies/flinkSqlSchema.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/flink/index.ts fatal: path 'api/technologies/flink/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/ai/flink-sql-generate.ts fatal: path 'api/ai/flink-sql-generate.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/ai-sql-generator fatal: path 'src/features/ai-sql-generator' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/useNodeConfigAi.tsx fatal: path 'src/widgets/node-config-modal/useNodeConfigAi.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/NodeConfigModalView.tsx fatal: path 'src/widgets/node-config-modal/NodeConfigModalView.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pipeline fatal: path 'src/__tests__/pipeline' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/flinkJobAdapter.spec.ts fatal: path 'src/__tests__/technologies/flinkJobAdapter.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/technologies/flinkJobSchema.spec.ts fatal: path 'src/__tests__/technologies/flinkJobSchema.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas fatal: path 'src/__tests__/canvas' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/flink-properties-sync/useFlinkPropertiesSync.ts fatal: path 'src/features/flink-properties-sync/useFlinkPropertiesSync.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/flink-properties-sync/syncFlinkNodeProperties.spec.ts fatal: path 'src/__tests__/features/flink-properties-sync/syncFlinkNodeProperties.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deploy-pipeline/store/deploySessionStore.ts fatal: path 'src/features/deploy-pipeline/store/deploySessionStore.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deployment-history/ui/DeploymentLogsPanel.tsx fatal: path 'src/features/deployment-history/ui/DeploymentLogsPanel.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/pipeline-canvas/FlinkStartModal.tsx fatal: path 'src/widgets/pipeline-canvas/FlinkStartModal.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/canvas/FlinkStartModal.spec.tsx fatal: path 'src/__tests__/canvas/FlinkStartModal.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/components/ErrorBoundary fatal: path 'src/components/ErrorBoundary' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/lib/permissions.ts fatal: path 'api/lib/permissions.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__ fatal: path 'src/__tests__' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/index.ts fatal: path 'api/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/entities/index.tsx fatal: path 'app/nordic-pages/entities/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/entities/[entityId]/index.tsx fatal: path 'app/nordic-pages/entities/[entityId]/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/entities/schema.ts fatal: path 'api/entities/schema.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/entities/tree.ts fatal: path 'api/entities/tree.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/entities/tree-search.ts fatal: path 'api/entities/tree-search.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/entities/useEntityTree.spec.ts fatal: path 'src/__tests__/features/entities/useEntityTree.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/entities/useEntityTreeSearch.spec.ts fatal: path 'src/__tests__/features/entities/useEntityTreeSearch.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/entities/schema.node.spec.ts fatal: path 'tests/unit/api/entities/schema.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-entity fatal: path 'src/features/manage-entity' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/grants/index.ts fatal: path 'api/grants/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/manage-entity fatal: path 'src/__tests__/features/manage-entity' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/EntitySearchPanel.tsx fatal: path 'src/widgets/node-config-modal/EntitySearchPanel.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/EntityDeclarationPanel.tsx fatal: path 'src/widgets/node-config-modal/EntityDeclarationPanel.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/entity-declaration/useEntityDeclarationDraft.ts fatal: path 'src/features/entity-declaration/useEntityDeclarationDraft.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/node-config-modal/EntitySearchPanel.spec.tsx fatal: path 'src/__tests__/node-config-modal/EntitySearchPanel.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/entities/[entityId]/source/json_schema fatal: path 'app/nordic-pages/entities/[entityId]/source/json_schema' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/json-schema fatal: path 'src/features/json-schema' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/entities/index.ts fatal: path 'api/entities/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/rioEntityService.node.spec.ts fatal: path 'tests/unit/api/rioEntityService.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/node-config-modal/EntityContractPanel.spec.tsx fatal: path 'src/__tests__/node-config-modal/EntityContractPanel.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/import-component fatal: path 'src/features/import-component' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/public-components/index.ts fatal: path 'api/public-components/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/import-authorizations/index.ts fatal: path 'api/import-authorizations/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/import-component fatal: path 'src/__tests__/features/import-component' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/lib/featureFlags.ts fatal: path 'src/lib/featureFlags.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/lib/featureFlags.spec.ts fatal: path 'src/__tests__/lib/featureFlags.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-data-products/model/ownership.ts fatal: path 'src/features/manage-data-products/model/ownership.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/lib/resolveIamAccess.ts fatal: path 'api/lib/resolveIamAccess.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/manage-data-products/ownership.spec.ts fatal: path 'src/__tests__/features/manage-data-products/ownership.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/lib fatal: path 'tests/unit/api/lib' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/admin fatal: path 'app/nordic-pages/admin' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/admin-freezes fatal: path 'src/features/admin-freezes' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/deployment-freezes/index.ts fatal: path 'api/deployment-freezes/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pages/admin fatal: path 'src/__tests__/pages/admin' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/deployment-freezes/index.node.spec.ts fatal: path 'tests/unit/api/deployment-freezes/index.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/deployment-freezes/model/useFreezePolling.ts fatal: path 'src/features/deployment-freezes/model/useFreezePolling.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/app/store/freeze.store.ts fatal: path 'src/app/store/freeze.store.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/pages/data-products/pipeline/deployUtils.ts fatal: path 'src/pages/data-products/pipeline/deployUtils.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/components/FreezeBanner/FreezeBanner.tsx fatal: path 'src/components/FreezeBanner/FreezeBanner.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/useFreezePolling.spec.ts fatal: path 'src/__tests__/features/useFreezePolling.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/store/freeze.store.spec.ts fatal: path 'src/__tests__/store/freeze.store.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/components/FreezeBanner.spec.tsx fatal: path 'src/__tests__/components/FreezeBanner.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/freeze-exception-request/model/useFreezeExceptionRequest.ts fatal: path 'src/features/freeze-exception-request/model/useFreezeExceptionRequest.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/freeze-exception-modal/FreezeExceptionModal.tsx fatal: path 'src/widgets/freeze-exception-modal/FreezeExceptionModal.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/useFreezeExceptionRequest.spec.ts fatal: path 'src/__tests__/features/useFreezeExceptionRequest.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/widgets/FreezeExceptionModal.spec.tsx fatal: path 'src/__tests__/widgets/FreezeExceptionModal.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/component-resources/index.ts fatal: path 'api/component-resources/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/manage-component/model/useComponentOutputs.ts fatal: path 'src/features/manage-component/model/useComponentOutputs.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/components/SecureOutputList/index.tsx fatal: path 'src/components/SecureOutputList/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/manage-component/useComponentOutputs.spec.ts fatal: path 'src/__tests__/features/manage-component/useComponentOutputs.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/entities/output.spec.ts fatal: path 'src/__tests__/entities/output.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/entities/NodeAction.spec.ts fatal: path 'src/__tests__/entities/NodeAction.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/notification-center/index.tsx fatal: path 'app/nordic-pages/notification-center/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/import-component/model/useImportAuthorizationNotifications.ts fatal: path 'src/features/import-component/model/useImportAuthorizationNotifications.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/import-component/useImportAuthorizationNotifications.spec.tsx fatal: path 'src/__tests__/features/import-component/useImportAuthorizationNotifications.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/import-authorizations/import-authorizations.node.spec.ts fatal: path 'tests/unit/api/import-authorizations/import-authorizations.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/global-notifications/schema.ts fatal: path 'api/global-notifications/schema.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/lib/middleware/requirePlatformTeamMembership.ts fatal: path 'api/lib/middleware/requirePlatformTeamMembership.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/global-notifications/index.node.spec.ts fatal: path 'tests/unit/api/global-notifications/index.node.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/global-notifications/schema.node.spec.ts fatal: path 'tests/unit/api/global-notifications/schema.node.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/middleware/requirePlatformTeamMembership.node.spec.ts fatal: path 'tests/unit/api/middleware/requirePlatformTeamMembership.node.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/global-notifications/model/useGlobalNotificationsCoordinator.ts fatal: path 'src/features/global-notifications/model/useGlobalNotificationsCoordinator.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/global-notifications/model/globalNotificationMarkers.ts fatal: path 'src/features/global-notifications/model/globalNotificationMarkers.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/global-notifications/model/pathMatching.ts fatal: path 'src/features/global-notifications/model/pathMatching.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/global-notifications/ui/GlobalNotificationBanner.tsx fatal: path 'src/features/global-notifications/ui/GlobalNotificationBanner.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/app-header/GlobalNotificationsPanelSection.tsx fatal: path 'src/widgets/app-header/GlobalNotificationsPanelSection.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/notification-center/NotificationCenterWidget.tsx fatal: path 'src/widgets/notification-center/NotificationCenterWidget.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/global-notifications/model/useGlobalNotificationHistory.ts fatal: path 'src/features/global-notifications/model/useGlobalNotificationHistory.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/globalNotificationsCoordinator.spec.ts fatal: path 'src/__tests__/features/globalNotificationsCoordinator.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/store/globalNotificationMarkers.spec.ts fatal: path 'src/__tests__/store/globalNotificationMarkers.spec.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/GlobalNotificationBanner.spec.tsx fatal: path 'src/__tests__/features/GlobalNotificationBanner.spec.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/components/AppHeader.spec.tsx fatal: path 'src/__tests__/components/AppHeader.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/pages/NotificationCenterPage.spec.tsx fatal: path 'src/__tests__/pages/NotificationCenterPage.spec.tsx' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:init.ts fatal: path 'init.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/demo.ts fatal: path 'api/demo.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/server/index.ts fatal: path 'app/server/index.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/404/index.tsx fatal: path 'app/nordic-pages/404/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/nordic-pages/5xx/index.tsx fatal: path 'app/nordic-pages/5xx/index.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/lib/requestLogger.ts fatal: path 'api/lib/requestLogger.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/store/ui.store.spec.ts fatal: path 'src/__tests__/store/ui.store.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/lib/middleware/requireSignalsAccess.ts fatal: path 'api/lib/middleware/requireSignalsAccess.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:app/lib/tigerJwt.ts fatal: path 'app/lib/tigerJwt.ts' does not exist in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/lib/middleware/requireSignalsAccess.node.spec.ts fatal: path 'tests/unit/api/lib/middleware/requireSignalsAccess.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/component-consumers/ComponentConsumersModal.tsx fatal: path 'src/features/component-consumers/ComponentConsumersModal.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/component-consumers/useComponentConsumers.ts fatal: path 'src/features/component-consumers/useComponentConsumers.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/components/getComponentConsumers.node.spec.ts fatal: path 'tests/unit/api/components/getComponentConsumers.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/features/componentConsumersModal.spec.tsx fatal: path 'src/__tests__/features/componentConsumersModal.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:api/technologies/clickhouse-mergetree/action-external-table.ts fatal: path 'api/technologies/clickhouse-mergetree/action-external-table.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:tests/unit/api/external-tables/externalTables.node.spec.ts fatal: path 'tests/unit/api/external-tables/externalTables.node.spec.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/node-config-modal/SignalsSdkSnippetsView.tsx fatal: path 'src/widgets/node-config-modal/SignalsSdkSnippetsView.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/node-config-modal/SignalsSdkSnippetsView.spec.tsx fatal: path 'src/__tests__/node-config-modal/SignalsSdkSnippetsView.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/widgets/entity-detail/EntityDetailTabs.tsx fatal: path 'src/widgets/entity-detail/EntityDetailTabs.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/__tests__/widgets/EntityDetailTabs.spec.tsx fatal: path 'src/__tests__/widgets/EntityDetailTabs.spec.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/signals-sdk-node-js
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:internal/signals/repository.go fatal: path 'internal/signals/repository.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:internal/signals/service.go fatal: path 'internal/signals/service.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:internal/infra/config/config.go fatal: path 'internal/infra/config/config.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:internal/infra/db/connection.go fatal: path 'internal/infra/db/connection.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:internal/infra/db/connection_test.go fatal: path 'internal/infra/db/connection_test.go' exists on disk, but not in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+anchor no resuelve: fury_ads-signals-catalog f92a5019d212aaeeefff6b2c77b3832d8ff733df:migrations/mysql/signalscatalogprod/20260922192638088_create_tbl_entity_attachments.sql fatal: path 'migrations/mysql/signalscatalogprod/20260922192638088_create_tbl_entity_attachments.sql' does not exist in 'f92a5019d212aaeeefff6b2c77b3832d8ff733df'
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+checkout ausente: /Users/rjara/fuentes/fury_ads-signals-collector-api
+anchor no resuelve: fury_rio-entity-service 25b34c73b97327ad2f247689dd5e660e0d209b5b:src/main/kotlin/com/mercadolibre/rio/entity/service/controller fatal: path 'src/main/kotlin/com/mercadolibre/rio/entity/service/controller' exists on disk, but not in '25b34c73b97327ad2f247689dd5e660e0d209b5b'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/features/flink-properties-sync/propertiesGenerator.ts fatal: path 'src/features/flink-properties-sync/propertiesGenerator.ts' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+anchor no resuelve: fury_ads-signals-frontend 268c86d826515350fa447964f63b44289a6f012c:src/technologies/flink-job/FlinkJobForm.tsx fatal: path 'src/technologies/flink-job/FlinkJobForm.tsx' exists on disk, but not in '268c86d826515350fa447964f63b44289a6f012c'
+LIBRARY_VALIDATION_FAIL errors=937

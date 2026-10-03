@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-02T20:13:14.463769+00:00",
+  "scope": "READ_ONLY_OWN_CP_KVS_INVENTORY",
+  "method": "GET",
+  "route_class": "OWN_CP_KVS_INVENTORY",
+  "network_mutations": 0,
+  "credential_values_exposed": 0,
+  "login_or_renew": false,
+  "http_status": 200,
+  "payload_type": "list",
+  "payload_sha256": "27e7fd53bec8a1584d6541b70eec629032afd18d1e99e580b252f7406b02f21a",
+  "collection": "root_list",
+  "queried_own_alias": "triggers-status-nonprod",
+  "alias_match_count": 1,
+  "matches": [
+    {
+      "status": "approved",
+      "container_type": "database",
+      "test_container": true
+    }
+  ]
+}

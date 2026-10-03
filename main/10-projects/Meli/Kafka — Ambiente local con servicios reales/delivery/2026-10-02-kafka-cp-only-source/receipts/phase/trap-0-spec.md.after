@@ -1,0 +1,187 @@
+# Technical Specification — Kafka CP E2E real
+
+**Feature:** kafka-real-e2e
+**Owner:** Rodrigo Jara
+**Status:** diseño autorizado para implementación; gates externos pendientes.
+**Deriva de:** [Spec funcional](../1-functional/spec.md)
+
+## Baseline
+
+Kafka trabajo: develop@4302481c69300074a85ea5eb051a27bbd505cdce; master canónico GitHub@f74e856ef3de881e2d504c6cb1ced573681c1058. Playmaker trabajo: develop@7673f4bffc286f0f24d4214938df53c4c5eb9c38; corte inicial master@3cd0daf6e17841ab79381f1eb5e2bd014ad68bd1; revalidación focal actual master@0c83575c54cb198d238be7d83f3b4d8de27abbc8. SDK master@ad2c98b806cffb88b23513f87785932aa1707ea4 no equivale a artifact CP rio-sdk-events:1.3.1. Knowledge master@de7cde85f7dd83a673c918e22ae9f08a0f7e05bd. La evidencia de producción usa únicamente master; los resultados de esta rama identifican implementación pendiente.
+
+## Arquitectura
+
+```text
+Playmaker local,local-integration [MODIFIED sólo acciones/conexión]
+  HTTP request → servicios reales → MySQL propio
+       ↓ Kafka trigger con DTO productivo
+Bridge Kafka→HTTP CP /triggers/* [NEW, transporte local]
+       ↓ binding/allowlists/validadores/controllers reales
+CP processors → guard Toolkit KVS Sandbox propio [UNCHANGED negocio]
+       ↓ routing real → conexión plaintext local [NEW adapter]
+MSK provisioning + GCP provisioner → Kafka KRaft 5 brokers [UNCHANGED negocio]
+       ↓ publishers productivos
+BigQueueClient local Kafka, acks=all [NEW adapter]
+       ↓ Kafka result con envelope SDK
+Playmaker listener→consumer real→estado persistido [EXTENDED acciones]
+JUnit source sets → Kafka + KVS + HTTP + MySQL [NEW evidencia]
+```
+
+## DD-1: suites en el CP y extensión del harness Playmaker
+
+**Decisión:** source sets Gradle separados en el CP para realIntegrationTest, e2eTest y managedIntegrationTest; reutilizar local-integration de Playmaker para sus productores/listeners y servicios de orquestación. El CP contiene launcher/Compose y matriz; Playmaker sólo cambia sus adapters necesarios.
+
+**Fundamentación:** el código CP, Gradle/JUnit/Awaitility/Kafka y pruebas existentes se versionan juntos, por lo que los escenarios pueden seguir contratos del commit probado. Playmaker develop ya tiene productor de deployments y listener de resultados Kafka con MySQL; extenderlo mantiene alineamiento RIO y evita duplicar orquestación. Cada suite arranca recursos propios y tiene configuración explícita, reportes separados y teardown determinista.
+
+**Alternativas:** un repositorio E2E independiente exige coordinar versiones y acceso al código/cliente KVS en cada cambio; no hay harness completo de CP disponible que justifique ese mantenimiento. Un único test dentro de la suite unitaria mezcla dependencias corporativas con pruebas rápidas y dificulta aislamiento. Mocks/loopback no cumplen RF-4/RF-6.
+
+## DD-2: Kafka real de cinco nodos
+
+**Decisión:** Apache Kafka KRaft con imagen fijada por digest tras comprobar disponibilidad, listeners de host y red, heap acotado y JAVA_TOOL_OPTIONS=-XX:UseSVE=0 para la imagen ARM que lo requiere. RF AWS máximo 5 exige cinco brokers; GCP cubre 1–3/default2 en el mismo cluster.
+
+**Fundamentación:** tres nodos dejan sin efecto físico RF4/5 admitidos por KafkaProvisioningService. Compose identifica proyecto/volúmenes/puertos por corrida y verifica quorum y brokers disponibles antes del CP. Docker memoria insuficiente falla con diagnóstico, sin reducir cobertura.
+
+## Conexión y transportes
+
+Perfil real-e2e separado de local: resultados son BigQueueClient real sobre KafkaProducer con confirmación del broker, envelope compatible SDK y key de correlación; los publishers productivos no se sustituyen. BigQConfig productivo excluye sólo este perfil. KvsConfig selecciona cliente Toolkit real por configuración sandbox propia; fail-fast impide no-op y prueba write/read/delete antes de aceptar el launcher. No se guarda credencial en el repo.
+
+La conexión GCP local sustituye exclusivamente la fábrica de AdminClient por un seam delegando al factory OAuth productivo fuera de real-e2e. GcpTopicProvisioningServiceImpl, validadores, routing engine y GcpTopicProvisioner siguen reales. AWS conserva resolver/factory vigente. La ausencia del seam GCP en Actions se registra y se corrige sólo como capacidad alcanzable con routing/auth productivos; no se inventa selección de cluster.
+
+El bridge local consume triggers Kafka y los envía al endpoint HTTP real, preservando BigQueueMessage y aceptación asíncrona. El resultado llega por Kafka real. ACK HTTP no certifica éxito; JUnit espera resultado correlacionado, estado KVS y efecto físico. La semántica Kafka del bridge se declara local y no acredita redelivery BigQueue.
+
+## Contratos
+
+Las fixtures se serializan con las clases de SDK resueltas por cada runtime y se comparan en el wire. Se conservan las claves JSON y enums de DeploymentTriggerMessage/ActionTriggerMessage/DeploymentResultMessage/ActionResultMessage. IDs UUID únicos por corrida; topics `e2e_<run>_*`; claves guard `deployment:<uuid>`, `gcp-deployment:<uuid>`, `action:<uuid>`. Los nombres físicos MSK incluyen prefijo de environment; GCP usa topic_name directo.
+
+## Errores y seguridad
+
+| Falla | Verificación |
+|---|---|
+| KVS ausente al inicio | launcher/suite falla, sin skip; nunca selecciona NoOpKvsClient |
+| KVS falla durante operación | comprobar degradación productiva y observabilidad; limitar falla al proxy/conexión propios |
+| Kafka inaccesible | verificar códigos reales TIMEOUT/INTERNAL y ausencia de éxito sintético; regresión MSK describeTopic no debe equiparar timeout a ausencia |
+| Publicación falla | comprobar política distinta Actions PUBLISH_PENDING vs deployments finalize-before-publish y ventana de pérdida vigente; no afirmar exactly-once |
+| Entrada inválida/ignorada | verificar binding, allowlists, schema, IDs, validation y efecto/claim ausente según contrato; cualquier contradicción explícita retorna a SPEC |
+| DLT | comprobar sólo la implementación real del listener/servicio donde existe; no declarar DLT del CP si no existe |
+
+Servicios locales se enlazan a loopback. Fallas de proceso/red sólo afectan recursos de la corrida. Logs/evidencia no incluyen tokens, payload de credenciales ni datos compartidos. ManagedIntegrationTest exige recursos propios explícitos y falla por falta de acceso; nunca usa comandos BigQueue mock como prueba física.
+
+## Archivos afectados y ownership
+
+| Owner | Nuevos/modificados |
+|---|---|
+| Coordinador | build.gradle, meli/features/20261001-real-e2e/{1-functional,2-technical,3-tasks}, source set soporte común de suites y gate de evidencia |
+| Infraestructura | e2e/Compose/launcher/CI, src/main/**/reale2e/*, wiring KvsConfig/BigQConfig y seam de conexión GCP; adapters Playmaker localintegration asignados |
+| Dominio | matriz, escenarios src/realIntegrationTest/** y regresiones de provisioner con archivos separados del infra |
+| Knowledge | único escritor de docs Kafka y fronteras necesarias en biblioteca; evidencia canónica versus rama |
+| Verificador independiente | sin cambios durante auditoría; reproduce checkout limpio y registra findings/evidencia |
+
+## Verificación y rollback
+
+realIntegrationTest cubre RF-1–5/8/10 contra CP/Kafka/KVS; e2eTest agrega RF-6; managedIntegrationTest verifica RF-7 con no producción real. Reportes JUnit/Gradle y evidencia estructurada conservan SHA/runId/capacidad/escenario/efecto/evento/KVS/Playmaker/cleanup/veredicto. RF-9 se verifica con validadores de la biblioteca. Las filas sin ejecución no se cuentan PASS. Repetir con un segundo namespace y revisión independiente antes de la entrega.
+
+La implementación agrega perfiles y tasks separados. Rollback local detiene sólo procesos, proyecto Compose, topics y claves registrados por corrida. Fuera de real-e2e se mantiene la fábrica/transportes productivos. Bugs físicos se corrigen en commits acotados con regresiones; cualquier cambio semántico de entrega fuera del contrato vigente necesita volver a diseño.
+
+## Delta técnico SDK publisher
+
+Repositorio `rio-sdk-events-kafka-e2e`, base master `ad2c98b806cffb88b23513f87785932aa1707ea4`, rama `feature/kafka-e2e-publisher-fix`. Añadir overload `ProducerFactory.createProducer(ProducerBuilder)` que consume el builder ya configurado y conservar `createProducer(String,MQConfiguration)`. BigQueueClientImpl delega el builder con segment/buffering al overload; MQConfiguration/timeouts y DTOs no cambian. Tests unitarios de regresión deben fallar sobre el constructor antiguo; no acreditan delivery administrada. El CP sigue artifact1.3.1 hasta decisión de backport/release y verificación con servicio real.
+
+## Delta de controles físicos de fallo
+
+Writer adicional fault_controls: archivos exclusivos e2e/faults/** y support Java reales en src/realIntegrationTest/.../faults/**; domain consume APIs y conserva ownership de tests. Authbroker separado KRaft/StandardAuthorizer sin superuser ANONYMOUS (evitar bypass), allow-if-no-ACL inicialmente sólo en cluster propio, ACLs cluster/topic exactas verificadas y retiradas antes de comprobar efecto/cleanup. Reducción de brokers4/5 y restauración sólo por labels/project exactos. Proxy HTTP transparente a único endpoint/physical container Sandbox propio, sin almacenamiento ni respuestas exitosas sintéticas: control separado loopback, hold/reset/fail503 antes/después de forward GET/SAVE/CAS según fixture; aliases/env sólo en procesos hijos. TCP real para interrupciones Kafka donde corresponda. Cada control requiere deadline, ledger, restore y post-cleanup; endpoints/headers KVS derivados del cliente/config reales, no inventados.
+
+## Delta de escenarios Playmaker y DLT local
+
+Coordinator writer exclusivo src/e2eTest/.../playmaker/**: redeploy de definición fixture propia emite PROVISION (contrato Playmaker vigente), verificando reconciliación física sin inventar UPDATE en upstream. Service PEEK usa cliente HTTP real y output persistido; Actions inválidas/topic ausente siguen trigger→CP FAILED→resultado Kafka→KVS Playmaker. DLT prueba entradas JSON neutrales sin campos obligatorios, jamás resultados COMPLETED sintéticos, en topics de transporte propios: observar payload idéntico y headers originales a través del listener/error handler real. El alcance es DLT Kafka del harness Playmaker, no DLT BigQueue del CP.
+
+### Hallazgo físico: brokers vivos versus brokers registrados
+
+En Kafka3.9.1 KRaft aislado, detener brokers4/5 deja tres nodos vivos pero conserva los IDs registrados. `createTopics` RF5 puede aceptar una asignación con esos brokers offline y producir ISR reducido; no debe esperarse InvalidReplicationFactorException sólo a partir de live3. La prueba válida de rechazo CREATE RF2 usa el cluster independiente de un broker. UPDATE/reconcile RF5 sí debe cubrir la comprobación de nodos vivos del KafkaTopicReplicationFactorAdjuster vigente. Conservar la evidencia del supuesto fallido del helper, la asignación/ISR observados y la restauración completa. No convertir esos componentes en PASS CP/KVS.
+
+## Delta de lifecycle Sandbox por corrida
+
+Coordinator writer exclusivo e2e/sandbox.py: usar sólo SandboxApi de Fury instalado y rutas verificadas de bc_service/instances_service. Crear BC nuevo con namespace/run únicos para CP y Playmaker, clonar sólo servicios KVS de esas apps explícitos, iniciar instancia y exportar configuraciones generadas a archivo0600 (sin imprimir valores). Registrar intent/receipts privados antes de cada mutación, deadlines y cleanup propio aun ante resultado desconocido. Down verifica nombre/descripción de ownership mediante API real antes de stop/delete y certifica ausencia. Nombres y configuración KMS quedan excluidos. El archivo privado contiene el run fijado y metadatos de exclusividad; los tests con IDs nulos/claves globales sólo ejecutan en ese sandbox exclusivo, comprobando ausencia inicial. API/schema/login reales siguen gate: un --help/compile no acredita provisión ni KVS.
+
+## Delta de verificación estricta de Sandbox y protocolo Kafka
+
+Revisión independiente detectó que validar sólo el receipt no liga los exports consumidos al recurso propio. Verificar configuración fresca completa por alias: Toolkit keys y valores, servicios, segmentos, run, BC/instancia y provenance exactos; rechazar variables Toolkit adicionales heredadas. La invocación directa de Gradle también debe exigir este gate antes de escenarios, no sólo el launcher. Usar Tiger almacenado válido con authenticate=False y header explícito mediante SandboxApi; no iniciar SSO ni renovar/escribir credenciales. Registro de mutaciones con estado UNKNOWN antes de POST y CONFIRMED sólo tras respuesta verificada; una ausencia inicial después de outcome incierto no certifica cleanup, requiere reconciliación externa y receipt retenido.
+
+Fault_controls agrega sólo e2e/faults/kafka_frame_proxy.py y support OwnedKafkaProtocolFaults.java. Broker propio anuncia listener EXTERNAL al proxy; proxy conserva frames Kafka byte por byte y correlaciona respuestas por request correlationId. Controles HOLD/RESET antes de request/tras response para API key y topic exacto del run, deadlines, contadores sin valores, abortHeld y cleanup verificado. No fabrica respuestas. Domain registra escenarios por ventanas alcanzables; ramas defensivas sin estímulo físico permanecen no verificadas.
+
+T13 refinado antes de escritura: version Kafka explícita y skipMatches; listener ADMIN propio independiente para observar y ejecutar la carrera sin atravesar el HOLD. Broker digest físico contiene kafka_2.13-3.9.1.jar; cliente3.9.2 negocia sus versiones efectivas. Un solo broker no certifica RF45/46.
+
+## Delta de journey administrado con Application real
+
+Nueva tanda Infra: ManagedControlplaneJourneyIntegrationTest y soporte managed exclusivamente asignado, sin editar main/build ni adapters locales. Usar Application completa, perfil managed-integration y SCOPE/SCOPE_SUFFIX no productivos, HTTP real, BigQConfig/KvsConfig/GCP OAuth productivos. No reutilizar RealE2eFixture local ni fabricar resultados. Correlacionar efecto OAuth Kafka, terminal BigQueue real y guard KVS real para CRUD RF1–3, PEEK OAuth, disminución de particiones→FAILED y redelivery. Verificar configuración/beans efectivos antes del body; usar ambos secret segments explícitos: credentials.secret-segment activa wrapper CP @Primary, fury-secrets.segment-id configura import SDK. Registry hard-closed antes de beans hasta verificar lifecycle, SDK efectivo, mappings/ownership y observer schema/window/IDs con servicios reales. Los cuerpos deben existir/compilar; el gate incompleto permanece rojo.
+
+Evidencia nueva read-only del API Fury: templates topic_test, consumer y scope devolvieron HTTP200, shapes/field names contrastados con CLI instalado. Todavía no hay queue/callback propios ni schema de mensajes observado. Candidate cleanup primario Alpaca4.2.2: PUT /bigqueue/{topic|consumer}/{app}/{name} con status deleting y GET /bigqueue/{app}/{name}; fuente de SDK no acredita permisos, nombres efectivos, completion/absence del servidor. No crear recursos hasta resolver cleanup propio. HTTP directo→CP→OAuthKafka→BigQueue es escenario separado de BigQpush→CP y resultpush→Playmaker: ambas fronteras requieren runtime/callback no productivos propios y observación real de estado.
+
+Aliases propuestos de resultados/consumers, routing privado, KVS/provenance y runtime SDK seleccionado son configuración de escenario, nunca API producto nueva ni flags de certificación. El observer debe rechazar schema ambiguo, ventana insuficiente y record repetido sin provider identity; peek10 no garantiza exhaustividad/redelivery. Cleanup independiente de topic/KVS/consumer/scope y ledger PASS sólo después del cierre. No cambia dependencia SDK1.3.1 del CP ni publica release.
+
+T13 extensión ListOffsets API2: schemas oficiales del cliente3.9.2, versiones0–9/flexible6+, matcher topic/version/correlation exacto y byte passthrough. Domain usa control para endOffsets/PEEK y takeover30s real, sin acortar lease canónica para fingir la ventana. No cambia respuesta ni lógica de Kafka.
+
+## Delta de RF reassignment timeout físico
+
+Domain escribe escenario/soporte exclusivo nuevo en realIntegrationTest, sin cambiar Compose/build/prod. Sólo cluster cinco brokers de esta corrida validado por labels/project: snapshot de configs dinámicos por broker antes de SET follower.replication.throttled.rate=1 y throttled.replicas=* en topic propio; sembrar16MiB reales de batches sin comprimir y pedirRF1→3. Observar reasignación real pendiente hasta deadline canónico de un minuto, resultado FAILED y guard real; no simular broker/node ausente. Cleanup cancela únicamente asignaciones del topic propio, restaura cada config SET/DELETE según ConfigSource snapshot, retira topic y preserva todos los fallos. No alterar brokers compartidos ni acortar timeout para un PASS ficticio.
+
+## Delta de interrupción real de worker
+
+Domain prepara6 escenarios físicos focused-service con worker exclusivamente propio, KafkaFuture real retenido por proxy y Thread.interrupt real. Comprobar código ServiceResult, flag conservado y efecto Kafka correcto; abortHeld antes de liberar para impedir mutación tardía accidental. Estos escenarios no acreditan publicación/guard de la entrada HTTP: quedan PARTIAL hasta observar ese recorrido. Revaluar captura determinista del worker por log de topic/correlación exactos de la corrida y stack/context propios, sin interrumpir threads ajenos ni introducir controlador de negocio. Si el flag impide publishing/KVS, observar esa ventana y la recuperación real; nunca limpiarlo para fabricar un terminal exitoso.
+
+## Delta T17: cleanup KVS con fallo real selectivo
+
+Domain añade únicamente RealKvsFixtureCleanupIntegrationTest.java, con entrypoint child dentro del mismo archivo. Root añade sysprop e2e.real.classpath con runtimeClasspath del sourceSet realIntegrationTest. Child JVM propio hereda exports verificados y recibe overrides de ToolkitSandboxFaults (READ/WRITE transparentes hacia Sandbox real y artifact-root vacío propio); usa RealE2eKvsClientFactory.create y RealE2eFixture vigentes, sin mutar environment global, reemplazar cliente de negocio, almacenar resultados en archivo ni fabricar respuesta KVS.
+
+Crear dos claves UUID propias y un topic físico propio, verificar reads reales, y retener en proxy sólo DELETE de primera clave con FAIL503/hits1000. Cleanup fixture debe reportar fallo y aun así borrar segunda clave/topic, cerrar producer/consumer/admin y eliminar grupo propio. Parent observa independientemente endpoint real: primera clave sigue almacenada, segunda ausente, topic ausente, ningún nuevo grupo results del run queda. Child sale con código diagnóstico estable sólo después de detectar el fallo esperado; stdout/stderr se descartan. Root/test no imprime exports, headers, stacktraces ni valores KVS.
+
+Deadlines/reap sólo del PID child y abortHeld/release/close del proxy propio. Finalmente parent restaura tráfico, elimina primera clave y todo recurso registrado independientemente; cualquier fallo de cleanup mantiene FAIL con causas agregadas. Caso NOT_EXECUTED hasta Sandbox/KVS/Kafka reales y cleanup certificado; compilación/diagnóstico child no promueven PASS por sí solos.
+
+## Delta T18: launcher y gates managed con Sandbox real
+
+Root conserva ownership de build.gradle, e2e/managed.sh y documentación del launcher. Añadir managedControlplaneJourneyTest filtrado al Application journey; el gate completo exige tanto probes como journey, sin convertir compilación o template200 en PASS de proveedor. all/journey deben cargar el archivo0600 completo generado por Sandbox y comparar RUN_ID/EXCLUSIVE_RUN_ID con MANAGED_RUN_ID, verificar export efectivo contra API mediante sandbox.py y mantener ARTIFACT_DELIVERY_FILE_PREFIX fresco0700. La verificación usa cliente Fury vigente y no SSO automático. Los probes individuales mantienen su alcance limitado.
+
+Parser estricto sin eval, exports duplicados/control chars rechazados, sin reusar SCP o un receiptflag como certificación. Cada ejecución publica sólo JUnit saneado y ledger de source/config IDs; ninguna excepción SDK/body/env en stdout. El trap conserva el exit original y marca FAIL si saneamiento, escritura de receipt o retiro del directorio privado falla. Registry sigue cerrado antes de conexión/mutación hasta verificar lifecycle/SDK/observer. El receipt del launcher es siempre PROVIDER_MUTATION_AND_CLEANUP_NOT_CERTIFIED; registry cerrado no convierte source gates en una certificación del proveedor. No admitir ausencia de mutaciones desde un receipt constante si se habilita el registro posteriormente. Regresiones L0 del launcher pueden probar rechazos/control de cleanup, pero no cuentan como escenarios KVS/BigQueue reales.
+
+## Delta T19: perfiles y binding de ConfigData reales
+
+Domain escribe sólo RealProfileConfigDataIntegrationTest.java nuevo: ConfigDataEnvironmentPostProcessor y Binder sobre YAML reales de perfiles, sin instanciar Application beans/clientes, mock de negocio ni mutación de env global. Verificar defaults de siete perfiles, sustitución completa de lista BigQueue y las dos rutas de segment de Secrets. Esos ocho mappings se marcan PARTIAL REAL_CONFIG_DATA_BINDING_ONLY; no certifican cliente productivo, auth, SDK, infraestructura ni arranque completo de un perfil. El ledger conserva las dependencias físicas pendientes y nunca convierte binding en PASS E2E. No modificar los defaults ni la semántica productiva para adecuarlos al escenario.
+
+## Delta T20: observación pasiva de workers locales antes de cleanup
+
+Root añade observador sólo en perfil real-e2e: decorar el bean asyncExecutor productivo mediante BeanPostProcessor, delegando al MeliExecutors/ExecutorService existente. Contar submit/finish/reject de Runnable real sin reemplazar processors/provisioners, alterar DTO/resultado, ni limpiar flags. Endpoint loopback de observación sin payloads bajo /internal/e2e/workers; eliminado fuera del perfil real-e2e. E2eSafety y runtime propio permanecen obligatorios. Domain consume esa observación desde RealE2eFixture antes de retirar recursos si despachó requests asíncronas; child sin dispatch no requiere el endpoint. Cada proceso worker adicional propio necesita la misma observación o reap verificado antes de cleanup. Fallo/deadline conserva recursos y FAIL; nunca borra guards mientras puede haber una mutación/publish tardía.
+
+Pruebas L0 del observador usan executor virtual real y latches/interrupt/rejection reales, no mock de negocio ni resultados sintéticos. Probar tasks anidadas y worker retenido después de timeout: idle sólo tras finally de todas las tareas, y delegación/MDC preservados. Esas pruebas acreditan el control de observación, no la suite CP/KVS. La aceptación física final exige ausencia de worker propio, topic/key/group y repetibilidad con Sandbox real.
+
+T20 revisión: persistir intent de recursos/despacho en marker0600 atomic+force de archivo/directorio antes de mutación/envío; remover sólo tras quiescence y ausencia verificadas. El parent conserva Docker/MySQL/Sandbox/config privada ante cualquier marker y falla explícitamente. Managed usa el mismo directorio0700/inventario antes de mutaciones, además del cierre de ingress/executor ya revisado. Gates/source/L0 no certifican ejecución del CP/KVS.
+
+
+## T21 · Deployment schema lower-bound guard
+
+Add one lower-bound guard in `DeploymentTriggerController.handleEvent`, after its null guard and before receipt metrics or either `CompletableFuture.runAsync` call. A schema below 1 uses the existing `recordIgnored()` and HTTP 200 path. Do not invoke global Bean Validation: this patch must not change legacy null deployment-group IDs, routing, DTO fields, provider processors or future-version compatibility.
+
+Prove the defect first with actual SDK JSON binding through `DeploymentTriggerInboundParser` and a unit executor dispatch assertion for `aws-msk-topic`/`gcp-kafka-topic` × 0/-1. Save the red result against the previous controller, then rerun green after the guard. Preserve current/null/future dispatch tests. Replace the previous real boundary oracle, which incorrectly expected provisioning from invalid schemas, with HTTP ACK, no worker submission, actual topic absence, actual KVS guard absence and no actual result during a bounded observation window. The real regression is prepared, not physically certified.
+
+Primary contract proof: CP `4302481c69300074a85ea5eb051a27bbd505cdce` OpenAPI minimum 1; SDK 1.3.1 SHA-256 `a16585a1f16a04a8b48e9cf010b6f16919a15deab3c46df9c2ee9ed10b5a600e` `schemaVersion @Min(1)`; source SDK `ad2c98b806cffb88b23513f87785932aa1707ea4` requires consumers to run validation. Bounded local guard is the candidate implementation, not canonical behavior before merge.
+
+## Delta T22: fuente canónica y cobertura aún abierta
+
+Playmaker master vigente para esta auditoría focal es `0c83575c54cb198d238be7d83f3b4d8de27abbc8`; la base de implementación permanece develop `7673f4bffc286f0f24d4214938df53c4c5eb9c38` y el checkpoint probado `1b4b8e1554c37357e4b39e1860be6ad43f9aa640`. El transporte Kafka local de deployments ya es canónico; acciones Kafka, KVS sandbox y ServicePeek real local siguen sólo en la rama candidata. El núcleo de entidades/contexto es idéntico entre master y develop, pero la autorización difiere. No se rebasea ni sustituye silenciosamente la versión probada. Los diez joins nuevos requieren fixtures reales SQL/wire/CP/Kafka/KVS y, para entidades positivas, Entity Service con auth/revisión/cleanup propios; hoy no existen cuerpos completos. SDK CP1.3.1 ignora contexto tipado y no administra schemas de entidades. La matriz registra 351 filas: 299 FULL preparadas, 24 PARTIAL y 28 NONE; toda ejecución física completa sigue NOT_EXECUTED. Informes por objetos/blob Git en evidence/pm-current-master-* preservan qué se verificó, sin convertir igualdad de fuente en certificación E2E.
+
+
+## T23 · Bounded controller metadata guard
+
+Add private required-metadata predicates in the two inbound controllers before received metrics/asynchronous dispatch. Only the selected metadata/correlation fields are checked; use existing ignored outcome tags and ACK200. Deployment group and Action component/environment exceptions remain independent. Parameter/operation/action-name processing remains delegated, including its existing FAILED behavior. Logs identify only the invalid-metadata class, without payload, names or identities.
+
+RED tests bind actual SDK1.3.1 JSON:8 deployment metadata fields ×AWS MSK/GCP ×absent/null, missing/null deployment_id,3 required action metadata fields ×absent/null, blank triggered_by, and absent/null/blank action_id. Positive unit fixtures supply valid required metadata; explicit null compatibility and processor-delegation cases prevent accidental global validation. Record red scheduling failures against the previous controllers, then green after guards. The real Boundary method requires unchanged actual worker submissions, no actual guard/result and unchanged/absent physical topic. Compatibility methods separately exercise legacy group-null and each independent Action component/environment null; these do not certify the unresolved SDK/OpenAPI compatibility conflict.
+
+Null-ID physical scenarios require the real exclusive Sandbox gate and initially absent global-shaped keys, read only. Never register such keys for fixture cleanup, even after the guard. Retention/quiescence gates continue unchanged; no business mock, skip or synthetic result is allowed. Normative sources and explicit producer conflicts are per-field in /private/tmp/kafka-e2e-discovery/required-metadata-triage.md/.tsv/.json.
+
+T23 scoped additions: the manual Deployment OpenAPI type now includes the three required display names and describes ACK200/ignored metadata handling; its existing group required annotation remains an explicit compatibility conflict. Swagger generation is coordinator-owned. Fixture retention has one fixed UNKNOWN/INVALID_GLOBAL_KEY_OBSERVED entry point with no key acquisition/deletion; its physical failure path remains NOT_EXECUTED and no mock/reflective constructor bypass is used for L0. Base real/managed factories and14 constructor call sites were checked for required metadata; none has a literal null required field. Boundary prefix/routing variants use valid non-null metadata except the explicit guard regression.
+
+
+## CP-SCOPE-1 — aislamiento del setup Sandbox
+
+Añadir `sandbox.py up --scope cp --cp-service <alias-propio>`; default ecosystem conserva el contrato existente. Persistir scope explícito y validar el plan de aplicaciones: CP un recurso/alias; ecosystem dos aplicaciones con results/locks distintos. Verify liga scope, metadata, ownership y exports frescos exactos; sin scope explícito soporta recibos legacy ecosystem. Cleanup conserva reconciliación de outcomes y sólo los recursos declarados propios, incluso provisión parcial. Los preflights/launchers ecosystem requieren scope ecosystem; CP acepta su Sandbox exclusivo sin requisitos Playmaker. No cambiar negocio/adapters ni relajar seguridad. Tests de controles metadata/API synthetic se etiquetan como preparación; runtime Toolkit y suite física requieren el clone permitido.
+
+
+CP-SCOPE-1 peer encontró P2 preexistente en Bash3.2: locals de `run_local_family() (...)` dejan de existir antes del EXIT trap; cleanup y gate.json fallaban por variable unbound. Mantener estado de familia en variables del subshell propio, accesible al trap; conservar locales de helpers activos y aislamiento respecto del parent. Mismo patrón metadata en managed. Conservar UNKNOWN/retención, no inferir ausencia por pérdida de contexto. Regresión debe ejecutar funciones reales y demostrar gate, cleanup/fallo, no API cuando faltan inputs y parent intacto.

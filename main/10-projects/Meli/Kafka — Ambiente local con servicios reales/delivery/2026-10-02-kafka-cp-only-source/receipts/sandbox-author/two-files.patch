@@ -1,0 +1,453 @@
+diff --git a/e2e/sandbox.py b/e2e/sandbox.py
+index 9d370b3..eeda6dd 100644
+--- a/e2e/sandbox.py
++++ b/e2e/sandbox.py
+@@ -17,6 +17,31 @@ import time
+ import uuid
+ 
+ APPS = ("rio-controlplane-kafka", "rio-playmaker")
++SCOPES = ("cp", "ecosystem")
++MAPPING_EXPORTS = ("E2E_KVS_SEGMENT_ID", "E2E_PLAYMAKER_KVS_SEGMENT_ID",
++                   "E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER", "E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER",
++                   "E2E_PLAYMAKER_SANDBOX_BC", "E2E_PLAYMAKER_SANDBOX_INSTANCE")
++
++
++def receipt_scope(state, expected=None):
++    # A missing field is the existing ecosystem receipt contract, never CP-only.
++    scope = state.get("scope", "ecosystem")
++    if not isinstance(scope, str) or scope not in SCOPES:
++        raise RuntimeError("SANDBOX_PROVENANCE_SCOPE_INVALID")
++    if expected is not None and expected != scope:
++        raise RuntimeError("SANDBOX_PROVENANCE_SCOPE_MISMATCH")
++    return scope
++
++
++def applications_for_scope(scope):
++    return APPS[:1] if scope == "cp" else APPS
++
++
++def valid_aliases(app, aliases):
++    count = 1 if app == APPS[0] else 2
++    return (isinstance(aliases, list) and len(aliases) == count
++            and all(isinstance(alias, str) and re.fullmatch(r"[a-zA-Z0-9_.-]{1,100}", alias)
++                    for alias in aliases) and len(set(aliases)) == count)
+ 
+ 
+ def write_private(path, value):
+@@ -56,11 +81,40 @@ class Lifecycle:
+                 raise RuntimeError("SANDBOX_ZERO_TRUST_LOGIN_REQUIRED")
+         return {"X-Tiger-Token": "Bearer " + token}
+ 
++    def validate_scope(self, expected=None, complete=False):
++        scope = receipt_scope(self.state, expected)
++        applications = applications_for_scope(scope)
++        resources = self.state.get("resources")
++        if not isinstance(resources, list) or any(not isinstance(item, dict) for item in resources):
++            raise RuntimeError("SANDBOX_PROVENANCE_RESOURCE_NOT_OWNED")
++        apps = [item.get("app") for item in resources]
++        if any(app not in applications for app in apps) or len(set(apps)) != len(apps) or any(
++                item.get("bc") != "e2e-" + self.state["run_id"] for item in resources):
++            raise RuntimeError("SANDBOX_PROVENANCE_RESOURCE_NOT_OWNED")
++        if any(not valid_aliases(item["app"], item.get("logical_services")) for item in resources):
++            raise RuntimeError("SANDBOX_PROVENANCE_LOGICAL_MAPPING_INVALID")
++        if complete and set(apps) != set(applications):
++            code = "CP_APPLICATION" if scope == "cp" else "BOTH_APPLICATIONS"
++            raise RuntimeError("SANDBOX_PROVENANCE_REQUIRES_" + code)
++        segments = self.state.get("segments", {})
++        allowed_segments = {"E2E_KVS_SEGMENT_ID"}
++        if scope == "ecosystem":
++            allowed_segments.add("E2E_PLAYMAKER_KVS_SEGMENT_ID")
++        if not isinstance(segments, dict) or set(segments) - allowed_segments or any(
++                not isinstance(value, str) or not re.fullmatch(r"[a-zA-Z0-9_-]{1,100}", value)
++                for value in segments.values()):
++            raise RuntimeError("SANDBOX_PROVENANCE_SEGMENTS_OUTSIDE_SCOPE")
++        mutations = self.state.get("mutations", [])
++        if not isinstance(mutations, list) or any(not isinstance(item, dict)
++                or item.get("app") not in applications for item in mutations):
++            raise RuntimeError("SANDBOX_PROVENANCE_MUTATION_OUTSIDE_SCOPE")
++        return scope
++
+     def save(self):
+         write_private(self.directory / "state.json", json.dumps(self.state, indent=2) + "\n")
+ 
+     def call(self, app, suffix, method="GET", body=None, allowed=(200,)):
+-        if app not in APPS:
++        if app not in applications_for_scope(receipt_scope(self.state)):
+             raise RuntimeError("SANDBOX_APPLICATION_NOT_OWNED")
+         kwargs = {"timeout": 20, "retry": False, "authenticate": False, "headers": self.stored_auth_headers()}
+         if body is not None:
+@@ -103,6 +157,7 @@ class Lifecycle:
+         return payload
+ 
+     def base_exports(self):
++        self.validate_scope()
+         exports = {"E2E_RUN_ID": self.state["run_id"], "E2E_KVS_EXCLUSIVE_RUN_ID": self.state["run_id"],
+                    "E2E_KVS_SANDBOX_PROVENANCE": str(self.directory / "state.json")}
+         exports.update(self.state.get("segments", {}))
+@@ -142,8 +197,12 @@ class Lifecycle:
+         return physical
+ 
+     def up(self, services):
++        applications = applications_for_scope(self.validate_scope())
++        if not isinstance(services, list) or len(services) != len(applications) or any(
++                not valid_aliases(app, aliases) for app, aliases in zip(applications, services)):
++            raise RuntimeError("SANDBOX_PROVENANCE_LOGICAL_MAPPING_INVALID")
+         exports = self.base_exports()
+-        for app, aliases in zip(APPS, services):
++        for app, aliases in zip(applications, services):
+             resource = {"app": app, "bc": "e2e-" + self.state["run_id"], "create_intent": False, "create_outcome": "NOT_SENT", "logical_services": aliases}
+             inventory, _ = self.call(app, "bc")
+             if not isinstance(inventory, list) or any(item.get("name") == resource["bc"] for item in inventory):
+@@ -184,11 +243,10 @@ class Lifecycle:
+         self.save()
+         write_private(self.directory / "sandbox.env", "\n".join(f"{key}={value}" for key, value in sorted(exports.items())) + "\n")
+ 
+-    def verify(self):
++    def verify(self, expected_scope=None):
++        self.validate_scope(expected_scope, complete=True)
+         if self.state.get("status") != "OWNED_CONFIG_GENERATED_NOT_KVS_CERTIFIED":
+             raise RuntimeError("SANDBOX_PROVENANCE_INCOMPLETE")
+-        if len(self.state["resources"]) != 2 or {item.get("app") for item in self.state["resources"]} != set(APPS):
+-            raise RuntimeError("SANDBOX_PROVENANCE_REQUIRES_BOTH_APPLICATIONS")
+         exports = self.base_exports()
+         for resource in self.state["resources"]:
+             expected_alias_count = 1 if resource["app"] == APPS[0] else 2
+@@ -202,12 +260,13 @@ class Lifecycle:
+                 raise RuntimeError("SANDBOX_PROVENANCE_MAPPING_CHANGED")
+         consumed = {key: value for key, value in os.environ.items()
+                     if key.startswith("KEY_VALUE_STORE_") or key in exports
+-                    or key in ("E2E_KVS_SEGMENT_ID", "E2E_PLAYMAKER_KVS_SEGMENT_ID")}
++                    or key in MAPPING_EXPORTS}
+         if consumed != exports:
+             # Never print the differing keys/values: endpoint/token-safe stable error only.
+             raise RuntimeError("SANDBOX_CONSUMED_EXPORTS_DO_NOT_MATCH_OWNED_CONFIG")
+ 
+     def down(self):
++        self.validate_scope()  # Partial own resources are allowed; scope expansion is not.
+         errors = []
+         for resource in self.state["resources"]:
+             try:
+@@ -247,6 +306,8 @@ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("command", choices=("up", "verify", "down"))
+     parser.add_argument("--directory", type=Path)
++    parser.add_argument("--scope", choices=SCOPES,
++                        help="up defaults to ecosystem; verify/down use the receipt unless explicitly constrained")
+     parser.add_argument("--cp-service")
+     parser.add_argument("--pm-results-service")
+     parser.add_argument("--pm-locks-service")
+@@ -260,10 +321,15 @@ def main():
+     if args.command == "up":
+         if (directory / "state.json").exists():
+             raise RuntimeError("SANDBOX_STATE_EXISTS_USE_VERIFY_OR_DOWN")
+-        aliases = [args.cp_service, args.pm_results_service, args.pm_locks_service]
++        scope = args.scope or "ecosystem"
++        if scope == "cp" and any(value is not None for value in
++                (args.pm_results_service, args.pm_locks_service, args.pm_segment)):
++            raise RuntimeError("SANDBOX_CP_SCOPE_FORBIDS_PLAYMAKER_INPUTS")
++        aliases = [args.cp_service] if scope == "cp" else [args.cp_service, args.pm_results_service, args.pm_locks_service]
+         if any(alias is None or not re.fullmatch(r"[a-zA-Z0-9_.-]{1,100}", alias) for alias in aliases):
+-            raise RuntimeError("SANDBOX_THREE_OWN_APPLICATION_KVS_ALIASES_REQUIRED")
+-        if aliases[1] == aliases[2]:
++            code = "CP_OWN_KVS_ALIAS" if scope == "cp" else "THREE_OWN_APPLICATION_KVS_ALIASES"
++            raise RuntimeError("SANDBOX_" + code + "_REQUIRED")
++        if scope == "ecosystem" and aliases[1] == aliases[2]:
+             raise RuntimeError("SANDBOX_PLAYMAKER_RESULTS_LOCKS_MUST_BE_DISTINCT")
+         run = uuid.uuid4().hex
+         segments = {}
+@@ -272,7 +338,7 @@ def main():
+                 if not re.fullmatch(r"[a-zA-Z0-9_-]{1,100}", segment):
+                     raise RuntimeError("SANDBOX_INVALID_SEGMENT")
+                 segments[key] = segment
+-        state = {"schema": 1, "run_id": run, "marker": "Owned Kafka E2E " + run, "resources": [],
++        state = {"schema": 1, "scope": scope, "run_id": run, "marker": "Owned Kafka E2E " + run, "resources": [],
+                  "status": "PREPARING", "segments": segments}
+     else:
+         path = directory / "state.json"
+@@ -281,18 +347,20 @@ def main():
+         state = json.loads(path.read_text())
+         if state.get("schema") != 1 or not re.fullmatch(r"[a-f0-9]{32}", state.get("run_id", "")):
+             raise RuntimeError("SANDBOX_PROVENANCE_SCHEMA_INVALID")
+-        if any(item.get("bc") != "e2e-" + state["run_id"] or item.get("app") not in APPS for item in state["resources"]):
++        scope = receipt_scope(state, args.scope)
++        if any(item.get("bc") != "e2e-" + state["run_id"] or item.get("app") not in applications_for_scope(scope)
++                for item in state["resources"]):
+             raise RuntimeError("SANDBOX_PROVENANCE_RESOURCE_NOT_OWNED")
+     with (directory / "sdk-private.log").open("a") as private, contextlib.redirect_stdout(private), contextlib.redirect_stderr(private):
+         lifecycle = Lifecycle(directory, state)
+         if args.command == "up":
+             try:
+-                lifecycle.up([[aliases[0]], aliases[1:]])
++                lifecycle.up([[aliases[0]]] if scope == "cp" else [[aliases[0]], aliases[1:]])
+             except Exception:
+                 lifecycle.down()
+                 raise
+         elif args.command == "verify":
+-            lifecycle.verify()
++            lifecycle.verify(args.scope)
+         else:
+             lifecycle.down()
+     print("SANDBOX_" + args.command.upper() + "_PASS:" + str(directory))
+diff --git a/e2e/tests/sandbox-contract.py b/e2e/tests/sandbox-contract.py
+index ecca050..a8d1abe 100644
+--- a/e2e/tests/sandbox-contract.py
++++ b/e2e/tests/sandbox-contract.py
+@@ -1,7 +1,11 @@
+ #!/usr/bin/env python3
+ """Permanent lifecycle control-flow regressions; no Sandbox/KVS/E2E certificate."""
++import contextlib
+ import importlib.util
++import io
++import json
+ import os
++import sys
+ from pathlib import Path
+ import tempfile
+ import types
+@@ -16,15 +20,18 @@ spec.loader.exec_module(sandbox)
+ 
+ class ControlFixture:
+     """Synthetic API shape only, for ownership and unknown-outcome regression."""
+-    def __init__(self, directory):
++    def __init__(self, directory, scope=None):
+         self.lifecycle = sandbox.Lifecycle.__new__(sandbox.Lifecycle)
+         self.lifecycle.directory = Path(directory)
+         run = 'a' * 32
+         self.lifecycle.state = {'schema': 1, 'run_id': run, 'marker': 'Owned Kafka E2E ' + run,
+             'status': 'OWNED_CONFIG_GENERATED_NOT_KVS_CERTIFIED', 'segments': {}, 'resources': []}
++        if scope is not None:
++            self.lifecycle.state['scope'] = scope
+         self.configs = {}
+         self.calls = []
+-        for app, aliases, instance in zip(sandbox.APPS, [['cp'], ['results', 'locks']], ['1', '2']):
++        applications = sandbox.APPS[:1] if scope == 'cp' else sandbox.APPS
++        for app, aliases, instance in zip(applications, [['cp'], ['results', 'locks']], ['1', '2']):
+             resource = {'app': app, 'bc': 'e2e-' + run, 'instance': instance, 'create_intent': True,
+                         'create_outcome': 'CONFIRMED', 'creation_observed': True,
+                         'ownership_verified': True, 'logical_services': aliases,
+@@ -49,6 +56,48 @@ class ControlFixture:
+         return result
+ 
+ 
++class ProvisioningControlFixture(ControlFixture):
++    """API metadata simulator only: no provider, client storage or business result."""
++    def __init__(self, directory, scope=None):
++        super().__init__(directory, scope)
++        self.lifecycle.state['resources'] = []
++        self.lifecycle.state['status'] = 'PREPARING'
++        self.existing = set()
++        self.cloned = []
++        self.lifecycle.api = types.SimpleNamespace(make_api_call=self.api_call)
++        self.lifecycle.stored_auth_headers = lambda: {'X-Tiger-Token': 'Bearer synthetic-control-fixture'}
++        self.lifecycle.call = types.MethodType(sandbox.Lifecycle.call, self.lifecycle)
++
++    def api_call(self, route, method, **kwargs):
++        _, app, suffix = route.split('/', 2)
++        self.calls.append((app, suffix, method))
++        if suffix == 'bc':
++            if method == 'GET':
++                return [], 200
++            self.existing.add(app)
++            return {}, 201
++        if suffix == 'bc/e2e-' + self.lifecycle.state['run_id']:
++            if method == 'DELETE':
++                self.existing.discard(app)
++                return {}, 200
++            if app not in self.existing:
++                return None, 404
++            return {'name': 'e2e-' + self.lifecycle.state['run_id'],
++                    'description': self.lifecycle.state['marker']}, 200
++        if suffix.endswith('/services'):
++            self.cloned.append((app, json.loads(kwargs['data'])['name']))
++            return {}, 201
++        if suffix.endswith('/start'):
++            return {'response': '1' if app == sandbox.APPS[0] else '2'}, 200
++        if suffix.endswith('/configurations'):
++            return self.configs[app], 200
++        if suffix.endswith('/instances'):
++            return {'instances': [{'id': '1' if app == sandbox.APPS[0] else '2'}]}, 200
++        if suffix.endswith('/stop'):
++            return {}, 200
++        raise AssertionError('unexpected simulator API route')
++
++
+ class LifecycleControlContract(unittest.TestCase):
+     def setUp(self):
+         self.directory = tempfile.TemporaryDirectory(prefix='sandbox-control-regression-')
+@@ -143,5 +192,176 @@ class LifecycleControlContract(unittest.TestCase):
+         self.assertEqual(calls[0]['timeout'], 20)
+ 
+ 
++class ScopeControlContract(unittest.TestCase):
++    def setUp(self):
++        self.directory = tempfile.TemporaryDirectory(prefix='sandbox-scope-control-')
++        self.addCleanup(self.directory.cleanup)
++        self.fixture = ControlFixture(self.directory.name, 'cp')
++
++    def verify(self, fixture=None, expected=None, extras=None):
++        fixture = fixture or self.fixture
++        environment = fixture.exports()
++        environment.update(extras or {})
++        with patch.dict(os.environ, environment, clear=True):
++            if expected is None:
++                fixture.lifecycle.verify()
++            else:
++                fixture.lifecycle.verify(expected)
++
++    def test_cp_receipt_verifies_only_CP_fresh_configuration_without_PM(self):
++        self.verify()
++        self.assertEqual({app for app, _, _ in self.fixture.calls}, {sandbox.APPS[0]})
++        self.assertEqual(sum(path.endswith('/configurations') for _, path, _ in self.fixture.calls), 1)
++        self.assertFalse(any(key.startswith('E2E_PLAYMAKER_') for key in self.fixture.exports()))
++
++    def test_cp_up_provisions_only_CP_and_single_alias(self):
++        fixture = ProvisioningControlFixture(self.directory.name, 'cp')
++        fixture.lifecycle.up([['cp']])
++        self.assertEqual({app for app, _, _ in fixture.calls}, {sandbox.APPS[0]})
++        self.assertEqual(fixture.cloned, [(sandbox.APPS[0], 'cp')])
++        self.assertEqual(len(fixture.lifecycle.state['resources']), 1)
++        self.assertEqual(fixture.lifecycle.state['scope'], 'cp')
++        exports = dict(line.split('=', 1) for line in (Path(self.directory.name) / 'sandbox.env').read_text().splitlines())
++        self.assertFalse(any(key.startswith('E2E_PLAYMAKER_') for key in exports))
++        self.verify(fixture)
++        fixture.lifecycle.down()
++        self.assertEqual(fixture.lifecycle.state['cleanup'], 'CERTIFIED_API_ABSENCE')
++        self.assertEqual(fixture.existing, set())
++
++    def test_CLI_cp_single_alias_and_default_ecosystem_persist_scope(self):
++        for mode in ['cp', 'ecosystem']:
++            with self.subTest(mode=mode), tempfile.TemporaryDirectory(prefix='sandbox-cli-scope-') as directory:
++                fixture = ProvisioningControlFixture(directory, mode)
++                argv = ['sandbox.py', 'up', '--directory', directory, '--cp-service', 'cp']
++                if mode == 'cp':
++                    argv += ['--scope', 'cp']
++                else:
++                    argv += ['--pm-results-service', 'results', '--pm-locks-service', 'locks']
++                def construct(path, state):
++                    fixture.lifecycle.directory, fixture.lifecycle.state = path, state
++                    return fixture.lifecycle
++                with patch.object(sys, 'argv', argv), patch.object(sandbox, 'Lifecycle', side_effect=construct), contextlib.redirect_stdout(io.StringIO()):
++                    sandbox.main()
++                state = json.loads((Path(directory) / 'state.json').read_text())
++                self.assertEqual(state['scope'], mode)
++                self.assertEqual({item['app'] for item in state['resources']}, set(sandbox.APPS[:1] if mode == 'cp' else sandbox.APPS))
++                self.assertEqual(len(fixture.cloned), 1 if mode == 'cp' else 3)
++
++    def test_legacy_receipt_stays_ecosystem_and_explicit_ecosystem_passes(self):
++        legacy = ControlFixture(self.directory.name)
++        self.assertNotIn('scope', legacy.lifecycle.state)
++        self.verify(legacy, 'ecosystem')
++        self.assertEqual({app for app, _, _ in legacy.calls}, set(sandbox.APPS))
++
++    def test_expected_scope_rejects_both_cross_family_directions_and_legacy_downgrade_before_API(self):
++        for receipt, expected in [(self.fixture, 'ecosystem'),
++                                  (ControlFixture(self.directory.name, 'ecosystem'), 'cp'),
++                                  (ControlFixture(self.directory.name), 'cp')]:
++            with self.subTest(expected=expected):
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_SCOPE_MISMATCH'):
++                    self.verify(receipt, expected)
++                self.assertEqual(receipt.calls, [])
++
++    def test_invalid_persisted_scope_is_rejected(self):
++        for invalid in [None, '', 'CP', 'other', True, 1, []]:
++            with self.subTest(scope=invalid):
++                self.fixture.lifecycle.state['scope'] = invalid
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_SCOPE_INVALID'):
++                    self.fixture.lifecycle.verify()
++                self.assertEqual(self.fixture.calls, [])
++
++    def test_cp_rejects_PM_resource_and_duplicate_CP_resource_before_API(self):
++        for resource in [ControlFixture(self.directory.name).lifecycle.state['resources'][1],
++                         dict(self.fixture.lifecycle.state['resources'][0])]:
++            with self.subTest(app=resource['app']):
++                self.fixture.lifecycle.state['resources'].append(resource)
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_RESOURCE_NOT_OWNED'):
++                    self.fixture.lifecycle.verify()
++                self.assertEqual(self.fixture.calls, [])
++                self.fixture.lifecycle.state['resources'].pop()
++
++    def test_cp_rejects_extra_alias_and_PM_segment_in_receipt(self):
++        resource = self.fixture.lifecycle.state['resources'][0]
++        resource['logical_services'].append('results')
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_LOGICAL_MAPPING_INVALID'):
++            self.fixture.lifecycle.verify()
++        resource['logical_services'].pop()
++        self.fixture.lifecycle.state['segments']['E2E_PLAYMAKER_KVS_SEGMENT_ID'] = 'pm'
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_SEGMENTS_OUTSIDE_SCOPE'):
++            self.fixture.lifecycle.verify()
++        self.assertEqual(self.fixture.calls, [])
++
++    def test_cp_rejects_each_PM_mapping_consumed_from_environment(self):
++        for key in ['E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER', 'E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER',
++                    'E2E_PLAYMAKER_SANDBOX_BC', 'E2E_PLAYMAKER_SANDBOX_INSTANCE',
++                    'E2E_PLAYMAKER_KVS_SEGMENT_ID', 'KEY_VALUE_STORE_RESULTS_CONTAINER_NAME']:
++            with self.subTest(key=key):
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_CONSUMED_EXPORTS'):
++                    self.verify(extras={key: 'foreign-control-metadata'})
++
++    def test_cp_rejects_PM_API_call_and_mutation_receipt(self):
++        fixture = ProvisioningControlFixture(self.directory.name, 'cp')
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_APPLICATION_NOT_OWNED'):
++            fixture.lifecycle.call(sandbox.APPS[1], 'bc', 'POST', {}, allowed=(201,))
++        self.assertEqual(fixture.calls, [])
++        self.fixture.lifecycle.state['mutations'] = [{'app': sandbox.APPS[1], 'outcome': 'HTTP_200'}]
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_MUTATION_OUTSIDE_SCOPE'):
++            self.fixture.lifecycle.down()
++        self.assertEqual(self.fixture.calls, [])
++
++    def test_cp_up_rejects_excess_services_before_API(self):
++        fixture = ProvisioningControlFixture(self.directory.name, 'cp')
++        with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_LOGICAL_MAPPING_INVALID'):
++            fixture.lifecycle.up([['cp'], ['results', 'locks']])
++        self.assertEqual(fixture.calls, [])
++
++    def test_cp_partial_and_ecosystem_partial_cleanup_allow_only_observed_own_resources(self):
++        for mode in ['cp', 'ecosystem']:
++            with self.subTest(mode=mode):
++                fixture = ControlFixture(self.directory.name, mode)
++                fixture.lifecycle.state['resources'] = fixture.lifecycle.state['resources'][:1]
++                fixture.lifecycle.state['status'] = 'PREPARING'
++                fixture.lifecycle.require_owned = lambda resource: None
++                fixture.lifecycle.down()
++                self.assertEqual(fixture.lifecycle.state['cleanup'], 'CERTIFIED_API_ABSENCE')
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE|SANDBOX_PROVENANCE_INCOMPLETE'):
++                    fixture.lifecycle.verify()
++
++    def test_cp_partial_unknown_creation_and_unknown_mutation_still_fail_cleanup(self):
++        for unknown in ['creation', 'mutation']:
++            with self.subTest(unknown=unknown):
++                fixture = ControlFixture(self.directory.name, 'cp')
++                fixture.lifecycle.state['status'] = 'PREPARING'
++                if unknown == 'creation':
++                    fixture.lifecycle.state['resources'][0]['creation_observed'] = False
++                    fixture.lifecycle.state['resources'][0]['create_outcome'] = 'UNKNOWN'
++                else:
++                    fixture.lifecycle.state['mutations'] = [{'app': sandbox.APPS[0], 'outcome': 'UNKNOWN'}]
++                fixture.lifecycle.require_owned = lambda resource: None
++                with self.assertRaisesRegex(RuntimeError, 'SANDBOX_CLEANUP_FAILED'):
++                    fixture.lifecycle.down()
++                self.assertEqual(fixture.lifecycle.state['cleanup'], 'FAILED')
++
++    def test_CLI_cp_rejects_missing_alias_or_PM_inputs_before_auth_or_API(self):
++        for options, code in [([], 'SANDBOX_CP_OWN_KVS_ALIAS_REQUIRED'),
++                             (['--cp-service', 'cp', '--pm-results-service', 'results'], 'SANDBOX_CP_SCOPE_FORBIDS_PLAYMAKER_INPUTS'),
++                             (['--cp-service', 'cp', '--pm-locks-service', 'locks'], 'SANDBOX_CP_SCOPE_FORBIDS_PLAYMAKER_INPUTS'),
++                             (['--cp-service', 'cp', '--pm-segment', 'pm'], 'SANDBOX_CP_SCOPE_FORBIDS_PLAYMAKER_INPUTS')]:
++            with self.subTest(options=options):
++                argv = ['sandbox.py', 'up', '--scope', 'cp', '--directory', self.directory.name] + options
++                with patch.object(sys, 'argv', argv), patch.object(sandbox, 'Lifecycle') as constructor:
++                    with self.assertRaisesRegex(RuntimeError, code):
++                        sandbox.main()
++                    constructor.assert_not_called()
++
++    def test_CLI_expected_ecosystem_rejects_CP_receipt_before_auth_or_API(self):
++        self.fixture.lifecycle.save()
++        argv = ['sandbox.py', 'verify', '--scope', 'ecosystem', '--directory', self.directory.name]
++        with patch.object(sys, 'argv', argv), patch.object(sandbox, 'Lifecycle') as constructor:
++            with self.assertRaisesRegex(RuntimeError, 'SANDBOX_PROVENANCE_SCOPE_MISMATCH'):
++                sandbox.main()
++            constructor.assert_not_called()
++
++
+ if __name__ == '__main__':
+     unittest.main(verbosity=1)

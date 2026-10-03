@@ -1,0 +1,97 @@
+{
+  "status": "AUTHOR_CONTROLS_FROZEN_PENDING_INDEPENDENT_PEER",
+  "source": {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/ci-family-scope-contract.py",
+    "relative": "e2e/tests/ci-family-scope-contract.py",
+    "sha256": "2241b997fbd08b2666fe2542e8444940707ef954c597ad41df4f2cd26011b7fd",
+    "before": "ABSENT"
+  },
+  "CI_source": {
+    "sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+    "owner": "root",
+    "changes_by_infra": false
+  },
+  "controls": {
+    "published_tests": 11,
+    "published_exit": 0,
+    "baseline_3bea_failures": 10,
+    "scoped_before_trap_failures": 10,
+    "bare_variable_managed_failure": 1,
+    "syntax_new_file": "PASS",
+    "patch_whitespace_apply_check_exit": 0,
+    "bash": {
+      "path": "/bin/bash",
+      "version": "GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)"
+    },
+    "context": {
+      "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/reconciliation-status.py": {
+        "sha256": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243",
+        "usage": "unaltered private copy"
+      },
+      "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/bind-ci-family-inputs.py": {
+        "sha256": "e19105ad815ac04e9d9644ce4660c8bbead4aa806b2de60d86858c2a819548e7",
+        "usage": "unaltered private copy"
+      }
+    }
+  },
+  "boundaries": [
+    "Exact CI family/helper/EXIT bodies execute under /bin/bash in private cwd.",
+    "API-shape executable always fails before installed SDK/client/services; no business outputs.",
+    "Actual reconciliation-status and bind-ci read-run parser bytes copied unchanged.",
+    "Managed only executable transport boundary substituted by private fail29 spy.",
+    "Gate statuses / UNKNOWN retention and parent sentinel isolation are shell metadata controls only."
+  ],
+  "cases": [
+    "CP without PM reaches up --scope cp, gate1 retained",
+    "Missing CP alias no API, gate2",
+    "Attempt without state retained, gate1, no false absence",
+    "Own private metadata state/downFAIL retained, gate1",
+    "Reconciliation marker blocks down, gate1",
+    "Canonical PM missing inputs no API, gate2",
+    "Candidate PM missing inputs no API, gate2",
+    "Managed missing inputs no API, gate2",
+    "Configured PM uses ecosystem scope/three aliases then fails before services",
+    "Missing runtime interpreter no API/gate2; parent sentinel isolation",
+    "Managed two private read-run files + distinct-run actual guard reach fail29 transport, gate29"
+  ],
+  "artifacts": {
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/freeze.sha256": {
+      "sha256": "829bb9cf0205dd467ab3db7193b1eae03689bb8b60a656a73ec96b4df313ed94"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/one-new-file.patch": {
+      "sha256": "25380b1b96d5ee17778c5ca6653badd8a63cefa22735ca2825a16493f7879479"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/controls.json": {
+      "sha256": "a2dc7e6be2c4d07d71e1ad2e9f875f28576aaab96f3a260da831cee8f074cda0"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/publication-receipt.json": {
+      "sha256": "2c6fa1400300931ca5c4e8114facded304c38a7113e115e7708181246e808906"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/publication-plan.json": {
+      "sha256": "b3bd1a2506522deeb1f393dfbd9bc7116494457a1a5ccce1a1d2126f25b7eb3e"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/published.log": {
+      "sha256": "0e2e34ce688d280c9fbf9a84d2c7b8585e41c34fe8586ffe4efeb9dc7fc8f85f"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/baseline-3bea.log": {
+      "sha256": "ee18b5342394b87a963feac019a3dd27dadc97dafe0b09a9a616117fbe7cf214"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/scoped-before-trap-fix.log": {
+      "sha256": "32b62a458e84cf3906cadad609bd1aea48fe3a3b6fd03aa2a2ea14aec5ec1564"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/bare-declaration-red.log": {
+      "sha256": "0d93fc1c1370a56c4b5bd4c7852efac10c6312473b282cf0a72ce57fb91002d5"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/logs/diff-check.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/first-diff-check-adaptation.json": {
+      "sha256": "3263c4df735f1797bd3065fbfa3b242d3c61ea27dc4702428a88fb0c5eeee944"
+    }
+  },
+  "remote_API_calls": 0,
+  "Docker": 0,
+  "Gradle": 0,
+  "commits": 0,
+  "business": "NOT_EXECUTED"
+}

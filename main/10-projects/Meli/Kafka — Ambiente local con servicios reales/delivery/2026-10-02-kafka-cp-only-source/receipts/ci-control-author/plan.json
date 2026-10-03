@@ -1,0 +1,34 @@
+{
+  "functional": "CI CP setup requires no PM inputs; every attempted family writes a truthful nonzero gate and retains unknown startup/cleanup evidence. Subshells preserve parent state.",
+  "technical": "Execute exact extracted real CI family/helper functions with /bin/bash; use only a private API-shape executable that fails before SDK/business and real reconciliation-status.py. Preserve baseline Bash3.2 EXIT-local scope failures.",
+  "tasks": [
+    "freeze source/context and assert new target absent",
+    "prepare single new control",
+    "execute old baseline RED and stable candidate PASS under native /bin/bash3.2",
+    "guarded escalated publish new file only",
+    "freeze for peer; no business certification"
+  ],
+  "target": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/ci-family-scope-contract.py",
+  "before": "ABSENT",
+  "backup_guard": {
+    "target_absent": true
+  },
+  "CI_source": {
+    "stable": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+    "sha256": "5c0ac3072ded34dde0f0d27c8eb05769baf8d31a38d41bb1bed8eb29f1842046",
+    "backup": "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/ci-stable-source.sh",
+    "baseline": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/root-04-ci.sh.before",
+    "trap_defect_scoped_baseline": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/trap-2-ci.sh.before",
+    "after_bare_variable_fix": {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+      "backup": "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/ci-stable-source-v2.sh"
+    }
+  },
+  "remote_API_calls": 0,
+  "Docker": 0,
+  "Gradle": 0,
+  "commits": 0,
+  "business": "NOT_EXECUTED",
+  "new_file_sha256": "2241b997fbd08b2666fe2542e8444940707ef954c597ad41df4f2cd26011b7fd"
+}

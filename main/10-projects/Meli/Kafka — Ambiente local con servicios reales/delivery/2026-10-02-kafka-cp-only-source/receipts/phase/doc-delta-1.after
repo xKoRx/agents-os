@@ -1,0 +1,132 @@
+---
+title: Verificar el E2E real de Kafka CP
+layer: L3
+audience: [engineering, quality, support, agents]
+last_verified: 2026-10-02
+confidence: medium
+sensitivity: internal
+---
+
+# Verificar el E2E real de Kafka CP
+
+## Impacto y alcance
+
+**WORK_BRANCH_PENDING.** El sistema se implementa en `feature/kafka-real-e2e`, sobre CP develop `4302481c69300074a85ea5eb051a27bbd505cdce` y Playmaker develop `7673f4bffc286f0f24d4214938df53c4c5eb9c38`. Los masters canónicos siguen en el [manifiesto](../08-governance/source-manifest.md); este runbook no afirma disponibilidad en producción. La decisión, SPECs, tareas, inventario y matriz se guardan en el CP bajo `meli/features/20261001-real-e2e/`.
+
+Los alcances se ejecutan por separado. La suite propia del CP (`realIntegrationTest`) usa únicamente Kafka real, el CP y su KVS Fury Sandbox exclusivo, con resultados observables sobre Kafka. El ecosistema agrega Playmaker/MySQL/EntityService e identidad; el proveedor/transporte administrado usa recursos no productivos propios. El owner priorizó primero la suite propia del CP el 2026-10-02. Ejecutar el provisioner GCP sobre Kafka plaintext local no acredita OAuth GCP. Los adapters Kafka de triggers/resultados no acreditan BigQueue. No hay certificación completa de ninguna de esas familias todavía.
+
+La arquitectura reutiliza Gradle/JUnit/Awaitility del CP y el transporte Kafka `local-integration` de Playmaker. Cinco brokers cubren AWS RF1–5 y GCP RF1–3/default2. Las conexiones y el transporte varían por perfil; validadores, processors, provisioners, guard y consumidores de estado son los reales. Las suites no pueden acreditar éxito usando el fallback KVS, archivos de resultados o respuestas sintéticas del negocio.
+
+El [master Playmaker `0c83575`](../08-governance/kafka-canonical-audit-2026-10-01.md#transporte-local-y-service-peek) ya contiene ese transporte local de deployments, idéntico a develop `7673f4b`. Los adapters locales de acciones, clientes Toolkit KVS dedicados y selección HTTP real de Service PEEK siguen sólo en checkpoint `1b4b8e1`. El master local conserva Service PEEK sintético; el harness completo continúa WORK_BRANCH_PENDING. La auth configured-only+Tiger del master difiere de las reglas más estrictas de develop/work; un recorrido sobre `1b4b8e1` no certifica esa auth canónica.
+
+## Evidencia mínima segura
+
+| Comprobación del 01/10 | Estado observado | Límite |
+|---|---|---|
+| Cinco brokers KRaft, topics de 3 particiones RF1–5 | PASS, réplicas/ISR y cinco IDs observados; cleanup certificado | Infraestructura únicamente, sin CP/KVS/Playmaker |
+| Heap192MiB por broker | FAIL, OOM real al iniciar LogManager | Se corrigió a heap512MiB/límite768MiB; no esconder el primer ensayo |
+| Compilación CP y regresión existente más regresiones acotadas | PASS unit T23: 804 tests/0 fallos/0 errores/0 skips Java25 (63 clases), compile de tres familias y bootJar; cortes anteriores 722/712 y primer full de 804 tests con 4 fixtures incompletos preservados | No equivale a suite real |
+| MySQL8.0.32, 37 migraciones y fixture SQL del harness | PASS por reproducción independiente; cleanup certificado | No acredita Tiger/ACME, CP ni despliegue Playmaker |
+| SDK publisher: segment/buffering explícitos | PASS unitario708/0 skips, regresión inicial3 fallos reproducida; factory corregida en rama SDK | CP sigue artifact1.3.1; no release ni delivery BigQueue acreditada |
+| Broker propio con ACLs y RF insuficiente | PASS, denial real, topic ausente, restauración/create/ISR y cleanup certificado | Controles físicos únicamente; casos CP/KVS consumidores pendientes |
+| KVS Toolkit exclusivo/create/versión/CAS/TTL | BLOCKED: el 02/10 el guard de credenciales requiere renovar Fury; los clones autenticados anteriores devolvieron403 | Revalidar clone después de login; bytecode no acredita el contrato del servidor |
+| Recorrido Playmaker completo y acciones | NOT_EXECUTED, KVS403 bloquea; input de identidad/grant preparado | Compilar y aceptar HTTP no son estado final |
+| OAuth GCP / BigQueue administrada / job corporativo completo | NOT_EXECUTED, recursos/credenciales/runner y cleanup por confirmar | Sin sustitución por pruebas locales |
+
+El ledger por corrida debe contener SHA y manifiesto del candidato, namespace propio, correladores, particiones/RF/config/offsets verificados, terminal recibido, KVS real y estado MySQL cuando aplica. Conserva JUnit y limpieza tanto en éxito como en fallo. El payload sintético permitido es un fixture de entrada; un resultado observado nunca se reemplaza por un fixture.
+
+El lifecycle remoto se intentó con dos BC nuevos propios. `POST bc` y ownership metadata fueron observados; `POST bc/<run>/services` devolvió403 al clonar el KVS de test del CP. Se retiró cada BC (`DELETE200`, lectura posterior404); no se asignó instancia ni se escribió KVS. El guard read-only del 2026-10-02T15:31:37Z devolvió `SANDBOX_FURY_LOGIN_REQUIRED`, sin API remota ni renovación implícita. Acción inmediata: renovar Fury en el equipo y revalidar el clone del alias propio CP `triggers-status-nonprod`; si persiste403, habilitar ese permiso o seleccionar otro KVS propio clonable. El ledger versionado candidato vive en `meli/features/20261001-real-e2e/evidence/verification-ledger.json`; conserva IDs mínimos, árboles independientes y hashes, sin endpoints ni credenciales.
+
+La matriz versionada del checkpoint CP `3bea4809a5372d5acca3d86a6181ed2c60137f22` contiene **351 filas** (319 CP +20 Playmaker +2 controles de cleanup/workers +10 fronteras Kafka/entities/context/auth), todas NOT_EXECUTED para la capacidad completa:304 FULL preparados,29 PARTIAL y18 NONE. FULL mide preparación, no ejecución. El corte `eee5b909` conservaba297/26/28; los anteriores siguen como evidencia histórica. T24 prepara22 métodos/36 invocaciones por política para las diez fronteras PM, con revisión de fuente independiente; siete joins completos preparados y tres fronteras parciales. Ninguno acredita negocio físico. Templates BigQueue200 y ACME grant preparado no acreditan delivery, token efectivo, EntityService desplegado ni negocio. [Fuentes y límites de esta preparación](../08-governance/kafka-canonical-audit-2026-10-01.md#preparación-t23t26-y-límites-de-la-evidencia).
+
+El control del parent pasó reproducción independiente desde copia limpia:46 controles (5 cleanup,10 Sandbox,8 parser/gates,16 retención y7 filesystem), además de los cuatro negativos originales de enumeración; el fixture de permisos fue reproducido bajo umask077. Los fallos iniciales permanecen en el ledger. ConfigData/Binder real tuvo15 invocaciones PASS; el proxy físico tuvo13 aserciones independientes y cleanup tras STOP/interrupción. Todos son evidencia de controles o componentes, no aprobación del recorrido CP/KVS/Playmaker.
+
+El delta CP-only del 02/10 agrega scope explícito `cp`/`ecosystem` y corrige el contexto del EXIT trap del wrapper CI en Bash3.2. `validateRealE2eHarness` ejecutó72 controles locales PASS (25 Sandbox,8 managed launcher,11 CI,5 cleanup,16 retención y7 filesystem); `compileRealIntegrationTestJava` PASS. Estos controles usan metadata/procesos privados antes del SDK y no certifican KVS, CP ni un job corporativo real. Los RED previos del trap y de una asignación incorrecta se conservan.
+
+## Máquina de estados esperada
+
+Usa el [contrato canónico](../05-contracts/status-models.md#idempotencia-cp) y la [ficha del CP](../03-services/rio-controlplane-kafka.md). Deployments con operación válida finalizan antes de publish best-effort; una pérdida del terminal puede dejar efecto Kafka sin convergencia Playmaker. GCP `operation=null` falla antes del claim. Actions reservan publicación dentro de `IN_PROGRESS`, publican y finalizan. No prometer exactly-once. Las correcciones candidatas (describe MSK fail-closed, números exactos y seam GCP peek) aún no son comportamiento master.
+
+## Árbol de decisión
+
+1. Verifica branch/base/SPEC y que el checkout original con cambios ajenos siga intacto. Usa los worktrees dedicados del proyecto.
+2. Selecciona un Docker runtime propio con al menos5GiB; el ensayo usó6GiB/4CPU ARM. No reinicies el runtime compartido para ganar memoria.
+3. Autentica Fury y configura un sandbox KVS propio con el cliente Toolkit vigente. El archivo privado modo0600 contiene sólo exports generados y metadatos de ownership. Un directorio de artifacts SCP propio impide heredar configuraciones de otra aplicación.
+4. Para Playmaker prepara identidad Tiger, equipo/proyecto ACME y containers KVS propios de resultados/locks. La auth productiva permanece activa.
+5. Ejecuta la familia y espera efectos/terminales con deadlines. Si el preflight falla, registra BLOCKED y capacidades NOT_EXECUTED; no uses skip ni un perfil más débil.
+6. Ejecuta la familia administrada sólo después de verificar recursos propios, callback/observer real y API de cleanup. Nunca pausas un consumer compartido.
+
+Comandos implementados en la rama candidata; el arranque completo sigue pendiente de esos gates externos:
+
+```sh
+export DOCKER_CONTEXT=<contexto-Docker-propio> JAVA_HOME=<JDK25-verificado>
+export E2E_FURY_PYTHON=<Python-del-Fury-autenticado>
+# CP solo: un alias/BC propio; no exige servicios Playmaker.
+"$E2E_FURY_PYTHON" e2e/sandbox.py up --scope cp --cp-service <alias-KVS-propio-CP>
+export E2E_KVS_ENV_FILE=<directorio-privado-impreso>/sandbox.env
+./e2e/run.sh realIntegrationTest
+# Ecosistema posterior: otro run con --scope ecosystem y sus tres aliases.
+# No reutilizar instancias/run IDs ni usar receipt CP-only para esas familias.
+# Cada familia PM exige repo/SHA40, caller0600, Entity bundle y denied identity propios.
+./e2e/run.sh e2eCanonicalPlaymakerTest
+./e2e/run.sh e2eCandidatePlaymakerTest
+# Managed usa configuración propia con su run fijo y KVS separado.
+./e2e/managed.sh all
+./e2e/ci.sh
+```
+
+En Application completo configura/verifica `credentials.secret-segment` y el SecretClient `@Primary`; el probe import-onlySDK usa `fury-secrets.segment-id`. Mantén ambas rutas explícitas en el journey OAuth; no deduzcas el wrapper CP sólo desde bytecode de auto-config. El comando candidato `E2E_KVS_ENV_FILE=<archivo-generado> ./e2e/managed.sh journey` ejecuta `managedControlplaneJourneyTest`; `all` incluye journey y probes. Carga todos los exports Sandbox, exige el mismo run ID y un artifact-root fresco0700; el registry de SDK/lifecycle/observer sigue bloqueado antes de beans. Exige identidad de mensajes y ventana completa del consumer; pedir64 o leer peek10 no acredita redelivery.
+
+El helper crea BCs nuevos separados de CP/Playmaker por UUID y usa sólo rutas del CLI vigente. El lifecycle tuvo **ejecución parcial contra el API remoto**: BC create/ownership y retiro por DELETE200→GET404; clone-service403. Start, asignación de instancia, configuraciones KVS y el cleanup de esas asignaciones permanecen NOT_EXECUTED. Antes de escenarios, el launcher y Gradle directo contrastan todos los exports consumidos, aliases, segmentos, run/BC/instancia con configuración API fresca; rechazan mappings Toolkit heredados adicionales. Sólo admite credenciales almacenadas válidas, sin iniciar SSO implícito. Una ausencia inicial tras `create` incierto es cleanup fallido y conserva receipt para reconciliación; no acredita ausencia definitiva.
+
+El archivo de identidad contiene `E2E_PLAYMAKER_TIGER_TOKEN`, `E2E_OWNER_TEAM` y `E2E_OWNER_PROJECT`; no publiques sus valores. Los containers de results/locks y su segment van en la configuración privada del sandbox. El launcher crea MySQL propio, aplica las migraciones canónicas y activa `local,local-integration,real-e2e` en Playmaker. El wrapper de integración y la CI requieren el mismo alcance real; una task vacía no puede dar verde.
+
+El commit candidato SDK `97146e9fde6cb2d947b7978ba2ba2491d11f06b5` en `feature/kafka-e2e-publisher-fix` parte de master `ad2c98b806cffb88b23513f87785932aa1707ea4`. Conserva el builder configurado al crear el Producer; el [hallazgo canónico](../03-services/rio-controlplane-kafka.md) describe las opciones descartadas sin inventar una respuesta del servicio. El CP mantiene1.3.1: el gate managed exige decisión de adopción/backport y verificación física además de callback/cleanup propios.
+
+## Hipótesis y cómo falsarlas
+
+| Feature/capacidad | Escenario candidato | Evidencia exigida |
+|---|---|---|
+| `kafka.topic-provision`, `kafka.topic-update`, `kafka.topic-deprovision` | `RealControlplaneIntegrationTest#allSupportedReplicationFactorsCompletePhysicalCrud` y escenarios reconcile/config/error | AdminClient independiente + evento UUID + guard KVS; ausencia final real |
+| `kafka.deploy-msk`, `kafka.deploy-gcp`, routing y validación | Casos por provider/aliases/defaults, envelopes ignorados y parámetros inválidos | Sin efecto/claim/evento donde el contrato lo exige; terminal real cuando acepta |
+| `kafka.actions-peek`, `kafka.topic-peek-http` | Mensajes reales/formats/EARLIEST/LATEST, límite y errores; grupo preexistente | Keys/valores/offsets exactos y offsets comprometidos sin cambios |
+| `kafka.actions-publication-idempotency` y guard | `RealKvsIntegrationTest`, `RealPublicationFailureIntegrationTest`, `RealProcessRecoveryIntegrationTest` | Exclusividad/versiones/TTL/CAS reales, fallo del producer y JVMs reiniciadas; sin garantías extra |
+| `edge.deploy.grouped.playmaker-kafka`, `edge.action.result.kafka-playmaker` | `PlaymakerKafkaE2ETest`: CRUD, redeploy PROVISION/reconcile, PEEK acción/error y Service PEEK | Solicitud autenticada→trigger→efecto→resultado→KVS/MySQL correlacionados |
+| OAuth/BigQueue/perímetro | Familia administrada separada | Credenciales/binding reales no productivos, delivery observado, errores y cleanup propio |
+
+Los nombres son implementaciones pendientes en la work branch. La matriz exhaustiva del CP decide qué escenario está preparado, PASS, FAIL, BLOCKED o NOT_EXECUTED; esta tabla no convierte una familia escrita en cobertura ejecutada.
+
+La [herencia/entities y contexto Kafka canónicos](../08-governance/kafka-canonical-audit-2026-10-01.md#entities-y-contexto-en-la-frontera-kafka) ya tienen cuerpos T24 posteriores al checkpoint: `PlaymakerKafkaEntityE2ETest`, `PlaymakerKafkaEntityDeploymentE2ETest`, `PlaymakerPipelineContextE2ETest` y `PlaymakerKafkaAuthorizationVersionE2ETest`. Requieren SQL/HTTP/wire/Kafka/KVS y EntityService productivos, artefactos separados master 0c/candidate 767, grants reales y cleanup probado. Siguen NOT_EXECUTED; imported APPROVED/Odin y excepciones defensivas permanecen parciales. T21/schema<1 y T23/metadata wire son guards candidatos anteriores al executor/claim, no master ni Validator global. El checkpoint CP `3bea4809` conserva siete de esas fronteras FULL preparadas y tres PARTIAL, con revisión de fuente independiente; los cuerpos nuevos por sí solos no certifican esos joins físicos. [Mapeo y límites T23–T26](../08-governance/kafka-canonical-audit-2026-10-01.md#preparación-t23t26-y-límites-de-la-evidencia).
+
+## Recuperación segura
+
+La integración T24/T25/T26 y root posterior cerró revisión independiente de fuente/componentes en el checkpoint CP `3bea4809`; el recorrido físico sigue NOT_EXECUTED. T25 reportó controles filesystem/process y offsets Kafka reales por separado; T26 pasó 18 tests unitarios sin Sandbox. El protocolo exigido debe demostrar PM/CP quiescentes, todas las correlaciones/offsets y receipts de cada client/generación antes de borrar KVS/SQL/config. Hasta verificación conjunta y runtime, no asumir que un permiso emitido, proceso muerto, terminal KVS o archivo SEALED ya cumplen ese protocolo. UNKNOWN exige retención y fallo. [Límites de evidencia](../08-governance/kafka-canonical-audit-2026-10-01.md#t25t26-controles-acotados-y-diseño-pendiente).
+
+Los traps detienen sólo los procesos propios. Retiran recursos de la corrida únicamente cuando los gates de trabajo y limpieza permiten hacerlo. El diseño del checkpoint histórico CP `f80ea19421518251515aae768d020f574ad255bb`, previo a la integración nueva, conserva un journal0600 de intención en `E2E_RECONCILIATION_DIR`0700, escrito antes de efectos/envíos, y inventario ausente, permisos incorrectos o symlink producen UNKNOWN y un marker pendiente impide destruir Kafka/MySQL/Sandbox o borrar configuración privada. El endpoint local pasivo `/internal/e2e/workers` exige run y PID propios; commits del bridge, ingress y procesos/threads propios se comprueban aparte. No usa un terminal KVS como prueba de quiescencia. No borres el journal ni ejecutes `sandbox.py down` antes de reconciliar ese inventario y los workers. Un fallo de cleanup hace fallar el run; cada intento de limpieza se ejecuta aunque otro falle. Sandbox remoto y runtime Docker propio tienen lifecycle explícito separado. `sandbox.py down` verificó ownership y ausencia de los dos BC creados para el intento fallido. Stop de instancias y cleanup de KVS asignado permanecen NOT_EXECUTED porque el clone-service403 impidió su creación. CI prepara BCs exclusivos por job y conserva directorio privado ante cleanup incierto/fallido, con receipt sanitizado en el reporte. La familia CI CP consume `RIO_E2E_FURY_PYTHON` y `RIO_E2E_CP_KVS_SERVICE`; las familias ecosystem agregan `RIO_E2E_PM_RESULTS_KVS_SERVICE` y `RIO_E2E_PM_LOCKS_KVS_SERVICE`. El dispatcher `ci.sh` vigente sigue agregando las cuatro familias, por lo que no certifica un job CP-only aislado; permisos y schemas reales siguen gates. La preparación para continuar conserva el candidato y la evidencia sanitizada.
+
+## No hacer
+
+- No habilitar mocks, KVS no-op, almacenamiento en memoria o resultados a archivos para dar verde a una suite real.
+- No usar BigQueue mock/forward como prueba de delivery administrada ni pausar consumers compartidos.
+- No interpretar un `200`, un topic creado, STARTED o código compilado como despliegue completado.
+- No copiar configuración de KMS, credenciales ni mensajes reales a la biblioteca o los reportes.
+
+## Escalamiento
+
+Para ejecutar CP local, primero renovar Fury en el equipo y revalidar clone del KVS propio. Si reaparece403, habilitar la clonación Sandbox para esa identidad/alias o usar otro alias propio autorizado. Los gates de ecosistema, identidad/ACME, OAuth/BigQueue y renovación Spellbook quedan separados de esa ejecución local. El administrador debe identificar runner corporativo con Docker/acceso a Sandbox para ejecutar el job real. La revisión formal Zord requiere autorización explícita de sus destinos externos configurados y escritura del cursor: el auto-review la rechazó antes de ejecutar reviewers. Esa revisión/publicación pendiente no se presenta como una dependencia del launcher CP local; tampoco se declaró revisión completa ni éxito total.
+
+## Fuentes
+
+- [Auditoría canónica y distinción de ramas](../08-governance/kafka-canonical-audit-2026-10-01.md).
+- [Catálogo Kafka y anchors por SHA](../09-feature-catalog/rio-controlplane-kafka.md).
+- [Contratos de entrega](../05-contracts/messages-and-delivery.md) y [ledger de fronteras](../05-contracts/upstream-downstream-ledger.md).
+- Candidato local: CP `meli/features/20261001-real-e2e/`, `e2e/README.md`, suites Gradle y reportes `build/real-e2e/`; no commit de implementación canónica declarado.
+
+
+## Comandos y evidencia del corte posterior
+
+El [suplemento posterior](../08-governance/kafka-canonical-audit-2026-10-01.md#corte-posterior-de-implementación-y-verificación-acotada--0210) separa los822tests CP y las nuevas preparaciones de los cortes históricos804/722/712. Preparación revisada304FULL/29PARTIAL/18NONE,351NOT_EXECUTED; PASS_PREPARATION_PEER_ONLY. El README candidato CP `e2e/README.md` fija los comandos actuales y inputs verificables. No sustituye el contrato canonical.
+
+CI intenta cuatro familias, exige los dos SHAs40 de PM y configura var `RIO_E2E_ENTITY_SERVICE_BASE_URL` → env `E2E_ENTITY_SERVICE_BASE_URL`; secretos `RIO_E2E_CHECKOUT_TOKEN`, `RIO_E2E_PLAYMAKER_CALLER_CONFIG`, `RIO_E2E_MANAGED_CONFIG`, `RIO_E2E_MANAGED_KVS_CONFIG`, `RIO_E2E_ENTITY_SERVICE_TEMPLATE_BUNDLE`, `RIO_E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE`. Sólo publica evidencia desde su whitelist fija; logs/identidades/endpoints quedan privados. Un preflight que termina2 y un gate overall1 son fail-closed observados, no un job real ni un PASS de negocio. La disponibilidad del runner/protected environment permanece sin verificar.
+
+No ejecutar `sandbox.py down` automáticamente después de un fallo. Primero exigir stop/reap PM exacto más drain/quiescencia CP vivo, offsets completos, quiescencia SQL, registry/clients/ACK completos y task/process exits reales. UNKNOWN/missing/partial retiene journal/recursos y falla. Cleanup Entity exige draft ausente y entidad DEACTIVATED; conserva revisiones activadas/audit. Un400 de deployments no prueba ausencia, y flags/config/hash por sí solos no verifican un target desplegado.

@@ -1,0 +1,18 @@
+{
+  "command": "JAVA_HOME=<verified-JDK25> ./gradlew --no-daemon validateRealE2eHarness",
+  "exit_code": 0,
+  "scope": "SOURCE_METADATA_ONLY",
+  "business": "NOT_EXECUTED",
+  "log_sha256": "dc6ef481d935cc6b952a764af03043cdded73edf9546a5f965387d628fc1f0e9",
+  "unittest_groups": [
+    25,
+    8,
+    11
+  ],
+  "custom_groups": {
+    "CLEANUP_CONTROL_FLOW_PASS": 5,
+    "RETENTION_CONTROL_FLOW_PASS": 16,
+    "RECONCILIATION_INSPECTION_PASS": 7
+  },
+  "control_count": 72
+}

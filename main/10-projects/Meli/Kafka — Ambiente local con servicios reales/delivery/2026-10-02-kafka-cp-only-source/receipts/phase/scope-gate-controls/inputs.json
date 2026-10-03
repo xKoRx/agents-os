@@ -1,0 +1,39 @@
+{
+  "scope": "NEUTRAL_PRE_FLIGHT_CONTROL_NOT_KVS_OR_BUSINESS",
+  "base": {
+    "JAVA_HOME": "/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/Contents/Home",
+    "DOCKER_CONTEXT": "colima-rio-kafka-e2e-01a0f8e0",
+    "E2E_FURY_PYTHON": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls/gate-spy.py",
+    "E2E_KVS_ENV_FILE": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls/sandbox.env",
+    "E2E_BOOTSTRAP_SERVERS": "localhost:1",
+    "E2E_KVS_CONTAINER_NAME": "neutral_only_never_accessed",
+    "E2E_RUN_ID": "1234567890abcdef1234567890abcdef",
+    "E2E_DEPLOYMENT_RESULT_TOPIC": "neutral_never_accessed_deployment",
+    "E2E_ACTION_RESULT_TOPIC": "neutral_never_accessed_action",
+    "E2E_KVS_EXCLUSIVE_RUN_ID": "1234567890abcdef1234567890abcdef",
+    "E2E_KVS_SANDBOX_PROVENANCE": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls/state.json",
+    "E2E_RECONCILIATION_DIR": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls",
+    "E2E_KVS_OBSERVATION_DIR": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls",
+    "E2E_PROCESS_EXIT_DIR": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/scope-gate-controls",
+    "E2E_CP_SOURCE_COMMIT": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+    "E2E_CP_SOURCE_MANIFEST_SHA256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "ecosystem_extra": {
+    "E2E_PLAYMAKER_BASE_URL": "neutral_only_never_accessed",
+    "E2E_CP_BASE_URL": "neutral_only_never_accessed",
+    "E2E_MYSQL_CONTAINER": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_TIGER_TOKEN": "neutral_only_never_accessed",
+    "E2E_OWNER_TEAM": "neutral_only_never_accessed",
+    "E2E_OWNER_PROJECT": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_ACTION_RESULTS_CONTAINER": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_ACTION_LOCKS_CONTAINER": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_ARTIFACT_RECEIPT_FILE": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_CONTROL_DIR": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_OWNER_CLASSES": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_SOURCE_COMMIT": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_SOURCE_MANIFEST_SHA256": "neutral_only_never_accessed",
+    "E2E_ENTITY_SERVICE_BASE_URL": "neutral_only_never_accessed",
+    "E2E_ENTITY_SERVICE_RECEIPT_FILE": "neutral_only_never_accessed",
+    "E2E_PLAYMAKER_DENIED_IDENTITY_FILE": "neutral_only_never_accessed"
+  }
+}

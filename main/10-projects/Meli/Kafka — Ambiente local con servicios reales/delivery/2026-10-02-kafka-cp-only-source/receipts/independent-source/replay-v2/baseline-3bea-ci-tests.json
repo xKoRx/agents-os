@@ -1,0 +1,65 @@
+{
+  "case": "baseline-3bea",
+  "source": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/before/baseline-3bea.sh",
+  "tests": 11,
+  "failures": 10,
+  "errors": 0,
+  "records": [
+    {
+      "test": "test_CP_without_PM_reaches_up_with_exact_cp_scope_and_writes_gate",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 139, in test_CP_without_PM_reaches_up_with_exact_cp_scope_and_writes_gate\n    self.run_family()\n    ~~~~~~~~~~~~~~~^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:cp-functional:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_attempt_without_state_retains_unknown_and_cannot_certify_absence",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 156, in test_attempt_without_state_retains_unknown_and_cannot_certify_absence\n    self.run_family()\n    ~~~~~~~~~~~~~~~^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:cp-functional:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_configured_PM_keeps_ecosystem_scope_and_three_aliases",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 213, in test_configured_PM_keeps_ecosystem_scope_and_three_aliases\n    self.run_family('playmaker-candidate', 'e2eCandidatePlaymakerTest')\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: /bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure",
+      "status": "PASS"
+    },
+    {
+      "test": "test_missing_CP_alias_has_no_API_and_gate_2",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 149, in test_missing_CP_alias_has_no_API_and_gate_2\n    self.run_family()\n    ~~~~~~~~~~~~~~~^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:cp-functional:MISSING:E2E_CP_KVS_SERVICE,E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_missing_candidate_PM_inputs_has_no_API_and_gate_2",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 186, in test_missing_candidate_PM_inputs_has_no_API_and_gate_2\n    self.run_family('playmaker-candidate', 'e2eCandidatePlaymakerTest')\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:playmaker-candidate:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_missing_canonical_PM_inputs_has_no_API_and_gate_2",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 179, in test_missing_canonical_PM_inputs_has_no_API_and_gate_2\n    self.run_family('playmaker-canonical', 'e2eCanonicalPlaymakerTest')\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:playmaker-canonical:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_missing_managed_inputs_has_no_API_and_gate_2",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 192, in test_missing_managed_inputs_has_no_API_and_gate_2\n    self.run_family(managed=True)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:managed-oauth-bigqueue:MISSING:E2E_MANAGED_ENV_FILE,E2E_MANAGED_KVS_ENV_FILE\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_missing_runtime_interpreter_has_no_API_and_parent_sentinels_survive",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 225, in test_missing_runtime_interpreter_has_no_API_and_parent_sentinels_survive\n    self.run_family()\n    ~~~~~~~~~~~~~~~^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:cp-functional:MISSING:E2E_FURY_PYTHON,E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_own_metadata_state_down_failure_is_retained_with_gate_1",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 164, in test_own_metadata_state_down_failure_is_retained_with_gate_1\n    self.run_family()\n    ~~~~~~~~~~~~~~~^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:cp-functional:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    },
+    {
+      "test": "test_retained_marker_blocks_down_and_false_absence",
+      "status": "FAIL",
+      "failure": "Traceback (most recent call last):\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 171, in test_retained_marker_blocks_down_and_false_absence\n    self.run_family()\n    ~~~~~~~~~~~~~~~^^\n  File \"/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py\", line 122, in run_family\n    self.assertTrue(gate_path.is_file(), 'real EXIT function failed to write gate.json: ' + self.result.stderr)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true : real EXIT function failed to write gate.json: CI_GATE_BLOCKED:cp-functional:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE\n/bin/bash: line 81: parent_sentinel/sandbox-cleanup.status: No such file or directory\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\nValueError: invalid literal for int() with base 10: 'parent_sentinel'\n\n"
+    }
+  ],
+  "scope": "NATIVE_SHELL_PRIVATE_FS_METADATA_ONLY",
+  "remote_API_Docker_Gradle_business_calls": 0
+}

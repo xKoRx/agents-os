@@ -1,0 +1,39 @@
+{
+  "results": [
+    {
+      "case": "structural",
+      "command": [
+        "ruby",
+        "scripts/validate_library.rb"
+      ],
+      "exit_status": 0,
+      "sha256": "8207aba1b925aa5c7401f5e8851d2eaede366296bf7b9fe6e1f0da63ffe3708a",
+      "last_line": "LIBRARY_VALIDATION_PASS mode=STRUCTURAL_ONLY feature_ids=691 unique=691 markdown=194 source_anchors=0 archived_link_defects=40 projected_repairs=40 archived_link_defects_bac9127=28 projected_repairs_bac9127=28"
+    },
+    {
+      "case": "historical",
+      "command": [
+        "ruby",
+        "scripts/test_historical_snapshot_anchor_validation.rb"
+      ],
+      "exit_status": 0,
+      "sha256": "917b9a78e7d9bcc16f4e166af6ba8b8a99e5b10b98460e0aff03505b0642d4c3",
+      "last_line": "HISTORICAL_SNAPSHOT_ANCHOR_VALIDATION_TEST_PASS"
+    },
+    {
+      "case": "formal",
+      "command": [
+        "ruby",
+        "scripts/validate_library.rb",
+        "--formal",
+        "--sources-root",
+        "/Users/rjara/fuentes"
+      ],
+      "exit_status": 1,
+      "sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5",
+      "last_line": "LIBRARY_VALIDATION_FAIL errors=937"
+    }
+  ],
+  "formal_delta": "KNOWN_BASELINE_IDENTICAL_ZERO_NEW",
+  "business": "NOT_EXECUTED"
+}

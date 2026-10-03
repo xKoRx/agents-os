@@ -1,0 +1,243 @@
+# Real Kafka E2E runner
+
+`realIntegrationTest` runs the Kafka CP independently: own Kafka, own CP Fury Sandbox KVS and real Kafka results. It does not require Playmaker, MySQL, EntityService, Tiger/ACME or managed OAuth/BigQueue. The implementation compiles; the complete physical CP suite remains unexecuted because the observed own-KVS clone returned403. Ecosystem suites are a separate later scope.
+
+This pending feature uses five actual Kafka3.9.1 KRaft brokers, the actual CP HTTP controllers,
+production processors/validators/provisioners, Kafka result transport with `acks=all`, and Fury
+Toolkit1.0.5 against a dedicated Fury Sandbox KVS. The local adapters publish raw SDK result JSON; the inbound bridge adds the HTTP `{msg:...}` envelope. Canonical deployment transport is identified at PM master0c83575; action adapters and every real-service compatibility assertion remain separately source-bound pending work. It does
+not certify BigQueue delivery or managed GCP OAuth. Those require a separate named nonprod gate.
+
+## Prerequisites
+
+- JDK25; use the repo's Gradle9.3.1 wrapper and your existing JavaAll Maven auth.
+- Docker Compose on an isolated Docker runtime with >=5GiB RAM, five free loopback ports starting
+  at39092 and CP39081. `DOCKER_CONTEXT` selects the explicitly owned context without changing the
+  global context. Image is pinned by registry digest, verified locally as ARM64; `UseSVE=0` is
+  passed only for ARM runtimes. No fixed container name or shared volume exists.
+- Fury SSO/VPN and a run-owned sandbox BC/instance with CP's sandboxable KVS service.
+  No stored credential or service configuration from another application is reused.
+
+On the current workstation a dedicated runtime can be created without restarting default Colima:
+
+```sh
+colima start rio-kafka-e2e-01a0f8e0 --activate=false --ssh-config=false --cpu 4 --memory 6 --disk 20
+export DOCKER_CONTEXT=colima-rio-kafka-e2e-01a0f8e0
+export JAVA_HOME=/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/Contents/Home
+```
+
+## Dedicated sandbox configuration
+
+Run `fury login` using the installed executable if repository pyenv does not expose the command:
+`/Users/rjara/.pyenv/versions/3.10.16/bin/fury login`. Missing login is a failed external capability
+check, never a skip or local KVS fallback.
+
+For the CP suite, identify only the CP's own KVS alias through its authenticated application service inventory. Provision with scope `cp`; no Playmaker alias or service is required. Never reuse a shared BC or another application's exports:
+
+```sh
+export E2E_FURY_PYTHON=<Python-runtime-of-installed-Fury>
+"$E2E_FURY_PYTHON" e2e/sandbox.py up --scope cp --cp-service <CP-own-KVS-alias>
+export E2E_KVS_ENV_FILE=<printed-private-directory>/sandbox.env
+```
+
+Use `--cp-segment` only when actual CP mappings require it. `--pm-segment` belongs only to scope `ecosystem`. The helper fixes a new UUID run, creates one CP BC for scope `cp` or two application BCs for scope `ecosystem`, and exports mode0600 generated `KEY_VALUE_STORE_*` values with their logical
+aliases, segments, BC/instance and exclusive-run provenance. Routes/body fields are verified from
+the installed CLI. Stored authentication and two partial remote lifecycles were observed: own BC create200, service clone403, delete200 and absence404. Instance/config allocation and actual KVS remain NOT_EXECUTED gates.
+The API helper requires valid stored credentials and fails rather than initiating SSO or renewal.
+Before local startup **and direct Gradle suite execution**, verification fetches fresh configuration
+and requires every consumed Toolkit export plus alias/segment/run/BC/instance to match exactly.
+Extra inherited Toolkit mappings fail. A receipt or `sbox` prefix alone cannot prove exclusivity.
+
+Toolkit sanitizes the builder alias by replacing `-`/`.` with `_`, removing the `__application`
+suffix, and uppercasing. Its normal DynamicConfigProvider uses generated CONTAINER_NAME and
+END_POINT_READ/END_POINT_WRITE exports; segmented v2 also uses the generated segmentation version.
+A configured logical alias must map to a generated `sbox...` physical container. The runner never
+sources/evaluates file text. Startup proves actual save/get/delete using the production client.
+`RealE2eKvsClientFactory.create(container, segment, timeoutMs)` exposes the same production builder
+for standalone JUnit; the real Spring bean is `idempotencyKvsClient`.
+
+SCP has precedence over the ENV fallback in the normal Toolkit builder. The launcher points the
+official watcher at a fresh empty run-owned `ARTIFACT_DELIVERY_FILE_PREFIX`; preflight rejects any
+inherited nonempty artifact directory before KVS writes. This preserves the official builder while
+preventing shared SCP configuration from overriding the Sandbox mapping.
+
+## Run and evidence
+
+```sh
+E2E_KVS_ENV_FILE=/absolute/private/sandbox.env ./e2e/run.sh realIntegrationTest
+```
+
+The runner creates a UUID namespace, five owned broker volumes/network, six transport/DLT topics,
+production routing JSON pointing to its loopback bootstrap, and a real CP process. It verifies
+five live brokers before invoking the explicit Gradle real suite. The default unit `test` task
+never starts remote dependencies. Required inputs absent => nonzero status before mutations.
+Use `E2E_RUN_ID`, `E2E_KAFKA_BASE_PORT`, `E2E_CP_PORT`, and `E2E_EVIDENCE_DIR` for explicit owned
+names/locations. Transport topics are `e2e_<run>_{deployment,action}_{trigger,result}`.
+
+Evidence includes CP SHA, run/sandbox identifiers, broker readiness, JUnit XML and cleanup status.
+Raw startup/process logs remain private, including retained failure state. Public CI output reconstructs only allowlisted test identifiers/outcome counts and fixed gate fields; it omits SDK bodies, headers, tokens, MRNs, runtime paths and raw logs. Assertions in `realIntegrationTest` verify physical topic/config/replication/message
+state, correlated raw SDK results and Toolkit KVS claims. HTTP200 alone is not success.
+
+The launcher traps failure and addresses only its registered child/guardian PID and native birth. Before deleting own Compose resources it requires exact process exits, sealed productive Toolkit receipts with durable close ACKs, registered JUnit worker completion and a clean reconciliation directory. Missing, unknown, forced or failed-command evidence retains resources and fails the run.
+The remote Sandbox lifecycle is separate. Only after the launcher certifies complete cleanup, final mutation proof passes and reconciliation is clean, run
+`"$E2E_FURY_PYTHON" e2e/sandbox.py down --directory <printed-private-directory>`.
+Down verifies namespace/description ownership before stop/delete and records verified API absence.
+An unresolved create followed by an early404 is a cleanup failure, never an absence certificate.
+Keep private state for reconciliation; never stop/delete another run's resource.
+
+## Playmaker and managed gates
+
+The root E2E suite additionally requires an owned MySQL container, a real Playmaker process with
+`local,local-integration,real-e2e`, the matching broker/topics, and actual caller authorization. Missing
+Tiger token/grants are explicit external gates; no authorization mock is introduced. Deployment,
+action, peek and failed-state assertions use public HTTP plus persisted MySQL state. Coordinate
+this process with `E2E_PLAYMAKER_BASE_URL`, `E2E_MYSQL_CONTAINER`, `E2E_PLAYMAKER_TIGER_TOKEN`,
+`E2E_OWNER_TEAM` and `E2E_OWNER_PROJECT`.
+
+The caller file (`E2E_PLAYMAKER_ENV_FILE`, mode0600) contains only
+`E2E_PLAYMAKER_TIGER_TOKEN`, `E2E_OWNER_TEAM`, `E2E_OWNER_PROJECT`; it is parsed without evaluation.
+No Tiger/ACME grant is bypassed. Canonical and candidate use separate reviewed checkouts with permitted real-e2e overlays, selected by `E2E_PLAYMAKER_CANONICAL_REPO` and `E2E_PLAYMAKER_CANDIDATE_REPO`. The legacy `e2eTest` alias selects the candidate only and cannot complete the mandatory two-policy gate. Its exact SDK event version is recorded
+by the Gradle dependency graph; local Kafka does not certify managed BigQueue parity.
+
+For these later ecosystem families, provision a fresh `sandbox.py up --scope ecosystem --cp-service <CP-own-KVS-alias> --pm-results-service <Playmaker-own-results-alias> --pm-locks-service <Playmaker-own-locks-alias>`. Its generated private file contains Playmaker's two logical aliases, effective segment, BC/instance and fresh actual Toolkit exports. Scope-less legacy receipts are ecosystem receipts; they cannot run the CP-only family. `sandbox.py up` creates these separately in the
+Playmaker application; it does not create application services or invent a sandbox template.
+
+The profile maps all three topic types (`aws-msk-topic`, `kafka-topic`, `gcp-kafka-topic`) to the
+existing BIG_QUEUE dispatch seam backed by actual Kafka. It enables the existing action state
+machine and replaces only the local no-op result/lock adapters. It checks generated physical
+`sbox...` mappings, distinct result/lock containers, real Toolkit write/read/delete, six run-owned
+topics, and a loopback CP base URL. Deployment/action results are raw SDK JSON. The two DLTs are
+`e2e_<run>_deployment_result_dlt` and `e2e_<run>_action_result_dlt`.
+
+Each policy needs its own freshly provisioned Sandbox/run and run-bound Entity/denied-identity receipts. Use an actual nonprod EntityService target, current deployment/identity references, team/project grants and a genuinely distinct authenticated denied caller. Templates do not establish those permissions. Existing Entity identities/revisions have no DELETE API: verify draft absence and entity status DEACTIVATED, retaining its activated revisions and audit history; do not claim their deletion.
+
+```sh
+export E2E_PLAYMAKER_CANONICAL_REPO=/absolute/reviewed/canonical-overlay
+export E2E_PLAYMAKER_ENV_FILE=/absolute/private/caller.env
+export E2E_ENTITY_SERVICE_BASE_URL=https://actual-owned-nonprod-target
+export E2E_ENTITY_SERVICE_RECEIPT_FILE=/absolute/private/current-run-entity-receipt.json
+export E2E_PLAYMAKER_DENIED_IDENTITY_FILE=/absolute/private/current-run-denied-identity.json
+E2E_KVS_ENV_FILE=/absolute/private/canonical-sandbox.env ./e2e/run.sh e2eCanonicalPlaymakerTest
+
+# Provision another owned Sandbox and bind fresh receipts to its distinct run before this family.
+export E2E_PLAYMAKER_CANDIDATE_REPO=/absolute/reviewed/candidate-overlay
+E2E_KVS_ENV_FILE=/absolute/private/candidate-sandbox.env ./e2e/run.sh e2eCandidatePlaymakerTest
+```
+
+The source verifier protects each identified baseline. Seven existing productive PM files may receive only exact reviewed profile annotation changes; routes/auth/method bodies must match their protected baseline. Main CP/PM processes need their immutable artifact receipts and guardian leases. The global JUnit registration runs before constructors/fixtures and binds its native worker to Gradle's durable owner intent independently of productive KVS client generations. Use the launcher to create private process-exit/worker/observation directories; a naked Gradle invocation missing them fails. The worker-normal-exit proof is specific to pinned Gradle9.3.1 primary bytecode and does not certify backend success.
+
+`managedIntegrationTest` requires named nonprod GCP/BigQueue services, CP credentials and IAM,
+private route, and an owned callback scope. `e2e/managed.sh gcp` invokes the separate
+`managedGcpOAuthTest` read-only gate with the actual Rio OAuth factory and Fury Secrets source.
+It observes authenticated cluster/controller/broker metadata, and creates no provider resources.
+The prepared PROBE_ONLY `managedBigQueueTest` (neutral `probe_id`, no fabricated business result) remains a failed capability gate before publication until the
+SDK segment/buffering defect, a verified owned service cleanup API and an actual callback contract
+are resolved. An unverified result HTTP endpoint is never accepted as an observer. The sandbox/local adapter does not claim OAuth or
+BigQueue parity. `fury services bigq topics create [TEMPLATE]` / `consumers create [TEMPLATE]`
+are supported; fetch current test templates after login and use unique owned identifiers. No
+shared consumer may be paused or reconfigured.
+
+Managed private configuration (`E2E_MANAGED_ENV_FILE`, mode0600) has these exact inputs:
+`E2E_MANAGED_SCOPE` (explicit test/nonprod), `E2E_MANAGED_RUN_ID`,
+`E2E_MANAGED_GCP_BOOTSTRAP_SERVERS`, `E2E_MANAGED_GCP_SECRET_NAME`,
+`E2E_MANAGED_GCP_SECRET_SEGMENT` (effective SDK property `rio.gcp.kafka.fury-secrets.segment-id`,
+verified against the resolved 202609.22.2 FurySecretClientConfiguration). Prepared BigQueue observation additionally requires
+`E2E_MANAGED_APPLICATION=rio-controlplane-kafka`, `E2E_MANAGED_BIGQUEUE_PROBE_TOPIC`,
+`E2E_MANAGED_BIGQUEUE_PROBE_CONSUMER`, `E2E_MANAGED_BIGQUEUE_SEGMENT_ID`, `E2E_FURY_PYTHON` and
+the generated `BIGQUEUE_TOPIC_*` configuration. Topic and consumer must start
+`e2e_<managed-run>_`. Actual current ServicesApi checks topic `metadata.test=true`,
+consumer `metadata.topic`, then its read-only `peek` route; only a correlation boolean is emitted.
+Stored Fury authentication and current template reads succeeded. The observer response shape remains unverified against the remote provider until owned services and callback/window contracts are available. This preparation is not evidence of BigQueue delivery. The mandatory gate fails before mutation
+while its service lifecycle registry is unresolved. No managed resources have been provisioned.
+
+The prepared full Application journey is `managedControlplaneJourneyTest`, launched with
+`E2E_KVS_ENV_FILE=/absolute/private/sandbox.env ./e2e/managed.sh journey`. It exercises
+PROVISION/UPDATE/DEPROVISION at RF1–3, real OAuth seed/PEEK, partition-decrease failure and
+redelivery through the productive beans. Its mandatory lifecycle/SDK/observer registry remains
+closed before bean creation; compilation does not certify this journey. `./e2e/managed.sh all`
+includes that journey and both component probes. Both `all` and `journey` load the complete
+Sandbox exports and verify consumed mappings against fresh API metadata; managed and Sandbox
+run IDs must match. The launcher isolates Toolkit SCP in a fresh0700 artifact directory.
+
+Additional journey inputs in the managed private file are `E2E_MANAGED_GCP_CLUSTER_ID`,
+`E2E_MANAGED_CLOUD_PROVIDER_PROFILE_NAME`, `E2E_MANAGED_CLOUD_PROVIDER_CONFIG_LOCATION`,
+and `E2E_MANAGED_{DEPLOYMENT,ACTION}_RESULT_{TOPIC,TOPIC_NAME,CONSUMER}`. `TOPIC` is the logical
+ServicesApi name; `TOPIC_NAME` is the physical SDK mapping, not an interchangeable identifier.
+For the full Application, both `rio.gcp.kafka.credentials.secret-segment` (CP Primary wrapper)
+and `rio.gcp.kafka.fury-secrets.segment-id` (SDK auto-config) receive the explicit secret segment.
+The observer requires verified provider IDs and an exhaustive owned-consumer window; neither
+peek10 nor requesting64 proves completeness. Direct BigQueue callback→CP and result callback→
+Playmaker require separate real nonprod deployments and remain unverified. No provider cleanup
+certificate is emitted from the launcher alone.
+
+Installed Fury5.21.0 evidence: topic test generator calls
+`application/{app}/bigq/topics/template_test`; topic/consumer/scope create uses actual POST APIs.
+`mock send-msg` calls a local endpoint directly. `mock send-msg-consumer init` pauses a consumer
+and forwarding calls a local endpoint; neither certifies real BigQueue delivery. There is no
+verified topic/consumer/scope delete operation in the installed CLI. Resolve the official owned
+lifecycle before creation; CLI absence alone does not prove the service is unprovisionable.
+
+## CI
+
+`e2e/ci.sh` invokes all four mandatory gates (CP functional, canonical Playmaker, candidate Playmaker and managed) and records all four statuses, returning nonzero when any fails. Missing stage configuration
+leaves that gate failed while the other gates still execute. It requires a dedicated authorized Linux/macOS CI host with
+Docker/Compose, Java25, internal Maven access and Fury Sandbox connectivity. Generate exclusive BCs per job with authenticated Fury, use explicit SHA checkout and publish JUnit plus
+sanitized evidence even on failure. A generic hosted runner lacking corporate network/SSO fails
+preflight; managed gates do not silently replace local functional coverage.
+
+
+The manual `.github/workflows/real-e2e.yml` workflow requires owner-verified JSON runner labels,
+an existing protected environment, and separate full40 reviewed canonical/candidate Playmaker source SHAs. No corporate runner was
+confirmed in this session (the runner inventory API returned404); a workflow file is not a CI
+PASS. Runner variables are `RIO_E2E_JAVA_HOME`, `RIO_E2E_DOCKER_CONTEXT`, `RIO_E2E_FURY_PYTHON`,
+`RIO_E2E_CP_KVS_SERVICE`, `RIO_E2E_PM_RESULTS_KVS_SERVICE`, `RIO_E2E_PM_LOCKS_KVS_SERVICE`, `RIO_E2E_ENTITY_SERVICE_BASE_URL`. Protected secrets are
+`RIO_E2E_CHECKOUT_TOKEN` (Playmaker read access),
+`RIO_E2E_PLAYMAKER_CALLER_CONFIG`, `RIO_E2E_MANAGED_CONFIG`, `RIO_E2E_MANAGED_KVS_CONFIG`, `RIO_E2E_ENTITY_SERVICE_TEMPLATE_BUNDLE`, `RIO_E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE`. Credentials reach private files via
+environment and are never command arguments. Normal Maven/Fury SDK authorization must be supplied
+by the approved protected runner. All missing capabilities fail rather than skip.
+
+Official GitHub action pins were verified via their primary tag/commit APIs on2026-10-01:
+[checkout11d5960](https://github.com/actions/checkout/commit/11d5960a326750d5838078e36cf38b85af677262),
+[upload-artifactea165f8](https://github.com/actions/upload-artifact/commit/ea165f8d65b6e75b540449e92b4886f43607fa02).
+JUnit artifacts retain test counts/outcomes but remove stdout/stderr, properties and provider
+failure details. Stale suite reports are not copied when startup fails; failure evidence is
+published before owned runtime teardown. No new Gradle dependency was added.
+
+A broker-only physical readiness/RF check is available independently of Fury login:
+
+```sh
+DOCKER_CONTEXT=colima-rio-kafka-e2e-01a0f8e0 python3 e2e/check-kafka.py
+```
+
+It verifies five live brokers and three partitions at each RF1–5, then checks removal of the exact
+owned containers/network/volumes. It does not certify CP, KVS, Playmaker, GCP OAuth or BigQueue.
+
+### Launcher regression gate
+
+`./gradlew validateRealE2eHarness` runs `e2e/tests/cleanup-contract.py` against the actual launcher function.
+It verifies that failed Docker enumeration and surviving owned resources fail teardown while every query still runs.
+This is a control-flow regression, not Kafka/KVS/Playmaker evidence. All real suites and `e2e/ci.sh` require it.
+
+### CI Sandbox lifecycle
+
+`e2e/ci.sh` always attempts four mandatory gates: CP functional, canonical PM, candidate PM and managed OAuth/BigQueue. Each local family provisions independent own BCs/instances and a fresh run; managed uses separately prepared fixed-run KVS/configuration, never rebinding physical provider receipts. Failed or uncertain launchers retain their Sandbox and private state. Required inputs absent yield nonzero family status and a failed aggregate, never a skip/green result.
+
+Manual CI inputs include the two reviewed PM checkout paths, actual `JAVA_HOME`, explicit `DOCKER_CONTEXT`, `E2E_FURY_PYTHON` and own `E2E_CP_KVS_SERVICE`/`E2E_PM_RESULTS_KVS_SERVICE`/`E2E_PM_LOCKS_KVS_SERVICE`. Caller, Entity and denied-identity inputs are private0600 files in private0700 directories. `E2E_ENTITY_SERVICE_TEMPLATE_RECEIPT_FILE` references same-directory runtime/identity JSON with exact byte hashes; `E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE_FILE` preserves the actual token/hash/MRN binding. CI changes only the fresh run/namespace and sibling paths. Runtime validation still fetches actual Fury/ACME/Tiger evidence. The runtime reference uses one `deployment_pointer` object with six distinct direct scalar relative field pointers, never cross-row or nested field selection. Unsupported API shape fails until its real contract is verified.
+
+```sh
+export E2E_PLAYMAKER_CANONICAL_REPO=/absolute/reviewed/canonical-overlay
+export E2E_PLAYMAKER_CANDIDATE_REPO=/absolute/reviewed/candidate-overlay
+export E2E_PLAYMAKER_ENV_FILE=/absolute/private/caller.env
+export E2E_ENTITY_SERVICE_TEMPLATE_RECEIPT_FILE=/absolute/private/templates/entity.json
+export E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE_FILE=/absolute/private/templates/denied.json
+export E2E_MANAGED_ENV_FILE=/absolute/private/managed.env
+export E2E_MANAGED_KVS_ENV_FILE=/absolute/private/managed-sandbox.env
+./e2e/ci.sh
+```
+
+The protected GitHub Environment supplies runtime/service variables plus private secrets `RIO_E2E_CHECKOUT_TOKEN`, `RIO_E2E_PLAYMAKER_CALLER_CONFIG`, `RIO_E2E_MANAGED_CONFIG`, `RIO_E2E_MANAGED_KVS_CONFIG`, `RIO_E2E_ENTITY_SERVICE_TEMPLATE_BUNDLE`, `RIO_E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE`. The Entity bundle is JSON with exactly `receipt`, `runtime_ref`, `identity_ref`; each value is base64 of the exact private file bytes. Both workflow PM inputs are full40 reviewed source SHAs; their actual checkout HEADs and CP `github.sha` must match. A runner with Docker/JDK25/corporate service access and the protected Environment still needs owner provisioning; no actual CI job has executed.
+
+Only `build/ci-e2e-public` is uploaded after current-job verification. The publisher reconstructs sanitized JUnit and fixed gate/run/source fields, includes hashes of selected private evidence, and rejects empty/skipped/inconsistent green gates, stale destinations, extra/raw files and XML DTDs. Private logs, templates, journals and retained service state stay outside upload. This publication format proof is separate from business evidence. Independent controls reproduced four missing-input statuses2, aggregate1, harness0 and sanitized publication; all real business families remain NOT_EXECUTED/BLOCKED.
+
+### Work and resource reconciliation (candidate T20)
+
+The passive local `/internal/e2e/workers` endpoint identifies this run and PID and counts the actual async executor. Kafka bridge commits and own child/thread termination are separate gates. The fixture keeps a mode0600 intent ledger in an existing mode0700 `E2E_RECONCILIATION_DIR` before resource mutations/dispatch, and removes it only after verified cleanup. Any retained JSON marker fails teardown and retains Kafka/MySQL, private runtime configuration and the CI-owned Sandbox. Managed uses the same parent directory; full journey keeps the productive ingress/executor drain gate. Do not delete a marker or run `sandbox.py down` until its owned resource inventory and worker termination have been reconciled. Five observer tests,15 ConfigData tests and harness controls are supporting evidence; the mandatory real suites remain blocked by Sandbox clone403.

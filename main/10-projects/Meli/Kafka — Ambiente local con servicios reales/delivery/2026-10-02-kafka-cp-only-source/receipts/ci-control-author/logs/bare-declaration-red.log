@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure (__main__.CiFamilyScopeContract.test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/kafka-e2e-discovery/cp-ci-scope-control-author/e2e/tests/ci-family-scope-contract.py", line 252, in test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure
+    self.assertNotIn('command not found', self.result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'command not found' unexpectedly found in '/bin/bash: line 160: kvs_run: command not found\n'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.577s
+
+FAILED (failures=1)

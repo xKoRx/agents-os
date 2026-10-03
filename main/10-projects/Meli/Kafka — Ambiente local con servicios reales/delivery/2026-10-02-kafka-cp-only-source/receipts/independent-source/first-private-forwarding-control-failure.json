@@ -1,0 +1,8 @@
+{
+  "status": "PRESERVED_PRIVATE_FORWARDING_CONTROL_FAILURE",
+  "failure": "Expected control gate.json absent after extracted CI function run",
+  "log_sha256": "3b170ec296fccdfa264d5e8fff1135e379fc7575b5d0a26d0257b60f7eb32747",
+  "source_sha256": "d4b84b9b103c4694a1e5627cc4eaf297c8827dae38c38f222803bbae7c81b876",
+  "business": "NOT_EXECUTED",
+  "root_cause": "PENDING_DIAGNOSIS"
+}

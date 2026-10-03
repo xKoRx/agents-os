@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-02T15:19:38.618923+00:00",
+  "scope": "CP_E2E_COMPILE_ONLY",
+  "command": "./gradlew --no-daemon compileRealIntegrationTestJava",
+  "status": "PASS",
+  "log_sha256": "cefa7ff074a11b099edb3c743336e0ec2efc20a12b8ac7721a6af889b605c27b",
+  "business": "NOT_EXECUTED_KVS_SANDBOX_BLOCKED"
+}

@@ -1,0 +1,62 @@
+{
+  "status": "PASS_OWN_NEUTRAL_FS_ABSENCE_ONLY",
+  "tests": 11,
+  "cleanups": [
+    {
+      "case": "test_CP_without_PM_reaches_up_with_exact_cp_scope_and_writes_gate",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-4o6i7bu9",
+      "observed_absent": true
+    },
+    {
+      "case": "test_attempt_without_state_retains_unknown_and_cannot_certify_absence",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-9ebyc3ic",
+      "observed_absent": true
+    },
+    {
+      "case": "test_configured_PM_keeps_ecosystem_scope_and_three_aliases",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-3btf7zfw",
+      "observed_absent": true
+    },
+    {
+      "case": "test_managed_bound_private_runs_reach_neutral_transport_and_preserve_failure",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-qvqkxv0g",
+      "observed_absent": true
+    },
+    {
+      "case": "test_missing_CP_alias_has_no_API_and_gate_2",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-ov7ofegc",
+      "observed_absent": true
+    },
+    {
+      "case": "test_missing_candidate_PM_inputs_has_no_API_and_gate_2",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-_4p1r0ky",
+      "observed_absent": true
+    },
+    {
+      "case": "test_missing_canonical_PM_inputs_has_no_API_and_gate_2",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-6ck2hiql",
+      "observed_absent": true
+    },
+    {
+      "case": "test_missing_managed_inputs_has_no_API_and_gate_2",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-i2lqe38z",
+      "observed_absent": true
+    },
+    {
+      "case": "test_missing_runtime_interpreter_has_no_API_and_parent_sentinels_survive",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-e7swznit",
+      "observed_absent": true
+    },
+    {
+      "case": "test_own_metadata_state_down_failure_is_retained_with_gate_1",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-avtc95b1",
+      "observed_absent": true
+    },
+    {
+      "case": "test_retained_marker_blocks_down_and_false_absence",
+      "own_temporary_directory": "/private/tmp/rio-ci-family-control-_anu76u7",
+      "observed_absent": true
+    }
+  ],
+  "backend_absence_certification": false
+}

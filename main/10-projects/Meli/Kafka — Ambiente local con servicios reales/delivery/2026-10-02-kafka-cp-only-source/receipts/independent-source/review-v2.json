@@ -1,0 +1,179 @@
+{
+  "utc": "2026-10-02T16:03:41.440449+00:00",
+  "status": "PASS_CP_SCOPE_1_SOURCE_AND_NEUTRAL_CONTROLS_WITH_CI_P2_CLOSED",
+  "scope": "SOURCE_NATIVE_BASH_PRIVATE_FILESYSTEM_METADATA_ONLY",
+  "v1_review_preserved": {
+    "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/review-v1.json",
+    "sha256": "44d3aa6e52383b7ea28a87fe9a2bdd3f47fb9275f9152d0ef08c1f03fcffb77d",
+    "verdict": "CHANGES_REQUESTED_CI_EXIT_TRAP_P2_SANDBOX_SCOPE_CONTROLS_PASS",
+    "unchanged": true
+  },
+  "reviewed_delta": [
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/ci.sh",
+      "sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524"
+    },
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/ci-family-scope-contract.py",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/ci-family-scope-contract.py",
+      "sha256": "2241b997fbd08b2666fe2542e8444940707ef954c597ad41df4f2cd26011b7fd"
+    },
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/tests/harness-contract.py",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/tests/harness-contract.py",
+      "sha256": "d3a2e24401055cc3b9d0d0d92638aaa9b92a7a3610af6e76144c83c29f3061e5"
+    },
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/reconciliation-status.py",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/reconciliation-status.py",
+      "sha256": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243"
+    },
+    {
+      "original": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/bind-ci-family-inputs.py",
+      "snapshot": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/e2e/bind-ci-family-inputs.py",
+      "sha256": "e19105ad815ac04e9d9644ce4660c8bbead4aa806b2de60d86858c2a819548e7"
+    }
+  ],
+  "source_delta": {
+    "status": "PASS_BYTE_EXACT_WHITELISTED_DELTA",
+    "declarations_changed": 8,
+    "explanatory_comments_added": 2,
+    "helper_finisher_and_UNKNOWN_cleanup_bytes_unchanged": true,
+    "scoped_before_sha256": "d4b84b9b103c4694a1e5627cc4eaf297c8827dae38c38f222803bbae7c81b876",
+    "fixed_after_sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+    "bare_assignment_fix_only": true
+  },
+  "ci_regression_test_author_freeze_sha256": "989753b94868588e6a39f7668c5a8a250fbc5692087c84bd0197b242a110434a",
+  "regression_before_after": {
+    "status": "PASS_REGRESSION_REPLAY",
+    "records": [
+      {
+        "case": "baseline-3bea",
+        "expected_exit": 1,
+        "actual_exit": 1,
+        "tests": 11,
+        "failures": 10,
+        "errors": 0,
+        "log_sha256": "db54b20731c3c64481247b46cf65e6a60fb30ab17212bd44f148410aeb7a46cc"
+      },
+      {
+        "case": "scoped-before-trap",
+        "expected_exit": 1,
+        "actual_exit": 1,
+        "tests": 11,
+        "failures": 10,
+        "errors": 0,
+        "log_sha256": "cf3bc28d4e2bc97be88dc485cf09cd52a5f79262191692dd29f144784672dd18"
+      },
+      {
+        "case": "bare-variable-before",
+        "expected_exit": 1,
+        "actual_exit": 1,
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "log_sha256": "1b62bd4b5a0e0b735520f25a3b7ada908fc65148a22df210af912c293a88ba10"
+      },
+      {
+        "case": "candidate",
+        "expected_exit": 0,
+        "actual_exit": 0,
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "log_sha256": "8203bb6bf3f4982346b84473d474e3d3213c0326fb331d4ebb9da4e9dfff8231"
+      }
+    ],
+    "business": "NOT_EXECUTED"
+  },
+  "additional_independent_reproductions": {
+    "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/trap-delta-controls.json",
+    "sha256": "fb0ea51f0ca57661e080b473e4c997e0ad18cc4c73d79a768952f52557788617",
+    "actual_fixed_family_cases": 4,
+    "managed_valid_metadata_real_parser_then_rejecting_launcher": true,
+    "bare_before_actual_exit_status": 127,
+    "fixed_managed_actual_exit_status": 43
+  },
+  "own_neutral_FS_absence": {
+    "cases": 11,
+    "observed_absent": 11,
+    "receipt": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/candidate-own-FS-cleanup.json",
+    "provider_absence_certificate": false
+  },
+  "harness_append": {
+    "status": "PASS_ONLY_ONE_MANDATORY_APPEND",
+    "before_sha256": "eda05f7f142d92232523b86e2a2f10d53bc0113d02b8f6f7e9764451f127bf5a",
+    "after_sha256": "d3a2e24401055cc3b9d0d0d92638aaa9b92a7a3610af6e76144c83c29f3061e5",
+    "previous_mandatory_scripts_unchanged": [
+      "cleanup-contract.py",
+      "sandbox-contract.py",
+      "managed-launcher-contract.py",
+      "retention-contract.py",
+      "reconciliation-status-contract.py"
+    ],
+    "added_mandatory_script": "ci-family-scope-contract.py",
+    "AST_outside_literal_tuple_identical": true,
+    "actual_after_bytes_match": true,
+    "Gradle_runs": 0
+  },
+  "root_harness_receipt": {
+    "path": "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/replay-v2/root-harness-with-ci-controls.json",
+    "sha256": "50ac0cbc476d06ced2c681dd42412c12e07d16ebd1ad40921d63882f41db5126",
+    "control_count": 72,
+    "exit_code": 0,
+    "log_sha256": "dc6ef481d935cc6b952a764af03043cdded73edf9546a5f965387d628fc1f0e9",
+    "independent_Gradle_rerun": false
+  },
+  "preserved_v1_scope_controls": {
+    "Sandbox_legacy": 10,
+    "new_case_RED_on_old_source": 2,
+    "candidate_controls": 25,
+    "independent_extra_controls": 5,
+    "launcher_forwarding_cases": 4,
+    "managed_launcher_controls": 8,
+    "Gradle_forwarding_root_receipt_scope_sequence": [
+      "cp",
+      "cp",
+      "ecosystem"
+    ]
+  },
+  "findings": [],
+  "closed_findings": [
+    {
+      "priority": 2,
+      "finding": "Native Bash EXIT loses function locals before own cleanup and gate persistence",
+      "baseline_and_scoped_before": "10 failures out of 11 permanent controls; original independent four-case reproduction and minimal shell retained",
+      "candidate": "11 controls PASS, gate persistence and parent sentinels verified",
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh",
+      "fix": "Eight top-subshell locals become subshell variables; finisher/helper locals and UNKNOWN logic byte-identical."
+    },
+    {
+      "priority": 2,
+      "finding": "First mechanical fix invokes bare kvs_run as a command",
+      "before": "Managed with private metadata exits127; original log and one permanent RED retained",
+      "candidate": "Explicit kvs_run=\"\"; real read-run parser proceeds to neutral failed transport and persists its exact failure",
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/ci.sh"
+    }
+  ],
+  "current_external_gate": "FURY_LOGIN_REQUIRED_THEN_RECHECK_OWN_CP_KVS_CLONE_FROM_ROOT_READONLY_AUTH_RECEIPT",
+  "prior_clone_HTTP403": "HISTORICAL_ONLY_NOT_RETRIED_BY_REVIEWER",
+  "limits": [
+    "API-shaped boundary always rejects before installed SDK, actual service, or business output. It supplies only explicit control metadata.",
+    "CI functions and EXIT paths execute byte-exact under native /bin/bash3.2.57; managed executable transport is neutral and fails. Real private read-run and reconciliation helpers remain exact.",
+    "Eleven actual own temporary directory absences certify only these neutral fixtures, not remote provider resources.",
+    "Mandatory aggregate wiring is independently verified as a single tuple append; root actual Gradle72 result is preserved as root evidence, not independently run here.",
+    "Original Sandbox/root nine-path v1 review is preserved. Root latest README auth wording has a separate Domain peer; no new claim from that delta is issued here.",
+    "All 351 physical capabilities remain NOT_EXECUTED/BLOCKED; no KVS, Playmaker, full CI/backend, or formal certificate."
+  ],
+  "execution": {
+    "original_repo_writes": 0,
+    "remote_API_calls": 0,
+    "actual_Docker_calls": 0,
+    "Gradle_runs": 0,
+    "SDK_business_clients": 0,
+    "services": 0,
+    "source_drift_in_delta_pack": 0,
+    "syntax_python_and_shell": "PASS"
+  }
+}

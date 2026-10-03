@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-02T20:26:14.094171+00:00",
+  "state": "CP_PHYSICAL_BLOCKED_SANDBOX_CLONE_HTTP403",
+  "auth": "VALID_AT_CHECK",
+  "kvs_alias_visible": "APPROVED_TEST",
+  "clone_eligibility_or_authorization": "UNKNOWN_REJECTED_HTTP403",
+  "owned_bc_absence": "PASS_HTTP404_INDEPENDENT",
+  "instance_allocated": false,
+  "kvs_writes": 0,
+  "cp_full_suite": "NOT_EXECUTED",
+  "repos": [
+    {
+      "repo": "cp",
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+      "parent": "5b038f52a8bf4c11deabb86143ff4d4decaefc60",
+      "head": "45ff4504cadeb3b8271a0c9020e610edad11ab77",
+      "clean": true,
+      "patch_sha256": "e197d7cceea9a6347620321531ae87ebca896b5b68ff8821ef5be520fe33f961"
+    },
+    {
+      "repo": "knowledge",
+      "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+      "parent": "0c3448a14f3d8f2318a1c34d964ab57561917a20",
+      "head": "e89a2a58b7ff06b368f2820b60ed0ec4f0b7e28d",
+      "clean": true,
+      "patch_sha256": "c33de326fef8bb8325f282bc1f2b6c493c841e356a155145f0ec5718fbad0d1e"
+    }
+  ],
+  "owner_action": "Enable/confirm own CP Sandbox clone or provide another authorized own CP KVS alias.",
+  "session": "ACTIVE_PARTIAL",
+  "tokens_cost": "UNKNOWN_PLATFORM_NOT_EXPOSED"
+}

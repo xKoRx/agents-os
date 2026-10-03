@@ -1,0 +1,12 @@
+{
+  "name": "baseline-red",
+  "command": [
+    "python3",
+    "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/baseline-red/e2e/tests/sandbox-contract.py",
+    "ScopeControlContract.test_cp_receipt_verifies_only_CP_fresh_configuration_without_PM",
+    "ScopeControlContract.test_cp_rejects_PM_API_call_and_mutation_receipt"
+  ],
+  "exit_status": 1,
+  "log_sha256": "33905bdee8ce72c8fc7d0a956501180530e3093b06610ca0ccf130f4498e52eb",
+  "scope": "API_METADATA_SIMULATOR_AND_PRIVATE_FS_ONLY_NO_BACKEND"
+}

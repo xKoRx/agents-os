@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/README.md",
+    "before_sha256": "e042262881893870ca75e7313aacb5198c63be5a02ba5cc975e271067b90e6f2",
+    "after_file": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/doc-0.after",
+    "after_sha256": "dc412d68520f13d5661a79a32e399b9bbb64ca62324c8b60a58e35e89df63ca0"
+  },
+  {
+    "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e/docs/04-troubleshooting/kafka-real-e2e.md",
+    "before_sha256": "7e4a7139bef54b0c9afa0c967e1904624073ed6ea7fc20ff87d1e210cbd36b08",
+    "after_file": "/private/tmp/kafka-e2e-discovery/cp-only-sandbox-phase/doc-1.after",
+    "after_sha256": "f12abae97c8206b31c1afd0d2d810088cc8c9238b1937b85b1e48b84d5764701"
+  }
+]

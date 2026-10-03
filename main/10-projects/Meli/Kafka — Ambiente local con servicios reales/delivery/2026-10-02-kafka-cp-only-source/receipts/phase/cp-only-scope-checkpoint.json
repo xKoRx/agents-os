@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-02",
+  "feature": "CP-SCOPE-1",
+  "branch": "feature/kafka-real-e2e",
+  "base_develop": "4302481c69300074a85ea5eb051a27bbd505cdce",
+  "source_parent": "3bea4809a5372d5acca3d86a6181ed2c60137f22",
+  "state": "WORK_BRANCH_PENDING",
+  "scope": "CP_LOCAL_KAFKA_KVS_KAFKA_RESULTS",
+  "source_verification": "PASS",
+  "full_physical_execution": "NOT_EXECUTED",
+  "physical_gate": "BLOCKED_EXTERNAL_AUTH_THEN_OWN_KVS_CLONE_RECHECK",
+  "auth": {
+    "utc": "2026-10-02T15:31:37.712085+00:00",
+    "scope": "READ_ONLY_FURY_AUTH_EXPIRY_GUARD",
+    "result": "SANDBOX_FURY_LOGIN_REQUIRED",
+    "network_calls": 0,
+    "credential_values_exposed": 0,
+    "login_or_renew": false,
+    "business": "NOT_EXECUTED"
+  },
+  "prior_clone_observation": {
+    "http_status": 403,
+    "historical": true,
+    "recheck_after_login": true,
+    "own_alias": "triggers-status-nonprod",
+    "instance_allocated": false,
+    "kvs_writes": 0
+  },
+  "source_freeze": {
+    "sha256": "65393ccb8af0fbce63938431d7741e7fcbdc42dc296c6e2357e8c2759ff4027a",
+    "files": {
+      "build.gradle": "10bbed10e0811afe058cd4e7997e951cf260cc75c41f6f5b65b5758479e91fd5",
+      "e2e/README.md": "dc412d68520f13d5661a79a32e399b9bbb64ca62324c8b60a58e35e89df63ca0",
+      "e2e/ci.sh": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+      "e2e/managed.sh": "1a58c8559e143afa84c99f2dce6809decf8ebf5853d83526fa9fb38430312af0",
+      "e2e/run.sh": "2332c2cc1371cf293120abd3ee6bc58b46773c5ed4692cb0bd54eac7693d1d04",
+      "e2e/sandbox.py": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9",
+      "e2e/tests/harness-contract.py": "d3a2e24401055cc3b9d0d0d92638aaa9b92a7a3610af6e76144c83c29f3061e5",
+      "e2e/tests/managed-launcher-contract.py": "66aaa38645a3a1c2f2637529ae01a2962c8c85bcda870825aa9f251287f5c3de",
+      "e2e/tests/sandbox-contract.py": "cdeefbda55be982eabb9829471e2f83c91e1e9233b489ad9e4c728c77a49d31d",
+      "e2e/tests/ci-family-scope-contract.py": "2241b997fbd08b2666fe2542e8444940707ef954c597ad41df4f2cd26011b7fd",
+      "meli/features/20261001-real-e2e/1-functional/spec.md": "974f7028fcc481f3b54c3bfef4e4958528487caf754e682553e2582d108ff59d",
+      "meli/features/20261001-real-e2e/2-technical/spec.md": "c5dcee507860086152d8c080b11d7e2e710734be1970784628d4a4f621a57abc",
+      "meli/features/20261001-real-e2e/3-tasks/tasks.md": "5b59eb88d9cc281b883342fb40d80601d354dc79af90e2935e08ae11bfb1947e"
+    }
+  },
+  "root_harness": {
+    "command": "JAVA_HOME=<verified-JDK25> ./gradlew --no-daemon validateRealE2eHarness",
+    "exit_code": 0,
+    "scope": "SOURCE_METADATA_ONLY",
+    "business": "NOT_EXECUTED",
+    "log_sha256": "dc6ef481d935cc6b952a764af03043cdded73edf9546a5f965387d628fc1f0e9",
+    "unittest_groups": [
+      25,
+      8,
+      11
+    ],
+    "custom_groups": {
+      "CLEANUP_CONTROL_FLOW_PASS": 5,
+      "RETENTION_CONTROL_FLOW_PASS": 16,
+      "RECONCILIATION_INSPECTION_PASS": 7
+    },
+    "control_count": 72
+  },
+  "root_compile": {
+    "utc": "2026-10-02T15:19:38.618923+00:00",
+    "scope": "CP_E2E_COMPILE_ONLY",
+    "command": "./gradlew --no-daemon compileRealIntegrationTestJava",
+    "status": "PASS",
+    "log_sha256": "cefa7ff074a11b099edb3c743336e0ec2efc20a12b8ac7721a6af889b605c27b",
+    "business": "NOT_EXECUTED_KVS_SANDBOX_BLOCKED"
+  },
+  "independent_reviews": {
+    "fault": {
+      "sha256": "48483269a3ae0f8c1a62cf9b3739e85697d16005cd1ec9c1cd18ba5f27df5e38",
+      "state": "PASS_SOURCE_NATIVE_BASH_PRIVATE_FILESYSTEM_METADATA_ONLY",
+      "open_findings": 0,
+      "business": "NOT_EXECUTED"
+    },
+    "documentation": {
+      "sha256": "fbf4aba8f9022459cadd1d4a919a8e1af3fd74a96fce1bd0142d57abf7f5e74a",
+      "state": "PASS_DOC_DELTA",
+      "open_findings": 0,
+      "business": "NOT_EXECUTED"
+    }
+  },
+  "coverage": {
+    "sha256": "2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e",
+    "capacity_count": 351,
+    "full_physical_not_executed": 351,
+    "unchanged_by_this_source_delta": true
+  },
+  "ci": {
+    "wrapper_controls": "PASS",
+    "actual_corporate_job": "NOT_EXECUTED",
+    "dispatcher": "FOUR_FAMILY_AGGREGATE",
+    "cp_only_dispatch_job": "NOT_IMPLEMENTED_AS_SEPARATE_JOB"
+  },
+  "limits": [
+    "No remote SDK/CP business assertion was executed by these neutral controls.",
+    "Prior RED trap/scope/bare-variable receipts remain preserved.",
+    "Playmaker/Entity/Tiger/ACME and managed OAuth/BigQueue belong to later scopes.",
+    "Independent full-suite clean-checkout reproduction and repeatability remain pending."
+  ],
+  "next": [
+    "Owner renews Fury interactively on workstation.",
+    "Recheck own CP-only Sandbox clone; resolve permission only if403 persists.",
+    "Execute production Toolkit create/server-version/CAS/version-increment/TTL and complete CP realIntegrationTest.",
+    "Independently repeat complete CP business suite from clean checkout and publish scenario evidence."
+  ]
+}

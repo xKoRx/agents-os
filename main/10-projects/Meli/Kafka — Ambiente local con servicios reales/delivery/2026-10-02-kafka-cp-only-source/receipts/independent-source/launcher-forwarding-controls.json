@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "scope": "ACTUAL_PRIVATE_LAUNCHER_NEUTRAL_REJECTING_GATE_ONLY",
+  "records": [
+    {
+      "case": "actual-private-launcher-realIntegrationTest",
+      "exit_status": 43,
+      "scope": "cp",
+      "captured_args": [
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+        "verify",
+        "--directory",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/peer-launch-y1kj6_xk",
+        "--scope",
+        "cp"
+      ],
+      "real_Docker_calls": 0,
+      "L0_command_shape_checks": 1,
+      "business": "NOT_EXECUTED_REJECTED_BEFORE_FIXTURE"
+    },
+    {
+      "case": "actual-private-launcher-default",
+      "exit_status": 43,
+      "scope": "cp",
+      "captured_args": [
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+        "verify",
+        "--directory",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/peer-launch-4di5xbu3",
+        "--scope",
+        "cp"
+      ],
+      "real_Docker_calls": 0,
+      "L0_command_shape_checks": 1,
+      "business": "NOT_EXECUTED_REJECTED_BEFORE_FIXTURE"
+    },
+    {
+      "case": "actual-private-launcher-e2eTest",
+      "exit_status": 43,
+      "scope": "ecosystem",
+      "captured_args": [
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+        "verify",
+        "--directory",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/peer-launch-qgd0ao8r",
+        "--scope",
+        "ecosystem"
+      ],
+      "real_Docker_calls": 0,
+      "L0_command_shape_checks": 1,
+      "business": "NOT_EXECUTED_REJECTED_BEFORE_FIXTURE"
+    },
+    {
+      "case": "actual-private-launcher-e2eCanonicalPlaymakerTest",
+      "exit_status": 43,
+      "scope": "ecosystem",
+      "captured_args": [
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+        "verify",
+        "--directory",
+        "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/peer-launch-zhrg5ple",
+        "--scope",
+        "ecosystem"
+      ],
+      "real_Docker_calls": 0,
+      "L0_command_shape_checks": 1,
+      "business": "NOT_EXECUTED_REJECTED_BEFORE_FIXTURE"
+    }
+  ],
+  "Docker_API_calls": 0,
+  "Gradle_calls": 0,
+  "business": "NOT_EXECUTED"
+}

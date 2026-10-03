@@ -1,0 +1,113 @@
+{
+  "status": "PASS_BOTH_FIXES_SOURCE_AND_NEUTRAL_ONLY",
+  "records": [
+    {
+      "phase": "bare-regression",
+      "case": "managed-valid-metadata",
+      "exit_status": 127,
+      "gate": {
+        "schema_version": 1,
+        "family": "managed-oauth-bigqueue",
+        "exit_status": 127,
+        "run_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sandbox_cleanup_status": null
+      },
+      "captured_args": [],
+      "stderr": "/bin/bash: line 144: kvs_run: command not found",
+      "log_sha256": "3ffede2d64cec614767a1cc417db102f6d25f28a73375791682b0c6c0f404c81",
+      "source_sha256": "5c0ac3072ded34dde0f0d27c8eb05769baf8d31a38d41bb1bed8eb29f1842046",
+      "real_Docker_Gradle_API_or_business_calls": 0
+    },
+    {
+      "phase": "fixed",
+      "case": "cp-no-PM-up-fails",
+      "exit_status": 1,
+      "gate": {
+        "schema_version": 1,
+        "family": "cp-control",
+        "exit_status": 1,
+        "run_id": null,
+        "sandbox_cleanup_status": 1
+      },
+      "captured_args": [
+        [
+          "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+          "up",
+          "--scope",
+          "cp",
+          "--directory",
+          "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/trap-delta-_bvzmlhg/cp-control/sandbox",
+          "--cp-service",
+          "own-cp-alias-control"
+        ]
+      ],
+      "stderr": "CI_SANDBOX_RETAINED:cp-control",
+      "log_sha256": "1a0b0cb06198502fe1deb3fa057662036f0576df84c01742267229d66195d978",
+      "source_sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+      "real_Docker_Gradle_API_or_business_calls": 0
+    },
+    {
+      "phase": "fixed",
+      "case": "PM-missing-inputs",
+      "exit_status": 2,
+      "gate": {
+        "schema_version": 1,
+        "family": "cp-control",
+        "exit_status": 2,
+        "run_id": null,
+        "sandbox_cleanup_status": null
+      },
+      "captured_args": [],
+      "stderr": "CI_GATE_BLOCKED:cp-control:MISSING:E2E_PM_RESULTS_KVS_SERVICE,E2E_PM_LOCKS_KVS_SERVICE,E2E_PLAYMAKER_ENV_FILE,E2E_ENTITY_SERVICE_BASE_URL,E2E_ENTITY_SERVICE_TEMPLATE_RECEIPT_FILE,E2E_PLAYMAKER_DENIED_IDENTITY_TEMPLATE_FILE",
+      "log_sha256": "cf8e2cd926020e3b26c2f260efe2233d249d73c2b064bcceede674432e53371b",
+      "source_sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+      "real_Docker_Gradle_API_or_business_calls": 0
+    },
+    {
+      "phase": "fixed",
+      "case": "managed-missing-inputs",
+      "exit_status": 2,
+      "gate": {
+        "schema_version": 1,
+        "family": "managed-oauth-bigqueue",
+        "exit_status": 2,
+        "run_id": null,
+        "sandbox_cleanup_status": null
+      },
+      "captured_args": [],
+      "stderr": "CI_GATE_BLOCKED:managed-oauth-bigqueue:MISSING:E2E_MANAGED_ENV_FILE,E2E_MANAGED_KVS_ENV_FILE",
+      "log_sha256": "68041ae79cd059a6f54db662422b4221997da3b26ab55b741db175a9b9467fce",
+      "source_sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+      "real_Docker_Gradle_API_or_business_calls": 0
+    },
+    {
+      "phase": "fixed",
+      "case": "managed-valid-metadata",
+      "exit_status": 43,
+      "gate": {
+        "schema_version": 1,
+        "family": "managed-oauth-bigqueue",
+        "exit_status": 43,
+        "run_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sandbox_cleanup_status": null
+      },
+      "captured_args": [
+        [
+          "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/candidate/e2e/sandbox.py",
+          "verify",
+          "--directory",
+          "/private/tmp/kafka-e2e-discovery/independent-review/cp-only-sandbox/trap-delta-_cwyz2en",
+          "--scope",
+          "ecosystem"
+        ]
+      ],
+      "stderr": "",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_sha256": "99c160db922776f0c2dfa886240c1b7af4667bd5c3b50e6f2373284e2b352524",
+      "real_Docker_Gradle_API_or_business_calls": 0
+    }
+  ],
+  "source_before_RED127_preserved": true,
+  "actual_after_families": 4,
+  "real_Docker_Gradle_API_or_business_calls": 0
+}
