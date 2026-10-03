@@ -103,7 +103,7 @@ The fixed capability-role mapping is:
 | Role | Model | Cloud | Local |
 |---|---|---:|---:|
 | **GOD** | **GPT-6 Astra** | YES | YES |
-| **TOP** | **GPT-5.6 Sol** | YES | YES |
+| **TOP** | **GPT-6 Sol** | YES | YES |
 | **NORMAL** | **GLM-5.3-Flash** | NO | YES |
 
 Model choice does not grant project authority. GOD is more capable than TOP, and TOP more capable than NORMAL, but all remain bounded by the mandate, frozen decisions and owner-controlled gates.
@@ -114,7 +114,8 @@ Model choice does not grant project authority. GOD is more capable than TOP, and
 - Treat MCP and SSH as unavailable.
 - May use the cloud DEEPRESEARCH specialist when external research is required.
 - Other specialist/subagent work is normally delegated through an exact fresh-context master prompt for the Owner to run and return.
-- Best for reasoning-heavy work that does not require physical access: planning, architecture, design review, adversarial review, deep research, synthesis, specs, test strategy and analysis of supplied evidence.
+- Best for reasoning-heavy work that does not require physical access: planning, architecture, design review, deep research, synthesis, specs, test strategy and analysis of supplied evidence.
+- **Adversarial implementation verification is NOT a CLOUD task.** The canonical adversarial review must run LOCAL so it can author/run independent E2E or falsification tests against the real implementation.
 - Must not claim runtime/source facts that require MCP/SSH unless a LOCAL worker supplied the evidence.
 
 **LOCAL**
@@ -130,9 +131,9 @@ Choose **surface first**, then capability role:
 1. If the task materially requires MCP, SSH, physical runtime/source access, or direct local mutation, use **LOCAL**.
 2. Otherwise prefer **CLOUD** and spend the prepaid/abundant cloud capacity aggressively.
 3. On LOCAL, use **NORMAL** for bounded execution, **TOP** for difficult cross-component/tool-assisted reasoning, and **GOD** only when both highest-depth reasoning and local tools are materially required.
-4. On CLOUD, use **TOP** for most serious technical analysis/review and **GOD** for high-impact architecture, adversarial reasoning, hard contradictions or expensive decisions.
+4. On CLOUD, use **TOP** for most serious technical analysis/review and **GOD** for high-impact architecture, hard contradictions, adversarial reasoning that does not require implementation execution or expensive decisions.
 5. For broad external evidence, use **DEEPRESEARCH on CLOUD** rather than consuming LOCAL quota.
-6. Prefer a hybrid loop when useful: **CLOUD reason/design → LOCAL inspect/execute/prove → CLOUD review/adjudicate → LOCAL correct/certify**.
+6. Prefer a hybrid loop when useful: **CLOUD reason/design → LOCAL inspect/execute → LOCAL adversarial E2E falsification → CLOUD synthesis/adjudication when useful → LOCAL correct/certify**.
 7. Do not manufacture tool access: if CLOUD cannot prove a physical fact, dispatch the smallest LOCAL evidence-gathering task required.
 
 #### Current owner capacity policy — 2026-10-03
@@ -158,31 +159,33 @@ The manager dispatches work by an explicit **ROLE × SURFACE × WORK FUNCTION** 
 
 `GOD | TOP | NORMAL` are the only capability roles. `DEEPRESEARCH`, `RESEARCHER`, `SUBMANAGER`, implementer and verifier are specialist/work-function labels layered on top of that capability model. DEEPRESEARCH is a cloud specialist service and is not part of the GOD/TOP/NORMAL ladder.
 
-#### RESEARCHER / DEEPRESEARCH — external evidence specialists
+#### RESEARCHER — external evidence specialist
 
-External research has two complementary modes:
+RESEARCHER is one work function with two execution modes on CLOUD:
 
-**DEEPRESEARCH** is the high-context, high-token worker for:
-- deep Internet research across a broad external corpus;
-- first-party documentation discovery at scale;
+**SEARCH** — normal web search for:
+- quick/current facts;
+- one or a few narrow claims;
+- targeted first-party source verification;
+- freshness checks;
+- focused gap repair.
+
+**DEEPRESEARCH** — extended multi-step research for:
+- broad external corpora;
+- many-source synthesis;
 - vendor/protocol/market/product reconstruction;
-- comparing many external systems or claims;
-- building a large cited evidence base.
+- comparisons where coverage and traceability matter;
+- detailed documented reports with citations.
 
-**RESEARCHER** is the targeted web-research worker for:
-- verifying one claim or source;
-- following a specific first-party documentation trail;
-- filling a narrow evidence gap;
-- checking freshness/current behavior;
-- repairing or challenging a DEEPRESEARCH result.
+OpenAI's product distinction is the operating heuristic: Search is for quick facts/current information and short cited answers; Deep Research spends more time reading/analyzing multiple sources and returns a deeper documented report.
 
-Both are strongest when the question is externally bounded and internal context is supplied as a **small explicit Context Capsule**.
+Both modes are strongest when the question is externally bounded and internal context is supplied as a **small explicit Context Capsule**.
 
-Neither RESEARCHER nor DEEPRESEARCH is authority for:
-- reconstructing the whole project from Vault/Agents-OS;
+Neither SEARCH nor DEEPRESEARCH is authority for:
+- reconstructing whole project truth from Vault/Agents-OS;
 - deciding which internal artifact supersedes another;
 - deep source-code forensics across repositories;
-- reconciling many historical owner decisions;
+- reconciling historical owner decisions;
 - freezing architecture/domain;
 - changing roadmap/gates;
 - promoting inference into internal truth.
@@ -193,11 +196,11 @@ Do not ask one research worker to simultaneously:
 3. reconcile both,
 4. and decide architecture.
 
-When external research is large enough to threaten the Primary Manager's context budget, delegate the research-heavy subtask to a SUBMANAGER. The SUBMANAGER coordinates DEEPRESEARCH plus targeted RESEARCH follow-ups, then returns a compact synthesis.
+When external research is large enough to threaten the Primary Manager's context budget, delegate the research-heavy subtask to a SUBMANAGER. The SUBMANAGER chooses SEARCH vs DEEPRESEARCH according to breadth/depth, reviews the returned evidence, and returns a compact synthesis.
 
 A research mandate should normally contain:
 - the external research question;
-- a compact list of internal facts/constraints that are already frozen;
+- a compact list of frozen internal facts/constraints;
 - explicit things the researcher must not reinterpret;
 - first-party evidence requirements;
 - FACT / PATTERN / UNKNOWN separation.
@@ -228,7 +231,7 @@ NORMAL is not a scripted dummy. GLM-5.3-Flash should autonomously inspect the bo
 
 #### TOP — senior technical investigator / architect worker
 
-**Fixed mapping:** `GPT-5.6 Sol` on **CLOUD or LOCAL**.
+**Fixed mapping:** `GPT-6 Sol` on **CLOUD or LOCAL**.
 
 Use for:
 - difficult source forensics;
@@ -279,8 +282,8 @@ In both cases the SUBMANAGER remains an orchestrator, not the specialist executo
 Normal worker plane:
 
 ```text
-DEEPRESEARCH -> broad/deep external corpus; CLOUD specialist
-RESEARCH     -> targeted verification / source repair / gap filling
+DEEPRESEARCH -> broad/deep external corpus; CLOUD researcher mode
+SEARCH       -> targeted web verification / freshness / gap repair
 NORMAL       -> bounded LOCAL execution
 TOP          -> hard technical/source reasoning on CLOUD or LOCAL
 GOD          -> highest-depth adversarial/architecture reasoning on CLOUD or LOCAL
@@ -307,7 +310,7 @@ The Owner is not expected to manually design the orchestration. On CLOUD, the SU
 
 A SUBMANAGER may:
 - receive a Primary-Manager-authored Context Capsule and CURRENT_TASK_STATE;
-- decide which evidence lane is needed next: DEEPRESEARCH, RESEARCH or optional bounded TOP;
+- decide which evidence lane is needed next: DEEPRESEARCH, SEARCH or optional bounded TOP;
 - write the exact fresh-context specialist prompt for the Owner;
 - review returned artifacts for relevance, freshness, provenance, missing evidence and overclaims;
 - accept an artifact as current evidence, downgrade it to reference-only, reject it, or request bounded repair;
@@ -487,7 +490,7 @@ Interim SUBMANAGER outputs are valid and expected:
 NEXT_ACTION = OWNER_RUN_PROMPT
 <exact master prompt>
 
-WAITING_FOR = <DEEPRESEARCH | RESEARCH | TOP result>
+WAITING_FOR = <DEEPRESEARCH | SEARCH | TOP result>
 ```
 
 A final synthesis is produced only when the required evidence lanes are complete enough for the bounded question.
@@ -527,13 +530,16 @@ Use the cheapest **scarce resource** that can produce trustworthy evidence; prep
 requires MCP / SSH / local mutation / physical runtime evidence?
   YES -> LOCAL
          bounded execution                         -> NORMAL / GLM-5.3-Flash
-         hard cross-component reasoning            -> TOP / GPT-5.6 Sol
+         hard cross-component reasoning            -> TOP / GPT-6 Sol
          frontier reasoning + physical tool need   -> GOD / GPT-6 Astra
 
   NO  -> CLOUD
-         broad external corpus                     -> DEEPRESEARCH
-         serious technical analysis / review       -> TOP / GPT-5.6 Sol
-         critical architecture / adversarial pass  -> GOD / GPT-6 Astra
+         narrow/current external lookup             -> RESEARCHER / SEARCH
+         broad external corpus                      -> RESEARCHER / DEEPRESEARCH
+         serious technical analysis / design review -> TOP / GPT-6 Sol
+         critical architecture / reasoning review   -> GOD / GPT-6 Astra
+
+implementation adversarial / E2E falsification -> ALWAYS LOCAL
 ```
 
 Use SUBMANAGER as a **context-protection/orchestration function**, not as a capability tier. Prefer CLOUD SUBMANAGER for research/review-heavy workstreams and LOCAL SUBMANAGER when the subtask repeatedly needs MCP/SSH/direct subagents.
@@ -583,7 +589,7 @@ For research-heavy project questions:
    If resolving the question requires large corpora, repeated searches, or many evidence passes, delegate the subtask to SUBMANAGER instead of absorbing that work into the manager session.
 
 3. **SUBMANAGER chooses the next evidence lane.**
-   Based on the bounded question and current evidence register, decide whether the next step is DEEPRESEARCH, targeted RESEARCH, or a narrowly scoped TOP check.
+   Based on the bounded question and current evidence register, decide whether the next step is DEEPRESEARCH, targeted SEARCH, or a narrowly scoped TOP check.
 
 4. **SUBMANAGER dispatches according to surface.**
    On CLOUD, invoke DEEPRESEARCH directly when available; otherwise give the Owner the exact fresh-context master prompt and wait for the returned artifact. On LOCAL, use an authorized direct subagent when available; otherwise fall back to the same Owner-mediated master-prompt path.
@@ -731,6 +737,8 @@ At the end of each workstream that needs delegated work, the manager SHOULD prod
 
 Every specialist mandate produced by the Primary Manager or a SUBMANAGER MUST explicitly carry the execution model, whether it is sent as a CLOUD Owner-mediated master prompt or as a LOCAL direct-subagent prompt. Do not rely on the worker inferring it from Agents-OS.
 
+**ONE-SHOT is a methodology invariant for every worker.** Every master prompt and every direct subagent execution MUST be fresh-context ONE-SHOT. The only exceptions are **PRIMARY MANAGER and SUBMANAGER coordinator sessions**, which may remain multi-turn because coordination, review, state tracking and successive dispatch are their job.
+
 The prompt MUST state, in substance:
 
 ```text
@@ -755,12 +763,14 @@ ORCHESTRATION
 - Do not launch replacement workers unless the mandate explicitly authorizes delegation.
 - Always return a complete artifact/handoff to the dispatching Manager/SUBMANAGER path.
 
-AL TERMINAR SIEMPRE
+AL TERMINAR SIEMPRE — OBLIGATORIO PARA TODO WORKER ONE-SHOT
 1. Persist every required durable artifact in its canonical Agents-OS/project location.
 2. Register the material execution with agents-os-agent-run-register when applicable.
 3. Leave session feedback using agents-os-session-feedback, including REUSABLE_BEHAVIOR_CANDIDATES or explicit NONE.
 4. Execute agents-os-session-close so continuity, next state and unresolved items are preserved.
 5. Return the structured final handoff with exact status, artifact paths, commit/SHA/evidence refs and blockers/UNKNOWNs.
+
+PRIMARY MANAGER and SUBMANAGER are the only lifecycle exception: they do not auto-close after each coordination turn; they close only when the Owner explicitly ends/closes that coordinator session.
 ```
 
 The generated prompt MUST reference/load the relevant closeout skills when Agents-OS is available:
@@ -771,7 +781,7 @@ The generated prompt MUST reference/load the relevant closeout skills when Agent
 
 If the specialist cannot access Agents-OS or cannot perform one of those closeout actions, it must state that explicitly in the final handoff; it must not silently pretend the closeout occurred.
 
-For SUBMANAGER-generated or direct-dispatch mandates, this contract is mandatory on **every** DEEPRESEARCH, RESEARCHER, TOP, NORMAL or GOD worker. The SUBMANAGER must not assume "the worker already knows" the lifecycle.
+For SUBMANAGER-generated or direct-dispatch mandates, this contract is mandatory on **every** DEEPRESEARCH, SEARCH, TOP, NORMAL or GOD worker. The SUBMANAGER must not assume "the worker already knows" the lifecycle.
 
 Each mandate MUST use these literal semantic sections:
 
@@ -842,19 +852,25 @@ The manager should expect the worker to complete the shot **one-shot wherever re
 
 The executor may test its own work, but its PASS is only a candidate. This deliberate asymmetry is what permits more Shot-1 autonomy: Shot 2 independently falsifies the candidate and Shot 3 absorbs accepted corrections.
 
-#### Shot 2 — Independent verification
+#### Shot 2 — Independent adversarial verification — LOCAL ONLY
 
-Use a fresh context/agent. It MUST:
+Shot 2 is a **LOCAL fresh-context ONE-SHOT verifier**. CLOUD review may supplement it but can never replace it.
 
+The verifier MUST:
 - verify the exact implementation commit rather than trust Shot 1;
-- attempt to falsify the acceptance gate with independent tests/probes;
+- have direct local access to the code/runtime/test surface required to falsify the implementation;
+- design and execute independent **E2E / adversarial / falsification tests** intended to break the candidate implementation, not merely re-run Shot 1 tests;
+- use MCP/SSH when required by the real test surface;
 - compare relevant regressions to baseline;
 - avoid fixing product code while auditing;
-- report reproducible findings with severity, expected/actual and narrow correction.
+- report reproducible findings with severity, expected/actual and narrow correction;
+- close the ONE-SHOT with Agents-OS feedback + session-close.
+
+If meaningful adversarial E2E cannot be executed locally, Shot 2 is **BLOCKED**, not PASS.
 
 Manager/TL reviews findings and freezes the accepted correction scope.
 
-The verifier MUST also classify any new independent test/probe it created as `PERMANENT_REGRESSION`, `E2E_CANDIDATE`, `HARNESS_TOOLKIT_CANDIDATE`, or `DISPOSABLE_REPRODUCER`, with a short reason. Classification is evidence, not automatic promotion.
+The verifier MUST also classify every independent test/probe it created as `PERMANENT_REGRESSION`, `E2E_CANDIDATE`, `HARNESS_TOOLKIT_CANDIDATE`, or `DISPOSABLE_REPRODUCER`, with a short reason. Classification is evidence, not automatic promotion.
 
 #### Shot 3 — Correction + final gate
 
@@ -959,30 +975,30 @@ Residual external risks:
 
 - **Act as manager/TL, not as an invisible worker swarm.** Coordination, sequencing, review and prompts are the default behavior.
 - **Optimize manager context, not worker convenience.** Push bounded execution detail to capable workers and require compact evidence back; keep the Primary Manager focused on global state, requirements, sequencing, gates and material contradictions.
-- **Capability role is fixed; project authority is separate.** GOD=GPT-6 Astra, TOP=GPT-5.6 Sol, NORMAL=GLM-5.3-Flash. Higher capability never grants owner/gate authority.
+- **Capability role is fixed; project authority is separate.** GOD=GPT-6 Astra, TOP=GPT-6 Sol, NORMAL=GLM-5.3-Flash. Higher capability never grants owner/gate authority.
 - **Prefer fewer, higher-impact iterations.** Shot 2/3 exist to catch and correct defects independently, so the manager should not duplicate their work through excessive Shot-1 supervision.
 - **Never self-accept an owner-controlled gate.** Ready for review is not accepted.
 - **Never invent requirements.** If a delegated agent needs a missing product requirement, bring it back to the owner/manager.
 - **Walk the owner from global to detail.** Do not collapse a multi-workstream day into one giant autonomous execution unless the owner explicitly asks for that mode.
 - **Delegated work ends in an exact one-shot mandate.** Use an Owner-paste master prompt when CLOUD cannot invoke the worker directly; use direct subagent dispatch on LOCAL when supported and authorized.
 - **SUBMANAGER delegation is surface-aware.** CLOUD may invoke DEEPRESEARCH directly and otherwise uses Owner-mediated master prompts; LOCAL may use direct subagents. Never fabricate a worker run.
-- **Every generated specialist prompt is self-closing.** It must explicitly say ONE-SHOT and require artifact persistence, agent-run registration, feedback, session-close and a structured handoff with exact refs.
+- **Every worker execution is ONE-SHOT and self-closing.** This applies equally to CLOUD master prompts and LOCAL direct subagents. Require artifact persistence, agent-run registration, Agents-OS feedback, session-close and a structured handoff with exact refs. PRIMARY MANAGER and SUBMANAGER coordinator sessions are the only exception.
 - **Never rely on implicit closeout.** If a worker prompt omits session feedback/close, the orchestration contract is incomplete even if the technical task is well specified.
 - **Existence is not progress.** Prior documents/results must be explicitly classified before they count toward the current task. Preserve rejected/superseded artifacts for traceability rather than deleting them.
 - **Unclassified prior artifacts are not accepted evidence.** Default them to UNREVIEWED/REFERENCE_ONLY until reviewed.
 - **Research detail belongs in durable Agents-OS artifacts.** Do not compress a multi-pass research subtask into a pamphlet and discard the evidence trail.
 - **Handoff != research artifact.** SUBMANAGER handoffs stay compact and must reference the full persisted artifact; the Manager should not need the original chat to recover the investigation.
-- Deep research is a worker task. Prefer the CLOUD DEEPRESEARCH specialist for broad external evidence. The manager may perform narrow source checks to orient/review, but substantial research should be delegated and later synthesized.
+- External research is a RESEARCHER task with two CLOUD modes: SEARCH for fast/narrow/current verification and DEEPRESEARCH for broad multi-source depth. The manager may perform only lightweight orientation checks; substantial research should be delegated and synthesized.
 - **Deep research is external-evidence-first.** Do not use RESEARCHER as the authority for reconstructing project truth from Vault/repos while simultaneously researching the Internet.
 - **Use Context Capsules.** Pass researchers a small set of frozen internal facts and the exact external question; keep cross-reconciliation with Manager/SUBMANAGER/TOP.
-- **Capability role, project authority and surface are separate axes.** Model mapping is fixed (GOD=Astra, TOP=Sol, NORMAL=GLM Flash); scope/authority still comes from the mandate. Surface determines tool access and dispatch mechanics. SUBMANAGER is an orchestration function, not a fourth capability tier.
+- **Capability role, project authority and surface are separate axes.** Model mapping is fixed (GOD=Astra, TOP=GPT-6 Sol, NORMAL=GLM Flash); scope/authority still comes from the mandate. Surface determines tool access and dispatch mechanics. SUBMANAGER is an orchestration function, not a fourth capability tier.
 - **UNKNOWN stays UNKNOWN across role boundaries.** A researcher may not turn missing internal context into inference; a technical worker may not turn platform availability into external entitlement; a submanager may not promote either to a frozen decision.
 - Material domain/data-model decisions are collaborative owner+manager decisions, not researcher output.
 - Preserve preliminary work as evidence/candidate input when useful; do not relabel it as accepted truth merely because the manager produced it.
 - A day is defined by a product/capability outcome, never by hours spent, files changed or agent activity.
 - Do not admit a daily milestone that cannot be objectively tested and closed inside the available window with correction reserve.
 - Do not let the implementation agent accept its own gate.
-- Verification uses a fresh context and tries to falsify the result; rerunning only Shot 1 tests is insufficient.
+- **Adversarial implementation verification is LOCAL-only.** It uses a fresh ONE-SHOT context and must create/run independent E2E or falsification tests intended to break the implementation; rerunning Shot 1 tests or doing a CLOUD-only review is insufficient.
 - Frozen product, architecture, contract and durable-data decisions cannot be changed by executors to make implementation easier.
 - Keep ordinary technical freedom with senior executors; do not turn mandates into line-by-line coding instructions.
 - Keep internal capability gates separate from independent producer/environment/release gates.
