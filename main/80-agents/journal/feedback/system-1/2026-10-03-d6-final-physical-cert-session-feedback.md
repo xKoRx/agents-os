@@ -4,16 +4,18 @@ schema_version: 1
 scope: session
 created: 2026-10-03
 updated: 2026-10-03
-area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+area: "[[Echo]]"
+project: "[[Echo Futures]]"
 entities:
-  - "[[AGENTS OS]]"
-related: []
+  - "[[Echo Futures]]"
+related:
+  - "[[aranea-ssh-mcp]]"
+  - "[[agents-os-session-close]]"
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash
+agent_run: "[[2026-10-03-zcode-glm53-d6-final-physical-certification-attempt1]]"
+session_goal: D6 final physical certification attempt 1 (OD-D6-1 authorized); ladder blocked by CME weekend closure; honest NOT_READY disposition.
 source_session:
 confidence: high
 load_policy: manual
@@ -22,93 +24,22 @@ index_priority: low
 tags:
   - kind/feedback
   - scope/session
-  - project/agents-os
-  - agent/system1
+  - area/echo
 ---
 
-# Session Feedback - 2026-10-03 - short-topic
+# Session Feedback — D6 Final Physical Certification intento 1 (2026-10-03)
 
-## Context
+## Qué funcionó bien
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- **Chequeo de calendario ANTES de cualquier egress**: el reloj CT + el estado del topic Kafka (último `event_ts` viernes 21:38Z) identificaron el bloqueo en minutos, sin gastar una sola orden ni mutación — el ladder murió por calendario, no por ensayo-y-error.
+- **Evidencia física multi-plano barata**: Kafka end-offset doble muestra + counters del evidence sink + netstat PID + certutil hash remoto cruzados entre sí dieron una cadena P1–P7 completa sin escribir nada.
 
-## Scores
+## Pain patterns / fricción
 
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
-
-## What Complicated The Session Most
-
-- Observation:
-- Why it was hard:
-- Proposed improvement:
-
-## Most Useful Part Of Sistema 1
-
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
+- `aranea-ssh` perfil `dev-win` (viewer) rechaza TAMBIÉN `read-command` ("Clear readOnly on the profile to allow them") ⇒ toda lectura del Windows exige el perfil operator, rompiendo la separación viewer/operator. Ya había matado `read-command` en contextos MT4; aquí quedó inutilizable también por policy. Recurre ⇒ candidato pain pattern.
+- El shell remoto de dev-win es **PowerShell**: sintaxis cmd (`2>nul`, `&`) rompe; `$` se elimina en tránsito. Los comandos deben ser PS-cortos (ya en memoria ZCode, pero el vault no lo registra como runbook de dev-win).
+- Nota de memoria incorrecta detectada y corregida: el relay nt-feed NO corre como unidad systemd `echo-nt-feed-relay` — es un proceso raw (`/home/kor/opt/echo-dev/releases/<sha>/nt-feed-relay`, stdout a socket). La nota "unidad activa" de N1-R1 arrastra esa imprecisión.
 
 ## Missing Support
 
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+- **G-STOP no tiene parámetros físicos frozen standalone** (side/qty/precio): el prompt obliga a STOP+OWNER_DECISION_REQUIRED si faltan, y hoy sólo existe el ciclo E2E congelado que los deriva de GerardMM en vivo. Registrar en el próximo despacho que G-STOP se ejercita dentro de G-E2E o congelar parámetros explícitos si se quiere gate independiente (decisión Manager, ya anotada en el artifact §5/§17).
