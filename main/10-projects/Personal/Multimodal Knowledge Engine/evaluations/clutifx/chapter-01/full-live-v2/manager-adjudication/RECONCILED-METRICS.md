@@ -98,7 +98,7 @@ Aritmética cerrada: 52 INSUFFICIENT + 5 COMPOSITE = 57 claims INSUFFICIENT publ
 
 Uniones aplicadas por record (verificadas contra `pipeline_records`): `cl-grafica-eurusd` 1 merge/2 refs · `cl-grafico-eurusd` 5/10 · `cl-instrumento-eurusd` 2/5 · `cl-instrumento-grafico-eurusd` 1/2 · `cl-stop-loss-long-debajo-turtle-soup` 1/3 · `cl-temporalidad-grafico-15m` 1/3 · `cl-temporalidad-grafico-8h` 1/3 → **12 aplicaciones sobre 7 records**. El 7 de `METRICS.json.identity` cuenta records (stage rows), no aplicaciones (ver ERRATA E-02).
 
-Clasificación humana del operador sobre las 17 live: 12 OBVIOUSLY_EQUIVALENT / 3 AMBIGUOUS / 2 OBVIOUSLY_DIVERGENT · `POTENTIAL_FALSE_SEMANTIC_MERGE = NO` · 1 sobre-rechazo conservador (#8, humano OBVIOUSLY_EQUIVALENT → engine DIVERGENT, costo de cobertura de w0094). Para política: el hotspot determinista es parameter-vs-observation sobre el mismo hecho visual recurrente (EURUSD/temporalidad), 12 de las 16 divergencias deterministas; 2 son epistemic (w0058, w0059) y 2 estructurales de relations (w0054, w0092).
+Clasificación humana del operador sobre las 17 live: 12 OBVIOUSLY_EQUIVALENT / 3 AMBIGUOUS / 2 OBVIOUSLY_DIVERGENT · `POTENTIAL_FALSE_SEMANTIC_MERGE = NO` · 1 sobre-rechazo conservador (#8, humano OBVIOUSLY_EQUIVALENT → engine DIVERGENT, costo de cobertura de w0094). Para política: las 16 divergencias deterministas se descomponen en 12 de kind (8 de ellas parameter-vs-observation sobre el mismo hecho visual recurrente EURUSD/temporalidad: w0034, w0062, w0065, w0072, w0074, w0102, w0116, w0117), 2 de epistemic (w0058, w0059) y 2 estructurales de relations (w0054, w0092).
 
 ## 6. Reliability (contadores separados, no un solo "failure")
 
