@@ -102,7 +102,7 @@ Ver P2/P6. Cadena completa observada hoy: ETCD `provider-account-ref=RJARA114411
 
 - `v3/futures-bridge/...` — **15 pkgs ok, BRIDGE_EXIT=0** (incluye `addon-ninjatrader` con el G-EGRESS-0 automatizado, `adapters/ninjatrader`, `core/ntx`, `internal/session`, `adapters/journalfs`).
 - `v3/sdk/futures/...` — **14 pkgs ok, SDK_EXIT=0** (gerardmm, provider, operation, market, warmup, s1, s2…).
-- `v3/core/internal/functions/...`, `futuresruntime`, `config/futures` — ok; `futuresvertical` completa `-timeout 30m` — ver resultado al final del artifact (sección 18).
+- `v3/core/internal/functions/...`, `futuresruntime`, `config/futures` — ok; `futuresvertical` completa `-timeout 30m` — **ok (1351 s), CORE_EXIT=0**.
 
 NINJATRADER_8_1_8_3: sin re-compilación hoy (source byte-idéntico al Shot 3 shadow-compiled: hashes §2 == §P6) — el PASS físico de Shot 3 (FEED_EXIT=0 sin warnings; EXEC_EXIT=0, 3 warnings preexistentes) sigue siendo el estado vigente del mismo bytes.
 
@@ -186,7 +186,7 @@ NINJATRADER_8_1_8_3:
 PASS — estado Shot 3 vigente (source byte-idéntico verificado hoy; sin re-compilación requerida)
 
 REGRESSION:
-PASS — bridge 15 pkgs + sdk 14 pkgs -race verdes hoy @ 40102ea5; core functions/futuresruntime/config+futuresvertical ver resultando en el handoff del project note
+PASS — bridge 15 pkgs + sdk 14 pkgs + core functions/futuresruntime/config/futures + futuresvertical (-timeout 30m, 1351 s) verdes hoy @ 40102ea5, -race -count=1 (BRIDGE_EXIT=0, SDK_EXIT=0, CORE_EXIT=0)
 
 RESIDUAL_FINDINGS:
 1) balances 0/0/0/0/0 del provider en fin de semana (variante demo documentada; re-observar en ventana) · 2) preparación operacional de la ventana pendiente (instalación owner AddOn ejecución + arranque bridge — pasos del shot, no defectos) · 3) G-REALTIME positivo sin evidencia física aún
