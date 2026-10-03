@@ -1,0 +1,458 @@
+{
+ "window": "w0095",
+ "start": "24:15",
+ "end": "24:32",
+ "start_ms": 1455000,
+ "end_ms": 1472000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esto-es-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto es una SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00198",
+    "asr-00200"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cb7fa50b17425c61714123cd4370ff0e24d01dc3d563bd2c66fcb298838078d7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente «esto es una SMT», por lo que respalda directamente la sentencia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia afirma una sola proposición: que lo referido es una SMT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-rango-tomado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En EURUSD sí lo ha tomado como un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00199",
+    "frame-4de8f12d4841c630-s0-p131760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "750cc86b5df34f4138f57989c971241b773b7c00eca318b26366a8c275af7569",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «en euros sí lo ha tomado», en el contexto del gráfico etiquetado EURUSD y como un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que EURUSD fue tomado como un rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-es-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto de GBPUSD es un rango también.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00198",
+    "frame-4de8f12d4841c630-s0-p132480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7c569f11fd0dbd06f13329655ce951076727eea9d35120f4fcd2e4e2eb263aa3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen identifica explícitamente el conjunto como GBPUSD y muestra su precio contenido entre niveles horizontales, lo que sustenta que forma un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: GBPUSD es un rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rango-no-tomado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En GBPUSD no lo ha tomado como un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00199",
+    "frame-4de8f12d4841c630-s0-p132480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f17cbae99cddf14f7066676e18beb52b1dd1b089407a7a894693408582f6ba48",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «en GIP no» lo ha tomado como rango, en el contexto compartido con la gráfica etiquetada GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: GBPUSD no fue tomado como un rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-convierte-en-objetivo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Que esto sea una SMT convertiría esto en un objetivo también.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00200"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c4708e4ba506f8bef373b54fc03c7ce1e870f0fe8086c04b9464e94ac55cfbc8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, si esto sería una SMT, convertiría esto en un objetivo también."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que ser una SMT haría que esto se convierta en un objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-convierte-en-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Que esto sea una SMT convertiría esto en un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00200"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f5966c4ba7617afc1d6df77ee53b8b7b4dd0d269940aa9be2017d9d9aaf47f9c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que ser una SMT convertiría esto en un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la condición de ser una SMT produciría la conversión en un rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-conversion-rango-depende-de-smt",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-convierte-en-rango",
+   "subject_version": 1,
+   "object_id": "cl-esto-es-smt",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00200"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a4bce8f1c7bfcaa8e379a14030e4c14d2340e9165386d367c2a5a7a21f1f1b79",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que esto sería una SMT y que именно ello convertiría esto en un rango, estableciendo la dependencia del sujeto respecto del objeto en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-objetivo-depende-de-smt",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-convierte-en-objetivo",
+   "subject_version": 1,
+   "object_id": "cl-esto-es-smt",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00200"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1b9d9842186c5699f82ca7c3e245d11337ba14bbbf090685472a939f984c7be",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «esta sería una SMT» y que ello «convertiría esto en un objetivo también», lo que establece explícitamente la relación de dependencia en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-gbpusd-depende-de-smt",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-es-rango",
+   "subject_version": 1,
+   "object_id": "cl-esto-es-smt",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00198",
+    "asr-00200"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f3fb3acfa5d0b1ae5378ae9c3b0447a8acaabdff34c4c680d74a844c0b2c1249",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita vincula una SMT con que «esto de GIP» es un rango, pero no identifica expresamente GBPUSD ni demuestra que la afirmación sobre GBPUSD dependa de la afirmación de que «esto» es una SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita afirma genéricamente que una SMT convertiría «esto» en un rango, sin establecer que ambas referencias correspondan a GBPUSD y a la claim objeto."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "85713b1dc75ba5003e030db188b16f8fb7885599dab0bd7d4630163ed0c1bf88"
+    ],
+    "response_id": "gen-1790906459-bvJ8w3nAT524Spuc2Emz"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00198",
+   "start_ms": 1452390,
+   "end_ms": 1460680,
+   "text": "Entonces, esto es una SMT que nos indica que esto de GIP es un rango también, ¿vale?"
+  },
+  {
+   "id": "asr-00199",
+   "start_ms": 1461220,
+   "end_ms": 1465220,
+   "text": "Si simplemente no se ve como un rango es porque en euros sí lo ha tomado y en GIP no."
+  },
+  {
+   "id": "asr-00200",
+   "start_ms": 1465220,
+   "end_ms": 1474340,
+   "text": "Por lo tanto, esta sería una SMT, lo que convertiría esto en un rango y convertiría esto en un objetivo también, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p130950000-canonical-v1",
+   "pts_ms": 1455000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p130950000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p131040000-canonical-v1",
+   "pts_ms": 1456000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p131040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p131400000-canonical-v1",
+   "pts_ms": 1460000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p131400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p131760000-canonical-v1",
+   "pts_ms": 1464000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p131760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p131940000-canonical-v1",
+   "pts_ms": 1466000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p131940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p132030000-canonical-v1",
+   "pts_ms": 1467000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p132030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p132120000-canonical-v1",
+   "pts_ms": 1468000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p132120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p132480000-canonical-v1",
+   "pts_ms": 1472000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p132480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

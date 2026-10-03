@@ -1,0 +1,653 @@
+{
+ "window": "w0066",
+ "start": "16:00",
+ "end": "16:23",
+ "start_ms": 960000,
+ "end_ms": 983000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-no-es-turtlesoup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este caso no es ningún TURTLESOUP.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4381edd4f72013cdc22e3183ed10ad7623b83ec2eb1d9d61de93f395064cac00",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que el caso «no es ningún tartle sub», lo que respalda la afirmación de que no es un TURTLESOUP."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la clasificación negativa del caso como TURTLESOUP."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-no-reacciona",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En este caso, la vela no reacciona después de tomar el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b9c6a726c6067383d6017f7d081cf6fd1d72218ce7223e54d13ba416ff7d4dda",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que, en lugar de reaccionar, el precio «sigue bajando», lo que respalda que la vela no reacciona tras tomar el mínimo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-sigue-bajando",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En este caso, la vela sigue bajando.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9925206fedcf221e066e04f3fbdfcf0b25a50a5b161b773c304ae1c86fd0811f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «sigue bajando» y la imagen muestra el contexto de la vela analizada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-es-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Esto sería una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00129",
+    "frame-4de8f12d4841c630-s0-p86400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "abf60d905713fd459bc6e5b5437ad08ddc456966368477682d13e368a3c8c328",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma literalmente «esto sería una vela», que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el elemento mostrado sería una vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-toma-y-reaccion-es-turtlesoup",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si la vela toma el low y reacciona, entonces es un TURTLESOUP.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7215803ee326879e83f30084494d611a4936b5aec5d0928d2074f07a11d1b51c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que, si la vela toma el low y reacciona, entonces es un «tartel sub», transcripción fonética de TURTLESOUP."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos condiciones forman juntas el antecedente de una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtlesoup-requiere-toma-liquidez",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El TURTLESOUP tiene que ser una toma de liquidez.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "60e7ea53816fb5cdf2d97b8c062e7079f39b4ade0f96fd87dda0a2c2946b6e14",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «tartle sub» —denominación fonética de TURTLESOUP— tiene que ser una toma de liquidez."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que TURTLESOUP debe ser una toma de liquidez."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Esta vela sería de cuatro horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00129"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f552051651f45e9d88350ab982442774c15eaa1546e0b5408b163b986ea0b572",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «esto sería una vela» y «pongámosle de cuatro horas», lo que establece que la vela sería de cuatro horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la duración de la vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-reacciona-tras-low",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Después de tomar el low, la vela reacciona.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130",
+    "frame-4de8f12d4841c630-s0-p87750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p88200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0cd397b143cd93b29c251ce08f260a71369edc62b9f2b46182c0e45230fdf5f0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «toma el low reacciona», lo que sostiene que, después de tomar el low, la vela reacciona."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «después de» únicamente delimita el contexto temporal de esa misma reacción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-siguiente-toma-low",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela siguiente toma el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130",
+    "frame-4de8f12d4841c630-s0-p87480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p87750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e3dee8a5b76820146365fe2b38e90d251de03d24c92ee79b62b6cb217150633a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada dice directamente «siguiente vela ... toma el low», lo que sustenta que la vela siguiente toma el mínimo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre la vela siguiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-reaccion-contradice-reaccion",
+   "version": 1,
+   "type": "CONTRADICTS",
+   "subject_id": "cl-caso-no-reacciona",
+   "subject_version": 1,
+   "object_id": "cl-vela-reacciona-tras-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "775f98e686e0457f3827d993a4954f130a0c1bb661632ca3b55ed4d7a7c6cbd4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited speech explicitly says that, instead of reacting, the candle continues falling, which directly contradicts the object claim that it reacts after taking the low."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-turtlesoup-depende-continuacion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-caso-no-es-turtlesoup",
+   "subject_version": 1,
+   "object_id": "cl-caso-sigue-bajando",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b85af5aa895334c906fb01bab2b413b999a03b9c3977d2cedb7a80609f245bd7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción vincula explícitamente ambas afirmaciones al decir que, «en lugar de reaccionar, sigue bajando» y, por ello, «no es ningún» TURTLESOUP; esto sustenta que la clasificación como no TURTLESOUP depende de que la vela siga bajando."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-turtlesoup-depende-no-reaccion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-caso-no-es-turtlesoup",
+   "subject_version": 1,
+   "object_id": "cl-caso-no-reacciona",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c8c74f967bdaeeecbf2b170838899c784e77224604bd07211419cc48bedff9bc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia presenta la falta de reacción («en lugar de reaccionar, sigue bajando») como fundamento de la conclusión «no es ningún tartle sub», en la orientación de que la afirmación sobre no ser TurtleSoup depende de la observación de que la vela no reacciona."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-turtlesoup-depende-reaccion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-toma-y-reaccion-es-turtlesoup",
+   "subject_version": 1,
+   "object_id": "cl-vela-reacciona-tras-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1f9a79d14af6affeefa4ecb0a3b787162d6934dabf61e7fdc47738f9a34b3186",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente ambas afirmaciones en la orientación indicada: primero dice que la vela «toma el low reacciona» y, inmediatamente después, afirma que «entonces es un TURTLESOUP»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-turtlesoup-depende-toma-low",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-toma-y-reaccion-es-turtlesoup",
+   "subject_version": 1,
+   "object_id": "cl-vela-siguiente-toma-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "900870bf98008a77da682ff4a3cc2412744fc8a87cbe049b9c9303ccf9684fab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la vela siguiente «toma el low reacciona entonces es un tartel soup», estableciendo explícitamente la toma del low como condición de la conclusión sobre TURTLESOUP."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d4f181ac50cbe71b827ad8b6c54db99d1216907a9f0aeab93a8d9e6e61bba28"
+    ],
+    "response_id": "gen-1790899006-lJdbFWMe0GitUpz7SMTr"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00129",
+   "start_ms": 954040,
+   "end_ms": 960690,
+   "text": "alto del bajo pero bueno queda así un poco mejor esto sería una vela pongámosle de cuatro horas"
+  },
+  {
+   "id": "asr-00130",
+   "start_ms": 960690,
+   "end_ms": 976240,
+   "text": "vale siguiente vela hace esto así toma el low reacciona entonces es un tartel sub vale si esto"
+  },
+  {
+   "id": "asr-00131",
+   "start_ms": 976240,
+   "end_ms": 984900,
+   "text": "en lugar de reaccionar, sigue bajando, no es ningún tartle sub, ¿vale? O sea, el tartle sub tiene que ser una toma de liquidez"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86400000-canonical-v1",
+   "pts_ms": 960000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86760000-canonical-v1",
+   "pts_ms": 964000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87120000-canonical-v1",
+   "pts_ms": 968000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87480000-canonical-v1",
+   "pts_ms": 972000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87750000-canonical-v1",
+   "pts_ms": 975000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87840000-canonical-v1",
+   "pts_ms": 976000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88200000-canonical-v1",
+   "pts_ms": 980000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88470000-canonical-v1",
+   "pts_ms": 983000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,411 @@
+{
+ "window": "w0111",
+ "start": "28:32",
+ "end": "28:41",
+ "start_ms": 1712000,
+ "end_ms": 1721000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-vista-8h-a-m15",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista cambia del gráfico de 8 horas al de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p154620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p154710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "525a1c622d3524d5e8b8f544d1d081074a40f1f4dfff3db2d795d2d55151bdb4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «EURUSD · 8h» y la segunda «EURUSD · 15», por lo que las evidencias citadas muestran el cambio de la vista de 8 horas a la de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola transición entre dos intervalos temporales."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "da33a79509f607faf5a4ee207fc902d800b5ba6fcf72cdd6dd90abaa27ea4e45"
+    ],
+    "response_id": "gen-1790908557-oR7QMHh61vHXCRMhYz5B"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-mostrado-8-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado es de 8 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00248",
+    "frame-4de8f12d4841c630-s0-p154620000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ac6958a7320a841518e77049580c5bf68b1a762ca99f15b70a398d181c4e54f7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «es un gráfico de 8 horas», y el encabezado de la imagen muestra «EURUSD · 8h»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el gráfico mostrado tiene un marco temporal de 8 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "da33a79509f607faf5a4ee207fc902d800b5ba6fcf72cdd6dd90abaa27ea4e45"
+    ],
+    "response_id": "gen-1790908557-oR7QMHh61vHXCRMhYz5B"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-m15-facilita-encontrar-order-blocks",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si vamos a M15, va a ser mucho más fácil encontrar order blocks.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00248",
+    "asr-00249"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ceb2bc174642a7b5bca8f9d88460998dfc84d417bf69ea381a178ecd81bd9e46",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript explicitly states: “M15 va a ser mucho más fácil encontrar order blocks,” matching the statement’s single proposition."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "da33a79509f607faf5a4ee207fc902d800b5ba6fcf72cdd6dd90abaa27ea4e45"
+    ],
+    "response_id": "gen-1790908557-oR7QMHh61vHXCRMhYz5B"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-order-block-cierre-exagerado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El order block es un poco exagerado cuando esta vela cierra afuera.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00247"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "b9a8353088ab492854f96cc76fec3777575d99edc01c71a4546402ba198db0c9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia cita que el segmento es un order block y que, cuando la vela cierra afuera, «es un poco», pero el fragmento queda incompleto y no llega a establecer que sea «un poco exagerado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; la condición temporal sobre el cierre de la vela solo restringe esa misma proposición."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "da33a79509f607faf5a4ee207fc902d800b5ba6fcf72cdd6dd90abaa27ea4e45"
+    ],
+    "response_id": "gen-1790908557-oR7QMHh61vHXCRMhYz5B"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cerrada-muy-fuera",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Esta vela está cerrada muy fuera.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00247"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "8cf94fa327a999680651f72dd45106ea6dfadba91956394196f65d13ab30772a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited fragment is incomplete and says only that when the candle closes outside, it is \"un poco\"; it does not establish that the candle is currently closed \"muy fuera\"."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "da33a79509f607faf5a4ee207fc902d800b5ba6fcf72cdd6dd90abaa27ea4e45"
+    ],
+    "response_id": "gen-1790908557-oR7QMHh61vHXCRMhYz5B"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-venta-tomada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "He tomado una venta.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00249"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "09fd7e3a4d9cd9e192061df0ca2d4e3435ca9026ea83371d2bff544b530456ec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma «la venta que he tomado», lo que sostiene directamente que el hablante tomó una venta."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "da33a79509f607faf5a4ee207fc902d800b5ba6fcf72cdd6dd90abaa27ea4e45"
+    ],
+    "response_id": "gen-1790908557-oR7QMHh61vHXCRMhYz5B"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-senalada-es-order-block",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La zona señalada es un order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00247",
+    "frame-4de8f12d4841c630-s0-p154530000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "080e58d422db4f1ccb4b10615e35dcca5a1a0938e0f16fa4be7f4409dbae9719",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente «este de aquí es un order block» y la imagen muestra la zona señalada a la que se refiere."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la zona señalada es un order block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "da33a79509f607faf5a4ee207fc902d800b5ba6fcf72cdd6dd90abaa27ea4e45"
+    ],
+    "response_id": "gen-1790908557-oR7QMHh61vHXCRMhYz5B"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-exageracion-depende-cierre-lejano",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-order-block-cierre-exagerado",
+   "subject_version": 1,
+   "object_id": "cl-vela-cerrada-muy-fuera",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00247"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "5a83f66ae2757b7f4facdf304c2a38b53521752b15cf08edafc3d656edbe9e91",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica un order block y menciona el momento en que la vela «cierra afuera», pero el fragmento queda incompleto en «es un poco» y no afirma explícitamente que el order block es «un poco exagerado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Tampoco establece que la vela esté «muy fuera»; solo dice que cierra afuera, por lo que no vincula las dos afirmaciones en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "da33a79509f607faf5a4ee207fc902d800b5ba6fcf72cdd6dd90abaa27ea4e45"
+    ],
+    "response_id": "gen-1790908557-oR7QMHh61vHXCRMhYz5B"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00247",
+   "start_ms": 1706630,
+   "end_ms": 1713020,
+   "text": "este de aquí es un order block. En el momento en que esta vela cierra afuera, es un poco"
+  },
+  {
+   "id": "asr-00248",
+   "start_ms": 1713020,
+   "end_ms": 1717900,
+   "text": "exagerado porque está cerrado muy fuera, pero es un gráfico de 8 horas. Si vamos a"
+  },
+  {
+   "id": "asr-00249",
+   "start_ms": 1717900,
+   "end_ms": 1723940,
+   "text": "M15 va a ser mucho más fácil encontrar order blocks. Por ejemplo, la venta que he tomado"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154080000-canonical-v1",
+   "pts_ms": 1712000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154170000-canonical-v1",
+   "pts_ms": 1713000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154440000-canonical-v1",
+   "pts_ms": 1716000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154530000-canonical-v1",
+   "pts_ms": 1717000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154620000-canonical-v1",
+   "pts_ms": 1718000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154710000-canonical-v1",
+   "pts_ms": 1719000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154800000-canonical-v1",
+   "pts_ms": 1720000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154890000-canonical-v1",
+   "pts_ms": 1721000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

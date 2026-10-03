@@ -1,0 +1,199 @@
+{
+ "window": "w0099",
+ "start": "25:39",
+ "end": "25:48",
+ "start_ms": 1539000,
+ "end_ms": 1548000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-definition",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El failure swing es cuando el precio no consigue hacer un nuevo bajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "275bb9888573c51d3ff8778ac7d11bc5b71f0854bd0a4fe0f6185cc7a7ca8e92",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «el failure swing es cuando el precio no consigue hacer un nuevo bajo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola proposición: la definición de failure swing mediante la imposibilidad del precio de hacer un nuevo bajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3d1d3688a0a6e2663fcfebf8782ae77007ea51b7f6ec17e5c98527a3b5fe05d"
+    ],
+    "response_id": "gen-1790906983-LDk8zuBDH3s5I4F8Z1hg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-has-multiple-cases",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El failure swing puede darse en varios casos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3892131b396389b786b320c3b4c1b9cb74f338ebc8f0637ce527f4f7825bd92a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el failure swing «puede darse por varios casos», lo que respalda directamente lastatement."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La statement contiene una sola proposición: que el failure swing puede presentarse en varios casos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3d1d3688a0a6e2663fcfebf8782ae77007ea51b7f6ec17e5c98527a3b5fe05d"
+    ],
+    "response_id": "gen-1790906983-LDk8zuBDH3s5I4F8Z1hg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-seen-in-intermediate-course",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El concepto de failure swing ya se había visto parcialmente en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "28a5f81349e4f317042d2de14a24b7a693c71bed9de9b35fd56ca79d5e6e2016",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que el concepto de failure swing ya se había visto «un poco» en el curso intermedio, lo que respalda que se había visto parcialmente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el concepto ya había sido visto parcialmente en el curso intermedio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3d1d3688a0a6e2663fcfebf8782ae77007ea51b7f6ec17e5c98527a3b5fe05d"
+    ],
+    "response_id": "gen-1790906983-LDk8zuBDH3s5I4F8Z1hg"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00207",
+   "start_ms": 1535940,
+   "end_ms": 1552160,
+   "text": "Luego, concepto de failure swing, ya lo visteis también un poco en el curso intermedio. El failure swing es cuando el precio no consigue hacer un nuevo bajo y puede darse por varios casos."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138510000-canonical-v1",
+   "pts_ms": 1539000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138600000-canonical-v1",
+   "pts_ms": 1540000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138690000-canonical-v1",
+   "pts_ms": 1541000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138780000-canonical-v1",
+   "pts_ms": 1542000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138870000-canonical-v1",
+   "pts_ms": 1543000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138960000-canonical-v1",
+   "pts_ms": 1544000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139140000-canonical-v1",
+   "pts_ms": 1546000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139320000-canonical-v1",
+   "pts_ms": 1548000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

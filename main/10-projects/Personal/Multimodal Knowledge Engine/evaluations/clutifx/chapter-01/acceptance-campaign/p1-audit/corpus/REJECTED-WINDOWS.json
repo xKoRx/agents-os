@@ -1,0 +1,158 @@
+[
+ {
+  "window": "w0003",
+  "start": "00:37",
+  "end": "00:44",
+  "category": "other"
+ },
+ {
+  "window": "w0005",
+  "start": "01:05",
+  "end": "01:15",
+  "category": "other"
+ },
+ {
+  "window": "w0028",
+  "start": "06:06",
+  "end": "06:13",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0034",
+  "start": "07:32",
+  "end": "07:42",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0043",
+  "start": "09:36",
+  "end": "09:46",
+  "category": "other"
+ },
+ {
+  "window": "w0045",
+  "start": "10:16",
+  "end": "10:32",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0049",
+  "start": "11:18",
+  "end": "11:27",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0054",
+  "start": "12:45",
+  "end": "12:57",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0058",
+  "start": "13:39",
+  "end": "13:56",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0059",
+  "start": "14:00",
+  "end": "14:12",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0062",
+  "start": "14:41",
+  "end": "14:56",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0065",
+  "start": "15:44",
+  "end": "15:57",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0072",
+  "start": "17:47",
+  "end": "18:03",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0074",
+  "start": "18:25",
+  "end": "18:52",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0078",
+  "start": "19:54",
+  "end": "20:07",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0088",
+  "start": "22:18",
+  "end": "22:28",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0092",
+  "start": "23:18",
+  "end": "23:36",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0094",
+  "start": "23:56",
+  "end": "24:12",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0098",
+  "start": "25:25",
+  "end": "25:37",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0102",
+  "start": "26:19",
+  "end": "26:32",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0109",
+  "start": "28:08",
+  "end": "28:19",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0110",
+  "start": "28:20",
+  "end": "28:28",
+  "category": "bad evidence ref"
+ },
+ {
+  "window": "w0116",
+  "start": "29:26",
+  "end": "29:38",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0117",
+  "start": "29:39",
+  "end": "29:48",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0118",
+  "start": "29:52",
+  "end": "30:08",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0122",
+  "start": "30:56",
+  "end": "31:16",
+  "category": "identity divergence"
+ }
+]

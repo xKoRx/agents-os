@@ -1,0 +1,371 @@
+{
+ "window": "w0012",
+ "start": "02:44",
+ "end": "02:55",
+ "start_ms": 164000,
+ "end_ms": 175000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-encontrar-bias",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Hay que encontrar el bias.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6e7c70a1c041adacf35cf6368dc24fd025c30abf4aa0d5eae5b75f932d5e86d0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «encontrar el bias», lo que respalda la instrucción de encontrarlo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e100aea23e5b7ab0c87c2965b354ca9aa44925292f27e73c76eec9342c29530f"
+    ],
+    "response_id": "gen-1790888889-cJPplxypT9MXPiqaxUXL"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esquema-representa-concepto-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El esquema mostrado representa el concepto de rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00023",
+    "frame-4de8f12d4841c630-s0-p15480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p15570000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "005397ac958862149d315df710baf0536c9825c2b4be0bed49c7e9c3627add07",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma expresamente que «este es el concepto de rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran esquemas con representaciones de candles y etiquetas «rango alcista» y «rango bajista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e100aea23e5b7ab0c87c2965b354ca9aa44925292f27e73c76eec9342c29530f"
+    ],
+    "response_id": "gen-1790888889-cJPplxypT9MXPiqaxUXL"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estructura-derecha-rango-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estructura de la derecha sería un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p15390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p15480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f6cb1d262acd0bd6e60bf4832d7692783593bccdb84a56076d32b8cdfcfa2357",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «este aquí sería un rango bajista» y ambas imágenes etiquetan explícitamente la estructura de la derecha como «rango bajista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e100aea23e5b7ab0c87c2965b354ca9aa44925292f27e73c76eec9342c29530f"
+    ],
+    "response_id": "gen-1790888889-cJPplxypT9MXPiqaxUXL"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estructura-izquierda-rango-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estructura de la izquierda sería un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p14760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p14850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5d8362d0b170046947a3e0d7e30a74a57b082bdad0e3a969c228818933453b6d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «esto sería rango alcista», y las imágenes identifican la estructura de la izquierda con la etiqueta «rango alcista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e100aea23e5b7ab0c87c2965b354ca9aa44925292f27e73c76eec9342c29530f"
+    ],
+    "response_id": "gen-1790888889-cJPplxypT9MXPiqaxUXL"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ir-al-grafico",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a ir ahora un momento al gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00023",
+    "asr-00024"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9cdf5713806d8f24baf7c04e26454d26e430c39a9eb6baf3c45231c27aae4419",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente «vamos a ir ahora un momento a gráfico», lo que respalda la proposición statement under review."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Lastatement under review expresa una sola acción o intención: ir al gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e100aea23e5b7ab0c87c2965b354ca9aa44925292f27e73c76eec9342c29530f"
+    ],
+    "response_id": "gen-1790888889-cJPplxypT9MXPiqaxUXL"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-mas-claro-en-grafico",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el gráfico, el concepto de rango se verá más claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00023",
+    "asr-00024"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6ec2a8d801603f5496337f4bd443fa05ffb9e987d5a248109350e571a40ba079",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que van a pasar al gráfico y que allí el concepto de rango «lo vais a ver más claro», lo que sostiene directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el concepto de rango se verá con mayor claridad en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e100aea23e5b7ab0c87c2965b354ca9aa44925292f27e73c76eec9342c29530f"
+    ],
+    "response_id": "gen-1790888889-cJPplxypT9MXPiqaxUXL"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-mas-facil-en-grafico",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el gráfico, el concepto de rango va a ser mucho más fácil de entender.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00024"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "ae189e3e27b409559b0897c92ba346187ff15c1bce5cf10c9f9272b1b0b5935d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que algo «va a ser mucho más fácil de entender», pero no identifica explícitamente el gráfico ni el concepto de rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el gráfico hará más fácil de entender el concepto de rango."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e100aea23e5b7ab0c87c2965b354ca9aa44925292f27e73c76eec9342c29530f"
+    ],
+    "response_id": "gen-1790888889-cJPplxypT9MXPiqaxUXL"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00022",
+   "start_ms": 158800,
+   "end_ms": 165200,
+   "text": "encontrar el bias para todo así que esto sería rango alcista y este aquí sería un rango bajista"
+  },
+  {
+   "id": "asr-00023",
+   "start_ms": 165200,
+   "end_ms": 171300,
+   "text": "que tenemos vale este es el concepto de rango vamos a ir ahora un momento a gráfico que lo"
+  },
+  {
+   "id": "asr-00024",
+   "start_ms": 171300,
+   "end_ms": 179900,
+   "text": "vais a ver más claro y va a ser mucho más fácil de entender ya veréis vamos un momento aquí déjame"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14760000-canonical-v1",
+   "pts_ms": 164000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14850000-canonical-v1",
+   "pts_ms": 165000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15120000-canonical-v1",
+   "pts_ms": 168000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15390000-canonical-v1",
+   "pts_ms": 171000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15480000-canonical-v1",
+   "pts_ms": 172000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15570000-canonical-v1",
+   "pts_ms": 173000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15570000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15660000-canonical-v1",
+   "pts_ms": 174000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15750000-canonical-v1",
+   "pts_ms": 175000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

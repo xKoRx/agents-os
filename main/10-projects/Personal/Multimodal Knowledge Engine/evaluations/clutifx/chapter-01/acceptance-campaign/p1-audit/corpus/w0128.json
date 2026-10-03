@@ -1,0 +1,420 @@
+{
+ "window": "w0128",
+ "start": "32:55",
+ "end": "33:12",
+ "start_ms": 1975000,
+ "end_ms": 1992000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-alejar-vista-de-temporalidad-baja",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Aleja la vista de la temporalidad más baja.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00303",
+    "asr-00304"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "44abbf41894ac8ab0a250807482c61ee4cfd554f9340fdb2e8e0e3e8cf5c3182",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que se aleja y pone el foco en lo que está pasando en 4 horas, lo que respalda apartar la vista de la temporalidad más baja."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola instrucción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9a1172120fc4f2a2d7b172b46f76b446300a6888598e1e470ab8d7ea8a93646b"
+    ],
+    "response_id": "gen-1790911833-1zdzsSElN5Fr1mG6VmAq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-focar-lo-que-pasa-en-4h",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Pon el foco en lo que está pasando en 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00303",
+    "asr-00304",
+    "frame-4de8f12d4841c630-s0-p178920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1073e2f609842faaac528fd0cbf272c12a952e7e57d3ba047c44e92e152e7221",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada dice explícitamente: «y pones el foco en lo que está pasando en 4 horas»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola instrucción:聚焦 en lo que acontecem dentro de cuatro horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9a1172120fc4f2a2d7b172b46f76b446300a6888598e1e470ab8d7ea8a93646b"
+    ],
+    "response_id": "gen-1790911833-1zdzsSElN5Fr1mG6VmAq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-foco-temporalidad-baja-puede-liar",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La lectura de la bajada en la temporalidad más baja puede liar mucho cuando el foco está en ella.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00301",
+    "asr-00302",
+    "asr-00303"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "8dfe370b54a3815d7755567e6674c597369bb4d41d52a4ce217ed52e7e08ef63",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «esto» puede liar mucho si el foco está en la temporalidad más baja, pero no identifica explícitamente «esto» como la lectura de una bajada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9a1172120fc4f2a2d7b172b46f76b446300a6888598e1e470ab8d7ea8a93646b"
+    ],
+    "response_id": "gen-1790911833-1zdzsSElN5Fr1mG6VmAq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ir-a-15m-para-vela-4h",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si esto es una vela de 4 horas, ve a 15 minutos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00298",
+    "asr-00299",
+    "frame-4de8f12d4841c630-s0-p177840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "df184dc2d48bd111e73011ce24c672eb9373e4844891600c20214d84629dd9f4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos líneas citadas expresan directamente la misma instrucción condicional: si la vela es de 4 horas, ir a 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula «si esto es una vela de 4 horas» solo restringe la instrucción de cambiar a 15 minutos; no añade una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9a1172120fc4f2a2d7b172b46f76b446300a6888598e1e470ab8d7ea8a93646b"
+    ],
+    "response_id": "gen-1790911833-1zdzsSElN5Fr1mG6VmAq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nocion-importante-sobre-que-pasa",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Es importante tener una noción de qué está pasando.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00296",
+    "asr-00297"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4acc21a357e65c6007f5e5217d6b0560841cfabff7b3d35a5532d5435433a46c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas expresan que es importante tener una noción de qué está pasando."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la importancia de tener esa noción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9a1172120fc4f2a2d7b172b46f76b446300a6888598e1e470ab8d7ea8a93646b"
+    ],
+    "response_id": "gen-1790911833-1zdzsSElN5Fr1mG6VmAq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-4h-aparece-como-bajada-agresiva-en-15m",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Una vela de 4 horas aparece como una bajada muy agresiva en la temporalidad de 15 minutos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00299",
+    "asr-00300",
+    "asr-00301",
+    "frame-4de8f12d4841c630-s0-p178920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p179280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e8c10a23b0fffb08dc3e58f8668130c8c695d770efe882acbea1f11288f945ad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones indican «ir a 15 minutos» y descrita «una bajada así, muy agresiva»; las imágenes muestran la referencia «4 HORAS», la temporalidad «EURUSD | 15M» y una pendiente descendente pronunciada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9a1172120fc4f2a2d7b172b46f76b446300a6888598e1e470ab8d7ea8a93646b"
+    ],
+    "response_id": "gen-1790911833-1zdzsSElN5Fr1mG6VmAq"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-apariencia-agresiva-depende-vista-15m",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-vela-4h-aparece-como-bajada-agresiva-en-15m",
+   "subject_version": 1,
+   "object_id": "cl-ir-a-15m-para-vela-4h",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00298",
+    "asr-00299",
+    "asr-00300",
+    "asr-00301"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "81342c90ca7b8d98863fbf0e809b1767c2893a42f62beadbfe665fe0ce3a4369",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente la vela de 4 horas con la instrucción de pasar a 15 minutos y, en esa temporalidad, afirma que se verá como una bajada muy agresiva."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9a1172120fc4f2a2d7b172b46f76b446300a6888598e1e470ab8d7ea8a93646b"
+    ],
+    "response_id": "gen-1790911833-1zdzsSElN5Fr1mG6VmAq"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00295",
+   "start_ms": 1974010,
+   "end_ms": 1975110,
+   "text": "un poco esto la lógica."
+  },
+  {
+   "id": "asr-00296",
+   "start_ms": 1975890,
+   "end_ms": 1977450,
+   "text": "También importante para saber"
+  },
+  {
+   "id": "asr-00297",
+   "start_ms": 1977450,
+   "end_ms": 1979310,
+   "text": "un poco de noción de qué está pasando."
+  },
+  {
+   "id": "asr-00298",
+   "start_ms": 1979750,
+   "end_ms": 1982050,
+   "text": "Si esto es una vela de 4 horas, tú vas"
+  },
+  {
+   "id": "asr-00299",
+   "start_ms": 1982050,
+   "end_ms": 1984150,
+   "text": "a ir a 15 minutos y esto"
+  },
+  {
+   "id": "asr-00300",
+   "start_ms": 1984150,
+   "end_ms": 1985990,
+   "text": "lo vas a ver como una bajada así, muy"
+  },
+  {
+   "id": "asr-00301",
+   "start_ms": 1985990,
+   "end_ms": 1988010,
+   "text": "agresiva. ¿Vale? Esto te puede"
+  },
+  {
+   "id": "asr-00302",
+   "start_ms": 1988010,
+   "end_ms": 1989810,
+   "text": "liar mucho si tienes el foco en la"
+  },
+  {
+   "id": "asr-00303",
+   "start_ms": 1989810,
+   "end_ms": 1991790,
+   "text": "temporalidad más baja. Si tú te alejas"
+  },
+  {
+   "id": "asr-00304",
+   "start_ms": 1991790,
+   "end_ms": 1994090,
+   "text": "y pones el foco en lo que está pasando en 4 horas,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177750000-canonical-v1",
+   "pts_ms": 1975000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177840000-canonical-v1",
+   "pts_ms": 1976000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178020000-canonical-v1",
+   "pts_ms": 1978000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178200000-canonical-v1",
+   "pts_ms": 1980000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178470000-canonical-v1",
+   "pts_ms": 1983000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178560000-canonical-v1",
+   "pts_ms": 1984000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178920000-canonical-v1",
+   "pts_ms": 1988000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p179280000-canonical-v1",
+   "pts_ms": 1992000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p179280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

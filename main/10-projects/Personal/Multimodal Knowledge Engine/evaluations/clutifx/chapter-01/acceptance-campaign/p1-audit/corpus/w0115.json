@@ -1,0 +1,638 @@
+{
+ "window": "w0115",
+ "start": "29:16",
+ "end": "29:25",
+ "start_ms": 1756000,
+ "end_ms": 1765000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-activo-grafico-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El activo de la gráfica es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "688ed611a0ba6676090f5a9a3dc02a2c4c192ac44b9b33aa807309091af9f0d0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «EURUSD» para el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación identifica únicamente el activo de la gráfica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-referencia-en-order-block",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cierre de referencia está situado en el order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253",
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "00fa35698b9d0c23f547269787f6eb28d44f929b13ac427b9ae06e9917b492ba",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción sitúa el cierre («cuando esta cierra aquí») y el order block («order block aquí») en el mismo punto."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la ubicación del cierre de referencia respecto del order block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-distancia-inicial-stop-00337",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La distancia inicial del stop mostrada es 0,00337.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ac0b55922e572bf18300e5927d3bdc581fd2a1227492704c2eb46d0c73060dea",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «Stop: 0,00337», por lo que la distancia inicial del stop mostrada es 0,00337."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-distancia-intermedia-stop-00200",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Después, la distancia del stop mostrada es 0,00200.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8bd5dcf3b67f974161555035dfe8d474198b088355b95ed59ec8cbbab2d27491",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible en la parte inferior de la imagen indica «Stop: 0,00200», lo que muestra directamente ese valor."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor de la distancia del stop mostrada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-entrada-mostrada-long-114697",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La entrada mostrada para el long es 1,14697.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "71b31909cf2e06d4f968d4ffdac55934cb391b30a7ffac85c864353909a6ee9f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Both cited frames show the displayed entry level for the long EURUSD position as 1,14697."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts exactly one proposition about that entry price."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-mostrado-es-long-tomado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El long mostrado es exactamente el long que tomé.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00254",
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "53e39853f62a639a35f3acfa1950084b543de9a7b4b3fe09bbfb2fe473a5eeec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una operación long de EURUSD fechada el 23 de junio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «Este fue exactamente el long que tomé el día 23 de junio», lo que identifica el long mostrado como el tomado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la identidad entre el long mostrado y el long tomado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tomado-23-junio",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Tomé ese long el 23 de junio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00254"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "117f1a9e2c24a3da059bcd282d27b8a8f667c67339059187ca13197054fc9dd9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma exactamente que ese long fue tomado el 23 de junio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la fecha en que se tomó ese long."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tras-cierre-en-order-block",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando la vela cierre en ese order block, ya podrías poner tu long.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1250a67885819efb90d1a0b0c9976ec8f12c16643b8bad2af939ebe6f83ba133",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que, cuando la vela cierre en ese order block, ya se podría poner un long."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-final-stop-114521",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El nivel final del stop mostrado es 1,14521.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5bd16d92c8ac0aa2931d70c5147ef0965ceb075cbcdd6317e703bf7940e7d952",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente el nivel 1,14521 junto al stop."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre ese nivel."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-mostrado-long-115034",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo mostrado para el long es 1,15034.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ce8efa4d7f6e3bdfaf4fc9b1cd8d31707ed852e53ba64021cdbe7bedba9bf7a6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas capturas, la línea objetivo de la posición long coincide con el nivel 1,15034 mostrado en el eje de precios; la etiqueta indica un recorrido de 0,00337 desde 1,14697."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-supera-objetivo-115034",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio supera el objetivo mostrado de 1,15034.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "389f675a60ebf4a2ba22dd712bf9bd1c743be37cb1a240694f2872fe5b47f8e6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos evidencias muestran un precio de EURUSD de aproximadamente 1,15908 y 1,15910, respectivamente, por encima del objetivo mostrado de 1,15034."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-relacion-final-riesgo-beneficio-191",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio final mostrada es 1,91.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ba7545d1870bdf5a96cc49e1e70de79ae13432e09e5a19886b8d28e5d2118d82",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible en la imagen indica «Relación riesgo/beneficio: 1,91»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-relacion-inicial-riesgo-beneficio-1",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio inicial mostrada es 1.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "565d1930df3bd8a5b49a4d1a6f9896768cccda66bbc7cd1b872f2a46513e403a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «Relación riesgo/beneficio: 1» en la etiqueta de la posición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: el valor de la relación riesgo/beneficio inicial mostrada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-long-depende-cierre-order-block",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-long-tras-cierre-en-order-block",
+   "subject_version": 1,
+   "object_id": "cl-cierre-referencia-en-order-block",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cac0502d89994920e0ebc45682f97103ba7219dbc58703aa7a078ae9911b8a93",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia sitúa explícitamente el cierre de referencia en el order block («cuando esta cierra aquí, otra vez, order block aquí») y, en esa misma condición, permite abrir el long («ya podrías poner tu long»), por lo que la affirmeda sobre el long depende del cierre en ese nivel."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6069b7563488e646bf5be08d620111194f27760204540e1a9d06ced426ff3e83"
+    ],
+    "response_id": "gen-1790909006-vlrWIwtoyK8N5rGt0muc"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00253",
+   "start_ms": 1750940,
+   "end_ms": 1761660,
+   "text": "O aquí, en esta, cuando esta cierra aquí, otra vez, order block aquí, ya podrías poner tu long."
+  },
+  {
+   "id": "asr-00254",
+   "start_ms": 1762000,
+   "end_ms": 1765810,
+   "text": "Este fue exactamente el long que tomé el día 23 de junio."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158040000-canonical-v1",
+   "pts_ms": 1756000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158130000-canonical-v1",
+   "pts_ms": 1757000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+   "pts_ms": 1760000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158490000-canonical-v1",
+   "pts_ms": 1761000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158580000-canonical-v1",
+   "pts_ms": 1762000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158670000-canonical-v1",
+   "pts_ms": 1763000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158760000-canonical-v1",
+   "pts_ms": 1764000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158850000-canonical-v1",
+   "pts_ms": 1765000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,1150 @@
+{
+ "window": "w0127",
+ "start": "32:41",
+ "end": "32:54",
+ "start_ms": 1961000,
+ "end_ms": 1974000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ajuste-del-objetivo-hacia-arriba",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se ajusta el objetivo de la posición hacia arriba.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ff1d05eeef2ba8bb953f8e6bb7dea0101f4c640a8f3649a205eb4141cf71a797",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los fotogramas muestran sucesivamente el objetivo en 0,00084, 0,00727 y 0,00881, con la línea y el área objetivo desplazándose progresivamente hacia arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola acción: ajustar el objetivo de la posición hacia arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-apertura-1-14968",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La apertura de la posición se sitúa en 1,14968.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c60e81ba582c78663f24d47d3cbbb5e143bc25218fbf5a16734cdd8f0bd8ebf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En las tres imágenes, la línea de apertura de la posición coincide con el nivel 1,14968 de la escala de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cantidad-4761904",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La cantidad de la posición es 4761904.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ebd62a7541f6aac53f515fb2fd74f7543991560aaa9c1d1ac881c5fa5407d91f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran explícitamente la etiqueta «Cantidad: 4761904» junto a la posición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-longs-brutales-para-llegar-arriba",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Aquí tienes unos longs brutales para llegar ahí arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00293",
+    "asr-00294",
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "00e3cfa97a8a19066cd147eeb1c37ebc0997e338a7de8cd3d05428ebf0754608",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los fragmentos citados transcriben «tienes unos longs brutales para llegar ahí arriba», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "«Brutales» y «para llegar ahí arriba» califican un único contenido proposicional: los longs proporcionados para alcanzar ese destino."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-final-1-15849",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El precio objetivo final es 1,15849.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d634233b0157b0f03e94adbb1da6155dd9e00289a87851085e7728023eded319",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las evidencias citan el nivel 1,15849 junto con la anotación «Objetivo»; además, 1,14968 + 0,00881 = 1,15849."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor del precio objetivo final."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-final-diferencia-0-00881",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo final queda a 0,00881 (0,77 %) de la apertura.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "00361e1ba389306a7f3b4b29b129cb1c6030d60fd080c50b22d1c43d4650a2b6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La gráfica muestra la etiqueta «Objetivo: 0,00881 (0,77%)» asociada a la apertura de la operación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El porcentaje entre paréntesis cualifica el mismo objetivo y no constituye una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-final-importe-141952-38",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe mostrado para el objetivo final es 141952.38.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e7e78f9dd9606743ce987a65842425abb92eaa43c217bbb8f339bc334ee4e75",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta de la posición objetivo muestra «Importe: 141952.38»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: el importe mostrado para el objetivo final es 141952.38."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-inicial-1-15052",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El precio objetivo inicial es 1,15052.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_CONTRADICTED",
+    "invocation_id": "82a8e8a42bdb1d6e7799d75de998b7d84ef8f4ab447f0d536d0c25057fd08a1f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta «Objetivo» está asociada al nivel 1,15067, mientras que 1,15052 corresponde al nivel de apertura; la evidencia no muestra 1,15052 como precio objetivo."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_CONTRADICTED",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-inicial-diferencia-0-00084",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo inicial queda a 0,00084 (0,07 %) de la apertura.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7bb29a769acd53c13a29c349f7a89a63f0db64058f795bdea800170dd74cb58f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «Objetivo: 0,00084 (0,07%)» junto al nivel de apertura identificado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El valor absoluto y el porcentaje expresan la misma distancia, por lo que la afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-inicial-importe-104000",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe mostrado para el objetivo inicial es 104000.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "263e08bb8ec8a9162cefc6ba9db2827d94ae7e1ffc2779d4f4e3569b7bd209b8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible «Objetivo» muestra «Importe: 104000»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-intermedio-1-15695",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Durante el ajuste, el precio objetivo se sitúa en 1,15695.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_CONTRADICTED",
+    "invocation_id": "d07d74dacd3faa3e4fa3cca676ae4e812350ae460aaa33379fd0d602bbc87034",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen marca el precio objetivo en 1,15728, no en 1,15695."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor del precio objetivo durante el ajuste."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_CONTRADICTED",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-intermedio-diferencia-0-00727",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Durante el ajuste, el objetivo queda a 0,00727 (0,63 %) de la apertura.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5231f1b6fabfa7f6ea6357ce7543101e95dfc921f18f2c2f9572e18d4a7f23f2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «Objetivo: 0,00727 (0,63%)» y, en el nivel de apertura, «Apertura PyG», por lo que respalda la diferencia indicada entre el objetivo y la apertura."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El valor y su porcentaje expresan la misma proposición; el porcentaje entre paréntesis solo_acota la medición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-intermedio-importe-134619-05",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe mostrado para el objetivo intermedio es 134619.05.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "81c029c4f2d95b7c650d76d084a9d28abc17f3a277d27a2bbfb5ed12ca61bab7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible del objetivo intermedio indica explícitamente «Importe: 134619.05»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-posicion-larga-configurada",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se configura una posición larga.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "893b7db8daee40433eafc6b47a36cc4ddde695aa5173ef23220076090b462f78",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran la herramienta de posición larga activa y su zona de riesgo/beneficio configurándose, con entrada, objetivo por encima y stop por debajo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: se configura una posición larga."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power-3-de-una-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Está haciendo el power 3 de una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00289",
+    "asr-00290",
+    "frame-4de8f12d4841c630-s0-p176760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "033c4fa85fbf36dc4cbee6312dc758279386e90ade788631ba8639045a3beeac",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas transcriben literalmente «y a la vez está haciendo el power 3 de una vela», que sostiene directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que está realizando un power 3 de vela; «de una vela» solo especifica la configuración."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-en-formacion",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se está creando un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00288",
+    "frame-4de8f12d4841c630-s0-p176490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d563ad182f2d4ed4d752b5ce5e86e3dbf741754d54d8bc43b88e550578798d10",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que se está creando un rango alcista; las imágenes no contradicen esa afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: la creación actual de un rango alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-relacion-riesgo-beneficio-final-10-49",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio final es 10.49.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cdf546083a4568540432e3a7fb8bc76b2fd3f603bec3b47559c17b456a08afb8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra explícitamente la etiqueta «Relacion riesgo/beneficio: 10.49», respaldando el valor afirmado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-relacion-riesgo-beneficio-intermedia-8-65",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio intermedia es 8.65.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "465870edee7e9343952e430a7e716ccc730e398fa542fb304ed4521f2cf94328",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta de la imagen indica «Relación riesgo/beneficio: 8,65», que corresponde a 8.65."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor de la relación riesgo/beneficio es 8.65."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-diferencia-0-00084",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El stop queda a 0,00084 (0,07 %) de la apertura.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ef4a6c1a80e5f46cead5f92ee8e139238966b26378308d69cf84bbed0d6bbd01",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las primeras imágenes muestran explícitamente la etiqueta «Stop: 0,00084 (0,07%)», junto con la referencia de apertura, lo que respalda directamente la afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-importe-96000",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe mostrado para el stop es 96000.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4e9f96eb2ced2be4d4b854660c5bda8c4d0ea85d6a4f0a1a5c2cdfc1405f4064",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las primeras tres imágenes muestran explícitamente la etiqueta «Stop: 0,00084 (0,07%) 8,4, importe: 96000»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-anticipada-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Tú anticipas que la vela va a ser alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00291",
+    "frame-4de8f12d4841c630-s0-p177030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c29bf15c81d03059c5b52f581f922f28f191f19cad0685b407eea3a1b71609ff",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «tú anticipas que va a ser alcista», lo que respalda que se anticipa una vela alcista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la vela será anticipada como alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ventana-de-0100-a-0500",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El intervalo marcado en el esquema va de 01:00 a 05:00.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p176490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "97e2b73a34ac256323b9d06b15769b124344142c94d99d8a26659b159ff0fd5b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El esquema muestra una línea vertical con marcas en 01:00 y 05:00 y la indica como un intervalo de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ventana-de-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El esquema etiqueta el intervalo como «4 HORAS».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p176490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ddbc9d66a9b5e020ce58841f36004d3e156fe3783bad08852f07906200f126e6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran de forma legible la etiqueta «4 HORAS» junto al intervalo del esquema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-longs-dependen-de-vela-alcista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-longs-brutales-para-llegar-arriba",
+   "subject_version": 1,
+   "object_id": "cl-vela-anticipada-alcista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00291",
+    "asr-00293",
+    "asr-00294"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "4bf7ac108b606f47d729bd1c6536fbeddfd6d989778cbbb003c9e863c1f37c21",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas respaldan las dos afirmaciones, pero no expresan ni implican que la afirmación sobre los longs brutales dependa de la anticipación de una vela alcista; solo aparecen consecutivas en la transcripción."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rr-final-depende-del-objetivo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-relacion-riesgo-beneficio-final-10-49",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-final-diferencia-0-00881",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "da4f70fcb67ac44d5ee16e9a6f5011897117c78fdf5199c97b36dd0f98a5a8a9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la relación riesgo/beneficio de 10.49 y el objetivo de 0,00881 (0,77 %), pero no declara ni demuestra que el primero dependa del segundo en esa orientación."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rr-final-depende-del-stop",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-relacion-riesgo-beneficio-final-10-49",
+   "subject_version": 1,
+   "object_id": "cl-stop-diferencia-0-00084",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p177480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "661889f300ebfe44d31c08964ffa7d4f1e68c84b362c4d81a33e02c8d3f1ac73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra, en la misma anotación de la posición, «Relación riesgo/beneficio: 10,49» y «Stop: 0,00084 (0,07%)». Además, el objetivo indicado es 0,00881 y 0,00881/0,00084 ≈ 10,49, por lo que la relación riesgo/beneficio final está calculada a partir del stop en el sentido indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52a4979c1e4f18b368fe2abca841a4bdb47d66038e9727d6b61389976da0e26c"
+    ],
+    "response_id": "gen-1790911537-IBoWgCRrJ0lq3O6y9cU2"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00288",
+   "start_ms": 1960310,
+   "end_ms": 1962230,
+   "text": "te está creando un rango alcista"
+  },
+  {
+   "id": "asr-00289",
+   "start_ms": 1962230,
+   "end_ms": 1964150,
+   "text": "y a la vez está haciendo"
+  },
+  {
+   "id": "asr-00290",
+   "start_ms": 1964150,
+   "end_ms": 1966050,
+   "text": "el power 3 de una vela"
+  },
+  {
+   "id": "asr-00291",
+   "start_ms": 1966050,
+   "end_ms": 1968030,
+   "text": "que tú anticipas que va a ser alcista."
+  },
+  {
+   "id": "asr-00292",
+   "start_ms": 1968550,
+   "end_ms": 1969950,
+   "text": "Por lo tanto, tú aquí"
+  },
+  {
+   "id": "asr-00293",
+   "start_ms": 1969950,
+   "end_ms": 1971990,
+   "text": "tienes unos longs brutales para llegar"
+  },
+  {
+   "id": "asr-00294",
+   "start_ms": 1971990,
+   "end_ms": 1974010,
+   "text": "ahí arriba. ¿Vale? Sería"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p176490000-canonical-v1",
+   "pts_ms": 1961000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p176490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p176760000-canonical-v1",
+   "pts_ms": 1964000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p176760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177030000-canonical-v1",
+   "pts_ms": 1967000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177120000-canonical-v1",
+   "pts_ms": 1968000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177300000-canonical-v1",
+   "pts_ms": 1970000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177390000-canonical-v1",
+   "pts_ms": 1971000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177480000-canonical-v1",
+   "pts_ms": 1972000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177660000-canonical-v1",
+   "pts_ms": 1974000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

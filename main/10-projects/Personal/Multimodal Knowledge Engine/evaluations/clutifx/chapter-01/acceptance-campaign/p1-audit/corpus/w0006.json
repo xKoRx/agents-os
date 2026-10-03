@@ -1,0 +1,452 @@
+{
+ "window": "w0006",
+ "start": "01:16",
+ "end": "01:29",
+ "start_ms": 76000,
+ "end_ms": 89000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cuerpo-derecho-dentro-rango-izquierdo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cuerpo de la vela de la derecha queda dentro del rango vertical de la vela izquierda.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p6840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p7200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "82057421c98d84acfd43f3af9d42cb2ee5b1f2014177609c6c94f06aa7579eda",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, los límites superior e inferior del cuerpo blanco de la vela derecha están comprendidos entre los límites superior e inferior del cuerpo de la vela izquierda."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mecha-derecha-rebasa-extremo-inferior",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La mecha inferior de la vela de la derecha rebasa el extremo inferior de la vela izquierda.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p7200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p7920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f9d5b6be76ff853023f44d6644e2b81c7fa74a74f53000871c4632a718cde94a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, la mecha inferior de la vela derecha se extiende visiblemente por debajo del extremo inferior de la vela izquierda."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-pintar-vela-izquierda-negro",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Pintar de negro la vela rectangular izquierda.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00006",
+    "frame-4de8f12d4841c630-s0-p7470000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p7560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p7650000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2b5fcc108ab4ccc31b16bc81ceabcafac4dc7bfeb233733ceb2a43d21ca22aa0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran la vela rectangular izquierda seleccionada y, posteriormente, pintada de negro, mientras la vela de la derecha permanece blanca."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica que la vela bajista será pintada de negro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: pintar de negro la vela rectangular izquierda."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-vela-cierra-dentro",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La vela que forma el rango cierra dentro de la vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005",
+    "frame-4de8f12d4841c630-s0-p6840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5b5fd7b5cdad23a37dc4ac358ec57f841f9e1d3c4b0058ad39e33208da5a36c8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que la vela de rango «nos toma un extremo de esta vela y cierra dentro del anterior», lo que sostiene que cierra dentro de la vela anterior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la vela que forma el rango cierra dentro de la vela anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-vela-no-siguiente",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La vela que forma el rango no tiene por qué ser la vela inmediatamente siguiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9a946a70416bb436999f129f9dcc027be5a863f7b0de302f95d0a3c85b6602f8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que la vela «no tiene porque ser la siguiente» y menciona que puede ser «otra vela»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que la vela que forma el rango no tiene que ser la inmediatamente siguiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-vela-toma-extremo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La vela que forma el rango toma un extremo de la vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005",
+    "frame-4de8f12d4841c630-s0-p7200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "927caeff496b761c8fb19dcd9746dd5336038517b57d0c0fc0aad1afa9e31564",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que la vela siguiente, u otra vela, «nos toma un extremo de esta vela», lo que sostiene que la vela que forma el rango toma un extremo de la vela anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-horizontal-es-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rectángulo horizontal recién dibujado se considera un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00007",
+    "frame-4de8f12d4841c630-s0-p8010000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "857550d130d152a84ee1a25695c223e27186947f2b26763d4680572cd5dce0b2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «esto» es lo que se considera un rango, y el fotograma muestra un rectángulo horizontal recién seleccionado como referente de esa expresión."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación atribuye una sola condición al rectángulo horizontal: que se considera un rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-izquierda-bajista-probable",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela rectangular izquierda es una vela bajista, probablemente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00006",
+    "frame-4de8f12d4841c630-s0-p7470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "43172f3fa68e30f56fbf5761cd714173b570708e53260a49abde74d861139f4f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «esta» sería una vela bajista, pero no identifica de forma explícita la vela rectangular izquierda."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra dos rectángulos y no aporta una referencia visual suficiente para vincular la expresión «esta» con el rectángulo izquierdo."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-pintado-negro-debajo-de-bajista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-pintar-vela-izquierda-negro",
+   "subject_version": 1,
+   "object_id": "cl-vela-izquierda-bajista-probable",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00006"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "df83ec241e317d3ce0775528c199d95d22fe3a9e44b2cf5f0ed12dffb38110f8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula una vela considerada probablemente bajista con la acción de pintarla de negro, pero no identifica explícitamente esa vela como la vela rectangular izquierda."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0ae9447998d71dd2b06e0300e1cd90ac4e83a552c46276b2ba6eb8b5aa74db11"
+    ],
+    "response_id": "gen-1790888204-ZVnQzcq5joGMj6S4KfPM"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00005",
+   "start_ms": 61640,
+   "end_ms": 81320,
+   "text": "¿Vale? El concepto de rango se refiere, voy a pintar la vela ahora, a las velas que la siguiente vela nos toma, o no tiene porque es la siguiente, otra vela, nos toma un extremo de esta vela y cierra dentro del anterior, ¿vale?"
+  },
+  {
+   "id": "asr-00006",
+   "start_ms": 81320,
+   "end_ms": 84540,
+   "text": "Esta sería una vela bajista probablemente, así que la pintaremos en negro."
+  },
+  {
+   "id": "asr-00007",
+   "start_ms": 85580,
+   "end_ms": 89520,
+   "text": "O sea, esto sería nosotros lo que consideramos un rango."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6840000-canonical-v1",
+   "pts_ms": 76000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7200000-canonical-v1",
+   "pts_ms": 80000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7380000-canonical-v1",
+   "pts_ms": 82000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7470000-canonical-v1",
+   "pts_ms": 83000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7560000-canonical-v1",
+   "pts_ms": 84000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7650000-canonical-v1",
+   "pts_ms": 85000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7650000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7920000-canonical-v1",
+   "pts_ms": 88000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p8010000-canonical-v1",
+   "pts_ms": 89000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p8010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

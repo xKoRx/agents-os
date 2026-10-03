@@ -1,0 +1,525 @@
+{
+ "window": "w0091",
+ "start": "23:07",
+ "end": "23:16",
+ "start_ms": 1387000,
+ "end_ms": 1396000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-alternativas-par-correlado-jp-dxy",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Entre las alternativas del par correlacionado se mencionan «JP» y DXY.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7b96a1d85036dbf5d50a33517921c6b072887837a8e3dd220524cea2bc2e54a1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona explícitamente «JP o DXY» como alternativas del «par correlacionado»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-datos-smt-ocultos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Estos datos están a veces un poco ocultos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "04aa0abfa48d497b966876ae26d5568323b515758928b09fc7b14f4e619e3221",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «a veces estos datos están un poco ocultos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «a veces» solo modifica su alcance."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-alcanza-objetivo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el ejemplo, EURUSD llega a completar el objetivo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00194",
+    "frame-4de8f12d4841c630-s0-p125550000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p125640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e55ab9b1104ebc4d46963f8868311ad7cc167bc4d8ae3df1994c24649fd545fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes identifican la serie como EURUSD y muestran sus velas alcANCES y superan la línea horizontal del objetivo; el fragmento citado también se refiere a que EUR completa el objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-formacion-correlada-es-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La formación mostrada se considera un tipo de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193",
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5d30fd952c7f5df3f3ee1914297a44b15a60807f85ce94a5908952bbccd6268c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que la formación mostrada es «un tipo de SMT» y que «esto sería un SMT»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-par-correlado-no-alcanza-objetivo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el ejemplo, el par correlacionado GBPUSD no llega a su objetivo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00194",
+    "frame-4de8f12d4841c630-s0-p125550000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p125640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cd647992e8a28931b3ed17dc38745ea7b88d3d8ab31fa1b3066548f784a1f083",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el par correlacionado «no llegue a su objetivo y pase el reversal directamente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes identifican el par correlacionado como GBPUSD y muestran que revierte antes de alcanzar el nivel que EURUSD sí alcanza."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: GBPUSD no llega a su objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-par-correlado-pasa-reversal-directamente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el ejemplo, el par correlacionado GBPUSD pasa directamente el reversal.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00194",
+    "frame-4de8f12d4841c630-s0-p125550000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p125640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6d2a774258ceeb3c7b1856d7109ece793ec8ba1e73f9b7bd00d10f91b9e4bcaf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes identifican GBPUSD como el par correlacionado y muestran que revierte a la baja antes de alcanzar la línea de objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción confirma que el par correlacionado no llega a su objetivo y pasa directamente el reversal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-no-visible-sin-estrategia",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Sin conocer la estrategia, este tipo de SMT no puede verse de ningún modo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fbaabf6ef06b6d4228f212deb16300b72a2537a6592e9056868e46dd8993652c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que este tipo de SMT no podrá verse de ningún modo si no se conoce la estrategia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; la condición sobre no conocer la estrategia la restringe sin constituir una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-visible-depende-datos-ocultos",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-no-visible-sin-estrategia",
+   "subject_version": 1,
+   "object_id": "cl-datos-smt-ocultos",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0db7befd2ca2e6bd92f2434d59477239c363c270f4ef59bd9cc48fd10f3fde6d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el SMT no puede verse sin conocer la estrategia «porque a veces estos datos están un poco ocultos», estableciendo la dependencia orientada de la primera afirmación respecto de la segunda."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-requiere-eurusd-objetivo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-formacion-correlada-es-smt",
+   "subject_version": 1,
+   "object_id": "cl-eurusd-alcanza-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "14e8d20ad6c449a48f4d2a452198e6af3d5a0fb21a363da111f3f9d63af67a2c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica «esto» como un SMT y explica ese caso mediante la condición de que Euro complete el objetivo mientras el par correlacionado no lo haga; por tanto, la consideración de la formación como SMT se presenta.linked al caso de que EURUSD alcance el objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-requiere-fallo-objetivo-correlado",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-formacion-correlada-es-smt",
+   "subject_version": 1,
+   "object_id": "cl-par-correlado-no-alcanza-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f7f870c024323762338960e19e8790be55194c7856dd6306c7969526997b64fc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «esto sería un SMT» y que un par correlacionado, identificado como JP o DXY, no llega a su objetivo, pero no identifica Specifically GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Tampoco vincula explícitamente la afirmación sobre GBPUSD con la afirmación sobre la formación como SMT en la orientación exacta de la relación DEPENDS_ON."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-requiere-reversal-directo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-formacion-correlada-es-smt",
+   "subject_version": 1,
+   "object_id": "cl-par-correlado-pasa-reversal-directamente",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "ca83c0236e18d555224506ba3d87dc7a4e8f20eb1dbe10e4aacd6dd8efa14cb8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «esto sería un SMT» y describe un caso en que el par correlacionado —«JP o DXY»— no alcanza su objetivo y pasa el reversal directamente, pero no menciona ni identifica Specifically al GBPUSD como el par correlacionado que lo hace. Por tanto, no vincula las dos afirmaciones en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4dc9e698508a57e95dbf04e64c2d41923265f2909d3af9d213581171244c7ce"
+    ],
+    "response_id": "gen-1790904414-7CvZqToBwXhQC1t2GnQ5"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00193",
+   "start_ms": 1374580,
+   "end_ms": 1395310,
+   "text": "Y luego puede pasarte pues algo así, que esta vela haga algo así sin llegar al objetivo, ¿vale? Este es un tipo de SMT que si no conoces la estrategia no vas a poder ver de ningún modo porque a veces estos datos están un poco ocultos, ¿vale?"
+  },
+  {
+   "id": "asr-00194",
+   "start_ms": 1395310,
+   "end_ms": 1409220,
+   "text": "Pues esto sería un SMT. En el caso de un objetivo, que euro pueda llegar a completar y el par correlacionado, ya sea JP o DXY, no llegue a su objetivo y pase el reversal directamente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124830000-canonical-v1",
+   "pts_ms": 1387000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124920000-canonical-v1",
+   "pts_ms": 1388000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125010000-canonical-v1",
+   "pts_ms": 1389000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125100000-canonical-v1",
+   "pts_ms": 1390000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125190000-canonical-v1",
+   "pts_ms": 1391000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125280000-canonical-v1",
+   "pts_ms": 1392000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125550000-canonical-v1",
+   "pts_ms": 1395000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125640000-canonical-v1",
+   "pts_ms": 1396000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

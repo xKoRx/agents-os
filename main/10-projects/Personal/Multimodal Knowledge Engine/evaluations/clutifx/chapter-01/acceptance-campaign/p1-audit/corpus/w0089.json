@@ -1,0 +1,238 @@
+{
+ "window": "w0089",
+ "start": "22:29",
+ "end": "22:40",
+ "start_ms": 1349000,
+ "end_ms": 1360000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-bloques-blancos-ascendentes",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico etiquetado «EURUSD» muestra tres bloques blancos ascendentes después de un bloque negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121500000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p122400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5a0342f56d80fd9cbd2d08c15411552009a7faeecc8219db36b6c816f82c264e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la sección etiquetada «EURUSD» se ve un bloque negro seguido de tres bloques blancos dispuestos progresivamente más arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola configuración visual; sus detalles identifican y califican esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3ae670806b4d58d85d96d154efc46d099140f84ca764c70ee89c3ef7e3dc5c83"
+    ],
+    "response_id": "gen-1790903430-ZRMRGI7Iox6sOagnW4zw"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-bloques-blancos-ascendentes",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico etiquetado «GBPUSD» muestra tres bloques blancos ascendentes después de un bloque negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121770000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p122400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a7fcf3096440850bddbc4fbcb6372a065954661fa445518f01ce0f09a61eeabf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran la etiqueta «GBPUSD» y, tras un bloque negro, tres bloques blancos situados progresivamente más arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3ae670806b4d58d85d96d154efc46d099140f84ca764c70ee89c3ef7e3dc5c83"
+    ],
+    "response_id": "gen-1790903430-ZRMRGI7Iox6sOagnW4zw"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-hay-como-dos-tipos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay como dos tipos de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00191"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0524ca244543c26ba8ba8bccf6f798e244e1726e620f6c5d6374cfb0db023bb2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente «hay como dos tipos de SMT»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3ae670806b4d58d85d96d154efc46d099140f84ca764c70ee89c3ef7e3dc5c83"
+    ],
+    "response_id": "gen-1790903430-ZRMRGI7Iox6sOagnW4zw"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-objetivo-alcista-eurusd",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Por ejemplo, el objetivo de la SMT puede ser alcista en EURUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00191",
+    "frame-4de8f12d4841c630-s0-p122400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "51f645bd25ab2d636867c68a7d18c99ea3e87c7205b7582c20aff2ba736149d3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que, por ejemplo, podía existir un «objetivo alcista en euro», lo que respalda que el objetivo de la SMT puede ser alcista en EURUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de un objetivo alcista de la SMT en EURUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3ae670806b4d58d85d96d154efc46d099140f84ca764c70ee89c3ef7e3dc5c83"
+    ],
+    "response_id": "gen-1790903430-ZRMRGI7Iox6sOagnW4zw"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00191",
+   "start_ms": 1345680,
+   "end_ms": 1359310,
+   "text": "¿Vale? Pues vais a ver que hay como dos tipos de SMT, ¿vale? La que vamos a ver nosotros, en este caso, por ejemplo, podías tener este objetivo alcista en euro,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121410000-canonical-v1",
+   "pts_ms": 1349000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121500000-canonical-v1",
+   "pts_ms": 1350000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121680000-canonical-v1",
+   "pts_ms": 1352000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121770000-canonical-v1",
+   "pts_ms": 1353000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121860000-canonical-v1",
+   "pts_ms": 1354000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122040000-canonical-v1",
+   "pts_ms": 1356000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122130000-canonical-v1",
+   "pts_ms": 1357000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122400000-canonical-v1",
+   "pts_ms": 1360000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

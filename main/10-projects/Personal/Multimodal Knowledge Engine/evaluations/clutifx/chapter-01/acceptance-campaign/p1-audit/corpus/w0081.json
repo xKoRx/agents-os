@@ -1,0 +1,651 @@
+{
+ "window": "w0081",
+ "start": "20:40",
+ "end": "20:51",
+ "start_ms": 1240000,
+ "end_ms": 1251000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-objetivo-superior",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Tras volver a analizar el precio, hay que mirar si hay un objetivo más arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "16ad594e396eef1b138c0142b96a9045ca410d6bc20d880cee5cd5e50013ae89",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica explícitamente que, después de eliminar el rango, se debe volver a analizar lo que hace el precio y mirar si hay un objetivo más arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola proposición: comprobar la posible existencia de un objetivo superior tras reanalyzing el precio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comparacion-temporalidad-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Los dos gráficos de la comparación mostrada están en temporalidad de 8 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0e73d51957d554efa0d7eac32e53dbd644c55a4ff3add982bb448991599fdaae",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las cabeceras de ambos gráficos muestran explícitamente la temporalidad «8h»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dejar-de-considerar-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una vez que esto ocurre, se puede dejar de considerar este rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173",
+    "frame-4de8f12d4841c630-s0-p111600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p111690000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a0c2847b853a58ccdf9de2f7e10d275f26e9039f8385295e4db221ab8e84fe71",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, una vez que ocurre la situación referida, se puede «eliminar este rango» y olvidarlo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional; «una vez que esto ocurre» únicamente especifica su antecedente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-capitulo-siguiente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El siguiente capítulo explica la estrategia con un poco más de detalle.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ca4fe4baa727d2682a57495048b09eecdcb0d90a067712733219aee998ccf2d4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que la estrategia se explicará «un poco más» en el siguiente capítulo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola proposición: que el siguiente capítulo explica la estrategia con algo más de detalle."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-derecho-libra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de la derecha es la libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "510845d656cf5b8552dd16e6df1a82f3d7c66e9a76d1b67dcceb190e67a41170",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma literalmente «Y esto es la libra», y los fotogramas citados muestran el gráfico situado a la derecha en ese momento."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la identificación del gráfico de la derecha como la libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-derecho-xauusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La etiqueta visible del gráfico de la derecha es XAUUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dded31d4a8e820d4f70d883330f2536ce95ff90817d6e236bfd8d2f92c8363ed",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el gráfico de la derecha muestra claramente la etiqueta «XAUUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-izquierdo-euro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de la izquierda es el euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3e258505e0376ef3eba551136ca8def17ff2611382d00beb54eb5a82819c2d15",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript explicitly states «esto es el euro», and the cited frames show the left chart labeled EURUSD, supporting that the chart on the left is the euro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement makes a single proposition: identifying the chart on the left as the euro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reanalizar-precio",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Tras dejar de considerar el rango, hay que volver a analizar lo que está haciendo el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "04e18741085c8b9dca3ef72bee7512965c752d86f734be96f12f375ef3ef8925",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica expresamente que, después de eliminar u olvidar el rango, se debe volver a analizar lo que está haciendo el precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: volver a analizar el comportamiento del precio tras dejar de considerar el rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-conocido-audiencia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Muchos de quienes estáis aquí ya conocéis el concepto SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e7d21b3c6976756d68861b6150c79640d725a28b8be61a69005f25946873d666",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que muchos asistentes ya sabían qué es SMT, lo que respalda directamente que muchos de quienes están allí conocían el concepto SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-explicado-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto SMT ya está explicado en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "51467ed594d6a6ebc7777799757ad0b920d16a401e351c183fb7174573937bcf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el concepto SMT ya está explicado también en el curso intermedio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-mostrada-conocida",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La comparación mostrada es la SMT que conocíamos hasta ese momento.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "59b97371d0b0d80634e12b88a75e59783af0ec0d0ea585e8d16b9fbaca470636",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la comparación mostrada es la SMT que conocían hasta ese momento."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran dos gráficos comparados, lo que concuerda con la referencia a «esta» SMT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-libra-contradice-xauusd",
+   "version": 1,
+   "type": "CONTRADICTS",
+   "subject_id": "cl-grafico-derecho-libra",
+   "subject_version": 1,
+   "object_id": "cl-grafico-derecho-xauusd",
+   "object_version": 1,
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2feda220ff655f360dfc48b8c1b182b7e33f8300d16504a8e9c075c44272cf93",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma «Y esto es la libra» al referirse al segundo de los dos paneles visibles, el de la derecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambas imágenes muestran claramente que el gráfico de la derecha tiene la etiqueta «XAUUSD», por lo que identificar ese mismo gráfico como «la libra» es incompatible con la etiqueta visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-objetivo-depende-reanalisis",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-buscar-objetivo-superior",
+   "subject_version": 1,
+   "object_id": "cl-reanalizar-precio",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ae5e70503db75585eb1d3992756b1d26a7e8b0db4f9acff946eb5d9ff5db682d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia ordena dejar de considerar el rango, volver a analizar lo que hace el precio y después mirar si hay un objetivo más arriba; esa secuencia sostiene que la acción del claim sujeto depende del claim objeto en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reanalizar-depende-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-reanalizar-precio",
+   "subject_version": 1,
+   "object_id": "cl-dejar-de-considerar-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5ba572557fd5619aaa79086ab7cf9a87cf31c5b03013a80c6a8854b29db671e1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente ambas acciones en el orden indicado: una vez que se puede eliminar u olvidar el rango, «volver a analizar lo que está haciendo el precio». Esto sostiene que la acción del sujeto depende de la del objeto en la orientación declarada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ce166ca9c964aa6d5c057c0b44eb82174e4c30273d15b9feb802b3474a938eaf"
+    ],
+    "response_id": "gen-1790902051-amEl0r2jLJczvcJQbpaB"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00173",
+   "start_ms": 1226210,
+   "end_ms": 1245430,
+   "text": "Una vez pasa esto, ya puedes eliminar este rango, olvidarte de él y volver a analizar lo que está haciendo el precio, mirar a ver si hay un objetivo más arriba y bueno, ya no me adelanto mucho que lo vais a ver ya en el siguiente capítulo explicando ya un poco más la estrategia, ¿vale? Así que nada, seguimos."
+  },
+  {
+   "id": "asr-00174",
+   "start_ms": 1245430,
+   "end_ms": 1283400,
+   "text": "Vamos a seguir. Concepto SMT. Ya está explicado también en el curso intermedio. Muchos venís a SMT. Ya sabéis qué es. La SMT que conocemos nosotros o que conocíais vosotros anteriormente es esta. Por ejemplo, esto es el euro. Y esto es la libra. Esta sería la SMT que conocíamos, que conocíais, perdón, hasta ahora."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111600000-canonical-v1",
+   "pts_ms": 1240000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111690000-canonical-v1",
+   "pts_ms": 1241000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111960000-canonical-v1",
+   "pts_ms": 1244000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112140000-canonical-v1",
+   "pts_ms": 1246000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+   "pts_ms": 1248000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112410000-canonical-v1",
+   "pts_ms": 1249000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112500000-canonical-v1",
+   "pts_ms": 1250000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112590000-canonical-v1",
+   "pts_ms": 1251000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,290 @@
+{
+ "window": "w0056",
+ "start": "13:08",
+ "end": "13:20",
+ "start_ms": 788000,
+ "end_ms": 800000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-bastantes-ejemplos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el gráfico hay bastantes ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00112",
+    "frame-4de8f12d4841c630-s0-p71010000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8891256c77c67e106b19caf0213f0c07f7bf83f990d840036ce65d2583d38caa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «tenemos bastantes ejemplos», y los fotogramas muestran el gráfico al que se refiere la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el gráfico incluye bastantes ejemplos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7aae1cf59685d7f5764d2c62b2f19adf89016426676a0cd397592a8f3232bd5e"
+    ],
+    "response_id": "gen-1790896013-AKCdb6XQZEUcDhmN5a9N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diario-ejemplo-explicado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo diario mostrado es el mismo que estaba explicando como ejemplo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p70920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b068e58649c096a481ed7b0dbc54d4905cccd8a1acae0d673ea109e8f6e0e6e2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el objetivo diario mostrado «es el mismo que estaba explicando de ejemplo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición relacional: la identidad entre ambos objetivos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7aae1cf59685d7f5764d2c62b2f19adf89016426676a0cd397592a8f3232bd5e"
+    ],
+    "response_id": "gen-1790896013-AKCdb6XQZEUcDhmN5a9N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diario-parte-alta",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado contiene un objetivo diario en su parte superior.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p70920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a006f0b3701ada4e77cffea95579c41099413c0382f1048915b4c865d1bd5dec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente: «teníamos el objetivo este diario de aquí arriba», lo que respalda que el objetivo diario se encuentra en la parte superior del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7aae1cf59685d7f5764d2c62b2f19adf89016426676a0cd397592a8f3232bd5e"
+    ],
+    "response_id": "gen-1790896013-AKCdb6XQZEUcDhmN5a9N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-mostrado-recuadrado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango mostrado aparece delimitado por un recuadro en el gráfico de EUR/USD de 4 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p72000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "26197daf57e684576e8cfd4c7387fc68518e42b30a21a30bcdeb07eaa45e5bb1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un gráfico etiquetado «EURUSD · 4h» con un recuadro que delimita una sección del rango de precios."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La referencia al gráfico EUR/USD de 4 horas acota el contexto de la misma afirmación y no introduce una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7aae1cf59685d7f5764d2c62b2f19adf89016426676a0cd397592a8f3232bd5e"
+    ],
+    "response_id": "gen-1790896013-AKCdb6XQZEUcDhmN5a9N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-mostrado-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango mostrado es un rango reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00112",
+    "frame-4de8f12d4841c630-s0-p72000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "21c0ddb7788254bca89a9f3d1766a197dd3ae629aebe1bad2e32ab79ba54ec6f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que el rango mostrado es un rango reiniciado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7aae1cf59685d7f5764d2c62b2f19adf89016426676a0cd397592a8f3232bd5e"
+    ],
+    "response_id": "gen-1790896013-AKCdb6XQZEUcDhmN5a9N"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00111",
+   "start_ms": 768600,
+   "end_ms": 788180,
+   "text": "Espero que haya quedado claro. Vamos a ver algún ejemplo de esto en el gráfico ahora. Así que vamos allá. ¿Vale? Vamos a buscar, por ejemplo, teníamos el objetivo este diario de aquí arriba, que es el mismo que estaba explicando de ejemplo."
+  },
+  {
+   "id": "asr-00112",
+   "start_ms": 788180,
+   "end_ms": 799700,
+   "text": "vamos a ver si teníamos algo por aquí. Correcto, tenemos bastantes ejemplos. Primero, el rango este es un rango reiniciado, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70920000-canonical-v1",
+   "pts_ms": 788000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71010000-canonical-v1",
+   "pts_ms": 789000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71190000-canonical-v1",
+   "pts_ms": 791000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71280000-canonical-v1",
+   "pts_ms": 792000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71460000-canonical-v1",
+   "pts_ms": 794000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71550000-canonical-v1",
+   "pts_ms": 795000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71640000-canonical-v1",
+   "pts_ms": 796000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72000000-canonical-v1",
+   "pts_ms": 800000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

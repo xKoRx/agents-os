@@ -1,0 +1,265 @@
+{
+ "window": "w0041",
+ "start": "09:11",
+ "end": "09:20",
+ "start_ms": 551000,
+ "end_ms": 560000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hacer-rango-grande",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a hacer un rango grande.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00090",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "794161e83ab80f7efc2d3bd664b75377c9d7c84e3609ade4a418e7e7072e5c8c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada dice exactamente «vamos a hacer un rango grande», por lo que sustenta la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La enunciación contiene una sola propuesta: realizar un rango grande."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7faa1ab7a26322367c32da08b4fee955fa330cea36e949fb66867270090aa25d"
+    ],
+    "response_id": "gen-1790893388-SXIjN8U5SFYsvf7hrzx1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-imaginar-esto-como-rango",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Ahora, os vais a imaginar que esto es un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00091",
+    "asr-00092"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "241c90ce92fd7e5550a244b4ec394bb25f3f9b8dd8b3466f148da39edcf7a657",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada, unite, dice «ahora, os vais a imaginar que esto es un rango de», lo que respalda la instrucción de imaginar que «esto es un rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la instrucción de imaginarse que algo es un rango; su complemento no es una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7faa1ab7a26322367c32da08b4fee955fa330cea36e949fb66867270090aa25d"
+    ],
+    "response_id": "gen-1790893388-SXIjN8U5SFYsvf7hrzx1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-rectangular-vertical",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango está representado mediante un rectángulo vertical.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1b77e6f0c584100ff96f23fdf959be71c9affa1264a2b566e10ee79663bec469",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer failed: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7faa1ab7a26322367c32da08b4fee955fa330cea36e949fb66867270090aa25d"
+    ],
+    "response_id": "gen-1790893388-SXIjN8U5SFYsvf7hrzx1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vista-eurusd-15m",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista cambia a un gráfico de EURUSD de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "c9ec327b706f2f8db49f0e217b498c50ec7ca93a83a5b0e278a5773cbb6bb471",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una gráfica de EURUSD etiquetada como «15» y «EURUSD | 15M», pero no muestran una vista anterior que permita verificar que la vista cambió a ella."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7faa1ab7a26322367c32da08b4fee955fa330cea36e949fb66867270090aa25d"
+    ],
+    "response_id": "gen-1790893388-SXIjN8U5SFYsvf7hrzx1"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00088",
+   "start_ms": 550560,
+   "end_ms": 553560,
+   "text": "y para qué van a ser importantes en esta mentoría"
+  },
+  {
+   "id": "asr-00089",
+   "start_ms": 553560,
+   "end_ms": 554870,
+   "text": "está"
+  },
+  {
+   "id": "asr-00090",
+   "start_ms": 554870,
+   "end_ms": 557790,
+   "text": "vamos a hacer un rango grande"
+  },
+  {
+   "id": "asr-00091",
+   "start_ms": 557790,
+   "end_ms": 559790,
+   "text": "ahora, os vais a imaginar que"
+  },
+  {
+   "id": "asr-00092",
+   "start_ms": 559790,
+   "end_ms": 561430,
+   "text": "esto es un rango de"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+   "pts_ms": 551000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+   "pts_ms": 552000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49770000-canonical-v1",
+   "pts_ms": 553000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+   "pts_ms": 554000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+   "pts_ms": 556000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+   "pts_ms": 557000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+   "pts_ms": 559000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50400000-canonical-v1",
+   "pts_ms": 560000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,399 @@
+{
+ "window": "w0032",
+ "start": "07:02",
+ "end": "07:16",
+ "start_ms": 422000,
+ "end_ms": 436000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-is-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La gráfica corresponde a EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4b96c2b0c05a2d957a3c9f4c15bee5e4a952393fdfaf7aab73a39089427c9554",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran explícitamente la etiqueta «EURUSD» en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que la gráfica corresponde a EURUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "37fb7e0d664d56b9408d2f5ff8d3761b760994365d4823fef698db369d56de9e"
+    ],
+    "response_id": "gen-1790891385-i8Y5HPk3CMCnH4i3cf6e"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-is-daily",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La gráfica usa una temporalidad diaria.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "af15710cbd1bc9b0544eb04b94618b10a4aaee31ad7d7bdeb90a549903dd683f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran explícitamente «EURUSD · 1D» y «EURUSD | D», con la opción «1D» seleccionada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "37fb7e0d664d56b9408d2f5ff8d3761b760994365d4823fef698db369d56de9e"
+    ],
+    "response_id": "gen-1790891385-i8Y5HPk3CMCnH4i3cf6e"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-course-would-be-fast",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El curso sería muy rápido.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00055"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1725403095a2d306dc97bc84a8f85ec58c1315866580c57b201fa16fa9174536",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que «el curso sería muy rápido»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "37fb7e0d664d56b9408d2f5ff8d3761b760994365d4823fef698db369d56de9e"
+    ],
+    "response_id": "gen-1790891385-i8Y5HPk3CMCnH4i3cf6e"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-price-completes-ranges",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio va completando los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00056"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "d889da68952e262bb74af5e2d22f72d320ae81b808c1e4b42172aae117c26103",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que va formando y completando rangos, pero no identifica explícitamente que el sujeto sea el precio."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "37fb7e0d664d56b9408d2f5ff8d3761b760994365d4823fef698db369d56de9e"
+    ],
+    "response_id": "gen-1790891385-i8Y5HPk3CMCnH4i3cf6e"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-price-forms-ranges",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A medida que se mueve, el precio va formando rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00055",
+    "asr-00056"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cc040cadf070434ec639579c9cf3a7c205b5f294e53e9ccc62e4d1737bc4c696",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, a medida que el precio se va moviendo, «va formando rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el precio forma rangos mientras se mueve."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "37fb7e0d664d56b9408d2f5ff8d3761b760994365d4823fef698db369d56de9e"
+    ],
+    "response_id": "gen-1790891385-i8Y5HPk3CMCnH4i3cf6e"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangles-drawn-around-candle-groups",
+   "kind": "observation",
+   "version": 1,
+   "statement": "A lo largo de la secuencia se dibujan rectángulos alrededor de distintos grupos de velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p38520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p38880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5efc93b0653e055527507bd2f2f834aefcd1182b6068393e0684b41072887b96",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las cuatro imágenes muestran rectángulos trazados alrededor de grupos de velas; en la tercera el nuevo rectángulo está siendo ajustado y en la cuarta queda completado alrededor de otro grupo distinto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "37fb7e0d664d56b9408d2f5ff8d3761b760994365d4823fef698db369d56de9e"
+    ],
+    "response_id": "gen-1790891385-i8Y5HPk3CMCnH4i3cf6e"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangles-mark-price-ranges",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rectángulos señalan rangos de precio.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00056",
+    "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p38520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p38970000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "558c194868e0a91a6409572b9c72901619def2f5f56f514ad1f5b6882bae5018",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran varios rectángulos trazados sobre zonas de velas del gráfico, con sus límites verticales asociados a la escala de precios, y la transcripción dice expresamente que va «formando rangos» y los va completando."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "37fb7e0d664d56b9408d2f5ff8d3761b760994365d4823fef698db369d56de9e"
+    ],
+    "response_id": "gen-1790891385-i8Y5HPk3CMCnH4i3cf6e"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-this-is-insufficient-to-trade",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto no es suficiente para operar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00055"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "16defb49021e29915e5f4bc48c4c3c2c6dfa77e8345f12f05975a0a72870a604",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «No es suficiente esto para operar», lo que respaldada directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que esto no es suficiente para operar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "37fb7e0d664d56b9408d2f5ff8d3761b760994365d4823fef698db369d56de9e"
+    ],
+    "response_id": "gen-1790891385-i8Y5HPk3CMCnH4i3cf6e"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00055",
+   "start_ms": 421870,
+   "end_ms": 429810,
+   "text": "No es suficiente esto para operar, sino el curso sería muy rápido. Pero para que veáis un poco la lógica de esto de los rangos, es que el precio se va moviendo así, ¿vale?"
+  },
+  {
+   "id": "asr-00056",
+   "start_ms": 429810,
+   "end_ms": 437310,
+   "text": "tal cual va formando rangos los va completando y va como haciendo su sus cosas pues en funciona"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+   "pts_ms": 422000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38070000-canonical-v1",
+   "pts_ms": 423000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38160000-canonical-v1",
+   "pts_ms": 424000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38520000-canonical-v1",
+   "pts_ms": 428000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38880000-canonical-v1",
+   "pts_ms": 432000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38970000-canonical-v1",
+   "pts_ms": 433000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39150000-canonical-v1",
+   "pts_ms": 435000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39240000-canonical-v1",
+   "pts_ms": 436000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

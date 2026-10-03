@@ -1,0 +1,760 @@
+{
+ "window": "w0093",
+ "start": "23:37",
+ "end": "23:54",
+ "start_ms": 1417000,
+ "end_ms": 1434000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-euro-llega-objetivos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El euro llega a sus objetivos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196",
+    "frame-4de8f12d4841c630-s0-p127530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p129060000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "94d752419083854d6b0eba6186d457adfb8ebed3631e251d753afa642e5e26db",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «euro ya ves que llega a los objetivos», lo que respalda directamente la afirmación revisada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el euro llega a sus objetivos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mecha-rango-mas-real",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El uso de una mecha sirve para que el rango quede más real.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f60e37ebd7ba4d1c38e680fa14eefbf0113764bc2796d3a6339c90c1fe207013",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente: «lo haremos con mecha, que quede más real», lo que respalda que usar una mecha sirve para que el rango quede más real."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la finalidad del uso de la mecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-gira-directamente-en-zona-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio puede girar directamente cuando aparece esa SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5ec47862d19e883ceee50b8c7c1df72b1a65ebe0675a76cfc03597fb68b2f211",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que puede haber una SMT en esa zona y que el precio puede girarse directamente allí."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement_afirma una sola proposición: que la aparición de esa SMT puede producir un giro directo del precio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-no-ha-tomado-extremo-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio no ha tomado el extremo del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197",
+    "frame-4de8f12d4841c630-s0-p129060000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b8f749971901ef43b3e54f71cf4e806a937b9c9c5eac6a71bd310c3692612774",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente: «Por lo tanto, no ha tomado el extremo del rango», lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el precio no ha tomado el extremo del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-euro-segun-rango-libra",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El rango de euro debe hacerse de la misma manera que el de libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197",
+    "frame-4de8f12d4841c630-s0-p129060000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "718c6c224003c426985695a7eff641f5c9d2159387051f07b07cebf87234551e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción establish primero cómo debe hacerse el rango de libra «con mecha» y después indica «Y el de euro que sea así», lo que sostiene que ambos deben hacerse de la misma manera."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango de euro debe seguir el mismo método que el de libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-libra-con-mecha",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Loaremos el rango de libra con una mecha.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6539f86d3e6c0d4f30c708fd5f296e2e360724e7d722b71a92b5d356960c418e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango de libra se hará con mecha, lo que respalda la proposición Despite la apparent errata «Loaremos»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-libra-segun-grafico",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El rango de libra debe ser tal como se muestra en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197",
+    "frame-4de8f12d4841c630-s0-p129060000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "184dc499d379b7cf10700f7f4242dc4d1e9f3d05d73b40bcb5c0643b24c8a9a0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción instruye explícitamente que «el rango de libra sea así», remitiendo a la configuración mostrada en el gráfico, y afirma que se hará con mecha. La afirmación contiene una sola proposición: que el rango de libra debe ser tal como se muestra en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-al-llegar-objetivos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puede haber una SMT en el momento de llegar a los objetivos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196",
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e6953cb02a9a0ec88ccdbec65c56c5e0dfc5cc9603a17cac94ed8d0b2dd70be9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que puede haber una SMT «en el tema de llegar a los objetivos» y también «ahí arriba» cuando el precio llega a ellos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: la posibilidad de que exista una SMT en el momento de alcanzar los objetivos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-no-requerida-entre-dos-velas",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La SMT no tiene que aparecer entre estas dos velas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0600c8e176429627dee9fabec96811e7dfd9a79b646750d0e7a0c3b2f30ed834",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que no tiene que ser una SMT entre estas dos velas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una sola proposición: que la SMT no está obligada a aparecer entre esas dos velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-para-formar-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puede haber una SMT para formar el rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5799367734c50d858f854769b5cb3a518eecd8bcd95e10490b4dd3d997548e6a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «puede haber una SMT para formar el rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-suele-verse-entre-dos-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Una SMT se ve muchas veces entre dos velas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b01ababe2393bc39070690070dfadef951dabb07367653f893706c671d1f5278",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que una SMT «entre estas dos velas» «se ve muchas veces»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que una SMT suele aparecer entre dos velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-usuario-long-en-libra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El usuario está en una operación long en libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "61356b1a9bf05e437d8d1a8cf2fd4d312dd7e06864e548652d7046582d249ef0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente «Tú estás en un long en libra», lo que sostiene que el usuario está en una operación long en libra."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-giro-directo-zona-smt",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-precio-gira-directamente-en-zona-smt",
+   "subject_version": 1,
+   "object_id": "cl-smt-al-llegar-objetivos",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "87fe2bd1fc81f7fe8e1af05e063ccf7d5a3e22769c009a72307c0523f074da0b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia ubica una posible SMT al llegar a los objetivos y, en esa misma situación, plantea que el precio puede girarse directamente; por tanto, el giro directo indicado queda condicionado a la aparición de esa SMT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-extremo-rango-con-mecha",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-precio-no-ha-tomado-extremo-rango",
+   "subject_version": 1,
+   "object_id": "cl-rango-libra-con-mecha",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ca964fa1ebf79116c758f61508e3a7923ea588a28f53b5329a9ca6699501251",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia presenta la construcción del rango de libra con mecha y, inmediatamente después, concluye con «Por lo tanto, no ha tomado el extremo del rango»,火山 establishing the subject claim as dependent on the object claim in the stated orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-euro-referencia-rango-libra",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-euro-segun-rango-libra",
+   "subject_version": 1,
+   "object_id": "cl-rango-libra-segun-grafico",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ed0f02e5f82ef44f632a9d5c45952ac843a841a61b33f3054dd47e1531670fc4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia establece primero cómo debe hacerse el rango de libra («que quede más real», tomando mecha y el extremo del rango) y después indica que el de euro sea así, lo que muestra que el método del rango de euro depende del de libra en la orientación declarada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-entre-velas-excepcion",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-smt-no-requerida-entre-dos-velas",
+   "subject_version": 1,
+   "object_id": "cl-smt-suele-verse-entre-dos-velas",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1501aab320a99f0431c859b9f069fcf7134e7e91baa65b2971f473ca8b3dc1a1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que no tiene que ser una SMT entre esas dos velas y, al mismo tiempo, indica que esto es algo que se ve muchas veces, settando la primera afirmación como excepción a la segunda."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-objetivos-condicion-llegada",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-al-llegar-objetivos",
+   "subject_version": 1,
+   "object_id": "cl-euro-llega-objetivos",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196",
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0d2c101628447dea63abfbe84673da70ffc14acb936c3c7e1cf899b2213cbeed",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «euro ya ves que llega a los objetivos» y, en esa misma situación, «puede haber una SMT ahí arriba»; también indica que la SMT puede ser «en el tema de llegar a los objetivos». Así, la posibilidad de una SMT al llegar a los objetivos queda planteada en relación con la llegada del euro a sus objetivos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e8fcc17dd3ae6e616c53be4f4da7a9734002ab5d94104f01d97e4a1ef6c6bad"
+    ],
+    "response_id": "gen-1790906005-zzGh3LMFRWLcKLvuw2ie"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00196",
+   "start_ms": 1415520,
+   "end_ms": 1422440,
+   "text": "Tú estás en un long en libra, pero euro ya ves que llega a los objetivos, puede haber una SMT ahí arriba y se te gire el precio directamente."
+  },
+  {
+   "id": "asr-00197",
+   "start_ms": 1422440,
+   "end_ms": 1451830,
+   "text": "No es que tenga que ser una SMT entre estas dos velas, como se ve muchas veces. Puede ser una SMT en el tema de llegar a los objetivos, ¿vale? Del mismo modo puede haber una SMT para formar el rango. ¿Qué significa esto? Que el rango de libra sea así. Bueno, lo haremos con mecha, que quede más real. Que esto sea así. Por lo tanto, no ha tomado el extremo del rango. Y el de euro que sea así, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127530000-canonical-v1",
+   "pts_ms": 1417000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127800000-canonical-v1",
+   "pts_ms": 1420000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127980000-canonical-v1",
+   "pts_ms": 1422000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p128160000-canonical-v1",
+   "pts_ms": 1424000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p128160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p128520000-canonical-v1",
+   "pts_ms": 1428000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p128520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p128880000-canonical-v1",
+   "pts_ms": 1432000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p128880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p128970000-canonical-v1",
+   "pts_ms": 1433000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p128970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p129060000-canonical-v1",
+   "pts_ms": 1434000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p129060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

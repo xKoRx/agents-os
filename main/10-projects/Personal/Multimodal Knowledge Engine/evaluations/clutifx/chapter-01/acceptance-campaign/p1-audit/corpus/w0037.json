@@ -1,0 +1,404 @@
+{
+ "window": "w0037",
+ "start": "08:22",
+ "end": "08:33",
+ "start_ms": 502000,
+ "end_ms": 513000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comparacion-diaria-eurusd-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista muestra los gráficos diarios de EURUSD y GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p45450000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0092bc2232c696d39eba2eec832fb2c0e2cd89228d653b221502267490332119",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran paneles rotulados «EURUSD · 1D» y «GBPUSD · 1D», con las etiquetas «EURUSD | D» y «GBPUSD | D»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación combina dos internalized assertions evaluables por separado: la presencia del gráfico diario de EURUSD y la del gráfico diario de GBPUSD."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ef559ba81bc597ff48af597e385e086fd02755b77f26a913d33789738d76cf71"
+    ],
+    "response_id": "gen-1790892828-DxaoDgWGzGKvJFSOhKlC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-seleccionado",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se seleccionó el símbolo GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45180000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p45270000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p45360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a5add7a10779ba8ae9bee42e93bb5044a76c0280ddc8aa0fba7289095bf9cc4c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra GBPUSD resaltado en los resultados de búsqueda y el cursor sobre esa opción; las imágenes siguientes muestran GBPUSD seleccionado y su gráfico visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ef559ba81bc597ff48af597e385e086fd02755b77f26a913d33789738d76cf71"
+    ],
+    "response_id": "gen-1790892828-DxaoDgWGzGKvJFSOhKlC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-hoy-rango-bullish-libra",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El rango bullish en Libra tenía como objetivo para hoy el nivel 1.37489.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p45810000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "761a10b072ada465963e44eaaa882671a38dfda946663c630a145ca3a67409c0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que el rango bullish en Libra tenía un objetivo para hoy y la imagen lo identifica como 1,37489."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ef559ba81bc597ff48af597e385e086fd02755b77f26a913d33789738d76cf71"
+    ],
+    "response_id": "gen-1790892828-DxaoDgWGzGKvJFSOhKlC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bearish-libra-formado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se formó un rango bearish arriba en Libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00067",
+    "asr-00068"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cef2134d3eb46c1f0b5f4d201c45e6b0f8612aace78ea357786724bc07b17aaa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «se formó el rango bearish aquí arriba» y lo sitúa en Libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ef559ba81bc597ff48af597e385e086fd02755b77f26a913d33789738d76cf71"
+    ],
+    "response_id": "gen-1790892828-DxaoDgWGzGKvJFSOhKlC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bullish-libra-formado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Otra vez, se formó un rango bullish en Libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cb6519c761a81ddbdf7a9bda10f4576e96fbee64dd966f53c954160e778c2d36",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente: «Otra vez, rango bullish en Libra», lo que respalda que se formó nuevamente un rango bullish en Libra."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: la formación de un rango bullish en Libra; «otra vez» modifica esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ef559ba81bc597ff48af597e385e086fd02755b77f26a913d33789738d76cf71"
+    ],
+    "response_id": "gen-1790892828-DxaoDgWGzGKvJFSOhKlC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reversion-tras-rango-bearish-libra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio empezó a revertir cuando se formó el rango bearish arriba en Libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00068"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d3388bb2f7d52b2c670e9a8b1be43ba686c4cd286fcf88359e32ca5ab71c4ef8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que el rango bearish se formó arriba y que ese fue el momento en que el precio empezó a revertir; la cláusula temporal solo delimita la misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ef559ba81bc597ff48af597e385e086fd02755b77f26a913d33789738d76cf71"
+    ],
+    "response_id": "gen-1790892828-DxaoDgWGzGKvJFSOhKlC"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-objetivo-depende-rango-bullish-libra",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-objetivo-hoy-rango-bullish-libra",
+   "subject_version": 1,
+   "object_id": "cl-rango-bullish-libra-formado",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "1bbfa598aedf8e8a9797d9b1ca4b0ffa271121690ccff79115dfc81add619a8f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona un rango bullish en Libra y un objetivo para hoy, pero no indica el nivel 1.37489 ni establece explícitamente que ese objetivo dependa de la formación del rango."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ef559ba81bc597ff48af597e385e086fd02755b77f26a913d33789738d76cf71"
+    ],
+    "response_id": "gen-1790892828-DxaoDgWGzGKvJFSOhKlC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reversion-depende-rango-bearish-libra",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-reversion-tras-rango-bearish-libra",
+   "subject_version": 1,
+   "object_id": "cl-rango-bearish-libra-formado",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00068"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cd8038def28714138e6f2c88189094eaf9b7075e4c8c73854c0a1a53e2e7f823",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango bearish se formó arriba y que en ese momento el precio empezó a revertir, vinculando la reversión con la formación previa del rango en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "ef559ba81bc597ff48af597e385e086fd02755b77f26a913d33789738d76cf71"
+    ],
+    "response_id": "gen-1790892828-DxaoDgWGzGKvJFSOhKlC"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00067",
+   "start_ms": 497060,
+   "end_ms": 503540,
+   "text": "bearish otra vez, que en Libra están formados, ya lo vais a ver en el tema de la SMT, ahora"
+  },
+  {
+   "id": "asr-00068",
+   "start_ms": 503540,
+   "end_ms": 508840,
+   "text": "que se formó el rango bearish aquí arriba, es cuando el precio empezó a revertir, ¿vale?"
+  },
+  {
+   "id": "asr-00069",
+   "start_ms": 509540,
+   "end_ms": 514419,
+   "text": "Otra vez, rango bullish en Libra, teníamos este objetivo para hoy. ¿Por qué? Cierra"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45180000-canonical-v1",
+   "pts_ms": 502000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45270000-canonical-v1",
+   "pts_ms": 503000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45360000-canonical-v1",
+   "pts_ms": 504000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45450000-canonical-v1",
+   "pts_ms": 505000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45720000-canonical-v1",
+   "pts_ms": 508000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45810000-canonical-v1",
+   "pts_ms": 509000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+   "pts_ms": 512000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46170000-canonical-v1",
+   "pts_ms": 513000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

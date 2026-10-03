@@ -1,0 +1,206 @@
+{
+ "window": "w0113",
+ "start": "28:52",
+ "end": "29:04",
+ "start_ms": 1732000,
+ "end_ms": 1744000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-15-no-se-ve-muy-claro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En 15, no se ve muy claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00250",
+    "frame-4de8f12d4841c630-s0-p156150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e42f0a5af7b98f7db0e6a3524dc56f012e5dec1a061c293b3a8f17c3fb29235f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que en 15 «no se ve muy claro»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la periodicity de 15 no se ve muy clara."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "91a7d1d45bae50def0b3c45f242dd9b5ba424eee3d33f0fa69401a081845cf8a"
+    ],
+    "response_id": "gen-1790908883-N34ecqtnALsuJAs9D3Is"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-una-donde-se-vea",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a buscar una donde se vea.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00250"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0b74e8f2a0e3df73a88a3b89aff9b82a28f9393bf55c168e9db32b1692b9a783",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice exactamente: «Vamos a buscar una donde se vea»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola intención: buscar algo cuya visibilidad permita appreciation; «donde se vea» únicamente restringe el objeto de esa búsqueda."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "91a7d1d45bae50def0b3c45f242dd9b5ba424eee3d33f0fa69401a081845cf8a"
+    ],
+    "response_id": "gen-1790908883-N34ecqtnALsuJAs9D3Is"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tras-cierre-por-fuera",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una vez esta vela se cierra por fuera, aquí ya puedes tomar tu long para ir para arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00251"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a8098d53d2dbdda25a3ffda0ed564440eed3b2e599fb92c1d15a69b6ce146f60",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La declaración reproduce directamente la afirmación de la evidencia citada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola regla condicional: cuando la vela se cierre por fuera, se puede tomar una posición long para subir."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "91a7d1d45bae50def0b3c45f242dd9b5ba424eee3d33f0fa69401a081845cf8a"
+    ],
+    "response_id": "gen-1790908883-N34ecqtnALsuJAs9D3Is"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00250",
+   "start_ms": 1723940,
+   "end_ms": 1735100,
+   "text": "hoy, 15 no se ve, a ver si en 10, no se ve muy claro. Vamos a buscar una donde se vea"
+  },
+  {
+   "id": "asr-00251",
+   "start_ms": 1735100,
+   "end_ms": 1747880,
+   "text": "Por ejemplo, aquí, una vez esta vela se cierra por fuera, aquí tú ya puedes tomar tu long para ir para arriba."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155880000-canonical-v1",
+   "pts_ms": 1732000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156150000-canonical-v1",
+   "pts_ms": 1735000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156240000-canonical-v1",
+   "pts_ms": 1736000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156330000-canonical-v1",
+   "pts_ms": 1737000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156420000-canonical-v1",
+   "pts_ms": 1738000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156600000-canonical-v1",
+   "pts_ms": 1740000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156690000-canonical-v1",
+   "pts_ms": 1741000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156960000-canonical-v1",
+   "pts_ms": 1744000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,679 @@
+{
+ "window": "w0097",
+ "start": "24:56",
+ "end": "25:24",
+ "start_ms": 1496000,
+ "end_ms": 1524000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anticipo-escenario",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El instructor reconoce que se está anticipando mucho.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7b025f90697f95240e8ece2e8693f1fd7b3d1670efc2c8a82a745a2dd1e89b26",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente «Me estoy anticipando ya mucho», por lo que el instructor reconoce que se está anticipando mucho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola proposición Evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-rango-ya-creado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto se puede ver como un rango que sí se ha creado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00205",
+    "frame-4de8f12d4841c630-s0-p136800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4e84f62dcc4a567600aba378589a5cc363683a7a07590e096e7878c870923f3e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «esto» puede verse «como un rango que sí que se ha creado», lo que respalda la proposición única de que se trata de un rango creado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-st-actual",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto sería otro caso de S&T.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5973eec2b9d6385c5634c957751237a8f7bfe8c0761c0ba2622a3132b7e33471",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «esto sería otro caso de S&T»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-casos-st-no-visibles-simple-vista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los casos de S&T muchas veces no se ven a simple vista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c8030930797809d22f3493649d6f3986160d17ed0777ec4e5e70d354b11028ab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que «esto sería otro caso de S&T que muchas veces no se ve a simple vista», lo que respalda la afirmación revisada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: que los casos de S&T a menudo no se ven a simple vista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-aclara-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El ejemplo se presenta para dejar claro el concepto de SMT en la estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e1a6429cb7c716c1a915c3f2fd154ec123b2d2013088c02756b06f3e5a16d020",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica explícitamente que la explicación o el ejemplo seFormula «para que quede claro el concepto de SMT en la estrategia», lo que respalda la proposición sobre su propósito."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-escenario-euro-sin-rango-para-target",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se contempla que Euro no consiga crear el rango para ir hasta el target.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00204"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "082f263d979444b00683b9fe2b0d922679c1935d6c305e44783d99fb66f79050",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia stated que Euro podría no conseguir crear el rango necesario para llegar al target."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre esa posibilidad."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-espera-rango-grafico-4h",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si esto es un gráfico de 4 horas, se está esperando que se forme un rango para poder comprar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "528369eab87492babd0a3949a91641fc7af4627b6f9177263445a73397d589e9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia stated directamente que, si el gráfico es de 4 horas, se está esperando que se forme un rango para poder comprar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-euro-puede-llegar-arriba",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Euro puede llegar hasta arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d22130421c42b0a843ceafe30ec9e68de1c9882d47b126d716ea7ee63fa399c0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el euro «pueda llegar hasta arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que el euro llegue hasta arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-libra-creo-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La Libra ha creado el rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00205"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "94017752ba12f454d0b5b1c187a2c2ab34c12c08a94c3a113a2ebe117811c9d3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el rango se ha creado porque «la Libra lo ha hecho»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que Libra creó el rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-libra-indica-no-necesidad-euro",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Solo ver que la Libra está creando el rango puede indicar que Euro no tenga que crearlo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "85a3bf68489150e5fee35ad95ca363e5373084a5a3967d0dd415a433fb255180",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, solo viendo que la Libra está creando el rango, puede ser que Euro no tenga que crearlo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una sola proposición: la observación de que Libra está creando el rango puede indicar que Euro no necesita crearlo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-seleccionado-grafico",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Hay un rectángulo seleccionado sobre unas velas en la parte izquierda del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p136800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p137160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0aca2e322aa540c8e9306e3212d38e9ef66df6a66ea1c76b16cb3d655bb385e4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambas imágenes muestran un rectángulo con tiradores de selección en la parte izquierda del gráfico, entre los绘制 de velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-indicacion-libra-depends-creacion-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-libra-indica-no-necesidad-euro",
+   "subject_version": 1,
+   "object_id": "cl-libra-creo-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00205",
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0bbbd879e0f3783e51cb6fcf7f1ef88dacae7d58e9304e102d7e6f7c589fbef8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera evidencia afirma explícitamente que el rango ya se ha creado porque la Libra lo hizo, respaldando la afirmación de que la Libra ha creado el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia presenta la observación de que la Libra está creando el rango como base para la posibilidad de que Euro no tenga que crearlo, en la orientación indicada: la afirmación sobre la indicación para Euro depende de la creación del rango por parte de la Libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-llegada-arriba-depends-no-necesidad-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-euro-puede-llegar-arriba",
+   "subject_version": 1,
+   "object_id": "cl-rango-libra-indica-no-necesidad-euro",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "86725c45bac067d78ecfd3abc94fbcf612185cd1d65d1dabdfda33a4a29d49b8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que, solo viendo que la Libra está creando el rango, puede ser que el Euro no tenga que crearlo y pueda llegar hasta arriba; por tanto, la llegada del Euro hasta arriba queda planteada en función de la observation sobre el rango creado por la Libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-creado-depends-creacion-libra",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-caso-rango-ya-creado",
+   "subject_version": 1,
+   "object_id": "cl-libra-creo-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00205"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "27bbbc12fb890a707905a822095728ca427d854f696d57dd8fed377c56abec61",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango ya se ha creado y explica explícitamente que la Libra lo ha hecho, por lo que la afirmación de que el rango está creado depende de la afirmación de que la Libra lo creó."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-libra-exception-to-espera-rango-4h",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-rango-libra-indica-no-necesidad-euro",
+   "subject_version": 1,
+   "object_id": "cl-espera-rango-grafico-4h",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00206"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7128551b70687b120c41a1da571074873931cd31a407b92764dec61944c3bf55",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia plantea directamente la excepción: si en un gráfico de 4 horas se espera que se forme un rango para comprar, observar que Libra está creando ese rango puede indicar que Euro no tenga que crearlo y pueda llegar más arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790906657-2zQdjCbqyWpDzUxdKCdV"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00204",
+   "start_ms": 1496620,
+   "end_ms": 1502160,
+   "text": "Y que en cambio Euro no consiga crear el rango para ir hasta el target, ¿vale?"
+  },
+  {
+   "id": "asr-00205",
+   "start_ms": 1502220,
+   "end_ms": 1508980,
+   "text": "Pero esto lo podemos ver como un rango que sí que se ha creado, ya que la Libra lo ha hecho, ¿vale?"
+  },
+  {
+   "id": "asr-00206",
+   "start_ms": 1508980,
+   "end_ms": 1535940,
+   "text": "O sea, esto sería otro caso de S&T que muchas veces no se ve a simple vista, pero si esto es un gráfico de 4 horas y tú estás esperando que se te forme un rango para poder comprar, ¿vale? Pues, solo viendo que la libra está creándolo, puede ser que euro no tenga que crearlo y pueda llegar hasta arriba, ¿vale? Me estoy anticipando ya mucho, pero para que quede claro el concepto de SMT en la estrategia."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134640000-canonical-v1",
+   "pts_ms": 1496000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p135000000-canonical-v1",
+   "pts_ms": 1500000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p135000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p135360000-canonical-v1",
+   "pts_ms": 1504000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p135360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p135720000-canonical-v1",
+   "pts_ms": 1508000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p135720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p136080000-canonical-v1",
+   "pts_ms": 1512000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p136080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p136440000-canonical-v1",
+   "pts_ms": 1516000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p136440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p136800000-canonical-v1",
+   "pts_ms": 1520000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p136800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p137160000-canonical-v1",
+   "pts_ms": 1524000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p137160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

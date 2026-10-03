@@ -1,0 +1,285 @@
+{
+ "window": "w0077",
+ "start": "19:41",
+ "end": "19:53",
+ "start_ms": 1181000,
+ "end_ms": 1193000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-fuera-invalida-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si la vela cierra fuera del rango, el rango deja de ser un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee667a26c1c2b81965019ff8703cac6b65ec904c9926d1abbd4fcbb215c16cb9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que si la vela cierra afuera, el rango deja de ser un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3d150efa885512d508c4857593b1f4bdd6b8337e1c2fbe7afdb67039383fe3fc"
+    ],
+    "response_id": "gen-1790900669-FX8ugCZhOjKgtBYECgKQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-idea-alcista-requiere-nueva-vela",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si tenemos una idea alcista, tendremos que esperar a una nueva vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "02fd205f85f47d60bf578408df19763614a26bb3ea90f9821c6f9147a6171b66",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enuncia directamente que, si hay una idea alcista, habrá que esperar a que出现 una nueva vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3d150efa885512d508c4857593b1f4bdd6b8337e1c2fbe7afdb67039383fe3fc"
+    ],
+    "response_id": "gen-1790900669-FX8ugCZhOjKgtBYECgKQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nueva-vela-marcada-en-grafico",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La nueva vela queda marcada en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00168",
+    "frame-4de8f12d4841c630-s0-p107190000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107370000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9c76c42183120c6df5d38b32299d0d481bfb6d67692e26e78a14109c7ec7a49a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que, al esperar una nueva vela, «la dejo aquí marcada», lo que sostiene directamente que queda marcada en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3d150efa885512d508c4857593b1f4bdd6b8337e1c2fbe7afdb67039383fe3fc"
+    ],
+    "response_id": "gen-1790900669-FX8ugCZhOjKgtBYECgKQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-actual-puede-eliminarse",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este rango ya se puede eliminar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168",
+    "frame-4de8f12d4841c630-s0-p106290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p106560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p106920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b8af7f3fc9b75d0ae9dfcdb387931f3defe5f7dc3ea4dd5b073a0936d1e3976b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada dice explícitamente: «Este rango ya se puede eliminar»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango actual ya puede eliminarse."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3d150efa885512d508c4857593b1f4bdd6b8337e1c2fbe7afdb67039383fe3fc"
+    ],
+    "response_id": "gen-1790900669-FX8ugCZhOjKgtBYECgKQ"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-eliminacion-rango-depende-cierre-fuera",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-actual-puede-eliminarse",
+   "subject_version": 1,
+   "object_id": "cl-cierre-fuera-invalida-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "080f9a5190d2f0d2c96107079ac2a49ad104a411130dead4ad09d1cf2c641573",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «si cierra afuera, esto ya no es un rango» y, en el mismo contexto, que «este rango ya se puede eliminar», vinculando explícitamente la eliminación del rango con que la vela cierre fuera de él."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "3d150efa885512d508c4857593b1f4bdd6b8337e1c2fbe7afdb67039383fe3fc"
+    ],
+    "response_id": "gen-1790900669-FX8ugCZhOjKgtBYECgKQ"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00168",
+   "start_ms": 1179620,
+   "end_ms": 1197440,
+   "text": "Este rango ya se puede eliminar y del mismo caso, si cierra afuera, esto ya no es un rango. Si tenemos una idea alcista, tendremos que esperar ahora a que una nueva vela, bueno, la dejo aquí marcada, en este caso, ello, esto ya no es un rango."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106290000-canonical-v1",
+   "pts_ms": 1181000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106560000-canonical-v1",
+   "pts_ms": 1184000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106650000-canonical-v1",
+   "pts_ms": 1185000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106650000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106920000-canonical-v1",
+   "pts_ms": 1188000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107100000-canonical-v1",
+   "pts_ms": 1190000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107190000-canonical-v1",
+   "pts_ms": 1191000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107280000-canonical-v1",
+   "pts_ms": 1192000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107370000-canonical-v1",
+   "pts_ms": 1193000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107370000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

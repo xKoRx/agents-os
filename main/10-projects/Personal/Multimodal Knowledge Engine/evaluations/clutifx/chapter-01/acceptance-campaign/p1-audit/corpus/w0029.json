@@ -1,0 +1,492 @@
+{
+ "window": "w0029",
+ "start": "06:14",
+ "end": "06:26",
+ "start_ms": 374000,
+ "end_ms": 386000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-daily-range-exercise-is-easy",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Observar los rangos en la temporalidad diaria es un ejercicio fácil.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p33660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "887cee4bf286a8dfe0e3ce951ed10f38e3cc162e9b7615936b5d45f914d2d07b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que es un ejercicio fácil observar cómo se forman y completan los rangos en la temporalidad diaria."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «en la temporalidad diaria» solo restringe el alcance de esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-example-closes-slightly-outside",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En este ejemplo, el precio cierra un poco fuera.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053",
+    "frame-4de8f12d4841c630-s0-p34380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7315bc1089d32ee72f08da48f1ac8c7d070e299f8b2c92102660079e35892d19",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente sobre el ejemplo señalado: «este cierra un poco fuera»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición: que el precio de ese ejemplo cierra un poco fuera del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-example-wick-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el ejemplo se muestra una mecha dibujada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00053",
+    "frame-4de8f12d4841c630-s0-p34380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f0cb8b433fbe25c22ed09202bbcd2082b6402806ebcc2bb1af8c7a4308dc8d8b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción cita explícitamente que en el ejemplo «tenía ahí una mecha dibujada»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-explain-failure-swing-later",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El significado de failure swing se explicará más tarde en este vídeo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b220cc64982404c93dca67ddb913876cf563faba9f3ca568fe40e91eac618109",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que el significado de «failure swing» se verá más adelante en este vídeo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-extreme-close-inside-go-opposite",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Normalmente, cuando el precio toma un extremo del rango y cierra dentro, va hacia el otro extremo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053",
+    "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "36d27b326c19eee47a7c70878b5132d30f71cb5e49c359b2e57fd8faa798750a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, normalmente, cuando el precio toma un extremo del rango y cierra dentro, irá hacia el otro extremo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "«Normalmente» y «cuando...» califican una sola proposición sobre el comportamiento del precio; no añaden reglas independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-below",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la zona señalada, abajo hay un failure swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p33840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "771033c8305cc0912e7450cda890d5bb0676ef3392834635bce2540e05ae8998",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript explicitly states that in the indicated example, “abajo hay un failure swing,” directly supporting the claim."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement makes one proposition about the marked area; its location merely restricts that same proposition."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observe-daily-range-formation",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En la temporalidad diaria se va viendo cómo se forman los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p33840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "72dd93169b83e8bf183c002b823744616c264aa9617429149120fc25694aabab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que, al usar la temporalidad diaria, se observa «cómo se van formando rangos», lo que sostiene directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La affirmation contiene una sola proposición: en la temporalidad diaria se observa la formación de rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observe-range-completion",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "También se va viendo cómo se completan los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6f90f5cbc10f945221db7a7b859887b45c48f2a43479faa8bdd8cd467e042bf5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que se irá viendo «cómo se van formando rangos y cómo se van completando», lo que respalda la afirmación sobre observar cómo se completan los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable; «también» únicamente aporta contexto y no introduce una segunda proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-shown-range-bullish",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango señalado en ese punto es bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053",
+    "frame-4de8f12d4841c630-s0-p34560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8522d3764486daf72818ff8825a90c4cc48697eeddf01230a1cddd439317a4ad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript explicitly identifies the discussed range and says «este bullish», directly supporting that the indicated range is bullish. The statement makes one proposition: the range's bullish classification."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-close-outside-exception",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-example-closes-slightly-outside",
+   "subject_version": 1,
+   "object_id": "cl-extreme-close-inside-go-opposite",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aaee3eb5e23bb1dc8bcff5289e0b4a154e4b986afcaa2ee6b8b71f811b220a73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia presenta explícitamente el ejemplo en el que el precio «cierra un poco fuera» y, en contraste, formula la regla normal de que, si toma un extremo y cierra dentro, suele ir hacia el otro extremo. Por tanto, el cierre ligeramente fuera del ejemplo constituye una excepción a esa regla general."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "35ee505868fb3c4370e9d1baa42db79e8bc4d2416a478812acbb33275245bcb3"
+    ],
+    "response_id": "gen-1790891021-5yLFFQh13fCt33h6ioMu"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00052",
+   "start_ms": 362440,
+   "end_ms": 381560,
+   "text": "Es un ejercicio fácil si vamos, por ejemplo, a la temporalidad diaria, ir viendo cómo se van formando rangos y cómo se van completando, ¿vale? Por ejemplo, este de aquí, abajo hay un failure swing, vais a ver el concepto más tarde qué significa en este vídeo, ¿vale?"
+  },
+  {
+   "id": "asr-00053",
+   "start_ms": 381560,
+   "end_ms": 407710,
+   "text": "Vamos a ir, por ejemplo, a este rango de aquí, ¿vale? Esto de aquí. Normalmente si vemos cómo nos toma el alto y cierra adentro, este cierra un poco fuera, tenía ahí una mecha dibujada, este de aquí, por ejemplo, este bullish, vemos cómo si normalmente toma un extremo y cierra adentro, lo que va a hacer el precio es ir hacia el otro extremo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33660000-canonical-v1",
+   "pts_ms": 374000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33840000-canonical-v1",
+   "pts_ms": 376000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+   "pts_ms": 377000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34200000-canonical-v1",
+   "pts_ms": 380000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34290000-canonical-v1",
+   "pts_ms": 381000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34380000-canonical-v1",
+   "pts_ms": 382000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34560000-canonical-v1",
+   "pts_ms": 384000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34740000-canonical-v1",
+   "pts_ms": 386000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

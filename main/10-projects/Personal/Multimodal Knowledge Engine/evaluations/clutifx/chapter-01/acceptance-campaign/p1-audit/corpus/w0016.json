@@ -1,0 +1,161 @@
+{
+ "window": "w0016",
+ "start": "03:36",
+ "end": "03:48",
+ "start_ms": 216000,
+ "end_ms": 228000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-ejemplo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Este ejemplo es un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00029",
+    "frame-4de8f12d4841c630-s0-p20520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3221f7c40054b2ecd8f632c135b22f238181056bb58f94b74c3519d52006fc88",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que el ejemplo es un rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la clasificación de este ejemplo como rango bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "c24977baddc75da1d08698834a59f5ccd52f1064c2d5d855c52d22fa30dc65e5"
+    ],
+    "response_id": "gen-1790889423-G9dbPLCjniqIrLUtRyv3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-toma-alto-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En este ejemplo, la vela toma el alto del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00029",
+    "frame-4de8f12d4841c630-s0-p20520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3a93eabccf3d000f949e335661b48de06c8b93822cf130b564376c1aa9dadfc4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente «la vela toma el alto» del rango descrito."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "«En este ejemplo» solo limita la proposición al ejemplo mostrado y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "c24977baddc75da1d08698834a59f5ccd52f1064c2d5d855c52d22fa30dc65e5"
+    ],
+    "response_id": "gen-1790889423-G9dbPLCjniqIrLUtRyv3"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00029",
+   "start_ms": 215740,
+   "end_ms": 228940,
+   "text": "adentro va a completarlo más ejemplos este aquí es un rango bajista la vela toma el alto cierra"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19440000-canonical-v1",
+   "pts_ms": 216000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19620000-canonical-v1",
+   "pts_ms": 218000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19710000-canonical-v1",
+   "pts_ms": 219000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19800000-canonical-v1",
+   "pts_ms": 220000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19890000-canonical-v1",
+   "pts_ms": 221000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19980000-canonical-v1",
+   "pts_ms": 222000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20160000-canonical-v1",
+   "pts_ms": 224000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20520000-canonical-v1",
+   "pts_ms": 228000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

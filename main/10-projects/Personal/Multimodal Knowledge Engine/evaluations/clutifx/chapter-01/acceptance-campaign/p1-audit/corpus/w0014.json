@@ -1,0 +1,332 @@
+{
+ "window": "w0014",
+ "start": "03:04",
+ "end": "03:17",
+ "start_ms": 184000,
+ "end_ms": 197000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borrar-linea-superior-senalada",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Borrar la línea horizontal superior señalada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "frame-4de8f12d4841c630-s0-p16560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "09d805248224c0a9b67d4dabcc8084e2a80f756d3d709e26fc1bc9ae9b663344",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica «borrar esto» y las imágenes muestran la línea horizontal superior en la primera y su ausencia en la segunda, mientras que la línea inferior permanece."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una única instrucción sobre una única línea."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0e6dae77f8c73ae085c1fe97841dd135225eff51dc77e3dc3725e95c741f49a3"
+    ],
+    "response_id": "gen-1790889160-B06wA1cgOq1wTUwFSWHZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplos-reales-rangos-claros",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Ya han quedado claros los ejemplos reales de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "62b421ac9dd4b7bca545ff41e6041923c4a2a13e5af80cd3643dd03326a7f492",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que los ejemplos reales de rangos «ya ha quedado claro», lo que respalda que han quedado claros."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0e6dae77f8c73ae085c1fe97841dd135225eff51dc77e3dc3725e95c741f49a3"
+    ],
+    "response_id": "gen-1790889160-B06wA1cgOq1wTUwFSWHZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-toma-high-zona-senalada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio toma el high de esa zona.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6d7bcfe646fa7dc2ecde293512b9fbff254ec567d89662e973ed04ef7a267ec2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción cited afirma explícitamente que «el precio toma el high» del rango o zona señalada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el precio alcanza el máximo de esa zona."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0e6dae77f8c73ae085c1fe97841dd135225eff51dc77e3dc3725e95c741f49a3"
+    ],
+    "response_id": "gen-1790889160-B06wA1cgOq1wTUwFSWHZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-senalada-es-rango-grafico-4h",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La zona señalada es un rango en el gráfico de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "09ec06c4e5ef99c0e8fdff684a39205146862b3c43103e723a76bee0eeed26a1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «esto aquí» es «un rango en el gráfico de 4 horas», y las imágenes muestran la zona señalada en un gráfico etiquetado «EURUSD · 4h»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la zona señalada es un rango en el gráfico de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0e6dae77f8c73ae085c1fe97841dd135225eff51dc77e3dc3725e95c741f49a3"
+    ],
+    "response_id": "gen-1790889160-B06wA1cgOq1wTUwFSWHZ"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-borrar-linea-razon-ejemplos-claros",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-borrar-linea-superior-senalada",
+   "subject_version": 1,
+   "object_id": "cl-ejemplos-reales-rangos-claros",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e5367ac58768b313c0f010be14f385d5a2c285424ac3efe65072bc431242b553",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «borrar esto porque ya ha quedado claro ejemplos reales de rangos», lo que presenta la acción de borrar como dependiente de que ya hayan quedado claros los ejemplos reales de rangos, en la orientación declarada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0e6dae77f8c73ae085c1fe97841dd135225eff51dc77e3dc3725e95c741f49a3"
+    ],
+    "response_id": "gen-1790889160-B06wA1cgOq1wTUwFSWHZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-razon-toma-high",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-zona-senalada-es-rango-grafico-4h",
+   "subject_version": 1,
+   "object_id": "cl-precio-toma-high-zona-senalada",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0eda5ba6df654e322b05cedbfb30649046a85f935d70b97c1b530715a454bfd5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la zona señalada es un rango en el gráfico de 4 horas «porque vemos como el precio toma el high de esta», lo que establece que la primera afirmación depende de la segunda en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0e6dae77f8c73ae085c1fe97841dd135225eff51dc77e3dc3725e95c741f49a3"
+    ],
+    "response_id": "gen-1790889160-B06wA1cgOq1wTUwFSWHZ"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00025",
+   "start_ms": 179900,
+   "end_ms": 188660,
+   "text": "borrar esto porque ya ha quedado claro ejemplos reales de rangos vale por ejemplo este de aquí"
+  },
+  {
+   "id": "asr-00026",
+   "start_ms": 188660,
+   "end_ms": 199000,
+   "text": "esto aquí es un rango en el gráfico de 4 horas porque vemos como el precio toma el high de esta"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16560000-canonical-v1",
+   "pts_ms": 184000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16830000-canonical-v1",
+   "pts_ms": 187000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16920000-canonical-v1",
+   "pts_ms": 188000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17010000-canonical-v1",
+   "pts_ms": 189000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17280000-canonical-v1",
+   "pts_ms": 192000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+   "pts_ms": 194000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+   "pts_ms": 196000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17730000-canonical-v1",
+   "pts_ms": 197000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

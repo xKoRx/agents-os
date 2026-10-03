@@ -1,0 +1,483 @@
+{
+ "window": "w0052",
+ "start": "12:00",
+ "end": "12:16",
+ "start_ms": 720000,
+ "end_ms": 736000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-casos-presentados-tipos-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los casos mostrados se presentan como algunos tipos de rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109",
+    "frame-4de8f12d4841c630-s0-p64800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f86e478fbd8012011f818a6815d5a955c93f5c1b1a70c89fd0777b87b34ceb1d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma expresamente: «Estos serían un poco los tipos de rangos», por lo que presenta los casos mostrados como tipos de rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente el rótulo «RANGO PENDIENTE», coherente con esa presentación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esquema-mostrado-rango-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El esquema mostrado se denominará «rango reiniciado».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00108",
+    "frame-4de8f12d4841c630-s0-p64800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f018bf46470f6f2d98a013b2cba370d41f05977c7f1b0c1e8de5e7d18db16490",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que lo mostrado se denominará «rango reiniciado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre el nombre del esquema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-rotulado-rango-pendiente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico está rotulado «RANGO PENDIENTE».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p64800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p66240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f3470415d92a0866663c14705c8be9f9dc30a0d9f8f360d12a04a0a501f1910f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran claramente la etiqueta «RANGO PENDIENTE» sobre el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-importante-comprender-terminos-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Es importante entender a qué se refieren «rango reiniciado» o «rango pendiente».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "83744f59257c91805a59bc607534c40932377db5d85856799129adbea21990bf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que es importante entender a qué se refieren «rango reiniciado» y «rango pendiente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la importancia de comprender el significado de ambos términos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-esquema-mostrado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Rango pendiente» se refiere al esquema mostrado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109",
+    "frame-4de8f12d4841c630-s0-p64800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b2530afcdd8a9003d5d7f21ee8c48a42fe021ecaa0a8ade02f73982d9ce1e86",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente el título «RANGO PENDIENTE» sobre el esquema, y la transcripción indica que «rango pendiente» se refiere a lo mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-zona-velas-derechas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El instructor dibuja un rectángulo en la zona de las velas blancas de la derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p64980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p65160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p65430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a724bb3497e15de2408eb345f873495da9def5a35077cf407f3a2894e61fba70",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos primeras citas muestran un rectángulo de anotación seleccionado alrededor de las velas blancas del sector derecho, y la tercera muestra ese mismo rectángulo ya trazado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La ubicación modifica una sola acción —dibujar el rectángulo— y no introduce otra proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reiniciado-reinicio-antes-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Rango reiniciado» significa, más o menos, reiniciar antes de ir hacia el objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "203f1bb4b1d7580c4c4f99153a7beffd120c9087652af2eb5ef4b0f3e16075df",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «reiniciado» significa «reiniciar antes de ir hacia el objetivo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el significado de «rango reiniciado»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reviews-rangos-reiniciado-pendiente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En los reviews se hablará de «rango reiniciado» o «rango pendiente».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a70a4860aab59e9ccf12cfb11eafd7d248d4344d42f17d66c68491b9a356231a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «en los reviews se va a hablar de rango reiniciado o rango pendiente», lo que respalda directamente la proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-comprender-rangos-depende-reviews",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-importante-comprender-terminos-rango",
+   "subject_version": 1,
+   "object_id": "cl-reviews-rangos-reiniciado-pendiente",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aa767f36c3326fe47e0662bd5c0ece894d43a5464a10e80e5d44b307c638b026",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que es importante entender a qué se refieren «rango reiniciado» o «rango pendiente» porque en los reviews se hablará de esos términos, lo que establece la dependencia orientada de la comprensión declarada hacia su aparición en los reviews."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reiniciado-pendiente-mismo-esquema",
+   "version": 1,
+   "type": "EQUIVALENT_TO",
+   "subject_id": "cl-esquema-mostrado-rango-reiniciado",
+   "subject_version": 1,
+   "object_id": "cl-rango-pendiente-esquema-mostrado",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109",
+    "frame-4de8f12d4841c630-s0-p64800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4689b66a20a14507960be93a4e10165f4cddf1a5a2eaf5657e0f3962ebb4c996",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona «rango reiniciado o rango pendiente» y afirma que ambos términos se refieren a «esto», mientras que la imagen_adjunta muestra el esquema rotulado «RANGO PENDIENTE». Por tanto, ambas afirmaciones identifican el mismo esquema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "a7b8bff6b8048dc8cb7e92c49a38bed49c045f5a95b74989f1bf7e0cf8c4d10c"
+    ],
+    "response_id": "gen-1790895458-Ubd0YqPSoEoQbTHb50oK"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00108",
+   "start_ms": 720020,
+   "end_ms": 725600,
+   "text": "Pues esto es lo que vamos a llamarle rango reiniciado, ¿vale?"
+  },
+  {
+   "id": "asr-00109",
+   "start_ms": 725600,
+   "end_ms": 751040,
+   "text": "La palabra reiniciado significa, pues, que hay como que reiniciar antes de ir hacia el objetivo. Rango reiniciado. ¿Vale? Estos serían un poco los tipos de rangos. Es importante que lo sepáis porque en los reviews se va a hablar de rango reiniciado o rango pendiente y tenéis que entender que se refiere a esto."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64800000-canonical-v1",
+   "pts_ms": 720000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64980000-canonical-v1",
+   "pts_ms": 722000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p65160000-canonical-v1",
+   "pts_ms": 724000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p65160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p65430000-canonical-v1",
+   "pts_ms": 727000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p65430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p65520000-canonical-v1",
+   "pts_ms": 728000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p65520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p65610000-canonical-v1",
+   "pts_ms": 729000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p65610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p65880000-canonical-v1",
+   "pts_ms": 732000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p65880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p66240000-canonical-v1",
+   "pts_ms": 736000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p66240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

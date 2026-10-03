@@ -1,0 +1,287 @@
+{
+ "window": "w0048",
+ "start": "11:08",
+ "end": "11:16",
+ "start_ms": 668000,
+ "end_ms": 676000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-copiar-grupo-velas-seleccionado",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Copiar el conjunto de velas seleccionado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "072c6f9a0fd242c306e7f1d09907d7a0af237ab358e8ca81728d5e75a34cb7dd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «Podemos copiar esto» y las imágenes muestran el conjunto de velas seleccionado siendo desplazado a otra ubicación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La instrucción contiene una sola acción: copiar el conjunto de velas seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "61b2a156a894c10659cbe1c4993bc892ea556bc75c5d163f5b575ab2f7dfdda9"
+    ],
+    "response_id": "gen-1790894250-0pdQ0F1UdUzzTif7QWL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mover-grupo-copiado-derecha",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El conjunto de velas copiado se desplaza hacia la derecha del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "928b667445d33e71f1409725ac771dcf1d9446b99287b005f0a18856579eccbe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos fotogramas muestran que el conjunto seleccionado de velas pasa de la zona central del gráfico a una posición claramente más a la derecha, mientras las velas de origen quedan a la izquierda; la transcripción confirma que se va a mover el grupo copiado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "61b2a156a894c10659cbe1c4993bc892ea556bc75c5d163f5b575ab2f7dfdda9"
+    ],
+    "response_id": "gen-1790894250-0pdQ0F1UdUzzTif7QWL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-rotulado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La gráfica muestra un ejemplo rotulado «RANGO PENDIENTE».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bcd0602e62b109f414f077b6358db06e21c1da46838a1848f466799b25817cdd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una gráfica con la etiqueta visible «RANGO PENDIENTE»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "61b2a156a894c10659cbe1c4993bc892ea556bc75c5d163f5b575ab2f7dfdda9"
+    ],
+    "response_id": "gen-1790894250-0pdQ0F1UdUzzTif7QWL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El «otro caso» se llamará «rango reiniciado».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00103"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5cc817dcdc535f54f3c03cbab45d9733bf0e21929ba68a1f1808ba84f1a86729",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada states que «el otro caso» será lo que se llamará «rango reiniciado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el nombre asignado a «el otro caso»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "61b2a156a894c10659cbe1c4993bc892ea556bc75c5d163f5b575ab2f7dfdda9"
+    ],
+    "response_id": "gen-1790894250-0pdQ0F1UdUzzTif7QWL8"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-mover-requiere-copia",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-mover-grupo-copiado-derecha",
+   "subject_version": 1,
+   "object_id": "cl-copiar-grupo-velas-seleccionado",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6af90e5b9bf700c68c3a82aad142d3e99706261e42769db6f1edc6ad8929e900",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica explícitamente que primero se puede copiar el conjunto seleccionado y luego moverlo hacia otro lugar del gráfico, lo que establece la dependencia entre mover el conjunto copiado y copiarlo previamente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "61b2a156a894c10659cbe1c4993bc892ea556bc75c5d163f5b575ab2f7dfdda9"
+    ],
+    "response_id": "gen-1790894250-0pdQ0F1UdUzzTif7QWL8"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00103",
+   "start_ms": 662140,
+   "end_ms": 670680,
+   "text": "¿Qué sería el otro caso? Vamos a verlo. Sería lo que vamos a llamar rango reiniciado, ¿vale?"
+  },
+  {
+   "id": "asr-00104",
+   "start_ms": 671280,
+   "end_ms": 676080,
+   "text": "Podemos copiar esto de aquí igual, vamos a moverlo ahí."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+   "pts_ms": 668000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60300000-canonical-v1",
+   "pts_ms": 670000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60390000-canonical-v1",
+   "pts_ms": 671000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+   "pts_ms": 672000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60570000-canonical-v1",
+   "pts_ms": 673000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60570000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60660000-canonical-v1",
+   "pts_ms": 674000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60750000-canonical-v1",
+   "pts_ms": 675000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60840000-canonical-v1",
+   "pts_ms": 676000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

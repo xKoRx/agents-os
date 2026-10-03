@@ -1,0 +1,367 @@
+{
+ "window": "w0126",
+ "start": "32:25",
+ "end": "32:40",
+ "start_ms": 1945000,
+ "end_ms": 1960000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-rango-alcista-para-comprar",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Hay que buscar un rango alcista para comprar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00281",
+    "asr-00282"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cc2730a3e6baaf9d8ec0d5c1bc0dd322d0adcb9de86c9d16102c95035a675023",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que hay que «buscar un rango alcista para comprar»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: buscar un rango alcista con el fin de comprar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "afaf4e015d17a55d9e3ffc7fd4d71f66d81e40f636e57454d5d3749a974ea6e4"
+    ],
+    "response_id": "gen-1790911417-kszz0XxNxLPwO16PX3yi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-configuracion-crea-rango-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La configuración mostrada está creando un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00285",
+    "asr-00286",
+    "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a0de1717fa6b0eaddd1c648c0fa34db045f59befb1205d9aa5e10c7830eba40e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que te está creando un rango alcista, y las imágenes muestran la configuración con el rango dibijado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la configuración mostrada está creando un rango alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "afaf4e015d17a55d9e3ffc7fd4d71f66d81e40f636e57454d5d3749a974ea6e4"
+    ],
+    "response_id": "gen-1790911417-kszz0XxNxLPwO16PX3yi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-configuracion-power-three-ideal",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si durante el power three la vela hace la configuración mostrada, es lo ideal.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00284",
+    "asr-00285",
+    "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2e229de720fbd9b9c8a4c69806adb53044d811f83ba09817c8e22f17001fd6a6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas expresan directamente la regla: durante el power three de la vela, «si te hace esto... es lo ideal», y las imágenes muestran la configuración a la que se refiere «esto»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La frase contiene una sola proposición condicional; la cláusula temporal solo restringe su alcance."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "afaf4e015d17a55d9e3ffc7fd4d71f66d81e40f636e57454d5d3749a974ea6e4"
+    ],
+    "response_id": "gen-1790911417-kszz0XxNxLPwO16PX3yi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-diferencia-cuatro-horas-0100-0500",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El esquema marca una diferencia de 4 horas entre 01:00 y 05:00.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p175230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p175680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b4b3c52dd1d1bb8532889146557abf4a0666a352199f5a661a1709897db75eb5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran las etiquetas «0100» y «0500» conectadas por una flecha y la indicación explícita «4 HORAS»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación constitute una sola proposición sobre la diferencia temporal marcada en el esquema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "afaf4e015d17a55d9e3ffc7fd4d71f66d81e40f636e57454d5d3749a974ea6e4"
+    ],
+    "response_id": "gen-1790911417-kszz0XxNxLPwO16PX3yi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-durante-power-three",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Es lógico que el rango se forme durante el power three de la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00283",
+    "asr-00284",
+    "asr-00286"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4630230c182345617f4d9ecac5d73d99592bb5df46ac0b6b96ff543722923267",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas表达了 literalmente que es lógico que el rango se forme durante el power three de la vela y añaden que está creando un rango alcista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre la formación del rango durante esa fase de la vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "afaf4e015d17a55d9e3ffc7fd4d71f66d81e40f636e57454d5d3749a974ea6e4"
+    ],
+    "response_id": "gen-1790911417-kszz0XxNxLPwO16PX3yi"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-ideal-depende-rango-alcista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-configuracion-power-three-ideal",
+   "subject_version": 1,
+   "object_id": "cl-configuracion-crea-rango-alcista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00285",
+    "asr-00286"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "16b80c0d98f1b3ae648ee6cec4738ffac5295461e7d4f5571c17811a53cf2c5a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia presenta la creación de un rango alcista como la razón («porque») por la que la configuración mostrada es ideal, lo que establece la dependencia del subject_claim respecto del object_claim en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "afaf4e015d17a55d9e3ffc7fd4d71f66d81e40f636e57454d5d3749a974ea6e4"
+    ],
+    "response_id": "gen-1790911417-kszz0XxNxLPwO16PX3yi"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00281",
+   "start_ms": 1944900,
+   "end_ms": 1947860,
+   "text": "imagínate que tú tienes que"
+  },
+  {
+   "id": "asr-00282",
+   "start_ms": 1947860,
+   "end_ms": 1949700,
+   "text": "buscar un rango alcista para comprar"
+  },
+  {
+   "id": "asr-00283",
+   "start_ms": 1949700,
+   "end_ms": 1952190,
+   "text": "pues es lógico que"
+  },
+  {
+   "id": "asr-00284",
+   "start_ms": 1952190,
+   "end_ms": 1953510,
+   "text": "durante el power three de la vela"
+  },
+  {
+   "id": "asr-00285",
+   "start_ms": 1953510,
+   "end_ms": 1956270,
+   "text": "si te hace esto, pues es lo ideal"
+  },
+  {
+   "id": "asr-00286",
+   "start_ms": 1956270,
+   "end_ms": 1958530,
+   "text": "porque te está creando un rango alcista"
+  },
+  {
+   "id": "asr-00287",
+   "start_ms": 1958530,
+   "end_ms": 1960310,
+   "text": "así imagínate"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+   "pts_ms": 1945000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175140000-canonical-v1",
+   "pts_ms": 1946000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175230000-canonical-v1",
+   "pts_ms": 1947000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175320000-canonical-v1",
+   "pts_ms": 1948000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175680000-canonical-v1",
+   "pts_ms": 1952000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175860000-canonical-v1",
+   "pts_ms": 1954000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p176040000-canonical-v1",
+   "pts_ms": 1956000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p176040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p176400000-canonical-v1",
+   "pts_ms": 1960000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p176400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

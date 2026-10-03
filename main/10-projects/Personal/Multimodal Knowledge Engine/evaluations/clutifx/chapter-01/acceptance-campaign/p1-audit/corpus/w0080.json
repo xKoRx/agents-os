@@ -1,0 +1,489 @@
+{
+ "window": "w0080",
+ "start": "20:22",
+ "end": "20:38",
+ "start_ms": 1222000,
+ "end_ms": 1238000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-objetivo-mas-arriba",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Mira a ver si existe un objetivo más arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c99271b10cb54f7c5cb060da2ef8278823da921ddd9b5f293956a377adc90d0b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica expresamente: «mirar a ver si hay un objetivo más arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: comprobar si existe un objetivo más arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eliminar-rango-tras-paso",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una vez que esto ocurre, ya puedes eliminar este rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "855562fffc5a3087a869166db0f98bfd85d7b06ad09f6bd8fe64e7a4bf696578",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, una vez que pasa esto, ya se puede eliminar el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional: si esto ocurre, se puede eliminar el rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-explicacion-estrategia-siguiente-capitulo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia se explicará un poco más en el siguiente capítulo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "059a1c157b67c5f742e42e932178d4f8585a1663d8eb3610684ce322e25d1490",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que la estrategia se explicará «un poco más» en el siguiente capítulo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una única proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-olvidar-rango-tras-paso",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una vez que esto ocurre, ya puedes olvidarte de este rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "94e2b214480ddc4d36aeca535446b35feac2c9a555a879d7fafabaa0121c3907",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, una vez que ocurre la situación, se puede eliminar u olvidar el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula temporal solo delimita la misma proposición y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-supera-rango-resaltado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio supera el borde superior del rango rectangular resaltado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p109980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p110160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p110520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0bd04739388fadd776f5efe118df371d189eff188b8dcc851ab5c0f0848c3860",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera evidencia muestra el rango rectangular resaltado con su borde superior cerca de 1,1487; en la tercera, el extremo superior de la vela de precio queda por encima de ese nivel, cerca de 1,1500."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición verificable: el precio supera el borde superior del rango señalado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reanalizar-accion-precio-tras-paso",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vuelve a analizar lo que está haciendo el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2f1f03c4eccf64cf4df3f80128e8235fc287f1c97cb1b67e2e49c0fe345e18bf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica explícitamente que, una vez pasado el punto anterior, se puede «volver a analizar lo que está haciendo el precio», lo que respalda directamente la instrucción."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: reanudar el análisis del comportamiento del precio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-resaltado-desaparece",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo resaltado desaparece de la gráfica.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p109980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p110790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3841a3df673d85543dcf313961992511f0f5f667ee3961741a0c8bed74d1ac87",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen se ve un rectángulo resaltado con tiradores de selección; en la segunda ya no aparece. La afirmación describe un único cambio visual."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-eliminar-rango-tras-supera-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-eliminar-rango-tras-paso",
+   "subject_version": 1,
+   "object_id": "cl-precio-supera-rango-resaltado",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00173",
+    "frame-4de8f12d4841c630-s0-p109980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "cf0def7d16c0431cbba13ee7e12c12f31e7596a5b0599259b5969469ae93b929",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «una vez pasa esto, ya puedes eliminar este rango», pero no identifica explícitamente «esto» con la superación del borde superior del rango. La imagen muestra el rango resaltado, pero no establece esa condición ni laVincula de forma explícita con la frase."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-olvidar-rango-tras-supera-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-olvidar-rango-tras-paso",
+   "subject_version": 1,
+   "object_id": "cl-precio-supera-rango-resaltado",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00173",
+    "frame-4de8f12d4841c630-s0-p109980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "7a9d6753d7ca6faa1f5840546f68e6ff40fe2583699de75ec01da2432ff83fd5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción vincula condicionalmente el olvidarse del rango con un antecedente vago («una vez pasa esto»), pero no identifica explícitamente ese antecedente como la superación del borde superior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El fotograma muestra el precio dentro del rango rectangular resaltado, no superándolo, por lo que tampoco permite resolver la referencia y establecer la dependencia indicada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reanalizar-tras-supera-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-reanalizar-accion-precio-tras-paso",
+   "subject_version": 1,
+   "object_id": "cl-precio-supera-rango-resaltado",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00173",
+    "frame-4de8f12d4841c630-s0-p109980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "e1ab2d98451161548570be60f9f89d26339ffe1c9cba7dd92de992237788f713",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «Una vez pasa esto» antes de ordenar volver a analizar el precio, pero no identifica expresamente «esto» como la superación del borde superior del rango. La imagen muestra el rango resaltado, aunque no representa de forma inequívoca al precio superándolo; por ello, no queda establecida la dependencia con esa afirmación objeto."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "189c6d045a431bb64f6057ef341bbbdfb43a9f2df5580a3dc932450b1d4382b2"
+    ],
+    "response_id": "gen-1790901760-STjXWyltW01uO6VgP88E"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00172",
+   "start_ms": 1221730,
+   "end_ms": 1226210,
+   "text": "¿Vale? Y sería un poco esto la idea. Este ya no importaría, este sí."
+  },
+  {
+   "id": "asr-00173",
+   "start_ms": 1226210,
+   "end_ms": 1245430,
+   "text": "Una vez pasa esto, ya puedes eliminar este rango, olvidarte de él y volver a analizar lo que está haciendo el precio, mirar a ver si hay un objetivo más arriba y bueno, ya no me adelanto mucho que lo vais a ver ya en el siguiente capítulo explicando ya un poco más la estrategia, ¿vale? Así que nada, seguimos."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p109980000-canonical-v1",
+   "pts_ms": 1222000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p109980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p110160000-canonical-v1",
+   "pts_ms": 1224000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p110160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p110520000-canonical-v1",
+   "pts_ms": 1228000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p110520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p110790000-canonical-v1",
+   "pts_ms": 1231000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p110790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p110880000-canonical-v1",
+   "pts_ms": 1232000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p110880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p110970000-canonical-v1",
+   "pts_ms": 1233000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p110970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111240000-canonical-v1",
+   "pts_ms": 1236000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111420000-canonical-v1",
+   "pts_ms": 1238000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,415 @@
+{
+ "window": "w0120",
+ "start": "30:20",
+ "end": "30:40",
+ "start_ms": 1820000,
+ "end_ms": 1840000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-movimiento-cuatro-horas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El dibujo muestra lo que ocurrió durante una vela de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p165240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p165600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6fe42ff5a1e6e6b5dad6dfba6c465edb0a1a88674b85936a5e4c1136406534b6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el dibujo representa «lo que ha pasado» durante una vela de 4 horas, y las imágenes muestran ese movimiento dibujado sobre el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el dibujo representa lo ocurrido durante una vela de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "472a3647a3fb3d386d9a0596325918a05f60710884109b8732d3401947e1e5bd"
+    ],
+    "response_id": "gen-1790910355-N8pWY3QOhLRdKKVZ9PMF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-representa-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El dibujo realizado representa una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p165240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p165600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c68c8663e5ae680c46c444234595dce001a1566af4068b9ff0accf2dc7e0ec5b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «Esto sería una vela», y las imágenes muestran un dibujo con forma de vela en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el dibujo representa una vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "472a3647a3fb3d386d9a0596325918a05f60710884109b8732d3401947e1e5bd"
+    ],
+    "response_id": "gen-1790910355-N8pWY3QOhLRdKKVZ9PMF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power-3-forma-vela",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El Power 3 se refiere a cómo se forma una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00263"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "971444fea69f204ba182fe1ba12dfb8a16b837d7965fe91c6428362018cd5e46",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que «el Power 3 se refiere a cómo se forma una vela»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que Power 3 se refiere a cómo se forma una vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "472a3647a3fb3d386d9a0596325918a05f60710884109b8732d3401947e1e5bd"
+    ],
+    "response_id": "gen-1790910355-N8pWY3QOhLRdKKVZ9PMF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-apertura",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Una de las partes de la vela es la apertura.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00264"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "878796fb8a76077621596b3451a0d98a306bd5a691f858cec0cd570394b12294",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que la vela se conforma de apertura, manipulación, distribución y cierre, por lo que sostiene que la apertura es una de sus partes."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable de forma independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "472a3647a3fb3d386d9a0596325918a05f60710884109b8732d3401947e1e5bd"
+    ],
+    "response_id": "gen-1790910355-N8pWY3QOhLRdKKVZ9PMF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cierre",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Una de las partes de la vela es el cierre.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00264"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9e1993533397e2c48009d648bcbdd1f9281914fd25d14d769801be6ed6d2ff1d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enumera el «cierre» como uno de los componentes de la vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que el cierre es una parte de la vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "472a3647a3fb3d386d9a0596325918a05f60710884109b8732d3401947e1e5bd"
+    ],
+    "response_id": "gen-1790910355-N8pWY3QOhLRdKKVZ9PMF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-distribucion",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Una de las partes de la vela es la distribución.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00264"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "93fd5de41e8be41fc055d875afb197e254f334b2b28be41fe585c839f6522942",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enumera la distribución como uno de los componentes de la vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "472a3647a3fb3d386d9a0596325918a05f60710884109b8732d3401947e1e5bd"
+    ],
+    "response_id": "gen-1790910355-N8pWY3QOhLRdKKVZ9PMF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-ejemplo-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela utilizada como ejemplo es de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8356bb2e41d478dadcd87fc6b6a3968e5b759ad98901d86d05b59694b75821c8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente «imagínate una vela de 4 horas», lo que sostiene que la vela utilizada como ejemplo dura 4 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición sobre la duración de la vela del ejemplo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "472a3647a3fb3d386d9a0596325918a05f60710884109b8732d3401947e1e5bd"
+    ],
+    "response_id": "gen-1790910355-N8pWY3QOhLRdKKVZ9PMF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-manipulacion",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Una de las partes de la vela es la manipulación.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00264"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee347e6b9ecf6557dba4015e5ac94d778405310de9f0451c3e20cdb9b34701e2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enumera la manipulación como una de las partes de la vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "472a3647a3fb3d386d9a0596325918a05f60710884109b8732d3401947e1e5bd"
+    ],
+    "response_id": "gen-1790910355-N8pWY3QOhLRdKKVZ9PMF"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00263",
+   "start_ms": 1819360,
+   "end_ms": 1825900,
+   "text": "pero para que lo veáis bien, el Power 3 se refiere a cómo se forma una vela, ¿vale?"
+  },
+  {
+   "id": "asr-00264",
+   "start_ms": 1826340,
+   "end_ms": 1836050,
+   "text": "Entonces, la vela se conforma de apertura, manipulación, distribución y cierre, ¿vale?"
+  },
+  {
+   "id": "asr-00265",
+   "start_ms": 1836670,
+   "end_ms": 1845970,
+   "text": "Esto sería una vela, os he hecho como todo el... imagínate una vela de 4 horas, pues durante 4 horas lo que ha pasado es esto, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163800000-canonical-v1",
+   "pts_ms": 1820000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163980000-canonical-v1",
+   "pts_ms": 1822000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p164070000-canonical-v1",
+   "pts_ms": 1823000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p164070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p164160000-canonical-v1",
+   "pts_ms": 1824000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p164160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p164520000-canonical-v1",
+   "pts_ms": 1828000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p164520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p164880000-canonical-v1",
+   "pts_ms": 1832000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p164880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165240000-canonical-v1",
+   "pts_ms": 1836000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165600000-canonical-v1",
+   "pts_ms": 1840000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

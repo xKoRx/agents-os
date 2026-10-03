@@ -1,0 +1,288 @@
+{
+ "window": "w0011",
+ "start": "02:29",
+ "end": "02:42",
+ "start_ms": 149000,
+ "end_ms": 162000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-entradas-sirven-para-encontrar-bias",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Encontrar las entradas sirve para encontrar el bias en general.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00021",
+    "asr-00022"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a4f3f9ca661165b11a975e19f1cf64b9e1c88d999c931cc9add16a71802924e3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada enlaza explícitamente «encontrar las entradas» con «encontrar el bias para todo», lo que respalda que前者 sirve para encontrar el bias en general."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la relación entre encontrar las entradas y encontrar el bias."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8a42140e2689e71171b49e03646b52e2524c0f54ffe81e93fdc797573d5df3c0"
+    ],
+    "response_id": "gen-1790888761-8eYVBtiJWFRVbmCWq39S"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-derecho-es-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango de la derecha es un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p13590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p14580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9e5a903b803f7f5924fc6cc04a0ed93a0c796820c721ae7a72398682ec7ae3b0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «este aquí sería un rango bajista», y las imágenes muestran ese rango a la derecha del rango etiquetado como «rango alcista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: la clasificación del rango derecho como bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8a42140e2689e71171b49e03646b52e2524c0f54ffe81e93fdc797573d5df3c0"
+    ],
+    "response_id": "gen-1790888761-8eYVBtiJWFRVbmCWq39S"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-izquierdo-es-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango de la izquierda es un rango alcista.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p13860000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "44b239cfd99f2c2416b4e5fc3d4c2c1e16bbe5a7389f5878b703d1fef02f15eb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra dos rangos y etiqueta explícitamente el de la izquierda como «rango alcista»; la transcripción también lo identifica como tal."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango de la izquierda es alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8a42140e2689e71171b49e03646b52e2524c0f54ffe81e93fdc797573d5df3c0"
+    ],
+    "response_id": "gen-1790888761-8eYVBtiJWFRVbmCWq39S"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-importantes-para-encontrar-entradas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son muy importantes para encontrar las entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00021"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "eb843cb329404796e1ed58b49aefa02d347683c9f26c59c0ba154b907dcb86b4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que algo «es muy importante para encontrar las entradas», pero no identifica explícitamente a ese algo como «los rangos»."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8a42140e2689e71171b49e03646b52e2524c0f54ffe81e93fdc797573d5df3c0"
+    ],
+    "response_id": "gen-1790888761-8eYVBtiJWFRVbmCWq39S"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-uso-principal-rangos-no-mencionado-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El uso principal de los rangos en la estrategia no está mencionado en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020",
+    "asr-00021"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1473c41a579434d600388f42da1fa137e1ef87ee2f91de141ca96f4948f5ef7d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que la estrategia se basa principalmente en los rangos y que esto no está mencionado en el curso intermedio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8a42140e2689e71171b49e03646b52e2524c0f54ffe81e93fdc797573d5df3c0"
+    ],
+    "response_id": "gen-1790888761-8eYVBtiJWFRVbmCWq39S"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00020",
+   "start_ms": 145040,
+   "end_ms": 152600,
+   "text": "este rango vale vais a ver que la estrategia se basa principalmente en los rangos y esto no está"
+  },
+  {
+   "id": "asr-00021",
+   "start_ms": 152600,
+   "end_ms": 158800,
+   "text": "mencionado en el curso intermedio y es muy importante para encontrar las entradas para"
+  },
+  {
+   "id": "asr-00022",
+   "start_ms": 158800,
+   "end_ms": 165200,
+   "text": "encontrar el bias para todo así que esto sería rango alcista y este aquí sería un rango bajista"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13410000-canonical-v1",
+   "pts_ms": 149000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13590000-canonical-v1",
+   "pts_ms": 151000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13680000-canonical-v1",
+   "pts_ms": 152000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13860000-canonical-v1",
+   "pts_ms": 154000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14040000-canonical-v1",
+   "pts_ms": 156000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14400000-canonical-v1",
+   "pts_ms": 160000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14490000-canonical-v1",
+   "pts_ms": 161000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14580000-canonical-v1",
+   "pts_ms": 162000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

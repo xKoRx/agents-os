@@ -1,0 +1,598 @@
+{
+ "window": "w0013",
+ "start": "02:56",
+ "end": "03:03",
+ "start_ms": 176000,
+ "end_ms": 183000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borrar-anotaciones-rango",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a borrar las anotaciones de los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "frame-4de8f12d4841c630-s0-p16200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5dba9787d5accc14c34ff91026788ecc1e5d0a7a2e878fcc55ce9e87e45e2bd8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «borrar esto» mientras se señala un rango, y las imágenes muestran las anotaciones «rango bajista» y «rango alcista», su selección y, finalmente, su eliminación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: borrar las anotaciones de los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-marco-temporal-5m-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico cambia del marco temporal de 5 minutos al de 4 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16110000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c2caaa9aaba361a8b854fd127a13f736538e8e8239df76da32cb6097f10f55ad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra EURUSD en 5 minutos (5M) y la segunda muestra EURUSD en 4 horas (240M), por lo que las evidencias ordenadas respaldan el cambio de marco temporal."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: el paso del marco de 5 minutos al de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comprension-sera-mas-facil",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Va a ser mucho más fácil de entender.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00024"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "13b0e785ed3b363ae6155a7c7041d0e6d07863bb8d3e7355ed4207064292246f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que «va a ser mucho más fácil de entender»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que algo será mucho más fácil de entender."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comprension-visual-mas-clara",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Vais a ver más claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00024"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fb3f11512a0bfcc9f0fd649839de092e4e9c1e5d29b7633ae3bffa9c08bd0c46",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada contiene exactamente la afirmación «vais a ver más claro»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola predicción sobre una mayor claridad de lo que verán."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-desaparicion-anotaciones-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Las anotaciones mostradas en el gráfico desaparecen.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a5a26de3df0d392a0d51470bdd0c0a11e94df143ab030bbbae1956d5cdab7a4e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra anotaciones visibles en el gráfico, incluida la zona sombreada con las etiquetas «rango bajista» y «rango alcista»; en la segunda imagen esas anotaciones ya no están visibles."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: las anotaciones del gráfico desaparecen."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esquema-etiquetado-rango-alcista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema situado a la izquierda está etiquetado como «rango alcista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p15840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p15930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dd48ccf945e4f6171b8affe7da5c5c38e8c58af2fb5544687ec3b0543ac8ccd8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes citadas muestran que el esquema situado a la izquierda tiene la etiqueta «rango alcista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esquema-etiquetado-rango-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema situado a la derecha está etiquetado como «rango bajista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p15840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p15930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "212b75d83262a2ba7aa151e9547c87808db1925cd0bb1759e9b14f9642fb9960",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En las tres imágenes, el esquema situado a la derecha aparece etiquetado visiblemente como «rango bajista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-real-etiquetado-rango-alcista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango del gráfico real de 4 horas está etiquetado como «rango alcista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e69301d3230a762bb2dbd85c20a1aff7d2cac33b29cfe9599cbcd154b3b74e65",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un gráfico de EURUSD de 4 h con la etiqueta visible «rango optimista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-real-etiquetado-rango-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango del gráfico real de 4 horas está etiquetado como «rango bajista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a8578ad2ef352dc01af23a4d53794e23e2bed8af5e7cec3ccdd7ddd265ad0f29",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran un gráfico de EURUSD de 4 horas con la etiqueta visible «rango bajista» junto al rango correspondiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-material-ya-claro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto ya ha quedado claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4187fe26fb54e3ff3db4a129d0f04934167e6899bd7011b3ef07bb993620e56f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «ya ha quedado claro», respaldando la proposición de que esto ya ha quedado claro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mostrar-ejemplos-reales-rangos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a ver ejemplos reales de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "frame-4de8f12d4841c630-s0-p16110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "82a22b999d60c739b7dd8a719bf74442c97d80bfc1fe26324960b6d999da5e5b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited speech explicitly mentions «ejemplos reales de rangos» and introduces one with «por ejemplo este de aquí»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited frames visibly show a trading chart labeled «rango bajista» and «rangoalcista», corroborating that a range example is being presented."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement makes one proposition: the presenter is about to show real examples of ranges."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-rango-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La anotación «rango bajista» aparece seleccionada en azul.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c5cccb42a69d6eba70f0d66198fb645a0e9978db19b5030f229233cd11579f0b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la anotación «rango bajista» sobre una zona horizontal resaltada en azul."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-borrado-porque-material-claro",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-borrar-anotaciones-rango",
+   "subject_version": 1,
+   "object_id": "cl-material-ya-claro",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "861b933cdadedcfee5c35414c19d88bc047c6f6e967be0668f918d773aeaffe4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «borrar esto porque ya ha quedado claro», lo que establece explícitamente que la acción de borrar depende de que el material ya esté claro, en la orientación declarada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "47dc4f3b51be7ef9e3d89a0c89a7e8dbf0331a941bbb89df85eabb67218f9d82"
+    ],
+    "response_id": "gen-1790889045-tM0grTwJMhtWgHVQrPLH"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00024",
+   "start_ms": 171300,
+   "end_ms": 179900,
+   "text": "vais a ver más claro y va a ser mucho más fácil de entender ya veréis vamos un momento aquí déjame"
+  },
+  {
+   "id": "asr-00025",
+   "start_ms": 179900,
+   "end_ms": 188660,
+   "text": "borrar esto porque ya ha quedado claro ejemplos reales de rangos vale por ejemplo este de aquí"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15840000-canonical-v1",
+   "pts_ms": 176000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15930000-canonical-v1",
+   "pts_ms": 177000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16020000-canonical-v1",
+   "pts_ms": 178000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16110000-canonical-v1",
+   "pts_ms": 179000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16200000-canonical-v1",
+   "pts_ms": 180000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16290000-canonical-v1",
+   "pts_ms": 181000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16380000-canonical-v1",
+   "pts_ms": 182000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16470000-canonical-v1",
+   "pts_ms": 183000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

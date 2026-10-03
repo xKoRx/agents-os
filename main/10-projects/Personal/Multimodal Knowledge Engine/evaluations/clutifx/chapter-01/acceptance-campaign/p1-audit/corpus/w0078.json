@@ -1,0 +1,84 @@
+{
+ "window": "w0078",
+ "start": "19:54",
+ "end": "20:07",
+ "start_ms": 1194000,
+ "end_ms": 1207000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00168",
+   "start_ms": 1179620,
+   "end_ms": 1197440,
+   "text": "Este rango ya se puede eliminar y del mismo caso, si cierra afuera, esto ya no es un rango. Si tenemos una idea alcista, tendremos que esperar ahora a que una nueva vela, bueno, la dejo aquí marcada, en este caso, ello, esto ya no es un rango."
+  },
+  {
+   "id": "asr-00169",
+   "start_ms": 1197440,
+   "end_ms": 1208710,
+   "text": "¿Y qué tenemos que esperar ahora? Que la nueva vela abra, tome el low, así, forme nuevo rango y tenemos el objetivo aquí."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107460000-canonical-v1",
+   "pts_ms": 1194000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107640000-canonical-v1",
+   "pts_ms": 1196000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107730000-canonical-v1",
+   "pts_ms": 1197000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107820000-canonical-v1",
+   "pts_ms": 1198000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108000000-canonical-v1",
+   "pts_ms": 1200000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108090000-canonical-v1",
+   "pts_ms": 1201000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108360000-canonical-v1",
+   "pts_ms": 1204000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108630000-canonical-v1",
+   "pts_ms": 1207000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

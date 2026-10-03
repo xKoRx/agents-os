@@ -1,0 +1,529 @@
+{
+ "window": "w0055",
+ "start": "12:58",
+ "end": "13:07",
+ "start_ms": 778000,
+ "end_ms": 787000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-1d-rectangulos-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico diario muestra dos rectángulos alrededor de grupos de velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6649edd6f698257ac64beb9b974428703f45115630540d2e21da325dbc8fe92c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un gráfico de EURUSD con periodicity 1D y dos rectángulos delineados que abiotic grupos de velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-4h-rectangulo-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de 4 horas muestra un rectángulo alrededor de un grupo de velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4b32086e3ff54da18524a9595f4868724b497269cdccac515d38993b2e58b02a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El primer fotograma indica «EURUSD · 4h» y muestra un contorno rectangular alrededor de un grupo de velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-activo-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico corresponde al par EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c2ea51ebccea12610ead1bc4f6774438289c87d840f02635637585c41c891ccc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «EURUSD» en la parte superior y junto a «EURUSD | 15M» en la parte inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-objetivo-diario",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se va a buscar el objetivo diario en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "429b67567da825d5cbead3aa04e0f78c234884d35e4c64b811e3594029400f58",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia declara que van a buscar en el gráfico el objetivo diario."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre esa acción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-intervalo-a-1d",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El intervalo del gráfico se cambia de 4 horas a 1D (diario).",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70470000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "b0ad29984a4bd33475348a74861ccb4ed6745211ca7967fc2f1c5692d1dd4089",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran el gráfico en el intervalo 1D."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Ninguna de las imágenes evidencia el intervalo previo de 4 horas ni muestra explícitamente el cambio de 4 horas a 1D."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-intervalo-a-4h",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El intervalo del gráfico se cambia de 15 minutos a 4 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f78c0efe5ef4b3973d95b2490dc300db596ffb20f1cf80716b3aa7c7c15dc8d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el gráfico de EURUSD en 15 minutos; la segunda muestra el diálogo «Cambiar intervalo» con «4H / 4 horas» seleccionado; y la tercera muestra el gráfico ya en EURUSD 4h (240M)."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dialogo-opcion-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El diálogo «Cambiar intervalo» muestra la opción «4H».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70110000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cd628d4284c46c3083a2b3ef5b060c85fffb328418ac357785e2bfc4c3a67655",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el diálogo «Cambiar intervalo» con la opción «4H» visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intervalo-inicial-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de EURUSD se muestra inicialmente con un intervalo de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "1e2122eedab530297612a75dde40af8b04f29c7753373c3f19285f93ef0a8b0f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The frame shows an EURUSD chart configured to 15 minutes, but a single frame does not establish that this was the initial interval."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-horizontal-113572",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal etiquetada en 1,13572.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b9a84a8c447d45a21d3f8da4f9c182a87801fb4b0f44b85b5e09e6b540ad8f16",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambas imágenes muestran una línea horizontal con la etiqueta 1,13572 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mostrar-ejemplo-grafico",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se va a mostrar un ejemplo en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c6e194d45b07111e062b95241c517f84a614322c35cbbacafc0265099d8d2abf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia anuncia expresamente que van a ver un ejemplo en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diario-115803",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea horizontal superior del gráfico diario, etiquetada en 1,15803, representa el objetivo diario mencionado.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p70830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e7b7235380115e27b588175ed94495eb4dfe7fdbc6be4250f40e2395e0739fbc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica «el objetivo este diario de aquí arriba», y la imagen muestra una línea horizontal superior etiquetada 1.15803 en el gráfico diario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diario-mismo-ejemplo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo diario mostrado es el mismo que se estaba explicando como ejemplo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "294a9d8848399c3f0c90661cc1cd833285dc9fa1372e5848ede0f86601f0c0f6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el objetivo diario mostrado «es el mismo que estaba explicando de ejemplo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7cdb0e770a3605ea2075df15c4ee4de978811433c2b4f0ed38867fd999f02fc5"
+    ],
+    "response_id": "gen-1790895905-ZxeCCaVQY405AF11akBW"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00111",
+   "start_ms": 768600,
+   "end_ms": 788180,
+   "text": "Espero que haya quedado claro. Vamos a ver algún ejemplo de esto en el gráfico ahora. Así que vamos allá. ¿Vale? Vamos a buscar, por ejemplo, teníamos el objetivo este diario de aquí arriba, que es el mismo que estaba explicando de ejemplo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+   "pts_ms": 778000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70110000-canonical-v1",
+   "pts_ms": 779000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70200000-canonical-v1",
+   "pts_ms": 780000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70290000-canonical-v1",
+   "pts_ms": 781000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70380000-canonical-v1",
+   "pts_ms": 782000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70470000-canonical-v1",
+   "pts_ms": 783000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70560000-canonical-v1",
+   "pts_ms": 784000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70830000-canonical-v1",
+   "pts_ms": 787000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

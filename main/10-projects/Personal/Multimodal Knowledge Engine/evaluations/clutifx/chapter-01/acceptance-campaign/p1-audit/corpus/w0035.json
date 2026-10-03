@@ -1,0 +1,401 @@
+{
+ "window": "w0035",
+ "start": "07:43",
+ "end": "07:56",
+ "start_ms": 463000,
+ "end_ms": 476000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-existen-senales-continuacion",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay señales de continuación.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00063"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "31512b72028bdc6f5f32e163ac391b8324f24895849cc6b54a01fd65b5605566",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada menciona explícitamente «señales de continuación», lo que respalda la existencia de ese tipo de señales."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que hay señales de continuación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2403c4a85064f7f6b3717ca4aff54f41ada19b0b38f56ae3a27a37e3736c9561"
+    ],
+    "response_id": "gen-1790892362-mSQCYN4eZD2oGR1C1Xbu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-existen-senales-reversion",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay señales de reversión.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00062"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8adc273618c2425b26e36c19a7d8fa5a613affaee989bf74926f98c77ff4ff4c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente «hay señales de reversión»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: que existen señales de reversión."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2403c4a85064f7f6b3717ca4aff54f41ada19b0b38f56ae3a27a37e3736c9561"
+    ],
+    "response_id": "gen-1790892362-mSQCYN4eZD2oGR1C1Xbu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafica-activo-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado corresponde al EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p42480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "01c3be50ab3ca90f113beebcbd9b29cb2035b945b5888c648ada90513c226f3e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «EURUSD» en la parte superior del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2403c4a85064f7f6b3717ca4aff54f41ada19b0b38f56ae3a27a37e3736c9561"
+    ],
+    "response_id": "gen-1790892362-mSQCYN4eZD2oGR1C1Xbu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafica-rangos-recuadrados",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra varios rangos encerrados en recuadros.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p41850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b479c341fffe42d95a64aa825c5e3f653db1c501e2824f580cdebabf3daa958",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran varios regiones rectangulares trazadas alrededor de diferentes rangos de velas del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola proposición visual: la existencia de varios rangos encerrados en recuadros."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2403c4a85064f7f6b3717ca4aff54f41ada19b0b38f56ae3a27a37e3736c9561"
+    ],
+    "response_id": "gen-1790892362-mSQCYN4eZD2oGR1C1Xbu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafica-timeframe-diario",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado utiliza velas diarias.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p42480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a02ea1bed09f0e67f03289474e6d0ad045b3f86ff580eb50d6451699926be492",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un gráfico de EURUSD con velas en el intervalo «1D», indicado tanto en el título del gráfico como en la barra inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2403c4a85064f7f6b3717ca4aff54f41ada19b0b38f56ae3a27a37e3736c9561"
+    ],
+    "response_id": "gen-1790892362-mSQCYN4eZD2oGR1C1Xbu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-importancia-rangos-navegar-precio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La importancia de los rangos de nuestra estrategia es, básicamente, navegar al precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1dbbcca1eeb86ac61541f4d320fd00395b0c109586996d9206372ed000196d31",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que la importancia de los rangos de la estrategia es, básicamente, navegar al precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre la importancia de esos rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2403c4a85064f7f6b3717ca4aff54f41ada19b0b38f56ae3a27a37e3736c9561"
+    ],
+    "response_id": "gen-1790892362-mSQCYN4eZD2oGR1C1Xbu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-conocer-destino-potencial",
+   "kind": "rule",
+   "version": 1,
+   "statement": "También hay que saber hacia dónde puede ir el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00062"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "60df98975183532aed4664ad195b9d179357678682760ad2b19d08128df8eb92",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que hay que saber hacia dónde puede ir, pero no identifica explícitamente el objeto como el precio ni respalda el marcador «también»."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2403c4a85064f7f6b3717ca4aff54f41ada19b0b38f56ae3a27a37e3736c9561"
+    ],
+    "response_id": "gen-1790892362-mSQCYN4eZD2oGR1C1Xbu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-conocer-direccion-precio",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Hay que saber hacia dónde va el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061",
+    "asr-00062"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "63ec2914b1769e7470ae500da793fb1c3abe7e197bfd03c4e911d6bdd9ffa8b1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada indica que hay que saber hacia dónde va el precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2403c4a85064f7f6b3717ca4aff54f41ada19b0b38f56ae3a27a37e3736c9561"
+    ],
+    "response_id": "gen-1790892362-mSQCYN4eZD2oGR1C1Xbu"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00061",
+   "start_ms": 461450,
+   "end_ms": 466570,
+   "text": "qué importancia tienen los rangos de nuestra estrategia es básicamente navegar al precio y"
+  },
+  {
+   "id": "asr-00062",
+   "start_ms": 466570,
+   "end_ms": 474530,
+   "text": "saber pues hacia dónde va por qué hacia dónde puede ir después hay señales de reversión hay"
+  },
+  {
+   "id": "asr-00063",
+   "start_ms": 474530,
+   "end_ms": 481460,
+   "text": "señales de continuación vale normalmente si la vela cierra fuera y no te forma un rango bajista"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41670000-canonical-v1",
+   "pts_ms": 463000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41760000-canonical-v1",
+   "pts_ms": 464000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41850000-canonical-v1",
+   "pts_ms": 465000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41940000-canonical-v1",
+   "pts_ms": 466000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42030000-canonical-v1",
+   "pts_ms": 467000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42120000-canonical-v1",
+   "pts_ms": 468000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42480000-canonical-v1",
+   "pts_ms": 472000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42840000-canonical-v1",
+   "pts_ms": 476000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

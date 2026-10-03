@@ -1,0 +1,409 @@
+{
+ "window": "w0023",
+ "start": "05:04",
+ "end": "05:16",
+ "start_ms": 304000,
+ "end_ms": 316000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-completar-rango-bajista-ahora",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio va a completar el rango bajista ahora.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00042"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a20a6f8e27d7960cafb34e0af8eb1b95358f7df4913536007eb7aa68f16fa54a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma exactamente que el precio «va a completar el rango bajista ahora»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola predicción sobre el movimiento del precio; «ahora» solo acota el tiempo de esa misma predicción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3c30367eea8d6db81aaaaaeb10f2fdcb28f652e646834536687598080295e48"
+    ],
+    "response_id": "gen-1790890272-X7CPr7k8L4gQ2bhljLHi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-posible-rango-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A partir de aquí, a lo mejor el precio forma un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00041"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4fdabbc5e4da9e026058cb6e77357b02b84f8671cdca6f1d29b77f27d81b513c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que, a partir de ese punto, «a lo mejor» se forma un rango bajista, lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que el precio forme un rango bajista a partir de ese punto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3c30367eea8d6db81aaaaaeb10f2fdcb28f652e646834536687598080295e48"
+    ],
+    "response_id": "gen-1790890272-X7CPr7k8L4gQ2bhljLHi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-apareja-todo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio utiliza esta manera para aparejarlo todo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00043"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e85d835ab74ce05ba23ca695aaf696be766ac026b9ac7c18a10b2001f6cdc5d5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que «el precio utiliza esta manera» para «aparejando todo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el uso de esa manera por parte del precio para aparejarlo todo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3c30367eea8d6db81aaaaaeb10f2fdcb28f652e646834536687598080295e48"
+    ],
+    "response_id": "gen-1790890272-X7CPr7k8L4gQ2bhljLHi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-completa-ordenes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio utiliza esta manera para ir completando las órdenes.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00043"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ffa6fad9f1a0602d3e3e63b522d030db28628f5e50a18fabdb4e07ff9cb788ae",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que el precio utiliza esa manera para ir completando las órdenes."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el precio utiliza esa manera para completar las órdenes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3c30367eea8d6db81aaaaaeb10f2fdcb28f652e646834536687598080295e48"
+    ],
+    "response_id": "gen-1790890272-X7CPr7k8L4gQ2bhljLHi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-usa-alto-vela",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango bajista se forma tomando el alto de esta vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00041"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f783c2f0e35524ff7a68d4660db2572412b3bac7da65bafb6655d3725c9cd2e6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona la posibilidad de que se forme un rango bajista tomando el alto de esta vela, pero el modal «a lo mejor» no respalda la afirmación categórica del enunciado."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3c30367eea8d6db81aaaaaeb10f2fdcb28f652e646834536687598080295e48"
+    ],
+    "response_id": "gen-1790890272-X7CPr7k8L4gQ2bhljLHi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-vela-eurusd-15m",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se marca un rectángulo sobre la vela actual del gráfico de EURUSD de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p28080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8d7055a67d5624a511f99db222bcea737ab08f810940a31baecd0bcfdd1266f5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un rectángulo seleccionado alrededor de la vela actual situada a la derecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La interfaz identifica el gráfico como EURUSD y el período como 15 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3c30367eea8d6db81aaaaaeb10f2fdcb28f652e646834536687598080295e48"
+    ],
+    "response_id": "gen-1790890272-X7CPr7k8L4gQ2bhljLHi"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-alto-vela-depende-rango-bajista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-usa-alto-vela",
+   "subject_version": 1,
+   "object_id": "cl-posible-rango-bajista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00041"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c7ca3844ae8023fdea12e82142ba85393acbfed0e5cad9799cf46afdc1879fbb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia une directamente la posible formación de un rango bajista «a partir de aquí» con la indicación de que se forma «tomando el alto de esta vela», en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3c30367eea8d6db81aaaaaeb10f2fdcb28f652e646834536687598080295e48"
+    ],
+    "response_id": "gen-1790890272-X7CPr7k8L4gQ2bhljLHi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-completar-rango-depende-formacion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-completar-rango-bajista-ahora",
+   "subject_version": 1,
+   "object_id": "cl-posible-rango-bajista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00041",
+    "asr-00042"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3ea35ebf99ba24a162dcc95f582cbcab94ffc8d9df658845a4a82cde6822aa0d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia afirma que el precio va a completar ahora el rango bajista, mientras que la primera plantea que ese rango puede formarse ahora; completar dicho rango presupone su formación, en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b3c30367eea8d6db81aaaaaeb10f2fdcb28f652e646834536687598080295e48"
+    ],
+    "response_id": "gen-1790890272-X7CPr7k8L4gQ2bhljLHi"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00041",
+   "start_ms": 299680,
+   "end_ms": 306860,
+   "text": "a partir de aquí a lo mejor nos forma ahora un rango bajista tomando el alto de esta vela lo"
+  },
+  {
+   "id": "asr-00042",
+   "start_ms": 306860,
+   "end_ms": 310720,
+   "text": "Lo que va a hacer el precio es ir a completar el rango bajista ahora."
+  },
+  {
+   "id": "asr-00043",
+   "start_ms": 311200,
+   "end_ms": 317960,
+   "text": "Es como que el precio utiliza esta manera como para ir completando las órdenes y aparejando todo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27360000-canonical-v1",
+   "pts_ms": 304000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27450000-canonical-v1",
+   "pts_ms": 305000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27630000-canonical-v1",
+   "pts_ms": 307000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27720000-canonical-v1",
+   "pts_ms": 308000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28080000-canonical-v1",
+   "pts_ms": 312000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28260000-canonical-v1",
+   "pts_ms": 314000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28350000-canonical-v1",
+   "pts_ms": 315000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28440000-canonical-v1",
+   "pts_ms": 316000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

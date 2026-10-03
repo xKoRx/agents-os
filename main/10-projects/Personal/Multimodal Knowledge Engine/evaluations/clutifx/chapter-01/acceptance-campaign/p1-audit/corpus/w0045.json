@@ -1,0 +1,90 @@
+{
+ "window": "w0045",
+ "start": "10:16",
+ "end": "10:32",
+ "start_ms": 616000,
+ "end_ms": 632000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00099",
+   "start_ms": 594750,
+   "end_ms": 620320,
+   "text": "Y la nueva vela que abre va a abrir por aquí y si nos toma este low por aquí y cierra adentro o reacciona en la otra vela, o sea, toma el low de la vela anterior y sube, esto es lo que llamaremos un rango pendiente."
+  },
+  {
+   "id": "asr-00100",
+   "start_ms": 620780,
+   "end_ms": 626780,
+   "text": "¿Por qué? Rango pendiente significa que es un rango que se forma a favor de nuestra tendencia."
+  },
+  {
+   "id": "asr-00101",
+   "start_ms": 629160,
+   "end_ms": 652440,
+   "text": "Déjame repetirlo que quede claro. El objetivo es alcista porque tenemos este rango diario que es alcista, diario, y luego, por ejemplo, en cuatro horas estamos subiendo y ves como este rango abre por debajo del rango anterior, lo que significa que toma el low de la vela anterior."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p55440000-canonical-v1",
+   "pts_ms": 616000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p55440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p55800000-canonical-v1",
+   "pts_ms": 620000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p55800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p55890000-canonical-v1",
+   "pts_ms": 621000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p55890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p55980000-canonical-v1",
+   "pts_ms": 622000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p55980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p56160000-canonical-v1",
+   "pts_ms": 624000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p56160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p56520000-canonical-v1",
+   "pts_ms": 628000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p56520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p56790000-canonical-v1",
+   "pts_ms": 631000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p56790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p56880000-canonical-v1",
+   "pts_ms": 632000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p56880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

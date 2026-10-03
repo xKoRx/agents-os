@@ -1,0 +1,206 @@
+{
+ "window": "w0047",
+ "start": "10:56",
+ "end": "11:07",
+ "start_ms": 656000,
+ "end_ms": 667000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-favorece-objetivo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El rango denominado «rango pendiente» va a favor de nuestro objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00102"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1090aede21bcdd1059963838e9e8ac892796ae71f58cb74ab23446bfbc495998",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «rango pendiente» es un rango que «va a favor de nuestro objetivo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición y la evidencia la respalda directamente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "484c1ac1af45056a91b1c44536a27ce19d07f4affaf215bb87811dc352feb781"
+    ],
+    "response_id": "gen-1790894200-rnC41wVyIxHAHsggkIUt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-nombre",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este rango se llama «rango pendiente».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00102",
+    "frame-4de8f12d4841c630-s0-p59310000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0c6e33f1ab9ccdccdbf6a8a1673de727c4c71acd2896b963d4b8642433bb90dc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente: «esto se llama rango pendiente», y la imagen muestra la etiqueta «RANGO PENDIENTE»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el nombre de ese rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "484c1ac1af45056a91b1c44536a27ce19d07f4affaf215bb87811dc352feb781"
+    ],
+    "response_id": "gen-1790894200-rnC41wVyIxHAHsggkIUt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-nombre",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Al otro caso lo llamaremos «rango reiniciado».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00103"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "97a70f814fb5f12918fc12da021b774209f5696eaf7389b9e23b34fa428a2701",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que el «otro caso» es lo que se llamará «rango reiniciado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la asignación de ese nombre al otro caso."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "484c1ac1af45056a91b1c44536a27ce19d07f4affaf215bb87811dc352feb781"
+    ],
+    "response_id": "gen-1790894200-rnC41wVyIxHAHsggkIUt"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00102",
+   "start_ms": 652440,
+   "end_ms": 661680,
+   "text": "perdón, esto se llama rango pendiente, porque es un rango que va a favor de nuestro objetivo, ¿vale?"
+  },
+  {
+   "id": "asr-00103",
+   "start_ms": 662140,
+   "end_ms": 670680,
+   "text": "¿Qué sería el otro caso? Vamos a verlo. Sería lo que vamos a llamar rango reiniciado, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59040000-canonical-v1",
+   "pts_ms": 656000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59310000-canonical-v1",
+   "pts_ms": 659000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59400000-canonical-v1",
+   "pts_ms": 660000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59580000-canonical-v1",
+   "pts_ms": 662000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59760000-canonical-v1",
+   "pts_ms": 664000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59850000-canonical-v1",
+   "pts_ms": 665000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59940000-canonical-v1",
+   "pts_ms": 666000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60030000-canonical-v1",
+   "pts_ms": 667000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

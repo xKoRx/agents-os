@@ -1,0 +1,406 @@
+{
+ "window": "w0019",
+ "start": "04:20",
+ "end": "04:28",
+ "start_ms": 260000,
+ "end_ms": 268000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-apertura-dialogo-cambiar-intervalo",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se abre el diálogo «Cambiar intervalo».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6fdc86b4936415ca1ecffc1a8929a3f552df734474bea04836cdca6a68d36f1f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra visible y abierto el diálogo titulado «Cambiar intervalo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que ese diálogo se abre."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b79f5372c2fe99921f6f598dc4a03a6ec58f0bffcf265ed0b16b5cfa285902a0"
+    ],
+    "response_id": "gen-1790889823-QDpOky2dQvNKieVfanif"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dialogo-muestra-un-minuto",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El diálogo «Cambiar intervalo» muestra el valor 1 y la indicación «1 minuto».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "63298c24702230604dec61f85bbf9dc165c4cea5a63430d2f8f29cc55c36f3fb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el diálogo «Cambiar intervalo» con el valor «1» y la indicación «1 minuto»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Son dos detalles de la interfaz evaluables de forma independiente, aunque corroboran la misma unidad de tiempo."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b79f5372c2fe99921f6f598dc4a03a6ec58f0bffcf265ed0b16b5cfa285902a0"
+    ],
+    "response_id": "gen-1790889823-QDpOky2dQvNKieVfanif"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-existen-mas-tipos-de-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Tenemos más tipos de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00035"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3ea55d70d3149de09704c5ac3ef80245783b1f76a358681cb02aa78003bd6180",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente «tenemos más tipos de rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que existe más de un tipo de rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b79f5372c2fe99921f6f598dc4a03a6ec58f0bffcf265ed0b16b5cfa285902a0"
+    ],
+    "response_id": "gen-1790889823-QDpOky2dQvNKieVfanif"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-inicial-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico inicial de EURUSD usa el intervalo 1D.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1a5f0dd13d1ff4a35770679f52835c0dae794c95dcbc5835861e2acbca591e7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra inicialmente «EURUSD · 1D · FOREX.com» en la cabecera del gráfico; la segunda muestra posterior el diálogo para cambiar el intervalo a 1 minuto."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el intervalo inicial del gráfico de EURUSD es 1D."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b79f5372c2fe99921f6f598dc4a03a6ec58f0bffcf265ed0b16b5cfa285902a0"
+    ],
+    "response_id": "gen-1790889823-QDpOky2dQvNKieVfanif"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-posterior-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico posterior de EURUSD usa el intervalo de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23580000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "59aa6a53365fc9d3e7daadc594c286e8d177c53891e51a2beda18d88c020b161",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes citadas muestran explícitamente «EURUSD | 15M» y el encabezado «EURUSD · 15 · FOREX.com», por lo que respaldan que el gráfico usa un intervalo de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el gráfico de EURUSD utiliza velas o datos de 15 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b79f5372c2fe99921f6f598dc4a03a6ec58f0bffcf265ed0b16b5cfa285902a0"
+    ],
+    "response_id": "gen-1790889823-QDpOky2dQvNKieVfanif"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-en-zona-de-mayo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico diario muestra un rectángulo superpuesto alrededor de una zona de velas de finales de mayo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4093d5691e320301a7e33b921e7b967979ff055babf1f6d08ce762d3025cddb8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un gráfico diario de EURUSD con un rectángulo superpuesto alrededor de varias velas située a finales de mayo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b79f5372c2fe99921f6f598dc4a03a6ec58f0bffcf265ed0b16b5cfa285902a0"
+    ],
+    "response_id": "gen-1790889823-QDpOky2dQvNKieVfanif"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-simbolo-mostrado-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El símbolo mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "83babfe646988523cc456ae533ecbc7351ae30344b8c27fe2389bec3d54e5273",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran explícitamente la etiqueta «EURUSD» en la interfaz del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el símbolo mostrado es EURUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b79f5372c2fe99921f6f598dc4a03a6ec58f0bffcf265ed0b16b5cfa285902a0"
+    ],
+    "response_id": "gen-1790889823-QDpOky2dQvNKieVfanif"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vista-final-sin-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La ventana visible del gráfico no muestra velas en las últimas imágenes.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5eb433e0ae2f25cb5f31c02900fc972065619de75d1c45833c01ae73160584b1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran la ventana del gráfico prácticamente vacía, sinrepresentation visible de velas; solo se ven ejes, cuadrícula y controles."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b79f5372c2fe99921f6f598dc4a03a6ec58f0bffcf265ed0b16b5cfa285902a0"
+    ],
+    "response_id": "gen-1790889823-QDpOky2dQvNKieVfanif"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00034",
+   "start_ms": 255260,
+   "end_ms": 261470,
+   "text": "en el vídeo del bias pero para que quede claro el concepto de rango vale ahora dentro de los"
+  },
+  {
+   "id": "asr-00035",
+   "start_ms": 261470,
+   "end_ms": 269600,
+   "text": "rangos tenemos más tipos de rangos que nosotros hemos llamado así básicamente importante todo"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23400000-canonical-v1",
+   "pts_ms": 260000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23490000-canonical-v1",
+   "pts_ms": 261000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23580000-canonical-v1",
+   "pts_ms": 262000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23760000-canonical-v1",
+   "pts_ms": 264000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23850000-canonical-v1",
+   "pts_ms": 265000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23940000-canonical-v1",
+   "pts_ms": 266000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24030000-canonical-v1",
+   "pts_ms": 267000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24120000-canonical-v1",
+   "pts_ms": 268000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,445 @@
+{
+ "window": "w0063",
+ "start": "14:58",
+ "end": "15:12",
+ "start_ms": 898000,
+ "end_ms": 912000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-cadena-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia es un poco como una cadena de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00122"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "254518a1991c9d96300249ac0ffa8e7c4ec863821f19ee974b6a5ec1850bbc50",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «la estrategia [...] es un poco como una cadena de rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una única proposición: la estrategia se asemeja a una cadena de rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-muestra-rangos-rectangulares",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico inicial se observan varios rangos de precio delimitados por rectángulos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p80820000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5157b6ed9a7faaf3a40816dbd143ff7939d893314f1f3edbc6d01fc1fd734dea",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes citadas muestran el gráfico inicial con varias regiones de precio encerradas por contornos rectangulares."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mencionar-tartel-sub",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Tengo que mencionar «Tartel sub» también.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00123"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "036ad81b62cde41eddf9a3675e1dd4f2c3610414442a01b1e863dc250f9dee0b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «Tartel sub» también debe mencionarse."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement solo afirma una obligación: mencionar «Tartel sub» también."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-completan-hacia-objetivos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos se van completando en dirección a los objetivos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00122"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "58fdab9ccaaccbef846dbee9300723ff2ffca9bc5d27c00e14bbd2b470cf0ebc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que los rangos se van completando en dirección a los objetivos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-aparece-mentoria",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La frase «Tartel sub» va a aparecer mucho en la mentoría.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00123"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a64b10b1fcc149b974d76eb26304281bf9b986c076076f62c2b6bedf19b2aa5e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «Tartel sub» «va a aparecer mucho en la mentoría»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-es-frase",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Tartel sub» es una frase.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00123"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ba4362405b0522e64ab0b037431f394a4a491dad4d9e7c12740ec53f71be047d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «Tartel sub» «es una frase», por lo que respalda directamente la declaración revisada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La declaración afirma una sola proposición: que «Tartel sub» es una frase."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-muy-conocido",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Tartel sub» es muy conocido.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00123"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2e5cdfe11f4aeaf383f1dcf8026b6ab25be3a220f8e9b5d8e926e1d42a3ca0bc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «Tartel sub» es muy conocido."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola proposición evaluable: que «Tartel sub» es muy conocido."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vista-inicial-grafico-8h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista inicial muestra un gráfico de 8 h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p80820000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "32732b06d28cf31152fdb4ea8539b3ea09dcc600559a0b8b50e322e340e89da9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran una vista de un gráfico etiquetado «EURUSD · 8h · FOREX.com»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la vista inicial muestra un gráfico de 8 h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vistas-posteriores-grafico-15m",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Las vistas posteriores muestran un gráfico de 15 min.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p81450000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81810000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p82080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "235e34ce9d9076675d3a06151a14ac8f7be430a7007229f880e3800a0d51650c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las cinco imágenes citadas muestran EURUSD con las etiquetas «15» y «EURUSD | 15M», que identifican un gráfico de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: las vistas muestran un gráfico de 15 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "5a7dcbc649bd8df9ec127a0403e6efb98b5fd7f93b36af0ea78fff3c29a3adf3"
+    ],
+    "response_id": "gen-1790898571-x1ND9FSoUFCKsbJpUc7U"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00122",
+   "start_ms": 895280,
+   "end_ms": 903770,
+   "text": "La estrategia ya veréis que es un poco como una cadena de rangos que se van completando en dirección a los objetivos."
+  },
+  {
+   "id": "asr-00123",
+   "start_ms": 905030,
+   "end_ms": 912260,
+   "text": "Tartel sub es muy conocido, pero tengo que mencionarlo también porque es una frase que va a aparecer mucho en la mentoría."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p80820000-canonical-v1",
+   "pts_ms": 898000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p80820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81000000-canonical-v1",
+   "pts_ms": 900000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81360000-canonical-v1",
+   "pts_ms": 904000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81450000-canonical-v1",
+   "pts_ms": 905000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81540000-canonical-v1",
+   "pts_ms": 906000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81540000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81720000-canonical-v1",
+   "pts_ms": 908000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81810000-canonical-v1",
+   "pts_ms": 909000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p82080000-canonical-v1",
+   "pts_ms": 912000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p82080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,438 @@
+{
+ "window": "w0087",
+ "start": "22:10",
+ "end": "22:17",
+ "start_ms": 1330000,
+ "end_ms": 1337000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-8h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado utiliza un marco temporal de 8 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "94b5f17b0d98519c81b73fdedd8295245c1d8ddcba8bd8807931a5d9b1706437",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La esquina superior izquierda del gráfico indica explícitamente «EURUSD · 8h», por lo que la evidencia muestra un marco temporal de 8 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado corresponde a EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b917987a091cf5405bf18bb4bf323d152de6ca87231e0fbcb86fd8a4d623fb93",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «EURUSD» en la parte superior del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el gráfico mostrado corresponde a EURUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-two-black-blocks",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En las vistas finales se observan dos bloques rectangulares negros superpuestos al gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120150000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a9f9f5c857346db4979b1e254353cc6e5f5b9c94d89909f435646e223b6eb939",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran dos grandes bloques rectangulares negros sobrepuestos al gráfico, y la afirmación describe una sola escena visual."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-examples-separate-chapter",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Los ejemplos se tratarán en un capítulo aparte.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dd277f1cb163fc845078feea573c2de0ad61af4ebe29aba0a216a229266dd0f8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica expresamente que no se entraré en los ejemplos porque se hará un capítulo aparte, lo que respalda que los ejemplos se tratarán en un capítulo separado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre el tratamiento futuro de los ejemplos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-example-detail-here",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En esta parte no se entra en detalles de ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2781cd4ae3492bdf119a4d6f14e2a3b4196d55f8b4f72985b78355938d320568",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que no entrará en detalles de ejemplos porque Joshua un capítulo aparte, lo que respalda que en esa parte no se entra en tales detalles."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-one-zone-euro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Para la explicación, una de las zonas mostradas se toma como el euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "797e4572682ed18e560b55b03a0845645681343b6d5927d643d597a1293f0352",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «esto es euro» al plantear la explicación, lo que respalda que una de las zonas mostradas se tome como euro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «para la explicación» únicamente delimita su contexto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-other-zone-pound",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Para la explicación, otra de las zonas mostradas se toma como la libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1aa01548b2aa89fc1e791690b98ea4c04560130f95c9abcf0d10355f752f4156",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia declara que una de las zonas señaladas («esto») se toma como la libra, después de identificar otra como euro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que otra zona mostrada es utilizada como libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-possible-example",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Lo que se muestra en pantalla se presenta como un ejemplo posible de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9bb127fbfcf0b4347381afe6fac3d721603408eb2dff82b600cbeb072d36e463",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «la SMT que se nos podría dar aquí es algo así», con lo que presenta lo mostrado en pantalla como un ejemplo hipotético posible de SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «posible» es un calificador de esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-omission-depends-on-separate-chapter",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-no-example-detail-here",
+   "subject_version": 1,
+   "object_id": "cl-examples-separate-chapter",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2c84afb11f88569b0e7ffe4366f8ac93463cc2190243e28935a077f899654888",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que no entrará en ejemplos «porque» hará un capítulo aparte, lo que establece la dependencia de la primera afirmación respecto de la segunda en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7a2708329d06f0a9ef0ed68517e1eac142d3fc658a08e8c99f201c3b3c7e050b"
+    ],
+    "response_id": "gen-1790902999-LH6G2BlCu1mFDv7KUf1Z"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00190",
+   "start_ms": 1315270,
+   "end_ms": 1345680,
+   "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+   "pts_ms": 1330000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119790000-canonical-v1",
+   "pts_ms": 1331000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119880000-canonical-v1",
+   "pts_ms": 1332000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119970000-canonical-v1",
+   "pts_ms": 1333000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120060000-canonical-v1",
+   "pts_ms": 1334000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120150000-canonical-v1",
+   "pts_ms": 1335000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120240000-canonical-v1",
+   "pts_ms": 1336000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120330000-canonical-v1",
+   "pts_ms": 1337000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

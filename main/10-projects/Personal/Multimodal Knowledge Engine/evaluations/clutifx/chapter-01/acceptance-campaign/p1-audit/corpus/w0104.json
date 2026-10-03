@@ -1,0 +1,329 @@
+{
+ "window": "w0104",
+ "start": "26:54",
+ "end": "27:08",
+ "start_ms": 1614000,
+ "end_ms": 1628000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-broker-si-ha-hecho-el-low",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El broker sí ha hecho el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d8e62a8033ad1fcf71f616c0f3a46225290e5058cbda5de927c7f8d66aa38de5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «broker sí ha hecho el low»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el broker ha hecho el low."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "438eccee3404bb0ae5fd89eba1b24cb63847c575c787606fceba74db1f8cd5c4"
+    ],
+    "response_id": "gen-1790907638-0IaSwBu2fK1GBN3Y2tcp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-brokers-pueden-mostrar-lows-distintos",
+   "kind": "rule",
+   "version": 1,
+   "statement": "A veces, un broker muestra el low en un nivel ligeramente distinto al de otro broker.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224",
+    "asr-00225"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3a8f3fcbaf46543156f7f29b59845ce897d0ee0087b8444b9c4a02ab49d86154",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que, a veces, el low puede verse de una forma en un broker y de otra ligeramente distinta en otro, prácticamente al mismo nivel."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la existencia de una diferencia ocasional y ligera entre la visualización del low en dos brokers."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "438eccee3404bb0ae5fd89eba1b24cb63847c575c787606fceba74db1f8cd5c4"
+    ],
+    "response_id": "gen-1790907638-0IaSwBu2fK1GBN3Y2tcp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fxcm-puede-tomar-el-low-de-forexcom",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puede que FXCM se lleve el low del ejemplo de Forex.com.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224",
+    "frame-4de8f12d4841c630-s0-p145350000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6e3d49fce7fde5166cb24c02406910c770e6a99c70b3dd46889fab4e7564e744",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice literalmente: «Por ejemplo, esto es Forexcom, pues a lo mejor a FXCM sí que se lleva el low este», lo que expresa directamente que FXCM podría llevarse ese low del ejemplo de Forex.com."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición modal y no incluye reglas, excepciones ni instrucciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "438eccee3404bb0ae5fd89eba1b24cb63847c575c787606fceba74db1f8cd5c4"
+    ],
+    "response_id": "gen-1790907638-0IaSwBu2fK1GBN3Y2tcp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-lows-comparados-son-practicamente-iguales",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Los lows de los brokers comparados son prácticamente iguales.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p145800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p146250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3c607df8ec48cdf231de9999ea001154feadeac37b7fe1cce8b6a7ce0302e714",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que es «prácticamente igual» y que en otro broker se ve así."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran los lows de la vela actual y del otro broker en niveles prácticamente coincidentes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "438eccee3404bb0ae5fd89eba1b24cb63847c575c787606fceba74db1f8cd5c4"
+    ],
+    "response_id": "gen-1790907638-0IaSwBu2fK1GBN3Y2tcp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zoom-puede-generar-duda-sobre-el-low",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Al hacer zoom, uno puede dudar de si un broker se lleva el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "a82b401a2245972f80090c2df83488635c972622adb67402d88f0bffcefde695",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción sí menciona hacer zoom y pensar «si se lo lleva o no», pero no identifica explícitamente a un broker como quien se lo lleva ni al «low» como aquello que se lleva."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposition: que al hacer zoom uno puede dudar de si un broker se lleva el low."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "438eccee3404bb0ae5fd89eba1b24cb63847c575c787606fceba74db1f8cd5c4"
+    ],
+    "response_id": "gen-1790907638-0IaSwBu2fK1GBN3Y2tcp"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-duda-zoom-depende-de-lows-casi-iguales",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-zoom-puede-generar-duda-sobre-el-low",
+   "subject_version": 1,
+   "object_id": "cl-lows-comparados-son-practicamente-iguales",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e1188c05d8d84ba6cd5c86c471edbdff67d4dd735fbdece107920e82d992fca9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula directamente la duda durante el zoom («pensando si se lo lleva o no») con la constatación posterior de que el nivel es «prácticamente igual» y de que ese comportamiento se observa en otro broker."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "438eccee3404bb0ae5fd89eba1b24cb63847c575c787606fceba74db1f8cd5c4"
+    ],
+    "response_id": "gen-1790907638-0IaSwBu2fK1GBN3Y2tcp"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00224",
+   "start_ms": 1602810,
+   "end_ms": 1618010,
+   "text": "broker sí ha hecho el low, ¿vale? Por ejemplo, esto es Forexcom, pues a lo mejor a FXCM sí que se lleva el low este. Va a haber veces que lo vas a ver así, que esto se queda"
+  },
+  {
+   "id": "asr-00225",
+   "start_ms": 1618010,
+   "end_ms": 1630490,
+   "text": "aquí y te quedas haciendo zoom pensando si se lo lleva o no y luego te das cuenta que es prácticamente igual y que en otro broker esto realmente se ve así, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145260000-canonical-v1",
+   "pts_ms": 1614000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145350000-canonical-v1",
+   "pts_ms": 1615000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145440000-canonical-v1",
+   "pts_ms": 1616000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145530000-canonical-v1",
+   "pts_ms": 1617000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145800000-canonical-v1",
+   "pts_ms": 1620000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146160000-canonical-v1",
+   "pts_ms": 1624000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146250000-canonical-v1",
+   "pts_ms": 1625000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146520000-canonical-v1",
+   "pts_ms": 1628000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,479 @@
+{
+ "window": "w0130",
+ "start": "33:48",
+ "end": "34:02",
+ "start_ms": 2028000,
+ "end_ms": 2042000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-primero",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este es el primer capítulo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00322"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "07b9ce34a1d53ec27ae53a244fa13a9b984f0e71a95b089494fedc2629afb0e9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «este es el primer capítulo», lo que respalda directamente la declaración."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La declaración contiene una sola proposición: que el capítulo es el primero."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-concepto-como-tal",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Es un concepto como tal.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00321"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "56390072cb58fa17e41a35413e6762c1e5f80cc057d45f5a40d03b40a2b04b45",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada enuncia exactamente la afirmación revisada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «como tal» modifica esa misma proposición sin añadir otra independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-despedida-al-siguiente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Nos vemos en el siguiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00323"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c1530c592a4d44bc31dcc21fb23cda45b0229fdba41977c6b4bc59ef95192a96",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice exactamente «y nos vemos en el siguiente», lo que respalda la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-duracion-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El esquema rotula una duración de «4 HORAS».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9d996563b09f644dc09559778f5ba8d5084d5be9473702e923f90b8b05877210",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra claramente la etiqueta «4 HORAS» junto al esquema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gracias-cierre",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La pantalla final muestra «GRACIAS».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p183780000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "27e0b28c4fb2233dfeb69576f86cd669a04ce62f066cc5d0646c26e04733b320",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra de forma legible la palabra «GRACIAS» en la pantalla final."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-llamado-visitar-mas-cursos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La pantalla final muestra «PARA MÁS CURSOS VISITA».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p183780000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "04bb32d9e36c708c4324bb8d5759255fe8abbb875fcc49caa1f41d79c46334f6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una pantalla final con el texto «PARA MÁS CURSOS VISITA» visible en la parte inferior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la pantalla final muestra ese texto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marcador-0100",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema incluye la marca «0100».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "285200bedacc1d359d0a0547bbd2d7afd077d76b01bd5bd9eed334a57a715fa4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la marca «0100» en el esquema."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marcador-0500",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema incluye la marca «0500».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ca85247a3d3bdb343da11bc11180340d720d79648a8387d2699b72e3a895d483",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la marca «0500» junto a una flecha en el esquema."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición verificable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-15-minutos",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La gráfica mostrada utiliza una temporalidad de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ab0d1527d45b5069494271f9c8bccfa6ea861eb04ac75d746d84c9cf587ae85c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La gráfica muestra explícitamente las etiquetas «EURUSD · 15 · FOREX.com» y «EURUSD | 15M», lo que respalda una temporalidad de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-web-cursos-digitales-7",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La pantalla final muestra «WWW.CURSOSDIGITALES7».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p183780000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bfc99755aafcb5a4e5eee401d86f7af0d96fccb03af3eeef112ad42ae0bf41cb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra de forma legible el texto «WWW.CURSOSDIGITALES7» en una pantalla de cierre con «GRACIAS»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1f80ed14cc125f48ea3b26207f91a53c8dcd647294f33ddb039d80bc280f484a"
+    ],
+    "response_id": "gen-1790912172-Bi8RMpLXHkVz55sJPCJ0"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00321",
+   "start_ms": 2027030,
+   "end_ms": 2028670,
+   "text": "es un concepto como tal"
+  },
+  {
+   "id": "asr-00322",
+   "start_ms": 2028670,
+   "end_ms": 2030970,
+   "text": "así que nada, este es el primer capítulo"
+  },
+  {
+   "id": "asr-00323",
+   "start_ms": 2030970,
+   "end_ms": 2033190,
+   "text": "y nos vemos en el siguiente"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182520000-canonical-v1",
+   "pts_ms": 2028000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182610000-canonical-v1",
+   "pts_ms": 2029000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182880000-canonical-v1",
+   "pts_ms": 2032000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183060000-canonical-v1",
+   "pts_ms": 2034000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183240000-canonical-v1",
+   "pts_ms": 2036000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183600000-canonical-v1",
+   "pts_ms": 2040000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183690000-canonical-v1",
+   "pts_ms": 2041000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183780000-canonical-v1",
+   "pts_ms": 2042000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

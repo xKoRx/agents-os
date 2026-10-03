@@ -1,0 +1,163 @@
+{
+ "window": "w0069",
+ "start": "17:01",
+ "end": "17:12",
+ "start_ms": 1021000,
+ "end_ms": 1032000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-sin-nuevo-turtle-soup-para-subida",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No debería ser necesario que el precio vuelva a bajar y forme otro Turtle Soup para ir hacia arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00137",
+    "frame-4de8f12d4841c630-s0-p92880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3f6a9ccce14db52a90e5959767329f65807ae85841feda0bdee76518797d54b6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que no tendría por qué pasar que el precio vuelva a bajar y forme otro Turtle Soup para ir hacia arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la necesidad de esa condición para que el precio suba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "fe9b717c960a09626897b5f43968f5588ad571e64dec31303f95b91cd5483217"
+    ],
+    "response_id": "gen-1790899375-W6fPIw87dIbP2pLzzjy9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-aqui-abajo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El nivel del Turtle Soup al que se refiere esa regla está aquí abajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00137",
+    "frame-4de8f12d4841c630-s0-p92160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ff270aa66855f0363aaae7819ca18f8c719199849ac9e3016e6371d98c558ba5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice literalmente «que es aquí abajo» y el gráfico muestra la zona rotulada «TURTLESOUP» situada por debajo del precio actual."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "fe9b717c960a09626897b5f43968f5588ad571e64dec31303f95b91cd5483217"
+    ],
+    "response_id": "gen-1790899375-W6fPIw87dIbP2pLzzjy9"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00136",
+   "start_ms": 1013900,
+   "end_ms": 1022220,
+   "text": "O sea, tú, si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Tartle Sup, ¿vale?"
+  },
+  {
+   "id": "asr-00137",
+   "start_ms": 1022220,
+   "end_ms": 1031520,
+   "text": "que es aquí abajo. No tendría por qué pasar que el precio vuelva a bajar, a hacer otro Tartel Sub para ir para arriba."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91890000-canonical-v1",
+   "pts_ms": 1021000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+   "pts_ms": 1022000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92160000-canonical-v1",
+   "pts_ms": 1024000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92340000-canonical-v1",
+   "pts_ms": 1026000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92340000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92430000-canonical-v1",
+   "pts_ms": 1027000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92520000-canonical-v1",
+   "pts_ms": 1028000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92610000-canonical-v1",
+   "pts_ms": 1029000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92880000-canonical-v1",
+   "pts_ms": 1032000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

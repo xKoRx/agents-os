@@ -1,0 +1,351 @@
+{
+ "window": "w0068",
+ "start": "16:47",
+ "end": "17:00",
+ "start_ms": 1007000,
+ "end_ms": 1020000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-loss-long-debajo-turtle-soup",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00136",
+    "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e5f5194de563c54254a11e471ce2b55b1ea47215192879665cb2e7930152c487",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, al buscar tomar longs, el stop loss debe quedar seguro debajo del «Turtle Soup»; laVariation «Tartle Sup» es evidently una errata de transcripción."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula sobre buscar tomar longs solo restringe el alcance de la misma proposición sobre la ubicación del stop loss, por lo que la afirmación es atómica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "08d8986c3b2dcf7f46b540a48cd745eff962fbbae08af33230f3959f6fbba052",
+     "fe9b717c960a09626897b5f43968f5588ad571e64dec31303f95b91cd5483217"
+    ],
+    "response_id": "gen-1790899235-71bESLAf6Sh1tgeB7pm1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-concepto-importante",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El Turtle Soup es un concepto muy importante.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00135"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4b9b076256360804fbe334ed3a612f69d0fc1295c7ee0c6c723bb4003209f763",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia califica explícitamente al concepto Tartle Sup —aparente transcripción de «Turtle Soup»— como «muy importante»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que Turtle Soup es un concepto muy importante."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "08d8986c3b2dcf7f46b540a48cd745eff962fbbae08af33230f3959f6fbba052"
+    ],
+    "response_id": "gen-1790899235-71bESLAf6Sh1tgeB7pm1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-indicia-inicio-movimiento",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El Turtle Soup marca que el inicio del movimiento se puede dar ya.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00135"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "df662675817b009fe5e5e3e88169ab9d299a9eb2f2102975692c4b22837012ba",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «Tartle Sup», pero no establece que se refiera a «Turtle Soup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que Turtle Soup indica que el movimiento puede iniciarse ya."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "08d8986c3b2dcf7f46b540a48cd745eff962fbbae08af33230f3959f6fbba052"
+    ],
+    "response_id": "gen-1790899235-71bESLAf6Sh1tgeB7pm1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-tras-toma-bajo-bullish",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La toma del bajo seguida de una reacción bullish se identifica como un Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00134",
+    "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p91530000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "949722cf8b218f7f459ac74337f2216caeb8b8aeb9cd486f179c65a42c12b39f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que una toma del bajo seguida de una reacción bullish constituye un «Turtle Soup»; la afirmación sostiene una sola regla de identificación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "08d8986c3b2dcf7f46b540a48cd745eff962fbbae08af33230f3959f6fbba052"
+    ],
+    "response_id": "gen-1790899235-71bESLAf6Sh1tgeB7pm1"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-indicio-inicio-movimiento-requiere-patron",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-turtle-soup-indicia-inicio-movimiento",
+   "subject_version": 1,
+   "object_id": "cl-turtle-soup-tras-toma-bajo-bullish",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00134",
+    "asr-00135"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d60ea649bb57c55df2cd31f40682772fd07a6581f3d3e2dc56140e1644fc73a0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera evidencia identifica una toma del bajo seguida de una reacción bullish como un Turtle Soup; la segunda afirma que ese Turtle Soup es lo que marca que el inicio del movimiento puede darse ya. Así, la afirmación del sujeto depende de la identificación y definición expresadas en la afirmación del objeto, en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "08d8986c3b2dcf7f46b540a48cd745eff962fbbae08af33230f3959f6fbba052"
+    ],
+    "response_id": "gen-1790899235-71bESLAf6Sh1tgeB7pm1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-stop-loss-long-requiere-patron",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-stop-loss-long-debajo-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-turtle-soup-tras-toma-bajo-bullish",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00134",
+    "asr-00136"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "149053d0103fc6712da56ec009c0edd0bb03c7e5a8f9c050b276b576feedc424",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera evidencia identifica explícitamente la toma del bajo seguida de una reacción bullish como un Turtle Soup."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia indica que, al tomar longs, el stop loss debe situarse de forma segura debajo de ese Turtle Soup, por lo que la afirmación sobre el stop loss depende directamente del patrón definido en la primera evidencia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "08d8986c3b2dcf7f46b540a48cd745eff962fbbae08af33230f3959f6fbba052"
+    ],
+    "response_id": "gen-1790899235-71bESLAf6Sh1tgeB7pm1"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00134",
+   "start_ms": 999880,
+   "end_ms": 1007360,
+   "text": "Pero la idea es esta, ¿vale? Toma del bajo, reacción bullish, pues tenemos Tartle Sup."
+  },
+  {
+   "id": "asr-00135",
+   "start_ms": 1007540,
+   "end_ms": 1013480,
+   "text": "Concepto muy importante porque el Tartle Sup es lo que marca que el inicio del movimiento se puede dar ya."
+  },
+  {
+   "id": "asr-00136",
+   "start_ms": 1013900,
+   "end_ms": 1022220,
+   "text": "O sea, tú, si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Tartle Sup, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+   "pts_ms": 1007000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90720000-canonical-v1",
+   "pts_ms": 1008000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90810000-canonical-v1",
+   "pts_ms": 1009000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91080000-canonical-v1",
+   "pts_ms": 1012000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91170000-canonical-v1",
+   "pts_ms": 1013000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91440000-canonical-v1",
+   "pts_ms": 1016000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91530000-canonical-v1",
+   "pts_ms": 1017000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91800000-canonical-v1",
+   "pts_ms": 1020000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+   "pts_ms": 1022000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92160000-canonical-v1",
+   "pts_ms": 1024000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

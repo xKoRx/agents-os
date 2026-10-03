@@ -1,0 +1,393 @@
+{
+ "window": "w0038",
+ "start": "08:34",
+ "end": "08:44",
+ "start_ms": 514000,
+ "end_ms": 524000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ausencia-rango-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "No teníamos un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00070",
+    "asr-00071"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1a1960089e66ad04652d7e3a65e9ace5c573a7106f018351c5b002345ac801f3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited lines state \"no teníamos rango bajista,\" directly supporting the statement that there was no bearish range."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts one proposition: the absence of a bearish range."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "913af34222d4ef6daef5a3965b914159bdc5b85479687426e7111e6fe3e1dfc3"
+    ],
+    "response_id": "gen-1790892962-95gXpbiFV3UIj3rt2vQy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-fuerte-libra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela de GBPUSD cerró con fuerza.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "asr-00070",
+    "frame-4de8f12d4841c630-s0-p46710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9bcb5fde473be2aeb5c4213da18ee8139a5806acc26ade81ca7c1e584d49f676",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones citadas dicen explícitamente «rango bullish en Libra» y «Cierra con fuerza», lo que sostiene que la vela de GBPUSD cerró con fuerza."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "913af34222d4ef6daef5a3965b914159bdc5b85479687426e7111e6fe3e1dfc3"
+    ],
+    "response_id": "gen-1790892962-95gXpbiFV3UIj3rt2vQy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-cierra-sobre-135843",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cierre de GBPUSD quedó por encima de 1,35843.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "57011b30bb2aa4aec5a9f3fb7bd3e07f10256b56f6bdbf36774b025e181613cc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los gráficos citados de GBPUSD muestran cierres explícitos de 1,36028 y 1,36031, ambos superiores a 1,35843. La afirmación contiene una sola proposición comparativa."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "913af34222d4ef6daef5a3965b914159bdc5b85479687426e7111e6fe3e1dfc3"
+    ],
+    "response_id": "gen-1790892962-95gXpbiFV3UIj3rt2vQy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-libra-directo-al-objetivo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La Libra fue directamente hasta su objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00072",
+    "asr-00073"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "82fde66771ccd056a086bee5a162aa7b77799a026f0ec9b0958c562234468a18",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas expresan conjuntamente que la Libra fue directamente hasta su objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "913af34222d4ef6daef5a3965b914159bdc5b85479687426e7111e6fe3e1dfc3"
+    ],
+    "response_id": "gen-1790892962-95gXpbiFV3UIj3rt2vQy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-libra-135843",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de hoy para ese rango era el nivel 1,35843.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4e4b1253c08a63a6b9361777cc898cec4a3112c2da869893906ca9dc99d20cd4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona un rango bullish en Libra y un objetivo para ese día, mientras que la gráfica de GBPUSD muestra una línea horizontal marcada en 1,35843."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "913af34222d4ef6daef5a3965b914159bdc5b85479687426e7111e6fe3e1dfc3"
+    ],
+    "response_id": "gen-1790892962-95gXpbiFV3UIj3rt2vQy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bullish-en-libra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Había un rango bullish en la Libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "85d264ae5277840964565032f272afc504f7fd37fc868bea71fc44916b789aaf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que había un «rango bullish en Libra»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición: la existencia de ese rango bullish en Libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "913af34222d4ef6daef5a3965b914159bdc5b85479687426e7111e6fe3e1dfc3"
+    ],
+    "response_id": "gen-1790892962-95gXpbiFV3UIj3rt2vQy"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-trayecto-directo-sin-rango-bajista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-libra-directo-al-objetivo",
+   "subject_version": 1,
+   "object_id": "cl-ausencia-rango-bajista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00070",
+    "asr-00071",
+    "asr-00072",
+    "asr-00073"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2d414b92085697f933c505b3cc33ee184d47285994a7d33deb84a700e4c11b42",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que no había un rango bajista y que esa ausencia hizo que la Libra fuera directamente hasta su objetivo, estableciendo la dependencia en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "913af34222d4ef6daef5a3965b914159bdc5b85479687426e7111e6fe3e1dfc3"
+    ],
+    "response_id": "gen-1790892962-95gXpbiFV3UIj3rt2vQy"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00069",
+   "start_ms": 509540,
+   "end_ms": 514419,
+   "text": "Otra vez, rango bullish en Libra, teníamos este objetivo para hoy. ¿Por qué? Cierra"
+  },
+  {
+   "id": "asr-00070",
+   "start_ms": 514419,
+   "end_ms": 516220,
+   "text": "con fuerza este, no teníamos"
+  },
+  {
+   "id": "asr-00071",
+   "start_ms": 516220,
+   "end_ms": 519039,
+   "text": "rango bajista"
+  },
+  {
+   "id": "asr-00072",
+   "start_ms": 519039,
+   "end_ms": 520880,
+   "text": "que ha hecho a la libra ir directamente"
+  },
+  {
+   "id": "asr-00073",
+   "start_ms": 520880,
+   "end_ms": 522020,
+   "text": "hasta su objetivo."
+  },
+  {
+   "id": "asr-00074",
+   "start_ms": 523169,
+   "end_ms": 524110,
+   "text": "Aquí lo veis claro."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46260000-canonical-v1",
+   "pts_ms": 514000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46440000-canonical-v1",
+   "pts_ms": 516000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46710000-canonical-v1",
+   "pts_ms": 519000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46800000-canonical-v1",
+   "pts_ms": 520000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+   "pts_ms": 521000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46980000-canonical-v1",
+   "pts_ms": 522000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47070000-canonical-v1",
+   "pts_ms": 523000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47160000-canonical-v1",
+   "pts_ms": 524000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

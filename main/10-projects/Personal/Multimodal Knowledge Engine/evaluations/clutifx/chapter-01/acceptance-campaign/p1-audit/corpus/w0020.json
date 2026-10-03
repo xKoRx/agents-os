@@ -1,0 +1,373 @@
+{
+ "window": "w0020",
+ "start": "04:29",
+ "end": "04:37",
+ "start_ms": 269000,
+ "end_ms": 277000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hay-mas-tipos-de-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay más tipos de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00035"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "302348ff40da5b5b047f9ec34d783cc5a1260ce3273d01e9a9e74f3af35a993a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia declara explícitamente «tenemos más tipos de rangos», lo que respalda la afirmación de que hay más tipos de rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "cd77d7a0ff38a01a85d7e088a7469e9d4d6a44e2a4bad19ea52219c3bc2db7f9"
+    ],
+    "response_id": "gen-1790889884-51Cbf8JMJxIGx3290mKC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limites-del-rectangulo",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El rectángulo está delimitado entre 1.15352 y 1.14968.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24930000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "298840cff3aa06df70c333f7580d56e3101925bb3537a0a956fdd7fb14361084",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran el rectángulo con sus límites superior e inferior alineados con las etiquetas 1,15352 y 1,14968 del eje de precios, respectivamente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "cd77d7a0ff38a01a85d7e088a7469e9d4d6a44e2a4bad19ea52219c3bc2db7f9"
+    ],
+    "response_id": "gen-1790889884-51Cbf8JMJxIGx3290mKC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-actua-como-una-cadena",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio actúa como una cadena.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00037"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6f206155e576cef1840c21461ae023db249691008ef03f558c1d55c075869106",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «el precio actúa como una cadena»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement断言 una única proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "cd77d7a0ff38a01a85d7e088a7469e9d4d6a44e2a4bad19ea52219c3bc2db7f9"
+    ],
+    "response_id": "gen-1790889884-51Cbf8JMJxIGx3290mKC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-se-mueve-en-funcion-de-rangos",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El precio se mueve en función de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00036",
+    "asr-00037"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a7c5ccf2e73fda23c381c1b212c11e3fa6db81f12adf404882efdc77a76c07c1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript explicitly states that «el precio se mueve en función de rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts one proposition: that price moves according to ranges."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "cd77d7a0ff38a01a85d7e088a7469e9d4d6a44e2a4bad19ea52219c3bc2db7f9"
+    ],
+    "response_id": "gen-1790889884-51Cbf8JMJxIGx3290mKC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-cambia-de-blanco-a-negro",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El relleno del rectángulo cambia de blanco a negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5d64ec23c5fc244d4e8685726242532fc404f88704d188ee20abe7a6304bb03d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el rectángulo con relleno blanco y la segunda muestra el mismo rectángulo con relleno negro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola transición de color del relleno."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "cd77d7a0ff38a01a85d7e088a7469e9d4d6a44e2a4bad19ea52219c3bc2db7f9"
+    ],
+    "response_id": "gen-1790889884-51Cbf8JMJxIGx3290mKC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-se-ajusta-acercamiento-grafica",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se ajusta el acercamiento horizontal de la gráfica.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24660000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24930000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a6fb64d99fa74c50867def842ff8e7981a64799a48580024d91a2232e4f4dc5f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes sucesivas muestran un desplazamiento horizontal de la gráfica mientras la escala vertical permanece constante."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "cd77d7a0ff38a01a85d7e088a7469e9d4d6a44e2a4bad19ea52219c3bc2db7f9"
+    ],
+    "response_id": "gen-1790889884-51Cbf8JMJxIGx3290mKC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-se-dibuja-rectangulo-vertical",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se dibuja un rectángulo vertical en la gráfica de EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24300000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5ca1049d8925665367e056cdd1ab1adf31f0826a0ffd9bfa4f56d6f772307837",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran en la gráfica de EURUSD un rectángulo de altura mayor que su anchura; en la última imagen aparece seleccionado mediante sus puntos de control."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: se dibuja un rectángulo vertical, con la gráfica y la orientación como elementos delimitadores de esa misma acción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "cd77d7a0ff38a01a85d7e088a7469e9d4d6a44e2a4bad19ea52219c3bc2db7f9"
+    ],
+    "response_id": "gen-1790889884-51Cbf8JMJxIGx3290mKC"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00035",
+   "start_ms": 261470,
+   "end_ms": 269600,
+   "text": "rangos tenemos más tipos de rangos que nosotros hemos llamado así básicamente importante todo"
+  },
+  {
+   "id": "asr-00036",
+   "start_ms": 269600,
+   "end_ms": 275000,
+   "text": "este tema los rangos que lo vais a ver pero para lo que hemos encontrado nosotros es que el precio"
+  },
+  {
+   "id": "asr-00037",
+   "start_ms": 275000,
+   "end_ms": 281060,
+   "text": "se mueve en función de rangos siempre vale el precio actúa como una cadena donde el precio"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+   "pts_ms": 269000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24300000-canonical-v1",
+   "pts_ms": 270000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+   "pts_ms": 271000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24480000-canonical-v1",
+   "pts_ms": 272000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24660000-canonical-v1",
+   "pts_ms": 274000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24750000-canonical-v1",
+   "pts_ms": 275000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24840000-canonical-v1",
+   "pts_ms": 276000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24930000-canonical-v1",
+   "pts_ms": 277000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

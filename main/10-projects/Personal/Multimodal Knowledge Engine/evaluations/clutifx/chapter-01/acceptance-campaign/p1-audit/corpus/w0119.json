@@ -1,0 +1,404 @@
+{
+ "window": "w0119",
+ "start": "30:10",
+ "end": "30:19",
+ "start_ms": 1810000,
+ "end_ms": 1819000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cotizacion-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El eje de precios está expresado en USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p162900000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0e8b863f4fc4a32ef475ba1a5c0171abfd67688cea1b07027acd122c7f7b8253",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra «USD» en la parte superior del eje vertical de precios, lo que indica que dicho eje está expresado en dólares estadounidenses."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c"
+    ],
+    "response_id": "gen-1790910293-RBaZL0KmSCchzqyPXrpo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fuente-forexcom",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El título del gráfico identifica a FOREX.com como fuente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p162900000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "de6628afc1f936ce6b97a3eb7240baf218cdc211c5ac3dbd8c9421ba6392c147",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado del gráfico muestra «EURUSD · 15 · FOREX.com», por lo que el título identifica a FOREX.com."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c"
+    ],
+    "response_id": "gen-1790910293-RBaZL0KmSCchzqyPXrpo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-incluir-power-of-three",
+   "kind": "claim",
+   "version": 1,
+   "statement": "También trataré un poco del concepto del power of three.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00261",
+    "asr-00262"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e6886b321a37b1ced39bac7d7d064f4a89b543ace4769553459e17602e4302f8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada indica que también se trato «un poco del concepto del power of three», lo que respalda la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el hablante también trato briefly el concepto del power of three."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c"
+    ],
+    "response_id": "gen-1790910293-RBaZL0KmSCchzqyPXrpo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-horizontal-115803",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico contiene una línea horizontal de precio en 1,15803.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p163170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p163260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p163350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p163440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a01a9765d92b394f2ab29929963bcefc8033161a0c55238a320212cca298322a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las cuatro imágenes muestran una línea horizontal continua y su etiqueta de precio 1,15803 en el eje derecho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c"
+    ],
+    "response_id": "gen-1790910293-RBaZL0KmSCchzqyPXrpo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado utiliza un marco temporal de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p162900000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "738fe8c25ffa51676bed348e32846dcd223cc5e992b61f5271073ad3e775aa37",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia muestra explícitamente «EURUSD · 15» y «EURUSD | 15M», lo que indica un marco temporal de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c"
+    ],
+    "response_id": "gen-1790910293-RBaZL0KmSCchzqyPXrpo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-dejar-nada-fuera",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No me quiero dejar nada fuera.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00261"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f95f814adae9f254e795396e9a6546ab5b13aad6358908a26a967ab7a972ef54",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «no me quiero dejar nada», pero no incluye ni confirma de forma explícita «fuera» y el segmento está incompleto."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola proposición sobre no querer dejar nada fuera."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c"
+    ],
+    "response_id": "gen-1790910293-RBaZL0KmSCchzqyPXrpo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power-of-three-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Ya expliqué el concepto del power of three en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00262"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "993a94c61bf68cd86daf694c198b4ced5ccb37fabfcd03f2ebe1dfb76054d3f8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que ya explicó el concepto del power of three en el curso intermedio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c"
+    ],
+    "response_id": "gen-1790910293-RBaZL0KmSCchzqyPXrpo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-reciente-sobre-115803",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio de las velas más reciente es visible está por encima de 1,15803.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p163170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p163260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p163350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p163440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ccc044171c9afebaad1d0d05ebafa99feb7c973a2091145f8f8a18aa45792fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las velas más recientes del extremo derecho aparecen alrededor de 1,15907-1,15908, por encima de la línea y la marca de 1,15803."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable: el precio visible de la vela más reciente está por encima de ese nivel."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c"
+    ],
+    "response_id": "gen-1790910293-RBaZL0KmSCchzqyPXrpo"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00261",
+   "start_ms": 1809020,
+   "end_ms": 1816000,
+   "text": "el order block y... déjame pensar que no me quiero dejar nada. Ah, bueno, un poco del"
+  },
+  {
+   "id": "asr-00262",
+   "start_ms": 1816000,
+   "end_ms": 1819360,
+   "text": "concepto del power of three también, que ya lo expliqué también en el curso intermedio,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p162900000-canonical-v1",
+   "pts_ms": 1810000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p162900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163080000-canonical-v1",
+   "pts_ms": 1812000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163170000-canonical-v1",
+   "pts_ms": 1813000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163260000-canonical-v1",
+   "pts_ms": 1814000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163350000-canonical-v1",
+   "pts_ms": 1815000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163440000-canonical-v1",
+   "pts_ms": 1816000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163620000-canonical-v1",
+   "pts_ms": 1818000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163710000-canonical-v1",
+   "pts_ms": 1819000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

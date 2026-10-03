@@ -1,0 +1,247 @@
+{
+ "window": "w0033",
+ "start": "07:19",
+ "end": "07:30",
+ "start_ms": 439000,
+ "end_ms": 450000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observar-completado-rangos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si quieres hacer este ejercicio por vuestra parte, ve viendo un poco cómo se van completando los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "95b3abc3e2125eba5f897aa2f6efce1edb5204f1e6f55814bd7e4883312404ec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona «vuestra parte», «ir viendo un poco» y «cómo los rangos se te van completando», pero no enuncia explícitamente la condición «Si quieres hacer este ejercicio» que introduce la afirmación revisada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e99c223f66dd31341f5ad6a418a6c5db60fcc78a2a07c97978aefbac3de3872c"
+    ],
+    "response_id": "gen-1790891527-n2Jw46sHXBmD6WSubP5z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-operar-solo-grafico-diario",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hasta podrías operar solo viendo el gráfico diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00058"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "47654524a8e49a6038a937a4415d93581f35c9fd717405a511d70a31459369b9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que se podría operar solo viendo el gráfico diario."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e99c223f66dd31341f5ad6a418a6c5db60fcc78a2a07c97978aefbac3de3872c"
+    ],
+    "response_id": "gen-1790891527-n2Jw46sHXBmD6WSubP5z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-visibles-grafico",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico se ven muchos rangos dibujados mediante recuadros.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00057",
+    "frame-4de8f12d4841c630-s0-p39510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40140000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8954a074affbf49f6db3b8a94c3673fe2fe938ac507e69b9e1902b397a606cc8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran numerosos rangos de precio delimitados y realzados mediante recuadros; la transcripción también indica que se están pintando muchos rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e99c223f66dd31341f5ad6a418a6c5db60fcc78a2a07c97978aefbac3de3872c"
+    ],
+    "response_id": "gen-1790891527-n2Jw46sHXBmD6WSubP5z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-diaria-grafico",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado tiene una temporalidad diaria (1D).",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p39510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a7990da483b89d044d5f1feb4847676a1f5ed46c75d75b9283fd1d414724b0b7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran explícitamente la etiqueta de temporalidad «1D» en la parte superior del gráfico y la selección «1D» en la barra inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "e99c223f66dd31341f5ad6a418a6c5db60fcc78a2a07c97978aefbac3de3872c"
+    ],
+    "response_id": "gen-1790891527-n2Jw46sHXBmD6WSubP5z"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00057",
+   "start_ms": 437310,
+   "end_ms": 444030,
+   "text": "como los rangos están formados lo estáis viendo ahí muchos que os estoy pintando los rangos más"
+  },
+  {
+   "id": "asr-00058",
+   "start_ms": 444030,
+   "end_ms": 449870,
+   "text": "clean podrías hasta operar solo viendo el gráfico diario pero si quieres hacer este ejercicio por"
+  },
+  {
+   "id": "asr-00059",
+   "start_ms": 449870,
+   "end_ms": 457070,
+   "text": "vuestra parte de ir viendo un poco como los rangos se te van completando siempre no siempre por esto"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39510000-canonical-v1",
+   "pts_ms": 439000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39600000-canonical-v1",
+   "pts_ms": 440000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39960000-canonical-v1",
+   "pts_ms": 444000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40140000-canonical-v1",
+   "pts_ms": 446000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40230000-canonical-v1",
+   "pts_ms": 447000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40320000-canonical-v1",
+   "pts_ms": 448000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40410000-canonical-v1",
+   "pts_ms": 449000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40500000-canonical-v1",
+   "pts_ms": 450000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

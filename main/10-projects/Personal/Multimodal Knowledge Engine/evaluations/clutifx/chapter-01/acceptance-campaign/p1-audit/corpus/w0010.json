@@ -1,0 +1,215 @@
+{
+ "window": "w0010",
+ "start": "02:12",
+ "end": "02:28",
+ "start_ms": 132000,
+ "end_ms": 148000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anotacion-rango-alcista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico aparece una anotación que dice «rango alcista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p13320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9c3df26714d4c601556591bbbc40f542ea02a32928a950bfaa40e3900fe3677e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran claramente la anotación «rango alcista» en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0be2aa5242722dba3a24df92ac6539e18c6bdd3d2e1c6c02ec977343481cff7b"
+    ],
+    "response_id": "gen-1790888630-OYNqtIQ1zlgUEXZwVmDC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-se-basa-principalmente-en-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia se basa principalmente en los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "391f0eb36809e6800554ecc3c6887baf5550cdadb98a25a1eed37569870ca246",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «la estrategia se basa principalmente en los rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola proposición: que la estrategia se basa principalmente en los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0be2aa5242722dba3a24df92ac6539e18c6bdd3d2e1c6c02ec977343481cff7b"
+    ],
+    "response_id": "gen-1790888630-OYNqtIQ1zlgUEXZwVmDC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-formado-tomando-extremo-vela-anterior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Normalmente, este rango se forma tomando el extremo de la vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00018",
+    "asr-00019"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5043935559860d092c7b0c162783437bc5ce6707355c39b4c022706715352744",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los fragmentos citados expresan conjuntamente que normalmente se toma el extremo de la vela anterior, lo que respalda la proposición sobre cómo se forma el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «normalmente» únicamente modifica su alcance y no introduce una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "0be2aa5242722dba3a24df92ac6539e18c6bdd3d2e1c6c02ec977343481cff7b"
+    ],
+    "response_id": "gen-1790888630-OYNqtIQ1zlgUEXZwVmDC"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00017",
+   "start_ms": 127310,
+   "end_ms": 134420,
+   "text": "o lo mismo, tampoco tiene que ser negativa como tal"
+  },
+  {
+   "id": "asr-00018",
+   "start_ms": 134420,
+   "end_ms": 139790,
+   "text": "pero normalmente pasa que nos toma"
+  },
+  {
+   "id": "asr-00019",
+   "start_ms": 139790,
+   "end_ms": 145040,
+   "text": "el extremo de la vela anterior y nos crea lo que sería"
+  },
+  {
+   "id": "asr-00020",
+   "start_ms": 145040,
+   "end_ms": 152600,
+   "text": "este rango vale vais a ver que la estrategia se basa principalmente en los rangos y esto no está"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+   "pts_ms": 132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12150000-canonical-v1",
+   "pts_ms": 135000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12240000-canonical-v1",
+   "pts_ms": 136000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12510000-canonical-v1",
+   "pts_ms": 139000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12600000-canonical-v1",
+   "pts_ms": 140000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12960000-canonical-v1",
+   "pts_ms": 144000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13050000-canonical-v1",
+   "pts_ms": 145000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13320000-canonical-v1",
+   "pts_ms": 148000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,398 @@
+{
+ "window": "w0018",
+ "start": "04:03",
+ "end": "04:17",
+ "start_ms": 243000,
+ "end_ms": 257000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-cierra-dentro-otra-vez",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Al extremo, el precio cierra dentro otra vez.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00032"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b1ad985ac91da00aa16230383682b281f62c23d8967bba87c1443983c2f48958",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice literalmente «al extremo cierra dentro otra vez», lo que respalda que el precio cierre dentro otra vez."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "99d4bd36820885ce7583bfe457a784c53fb1dbc3184a13e6d7b52eccc00d0aa6"
+    ],
+    "response_id": "gen-1790889617-C4dadjMumLjlQGCoohXu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-va-por-fuera",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Parece que el precio va por fuera.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00032",
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "96ba6d7e213e14d05882dc92440fd202a7c2d596670fccf6c5bece6eccc6a3e3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «parece que va por fuera», lo que respalda la afirmación sobre el precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "99d4bd36820885ce7583bfe457a784c53fb1dbc3184a13e6d7b52eccc00d0aa6"
+    ],
+    "response_id": "gen-1790889617-C4dadjMumLjlQGCoohXu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-es-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango mostrado es un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00033",
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aad69716479ec30fa016fe382f59e5f10935cb9872ff8fca984c20268bcda5fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «esto es un rango alcista», lo que sostiene directamente la afirmación revisada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "99d4bd36820885ce7583bfe457a784c53fb1dbc3184a13e6d7b52eccc00d0aa6"
+    ],
+    "response_id": "gen-1790889617-C4dadjMumLjlQGCoohXu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-extremo-inferior-114748",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El rectángulo resaltado tiene un extremo inferior de 1,14748.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e88143370bbb810c75715a24085d5befebec6b6467201f0625dd86b6f146764b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul situada junto al extremo inferior del rectángulo resaltado muestra el valor 1,14748."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "99d4bd36820885ce7583bfe457a784c53fb1dbc3184a13e6d7b52eccc00d0aa6"
+    ],
+    "response_id": "gen-1790889617-C4dadjMumLjlQGCoohXu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-extremo-superior-115803",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El rectángulo resaltado tiene un extremo superior de 1,15803.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b8b0a837822319bc85fa92d6d06a7938de662307fac9db6dec3508c9d475dbd9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el rectángulo resaltado con su borde superior alineado con la etiqueta 1,15803 del eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "99d4bd36820885ce7583bfe457a784c53fb1dbc3184a13e6d7b52eccc00d0aa6"
+    ],
+    "response_id": "gen-1790889617-C4dadjMumLjlQGCoohXu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-usar-rango-como-target",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Podemos utilizar este rango como target.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00033"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ae3c1fdbe37e1c2928a956c0ae7fdc3b85d1e5d96aaeca6f258f5a90ff6753aa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que se puede utilizar «esto» —el rango—- como target."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición y no incluye instrucciones ni afirmaciones independientes adicionales."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "99d4bd36820885ce7583bfe457a784c53fb1dbc3184a13e6d7b52eccc00d0aa6"
+    ],
+    "response_id": "gen-1790889617-C4dadjMumLjlQGCoohXu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-uso-target-se-vera-en-video-bias",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El uso de este rango como target se verá en el vídeo del bias.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00033",
+    "asr-00034"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b47606342d836796ccf635aefc755a91abaf9ed70d49c717c2783102dc84634f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican explícitamente que el rango puede utilizarse como target y que ello se verá en el vídeo del bias."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "99d4bd36820885ce7583bfe457a784c53fb1dbc3184a13e6d7b52eccc00d0aa6"
+    ],
+    "response_id": "gen-1790889617-C4dadjMumLjlQGCoohXu"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-uso-target-depende-rango-alcista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-usar-rango-como-target",
+   "subject_version": 1,
+   "object_id": "cl-rango-es-alcista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00033"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0d14bea593e2342993e8ba28fc80d10bcec6b1e7e4225f079eda6104e4137258",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma expresamente que «esto es un rango alcista» y que «podemos utilizar esto como target», por lo que sostiene la caracterización del rango como alcista y su uso como target en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "99d4bd36820885ce7583bfe457a784c53fb1dbc3184a13e6d7b52eccc00d0aa6"
+    ],
+    "response_id": "gen-1790889617-C4dadjMumLjlQGCoohXu"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00032",
+   "start_ms": 241310,
+   "end_ms": 249740,
+   "text": "porque como al extremo cierra dentro otra vez parece que va por fuera cierra dentro otra vez"
+  },
+  {
+   "id": "asr-00033",
+   "start_ms": 249740,
+   "end_ms": 255260,
+   "text": "fuera sigue dentro esto es un rango alcista y podemos utilizar esto como target ya lo veréis"
+  },
+  {
+   "id": "asr-00034",
+   "start_ms": 255260,
+   "end_ms": 261470,
+   "text": "en el vídeo del bias pero para que quede claro el concepto de rango vale ahora dentro de los"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21870000-canonical-v1",
+   "pts_ms": 243000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21960000-canonical-v1",
+   "pts_ms": 244000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p22050000-canonical-v1",
+   "pts_ms": 245000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p22050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p22320000-canonical-v1",
+   "pts_ms": 248000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p22320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p22410000-canonical-v1",
+   "pts_ms": 249000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p22410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p22680000-canonical-v1",
+   "pts_ms": 252000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p22680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23040000-canonical-v1",
+   "pts_ms": 256000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23130000-canonical-v1",
+   "pts_ms": 257000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

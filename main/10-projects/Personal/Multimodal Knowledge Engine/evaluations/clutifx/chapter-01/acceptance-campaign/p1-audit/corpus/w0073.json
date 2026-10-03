@@ -1,0 +1,325 @@
+{
+ "window": "w0073",
+ "start": "18:04",
+ "end": "18:24",
+ "start_ms": 1084000,
+ "end_ms": 1104000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-break-even-si-hemos-comprado",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si nosotros hemos comprado, podríamos poner un break even.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "301cac7672908dcf61f29e3c9eb3c4968b3a21a06a166cb758427a574e04ecdc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma casi literalmente que, si nosotros hemos comprado, podríamos poner un break even."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La enunciación contiene una sola proposición: la posibilidad de poner un break even bajo la condición de haber comprado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d026f780b693f96835095c6b4ecdff7cbc2cadad6292de4fd4c9647947aa3c1"
+    ],
+    "response_id": "gen-1790900092-a2IpCis8IpwLIk7oO5CR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-contrario-en-cuatro-horas",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En cuatro horas puede formarse un rango contrario a nuestra dirección.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6875a039031293191e6c978718bde736836686daf6d90ca13e82ea9141fb9b79",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que en cuatro horas puede formarse «un rango contrario», lo que respalda la declaración."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La declaración contiene una sola proposición: la posibilidad de que se forme un rango contrario a la dirección en cuatro horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d026f780b693f96835095c6b4ecdff7cbc2cadad6292de4fd4c9647947aa3c1"
+    ],
+    "response_id": "gen-1790900092-a2IpCis8IpwLIk7oO5CR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-completos-antes-de-subir",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El precio puede completar rangos antes de subir.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "745cbb22d56256f08cfa225e02adfeeea9de3d951a017c796c74d7b1beb4d34b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona que «algunas veces pasa» y que puede formarse un «rango contrario», pero no identifica esa referencia ni establece explícitamente que el precio complete rangos antes de subir."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el precio puede completar rangos antes de subir."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d026f780b693f96835095c6b4ecdff7cbc2cadad6292de4fd4c9647947aa3c1"
+    ],
+    "response_id": "gen-1790900092-a2IpCis8IpwLIk7oO5CR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-diaria-del-ejemplo",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En el ejemplo, la vela se considera de un día.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "14a64f5596459208a073a09e0d803715747ddfb208ca933e413f315e41487bdd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «si esto es una vela, digamos, de un día», lo que sostiene que en el ejemplo se considera una vela de un día."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la vela del ejemplo es de un día."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d026f780b693f96835095c6b4ecdff7cbc2cadad6292de4fd4c9647947aa3c1"
+    ],
+    "response_id": "gen-1790900092-a2IpCis8IpwLIk7oO5CR"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-break-even-segun-espera-de-rangos",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-break-even-si-hemos-comprado",
+   "subject_version": 1,
+   "object_id": "cl-rangos-completos-antes-de-subir",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155",
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "498e531b68aa24669dafaa85f7d3502d8918cea22419353292ad6f481c502de7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente ambas afirmaciones en la orientación indicada: si el precio puede completar rangos antes de subir, entonces, si se ha comprado, se podría poner un break-even («Por lo tanto»)."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d026f780b693f96835095c6b4ecdff7cbc2cadad6292de4fd4c9647947aa3c1"
+    ],
+    "response_id": "gen-1790900092-a2IpCis8IpwLIk7oO5CR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rangos-antes-de-subir-en-rango-contrario",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rangos-completos-antes-de-subir",
+   "subject_version": 1,
+   "object_id": "cl-rango-contrario-en-cuatro-horas",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "43d4ba2c2c3ccb7b99971b816e9fa1cccb9ff10a19e4fe8b47d0bb49aafb7ba1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona que en cuatro horas puede formarse un rango contrario a la dirección, pero no afirma que el precio pueda completar rangos antes de subir ni establece que este hecho dependa de la formación de dicho rango contrario."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "6d026f780b693f96835095c6b4ecdff7cbc2cadad6292de4fd4c9647947aa3c1"
+    ],
+    "response_id": "gen-1790900092-a2IpCis8IpwLIk7oO5CR"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00155",
+   "start_ms": 1081020,
+   "end_ms": 1099350,
+   "text": "No. Algunas veces pasa, sí. ¿Cómo se puede intentar predecir? Que lo vais a ver más adelante. Pero si esto es una vela, digamos, de un día y en cuatro horas tenemos, pues, algo así, como que se nos forma un rango contrario, ¿vale?"
+  },
+  {
+   "id": "asr-00156",
+   "start_ms": 1099350,
+   "end_ms": 1112970,
+   "text": "a nuestra dirección, puede pasar que el precio vaya a completar rangos antes de subir. Por lo tanto, aquí si nosotros hemos comprado, podríamos poner un break even"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97560000-canonical-v1",
+   "pts_ms": 1084000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97830000-canonical-v1",
+   "pts_ms": 1087000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97920000-canonical-v1",
+   "pts_ms": 1088000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p98100000-canonical-v1",
+   "pts_ms": 1090000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p98100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p98280000-canonical-v1",
+   "pts_ms": 1092000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p98280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p98640000-canonical-v1",
+   "pts_ms": 1096000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p98640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99000000-canonical-v1",
+   "pts_ms": 1100000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99360000-canonical-v1",
+   "pts_ms": 1104000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

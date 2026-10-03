@@ -1,0 +1,90 @@
+{
+ "window": "w0092",
+ "start": "23:18",
+ "end": "23:36",
+ "start_ms": 1398000,
+ "end_ms": 1416000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00194",
+   "start_ms": 1395310,
+   "end_ms": 1409220,
+   "text": "Pues esto sería un SMT. En el caso de un objetivo, que euro pueda llegar a completar y el par correlacionado, ya sea JP o DXY, no llegue a su objetivo y pase el reversal directamente."
+  },
+  {
+   "id": "asr-00195",
+   "start_ms": 1409520,
+   "end_ms": 1415120,
+   "text": "Por lo tanto, tú aquí tendrías que estar atento a los dos pares para que no te pase esto, ¿vale?"
+  },
+  {
+   "id": "asr-00196",
+   "start_ms": 1415520,
+   "end_ms": 1422440,
+   "text": "Tú estás en un long en libra, pero euro ya ves que llega a los objetivos, puede haber una SMT ahí arriba y se te gire el precio directamente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125820000-canonical-v1",
+   "pts_ms": 1398000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126000000-canonical-v1",
+   "pts_ms": 1400000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126360000-canonical-v1",
+   "pts_ms": 1404000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126720000-canonical-v1",
+   "pts_ms": 1408000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126900000-canonical-v1",
+   "pts_ms": 1410000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126990000-canonical-v1",
+   "pts_ms": 1411000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126990000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127080000-canonical-v1",
+   "pts_ms": 1412000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127440000-canonical-v1",
+   "pts_ms": 1416000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

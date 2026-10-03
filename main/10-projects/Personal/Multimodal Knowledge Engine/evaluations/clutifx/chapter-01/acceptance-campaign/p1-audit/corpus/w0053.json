@@ -1,0 +1,679 @@
+{
+ "window": "w0053",
+ "start": "12:20",
+ "end": "12:44",
+ "start_ms": 740000,
+ "end_ms": 764000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-importancia-entender-rangos",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Es importante saber a qué se refiere el rango reiniciado o el rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f084ff3a44d48abbca45da8aff04000ca80b4a674b80a41e2c44e5da87aa3994",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que es importante saber y entender a qué se refieren el rango reiniciado y el rango pendiente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición sobre la importancia de comprender esas dos referencias, sin añadir instrucciones ni OtrosDatabaseos independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-direccion-doble",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El rango pendiente se abre en dirección a nuestro doble.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00110"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b5d9fabd09dcf274148bbf5bb834bf551c332db36313b71f0b236103bc3fe69e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «el pendiente nos abre en dirección a nuestro doble», lo que sostiene directamente la proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-doble-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango pendiente incluye un doble alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00110"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c798985917c1220c6d2b8741e5fefda7fc3a25db371058b4691f437499e537ca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango pendiente crea «un rango alcista con un doble alcista», lo que respalda que incluye un doble alcista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-rango-alcista",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El rango pendiente crea un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00110"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fcba313888c5356d2b4cb0d79d31d33955bc860d5ff7bfca10d178bd44bfa9c5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que «el pendiente nos abre en dirección a nuestro doble, creando un rango alcista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango pendiente crea un rango alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-tipo-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango pendiente es uno de los tipos de rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109",
+    "asr-00110",
+    "frame-4de8f12d4841c630-s0-p66600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6f7340c08561bf99b478c222e7be7ad7bd6303a4f579bb5e2f7320d0a9305bd9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona «rango reiniciado o rango pendiente» al hablar de los tipos de rangos, y la imagen etiqueta dos ejemplos como «RANGO PENDIENTE» y «RANGO REINICIADO»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango pendiente pertenece a la categoría de tipos de rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-apertura-arriba",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En el rango reiniciado, «en contra» significa que se abre por arriba del doble.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00110"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2814e97fef10c45470f4f7976b6b260be6353a2d84acda5d1177f61d05bdc4b5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que, en un rango reiniciado, «en contra significa que abre por arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el significado de «en contra» en este contexto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-contra-doble",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El rango reiniciado se abre en contra de nuestro doble.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00110"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2ff3088c8627615e02ade6c80a7f6f4c4722e46051495060264be4e5d3ae214c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que el rango reiniciado se abre en contra de nuestro doble."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-rango-bajista-posible",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El rango reiniciado crea un posible rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00110"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d91997f303d32140cf2533283ba3042cb7fc441e6d5b9e3d2dde7fea66fca3ef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el rango reiniciado abre por arriba y crea «un posible rango bajista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La statement afirma una sola proposición: que el rango reiniciado crea un posible rango bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-reinicio-antes-objetivo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "«Rango reiniciado» significa que hay como que reiniciar antes de ir hacia el objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "11fc3081eeb30cdafc975ffab7bc9e1ee247f5ccac0e5e7c63e210930a585146",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «reiniciado» significa que hay que reiniciar antes de ir hacia el objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el significado de «rango reiniciado»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-tipo-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango reiniciado es uno de los tipos de rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109",
+    "frame-4de8f12d4841c630-s0-p66600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ad5f57cb1736a7b2a150b3dcdb5258bfe030e944c564d3a57c8e2b506b9b0de1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript refers to «tipos de rangos» and then names «rango reiniciado o rango pendiente», explicitly including «rango reiniciado» among the range types."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts one proposition: that «rango reiniciado» is one of the types of range."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reviews-temas-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En los reviews se hablará de rango reiniciado o rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00109"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3141fcaef491d1645f5b2572c121df5ee17027f65b9d6117044332f9fa174e86",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «en los reviews se va a hablar de rango reiniciado o rango pendiente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La alternativa «reiniciado o pendiente» forma parte de una sola proposición sobre los temas que se hablarán en los reviews."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-video-rotulo-rango-pendiente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La pantalla muestra el rótulo «RANGO PENDIENTE».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p66600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "be444903fafd6a10382dc5b20f309a7667108e56d6ff19a4defc55f553226deb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen citada muestra claramente el rótulo «RANGO PENDIENTE» en la pantalla."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-video-rotulo-rango-reiniciado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La pantalla muestra el rótulo «RANGO REINICIADO».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p66600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d50e511815c8a9e7b7753b4f6f370903335cf77cc35cc805c0569ce21e5b573f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra claramente el rótulo «RANGO REINICIADO» en la parte superior derecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que la pantalla contiene ese rótulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-alcista-depende-direccion-doble",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-pendiente-rango-alcista",
+   "subject_version": 1,
+   "object_id": "cl-rango-pendiente-direccion-doble",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00110"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "06c81f59867c71cd55592a159752957e562aef0df6b949b1990e334f363fddfb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango pendiente «nos abre en dirección a nuestro doble, creando un rango alcista»,Bless establishing that la creación del rango alcista depende de que el rango pendiente se abra en esa dirección."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-bajista-depende-apertura-arriba",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-reiniciado-rango-bajista-posible",
+   "subject_version": 1,
+   "object_id": "cl-rango-reiniciado-apertura-arriba",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00110"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "526261bad7d39abd7bc7fbbf28ce61447a526ba43f1d7e02d64066ebf2a7c23c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «en contra» significa que se abre por arriba del doble y que esto crea un posible rango bajista, settando la relación en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "022d879b1f4ccec3dcf41a4bb93c6a236a2a28144bbe21c3aac03517133a9baa"
+    ],
+    "response_id": "gen-1790895559-J90pmuEsMO4Hck94QlzO"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00109",
+   "start_ms": 725600,
+   "end_ms": 751040,
+   "text": "La palabra reiniciado significa, pues, que hay como que reiniciar antes de ir hacia el objetivo. Rango reiniciado. ¿Vale? Estos serían un poco los tipos de rangos. Es importante que lo sepáis porque en los reviews se va a hablar de rango reiniciado o rango pendiente y tenéis que entender que se refiere a esto."
+  },
+  {
+   "id": "asr-00110",
+   "start_ms": 751040,
+   "end_ms": 768600,
+   "text": "En resumen, rango reiniciado nos abre en contra de nuestro doble, en contra significa que abre por arriba creando un posible rango bajista y el pendiente nos abre en dirección a nuestro doble, creando un rango alcista con un doble alcista, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p66600000-canonical-v1",
+   "pts_ms": 740000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p66600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p66870000-canonical-v1",
+   "pts_ms": 743000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p66870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p66960000-canonical-v1",
+   "pts_ms": 744000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p66960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p67320000-canonical-v1",
+   "pts_ms": 748000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p67320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p67680000-canonical-v1",
+   "pts_ms": 752000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p67680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p68040000-canonical-v1",
+   "pts_ms": 756000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p68040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p68400000-canonical-v1",
+   "pts_ms": 760000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p68400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p68760000-canonical-v1",
+   "pts_ms": 764000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p68760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

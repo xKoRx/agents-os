@@ -1,0 +1,546 @@
+{
+ "window": "w0100",
+ "start": "25:50",
+ "end": "26:05",
+ "start_ms": 1550000,
+ "end_ms": 1565000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-failure-swing",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Va a haber un capítulo de failure swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00213"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "15daed87fa105a9f3dd68b2a45a5451c5cbe57f2eb1598dcfe6b1076352f2e31",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice que habrá un capítulo de “Felur Swing”, referencia fonética que corresponde a “Failure Swing” en la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: la existencia de un capítulo sobre Failure Swing."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-alto-final-vela",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El failure swing puede darse porque el precio ha hecho el alto al final de la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00209",
+    "asr-00210",
+    "asr-00212",
+    "frame-4de8f12d4841c630-s0-p140760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p140850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "57b65255a49a56ed512f73beda3972d14eac2bc7d2f5515a15d8d03806abdb08",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas respaldan que puede ocurrir algo porque el precio hizo el alto al final de la vela, pero no identifican ese algo como un failure swing."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran «SMT» y «BAJO/ALTO A FINAL DE VELA», pero no conectan de forma establecida lo depicted con un failure swing."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición causal: un failure swing puede ocurrir cuando el precio hizo el alto al final de la vela."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-bajo-final-vela",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El failure swing puede darse porque el precio ha hecho el bajo al final de la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00211",
+    "asr-00212",
+    "frame-4de8f12d4841c630-s0-p140760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p140850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f1fd3edc4600fbe2423451752639a80e13af9c94fadbb865fb67424bd8845568",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones y los fotogramas respaldan que el bajo puede hacerse al final de la vela, pero no mencionan el failure swing ni设定的 relación causal de que pueda darse por ese motivo."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-curso-intermedio",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El concepto de failure swing ya se vio un poco en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bd9aae6e0cb7ff54d6ad0d063773cffc54c640fc1901371a9ac7e946197170e6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el concepto de «failure swing» ya se vio un poco en el curso intermedio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-por-smt",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El failure swing puede darse por la SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00208",
+    "frame-4de8f12d4841c630-s0-p140040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p140400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p140850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "7ca1bfd5418c966134703f48fc5bb833716e772e7520f762bc66da8b72f20b34",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción solo dice «por la SMT» y no identifica un failure swing ni afirma explícitamente la relación causal propuesta."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un gráfico con las etiquetas «SMT» y «BAJO/ALTO A FINAL DE VELA», pero no establecen que un failure swing pueda darse por la SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el failure swing es posible por la SMT."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-sin-nuevo-bajo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El failure swing es cuando el precio no consigue hacer un nuevo bajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "13f2c3c15f5ed0a22ec09daddde516a69e3f77b2f376286575802c84f02b8ba5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el failure swing es cuando el precio no consigue hacer un nuevo bajo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; la cláusula que limita el significado no introduce una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-varios-casos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El failure swing puede darse por varios casos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207",
+    "asr-00208",
+    "asr-00209",
+    "asr-00210",
+    "asr-00211",
+    "asr-00212"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2bbb96aebc4ab3df02f14f989c05ae6d490092eae2f384dec303c5aa4ae56259",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el failure swing «puede darse por varios casos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el failure swing puede presentarse por varios casos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-failure-swing-alto-final-depende-definicion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-failure-swing-alto-final-vela",
+   "subject_version": 1,
+   "object_id": "cl-failure-swing-sin-nuevo-bajo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207",
+    "asr-00209",
+    "asr-00210",
+    "asr-00212"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d91092ebc10c482645a170fd9a533ab26ffa456f7f4346ab0836ef9ae9e1fdc9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia define el failure swing como el caso en que el precio no consigue hacer un nuevo bajo y, inmediatamente después, indica que puede darse porque ha hecho el alto al final de la vela; por tanto, el caso del subject depende de la definición del object en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-failure-swing-bajo-final-depende-definicion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-failure-swing-bajo-final-vela",
+   "subject_version": 1,
+   "object_id": "cl-failure-swing-sin-nuevo-bajo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207",
+    "asr-00211",
+    "asr-00212"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4a53ee918049c548f0a0f89ad641fb07c6153ba9b174c3a6d146556a930653dd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia define el failure swing como el caso en que el precio no consigue hacer un nuevo bajo y afirma que puede darse por varios casos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas posteriores identifican uno de esos casos como «el bajo al final de la vela», por lo que la afirmación subjectspecifica esa definición general."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-failure-swing-smt-depende-definicion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-failure-swing-por-smt",
+   "subject_version": 1,
+   "object_id": "cl-failure-swing-sin-nuevo-bajo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207",
+    "asr-00208"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c2f8c051fb4118d49b061efb1e0554852e2b5f3c5ce04fac9bbe69c4bc9a6da3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita define el failure swing como el caso en que el precio no consigue hacer un nuevo bajo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita indica que ese failure swing puede darse por la SMT, por lo que la afirmación sujeto queda绑定 a la definición citada como objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "db154b25256d71a826bdc34733df80a259ffdb344123dde12ae692c4c0d9abd1"
+    ],
+    "response_id": "gen-1790907043-0GUvoLDWnvwZ2bs9nPOG"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00207",
+   "start_ms": 1535940,
+   "end_ms": 1552160,
+   "text": "Luego, concepto de failure swing, ya lo visteis también un poco en el curso intermedio. El failure swing es cuando el precio no consigue hacer un nuevo bajo y puede darse por varios casos."
+  },
+  {
+   "id": "asr-00208",
+   "start_ms": 1552160,
+   "end_ms": 1553960,
+   "text": "por la SMT"
+  },
+  {
+   "id": "asr-00209",
+   "start_ms": 1553960,
+   "end_ms": 1555930,
+   "text": "puede darse por"
+  },
+  {
+   "id": "asr-00210",
+   "start_ms": 1555930,
+   "end_ms": 1558430,
+   "text": "que ha hecho el alto"
+  },
+  {
+   "id": "asr-00211",
+   "start_ms": 1558430,
+   "end_ms": 1560870,
+   "text": "al final, o en este caso el bajo"
+  },
+  {
+   "id": "asr-00212",
+   "start_ms": 1560870,
+   "end_ms": 1564680,
+   "text": "al final de la vela"
+  },
+  {
+   "id": "asr-00213",
+   "start_ms": 1564680,
+   "end_ms": 1566320,
+   "text": "va a haber un capítulo de Felur Swing"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139500000-canonical-v1",
+   "pts_ms": 1550000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139590000-canonical-v1",
+   "pts_ms": 1551000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139680000-canonical-v1",
+   "pts_ms": 1552000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139770000-canonical-v1",
+   "pts_ms": 1553000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p140040000-canonical-v1",
+   "pts_ms": 1556000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p140040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p140400000-canonical-v1",
+   "pts_ms": 1560000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p140400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p140760000-canonical-v1",
+   "pts_ms": 1564000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p140760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p140850000-canonical-v1",
+   "pts_ms": 1565000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p140850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

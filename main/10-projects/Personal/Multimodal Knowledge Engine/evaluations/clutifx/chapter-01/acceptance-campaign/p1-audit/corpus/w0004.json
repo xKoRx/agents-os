@@ -1,0 +1,650 @@
+{
+ "window": "w0004",
+ "start": "00:48",
+ "end": "01:04",
+ "start_ms": 48000,
+ "end_ms": 64000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-intermedio-no-supone-problema",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No haber realizado el curso intermedio no supone ningún problema.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5f1eb0f7877c9be822814efd4e4b7c1bc3a627bb1d2dabd4d38e18c9445bc0ab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que, si el oyente no ha realizado el curso intermedio, «no pasa nada», y explica que su información no es relevante para comprender el contenido actual."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: no haber realizado el curso intermedio no supone ningún problema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-empezar-explicacion-desde-cero",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La explicación comenzará desde cero.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00004"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e16c8892eb288e0bcafdea71345f574f4853df6983718931fb31bc122a8ddc32",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia declara explícitamente que va a empezar desde cero, lo que respalda que la explicación comenzará desde cero."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-empezar-por-los-conceptos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La explicación empezará por los conceptos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00004"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "701016f54862a429d554ad348d6f072b444af8798c7669f33c10ee741beac216",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente: «vamos a empezar con los conceptos», lo que respalda que la explicación empezará por los conceptos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre el orden de inicio de la explicación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-formato-parecido-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El formato que se seguirá será un poco parecido al del curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b44746a036324fc5266f7e2ed12d1cbb5edd55f7fcab8240b1957044677e25d6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que el formato que se seguirá será un poco similar al del curso intermedio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-informacion-curso-intermedio-poca-relevancia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Para entender esto ahora, no hay información del curso intermedio que sea totalmente relevante.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bacaec1ac62253be80da988d0f3887b21662a0d75e9f4ae12333d22d22dfc225",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que «no hay información que sea totalmente relevante para ahora entender esto» y la declaración identifica esa información como procedente del curso intermedio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La declaración contiene una sola proposición: la falta de información totalmente relevante del curso intermedio para comprender el contenido ahora."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instrumento-grafico-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado en el gráfico es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p134640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "958dcf53bb91f8363d035956e7cc14d28889b3c39182b44e7abbb32444c3bb9a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran explícitamente «EURUSD» tanto en la interfaz como en la etiqueta del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166",
+     "86f1265291746cc5231a94fd7009b90076a1936f52436ad9e52d4f01a6b5644d"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-introducir-concepto-rango",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La explicación introducirá el concepto de rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00004"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c01dff3d149b0ac58d4bf245fa2375e5b28697cac0301f3959d12bd628fbbeed",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción cita expresamente que se va a inculcar un concepto nuevo: «el concepto de rango», lo que respalda que la explicación introducirá dicho concepto."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable: la introducción del concepto de rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-pintar-vela-en-grafico",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor va a pintar una vela en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "532358b3143e2d07920558dc1477a7664539fb8b65985d8b6e3d5423a60b24ab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma «voy a pintar la vela ahora», pero no establece que la vela se pinte en un gráfico."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-otra-vela-toma-extremo-cierra-dentro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto de rango se refiere a la situación en que otra vela toma un extremo de la vela anterior y cierra dentro de ella.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5a6321a992bb37de2a964016084bc877587dcbee1e92e8312cb59c335eba050c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada define explícitamente el concepto de rango como aquel en que otra vela toma un extremo de la vela anterior y cierra dentro de ella."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: una definición del concepto de rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-vela-tomante-puede-no-ser-siguiente",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La vela que toma el extremo no tiene que ser la inmediatamente siguiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "300705ebcc364263b39234ad04859ba5f76b5b7b65741e65d771ceee49f52a5d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que la vela que toma un extremo «no tiene porque ser la siguiente» y que puede ser «otra vela»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la vela que toma el extremo no tiene que ser la inmediatamente siguiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-grafico-cinco-minutos",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico es de cinco minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3d33636a020b8b5cfefd40d8e99d22c5e7925b4bd8f9a8a42c690b0e00aa1822",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible «EURUSD | 5M» indica que la temporalidad del gráfico es de cinco minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-representada-por-rectangulo-vertical",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela que se está pintando se representa mediante un rectángulo vertical.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00005",
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p5670000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p5760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "43de05f1a1508300dd337e5dbec1f20a3a6d5274ea6e95539ad53c7c816419a7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica que se va a pintar la vela, y las imágenes muestran un contorno rectangular vertical más alto que ancho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-hacer-curso-intermedio-depende-de-relevancia",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-curso-intermedio-no-supone-problema",
+   "subject_version": 1,
+   "object_id": "cl-informacion-curso-intermedio-poca-relevancia",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6e184ab3df9320150f85bb32f9a9d352fd6219c8f16ef8896befbab1fffd120b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que no haber realizado el curso intermedio «no pasa nada» porque no hay información de ese curso totalmente relevante para entender el contenido en ese momento; por tanto, la afirmación de que no supone ningún problema queda sustentada por la falta de relevancia indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-vela-no-siguiente-excepcion-a-definicion-rango",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-rango-vela-tomante-puede-no-ser-siguiente",
+   "subject_version": 1,
+   "object_id": "cl-rango-otra-vela-toma-extremo-cierra-dentro",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b9fe61c9ec26ffcf3041c4ca6040ac627a5478680fe6f9e2cb268a982d6ce6c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la vela que toma un extremo y cierra dentro «no tiene porque ser la siguiente», lo que constituye una excepción explícita a la definición de rango citada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52222c7eb87552c3df28119b4a8210923d544bff9011f41b563e3df72c3cc166"
+    ],
+    "response_id": "gen-1790887802-paMnLz5qAyWSeSfuB6t1"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00003",
+   "start_ms": 34850,
+   "end_ms": 49400,
+   "text": "Así que nada, vamos directamente al grano. El formato que voy a seguir va a ser un poco similar al del curso intermedio y si no lo has hecho, tranquilo, no pasa nada porque no hay información que sea totalmente relevante para ahora entender esto."
+  },
+  {
+   "id": "asr-00004",
+   "start_ms": 49620,
+   "end_ms": 61640,
+   "text": "Voy a empezar desde cero aquí también. Así que nada, vamos a empezar con los conceptos. Primero de todo, vamos a inculcar un concepto nuevo que a lo mejor no conocéis vosotros, que es el concepto de rango."
+  },
+  {
+   "id": "asr-00005",
+   "start_ms": 61640,
+   "end_ms": 81320,
+   "text": "¿Vale? El concepto de rango se refiere, voy a pintar la vela ahora, a las velas que la siguiente vela nos toma, o no tiene porque es la siguiente, otra vela, nos toma un extremo de esta vela y cierra dentro del anterior, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134640000-canonical-v1",
+   "pts_ms": 1496000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p4320000-canonical-v1",
+   "pts_ms": 48000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p4320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p4680000-canonical-v1",
+   "pts_ms": 52000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p4680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5040000-canonical-v1",
+   "pts_ms": 56000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5130000-canonical-v1",
+   "pts_ms": 57000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+   "pts_ms": 60000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5490000-canonical-v1",
+   "pts_ms": 61000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5670000-canonical-v1",
+   "pts_ms": 63000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5760000-canonical-v1",
+   "pts_ms": 64000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

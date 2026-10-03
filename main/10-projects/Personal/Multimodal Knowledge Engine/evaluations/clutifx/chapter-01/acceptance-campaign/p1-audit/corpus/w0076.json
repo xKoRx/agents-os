@@ -1,0 +1,556 @@
+{
+ "window": "w0076",
+ "start": "19:20",
+ "end": "19:40",
+ "start_ms": 1160000,
+ "end_ms": 1180000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-fuera-deja-de-ser-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si la vela cierra afuera, esto ya no es un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f2c4efa143ec851f9fdb9f08065da8e2cae146ff0febf8b6a92648f0dbba1d73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enunciada dice explícitamente que «si cierra afuera, esto ya no es un rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-es-turtle-soup-de-este-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto sería un turtle soup de este rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00164",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f2ca97d2c3f64af4e1830702d96d9e9ba384f8c7eb31ff16ab9203ca274566fb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «esto» sería un «tartel sub de este rango»,表达式 que corresponde a la clasificación expresada en la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la configuración mostrada sería un turtle soup de ese rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-idea-alcista-esperar-nueva-vela",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si tenemos una idea alcista, tendremos que esperar a una nueva vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "468b364a82e25835691f8738f66c18eef27ed7f38a04bb3a3017c7fecd582895",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enuncia directamente que, si hay una idea alcista, será necesario esperar a que出现 una nueva vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional: tener una idea alcista implica esperar una nueva vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-es-interturtle-soup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto ya no sería un interturtle soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00164",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "779f9874f8030932bb631828352736ca64c54573f267ec1b3a8342d60dac3dd5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «esto ya no sería» un «intertartel sub», y la imagen muestra la anotación «INTRATURTLES...» junto a la configuración.chartada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nueva-vela-marcada-en-el-grafico",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La nueva vela se deja marcada en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "6de8d46c58d23a05ba37546b6c800ff2df3af7d6a86ca2ab4470300eefcf8638",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «la dejo aquí marcada» en relación con «una nueva vela», pero no identifica explícitamente el lugar como un gráfico."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nuevo-rango-posible",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A lo mejor, este podría ser un nuevo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00163",
+    "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dd4275ac824849856fcbc59b183f1814ad773df1b30e4e680ccd2de08a2d8ae7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada dice directamente que «a lo mejor» habría «un nuevo rango» que «podría ser este»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que este sea un nuevo rango; las expresiones modalizadores no añaden proposiciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-completo-se-puede-eliminar",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando el rango se completa, se puede eliminar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00166",
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b9e00b8aaea1fcedeb8ca00025bd43d3c900ed9e8d8af7b22cc48921a7060d8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que, una vez completado el rango, «este rango ya se puede eliminar», lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la eliminación del rango cuando se completa."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-completo-toma-low-y-alto",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un rango se completa cuando toma tanto el low como el alto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00166",
+    "asr-00167"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "57bf58a09269950dae1b7b6fc431144c1313e79dea17dfcbd4e8ba93ee19f7a9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «completa significa que toma tanto el low como el alto»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement sostiene una única proposición: que un rango se completa cuando toma tanto el low como el alto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-se-puede-eliminar-por-cierre-fuera",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Este rango se puede eliminar porque la vela cierra fuera.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00165",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p105120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "66214ec027b49b2b81a0e333a05c35b61fb9c713ac3294c2eaed7c83593f1dfc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada enuncia literalmente que el rango se puede eliminar porque la vela cierra fuera."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene dos proposiciones evaluables por separado: la posibilidad de eliminar el rango y el cierre de la vela fuera de él,摸着吧Presented como justificación."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recuadro-grande-desaparece",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El recuadro grande desaparece del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p105120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "044901fecd9c27a2e24cb03abc7c5a2ddcc4cf46080e8e539db469938249810c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra un recuadro blanco grande y la segunda imagen ya no lo muestra, lo que sustenta que desaparece del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-eliminacion-requiere-rango-completo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-completo-se-puede-eliminar",
+   "subject_version": 1,
+   "object_id": "cl-rango-completo-toma-low-y-alto",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00166",
+    "asr-00167",
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "73a1f9b30b0d5046ff4454dbd8e2eb3396aa97e231191849d40751ff57521a06",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «completa significa que toma tanto el low como el alto» y, una vez completado el rango, dice «Este rango ya se puede eliminar», estableciendo la relación orientada de la afirmación del sujeto sobre la eliminación hacia la condición expresada por el objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b4805fcead4687b29fc60ab1f1b702fb6f5e8e09dc105821b5ce0cead1fca71c"
+    ],
+    "response_id": "gen-1790900512-qsNYPIk8ToYiKKHjHfVv"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00163",
+   "start_ms": 1157090,
+   "end_ms": 1161050,
+   "text": "y tendríamos a lo mejor un nuevo rango que podría ser este."
+  },
+  {
+   "id": "asr-00164",
+   "start_ms": 1161750,
+   "end_ms": 1166610,
+   "text": "O sea, esto ya no sería un intertartel sub, sino que sería un tartel sub de este rango"
+  },
+  {
+   "id": "asr-00165",
+   "start_ms": 1166610,
+   "end_ms": 1170510,
+   "text": "y este lo podríamos ya eliminar porque la vela cierra fuera, ¿vale?"
+  },
+  {
+   "id": "asr-00166",
+   "start_ms": 1170790,
+   "end_ms": 1174750,
+   "text": "Importante este concepto también, que una vez el rango se nos completa,"
+  },
+  {
+   "id": "asr-00167",
+   "start_ms": 1175840,
+   "end_ms": 1179620,
+   "text": "completa significa que toma tanto el low como el alto, ¿vale?"
+  },
+  {
+   "id": "asr-00168",
+   "start_ms": 1179620,
+   "end_ms": 1197440,
+   "text": "Este rango ya se puede eliminar y del mismo caso, si cierra afuera, esto ya no es un rango. Si tenemos una idea alcista, tendremos que esperar ahora a que una nueva vela, bueno, la dejo aquí marcada, en este caso, ello, esto ya no es un rango."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+   "pts_ms": 1160000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p104400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p104760000-canonical-v1",
+   "pts_ms": 1164000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p104760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105120000-canonical-v1",
+   "pts_ms": 1168000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105390000-canonical-v1",
+   "pts_ms": 1171000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105480000-canonical-v1",
+   "pts_ms": 1172000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105660000-canonical-v1",
+   "pts_ms": 1174000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105840000-canonical-v1",
+   "pts_ms": 1176000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106200000-canonical-v1",
+   "pts_ms": 1180000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

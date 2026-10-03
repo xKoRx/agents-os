@@ -1,0 +1,426 @@
+{
+ "window": "w0106",
+ "start": "27:24",
+ "end": "27:36",
+ "start_ms": 1644000,
+ "end_ms": 1656000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-oferta-demanda-parecido-cambio-tendencia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El cambio de oferta y demanda se parece un poco al cambio de tendencia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00234"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "3527701cf49e93557b00ba344412d9b70562d21e6924dceefc6440be0373916b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «que sería como el cambio de tendencia un poco», pero no identifica explícitamente el referente como el cambio de oferta y demanda."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el cambio de oferta y demanda se parece un poco al cambio de tendencia."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b955e66a3ffe978852a837c458392ad099dcf40079be4514ed36e44f05a1d80b"
+    ],
+    "response_id": "gen-1790907904-moe8ycNVgn6LQ6PSueIW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-oferta-demanda-termino-ingles",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El cambio de oferta y demanda se llama en inglés «change in supply and demand».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00233"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "53161fa80c1578c71e43ad8bd0e79d4929d4207e704466ffc86c1784e293ef0b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia solo dice «en inglés se llama change instead of delivery» y no establece que el término completo sea «change in supply and demand»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre el nombre en inglés de un concepto."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b955e66a3ffe978852a837c458392ad099dcf40079be4514ed36e44f05a1d80b"
+    ],
+    "response_id": "gen-1790907904-moe8ycNVgn6LQ6PSueIW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibuja-zona-rectangular",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se dibuja una zona rectangular en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "120645dc5cfb5ce2fdf934921fe9b69763097f5894363c242ae88f7f28e9f16d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una zona rectangular delineada y seleccionada sobre el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b955e66a3ffe978852a837c458392ad099dcf40079be4514ed36e44f05a1d80b"
+    ],
+    "response_id": "gen-1790907904-moe8ycNVgn6LQ6PSueIW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-instrumento-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado es de EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p147960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7d12da89187ef2f3841994d1335022937c6aa370c9e9d596ed1df00a6651b2de",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «EURUSD» en la parte superior y junto al nombre del gráfico en la parte inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b955e66a3ffe978852a837c458392ad099dcf40079be4514ed36e44f05a1d80b"
+    ],
+    "response_id": "gen-1790907904-moe8ycNVgn6LQ6PSueIW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-temporalidad-ocho-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico es de 8 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p147960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8e96349c1bed885ad5fed45a2e530ac136c70d0ea913a9c0540a9db778595c7f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La cabecera del gráfico muestra explícitamente «EURUSD · 8h · FOREX.com», lo que establece una temporalidad de 8 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b955e66a3ffe978852a837c458392ad099dcf40079be4514ed36e44f05a1d80b"
+    ],
+    "response_id": "gen-1790907904-moe8ycNVgn6LQ6PSueIW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-order-block-importante-cambio-oferta-demanda",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El order block es importante para el cambio de oferta y demanda.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00230",
+    "asr-00231",
+    "asr-00232",
+    "asr-00233"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "552517a7931a565f1e5761fe52a3fec308374bb467eb0c82d4c531888c8d9e13",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited fragments connect an order block with being important for a change, but the phrase ends at “el cambio de” and does not establish that the change is specifically one of “oferta y demanda.”"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b955e66a3ffe978852a837c458392ad099dcf40079be4514ed36e44f05a1d80b"
+    ],
+    "response_id": "gen-1790907904-moe8ycNVgn6LQ6PSueIW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-rectangular-limites-precios",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Los límites verticales de la zona rectangular son 1.13089 y 1.13978.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148500000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148950000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "04879456bed998ac5f3f4d2eb8c205b448c854f6112d3e86002b0ffa3d9a2cf9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran la zona rectangular y sus etiquetas de límites verticales: 1.13089 en la parte inferior y 1.13978 en la parte superior. La afirmación presenta ambos valores como los dos límites de una única zona."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b955e66a3ffe978852a837c458392ad099dcf40079be4514ed36e44f05a1d80b"
+    ],
+    "response_id": "gen-1790907904-moe8ycNVgn6LQ6PSueIW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-rectangular-relleno-negro",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La zona rectangular se rellena de negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148950000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b67b5b9a5a1da49e38dc82e0123bc95f772c2f20727272729b4ed91f03c91e33",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una zona rectangular claramente rellena de negro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "b955e66a3ffe978852a837c458392ad099dcf40079be4514ed36e44f05a1d80b"
+    ],
+    "response_id": "gen-1790907904-moe8ycNVgn6LQ6PSueIW"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00228",
+   "start_ms": 1642330,
+   "end_ms": 1644280,
+   "text": "que es"
+  },
+  {
+   "id": "asr-00229",
+   "start_ms": 1644280,
+   "end_ms": 1646780,
+   "text": "voy a ir directamente, bueno lo puedo explicar aquí también"
+  },
+  {
+   "id": "asr-00230",
+   "start_ms": 1646780,
+   "end_ms": 1648280,
+   "text": "el de order block"
+  },
+  {
+   "id": "asr-00231",
+   "start_ms": 1648280,
+   "end_ms": 1650560,
+   "text": "es importante para"
+  },
+  {
+   "id": "asr-00232",
+   "start_ms": 1650560,
+   "end_ms": 1652020,
+   "text": "el cambio de"
+  },
+  {
+   "id": "asr-00233",
+   "start_ms": 1652020,
+   "end_ms": 1654880,
+   "text": "en inglés se llama change instead of delivery"
+  },
+  {
+   "id": "asr-00234",
+   "start_ms": 1654880,
+   "end_ms": 1656860,
+   "text": "que sería como el cambio de tendencia un poco"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p147960000-canonical-v1",
+   "pts_ms": 1644000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p147960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148140000-canonical-v1",
+   "pts_ms": 1646000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148320000-canonical-v1",
+   "pts_ms": 1648000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148410000-canonical-v1",
+   "pts_ms": 1649000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148500000-canonical-v1",
+   "pts_ms": 1650000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148680000-canonical-v1",
+   "pts_ms": 1652000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148950000-canonical-v1",
+   "pts_ms": 1655000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148950000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149040000-canonical-v1",
+   "pts_ms": 1656000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

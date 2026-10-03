@@ -1,0 +1,96 @@
+{
+ "window": "w0074",
+ "start": "18:25",
+ "end": "18:52",
+ "start_ms": 1105000,
+ "end_ms": 1132000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00156",
+   "start_ms": 1099350,
+   "end_ms": 1112970,
+   "text": "a nuestra dirección, puede pasar que el precio vaya a completar rangos antes de subir. Por lo tanto, aquí si nosotros hemos comprado, podríamos poner un break even"
+  },
+  {
+   "id": "asr-00157",
+   "start_ms": 1112970,
+   "end_ms": 1122470,
+   "text": "al ver que se nos están formando rangos en contra y luego una vez pasa esto, vuelve a reaccionar, podríamos poner nuestra entrada ahí otra vez. Lo vais a ver mucho más fácil"
+  },
+  {
+   "id": "asr-00158",
+   "start_ms": 1122470,
+   "end_ms": 1127930,
+   "text": "cuando os enseñe en el gráfico ya en el siguiente capítulo cómo funciona la estrategia y todo pero"
+  },
+  {
+   "id": "asr-00159",
+   "start_ms": 1127930,
+   "end_ms": 1136720,
+   "text": "para que si yo hablo de intentarte el show sepáis que es es esto un tarde el sub una vez ya se ha"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100080000-canonical-v1",
+   "pts_ms": 1112000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100440000-canonical-v1",
+   "pts_ms": 1116000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100800000-canonical-v1",
+   "pts_ms": 1120000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101160000-canonical-v1",
+   "pts_ms": 1124000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101520000-canonical-v1",
+   "pts_ms": 1128000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101880000-canonical-v1",
+   "pts_ms": 1132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99450000-canonical-v1",
+   "pts_ms": 1105000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99720000-canonical-v1",
+   "pts_ms": 1108000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,621 @@
+{
+ "window": "w0036",
+ "start": "08:00",
+ "end": "08:21",
+ "start_ms": 480000,
+ "end_ms": 501000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-continuacion-alcista-hasta-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se puede anticipar que el movimiento seguirá siendo alcista hasta el objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00064",
+    "asr-00065",
+    "asr-00066"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "03428e64fac3a5fc0ad58e4b99541c702c7e4720258c43bce8a4e751b4d6ff0c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma expresamente que se puede anticipar que el movimiento «va a seguir siendo alcista hasta el objetivo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-1-16148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de continuación de EURUSD está en el nivel 1,16148.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00064",
+    "frame-4de8f12d4841c630-s0-p43200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p45000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d42e248faceb098095e6ef18656e878383f93e9921ad37c8b98365be07948e16",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica que se espera una continuación y menciona un objetivo «aquí arriba»; las imágenes de EURUSD muestran una línea horizontal etiquetada exactamente 1,16148."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-bajistas-en-smt",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Los rangos bearish formados en Libra se abordarán en el tema de la SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00067"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a56d3bc382c338513f4a542a01edeca10d44023c06479a007cc80c881e24caad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que lo bearish está formado en Libra y que será visto en el tema de la SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La expresión sobre Libra y la SMT limita y especifica una sola afirmación sobre su tratamiento futuro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-bajistas-libra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En Libra están formados rangos bearish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00067"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "253f9ffa71ad86340550ee990d52761d5f58cc0a69a6e3477c2e941bb18b6ec4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que en Libra están formados rangos bearish."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la formación de rangos bearish en Libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-bajistas-otra-vez",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se nos forman rangos bearish otra vez.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00067"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1c52a93632c4b4ff95e4b85e784fce89f5866d383cae414065a7efe6f69c1118",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que están formados otra vez de forma bearish, lo que respalda que se estén formando rangos bearish nuevamente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-senal-continuacion-cierra-fuera",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Normalmente, una señal de continuación requiere que la vela cierre fuera.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00063"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7b2109be640730fa71e983f9a59ffa60d82faca8a3ba05be617f962d5af2053d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que las señales de continuación son normalmente válidas si la vela cierra fuera, lo que respalda que normalmente este cierre sea un requisito."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola proposición; «normalmente» es un modificador de esa misma regla."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-senal-continuacion-sin-rango-bajista",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Normalmente, una señal de continuación requiere que la vela no forme un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00063"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f42f382b6fcdd30a035c74618cb2618ea9952b9b7ad8db67701c04a8ef4e9cf5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma normalmente que las señales de continuación son válidas si la vela no forma un rango bajista, lo que respalda la condición expresada en la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la condición normalmente exigida a la vela para una señal de continuación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cierra-fuerte",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela cierra con fuerza.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00065"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eb5fadf9210139d047d6d20aa20d719f32ba854797740a84cc46adbe512535d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «vela cierra con fuerza»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una única proposición sobre el cierre de la vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-sin-rango-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela no forma ningún rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00065"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "837d707734f86219d5da7dd96e0103bbba7a548af71b2a1cb1cac515c41eb0d7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que la vela «no forma ningún rango bajista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-alcista-depende-cierra-fuerte",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-continuacion-alcista-hasta-objetivo",
+   "subject_version": 1,
+   "object_id": "cl-vela-cierra-fuerte",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00065",
+    "asr-00066"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e8ca10119c0abb55e834ac4b93ced29da5eee2073c8e1d1060c5486878fc69f2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula explícitamente el cierre fuerte de la vela con la anticipación de continuidad alcista: «vela cierra con fuerza, no forma ningún rango bajista, pues puedes anticipar... que va a seguir siendo... alcista hasta el objetivo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-alcista-depende-objetivo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-continuacion-alcista-hasta-objetivo",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-1-16148",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00064",
+    "asr-00066",
+    "frame-4de8f12d4841c630-s0-p45000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e628a8e08c24e94e039f8fa23e40f89c14af1bdd78e0de1e6ba96ee677672c2c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones indican explícitamente que se espera que el movimiento continúe y siga siendo alcista «hasta el objetivo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el gráfico de EURUSD con una línea horizontal marcada en 1,16148, coincidente con ese objetivo de continuación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-alcista-depende-sin-rango-bajista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-continuacion-alcista-hasta-objetivo",
+   "subject_version": 1,
+   "object_id": "cl-vela-sin-rango-bajista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00065",
+    "asr-00066"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "554d73776230861cf160cf1d3f86f23f4b0d8fcbd9fc913bc8edbd4b46969a38",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la vela «no forma ningún rango bajista» y, con «pues», presenta ese hecho como fundamento para anticipar que el movimiento «va a seguir siendo alcista hasta el objetivo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-bajista-excepcion-alcista",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-rangos-bajistas-otra-vez",
+   "subject_version": 1,
+   "object_id": "cl-continuacion-alcista-hasta-objetivo",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00066",
+    "asr-00067"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "af130960e4203a268c6ebbafa0da40b398bf770b02f04f7124c8a41069d267f2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada sostiene que el movimiento seguirá siendo alcista hasta el objetivo y, al mismo tiempo, afirma que ahora se forman rangos bearish otra vez, presenting estos rangos como la excepción a esa continuidad alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "f772bcf08dfd5b35e2264f86b33c8938d9be49add9be4a774f7b4da920883428"
+    ],
+    "response_id": "gen-1790892597-adJZwUCX6t0fefICkyzY"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00063",
+   "start_ms": 474530,
+   "end_ms": 481460,
+   "text": "señales de continuación vale normalmente si la vela cierra fuera y no te forma un rango bajista"
+  },
+  {
+   "id": "asr-00064",
+   "start_ms": 481460,
+   "end_ms": 486780,
+   "text": "lo que puedes esperar es que continúe teníamos un objetivo aquí arriba pues tú ves como esta"
+  },
+  {
+   "id": "asr-00065",
+   "start_ms": 486780,
+   "end_ms": 491560,
+   "text": "vela cierra con fuerza, no forma ningún rango bajista, pues puedes anticipar que esta lo"
+  },
+  {
+   "id": "asr-00066",
+   "start_ms": 491560,
+   "end_ms": 497060,
+   "text": "que va a seguir siendo es alcista hasta el objetivo, ¿vale? Ahora que se nos forman rangos"
+  },
+  {
+   "id": "asr-00067",
+   "start_ms": 497060,
+   "end_ms": 503540,
+   "text": "bearish otra vez, que en Libra están formados, ya lo vais a ver en el tema de la SMT, ahora"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43200000-canonical-v1",
+   "pts_ms": 480000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43560000-canonical-v1",
+   "pts_ms": 484000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43740000-canonical-v1",
+   "pts_ms": 486000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43920000-canonical-v1",
+   "pts_ms": 488000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p44280000-canonical-v1",
+   "pts_ms": 492000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p44280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p44640000-canonical-v1",
+   "pts_ms": 496000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p44640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45000000-canonical-v1",
+   "pts_ms": 500000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45090000-canonical-v1",
+   "pts_ms": 501000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

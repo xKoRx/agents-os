@@ -1,0 +1,320 @@
+{
+ "window": "w0083",
+ "start": "21:09",
+ "end": "21:24",
+ "start_ms": 1269000,
+ "end_ms": 1284000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-audiencia-sabe-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Ya sabéis qué es SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1407b4f95c477d1cb6f7df1995981d2082ef86a7a604a75b038250155fb2f3e4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente «Ya sabéis qué es», en referencia inmediata a SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement_statement_audience_s_already_knows_what_SMT_is_afirms_una_sola_proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8c40c824913c40393cb7b8ab30ee6cce039bfd081bdc47333dd18b6f50071f7e"
+    ],
+    "response_id": "gen-1790902455-hL5ZPlSZtugmuHgBtaA5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-ejemplo-smt",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La estructura dibujada para el EURUSD es un ejemplo de la SMT que conocíais hasta ahora.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1b9aea47256e311fed4e9ef48c986156254cc55f8b6b0fe96ee7b799d6006a3c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción presenta lo mostrado como ejemplos de euro y libra y afirma que es «la SMT que conocíais hasta ahora»; la imagen identifica la estructura dibujada a la izquierda como EURUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la estructura dibujada para EURUSD es un ejemplo de la SMT conocida hasta ese momento."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8c40c824913c40393cb7b8ab30ee6cce039bfd081bdc47333dd18b6f50071f7e"
+    ],
+    "response_id": "gen-1790902455-hL5ZPlSZtugmuHgBtaA5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-nuevo-alto",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El EURUSD forma un nuevo alto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00175",
+    "frame-4de8f12d4841c630-s0-p114210000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "537870d25099b742d045c237daeadb5c8aa5bfa3312d27c86717ae65d5564cb2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «nuevo alto en euro» y la imagen identifica el gráfico como EURUSD,直观上 muestran un máximo posterior superior al previo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que EURUSD está formando un nuevo alto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8c40c824913c40393cb7b8ab30ee6cce039bfd081bdc47333dd18b6f50071f7e"
+    ],
+    "response_id": "gen-1790902455-hL5ZPlSZtugmuHgBtaA5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-ejemplo-smt",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La estructura dibujada para el GBPUSD es un ejemplo de la SMT que conocíais hasta ahora.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c56e96df0404087312cc01c091ad2b13eb6b5fe14f08d277134dd0b8a109b998",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica expresamente la estructura de la libra como «la SMT que conocíamos, que conocíais [...] hasta ahora», y la imagen muestra la estructura dibujada para GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8c40c824913c40393cb7b8ab30ee6cce039bfd081bdc47333dd18b6f50071f7e"
+    ],
+    "response_id": "gen-1790902455-hL5ZPlSZtugmuHgBtaA5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-muchos-venis-a-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Muchos de vosotros venís a SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "81060a1b1726014b6261e326b2b987ea6d7d4a9ffb303ed2e4c6883913647826",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente «Muchos venís a SMT», lo que respalda que muchos de losostringentes presentes vienen a SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8c40c824913c40393cb7b8ab30ee6cce039bfd081bdc47333dd18b6f50071f7e"
+    ],
+    "response_id": "gen-1790902455-hL5ZPlSZtugmuHgBtaA5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto SMT ya está explicado también en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2302bcca3d845408c3b7fc0d00f8bf1cd4b29e9199fd016bb07a439ee5a6fce1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente: «Concepto SMT. Ya está explicado también en el curso intermedio»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8c40c824913c40393cb7b8ab30ee6cce039bfd081bdc47333dd18b6f50071f7e"
+    ],
+    "response_id": "gen-1790902455-hL5ZPlSZtugmuHgBtaA5"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00174",
+   "start_ms": 1245430,
+   "end_ms": 1283400,
+   "text": "Vamos a seguir. Concepto SMT. Ya está explicado también en el curso intermedio. Muchos venís a SMT. Ya sabéis qué es. La SMT que conocemos nosotros o que conocíais vosotros anteriormente es esta. Por ejemplo, esto es el euro. Y esto es la libra. Esta sería la SMT que conocíamos, que conocíais, perdón, hasta ahora."
+  },
+  {
+   "id": "asr-00175",
+   "start_ms": 1283400,
+   "end_ms": 1285320,
+   "text": "nuevo alto en euro"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+   "pts_ms": 1269000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114390000-canonical-v1",
+   "pts_ms": 1271000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114480000-canonical-v1",
+   "pts_ms": 1272000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114660000-canonical-v1",
+   "pts_ms": 1274000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114840000-canonical-v1",
+   "pts_ms": 1276000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115020000-canonical-v1",
+   "pts_ms": 1278000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115200000-canonical-v1",
+   "pts_ms": 1280000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115560000-canonical-v1",
+   "pts_ms": 1284000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,470 @@
+{
+ "window": "w0039",
+ "start": "08:45",
+ "end": "08:57",
+ "start_ms": 525000,
+ "end_ms": 537000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-marco-15m-a-1h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La visualización cambia de marcos de 15 minutos a marcos de 1 hora.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48060000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p48240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "034451af5d586ed8d0809a075f434824a48ade3ae088c284ade9081d85eb76be",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra los gráficos en marcos de 15 minutos (15/15M) y la segunda los muestra en marcos de 1 hora (1h/60M), por lo que las evidencias citadas muestran el cambio indicado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El cambio de un marco temporal a otro constituye una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-alcanzo-116148",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El EURUSD alcanzó el nivel 1,16148 en los gráficos iniciales de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a7198535a3b6b88c0a1336fa636bd4ae976a7a2ba81c16713fb7a048ec42f734",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los gráficos citados identifican EURUSD y el intervalo de 15 minutos, y muestran una línea horizontal rotulada 1,16148 con las velas de EURUSD tocándola o superándola."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-rango-superior-116148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El extremo superior del rango de EURUSD en las primeras capturas de 15 minutos está marcado en 1,16148.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "231dd3bb4b1f115ee2f13a45805d1acb8a9e530faca21a6bad799e3560a736e7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En el panel EURUSD de 15 minutos, las líneas horizontales superiores están etiquetadas con 1,16148 en las tres capturas citadas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rango-superior-135843",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El extremo superior del rango de GBPUSD en las primeras capturas de 15 minutos está marcado en 1,35843.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b0bdad95ed2b46e57b4c1c8731e1199ae378ee63ea469e9d50cbfa62260a729",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres capturas muestran el gráfico GBPUSD de 15 minutos con una línea horizontal azul etiquetada 1,35843, correspondiente al extremo superior marcado del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-supero-135843",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El GBPUSD cotizó por encima de 1,35843 en los gráficos iniciales de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p48060000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3052545d5e82dd280aa4e71da67ead0d406d863d16b0cb824bdd14f7465752ae",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los gráficos citados de GBPUSD en 15 minutos muestran velas por encima del nivel 1,35843 y cotizaciones visibles cercanas a 1,3603 en varios de ellos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola relación de precio; las referencias al periodo inicial y al intervalo de 15 minutos únicamente acotan esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-movimiento-llego-antes-de-entrada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El movimiento llegó antes de que pudiésemos entrar en la sesión.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00075",
+    "asr-00076"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "883c140918155e3b8e63c858f20997d5932711a6e12f54aeab7cbcf4f85365a0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia solo afirma que algo «llegó antes de que pudiésemos entrar», pero no identifica ese algo como «el movimiento» ni el lugar de entrada como «la sesión»."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-libra-zona-superior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo de la libra estaba en la parte superior del gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00077",
+    "asr-00078"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f417a9b4149c02265b941f17688d87473ed088a2de8dfbbcd98e946860bdaacc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia solo dice que el objetivo de libra estaba «ahí arriba», pero no identifica explícitamente el gráfico ni establece que estuviera en su parte superior."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-situacion-muestra-importancia-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esta situación muestra parte de la importancia de los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00078",
+    "asr-00079",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "661dd74de354e8fd22aa4a0b2e19a346ab79fc5b258252866b3794566ed15e0a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada dice «Esta es un poco la importancia de los rangos», lo que respalda que la situación observada muestra parte de la importancia de los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la situación mostrada ilustra la importancia de los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-suponer-rangos-se-completan",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Hay que suponer que los rangos se van a completar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00079",
+    "asr-00080"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "44c44ea6038281da581b3b8c3af1035e7ee8c5eb70d2cf8e1405484590172b27",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «Asumir que se van a completar» y el fragmento anterior identifica de qué elementos se trata: «de los rangos», lo que respalda que hay que suponer que los rangos se van a completar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La enunciación contiene una sola proposición: la necesidad de suponer que los rangos se completarán."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "941b0c32e964660dcc70b9492325818120394c8c0e8d345fb75bcd3a736f5743"
+    ],
+    "response_id": "gen-1790893074-xeB1rvVDGp9Nt0Ukwuqk"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00075",
+   "start_ms": 525900,
+   "end_ms": 527380,
+   "text": "Bueno, lástima"
+  },
+  {
+   "id": "asr-00076",
+   "start_ms": 527380,
+   "end_ms": 529240,
+   "text": "que llegó antes de que pudiésemos entrar"
+  },
+  {
+   "id": "asr-00077",
+   "start_ms": 529240,
+   "end_ms": 531120,
+   "text": "en la sesión, pero el objetivo de libra"
+  },
+  {
+   "id": "asr-00078",
+   "start_ms": 531120,
+   "end_ms": 533600,
+   "text": "estaba ahí arriba. Esta es un poco la importancia"
+  },
+  {
+   "id": "asr-00079",
+   "start_ms": 533600,
+   "end_ms": 534660,
+   "text": "de los rangos."
+  },
+  {
+   "id": "asr-00080",
+   "start_ms": 535400,
+   "end_ms": 536720,
+   "text": "Asumir que se van a completar"
+  },
+  {
+   "id": "asr-00081",
+   "start_ms": 536720,
+   "end_ms": 539220,
+   "text": "y que el precio funciona de esta manera. De un rango"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+   "pts_ms": 525000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47520000-canonical-v1",
+   "pts_ms": 528000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47700000-canonical-v1",
+   "pts_ms": 530000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47790000-canonical-v1",
+   "pts_ms": 531000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47880000-canonical-v1",
+   "pts_ms": 532000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48060000-canonical-v1",
+   "pts_ms": 534000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48240000-canonical-v1",
+   "pts_ms": 536000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48330000-canonical-v1",
+   "pts_ms": 537000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

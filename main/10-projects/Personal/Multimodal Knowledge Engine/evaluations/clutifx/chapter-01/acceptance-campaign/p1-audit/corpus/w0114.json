@@ -1,0 +1,291 @@
+{
+ "window": "w0114",
+ "start": "29:05",
+ "end": "29:13",
+ "start_ms": 1745000,
+ "end_ms": 1753000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-concepto-order-block",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El ejemplo mostrado es, en parte, el concepto de order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00252"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f22e2e42e0ddb1ac263b53a90ea0130018e7b04fc98eaecf2cde676d0713ec27",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «Esto» sería «un poco» el concepto de order block, pero no identifica explícitamente «Esto» como el ejemplo mostrado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "63b059d5da0d91f4586a63a4e2199c3268da5ce46010c437b52f0ba218939234"
+    ],
+    "response_id": "gen-1790908940-BNDfDmfrb378XSXyASk8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-en-order-block-vespera",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En ese order block ya se podría poner un long.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0b380d0fff8d2b2457c125f59b69d840cefb3b16426fac10203ca314e9360e7f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, en ese order block, ya se podría poner un long."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Lastatement asserts a single proposition."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "63b059d5da0d91f4586a63a4e2199c3268da5ce46010c437b52f0ba218939234"
+    ],
+    "response_id": "gen-1790908940-BNDfDmfrb378XSXyASk8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tras-cierre-fuera",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Una vez que la vela se cierra por fuera, ya se puede tomar un long para ir hacia arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00251"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "94fbfe5990b67369d58040395f3dca234eab3fae18cf43b2c961f30da5936495",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirmativa coincide directamente con la afirmación: una vez que la vela se cierra por fuera, se puede tomar un long para ir hacia arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de tomar un long después del cierre exterior de la vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "63b059d5da0d91f4586a63a4e2199c3268da5ce46010c437b52f0ba218939234"
+    ],
+    "response_id": "gen-1790908940-BNDfDmfrb378XSXyASk8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-order-block-cierre-vespera",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Cuando la vela señalada cierra en ese nivel, ese nivel vuelve a identificarse como un order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "789056111b9839f2a40e70e1ab1ef461ab7f0f1a1b44532804fec4b5edfe534b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, cuando la vela cierra en ese nivel, ese nivel se identifica nuevamente como un order block."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "63b059d5da0d91f4586a63a4e2199c3268da5ce46010c437b52f0ba218939234"
+    ],
+    "response_id": "gen-1790908940-BNDfDmfrb378XSXyASk8"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-long-vespera-depende-order-block",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-long-en-order-block-vespera",
+   "subject_version": 1,
+   "object_id": "cl-order-block-cierre-vespera",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a0c78ede192aaf8f3ca1c16f4dff0391ad8e9b45b8beb4fdfed08af8aa5154cb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica condicionalmente que cuando la vela cierra en ese nivel, este vuelve a identificarse como un order block y «ya podrías poner tu long»; por tanto, la posibilidad de poner el long depende de la condición previa descrita en la afirmación_RIGHT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "63b059d5da0d91f4586a63a4e2199c3268da5ce46010c437b52f0ba218939234"
+    ],
+    "response_id": "gen-1790908940-BNDfDmfrb378XSXyASk8"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00251",
+   "start_ms": 1735100,
+   "end_ms": 1747880,
+   "text": "Por ejemplo, aquí, una vez esta vela se cierra por fuera, aquí tú ya puedes tomar tu long para ir para arriba."
+  },
+  {
+   "id": "asr-00252",
+   "start_ms": 1748400,
+   "end_ms": 1749920,
+   "text": "Esto sería un poco el concepto de order block."
+  },
+  {
+   "id": "asr-00253",
+   "start_ms": 1750940,
+   "end_ms": 1761660,
+   "text": "O aquí, en esta, cuando esta cierra aquí, otra vez, order block aquí, ya podrías poner tu long."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157050000-canonical-v1",
+   "pts_ms": 1745000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157230000-canonical-v1",
+   "pts_ms": 1747000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157320000-canonical-v1",
+   "pts_ms": 1748000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157410000-canonical-v1",
+   "pts_ms": 1749000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157500000-canonical-v1",
+   "pts_ms": 1750000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157590000-canonical-v1",
+   "pts_ms": 1751000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157680000-canonical-v1",
+   "pts_ms": 1752000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157770000-canonical-v1",
+   "pts_ms": 1753000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

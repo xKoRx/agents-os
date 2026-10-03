@@ -1,0 +1,215 @@
+{
+ "window": "w0009",
+ "start": "01:59",
+ "end": "02:08",
+ "start_ms": 119000,
+ "end_ms": 128000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-etiquetado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema está etiquetado como «rango alcista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p10710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p10800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p11160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1ea816e50c12dfc8bf5a39e1d6419230fd2874baac212afbe35181a51bd2bed9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran claramente la etiqueta «rango alcista» sobre el esquema."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola proposición: que el esquema tiene esa etiqueta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "c35cbd1d30a2e036595717174c344f0d1661fbb026831b28b58face5222f3a0f"
+    ],
+    "response_id": "gen-1790888551-5UOn0urk1a9Mj8FzZ7XU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-negativa-mayoria",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La mayoría de las veces, la vela es negativa.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00015",
+    "asr-00016"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d5bdad3d8a7556ba0055c040bc1435c3dba72159d789d342c550baff6e4e111d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que «la mayoría de veces» se verá «una vela negativa», lo que expresa exactamente la afirmación revisada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la vela es negativa la mayoría de las veces."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "c35cbd1d30a2e036595717174c344f0d1661fbb026831b28b58face5222f3a0f"
+    ],
+    "response_id": "gen-1790888551-5UOn0urk1a9Mj8FzZ7XU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-no-necesariamente-negativa",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La vela tampoco tiene que ser negativa como tal.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00015",
+    "asr-00017"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "82307a05bc5c5db7109f585ff48d429b97549e4fd28ed85cd8f13ff41525d7be",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que «tampoco tiene que ser negativa como tal»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la vela no tiene que ser negativa como tal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "c35cbd1d30a2e036595717174c344f0d1661fbb026831b28b58face5222f3a0f"
+    ],
+    "response_id": "gen-1790888551-5UOn0urk1a9Mj8FzZ7XU"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00015",
+   "start_ms": 118710,
+   "end_ms": 122850,
+   "text": "no tiene por qué, pero la mayoría de veces vais a ver que sí que es así"
+  },
+  {
+   "id": "asr-00016",
+   "start_ms": 122850,
+   "end_ms": 127310,
+   "text": "y una vela negativa"
+  },
+  {
+   "id": "asr-00017",
+   "start_ms": 127310,
+   "end_ms": 134420,
+   "text": "o lo mismo, tampoco tiene que ser negativa como tal"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10710000-canonical-v1",
+   "pts_ms": 119000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10800000-canonical-v1",
+   "pts_ms": 120000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10890000-canonical-v1",
+   "pts_ms": 121000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10980000-canonical-v1",
+   "pts_ms": 122000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11070000-canonical-v1",
+   "pts_ms": 123000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11160000-canonical-v1",
+   "pts_ms": 124000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11430000-canonical-v1",
+   "pts_ms": 127000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11520000-canonical-v1",
+   "pts_ms": 128000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

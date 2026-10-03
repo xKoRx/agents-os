@@ -1,0 +1,282 @@
+{
+ "window": "w0107",
+ "start": "27:37",
+ "end": "27:51",
+ "start_ms": 1657000,
+ "end_ms": 1671000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tendencia-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Esto es una tendencia bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00238",
+    "frame-4de8f12d4841c630-s0-p149400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p150390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "35aa7c7dab0248a746c2e8a719a248ddc31e002c1302d568ef1d4827d6aaa466",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma literalmente: \"esto es una tendencia bajista\"."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d0997dd76e0996a4c00e5e49fb016c16816fe66f79a3f09440d82b8cb778c741"
+    ],
+    "response_id": "gen-1790908043-cs8Vvib0yXXg1jIPjBN3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-uso-order-block-confirmaciones-temporalidad-baja",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Uso el order block para mis confirmaciones en temporalidad más baja.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00236",
+    "asr-00237"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6dba87ae6392821893fde001806a6fbcd56b5bf87beff43333a9dc515aa1a1c2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas表达式 expresan juntas que el order block se usa para las confirmaciones en una temporalidad más baja."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «para mis confirmaciones» y «en temporalidad más baja» solo concretan el uso indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d0997dd76e0996a4c00e5e49fb016c16816fe66f79a3f09440d82b8cb778c741"
+    ],
+    "response_id": "gen-1790908043-cs8Vvib0yXXg1jIPjBN3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-uso-order-block-entradas",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Uso un poco el order block para mis entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00235",
+    "asr-00236"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b53fae8e7e87620a7d3bb69f69a61edb6abdb487cd0d44ad90053b03b12a97df",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas expresan que el hablante usa «el order block» «un poco» «para mis entradas»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «un poco» solo modifica el grado de uso."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d0997dd76e0996a4c00e5e49fb016c16816fe66f79a3f09440d82b8cb778c741"
+    ],
+    "response_id": "gen-1790908043-cs8Vvib0yXXg1jIPjBN3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-alicista-futura",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Vamos a tener una vela alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00239",
+    "asr-00240",
+    "asr-00241"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2493038390a21a938cdeb2b30f1cf8843297b2e661735f19505fa399272a1013",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice directamente «vamos a tener una vela alcista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: la existencia futura de una vela alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d0997dd76e0996a4c00e5e49fb016c16816fe66f79a3f09440d82b8cb778c741"
+    ],
+    "response_id": "gen-1790908043-cs8Vvib0yXXg1jIPjBN3"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00235",
+   "start_ms": 1656860,
+   "end_ms": 1658880,
+   "text": "y lo uso yo un poco para"
+  },
+  {
+   "id": "asr-00236",
+   "start_ms": 1658880,
+   "end_ms": 1660300,
+   "text": "mis entradas, el order block"
+  },
+  {
+   "id": "asr-00237",
+   "start_ms": 1660300,
+   "end_ms": 1662540,
+   "text": "para mis confirmaciones en temporalidad más baja"
+  },
+  {
+   "id": "asr-00238",
+   "start_ms": 1662540,
+   "end_ms": 1664380,
+   "text": "esto es una tendencia bajista"
+  },
+  {
+   "id": "asr-00239",
+   "start_ms": 1664380,
+   "end_ms": 1666580,
+   "text": "¿vale? pues en el momento"
+  },
+  {
+   "id": "asr-00240",
+   "start_ms": 1666580,
+   "end_ms": 1669160,
+   "text": "en que vamos a tener una vela"
+  },
+  {
+   "id": "asr-00241",
+   "start_ms": 1669160,
+   "end_ms": 1671320,
+   "text": "alcista que"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149130000-canonical-v1",
+   "pts_ms": 1657000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149220000-canonical-v1",
+   "pts_ms": 1658000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149220000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149400000-canonical-v1",
+   "pts_ms": 1660000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149580000-canonical-v1",
+   "pts_ms": 1662000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149670000-canonical-v1",
+   "pts_ms": 1663000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149760000-canonical-v1",
+   "pts_ms": 1664000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150120000-canonical-v1",
+   "pts_ms": 1668000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150390000-canonical-v1",
+   "pts_ms": 1671000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

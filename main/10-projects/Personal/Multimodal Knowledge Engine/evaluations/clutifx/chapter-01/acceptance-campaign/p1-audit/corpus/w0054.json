@@ -1,0 +1,84 @@
+{
+ "window": "w0054",
+ "start": "12:45",
+ "end": "12:57",
+ "start_ms": 765000,
+ "end_ms": 777000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00110",
+   "start_ms": 751040,
+   "end_ms": 768600,
+   "text": "En resumen, rango reiniciado nos abre en contra de nuestro doble, en contra significa que abre por arriba creando un posible rango bajista y el pendiente nos abre en dirección a nuestro doble, creando un rango alcista con un doble alcista, ¿vale?"
+  },
+  {
+   "id": "asr-00111",
+   "start_ms": 768600,
+   "end_ms": 788180,
+   "text": "Espero que haya quedado claro. Vamos a ver algún ejemplo de esto en el gráfico ahora. Así que vamos allá. ¿Vale? Vamos a buscar, por ejemplo, teníamos el objetivo este diario de aquí arriba, que es el mismo que estaba explicando de ejemplo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p68850000-canonical-v1",
+   "pts_ms": 765000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p68850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p69120000-canonical-v1",
+   "pts_ms": 768000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p69120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p69390000-canonical-v1",
+   "pts_ms": 771000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p69390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p69480000-canonical-v1",
+   "pts_ms": 772000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p69480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p69660000-canonical-v1",
+   "pts_ms": 774000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p69660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p69750000-canonical-v1",
+   "pts_ms": 775000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p69750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p69840000-canonical-v1",
+   "pts_ms": 776000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p69840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p69930000-canonical-v1",
+   "pts_ms": 777000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p69930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

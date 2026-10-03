@@ -1,0 +1,397 @@
+{
+ "window": "w0103",
+ "start": "26:36",
+ "end": "26:52",
+ "start_ms": 1596000,
+ "end_ms": 1612000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-alto-a-final-de-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La figura presenta el alto a final de vela.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c26e4a75225d684c4adf10b62e90ad58667ae890a31dbd189090787a107f3c92",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran la figura de vela con la etiqueta «BAJO/ALTO A FINAL DE VELA», que identifica explícitamente el alto a final de vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "102959dd8c10cff36ecb786a0dfb25adf10f06cac8f9eedc76ea125d9697d794"
+    ],
+    "response_id": "gen-1790907474-cEagQ92xxQniUPCCKInz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bajo-a-final-de-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La figura presenta el bajo a final de vela.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6fcf51303b6d0dd9394ee6d118ee0a0123dabe60365e22e97b3a38297d32947d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una figura de velas con la etiqueta «BAJO/ALTO A FINAL DE VELA» y una línea horizontal en el extremo inferior de la mecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la figura presenta el bajo a final de vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "102959dd8c10cff36ecb786a0dfb25adf10f06cac8f9eedc76ea125d9697d794"
+    ],
+    "response_id": "gen-1790907474-cEagQ92xxQniUPCCKInz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-diagrama-etiqueta-otro-broker",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La figura contiene la etiqueta «OTRO BROKER».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p144720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p144900000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "406c01194fa6916723e19aa818932ca445ca8c09cbfed7f94d24567edf36dd5f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes citadas muestran claramente la etiqueta «OTRO BROKER» en la figura."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "102959dd8c10cff36ecb786a0dfb25adf10f06cac8f9eedc76ea125d9697d794"
+    ],
+    "response_id": "gen-1790907474-cEagQ92xxQniUPCCKInz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-diagrama-etiquetado-como-smt",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La figura está etiquetada como «SMT».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b959b1e4a1ece60fcbad3b6d40a901b146de34faeede66a8253959a23aef7108",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas citados muestran visiblemente la etiqueta «SMT» junto al diagrama de velas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la figura tiene la etiqueta «SMT»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "102959dd8c10cff36ecb786a0dfb25adf10f06cac8f9eedc76ea125d9697d794"
+    ],
+    "response_id": "gen-1790907474-cEagQ92xxQniUPCCKInz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fxcm-quiza-se-lleva-low",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A lo mejor FXCM sí que se lleva este low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aff15add5b402a8ec3326fc7e57eff4ad1e1916204b3955b78d3cdb9e16dcbbd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma casi literalmente que «a lo mejor a FXCM sí que se lleva el low este», lo que respalda la proposition revisada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "102959dd8c10cff36ecb786a0dfb25adf10f06cac8f9eedc76ea125d9697d794"
+    ],
+    "response_id": "gen-1790907474-cEagQ92xxQniUPCCKInz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-es-forexcom",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado es FOREX.com.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224",
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "294f00340871b964c1fc2b2f5dde8d0de948876a2681f93fc6c4c73bd5039762",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra «EURUSD · 8h · FOREX.com» en la cabecera del gráfico, y la transcripción también afirma «esto es Forexcom»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "102959dd8c10cff36ecb786a0dfb25adf10f06cac8f9eedc76ea125d9697d794"
+    ],
+    "response_id": "gen-1790907474-cEagQ92xxQniUPCCKInz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-otro-broker-ha-hecho-low",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En otro broker sí ha hecho el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "asr-00224",
+    "frame-4de8f12d4841c630-s0-p144720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f588601e80c7ccc7a844b20fa4cec0510db3b75316c844e843181bc0732ec749",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma literalmente que «en otro broker sí ha hecho el low»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «en otro broker» únicamente delimita su alcance."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "102959dd8c10cff36ecb786a0dfb25adf10f06cac8f9eedc76ea125d9697d794"
+    ],
+    "response_id": "gen-1790907474-cEagQ92xxQniUPCCKInz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-aunque-no-se-tome-low",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Aunque no se lleve a tomar el low, igualmente podemos dar «esto» como un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dcd93f3eea499abbacc3b82645a092e902c3e628e2998415923f67ef3f387bc1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, aunque no se lleva a tomar el low, «podemos darlo esto como un rango igualmente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula «aunque no se lleve a tomar el low» solo restringe el alcance de la misma proposición principal y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "102959dd8c10cff36ecb786a0dfb25adf10f06cac8f9eedc76ea125d9697d794"
+    ],
+    "response_id": "gen-1790907474-cEagQ92xxQniUPCCKInz"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00223",
+   "start_ms": 1585060,
+   "end_ms": 1602810,
+   "text": "que pase algo así, ¿vale? No se lleva a tomar el low, pero podemos darlo esto como un rango igualmente por estos motivos, ¿vale? Y falta el último, que es que en otro"
+  },
+  {
+   "id": "asr-00224",
+   "start_ms": 1602810,
+   "end_ms": 1618010,
+   "text": "broker sí ha hecho el low, ¿vale? Por ejemplo, esto es Forexcom, pues a lo mejor a FXCM sí que se lleva el low este. Va a haber veces que lo vas a ver así, que esto se queda"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+   "pts_ms": 1596000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p143640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p143730000-canonical-v1",
+   "pts_ms": 1597000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p143730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p143910000-canonical-v1",
+   "pts_ms": 1599000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p143910000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p144000000-canonical-v1",
+   "pts_ms": 1600000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p144000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p144360000-canonical-v1",
+   "pts_ms": 1604000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p144360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p144720000-canonical-v1",
+   "pts_ms": 1608000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p144720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p144900000-canonical-v1",
+   "pts_ms": 1610000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p144900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145080000-canonical-v1",
+   "pts_ms": 1612000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

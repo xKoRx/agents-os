@@ -1,0 +1,419 @@
+{
+ "window": "w0075",
+ "start": "18:56",
+ "end": "19:16",
+ "start_ms": 1136000,
+ "end_ms": 1156000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-fuera-rango-invalida",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si el precio cierra fuera del primer rango, ese rango ya no se consideraría válido.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00161",
+    "asr-00162"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4a8c8ffbdfd4f87550317d9153b76c658a420457ed55adf59bbde7a495e370b2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que, si el precio cierra fuera del primer rango, este ya se puede eliminar y dejaría de considerarse un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola regla: el cierre fuera del primer rango hace que ese rango deje de ser válido."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d7ce98357bf44602e670c205ee19c5a77fd9b8c991ba3b18198615dfa2d23683"
+    ],
+    "response_id": "gen-1790900398-QELgr67x7CpBlQR58YTG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intrabar-turtle-soup-requiere-cierre-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para que sea considerado intrabar Turtle Soup, debe cerrar dentro del mismo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00159",
+    "asr-00160"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "21a9b68d541fd219a838bbb8cc71e03686624435af489b578975b817d44374a6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada, en el contexto de intrabar Turtle Soup, afirma que «tiene que ser ... y cerrar dentro del mismo rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Lastatement_statement impone una sola condición necesaria: cerrar dentro del mismo rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d7ce98357bf44602e670c205ee19c5a77fd9b8c991ba3b18198615dfa2d23683"
+    ],
+    "response_id": "gen-1790900398-QELgr67x7CpBlQR58YTG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intrabar-turtle-soup-requiere-reaccion",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para que sea considerado intrabar Turtle Soup, debe haber una reacción dentro del mismo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00159",
+    "asr-00160"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c5b0de64a05dd7a4dad4e79177a6b58e07127e545a6a82fe398122c84d08fa9f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que debe haber una «reacción» y «cerrar dentro del mismo rango», lo que respalda la condición necesaria expresada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la reacción dentro del mismo rango es necesaria para la configuración intrabar Turtle Soup."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d7ce98357bf44602e670c205ee19c5a77fd9b8c991ba3b18198615dfa2d23683"
+    ],
+    "response_id": "gen-1790900398-QELgr67x7CpBlQR58YTG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intrabar-turtle-soup-requiere-toma",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para que sea considerado intrabar Turtle Soup, debe haber una toma dentro del mismo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00159",
+    "asr-00160"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ae8395f286034bc786cf2bac548562c079cac591067824987d2fd5496e9bb1bd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que para esta estrategia «tiene que ser tomar y reacción y cerrar dentro del mismo rango», lo que respalda la necesidad de una toma dentro del mismo rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la existencia de una toma dentro del mismo rango es un requisito para considerarlo intrabar Turtle Soup."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d7ce98357bf44602e670c205ee19c5a77fd9b8c991ba3b18198615dfa2d23683"
+    ],
+    "response_id": "gen-1790900398-QELgr67x7CpBlQR58YTG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-cierre-fuera-eliminable",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si el precio cierra fuera del primer rango, ese rango se puede eliminar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00162"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "1cae84b11546c179d783125588ad6757bdbdcffa3b721842d19cb008962c8b54",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que un rango ya se puede eliminar y ya no se consideraría un rango, pero no establece la condición de que el precio cierre fuera de ese rango ni lo identifica como el primer rango."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d7ce98357bf44602e670c205ee19c5a77fd9b8c991ba3b18198615dfa2d23683"
+    ],
+    "response_id": "gen-1790900398-QELgr67x7CpBlQR58YTG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-negativa-fuera-rango-marcado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La parte inferior del cuerpo de la vela negra final queda por debajo de la línea horizontal inferior del rango marcado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p103680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "de867413fd9cb6c771d9613890ddfa34e92f4581b661bd1c11950369abb64a9a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el borde inferior del cuerpo de la vela negra final queda visiblemente por debajo de la línea horizontal inferior del rango marcado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d7ce98357bf44602e670c205ee19c5a77fd9b8c991ba3b18198615dfa2d23683"
+    ],
+    "response_id": "gen-1790900398-QELgr67x7CpBlQR58YTG"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-cierre-fuera-contradice-cierre-dentro",
+   "version": 1,
+   "type": "CONTRADICTS",
+   "subject_id": "cl-cierre-fuera-rango-invalida",
+   "subject_version": 1,
+   "object_id": "cl-intrabar-turtle-soup-requiere-cierre-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00160",
+    "asr-00161",
+    "asr-00162"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_CONTRADICTED",
+    "invocation_id": "0683801552127011226eae6b441297e47093269551961beb3e8572152a8ef94d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia presenta ambas afirmaciones como reglas complementarias: cerrar dentro del rango es un requisito para considerar intrabar Turtle Soup, mientras que cerrar fuera invalida el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las afirmaciones no se contradicen lógicamente ni la evidencia declara esa relación; por tanto, no respalda la orientación CONTRADICTS indicada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_CONTRADICTED",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d7ce98357bf44602e670c205ee19c5a77fd9b8c991ba3b18198615dfa2d23683"
+    ],
+    "response_id": "gen-1790900398-QELgr67x7CpBlQR58YTG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-eliminacion-depende-cierre-fuera",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-cierre-fuera-eliminable",
+   "subject_version": 1,
+   "object_id": "cl-cierre-fuera-rango-invalida",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00162"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bd04669099f326b9fa720764857e0d30cdec945fda4534d2e7172eec87e3ca74",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula directamente ambas consecuencias: «ya se puede eliminar» y «ya no se consideraría más un rango», sustentando que la eliminación del rango depende de que este deje de considerarse válido."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d7ce98357bf44602e670c205ee19c5a77fd9b8c991ba3b18198615dfa2d23683"
+    ],
+    "response_id": "gen-1790900398-QELgr67x7CpBlQR58YTG"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00159",
+   "start_ms": 1127930,
+   "end_ms": 1136720,
+   "text": "para que si yo hablo de intentarte el show sepáis que es es esto un tarde el sub una vez ya se ha"
+  },
+  {
+   "id": "asr-00160",
+   "start_ms": 1136720,
+   "end_ms": 1143660,
+   "text": "dado el otro tarde vale lo mismo tiene que ser tomar y reacción y cerrar dentro del mismo rango"
+  },
+  {
+   "id": "asr-00161",
+   "start_ms": 1143660,
+   "end_ms": 1153410,
+   "text": "para que sea considerado intentarte su sitio si cierra fuera del primer rango así vale este rango"
+  },
+  {
+   "id": "asr-00162",
+   "start_ms": 1153410,
+   "end_ms": 1157090,
+   "text": "y ya se puede eliminar, ya no se consideraría más un rango"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102240000-canonical-v1",
+   "pts_ms": 1136000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102600000-canonical-v1",
+   "pts_ms": 1140000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102780000-canonical-v1",
+   "pts_ms": 1142000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102960000-canonical-v1",
+   "pts_ms": 1144000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p103050000-canonical-v1",
+   "pts_ms": 1145000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p103050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p103320000-canonical-v1",
+   "pts_ms": 1148000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p103320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p103680000-canonical-v1",
+   "pts_ms": 1152000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p103680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p104040000-canonical-v1",
+   "pts_ms": 1156000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p104040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

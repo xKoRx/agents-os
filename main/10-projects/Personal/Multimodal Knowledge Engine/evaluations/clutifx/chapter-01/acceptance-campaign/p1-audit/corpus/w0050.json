@@ -1,0 +1,558 @@
+{
+ "window": "w0050",
+ "start": "11:28",
+ "end": "11:43",
+ "start_ms": 688000,
+ "end_ms": 703000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bearish-range-forming",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Ahora se está formando un rango bajista aquí.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p63270000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "19eed84c955ddf69885273dca2086a7e75b288f5998f01eceb44f3a032b099b7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que en ese momento se está formando un rango bajista aquí, lo que respalda directamente la proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-current-candle-closes-inside",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela actual cierra dentro del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p63270000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a8996910bc888ebbff360b90624d12ed7a095dee7b4d96b4ddeb121e736b7eb4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que la vela actual «nos cierra adentro» del rango en formación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la vela actual cierra dentro del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-current-candle-opens",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela actual abre.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p62280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p62640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "147de6037bbc57fca2dcd22682308b2021dc39a3e6bce7e56297d59961f4e043",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «esta vela abre», lo que sostiene que la vela actual abre."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran la vela actual con cuerpo de vela, coherente con una apertura."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-current-candle-takes-high",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela actual toma el high.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p62640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p62820000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63270000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2dd73e43e830adbc9f2e10acd161ae74bacc60dd23bacb7d622df4668c87f55f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript explicitly states that the current candle «toma el high»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts only one proposition: that the current candle takes the high."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-daily-range",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango diario está presente en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "frame-4de8f12d4841c630-s0-p61920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e75e9899de916f00e077be1a39b5c85e977697b871996969120ff8b6fa519f6e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «tenemos el rango diario aquí», lo que respalda que el rango diario está presente en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la presencia del rango diario en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-pending-range-label",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico aparece la anotación «RANGO PENDIENTE».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63270000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "105c53bf787baadef00c53ff2589eb62541f2a647a8e0d1c3208f7b5cf5efa04",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran claramente la anotación «RANGO PENDIENTE» en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reset-range-open-above",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La siguiente vela debe abrir por arriba para que se forme un rango reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f15072ce6d0fe610efea72ff8cb56fa258f2e19043377943bdc9f94eca3ed446",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que un rango reiniciado se forma cuando la siguiente vela abre por arriba y toma el máximo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reset-range-take-high",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La siguiente vela debe tomar el high para que se forme un rango reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c23662fd5acdad2398af563cb5cd6fc3a7b8a07bc437cfaaa2dbed4010a08c5d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que el rango reiniciado se forma cuando la siguiente vela «abre por arriba y toma el high»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-target-above-daily-range",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El objetivo está arriba del rango diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "frame-4de8f12d4841c630-s0-p61920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2c2e13b73f030d93ed4e267162266f8cf5a5d29c4b2952f428c99ac2bbdd844b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «tenemos el rango diario aquí, tenemos el objetivo arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el objetivo está por encima del rango diario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bearish-range-depends-on-current-close",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bearish-range-forming",
+   "subject_version": 1,
+   "object_id": "cl-current-candle-closes-inside",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "574edfc523bd14bed5dc6dc6a0605cf960ae07d52f717f6c462a12ae59fe117d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula que la vela actual cierre dentro con la formación de un rango bajista: «si vemos que esta vela abre, toma el high y nos cierra adentro, lo que está pasando ahora es que se nos está formando un rango bajista aquí»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bearish-range-depends-on-current-high",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bearish-range-forming",
+   "subject_version": 1,
+   "object_id": "cl-current-candle-takes-high",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "54e54047b8bffdd19a676323ffdb287e70547ea3ccd2e4aed9ea3ca9638e98a8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The evidence explicitly links the current candle taking the high to the statement that a bearish range is forming now, supporting the subject's dependence on the object in the stated orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bearish-range-depends-on-current-open",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bearish-range-forming",
+   "subject_version": 1,
+   "object_id": "cl-current-candle-opens",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "491eb5d7b38c040f96d8966e091126962087c96b084b9e6aeaf3967d75a9dacd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula explícitamente la formación del rango bajista con que la vela actual abre: «si vemos que esta vela abre... lo que está pasando ahora es que se nos está formando un rango bajista aquí»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2e7b243f1b8b9d5cdd323b4908227b391215ad0608dbb3ee6832c2b63a681584"
+    ],
+    "response_id": "gen-1790894400-7O9qDs5AhEWjtxX54g3v"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00105",
+   "start_ms": 676080,
+   "end_ms": 696980,
+   "text": "En el mismo caso, tenemos el rango diario aquí, tenemos el objetivo arriba, pero ¿cómo sería un rango reiniciado? Pues que la siguiente vela abre por arriba y toma el high, ¿vale?"
+  },
+  {
+   "id": "asr-00106",
+   "start_ms": 696980,
+   "end_ms": 711540,
+   "text": "Lo que ahora mismo, si vemos que esta vela abre, toma el high y nos cierra adentro, lo que está pasando ahora es que se nos está formando un rango bajista aquí, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+   "pts_ms": 688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62010000-canonical-v1",
+   "pts_ms": 689000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62100000-canonical-v1",
+   "pts_ms": 690000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62280000-canonical-v1",
+   "pts_ms": 692000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62640000-canonical-v1",
+   "pts_ms": 696000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62820000-canonical-v1",
+   "pts_ms": 698000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63000000-canonical-v1",
+   "pts_ms": 700000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63270000-canonical-v1",
+   "pts_ms": 703000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

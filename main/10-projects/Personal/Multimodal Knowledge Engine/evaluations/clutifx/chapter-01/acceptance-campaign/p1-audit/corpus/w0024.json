@@ -1,0 +1,348 @@
+{
+ "window": "w0024",
+ "start": "05:18",
+ "end": "05:28",
+ "start_ms": 318000,
+ "end_ms": 328000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-importancia-rangos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Este ejemplo muestra la importancia de los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00047",
+    "frame-4de8f12d4841c630-s0-p29520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "82431cd6ea5a6d960af795c94119c2e3a9b13e67ba90e7ab27a33f8006a983cc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript explicitly presents «esto» as illustrating «la importancia de los rangos», and the attached frame shows marked price ranges consistent with that example."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts one proposition: that the example demonstrates the importance of ranges."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1265d8ac78315d86f0452cf88180ecf0dce0fb2c2ef45748518ccd4be2cd2abe"
+    ],
+    "response_id": "gen-1790890378-2gWBLG1LYh5rqkV1zZMf"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-movimiento-hacia-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El movimiento se dirigiría hacia ese nuevo objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00046",
+    "frame-4de8f12d4841c630-s0-p29250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "2e9ab30cc47061e6753f5252c2b5a6e14b9b12f9e64727c10adb9d83bfcdad3e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción solo afirma que irían «para aquí», pero no identifica explícitamente ese lugar como un objetivo nuevo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una gráfica de EURUSD y una línea horizontal, pero no la identifica ni la conecta explícitamente como el nuevo objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el movimiento se dirigiría hacia ese nuevo objetivo."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1265d8ac78315d86f0452cf88180ecf0dce0fb2c2ef45748518ccd4be2cd2abe"
+    ],
+    "response_id": "gen-1790890378-2gWBLG1LYh5rqkV1zZMf"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-115160",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El nuevo objetivo se sitúa aproximadamente en el nivel 1,15160.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00044",
+    "frame-4de8f12d4841c630-s0-p28800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "029c9939f0a29809afa57295cbb2a976795fd5876bbce8554d99d02355c73589",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona «un nuevo objetivo» y las imágenes muestran una línea horizontal azul alineada con la marca 1,15160 del eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1265d8ac78315d86f0452cf88180ecf0dce0fb2c2ef45748518ccd4be2cd2abe"
+    ],
+    "response_id": "gen-1790890378-2gWBLG1LYh5rqkV1zZMf"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-tras-toma-alcista",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Después de tomar un rango alcista, se forma un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00045",
+    "frame-4de8f12d4841c630-s0-p28980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7cce62fd882f4c7740db40cc0d15c2d4ccbcd60a38b6033c57a1b4a11c747cbd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, después de tomar un rango alcista, se forma un rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la relación temporal entre ambos rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1265d8ac78315d86f0452cf88180ecf0dce0fb2c2ef45748518ccd4be2cd2abe"
+    ],
+    "response_id": "gen-1790890378-2gWBLG1LYh5rqkV1zZMf"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico es de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p28620000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "84e259ff36414b98e1cffc2f74e02528dad10ecf13e53fcfc97f23c255d71562",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La captura muestra explícitamente «EURUSD | 15M» y «EURUSD · 15», lo que acredita una temporalidad de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1265d8ac78315d86f0452cf88180ecf0dce0fb2c2ef45748518ccd4be2cd2abe"
+    ],
+    "response_id": "gen-1790890378-2gWBLG1LYh5rqkV1zZMf"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-movimiento-depende-objetivo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-movimiento-hacia-objetivo",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-115160",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00044",
+    "asr-00046",
+    "frame-4de8f12d4841c630-s0-p28800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "55e8dcb62417690d6af62af7bc4796fa0ec362fc72b799d7d8542ee27c6415ca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones enlazan expresamente un «nuevo objetivo» con la intención de movimiento («iríamos es para aquí»), establishing that the movement is directed toward that objective."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen sitúa el punto señalado («aquí») y la línea horizontal en aproximadamente 1,15160, por lo que identifica el nuevo objetivo al que se dirigiría el movimiento en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "1265d8ac78315d86f0452cf88180ecf0dce0fb2c2ef45748518ccd4be2cd2abe"
+    ],
+    "response_id": "gen-1790890378-2gWBLG1LYh5rqkV1zZMf"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00044",
+   "start_ms": 318760,
+   "end_ms": 320440,
+   "text": "Y aquí tenemos un nuevo objetivo."
+  },
+  {
+   "id": "asr-00045",
+   "start_ms": 320960,
+   "end_ms": 324200,
+   "text": "Después de tomar un rango alcista se nos forma un rango bajista."
+  },
+  {
+   "id": "asr-00046",
+   "start_ms": 324780,
+   "end_ms": 326540,
+   "text": "Pues lo que iríamos es para aquí."
+  },
+  {
+   "id": "asr-00047",
+   "start_ms": 326540,
+   "end_ms": 331900,
+   "text": "Para que sepáis la importancia de los rangos es esto."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28620000-canonical-v1",
+   "pts_ms": 318000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28710000-canonical-v1",
+   "pts_ms": 319000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28800000-canonical-v1",
+   "pts_ms": 320000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28890000-canonical-v1",
+   "pts_ms": 321000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28980000-canonical-v1",
+   "pts_ms": 322000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29160000-canonical-v1",
+   "pts_ms": 324000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29250000-canonical-v1",
+   "pts_ms": 325000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29520000-canonical-v1",
+   "pts_ms": 328000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

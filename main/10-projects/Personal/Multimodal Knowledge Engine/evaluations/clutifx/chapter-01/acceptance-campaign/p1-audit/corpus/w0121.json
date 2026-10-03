@@ -1,0 +1,290 @@
+{
+ "window": "w0121",
+ "start": "30:42",
+ "end": "30:54",
+ "start_ms": 1842000,
+ "end_ms": 1854000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esquema-representa-ocurrencias-cuatro-horas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema representa lo que ocurrió durante esas 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p165870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "40f8709fe5a500c12bf015a4150bfe44b35b6d0868717d22ef61df4262ed366c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma expresamente que lo ocurrido durante esas cuatro horas es «esto», mientras la imagen muestra el esquema referido."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el esquema representa lo ocurrido durante las cuatro horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e78db3c1806c67982dea027519a74feea4651af6e88343b96f93ffa7fc9e745"
+    ],
+    "response_id": "gen-1790910442-DIWYLJfdi8EUb2fVB29M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esquema-representa-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema dibujado representa una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p165780000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "55080eeb4d557485bd754dea09f6b8ca864b5812dcda7f2deedbde2e8cafa47f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que lo mostrado («Esto») sería una vela, y el fotograma contiene el esquema dibujado-navideco al que se refiere."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el esquema dibujado representa una vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e78db3c1806c67982dea027519a74feea4651af6e88343b96f93ffa7fc9e745"
+    ],
+    "response_id": "gen-1790910442-DIWYLJfdi8EUb2fVB29M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-inferior-una-hora-new-york",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea horizontal inferior corresponde a la 1:00, hora New York.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00266",
+    "frame-4de8f12d4841c630-s0-p166680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c277e955cac112e300714639f06664aba875c31b4367c630e11ac21e7c6d2502",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente que «esto de aquí es a la 1, por ejemplo, hora New York», y la imagen muestra la línea horizontal inferior a la que se refiere."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola proposición: esa línea corresponde a la 1:00, hora New York."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e78db3c1806c67982dea027519a74feea4651af6e88343b96f93ffa7fc9e745"
+    ],
+    "response_id": "gen-1790910442-DIWYLJfdi8EUb2fVB29M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-superior-cinco-hora-new-york",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea horizontal superior corresponde a las 5:00, hora New York.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00266",
+    "frame-4de8f12d4841c630-s0-p166860000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e08bfd9a6eeec9d3c972578e64bd64d0f5f46153fa48f37c634b561689e14cd6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «esto de aquí arriba sería a las 5, hora New York», lo que respalda la asignación de esa línea a las 5:00 en hora de New York."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «hora New York» solo especifica la zona horaria de esa misma hora."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e78db3c1806c67982dea027519a74feea4651af6e88343b96f93ffa7fc9e745"
+    ],
+    "response_id": "gen-1790910442-DIWYLJfdi8EUb2fVB29M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-periodo-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela tiene un periodo de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p166140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "408a0714bdb98640898896246e19cbc9fcfb2e26de08cd752a4dd12f698de874",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «imagínate una vela de 4 horas» y la imagen muestra la etiqueta «4 HORAS», por lo que la evidencia establece directamente que la vela tiene un periodo de 4 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable: el periodo de la vela es de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "9e78db3c1806c67982dea027519a74feea4651af6e88343b96f93ffa7fc9e745"
+    ],
+    "response_id": "gen-1790910442-DIWYLJfdi8EUb2fVB29M"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00265",
+   "start_ms": 1836670,
+   "end_ms": 1845970,
+   "text": "Esto sería una vela, os he hecho como todo el... imagínate una vela de 4 horas, pues durante 4 horas lo que ha pasado es esto, ¿vale?"
+  },
+  {
+   "id": "asr-00266",
+   "start_ms": 1845970,
+   "end_ms": 1856890,
+   "text": "Entonces, esto de aquí es a la 1, por ejemplo, hora New York, y luego esto de aquí arriba sería a las 5, hora New York, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165780000-canonical-v1",
+   "pts_ms": 1842000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165870000-canonical-v1",
+   "pts_ms": 1843000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165960000-canonical-v1",
+   "pts_ms": 1844000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166140000-canonical-v1",
+   "pts_ms": 1846000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166320000-canonical-v1",
+   "pts_ms": 1848000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166590000-canonical-v1",
+   "pts_ms": 1851000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166680000-canonical-v1",
+   "pts_ms": 1852000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166860000-canonical-v1",
+   "pts_ms": 1854000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

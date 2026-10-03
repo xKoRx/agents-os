@@ -1,0 +1,446 @@
+{
+ "window": "w0090",
+ "start": "22:41",
+ "end": "23:04",
+ "start_ms": 1361000,
+ "end_ms": 1384000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-datos-smt-ocultos-a-veces",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A veces los datos de ese SMT están un poco ocultos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "87fde1b758125a31539515c1e477fa1b05a2aab72315a88433a0637fea2f5de7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «a veces estos datos están un poco ocultos» en referencia a ese tipo de SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una sola proposición: que ocasionalmente los datos de ese SMT están algo ocultos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-linea-desde-maximo-vela-negra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En GBPUSD, la línea horizontal se traza desde el máximo de la vela negra previa.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p123390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p123480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9face9d277a5d0a758dd9aef9c6837aa26d26780ead89be7bd7282970efe50df",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, la línea horizontal del panel GBPUSD está alineada con el extremo superior de la vela negra previa, que es su máximo visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-vela-no-alcanza-objetivo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela en desarrollo de GBPUSD no alcanza la línea objetivo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00193",
+    "frame-4de8f12d4841c630-s0-p123390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p124200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p124560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "71223ba4c176abaf70f964c66a2282c9223c9941c587817857e3b7b2f13399d0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript indica explícitamente que la vela puededeveloparse «sin llegar al objetivo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran la vela en desarrollo de GBPUSD por debajo de la línea horizontal objetivo, sin alcanzarla."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-libra-desde-low",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En libra se forma el rango tomando el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00192"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7061e4f9e4e9d23ade42e002756a5ddb0e66d7d3d05410dd3e0b8c7faf4e94b6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente «tomar el low y formar el rango» y clarifies que es «same en libra»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición sobre cómo se forma el rango en Libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-no-visible-sin-conocer-estrategia",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si no conoces la estrategia, no vas a poder ver de ningún modo ese tipo de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ec1ac3848cf394b46f5818966814cf90f61ed6205fc328a3b90c98a57d2bee77",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que ese tipo de SMT no puede verse de ningún modo si no se conoce la estrategia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la desconocimiento de la estrategia impide ver ese tipo de SMT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-libra-puede-no-llegar-objetivo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En libra puede darse una vela que no llegue al objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00192",
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fca25112d5091781fc15d61ce422e0637860471b55419fe09c44b8cf5c5a15a8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que en Libra puede ocurrir una vela que no llegue al objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que una vela en Libra no alcance el objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-sin-llegar-objetivo-es-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El caso de una vela que no llega al objetivo es un tipo de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5bf5532e6744a9847833c46def36d007332e6ae17a1e9eb0e09a55e691335453",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica explícitamente el caso de una vela que actúa sin llegar al objetivo como «un tipo de SMT»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-vela-no-alcanza-objetivo-depende-linea",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-vela-no-alcanza-objetivo",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-linea-desde-maximo-vela-negra",
+   "object_version": 1,
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00193",
+    "frame-4de8f12d4841c630-s0-p124560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ccfad520e04b1b3433fb0c4f297bc68e68ea1b9c23dbe7b7ef5fb4ad8b5e2128",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen etiqueta el escenario como GBPUSD y muestra la vela negra previa con una línea horizontal que parte de su máximo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La vela blanca actual de GBPUSD permanece por debajo de esa línea, ilustrando que no alcanza el objetivo; el segmentoWLSD5 confirma que esa vela puede developarse sin llegar al objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-visibilidad-smt-depende-ocultamiento",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-no-visible-sin-conocer-estrategia",
+   "subject_version": 1,
+   "object_id": "cl-datos-smt-ocultos-a-veces",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c24641b2ff6f3c6409fba788146383fbc917ad18b649541c6edc78eff362b500",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que no se puede ver ese tipo de SMT si no se conoce la estrategia «porque a veces estos datos están un poco ocultos», estableciendo la dependencia del subject_claim respecto del object_claim en esa orientación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d98385a628460634baaee48703eb5f1a6aa90dd87a98e910f720901cd9f2c096"
+    ],
+    "response_id": "gen-1790904113-5HKrvkfHp854qH7AqoFR"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00192",
+   "start_ms": 1360720,
+   "end_ms": 1374580,
+   "text": "esto sería lo mismo de antes, tomar el low y formar el rango y todo, mismo en libra, pero luego en libra puede pasarte algo así, no llega al objetivo, ¿vale?"
+  },
+  {
+   "id": "asr-00193",
+   "start_ms": 1374580,
+   "end_ms": 1395310,
+   "text": "Y luego puede pasarte pues algo así, que esta vela haga algo así sin llegar al objetivo, ¿vale? Este es un tipo de SMT que si no conoces la estrategia no vas a poder ver de ningún modo porque a veces estos datos están un poco ocultos, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122490000-canonical-v1",
+   "pts_ms": 1361000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122760000-canonical-v1",
+   "pts_ms": 1364000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p123120000-canonical-v1",
+   "pts_ms": 1368000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p123120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p123390000-canonical-v1",
+   "pts_ms": 1371000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p123390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p123480000-canonical-v1",
+   "pts_ms": 1372000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p123480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p123840000-canonical-v1",
+   "pts_ms": 1376000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p123840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124200000-canonical-v1",
+   "pts_ms": 1380000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124560000-canonical-v1",
+   "pts_ms": 1384000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

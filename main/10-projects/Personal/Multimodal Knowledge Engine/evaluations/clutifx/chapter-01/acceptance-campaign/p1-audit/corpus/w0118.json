@@ -1,0 +1,90 @@
+{
+ "window": "w0118",
+ "start": "29:52",
+ "end": "30:08",
+ "start_ms": 1792000,
+ "end_ms": 1808000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00258",
+   "start_ms": 1785690,
+   "end_ms": 1792270,
+   "text": "se puede hacer también y aquí abajo long también para ver el orden block es como esta vela cierra"
+  },
+  {
+   "id": "asr-00259",
+   "start_ms": 1792270,
+   "end_ms": 1799230,
+   "text": "por fuera, pues long aquí. Este es el concepto de order block. Y creo que los conceptos básicos"
+  },
+  {
+   "id": "asr-00260",
+   "start_ms": 1799230,
+   "end_ms": 1808620,
+   "text": "ya estarían todos, que son los rangos, la SMT aplicada a la estrategia, el failure swing,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161280000-canonical-v1",
+   "pts_ms": 1792000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161370000-canonical-v1",
+   "pts_ms": 1793000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161370000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161460000-canonical-v1",
+   "pts_ms": 1794000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161640000-canonical-v1",
+   "pts_ms": 1796000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161730000-canonical-v1",
+   "pts_ms": 1797000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p162000000-canonical-v1",
+   "pts_ms": 1800000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p162000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p162360000-canonical-v1",
+   "pts_ms": 1804000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p162360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p162720000-canonical-v1",
+   "pts_ms": 1808000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p162720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

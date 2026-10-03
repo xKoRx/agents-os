@@ -1,0 +1,371 @@
+{
+ "window": "w0096",
+ "start": "24:36",
+ "end": "24:52",
+ "start_ms": 1476000,
+ "end_ms": 1492000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-diagrama-compara-eurusd-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El diagrama presenta una comparación entre velas de EURUSD y GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p132840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p133920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6492436709a512d1b2aee8e9ceb02f9f9ab4e2b1b9e75c0d573bf956c8d90cbb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran un diagrama de velas con las etiquetas EURUSD y GBPUSD, lo que respalda que presenta una comparación entre ambos pares."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7b85361456637c80dec0529d7c419ce02f6f2fa3b34339ba43977d62aad7bfe9"
+    ],
+    "response_id": "gen-1790906561-fmsBwUzJtntdqPDIexCx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-libra-crea-smt-para-target",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puede ser que la Libra cree esta SMT para poder llegar hasta el target.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00203",
+    "frame-4de8f12d4841c630-s0-p133920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p134280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d5b985eff585cff612c508f7f1f6367e5104554ea6c365867579ab6f9f9f7366",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, posiblemente, Libra crea «este de aquí» para poder llegar hasta el target, lo que respalda la proposición sobre la SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La expresión «para poder llegar hasta el target» modifica el mismo propósito atribuido a la creación de la SMT y no introduce una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7b85361456637c80dec0529d7c419ce02f6f2fa3b34339ba43977d62aad7bfe9"
+    ],
+    "response_id": "gen-1790906561-fmsBwUzJtntdqPDIexCx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-une-maximos-eurusd-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Una línea horizontal pasa por máximos de velas de EURUSD y de GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p132840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p133920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0d209bbbd286d4eb7732b52e9149d48255252a84ff4af6b8c6dadf26c1014cb5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una línea horizontal alineada con los máximos de velas en las zonas rotuladas EURUSD y GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene dos comprobaciones independientes: una para EURUSD y otra para GBPUSD."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7b85361456637c80dec0529d7c419ce02f6f2fa3b34339ba43977d62aad7bfe9"
+    ],
+    "response_id": "gen-1790906561-fmsBwUzJtntdqPDIexCx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-no-solo-rango-inicial",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La SMT no tiene por qué limitarse al rango inicial.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00202"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d48c3a2dd3bec8ec0c2563db03cf394903aef2821214ef58ba1d9de0e2cc7848",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que no tiene por qué ser solo el rango inicial."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que la SMT no está limitada al rango inicial."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7b85361456637c80dec0529d7c419ce02f6f2fa3b34339ba43977d62aad7bfe9"
+    ],
+    "response_id": "gen-1790906561-fmsBwUzJtntdqPDIexCx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-puede-crear-el-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La SMT puede servir para crear el rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00201"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3255e1bb5ce8d91972c98011f471daacc0bb06bb5e9d64440905f98f152613de",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que la SMT puede servir para crear el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7b85361456637c80dec0529d7c419ce02f6f2fa3b34339ba43977d62aad7bfe9"
+    ],
+    "response_id": "gen-1790906561-fmsBwUzJtntdqPDIexCx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-puede-llegar-al-objetivo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La SMT puede servir para llegar al objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00201"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ea10864f6309f75ac658a3cb9f0b51e530fc57619fb2926055a46cba7d841df2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que la SMT puede ser utilizada para llegar al objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable de forma independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7b85361456637c80dec0529d7c419ce02f6f2fa3b34339ba43977d62aad7bfe9"
+    ],
+    "response_id": "gen-1790906561-fmsBwUzJtntdqPDIexCx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-rangos-pendientes",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La SMT también puede aparecer en rangos pendientes.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00202"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "af5bbcd667b41df755f756aba99a164aac3183e7a9452fccd7ffc988d1157773",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que algo «puede ser también en tema rangos pendientes», pero no identifica explícitamente a ese algo como la SMT."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "7b85361456637c80dec0529d7c419ce02f6f2fa3b34339ba43977d62aad7bfe9"
+    ],
+    "response_id": "gen-1790906561-fmsBwUzJtntdqPDIexCx"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00201",
+   "start_ms": 1474660,
+   "end_ms": 1482620,
+   "text": "O sea, ya habéis visto, puede ser la SMT para llegar al objetivo o puede ser la SMT para crear el rango."
+  },
+  {
+   "id": "asr-00202",
+   "start_ms": 1482620,
+   "end_ms": 1490720,
+   "text": "no tiene por qué también ser solo el rango inicial, puede ser también en tema rangos pendientes, como he enseñado antes, ¿vale?"
+  },
+  {
+   "id": "asr-00203",
+   "start_ms": 1490780,
+   "end_ms": 1495880,
+   "text": "Puede ser que la Libra nos crea este de aquí para poder llegar hasta el target, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p132840000-canonical-v1",
+   "pts_ms": 1476000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p132840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133020000-canonical-v1",
+   "pts_ms": 1478000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133110000-canonical-v1",
+   "pts_ms": 1479000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133200000-canonical-v1",
+   "pts_ms": 1480000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133560000-canonical-v1",
+   "pts_ms": 1484000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133920000-canonical-v1",
+   "pts_ms": 1488000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134100000-canonical-v1",
+   "pts_ms": 1490000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134280000-canonical-v1",
+   "pts_ms": 1492000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

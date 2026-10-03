@@ -1,0 +1,489 @@
+{
+ "window": "w0124",
+ "start": "31:44",
+ "end": "32:07",
+ "start_ms": 1904000,
+ "end_ms": 1927000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-apertura-nueva-igual-cierre-anterior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Si la nueva vela abre en un precio, la vela anterior ha cerrado en ese mismo precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00273",
+    "frame-4de8f12d4841c630-s0-p173160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p173430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3432359d3e5517873f0147efe26ea9b43c6f6303891fbb315ee5999f9cdc5ff2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que si la vela nueva abre en un precio, la vela anterior ha cerrado en ese mismo precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación es una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-apertura-nueva-vela-4h-0500",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La nueva vela de 4 horas del ejemplo abre a las 05:00.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272",
+    "frame-4de8f12d4841c630-s0-p172440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "89dab451c77b4473a256e3f7b53e6e823b395f1ddf45db6bebc8a865adba24f0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que se debe esperar a que «abra la nueva vela de 4 horas a las 5», y la imagen muestra «4 HORAS» junto a «0500»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comparacion-entrada-arriba-abajo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El ponente pregunta qué es mejor entre entrar aquí arriba y entrar aquí abajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00274",
+    "frame-4de8f12d4841c630-s0-p173430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0d334602ce05b860479c887a29c3898a802f2dccb72daa394d0ee5de40cd114c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada dice literalmente: «¿Qué te es mejor, entrar aquí arriba o entrar aquí abajo?», lo que respalda que el ponente pregunta cuál de las dos entradas es mejor."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre esa pregunta, aunque presente dos opciones alternativas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-compras-ideales-manipulacion-contexto-alcista",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En un contexto alcista, las compras ideales van a estar en la etapa de manipulación de la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00271"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5366abb9d28f6e4ad20bd63f1043629a465352c750bead7222b80f48fe795c24",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que, en un contexto alcista, las compras ideales están en la etapa de manipulación de la vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «en un contexto alcista» solo restringe su alcance."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-espera-long-0430-apertura-nueva",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si son las 04:30 y se quiere entrar en un long, se espera a que abra la nueva vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0538f0b26c22f637bfae3dc5de53d5c593931de45b4d328abcd0e5ac074dfa25",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, si son las 4:30 y se quiere entrar en un long, se debe esperar a que abra la nueva vela de 4 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las condiciones de hora y dirección contextualizan una sola instrucción: esperar la apertura de la nueva vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-punto-optimo-power3",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La entrada long en el Power 3 se realiza en el punto óptimo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a10e966feea77300c153c391c9943efc6e144eee4a0dc1b8fe276fde6d305417",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que, al entrar en un long, se espera la nueva vela de 4 horas para hacerlo «en el power of 3» y entrar «en el punto óptimo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power3-0100-0500-vela-4h",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el diagrama, el tramo de 01:00 a 05:00 de la vela de 4 horas se identifica como el concepto de Power 3.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00271",
+    "frame-4de8f12d4841c630-s0-p172440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p172800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "54bea7a3feb4eeaa3b2def8f14f94c6eb17b941013f1ad0a91b9f75b0e5ae525",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una vela rotulada «4 HORAS» con un tramo delimitado entre «0100» y «0500», y la transcripción afirma que lo que termina a las 5 es «el concepto de Power 3»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-compras-ideales-en-power3",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-compras-ideales-manipulacion-contexto-alcista",
+   "subject_version": 1,
+   "object_id": "cl-power3-0100-0500-vela-4h",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00271"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fa8e4848471e5cedb41ad9ee132a648c857eb15d76899d3791014104e1546714",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica el tramo indicado del diagrama, que termina a las 05:00, como el concepto de Power 3 y afirma acto seguido que las compras ideales en un contexto alcista están en «esta etapa de manipulación»,|&|referida anafóricamente a ese mismo tramo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-espera-long-busca-punto-optimo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-espera-long-0430-apertura-nueva",
+   "subject_version": 1,
+   "object_id": "cl-long-punto-optimo-power3",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1e76d2911c2f9b7988cc50434053b1c0c5707e13e7ab570c478c5d66aa3b23e7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula directamente ambas afirmaciones: a las 04:30 se debe esperar a que abra la nueva vela de cuatro horas a las 05:00 «para en el power of 3 entrar en el punto óptimo». Así, la espera de la nueva vela se presenta como condición previa a la entrada long en el punto óptimo del Power 3."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-espera-long-usa-apertura-0500",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-espera-long-0430-apertura-nueva",
+   "subject_version": 1,
+   "object_id": "cl-apertura-nueva-vela-4h-0500",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "76fd64ca9b0f33cc6d1d0a4a78b4802f0d823ee473e1b0cb3b79eb10885c7f34",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que, si son las 04:30 y se quiere entrar en un long, se debe esperar a que abra la nueva vela de 4 horas, que abre a las 05:00; por ello, la afirmación del sujeto depende directamente de la afirmación del objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8bcea8febf2d992856317794ce9386b4b8a8ec483b4a7c1c835839e8d4b1d164"
+    ],
+    "response_id": "gen-1790910913-yDssb4UKsgfpAd4bKDA6"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00271",
+   "start_ms": 1883530,
+   "end_ms": 1906420,
+   "text": "Esto de aquí y cierra aquí, ¿vale? A las 5. Esto es el concepto de Power 3. ¿Por qué es importante esto? Para saber, pues, si tú estás buscando compras en un contexto alcista, las compras ideales siempre, siempre, siempre van a estar en esta etapa de manipulación de la vela, ¿vale?"
+  },
+  {
+   "id": "asr-00272",
+   "start_ms": 1906420,
+   "end_ms": 1919200,
+   "text": "Por lo tanto, es importante para saber, imagínate, son las 4.30 y tú quieres entrar en un long, pues lo que vas a hacer es esperar a que abra la nueva vela de 4 horas a las 5 para en el power of 3 entrar en el punto óptimo."
+  },
+  {
+   "id": "asr-00273",
+   "start_ms": 1919580,
+   "end_ms": 1925600,
+   "text": "Vas a la vela anterior, si esto abre aquí, significa que la vela anterior ha cerrado aquí, ¿vale?"
+  },
+  {
+   "id": "asr-00274",
+   "start_ms": 1926200,
+   "end_ms": 1929620,
+   "text": "¿Qué te es mejor, entrar aquí arriba o entrar aquí abajo?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p171360000-canonical-v1",
+   "pts_ms": 1904000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p171360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p171720000-canonical-v1",
+   "pts_ms": 1908000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p171720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p171810000-canonical-v1",
+   "pts_ms": 1909000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p171810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p172080000-canonical-v1",
+   "pts_ms": 1912000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p172080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p172440000-canonical-v1",
+   "pts_ms": 1916000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p172440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p172800000-canonical-v1",
+   "pts_ms": 1920000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p172800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p173160000-canonical-v1",
+   "pts_ms": 1924000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p173160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p173430000-canonical-v1",
+   "pts_ms": 1927000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p173430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,526 @@
+{
+ "window": "w0057",
+ "start": "13:21",
+ "end": "13:36",
+ "start_ms": 801000,
+ "end_ms": 816000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-rango-pendiente-ahora",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a buscar ahora un rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0b97412a564ab47434657624b3212f7db5ee8afcbf669821d2702676742e28cc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada enuncia literalmente «Vamos a buscar ahora un rango pendiente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la intención de buscar ahora un rango pendiente; «un rango pendiente» solo restringe el objeto de esa misma acción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-intervalo-4h-a-12h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El intervalo del gráfico cambia de 4 horas a 12 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "69cc8e70768f744f76101009a6600f5acaf815a7837d8232bf8436a879136659",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos primeras imágenes muestran «EURUSD · 4h» y la tercera muestra «EURUSD · 12h», por lo que las citas evidencian el cambio de 4 horas a 12 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El enunciado afirma una sola transición del intervalo del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comprar-repetidamente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Tú quieres comprar repetidamente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "00984c09910a5f7b2f44951acf00f066996fe0bfa87b47aaccb20e3d67e7a72d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente «tú quieres comprar» cuatro veces, lo que respaldar que la persona quiere comprar repetidamente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-existe-rango-pendiente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Tenemos un rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c0d70462e17eebd01ab798f94a9aab0dca100331e5682fd32dec33a9ac781903",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que tienen un rango pendiente en 12 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la existencia de un rango pendiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-arriba",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El objetivo está arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "365ffffe0e5bc6e25fe767476a84eae80b4a790e85e5859047c2c4277d5344a3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «Porque el objetivo está arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el objetivo está arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-en-contra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se te forma un rango en contra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2151b5f9dfbd0ef672d08c929e00f7b5a9ad8bf3d382f67f12e3c2236b6ee145",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «se te forma un rango en contra»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que se forma un rango en contra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-para-abajo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Ese rango se forma para abajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ec2ee1d1d8db5b434c567bff5da5f03e7184de1033dcd2f6b2d146508c0d1c71",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que se forma «un rango ... para abajo», lo que respalda directamente que ese rango se forma hacia abajo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable de forma independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-en-12h",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango pendiente está en el gráfico de 12 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p73080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "285b508922134dd581f384385815dc74bb3b69c86777d76eac0dc72291249cfe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que el rango pendiente está en 12 horas, y la segunda imagen muestra el gráfico de EURUSD de 12 horas con ese rango delimitado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-reiniciado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango pendiente es también un reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c16605272800453d1543766d29583bac527414df5f4d6c71b50ac9734bb18698",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el rango pendiente es «un reiniciado también»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango pendiente es un reiniciado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-compras-dependen-objetivo-arriba",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-comprar-repetidamente",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-arriba",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7bce6be956abca25b59d7c86ed771301c2a4c277fdccfa9735c8bf5ba2bca8ec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el querer comprar repetidamente ocurre «porque el objetivo está arriba», estableciendo la dependencia del sujeto respecto del objeto en esa orientación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-abajo-depende-rango-contra",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-para-abajo",
+   "subject_version": 1,
+   "object_id": "cl-rango-en-contra",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f9c1881d2de0e3c6cfa5a547bcbea6a007596bc79c76e7d94352d95190984a08",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona conjuntamente un rango «en contra» y «para abajo», pero no establece que la afirmación sobre «para abajo» dependa de la afirmación sobre «en contra» en esa orientación."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193"
+    ],
+    "response_id": "gen-1790896486-Jcih8dDuxD51lPql9r9j"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00113",
+   "start_ms": 800020,
+   "end_ms": 808500,
+   "text": "Porque el objetivo está arriba, tú quieres comprar, comprar, comprar, comprar, pero se te forma un rango en contra y para abajo."
+  },
+  {
+   "id": "asr-00114",
+   "start_ms": 809240,
+   "end_ms": 818800,
+   "text": "Vamos a buscar ahora un rango pendiente, que ya recuerdo que lo tenemos en 12 horas. Tenemos, bueno, este es un reiniciado también, como veis,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+   "pts_ms": 801000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72180000-canonical-v1",
+   "pts_ms": 802000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72360000-canonical-v1",
+   "pts_ms": 804000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72720000-canonical-v1",
+   "pts_ms": 808000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72900000-canonical-v1",
+   "pts_ms": 810000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73080000-canonical-v1",
+   "pts_ms": 812000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73170000-canonical-v1",
+   "pts_ms": 813000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73440000-canonical-v1",
+   "pts_ms": 816000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

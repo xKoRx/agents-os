@@ -1,0 +1,430 @@
+{
+ "window": "w0086",
+ "start": "21:58",
+ "end": "22:09",
+ "start_ms": 1318000,
+ "end_ms": 1329000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplos-capitulo-aparte",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los ejemplos se explicarán en un capítulo aparte.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1a87f047e39fe35b9445520b340b91aa19a738f4da25ff5e6641f6d1aa033ea3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que no entrer en detalles porque se hará un capítulo aparte, lo que respalda que los ejemplos se explicarán en un capítulo aparte."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-sin-ejemplos-aqui",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "No se entran en ejemplos en este momento.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6e793aae1800295c97abe082222c2f34ddebbeba9f0d43c977cd915c9b560da8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que no va a entrar en ejemplos porque hará un capítulo aparte."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-aplicada-estrategia",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La SMT se explica aplicada a la estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7f41d88be7a272d48a5275ffc2baafa1511e92124343cae95bc5672d79be35d1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia se refiere a cómo será la SMT utilizando la estrategia y afirma que se podría dar aquí, mostrando que se explica aplicada a esa estrategia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la SMT se explica aplicada a la estrategia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-zona-rectangular",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT que podría aparecer aquí se representa aproximadamente mediante una zona rectangular.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fd68f5ba9c008530efe1d6076772300b05d2ec59276ff7b755fe6101cfb877cc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que la SMT que podría aparecer «aquí» es «algo así»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una zona vertical delimitada por una forma rectangular, que en la segunda aparece rellena."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado está configurado en una temporalidad de 8 h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "93361e67c7056e186fcffbe1a15c3a4caadbf4ac5d180d760aef6c5fbace9b9c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran explícitamente «EURUSD · 8h · FOREX.com» en la esquina superior izquierda, lo que acredita que la temporalidad configurada es de 8 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la temporalidad del gráfico es 8 h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-identificada-euro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Una zona queda identificada como euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "03a5a7e38c8e9765c586ea271fb0065e7ddb3e8517298936fa1064e8ef11442b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «esto es euro» mientras se示nala la zona correspondiente en la imagen."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-identificada-libra",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Otra zona queda identificada como libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ca3608e370aa3cf7e23cbdad7b6ed12042907e3b95fb395d4668032a5492cb2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «Vamos a decir que esto es euro y vamos a decir que esto es libra», lo que identifica otra zona como libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-smt-rellena-negro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La zona utilizada para representar la SMT aparece rellena de negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p119340000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "31f3f7312c137913e6bfd3eefc5c0014a1d7a8b9d8f03c5a79f51df7b947010c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran una zona rectangular rellena de negro, pero ninguna etiqueta o elemento visible permite establecer que represente una SMT."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-ejemplos-trasladados-capitulo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-sin-ejemplos-aqui",
+   "subject_version": 1,
+   "object_id": "cl-ejemplos-capitulo-aparte",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0bbf32f3344d456b4b44b40a4cea80c04f7653a133809adc8358484047b31b08",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que no se entrará en ejemplos en este momento porque se hará un capítulo aparte, vinculando la afirmación subject con la afirmación object en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b"
+    ],
+    "response_id": "gen-1790902908-gx8psda04N9nImCnU2Nz"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00190",
+   "start_ms": 1315270,
+   "end_ms": 1345680,
+   "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+   "pts_ms": 1318000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118710000-canonical-v1",
+   "pts_ms": 1319000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+   "pts_ms": 1320000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+   "pts_ms": 1324000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119250000-canonical-v1",
+   "pts_ms": 1325000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119340000-canonical-v1",
+   "pts_ms": 1326000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119340000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119520000-canonical-v1",
+   "pts_ms": 1328000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119610000-canonical-v1",
+   "pts_ms": 1329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

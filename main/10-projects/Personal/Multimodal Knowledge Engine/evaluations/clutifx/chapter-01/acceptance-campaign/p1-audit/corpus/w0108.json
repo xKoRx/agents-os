@@ -1,0 +1,320 @@
+{
+ "window": "w0108",
+ "start": "27:52",
+ "end": "28:04",
+ "start_ms": 1672000,
+ "end_ms": 1684000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anade-mecha-superior-vela-final",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor añade una mecha superior a la vela final.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p151200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p151380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p151560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3846e350d6175514d1e9257b5a18df057d744adac097a0f6cca251095f6d4819",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra la vela final sin mecha superior y las siguientes muestran una línea vertical añadida por encima de esa misma vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola acción: añadir una mecha superior a la vela final."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "70577b0361d90eda34c28373cdcc04cf3c5941f4490000af382b1167e4f276f2"
+    ],
+    "response_id": "gen-1790908097-WH1ZCLODjvqmT6Bkyu2v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-fuera-forma-orden",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando una vela cierra por fuera de la última vela bajista, se forma lo que el instructor llama «orden».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00242"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "df1145d97b9c7e86eaa1cd854146bae55d0fef6d5540015943f25c3edd04bb45",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona que al cierre por fuera de la última vela bajista «se nos forma» algo, pero no completa qué se forma ni establece que el instructor lo llame «orden»."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "70577b0361d90eda34c28373cdcc04cf3c5941f4490000af382b1167e4f276f2"
+    ],
+    "response_id": "gen-1790908097-WH1ZCLODjvqmT6Bkyu2v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ir-al-grafico-para-ver-claro",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a ir al gráfico para verlo claramente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00243"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dbb6ff7a71422ba6934aab04afe898b2efefd89cb182a9c570a4f7d84c4cc78f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice «vamos a ir a gráfico lo veáis claro», lo que respaldá la afirmación de ir al gráfico para verlo claramente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; la expresión «para verlo claramente» indica su propósito y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "70577b0361d90eda34c28373cdcc04cf3c5941f4490000af382b1167e4f276f2"
+    ],
+    "response_id": "gen-1790908097-WH1ZCLODjvqmT6Bkyu2v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recambia-vela-final-a-blanco",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor cambia el cuerpo de la vela final de negro a blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p150480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p150570000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p150660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a8cdcd7bdfeaf8933ca7139cade6fb2daa5f78f769d84afe4ae7e474e53c4aa2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La vela final aparece negra en las dos primeras imágenes; en la segunda se abre la paleta y se selecciona el blanco, y en la tercera su cuerpo aparece blanco."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "70577b0361d90eda34c28373cdcc04cf3c5941f4490000af382b1167e4f276f2"
+    ],
+    "response_id": "gen-1790908097-WH1ZCLODjvqmT6Bkyu2v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tres-velas-bajistas-antes-vela-final",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Antes de la vela final se muestran tres velas bajistas consecutivas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p150840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p151560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8228796feeec0557588236d491006f47a4510c91d36bea8cbcfb080afd4d6de9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes se observan tres velas negras consecutive antes de la última vela blanca."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "70577b0361d90eda34c28373cdcc04cf3c5941f4490000af382b1167e4f276f2"
+    ],
+    "response_id": "gen-1790908097-WH1ZCLODjvqmT6Bkyu2v"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-final-cierra-fuera-ultima-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela final del ejemplo cierra por fuera de la última vela bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00242",
+    "frame-4de8f12d4841c630-s0-p150840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p151560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f5c97faf6c9b27541039b244f56eb6d940b5fd2e38f93fbc421c0074444dd36f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «cierra por fuera de la última vela bajista», y las imágenes muestran la vela final cerrando por encima de la última vela bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cierre de la vela final queda fuera del rango de la última vela bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "70577b0361d90eda34c28373cdcc04cf3c5941f4490000af382b1167e4f276f2"
+    ],
+    "response_id": "gen-1790908097-WH1ZCLODjvqmT6Bkyu2v"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00242",
+   "start_ms": 1671320,
+   "end_ms": 1683380,
+   "text": "cierra por fuera de la última vela bajista algo así cierra por fuera cuando pasa esto se nos forma"
+  },
+  {
+   "id": "asr-00243",
+   "start_ms": 1683380,
+   "end_ms": 1690890,
+   "text": "esto que lo llamamos orden lo sería un poco esto esto sí vamos a ir a gráfico lo veáis claro y es"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150480000-canonical-v1",
+   "pts_ms": 1672000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150570000-canonical-v1",
+   "pts_ms": 1673000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150570000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150660000-canonical-v1",
+   "pts_ms": 1674000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150840000-canonical-v1",
+   "pts_ms": 1676000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151200000-canonical-v1",
+   "pts_ms": 1680000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151380000-canonical-v1",
+   "pts_ms": 1682000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151470000-canonical-v1",
+   "pts_ms": 1683000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151560000-canonical-v1",
+   "pts_ms": 1684000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

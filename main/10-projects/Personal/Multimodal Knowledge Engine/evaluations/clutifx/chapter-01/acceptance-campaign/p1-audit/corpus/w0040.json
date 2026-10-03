@@ -1,0 +1,470 @@
+{
+ "window": "w0040",
+ "start": "09:00",
+ "end": "09:10",
+ "start_ms": 540000,
+ "end_ms": 550000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-rangos-basado-temporalidades",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El proceso de pasar de un rango a otro está basado en las temporalidades.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00082",
+    "asr-00084"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d61c66b6aba5b822c5fb525a8d5e92654fffbc6c2cf45f957bb0245f7ad7fb65",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas juntas indican que el paso de un rango a otro forma parte de «todo esto», que está «basado en las temporalidades»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que dicho proceso se basa en las temporalidades."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-completa-rango-bearish",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se completa el rango bearish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b19dbc80e3a7eeca918d87e0f059586d60cc978984899ca6a3419505063bf494",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente «completa el bearish», lo que sostiene que se completa el rango bearish."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-temporalidad-1h-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de EURUSD cambia de la temporalidad de 1h a 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5576615371a85a1416bf458eb35db98c6ed55a1b7f36ddccf8f127d64b799786",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el gráfico de EURUSD en 1h y la segunda lo muestra en 4h."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El cambio de temporalidad de 1h a 4h constituye una única proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-explicacion-base-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La explicación busca que entendáis la base de qué es un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00086",
+    "asr-00087"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d5682a6ace903369423b50cce089c2fd5a3c4d364b464508a2e81ec332f3857c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas expresan directamente que la explicación pretende que la audiencia entienda la base de qué es un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre el propósito de la explicación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-forma-rango-bearish",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se forma un rango bearish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "97faeab9a45618c8e6b2fd94ca47567b53bfa68095805eb5655518fc0958a8d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona que se forma algo bearish y que se completa el bearish, pero no afirma explícitamente que se forme un rango bearish."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-temporalidad-1h-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de GBPUSD cambia de la temporalidad de 1h a 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b1e648133686efca0f2b12d2f637a289318d043401cb4f40087883d09c388aad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El primer fotograma muestra el gráfico de GBPUSD con la etiqueta «1h» y el segundo lo muestra con «4h», por lo que se observa el cambio de temporalidad de 1h a 4h."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: el cambio de temporalidad del gráfico de GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-llega-rango-bullish",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Llega un rango bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00082"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b4a06bc9c695ba032d9f53666dcda986f38c7ebe2cfec37f5f93ba26fce7bd4b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice «llega uno bullish», lo que respalda que llega un rango bullish."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidades-siguiente-capitulo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Las temporalidades se verán en el siguiente capítulo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00084",
+    "asr-00085"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "513806291f1e6e210efa82d295d901f4a4ce7a3ffa9e5277a6e13314fa68e74a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas juntas afirman que las temporalidades serán vistas en el siguiente capítulo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre dónde se tratarán las temporalidades."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-bearish-completo-requiere-formado",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-completa-rango-bearish",
+   "subject_version": 1,
+   "object_id": "cl-forma-rango-bearish",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "fdcbfa706e828b07abb1379b88f9b0fc2d06bf48d76079789c5f0419fbad389e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona tanto la formación como la finalización de un movimiento bearish, pero no enuncia ni establece explícitamente que la finalización dependa de la formación en esa orientación."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "252a6ede34a2a1f98388ea1109f90f91f015882547680c5be29d1b457eb7accd"
+    ],
+    "response_id": "gen-1790893248-rnKMcqHFaFUQAepQJZg7"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00082",
+   "start_ms": 539220,
+   "end_ms": 540720,
+   "text": "a otro, llega uno bullish,"
+  },
+  {
+   "id": "asr-00083",
+   "start_ms": 541160,
+   "end_ms": 542780,
+   "text": "forma uno bearish, completa el bearish"
+  },
+  {
+   "id": "asr-00084",
+   "start_ms": 542780,
+   "end_ms": 545280,
+   "text": "y todo esto basado en las temporalidades"
+  },
+  {
+   "id": "asr-00085",
+   "start_ms": 545280,
+   "end_ms": 547140,
+   "text": "que vais a ver en el siguiente capítulo"
+  },
+  {
+   "id": "asr-00086",
+   "start_ms": 547140,
+   "end_ms": 549480,
+   "text": "pero para que entendáis un poco la base"
+  },
+  {
+   "id": "asr-00087",
+   "start_ms": 549480,
+   "end_ms": 550560,
+   "text": "de qué es un rango"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48600000-canonical-v1",
+   "pts_ms": 540000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+   "pts_ms": 544000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49050000-canonical-v1",
+   "pts_ms": 545000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49140000-canonical-v1",
+   "pts_ms": 546000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49230000-canonical-v1",
+   "pts_ms": 547000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49320000-canonical-v1",
+   "pts_ms": 548000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49410000-canonical-v1",
+   "pts_ms": 549000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49500000-canonical-v1",
+   "pts_ms": 550000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

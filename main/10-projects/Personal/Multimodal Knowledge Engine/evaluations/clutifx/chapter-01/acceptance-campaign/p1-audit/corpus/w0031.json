@@ -1,0 +1,389 @@
+{
+ "window": "w0031",
+ "start": "06:52",
+ "end": "07:01",
+ "start_ms": 412000,
+ "end_ms": 421000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comprobar-eso-temporalidades",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Podéis comprobar con vosotros mismos, en muchas temporalidades, cómo va pasando eso.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7b5b641700d771f60e4da1ce24cb2aa167adf6bd8fc9e10cf4bf6ba3befad802",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited evidence directly states that the addressees can check for themselves, across many temporalities, how that is happening."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52b82a93c1b33258523e6a3b3c40eebcca190a36b60fa391951d8810172725f6"
+    ],
+    "response_id": "gen-1790891272-HwXA4UlB3sgLP0PvYXPt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-extension-temporal-visible-cambia",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La extensión temporal visible cambia entre los fotogramas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "038734bc7aa3c4e20de26ee8fbe8afec9e342473595676000240a443fe1697fc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los fotogramas muestran distintos intervalos de tiempo visibles en el eje horizontal, desde aproximadamente marzo–julio en uno hasta agosto–junio en otro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cambio de la extensión temporal visible entre los fotogramas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52b82a93c1b33258523e6a3b3c40eebcca190a36b60fa391951d8810172725f6"
+    ],
+    "response_id": "gen-1790891272-HwXA4UlB3sgLP0PvYXPt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-actual-es-ejemplo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado también es uno de los ejemplos.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00054",
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "95a227e46d4c6b518b318bd06f4c9f0930eb2a2d3cad1307aae21cc63aef033f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «Este de aquí también» al presentar el gráfico mostrado como otro ejemplo, lo que respalda directamente la afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52b82a93c1b33258523e6a3b3c40eebcca190a36b60fa391951d8810172725f6"
+    ],
+    "response_id": "gen-1790891272-HwXA4UlB3sgLP0PvYXPt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado es de EUR/USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p112680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p114120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p162900000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4437f6a8855719057c32ef953ddf8d6e63a9f41e10f85c82e120fc1d42a79142",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas identifican explícitamente el gráfico como «EURUSD» tanto en la interfaz como en la etiqueta central."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2164c633e51af722812a2e6b0d71507993eca7c1bc20d983fccebdb652098193",
+     "52b82a93c1b33258523e6a3b3c40eebcca190a36b60fa391951d8810172725f6",
+     "670b2fe30eeaee2580479b8f2c84759f63a4e9e14c6b9138797f60dedf9a300c",
+     "8b5d2ca9fee5e9ee05fc5135da1823bc2951bec23349e12ef296f3a15b73282b",
+     "b042044a1dd3ad135698de949e3c5d36d44658eb4fccf1a0766b5845513b963b",
+     "b89701095e9a587ac9cdb39b33929e24c8b96c5ca3493c09ac3c70bd0568f79a"
+    ],
+    "response_id": "gen-1790891272-HwXA4UlB3sgLP0PvYXPt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-puedo-buscar-muchos-ejemplos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puedo buscar muchos ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "55b08ed5e1587d26afb0d59954ad587d94dee98b985065332c88af22ad9462e9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «puedo buscar muchos ejemplos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52b82a93c1b33258523e6a3b3c40eebcca190a36b60fa391951d8810172725f6"
+    ],
+    "response_id": "gen-1790891272-HwXA4UlB3sgLP0PvYXPt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico permanece en 1D durante toda la secuencia.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00054",
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e65cc05d29b7f33880f036b7483f6fe665775d4baf06d2222405ef4c5159d31e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los ocho fotogramas citados muestran «EURUSD · 1D · FOREX.com» y «1D» seleccionado, también el periodo final de la secuencia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Afirmar que la temporalidad permanece en 1D durante toda la secuencia es una sola proposición temporal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "52b82a93c1b33258523e6a3b3c40eebcca190a36b60fa391951d8810172725f6"
+    ],
+    "response_id": "gen-1790891272-HwXA4UlB3sgLP0PvYXPt"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00054",
+   "start_ms": 407710,
+   "end_ms": 421350,
+   "text": "Lo podéis comprobar con vosotros mismos en muchas temporalidades cómo va pasando eso, ¿vale? Es que puedo buscar muchos ejemplos. Este de aquí también. Y esto es solo el diario, obviamente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112680000-canonical-v1",
+   "pts_ms": 1252000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114120000-canonical-v1",
+   "pts_ms": 1268000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+   "pts_ms": 1318000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119610000-canonical-v1",
+   "pts_ms": 1329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p162900000-canonical-v1",
+   "pts_ms": 1810000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p162900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+   "pts_ms": 412000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37170000-canonical-v1",
+   "pts_ms": 413000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+   "pts_ms": 414000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37350000-canonical-v1",
+   "pts_ms": 415000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37440000-canonical-v1",
+   "pts_ms": 416000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37530000-canonical-v1",
+   "pts_ms": 417000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+   "pts_ms": 420000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37890000-canonical-v1",
+   "pts_ms": 421000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+   "pts_ms": 801000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73170000-canonical-v1",
+   "pts_ms": 813000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p93240000-canonical-v1",
+   "pts_ms": 1036000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p93240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

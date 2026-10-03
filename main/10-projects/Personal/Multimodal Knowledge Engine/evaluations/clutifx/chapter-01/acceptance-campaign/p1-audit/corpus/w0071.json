@@ -1,0 +1,354 @@
+{
+ "window": "w0071",
+ "start": "17:33",
+ "end": "17:44",
+ "start_ms": 1053000,
+ "end_ms": 1064000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-este-rango-sigue-operativo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Este rango sigue estando operativo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00145",
+    "asr-00146"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7d039d5d58ab6f177b2d63036f2fc44e135a5d7cdb75dfc6ce4101d98da01c33",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos líneas citadas juntas expresan exactamente «Este rango sigue estando operativo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango sigue operativo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d16badeb479bdc02b768df7b50af92b6709e57c8e5f43a6021193034a04a174e"
+    ],
+    "response_id": "gen-1790899857-KKzTwJKZSdRYshvfVF3A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-la-logica-es-correcta",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La lógica está correcta.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00142"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3d5ad26236d98b4d7d4d9a6d4ec2b74079b718ac084bf3be1003f69ed1b9b758",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «la lógica está correcta»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre la corrección de la lógica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d16badeb479bdc02b768df7b50af92b6709e57c8e5f43a6021193034a04a174e"
+    ],
+    "response_id": "gen-1790899857-KKzTwJKZSdRYshvfVF3A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-la-vela-sigue-cerrando-dentro-del-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela sigue cerrando dentro del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00143",
+    "asr-00144"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8756ad620c3cd20f6bcf192e10eb96653c15544d9891bfcc992d47635eed0640",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «la vela sigue cerrando dentro», lo que respalda que la vela sigue cerrando dentro del rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable; «dentro del rango» únicamente precisa el alcance de esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d16badeb479bdc02b768df7b50af92b6709e57c8e5f43a6021193034a04a174e"
+    ],
+    "response_id": "gen-1790899857-KKzTwJKZSdRYshvfVF3A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-pasa-nada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "No pasa nada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00141"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "61755bd4650421589b6187f4cfe639a2713d7dcd92ef0b36c75150e77bb0f191",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente «no pasa nada»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d16badeb479bdc02b768df7b50af92b6709e57c8e5f43a6021193034a04a174e"
+    ],
+    "response_id": "gen-1790899857-KKzTwJKZSdRYshvfVF3A"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-pasa-nada-depende-de-la-logica",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-no-pasa-nada",
+   "subject_version": 1,
+   "object_id": "cl-la-logica-es-correcta",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00141",
+    "asr-00142"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "983950695a62d36f9c3d1ee6a8f22b210914f242bc8881a9f414a7914a82cd6f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La expresión «porque» introduce explícitamente «la lógica está correcta» como causa de «no pasa nada», en la orientación sujeto DEPENDS_ON objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d16badeb479bdc02b768df7b50af92b6709e57c8e5f43a6021193034a04a174e"
+    ],
+    "response_id": "gen-1790899857-KKzTwJKZSdRYshvfVF3A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-operativo-depende-del-cierre-dentro",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-este-rango-sigue-operativo",
+   "subject_version": 1,
+   "object_id": "cl-la-vela-sigue-cerrando-dentro-del-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00143",
+    "asr-00144",
+    "asr-00145",
+    "asr-00146"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eb995a7074f039fc67601144a21de1afe0f32587691c80507a6b74aa7c50e8d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «la vela sigue cerrando dentro» y, mediante «por lo tanto», concluye que «este rango sigue estando operativo», estableciendo la dependencia del subject en la objeto en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d16badeb479bdc02b768df7b50af92b6709e57c8e5f43a6021193034a04a174e"
+    ],
+    "response_id": "gen-1790899857-KKzTwJKZSdRYshvfVF3A"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00141",
+   "start_ms": 1051830,
+   "end_ms": 1053290,
+   "text": "y no pasa nada, porque"
+  },
+  {
+   "id": "asr-00142",
+   "start_ms": 1053290,
+   "end_ms": 1055750,
+   "text": "la lógica está bien, la lógica está correcta"
+  },
+  {
+   "id": "asr-00143",
+   "start_ms": 1055750,
+   "end_ms": 1057630,
+   "text": "como veis, la vela"
+  },
+  {
+   "id": "asr-00144",
+   "start_ms": 1057630,
+   "end_ms": 1059190,
+   "text": "sigue cerrando dentro, por lo tanto"
+  },
+  {
+   "id": "asr-00145",
+   "start_ms": 1059190,
+   "end_ms": 1062020,
+   "text": "este rango sigue estando"
+  },
+  {
+   "id": "asr-00146",
+   "start_ms": 1062020,
+   "end_ms": 1062940,
+   "text": "operativo, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94770000-canonical-v1",
+   "pts_ms": 1053000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94860000-canonical-v1",
+   "pts_ms": 1054000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94950000-canonical-v1",
+   "pts_ms": 1055000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94950000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95040000-canonical-v1",
+   "pts_ms": 1056000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95130000-canonical-v1",
+   "pts_ms": 1057000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95220000-canonical-v1",
+   "pts_ms": 1058000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95220000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95400000-canonical-v1",
+   "pts_ms": 1060000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95760000-canonical-v1",
+   "pts_ms": 1064000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

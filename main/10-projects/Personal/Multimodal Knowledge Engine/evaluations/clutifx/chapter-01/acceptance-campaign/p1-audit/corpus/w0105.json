@@ -1,0 +1,649 @@
+{
+ "window": "w0105",
+ "start": "27:10",
+ "end": "27:23",
+ "start_ms": 1630000,
+ "end_ms": 1643000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-configuracion-es-failure-swing",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La configuración recién descrita es un failure swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00226",
+    "frame-4de8f12d4841c630-s0-p147870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dc393f2344f9591b4ea1ee2d5473d7f025568a462278e83fc4fb83ca33514731",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «Esto es el failure swing», en referencia directa a la configuración recién descrita."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación solo atribuye una clasificación a esa configuración; no contiene proposiciones independientes adicionales."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-duda-al-hacer-zoom",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Al hacer zoom, queda la duda de si se lo lleva o no.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p146700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p146970000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "007523aed7d6a9360cdbd1296a07e789a52c657de6788eaa86ed10190a25e839",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice directamente que al hacer zoom se piensa «si se lo lleva o no», lo que sustenta la proposición sobre la duda. La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-etiquetado-smt",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El ejemplo del diagrama está etiquetado como «SMT».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p146700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p147870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8baf64b2598c108d6f864f760aa2a0bf715fcd22147269852438078d6b1bd09b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran un diagrama con la etiqueta visible «SMT»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hemos-hablado-failure-swing",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Hemos hablado de failure swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00226"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5af06302c8f4c3e13e5abfb081896607729ff4c2b6f193062cc748caa3ad7ef0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente: «hemos hablado de rango pendiente, rango reiniciado, SMT, failure swing», lo que incluye directamente que se ha hablado de «failure swing»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: que el tema «failure swing» ha sido tratado en la conversación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hemos-hablado-rango-pendiente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Hemos hablado del rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00226"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "27a8adf89301672241474df90f184b491828ec948d1b7f74b9832bda544ed461",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente: \"hemos hablado de rango pendiente\"."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que se ha hablado del rango pendiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hemos-hablado-rango-reiniciado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Hemos hablado del rango reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00226"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2dd8e0a24b2aeb0fbbab981f0a7f99971a73a339309756a6a1e5db541f646e40",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente: «hemos hablado de rango pendiente, rango reiniciado, SMT, failure swing», lo que respalda que se habló del rango reiniciado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hemos-hablado-smt",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Hemos hablado de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00226"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9b803165733e30a76a886045af9bc42b87fbd75b0419c7567f42d9c8210d975d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: \"hemos hablado de ... SMT\", lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La declaración contiene una sola proposición: que se ha hablado de SMT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marca-bajo-alto-final-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El diagrama incluye la marca «BAJO/ALTO A FINAL DE VELA».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p146700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p147870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6cb7885b8fe2cb795e2980ac62e60ccb290a420cf58405d23bcb14bb85dbb685",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran visiblemente la etiqueta «BAJO/ALTO A FINAL DE VELA» en el diagrama."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-pendiente-order-block",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Queda pendiente el concepto de order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00227"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "18fb070216a145867067d34562ff07d34c010a451bf8528a0636d1047676e04a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «queda el concepto de order block», lo que respalda que dicho concepto queda pendiente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-creado-igualmente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Por lo tanto, se crearía igualmente un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00226"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2f2a919240597fd5bbb6416508542b51b2f13b0304eb6d3cca27c1f3e122c34c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango sería creado igualmente, lo que respalda la proposición de que se crearía igualmente un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la creación de un rango en condiciones de igualdad."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-representacion-marcada-otro-broker",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Una de las representaciones está marcada como «OTRO BROKER».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p146700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p147870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bcf8bd775fa5f64027861e6ada3bd0ac4884c9557feb332ec3f551dc538553d7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran visiblemente una representación marcada como «OTRO BROKER»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-visual-practicamente-igual-otro-broker",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Finalmente se comprueba que en otro broker se ve prácticamente igual.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p146790000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p147600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "785cfddc35f2e658a6cf616ae187ad8477394967d1b9e22c73e50ad0070e8e47",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que se da cuenta de que es prácticamente igual y que en otro broker realmente se ve así."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran visualmente la misma representación y coinciden con esa afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-failure-swing-clasifica-configuracion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-configuracion-es-failure-swing",
+   "subject_version": 1,
+   "object_id": "cl-rango-creado-igualmente",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00226"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "30eaaa57124ad92c7e2b935153af157f8963886bc1dc89e09f8085a48961ed70",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma primero que se crearía igualmente un rango y después施行 «Esto es el failure swing», por lo que la clasificación como failure swing se presenta como consecuencia de la afirmación previa, en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-creado-segun-visual-igual",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-creado-igualmente",
+   "subject_version": 1,
+   "object_id": "cl-visual-practicamente-igual-otro-broker",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "asr-00226"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "652c6df3c34e477c0ecfb784b3454fed45c11580c7c86d663bd2b1c3164eb024",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia dice explícitamente «Por lo tanto», por lo que presenta la creación del rango como consecuencia de la afirmación anterior de que en otro broker se ve prácticamente igual. Así queda establecida la relación DEPENDS_ON desde la creación del rango hacia esa observación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "d3fe7744e1bfe576024800f287aae032991410fa91f3739eb9348941c8cc8409"
+    ],
+    "response_id": "gen-1790907753-mkUKDR6P2lxn3tCeNhOo"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00225",
+   "start_ms": 1618010,
+   "end_ms": 1630490,
+   "text": "aquí y te quedas haciendo zoom pensando si se lo lleva o no y luego te das cuenta que es prácticamente igual y que en otro broker esto realmente se ve así, ¿vale?"
+  },
+  {
+   "id": "asr-00226",
+   "start_ms": 1630490,
+   "end_ms": 1640330,
+   "text": "Por lo tanto, sería el rango por creado igualmente. Esto es el failure swing. Vale, hemos hablado de rango pendiente, rango reiniciado, SMT, failure swing."
+  },
+  {
+   "id": "asr-00227",
+   "start_ms": 1640330,
+   "end_ms": 1642330,
+   "text": "queda el concepto de order block"
+  },
+  {
+   "id": "asr-00228",
+   "start_ms": 1642330,
+   "end_ms": 1644280,
+   "text": "que es"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146700000-canonical-v1",
+   "pts_ms": 1630000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146790000-canonical-v1",
+   "pts_ms": 1631000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146880000-canonical-v1",
+   "pts_ms": 1632000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146970000-canonical-v1",
+   "pts_ms": 1633000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p147240000-canonical-v1",
+   "pts_ms": 1636000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p147240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p147600000-canonical-v1",
+   "pts_ms": 1640000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p147600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p147780000-canonical-v1",
+   "pts_ms": 1642000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p147780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p147870000-canonical-v1",
+   "pts_ms": 1643000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p147870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,737 @@
+{
+ "window": "w0001",
+ "start": "00:00",
+ "end": "00:08",
+ "start_ms": 0,
+ "end_ms": 8000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-audiencia-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El ponente considera probable que la audiencia ya haya seguido su curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eaa75a62262188815645489abc5612caade05a733cd803f778315f28bdeaba84",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El ponente dice: «sé que probablemente vengas ya de mi curso intermedio», lo que expresa exactamente su belief de que es probable que la audiencia ya proceda de su curso intermedio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición, incluida la atribución y el grado de probabilidad."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bienvenida-curso-completo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se da la bienvenida al curso completo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "frame-4de8f12d4841c630-s0-p270000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fa06f58f5432f543e93e9e6223c8c54e696bc96211cf402bb1b4baa03a21c5ec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente: «Hola, bienvenido al curso completo», lo que respalda que se da la bienvenida al curso completo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-completo-estrategia-profundidad",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el curso completo se descubrirá la estrategia en profundidad.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d7f5e3bae5680d947ad112e380696d5744947deb1ea6e829549cc0fe8a957f26",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente: «Aquí vas a descubrir la estrategia en profundidad», lo que respalda exactamente la proposición sobre el curso completo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición: que la estrategia se descubrirá en profundidad en el curso completo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-intermedio-base",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El curso intermedio sirvió para sentar la base.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "721ed508e66c62f0576a383b793c09291677808b8e3fde381f560e4c6c13f2cd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el curso intermedio «sirvió para sentar la base»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dos-zonas-rectangulares-azules",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra dos regiones rectangulares sombreadas en azul.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5eede7841976265a0325b9dab19a2e04a531b2aa1daf751a179ef645936c5497",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambas imágenes citadas muestran claramente dos regiones rectangulares con sombreado azul sobre el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-identificacion-forex-com",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El encabezado del gráfico contiene la identificación «FOREX.com».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "932073a9ed464c768ac7cff431e485738e4b77adcc5d3194229be78a844b0143",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran «FOREX.com» en el encabezado del gráfico, junto a «EURUSD · 5»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-par-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado representa el par EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "45d11f711602ed95cd87542a72778b51c1a314099a3a580bc573d53259a6dd2b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran explícitamente la etiqueta EURUSD en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-temporalidad-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad indicada en el gráfico es «5M».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3eb59f2a8958a1d89ed8d8b18ef890abe4489c856d659855f9902535457edda8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la parte inferior central de ambos fotogramas aparece la etiqueta «EURUSD | 5M», por lo que la temporalidad indicada es «5M»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-azul-115728",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico incluye un nivel horizontal azul en «1,15728».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "03617934ce6e7bf95de348ce09e63dceb0e243a385a2ffbf4ab447f2a8ddad0b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una línea horizontal azul en el gráfico, identificada en el eje de precios como 1,15728."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-horizontal-115797",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico incluye una línea horizontal punteada en «1,15797».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c508fa5ecbc4de6fcd4009150d6d8daa3fa879d02af72e55a266f37ae4ef7cf5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran una línea horizontal punteada en el nivel 1,15797, indicado en la escala del eje derecho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-horizontal-116148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico incluye una línea horizontal en «1,16148».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c50385e4066310b2d6e5ce460136fa0c6e4e5f55f25c25bf6db06ac9d41dc2f1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran una línea horizontal etiquetada como «1,16148» en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-negro-115744",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico incluye un nivel horizontal negro en «1,15744».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c4ac4836025fdbdf91c505bb0bc23ebaae13db037b034370c579ef956565450f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran una línea horizontal negra asociada a la etiqueta de precio «1,15744» en el eje derecho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ponente-ampliacion-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El ponente va a ampliar ahora todo el contenido del curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7d525f18b2f436d1ee996536c03ed5e6f6d9b023f42ce6a67fe64e1882e2565c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el curso intermedio sirvió para sentar la base y que el ponente «voy a ampliar ya todo», lo que respalda que va a ampliar su contenido."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-sitio-cursosdigitales701",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El sitio web mostrado es «WWW.CURSOSDIGITALES701.COM».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p270000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8d492900544b48db2e701f968bcb14403879698a4e7a1ff6913291020b1c3a07",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran claramente el texto «WWW.CURSOSDIGITALES701.COM»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la identificación del sitio web mostrado con esa dirección."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-visitar-sitio-mas-cursos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Para más cursos, visita nuestro sitio web.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c4acedde27c1e25cfadb5e4f055c6da499f96f0126c6ff68760a8ebe0f384d00",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el texto exacto «PARA MÁS CURSOS VISITA NUESTRO SITIO WEB»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: visitar el sitio web para acceder a más cursos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-ampliacion-requiere-base-intermedia",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-ponente-ampliacion-curso-intermedio",
+   "subject_version": 1,
+   "object_id": "cl-curso-intermedio-base",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8a4d43d5689a951d63d4ebab7cd6ffe20bde9cf694eb27a35ac9b86af0f509d9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el curso intermedio «sirvió para sentar la base» y, en relación con esa base, dice que el ponente «voy a ampliar ya todo», 建立 la orientación de que la ampliación depende del curso intermedio previo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-visita-sitio-requiere-url-mostrada",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-visitar-sitio-mas-cursos",
+   "subject_version": 1,
+   "object_id": "cl-sitio-cursosdigitales701",
+   "object_version": 1,
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3239e84fb5049a168ed8a0f48ed0093f6c60052d04f26fb9d2af9562cc93cd4e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La misma imagen muestra la instrucción «PARA MÁS CURSOS VISITA NUESTRO SITIO WEB» y, de forma destacada, la URL «WWW.CURSOSDIGITALES701.COM», que identifica el sitio web mostrado al que se refiere la instrucción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v2",
+    "config_fingerprint": "10418ccfee9c0c6d58dd4b5ba0b86698819cf31fe8c5610d59413a17be4be478",
+    "invocation_ids": [
+     "2b06df21ce22f56372dac95f15fbe9b8da864d62445bdec51fda313de9dc8e12"
+    ],
+    "response_id": "gen-1790887342-Ss60m9AgPuz6od5PwyMe"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00001",
+   "start_ms": 5810,
+   "end_ms": 19820,
+   "text": "Hola, bienvenido al curso completo. Aquí vas a descubrir la estrategia en profundidad y nada, sé que probablemente vengas ya de mi curso intermedio, así que eso sirvió para sentar la base y voy a ampliar ya todo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p0-canonical-v1",
+   "pts_ms": 0,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p0-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p180000-canonical-v1",
+   "pts_ms": 2000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p270000-canonical-v1",
+   "pts_ms": 3000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p360000-canonical-v1",
+   "pts_ms": 4000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p450000-canonical-v1",
+   "pts_ms": 5000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+   "pts_ms": 6000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p540000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p720000-canonical-v1",
+   "pts_ms": 8000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90000-canonical-v1",
+   "pts_ms": 1000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}
