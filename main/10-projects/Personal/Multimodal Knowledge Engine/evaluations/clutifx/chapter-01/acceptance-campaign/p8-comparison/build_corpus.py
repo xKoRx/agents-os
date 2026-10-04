@@ -4,7 +4,7 @@ terminal del pipeline (claims.jsonl + window-coverage.json) + config de ventanas
 + media-run + transcript.
 
 Uso:
-  build_corpus.py <run-out-dir> <config.json> <media-run-dir> <transcript.json> <out-dir>
+  build_corpus.py <run-out-dir> <config.json> <media-run-dir> <transcript.json> <out-dir> [coverage-json-path]
 
 Salida: <out-dir>/wNNNN.json + <out-dir>/REJECTED-WINDOWS.json
 """
@@ -13,6 +13,7 @@ import json, os, sqlite3, sys
 
 def main():
     run_dir, config_path, media_dir, transcript_path, out_dir = sys.argv[1:6]
+    coverage_path = sys.argv[6] if len(sys.argv) > 6 else os.path.join(run_dir, 'window-coverage.json')
     os.makedirs(out_dir, exist_ok=True)
 
     claims_by_id, rels_by_id = {}, {}
@@ -24,7 +25,7 @@ def main():
             elif o.get('record_type') == 'claim_relation':
                 rels_by_id[o['relation']['id']] = o['relation']
 
-    wc = json.load(open(os.path.join(run_dir, 'window-coverage.json')))
+    wc = json.load(open(coverage_path))
     coverage = {w['window']: w for w in wc['coverage']}
 
     cfg = json.load(open(config_path))
