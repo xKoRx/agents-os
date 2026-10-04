@@ -60,7 +60,7 @@ Observación menor (no es error): el par cl-range-opens-below-previous / cl-rang
 | rel-smt-config-pair-misses-target | **Inconsistencia**: la condición simétrica sí fue aceptada como rel-smt-divergencia-correlacionado |
 | rel-smt-visibility-scope | Construcción relativa única («Este es un tipo de SMT que si no conoces la estrategia no vas a poder ver») |
 | rel-reversal-directo-smt | Dirección correcta del anclaje anafórico (a diferencia de rel-smt-config-pair-reverses, bien rechazada) |
-| rel-gbpusr-rango-dep-smt → **rel-gbpusd-rango-dep-smt** | **Publicado UNSUPPORTED_CONTRADICTED y es falso**: «esto es una SMT que nos indica que esto de GIP es un rango también» sostiene directamente la relación; «esto de GIP» = elemento GBPUSD |
+| rel-gbpusd-rango-dep-smt | **Publicado UNSUPPORTED_CONTRADICTED y es falso**: «esto es una SMT que nos indica que esto de GIP es un rango también» sostiene directamente la relación; «esto de GIP» = elemento GBPUSD |
 | rel-situacion-ideal-depends-creacion-rango | «es lo ideal porque te está creando un rango alcista»; cualificaciones grounded en los claims de los extremos |
 
 Patrón dominante de los falsos negativos: (a) ventanas de citación que cortan el nexo (2 casos idénticos al patrón del run viejo), (b) tratamiento inconsistente de pares de claims duplicados entre ventanas contiguas (el mismo contenido se acepta con un par de claim-ids y se rechaza con el duplicado), (c) conservadurismo ante dependencias anafóricas/encadenadas que sí están explícitas.
