@@ -2629,3 +2629,12 @@ TOP Senior Physical Integration / Certification Lead (one-shot, fresh context; N
 - **K:** EXECUTION_TRANSPORT_READY=YES · ACCOUNT_READY=YES · RECOVERY_READY=NO (única brecha) · MARKET_FRESHNESS=STALE (event_ts 2026-10-02T21:38:25.95Z, ≈43 h; domingo CME cerrado — blocker válido) · NEW_RISK_READY=NO. **L:** VERIFY tooling FIXED confirmado por hash (5ca716ed…, contrato feed=presencia). **J:** G_HORIZON = PARTIAL_NEEDS_CREATED_ORDER (6.ª vez). G-EGRESS-0 restaurado y probado al cierre (unidad inactive+disabled, `:9771` FREE, key eliminada ciclo guardado — MCP RO 21 claves == baseline; feed lane + market lane observando). 0 órdenes (6 intentos), 0 comandos, deltas ETCD/dev-win neto CERO, cero commits.
 
 **Next Manager action:** (a) CONGELAR como certificado el pickup C0 + transporte C + binding D + observaciones E + barrier estable F + reconnect/fencing G — no tocar AddOns/transporte. (b) Despachar remediación acotada de H (repro + refs en el artifact; elegir bridge-side freshness-wait vs AddOn-side burst; pin en reallane_barrier_test). (c) Tras remediación + W1: re-despachar C→K fresh (drill restart FIRST-TRY determinístico) → ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. (d) Hoy ≥17:00 CT: G-REALTIME feed-lane-only (runbook §M intento 1, no depende de H). OD-D6-1 vigente sin consumir. No emitir EF_D6_E2E_PASS.
+
+
+### Backtester V1 — BT-S03 adversarial review (2026-10-04)
+
+[[Echo Futures — BT-S03 Adversarial Review]]: **BT_S03_REMEDIATION_REQUIRED**,16 findings aceptados (5 CRITICAL,8 MATERIAL,1 KISS,2 MINOR). F01/F02/F03/F05 originales confirmados, F04 requiere remediación. Baseline Backtester f41da25c; repros tagged publicados en `xKoRx/echo:codex/bt-s03-adversarial-review@13bb72bb`; suites finales autorizadas PASS en namespace sin red externa. D6 avanzó32baeaeb→d08a30ce, delta sin conflicto shared; ninguna integración D6.
+
+**Incidente operativo abierto:** Sol causal ejecutó una suite SDK amplia no autorizada que reportó escrituras en ETCD production. Se detuvo/escaló; no se restauró ni se verificó impacto runtime. Detalle y evidencia sanitizada en artifact. No inferir infraestructura intacta por el review ni recuperación por suites verdes.
+
+**Próximo paso:** Primary Technical Manager revisa BT-S03 y adjudica el contrato acotado S04; no se inició S04 ni se entregó prompt al Owner. Recuperación/verificación de configuración productiva requiere coordinación autorizada independiente.
