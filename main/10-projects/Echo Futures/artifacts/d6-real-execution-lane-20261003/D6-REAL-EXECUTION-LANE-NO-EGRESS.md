@@ -589,3 +589,156 @@ Un solo ciclo diagnóstico+fix (standing OD-D6-4): (1) en su sesión, abrir el l
 NEXT_MANAGER_ACTION:
 Veredicto REMEDIATION_REQUIRED ⇒ no certificar lane ni ejecutar ladder. Domingo 2026-10-04 ≥17:00 CT: certificar G-REALTIME (runbook §M intento 1 — feed-lane-only, no depende del fix). Tras la señal de éxito del AddOn: re-despachar C–K (~5 min dentro de ventana; preflight de este artifact es re-ejecutable tal cual) y ejecutar el ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. OD-D6-1 AUTHORIZED vigente sin consumir (0 órdenes en 3 intentos). No emitir EF_D6_E2E_PASS.
 ```
+
+---
+---
+
+# FINAL PARSER-FIX RETRY — REAL C→K — 2026-10-04 (madrugada, evidencia UTC ≈05:14Z–05:40Z, local -03 ≈02:14–02:40; domingo, CME cerrado)
+
+**Nota de esquema:** el despacho pide certificar C→K sobre la verdad física nueva (owner ejecutó el bundle rebuild y NT arrancó con `EchoExecutionAddOn config loaded: ntx=****.161:9771 account=****1551 contracts=1` + `started (dual channel…)`). El parser fix quedó **FÍSICAMENTE CONFIRMADO por primera vez con evidencia conductual agente-side**, y el lane de ejecución REAL llegó por primera vez en 4 intentos al bridge, **pasó hello+auth** — y ahí la certificación volvió a detenerse, ahora por **DOS DEFECTOS DE PRODUCTO nuevos, demostrados físicamente y con reproducción exacta en fuente** (nunca ejercitados antes: el bridge sólo había sido probado contra el probe sintético, cuyo shape de frames ES el del bridge). Veredicto: **REMEDIATION_REQUIRED**. Cero órdenes, cero comandos, cero mutaciones de producto.
+
+## P0 — PARSER FIX CONFIRMED + ADDON LOADED (supersede definitivo de los 3 intentos previos)
+
+- **Verdad física nueva (owner):** log NT del boot vigente: `EchoExecutionAddOn config loaded: ntx=****.161:9771 account=****1551 contracts=1` + `EchoExecutionAddOn started (dual channel; execution lane STAGED build)`; EchoFeedAddOn conectado normal a :9770. El `config FAILED` histórico pertenece a boots previos.
+- **Confirmación conductual agente-side (independiente del log owner):** dev-win netstat, NinjaTrader **PID 13068**: feed `192.168.31.132:54550 → 192.168.31.161:9770 ESTABLISHED` y **DOS sockets `SYN_SENT → 192.168.31.161:9771` del mismo PID** (dual channel dializando). Con config puerto 0 esto es estructuralmente imposible (guards `ntxPort<=0 ⇒ return`, sin un solo syscall). `CONFIG_PARSER_FIX = PHYSICALLY_CONFIRMED`; `NTX_EFFECTIVE_ENDPOINT = 192.168.31.161:9771`.
+- Los bytes instalados son la build `2c8ab2cf…` (bundle EchoD6Bundle @ `ffa493d8`), feed `581a7087…`, config `9ca3fddc…`.
+
+## C — REAL EXECUTION TRANSPORT: PROGRESO HISTÓRICO, LUEGO DEFECTOS
+
+- **Preflight PASS completo (re-verificado hoy por lectura exacta cliente crudo + MCP RO):** release desplegada `40102ea5` (binario SHA256 `484b550b…`, unit ExecStart apunta al release dir; el delta `40102ea5..ffa493d8` es sólo `.cs` + test Go + harness Python ⇒ binario alineado); journal M2 **0 registros**; `ntx/auth-token` presente (64 hex, no impreso); binding ETCD **12/12 valores exactos** (`enabled=true, ALLOWED, GAU50, EARN2TRADE, RJARA114411201551, GAU50-EVAL/1, America/Chicago, 17:00, NQ 12-26, "3", NINJATRADER_BRIDGE`); clave de sesión `futures-bridge/accounts` AUSENTE pre-write; topic `echo.order-commands.E2T-GAU50-01.v1` sin particiones (0 comandos replayables); bridge inactive+disabled, `:9771` FREE; sin `/demo` cross-contamination (prefijo verificado `PREFIX /echo/development/`).
+- **Escritura guardada:** `futures-bridge/accounts = E2T-GAU50-01` (pre-read exacta ABSENT → put → read-back writer `"E2T-GAU50-01"` → cross-check MCP RO independiente found/size 12/valor exacto).
+- **Bridge arrancado:** **PID 2518565**, `account session built` a las **05:20:58.658Z** (`echo.execution_account E2T-GAU50-01`, topic `echo.order-commands.E2T-GAU50-01.v1`, transport NINJATRADER_BRIDGE), listener `*:9771` verificado con `ss`.
+- **NT → AddOn → TCP :9771 → echo.ntx.v1 → bridge: OCURRIÓ por primera vez** — y ahí aparecen los defectos (D1/D2 abajo). Transporte capturado: NT PID 13068, bridge PID 2518565, pares 192.168.31.132:55256/55257 → 192.168.31.161:9771, release SHA lane = binario `484b550b…` (40102ea5) + AddOn `2c8ab2cf…`. **SESSION_A: no capturable como identidad estable** — el bridge no emite línea de sesión en auth exitoso y ninguna sesión sobrevivió (la autenticación del lane exec quedó probada por la PROGRESIÓN del rechazo: `55257` pasó schema y auth y falló recién en family-data parse).
+
+## D1 — DEFECTO DE PRODUCTO A: market lane del AddOn dializa el endpoint equivocado (violación freeze §6.1)
+
+- **Físico:** `[ntx] ntx: 192.168.31.132:55256 rejected: ntx: frame schema "echo.ntfeed.v1" is not "echo.ntx.v1"` a las 05:20:58.7Z.
+- **Fuente:** el `EchoExecutionAddOn` dializa AMBOS lanes al mismo `ntxHost:ntxPort` (`EnsureMarketLane` y `EnsureExecLane` comparten endpoint, `EchoExecutionAddOn.cs:283-330/:419-464`) y el market lane habla `echo.ntfeed.v1` (`SendMarketHello`, `:324`). El **D6 Final Design Freeze §6.1** congela: market lane → **nt-feed-relay (Daedalus :9770)**, one-way, N1-certified, zero churn; execution lane → bridge listener con `echo.ntx.v1`. El bridge ntx rechaza cualquier schema distinto (`core/ntx/server.go:308`). ⇒ **el market lane del AddOn es estructuralmente incapaz de conectar** al único endpoint que su configuración le da; además su socket muerto queda `marketConnected=true` sin reader (outbound-only) ⇒ nunca re-dializa ni detecta la muerte.
+- Sin efecto de seguridad (frame rechazado y cerrado; sin estado), pero bloquea la topología congelada del AddOn dual-channel.
+
+## D2 — DEFECTO DE PRODUCTO B: frame `account` del lane ntx no parsea en el bridge (violación §6.1 "same payloads as ntfeed")
+
+- **Físico:** `[ntx] ntx: 192.168.31.132:55257 rejected: ntx: family data does not parse: json: cannot unmarshal bool into Go struct field AccountData.resolved of type ntx.AccountRecord` a las 05:21:08Z (hello+auth de esa conexión PASARON).
+- **Fuente:** AddOn (lane exec): `exec.Append("{\"match\":…,\"resolved\":").Append(resolved != null && match == "RESOLVED" ? "true" : "false").Append("}")` (`EchoExecutionAddOn.cs:~880-884`, comentario reclama "same evidence + match used by the bridge binding verification") — serializa `resolved` como **bool** y omite `discovered`/`balances`. Bridge: `AccountData{ Discovered []AccountRecord; Resolved *AccountRecord; Match string; Balances map }` (`core/ntx/observations.go:130-141`) con unmarshal estricto. El freeze §6.1 exige "same payloads as ntfeed": el payload ntfeed REAL (observable en el evidence sink del feed lane) manda `resolved` como **objeto** `{id,name,display_name}` + `discovered[8]` + `balances{}`. ⇒ **el frame account del lane ntx jamás puede parsear** ⇒ `VerifyBinding` jamás recibe match, positions/orders/executions jamás se publican (se emiten sólo si `match == "RESOLVED"`), el recovery barrier jamás puede completar. El lane MARKET del mismo AddOn serializa el payload ntfeed correcto (`:875-882`) — el bug es sólo de la rama exec.
+- **Cadena de barrera observada (4.ª demostración fail-closed, causa raíz nueva):** session built 05:20:58.658Z → Connect pasó (auth exitosa <1 s) → **`account session exited` 05:21:02.350Z (+3.692 s)**, razón exacta `session: recovery barrier failed for E2T-GAU50-01: barrier: reconcile: ninjatrader: no position snapshot observed yet` — fail-closed correcto: sin positions venue reales (bloqueadas por D2) el barrier se negó a completar; reconciliación no debilitada.
+
+## D3 — ANOMALÍA NT-SIDE RESIDUAL: el AddOn dejó de dializar tras el 2.º rechazo
+
+- Tras el cierre de `55257` (05:21:08Z) **cero dials adicionales en ≥15 min** (0 sockets :9771 en dev-win, 0 líneas `[ntx]` nuevas), contra cadencia de diseño ≤5–10 s (`ExecReadLoop` EOF ⇒ re-dial +5 s, sin cap). El dial #2 sí ocurrió (+5 s tras el exit de la sesión #1 ⇒ reconexión real con identidad nueva+seq 0 demostrada conductualmente; auth re-pasó). Las hipótesis (muerte del timer NT por excepción en send al socket muerto del market lane vs. estado half-open indistinguible) **no discriminables agente-side** (ACL: log NT/StartTime/módulos denegados, 9.ª re-probe). El bridge restart (H) con el AddOn en silencio no ejercitaría nada ⇒ no se intentó como teatro.
+
+## D/E — REAL ACCOUNT BINDING + OBSERVATION
+
+- **Por el exec lane real: NOT_RUN** (ningún frame sobrevivió al parser; sin datos fabricados).
+- **Feed lane real (mismo proceso NT PID 13068, evidence sink sin máscara, sesión `a9ddeb5b…` viva con frames cada 10 s):** discovery 8 cuentas (`Backtest, Playback101, Sim101, 5×RJARA…`), **exactamente 1 match**, `resolved {"id":"3","name":"RJARA114411201551","display_name":"RJARA114411201551"}`, `match RESOLVED`, **NT `Account.Id "3"` == hint ETCD — 8.ª sesión consecutiva**. Positions `[]`, orders `[]`; balances `NLV/cash 50000/50000`, `BP/uPnL/rPnL 0/0/0` (variante demo, 4.ª sesión documentándola). `CURRENT_NT_ACCOUNT_ID = "3"`; binding Name-primary `E2T-GAU50-01` ↔ `RJARA114411201551` sin drift.
+
+## F–H — BARRIER / RECONNECT-FENCING / BRIDGE RESTART
+
+- **REAL_RECOVERY_BARRIER = FAIL** (4.ª demostración; causa raíz ahora D2 — con el AddOn real el barrier es estructuralmente inalcanzable hasta remediar). `UnknownLiveOrders = 0`, `AccountMismatch = 0`, `ambiguous journal = 0` (M2 vacío), `command replay = 0`, `dropped_commands=0` en toda la sesión.
+- **REAL_SESSION_RECONNECT:** la reconexión real del AddOn (identidad nueva + seq 0, +5 s, auth re-pasada) se observó una vez; sin sesión estable que fencear ⇒ **FAIL/NOT_RUN ejecutable**. Fencing F-S2-01/04 server-side permanece certificado weekend (mismo binario `484b550b…`).
+- **BRIDGE_RESTART_RECOVERY = FAIL (NOT_RUN con AddOn real)** — D3. Weekend §8 (2× restart, 0-phantom, reconexión <1.5 s) sigue vigente lado transporte.
+
+## I — NINJATRADER RESTART EVIDENCE: PASS (reutilizado, permitido por despacho)
+
+El boot owner vigente (PID 13068, ≥2 boots hoy: feed hello `3bb88562…` 01:19:36Z, sesión actual `a9ddeb5b…` con `reconnects:1`) demostró sobre runtime real: Feed AddOn cargado y publicando ✔; Execution AddOn cargado con config `:9771` (log owner + dials `SYN_SENT→:9771` + hello `echo.ntx.v1` autenticado — 1.ª vez) ✔; cuenta discoverable (RESOLVED 1/8) ✔. No se pidió otro restart.
+
+## J — G_HORIZON PRECHECK
+
+`G_HORIZON_PRECHECK = PARTIAL_NEEDS_CREATED_ORDER` (4.ª vez, sin cambio): la cuenta GAU50 no tiene historial de la vertical y las superficies `LookbackDays*`/historia sólo son inspectables desde NT con el exec AddOn funcional end-to-end. No se creó orden.
+
+## K — READINESS COMPOSITION (capturada con bridge corriendo, cada 30 s)
+
+`ready_new_risk=false`; blockers observados (conjunto REDUCIDO vs intentos previos — coherentemente con la autenticación ocurrida): `[POSITION_NOT_FRESH RECONCILIATION_AUTHORITY_UNAVAILABLE STATIC_ELIGIBILITY_NOT_ELIGIBLE SUBMISSION_CAPABILITIES_NOT_EXACT_READY]`, `ambiguous_orders=0 mismatches=0 dropped_commands=0 recovered=false` — exactamente los esperados para lane-autenticado-pero-sin-observaciones + mercado cerrado. Separación: **EXECUTION_TRANSPORT_READY = NO** (defectos D1/D2; bridge-side certificado y listo) · **ACCOUNT_READY = feed-side YES (RESOLVED vivo) / exec-side NO** · **RECOVERY_READY = NO** · **MARKET_FRESHNESS = STALE** (último `event_ts 2026-10-02T21:38:25.95Z`, edad ≈31 h >> bound 30 s; Kafka p4 offset 5476476 @ 04:59:33Z = replay estático del boot, F-S2-02) · **NEW_RISK_READY = NO** (doble fail-closed: freshness + ventana GAU50-EVAL L–V, domingo cerrado).
+
+## /final_safety_state — probado al cierre (no asumido)
+
+- **G-EGRESS-0 restaurado y verificado:** unidad `echo-futures-bridge` **inactive + reset-failed + disabled**; `:9771` FREE (`ss`, sin listener ni sockets); clave ETCD `futures-bridge/accounts` **eliminada con ciclo guardado** (pre-read exacta `E2T-GAU50-01` → DELETED 1 → read-back ABSENT → cross-check MCP RO **21 claves == baseline pre-shot**); journal M2 **0 registros**; **0 COMMAND_FRAME** en todo el runtime; topic de comandos sin particiones (0 posibles); **0 LIVE run, 0 comandos, 0 ambigüedad** en toda la sesión.
+- **Feed lane conectado y observando** (relay `:9770` + AddOn feed PID 13068, sesión `a9ddeb5b…`): permitido por final_safety_state; cuenta observable RESOLVED.
+- **AddOns instalados lado owner** (bytes `2c8ab2cf`/`581a7087`/`9ca3fddc`); exec AddOn IDLE tras el silencio D3 (si re-dializara contra listener inexistente: refusal sin estado ni riesgo).
+- **New-risk configurationally disabled** (sin sesión habilitada + sin topic M1 + STALE + domingo fuera de ventana).
+- Worktree `~/aranea/work/d6-lane-final-20261003/echo` limpio al cierre, `HEAD == origin == ffa493d8`; herramienta ETCD efímera fuera del repo (`~/aranea/work/d6-reallane-cert-final-20261004/tool/`); evidencia en `~/aranea/work/d6-reallane-cert-final-20261004/evidence/` (`c-bridge-journal.log` captura completa, `c0-netstat-prebridge.txt`, timestamps).
+
+## /product_changes
+
+**NONE.** Cero commits, cero cambios de source. Los defectos D1/D2 quedan documentados con reproducción exacta; el mandato prohíbe remediar inline ("If a defect appears: return REMEDIATION_REQUIRED"). Nota de alcance: `git diff 40102ea5..ffa493d8` prueba que D1/D2 existen idénticos en `40102ea5` — nunca fue un skew de versión: el par AddOn↔bridge real jamás se había ejercitado (los gates previos usaron el probe, cuyo shape de frames es el del bridge).
+
+## /close — Final handoff (FINAL PARSER-FIX RETRY — REAL C→K)
+
+```text
+D6_REAL_EXECUTION_LANE_NO_EGRESS =
+REMEDIATION_REQUIRED (4.º intento; progreso histórico real: parser fix CONFIRMADO físicamente, AddOn cargado, dializa :9771, hello+auth del lane exec PASAN — la certificación C–K se detiene en DOS defectos de producto nuevos demostrados físicamente con repro exacta en fuente: D1 market-lane endpoint/schema viola freeze §6.1, D2 frame account del lane ntx bool-vs-objeto viola §6.1 "same payloads as ntfeed"; sin barrier posible hasta remediar)
+
+SOURCE_SHA:
+ffa493d8d179c9f9374d0a935e7916be15367ce8 (HEAD == origin == worktree limpio al inicio y al cierre)
+
+CONFIG_PARSER_FIX_PHYSICAL:
+PASS (log owner `config loaded: ntx=****.161:9771 … contracts=1` + confirmación conductual agente-side: 2× SYN_SENT→:9771 del PID NT + hello echo.ntx.v1 con auth aceptada — imposible con puerto 0; supersede definitivo de los 3 intentos previos)
+
+NTX_EFFECTIVE_ENDPOINT:
+192.168.31.161:9771 (efectivo, dializado por ambos lanes; exec lane autenticó)
+
+FEED_ADDON_LOADED:
+PASS (sesión a9ddeb5b34e74f6382aa597fa5594239 viva, ESTABLISHED PID 13068→:9770, frames cada 10 s, rediscovery RESOLVED 1/8)
+
+EXECUTION_ADDON_LOADED:
+PASS (1.ª vez en 4 intentos: log owner + dials físicos + ciclo Active; build instalada 2c8ab2cf = HEAD)
+
+EXECUTION_LANE_REAL:
+FAIL (transporte TCP + schema ntx + auth demostrados; sin sesión estable ni observaciones: D1 rechaza el market lane estructuralmente, D2 rechaza el frame account del exec lane; bridge/transporte server-side permanece certificado weekend — mismo binario 484b550b)
+
+REAL_SESSION_ID_INITIAL:
+NONE capturable (ninguna sesión sobrevivió; el bridge no emite identidad de sesión en auth exitoso y la sesión #1 murió a los +3.692 s; auth demostrada por progresión del reject de 55257: pasó schema+auth, falló en family-data)
+
+ACCOUNT_BINDING:
+PASS feed-side vivo (RESOLVED 1/8, RJARA114411201551 = NT id "3" == hint ETCD, 8.ª sesión consecutiva) · exec-side NOT_RUN (el frame que porta match/resolved para VerifyBinding jamás parsea — D2)
+
+CURRENT_NT_ACCOUNT_ID:
+"3"
+
+ACCOUNT_OBSERVATION:
+FAIL por el exec lane (NOT_RUN físico: frames rechazados por D2; sin datos fabricados) · feed-lane real documentado: discovery 8 cuentas, positions []/orders [], balances NLV/cash 50000/50000 demo, observaciones llegan al runtime (sink + Kafka p4 5476476)
+
+REAL_RECOVERY_BARRIER:
+FAIL — 4.ª demostración fail-closed, causa raíz NUEVA y de producto: "barrier: reconcile: ninjatrader: no position snapshot observed yet" a los +3.692 s del built (positions bloqueadas por D2); reconciliación no debilitada; 0 UnknownLiveOrders / 0 AccountMismatch / journal M2 0 / 0 replay
+
+REAL_SESSION_RECONNECT:
+FAIL (una reconexión real observada: identidad nueva + seq 0 a +5 s, auth re-pasada, cerrada por D2; después silencio D3; sin fencing ejercitable — F-S2-01/04 server-side certificados weekend)
+
+REAL_SESSION_FENCING:
+FAIL (NOT_RUN ejecutable — sin sesión estable; cero command frames en toda la sesión)
+
+BRIDGE_RESTART_RECOVERY:
+FAIL (NOT_RUN con AddOn real — D3: AddOn en silencio, restart no ejercita nada; weekend §8 PASS de transporte vigente)
+
+G_HORIZON_PRECHECK:
+PARTIAL_NEEDS_CREATED_ORDER (4.ª vez; superficies LookbackDays* requieren lane funcional end-to-end; NO se creó orden)
+
+EXECUTION_TRANSPORT_READY:
+NO (D1+D2; bridge-side certificado y listo para re-enable en ~1 min tras la remediación + pickup)
+
+CURRENT_MARKET_FRESHNESS:
+STALE (event_ts 2026-10-02T21:38:25.95Z, edad ≈31 h >> bound 30 s; p4 5476476 @ 04:59:33Z = replay estático del boot — F-S2-02; domingo, CME cerrado: blocker esperado y válido)
+
+NEW_RISK_READY:
+NO (doble fail-closed: freshness + ventana GAU50-EVAL L–V con domingo cerrado)
+
+PHYSICAL_ORDERS_SENT:
+0
+
+PHYSICAL_ORDERS_MODIFIED:
+0
+
+PHYSICAL_ORDERS_CANCELLED:
+0
+
+PRODUCT_CODE_CHANGES:
+NONE (cero commits; los 2 defectos documentados con repro exacta para el shot de remediación)
+
+RESIDUAL_FINDINGS:
+1) DEFECTO D1 — EchoExecutionAddOn market lane dializa ntxHost:ntxPort (9771) con schema echo.ntfeed.v1; freeze §6.1 lo destina al nt-feed-relay :9770; socket muerto queda marketConnected=true sin reader (nunca re-dializa); repro: físico 05:20:58.7Z `frame schema "echo.ntfeed.v1" is not "echo.ntx.v1"` · 2) DEFECTO D2 — frame account del lane ntx serializa resolved como bool (EchoExecutionAddOn.cs ~880-884) vs bridge AccountData.Resolved *AccountRecord (observations.go:137); freeze §6.1 "same payloads as ntfeed" (payload ntfeed real manda objeto+discovered+balances); repro: físico 05:21:08Z `cannot unmarshal bool into …AccountData.resolved` · 3) D3 anomalía NT-side: cero dials ≥15 min tras el 2.º reject vs cadencia ≤10 s (timer muerto vs half-open; log NT owner discrimina) · 4) variante demo balances 50000/50000 persistente (5.ª sesión; re-observar en ventana) · 5) ACL owner 9.ª re-probe (log NT/StartTime/módulos denegados)
+
+OWNER_DECISION_REQUIRED:
+Autorizar el shot de remediación de producto (no es ciclo de instalación nuevo): corregir D1 (endpoint del market lane según freeze §6.1 — config separada o dial al relay :9770 — y detección de socket muerto) y D2 (serializar el frame account del lane ntx same-as-ntfeed con resolved objeto + discovered/balances), con tests estructurales + shadow-compile 8.1.8.3 + re-stage del bundle (patrón EchoD6Bundle) y ciclo owner W1 → re-despacho C–K. OD-D6-1 sigue AUTHORIZED y SIN consumir (0 órdenes en 4 intentos).
+
+NEXT_MANAGER_ACTION:
+Veredicto REMEDIATION_REQUIRED ⇒ no certificar lane ni ejecutar ladder. (a) Despachar remediación D1+D2 acotada (fuente arriba; el bridge NO requiere cambios — su parser implementa el payload congelado). (b) Domingo 2026-10-04 ≥17:00 CT: G-REALTIME es feed-lane-only y NO depende de estos defectos — certificable con el runbook §M del intento 1 (feed AddOn intacto). (c) Tras remediación + W1 + re-despacho C–K en verde: ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. No emitir EF_D6_E2E_PASS.
+```
