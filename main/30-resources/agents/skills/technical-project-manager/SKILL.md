@@ -53,6 +53,7 @@ Read only:
 4. `30-resources/agents/skills/sdd-workflow/SKILL.md` when the repo uses SDD or specification/plan/tasks must remain separated.
 5. Release/deployment/validation skills only when today's gate includes promotion beyond source code.
 6. `80-agents/skills/agents-os-agent-run-register/SKILL.md` and `80-agents/skills/agents-os-session-feedback/SKILL.md` when dispatching or closing one-shot agents.
+7. `80-agents/memory/public/openai-pro-chat-quota.md` whenever selecting/using CLOUD Pro-pool capacity or reconciling returned CLOUD usage.
 
 ## Manager operating contract
 
@@ -145,6 +146,31 @@ Until the Owner changes this policy:
 - Priority targets for aggressive CLOUD GOD/TOP usage are **Echo Futures**, **Echo Futures backtesting / historical-data readiness**, and **Echo Forge**.
 - Managers and SUBMANAGERS MUST seek useful CLOUD offload before spending scarce LOCAL GOD/TOP quota.
 - The goal is maximum useful throughput, not artificial token burn: repeated passes are justified only when they add independent evidence, falsification, design quality or decision value.
+
+#### OpenAI Pro Chat weekly-pool accounting
+
+Canonical state lives at:
+
+`80-agents/memory/public/openai-pro-chat-quota.md`
+
+Current owner plan policy is **ChatGPT Pro $100**. OpenAI currently documents one shared Chat allowance of **50 messages/week** across GPT-6 Pro and GPT-5.6 Sol Pro; Work and Codex have separate allowances. Treat this vendor rule as externally mutable and revalidate it when the plan/model policy changes.
+
+Accounting rules:
+
+1. **Count confirmed consumption, never planned dispatches.** Increment only after a ChatGPT Chat response actually used a model/mode that draws from the shared Pro pool.
+2. In the current methodology, **CLOUD GOD / ChatGPT Pro mode** is expected to consume this pool. CLOUD TOP in non-Pro High/Extra-High mode does not increment it. If a TOP run is explicitly executed in a Pro-pool mode, it MUST increment too.
+3. Every consuming worker returns a machine-visible receipt:
+   `PRO_CHAT_POOL_DELTA: <n>`
+   where `n` is the number of confirmed Pro-pool Chat responses consumed by that worker/session.
+4. **ONE-SHOT workers normally return `+1`** because one owner prompt produces one Pro response. If retries/follow-up Pro responses occurred, report the real count; do not hide them.
+5. The Manager/SUBMANAGER that owns the dispatch is responsible for reconciling the returned delta into the canonical quota file **before the next Pro-pool dispatch**.
+6. A CLOUD coordinator running itself in a Pro-pool mode counts **each consuming response**, even though Manager/SUBMANAGER sessions are multi-turn. If it can write Agents-OS, persist immediately; otherwise maintain `PRO_CHAT_POOL_PENDING_DELTA` and expose it in every handoff/close until a writable coordinator reconciles it.
+7. On update, read the latest quota state first, apply the delta, append the current-period ledger event, recompute derived remaining capacity, and write with optimistic conflict protection. On conflict, re-read/reconcile; never overwrite a newer count.
+8. **Reset is evidence-driven.** Do not guess the weekly reset boundary. Persist the reset time when ChatGPT exposes it. Until the first observed reset after tracking begins, historical pre-tracking usage remains UNKNOWN.
+9. After a confirmed reset, start the new period at `used=0 / remaining=50` (or the then-current documented limit) and the counter becomes exact for that period as long as every consuming session reports its delta.
+10. If accounting provenance is incomplete, degrade the state to `PARTIAL` rather than inventing remaining messages.
+
+Managers should use the counter to choose the next surface/role, but **must not conserve GOD merely to make the counter look healthy**. The purpose is controlled consumption of the prepaid pool, not starvation.
 
 The three-shot implementation cycle remains the safety mechanism that enables worker autonomy:
 - Shot 1 gets meaningful technical freedom.
@@ -982,7 +1008,7 @@ Residual external risks:
 - **Walk the owner from global to detail.** Do not collapse a multi-workstream day into one giant autonomous execution unless the owner explicitly asks for that mode.
 - **Delegated work ends in an exact one-shot mandate.** Use an Owner-paste master prompt when CLOUD cannot invoke the worker directly; use direct subagent dispatch on LOCAL when supported and authorized.
 - **SUBMANAGER delegation is surface-aware.** CLOUD may invoke DEEPRESEARCH directly and otherwise uses Owner-mediated master prompts; LOCAL may use direct subagents. Never fabricate a worker run.
-- **Every worker execution is ONE-SHOT and self-closing.** This applies equally to CLOUD master prompts and LOCAL direct subagents. Require artifact persistence, agent-run registration, Agents-OS feedback, session-close and a structured handoff with exact refs. PRIMARY MANAGER and SUBMANAGER coordinator sessions are the only exception.
+- **Every worker execution is ONE-SHOT and self-closing.** This applies equally to CLOUD master prompts and LOCAL direct subagents. Require artifact persistence, agent-run registration, Agents-OS feedback, session-close, a structured handoff with exact refs, and `PRO_CHAT_POOL_DELTA` when the run consumed the shared ChatGPT Pro pool. PRIMARY MANAGER and SUBMANAGER coordinator sessions are the only exception to auto-close.
 - **Never rely on implicit closeout.** If a worker prompt omits session feedback/close, the orchestration contract is incomplete even if the technical task is well specified.
 - **Existence is not progress.** Prior documents/results must be explicitly classified before they count toward the current task. Preserve rejected/superseded artifacts for traceability rather than deleting them.
 - **Unclassified prior artifacts are not accepted evidence.** Default them to UNREVIEWED/REFERENCE_ONLY until reviewed.
@@ -992,6 +1018,7 @@ Residual external risks:
 - **Deep research is external-evidence-first.** Do not use RESEARCHER as the authority for reconstructing project truth from Vault/repos while simultaneously researching the Internet.
 - **Use Context Capsules.** Pass researchers a small set of frozen internal facts and the exact external question; keep cross-reconciliation with Manager/SUBMANAGER/TOP.
 - **Capability role, project authority and surface are separate axes.** Model mapping is fixed (GOD=Astra, TOP=GPT-6 Sol, NORMAL=GLM Flash); scope/authority still comes from the mandate. Surface determines tool access and dispatch mechanics. SUBMANAGER is an orchestration function, not a fourth capability tier.
+- **Pro-pool accounting is mandatory.** The owning Manager/SUBMANAGER reconciles every confirmed `PRO_CHAT_POOL_DELTA` into `80-agents/memory/public/openai-pro-chat-quota.md` before dispatching the next consuming run; unknown history stays UNKNOWN.
 - **UNKNOWN stays UNKNOWN across role boundaries.** A researcher may not turn missing internal context into inference; a technical worker may not turn platform availability into external entitlement; a submanager may not promote either to a frozen decision.
 - Material domain/data-model decisions are collaborative owner+manager decisions, not researcher output.
 - Preserve preliminary work as evidence/candidate input when useful; do not relabel it as accepted truth merely because the manager produced it.
