@@ -69,3 +69,17 @@ echo.order-commands.E2T-GAU50-01.v1: partitions=1, high_watermark=0 (0 messages 
 ### [12] Frozen freshness bounds (source @ d08a30ce)
 79:// DefaultFreshnessBounds are the composition defaults of the freshness
 83:var DefaultFreshnessBounds = market.FreshnessBounds{FreshnessBound: 30 * time.Second, LivenessBound: 60 * time.Second, FutureEventSkew: 5 * time.Second}
+
+===================================================================
+REALTIME PHASE — CME Globex reopen domingo 2026-10-04
+===================================================================
+pre-open tick físico: event_ts 2026-10-04T21:05:41.433Z (16:05:41 CT), QUOTE BBO 31044/31051.75 (viernes: 31044/31052.5), receive_ts 21:05:41.525Z (92ms), offsets p4 5476486-87, ingress ninjatrader-addon/5b70e536 offsets 7122-23
+silencio pre-open: 21:05:41Z → 21:54:23Z (publicado counter estático 5007124 en monitor 60s)
+
+### [13] Sustained stream burst (offsets 5476488..5476493, p4)
+5476488 QUOTE event_ts=21:54:23.474Z receive=21:54:23.568Z bid 31049x5 ask 31051.75x1 ingress 8288
+5476489 QUOTE event_ts=21:54:23.474Z receive=21:54:23.674Z (dup carrier) ingress 8289
+5476490 QUOTE event_ts=21:55:35.459Z receive=21:55:35.548Z bid 31049x5 ask 31039.75x9 ingress 8318
+5476491 QUOTE event_ts=21:55:35.459Z receive=21:55:35.569Z (dup carrier) ingress 8319
+5476492 QUOTE event_ts=21:55:51.357Z receive=21:55:51.446Z bid 31100x1 ask 31039.75x9 (pre-open rotation quote) ingress 8328
+5476493 QUOTE event_ts=21:55:51.357Z receive=21:55:51.474Z (dup carrier) ingress 8329
