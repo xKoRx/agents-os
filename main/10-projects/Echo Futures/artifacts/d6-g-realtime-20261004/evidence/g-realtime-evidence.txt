@@ -83,3 +83,39 @@ silencio pre-open: 21:05:41Z → 21:54:23Z (publicado counter estático 5007124 
 5476491 QUOTE event_ts=21:55:35.459Z receive=21:55:35.569Z (dup carrier) ingress 8319
 5476492 QUOTE event_ts=21:55:51.357Z receive=21:55:51.446Z bid 31100x1 ask 31039.75x9 (pre-open rotation quote) ingress 8328
 5476493 QUOTE event_ts=21:55:51.357Z receive=21:55:51.474Z (dup carrier) ingress 8329
+
+### [14] Formal observation window (gate C+D) — samples
+T1 2026-10-04T22:00:48Z: last event_ts 22:00:48.558Z age=0.14s end_offset p4=5479859 (streaming ~670/min) NQ 31114.75/31117.5
+T2 2026-10-04T22:03:45Z: last event_ts 22:03:45.441Z age=0.15s end=5486723 (+6864 in 3min) NQ 31121/31122.5
+T3 2026-10-04T22:06:37Z: last event_ts 22:06:37.332Z age=0.18s end=5491762 (+5039) NQ 31141.5/31142.75
+T4 2026-10-04T22:09:48Z: last event_ts 22:09:47.956Z age=0.12s end=5495922 (+4160) NQ 31129/31130.75
+T5 2026-10-04T22:12:30Z: last event_ts 22:12:30.576Z age=0.11s end=5498982 (+3060) NQ 31129/31130.5
+MAX_EVENT_AGE(sampled, post-reopen live operation) = 0.18s << bound 30s (DefaultFreshnessBounds FreshnessBound=30s @ d08a30ce futures_market_stream.go:83)
+types: QUOTE + TRADE (block 5491000..5491029: 2 TRADE @31141 q1 + 28 QUOTE in 626ms of market time)
+transit event_ts->receive_ts: 89ms..295ms; every event ingress ninjatrader-addon/5b70e536 (live feed session; boot replay excluded by stale event_ts 2026-10-02)
+published counter: 5007124(21:05) -> 5028838(22:11:42Z) delta=+21714, publish_errors=0 (monitor /tmp/grealtime-monitor.log)
+
+### [15] FINAL SAFETY RE-VERIFICATION (post-window)
+captured 2026-10-04T22:13:17Z
+-- relay sessions/estab:
+2
+"ntfeed.published":5030056
+"ntfeed.publish_errors":0
+"ntfeed.malformed":0
+"echo.ntfeed.binding_loaded":true
+-- reconnect storm during window (14:50Z-22:15Z, genuine error/reconnect lines):
+0
+-- bridge:
+inactive
+disabled
+listeners 9771: 0
+established to/from 9771: 0
+journal M2 files: 0
+-- ETCD raw (accounts arming key):
+ABSENT
+-- NT alive:
+dev-win NinjaTrader PID 1476 (validated 20:0xZ; relay sessions continuous)
+-- positions/orders last frames (venue flat):
+{"family":"positions","session_id":"5b70e536d0234f50b2f6458e88417206","seq":31919,"ts_utc":"2026-10-04T22:13:10.142Z","data":{"positions":[]}}
+
+{"family":"orders","session_id":"5b70e536d0234f50b2f6458e88417206","seq":31920,"ts_utc":"2026-10-04T22:13:10.142Z","data":{"orders":[]}}
