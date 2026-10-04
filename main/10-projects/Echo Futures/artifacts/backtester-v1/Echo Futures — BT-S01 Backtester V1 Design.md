@@ -13,7 +13,7 @@ tags:
   - project/echo-futures
   - topic/backtester
 created: "2026-10-03"
-updated: "2026-10-03"
+updated: "2026-10-04"
 ---
 
 # Echo Futures — BT-S01 Backtester V1 Design
@@ -22,9 +22,9 @@ updated: "2026-10-03"
 
 ### 0. Dictamen y alcance de esta entrega
 
-**BT-S01 deja un diseño implementable para revisión del Primary Technical Manager, con cero decisiones materiales de Owner abiertas.** Backtester V1 será un módulo Go que ejecuta una cuenta y un contrato físico, secuencialmente, sobre las autoridades compartidas de Echo Futures. El driver histórico ordena las causas; SimExecution produce hechos físicos; una autoridad económica de cuenta actualiza lo que GerardMM y Provider observan antes de la siguiente decisión.
+**BT-S01, integrado con BT-S01A, queda listo para freeze del Primary Technical Manager y un único BT-S02 de implementación, con cero decisiones materiales de Owner abiertas.** Backtester V1 ejecuta una cuenta y un instrumento lógico a través de múltiples contratos físicos, secuencialmente, sobre las autoridades compartidas de Echo Futures. El driver histórico ordena las causas; SimExecution produce hechos físicos; una autoridad económica de cuenta actualiza lo que GerardMM y Provider observan antes de la siguiente decisión.
 
-El resultado del shot es este contrato de diseño. No se implementó product code, no se ejecutaron tests de Echo, no se inició BT-S02 y no se modificó ni certificó D6. Las pruebas descritas son trabajo obligatorio posterior, no evidencia de pruebas ya aprobadas.
+La arquitectura central de BT-S01 fue aceptada por Manager. BT-S01A corrige exclusivamente rollover longitudinal, MM de horizonte arbitrario, continuidad de contexto/cashflows, desacople del dataset y parity de hecho+economía. No se implementó product code, no se ejecutaron tests de Echo, no se inició BT-S02 y no se modificó ni certificó D6. Las pruebas descritas son trabajo obligatorio posterior, no evidencia de pruebas ya aprobadas.
 
 ### 0.1 Baseline inmutable y precedencia
 
@@ -36,7 +36,9 @@ El resultado del shot es este contrato de diseño. No se implementó product cod
 
 **SOURCE FACT.** La revisión combinó source inmutable y autoridades D2/D4/D5/D6; se verificó la integridad Git blob de 190 archivos seleccionados de Echo y 38 de Agents-OS. Eso acredita los archivos adquiridos, no una auditoría de todo el repositorio ni una ejecución física. [A01] [A02] [A03] [A04]
 
-Antes de publicar se refrescó Agents-OS a `ea7d048c260967881bab7f6c483bae1beb30820e`: tres commits posteriores sólo modifican documentación de Multimodal Knowledge Engine. No cambian las autoridades de Echo utilizadas aquí y se preservan íntegros. Echo activo seguía en d361008b.
+Baseline de la enmienda: BT-S01 publicado en `ab7766fd74bed760cb9a9f151bc423948bec0d3f`. [A13] Al iniciar BT-S01A, Agents-OS seguía en ese HEAD y Echo activo en d361008b; no había deltas materiales nuevos. Las autoridades D2/D4/D5/D6 referenciadas permanecen vigentes. El mandato de Manager BT-S01A de esta sesión es autoridad para reemplazar las limitaciones anteriores de V1.
+
+En el refresh de cierre, Echo activo avanzó a `7fbd7e990ac6628df3e4cc2717e96efd83bfbbf6` y Agents-OS a `48f5260c5803c061b4f4dcabcf246897d056e19b`. El único delta de Echo corrige whitespace en el parser JSON del AddOn y su guarda; no modifica los contratos/engines compartidos citados. Agents-OS sólo añade tres artifacts de esa corrección D6. Se revisaron y se preservan, sin cambiar el alcance de BT-S01A ni actuar sobre D6. [A14] [S34]
 
 En este documento, **OWNER / MANAGER FROZEN** identifica una restricción ya aceptada; **SOURCE FACT** identifica comportamiento o estructura comprobable en el baseline; **DESIGN DECISION** identifica la resolución técnica de BT-S01. Las secciones prescriptivas, schemas, fórmulas, secuencias y tests son DESIGN DECISION salvo indicación contraria. **OPEN OWNER DECISION: NONE.** Los parámetros exigidos a cada corrida son datos del experimento; su obligatoriedad no delega arquitectura al implementador.
 
@@ -44,15 +46,27 @@ En este documento, **OWNER / MANAGER FROZEN** identifica una restricción ya ace
 
 Las secciones 1–8 fijan motor, inputs y causalidad; 9–15 fijan economía, lifecycle, ejecución y finalización; 16–20 fijan evidencia, persistencia, findings y pruebas. El último bloque es el contrato obligatorio de BT-S02.
 
+### 0.2 Alcance integrado de BT-S01A
+
+| Enmienda Manager | Resolución normativa |
+| --- | --- |
+| 1. Multi-contract/rollover | §4.3: catálogo/schedule, preparación y activación compartidas, fence de OPEN y retención del contrato anterior. |
+| 2. Generic100K longitudinal | §10.1: materializador explícito de rows/selectores y ejemplo de 20 account-days. |
+| 3. Same-account/context y cashflows | §11.1–11.4: controles V1, estado conservado/reemplazado y caller causal. |
+| 4. Formato físico del corpus | §5.1: DatasetSource/Cursor y separación entre identidad lógica y layouts. |
+| 5. Parity hecho+economía | §8.2: una transición shared y pruebas de los ingress Core e histórico reales. |
+
+La secuencia, economía, SimExecution, result/publisher, laboratorio y protocolo BT-F01…F05 aceptados se mantienen. Los ajustes de identidad/control streaming en §13/§16 son consecuencias necesarias de permitir controles futuros del caller; no agregan workflow, campaign simulator ni otra arquitectura.
+
 ## 1. Qué construye V1
 
 **OWNER / MANAGER FROZEN.** Hay un solo Backtest Engine. El mismo engine ejecuta Generic100K y una cuenta con reglas Provider. Strategy, S1/S2, GerardMM, Operation, Provider, admission, capacity, reservations y revalidation siguen siendo autoridades reales. Una regla económica que pueda cambiar una decisión participa durante la corrida. [A01]
 
-**DESIGN DECISION.** Una corrida contiene una cuenta de ejecución, una o varias configuraciones de Strategy sobre un único contrato físico, sus owners de Operation, un Provider y un ledger de cuenta. El motor vive en `v3/backtester`; sólo importa SDK para el dominio. `Run` es una composición histórica, no otro conjunto de estrategias o reglas monetarias.
+**DESIGN DECISION.** Una corrida contiene una cuenta de ejecución, un instrumento lógico —NQ como fixture representativo—, una o varias configuraciones de Strategy y los contratos físicos requeridos por su schedule. Sus owners de Operation, Provider y ledger de cuenta continúan dentro del mismo run. El motor vive en `v3/backtester`; sólo importa SDK para el dominio. `Run` es una composición histórica, no otro conjunto de estrategias o reglas monetarias.
 
 ~~~mermaid
 flowchart TD
-    I["Dataset y controles fijados"] --> D["Driver histórico"]
+    I["Dataset y controles causales"] --> D["Driver histórico"]
     D --> M["Market, Bars y Calendar"]
     M --> V["MarketContext"]
     V --> S["Strategy S1/S2"]
@@ -72,21 +86,21 @@ El diagrama muestra autoridades y feedback; el orden exacto está en §6. La eje
 
 | Incluido en V1 | Límite explícito |
 | --- | --- |
-| Un contrato real con ticks y contexto S1/S2 | Cambio de expiry/rollover se rechaza con `ROLLOVER_UNSUPPORTED_V1`. |
+| Múltiples expiries físicos con ticks y contexto S1/S2 | Rollover sólo mediante schedule/control explícito; sin migración automática de exposición ni series continuas presentadas como físicas. |
 | Cuenta USD; contabilidad exacta y economía durante el run | Sin FX, portfolio multicurrency ni consolidación multiactivo. |
 | MARKET, STOP_MARKET, CANCEL, DAY/GTC | LIMIT y native MODIFY no son capacidades del modelo histórico V1. |
-| Reglas tipadas de cuenta, resultado de evaluación y cierre | Sin DSL de props, funded automático ni payout inferido. |
+| Reglas tipadas, continuidad same-account y cashflows explícitos | Sin DSL de props, promoción automática, payout inferido ni bankroll dentro del engine. |
 | `AdvanceUntil` sobre el mismo motor | Sin checkpoints durables ni resume distribuido. |
 | Evidencia reproducible y primer punto de divergencia | Sin afirmar reproducción de infraestructura LIVE ausente del corpus. |
 | Múltiples runs independientes | Paralelismo inicial entre procesos; cada run permanece secuencial. |
 
-Rechazar rollover evita mezclar H4/BB de expiries diferentes: el source actual puede cambiar StreamID preservando ModuleState. No se presentará una concatenación de corridas independientes como una cuenta continua. El contrato exacto y los controles temporales dejan un punto de extensión normal para resolverlo después. [S08]
+Rollover conserva la identidad física y evita mezclar OR/H4/BB entre expiries mediante preparación/activación por stream. El saldo, los días, las Operations y las autoridades de cuenta no se reinician al seleccionar otro contrato. Una concatenación de resultados independientes no acredita esa continuidad. [A06] [S27]
 
 ## 2. API y entrada de una corrida
 
-La API pública del package `backtest` expone tres operaciones: `NewRun(spec, sources, recorder)`, `AdvanceUntil(T)` y `Finish()`. `Run(...)` es la conveniencia que avanza al horizonte y finaliza usando ese mismo loop.
+La API pública del package `backtest` expone `NewRun(spec, sources, recorder)`, `AdvanceUntil(T)`, `EnqueueControl(control)` y `Finish()`. `Run(...)` ejecuta el spec cerrado mediante ese mismo loop. EnqueueControl admite sólo los controles de cuenta de §11.4; no es un scheduler genérico.
 
-`AdvanceUntil(T)` procesa sólo causas con tiempo lógico <= T y termina la transacción causal completa del último instante procesado. No devuelve en medio de un lote de fills ni de una secuencia de efectos. Es monótono, mantiene el estado en memoria y entrega únicamente observaciones conocidas hasta T. Una pausa no es un resultado COMPLETE. `Finish` exige horizonte alcanzado o terminación de negocio declarada y asentada, más las condiciones de §15.
+`AdvanceUntil(T)` procesa sólo causas con tiempo lógico <= T y devuelve una frontera realmente completada, después de terminar todas sus fases/efectos. No devuelve a mitad de un lote. En CALLER_CONTROLLED con AWAIT_CONTEXT puede devolver antes de T al alcanzar un outcome de etapa asentado, una vez por ese outcome, para que el caller decida un control futuro. Mantiene estado y sólo entrega observaciones <= frontera. Una pausa no es COMPLETE. Finish exige §15 y sella el conjunto de controles.
 
 ### 2.1 RunSpec V1
 
@@ -96,16 +110,17 @@ La API pública del package `backtest` expone tres operaciones: `NewRun(spec, so
 | --- | --- |
 | `schema_version` | `echo.backtest.run.v1`. |
 | `build` | Commit/tree, estado limpio o patch digest, binary SHA-256, Go version, GOOS/GOARCH, dependencias y build flags relevantes. Una publicación canónica exige identidad reconstruible. |
-| `dataset` | Manifest inmutable con versión, SHA-256, partes, formato, orden, cobertura y referencias durables. |
+| `dataset` | Manifest lógico inmutable con identidad/orden/digest de registros normalizados, cobertura por stream y referencia durable de reproducción. Layout/codec pertenecen al reader externo (§5.1). |
 | `warmup_start / trade_start / end_exclusive` | Instantes UTC; warmup_start <= trade_start < end_exclusive. El período operable es [trade_start,end_exclusive). |
-| `config` | `config.ConfigSnapshot` extraído del source, con exactamente una cuenta, un contrato, calendario, ventanas, Strategy/S1/S2, MM, Provider y targets explícitos. |
+| `config` | ConfigSnapshot compartido: una cuenta, instrumento lógico, ContractCatalog, ContractSchedule y autoridades de calendario/Strategy/MM/Provider. La forma legacy de un contrato normaliza a un catálogo/schedule de una entrada. |
 | `initial_state` | Capital y estado económico explícitos; V1 exige inventario, órdenes, reservas y ciclos vacíos. Los estados técnicos nacen del warm-up. Un capsule de laboratorio no se convierte en un resume general. |
-| `controls` | Secuencia finita de controles tipados, effective_at, control_id, ordinal y payload completo. Sin referencias `latest` ni closures opacos. |
-| `account_context` | Binding/RuleSet exactos, selector y rows económicos, account-day, estado ACTIVE/CLOSE_ONLY/etc., términos de programa opcionales y cobertura de policy. |
+| `controls` | Controles tipados con effective_at, control_id, ordinal y payload/digest. CLOSED_SPEC los fija antes de ejecutar; CALLER_CONTROLLED admite controles futuros inmutables mediante §11.4. |
+| `account_context` | context_id/stage_id, Binding/RuleSet, MM completo y rows/selectores resueltos, account-day, risk seed, términos/cobertura, cashflow treatment explícito y outcome_handling STOP o AWAIT_CONTEXT. |
 | `execution_model` | Versión, fidelidad, slippage ticks, fees, edad máxima por lado y TIF vacío resuelto explícitamente. |
 | `valuation_model` | `NET_FIFO_LIQUIDATION_V1`; exactitud monetaria, fuentes de bid/ask y freshness; USD. |
 | `end_policy` | `REPORT_RESIDUALS` o `REQUIRE_FLAT`; esta última incluye un control de cierre anterior al horizonte. |
 | `lab_fixture` | Opcional, lista finita de perturbaciones tipadas de observaciones, con coordenadas y payloads. Su digest entra en identidad. |
+| `input_mode / control_namespace` | CLOSED_SPEC conserva identidad por inputs completos. CALLER_CONTROLLED exige namespace previo del caller e identidad/manifest final según §13.1. |
 | `parent` | Referencias opcionales a campaign/account anterior. No aporta saldo ni eventos implícitos. |
 
 El constructor valida configuración, compatibilidad de contrato/currency, cobertura conocida de calendarios/planes, capacidades del execution model y datos resolubles antes de ejecutar decisiones. `account_context` referencia las mismas autoridades de config por identidad/digest; no contiene una segunda RuleSet divergente. Las observaciones seed `Accounts[].Economics/Snapshot` deben coincidir con la proyección validada de initial_state o se rechazan. Durante el run, Accounting y su proyección Provider producen las nuevas revisiones; el snapshot de configuración no compite con esa autoridad. No descarga configuración cambiante a mitad de una corrida.
@@ -145,7 +160,8 @@ Config, initial state, mapas y slices se copian profundamente por corrida. No se
 | Target | Trabajo concreto |
 | --- | --- |
 | `v3/backtester/go.mod` | Módulo `github.com/xKoRx/echo/v3/backtester`; mismo toolchain del repo; dependencia SDK y adapter S3 cuando corresponda. |
-| `v3/backtester/{run,spec,driver,controls,economics_views,result,evidence,reproduce}.go` | Package público `backtest`: composición, loop, entrada, proyecciones, schema y comparación. Archivos pueden dividirse por responsabilidad sin cambiar los boundaries. |
+| `v3/backtester/{run,spec,driver,controls,dataset,experiment_plan,economics_views,result,evidence,reproduce}.go` | Package público backtest: composición, loop, reader ports, materialización previa, controles de cuenta, proyecciones y reproducción. |
+| `v3/backtester/internal/datasets/ndjson` | Primer adapter físico para fixtures/corpora disponibles; depende del port y lo compone la CLI. El engine no lo importa ni conoce extensión/codec. |
 | `v3/backtester/internal/simexecution` | Venue histórico determinista de §12; sólo SDK. |
 | `v3/backtester/internal/artifactstore` | Finalización local, checksum y publicación condicional. |
 | `v3/backtester/cmd/echo-backtest` | Comandos `run`, `reproduce`, `publish`. CLI estrecha sobre los mismos packages. |
@@ -156,10 +172,10 @@ Config, initial state, mapas y slices se copian profundamente por corrida. No se
 | `v3/sdk/futures/config` | Mover ConfigSnapshot, StrategyDef, AccountDef, GerardMMDef/ScalingDef, ProviderDef, validadores y construcción GerardMM de snapshot.go/gerard_mm.go. Añadir el adapter de vistas de Operation fuera de marketctx. |
 | `v3/sdk/futures/accounting` | Reducers puros fill/mark/day, FIFO y dinero exacto de §9. |
 | `v3/sdk/futures/domain` | Datos `AccountProgramTerms` y envelopes mínimos requeridos, sin transportes. |
-| `v3/sdk/futures/provider` | ClockFired/NextBoundary, proyección económica tipada, consistencia reutilizable, lifecycle y safety de términos suplementarios. F01–F03 según su protocolo. |
-| `v3/sdk/futures/operation` | ExecutionUpdate/QuoteUpdate, expiry compartido y error propagation. F04/F05 según su protocolo. |
-| `v3/sdk/futures/strategy`, `strategies/s1`, `strategies/s2` | Inicialización Warmup explícita del mismo pipeline, sin fórmulas o módulos duplicados. |
-| `v3/core/internal/functions`, `futuresruntime` | Shells/aliases que invocan las transiciones extraídas, config y adapters compartidos; wiring de provenance e IDs cuando se corrijan. |
+| `v3/sdk/futures/provider` | ClockFired/NextBoundary, risk/lifecycle y AccountContextUpdate atómico para binding/RuleSet/terms/snapshot. F01–F03 según protocolo. |
+| `v3/sdk/futures/operation` | Observación correlacionada/normalizador compartido, RolloverEntryGate e identidad de mapping en pendientes, expiry/error propagation. F04/F05 según protocolo. |
+| `v3/sdk/futures/strategy`, `strategies/s1`, `strategies/s2` | Preparación/activación por stream, DRAIN_CYCLE sin nuevos ciclos, guards exactos; mismo pipeline S1/S2 y fórmulas. |
+| `v3/core/internal/functions`, `futuresruntime` | Mismas transiciones extraídas; adapters multi-contract/context y typed/raw fact+economics ingress hacia el único shared path; wiring de provenance/IDs según protocolo. |
 | `go.work` | Incorporar sólo el nuevo módulo; no actualizar toolchain o dependencias por comodidad. |
 
 Las transiciones Market/Analytics exponen la forma `Apply(state, typed_input, logical_now, run) -> next_state, ordered_effects, error`. Los efectos conservan los payloads reales: CanonicalMarketEvent, EpochBarrier, StreamStateSnapshot, BarsSnapshot, BarClosedDelivery, SessionTransitionDelivery, ReadinessChangedDelivery, QuoteNotification y pedidos de timer. No se introducen callbacks que escondan I/O.
@@ -170,23 +186,51 @@ Dependencias permitidas: `market -> bars/domain`; `analytics -> market/bars/cale
 
 ### 4.2 Adapter de mercado de Operation
 
-El adapter compartido debe resolver el `contract_id` solicitado al stream exacto configurado; un ID ajeno produce miss. El source actual ignora ese argumento y usa un único stream. La extracción incorpora la validación exacta y su regresión en el paquete compartido. [S03]
+El adapter compartido indexa ContractCatalog por contract_id y resuelve su stream exacto, incluido uno retirándose con obligaciones. ResolveContract(instrument_id) sirve sólo la selección prospectiva para nueva materialización; Mark/Ready(contract_id) no vuelven a consultar ese mapping. Un ID desconocido produce miss. El source actual ignora ese argumento y usa un único stream. La extracción incorpora la validación exacta y su regresión en el paquete compartido. [S03]
 
 Para el baseline seleccionado, conservar la capacidad real del contexto: Mark usa el trade actual y Ready usa readiness analítica/feed. No agregar `ExecutableQuoteSource` al adapter sólo para mejorar el backtest. El wrapper `quoteScopedMarket` actual presenta el midpoint de la quote y no expone esa interfaz opcional. SimExecution y la valuación pueden utilizar BBO sin alterar esa capacidad del MM. Cualquier mejora futura del wrapper debe ser un cambio compartido con evidencia propia. [S10]
 
+### 4.3 Contratos físicos, selección y continuidad de Strategy
+
+**MANAGER REQUIRED / DESIGN DECISION.** Un run mantiene una cuenta y un instrumento lógico, por ejemplo NQ, sobre múltiples contratos físicos. ContractCatalog contiene para cada contract_id su ContractSnapshot, instrument_id, stream exacto, external ref, unidades, calendario y cobertura de datos; registra last_tradable_at cuando la autoridad lo conoce. ContractSchedule contiene una secuencia finita e inmutable de `{control_id, previous_selection_control_id, instrument_id, contract_id, prepare_at, effective_at, strategy_config_refs}`. Los refs fijan los ConfigEnvelope/demandas de cada Strategy y su digest. Validar catálogo completo, cadena de selección, prepare_at <= effective_at, orden total y cobertura requerida; no descubrir roll dates por volumen/OI ni ajustar precios. El preflight rechaza schedules que exijan preparar un sucesor no inmediato de la selección vigente o excedan tres slots por Strategy, reservando el slot del activo que pueda seguir drenando. Durante el warm-up inicial el primer contrato ocupa la selección inicial a estos efectos. No omitir ni retrasar un prepare_at para hacer caber el schedule.
+
+Las selecciones son intervalos [effective_at,next_effective_at). En fase 2, `ContractSelectionChanged` cambia el mapping prospectivo y deja el anterior RETIRING. ResolveContract sólo usa esa selección al materializar nueva Operation. Una Operation materializada conserva contrato, stream, units, MM plan, órdenes y correlaciones hasta terminar; no migra inventario ni genera un fill de rollover. Provider calcula capacidad de la misma cuenta con todos los contratos todavía expuestos. MarketContext, Bars, current, readiness y valuación permanecen por stream físico. [A05] [A06] [S27]
+
+El test MKT07 vigente demuestra el pin de la Operation anterior mientras continúa su mercado e inyecta un OPEN nuevo; no demuestra por sí solo la transición técnica real de S1/S2. Strategy filtra hoy triggers por instrument_id y guarda LastBarBucket por instrumento/timeframe. La corrección compartida añade el guard de stream exacto y la clave stream/timeframe, sin añadir contract_id a Signal ni SignalDelivery: esa separación es autoridad existente. [S07] [S27] [S28] [S29] [S30] [S31]
+
+Cada Strategy conserva un único owner, sus contadores globales de evaluación/ciclo y un solo ciclo técnico activo. Dentro del owner hay contextos técnicos acotados: activo, candidato seleccionado y siguiente candidato en preparación; máximo tres slots, compartiendo slot cuando activo=seleccionado. La preparación de B comienza en prepare_at y consume solamente su propio prefijo causal mediante el warm-up compartido de §7. No reproduce historia futura ni rellena indicadores de B con barras de A. Si el caller no proporciona suficiente prehistoria, B permanece no preparado o falla el requisito WARMUP_INCOMPLETE declarado; no se sigue abriendo A por fallback.
+
+Al seleccionar B, el contexto A entra en `DRAIN_CYCLE`: sigue recibiendo su mercado y aplica las condiciones reales de gestión/cierre de S1/S2, con `AllowNewCycle=false` en el branch compartido que abre ciclos. No descartar Signals después de abrir un ciclo ni borrar ModuleState. B se activa sólo cuando es la selección vigente, está preparado y el ciclo técnico A terminó. Se instala su ModuleState/config preparado y stream guard, preservando IDs y contadores globales. La observación que completa preparación no se reevalúa como trigger normal; el primer trigger normal posterior puede abrir.
+
+El cierre físico de una Operation no autoriza por sí solo a borrar un ciclo técnico A que sigue vivo: Strategy no consulta la cuenta para decidir su ciclo. A la inversa, si el ciclo técnico cerró pero la Operation A espera finality/cierre físico, B puede activarse; su nuevo OPEN usa el mecanismo existente y acotado de PendingNextCycleOpen en ese AccountStrategy, sin crear una segunda Operation concurrente allí. Si otro rollover llega mientras A drena, reemplazar el candidato nunca activado por el seleccionado vigente y registrar el descarte; jamás volver a una selección vencida. El siguiente candidato se prepara en el tercer slot. No retener indicadores de todos los expiries.
+
+**Fence compartido de entrada.** Añadir en el owner de ejecución por AccountStrategy `RolloverEntryGate{selection_control_id, enabled, minimum_strategy_eval_seq}`. La selección deshabilita entradas e invalida PendingAdmission/PendingNextCycleOpen no materializados bajo la selección anterior; nunca borra una Operation existente. La activación técnica publica el gate habilitado, con el primer ordinal normal admisible, antes de emitir un OPEN nuevo. Al recibir OPEN, pinnear en el contexto de ejecución pendiente gate/control y contrato esperado; validar ordinal y selección al admitir y otra vez al materializar/promover. Una autorización ALLOW tardía, un OPEN de A todavía en vuelo o una selección A→B→A no revive trabajo anterior. Los inputs de gestión/reducción/cierre de la Operation pinneada siguen su correlación existente, sin ese bloqueo de nueva entrada. Signal conserva su contrato instrument-only. [A08] [S09] [S30] [S31]
+
+Retener el stream y las vistas/órdenes necesarias de A mientras haya ciclo técnico A, Operation materializada, inventario/orden física, fill sellado, finality o reconciliación pendiente para A. Retirar buffers/builders sólo cuando se liberen todas esas referencias; conservar catálogo, facts y dedup necesarios. Una quote de B no actualiza mark/readiness de A ni oculta su falta de mercado. Si A necesita seguir vivo fuera de su cobertura, registrar `OLD_CONTRACT_DATA_UNAVAILABLE` y terminar INCOMPLETE con los residuales; un archivo corrupto sigue siendo FAILED. El caller puede programar un cierre normal previo a last_tradable_at con mercado suficiente; rollover no equivale a liquidación. No se presenta una serie continua sintética como observación física.
+
 ## 5. Contrato de datos históricos y fidelidad
 
-### 5.1 Corpus mínimo
+### 5.1 DatasetSource: registros normalizados y formato externo
 
-V1 consume NDJSON, opcionalmente gzip, normalizado a `market.MarketCandidateEnvelope` más referencia de registro y evidencia de los lados de quote cuando existe. El manifest enumera partes inmutables, SHA-256, conteos, período, stream/contrato, capacidad de identidad del source, cobertura TRADE/BBO, calendario y gaps conocidos. No se construye un ingest universal de vendors.
+El engine depende del port mínimo `DatasetSource.Open(selection) -> HistoricalCursor`, con `Peek/Next/Close`. selection fija streams físicos y rangos UTC del manifest. El cursor entrega `HistoricalRecord{source_record_ref, source_order, candidate, quote_side_evidence}`: candidate es el MarketCandidateEnvelope compartido, más evidencia de origen/lados cuando existe. Abrir, descomprimir, decodificar y leer archivos pertenece al adapter; el causal/domain engine no recibe extensiones, paths, row groups, SDK de storage ni codecs. No hay ejecución sobre una base de datos.
 
-Los candidatos llegan ordenados por `event_ts`, stream y orden estable de observaciones del dataset. El shared StreamSequencer asigna `stream_seq`; no se inventa esa identidad antes de canonicalizar. En un stream, el orden de registros a igual timestamp fija ese orden canónico. La secuencia aceptada respeta la precedencia de §6; cambiar chunks o buffers de lectura no la cambia.
+La primera implementación S02 puede ser `internal/datasets/ndjson`, con gzip opcional, útil para fixtures/debugging/corpora pequeños. Otro adapter puede usar Parquet/ZSTD u otro layout eficiente sin modificar Backtest Engine, Strategy, Operation, MM, Provider o identidades de dominio. No hay corpus/benchmark representativo suficiente en este shot para congelar honestamente un formato productivo; quedan congelados el port y su conformance. Elegir o reemplazar codec no requiere otro design shot del engine.
 
-Un dato con tiempo retrocedente no se reordena oportunistamente mientras corre el dominio. El corpus histórico debe venir normalizado con orden definido o falla preflight/lectura; un caso de late delivery pertenece al fixture explícito de laboratorio o a exact replay de admisión real. Correcciones de barras siguen la autoridad compartida: actualizan proyección y no reevaluan retrospectivamente el cierre original.
+| Artefacto | Autoridad |
+| --- | --- |
+| Manifest lógico inmutable | corpus_id/version, schema normalizado, identidad/capacidades de fuente, orden por stream, rangos/cobertura por contrato, calendario/gaps, conteos y digests de registros normalizados; referencia canónica durable de reproducción con versión/digest. |
+| Manifest de representación física | Objetos/partes inmutables, formato/codec, byte SHA-256, tamaños, rangos de ordinals y prueba de correspondencia con el mismo manifest lógico. |
+| Receipt de lectura | Representación realmente usada, digests verificados, buffers/opciones y métricas operacionales; externo a la identidad semántica y al gzip canónico del resultado. |
 
-**SOURCE FACT.** Identidad canónica, `stream_seq` y `content_digest` tienen funciones diferentes. EVENT/POSITIONAL preservan identidad nativa; NONE no puede ascender a identidad nativa por hash del contenido. [S04] [A05]
+El RunSpec fija el manifest lógico y su referencia canónica durable. Un adapter puede leer una representación alternativa equivalente, validada contra ese mismo manifest, sin reemplazar esa referencia ni alterar ImmutableInputs. El receipt conserva qué bytes se leyeron. Reempaquetar no autoriza a borrar la fuente durable con la que el resultado puede reproducirse. No se usa un nombre mutable “latest” ni un servicio de registry nuevo.
 
-Para NONE, usar `IngressRecordRef{log_identity=dataset-part-digest, partition=part_ordinal, offset=record_ordinal}` y expansion_index. Eso identifica una observación importada, no prueba un evento físico único. Dos trades iguales en registros distintos se conservan. El digest detecta conflictos; nunca deduplica trades por igualdad de precio/tiempo.
+Lectura streaming con batches/buffers configurados y acotados; merge estable con un lookahead por stream activo, sin cargar ni ordenar todo el histórico en RAM. Activar sus rangos desde prepare_at/warmup_start; no abrir tardíamente un prefijo anterior al reloj para insertarlo en el pasado. El número de buffers depende de streams/rangos activos, no del número de ticks. La memoria de metadata de catálogo/schedule/planes y de dedup físico se declara separadamente. Chunks, prefetch, compresión y tamaño de buffer no cambian los registros ni el orden entregado. Si se necesita una normalización/sort inicial, ocurre fuera del loop y produce un dataset nuevo con manifest; no un reorder oportunista dentro del dominio.
+
+Los candidatos llegan por `(event_ts, stream_id, source_order)`, donde source_order conserva el orden lógico de captura por stream, independiente de la partición física. El shared StreamSequencer asigna stream_seq al canonicalizar. EVENT/POSITIONAL conservan identidad nativa. En NONE, la captura asigna una vez `IngressRecordRef{log_identity=logical_log_id, partition=logical_partition, offset=source_record_ordinal}` y expansion_index; un transcode/repack debe preservar esos valores. No derivarlos del digest/número de archivo o row group actual. Esto identifica una observación importada, sin probar un evento físico único: dos trades iguales en registros distintos permanecen distintos; content_digest detecta conflicto, no deduplica por precio/tiempo. [S04] [A05]
+
+El adapter valida schema/unidades exactas, orden, cobertura, identidad y hashes de cada segmento consumido; el resultado fija además el digest del prefijo normalizado realmente admitido. Decode/truncación/conflicto o discrepancia de digest falla explícitamente. Prefetch puede leer bytes posteriores, pero ningún registro/lookup posterior a la frontera llega al dominio ni a una observación del caller. Correcciones de barras conservan su autoridad: actualizan proyección y no reevaluan retrospectivamente el cierre original. Un late delivery experimental se declara como fixture de laboratorio.
+
+S02 debe comparar un corpus normalizado leído como una parte, múltiples chunks y un segundo adapter de conformance en memoria/particionado: mismo spec/build/namespace, idénticos inputs normalizados, IDs, records, estados, economía y gzip. Reportar peak RSS, buffers, counts y bytes de un corpus representativo; no inventar throughput o SLA. Cualquier adapter productivo futuro pasa ese mismo gate y demuestra memoria acotada sin cambiar el engine.
 
 ### 5.2 TRADE, BID, ASK, mark y fill
 
@@ -239,10 +283,10 @@ Coordenada de evidencia: `{root_input_ordinal, phase, step_seq, parent_step_seq,
 ### 6.2 Una observación de mercado C
 
 1. **Admitir y proyectar.** Market aplica el candidato; Analytics aplica los eventos aceptados y compromete todos los cambios de barras, sesiones y current/readiness. Se retienen temporalmente los deliveries de Strategy/QUOTE hasta que sus vistas estén listas.
-2. **Fijar ejecución física.** SimExecution toma las órdenes aceptadas antes de C, calcula y sella sus matches usando C y quotes ya observadas. Ordena por acceptance_ordinal y order_id. Una orden creada por C no participa.
-3. **Actualizar economía y aplicar fills.** Para todo C, incluso sin matches, recalcular la valuación/freshness desde la observación actual y preparar ledger/risk/Provider AccountSnapshot de la misma revisión. Comprometer esa observación antes de liberar safety o decisiones ordinarias; una nueva quote no puede dejar a Provider con el riesgo de la anterior. Retener sus efectos safety mientras se asienta el lote. Para cada fill, agregar fees/inventario y su nueva revisión; aplicar `ExecutionUpdate` con una sola invocación FILL y comprometer los candidatos al éxito. Entregar su CapacityUpdate antes de pedidos de Reservation/Revalidate; esos nuevos pedidos esperan al cierre del lote.
+2. **Fijar ejecución física.** SimExecution toma sólo órdenes del contrato/stream físico de C, aceptadas antes de C, y calcula/sella matches con C y quotes ya observadas de ese mismo contrato. Ordena por acceptance_ordinal y order_id. Una orden creada por C no participa; un tick/prewarm B no ejecuta ni dispara stops de A usando una quote A retenida.
+3. **Actualizar economía y aplicar fills.** Si C cambia un mark/freshness requerido por inventario o exposición actual, preparar ledger/risk/Provider AccountSnapshot de esa revisión, aun sin matches. Comprometerla antes de liberar safety o decisiones ordinarias; una quote relevante no deja a Provider con riesgo viejo. Un tick de B recibido sólo para preparación, sin obligación económica sobre B, no produce por sí solo una revisión ACCOUNT_ECONOMICS ni llamada MM sobre A. Retener efectos safety mientras se asienta el lote. Para cada fill, agregar fees/inventario y su nueva revisión; aplicar `ExecutionUpdate` por el path compartido de §8.2, con una sola invocación FILL, y comprometer candidatos al éxito. Entregar CapacityUpdate antes de pedidos de Reservation/Revalidate; esos nuevos pedidos esperan al cierre del lote.
 4. **Reconciliar y liberar protección.** Terminar todos los fills/costes/CapacityUpdate sellados; entonces entregar una PositionObservation del net físico final de ese mismo prefijo. No comparar la posición de todos los matches contra un estado lógico que sólo aplicó el primero. Actualizar trust antes de nuevos pedidos. Entregar safety comprometido antes de trabajo ordinario todavía no comprometido. Cancels emitidos por el primer fill no eliminan un segundo fill ya sellado.
-5. **Entregar decisiones de mercado.** Deliveries ordinarios conservan el orden de efectos producido por Analytics, con fanout estable por owner. QUOTE observado entra como `QuoteUpdate` correlacionado. En TRADE_MODEL, la valuación modelada puede causar un EconomicsUpdate ordinario con snapshot actual; no se llama directamente a GerardMM.
+5. **Entregar decisiones de mercado.** Deliveries ordinarios conservan el orden de efectos producido por Analytics, con fanout estable por owner. QUOTE observado se entrega sólo a los owners cuyo contrato/stream corresponde y entra como `QuoteUpdate` correlacionado. En TRADE_MODEL, la valuación modelada puede causar un EconomicsUpdate ordinario con snapshot actual; no se llama directamente a GerardMM.
 6. **Drenar.** Enrutar efectos, grants/revalidations, ACKs, cancels y finality hasta quiescencia inmediata. Los nuevos comandos pueden quedar working, pero esperan un cursor de mercado posterior para hacer match.
 
 Los comandos ya comprometidos conservan sus dependencias por orden: NEW y su aceptación preceden al CANCEL que lo cita. Si un M1 directo quedó emitido durante feedback, se entrega a SimExecution antes de su cancel posterior, sin hacer match en C. La prioridad de safety sólo adelanta causas respecto de trabajo ordinario aún no comprometido; nunca invierte NEW→CANCEL, release→grant ni padre→hijo. Una continuación que todavía no cruzó M1 se revoca por el helper compartido de §8.3.
@@ -267,11 +311,13 @@ Se reutilizan builders/grid, Calendar resolver, demands, S1/S2 y MarketContext. 
 
 **DESIGN DECISION.** Añadir `strategy.Engine.HandleWarmupWithScope`, que utiliza el mismo pipeline con `EvalInput.Warmup=true`. S1 conserva agregación de barras/sesión/account-day, OR y LastTradePrice, deteniéndose antes del branch de breakout/open-cycle. S2 conserva absorción H4/BB, deteniéndose antes de abrir/cerrar ciclos. Los paths normales mantienen Warmup=false. No hay Strategy de backtest.
 
-Warm-up comienza vacío, procesa sólo el prefijo anterior a trade_start y exige cero Signals y cero ciclo abierto. Una salida inesperada es error, no descarte silencioso. En trade_start se activa el mismo estado preparado; no se reescribe ModuleState JSON. La fase de activación no cierra artificialmente una barra que cruza ese instante.
+El warm-up inicial comienza vacío, procesa sólo el prefijo anterior a trade_start y exige cero Signals y cero ciclo abierto. Una salida inesperada es error, no descarte silencioso. En trade_start se activa el mismo estado preparado; no se reescribe ModuleState JSON. La fase de activación no cierra artificialmente una barra que cruza ese instante.
 
 La cobertura se calcula con barras realmente cerradas y demandas reales. S2 exige sus parámetros vigentes: trendPeriod+1 H4 y BollPeriod 5m; se conserva el predicado real `H4.CloseBoundary <= entryBar.BucketOpen`. Un comentario contradictorio no cambia ese predicado. S1 puede comenzar antes de completar OR y permanecer NOT_READY legítimamente. Un inicio que solicita contexto precalentado sin prehistoria suficiente falla `WARMUP_INCOMPLETE`. [S08]
 
-El estado operacional/económico de la cuenta no registra compras, fills o fees durante warm-up. Los controles preparan la autoridad necesaria; el trading se habilita en trade_start. El calendario y los boundaries de prehistoria siguen siendo reales.
+El estado operacional/económico de la cuenta no registra compras, fills o fees durante el warm-up inicial; los cashflows account-level tienen effective_at >= trade_start. El trading se habilita en trade_start. El calendario y los boundaries de prehistoria siguen siendo reales.
+
+El mismo warm-up prepara cada candidato físico de §4.3 desde prepare_at, mientras el contrato activo puede seguir operando y la economía de la cuenta continúa normalmente. Se aíslan ModuleState, Bars/readiness y lecturas por stream. DRAIN_CYCLE conserva absorción y cierre reales de un ciclo existente y bloquea únicamente su nueva apertura. La transición account-level de §11 conserva el estado técnico; no reinicia Strategy ni repite warm-up por cambiar de etapa.
 
 ## 8. Operation, GerardMM y Provider
 
@@ -283,20 +329,27 @@ Se conserva SignalDelivery → admission/pending admission → materialización 
 
 GerardMM recibe contrato pinneado, MMState, fills/claims, RuleSet completo y economía autoritativa. El ledger no llama a MM ni decide sizing. Las rows/config MM se pinnean al abrir la Operation; un nuevo account-day afecta el selector de futuras Operations y el snapshot económico de las existentes, sin reescribir su plan. [A09] [S10]
 
-### 8.2 Economía correlacionada con Fill y Quote
+### 8.2 Economía correlacionada: un path compartido LIVE/BACKTEST
 
-**SOURCE FACT.** `buildMMInput` prefiere `DeliveredEconomics` sobre Views. El handler de fill actualiza exposición e invoca MM dentro del mismo Apply. Actualizar Views y enviar Fill puede dejar economía vieja; enviar EconomicsUpdate primero invoca MM con la exposición anterior. [S09] (líneas 797–871) [S11] (líneas 291–392)
+**MANAGER REQUIRED / FROZEN PROPERTY 1.** LIVE y BACKTEST usan finalmente la misma transición compartida para combinar hecho + economía, sin branch por RunMode en la semántica de Operation/MM. Los adapters normalizan evidencia; no implementan dos versiones del handler. S02 incorpora el ingress tipado de Core y su test real, aunque no despliegue D6 ni construya todo el upstream económico LIVE.
 
-Añadir dos variantes al union `operation.Input`, preservando la firma Apply y exactamente un input:
+**SOURCE FACT.** buildMMInput prefiere DeliveredEconomics sobre Views; fill actualiza exposición e invoca MM dentro del mismo Apply. Actualizar Views y enviar Fill puede dejar economía vieja; enviar EconomicsUpdate primero llama MM con exposición anterior. La composición LIVE actual no demuestra un snapshot post-fill correlacionado. [S09] [S11] [S03] [S33]
 
-- `ExecutionUpdate{Fill, Economics, EconomicsUpdateID}`.
-- `QuoteUpdate{Quote, Economics, EconomicsUpdateID}`.
+Añadir al union operation.Input, manteniendo Apply y un solo input, `ExecutionUpdate{Fill, Observation}` y `QuoteUpdate{Quote, Observation}`. Observation es `EconomicsObservation{account_id, account_context_id, cause_key, revision_seq, revision_id, observed_at, covers_through, source_ref, status, reason, economics}`. Es un wrapper tipado y mode-neutral de AccountEconomics; status es AVAILABLE o UNAVAILABLE. AVAILABLE significa que existe una revisión autoritativa cuyo prefijo cubre esa causa, no que todos los marks estén frescos. economics conserva PnLFresh real. cause_key usa la correlación/dedup nativa del fill o QuoteID+contrato; covers_through identifica la frontera causal cubierta. AccountContextID cambia por transición; revision_seq es global a la cuenta/run y nunca se reinicia.
 
-Primero validar shape, account/strategy/operation/order, identidad nativa, dedup y staleness. Para un fill nuevo de la Operation actual, instalar el snapshot correlacionado sin un trigger adicional y usar el handler real de fill: una sola invocación `MMTriggerFill` con exposición y economía actualizadas. Quote hace lo mismo con `MMTriggerQuote`. Un duplicado jamás reinstala una revisión económica anterior.
+El binder/normalizador compartido valida identidad, shape, contexto, tiempo, causalidad y revisión. Historical adapter entrega la revisión del ledger que ya incorpora el fill/coste o la quote y todos los fills sellados precedentes. El ingress tipado real de Core acepta exactamente el mismo hecho y Observation y llama al mismo normalizador/Apply. Nadie consulta “latest economics” mutable dentro del callback o durante un retry. La evidencia se congela en el input.
 
-Los inputs raw Fill/Quote y el EconomicsUpdate independiente siguen disponibles. Dos causas reales QUOTE y ACCOUNT_ECONOMICS se procesan por separado aunque compartan timestamp; el sidecar no borra un evento económico independiente. El input correlacionado sólo representa el contexto observado de su propio hecho.
+Antes de instalar o invalidar economía, ejecutar guards de account/strategy/operation/order, dedup nativo y staleness. Para un fill nuevo de la Operation actual: instalar la observación, actualizar exposición con el handler real y llamar MM una vez con MMTriggerFill; Quote hace lo mismo con MMTriggerQuote. No generar ACCOUNT_ECONOMICS adicional por el sidecar. Un duplicado no reinstala una revisión anterior ni repite MM/coste/efectos; se permite únicamente bookkeeping diagnóstico ya definido por el owner. Un late fill de A no altera el estado económico de B por ese sidecar. Su efecto físico legítimo en la misma cuenta puede provocar después un AccountEconomicsUpdate account-wide independiente para B. F04 se prueba también en Apply, sin ocultar el input adversarial en ingress.
 
-Un fill genuino antiguo de A no modifica B mediante ese sidecar. Puede cambiar la economía física de la cuenta; B podrá recibir después un AccountEconomicsUpdate explícito como consecuencia account-wide, conservando la separación de ownership de F04. Otras Operations vivas reciben el cambio account-wide en orden estable. Sólo un fill físico válido de la misma cuenta/contrato puede cambiar su ledger. Un payload de otra cuenta o una correlación imposible queda como anomalía explícita, sin crédito/débito en esta cuenta; las pruebas F04 lo entregan además al handler compartido para comprobar su guard, sin ocultarlo en el ingress.
+Los adapters raw Fill/Quote existentes de LIVE/Core conservan compatibilidad de entrada, pero normalizan determinísticamente a UNAVAILABLE cuando no traen evidencia correlacionada. No se toma Views.PnLFresh=true como prueba de economía post-fill. Para un hecho válido actual, UNAVAILABLE invalida la freshness económica efectiva del owner también para decisiones posteriores de gestión/finality; puede conservar valores conocidos para diagnóstico, sin presentarlos como autoridad actual ni fabricar una revisión económica cero. El fill físico, exposición, claims, CapacityUpdate y protección siguen sus handlers normales. GerardMM real deniega riesgo nuevo con PnLFresh=false sin devolver un error que deshaga el fill; safety/cierre siguen alcanzables. [S26]
+
+La falta ordinaria de observación produce UNAVAILABLE. Contexto/cause_key no coincidentes, evidencia futura o revisión vieja no pueden calificarse AVAILABLE: registrar la razón y usar UNAVAILABLE para el hecho válido actual. Un conflicto de payload para una identidad/revisión ya aceptada es violación de autoridad y aborta con evidencia; si el fill ya fue sellado físicamente, preservarlo en el capsule de §3/§14. No descartar un fill físico para mejorar la economía aparente. Una causa duplicada/ajena se resuelve por sus guards antes de tocar freshness.
+
+Un AccountEconomicsUpdate independiente, versionado y del contexto vigente, puede restaurar freshness cuando su prefijo cubre todos los hechos materiales ya aceptados; se procesa como su propia causa ACCOUNT_ECONOMICS, sin adjuntarlo retrospectivamente al fill. QUOTE y ACCOUNT_ECONOMICS genuinos al mismo timestamp conservan dos causas. Observaciones de contexto anterior o revisiones regresivas no restauran autoridad.
+
+El callback usa el clone y los allocators transaccionales compartidos: error MM abandona estado/IDs/effects candidatos; retry recibe exactamente el mismo Observation, incluso si Views cambió entre intentos. Raw continúa UNAVAILABLE al reintentar. No adaptar los tests heredados dejando vivo el path viejo: cuando necesitan economía fresca deben aportar evidencia explícita.
+
+**Acceptance de paridad obligatoria.** Mismo before-state, causa, Observation, RuleSet, contrato, Market capabilities/reads, clock, allocator y RunProvenance: entrada por Core tipado y por historical adapter debe producir MMInput completo, MMState/owner state y ordered effects idénticos. Otro caso entra por Core raw con Views engañosamente fresh, compara el mismo trace UNAVAILABLE histórico y luego una actualización económica independiente. Probar fill/quote, dedup/late/foreign, error/retry y contexto/revisión. El test debe cruzar el decoding/dispatch real de Core; llamar dos veces al mismo Apply no acredita adapters. Una prueba adicional conserva los allocators/provenance reales LIVE vs BACKTEST y permite sólo esas diferencias nombradas; nunca eliminar IDs/campos arbitrarios para hacer coincidir resultados. El recorder conserva las interfaces opcionales reales de Market (§4.2/§16.2).
 
 ### 8.3 Entry expiry y terminación
 
@@ -314,7 +367,7 @@ El nuevo package `accounting` sólo depende de domain/units. Mantiene inventario
 
 **SOURCE FACT.** PositionObservation expresa posición física neta; Operation conserva exposición lógica derivada de sus fills. Una compra de una Operation y una venta de otra pueden netear físicamente a cero aunque ambas sigan vivas. [S12] [S13]
 
-No sumar unrealized de cada Operation usando bid/ask como si fueran cuentas físicas independientes: cargaría spread adicional. El ledger netea fills reales, preservando la atribución lógica de cada fact por separado.
+No sumar unrealized de cada Operation usando bid/ask como si fueran cuentas físicas independientes: cargaría spread adicional. El ledger netea fills reales sólo dentro de account+contract, preservando la atribución lógica de cada fact por separado. Un long NQH y un short NQM nunca se netean como un único lote: cada uno se valúa/cierra con su contrato y la cuenta suma sus PnL/costes. Rollover no reinicia balance, drawdown, day/stage baselines, cashflows ni revisión.
 
 Para un lote de dirección d (+1 long, -1 short), precio de entrada a, y cierre de k contratos a p:
 
@@ -350,7 +403,7 @@ Si hay posición overnight, el total unrealized actual forma parte de esa autori
 
 En cada boundary: finalizar el día anterior; actualizar watermark EOD; establecer el nuevo balance baseline y day_id; activar el selector explícito de nuevas Operations; publicar snapshots coherentes antes de decisiones del nuevo día. Días calendario/de negocio y días efectivamente operados tienen contadores distintos.
 
-Una revisión económica contiene `account_id, revision, observed_at, cause_ref, account_day_id, initial_balance, balance, equity, realized_gross, charged_costs, realized_net, unrealized, day_start_balance, day_realized_net, account_day_pnl, stage_net_pnl, best_day_net, marks, freshness` y risk state. Proyectar desde esa misma revisión:
+La secuencia de revisión es monótona durante toda la cuenta/run, incluidos rollovers, cashflows y cambios de contexto. Una revisión económica contiene `account_id, account_context_id, revision, observed_at, cause_ref, account_day_id, initial_balance, balance, equity, realized_gross, charged_costs, realized_net, unrealized, day_start_balance, day_realized_net, account_day_pnl, stage_net_pnl, best_day_net, marks, freshness` y risk state. Proyectar desde esa misma revisión:
 
 | Consumidor | Proyección |
 | --- | --- |
@@ -362,21 +415,27 @@ Una revisión económica contiene `account_id, revision, observed_at, cause_ref,
 
 Añadir funciones puras compartidas `provider.EvaluateEconomicRisk` y un evaluador de lifecycle con structs tipados; reciben observación, risk state anterior y RuleSet/términos completos. Su resultado no es sizing: produce floors, headroom, flags y outcome. Provider Apply sigue resolviendo admission/safety.
 
-La observación económica se actualiza ante cada cambio material de mark, fill, coste, account-day, control o freshness. Antes de una decisión que pueda abrir riesgo, las proyecciones validan la edad contra el reloj lógico actual; si la evidencia venció desde la última entrega, el driver compromete primero la nueva revisión de freshness/Provider y sus efectos, como consecuencia de ese avance lógico. No mantener Known/PnLFresh verdaderos sólo porque no llegó otro tick.
+La observación económica se actualiza ante cada cambio material de mark requerido, fill, coste, account-day, control o freshness. Un stream usado sólo para preparar un contrato futuro no invalida ni refresca una cuenta/Operation que todavía no lo requiere. Antes de una decisión que pueda abrir riesgo, las proyecciones validan la edad contra el reloj lógico actual; si la evidencia venció desde la última entrega, el driver compromete primero la nueva revisión de freshness/Provider y sus efectos, como consecuencia de ese avance lógico. No mantener Known/PnLFresh verdaderos sólo porque no llegó otro tick.
 
 Un mark requerido ausente/vencido produce PnLFresh=false y estado de riesgo no resuelto, bloqueando nuevo riesgo. `nil headroom` significa que no aplica una familia monetaria; no significa error de cálculo. Inventario neto cero puede valuarse con balance sin quote. La confianza física se obtiene reconciliando PositionObservation con los hechos, jamás forzando la exposición lógica al valor observado.
 
 ## 10. Contextos Generic100K y prop
 
-### 10.1 Generic100K sin defaults secretos
+### 10.1 Generic100K: horizonte arbitrario con GerardMM real
 
-**OWNER / MANAGER FROZEN.** Generic100K fija sólo `initial_balance=USD 100000`. [A01]
+**OWNER / MANAGER FROZEN.** Generic100K fija sólo initial_balance=USD 100000. El caller aporta MM/config, account-day, binding/RuleSet ACTIVE de simulación, fees, ejecución y horizonte. No se salta Provider ni se inventa entitlement LIVE. [A01]
 
-El caller debe proporcionar MM selector/rows soportados, scaling explícito, account-day, binding/RuleSet de simulación sin restricciones opcionales, fees, ejecución y horizonte. La ausencia de política restrictiva se representa con un RuleSet ACTIVE válido y explícito; no con saltarse Provider o fingir un entitlement LIVE.
+**DESIGN DECISION.** Antes de NewRun, `MaterializeExperimentPlanV1` en la configuración del backtester admite una tabla resuelta explícita o la única política generada V1 `FIXED_BUDGET_PER_ACCOUNT_DAY_V1`. Sus inputs son policy_id/version, account/context, activación/end_exclusive, timezone/boundary/calendario/tzdata, first_day_ordinal positivo, SL/TP Money explícitos y `ordinal_basis=EVERY_RESOLVED_ACCOUNT_DAY`. No es una regla real de prop ni código dentro de GerardMM.
 
-El ejemplo entregable se llama `generic100k-evaluation-d1-d2`: elige de forma visible EVALUATION día 1/día 2, SL USD 2000 y TP USD 1500, dos account-days con boundary UTC 00:00, adds deshabilitados explícitamente, fees/slippage y TIF especificados. Esas rows vienen de la autoridad Owner; EVALUATION, los dos días y el boundary son elecciones del ejemplo, no consecuencias de tener 100K. [A09] [S16]
+La función enumera todos los intervalos account-day que intersectan el período de ese contexto, incluidos primer/último día parcial y días sin trades según el calendario declarado. Warm-up no consume ordinal. Resolver boundaries de calendario, sin sumar 24 horas a través de DST. Para cada intervalo genera account_day_id/start/end/ordinal, una EconomicPlanRow EVALUATION ordinaria y los selectores MMConfigSnapshot correspondientes. El resolver vigente acepta EvaluationDayOrdinal positivo; no limita el contrato a días 1/2. [S16] [S32]
 
-Un horizonte mayor requiere un calendario explícito de selectores/rows que cubra cada día aplicable. No repetir día 2, prolongar día 1 ni inventar FUNDED. Un valor que falta produce error de preflight o bloqueo explícito de nueva operación, según fuera verificable al comienzo; jamás fallback dentro de GerardMM.
+Policy original, versión de materializador, tabla expandida completa, EconomicPlanRows, selectores resueltos y sus digests quedan en ImmutableInputs/result. NewRun valida cobertura exacta, claves únicas, ausencia de gaps/overlaps, rango/overflow, moneda y presupuestos; runtime sólo consume filas normales. Ningún `if generic`, “day2 forever”, extensión en caliente o fallback entra en GerardMM. Una tabla directa incompleta sigue fallando, incluso si falta day3. Una transición posterior materializa su propio horizonte antes de admitirse y trae sus filas dentro del nuevo contexto.
+
+En cada boundary cambia el selector de futuras Operations; la Operation abierta sigue usando la row/config pinneada y su autoridad continúa disponible. Repetir explícitamente un presupuesto es una decisión de experimento representada por N filas, no reutilizar escondidamente el ordinal 2. Memoria O(account-days) para esta metadata es admisible; no implica retener ticks.
+
+**Ejemplo obligatorio S02: `generic100k-fixed-budget-20-days-v1`.** Veinte account-days UTC 00:00, [2026-10-05T00:00:00Z,2026-10-25T00:00:00Z), stage_id GENERIC_LONG_HORIZON, selector EVALUATION ordinals 1…20, SL USD 2000 y TP USD 1500 en cada row; evaluation_target=nil. Adds deshabilitados, currency/scaling, RuleSet SIM sin restricciones opcionales, fees/slippage/TIF y calendario quedan explícitos. Los valores de días 1/2 coinciden con el ejemplo Owner; extenderlos a veinte días es política declarada de este experimento, no autoridad de la prop. [A09]
+
+La fixture debe producir decisiones y operaciones válidas después del segundo día y en el tramo final, usando GerardMM real, además de verificar los veinte selectores. Precios sintéticos se identifican como fixture de modelo; las fechas son coordenadas reproducibles, no una afirmación de disponer de mercado observado futuro. La misma materialización soporta cualquier horizonte finito solicitado con cobertura/datos válidos; no hay límite arquitectónico de dos días.
 
 ### 10.2 Contexto GAU50 representativo
 
@@ -425,36 +484,74 @@ En `reopen_at`, retirar sólo el bloqueo temporal identificado por deadline_id. 
 
 No derivar forced-flat de todos los cierres de AllowedNewRiskWindow; 23:59 no crea otra liquidación. No adivinar holidays/product exceptions: el fixture acota contrato/fechas y proporciona deadlines completos. Un breach económico terminal queda latcheado: recuperación de precio o reset diario no revive la etapa. Se bloquea riesgo nuevo y se sigue procesando el cierre/costes/finality necesarios.
 
-## 11. Lifecycle y seam hacia campaña/bankroll
+## 11. Lifecycle, transición de contexto y cashflows de cuenta
 
-### 11.1 Una cuenta
+### 11.1 Outcome de etapa y continuidad
 
-El evaluador compartido produce observaciones `AccountLifecycle` con account_id, stage/context digest, observed_at/effective_at, cause_ref, resultado y razones. V1 distingue ACTIVE, MODELED_EVALUATION_FAIL, MODELED_EVALUATION_PASS, MODEL_OPERATIONAL_FAILURE y AWAITING_NEXT_CONTEXT; son resultados del modelo, no una taxonomía universal de empresas.
+El evaluador compartido produce AccountLifecycle con account_id, stage/context digest, observed_at/effective_at, cause_ref, resultado y razones. Distingue ACTIVE, MODELED_EVALUATION_FAIL, MODELED_EVALUATION_PASS y MODEL_OPERATIONAL_FAILURE; AWAITING_NEXT_CONTEXT es estado de continuidad, conserva el outcome de la etapa. Son resultados del modelo, no una taxonomía universal de empresas.
 
-Pass exige target alcanzado, consistencia cumplida, `minimum_traded_days` explícito y satisfecho, cobertura modelada suficiente y exposición física/lógica cero, sin órdenes ejecutables, reservas/pendings/outbound action ni finality pendiente. El contador de días operados suma account_day_ids distintos con al menos un ExecutionFill válido, único y de cantidad positiva, atribuible a esa cuenta durante la etapa; duplicates no suman y el modelo no exige resultado positivo por día. El ejemplo fija mínimo 0; nil impide PASS por término no resuelto. Un target visto en unrealized no produce un pass retroactivo. Consistency temporalmente excedida puede resolverse con días posteriores y no quema por sí sola la cuenta.
+Pass exige target alcanzado en stage net realized, consistencia cumplida, minimum_traded_days explícito/satisfecho, cobertura suficiente y la quiescencia de §11.2. Cuenta días operados por account_day_ids distintos con un ExecutionFill válido, único y de cantidad positiva durante esa etapa; duplicates no suman, no exige día positivo. El ejemplo GAU50 fija mínimo 0; nil impide PASS. Target observado sólo en unrealized no acredita pass; consistency temporalmente excedida puede resolverse después sin quemar por sí sola la cuenta.
 
-V1 termina la evaluación o el horizonte. No instala automáticamente FUNDED. El seam de transición recibe un siguiente contexto completo: binding/RuleSet, MM selector/rows, límites, account state, política de balance/baselines y effective_at. En el futuro se aplicará en un boundary quiescente y como un control causal único. Sin esos datos, AWAITING_NEXT_CONTEXT.
+RunSpec declara `outcome_handling=STOP|AWAIT_CONTEXT`. STOP detiene por outcome y finaliza sólo tras asentamiento requerido. AWAIT_CONTEXT latchea el outcome, mantiene CLOSE_ONLY y drena riesgo/finality; al quedar quiescente expone AWAITING_NEXT_CONTEXT y puede continuar con un siguiente contexto suministrado por el caller. No hay transición automática PASS→FUNDED, elección de prop ni reseteo de saldo por el nombre del stage.
 
-Si continúa la misma cuenta física, puede conservar account_id con cambios explícitos. Si la prop entrega otra cuenta, crear otro run/account relacionado. S02 no implementa transferencia de cuenta, fees comerciales, payout ni workflow de varias etapas.
+### 11.2 AccountContextTransition, obligatorio V1
 
-### 11.2 Campaña futura
+`AccountContextTransition{control_id, effective_at, ordinal, account_id, expected_context_digest, next_context, state_modes, expected_balance?}` es un control causal de fase 2. next_context es completo: context_id nuevo no reutilizado/stage_id, Provider binding/RuleSet, AccountProgramTerms o ausencia explícita, estado operacional de cuenta, GerardMM config/currency/scaling/planes, selectores resueltos por Strategy/account-day, calendario de cuenta, límites/risk seed, cashflow treatment y coverage/source refs/digests. El caller proporciona los valores, el engine no los deriva de PASS ni de labels. El calendario account-level rige economía/MM; no reemplaza automáticamente el calendario de exchange ni la configuración técnica de Strategy.
 
-El futuro controlador de campaña vive fuera del engine. Posee bankroll, compras, fees, cuentas activas, créditos de payout, calendario y política de reinversión. Usa `AdvanceUntil` de los mismos engines, sin inspeccionar el futuro.
+Quiescencia exige inventario físico cero en **cada contrato**, PhysicalTrust reconciliado/trusted, Operations ausentes o terminales sin exposición lógica/q_exec, cero órdenes ejecutables, finality/actions/fills sellados pendientes, reservas/claims/firm exposure, admissions/revalidations/DeferredOpen y cola inmediata relacionada. Incluye hechos físicos futuros ya programados por una fixture; un cancel ACK o netear dos contratos/opuestas no basta. El ciclo técnico de Strategy puede seguir vivo: no es exposición de cuenta y no se borra por cambiar stage. Esto difiere de la activación técnica de rollover (§4.3).
 
-~~~text
-bankroll(t) =
-    bankroll_initial
-  − settled_purchase_reset_subscription_costs(<=t)
-  + settled_payout_credits(<=t)
-~~~
+Al admitir, validar shape, identidades, autoridades completas y cobertura; es lícito encolar una transición futura mientras hoy existe exposición. En effective_at comprobar expected_context_digest, expected_balance si existe y quiescencia contra el estado real. Si entonces no hay quiescencia, fallar `CONTEXT_NOT_QUIESCENT`; no forzar cierre, esperar hasta que casualmente quede flat ni cambiarle la fecha. expected_context_digest evita aplicar una transición preparada para un contexto anterior. Un cambio de ProviderAccountRef que signifique otra cuenta física requiere otro account/run relacionado; AccountID, moneda base, RunID y modelo físico de esta cuenta no cambian.
 
-La compra requiere caja disponible en ese instante; descuenta el fee antes de activar la cuenta. El nominal 50K/100K nunca se suma al bankroll. Un payout conocido el día 5 no compra una cuenta el día 2. A igual settlement time, ordenar por account_id/event_id, asentar créditos/débitos definidos antes de la siguiente decisión de compra.
+| Estado | Acción V1 |
+| --- | --- |
+| AccountID/RunID; ledger acumulado, fills/costes/cashflows, dedup, correlaciones y secuencias de revisión/IDs | PRESERVAR; nunca reutilizar IDs ni borrar historia. |
+| Market/Bars/Calendar de exchange, Strategy, ciclos técnicos y contadores; ContractCatalog/Schedule/pins | PRESERVAR; cambiar stage no reescribe mercado ni reinicia warm-up. |
+| Ledger balance/equity y confianza física | PRESERVAR; expected_balance sólo valida. Mover dinero requiere AccountCashflow. |
+| Binding/RuleSet, terms, MM config/rows/selectores, account operational state, contexto y coverage | REEMPLAZAR atómicamente por autoridades completas, validadas. |
+| Progreso de etapa | `PRESERVE_STAGE` exige mismo stage_id; `START_NEW_STAGE` exige stage_id nuevo, archiva outcome/PnL/contadores anteriores y comienza sus baselines explícitos en el balance actual. Ledger acumulado intacto. |
+| Account-day | `CONTINUE_CURRENT_DAY` exige mismo calendario y conserva baseline; `START_NEW_CONTEXT_DAY` sólo junto a START_NEW_STAGE, cierra el segmento parcial etiquetado y abre otro hasta el siguiente boundary natural. No finge un EOD. |
+| Risk state | `PRESERVE_RISK_STATE` sólo con definiciones/bases/moneda compatibles; `REPLACE_EXPLICIT_RISK_SEED` exige valores completos por familia aplicable: floors, watermarks, referencias, caps y latches válidos. Un seed de riesgo no es dinero. |
+| Bloqueos/episodios/timers de contexto | Conservar los de autoridades preservadas; retirar sólo los pertenecientes al contexto sustituido, guardados por context_id/generación. No limpiar faults de confianza física. |
 
-Los términos de fees, split, eligibility y settlement delay deberán ser datos as-of explícitos. Si un retiro cambia balance, headroom o continuidad de la cuenta, entra como control causal en su engine; no se resta después de todas las operaciones.
+Un mismo stage conserva breaches/outcome terminales aunque reemplace un seed; no puede resucitar una etapa fallida cambiando RuleSet. START_NEW_STAGE puede iniciar sus propios latches con evidencia explícita, manteniendo el outcome previo archivado. Si CONTINUE_CURRENT_DAY cruza una transición de etapa, conservar la métrica account-day de MM y comenzar por separado el progreso de etapa; los contadores de días operados de la etapa sólo cuentan sus propios fills.
 
-El seam actual conserva parent IDs, instantes y observaciones prefijo <= T. No expone summaries futuros ni permite elegir retrospectivamente corridas favorables. Ejecutar cuentas completas en paralelo será correcto sólo si ninguna decisión de campaña puede cambiar sus trayectorias y sus resultados futuros no se hacen visibles antes de tiempo.
+En el mismo timestamp que el EOD natural del contexto anterior, finalizar ese EOD exactamente una vez como hijo del control antes de instalar el nuevo contexto; invalidar el timer antiguo y no repetir fase 3. Fuera de ese boundary no ratchetear EOD. Resolver íntegramente el primer intervalo del nuevo contexto; no activar dos day resets por el mismo evento.
 
-Métricas futuras —compradas, fallidas, pasadas, funded, payouts, fees, bankroll final, tiempo a primer payout y duraciones— se derivan de esa caja y esos facts. S02 entrega el seam y su prueba de prefijo; no construye el simulador masivo.
+Añadir `provider.AccountContextUpdate` al union compartido: instala binding, RuleSet, terms, snapshot y context identity en un solo Apply/sweep. No encadenar updates que permitan decidir con binding nuevo y RuleSet/estado viejo. Preparar las pocas estructuras candidatas de Provider/account/Operation views, validar y comprometer antes de liberar efectos. Publicar contexto/modes/digests y primera revisión económica del nuevo contexto; entregarla a los owners de Operation antes de otro input. revision_seq sigue monótona, AccountContextID cambia; un input económico del contexto viejo no modifica la nueva autoridad. Las rows antiguas necesarias para evidencia/dedup permanecen referenciables.
+
+### 11.3 AccountCashflow, obligatorio V1
+
+`AccountCashflow{control_id, effective_at, ordinal, account_id, expected_context_digest, cashflow_id, amount, kind, source_ref, treatment_digest}` aplica un Money USD con signo, distinto de cero, en fase 2. kind es PAYOUT_DEBIT (negativo), RESET_ADJUSTMENT o ADJUSTMENT (signo explícito). Dedup por account_id+cashflow_id durante toda la corrida: misma identidad/payload es no-op económico incluso después de otra transición; payload distinto es conflicto. Resolver ese dedup antes de exigir el contexto vigente para un movimiento nuevo. Context/digest/unidades inválidos no se aplican.
+
+El único tratamiento V1 es `EXCLUDE_PERFORMANCE_PRESERVE_ABSOLUTE_RISK_V1`, seleccionado explícitamente en contexto/control:
+
+| Magnitud | Efecto de delta |
+| --- | --- |
+| Balance/equity | Sumar delta inmediatamente; inventario no cambia. |
+| Realized trading, fees, account-day/stage PnL, best day, consistency, traded days | No cambia; registrar cashflows separados y conservar fórmula §9. |
+| Floors, watermarks y referencias monetarias absolutas intradía | Conservar; recalcular headroom con equity actual. |
+| Breaches/safety | Evaluar con esa revisión antes del siguiente market input; un debit puede forzar cierre. Un credit no deslatchea un fail. |
+| EOD natural posterior | Evaluación normal con balance post-cashflow; el cashflow no fabrica un EOD ni una traslación de floors. |
+
+Ejemplo de conformance: balance=100000, inventario cero, floor=98900 y payout=-500 producen balance/equity=99500, trading PnL sin cambio y headroom=600. El tipo PAYOUT_DEBIT no acredita eligibility ni settlement comercial. Si otro modelo necesita trasladar floors/baselines, debe aportar un AccountContextTransition explícito con seed y quiescencia; no inferir otra política dentro de este tratamiento.
+
+Cashflow se permite con posiciones abiertas y publica una revisión ACCOUNT_ECONOMICS independiente más AccountSnapshot/Provider safety por el path compartido. Si falta un mark requerido, se asienta el dinero y la revisión permanece no fresh; no se omite el movimiento. Exact retry/rollback de callbacks y trazabilidad conservan §3/§14. Si cashflow y context transition comparten timestamp, ordinal/control_id fijan el orden y cada expected_context_digest debe corresponder al prefijo real.
+
+### 11.4 Caller controls y frontera causal
+
+CLOSED_SPEC fija antes de NewRun todos los controles. CALLER_CONTROLLED permite `EnqueueControl` sólo mientras el engine está pausado entre fronteras completas, únicamente para AccountContextTransition/AccountCashflow. El caller debe elegir effective_at estrictamente posterior a la frontera completada, dentro o más allá del horizonte declarado; no se modifica end_exclusive, el pasado ni el ContractSchedule. Un control más allá del horizonte queda aceptado pero pendiente y declarado, sin efecto económico. No sumar automáticamente un nanosegundo ni reescribir el timestamp solicitado.
+
+La admisión valida shape/identidades y materializa planes/términos ya proporcionados; expected_context_digest puede referir a un contexto de una transición previa ya admitida y se verifica obligatoriamente al aplicar, sin exigir que un contexto futuro ya sea el actual. Registra secuencia append-only, frontera de admisión, effective_at, ordinal y payload/digest. No editar/cancelar controles aceptados. Validaciones dependientes del estado se repiten al aplicar. La identidad de este modo se fija por namespace previo del caller (§13.1); el manifest final contiene todos los controles aceptados y sus fronteras de admisión. Reproducción reinyecta esas admisiones en las mismas fronteras; no precarga como visible al dominio lo que el caller todavía no había entregado.
+
+AdvanceUntil(T) siempre retorna una frontera completada <=T. En CALLER_CONTROLLED/AWAIT_CONTEXT puede devolver una vez antes de T al primer outcome quiescente de la etapa, con AWAITING_NEXT_CONTEXT; el caller suministra el siguiente contexto y vuelve a avanzar. Si no lo entrega, el engine sigue bloqueando nuevas entradas y puede avanzar al horizonte con ese estado. CLOSED_SPEC usa sólo los contextos ya fijados y tampoco finaliza anticipadamente por outcome si eligió AWAIT_CONTEXT. Finish sella admisiones y exige §15; no implica PASS ni continuidad funded.
+
+### 11.5 Campaign Simulator diferido
+
+El futuro controller externo posee compras, fees comerciales, bankroll, cuentas, payout eligibility/settlement y reinversión; invoca AdvanceUntil/EnqueueControl con información de prefijo. Sólo traduce los efectos account-level relevantes a los dos controles anteriores. No suma nominal 50K/100K al bankroll, ni cobra al ledger de cuenta un fee de reset comercial que sólo afectó la caja del usuario.
+
+Bankroll usa únicamente compras/fees y créditos de payout ya asentados a tiempo t; un payout conocido el día 5 no compra el día 2. Parent IDs y observaciones causales permiten relacionar cuentas físicas distintas sin fingir continuidad. No se exponen summaries futuros ni se eligen retrospectivamente corridas favorables. Cuentas completas sólo podrían paralelizarse si decisiones de campaña no alteran sus trayectorias ni hacen visible su futuro.
+
+S02 implementa transición/cashflow/caller seam y acceptance dentro de un engine. No implementa Campaign Simulator, compras, pricing comercial, wallet ni workflow engine.
 
 ## 12. SimExecution V1
 
@@ -468,10 +565,10 @@ SimExecution mantiene comando/correlación inmutables por orden, estado físico,
 
 | Tipo | Regla exacta |
 | --- | --- |
-| MARKET BUY | Primer cursor posterior a aceptación, sesión negociable y quote válido: ask + slip_ticks×tick_size. Full remaining qty. |
+| MARKET BUY | Primer cursor posterior a aceptación del mismo contrato/stream pinneado, sesión negociable y quote válido propio: ask + slip_ticks×tick_size. Full remaining qty. |
 | MARKET SELL | Mismas condiciones: bid − slip_ticks×tick_size. |
-| STOP_MARKET BUY | Sólo trade aceptado posterior a aceptación con last >= stop. Pasa a triggered MARKET y usa ask válido; espera si falta quote. |
-| STOP_MARKET SELL | Sólo trade posterior con last <= stop. Usa bid válido o espera. Un gap no llena al stop solicitado. |
+| STOP_MARKET BUY | Sólo trade aceptado del mismo contrato/stream, posterior a aceptación, con last >= stop. Pasa a triggered MARKET y usa ask propio válido; espera otro cursor de ese contrato si falta quote. |
+| STOP_MARKET SELL | Sólo trade posterior del mismo contrato/stream con last <= stop. Usa bid propio válido o espera otro cursor de ese contrato. Un gap no llena al stop solicitado. |
 | CANCEL | Detiene futuros matches no sellados; ACK y finality separados. |
 | Replace de GerardMM | CANCEL + NEW independientes, claims y autorización propios. |
 | LIMIT/native MODIFY | Falla `UNSUPPORTED_EXECUTION_COMMAND`; no conversión a MARKET ni descarte. |
@@ -509,11 +606,21 @@ Nunca inyectar finality si todavía existe un fill programado posterior para esa
 
 ## 13. Determinismo e identidad
 
-### 13.1 RunID y build
+### 13.1 RunID, controles y build
 
-`input_sha256 = SHA256(canonical_v1(ImmutableInputs))`; `run_id = bt-<digest completo>`. ImmutableInputs incluye build/code, dataset/range, config resuelta, initial state, calendarios/tzdata, controles y modelos. Excluye el propio run_id, paths locales, credenciales, host, duración, intentos y destino de publicación. `ConfigSnapshot.Run` se representa sin el ID derivado al hashear y se liga después al resultado, evitando recursión.
+`input_sha256 = SHA256(canonical_v1(ImmutableInputs))`. ImmutableInputs incluye build/code, dataset lógico/range, config resuelta, catálogo/schedule, initial state, calendarios/tzdata, política y expansión de planes, contextos/controles aceptados y modelos. Excluye run_id derivado, representación física alternativa/receipt, paths locales, credenciales, host, duración, intentos y destino de publicación. ConfigSnapshot.Run se hashea sin el ID derivado y se liga después, evitando recursión.
 
-Todo owner y fact recibe `RunProvenance{BACKTEST,run_id}`. El mismo conjunto inmutable produce los mismos IDs y comportamiento. Una nueva versión de código cambia el run_id normal. Una comparación diagnóstica contra otro build puede conservar el namespace del baseline, identificando ambos builds y publicando sólo bajo attempts, nunca sobre su resultado canónico.
+| Modo | Identidad y cierre |
+| --- | --- |
+| CLOSED_SPEC | Todos los inputs están fijados antes de ejecutar; `run_id=bt-<input_sha256 completo>`. |
+| CALLER_CONTROLLED | El caller fija control_namespace no vacío y BaseImmutableInputs antes de NewRun. `base_spec_sha256=SHA256(canonical_v1(BaseImmutableInputs))`; `run_id=bt-c-<SHA256(tuple(version,base_spec_sha256,control_namespace))>`. Namespace, modo y controles inicialmente declarados forman parte del base; no hay reloj de pared/RNG oculto. |
+| Manifest final del modo controlado | ImmutableInputs añade la lista append-only de admisiones con payloads/digests, ordinal, effective_at y frontera de admisión, incluidos controles pendientes más allá del horizonte. input_sha256/control_sequence_sha256 se cierran al Finish/aborto; no cambian RunID ni IDs ya emitidos. |
+
+CALLER_CONTROLLED no pretende que RunID sea el hash de datos futuros desconocidos. El caller asigna un namespace distinto a cada experimento causal. Mismo base/namespace y misma secuencia de admisiones reproducen exactamente los mismos IDs/records/resultado; el reproducer conserva ese modo y reproduce las admisiones en sus fronteras. Reusar namespace/base con otros inputs finales es `RUN_INPUT_CONFLICT` al comparar un resultado/registro ya existente: exclusión local y publicación create-if-absent preservan el anterior, sin overwrite. No hace falta un servicio nuevo de coordinación.
+
+Todo owner y fact recibe RunProvenance BACKTEST con el RunID estable desde el principio. CLOSED_SPEC y CALLER_CONTROLLED equivalentes económicamente tienen identidad/provenance distinta por contrato; una comparación entre modos debe nombrar esa diferencia, nunca prometer igualdad byte a byte de dos specs distintos. La prueba exacta de determinismo conserva modo/namespace/admisiones.
+
+Una nueva versión de código cambia la identidad normal. Una comparación diagnóstica contra otro build puede conservar el namespace del baseline, identificando ambos builds y publicando sólo bajo attempts, nunca sobre su resultado canónico.
 
 ### 13.2 IDs dentro del estado compartido
 
@@ -552,7 +659,7 @@ Cerrar sólo barras cuyo boundary real se alcanzó; las demás quedan forming. L
 
 `REPORT_RESIDUALS` permite COMPLETE al haber ejecutado correctamente el horizonte: account puede seguir ACTIVE, con posiciones valorizadas, órdenes, claims, reservas, pending admission y timers futuros explícitos. No confundir ese COMPLETE con cuenta flat, evaluación pasada ni realización del unrealized.
 
-`REQUIRE_FLAT` necesita un cierre causal previo y datos ejecutables posteriores dentro del horizonte. Si faltan, INCOMPLETE; nunca venta al último precio. Business FAIL/PASS terminal detiene trading y completa sólo después de asentar la ejecución requerida; si no converge antes del horizonte, INCOMPLETE preservando ese outcome parcial.
+`REQUIRE_FLAT` necesita un cierre causal previo y datos ejecutables posteriores dentro del horizonte. Si faltan, INCOMPLETE; nunca venta al último precio. Business FAIL/PASS detiene nuevas entradas de la etapa y asienta la ejecución requerida. Con outcome_handling=STOP puede completar en ese stop contractual; con AWAIT_CONTEXT conserva el outcome y procesa el siguiente contexto explícito o continúa hasta el horizonte bloqueado en AWAITING_NEXT_CONTEXT. Si un asentamiento obligatorio no converge antes del horizonte, INCOMPLETE preservando ese outcome parcial.
 
 Condiciones conjuntas para COMPLETE:
 
@@ -560,7 +667,8 @@ Condiciones conjuntas para COMPLETE:
 - Cola inmediata drenada, sin error ni hecho físico sellado sin aplicar.
 - Valuación final válida para toda posición neta y cobertura declarada.
 - Residuales compatibles con end_policy y listados íntegramente.
-- Lifecycle y execution_state separados; counts/digests/schema completos.
+- Lifecycle de cada etapa, estado de continuidad y execution_state separados; counts/digests/schema completos.
+- Admisiones selladas; todos los controles aceptados constan en ImmutableInputs como aplicados o pendientes, sin efectos atribuidos a tiempo futuro.
 - Gzip local cerrado y verificable.
 
 Una caída del publisher no invalida estas condiciones locales; tampoco convierte un fallo del engine en COMPLETE.
@@ -575,12 +683,14 @@ Una caída del publisher no invalida estas condiciones locales; tampoco conviert
 | --- | --- |
 | `schema_version` | `echo.backtest.result.v1`. |
 | `run` | RunProvenance existente. |
-| `inputs` | ImmutableInputs completo; config/initial state inline y refs durables verificables de corpus/build/calendario. |
-| `input_sha256` | Identidad de inputs. |
-| `records` | Array ordenado escrito por streaming. |
+| `records` | Array ordenado escrito por streaming después de schema_version/run. |
+| `inputs` | ImmutableInputs final; base/config/initial state, catálogo/schedule, políticas/rows expandidas, contextos/cashflows/admisiones inline y refs durables verificables de corpus lógico/build/calendario. |
+| `input_sha256` | Digest final de inputs; base_spec_sha256/control_sequence_sha256 explícitos cuando corresponde. |
 | `summary` | Execution state, terminal_reason, último tiempo/cursor, counts, lifecycle, economía/días, residuales, state digests y fidelidad/cobertura. |
 | `first_error` | Null para COMPLETE; primer capsule de fallo cuando corresponda. |
 | `integrity` | Canonicalization/version, hash_algorithm, record_count, records_sha256, input_sequence_sha256 y logical_sha256. |
+
+El orden top-level V1 es schema_version, run, records, inputs, input_sha256, summary, first_error, integrity. El writer abre records inmediatamente y escribe los inputs finales después de cerrar el array; esto permite caller controls sin retener records en RAM, reescribir IDs ni reconstruir un gzip abierto. Las admisiones sin aplicación aún no tienen efecto de dominio: su evidencia está en el manifest final con frontera y secuencia. El resumen incluye contabilidad total y por etapa/contrato, selecciones/controles aplicados y pendientes.
 
 Cada record tiene `{record_seq, coordinate, owner_kind, owner_key, kind, payload}`; la secuencia comienza en uno. El kind define exactamente un payload tipado; no aceptar variantes desconocidas silenciosamente.
 
@@ -595,7 +705,10 @@ Cada record tiene `{record_seq, coordinate, owner_kind, owner_key, kind, payload
 | POSITION_OBSERVATION / EXECUTION_SESSION_OBSERVATION | Tipos reales, ruta account-level. |
 | OPERATION_FACT / PROVIDER_FACT | Facts de dominio antes de contraer estado terminal. |
 | ECONOMICS | Una revisión completa por cambio; decisiones la referencian. |
-| ACCOUNT_LIFECYCLE | Outcome/transición con causa, contexto y cobertura. |
+| ACCOUNT_LIFECYCLE | Outcome por etapa y continuidad con causa, contexto y cobertura. |
+| CONTRACT_SELECTION / STRATEGY_CONTRACT_ACTIVATION | Control/schedule, selección anterior/nueva, gate, readiness, ciclo drenado, candidato descartado y referencias retenidas. |
+| ACCOUNT_CONTEXT_TRANSITION | Contextos before/after, state_modes/seed y validaciones de quiescencia; refs de la revisión/Provider Apply producidos. |
+| ACCOUNT_CASHFLOW | Identidad/payload/treatment, delta, balance/floors/headroom before/after y efectos económicos; duplicado no vuelve a asentar dinero. |
 
 Envelope de evaluación común: `input_kind,input_ref,input_sha256,before_state_sha256,reads_sha256,output_sha256,after_state_sha256,output_record_refs,outcome/reason`. Hash de estado incluye MMState y bookkeeping relevante, no sólo la proyección pública.
 
@@ -619,11 +732,11 @@ Reclasificar una cuenta como prop después de trades genéricos sólo es válido
 
 ## 17. Persistencia local y MinIO/S3
 
-1. Crear spool local exclusivo por intento. Escribir header/records, luego summary/integrity.
+1. Crear spool local exclusivo por intento. Escribir schema/run y records por streaming; al sellar, escribir inputs finales, input digest, summary/first_error/integrity en el orden de §16.
 2. Cerrar gzip con compresión fijada, mtime cero, nombre/comment vacíos y representación estable; cerrar/sync archivo.
 3. Reabrir, decodificar y verificar schema/counts/digests. Finalizar localmente por rename atómico bajo exclusión del run-id; si ya existe, comparar contenido y no reemplazar un resultado diferente.
 4. El publisher externo sube bytes cerrados directamente a `runs/<run-id>/result.json.gz` con create-if-absent `If-None-Match: *` y checksum. No HEAD seguido de PUT incondicional.
-5. Timeout ambiguo/precondition: GET del objeto existente y comparación SHA-256 verificada. Igual es éxito idempotente; distinto es `RUN_ID_CONFLICT` y queda intacto; estado no verificable sigue pendiente/fallido.
+5. Timeout ambiguo/precondition: GET del objeto existente y comparación SHA-256 verificada. Igual es éxito idempotente; distinto es `RUN_ID_CONFLICT` (o RUN_INPUT_CONFLICT si el namespace controlado se reutilizó con otros inputs) y queda intacto; estado no verificable sigue pendiente/fallido.
 6. Retry de upload conserva exactamente el archivo. Logs/receipt contienen intentos, wall time, backend y resultado; no entran en el contenido lógico.
 
 AWS documenta publicación íntegra de PutObject y escritura condicional; MinIO AIStor publica compatibilidad de If-None-Match. Esto no acredita la versión desplegada en Aranea. S02 debe verificar las semánticas del backend configurado en un prefijo aislado. [W01] [W02] [W03]
@@ -692,7 +805,7 @@ Regresión `provider/bt_f03_test.go` y wiring: LIVE/BACKTEST/EXACT_REPLAY, varia
 
 **SOURCE FACT.** El branch post-terminal/foreign de handleFill llega a un constructor que puede leer Operation nil o atribuir A a B; beginEvent también puede avanzar Runtime.EventSeq de B. La prueba existente del mismo terminal A no cubre A terminal → B viva. [S11] (líneas 291–433) [S09] (líneas 345–421)
 
-Semántica: conservar account/strategy/operation/order/provider-execution originales. A no revive; B mantiene íntegros Operation, Runtime, MMState, fills, órdenes, exposición y claims. Puede avanzar una secuencia audit del owner sin fingir mutación de B. Run provenance sale de correlación original retenida; si no se resuelve, UNKNOWN explícito, nunca el run de B por conveniencia.
+Semántica: conservar account/strategy/operation/order/provider-execution originales. A no revive; B mantiene íntegros Operation, Runtime, MMState, fills, órdenes, exposición, claims y la economía efectiva/contexto que habría observado sin ese sidecar. Puede avanzar una secuencia audit del owner sin fingir mutación de B. Run provenance sale de correlación original retenida; si no se resuelve, UNKNOWN explícito, nunca el run de B por conveniencia.
 
 Regresiones `operation/bt_f04_test.go`: owner vacío; A terminal/B actual y fill nuevo de A; duplicado de A ya cobrado; orden inexistente/foreign account/strategy; fill corriente válido. Fixture integrada modifica net físico por fill nuevo de A y muestra mismatch/safety sin transferencia falsa a B. Dedup económico por cuenta+execution ID durante todo el run. No filtrar IDs antiguos antes de Apply.
 
@@ -710,7 +823,7 @@ Cada finding tiene source/semántica, comando/caso baseline, resultado observado
 
 ## 20. Matriz de aceptación local
 
-Esta matriz es obligatoria para S02 salvo las expansiones adversariales/closures expresamente asignadas a S03/S04. Los nombres son IDs estables de evidencia; los nombres Go pueden seguir la convención del repo. No se ejecutó ninguno en S01.
+Esta matriz es obligatoria para S02 salvo las expansiones adversariales/closures F01–F05 expresamente asignadas a S03/S04. BT-A37…BT-A60 son los casos añadidos por BT-S01A y pertenecen al mismo S02. Los nombres son IDs estables de evidencia; los nombres Go pueden seguir la convención del repo. No se ejecutó ninguno en S01/S01A.
 
 | ID | Caso | Aserción material |
 | --- | --- | --- |
@@ -720,8 +833,8 @@ Esta matriz es obligatoria para S02 salvo las expansiones adversariales/closures
 | BT-A04 | Boundary sin tick; sesión/break/early close en T | Timers y precedencia correctos; cero barras fuera del grid. |
 | BT-A05 | Timer viejo después de nueva barra y cambio de calendario | No cierre nuevo por generación reutilizada; boundary/id válidos. |
 | BT-A06 | Epoch/recovery, duplicate/conflict y repeated equal-price ticks | Guards reales, identidad distinta cuando corresponde, cero reeval retrospectivo. |
-| BT-A07 | Contrato ajeno/rollover/multicurrency | Miss exacto o error preflight nombrado; no uso de contrato corriente. |
-| BT-A08 | Inputs/config faltantes, day3 sin row, Warmup incompleto | Fallo explícito, cero fallback/plan heredado. |
+| BT-A07 | Contrato desconocido, catálogo/schedule inválido y multicurrency | Miss exacto o error preflight nombrado; Mark/Ready nunca sustituyen por contrato corriente. Rollover válido se acepta. |
+| BT-A08 | Inputs/config faltantes, tabla directa con day3 sin row, Warmup incompleto | Fallo explícito, cero fallback; el materializador correcto se prueba por BT-A43/44. |
 | BT-A09 | MARKET BUY ask100.75, tick.25, slip1 | Fill101.00 posterior a aceptación; comisión una vez. |
 | BT-A10 | SELL stop99.50, BBO98/98.25, trade98, slip1 | Trigger LAST; fill97.75; no fill99.50 inventado. |
 | BT-A11 | BID nuevo/ASK viejo, quote future, TRADE_MODEL | Freshness por lado; sin lookahead; provenances y cadence declarados. |
@@ -739,23 +852,47 @@ Esta matriz es obligatoria para S02 salvo las expansiones adversariales/closures
 | BT-A23 | DLL, EOD ratchet/cap e igualdad; mark sin fills; no intraday ratchet | Snapshot/risk/safety actualizados antes de nueva señal; freshness vence sin tick; breach terminal latcheado. |
 | BT-A24 | Consistency justo30%, total<=0, target con exposición y mínimo de días 0/nil/positivo | Shared evaluator exacto; días únicos por fill; nil no habilita pass; sin pass anticipado ni fail inmediato por consistencia. |
 | BT-A25 | Flat deadline sin tick, cancel ACK sin finality y reopen | Cierre por reloj; violación física vs fallo lógico; reopen sólo retira su bloqueo; terminal no revive. |
-| BT-A26 | Generic y GAU50 con mismo motor/corpus | Restricción puede cambiar secuencia/sizing/admission/continuidad; cero post-hoc sustituto. |
+| BT-A26 | Generic de 20 días y GAU50 con mismo motor/corpus compatible | Restricción cambia secuencia/sizing/admission/continuidad; ejemplos de políticas explícitas, cero post-hoc sustituto. |
 | BT-A27 | Horizon dentro de barra/último tick crea orden/residuales | No fill futuro ni close parcial inventado; COMPLETE/INCOMPLETE según policy. |
 | BT-A28 | Run dos veces, chunk size distinto, A/B/A y procesos nuevos | Igualdad exacta de records, IDs, economics, final state y gzip. |
 | BT-A29 | Apply error/panic/recorder error | Primer error/capsule, ningún commit fallido ni COMPLETE falso. |
 | BT-A30 | Mutar una observación/context read/orden de effects | Reproducer detiene primera divergencia y materializa contexto suficiente. |
 | BT-A31 | Result parse, refs/digests y output truncado | Artifact válido completo o diagnóstico; no publicación parcial canónica. |
 | BT-A32 | Publisher idéntico/conflicto/timeout/partial connection/size | Create-if-absent real; exact retry; conflicto intacto; local conservado. |
-| BT-A33 | AdvanceUntil(T) vs Run completo y dos cuentas con payout futuro ficticio | Prefijo idéntico; ninguna observación >T ni caja futura visible. |
+| BT-A33 | AdvanceUntil(T) vs Run cerrado; driver caller-controlled con payout futuro | Prefijo idéntico dentro del mismo modo/spec; ninguna observación >frontera ni cashflow futuro aplicado; no implementa campaign. |
 | BT-A34 | F01–F05 | Casos directos de §19; matriz de disposición y evidencia, sin workaround del driver. |
 | BT-A35 | Legacy SDK/Core/futuresvertical regression | Shared extraction/adiciones no rompen consumers; no claim físico D6 por estos tests. |
 | BT-A36 | Dataset representativo de ticks + evidencia streaming | Reportar counts, memoria y tamaño; sin retener corpus/records completos en RAM. Sin SLA inventado. |
+| BT-A37 | NQH→NQM→NQU en una cuenta/run, reapertura en cada selección | Balance, PnL, días, drawdown/Provider e IDs continúan; cada nueva Operation/orden/fill pinnea el físico vigente; un único resultado. |
+| BT-A38 | Operation A viva después de seleccionar/activar B; mercado A detenido mientras B avanza | Quotes/stop/fill/cierre de A usan sólo A; B no dispara stop ni ejecuta MARKET A con una quote retenida; catálogo A retenido y posiciones A/B no se netean entre contratos. |
+| BT-A39 | S1 y S2 reales: preparar B, drenar ciclo A, activar B | Indicadores/readiness por stream; cero mezcla/Signal de warm-up; A puede cerrar sin abrir otro ciclo; contadores globales conservados y primer trigger normal B posterior. |
+| BT-A40 | OPEN A en vuelo, ALLOW tardío, PendingAdmission y DeferredOpen al cutover | EntryGate invalida el trabajo no materializado; recheck al materializar/promover; no operación A nueva ni atribución del OPEN A a B. |
+| BT-A41 | A técnico vivo con Operation ya cerrada; caso inverso; A→B→C/A→B→A y preparaciones excesivas | Esperar cierre técnico para activar; si sólo resta finality física, B usa deferral real; máximo tres slots; schedule con sucesor no inmediato se rechaza y candidato vencido/ABA no resucita. |
+| BT-A42 | Falta cobertura de A aún requerido; B prewarm sin exposición propia | INCOMPLETE OLD_CONTRACT_DATA_UNAVAILABLE sin precio B sustituto; prewarm B no genera revisión económica/MM espuria sobre A. |
+| BT-A43 | Generic100K veinte account-days con GerardMM real | Veinte rows/selectores digeridos; trades/decisiones posteriores a day2 y en tramo final; sin rama generic ni fallback. |
+| BT-A44 | Materializar N días, DST, días parciales/sin trades, gaps/duplicados/overflow | Tabla determinista y completa; ordinal explícito; row anterior sigue pinneada a Operation viva; errores antes de nueva decisión. |
+| BT-A45 | Misma cuenta EVALUATION→FUNDED/INITIAL explícito y después cashflow | Cambio real de binding/RuleSet/terms/MM rows/límites/context/state; mismo RunID/account/ledger, IDs monótonos; nueva Operation consume plan FUNDED suministrado; payout no es PnL. |
+| BT-A46 | Transición admitida hoy con exposición; al aplicar: posición por contrato, net opuesto, reserva/pending, cancel ACK o late fill programado | Admitir futuro no exige estar flat hoy; rechazo CONTEXT_NOT_QUIESCENT sólo si falta quiescencia efectiva, sin mutación parcial ni cambiar fecha; ciclo técnico solo no bloquea. |
+| BT-A47 | Context transition en EOD/DST; off-boundary; timer/economics viejos | EOD viejo exactamente una vez, segmento parcial explícito, sin ratchet fuera de EOD; contexto/generación viejos no modifican el nuevo. |
+| BT-A48 | PASS con STOP y AWAIT_CONTEXT; caller no entrega contexto o lo entrega después | Nunca PASS→FUNDED implícito; pausa en frontera completa; bloqueo persistente o continuación causal misma cuenta según control. |
+| BT-A49 | Payout -500 flat con floor 98900; debit con posición abierta | E=99500/headroom600 en ejemplo; PnL/best-day/consistency intactos; debit puede disparar Provider safety antes de market; marca faltante no elimina dinero. |
+| BT-A50 | Cashflow duplicate/conflict, reset credit/debit y revisión posterior | Asentar una vez incluso tras cambio de contexto; conflicto visible; dinero exacto; credit no deslatchea fail ni desplaza floor. |
+| BT-A51 | Mismo dataset lógico: NDJSON una parte, chunks y otro adapter | Mismos origin refs/source_order, canonical inputs, IDs/records/estado/economía/gzip; sólo receipt físico difiere. |
+| BT-A52 | Corpus grande streaming, lados quote en distintos chunks y corrupción | Buffers/RSS medidos; sin cargar corpus completo; un BID no rejuvenece ASK; schema/order/byte o normalized digest inválido falla explícitamente. |
+| BT-A53 | Ingress tipado real Core vs historical para fill y quote correlacionados | Igual MMInput, next-state/MMState, market reads/capabilities y ordered effects con mismos clock/IDs/provenance/config. |
+| BT-A54 | Ingress raw real Core con Views fresh viejo; actualización posterior | UNAVAILABLE/PnLFresh=false como histórico; fill/capacidad/protección conservados; sólo causa económica posterior válida restaura freshness. |
+| BT-A55 | Parity: duplicate/late/foreign, contexto/revisión erróneos y error/retry | Guards antes del sidecar; B no muta por A; evidencia inválida no autoriza; clone/IDs rollback; no relectura latest ni trigger MM doble. |
+| BT-A56 | Parity con allocators/provenance reales LIVE/BACKTEST y recorder | Diferencias sólo las nombradas por contrato; mismo path/semántica; wrapper no añade ExecutableQuoteSource. Config MM válida para ambas composiciones. |
+| BT-A57 | CALLER_CONTROLLED: replay de admisiones, namespace repetido/conflictivo | Misma secuencia/fronteras exacta reproduce IDs/gzip; distintos inputs finales no sobrescriben resultado; Finish sella pendientes y nuevos controles se rechazan. |
+| BT-A58 | Context y cashflow al mismo T; control en/pasado de frontera | Orden ordinal/control_id, expected_context exacto y snapshots antes de fase market; tiempo <=frontera rechazado; sin retroactividad. |
+| BT-A59 | Preserve/reset/replace de etapa, día y risk seed | Balance sólo cambia por fill/coste/cashflow; seed no crea dinero; same-stage no borra terminalidad; START_NEW_STAGE archiva outcome y separa progreso. |
+| BT-A60 | Cambio real de cuenta física, contexto incompleto y swap fallido | Otra ProviderAccountRef física exige otro run; autoridad incompleta rechazada; AccountContextUpdate no publica estados mixtos ni efectos tras error. |
 
 Fixtures de modelo pueden usar precios artificiales mínimos, con contratos y unidades válidos. Diferenciar esas pruebas de una corrida sobre histórico externo real. Conformance MinIO usa backend/prefijo aislado autorizado; si el entorno no está disponible, conservar la prueba local y declarar esa parte NO_VERIFICADA, sin afirmar el gate de publicación completo.
 
 ## 21. Fuentes, alcance de evidencia y cobertura del mandato
 
-Las fuentes de código están fijadas a Echo d361008b; las autoridades a Agents-OS b999eb3e. Las decisiones nuevas de este diseño no se presentan como funcionalidades ya implementadas.
+Las fuentes de código están fijadas a Echo d361008b; las autoridades originales a Agents-OS b999eb3e y el artifact BT-S01 revisado a ab7766fd. HEADs refrescados al inicio y cierre; el delta concurrente de parser AddOn queda identificado en §0.1 y no cambia los seams compartidos. El mandato BT-S01A del Manager en esta sesión corrige el endpoint V1. Las decisiones nuevas no se presentan como funcionalidades ya implementadas.
 
 | Ref | Fuente principal |
 | --- | --- |
@@ -763,10 +900,11 @@ Las fuentes de código están fijadas a Echo d361008b; las autoridades a Agents-
 | A02–A04 | Proyecto/Technical SPEC y freeze D6. |
 | A05–A06 | Identidad/exact replay D4-A1 y orden BACKTEST D2-06C. |
 | A07–A10 | Claims/capacity, Provider authority, GerardMM y lifecycle Operation. |
-| A11–A12 | Remediación D6 vigente y evidencia externa E2T congelada. |
+| A11–A14 | Remediación D6, evidencia E2T congelada, BT-S01 revisado y delta concurrente de parser. |
 | S01–S08 | Market/Analytics/views, identidad, Bars, clock, Strategy y S2. |
 | S09–S16 | Operation/MM/ejecución/Provider y planes económicos. |
-| S17–S24 | GAU50, consistencia, sim, warmup, unidades, módulos, IDs y observabilidad. |
+| S17–S26 | GAU50, consistencia, sim, warmup, unidades, módulos, IDs, observabilidad y GerardMM real. |
+| S27–S34 | MKT07, Strategy config/triggers, Signal separation, MM selector, Core ingress y delta AddOn al cierre. |
 | W01–W03 | APIs primarias de escritura S3/MinIO consultadas para publisher. |
 
 [A01]: https://github.com/xKoRx/agents-os/blob/b999eb3ea2a9a9d2ded574e891e3f8bec8c275c2/main/10-projects/Echo%20Futures/artifacts/backtester-v1/Echo%20Futures%20%E2%80%94%20BT-S00%20Backtester%20Source%20Forensics%20and%20Architecture%20Direction.md
@@ -781,6 +919,8 @@ Las fuentes de código están fijadas a Echo d361008b; las autoridades a Agents-
 [A10]: https://github.com/xKoRx/agents-os/blob/b999eb3ea2a9a9d2ded574e891e3f8bec8c275c2/main/10-projects/Echo%20Futures/Echo%20Futures%20%E2%80%94%20D2-04%20Operation%20Order%20Fill%20Position.md
 [A11]: https://github.com/xKoRx/agents-os/blob/b999eb3ea2a9a9d2ded574e891e3f8bec8c275c2/main/10-projects/Echo%20Futures/artifacts/d6-shot3-20261002/D6-SHOT3-PRE-EGRESS-REMEDIATION.md
 [A12]: https://github.com/xKoRx/agents-os/blob/b999eb3ea2a9a9d2ded574e891e3f8bec8c275c2/main/10-projects/Echo%20Futures/artifacts/d6-earn2trade-preflight-20260930/DEEPRESEARCH-PASS-1-E2T-EXTERNAL-EVIDENCE.md
+[A13]: https://github.com/xKoRx/agents-os/blob/ab7766fd74bed760cb9a9f151bc423948bec0d3f/main/10-projects/Echo%20Futures/artifacts/backtester-v1/Echo%20Futures%20%E2%80%94%20BT-S01%20Backtester%20V1%20Design.md
+[A14]: https://github.com/xKoRx/agents-os/blob/48f5260c5803c061b4f4dcabcf246897d056e19b/main/10-projects/Echo%20Futures/artifacts/d6-config-parser-fix-20261003/D6-CONFIG-PARSER-FIX.md
 [S01]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/core/internal/functions/futures_market_stream.go
 [S02]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/core/internal/functions/futures_market_analytics.go
 [S03]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/core/internal/futuresruntime/views.go
@@ -807,6 +947,14 @@ Las fuentes de código están fijadas a Echo d361008b; las autoridades a Agents-
 [S24]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/sdk/futures/obs/obs.go
 [S25]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/core/config/futures/rulesets.go
 [S26]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/sdk/futures/gerardmm/gerardmm.go
+[S27]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/core/internal/futuresvertical/mkt07_rollover_test.go
+[S28]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/sdk/futures/strategy/config.go
+[S29]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/sdk/futures/strategy/trigger.go
+[S30]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/sdk/futures/domain/signal.go
+[S31]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/sdk/futures/domain/separation_test.go
+[S32]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/sdk/futures/gerardmm/config.go
+[S33]: https://github.com/xKoRx/echo/blob/d361008bfe4aa54fe3d8b6380d290bf92e1f1c08/v3/core/internal/functions/futures_operation.go
+[S34]: https://github.com/xKoRx/echo/commit/7fbd7e990ac6628df3e4cc2717e96efd83bfbbf6
 [W01]: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html
 [W02]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-writes.html
 [W03]: https://docs.min.io/aistor/developers/s3-api-compatibility/
@@ -831,68 +979,72 @@ Las fuentes de código están fijadas a Echo d361008b; las autoridades a Agents-
 
 ### 21.2 Cierre del shot
 
-Revisión de diseño GOD/CLOUD ONE-SHOT consolidada; cuatro especialistas cubrieron causalidad, economía, ejecución y determinismo/evidencia. Una revisión independiente de coherencia corrigió actualización de marks sin fills, dependencias NEW→CANCEL, reconciliación por prefijo, reapertura y mínimo de días. No son un gate adversarial LOCAL ni pruebas físicas. Artifact candidato listo para Manager; aceptación/freeze corresponde a Manager/Owner según el programa. La continuidad y el registro de sesión quedan en Agents-OS por delta.
+BT-S01 conserva su revisión de arquitectura aceptada. BT-S01A es una enmienda GOD/CLOUD ONE-SHOT; tres revisiones acotadas cubrieron rollover/Strategy, contexto/planes/cashflow y paridad. La integración verifica las cinco correcciones y sus consecuencias necesarias sobre identidad/result/control, sin reabrir el motor. Una revisión independiente cerró tres ambigüedades: matching sólo con cursor del contrato propio, validación del límite de preparación y quiescencia comprobada al aplicar el control futuro. Validación estática de documento y autoridades; no se ejecutaron tests de producto ni un gate adversarial LOCAL. El artifact queda listo para freeze del Primary Technical Manager y emisión directa de BT-S02, sin otro design shot.
 
-`PRO_CHAT_POOL_DELTA: 0` significa cero consumo confirmado atribuible por evidencia del host; aplicabilidad Chat/Work y consumo real no expuestos permanecen UNKNOWN. No se multiplica gasto por número de subagentes ni se inventa remaining/reset.
+La continuidad y el registro de sesión quedan en Agents-OS por delta. Feedback sólo si hay fricción reusable comprobada. `PRO_CHAT_POOL_DELTA: 0` significa cero consumo confirmado por evidencia del host; aplicabilidad Chat/Work y consumo real no expuestos permanecen UNKNOWN. No se multiplica gasto por número de subagentes ni se inventa remaining/reset.
 
 ## BT-S02 IMPLEMENTATION CONTRACT
 
 ### Rol, entrada y objetivo cerrado
 
-**NORMAL LOCAL, ONE-SHOT de implementación.** Entrar con BT-S01 aceptado por Primary Technical Manager y baseline/branch confirmados en su mandato. Entregar un Backtester V1 funcional conforme a este documento; no rediseñar la arquitectura. Trabajar en branch/worktree aislado desde el baseline que indique Manager, respetando deltas compartidos posteriores; no editar el worktree, despliegue, bundle, config canónica ni gates de D6.
+**NORMAL LOCAL, UN implementation shot.** Entrar con BT-S01 integrado con BT-S01A y frozen por Primary Technical Manager, baseline/branch confirmados en su mandato. Entregar Backtester V1 funcional conforme a este documento; no rediseñar arquitectura. Trabajar en branch/worktree aislado desde el baseline que indique Manager, respetando deltas posteriores; no editar worktree, despliegue, bundle, config canónica ni gates de D6.
 
-Si el baseline cambió, comparar sólo el delta material con este contrato y conservar las autoridades actuales. Una incompatibilidad real se reporta con evidencia concreta; no sustituir source activo por master antiguo ni abrir preguntas ya resueltas aquí.
+**Autorización explícita:** el NORMAL LOCAL lead puede utilizar subagentes NORMAL locales, con tareas ONE-SHOT acotadas, para workstreams independientes cuando ayude. Pueden cubrir extracción shared-domain; driver/dataset; accounting/ejecución/lifecycle; result/persistencia/reproducción. Son colaboradores de implementación dentro del mismo BT-S02, no shots adicionales ni arquitectos independientes. BT-S01 frozen sigue siendo autoridad. El lead asigna ownership de archivos, coordina dependencias, integra, conserva source truth y responde por todos los tests, artifacts y gate final; no delega esa responsabilidad ni permite decisiones divergentes.
+
+Si el baseline cambió, comparar sólo el delta material con este contrato y conservar autoridades vigentes. Una incompatibilidad real se reporta con evidencia concreta; no sustituir source activo por master antiguo ni abrir preguntas ya resueltas.
 
 ### Implementar y extraer
 
-1. Crear `v3/backtester`, API NewRun/AdvanceUntil/Finish/Run y CLI run/reproduce/publish; añadir módulo al workspace.
-2. Extraer Market/Analytics y feed/config exactamente según §4. LIVE/Core y BACKTEST deben invocar la misma transición. Mantener wire/ValueSpecs/JSON.
-3. Componer los engines reales Strategy/S1/S2/GerardMM/Operation/Provider, los demands/calendarios y vistas exactas. Implementar Warmup compartido de §7.
-4. Implementar reader normalizado/manifest y driver secuencial de §5–6, con controles, fases, timers, lote de fills y quiescencia definidos.
-5. Implementar accounting FIFO exacto, snapshots/revisión, day boundaries, risk projection y modelo de cuenta §9–10. Generic100K sólo aporta saldo.
-6. Añadir ExecutionUpdate/QuoteUpdate, entry-expiry schedule/revoke/cancel y error propagation compartidos. No escribir directamente MMState/DeliveredEconomics desde el runner.
-7. Implementar SimExecution §12 con tipos nativos, elegibilidad posterior, stop/gaps, ACK/finality, TIF, dedup y fixture lab acotada.
-8. Implementar términos Provider tipados y lifecycle de evaluación; proveer los dos ejemplos explicitados. Mantener GAU50 source íntegro, suplemento separado y calificación modelada.
-9. Implementar IDs deterministas y aislamiento §13, con el protocolo F05; si una corrección F01–F05 es físicamente necesaria, hacerla en shared domain y preservar baseline/regresión. No declarar cerrado el programa.
-10. Implementar records/digests, replay/primera divergencia, EOF, finalización local y publisher condicional §14–18.
+1. Crear v3/backtester, API NewRun/AdvanceUntil/EnqueueControl/Finish/Run y CLI run/reproduce/publish; añadir módulo al workspace.
+2. Extraer Market/Analytics y feed/config según §4; Core/LIVE y BACKTEST llaman la misma transición. Mantener contratos serializados existentes con adiciones compatibles explícitas.
+3. Componer Strategy/S1/S2/GerardMM/Operation/Provider reales y vistas exactas; warm-up compartido, ContractCatalog/Schedule, exact stream guards, DRAIN_CYCLE/activación, RolloverEntryGate y retención de contratos de §4.3/§7.
+4. Implementar DatasetSource/Cursor, primer adapter NDJSON y adapter/fixtures de conformance; manifest lógico/representación y origen estable, lectura bounded-memory. Driver secuencial §5–6 con fases, controles, timers, fills sellados y quiescencia.
+5. Accounting FIFO por contrato, suma account-level exacta, snapshots/revisión, account-days y risk projection §9–10. Materializador explícito Generic100K para cualquier horizonte finito solicitado; GerardMM no incorpora fallback.
+6. Path compartido ExecutionUpdate/QuoteUpdate/Observation, normalizador y adapters tipado/raw reales Core e histórico; freshness fail-closed, guards, una llamada MM por causa y equivalencia §8.2. No escribir MMState/DeliveredEconomics directamente desde runner.
+7. Entry-expiry schedule/revoke/cancel y error propagation compartidos; SimExecution §12 con tipos nativos, elegibilidad posterior, stop/gaps, ACK/finality, TIF, dedup y fixture lab acotada.
+8. AccountProgramTerms/risk/lifecycle, AccountContextTransition/Provider AccountContextUpdate atómico, AccountCashflow y caller controls §11; preserve/reset/replace explícitos. Continuación real de una misma cuenta entre etapas, sin Campaign Simulator.
+9. IDs/determinismo/namespace controlado §13 y F05; si un fix F01–F05 es necesario para el camino funcional, hacerlo en shared domain con baseline/regresión. No declarar cerrado el programa por este shot.
+10. Records/inputs finales/digests, replay/primera divergencia, EOF, finalización local y publisher condicional §14–18; ejemplos Generic de veinte días y GAU50 íntegros, más fixtures de rollover y transición/cashflow.
 
 ### Reutilizar y packages autorizados
 
-Reutilizar los tipos/engines/domain policies existentes; no copiar fórmulas de S1/S2/GerardMM/claims/reservas/consistency. Tocar únicamente los targets y shells enumerados en §4, los tests consumidores necesarios y manifests/go.work/go.mod requeridos. No importar Core internals desde backtester, no reutilizar el harness como producto ni incluir transports en el loop.
+Reutilizar tipos/engines/domain policies existentes; no copiar fórmulas S1/S2/GerardMM/claims/reservas/consistency. Tocar únicamente targets/shells de §4, tests consumidores necesarios y manifests/go.work/go.mod requeridos. No importar Core internals desde backtester, reutilizar el harness como producto o incluir transports en el loop. Las helpers de selección/contexto/paridad son shared domain; los adapters sólo suministran hechos/evidencia.
 
 ### Tests que escribir y ejecutar localmente
 
-Implementar BT-A01…BT-A36 con los casos indicados y evidencia por ID. Organizar tests junto a shared packages para correcciones de dominio y junto al runner/sim/store para composición. Escribir F01…F05 directos según §19; si S02 no los corrige, conservar repro y estado pendiente para S03, sin marcar suites rojas como verdes.
+Implementar BT-A01…BT-A60 con evidencia por ID. Tests de fixes de dominio junto al shared package; composición junto a runner/sim/store. F01…F05 directos conforme §19: S02 conserva repro/disposición pendiente si no cierra alguno, sin declarar una suite roja como verde. La ampliación de matriz no cambia el protocolo S03/S04.
 
-Ejecutar desde los módulos correspondientes, con el workspace y toolchain del repo:
+Ejecutar desde módulos correspondientes con workspace/toolchain del repo:
 
 - SDK: `go test ./futures/...`.
 - Backtester: `go test ./...` y build de `./cmd/echo-backtest`.
-- Core: tests de `./internal/futuresruntime`, `./internal/futuresvertical` y `./internal/functions`, incluyendo los consumers de la extracción.
-- Consumers adicionales de SDK IDs/Provider identificados por búsqueda de call sites: compilar/testear su superficie afectada; no omitir futures-bridge si su compilación cambia.
-- Conformance de publisher en MinIO/S3 configurado, prefijo aislado: creación, igualdad, conflicto, timeout ambiguo y no-publicación de spool abierto.
-- Dos corridas idénticas + A/B/A + proceso fresco; comparar records/IDs/estado/economía y bytes gzip. Medir un corpus de ticks representativo sin prometer un SLA no medido.
+- Core: tests de `./internal/futuresruntime`, `./internal/futuresvertical` y `./internal/functions`, incluido el ingress real de paridad y MKT07 con Strategies reales.
+- Consumers adicionales de SDK IDs/Provider por búsqueda de call sites: compilar/testear superficie afectada; incluir futures-bridge si cambia su compilación.
+- Conformance MinIO/S3 en prefijo aislado: creación, igualdad, conflicto, timeout ambiguo y no-publicación de spool abierto.
+- Dos corridas idénticas, A/B/A, proceso fresco, layouts/chunks distintos y replay de controles con mismo namespace; comparar records/IDs/estado/economía/gzip. Medir corpus representativo y separar buffers, metadata, dedup y output.
 
-No ejecutar órdenes contra brokers, egress LIVE, pruebas D6 pendientes o cambios de infraestructura como parte de este shot. Los tests compartidos de código no acreditan esos gates.
+No ejecutar órdenes contra brokers, egress LIVE, gates D6 pendientes ni cambios de infraestructura como parte de S02. Paridad de código/adapters no acredita la provisión económica física LIVE ni su despliegue.
 
 ### Artifacts obligatorios
 
-Entregar commit/branch limpio y diff revisable; README de ejecución y limitaciones; RunSpec/manifest/fixtures completos; schema V1 documentado; dos resultados Generic/GAU50 reproducibles con digests; un primer-divergence capsule demostrado; logs/comandos/build/counts de tests; reporte de conformance MinIO y estado de publicación; tabla BT-F01…F05 con evidencia y próximo responsable; mapping BT-A01…BT-A36 a tests/resultados.
+Commit/branch limpio y diff revisable; README de ejecución/limitaciones; RunSpecs/manifests/fixtures completos; schema V1; resultados Generic de veinte días y GAU50 reproducibles; evidencia de continuidad NQ sobre >=3 contratos y EVALUATION→FUNDED con cashflow en la misma cuenta; capsule de primera divergencia; logs/comandos/build/counts de tests; conformance MinIO/estado de publicación; matriz BT-F01…F05 con evidencia/próximo responsable; mapping BT-A01…BT-A60 a tests/resultados. Reportar workstreams/subagentes usados y consolidación del lead sin tratarlos como shots nuevos.
 
-Los results grandes/corpus quedan en storage durable con digest; el repositorio guarda fixtures pequeñas, manifests y reportes. No subir credenciales ni copiar el histórico completo a documentación.
+Corpus/results grandes quedan en storage durable con digest; repo guarda fixtures pequeñas, manifests y reportes. No incluir credenciales ni copiar todo el histórico a documentación.
 
 ### Decisiones que NORMAL no puede reabrir
 
-Un engine y una cuenta/contrato por run; secuencial/in-process; SDK compartido real; fases y micro-order §6; economía causal con sidecars compartidos; FIFO net por cuenta; Generic sin stage/plan implícitos; GAU50 modelado con cobertura honesta; Sim sólo después de M1; ACK distinto de finality; órdenes nuevas no llenan en su causa; IDs dentro del clone; resultado exacto por streaming; create-if-absent; first divergence completa; ningún workaround exclusivo para F01…F05; ningún cambio/gate D6.
+Un engine, una cuenta/instrumento lógico y múltiples contratos físicos por run; secuencial/in-process; SDK compartido real; fases/micro-order §6; rollover por schedule y pins, Strategy exacta por stream; economía causal y un path compartido hecho+economía; FIFO por contrato/account; Generic arbitrary-horizon por materialización explícita; transiciones/cashflows causales V1; GAU50 modelado con cobertura honesta; Sim sólo después de M1; ACK distinto de finality; órdenes nuevas no llenan en su causa; IDs dentro del clone; dataset lógico independiente del codec; result streaming/controles con identidad estable; create-if-absent; first divergence completa; fixes F01…F05 en shared domain; ningún cambio/gate D6.
 
-Las decisiones de nombres locales, helpers y organización menor de tests pueden seguir el estilo del repo si no cambian ese contrato. Un parámetro obligatorio no se transforma en un default oculto.
+Nombres/helpers/organización menor pueden seguir el repo si no cambian contrato. Parámetros obligatorios no se convierten en defaults ocultos. Los subagentes aplican estas decisiones, no las reinterpretan.
 
 ### Diferido
 
-Rollover/múltiples contratos, multicurrency, native LIMIT/MODIFY, profundidad/queue/latencia aleatoria/Monte Carlo, optimización masiva, distribución intra-run, shared market bus, UI, Mongo/event sourcing, DSL de props/workflows, lifecycle funded/payout completo, campaign simulator masivo, multipart no certificado, resume/checkpoints durables y certificación física LIVE.
+Múltiples instrumentos lógicos/portfolio, multicurrency/FX, futures curves generales y selección automática de roll por volumen/OI, migración automática de posiciones, series continuas sintéticas para análisis siempre etiquetadas como derivadas, LIMIT/native MODIFY, profundidad/queue/latencia aleatoria/Monte Carlo, optimización masiva, distribución intra-run, shared market bus, UI, Mongo/event sourcing, DSL/workflows, Campaign Simulator/compras/fees comerciales/bankroll/eligibility y settlement de payout, multipart no certificado, resume/checkpoints durables y certificación/despliegue físico LIVE.
+
+Rollover longitudinal, Generic arbitrary-horizon, transición same-account, cashflows account-level y paridad shared **no están diferidos**. El codec productivo final puede elegirse con evidencia de workload/performance bajo el port congelado, sin modificar engine o dominio; NDJSON no es su formato estructural obligatorio. La automatización comercial de funded/payout queda fuera, pero el engine aplica el contexto y movimiento de cuenta entregados por caller en V1.
 
 ### Gate de salida
 
-BT-S02 sale **listo para revisión de Manager y BT-S03 LOCAL adversarial** sólo si la implementación corresponde a este contrato, los casos funcionales/de extracción/determinismo/resultados requeridos tienen evidencia verde, los ejemplos producen resultados íntegros, el publisher tiene conformance acreditada cuando se declara operativo y ninguna excepción está escondida. La matriz F01…F05 puede mantener pendientes explícitos de reproducción/cierre asignados a S03/S04; ningún finding bloqueante puede quedar parcheado en el runner ni impedir el camino funcional que se afirma completo.
+BT-S02 sale **listo para revisión de Manager y BT-S03 LOCAL adversarial** sólo si implementa este contrato, los casos funcionales/extracción/paridad/determinismo/longitudinal/contexto/resultados tienen evidencia verde, ejemplos/results son íntegros, publisher tiene conformance acreditada cuando se declara operativo y no hay excepción oculta. La matriz F01…F05 puede mantener pendientes explícitos de reproducción/cierre asignados a S03/S04; ningún finding bloqueante puede estar parcheado en runner ni impedir el camino funcional declarado completo.
 
-Si falta un requisito del gate, entregar estado exacto, repro y trabajo pendiente; no emitir PASS global. BT-S03 deberá verificar adversarialmente los cinco findings incluso si S02 ya corrigió algunos. BT-S04 deberá cerrar todo confirmado. El programa sólo termina cuando cada uno esté en **CONFIRMED_FIXED_WITH_REGRESSION** o **DISPROVED_WITH_EVIDENCE**, con fix compartido y evidencia local cuando corresponda.
+Si falta un requisito, entregar estado exacto, repro y pendiente; no PASS global. BT-S03 verifica adversarialmente los cinco findings incluso si S02 corrigió algunos. BT-S04 cierra todo confirmado. El programa sólo termina cuando cada uno esté en **CONFIRMED_FIXED_WITH_REGRESSION** o **DISPROVED_WITH_EVIDENCE**, con fix compartido y evidencia local cuando corresponda.
